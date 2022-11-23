@@ -1,0 +1,10 @@
+COMPANY_FULLNAME=Mises Software, Inc.
+COMPANY_SHORTNAME=Mises Software
+PRODUCT_FULLNAME=Mises Browser Development
+PRODUCT_SHORTNAME=Brave
+PRODUCT_INSTALLER_FULLNAME=Mises Installer
+PRODUCT_INSTALLER_SHORTNAME=Mises Installer
+COPYRIGHT=Copyright 2016 The Mises Authors. All rights reserved.
+MAC_BUNDLE_ID=site.mises.browser.development
+MAC_CREATOR_CODE=Cr24
+MAC_TEAM_ID=KL8N8XSYF4

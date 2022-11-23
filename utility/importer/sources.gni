@@ -1,0 +1,20 @@
+mises_utility_importer_sources = []
+mises_utility_importer_deps = []
+mises_utility_importer_public_deps = [
+]
+
+if (!is_android) {
+  mises_utility_importer_sources += [
+  ]
+
+  mises_utility_importer_deps += [
+    "//base",
+    "//mises/app:mises_generated_resources_grit",
+    "//mises/common/importer:importer",
+    "//mises/common/importer:interfaces",
+    "//chrome/app:chromium_strings",
+    "//components/os_crypt",
+    "//components/password_manager/core/browser",
+    "//components/webdata/common",
+  ]
+}

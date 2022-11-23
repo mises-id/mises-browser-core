@@ -1,0 +1,16 @@
+import("//extensions/buildflags/buildflags.gni")
+
+static_library("browser") {
+  sources = [
+  ]
+
+  deps = [
+    "//base",
+    "//components/component_updater:component_updater",
+  ]
+
+  if (enable_extensions) {
+    sources += [
+    ]
+  }
+}

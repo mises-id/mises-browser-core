@@ -1,0 +1,16 @@
+mises_stage_install_common() {
+  install -m 644 "${OUTPUTDIR}/installer/common/LICENSE" "${STAGEDIR}/${INSTALLDIR}/"
+
+  # mises_resources.pak, contains customization, shields
+  install -m 644 "${OUTPUTDIR}/mises_resources.pak" "${STAGEDIR}/${INSTALLDIR}/"
+
+  # mises_[100|200]_resources.pak for scaled resources
+  install -m 644 "${OUTPUTDIR}/mises_100_percent.pak" "${STAGEDIR}/${INSTALLDIR}/"
+  install -m 644 "${OUTPUTDIR}/mises_200_percent.pak" "${STAGEDIR}/${INSTALLDIR}/"
+
+  # localization files for Brave extension
+  install -d -m 755 "${STAGEDIR}/${INSTALLDIR}/resources/mises_extension/_locales"
+  cp -a "${OUTPUTDIR}/resources/mises_extension/_locales" "${STAGEDIR}/${INSTALLDIR}/resources/mises_extension"
+  find "${STAGEDIR}/${INSTALLDIR}/resources/mises_extension/_locales" -type f -exec chmod 644 '{}' \;
+  find "${STAGEDIR}/${INSTALLDIR}/resources/mises_extension/_locales" -type d -exec chmod 755 '{}' \;
+}

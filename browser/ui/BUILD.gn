@@ -1,0 +1,204 @@
+import("//mises/build/config.gni")
+import("//build/config/features.gni")
+import("//chrome/common/features.gni")
+import("//components/gcm_driver/config.gni")
+import("//mojo/public/tools/bindings/mojom.gni")
+import("//third_party/widevine/cdm/widevine.gni")
+
+source_set("favicon_source") {
+  # Remove when https://github.com/brave/brave-browser/issues/10614 is resolved
+  check_includes = false
+  sources = [
+    "//chrome/browser/ui/webui/favicon_source.cc",
+    "//chrome/browser/ui/webui/favicon_source.h",
+  ]
+
+  deps = [
+    "//components/favicon/core",
+    "//components/favicon_base",
+    "//components/history/core/browser",
+    "//net",
+    "//ui/native_theme",
+    "//url",
+  ]
+}
+
+source_set("ui") {
+  # Remove when https://github.com/brave/brave-browser/issues/10614 is resolved
+  check_includes = false
+  public_deps = []
+  sources = [
+  ]
+
+  if (!is_android) {
+    sources += [
+      
+    ]
+
+  }  # !is_android
+
+  if (toolkit_views) {
+    sources += [
+     
+    ]
+
+    if (use_aura) {
+      sources += [
+      ]
+    }
+
+    if (enable_sparkle) {
+      sources += [
+      ]
+    }
+
+    if (is_win) {
+      sources += [
+      ]
+    }
+
+    if (is_mac) {
+      sources += [
+        "views/frame/mises_browser_frame_mac.h",
+        "views/frame/mises_browser_frame_mac.mm",
+        "views/frame/mises_browser_non_client_frame_view_mac.h",
+        "views/frame/mises_browser_non_client_frame_view_mac.mm",
+      ]
+    }
+  }
+
+  if (is_win || is_mac || is_linux) {
+    sources += [
+    ]
+  }
+
+  if (is_linux) {
+    sources += [
+    ]
+  }
+
+  deps = [
+    "//base",
+    "//chrome/app:command_ids",
+    "//chrome/app/vector_icons:vector_icons",
+    "//chrome/browser:browser_process",
+    "//chrome/common",
+    "//chrome/services/qrcode_generator",
+    "//components/content_settings/browser",
+    "//components/gcm_driver:gcm_buildflags",
+    "//components/prefs",
+    "//components/sessions",
+    "//components/strings:components_strings",
+    "//content/public/browser",
+    "//content/public/common",
+    "//mojo/public/cpp/bindings",
+    "//services/network/public/cpp",
+    "//skia",
+    "//third_party/abseil-cpp:absl",
+    "//ui/accessibility",
+    "//ui/base",
+    "//ui/base/mojom",
+    "//ui/gfx",
+    "//ui/resources",
+    "//url",
+  ]
+
+  if (toolkit_views) {
+    deps += [
+    ]
+  }
+
+  # This is no longer compiled into Chromium on Android, but we still
+  # need it
+  if (is_android) {
+    deps += [ ":favicon_source" ]
+  }
+
+
+  if (!is_android) {
+    deps += [
+      "//chrome/app:chromium_strings",
+      "//components/sync_device_info",
+      "//mojo/public/cpp/bindings",
+      "//third_party/blink/public/common",
+      "//ui/webui:webui",
+    ]
+  }
+
+  if (enable_extensions && toolkit_views) {
+    sources += [
+    ]
+
+    if (enable_extensions) {
+      sources += [
+      ]
+
+      deps += [
+        "//third_party/widevine/cdm:buildflags",
+      ]
+
+    }
+
+
+    deps += [
+      "//chrome/browser/extensions",
+      "//components/sessions",
+      "//extensions/browser",
+      "//extensions/common:common_constants",
+      "//ui/base/dragdrop:types",
+    ]
+  }
+
+
+  if (is_win && is_official_build) {
+    sources += [
+      "//chrome/browser/ui/webui/help/version_updater_win.cc",
+      "//chrome/browser/ui/webui/help/version_updater_win.h",
+    ]
+    deps += [ "//google_update" ]
+  }
+
+
+  if (!is_android) {
+    sources += [
+     
+    ]
+    deps += [
+      "//components/permissions",
+    ]
+  }
+
+
+  if (toolkit_views) {
+    deps += [
+      "//components/constrained_window",
+      "//ui/events",
+      "//ui/views",
+    ]
+  }
+}
+
+source_set("browser_tests") {
+  if (!is_android) {
+    testonly = true
+    defines = [ "HAS_OUT_OF_PROC_TEST_RUNNER" ]
+
+    sources = [
+      "mises_browser_browsertest.cc",
+      "window_closing_confirm_browsertest.cc",
+    ]
+
+    deps = [
+      "//mises/browser/ui",
+      "//mises/components/constants",
+      "//chrome/browser",
+      "//chrome/browser/devtools:test_support",
+      "//chrome/browser/profiles:profile",
+      "//chrome/browser/ui",
+      "//chrome/test:test_support_ui",
+      "//components/javascript_dialogs",
+      "//components/prefs",
+      "//content/test:test_support",
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+import("//mises/android/mises_android_wireguard_sources.gni")
+import("//mises/android/mises_java_resources.gni")
+import("//mises/android/mises_java_sources.gni")
+import("//mises/build/android/bytecode/bytecode_rewriter.gni")
+
+declare_args() {
+  mises_android_manifest_includes = []
+}
+
+mises_android_manifest_includes = [
+  "//mises/android/java/AndroidManifest.xml",
+  "//mises/android/java/AndroidManifest_intent_filters.xml",
+  "//mises/android/java/AndroidManifest_user_permissions.xml",
+]
+
+mises_chrome_java_deps = [
+  "//mises/android/java/org/chromium/chrome/browser/search_engines:java",
+  "//mises/browser/notifications/android:mises_java",
+  "//mises/browser/notifications/android:java",
+  "//mises/browser/safe_browsing/android/java/src/org/chromium/chrome/browser/safe_browsing/settings:java",
+  "//mises/browser/ui/android/logo:java",
+  "//mises/browser/ui/android/omnibox:java",
+  "//mises/browser/ui/android/theme:java",
+  "//mises/components/mises_shields/common:mojom_java",
+  "//mises/components/mises_today/common:mojom_java",
+  "//mises/components/mises_wallet/common:mojom_java",
+  "//mises/components/browser_ui/site_settings/android:java",
+  "//mises/components/variations/android:java",
+  "//mises/third_party/android_deps:com_airbnb_android_java",
+  "//mises/third_party/android_deps:com_android_billingclient_java",
+  "//mises/third_party/android_deps:com_android_installreferrer_java",
+  "//mises/third_party/android_deps:com_github_bumptech_glide_java",
+  "//mises/third_party/android_deps:com_wireguard_android_J__unpack_aar",
+  "//mises/third_party/android_deps:com_wireguard_android_java",
+  "//mises/third_party/android_deps:google_play_services_safetynet_java",
+  "//mises/third_party/zxing:zxing_java",
+  "//mises/vendor/bat-native-ledger/include/bat/ledger/public/interfaces:ledger_types_java",
+  "//third_party/android_deps:google_play_services_vision_common_java",
+  "//third_party/android_deps:google_play_services_vision_java",
+  "//third_party/androidx:androidx_lifecycle_lifecycle_livedata_core_java",
+  "//third_party/androidx:androidx_lifecycle_lifecycle_livedata_java",
+  "//third_party/androidx:androidx_lifecycle_lifecycle_viewmodel_java",
+  "//url/mojom:url_mojom_origin_java",
+]
+
+mises_chrome_all_java_deps = [
+  "//mises/android/features/tab_ui:java",
+  "//mises/browser/partnerbookmarks:delegate_public_impl_java",
+  "//mises/browser/partnercustomizations:delegate_public_impl_java",
+]
+
+# To use our overrided enum in java, put the header file of our overrided enum
+# in mises_android_java_enums_srcjar target and add the chromium header file of
+# the enum we're replacing in mises_java_cpp_enum_filter.
+mises_java_cpp_enum_filter =
+    [ "//chrome/browser/notifications/notification_handler.h" ]
+mises_chrome_java_srcjar_deps = [
+  "//mises/android:mises_android_java_enums_srcjar",
+  "//mises/android:mises_config_java",
+  "//mises/browser/android/preferences:java_pref_names_srcjar",
+]
+
+mises_chrome_app_java_resources_deps = [
+  "//mises/build/android:android_mises_strings_grd",
+  "//mises/build/android:mises_java_xml_preprocess_resources",
+]
+
+mises_resources_exclusion_exceptions =
+    [ "*com_google_android_material*design_bottom_*" ]

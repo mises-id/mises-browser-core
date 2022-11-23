@@ -1,0 +1,28 @@
+import("//mises/browser/shell_integrations/buildflags/buildflags.gni")
+import("//mises/resources/mises_grit.gni")
+import("//build/config/features.gni")
+import("//build/config/locales.gni")
+
+source_set("command_ids") {
+  sources = [ "mises_command_ids.h" ]
+}
+
+mises_grit("mises_generated_resources_grit") {
+  defines = [
+  ]
+  source = "mises_generated_resources.grd"
+  output_dir = "$root_gen_dir/mises"
+  outputs = [
+    "grit/mises_generated_resources.h",
+
+    # This is needed for the includes and not the localized messages
+    "mises_generated_resources.pak",
+  ]
+
+  foreach(locale, all_chrome_locales) {
+    outputs += [ "mises_generated_resources_$locale.pak" ]
+  }
+}
+
+group("app") {
+}

@@ -1,0 +1,142 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//extensions/buildflags/buildflags.gni")
+
+mises_chrome_browser_visibility = [
+  "//mises/browser/*",
+  "//mises/test:*",
+
+  # these are layering violation and need to be fixed
+
+  # Chrome does not yet define a visibility list by itself, meaning we can't
+  # append our list to them and that what we have here will become law not just
+  # for Brave, but also for the rest of chrome. Thus, we need to provide our own
+  # permissive list for chrome here too, to be removed in the future if Chrome
+  # ever provides it's own list (at which point we'll append instead of set).
+  "//chrome:dependencies",
+  "//chrome/app/*",
+  "//chrome/test/*",
+  "//extensions/*",
+]
+
+mises_chrome_browser_sources = [
+  
+]
+
+mises_chrome_browser_deps = [
+  "//base",
+  "//chrome/browser:browser_process",
+  "//chrome/browser/profiles:profile",
+  "//chrome/browser/ui",
+  "//chrome/common",
+  "//chrome/common:channel_info",
+  "//components/account_id",
+  "//components/autofill/core/common",
+  "//components/browsing_data/core",
+  "//components/content_settings/browser",
+  "//components/content_settings/core/browser",
+  "//components/content_settings/core/common",
+  "//components/dom_distiller/core",
+  "//components/embedder_support",
+  "//components/feed/core/shared_prefs:feed_shared_prefs",
+  "//components/gcm_driver:gcm_buildflags",
+  "//components/metrics",
+  "//components/ntp_tiles",
+  "//components/password_manager/core/common",
+  "//components/permissions",
+  "//components/policy/core/common:common_constants",
+  "//components/pref_registry",
+  "//components/prefs",
+  "//components/privacy_sandbox:privacy_sandbox_prefs",
+  "//components/safe_browsing/core/common:safe_browsing_prefs",
+  "//components/search_engines",
+  "//components/services/heap_profiling/public/mojom",
+  "//components/signin/public/base",
+  "//components/sync/base",
+  "//components/sync/driver",
+  "//components/translate/core/browser:translate_pref_names",
+  "//components/version_info",
+  "//components/version_info:channel",
+  "//content/public/browser",
+  "//content/public/common",
+  "//extensions/buildflags",
+  "//mojo/public/cpp/bindings",
+  "//net",
+  "//services/metrics/public/cpp:metrics_cpp",
+  "//services/network/public/cpp",
+  "//third_party/abseil-cpp:absl",
+  "//third_party/blink/public/mojom:mojom_platform_headers",
+  "//third_party/widevine/cdm:buildflags",
+  "//ui/base",
+  "//url",
+]
+
+if (is_mac) {
+  mises_chrome_browser_sources += [
+    "//mises/browser/mises_browser_main_parts_mac.h",
+    "//mises/browser/mises_browser_main_parts_mac.mm",
+    "//mises/browser/mises_shell_integration_mac.h",
+    "//mises/browser/mises_shell_integration_mac.mm",
+  ]
+}
+
+if (is_android) {
+  mises_chrome_browser_sources += [
+  ]
+
+  mises_chrome_browser_deps += [
+    "//mises/browser/android:android_browser_process",
+    "//mises/build/android:jni_headers",
+    "//chrome/android:jni_headers",
+    "//components/sync_device_info",
+  ]
+} else {
+  mises_chrome_browser_sources += [
+  ]
+
+  mises_chrome_browser_deps += [
+    "//mises/app:mises_generated_resources_grit",
+    "//components/infobars/content",
+  ]
+}
+
+
+if (is_win) {
+  mises_chrome_browser_sources += [
+    "//mises/browser/mises_shell_integration_win.cc",
+    "//mises/browser/mises_shell_integration_win.h",
+    "//mises/browser/default_protocol_handler_utils_win.cc",
+    "//mises/browser/default_protocol_handler_utils_win.h",
+  ]
+
+  mises_chrome_browser_deps += [
+    "//chrome/install_static:install_static_util",
+    "//chrome/installer/util:with_no_strings",
+  ]
+}
+
+if (is_win && is_official_build) {
+  mises_chrome_browser_sources += [
+    "//chrome/browser/google/google_update_win.cc",
+    "//chrome/browser/google/google_update_win.h",
+    "//chrome/browser/google/switches.cc",
+    "//chrome/browser/google/switches.h",
+  ]
+
+  mises_chrome_browser_deps += [ "//google_update" ]
+}
+
+mises_chrome_browser_public_deps = [
+  "//mises/browser:browser_process",
+]
+
+if (is_mac) {
+  mises_chrome_framework_public_deps = [ "//mises:framework_bundle_data" ]
+  mises_chrome_framework_bundle_deps = [ "//mises:framework_bundle_data" ]
+  mises_chrome_framework_contents = [ "Frameworks" ]
+  mises_chrome_framework_configs = [ "//mises/build/rust:strip_rust_symbols" ]
+}
+

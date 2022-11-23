@@ -1,0 +1,68 @@
+import("//mises/build/config.gni")
+import("//build/util/branding.gni")
+import("//chrome/common/features.gni")
+import("//build/util/version.gni")
+
+chrome_framework_name = chrome_product_full_name + " Framework"
+chrome_helper_name = chrome_product_full_name + " Helper"
+
+# This must be same value in //chrome/BUILD.gn.
+chrome_framework_version = chrome_version_full
+
+# This list must be updated with the two targets' deps list below, and
+# the list of _dsyms in :mises_dsym_archive.
+_mises_symbols_sources = [
+  "$root_out_dir/$chrome_framework_name.framework/Versions/$chrome_framework_version/$chrome_framework_name",
+  "$root_out_dir/$chrome_helper_name.app/Contents/MacOS/$chrome_helper_name",
+  "$root_out_dir/$chrome_product_full_name.app/Contents/MacOS/$chrome_product_full_name",
+  "$root_out_dir/crashpad_handler",
+]
+
+group("dist_resources") {
+}
+
+group("symbol_dist_resources") {
+  if (should_generate_breakpad_symbols) {
+    public_deps = [
+      ":generate_breakpad_symbols",
+      "//chrome:chrome_dsym_archive",
+      "//chrome:chrome_dump_syms",
+    ]
+  }
+}
+
+action("generate_breakpad_symbols") {
+  # host_toolchain must be used for cross-compilation case.
+  # See chrome/updater/mac:syms
+  dump_syms = "//third_party/breakpad:dump_syms($host_toolchain)"
+  symbols_dir = "$mises_dist_dir/$mises_product_name.breakpad.syms"
+  outputs = [ symbols_dir ]
+
+  sources = _mises_symbols_sources
+
+  binaries = []
+  foreach(_source, sources) {
+    binaries += [ rebase_path(_source) ]
+  }
+
+  script = "//mises/tools/posix/generate_breakpad_symbols.py"
+  args = [
+    "--symbols-dir=" + rebase_path(symbols_dir),
+    "--jobs=16",
+    "--build-dir=" + rebase_path(root_out_dir),
+    "--binary=$binaries",
+    "--libchromiumcontent-dir=" + rebase_path("//"),
+    "--dump-syms-bin=" + rebase_path(get_label_info(dump_syms, "root_out_dir") +
+                                     "/" + get_label_info(dump_syms, "name")),
+    "--clear",
+  ]
+
+  deps = [
+    "//chrome:chrome_app",
+    "//chrome:chrome_dump_syms",
+    "//chrome:chrome_framework",
+    "//chrome:chrome_helper_app_default",
+    "//third_party/crashpad/crashpad/handler:crashpad_handler",
+    dump_syms,
+  ]
+}

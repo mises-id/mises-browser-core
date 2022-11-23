@@ -1,0 +1,21 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# you can obtain one at http://mozilla.org/MPL/2.0/.
+
+mises_history_web_component_files = [ ]
+
+mises_history_non_web_component_files = [
+
+]
+
+# Also include the .html sibling files
+mises_history_local_files =
+    mises_history_web_component_files + mises_history_non_web_component_files
+foreach(component_file, mises_history_web_component_files) {
+  mises_history_local_files +=
+      [ string_replace(component_file, ".ts", ".html") ]
+}
+
+mises_history_preprocess_extra_deps =
+    [ "//mises/browser/resources/history:preprocess" ]

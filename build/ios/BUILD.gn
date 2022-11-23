@@ -1,0 +1,5 @@
+import("//mises/build/config.gni")
+
+group("mises") {
+  deps = [ "//mises/ios:mises_ios" ]
+}

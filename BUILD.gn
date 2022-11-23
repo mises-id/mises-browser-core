@@ -1,0 +1,536 @@
+import("//mises/build/cargo.gni")
+import("//mises/build/config.gni")
+import("//build/config/locales.gni")
+import("//build/config/zip.gni")
+import("//build/util/process_version.gni")
+import("//extensions/buildflags/buildflags.gni")
+import("//media/media_options.gni")
+import("//third_party/icu/config.gni")
+import("//tools/grit/repack.gni")
+import("//tools/v8_context_snapshot/v8_context_snapshot.gni")
+import("//ui/base/ui_features.gni")
+
+if (enable_library_cdms) {
+  import("//media/cdm/library_cdm/cdm_paths.gni")
+}
+
+if (!is_ios) {
+  import("//mises/mises_paks.gni")
+}
+
+if (is_mac) {
+  import("//mises/build/mac/tweak_info_plist.gni")
+  import("//build/config/mac/rules.gni")
+}
+
+if (is_linux) {
+  import("//mises/build/linux/channels.gni")
+}
+
+declare_args() {
+  audit_dev_deps = true
+}
+
+if (!is_ios) {
+  group("child_dependencies") {
+    deps = [
+      "common",
+      "//mises/renderer",
+      "//mises/utility",
+    ]
+  }
+
+  group("browser_dependencies") {
+    deps = [
+      "browser",
+      "chromium_src:browser",
+      "chromium_src/chrome/app",
+      "common",
+      "//components/omnibox/common",
+      "//services/device/public/cpp:device_features",
+    ]
+
+    data_deps = [ ":unpacked_resources" ]
+
+    if (!is_ios) {
+      deps += [ ":packed_resources" ]
+    }
+  }
+
+  group("storybook") {
+    deps = [ "//mises/storybook:storybook" ]
+  }
+}
+
+if (is_win) {
+  # create_installer_archive.py assumes that last_chrome_installer folder has
+  # courgette.exe. The original courgette.exe runs out of memory on mises's
+  # binaries. As of January 2022, this seems to be a known issue and was
+  # confirmed by Chromium developers. The recommended workaround is to use
+  # another tool, Zucchini, as a drop-in replacement.
+  if (build_delta_installer) {
+    copy("copy_zucchini_binary_as_courgette") {
+      # 32 bit Zucchini runs into memory allocation errors when virtual memory
+      # utilization is high. Using the 64 bit version fixes this. The obvious
+      # way of doing this would be to depend on zucchini($host_toolchain). But
+      # on Windows, host_toolchain on an x64 system is actually win_clang_x86 -
+      # see BUILDCONFIG.gn. The following line works around this and is
+      # resilient to upstream changes:
+      zucchini_toolchain = string_replace(host_toolchain, target_cpu, host_cpu)
+      zucchini = "//components/zucchini:zucchini(" + zucchini_toolchain + ")"
+
+      visibility = [ ":mini_installer_dependencies" ]
+      deps = [ zucchini ]
+      sources = [ get_label_info(zucchini, "root_out_dir") + "/zucchini.exe" ]
+      outputs = [ "$root_out_dir/$last_chrome_installer/courgette.exe" ]
+    }
+  }
+
+  group("mini_installer_dependencies") {
+    deps = [ ":mises" ]
+
+    if (build_delta_installer) {
+      deps += [ ":copy_zucchini_binary_as_courgette" ]
+    }
+  }
+}
+
+group("mises") {
+  deps = [ "build/$target_os:mises" ]
+  if (!is_android && !is_ios) {
+    deps += [
+      ":generate_version",
+      "//chrome",
+    ]
+  }
+}
+
+group("resources") {
+  public_deps = [
+    # TODO(bridiver)
+    # "//mises/browser:resources",
+    # "//mises/common:resources",
+    # "//mises/renderer:resources",
+    "//mises/components/resources",
+  ]
+
+  data_deps = [  ]
+}
+
+if (is_android) {
+  android_assets("mises_pak_assets") {
+    sources = [
+      "$root_build_dir/mises_100_percent.pak",
+      "$root_build_dir/mises_resources.pak",
+      "//mises/LICENSE.html",
+      "//mises/android/java/org/chromium/chrome/browser/ntp/ntp_news_optin_icon_animation.json",
+      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/onboarding_ads.json",
+      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/onboarding_ads_notification.json",
+      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/onboarding_rewards.json",
+      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/privacy_protection.json",
+      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/save_data_and_battery.json",
+      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/website_loads_faster.json",
+      "//mises/android/java/org/chromium/chrome/browser/shields/disconnect_entitylist.json",
+      "//mises/android/java/org/chromium/chrome/browser/vpn/mises_vpn_confirm.json",
+    ]
+    deps = [ "//mises:browser_dependencies" ]
+    disable_compression = true
+  }
+}
+
+if (is_mac) {
+  group("framework_bundle_data") {
+    deps = [  ]
+  }
+}
+
+group("unpacked_resources") {
+  if (!is_mac) {
+    deps = []
+    if (enable_extensions) {
+      deps = [
+        "//mises/components/mises_extension/extension/mises_extension:locales",
+      ]
+    }
+  }
+}
+
+#TODO(bridiver) - what to do
+if (!is_ios) {
+  group("mises_tests") {
+    testonly = true
+
+    deps = [ "test:mises_unit_tests" ]
+
+    if (!is_android) {
+      deps += [
+        "test:mises_browser_tests",
+        "test:mises_network_audit_tests",
+      ]
+    }
+  }
+}
+
+if (!is_ios) {
+  mises_paks("packed_resources") {
+    if (is_mac) {
+      output_dir = "$root_gen_dir/repack"
+      copy_data_to_bundle = true
+    } else {
+      output_dir = root_out_dir
+    }
+  }
+}
+
+branding_dir = "//chrome/app/theme/$branding_path_component"
+copy("theme_files") {
+  visibility = [ ":*" ]
+  if (is_linux) {
+    sources = [
+      "$branding_dir/linux/product_logo_128_beta.png",
+      "$branding_dir/linux/product_logo_128_dev.png",
+      "$branding_dir/linux/product_logo_128_development.png",
+      "$branding_dir/linux/product_logo_128_nightly.png",
+    ]
+  } else {
+    sources = [
+      "$branding_dir/product_logo_128_beta.png",
+      "$branding_dir/product_logo_128_dev.png",
+      "$branding_dir/product_logo_128_development.png",
+      "$branding_dir/product_logo_128_nightly.png",
+    ]
+  }
+  outputs = [ "$root_out_dir/installer/theme/{{source_file_part}}" ]
+}
+
+group("create_dist") {
+  deps = []
+  if (is_android) {
+    deps += [ "build/android:sign_app" ]
+  } else {
+    deps += [ ":create_symbols_dist" ]
+  }
+
+  # for linux zip will be created along with installer
+  if (!is_linux) {
+    deps += [ ":create_dist_zips" ]
+  }
+
+  if (is_win) {
+    deps += [
+      "//mises/build/win:create_signed_installer",
+      "//mises/components/policy:pack_policy_templates",
+    ]
+
+    if (build_omaha) {
+      deps += [ "//mises/vendor/omaha" ]
+    }
+  }
+  if (is_mac) {
+    if (skip_signing) {
+      deps += [ "build/mac:create_dmg" ]
+    } else {
+      deps += [ "build/mac:finalize_dmg_pkg" ]
+    }
+  }
+  if (is_linux) {
+    deps += [
+      ":theme_files",
+      "//mises/app/linux:dist_resources",
+      "//chrome/installer/linux:$linux_channel",
+    ]
+  }
+}
+
+if (!is_mac && !is_android && !is_ios) {
+  copy("mises_locale_dist_resources") {
+    deps = [ "//chrome:packed_resources" ]
+
+    sources = []
+    foreach(locale, platform_pak_locales) {
+      sources += [ "$root_out_dir/locales/$locale.pak" ]
+    }
+    outputs = [ "$mises_dist_dir/locales/{{source_file_part}}" ]
+  }
+
+  if (enable_extensions) {
+    group("mises_extensions_locale_dist_resources") {
+      deps = [
+        "//mises/components/mises_extension/extension/mises_extension:locales",
+      ]
+
+      public_deps = []
+      foreach(locale, platform_pak_locales) {
+        # public_deps is used intentionaly because ":create_dist_zip" needs the all dependency
+        # of all locale files.
+        public_deps += [ ":mises_shields_locales_${locale}" ]
+      }
+    }
+
+    foreach(locale, platform_pak_locales) {
+      copy("mises_shields_locales_${locale}") {
+        deps = [ "//mises/components/mises_extension/extension/mises_extension:locales_$locale" ]
+
+        locale = string_replace(locale, "-", "_")
+        sources = [ "$root_out_dir/resources/mises_extension/_locales/$locale/messages.json" ]
+        outputs = [ "$mises_dist_dir/resources/mises_extension/_locales/$locale/{{source_file_part}}" ]
+      }
+    }
+  }
+}
+
+copy("mises_license_dist_resources") {
+  sources = [ "//mises/LICENSE" ]
+
+  outputs = [ "$mises_dist_dir/{{source_file_part}}" ]
+}
+
+process_version("generate_version") {
+  template_file = "version.version"
+  extra_args = [
+    "-e",
+    "mises_BROWSER_VERSION=\"$mises_version\"",
+  ]
+  output = "$root_out_dir/version"
+  process_only = true
+}
+
+if (!is_android && !is_ios) {
+  copy("mises_dist_resources") {
+    sources = [ "$root_out_dir/version" ]
+
+    deps = [
+      ":mises",
+      ":mises_license_dist_resources",
+      ":generate_version",
+      ":packed_resources",
+      "build/$target_os:mises",
+      "//chrome:packed_resources",
+      "//third_party/icu:icudata",
+    ]
+
+    if (!is_mac) {
+      sources += [
+        "$root_out_dir/$mises_exe",
+        "$root_out_dir/mises_100_percent.pak",
+        "$root_out_dir/mises_200_percent.pak",
+        "$root_out_dir/mises_resources.pak",
+        "$root_out_dir/chrome_100_percent.pak",
+        "$root_out_dir/chrome_200_percent.pak",
+        "$root_out_dir/icudtl.dat",
+        "$root_out_dir/resources.pak",
+      ]
+
+      if (v8_use_external_startup_data) {
+        deps += [ "//v8" ]
+
+        if (use_v8_context_snapshot) {
+          sources += [ "$root_out_dir/v8_context_snapshot.bin" ]
+          deps += [ "//tools/v8_context_snapshot" ]
+        } else {
+          sources += [ "$root_out_dir/snapshot_blob.bin" ]
+        }
+      }
+    }
+
+    outputs = [ "$mises_dist_dir/{{source_file_part}}" ]
+  }
+}
+
+if (target_cpu == "x86") {
+  target_arch = "ia32"
+} else {
+  target_arch = target_cpu
+}
+
+template("create_dist_template") {
+  action(target_name) {
+    inputs = get_target_outputs(":mises_license_dist_resources")
+
+    file_inputs = []
+    foreach(input, inputs) {
+      file_inputs += [ rebase_path(input, mises_dist_dir) ]
+    }
+
+    rebase_base_dir = rebase_path(mises_dist_dir)
+
+    outputs = [ invoker.output ]
+    rebase_output = rebase_path(invoker.output)
+
+    dir_inputs = invoker.dir_inputs
+
+    script = "//mises/script/create-dist.py"
+
+    deps = [ ":mises_license_dist_resources" ]
+    if (defined(invoker.deps)) {
+      deps += invoker.deps
+    }
+
+    args = [
+      "--base-dir=$rebase_base_dir",
+      "--inputs=$file_inputs",
+      "--dir-inputs=$dir_inputs",
+      "--output=$rebase_output",
+    ]
+  }
+}
+
+create_dist_template("create_native_symbols_dist") {
+  output = "$mises_dist_dir/$mises_product_name-v$mises_version-$mises_platform-$target_arch-native-symbols.7z"
+  dir_inputs = [ "$mises_product_name.pdb.syms" ]
+  deps = [ "app/$current_os:symbol_dist_resources" ]
+}
+
+create_dist_template("create_symbols_dist") {
+  if (is_android) {
+    output = "$mises_dist_dir/$mises_product_name-v$mises_version-$mises_platform-$target_android_base-$target_cpu-symbols-$target_android_output_format.zip"
+  } else {
+    output = "$mises_dist_dir/$mises_product_name-v$mises_version-$mises_platform-$target_arch-symbols.zip"
+  }
+
+  deps = [ "app/$current_os:symbol_dist_resources" ]
+  if (mises_debug_symbol_level == 2 && is_win) {
+    deps += [ ":create_native_symbols_dist" ]
+  }
+
+  dir_inputs = [ "$mises_product_name.breakpad.syms" ]
+}
+
+action("create_dist_zips") {
+  output = "$mises_dist_dir/$mises_product_name-v$mises_version-$mises_platform-$target_arch.zip"
+  outputs = [ output ]
+
+  if (is_win) {
+    # Repack a Chrome release archive to the mises format.
+    # Besides changing from 7z to zip, the directory structure is a bit different.
+    # TODO(atuchin): support other platforms.
+
+    script = "//mises/script/repack-archive.py"
+    deps = [ "//chrome/installer/mini_installer:mini_installer_archive" ]
+
+    input = "$root_out_dir/chrome.7z"
+    inputs = [ input ]
+
+    args = [
+      "--input=" + rebase_path(input),
+      "--output=" + rebase_path(output),
+      "--target_dir=Chrome-bin",
+    ]
+  } else {  # !is_win
+    script = "//mises/script/create-dist.py"
+
+    inputs = get_target_outputs(":mises_license_dist_resources")
+
+    if (!is_mac && !is_android && !is_ios) {
+      inputs += get_target_outputs(":mises_dist_resources")
+      inputs += get_target_outputs(":mises_locale_dist_resources")
+      if (enable_extensions) {
+        foreach(locale, platform_pak_locales) {
+          inputs += get_target_outputs(":mises_shields_locales_${locale}")
+        }
+      }
+    }
+
+    file_inputs = []
+    foreach(input, inputs) {
+      file_inputs += [ rebase_path(input, mises_dist_dir) ]
+    }
+
+    dir_inputs = []
+    if (is_mac) {
+      dir_inputs += [ "$mises_exe" ]
+    }
+
+    deps = [
+      ":mises_license_dist_resources",
+      "app/$current_os:dist_resources",
+    ]
+
+    if (!is_mac && !is_android && !is_ios) {
+      deps += [
+        ":mises_dist_resources",
+        ":mises_locale_dist_resources",
+      ]
+
+      if (enable_extensions) {
+        deps += [ ":mises_extensions_locale_dist_resources" ]
+      }
+    }
+
+    rebase_output = rebase_path(output)
+    if (is_mac) {
+      rebase_base_dir = rebase_path(root_out_dir)
+    } else {
+      rebase_base_dir = rebase_path(mises_dist_dir, root_out_dir)
+    }
+    args = [
+      "--base-dir=$rebase_base_dir",
+      "--inputs=$file_inputs",
+      "--dir-inputs=$dir_inputs",
+      "--output=$rebase_output",
+    ]
+  }  # !is_win
+}
+
+if (is_mac) {
+  group("mises_app") {
+    deps = [ ":mises_app_plist" ]
+  }
+
+  mises_tweak_info_plist("mises_app_plist") {
+    info_plist = "$root_gen_dir/chrome/chrome_app_plist_tweaked.plist"
+
+    args = [
+      "--mises_channel=" + mises_channel,
+      "--mises_product_dir_name=" + mises_product_dir_name,
+      "--mises_version=" + mises_version,
+      "--mises_eddsa_key=" + sparkle_eddsa_public_key,
+    ]
+
+    if (skip_signing) {
+      args += [ "--skip_signing" ]
+    }
+
+    deps = [ "//chrome:chrome_app_plist" ]
+  }
+
+  mises_tweak_info_plist("mises_helper_plist") {
+    info_plist = "$root_gen_dir/chrome/chrome_helper_plist_tweaked.plist"
+
+    args = [
+      "--mises_channel=" + mises_channel,
+      "--mises_product_dir_name=" + mises_product_dir_name,
+      "--mises_version=" + mises_version,
+    ]
+
+    deps = [ "//chrome:chrome_helper_plist" ]
+  }
+}
+
+action("audit_deps") {
+  script = "//mises/script/audit_deps.py"
+
+  outputs = [ "$root_gen_dir/non-existent-audit_deps" ]
+
+  args = [
+    "--source_root=" + rebase_path("//mises"),
+    "--rustup_path=" + rustup_path,
+    "--cargo_path=" + rustup_path,
+  ]
+
+  if (defined(rustc_toolchain)) {
+    args += [ "--toolchain=$rustc_toolchain" ]
+  }
+  if (audit_dev_deps) {
+    args += [ "--audit_dev_deps" ]
+  }
+}
+
+group("tools") {
+}
+
+if (is_redirect_cc_build) {
+  group("redirect_cc") {
+    deps = [ "//mises/tools/redirect_cc" ]
+  }
+}

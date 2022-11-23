@@ -1,0 +1,14 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+mises_locale_source_patterns = [
+  "${root_gen_dir}/components/mises_components_strings_",
+  "${root_gen_dir}/mises/mises_generated_resources_",
+]
+
+mises_locale_deps = [
+  "//mises/app:mises_generated_resources_grit",
+  "//mises/components/resources:strings",
+]

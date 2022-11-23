@@ -1,0 +1,113 @@
+import("//mises/resources/mises_grit.gni")
+import("//tools/json_schema_compiler/json_features.gni")
+import("//tools/json_schema_compiler/json_schema_api.gni")
+
+json_features("api_features") {
+  feature_type = "APIFeature"
+  method_name = "AddMisesAPIFeatures"
+  sources = [
+    "//chrome/common/extensions/api/_api_features.json",
+    "//extensions/common/api/_api_features.json",
+    "_api_features.json",
+    "_mises_talk_api_features.json",
+  ]
+}
+
+json_features("permission_features") {
+  feature_type = "PermissionFeature"
+  method_name = "AddMisesPermissionFeatures"
+  sources = [
+    "//chrome/common/extensions/api/_permission_features.json",
+    "//extensions/common/api/_permission_features.json",
+    "_permission_features.json",
+  ]
+}
+
+json_features("manifest_features") {
+  feature_type = "ManifestFeature"
+  method_name = "AddMisesManifestFeatures"
+  sources = [
+    "//chrome/common/extensions/api/_manifest_features.json",
+    "//extensions/common/api/_manifest_features.json",
+    "_manifest_features.json",
+  ]
+}
+
+json_features("behavior_features") {
+  feature_type = "BehaviorFeature"
+  method_name = "AddMisesBehaviorFeatures"
+  sources = [ "//extensions/common/api/_behavior_features.json" ]
+}
+
+mises_extensions_api_schema_sources = [
+  "rewards_notifications.json",
+]
+
+mises_extensions_api_uncompiled_sources = []
+mises_extensions_api_root_namespace = "extensions::api::%(namespace)s"
+mises_extensions_api_schema_include_rules =
+    "//mises/common/extensions/api:extensions::api::%(namespace)s"
+
+mises_extensions_api_deps = [
+  ":api_features",
+  ":behavior_features",
+  ":manifest_features",
+  ":permission_features",
+  ":resources",
+  "//chrome/common/extensions/api",
+  "//extensions/common/api",
+  "//skia",
+]
+
+mises_grit("resources") {
+  source = "mises_api_resources.grd"
+  outputs = [
+    "grit/mises_api_resources.h",
+    "mises_api_resources.pak",
+  ]
+}
+
+function_registration("generated_api_registration") {
+  sources = mises_extensions_api_schema_sources
+  impl_dir = "//mises/common/extensions/api/"
+  bundle_name = "Mises"
+  root_namespace = mises_extensions_api_root_namespace
+
+  deps = [ "//extensions/common" ]
+
+  visibility = [ ":api" ]
+}
+
+generated_json_strings("generated_api_json_strings") {
+  sources = mises_extensions_api_schema_sources +
+            mises_extensions_api_uncompiled_sources
+
+  configs = [ "//build/config:precompiled_headers" ]
+  bundle_name = "Mises"
+  schema_include_rules = mises_extensions_api_schema_include_rules
+
+  root_namespace = mises_extensions_api_root_namespace
+  deps = mises_extensions_api_deps
+
+  visibility = [ ":api" ]
+}
+
+generated_types("generated_api_types") {
+  sources = mises_extensions_api_schema_sources
+  configs = [ "//build/config:precompiled_headers" ]
+  schema_include_rules = mises_extensions_api_schema_include_rules
+
+  root_namespace = mises_extensions_api_root_namespace
+  deps = mises_extensions_api_deps
+  visibility = [ ":api" ]
+}
+
+# Public Targets
+
+group("api") {
+  public_deps = [
+    ":generated_api_json_strings",
+    ":generated_api_registration",
+    ":generated_api_types",
+  ]
+}

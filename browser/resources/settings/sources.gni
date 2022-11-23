@@ -1,0 +1,44 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# you can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//mises/browser/shell_integrations/buildflags/buildflags.gni")
+
+# Provide our file list to chromium's settings page build
+# Since our components start in a different path, we'll do the first step (move them to
+# the generated preprocessed path via preprocess_if_expr, but let chromium handle the rest of the
+# webui build pipeline.
+mises_settings_preprocess_deps =
+    [ "//mises/browser/resources/settings:preprocess" ]
+mises_settings_web_component_files = [
+]
+mises_settings_non_web_component_files = [
+]
+
+if (enable_pin_shortcut) {
+  mises_settings_web_component_files +=
+      [ "pin_shortcut_page/pin_shortcut_page.ts" ]
+  mises_settings_non_web_component_files +=
+      [ "pin_shortcut_page/pin_shortcut_page_browser_proxy.ts" ]
+}
+
+mises_settings_icons_html_files = [ "mises_icons.html" ]
+mises_settings_ts_definitions = [
+  "//mises/components/definitions/chrome_mises_theme.d.ts",
+  "//mises/components/definitions/chrome_ipfs.d.ts",
+  "//mises/components/definitions/chrome_mises_wallet.d.ts",
+]
+
+# Generate the list for inclusion via preprocess and exclusion for chromium's preprocess
+mises_settings_local_files =
+    mises_settings_web_component_files +
+    mises_settings_non_web_component_files + mises_settings_icons_html_files
+foreach(component_file, mises_settings_web_component_files) {
+  mises_settings_local_files +=
+      [ string_replace(component_file, ".ts", ".html") ]
+}
+mises_settings_exclude_preprocess_files = mises_settings_local_files
+
+mises_settings_ts_extra_deps =
+    [ "//mises/browser/resources/settings:preprocess" ]

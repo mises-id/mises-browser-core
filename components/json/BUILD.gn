@@ -1,0 +1,20 @@
+# Copyright (c) 2022 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//testing/test.gni")
+
+group("rust_lib") {
+  visibility = [ "//mises/build/rust:*" ]
+  deps = [ "rs:rust_lib" ]
+}
+
+source_set("mises_json_unit_tests") {
+  testonly = true
+  sources = [ "//mises/components/json/json_parser_unittest.cc" ]
+  deps = [
+    "//mises/components/json/rs:cxx",
+    "//testing/gtest",
+  ]
+}  # source_set("mises_wallet_unit_tests")

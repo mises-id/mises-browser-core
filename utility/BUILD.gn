@@ -1,0 +1,6 @@
+# Group depending on upstream's counterpart to make it easier to manage
+# dependencies in mises/ (//chrome/utility does not depend on //mises/utility,
+# so //mises/utility becomes essentially an alias for //chrome/utility now).
+group("utility") {
+  public_deps = [ "//chrome/utility" ]
+}

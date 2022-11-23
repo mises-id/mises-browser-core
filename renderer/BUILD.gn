@@ -1,0 +1,17 @@
+import("//build/config/features.gni")
+
+source_set("renderer") {
+  visibility = [
+    "//mises:child_dependencies",
+    "//mises/renderer/*",
+    "//mises/test:*",
+    "//chrome/renderer/*",
+  ]
+
+  public_deps = [ "//chrome/renderer" ]
+
+  deps = [
+    "//v8",
+  ]
+
+}

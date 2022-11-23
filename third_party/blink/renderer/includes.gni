@@ -1,0 +1,32 @@
+# common includes which can help minimize patches for
+# src/third_party/blink/renderer/core/BUILD.gn
+
+mises_blink_renderer_core_visibility =
+    [ "//mises/third_party/blink/renderer/*" ]
+
+mises_blink_renderer_core_public_deps = [
+  "//mises/third_party/blink/renderer",
+]
+
+mises_blink_renderer_core_sources = [
+]
+
+mises_blink_renderer_core_deps = []
+
+# common includes which can help minimize patches for
+# src/third_party/blink/renderer/modules/BUILD.gn
+mises_blink_renderer_modules_visibility =
+    [ "//mises/third_party/blink/renderer/*" ]
+
+mises_blink_sub_modules = [
+]
+
+# common includes which can help minimize patches for
+# third_party/blink/renderer/bindings/idl_in_modules.gni
+mises_static_idl_files_in_modules = [
+]
+
+# common includes which can help minimize patches for
+# third_party/blink/renderer/bindings/generated_in_modules.gni
+mises_generated_interface_sources_in_modules = [
+]

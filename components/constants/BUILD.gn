@@ -1,0 +1,47 @@
+# Copyright (c) 2022 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+import("//mises/build/config.gni")
+import("//build/buildflag_header.gni")
+import("//build/util/branding.gni")
+import("//mojo/public/tools/bindings/mojom.gni")
+
+declare_args() {
+  mises_services_key = ""
+}
+
+if (is_official_build) {
+  assert(mises_services_key != "")
+}
+
+buildflag_header("mises_services_key") {
+  # Please use //mises/components/constants instead.
+  visibility = [ ":*" ]
+
+  header = "mises_services_key.h"
+  flags = [ "MISES_SERVICES_KEY=\"$mises_services_key\"" ]
+}
+
+source_set("constants") {
+  sources = [
+    "mises_constants.cc",
+    "mises_constants.h",
+    "mises_paths.cc",
+    "mises_paths.h",
+    "mises_switches.cc",
+    "mises_switches.h",
+    "network_constants.cc",
+    "network_constants.h",
+    "pref_names.cc",
+    "pref_names.h",
+    "url_constants.cc",
+    "url_constants.h",
+    "webui_url_constants.cc",
+    "webui_url_constants.h",
+  ]
+
+  public_deps = [ ":mises_services_key" ]
+  deps = [ "//base" ]
+}

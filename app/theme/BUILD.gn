@@ -1,0 +1,30 @@
+import("//mises/resources/mises_grit.gni")
+import("//chrome/common/features.gni")
+
+mises_grit("mises_theme_resources") {
+  source = "mises_theme_resources.grd"
+  defines = chrome_grit_defines
+  defines += [
+  ]
+  outputs = [
+    "grit/mises_theme_resources.h",
+    "grit/mises_theme_resources_map.cc",
+    "grit/mises_theme_resources_map.h",
+    "mises_theme_resources_100_percent.pak",
+    "mises_theme_resources_200_percent.pak",
+    "mises_theme_resources_300_percent.pak",
+  ]
+
+  output_dir = "$root_gen_dir/mises"
+}
+
+mises_grit("mises_unscaled_resources") {
+  source = "mises_unscaled_resources.grd"
+  defines = chrome_grit_defines
+  outputs = [
+    "grit/mises_unscaled_resources.h",
+    "mises_unscaled_resources.pak",
+  ]
+
+  output_dir = "$root_gen_dir/mises"
+}

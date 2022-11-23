@@ -1,0 +1,22 @@
+# Add imports here for things that need to be available in chromium code.
+# This file is included in most gn files either directly or through
+# import("//build/config/chrome_build.gni") in compiler.gni
+import("//mises/app/entitlements.gni")
+import("//mises/mises_repack_locales.gni")
+import("//mises/browser/extensions/resources.gni")
+import("//mises/browser/resources/bookmarks/sources.gni")
+import("//mises/browser/resources/extensions/sources.gni")
+import("//mises/browser/resources/history/sources.gni")
+import("//mises/browser/resources/settings/sources.gni")
+import("//mises/browser/ui/color/sources.gni")
+import("//mises/build/mac/config.gni")
+import("//mises/components/content_settings/core/browser/sources.gni")
+import("//mises/components/omnibox/browser/sources.gni")
+import("//mises/components/search_engines/sources.gni")
+import("//mises/components/sync/driver/sources.gni")
+import("//mises/components/sync_device_info/sources.gni")
+import("//mises/components/update_client/sources.gni")
+import("//mises/installer/linux/sources.gni")
+import("//mises/net/sources.gni")
+import("//mises/renderer/sources.gni")
+import("//mises/third_party/blink/renderer/includes.gni")

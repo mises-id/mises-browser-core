@@ -1,0 +1,107 @@
+import("//mises/build/config.gni")
+import("//build/buildflag_header.gni")
+import("//build/util/branding.gni")
+import("//extensions/buildflags/buildflags.gni")
+import("//mojo/public/tools/bindings/mojom.gni")
+
+mises_common_visibility_targets = [
+  ":*",
+  "//mises:browser_dependencies",
+  "//mises:child_dependencies",
+  "//mises/browser/*",
+  "//mises/ios/browser/*",
+  "//mises/renderer/*",
+  "//mises/test/*",
+  "//mises/utility/*",
+  "//chrome/common/*",
+  "//chrome/browser/*",
+  "//chrome/renderer/*",
+  "//chrome/utility/*",
+]
+
+source_set("channel_info") {
+  visibility = mises_common_visibility_targets
+
+  if (is_linux) {
+    sources = [
+    ]
+
+    deps = [
+      "//base:base",
+      "//base:logging_buildflags",
+      "//components/version_info:version_info",
+    ]
+
+    configs += [ "//mises/build/linux:linux_channel_names" ]
+  }
+}
+
+source_set("common") {
+  visibility = mises_common_visibility_targets
+
+  deps = []
+
+  sources = [
+  ]
+
+  public_deps = [ "//mises/components/constants" ]
+
+  if (!is_android && !is_ios) {
+    deps += [ "//mises/common/importer" ]
+  }
+
+  if (enable_extensions) {
+    sources += [
+    ]
+
+    deps += [
+      "//mises/components/mises_component_updater/browser",
+      "//extensions/common:common_constants",
+    ]
+
+    public_deps += [ "extensions/api" ]
+  }
+
+  deps += [
+    ":mojo_bindings",
+    "//base",
+    "//mises/chromium_src:common",
+    "//mises/extensions:common",
+    "//components/version_info:channel",
+    "//extensions/buildflags",
+    "//services/service_manager",
+    "//ui/base",
+  ]
+
+  if (!is_ios) {
+    sources += [
+    ]
+
+    deps += [
+      "//mises/components/resources",
+      "//mises/components/resources:static_resources_grit",
+      "//chrome/common",
+      "//chrome/common:channel_info",
+      "//chrome/common:constants",
+      "//components/resources",
+      "//content/public/common",
+      "//third_party/widevine/cdm:buildflags",
+    ]
+  }
+}
+
+config("constants_configs") {
+  visibility = mises_common_visibility_targets +
+               # These are layering violation and need to be fixed
+               [ "//chrome/tools/build/mac:infoplist_strings_util" ]
+  defines = []
+  if (is_mac) {
+    defines += [ "MISES_PRODUCT_STRING=\"$chrome_product_full_name\"" ]
+  }
+}
+
+mojom("mojo_bindings") {
+  sources = [ "mises_renderer_configuration.mojom" ]
+
+  deps = [ "//mojo/public/mojom/base" ]
+}

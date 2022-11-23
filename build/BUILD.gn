@@ -1,0 +1,45 @@
+import("//mises/build/config.gni")
+
+config("mises_chromium_src_support") {
+  # Add max priority "//mises/chromium_src" include search path to be able to
+  # redirect Chromium #include into our file if it exists.
+  # For example, to override //base/macros.h, the overriden file must be
+  # placed at //mises/chromium_src/base/macros.h.
+  include_dirs = [ "//mises/chromium_src" ]
+
+  # Add lowest priority "//.." include search path to be able to include original
+  # Chromium files using "src/" prefix.
+  # Adding the search path using "cflags" instead of "include_dirs" is important,
+  # because it should have the lowest priority to not break compile steps when a
+  # path clash is possible: //base/macros.h vs //third_party/v8/src/base/macros.h.
+  relative_root_dir = rebase_path("//..", root_build_dir)
+  cflags = [ "-I${relative_root_dir}" ]
+}
+
+# Config to support //base build without redirect_cc to build redirect_cc itself.
+if (is_redirect_cc_build) {
+  config("base_build_without_redirect_cc") {
+    defines = [
+      "MISES_GET_TARGET_FOR_DEFAULT_APP_SETTINGS=",
+      "MISES_SCOPED_ALLOW_BASE_SYNC_PRIMITIVES_H=",
+      "MISES_INTERNAL_TRACE_LIST_BUILTIN_CATEGORIES(X)=",
+    ]
+  }
+}
+
+config("compiler") {
+  cflags = [
+    "-Xclang",
+    "-fexperimental-max-bitint-width=256",
+  ]
+  configs = [ ":mises_chromium_src_support" ]
+  if (is_redirect_cc_build) {
+    configs -= [ ":mises_chromium_src_support" ]
+    configs += [ ":base_build_without_redirect_cc" ]
+  }
+}
+
+# do not expose this as a public config anywhere
+config("version") {
+  defines = [ "MISES_CHROMIUM_VERSION=\"$chrome_version_string\"" ]
+}

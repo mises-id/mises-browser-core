@@ -1,0 +1,39 @@
+
+source_set("profiles") {
+  # Remove when https://github.com/brave/brave-browser/issues/10648 is resolved
+  check_includes = false
+  sources = [
+  ]
+
+  public_deps = [ ":util" ]
+
+  deps = [
+    "//base",
+    "//chrome/common",
+    "//components/gcm_driver:gcm_buildflags",
+    "//components/keyed_service/content",
+    "//components/keyed_service/core",
+    "//components/prefs",
+    "//components/search_engines",
+    "//components/signin/public/identity_manager",
+    "//mojo/public/cpp/bindings",
+    "//ui/base",
+  ]
+
+}
+
+source_set("util") {
+  # Remove when https://github.com/brave/brave-browser/issues/10648 is resolved
+  check_includes = false
+
+  sources = [
+    "profile_util.cc",
+    "profile_util.h",
+  ]
+
+  deps = [
+    "//base",
+    "//components/prefs",
+    "//content/public/browser",
+  ]
+}

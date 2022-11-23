@@ -1,0 +1,208 @@
+import("//mises/android/mises_xml_preprocessor.gni")
+import("//mises/build/config.gni")
+import("//build/config/android/rules.gni")
+import("//tools/grit/grit_rule.gni")
+
+action("sign_app") {
+  script = "//mises/build/android/sign_apk.py"
+  _apksigner = "$android_sdk_build_tools/apksigner"
+  _jarsigner = "//third_party/jdk/current/bin/jarsigner"
+  _zipalign = "$android_sdk_build_tools/zipalign"
+
+  deps = [ "//mises:create_symbols_dist" ]
+
+  if (target_cpu == "arm64" || target_cpu == "x64") {
+    if (target_android_output_format == "aab") {
+      target_sign_app_path = "$root_out_dir/apks/MonochromePublic6432.aab"
+    } else {
+      target_sign_app_path = "$root_out_dir/apks/MonochromePublic.apk"
+    }
+  } else {
+    if (target_android_base == "mono") {
+      if (target_android_output_format == "aab") {
+        target_sign_app_path = "$root_out_dir/apks/MonochromePublic.aab"
+      } else {
+        target_sign_app_path = "$root_out_dir/apks/MonochromePublic.apk"
+      }
+    } else {
+      if (target_android_output_format == "aab") {
+        target_sign_app_path = "$root_out_dir/apks/ChromeModernPublic.aab"
+      } else {
+        target_sign_app_path = "$root_out_dir/apks/ChromePublic.apk"
+      }
+    }
+  }
+
+  outputs = [ "$target_sign_app_path-singed" ]
+  args = [
+    rebase_path(_zipalign, root_out_dir),
+    rebase_path(_apksigner, root_out_dir),
+    rebase_path(_jarsigner, root_out_dir),
+  ]
+  args += [
+    rebase_path(target_sign_app_path, root_out_dir),
+    rebase_path("$mises_android_keystore_path", root_out_dir),
+    "$mises_android_keystore_password",
+    "$mises_android_key_password",
+    "$mises_android_keystore_name",
+  ]
+}
+
+copy("mises") {
+  visibility = [ "*" ]
+  deps = []
+  sources = []
+  if (target_cpu == "arm64" || target_cpu == "x64") {
+    if (target_android_output_format == "aab") {
+      deps += [ "//chrome/android:monochrome_64_32_public_bundle" ]
+      sources += [ "$root_out_dir/apks/MonochromePublic6432.aab" ]
+    } else {
+      # There is no 64-bit apk target for Mono
+      deps += [ "//chrome/android:monochrome_public_apk" ]
+      sources += [ "$root_out_dir/apks/MonochromePublic.apk" ]
+    }
+  } else {
+    if (target_android_base == "mono") {
+      if (target_android_output_format == "aab") {
+        deps += [ "//chrome/android:monochrome_public_bundle" ]
+        sources += [ "$root_out_dir/apks/MonochromePublic.aab" ]
+      } else {
+        deps += [ "//chrome/android:monochrome_public_apk" ]
+        sources += [ "$root_out_dir/apks/MonochromePublic.apk" ]
+      }
+    } else {
+      if (target_android_output_format == "aab") {
+        deps += [ "//chrome/android:chrome_modern_public_bundle" ]
+        sources += [ "$root_out_dir/apks/ChromeModernPublic.aab" ]
+      } else {
+        deps += [ "//chrome/android:chrome_public_apk" ]
+        sources += [ "$root_out_dir/apks/ChromePublic.apk" ]
+      }
+    }
+  }
+  outputs = [ mises_android_output ]
+}
+
+java_strings_grd("android_mises_strings_grd") {
+  grd_file = "//mises/browser/ui/android/strings/android_mises_strings.grd"
+  outputs = [
+    "values/android_mises_strings.xml",
+    "values-af/android_mises_strings.xml",
+    "values-am/android_mises_strings.xml",
+    "values-ar/android_mises_strings.xml",
+    "values-as/android_mises_strings.xml",
+    "values-az/android_mises_strings.xml",
+    "values-be/android_mises_strings.xml",
+    "values-bg/android_mises_strings.xml",
+    "values-bn/android_mises_strings.xml",
+    "values-bs/android_mises_strings.xml",
+    "values-ca/android_mises_strings.xml",
+    "values-cs/android_mises_strings.xml",
+    "values-da/android_mises_strings.xml",
+    "values-de/android_mises_strings.xml",
+    "values-el/android_mises_strings.xml",
+    "values-en-rGB/android_mises_strings.xml",
+    "values-es/android_mises_strings.xml",
+    "values-es-rUS/android_mises_strings.xml",
+    "values-et/android_mises_strings.xml",
+    "values-eu/android_mises_strings.xml",
+    "values-fa/android_mises_strings.xml",
+    "values-fi/android_mises_strings.xml",
+    "values-fr/android_mises_strings.xml",
+    "values-fr-rCA/android_mises_strings.xml",
+    "values-gl/android_mises_strings.xml",
+    "values-gu/android_mises_strings.xml",
+    "values-hi/android_mises_strings.xml",
+    "values-hr/android_mises_strings.xml",
+    "values-hu/android_mises_strings.xml",
+    "values-hy/android_mises_strings.xml",
+    "values-in/android_mises_strings.xml",
+    "values-is/android_mises_strings.xml",
+    "values-it/android_mises_strings.xml",
+    "values-iw/android_mises_strings.xml",
+    "values-ja/android_mises_strings.xml",
+    "values-ka/android_mises_strings.xml",
+    "values-kk/android_mises_strings.xml",
+    "values-km/android_mises_strings.xml",
+    "values-kn/android_mises_strings.xml",
+    "values-ko/android_mises_strings.xml",
+    "values-ky/android_mises_strings.xml",
+    "values-lo/android_mises_strings.xml",
+    "values-lt/android_mises_strings.xml",
+    "values-lv/android_mises_strings.xml",
+    "values-mk/android_mises_strings.xml",
+    "values-ml/android_mises_strings.xml",
+    "values-mn/android_mises_strings.xml",
+    "values-mr/android_mises_strings.xml",
+    "values-ms/android_mises_strings.xml",
+    "values-my/android_mises_strings.xml",
+    "values-nb/android_mises_strings.xml",
+    "values-ne/android_mises_strings.xml",
+    "values-nl/android_mises_strings.xml",
+    "values-or/android_mises_strings.xml",
+    "values-pa/android_mises_strings.xml",
+    "values-pl/android_mises_strings.xml",
+    "values-pt-rBR/android_mises_strings.xml",
+    "values-pt-rPT/android_mises_strings.xml",
+    "values-ro/android_mises_strings.xml",
+    "values-ru/android_mises_strings.xml",
+    "values-si/android_mises_strings.xml",
+    "values-sk/android_mises_strings.xml",
+    "values-sl/android_mises_strings.xml",
+    "values-sq/android_mises_strings.xml",
+    "values-sr/android_mises_strings.xml",
+    "values-sv/android_mises_strings.xml",
+    "values-sw/android_mises_strings.xml",
+    "values-ta/android_mises_strings.xml",
+    "values-te/android_mises_strings.xml",
+    "values-th/android_mises_strings.xml",
+    "values-tl/android_mises_strings.xml",
+    "values-tr/android_mises_strings.xml",
+    "values-uk/android_mises_strings.xml",
+    "values-ur/android_mises_strings.xml",
+    "values-uz/android_mises_strings.xml",
+    "values-vi/android_mises_strings.xml",
+    "values-zh-rCN/android_mises_strings.xml",
+    "values-zh-rHK/android_mises_strings.xml",
+    "values-zh-rTW/android_mises_strings.xml",
+    "values-zu/android_mises_strings.xml",
+  ]
+}
+
+mises_xml_preprocessor("mises_java_xml_preprocess_resources") {
+  sources = mises_java_preprocess_xml_sources
+  modules = mises_java_preprocess_module_sources
+}
+
+generate_jni("jni_headers") {
+  sources = [
+    "//mises/android/java/org/chromium/chrome/browser/MisesFeatureUtil.java",
+    "//mises/android/java/org/chromium/chrome/browser/MisesRelaunchUtils.java",
+    "//mises/android/java/org/chromium/chrome/browser/MisesRewardsNativeWorker.java",
+    "//mises/android/java/org/chromium/chrome/browser/MisesSyncWorker.java",
+    "//mises/android/java/org/chromium/chrome/browser/app/MisesActivity.java",
+    "//mises/android/java/org/chromium/chrome/browser/mises_news/MisesNewsControllerFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/AssetRatioServiceFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/BlockchainRegistryFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/MisesWalletProviderDelegateImplHelper.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/MisesWalletServiceFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/JsonRpcServiceFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/KeyringServiceFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/SwapServiceFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/TxServiceFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/permission/MisesDappPermissionPromptDialog.java",
+    "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/util/WalletNativeUtils.java",
+    "//mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
+    "//mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationSettingsBridge.java",
+    "//mises/android/java/org/chromium/chrome/browser/ntp_background_images/NTPBackgroundImagesBridge.java",
+    "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
+    "//mises/android/java/org/chromium/chrome/browser/preferences/website/MisesShieldsContentSettings.java",
+    "//mises/android/java/org/chromium/chrome/browser/settings/developer/MisesQAPreferences.java",
+    "//mises/android/java/org/chromium/chrome/browser/shields/CookieListOptInServiceFactory.java",
+    "//mises/android/java/org/chromium/chrome/browser/signin/MisesSigninManager.java",
+    "//mises/android/java/org/chromium/chrome/browser/sync/MisesSyncDevices.java",
+    "//mises/android/java/org/chromium/chrome/browser/vpn/MisesVpnNativeWorker.java",
+  ]
+
+  deps = [ "//mises/android/java/org/chromium/chrome/browser/search_engines:jni_headers" ]
+}

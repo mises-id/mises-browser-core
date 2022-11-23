@@ -1,0 +1,82 @@
+import("//mises/build/cargo.gni")
+
+if (is_mac) {
+  import("//build/config/mac/mac_sdk.gni")
+}
+
+if (is_apple) {
+  unexport_list_path = "$root_build_dir/mises_rust/rust_lib.unexports"
+}
+
+config("strip_rust_symbols") {
+  if (is_apple) {
+    ldflags = [
+      # prevent export of all rust symbols
+      "-Wl,-unexported_symbols_list," +
+          rebase_path(unexport_list_path, root_build_dir),
+    ]
+
+    # Too many personalities workaround. Will be fixed in llvm see
+    # https://reviews.llvm.org/D135728
+    if (!is_component_build && !use_lld) {
+      ldflags = [ "-Wl,-no_compact_unwind" ]
+    }
+  }
+}
+
+cargo_build("rust_lib") {
+  visibility = [ ":*" ]
+  inputs = [
+    "Cargo.lock",
+    "Cargo.toml",
+    "lib.rs",
+  ]
+
+  manifest_path = "Cargo.toml"
+
+  # ensure that we rebuild when the dependent crates change
+  # TODO(bridiver) - selectively include these libraries based on buildflags,
+  # but in order to do that we have to dynamically create the mises rust lib
+  deps = [
+    "//mises/components/json:rust_lib",
+  ]
+}
+
+if (is_apple) {
+  action("generate_unexport_list") {
+    script = "//mises/build/rust/generate_unexport_list.py"
+
+    inputs = [
+      "//mises/build/rust/generate_unexport_list.py",
+      rust_lib_output_path,
+    ]
+
+    outputs = [ unexport_list_path ]
+
+    args = [
+      "--bin_path=" + rebase_path(clang_base_path) + "/bin",
+      "--input=" + rebase_path(rust_lib_output_path, root_build_dir),
+      "--output=" + rebase_path(unexport_list_path, root_build_dir),
+    ]
+
+    deps = [ ":rust_lib" ]
+  }
+}
+
+# The required config for cxx-generated bindings because Chromium C++ is built
+# with -fno-exceptions.
+config("cxx_cppconfig") {
+  defines = [ "RUST_CXX_NO_EXCEPTIONS" ]
+}
+
+# The required dependencies for cxx-generated bindings, that must be included
+# on the C++ side.
+source_set("cxx_cppdeps") {
+  sources = [
+    "//third_party/rust/cxx/v1/crate/include/cxx.h",
+    "//third_party/rust/cxx/v1/crate/src/cxx.cc",
+  ]
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [ "//build/config/compiler:no_chromium_code" ]
+  public_configs = [ ":cxx_cppconfig" ]
+}

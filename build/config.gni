@@ -1,0 +1,166 @@
+import("//build/util/branding.gni")
+import("//build/util/version.gni")
+
+declare_args() {
+  # Release channel support.
+  # "beta" for beta release.
+  # "dev" for dev channel release.
+  # "nightly" for nightly channel release.
+  # "" for stable channel release.
+  mises_channel = ""
+  is_release_channel = false
+  base_sparkle_update_url = ""
+  enable_sparkle = !is_component_build && is_mac
+  build_sparkle = false
+
+  sparkle_dsa_private_key_file = ""
+  sparkle_eddsa_private_key = ""
+  sparkle_eddsa_public_key = ""
+
+  mises_product_name = "mises"
+  mises_exe = ""
+  mises_version_major = ""
+  mises_version_minor = ""
+  mises_version_build = ""
+  mises_version_patch = 0
+  chrome_version_string = ""
+  build_omaha = false
+  tag_ap = ""
+  target_android_base = ""
+  target_android_output_format = ""
+  mises_android_keystore_path = "."
+  mises_android_keystore_name = ""
+  mises_android_keystore_password = ""
+  mises_android_key_password = ""
+
+  skip_signing = false
+
+  # Used for generating delta installer on macOS/Windows
+  build_delta_installer = false
+  last_chrome_installer = ""
+
+  # Enables mises/tools/redirect_cc target, replaces mises/chromium_src
+  # overrides with empty ones to make //base buildable for redirect_cc.
+  is_redirect_cc_build = false
+}
+
+declare_args() {
+  if (is_official_build) {
+    # Generate all symbols (breakpad + native) for Release builds
+    mises_debug_symbol_level = 2
+  } else {
+    mises_debug_symbol_level = 0
+  }
+}
+
+should_generate_breakpad_symbols = mises_debug_symbol_level != 0
+
+mises_version = "$mises_version_major.$mises_version_minor.$mises_version_build"
+
+if (mises_exe == "") {
+  mises_exe = mises_product_name
+}
+
+mises_dist_dir = "$root_out_dir/dist"
+if (is_win) {
+  mises_exe = "$mises_exe.exe"
+  mises_underline_full_version =
+      "_$chrome_version_major" + "_$mises_version_major" +
+      "_$mises_version_minor" + "_$mises_version_build"
+  _channel = ""
+  mises_app_guid = "{AFE6A462-C574-4B8A-AF43-4CC60DF4563B}"
+  if (mises_channel == "nightly") {
+    # Temporary support PR's non-Release builds on nightly channel.
+    # CI expect the installer files (*Setup.exe) in the output dir are
+    # correspond passed mises_channel. Therefore to make Static+nightly work
+    # we should set _channel to "Nightly".
+    # TODO(atuchin): revert after PRs start to use the development channel.
+    _channel = "Nightly"
+    mises_app_guid = "{C6CB981E-DB30-4876-8639-109F8933582C}"
+  } else if (is_official_build) {
+    if (mises_channel == "beta") {
+      _channel = "Beta"
+      mises_app_guid = "{103BD053-949B-43A8-9120-2E424887DE11}"
+    } else if (mises_channel == "dev") {
+      _channel = "Dev"
+      mises_app_guid = "{CB2150F2-595F-4633-891A-E39720CE0531}"
+    } else {
+      assert(mises_channel == "", "Unknown channel name")
+    }
+  } else {
+    _channel = "Development"
+  }
+  _arch = ""
+  if (target_cpu == "x86") {
+    _arch = "32"
+  }
+  mises_installer_exe = "mises_installer$mises_underline_full_version.exe"
+  mises_stub_installer_exe =
+      "MisesBrowser$_channel" + "Setup$_arch$mises_underline_full_version.exe"
+  mises_untagged_stub_installer_exe =
+      "MisesBrowserUntagged$_channel" +
+      "Setup$_arch$mises_underline_full_version.exe"
+  mises_standalone_installer_exe =
+      "MisesBrowserStandalone$_channel" +
+      "Setup$_arch$mises_underline_full_version.exe"
+  mises_silent_installer_exe = "MisesBrowserStandaloneSilent$_channel" +
+                               "Setup$_arch$mises_underline_full_version.exe"
+  mises_untagged_installer_exe = "MisesBrowserStandaloneUntagged$_channel" +
+                                 "Setup$_arch$mises_underline_full_version.exe"
+} else if (is_mac) {
+  mises_exe = "$chrome_product_full_name.app"
+  mises_dmg = "$chrome_product_full_name.dmg"
+  mises_pkg = "$chrome_product_full_name.pkg"
+  mises_delta = "$chrome_product_full_name.delta"
+
+  mises_product_dir_name_suffix = ""
+  if (is_official_build) {
+    if (mises_channel == "beta") {
+      mises_product_dir_name_suffix = "-Beta"
+    } else if (mises_channel == "dev") {
+      mises_product_dir_name_suffix = "-Dev"
+    } else if (mises_channel == "nightly") {
+      mises_product_dir_name_suffix = "-Nightly"
+    } else {
+      assert(mises_channel == "", "Unknown channel name")
+    }
+  } else {
+    mises_product_dir_name_suffix = "-Development"
+  }
+  mises_product_dir_name =
+      "MisesSoftware/Mises-Browser$mises_product_dir_name_suffix"
+
+  if (base_sparkle_update_url == "") {
+    base_sparkle_update_url =
+        "https://updates.misessoftware.com/sparkle/Mises-Browser"
+  }
+}
+
+mises_platform = "darwin"
+if (is_win) {
+  mises_platform = "win32"
+} else if (is_linux) {
+  mises_platform = "linux"
+} else if (is_android) {
+  mises_platform = "android"
+}
+
+is_release_channel = mises_channel == ""
+
+mises_android_output = ""
+if (is_android) {
+  mises_android_output += "$root_out_dir/apks/Mises"
+  if (target_android_base == "modern") {
+    assert(target_cpu != "arm64" && target_cpu != "x64")
+    mises_android_output += "Modern"
+  } else if (target_cpu == "arm64" || target_cpu == "x64" ||
+             target_android_base == "mono") {
+    mises_android_output += "Mono"
+  }
+
+  if (target_android_output_format == "aab") {
+    mises_android_output += "$target_cpu.aab"
+  } else {
+    mises_android_output += "$target_cpu.apk"
+  }
+}

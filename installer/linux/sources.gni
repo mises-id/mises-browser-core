@@ -1,0 +1,37 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+common_packaging_files_sources = [
+  "//mises/LICENSE",
+  "//mises/chromium_src/chrome/app/resources/manpage.1.in",
+  "//mises/chromium_src/chrome/installer/linux/common/mises-browser/chromium-browser.appdata.xml",
+  "//mises/chromium_src/chrome/installer/linux/common/mises-browser/chromium-browser.info",
+  "//mises/installer/linux/common/mises_installer.include",
+]
+
+common_packaging_files_excluded_sources = [
+  "//chrome/app/resources/manpage.1.in",
+  "common/chromium-browser/chromium-browser.appdata.xml",
+  "common/chromium-browser/chromium-browser.info",
+]
+
+mises_packaging_files_executables = [
+  "$root_out_dir/mises",
+  "$root_out_dir/mises_sandbox",
+]
+
+excluded_packaging_files_executables = [
+  "$root_out_dir/chrome",
+  "$root_out_dir/chrome_sandbox",
+]
+
+mises_installer_deps = [
+  "//mises/build/linux:copy_exe",
+  "//mises/build/linux:copy_sandbox",
+]
+
+strip_chrome_binary_deps = [ "//mises/build/linux:copy_exe" ]
+
+strip_chrome_sandbox_deps = [ "//mises/build/linux:copy_sandbox" ]

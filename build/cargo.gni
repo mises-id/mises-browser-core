@@ -1,0 +1,180 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//mises/build/rust/config.gni")
+import("//build/config/clang/clang.gni")
+
+if (is_mac) {
+  import("//build/config/mac/mac_sdk.gni")
+}
+
+if (is_ios) {
+  import("//build/config/ios/ios_sdk_overrides.gni")
+}
+
+rust_lib_build_path = "$root_build_dir/mises_rust/out/$current_cpu"
+rust_lib_output_path =
+    "$rust_lib_build_path/${cargo_lib_prefix}mises_rust${cargo_lib_suffix}"
+
+template("rust_ffi") {
+  static_library(target_name) {
+    libs = [ rust_lib_output_path ]
+
+    if (is_mac) {
+      frameworks = [ "Security.framework" ]
+
+      if (defined(invoker.frameworks)) {
+        frameworks += invoker.frameworks
+      }
+    } else if (is_win) {
+      libs += [ "bcrypt.lib" ]
+    }
+
+    deps = [ "//mises/build/rust:rust_lib" ]
+    if (is_apple) {
+      deps += [ "//mises/build/rust:generate_unexport_list" ]
+    }
+    if (defined(invoker.deps)) {
+      deps += invoker.deps
+    }
+
+    public_deps = [ "//mises/build/rust:cxx_cppdeps" ]
+    if (defined(invoker.public_deps)) {
+      public_deps += invoker.public_deps
+    }
+
+    if (is_clang) {
+      configs -= [ "//build/config/clang:find_bad_constructs" ]
+    }
+    configs -= [ "//build/config/compiler:chromium_code" ]
+    configs += [ "//build/config/compiler:no_chromium_code" ]
+
+    forward_variables_from(invoker,
+                           "*",
+                           [
+                             "deps",
+                             "frameworks",
+                             "public_deps",
+                           ])
+  }
+}
+
+template("rust_crate") {
+  action(target_name) {
+    script = "//mises/script/stamp.py"
+
+    forward_variables_from(invoker, [ "deps" ])
+
+    if (defined(invoker.visibility)) {
+      visibility = invoker.visibility
+    } else {
+      visibility = [ "//mises/build/rust:*" ]
+    }
+
+    inputs = [ script ]
+
+    inputs += invoker.inputs
+
+    _stamp = "${target_gen_dir}/${target_name}.stamp"
+
+    args = [
+      "--stamp",
+      rebase_path(_stamp, root_build_dir),
+    ]
+
+    outputs = [ _stamp ]
+  }
+}
+
+# Runs a script to compile a local Cargo package and all of its dependencies
+template("cargo_build") {
+  group_target = target_name
+  cargo_build_target = target_name + "_cargo_build"
+
+  _rustflags = default_rustflags
+  if (defined(invoker.rustflags)) {
+    _rustflags += invoker.rustflags
+  }
+
+  action(cargo_build_target) {
+    script = "//mises/script/cargo.py"
+
+    inputs = [ "//mises/script/cargo.py" ]
+
+    forward_variables_from(invoker, "*", [ "inputs" ])
+
+    if (defined(invoker.inputs)) {
+      inputs += invoker.inputs
+    }
+
+    outputs = [ rust_lib_output_path ]
+
+    if (!defined(target)) {
+      target = rustc_target  # defined by //mises/build/rust/config.gni,
+    }
+
+    args = [
+      "--rustup_path=" + rustup_path,
+      "--manifest_path=" + rebase_path(manifest_path, root_build_dir),
+      "--build_path=" + rebase_path(rust_lib_build_path, root_build_dir),
+      "--target=" + target,
+      "--toolchain=" +
+          rustc_toolchain,  # defined by //mises/build/rust/config.gni,
+      "--clang_bin_path=" + rebase_path("$clang_base_path/bin"),
+      "--is_debug=$is_debug",
+      "--profile=$cargo_profile",
+    ]
+
+    if (is_mac) {
+      args += [ "--mac_deployment_target=" + mac_deployment_target ]
+    } else if (is_ios) {
+      args += [ "--ios_deployment_target=" + ios_deployment_target ]
+      args += [ "--features=" + "ios" ]
+    }
+
+    if (defined(_rustflags)) {
+      foreach(flag, _rustflags) {
+        args += [
+          "--rust_flag",
+          flag,
+        ]
+      }
+    }
+  }
+
+  # TODO(bridiver) - is this still needed?
+  group(group_target) {
+    public_deps = [ ":$cargo_build_target" ]
+  }
+}
+
+# Runs a script to generate C bindings for rust library
+template("cargo_cbindgen") {
+  action(target_name) {
+    script = "//mises/script/cargo_cbindgen.py"
+
+    forward_variables_from(invoker,
+                           [
+                             "config",
+                             "sources",
+                             "output",
+                             "visibility",
+                           ])
+
+    assert(defined(config), "Must specify cbindgen.toml config to use")
+    assert(defined(sources), "Must specify sources to generate bindings for")
+    assert(defined(output), "Must specify output header file")
+
+    sources += [ config ]
+    outputs = [ output ]
+
+    args = [
+      "--rustup_path=" + rustup_path,
+      "--cargo_path=" + rustup_path,
+      "--config=" + rebase_path(config, root_build_dir),
+      "--path=" + rebase_path(get_path_info(config, "dir"), root_build_dir),
+      "--output=" + rebase_path(output, root_build_dir),
+    ]
+  }
+}

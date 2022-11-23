@@ -1,0 +1,20 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# you can obtain one at http://mozilla.org/MPL/2.0/.
+
+mises_extensions_web_component_files = [ ]
+
+mises_extensions_non_web_component_files = [
+
+]
+
+mises_extensions_preprocess_extra_deps =
+    [ "//mises/browser/resources/extensions:preprocess" ]
+
+mises_extensions_local_files = mises_extensions_web_component_files +
+                               mises_extensions_non_web_component_files
+foreach(component_file, mises_extensions_web_component_files) {
+  mises_extensions_local_files +=
+      [ string_replace(component_file, ".ts", ".html") ]
+}

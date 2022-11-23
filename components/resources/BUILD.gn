@@ -1,0 +1,71 @@
+import("//mises/resources/mises_grit.gni")
+import("//build/config/locales.gni")
+import("//extensions/buildflags/buildflags.gni")
+import("//tools/grit/repack.gni")
+
+mises_grit("static_resources") {
+  source = "mises_components_resources.grd"
+
+  output_name = "mises_components_resources_new"
+
+  outputs = [
+    "grit/mises_components_resources.h",
+    "mises_components_static.pak",
+  ]
+  deps = [
+    ":strings",
+  ]
+
+  defines = [
+  ]
+
+  output_dir = "$root_gen_dir/components"
+}
+
+repack("resources") {
+  deps = [ ":static_resources" ]
+  sources = [ "$root_gen_dir/components/mises_components_static.pak" ]
+
+  if (!is_ios) {
+    deps += [
+    ]
+
+    sources += [
+    ]
+  }
+
+  if (!is_android && !is_ios) {
+    deps += [
+    ]
+
+    sources += [
+    ]
+  }
+
+  output = "$root_gen_dir/components/mises_components_resources.pak"
+}
+
+mises_grit("strings") {
+  source = "mises_components_strings.grd"
+
+  outputs = [ "grit/mises_components_strings.h" ]
+
+  defines = [
+  ]
+
+  foreach(locale, all_chrome_locales) {
+    outputs += [ "mises_components_strings_$locale.pak" ]
+  }
+
+  output_dir = "$root_gen_dir/components"
+}
+
+action("about_credits") {
+  script = "//mises/script/check_npm_licenses.py"
+
+  inputs = [ "//mises/package.json" ]
+
+  outputs = [ "$root_gen_dir/npm_licenses.checked" ]
+
+  args = [ rebase_path("$root_gen_dir/npm_licenses.checked") ]
+}

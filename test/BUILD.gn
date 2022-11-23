@@ -1,0 +1,340 @@
+import("//mises/test/testing.gni")
+import("//chrome/common/features.gni")
+import("//components/gcm_driver/config.gni")
+import("//extensions/buildflags/buildflags.gni")
+import("//testing/test.gni")
+import("//tools/v8_context_snapshot/v8_context_snapshot.gni")
+
+if (is_android) {
+  import("//build/config/android/rules.gni")
+  import("//chrome/android/chrome_public_apk_tmpl.gni")
+}
+
+assert(!is_ios)
+
+static_library("test_support") {
+  testonly = true
+  sources = [
+    "//mises/test/base/testing_mises_browser_process.cc",
+    "//mises/test/base/testing_mises_browser_process.h",
+  ]
+
+  deps = [
+    "//mises/browser",
+  ]
+}
+
+static_library("mises_test_support_unit") {
+  testonly = true
+
+  sources = [
+    # Not including mises_testing_profile.{h,cc} here, they need to be pulled
+    # via an override for testing_profile.{h,cc} for upstream tests to build.
+    "base/mises_unit_test_suite.cc",
+    "base/mises_unit_test_suite.h",
+    "base/run_all_unittests.cc",
+  ]
+
+  public_deps = [
+    "//base",
+    "//chrome:resources",
+    "//chrome:strings",
+    "//chrome/browser",
+    "//chrome/common",
+    "//chrome/test:test_support",
+  ]
+
+  deps = [
+    ":test_support",
+    "//mises/browser/profiles",
+    "//mises/common",
+    "//mises/components/constants",
+    "//components/gcm_driver",
+    "//components/gcm_driver:gcm_buildflags",
+    "//mojo/core/embedder",
+  ]
+
+  if (is_win) {
+    deps += [ "//chrome/install_static/test:test_support" ]
+  }
+}
+
+test("mises_unit_tests") {
+  testonly = true
+
+  configs += [ "//chrome/:disable_thinlto_cache_flags" ]
+
+  sources = [
+  
+  ]
+
+  deps = [
+    ":test_support",
+    "//chrome:dependencies",
+    "//chrome/app:command_ids",
+    "//chrome/browser/favicon",
+    "//chrome/test:test_support",
+    "//components/assist_ranker",
+    "//components/assist_ranker/proto",
+    "//components/bookmarks/browser",
+    "//components/bookmarks/common",
+    "//components/content_settings/core/test:test_support",
+    "//components/country_codes",
+    "//components/custom_handlers:test_support",
+    "//components/domain_reliability:domain_reliability",
+    "//components/language/core/browser",
+    "//components/language/core/common",
+    "//components/os_crypt:test_support",
+    "//components/page_load_metrics/common",
+    "//components/permissions",
+    "//components/pref_registry",
+    "//components/prefs",
+    "//components/prefs:test_support",
+    "//components/query_parser",
+    "//components/schema_org/common:mojom",
+    "//components/signin/public/base",
+    "//components/signin/public/identity_manager:test_support",
+    "//components/sync_preferences",
+    "//components/translate/core/browser:test_support",
+    "//components/user_prefs",
+    "//components/variations/service:buildflags",
+    "//components/version_info",
+    "//content/public/common",
+    "//content/test:test_support",
+    "//google_apis/gcm",
+    "//google_apis/gcm:test_support",
+    "//mojo/core/embedder",
+    "//services/device/public/cpp:test_support",
+    "//services/network:test_support",
+    "//services/network/public/cpp",
+    "//services/preferences/public/cpp",
+   
+  ]
+
+  if (toolkit_views) {
+    deps += [ "//chrome/browser/ui/views" ]
+  }
+
+  data = [ "data/" ]
+
+  public_deps = [
+    ":mises_test_support_unit",
+    "//base",
+    "//base/test:test_support",
+    "//mises:browser_dependencies",
+    "//mises/browser",
+    "//mises/common",
+    "//mises/renderer",
+    "//mises/utility",
+    "//testing/gtest",
+  ]
+
+  if (!is_android) {
+    sources += [
+   
+    ]
+    deps += [
+    ]
+  }
+
+  # On Windows, mises_install_static_unittests covers channel test.
+  if (is_mac || is_linux) {
+    sources += [ "//mises/common/mises_channel_info_unittest.cc" ]
+  }
+
+  if (is_mac) {
+    sources += [
+      "//mises/chromium_src/chrome/browser/shell_integration_unittest_mac.cc",
+      "//mises/chromium_src/chrome/common/chrome_constants_unittest_mac.cc",
+    ]
+  }
+
+}
+
+
+static_library("browser_test_support") {
+  testonly = true
+  public_deps = [ "//chrome/test:test_support" ]
+
+  sources = [
+    "base/mises_test_launcher_delegate.cc",
+    "base/mises_test_launcher_delegate.h",
+  ]
+
+  deps = [
+    "//mises/browser/ui",
+    "//chrome/browser",
+  ]
+}
+
+static_library("browser_tests_runner") {
+  testonly = true
+
+  if (is_win) {
+    deps = [ "//chrome/installer/util:strings" ]
+  }
+
+  public_deps = [ ":browser_test_support" ]
+
+  sources = [ "base/browser_tests_main.cc" ]
+}
+
+if (!is_android) {
+  test("mises_network_audit_tests") {
+    testonly = true
+
+    # We need to disable the ThinLTO cache or the linker will die with
+    # a "Resource temporarily unavailable" error due to the linking
+    # reaching the vm.max_map_count limit of 65530 memory mappings.
+    configs += [ "//chrome/:disable_thinlto_cache_flags" ]
+
+    sources = [
+    ]
+
+    deps = [
+      "//base",
+      "//chrome/browser",
+      "//chrome/browser/profiles:profile",
+      "//chrome/browser/ui",
+      "//chrome/test:test_support_ui",
+      "//components/prefs",
+      "//content/public/browser",
+      "//content/test:test_support",
+      "//services/network/public/cpp",
+      "//testing/gmock",
+      "//third_party/re2",
+    ]
+    defines = [ "HAS_OUT_OF_PROC_TEST_RUNNER" ]
+
+    public_deps = [ ":browser_tests_runner" ]
+  }
+}
+
+
+
+test("mises_browser_tests") {
+  testonly = true
+
+  configs += [
+    "//build/config:precompiled_headers",
+    "//chrome/:disable_thinlto_cache_flags",
+    "//chrome/test:pdb_larger_than_4gb",
+  ]
+
+  sources = [
+    "//chrome/browser/extensions/browsertest_util.cc",
+    "//chrome/browser/extensions/browsertest_util.h",
+    "//chrome/browser/extensions/extension_browsertest.cc",
+    "//chrome/browser/extensions/extension_browsertest.h",
+    "//chrome/browser/extensions/extension_function_test_utils.cc",
+    "//chrome/browser/extensions/extension_function_test_utils.h",
+    "//chrome/browser/media/media_browsertest.cc",
+    "//chrome/browser/media/media_browsertest.h",
+    "//chrome/browser/ui/test/test_browser_dialog.cc",
+    "//chrome/browser/ui/test/test_browser_dialog.h",
+    "//chrome/browser/ui/test/test_browser_ui.cc",
+    "//chrome/browser/ui/test/test_browser_ui.h",
+  ]
+
+  deps = [
+    "//build:chromeos_buildflags",
+    "//chrome/app:command_ids",
+    "//chrome/browser",
+    "//chrome/browser:browser_process",
+    "//chrome/browser:theme_properties",
+    "//chrome/browser/enterprise/connectors/analysis:features",
+    "//chrome/browser/media/router:media_router_feature",
+    "//chrome/browser/profiles:profile",
+    "//chrome/browser/ui",
+    "//chrome/browser/ui/color:color_headers",
+    "//chrome/browser/ui/color:mixers",
+    "//chrome/browser/web_applications",
+    "//chrome/test:test_support_ui",
+    "//components/bookmarks/browser",
+    "//components/commerce/core:feature_list",
+    "//components/content_settings/browser",
+    "//components/content_settings/core/browser",
+    "//components/content_settings/core/common",
+    "//components/content_settings/renderer",
+    "//components/crx_file",
+    "//components/embedder_support",
+    "//components/gcm_driver:gcm_buildflags",
+    "//components/history_clusters/core",
+    "//components/javascript_dialogs",
+    "//components/language/core/common",
+    "//components/lens",
+    "//components/metrics_services_manager",
+    "//components/network_session_configurator/common:common",
+    "//components/network_time",
+    "//components/optimization_guide/core",
+    "//components/permissions",
+    "//components/permissions:permissions_common",
+    "//components/policy/core/browser",
+    "//components/policy/core/common:test_support",
+    "//components/prefs",
+    "//components/privacy_sandbox",
+    "//components/reading_list/features:flags",
+    "//components/renderer_context_menu",
+    "//components/safe_browsing/content/browser/web_ui",
+    "//components/safe_browsing/core/common",
+    "//components/security_interstitials/content:security_interstitial_page",
+    "//components/segmentation_platform/public",
+    "//components/send_tab_to_self",
+    "//components/shared_highlighting/core/common",
+    "//components/spellcheck/browser",
+    "//components/user_prefs",
+    "//extensions/browser:test_support",
+    "//extensions/common:common_constants",
+    "//extensions/common:test_support",
+    "//media:test_support",
+    "//ppapi/buildflags",
+    "//services/device/public/cpp:device_features",
+    "//services/network:network_service",
+    "//testing/gmock",
+    "//third_party/blink/public/common",
+    "//ui/compositor:test_support",
+    "//ui/views",
+  ]
+
+  if (is_mac) {
+    sources += [
+      "//chrome/browser/ui/test/test_browser_dialog_mac.h",
+      "//chrome/browser/ui/test/test_browser_dialog_mac.mm",
+    ]
+  }
+
+  if (use_aura) {
+    deps += [ "//ui/aura:test_support" ]
+  }
+
+  
+
+  defines = [ "HAS_OUT_OF_PROC_TEST_RUNNER" ]
+
+
+  if (is_android) {
+    use_default_launcher = false
+
+    android_manifest =
+        "${target_gen_dir}/mises_browser_tests_manifest/AndroidManifest.xml"
+    android_manifest_dep = ":mises_browser_tests_manifest"
+
+    data = [
+      "$root_out_dir/mises_100_percent.pak",
+      "$root_out_dir/mises_resources.pak",
+      "$root_gen_dir/chrome/android/chrome_apk_paks/chrome_100_percent.pak",
+      "$root_gen_dir/chrome/android/chrome_apk_paks/locales/en-US.pak",
+      "$root_gen_dir/chrome/android/chrome_apk_paks/resources.pak",
+      "$root_gen_dir/components/components_resources.pak",
+      "$root_gen_dir/components/dev_ui_components_resources.pak",
+      "$root_out_dir/browser_tests.pak",
+    ]
+
+    deps -= android_test_exception_deps
+    deps += android_only_test_deps
+    sources -= android_test_exception_sources
+    sources += android_only_test_sources
+  } else {
+    public_deps = [ ":browser_tests_runner" ]
+  }
+}

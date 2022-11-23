@@ -1,0 +1,12 @@
+source_set("util") {
+  sources = [
+    "mises_shell_util.cc",
+    "mises_shell_util.h",
+  ]
+
+  deps = [
+    "//base",
+    "//chrome/install_static:install_static_util",
+    "//components/version_info",
+  ]
+}

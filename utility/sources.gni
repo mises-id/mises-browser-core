@@ -1,0 +1,14 @@
+import("//mises/utility/importer/sources.gni")
+
+mises_utility_sources = [
+]
+mises_utility_sources += mises_utility_importer_sources
+
+mises_utility_deps = [
+  "//mojo/public/cpp/bindings",
+]
+
+mises_utility_deps += mises_utility_importer_deps
+
+mises_utility_public_deps = []
+mises_utility_public_deps += mises_utility_importer_public_deps
