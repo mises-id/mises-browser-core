@@ -1,0 +1,12 @@
+diff --git a/tools/json_schema_compiler/feature_compiler.py b/tools/json_schema_compiler/feature_compiler.py
+index 3882abb0243c90a141211443209049d5342a7695..b5766c57cafe1f75fa2125e0dd366760bba2a7cc 100644
+--- a/tools/json_schema_compiler/feature_compiler.py
++++ b/tools/json_schema_compiler/feature_compiler.py
+@@ -774,6 +774,7 @@ class FeatureCompiler(object):
+                   abs_source_file)
+         raise
+       dupes = set(f_json) & set(self._json)
++      from tools.json_schema_compiler import feature_compiler_helper; feature_compiler_helper.DiscardMisesOverridesFromDupes(dupes)
+       assert not dupes, 'Duplicate keys found: %s' % list(dupes)
+       self._json.update(f_json)
+ 
