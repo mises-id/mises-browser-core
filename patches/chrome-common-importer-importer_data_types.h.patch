@@ -1,0 +1,21 @@
+diff --git a/chrome/common/importer/importer_data_types.h b/chrome/common/importer/importer_data_types.h
+index 7af3d7b83c5a7f9c61bbc55219989575595c1708..e3fc3d7942ce3af9d1fecaea5f22d43e88623948 100644
+--- a/chrome/common/importer/importer_data_types.h
++++ b/chrome/common/importer/importer_data_types.h
+@@ -30,7 +30,7 @@ enum ImportItem {
+   SEARCH_ENGINES     = 1 << 4,
+   HOME_PAGE          = 1 << 5,
+   AUTOFILL_FORM_DATA = 1 << 6,
+-  ALL                = (1 << 7) - 1  // All the bits should be 1, hence the -1.
++  BRAVE_IMPORT_ITEM
+ };
+ 
+ // Information about a profile needed by an importer to do import work.
+@@ -110,6 +110,7 @@ enum VisitSource {
+   VISIT_SOURCE_FIREFOX_IMPORTED = 1,
+   VISIT_SOURCE_IE_IMPORTED = 2,
+   VISIT_SOURCE_SAFARI_IMPORTED = 3,
++  BRAVE_VISIT_SOURCE
+ };
+ 
+ }  // namespace importer

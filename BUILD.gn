@@ -95,6 +95,7 @@ if (is_win) {
   }
 }
 
+
 group("mises") {
   deps = [ "build/$target_os:mises" ]
   if (!is_android && !is_ios) {
@@ -102,6 +103,9 @@ group("mises") {
       ":generate_version",
       "//chrome",
     ]
+  }
+  if (is_apple) { 
+    deps += [ "//mises/components/challenge_bypass_ristretto" ]
   }
 }
 

@@ -3,13 +3,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/common/importer/chrome_importer_utils.h"
+#include "mises/common/importer/chrome_importer_utils.h"
 #include "base/files/file_path.h"
 #include "base/files/file_util.h"
 #include "base/json/json_reader.h"
 #include "base/path_service.h"
-#include "brave/common/importer/importer_constants.h"
-#include "brave/components/constants/brave_paths.h"
+#include "mises/common/importer/importer_constants.h"
+#include "mises/components/constants/mises_paths.h"
 #include "testing/gtest/include/gtest/gtest.h"
 
 namespace {
@@ -17,7 +17,7 @@ const char kTestExtensionsPreferencesFile[] =
     "Secure_Preferences_for_extension_import";
 base::FilePath GetTestProfilePath() {
   base::FilePath test_dir;
-  base::PathService::Get(brave::DIR_TEST_DATA, &test_dir);
+  base::PathService::Get(mises::DIR_TEST_DATA, &test_dir);
   return test_dir.AppendASCII("import").AppendASCII("chrome").AppendASCII(
       "default");
 }
@@ -25,7 +25,7 @@ base::FilePath GetTestProfilePath() {
 // theme from webstore with fresh profile.
 base::FilePath GetTestPreferencesPath() {
   base::FilePath test_dir;
-  base::PathService::Get(brave::DIR_TEST_DATA, &test_dir);
+  base::PathService::Get(mises::DIR_TEST_DATA, &test_dir);
   return test_dir.AppendASCII("import")
       .AppendASCII("chrome")
       .AppendASCII("default")
@@ -35,7 +35,7 @@ base::FilePath GetTestPreferencesPath() {
 
 TEST(ChromeImporterUtilsTest, ExtensionImportTest) {
   base::FilePath data_path;
-  ASSERT_TRUE(base::PathService::Get(brave::DIR_TEST_DATA, &data_path));
+  ASSERT_TRUE(base::PathService::Get(mises::DIR_TEST_DATA, &data_path));
   base::FilePath secured_preference_path = GetTestPreferencesPath();
 
   std::string secured_preference_content;

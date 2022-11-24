@@ -9,8 +9,8 @@ import os
 import requests
 from .config import get_raw_version, get_env_var
 
-BRAVE_REPO = "brave/brave-browser"
-BRAVE_CORE_REPO = "brave/brave-core"
+BRAVE_REPO = "mises/brave-browser"
+BRAVE_CORE_REPO = "mises/brave-core"
 
 
 def channels():

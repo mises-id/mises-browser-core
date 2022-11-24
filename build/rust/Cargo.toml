@@ -4,14 +4,8 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-adblock-ffi = { path = "../../components/adblock_rust_ffi" }
-mises-wallet-cxx = { path = "../../components/mises_wallet/rust" }
 challenge-bypass-ristretto-ffi = { path = "../../components/challenge_bypass_ristretto" }
-speedreader-ffi = { path = "../../components/speedreader/rust/ffi" }
-skus-cxx = { path = "../../components/skus/browser/rs/cxx" }
-mises-news-cxx = { path = "../../components/mises_today/rust" }
 json-cxx = { path = "../../components/json/rs" }
-filecoin-cxx = { path = "../../components/filecoin/rs" }
 
 [patch.crates-io.link-cplusplus_v1]
 path = "../../../third_party/rust/link_cplusplus/v1/crate"
@@ -27,7 +21,7 @@ name = "mises_rust"
 path = "lib.rs"
 
 [features]
-ios = ["adblock-ffi/ios"]
+ios = []
 
 [profile.dev]
 panic = "abort"

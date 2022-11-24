@@ -3,10 +3,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/json/rs/src/lib.rs.h"
+#include "mises/components/json/rs/src/lib.rs.h"
 #include "testing/gtest/include/gtest/gtest.h"
 
-namespace brave_wallet {
+namespace mises_wallet {
 
 TEST(JsonParser, ConvertUint64ToString) {
   std::string json = "{\"a\": " + std::to_string(UINT64_MAX) + "}";
@@ -550,4 +550,4 @@ TEST(JsonParser, ConvertAllNumbersToString) {
   }
 }
 
-}  // namespace brave_wallet
+}  // namespace mises_wallet

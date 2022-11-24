@@ -57,9 +57,9 @@ def generate_overrides_and_replace_strings(source_string_path):
     for part in parts:
         override_file = get_override_file_path(part.attrib['file'])
         # Check for the special case of brave_stings.grd:
-        if (os.path.basename(source_string_path) == 'brave_strings.grd'
+        if (os.path.basename(source_string_path) == 'mises_strings.grd'
                 and override_file == 'settings_chromium_strings_override.grdp'):
-            override_file = 'settings_brave_strings_override.grdp'
+            override_file = 'settings_mises_strings_override.grdp'
 
         if os.path.exists(os.path.join(os.path.dirname(source_string_path),
                                        override_file)):
@@ -101,7 +101,7 @@ def main():
     # is_translateable_string function in brave/script/lib/transifex_common.py.
     xml_tree = etree.parse(source_string_path)
     (basename, _) = filename.split('.')
-    if basename == 'brave_strings':
+    if basename == 'mises_strings':
         elem1 = xml_tree.xpath('//message[@name="IDS_SXS_SHORTCUT_NAME"]')[0]
         elem1.text = 'Brave Nightly'
         elem1.attrib.pop('desc')
@@ -159,7 +159,7 @@ def main():
         elem1.attrib.pop('translateable')
         elem1 = xml_tree.xpath(
             '//part[@file="settings_chromium_strings.grdp"]')[0]
-        elem1.set('file', 'settings_brave_strings.grdp')
+        elem1.set('file', 'settings_mises_strings.grdp')
 
     grit_root = xml_tree.xpath(
         '//grit' if extension == '.grd' else '//grit-part')[0]

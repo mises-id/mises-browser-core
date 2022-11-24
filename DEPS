@@ -3,6 +3,7 @@ use_relative_paths = True
 deps = {
   "vendor/requests": "https://github.com/kennethreitz/requests@e4d59bedfd3c7f4f254f4f5d036587bcd8152458",
   "vendor/boto": "https://github.com/boto/boto@f7574aa6cc2c819430c1f05e9a1a1a666ef8169b",
+  "vendor/challenge_bypass_ristretto_ffi": "https://github.com/brave-intl/challenge-bypass-ristretto-ffi.git@419995e4a873c294f1eaefca276f8ad25328e89f",
   "third_party/ethash/src": "https://github.com/chfast/ethash.git@e4a15c3d76dc09392c7efd3e30d84ee3b871e9ce",
   "third_party/bitcoin-core/src": "https://github.com/bitcoin/bitcoin.git@95ea54ba089610019a74c1176a2c7c0dba144b1c",
   "third_party/argon2/src": "https://github.com/P-H-C/phc-winner-argon2.git@62358ba2123abd17fccf2a108a301d4b52c01a7c",
@@ -18,11 +19,11 @@ vars = {
 }
 
 hooks = [
-  {
-    'name': 'bootstrap',
-    'pattern': '.',
-    'action': ['python', 'script/bootstrap.py'],
-  },
+  # {
+  #   'name': 'bootstrap',
+  #   'pattern': '.',
+  #   'action': ['python', 'script/bootstrap.py'],
+  # },
   {
     # Download hermetic xcode for goma
     'name': 'download_hermetic_xcode',
@@ -66,13 +67,13 @@ hooks = [
     'condition': 'checkout_linux',
     'action': ['vpython3', 'script/download_rust_deps.py', 'linux'],
   },
-  {
-    # Install Web Discovery Project dependencies for Windows, Linux, and macOS
-    'name': 'web_discovery_project_npm_deps',
-    'pattern': '.',
-    'condition': 'not checkout_android and not checkout_ios',
-    'action': ['vpython3', 'script/web_discovery_project.py', '--install'],
-  },
+  # {
+  #   # Install Web Discovery Project dependencies for Windows, Linux, and macOS
+  #   'name': 'web_discovery_project_npm_deps',
+  #   'pattern': '.',
+  #   'condition': 'not checkout_android and not checkout_ios',
+  #   'action': ['vpython3', 'script/web_discovery_project.py', '--install'],
+  # },
   {
     'name': 'generate_licenses',
     'pattern': '.',

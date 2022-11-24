@@ -1,0 +1,23 @@
+diff --git a/build/util/lastchange.py b/build/util/lastchange.py
+index 1970c4783a993a7e040e6c98870b1c062e9ef8a4..192f280436e9d30b0c60a48bd90f9025eb6d10d3 100755
+--- a/build/util/lastchange.py
++++ b/build/util/lastchange.py
+@@ -124,14 +124,14 @@ def FetchGitRevision(directory, commit_filter, start_commit="HEAD"):
+   """
+   hash_ = ''
+ 
+-  git_args = ['log', '-1', '--format=%H %ct']
+-  if commit_filter is not None:
+-    git_args.append('--grep=' + commit_filter)
++  git_args = ['log', '-1', '--format=%H,%ct']
++  #if commit_filter is not None:
++  #  git_args.append('--grep=' + commit_filter)
+ 
+   git_args.append(start_commit)
+ 
+   output = _RunGitCommand(directory, git_args)
+-  hash_, commit_timestamp = output.split()
++  hash_, commit_timestamp = output.split(',')
+   if not hash_:
+     return VersionInfo('0', '0', 0)
+ 

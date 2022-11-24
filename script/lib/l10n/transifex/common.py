@@ -31,10 +31,10 @@ else:
 
 # Filenames (slugs) that are fully handled by Transifex
 transifex_handled_slugs = [
-    'android_brave_strings',
-    'brave_generated_resources',
-    'brave_components_resources',
-    'brave_extension',
+    'android_mises_strings',
+    'mises_generated_resources',
+    'mises_components_resources',
+    'mises_extension',
     'rewards_extension',
     'ethereum_remote_client_extension'
 ]

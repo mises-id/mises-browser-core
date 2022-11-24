@@ -8,7 +8,7 @@
 #include <string>
 
 #include "base/memory/ptr_util.h"
-#include "brave/net/proxy_resolution/proxy_config_service_tor.h"
+#include "mises/net/proxy_resolution/proxy_config_service_tor.h"
 #include "net/base/test_completion_callback.h"
 #include "net/log/net_log_with_source.h"
 #include "net/proxy_resolution/mock_proxy_resolver.h"

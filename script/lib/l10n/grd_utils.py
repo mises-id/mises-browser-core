@@ -194,10 +194,10 @@ def get_original_grd(src_root, grd_file_path):
     # pylint: disable=fixme
     # TODO: consider passing this mapping into the script from l10nUtil.js
     grd_file_name = os.path.basename(grd_file_path)
-    if grd_file_name == 'components_brave_strings.grd':
+    if grd_file_name == 'components_mises_strings.grd':
         return os.path.join(src_root, 'components',
                             'components_chromium_strings.grd')
-    if grd_file_name == 'brave_strings.grd':
+    if grd_file_name == 'mises_strings.grd':
         return os.path.join(src_root, 'chrome', 'app', 'chromium_strings.grd')
     if grd_file_name == 'generated_resources.grd':
         return os.path.join(src_root, 'chrome', 'app',

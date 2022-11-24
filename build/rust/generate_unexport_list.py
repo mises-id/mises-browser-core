@@ -13,7 +13,7 @@ import sys
 # atomic output that's maximally compatible with ninja.
 sys.path.append(
   os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir,
-               os.pardir, os.pardir, 'build', 'android', 'gyp'))
+               os.pardir, 'src', 'build', 'android', 'gyp'))
 from util import build_utils # pylint: disable=no-name-in-module, wrong-import-position
 
 

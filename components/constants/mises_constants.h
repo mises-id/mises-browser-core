@@ -8,10 +8,10 @@
 
 #include "base/files/file_path.h"
 
-namespace brave {
+namespace mises {
 
 extern const base::FilePath::CharType kSessionProfileDir[];
 
-}  // namespace brave
+}  // namespace mises
 
 #endif  // BRAVE_COMPONENTS_CONSTANTS_BRAVE_CONSTANTS_H_

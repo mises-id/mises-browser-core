@@ -1,5 +1,5 @@
 diff --git a/chrome/BUILD.gn b/chrome/BUILD.gn
-index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..d3617092917988d3f84b25d2fea87be31f81a1be 100644
+index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e651762fa9f03 100644
 --- a/chrome/BUILD.gn
 +++ b/chrome/BUILD.gn
 @@ -189,6 +189,7 @@ if (!is_android && !is_mac) {
@@ -32,6 +32,15 @@ index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..d3617092917988d3f84b25d2fea87be3
  
      if (enable_stripping) {
        # At link time, preserve the global symbols specified in the .exports
+@@ -587,7 +590,7 @@ if (is_win) {
+     args =
+         [
+           "-b",
+-          "${branding_path_component}_strings",
++          _strings_file,
+           "-v",
+           chrome_version_full,
+           "-g",
 @@ -704,9 +707,11 @@ if (is_win) {
        "--scm=0",
      ]

@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/constants/brave_paths.h"
+#include "mises/components/constants/mises_paths.h"
 
 #include "base/base_paths.h"
 #include "base/files/file_path.h"
@@ -12,7 +12,7 @@
 #include "base/path_service.h"
 #include "build/build_config.h"
 
-namespace brave {
+namespace mises {
 
 bool PathProvider(int key, base::FilePath* result) {
   base::FilePath cur;
@@ -40,4 +40,4 @@ void RegisterPathProvider() {
   base::PathService::RegisterProvider(PathProvider, PATH_START, PATH_END);
 }
 
-}  // namespace brave
+}  // namespace mises

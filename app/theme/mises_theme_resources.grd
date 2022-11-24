@@ -1,62 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grit latest_public_release="0" current_release="1" output_all_resource_defines="false">
   <outputs>
-    <output filename="grit/brave_theme_resources.h" type="rc_header" context="default_100_percent">
+    <output filename="grit/mises_theme_resources.h" type="rc_header" context="default_100_percent">
       <emit emit_type='prepend'></emit>
     </output>
-    <output filename="grit/brave_theme_resources_map.cc" type="resource_map_source" context="default_100_percent" />
-    <output filename="grit/brave_theme_resources_map.h" type="resource_map_header" context="default_100_percent" />
-    <output filename="brave_theme_resources_100_percent.pak" type="data_package" context="default_100_percent" />
-    <output filename="brave_theme_resources_200_percent.pak" type="data_package" context="default_200_percent" />
-    <output filename="brave_theme_resources_300_percent.pak" type="data_package" context="default_300_percent" />
+    <output filename="grit/mises_theme_resources_map.cc" type="resource_map_source" context="default_100_percent" />
+    <output filename="grit/mises_theme_resources_map.h" type="resource_map_header" context="default_100_percent" />
+    <output filename="mises_theme_resources_100_percent.pak" type="data_package" context="default_100_percent" />
+    <output filename="mises_theme_resources_200_percent.pak" type="data_package" context="default_200_percent" />
+    <output filename="mises_theme_resources_300_percent.pak" type="data_package" context="default_300_percent" />
   </outputs>
   <release seq="1">
     <structures fallback_to_low_resolution="true">
       <!-- KEEP THESE IN ALPHABETICAL ORDER!  DO NOT ADD TO RANDOM PLACES JUST
            BECAUSE YOUR RESOURCES ARE FUNCTIONALLY RELATED OR FALL UNDER THE
            SAME CONDITIONALS. -->
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_DARK" file="common/brave_bookmark_folder_closed-dark.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_LIGHT" file="common/brave_bookmark_folder_closed-light.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_LIN_DARK" file="common/brave_bookmark_folder_closed-lin-dark.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_LIN_LIGHT" file="common/brave_bookmark_folder_closed-lin-light.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_WIN_DARK" file="common/brave_bookmark_folder_closed-win-dark.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_CLOSED_WIN_LIGHT" file="common/brave_bookmark_folder_closed-win-light.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_OPEN_LIN_DARK" file="common/brave_bookmark_folder_open-lin-dark.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_OPEN_LIN_LIGHT" file="common/brave_bookmark_folder_open-lin-light.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_OPEN_WIN_DARK" file="common/brave_bookmark_folder_open-win-dark.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_BOOKMARK_FOLDER_OPEN_WIN_LIGHT" file="common/brave_bookmark_folder_open-win-light.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_WAYBACK_INFOBAR" file="brave/brave_wayback_infobar.png" />
-      <structure type="chrome_scaled_image" name="IDR_BRAVE_WAYBACK_INFOBAR_DARK" file="brave/brave_wayback_infobar_dark.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_CLOSED_DARK" file="common/mises_bookmark_folder_closed-dark.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_CLOSED_LIGHT" file="common/mises_bookmark_folder_closed-light.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_CLOSED_LIN_DARK" file="common/mises_bookmark_folder_closed-lin-dark.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_CLOSED_LIN_LIGHT" file="common/mises_bookmark_folder_closed-lin-light.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_CLOSED_WIN_DARK" file="common/mises_bookmark_folder_closed-win-dark.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_CLOSED_WIN_LIGHT" file="common/mises_bookmark_folder_closed-win-light.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_OPEN_LIN_DARK" file="common/mises_bookmark_folder_open-lin-dark.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_OPEN_LIN_LIGHT" file="common/mises_bookmark_folder_open-lin-light.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_OPEN_WIN_DARK" file="common/mises_bookmark_folder_open-win-dark.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_BOOKMARK_FOLDER_OPEN_WIN_LIGHT" file="common/mises_bookmark_folder_open-win-light.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_WAYBACK_INFOBAR" file="mises/mises_wayback_infobar.png" />
+      <structure type="chrome_scaled_image" name="IDR_MISES_WAYBACK_INFOBAR_DARK" file="mises/mises_wayback_infobar_dark.png" />
       <if expr="not is_linux">
-	<structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_BETA" file="brave/product_logo_32_beta.png" />
-        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_CANARY" file="brave/product_logo_32_nightly.png" />
-        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEV" file="brave/product_logo_32_dev.png" />
-        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEVELOPMENT" file="brave/product_logo_32_development.png" />
+	<structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_BETA" file="mises/product_logo_32_beta.png" />
+        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_CANARY" file="mises/product_logo_32_nightly.png" />
+        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEV" file="mises/product_logo_32_dev.png" />
+        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEVELOPMENT" file="mises/product_logo_32_development.png" />
       </if>
       <if expr="is_linux">
-	<structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_BETA" file="brave/linux/product_logo_32_beta.png" />
-        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_CANARY" file="brave/linux/product_logo_32_nightly.png" />
-        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEV" file="brave/linux/product_logo_32_dev.png" />
-        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEVELOPMENT" file="brave/linux/product_logo_32_development.png" />
+	<structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_BETA" file="mises/linux/product_logo_32_beta.png" />
+        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_CANARY" file="mises/linux/product_logo_32_nightly.png" />
+        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEV" file="mises/linux/product_logo_32_dev.png" />
+        <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEVELOPMENT" file="mises/linux/product_logo_32_development.png" />
       </if>
 
-      <if expr="enable_sidebar">
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_BOOKMARKS_FOCUSED" file="brave/sidebar_bookmark_focused.png" />
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_READING_LIST_FOCUSED" file="brave/sidebar_reading_list_focused.png" />
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_BRAVE_TALK_FOCUSED" file="brave/sidebar_brave_talk_focused.png" />
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_CRYPTO_WALLET_FOCUSED" file="brave/sidebar_crypto_wallet_focused.png" />
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_HISTORY_FOCUSED" file="brave/sidebar_history_focused.png" />
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_ITEM_HIGHLIGHT" file="brave/sidebar_item_highlight.png" />
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_ITEM_HIGHLIGHT_RIGHT" file="brave/sidebar_item_highlight_right.png" />
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_ITEM_ADD_FOCUSED" file="brave/sidebar_item_add_focused.png" />
-        <structure type="chrome_scaled_image" name="IDR_SIDEBAR_SETTINGS_FOCUSED" file="brave/sidebar_settings_focused.png" />
-      </if>
-      <if expr="enable_ipfs">
-        <structure type="chrome_scaled_image" name="IDR_BRAVE_IPFS_LOGO" file="brave/ipfs_logo.png" />
-      </if>
 
       <if expr="not is_android">
-        <structure type="chrome_scaled_image" name="IDR_TOR_WINDOW_FRAME_GRAPHIC" file="brave/tor_window_frame_graphic.png" />
+        <structure type="chrome_scaled_image" name="IDR_TOR_WINDOW_FRAME_GRAPHIC" file="mises/tor_window_frame_graphic.png" />
         <!-- Avatar icons -->
         <!-- Generated via zsh :
           > declare -i a=56
@@ -97,10 +83,10 @@
         <structure type="chrome_scaled_image" name="IDR_PROFILE_AVATAR_88" file="common/avatars/avatar_bonbon_royal.png" />
         <structure type="chrome_scaled_image" name="IDR_PROFILE_AVATAR_89" file="common/avatars/avatar_bonbon_ninja.png" />
 
-        <structure type="chrome_scaled_image" name="IDR_BRAVE_SEARCH_CONVERSION_BANNER_GRAPHIC" file="brave/brave_search_conversion_banner_graphic.png" />
-        <structure type="chrome_scaled_image" name="IDR_BRAVE_SEARCH_CONVERSION_BANNER_GRAPHIC_DARK" file="brave/brave_search_conversion_banner_graphic_dark.png" />
-        <structure type="chrome_scaled_image" name="IDR_BRAVE_SEARCH_LOGO_IN_WEB_DISCOVERY_DIALOG" file="brave/brave_search_logo_in_web_discovery_dialog.png" />
-        <structure type="chrome_scaled_image" name="IDR_BRAVE_SEARCH_LOGO_IN_SEARCH_PROMOTION" file="brave/brave_search_logo_in_search_promotion.png" />
+        <structure type="chrome_scaled_image" name="IDR_MISES_SEARCH_CONVERSION_BANNER_GRAPHIC" file="mises/mises_search_conversion_banner_graphic.png" />
+        <structure type="chrome_scaled_image" name="IDR_MISES_SEARCH_CONVERSION_BANNER_GRAPHIC_DARK" file="mises/mises_search_conversion_banner_graphic_dark.png" />
+        <structure type="chrome_scaled_image" name="IDR_MISES_SEARCH_LOGO_IN_WEB_DISCOVERY_DIALOG" file="mises/mises_search_logo_in_web_discovery_dialog.png" />
+        <structure type="chrome_scaled_image" name="IDR_MISES_SEARCH_LOGO_IN_SEARCH_PROMOTION" file="mises/mises_search_logo_in_search_promotion.png" />
       </if>
     </structures>
   </release>

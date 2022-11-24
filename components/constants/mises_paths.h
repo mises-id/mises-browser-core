@@ -11,7 +11,7 @@
 // This file declares path keys for the brave module.  These can be used
 // with the PathService to access various special directories and files.
 
-namespace brave {
+namespace mises {
 
 enum {
   PATH_START = 12000,
@@ -23,6 +23,6 @@ enum {
 // Call once to register the provider for the path keys defined above.
 void RegisterPathProvider();
 
-}  // namespace brave
+}  // namespace mises
 
 #endif  // BRAVE_COMPONENTS_CONSTANTS_BRAVE_PATHS_H_

@@ -84,6 +84,13 @@ function buildDefaultGClientConfig() {
         'checkout_pgo_profiles': config.isMisesReleaseBuild() ? '%True%' :
                                                                 '%False%'
       }
+    },
+    {
+      managed: '%False%',
+      name: 'src/mises',
+      // We do not use gclient to manage brave-core, so this should not
+      // actually get used.
+      url: 'https://github.com/mises-id/mises-browser-core.git'
     }
   ])
 
@@ -252,7 +259,7 @@ async function RunCommand() {
     // Run hooks for the root .gclient, this will include Chromium and Mises
     // hooks. Don't cache the result, just always rerun this step, because it's
     // pretty quick in a no-op scenario.
-    util.runGClient(['runhooks'])
+    util.runGClient(['runhooks', '--verbose'])
     Log.progress('...gclient runhooks done.')
   }
 }

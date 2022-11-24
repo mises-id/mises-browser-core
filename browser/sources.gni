@@ -5,6 +5,7 @@
 
 import("//extensions/buildflags/buildflags.gni")
 import("//mises/chromium_src/chrome/browser/sources.gni")
+import("//mises/build/rust/config.gni")
 
 mises_chrome_browser_visibility = [
   "//mises/browser/*",

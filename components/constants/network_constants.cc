@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/constants/network_constants.h"
+#include "mises/components/constants/network_constants.h"
 
 const char kExtensionUpdaterDomain[] = "extensionupdater.brave.com";
 
