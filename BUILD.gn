@@ -140,7 +140,7 @@ if (is_android) {
 
 if (is_mac) {
   group("framework_bundle_data") {
-    deps = [  ]
+    deps = [ "components/mises_extension/extension/mises_extension:mises_extension_framework_bundle_data" ]
   }
 }
 

@@ -4,6 +4,7 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import("//extensions/buildflags/buildflags.gni")
+import("//mises/chromium_src/chrome/browser/sources.gni")
 
 mises_chrome_browser_visibility = [
   "//mises/browser/*",
@@ -140,3 +141,5 @@ if (is_mac) {
   mises_chrome_framework_configs = [ "//mises/build/rust:strip_rust_symbols" ]
 }
 
+
+mises_chrome_browser_deps += mises_chromium_src_chrome_browser_deps

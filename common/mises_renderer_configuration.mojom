@@ -1,0 +1,21 @@
+/* Copyright (c) 2021 The Brave Authors. All rights reserved.
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+module mises.mojom;
+
+// The renderer configuration parameters which can change post renderer launch.
+struct DynamicParams {
+  bool mises_use_native_ethereum_wallet = false;
+  bool allow_overwrite_window_ethereum_provider = true;
+  bool mises_use_native_solana_wallet = false;
+  bool allow_overwrite_window_solana_provider = true;
+  bool de_amp_enabled = true;
+};
+
+// Configures the renderer.
+interface MisesRendererConfiguration {
+  // Update renderer configuration with settings that can change.
+  SetConfiguration(DynamicParams params);
+};

@@ -1,0 +1,20 @@
+diff --git a/components/vector_icons/vector_icons.gni b/components/vector_icons/vector_icons.gni
+index a0641b285bbfc8609c757a5a17b6f587035e33a8..f78c9bbad7a97ee481fb3b974d385800afa27d26 100644
+--- a/components/vector_icons/vector_icons.gni
++++ b/components/vector_icons/vector_icons.gni
+@@ -42,6 +42,7 @@ template("aggregate_vector_icons") {
+       "vector_icons.cc.template",
+       "vector_icons.h.template",
+     ]
++    alt_icons_dir = "//mises/vector_icons/" + rebase_path(invoker.icon_directory, "//") alt_icons_dir_rel = rebase_path(alt_icons_dir, root_build_dir)
+     inputs =
+         rebase_path(templates + invoker.sources, ".", invoker.icon_directory) +
+         [ "//components/vector_icons/aggregate_vector_icons.py" ]
+@@ -60,6 +61,7 @@ template("aggregate_vector_icons") {
+       "--file_list={{response_file_name}}",
+       "--output_cc=" + rebase_path(output_cc, root_build_dir),
+       "--output_h=" + rebase_path(output_h, root_build_dir),
++      "--alt_working_directory=" + alt_icons_dir_rel,
+     ]
+   }
+ }

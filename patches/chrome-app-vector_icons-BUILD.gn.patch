@@ -1,0 +1,12 @@
+diff --git a/chrome/app/vector_icons/BUILD.gn b/chrome/app/vector_icons/BUILD.gn
+index ec6fde4abc881488f3a5baaab0ee0b4e553f273b..c6dee01b9ed1a6c577905a57164ed1be8a7070f5 100644
+--- a/chrome/app/vector_icons/BUILD.gn
++++ b/chrome/app/vector_icons/BUILD.gn
+@@ -13,7 +13,6 @@ aggregate_vector_icons("chrome_vector_icons") {
+ 
+   # Keep sorted alphabetically.
+   sources = [
+-    "${branding_path_component}/product.icon",
+     "account_box.icon",
+     "account_child.icon",
+     "account_child_circle.icon",

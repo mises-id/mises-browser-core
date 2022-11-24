@@ -9,7 +9,6 @@ json_features("api_features") {
     "//chrome/common/extensions/api/_api_features.json",
     "//extensions/common/api/_api_features.json",
     "_api_features.json",
-    "_mises_talk_api_features.json",
   ]
 }
 
