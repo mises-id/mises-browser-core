@@ -1,0 +1,20 @@
+diff --git a/chrome/common/BUILD.gn b/chrome/common/BUILD.gn
+index 20b82925438f560c26e1bd32f3bd1c9a0a6345ac..7b12e2c0e2752f61180cddfd0531336e068c99a6 100644
+--- a/chrome/common/BUILD.gn
++++ b/chrome/common/BUILD.gn
+@@ -89,6 +89,7 @@ source_set("channel_info") {
+   } else if (is_fuchsia) {
+     sources += [ "channel_info_fuchsia.cc" ]
+   }
++  public_deps += [ "//mises/common:channel_info" ]
+ }
+ 
+ source_set("ini_parser") {
+@@ -535,6 +536,7 @@ static_library("non_code_constants") {
+     "//printing/buildflags",
+     "//ui/base:buildflags",
+   ]
++  configs += [ "//mises/common:constants_configs" ]
+ }
+ 
+ component("chrome_features") {
