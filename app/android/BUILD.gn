@@ -1,0 +1,64 @@
+import("//mises/build/config.gni")
+
+if (should_generate_breakpad_symbols) {
+  action("generate_breakpad_symbols") {
+    symbols_dir = "$mises_dist_dir/$mises_product_name.breakpad.syms"
+    outputs = [ symbols_dir ]
+
+    package_path = rebase_path(mises_android_output)
+
+    script = "//mises/tools/android/generate_breakpad_symbols.py"
+    args = [
+      "--symbols-dir=" + rebase_path(symbols_dir),
+      "--jobs=16",
+      "--build-dir=" + rebase_path(root_out_dir),
+      "--package-path=" + package_path,
+      "--src-root=" + rebase_path("//"),
+      "--clear",
+      "--verbose",
+    ]
+
+    deps = [
+      "//mises/build/android:mises",
+      "//third_party/breakpad:dump_syms",
+    ]
+  }
+} else {
+  group("generate_breakpad_symbols") {
+  }
+}
+
+group("symbol_dist_resources") {
+  public_deps = [
+    ":create_symbol_archive",
+    ":generate_breakpad_symbols",
+  ]
+}
+
+group("dist_resources") {
+}
+
+group("create_dist_zips") {
+}
+
+action("create_symbol_archive") {
+  script = "//build/gn_run_binary.py"
+  shell_script = "//mises/build/android/pack_symbols.sh"
+
+  deps = [ "//mises/build/android:mises" ]
+  archive_name = "$root_out_dir/dist/Default$target_cpu$target_android_base.tar"
+
+  inputs = [
+    script,
+    shell_script,
+    mises_android_output,
+  ]
+
+  outputs = [ archive_name ]
+
+  args = [
+    rebase_path(shell_script, root_build_dir),
+    rebase_path(archive_name, root_out_dir),
+  ]
+}
+

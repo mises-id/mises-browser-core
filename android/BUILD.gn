@@ -1,0 +1,22 @@
+import("//msies/components/p3a/buildflags.gni")
+import("//build/config/android/rules.gni")
+
+declare_args() {
+  mises_android_developer_options_code = ""
+}
+
+java_cpp_enum("mises_android_java_enums_srcjar") {
+  sources = [
+    "//mises/chromium_src/chrome/browser/notifications/notification_handler.h",
+    "//mises/components/decentralized_dns/core/constants.h",
+  ]
+}
+
+java_cpp_template("mises_config_java") {
+  sources = [ "//mises/build/android/java/templates/MisesConfig.template" ]
+  defines = [
+    "MISES_ANDROID_DEVELOPER_OPTIONS_CODE=\"$mises_android_developer_options_code\"",
+    "MISES_ANDROID_P3A_ENABLED=$mises_p3a_enabled",
+  ]
+}
+

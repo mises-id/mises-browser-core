@@ -7,7 +7,6 @@
     "browser_apply_patches": "cd src/mises && npm run apply_patches --",
     "browser_update_patches": "cd src/mises && npm run update_patches --",
     "browser_init": "node ./build/commands/scripts/init.js",
-  
     "audit_deps": "node ./build/commands/scripts/audit.js -- --audit_dev_deps",
     "check_security": "node ./build/commands/scripts/checkSecurity.js",
     "cibuild": "node ./build/commands/scripts/commands.js cibuild",
@@ -52,9 +51,7 @@
   "author": {
     "name": "Mises Software <talent@mises.site>"
   },
-  "contributors": [
-   
-  ],
+  "contributors": [],
   "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/mises/mises-browser/issues"

@@ -1,0 +1,59 @@
+import("//mises/build/config.gni")
+import("//build/linux/extract_symbols.gni")
+
+if (should_generate_breakpad_symbols) {
+  action("generate_breakpad_symbols") {
+    # host_toolchain must be used for cross-compilation case.
+    # See chrome/updater/mac:syms
+    dump_syms = "//third_party/breakpad:dump_syms($host_toolchain)"
+    symbols_dir = "$mises_dist_dir/$mises_product_name.breakpad.syms"
+    outputs = [ symbols_dir ]
+
+    start = [ mises_product_name ]
+
+    script = "//mises/tools/posix/generate_breakpad_symbols.py"
+    args = [
+      "--symbols-dir=" + rebase_path(symbols_dir),
+      "--jobs=16",
+      "--build-dir=" + rebase_path(root_out_dir),
+      "--binary=$start",
+      "--libchromiumcontent-dir=" + rebase_path("//"),
+      "--dump-syms-bin=" +
+          rebase_path(get_label_info(dump_syms, "root_out_dir") + "/" +
+                      get_label_info(dump_syms, "name")),
+      "--clear",
+    ]
+
+    deps = [
+      "//chrome",  # To be sure brave executable is ready now
+      dump_syms,
+    ]
+  }
+} else {
+  group("generate_breakpad_symbols") {
+  }
+}
+
+group("symbol_dist_resources") {
+  public_deps = [
+    ":mises_symbols",
+    ":generate_breakpad_symbols",
+  ]
+}
+
+group("dist_resources") {
+}
+
+extract_symbols("mises_symbols") {
+  binary = "$mises_dist_dir/mises"
+
+  if (current_cpu == "x86") {
+    # Use "ia32" instead of "x86" for GYP compat.
+    symbol_file = "$root_out_dir/mises.breakpad.ia32"
+  } else {
+    symbol_file = "$root_out_dir/mises.breakpad.$current_cpu"
+  }
+
+  deps = [ "//mises:mises_dist_resources" ]
+}
+
