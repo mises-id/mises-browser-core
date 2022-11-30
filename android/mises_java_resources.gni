@@ -1,0 +1,10 @@
+mises_java_resources = [
+]
+mises_base_module_resources =
+    [ "java/res_chromium_base/drawable-night/themed_app_icon.xml" ]
+
+# XML preprocessing
+mises_java_preprocess_xml_sources =
+    [ "//chrome/android/java/res/menu/main_menu.xml" ]
+mises_java_preprocess_module_sources =
+    [ "//mises/android/preprocess/xml/menu_main_menu_xml.py" ]

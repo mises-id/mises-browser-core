@@ -1,0 +1,18 @@
+# Tests that do not run on Android
+android_test_exception_sources = [
+]
+android_test_exception_deps = [
+  "//chrome/browser/web_applications",
+  "//chrome/test:test_support_ui",
+  "//extensions/browser:test_support",
+  "//extensions/common:common_constants",
+  "//extensions/common:test_support",
+  "//ui/views",
+]
+# Tests that run only on Android
+android_only_test_sources = [
+]
+android_only_test_deps = [
+  ":test_support",
+  "//android_webview/common",
+]

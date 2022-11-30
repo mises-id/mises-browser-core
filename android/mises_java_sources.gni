@@ -1,0 +1,13 @@
+mises_java_sources = [
+  "../../mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
+]
+mises_browser_ui_android_appmenu_internal_sources = [
+]
+mises_browser_ui_android_toolbar_sources = [
+]
+mises_java_base_sources = [
+]
+mises_java_base_module_sources = [
+]
+mises_java_base_module_deps = [
+]

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file contains all "about" strings.  It is set to NOT be translated, in translation_expectations.pyl.  en-US only.
+-->
+<grit current_release="1" latest_public_release="0" output_all_resource_defines="false">
+  <outputs>
+    <output filename="values/android_mises_strings.xml" lang="en" type="android" />
+   
+  </outputs>
+  <translations>
+  </translations>
+  <release seq="1" allow_pseudo="false">
+    <messages fallback_to_english="true">
+      <message name="IDS_TIP_AMOUNT_TEXT"  desc="Text for Tip amount">
+        Tip amount:
+      </message>
+  </messages>
+  </release>
+</grit>
+

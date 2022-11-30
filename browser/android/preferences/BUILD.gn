@@ -1,0 +1,37 @@
+# Copyright 2019 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/config/android/rules.gni")
+
+source_set("preferences") {
+  # Remove when https://github.com/brave/brave-browser/issues/10657 is resolved
+  check_includes = false
+  sources = [
+    "mises_pref_service_bridge.cc",
+    "features.cc",
+    "features.h",
+  ]
+
+  deps = [
+    "//base",
+    "//mises/common",
+    "//components/content_settings/core/browser",
+    "//components/prefs",
+    "//content/public/browser",
+    "//net",
+    "//url",
+  ]
+}
+
+java_cpp_strings("java_pref_names_srcjar") {
+  sources = [
+    "//mises/components/constants/pref_names.cc",
+    "//mises/components/ntp_background_images/common/pref_names.cc",
+    "//components/translate/core/browser/translate_pref_names.cc",
+  ]
+
+  template =
+      "//mises/browser/preferences/android/java_templates/MisesPref.java.tmpl"
+}
+

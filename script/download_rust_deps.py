@@ -86,7 +86,7 @@ def get_android_linker(target_arch):
 
 def make_standalone_toolchain_for_android():
     ANDROID_NDK_PATH = os.path.join(os.path.dirname(
-        __file__), '..', '..', 'third_party', 'android_ndk')
+        __file__), '..', 'src', 'third_party', 'android_ndk')
 
     make_standalone_toolchain = os.path.join(
         ANDROID_NDK_PATH, 'build', 'tools', 'make_standalone_toolchain.py')

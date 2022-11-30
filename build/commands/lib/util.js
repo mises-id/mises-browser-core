@@ -404,6 +404,10 @@ const util = {
       console.log('copy Android app icons and app resources')
       Object.entries(copyAndroidResourceMapping).map(([sourcePath, destPaths]) => {
         let androidSourceFiles = []
+        if (!fs.existsSync(sourcePath)) {
+          console.warn(`Warning: android source res not exists:` + sourcePath)
+          return
+        }
         if (fs.statSync(sourcePath).isDirectory()) {
           androidSourceFiles = util.walkSync(sourcePath)
         } else {

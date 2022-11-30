@@ -1,3 +1,5 @@
+import("//mises/android/android_browser_tests.gni")
+import("//mises/build/config.gni")
 import("//mises/test/testing.gni")
 import("//chrome/common/features.gni")
 import("//components/gcm_driver/config.gni")
@@ -210,6 +212,15 @@ if (!is_android) {
   }
 }
 
+# Android browser test manifest
+if (is_android) {
+  jinja_template("mises_browser_tests_manifest") {
+    testonly = true
+    input = "//mises/android/browsertests_apk/AndroidManifest.xml.jinja2"
+    output =
+        "${target_gen_dir}/mises_browser_tests_manifest/AndroidManifest.xml"
+  }
+}
 
 
 test("mises_browser_tests") {
