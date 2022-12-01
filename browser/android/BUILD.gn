@@ -1,0 +1,28 @@
+import("//mises/build/config.gni")
+import("//build/config/android/rules.gni")
+
+source_set("android_browser_process") {
+  check_includes = false
+
+  sources = [
+    "mises_feature_util.cc",
+    "mises_relaunch_utils.cc",
+  ]
+
+  deps = [
+    "//base",
+    "//mises/browser/android/preferences",
+    "//mises/build/android:jni_headers",
+    "//mises/components/l10n/common",
+    "//chrome/android:jni_headers",
+    "//chrome/common",
+    "//components/content_settings/core/browser",
+    "//components/flags_ui",
+    "//components/ntp_tiles",
+    "//components/sync",
+    "//components/translate/core/browser",
+    "//components/unified_consent",
+    "//third_party/leveldatabase",
+    "//url",
+  ]
+}

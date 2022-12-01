@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ntp_background_images/browser/features.h"
+#include "mises/components/ntp_background_images/browser/features.h"
 
 #include "base/feature_list.h"
 #include "build/build_config.h"
@@ -11,7 +11,9 @@
 
 namespace ntp_background_images {
 namespace features {
-
+#define BASE_FEATURE(feature, name, default_state) \
+  CONSTINIT const base::Feature feature(name, default_state)
+  
 BASE_FEATURE(kBraveNTPBrandedWallpaperDemo,
              "BraveNTPBrandedWallpaperDemoName",
              base::FEATURE_DISABLED_BY_DEFAULT);

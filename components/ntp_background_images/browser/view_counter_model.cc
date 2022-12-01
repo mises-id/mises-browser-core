@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at http://mozilla.org/MPL/2.0/.
 
-#include "brave/components/ntp_background_images/browser/view_counter_model.h"
+#include "mises/components/ntp_background_images/browser/view_counter_model.h"
 
 #include "base/check_op.h"
 #include "base/logging.h"

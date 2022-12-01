@@ -1,4 +1,9 @@
 mises_java_resources = [
+    "java/res/drawable/ic_vpn.xml",
+    "java/res/drawable/mises_new_group_tab.xml",
+    "java/res/values/mises_colors.xml",
+    "java/res/values-v21/mises_styles.xml",
+    "java/res/layout/web_notification_icon_frame_brave.xml",
 ]
 mises_base_module_resources =
     [ "java/res_chromium_base/drawable-night/themed_app_icon.xml" ]

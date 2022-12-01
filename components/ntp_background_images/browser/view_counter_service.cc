@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at http://mozilla.org/MPL/2.0/.
 
-#include "brave/components/ntp_background_images/browser/view_counter_service.h"
+#include "mises/components/ntp_background_images/browser/view_counter_service.h"
 
 #include <memory>
 #include <string>
@@ -17,25 +17,25 @@
 #include "base/logging.h"
 #include "base/metrics/histogram_macros.h"
 #include "bat/ads/public/interfaces/ads.mojom.h"
-#include "brave/components/brave_ads/browser/ads_service.h"
-#include "brave/components/brave_ads/common/pref_names.h"
-#include "brave/components/brave_referrals/buildflags/buildflags.h"
-#include "brave/components/brave_rewards/common/pref_names.h"
-#include "brave/components/ntp_background_images/browser/features.h"
-#include "brave/components/ntp_background_images/browser/ntp_background_images_data.h"
-#include "brave/components/ntp_background_images/browser/ntp_p3a_helper.h"
-#include "brave/components/ntp_background_images/browser/ntp_sponsored_images_data.h"
-#include "brave/components/ntp_background_images/browser/url_constants.h"
-#include "brave/components/ntp_background_images/common/pref_names.h"
-#include "brave/components/p3a_utils/bucket.h"
-#include "brave/components/time_period_storage/weekly_storage.h"
+#include "mises/components/brave_ads/browser/ads_service.h"
+#include "mises/components/brave_ads/common/pref_names.h"
+#include "mises/components/brave_referrals/buildflags/buildflags.h"
+#include "mises/components/brave_rewards/common/pref_names.h"
+#include "mises/components/ntp_background_images/browser/features.h"
+#include "mises/components/ntp_background_images/browser/ntp_background_images_data.h"
+#include "mises/components/ntp_background_images/browser/ntp_p3a_helper.h"
+#include "mises/components/ntp_background_images/browser/ntp_sponsored_images_data.h"
+#include "mises/components/ntp_background_images/browser/url_constants.h"
+#include "mises/components/ntp_background_images/common/pref_names.h"
+#include "mises/components/p3a_utils/bucket.h"
+#include "mises/components/time_period_storage/weekly_storage.h"
 #include "components/pref_registry/pref_registry_syncable.h"
 #include "components/prefs/pref_service.h"
 #include "content/public/browser/web_ui_data_source.h"
 #include "url/gurl.h"
 
 #if BUILDFLAG(ENABLE_CUSTOM_BACKGROUND)
-#include "brave/components/ntp_background_images/browser/ntp_custom_background_images_service.h"
+#include "mises/components/ntp_background_images/browser/ntp_custom_background_images_service.h"
 #endif
 
 namespace {

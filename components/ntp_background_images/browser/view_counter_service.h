@@ -12,9 +12,9 @@
 
 #include "base/memory/raw_ptr.h"
 #include "base/values.h"
-#include "brave/components/ntp_background_images/browser/ntp_background_images_service.h"
-#include "brave/components/ntp_background_images/browser/view_counter_model.h"
-#include "brave/components/ntp_background_images/buildflags/buildflags.h"
+#include "mises/components/ntp_background_images/browser/ntp_background_images_service.h"
+#include "mises/components/ntp_background_images/browser/view_counter_model.h"
+#include "mises/components/ntp_background_images/buildflags/buildflags.h"
 #include "components/keyed_service/core/keyed_service.h"
 #include "components/prefs/pref_change_registrar.h"
 

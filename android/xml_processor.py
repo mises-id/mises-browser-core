@@ -16,7 +16,7 @@ import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__),
-                             os.pardir, os.pardir,
+                             os.pardir, "src",
                              'build', 'android', 'gyp'))
 from util import build_utils
 from util import resource_utils

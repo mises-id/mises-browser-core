@@ -22,17 +22,17 @@ public class MisesNotificationPlatformBridge extends NotificationPlatformBridge 
     private @NotificationType int mNotificationType;
 
     @CalledByNative
-    private static BraveNotificationPlatformBridge create(long nativeNotificationPlatformBridge) {
+    private static MisesNotificationPlatformBridge create(long nativeNotificationPlatformBridge) {
         if (sInstance != null) {
             throw new IllegalStateException(
                 "There must only be a single NotificationPlatformBridge.");
         }
 
-        sInstance = new BraveNotificationPlatformBridge(nativeNotificationPlatformBridge);
-        return (BraveNotificationPlatformBridge) sInstance;
+        sInstance = new MisesNotificationPlatformBridge(nativeNotificationPlatformBridge);
+        return (MisesNotificationPlatformBridge) sInstance;
     }
 
-    private BraveNotificationPlatformBridge(long nativeNotificationPlatformBridge) {
+    private MisesNotificationPlatformBridge(long nativeNotificationPlatformBridge) {
         super(nativeNotificationPlatformBridge);
     }
 
@@ -87,7 +87,7 @@ public class MisesNotificationPlatformBridge extends NotificationPlatformBridge 
         if (mNotificationType == NotificationType.BRAVE_ADS) {
             // TODO(jocelyn): Remove setPriority here since we already set the
             // importance of Ads notification channel to IMPORTANCE_HIGH?
-            return new BraveAdsNotificationBuilder(context).setPriority(Notification.PRIORITY_HIGH);
+            return new MisesAdsNotificationBuilder(context).setPriority(Notification.PRIORITY_HIGH);
         }
         return super.createNotificationBuilder(context, hasImage);
     }

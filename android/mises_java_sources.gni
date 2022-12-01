@@ -1,4 +1,7 @@
 mises_java_sources = [
+  "../../mises/android/java/org/chromium/chrome/browser/appmenu/MisesTabbedAppMenuPropertiesDelegate.java",
+  "../../mises/android/java/org/chromium/chrome/browser/app/appmenu/AppMenuIconRowFooter.java",
+  "../../mises/android/java/org/chromium/chrome/browser/app/appmenu/MisesAppMenuPropertiesDelegateImpl.java",
   "../../mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
 ]
 mises_browser_ui_android_appmenu_internal_sources = [

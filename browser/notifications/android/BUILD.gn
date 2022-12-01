@@ -5,6 +5,7 @@ assert(is_android)
 
 android_library("java") {
   sources = [
+    "java/src/org/chromium/chrome/browser/notifications/MisesAdsNotificationBuilder.java",
     "java/src/org/chromium/chrome/browser/notifications/MisesNotificationManagerProxyImpl.java",
   ]
 
@@ -41,6 +42,8 @@ android_library("mises_java") {
 
 android_resources("java_resources") {
   sources = [
+    "java/res/layout/web_notification_big_brave_ads.xml",
+    "java/res/layout/web_notification_brave_ads.xml",
   ]
 
   deps = [ "//mises/build/android:android_mises_strings_grd" ]

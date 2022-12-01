@@ -10,6 +10,9 @@
 
 namespace ntp_background_images {
 namespace features {
+#define BASE_DECLARE_FEATURE(kFeature) \
+  extern CONSTINIT const base::Feature kFeature
+
 BASE_DECLARE_FEATURE(kBraveNTPBrandedWallpaperDemo);
 BASE_DECLARE_FEATURE(kBraveNTPSuperReferralWallpaper);
 }  // namespace features

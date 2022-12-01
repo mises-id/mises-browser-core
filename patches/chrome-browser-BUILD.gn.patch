@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/BUILD.gn b/chrome/browser/BUILD.gn
+index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..df439180eec484aec272337c4357d1e81e1fe89f 100644
+--- a/chrome/browser/BUILD.gn
++++ b/chrome/browser/BUILD.gn
+@@ -2490,6 +2490,7 @@ static_library("browser") {
+       "performance_monitor/metric_evaluator_helper_posix.h",
+     ]
+   }
++  import("//mises/browser/sources.gni") sources += mises_chrome_browser_sources deps += mises_chrome_browser_deps public_deps += mises_chrome_browser_public_deps
+ 
+   if (is_android) {
+     sources += [

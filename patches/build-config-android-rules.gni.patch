@@ -1,0 +1,20 @@
+diff --git a/build/config/android/rules.gni b/build/config/android/rules.gni
+index 15d9977580d3ae93c68be50984f533cf03553ebc..bc6942eb878e27795236cd8e792b79a007bab4a8 100644
+--- a/build/config/android/rules.gni
++++ b/build/config/android/rules.gni
+@@ -500,6 +500,7 @@ if (enable_java_templates) {
+   #     ]
+   #   }
+   template("java_cpp_enum") {
++    foreach(source, invoker.sources) { foreach(filter, mises_java_cpp_enum_filter) { if(source == filter) { invoker.sources -= [filter] }}}
+     action_with_pydeps(target_name) {
+       forward_variables_from(invoker, TESTONLY_AND_VISIBILITY + [ "sources" ])
+ 
+@@ -671,6 +672,7 @@ if (enable_java_templates) {
+   #     output = "$target_gen_dir/AndroidManifest.xml"
+   #   }
+   template("jinja_template") {
++    if (defined(invoker.includes)) { invoker.includes += mises_android_manifest_includes } else { invoker.includes = mises_android_manifest_includes }
+     action_with_pydeps(target_name) {
+       forward_variables_from(invoker, TESTONLY_AND_VISIBILITY + [ "deps" ])
+       inputs = [ invoker.input ]

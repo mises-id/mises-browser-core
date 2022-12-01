@@ -127,15 +127,6 @@ if (is_android) {
       "$root_build_dir/mises_100_percent.pak",
       "$root_build_dir/mises_resources.pak",
       "//mises/LICENSE.html",
-      "//mises/android/java/org/chromium/chrome/browser/ntp/ntp_news_optin_icon_animation.json",
-      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/onboarding_ads.json",
-      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/onboarding_ads_notification.json",
-      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/onboarding_rewards.json",
-      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/privacy_protection.json",
-      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/save_data_and_battery.json",
-      "//mises/android/java/org/chromium/chrome/browser/onboarding/animations/website_loads_faster.json",
-      "//mises/android/java/org/chromium/chrome/browser/shields/disconnect_entitylist.json",
-      "//mises/android/java/org/chromium/chrome/browser/vpn/mises_vpn_confirm.json",
     ]
     deps = [ "//mises:browser_dependencies" ]
     disable_compression = true

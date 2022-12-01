@@ -6,7 +6,7 @@
 #ifndef BRAVE_COMPONENTS_DECENTRALIZED_DNS_CORE_UTILS_H_
 #define BRAVE_COMPONENTS_DECENTRALIZED_DNS_CORE_UTILS_H_
 
-#include "brave/components/decentralized_dns/core/constants.h"
+#include "mises/components/decentralized_dns/core/constants.h"
 
 class GURL;
 class PrefService;

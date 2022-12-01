@@ -19,10 +19,10 @@ static_library("content") {
 
   deps = [
     "//base",
-    "//brave/components/decentralized_dns/core",
-    "//brave/components/l10n/common",
-    "//brave/components/resources:static_resources",
-    "//brave/components/resources:strings",
+    "//mises/components/decentralized_dns/core",
+    "//mises/components/l10n/common",
+    "//mises/components/resources:static_resources",
+    "//mises/components/resources:strings",
     "//components/prefs",
     "//components/security_interstitials/content:security_interstitial_page",
     "//components/security_interstitials/core",

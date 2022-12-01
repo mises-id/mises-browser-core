@@ -10,7 +10,7 @@
 #include <string>
 
 #include "base/memory/raw_ptr.h"
-#include "brave/components/decentralized_dns/core/utils.h"
+#include "mises/components/decentralized_dns/core/utils.h"
 #include "components/security_interstitials/content/security_interstitial_controller_client.h"
 #include "url/gurl.h"
 

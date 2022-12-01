@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ntp_background_images/browser/ntp_background_images_service.h"
+#include "mises/components/ntp_background_images/browser/ntp_background_images_service.h"
 
 #include <algorithm>
 #include <memory>
@@ -18,19 +18,19 @@
 #include "base/strings/stringprintf.h"
 #include "base/task/task_runner_util.h"
 #include "base/task/thread_pool.h"
-#include "brave/components/brave_component_updater/browser/brave_on_demand_updater.h"
-#include "brave/components/brave_referrals/browser/brave_referrals_service.h"
-#include "brave/components/brave_referrals/buildflags/buildflags.h"
-#include "brave/components/brave_referrals/common/pref_names.h"
-#include "brave/components/l10n/common/locale_util.h"
-#include "brave/components/ntp_background_images/browser/features.h"
-#include "brave/components/ntp_background_images/browser/ntp_background_images_component_installer.h"
-#include "brave/components/ntp_background_images/browser/ntp_background_images_data.h"
-#include "brave/components/ntp_background_images/browser/ntp_sponsored_images_data.h"
-#include "brave/components/ntp_background_images/browser/sponsored_images_component_data.h"
-#include "brave/components/ntp_background_images/browser/switches.h"
-#include "brave/components/ntp_background_images/browser/url_constants.h"
-#include "brave/components/ntp_background_images/common/pref_names.h"
+#include "mises/components/brave_component_updater/browser/brave_on_demand_updater.h"
+#include "mises/components/brave_referrals/browser/brave_referrals_service.h"
+#include "mises/components/brave_referrals/buildflags/buildflags.h"
+#include "mises/components/brave_referrals/common/pref_names.h"
+#include "mises/components/l10n/common/locale_util.h"
+#include "mises/components/ntp_background_images/browser/features.h"
+#include "mises/components/ntp_background_images/browser/ntp_background_images_component_installer.h"
+#include "mises/components/ntp_background_images/browser/ntp_background_images_data.h"
+#include "mises/components/ntp_background_images/browser/ntp_sponsored_images_data.h"
+#include "mises/components/ntp_background_images/browser/sponsored_images_component_data.h"
+#include "mises/components/ntp_background_images/browser/switches.h"
+#include "mises/components/ntp_background_images/browser/url_constants.h"
+#include "mises/components/ntp_background_images/common/pref_names.h"
 #include "components/component_updater/component_updater_service.h"
 #include "components/prefs/pref_registry_simple.h"
 #include "components/prefs/pref_service.h"

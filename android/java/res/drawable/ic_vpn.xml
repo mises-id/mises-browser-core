@@ -1,0 +1,35 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M2,4.75L22,4.75A1.25,1.25 0,0 1,23.25 6L23.25,19A1.25,1.25 0,0 1,22 20.25L2,20.25A1.25,1.25 0,0 1,0.75 19L0.75,6A1.25,1.25 0,0 1,2 4.75z"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/shield_text_color"/>
+  <path
+      android:pathData="M5.81,16.4L8.159,9.354H6.572L5,14.74H4.912L3.31,9.354H1.645L4.028,16.4H5.81Z"
+      android:fillColor="@color/shield_text_color"/>
+  <path
+      android:pathData="M9.148,9.354V16.4H10.622V14.212H12.014C13.498,14.212 14.528,13.241 14.528,11.791C14.528,10.326 13.537,9.354 12.087,9.354H9.148ZM10.622,10.565H11.696C12.546,10.565 13.03,10.995 13.03,11.795C13.03,12.587 12.536,13.016 11.692,13.016H10.622V10.565Z"
+      android:fillColor="@color/shield_text_color"/>
+  <path
+      android:pathData="M17.08,16.4V11.991H17.168L20.42,16.4H21.641V9.354H20.229V13.744H20.142L16.899,9.354H15.669V16.4H17.08Z"
+      android:fillColor="@color/shield_text_color"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M5.81,16.4L8.159,9.354H6.572L5,14.74H4.912L3.31,9.354H1.645L4.028,16.4H5.81Z"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/shield_text_color"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M9.148,9.354V16.4H10.622V14.212H12.014C13.498,14.212 14.528,13.241 14.528,11.791C14.528,10.326 13.537,9.354 12.087,9.354H9.148ZM10.622,10.565H11.696C12.546,10.565 13.03,10.995 13.03,11.795C13.03,12.587 12.536,13.016 11.692,13.016H10.622V10.565Z"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/shield_text_color"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M17.08,16.4V11.991H17.168L20.42,16.4H21.641V9.354H20.229V13.744H20.142L16.899,9.354H15.669V16.4H17.08Z"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/shield_text_color"/>
+</vector>

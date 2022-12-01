@@ -3,9 +3,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/notifications/ads_notification_handler.h"
+#include "mises/browser/notifications/ads_notification_handler.h"
 
-#include "brave/browser/brave_ads/ads_service_factory.h"
+#include "mises/browser/brave_ads/ads_service_factory.h"
 #include "url/gurl.h"
 
 namespace brave_ads {
