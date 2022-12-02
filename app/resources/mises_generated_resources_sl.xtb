@@ -11,10 +11,10 @@
 <translation id="2666990579225592931">Odpri okno načina za goste</translation>
 <translation id="4986483413015198747">Odprite okno za goste</translation>
 <translation id="8275068909952022340">Več…</translation>
-<translation id="1990886731975529483">Namesti in zaženi Google Widevine</translation>
+<translation id="1990886731975529483">Namesti in zaženi Brave Widevine</translation>
 <translation id="8926389886865778422">Ne sprašuj več</translation>
-<translation id="4900351245762303149">Namesti Google Widevine</translation>
-<translation id="2313383941300459392">Znova zaženite brskalnik, da omogočite Google Widevine</translation>
+<translation id="4900351245762303149">Namesti Brave Widevine</translation>
+<translation id="2313383941300459392">Znova zaženite brskalnik, da omogočite Brave Widevine</translation>
 <translation id="2200626478572277092">Widevine je včasih potreben za predvajanje medijev na spletni strani. To je Googlova razširitev, naložena iz Googlovih strežnikov, ki jih Brave ne more pregledati. Z namestitvijo se strinjate z Googlovimi pogoji uporabe.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>.
 To lahko spremenite tudi pozneje na <ph name="SETTINGS_EXTENIONS_LINK"/>.</translation>
@@ -318,7 +318,7 @@ Preberete si lahko <ph name="BEGIN_LINK_BUILD_INSTRUCTIONS"/>navodila o tem, kak
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">Blokiranje družbenih medijev</translation>
-<translation id="7498695072878479744">Dovoli gumbe za prijavo Google na spletnih mestih drugih ponudnikov</translation>
+<translation id="7498695072878479744">Dovoli gumbe za prijavo Brave na spletnih mestih drugih ponudnikov</translation>
 <translation id="863171915776379000">Dovoli prijavo v Facebook in vdelane objave nanj</translation>
 <translation id="5165042248369837294">Dovoli vdelane tvite s Twitterja</translation>
 <translation id="958971637207126733">Dovoli vdelane objave z LinkedIna</translation>

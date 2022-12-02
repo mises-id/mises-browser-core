@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <message name="IDS_VERSION_UI_TITLE" desc="Title on the about:version page">
     About Version
@@ -16,13 +17,13 @@
     (64-bit)
   </message>
   <if expr="is_macosx">
-    <message name="IDS_VERSION_UI_64BIT_INTEL" desc="On the chrome://version page, an indicator that this is an instance of Chromium built for the 64-bit x86 processor. Translation is not needed; this is a technical term.">
+    <message name="IDS_VERSION_UI_64BIT_INTEL" desc="On the chrome://version page, an indicator that this is an instance of Mises built for the 64-bit x86 processor. Translation is not needed; this is a technical term.">
       (x86_64)
     </message>
-    <message name="IDS_VERSION_UI_64BIT_TRANSLATED_INTEL" desc="On the chrome://version page, an indicator that this is an instance of Chromium built for the 64-bit x86 processor, but being run on an Arm processor. Do not translate 'x86_64' as that is a technical term. The 'translated' in this string refers to the fact that these two processors use different languages, so the sense of 'translated' for this string is as in a language translation.">
+    <message name="IDS_VERSION_UI_64BIT_TRANSLATED_INTEL" desc="On the chrome://version page, an indicator that this is an instance of Mises built for the 64-bit x86 processor, but being run on an Arm processor. Do not translate 'x86_64' as that is a technical term. The 'translated' in this string refers to the fact that these two processors use different languages, so the sense of 'translated' for this string is as in a language translation.">
       (x86_64 translated)
     </message>
-    <message name="IDS_VERSION_UI_64BIT_ARM" desc="On the chrome://version page, an indicator that this is an instance of Chromium built for the 64-bit Arm processor. Translation is not needed; this is a technical term.">
+    <message name="IDS_VERSION_UI_64BIT_ARM" desc="On the chrome://version page, an indicator that this is an instance of Mises built for the 64-bit Arm processor. Translation is not needed; this is a technical term.">
       (arm64)
     </message>
   </if>
@@ -78,13 +79,13 @@
     </message>
   </if>
   <if expr="chromeos_ash">
-    <message name="IDS_VERSION_UI_OS_TEXT1_LABEL" desc="Begin label text on the os://version page from ChromeOS which directs a user to a dialog showing Chrome browser specific version - enclosing url link.">
+    <message name="IDS_VERSION_UI_OS_TEXT1_LABEL" desc="Begin label text on the os://version page from ChromeOS which directs a user to a dialog showing Mises browser specific version - enclosing url link.">
       Looking for browser version? Visit
     </message>
-    <message name="IDS_VERSION_UI_OS_TEXT2_LABEL" desc="End label text on the os://version page from ChromeOS which directs a user to a dialog showing Chrome browser specific version - enclosing url link.">
+    <message name="IDS_VERSION_UI_OS_TEXT2_LABEL" desc="End label text on the os://version page from ChromeOS which directs a user to a dialog showing Mises browser specific version - enclosing url link.">
       .
     </message>
-    <message name="IDS_VERSION_UI_OS_LINK" translateable="false" desc="Label for a button on the os://version page from ChromeOS that will call a new window which allows to change Chrome browser version.">
+    <message name="IDS_VERSION_UI_OS_LINK" translateable="false" desc="Label for a button on the os://version page from ChromeOS that will call a new window which allows to change Mises browser version.">
       chrome://version
     </message>
   </if>

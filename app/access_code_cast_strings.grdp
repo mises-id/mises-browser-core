@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!-- Access Code Cast-specific strings (included from generated_resources.grd). -->
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <message name="IDS_ACCESS_CODE_CAST_ACCESS_CODE_MESSAGE" desc="Text shown in the access code cast dialog that describes that the access code is found on a Chromecast device">
     Enter the access code shown on the Chromecast or TV to start casting your screen.

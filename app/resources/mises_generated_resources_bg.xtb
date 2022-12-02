@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">Отваряне на прозорец в режим на гост</translation>
 <translation id="4986483413015198747">Отваряне на прозорец на гост</translation>
 <translation id="8275068909952022340">Още…</translation>
-<translation id="1990886731975529483">Инсталирайте и стартирайте Google Widevine</translation>
+<translation id="1990886731975529483">Инсталирайте и стартирайте Brave Widevine</translation>
 <translation id="8926389886865778422">Без повторно питане</translation>
-<translation id="4900351245762303149">Инсталирайте Google Widevine</translation>
-<translation id="2313383941300459392">Рестартирайте браузъра, за да разрешите Google Widevine</translation>
-<translation id="2200626478572277092">Понякога Widevine е необходимо за възпроизвеждане на мултимедийно съдържание на уеб страница. То е разширение на Google, което се зарежда от сървърите на Google, които Brave не може да инспектира. Ако инсталирате, ще се съгласите с условията за ползване на Google.</translation>
+<translation id="4900351245762303149">Инсталирайте Brave Widevine</translation>
+<translation id="2313383941300459392">Рестартирайте браузъра, за да разрешите Brave Widevine</translation>
+<translation id="2200626478572277092">Понякога Widevine е необходимо за възпроизвеждане на мултимедийно съдържание на уеб страница. То е разширение на Brave, което се зарежда от сървърите на Brave, които Brave не може да инспектира. Ако инсталирате, ще се съгласите с условията за ползване на Brave.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>.
 Или направете промени по-късно в <ph name="SETTINGS_EXTENIONS_LINK"/>.</translation>
 <translation id="6229752134959014186">Научете повече за Widevine</translation>
@@ -318,7 +318,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">Блокиране на социални медии</translation>
-<translation id="7498695072878479744">Разрешаване на бутони за вход в Google на сайтове на трети страни</translation>
+<translation id="7498695072878479744">Разрешаване на бутони за вход в Brave на сайтове на трети страни</translation>
 <translation id="863171915776379000">Разреши влизане с Фейсбук и вградени публикации</translation>
 <translation id="5165042248369837294">Разреши вградени туитове на Twitter</translation>
 <translation id="958971637207126733">Разреши вградени публикации на LinkedIn</translation>
@@ -326,7 +326,7 @@
 <translation id="1822560017823072927">Публични и поверителни интерфейси по подразбиране</translation>
 <translation id="5825943197137337319">Само публичен интерфейс пп подразбиране</translation>
 <translation id="1689062823386843231">Деактивиране на UDP без прокси</translation>
-<translation id="3540231253392253941">Използвайте услугите на Google за насочени съобщения</translation>
+<translation id="3540231253392253941">Използвайте услугите на Brave за насочени съобщения</translation>
 <translation id="933652931229970927">Автоматично изпращане на отчети с диагностика</translation>
 <translation id="4846154056248462491">При излизане</translation>
 <translation id="2808630562319398131">Нулиране на данните за Brave награди...</translation>
@@ -400,7 +400,7 @@
 <translation id="919715748352669592">Автоматично индексира уебсайтове, които следват спецификациите на OpenSearch.</translation>
 <translation id="842628013524824194">Нормален прозорец - търсачката се използва в адресната лента</translation>
 <translation id="5324939009884545145">Частен прозорец - търсачката, използвана в адресната лента</translation>
-<translation id="6864914031231797928">Разрешаване на вход за Google за разширения</translation>
+<translation id="6864914031231797928">Разрешаване на вход за Brave за разширения</translation>
 <translation id="6554397389149987360">Използвайте "Hangouts" компоненти, за да разрешите споделяне на екрана и други функции в браузъра.</translation>
 <translation id="7878791177459550035">Медийният маршрутизатор активира функция за предаване в браузъра.</translation>
 <translation id="5927916530277631319">Метод за разрешаване на Unstoppable Domains</translation>

@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Settings-specific strings (included from generated_resources.grd). -->
+<grit-part>
+  <if expr="not chromeos_ash">
+    <message name="IDS_RELAUNCH_CONFIRMATION_DIALOG_BODY" desc="The body of the modal dialog that we show when users click on relaunch and they have open Private windows. The dialog serves to warn the users about losing their Private windows if they proceed with the relaunch.">
+      {COUNT, plural,
+      =1 {Your Private window won't open after you relaunch}
+      other {Your {COUNT} Private windows won't reopen after you relaunch}}
+    </message>
+  </if>
+
+  <if expr="not chromeos_ash">
+    </if>
+  <if expr="_google_chrome">
+    </if>
+  <if expr="is_macosx">
+    </if>
+
+  <message name="IDS_SETTINGS_ACCESSIBILITY_WEB_STORE" desc="Text for an external link explaining that additional accessibility features are found on the Web Store.">
+    Open Web Store
+  </message>
+  <if expr="chromeos_ash">
+    </if>
+  <if expr="not chromeos_ash">
+    </if>
+  <if expr="not chromeos_ash">
+    </if>
+  <if expr="chromeos_ash">
+    </if>
+  <if expr="not chromeos_ash">
+    </if>
+
+  <if expr="chromeos_ash or chromeos_lacros">
+    </if>
+  <if expr="not chromeos_ash and not chromeos_lacros">
+    </if>
+  <if expr="is_linux">
+    </if>
+  <if expr="not is_linux or chromeos_ash or chromeos_lacros or is_fuchsia">
+    </if>
+  <message name="IDS_SETTINGS_SHOW_BOOKMARKS_BAR" desc="Label for the checkbox which enables or disables showing the bookmarks bar in the toolbar.">
+    Show bookmarks
+  </message>
+  <message name="IDS_SETTINGS_WEB_STORE" desc="Sub-label about choosing something from the Web Store.">
+    Open Web Store
+  </message>
+  <if expr="is_macosx">
+    </if>
+  <if expr="not chromeos_ash">
+    </if>
+  <if expr="chromeos_ash">
+    </if>
+  <if expr="not chromeos_ash and not chromeos_lacros">
+    </if>
+
+  <if expr="use_nss_certs">
+    <if expr="chromeos_ash or chromeos_lacros">
+      </if>
+  </if>
+
+  <if expr="not chromeos_ash">
+    </if>
+  <if expr="not chromeos_ash">
+    <if expr="not is_macosx">
+      </if>
+  </if>
+  <if expr="chromeos_ash">
+    <if expr="reven">
+      </if>
+    <if expr="not reven">
+      </if>
+    </if>
+
+  <if expr="chromeos_ash or chromeos_lacros">
+    <if expr="reven">
+      </if>
+    <if expr="not reven">
+      </if>
+  </if>
+
+  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_SUMMARY" desc="The description of card 3 of 3. * “help”: This API is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
+    Help sites fight fraud and distinguish bots from profiles
+  </message>
+  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_1" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “trust tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
+    Spam &amp; fraud reduction relies on trust tokens to help sites fight fraud and distinguish bots from profiles.
+  </message>
+  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_1_TRIALS_OFF" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “trust tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
+    When trials are on, Spam &amp; fraud reduction relies on trust tokens to help sites fight fraud and distinguish bots from profiles.
+  </message>
+  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_2" desc="The second of 3 paragraphs on the spam &amp; fraud card. * “interaction”: is broad. It’s not just viewing a site but also how you interact with it, like by signing in * “Later”:  is important to convey the passage of time. We don’t want to convey how much time (it could be tiny). What’s important is that the user understands this is essentially a two-step process. A trust token is issued. Sometime in the future, when you visit a different site, that trust token might get used.">
+    Based on your interaction with a site, like regularly signing in to an account, that site can issue a trust token to your browser. Later, if other sites you visit check for and find a valid trust token, they're more likely to treat you like a profile and not a bot.
+  </message>
+  <message name="IDS_SETTINGS_PRIVACY_GUIDE_COOKIES_CARD_BLOCK_TPC_INCOGNITO_SUBHEADER" desc="A subheader for the cookies card of the 'Privacy guide', for blocking third party cookies in private.">
+    Block third-party cookies in Private
+  </message>
+  <message name="IDS_SETTINGS_PRIVACY_GUIDE_COOKIES_CARD_BLOCK_TPC_INCOGNITO_FEATURE_DESCRIPTION2" desc="A part of the feature description of the third party cookie blocking in private section of the cookies card in the 'Privacy guide'.">
+    Features on some sites may not work in Private
+  </message>
+  <message name="IDS_SETTINGS_PRIVACY_GUIDE_COOKIES_CARD_BLOCK_TPC_INCOGNITO_PRIVACY_DESCRIPTION2" desc="A part of the privacy description of the third party cookie blocking in private section of the cookies card in the 'Privacy guide'.">
+    When you’re in Private mode, sites can only use cookies to see your browsing activity on their own site. Cookies are deleted at the end of the Private session.
+  </message>
+  <if expr="is_win and _google_chrome">
+    </if>
+
+  <if expr="chrome_root_store_supported">
+    </if>
+  <if expr="is_win and _google_chrome">
+    </if>
+
+  <if expr="chromeos_ash or chromeos_lacros or is_win">
+    </if>
+  <if expr="is_win and _google_chrome">
+    </if>
+  <message name="IDS_SETTINGS_COOKIES_BLOCK_THIRD_PARTY_INCOGNITO" desc="Label for block third party cookies in Private radio toggle">
+    Block third-party cookies in Private
+  </message>
+  <message name="IDS_SETTINGS_COOKIES_BLOCK_THIRD_PARTY_INCOGNITO_EXPAND_A11Y_LABEL" desc="Label for the button that toggles showing the detailed description of blocking third party cookies in Private. Only visible by screen reader software.">
+    Show details about blocking third-party cookies in Private
+  </message>
+  <message name="IDS_SETTINGS_COOKIES_BLOCK_THIRD_PARTY_INCOGNITO_BULLET_TWO" desc="Description for the first bullet of block third party cookies in Private radio toggle">
+    While in Private, sites can't use your cookies to see your browsing activity across different sites, for example, to personalize ads. Features on some sites may not work.
+  </message>
+  <if expr="chromeos_lacros">
+    </if>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIES_BLOCK_THIRD_PARTY_INCOGNITO" desc="The sub-label for links to manage cookies when the current cookie setting is to block third party cookies in Private.">
+    Third-party cookies are blocked in Private mode
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_INCOGNITO_ONLY" desc="A label for the checkbox to make the rule apply to the current Private session only.">
+    Current Private session only
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_INCOGNITO_SITE_EXCEPTION_DESC" desc="The text displayed in order to explain to a user that a content setting only applies to the current Private session.">
+    This custom setting will be removed when you close all your Private windows
+  </message>
+  <if expr="chromeos_ash">
+    </if>
+
+  <if expr="not chromeos_ash">
+    </if>
+
+  <if expr="not chromeos_ash and not chromeos_lacros">
+    </if>
+
+  <if expr="not chromeos_ash">
+    </if>
+  <if expr="not chromeos_ash and not chromeos_lacros">
+    </if>
+  <if expr="chromeos_lacros">
+    </if>
+
+  <if expr="is_win and _google_chrome">
+    </if>
+
+  <if expr="is_win and _google_chrome">
+    </if>
+
+  </grit-part>

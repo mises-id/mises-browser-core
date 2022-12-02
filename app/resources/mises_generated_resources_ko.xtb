@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">게스트 창 열기</translation>
 <translation id="4986483413015198747">게스트 창 열기</translation>
 <translation id="8275068909952022340">더 보기…</translation>
-<translation id="1990886731975529483">Google Widevine 설치 및 실행</translation>
+<translation id="1990886731975529483">Brave Widevine 설치 및 실행</translation>
 <translation id="8926389886865778422">이 메시지 그만 보기</translation>
-<translation id="4900351245762303149">Google Widevine 설치</translation>
-<translation id="2313383941300459392">Google Widevine을 활성화하려면 브라우저를 재시작하세요.</translation>
-<translation id="2200626478572277092">웹페이지에서 미디어를 재생하려면 Widevine이 필요한 경우가 있습니다. 이는 Google 서버에서 로드되는 Google 확장 프로그램으로, Brave가 검사할 수 없습니다. 설치하면 Google 이용약관에 동의하게 됩니다.</translation>
+<translation id="4900351245762303149">Brave Widevine 설치</translation>
+<translation id="2313383941300459392">Brave Widevine을 활성화하려면 브라우저를 재시작하세요.</translation>
+<translation id="2200626478572277092">웹페이지에서 미디어를 재생하려면 Widevine이 필요한 경우가 있습니다. 이는 Brave 서버에서 로드되는 Brave 확장 프로그램으로, Brave가 검사할 수 없습니다. 설치하면 Brave 이용약관에 동의하게 됩니다.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>.
 나중에 <ph name="SETTINGS_EXTENIONS_LINK"/>에서 변경해도 됩니다.</translation>
 <translation id="6229752134959014186">Widevine에 대해 자세히 알아보세요</translation>
@@ -317,7 +317,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">소셜 미디어 차단</translation>
-<translation id="7498695072878479744">타사 사이트에서 Google 로그인 버튼 허용</translation>
+<translation id="7498695072878479744">타사 사이트에서 Brave 로그인 버튼 허용</translation>
 <translation id="863171915776379000">Facebook 로그인 및 내장 포스트를 허용합니다</translation>
 <translation id="5165042248369837294">Twitter 내장 트윗을 허용합니다</translation>
 <translation id="958971637207126733">LinkedIn 내장 포스트 허용</translation>
@@ -325,7 +325,7 @@
 <translation id="1822560017823072927">기본 공개 및 비공개 인터페이스</translation>
 <translation id="5825943197137337319">기본 공개 인터페이스 전용</translation>
 <translation id="1689062823386843231">프록시가 아닌 UDP 비활성화히기</translation>
-<translation id="3540231253392253941">푸시 메시지에 Google 서비스 사용</translation>
+<translation id="3540231253392253941">푸시 메시지에 Brave 서비스 사용</translation>
 <translation id="933652931229970927">진단 보고서 자동 전송</translation>
 <translation id="4846154056248462491">나갈 때</translation>
 <translation id="2808630562319398131">Brave 리워드 데이터 재설정...</translation>
@@ -399,7 +399,7 @@
 <translation id="919715748352669592">OpenSearch 사양을 준수하는 웹사이트를 자동으로 색인합니다.</translation>
 <translation id="842628013524824194">일반 창 - 주소 표시줄에 검색 엔진 사용</translation>
 <translation id="5324939009884545145">비공개 창 - 주소 표시줄에 검색 엔진 사용</translation>
-<translation id="6864914031231797928">확장 프로그램에 대한 Google 로그인 허용</translation>
+<translation id="6864914031231797928">확장 프로그램에 대한 Brave 로그인 허용</translation>
 <translation id="6554397389149987360">화면 공유와 다른 기능들을 브라우저에서 사용하시려면 행아웃 요소들을 사용하세요.</translation>
 <translation id="7878791177459550035">미디어 라우터가 브라우저 내  전송 기능을 활성화합니다.</translation>
 <translation id="5927916530277631319">Unstoppable Domains 해석 방법</translation>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
 
    <!-- Translate Info Bar -->
@@ -20,8 +21,8 @@
   <message name="IDS_TRANSLATE_INFOBAR_OPTIONS_REPORT_ERROR" desc="Text for the menu item for reporting the page's language was not correctly detected">
     Not in <ph name="original_language">$1<ex>French</ex></ph>? Report this error
   </message>
-  <message name="IDS_TRANSLATE_INFOBAR_OPTIONS_ABOUT" desc="Text for the menu item for information about Google Translate">
-    About Google Translate
+  <message name="IDS_TRANSLATE_INFOBAR_OPTIONS_ABOUT" desc="Text for the menu item for information about Mises Translate">
+    About Mises Translate
   </message>
   <if expr="is_ios">
     <message name="IDS_TRANSLATE_INFOBAR_BEFORE_MESSAGE_IOS" desc="Text to display on the translate infobar to offer a translate. [Length: 200em] [iOS only]">
@@ -63,23 +64,23 @@
       <message name="IDS_TRANSLATE_NEVER_TRANSLATE_SITE" desc="Text to display on the never translate site (like www.google.com) button. [CHAR_LIMIT=64]" formatter_data="android_java">
         Never translate this site
       </message>
-      <message name="IDS_TRANSLATE_DONT_OFFER_SITE" desc="Text to display on overflow option stopping Chrome from offering translate for a site. (like www.google.com)" formatter_data="android_java">
+      <message name="IDS_TRANSLATE_DONT_OFFER_SITE" desc="Text to display on overflow option stopping Mises from offering translate for a site. (like www.google.com)" formatter_data="android_java">
         Don‘t offer to translate this site
       </message>
 
       <message name="IDS_TRANSLATE_OPTION_ALWAYS_TRANSLATE" desc="Option in the overflow menu. User can click the 'Always Translate' option to indicate that they want the app to translate pages in this language automatically. Imperative." formatter_data="android_java">
         Always translate pages in <ph name="SOURCE_LANGUAGE">%1$s<ex>French</ex></ph>
       </message>
-      <message name="IDS_TRANSLATE_OPTION_NEVER_TRANSLATE" desc="Option in the overflow menu. User can click the 'Never Translate' option to indicate that they never want the app to translate pages in this language. The variable SOURCE_LANGUAGE could be any of 50+ languages supported by Google Translate, like French, Spanish, German, Italian, Japanese, Korean, etc. Imperative." formatter_data="android_java">
+      <message name="IDS_TRANSLATE_OPTION_NEVER_TRANSLATE" desc="Option in the overflow menu. User can click the 'Never Translate' option to indicate that they never want the app to translate pages in this language. The variable SOURCE_LANGUAGE could be any of 50+ languages supported by Mises Translate, like French, Spanish, German, Italian, Japanese, Korean, etc. Imperative." formatter_data="android_java">
         Never translate pages in <ph name="SOURCE_LANGUAGE">%1$s<ex>French</ex></ph>
       </message>
-      <message name="IDS_TRANSLATE_DONT_OFFER_LANG" desc="Option in the overflow menu. User can click the 'Don't offer Translate' option to indicate that they don't want the app to offer translations for pages in this language. The variable SOURCE_LANGUAGE could be any of 50+ languages supported by Google Translate, like French, Spanish, German, Italian, Japanese, Korean, etc. Imperative." formatter_data="android_java">
+      <message name="IDS_TRANSLATE_DONT_OFFER_LANG" desc="Option in the overflow menu. User can click the 'Don't offer Translate' option to indicate that they don't want the app to offer translations for pages in this language. The variable SOURCE_LANGUAGE could be any of 50+ languages supported by Mises Translate, like French, Spanish, German, Italian, Japanese, Korean, etc. Imperative." formatter_data="android_java">
         Don‘t offer to translate pages in <ph name="SOURCE_LANGUAGE">%1$s<ex>French</ex></ph>
       </message>
       <message name="IDS_TRANSLATE_OPTION_MORE_LANGUAGE" desc="Option in the overflow menu. Lets the user open a dialog to choose other target languages for translation, from a list of available languages. [CHAR_LIMIT=64]" formatter_data="android_java">
         More languages
       </message>
-      <message name="IDS_TRANSLATE_OPTION_NOT_SOURCE_LANGUAGE" desc="Option in the overflow menu. Sometimes a web page's source language is not correctly identified by Google Translate, and this menu option lets the user open a submenu to select another language as the source language to translate. Phrased as a question as if to query the user, 'Is this page not in [source language identified]? If so, click here.' [CHAR_LIMIT=64]" formatter_data="android_java">
+      <message name="IDS_TRANSLATE_OPTION_NOT_SOURCE_LANGUAGE" desc="Option in the overflow menu. Sometimes a web page's source language is not correctly identified by Mises Translate, and this menu option lets the user open a submenu to select another language as the source language to translate. Phrased as a question as if to query the user, 'Is this page not in [source language identified]? If so, click here.' [CHAR_LIMIT=64]" formatter_data="android_java">
         Page is not in <ph name="LANGUAGE">%1$s<ex>French</ex></ph>?
       </message>
       <message name="IDS_TRANSLATE_SNACKBAR_ALWAYS_TRANSLATE" desc="After the user selects 'Always translate pages in [LANGUAGE]', this text confirms the user's choice and lets them know that pages in [LANGUAGE] will be translated to their chosen target language automatically. Imperative. [CHAR_LIMIT=64]" formatter_data="android_java">
@@ -98,7 +99,7 @@
       <message name="IDS_TRANSLATE_MESSAGE_BEFORE_TRANSLATE_TITLE" desc="A text label on the translate message popup that prompts the user to translate the page.">
         Translate page?
       </message>
-      <message name="IDS_TRANSLATE_MESSAGE_AFTER_TRANSLATE_TITLE" desc="A text label on the translate message popup that announces to the user that Chrome has finished translating the page.">
+      <message name="IDS_TRANSLATE_MESSAGE_AFTER_TRANSLATE_TITLE" desc="A text label on the translate message popup that announces to the user that Mises has finished translating the page.">
         Page translated
       </message>
       <message name="IDS_TRANSLATE_MESSAGE_DESCRIPTION" desc="A text label on the translate message popup that lets the user know what the source and target languages are for translating the page.">

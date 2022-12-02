@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">የእንግዳ መስኮትን ክፈት</translation>
 <translation id="4986483413015198747">የእንግዳ መስኮት ይክፈቱ</translation>
 <translation id="8275068909952022340">የበለጠ…</translation>
-<translation id="1990886731975529483">Google Widevine ን ይጫኑት እና ይክፈቱ</translation>
+<translation id="1990886731975529483">Brave Widevine ን ይጫኑት እና ይክፈቱ</translation>
 <translation id="8926389886865778422">ደግመው አይጠይቁ</translation>
-<translation id="4900351245762303149">Google Widevine ን ይጫኑት</translation>
-<translation id="2313383941300459392">Google Widevine ን ለማንቃት አሳሹን እንደገና ያስጀምሩ</translation>
-<translation id="2200626478572277092">Widevine አንዳንድ ጊዜ ሚዲያን በድረ-ገጽ ላይ ለማጫወት ያስፈልጋል። Brave የማይመረምረው ሆኖ፣ ከ Google ሰርቨሮች የተጫነ የ Google ቅጥያ ነው። ይህንን በመጫንዎ፣ በ Google የአጠቃቀም ውል ይስማማሉ።</translation>
+<translation id="4900351245762303149">Brave Widevine ን ይጫኑት</translation>
+<translation id="2313383941300459392">Brave Widevine ን ለማንቃት አሳሹን እንደገና ያስጀምሩ</translation>
+<translation id="2200626478572277092">Widevine አንዳንድ ጊዜ ሚዲያን በድረ-ገጽ ላይ ለማጫወት ያስፈልጋል። Brave የማይመረምረው ሆኖ፣ ከ Brave ሰርቨሮች የተጫነ የ Brave ቅጥያ ነው። ይህንን በመጫንዎ፣ በ Brave የአጠቃቀም ውል ይስማማሉ።</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>።
 ወይም በኋላ ይቀይሩ በ <ph name="SETTINGS_EXTENIONS_LINK"/>።</translation>
 <translation id="6229752134959014186">ስለ Widevine የበለጠ ይወቁ</translation>
@@ -321,7 +321,7 @@
 <translation id="2635094637295383009">ትዊተር</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">የማህበራዊ ሚዲያ እገዳ</translation>
-<translation id="7498695072878479744">የ Google መግቢያ መጫኛ ቁልፎችን በሶስተኛ ወገን ጣቢያዎች ላይ ይፍቀዱ</translation>
+<translation id="7498695072878479744">የ Brave መግቢያ መጫኛ ቁልፎችን በሶስተኛ ወገን ጣቢያዎች ላይ ይፍቀዱ</translation>
 <translation id="863171915776379000">የ Facebook መግቢያዎች እና አካቶዎችን ፍቀድ</translation>
 <translation id="5165042248369837294">በTwitter የተከተተ ትዊት ይፍቀዱ</translation>
 <translation id="958971637207126733">LinkedIn ያካተታቸውን ልጥፎችን ፍቀድ</translation>
@@ -329,7 +329,7 @@
 <translation id="1822560017823072927">ዲፎልት የጋራና የግል ኢንተርፈረንስ</translation>
 <translation id="5825943197137337319">የጋራ ዲፎልት አጠቃቀም መጋራት ብቻ</translation>
 <translation id="1689062823386843231">ሮክሲ የሌለው UDP ያጥፉ</translation>
-<translation id="3540231253392253941">ለሚላክ መልእክት የ Google አገልግሎቶችን ይጠቀሙ</translation>
+<translation id="3540231253392253941">ለሚላክ መልእክት የ Brave አገልግሎቶችን ይጠቀሙ</translation>
 <translation id="933652931229970927">የምርመራ ሪፖርቶችን በራስ-ሰር ላክ</translation>
 <translation id="4846154056248462491">ሲወጣ</translation>
 <translation id="2808630562319398131">የ Brave ሽልማቶች ውሂብን ዳግም ያስጀምሩ...</translation>
@@ -401,7 +401,7 @@
 <translation id="919715748352669592">የ OpenSearch ዝርዝርን የሚከተሉ ድር ጣቢያዎችን በራስ-ሰር ይጠቁማል።</translation>
 <translation id="842628013524824194">መደበኛ መስኮት - በአድራሻ ማስገቢያው ውስጥ ጥቅም ላይ የሚውል የፍለጋ ኤንጅን</translation>
 <translation id="5324939009884545145">የግል መስኮት - በአድራሻ ማስገቢያው ውስጥ ጥቅም ላይ የዋለው የፍለጋ ኤንጅን</translation>
-<translation id="6864914031231797928">ለቅጥያዎች የ Google በመለያ መግቢያዎችን ፍቀድ</translation>
+<translation id="6864914031231797928">ለቅጥያዎች የ Brave በመለያ መግቢያዎችን ፍቀድ</translation>
 <translation id="6554397389149987360">በማሰሻው ላይ የማያ መጋራትን እና ሌሎች ባህሪያትን ለመጠቀም የ Hangouts ክፍሎችን ይጠቀሙ።</translation>
 <translation id="7878791177459550035">የሚዲያ ራውተር በአሳሽ ውስጥ የcast ባህሪ እንዲሰራ ያደርጋል።</translation>
 <translation id="5927916530277631319">የማይቆሙ ጎራዎችን የመፍታት ዘዴ</translation>

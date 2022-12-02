@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">باز کردن پنجره مهمان</translation>
 <translation id="4986483413015198747">باز کردن پنجره مهمان</translation>
 <translation id="8275068909952022340">بیشتر…</translation>
-<translation id="1990886731975529483">Google Widevine را نصب و اجرا کنید</translation>
+<translation id="1990886731975529483">Brave Widevine را نصب و اجرا کنید</translation>
 <translation id="8926389886865778422">دوباره سؤال نشود</translation>
-<translation id="4900351245762303149">Google Widevine را نصب کنید</translation>
-<translation id="2313383941300459392">برای فعال کردن Google Widevine، مرورگر را دوباره راه‌اندازی کنید</translation>
-<translation id="2200626478572277092">گاهی برای پخش رسانه در صفحه وب، به Widevine نیاز است. Widevine یک افزونه Google است که از سرورهای Google بارگذاری می‌شود و Brave نمی‌تواند آن را بررسی کند. نصب کردن آن به منزله موافقت شما با شرایط استفاده Google می‌باشد.</translation>
+<translation id="4900351245762303149">Brave Widevine را نصب کنید</translation>
+<translation id="2313383941300459392">برای فعال کردن Brave Widevine، مرورگر را دوباره راه‌اندازی کنید</translation>
+<translation id="2200626478572277092">گاهی برای پخش رسانه در صفحه وب، به Widevine نیاز است. Widevine یک افزونه Brave است که از سرورهای Brave بارگذاری می‌شود و Brave نمی‌تواند آن را بررسی کند. نصب کردن آن به منزله موافقت شما با شرایط استفاده Brave می‌باشد.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>. یا بعداً در <ph name="SETTINGS_EXTENIONS_LINK"/> تغییر دهید.</translation>
 <translation id="6229752134959014186">درباره Widevine بیشتر بدانید</translation>
 <translation id="6061083111980694767"><ph name="SITE_NAME"/> از شما می‌خواهد که</translation>
@@ -317,7 +317,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">مسدود کردن رسانه اجتماعی</translation>
-<translation id="7498695072878479744">مجاز کردن دکمه‌های ورود به سیستم Google در سایت‌های شخص ثالث</translation>
+<translation id="7498695072878479744">مجاز کردن دکمه‌های ورود به سیستم Brave در سایت‌های شخص ثالث</translation>
 <translation id="863171915776379000">مجاز کردن ورود به سیستم‌ها و پست‌های جاسازی‌شده</translation>
 <translation id="5165042248369837294">مجاز کردن توییت‌های جاسازی‌شده Twitter</translation>
 <translation id="958971637207126733">مجاز کردن پست‌های جاسازی‌شده LinkedIn</translation>
@@ -325,7 +325,7 @@
 <translation id="1822560017823072927">رابط‌های عمومی و خصوصی پیش‌فرض</translation>
 <translation id="5825943197137337319">فقط رابط عمومی پیش‌فرض</translation>
 <translation id="1689062823386843231">غیرفعال کردن UDP غیرپروکسی</translation>
-<translation id="3540231253392253941">استفاده از سرویس‌های Google برای پیام‌رسانی فشاری</translation>
+<translation id="3540231253392253941">استفاده از سرویس‌های Brave برای پیام‌رسانی فشاری</translation>
 <translation id="933652931229970927">ارسال خودکار گزارش‌های عیب‌یابی</translation>
 <translation id="4846154056248462491">در برگه خروج</translation>
 <translation id="2808630562319398131">بازنشانی داده‌های Brave Rewards…</translation>
@@ -399,7 +399,7 @@
 <translation id="919715748352669592">فهرست‌بندی خودکار وبسایت‌هایی که از مشخصات OpenSearch پیروی می‌کنند.</translation>
 <translation id="842628013524824194">پنجره عادی - موتور جستجو استفاده‌شده در نوار نشانی</translation>
 <translation id="5324939009884545145">پنجره خصوصی - موتور جستجو استفاده‌شده در نوار نشانی</translation>
-<translation id="6864914031231797928">مجاز کردن ورود به سیستم Google برای افزونه‌ها</translation>
+<translation id="6864914031231797928">مجاز کردن ورود به سیستم Brave برای افزونه‌ها</translation>
 <translation id="6554397389149987360">از مؤلفه‌های Hangouts برای فعال کردن اشتراک‌گذاری صفحه و سایر ویژگی‌ها در مرورگر استفاده می‌کند.</translation>
 <translation id="7878791177459550035">روتر رسانه قابلیت پخش را در مرورگر ممکن می‌سازد.</translation>
 <translation id="5927916530277631319">روش تحلیل دامنه‌های توقف‌ناپذیر</translation>

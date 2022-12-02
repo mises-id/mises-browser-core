@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
 
   <message name="IDS_DOM_DISTILLER_JAVASCRIPT_DISABLED_CONTENT" desc="The text to show in place of reading list article content if the user has JavaScript disabled.">

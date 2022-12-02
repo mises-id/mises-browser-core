@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">以访客身份打开一个窗口</translation>
 <translation id="4986483413015198747">打开访客窗口</translation>
 <translation id="8275068909952022340">更多…</translation>
-<translation id="1990886731975529483">安装并运行 Google Widevine</translation>
+<translation id="1990886731975529483">安装并运行 Brave Widevine</translation>
 <translation id="8926389886865778422">不再询问</translation>
-<translation id="4900351245762303149">安装 Google Widevine</translation>
-<translation id="2313383941300459392">重新启动浏览器以启用 Google Widevine</translation>
-<translation id="2200626478572277092">有时需要 Widevine 才能在网页上播放媒体。这是一个从 Google 服务器加载的 Google 扩展程序，Brave 无法进行检查。安装即表示您同意 Google 的使用条款。</translation>
+<translation id="4900351245762303149">安装 Brave Widevine</translation>
+<translation id="2313383941300459392">重新启动浏览器以启用 Brave Widevine</translation>
+<translation id="2200626478572277092">有时需要 Widevine 才能在网页上播放媒体。这是一个从 Brave 服务器加载的 Brave 扩展程序，Brave 无法进行检查。安装即表示您同意 Brave 的使用条款。</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>。若稍后需更改选项，请前往 <ph name="SETTINGS_EXTENIONS_LINK"/>。</translation>
 <translation id="6229752134959014186">详细了解 Widevine</translation>
 <translation id="6061083111980694767"><ph name="SITE_NAME"/>正请求您</translation>
@@ -317,7 +317,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">阻止社交媒体</translation>
-<translation id="7498695072878479744">第三方网站上的 Google 登录按钮可用</translation>
+<translation id="7498695072878479744">第三方网站上的 Brave 登录按钮可用</translation>
 <translation id="863171915776379000">Facebook 登录和嵌入式帖子可用</translation>
 <translation id="5165042248369837294">允许 Twitter 嵌入推文</translation>
 <translation id="958971637207126733">允许 LinkedIn 嵌入帖子</translation>
@@ -325,7 +325,7 @@
 <translation id="1822560017823072927">默认公共和私人接口</translation>
 <translation id="5825943197137337319">仅限默认公共接口</translation>
 <translation id="1689062823386843231">禁用无代理的 UDP</translation>
-<translation id="3540231253392253941">使用 Google 服务进行推送消息传递</translation>
+<translation id="3540231253392253941">使用 Brave 服务进行推送消息传递</translation>
 <translation id="933652931229970927">自动发送诊断报告</translation>
 <translation id="4846154056248462491">退出时</translation>
 <translation id="2808630562319398131">重置 Brave Rewards 计划数据...</translation>
@@ -399,7 +399,7 @@
 <translation id="919715748352669592">自动对遵循 OpenSearch 规范的网站构建索引</translation>
 <translation id="842628013524824194">一般窗口 - 地址栏中使用的搜索引擎</translation>
 <translation id="5324939009884545145">隐私窗口 - 地址栏中使用的搜索引擎</translation>
-<translation id="6864914031231797928">允许 Google 登录以获取扩展程序</translation>
+<translation id="6864914031231797928">允许 Brave 登录以获取扩展程序</translation>
 <translation id="6554397389149987360">使用环聊组件在浏览器中启用屏幕共享和其他功能。</translation>
 <translation id="7878791177459550035">媒体路由器在浏览器中启用投射功能。</translation>
 <translation id="5927916530277631319">解决无法停止域这个问题的方法</translation>

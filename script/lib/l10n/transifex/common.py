@@ -17,12 +17,7 @@ brave_project_name = 'brave_en'
 # Transifex API v2 will be deprecated on April 7, 2022
 use_api_v3 = True
 
-if use_api_v3:
-    from lib.l10n.transifex.api_v3_wrapper import \
-        TransifexAPIV3Wrapper as APIWrapper
-else:
-    from lib.l10n.transifex.api_v2_wrapper import \
-        TransifexAPIV2Wrapper as APIWrapper
+
 
 
 # This module contains functionality common to both pulling down translations
@@ -44,28 +39,28 @@ def should_use_transifex_for_file(source_string_path, filename):
     """ Determines if the given filename should be pulled from Transifex or
         handled locally"""
     slug = transifex_name_from_filename(source_string_path, filename)
-    return slug in transifex_handled_slugs or slug.startswith('greaselion_')
+    return False and slug in transifex_handled_slugs or slug.startswith('greaselion_')
 
 
 # pylint: disable=inconsistent-return-statements
 def transifex_name_from_filename(source_file_path, filename):
     ext = os.path.splitext(source_file_path)[1]
-    if 'brave_components_strings' in source_file_path:
+    if 'mises_components_strings' in source_file_path:
         return 'brave_components_resources'
     if ext == '.grd':
         return filename
-    if 'brave-site-specific-scripts/scripts/' in source_file_path:
+    if 'mises-site-specific-scripts/scripts/' in source_file_path:
         return transifex_name_from_greaselion_script_name(source_file_path)
-    if 'brave_extension' in source_file_path:
-        return 'brave_extension'
-    if 'brave_rewards' in source_file_path:
+    if 'mises_extension' in source_file_path:
+        return 'mises_extension'
+    if 'mises_rewards' in source_file_path:
         return 'rewards_extension'
     assert False, ('JSON files should be mapped explicitly, this '
                    f'one is not: {source_file_path}')
 # pylint: enable=inconsistent-return-statements
 
 def transifex_name_from_greaselion_script_name(script_name):
-    match = re.search(('brave-site-specific-scripts/scripts/(.*)/_locales/' +
+    match = re.search(('mises-site-specific-scripts/scripts/(.*)/_locales/' +
                        'en_US/messages.json$'), script_name)
     if match:
         return ('greaselion_' +
@@ -122,6 +117,12 @@ def get_acceptable_json_lang_codes(langs_dir_path):
 
 # Wrapper instance
 def get_api_wrapper():
+    if use_api_v3:
+        from lib.l10n.transifex.api_v3_wrapper import \
+            TransifexAPIV3Wrapper as APIWrapper
+    else:
+        from lib.l10n.transifex.api_v2_wrapper import \
+            TransifexAPIV2Wrapper as APIWrapper
     if get_api_wrapper.wrapper is None:
         get_api_wrapper.wrapper = APIWrapper(project_name=brave_project_name)
     return get_api_wrapper.wrapper

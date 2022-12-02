@@ -112,6 +112,8 @@ def update_xtbs_locally(grd_file_path, brave_source_root):
     xtb_files = get_xtb_files(grd_file_path)
     chromium_grd_file_path = get_chromium_grd_src_with_fallback(grd_file_path,
         brave_source_root)
+    if not os.path.exists(chromium_grd_file_path):
+        return
     chromium_xtb_files = get_xtb_files(grd_file_path)
     if len(xtb_files) != len(chromium_xtb_files):
         assert False, 'XTB files and Chromium XTB file length mismatch.'
@@ -181,6 +183,7 @@ def get_grd_languages(grd_file_path):
 
 
 def get_chromium_grd_src_with_fallback(grd_file_path, brave_source_root):
+    print('get_chromium_grd_src_with_fallback', grd_file_path, brave_source_root)
     source_root = os.path.dirname(brave_source_root)
     chromium_grd_file_path = get_original_grd(source_root, grd_file_path)
     if not chromium_grd_file_path:

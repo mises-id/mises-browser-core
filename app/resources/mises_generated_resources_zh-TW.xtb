@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">開啟訪客視窗</translation>
 <translation id="4986483413015198747">開啟訪客視窗</translation>
 <translation id="8275068909952022340">其他…</translation>
-<translation id="1990886731975529483">安裝並執行 Google Widevine</translation>
+<translation id="1990886731975529483">安裝並執行 Brave Widevine</translation>
 <translation id="8926389886865778422">不再詢問這個問題</translation>
-<translation id="4900351245762303149">安裝 Google Widevine</translation>
-<translation id="2313383941300459392">重新啟動瀏覽器以啟用 Google Widevine</translation>
-<translation id="2200626478572277092">有時需有 Widevine 才能在網頁上播放媒體。這是從 Google 伺服器載入的 Google 擴充功能，Brave 無法檢查。安裝即代表您同意 Google 的使用條款。</translation>
+<translation id="4900351245762303149">安裝 Brave Widevine</translation>
+<translation id="2313383941300459392">重新啟動瀏覽器以啟用 Brave Widevine</translation>
+<translation id="2200626478572277092">有時需有 Widevine 才能在網頁上播放媒體。這是從 Brave 伺服器載入的 Brave 擴充功能，Brave 無法檢查。安裝即代表您同意 Brave 的使用條款。</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>。
 或稍後在 <ph name="SETTINGS_EXTENIONS_LINK"/> 變更。</translation>
 <translation id="6229752134959014186">深入瞭解 Widevine</translation>
@@ -318,7 +318,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">阻擋社群媒體</translation>
-<translation id="7498695072878479744">在第三方網站上允許 Google 登入按鈕</translation>
+<translation id="7498695072878479744">在第三方網站上允許 Brave 登入按鈕</translation>
 <translation id="863171915776379000">允許 Facebook 登入與嵌入貼文</translation>
 <translation id="5165042248369837294">允許 Twitter 嵌入推文</translation>
 <translation id="958971637207126733">允許 Linkedin 嵌入貼文</translation>
@@ -326,7 +326,7 @@
 <translation id="1822560017823072927">預設公共和隱私介面</translation>
 <translation id="5825943197137337319">僅限預設公用介面</translation>
 <translation id="1689062823386843231">停用非代理 UDP</translation>
-<translation id="3540231253392253941">使用 Google 服務來推播訊息</translation>
+<translation id="3540231253392253941">使用 Brave 服務來推播訊息</translation>
 <translation id="933652931229970927">自動傳送診斷報告</translation>
 <translation id="4846154056248462491">離開</translation>
 <translation id="2808630562319398131">重設 Brave 獎勵資料…</translation>
@@ -400,7 +400,7 @@
 <translation id="919715748352669592">為遵循 OpenSearch 規範的網站自動編製索引。</translation>
 <translation id="842628013524824194">一般視窗 - 在網址列使用搜尋引擎</translation>
 <translation id="5324939009884545145">隱私視窗 - 在網址列使用搜尋引擎</translation>
-<translation id="6864914031231797928">允許延伸套件登入 Google</translation>
+<translation id="6864914031231797928">允許延伸套件登入 Brave</translation>
 <translation id="6554397389149987360">使用 Hangouts 元件來啟用畫面分享和其它瀏覽器功能。</translation>
 <translation id="7878791177459550035">媒體路由器可在瀏覽器中啟用投影功能。</translation>
 <translation id="5927916530277631319">處理 Unstoppable Domains 的方式</translation>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Profiles specific strings (included from generated_resources.grd). -->
+<grit-part>
+  <message name="IDS_INCOGNITO_BUBBLE_ACCESSIBLE_TITLE" desc="Accessible title of the avatar menu, opened in Private mode. The message also shows the number of open Private windows if they are more than one. [ICU Syntax]">
+      {0, plural,
+        =1 {Private}
+        other {# open Private windows}
+      }
+  </message>
+  <message name="IDS_AVATAR_BUTTON_INCOGNITO" desc="Short label for the avatar button when the user is in Private mode and the number of open Private windows if there are more than one Private window open. [ICU Syntax]" meaning="This window is browsing in Incognito mode and there are more than one Incognito windows open. The counter is not shown when there is only one Incognito window open.">
+    {0, plural,
+      =1 {Private}
+      other {Private (#)}
+    }
+  </message>
+  <message name="IDS_AVATAR_BUTTON_INCOGNITO_TOOLTIP" desc="Tooltip for the avatar button when the user is in Private mode.">
+    You're Private
+  </message>
+  <if expr="is_macosx">
+    <message name="IDS_PROFILES_CREATE_NEW_PROFILE_OPTION" desc="In Title Case. Create new profile menu item and button title.">
+      Add Profile...
+    </message>
+    </if>
+  <if expr="is_linux">
+    </if>
+  <if expr="not use_titlecase">
+    </if>
+  <if expr="use_titlecase">
+    </if>
+  <message name="IDS_NEW_NUMBERED_PROFILE_NAME" desc="The name given to a newly created profile. Displayed in wrench menu and settings UI using the --new-profile-management flag.">
+    Profile <ph name="VALUE">$1<ex>1</ex></ph>
+  </message>
+  <message name="IDS_PROFILES_CREATE_BUTTON_LABEL" desc="The label that appears on the profile create button in the options dialog to allow a user to create a new profile.">
+    Add profile...
+  </message>
+  <message name="IDS_OLD_PROFILES_DISABLED_ADD_PERSON_SUGGESTION" desc="The suggestion that tells the user to create a new profile when the user tries to use an old profile that is disabled by policy">
+    To continue, click OK, then click Add Profile to create a new profile for your email address.
+  </message>
+  <message name="IDS_OLD_PROFILES_DISABLED_ADD_PERSON_SUGGESTION_WITH_DOMAIN" desc="The suggestion that tells the user to create a new profile with the domain when the user tries to use an old profile that is disabled by policy">
+    To continue, click OK, then click Add Profile to create a new profile for your <ph name="DOMAIN">$1<ex>example.com</ex></ph> email address.
+  </message>
+  <if expr="is_android">
+    </if>
+  <if expr="not is_android">
+    </if>
+
+  <if expr="not is_android">
+    <if expr="use_titlecase">
+      </if>
+    <if expr="not use_titlecase">
+      </if>
+    <if expr="chromeos_ash">
+      </if>
+  </if>
+
+  <if expr="not chromeos_ash and not is_android">
+    <message name="IDS_PROFILE_PICKER_PROFILE_MENU_INCOGNITO_TEXT" desc="Text of the Private button in profile card menu">
+      Private
+    </message>
+    <if expr="not chromeos_lacros">
+      </if>
+
+    <if expr="chromeos_lacros">
+      </if>
+
+  </if>
+</grit-part>

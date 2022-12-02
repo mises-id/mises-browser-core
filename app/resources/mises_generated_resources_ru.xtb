@@ -13,9 +13,9 @@
 <translation id="8275068909952022340">Ещё…</translation>
 <translation id="1990886731975529483">Установка и запуск Widevine</translation>
 <translation id="8926389886865778422">Больше не спрашивать</translation>
-<translation id="4900351245762303149">Установка расширения Widevine от компании Google</translation>
-<translation id="2313383941300459392">Перезапустите браузер, чтобы включить расширение Widevine от компании Google.</translation>
-<translation id="2200626478572277092">Иногда для воспроизведения медиаконтента на странице требуется расширение Widevine. Оно загружается с серверов Google, к которым у организации Brave нет доступа. Устанавливая это расширение, вы принимаете условия использования компании Google.</translation>
+<translation id="4900351245762303149">Установка расширения Widevine от компании Brave</translation>
+<translation id="2313383941300459392">Перезапустите браузер, чтобы включить расширение Widevine от компании Brave.</translation>
+<translation id="2200626478572277092">Иногда для воспроизведения медиаконтента на странице требуется расширение Widevine. Оно загружается с серверов Brave, к которым у организации Brave нет доступа. Устанавливая это расширение, вы принимаете условия использования компании Brave.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>.
 Изменить настройки: <ph name="SETTINGS_EXTENIONS_LINK"/>.</translation>
 <translation id="6229752134959014186">Подробнее о Widevine</translation>
@@ -318,7 +318,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">Блокировка социальных сетей</translation>
-<translation id="7498695072878479744">Разрешить кнопки входа через Google на сторонних сайтах</translation>
+<translation id="7498695072878479744">Разрешить кнопки входа через Brave на сторонних сайтах</translation>
 <translation id="863171915776379000">Разрешить вход в Facebook и встроенные посты</translation>
 <translation id="5165042248369837294">Разрешить встроенные твиты Twitter</translation>
 <translation id="958971637207126733">Разрешить встроенные сообщения LinkedIn</translation>
@@ -326,7 +326,7 @@
 <translation id="1822560017823072927">Публичные и приватные интерфейсы по умолчанию</translation>
 <translation id="5825943197137337319">Только открытый интерфейс по умолчанию</translation>
 <translation id="1689062823386843231">Отключить непроксируемый протокол UDP</translation>
-<translation id="3540231253392253941">Использовать сервисы Google для обмена push-сообщениями</translation>
+<translation id="3540231253392253941">Использовать сервисы Brave для обмена push-сообщениями</translation>
 <translation id="933652931229970927">Автоматически отправлять данные диагностики</translation>
 <translation id="4846154056248462491">На выходе</translation>
 <translation id="2808630562319398131">Сбросить данные Вознаграждений Brave...</translation>
@@ -400,7 +400,7 @@
 <translation id="919715748352669592">Сайты, соответствующие спецификациям OpenSearch, будут автоматически индексироваться.</translation>
 <translation id="842628013524824194">Обычное окно — поисковая система используется в адресной строке</translation>
 <translation id="5324939009884545145">Окно инкогнито — поисковая система используется в адресной строке</translation>
-<translation id="6864914031231797928">Разрешить вход с помощью Google для расширений</translation>
+<translation id="6864914031231797928">Разрешить вход с помощью Brave для расширений</translation>
 <translation id="6554397389149987360">С помощью компонента Hangouts можно прямо в браузере демонстрировать свой экран и пользоваться другими возможностями.</translation>
 <translation id="7878791177459550035">Расширение Media router включает в браузере функцию трансляции.</translation>
 <translation id="5927916530277631319">Метод устранения Unstoppable Domains</translation>

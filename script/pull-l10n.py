@@ -16,7 +16,8 @@ from lib.l10n.transifex.pull import (combine_override_xtb_into_original,
                                      pull_source_files_from_transifex)
 
 
-BRAVE_SOURCE_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+MISES_SOURCE_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), "src", "mises"))
 
 
 def parse_args():
@@ -38,7 +39,7 @@ def main():
         print(f'DEBUG: Content dump file = {dump_path}')
 
     source_string_path = os.path.join(
-        BRAVE_SOURCE_ROOT, args.source_string_path[0])
+        MISES_SOURCE_ROOT, args.source_string_path[0])
     filename = os.path.basename(source_string_path).split('.')[0]
 
     if should_use_transifex_for_file(source_string_path, filename):
@@ -57,7 +58,7 @@ def main():
         else:
             print('No Transifex override.')
 
-        update_xtbs_locally(source_string_path, BRAVE_SOURCE_ROOT)
+        update_xtbs_locally(source_string_path, MISES_SOURCE_ROOT)
         if override_exists:
             combine_override_xtb_into_original(source_string_path)
 

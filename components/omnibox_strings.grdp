@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- Note, referenced part .grdp files must be in the same directory as the
        referencing .grdp file or translation console pipeline breaks. -->
@@ -13,27 +14,27 @@
   <!-- Same as IDS_OMNIBOX_PEDAL_RUN_CHROME_SAFETY_CHECK_HINT but
        with "safety check" capitalized to "Safety Check". -->
   <message name="IDS_ANDROID_OMNIBOX_PEDAL_RUN_CHROME_SAFETY_CHECK_HINT" desc="The button text contents to suggest pedal action, RUN_CHROME_SAFETY_CHECK">
-    Run Chrome Safety Check
+    Run Mises Safety Check
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_HINT but
        with "window" changed to "tab". -->
   <message name="IDS_ANDROID_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_HINT" desc="The button text contents to suggest pedal action, LAUNCH_INCOGNITO">
-    Open Incognito tab
+    Open Private tab
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_SUGGESTION_CONTENTS but
        with "window" changed to "tab". -->
   <message name="IDS_ANDROID_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_SUGGESTION_CONTENTS" desc="The button hover tooltip text to describe pedal action, LAUNCH_INCOGNITO">
-    Open a new Incognito tab to browse privately
+    Open a new Private tab to browse privately
   </message>
   <!-- Same as IDS_ACC_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_SUFFIX but
        with "window" changed to "tab". -->
   <message name="IDS_ANDROID_ACC_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_SUFFIX" desc="Suffix for spoken suggestion description with pedal action button, to explain keystroke used to LAUNCH_INCOGNITO.">
-    <ph name="LAUNCH_INCOGNITO_FOCUSED_FRIENDLY_MATCH_TEXT">$1<ex>The Chromium Projects http://www.chromium.org bookmark</ex></ph>, press Tab then Enter to open a new Incognito tab to browse privately
+    <ph name="LAUNCH_INCOGNITO_FOCUSED_FRIENDLY_MATCH_TEXT">$1<ex>The Chromium Projects http://www.chromium.org bookmark</ex></ph>, press Tab then Enter to open a new Private tab to browse privately
   </message>
   <!-- Same as IDS_ACC_OMNIBOX_PEDAL_LAUNCH_INCOGNITO but
        with "window" changed to "tab". -->
   <message name="IDS_ANDROID_ACC_OMNIBOX_PEDAL_LAUNCH_INCOGNITO" desc="Announcement when pedal action button is focused, LAUNCH_INCOGNITO">
-    Open Incognito tab button, press Enter to open a new Incognito tab to browse privately
+    Open Private tab button, press Enter to open a new Private tab to browse privately
   </message>
 
   <!-- iOS Omnibox Actions titles. They use title case. -->
@@ -43,7 +44,7 @@
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_SET_CHROME_AS_DEFAULT_BROWSER_HINT, but title case instead of sentence case -->
   <message name="IDS_IOS_OMNIBOX_PEDAL_SET_CHROME_AS_DEFAULT_BROWSER_HINT" desc="In Title Case: The button text contents to suggest pedal action, SET_CHROME_AS_DEFAULT_BROWSER">
-    Set Chrome as Default Browser
+    Set Mises as Default Browser
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_UPDATE_CREDIT_CARD_HINT, but title case instead of sentence case -->
   <message name="IDS_IOS_OMNIBOX_PEDAL_UPDATE_CREDIT_CARD_HINT" desc="In Title Case: The button text contents to suggest pedal action, UPDATE_CREDIT_CARD">
@@ -51,11 +52,11 @@
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_HINT but with "window" changed to "tab" and title case instead of sentence case -->
   <message name="IDS_IOS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_HINT" desc="In Title Case: The button text contents to suggest pedal action, LAUNCH_INCOGNITO">
-    Open Incognito Tab
+    Open Private Tab
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_RUN_CHROME_SAFETY_CHECK_HINT but title case instead of sentence case -->
   <message name="IDS_IOS_OMNIBOX_PEDAL_RUN_CHROME_SAFETY_CHECK_HINT" desc="In Title Case: The button text contents to suggest pedal action, RUN_CHROME_SAFETY_CHECK">
-    Run Chrome Safety Check
+    Run Mises Safety Check
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_MANAGE_CHROME_SETTINGS_HINT but title case instead of sentence case -->
   <message name="IDS_IOS_OMNIBOX_PEDAL_MANAGE_CHROME_SETTINGS_HINT" desc="In Title Case: The button text contents to suggest pedal action, MANAGE_CHROME_SETTINGS">
@@ -63,16 +64,16 @@
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_VIEW_CHROME_HISTORY_HINT but title case instead of sentence case -->
   <message name="IDS_IOS_OMNIBOX_PEDAL_VIEW_CHROME_HISTORY_HINT" desc="In Title Case: The button text contents to suggest pedal action, VIEW_CHROME_HISTORY">
-    View Your Chrome History
+    View Your Mises History
   </message>
   <!-- Same as IDS_OMNIBOX_PEDAL_PLAY_CHROME_DINO_GAME_HINT but title case instead of sentence case -->
   <message name="IDS_IOS_OMNIBOX_PEDAL_PLAY_CHROME_DINO_GAME_HINT" desc="In Title Case: The button text contents to suggest pedal action, PLAY_CHROME_DINO_GAME">
-    Play Chrome Dino Game
+    Play Mises Dino Game
   </message>
   <!-- iOS Omnibox Actions non-title strings -->
   <!-- Same as IDS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_SUGGESTION_CONTENTS but with "window" changed to "tab" -->
   <message name="IDS_IOS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_SUGGESTION_CONTENTS" desc="The button hover tooltip text to describe pedal action, LAUNCH_INCOGNITO">
-    Open a new Incognito tab to browse privately
+    Open a new Private tab to browse privately
   </message>
 
   <!-- Same as IDS_OMNIBOX_PEDAL_MANAGE_PASSWORDS_HINT, but title case instead of sentence case -->
@@ -81,7 +82,7 @@
   </message>
 
   <message name="IDS_AUTOCOMPLETE_SEARCH_DESCRIPTION" desc="Description for the default search match.">
-    <ph name="ENGINE">$1<ex>Google</ex></ph> Search
+    <ph name="ENGINE">$1<ex>Mises</ex></ph> Search
   </message>
   <message name="IDS_EMPTY_KEYWORD_VALUE" desc="Shown in the location bar drop down when the user enters a string that matches a chrome keyword, but they haven't entered any text following the chrome keyword">
     &lt;Type search term&gt;
@@ -151,13 +152,13 @@
     Google Docs
   </message>
   <message name="IDS_DRIVE_SUGGESTION_FORM" desc="Google Docs product name, for use in omnibox Form result descriptions.">
-    Google Forms
+    Mises Forms
   </message>
-  <message name="IDS_DRIVE_SUGGESTION_SPREADSHEET" desc="Google Sheets product name, for use in omnibox Sheets result descriptions.">
-    Google Sheets
+  <message name="IDS_DRIVE_SUGGESTION_SPREADSHEET" desc="Mises Sheets product name, for use in omnibox Sheets result descriptions.">
+    Mises Sheets
   </message>
-    <message name="IDS_DRIVE_SUGGESTION_PRESENTATION" desc="Google Slides product name, for use in omnibox Slides result descriptions.">
-    Google Slides
+    <message name="IDS_DRIVE_SUGGESTION_PRESENTATION" desc="Mises Slides product name, for use in omnibox Slides result descriptions.">
+    Mises Slides
   </message>
   <message name="IDS_DRIVE_SUGGESTION_GENERAL" desc="Google Drive product name, for use in general omnibox Drive file result descriptions.">
     Google Drive
@@ -173,12 +174,12 @@
   </message>
   <if expr="use_titlecase">
     <then>
-      <message name="IDS_ACCURACY_CHECK_VERBOSE_STATE" meaning="Text for feature that encourages the user to think about how accurate the content is" desc="This text appears in the address bar chip, which states the title of the feature shown in the page info bubble below (see screenshot). With this feature, the user will see a reminder on the page they're visiting that encourages the user to think about how accurate the content is. You may translate 'Accuracy' as 'Trustworthiness' or 'Reliability,' if those terms work better in your language. The 'Accuracy Check' is a noun; avoid translating this as an imperative command. Chrome does not verify accuracy by providing this feature; avoid any translation that implies Google or Chrome verification.">
+      <message name="IDS_ACCURACY_CHECK_VERBOSE_STATE" meaning="Text for feature that encourages the user to think about how accurate the content is" desc="This text appears in the address bar chip, which states the title of the feature shown in the page info bubble below (see screenshot). With this feature, the user will see a reminder on the page they're visiting that encourages the user to think about how accurate the content is. You may translate 'Accuracy' as 'Trustworthiness' or 'Reliability,' if those terms work better in your language. The 'Accuracy Check' is a noun; avoid translating this as an imperative command. Mises does not verify accuracy by providing this feature; avoid any translation that implies Mises or Mises verification.">
         Accuracy Check
       </message>
     </then>
     <else>
-      <message name="IDS_ACCURACY_CHECK_VERBOSE_STATE" meaning="Text for feature that encourages the user to think about how accurate the content is" desc="This text appears in the  address bar chip, which states the title of the feature shown in the page info bubble below (see screenshot). With this feature, the user will see a reminder on the page they're visiting that encourages the user to think about how accurate the content is. You may translate 'Accuracy' as 'Trustworthiness' or 'Reliability,' if those terms work better in your language. The 'Accuracy Check' is a noun; avoid translating this as an imperative command. Chrome does not verify accuracy by providing this feature; avoid any translation that implies Google or Chrome verification.">
+      <message name="IDS_ACCURACY_CHECK_VERBOSE_STATE" meaning="Text for feature that encourages the user to think about how accurate the content is" desc="This text appears in the  address bar chip, which states the title of the feature shown in the page info bubble below (see screenshot). With this feature, the user will see a reminder on the page they're visiting that encourages the user to think about how accurate the content is. You may translate 'Accuracy' as 'Trustworthiness' or 'Reliability,' if those terms work better in your language. The 'Accuracy Check' is a noun; avoid translating this as an imperative command. Mises does not verify accuracy by providing this feature; avoid any translation that implies Mises or Mises verification.">
         Accuracy check
       </message>
     </else>
@@ -190,13 +191,13 @@
     Resume your journey
   </message>
   <message name="IDS_OMNIBOX_ACTION_HISTORY_CLUSTERS_SEARCH_SUGGESTION_CONTENTS" desc="The button tooltip for the History Clusters omnibox action. Clicking this button takes users to a view of their browsing history related to the attached suggestion.">
-    Resume your journey to see relevant activity in your Chrome history
+    Resume your journey to see relevant activity in your Mises history
   </message>
   <message name="IDS_ACC_OMNIBOX_ACTION_HISTORY_CLUSTERS_SEARCH_SUFFIX" desc="Suffix for spoken suggestion description with action button to explain keystroke used to Search History Clusters.">
-    <ph name="HISTORY_CLUSTERS_SEARCH_FOCUSED_FRIENDLY_MATCH_TEXT">$1<ex>dog food</ex></ph>, press Tab, then Enter to resume your journey and see relevant activity in your Chrome history
+    <ph name="HISTORY_CLUSTERS_SEARCH_FOCUSED_FRIENDLY_MATCH_TEXT">$1<ex>dog food</ex></ph>, press Tab, then Enter to resume your journey and see relevant activity in your Mises history
   </message>
   <message name="IDS_ACC_OMNIBOX_ACTION_HISTORY_CLUSTERS_SEARCH" desc="Announcement when the Search History Clusters action button is focused.">
-    Resume your journey button, press Enter to resume your journey and see relevant activity in your Chrome history
+    Resume your journey button, press Enter to resume your journey and see relevant activity in your Mises history
   </message>
 
   <!-- Accessibility labels for autocomplete match types.
@@ -280,42 +281,42 @@
   </message>
   <!-- Accessibility labels for the omnibox popup header show/hide toggle button. -->
   <message name="IDS_ACC_HEADER_SHOW_SUGGESTIONS_BUTTON" desc="Announcement for the Show Suggestions button on section headers.">
-    Show the &quot;<ph name="SECTION">$1<ex>related to recent searches</ex></ph>&quot; section
+    Show the "<ph name="SECTION">$1<ex>related to recent searches</ex></ph>" section
   </message>
   <message name="IDS_ACC_HEADER_HIDE_SUGGESTIONS_BUTTON" desc="Announcement for the Hide Suggestions button on section headers.">
-    Hide the &quot;<ph name="SECTION">$1<ex>related to recent searches</ex></ph>&quot; section
+    Hide the "<ph name="SECTION">$1<ex>related to recent searches</ex></ph>" section
   </message>
   <!-- Accessibility announcements made when suggestion sections are shown or hidden. -->
   <message name="IDS_ACC_HEADER_SECTION_SHOWN" desc="Announcement that lets the user know the suggestions section has been Shown.">
-    &quot;<ph name="SECTION">$1<ex>Related to recent searches</ex></ph>&quot; section shown
+    "<ph name="SECTION">$1<ex>Related to recent searches</ex></ph>" section shown
   </message>
   <message name="IDS_ACC_HEADER_SECTION_HIDDEN" desc="Announcement that lets the user know the suggestions section has been Hidden.">
-    &quot;<ph name="SECTION">$1<ex>Related to recent searches</ex></ph>&quot; section hidden
+    "<ph name="SECTION">$1<ex>Related to recent searches</ex></ph>" section hidden
   </message>
 
   <!-- Site Search/Keyword mode Starter Pack strings. -->
-  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_BOOKMARKS_NAME" desc = "The name of the chrome bookmarks search engine as it appears on chrome://settings/searchEngines">
-    Chrome Bookmarks
+  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_BOOKMARKS_NAME" desc="The name of the chrome bookmarks search engine as it appears on chrome://settings/searchEngines">
+    Mises Bookmarks
   </message>
-  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_BOOKMARKS_KEYWORD" desc = "The keyword required to trigger bookmarks search in keyword mode. This will be prepended with an '@'.">
+  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_BOOKMARKS_KEYWORD" desc="The keyword required to trigger bookmarks search in keyword mode. This will be prepended with an '@'.">
     Bookmarks
   </message>
-  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_HISTORY_NAME" desc = "The name of the chrome history search engine as it appears on chrome://settings/searchEngines">
-    Chrome History
+  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_HISTORY_NAME" desc="The name of the chrome history search engine as it appears on chrome://settings/searchEngines">
+    Mises History
   </message>
-  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_HISTORY_KEYWORD" desc = "The keyword required to trigger history search in keyword mode. This will be prepended with an '@'.">
+  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_HISTORY_KEYWORD" desc="The keyword required to trigger history search in keyword mode. This will be prepended with an '@'.">
     History
   </message>
-  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_SETTINGS_NAME" desc = "The name of the chrome settings search engine as it appears on chrome://settings/searchEngines">
-    Chrome Settings
+  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_SETTINGS_NAME" desc="The name of the chrome settings search engine as it appears on chrome://settings/searchEngines">
+    Mises Settings
   </message>
-  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_SETTINGS_KEYWORD" desc = "The keyword required to trigger settings search in keyword mode. This will be prepended with an '@'.">
+  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_SETTINGS_KEYWORD" desc="The keyword required to trigger settings search in keyword mode. This will be prepended with an '@'.">
     Settings
   </message>
-  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_TABS_NAME" desc = "The name of the search engine to search through open Chrome Tabs as it appears on chrome://settings/searchEngines.">
-    Chrome Tabs
+  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_TABS_NAME" desc="The name of the search engine to search through open Mises Tabs as it appears on chrome://settings/searchEngines.">
+    Mises Tabs
   </message>
-  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_TABS_KEYWORD" desc = "The keyword required to trigger tab search in keyword mode. This will be prepended with an '@'.">
+  <message name="IDS_SEARCH_ENGINES_STARTER_PACK_TABS_KEYWORD" desc="The keyword required to trigger tab search in keyword mode. This will be prepended with an '@'.">
     Tabs
   </message>
 </grit-part>

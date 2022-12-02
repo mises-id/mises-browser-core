@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">ಅತಿಥಿ ವಿಂಡೋವನ್ನು ತೆರೆಯಿರಿ</translation>
 <translation id="4986483413015198747">ಅತಿಥಿ ವಿಂಡೋ ತೆರೆಯಿರಿ</translation>
 <translation id="8275068909952022340">ಇನ್ನಷ್ಟು…</translation>
-<translation id="1990886731975529483">Google Widevine ಸ್ಥಾಪಿಸಿ ಮತ್ತು ರನ್ ಮಾಡಿ</translation>
+<translation id="1990886731975529483">Brave Widevine ಸ್ಥಾಪಿಸಿ ಮತ್ತು ರನ್ ಮಾಡಿ</translation>
 <translation id="8926389886865778422">ಮತ್ತೆ ಕೇಳಬೇಡಿ</translation>
-<translation id="4900351245762303149">Google Widevine ಸ್ಥಾಪಿಸಿ</translation>
-<translation id="2313383941300459392">Google Widevine ಸಕ್ರಿಯಗೊಳಿಸಲು ಬ್ರೌಸರ್ ರಿಸ್ಟಾರ್ಟ್ ಮಾಡಿ</translation>
-<translation id="2200626478572277092">ವೆಬ್‌ಪುಟದಲ್ಲಿ ಮೀಡಿಯಾ ಪ್ಲೇ ಮಾಡುವುದಕ್ಕಾಗಿ ಕೆಲವೊಮ್ಮೆ Widevine ಅಗತ್ಯವಿರುತ್ತದೆ. ಇದು Google ಸರ್ವರ್‌ಗಳಿಂದ ಲೋಡ್ ಮಾಡಲಾದ Google ವಿಸ್ತರಣೆಯಾಗಿದ್ದು, ಅದನ್ನು Brave ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ಸ್ಥಾಪಿಸುವ ಮೂಲಕ, ನೀವು Google ನ ಸೇವಾ ನಿಯಮಗಳಿಗೆ ಒಪ್ಪುತ್ತೀರಿ.</translation>
+<translation id="4900351245762303149">Brave Widevine ಸ್ಥಾಪಿಸಿ</translation>
+<translation id="2313383941300459392">Brave Widevine ಸಕ್ರಿಯಗೊಳಿಸಲು ಬ್ರೌಸರ್ ರಿಸ್ಟಾರ್ಟ್ ಮಾಡಿ</translation>
+<translation id="2200626478572277092">ವೆಬ್‌ಪುಟದಲ್ಲಿ ಮೀಡಿಯಾ ಪ್ಲೇ ಮಾಡುವುದಕ್ಕಾಗಿ ಕೆಲವೊಮ್ಮೆ Widevine ಅಗತ್ಯವಿರುತ್ತದೆ. ಇದು Brave ಸರ್ವರ್‌ಗಳಿಂದ ಲೋಡ್ ಮಾಡಲಾದ Brave ವಿಸ್ತರಣೆಯಾಗಿದ್ದು, ಅದನ್ನು Brave ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ಸ್ಥಾಪಿಸುವ ಮೂಲಕ, ನೀವು Brave ನ ಸೇವಾ ನಿಯಮಗಳಿಗೆ ಒಪ್ಪುತ್ತೀರಿ.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>.
 ಅಥವಾ <ph name="SETTINGS_EXTENIONS_LINK"/> ನಲ್ಲಿ ನಂತರದಲ್ಲಿ ಬದಲಾಯಿಸಿ.</translation>
 <translation id="6229752134959014186">Widevine ಕುರಿತು ಹೆಚ್ಚು ತಿಳಿಯಿರಿ</translation>
@@ -318,7 +318,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮವನ್ನು ನಿರ್ಬಂಧಿಸುವಿಕೆ</translation>
-<translation id="7498695072878479744">Google ಲಾಗಿನ್ ಬಟನ್‌ಗಳನ್ನು ತೃತೀಯ ಪಕ್ಷದ ಸೈಟ್‌ಗಳಲ್ಲಿ ಅನುಮತಿಸಿ</translation>
+<translation id="7498695072878479744">Brave ಲಾಗಿನ್ ಬಟನ್‌ಗಳನ್ನು ತೃತೀಯ ಪಕ್ಷದ ಸೈಟ್‌ಗಳಲ್ಲಿ ಅನುಮತಿಸಿ</translation>
 <translation id="863171915776379000">ಫೇಸ್‌ಬುಕ್ ಲಾಗಿನ್‌ಗಳನ್ನು ಮತ್ತು ಎಂಬೆಡ್ ಮಾಡಿದ ಪೋಸ್ಟ್‌ಗಳನ್ಮು ಅನುಮತಿಸಿ</translation>
 <translation id="5165042248369837294">ಎಂಬೆಡ್ ಮಾಡಿದ ಟ್ವೀಟ್‌ಗಳನ್ನು ಟ್ವಿಟರ್‌ಗೆ ಅನುಮತಿಸಿ</translation>
 <translation id="958971637207126733">ಎಂಬೆಡ್ ಮಾಡಲಾದ ಫೋಸ್ಟ್‌ಗಳನ್ನು LinkedIn ನಲ್ಲಿ ಅನುಮತಿಸಿ</translation>
@@ -326,7 +326,7 @@
 <translation id="1822560017823072927">ಡೀಫಾಲ್ಟ್ ಸಾರ್ವಜನಿಕ ಮತ್ತು ಖಾಸಗಿ ಇಂಟರ್ಫೇಸ್‌ಗಳು</translation>
 <translation id="5825943197137337319">ಡೀಫಾಲ್ಟ್ ಸಾರ್ವಜನಿಕ ಇಂಟರ್ಫೇಸ್ ಮಾತ್ರ</translation>
 <translation id="1689062823386843231">ಪ್ರಾಕ್ಸಿಡ್-ಅಲ್ಲದ UDP ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
-<translation id="3540231253392253941">ಪುಶ್ ಸಂದೇಶ ಕಳುಹಿಸುವಿಕೆಗಾಗಿ Google ಸೇವೆಗಳನ್ನು ಬಳಸಿ</translation>
+<translation id="3540231253392253941">ಪುಶ್ ಸಂದೇಶ ಕಳುಹಿಸುವಿಕೆಗಾಗಿ Brave ಸೇವೆಗಳನ್ನು ಬಳಸಿ</translation>
 <translation id="933652931229970927">ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಡಯಾಗ್ನಾಸ್ಟಿಕ್ ವರದಿಗಳನ್ನು ಕಳುಹಿಸಿ</translation>
 <translation id="4846154056248462491">ತೊರೆಯುವಾಗ</translation>
 <translation id="2808630562319398131">Brave Rewards ಡೇಟಾ ಮರುಹೊಂದಿಸಿ...</translation>
@@ -400,7 +400,7 @@
 <translation id="919715748352669592">OpenSearch ನಿರ್ದಿಷ್ಟತೆಯನ್ನು ಅನುಸರಣೆ ಮಾಡುವ ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಇಂಡೆಕ್ಸ್ ಮಾಡುತ್ತದೆ.</translation>
 <translation id="842628013524824194">ಸಾಮಾನ್ಯ ವಿಂಡೋ - ವಿಳಾಸ ಪಟ್ಟಿಯಲ್ಲಿ ಬಳಸಲಾದ ಹುಡುಕಾಟ ಇಂಜಿನ್</translation>
 <translation id="5324939009884545145">ಖಾಸಗಿ ವಿಂಡೋ - ವಿಳಾಸ ಪಟ್ಟಿಯಲ್ಲಿ ಬಳಸಲಾದ ಹುಡುಕಾಟ ಇಂಜಿನ್</translation>
-<translation id="6864914031231797928">ವಿಸ್ತರಣೆಗಳಿಗಾಗಿ Google ಲಾಗಿನ್ ಅನುಮತಿಸಿ</translation>
+<translation id="6864914031231797928">ವಿಸ್ತರಣೆಗಳಿಗಾಗಿ Brave ಲಾಗಿನ್ ಅನುಮತಿಸಿ</translation>
 <translation id="6554397389149987360">ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಪರದೆ ಹಂಚಿಕೆ ಮತ್ತು ಇತರ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು Hangouts ಅಂಶವನ್ನು ಬಳಸುತ್ತದೆ.</translation>
 <translation id="7878791177459550035">ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಕಾಸ್ಟ್ ಫೀಚರ್ ಅನ್ನು ಮೀಡಿಯಾ ರೂಟರ್ ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.</translation>
 <translation id="5927916530277631319">ನಿಲ್ಲಿಸಲು ಸಾಧ್ಯವಾಗದ ಡೊಮೇನ್‍ಗಳನ್ನು ಪರಿಹರಿಸಲು ಇರುವ ವಿಧಾನಗಳು</translation>

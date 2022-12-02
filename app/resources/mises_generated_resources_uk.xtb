@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">Відкрити вікно в режимі гостя</translation>
 <translation id="4986483413015198747">Відкрити вікно гостя</translation>
 <translation id="8275068909952022340">Більше…</translation>
-<translation id="1990886731975529483">Установити та запустити Google Widevine</translation>
+<translation id="1990886731975529483">Установити та запустити Brave Widevine</translation>
 <translation id="8926389886865778422">Не запитувати знову</translation>
-<translation id="4900351245762303149">Установити Google Widevine</translation>
-<translation id="2313383941300459392">Перезапустіть браузер, щоб увімкнути Google Widevine</translation>
-<translation id="2200626478572277092">Додаток Widevine іноді потрібен для відтворення медіавмісту на вебсторінці. Це розширення Google, завантажене із серверів Google, які Brave не може перевірити. Установлюючи його, ви погоджуєтеся з умовами використання Google.</translation>
+<translation id="4900351245762303149">Установити Brave Widevine</translation>
+<translation id="2313383941300459392">Перезапустіть браузер, щоб увімкнути Brave Widevine</translation>
+<translation id="2200626478572277092">Додаток Widevine іноді потрібен для відтворення медіавмісту на вебсторінці. Це розширення Brave, завантажене із серверів Brave, які Brave не може перевірити. Установлюючи його, ви погоджуєтеся з умовами використання Brave.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>.
 Або змініть пізніше на вебсайті <ph name="SETTINGS_EXTENIONS_LINK"/>.</translation>
 <translation id="6229752134959014186">Дізнатися більше про Widevine</translation>
@@ -318,7 +318,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">Блокування в соціальних медіа</translation>
-<translation id="7498695072878479744">Дозволити кнопки входу Google на сайтах третіх сторін</translation>
+<translation id="7498695072878479744">Дозволити кнопки входу Brave на сайтах третіх сторін</translation>
 <translation id="863171915776379000">Дозвольте вхід через Facebook та вбудовані публікації</translation>
 <translation id="5165042248369837294">Дозволити вбудовані твіти Twitter</translation>
 <translation id="958971637207126733">Дозволити вбудовані пости LinkedIn</translation>
@@ -400,7 +400,7 @@
 <translation id="919715748352669592">Автоматична індексація вебсайтів, які відповідають специфікації OpenSearch.</translation>
 <translation id="842628013524824194">Нормальне вікно: пошукова система, встановлена в адресному рядку</translation>
 <translation id="5324939009884545145">Приватне вікно: пошукова система, встановлена в адресному рядку</translation>
-<translation id="6864914031231797928">Дозволити вхід через Google для розширень</translation>
+<translation id="6864914031231797928">Дозволити вхід через Brave для розширень</translation>
 <translation id="6554397389149987360">Використовує компоненти Hangouts, щоб увімкнути поширення екрану та інші функції у браузері.</translation>
 <translation id="7878791177459550035">Маршрутизатор медіавмісту дозволяє транслювати в браузері.</translation>
 <translation id="5927916530277631319">Метод вирішення Unstoppable Domains</translation>

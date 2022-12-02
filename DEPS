@@ -1,6 +1,8 @@
 use_relative_paths = True
 
 deps = {
+  "vendor/transifex": "https://github.com/transifex/transifex-python@103b6ac7ad937155f7f1497a68d5a05882664d58",
+  "vendor/lxml": "https://github.com/lxml/lxml@d01872ccdf7e1e5e825b6c6292b43e7d27ae5fc4",
   "vendor/requests": "https://github.com/kennethreitz/requests@e4d59bedfd3c7f4f254f4f5d036587bcd8152458",
   "vendor/boto": "https://github.com/boto/boto@f7574aa6cc2c819430c1f05e9a1a1a666ef8169b",
   "vendor/challenge_bypass_ristretto_ffi": "https://github.com/brave-intl/challenge-bypass-ristretto-ffi.git@419995e4a873c294f1eaefca276f8ad25328e89f",
@@ -19,11 +21,11 @@ vars = {
 }
 
 hooks = [
-  # {
-  #   'name': 'bootstrap',
-  #   'pattern': '.',
-  #   'action': ['python', 'script/bootstrap.py'],
-  # },
+  {
+    'name': 'bootstrap',
+    'pattern': '.',
+    'action': ['python', 'script/bootstrap.py'],
+  },
   {
     # Download hermetic xcode for goma
     'name': 'download_hermetic_xcode',
@@ -74,11 +76,11 @@ hooks = [
   #   'condition': 'not checkout_android and not checkout_ios',
   #   'action': ['vpython3', 'script/web_discovery_project.py', '--install'],
   # },
-  {
-    'name': 'generate_licenses',
-    'pattern': '.',
-    'action': ['vpython3', 'script/generate_licenses.py'],
-  },
+  # {
+  #   'name': 'generate_licenses',
+  #   'pattern': '.',
+  #   'action': ['vpython3', 'script/generate_licenses.py'],
+  # },
 ]
 
 include_rules = [

@@ -182,7 +182,7 @@ const l10nUtil = {
       l10nUtil.getMisesNonGeneratedPaths.paths = [
         misesSpecificGeneratedResourcesPath,
         misesResourcesComponentsStringsPath,
-        misesExtensionMessagesPath,
+        //misesExtensionMessagesPath,
         misesAndroidMisesStringsPath
       ]
     }

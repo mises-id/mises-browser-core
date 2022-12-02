@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!-- Bookmarks specific strings (included from generated_resources.grd). -->
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- Begin of Bookmarks Bar strings-->
   <if expr="not is_android">
@@ -79,11 +80,11 @@
           =1 {Open in &amp;new window}
           other {Open all ({COUNT}) in &amp;new window}}
     </message>
-    <message name="IDS_BOOKMARK_BAR_OPEN_ALL_COUNT_INCOGNITO" desc="Menu description for opening all urls in a bookmark folder in an Incognito window">
+    <message name="IDS_BOOKMARK_BAR_OPEN_ALL_COUNT_INCOGNITO" desc="Menu description for opening all urls in a bookmark folder in a Private window">
         {COUNT, plural,
-          =0 {Open all in &amp;Incognito window}
-          =1 {Open in &amp;Incognito window}
-          other {Open all ({COUNT}) in &amp;Incognito window}}
+          =0 {Open all in &amp;Private window}
+          =1 {Open in &amp;Private window}
+          other {Open all ({COUNT}) in &amp;Private window}}
     </message>
     <message name="IDS_BOOKMARK_BAR_OPEN_ALL_COUNT_NEW_TAB_GROUP" desc="Menu description for opening all urls in a bookmark folder in a new group">
         {COUNT, plural,
@@ -97,8 +98,8 @@
     <message name="IDS_BOOKMARK_BAR_OPEN_IN_NEW_WINDOW" desc="Menu description for loading bookmark in a new window">
       Open in &amp;new window
     </message>
-    <message name="IDS_BOOKMARK_BAR_OPEN_INCOGNITO" desc="Menu description for opening bookmark in Incognito window">
-      Open in &amp;Incognito window
+    <message name="IDS_BOOKMARK_BAR_OPEN_INCOGNITO" desc="Menu description for opening bookmark in Private window">
+      Open in &amp;Private window
     </message>
     <message name="IDS_BOOKMARK_BAR_EDIT" desc="Title of the bookmark context menu item that brings up the bookmark editor">
       &amp;Edit...
@@ -117,7 +118,7 @@
     </message>
     <if expr="not is_android">
       <message name="IDS_SHOW_BOOKMARK_BAR" desc="The toggle to show the bookmark bar">
-        &amp;Show bookmarks bar
+        &amp;Show bookmarks
       </message>
     </if>
   </if>
@@ -137,11 +138,11 @@
           =1 {Open in &amp;New Window}
           other {Open All ({COUNT}) in &amp;New Window}}
     </message>
-    <message name="IDS_BOOKMARK_BAR_OPEN_ALL_COUNT_INCOGNITO" desc="In Title Case: Menu description for opening all urls in a bookmark folder in an Incognito window">
+    <message name="IDS_BOOKMARK_BAR_OPEN_ALL_COUNT_INCOGNITO" desc="In Title Case: Menu description for opening all urls in a bookmark folder in a Private window">
         {COUNT, plural,
-          =0 {Open All in &amp;Incognito Window}
-          =1 {Open in &amp;Incognito Window}
-          other {Open All ({COUNT}) in &amp;Incognito Window}}
+          =0 {Open All in &amp;Private Window}
+          =1 {Open in &amp;Private Window}
+          other {Open All ({COUNT}) in &amp;Private Window}}
     </message>
     <message name="IDS_BOOKMARK_BAR_OPEN_ALL_COUNT_NEW_TAB_GROUP" desc="In Title Case: Menu title for opening all urls in a bookmark folder in a new group">
         {COUNT, plural,
@@ -155,8 +156,8 @@
     <message name="IDS_BOOKMARK_BAR_OPEN_IN_NEW_WINDOW" desc="In Title Case: Menu description for loading bookmark in a new window">
       Open in &amp;New Window
     </message>
-    <message name="IDS_BOOKMARK_BAR_OPEN_INCOGNITO" desc="In Title Case: Menu description for opening bookmark in Incognito window">
-      Open in &amp;Incognito Window
+    <message name="IDS_BOOKMARK_BAR_OPEN_INCOGNITO" desc="In Title Case: Menu description for opening bookmark in Private window">
+      Open in &amp;Private Window
     </message>
     <message name="IDS_BOOKMARK_BAR_EDIT" desc="In Title Case: Title of the bookmark context menu item that brings up the bookmark editor">
       &amp;Edit...
@@ -175,7 +176,7 @@
     </message>
     <if expr="not is_android">
       <message name="IDS_SHOW_BOOKMARK_BAR" desc="In Title Case: The toggle to show the bookmark bar">
-        &amp;Show Bookmarks Bar
+        &amp;Show Bookmarks
       </message>
     </if>
   </if>
@@ -229,16 +230,16 @@
 
   <!-- Begin of Desktop to iOS Promo strings. -->
   <if expr="is_win">
-    <message name="IDS_BOOKMARK_BUBBLE_DESKTOP_TO_IOS_PROMO_TITLE" desc="Title for Chrome iOS promotion appearing in the bookmark bubble after a bookmark is saved.">
+    <message name="IDS_BOOKMARK_BUBBLE_DESKTOP_TO_IOS_PROMO_TITLE" desc="Title for Mises iOS promotion appearing in the bookmark bubble after a bookmark is saved.">
       Sync this bookmark to your iPhone
     </message>
-    <message name="IDS_BOOKMARK_BUBBLE_DESKTOP_TO_IOS_PROMO_TITLE_V2" desc="Title for Chrome iOS promotion appearing in the bookmark bubble after a bookmark is saved.">
+    <message name="IDS_BOOKMARK_BUBBLE_DESKTOP_TO_IOS_PROMO_TITLE_V2" desc="Title for Mises iOS promotion appearing in the bookmark bubble after a bookmark is saved.">
       Get this bookmark on your iPhone
     </message>
-    <message name="IDS_BOOKMARK_BUBBLE_DESKTOP_TO_IOS_PROMO_TITLE_V3" desc="Title for Chrome iOS promotion appearing in the bookmark bubble after a bookmark is saved.">
+    <message name="IDS_BOOKMARK_BUBBLE_DESKTOP_TO_IOS_PROMO_TITLE_V3" desc="Title for Mises iOS promotion appearing in the bookmark bubble after a bookmark is saved.">
       Share this bookmark with your iPhone
     </message>
-    <message name="IDS_BOOKMARK_FOOTNOTE_DESKTOP_TO_IOS_PROMO_MESSAGE" desc="Text of the Chrome iOS promotion displayed at the bottom of the bookmark bubble.">
+    <message name="IDS_BOOKMARK_FOOTNOTE_DESKTOP_TO_IOS_PROMO_MESSAGE" desc="Text of the Mises iOS promotion displayed at the bottom of the bookmark bubble.">
       To get your bookmarks on your mobile device, <ph name="GET_IOS_APP_LINK">$1<ex>get the application on your iPhone</ex></ph>.
     </message>
   </if>
@@ -412,11 +413,11 @@
   <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_ALL_NEW_WINDOW_WITH_COUNT" desc="Menu title for opening all urls in a bookmark folder in a new window, which includes a count of urls">
     Open all (<ph name="URL_COUNT">$1<ex>5</ex></ph>) in new window
   </message>
-  <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_ALL_INCOGNITO" desc="Menu description for opening all urls in a bookmark folder in an Incognito window">
-    Open all in Incognito window
+  <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_ALL_INCOGNITO" desc="Menu description for opening all urls in a bookmark folder in a Private window">
+    Open all in Private window
   </message>
-  <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_ALL_INCOGNITO_WITH_COUNT" desc="Menu description for opening all urls in a bookmark folder in an Incognito window, which includes a count of urls">
-    Open all (<ph name="URL_COUNT">$1<ex>5</ex></ph>) in Incognito window
+  <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_ALL_INCOGNITO_WITH_COUNT" desc="Menu description for opening all urls in a bookmark folder in a Private window, which includes a count of urls">
+    Open all (<ph name="URL_COUNT">$1<ex>5</ex></ph>) in Private window
   </message>
   <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_IN_NEW_TAB" desc="Menu description for opening a bookmark in a new tab">
     Open in new tab
@@ -424,8 +425,8 @@
   <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_IN_NEW_WINDOW" desc="Menu description for opening a bookmark in a new window">
     Open in new window
   </message>
-  <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_INCOGNITO" desc="Menu description for opening a bookmark in Incognito window">
-    Open in Incognito window
+  <message name="IDS_BOOKMARK_MANAGER_MENU_OPEN_INCOGNITO" desc="Menu description for opening a bookmark in Private window">
+    Open in Private window
   </message>
   <message name="IDS_BOOKMARK_MANAGER_MENU_RENAME" desc="Title of the bookmark list dropdown menu item that renames folders.">
     Rename
@@ -515,13 +516,13 @@
 
   <!-- Begin of screen reader message strings. -->
   <message name="IDS_BOOKMARK_SCREEN_READER_CREATED" desc="Screen reader message that is read when a bookmark is created.">
-    '<ph name="BOOKMARK_TITLE">$1<ex>Google</ex></ph>' created.
+    '<ph name="BOOKMARK_TITLE">$1<ex>Mises</ex></ph>' created.
   </message>
   <message name="IDS_BOOKMARK_SCREEN_READER_REORDERED" desc="Screen reader message that is read when a bookmark is reordered.">
-    '<ph name="BOOKMARK_TITLE">$1<ex>Google</ex></ph>' moved.
+    '<ph name="BOOKMARK_TITLE">$1<ex>Mises</ex></ph>' moved.
   </message>
   <message name="IDS_BOOKMARK_SCREEN_READER_MOVED" desc="Screen reader message that is read when a bookmark is moved into a different folder.">
-    '<ph name="BOOKMARK_TITLE">$1<ex>Google</ex></ph>' moved into '<ph name="NEW_FOLDER_TITLE">$2<ex>Search engines</ex></ph>'.
+    '<ph name="BOOKMARK_TITLE">$1<ex>Mises</ex></ph>' moved into '<ph name="NEW_FOLDER_TITLE">$2<ex>Search engines</ex></ph>'.
   </message>
   <!-- End of screen reader message strings. -->
 

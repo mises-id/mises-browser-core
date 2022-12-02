@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<grit latest_public_release="0" current_release="1"
-      output_all_resource_defines="false" source_lang_id="en" enc_check="möl">
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
+<grit latest_public_release="0" current_release="1" output_all_resource_defines="false" source_lang_id="en" enc_check="möl">
   <outputs>
     <output filename="grit/components_strings.h" type="rc_header">
-      <emit emit_type='prepend'></emit>
+      <emit emit_type="prepend" />
     </output>
     <output filename="components_strings_af.pak" type="data_package" lang="af" />
     <output filename="components_strings_am.pak" type="data_package" lang="am" />
@@ -495,7 +494,7 @@
         Address and search bar
       </message>
       <message name="IDS_ACCNAME_PARTICLE_DISC" desc="The accessible name for the Account Consistency Disc on New Tab Page">
-        Google Account
+        Mises sync chain
       </message>
       <message name="IDS_ACCNAME_TAB_LIST" desc="The accessible name for the tab strip.">
         Tab list

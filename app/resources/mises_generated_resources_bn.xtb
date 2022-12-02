@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">গেস্ট উইন্ডো খুলুন</translation>
 <translation id="4986483413015198747">অতিথি উইন্ডো খুলুন</translation>
 <translation id="8275068909952022340">অনেক…</translation>
-<translation id="1990886731975529483">Google Widevine ইনস্টল করুন এবং চালান</translation>
+<translation id="1990886731975529483">Brave Widevine ইনস্টল করুন এবং চালান</translation>
 <translation id="8926389886865778422">আর জিজ্ঞাসা করবেন না</translation>
-<translation id="4900351245762303149">Google Widevine ইনস্টল করুন</translation>
-<translation id="2313383941300459392">Google Widevine সক্রিয় করতে ব্রাউজার রিস্টার্ট করুন</translation>
-<translation id="2200626478572277092">একটি ওয়েবপেজে মিডিয়া প্লে করতে কখনও কখনও Widevine প্রয়োজন হয়। এটি Google সার্ভারগুলো থেকে লোড হওয়া Google এক্সটেনশন, যা Brave খুঁটিয়ে দেখতে পারে না। ইনস্টল করে, আপনি Google এর ব্যবহারের শর্তাবলীতে সম্মত হবেন।</translation>
+<translation id="4900351245762303149">Brave Widevine ইনস্টল করুন</translation>
+<translation id="2313383941300459392">Brave Widevine সক্রিয় করতে ব্রাউজার রিস্টার্ট করুন</translation>
+<translation id="2200626478572277092">একটি ওয়েবপেজে মিডিয়া প্লে করতে কখনও কখনও Widevine প্রয়োজন হয়। এটি Brave সার্ভারগুলো থেকে লোড হওয়া Brave এক্সটেনশন, যা Brave খুঁটিয়ে দেখতে পারে না। ইনস্টল করে, আপনি Brave এর ব্যবহারের শর্তাবলীতে সম্মত হবেন।</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>।
 অথবা <ph name="SETTINGS_EXTENIONS_LINK"/>-এ পরে পরিবর্তন করুন।</translation>
 <translation id="6229752134959014186">Widevine সম্পর্কে আরও জানুন</translation>
@@ -326,7 +326,7 @@
 <translation id="1822560017823072927">ডিফল্ট সর্বজনীন এবং ব্যক্তিগত ইন্টারফেসগুলি</translation>
 <translation id="5825943197137337319">শুধু ডিফল্ট সর্বজনীন ইন্টারফেস</translation>
 <translation id="1689062823386843231">নন-প্রক্সি UDP অক্ষম করুন</translation>
-<translation id="3540231253392253941">পুশ মেসেজিংয়ের জন্য Google পরিষেবাগুলি ব্যবহার করুন</translation>
+<translation id="3540231253392253941">পুশ মেসেজিংয়ের জন্য Brave পরিষেবাগুলি ব্যবহার করুন</translation>
 <translation id="933652931229970927">স্বয়ংক্রিয়ভাবে ক্র্যাশ রিপোর্টগুলো পাঠায়</translation>
 <translation id="4846154056248462491">প্রস্থানের সময়</translation>
 <translation id="2808630562319398131">Brave Rewards এর ডেটা রিসেট করুন...</translation>
@@ -400,7 +400,7 @@
 <translation id="919715748352669592">OpenSearch স্পেসিফিকেশন অনুসরণ করে এমন ওয়েবসাইটগুলিকে স্বয়ংক্রিয়ভাবে ইনডেক্স করে।</translation>
 <translation id="842628013524824194">সাধারণ উইন্ডো - ঠিকানা বারে সার্চ ইঞ্জিন ব্যবহার করা হয়েছে</translation>
 <translation id="5324939009884545145">ব্যক্তিগত উইন্ডো - ঠিকানা বারে ব্যবহৃত অনুসন্ধান ইঞ্জিন</translation>
-<translation id="6864914031231797928">এক্সটেনশনগুলির জন্য Google লগইন এর অনুমতি দিন</translation>
+<translation id="6864914031231797928">এক্সটেনশনগুলির জন্য Brave লগইন এর অনুমতি দিন</translation>
 <translation id="6554397389149987360">ব্রাউজারে স্ক্রিন শেয়ারিং এবং অন্যান্য বৈশিষ্ট্য সক্ষম করতে Hangouts উপাদানগুলি ব্যবহার করে।</translation>
 <translation id="7878791177459550035">মিডিয়া রাউটার ব্রাউজারটিতে কাস্টের বৈশিষ্ট্য সক্রিয় করেছে।</translation>
 <translation id="5927916530277631319">অপ্রতিরোধ্য ডোমেইনগুলোর সমস্যা সমাধানের উপায়</translation>

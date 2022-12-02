@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <message name="IDS_PRIVACY_SANDBOX_FLOC_INVALID" desc="A message shown in place of the user's FLoC ID if the ID is invalid and will not be recomputed">
     None
   </message>
   <message name="IDS_PRIVACY_SANDBOX_FLOC_DESCRIPTION" desc="Description of how FLoC works displayed to the user.">
     {NUM_DAYS, plural,
-     =0 {When this control is on and the status is active, Chrome determines which large group of people, or "cohort," your recent browsing activity is most similar to. Advertisers can select ads for the group and your browsing activity is kept private on your device. Your group is updated every day.}
-     =1 {When this control is on and the status is active, Chrome determines which large group of people, or "cohort," your recent browsing activity is most similar to. Advertisers can select ads for the group and your browsing activity is kept private on your device. Your group is updated every day.}
-     other {When this control is on and the status is active, Chrome determines which large group of people, or "cohort," your recent browsing activity is most similar to. Advertisers can select ads for the group and your browsing activity is kept private on your device. Your group is updated every {NUM_DAYS} days.}}
+     =0 {When this control is on and the status is active, Mises determines which large group of profiles, or "cohort," your recent browsing activity is most similar to. Advertisers can select ads for the group and your browsing activity is kept private on your device. Your group is updated every day.}
+     =1 {When this control is on and the status is active, Mises determines which large group of profiles, or "cohort," your recent browsing activity is most similar to. Advertisers can select ads for the group and your browsing activity is kept private on your device. Your group is updated every day.}
+     other {When this control is on and the status is active, Mises determines which large group of profiles, or "cohort," your recent browsing activity is most similar to. Advertisers can select ads for the group and your browsing activity is kept private on your device. Your group is updated every {NUM_DAYS} days.}}
   </message>
   <message name="IDS_PRIVACY_SANDBOX_FLOC_TIME_TO_NEXT_COMPUTE" desc="Description of how long until the user's FLoC ID is recomputed, in days.">
     {NUM_DAYS, plural,
@@ -96,10 +97,10 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_19" desc="Taxonomy Member. Meaning: [often called &quot;family films&quot; or &quot;family-oriented&quot; films, this is the genre of cinema oriented toward children, teens and families] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6543693795090723901">
     Family movies
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_20" desc="Taxonomy Member. Meaning: [Horror films often deal with viewers&#x27; nightmares, fears, revulsions and terror of the unknown. Prevalent elements include ghosts, extraterrestrials, vampires, werewolves, demons, gore, torture, vicious animals, evil witches, monsters, zombies, cannibals, psychopaths, and serial killers (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3683253599582226273">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_20" desc="Taxonomy Member. Meaning: [Horror films often deal with viewers' nightmares, fears, revulsions and terror of the unknown. Prevalent elements include ghosts, extraterrestrials, vampires, werewolves, demons, gore, torture, vicious animals, evil witches, monsters, zombies, cannibals, psychopaths, and serial killers (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3683253599582226273">
     Horror movies
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_21" desc="Taxonomy Member. Meaning: [Films with a romantic theme, or which emphasize the personal relationships between the film&#x27;s protagonists; includes romantic comedies (&quot;rom-coms&quot;)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6642844646231849461">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_21" desc="Taxonomy Member. Meaning: [Films with a romantic theme, or which emphasize the personal relationships between the film's protagonists; includes romantic comedies (&quot;rom-coms&quot;)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6642844646231849461">
     Romance movies
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_22" desc="Taxonomy Member. Meaning: [Films with plots that involve crime or suspense; includes mystery films, suspense films, crime films, thrillers, films noir, and gangster films.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1028517354047369491">
@@ -141,7 +142,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_34" desc="Taxonomy Member. Meaning: [Classic Rock and Oldies feature a large playlist of songs ranging from the 1960s, 1970s, 1980s and early 1990s; Oldies has some overlap with the classic rock format, which concentrates on the rock music of the late-1960s and 1970s and sometimes plays newer material made in the same style as the older songs. Traditionally, classic rock focuses on the heavier rock music of the era while oldies focuses on the lighter pop music (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7984451814414788618">
     Classic rock &amp; oldies
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_35" desc="Taxonomy Member. Meaning: [Hard rock is a sub-genre of rock music which is considerably harder than conventional rock music, but not as extreme as heavy metal; it includes examples like Kiss, Def Leppard, Led Zeppelin. Progressive rock focuses on technical musicianship in a rock context, and pushes rock&#x27;s technical and compositional boundaries by going beyond the standard verse-chorus-based song structures; the term was applied to the music of bands such as Pink Floyd, King Crimson, Yes, Genesis, Jethro Tull, Soft Machine, and Emerson, Lake &amp; Palmer, and reached its peak of popularity in the mid 1970s (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6335121931020200010">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_35" desc="Taxonomy Member. Meaning: [Hard rock is a sub-genre of rock music which is considerably harder than conventional rock music, but not as extreme as heavy metal; it includes examples like Kiss, Def Leppard, Led Zeppelin. Progressive rock focuses on technical musicianship in a rock context, and pushes rock's technical and compositional boundaries by going beyond the standard verse-chorus-based song structures; the term was applied to the music of bands such as Pink Floyd, King Crimson, Yes, Genesis, Jethro Tull, Soft Machine, and Emerson, Lake &amp; Palmer, and reached its peak of popularity in the mid 1970s (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6335121931020200010">
     Hard rock &amp; progressive
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_36" desc="Taxonomy Member. Meaning: [A sub-genre of rock music that emerged in the 1980s and became widely popular in the 1990s, alternative rock consists of various subgenres that have emerged from the independent music scene since the 1980s, such as grunge, Britpop, gothic rock, and indie pop; featuring artists often associated with independent record labels. (Source: Wikipedia). Includes artists such as Radiohead, Nirvana, The Smiths.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5538794458052201021">
@@ -153,7 +154,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_38" desc="Taxonomy Member. Meaning: [film, television or video game music and themes; film, tv, and video game music composers] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1271305976669033594">
     Soundtracks
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_39" desc="Taxonomy Member. Meaning: [Radio programs in which people talk about politics, sports, current affairs, etc., and listeners can make phone calls to give their opinions; talk radio shows, networks and personalities.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2579922399234486228">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_39" desc="Taxonomy Member. Meaning: [Radio programs in which profiles talk about politics, sports, current affairs, etc., and listeners can make phone calls to give their opinions; talk radio shows, networks and personalities.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2579922399234486228">
     Talk radio
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_40" desc="Taxonomy Member. Meaning: [Regional and ethnic music of various genres, specifically non-Western popular and traditional music; also, a catch-all marketing term for popularized folk traditions and ethnic music, or pop from outside of the Anglo traditions of the United States, Canada, Australia, New Zealand and the United Kingdom; the world music section in a record store might include albums of Hawaiian slack-key guitar, Cajun zydeco, Dominican merengue and Algerian ra?, among others (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3402857732233686445">
@@ -162,7 +163,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_41" desc="Taxonomy Member. Meaning: [The music of the Caribbean; some of the styles to gain wide popularity outside of the Caribbean include reggae, zouk, calypso, and punta; Reggae more properly denotes a particular music style that originated following on the development of ska and rocksteady (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2346297341997046685">
     Reggae &amp; caribbean music
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_42" desc="Taxonomy Member. Meaning: [online image-based content; online galleries of images and photos with minimal text; collections of images or photos of famous people, places and events, or items of interest; typically, static hosted image content, not necessarily user-uploaded or shared content] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6886302747700347831">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_42" desc="Taxonomy Member. Meaning: [online image-based content; online galleries of images and photos with minimal text; collections of images or photos of famous profiles, places and events, or items of interest; typically, static hosted image content, not necessarily user-uploaded or shared content] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6886302747700347831">
     Online image galleries
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_43" desc="Taxonomy Member. Meaning: [online digital video content] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5096385157103445048">
@@ -171,7 +172,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_44" desc="Taxonomy Member. Meaning: [an art form in which singers and musicians perform a dramatic work (called an opera) which combines a text (called a libretto) and a musical score (Source: Wikipedia); opera works, composers, performances, singers and performers] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1385754809560116050">
     Opera
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_45" desc="Taxonomy Member. Meaning: [A television program is a segment of content intended for broadcast on over-the-air, cable television, or internet television; it doesn&#x27;t include commercials, trailers, or any other segments of content not serving as attraction for TV viewership (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8250092644935921963">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_45" desc="Taxonomy Member. Meaning: [A television program is a segment of content intended for broadcast on over-the-air, cable television, or internet television; it doesn't include commercials, trailers, or any other segments of content not serving as attraction for TV viewership (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8250092644935921963">
     TV shows &amp; programs
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_46" desc="Taxonomy Member. Meaning: [television programs with a focus on humor; includes sitcoms, sketch comedy shows, and animated series with a particular emphasis on jokes] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5813986711525484638">
@@ -189,7 +190,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_50" desc="Taxonomy Member. Meaning: [family-oriented television shows that are made for, and whose primary audiences are, parents, teens and children] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/544990757699326442">
     TV familly-oriented shows
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_51" desc="Taxonomy Member. Meaning: [a genre of (generally episodic) television programming that presents purportedly unscripted dramatic or humorous situations, documents actual events, and usually features ordinary people instead of professional actors (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2228280087691900252">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_51" desc="Taxonomy Member. Meaning: [a genre of (generally episodic) television programming that presents purportedly unscripted dramatic or humorous situations, documents actual events, and usually features ordinary profiles instead of professional actors (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2228280087691900252">
     TV reality shows
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_52" desc="Taxonomy Member. Meaning: [TV sci-fi shows featuring futuristic elements such as spacecraft, robots, cyborgs, interstellar space travel or other technologies; fantasy shows featuring magic, supernatural events, mythology, folklore, or exotic fantasy worlds (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1831820498314087291">
@@ -264,7 +265,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_75" desc="Taxonomy Member. Meaning: [Cars with a body style variant of a sedan/saloon with its roof extended rearward over a shared passenger/cargo volume with access at the back via a third or fifth door (the liftgate or tailgate), instead of a trunk lid (Source: Wikipedia). Longer than hatchbacks (4 pillars instead of 3), examples include the Volkswagen Golf SportWagen, Toyota Prius V, Mazda6 Estate, and Volvo V60.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4970210882918683612">
     Station wagons
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_76" desc="Taxonomy Member. Meaning: [Sport utility vehicles (SUVs) are vehicles built on a light-truck chassis that feature large passenger, cargo, and towing capacities, high ground clearance, and an upright, boxy design; often referred to as an \&#x27;off-roader\&#x27; in Europe. Examples include the Chevrolet Tahoe, Ford Expedition, Toyota 4Runner, and Mercedes G-Class.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2340701835461601376">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_76" desc="Taxonomy Member. Meaning: [Sport utility vehicles (SUVs) are vehicles built on a light-truck chassis that feature large passenger, cargo, and towing capacities, high ground clearance, and an upright, boxy design; often referred to as an \'off-roader\' in Europe. Examples include the Chevrolet Tahoe, Ford Expedition, Toyota 4Runner, and Mercedes G-Class.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2340701835461601376">
     SUVs
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_77" desc="Taxonomy Member. Meaning: [Vehicles built on a car platform that combine features from sport utility vehicles (SUVs) and hatchbacks or station wagons. Built on a unibody chassis rather than the truck-based body-on-frame platform of standard SUVs, crossovers feature car-like fuel economy and handling, and SUV-like cargo room, ground clearance, and towing capacity. Examples included the Toyota RAV4, Honda Pilot, Ford Escape, Audi Q7, and Mercedes GL.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7913753013863451951">
@@ -291,7 +292,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_84" desc="Taxonomy Member. Meaning: [pre-owned vehicle listings, automotive classifieds and used vehicle dealers] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6039885784743740565">
     Used vehicles
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_85" desc="Taxonomy Member. Meaning: [vehicles shows, expos, and conferences for manufacturers and other people in the industry, the specialized press, and/or enthusiasts] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7339196590922475651">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_85" desc="Taxonomy Member. Meaning: [vehicles shows, expos, and conferences for manufacturers and other profiles in the industry, the specialized press, and/or enthusiasts] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7339196590922475651">
     Vehicle shows
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_86" desc="Taxonomy Member. Meaning: [beauty, style, fashion and fitness; self-care, hygiene, body-image and wellness] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4884736190847523854">
@@ -340,7 +341,7 @@
     Books &amp; literature
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_101" desc="Taxonomy Member. Meaning: [Books &amp; literature written for children.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3549709581836871503">
-    Children&#x27;s literature
+    Children's literature
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_102" desc="Taxonomy Member. Meaning: [poetry, either or an amateur or professional nature; poetic works, discussion of these] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8485083971562288882">
     Poetry
@@ -372,7 +373,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_111" desc="Taxonomy Member. Meaning: [Flexible work arrangements empower an employee to choose what time they begin to work, where to work, and when they will stop work. The idea is to help manage work-life balance and benefits of FWA can include reduced employee stress and increased overall job satisfaction. (Source:Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4175404957300857059">
     Flexible work arrangements
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_112" desc="Taxonomy Member. Meaning: [The &quot;people&quot; aspects of running a business; the professional activity of hiring and developing an organization&#x27;s staff, as well as the department of that organization that deals with human resources management (HRM).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4385620857212940765">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_112" desc="Taxonomy Member. Meaning: [The &quot;profiles&quot; aspects of running a business; the professional activity of hiring and developing an organization's staff, as well as the department of that organization that deals with human resources management (HRM).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4385620857212940765">
     Human resources
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_113" desc="Taxonomy Member. Meaning: [lending funds to corporate bodies, local authorities and governments; commercial lenders offer loans backed by hard collateral; in most cases this is real estate, but it can also include factoring and other sources of collateral (source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5014141623827278146">
@@ -411,7 +412,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_124" desc="Taxonomy Member. Meaning: [industries and establishments that focus primarily on providing products and services to retailers; the B2B aspect of retailing and merchandising; not meant for online shops, but rather associations and services servicing the retail industry] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7797616431239921382">
     Retail trade
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_125" desc="Taxonomy Member. Meaning: [private equity capital typically provided by professional, outside investors to new, high-potential-growth companies (startups) in exchange for equity, with an eye to profit from the company&#x27;s growth] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7488525250137982815">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_125" desc="Taxonomy Member. Meaning: [private equity capital typically provided by professional, outside investors to new, high-potential-growth companies (startups) in exchange for equity, with an eye to profit from the company's growth] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7488525250137982815">
     Venture capital
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_126" desc="Taxonomy Member. Meaning: [Umbrella category that encompasses computing hardware and software, consumer and non-consumer electronics, computing for business or personal use.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8375584628751083797">
@@ -420,10 +421,10 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_127" desc="Taxonomy Member. Meaning: [software or tools to fight spyware, adware, trojan horses, viruses, worms, etc] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3628161500907690952">
     Antivirus &amp; malware
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_128" desc="Taxonomy Member. Meaning: [computer devices that are not part of the essential computer (the processor, memory, and data paths) but are situated relatively close by; typically, input and output devices to a host computer, expanding the host&#x27;s capabilities, but not forming part of the core computer architecture (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1309547678103520411">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_128" desc="Taxonomy Member. Meaning: [computer devices that are not part of the essential computer (the processor, memory, and data paths) but are situated relatively close by; typically, input and output devices to a host computer, expanding the host's capabilities, but not forming part of the core computer architecture (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1309547678103520411">
     Computer peripherals
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_129" desc="Taxonomy Member. Meaning: [electronic equipment intended for use by everyday people, not including computers] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3831373972074857037">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_129" desc="Taxonomy Member. Meaning: [electronic equipment intended for use by everyday profiles, not including computers] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3831373972074857037">
     Consumer electronics
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_130" desc="Taxonomy Member. Meaning: [cameras and camcorders, including retailers, related information, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4178771562445010882">
@@ -471,7 +472,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_144" desc="Taxonomy Member. Meaning: [software for creating or manipulating visual images, graphics and/or animations; popular examples include CorelDraw,  SketchBook, Adobe Illustrator, Inkscape, and Autodesk Maya] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2050639293586889823">
     Graphics &amp; animation software
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_145" desc="Taxonomy Member. Meaning: [An operating system (OS) is software, consisting of programs and data, that runs on computers to manage the computer&#x27;s hardware and provide common services for efficient execution of various application software (Source: WIkipedia). Includes content related to various operating systems, various OS architectures and subcomponents, process management, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5212139084339403436">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_145" desc="Taxonomy Member. Meaning: [An operating system (OS) is software, consisting of programs and data, that runs on computers to manage the computer's hardware and provide common services for efficient execution of various application software (Source: WIkipedia). Includes content related to various operating systems, various OS architectures and subcomponents, process management, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5212139084339403436">
     Operating systems
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_146" desc="Taxonomy Member. Meaning: [software used to manage or organize photo collections; software used to edit or retouch digital photos; popular examples include iPhoto, Adobe Photoshop, and Corel PaintShop Pro; includes related utilities and plug-ins] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/89992876854779967">
@@ -480,7 +481,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_147" desc="Taxonomy Member. Meaning: [software for use in video production, recording, editing, and playback; also includes video player software, digital video workstation software; examples include Windows Movie Maker, iMovie, and Adobe After Effects] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8159620650642307448">
     Video software
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_148" desc="Taxonomy Member. Meaning: [Applications designed for browsing the web/internet. Web browsers enable users to access, navigate and interact with text, images, video and other media and information found on a web page located on the internet. Popular examples include Google Chrome, Internet Explorer, and Mozilla Firefox.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5184464415905481973">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_148" desc="Taxonomy Member. Meaning: [Applications designed for browsing the web/internet. Web browsers enable users to access, navigate and interact with text, images, video and other media and information found on a web page located on the internet. Popular examples include Mises, Internet Explorer, and Mozilla Firefox.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5184464415905481973">
     Web browsers
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_149" desc="Taxonomy Member. Meaning: [Umbrella category that encompasses consumer and business financial services, such as banking, loans, credit, investing, insurance, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2844460539416377578">
@@ -489,7 +490,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_150" desc="Taxonomy Member. Meaning: [services that combine various kinds of bookkeeping and accounting activities; products and services aiming at tracking business income and expenses and answer specific questions about the financial and tax status of an individual or business] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/956251474921720097">
     Accounting &amp; auditing
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_151" desc="Taxonomy Member. Meaning: [services that provide tax preparation or prepare taxes for people; includes advice and tips for both tax preparation.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4760464649248515637">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_151" desc="Taxonomy Member. Meaning: [services that provide tax preparation or prepare taxes for profiles; includes advice and tips for both tax preparation.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4760464649248515637">
     Tax preparation &amp; planning
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_152" desc="Taxonomy Member. Meaning: [credit and debit card companies, offers and reviews] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3200267103650246507">
@@ -522,10 +523,10 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_161" desc="Taxonomy Member. Meaning: [the type of property insurance that covers private homes; fire insurance, burglary insurance, earthquake insurance, flood insurance, acts of god insurance, tornado insurance, weather-related insurance, hurricane insurance, breaking and entry insurance, b &amp; e insurance, property insurance, renters insurance] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/9147523895969579006">
     Home insurance
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_162" desc="Taxonomy Member. Meaning: [a contract between an insurance policy holder and an insurer, where the insurer promises to pay a designated beneficiary a sum of money (the &quot;benefits&quot;) upon the death of the insured person (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8531475784994978055">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_162" desc="Taxonomy Member. Meaning: [a contract between an insurance policy holder and an insurer, where the insurer promises to pay a designated beneficiary a sum of money (the &quot;benefits&quot;) upon the death of the insured profile (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8531475784994978055">
     Life insurance
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_163" desc="Taxonomy Member. Meaning: [insurance that is intended to cover medical expenses, financial default of travel suppliers, and other losses incurred while traveling, either within one&#x27;s own country, or internationally  (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/637641992572614367">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_163" desc="Taxonomy Member. Meaning: [insurance that is intended to cover medical expenses, financial default of travel suppliers, and other losses incurred while traveling, either within one's own country, or internationally  (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/637641992572614367">
     Travel insurance
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_164" desc="Taxonomy Member. Meaning: [products, information and services centered around securities (like stocks, bonds, or mutual funds), commodities, derivative, or real-estate trusts] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8494705151771539693">
@@ -591,7 +592,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_184" desc="Taxonomy Member. Meaning: [Games that emphasize physical challenges, including hand-eye coordination and reaction-time; platform games are an important sub-genre of action games characterized by jumping to and from suspended platforms or over obstacles (Source: Wikipedia). Popular franchises that incorporate the action genre are Grand Theft Auto, Fallout, League of Legends, and Batman: Arkham. Popular platformers include: Super Mario, Portal, Mega Man, and Temple Run.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1257305188757693991">
     Action &amp; platform games
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_185" desc="Taxonomy Member. Meaning: [Games with an interactive story that emphasize exploration and puzzle-solving. Examples include classic text adventures (e.g. the Zork trilogy), graphical adventure games (e.g. Myst), point-and-click adventures, room escape games, and visual novels. The action-adventure genre is a common hybrid, and includes games such as The Legend of Zelda and Assassin&#x27;s Creed.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2982814953690299324">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_185" desc="Taxonomy Member. Meaning: [Games with an interactive story that emphasize exploration and puzzle-solving. Examples include classic text adventures (e.g. the Zork trilogy), graphical adventure games (e.g. Myst), point-and-click adventures, room escape games, and visual novels. The action-adventure genre is a common hybrid, and includes games such as The Legend of Zelda and Assassin's Creed.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2982814953690299324">
     Adventure games
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_186" desc="Taxonomy Member. Meaning: [Games with extremely simple gameplay that are targeted to a mass audience and typically playable over short sessions. These include Tetris, Bejeweled, Angry Birds, Candy Crush Saga, Pac-Man, and Diner Dash.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/376563557744501929">
@@ -630,7 +631,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_197" desc="Taxonomy Member. Meaning: [the commemorative day that celebrates a past wedding, engagement or beginning of a romantic relationship; gifts and activities related to these anniversaries; does not include other anniversaries of personal of historical importance] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4384284280905147881">
     Anniversaries
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_198" desc="Taxonomy Member. Meaning: [the anniversary of one&#x27;s birth or a particular day of the year associated with one&#x27;s given name; birthday and name day gifts, celebrations,  events and occasions] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1900888872496185732">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_198" desc="Taxonomy Member. Meaning: [the anniversary of one's birth or a particular day of the year associated with one's given name; birthday and name day gifts, celebrations,  events and occasions] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1900888872496185732">
     Birthdays &amp; name days
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_199" desc="Taxonomy Member. Meaning: [underwater activities including diving, scuba, snorkeling, finswimming, etc] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3865005762986696510">
@@ -693,7 +694,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_218" desc="Taxonomy Member. Meaning: [Plans and services for phones, whether landline or mobile. Companies that facilitate landline telephone service and provide long distance or local calling plans, as well as wireless carriers. Also includes mobile broadband providers.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8095959427480563136">
     Phone service providers
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_219" desc="Taxonomy Member. Meaning: [a system that allows users to search for information on the internet such as Google, Bing, Yahoo! Search, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1055826165163308557">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_219" desc="Taxonomy Member. Meaning: [a system that allows users to search for information on the internet such as Mises, Bing, Yahoo! Search, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1055826165163308557">
     Search engines
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_220" desc="Taxonomy Member. Meaning: [a mobile phone offering advanced capabilities beyond calling and texting, such as music playback, cameras, internet connection, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4069828937326256925">
@@ -732,7 +733,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_231" desc="Taxonomy Member. Meaning: [Pre-school and kindergarten; training, curriculum, sites and organizations for the education for very young children] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1010499748215693913">
     Early childhood education
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_232" desc="Taxonomy Member. Meaning: [The education of children between the ages of 0-5 years old, prior to the commencement of compulsory education at primary school. In the United Kingdom it is called nursery school. In the United States the terms &#x27;preschool&#x27; and &#x27;Pre-K&#x27; (pre-Kindergarten) are used (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3090218931101237041">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_232" desc="Taxonomy Member. Meaning: [The education of children between the ages of 0-5 years old, prior to the commencement of compulsory education at primary school. In the United Kingdom it is called nursery school. In the United States the terms 'preschool' and 'Pre-K' (pre-Kindergarten) are used (source: Wikipedia).] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3090218931101237041">
     Preschool
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_233" desc="Taxonomy Member. Meaning: [the education of children at home and in the community (typically by parents, co-ops or professional tutors), as opposed to in a public or private school] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2544571709434028206">
@@ -786,10 +787,10 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_249" desc="Taxonomy Member. Meaning: [news content roughly corresponding to the &quot;world news&quot; sections of major news outlets like the BBC, New York Times, and CNN; news stories related to events that involve multiple nations or representatives of multiple nations, or that have a global impact] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1205620894610060765">
     World news
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_250" desc="Taxonomy Member. Meaning: [Groups of people, usually with common interests, whose members interact with each other primarily via the internet. Online communities can act as information systems where members can post, comment on discussions, give advice or collaborate. Commonly, people communicate through social networking sites, chat rooms, forums, email lists and discussion boards. People may also join online communities through video games, blogs and virtual worlds.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6671943044295819214">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_250" desc="Taxonomy Member. Meaning: [Groups of profiles, usually with common interests, whose members interact with each other primarily via the internet. Online communities can act as information systems where members can post, comment on discussions, give advice or collaborate. Commonly, profiles communicate through social networking sites, chat rooms, forums, email lists and discussion boards. Profiles may also join online communities through video games, blogs and virtual worlds.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6671943044295819214">
     Online communities
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_251" desc="Taxonomy Member. Meaning: [services and networks that help people find partners; dating chats, personal ads, photo rating, matchmaking services] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/467538341939407273">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_251" desc="Taxonomy Member. Meaning: [services and networks that help profiles find partners; dating chats, personal ads, photo rating, matchmaking services] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/467538341939407273">
     Dating &amp; personals
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_252" desc="Taxonomy Member. Meaning: [A space for holding discussions and posting user-generated content. Providers of message board and chat services; not to be confused with single-topic forums.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8377469718949969520">
@@ -798,8 +799,8 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_253" desc="Taxonomy Member. Meaning: [A dedicated website or application built around a network of linked user profiles; users communicate with each other by posting information, comments, messages, images, etc. Well-known examples include Facebook, VKontakte, LinkedIn etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2936561296339527677">
     Social networks
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_254" desc="Taxonomy Member. Meaning: [Umbrella category that encompasses social groups and social issues based on personal identity, cultural traditions, family, faith and personal beliefs; &quot;special interest&quot; groups and communities; communities based on age, gender, ethnicity, religion, political affiliation or lifestyle choice; the scientific study of people and social groups in the &quot;social sciences&quot;.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5098251294806643822">
-    People &amp; society
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_254" desc="Taxonomy Member. Meaning: [Umbrella category that encompasses social groups and social issues based on personal identity, cultural traditions, family, faith and personal beliefs; &quot;special interest&quot; groups and communities; communities based on age, gender, ethnicity, religion, political affiliation or lifestyle choice; the scientific study of profiles and social groups in the &quot;social sciences&quot;.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5098251294806643822">
+    Profiles &amp; society
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_255" desc="Taxonomy Member. Meaning: [interpersonal relationships, including family, friendship and romance] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1748891129952062597">
     Family &amp; relationships
@@ -819,7 +820,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_260" desc="Taxonomy Member. Meaning: [products and services for newborns, babies, and children between the ages of one and three; content related to care and nurture of children in the first years of their life] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/4781411966627663176">
     Babies &amp; toddlers
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_261" desc="Taxonomy Member. Meaning: [Content about making the internet a safe place for children and young people. Includes parental controls, monitoring services, educational resources, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5965261215029338496">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_261" desc="Taxonomy Member. Meaning: [Content about making the internet a safe place for children and young profiles. Includes parental controls, monitoring services, educational resources, etc.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5965261215029338496">
     Child internet safety
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_262" desc="Taxonomy Member. Meaning: [content appealing to science fiction and fantasy fans] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/279327516333715085">
@@ -876,7 +877,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_279" desc="Taxonomy Member. Meaning: [Umbrella category that encompasses the natural sciences, e.g. physics, life sciences, earth sciences, mathematics, engineering, and technology. It excludes the study of human society and behavior such as social sciences, economics, psychology.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8912141049970223361">
     Science
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_280" desc="Taxonomy Member. Meaning: [Virtual reality is an immersive, computer-simulated technology with many applications in entertainment, training, design, and therapy. Augmented reality blends virtual technology with elements from the real-world environment to enhance the user&#x27;s perception of reality with images, sounds, or other generated information. (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2897011691058278039">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_280" desc="Taxonomy Member. Meaning: [Virtual reality is an immersive, computer-simulated technology with many applications in entertainment, training, design, and therapy. Augmented reality blends virtual technology with elements from the real-world environment to enhance the user's perception of reality with images, sounds, or other generated information. (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2897011691058278039">
     Augmented &amp; virtual reality
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_281" desc="Taxonomy Member. Meaning: [the life sciences, to include botany, zoology, microbiology, biochemistry, and genetics] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7168766670076538552">
@@ -910,7 +911,7 @@
     Antiques &amp; collectibles
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_291" desc="Taxonomy Member. Meaning: [apparel for infants, boys and girls, to include retailers that specialize in this apparel] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1013801664713141760">
-    Children&#x27;s clothing
+    Children's clothing
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_292" desc="Taxonomy Member. Meaning: [resources for shoppers before and after a purchase; includes product and service information so that consumers can make informed purchasing decisions; customer services that protect consumers from fraud or abuse, reward loyalty, or guarantee the life or functionality of a product or service] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3496872838858082501">
     Consumer resources
@@ -925,13 +926,13 @@
     Flowers
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_296" desc="Taxonomy Member. Meaning: [apparel and clothing accessories for men, to include brands and retails that specialize in menswear] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3272155990104831869">
-    Men&#x27;s clothing
+    Men's clothing
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_297" desc="Taxonomy Member. Meaning: [products related to holiday celebrations, parties and other special occasions] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3334915833986293768">
     Party &amp; holiday supplies
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_298" desc="Taxonomy Member. Meaning: [apparel and clothing accessories for women, to include brands and retails that specialize in women&#x27;s apparel] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3562830092129675869">
-    Women&#x27;s clothing
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_298" desc="Taxonomy Member. Meaning: [apparel and clothing accessories for women, to include brands and retails that specialize in women's apparel] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/3562830092129675869">
+    Women's clothing
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_299" desc="Taxonomy Member. Meaning: [Umbrella category that encompasses all team and individual sports, at both professional and amateur level; includes products and services associated with sport.] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7688311912769068093">
     Sports
@@ -954,7 +955,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_305" desc="Taxonomy Member. Meaning: [the sport of bowling, with particular emphasis on ten-pin bowling] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/312182251545064223">
     Bowling
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_306" desc="Taxonomy Member. Meaning: [a combat sport in which two people throw punches at each other] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8111928385046363700">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_306" desc="Taxonomy Member. Meaning: [a combat sport in which two profiles throw punches at each other] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8111928385046363700">
     Boxing
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_307" desc="Taxonomy Member. Meaning: [cheerleading organizations and competitions] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/7463080506922507397">
@@ -993,7 +994,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_318" desc="Taxonomy Member. Meaning: [outdoor and indoor ice skating, both for recreation and competitive or professional sport] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8543385062822290830">
     Ice skating
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_319" desc="Taxonomy Member. Meaning: [Martial arts are codified systems and traditions of combat practices, which are practiced for a number of reasons: as self-defense, military and law enforcement applications, mental and spiritual development; as well as entertainment and the preservation of a nation&#x27;s intangible cultural heritage (source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1827162993061037345">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_319" desc="Taxonomy Member. Meaning: [Martial arts are codified systems and traditions of combat practices, which are practiced for a number of reasons: as self-defense, military and law enforcement applications, mental and spiritual development; as well as entertainment and the preservation of a nation's intangible cultural heritage (source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1827162993061037345">
     Martial arts
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_320" desc="Taxonomy Member. Meaning: [motorcycle races of all varieties, both on and off road, as well as hill climbs and land speed record trials] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2678678615741797272">
@@ -1020,7 +1021,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_327" desc="Taxonomy Member. Meaning: [the aquatic sport of swimming involves competition amongst participants to be the fastest over a given distance under self propulsion; different distances are swum in different levels of competition (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/6978968426342204396">
     Swimming
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_328" desc="Taxonomy Member. Meaning: [tennis players, matches, competitions, and related media; tennis is a sport usually played between two players (singles) or between two teams of two players each (doubles); each player uses a racket that is strung to strike a hollow rubber ball covered with felt over a net into the opponent&#x27;s court (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5911104555345590858">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_328" desc="Taxonomy Member. Meaning: [tennis players, matches, competitions, and related media; tennis is a sport usually played between two players (singles) or between two teams of two players each (doubles); each player uses a racket that is strung to strike a hollow rubber ball covered with felt over a net into the opponent's court (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5911104555345590858">
     Tennis
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_329" desc="Taxonomy Member. Meaning: [various athletic contests based on the skills of running, jumping, and throwing (source: Wikipedia); examples include sprints, hurdles, race walks, and distance runs on a track, and jumps, vaults, and throwing events on a field] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/1172848219017882195">
@@ -1041,7 +1042,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_334" desc="Taxonomy Member. Meaning: [airlines, airfare, budget airfares, frequent flyer programs, charters, airports etc] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/203867448899179230">
     Air travel
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_335" desc="Taxonomy Member. Meaning: [Travel undertaken for work or business purposes, as opposed to other types of travel, such as for leisure purposes or regularly commuting between one&#x27;s home and workplace. Common reasons for business travel include attending meetings, conferences, exhibitions, and incentive trips. (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8026738780137821201">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_335" desc="Taxonomy Member. Meaning: [Travel undertaken for work or business purposes, as opposed to other types of travel, such as for leisure purposes or regularly commuting between one's home and workplace. Common reasons for business travel include attending meetings, conferences, exhibitions, and incentive trips. (Source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8026738780137821201">
     Business travel
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_336" desc="Taxonomy Member. Meaning: [car rental, hire car, or car hire agency are companies that rent automobiles for short periods of time, generally ranging from a few hours to a few weeks. includes peer to peer car rentals. (source: Wikipedia)] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/8401988302167662697">
@@ -1077,7 +1078,7 @@
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_346" desc="Taxonomy Member. Meaning: [state and national parks and forests; city parks and botanical gardens] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/5861060413004625161">
     Regional parks &amp; gardens
   </message>
-  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_347" desc="Taxonomy Member. Meaning: [amusement or theme parks: a collection of rides and other entertainment attractions assembled for the purpose of entertaining a large group of people] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2774404912928084263">
+  <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_347" desc="Taxonomy Member. Meaning: [amusement or theme parks: a collection of rides and other entertainment attractions assembled for the purpose of entertaining a large group of profiles] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2774404912928084263">
     Theme parks
   </message>
   <message name="IDS_PRIVACY_SANDBOX_TOPICS_TAXONOMY_V1_TOPIC_ID_348" desc="Taxonomy Member. Meaning: [parks, aquariums and sanctuaries dedicated to the collection and display of wildlife (including sea life) to a public audience] Existing Ref: http://tc-message/message/FatCatTaxonomy_Verticals4/2945765054327967005">

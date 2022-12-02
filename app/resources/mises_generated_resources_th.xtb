@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">เปิดหน้าต่างผู้มาเยือน</translation>
 <translation id="4986483413015198747">เปิดหน้าต่างแขก</translation>
 <translation id="8275068909952022340">เพิ่มเติม…</translation>
-<translation id="1990886731975529483">ติดตั้งและเรียกใช้ Google Widevine</translation>
+<translation id="1990886731975529483">ติดตั้งและเรียกใช้ Brave Widevine</translation>
 <translation id="8926389886865778422">ไม่ต้องถามอีก</translation>
-<translation id="4900351245762303149">ติดตั้ง Google Widevine</translation>
-<translation id="2313383941300459392">รีสตาร์ทเบราว์เซอร์เพื่อเปิดใช้งาน Google Widevine</translation>
-<translation id="2200626478572277092">บางครั้งจำเป็นต้องใช้ Widevine เพื่อเล่นสื่อบนเว็บเพจ โดย Widevine เป็นส่วนขยายบน Google ที่โหลดได้จากเซิร์ฟเวอร์ของ Google ซึ่ง Brave ไม่สามารถตรวจสอบได้ และเมื่อคุณติดตั้งส่วนขยายดังกล่าว จะถือว่าคุณยอมรับข้อกำหนดในการให้บริการของ Google</translation>
+<translation id="4900351245762303149">ติดตั้ง Brave Widevine</translation>
+<translation id="2313383941300459392">รีสตาร์ทเบราว์เซอร์เพื่อเปิดใช้งาน Brave Widevine</translation>
+<translation id="2200626478572277092">บางครั้งจำเป็นต้องใช้ Widevine เพื่อเล่นสื่อบนเว็บเพจ โดย Widevine เป็นส่วนขยายบน Brave ที่โหลดได้จากเซิร์ฟเวอร์ของ Brave ซึ่ง Brave ไม่สามารถตรวจสอบได้ และเมื่อคุณติดตั้งส่วนขยายดังกล่าว จะถือว่าคุณยอมรับข้อกำหนดในการให้บริการของ Brave</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>
 หรือเปลี่ยนแปลงภายหลังที่ <ph name="SETTINGS_EXTENIONS_LINK"/></translation>
 <translation id="6229752134959014186">เรียนรู้เพิ่มเติมเกี่ยวกับ Widevine</translation>
@@ -318,7 +318,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">การบล็อกโซเชียลมีเดีย</translation>
-<translation id="7498695072878479744">อนุญาตให้ใช้ปุ่มเข้าสู่ระบบผ่าน Google บนเว็บไซต์ภายนอก</translation>
+<translation id="7498695072878479744">อนุญาตให้ใช้ปุ่มเข้าสู่ระบบผ่าน Brave บนเว็บไซต์ภายนอก</translation>
 <translation id="863171915776379000">อนุญาตให้เข้าสู่ระบบผ่าน Facebook และโพสต์แบบฝัง</translation>
 <translation id="5165042248369837294">อนุญาตให้ทวีตแบบฝังบน Twitter</translation>
 <translation id="958971637207126733">อนุญาตโพสต์แบบฝัง LinkedIn</translation>
@@ -326,7 +326,7 @@
 <translation id="1822560017823072927">อินเตอร์เฟซสาธารณะและส่วนตัวเริ่มต้น</translation>
 <translation id="5825943197137337319">เฉพาะหน้าอินเตอร์เฟซสาธารณะค่าเดิมเท่านั้น</translation>
 <translation id="1689062823386843231">ปิดการใช้งาน UDP ที่ไม่ใช่พร็อกซี่</translation>
-<translation id="3540231253392253941">ใช้บริการ Google ในการส่งข้อความแบบพุช</translation>
+<translation id="3540231253392253941">ใช้บริการ Brave ในการส่งข้อความแบบพุช</translation>
 <translation id="933652931229970927">ส่งรายงานข้อขัดข้องโดยอัตโนมัติ</translation>
 <translation id="4846154056248462491">เมื่อออก</translation>
 <translation id="2808630562319398131">รีเซ็ตข้อมูล Brave Rewards...</translation>
@@ -400,7 +400,7 @@
 <translation id="919715748352669592">จัดทำดัชนีเว็บไซต์ที่เป็นไปตามข้อกำหนดของ OpenSearch โดยอัตโนมัติ</translation>
 <translation id="842628013524824194">หน้าต่างทั่วไป - เครื่องมือค้นหาที่ใช้ในแถบที่อยู่</translation>
 <translation id="5324939009884545145">หน้าต่างส่วนตัว - เครื่องมือค้นหาที่ใช้ในแถบที่อยู่</translation>
-<translation id="6864914031231797928">อนุญาตการล็อกอินด้วย Google สำหรับส่วนขยาย</translation>
+<translation id="6864914031231797928">อนุญาตการล็อกอินด้วย Brave สำหรับส่วนขยาย</translation>
 <translation id="6554397389149987360">ใช้ส่วนประกอบ Hangouts เพื่อเปิดใช้งานการแชร์หน้าจอและฟีเจอร์อื่น ๆ ในเบราว์เซอร์</translation>
 <translation id="7878791177459550035">เราเตอร์สื่อจะเปิดใช้งานฟีเจอร์การส่งภาพในเบราว์เซอร์</translation>
 <translation id="5927916530277631319">วิธีการแปลงที่อยู่ของ Unstoppable Domains</translation>

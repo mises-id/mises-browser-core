@@ -13,9 +13,9 @@
 <translation id="8275068909952022340">और…</translation>
 <translation id="1990886731975529483">Widevine को इंस्टॉल करें और चलाएँ</translation>
 <translation id="8926389886865778422">दोबारा न पूछें</translation>
-<translation id="4900351245762303149">Google Widevine को इंस्टॉल करें</translation>
-<translation id="2313383941300459392">Google Widevine को इनेबल करने के लिए ब्राउज़र को रीस्टार्ट करें</translation>
-<translation id="2200626478572277092">किसी वेबपेज पर मीडिया चलाने के लिए कभी-कभी Widevine की आवश्यकता होती है. यह Google सर्वर से लोड किया गया एक Google एक्सटेंशन है, जिसका Brave निरीक्षण नहीं कर सकता. इंस्टॉल करके, आप Google की उपयोग की शर्तों से सहमत होंगे.</translation>
+<translation id="4900351245762303149">Brave Widevine को इंस्टॉल करें</translation>
+<translation id="2313383941300459392">Brave Widevine को इनेबल करने के लिए ब्राउज़र को रीस्टार्ट करें</translation>
+<translation id="2200626478572277092">किसी वेबपेज पर मीडिया चलाने के लिए कभी-कभी Widevine की आवश्यकता होती है. यह Brave सर्वर से लोड किया गया एक Brave एक्सटेंशन है, जिसका Brave निरीक्षण नहीं कर सकता. इंस्टॉल करके, आप Brave की उपयोग की शर्तों से सहमत होंगे.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>
 
 या बाद में <ph name="SETTINGS_EXTENIONS_LINK"/>पर बदलें.</translation>
@@ -205,7 +205,7 @@
 <translation id="961012016278832836">Microsoft Edge की लेगसी</translation>
 <translation id="6436994631426134065"><ph name="BROWSER_NAME"/> से इम्पोर्ट किया गया.</translation>
 <translation id="7630214457764713113">क्लीन लिंक को कॉपी करें</translation>
-<translation id="9156965752763025780">अगली बार आपके द्वारा क्रोमियम पुन: लॉन्‍च करने पर आपके परिवर्तन प्रभावी होंगे.</translation>
+<translation id="9156965752763025780">अगली बार आपके द्वारा Brave पुन: लॉन्‍च करने पर आपके परिवर्तन प्रभावी होंगे.</translation>
 <translation id="7179921470347911571">अब पुनः प्रस्तुत करें</translation>
 <translation id="4472575034687746823">आरंभ करें</translation>
 <translation id="8081858229109418493">प्रोफाइल का नाम और आइकन</translation>
@@ -352,7 +352,7 @@ Binance
 <translation id="2635094637295383009">ट्विटर</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">सोशल मीडिया अवरुद्ध</translation>
-<translation id="7498695072878479744">अन्य पक्ष के साइटों पर Google लॉगिन बटन की अनुमति दें</translation>
+<translation id="7498695072878479744">अन्य पक्ष के साइटों पर Brave लॉगिन बटन की अनुमति दें</translation>
 <translation id="863171915776379000">Facebook लॉगिन और एम्बेडेड पोस्ट की अनुमति दें</translation>
 <translation id="5165042248369837294">Twitter एम्बेडेड ट्वीट की अनुमति दें</translation>
 <translation id="958971637207126733">LinkedIn एम्बेडेड पोस्ट की अनुमति दें</translation>
@@ -360,7 +360,7 @@ Binance
 <translation id="1822560017823072927">डिफ़ॉल्ट सार्वजनिक और निजी इंटरफेस</translation>
 <translation id="5825943197137337319">केवल डिफ़ॉल्ट सार्वजनिक इंटरफ़ेस</translation>
 <translation id="1689062823386843231">गैर-प्रॉक्सी UDP अक्षम करें</translation>
-<translation id="3540231253392253941">पुश मैसेजिंग के लिए Google सेवाओं का इस्तेमाल करें</translation>
+<translation id="3540231253392253941">पुश मैसेजिंग के लिए Brave सेवाओं का इस्तेमाल करें</translation>
 <translation id="933652931229970927">अपने आप नैदानिक रिपोर्ट भेजें</translation>
 <translation id="4846154056248462491">बाहर निकलने पर</translation>
 <translation id="2808630562319398131">Brave रिवॉर्ड डेटा रीसेट करें ...</translation>
@@ -434,7 +434,7 @@ Binance
 <translation id="919715748352669592">अपने आप उन वेबसाइटों को इंडेक्स करता है जो OpenSearch निर्देशों का पालन करती हैं.</translation>
 <translation id="842628013524824194">सामान्य विंडो - एड्रेस बार में इस्तेमाल किया गया सर्च इंजन</translation>
 <translation id="5324939009884545145">प्राइवेट विंडो - एड्रेस बार में इस्तेमाल किया गया सर्च इंजन</translation>
-<translation id="6864914031231797928">एक्सटेंशन के लिए Google लॉगिन की अनुमति दें</translation>
+<translation id="6864914031231797928">एक्सटेंशन के लिए Brave लॉगिन की अनुमति दें</translation>
 <translation id="6554397389149987360">ब्राउज़र में स्क्रीन साझा करने और अन्य सुविधाओं के लिए हैंगऑउट के घटकों का उपयोग करें।</translation>
 <translation id="7878791177459550035">मीडिया राउटर ब्राउज़र में कास्ट फीचर इनेबल करता है.</translation>
 <translation id="5927916530277631319">Unstoppable डोमेन को हल करने की विधि</translation>

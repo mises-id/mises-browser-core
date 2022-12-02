@@ -29,7 +29,7 @@ def main():
         update_win32_python()
 
     setup_python_libs()
-    update_node_modules('.')
+    #update_node_modules('.')
 
 
 def parse_args():

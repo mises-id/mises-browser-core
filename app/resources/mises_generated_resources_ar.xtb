@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">فتح نافذة "ضيف"</translation>
 <translation id="4986483413015198747">فتح نافذة الضيف</translation>
 <translation id="8275068909952022340">المزيد …</translation>
-<translation id="1990886731975529483">قم بتثبيت برنامج Google Widevine وتشغيله</translation>
+<translation id="1990886731975529483">قم بتثبيت برنامج Brave Widevine وتشغيله</translation>
 <translation id="8926389886865778422">عدم السؤال مرة أخرى</translation>
-<translation id="4900351245762303149">تثبيت برنامج Google Widevine</translation>
-<translation id="2313383941300459392">أعد تشغيل المتصفح لتمكين Google Widevine</translation>
-<translation id="2200626478572277092">قد تكون هناك حاجة إلى استخدام Widevine لتشغيل الوسائط على صفحة الويب أحيانًأ. إنه امتداد ملف لـ Google يتم تحميله من خوادم Google، ولا يستطيع متصفح Brave فحصه. من خلال تثبيت البرنامج، فإنك توافق على شروط استخدام Google.</translation>
+<translation id="4900351245762303149">تثبيت برنامج Brave Widevine</translation>
+<translation id="2313383941300459392">أعد تشغيل المتصفح لتمكين Brave Widevine</translation>
+<translation id="2200626478572277092">قد تكون هناك حاجة إلى استخدام Widevine لتشغيل الوسائط على صفحة الويب أحيانًأ. إنه امتداد ملف لـ Brave يتم تحميله من خوادم Brave، ولا يستطيع متصفح Brave فحصه. من خلال تثبيت البرنامج، فإنك توافق على شروط استخدام Brave.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>.
 أو تغيير في وقت لاحق <ph name="SETTINGS_EXTENIONS_LINK"/></translation>
 <translation id="6229752134959014186">معرفة المزيد حول برنامج Widevine</translation>
@@ -318,7 +318,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">جيت هاب</translation>
 <translation id="9185018653595759199">حجب وسائل التواصل الاجتماعي</translation>
-<translation id="7498695072878479744">السماح بأزرار تسجيل الدخول إلى Google على مواقع أطراف خارجية</translation>
+<translation id="7498695072878479744">السماح بأزرار تسجيل الدخول إلى Brave على مواقع أطراف خارجية</translation>
 <translation id="863171915776379000">السماح بتسجيل الدخول إلى فيسبوك والمشاركات المدمجة</translation>
 <translation id="5165042248369837294">السماح بدمج تغريدات من تويتر</translation>
 <translation id="958971637207126733">السماح بالمشاركات المدمجة في LinkedIn</translation>
@@ -326,7 +326,7 @@
 <translation id="1822560017823072927">الواجهات الافتراضية العامة والخاصة</translation>
 <translation id="5825943197137337319">الواجهة العامة الافتراضية فقط</translation>
 <translation id="1689062823386843231">تعطيل UDP التي ليس لها وكيل</translation>
-<translation id="3540231253392253941">استخدم خدمات Google لإرسال الرسائل</translation>
+<translation id="3540231253392253941">استخدم خدمات Brave لإرسال الرسائل</translation>
 <translation id="933652931229970927">إرسال تقارير التشخيص تلقائيًا</translation>
 <translation id="4846154056248462491">عند الخروج</translation>
 <translation id="2808630562319398131">إعادة تعيين بيانات مكافآت Brave...</translation>
@@ -400,7 +400,7 @@
 <translation id="919715748352669592">يقوم تلقائيًا بفهرسة مواقع الويب التي تتبع مواصفات OpenSearch.</translation>
 <translation id="842628013524824194">نافذة عادية - تم استخدام محرك البحث في شريط العنوان</translation>
 <translation id="5324939009884545145">نافذة خاصة - تم استخدام محرك البحث في شريط العنوان</translation>
-<translation id="6864914031231797928">قم بالسماح بتسجيل الدخول إلى Google للحصول على الإضافات</translation>
+<translation id="6864914031231797928">قم بالسماح بتسجيل الدخول إلى Brave للحصول على الإضافات</translation>
 <translation id="6554397389149987360">يستخدم عنصر تطبيق Hangouts لتمكين مشاركة الشاشة وغيرها من الميزات في المتصفح.</translation>
 <translation id="7878791177459550035">موجّه الوسائط يتيح خاصية الإرسال في المتصفح.</translation>
 <translation id="5927916530277631319">طريقة لمعالجة النطاقات التي لا يمكن إيقافها</translation>
