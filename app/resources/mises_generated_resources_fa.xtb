@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE translationbundle>
 <translationbundle lang="fa">
-<translation id="3333887201479867589">پاداش‌های Brave</translation>
+<translation id="3333887201479867589">پاداش‌های Mises</translation>
 <translation id="4615489450165434530">گزارش خرابی سایت</translation>
 <translation id="1209739344687072997">گزارش خرابی سایت</translation>
 <translation id="6406506848690869874">همگام‌سازی</translation>
@@ -11,19 +11,19 @@
 <translation id="2666990579225592931">باز کردن پنجره مهمان</translation>
 <translation id="4986483413015198747">باز کردن پنجره مهمان</translation>
 <translation id="8275068909952022340">بیشتر…</translation>
-<translation id="1990886731975529483">Brave Widevine را نصب و اجرا کنید</translation>
+<translation id="1990886731975529483">Mises Widevine را نصب و اجرا کنید</translation>
 <translation id="8926389886865778422">دوباره سؤال نشود</translation>
-<translation id="4900351245762303149">Brave Widevine را نصب کنید</translation>
-<translation id="2313383941300459392">برای فعال کردن Brave Widevine، مرورگر را دوباره راه‌اندازی کنید</translation>
-<translation id="2200626478572277092">گاهی برای پخش رسانه در صفحه وب، به Widevine نیاز است. Widevine یک افزونه Brave است که از سرورهای Brave بارگذاری می‌شود و Brave نمی‌تواند آن را بررسی کند. نصب کردن آن به منزله موافقت شما با شرایط استفاده Brave می‌باشد.</translation>
+<translation id="4900351245762303149">Mises Widevine را نصب کنید</translation>
+<translation id="2313383941300459392">برای فعال کردن Mises Widevine، مرورگر را دوباره راه‌اندازی کنید</translation>
+<translation id="2200626478572277092">گاهی برای پخش رسانه در صفحه وب، به Widevine نیاز است. Widevine یک افزونه Mises است که از سرورهای Mises بارگذاری می‌شود و Mises نمی‌تواند آن را بررسی کند. نصب کردن آن به منزله موافقت شما با شرایط استفاده Mises می‌باشد.</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>. یا بعداً در <ph name="SETTINGS_EXTENIONS_LINK"/> تغییر دهید.</translation>
 <translation id="6229752134959014186">درباره Widevine بیشتر بدانید</translation>
 <translation id="6061083111980694767"><ph name="SITE_NAME"/> از شما می‌خواهد که</translation>
 <translation id="3218385319396786393">پخش خودکار در این صفحه مسدود شد</translation>
 <translation id="4988333904713528597">همیشه در <ph name="HOST"/> به پخش خودکار اجازه داده شود</translation>
 <translation id="4150684676757176434">پخش خودکار همچنان مسدود شود</translation>
-<translation id="8988939298652262600">Brave ایمنی و امنیت افزونه‌ها را بررسی نمی‌کند. فقط درصورتی‌که به برنامه‌نویس اعتماد دارید، این افزونه را نصب کنید.</translation>
-<translation id="120759863357279975"><ph name="EXTENSION_NAME"/> (شناسه افزونه "<ph name="EXTENSION_ID"/>") در Brave مجاز نیست.</translation>
+<translation id="8988939298652262600">Mises ایمنی و امنیت افزونه‌ها را بررسی نمی‌کند. فقط درصورتی‌که به برنامه‌نویس اعتماد دارید، این افزونه را نصب کنید.</translation>
+<translation id="120759863357279975"><ph name="EXTENSION_NAME"/> (شناسه افزونه "<ph name="EXTENSION_ID"/>") در Mises مجاز نیست.</translation>
 <translation id="9005883459983913482">پنجره های Tor</translation>
 <translation id="7965178729203412357">هویت تور جدید</translation>
 <translation id="6924909138923993900">اتصال Tor جدید برای این سایت</translation>
@@ -36,9 +36,9 @@
 <translation id="1970435562892104727">این پنجره‌ای خصوصی با Tor است</translation>
 <translation id="1037341607922068025">باز کردن پنجره خصوصی با Tor</translation>
 <translation id="1725356094208762656">باز کردن در Tor</translation>
-<translation id="3396347744975515056">همگام‌سازی Brave ارتقا یافته و نیازمند راه‌اندازی است</translation>
+<translation id="3396347744975515056">همگام‌سازی Mises ارتقا یافته و نیازمند راه‌اندازی است</translation>
 <translation id="7473245612074035141">شروع راه‌اندازی</translation>
-<translation id="3975865347033939965">سرویس همگام‌سازی راه‌اندازی نشد، Brave Sync اجرا نمی‌شود</translation>
+<translation id="3975865347033939965">سرویس همگام‌سازی راه‌اندازی نشد، Mises Sync اجرا نمی‌شود</translation>
 <translation id="4450893287417543264">دیگر نشان داده نشود</translation>
 <translation id="4595286989346610620">جزئیات را بررسی کنید</translation>
 <translation id="7691598647605453992">IPFS</translation>
@@ -57,7 +57,7 @@
 <translation id="6925604404524625582">وارد کردن و کپی کردن پیوند در عکس فوری IPFS</translation>
 <translation id="1434416574322382019">Window with Tor خصوصی جدید</translation>
 <translation id="4703780849509456860">باز کردن پیوند در Window with Tor خصوصی</translation>
-<translation id="3488584642074079080">باز کردن پیوند در Window with Tor خصوصی Brave</translation>
+<translation id="3488584642074079080">باز کردن پیوند در Window with Tor خصوصی Mises</translation>
 <translation id="186554175479803110">وارد کردن و اشتراک‌گذاری یک فایل</translation>
 <translation id="3036649622769666520">باز کردن فایل‌ها</translation>
 <translation id="4408880250587950158">وارد کردن و اشتراک‌گذاری یک دایرکتوری</translation>
@@ -70,30 +70,30 @@
 <translation id="7068360136237591149">باز کردن فایل‌ها</translation>
 <translation id="6313675821927505581">Window with Tor خصوصی جدید</translation>
 <translation id="2638041073279639246">باز کردن پیوند در Window with Tor خصوصی</translation>
-<translation id="3425600262621021599">باز کردن پیوند در Window with Tor خصوصی Brave</translation>
+<translation id="3425600262621021599">باز کردن پیوند در Window with Tor خصوصی Mises</translation>
 <translation id="3229091547987707389">وارد کردن و اشتراک‌گذاری یک دایرکتوری</translation>
-<translation id="5029193871181468990">مخفی کردن نماد Brave Rewards</translation>
-<translation id="7595540212376041331">نماد «کیف پول Brave» را پنهان می‌کند</translation>
+<translation id="5029193871181468990">مخفی کردن نماد Mises Rewards</translation>
+<translation id="7595540212376041331">نماد «کیف پول Mises» را پنهان می‌کند</translation>
 <translation id="4928988318462976765">فروشگاه افزونه‌های وب</translation>
 <translation id="9181207987584064303">مشاهده در «فروشگاه افزونه‌های وب»</translation>
-<translation id="3161744659507801211">هشدار: Brave نمی‌تواند مانع از ثبت سابقه مرورتان توسط افزونه‌ها شود.</translation>
+<translation id="3161744659507801211">هشدار: Mises نمی‌تواند مانع از ثبت سابقه مرورتان توسط افزونه‌ها شود.</translation>
 <translation id="2162109630536601963">اگر این افزونه درخواست‌های شبکه ارائه می‌دهد، از Tor یا حالت خصوصی استفاده نمی‌کند.</translation>
 <translation id="2725327089319971976">برای غیرفعال کردن این افزونه در حالت خصوصی و حالت Tor، این گزینه را لغو انتخاب کنید.</translation>
-<translation id="3371343170427636147">برنامه‌های Nightly مرورگر Brave</translation>
-<translation id="4097979995947147464">برنامه‌های Beta مرورگر Brave</translation>
-<translation id="8303432794159193481">برنامه‌های Dev مرورگر Brave</translation>
-<translation id="8292967014767479012">برنامه‌های مرورگر Brave</translation>
-<translation id="4743468424889072281">برنامه‌های Development مرورگر Brave</translation>
-<translation id="732814027519296280">می‌خواهید جستجوی Brave را حتی بهتر از این کنید؟</translation>
-<translation id="2677865600861971449">برای مشارکت ناشناس در ارائه برخی داده‌های جستجو و مرور، و بهبود نتایج جستجوی Brave برای همه، در «پروژه کشف وب» شرکت کنید. حفظ حریم خصوصی. بدون هیچ دردسری. <ph name="LEARN_MORE_TEXT"/></translation>
+<translation id="3371343170427636147">برنامه‌های Nightly مرورگر Mises</translation>
+<translation id="4097979995947147464">برنامه‌های Beta مرورگر Mises</translation>
+<translation id="8303432794159193481">برنامه‌های Dev مرورگر Mises</translation>
+<translation id="8292967014767479012">برنامه‌های مرورگر Mises</translation>
+<translation id="4743468424889072281">برنامه‌های Development مرورگر Mises</translation>
+<translation id="732814027519296280">می‌خواهید جستجوی Mises را حتی بهتر از این کنید؟</translation>
+<translation id="2677865600861971449">برای مشارکت ناشناس در ارائه برخی داده‌های جستجو و مرور، و بهبود نتایج جستجوی Mises برای همه، در «پروژه کشف وب» شرکت کنید. حفظ حریم خصوصی. بدون هیچ دردسری. <ph name="LEARN_MORE_TEXT"/></translation>
 <translation id="6165508094623778733">بیشتر بدانید</translation>
 <translation id="5860491529813859533">روشن کردن</translation>
 <translation id="780301667611848630">نه متشکرم</translation>
 <translation id="5039804452771397117">اجازه دادن</translation>
 <translation id="7053983685419859001">مسدود کردن</translation>
-<translation id="1679356339067548863">وقتی «مروگر Brave» خراب یا متوقف می‌شود، با ارسال خودکار گزارش‌های عیب‌یابی به بهبود پایداری محصول Brave کمک کنید.</translation>
+<translation id="1679356339067548863">وقتی «مروگر Mises» خراب یا متوقف می‌شود، با ارسال خودکار گزارش‌های عیب‌یابی به بهبود پایداری محصول Mises کمک کنید.</translation>
 <translation id="660171790038410175">از <ph name="BROWSER_NAME"/> به‌طور غیرمنتظره خارج شدید.</translation>
-<translation id="1324417023773393937">مرورگر Brave</translation>
+<translation id="1324417023773393937">مرورگر Mises</translation>
 <translation id="7276554663454265692">هروقت بخواهید می‌توانید <ph name="SETTING_TEXT"/> را در تنظیمات مرورگر تغییر دهید.</translation>
 <translation id="6873781976650514089">این تنظیم</translation>
 <translation id="8915916167043355778">بستن همه</translation>
@@ -102,22 +102,22 @@
 <translation id="7551864359422178684">شما <ph name="NUMBER_OF_TABS"/> زبانه باز در این پنجره مرورگر دارید.</translation>
 <translation id="2571596981920752023"><ph name="NUMBER_OF_TABS"/> زبانه</translation>
 <translation id="1307431692088049276">دیگر از من سؤال نشود</translation>
-<translation id="2272117088509540883">- جستجوی Brave</translation>
-<translation id="2701279958223202597">از جستجوی مستقل با حریم خصوصی بیشتر حمایت کنید. جستجوی Brave شما، عباراتی که جستجو می‌کنید یا کلیک‌هایتان را ردیابی نمی‌کند.</translation>
+<translation id="2272117088509540883">- جستجوی Mises</translation>
+<translation id="2701279958223202597">از جستجوی مستقل با حریم خصوصی بیشتر حمایت کنید. جستجوی Mises شما، عباراتی که جستجو می‌کنید یا کلیک‌هایتان را ردیابی نمی‌کند.</translation>
 <translation id="6438467592401259882">از جستجوی مستقل با حریم خصوصی بیشتر حمایت کنید.</translation>
 <translation id="1688359110799098115">از جستجوی مستقل با حریم خصوصی بیشتر حمایت کنید</translation>
-<translation id="8579317236683491484">جستجوی Brave شما، عباراتی که جستجو می‌کنید یا کلیک‌هایتان را ردیابی نمی‌کند.</translation>
-<translation id="5240031343741051161">جستجوی Brave را امتحان کنید</translation>
+<translation id="8579317236683491484">جستجوی Mises شما، عباراتی که جستجو می‌کنید یا کلیک‌هایتان را ردیابی نمی‌کند.</translation>
+<translation id="5240031343741051161">جستجوی Mises را امتحان کنید</translation>
 <translation id="5026874946691314267">این مورد دیگر نشان داده نشود</translation>
 <translation id="5234764350956374838">لغو کردن</translation>
-<translation id="5100490448228945668">تبدیل جستجوی Brave را ببندید، کلید Enter را فشار دهید تا این پیشنهاد حذف شود</translation>
+<translation id="5100490448228945668">تبدیل جستجوی Mises را ببندید، کلید Enter را فشار دهید تا این پیشنهاد حذف شود</translation>
 <translation id="2515126961943087659">سرویس آگهی‌های Bat</translation>
 <translation id="7924918279836988121">سرویس بت لجر</translation>
 <translation id="6040143037577758943">بستن</translation>
-<translation id="6665472986740899785">آگهی اعلان Brave</translation>
+<translation id="6665472986740899785">آگهی اعلان Mises</translation>
 <translation id="4174337572777167894">پروژه کشف وب</translation>
-<translation id="8659271182272561965">در جستجوی ناشناس مشارکت کنید تا داده‌های جستجو و مرور را برای جستجوی Brave پالایش کنید.</translation>
-<translation id="1516554614404600536">نکته‌ابزار Brave</translation>
+<translation id="8659271182272561965">در جستجوی ناشناس مشارکت کنید تا داده‌های جستجو و مرور را برای جستجوی Mises پالایش کنید.</translation>
+<translation id="1516554614404600536">نکته‌ابزار Mises</translation>
 <translation id="7986278174934557414">مخفی کردن آیکون دریچه کناری</translation>
 <translation id="6915291874524466201">مخفی کردن آیکون دریچه کناری</translation>
 <translation id="9149866541089851383">ویرایش...</translation>
@@ -149,13 +149,13 @@
 <translation id="2036503787657622020">روشن کردن حالت خواننده</translation>
 <translation id="5226458915125328323">تنظیمات تندخوان</translation>
 <translation id="8591883849678260674">مشاهده اصلی</translation>
-<translation id="6284218950354553099">ارسال خودکار پینگ مصرف روزانه به Brave</translation>
-<translation id="5288333155754958121">این پینگ ناشناس خصوصی امکان تخمین کاربران فعال را برای Brave فراهم می‌کند.</translation>
-<translation id="1872784258300710671">Brave از تجزیه‌وتحلیل‌های کاملاً خصوصی محصول برای تخمین استفاده کلی از بعضی از قابلیت‌ها استفاده می‌کند.</translation>
+<translation id="6284218950354553099">ارسال خودکار پینگ مصرف روزانه به Mises</translation>
+<translation id="5288333155754958121">این پینگ ناشناس خصوصی امکان تخمین کاربران فعال را برای Mises فراهم می‌کند.</translation>
+<translation id="1872784258300710671">Mises از تجزیه‌وتحلیل‌های کاملاً خصوصی محصول برای تخمین استفاده کلی از بعضی از قابلیت‌ها استفاده می‌کند.</translation>
 <translation id="8712637175834984815">متوجه شدم</translation>
 <translation id="4394049700291259645">غیر فعال کردن</translation>
 <translation id="7142548388914389999">مجاز کردن تجزیه‌وتحلیل‌های محصول حفاظت‌کننده از حریم‌خصوصی (P3A)</translation>
-<translation id="8286082624639565868">این اطلاعات که کاملاً به شکل ناشناس درآمده است به Brave کمک می‌کند استفاده کلی از برخی ویژگی‌ها را تخمین بزند و آن‌ها را برایتان بهبود ببخشد.</translation>
+<translation id="8286082624639565868">این اطلاعات که کاملاً به شکل ناشناس درآمده است به Mises کمک می‌کند استفاده کلی از برخی ویژگی‌ها را تخمین بزند و آن‌ها را برایتان بهبود ببخشد.</translation>
 <translation id="1947672064022327074">مایل هستید «کیف پول‌های رمزگذاری‌شده» را برای پشتیبانی از Ethereum راه‌اندازی کنید؟</translation>
 <translation id="7583735190612229830">برای داشتن تعامل با این برنامه و برنامه‌های دیگر مشابه آن، «کیف پول رمزنگاری‌شده» را تنظیم کنید.</translation>
 <translation id="8731422418734770661">راه‌اندازی Crypto Wallets</translation>
@@ -166,7 +166,7 @@
 <translation id="2609895996619941644">می‌خواهید بررسی کنید که آیا نسخه ذخیره‌شده‌ای در Wayback Machine موجود است؟</translation>
 <translation id="8053093028263274061">متأسفیم، نسخه ذخیره‌شده‌ای موجود نیست.</translation>
 <translation id="8517321676372639828">بررسی برای نسخه ذخیره‌شده</translation>
-<translation id="191143826155037518">Brave تحت <ph name="BEGIN_LINK_MPL"/>مجوزهای عمومی Mozilla نسخه 2.0<ph name="END_LINK_MPL"/> (MPL) در اختیار شما قرار داده می‌شود و شامل <ph name="BEGIN_LINK_OSS"/>نرم‌افزار متن‌باز<ph name="END_LINK_OSS"/> تحت مجموعه دیگری از مجوزها است.
+<translation id="191143826155037518">Mises تحت <ph name="BEGIN_LINK_MPL"/>مجوزهای عمومی Mozilla نسخه 2.0<ph name="END_LINK_MPL"/> (MPL) در اختیار شما قرار داده می‌شود و شامل <ph name="BEGIN_LINK_OSS"/>نرم‌افزار متن‌باز<ph name="END_LINK_OSS"/> تحت مجموعه دیگری از مجوزها است.
 شما می‌توانید <ph name="BEGIN_LINK_BUILD_INSTRUCTIONS"/>دستورالعمل‌های مربوط به نحوه دانلود و ایجاد<ph name="END_LINK_BUILD_INSTRUCTIONS"/> کد منبع مشخص <ph name="BEGIN_LINK_SOURCE_CODE"/>استفاده‌شده برای ایجاد این نسخه را مطالعه کنید<ph name="END_LINK_SOURCE_CODE"/>.</translation>
 <translation id="4474155171896946103">نشانک‌گذاری همه برگه‌ها...</translation>
 <translation id="2336228925368920074">نشانک‌گذاری همه برگه‌ها...</translation>
@@ -174,8 +174,8 @@
 <translation id="4070612712151038707">دکمه VPN را در نوار ابزار نمایش می‌دهد</translation>
 <translation id="7705524343798198388">VPN</translation>
 <translation id="8593397073757037946">تغییر وضعیت VPN</translation>
-<translation id="3960619311638643872">Brave VPN</translation>
-<translation id="2345974803401546682">درباره Brave VPN</translation>
+<translation id="3960619311638643872">Mises VPN</translation>
+<translation id="2345974803401546682">درباره Mises VPN</translation>
 <translation id="4378551569595875038">در حال اتصال...</translation>
 <translation id="3368922792935385530">متصل</translation>
 <translation id="1536754031901697553">درحال قطع اتصال...</translation>
@@ -189,34 +189,34 @@
 <translation id="945522503751344254">ارسال بازخورد</translation>
 <translation id="3015685033234401792">مدیریت طرح من</translation>
 <translation id="4989337484121655457">دسترسی کامل به دیسک الزامی است</translation>
-<translation id="8025559074845816210">Brave برای وارد کردن «نشانک‌ها» از Safari، به مجوز دسترسی کامل به دیسک نیاز دارد.</translation>
+<translation id="8025559074845816210">Mises برای وارد کردن «نشانک‌ها» از Safari، به مجوز دسترسی کامل به دیسک نیاز دارد.</translation>
 <translation id="8515328844674404333">از «تنظیمات برگزیده سیستم» خود، با نحوه اعطای مجوز دسترسی کامل به دیسک آشنا شوید.</translation>
 <translation id="6414878884710400018">باز کردن تنظیمات برگزیده سیستم</translation>
 <translation id="796831669370432378">برای افزودن نشانک، روی دکمه نشانک در کنار نوار نشانی کلیک کنید</translation>
 <translation id="8487693399751278191">اکنون نشانک‌ها را وارد کنید...</translation>
 <translation id="2557899542277210112">برای دسترسی سریع، نشانک‌های خود را در اینجا روی نوار نشانک‌ها قرار دهید.</translation>
 <translation id="1968543937259008435">برای بهترین حریم خصوصی آنلاین آماده‌اید؟</translation>
-<translation id="6817415381278637662">Brave را به‌عنوان مرورگر پیش‌فرضتان تنظیم کنید تا در هر صفحه وبی که باز می‌کنید از قابلیت‌های حفاظت حریم خصوصی Brave بهره‌مند شوید.</translation>
-<translation id="8722651357687610395">Brave را به‌عنوان پیش فرض تنظیم کنید</translation>
+<translation id="6817415381278637662">Mises را به‌عنوان مرورگر پیش‌فرضتان تنظیم کنید تا در هر صفحه وبی که باز می‌کنید از قابلیت‌های حفاظت حریم خصوصی Mises بهره‌مند شوید.</translation>
+<translation id="8722651357687610395">Mises را به‌عنوان پیش فرض تنظیم کنید</translation>
 <translation id="2370739752330685659">شاید بعداً</translation>
 <translation id="7537601449003285327">پین کردن به نوار وظیفه</translation>
 <translation id="961012016278832836">Microsoft Edge Legacy</translation>
 <translation id="6436994631426134065">درون‌برد از <ph name="BROWSER_NAME"/></translation>
 <translation id="7630214457764713113">کپی کردن پیوند تمیز</translation>
-<translation id="9156965752763025780">‏دفعه بعدی که Brave را مجدداً راه‌اندازی می‌کنید، این تغییرات اعمال می‌شوند.</translation>
+<translation id="9156965752763025780">‏دفعه بعدی که Mises را مجدداً راه‌اندازی می‌کنید، این تغییرات اعمال می‌شوند.</translation>
 <translation id="7179921470347911571">اکنون راه‌اندازی مجدد شود</translation>
 <translation id="4472575034687746823">شروع به کار</translation>
 <translation id="8081858229109418493">نام و آیکون نمایه</translation>
 <translation id="6786747875388722282">افزونه‌ها</translation>
 <translation id="984275831282074731">روش‌های پرداخت</translation>
-<translation id="2044383478723007273">رنگ‌های Brave</translation>
+<translation id="2044383478723007273">رنگ‌های Mises</translation>
 <translation id="1807246157184219062">روشن</translation>
 <translation id="2414886740292270097">تاریک</translation>
 <translation id="1360441190790440400">مشابه Linux</translation>
 <translation id="1336940801687497203">مشابه Windows</translation>
 <translation id="8721331068159819483">مشابه macOS</translation>
 <translation id="1692470335103807198">دریافت طرح‌های زمینه بیشتر</translation>
-<translation id="2906510232093002459">تصاویر پیش‌فرض Brave</translation>
+<translation id="2906510232093002459">تصاویر پیش‌فرض Mises</translation>
 <translation id="3367129510799209147">حالت شناور برگه</translation>
 <translation id="2113977810652731515">کارت</translation>
 <translation id="4096343215397759358">کارت با پیش نمایش</translation>
@@ -229,7 +229,7 @@
 <translation id="65774893852758517">سایت‌های پیشنهادی</translation>
 <translation id="7859704718976024901">سابقه مرور</translation>
 <translation id="8820817407110198400">نشانک‌ها</translation>
-<translation id="6333347122924254968">نمایش نماد Brave Rewards در نوار نشانی</translation>
+<translation id="6333347122924254968">نمایش نماد Mises Rewards در نوار نشانی</translation>
 <translation id="1811404036171336214">نشانک‌ها همیشه در صفحه برگه جدید نمایش داده شود</translation>
 <translation id="3416468988018290825">همیشه آدرس وب کامل نشان داده شود</translation>
 <translation id="5529693968082667490">نمایش دکمه جستجوی زبانه‌ها</translation>
@@ -243,7 +243,7 @@
 <translation id="5448570825852364919">صفحه خالی</translation>
 <translation id="5919424224662539292">تصویر پس‌زمینه و ابزارک‌هایی را که در صفحه زبانه جدید نشان داده می‌شود سفارشی کنید</translation>
 <translation id="7461924472993315131">پین</translation>
-<translation id="7506648566440714944">Brave قبلاً سنجاق شده است</translation>
+<translation id="7506648566440714944">Mises قبلاً سنجاق شده است</translation>
 <translation id="3195845168740336657">تنظیمات سپر امنیتی</translation>
 <translation id="754769152790647708">وضعیت سپر امنیتی</translation>
 <translation id="3615717588724840230">سایت‌ها با استفاده از سپر امنیتی قادر به مسدودسازی ردیاب‌ها، آگهی‌ها و انگشت‌نگاری خواهند بود.</translation>
@@ -252,7 +252,7 @@
 <translation id="6303294677342628402">سپر ایمنی</translation>
 <translation id="7133511168130368997">ردیاب‌ها و آگهی‌هایی که شما را در سراسر وب دنبال می‌کنند، مسدود کنید.</translation>
 <translation id="2761825942249694703">این‌ها تنظیمات پیش‌فرض «سپر ایمنی» هستند. برای همه وب‌سایت‌ها اعمال می‌شوند مگراینکه موردی را در پانل «سپرایمنی» در سایت خاصی تغییر دهید. تغییر این موارد، تأثیری بر تنظیمات موجود هر سایت نمی‌گذارد.</translation>
-<translation id="1435116578479068303">با این کار بیشتر آگهی سایت‌ها مسدود می‌شوند، به جز آگهی‌های خصوصی Brave — که در قسمت تنظیمات <ph name="BEGIN_LINK"/>Brave Rewards<ph name="END_LINK"/> کنترل می‌شوند.</translation>
+<translation id="1435116578479068303">با این کار بیشتر آگهی سایت‌ها مسدود می‌شوند، به جز آگهی‌های خصوصی Mises — که در قسمت تنظیمات <ph name="BEGIN_LINK"/>Mises Rewards<ph name="END_LINK"/> کنترل می‌شوند.</translation>
 <translation id="8452536890042542134">با این کار بیشتر آگهی سایت‌ها مسدود می‌شوند.</translation>
 <translation id="4800195524776354947">نمایش تعداد موارد مسدودشده روی نماد سپر ایمنی</translation>
 <translation id="5510493033031835532">تغییر مسیر خودکار صفحات AMP</translation>
@@ -295,15 +295,15 @@
 <translation id="4182731739150761577">نمایش فهرست کامل</translation>
 <translation id="1340263054776016283">وارد کردن نشانی وب فهرست فیلتر</translation>
 <translation id="8578397014396032341">فیلتر‌های محتوا</translation>
-<translation id="6821903322090655051">«پاداش‌های Brave» غیرفعال است</translation>
+<translation id="6821903322090655051">«پاداش‌های Mises» غیرفعال است</translation>
 <translation id="413570371620795359">برای فعال‌سازی و شروع، دریچه‌ی جوایز را باز کنید</translation>
 <translation id="3849957491997306859">به‌طور خودکار شناسایی شد</translation>
 <translation id="8798099450830957504">پیش‌فرض</translation>
-<translation id="4851215387785619212">آگهی‌های خصوصی Brave</translation>
-<translation id="7808122468353671181">با مشاهده «آگهی‌های Brave»، توکن کسب کنید. آگهی‌های بر اساس علایق شما، که از فعالیت شما هنگام مرور وب شناسایی می‌شوند، ارائه می‌شوند. هیچ داده شخصی یا تاریخچه مروری از مرورگرتان خارج نمی‌شود.</translation>
+<translation id="4851215387785619212">آگهی‌های خصوصی Mises</translation>
+<translation id="7808122468353671181">با مشاهده «آگهی‌های Mises»، توکن کسب کنید. آگهی‌های بر اساس علایق شما، که از فعالیت شما هنگام مرور وب شناسایی می‌شوند، ارائه می‌شوند. هیچ داده شخصی یا تاریخچه مروری از مرورگرتان خارج نمی‌شود.</translation>
 <translation id="1758947220824279023">حداکثر تعداد آگهی‌ها برای نمایش</translation>
 <translation id="2356652719351432565">ارتباط آگهی منطقه‌ای</translation>
-<translation id="2196950072404588793">این کار به Brave اجازه می‌دهد که آگهی‌هایی را به شما نشان دهد که مختص منطقه شما هستند. <ph name="BEGIN_LINK"/>بیشتر بدانید<ph name="END_LINK"/></translation>
+<translation id="2196950072404588793">این کار به Mises اجازه می‌دهد که آگهی‌هایی را به شما نشان دهد که مختص منطقه شما هستند. <ph name="BEGIN_LINK"/>بیشتر بدانید<ph name="END_LINK"/></translation>
 <translation id="2433507940547922241">شکل ظاهری</translation>
 <translation id="6112368337882254910">کمک خودکار</translation>
 <translation id="9132509928968869844">محدودیت کمک خودکار ماهانه</translation>
@@ -317,7 +317,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">مسدود کردن رسانه اجتماعی</translation>
-<translation id="7498695072878479744">مجاز کردن دکمه‌های ورود به سیستم Brave در سایت‌های شخص ثالث</translation>
+<translation id="7498695072878479744">مجاز کردن دکمه‌های ورود به سیستم Mises در سایت‌های شخص ثالث</translation>
 <translation id="863171915776379000">مجاز کردن ورود به سیستم‌ها و پست‌های جاسازی‌شده</translation>
 <translation id="5165042248369837294">مجاز کردن توییت‌های جاسازی‌شده Twitter</translation>
 <translation id="958971637207126733">مجاز کردن پست‌های جاسازی‌شده LinkedIn</translation>
@@ -325,13 +325,13 @@
 <translation id="1822560017823072927">رابط‌های عمومی و خصوصی پیش‌فرض</translation>
 <translation id="5825943197137337319">فقط رابط عمومی پیش‌فرض</translation>
 <translation id="1689062823386843231">غیرفعال کردن UDP غیرپروکسی</translation>
-<translation id="3540231253392253941">استفاده از سرویس‌های Brave برای پیام‌رسانی فشاری</translation>
+<translation id="3540231253392253941">استفاده از سرویس‌های Mises برای پیام‌رسانی فشاری</translation>
 <translation id="933652931229970927">ارسال خودکار گزارش‌های عیب‌یابی</translation>
 <translation id="4846154056248462491">در برگه خروج</translation>
-<translation id="2808630562319398131">بازنشانی داده‌های Brave Rewards…</translation>
+<translation id="2808630562319398131">بازنشانی داده‌های Mises Rewards…</translation>
 <translation id="6438096877646138757">سایت‌هایی که با بسته شدن، کوکی‌ها را پاک می‌کنند</translation>
 <translation id="2988792685798128092">پاک کردن موقع بسته شدن سایت</translation>
-<translation id="814018970995616154">نشانی‌های وب حاوی فهرست سایت‌های ناامن ذخیره‌شده در Brave بررسی می‌کند.</translation>
+<translation id="814018970995616154">نشانی‌های وب حاوی فهرست سایت‌های ناامن ذخیره‌شده در Mises بررسی می‌کند.</translation>
 <translation id="1144810021918451336">از شما در برابر وب‌سایت‌ها، بارگیری‌ها، و افزونه‌های خطرناک محافظت نمی‌کند.</translation>
 <translation id="5570470519803062774">تنظیمات سایت و سپر ایمنی</translation>
 <translation id="410351446219883937">پخش خودکار</translation>
@@ -346,7 +346,7 @@
 <translation id="6414370348346025511">محافظت استاندارد روشن است.</translation>
 <translation id="5565355416171743213">شروع استفاده از همگام‌سازی</translation>
 <translation id="4332558599726753990">راه‌اندازی همگام‌سازی</translation>
-<translation id="2187778349654214731">برای شروع، باید در همه دستگاه‌هایی که قصد همگام‌سازی‌شان را دارید، Brave را نصب کنید، سپس با کد همگام‌سازی آنها را به‌صورت امن به هم پیوند دهید.</translation>
+<translation id="2187778349654214731">برای شروع، باید در همه دستگاه‌هایی که قصد همگام‌سازی‌شان را دارید، Mises را نصب کنید، سپس با کد همگام‌سازی آنها را به‌صورت امن به هم پیوند دهید.</translation>
 <translation id="7530575064080939974">مدیریت دستگاه‌های همگام‌سازی‌شده خود</translation>
 <translation id="7575156386943878014">مدیر همگام‌سازی</translation>
 <translation id="1755198127524719638">تنظیمات همگام‌سازی</translation>
@@ -360,18 +360,18 @@
 <translation id="7885157704277298658">کپی شد!</translation>
 <translation id="8802630444265810662">کد QR که باید به‌منظور انتقال کد همگام‌سازی شما با دستگاه تلفن همراه اسکن شود</translation>
 <translation id="6221331245829088299">خطایی در نمایش کد QR وجود داشت، لطفاً تازه‌سازی کنید و دوباره امتحان کنید.</translation>
-<translation id="298546024891487702">برای شروع، باید Brave را در همه دستگاه‌هایی که قصد همگام‌سازی‌شان را دارید نصب کنید. برای زنجیر کردن آنها به یکدیگر، یک زنجیره همگام‌سازی شروع کنید. برای پیوند کردن ایمن همه دستگاه‌هایتان به یکدیگر از این زنجیره استفاده خواهید کرد.</translation>
+<translation id="298546024891487702">برای شروع، باید Mises را در همه دستگاه‌هایی که قصد همگام‌سازی‌شان را دارید نصب کنید. برای زنجیر کردن آنها به یکدیگر، یک زنجیره همگام‌سازی شروع کنید. برای پیوند کردن ایمن همه دستگاه‌هایتان به یکدیگر از این زنجیره استفاده خواهید کرد.</translation>
 <translation id="6200528822592747640">شروع «زنجیره همگام‌سازی» جدید</translation>
 <translation id="5184726904895809379">کد همگام‌سازی دارم</translation>
 <translation id="8780295742023331191">مشاهده کد همگام‌سازی</translation>
 <translation id="9017050385815017931">تلفن/رایانه لوحی</translation>
 <translation id="1736420071277903564">رایانه</translation>
 <translation id="3407602902101449803">کد QR زنجیره همگام‌سازی</translation>
-<translation id="8369686073965491869">در دستگاه همراهتان، به «همگام‌سازی Brave» در «تنظیمات» بروید و روی دکمه کلیک کنید</translation>
+<translation id="8369686073965491869">در دستگاه همراهتان، به «همگام‌سازی Mises» در «تنظیمات» بروید و روی دکمه کلیک کنید</translation>
 <translation id="6527776448555649991">“کد همگام‌سازی را اسکن کنید”.</translation>
 <translation id="1400862780574843709">با استفاده از دوربینتان، کد QR زیر را اسکن کنید.</translation>
 <translation id="5086223971958279691">کد زنجیره همگام‌سازی</translation>
-<translation id="2899261497479389619">در رایانه هدفتان، به «همگام‌سازی Brave» در تنظیمات بروید و روی این دکمه کلیک کنید</translation>
+<translation id="2899261497479389619">در رایانه هدفتان، به «همگام‌سازی Mises» در تنظیمات بروید و روی این دکمه کلیک کنید</translation>
 <translation id="4827439149833241990">“کد همگام‌سازی دارم”.</translation>
 <translation id="8299617838343103908">کد زنجیره همگام‌سازی نشان‌داده‌شده در زیر را وارد کنید.</translation>
 <translation id="4485276108749547761">این کد را مانند گذرواژه در نظر بگیرید. اگر کسی به آن دسترسی پیدا کند، می‌تواند داده‌های همگام‌سازی‌شده شما را بخواند و تغییر دهد.</translation>
@@ -383,23 +383,23 @@
 <translation id="4581190919849683048">مایل به همگام‌سازی با چه نوع دستگاهی هستید؟</translation>
 <translation id="4112587618563511470">کد همگام‌سازی نامعتبر است. لطفاً بررسی و دوباره امتحان کنید.</translation>
 <translation id="3995714999835224798">این کد نامعتبر است</translation>
-<translation id="859506441384380749">این کد توسط نسخه منسوخ Brave ایجاد شده است، لطفاً ابتدا دستگاه دیگر خود را ارتقا دهید</translation>
+<translation id="859506441384380749">این کد توسط نسخه منسوخ Mises ایجاد شده است، لطفاً ابتدا دستگاه دیگر خود را ارتقا دهید</translation>
 <translation id="3132642509209154999">این کد منقضی شده است. لطفاً کد جدیدی در دستگاه دیگرتان ایجاد و دوباره تلاش کنید.</translation>
 <translation id="2859229680945501779">این کد نامعتبر است. لطفاً بررسی کنید که زمان و منطقه زمانی در دستگاهتان درست تنظیم شده باشند.</translation>
 <translation id="2339730291919608488">خروج از زنجیره همگام‌سازی</translation>
 <translation id="115699408012835975">اگر «همگام‌سازی» را بازنشانی کنید، باید کد همگام‌سازی را مجدداً از دستگاه دیگری وارد کنید تا همگام‌سازی با آن انجام شود. مطمئن هستید که می‌خواهید ادامه دهید؟</translation>
 <translation id="6092564993102418148">آیا مطمئن هستید که می‌خواهید دستگاه انتخاب‌شده را از زنجیره همگام‌سازی حذف کنید؟</translation>
-<translation id="4400414577602898435">هشدار: با این کار داده‌های Brave، از جمله احتمالاً رمز عبورهای شما، با دستگاهی که این کلمات کد را ایجاد کرده است به اشتراک گذاشته می‌شوند.
+<translation id="4400414577602898435">هشدار: با این کار داده‌های Mises، از جمله احتمالاً رمز عبورهای شما، با دستگاهی که این کلمات کد را ایجاد کرده است به اشتراک گذاشته می‌شوند.
 
 لطفاً دقیق بررسی کنید که این کلمات کد با دستگاهی ایجاد شده باشند که متعلق به شما است.
 
 مطمئنید می‌خواهید این کار را انجام دهید؟</translation>
-<translation id="7443185843787879670">Brave نتوانست به فضای ذخیره سازی ایمن سیستم عامل شما دسترسی پیدا کند. این چیزی است که برای ایمن سازی داده هایی مانند رمز عبور و کوکی ها استفاده می شود. همچنین برای Brave Sync برای اتصال نمایه مرورگر شما بین دستگاه ها لازم است. این بدان معناست که Brave Sync اجرا نمی شود. برای حل این مشکل، لطفاً به مراجعه کنید.<ph name="BEGIN_LINK_SYNC_GUIDE"/>راهنمای عیب‌یابی Brave Sync<ph name="END_LINK_SYNC_GUIDE"/>.</translation>
+<translation id="7443185843787879670">Mises نتوانست به فضای ذخیره سازی ایمن سیستم عامل شما دسترسی پیدا کند. این چیزی است که برای ایمن سازی داده هایی مانند رمز عبور و کوکی ها استفاده می شود. همچنین برای Mises Sync برای اتصال نمایه مرورگر شما بین دستگاه ها لازم است. این بدان معناست که Mises Sync اجرا نمی شود. برای حل این مشکل، لطفاً به مراجعه کنید.<ph name="BEGIN_LINK_SYNC_GUIDE"/>راهنمای عیب‌یابی Mises Sync<ph name="END_LINK_SYNC_GUIDE"/>.</translation>
 <translation id="6285118765755298263">فهرست‌بندی سایر موتورهای جستجو</translation>
 <translation id="919715748352669592">فهرست‌بندی خودکار وبسایت‌هایی که از مشخصات OpenSearch پیروی می‌کنند.</translation>
 <translation id="842628013524824194">پنجره عادی - موتور جستجو استفاده‌شده در نوار نشانی</translation>
 <translation id="5324939009884545145">پنجره خصوصی - موتور جستجو استفاده‌شده در نوار نشانی</translation>
-<translation id="6864914031231797928">مجاز کردن ورود به سیستم Brave برای افزونه‌ها</translation>
+<translation id="6864914031231797928">مجاز کردن ورود به سیستم Mises برای افزونه‌ها</translation>
 <translation id="6554397389149987360">از مؤلفه‌های Hangouts برای فعال کردن اشتراک‌گذاری صفحه و سایر ویژگی‌ها در مرورگر استفاده می‌کند.</translation>
 <translation id="7878791177459550035">روتر رسانه قابلیت پخش را در مرورگر ممکن می‌سازد.</translation>
 <translation id="5927916530277631319">روش تحلیل دامنه‌های توقف‌ناپذیر</translation>
@@ -427,27 +427,27 @@
 <translation id="6936835573742749135">نمی توان CAPTCHA درخواست کرد. بعدا دوباره تلاش کنید.</translation>
 <translation id="2653659639078652383">ارائه</translation>
 <translation id="1369311132025451972">هدایت خودکار سایت‌های ‎Onion</translation>
-<translation id="1658670175365815312">Brave در صورت داشتن دسترسی به نسخه ‎.onion وب‌سایت، به آن تغییر مسیر خواهد داد و به‌طور خودکار تمام دامنه‌های ‎.onion را در پنجره Tor باز خواهد کرد.</translation>
+<translation id="1658670175365815312">Mises در صورت داشتن دسترسی به نسخه ‎.onion وب‌سایت، به آن تغییر مسیر خواهد داد و به‌طور خودکار تمام دامنه‌های ‎.onion را در پنجره Tor باز خواهد کرد.</translation>
 <translation id="2896916411183256228">از WebTorrent برای نمایش مستقیم تورنت‌ها در مرورگر استفاده می‌کند. از فایل‌های تورنت و پیوندهای آهنربایی پشتیبانی می‌کند.</translation>
 <translation id="5249433283143453448">از مؤلفه مدیریت حقوق دیجیتال (DRM) Widevine برای مشاهده ویدیوی محافظت‌شده در حال پخش جریانی و سایر محتواها در مرورگر استفاده کنید.</translation>
 <translation id="8137559199583651773">مدیریت افزونه‌ها</translation>
 <translation id="7013485839273047434">دریافت افزونه‌های بیشتر</translation>
 <translation id="4954512758656527938">کیف پول پیش‌فرض اتریوم</translation>
 <translation id="7701023802820268122">کیف پول پیش‌فرض سولانا</translation>
-<translation id="8488282162676695335">کیف پول Brave</translation>
+<translation id="8488282162676695335">کیف پول Mises</translation>
 <translation id="2356070529366658676">سؤال شود</translation>
 <translation id="7701040980221191251">هیچ کدام</translation>
 <translation id="1274962333945373242">کیف پول‌های رمز ارز (منسوخ)</translation>
-<translation id="3695088618483091287">کیف پول Brave (افزونه‌های ترجیحی)</translation>
+<translation id="3695088618483091287">کیف پول Mises (افزونه‌های ترجیحی)</translation>
 <translation id="4718664830805652430">ارز پایه پیش‌فرض</translation>
 <translation id="7992507032049865603">رمزارز پایه پیش‌فرض</translation>
-<translation id="1834467296210148203">نمایش آیکون «کیف پول Brave» در نوار ابزار</translation>
-<translation id="8239147115686034860">کیف پول Brave به‌طور خودکار قفل شود</translation>
-<translation id="414639769490080648">تعداد دقایقی که باید منتظر بمانید تا کیف پول Brave به‌طور خودکار قفل شود</translation>
+<translation id="1834467296210148203">نمایش آیکون «کیف پول Mises» در نوار ابزار</translation>
+<translation id="8239147115686034860">کیف پول Mises به‌طور خودکار قفل شود</translation>
+<translation id="414639769490080648">تعداد دقایقی که باید منتظر بمانید تا کیف پول Mises به‌طور خودکار قفل شود</translation>
 <translation id="1241283133946520352">شبکه ها</translation>
 <translation id="5975930666279943472">پاک کردن اطلاعات نانس و تراکنش کیف پول</translation>
 <translation id="5693968582510626466">ممکن است پاک کردن تراکنش‌ها برای توسعه‌دهندگان یا هنگام پاک کردن وضعیت در سرور محلی مفید باشد</translation>
-<translation id="4993345308607970390">بازنشانی کیف پول Brave</translation>
+<translation id="4993345308607970390">بازنشانی کیف پول Mises</translation>
 <translation id="9216386092464743272">مطمئنید می‌خواهید همه اطلاعات نانس و تراکنش‌های کیف پول خود را بازنشانی کنید؟ اغلب توسعه‌دهندگانی از این گزینه استفاده می‌کنند که سرور آزمایشی محلی را اجرا می‌کنند. برای تأیید، «<ph name="CONFIRMATION_PHRASE"/>» را تایپ کنید.</translation>
 <translation id="6369495274982305511">مطمئنید می‌خواهید کیف پول را بازنشانی کنید؟ اگر کیف پولتان پشتیبان‌گیری شده باشد، بازنشانی باعث از بین رفتن همه داده‌های حساب می‌شود (از جمله وجود مربوطه). برای تأیید، «<ph name="CONFIRMATION_PHRASE"/>» را تایپ کنید.</translation>
 <translation id="3752403403443723332">کیف پول شما بازنشانی شده است.</translation>
@@ -486,17 +486,17 @@
 <translation id="2618193846561624884">می‌خواهید شبکه موجود را به‌روزرسانی کنید؟</translation>
 <translation id="9170907049676078643">روشی برای تحلیل منابع IPFS</translation>
 <translation id="1327977588028644528">دروازه</translation>
-<translation id="1195880978080389104">گره IPFS محلی Brave</translation>
-<translation id="2178402446227616866"><ph name="BEGIN_LINK_MPL"/>درباره<ph name="END_LINK_MPL"/> گره IPFS محلی Brave و ملاحظات حریم خصوصی درگاه بیشتر بدانید.</translation>
+<translation id="1195880978080389104">گره IPFS محلی Mises</translation>
+<translation id="2178402446227616866"><ph name="BEGIN_LINK_MPL"/>درباره<ph name="END_LINK_MPL"/> گره IPFS محلی Mises و ملاحظات حریم خصوصی درگاه بیشتر بدانید.</translation>
 <translation id="4927734062756955434">نشانی دروازه عمومی IPFS</translation>
 <translation id="8425213833346101688">تغییر</translation>
 <translation id="585868419599255817">بازگشت دروازه عمومی IPFS</translation>
-<translation id="2618080188892567155">اگر دسترسی به گره IPFS محلی Brave ممکن نیست، به‌طور خودکار به درگاه IPFS عمومی برگردانده می‌شوید.</translation>
+<translation id="2618080188892567155">اگر دسترسی به گره IPFS محلی Mises ممکن نیست، به‌طور خودکار به درگاه IPFS عمومی برگردانده می‌شوید.</translation>
 <translation id="4107552920076294723">منابع IPFS را به دروازه IPFS پیکربندی‌شده هدایت کنید</translation>
 <translation id="6494857428933042381">وقتی منبع دروازه IPFS نمایان می‌شود، به‌طور خودکار از دروازه پیکربندی‌شده برای تحلیل‌های IPFS استفاده شود.</translation>
 <translation id="8655170717758778983">درصورت امکان، به‌طور خودکار ازطریق DNSLink به صفحات IPFS هدایت می‌شود</translation>
 <translation id="2233724520223030977">به‌طور خودکار از DNSLink استفاده می‌کند تا درصورت امکان به نسخه IPFS پیمایش کند</translation>
-<translation id="8068526464562249859">برای پشتیبانی بهبودیافته IPFS در Brave (از جمله دسترسی به کارهای معمول IPFS از نوار مرورگر)، از افزونه همراه IPFS استفاده می‌کند.</translation>
+<translation id="8068526464562249859">برای پشتیبانی بهبودیافته IPFS در Mises (از جمله دسترسی به کارهای معمول IPFS از نوار مرورگر)، از افزونه همراه IPFS استفاده می‌کند.</translation>
 <translation id="1251574393468476924">حداکثر اندازه حافظه پنهان IPFS (گیگابایت)</translation>
 <translation id="2503497578400410320">حداکثر مجاز نرم برای اندازه محل ذخیره‌سازی داده مخزن IPFS.</translation>
 <translation id="6758961763875471084">تغییر فهرست همتایان</translation>
@@ -507,8 +507,8 @@
 <translation id="911363100236037920">نامی را برای کلید جدید وارد کنید</translation>
 <translation id="6358469157239228181">این نام قابل استفاده نیست</translation>
 <translation id="2082206983920804886">کلید چرخش</translation>
-<translation id="5078501082919354191">متوقف کردن گره IPFS محلی Brave امکان‌پذیر نیست</translation>
-<translation id="5687424953196903465">راه‌اندازی گره IPFS محلی Brave امکان‌پذیر نیست</translation>
+<translation id="5078501082919354191">متوقف کردن گره IPFS محلی Mises امکان‌پذیر نیست</translation>
+<translation id="5687424953196903465">راه‌اندازی گره IPFS محلی Mises امکان‌پذیر نیست</translation>
 <translation id="6476061084931271248">برای اعمال تغییرات، گره را مجدداً راه‌اندازی کنید</translation>
 <translation id="3754226427671882382">راه‌اندازی مجدد گره</translation>
 <translation id="949667118776341807">چرخش</translation>
@@ -528,41 +528,41 @@
 <translation id="557281710253742286">تنظیم دروازه IPFS</translation>
 <translation id="8571837315037233299">نشانی دروازه</translation>
 <translation id="7703184801853248830">نشانی دروازه نامعتبر است</translation>
-<translation id="7690058578502751948">فقط یک گذرگاه IPFS معتبر با جداسازی Origin فعال می‌تواند در Brave استفاده شود</translation>
+<translation id="7690058578502751948">فقط یک گذرگاه IPFS معتبر با جداسازی Origin فعال می‌تواند در Mises استفاده شود</translation>
 <translation id="3411013544209536575">نکات راهنما</translation>
 <translation id="2775956301559569472">نشان دادن پیام‌واره Wayback Machine در صفحه‌های خطای 404</translation>
 <translation id="3095201688102519917">قبل از بستن پنجره‌ای با چندین زبانه، به من هشدار داده شود</translation>
 <translation id="7120553802660696133">هنگام بستن آخرین زبانه، پنجره بسته شود</translation>
 <translation id="6624718837376802990">آواتار پاداش‌های نوآورانه</translation>
-<translation id="6617313057407561765">آواتار نوآورانه Brave</translation>
+<translation id="6617313057407561765">آواتار نوآورانه Mises</translation>
 <translation id="6754445808455578019">آواتار نوآورانه اقیانوس</translation>
 <translation id="1202230982786524987">آواتار نوآورانه سبزه</translation>
 <translation id="5795513892420634319">آواتار ذرت نوآورانه</translation>
 <translation id="3561521017993720050">آواتار سلطنتی نوآورانه</translation>
 <translation id="1235866128911626592">آواتار نینجای نوآورانه</translation>
 <translation id="2090755120827623384">آواتار پاداش‌های پالادین</translation>
-<translation id="2018119859356143702">آواتار پالادین Brave</translation>
+<translation id="2018119859356143702">آواتار پالادین Mises</translation>
 <translation id="4740488466586929481">آواتار اقیانوس پالادین</translation>
 <translation id="5006207620676644913">آواتار سبزه پالادین</translation>
 <translation id="3989232963815817109">آواتار پالادین ذرت</translation>
 <translation id="4594102608669574640">آواتار سلطنتی پالادین</translation>
 <translation id="2183738260538789532">آواتار نینجای پالادین</translation>
 <translation id="1364533449989493534">آواتار پاداش‌های انعکاس نور</translation>
-<translation id="7885078296101135895">آواتار Brave انعکاس نور</translation>
+<translation id="7885078296101135895">آواتار Mises انعکاس نور</translation>
 <translation id="5569105529336093187">آواتار اقیانوس انعکاس نور</translation>
 <translation id="8905105122495847950">آواتار سبزه انعکاس نور</translation>
 <translation id="5118043134512650846">آواتار ذرت انعکاس نور</translation>
 <translation id="7054896317531348319">آواتار سلطنتی انعکاس نور</translation>
 <translation id="5493441852328628982">آواتار نینجا انعکاس نور</translation>
 <translation id="2752844432779340213">آواتار پاداش‌های تخم مرغی</translation>
-<translation id="3981340065784739675">آواتار Brave تخم مرغی</translation>
+<translation id="3981340065784739675">آواتار Mises تخم مرغی</translation>
 <translation id="8950124663623888116">آواتار اقیانوس تخم مرغی</translation>
 <translation id="1029136880675307651">آواتار سبزه تخم مرغی</translation>
 <translation id="3285059582709531888">آواتار ذرت تخم مرغی</translation>
 <translation id="8540390244071055918">آواتار تخم مرغی سلطنتی</translation>
 <translation id="3435440003463944104">آواتار نینجا تخم مرغی</translation>
 <translation id="4222150638283443362">آواتار پاداش‌های آب‌نبات</translation>
-<translation id="8888471219870198387">آواتار Brave آب‌نبات</translation>
+<translation id="8888471219870198387">آواتار Mises آب‌نبات</translation>
 <translation id="2883756935342108947">آواتار اقیانوس آب‌نبات</translation>
 <translation id="6280956561199400472">آواتار سبزه آب‌نبات</translation>
 <translation id="5318548116565208315">آواتار ذرت آب‌نبات</translation>

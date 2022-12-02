@@ -32,10 +32,10 @@
 <translation id="985862351129593673">Personalizar el Dashboard</translation>
 <translation id="7180865173735832675">Personalizar</translation>
 <translation id="8522669544471808198">Mostrar imágenes de fondo</translation>
-<translation id="5801450813341024983">Fondos de Brave</translation>
+<translation id="5801450813341024983">Fondos de Mises</translation>
 <translation id="1416884769823233410">Usa el tuyo</translation>
 <translation id="6246790815526961700">Subir uno del dispositivo</translation>
-<translation id="7275773481201277457">Mostrar Estadísticas de Brave</translation>
+<translation id="7275773481201277457">Mostrar Estadísticas de Mises</translation>
 <translation id="6836061097810262923">Mostrar Reloj</translation>
 <translation id="5912396950572065471">Formato</translation>
 <translation id="604124094241169006">Automático</translation>
@@ -58,56 +58,56 @@
 <translation id="1773147648972887693">Mostrar los visitados más frecuentemente</translation>
 <translation id="4546260624932151782">Mostrar favoritos</translation>
 <translation id="1230746063445072175">¿Quieres mejorar aún más la privacidad?</translation>
-<translation id="6699628638740071563">Ha llegado el momento de despedirse de Brave.</translation>
-<translation id="2045455461902775806">Búsqueda de Brave no sesga ni censura los resultados. Tampoco rastrea tu actividad, tus consultas ni los enlaces en los que haces clic.</translation>
-<translation id="6811221529729056895">Prueba Búsqueda de Brave</translation>
+<translation id="6699628638740071563">Ha llegado el momento de despedirse de Mises.</translation>
+<translation id="2045455461902775806">Búsqueda de Mises no sesga ni censura los resultados. Tampoco rastrea tu actividad, tus consultas ni los enlaces en los que haces clic.</translation>
+<translation id="6811221529729056895">Prueba Búsqueda de Mises</translation>
 <translation id="5525668735313040116">Buscar en la web de forma privada</translation>
-<translation id="3446024864193919737">Mostrar Brave Rewards</translation>
+<translation id="3446024864193919737">Mostrar Mises Rewards</translation>
 <translation id="6274899614137380422">Mostrar Binance</translation>
 <translation id="5585019845078534178">Tarjetas</translation>
 <translation id="3870475560794762985">Mostrar imágenes patrocinadas</translation>
 <translation id="8466529005131466476">Puedes ganar dinero por ver sitios patrocinados.</translation>
 <translation id="3955742714798578476">Estás ganando dinero por ver imágenes patrocinadas.</translation>
-<translation id="7822618650711767369">Brave se nutre del apoyo de imágenes patrocinadas. ¡Gracias a las Recompensas de Brave, puedes ganar parte de los beneficios obtenidos con las imágenes patrocinadas y apoyar también a creadores de contenido!</translation>
+<translation id="7822618650711767369">Mises se nutre del apoyo de imágenes patrocinadas. ¡Gracias a las Recompensas de Mises, puedes ganar parte de los beneficios obtenidos con las imágenes patrocinadas y apoyar también a creadores de contenido!</translation>
 <translation id="5579480493856401823">Si desactivas los sitios patrocinados, obtendrás menos tokens y los creadores de contenido recibirán menos apoyo cada mes.</translation>
 <translation id="2875302873837723333">sitios populares</translation>
-<translation id="8173998484743827990">Estadísticas de Brave</translation>
+<translation id="8173998484743827990">Estadísticas de Mises</translation>
 <translation id="383680190590774040">reloj</translation>
-<translation id="3333887201479867589">Brave Rewards</translation>
+<translation id="3333887201479867589">Mises Rewards</translation>
 <translation id="3159285901314605198">Imagen de fondo</translation>
 <translation id="385051799172605136">Atrás</translation>
 <translation id="4225429340218993596">Colores sólidos</translation>
 <translation id="7610541582755894669">Gradientes</translation>
 <translation id="1606851618930975029">Actualizar en cada pestaña nueva</translation>
-<translation id="9024104284526126630">Puedes iniciar una llamada privada en Brave.</translation>
-<translation id="4903286433687221248">Llama sin límite alguno a amigos y compañeros con Brave Talk.</translation>
+<translation id="9024104284526126630">Puedes iniciar una llamada privada en Mises.</translation>
+<translation id="4903286433687221248">Llama sin límite alguno a amigos y compañeros con Mises Talk.</translation>
 <translation id="7115051913071512405">Pruébalo</translation>
 <translation id="7415602225677446066">Las principales historias de hoy en un hilo completamente privado, solo para usted.</translation>
-<translation id="6903061332999399632">Brave News se mantiene con publicidad y muestra anuncios completamente privados y anónimos según tu dispositivo. Mantenemos la confidencialidad de tus datos personales de acuerdo con nuestra <ph name="LINK_START"/>Política de privacidad<ph name="LINK_END"/>.</translation>
-<translation id="7823038307453615214">Mostrar Brave News</translation>
-<translation id="1447534717041828517">Mostrar el botón de Noticias de Brave en la barra de herramientas</translation>
+<translation id="6903061332999399632">Mises News se mantiene con publicidad y muestra anuncios completamente privados y anónimos según tu dispositivo. Mantenemos la confidencialidad de tus datos personales de acuerdo con nuestra <ph name="LINK_START"/>Política de privacidad<ph name="LINK_END"/>.</translation>
+<translation id="7823038307453615214">Mostrar Mises News</translation>
+<translation id="1447534717041828517">Mostrar el botón de Noticias de Mises en la barra de herramientas</translation>
 <translation id="370665806235115550">Loading...</translation>
 <translation id="4634933166298842522">Gestionar las suscripciones</translation>
 <translation id="4108314971463891922">Seguir</translation>
 <translation id="3861486700625780712">Dejar de seguir</translation>
 <translation id="8909741410750517071">Sigue esta fuente con 1 clic.</translation>
-<translation id="1982678174789043774">Estate al tanto de toda la actualidad con Noticias de Brave.</translation>
+<translation id="1982678174789043774">Estate al tanto de toda la actualidad con Noticias de Mises.</translation>
 <translation id="7894417427965898400">Gestionar canales</translation>
 <translation id="780301667611848630">No, gracias</translation>
 <translation id="9164544612367905452">Buscando…</translation>
 <translation id="1276592121036104130">Cargar nuevo contenido</translation>
-<translation id="2875288128871360696">Desplázate hasta Brave News</translation>
-<translation id="8510120023634509743">Restablecer fuentes de Brave News</translation>
-<translation id="75825199302994272">¿Restablecer todas las acciones de publicidad de Brave News a los valores predeterminados?</translation>
+<translation id="2875288128871360696">Desplázate hasta Mises News</translation>
+<translation id="8510120023634509743">Restablecer fuentes de Mises News</translation>
+<translation id="75825199302994272">¿Restablecer todas las acciones de publicidad de Mises News a los valores predeterminados?</translation>
 <translation id="954001034349395856">Todas las fuentes</translation>
 <translation id="8890516388109605451">Fuentes</translation>
 <translation id="5158129253322921540">Deshabilitar contenido de <ph name="PUBLISHER_NAME"/></translation>
 <translation id="3189348785087463371">Promocionado</translation>
 <translation id="4541978218358617681">Anuncio</translation>
 <translation id="6265592479622441247">Volver al <ph name="BEGIN_BOLD"/>panel de control<ph name="END_BOLD"/></translation>
-<translation id="8300751939969131609">Activa Noticias de Brave para no quedarte fuera de onda</translation>
+<translation id="8300751939969131609">Activa Noticias de Mises para no quedarte fuera de onda</translation>
 <translation id="8117813824055029515">Noticias personalizadas de las principales fuentes de información en tu navegador. Todo 100 % privado.</translation>
-<translation id="1765217911817124376">Activar Noticias de Brave</translation>
+<translation id="1765217911817124376">Activar Noticias de Mises</translation>
 <translation id="7845637671472170434">Busca canales de noticias, sitios web, temas o RSS</translation>
 <translation id="1498364270401875204">Canales</translation>
 <translation id="1472675084647422956">Mostrar más</translation>
@@ -130,12 +130,12 @@
 <translation id="1531133232292396145">Invierte en criptomonedas en Binance directamente con su navegador.</translation>
 <translation id="2166494527623220386">Invierte en criptomonedas en Gemini directamente desde el navegador.</translation>
 <translation id="7191394989411626168">Al desactivar las tarjetas, se ocultarán todas las tarjetas disponibles actualmente. Sin embargo, podrá seguir recibiendo notificaciones de nuevas tarjetas.</translation>
-<translation id="6820526586005233839">Brave Ads en pausa</translation>
-<translation id="5190407395832551012">Con el fin de evitar el uso abusivo de Brave Rewards, vamos a pedirles de forma aleatoria a algunos usuarios que resuelvan un captcha. Haz clic en “Resolver” para reanudar los anuncios.</translation>
+<translation id="6820526586005233839">Mises Ads en pausa</translation>
+<translation id="5190407395832551012">Con el fin de evitar el uso abusivo de Mises Rewards, vamos a pedirles de forma aleatoria a algunos usuarios que resuelvan un captcha. Haz clic en “Resolver” para reanudar los anuncios.</translation>
 <translation id="1693773514029371138">Resolver</translation>
 <translation id="6991128190741664836">Más tarde</translation>
-<translation id="8112367589167674370">Brave Talk</translation>
-<translation id="8488282162676695335">Cartera Brave</translation>
+<translation id="8112367589167674370">Mises Talk</translation>
+<translation id="8488282162676695335">Cartera Mises</translation>
 <translation id="8820817407110198400">Marcadores</translation>
 <translation id="1644574205037202324">Historial</translation>
 <translation id="2702801445560668637">Lista de Lectura</translation>
@@ -144,30 +144,30 @@
 <translation id="8730621377337864115">Listo</translation>
 <translation id="730042046912793465">Esto es una</translation>
 <translation id="2055363275850890030">Ventana Privada</translation>
-<translation id="9133213713928851646">Brave no recordará tu actividad en una ventana privada. Los sitios web que hayas visitado no aparecerán en tu historial y las cookies desaparecerán cuando hayas terminado. Sin embargo, las ventanas privadas no te vuelven completamente anónimo online.</translation>
-<translation id="4085423007106063912">Brave nunca guarda lo que haces cuando navegas en modo privado. Los sitios que visites no aparecerán en tu historial. Las cookies, los datos de formularios y los datos de los sitios desaparecerán al cerrar la ventana.</translation>
+<translation id="9133213713928851646">Mises no recordará tu actividad en una ventana privada. Los sitios web que hayas visitado no aparecerán en tu historial y las cookies desaparecerán cuando hayas terminado. Sin embargo, las ventanas privadas no te vuelven completamente anónimo online.</translation>
+<translation id="4085423007106063912">Mises nunca guarda lo que haces cuando navegas en modo privado. Los sitios que visites no aparecerán en tu historial. Las cookies, los datos de formularios y los datos de los sitios desaparecerán al cerrar la ventana.</translation>
 <translation id="1700746046668116047">Ten en cuenta que tanto tu proveedor de servicios de Internet como los observadores pasivos de la red y los responsables de tu empresa (si utilizas una red o un equipo del trabajo) pueden ver tus actividades. Si quieres más privacidad, abre una ventana privada con Tor.</translation>
 <translation id="8759753423332885148">Más información</translation>
 <translation id="8611976753572844841">Ventana privada con conectividad Tor</translation>
-<translation id="1645589858096839236">Brave no almacena la actividad de navegación de las ventanas privadas. Además, gracias a la conectividad Tor, los sitios web tienen más difícil descubrir tu verdadera dirección IP y los observadores de redes encuentran más dificultades a la hora de detectar qué sitios web visitas. En cualquier caso, si tu seguridad personal depende de permanecer en el anonimato, utiliza el navegador Tor en su lugar.</translation>
+<translation id="1645589858096839236">Mises no almacena la actividad de navegación de las ventanas privadas. Además, gracias a la conectividad Tor, los sitios web tienen más difícil descubrir tu verdadera dirección IP y los observadores de redes encuentran más dificultades a la hora de detectar qué sitios web visitas. En cualquier caso, si tu seguridad personal depende de permanecer en el anonimato, utiliza el navegador Tor en su lugar.</translation>
 <translation id="7919374705736538787">Busca de forma privada con</translation>
 <translation id="3135655280958284640">DuckDuckGo</translation>
-<translation id="218839872518145456">Con la búsqueda privada, Brave usará DuckDuckGo para búsquedas en una Ventana Privada. DuckDuckGo no rastrea tu historial de búsqueda, por lo que puedes buscar de forma privada.</translation>
+<translation id="218839872518145456">Con la búsqueda privada, Mises usará DuckDuckGo para búsquedas en una Ventana Privada. DuckDuckGo no rastrea tu historial de búsqueda, por lo que puedes buscar de forma privada.</translation>
 <translation id="1925197199485958903">En Ventanas Privadas con Tor, DuckDuckGo es el motor de búsqueda por defecto. Algunos de los otros motores de búsqueda populares son más difíciles de usar con Tor. DuckDuckGo no rastrea tu historial de búsqueda, con Tor ni siquiera pueden saber tu dirección IP.</translation>
 <translation id="4371533307685765155">Buscar con DuckDuckGo</translation>
 <translation id="548478195417408221">Haz las Ventanas Privadas aún más privadas</translation>
 <translation id="3294503279952534143">Esta ventana privada es más privada</translation>
 <translation id="6126226144537295436">con conectividad Tor</translation>
 <translation id="8541421872680304667">Tor oculta su dirección IP de los sitios que visita, dirigiendo su navegación a través de varios servidores Tor antes de que llegue a su destino. Tor puede ralentizar la navegación y algunos sitios pueden no funcionar en absoluto.</translation>
-<translation id="8897548669448660973">El uso de ventanas privadas solo cambia lo que hace Brave en tu dispositivo. No cambia, por tanto, el comportamiento de ninguna persona. Tor oculta tu dirección IP a los sitios web que visitas y hace complicado, pero no imposible, que tu ISP o tu jefe sepa qué páginas has visitado. Abre una Ventana privada con Tor desde el menú o mediante  [[ key ]].</translation>
-<translation id="6975708438781948564">Saber más sobre Tor en Brave</translation>
+<translation id="8897548669448660973">El uso de ventanas privadas solo cambia lo que hace Mises en tu dispositivo. No cambia, por tanto, el comportamiento de ninguna persona. Tor oculta tu dirección IP a los sitios web que visitas y hace complicado, pero no imposible, que tu ISP o tu jefe sepa qué páginas has visitado. Abre una Ventana privada con Tor desde el menú o mediante  [[ key ]].</translation>
+<translation id="6975708438781948564">Saber más sobre Tor en Mises</translation>
 <translation id="4712050378540986986">Estado de Tor</translation>
 <translation id="1939334281379458295">Tor se ha conectado correctamente</translation>
 <translation id="8030169304546394654">Desconectado</translation>
 <translation id="2795840524629682765">Fallo en la conexión Tor</translation>
 <translation id="1149108864689950951">Tor se está conectando… [[percentage]] %</translation>
 <translation id="3651192084771403430">¿Tienes problemas de conexión? Prueba a <ph name="BEGIN_LINK"/>desactivar<ph name="END_LINK"/> la ventana privada con Tor y, luego, vuelve a activarla en los ajustes.</translation>
-<translation id="8834376622642889380">Abre <ph name="BEGIN_LINK"/>Configuración de Brave<ph name="END_LINK"/>, desactiva "Ventana privada con Tor", y luego vuelve a activarla.</translation>
+<translation id="8834376622642889380">Abre <ph name="BEGIN_LINK"/>Configuración de Mises<ph name="END_LINK"/>, desactiva "Ventana privada con Tor", y luego vuelve a activarla.</translation>
 <translation id="1576202729986800142"><ph name="BEGIN_BOLD"/>¿Sigues teniendo problemas?<ph name="END_BOLD"/> Prueba a usar <ph name="BEGIN_BRIDGES_LINK"/>puentes<ph name="END_BRIDGES_LINK"/> o <ph name="BEGIN_SUPPORT_LINK"/>contacta con asistencia técnica<ph name="END_SUPPORT_LINK"/>.</translation>
 <translation id="8388043004918289671">Contacta con el servicio de asistencia.</translation>
 <translation id="4272382368346338917">Filtros Adicionales</translation>
@@ -187,26 +187,26 @@
 <translation id="5334844597069022743">Ver fuente</translation>
 <translation id="4720556299488643018">Cancelar suscripción</translation>
 <translation id="1209739344687072997">Notificar un error...</translation>
-<translation id="8510478288840333677">Haz saber a los desarrolladores de Brave de que este sitio no funciona correctamente con los Escudos Brave:</translation>
-<translation id="4105411033440701818">Nota: Si haces clic en "Enviar", compartirás la dirección de la web, el número de la versión de Brave que utilizas y tu dirección IP con los desarrolladores de Brave. (La dirección IP no quedará almacenada).</translation>
+<translation id="8510478288840333677">Haz saber a los desarrolladores de Mises de que este sitio no funciona correctamente con los Escudos Mises:</translation>
+<translation id="4105411033440701818">Nota: Si haces clic en "Enviar", compartirás la dirección de la web, el número de la versión de Mises que utilizas y tu dirección IP con los desarrolladores de Mises. (La dirección IP no quedará almacenada).</translation>
 <translation id="6476216365964140603">Detalles adicionales (opcional)</translation>
 <translation id="6145852496180774737">Contacto: (opcional)</translation>
 <translation id="7616645803364270729">Correo electrónico, Twitter, etc.</translation>
 <translation id="5299848999918506028">¡Gracias!</translation>
-<translation id="76550953340008122">Gracias por informar a los desarrolladores de Brave sobre posibles errores en este sitio. ¡Haremos todo lo posible para arreglarlo!</translation>
-<translation id="2974339193389078578">Brave, el nuevo Internet</translation>
+<translation id="76550953340008122">Gracias por informar a los desarrolladores de Mises sobre posibles errores en este sitio. ¡Haremos todo lo posible para arreglarlo!</translation>
+<translation id="2974339193389078578">Mises, el nuevo Internet</translation>
 <translation id="7735138632831241257">Prepárate para disfrutar de una experiencia de navegación más rápida y segura con un navegador creado para proteger tu privacidad.</translation>
 <translation id="6001839398155993679">Comenzar</translation>
-<translation id="4225189922025976867"><ph name="BEGIN_BOLD"/>Gana vales<ph name="END_BOLD"/> viendo los anuncios privados de Brave y apoya de forma automática a los creadores de contenido.</translation>
+<translation id="4225189922025976867"><ph name="BEGIN_BOLD"/>Gana vales<ph name="END_BOLD"/> viendo los anuncios privados de Mises y apoya de forma automática a los creadores de contenido.</translation>
 <translation id="5477721706074111257">Al hacer clic, aceptas las <ph name="BEGIN_LINK"/>condiciones del servicio<ph name="END_LINK"/> y <ph name="BEGIN_LINK"/>la política de protección de datos personales<ph name="END_LINK"/>.</translation>
 <translation id="3505541710659461355">Puedes desactivarlo en cualquier momento en la configuración.</translation>
-<translation id="2965798296974325760">Empezar a utilizar Brave Rewards</translation>
+<translation id="2965798296974325760">Empezar a utilizar Mises Rewards</translation>
 <translation id="3958088479270651626">Importar marcadores y configuración</translation>
 <translation id="2609701960545338618">Configura tu entorno habitual de navegación importando los marcadores y los ajustes de tu antiguo navegador. Las opciones avanzadas de importación están disponibles en la Configuración</translation>
 <translation id="8275038454117074363">Importar</translation>
 <translation id="2088479175984386785">Importar desde...</translation>
 <translation id="5540323067375019678">Gestiona tus escudos</translation>
-<translation id="3278033011827237847">Protégete contra los anuncios y los rastreadores que invaden tu privacidad mientras navegas por internet con los Escudos Brave. Desactiva los escudos la página parece no funcionar correctamente.</translation>
+<translation id="3278033011827237847">Protégete contra los anuncios y los rastreadores que invaden tu privacidad mientras navegas por internet con los Escudos Mises. Desactiva los escudos la página parece no funcionar correctamente.</translation>
 <translation id="3366308997091824722">Ajustes del Escudo</translation>
 <translation id="4764692524839457597">predeterminado</translation>
 <translation id="3108122610701115301">Establecer por defecto</translation>
@@ -216,16 +216,16 @@
 <translation id="3829010735958850433">Saltar el tour de bienvenida</translation>
 <translation id="1201402288615127009">Siguiente</translation>
 <translation id="7954950242989581218">Navega seguro y protegido</translation>
-<translation id="2188651882929633653">Brave Shields bloquea cosas horrorosas que intentan rastrearte por la web — incluyendo la mayoría de anuncios.  Establece Shields en “abajo” si un sitio parece no funcionar. Brave utiliza <ph name="BEGIN_LINK_P3A"/>un análisis de productos completamente privado<ph name="END_LINK_P3A"/> para estimar el uso general de ciertas funciones. Puedes desactivar esto en <ph name="BEGIN_LINK_P3A_SETTINGS"/>Ajustes<ph name="END_LINK_P3A_SETTINGS"/>.</translation>
-<translation id="4851215387785619212">Anuncios privados de Brave</translation>
-<translation id="3114984266384096064">Gana [[currency]] visualizando anuncios privados de Brave. Los anuncios ofrecidos están basados en tus intereses, según se deduce de tu comportamiento de navegación. No se exportan datos personales ni el historial de navegación fuera del navegador.</translation>
+<translation id="2188651882929633653">Mises Shields bloquea cosas horrorosas que intentan rastrearte por la web — incluyendo la mayoría de anuncios.  Establece Shields en “abajo” si un sitio parece no funcionar. Mises utiliza <ph name="BEGIN_LINK_P3A"/>un análisis de productos completamente privado<ph name="END_LINK_P3A"/> para estimar el uso general de ciertas funciones. Puedes desactivar esto en <ph name="BEGIN_LINK_P3A_SETTINGS"/>Ajustes<ph name="END_LINK_P3A_SETTINGS"/>.</translation>
+<translation id="4851215387785619212">Anuncios privados de Mises</translation>
+<translation id="3114984266384096064">Gana [[currency]] visualizando anuncios privados de Mises. Los anuncios ofrecidos están basados en tus intereses, según se deduce de tu comportamiento de navegación. No se exportan datos personales ni el historial de navegación fuera del navegador.</translation>
 <translation id="6112368337882254910">Contribución Automática</translation>
-<translation id="3742599705619405136">Una forma automática de apoyar a los editores y creadores de contenido. Establece un pago mensual y navega con normalidad. Las páginas verificadas por Brave que hayas visitado recibirán sus contribuciones de forma automática en base a tu atención medida por Brave.</translation>
+<translation id="3742599705619405136">Una forma automática de apoyar a los editores y creadores de contenido. Establece un pago mensual y navega con normalidad. Las páginas verificadas por Mises que hayas visitado recibirán sus contribuciones de forma automática en base a tu atención medida por Mises.</translation>
 <translation id="3325399124634342726">Ganancias actuales este mes (estimación)</translation>
 <translation id="8593551638387217772">Fecha del próximo pago</translation>
 <translation id="4428871418618312983">Anuncios recibidos este mes</translation>
 <translation id="4229016885653790965">¡Lo sentimos! Los Anuncios aún no están disponibles en tu región.</translation>
-<translation id="2539279826042558064">En este momento, Brave Rewards y Brave Ads no están disponibles en tu dispositivo.</translation>
+<translation id="2539279826042558064">En este momento, Mises Rewards y Mises Ads no están disponibles en tu dispositivo.</translation>
 <translation id="5736977383725358876">Frecuencia de los anuncios de notificación</translation>
 <translation id="7701040980221191251">Ninguno</translation>
 <translation id="767929144984201135">Hasta 1 anuncio por hora</translation>
@@ -235,7 +235,7 @@
 <translation id="8827015466803589071">Hasta 5 anuncios por hora</translation>
 <translation id="2293009346092992234">Hasta 10 anuncios por hora</translation>
 <translation id="2356652719351432565">Relevancia del anuncio a escala regional</translation>
-<translation id="3216275550298493597">Esto permite que Brave te muestre anuncios adaptados específicamente a tu región.</translation>
+<translation id="3216275550298493597">Esto permite que Mises te muestre anuncios adaptados específicamente a tu región.</translation>
 <translation id="8446884382197647889">Más información</translation>
 <translation id="6209514229703649203">Detectado automáticamente como [[adsSubdivisionTarget]]</translation>
 <translation id="8010081455002666927">Detectar automáticamente</translation>
@@ -280,34 +280,34 @@
 <translation id="7841456038054167122">Por favor vuelve a introducir las claves o prueba otras diferentes.</translation>
 <translation id="1911900517212490188">La clave de recuperación introducida ya no es compatible. Por favor, entra <ph name="BEGIN_LINK"/>aquí<ph name="END_LINK"/>para obtener una nueva clave.</translation>
 <translation id="7583327070390027131">Fecha de las próximas propinas mensuales</translation>
-<translation id="6231182869178328516">Acabo de hacer una contribución económica a <ph name="NAME"/> mediante el navegador Brave. Puedes verlo en https://brave.com/tips.</translation>
-<translation id="5916536234616514390">¡Me encanta que <ph name="HASHTAG"/>Brave me permita apoyar a los creadores! Acabo de darle una propina a <ph name="NAME"/> de <ph name="HASHTAG2"/> BAT. Si se verifica en https://creators.brave.com antes del <ph name="DATE"/>, ¡esos BAT serán suyos!</translation>
-<translation id="8404935570206006581">DaPropinasConBrave</translation>
+<translation id="6231182869178328516">Acabo de hacer una contribución económica a <ph name="NAME"/> mediante el navegador Mises. Puedes verlo en https://brave.com/tips.</translation>
+<translation id="5916536234616514390">¡Me encanta que <ph name="HASHTAG"/>Mises me permita apoyar a los creadores! Acabo de darle una propina a <ph name="NAME"/> de <ph name="HASHTAG2"/> BAT. Si se verifica en https://creators.brave.com antes del <ph name="DATE"/>, ¡esos BAT serán suyos!</translation>
+<translation id="8404935570206006581">DaPropinasConMises</translation>
 <translation id="3082557070674409251">Pulsado</translation>
 <translation id="7119308337584989771">Rechazado</translation>
 <translation id="6805660603861526473">Visto</translation>
-<translation id="8826352442759228526">Tu perfil de Recompensas de Brave no se puede verificar porque has alcanzado el límite máximo de dispositivos verificados.</translation>
+<translation id="8826352442759228526">Tu perfil de Recompensas de Mises no se puede verificar porque has alcanzado el límite máximo de dispositivos verificados.</translation>
 <translation id="1221593978088944142">Error: Se ha alcanzado el límite de dispositivos</translation>
 <translation id="3113653894794167793">Lo sentimos, ha habido un problema al procesar su solicitud, inténtelo de nuevo.</translation>
-<translation id="3509185560119586847">Lamentablemente, tu perfil de Recompensas de Brave está marcado, así que no puedes verificarte con un custodio en esta ocasión. A veces, este tipo de marca se debe a alguna actividad irregular por parte de Anuncios de Brave, aunque también puede tratarse de un falso positivo.</translation>
-<translation id="5031451251720571882">Ten en cuenta que no podrás verificarte mientras tu perfil de Recompensas de Brave esté marcado.</translation>
-<translation id="7301759045821910866">No es necesaria ninguna acción por tu parte. Tu perfil de Recompensas de Brave se reevaluará automáticamente cada cierto tiempo para determinar cuándo (o si) se puede eliminar la marca. Vuelve a intentarlo con frecuencia para ver si la marca ha desaparecido.</translation>
-<translation id="280350148043792509"><ph name="BEGIN_LINK"/>Obtén más información sobre el proceso que sigue Brave para marcar los perfiles de Recompensas.<ph name="END_LINK"/></translation>
-<translation id="5028274575541726856">Error: el perfil de Recompensas de Brave está marcado</translation>
+<translation id="3509185560119586847">Lamentablemente, tu perfil de Recompensas de Mises está marcado, así que no puedes verificarte con un custodio en esta ocasión. A veces, este tipo de marca se debe a alguna actividad irregular por parte de Anuncios de Mises, aunque también puede tratarse de un falso positivo.</translation>
+<translation id="5031451251720571882">Ten en cuenta que no podrás verificarte mientras tu perfil de Recompensas de Mises esté marcado.</translation>
+<translation id="7301759045821910866">No es necesaria ninguna acción por tu parte. Tu perfil de Recompensas de Mises se reevaluará automáticamente cada cierto tiempo para determinar cuándo (o si) se puede eliminar la marca. Vuelve a intentarlo con frecuencia para ver si la marca ha desaparecido.</translation>
+<translation id="280350148043792509"><ph name="BEGIN_LINK"/>Obtén más información sobre el proceso que sigue Mises para marcar los perfiles de Recompensas.<ph name="END_LINK"/></translation>
+<translation id="5028274575541726856">Error: el perfil de Recompensas de Mises está marcado</translation>
 <translation id="2607420597216860026">Vuelve a intentarlo cuando hayas terminado de verificar tu ID en <ph name="PROVIDER"/>.</translation>
 <translation id="3183954159462541696">Error: Necesitas una cuenta verificada para iniciar sesión</translation>
-<translation id="1859789048900659918">Vaya, parece que tu país de recompensas de Brave no coincide con el país de la cuenta de <ph name="PROVIDER"/> que intentas vincular.</translation>
+<translation id="1859789048900659918">Vaya, parece que tu país de recompensas de Mises no coincide con el país de la cuenta de <ph name="PROVIDER"/> que intentas vincular.</translation>
 <translation id="8925428135452218262">Error: Los países no coinciden</translation>
-<translation id="5260522591743022748">Vaya, parece que tu perfil de Recompensas de Brave ya se ha verificado con otra cuenta de <ph name="PROVIDER"/>. Intenta verificarte de nuevo con tu cuenta anterior.</translation>
+<translation id="5260522591743022748">Vaya, parece que tu perfil de Recompensas de Mises ya se ha verificado con otra cuenta de <ph name="PROVIDER"/>. Intenta verificarte de nuevo con tu cuenta anterior.</translation>
 <translation id="5111921830714291902">Error: cuenta diferente</translation>
-<translation id="1024520300696337331">No es posible vincular tu cuenta de <ph name="PROVIDER"/> con tu perfil de Recompensas de Brave en estos momentos. Tu cuenta de <ph name="PROVIDER"/> está registrada en un país que no es compatible actualmente con las Recompensas de Brave.</translation>
-<translation id="619384413404021992">Consulta la <ph name="LINK_BEGIN"/>lista actual de regiones admitidas y obtén más información<ph name="END_LINK"/> sobre cómo vincular una cuenta con custodia con las Recompensas de Brave.</translation>
+<translation id="1024520300696337331">No es posible vincular tu cuenta de <ph name="PROVIDER"/> con tu perfil de Recompensas de Mises en estos momentos. Tu cuenta de <ph name="PROVIDER"/> está registrada en un país que no es compatible actualmente con las Recompensas de Mises.</translation>
+<translation id="619384413404021992">Consulta la <ph name="LINK_BEGIN"/>lista actual de regiones admitidas y obtén más información<ph name="END_LINK"/> sobre cómo vincular una cuenta con custodia con las Recompensas de Mises.</translation>
 <translation id="7193389978208728181">Error: Región actualmente no admitida</translation>
 <translation id="5382684862562314222">Uphold aún no admite BAT en tu región.</translation>
 <translation id="9074594632540931067">Error: no hay BAT</translation>
 <translation id="5376524136040178759">Según Uphold, tu cuenta de Uphold presenta algunas limitaciones en este momento. Inicia sesión en Uphold y comprueba si tienes algún aviso o requisito de cuenta pendiente. Después, inténtalo de nuevo. Por ejemplo, es posible que Uphold necesite que le envíes más información.</translation>
 <translation id="6996157559236886133">Error: Cuenta de Uphold con funcionalidades limitadas</translation>
-<translation id="3274650021044762770">Se ha producido un problema al validar la solicitud del navegador para vincular Recompensas de Brave con tu cuenta de <ph name="PROVIDER"/>. Si necesitas ayuda, puedes <ph name="BEGIN_LINK"/>contactar con el servicio de asistencia<ph name="END_LINK"/>.</translation>
+<translation id="3274650021044762770">Se ha producido un problema al validar la solicitud del navegador para vincular Recompensas de Mises con tu cuenta de <ph name="PROVIDER"/>. Si necesitas ayuda, puedes <ph name="BEGIN_LINK"/>contactar con el servicio de asistencia<ph name="END_LINK"/>.</translation>
 <translation id="1316066811927496401">Error: no se ha podido validar la solicitud</translation>
 <translation id="1737873393693460829">Al activar [[title]], aceptas las <ph name="BEGIN_LINK1"/>Condiciones de uso<ph name="END_LINK1"/> y la <ph name="BEGIN_LINK2"/>Política de privacidad<ph name="END_LINK2"/>.</translation>
 <translation id="4672975606583962967">Elije un servicio de monedero</translation>
@@ -315,16 +315,16 @@
 <translation id="2205685774710519016">Nota: Tus transacciones serán visibles en el servicio de monedero seleccionado tan pronto lo autorices. Dicho servicio podrá ver, por ejemplo, el destinatario y el montante de tus propinas.</translation>
 <translation id="2147158325758481862">La verificación es opcional</translation>
 <translation id="8228649055483250005">Los proveedores de monederos supervisados tienen la obligación de verificar la identidad de todas las personas que se crean un monedero por medio incluso de un documento de identificación con fotografía.</translation>
-<translation id="2672513643520959619"><ph name="BOLD_BEGIN"/>Brave Software Inc.<ph name="BOLD_END"/> no trata, almacena ni tiene acceso a ningún tipo de información personal cuando configuras una cuenta con nuestros socios de monederos supervisados.</translation>
-<translation id="6682919029276027868">Tus funciones actuales de Recompensas de Brave, sin embargo, están limitadas. La verificación con un socio de cartera con custodia te permite:</translation>
+<translation id="2672513643520959619"><ph name="BOLD_BEGIN"/>Mises Software Inc.<ph name="BOLD_END"/> no trata, almacena ni tiene acceso a ningún tipo de información personal cuando configuras una cuenta con nuestros socios de monederos supervisados.</translation>
+<translation id="6682919029276027868">Tus funciones actuales de Recompensas de Mises, sin embargo, están limitadas. La verificación con un socio de cartera con custodia te permite:</translation>
 <translation id="9064931634458501855">Retira y añade fondos con total libertad</translation>
 <translation id="3222002542796906461">Recibe las recompensas directamente en tu cuenta</translation>
 <translation id="1233129511866436960">Más información acerca de las regiones y la compatibilidad entre ellas</translation>
 <translation id="7329170127335794328">No está disponible en estos momentos en tu región</translation>
-<translation id="8304979233901023264">He leído y acepto las’s <ph name="TOS_LINK_BEGIN"/>Condiciones de uso<ph name="TOS_LINK_END"/> y la <ph name="PP_LINK_BEGIN"/>Política de privacidad<ph name="PP_LINK_END"/> de Brave.</translation>
+<translation id="8304979233901023264">He leído y acepto las’s <ph name="TOS_LINK_BEGIN"/>Condiciones de uso<ph name="TOS_LINK_END"/> y la <ph name="PP_LINK_BEGIN"/>Política de privacidad<ph name="PP_LINK_END"/> de Mises.</translation>
 <translation id="2359808026110333948">Continuar</translation>
 <translation id="1892970806832316900">Pendiente hasta el <ph name="DATE"/></translation>
-<translation id="7849926087559412554">¡Vaya! Tu navegador no puede recibir los anuncios privados de Brave.</translation>
+<translation id="7849926087559412554">¡Vaya! Tu navegador no puede recibir los anuncios privados de Mises.</translation>
 <translation id="5177429570315095022">Para seguir viendo los anuncios, tienes que actualizar tu navegador.</translation>
 <translation id="7352651011704765696">Algo ha ido mal</translation>
 <translation id="752216563428219524">No se han iniciado los anuncios. Actualiza la página.</translation>
@@ -348,7 +348,7 @@
 <translation id="7420180413541445142">Reservar</translation>
 <translation id="3390504443230842742">Transacción externa</translation>
 <translation id="7413895050241358090">Créditos</translation>
-<translation id="386483240851194811">Se ha desactivado Brave Rewards</translation>
+<translation id="386483240851194811">Se ha desactivado Mises Rewards</translation>
 <translation id="3354337256330577726">Se desactivó la contribución automática</translation>
 <translation id="6727186931929643711">Se ha dejado de reintentar</translation>
 <translation id="8978461348341400550">Administrador:</translation>
@@ -433,7 +433,7 @@
 <translation id="9088057605518918276">Se ha establecido una propina mensual.</translation>
 <translation id="6306631474379759382">Fecha de la próxima propina:</translation>
 <translation id="3593485149443019592">No hay suficientes tokens. <ph name="LINK_BEGIN"/>Añade fondos<ph name="LINK_END"/>.</translation>
-<translation id="3586352807094428968">Brave recauda el 5 % de la propina en concepto de tasa de tramitación.</translation>
+<translation id="3586352807094428968">Mises recauda el 5 % de la propina en concepto de tasa de tramitación.</translation>
 <translation id="207268487070188114">Propina única</translation>
 <translation id="69861679024013299">Importe de la propina única:</translation>
 <translation id="3288812755711687300">Publicación de <ph name="USER"/></translation>
@@ -446,8 +446,8 @@
 <translation id="839058704683989763">¡Has configurado una propina pendiente!</translation>
 <translation id="5096821444729034955">para su publicación</translation>
 <translation id="2978223787436054634">Tuitea sobre tu apoyo</translation>
-<translation id="5916290544882167205">Brave Software. Brave es una marca registrada de Brave Software. Los nombres de los sitios pueden ser marcas comerciales o marcas registradas del propietario del sitio.</translation>
-<translation id="9026369588205476247">Para proteger tu privacidad, este extracto de Brave Rewards no se guarda, graba ni registra en ningún otro lugar aparte de tu dispositivo (este equipo). No se puede recuperar desde Brave en caso de perder los datos en tu dispositivo.</translation>
+<translation id="5916290544882167205">Mises Software. Mises es una marca registrada de Mises Software. Los nombres de los sitios pueden ser marcas comerciales o marcas registradas del propietario del sitio.</translation>
+<translation id="9026369588205476247">Para proteger tu privacidad, este extracto de Mises Rewards no se guarda, graba ni registra en ningún otro lugar aparte de tu dispositivo (este equipo). No se puede recuperar desde Mises en caso de perder los datos en tu dispositivo.</translation>
 <translation id="3587482841069643663">Todo</translation>
 <translation id="4241224519481557898">Categoría</translation>
 <translation id="3080423471207781945">Máximo de anuncios recibidos por hora:</translation>
@@ -457,7 +457,7 @@
 <translation id="2777306694585938662">Recompensas de anuncios recibidas</translation>
 <translation id="5212777575344695266">Marcar Como Inapropiado</translation>
 <translation id="2111256234277361810">Marcar Como Inapropiado ✓</translation>
-<translation id="8988332871810963281">Actualmente no hay ningún historial de Brave Ads</translation>
+<translation id="8988332871810963281">Actualmente no hay ningún historial de Mises Ads</translation>
 <translation id="5345727496083327478">No volverás a recibir anuncios de esta categoría</translation>
 <translation id="2631006050119455616">Guardados</translation>
 <translation id="3819257035322786455">Copia de seguridad</translation>
@@ -470,17 +470,17 @@
 <translation id="4932733599132424254">Fecha</translation>
 <translation id="3552003743293281224">Depósitos</translation>
 <translation id="3866249974567520381">Descripción</translation>
-<translation id="8605272644314973683">Brave Rewards es</translation>
+<translation id="8605272644314973683">Mises Rewards es</translation>
 <translation id="1346059596910821859">Propina</translation>
 <translation id="7277134233385925078">Fijar propina mensual</translation>
-<translation id="298067735430872465">Ganancias de Brave Ads</translation>
+<translation id="298067735430872465">Ganancias de Mises Ads</translation>
 <translation id="1418534671788496616">Ver el historial de depósitos</translation>
 <translation id="3412655388715513818">Excluir este sitio web</translation>
 <translation id="418343137736963579">Número total de sitios web que has excluido de la Contribución Automática:</translation>
-<translation id="8802504113265057166">Los [[currency]] que no se utilicen antes de la fecha de vencimiento se devolverán automáticamente al Grupo decrecimiento de usuarios de Brave.</translation>
+<translation id="8802504113265057166">Los [[currency]] que no se utilicen antes de la fecha de vencimiento se devolverán automáticamente al Grupo decrecimiento de usuarios de Mises.</translation>
 <translation id="279567716178902927">Fecha de Vencimiento de la Concesión</translation>
 <translation id="1389143276807887637">importar</translation>
-<translation id="6302422639282249274">Gestionar Brave Rewards</translation>
+<translation id="6302422639282249274">Gestionar Mises Rewards</translation>
 <translation id="211044356803193224">¡Propinas mensuales!</translation>
 <translation id="2487641031722095938">¡Es tu día de suerte!</translation>
 <translation id="6255773350565723852">El token de la concesión está de camino.</translation>
@@ -522,18 +522,18 @@
 <translation id="3157931365184549694">Restaurar</translation>
 <translation id="5669281110673664811">Borrar lista de exclusión</translation>
 <translation id="1797334173232638045">Tus páginas ancladas se han trasladado a</translation>
-<translation id="542042553430131913">Si no verificas Recompensas de Brave, tu saldo de BAT se almacenará en los archivos locales de tu dispositivo.</translation>
+<translation id="542042553430131913">Si no verificas Recompensas de Mises, tu saldo de BAT se almacenará en los archivos locales de tu dispositivo.</translation>
 <translation id="2142973554991645476">Si quieres asegurar tus BAT por si necesitas reinstalar por completo el navegador o reformatear tu dispositivo, y tener otros beneficios como agregar o retirar tus BAT, te recomendamos que te <ph name="LINK_BEGIN"/>verifiques<ph name="LINK_END"/>.</translation>
 <translation id="5317144262906129592">Puedes apoyar a este creador de contenido enviándole una propina para agradecerle su gran labor.</translation>
 <translation id="3074127054582480056">Atención</translation>
 <translation id="3034163433136515805">Ver el código QR</translation>
-<translation id="1640793619390890218">de los usuarios de Brave Rewards de iOS que hagan transferencias de BAT.</translation>
-<translation id="5462747026114176246">Restaurar con una clave de recuperación reemplazará tu perfil actual de Recompensas de Brave. Asegúrate de que vacías o guardas en una copia de seguridad lo que tienes actualmente en Recompensas de Brave antes de restaurar.</translation>
+<translation id="1640793619390890218">de los usuarios de Mises Rewards de iOS que hagan transferencias de BAT.</translation>
+<translation id="5462747026114176246">Restaurar con una clave de recuperación reemplazará tu perfil actual de Recompensas de Mises. Asegúrate de que vacías o guardas en una copia de seguridad lo que tienes actualmente en Recompensas de Mises antes de restaurar.</translation>
 <translation id="3267911153934785912">Introduce tu clave de recuperación o</translation>
 <translation id="1209382772199769572">Haz una copia de respaldo de tu cartera antes de sustituirla. De lo contrario, perderás los fondos ([[funds]]) de tu cartera actual.</translation>
-<translation id="3659457123782988823">¿Seguro que quieres restablecer Recompensas de Brave?</translation>
-<translation id="4048187103708861555">Tus <ph name="BAT_AMOUNT"/> y los datos de otras recompensas se perderán de forma permanente si restableces Recompensas de Brave. No olvides <ph name="LINK_BEGIN"/>verificarte<ph name="LINK_END"/> para conservar tus BAT.</translation>
-<translation id="3548849774726860833">Los datos de tus recompensas se perderán de forma permanente si restableces Recompensas de Brave.</translation>
+<translation id="3659457123782988823">¿Seguro que quieres restablecer Recompensas de Mises?</translation>
+<translation id="4048187103708861555">Tus <ph name="BAT_AMOUNT"/> y los datos de otras recompensas se perderán de forma permanente si restableces Recompensas de Mises. No olvides <ph name="LINK_BEGIN"/>verificarte<ph name="LINK_END"/> para conservar tus BAT.</translation>
+<translation id="3548849774726860833">Los datos de tus recompensas se perderán de forma permanente si restableces Recompensas de Mises.</translation>
 <translation id="4914597931214386232">Token Reclamados</translation>
 <translation id="3494964159182650590">Resumen de Rewards</translation>
 <translation id="2913994227901456490">Ver los [[numItems]] artículos</translation>
@@ -548,16 +548,16 @@
 <translation id="1634828734222219955">Total</translation>
 <translation id="4395099108822007284">Cargando imagen...</translation>
 <translation id="3535654229833214438">Transacciones</translation>
-<translation id="8772672608371898774">Publicador Verificado por Brave</translation>
+<translation id="8772672608371898774">Publicador Verificado por Mises</translation>
 <translation id="5050370287908180130">Para más Detalles, visualiza el Estado Mensual</translation>
 <translation id="7853202427316060426">Actividad</translation>
 <translation id="7232682712743566408">Saldo de recompensas</translation>
 <translation id="1910721550319506122">¡Bienvenido!</translation>
-<translation id="4258022280942725182">Tus recompensas de Brave</translation>
+<translation id="4258022280942725182">Tus recompensas de Mises</translation>
 <translation id="6727483290601442544">Ver detalles</translation>
-<translation id="4206899127409458763">Cómo crear tu perfil de Recompensas de Brave</translation>
+<translation id="4206899127409458763">Cómo crear tu perfil de Recompensas de Mises</translation>
 <translation id="1988679729106502285">AVISO:</translation>
-<translation id="4047340292178074200">Este creador aún no ha configurado la recepción de propinas del servicio de cartera con custodia de Recompensas de Brave. Cualquier propina que envíes se quedará pendiente, y se volverá a intentar el pago durante 90 días.</translation>
+<translation id="4047340292178074200">Este creador aún no ha configurado la recepción de propinas del servicio de cartera con custodia de Recompensas de Mises. Cualquier propina que envíes se quedará pendiente, y se volverá a intentar el pago durante 90 días.</translation>
 <translation id="5530734056858418442">Este creador aún no está registrado. Cualquier propina que envíes se quedará pendiente, y se volverá a intentar el pago automáticamente durante 90 días.</translation>
 <translation id="3197752845651180812">Contribuciones pendientes</translation>
 <translation id="6964891561514920613">Mostrar todas las contribuciones pendientes</translation>
@@ -572,8 +572,8 @@
 <translation id="5113531205597573951">Sitios Vistos</translation>
 <translation id="4450893287417543264">No volver a mostrar</translation>
 <translation id="6518133107902771759">Verificar</translation>
-<translation id="422369484771082705">La verificación es opcional. No obstante, si te verificas, podrás transferir los BAT que has ganado con Recompensas de Brave directamente a una cartera con custodia.</translation>
-<translation id="3656941797339037856">¡Vincula Brave Rewards con Gemini!</translation>
+<translation id="422369484771082705">La verificación es opcional. No obstante, si te verificas, podrás transferir los BAT que has ganado con Recompensas de Mises directamente a una cartera con custodia.</translation>
+<translation id="3656941797339037856">¡Vincula Mises Rewards con Gemini!</translation>
 <translation id="31532096120351460">Intercambia más de 50 criptomonedas, como BAT, en Gemini. Se trata de una plataforma segura en la que puedes almacenar tus criptomonedas y, además, ganar intereses en dólares de EE. UU., Hong Kong y Singapur.</translation>
 <translation id="7404779623219601861">Canjear BAT para las tarjetas de regalo</translation>
 <translation id="6215565499749144110">Con TAP Network, puedes canjear tus BAT por tarjetas de regalo de marcas populares.</translation>
@@ -583,7 +583,7 @@
 <translation id="7840362246306242214">Negociación de acciones de EE. UU. disponible en Uphold</translation>
 <translation id="3345432088196080137">Invierte tan solo un dólar en acciones populares y fondos negociados en bolsa como AAPL, TSLA o AMZN</translation>
 <translation id="3787061634640932557">Editar tarjetas</translation>
-<translation id="2070991379950719711">Empezar a utilizar Brave Rewards</translation>
+<translation id="2070991379950719711">Empezar a utilizar Mises Rewards</translation>
 <translation id="5977237145327845546">Inicia una videollamada privada con tus amigos y compañeros.</translation>
 <translation id="8863928195533744356">Iniciar llamada</translation>
 <translation id="3651550649176056334">Acerca de tus datos</translation>
@@ -650,9 +650,9 @@
 <translation id="824449983246282560">No tienes saldo disponible en tu cuenta. Pásate por Gemini para adquirir fondos.</translation>
 <translation id="8624961452383848703">Quiero convertir...</translation>
 <translation id="1544192797660353713">Wallet</translation>
-<translation id="616639131065447379">Te damos la bienvenida a Brave Crypto Wallets</translation>
-<translation id="1740464057879304704">Crypto Wallets le permite trabajar con las criptodivisas y los activos relacionados en Brave. Crypto Wallets admite fichas de Ethereum como ETH y BAT, así como piezas de colección, y le permite trabajar con Ðapps y otros contratos inteligentes. Todo esto es para personas que están familiarizadas con el Ethereum y otros sistemas de cadenas de bloques, o que tienen ganas de aprender.</translation>
-<translation id="4855440621031541830">Solo haga uso de Crypto Wallets si acepta que es el único responsable de todos los riesgos asociados a dicho uso, y que Brave Software no asume ninguna responsabilidad por cualquier pérdida, incluidas las pérdidas incidentales o indirectas que pueda sufrir como resultado del uso.</translation>
+<translation id="616639131065447379">Te damos la bienvenida a Mises Crypto Wallets</translation>
+<translation id="1740464057879304704">Crypto Wallets le permite trabajar con las criptodivisas y los activos relacionados en Mises. Crypto Wallets admite fichas de Ethereum como ETH y BAT, así como piezas de colección, y le permite trabajar con Ðapps y otros contratos inteligentes. Todo esto es para personas que están familiarizadas con el Ethereum y otros sistemas de cadenas de bloques, o que tienen ganas de aprender.</translation>
+<translation id="4855440621031541830">Solo haga uso de Crypto Wallets si acepta que es el único responsable de todos los riesgos asociados a dicho uso, y que Mises Software no asume ninguna responsabilidad por cualquier pérdida, incluidas las pérdidas incidentales o indirectas que pueda sufrir como resultado del uso.</translation>
 <translation id="3187473319809074178">Todo está completamente separado de</translation>
 <translation id="8327818101454798856">Así que si quiere apoyar a sus sitios favoritos, mejor diríjase allí.</translation>
 <translation id="412480955826088549">Descargando componente...</translation>
@@ -668,14 +668,14 @@
 <translation id="5337526542182802976">Pares compatibles</translation>
 <translation id="1164622162816276433">Volumen 24 horas</translation>
 <translation id="7534079972563542000">Unstoppable Domains</translation>
-<translation id="4492298165410552103">¿Habilitar la compatibilidad con los Unstoppable Domains en Brave?</translation>
-<translation id="689573545156113164">Brave comenzará a usar Infura para hacer llamadas JSON-RPC de Ethereum al contrato inteligente de dominios imparables para resolver solicitudes de búsqueda de nombres de dominio .crypto (y también .x, .coin, .nft, .dao, .wallet, .blockchain, .bitcoin). Si activas esto, Infura verá esos dominos específicos que intentas visitar, pero no podrá ver otros dominios. Consulta las <ph name="BEGIN_INFURA_TOU_LINK"/>Condiciones de uso<ph name="END_INFURA_TOU_LINK"/> y la <ph name="BEGIN_INFURA_PRIVACY_LINK"/>Política de privacidad<ph name="END_INFURA_PRIVACY_LINK"/> de Infura.</translation>
+<translation id="4492298165410552103">¿Habilitar la compatibilidad con los Unstoppable Domains en Mises?</translation>
+<translation id="689573545156113164">Mises comenzará a usar Infura para hacer llamadas JSON-RPC de Ethereum al contrato inteligente de dominios imparables para resolver solicitudes de búsqueda de nombres de dominio .crypto (y también .x, .coin, .nft, .dao, .wallet, .blockchain, .bitcoin). Si activas esto, Infura verá esos dominos específicos que intentas visitar, pero no podrá ver otros dominios. Consulta las <ph name="BEGIN_INFURA_TOU_LINK"/>Condiciones de uso<ph name="END_INFURA_TOU_LINK"/> y la <ph name="BEGIN_INFURA_PRIVACY_LINK"/>Política de privacidad<ph name="END_INFURA_PRIVACY_LINK"/> de Infura.</translation>
 <translation id="6513892817556267573">Servicio de nombres de Ethereum</translation>
-<translation id="4335039108389860301">¿Habilitar la compatibilidad con el servicio de nombres de Ethereum (ENS) en Brave?</translation>
-<translation id="8328137586971750853">Brave usará Infura para hacer llamadas a JSON-RPC de Ethereum al contrato inteligente de Ethereum Name Service para resolver solicitudes de búsqueda de dominos .eth. Si activas esto, Infuraverá el dominio .eth que intentas visitar, pero no podrá ver otros domininos. Consulta las <ph name="BEGIN_INFURA_TOU_LINK"/>condiciones de uso<ph name="END_INFURA_TOU_LINK"/> y la <ph name="BEGIN_INFURA_PRIVACY_LINK"/>política de privacidad<ph name="END_INFURA_PRIVACY_LINK"/> de Infura.</translation>
+<translation id="4335039108389860301">¿Habilitar la compatibilidad con el servicio de nombres de Ethereum (ENS) en Mises?</translation>
+<translation id="8328137586971750853">Mises usará Infura para hacer llamadas a JSON-RPC de Ethereum al contrato inteligente de Ethereum Name Service para resolver solicitudes de búsqueda de dominos .eth. Si activas esto, Infuraverá el dominio .eth que intentas visitar, pero no podrá ver otros domininos. Consulta las <ph name="BEGIN_INFURA_TOU_LINK"/>condiciones de uso<ph name="END_INFURA_TOU_LINK"/> y la <ph name="BEGIN_INFURA_PRIVACY_LINK"/>política de privacidad<ph name="END_INFURA_PRIVACY_LINK"/> de Infura.</translation>
 <translation id="807404806385418949">Búsqueda de ENS (Servicios de Nombres de Ethereum) fuera de cadena</translation>
-<translation id="4049590838234508776">¿Habilitar la compatibilidad con la búsqueda de ENS (Servicio de Nombres de Ethereum) fuera de cadena en Brave?</translation>
-<translation id="1769433806670482329">Brave empleará pasarelas fuera de cadena para resolver las solicitudes de búsqueda de nombres de dominios .eth. Si habilitas esto, los dominios .eth que intentes visitar quedarán a la vista de pasarelas de terceros. Los demás dominios que visites, sin embargo, no. <ph name="BEGIN_BRAVE_LEARN_MORE_LINK"/>Más información<ph name="END_BRAVE_LEARN_MORE_LINK"/>.</translation>
+<translation id="4049590838234508776">¿Habilitar la compatibilidad con la búsqueda de ENS (Servicio de Nombres de Ethereum) fuera de cadena en Mises?</translation>
+<translation id="1769433806670482329">Mises empleará pasarelas fuera de cadena para resolver las solicitudes de búsqueda de nombres de dominios .eth. Si habilitas esto, los dominios .eth que intentes visitar quedarán a la vista de pasarelas de terceros. Los demás dominios que visites, sin embargo, no. <ph name="BEGIN_BRAVE_LEARN_MORE_LINK"/>Más información<ph name="END_BRAVE_LEARN_MORE_LINK"/>.</translation>
 <translation id="4047002754575891955">Proceder con la búsqueda fuera de cadena</translation>
 <translation id="7378412287463452336">Continuar usando el servidor Infura</translation>
 <translation id="2356070529366658676">Preguntar</translation>
@@ -683,7 +683,7 @@
 <translation id="59174027418879706">Habilitada</translation>
 <translation id="2468755552460246661">Dominio bloqueado</translation>
 <translation id="6393849031898466746">Es posible que este sitio intente rastrear tu actividad en otros sitios</translation>
-<translation id="983774928604730749">Brave ha impedido que se cargue el siguiente sitio:</translation>
+<translation id="983774928604730749">Mises ha impedido que se cargue el siguiente sitio:</translation>
 <translation id="4781961723893779890">Es posible que este sitio intente vincular algunos de tus datos personales a una cookie antes de mostrar su contenido.</translation>
 <translation id="2459038234784107183">No vuelva a advertirme sobre este sitio</translation>
 <translation id="8242426110754782860">Proceder</translation>
@@ -720,15 +720,15 @@
 <translation id="72868071984333667">Recibir más información sobre el IPFS y la privacidad</translation>
 <translation id="1886162073868201257">Error de inicio del servicio IPFS</translation>
 <translation id="5357895013476183089">IPFS no está conectado</translation>
-<translation id="7662930734991751511">No se pueden cargar recursos IPFS mediante el nodo IPFS local de Brave.</translation>
+<translation id="7662930734991751511">No se pueden cargar recursos IPFS mediante el nodo IPFS local de Mises.</translation>
 <translation id="1141556610026845297">No se ha podido usar el nodo IPFS para cargar los recursos IPFS que se habían solicitado. Haz clic en el botón “Seguir” para usar la puerta de enlace pública en su lugar, y volver de forma automática a la puerta de enlace pública la próxima vez.</translation>
 <translation id="3373798179786163193">Continuar con el Portal Público</translation>
 <translation id="1974060860693918893">Avanzada</translation>
 <translation id="9096577886148726047">Ocultar Avanzados</translation>
-<translation id="182581792765792826">Brave no puede cargar los recursos IPFS solicitados, bien porque no se ha iniciado el nodo IPFS local de Brave, bien porque no hay compañeros disponibles en este momento. Si seleccionas “Proceder”, Brave volverá automáticamente a la puerta de enlace pública predeterminada cuando se produzca un error en el uso del nodo IPFS local de Brave. Puedes cambiar este comportamiento en cualquier momento en la configuración de Brave.</translation>
+<translation id="182581792765792826">Mises no puede cargar los recursos IPFS solicitados, bien porque no se ha iniciado el nodo IPFS local de Mises, bien porque no hay compañeros disponibles en este momento. Si seleccionas “Proceder”, Mises volverá automáticamente a la puerta de enlace pública predeterminada cuando se produzca un error en el uso del nodo IPFS local de Mises. Puedes cambiar este comportamiento en cualquier momento en la configuración de Mises.</translation>
 <translation id="8026038288183400906">Preferencia de IPFS</translation>
 <translation id="2058855456574089690">Establecer tus preferencias de IPFS</translation>
-<translation id="4780526507945807546">Usar un nodo IPFS local de Brave</translation>
+<translation id="4780526507945807546">Usar un nodo IPFS local de Mises</translation>
 <translation id="8148464361648742409">Usar una puerta de enlace pública</translation>
 <translation id="5123478056123923857">El IPFS (sistema de archivos interplanetario) es la red pública para el almacenamiento y transmisión de datos entre pares. Este protocolo tiene consideraciones de privacidad diferentes a las del HTTP(S).</translation>
 <translation id="1216911189668016151">Tu ordenador contribuye a la red pública, pero tu dirección IP y cualquier contenido que estés solicitando o proporcionando podrían quedar expuestos. El contenido que solicitas a través de IPFS se verifica antes de entregarse. Es posible que las solicitudes de red no usen la configuración del DNS ni del proxy del navegador.</translation>
@@ -741,7 +741,7 @@
 <translation id="1675751799495331928">Hemos sobrepasado el límite de intentos, vuelve a probar más tarde.</translation>
 <translation id="4499666752625407848">Ha habido un error durante una actualización</translation>
 <translation id="62991515067726424">Este contenido se ha cargado mediante protocolo IPFS</translation>
-<translation id="7263366446813126341">El Sistema de archivos interplanetario (IPFS, por sus siglas en inglés) es una red pública de almacenamiento y transmisión de datos entre pares. Puedes obtener más información acerca de la integración de Brave o configurar tus ajustes de IPFS en cualquier momento.</translation>
+<translation id="7263366446813126341">El Sistema de archivos interplanetario (IPFS, por sus siglas en inglés) es una red pública de almacenamiento y transmisión de datos entre pares. Puedes obtener más información acerca de la integración de Mises o configurar tus ajustes de IPFS en cualquier momento.</translation>
 <translation id="3175567740517780285">Configuración de IPFS</translation>
 <translation id="8914505352873092008">Ir a la página de configuración de IPFS</translation>
 <translation id="3465468510001693544">Diagnóstico de IPFS</translation>
@@ -775,8 +775,8 @@
 <translation id="3600355176618429948">Ganancias estimadas</translation>
 <translation id="4244985009709452836">Inicia sesión en tu cuenta de <ph name="PROVIDER"/></translation>
 <translation id="2613359062756190460">Propinas únicas</translation>
-<translation id="3022529765171561652">Se produce un problema temporal al realizar la verificación con <ph name="PROVIDER"/>. Tu perfil de Recompensas de Brave se mantendrá en estado "Pendiente" y volverá a intentarlo automáticamente, aunque también puedes dejarlo para más adelante.</translation>
-<translation id="590733288489975971">Recompensas de Brave Ads</translation>
+<translation id="3022529765171561652">Se produce un problema temporal al realizar la verificación con <ph name="PROVIDER"/>. Tu perfil de Recompensas de Mises se mantendrá en estado "Pendiente" y volverá a intentarlo automáticamente, aunque también puedes dejarlo para más adelante.</translation>
+<translation id="590733288489975971">Recompensas de Mises Ads</translation>
 <translation id="6181762795539107980">Sin verificar</translation>
 <translation id="3026978804849658576">Ver extracto</translation>
 <translation id="8494748383523030337">Tu saldo</translation>
@@ -790,11 +790,11 @@
 <translation id="8334559352278209120">Entrega</translation>
 <translation id="4782365133987903299">Te quedan <ph name="DAYS"/> para reclamar</translation>
 <translation id="3903419925307046908">Gana y restituye vales</translation>
-<translation id="244362569344671266">Gane tokens por ver Brave Ads privados y apoye a los creadores de contenido automáticamente.</translation>
+<translation id="244362569344671266">Gane tokens por ver Mises Ads privados y apoye a los creadores de contenido automáticamente.</translation>
 <translation id="5095252080770652994">Progreso</translation>
 <translation id="6278643716658443228">Configuración de las recompensas</translation>
 <translation id="2862978891748913252">Selecciona tu país</translation>
-<translation id="3717922248131893262">Si deseas seguir aprovechando las recompensas de Brave, selecciona tu país para que podamos mostrarte las opciones y anuncios adecuados para tu región. <ph name="LINK_BEGIN"/>Política de privacidad<ph name="LINK_END"/></translation>
+<translation id="3717922248131893262">Si deseas seguir aprovechando las recompensas de Mises, selecciona tu país para que podamos mostrarte las opciones y anuncios adecuados para tu región. <ph name="LINK_BEGIN"/>Política de privacidad<ph name="LINK_END"/></translation>
 <translation id="6777169449483742979">Estás ganando tokens por ver esta imagen promocionada.</translation>
 <translation id="5486114327664215175">Obtén tokens por ver esta imagen y apoyar a creadores de contenido.</translation>
 <translation id="2940863921746574646">Saldo de tokens</translation>
@@ -803,7 +803,7 @@
 <translation id="6020176662032623904">Creador verificado</translation>
 <translation id="6504037373121113545">Cualquier propina que envíes se quedará pendiente, y se volverá a intentar el pago automáticamente durante 90 días. <ph name="LINK_BEGIN"/>Más información<ph name="LINK_END"/></translation>
 <translation id="7826318737761918938">Este creador aún no está registrado.</translation>
-<translation id="4025327308776090280">Este creador aún no ha configurado la recepción de propinas del servicio de cartera con custodia de Recompensas de Brave.</translation>
+<translation id="4025327308776090280">Este creador aún no ha configurado la recepción de propinas del servicio de cartera con custodia de Recompensas de Mises.</translation>
 <translation id="6633436087937398390"><ph name="NAME"/> en <ph name="PLATFORM"/></translation>
 <translation id="7335371657242627509">Incluir en Contribución Automática</translation>
 <translation id="6965382102122355670">OK</translation>
@@ -817,10 +817,10 @@
 <translation id="6333727259565526314">Tu recompensa está de camino.</translation>
 <translation id="39734939514946950">Su importe de recompensa</translation>
 <translation id="717952606991220586">¡Vaya!, algo ha ido mal. Por favor, inténtalo de nuevo más tarde.</translation>
-<translation id="7210234701206674260">Las recompensas de Brave tienen un problema. Inténtelo de nuevo más tarde.</translation>
+<translation id="7210234701206674260">Las recompensas de Mises tienen un problema. Inténtelo de nuevo más tarde.</translation>
 <translation id="579702532610384533">Reconectar</translation>
 <translation id="7550470870580166294">Fondos insuficientes</translation>
-<translation id="2775064702681588061">Su cuenta de recompensas de Brave está a la espera de un depósito.</translation>
+<translation id="2775064702681588061">Su cuenta de recompensas de Mises está a la espera de un depósito.</translation>
 <translation id="3358400027937159351">Has contribuido con <ph name="AMOUNT"/>.</translation>
 <translation id="1619753851206150396">Has cerrado sesión</translation>
 <translation id="5142174225142816130">Esto puede producirse con el fin de mantener tu cuenta segura. Haz clic a continuación para reconectar.</translation>
@@ -833,20 +833,20 @@
 <translation id="7855913851082138664">Creador <ph name="PUBLISHER_NAME"/> verificado recientemente</translation>
 <translation id="6194996600967335044">Fondos insuficientes</translation>
 <translation id="2795080275268642520">Tiene propinas pendientes por falta de fondos</translation>
-<translation id="2529827670795983639">Parece que no funciona; Brave Ads continuará en pausa. Contacta con nosotros si necesitas ayuda con el captcha.</translation>
+<translation id="2529827670795983639">Parece que no funciona; Mises Ads continuará en pausa. Contacta con nosotros si necesitas ayuda con el captcha.</translation>
 <translation id="261607053214862521">Se ha superado el número máx. de intentos</translation>
 <translation id="2323171459178104277">¡Resuelto!</translation>
-<translation id="1512837998731269583">Los anuncios y las ganancias se reanudarán ahora. Gracias por ayudarnos a proteger las recompensas de Brave y los anuncios basados en la privacidad.</translation>
+<translation id="1512837998731269583">Los anuncios y las ganancias se reanudarán ahora. Gracias por ayudarnos a proteger las recompensas de Mises y los anuncios basados en la privacidad.</translation>
 <translation id="3247549836099021862">Contacta con el servicio de asistencia</translation>
 <translation id="5234764350956374838">Descartar</translation>
 <translation id="6717671373796332174"><ph name="TOUR_LINK_BEGIN"/>Haz un recorrido rápido<ph name="TOUR_LINK_END"/> u <ph name="LEARN_LINK_BEGIN"/>obtén más información<ph name="LEARN_LINK_END"/>.</translation>
 <translation id="7465614181960492526">Gane tokens y retribuya algo</translation>
 <translation id="2731539192954672606">Gane tokens por ver anuncios que respetan la privacidad y apoye automáticamente a sus sitios web y creadores de contenidos favoritos.</translation>
-<translation id="5425006356459378415">Las recompensas de Brave no están disponibles</translation>
-<translation id="909076461795862330">Lamentamos comunicarte que se ha producido un error al tratar de configurar las recompensas de Brave. Vuelve a intentarlo.</translation>
+<translation id="5425006356459378415">Las recompensas de Mises no están disponibles</translation>
+<translation id="909076461795862330">Lamentamos comunicarte que se ha producido un error al tratar de configurar las recompensas de Mises. Vuelve a intentarlo.</translation>
 <translation id="3180990265682133881">Lamentamos comunicarte que se ha producido un error al tratar de establecer tu país. Vuelve a intentarlo.</translation>
-<translation id="2191603160848789187">En este momento, el programa de recompensas de Brave no admite nuevas admisiones en tu región. Vuelve a intentarlo más adelante si lo deseas. <ph name="LINK_BEGIN"/>Más información<ph name="LINK_BEGIN"/></translation>
-<translation id="8764860730661377310">Se ha establecido en <ph name="COUNTRY"/> tu región para las recompensas de Brave.</translation>
+<translation id="2191603160848789187">En este momento, el programa de recompensas de Mises no admite nuevas admisiones en tu región. Vuelve a intentarlo más adelante si lo deseas. <ph name="LINK_BEGIN"/>Más información<ph name="LINK_BEGIN"/></translation>
+<translation id="8764860730661377310">Se ha establecido en <ph name="COUNTRY"/> tu región para las recompensas de Mises.</translation>
 <translation id="7068416025603720599">Selecciona tu país para que podamos mostrarte las opciones y anuncios adecuados para tu región. <ph name="LINK_BEGIN"/>Política de privacidad<ph name="LINK_END"/></translation>
 <translation id="1275213816424141989">Quizás más tarde</translation>
 <translation id="5187052478998910855">¿Necesitas hacer un repaso de los premios?</translation>
@@ -862,12 +862,12 @@
 <translation id="185034574799484512">Hagamos un recorrido rápido</translation>
 <translation id="8281886186245836920">Saltar</translation>
 <translation id="1377600615067678409">Omitir de momento</translation>
-<translation id="7930505144430343145">¡Bienvenido/a a Brave Rewards!</translation>
-<translation id="3477340970981564961">Los anuncios privados de Brave te premian con vales que sirven para apoyar a los creadores de contenido. Y a diferencia de los anuncios tradicionales, no tendrás que renunciar a la privacidad de tu información personal.</translation>
+<translation id="7930505144430343145">¡Bienvenido/a a Mises Rewards!</translation>
+<translation id="3477340970981564961">Los anuncios privados de Mises te premian con vales que sirven para apoyar a los creadores de contenido. Y a diferencia de los anuncios tradicionales, no tendrás que renunciar a la privacidad de tu información personal.</translation>
 <translation id="6973095375773523904">¿Dónde se muestran los anuncios?</translation>
-<translation id="7556325460112047619">Los anuncios privados de Brave aparecerán como una notificación normal. Puedes controlar la frecuencia con la que ves los anuncios en la configuración.</translation>
+<translation id="7556325460112047619">Los anuncios privados de Mises aparecerán como una notificación normal. Puedes controlar la frecuencia con la que ves los anuncios en la configuración.</translation>
 <translation id="6897083627729802351">¿Cuándo recibes recompensas?</translation>
-<translation id="310863932297733723">Los vales que hayas conseguido con los anuncios privados de Brave a lo largo del mes en curso se acreditarán el día cinco del mes siguiente.</translation>
+<translation id="310863932297733723">Los vales que hayas conseguido con los anuncios privados de Mises a lo largo del mes en curso se acreditarán el día cinco del mes siguiente.</translation>
 <translation id="7712287524451429139">Retribuir es facilísimo</translation>
 <translation id="105037569026952831">Los creadores reciben sus contribuciones de tokens automáticamente en función de sus niveles de compromiso que medimos como «atención».</translation>
 <translation id="5323267338679539010">Dá las gracias con las propinas</translation>
@@ -877,14 +877,14 @@
 <translation id="1402530520078693620">Por último, hagamos unos ajustes en las configuraciones básicas.</translation>
 <translation id="3494356595346329740">Podrás cambiarlo más adelante.</translation>
 <translation id="827315274423079662">¡Bien!, ya tienes todo lo que necesitas.</translation>
-<translation id="8268038362451312235">Al usar las recompensas de Brave, ayuda a hacer de la web un lugar mejor para todos. Y eso es increíble.</translation>
-<translation id="2318949593486441832">Si quieres retirar los BAT que ganes por ver anuncios, debes verificar Recompensas de Brave.</translation>
+<translation id="8268038362451312235">Al usar las recompensas de Mises, ayuda a hacer de la web un lugar mejor para todos. Y eso es increíble.</translation>
+<translation id="2318949593486441832">Si quieres retirar los BAT que ganes por ver anuncios, debes verificar Recompensas de Mises.</translation>
 <translation id="9168436347345867845">Hacerlo en otro momento</translation>
-<translation id="7193761697942491145">Verificar Recompensas de Brave</translation>
+<translation id="7193761697942491145">Verificar Recompensas de Mises</translation>
 <translation id="6609621505400013054">La cartera bitFlyer es un servicio gestionado por bitFlyer, Inc.</translation>
-<translation id="4361456403643555676">Si verificas tu perfil de Recompensas de Brave y lo vinculas a una cuenta de bitFlyer, podrás almacenar y gestionar con mayor facilidad los tokens que hayas ganado a través de Recompensas de Brave</translation>
-<translation id="1411121707906693782"><ph name="LINK_BEGIN"/>Obtén más información<ph name="LINK_END"/> sobre cómo vincular tu navegador Brave con tu cuenta bitFlyer.</translation>
-<translation id="8303087505226646884">Lector de velocidad de Brave</translation>
+<translation id="4361456403643555676">Si verificas tu perfil de Recompensas de Mises y lo vinculas a una cuenta de bitFlyer, podrás almacenar y gestionar con mayor facilidad los tokens que hayas ganado a través de Recompensas de Mises</translation>
+<translation id="1411121707906693782"><ph name="LINK_BEGIN"/>Obtén más información<ph name="LINK_END"/> sobre cómo vincular tu navegador Mises con tu cuenta bitFlyer.</translation>
+<translation id="8303087505226646884">Lector de velocidad de Mises</translation>
 <translation id="7701466644604753106">Activar el lector de velocidad</translation>
 <translation id="763042262431778831">Desactiva el lector de velocidad</translation>
 <translation id="1148827340205946630">El usuario ha rechazado la solicitud.</translation>
@@ -896,7 +896,7 @@
 <translation id="2326876601333401685">Este método de RPC no es compatible.</translation>
 <translation id="1128992132632883337">Se ha producido un error de análisis de respuesta</translation>
 <translation id="5382339341735118861">Se ha producido un error genérico al procesar la solicitud</translation>
-<translation id="1680597601664421644">El mnemotécnico que se está importando no es válido para la cartera de Brave</translation>
+<translation id="1680597601664421644">El mnemotécnico que se está importando no es válido para la cartera de Mises</translation>
 <translation id="4641919696349069826">Ya hay una solicitud en curso</translation>
 <translation id="872806943696014633">Faltan datos de la transacción</translation>
 <translation id="4805410229033541409">"from" no tiene autorización para enviar transacciones</translation>
@@ -968,16 +968,16 @@
 <translation id="4500473291496079954">Caduca dentro de</translation>
 <translation id="2236833281018938257">URL o dirección de la cartera</translation>
 <translation id="928500657730628112">Dirección de la cartera</translation>
-<translation id="6812967455478797345">Brave utiliza <ph name="LINK_BEFORE"/><ph name="SWAP_PROVIDER"/><ph name="LINK_AFTER"/> como agregador DEX.</translation>
+<translation id="6812967455478797345">Mises utiliza <ph name="LINK_BEFORE"/><ph name="SWAP_PROVIDER"/><ph name="LINK_AFTER"/> como agregador DEX.</translation>
 <translation id="151946611346774041">0x procesará la dirección Ethereum y la dirección IP para completar una transacción (se ocupará incluso de calcular los presupuestos). 0x SOLO utilizará estos datos con el propósito de procesar las transacciones.</translation>
 <translation id="7465227658364622464">Jupiter procesará la dirección de Solana y la dirección IP para llevar a cabo operaciones (incluida la obtención de presupuestos). Jupiter únicamente utilizará estos datos para procesar las operaciones.</translation>
-<translation id="712738518060477110">El presupuesto incluye un <ph name="SWAP_FEE_PERCENTAGE"/> de comisión de Brave.</translation>
+<translation id="712738518060477110">El presupuesto incluye un <ph name="SWAP_FEE_PERCENTAGE"/> de comisión de Mises.</translation>
 <translation id="8368540604723748428">Demasiadas posiciones decimales</translation>
 <translation id="6575120282593094155">Aún no tienes una cuenta de <ph name="ACCOUNT_TYPE"/>. ¿Quieres crear unanow?</translation>
 <translation id="8712637175834984815">Listo</translation>
 <translation id="2704606927547763573">Copiado</translation>
 <translation id="6042308850641462728">Más</translation>
-<translation id="768236965975208017">Segura, multicadena y muy fácil de usar. Tu cartera de Brave está a unos clics.</translation>
+<translation id="768236965975208017">Segura, multicadena y muy fácil de usar. Tu cartera de Mises está a unos clics.</translation>
 <translation id="2484275747844666540">Crear nueva cartera</translation>
 <translation id="3662348701117072366">Importar cartera existente</translation>
 <translation id="375882617301124395">Haz una copia de seguridad de tu monedero</translation>
@@ -1009,20 +1009,20 @@
 <translation id="1108298724135935307">Sitios conectados</translation>
 <translation id="163697698769819510">Haz una copia de seguridad de tu cartera para proteger tus activos y asegurarte de que no te quedas nunca sin acceso.</translation>
 <translation id="1018806299114415224">Copia de seguridad ahora</translation>
-<translation id="1400709719911593089">Puesto que Cartera de Brave no está configurada como cartera predeterminada, no responderá a las aplicaciones descentralizadas de Web3. Cambia tu cartera predeterminada en la configuración.</translation>
+<translation id="1400709719911593089">Puesto que Cartera de Mises no está configurada como cartera predeterminada, no responderá a las aplicaciones descentralizadas de Web3. Cambia tu cartera predeterminada en la configuración.</translation>
 <translation id="4362717653795263052">Restaurar cuentas de criptomonedas principales</translation>
-<translation id="3038077262567136741">Introduce la frase de recuperación para restaurar tu cuenta de criptomonedas de Brave Wallet.</translation>
+<translation id="3038077262567136741">Introduce la frase de recuperación para restaurar tu cuenta de criptomonedas de Mises Wallet.</translation>
 <translation id="955918646509748368">La frase de recuperación introducida no es válida.</translation>
 <translation id="8107437138787377150">Pegar la frase de recuperación desde el portapapeles</translation>
 <translation id="4811736040444856406">Mostrar frase de recuperación</translation>
-<translation id="4359319875297001084">¿Importar desde monederos de criptomonedas de Brave anteriores?</translation>
+<translation id="4359319875297001084">¿Importar desde monederos de criptomonedas de Mises anteriores?</translation>
 <translation id="3331452756822160641">Contraseña nueva</translation>
 <translation id="8624315169751085215">Copiar al Portapapeles</translation>
 <translation id="7885157704277298658">Copied!</translation>
 <translation id="6346952829206698721">Pegar desde el portapapeles</translation>
 <translation id="1121335910737476837">Cuentas de criptomonedas principales</translation>
 <translation id="6969147029062037757">Cuentas importadas</translation>
-<translation id="4057718162494343222">Cartera de Brave te ofrece la posibilidad de crear cuentas principales que se pueden proteger con copias de seguridad o restaurar mediante tu frase de recuperación. Para obtener más información sobre los tipos de cuentas disponibles, consulta la sección de ayuda.</translation>
+<translation id="4057718162494343222">Cartera de Mises te ofrece la posibilidad de crear cuentas principales que se pueden proteger con copias de seguridad o restaurar mediante tu frase de recuperación. Para obtener más información sobre los tipos de cuentas disponibles, consulta la sección de ayuda.</translation>
 <translation id="1011614786846182272">Estas cuentas pueden usarse con aplicaciones descentralizadas de Web3 y mostrarse en tu portafolio. Sin embargo, ten en cuenta que las cuentas secundarias no pueden restaurarse con una frase de recuperación desde la copia de seguridad de tu cuenta principal.</translation>
 <translation id="1940465339426637378">Activos</translation>
 <translation id="2236507293802791911">Activos visibles</translation>
@@ -1050,7 +1050,7 @@
 <translation id="6892232036314454524">Este error tiene lugar, por ejemplo, cuando se abre una aplicación incorrecta en el dispositivo Ledger.</translation>
 <translation id="6598291715079540080">Trezor</translation>
 <translation id="5605670050355397069">Ledger</translation>
-<translation id="4247752006222818397">Permite que Brave acceda a tu dispositivo Ledger.</translation>
+<translation id="4247752006222818397">Permite que Mises acceda a tu dispositivo Ledger.</translation>
 <translation id="4378551569595875038">Conectándose...</translation>
 <translation id="1943188256166395881">Añadir cuentas seleccionadas</translation>
 <translation id="8554010658308662631">Cargar más</translation>
@@ -1109,7 +1109,7 @@
 <translation id="3352959425838279177">Obtener ethers desde un grifo para <ph name="SELECTED_NETWORK"/></translation>
 <translation id="6449626816252815844">Seleccionar método de compra</translation>
 <translation id="8009571545960303544">Tu firma ya fue solicitada</translation>
-<translation id="5294062982587710720">Ten en cuenta que Brave no puede verificar qué sucederá si firmas. La firma autoriza casi cualquier operación en tu cuenta o en tu nombre, lo que incluye, entre otras cosas, dar un control total de tu cuenta y tus criptoactivos al sitio que realiza la solicitud. Firma solo si quieres realizar esta acción y confías en el sitio que envía la solicitud.</translation>
+<translation id="5294062982587710720">Ten en cuenta que Mises no puede verificar qué sucederá si firmas. La firma autoriza casi cualquier operación en tu cuenta o en tu nombre, lo que incluye, entre otras cosas, dar un control total de tu cuenta y tus criptoactivos al sitio que realiza la solicitud. Firma solo si quieres realizar esta acción y confías en el sitio que envía la solicitud.</translation>
 <translation id="3474375934783434676">Firme bajo tu propia responsabilidad</translation>
 <translation id="5488357322146334497">Mensaje</translation>
 <translation id="3586752056660754651">Firmar</translation>
@@ -1130,7 +1130,7 @@
 <translation id="7073918978411974168">Asignación propuesta</translation>
 <translation id="9019403281000653275">Se han solicitado aprobaciones ilimitadas</translation>
 <translation id="4717431746210146708">¿Permitir que este sitio añada una red?</translation>
-<translation id="2521480044079508357">Así, esta red podrá usarse en Brave Wallet.</translation>
+<translation id="2521480044079508357">Así, esta red podrá usarse en Mises Wallet.</translation>
 <translation id="1982257600591932657">Nombre de red</translation>
 <translation id="5052727830821470769">URL de la red</translation>
 <translation id="427875364838253580">Ver todos los detalles</translation>
@@ -1166,10 +1166,10 @@
 <translation id="2240831799756994975">BYTES</translation>
 <translation id="4874303883488468190">Seleccionar cuenta(s)</translation>
 <translation id="2018472018751735678">Vea las direcciones de sus cuentas permitidas (obligatorio)</translation>
-<translation id="7029403458170657879">Conectar con Brave Wallet</translation>
+<translation id="7029403458170657879">Conectar con Mises Wallet</translation>
 <translation id="2770851145415891830">Se han detectado monederosde criptomonedas</translation>
-<translation id="2237759620789871865">Si prefieres omitir el proceso de importación y seguir utilizando Crypto Wallets, accede en el navegador Brave al menú <ph name="LINK_BEFORE"/>Configuración<ph name="LINK_AFTER"/> y establece Crypto Wallets como predeterminado. En cualquier caso, también es posible realizar la importación, probar la nueva Brave Wallet y cambiar al componentes Crypto Wallets en cualquier momento.</translation>
-<translation id="5590175005414413980">Introduce la contraseña de tus carteras de criptomonedas para importarlas a Cartera de Brave. Administra criptoactivos e interactúa con aplicaciones descentralizadas de Web3 de forma más rápida y segura.</translation>
+<translation id="2237759620789871865">Si prefieres omitir el proceso de importación y seguir utilizando Crypto Wallets, accede en el navegador Mises al menú <ph name="LINK_BEFORE"/>Configuración<ph name="LINK_AFTER"/> y establece Crypto Wallets como predeterminado. En cualquier caso, también es posible realizar la importación, probar la nueva Mises Wallet y cambiar al componentes Crypto Wallets en cualquier momento.</translation>
+<translation id="5590175005414413980">Introduce la contraseña de tus carteras de criptomonedas para importarlas a Cartera de Mises. Administra criptoactivos e interactúa con aplicaciones descentralizadas de Web3 de forma más rápida y segura.</translation>
 <translation id="880619123281809987">Escribe la contraseña de la cartera de criptomonedas</translation>
 <translation id="6344138931392227467"><ph name="DEVICE_NAME"/> conectado</translation>
 <translation id="7051244143160304048"><ph name="DEVICE_NAME"/> desconectada</translation>
@@ -1273,7 +1273,7 @@
 <translation id="2962388922926051374">Error al solicitar el método "eth_chainId" en <ph name="URL"/></translation>
 <translation id="8325036459845654666">Ya se ha añadido esta red.</translation>
 <translation id="554350381160981853">Solo Trezor Model One con Firmware 1.10.5 (o una versión posterior) admite la firma de datos escritos</translation>
-<translation id="1752214435563414457">Lotería de intercambios de Brave</translation>
+<translation id="1752214435563414457">Lotería de intercambios de Mises</translation>
 <translation id="7829441065063984927">7 días de criptorregalos, con premios valorados en ~500 000 $.</translation>
 <translation id="8292716346768453265">¡Participa!</translation>
 <translation id="1935944189549132903">Todos los activos</translation>
@@ -1283,7 +1283,7 @@
 <translation id="4430019312045809116">Volumen</translation>
 <translation id="4312994183947987913">Comprar/Ingresar</translation>
 <translation id="5133421763709317473">No se han encontrado activos que coincidan con la búsqueda ni el filtro</translation>
-<translation id="7383613643114466279">Este activo no es compatible con el criptomonedero de Brave</translation>
+<translation id="7383613643114466279">Este activo no es compatible con el criptomonedero de Mises</translation>
 <translation id="6423985584914773314">No es una dirección de FIL válida</translation>
 <translation id="3898731124813934210">Comprar con Wyre</translation>
 <translation id="5522073372365069684">Comprar con Ramp</translation>
@@ -1387,7 +1387,7 @@
 <translation id="8060029310790625334">Centro de ayuda</translation>
 <translation id="2095142195578664632">¿Necesitas ayuda? Consulta el</translation>
 <translation id="3253669416991680932">Esta cartera de hardware no admite esta operación.</translation>
-<translation id="7457027586454688423">Escribe la contraseña de tu cartera de Brave</translation>
+<translation id="7457027586454688423">Escribe la contraseña de tu cartera de Mises</translation>
 <translation id="7553242001898162573">Introduce tu contraseña</translation>
 <translation id="2873714185189940594">¿Abrir la aplicación de Rainbow Bridge?</translation>
 <translation id="2069777099181262239">Rainbow Bridge es un servicio independiente que te ayuda a establecer puentes entre activos a través de las redes, así como a utilizar tus criptoactivos en otras redes y ecosistemas de aplicaciones descentralizadas. Usar puentes entre activos y otras redes conlleva algunos riesgos.</translation>
@@ -1395,7 +1395,7 @@
 <translation id="3890567288132019108">Más información sobre cómo mitigar riesgos en Rainbow Bridge</translation>
 <translation id="1792917191129448067">Abrir aplicación de Rainbow Bridge</translation>
 <translation id="1522775706527775647">Puente hacia Aurora</translation>
-<translation id="4903322403594141291">Más información sobre la cartera de Brave</translation>
+<translation id="4903322403594141291">Más información sobre la cartera de Mises</translation>
 <translation id="3875185448438395303">Por lo menos:</translation>
 <translation id="2029465635925899949">8 caracteres</translation>
 <translation id="6697810017029555732">¡Correcto!</translation>
@@ -1404,7 +1404,7 @@
 <translation id="8297006494302853456">Débil</translation>
 <translation id="6782556046178425980">Antes de empezar a hacer una copia de seguridad de la cartera</translation>
 <translation id="7119749028647909394">La frase de recuperación de 12-24 palabras es una clave privada que puedes utilizar para recuperar el acceso a tu cartera en caso de que pierdas uno o varios dispositivos vinculados. Guárdala en un lugar seguro y en el orden exacto en el que aparece a continuación.</translation>
-<translation id="3259018319025894691">Brave no tiene acceso a tu frase secreta de recuperación. Mantenla a buen recaudo y no la compartas con nadie.</translation>
+<translation id="3259018319025894691">Mises no tiene acceso a tu frase secreta de recuperación. Mantenla a buen recaudo y no la compartas con nadie.</translation>
 <translation id="7650284207965419234"><ph name="TAG_BEFORE"/>Importante: <ph name="TAG_AFTER"/>No compartas nunca tu frase de recuperación. Cualquier persona que tenga esta frase podrá quedarse con tus activos de forma irrevocable.</translation>
 <translation id="7509948206688764960">Guarda una copia de seguridad de la frase de recuperación de tu cartera</translation>
 <translation id="8052898407431791827">Copiado en el portapapeles</translation>
@@ -1424,8 +1424,8 @@
 <translation id="2781276194026093899">​</translation>
 <translation id="7992766987062040279">​</translation>
 <translation id="2295726992010694229">​</translation>
-<translation id="8241405611628876973">¡Enhorabuena! ¡Tu cartera de Brave ya está lista!</translation>
-<translation id="6828327990705355767">Para acceder a tu cartera, basta con hacer clic en el icono de cartera situado en la parte superior derecha de cualquier ventana del navegador Brave.</translation>
+<translation id="8241405611628876973">¡Enhorabuena! ¡Tu cartera de Mises ya está lista!</translation>
+<translation id="6828327990705355767">Para acceder a tu cartera, basta con hacer clic en el icono de cartera situado en la parte superior derecha de cualquier ventana del navegador Mises.</translation>
 <translation id="396152018598329740">¿Cómo funciona una cartera de criptomonedas?</translation>
 <translation id="7512061585041489067">¿Cuál es la mejor cartera de criptomonedas?</translation>
 <translation id="1342755158522323177">¿Qué es un navegador basado en criptomonedas?</translation>
@@ -1434,12 +1434,12 @@
 <translation id="7328255859839881981">¿Qué son las aplicaciones descentralizadas?</translation>
 <translation id="3852489285890032403">¿Qué es la Web 3?</translation>
 <translation id="5448233694500869445">Hemos detectado la extensión MetaMask en tu navegador</translation>
-<translation id="8436080536329710282">Introduce la contraseña de tu cartera de MetaMask para importarla fácilmente a la cartera de Brave.</translation>
+<translation id="8436080536329710282">Introduce la contraseña de tu cartera de MetaMask para importarla fácilmente a la cartera de Mises.</translation>
 <translation id="7543512765962444927">Vincula tu cartera actual</translation>
 <translation id="3551682252653406110">Para vincular una cartera que ya tienes, es posible que debas indicar tu frase de recuperación. En este momento se pueden restaurar/importar carteras de Ethereum y Solana.</translation>
 <translation id="346929827081904572">Restaurar a partir de la frase inicial</translation>
 <translation id="5645597512426471834">12-24 palabras</translation>
-<translation id="8158505311297755780">Escribe la frase de recuperación de 12-24 palabras de tu cartera de Brave.</translation>
+<translation id="8158505311297755780">Escribe la frase de recuperación de 12-24 palabras de tu cartera de Mises.</translation>
 <translation id="5419707890586509000">Importar desde MetaMask</translation>
 <translation id="2265945811107390939">Utiliza tu contraseña de MetaMask para importar tu frase inicial</translation>
 <translation id="7060680423657442298">Da igual, voy a crear una nueva cartera</translation>
@@ -1449,13 +1449,13 @@
 <translation id="6260144012548445299">Más información sobre mi nueva cartera</translation>
 <translation id="8746910870914151528">Cuestiones legales</translation>
 <translation id="5148123176978018397">Acepta lo siguiente:</translation>
-<translation id="6088314935678153800">Entiendo que esta es una cartera de custodia propia, y que yo soy la única persona responsable de cualquier fondo, activo o cuenta asociados. Por tanto, debo tomar las medidas adecuadas para asegurar, proteger y respaldar mi cartera. Entiendo que Brave NO tendrá acceso a mi monedero ni podrá revertir las operaciones en mi nombre, y que mi frase de recuperación es la ÚNICA manera de recuperar el acceso en caso de pérdida de la contraseña, robo del dispositivo o circunstancias similares.</translation>
+<translation id="6088314935678153800">Entiendo que esta es una cartera de custodia propia, y que yo soy la única persona responsable de cualquier fondo, activo o cuenta asociados. Por tanto, debo tomar las medidas adecuadas para asegurar, proteger y respaldar mi cartera. Entiendo que Mises NO tendrá acceso a mi monedero ni podrá revertir las operaciones en mi nombre, y que mi frase de recuperación es la ÚNICA manera de recuperar el acceso en caso de pérdida de la contraseña, robo del dispositivo o circunstancias similares.</translation>
 <translation id="7781090633800450517">He leído y acepto las <ph name="LINK_BEFORE"/>Condiciones de uso<ph name="LINK_AFTER"/></translation>
 <translation id="3887541341068007345">Comprobando las extensiones de la cartera...</translation>
-<translation id="3567994771568272606">Importar desde carteras de criptomonedas heredadas de Brave</translation>
+<translation id="3567994771568272606">Importar desde carteras de criptomonedas heredadas de Mises</translation>
 <translation id="8407091560429310499">Seleccionar un activo</translation>
 <translation id="756590380936155533">Para finalizar la compra <ph name="ASSET_TICKER"/>, selecciona alguno de nuestros socios</translation>
-<translation id="7880860489474966219">Al finalizar, tus fondos se transferirán a tu cartera de Brave</translation>
+<translation id="7880860489474966219">Al finalizar, tus fondos se transferirán a tu cartera de Mises</translation>
 <translation id="6182661078713714878">Depositar criptomonedas</translation>
 <translation id="3683305208314702347">Depositar <ph name="VALUE"/></translation>
 <translation id="5768739294929936862">Depositar tokens Solana o SPL</translation>
@@ -1506,14 +1506,14 @@
 <translation id="6951743416068151209">URI del proxy Tor</translation>
 <translation id="1671503397662036257">Estado de la conexión de Tor</translation>
 <translation id="6024292492796847324">Progreso de inicialización de Tor</translation>
-<translation id="6303294677342628402">Escudos Brave</translation>
-<translation id="8458987127502506209">Habilitar Protecciones de Brave</translation>
+<translation id="6303294677342628402">Escudos Mises</translation>
+<translation id="8458987127502506209">Habilitar Protecciones de Mises</translation>
 <translation id="7509914170164691086">Las protecciones están ACTIVADAS <ph name="LINK_BEFORE"/>durante<ph name="LINK_AFTER"/></translation>
 <translation id="260764436039299868">Las protecciones están DESACTIVADAS <ph name="LINK_BEFORE"/>durante<ph name="LINK_AFTER"/></translation>
 <translation id="3907405056878805220">Si el sitio no funciona, prueba a desactivar Protecciones. 
-    <ph name="LINK_BEFORE"/>Nota: esto puede reducir la protección de la privacidad de Brave.<ph name="LINK_AFTER"/></translation>
+    <ph name="LINK_BEFORE"/>Nota: esto puede reducir la protección de la privacidad de Mises.<ph name="LINK_AFTER"/></translation>
 <translation id="8377155647357436161">Se han bloqueado rastreadores y anuncios, entre otras cosas <ph name="LINK_BEFORE"/>Más información<ph name="LINK_AFTER"/></translation>
-<translation id="7604553853176833536">Sin la protección de Protecciones de Brave <ph name="LINK_BEFORE"/>Más información<ph name="LINK_AFTER"/></translation>
+<translation id="7604553853176833536">Sin la protección de Protecciones de Mises <ph name="LINK_BEFORE"/>Más información<ph name="LINK_AFTER"/></translation>
 <translation id="650318023204990401">Controles avanzados</translation>
 <translation id="5799940914270080805">Si se modificase esta configuración, los sitios podrían dejar de funcionar.</translation>
 <translation id="9204041448536398473">Configuración global de Protecciones</translation>
@@ -1536,14 +1536,14 @@
 <translation id="8034285923190068220">Permitir huellas dactilares</translation>
 <translation id="1992750560347846445">Informar sobre el sitio</translation>
 <translation id="2387532482048804818">Dinos si el sitio no funcionó como es debido con las protecciones activadas.</translation>
-<translation id="3795015906457257780">Estás consultando este sitio sin las protecciones de privacidad de Brave.</translation>
-<translation id="7194012750329511146">Protecciones de Brave
+<translation id="3795015906457257780">Estás consultando este sitio sin las protecciones de privacidad de Mises.</translation>
+<translation id="7194012750329511146">Protecciones de Mises
 Se han bloqueado <ph name="NUMBER"/> rastreadores, anuncios y otros elementos</translation>
 <translation id="4292121526390005808">Scripts bloqueados</translation>
 <translation id="264682546981571963">¿Ya te aburren los avisos de consentimiento de cookies?</translation>
-<translation id="4986297793092101884">Brave ya bloquea las cookies de terceros. También podemos bloquear los avisos de consentimiento de cookies.</translation>
+<translation id="4986297793092101884">Mises ya bloquea las cookies de terceros. También podemos bloquear los avisos de consentimiento de cookies.</translation>
 <translation id="535688588637568715">Sí, bloquear los avisos de consentimiento de cookies</translation>
-<translation id="3541307549916475335">IU del panel de VPN de Brave</translation>
+<translation id="3541307549916475335">IU del panel de VPN de Mises</translation>
 <translation id="1742469581923031760">Conectando…</translation>
 <translation id="1287487756047817908">Desconectando…</translation>
 <translation id="2325196879156848326">Error al establecer la conexión</translation>
@@ -1565,7 +1565,7 @@ Se han bloqueado <ph name="NUMBER"/> rastreadores, anuncios y otros elementos</t
 <translation id="8463313539532697053">Espera a que se cargue…</translation>
 <translation id="4317307602527599178">No se puede comprobar el estado de tu compra, posiblemente debido a un problema con la red.</translation>
 <translation id="4613076894734402086">Editar forma de pago</translation>
-<translation id="8373427068383038263">Parece que el pago más reciente de <ph name="VALUE"/> no se ha procesado. El acceso a esta suscripción se pondrá en pausa hasta que se resuelva el problema con el pago. Intenta editar el método de pago o contacta con el equipo de asistencia de Brave.</translation>
+<translation id="8373427068383038263">Parece que el pago más reciente de <ph name="VALUE"/> no se ha procesado. El acceso a esta suscripción se pondrá en pausa hasta que se resuelva el problema con el pago. Intenta editar el método de pago o contacta con el equipo de asistencia de Mises.</translation>
 <translation id="1839021455997460752">Tu dirección de correo electrónico</translation>
 <translation id="5154702632169343078">Asunto</translation>
 <translation id="6625978880678465492">Elige un motivo</translation>
@@ -1581,9 +1581,9 @@ Se han bloqueado <ph name="NUMBER"/> rastreadores, anuncios y otros elementos</t
 <translation id="24242621812020123">Versión de la aplicación:</translation>
 <translation id="6676791921618140305">Versión de SO:</translation>
 <translation id="1156325797949437777">Asistencia proporcionada con la ayuda de Guardian.</translation>
-<translation id="3307461350293459700">Error al conectar con la VPN. Vuelve a intentarlo y procura hacer clic en "Permitir" para habilitar la configuración de VPN de Brave.</translation>
-<translation id="7261518280726313829">Si desactivas la configuración segura del DNS o utilizas los servidores predeterminados de Windows, es posible que tu proveedor de acceso a Internet vea los nombres de los sitios que visitas, y eso es algo que Brave no recomienda. ¿Quieres hacerlo de todos modos?</translation>
-<translation id="888284761945060750">La configuración segura del DNS está desactivada conforme a las políticas de tu organización. Si usas VPN de Brave sin la configuración segura del DNS, es posible que tanto tu proveedor de acceso a Internet como tu organización vean los nombres de los sitios que visitas.</translation>
+<translation id="3307461350293459700">Error al conectar con la VPN. Vuelve a intentarlo y procura hacer clic en "Permitir" para habilitar la configuración de VPN de Mises.</translation>
+<translation id="7261518280726313829">Si desactivas la configuración segura del DNS o utilizas los servidores predeterminados de Windows, es posible que tu proveedor de acceso a Internet vea los nombres de los sitios que visitas, y eso es algo que Mises no recomienda. ¿Quieres hacerlo de todos modos?</translation>
+<translation id="888284761945060750">La configuración segura del DNS está desactivada conforme a las políticas de tu organización. Si usas VPN de Mises sin la configuración segura del DNS, es posible que tanto tu proveedor de acceso a Internet como tu organización vean los nombres de los sitios que visitas.</translation>
 <translation id="1657858090675311947">No volver a advertirme acerca de esto.</translation>
 <translation id="7586151660465233733">Más mercados en <ph name="SITE_NAME"/></translation>
 <translation id="952067063131306699">Ver mercados y hacer transacciones en criptomonedas en FTX</translation>

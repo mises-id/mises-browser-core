@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE translationbundle>
 <translationbundle lang="zh-CN">
-<translation id="3333887201479867589">Brave 奖励</translation>
+<translation id="3333887201479867589">Mises 奖励</translation>
 <translation id="4615489450165434530">报告损坏的网站</translation>
 <translation id="1209739344687072997">报告损坏的网站</translation>
 <translation id="6406506848690869874">同步</translation>
@@ -11,19 +11,19 @@
 <translation id="2666990579225592931">以访客身份打开一个窗口</translation>
 <translation id="4986483413015198747">打开访客窗口</translation>
 <translation id="8275068909952022340">更多…</translation>
-<translation id="1990886731975529483">安装并运行 Brave Widevine</translation>
+<translation id="1990886731975529483">安装并运行 Mises Widevine</translation>
 <translation id="8926389886865778422">不再询问</translation>
-<translation id="4900351245762303149">安装 Brave Widevine</translation>
-<translation id="2313383941300459392">重新启动浏览器以启用 Brave Widevine</translation>
-<translation id="2200626478572277092">有时需要 Widevine 才能在网页上播放媒体。这是一个从 Brave 服务器加载的 Brave 扩展程序，Brave 无法进行检查。安装即表示您同意 Brave 的使用条款。</translation>
+<translation id="4900351245762303149">安装 Mises Widevine</translation>
+<translation id="2313383941300459392">重新启动浏览器以启用 Mises Widevine</translation>
+<translation id="2200626478572277092">有时需要 Widevine 才能在网页上播放媒体。这是一个从 Mises 服务器加载的 Mises 扩展程序，Mises 无法进行检查。安装即表示您同意 Mises 的使用条款。</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>。若稍后需更改选项，请前往 <ph name="SETTINGS_EXTENIONS_LINK"/>。</translation>
 <translation id="6229752134959014186">详细了解 Widevine</translation>
 <translation id="6061083111980694767"><ph name="SITE_NAME"/>正请求您</translation>
 <translation id="3218385319396786393">已禁止在此网页上运行自动播放</translation>
 <translation id="4988333904713528597">始终允许自动播放<ph name="HOST"/></translation>
 <translation id="4150684676757176434">继续禁止自动播放</translation>
-<translation id="8988939298652262600">Brave 不审查扩展程序的安全性。如果您信任这个开发者，请仅安装这个扩展程序。</translation>
-<translation id="120759863357279975"><ph name="EXTENSION_NAME"/>(Brave中不允许使用扩展ID“<ph name="EXTENSION_ID"/>”）。</translation>
+<translation id="8988939298652262600">Mises 不审查扩展程序的安全性。如果您信任这个开发者，请仅安装这个扩展程序。</translation>
+<translation id="120759863357279975"><ph name="EXTENSION_NAME"/>(Mises中不允许使用扩展ID“<ph name="EXTENSION_ID"/>”）。</translation>
 <translation id="9005883459983913482">Tor 窗口</translation>
 <translation id="7965178729203412357">新 Tor 身份</translation>
 <translation id="6924909138923993900">此站点的新 Tor 连接</translation>
@@ -36,9 +36,9 @@
 <translation id="1970435562892104727">这是 Tor 的私人窗口</translation>
 <translation id="1037341607922068025">打开 Tor 的私人窗口</translation>
 <translation id="1725356094208762656">在 Tor 中打开</translation>
-<translation id="3396347744975515056">Brave 同步已升级，并需要进行设置</translation>
+<translation id="3396347744975515056">Mises 同步已升级，并需要进行设置</translation>
 <translation id="7473245612074035141">开始设置</translation>
-<translation id="3975865347033939965">同步服务无法启动，Brave Sync 未运行</translation>
+<translation id="3975865347033939965">同步服务无法启动，Mises Sync 未运行</translation>
 <translation id="4450893287417543264">不再显示</translation>
 <translation id="4595286989346610620">查看详情</translation>
 <translation id="7691598647605453992">IPFS</translation>
@@ -57,7 +57,7 @@
 <translation id="6925604404524625582">导入并将链接到 IPFS 快照</translation>
 <translation id="1434416574322382019">用 Tor 打开新的私人窗口</translation>
 <translation id="4703780849509456860">用 Tor 在私人窗口中打开链接</translation>
-<translation id="3488584642074079080">用 Tor 在 Brave 私人窗口中打开链接</translation>
+<translation id="3488584642074079080">用 Tor 在 Mises 私人窗口中打开链接</translation>
 <translation id="186554175479803110">导入并分享文件</translation>
 <translation id="3036649622769666520">打开文件</translation>
 <translation id="4408880250587950158">导入并分享目录</translation>
@@ -70,30 +70,30 @@
 <translation id="7068360136237591149">打开文件</translation>
 <translation id="6313675821927505581">用 Tor 打开新的隐私窗口</translation>
 <translation id="2638041073279639246">用 Tor 在隐私窗口中打开</translation>
-<translation id="3425600262621021599">用 Tor 在 Brave 隐私窗口中打开链接</translation>
+<translation id="3425600262621021599">用 Tor 在 Mises 隐私窗口中打开链接</translation>
 <translation id="3229091547987707389">导入并分享目录</translation>
-<translation id="5029193871181468990">隐藏 Brave 奖励图标</translation>
-<translation id="7595540212376041331">隐藏 Brave 的钱包图标</translation>
+<translation id="5029193871181468990">隐藏 Mises 奖励图标</translation>
+<translation id="7595540212376041331">隐藏 Mises 的钱包图标</translation>
 <translation id="4928988318462976765">网络扩展程序商店</translation>
 <translation id="9181207987584064303">在网络扩展程序商店中查看</translation>
-<translation id="3161744659507801211">警告：Brave 无法阻止扩展程序记录您的浏览活动。</translation>
+<translation id="3161744659507801211">警告：Mises 无法阻止扩展程序记录您的浏览活动。</translation>
 <translation id="2162109630536601963">如果此扩展程序发出网络请求，则它们将不会使用 Tor 或专用模式。</translation>
 <translation id="2725327089319971976">要在无痕模式下停用该扩展程序，请取消选中此选项。</translation>
-<translation id="3371343170427636147">Brave 浏览器夜间模式应用</translation>
-<translation id="4097979995947147464">Brave 浏览器 Beta 应用</translation>
-<translation id="8303432794159193481">Brave 浏览器开发应用</translation>
-<translation id="8292967014767479012">Brave 浏览器应用</translation>
-<translation id="4743468424889072281">Brave 浏览器开发应用</translation>
-<translation id="732814027519296280">想改进 Brave 搜索吗？</translation>
-<translation id="2677865600861971449">选择加入 Web 发现项目，匿名贡献一些搜索和浏览数据，为所有用户改进 Brave 搜索结果。保护隐私。无需任何精力。<ph name="LEARN_MORE_TEXT"/></translation>
+<translation id="3371343170427636147">Mises 浏览器夜间模式应用</translation>
+<translation id="4097979995947147464">Mises 浏览器 Beta 应用</translation>
+<translation id="8303432794159193481">Mises 浏览器开发应用</translation>
+<translation id="8292967014767479012">Mises 浏览器应用</translation>
+<translation id="4743468424889072281">Mises 浏览器开发应用</translation>
+<translation id="732814027519296280">想改进 Mises 搜索吗？</translation>
+<translation id="2677865600861971449">选择加入 Web 发现项目，匿名贡献一些搜索和浏览数据，为所有用户改进 Mises 搜索结果。保护隐私。无需任何精力。<ph name="LEARN_MORE_TEXT"/></translation>
 <translation id="6165508094623778733">了解详情</translation>
 <translation id="5860491529813859533">启用</translation>
 <translation id="780301667611848630">不用了，谢谢</translation>
 <translation id="5039804452771397117">允许</translation>
 <translation id="7053983685419859001">禁止</translation>
-<translation id="1679356339067548863">Brave 浏览器崩溃或无响应时自动发送诊断报告，帮助提高产品稳定性。</translation>
+<translation id="1679356339067548863">Mises 浏览器崩溃或无响应时自动发送诊断报告，帮助提高产品稳定性。</translation>
 <translation id="660171790038410175"><ph name="BROWSER_NAME"/>意外退出</translation>
-<translation id="1324417023773393937">Brave 浏览器</translation>
+<translation id="1324417023773393937">Mises 浏览器</translation>
 <translation id="7276554663454265692">您可以随时在浏览器设置中更改 <ph name="SETTING_TEXT"/>。</translation>
 <translation id="6873781976650514089">此设置</translation>
 <translation id="8915916167043355778">全部关闭</translation>
@@ -102,22 +102,22 @@
 <translation id="7551864359422178684">在此浏览器窗口中还有 <ph name="NUMBER_OF_TABS"/> 个标签页处于开启状态。</translation>
 <translation id="2571596981920752023"><ph name="NUMBER_OF_TABS"/> 个标签页</translation>
 <translation id="1307431692088049276">不要再问我了</translation>
-<translation id="2272117088509540883">- Brave 搜索</translation>
-<translation id="2701279958223202597">支持隐私性更好的独立搜索。Brave 的搜索功能不会追踪您、您的查询或您的点击行为。</translation>
+<translation id="2272117088509540883">- Mises 搜索</translation>
+<translation id="2701279958223202597">支持隐私性更好的独立搜索。Mises 的搜索功能不会追踪您、您的查询或您的点击行为。</translation>
 <translation id="6438467592401259882">支持隐私性更好的独立搜索。</translation>
 <translation id="1688359110799098115">支持隐私性更好的独立搜索。</translation>
-<translation id="8579317236683491484">Brave 的搜索功能不会追踪您、您的查询或您的点击行为。</translation>
-<translation id="5240031343741051161">尝试Brave搜索</translation>
+<translation id="8579317236683491484">Mises 的搜索功能不会追踪您、您的查询或您的点击行为。</translation>
+<translation id="5240031343741051161">尝试Mises搜索</translation>
 <translation id="5026874946691314267">别再给我看这个了</translation>
 <translation id="5234764350956374838">关闭</translation>
-<translation id="5100490448228945668">解除 Brave 搜索转换功能，按回车键删除此建议</translation>
+<translation id="5100490448228945668">解除 Mises 搜索转换功能，按回车键删除此建议</translation>
 <translation id="2515126961943087659">Bat Ads 服务</translation>
 <translation id="7924918279836988121">Bat Ledger 服务</translation>
 <translation id="6040143037577758943">关闭</translation>
-<translation id="6665472986740899785">Brave 的通知广告</translation>
+<translation id="6665472986740899785">Mises 的通知广告</translation>
 <translation id="4174337572777167894">Web 发现项目</translation>
-<translation id="8659271182272561965">提供一些匿名搜索和浏览数据来完善 Brave 搜索。</translation>
-<translation id="1516554614404600536">Brave 工具提示</translation>
+<translation id="8659271182272561965">提供一些匿名搜索和浏览数据来完善 Mises 搜索。</translation>
+<translation id="1516554614404600536">Mises 工具提示</translation>
 <translation id="7986278174934557414">隐藏侧边栏面板图标</translation>
 <translation id="6915291874524466201">隐藏侧边栏面板图标</translation>
 <translation id="9149866541089851383">编辑...</translation>
@@ -149,13 +149,13 @@
 <translation id="2036503787657622020">打开阅读器模式</translation>
 <translation id="5226458915125328323">速读器设置</translation>
 <translation id="8591883849678260674">查看原文</translation>
-<translation id="6284218950354553099">自动向 Brave 发送每日使用 ping</translation>
-<translation id="5288333155754958121">这种匿名的私人 ping 可以让 Brave 估计活跃用户数</translation>
-<translation id="1872784258300710671">Brave 使用完全隐私的产品分析来估计某些功能的整体使用情况</translation>
+<translation id="6284218950354553099">自动向 Mises 发送每日使用 ping</translation>
+<translation id="5288333155754958121">这种匿名的私人 ping 可以让 Mises 估计活跃用户数</translation>
+<translation id="1872784258300710671">Mises 使用完全隐私的产品分析来估计某些功能的整体使用情况</translation>
 <translation id="8712637175834984815">知道了</translation>
 <translation id="4394049700291259645">停用</translation>
 <translation id="7142548388914389999">允许保留隐私的产品分析 (P3A)</translation>
-<translation id="8286082624639565868">这种完全匿名的信息有助于 Brave 估计某些功能的整体使用情况，并使它们更适合你。</translation>
+<translation id="8286082624639565868">这种完全匿名的信息有助于 Mises 估计某些功能的整体使用情况，并使它们更适合你。</translation>
 <translation id="1947672064022327074">是否要启动 Ethereum 支持的加密钱包？</translation>
 <translation id="7583735190612229830">设置 Crypto Wallets 以与此应用程序以及其他类似的应用程序进行交互。</translation>
 <translation id="8731422418734770661">设置 Crypto Wallets</translation>
@@ -166,7 +166,7 @@
 <translation id="2609895996619941644">想要检查 Wayback Machine 上是否有保存的版本？</translation>
 <translation id="8053093028263274061">抱歉，没有可用的已保存版本。</translation>
 <translation id="8517321676372639828">查看保存的版本</translation>
-<translation id="191143826155037518">根据 <ph name="BEGIN_LINK_MPL"/>Mozilla Public License 2.0<ph name="END_LINK_MPL"/> (MPL)，您可以使用 Brave（这里有 <ph name="BEGIN_LINK_OSS"/>根据各种其他许可获得的开源软件）<ph name="END_LINK_OSS"/>。
+<translation id="191143826155037518">根据 <ph name="BEGIN_LINK_MPL"/>Mozilla Public License 2.0<ph name="END_LINK_MPL"/> (MPL)，您可以使用 Mises（这里有 <ph name="BEGIN_LINK_OSS"/>根据各种其他许可获得的开源软件）<ph name="END_LINK_OSS"/>。
         您可以自己阅读一下 <ph name="BEGIN_LINK_BUILD_INSTRUCTIONS"/>有关如何自行下载和构建<ph name="END_LINK_BUILD_INSTRUCTIONS"/>用来创建此副本的特定 <ph name="BEGIN_LINK_SOURCE_CODE"/>源代码的说明<ph name="END_LINK_SOURCE_CODE"/>。</translation>
 <translation id="4474155171896946103">为所有标签页添加书签...</translation>
 <translation id="2336228925368920074">为所有标签页添加书签...</translation>
@@ -174,8 +174,8 @@
 <translation id="4070612712151038707">显示工具栏中的 VPN 按钮</translation>
 <translation id="7705524343798198388">VPN</translation>
 <translation id="8593397073757037946">开/关 VPN</translation>
-<translation id="3960619311638643872">Brave VPN</translation>
-<translation id="2345974803401546682">关于 Brave VPN</translation>
+<translation id="3960619311638643872">Mises VPN</translation>
+<translation id="2345974803401546682">关于 Mises VPN</translation>
 <translation id="4378551569595875038">正在连接…</translation>
 <translation id="3368922792935385530">已连接</translation>
 <translation id="1536754031901697553">正在断开连接…</translation>
@@ -189,34 +189,34 @@
 <translation id="945522503751344254">发送反馈</translation>
 <translation id="3015685033234401792">管理我的计划</translation>
 <translation id="4989337484121655457">需要完全的磁盘访问权限</translation>
-<translation id="8025559074845816210">Brave  需要完全的磁盘访问权限才能从 Safari 导入书签。</translation>
+<translation id="8025559074845816210">Mises  需要完全的磁盘访问权限才能从 Safari 导入书签。</translation>
 <translation id="8515328844674404333">了解如何从系统偏好设置中授予完全的磁盘访问权限。</translation>
 <translation id="6414878884710400018">打开系统偏好设置</translation>
 <translation id="796831669370432378">要添加书签，请点击地址栏旁边的书签按钮</translation>
 <translation id="8487693399751278191">立即导入书签...</translation>
 <translation id="2557899542277210112">要快速访问，请将书签放在书签栏的此处。</translation>
 <translation id="1968543937259008435">准备好在线获得最佳隐私了吗？</translation>
-<translation id="6817415381278637662">将 Brave 设置为你的默认浏览器，以便你打开的每个网页都获得 Brave 的隐私保护。</translation>
-<translation id="8722651357687610395">将 Brave 设置为默认</translation>
+<translation id="6817415381278637662">将 Mises 设置为你的默认浏览器，以便你打开的每个网页都获得 Mises 的隐私保护。</translation>
+<translation id="8722651357687610395">将 Mises 设置为默认</translation>
 <translation id="2370739752330685659">回头再说</translation>
 <translation id="7537601449003285327">固定在任务栏上</translation>
 <translation id="961012016278832836">Microsoft Edge 旧版</translation>
 <translation id="6436994631426134065">已从 <ph name="BROWSER_NAME"/> 导入。</translation>
 <translation id="7630214457764713113">复制干净的链接</translation>
-<translation id="9156965752763025780">您所做的更改会在下次重新启动 Brave 时生效。</translation>
+<translation id="9156965752763025780">您所做的更改会在下次重新启动 Mises 时生效。</translation>
 <translation id="7179921470347911571">立即重新启动</translation>
 <translation id="4472575034687746823">开始使用</translation>
 <translation id="8081858229109418493">个人资料姓名和图标</translation>
 <translation id="6786747875388722282">扩展程序</translation>
 <translation id="984275831282074731">付款方式</translation>
-<translation id="2044383478723007273">Brave 颜色</translation>
+<translation id="2044383478723007273">Mises 颜色</translation>
 <translation id="1807246157184219062">亮</translation>
 <translation id="2414886740292270097">暗</translation>
 <translation id="1360441190790440400">与 Linux 相同</translation>
 <translation id="1336940801687497203">与窗口相同</translation>
 <translation id="8721331068159819483">与 macOS 相同</translation>
 <translation id="1692470335103807198">获得更多主题</translation>
-<translation id="2906510232093002459">Brave 默认图片</translation>
+<translation id="2906510232093002459">Mises 默认图片</translation>
 <translation id="3367129510799209147">标签悬停模式</translation>
 <translation id="2113977810652731515">信用卡</translation>
 <translation id="4096343215397759358">带预览的卡片</translation>
@@ -229,7 +229,7 @@
 <translation id="65774893852758517">建议的网站</translation>
 <translation id="7859704718976024901">浏览记录</translation>
 <translation id="8820817407110198400">书签栏</translation>
-<translation id="6333347122924254968">在地址栏显示 Brave 奖励图标</translation>
+<translation id="6333347122924254968">在地址栏显示 Mises 奖励图标</translation>
 <translation id="1811404036171336214">总是显示新标签页上的书签</translation>
 <translation id="3416468988018290825">始终显示完整的URL</translation>
 <translation id="5529693968082667490">显示标签页搜索按钮</translation>
@@ -243,7 +243,7 @@
 <translation id="5448570825852364919">空白页面</translation>
 <translation id="5919424224662539292">自定义显示在新标签页上的背景图片和小部件</translation>
 <translation id="7461924472993315131">固定</translation>
-<translation id="7506648566440714944">Brave 已被固定</translation>
+<translation id="7506648566440714944">Mises 已被固定</translation>
 <translation id="3195845168740336657">Shields 设置</translation>
 <translation id="754769152790647708">Shields 状态</translation>
 <translation id="3615717588724840230">网站可以通过 Shields 来阻止跟踪器、广告和指纹识别</translation>
@@ -252,7 +252,7 @@
 <translation id="6303294677342628402">屏蔽</translation>
 <translation id="7133511168130368997">拦截在网络上无所不在的跟踪器和广告。</translation>
 <translation id="2761825942249694703">这些是默认屏蔽设置，适用于所有网站（除非您更改了某特定网站的屏蔽面板中的某些设置）。更改这些设置不会影响您现有的每个站点的设置。</translation>
-<translation id="1435116578479068303">这将屏蔽网站上的大多数广告，但不会屏蔽 Brave Private Ads。要对此进行管控，请前往 <ph name="BEGIN_LINK"/>Brave Rewards<ph name="END_LINK"/> 设置。</translation>
+<translation id="1435116578479068303">这将屏蔽网站上的大多数广告，但不会屏蔽 Mises Private Ads。要对此进行管控，请前往 <ph name="BEGIN_LINK"/>Mises Rewards<ph name="END_LINK"/> 设置。</translation>
 <translation id="8452536890042542134">这将屏蔽网站上的大多数广告。</translation>
 <translation id="4800195524776354947">在屏蔽图标上显示被拦截的项目的数量</translation>
 <translation id="5510493033031835532">自动重定向 AMP 页面</translation>
@@ -295,15 +295,15 @@
 <translation id="4182731739150761577">显示完整列表</translation>
 <translation id="1340263054776016283">输入过滤器列表 URL</translation>
 <translation id="8578397014396032341">内容过滤</translation>
-<translation id="6821903322090655051">Brave 奖励已禁用</translation>
+<translation id="6821903322090655051">Mises 奖励已禁用</translation>
 <translation id="413570371620795359">打开奖励面板，启用并开始体验服务</translation>
 <translation id="3849957491997306859">自动检测</translation>
 <translation id="8798099450830957504">默认</translation>
-<translation id="4851215387785619212">Brave 专属广告</translation>
-<translation id="7808122468353671181">通过观看 Brave 广告赚取代币。展示的广告是基于您的兴趣（根据您的浏览行为推断而来的）。没有任何个人数据或浏览历史记录会离开您的浏览器。</translation>
+<translation id="4851215387785619212">Mises 专属广告</translation>
+<translation id="7808122468353671181">通过观看 Mises 广告赚取代币。展示的广告是基于您的兴趣（根据您的浏览行为推断而来的）。没有任何个人数据或浏览历史记录会离开您的浏览器。</translation>
 <translation id="1758947220824279023">待显示的最大广告个数</translation>
 <translation id="2356652719351432565">区域广告相关性</translation>
-<translation id="2196950072404588793">这使 Brave 可以向您显示专门针对您所在地区的广告。<ph name="BEGIN_LINK"/>了解详情<ph name="END_LINK"/></translation>
+<translation id="2196950072404588793">这使 Mises 可以向您显示专门针对您所在地区的广告。<ph name="BEGIN_LINK"/>了解详情<ph name="END_LINK"/></translation>
 <translation id="2433507940547922241">外观</translation>
 <translation id="6112368337882254910">自动贡献</translation>
 <translation id="9132509928968869844">每月自动打赏限制</translation>
@@ -317,7 +317,7 @@
 <translation id="2635094637295383009">Twitter</translation>
 <translation id="6032511312767282174">GitHub</translation>
 <translation id="9185018653595759199">阻止社交媒体</translation>
-<translation id="7498695072878479744">第三方网站上的 Brave 登录按钮可用</translation>
+<translation id="7498695072878479744">第三方网站上的 Mises 登录按钮可用</translation>
 <translation id="863171915776379000">Facebook 登录和嵌入式帖子可用</translation>
 <translation id="5165042248369837294">允许 Twitter 嵌入推文</translation>
 <translation id="958971637207126733">允许 LinkedIn 嵌入帖子</translation>
@@ -325,13 +325,13 @@
 <translation id="1822560017823072927">默认公共和私人接口</translation>
 <translation id="5825943197137337319">仅限默认公共接口</translation>
 <translation id="1689062823386843231">禁用无代理的 UDP</translation>
-<translation id="3540231253392253941">使用 Brave 服务进行推送消息传递</translation>
+<translation id="3540231253392253941">使用 Mises 服务进行推送消息传递</translation>
 <translation id="933652931229970927">自动发送诊断报告</translation>
 <translation id="4846154056248462491">退出时</translation>
-<translation id="2808630562319398131">重置 Brave Rewards 计划数据...</translation>
+<translation id="2808630562319398131">重置 Mises Rewards 计划数据...</translation>
 <translation id="6438096877646138757">关闭时所有网站窗口时清除 cookie 的网站</translation>
 <translation id="2988792685798128092">站点关闭时清除</translation>
-<translation id="814018970995616154">检查带有保存在 Brave 中的不安全站点列表的 URL。</translation>
+<translation id="814018970995616154">检查带有保存在 Mises 中的不安全站点列表的 URL。</translation>
 <translation id="1144810021918451336">不能保护您免受危险网站、下载和扩展名的侵害。</translation>
 <translation id="5570470519803062774">站点和屏蔽设置</translation>
 <translation id="410351446219883937">自动播放</translation>
@@ -346,7 +346,7 @@
 <translation id="6414370348346025511">标准保护已启用。</translation>
 <translation id="5565355416171743213">开始使用同步</translation>
 <translation id="4332558599726753990">同步设置</translation>
-<translation id="2187778349654214731">首先，请在所有需要同步的设备上安装 Brave。然后，请通过同步代码将它们妥善的连接在一起。</translation>
+<translation id="2187778349654214731">首先，请在所有需要同步的设备上安装 Mises。然后，请通过同步代码将它们妥善的连接在一起。</translation>
 <translation id="7530575064080939974">管理您已同步的设备</translation>
 <translation id="7575156386943878014">同步管理器</translation>
 <translation id="1755198127524719638">同步设置</translation>
@@ -360,18 +360,18 @@
 <translation id="7885157704277298658">已复制</translation>
 <translation id="8802630444265810662">可以用移动设备扫描二维码，以便转发您的同步代码</translation>
 <translation id="6221331245829088299">显示二维码时出错，请刷新并重试。</translation>
-<translation id="298546024891487702">首先，请在所有需要同步的设备上安装Brave。要链接所有设备，请创建一个同步链，即可把所有设备安全连接到一起。</translation>
+<translation id="298546024891487702">首先，请在所有需要同步的设备上安装Mises。要链接所有设备，请创建一个同步链，即可把所有设备安全连接到一起。</translation>
 <translation id="6200528822592747640">创建新的同步链</translation>
 <translation id="5184726904895809379">我有同步密码</translation>
 <translation id="8780295742023331191">查看同步密码</translation>
 <translation id="9017050385815017931">电话/平板电脑</translation>
 <translation id="1736420071277903564">计算机</translation>
 <translation id="3407602902101449803">同步链二维码</translation>
-<translation id="8369686073965491869">在您的移动设备上，打开“设置”面板的Brave同步，然后点击按钮</translation>
+<translation id="8369686073965491869">在您的移动设备上，打开“设置”面板的Mises同步，然后点击按钮</translation>
 <translation id="6527776448555649991">“扫描同步码”。</translation>
 <translation id="1400862780574843709">用您的摄像头扫描下方的二维码。</translation>
 <translation id="5086223971958279691">同步链密码</translation>
-<translation id="2899261497479389619">在您的目标电脑上，在“设置”菜单中打开Brave同步，然后点击按钮</translation>
+<translation id="2899261497479389619">在您的目标电脑上，在“设置”菜单中打开Mises同步，然后点击按钮</translation>
 <translation id="4827439149833241990">“我有同步密码”。</translation>
 <translation id="8299617838343103908">输入下方显示的同步链密码词。</translation>
 <translation id="4485276108749547761">将该代码用作密码。如果有人获取了该信息，那他们就可以读取和修改您已同步的数据。</translation>
@@ -383,23 +383,23 @@
 <translation id="4581190919849683048">您想与那种类型的设备进行同步？</translation>
 <translation id="4112587618563511470">同步代码无效，请检查并重试。</translation>
 <translation id="3995714999835224798">此代码无效</translation>
-<translation id="859506441384380749">此代码由已弃用的 Brave 版本生成，请先升级您的其他设备</translation>
+<translation id="859506441384380749">此代码由已弃用的 Mises 版本生成，请先升级您的其他设备</translation>
 <translation id="3132642509209154999">此代码已过期。请在其他设备上生成新的代码，然后重试。</translation>
 <translation id="2859229680945501779">此代码无效。请检查您设备上的时间和时区设置是否正确。</translation>
 <translation id="2339730291919608488">离开同步链</translation>
 <translation id="115699408012835975">如果您重置同步，则您需要重新输入另一台设备的同步代码，以便与其进行同步。您确定想要继续吗？</translation>
 <translation id="6092564993102418148">你确定要从同步链中删除所选设备吗?</translation>
-<translation id="4400414577602898435">警告：这会与生成这些代码单词的设备共享您的 Brave 数据，可能包括您的密码。
+<translation id="4400414577602898435">警告：这会与生成这些代码单词的设备共享您的 Mises 数据，可能包括您的密码。
 
 请再次确认这些单词由您所拥有的设备生成。
 
 确定要这么做吗？</translation>
-<translation id="7443185843787879670">Brave 无法访问您操作系统的安全存储。这用于保护密码和 cookie 等数据； Brave Sync 还需要在设备之间连接您的浏览器配置文件。这意味着 Brave Sync 未运行。要解决此问题，请参阅 <ph name="BEGIN_LINK_SYNC_GUIDE"/>Brave Sync 故障排除指南<ph name="END_LINK_SYNC_GUIDE"/>。</translation>
+<translation id="7443185843787879670">Mises 无法访问您操作系统的安全存储。这用于保护密码和 cookie 等数据； Mises Sync 还需要在设备之间连接您的浏览器配置文件。这意味着 Mises Sync 未运行。要解决此问题，请参阅 <ph name="BEGIN_LINK_SYNC_GUIDE"/>Mises Sync 故障排除指南<ph name="END_LINK_SYNC_GUIDE"/>。</translation>
 <translation id="6285118765755298263">对其他搜索引擎构建索引</translation>
 <translation id="919715748352669592">自动对遵循 OpenSearch 规范的网站构建索引</translation>
 <translation id="842628013524824194">一般窗口 - 地址栏中使用的搜索引擎</translation>
 <translation id="5324939009884545145">隐私窗口 - 地址栏中使用的搜索引擎</translation>
-<translation id="6864914031231797928">允许 Brave 登录以获取扩展程序</translation>
+<translation id="6864914031231797928">允许 Mises 登录以获取扩展程序</translation>
 <translation id="6554397389149987360">使用环聊组件在浏览器中启用屏幕共享和其他功能。</translation>
 <translation id="7878791177459550035">媒体路由器在浏览器中启用投射功能。</translation>
 <translation id="5927916530277631319">解决无法停止域这个问题的方法</translation>
@@ -427,27 +427,27 @@
 <translation id="6936835573742749135">无法请求验证码。请稍后再试。</translation>
 <translation id="2653659639078652383">提交</translation>
 <translation id="1369311132025451972">自动重定向 .onion 网站</translation>
-<translation id="1658670175365815312">在在可用情况下，Brave 将切换为网站的 .onion 版本，并在 Tor 窗口中自动打开所有 .onion 域。</translation>
+<translation id="1658670175365815312">在在可用情况下，Mises 将切换为网站的 .onion 版本，并在 Tor 窗口中自动打开所有 .onion 域。</translation>
 <translation id="2896916411183256228">使用 WebTorrent 直接在浏览器中显示种子。支持种子文件和磁力链接。</translation>
 <translation id="5249433283143453448">使用 Widevine 数字版权管理（DRM）组件在浏览器中查看受保护的流视频和其他内容。</translation>
 <translation id="8137559199583651773">管理扩展程序</translation>
 <translation id="7013485839273047434">获取更多扩展程序</translation>
 <translation id="4954512758656527938">默认以太坊钱包</translation>
 <translation id="7701023802820268122">默认 Solana 钱包</translation>
-<translation id="8488282162676695335">Brave 钱包</translation>
+<translation id="8488282162676695335">Mises 钱包</translation>
 <translation id="2356070529366658676">询问</translation>
 <translation id="7701040980221191251">无</translation>
 <translation id="1274962333945373242">Crypto Wallets（已废弃）</translation>
-<translation id="3695088618483091287">Brave 钱包（首选扩展）</translation>
+<translation id="3695088618483091287">Mises 钱包（首选扩展）</translation>
 <translation id="4718664830805652430">默认基础货币</translation>
 <translation id="7992507032049865603">默认基础加密货币</translation>
-<translation id="1834467296210148203">在工具栏上显示 Brave Wallet 图标</translation>
-<translation id="8239147115686034860">自动锁定 Brave 钱包</translation>
-<translation id="414639769490080648">自动锁定 Brave 钱包前等待的分钟数</translation>
+<translation id="1834467296210148203">在工具栏上显示 Mises Wallet 图标</translation>
+<translation id="8239147115686034860">自动锁定 Mises 钱包</translation>
+<translation id="414639769490080648">自动锁定 Mises 钱包前等待的分钟数</translation>
 <translation id="1241283133946520352">网络</translation>
 <translation id="5975930666279943472">清除钱包交易和随机数信息</translation>
 <translation id="5693968582510626466">清除交易可能对开发人员有用，或者在清除本地服务器的状态时有用</translation>
-<translation id="4993345308607970390">重置 Brave 钱包</translation>
+<translation id="4993345308607970390">重置 Mises 钱包</translation>
 <translation id="9216386092464743272">您确定要重置所有的钱包交易和随机数信息吗？这个选项主要由运行本地测试服务器的开发人员使用。输入“<ph name="CONFIRMATION_PHRASE"/>”进行确认。</translation>
 <translation id="6369495274982305511">确定要重置钱包吗？如果您的钱包没有备份，重置将导致您丢失所有账户数据（包括所有关联的资金）。输入“<ph name="CONFIRMATION_PHRASE"/>”确认。</translation>
 <translation id="3752403403443723332">您的钱包已重置。</translation>
@@ -486,17 +486,17 @@
 <translation id="2618193846561624884">要更新现有网络吗？</translation>
 <translation id="9170907049676078643">解决 IPFS 资源问题的方法</translation>
 <translation id="1327977588028644528">网关</translation>
-<translation id="1195880978080389104">Brave 本地 IPFS 节点</translation>
-<translation id="2178402446227616866"><ph name="BEGIN_LINK_MPL"/>详细<ph name="END_LINK_MPL"/>了解 Brave 本地 IPFS 节点和网关隐私注意事项。</translation>
+<translation id="1195880978080389104">Mises 本地 IPFS 节点</translation>
+<translation id="2178402446227616866"><ph name="BEGIN_LINK_MPL"/>详细<ph name="END_LINK_MPL"/>了解 Mises 本地 IPFS 节点和网关隐私注意事项。</translation>
 <translation id="4927734062756955434">IPFS 公共网关地址</translation>
 <translation id="8425213833346101688">更改</translation>
 <translation id="585868419599255817">公共网关回退功能</translation>
-<translation id="2618080188892567155">如果无法访问 Brave 本地 IPFS 节点，则自动回退到公共 IPFS 网关。</translation>
+<translation id="2618080188892567155">如果无法访问 Mises 本地 IPFS 节点，则自动回退到公共 IPFS 网关。</translation>
 <translation id="4107552920076294723">将 IPFS 资源重定向到已配置的 IPFS 网关</translation>
 <translation id="6494857428933042381">当遇到 IPFS 网关资源时，自动使用配置的网关进行 IPFS 解析。</translation>
 <translation id="8655170717758778983">可能时通过 DNSLink 自动重定向到 IPFS 页面</translation>
 <translation id="2233724520223030977">在可能的情况下自动使用 DNSLink 导航到网站的 IPFS 版本</translation>
-<translation id="8068526464562249859">在 Brave 中使用 IPFS Companion 扩展来增强 IPFS 支持（包括从浏览器栏中访问常见的 IPFS 任务）。</translation>
+<translation id="8068526464562249859">在 Mises 中使用 IPFS Companion 扩展来增强 IPFS 支持（包括从浏览器栏中访问常见的 IPFS 任务）。</translation>
 <translation id="1251574393468476924">IPFS 网络的最大高速缓存大小 (GB)</translation>
 <translation id="2503497578400410320">IPFS 存储库数据存储区大小的软上限</translation>
 <translation id="6758961763875471084">修改对等列表</translation>
@@ -507,8 +507,8 @@
 <translation id="911363100236037920">输入新密钥的名称</translation>
 <translation id="6358469157239228181">不能使用此名称</translation>
 <translation id="2082206983920804886">旋转密钥</translation>
-<translation id="5078501082919354191">无法停止 Brave 本地 IPFS 节点</translation>
-<translation id="5687424953196903465">无法启动 Brave 本地 IPFS 节点</translation>
+<translation id="5078501082919354191">无法停止 Mises 本地 IPFS 节点</translation>
+<translation id="5687424953196903465">无法启动 Mises 本地 IPFS 节点</translation>
 <translation id="6476061084931271248">重启节点来应用更改</translation>
 <translation id="3754226427671882382">重启节点</translation>
 <translation id="949667118776341807">旋转</translation>
@@ -528,41 +528,41 @@
 <translation id="557281710253742286">设置 IPFS 网关</translation>
 <translation id="8571837315037233299">网关地址</translation>
 <translation id="7703184801853248830">网关地址无效</translation>
-<translation id="7690058578502751948">仅启用了 Origin 隔离的有效 IPFS 网关可用于 Brave</translation>
+<translation id="7690058578502751948">仅启用了 Origin 隔离的有效 IPFS 网关可用于 Mises</translation>
 <translation id="3411013544209536575">支助赏金</translation>
 <translation id="2775956301559569472">显示 404 页上的 Wayback Machine 提示</translation>
 <translation id="3095201688102519917">关闭已开启多个标签页的视窗前显示警告消息</translation>
 <translation id="7120553802660696133">关闭最后一个选项卡时关闭窗口</translation>
 <translation id="6624718837376802990">前卫 Rewards 的头像</translation>
-<translation id="6617313057407561765">前卫 Brave 的头像</translation>
+<translation id="6617313057407561765">前卫 Mises 的头像</translation>
 <translation id="6754445808455578019">前卫 Ocean  的头像</translation>
 <translation id="1202230982786524987">前卫 Grass 的头像</translation>
 <translation id="5795513892420634319">前卫 Corn 的头像</translation>
 <translation id="3561521017993720050">前卫 Royal 的头像</translation>
 <translation id="1235866128911626592">前卫 Ninja 的头像</translation>
 <translation id="2090755120827623384">圣骑士 Rewards 的头像</translation>
-<translation id="2018119859356143702">圣骑士 Brave 的头像</translation>
+<translation id="2018119859356143702">圣骑士 Mises 的头像</translation>
 <translation id="4740488466586929481">圣骑士 Ocean 的头像</translation>
 <translation id="5006207620676644913">圣骑士 Grass 的头像</translation>
 <translation id="3989232963815817109">圣骑士 Corn 的头像</translation>
 <translation id="4594102608669574640">圣骑士 Royal 的头像</translation>
 <translation id="2183738260538789532">圣骑士 Ninja 的头像</translation>
 <translation id="1364533449989493534">微风 Rewards 的头像</translation>
-<translation id="7885078296101135895">微风 Brave 的头像</translation>
+<translation id="7885078296101135895">微风 Mises 的头像</translation>
 <translation id="5569105529336093187">微风 Ocean 的头像</translation>
 <translation id="8905105122495847950">微风 Grass 的头像</translation>
 <translation id="5118043134512650846">微风 Corn 的头像</translation>
 <translation id="7054896317531348319">微风 Royal 的头像</translation>
 <translation id="5493441852328628982">微风 Ninja 的头像</translation>
 <translation id="2752844432779340213">椭圆形 Rewards 的头像</translation>
-<translation id="3981340065784739675">椭圆形 Brave 的头像</translation>
+<translation id="3981340065784739675">椭圆形 Mises 的头像</translation>
 <translation id="8950124663623888116">椭圆形 Ocean 的头像</translation>
 <translation id="1029136880675307651">椭圆形 Grass 的头像</translation>
 <translation id="3285059582709531888">椭圆形 Corn 的头像</translation>
 <translation id="8540390244071055918">椭圆形 Royal 的头像</translation>
 <translation id="3435440003463944104">椭圆形 Ninja 的头像</translation>
 <translation id="4222150638283443362">邦邦 Rewards 的头像</translation>
-<translation id="8888471219870198387">邦邦 Brave 的头像</translation>
+<translation id="8888471219870198387">邦邦 Mises 的头像</translation>
 <translation id="2883756935342108947">邦邦 Ocean 的头像</translation>
 <translation id="6280956561199400472">邦邦 Grass 的头像</translation>
 <translation id="5318548116565208315">邦邦 Corn 的头像</translation>

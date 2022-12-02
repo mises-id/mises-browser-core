@@ -32,10 +32,10 @@
 <translation id="985862351129593673">Tilpass oversikten</translation>
 <translation id="7180865173735832675">Tilpass</translation>
 <translation id="8522669544471808198">Vis bakgrunnsbilder</translation>
-<translation id="5801450813341024983">Brave-bakgrunner</translation>
+<translation id="5801450813341024983">Mises-bakgrunner</translation>
 <translation id="1416884769823233410">Bruk din egen</translation>
 <translation id="6246790815526961700">Last opp fra enheten</translation>
-<translation id="7275773481201277457">Vis Brave-statistikk</translation>
+<translation id="7275773481201277457">Vis Mises-statistikk</translation>
 <translation id="6836061097810262923">Vis klokke</translation>
 <translation id="5912396950572065471">Format</translation>
 <translation id="604124094241169006">Automatisk</translation>
@@ -58,56 +58,56 @@
 <translation id="1773147648972887693">Vis ofte besøkte</translation>
 <translation id="4546260624932151782">Vis favoritter</translation>
 <translation id="1230746063445072175">Vil du ha enda sterkere personvern?</translation>
-<translation id="6699628638740071563">Det er på tide å kvitte seg med Brave.</translation>
-<translation id="2045455461902775806">Brave-søk er ikke skjevfordelt, og sporer verken deg, søkene dine eller klikkene dine.</translation>
-<translation id="6811221529729056895">Prøv Brave-søk nå</translation>
+<translation id="6699628638740071563">Det er på tide å kvitte seg med Mises.</translation>
+<translation id="2045455461902775806">Mises-søk er ikke skjevfordelt, og sporer verken deg, søkene dine eller klikkene dine.</translation>
+<translation id="6811221529729056895">Prøv Mises-søk nå</translation>
 <translation id="5525668735313040116">Søk privat på nettet</translation>
-<translation id="3446024864193919737">Vis Brave Rewards</translation>
+<translation id="3446024864193919737">Vis Mises Rewards</translation>
 <translation id="6274899614137380422">Vis Binance</translation>
 <translation id="5585019845078534178">Kort</translation>
 <translation id="3870475560794762985">Vis sponsede bilder</translation>
 <translation id="8466529005131466476">Du kan tjene på å se sponsede sider.</translation>
 <translation id="3955742714798578476">Du tjener på å se på sponsede sider.</translation>
-<translation id="7822618650711767369">Sponsede bilder støtter Brave. Med Brave Rewards kan du tjene en del av inntektene fra sponsede bilder og støtte innholdsskapere!</translation>
+<translation id="7822618650711767369">Sponsede bilder støtter Mises. Med Mises Rewards kan du tjene en del av inntektene fra sponsede bilder og støtte innholdsskapere!</translation>
 <translation id="5579480493856401823">Hvis du slår av sponsede sider, reduseres antall tokener du tjener og støtten du gir innholdsskapere hver måned.</translation>
 <translation id="2875302873837723333">populære nettsteder</translation>
-<translation id="8173998484743827990">Brave-statistikk</translation>
+<translation id="8173998484743827990">Mises-statistikk</translation>
 <translation id="383680190590774040">klokke</translation>
-<translation id="3333887201479867589">Brave-belønninger</translation>
+<translation id="3333887201479867589">Mises-belønninger</translation>
 <translation id="3159285901314605198">Bakgrunnsbilde</translation>
 <translation id="385051799172605136">Tilbake</translation>
 <translation id="4225429340218993596">Ensfarget</translation>
 <translation id="7610541582755894669">Gradienter</translation>
 <translation id="1606851618930975029">Oppdater på hver ny fane</translation>
-<translation id="9024104284526126630">Du kan starte en privat samtale i Brave.</translation>
-<translation id="4903286433687221248">Få ubegrensede samtaler med venner og kolleger i Brave Talk.</translation>
+<translation id="9024104284526126630">Du kan starte en privat samtale i Mises.</translation>
+<translation id="4903286433687221248">Få ubegrensede samtaler med venner og kolleger i Mises Talk.</translation>
 <translation id="7115051913071512405">Prøv det</translation>
 <translation id="7415602225677446066">Dagens topphistorier i en helt privat strøm, bare for deg.</translation>
-<translation id="6903061332999399632">Brave News er støttet av reklame med fullstendig private og anonymiserte reklamer som samsvarer på enheten din. Din personlige informasjon vil alltid forbli privat, per våre <ph name="LINK_START"/>retningslinjer for personvern<ph name="LINK_END"/>.</translation>
-<translation id="7823038307453615214">Vis Brave News</translation>
-<translation id="1447534717041828517">Vis Brave-nyhetsknappen i verktøylinjen</translation>
+<translation id="6903061332999399632">Mises News er støttet av reklame med fullstendig private og anonymiserte reklamer som samsvarer på enheten din. Din personlige informasjon vil alltid forbli privat, per våre <ph name="LINK_START"/>retningslinjer for personvern<ph name="LINK_END"/>.</translation>
+<translation id="7823038307453615214">Vis Mises News</translation>
+<translation id="1447534717041828517">Vis Mises-nyhetsknappen i verktøylinjen</translation>
 <translation id="370665806235115550">Laster inn ...</translation>
 <translation id="4634933166298842522">Administrer abonnementer</translation>
 <translation id="4108314971463891922">Følg</translation>
 <translation id="3861486700625780712">Slutt å følge</translation>
 <translation id="8909741410750517071">Følg denne kilden med 1 klikk.</translation>
-<translation id="1982678174789043774">Hold deg oppdatert på siste nytt i Brave News</translation>
+<translation id="1982678174789043774">Hold deg oppdatert på siste nytt i Mises News</translation>
 <translation id="7894417427965898400">Administrer feeder</translation>
 <translation id="780301667611848630">Nei takk</translation>
 <translation id="9164544612367905452">Henter ...</translation>
 <translation id="1276592121036104130">Last inn nytt innhold</translation>
-<translation id="2875288128871360696">Bla for Brave News</translation>
-<translation id="8510120023634509743">Tilbakestill Brave News-kilder</translation>
-<translation id="75825199302994272">Vil du tilbakestille alle valgene dine for Brave News-utgivere til standard?</translation>
+<translation id="2875288128871360696">Bla for Mises News</translation>
+<translation id="8510120023634509743">Tilbakestill Mises News-kilder</translation>
+<translation id="75825199302994272">Vil du tilbakestille alle valgene dine for Mises News-utgivere til standard?</translation>
 <translation id="954001034349395856">Alle kilder</translation>
 <translation id="8890516388109605451">Kilder</translation>
 <translation id="5158129253322921540">Deaktiver innhold fra <ph name="PUBLISHER_NAME"/></translation>
 <translation id="3189348785087463371">Anbefalt</translation>
 <translation id="4541978218358617681">Annonse</translation>
 <translation id="6265592479622441247">Tilbake til <ph name="BEGIN_BOLD"/>Dashbordet<ph name="END_BOLD"/></translation>
-<translation id="8300751939969131609">Slå på Brave News og gå aldri mer glipp av siste nytt</translation>
+<translation id="8300751939969131609">Slå på Mises News og gå aldri mer glipp av siste nytt</translation>
 <translation id="8117813824055029515">Tilpassede nyhetsfeeder, fra ledende kilder, levert rett i nettleseren. Alt 100 % privat.</translation>
-<translation id="1765217911817124376">Slå på Brave-nyheter</translation>
+<translation id="1765217911817124376">Slå på Mises-nyheter</translation>
 <translation id="7845637671472170434">Søk etter nyheter, nettsteder, emner eller RSS-feeder</translation>
 <translation id="1498364270401875204">Kanaler</translation>
 <translation id="1472675084647422956">Vis mer</translation>
@@ -130,12 +130,12 @@
 <translation id="1531133232292396145">Handle krypto på Binance, direkte i nettleseren din.</translation>
 <translation id="2166494527623220386">Trade i krypto på Gemini, direkte i nettleseren din.</translation>
 <translation id="7191394989411626168">Ved å slå av kort vil alle kort som vises nå bli skjulte. Du kan likevel bli varslet om nye kort.</translation>
-<translation id="6820526586005233839">Brave Ads er pauset</translation>
-<translation id="5190407395832551012">For å beskytte Brave Rewards ber vi tilfeldige brukere om å løse en captcha. Klikk på “Løs” for å gjenoppta annonsene.</translation>
+<translation id="6820526586005233839">Mises Ads er pauset</translation>
+<translation id="5190407395832551012">For å beskytte Mises Rewards ber vi tilfeldige brukere om å løse en captcha. Klikk på “Løs” for å gjenoppta annonsene.</translation>
 <translation id="1693773514029371138">Løs</translation>
 <translation id="6991128190741664836">Senere</translation>
-<translation id="8112367589167674370">Brave Talk</translation>
-<translation id="8488282162676695335">Brave-lommebok</translation>
+<translation id="8112367589167674370">Mises Talk</translation>
+<translation id="8488282162676695335">Mises-lommebok</translation>
 <translation id="8820817407110198400">Bokmerker</translation>
 <translation id="1644574205037202324">Logg</translation>
 <translation id="2702801445560668637">Leseliste</translation>
@@ -144,30 +144,30 @@
 <translation id="8730621377337864115">Ferdig</translation>
 <translation id="730042046912793465">Dette er et</translation>
 <translation id="2055363275850890030">inkognitovindu</translation>
-<translation id="9133213713928851646">Brave husker ikke hva du gjør i et Privat vindu. Nettsteder du besøker vil ikke dukke opp i nettleserhistorien din, og informasjonskapsler forsvinner når du er ferdig. Men Private vinduer gjør deg ikke fullstendig anonym på nettet.</translation>
-<translation id="4085423007106063912">Brave «husker» aldri noe av det du gjør i Private vinduer. Nettsteder du besøker, vises ikke i loggen, og informasjonskapsler, skjemadata og nettstedsdata forsvinner idet du lukker vinduet.</translation>
+<translation id="9133213713928851646">Mises husker ikke hva du gjør i et Privat vindu. Nettsteder du besøker vil ikke dukke opp i nettleserhistorien din, og informasjonskapsler forsvinner når du er ferdig. Men Private vinduer gjør deg ikke fullstendig anonym på nettet.</translation>
+<translation id="4085423007106063912">Mises «husker» aldri noe av det du gjør i Private vinduer. Nettsteder du besøker, vises ikke i loggen, og informasjonskapsler, skjemadata og nettstedsdata forsvinner idet du lukker vinduet.</translation>
 <translation id="1700746046668116047">Merk at aktiviteten din fortsatt kan være synlig for internettleverandøren din, passive nettverksobservatører eller arbeidsgiveren din (hvis du bruker en jobbdatamaskin eller et jobbnettverk). For å ivareta personvernet ditt kan du åpne en privat fane med Tor.</translation>
 <translation id="8759753423332885148">Finn ut mer.</translation>
 <translation id="8611976753572844841">Privat vindu med Tor-tilkobling</translation>
-<translation id="1645589858096839236">Brave lagrer ikke nettleseraktivitet fra Private vinduer. Med Tor-tilkobling blir det vanskeligere for nettsider å se den faktiske IP-adressen din, og for nettverksobservatører å se hvilke sider du besøler. Hvis din personlige sikkerhet krever at du er helt anonym, bør du imidlertid bruke Tor-nettleseren i stedet.</translation>
+<translation id="1645589858096839236">Mises lagrer ikke nettleseraktivitet fra Private vinduer. Med Tor-tilkobling blir det vanskeligere for nettsider å se den faktiske IP-adressen din, og for nettverksobservatører å se hvilke sider du besøler. Hvis din personlige sikkerhet krever at du er helt anonym, bør du imidlertid bruke Tor-nettleseren i stedet.</translation>
 <translation id="7919374705736538787">Søk privat med</translation>
 <translation id="3135655280958284640">DuckDuckGo</translation>
-<translation id="218839872518145456">Med privat søk vil Brave bruke DuckDuckGo for søk i private vinduer. DuckDuckGo sporer ikke søkehistorien din, så du kan søke privat.</translation>
+<translation id="218839872518145456">Med privat søk vil Mises bruke DuckDuckGo for søk i private vinduer. DuckDuckGo sporer ikke søkehistorien din, så du kan søke privat.</translation>
 <translation id="1925197199485958903">I privatvindu med Tor er DuckDuckGo den forhåndsinnstilte søkemotoren. Andre populære søkemotorer kan være vanskelig å bruke med Tor. DuckDuckGo doesn’t sporer ikke søkehistorikken din med Tor, de don’t vet heller ikke IP-adressen din.</translation>
 <translation id="4371533307685765155">Søk ved hjelp av DuckDuckGo</translation>
 <translation id="548478195417408221">Gjør private vinduer mer private</translation>
 <translation id="3294503279952534143">Dette private vinduet er mer privat</translation>
 <translation id="6126226144537295436">med Tor-tilkobling</translation>
 <translation id="8541421872680304667">Tor skjuler IP-adressen din for nettstedene du besøker, ved å dirigere surfingen din gjennom flere Tor-tjenere før den når destinasjonen. Tor kan gjøre surfingen tregere, og noen nettsteder fungerer kanskje ikke i det hele tatt.</translation>
-<translation id="8897548669448660973">Bruk av private vinduer endrer bare hva Brave gjør på enheten din — det endrer ikke andres oppførsel. Tor skjuler IP-adressen din fra nettstedene du besøker og gjør det noe vanskeligere, men ikke umulig, for din ISP eller arbeidsgiver å se hvilke nettsteder du besøker. Åpne et privat vindu med Tor fra menyen, eller med [[ key ]].</translation>
-<translation id="6975708438781948564">Lær mer om Tor i Brave</translation>
+<translation id="8897548669448660973">Bruk av private vinduer endrer bare hva Mises gjør på enheten din — det endrer ikke andres oppførsel. Tor skjuler IP-adressen din fra nettstedene du besøker og gjør det noe vanskeligere, men ikke umulig, for din ISP eller arbeidsgiver å se hvilke nettsteder du besøker. Åpne et privat vindu med Tor fra menyen, eller med [[ key ]].</translation>
+<translation id="6975708438781948564">Lær mer om Tor i Mises</translation>
 <translation id="4712050378540986986">Tor-status</translation>
 <translation id="1939334281379458295">Tor er tilkoblet</translation>
 <translation id="8030169304546394654">Koblet fra</translation>
 <translation id="2795840524629682765">Tilkobling til Tor mislyktes</translation>
 <translation id="1149108864689950951">Kobler til Tor ... [[percentage]]%</translation>
 <translation id="3651192084771403430">Har du tiloblingsproblemer? Prøv å <ph name="BEGIN_LINK"/>slå av<ph name="END_LINK"/> og på Privat vindu med Tor i innstillingene.</translation>
-<translation id="8834376622642889380">Åpne <ph name="BEGIN_LINK"/>Brave-innstillingene<ph name="END_LINK"/>, deaktiver Privat vindu med Tor og aktiver igjen.</translation>
+<translation id="8834376622642889380">Åpne <ph name="BEGIN_LINK"/>Mises-innstillingene<ph name="END_LINK"/>, deaktiver Privat vindu med Tor og aktiver igjen.</translation>
 <translation id="1576202729986800142"><ph name="BEGIN_BOLD"/>Har du fremdeles problemer?<ph name="END_BOLD"/> Prøv å bruke <ph name="BEGIN_BRIDGES_LINK"/>broer<ph name="END_BRIDGES_LINK"/> eller <ph name="BEGIN_SUPPORT_LINK"/>kontakt brukerstøtte<ph name="END_SUPPORT_LINK"/>.</translation>
 <translation id="8388043004918289671">Kontakt brukerstøtten.</translation>
 <translation id="4272382368346338917">Tilleggsfiltre</translation>
@@ -187,17 +187,17 @@
 <translation id="5334844597069022743">Vis kilde</translation>
 <translation id="4720556299488643018">Avslutt abonnement</translation>
 <translation id="1209739344687072997">Rapporter et nettsted som ikke fungerer</translation>
-<translation id="8510478288840333677">Gi utviklerne av Brave beskjed om at dette nettstedet ikke fungerer skikkelig med Shields:</translation>
-<translation id="4105411033440701818">Merk: Når du klikker på «Send inn», deler du nettstedsadressen, Brave-versjonsnummeret ditt og IP-adressen din med Brave-utviklerne. (IP-adressen blir ikke lagret).</translation>
+<translation id="8510478288840333677">Gi utviklerne av Mises beskjed om at dette nettstedet ikke fungerer skikkelig med Shields:</translation>
+<translation id="4105411033440701818">Merk: Når du klikker på «Send inn», deler du nettstedsadressen, Mises-versjonsnummeret ditt og IP-adressen din med Mises-utviklerne. (IP-adressen blir ikke lagret).</translation>
 <translation id="6476216365964140603">Ytterligere informasjon (valgfritt)</translation>
 <translation id="6145852496180774737">Kontakt meg på: (valgfritt)</translation>
 <translation id="7616645803364270729">E-post, Twitter osv.</translation>
 <translation id="5299848999918506028">Takk skal du ha!</translation>
-<translation id="76550953340008122">Takk for at du ga beskjed til utviklerne av Brave om at noe er galt med dette nettstedet. Vi skal gjøre vårt beste for å rette det!</translation>
-<translation id="2974339193389078578">Brave – velkommen til det nye Internett</translation>
+<translation id="76550953340008122">Takk for at du ga beskjed til utviklerne av Mises om at noe er galt med dette nettstedet. Vi skal gjøre vårt beste for å rette det!</translation>
+<translation id="2974339193389078578">Mises – velkommen til det nye Internett</translation>
 <translation id="7735138632831241257">Gjør deg klar til en raskere og sikrere nettleseropplevelse med nettleseren som er skapt med ditt personvern i tankene.</translation>
 <translation id="6001839398155993679">La oss begynne</translation>
-<translation id="4225189922025976867"><ph name="BEGIN_BOLD"/>Tjen polletter<ph name="END_BOLD"/> ved å se Brave Private Ads og støtt innholdsskapere automatisk.</translation>
+<translation id="4225189922025976867"><ph name="BEGIN_BOLD"/>Tjen polletter<ph name="END_BOLD"/> ved å se Mises Private Ads og støtt innholdsskapere automatisk.</translation>
 <translation id="5477721706074111257">Ved å klikke samtykker du i <ph name="BEGIN_LINK"/>Vilkår for tjenesten<ph name="END_LINK"/> and <ph name="BEGIN_LINK"/>Personvernerklæring<ph name="END_LINK"/>.</translation>
 <translation id="3505541710659461355">Du kan slå dette av når som helst i innstillingene.</translation>
 <translation id="2965798296974325760">Begynn å bruke Rewards</translation>
@@ -206,7 +206,7 @@
 <translation id="8275038454117074363">Importer</translation>
 <translation id="2088479175984386785">Importer fra …</translation>
 <translation id="5540323067375019678">Administrer dine skjold</translation>
-<translation id="3278033011827237847">Beskytt deg mot annonser og sporere som innvaderer personvernet ditt når du surfer med Brave Shields. Sett skjoldene til å være "nede" dersom en side’ ikke ser ut til å fungere skikkelig.</translation>
+<translation id="3278033011827237847">Beskytt deg mot annonser og sporere som innvaderer personvernet ditt når du surfer med Mises Shields. Sett skjoldene til å være "nede" dersom en side’ ikke ser ut til å fungere skikkelig.</translation>
 <translation id="3366308997091824722">Shield-instillinger</translation>
 <translation id="4764692524839457597">standard</translation>
 <translation id="3108122610701115301">Angi standard</translation>
@@ -216,16 +216,16 @@
 <translation id="3829010735958850433">Hopp over velkomstturen</translation>
 <translation id="1201402288615127009">Neste</translation>
 <translation id="7954950242989581218">Surf på en trygg og fornuftig måte</translation>
-<translation id="2188651882929633653">Brave Shields blokkerer de lumske greiene som prøver å spore  deg på tvers av nettet – inkludert de fleste annonser. Sett Shields til «nede» hvis det er nettsteder som ikke ser ut til å fungere. Brave bruker <ph name="BEGIN_LINK_P3A"/>helt privat produktdiagnostikk<ph name="END_LINK_P3A"/> til å beregne den totale bruken av visse funksjoner. Du kan slå av dette i <ph name="BEGIN_LINK_P3A_SETTINGS"/>Innstillinger<ph name="END_LINK_P3A_SETTINGS"/>.</translation>
-<translation id="4851215387785619212">Brave Private Ads</translation>
-<translation id="3114984266384096064">Tjen [[currency]] ved å se private Brave-annonser. Annonser som vises er basert på interessene dine, basert på hvordan du bruker nettleseren. Personlige data og nettleserlogg blir ikke sendt fra nettleseren din.</translation>
+<translation id="2188651882929633653">Mises Shields blokkerer de lumske greiene som prøver å spore  deg på tvers av nettet – inkludert de fleste annonser. Sett Shields til «nede» hvis det er nettsteder som ikke ser ut til å fungere. Mises bruker <ph name="BEGIN_LINK_P3A"/>helt privat produktdiagnostikk<ph name="END_LINK_P3A"/> til å beregne den totale bruken av visse funksjoner. Du kan slå av dette i <ph name="BEGIN_LINK_P3A_SETTINGS"/>Innstillinger<ph name="END_LINK_P3A_SETTINGS"/>.</translation>
+<translation id="4851215387785619212">Mises Private Ads</translation>
+<translation id="3114984266384096064">Tjen [[currency]] ved å se private Mises-annonser. Annonser som vises er basert på interessene dine, basert på hvordan du bruker nettleseren. Personlige data og nettleserlogg blir ikke sendt fra nettleseren din.</translation>
 <translation id="6112368337882254910">Auto-bidra</translation>
-<translation id="3742599705619405136">En automatisk måte å støtte utgivere og innholdsskapere på. Angi en månedlig betaling, og surf som normalt. De Brave-verifiserte nettstedene du besøker, mottar bidragene dine automatisk, basert på oppmerksomheten som måles av Brave.</translation>
+<translation id="3742599705619405136">En automatisk måte å støtte utgivere og innholdsskapere på. Angi en månedlig betaling, og surf som normalt. De Mises-verifiserte nettstedene du besøker, mottar bidragene dine automatisk, basert på oppmerksomheten som måles av Mises.</translation>
 <translation id="3325399124634342726">Nåværende inntekt denne måneden (anslått)</translation>
 <translation id="8593551638387217772">Neste betalingsdato</translation>
 <translation id="4428871418618312983">Annonser mottatt denne måneden</translation>
 <translation id="4229016885653790965">Beklager! Annonser er ikke tilgjengelig i regionen din ennå.</translation>
-<translation id="2539279826042558064">Brave Rewards og Ads er for tiden ikke tilgjengelig på enheten din.</translation>
+<translation id="2539279826042558064">Mises Rewards og Ads er for tiden ikke tilgjengelig på enheten din.</translation>
 <translation id="5736977383725358876">Varslinger og frekvens</translation>
 <translation id="7701040980221191251">Ingen</translation>
 <translation id="767929144984201135">Opptil 1 annonse i timen</translation>
@@ -235,7 +235,7 @@
 <translation id="8827015466803589071">Opptil 5 annonser i timen</translation>
 <translation id="2293009346092992234">Opptil 10 annonser i timen</translation>
 <translation id="2356652719351432565">Regional annonserelevans</translation>
-<translation id="3216275550298493597">Dette lar Brave vise deg annonser myntet på regionen du er i.</translation>
+<translation id="3216275550298493597">Dette lar Mises vise deg annonser myntet på regionen du er i.</translation>
 <translation id="8446884382197647889">Les mer</translation>
 <translation id="6209514229703649203">Automatisk oppdaget som [[adsSubdivisionTarget]]</translation>
 <translation id="8010081455002666927">Gjenkjenn automatisk</translation>
@@ -280,34 +280,34 @@
 <translation id="7841456038054167122">Vennligst tast inn nøkler på nytt, eller prøv andre nøkler.</translation>
 <translation id="1911900517212490188">Gjenopprettingsnøkkelen du oppga, støttes ikke lenger. Gå <ph name="BEGIN_LINK"/>hit<ph name="END_LINK"/> for å få en ny nøkkel.</translation>
 <translation id="7583327070390027131">Dato for neste månedlige tips</translation>
-<translation id="6231182869178328516">Jeg tipset akkurat <ph name="NAME"/> som bruker Brave-nettleseren. Sjekk det ut på https://brave.com/tips.</translation>
-<translation id="5916536234616514390">Det er så kult at <ph name="HASHTAG"/>Brave lar meg støtte innholdsskapere! Jeg ga nettopp tips til <ph name="NAME"/> med <ph name="HASHTAG2"/>BAT. Hvis de verifiserer seg på https://creators.brave.com før <ph name="DATE"/>, er BAT-en deres!</translation>
-<translation id="8404935570206006581">TipWithBrave</translation>
+<translation id="6231182869178328516">Jeg tipset akkurat <ph name="NAME"/> som bruker Mises-nettleseren. Sjekk det ut på https://brave.com/tips.</translation>
+<translation id="5916536234616514390">Det er så kult at <ph name="HASHTAG"/>Mises lar meg støtte innholdsskapere! Jeg ga nettopp tips til <ph name="NAME"/> med <ph name="HASHTAG2"/>BAT. Hvis de verifiserer seg på https://creators.brave.com før <ph name="DATE"/>, er BAT-en deres!</translation>
+<translation id="8404935570206006581">TipWithMises</translation>
 <translation id="3082557070674409251">Klikket</translation>
 <translation id="7119308337584989771">Lukket</translation>
 <translation id="6805660603861526473">Vist</translation>
-<translation id="8826352442759228526">Brave Rewards-kontoen din kan ikke bekreftes, fordi du har nådd maksgrensen for antall bekreftede enheter.</translation>
+<translation id="8826352442759228526">Mises Rewards-kontoen din kan ikke bekreftes, fordi du har nådd maksgrensen for antall bekreftede enheter.</translation>
 <translation id="1221593978088944142">Feil: Enhetsgrensen er nådd</translation>
 <translation id="3113653894794167793">Beklager, men det var problemer med å behandle forespørselen din. Prøv igjen.</translation>
-<translation id="3509185560119586847">Dessverre har Brave Rewards-profilen din blitt flagget, og du kan ikke bekreftes akkurat nå. Slik flagging kan noen ganger skyldes irregulær Brave Ads-aktivitet, men det kan også ha skjedd ved en feil.</translation>
-<translation id="5031451251720571882">Vær oppmerksom på at mens Brave Rewards-profilen din er flagget, kan du ikke bekreftes.</translation>
-<translation id="7301759045821910866">Ingen handling kreves fra din side. Brave Rewards-profilen din blir automatisk reevaluert jevnlig for å avgjøre når (eller om) flagget kan fjernes. Prøv på nytt med jevne mellomrom for å se om flagget er fjernet.</translation>
-<translation id="280350148043792509"><ph name="BEGIN_LINK"/>Finn ut mer om Braves prosess ved flagging av Rewards-profiler.<ph name="END_LINK"/></translation>
-<translation id="5028274575541726856">Feil: Brave Rewards-profilen er flagget</translation>
+<translation id="3509185560119586847">Dessverre har Mises Rewards-profilen din blitt flagget, og du kan ikke bekreftes akkurat nå. Slik flagging kan noen ganger skyldes irregulær Mises Ads-aktivitet, men det kan også ha skjedd ved en feil.</translation>
+<translation id="5031451251720571882">Vær oppmerksom på at mens Mises Rewards-profilen din er flagget, kan du ikke bekreftes.</translation>
+<translation id="7301759045821910866">Ingen handling kreves fra din side. Mises Rewards-profilen din blir automatisk reevaluert jevnlig for å avgjøre når (eller om) flagget kan fjernes. Prøv på nytt med jevne mellomrom for å se om flagget er fjernet.</translation>
+<translation id="280350148043792509"><ph name="BEGIN_LINK"/>Finn ut mer om Misess prosess ved flagging av Rewards-profiler.<ph name="END_LINK"/></translation>
+<translation id="5028274575541726856">Feil: Mises Rewards-profilen er flagget</translation>
 <translation id="2607420597216860026">Prøv igjen etter du har fullført ID-verifisering på <ph name="PROVIDER"/>.</translation>
 <translation id="3183954159462541696">Feil: Du trenger en bekreftet konto for å logge på</translation>
-<translation id="1859789048900659918">Hmm, det ser ut til at Brave Rewards-landet ditt ikke samsvarer med <ph name="PROVIDER"/>-kontoen du prøver å koble til.</translation>
+<translation id="1859789048900659918">Hmm, det ser ut til at Mises Rewards-landet ditt ikke samsvarer med <ph name="PROVIDER"/>-kontoen du prøver å koble til.</translation>
 <translation id="8925428135452218262">Feil: Landene samsvarer ikke</translation>
-<translation id="5260522591743022748">Hmm, det ser ut som at Brave Rewards allerede er bekreftet med en annen <ph name="PROVIDER"/>-konto. Prøv å bekrefte på nytt med den tidligere kontoen.</translation>
+<translation id="5260522591743022748">Hmm, det ser ut som at Mises Rewards allerede er bekreftet med en annen <ph name="PROVIDER"/>-konto. Prøv å bekrefte på nytt med den tidligere kontoen.</translation>
 <translation id="5111921830714291902">Feil: Annen konto</translation>
-<translation id="1024520300696337331"><ph name="PROVIDER"/>-kontoen din kan ikke knyttes til Brav Rewards-profilen din akkurat nå. <ph name="PROVIDER"/>-kontoen er registrert i et land som for tiden ikke støttes for tilkobling til Brave Rewards.</translation>
-<translation id="619384413404021992">Se den <ph name="LINK_BEGIN"/>oppdaterte listen over regioner som støttes, og finn ut mer<ph name="END_LINK"/> om å knytte partnerkontoer til Brave Rewards.</translation>
+<translation id="1024520300696337331"><ph name="PROVIDER"/>-kontoen din kan ikke knyttes til Brav Rewards-profilen din akkurat nå. <ph name="PROVIDER"/>-kontoen er registrert i et land som for tiden ikke støttes for tilkobling til Mises Rewards.</translation>
+<translation id="619384413404021992">Se den <ph name="LINK_BEGIN"/>oppdaterte listen over regioner som støttes, og finn ut mer<ph name="END_LINK"/> om å knytte partnerkontoer til Mises Rewards.</translation>
 <translation id="7193389978208728181">Feil: Regionen støttes ikke for tiden</translation>
 <translation id="5382684862562314222">BAT støttes ikke enda i regionen din på Uphold.</translation>
 <translation id="9074594632540931067">Feil: BAT utilgjengelig</translation>
 <translation id="5376524136040178759">Ifølge Uphold er det for tiden visse begrensninger på Uphold-kontoen din. Logg på Uphold-kontoen og se om du har fått noen varsler eller om det er flere trinn du må fullføre i kontoen, og prøv på nytt. Det kan for eksempel være at Uphold vil be deg legge inn ytterligere informasjon.</translation>
 <translation id="6996157559236886133">Feil: Begrenset Uphold-kontofunksjonalitet</translation>
-<translation id="3274650021044762770">Det oppstod et problem ved bekreftelse av nettleserforespørselen for å koble Brave Rewards til <ph name="PROVIDER"/>-kontoen din. Du kan <ph name="BEGIN_LINK"/>kontakte brukerstøtten<ph name="END_LINK"/> for mer hjelp.</translation>
+<translation id="3274650021044762770">Det oppstod et problem ved bekreftelse av nettleserforespørselen for å koble Mises Rewards til <ph name="PROVIDER"/>-kontoen din. Du kan <ph name="BEGIN_LINK"/>kontakte brukerstøtten<ph name="END_LINK"/> for mer hjelp.</translation>
 <translation id="1316066811927496401">Feil: Forespørselen kunne ikke valideres</translation>
 <translation id="1737873393693460829">Ved å skru på [[title]], samtykker du til <ph name="BEGIN_LINK1"/>bruksvilkårene<ph name="END_LINK1"/> og <ph name="BEGIN_LINK2"/>retningslinjene for personvern<ph name="END_LINK2"/>.</translation>
 <translation id="4672975606583962967">Velg en lommeboktjeneste</translation>
@@ -315,16 +315,16 @@
 <translation id="2205685774710519016">Merk: Transaksjonene dine forblir synlige for den valgte lommeboktjenesten når du autoriserer dette; for eksempel vil de kunne se mottakeren og hvor mye driks du har sendt.</translation>
 <translation id="2147158325758481862">Verifisering er valgfritt</translation>
 <translation id="8228649055483250005">Lommebokleverandører for en foresatt er pålagt å verifisere identiteten til alle som lager en lommebok, inkludert bruk av foto-ID.</translation>
-<translation id="2672513643520959619"><ph name="BOLD_BEGIN"/>Brave Software Inc.<ph name="BOLD_END"/> hverken behandler, lagrer eller får tilgang til noen av personopplysningene dine når du oppretter en konto hos partnerne våre innen lommebøker for foresatte.</translation>
-<translation id="6682919029276027868">Den nåværende Brave Rewards-versjonen din er imidlertid begrenset. Ved verifisering med en partner innen lommebøker kan du:</translation>
+<translation id="2672513643520959619"><ph name="BOLD_BEGIN"/>Mises Software Inc.<ph name="BOLD_END"/> hverken behandler, lagrer eller får tilgang til noen av personopplysningene dine når du oppretter en konto hos partnerne våre innen lommebøker for foresatte.</translation>
+<translation id="6682919029276027868">Den nåværende Mises Rewards-versjonen din er imidlertid begrenset. Ved verifisering med en partner innen lommebøker kan du:</translation>
 <translation id="9064931634458501855">Fritt ta ut og sette inn midler</translation>
 <translation id="3222002542796906461">Motta belønningene dine direkte i kontoen</translation>
 <translation id="1233129511866436960">Finn ut mer om regioner og support</translation>
 <translation id="7329170127335794328">Ikke tilgjengelig i din region ennå</translation>
-<translation id="8304979233901023264">Jeg har lest og samtykker til Brave’ sine <ph name="TOS_LINK_BEGIN"/>bruksvilkår<ph name="TOS_LINK_END"/> og <ph name="PP_LINK_BEGIN"/>retningslinjene for personvern<ph name="PP_LINK_END"/>.</translation>
+<translation id="8304979233901023264">Jeg har lest og samtykker til Mises’ sine <ph name="TOS_LINK_BEGIN"/>bruksvilkår<ph name="TOS_LINK_END"/> og <ph name="PP_LINK_BEGIN"/>retningslinjene for personvern<ph name="PP_LINK_END"/>.</translation>
 <translation id="2359808026110333948">Fortsett</translation>
 <translation id="1892970806832316900">Venter frem til <ph name="DATE"/></translation>
-<translation id="7849926087559412554">Au da! Nettleseren din kan ikke motta Brave Private Ads.</translation>
+<translation id="7849926087559412554">Au da! Nettleseren din kan ikke motta Mises Private Ads.</translation>
 <translation id="5177429570315095022">Du må oppdatere nettleseren for å fortsette å se annonser.</translation>
 <translation id="7352651011704765696">Noe gikk galt</translation>
 <translation id="752216563428219524">Annonsene ble ikke lastet inn – oppdater siden</translation>
@@ -433,7 +433,7 @@
 <translation id="9088057605518918276">Månedlig tips er fastsatt.</translation>
 <translation id="6306631474379759382">Neste tipsdato:</translation>
 <translation id="3593485149443019592">Ikke nok tokener. <ph name="LINK_BEGIN"/>add funds<ph name="LINK_END"/>.</translation>
-<translation id="3586352807094428968">Brave tar 5 % av tipsen som et behandlingsgebyr.</translation>
+<translation id="3586352807094428968">Mises tar 5 % av tipsen som et behandlingsgebyr.</translation>
 <translation id="207268487070188114">Engangsdriks</translation>
 <translation id="69861679024013299">Engangsdriksbeløp:</translation>
 <translation id="3288812755711687300"><ph name="USER"/>’s innlegg</translation>
@@ -446,8 +446,8 @@
 <translation id="839058704683989763">Du har satt opp tips som venter!</translation>
 <translation id="5096821444729034955">for innlegget deres</translation>
 <translation id="2978223787436054634">Tweet om støtten din</translation>
-<translation id="5916290544882167205">Brave Software. Brave er et registrert varemerke for Brave Software. Navn på nettsteder kan være varemerker eller registrerte varemerker for eieren av det aktuelle nettstedet.</translation>
-<translation id="9026369588205476247">For å beskytte ditt personvern, blir ikke denne Brave Rewards-utskriften lagret eller logget noen andre steder enn på din enhet (denne datamaskinen). Den kan ikke hentes opp igjen fra Brave i tilfelle datatap på din enhet.</translation>
+<translation id="5916290544882167205">Mises Software. Mises er et registrert varemerke for Mises Software. Navn på nettsteder kan være varemerker eller registrerte varemerker for eieren av det aktuelle nettstedet.</translation>
+<translation id="9026369588205476247">For å beskytte ditt personvern, blir ikke denne Mises Rewards-utskriften lagret eller logget noen andre steder enn på din enhet (denne datamaskinen). Den kan ikke hentes opp igjen fra Mises i tilfelle datatap på din enhet.</translation>
 <translation id="3587482841069643663">Alle</translation>
 <translation id="4241224519481557898">Kategori</translation>
 <translation id="3080423471207781945">Maksimalt antall mottatte annonser pr. time:</translation>
@@ -457,7 +457,7 @@
 <translation id="2777306694585938662">Ads-belønninger er mottatt</translation>
 <translation id="5212777575344695266">Merk som usømmelig</translation>
 <translation id="2111256234277361810">Merk som usømmelig ✓</translation>
-<translation id="8988332871810963281">Det er ingen Brave Ads-historikk for øyeblikket</translation>
+<translation id="8988332871810963281">Det er ingen Mises Ads-historikk for øyeblikket</translation>
 <translation id="5345727496083327478">Du kommer ikke til å motta annonser fra denne kategorien lenger</translation>
 <translation id="2631006050119455616">Lagret</translation>
 <translation id="3819257035322786455">Sikkerhetskopi</translation>
@@ -470,17 +470,17 @@
 <translation id="4932733599132424254">Dato</translation>
 <translation id="3552003743293281224">Innskudd</translation>
 <translation id="3866249974567520381">Beskrivelse</translation>
-<translation id="8605272644314973683">Brave Rewards er</translation>
+<translation id="8605272644314973683">Mises Rewards er</translation>
 <translation id="1346059596910821859">Tips</translation>
 <translation id="7277134233385925078">Bestem månedlig tips</translation>
 <translation id="298067735430872465">Opptjente midler fra reklamer</translation>
 <translation id="1418534671788496616">Se innskuddshistorikken</translation>
 <translation id="3412655388715513818">Ekskluder denne siden</translation>
 <translation id="418343137736963579">Total antall nettsider du har ekskludert fra Auto-Bidra:</translation>
-<translation id="8802504113265057166">[[currency]] som ikke brukes innen utløpsdatoen, returneres automatisk til Brave User Growth Pool.</translation>
+<translation id="8802504113265057166">[[currency]] som ikke brukes innen utløpsdatoen, returneres automatisk til Mises User Growth Pool.</translation>
 <translation id="279567716178902927">Utløpsdato for stipend</translation>
 <translation id="1389143276807887637">importer</translation>
-<translation id="6302422639282249274">Administrer Brave Rewards</translation>
+<translation id="6302422639282249274">Administrer Mises Rewards</translation>
 <translation id="211044356803193224">Månedlige tips!</translation>
 <translation id="2487641031722095938">Det er din lykkedag!</translation>
 <translation id="6255773350565723852">Tokenstipendet ditt er på vei.</translation>
@@ -522,17 +522,17 @@
 <translation id="3157931365184549694">Gjenopprett</translation>
 <translation id="5669281110673664811">Slett ekskluderingslisten</translation>
 <translation id="1797334173232638045">De festede sidene dine er flyttet til</translation>
-<translation id="542042553430131913">Hvis Brave Rewards ikke bekreftes, lagres BAT-balansen din i lokale filer på enheten din.</translation>
+<translation id="542042553430131913">Hvis Mises Rewards ikke bekreftes, lagres BAT-balansen din i lokale filer på enheten din.</translation>
 <translation id="2142973554991645476">Hvis du vil sikre BAT-verdiene dine i tilfelle du må reinstallere nettleseren eller formatere enheten din, og også vil dra nytte av andre fordeler som muligheten til å legge til eller trekke fra BAT, anbefaler vi at du <ph name="LINK_BEGIN"/>bekrefter<ph name="LINK_END"/> kontoen.</translation>
 <translation id="5317144262906129592">Du kan støtte denne innholdsskaperen ved å sende tips. Det er en måte å takke dem på for at de lager bra innhold.</translation>
 <translation id="3074127054582480056">Obs</translation>
 <translation id="3034163433136515805">Vis QR-kode</translation>
 <translation id="1640793619390890218">for Rewards-brukere med iOS som overfører BAT.</translation>
-<translation id="5462747026114176246">Gjenoppretting med en gjenopprettingsnøkkel vil erstatte den nåværendeBrave Rewards-profilen din. Tøm eller sikkerhetskopier Brave Rewards før du fortsetter.</translation>
+<translation id="5462747026114176246">Gjenoppretting med en gjenopprettingsnøkkel vil erstatte den nåværendeMises Rewards-profilen din. Tøm eller sikkerhetskopier Mises Rewards før du fortsetter.</translation>
 <translation id="3267911153934785912">Skriv inn gjenopprettingsnøkkelen eller</translation>
 <translation id="1209382772199769572">Ta en backup av lommeboken din før du skifter den ut. Du vil ellers miste midlene {{funds}} i den nåværende lommeboken din.</translation>
-<translation id="3659457123782988823">Er du sikker på at du vil resette Brave Rewards?</translation>
-<translation id="4048187103708861555"><ph name="BAT_AMOUNT"/>-verdien din og øvrige Rewards-opplysninger går tapt permanent hvis du tilbakestiller Brave Rewards. Sørg for at kontoen er <ph name="LINK_BEGIN"/>bekreftet<ph name="LINK_END"/>, så du kan beholde BAT-verdien.</translation>
+<translation id="3659457123782988823">Er du sikker på at du vil resette Mises Rewards?</translation>
+<translation id="4048187103708861555"><ph name="BAT_AMOUNT"/>-verdien din og øvrige Rewards-opplysninger går tapt permanent hvis du tilbakestiller Mises Rewards. Sørg for at kontoen er <ph name="LINK_BEGIN"/>bekreftet<ph name="LINK_END"/>, så du kan beholde BAT-verdien.</translation>
 <translation id="3548849774726860833">Rewards-opplysningene dine går tapt permanent hvis du resetter brave Rewards.</translation>
 <translation id="4914597931214386232">Tokenstipender gjort krav på</translation>
 <translation id="3494964159182650590">Sammendrag av belønninger</translation>
@@ -548,14 +548,14 @@
 <translation id="1634828734222219955">Totalt</translation>
 <translation id="4395099108822007284">Laster inn bilde …</translation>
 <translation id="3535654229833214438">Transaksjoner</translation>
-<translation id="8772672608371898774">Brave-verifisert utgiver</translation>
+<translation id="8772672608371898774">Mises-verifisert utgiver</translation>
 <translation id="5050370287908180130">Se månedlig kontoutskrift for detaljer</translation>
 <translation id="7853202427316060426">Aktivitet</translation>
 <translation id="7232682712743566408">Belønninger – saldo</translation>
 <translation id="1910721550319506122">Velkommen!</translation>
-<translation id="4258022280942725182">Dine Brave-belønninger</translation>
+<translation id="4258022280942725182">Dine Mises-belønninger</translation>
 <translation id="6727483290601442544">Se detaljer</translation>
-<translation id="4206899127409458763">Oppretter Brave Rewards-profilen</translation>
+<translation id="4206899127409458763">Oppretter Mises Rewards-profilen</translation>
 <translation id="1988679729106502285">MERK:</translation>
 <translation id="4047340292178074200">Skaperen er ikke satt opp til å motta tips fra Rewards-lommeboktjenesten. Hvis du gir tips, settes tipsen i ventestatus og prøver på nytt automatisk i 90 dager.</translation>
 <translation id="5530734056858418442">Denne skaperen er ikke registrert ennå. Alt du tjener av tips, får ventestatus og vil prøve på nytt i 90 dager.</translation>
@@ -572,7 +572,7 @@
 <translation id="5113531205597573951">Nettsteder besøkt</translation>
 <translation id="4450893287417543264">Ikke vis igjen</translation>
 <translation id="6518133107902771759">Bekreft</translation>
-<translation id="422369484771082705">Bekreftelse er valgfritt, men ved å bekreftes kan du ta ut BAT tjent via Brave Rewards direkte til en administrert lommebok.</translation>
+<translation id="422369484771082705">Bekreftelse er valgfritt, men ved å bekreftes kan du ta ut BAT tjent via Mises Rewards direkte til en administrert lommebok.</translation>
 <translation id="3656941797339037856">Knytt Rewards til Gemini!</translation>
 <translation id="31532096120351460">Handle med over 50 kryptovalutaer, inkludert BAT, på Gemini – en sikker plattform for oppbevaring av krypto. I tillegg kan du tjene opp renter i USA, Hong Kong og Singapore.</translation>
 <translation id="7404779623219601861">Løs inn BAT i gavekort</translation>
@@ -583,7 +583,7 @@
 <translation id="7840362246306242214">Aksjehandel i USA er tilgjengelig på Uphold</translation>
 <translation id="3345432088196080137">Invester så lite som én dollar i populære aksjer og børsnoterte fond som AAPL, TSLA eller AMZN</translation>
 <translation id="3787061634640932557">Rediger kort</translation>
-<translation id="2070991379950719711">Begynn å bruke Brave Rewards</translation>
+<translation id="2070991379950719711">Begynn å bruke Mises Rewards</translation>
 <translation id="5977237145327845546">Start en privat videosamtale med dine venner og kolleger.</translation>
 <translation id="8863928195533744356">Start anrop</translation>
 <translation id="3651550649176056334">Om dine data</translation>
@@ -650,9 +650,9 @@
 <translation id="824449983246282560">Du har ingen saldoer i kontoen. Gå til Gemini for å kjøpe.</translation>
 <translation id="8624961452383848703">Jeg vil konvertere ...</translation>
 <translation id="1544192797660353713">Lommebok</translation>
-<translation id="616639131065447379">Velkommen til Braves kryptolommebok</translation>
-<translation id="1740464057879304704">Crypto Wallets lar deg jobbe med kryptovaluta og relaterte midler i Brave. Crypto Wallets støtter Ethereum tokener som ETH og BAT, i tillegg til collectibles, og lar deg jobbe med Ðapps og andre smarte kontrakter. Alt dette er beregnet på personer som er kjente med Ethereum og andre blokk-kjede-systemer – eller er spente på å lære.</translation>
-<translation id="4855440621031541830">Bruk kryptolommebøker kun hvis du aksepterer at du ene og alene er ansvarlig for all risk assosiert med bruken av disse, og at Brave-programvaren bærer intet ansvar for tap, enten tilfeldig eller som følge av bruken av disse.</translation>
+<translation id="616639131065447379">Velkommen til Misess kryptolommebok</translation>
+<translation id="1740464057879304704">Crypto Wallets lar deg jobbe med kryptovaluta og relaterte midler i Mises. Crypto Wallets støtter Ethereum tokener som ETH og BAT, i tillegg til collectibles, og lar deg jobbe med Ðapps og andre smarte kontrakter. Alt dette er beregnet på personer som er kjente med Ethereum og andre blokk-kjede-systemer – eller er spente på å lære.</translation>
+<translation id="4855440621031541830">Bruk kryptolommebøker kun hvis du aksepterer at du ene og alene er ansvarlig for all risk assosiert med bruken av disse, og at Mises-programvaren bærer intet ansvar for tap, enten tilfeldig eller som følge av bruken av disse.</translation>
 <translation id="3187473319809074178">Alt dette er fullstendig atskilt fra</translation>
 <translation id="8327818101454798856">Så hvis du er ute etter å støtte dine favorittnettsteder, kan du ta turen dit i stedet.</translation>
 <translation id="412480955826088549">Laster ned komponent...</translation>
@@ -668,14 +668,14 @@
 <translation id="5337526542182802976">Støttede par</translation>
 <translation id="1164622162816276433">24-timers volum</translation>
 <translation id="7534079972563542000">Ustoppelige domener</translation>
-<translation id="4492298165410552103">Vil du slå på støtte for ustoppelige domener i Brave?</translation>
-<translation id="689573545156113164">Brave bruker Infura til å sende Ethereum JSON-RPC-oppkall til smartkontrakten fra Unstoppable Domains for lookup-forespørsler for .crypto- (og også .x-, .con-, .nft-, .dao-, .wallet-, .888-, .blockchain- og .bitcoin-)-domenenavn. Hvis du slår på dette, vil Infura kunne se de spesifikke domenene du prøver å besøke, men ikke andre domener. Se også Infuras <ph name="BEGIN_INFURA_TOU_LINK"/>brukervilkår<ph name="END_INFURA_TOU_LINK"/> og <ph name="BEGIN_INFURA_PRIVACY_LINK"/>personvernerklæring<ph name="END_INFURA_PRIVACY_LINK"/>.</translation>
+<translation id="4492298165410552103">Vil du slå på støtte for ustoppelige domener i Mises?</translation>
+<translation id="689573545156113164">Mises bruker Infura til å sende Ethereum JSON-RPC-oppkall til smartkontrakten fra Unstoppable Domains for lookup-forespørsler for .crypto- (og også .x-, .con-, .nft-, .dao-, .wallet-, .888-, .blockchain- og .bitcoin-)-domenenavn. Hvis du slår på dette, vil Infura kunne se de spesifikke domenene du prøver å besøke, men ikke andre domener. Se også Infuras <ph name="BEGIN_INFURA_TOU_LINK"/>brukervilkår<ph name="END_INFURA_TOU_LINK"/> og <ph name="BEGIN_INFURA_PRIVACY_LINK"/>personvernerklæring<ph name="END_INFURA_PRIVACY_LINK"/>.</translation>
 <translation id="6513892817556267573">Ethereum-navnetjenesten</translation>
-<translation id="4335039108389860301">Vil du slå på støtte for Ethereum-navnetjenesten (ENS) i Brave?</translation>
-<translation id="8328137586971750853">Brave vil bruke Infura til å sende Ethereum JSON-RPC-kall til smarkontrakten fra Ethereum Name Service for lookupforespørsler for .eth-domener. Hvis du slår på dette, vil Infura se .eth-domenet du prøver å besøke, men vil andre domener. Se også Infuras <ph name="BEGIN_INFURA_TOU_LINK"/>brukervilkår<ph name="END_INFURA_TOU_LINK"/> og <ph name="BEGIN_INFURA_PRIVACY_LINK"/>personvernerklæring<ph name="END_INFURA_PRIVACY_LINK"/>.</translation>
+<translation id="4335039108389860301">Vil du slå på støtte for Ethereum-navnetjenesten (ENS) i Mises?</translation>
+<translation id="8328137586971750853">Mises vil bruke Infura til å sende Ethereum JSON-RPC-kall til smarkontrakten fra Ethereum Name Service for lookupforespørsler for .eth-domener. Hvis du slår på dette, vil Infura se .eth-domenet du prøver å besøke, men vil andre domener. Se også Infuras <ph name="BEGIN_INFURA_TOU_LINK"/>brukervilkår<ph name="END_INFURA_TOU_LINK"/> og <ph name="BEGIN_INFURA_PRIVACY_LINK"/>personvernerklæring<ph name="END_INFURA_PRIVACY_LINK"/>.</translation>
 <translation id="807404806385418949">Ethereum Name Service offchain-søk</translation>
-<translation id="4049590838234508776">Vil du aktivere støtte for Ethereum Name Service-offchainsøk i Brave?</translation>
-<translation id="1769433806670482329">Brave vil bruke offchain-gatewayer for å innfri søk etter .eth-domenenavn. Hvis du slår på dette, vil tredjeparts gatewayer se .eth-domenet du prøver å besøke, men vil ikke kunne se andre domener. <ph name="BEGIN_BRAVE_LEARN_MORE_LINK"/>Finn ut mer<ph name="END_BRAVE_LEARN_MORE_LINK"/>.</translation>
+<translation id="4049590838234508776">Vil du aktivere støtte for Ethereum Name Service-offchainsøk i Mises?</translation>
+<translation id="1769433806670482329">Mises vil bruke offchain-gatewayer for å innfri søk etter .eth-domenenavn. Hvis du slår på dette, vil tredjeparts gatewayer se .eth-domenet du prøver å besøke, men vil ikke kunne se andre domener. <ph name="BEGIN_BRAVE_LEARN_MORE_LINK"/>Finn ut mer<ph name="END_BRAVE_LEARN_MORE_LINK"/>.</translation>
 <translation id="4047002754575891955">Fortsett med offchain-søk</translation>
 <translation id="7378412287463452336">Fortsett med Infura-serveren</translation>
 <translation id="2356070529366658676">Spør</translation>
@@ -683,7 +683,7 @@
 <translation id="59174027418879706">Aktivert</translation>
 <translation id="2468755552460246661">Domenet er blokkert</translation>
 <translation id="6393849031898466746">Dette nettstedet kan prøve å spore deg på tvers av andre nettsteder</translation>
-<translation id="983774928604730749">Brave har forhindret det følgende nettstedet fra å lastes inn:</translation>
+<translation id="983774928604730749">Mises har forhindret det følgende nettstedet fra å lastes inn:</translation>
 <translation id="4781961723893779890">Dette nettstedet kan prøve å knytte noen av dine personlige data til en informasjonskapsel før innholdet vises.</translation>
 <translation id="2459038234784107183">Ikke advar meg om dette nettstedet igjen</translation>
 <translation id="8242426110754782860">Fortsett</translation>
@@ -720,15 +720,15 @@
 <translation id="72868071984333667">Lær mer om IPFS og personvern</translation>
 <translation id="1886162073868201257">Feil ved starting av IPFS-tjeneste</translation>
 <translation id="5357895013476183089">IPFS er ikke tilkoblet</translation>
-<translation id="7662930734991751511">Kan ikke laste IPFS-ressurser ved bruk av Braves lokale IPFS-node</translation>
+<translation id="7662930734991751511">Kan ikke laste IPFS-ressurser ved bruk av Misess lokale IPFS-node</translation>
 <translation id="1141556610026845297">Mislyktes i å bruke den lokale IPFS-noden til å laste de forespurte IPFS-ressursene. Klikk på "Fortsett"-knappen for å bruke den offentlige systemporten i stedet, og for å gå automatisk tilbake til den offentlige systemporten i fremtiden.</translation>
 <translation id="3373798179786163193">Fortsett med offentlig gateway</translation>
 <translation id="1974060860693918893">Avansert</translation>
 <translation id="9096577886148726047">Skjul avansert</translation>
-<translation id="182581792765792826">Brave kunne ikke laste de forespurte IPFS-ressursene – enten fordi den lokale IPFS-noden ikke startet, eller fordi det ikke er noen tilkoblede tjenere tilgjengelig for øyeblikket. Dersom du velger "Fortsett", vil Brave automatisk falle tilbake til standard offentlig systemport når forsøk på å bruke Braves lokale IPFS-node mislykkes. Du kan endre dette mønsteret når som helst i Brave-innstillingene.</translation>
+<translation id="182581792765792826">Mises kunne ikke laste de forespurte IPFS-ressursene – enten fordi den lokale IPFS-noden ikke startet, eller fordi det ikke er noen tilkoblede tjenere tilgjengelig for øyeblikket. Dersom du velger "Fortsett", vil Mises automatisk falle tilbake til standard offentlig systemport når forsøk på å bruke Misess lokale IPFS-node mislykkes. Du kan endre dette mønsteret når som helst i Mises-innstillingene.</translation>
 <translation id="8026038288183400906">Ønsket IPFS</translation>
 <translation id="2058855456574089690">Bestem ønsket IPFS</translation>
-<translation id="4780526507945807546">Bruk en lokal IPFS-node for Brave</translation>
+<translation id="4780526507945807546">Bruk en lokal IPFS-node for Mises</translation>
 <translation id="8148464361648742409">Bruk en offentlig systemport</translation>
 <translation id="5123478056123923857">IPFS (InterPlanetary File System) er det offentlig tilgjengelige nettverket for lagring og levering av maskin-til-maskin-data. Denne protokollen innebærer andre hensyn til personvern enn HTTP(S) gjør.</translation>
 <translation id="1216911189668016151">Datamaskinen din bidrar til det åpne nettverket, men IP-adressen din, og eventuelt innhold du ber om eller legger inn, kan være eksponert. Innhold du ber om over IPFS, blir verifisert før det leveres til deg. Nettverksforespørsler kan ikke bruke nettleserens proxy- og DNS-innstillinger.</translation>
@@ -741,7 +741,7 @@
 <translation id="1675751799495331928">Vi har brukt for mange forsøk, prøv igjen senere.</translation>
 <translation id="4499666752625407848">Det skjedde en feil under en oppdatering.</translation>
 <translation id="62991515067726424">Dette innholdet ble lastet over IPFS-protokollen</translation>
-<translation id="7263366446813126341">InterPlanetary File System (IPFS) er et offentlig nettverk for peer-to-peer datalagring og -levering. Du kan når som helst lære mer om Braves integrering eller konfigurere IPFS-innstillingene dine.</translation>
+<translation id="7263366446813126341">InterPlanetary File System (IPFS) er et offentlig nettverk for peer-to-peer datalagring og -levering. Du kan når som helst lære mer om Misess integrering eller konfigurere IPFS-innstillingene dine.</translation>
 <translation id="3175567740517780285">IPFS-innstillinger</translation>
 <translation id="8914505352873092008">Gå til siden for IPFS-innstillinger</translation>
 <translation id="3465468510001693544">IPFS-diagnostikk</translation>
@@ -754,7 +754,7 @@
 <translation id="5525148540855044244">Delbar lenke kopiert: <ph name="SHAREABLE_LINK"/></translation>
 <translation id="3741998951694470470">Kunne ikke hente data for import</translation>
 <translation id="7900950536120202771">Intern feil i IPFS-node</translation>
-<translation id="1036635552229153800">Dataene ble lastet opp, men ble ikke flyttet til katalogen for Brave-import. Du kan gjøre dette manuelt på siden for importinnstillinger.</translation>
+<translation id="1036635552229153800">Dataene ble lastet opp, men ble ikke flyttet til katalogen for Mises-import. Du kan gjøre dette manuelt på siden for importinnstillinger.</translation>
 <translation id="3793279629218362523">Administrer motpartens ID og IPNS-nøkler</translation>
 <translation id="572392919096807438">Husk avgjørelsen</translation>
 <translation id="7978789143098237970">inntil jeg lukker denne siden</translation>
@@ -775,7 +775,7 @@
 <translation id="3600355176618429948">Ansl. inntjening</translation>
 <translation id="4244985009709452836">Logg på din <ph name="PROVIDER"/>-konto</translation>
 <translation id="2613359062756190460">Engangstips</translation>
-<translation id="3022529765171561652">Det har oppstått et midlertidig problem med verifisering via <ph name="PROVIDER"/>. Brave-belønningene dine får statusen Venter, og vi prøver igjen automatisk. Du kan også prøve igjen senere.</translation>
+<translation id="3022529765171561652">Det har oppstått et midlertidig problem med verifisering via <ph name="PROVIDER"/>. Mises-belønningene dine får statusen Venter, og vi prøver igjen automatisk. Du kan også prøve igjen senere.</translation>
 <translation id="590733288489975971">Rewards fra Ads</translation>
 <translation id="6181762795539107980">Ikke verifisert</translation>
 <translation id="3026978804849658576">Vis kontoutskrift</translation>
@@ -790,11 +790,11 @@
 <translation id="8334559352278209120">Gir</translation>
 <translation id="4782365133987903299">Du har <ph name="DAYS"/> på deg</translation>
 <translation id="3903419925307046908">Tjen polletter og gi tilbake</translation>
-<translation id="244362569344671266">Tjen tokener ved å se på private Brave-annonser og støtt innholdsprodusenter automatisk.</translation>
+<translation id="244362569344671266">Tjen tokener ved å se på private Mises-annonser og støtt innholdsprodusenter automatisk.</translation>
 <translation id="5095252080770652994">Fremgang</translation>
 <translation id="6278643716658443228">Rewards-innstillinger</translation>
 <translation id="2862978891748913252">Velg land</translation>
-<translation id="3717922248131893262">For å fortsette å bruke Brave Rewards må du velge landet ditt, så vi kan vise deg de riktige alternativene og annonsene for din region. <ph name="LINK_BEGIN"/>Personvernerklæring<ph name="LINK_END"/></translation>
+<translation id="3717922248131893262">For å fortsette å bruke Mises Rewards må du velge landet ditt, så vi kan vise deg de riktige alternativene og annonsene for din region. <ph name="LINK_BEGIN"/>Personvernerklæring<ph name="LINK_END"/></translation>
 <translation id="6777169449483742979">Du tjener tokener for å se dette sponsede bildet.</translation>
 <translation id="5486114327664215175">Tjen tokener for å vise dette bildet og støtt innholdsskapere.</translation>
 <translation id="2940863921746574646">Token-saldo</translation>
@@ -817,10 +817,10 @@
 <translation id="6333727259565526314">Belønningen din er på vei.</translation>
 <translation id="39734939514946950">Belønningsbeløpet ditt</translation>
 <translation id="717952606991220586">Ops, noe gikk galt. Vennligst prøv igjen senere.</translation>
-<translation id="7210234701206674260">Brave Rewards har et problem. Prøv igjen senere.</translation>
+<translation id="7210234701206674260">Mises Rewards har et problem. Prøv igjen senere.</translation>
 <translation id="579702532610384533">Tilkoble på nytt</translation>
 <translation id="7550470870580166294">Utilstrekkelige midler</translation>
-<translation id="2775064702681588061">Brave Rewards-kontoen din venter på et innskudd.</translation>
+<translation id="2775064702681588061">Mises Rewards-kontoen din venter på et innskudd.</translation>
 <translation id="3358400027937159351">Du har bidratt ed <ph name="AMOUNT"/>.</translation>
 <translation id="1619753851206150396">Du er logget ut.</translation>
 <translation id="5142174225142816130">Dette kan skje som et ledd i å holde kontoen din sikker. Klikk nedenfor for å koble til på nytt nå.</translation>
@@ -833,20 +833,20 @@
 <translation id="7855913851082138664">Skaperen <ph name="PUBLISHER_NAME"/> ble nylig bekreftet.</translation>
 <translation id="6194996600967335044">Utilstrekkelige midler</translation>
 <translation id="2795080275268642520">Du har ventende tips grunnet utilstrekkelige midler</translation>
-<translation id="2529827670795983639">Det ser ut til at dette ikke fungerer – Brave Ads er fortsatt pauset. Kontakt oss hvis du trenger hjelp med å løse captcha-en.</translation>
+<translation id="2529827670795983639">Det ser ut til at dette ikke fungerer – Mises Ads er fortsatt pauset. Kontakt oss hvis du trenger hjelp med å løse captcha-en.</translation>
 <translation id="261607053214862521">Maks. antall forsøk er overskredet</translation>
 <translation id="2323171459178104277">Løst!</translation>
-<translation id="1512837998731269583">Annonsene og inntjeningen gjenopptas. Takk for at du hjelper oss med å ivareta sikkerheten ved Brave Rewards og annonsesystemet.</translation>
+<translation id="1512837998731269583">Annonsene og inntjeningen gjenopptas. Takk for at du hjelper oss med å ivareta sikkerheten ved Mises Rewards og annonsesystemet.</translation>
 <translation id="3247549836099021862">Kontakt brukerstøtten</translation>
 <translation id="5234764350956374838">Lukk</translation>
 <translation id="6717671373796332174"><ph name="TOUR_LINK_BEGIN"/>Ta en rask tur<ph name="TOUR_LINK_END"/> eller <ph name="LEARN_LINK_BEGIN"/>les mer<ph name="LEARN_LINK_END"/> for å få flere detaljer.</translation>
 <translation id="7465614181960492526">Tjen tokener og gi tilbake</translation>
 <translation id="2731539192954672606">Tjen tokener ved å se på personvern-respekterende annonser og støtt favorittnettstedene og innholdsprodusentene dine automatisk.</translation>
-<translation id="5425006356459378415">Brave-belønninger er ikke tilgjengelig</translation>
-<translation id="909076461795862330">Dessverre oppstod det en feil under forsøket på å konfigurere Brave Rewards. Prøv på nytt.</translation>
+<translation id="5425006356459378415">Mises-belønninger er ikke tilgjengelig</translation>
+<translation id="909076461795862330">Dessverre oppstod det en feil under forsøket på å konfigurere Mises Rewards. Prøv på nytt.</translation>
 <translation id="3180990265682133881">Dessverre oppstod det en feil da landet skulle angis. Prøv på nytt.</translation>
-<translation id="2191603160848789187">Nye registreringer for Brave-belønninger er deaktivert for din region for tiden. Du kan alltids prøve igjen senere. <ph name="LINK_BEGIN"/>Les mer<ph name="LINK_BEGIN"/></translation>
-<translation id="8764860730661377310">Brave Rewards-regionen din er angitt som <ph name="COUNTRY"/>.</translation>
+<translation id="2191603160848789187">Nye registreringer for Mises-belønninger er deaktivert for din region for tiden. Du kan alltids prøve igjen senere. <ph name="LINK_BEGIN"/>Les mer<ph name="LINK_BEGIN"/></translation>
+<translation id="8764860730661377310">Mises Rewards-regionen din er angitt som <ph name="COUNTRY"/>.</translation>
 <translation id="7068416025603720599">Velg landet ditt, så vi kan vise deg de riktige alternativene og annonsene for din region. <ph name="LINK_BEGIN"/>Personvernerklæring<ph name="LINK_END"/></translation>
 <translation id="1275213816424141989">Kanskje senere</translation>
 <translation id="5187052478998910855">Behov for å friske opp kunnskapen om Belønninger?</translation>
@@ -862,12 +862,12 @@
 <translation id="185034574799484512">La oss ta en rask omvisning</translation>
 <translation id="8281886186245836920">Hopp over</translation>
 <translation id="1377600615067678409">Hopp over i denne omgang</translation>
-<translation id="7930505144430343145">Velkommen til Brave Rewards!</translation>
-<translation id="3477340970981564961">Brave Private Ads belønner deg med polletter for å støtte innholdsskapere, i motsetning til tradisjonelle annonser – samtidig som den personlige informasjonen din beskyttes.</translation>
+<translation id="7930505144430343145">Velkommen til Mises Rewards!</translation>
+<translation id="3477340970981564961">Mises Private Ads belønner deg med polletter for å støtte innholdsskapere, i motsetning til tradisjonelle annonser – samtidig som den personlige informasjonen din beskyttes.</translation>
 <translation id="6973095375773523904">Hvor vises annonsene?</translation>
-<translation id="7556325460112047619">Brave Private Ads vil vises som et ordinært varsel. Du kontrollerer hvor ofte du ser disse annonsene i innstillingene.</translation>
+<translation id="7556325460112047619">Mises Private Ads vil vises som et ordinært varsel. Du kontrollerer hvor ofte du ser disse annonsene i innstillingene.</translation>
 <translation id="6897083627729802351">Når mottar du belønninger?</translation>
-<translation id="310863932297733723">Pollettene du tjener på Brave Private Ads gjennom inneværende måned vil komme inn den 5. i neste måned.</translation>
+<translation id="310863932297733723">Pollettene du tjener på Mises Private Ads gjennom inneværende måned vil komme inn den 5. i neste måned.</translation>
 <translation id="7712287524451429139">Gi tilbake uten anstrengelser</translation>
 <translation id="105037569026952831">Skapere mottar pollettbidragene dine automatisk basert på engasjementsnivåene dine, som vi måler som "Oppmerksomhet".</translation>
 <translation id="5323267338679539010">Si takk med tips</translation>
@@ -877,14 +877,14 @@
 <translation id="1402530520078693620">Til sist: La oss konfigurere de grunnleggende innstillingene dine</translation>
 <translation id="3494356595346329740">Du kan endre dette senere.</translation>
 <translation id="827315274423079662">Hurra, du er helt klar!</translation>
-<translation id="8268038362451312235">Når du bruker Brave Rewards bidrar du til å gjøre nettet til et bedre sted for alle. Og det er kjempebra!</translation>
-<translation id="2318949593486441832">For å gjøre uttak av tokenene du tjener på å se annonser, må du bekrefte Brave Rewards.</translation>
+<translation id="8268038362451312235">Når du bruker Mises Rewards bidrar du til å gjøre nettet til et bedre sted for alle. Og det er kjempebra!</translation>
+<translation id="2318949593486441832">For å gjøre uttak av tokenene du tjener på å se annonser, må du bekrefte Mises Rewards.</translation>
 <translation id="9168436347345867845">Gjør det senere</translation>
-<translation id="7193761697942491145">Bekreft Brave Rewards</translation>
+<translation id="7193761697942491145">Bekreft Mises Rewards</translation>
 <translation id="6609621505400013054">BitFlyer-lommeboken er en tjeneste som administreres av bitFlyer, Inc.</translation>
-<translation id="4361456403643555676">Hvis du bekrefter Brave Rewards og knytter det til en bitFlyer-konto, kan du lagre og administrere tokenene du har tjent opp gjennom Brave Rewards på en enklere måte.</translation>
-<translation id="1411121707906693782"><ph name="LINK_BEGIN"/>Finn ut mer<ph name="LINK_END"/> om hvordan du knytter Brave-nettleseren din til bitFlyer-kontoen din.</translation>
-<translation id="8303087505226646884">Brave Speedreader</translation>
+<translation id="4361456403643555676">Hvis du bekrefter Mises Rewards og knytter det til en bitFlyer-konto, kan du lagre og administrere tokenene du har tjent opp gjennom Mises Rewards på en enklere måte.</translation>
+<translation id="1411121707906693782"><ph name="LINK_BEGIN"/>Finn ut mer<ph name="LINK_END"/> om hvordan du knytter Mises-nettleseren din til bitFlyer-kontoen din.</translation>
+<translation id="8303087505226646884">Mises Speedreader</translation>
 <translation id="7701466644604753106">Slå PÅ Hurtigleser</translation>
 <translation id="763042262431778831">Slå AV Hurtigleser</translation>
 <translation id="1148827340205946630">Brukeren avslo forespørselen</translation>
@@ -896,7 +896,7 @@
 <translation id="2326876601333401685">Denne RPC-metoden støttes ikke</translation>
 <translation id="1128992132632883337">En intern parsingfeil har oppstått</translation>
 <translation id="5382339341735118861">En generisk behandlingsfeil har oppstått</translation>
-<translation id="1680597601664421644">Huskeregelen som importeres er ikke gyldig for Brave Wallet</translation>
+<translation id="1680597601664421644">Huskeregelen som importeres er ikke gyldig for Mises Wallet</translation>
 <translation id="4641919696349069826">En forespørsel er allerede aktiv</translation>
 <translation id="872806943696014633">Transaksjonsdata mangler</translation>
 <translation id="4805410229033541409">'from' er ikke autorisert til å sende transaksjoner</translation>
@@ -968,16 +968,16 @@
 <translation id="4500473291496079954">Utløper om</translation>
 <translation id="2236833281018938257">Adresse eller URL til lommeboken</translation>
 <translation id="928500657730628112">Lommebok-adresse</translation>
-<translation id="6812967455478797345">Brave bruker <ph name="LINK_BEFORE"/><ph name="SWAP_PROVIDER"/><ph name="LINK_AFTER"/> som DEX-aggregator.</translation>
+<translation id="6812967455478797345">Mises bruker <ph name="LINK_BEFORE"/><ph name="SWAP_PROVIDER"/><ph name="LINK_AFTER"/> som DEX-aggregator.</translation>
 <translation id="151946611346774041">0x behandler Ethereum-adressen og IP-adressen for å fullføre en transaksjon (inkludert å hente priser). 0x bruker KUN disse dataene for å behandle transaksjoner.</translation>
 <translation id="7465227658364622464">Jupiter behandler Solana-adressen og IP-adressen for å gjennomføre en transaksjon (inkludert å innhente tilbud). Jupiter vil KUN bruke disse dataene for å behandle transaksjoner.</translation>
-<translation id="712738518060477110">Tilbudet inkluderer en <ph name="SWAP_FEE_PERCENTAGE"/> Brave-avgift.</translation>
+<translation id="712738518060477110">Tilbudet inkluderer en <ph name="SWAP_FEE_PERCENTAGE"/> Mises-avgift.</translation>
 <translation id="8368540604723748428">For mange desimaler</translation>
 <translation id="6575120282593094155">Du har ikke noen <ph name="ACCOUNT_TYPE"/>-konto ennå. vil du opprette en nå?</translation>
 <translation id="8712637175834984815">Skjønner</translation>
 <translation id="2704606927547763573">Kopiert</translation>
 <translation id="6042308850641462728">Mer</translation>
-<translation id="768236965975208017">Sikker. Flere kjeder. Ekstremt brukervennlig. Brave-lommeboken din er bare noen få klikk unna</translation>
+<translation id="768236965975208017">Sikker. Flere kjeder. Ekstremt brukervennlig. Mises-lommeboken din er bare noen få klikk unna</translation>
 <translation id="2484275747844666540">Opprett ny lommebok</translation>
 <translation id="3662348701117072366">Importer eksisterende lommebok</translation>
 <translation id="375882617301124395">Lag en sikkerhetskopi av kryptolommeboken din</translation>
@@ -1009,20 +1009,20 @@
 <translation id="1108298724135935307">Tilkoblede nettsteder</translation>
 <translation id="163697698769819510">Ta en backup av lommeboken din nå for å sikre midlene dine og sørge for at du aldri mister tilgang.</translation>
 <translation id="1018806299114415224">Sikkerhetskopier nå</translation>
-<translation id="1400709719911593089">Brave-lommeboken er ikke angitt som standardlommebok, og kommer ikke til å respondere på Web3 DApps. Gå til innstillingene for å endre standardlommebok.</translation>
+<translation id="1400709719911593089">Mises-lommeboken er ikke angitt som standardlommebok, og kommer ikke til å respondere på Web3 DApps. Gå til innstillingene for å endre standardlommebok.</translation>
 <translation id="4362717653795263052">Gjenopprett primære kryptokontoer</translation>
-<translation id="3038077262567136741">Skriv inn sikkerhetsfrasen din for å gjenopprette kryptokontoen for Brave-lommeboken din</translation>
+<translation id="3038077262567136741">Skriv inn sikkerhetsfrasen din for å gjenopprette kryptokontoen for Mises-lommeboken din</translation>
 <translation id="955918646509748368">Sikkerhetsfrasen er ugyldig.</translation>
 <translation id="8107437138787377150">Lim inn sikkerhetsfrasen fra utklippstavlen</translation>
 <translation id="4811736040444856406">Vis gjenopprettingsfrase</translation>
-<translation id="4359319875297001084">Vil du importere fra utrangerte Brave-kryptolommebøker?</translation>
+<translation id="4359319875297001084">Vil du importere fra utrangerte Mises-kryptolommebøker?</translation>
 <translation id="3331452756822160641">Nytt passord</translation>
 <translation id="8624315169751085215">Kopier til utklippstavlen</translation>
 <translation id="7885157704277298658">Kopiert!</translation>
 <translation id="6346952829206698721">Lim inn fra utklippstavle</translation>
 <translation id="1121335910737476837">Primære kryptokontoer</translation>
 <translation id="6969147029062037757">Importerte kontoer</translation>
-<translation id="4057718162494343222">Du kan opprette primærkontoer i Brave-lommeboken som kan sikkerhetskopieres eller gjenopprettes ved hjelp av gjenopprettingsfrasen din. Gå til kontohjelpesidene for mer informasjon om kontotyper.</translation>
+<translation id="4057718162494343222">Du kan opprette primærkontoer i Mises-lommeboken som kan sikkerhetskopieres eller gjenopprettes ved hjelp av gjenopprettingsfrasen din. Gå til kontohjelpesidene for mer informasjon om kontotyper.</translation>
 <translation id="1011614786846182272">Disse kontoene kan brukes med Web3 DApps, og kan vises i porteføljen din. Vær imidlertid oppmerksom på at sekundære kontoer ikke kan gjenopprettes ved hjelp av sikkerhetsfrasen fra backupen av primærkontoen din.</translation>
 <translation id="1940465339426637378">Eiendeler</translation>
 <translation id="2236507293802791911">Synlige ressurser</translation>
@@ -1050,7 +1050,7 @@
 <translation id="6892232036314454524">Denne feilen kan oppstå når feil applikasjon er åpen på Ledger-enheten.</translation>
 <translation id="6598291715079540080">Trezor</translation>
 <translation id="5605670050355397069">Ledger</translation>
-<translation id="4247752006222818397">Gi Brave tilgang til Ledger-enheten din</translation>
+<translation id="4247752006222818397">Gi Mises tilgang til Ledger-enheten din</translation>
 <translation id="4378551569595875038">Kobler til …</translation>
 <translation id="1943188256166395881">Legg til markerte kontoer</translation>
 <translation id="8554010658308662631">Last inn mer</translation>
@@ -1109,7 +1109,7 @@
 <translation id="3352959425838279177">Hent Eter fra en kran for <ph name="SELECTED_NETWORK"/></translation>
 <translation id="6449626816252815844">Velg kjøpsmetode</translation>
 <translation id="8009571545960303544">Det bes om signaturen din</translation>
-<translation id="5294062982587710720">Vær oppmerksom på at Brave ikke kan gå god for hva som skjer hvis du signerer. En signatur kan autorisere nesten en hvilken som helst operasjon i kontoen din eller på dine vegne, herunder blant annet å gi full kontroll over kontoen og kryptoressursene dine til siden som kommer med forespørselen, Signer bare hvis du er sikker på at du stoler på den aktuelle siden og vil gjøre denne handlingen.</translation>
+<translation id="5294062982587710720">Vær oppmerksom på at Mises ikke kan gå god for hva som skjer hvis du signerer. En signatur kan autorisere nesten en hvilken som helst operasjon i kontoen din eller på dine vegne, herunder blant annet å gi full kontroll over kontoen og kryptoressursene dine til siden som kommer med forespørselen, Signer bare hvis du er sikker på at du stoler på den aktuelle siden og vil gjøre denne handlingen.</translation>
 <translation id="3474375934783434676">Signer på egen risiko</translation>
 <translation id="5488357322146334497">Melding</translation>
 <translation id="3586752056660754651">Undertegn</translation>
@@ -1130,7 +1130,7 @@
 <translation id="7073918978411974168">Foreslått godtgjørelse</translation>
 <translation id="9019403281000653275">Ubegrenset godkjenning forespurt</translation>
 <translation id="4717431746210146708">Vil du tillate at denne nettsiden legger til et nettverk?</translation>
-<translation id="2521480044079508357">Dette tillater at dette nettverket brukes i Brave-lommeboken.</translation>
+<translation id="2521480044079508357">Dette tillater at dette nettverket brukes i Mises-lommeboken.</translation>
 <translation id="1982257600591932657">Nettverksnavn</translation>
 <translation id="5052727830821470769">Nettverks-URL</translation>
 <translation id="427875364838253580">Vis alle detaljer</translation>
@@ -1166,10 +1166,10 @@
 <translation id="2240831799756994975">BYTES</translation>
 <translation id="4874303883488468190">Velg konto(er)</translation>
 <translation id="2018472018751735678">Se adressene til de tillatte kontoene dine (obligatorisk)</translation>
-<translation id="7029403458170657879">Koble til Brave-lommeboken</translation>
+<translation id="7029403458170657879">Koble til Mises-lommeboken</translation>
 <translation id="2770851145415891830">Eksisterende kryptolommebøker funnet</translation>
-<translation id="2237759620789871865">Om du heller vil hoppe over importen og beholde den gamle Crypto Wallets-opplevelsen, er det bare å navigere til <ph name="LINK_BEFORE"/>innstillinger<ph name="LINK_AFTER"/> for Brave Browser og endre standard tilbake til Crypto Wallets. Du kan også importere, prøve nye Brave Wallet og bytte tilbake når som helst.</translation>
-<translation id="5590175005414413980">Skriv inn det eksisterende CryptoWallet-passordet for å importere til Brave-lommeboken. Dra nytte av en raskere og sikrere måte å administrere kryptoressurser og ha interaksjon med Web3 DApps på.</translation>
+<translation id="2237759620789871865">Om du heller vil hoppe over importen og beholde den gamle Crypto Wallets-opplevelsen, er det bare å navigere til <ph name="LINK_BEFORE"/>innstillinger<ph name="LINK_AFTER"/> for Mises Browser og endre standard tilbake til Crypto Wallets. Du kan også importere, prøve nye Mises Wallet og bytte tilbake når som helst.</translation>
+<translation id="5590175005414413980">Skriv inn det eksisterende CryptoWallet-passordet for å importere til Mises-lommeboken. Dra nytte av en raskere og sikrere måte å administrere kryptoressurser og ha interaksjon med Web3 DApps på.</translation>
 <translation id="880619123281809987">Skriv inn passordet for kryptolommeboken</translation>
 <translation id="6344138931392227467"><ph name="DEVICE_NAME"/> koblet til</translation>
 <translation id="7051244143160304048"><ph name="DEVICE_NAME"/> frakoblet</translation>
@@ -1273,7 +1273,7 @@
 <translation id="2962388922926051374">Forespørsel for metoden 'eth_chainId' på <ph name="URL"/> mislyktes</translation>
 <translation id="8325036459845654666">Dette nettverket har allerede blitt lagt til.</translation>
 <translation id="554350381160981853">Signering av inntastede data støttes bare på Trezor Model One med Firmware 1.10.5 eller nyere</translation>
-<translation id="1752214435563414457">Brave Swap-stakes</translation>
+<translation id="1752214435563414457">Mises Swap-stakes</translation>
 <translation id="7829441065063984927">7 dager med krypto-giveaways, USD 500 000 i premier</translation>
 <translation id="8292716346768453265">Bli med nå!</translation>
 <translation id="1935944189549132903">Alle ressurser</translation>
@@ -1283,7 +1283,7 @@
 <translation id="4430019312045809116">Volum</translation>
 <translation id="4312994183947987913">Kjøp/deponer</translation>
 <translation id="5133421763709317473">Ingen ressurser matcher søket eller filteret</translation>
-<translation id="7383613643114466279">Denne ressursen støttes ikke av Brave-lommeboken</translation>
+<translation id="7383613643114466279">Denne ressursen støttes ikke av Mises-lommeboken</translation>
 <translation id="6423985584914773314">Ikke en gyldig FIL-adresse</translation>
 <translation id="3898731124813934210">Kjøp med Wyre</translation>
 <translation id="5522073372365069684">Kjøp med Ramp</translation>
@@ -1387,7 +1387,7 @@
 <translation id="8060029310790625334">Brukerstøtte</translation>
 <translation id="2095142195578664632">Trenger du hjelp? Gå til</translation>
 <translation id="3253669416991680932">Maskinvarelommeboken støtter ikke denne handlingen.</translation>
-<translation id="7457027586454688423">Skriv inn passordet til Brave-lommeboken din</translation>
+<translation id="7457027586454688423">Skriv inn passordet til Mises-lommeboken din</translation>
 <translation id="7553242001898162573">Skriv inn passord</translation>
 <translation id="2873714185189940594">Vil du åpne Rainbow Bridge-appen?</translation>
 <translation id="2069777099181262239">Rainbow Bridge er en uavhengig tjeneste som hjelper deg å brygge bro mellom ressurser på tvers av nettverk, og bruke kryptoen din i andre nettverk og DApp-økosystemer. Å bygge broer mellom nettverk kan noen ganger være forbudet med en viss risiko.</translation>
@@ -1395,7 +1395,7 @@
 <translation id="3890567288132019108">Finn ut mer om hvordan du begrenser risikoene med Rainbow Bridge</translation>
 <translation id="1792917191129448067">Åpne Rainbow Bridge-appen</translation>
 <translation id="1522775706527775647">Bro til Aurora</translation>
-<translation id="4903322403594141291">Les mer om Brave Wallet</translation>
+<translation id="4903322403594141291">Les mer om Mises Wallet</translation>
 <translation id="3875185448438395303">Minst:</translation>
 <translation id="2029465635925899949">8 tegn</translation>
 <translation id="6697810017029555732">Match!</translation>
@@ -1404,7 +1404,7 @@
 <translation id="8297006494302853456">Svak</translation>
 <translation id="6782556046178425980">Før du begynner å ta sikkerhetskopi av lommeboken</translation>
 <translation id="7119749028647909394">Gjenopprettingsfrasen på 12–24 ord er en privat nøkkel du kan bruke til å få tilgang til lommeboken din hvis du mister tilkoblede enheter. Lagre den et trygt sted, og i nøyaktig samme rekkefølge som under.</translation>
-<translation id="3259018319025894691">Brave har ikke tilgang til den hemmelige gjenopprettingsfrasen din. Oppbevar den et trygt sted, og aldri del den med noen andre.</translation>
+<translation id="3259018319025894691">Mises har ikke tilgang til den hemmelige gjenopprettingsfrasen din. Oppbevar den et trygt sted, og aldri del den med noen andre.</translation>
 <translation id="7650284207965419234"><ph name="TAG_BEFORE"/>Viktig: <ph name="TAG_AFTER"/>Aldri del gjenopprettingsfrasen din. Alle som har denne frasen kan overta ressursene dine for alltid.</translation>
 <translation id="7509948206688764960">Ta sikkerhetskopi av gjenopprettingsfrasen for lommeboken din</translation>
 <translation id="8052898407431791827">Kopiert til utklippstavlen</translation>
@@ -1424,8 +1424,8 @@
 <translation id="2781276194026093899">.</translation>
 <translation id="7992766987062040279">.</translation>
 <translation id="2295726992010694229">.</translation>
-<translation id="8241405611628876973">Gratulerer! Brave-lommeboken din er klar til bruk!</translation>
-<translation id="6828327990705355767">For å få tilgang til lommeboken din, er det bare å klikke på lommebokikonet øverst til høyre i et Brave-nettleservindu.</translation>
+<translation id="8241405611628876973">Gratulerer! Mises-lommeboken din er klar til bruk!</translation>
+<translation id="6828327990705355767">For å få tilgang til lommeboken din, er det bare å klikke på lommebokikonet øverst til høyre i et Mises-nettleservindu.</translation>
 <translation id="396152018598329740">Hvordan bruker man en kryptolommebok?</translation>
 <translation id="7512061585041489067">Hva er den beste kryptolommeboken?</translation>
 <translation id="1342755158522323177">Hva er en kryptonettleser?</translation>
@@ -1434,12 +1434,12 @@
 <translation id="7328255859839881981">Hva er DApps?</translation>
 <translation id="3852489285890032403">Hva er web 3?</translation>
 <translation id="5448233694500869445">Vi oppdaget MetaMask-tillegget i nettleseren din</translation>
-<translation id="8436080536329710282">Skriv inn MetaMask-lommebokpassordet ditt for å importere til Brave-lommeboken.</translation>
+<translation id="8436080536329710282">Skriv inn MetaMask-lommebokpassordet ditt for å importere til Mises-lommeboken.</translation>
 <translation id="7543512765962444927">Koble til den eksisterende lommeboken din</translation>
 <translation id="3551682252653406110">Hvis du skal koble til en lommebok du allerede har, kan det hende du må skrive inn gjenopprettingsfrasen din. For øyeblikket støtter vi gjenoppretting/import fra Ethereum- og Solana-lommebøker.</translation>
 <translation id="346929827081904572">Gjennopprett fra frøfrase</translation>
 <translation id="5645597512426471834">12 til 24 ord</translation>
-<translation id="8158505311297755780">Skriv gjenopprettingsfrasen din på 12–24 ord til Brave-lommeboken.</translation>
+<translation id="8158505311297755780">Skriv gjenopprettingsfrasen din på 12–24 ord til Mises-lommeboken.</translation>
 <translation id="5419707890586509000">Importer fra MetaMask</translation>
 <translation id="2265945811107390939">Bruk MetaMask-passordet ditt til å importere frøfrasen din</translation>
 <translation id="7060680423657442298">Glem det, jeg lager en ny lommebok</translation>
@@ -1449,13 +1449,13 @@
 <translation id="6260144012548445299">Les mer om den nye lommeboken</translation>
 <translation id="8746910870914151528">Juridiske greier</translation>
 <translation id="5148123176978018397">Godta følgende:</translation>
-<translation id="6088314935678153800">Jeg forstår at dette er en lommebok jeg styrer selv og at det kun er jeg som er ansvarlig for tilknyttede midler, ressurser og konti og for å gjøre det som trengs for å sikre, beskytte og ta sikkerhetskopi av lommeboken. Jeg forstår at Brave IKKE har tilgang til lommeboken min eller kan reversere transaksjonene mine på mine vegne og at gjenopprettingsfrasen min er den ENESTE måten å få tilgang til lommeboken på i tilfeller med tapt passord, stjålet enhet eller tilsvarende hendelser.</translation>
+<translation id="6088314935678153800">Jeg forstår at dette er en lommebok jeg styrer selv og at det kun er jeg som er ansvarlig for tilknyttede midler, ressurser og konti og for å gjøre det som trengs for å sikre, beskytte og ta sikkerhetskopi av lommeboken. Jeg forstår at Mises IKKE har tilgang til lommeboken min eller kan reversere transaksjonene mine på mine vegne og at gjenopprettingsfrasen min er den ENESTE måten å få tilgang til lommeboken på i tilfeller med tapt passord, stjålet enhet eller tilsvarende hendelser.</translation>
 <translation id="7781090633800450517">Jeg har lest og godtar <ph name="LINK_BEFORE"/>bruksbetingelsene<ph name="LINK_AFTER"/></translation>
 <translation id="3887541341068007345">Ser etter lommebokutvidelser ...</translation>
-<translation id="3567994771568272606">Importer fra tidligere Brave-kryptolommebøker</translation>
+<translation id="3567994771568272606">Importer fra tidligere Mises-kryptolommebøker</translation>
 <translation id="8407091560429310499">Velg en ressurs</translation>
 <translation id="756590380936155533">Du fullfører <ph name="ASSET_TICKER"/>-kjøpet ditt ved å velge en av partnerne våre</translation>
-<translation id="7880860489474966219">Ved fullføring vil midlene dine bli overført til Brave-lommeboken din</translation>
+<translation id="7880860489474966219">Ved fullføring vil midlene dine bli overført til Mises-lommeboken din</translation>
 <translation id="6182661078713714878">Sett inn krypto</translation>
 <translation id="3683305208314702347">Sett inn <ph name="VALUE"/></translation>
 <translation id="5768739294929936862">Sett inn Solana eller SPL-merker</translation>
@@ -1507,13 +1507,13 @@
 <translation id="1671503397662036257">Tor-tilkoblingsstatus</translation>
 <translation id="6024292492796847324">Tor-initialiseringsprosess</translation>
 <translation id="6303294677342628402">Skjold</translation>
-<translation id="8458987127502506209">Aktiver Brave Shields</translation>
+<translation id="8458987127502506209">Aktiver Mises Shields</translation>
 <translation id="7509914170164691086">Skjoldene er OPPE <ph name="LINK_BEFORE"/>for<ph name="LINK_AFTER"/></translation>
 <translation id="260764436039299868">Skjoldene er NEDE <ph name="LINK_BEFORE"/>for<ph name="LINK_AFTER"/></translation>
 <translation id="3907405056878805220">Hvis det virker som at dette nettstedet har feil, kan du prøve å senke skjoldene.
-    <ph name="LINK_BEFORE"/>Merk: dette kan redusere Braves personvernbeskyttelse.<ph name="LINK_AFTER"/></translation>
+    <ph name="LINK_BEFORE"/>Merk: dette kan redusere Misess personvernbeskyttelse.<ph name="LINK_AFTER"/></translation>
 <translation id="8377155647357436161">Sporinger, reklamer og annet blokkert <ph name="LINK_BEFORE"/>Les mer<ph name="LINK_AFTER"/></translation>
-<translation id="7604553853176833536">Ikke beskyttet av Brave Shields <ph name="LINK_BEFORE"/>Finn ut mer<ph name="LINK_AFTER"/></translation>
+<translation id="7604553853176833536">Ikke beskyttet av Mises Shields <ph name="LINK_BEFORE"/>Finn ut mer<ph name="LINK_AFTER"/></translation>
 <translation id="650318023204990401">Avanserte kontroller</translation>
 <translation id="5799940914270080805">Hvis du endrer disse innstillingene, kan du oppleve problemer med nettsider.</translation>
 <translation id="9204041448536398473">Globale Shield-innstillinger</translation>
@@ -1536,14 +1536,14 @@
 <translation id="8034285923190068220">Tillat fingeravtrykk</translation>
 <translation id="1992750560347846445">Rapporter nettsted</translation>
 <translation id="2387532482048804818">Fortell oss om nettstedet ikke fungerte som det skulle med Skjoldene oppe.</translation>
-<translation id="3795015906457257780">Du besøker denne nettsiden uten Braves funksjoner for personvernbeskyttelse.</translation>
-<translation id="7194012750329511146">Brave Shields 
+<translation id="3795015906457257780">Du besøker denne nettsiden uten Misess funksjoner for personvernbeskyttelse.</translation>
+<translation id="7194012750329511146">Mises Shields 
 <ph name="NUMBER"/>Sporere, annonser med mer er blokkert</translation>
 <translation id="4292121526390005808">Blokkerte skript</translation>
 <translation id="264682546981571963">Lei av meldinger om å godta informasjonskapsler?</translation>
-<translation id="4986297793092101884">Brave blokkerer allerede informasjonskapsler fra tredjepart. Vi kan blokkere meldinger om å godta informasjonskapsler også.</translation>
+<translation id="4986297793092101884">Mises blokkerer allerede informasjonskapsler fra tredjepart. Vi kan blokkere meldinger om å godta informasjonskapsler også.</translation>
 <translation id="535688588637568715">Ja, blokker meldinger om å godta informasjonskapsler</translation>
-<translation id="3541307549916475335">Brave VPN Panel UI</translation>
+<translation id="3541307549916475335">Mises VPN Panel UI</translation>
 <translation id="1742469581923031760">Kobler til…</translation>
 <translation id="1287487756047817908">Kobler fra…</translation>
 <translation id="2325196879156848326">Tilkoblingen mislyktes</translation>
@@ -1565,7 +1565,7 @@
 <translation id="8463313539532697053">Vent et øyeblikk mens vi laster inn…</translation>
 <translation id="4317307602527599178">Kunne ikke kontrollere statusen for kjøpet. Dette kan skyldes et nettverksproblem.</translation>
 <translation id="4613076894734402086">Endre betalingsmåte</translation>
-<translation id="8373427068383038263">Det ser ut til at den siste betalingen din for <ph name="VALUE"/> ikke ble fullført. Tilgangen til dette abonnementet blir satt på pause til betalingsproblemet er løst. Prøv å oppdatere betalingsmåten, eller kontakt Brave-brukerstøtten.</translation>
+<translation id="8373427068383038263">Det ser ut til at den siste betalingen din for <ph name="VALUE"/> ikke ble fullført. Tilgangen til dette abonnementet blir satt på pause til betalingsproblemet er løst. Prøv å oppdatere betalingsmåten, eller kontakt Mises-brukerstøtten.</translation>
 <translation id="1839021455997460752">E-postadressen din</translation>
 <translation id="5154702632169343078">Emne</translation>
 <translation id="6625978880678465492">Velg en årsak</translation>
@@ -1581,9 +1581,9 @@
 <translation id="24242621812020123">Appversjon:</translation>
 <translation id="6676791921618140305">OS-versjon:</translation>
 <translation id="1156325797949437777">Brukerstøtte gis i samarbeid med Guardian.</translation>
-<translation id="3307461350293459700">VPN-tilkoblingen mislyktes. Prøv å koble til igjen, og husk å trykke på Tillat for å aktivere Braves VPN-konfigurasjon.</translation>
-<translation id="7261518280726313829">Hvis du slår av sikker DNS eller bruker standardserverne på Windows, kan navnene på nettsidene du besøker, bli synlige for internettleverandøren din. Brave anbefaler ikke å gjøre dette. Vil du gjøre det likevel?</translation>
-<translation id="888284761945060750">Secure DNS er deaktivert av organisasjonen din. Hvis du bruker Brave VPN uten Secure DNS, kan navnene på nettstedene du besøker, bli synlige for internettleverandøren eller organisasjonen din.</translation>
+<translation id="3307461350293459700">VPN-tilkoblingen mislyktes. Prøv å koble til igjen, og husk å trykke på Tillat for å aktivere Misess VPN-konfigurasjon.</translation>
+<translation id="7261518280726313829">Hvis du slår av sikker DNS eller bruker standardserverne på Windows, kan navnene på nettsidene du besøker, bli synlige for internettleverandøren din. Mises anbefaler ikke å gjøre dette. Vil du gjøre det likevel?</translation>
+<translation id="888284761945060750">Secure DNS er deaktivert av organisasjonen din. Hvis du bruker Mises VPN uten Secure DNS, kan navnene på nettstedene du besøker, bli synlige for internettleverandøren eller organisasjonen din.</translation>
 <translation id="1657858090675311947">Ikke varsle meg om dette igjen</translation>
 <translation id="7586151660465233733">Flere markeder på <ph name="SITE_NAME"/></translation>
 <translation id="952067063131306699">Se markeder og handle krypto på FTX</translation>

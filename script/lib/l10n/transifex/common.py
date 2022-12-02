@@ -39,14 +39,14 @@ def should_use_transifex_for_file(source_string_path, filename):
     """ Determines if the given filename should be pulled from Transifex or
         handled locally"""
     slug = transifex_name_from_filename(source_string_path, filename)
-    return False and slug in transifex_handled_slugs or slug.startswith('greaselion_')
+    return slug in transifex_handled_slugs or slug.startswith('greaselion_')
 
 
 # pylint: disable=inconsistent-return-statements
 def transifex_name_from_filename(source_file_path, filename):
     ext = os.path.splitext(source_file_path)[1]
     if 'mises_components_strings' in source_file_path:
-        return 'brave_components_resources'
+        return 'mises_components_resources'
     if ext == '.grd':
         return filename
     if 'mises-site-specific-scripts/scripts/' in source_file_path:

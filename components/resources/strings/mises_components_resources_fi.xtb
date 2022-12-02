@@ -32,10 +32,10 @@
 <translation id="985862351129593673">Mukauta hallintapaneeli</translation>
 <translation id="7180865173735832675">Mukauta</translation>
 <translation id="8522669544471808198">Näytä taustakuvat</translation>
-<translation id="5801450813341024983">Brave-taustat</translation>
+<translation id="5801450813341024983">Mises-taustat</translation>
 <translation id="1416884769823233410">Käytä omaasi</translation>
 <translation id="6246790815526961700">Lataa laitteesta</translation>
-<translation id="7275773481201277457">Näytä Brave-tilastot</translation>
+<translation id="7275773481201277457">Näytä Mises-tilastot</translation>
 <translation id="6836061097810262923">Näytä kello</translation>
 <translation id="5912396950572065471">Muoto</translation>
 <translation id="604124094241169006">Automaattinen</translation>
@@ -58,56 +58,56 @@
 <translation id="1773147648972887693">Näytä usein käytetyt</translation>
 <translation id="4546260624932151782">Näytä suosikit</translation>
 <translation id="1230746063445072175">Haluatko entistä parempaa yksityisyyttä?</translation>
-<translation id="6699628638740071563">On aika hylätä Brave.</translation>
-<translation id="2045455461902775806">Brave-haku ei vääristä tai sensuroi tuloksia, ja se ei seuraa sinua, hakujasi tai napsautuksiasi.</translation>
-<translation id="6811221529729056895">Kokeile Brave-hakua nyt</translation>
+<translation id="6699628638740071563">On aika hylätä Mises.</translation>
+<translation id="2045455461902775806">Mises-haku ei vääristä tai sensuroi tuloksia, ja se ei seuraa sinua, hakujasi tai napsautuksiasi.</translation>
+<translation id="6811221529729056895">Kokeile Mises-hakua nyt</translation>
 <translation id="5525668735313040116">Etsi netistä yksityisesti</translation>
-<translation id="3446024864193919737">Näytä Brave-palkinnot</translation>
+<translation id="3446024864193919737">Näytä Mises-palkinnot</translation>
 <translation id="6274899614137380422">Näytä Binance</translation>
 <translation id="5585019845078534178">Kortit</translation>
 <translation id="3870475560794762985">Näytä maksetut kuvat</translation>
 <translation id="8466529005131466476">Voit ansaita katselemalla sponsoroituja sivustoja.</translation>
 <translation id="3955742714798578476">Ansaitset katselemalla sponsoroituja kuvia.</translation>
-<translation id="7822618650711767369">Sponsoroidut kuvat tukevat Bravea. Brave-palkintojen kautta ansaitset osan sponsoroitujen kuvien tuotoista ja voit tukea lisäksi sisällöntuottajia!</translation>
+<translation id="7822618650711767369">Sponsoroidut kuvat tukevat Misesa. Mises-palkintojen kautta ansaitset osan sponsoroitujen kuvien tuotoista ja voit tukea lisäksi sisällöntuottajia!</translation>
 <translation id="5579480493856401823">Sponsoroitujen sivustojen poistaminen käytöstä vähentää ansaittavien tokenien määrää sekä joka kuukausi sisällöntuottajille annettua tukea.</translation>
 <translation id="2875302873837723333">kärkisivustot</translation>
-<translation id="8173998484743827990">Brave-tilastot</translation>
+<translation id="8173998484743827990">Mises-tilastot</translation>
 <translation id="383680190590774040">kello</translation>
-<translation id="3333887201479867589">Brave Rewards</translation>
+<translation id="3333887201479867589">Mises Rewards</translation>
 <translation id="3159285901314605198">Taustakuva</translation>
 <translation id="385051799172605136">Edellinen</translation>
 <translation id="4225429340218993596">Kiinteät värit</translation>
 <translation id="7610541582755894669">Liukuvärit</translation>
 <translation id="1606851618930975029">Päivitä jokaisella uudella välilehdellä</translation>
-<translation id="9024104284526126630">Voit aloittaa yksityispuhelun Bravessa.</translation>
-<translation id="4903286433687221248">Käynnistä rajoittamattomat puhelut ystävien ja kollegoiden kanssa Brave Talkissa.</translation>
+<translation id="9024104284526126630">Voit aloittaa yksityispuhelun Misesssa.</translation>
+<translation id="4903286433687221248">Käynnistä rajoittamattomat puhelut ystävien ja kollegoiden kanssa Mises Talkissa.</translation>
 <translation id="7115051913071512405">Kokeile</translation>
 <translation id="7415602225677446066">Tämän päivän pääuutiset on täysin yksityinen syöte, joka on tarkoitettu ainoastaan sinulle.</translation>
-<translation id="6903061332999399632">Brave News on mainoksilla tuettu palvelu, jossa on täysin yksityis- ja anonymisoituja mainoksia, jotka täsmäävät laitteesi kanssa. Henkilötietosi pysyvät aina yksityisinä <ph name="LINK_START"/>privacy policy<ph name="LINK_END"/> mukaisesti.</translation>
-<translation id="7823038307453615214">Näytä Brave News</translation>
-<translation id="1447534717041828517">Näytä Brave-uutiset-painike työkalupalkissa</translation>
+<translation id="6903061332999399632">Mises News on mainoksilla tuettu palvelu, jossa on täysin yksityis- ja anonymisoituja mainoksia, jotka täsmäävät laitteesi kanssa. Henkilötietosi pysyvät aina yksityisinä <ph name="LINK_START"/>privacy policy<ph name="LINK_END"/> mukaisesti.</translation>
+<translation id="7823038307453615214">Näytä Mises News</translation>
+<translation id="1447534717041828517">Näytä Mises-uutiset-painike työkalupalkissa</translation>
 <translation id="370665806235115550">Ladataan...</translation>
 <translation id="4634933166298842522">Hallinnoi tilauksia</translation>
 <translation id="4108314971463891922">Seuraa</translation>
 <translation id="3861486700625780712">Lopeta seuraaminen</translation>
 <translation id="8909741410750517071">Seuraa tätä lähdettä yhdellä napsautuksella.</translation>
-<translation id="1982678174789043774">Hanki kaikki uusimmat tarinat Brave-uutisten avulla.</translation>
+<translation id="1982678174789043774">Hanki kaikki uusimmat tarinat Mises-uutisten avulla.</translation>
 <translation id="7894417427965898400">Hallitse syötteitä</translation>
 <translation id="780301667611848630">Ei kiitos</translation>
 <translation id="9164544612367905452">Haetaan…</translation>
 <translation id="1276592121036104130">Lataa uutta sisältöä</translation>
-<translation id="2875288128871360696">Vieritä näyttöä Brave Newsiin</translation>
-<translation id="8510120023634509743">Palauta Brave News -lähteet alkutilaan</translation>
-<translation id="75825199302994272">Palauta kaikki Brave Newsin julkaisijavalinnat oletustiloihinsa?</translation>
+<translation id="2875288128871360696">Vieritä näyttöä Mises Newsiin</translation>
+<translation id="8510120023634509743">Palauta Mises News -lähteet alkutilaan</translation>
+<translation id="75825199302994272">Palauta kaikki Mises Newsin julkaisijavalinnat oletustiloihinsa?</translation>
 <translation id="954001034349395856">Kaikki lähteet</translation>
 <translation id="8890516388109605451">Lähteet</translation>
 <translation id="5158129253322921540">Ota sisältö pois käytöstä julkaisijalta <ph name="PUBLISHER_NAME"/></translation>
 <translation id="3189348785087463371">Promootio</translation>
 <translation id="4541978218358617681">Mainos</translation>
 <translation id="6265592479622441247">Takaisin <ph name="BEGIN_BOLD"/>hallintapaneeliin<ph name="END_BOLD"/></translation>
-<translation id="8300751939969131609">Ota Brave-uutiset käyttöön, niin yksikään tarina ei mene ohi</translation>
+<translation id="8300751939969131609">Ota Mises-uutiset käyttöön, niin yksikään tarina ei mene ohi</translation>
 <translation id="8117813824055029515">Mukautettuja uutissyötteitä johtavista lähteistä suoraan selaimessasi. 100 prosenttisesti yksityistä.</translation>
-<translation id="1765217911817124376">Ota Brave News käyttöön</translation>
+<translation id="1765217911817124376">Ota Mises News käyttöön</translation>
 <translation id="7845637671472170434">Hae uutisia, sivustoja, aiheita tai RSS-syötteitä</translation>
 <translation id="1498364270401875204">Kanavat</translation>
 <translation id="1472675084647422956">Näytä enemmän</translation>
@@ -130,12 +130,12 @@
 <translation id="1531133232292396145">Käy kryptokauppaa Binancessa suoraan selaimestasi käsin.</translation>
 <translation id="2166494527623220386">Käy kryptokauppaa Geminissä suoraan selaimestasi käsin.</translation>
 <translation id="7191394989411626168">Kaikki tällä hetkellä näkyvissä olevat kortit piilotetaan, jos asetat kortit pois päältä. Sinulle kuitenkin voidaan vielä ilmoittaa uusista korteista.</translation>
-<translation id="6820526586005233839">Brave Ads keskeytetty</translation>
-<translation id="5190407395832551012">Pitääksemme Brave Rewards -palkinnot turvassa väärinkäytöltä, pyydämme satunnaisesti käyttäjiä ratkaisemaan captchan. Napsauta "Ratkaise" jatkaaksesi mainoksia.</translation>
+<translation id="6820526586005233839">Mises Ads keskeytetty</translation>
+<translation id="5190407395832551012">Pitääksemme Mises Rewards -palkinnot turvassa väärinkäytöltä, pyydämme satunnaisesti käyttäjiä ratkaisemaan captchan. Napsauta "Ratkaise" jatkaaksesi mainoksia.</translation>
 <translation id="1693773514029371138">Ratkaise</translation>
 <translation id="6991128190741664836">Myöhemmin</translation>
-<translation id="8112367589167674370">Brave Talk</translation>
-<translation id="8488282162676695335">Brave-lompakko</translation>
+<translation id="8112367589167674370">Mises Talk</translation>
+<translation id="8488282162676695335">Mises-lompakko</translation>
 <translation id="8820817407110198400">Kirjanmerkit</translation>
 <translation id="1644574205037202324">Historia</translation>
 <translation id="2702801445560668637">Lukulista</translation>
@@ -144,30 +144,30 @@
 <translation id="8730621377337864115">Valmis</translation>
 <translation id="730042046912793465">Tämä on</translation>
 <translation id="2055363275850890030">Yksityinen ikkuna</translation>
-<translation id="9133213713928851646">Brave ei muista mitä teet yksityisessä ikkunassa. Sivustot, joilla käyt, eivät näy sivuhistoriassasi ja evästeet katoavat kun olet valmis. Yksityiset ikkunat eivät kuitenkaan tee sinusta täysin anonyymiä verkossa.</translation>
-<translation id="4085423007106063912">Brave ei koskaan muista, mitä teet yksityisessä ikkunassa. Käyttämäsi sivustot eivät näy historiassa. Evästeet, lomaketiedot ja sivustotiedot katoavat, kun suljet ikkunan.</translation>
+<translation id="9133213713928851646">Mises ei muista mitä teet yksityisessä ikkunassa. Sivustot, joilla käyt, eivät näy sivuhistoriassasi ja evästeet katoavat kun olet valmis. Yksityiset ikkunat eivät kuitenkaan tee sinusta täysin anonyymiä verkossa.</translation>
+<translation id="4085423007106063912">Mises ei koskaan muista, mitä teet yksityisessä ikkunassa. Käyttämäsi sivustot eivät näy historiassa. Evästeet, lomaketiedot ja sivustotiedot katoavat, kun suljet ikkunan.</translation>
 <translation id="1700746046668116047">Huomaa, että Internet-palveluntarjoajasi, passiiviset verkkotarkkailijat tai työnantajasi voivat ehkä nähdä toimintasi (jos käytät työkoneita tai -verkkoa). Lisää yksityisyyttä avaamalla yksityinen ikkuna Torilla.</translation>
 <translation id="8759753423332885148">Lue lisää.</translation>
 <translation id="8611976753572844841">Yksityinen ikkuna Tor-yhteydellä</translation>
-<translation id="1645589858096839236">Brave ei tallenna yksityisten ikkunoiden selaushistoriaa. Tor-yhteyden vuoksi sivustojen on entistä vaikeampaa nähdä todellinen IP-osoitteesi ja verkkojen entistä vaikeampaa nähdä, millä sivustoilla käyt. Mutta jos henkilökohtainen turvallisuutesi riippuu anonyyminä pysymisestä, käytä sen sijaan Tor-selainta.</translation>
+<translation id="1645589858096839236">Mises ei tallenna yksityisten ikkunoiden selaushistoriaa. Tor-yhteyden vuoksi sivustojen on entistä vaikeampaa nähdä todellinen IP-osoitteesi ja verkkojen entistä vaikeampaa nähdä, millä sivustoilla käyt. Mutta jos henkilökohtainen turvallisuutesi riippuu anonyyminä pysymisestä, käytä sen sijaan Tor-selainta.</translation>
 <translation id="7919374705736538787">Hae yksityisesti</translation>
 <translation id="3135655280958284640">DuckDuckGo</translation>
-<translation id="218839872518145456">Brave käyttää DuckDuckGo:ta yksityisten ikkunoiden hakuihin. DuckDuckGo ei jäljitä hakuhistoriaasi, joten voit käyttää hakua yksityisesti.</translation>
+<translation id="218839872518145456">Mises käyttää DuckDuckGo:ta yksityisten ikkunoiden hakuihin. DuckDuckGo ei jäljitä hakuhistoriaasi, joten voit käyttää hakua yksityisesti.</translation>
 <translation id="1925197199485958903">DuckDuckGo on Tor-verkon yksityisten ikkunoiden oletushakukone. Muita suosittuja hakukoneita on vaikeampi käyttää Tor-verkossa. DuckDuckGo ei jäljitä selaushistoriaasi, eivätkä he edes tiedä IP-osoitettasi.</translation>
 <translation id="4371533307685765155">Etsi DuckDuckGo:lla</translation>
 <translation id="548478195417408221">Tee yksityisikkunoista yksityisempiä</translation>
 <translation id="3294503279952534143">Tämä yksityisikkuna on yksityisempi</translation>
 <translation id="6126226144537295436">Tor-yhteydellä</translation>
 <translation id="8541421872680304667">Tor salaa IP-osoitteesi vierailemiltasi sivustoilta reitittämällä selaustoimintasi usean eri Tor-palvelimen kautta ennen määränpäähäsi saapumista. Tor saattaa hidastaa selaamista, ja jotkin sivustot saattavat lakata kokonaan toimimasta.</translation>
-<translation id="8897548669448660973">Yksityisikkunan käyttäminen muuttaa ainoastaan Braven toimintaa laitteellasi — se ei vaikuta muiden toimintaan. Tor kätkee IP-osoitteesi käyttämiltäsi sivustoilta ja vaikeuttaa (joskaan ei täysin estä) ISP:täsi tai työnantajaasi näkemästä käyttämiäsi sivustoja. Avaa yksityisikkuna Torin avulla valikosta tai [[ key ]]-näppäimellä.</translation>
-<translation id="6975708438781948564">Lisätietoa Tor-verkosta Bravessa</translation>
+<translation id="8897548669448660973">Yksityisikkunan käyttäminen muuttaa ainoastaan Misesn toimintaa laitteellasi — se ei vaikuta muiden toimintaan. Tor kätkee IP-osoitteesi käyttämiltäsi sivustoilta ja vaikeuttaa (joskaan ei täysin estä) ISP:täsi tai työnantajaasi näkemästä käyttämiäsi sivustoja. Avaa yksityisikkuna Torin avulla valikosta tai [[ key ]]-näppäimellä.</translation>
+<translation id="6975708438781948564">Lisätietoa Tor-verkosta Misesssa</translation>
 <translation id="4712050378540986986">Tor-tila</translation>
 <translation id="1939334281379458295">Tor-yhteys onnistui</translation>
 <translation id="8030169304546394654">Yhteys katkaistu</translation>
 <translation id="2795840524629682765">Tor-yhteys epäonnistui</translation>
 <translation id="1149108864689950951">Tor yhdistää... [[prosentti]]%</translation>
 <translation id="3651192084771403430">Onko sinulla vaikeuksia muodostaa yhteys? Kokeile <ph name="BEGIN_LINK"/>sulkea<ph name="END_LINK"/> yksityinen ikkuna Torin avulla ja avata se uudelleen asetuksissa.</translation>
-<translation id="8834376622642889380">Avaa <ph name="BEGIN_LINK"/>Brave-asetukset<ph name="END_LINK"/>, poista yksityinen ikkuna käytöstä Torilla ja ota sitten uudelleen käyttöön.</translation>
+<translation id="8834376622642889380">Avaa <ph name="BEGIN_LINK"/>Mises-asetukset<ph name="END_LINK"/>, poista yksityinen ikkuna käytöstä Torilla ja ota sitten uudelleen käyttöön.</translation>
 <translation id="1576202729986800142"><ph name="BEGIN_BOLD"/>Onko sinulla edelleen ongelmia?<ph name="END_BOLD"/> Kokeile <ph name="BEGIN_BRIDGES_LINK"/>siltoja<ph name="END_BRIDGES_LINK"/> tai <ph name="BEGIN_SUPPORT_LINK"/>ota yhteyttä tukeen<ph name="END_SUPPORT_LINK"/>.</translation>
 <translation id="8388043004918289671">Ota yhteyttä tukeen.</translation>
 <translation id="4272382368346338917">Lisäsuotimet</translation>
@@ -187,17 +187,17 @@
 <translation id="5334844597069022743">Näytä lähde</translation>
 <translation id="4720556299488643018">Peruuta tilaus</translation>
 <translation id="1209739344687072997">Ilmoita toimimattomasta sivustosta</translation>
-<translation id="8510478288840333677">Tuo Braven kehittäjien tietoon, ettei tämä sivusto toimi kunnolla kilpien kanssa:</translation>
-<translation id="4105411033440701818">Huomaa: Kun napsautat "Lähetä", jaat sivuston osoitteen, Brave-version numerosi ja IP-osoitteesi Braven kehittäjien kanssa. (IP -osoitetta ei tallenneta.)</translation>
+<translation id="8510478288840333677">Tuo Misesn kehittäjien tietoon, ettei tämä sivusto toimi kunnolla kilpien kanssa:</translation>
+<translation id="4105411033440701818">Huomaa: Kun napsautat "Lähetä", jaat sivuston osoitteen, Mises-version numerosi ja IP-osoitteesi Misesn kehittäjien kanssa. (IP -osoitetta ei tallenneta.)</translation>
 <translation id="6476216365964140603">Lisätiedot (valinnainen)</translation>
 <translation id="6145852496180774737">Ota minuun yhteyttä paikassa: (valinnainen)</translation>
 <translation id="7616645803364270729">Sähköposti, Twitter jne.</translation>
 <translation id="5299848999918506028">Kiitos!</translation>
-<translation id="76550953340008122">Toit Braven kehittäjien tietoon, että tällä sivustolla on jotakin vialla. Kiitos siitä! Teemme parhaamme korjataksemme asian.</translation>
-<translation id="2974339193389078578">Brave - uusi Internet</translation>
+<translation id="76550953340008122">Toit Misesn kehittäjien tietoon, että tällä sivustolla on jotakin vialla. Kiitos siitä! Teemme parhaamme korjataksemme asian.</translation>
+<translation id="2974339193389078578">Mises - uusi Internet</translation>
 <translation id="7735138632831241257">Valmistaudu nauttimaan nopeammasta ja suojatummasta selailusta selaimella, joka on rakennetu suojaamaan yksityisyyttäsi.</translation>
 <translation id="6001839398155993679">Mennään</translation>
-<translation id="4225189922025976867"><ph name="BEGIN_BOLD"/>Ansaitse maksutunnuksia<ph name="END_BOLD"/> katsomalla Braven yksityismainoksia ja tukemalla sisällönkehittäjiä automaattisesti.</translation>
+<translation id="4225189922025976867"><ph name="BEGIN_BOLD"/>Ansaitse maksutunnuksia<ph name="END_BOLD"/> katsomalla Misesn yksityismainoksia ja tukemalla sisällönkehittäjiä automaattisesti.</translation>
 <translation id="5477721706074111257">Napsauttamalla ilmaiset hyväksyväsi <ph name="BEGIN_LINK"/>käyttöehdot<ph name="END_LINK"/> ja <ph name="BEGIN_LINK"/>tietosuojakäytännön<ph name="END_LINK"/>.</translation>
 <translation id="3505541710659461355">Voit asettaa tämän pois päältä milloin tahansa asetuksista käsin.</translation>
 <translation id="2965798296974325760">Aloita Rewardien käyttö</translation>
@@ -206,7 +206,7 @@
 <translation id="8275038454117074363">Tuo</translation>
 <translation id="2088479175984386785">Tuo kohteesta...</translation>
 <translation id="5540323067375019678">Hallitse suojiasi</translation>
-<translation id="3278033011827237847">Suojaudu yksityisyyttäsi uhkaavilta mainoksilta ja seuraimilta selauksen aikana Brave Shieldsin avulla. Aseta Shields "alas", jos sivusto ei toimi kunnolla.</translation>
+<translation id="3278033011827237847">Suojaudu yksityisyyttäsi uhkaavilta mainoksilta ja seuraimilta selauksen aikana Mises Shieldsin avulla. Aseta Shields "alas", jos sivusto ei toimi kunnolla.</translation>
 <translation id="3366308997091824722">Suoja-asetukset</translation>
 <translation id="4764692524839457597">oletus</translation>
 <translation id="3108122610701115301">Määritä oletusarvoiset</translation>
@@ -216,16 +216,16 @@
 <translation id="3829010735958850433">Ohita tervetuliaiskierros</translation>
 <translation id="1201402288615127009">Seuraava</translation>
 <translation id="7954950242989581218">Selaa turvallisesti ja huoletta</translation>
-<translation id="2188651882929633653">Brave Shields estää kaiken ikävän, joka yrittää jäljittää sinua pitkin verkkoa, — muun muassa suurimman osan mainoksista. Aseta Shieldsin tilaksi “pois”, jos sivusto ei vaikuta toimivan. Brave käyttää <ph name="BEGIN_LINK_P3A"/>täysin yksityistä tuoteanalytiikkaa<ph name="END_LINK_P3A"/> arvioidakseen tiettyjen ominaisuuksien kokonaiskäytön. Voit poistaa sen käytöstä <ph name="BEGIN_LINK_P3A_SETTINGS"/>asetuksista<ph name="END_LINK_P3A_SETTINGS"/>.</translation>
-<translation id="4851215387785619212">Braven yksityiset mainokset</translation>
-<translation id="3114984266384096064">Ansaitse [[currency]] katsomalla Brave-yksityismainoksia. Näytetyt mainokset perustuvat kiinnostuksen kohteisiisi siten kuin ne on päätelty selauskäyttäytymisesi perusteella. Henkilötiedot tai selaushistoria eivät koskaan poistu selaimeltasi.</translation>
+<translation id="2188651882929633653">Mises Shields estää kaiken ikävän, joka yrittää jäljittää sinua pitkin verkkoa, — muun muassa suurimman osan mainoksista. Aseta Shieldsin tilaksi “pois”, jos sivusto ei vaikuta toimivan. Mises käyttää <ph name="BEGIN_LINK_P3A"/>täysin yksityistä tuoteanalytiikkaa<ph name="END_LINK_P3A"/> arvioidakseen tiettyjen ominaisuuksien kokonaiskäytön. Voit poistaa sen käytöstä <ph name="BEGIN_LINK_P3A_SETTINGS"/>asetuksista<ph name="END_LINK_P3A_SETTINGS"/>.</translation>
+<translation id="4851215387785619212">Misesn yksityiset mainokset</translation>
+<translation id="3114984266384096064">Ansaitse [[currency]] katsomalla Mises-yksityismainoksia. Näytetyt mainokset perustuvat kiinnostuksen kohteisiisi siten kuin ne on päätelty selauskäyttäytymisesi perusteella. Henkilötiedot tai selaushistoria eivät koskaan poistu selaimeltasi.</translation>
 <translation id="6112368337882254910">Osallistu automaattisesti</translation>
-<translation id="3742599705619405136">Automaattinen tapa tukea julkaisijoita ja sisällönluojia. Määrää kuukausittainen maksu ja selaa tavalliseen tapaan. Braven vahvistamat sivut, joilla vierailet, saavat kannatusmaksusi automaattisesti sen mukaan, miten Brave on mitannut sinun osoittavan niille huomiotasi.</translation>
+<translation id="3742599705619405136">Automaattinen tapa tukea julkaisijoita ja sisällönluojia. Määrää kuukausittainen maksu ja selaa tavalliseen tapaan. Misesn vahvistamat sivut, joilla vierailet, saavat kannatusmaksusi automaattisesti sen mukaan, miten Mises on mitannut sinun osoittavan niille huomiotasi.</translation>
 <translation id="3325399124634342726">Nykyiset ansiot tässä kuussa (arvioitu)</translation>
 <translation id="8593551638387217772">Seuraava maksupäivä</translation>
 <translation id="4428871418618312983">Tässä kuussa vastaanotetut mainokset</translation>
 <translation id="4229016885653790965">Olemme pahoillamme! Alueellesi ei ole vielä saatavilla mainoksia.</translation>
-<translation id="2539279826042558064">Brave-palkinnot ja mainokset eivät ole tällä hetkellä käytettävissä laitteellasi.</translation>
+<translation id="2539279826042558064">Mises-palkinnot ja mainokset eivät ole tällä hetkellä käytettävissä laitteellasi.</translation>
 <translation id="5736977383725358876">Ilmoitusmainosten näyttötiheys</translation>
 <translation id="7701040980221191251">Ei mitään</translation>
 <translation id="767929144984201135">Enintään 1 mainos tunnissa</translation>
@@ -235,7 +235,7 @@
 <translation id="8827015466803589071">Enintään 5 mainosta tunnissa</translation>
 <translation id="2293009346092992234">Enintään 10 mainosta tunnissa</translation>
 <translation id="2356652719351432565">Alueellisten mainosten relevanssi</translation>
-<translation id="3216275550298493597">Tämän avulla Brave voi näyttää juuri alueellesi tarkoitettuja mainoksia.</translation>
+<translation id="3216275550298493597">Tämän avulla Mises voi näyttää juuri alueellesi tarkoitettuja mainoksia.</translation>
 <translation id="8446884382197647889">Lue lisää</translation>
 <translation id="6209514229703649203">Havaittu automaattisesti seuraavaksi: [[adsSubdivisionTarget]]</translation>
 <translation id="8010081455002666927">Automaattihavaitsin</translation>
@@ -280,34 +280,34 @@
 <translation id="7841456038054167122">Syötä avaimet uudelleen tai kokeile eri avaimia.</translation>
 <translation id="1911900517212490188">Palautusavainta ei enää tueta. Ole hyvä ja vieraile <ph name="BEGIN_LINK"/>täällä<ph name="END_LINK"/> saadaksesi uuden avaimen.</translation>
 <translation id="7583327070390027131">Seuraava kuukausittaisten tippien päivämäärä</translation>
-<translation id="6231182869178328516">Annoin juuri tipin henkilölle <ph name="NAME"/> Brave-selaimen kautta. Voit tutustua siihen osoitteessa https://brave.com/tips.</translation>
-<translation id="5916536234616514390">Hienoa, että <ph name="HASHTAG"/>Braven avulla voin tukea sisällöntuottajia! Annoin juuri tipin henkilölle <ph name="NAME"/> käyttäen kohdetta <ph name="HASHTAG2"/>BAT. Jos hän vahvistaa osoitteessa https://creators.brave.com ennen <ph name="DATE"/>, BAT on hänen!</translation>
-<translation id="8404935570206006581">TippaaBravella</translation>
+<translation id="6231182869178328516">Annoin juuri tipin henkilölle <ph name="NAME"/> Mises-selaimen kautta. Voit tutustua siihen osoitteessa https://brave.com/tips.</translation>
+<translation id="5916536234616514390">Hienoa, että <ph name="HASHTAG"/>Misesn avulla voin tukea sisällöntuottajia! Annoin juuri tipin henkilölle <ph name="NAME"/> käyttäen kohdetta <ph name="HASHTAG2"/>BAT. Jos hän vahvistaa osoitteessa https://creators.brave.com ennen <ph name="DATE"/>, BAT on hänen!</translation>
+<translation id="8404935570206006581">TippaaMiseslla</translation>
 <translation id="3082557070674409251">Klikattu</translation>
 <translation id="7119308337584989771">Hylätty</translation>
 <translation id="6805660603861526473">Katsottu</translation>
-<translation id="8826352442759228526">Brave-palkintojasi ei voida vahvistaa, sillä olet saavuttanut sallitun vahvistettujen laitteiden ylärajan.</translation>
+<translation id="8826352442759228526">Mises-palkintojasi ei voida vahvistaa, sillä olet saavuttanut sallitun vahvistettujen laitteiden ylärajan.</translation>
 <translation id="1221593978088944142">Virhe: laiteraja saavutettu</translation>
 <translation id="3113653894794167793">Pyyntösi käsittelyn yhteydessä ilmeni häiriö; ole hyvä ja yritä uudelleen.</translation>
-<translation id="3509185560119586847">Brave-palkintoprofiilisi on merkitty haitalliseksi, etkä voi suorittaa vahvistamista säilyttäjän kanssa juuri nyt. Merkinnän syynä voi joskus olla epätavallinen Brave-mainosten käyttö, mutta kyseessä voi myös olla väärä hälytys.</translation>
-<translation id="5031451251720571882">Huomaa, että kun Brave Rewards -profiilisi on merkitty haitalliseksi, et voi suorittaa tarkistusta.</translation>
-<translation id="7301759045821910866">Sinulta ei vaadita toimenpiteitä. Brave Rewards -profiilisi arvioidaan automaattisesti säännöllisin väliajoin sen määrittämiseksi, milloin haitalliseksi merkintä voidaan poistaa (jos voidaan). Yritä uudelleen myöhemmin tarkistaaksesi, onko haitalliseksi merkintä poistettu.</translation>
-<translation id="280350148043792509"><ph name="BEGIN_LINK"/>Lue lisää Braven prosessista palkintoprofiilien merkitsemisestä haitalliseksi.<ph name="END_LINK"/></translation>
-<translation id="5028274575541726856">Virhe: Brave-palkintoprofiili on merkitty haitalliseksi</translation>
+<translation id="3509185560119586847">Mises-palkintoprofiilisi on merkitty haitalliseksi, etkä voi suorittaa vahvistamista säilyttäjän kanssa juuri nyt. Merkinnän syynä voi joskus olla epätavallinen Mises-mainosten käyttö, mutta kyseessä voi myös olla väärä hälytys.</translation>
+<translation id="5031451251720571882">Huomaa, että kun Mises Rewards -profiilisi on merkitty haitalliseksi, et voi suorittaa tarkistusta.</translation>
+<translation id="7301759045821910866">Sinulta ei vaadita toimenpiteitä. Mises Rewards -profiilisi arvioidaan automaattisesti säännöllisin väliajoin sen määrittämiseksi, milloin haitalliseksi merkintä voidaan poistaa (jos voidaan). Yritä uudelleen myöhemmin tarkistaaksesi, onko haitalliseksi merkintä poistettu.</translation>
+<translation id="280350148043792509"><ph name="BEGIN_LINK"/>Lue lisää Misesn prosessista palkintoprofiilien merkitsemisestä haitalliseksi.<ph name="END_LINK"/></translation>
+<translation id="5028274575541726856">Virhe: Mises-palkintoprofiili on merkitty haitalliseksi</translation>
 <translation id="2607420597216860026">Yritä uudelleen, kun olet suorittanut henkilöllisyyden vahvistuksen kohteessa <ph name="PROVIDER"/>.</translation>
 <translation id="3183954159462541696">Virhe: Tarvitset vahvistetun tilin kirjautuaksesi sisään</translation>
-<translation id="1859789048900659918">Hmm, näyttää siltä, että Brave-palkinto-ohjelman maasi ei vastaa sen <ph name="PROVIDER"/>-tilin maata, jota yrität yhdistää.</translation>
+<translation id="1859789048900659918">Hmm, näyttää siltä, että Mises-palkinto-ohjelman maasi ei vastaa sen <ph name="PROVIDER"/>-tilin maata, jota yrität yhdistää.</translation>
 <translation id="8925428135452218262">Virhe: Maa ei täsmää</translation>
-<translation id="5260522591743022748">Hmm, näyttää siltä, että Brave-palkintosi on jo vahvistettu toisella <ph name="PROVIDER"/> tilillä. Vahvista uudelleen käyttämällä edellistä tiliäsi.</translation>
+<translation id="5260522591743022748">Hmm, näyttää siltä, että Mises-palkintosi on jo vahvistettu toisella <ph name="PROVIDER"/> tilillä. Vahvista uudelleen käyttämällä edellistä tiliäsi.</translation>
 <translation id="5111921830714291902">Virhe: Eri tili</translation>
-<translation id="1024520300696337331"><ph name="PROVIDER"/>-tiliäsi ei voida yhdistää Brave-palkintoprofiiliisi tällä hetkellä. <ph name="PROVIDER"/>-tilisi on rekisteröity maassa, jossa Brave-palkintojen yhdistämistä ei tueta.</translation>
-<translation id="619384413404021992">Tutustu <ph name="LINK_BEGIN"/>tällä hetkellä tuettujen alueiden luetteloon ja lue lisää<ph name="END_LINK"/> säilytystilin yhdistämisestä Brave-palkintoihin.</translation>
+<translation id="1024520300696337331"><ph name="PROVIDER"/>-tiliäsi ei voida yhdistää Mises-palkintoprofiiliisi tällä hetkellä. <ph name="PROVIDER"/>-tilisi on rekisteröity maassa, jossa Mises-palkintojen yhdistämistä ei tueta.</translation>
+<translation id="619384413404021992">Tutustu <ph name="LINK_BEGIN"/>tällä hetkellä tuettujen alueiden luetteloon ja lue lisää<ph name="END_LINK"/> säilytystilin yhdistämisestä Mises-palkintoihin.</translation>
 <translation id="7193389978208728181">Virhe: Aluetta ei tällä hetkellä tueta</translation>
 <translation id="5382684862562314222">BATtia ei vielä tueta alueesi Uphold-lompakoissa.</translation>
 <translation id="9074594632540931067">Virhe: BAT ei ole saatavilla</translation>
 <translation id="5376524136040178759">Upholdin mukaan Uphold-tililläsi on tällä hetkellä joitain rajoituksia. Kirjaudu sisään Uphold-tilillesi ja tarkista, onko sinulla ilmoituksia tai tilivaatimuksia jäljellä, ja yritä sitten uudelleen. Saatat esimerkiksi joutua lähettämään lisätietoja Upholdille.</translation>
 <translation id="6996157559236886133">Virhe: Rajoitettu Uphold-tilin toiminnallisuus</translation>
-<translation id="3274650021044762770">Ilmeni ongelma, kun selaimesi pyyntöä liittää Brave-palkintosi <ph name="PROVIDER"/>-tiliisi vahvistettiin. Voit <ph name="BEGIN_LINK"/>ottaa yhteyttä tukeen<ph name="END_LINK"/> saadaksesi apua.</translation>
+<translation id="3274650021044762770">Ilmeni ongelma, kun selaimesi pyyntöä liittää Mises-palkintosi <ph name="PROVIDER"/>-tiliisi vahvistettiin. Voit <ph name="BEGIN_LINK"/>ottaa yhteyttä tukeen<ph name="END_LINK"/> saadaksesi apua.</translation>
 <translation id="1316066811927496401">Virhe: pyyntöä ei voitu vahvistaa</translation>
 <translation id="1737873393693460829">Käynnistämällä [[title]] hyväksyt <ph name="BEGIN_LINK1"/>käyttöehdot<ph name="END_LINK1"/> ja <ph name="BEGIN_LINK2"/>yksityisyyskäytännön<ph name="END_LINK2"/>.</translation>
 <translation id="4672975606583962967">Valitse lompakkopalvelu</translation>
@@ -315,16 +315,16 @@
 <translation id="2205685774710519016">Huomaa: maksusuorituksesi näkyvät valitulle lompakkopalvelulle, kun vahvistat toiminnon. Se näkee esimerkiksi vastaanottajan ja tippiesi määrän.</translation>
 <translation id="2147158325758481862">Vahvistaminen on valinnaista</translation>
 <translation id="8228649055483250005">Lompakon säilytystarjoajien täytyy vahvistaa kaikkien lompakon luojien henkilöllisyys kuvallisen henkilötunnuksen avulla.</translation>
-<translation id="2672513643520959619"><ph name="BOLD_BEGIN"/>Brave Software Inc.<ph name="BOLD_END"/> ei käsittele, tallenna tai käytä mitään henkilötietoja, kun luot tilin lompakon säilytyskumppaniemme kanssa.</translation>
-<translation id="6682919029276027868">Nykyisten Brave-palkintojesi ominaisuudet ovat kuitenkin rajalliset. Kun vahvistat lompakon säilytyskumppanin kanssa, voit tehdä seuraavaa:</translation>
+<translation id="2672513643520959619"><ph name="BOLD_BEGIN"/>Mises Software Inc.<ph name="BOLD_END"/> ei käsittele, tallenna tai käytä mitään henkilötietoja, kun luot tilin lompakon säilytyskumppaniemme kanssa.</translation>
+<translation id="6682919029276027868">Nykyisten Mises-palkintojesi ominaisuudet ovat kuitenkin rajalliset. Kun vahvistat lompakon säilytyskumppanin kanssa, voit tehdä seuraavaa:</translation>
 <translation id="9064931634458501855">Nostaa ja tallentaa rahoja vapaasti</translation>
 <translation id="3222002542796906461">Saada palkintosi suoraan tilillesi</translation>
 <translation id="1233129511866436960">Lue lisää alueista ja tuesta</translation>
 <translation id="7329170127335794328">Ei tällä hetkellä käytettävissä alueellasi</translation>
-<translation id="8304979233901023264">Olen lukenut ja hyväksyn Braven <ph name="TOS_LINK_BEGIN"/>käyttöehdot<ph name="TOS_LINK_END"/> ja <ph name="PP_LINK_BEGIN"/>tietosuojakäytännön<ph name="PP_LINK_END"/>.</translation>
+<translation id="8304979233901023264">Olen lukenut ja hyväksyn Misesn <ph name="TOS_LINK_BEGIN"/>käyttöehdot<ph name="TOS_LINK_END"/> ja <ph name="PP_LINK_BEGIN"/>tietosuojakäytännön<ph name="PP_LINK_END"/>.</translation>
 <translation id="2359808026110333948">Jatka</translation>
 <translation id="1892970806832316900">Vireillä <ph name="DATE"/> asti</translation>
-<translation id="7849926087559412554">Oho! Selaimesi ei voi vastaanottaa yksityisiä Brave-mainoksia.</translation>
+<translation id="7849926087559412554">Oho! Selaimesi ei voi vastaanottaa yksityisiä Mises-mainoksia.</translation>
 <translation id="5177429570315095022">Selaimesi on päivitettävä, jotta voit jatkaa mainosten näkemistä.</translation>
 <translation id="7352651011704765696">Jotakin meni vikaan</translation>
 <translation id="752216563428219524">Mainoksia ei ole alustettu, päivitä sivu.</translation>
@@ -433,7 +433,7 @@
 <translation id="9088057605518918276">Kuukausittainen tippi on asetettu.</translation>
 <translation id="6306631474379759382">Seuraavan tipin päivämäärä:</translation>
 <translation id="3593485149443019592">Ei riittäväksi merkkejä. <ph name="LINK_BEGIN"/>Lisää varoja<ph name="LINK_END"/>.</translation>
-<translation id="3586352807094428968">Brave veloittaa 5 % tipin määrästä käsittelykuluina.</translation>
+<translation id="3586352807094428968">Mises veloittaa 5 % tipin määrästä käsittelykuluina.</translation>
 <translation id="207268487070188114">Kertaluontoinen tippi</translation>
 <translation id="69861679024013299">Kertaluontoisten tipin määrä:</translation>
 <translation id="3288812755711687300">Käyttäjän <ph name="USER"/>’ julkaisu</translation>
@@ -446,8 +446,8 @@
 <translation id="839058704683989763">Olet asettanut käsittelyssä olevan tipin!</translation>
 <translation id="5096821444729034955">julkaisulleen</translation>
 <translation id="2978223787436054634">Twiittaa tuestasi</translation>
-<translation id="5916290544882167205">Brave Software. Brave on Brave Softwaren rekisteröity tavaramerkki. Sivustojen nimet voivat olla sivuston omistajan tavaramerkkejä tai rekisteröityjä tavaramerkkejä.</translation>
-<translation id="9026369588205476247">Yksityisyytesi suojaamiseksi tätä Brave -palkinto-otetta ei tallenneta tai kirjata minnekään muualle kuin laitteeseesi (tähän tietokoneeseen). Sitä ei voi noutaa Bravesta, vaikka tiedot katoaisivat laitteestasi.</translation>
+<translation id="5916290544882167205">Mises Software. Mises on Mises Softwaren rekisteröity tavaramerkki. Sivustojen nimet voivat olla sivuston omistajan tavaramerkkejä tai rekisteröityjä tavaramerkkejä.</translation>
+<translation id="9026369588205476247">Yksityisyytesi suojaamiseksi tätä Mises -palkinto-otetta ei tallenneta tai kirjata minnekään muualle kuin laitteeseesi (tähän tietokoneeseen). Sitä ei voi noutaa Misessta, vaikka tiedot katoaisivat laitteestasi.</translation>
 <translation id="3587482841069643663">Kaikki</translation>
 <translation id="4241224519481557898">Kategoria</translation>
 <translation id="3080423471207781945">Mainosten maksimimäärä per tunti:</translation>
@@ -457,7 +457,7 @@
 <translation id="2777306694585938662">Vastaanotetut Ads-palkkiot</translation>
 <translation id="5212777575344695266">Merkitse sopimattomaksi</translation>
 <translation id="2111256234277361810">Merkitse sopimattomaksi ✓</translation>
-<translation id="8988332871810963281">Brave Ads -historiaa ei ole tällä hetkellä</translation>
+<translation id="8988332871810963281">Mises Ads -historiaa ei ole tällä hetkellä</translation>
 <translation id="5345727496083327478">Et enää saa mainoksia tästä kategoriasta</translation>
 <translation id="2631006050119455616">Tallennettu</translation>
 <translation id="3819257035322786455">Varmuuskopiointi</translation>
@@ -470,17 +470,17 @@
 <translation id="4932733599132424254">Päivämäärä</translation>
 <translation id="3552003743293281224">Talletukset</translation>
 <translation id="3866249974567520381">Kuvaus</translation>
-<translation id="8605272644314973683">Brave Rewards on</translation>
+<translation id="8605272644314973683">Mises Rewards on</translation>
 <translation id="1346059596910821859">Tippi</translation>
 <translation id="7277134233385925078">Aseta kuukausittainen tippi</translation>
 <translation id="298067735430872465">Ansaitset mainoksilla</translation>
 <translation id="1418534671788496616">Näytä talletushistoria</translation>
 <translation id="3412655388715513818">Älä sisällytä tätä sivua</translation>
 <translation id="418343137736963579">Automaattiselta lahjoitukselta estettyjen sivustojen kokonaismäärä:</translation>
-<translation id="8802504113265057166">Voimassaolon päättymiseen mennessä käyttämättä jääneet [[currency]] palautetaan automaattisesti Brave -käyttäjäkasvuvarantoihin.</translation>
+<translation id="8802504113265057166">Voimassaolon päättymiseen mennessä käyttämättä jääneet [[currency]] palautetaan automaattisesti Mises -käyttäjäkasvuvarantoihin.</translation>
 <translation id="279567716178902927">Lahjoituksen umpeutumispäivä</translation>
 <translation id="1389143276807887637">tuo</translation>
-<translation id="6302422639282249274">Hallitse Brave Rewards -ohjelmaa</translation>
+<translation id="6302422639282249274">Hallitse Mises Rewards -ohjelmaa</translation>
 <translation id="211044356803193224">Kuukausittaiset vihjeet</translation>
 <translation id="2487641031722095938">On onnenpäiväsi!</translation>
 <translation id="6255773350565723852">Tunnuslahjoituksesi on matkalla.</translation>
@@ -522,18 +522,18 @@
 <translation id="3157931365184549694">Palauta</translation>
 <translation id="5669281110673664811">Tyhjennä pois rajattujen luettelo</translation>
 <translation id="1797334173232638045">Kiinnitetyt sivustosi on siirretty</translation>
-<translation id="542042553430131913">Jos Brave-palkintojasi ei ole vahvistettu, BAT-saldoasi säilytetään laitteesi paikallisissa tiedostoissa.</translation>
+<translation id="542042553430131913">Jos Mises-palkintojasi ei ole vahvistettu, BAT-saldoasi säilytetään laitteesi paikallisissa tiedostoissa.</translation>
 <translation id="2142973554991645476">Jos haluat turvata BATisi siinä tapauksessa, että sinun täytyy tehdä puhdas selaimen uudelleenasennus tai alustaa laitteesi uudelleen, ja haluaisit nauttia muista eduista, kuten BATiesi lisäämisestä tai nostamisesta, suosittelemme <ph name="LINK_BEGIN"/>vahvistusta<ph name="LINK_END"/>.</translation>
 <translation id="5317144262906129592">Voit tukea tätä sisällöntuottajaa lähettämällä tipin. Se on tapa kiittää häntä hienon sisällön luomisesta.</translation>
 <translation id="3074127054582480056">Huomio</translation>
 <translation id="3034163433136515805">Näytä ruutukoodi</translation>
 <translation id="1640793619390890218">iOS Rewards-käyttäjille, jotka siirtävät BATteja.</translation>
-<translation id="5462747026114176246">Kun palautat palautusavaimella, nykyinen Brave-palkintoprofiilisi vaihdetaan. Varmista siis, että tyhjennät tai varmuuskopioit nykyiset Brave-palkintosi ennen palautusta.</translation>
+<translation id="5462747026114176246">Kun palautat palautusavaimella, nykyinen Mises-palkintoprofiilisi vaihdetaan. Varmista siis, että tyhjennät tai varmuuskopioit nykyiset Mises-palkintosi ennen palautusta.</translation>
 <translation id="3267911153934785912">Syätö palautusavaimesi tai</translation>
 <translation id="1209382772199769572">Tee lompakostasi varmuuskopio ennen sen vaihtamista. Muutoin menetät tämänhetkisen lompakkosi [[funds]] varat.</translation>
-<translation id="3659457123782988823">Haluatko varmasti nollata Brave-palkintosi?</translation>
-<translation id="4048187103708861555">Menetät summan <ph name="BAT_AMOUNT"/> ja muut palkintotiedot pysyvästi, jos nollaat Brave-palkintosi. Varmista, että olet <ph name="LINK_BEGIN"/>vahvistanut<ph name="LINK_END"/>, jotta voit pitää BATisi.</translation>
-<translation id="3548849774726860833">Palkintotietosi menetetään pysyvästi, jos nollaat Brave-palkintosi.</translation>
+<translation id="3659457123782988823">Haluatko varmasti nollata Mises-palkintosi?</translation>
+<translation id="4048187103708861555">Menetät summan <ph name="BAT_AMOUNT"/> ja muut palkintotiedot pysyvästi, jos nollaat Mises-palkintosi. Varmista, että olet <ph name="LINK_BEGIN"/>vahvistanut<ph name="LINK_END"/>, jotta voit pitää BATisi.</translation>
+<translation id="3548849774726860833">Palkintotietosi menetetään pysyvästi, jos nollaat Mises-palkintosi.</translation>
 <translation id="4914597931214386232">Lunastetut tunnuslahjoitukset</translation>
 <translation id="3494964159182650590">Palkkioiden yhteenveto</translation>
 <translation id="2913994227901456490">Näytä kaikki [[numItems]] tuotetta</translation>
@@ -548,14 +548,14 @@
 <translation id="1634828734222219955">Yhteensä</translation>
 <translation id="4395099108822007284">Ladataan kuvaa...</translation>
 <translation id="3535654229833214438">Liiketapahtumat</translation>
-<translation id="8772672608371898774">Braven hyväksymä julkaisija</translation>
+<translation id="8772672608371898774">Misesn hyväksymä julkaisija</translation>
 <translation id="5050370287908180130">Katso lisätiedot kuukausiotteesta</translation>
 <translation id="7853202427316060426">Toiminta</translation>
 <translation id="7232682712743566408">Rewards-saldo</translation>
 <translation id="1910721550319506122">Tervetuloa!</translation>
-<translation id="4258022280942725182">Brave-palkintosi</translation>
+<translation id="4258022280942725182">Mises-palkintosi</translation>
 <translation id="6727483290601442544">Katso yksityiskohdat</translation>
-<translation id="4206899127409458763">Brave-palkintoprofiilisi luominen</translation>
+<translation id="4206899127409458763">Mises-palkintoprofiilisi luominen</translation>
 <translation id="1988679729106502285">HUOMIO:</translation>
 <translation id="4047340292178074200">Tätä tekijää ei ole tällä hetkellä määritetty saamaan tippejä palkintojesi lompakon säilytyspalvelusta. Kaikki antamasi tipit jäävät odottamaan, ja niitä yritetään antaa automaattisesti 90 päivän ajan.</translation>
 <translation id="5530734056858418442">Tämä luoja ei ole vielä rekisteröitynyt. Kaikki antamasi tipit jäävät odottamaan. Niiden lähettämistä yritetään automaattisesti uudelleen 90 päivän ajan.</translation>
@@ -572,7 +572,7 @@
 <translation id="5113531205597573951">Katsotut sivustot</translation>
 <translation id="4450893287417543264">Älä näytä uudelleen</translation>
 <translation id="6518133107902771759">Vahvista</translation>
-<translation id="422369484771082705">Vahvistaminen on valinnaista. Kun suoritat vahvistamisen, voit kuitenkin nostaa Brave-palkintojen kautta ansaitsemiasi BATeja suoraan lompakon säilytyspalveluun.</translation>
+<translation id="422369484771082705">Vahvistaminen on valinnaista. Kun suoritat vahvistamisen, voit kuitenkin nostaa Mises-palkintojen kautta ansaitsemiasi BATeja suoraan lompakon säilytyspalveluun.</translation>
 <translation id="3656941797339037856">Linkitä Rewards Geminiin!</translation>
 <translation id="31532096120351460">Käy kauppaa 50+ kryptolla, mukaan lukien BAT, on Geminissä. Se on suojattu alusta, missä voit säilyttää kryptojasi. Plus voit ansaita korkoa Yhdysvalloissa, Hong Kongissa ja Singaporessa.</translation>
 <translation id="7404779623219601861">Vaihda BAT-valuuttaa lahjakorteiksi</translation>
@@ -583,7 +583,7 @@
 <translation id="7840362246306242214">U.S.-osakkeiden kauppa tarjolla vain Uphold-palvelussa</translation>
 <translation id="3345432088196080137">Investoi pienimmillään jopa vain 1 $ suosittuihin osakkeisiin ja vaihda rahastoja, kuten AAPL, TSLA tai AMZN</translation>
 <translation id="3787061634640932557">Muokkaa kortteja</translation>
-<translation id="2070991379950719711">Aloita Brave-palkintojen käyttäminen</translation>
+<translation id="2070991379950719711">Aloita Mises-palkintojen käyttäminen</translation>
 <translation id="5977237145327845546">Aloita videopuhelu ystäviesi tai kollegoidesi kanssa.</translation>
 <translation id="8863928195533744356">Aloita puhelu</translation>
 <translation id="3651550649176056334">Lisätietoja datastasi</translation>
@@ -650,9 +650,9 @@
 <translation id="824449983246282560">Sinulla ei ole yhtään saldoa tililläsi. Käy Geminissä ostaaksesi valuuttoja.</translation>
 <translation id="8624961452383848703">Haluan muuntaa...</translation>
 <translation id="1544192797660353713">Lompakko</translation>
-<translation id="616639131065447379">Tervetuloa Braven Crypto Walletsiin</translation>
-<translation id="1740464057879304704">Kryptovaluuttalompakot mahdollistavat kryptovaluuttojen ynnä niihin liittyvän omaisuuden käyttämisen Bravessa. Kryptovaluuttalompakot tukevat ETHin ja BATin kaltaisia Ethereum-käyttötunnuksia sekä kerättäviä tunnuksia, minkä ansiosta voit käyttää Ðappseja ynnä muita vastaavia älysopimuksia. Nämä palvelut on tarkoitettu Ethereumiin sekä muihin lohkoketjuihin perehtyneille — ja niistä kiinnostuneille.</translation>
-<translation id="4855440621031541830">Käytä Crypto Walletsia ainoastaan, jos olet valmis itse kantamaan kaikki sen käyttöön liittyvät riskit. Sinun on myös tunnustettava, että Brave Software ei ole vastuussa sen käytöstä johtuvista tappioista, lompakon oheiskulut mukaan lukien.</translation>
+<translation id="616639131065447379">Tervetuloa Misesn Crypto Walletsiin</translation>
+<translation id="1740464057879304704">Kryptovaluuttalompakot mahdollistavat kryptovaluuttojen ynnä niihin liittyvän omaisuuden käyttämisen Misesssa. Kryptovaluuttalompakot tukevat ETHin ja BATin kaltaisia Ethereum-käyttötunnuksia sekä kerättäviä tunnuksia, minkä ansiosta voit käyttää Ðappseja ynnä muita vastaavia älysopimuksia. Nämä palvelut on tarkoitettu Ethereumiin sekä muihin lohkoketjuihin perehtyneille — ja niistä kiinnostuneille.</translation>
+<translation id="4855440621031541830">Käytä Crypto Walletsia ainoastaan, jos olet valmis itse kantamaan kaikki sen käyttöön liittyvät riskit. Sinun on myös tunnustettava, että Mises Software ei ole vastuussa sen käytöstä johtuvista tappioista, lompakon oheiskulut mukaan lukien.</translation>
 <translation id="3187473319809074178">Kaikki tämä on erillään tästä:</translation>
 <translation id="8327818101454798856">Jos tahtoisit tukea suosikkisivustoasi, niin suosittelemme siirtymään siihen.</translation>
 <translation id="412480955826088549">Komponenttia ladataan...</translation>
@@ -668,14 +668,14 @@
 <translation id="5337526542182802976">Tuetut parit</translation>
 <translation id="1164622162816276433">24 tunnin volyymi</translation>
 <translation id="7534079972563542000">Pysäyttämättömät verkkotunnukset</translation>
-<translation id="4492298165410552103">Otetaanko pysäyttämättömien verkkotunnisten tuki käyttöön Bravessa?</translation>
-<translation id="689573545156113164">Brave tulee käyttämään Infuraa lähettääkseen Ethereum JSON-RPC -kutsuja älykkääseen sopimukseen pysäyttämättömistä verkkotunnuksista selvittääkseen .crypto (ja myös .x, .coin, .nft, .dao, .wallet, .blockchain, .bitcoin, .zil) -verkkotunnuksen nimen hakupyynnöt. Jos otat tämän käyttöön, Infura näkee ne tietyt verkkotunnukset, joissa yrität käydä, mutta se ei pysty näkemään muita verkkotunnuksia. Tutustu Infuran <ph name="BEGIN_INFURA_TOU_LINK"/>käyttöehtoihin<ph name="END_INFURA_TOU_LINK"/> ja <ph name="BEGIN_INFURA_PRIVACY_LINK"/>tietosuojakäytäntöön<ph name="END_INFURA_PRIVACY_LINK"/>.</translation>
+<translation id="4492298165410552103">Otetaanko pysäyttämättömien verkkotunnisten tuki käyttöön Misesssa?</translation>
+<translation id="689573545156113164">Mises tulee käyttämään Infuraa lähettääkseen Ethereum JSON-RPC -kutsuja älykkääseen sopimukseen pysäyttämättömistä verkkotunnuksista selvittääkseen .crypto (ja myös .x, .coin, .nft, .dao, .wallet, .blockchain, .bitcoin, .zil) -verkkotunnuksen nimen hakupyynnöt. Jos otat tämän käyttöön, Infura näkee ne tietyt verkkotunnukset, joissa yrität käydä, mutta se ei pysty näkemään muita verkkotunnuksia. Tutustu Infuran <ph name="BEGIN_INFURA_TOU_LINK"/>käyttöehtoihin<ph name="END_INFURA_TOU_LINK"/> ja <ph name="BEGIN_INFURA_PRIVACY_LINK"/>tietosuojakäytäntöön<ph name="END_INFURA_PRIVACY_LINK"/>.</translation>
 <translation id="6513892817556267573">Ethereum-nimipalvelu</translation>
-<translation id="4335039108389860301">Haluatko ottaa ENS-palvelun (Ethereum Name Service) käyttöön Bravessa?</translation>
-<translation id="8328137586971750853">Brave tulee käyttämään Infuraa lähettääkseen Ethereum JSON-RPC -kutsuja älykkääseen sopimukseen Ethereum-nimipalvelusta selvittääkseen .eth-verkkotunnuksen nimen hakupyynnöt. Jos otat tämän käyttöön, Infura näkee .eth-verkkotunnuksen, jossa yrität käydä, mutta se ei pysty näkemään muita verkkotunnuksia. Katso Infuran <ph name="BEGIN_INFURA_TOU_LINK"/>käyttöehtoja<ph name="END_INFURA_TOU_LINK"/> ja <ph name="BEGIN_INFURA_PRIVACY_LINK"/>tietosuojakäytäntöä<ph name="END_INFURA_PRIVACY_LINK"/>.</translation>
+<translation id="4335039108389860301">Haluatko ottaa ENS-palvelun (Ethereum Name Service) käyttöön Misesssa?</translation>
+<translation id="8328137586971750853">Mises tulee käyttämään Infuraa lähettääkseen Ethereum JSON-RPC -kutsuja älykkääseen sopimukseen Ethereum-nimipalvelusta selvittääkseen .eth-verkkotunnuksen nimen hakupyynnöt. Jos otat tämän käyttöön, Infura näkee .eth-verkkotunnuksen, jossa yrität käydä, mutta se ei pysty näkemään muita verkkotunnuksia. Katso Infuran <ph name="BEGIN_INFURA_TOU_LINK"/>käyttöehtoja<ph name="END_INFURA_TOU_LINK"/> ja <ph name="BEGIN_INFURA_PRIVACY_LINK"/>tietosuojakäytäntöä<ph name="END_INFURA_PRIVACY_LINK"/>.</translation>
 <translation id="807404806385418949">Ketjun ulkopuolinen Ethereum Name Service -haku</translation>
-<translation id="4049590838234508776">Ota ketjun ulkopuolinen Ethereum Name Service (ENS) -haku käyttöön Bravessa?</translation>
-<translation id="1769433806670482329">Brave käyttää ketjun ulkopuolisia yhdyskäytäviä .eth-verkkotunnusnimen hakupyyntöjen ratkaisemiseksi. Jos otat tämän käyttöön, kolmannen osapuolen yhdyskäytävät näkevät .eth-verkkotunnuksen, jossa yrität käytä, mutta ne eivät näe muita verkkotunnuksia. <ph name="BEGIN_BRAVE_LEARN_MORE_LINK"/>Lue lisää<ph name="END_BRAVE_LEARN_MORE_LINK"/>.</translation>
+<translation id="4049590838234508776">Ota ketjun ulkopuolinen Ethereum Name Service (ENS) -haku käyttöön Misesssa?</translation>
+<translation id="1769433806670482329">Mises käyttää ketjun ulkopuolisia yhdyskäytäviä .eth-verkkotunnusnimen hakupyyntöjen ratkaisemiseksi. Jos otat tämän käyttöön, kolmannen osapuolen yhdyskäytävät näkevät .eth-verkkotunnuksen, jossa yrität käytä, mutta ne eivät näe muita verkkotunnuksia. <ph name="BEGIN_BRAVE_LEARN_MORE_LINK"/>Lue lisää<ph name="END_BRAVE_LEARN_MORE_LINK"/>.</translation>
 <translation id="4047002754575891955">Jatka ketjun ulkopuolista hakua</translation>
 <translation id="7378412287463452336">Jatka Infura-palvelimella</translation>
 <translation id="2356070529366658676">Kysy</translation>
@@ -683,7 +683,7 @@
 <translation id="59174027418879706">Sallittu</translation>
 <translation id="2468755552460246661">Verkkotunnus estetty</translation>
 <translation id="6393849031898466746">Tämä sivusto voi yrittää seurata sinua muilla sivustoilla</translation>
-<translation id="983774928604730749">Brave on estänyt seuraavaa sivustoa latautumasta:</translation>
+<translation id="983774928604730749">Mises on estänyt seuraavaa sivustoa latautumasta:</translation>
 <translation id="4781961723893779890">Tämä sivusto voi yrittää linkittää joitakin henkilötietojasi evästeeseen ennen sisällön näyttämistä.</translation>
 <translation id="2459038234784107183">Älä enää varoita minua tästä sivustosta</translation>
 <translation id="8242426110754782860">Jatka</translation>
@@ -720,15 +720,15 @@
 <translation id="72868071984333667">Lue lisää IPFS:stä ja tietosuojasta</translation>
 <translation id="1886162073868201257">IPFS-palvelimen käynnistyshäiriö</translation>
 <translation id="5357895013476183089">IPFS ei yhdistetty</translation>
-<translation id="7662930734991751511">Ei voi ladata IPFS-resursseja Braven paikallisen IPFS-solmun avulla</translation>
+<translation id="7662930734991751511">Ei voi ladata IPFS-resursseja Misesn paikallisen IPFS-solmun avulla</translation>
 <translation id="1141556610026845297">Pyydettyjen IPFS-resurssien lataaminen paikallisen IPFS-noodin kautta epäonnistui. Napsauta "Jatka"-painiketta käyttääksesi julkista porttia sekä käyttääksesi julkista porttia jatkossa automaattisesti vastaavissa tilanteissa.</translation>
 <translation id="3373798179786163193">Jatka julkisella portilla</translation>
 <translation id="1974060860693918893">Lisäasetukset</translation>
 <translation id="9096577886148726047">Piilota vaativa</translation>
-<translation id="182581792765792826">Brave ei voi ladata pyydettyä IPFS-resurssia, sillä joko Braven paikallinen solmu ei käynnistynyt tai yhteyden muodostaneita vertaisia ei ole tällä hetkellä tavoitettavissa. Jos valitset "Jatka"-vaihtoehdon, Brave palaa automaattisesti oletusarvoiseen julkiseen yhdyskäytävään aina, kun Braven paikallinen solmu pettää. Voit muuttaa tätä käytöstä milloin tahansa Brave-asetuksissa.</translation>
+<translation id="182581792765792826">Mises ei voi ladata pyydettyä IPFS-resurssia, sillä joko Misesn paikallinen solmu ei käynnistynyt tai yhteyden muodostaneita vertaisia ei ole tällä hetkellä tavoitettavissa. Jos valitset "Jatka"-vaihtoehdon, Mises palaa automaattisesti oletusarvoiseen julkiseen yhdyskäytävään aina, kun Misesn paikallinen solmu pettää. Voit muuttaa tätä käytöstä milloin tahansa Mises-asetuksissa.</translation>
 <translation id="8026038288183400906">IPFS-suosikkiasetukset</translation>
 <translation id="2058855456574089690">Määritä IPFS-suosikkiasetuksesi</translation>
-<translation id="4780526507945807546">Käytä Braven paikallista IPFS-solmua</translation>
+<translation id="4780526507945807546">Käytä Misesn paikallista IPFS-solmua</translation>
 <translation id="8148464361648742409">Käytä julkista porttia</translation>
 <translation id="5123478056123923857">IPFS ("InterPlanetary File System") on julkinen vertaisverkko datan tallennusta ja siirroa varten. Tämän protokollan tietosuojamenetelmät poikkeavat HTTP(S):n vastaavista.</translation>
 <translation id="1216911189668016151">Tietokoneesi on yhteydessä julkiseen verkkoon, mutta IP-osoitteesi sekä pyytämäsi tai antamasi sisältö saattavat olla alttiina seurannalle. IPFS:n kautta pyytämäsi sisältö vahvistetaan ennen sinulle tarjoamista. Verkkopyynnöt eivät voi käyttää selaimen välityspalvelin- tai DNS-asetuksia.</translation>
@@ -741,7 +741,7 @@
 <translation id="1675751799495331928">Yrityskertojen yläraja saavutettu. Yritä myöhemmin uudelleen.</translation>
 <translation id="4499666752625407848">Päivityksen yhteydessä ilmeni häiriö.</translation>
 <translation id="62991515067726424">Tämä sisältö ladattiin IPFS-protokollan yli</translation>
-<translation id="7263366446813126341">IPFS ("InterPlanetary File System") on julkinen vertaisverkko datan tallennusta ja siirtoa varten. Voit lukea lisää Braven integraatiosta tai määrittää IPFS-asetuksesi milloin tahansa.</translation>
+<translation id="7263366446813126341">IPFS ("InterPlanetary File System") on julkinen vertaisverkko datan tallennusta ja siirtoa varten. Voit lukea lisää Misesn integraatiosta tai määrittää IPFS-asetuksesi milloin tahansa.</translation>
 <translation id="3175567740517780285">IPFS-asetukset</translation>
 <translation id="8914505352873092008">Siirry IPFS-asetusten sivulle</translation>
 <translation id="3465468510001693544">IPFS-diagnostiikka</translation>
@@ -754,7 +754,7 @@
 <translation id="5525148540855044244">Jaettava linkki kopioitu: <ph name="SHAREABLE_LINK"/></translation>
 <translation id="3741998951694470470">Tuotavien tietojen noutaminen epäonnistui</translation>
 <translation id="7900950536120202771">IPFS-noodin sisäinen virhe</translation>
-<translation id="1036635552229153800">Tietojen lataaminen onnistui, mutta niitä ei siirretty Brave-import. Voit suorittaa tämän manuaalisesti tuontiasetusten sivulla.</translation>
+<translation id="1036635552229153800">Tietojen lataaminen onnistui, mutta niitä ei siirretty Mises-import. Voit suorittaa tämän manuaalisesti tuontiasetusten sivulla.</translation>
 <translation id="3793279629218362523">Hallitse vertaisjärjestelmän tunnuksen ja IPNS-avaimia</translation>
 <translation id="572392919096807438">Muista päätökseni</translation>
 <translation id="7978789143098237970">kunnes suljen tämän sivuston</translation>
@@ -775,7 +775,7 @@
 <translation id="3600355176618429948">Arvioidut tulot</translation>
 <translation id="4244985009709452836">Kirjaudu sisään <ph name="PROVIDER"/> tilillesi</translation>
 <translation id="2613359062756190460">Kertatipit</translation>
-<translation id="3022529765171561652">Väliaikainen ongelma vahvistamisessa palveluntarjoajan <ph name="PROVIDER"/> kanssa. Brave-palkintosi pysyvät odottavassa tilassa, ja ne yritetään vahvistaa uudelleen automaattisesti, mutta voit myös itse yrittää myöhemmin uudelleen.</translation>
+<translation id="3022529765171561652">Väliaikainen ongelma vahvistamisessa palveluntarjoajan <ph name="PROVIDER"/> kanssa. Mises-palkintosi pysyvät odottavassa tilassa, ja ne yritetään vahvistaa uudelleen automaattisesti, mutta voit myös itse yrittää myöhemmin uudelleen.</translation>
 <translation id="590733288489975971">Palkinnot Ads-mainoksista</translation>
 <translation id="6181762795539107980">Vahvistamaton</translation>
 <translation id="3026978804849658576">Näytä tiliote</translation>
@@ -790,11 +790,11 @@
 <translation id="8334559352278209120">Lahjoittaminen</translation>
 <translation id="4782365133987903299">Sinulla on <ph name="DAYS"/> jäljellä lunastaa</translation>
 <translation id="3903419925307046908">Ansaitse maksutunnuksia ja auta muita</translation>
-<translation id="244362569344671266">Ansaitse maksutunnuksia katsomalla Braven yksityismainoksia sekä tukemalla sisällönkehittäjiä automaattisesti.</translation>
+<translation id="244362569344671266">Ansaitse maksutunnuksia katsomalla Misesn yksityismainoksia sekä tukemalla sisällönkehittäjiä automaattisesti.</translation>
 <translation id="5095252080770652994">Edistyminen</translation>
 <translation id="6278643716658443228">Palkintoasetukset</translation>
 <translation id="2862978891748913252">Valitse maa</translation>
-<translation id="3717922248131893262">Jatka Brave-palkintojen käyttöä valitsemalla maa, jotta voimme näyttää alueesi mukaisia vaihtoehtoja ja mainoksia. <ph name="LINK_BEGIN"/>Tietosuojakäytäntö<ph name="LINK_END"/></translation>
+<translation id="3717922248131893262">Jatka Mises-palkintojen käyttöä valitsemalla maa, jotta voimme näyttää alueesi mukaisia vaihtoehtoja ja mainoksia. <ph name="LINK_BEGIN"/>Tietosuojakäytäntö<ph name="LINK_END"/></translation>
 <translation id="6777169449483742979">Ansaitset tokeneita tämän sponsoroidun kuvan katselusta.</translation>
 <translation id="5486114327664215175">Ansaitse tokeneita tämän kuvan katselusta ja tue sisällöntuottajia.</translation>
 <translation id="2940863921746574646">Tokenisaldo</translation>
@@ -817,10 +817,10 @@
 <translation id="6333727259565526314">Palkintosi on matkalla.</translation>
 <translation id="39734939514946950">Palkintosummasi</translation>
 <translation id="717952606991220586">Oho, jokin meni vikaan. Yritä myöhemmin uudelleen.</translation>
-<translation id="7210234701206674260">Brave Rewardsilla on ongelma. Yritäthän uudelleen myöhemmin.</translation>
+<translation id="7210234701206674260">Mises Rewardsilla on ongelma. Yritäthän uudelleen myöhemmin.</translation>
 <translation id="579702532610384533">Yhdistä uudelleen</translation>
 <translation id="7550470870580166294">Ei tarpeeksi varoja</translation>
-<translation id="2775064702681588061">Brave Rewards -tilisi odottaa talletusta</translation>
+<translation id="2775064702681588061">Mises Rewards -tilisi odottaa talletusta</translation>
 <translation id="3358400027937159351">Lahjoituksesi: <ph name="AMOUNT"/>.</translation>
 <translation id="1619753851206150396">Olet kirjautunut ulos</translation>
 <translation id="5142174225142816130">Tämä voi tapahtua, jotta tilisi pysyy turvassa. Napsauta alta yhdistääksesi uudelleen nyt.</translation>
@@ -833,20 +833,20 @@
 <translation id="7855913851082138664">Tekijä <ph name="PUBLISHER_NAME"/> vahvistettu hiljattain.</translation>
 <translation id="6194996600967335044">Ei riittävästi varoja</translation>
 <translation id="2795080275268642520">Sinulla on varojen riittämättömyydestä johtuvia odottavia tippejä</translation>
-<translation id="2529827670795983639">Näyttää siltä, että tämä ei toimi. Brave Ads pysyvät keskeytettyinä. Ota meihin yhteyttä, jos tarvitse apua captchan kanssa.</translation>
+<translation id="2529827670795983639">Näyttää siltä, että tämä ei toimi. Mises Ads pysyvät keskeytettyinä. Ota meihin yhteyttä, jos tarvitse apua captchan kanssa.</translation>
 <translation id="261607053214862521">Yritysten enimmäismäärä ylitetty</translation>
 <translation id="2323171459178104277">Ratkaistu!</translation>
-<translation id="1512837998731269583">Mainokset ja tulot jatkuvat nyt. Kiitos, että autat meitä suojelemaan Brave Rewards -mainoksia ja yksityisyyteen perustuvia mainoksia.</translation>
+<translation id="1512837998731269583">Mainokset ja tulot jatkuvat nyt. Kiitos, että autat meitä suojelemaan Mises Rewards -mainoksia ja yksityisyyteen perustuvia mainoksia.</translation>
 <translation id="3247549836099021862">Ota yhteyttä tukeen</translation>
 <translation id="5234764350956374838">Piilota</translation>
 <translation id="6717671373796332174"><ph name="TOUR_LINK_BEGIN"/>Tee nopea tutustumiskierros<ph name="TOUR_LINK_END"/> tai <ph name="LEARN_LINK_BEGIN"/>lue lisää<ph name="LEARN_LINK_END"/> saadaksesi lisätietoja.</translation>
 <translation id="7465614181960492526">Ansaitse maksutunnuksia &amp; osoita anteliaisuutta</translation>
 <translation id="2731539192954672606">Ansaitse maksutunnuksia katsomalla tietosuojaasi kunnioittavia mainoksia sekä tukemalla suosikkisivustojasi ja -kehittäjiäsi automaattisesti.</translation>
-<translation id="5425006356459378415">Brave-palkinnot eivät ole käytettävissä</translation>
-<translation id="909076461795862330">Brave-palkintojen määrittämisen aikana tapahtui valitettavasti virhe. Yritä uudelleen.</translation>
+<translation id="5425006356459378415">Mises-palkinnot eivät ole käytettävissä</translation>
+<translation id="909076461795862330">Mises-palkintojen määrittämisen aikana tapahtui valitettavasti virhe. Yritä uudelleen.</translation>
 <translation id="3180990265682133881">Maan asettamisen aikana tapahtui valitettavasti virhe. Yritä uudelleen.</translation>
-<translation id="2191603160848789187">Uudet rekisteröitymiset Brave-palkinto-ohjelmaan on poistettu käytöstä alueellasi. Voit kuitenkin aina yrittää myöhemmin uudelleen. <ph name="LINK_BEGIN"/>Lue lisää<ph name="LINK_BEGIN"/></translation>
-<translation id="8764860730661377310">Brave-palkintojen alueeksi on asetettu <ph name="COUNTRY"/>.</translation>
+<translation id="2191603160848789187">Uudet rekisteröitymiset Mises-palkinto-ohjelmaan on poistettu käytöstä alueellasi. Voit kuitenkin aina yrittää myöhemmin uudelleen. <ph name="LINK_BEGIN"/>Lue lisää<ph name="LINK_BEGIN"/></translation>
+<translation id="8764860730661377310">Mises-palkintojen alueeksi on asetettu <ph name="COUNTRY"/>.</translation>
 <translation id="7068416025603720599">Valitse maa, jotta voimme näyttää alueesi mukaisia vaihtoehtoja ja mainoksia. <ph name="LINK_BEGIN"/>Tietosuojakäytäntö<ph name="LINK_END"/></translation>
 <translation id="1275213816424141989">Ehkä myöhemmin</translation>
 <translation id="5187052478998910855">Tarvitsetko kertauksen Rewardsista?</translation>
@@ -862,12 +862,12 @@
 <translation id="185034574799484512">Käydäänpä pikakierroksella</translation>
 <translation id="8281886186245836920">Ohita</translation>
 <translation id="1377600615067678409">Ohita toistaiseksi</translation>
-<translation id="7930505144430343145">Tervetuloa Brave-palkintoihin!</translation>
-<translation id="3477340970981564961">Braven yksityismainokset palkitsevat sinut maksutunnuksilla, joiden avulla tukea sisällönkehittäjiä perinteisistä mainoksista poikkeavalla tavalla ja pitää samalla kaikki henkilökohtaiset tietosi salassa.</translation>
+<translation id="7930505144430343145">Tervetuloa Mises-palkintoihin!</translation>
+<translation id="3477340970981564961">Misesn yksityismainokset palkitsevat sinut maksutunnuksilla, joiden avulla tukea sisällönkehittäjiä perinteisistä mainoksista poikkeavalla tavalla ja pitää samalla kaikki henkilökohtaiset tietosi salassa.</translation>
 <translation id="6973095375773523904">Missä mainokset näkyvät?</translation>
-<translation id="7556325460112047619">Braven yksityismainokset näkyvät nyt tavallisina ilmoituksina. Voit hallinnoida mainosten näkymistiheyttä asetuksista käsin.</translation>
+<translation id="7556325460112047619">Misesn yksityismainokset näkyvät nyt tavallisina ilmoituksina. Voit hallinnoida mainosten näkymistiheyttä asetuksista käsin.</translation>
 <translation id="6897083627729802351">Milloin saat palkintosi?</translation>
-<translation id="310863932297733723">Käynnissä olevan kuun aikana Braven yksityismainosten kautta ansaitut maksutunnukset saapuvat seuraavan kuun 5. päivänä.</translation>
+<translation id="310863932297733723">Käynnissä olevan kuun aikana Misesn yksityismainosten kautta ansaitut maksutunnukset saapuvat seuraavan kuun 5. päivänä.</translation>
 <translation id="7712287524451429139">Anteliaisuus sujuu nyt vaivatta</translation>
 <translation id="105037569026952831">Kehittävät saavat maksutunnuslahjoituksesi automaattisesti käyttötasojesi mukaan, joista käytämme termiä "Huomio".</translation>
 <translation id="5323267338679539010">Kiitä tippien muodossa</translation>
@@ -877,14 +877,14 @@
 <translation id="1402530520078693620">Lopuksi voimme määrittää perusasetuksesi</translation>
 <translation id="3494356595346329740">Voit muuttaa tämän myöhemmin.</translation>
 <translation id="827315274423079662">Jee, valmista tuli!</translation>
-<translation id="8268038362451312235">Brave Rewardien avulla voit tehdä verkosta turvallisemman paikan muille. Se vasta onkin upeaa!</translation>
-<translation id="2318949593486441832">Jos haluat nostaa mainosten katsomisesta ansaittuja BATeja, tulee sinun vahvistaa Brave-palkintosi.</translation>
+<translation id="8268038362451312235">Mises Rewardien avulla voit tehdä verkosta turvallisemman paikan muille. Se vasta onkin upeaa!</translation>
+<translation id="2318949593486441832">Jos haluat nostaa mainosten katsomisesta ansaittuja BATeja, tulee sinun vahvistaa Mises-palkintosi.</translation>
 <translation id="9168436347345867845">Tee se myöhemmin</translation>
-<translation id="7193761697942491145">Vahvista Brave-palkinnot</translation>
+<translation id="7193761697942491145">Vahvista Mises-palkinnot</translation>
 <translation id="6609621505400013054">bitFlyer-lompakko on palvelu, jota hallinnoi bitFlyer, Inc.</translation>
-<translation id="4361456403643555676">Kun vahvistat Brave-palkintosi ja linkität ne bitFlyer-tiliin, voit helpommin tallentaa ja hallita Brave-palkintojen kautta ansaitsemiasi tokeneita</translation>
-<translation id="1411121707906693782"><ph name="LINK_BEGIN"/>Lue lisää<ph name="LINK_END"/> siitä, miten voit linkittää Brave-selaimesi bitFlyer-tiliisi.</translation>
-<translation id="8303087505226646884">Brave Speedreader</translation>
+<translation id="4361456403643555676">Kun vahvistat Mises-palkintosi ja linkität ne bitFlyer-tiliin, voit helpommin tallentaa ja hallita Mises-palkintojen kautta ansaitsemiasi tokeneita</translation>
+<translation id="1411121707906693782"><ph name="LINK_BEGIN"/>Lue lisää<ph name="LINK_END"/> siitä, miten voit linkittää Mises-selaimesi bitFlyer-tiliisi.</translation>
+<translation id="8303087505226646884">Mises Speedreader</translation>
 <translation id="7701466644604753106">Ota SpeedReader käyttöön</translation>
 <translation id="763042262431778831">Poista SpeedReader käytöstä</translation>
 <translation id="1148827340205946630">Käyttäjä hylkäsi pyynnön.</translation>
@@ -896,7 +896,7 @@
 <translation id="2326876601333401685">Tätä RPC-menetelmää ei tueta.</translation>
 <translation id="1128992132632883337">Tapahtui vastauksen jäsennysvirhe</translation>
 <translation id="5382339341735118861">Tapahtui yleinen pyynnön käsittelyvirhe</translation>
-<translation id="1680597601664421644">Tuotava muistisääntö ei kelpaa Brave Walletille</translation>
+<translation id="1680597601664421644">Tuotava muistisääntö ei kelpaa Mises Walletille</translation>
 <translation id="4641919696349069826">Pyyntö on jo käynnissä</translation>
 <translation id="872806943696014633">Maksutapahtuman tiedot puuttuvat</translation>
 <translation id="4805410229033541409">'from' ei ole valtuutettu lähettämään maksutapahtumia</translation>
@@ -968,16 +968,16 @@
 <translation id="4500473291496079954">Vanhenee:</translation>
 <translation id="2236833281018938257">Lompakon osoite tai URL</translation>
 <translation id="928500657730628112">Lompakon osoite</translation>
-<translation id="6812967455478797345">Brave käyttää kohdetta <ph name="LINK_BEFORE"/><ph name="SWAP_PROVIDER"/><ph name="LINK_AFTER"/> DEX-kokoajana.</translation>
+<translation id="6812967455478797345">Mises käyttää kohdetta <ph name="LINK_BEFORE"/><ph name="SWAP_PROVIDER"/><ph name="LINK_AFTER"/> DEX-kokoajana.</translation>
 <translation id="151946611346774041">0x käsittelee Ethereum-osoitteen ja IP-osoitteen suorittaakseen tapahtuman (mukaan lukien hintatarjousten saaminen). 0x käyttää näitä tietoja VAIN tapahtumien käsittelyyn.</translation>
 <translation id="7465227658364622464">Jupiter käsittelee Solana-osoitteen ja IP-osoitteen suorittaakseen tapahtuman (mukaan lukien tarjousten saaminen). Jupiter käyttää näitä tietoja VAIN tapahtumien käsittelyyn.</translation>
-<translation id="712738518060477110">Tarjous sisältää <ph name="SWAP_FEE_PERCENTAGE"/> Brave-maksun.</translation>
+<translation id="712738518060477110">Tarjous sisältää <ph name="SWAP_FEE_PERCENTAGE"/> Mises-maksun.</translation>
 <translation id="8368540604723748428">Liian monta desimaalipaikkaa</translation>
 <translation id="6575120282593094155">Sinulla ei vielä ole <ph name="ACCOUNT_TYPE"/>-tiliä. Luo sellainen nyt?</translation>
 <translation id="8712637175834984815">Ymmärretty</translation>
 <translation id="2704606927547763573">Kopioitu</translation>
 <translation id="6042308850641462728">Lisää</translation>
-<translation id="768236965975208017">Turvallinen. Moniketjuinen. Ja niin helppokäyttöinen. Brave-lompakko on vain muutaman napsautuksen päässä</translation>
+<translation id="768236965975208017">Turvallinen. Moniketjuinen. Ja niin helppokäyttöinen. Mises-lompakko on vain muutaman napsautuksen päässä</translation>
 <translation id="2484275747844666540">Luo uusi lompakko</translation>
 <translation id="3662348701117072366">Tuo olemassa oleva lompakko</translation>
 <translation id="375882617301124395">Varmuuskopioi kryptolompakkosi</translation>
@@ -1009,20 +1009,20 @@
 <translation id="1108298724135935307">Yhdistetyt sivustot</translation>
 <translation id="163697698769819510">Varmuuskopioi lompakkosi nyt, jotta voit suojata varojasi ja varmistaa, ettet menetä pääsyä niihin.</translation>
 <translation id="1018806299114415224">Varmuuskopioi nyt</translation>
-<translation id="1400709719911593089">Brave-lompakkoa ei ole määritetty oletusarvoiseksi lompakoksi, eikä se vastaa Web3-sovelluksiin tai hajautettuihin sovelluksiin. Siirry asetuksiin vaihtaaksesi oletusarvoista lompakkoa.</translation>
+<translation id="1400709719911593089">Mises-lompakkoa ei ole määritetty oletusarvoiseksi lompakoksi, eikä se vastaa Web3-sovelluksiin tai hajautettuihin sovelluksiin. Siirry asetuksiin vaihtaaksesi oletusarvoista lompakkoa.</translation>
 <translation id="4362717653795263052">Palauta ensisijaiset kryptotilit</translation>
-<translation id="3038077262567136741">Anna palautuslause palauttaaksesi Brave Wallet -lompakon kryptotilin.</translation>
+<translation id="3038077262567136741">Anna palautuslause palauttaaksesi Mises Wallet -lompakon kryptotilin.</translation>
 <translation id="955918646509748368">Annettu palautuslause on virheellinen.</translation>
 <translation id="8107437138787377150">Liitä palautuslause leikepöydältä</translation>
 <translation id="4811736040444856406">Näytä palautuslause</translation>
-<translation id="4359319875297001084">Tuo vanhasta Brave-kryptolomlakoista?</translation>
+<translation id="4359319875297001084">Tuo vanhasta Mises-kryptolomlakoista?</translation>
 <translation id="3331452756822160641">Uusi salasana</translation>
 <translation id="8624315169751085215">Kopioi leikepöydälle</translation>
 <translation id="7885157704277298658">Kopioitu</translation>
 <translation id="6346952829206698721">Liitä leikepöydältä</translation>
 <translation id="1121335910737476837">Ensisijaiset kryptotilit</translation>
 <translation id="6969147029062037757">Tuodut tilit</translation>
-<translation id="4057718162494343222">Voit luoda ensisijaiset tilit Brave-lompakossa, jotka voidaan varmuuskopioida tai palauttaa palautuslauseellasi. Jos haluat lukea lisää eri tyyppisistä tileistä, käy tilien ohjesivulla.</translation>
+<translation id="4057718162494343222">Voit luoda ensisijaiset tilit Mises-lompakossa, jotka voidaan varmuuskopioida tai palauttaa palautuslauseellasi. Jos haluat lukea lisää eri tyyppisistä tileistä, käy tilien ohjesivulla.</translation>
 <translation id="1011614786846182272">Näitä tilejä voidaan käyttää Web3-sovellusten ja hajautettujen sovellusten kanssa, ja ne voidaan näyttää portfoliossasi. Huomaa, että toissijaisia tilejä ei voida palauttaa palautuslauseella ensisijaisen tilin varmuuskopiotiedoista.</translation>
 <translation id="1940465339426637378">Omaisuudet</translation>
 <translation id="2236507293802791911">Näkyvät varat</translation>
@@ -1050,7 +1050,7 @@
 <translation id="6892232036314454524">Tämä virhe voi tapahtua, kun väärä sovellus on auki Ledger-laitteessa.</translation>
 <translation id="6598291715079540080">Trezor</translation>
 <translation id="5605670050355397069">Ledger</translation>
-<translation id="4247752006222818397">Anna Bravelle käyttöoikeus Ledger-laitteellesi.</translation>
+<translation id="4247752006222818397">Anna Miseslle käyttöoikeus Ledger-laitteellesi.</translation>
 <translation id="4378551569595875038">Yhdistetään…</translation>
 <translation id="1943188256166395881">Lisää tarkistettuja tilejä</translation>
 <translation id="8554010658308662631">Lataa lisää</translation>
@@ -1109,7 +1109,7 @@
 <translation id="3352959425838279177">Hanki Ether-kolikkoa kolikoita jakavasta palvelusta <ph name="SELECTED_NETWORK"/></translation>
 <translation id="6449626816252815844">Valitse ostotapa</translation>
 <translation id="8009571545960303544">Allekirjoitustasi pyydetään</translation>
-<translation id="5294062982587710720">Huomaa, että Brave ei voi tarkistaa, mitä tapahtuu, jos allekirjoitat. Allekirjoitus voi valtuuttaa melkein minkä tahansa toiminnon tililläsi tai puolestasi, mukaan lukien (mutta ei rajoittuen) tilin ja kryptovarojen täydellisen hallinnan antaminen pyynnön esittäneelle sivustolle. Allekirjoita vain, jos olet varma, että haluat suorittaa tämän toiminnon ja että pystyt luottamaan pyytävään sivustoon.</translation>
+<translation id="5294062982587710720">Huomaa, että Mises ei voi tarkistaa, mitä tapahtuu, jos allekirjoitat. Allekirjoitus voi valtuuttaa melkein minkä tahansa toiminnon tililläsi tai puolestasi, mukaan lukien (mutta ei rajoittuen) tilin ja kryptovarojen täydellisen hallinnan antaminen pyynnön esittäneelle sivustolle. Allekirjoita vain, jos olet varma, että haluat suorittaa tämän toiminnon ja että pystyt luottamaan pyytävään sivustoon.</translation>
 <translation id="3474375934783434676">Allekirjoita omalla vastuullasi</translation>
 <translation id="5488357322146334497">Viesti</translation>
 <translation id="3586752056660754651">Allekirjoita</translation>
@@ -1130,7 +1130,7 @@
 <translation id="7073918978411974168">Ehdotettu varaus</translation>
 <translation id="9019403281000653275">Rajoittamattoman hyväksyntää pyydetty</translation>
 <translation id="4717431746210146708">Anna tälle sivustolle lupa lisätä verkko?</translation>
-<translation id="2521480044079508357">Tämä mahdollistaa tämän verkon käytön Brave Wallet -lompakossa.</translation>
+<translation id="2521480044079508357">Tämä mahdollistaa tämän verkon käytön Mises Wallet -lompakossa.</translation>
 <translation id="1982257600591932657">Verkon nimi</translation>
 <translation id="5052727830821470769">Verkon URL-osoite</translation>
 <translation id="427875364838253580">Näytä kaikki tiedot</translation>
@@ -1166,10 +1166,10 @@
 <translation id="2240831799756994975">TAVUA</translation>
 <translation id="4874303883488468190">Valitse tilit</translation>
 <translation id="2018472018751735678">Näytä sallittujen tilien osoitteet (vaaditaan)</translation>
-<translation id="7029403458170657879">Liitä Brave Wallet -lompakkoon</translation>
+<translation id="7029403458170657879">Liitä Mises Wallet -lompakkoon</translation>
 <translation id="2770851145415891830">Olemassa olevat kryptolompakot havaittu</translation>
-<translation id="2237759620789871865">Jos haluat mieluummin ohittaa tuonnin ja säilyttää vanhan Crypto Wallet -lompakkokokemuksen, siirry Brave-selaimen <ph name="LINK_BEFORE"/>asetuksiin<ph name="LINK_AFTER"/> ja muuta oletusarvoinen asetus Crypto Wallet -lompakoksi. Voit myös tuoda, kokeilla uutta Brave Wallet -lompakkoa ja vaihtaa takaisin milloin tahansa.</translation>
-<translation id="5590175005414413980">Tuo Brave-lompakkoon antamalla olemassa olevien kryptolompakkojen salasana. Nauti nopeammasta ja turvallisemmasta tavasta hallita kryptovaroja ja ole vuorovaikutuksessa Web3-sovellusten ja hajautettujen sovellusten kanssa.</translation>
+<translation id="2237759620789871865">Jos haluat mieluummin ohittaa tuonnin ja säilyttää vanhan Crypto Wallet -lompakkokokemuksen, siirry Mises-selaimen <ph name="LINK_BEFORE"/>asetuksiin<ph name="LINK_AFTER"/> ja muuta oletusarvoinen asetus Crypto Wallet -lompakoksi. Voit myös tuoda, kokeilla uutta Mises Wallet -lompakkoa ja vaihtaa takaisin milloin tahansa.</translation>
+<translation id="5590175005414413980">Tuo Mises-lompakkoon antamalla olemassa olevien kryptolompakkojen salasana. Nauti nopeammasta ja turvallisemmasta tavasta hallita kryptovaroja ja ole vuorovaikutuksessa Web3-sovellusten ja hajautettujen sovellusten kanssa.</translation>
 <translation id="880619123281809987">Kirjoita kryptolompakkojen salasana</translation>
 <translation id="6344138931392227467"><ph name="DEVICE_NAME"/>-laite liitetty</translation>
 <translation id="7051244143160304048"><ph name="DEVICE_NAME"/>-laitetta ei ole enää liitetty</translation>
@@ -1273,7 +1273,7 @@
 <translation id="2962388922926051374">Pyyntö menetelmälle 'eth_chainId' kohteessa <ph name="URL"/> epäonnistui</translation>
 <translation id="8325036459845654666">Tämä verkko on jo lisätty.</translation>
 <translation id="554350381160981853">Kirjoitettujen tietojen allekirjoittaminen on tuettu vain Trezor Model One -lompakossa, jossa on laiteohjelmisto 1.10.5 tai uudempi</translation>
-<translation id="1752214435563414457">Brave Swap -arvonta</translation>
+<translation id="1752214435563414457">Mises Swap -arvonta</translation>
 <translation id="7829441065063984927">7 päivän krypto-lahjakampanja, n. $500 000 dollarin palkinnot.</translation>
 <translation id="8292716346768453265">Osallistu nyt!</translation>
 <translation id="1935944189549132903">Kaikki omaisuus</translation>
@@ -1283,7 +1283,7 @@
 <translation id="4430019312045809116">Äänenvoimakkuus</translation>
 <translation id="4312994183947987913">Osta/talleta</translation>
 <translation id="5133421763709317473">Hakua tai suodatinta vastaavaa sisältöä ei löytynyt</translation>
-<translation id="7383613643114466279">Brave-lompakko ei tue tätä varaa</translation>
+<translation id="7383613643114466279">Mises-lompakko ei tue tätä varaa</translation>
 <translation id="6423985584914773314">Virheellinen FIL-osoite</translation>
 <translation id="3898731124813934210">Osta Wyren kautta</translation>
 <translation id="5522073372365069684">Osta Rampin kautta</translation>
@@ -1387,7 +1387,7 @@
 <translation id="8060029310790625334">Ohjekeskus</translation>
 <translation id="2095142195578664632">Kaipaatko apua? Avaa</translation>
 <translation id="3253669416991680932">Tämä laitelompakko ei tue tätä toimintoa.</translation>
-<translation id="7457027586454688423">Anna Brave-lompakkosi salasanasi</translation>
+<translation id="7457027586454688423">Anna Mises-lompakkosi salasanasi</translation>
 <translation id="7553242001898162573">Anna salasana</translation>
 <translation id="2873714185189940594">Avataanko Rainbow Bridge -sovellus?</translation>
 <translation id="2069777099181262239">Rainbow Bridge on riippumaton palvelu, joka auttaa sinua yhdistämään varoja eri verkoissa ja käyttämään kryptovaluuttaa muissa verkoissa ja DApp-ekosysteemeissä. Varojen yhdistämisessä muihin verkkoihin on riskejä.</translation>
@@ -1395,7 +1395,7 @@
 <translation id="3890567288132019108">Lue lisää siirtoriskistä Rainbow Bridge -sovelluksessa</translation>
 <translation id="1792917191129448067">Avaa Rainbow Bridge -sovellus</translation>
 <translation id="1522775706527775647">Silta Auroraan</translation>
-<translation id="4903322403594141291">Lue lisää Brave-lompakosta</translation>
+<translation id="4903322403594141291">Lue lisää Mises-lompakosta</translation>
 <translation id="3875185448438395303">Vähintään:</translation>
 <translation id="2029465635925899949">8 merkkiä</translation>
 <translation id="6697810017029555732">Vastaavuus!</translation>
@@ -1404,7 +1404,7 @@
 <translation id="8297006494302853456">Heikko</translation>
 <translation id="6782556046178425980">Ennen kuin aloitat lompakon varmuuskopioinnin</translation>
 <translation id="7119749028647909394">12–24-sanainen palautuslause on yksityinen avain, jonka avulla voit palauttaa pääsyn lompakkoosi, jos menetät yhdistetyn laitteen. Säilytä sitä turvallisessa paikassa ja siinä järjestyksessä kuin se näkyy alla.</translation>
-<translation id="3259018319025894691">Brave ei pääse käsiksi salaiseen palautuslauseeseesi. Pidä se turvassa äläkä koskaan jaa sitä kenenkään muun kanssa.</translation>
+<translation id="3259018319025894691">Mises ei pääse käsiksi salaiseen palautuslauseeseesi. Pidä se turvassa äläkä koskaan jaa sitä kenenkään muun kanssa.</translation>
 <translation id="7650284207965419234"><ph name="TAG_BEFORE"/>Tärkeää:<ph name="TAG_AFTER"/> Älä koskaan jaa palautuslausettasi. Kuka tahansa, jolla on tämä lause, voi viedä omaisuutesi lopullisesti.</translation>
 <translation id="7509948206688764960">Varmuuskopioi lompakon palautuslause</translation>
 <translation id="8052898407431791827">Kopioitu leikepöydälle</translation>
@@ -1424,8 +1424,8 @@
 <translation id="2781276194026093899">.</translation>
 <translation id="7992766987062040279">.</translation>
 <translation id="2295726992010694229">.</translation>
-<translation id="8241405611628876973">Onnittelut! Brave-lompakko on valmis käytettäväksi!</translation>
-<translation id="6828327990705355767">Voit käyttää lompakkoasi napsauttamalla lompakkokuvaketta minkä tahansa Brave-selainikkunan oikeassa yläkulmassa.</translation>
+<translation id="8241405611628876973">Onnittelut! Mises-lompakko on valmis käytettäväksi!</translation>
+<translation id="6828327990705355767">Voit käyttää lompakkoasi napsauttamalla lompakkokuvaketta minkä tahansa Mises-selainikkunan oikeassa yläkulmassa.</translation>
 <translation id="396152018598329740">Kuinka kryptolompakkoa käytetään?</translation>
 <translation id="7512061585041489067">Mikä on paras kryptolompakko?</translation>
 <translation id="1342755158522323177">Mikä on kryptoselain?</translation>
@@ -1434,12 +1434,12 @@
 <translation id="7328255859839881981">Mitä ovat DApps-sovellukset?</translation>
 <translation id="3852489285890032403">Mikä on web 3?</translation>
 <translation id="5448233694500869445">Havaitsimme selaimessasi MetaMask-laajennuksen</translation>
-<translation id="8436080536329710282">Anna MetaMask-lompakon salasana tuodaksesi helposti Brave-lompakkoon.</translation>
+<translation id="8436080536329710282">Anna MetaMask-lompakon salasana tuodaksesi helposti Mises-lompakkoon.</translation>
 <translation id="7543512765962444927">Yhdistä olemassa olevaan lompakkoosi</translation>
 <translation id="3551682252653406110">Jos haluat yhdistää jo olemassa olevan lompakon, sinun on ehkä annettava palautuslause. Tällä hetkellä tuemme palautusta/tuontia Ethereum- ja Solana-lompakoista.</translation>
 <translation id="346929827081904572">Palauta juuritunnuksella</translation>
 <translation id="5645597512426471834">12 – 24 sanaa</translation>
-<translation id="8158505311297755780">Kirjoita Brave-lompakkosi 12–24-sanainen palautuslause.</translation>
+<translation id="8158505311297755780">Kirjoita Mises-lompakkosi 12–24-sanainen palautuslause.</translation>
 <translation id="5419707890586509000">Tuo MetaMaskista</translation>
 <translation id="2265945811107390939">Käytä MetaMask-salasanaa tuodaksesi juuritunnuksesi</translation>
 <translation id="7060680423657442298">Ei hätää, luon uuden lompakon</translation>
@@ -1449,13 +1449,13 @@
 <translation id="6260144012548445299">Lue lisää uudesta lompakostani</translation>
 <translation id="8746910870914151528">Lakiasiat</translation>
 <translation id="5148123176978018397">Hyväksy seuraavat asiat:</translation>
-<translation id="6088314935678153800">Ymmärrän, että tämä on omavarainen lompakko ja että olen yksin vastuussa kaikista lompakkoon liittyvistä varoista, resursseista tai tileistä sekä asianmukaisten toimien toteuttamisesta lompakkoni turvaamiseksi, suojaamiseksi ja varmuuskopioimiseksi. Ymmärrän, että Brave EI voi käyttää lompakkoani tai peruuttaa tapahtumia puolestani ja että palautuslauseeni on AINOA tapa saada käyttöoikeus takaisin, jos salasana katoaa, laite varastetaan tai muu vastaava tilanne ilmanee.</translation>
+<translation id="6088314935678153800">Ymmärrän, että tämä on omavarainen lompakko ja että olen yksin vastuussa kaikista lompakkoon liittyvistä varoista, resursseista tai tileistä sekä asianmukaisten toimien toteuttamisesta lompakkoni turvaamiseksi, suojaamiseksi ja varmuuskopioimiseksi. Ymmärrän, että Mises EI voi käyttää lompakkoani tai peruuttaa tapahtumia puolestani ja että palautuslauseeni on AINOA tapa saada käyttöoikeus takaisin, jos salasana katoaa, laite varastetaan tai muu vastaava tilanne ilmanee.</translation>
 <translation id="7781090633800450517">Olen lukenut <ph name="LINK_BEFORE"/>käyttöehdot<ph name="LINK_AFTER"/> ja hyväksyn ne</translation>
 <translation id="3887541341068007345">Tarkistetaan lompakkolaajennuksia...</translation>
-<translation id="3567994771568272606">Tuo vanhoista Brave-kruptolompakoista</translation>
+<translation id="3567994771568272606">Tuo vanhoista Mises-kruptolompakoista</translation>
 <translation id="8407091560429310499">Valitse omaisuus</translation>
 <translation id="756590380936155533">Viimeistele ostoksesi <ph name="ASSET_TICKER"/> valitsemalla yksi kumppaneistamme</translation>
-<translation id="7880860489474966219">Kun olet valmis, varasi siirretään Brave-lompakkoon</translation>
+<translation id="7880860489474966219">Kun olet valmis, varasi siirretään Mises-lompakkoon</translation>
 <translation id="6182661078713714878">Talleta kryptovaluuttaa</translation>
 <translation id="3683305208314702347">Talleta <ph name="VALUE"/></translation>
 <translation id="5768739294929936862">Talleta Solana- tai SPL-tokeneita</translation>
@@ -1507,13 +1507,13 @@
 <translation id="1671503397662036257">Tor-yhteyden tila</translation>
 <translation id="6024292492796847324">Torin käynnistymisen edistyminen</translation>
 <translation id="6303294677342628402">Suojaukset</translation>
-<translation id="8458987127502506209">Ota Brave-suojaus käyttöön</translation>
+<translation id="8458987127502506209">Ota Mises-suojaus käyttöön</translation>
 <translation id="7509914170164691086">Suojaukset ovat käytössä <ph name="LINK_BEFORE"/>kohteelle<ph name="LINK_AFTER"/></translation>
 <translation id="260764436039299868">Suojaukset eivät ole käytössä<ph name="LINK_BEFORE"/>kohteelle<ph name="LINK_AFTER"/></translation>
 <translation id="3907405056878805220">Jos tämä sivusto vaikuttaa rikkinäiseltä, kokeile poistaa Shields käytöstä.
-<ph name="LINK_BEFORE"/>Huomaa: tämä saattaa heikentää Braven tietosuojaa.<ph name="LINK_AFTER"/></translation>
+<ph name="LINK_BEFORE"/>Huomaa: tämä saattaa heikentää Misesn tietosuojaa.<ph name="LINK_AFTER"/></translation>
 <translation id="8377155647357436161">Seurannat, mainokset ja muuta estetty <ph name="LINK_BEFORE"/>Lue lisää<ph name="LINK_AFTER"/></translation>
-<translation id="7604553853176833536">Ei Brave Shieldsin suojaama <ph name="LINK_BEFORE"/>Lue lisää<ph name="LINK_AFTER"/></translation>
+<translation id="7604553853176833536">Ei Mises Shieldsin suojaama <ph name="LINK_BEFORE"/>Lue lisää<ph name="LINK_AFTER"/></translation>
 <translation id="650318023204990401">Edistyneet kontrollit</translation>
 <translation id="5799940914270080805">Näiden asetusten muuttaminen saattaa rikkoa sivustoja.</translation>
 <translation id="9204041448536398473">Yleiset suojausasetukset</translation>
@@ -1536,14 +1536,14 @@
 <translation id="8034285923190068220">Salli tunnisteet</translation>
 <translation id="1992750560347846445">Raportoi sivusto</translation>
 <translation id="2387532482048804818">Kerro, jos sivusto ei toiminut oikein suojausten ollessa käytössä.</translation>
-<translation id="3795015906457257780">Tarkastelet tätä sivustoa ilman Braven yksityisyyssuojausta.</translation>
-<translation id="7194012750329511146">Brave-suojaukset
+<translation id="3795015906457257780">Tarkastelet tätä sivustoa ilman Misesn yksityisyyssuojausta.</translation>
+<translation id="7194012750329511146">Mises-suojaukset
 <ph name="NUMBER"/> seurainta, mainosta jne. estetty</translation>
 <translation id="4292121526390005808">Estetyt skriptit</translation>
 <translation id="264682546981571963">Oletko kyllästynyt evästeiden suostumusilmoituksiin?</translation>
-<translation id="4986297793092101884">Brave estää jo kolmannen osapuolen evästeet. Voimme myös estää evästeiden suostumusilmoitukset.</translation>
+<translation id="4986297793092101884">Mises estää jo kolmannen osapuolen evästeet. Voimme myös estää evästeiden suostumusilmoitukset.</translation>
 <translation id="535688588637568715">Kyllä, estä evästeiden suostumusilmoitukset</translation>
-<translation id="3541307549916475335">Brave VPN:n paneelin käyttöliittymä</translation>
+<translation id="3541307549916475335">Mises VPN:n paneelin käyttöliittymä</translation>
 <translation id="1742469581923031760">Yhdistetään…</translation>
 <translation id="1287487756047817908">Yhteyttä katkaistaan…</translation>
 <translation id="2325196879156848326">Yhdistäminen epäonnistui</translation>
@@ -1565,7 +1565,7 @@
 <translation id="8463313539532697053">Odota hetki, lataus käynnissä…</translation>
 <translation id="4317307602527599178">Ostoksen tilaa ei voi tarkistaa. Tämä voi johtua verkko-ongelmasta.</translation>
 <translation id="4613076894734402086">Muokkaa maksutapaa</translation>
-<translation id="8373427068383038263">Näyttää siltä, että viimeisin maksusi, <ph name="VALUE"/>, ei mennyt läpi. Pääsy tähän tilaukseen keskeytetään, kunnes maksuongelma on ratkaistu. Muokkaa maksutapaasi tai ota yhteyttä Brave-tukeen.</translation>
+<translation id="8373427068383038263">Näyttää siltä, että viimeisin maksusi, <ph name="VALUE"/>, ei mennyt läpi. Pääsy tähän tilaukseen keskeytetään, kunnes maksuongelma on ratkaistu. Muokkaa maksutapaasi tai ota yhteyttä Mises-tukeen.</translation>
 <translation id="1839021455997460752">Sähköpostiosoitteesi</translation>
 <translation id="5154702632169343078">Aihe</translation>
 <translation id="6625978880678465492">Valitse syy</translation>
@@ -1581,9 +1581,9 @@
 <translation id="24242621812020123">Sovellusversio:</translation>
 <translation id="6676791921618140305">OS-versio:</translation>
 <translation id="1156325797949437777">Tuki tarjotaan yhteistyössä Guardianin kanssa.</translation>
-<translation id="3307461350293459700">VPN-yhteys epäonnistui. Yritä muodostaa yhteys uudelleen ja varmista, että napsautat Salli-painiketta ottaaksesi Braven VPN-määrityksen käyttöön.</translation>
-<translation id="7261518280726313829">Suojattujen DNS-asetusten poistaminen käytöstä tai oletuspalvelimien käyttäminen Windowsilla saattaa paljastaa Internet-palveluntarjoajallesi niiden sivustojen nimet, joilla olet vieraillut. Brave ei suosittele tämän tekemistä. Haluatko kuitenkin tehdä sen?</translation>
-<translation id="888284761945060750">Suojatut DNS-asetukset on poistettu käytöstä organisaatiosi käytäntöjen vuoksi. Brave VPN:n käyttäminen ilman suojattuja DNS-asetuksia voi paljastaa Internet-palveluntarjoajallesi tai organisaatiollesi niiden sivustojen nimet, joilla olet vieraillut.</translation>
+<translation id="3307461350293459700">VPN-yhteys epäonnistui. Yritä muodostaa yhteys uudelleen ja varmista, että napsautat Salli-painiketta ottaaksesi Misesn VPN-määrityksen käyttöön.</translation>
+<translation id="7261518280726313829">Suojattujen DNS-asetusten poistaminen käytöstä tai oletuspalvelimien käyttäminen Windowsilla saattaa paljastaa Internet-palveluntarjoajallesi niiden sivustojen nimet, joilla olet vieraillut. Mises ei suosittele tämän tekemistä. Haluatko kuitenkin tehdä sen?</translation>
+<translation id="888284761945060750">Suojatut DNS-asetukset on poistettu käytöstä organisaatiosi käytäntöjen vuoksi. Mises VPN:n käyttäminen ilman suojattuja DNS-asetuksia voi paljastaa Internet-palveluntarjoajallesi tai organisaatiollesi niiden sivustojen nimet, joilla olet vieraillut.</translation>
 <translation id="1657858090675311947">Älä enää varoita minua tästä.</translation>
 <translation id="7586151660465233733">Lisää markkinoita sivustolla <ph name="SITE_NAME"/></translation>
 <translation id="952067063131306699">Katso markkinoita ja käy kauppaa kryptolla FTX:ssä</translation>

@@ -23,7 +23,7 @@ std::wstring GetProgIdForFileType() {
       return L"MisesSFile";
     default:
       NOTREACHED();
-      return L"BraveFile";
+      return L"MisesFile";
   }
 }
 

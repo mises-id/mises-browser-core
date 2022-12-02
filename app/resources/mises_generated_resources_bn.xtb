@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE translationbundle>
 <translationbundle lang="bn">
-<translation id="3333887201479867589">Brave রিওয়ার্ডস</translation>
+<translation id="3333887201479867589">Mises রিওয়ার্ডস</translation>
 <translation id="4615489450165434530">একটি ভাঙ্গা সাইটের প্রতিবেদন করুন</translation>
 <translation id="1209739344687072997">একটি ভাঙ্গা সাইটের প্রতিবেদন করুন</translation>
 <translation id="6406506848690869874">সিঙ্ক করুন</translation>
@@ -11,11 +11,11 @@
 <translation id="2666990579225592931">গেস্ট উইন্ডো খুলুন</translation>
 <translation id="4986483413015198747">অতিথি উইন্ডো খুলুন</translation>
 <translation id="8275068909952022340">অনেক…</translation>
-<translation id="1990886731975529483">Brave Widevine ইনস্টল করুন এবং চালান</translation>
+<translation id="1990886731975529483">Mises Widevine ইনস্টল করুন এবং চালান</translation>
 <translation id="8926389886865778422">আর জিজ্ঞাসা করবেন না</translation>
-<translation id="4900351245762303149">Brave Widevine ইনস্টল করুন</translation>
-<translation id="2313383941300459392">Brave Widevine সক্রিয় করতে ব্রাউজার রিস্টার্ট করুন</translation>
-<translation id="2200626478572277092">একটি ওয়েবপেজে মিডিয়া প্লে করতে কখনও কখনও Widevine প্রয়োজন হয়। এটি Brave সার্ভারগুলো থেকে লোড হওয়া Brave এক্সটেনশন, যা Brave খুঁটিয়ে দেখতে পারে না। ইনস্টল করে, আপনি Brave এর ব্যবহারের শর্তাবলীতে সম্মত হবেন।</translation>
+<translation id="4900351245762303149">Mises Widevine ইনস্টল করুন</translation>
+<translation id="2313383941300459392">Mises Widevine সক্রিয় করতে ব্রাউজার রিস্টার্ট করুন</translation>
+<translation id="2200626478572277092">একটি ওয়েবপেজে মিডিয়া প্লে করতে কখনও কখনও Widevine প্রয়োজন হয়। এটি Mises সার্ভারগুলো থেকে লোড হওয়া Mises এক্সটেনশন, যা Mises খুঁটিয়ে দেখতে পারে না। ইনস্টল করে, আপনি Mises এর ব্যবহারের শর্তাবলীতে সম্মত হবেন।</translation>
 <translation id="4931114810905682683"><ph name="LEARN_MORE_ABOUT_WIDEVINE"/>।
 অথবা <ph name="SETTINGS_EXTENIONS_LINK"/>-এ পরে পরিবর্তন করুন।</translation>
 <translation id="6229752134959014186">Widevine সম্পর্কে আরও জানুন</translation>
@@ -23,8 +23,8 @@
 <translation id="3218385319396786393">এই পৃষ্ঠাতে স্বয়ংক্রিয়ভাবে চালানো  ব্লক করা হয়েছে</translation>
 <translation id="4988333904713528597">সর্বদা <ph name="HOST"/> এ স্বতঃ চলার অনুমতি দিন</translation>
 <translation id="4150684676757176434">অটোপ্লে ব্লক করা চালিয়ে যান</translation>
-<translation id="8988939298652262600">Brave সুরক্ষা এবং নিরাপত্তার জন্য এক্সটেনশনগুলো পর্যালোচনা করে না। আপনি ডেভেলপারকে বিশ্বাস করলেই শুধুমাত্র এই এক্সটেনশনটি ইনস্টল করুন।</translation>
-<translation id="120759863357279975">Brave-এ <ph name="EXTENSION_NAME"/> (extension ID "<ph name="EXTENSION_ID"/>")এর অনুমতি দেওয়া হয় না।</translation>
+<translation id="8988939298652262600">Mises সুরক্ষা এবং নিরাপত্তার জন্য এক্সটেনশনগুলো পর্যালোচনা করে না। আপনি ডেভেলপারকে বিশ্বাস করলেই শুধুমাত্র এই এক্সটেনশনটি ইনস্টল করুন।</translation>
+<translation id="120759863357279975">Mises-এ <ph name="EXTENSION_NAME"/> (extension ID "<ph name="EXTENSION_ID"/>")এর অনুমতি দেওয়া হয় না।</translation>
 <translation id="9005883459983913482">Tor উইন্ডোগুলি</translation>
 <translation id="7965178729203412357">নতুন টর পরিচিতি</translation>
 <translation id="6924909138923993900">এই সাইটের জন্য নতুন টর সংযোগ</translation>
@@ -37,9 +37,9 @@
 <translation id="1970435562892104727">এটি টর সহ একটি ব্যক্তিগত উইন্ডো</translation>
 <translation id="1037341607922068025">টর দিয়ে প্রাইভেট উইন্ডো খুলুন</translation>
 <translation id="1725356094208762656">Tor এ খুলুন</translation>
-<translation id="3396347744975515056">Brave সিঙ্ক আপগ্রেড করা হয়েছে এবং সেটআপ করা প্রয়োজন</translation>
+<translation id="3396347744975515056">Mises সিঙ্ক আপগ্রেড করা হয়েছে এবং সেটআপ করা প্রয়োজন</translation>
 <translation id="7473245612074035141">সেটআপ আরম্ভ করুন</translation>
-<translation id="3975865347033939965">সিঙ্ক পরিষেবা শুরু করা যায়নি, Brave সিঙ্ক চলছে না</translation>
+<translation id="3975865347033939965">সিঙ্ক পরিষেবা শুরু করা যায়নি, Mises সিঙ্ক চলছে না</translation>
 <translation id="4450893287417543264">আবার দেখাবেন না</translation>
 <translation id="4595286989346610620">বিস্তারিত চেক করুন</translation>
 <translation id="7691598647605453992">IPFS</translation>
@@ -71,30 +71,30 @@
 <translation id="7068360136237591149">ফাইলগুলি খুলুন</translation>
 <translation id="6313675821927505581">Tor এর সাথে নতুন ব্যক্তিগত উইন্ডো</translation>
 <translation id="2638041073279639246">Tor এর সাথে ব্যক্তিগত উইন্ডোতে লিঙ্ক খুলুন</translation>
-<translation id="3425600262621021599">Tor এর সাথে Brave ব্যক্তিগত উইন্ডোতে লিঙ্ক খুলুন</translation>
+<translation id="3425600262621021599">Tor এর সাথে Mises ব্যক্তিগত উইন্ডোতে লিঙ্ক খুলুন</translation>
 <translation id="3229091547987707389">একটি ডিরেক্টরি পাঠান এবং শেয়ার করুন</translation>
-<translation id="5029193871181468990">Brave রিওয়ার্ড আইকন লুকান</translation>
-<translation id="7595540212376041331">Brave ওয়ালেট আইকন লুকান</translation>
+<translation id="5029193871181468990">Mises রিওয়ার্ড আইকন লুকান</translation>
+<translation id="7595540212376041331">Mises ওয়ালেট আইকন লুকান</translation>
 <translation id="4928988318462976765">ওয়েব এক্সটেনশন স্টোর</translation>
 <translation id="9181207987584064303">ওয়েব এক্সটেনশন স্টোরে দেখুন</translation>
-<translation id="3161744659507801211">সতর্কতা: Brave আপনার ব্রাউজিং ইতিহাস রেকর্ডিং থেকে এক্সটেনশনগুলিকে আটকাতে পারে না।</translation>
+<translation id="3161744659507801211">সতর্কতা: Mises আপনার ব্রাউজিং ইতিহাস রেকর্ডিং থেকে এক্সটেনশনগুলিকে আটকাতে পারে না।</translation>
 <translation id="2162109630536601963">যদি এই এক্সটেনশানটি নেটওয়ার্ক অনুরোধ করে তবে তারা টর বা ব্যক্তিগত মোড ব্যবহার করবে না।</translation>
 <translation id="2725327089319971976">ব্যক্তিগত মোড এবং টোর মোডে এই এক্সটেনশনটি অক্ষম করতে, এই বিকল্পটি নির্বাচন করুন।</translation>
-<translation id="3371343170427636147">Brave ব্রাউজার নাইটলি অ্যাপস</translation>
-<translation id="4097979995947147464">Brave ব্রাউজার বিটা অ্যাপসে নিয়ন্ত্রিত হয়</translation>
-<translation id="8303432794159193481">Brave ব্রাউজার ডেভ অ্যাপস</translation>
-<translation id="8292967014767479012">Brave ব্রাউজার অ্যাপস</translation>
-<translation id="4743468424889072281">Brave ব্রাউজার ডেভেলপমেন্ট অ্যাপস</translation>
-<translation id="732814027519296280">Brave অনুসন্ধানকে আরও উন্নত করতে চান?</translation>
-<translation id="2677865600861971449">বেনামে কিছু অনুসন্ধান &amp; ব্রাউজিং ডেটায় অবদান রাখতে ওয়েব আবিষ্কার প্রোজেক্টের সুবিধা নিন এবং সকলের জন্য Brave অনুসন্ধান উন্নত করুন। গোপনীয়্তা-রক্ষণ। এবং শূন্য প্রয়াস। <ph name="LEARN_MORE_TEXT"/></translation>
+<translation id="3371343170427636147">Mises ব্রাউজার নাইটলি অ্যাপস</translation>
+<translation id="4097979995947147464">Mises ব্রাউজার বিটা অ্যাপসে নিয়ন্ত্রিত হয়</translation>
+<translation id="8303432794159193481">Mises ব্রাউজার ডেভ অ্যাপস</translation>
+<translation id="8292967014767479012">Mises ব্রাউজার অ্যাপস</translation>
+<translation id="4743468424889072281">Mises ব্রাউজার ডেভেলপমেন্ট অ্যাপস</translation>
+<translation id="732814027519296280">Mises অনুসন্ধানকে আরও উন্নত করতে চান?</translation>
+<translation id="2677865600861971449">বেনামে কিছু অনুসন্ধান &amp; ব্রাউজিং ডেটায় অবদান রাখতে ওয়েব আবিষ্কার প্রোজেক্টের সুবিধা নিন এবং সকলের জন্য Mises অনুসন্ধান উন্নত করুন। গোপনীয়্তা-রক্ষণ। এবং শূন্য প্রয়াস। <ph name="LEARN_MORE_TEXT"/></translation>
 <translation id="6165508094623778733">আরও জানুন</translation>
 <translation id="5860491529813859533">চালু করুন</translation>
 <translation id="780301667611848630">না থাক</translation>
 <translation id="5039804452771397117">অনুমতি দিন</translation>
 <translation id="7053983685419859001">ব্লক করুন</translation>
-<translation id="1679356339067548863">Brave ব্রাউজার ক্র্যাশ করলে বা আটকে গেলে স্বয়ংক্রিয়ভাবে সমস্যা নির্ণয়ের রিপোর্টগুলো পাঠিয়ে Brave এর পণ্যের স্থিতিশীলতা উন্নত করতে সহায়তা করুন।</translation>
+<translation id="1679356339067548863">Mises ব্রাউজার ক্র্যাশ করলে বা আটকে গেলে স্বয়ংক্রিয়ভাবে সমস্যা নির্ণয়ের রিপোর্টগুলো পাঠিয়ে Mises এর পণ্যের স্থিতিশীলতা উন্নত করতে সহায়তা করুন।</translation>
 <translation id="660171790038410175"><ph name="BROWSER_NAME"/> অপ্রত্যাশিতভাবে বেরিয়ে গেছে।</translation>
-<translation id="1324417023773393937">Brave ব্রাউজার</translation>
+<translation id="1324417023773393937">Mises ব্রাউজার</translation>
 <translation id="7276554663454265692">ব্রাউজার সেটিংসে যে কোনও সময় আপনি <ph name="SETTING_TEXT"/> পরিবর্তন করতে পারবেন।</translation>
 <translation id="6873781976650514089">এই সেটিংটি</translation>
 <translation id="8915916167043355778">সবকটি বন্ধ করুন</translation>
@@ -103,22 +103,22 @@
 <translation id="7551864359422178684">এই ব্রাউজার উইন্ডোতে আপনার <ph name="NUMBER_OF_TABS"/>টি ট্যাব খোলা আছে।</translation>
 <translation id="2571596981920752023"><ph name="NUMBER_OF_TABS"/>টি ট্যাব</translation>
 <translation id="1307431692088049276">আর জিজ্ঞাসা করবেন না</translation>
-<translation id="2272117088509540883">- Brave সার্চ</translation>
-<translation id="2701279958223202597">উন্নত গোপনীয়তার সাথে স্বাধীন অনুসন্ধান সমর্থন করুন৷ Brave সার্চ আপনাকে, আপনার প্রশ্নগুলি বা আপনার ক্লিকগুলিকে ট্র্যাক করে না৷</translation>
+<translation id="2272117088509540883">- Mises সার্চ</translation>
+<translation id="2701279958223202597">উন্নত গোপনীয়তার সাথে স্বাধীন অনুসন্ধান সমর্থন করুন৷ Mises সার্চ আপনাকে, আপনার প্রশ্নগুলি বা আপনার ক্লিকগুলিকে ট্র্যাক করে না৷</translation>
 <translation id="6438467592401259882">উন্নত গোপনীয়তার সাথে স্বাধীন অনুসন্ধান সমর্থন করুন৷</translation>
 <translation id="1688359110799098115">উন্নত গোপনীয়তার সাথে স্বাধীন অনুসন্ধান সমর্থন করুন</translation>
-<translation id="8579317236683491484">Brave সার্চ আপনাকে, আপনার প্রশ্নগুলি বা আপনার ক্লিকগুলিকে ট্র্যাক করে না৷</translation>
-<translation id="5240031343741051161">Brave সার্চ ব্যবহার করুন</translation>
+<translation id="8579317236683491484">Mises সার্চ আপনাকে, আপনার প্রশ্নগুলি বা আপনার ক্লিকগুলিকে ট্র্যাক করে না৷</translation>
+<translation id="5240031343741051161">Mises সার্চ ব্যবহার করুন</translation>
 <translation id="5026874946691314267">এটি আবার দেখাবেন না</translation>
 <translation id="5234764350956374838">খারিজ</translation>
-<translation id="5100490448228945668">Brave অনুসন্ধান রূপান্তর বাতিল করুন, এই পরামর্শটি সরাতে এন্টার টিপুন</translation>
+<translation id="5100490448228945668">Mises অনুসন্ধান রূপান্তর বাতিল করুন, এই পরামর্শটি সরাতে এন্টার টিপুন</translation>
 <translation id="2515126961943087659">Bat বিজ্ঞাপন পরিষেবা</translation>
 <translation id="7924918279836988121">Bat Ledger পরিষেবা</translation>
 <translation id="6040143037577758943">বন্ধ</translation>
-<translation id="6665472986740899785">Brave নোটিফিকেশনের বিজ্ঞাপন</translation>
+<translation id="6665472986740899785">Mises নোটিফিকেশনের বিজ্ঞাপন</translation>
 <translation id="4174337572777167894">ওয়েব আবিষ্কার প্রকল্প</translation>
-<translation id="8659271182272561965">Brave অনুসন্ধান &amp; পরিশোধন করতে কিছু অনামী অনুসন্ধান ব্রাউজিং ডেটায় অবদান রাখুন।</translation>
-<translation id="1516554614404600536">Brave টুলটিপ</translation>
+<translation id="8659271182272561965">Mises অনুসন্ধান &amp; পরিশোধন করতে কিছু অনামী অনুসন্ধান ব্রাউজিং ডেটায় অবদান রাখুন।</translation>
+<translation id="1516554614404600536">Mises টুলটিপ</translation>
 <translation id="7986278174934557414">সাইড প্যানেল আইকন লুকান</translation>
 <translation id="6915291874524466201">সাইড প্যানেল আইকন লুকান</translation>
 <translation id="9149866541089851383">সম্পাদনা...</translation>
@@ -150,13 +150,13 @@
 <translation id="2036503787657622020">রীডার মোড চালু করুন</translation>
 <translation id="5226458915125328323">স্পীডরিডার সেটিংস</translation>
 <translation id="8591883849678260674">আসল দেখুন</translation>
-<translation id="6284218950354553099">স্বয়ংক্রিয়ভাবে Brave-এ প্রতিদিনের ব্যবহারের পিং পাঠান</translation>
-<translation id="5288333155754958121">এই নামবিহীন, গোপন পিংটি Brave-কে সক্রিয় ব্যবহারকারী অনুমান করতে দেয়।</translation>
-<translation id="1872784258300710671">নির্দিষ্ট কিছু বৈশিষ্ট্যের সামগ্রিক ব্যবহার অনুমান করতে Brave সম্পূর্ণরূপে ব্যক্তিগত পণ্য বিশ্লেষক ব্যবহার করে</translation>
+<translation id="6284218950354553099">স্বয়ংক্রিয়ভাবে Mises-এ প্রতিদিনের ব্যবহারের পিং পাঠান</translation>
+<translation id="5288333155754958121">এই নামবিহীন, গোপন পিংটি Mises-কে সক্রিয় ব্যবহারকারী অনুমান করতে দেয়।</translation>
+<translation id="1872784258300710671">নির্দিষ্ট কিছু বৈশিষ্ট্যের সামগ্রিক ব্যবহার অনুমান করতে Mises সম্পূর্ণরূপে ব্যক্তিগত পণ্য বিশ্লেষক ব্যবহার করে</translation>
 <translation id="8712637175834984815">বুঝেছি</translation>
 <translation id="4394049700291259645">অক্ষম</translation>
 <translation id="7142548388914389999">গোপনীয়তা-রক্ষাকারী পণ্য বিশ্লেষককে (P3A) অনুমতি দিন</translation>
-<translation id="8286082624639565868">এই সম্পূর্ন নামহীন তথ্য Brave কে নির্দিষ্ট কিছু বৈশিষ্ট্যের সামগ্রিক ব্যবহার অনুমান করতে এবং আপনার জন্য আরও উন্নত করে তুলতে সহায়তা করে।</translation>
+<translation id="8286082624639565868">এই সম্পূর্ন নামহীন তথ্য Mises কে নির্দিষ্ট কিছু বৈশিষ্ট্যের সামগ্রিক ব্যবহার অনুমান করতে এবং আপনার জন্য আরও উন্নত করে তুলতে সহায়তা করে।</translation>
 <translation id="1947672064022327074">আপনি কি ইথেরিয়াম সমর্থনের জন্য Crypto ওয়ালেটগুলি শুরু করতে চান?</translation>
 <translation id="7583735190612229830">এই অ্যাপটি এবং এটির মতন অন্যান্য অ্যাপের সাথে ইন্টারঅ্যাক্ট করতে Crypto Wallets সেট আপ করুন৷</translation>
 <translation id="8731422418734770661">ক্রিপ্টো ওয়ালেট সেট আপ করুন</translation>
@@ -167,7 +167,7 @@
 <translation id="2609895996619941644">ওয়েব্যাক মেশিনে একটি সংরক্ষিত সংস্করণ উপলভ্য কিনা তা কি আপনি পরীক্ষা করতে চান?</translation>
 <translation id="8053093028263274061">দুঃখিত, কোনও সংরক্ষিত সংস্করণ উপলভ্য নেই।</translation>
 <translation id="8517321676372639828">সংরক্ষিত সংস্করণের জন্য পরীক্ষা করুন</translation>
-<translation id="191143826155037518">Brave আপনার নিকট উপলভ্য করা হয়েছে <ph name="BEGIN_LINK_MPL"/>Mozilla পাবলিক লাইসেন্স 2.0 এর অধীনে <ph name="END_LINK_MPL"/> (MPL) এবং এতে অন্তর্ভুক্ত আছে <ph name="BEGIN_LINK_OSS"/>ওপেন সোর্স সফটওয়্যারসমূহ<ph name="END_LINK_OSS"/> অন্য সব বিভিন্ন লাইসেন্সের অধীনে।
+<translation id="191143826155037518">Mises আপনার নিকট উপলভ্য করা হয়েছে <ph name="BEGIN_LINK_MPL"/>Mozilla পাবলিক লাইসেন্স 2.0 এর অধীনে <ph name="END_LINK_MPL"/> (MPL) এবং এতে অন্তর্ভুক্ত আছে <ph name="BEGIN_LINK_OSS"/>ওপেন সোর্স সফটওয়্যারসমূহ<ph name="END_LINK_OSS"/> অন্য সব বিভিন্ন লাইসেন্সের অধীনে।
 আপনি <ph name="BEGIN_LINK_BUILD_INSTRUCTIONS"/>নিজের জন্য কিভাবে ডাউনলোড ও গঠন করতে হয় সে সংক্রান্ত নির্দেশনাটি পড়তে পারেন<ph name="END_LINK_BUILD_INSTRUCTIONS"/> সুনির্দিষ্ট <ph name="BEGIN_LINK_SOURCE_CODE"/>সোর্স কোড ব্যবহার করা হয়েছে এই কপিটি তৈরি করতে<ph name="END_LINK_SOURCE_CODE"/>.</translation>
 <translation id="4474155171896946103">সব কটি ট্যাব বুকমার্ক করুন...</translation>
 <translation id="2336228925368920074">সকল ট্যাব বুকমার্ক করুন...</translation>
@@ -175,8 +175,8 @@
 <translation id="4070612712151038707">টুলবারে VPN বোতামটি দেখায়</translation>
 <translation id="7705524343798198388">VPN</translation>
 <translation id="8593397073757037946">VPN টগল করুন</translation>
-<translation id="3960619311638643872">Brave VPN</translation>
-<translation id="2345974803401546682">Brave VPN সম্পর্কে</translation>
+<translation id="3960619311638643872">Mises VPN</translation>
+<translation id="2345974803401546682">Mises VPN সম্পর্কে</translation>
 <translation id="4378551569595875038">সংযুক্ত হচ্ছে...</translation>
 <translation id="3368922792935385530">সংযুক্ত</translation>
 <translation id="1536754031901697553">ডিসকানেক্ট করা হচ্ছে...</translation>
@@ -197,27 +197,27 @@
 <translation id="8487693399751278191">বুকমার্কগুলি এখনই আমদানি করুন...</translation>
 <translation id="2557899542277210112">দ্রুত ব্যবহারের জন্য, আপনার বুকমার্কগুলি এখানে বুকমার্ক বারে রাখুন।</translation>
 <translation id="1968543937259008435">অনলাইন সেরা গোপনীয়তার জন্য প্রস্তুত?</translation>
-<translation id="6817415381278637662">আপনার খোলা প্রতিটি ওয়েব পৃষ্ঠাতে Brave-এর গোপনীয়তা সুরক্ষা পেতে, Brave-কে আপনার ডিফল্ট ব্রাউজার হিসাবে সেট করুন।</translation>
-<translation id="8722651357687610395">Brave কে ডিফল্ট হিসাবে সেট করুন</translation>
+<translation id="6817415381278637662">আপনার খোলা প্রতিটি ওয়েব পৃষ্ঠাতে Mises-এর গোপনীয়তা সুরক্ষা পেতে, Mises-কে আপনার ডিফল্ট ব্রাউজার হিসাবে সেট করুন।</translation>
+<translation id="8722651357687610395">Mises কে ডিফল্ট হিসাবে সেট করুন</translation>
 <translation id="2370739752330685659">সম্ভবত পরে</translation>
 <translation id="7537601449003285327">কার্যদণ্ডে পিন করুন</translation>
 <translation id="961012016278832836">Microsoft Edge লেগ্যাসি</translation>
 <translation id="6436994631426134065"><ph name="BROWSER_NAME"/> থেকে আমদানি করা হয়েছে।</translation>
 <translation id="7630214457764713113">ক্লিন লিঙ্ক কপি করুন</translation>
-<translation id="9156965752763025780">আপনার পরিবর্তনগুলি পরবর্তী সময় আপনি Brave আবার চালু হলে ফলপ্রদ হবে৷</translation>
+<translation id="9156965752763025780">আপনার পরিবর্তনগুলি পরবর্তী সময় আপনি Mises আবার চালু হলে ফলপ্রদ হবে৷</translation>
 <translation id="7179921470347911571">এখনই রিলঞ্চ করুন</translation>
 <translation id="4472575034687746823">শুরু করুন</translation>
 <translation id="8081858229109418493">প্রোফাইলের নাম ও আইকন</translation>
 <translation id="6786747875388722282">এক্সটেনশনগুলি</translation>
 <translation id="984275831282074731">পেমেন্ট পদ্ধতি</translation>
-<translation id="2044383478723007273">Brave রঙ</translation>
+<translation id="2044383478723007273">Mises রঙ</translation>
 <translation id="1807246157184219062">আলো</translation>
 <translation id="2414886740292270097">অন্ধকার</translation>
 <translation id="1360441190790440400">Linux এর মতো</translation>
 <translation id="1336940801687497203">Windows এর মতো</translation>
 <translation id="8721331068159819483">macOS এর মত একইরকমের</translation>
 <translation id="1692470335103807198">আরো থিম পান</translation>
-<translation id="2906510232093002459">Brave ডিফল্ট ছবিসমূহ</translation>
+<translation id="2906510232093002459">Mises ডিফল্ট ছবিসমূহ</translation>
 <translation id="3367129510799209147">ট্যাব হোভার মোড</translation>
 <translation id="2113977810652731515">কার্ড</translation>
 <translation id="4096343215397759358">পূর্বরূপ সহ কার্ড</translation>
@@ -230,7 +230,7 @@
 <translation id="65774893852758517">প্রস্তাবিত সাইট</translation>
 <translation id="7859704718976024901">ব্রাউজিং ইতিহাস</translation>
 <translation id="8820817407110198400">বুকমার্ক বার</translation>
-<translation id="6333347122924254968">ঠিকানা বারে Brave পুরস্কারসমূহ দেখান</translation>
+<translation id="6333347122924254968">ঠিকানা বারে Mises পুরস্কারসমূহ দেখান</translation>
 <translation id="1811404036171336214">বুকমার্কগুলি সবর্দা নতুন ট্যাব পৃষ্ঠাতে দেখান</translation>
 <translation id="3416468988018290825">সর্বদা সম্পূর্ণ URL গুলি দেখান৷</translation>
 <translation id="5529693968082667490">ট্যাব সার্চ বাটন দেখান</translation>
@@ -244,7 +244,7 @@
 <translation id="5448570825852364919">খালি পাতা</translation>
 <translation id="5919424224662539292">পটভূমি চিত্র কাস্টমাইজ করুন এবং নতুন ট্যাব পৃষ্ঠায় প্রদর্শিত উইজেটগুলি</translation>
 <translation id="7461924472993315131">পিন</translation>
-<translation id="7506648566440714944">Brave ইতিমধ্যেই পিন করা হয়েছে</translation>
+<translation id="7506648566440714944">Mises ইতিমধ্যেই পিন করা হয়েছে</translation>
 <translation id="3195845168740336657">শিল্ড সেটিং</translation>
 <translation id="754769152790647708">শিল্ড স্টেটাস</translation>
 <translation id="3615717588724840230">শিল্ড ব্যবহার করে সাইট ট্র্যাকার, বিজ্ঞাপন ও ফিঙ্গারপ্রিন্ট ব্লক করতে পারে</translation>
@@ -253,7 +253,7 @@
 <translation id="6303294677342628402">শিল্ড</translation>
 <translation id="7133511168130368997">ওয়েবে আপনাকে অনুসরণ করে এমন ট্র্যাকার এবং বিজ্ঞাপনগুলিকে ব্লক করুন।</translation>
 <translation id="2761825942249694703">ডিফল্ট শীল্ড সেটিংস। একটি নির্দিষ্ট সাইটে শীল্ডস প্যানেলে আপনি কিছু পরিবর্তন না করা পর্যন্ত সেগুলি সমস্ত ওয়েবসাইটে প্রযোজ্য। এগুলির পরিবর্তন আপনার বিদ্যমান পার-সাইট সেটিংসকে ক্ষতিগ্রস্ত করবে না।</translation>
-<translation id="1435116578479068303">এটি ওয়েবসাইটগুলিতে বেশিরভাগ বিজ্ঞাপনগুলিকে ব্লক করবে, Brave ব্যক্তিগত বিজ্ঞাপনগুলি নয় — সেগুলি <ph name="BEGIN_LINK"/>Brave পুরস্কার<ph name="END_LINK"/> সেটিংসে নিয়ন্ত্রিত হয়।</translation>
+<translation id="1435116578479068303">এটি ওয়েবসাইটগুলিতে বেশিরভাগ বিজ্ঞাপনগুলিকে ব্লক করবে, Mises ব্যক্তিগত বিজ্ঞাপনগুলি নয় — সেগুলি <ph name="BEGIN_LINK"/>Mises পুরস্কার<ph name="END_LINK"/> সেটিংসে নিয়ন্ত্রিত হয়।</translation>
 <translation id="8452536890042542134">এটি ওয়েবসাইটগুলির বেশিরভাগ বিজ্ঞাপন ব্লক করবে।</translation>
 <translation id="4800195524776354947">শিল্ডস আইকনে অবরুদ্ধ উপকরণগুলির সংখ্যা দেখান</translation>
 <translation id="5510493033031835532">AMP পৃষ্ঠাগুলি অটো-রিডাইরেক্ট করুন</translation>
@@ -296,15 +296,15 @@
 <translation id="4182731739150761577">সম্পূর্ণ ইতিহাস দেখান</translation>
 <translation id="1340263054776016283">ফিল্টারের লিস্ট URL দেখুন</translation>
 <translation id="8578397014396032341">কনটেন্ট ফিল্টার</translation>
-<translation id="6821903322090655051">Brave পুরষ্কার অক্ষম করা আছে</translation>
+<translation id="6821903322090655051">Mises পুরষ্কার অক্ষম করা আছে</translation>
 <translation id="413570371620795359">চালু করে শুরু করতে পুরস্কারের প্যানেল খুলুন</translation>
 <translation id="3849957491997306859">স্বয়ংক্রিয়ভাবে সনাক্ত হয়েছে</translation>
 <translation id="8798099450830957504">ডিফল্ট</translation>
-<translation id="4851215387785619212">Brave সম্পর্কিত ব্যক্তিগত বিজ্ঞাপনগুলি</translation>
-<translation id="7808122468353671181">Brave বিজ্ঞাপন দেখে টোকেন উপার্জন করুন। আপনার ব্রাউজিং আচরণ থেকে অনুমান করে আপনার আগ্রহের ভিত্তিতে বিজ্ঞাপন পরিবেশন করা হয়। কোনো ব্যক্তিগত তথ্য বা ব্রাউজিং ইতিহাস কখনো আপনার ব্রাউজার ছেড়ে যায় না।</translation>
+<translation id="4851215387785619212">Mises সম্পর্কিত ব্যক্তিগত বিজ্ঞাপনগুলি</translation>
+<translation id="7808122468353671181">Mises বিজ্ঞাপন দেখে টোকেন উপার্জন করুন। আপনার ব্রাউজিং আচরণ থেকে অনুমান করে আপনার আগ্রহের ভিত্তিতে বিজ্ঞাপন পরিবেশন করা হয়। কোনো ব্যক্তিগত তথ্য বা ব্রাউজিং ইতিহাস কখনো আপনার ব্রাউজার ছেড়ে যায় না।</translation>
 <translation id="1758947220824279023">দেখানোর জন্য বিজ্ঞাপনের সর্বাধিক সংখ্যা</translation>
 <translation id="2356652719351432565">আঞ্চলিক বিজ্ঞাপনের প্রাসঙ্গিকতা</translation>
-<translation id="2196950072404588793">এটি Brave-কে সুনির্দিষ্টভাবে আপনার অঞ্চলের জন্য বিজ্ঞাপনগুলি দেখানোর অনুমতি দেয়। <ph name="BEGIN_LINK"/>আরও জানুন<ph name="END_LINK"/></translation>
+<translation id="2196950072404588793">এটি Mises-কে সুনির্দিষ্টভাবে আপনার অঞ্চলের জন্য বিজ্ঞাপনগুলি দেখানোর অনুমতি দেয়। <ph name="BEGIN_LINK"/>আরও জানুন<ph name="END_LINK"/></translation>
 <translation id="2433507940547922241">উপস্থিতি</translation>
 <translation id="6112368337882254910">স্বতঃ-প্রদান</translation>
 <translation id="9132509928968869844">মাসিক স্বয়ংক্রিয় অবদানের সীমা</translation>
@@ -326,13 +326,13 @@
 <translation id="1822560017823072927">ডিফল্ট সর্বজনীন এবং ব্যক্তিগত ইন্টারফেসগুলি</translation>
 <translation id="5825943197137337319">শুধু ডিফল্ট সর্বজনীন ইন্টারফেস</translation>
 <translation id="1689062823386843231">নন-প্রক্সি UDP অক্ষম করুন</translation>
-<translation id="3540231253392253941">পুশ মেসেজিংয়ের জন্য Brave পরিষেবাগুলি ব্যবহার করুন</translation>
+<translation id="3540231253392253941">পুশ মেসেজিংয়ের জন্য Mises পরিষেবাগুলি ব্যবহার করুন</translation>
 <translation id="933652931229970927">স্বয়ংক্রিয়ভাবে ক্র্যাশ রিপোর্টগুলো পাঠায়</translation>
 <translation id="4846154056248462491">প্রস্থানের সময়</translation>
-<translation id="2808630562319398131">Brave Rewards এর ডেটা রিসেট করুন...</translation>
+<translation id="2808630562319398131">Mises Rewards এর ডেটা রিসেট করুন...</translation>
 <translation id="6438096877646138757">আপনি সাইট বন্ধ করে দিলে সেগুলো কুকি সাফ করে</translation>
 <translation id="2988792685798128092">সাইট বন্ধ করে সাফ করুন</translation>
-<translation id="814018970995616154">Brave এ সঞ্চিত অনিরাপদ সাইটগুলির একটি তালিকার সাথে URLগুলি পরীক্ষা করুন।</translation>
+<translation id="814018970995616154">Mises এ সঞ্চিত অনিরাপদ সাইটগুলির একটি তালিকার সাথে URLগুলি পরীক্ষা করুন।</translation>
 <translation id="1144810021918451336">আপনাকে বিপজ্জনক ওয়েবসাইট, ডাউনলোড, এবঙ্গ এক্সটেনশনগুলি থেকে রক্ষা করে না।</translation>
 <translation id="5570470519803062774">সাইট এবং শিল্ডগুলির সেটিং-গুলি</translation>
 <translation id="410351446219883937">স্বয়ংক্রিয়ভাবে চালান</translation>
@@ -347,7 +347,7 @@
 <translation id="6414370348346025511">স্ট্যান্ডার্ড সুরক্ষা চালু আছে।</translation>
 <translation id="5565355416171743213">সিঙ্কের ব্যবহার শুরু করুন</translation>
 <translation id="4332558599726753990">সিঙ্ক সেটআপ</translation>
-<translation id="2187778349654214731">শুরু করতে আপনি সিঙ্ক করার পরিকল্পনা করেছেন এমন সমস্ত ডিভাইসে আপনাকে Brave ইনস্টল করতে হবে। তারপর, একটি সিঙ্ক কোডের দ্বারা সেগুলিকে নিরাপদে লিঙ্ক করুন।</translation>
+<translation id="2187778349654214731">শুরু করতে আপনি সিঙ্ক করার পরিকল্পনা করেছেন এমন সমস্ত ডিভাইসে আপনাকে Mises ইনস্টল করতে হবে। তারপর, একটি সিঙ্ক কোডের দ্বারা সেগুলিকে নিরাপদে লিঙ্ক করুন।</translation>
 <translation id="7530575064080939974">আপনার সিঙ্ক হওয়া ডিভাইসগুলি পরিচালনা করুন</translation>
 <translation id="7575156386943878014">সিঙ্ক পরিচালক</translation>
 <translation id="1755198127524719638">সিঙ্ক সেটিংস দেখুন</translation>
@@ -361,18 +361,18 @@
 <translation id="7885157704277298658">কপি করা হয়েছে!</translation>
 <translation id="8802630444265810662">আপনার সিঙ্ক কোড পাঠানোর করার জন্য একটি মোবাইল ডিভাইস দিয়ে একটি QR কোড স্ক্যান করতে হবে</translation>
 <translation id="6221331245829088299">QR কোড প্রদর্শন করানোর সময় সেখানে একটি ত্রুটি ঘটেছিল, অনুগ্রহ করে রিফ্রেশ করুন এবং আবার চেষ্টা করুন।</translation>
-<translation id="298546024891487702">শুরু করতে আপনি সিঙ্ক করার পরিকল্পনা করেছেন এমন সমস্ত ডিভাইসে আপনাকে Brave ইনস্টল করতে হবে। সেগুলিকে একসাথে শৃঙ্খলিত করতে আপনি আপনার সবকয়টি ডিভাইস নিরাপদে লিঙ্ক করতে যে sync শৃঙ্খলটি ব্যবহার করতে চান সেটি শুরু করুন।</translation>
+<translation id="298546024891487702">শুরু করতে আপনি সিঙ্ক করার পরিকল্পনা করেছেন এমন সমস্ত ডিভাইসে আপনাকে Mises ইনস্টল করতে হবে। সেগুলিকে একসাথে শৃঙ্খলিত করতে আপনি আপনার সবকয়টি ডিভাইস নিরাপদে লিঙ্ক করতে যে sync শৃঙ্খলটি ব্যবহার করতে চান সেটি শুরু করুন।</translation>
 <translation id="6200528822592747640">একটি নতুন Sync শৃঙ্খল শুরু করুন</translation>
 <translation id="5184726904895809379">আমার একটি Sync কোড রয়েছে</translation>
 <translation id="8780295742023331191">Sync কোড দেখুন</translation>
 <translation id="9017050385815017931">ফোন/ট্যাবলেট</translation>
 <translation id="1736420071277903564">কম্পিউটার</translation>
 <translation id="3407602902101449803">Sync শৃঙ্খল QR কোড</translation>
-<translation id="8369686073965491869">আপনার মোবাইল ডিভাইসে সেটিংস প্যানেলটিতে Brave Sync-এ নেভিগেট করুন এবং বোতামটি ক্লিক করুন</translation>
+<translation id="8369686073965491869">আপনার মোবাইল ডিভাইসে সেটিংস প্যানেলটিতে Mises Sync-এ নেভিগেট করুন এবং বোতামটি ক্লিক করুন</translation>
 <translation id="6527776448555649991">"Sync Code স্ক্যান করুন"।</translation>
 <translation id="1400862780574843709">নীচের QR কোডটি স্ক্যান করতে আপনার ক্যামেরাটি বন্ধ করুন।</translation>
 <translation id="5086223971958279691">Sync Chain কোড</translation>
-<translation id="2899261497479389619">আপনার টার্গেট কম্পিউটারে সেটিংসে Brave Sync-এ নেভিগেট করুন এবং বোতামটিতে ক্লিক করুন</translation>
+<translation id="2899261497479389619">আপনার টার্গেট কম্পিউটারে সেটিংসে Mises Sync-এ নেভিগেট করুন এবং বোতামটিতে ক্লিক করুন</translation>
 <translation id="4827439149833241990">"আমার একটি Sync কোড রয়েছে".</translation>
 <translation id="8299617838343103908">নিচে দেখানো সিঙ্ক চেন কোডটি লিখুন।</translation>
 <translation id="4485276108749547761">এই কোডটি একটি পাসওয়ার্ডের মতো গণ্য করুন। যদি কেউ এটি ধরে রাখেন তবে তারা আপনার সিঙ্ক হওয়া ডেটাটি পড়তে এবং সংশোধন করতে পারবেন।</translation>
@@ -384,23 +384,23 @@
 <translation id="4581190919849683048">আপনি কোন প্রকারের ডিভাইসের সাথে সিঙ্ক করতে চান?</translation>
 <translation id="4112587618563511470">অবৈধ সিঙ্ক কোড, অনুগ্রহ করে চেক করুন এবং আবার চেষ্টা করুন।</translation>
 <translation id="3995714999835224798">এই কোডটি অবৈধ</translation>
-<translation id="859506441384380749">এই কোডটি Brave-এর একটি অবমূল্যায়ন সংস্করণ দ্বারা তৈরি করা হয়েছে, অনুগ্রহ করে প্রথমে আপনার অন্য ডিভাইস আপগ্রেড করুন</translation>
+<translation id="859506441384380749">এই কোডটি Mises-এর একটি অবমূল্যায়ন সংস্করণ দ্বারা তৈরি করা হয়েছে, অনুগ্রহ করে প্রথমে আপনার অন্য ডিভাইস আপগ্রেড করুন</translation>
 <translation id="3132642509209154999">এই কোডটির মেয়াদ শেষ হয়েছে। অনুগ্রহ করে আপনার অন্য ডিভাইসে একটি নতুন তৈরি করুন এবং আবার চেষ্টা করুন।</translation>
 <translation id="2859229680945501779">এই কোডটি অকার্যকর। আপনার ডিভাইসে সময় এবং টাইমজোন সঠিকভাবে সেট করা আছে কিনা অনুগ্রহ করে তা চেক করে নিন।</translation>
 <translation id="2339730291919608488">Sync শৃঙ্খল ত্যাগ করুন</translation>
 <translation id="115699408012835975">আপনি যদি সিঙ্ক রিসেট করেন তহালে এর সাথে সিঙ্ক করার জন্য আপনাকে অন্য ডিভাইস থেকে একটি সিঙ্ক কোডটি পুনরায় প্রবেশ করতে হবে। আপনি কি এগিয়ে যাওয়ার বিষয়ে নিশ্চিত?</translation>
 <translation id="6092564993102418148">আপনি কি সিঙ্ক চেন থেকে নির্বাচিত ডিভাইসটি সরিয়ে দিতে নিশ্চিত?</translation>
-<translation id="4400414577602898435">সতর্কবাণী: যে ডিভাইসে এই কোড ওয়ার্ডগুলি তৈরি হয় এটি সেই ডিভাইসের সাথে সম্ভাব্য আপনার পাসওয়ার্ড সহ আপনার Brave ডেটা শেয়ার করবে।
+<translation id="4400414577602898435">সতর্কবাণী: যে ডিভাইসে এই কোড ওয়ার্ডগুলি তৈরি হয় এটি সেই ডিভাইসের সাথে সম্ভাব্য আপনার পাসওয়ার্ড সহ আপনার Mises ডেটা শেয়ার করবে।
 
     যে ডিভাইসে এই কোড ওয়ার্ডগুলি তৈরি হয় আপনিই যে সেটির মালিক অনুগ্রহ করে তা দুবার পরীক্ষা করুন।
 
     আপনি কি এটি করার ব্যাপারে নিশ্চিত?</translation>
-<translation id="7443185843787879670">Brave আপনার অপারেটিং সিস্টেমের নিরাপদ স্টোরেজ প্রবেশ করতে পারেনি। এটি পাসওয়ার্ড এবং কুকির মতো ডেটা সুরক্ষিত করতে ব্যবহৃত হয়; ডিভাইসগুলির মধ্যে আপনার ব্রাউজার প্রোফাইল সংযোগ করার জন্য Brave সিঙ্কের জন্যও এটি প্রয়োজনীয়। এর মানে Brave সিঙ্ক চলছে না। এই সমস্যাটি সমাধান করতে, অনুগ্রহ করে <ph name="BEGIN_LINK_SYNC_GUIDE"/>Brave সিঙ্কের সমস্যা সমাধানের নির্দেশিকা দেখুন<ph name="END_LINK_SYNC_GUIDE"/>।</translation>
+<translation id="7443185843787879670">Mises আপনার অপারেটিং সিস্টেমের নিরাপদ স্টোরেজ প্রবেশ করতে পারেনি। এটি পাসওয়ার্ড এবং কুকির মতো ডেটা সুরক্ষিত করতে ব্যবহৃত হয়; ডিভাইসগুলির মধ্যে আপনার ব্রাউজার প্রোফাইল সংযোগ করার জন্য Mises সিঙ্কের জন্যও এটি প্রয়োজনীয়। এর মানে Mises সিঙ্ক চলছে না। এই সমস্যাটি সমাধান করতে, অনুগ্রহ করে <ph name="BEGIN_LINK_SYNC_GUIDE"/>Mises সিঙ্কের সমস্যা সমাধানের নির্দেশিকা দেখুন<ph name="END_LINK_SYNC_GUIDE"/>।</translation>
 <translation id="6285118765755298263">অন্যান্য সার্চ ইঞ্জিনকে ইনডেক্স করুন</translation>
 <translation id="919715748352669592">OpenSearch স্পেসিফিকেশন অনুসরণ করে এমন ওয়েবসাইটগুলিকে স্বয়ংক্রিয়ভাবে ইনডেক্স করে।</translation>
 <translation id="842628013524824194">সাধারণ উইন্ডো - ঠিকানা বারে সার্চ ইঞ্জিন ব্যবহার করা হয়েছে</translation>
 <translation id="5324939009884545145">ব্যক্তিগত উইন্ডো - ঠিকানা বারে ব্যবহৃত অনুসন্ধান ইঞ্জিন</translation>
-<translation id="6864914031231797928">এক্সটেনশনগুলির জন্য Brave লগইন এর অনুমতি দিন</translation>
+<translation id="6864914031231797928">এক্সটেনশনগুলির জন্য Mises লগইন এর অনুমতি দিন</translation>
 <translation id="6554397389149987360">ব্রাউজারে স্ক্রিন শেয়ারিং এবং অন্যান্য বৈশিষ্ট্য সক্ষম করতে Hangouts উপাদানগুলি ব্যবহার করে।</translation>
 <translation id="7878791177459550035">মিডিয়া রাউটার ব্রাউজারটিতে কাস্টের বৈশিষ্ট্য সক্রিয় করেছে।</translation>
 <translation id="5927916530277631319">অপ্রতিরোধ্য ডোমেইনগুলোর সমস্যা সমাধানের উপায়</translation>
@@ -428,27 +428,27 @@
 <translation id="6936835573742749135">একটি CAPTCHA অনুরোধ করতে পারবেন না। পরে আবার চেষ্টা করুন।</translation>
 <translation id="2653659639078652383">জমা দিন</translation>
 <translation id="1369311132025451972">স্বয়ংক্রিয়ভাবে .onion সাইটগুলিতে পুনঃনির্দেশিত করে</translation>
-<translation id="1658670175365815312">একটি ওয়েবসাইটের .onion সংস্করণ উপলভ্য হলে Brave সেটি খুলবে এবং স্বয়ংক্রিয়ভাবে একটি Tor উইন্ডোতে সমস্ত .onion ডোমেইন খুলবে।</translation>
+<translation id="1658670175365815312">একটি ওয়েবসাইটের .onion সংস্করণ উপলভ্য হলে Mises সেটি খুলবে এবং স্বয়ংক্রিয়ভাবে একটি Tor উইন্ডোতে সমস্ত .onion ডোমেইন খুলবে।</translation>
 <translation id="2896916411183256228">সরাসরি ব্রাউজারে torrents প্রদর্শন করতে WebTorrent ব্যবহার করে। torrent ফাইলগুলি এবং magnet লিঙ্কগুলিকে সমর্থন করে।</translation>
 <translation id="5249433283143453448">ব্রাউজারে সুরক্ষিত ভিডিও স্ট্রিমিং এবং অন্যান্য সামগ্রী দেখতে ওয়াইডওয়াইন ডিজিটাল রাইটস ম্যানেজমেন্ট (ডিআরএম) উপাদান ব্যবহার করুন।</translation>
 <translation id="8137559199583651773">এক্সটেনশনগুলি পরিচালনা করুন</translation>
 <translation id="7013485839273047434">আরও এক্সটেনশনগুলি পান</translation>
 <translation id="4954512758656527938">ডিফল্ট ইথেরিয়াম ওয়ালেট</translation>
 <translation id="7701023802820268122">ডিফল্ট Solana ওয়ালেট</translation>
-<translation id="8488282162676695335">Brave ওয়ালেট</translation>
+<translation id="8488282162676695335">Mises ওয়ালেট</translation>
 <translation id="2356070529366658676">জিজ্ঞাসা করুন</translation>
 <translation id="7701040980221191251">কিছুই নয়</translation>
 <translation id="1274962333945373242">ক্রিপ্টো ওয়ালেট (অপ্রচলিত)</translation>
-<translation id="3695088618483091287">Brave ওয়ালেট (এক্সটেনশন পছন্দ করুন)</translation>
+<translation id="3695088618483091287">Mises ওয়ালেট (এক্সটেনশন পছন্দ করুন)</translation>
 <translation id="4718664830805652430">ডিফল্ট বেস মুদ্রা</translation>
 <translation id="7992507032049865603">ডিফল্ট বেস ক্রিপ্টোকারেন্সি</translation>
-<translation id="1834467296210148203">টুলবারে Brave ওয়ালেট আইকন দেখান</translation>
-<translation id="8239147115686034860">স্বয়ংক্রিয়ভাবে Brave ওয়ালেট লক করুন</translation>
-<translation id="414639769490080648">Brave ওয়ালেট স্বয়ং স্বয়ংক্রিয়ভাবে লক না হওয়া অবধি অপেক্ষারত মিনিটের সংখ্যা</translation>
+<translation id="1834467296210148203">টুলবারে Mises ওয়ালেট আইকন দেখান</translation>
+<translation id="8239147115686034860">স্বয়ংক্রিয়ভাবে Mises ওয়ালেট লক করুন</translation>
+<translation id="414639769490080648">Mises ওয়ালেট স্বয়ং স্বয়ংক্রিয়ভাবে লক না হওয়া অবধি অপেক্ষারত মিনিটের সংখ্যা</translation>
 <translation id="1241283133946520352">নেটওয়ার্কসমূহ</translation>
 <translation id="5975930666279943472">ওয়ালেটের লেনদেন এবং বর্তমান তথ্য সাফ করুন</translation>
 <translation id="5693968582510626466">লেনদেনগুলো সাফ করা ডেভেলপারদের জন্য বা একটি স্থানীয় সার্ভারে অবস্থা সাফ করার জন্য উপকারী হতে পারে</translation>
-<translation id="4993345308607970390">Brave ওয়ালেট রিসেট করুন</translation>
+<translation id="4993345308607970390">Mises ওয়ালেট রিসেট করুন</translation>
 <translation id="9216386092464743272">আপনি কি আপনার ওয়ালেটের সব লেনদেন এবং বর্তমান তথ্য রিসেট করার বিষয়ে নিশ্চিত? এই বিকল্পটি বেশিরভাগ ক্ষেত্রে একটি স্থানীয় টেস্ট সার্ভার চালনাকারী ডেভেলপাররা ব্যবহার করেন। নিশ্চিত করতে "<ph name="CONFIRMATION_PHRASE"/>" টাইপ করুন।</translation>
 <translation id="6369495274982305511">আপনি কি আপনার ওয়ালেট রিসেট করার বিষয়ে নিশ্চিত? যদি আপনার ওয়ালেটের ব্যাক আপ নেওয়া না হয় তাহলে রিসেট করার ফলে আপনি সমস্ত অ্যাকাউন্টের ডেটা (যেকোনো সংশ্লিষ্ট তহবিল সহ) হারাবেন। নিশ্চিত করতে "<ph name="CONFIRMATION_PHRASE"/>" টাইপ করুন।</translation>
 <translation id="3752403403443723332">আপনার ওয়ালেট রিসেট করা হয়েছে।</translation>
@@ -487,12 +487,12 @@
 <translation id="2618193846561624884">আপনি কি বিদ্যমান নেটওয়ার্ক আপডেট করতে চান?</translation>
 <translation id="9170907049676078643">IPFS সংস্থানগুলি সমাধান করার পদ্ধতি</translation>
 <translation id="1327977588028644528">গেটওয়ে</translation>
-<translation id="1195880978080389104">Brave স্থানীয় IPFS নোড</translation>
-<translation id="2178402446227616866">Brave স্থানীয় IPFS নোড এবং গেটওয়ে গোপনীয়তার বিবেচ্য বিষয়গুলো সম্পর্কে <ph name="BEGIN_LINK_MPL"/>আরো জানুন<ph name="END_LINK_MPL"/>।</translation>
+<translation id="1195880978080389104">Mises স্থানীয় IPFS নোড</translation>
+<translation id="2178402446227616866">Mises স্থানীয় IPFS নোড এবং গেটওয়ে গোপনীয়তার বিবেচ্য বিষয়গুলো সম্পর্কে <ph name="BEGIN_LINK_MPL"/>আরো জানুন<ph name="END_LINK_MPL"/>।</translation>
 <translation id="4927734062756955434">IPFS পাবলিক গেটওয়ে ঠিকানা</translation>
 <translation id="8425213833346101688">পরিবর্তন</translation>
 <translation id="585868419599255817">IPFS পাবলিক গেটওয়ে ফলব্যাক</translation>
-<translation id="2618080188892567155">আপনার Brave স্থানীয় IPFS নোড পৌঁছাতে না পারলে স্বয়ংক্রিয়ভাবে সর্বজনীন IPFS গেটওয়েতে ফিরে যান।</translation>
+<translation id="2618080188892567155">আপনার Mises স্থানীয় IPFS নোড পৌঁছাতে না পারলে স্বয়ংক্রিয়ভাবে সর্বজনীন IPFS গেটওয়েতে ফিরে যান।</translation>
 <translation id="4107552920076294723">কনফিগার করা  IPFS গেটওয়েতে  IPFS সংস্থানগুলি পুনর্নির্দেশ করুন</translation>
 <translation id="6494857428933042381">যখন একটি IPFS গেটওয়ে সংস্থান সম্মুখীন হয় তখন স্বয়ংক্রিয়ভাবে IPFS রেজোলিউশনের জন্য কনফিগার করা গেটওয়ে ব্যবহার করে।</translation>
 <translation id="8655170717758778983">যখন সম্ভব DNSLink এর মাধ্যমে IPFS পেজগুলোতে স্বয়ংক্রিয়ভাবে পুনঃনির্দেশ (রিডাইরেক্ট) করুন</translation>
@@ -508,8 +508,8 @@
 <translation id="911363100236037920">নতুন কি-টির জন্য একটি নাম প্রবিষ্ট করুন</translation>
 <translation id="6358469157239228181">এই নামটি ব্যবহার করা যাবে না</translation>
 <translation id="2082206983920804886">ঘোরানোর কী</translation>
-<translation id="5078501082919354191">Brave স্থানীয় IPFS নোড বন্ধ করতে অক্ষম</translation>
-<translation id="5687424953196903465">Brave স্থানীয় IPFS নোড লঞ্চ করতে অক্ষম</translation>
+<translation id="5078501082919354191">Mises স্থানীয় IPFS নোড বন্ধ করতে অক্ষম</translation>
+<translation id="5687424953196903465">Mises স্থানীয় IPFS নোড লঞ্চ করতে অক্ষম</translation>
 <translation id="6476061084931271248">পরিবর্তনগুলি প্রয়োগ করার জন্য নোড রিস্টার্ট করুন</translation>
 <translation id="3754226427671882382">নোড রিস্টার্ট করুন</translation>
 <translation id="949667118776341807">ঘোরান</translation>
@@ -529,7 +529,7 @@
 <translation id="557281710253742286">IPFS গেটওয়ে সেট করুন</translation>
 <translation id="8571837315037233299">গেটওয়ের ঠিকানা</translation>
 <translation id="7703184801853248830">অবৈধ গেটওয়ে ঠিকানা</translation>
-<translation id="7690058578502751948">Brave-এ শুধুমাত্র উত্স আইসোলেসন সহ একটি বৈধ IPFS গেটওয়ে সক্ষম আছে</translation>
+<translation id="7690058578502751948">Mises-এ শুধুমাত্র উত্স আইসোলেসন সহ একটি বৈধ IPFS গেটওয়ে সক্ষম আছে</translation>
 <translation id="3411013544209536575">সহায়ক পরামর্শসমূহ</translation>
 <translation id="2775956301559569472">404 পৃষ্ঠায় ওয়েব্যাক মেশিন প্রম্পট দেখান</translation>
 <translation id="3095201688102519917">বিবিধ ট্যাব সহ কোনও উইন্ডো বন্ধ করার আগে আমাকে জানান</translation>

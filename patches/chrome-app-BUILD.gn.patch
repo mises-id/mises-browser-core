@@ -1,0 +1,21 @@
+diff --git a/chrome/app/BUILD.gn b/chrome/app/BUILD.gn
+index 237d86b53904222dc2fe9a667bc5dcfaff5e79d1..7ddce825221b32fb56599c2dafa4d655c928c8af 100644
+--- a/chrome/app/BUILD.gn
++++ b/chrome/app/BUILD.gn
+@@ -109,6 +109,7 @@ grit("generated_resources") {
+   if (is_android) {
+     outputs += android_generated_java_resources
+   }
++  deps = [ "//mises/app:mises_generated_resources_grit" ]
+ }
+ 
+ if (is_android) {
+@@ -144,7 +145,7 @@ grit("google_chrome_strings") {
+ }
+ 
+ grit("chromium_strings") {
+-  source = "chromium_strings.grd"
++  source = "${branding_path_component}_strings.grd"
+   defines = chrome_grit_defines
+   output_dir = "$root_gen_dir/chrome"
+   outputs =
