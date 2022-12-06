@@ -1,0 +1,17 @@
+diff --git a/chrome/browser/ui/android/appmenu/internal/BUILD.gn b/chrome/browser/ui/android/appmenu/internal/BUILD.gn
+index b86e1c435d4426918a04ca96952da298594d9cd7..329a2e4acb8bc9871b5d535a06299cf4dda8b18f 100644
+--- a/chrome/browser/ui/android/appmenu/internal/BUILD.gn
++++ b/chrome/browser/ui/android/appmenu/internal/BUILD.gn
+@@ -35,6 +35,12 @@ android_library("java") {
+     "//third_party/androidx:androidx_core_core_java",
+     "//ui/android:ui_java",
+   ]
++  deps += [  
++    "//chrome/browser/tab:java",
++    "//chrome/browser/profiles/android:java",
++    "//chrome/android:chrome_java",
++    "//content/public/android:content_full_java",
++  ]
+   resources_package = "org.chromium.chrome.browser.ui.appmenu.internal"
+ }
+ 

@@ -1,0 +1,38 @@
+diff --git a/chrome/browser/devtools/BUILD.gn b/chrome/browser/devtools/BUILD.gn
+index ec5a2e2c1cc289093018e10d793c78ebeb301322..830dcff79e011ddc78c2e101870d4fb0104cbf6f 100644
+--- a/chrome/browser/devtools/BUILD.gn
++++ b/chrome/browser/devtools/BUILD.gn
+@@ -6,13 +6,13 @@ import("//build/config/chromeos/ui_mode.gni")
+ import("//extensions/buildflags/buildflags.gni")
+ import("//printing/buildflags/buildflags.gni")
+ 
+-if (!is_android) {
++if (true || !is_android) {
+   import("//build/config/features.gni")
+   import("//chrome/common/features.gni")
+   import("//tools/grit/grit_rule.gni")
+ }
+ 
+-if (!is_android) {
++if (true || !is_android) {
+   _inspector_protocol = "//third_party/inspector_protocol"
+   import("$_inspector_protocol/inspector_protocol.gni")
+ 
+@@ -112,7 +112,7 @@ static_library("devtools") {
+     "//ui/events:dom_keycode_converter",
+   ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     deps += [
+       "//build:chromeos_buildflags",
+       "//chrome:extra_resources",
+@@ -233,7 +233,7 @@ static_library("devtools") {
+   } else {
+     sources += [ "devtools_dock_tile.cc" ]
+   }
+-  if (!is_android) {
++  if (true || !is_android) {
+     deps += [
+       ":protocol_generated_sources",
+       "//chrome/app:command_ids",

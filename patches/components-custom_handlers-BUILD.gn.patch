@@ -1,0 +1,13 @@
+diff --git a/components/custom_handlers/BUILD.gn b/components/custom_handlers/BUILD.gn
+index b036c5a479f971edad87e8624494e3c3b448ab79..9156dd9eac597f596bc0cc5f4059483bf3b2a242 100644
+--- a/components/custom_handlers/BUILD.gn
++++ b/components/custom_handlers/BUILD.gn
+@@ -29,7 +29,7 @@ static_library("custom_handlers") {
+     "//third_party/blink/public/common:headers",
+   ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "register_protocol_handler_permission_request.cc",
+       "register_protocol_handler_permission_request.h",

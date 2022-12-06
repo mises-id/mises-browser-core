@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/new_tab_page/modules/photos/BUILD.gn b/chrome/browser/new_tab_page/modules/photos/BUILD.gn
+index 14f20ce3176281addab1858cec4dcfe201ef71a7..71686bfd916c03443b78b5a22cd592d6bc0bc9cb 100644
+--- a/chrome/browser/new_tab_page/modules/photos/BUILD.gn
++++ b/chrome/browser/new_tab_page/modules/photos/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "photos.mojom" ]

@@ -1,0 +1,13 @@
+diff --git a/BUILD.gn b/BUILD.gn
+index 4efccb3390c7234db0d6abcdae3e5d2b9e21c252..e37f535e64e615495f6fc9b4b759f0208b074e8a 100644
+--- a/BUILD.gn
++++ b/BUILD.gn
+@@ -274,7 +274,7 @@ group("gn_all") {
+     deps += [ "//printing:printing_unittests" ]
+   }
+ 
+-  if (enable_extensions) {
++  if (false && enable_extensions) {
+     deps += [
+       "//extensions:extensions_browsertests",
+       "//extensions:extensions_unittests",

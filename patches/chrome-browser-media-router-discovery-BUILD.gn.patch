@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/media/router/discovery/BUILD.gn b/chrome/browser/media/router/discovery/BUILD.gn
+index 809c4f056962f2a732fb1a8ac62b109f7b0b7485..6b1d976b030acf27c9984ad5aeda0d7facd4eeaa 100644
+--- a/chrome/browser/media/router/discovery/BUILD.gn
++++ b/chrome/browser/media/router/discovery/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//build/config/chromeos/ui_mode.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ static_library("discovery") {
+   inputs = [ "$root_gen_dir/chrome/grit/generated_resources.h" ]

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/feedback_webui/html/BUILD.gn b/chrome/browser/resources/feedback_webui/html/BUILD.gn
+index 904fbd879353e4b2dd2394cbcd033126744c6350..ee1c65933c9b803377ae27ea9e84716ace2c2bd9 100644
+--- a/chrome/browser/resources/feedback_webui/html/BUILD.gn
++++ b/chrome/browser/resources/feedback_webui/html/BUILD.gn
+@@ -6,7 +6,7 @@ import("//build/config/chromeos/ui_mode.gni")
+ import("//tools/grit/preprocess_if_expr.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ preprocess_folder = "$target_gen_dir/../preprocessed"
+ 

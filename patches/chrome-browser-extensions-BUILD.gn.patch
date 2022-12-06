@@ -1,0 +1,30 @@
+diff --git a/chrome/browser/extensions/BUILD.gn b/chrome/browser/extensions/BUILD.gn
+index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..8454e1ce8d61ceefad4a79847ba9019f83780bd1 100644
+--- a/chrome/browser/extensions/BUILD.gn
++++ b/chrome/browser/extensions/BUILD.gn
+@@ -953,6 +953,16 @@ static_library("extensions") {
+     "//ui/strings",
+     "//url",
+   ]
++  if (is_android) {
++    sources += [
++      "//mises/browser/extensions/api/mises_private/mises_private_api.cc",
++      "//mises/browser/extensions/api/mises_private/mises_private_api.h",
++      "global_shortcut_listener_android.cc",
++      "global_shortcut_listener_android.h",
++      "system_display/display_info_provider_aura.cc",
++      "system_display/display_info_provider_aura.h",
++    ]
++  }
+ 
+   if (is_linux || is_mac || is_win) {
+     sources += [
+@@ -1261,7 +1271,7 @@ static_library("extensions") {
+     ]
+   }
+ 
+-  if (is_linux) {
++  if (is_linux || true) {
+     sources +=
+         [ "api/image_writer_private/removable_storage_provider_linux.cc" ]
+   }

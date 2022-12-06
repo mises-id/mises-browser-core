@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/settings/settings.gni b/chrome/browser/resources/settings/settings.gni
+index 55bfd93d27da2be10a56511d9ab47de14bfc4189..68938c6e96bbedd4b97d99b5468f75185fee6328 100644
+--- a/chrome/browser/resources/settings/settings.gni
++++ b/chrome/browser/resources/settings/settings.gni
+@@ -5,7 +5,7 @@
+ import("//build/config/chromeos/ui_mode.gni")
+ import("//third_party/closure_compiler/compile_js.gni")
+ 
+-assert(!is_android, "Android does not use these settings")
++#assert(!is_android, "Android does not use these settings")
+ 
+ settings_closure_flags =
+     default_closure_args + [

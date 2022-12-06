@@ -1,0 +1,10 @@
+diff --git a/ui/webui/resources/include_polymer.gni b/ui/webui/resources/include_polymer.gni
+index 9367c66a39e25daea7b78822912d87a71f89282b..2fae760cc72d92777148e9206457ada74c6af91d 100644
+--- a/ui/webui/resources/include_polymer.gni
++++ b/ui/webui/resources/include_polymer.gni
+@@ -2,4 +2,4 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-include_polymer = !is_android && !is_ios
++include_polymer = is_android || !is_android && !is_ios

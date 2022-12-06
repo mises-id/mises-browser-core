@@ -102,6 +102,7 @@ generate_jni("jni_headers") {
      "//mises/android/java/org/chromium/chrome/browser/MisesFeatureUtil.java",
      "//mises/android/java/org/chromium/chrome/browser/MisesRelaunchUtils.java",
      "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
+     "//mises/android/java/org/chromium/chrome/browser/AppMenuBridge.java",
   ]
 
   deps = [ 

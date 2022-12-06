@@ -1,0 +1,13 @@
+diff --git a/components/keep_alive_registry/BUILD.gn b/components/keep_alive_registry/BUILD.gn
+index 794b93f3c085924caff3e0bab518cc5231c610e8..7658ebe76c2e4e4b67bf7cf74e08de6180d95637 100644
+--- a/components/keep_alive_registry/BUILD.gn
++++ b/components/keep_alive_registry/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ source_set("keep_alive_registry") {
+   sources = [

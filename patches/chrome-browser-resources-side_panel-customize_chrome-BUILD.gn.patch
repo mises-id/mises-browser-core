@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/side_panel/customize_chrome/BUILD.gn b/chrome/browser/resources/side_panel/customize_chrome/BUILD.gn
+index 6e86a837c4d1016bbecdf30083d3806b43214667..72c801ecfb43e471ea80a07b592a522c7210cf33 100644
+--- a/chrome/browser/resources/side_panel/customize_chrome/BUILD.gn
++++ b/chrome/browser/resources/side_panel/customize_chrome/BUILD.gn
+@@ -6,7 +6,7 @@ import("//chrome/common/features.gni")
+ import("//tools/grit/grit_rule.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_android)
++# assert(!is_android)
+ 
+ grit("resources") {
+   defines = chrome_grit_defines

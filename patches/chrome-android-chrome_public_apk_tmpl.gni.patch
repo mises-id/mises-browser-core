@@ -1,0 +1,39 @@
+diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
+index bf289305713f8e6db146171c824d807195b5daf9..d09f8c619f41d7d65f3052d2db1a0ca5cf8faf4f 100644
+--- a/chrome/android/chrome_public_apk_tmpl.gni
++++ b/chrome/android/chrome_public_apk_tmpl.gni
+@@ -225,6 +225,16 @@ template("chrome_public_common_apk_or_module_tmpl") {
+       # seconds on my machine).
+       strip_unused_resources = is_official_build
+     }
++    if (_is_bundle) {
++        # Resources config for blocklisting resource names from obfuscation
++        resources_config_paths = [
++          "//android_webview/aapt2.config",
++          "//chrome/android/aapt2.config",
++        ]
++        if (defined(invoker.resources_config_paths)) {
++          resources_config_paths += invoker.resources_config_paths
++        }
++    }
+ 
+     if (!defined(aapt_locale_allowlist)) {
+       # Include resource strings files only for supported locales.
+@@ -618,7 +628,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
+       }
+ 
+       # We only optimize resources in bundles.
+-      if (_is_bundle_module) {
++      if (false && _is_bundle_module) {
+         # Resources config for blocklisting resource names from obfuscation
+         resources_config_paths = [
+           "//android_webview/aapt2.config",
+@@ -628,7 +638,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
+           resources_config_paths += invoker.resources_config_paths
+         }
+       }
+-
++      
+       if (defined(invoker.never_incremental)) {
+         never_incremental = invoker.never_incremental
+       } else if (!defined(invoker.target_type) ||

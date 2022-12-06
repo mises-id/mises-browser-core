@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/tab_search/BUILD.gn b/chrome/browser/resources/tab_search/BUILD.gn
+index 75581128bd64c69167a6109260f145eb7c5d8c6a..b498478785eb94ee76f2caa16c109a4a304ac21e 100644
+--- a/chrome/browser/resources/tab_search/BUILD.gn
++++ b/chrome/browser/resources/tab_search/BUILD.gn
+@@ -13,7 +13,7 @@ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("//ui/webui/webui_features.gni")
+ import("./tab_search.gni")
+ 
+-assert(is_linux || is_chromeos || is_win || is_mac || is_fuchsia)
++# assert(is_linux || is_chromeos || is_win || is_mac || is_fuchsia)
+ 
+ preprocess_folder = "preprocessed"
+ 

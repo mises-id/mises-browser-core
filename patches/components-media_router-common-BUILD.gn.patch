@@ -1,0 +1,13 @@
+diff --git a/components/media_router/common/BUILD.gn b/components/media_router/common/BUILD.gn
+index 5a57c318fe76638159c4d8b1548e9650cd7936ce..23b220a2a0ef2ca84069973d01272aa81ee29842 100644
+--- a/components/media_router/common/BUILD.gn
++++ b/components/media_router/common/BUILD.gn
+@@ -36,7 +36,7 @@ static_library("common") {
+     "mojom:route_request_result_code",
+   ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "discovery/media_sink_service_base.cc",
+       "discovery/media_sink_service_base.h",

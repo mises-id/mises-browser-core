@@ -1,0 +1,13 @@
+diff --git a/components/bookmarks/browser/BUILD.gn b/components/bookmarks/browser/BUILD.gn
+index bbed618f614f69f93a16f134111b14ea89be5b61..137c6f63448d38801f215e54dc67ac70e9e04a9e 100644
+--- a/components/bookmarks/browser/BUILD.gn
++++ b/components/bookmarks/browser/BUILD.gn
+@@ -79,7 +79,7 @@ static_library("browser") {
+     all_dependent_configs = [ "//ui/views:flags" ]
+   }
+ 
+-  if (toolkit_views && !is_mac) {
++  if (is_android || toolkit_views && !is_mac) {
+     sources += [ "bookmark_node_data_views.cc" ]
+   }
+ 

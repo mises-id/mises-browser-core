@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/new_tab_page/modules/drive/BUILD.gn b/chrome/browser/new_tab_page/modules/drive/BUILD.gn
+index 7674ac96362335464da5a54038edb3abd66c2269..724c176b4f342c175963cc1c1a9dae3608f6e969 100644
+--- a/chrome/browser/new_tab_page/modules/drive/BUILD.gn
++++ b/chrome/browser/new_tab_page/modules/drive/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "drive.mojom" ]

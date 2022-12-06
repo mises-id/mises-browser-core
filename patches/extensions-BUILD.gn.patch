@@ -1,0 +1,20 @@
+diff --git a/extensions/BUILD.gn b/extensions/BUILD.gn
+index 2da77af1c44ecefa97b3661fc490796467f0e816..969f1e94a493c9abe57e7884ecabee54091821fb 100644
+--- a/extensions/BUILD.gn
++++ b/extensions/BUILD.gn
+@@ -243,6 +243,7 @@ repack("shell_and_test_pak") {
+   ]
+ }
+ 
++if (!is_android) {
+ test("extensions_unittests") {
+   use_xvfb = use_xvfb_in_this_config
+ 
+@@ -294,6 +295,7 @@ test("extensions_unittests") {
+     ]
+   }
+ }
++}
+ 
+ test("extensions_browsertests") {
+   use_xvfb = use_xvfb_in_this_config

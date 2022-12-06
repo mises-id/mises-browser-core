@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/discards/BUILD.gn b/chrome/browser/resources/discards/BUILD.gn
+index bca8b56f3e33f4cbd545f7f32aec3e19ceb7c06a..cf477f096656380f02a9d3361357e3cc5bffd74f 100644
+--- a/chrome/browser/resources/discards/BUILD.gn
++++ b/chrome/browser/resources/discards/BUILD.gn
+@@ -9,7 +9,7 @@ import("//tools/polymer/html_to_wrapper.gni")
+ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ preprocess_folder = "preprocessed"
+ tsc_folder = "tsc"

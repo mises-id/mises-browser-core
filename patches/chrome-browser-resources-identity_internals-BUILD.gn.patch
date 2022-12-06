@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/identity_internals/BUILD.gn b/chrome/browser/resources/identity_internals/BUILD.gn
+index d1aa5aa77d90dd58e3c2c8dabe9f1557ae4f552f..33c79f335d983749b277c1201ca6961676ddd15d 100644
+--- a/chrome/browser/resources/identity_internals/BUILD.gn
++++ b/chrome/browser/resources/identity_internals/BUILD.gn
+@@ -9,7 +9,7 @@ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("./identity_internals.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ html_to_wrapper("html_wrapper_files") {
+   in_files = html_files

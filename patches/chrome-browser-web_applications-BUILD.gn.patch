@@ -1,0 +1,48 @@
+diff --git a/chrome/browser/web_applications/BUILD.gn b/chrome/browser/web_applications/BUILD.gn
+index 3b1a77d4563b64dce76412f924c5d86c67d8aa3a..d7b30802ba83a29e5422b674198d8064ea1222bb 100644
+--- a/chrome/browser/web_applications/BUILD.gn
++++ b/chrome/browser/web_applications/BUILD.gn
+@@ -209,6 +209,15 @@ source_set("web_applications") {
+     ]
+   }
+ 
++  if (is_android) {
++    sources += [
++      "os_integration/web_app_file_handler_registration_android.cc",
++      "os_integration/web_app_run_on_os_login_android.cc",
++      "os_integration/web_app_shortcut_android.cc",
++      "os_integration/web_app_shortcut_android.h",
++    ]
++  }
++
+   if (is_mac) {
+     sources += [
+       "app_shim_registry_mac.cc",
+@@ -683,6 +692,9 @@ source_set("web_applications_browser_tests") {
+       "//chrome/browser/ash/system_web_apps/test_support:test_support_ui",
+     ]
+   }
++  if (is_android) {
++    deps -= ["//chrome/test:test_support_ui"]
++  }
+ }
+ 
+ group("browser_tests") {
+@@ -709,6 +721,9 @@ source_set("app_service_browser_tests") {
+     "//chrome/test:test_support",
+     "//chrome/test:test_support_ui",
+   ]
++  if (is_android) {
++    deps -= ["//chrome/test:test_support_ui"]
++  }
+ }
+ 
+ source_set("interactive_ui_tests") {
+@@ -730,4 +745,7 @@ source_set("interactive_ui_tests") {
+     "//ui/base/idle:test_support",
+     "//ui/events/devices:test_support",
+   ]
++  if (is_android) {
++    deps -= ["//chrome/test:test_support_ui"]
++  }
+ }

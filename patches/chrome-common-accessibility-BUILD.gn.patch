@@ -1,0 +1,13 @@
+diff --git a/chrome/common/accessibility/BUILD.gn b/chrome/common/accessibility/BUILD.gn
+index 9981aea8498d96c92570a49d2c13e32f0363165b..6cb3cf13bd4aa530d478896731972ea8c2ac1e5a 100644
+--- a/chrome/common/accessibility/BUILD.gn
++++ b/chrome/common/accessibility/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "read_anything.mojom" ]

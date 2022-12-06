@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/safe_browsing/BUILD.gn b/chrome/browser/safe_browsing/BUILD.gn
+index b0476227efb01cdc6a122f28907962cccfaf406c..6f481c0dbc3c0d388df13624f1ec476eb3594a44 100644
+--- a/chrome/browser/safe_browsing/BUILD.gn
++++ b/chrome/browser/safe_browsing/BUILD.gn
+@@ -404,6 +404,8 @@ static_library("safe_browsing") {
+           "tailored_security/unconsented_message_android.h",
+           "telemetry/android/android_telemetry_service.cc",
+           "telemetry/android/android_telemetry_service.h",
++          "cloud_content_scanning/deep_scanning_utils.cc",
++          "cloud_content_scanning/deep_scanning_utils.h",
+         ]
+         deps += [
+           "//chrome/app/vector_icons:vector_icons",

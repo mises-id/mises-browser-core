@@ -1,0 +1,25 @@
+diff --git a/device/fido/BUILD.gn b/device/fido/BUILD.gn
+index c957ea24956014bd6f4252060db4fab9bd62860f..70a06ffce0a40b51679efbc5437d6464f3b062d7 100644
+--- a/device/fido/BUILD.gn
++++ b/device/fido/BUILD.gn
+@@ -211,7 +211,19 @@ component("fido") {
+       "//services/network/public/mojom",
+     ]
+   }
+-
++  
++  if (is_android) {
++    sources += [
++      "filter.cc",
++      "filter.h",
++      "large_blob.cc",
++      "large_blob.h",
++      "authenticator_data.cc",
++      "authenticator_data.h",
++      "authenticator_get_assertion_response.cc",
++      "authenticator_get_assertion_response.h",
++    ]
++  }
+   if (is_mac) {
+     sources += [
+       "mac/authenticator.h",

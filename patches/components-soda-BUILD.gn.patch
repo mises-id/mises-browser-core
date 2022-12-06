@@ -1,0 +1,13 @@
+diff --git a/components/soda/BUILD.gn b/components/soda/BUILD.gn
+index 1912b23f7ccc007ab27239619c9909091b6bf188..89fdc37e6ff757e99bae9bccc5fff7d9c245c421 100644
+--- a/components/soda/BUILD.gn
++++ b/components/soda/BUILD.gn
+@@ -6,7 +6,7 @@ import("//build/buildflag_header.gni")
+ import("//build/config/chromeos/ui_mode.gni")
+ import("//components/soda/buildflags.gni")
+ 
+-assert(!is_android)
++assert(true || !is_android)
+ 
+ buildflag_header("buildflags") {
+   header = "buildflags.h"

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/tab_search/BUILD.gn b/chrome/browser/ui/webui/tab_search/BUILD.gn
+index 129721237b276f86645fe4d7e4d8ccfa2961c5fb..790871eea215c9087b2947ae8dc9b7568eaae027 100644
+--- a/chrome/browser/ui/webui/tab_search/BUILD.gn
++++ b/chrome/browser/ui/webui/tab_search/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(is_linux || is_chromeos || is_win || is_mac || is_fuchsia)
++#assert(is_linux || is_chromeos || is_win || is_mac || is_fuchsia)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "tab_search.mojom" ]

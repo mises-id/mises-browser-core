@@ -7,6 +7,7 @@
 #define MISES_BROWSER_EXTENSIONS_API_REWARDS_NOTIFICATIONS_API_H_
 
 #include "extensions/browser/extension_function.h"
+#include "mises/browser/extensions/api/mises_private/mises_private_api.h"
 
 namespace extensions {
 namespace api {

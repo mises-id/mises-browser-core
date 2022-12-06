@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/new_tab_page/modules/photos/icons/BUILD.gn b/chrome/browser/resources/new_tab_page/modules/photos/icons/BUILD.gn
+index dcced5b06b48feb402450d8643a55c01f9627f78..ca51cab25e26de71ef0d1785100153b8daefd330 100644
+--- a/chrome/browser/resources/new_tab_page/modules/photos/icons/BUILD.gn
++++ b/chrome/browser/resources/new_tab_page/modules/photos/icons/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ generate_grd("build_grdp") {
+   grd_prefix = "photos"

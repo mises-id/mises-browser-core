@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/history_clusters/BUILD.gn b/ui/webui/resources/cr_components/history_clusters/BUILD.gn
+index dc2e1e446d71f3c571513cc6203b64948687bfa7..be12462376b25e1ee5eaabab9f9dd4ad67451cf2 100644
+--- a/ui/webui/resources/cr_components/history_clusters/BUILD.gn
++++ b/ui/webui/resources/cr_components/history_clusters/BUILD.gn
+@@ -10,7 +10,7 @@ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("history_clusters.gni")
+ 
+-assert(!is_android)
++# assert(!is_android)
+ 
+ # Output folder used to hold preprocess_if_expr() output.
+ preprocess_folder_tmp = "$root_gen_dir/ui/webui/resources/preprocessed/cr_components/history_clusters_tmp"

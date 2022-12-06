@@ -87,6 +87,18 @@ if (is_mac) {
 
 if (is_android) {
   mises_chrome_browser_sources += [
+    "//mises/android/app_menu_bridge.cc",
+    "//mises/android/mises/mises_controller.cc",
+    "//mises/android/mises/mises_controller.h",
+    "obsolete_system/obsolete_system_android.cc",
+    "upgrade_detector/get_installed_version_fuchsia.cc",
+    "upgrade_detector/installed_version_monitor_fuchsia.cc",
+    "download/drag_download_item_android.cc",
+    "media/webrtc/window_icon_util_fuchsia.cc",
+    "search/new_tab_page_source.cc",
+    "search/new_tab_page_source.h",
+
+
   ]
 
   mises_chrome_browser_deps += [
@@ -144,3 +156,42 @@ if (is_mac) {
 
 
 mises_chrome_browser_deps += mises_chromium_src_chrome_browser_deps
+
+
+mises_chrome_browser_exception_sources = []
+mises_chrome_browser_exception_deps = []
+if (is_android) {
+  mises_chrome_browser_exception_sources += [
+    "download/download_crx_util_android.cc",
+    "resources_integrity.cc",
+    "resources_integrity.h",
+    "banners/app_banner_manager_desktop.cc",
+    "banners/app_banner_manager_desktop.h",
+    "metrics/incognito_observer_desktop.cc",
+    "process_singleton_posix.cc",
+    "policy/chrome_browser_cloud_management_controller_desktop.cc",
+    "policy/chrome_browser_cloud_management_controller_desktop.h",
+    "policy/chrome_browser_cloud_management_register_watcher.cc",
+    "policy/chrome_browser_cloud_management_register_watcher.h",
+    "policy/client_data_delegate_desktop.cc",
+    "policy/client_data_delegate_desktop.h",
+    "policy/cloud/user_policy_signin_service.cc",
+    "policy/cloud/user_policy_signin_service.h",
+    "policy/cloud/user_policy_signin_service_internal.h",
+    "enterprise/connectors/analysis/content_analysis_delegate.cc",
+    "enterprise/connectors/analysis/content_analysis_delegate.h",
+    "speech/chrome_speech_recognition_service.cc",
+    "speech/chrome_speech_recognition_service.h",
+    "speech/speech_recognition_service_factory.cc",
+    "speech/speech_recognition_service_factory.h",
+    "accessibility/live_caption_controller_factory.cc",
+    "accessibility/live_caption_unavailability_notifier.cc",
+    "speech/speech_recognition_client_browser_interface_factory.cc",
+    "speech/speech_recognition_client_browser_interface.cc",
+    "accessibility/live_caption_speech_recognition_host.cc",
+    "media/webrtc/media_stream_focus_delegate.cc",
+    "media/webrtc/media_stream_focus_delegate.h",
+  ]
+  mises_chrome_browser_exception_deps += ["//components/live_caption"]
+}
+

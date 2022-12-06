@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/media_router/internals/BUILD.gn b/chrome/browser/resources/media_router/internals/BUILD.gn
+index 0b041fac424c04bb1e0fa8d994fe591dadb7e8c8..7e6c4e8688e6982625eb878eb54540d05b34c134 100644
+--- a/chrome/browser/resources/media_router/internals/BUILD.gn
++++ b/chrome/browser/resources/media_router/internals/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//tools/typescript/ts_library.gni")
+ 
+-assert(!is_android)
++# assert(!is_android)
+ 
+ ts_library("build_ts") {
+   root_dir = "."

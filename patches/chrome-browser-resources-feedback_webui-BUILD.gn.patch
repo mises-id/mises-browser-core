@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/feedback_webui/BUILD.gn b/chrome/browser/resources/feedback_webui/BUILD.gn
+index 9543f3416b076571e497e12f78163c8347f7b770..4ea76c80abeb36265a645bc76daeeec9446a7888 100644
+--- a/chrome/browser/resources/feedback_webui/BUILD.gn
++++ b/chrome/browser/resources/feedback_webui/BUILD.gn
+@@ -7,7 +7,7 @@ import("//chrome/common/features.gni")
+ import("//tools/grit/grit_rule.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ # Note: No need to pass these CSS files to preprocess_if_expr() for now.
+ css_files = [

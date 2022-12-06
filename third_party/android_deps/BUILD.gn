@@ -70,3 +70,146 @@ android_aar_prebuilt("com_github_bumptech_disklrucache_java") {
   info_path = "libs/com_github_bumptech_glide_gifdecoder/com_github_bumptech_disklrucache.info"
 }
 
+android_aar_prebuilt("google_firebase_firebase_analytics_java") {
+  aar_path = "libs/com_google_firebase_firebase_analytics/firebase-analytics-17.6.0.aar"
+  info_path = "libs/com_google_firebase_firebase_analytics/com_google_firebase_firebase_analytics.info"
+  deps = [
+    ":google_play_services_measurement_api_java",
+    ":google_play_services_measurement_java",
+    ":google_play_services_measurement_sdk_java",
+  ]
+
+  enable_bytecode_checks = false
+}
+
+android_aar_prebuilt("google_play_services_ads_identifier_java") {
+  aar_path = "libs/com_google_android_gms_play_services_ads_identifier/play-services-ads-identifier-17.0.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_ads_identifier/com_google_android_gms_play_services_ads_identifier.info"
+
+  # To remove visibility constraint, add this dependency to
+  # //third_party/android_deps/build.gradle.
+  visibility = [
+    ":*",
+    "//third_party/androidx:*",
+  ]
+  deps = [ ":google_play_services_basement_java" ]
+}
+
+# This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
+android_aar_prebuilt("google_play_services_measurement_java") {
+  aar_path = "libs/com_google_android_gms_play_services_measurement/play-services-measurement-17.6.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_measurement/com_google_android_gms_play_services_measurement.info"
+
+  # To remove visibility constraint, add this dependency to
+  # //third_party/android_deps/build.gradle.
+  visibility = [
+    ":*",
+    "//third_party/androidx:*",
+  ]
+  deps = [
+    ":google_play_services_ads_identifier_java",
+    ":google_play_services_basement_java",
+    ":google_play_services_measurement_base_java",
+    ":google_play_services_measurement_impl_java",
+    ":google_play_services_stats_java",
+    "//third_party/androidx:androidx_collection_collection_java",
+    "//third_party/androidx:androidx_legacy_legacy_support_core_utils_java",
+  ]
+}
+
+# This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
+android_aar_prebuilt("google_play_services_measurement_api_java") {
+  aar_path = "libs/com_google_android_gms_play_services_measurement_api/play-services-measurement-api-17.6.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_measurement_api/com_google_android_gms_play_services_measurement_api.info"
+
+  # To remove visibility constraint, add this dependency to
+  # //third_party/android_deps/build.gradle.
+  visibility = [
+    ":*",
+    "//third_party/androidx:*",
+  ]
+  deps = [
+    ":google_firebase_firebase_common_java",
+    ":google_firebase_firebase_components_java",
+    ":google_firebase_firebase_installations_interop_java",
+    ":google_firebase_firebase_installations_java",
+    ":google_firebase_firebase_measurement_connector_java",
+    ":google_play_services_ads_identifier_java",
+    ":google_play_services_basement_java",
+    ":google_play_services_measurement_base_java",
+    ":google_play_services_measurement_impl_java",
+    ":google_play_services_measurement_sdk_api_java",
+    ":google_play_services_tasks_java",
+  ]
+}
+
+# This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
+android_aar_prebuilt("google_play_services_measurement_base_java") {
+  aar_path = "libs/com_google_android_gms_play_services_measurement_base/play-services-measurement-base-17.6.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_measurement_base/com_google_android_gms_play_services_measurement_base.info"
+
+  # To remove visibility constraint, add this dependency to
+  # //third_party/android_deps/build.gradle.
+  visibility = [
+    ":*",
+    "//third_party/androidx:*",
+  ]
+  deps = [ ":google_play_services_basement_java" ]
+}
+
+# This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
+android_aar_prebuilt("google_play_services_measurement_impl_java") {
+  aar_path = "libs/com_google_android_gms_play_services_measurement_impl/play-services-measurement-impl-17.6.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_measurement_impl/com_google_android_gms_play_services_measurement_impl.info"
+
+  # To remove visibility constraint, add this dependency to
+  # //third_party/android_deps/build.gradle.
+  visibility = [
+    ":*",
+    "//third_party/androidx:*",
+  ]
+  deps = [
+    ":google_play_services_ads_identifier_java",
+    ":google_play_services_basement_java",
+    ":google_play_services_measurement_base_java",
+    ":google_play_services_stats_java",
+    "//third_party/androidx:androidx_collection_collection_java",
+    "//third_party/androidx:androidx_core_core_java",
+  ]
+}
+
+# This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
+android_aar_prebuilt("google_play_services_measurement_sdk_java") {
+  aar_path = "libs/com_google_android_gms_play_services_measurement_sdk/play-services-measurement-sdk-17.6.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_measurement_sdk/com_google_android_gms_play_services_measurement_sdk.info"
+
+  # To remove visibility constraint, add this dependency to
+  # //third_party/android_deps/build.gradle.
+  visibility = [
+    ":*",
+    "//third_party/androidx:*",
+  ]
+  deps = [
+    ":google_play_services_basement_java",
+    ":google_play_services_measurement_base_java",
+    ":google_play_services_measurement_impl_java",
+    "//third_party/androidx:androidx_collection_collection_java",
+  ]
+}
+
+# This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
+android_aar_prebuilt("google_play_services_measurement_sdk_api_java") {
+  aar_path = "libs/com_google_android_gms_play_services_measurement_sdk_api/play-services-measurement-sdk-api-17.6.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_measurement_sdk_api/com_google_android_gms_play_services_measurement_sdk_api.info"
+
+  # To remove visibility constraint, add this dependency to
+  # //third_party/android_deps/build.gradle.
+  visibility = [
+    ":*",
+    "//third_party/androidx:*",
+  ]
+  deps = [
+    ":google_play_services_basement_java",
+    ":google_play_services_measurement_base_java",
+  ]
+}

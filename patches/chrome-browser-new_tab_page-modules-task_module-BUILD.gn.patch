@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/new_tab_page/modules/task_module/BUILD.gn b/chrome/browser/new_tab_page/modules/task_module/BUILD.gn
+index f773f1e609c57d1b2d40dd5343ab406e1bc7d3b9..0a61c71f7891b85090aa9538ef5f17d334db2af0 100644
+--- a/chrome/browser/new_tab_page/modules/task_module/BUILD.gn
++++ b/chrome/browser/new_tab_page/modules/task_module/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "task_module.mojom" ]

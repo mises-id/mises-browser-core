@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/welcome/BUILD.gn b/chrome/browser/resources/welcome/BUILD.gn
+index acfe0329f2729abb88bbafc1188d2062d27b802a..bf2d0cf54750918b28748a205ca6dbd45be48cf6 100644
+--- a/chrome/browser/resources/welcome/BUILD.gn
++++ b/chrome/browser/resources/welcome/BUILD.gn
+@@ -6,7 +6,7 @@ import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//chrome/common/features.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_chromeos_ash && !is_android)
++# assert(!is_chromeos_ash && !is_android)
+ 
+ if (is_chrome_branded) {
+   generate_grd("build_icons_grdp") {

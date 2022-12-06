@@ -1,0 +1,13 @@
+diff --git a/ui/webui/BUILD.gn b/ui/webui/BUILD.gn
+index 873d5ae5d12ae76174ab60125bc1e148fca6066d..bd08c635f4a0233e9c590124c96874001bb1e5ba 100644
+--- a/ui/webui/BUILD.gn
++++ b/ui/webui/BUILD.gn
+@@ -32,7 +32,7 @@ static_library("webui") {
+     "//ui/webui/resources/js/metrics_reporter:mojo_bindings",
+   ]
+ 
+-  if (!is_android && !is_ios) {
++  if (!is_android && !is_ios || is_android) {
+     public_deps += [
+       "//ui/webui/resources/cr_components/color_change_listener:mojom",
+       "//ui/webui/resources/cr_components/customize_themes:mojom",
