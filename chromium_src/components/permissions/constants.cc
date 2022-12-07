@@ -9,7 +9,7 @@ namespace permissions {
 const char kChooserBluetoothOverviewURL[] =
     "https://support.google.com/chrome?p=bluetooth";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // The key in `Product Specific String Data` under which the disposition of the
 // permission prompt is recorded in the post-prompt HaTS survey.
 const char kPermissionsPostPromptSurveyPromptDispositionKey[] =

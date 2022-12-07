@@ -145,6 +145,8 @@ source_set("ui") {
 
     deps += [
       "//chrome/browser/extensions",
+      "//mises/components/mises_extension:generated_resources",
+      "//mises/components/mises_extension:static_resources",
       "//components/sessions",
       "//extensions/browser",
       "//extensions/common:common_constants",

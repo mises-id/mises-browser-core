@@ -26,7 +26,7 @@
 
 namespace {
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const char16_t kDot = '.';
 
 // Build a path from the first |num_components| elements in |path_elements|.
@@ -126,7 +126,7 @@ std::u16string HostForDisplay(base::StringPiece host_in_puny) {
 
 namespace url_formatter {
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 
 // TODO(pkasting): http://crbug.com/77883 This whole function gets
 // kerning/ligatures/etc. issues potentially wrong by assuming that the width of

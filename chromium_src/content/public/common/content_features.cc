@@ -735,7 +735,7 @@ const base::Feature kPrivateNetworkAccessSendPreflights = {
 // HTTP(S) navigations when the BrowsingInstance doesn't contain any other
 // windows.
 const base::Feature kProactivelySwapBrowsingInstance{
-    "ProactivelySwapBrowsingInstance", base::FEATURE_DISABLED_BY_DEFAULT};
+    "ProactivelySwapBrowsingInstance", base::FEATURE_ENABLED_BY_DEFAULT};
 
 // Fires the `pushsubscriptionchange` event defined here:
 // https://w3c.github.io/push-api/#the-pushsubscriptionchange-event
@@ -750,7 +750,7 @@ const base::Feature kPushSubscriptionChangeEvent{
 const base::Feature kReloadHiddenTabsWithCrashedSubframes {
   "ReloadHiddenTabsWithCrashedSubframes",
 #if BUILDFLAG(IS_ANDROID)
-      base::FEATURE_ENABLED_BY_DEFAULT
+      base::FEATURE_DISABLED_BY_DEFAULT
 #else
       base::FEATURE_DISABLED_BY_DEFAULT
 #endif
@@ -1201,7 +1201,7 @@ const base::Feature kRequestDesktopSiteAdditions{
 // Request Desktop Site per-site setting for Android.
 // Refer to the launch bug (https://crbug.com/1244979) for more information.
 const base::Feature kRequestDesktopSiteExceptions{
-    "RequestDesktopSiteExceptions", base::FEATURE_DISABLED_BY_DEFAULT};
+    "RequestDesktopSiteExceptions", base::FEATURE_ENABLED_BY_DEFAULT};
 
 // Screen Capture API support for Android
 const base::Feature kUserMediaScreenCapturing{

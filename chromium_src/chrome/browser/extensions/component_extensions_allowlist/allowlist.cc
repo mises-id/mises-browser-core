@@ -22,6 +22,7 @@
 #include "chrome/browser/ash/input_method/component_extension_ime_manager_delegate_impl.h"
 #include "ui/file_manager/grit/file_manager_resources.h"
 #endif
+#include "mises/components/mises_extension/grit/mises_extension.h"
 
 namespace extensions {
 
@@ -68,6 +69,7 @@ bool IsComponentExtensionAllowlisted(int manifest_resource_id) {
   switch (manifest_resource_id) {
     // Please keep the list in alphabetical order.
     case IDR_CRYPTOTOKEN_MANIFEST:
+    case IDR_MISES_WALLET_MANIFEST:
 #if BUILDFLAG(ENABLE_HANGOUT_SERVICES_EXTENSION)
     case IDR_HANGOUT_SERVICES_MANIFEST:
 #endif

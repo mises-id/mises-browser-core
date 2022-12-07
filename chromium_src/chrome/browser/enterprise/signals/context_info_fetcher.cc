@@ -27,7 +27,7 @@
 #include "content/public/browser/site_isolation_policy.h"
 #include "device_management_backend.pb.h"
 
-#if BUILDFLAG(IS_POSIX)
+#if !BUILDFLAG(IS_ANDROID) && BUILDFLAG(IS_POSIX)
 #include "net/dns/public/resolv_reader.h"
 #include "net/dns/public/scoped_res_state.h"
 #endif
@@ -299,7 +299,7 @@ ScopedUfwConfigPathForTesting::~ScopedUfwConfigPathForTesting() {
 
 std::vector<std::string> ContextInfoFetcher::GetDnsServers() {
   std::vector<std::string> dns_addresses;
-#if BUILDFLAG(IS_POSIX)
+#if !BUILDFLAG(IS_ANDROID) && BUILDFLAG(IS_POSIX)
   std::unique_ptr<net::ScopedResState> res = net::ResolvReader().GetResState();
   if (res) {
     absl::optional<std::vector<net::IPEndPoint>> nameservers =

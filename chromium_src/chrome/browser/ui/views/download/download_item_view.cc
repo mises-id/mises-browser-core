@@ -838,11 +838,15 @@ void DownloadItemView::UpdateLabels() {
   deep_scanning_label_->SetVisible(mode_ ==
                                    download::DownloadItemMode::kDeepScanning);
   if (deep_scanning_label_->GetVisible()) {
+#if BUILDFLAG(IS_ANDROID)
+    const int id = IDS_PROMPT_DEEP_SCANNING_DOWNLOAD;
+#else
     const int id = (model_->GetDownloadItem() &&
                     safe_browsing::DeepScanningRequest::ShouldUploadBinary(
                         model_->GetDownloadItem()))
                        ? IDS_PROMPT_DEEP_SCANNING_DOWNLOAD
                        : IDS_PROMPT_DEEP_SCANNING_APP_DOWNLOAD;
+#endif
     const std::u16string filename = ElidedFilename(*deep_scanning_label_);
     size_t filename_offset;
     deep_scanning_label_->SetText(
@@ -1366,7 +1370,9 @@ void DownloadItemView::ShowContextMenuImpl(const gfx::Rect& rect,
 }
 
 void DownloadItemView::OpenDownloadDuringAsyncScanning() {
+#if !BUILDFLAG(IS_ANDROID)
   model_->CompleteSafeBrowsingScan();
+#endif
   model_->SetOpenWhenComplete(true);
 }
 

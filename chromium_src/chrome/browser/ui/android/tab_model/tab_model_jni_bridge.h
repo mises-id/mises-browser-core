@@ -47,6 +47,7 @@ class TabModelJniBridge : public TabModel {
   // TabModel::
   int GetTabCount() const override;
   int GetActiveIndex() const override;
+  int GetLastNonExtensionActiveIndex() const override;
   content::WebContents* GetWebContentsAt(int index) const override;
   TabAndroid* GetTabAt(int index) const override;
   base::android::ScopedJavaLocalRef<jobject> GetJavaObject() const override;
@@ -60,7 +61,8 @@ class TabModelJniBridge : public TabModel {
                              NavigateParams* params) override;
 
   content::WebContents* CreateNewTabForDevTools(const GURL& url) override;
-
+  content::WebContents* CreateNewTabForExtension(
+		                  const GURL& url, const SessionID::id_type& session_window_id) override;
   // Return true if we are currently restoring sessions asynchronously.
   bool IsSessionRestoreInProgress() const override;
 

@@ -18,7 +18,7 @@ namespace performance_manager::features {
 // The feature that gates whether or not the PM runs on the main (UI) thread.
 extern const base::Feature kRunOnMainThread;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Enables urgent discarding of pages directly from PerformanceManager rather
 // than via TabManager.
 extern const base::Feature kUrgentDiscardingFromPerformanceManager;

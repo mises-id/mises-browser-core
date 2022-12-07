@@ -40,12 +40,9 @@ extern const base::Feature kPageInfoAboutThisSiteMoreInfo;
 // Enables the "About this site" banner.
 extern const base::Feature kAboutThisSiteBanner;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Enables the history section for Page Info on desktop.
 extern const base::Feature kPageInfoHistoryDesktop;
-#endif
-
-#if !BUILDFLAG(IS_ANDROID)
 // Hides site settings row.
 extern const base::Feature kPageInfoHideSiteSettings;
 #endif

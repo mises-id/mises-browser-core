@@ -157,12 +157,14 @@ class TabAndroid : public base::SupportsUserData {
 
   void SetDevToolsAgentHost(scoped_refptr<content::DevToolsAgentHost> host);
 
+  const SessionID::id_type& ExtensionWindowID() const { return extension_window_id_; }
+  void SetExtensionWindowID(const SessionID::id_type& ewid) { extension_window_id_ = ewid; }
  private:
   JavaObjectWeakGlobalRef weak_java_tab_;
 
   // Identifier of the window the tab is in.
   SessionID session_window_id_;
-
+  SessionID::id_type  extension_window_id_;
   scoped_refptr<cc::Layer> content_layer_;
 
   std::unique_ptr<content::WebContents> web_contents_;

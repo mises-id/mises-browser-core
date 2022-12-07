@@ -364,5 +364,7 @@ void RelaunchNotificationController::SetDeadline(base::Time deadline) {
 }
 
 void RelaunchNotificationController::OnRelaunchDeadlineExpired() {
-  chrome::RelaunchIgnoreUnloadHandlers();
+#if !BUILDFLAG(IS_ANDROID)
+	chrome::RelaunchIgnoreUnloadHandlers();
+#endif
 }

@@ -168,7 +168,7 @@ class InsecureCredentialsManager : public SavedPasswordsPresenter::Observer {
 
   void Init();
 
-#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
+#if BUILDFLAG(IS_ANDROID) || !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
   // Computes weak credentials in a separate thread and then passes the result
   // to OnWeakCheckDone.
   void StartWeakCheck(base::OnceClosure on_check_done = base::DoNothing());

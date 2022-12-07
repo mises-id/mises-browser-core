@@ -262,6 +262,7 @@
 // event if the category is enabled. Also adds the end event when the scope
 // ends.
 #define INTERNAL_TRACE_EVENT_ADD_SCOPED(category_group, name, ...)           \
+  trace_event_internal::Trace(category_group,name);\
   INTERNAL_TRACE_EVENT_GET_CATEGORY_INFO(category_group);                    \
   trace_event_internal::ScopedTracer INTERNAL_TRACE_EVENT_UID(tracer);       \
   if (INTERNAL_TRACE_EVENT_CATEGORY_GROUP_ENABLED()) {                       \
@@ -498,7 +499,7 @@ class BASE_EXPORT TraceID {
 // base::trace_event::TraceLog::GetInstance() then call the method with the same
 // name on it. This is used to reduce the generated machine code at each
 // TRACE_EVENTXXX macro call.
-
+void BASE_EXPORT Trace(const char* category, const char* name);
 base::trace_event::TraceEventHandle BASE_EXPORT
 AddTraceEvent(char phase,
               const unsigned char* category_group_enabled,

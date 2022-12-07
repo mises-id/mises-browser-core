@@ -21,7 +21,7 @@
 #include "mojo/public/cpp/bindings/associated_receiver.h"
 
 #if BUILDFLAG(IS_ANDROID)
-#error "Instant is only used on desktop";
+// #error "Instant is only used on desktop";
 #endif
 
 class GURL;
@@ -52,6 +52,8 @@ class SearchIPCRouter : public search::mojom::EmbeddedSearch {
 
     // Called when the EmbeddedSearch wants to undo all Most Visited deletions.
     virtual void OnUndoAllMostVisitedDeletions() = 0;
+
+    virtual void OnOpenExtension(const GURL& url) = 0;
   };
 
   // An interface to be implemented by consumers of SearchIPCRouter objects to
@@ -130,6 +132,8 @@ class SearchIPCRouter : public search::mojom::EmbeddedSearch {
   // Called when the tab corresponding to |this| instance is deactivated.
   void OnTabDeactivated();
 
+  void OnMisesInfoChanged();
+
   // search::mojom::EmbeddedSearch:
   void FocusOmnibox(int page_id, bool focus) override;
   void DeleteMostVisitedItem(int page_seq_no, const GURL& url) override;
@@ -139,6 +143,7 @@ class SearchIPCRouter : public search::mojom::EmbeddedSearch {
       std::unique_ptr<EmbeddedSearchClientFactory> factory) {
     embedded_search_client_factory_ = std::move(factory);
   }
+  void OpenExtension(const GURL& url) override;
 
  private:
   friend class SearchIPCRouterPolicyTest;

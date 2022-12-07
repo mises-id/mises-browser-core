@@ -91,7 +91,7 @@ NewTabUI::~NewTabUI() {}
 void NewTabUI::RegisterProfilePrefs(
     user_prefs::PrefRegistrySyncable* registry) {
   CoreAppLauncherHandler::RegisterProfilePrefs(registry);
-#if !BUILDFLAG(IS_CHROMEOS)
+#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_CHROMEOS)
   AppLauncherHandler::RegisterProfilePrefs(registry);
 #endif
 }

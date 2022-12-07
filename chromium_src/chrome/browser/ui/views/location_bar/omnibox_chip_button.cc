@@ -129,10 +129,12 @@ ui::ImageModel OmniboxChipButton::GetIconImageModel() const {
 }
 
 const gfx::VectorIcon& OmniboxChipButton::GetIcon() const {
+#if !BUILDFLAG(IS_ANDROID)
   if (permission_chip_delegate_.has_value()) {
     return show_blocked_icon_ ? permission_chip_delegate_.value()->GetIconOff()
                               : permission_chip_delegate_.value()->GetIconOn();
   }
+#endif
 
   return gfx::kNoneIcon;
 }

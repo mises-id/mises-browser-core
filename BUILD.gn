@@ -135,7 +135,7 @@ if (is_android) {
 
 if (is_mac) {
   group("framework_bundle_data") {
-    deps = [ "components/mises_extension/extension/mises_extension:mises_extension_framework_bundle_data" ]
+    deps = [ "components/mises_extension/extension/mises_wallet:mises_extension_framework_bundle_data" ]
   }
 }
 
@@ -144,7 +144,7 @@ group("unpacked_resources") {
     deps = []
     if (enable_extensions) {
       deps = [
-        "//mises/components/mises_extension/extension/mises_extension:locales",
+        "//mises/components/mises_extension/extension/mises_wallet:locales",
       ]
     }
   }
@@ -251,7 +251,7 @@ if (!is_mac && !is_android && !is_ios) {
   if (enable_extensions) {
     group("mises_extensions_locale_dist_resources") {
       deps = [
-        "//mises/components/mises_extension/extension/mises_extension:locales",
+        "//mises/components/mises_extension/extension/mises_wallet:locales",
       ]
 
       public_deps = []
@@ -264,7 +264,7 @@ if (!is_mac && !is_android && !is_ios) {
 
     foreach(locale, platform_pak_locales) {
       copy("mises_shields_locales_${locale}") {
-        deps = [ "//mises/components/mises_extension/extension/mises_extension:locales_$locale" ]
+        deps = [ "//mises/components/mises_extension/extension/mises_wallet:locales_$locale" ]
 
         locale = string_replace(locale, "-", "_")
         sources = [ "$root_out_dir/resources/mises_extension/_locales/$locale/messages.json" ]

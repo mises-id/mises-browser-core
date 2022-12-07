@@ -579,7 +579,7 @@ gfx::Image& ResourceBundle::GetImageNamed(int resource_id) {
     gfx::ImageSkia image_skia = CreateImageSkia(resource_id);
     if (image_skia.isNull()) {
       LOG(WARNING) << "Unable to load image with id " << resource_id;
-      NOTREACHED();  // Want to assert in debug mode.
+      //NOTREACHED();  // Want to assert in debug mode.
       // The load failed to retrieve the image; show a debugging red square.
       return GetEmptyImage();
     }

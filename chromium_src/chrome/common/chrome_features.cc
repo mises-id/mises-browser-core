@@ -89,7 +89,7 @@ const base::Feature kAsyncDns {
 #endif
 };
 
-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
     BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
 // Enables or disables the Autofill survey triggered by opening a prompt to
 // save address info.
@@ -113,7 +113,7 @@ const base::Feature kBackgroundModeAllowRestart{
     "BackgroundModeAllowRestart", base::FEATURE_DISABLED_BY_DEFAULT};
 #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const base::Feature kBlockMigratedDefaultChromeAppSync{
     "BlockMigratedDefaultChromeAppSync", base::FEATURE_ENABLED_BY_DEFAULT};
 #endif
@@ -224,7 +224,7 @@ const base::Feature kDMServerOAuthForChildUser{
     "DMServerOAuthForChildUser", base::FEATURE_ENABLED_BY_DEFAULT};
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Whether to allow installed-by-default web apps to be installed or not.
 const base::Feature kPreinstalledWebAppInstallation{
     "DefaultWebAppInstallation", base::FEATURE_ENABLED_BY_DEFAULT};
@@ -373,7 +373,7 @@ const base::Feature kEnableWebHidOnExtensionServiceWorker{
     "EnableWebHidOnExtensionServiceWorker", base::FEATURE_DISABLED_BY_DEFAULT};
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Lazy initialize IndividualSettings for extensions from enterprise policy
 // that are not installed.
 const base::Feature kExtensionDeferredIndividualSettings{
@@ -407,7 +407,7 @@ const base::Feature kFlashDeprecationWarning{"FlashDeprecationWarning",
 const base::Feature kGeoLanguage{"GeoLanguage",
                                  base::FEATURE_DISABLED_BY_DEFAULT};
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Enables or disables the Happiness Tracking System demo mode for Desktop
 // Chrome.
 const base::Feature kHappinessTrackingSurveysForDesktopDemo{
@@ -685,7 +685,7 @@ const base::Feature kNotificationDurationLongForRequireInteraction{
     base::FEATURE_DISABLED_BY_DEFAULT};
 #endif  // BUILDFLAG(IS_WIN)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const base::Feature kOnConnectNative{"OnConnectNative",
                                      base::FEATURE_DISABLED_BY_DEFAULT};
 #endif
@@ -923,7 +923,7 @@ const base::Feature kThirdPartyModulesBlocking{
 const base::Feature kTreatUnsafeDownloadsAsActive{
     "TreatUnsafeDownloadsAsActive", base::FEATURE_ENABLED_BY_DEFAULT};
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Enables surveying of users of Trust & Safety features with HaTS.
 const base::Feature kTrustSafetySentimentSurvey{
     "TrustSafetySentimentSurvey", base::FEATURE_DISABLED_BY_DEFAULT};
@@ -1046,7 +1046,7 @@ const base::Feature kUserActivityEventLogging{"UserActivityEventLogging",
                                               base::FEATURE_ENABLED_BY_DEFAULT};
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const base::Feature kWebAppManifestIconUpdating{
     "WebAppManifestIconUpdating", base::FEATURE_DISABLED_BY_DEFAULT};
 #endif  // BUILDFLAG(IS_ANDROID)

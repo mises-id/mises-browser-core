@@ -281,6 +281,9 @@ class ExtensionTabUtil {
 
   // Retrieve a TabStripModel only if every browser is editable.
   static TabStripModel* GetEditableTabStripModel(Browser* browser);
+
+  static std::unique_ptr<base::DictionaryValue> CreateDummyWindowValueForExtension(
+		  PopulateTabBehavior populate_tab_behavior);
 };
 
 }  // namespace extensions

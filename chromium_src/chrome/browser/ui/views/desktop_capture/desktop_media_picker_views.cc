@@ -510,6 +510,7 @@ DesktopMediaPickerDialogView::DesktopMediaPickerDialogView(
   bool is_separate_native_window = !modal_dialog;
 #endif
 
+#if defined(USE_AURA) || BUILDFLAG(IS_MAC)
   // If the picker is a separate native window, it should not be shown in the
   // source list, so its id is passed into NativeDesktopMediaList to be ignored.
   DesktopMediaID dialog_window_id;
@@ -532,6 +533,7 @@ DesktopMediaPickerDialogView::DesktopMediaPickerDialogView(
 
   for (const auto& category : categories_)
     category.controller->StartUpdating(dialog_window_id);
+#endif
 }
 
 DesktopMediaPickerDialogView::~DesktopMediaPickerDialogView() {}

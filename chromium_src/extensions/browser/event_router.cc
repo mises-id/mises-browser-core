@@ -45,6 +45,7 @@
 #include "extensions/common/mojom/event_dispatcher.mojom.h"
 #include "extensions/common/permissions/permissions_data.h"
 #include "ipc/ipc_channel_proxy.h"
+#include "chrome/browser/extensions/api/tabs/tabs_windows_api.h"
 
 using base::DictionaryValue;
 using base::ListValue;
@@ -511,7 +512,7 @@ void EventRouter::RemoveServiceWorkerEventListener(
 
 void EventRouter::AddEventListenerForURL(const std::string& event_name,
                                          RenderProcessHost* process,
-                                         const GURL& listener_url) {
+  					 const GURL& listener_url) {
   listeners_.AddListener(
       EventListener::ForURL(event_name, listener_url, process, nullptr));
 }
@@ -842,6 +843,7 @@ void EventRouter::DispatchEventWithLazyListener(const std::string& extension_id,
 
 void EventRouter::DispatchEventImpl(const std::string& restrict_to_extension_id,
                                     std::unique_ptr<Event> event) {
+  LOG(INFO) << "[Kiwi] EventRouter::DispatchEventImpl: " << event->event_name;
   DCHECK(event);
   // We don't expect to get events from a completely different browser context.
   DCHECK(!event->restrict_to_browser_context ||
@@ -892,7 +894,6 @@ void EventRouter::DispatchEventImpl(const std::string& restrict_to_extension_id,
             LazyContextIdForListener(listener))) {
       continue;
     }
-
     DispatchEventToProcess(
         listener->extension_id(), listener->listener_url(), listener->process(),
         listener->service_worker_version_id(), listener->worker_thread_id(),
@@ -1198,6 +1199,7 @@ void EventRouter::AddFilterToEvent(const std::string& event_name,
 void EventRouter::OnExtensionLoaded(content::BrowserContext* browser_context,
                                     const Extension* extension) {
   // Add all registered lazy listeners to our cache.
+  extensions::TabsWindowsAPI::Get(browser_context);
   std::set<std::string> registered_events =
       GetRegisteredEvents(extension->id(), RegisteredEventType::kLazy);
   listeners_.LoadUnfilteredLazyListeners(extension->id(), registered_events);
@@ -1206,7 +1208,6 @@ void EventRouter::OnExtensionLoaded(content::BrowserContext* browser_context,
       GetRegisteredEvents(extension->id(), RegisteredEventType::kServiceWorker);
   listeners_.LoadUnfilteredWorkerListeners(extension->id(),
                                            registered_worker_events);
-
   const DictionaryValue* filtered_events =
       GetFilteredEvents(extension->id(), RegisteredEventType::kLazy);
   if (filtered_events)

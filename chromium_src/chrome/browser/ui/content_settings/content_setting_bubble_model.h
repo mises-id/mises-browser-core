@@ -564,7 +564,7 @@ class ContentSettingGeolocationBubbleModel
   bool show_system_geolocation_bubble_ = false;
 };
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // The model for the blocked Framebust bubble.
 class ContentSettingFramebustBlockBubbleModel
     : public ContentSettingSingleRadioGroup,

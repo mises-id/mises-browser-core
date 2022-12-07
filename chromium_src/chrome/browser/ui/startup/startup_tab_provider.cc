@@ -56,7 +56,7 @@
 #include "chromeos/startup/browser_params_proxy.h"
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/privacy_sandbox/privacy_sandbox_service.h"
 #include "chrome/browser/search/search.h"
 #include "chrome/browser/ui/webui/new_tab_page/new_tab_page_ui.h"
@@ -301,7 +301,7 @@ StartupTabs StartupTabProviderImpl::GetCrosapiTabs() const {
 }
 #endif  // BUILDFLAG(IS_CHROMEOS_LACROS)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 StartupTabs StartupTabProviderImpl::GetNewFeaturesTabs(
     bool whats_new_enabled) const {
   return GetNewFeaturesTabsForState(whats_new_enabled);

@@ -19,7 +19,8 @@ class ChromeThinWebViewInitializer;
 }
 }  // namespace thin_webview
 
-#else
+#endif
+#if (true)
 
 namespace chrome {
 class BrowserTabStripModelDelegate;
@@ -55,10 +56,11 @@ class TabHelpers {
 
   friend class TabAndroid;
   friend class android::TabWebContentsDelegateAndroid;
-#else
+#endif
+#if(true)
   friend class Browser;
   friend class chrome::BrowserTabStripModelDelegate;
-#endif  // BUILDFLAG(IS_ANDROID)
+#endif  // defined(OS_ANDROID)
 
   // chrome::Navigate creates WebContents that are destined for the tab strip,
   // and that might have WebUI that immediately calls back into random tab

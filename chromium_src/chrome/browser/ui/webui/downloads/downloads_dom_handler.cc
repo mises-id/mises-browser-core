@@ -373,7 +373,9 @@ void DownloadsDOMHandler::OpenDuringScanningRequiringGesture(
   if (download) {
     DownloadItemModel model(download);
     model.SetOpenWhenComplete(true);
+#if !BUILDFLAG(IS_ANDROID)
     model.CompleteSafeBrowsingScan();
+#endif
   }
 }
 
@@ -383,13 +385,14 @@ void DownloadsDOMHandler::ReviewDangerousRequiringGesture(
     LOG(ERROR) << __func__ << " received without recent user interaction";
     return;
   }
-
+#if !BUILDFLAG(IS_ANDROID)
   CountDownloadsDOMEvents(DOWNLOADS_DOM_EVENT_REVIEW_DANGEROUS);
   download::DownloadItem* download = GetDownloadByStringId(id);
   if (download) {
     DownloadItemModel model(download);
     model.ReviewScanningVerdict(GetWebUIWebContents());
   }
+#endif
 }
 
 // DownloadsDOMHandler, private: --------------------------------------------

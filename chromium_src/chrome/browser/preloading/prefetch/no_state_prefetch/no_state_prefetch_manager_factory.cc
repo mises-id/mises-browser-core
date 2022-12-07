@@ -40,6 +40,7 @@ NoStatePrefetchManagerFactory::NoStatePrefetchManagerFactory()
           "NoStatePrefetchManager",
           BrowserContextDependencyManager::GetInstance()) {
 #if BUILDFLAG(ENABLE_EXTENSIONS)
+if (extensions::ExtensionsBrowserClient::Get())
   DependsOn(
       extensions::ExtensionsBrowserClient::Get()->GetExtensionSystemFactory());
 #endif

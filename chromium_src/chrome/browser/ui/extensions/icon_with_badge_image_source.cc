@@ -32,7 +32,11 @@
 
 namespace {
 
+#if BUILDFLAG(IS_ANDROID)
+constexpr gfx::Size kDefaultIconAreaSize(48, 48);
+#else
 constexpr gfx::Size kDefaultIconAreaSize(28, 28);
+#endif
 
 gfx::ImageSkiaRep ScaleImageSkiaRep(const gfx::ImageSkiaRep& rep,
                                     int target_width_dp,

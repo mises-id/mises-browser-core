@@ -7,7 +7,7 @@
 
 #include "build/build_config.h"
 
-#if BUILDFLAG(IS_ANDROID)
+#if false && BUILDFLAG(IS_ANDROID)
 #error Guest profiles not supported, this file should not be included.
 #endif
 

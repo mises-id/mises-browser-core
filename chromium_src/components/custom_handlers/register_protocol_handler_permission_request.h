@@ -40,8 +40,10 @@ class RegisterProtocolHandlerPermissionRequest
   // permissions::PermissionRequest:
   bool IsDuplicateOf(
       permissions::PermissionRequest* other_request) const override;
+#if !BUILDFLAG(IS_ANDROID)
   std::u16string GetMessageTextFragment() const override;
-
+#endif
+ 
   void PermissionDecided(ContentSetting result, bool is_one_time);
   void DeleteRequest();
 

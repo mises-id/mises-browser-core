@@ -71,7 +71,7 @@ class PermissionRequest {
   virtual std::u16string GetDialogMessageText() const;
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Returns prompt icon appropriate for displaying on the chip button in the
   // location bar.
   IconId GetIconForChip();

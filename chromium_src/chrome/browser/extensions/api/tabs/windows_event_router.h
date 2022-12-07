@@ -25,6 +25,14 @@
 #include "chrome/browser/mac/key_window_notifier.h"
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/ui/android/tab_model/tab_model_list_observer.h"
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_observer.h"
+#include "chrome/browser/android/tab_android.h"
+#endif
+
 class Profile;
 
 namespace base {
@@ -46,6 +54,10 @@ class WindowsEventRouter : public AppWindowRegistry::Observer,
 #elif defined(TOOLKIT_VIEWS)
                            public views::WidgetFocusChangeListener,
 #endif
+#if BUILDFLAG(IS_ANDROID)
+                        public TabModelListObserver,
+                        public TabModelObserver,
+#endif
                            public WindowControllerListObserver {
  public:
   explicit WindowsEventRouter(Profile* profile);
@@ -57,6 +69,15 @@ class WindowsEventRouter : public AppWindowRegistry::Observer,
 
   // |window_controller| is NULL to indicate a focused window has lost focus.
   void OnActiveWindowChanged(WindowController* window_controller);
+
+#if BUILDFLAG(IS_ANDROID)
+  // TabModelListObserver implementation.
+  void OnTabModelAdded() override;
+  void OnTabModelRemoved() override;
+  void WillCloseTab(TabAndroid* tab, bool animate) override;
+  void DidAddTab(TabAndroid* tab, TabModel::TabLaunchType type) override;
+  raw_ptr<TabModel> observed_tab_model_ = nullptr;
+#endif
 
  private:
   // extensions::AppWindowRegistry::Observer:

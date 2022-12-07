@@ -137,10 +137,18 @@ bool TabsEventRouter::TabEntry::SetMuted(bool new_val) {
   was_muted_ = new_val;
   return true;
 }
+void TabsEventRouter::TabEntry::DidStopLoading (){
+#if BUILDFLAG(IS_ANDROID)
+  LOG(INFO) << "TabsEventRouter:::TabEntry::DidStopLoading " << web_contents();
+  if (web_contents()) 
+    router_->TabChangedAt(web_contents(), -1, TabChangeType::kLoadingOnly);
+#endif
+}
 
 void TabsEventRouter::TabEntry::NavigationEntryCommitted(
     const content::LoadCommittedDetails& load_details) {
   // Send 'status' of tab change. Expecting 'loading' is fired.
+  LOG(INFO) << "TabsEventRouter:::TabEntry::NavigationEntryCommitted " << web_contents();
   complete_waiting_on_load_ = true;
   std::set<std::string> changed_property_names;
   changed_property_names.insert(tabs_constants::kStatusKey);
@@ -160,6 +168,7 @@ void TabsEventRouter::TabEntry::TitleWasSet(content::NavigationEntry* entry) {
 }
 
 void TabsEventRouter::TabEntry::WebContentsDestroyed() {
+  LOG(INFO) << "TabsEventRouter:::TabEntry::WebContentsDestroyed " << web_contents();
   // This is necessary because it's possible for tabs to be created, detached
   // and then destroyed without ever having been re-attached and closed. This
   // happens in the case of a devtools WebContents that is opened in window,
@@ -176,10 +185,17 @@ TabsEventRouter::TabsEventRouter(Profile* profile)
   browser_tab_strip_tracker_.Init();
 
   tab_manager_scoped_observation_.Observe(g_browser_process->GetTabManager());
+#if BUILDFLAG(IS_ANDROID)
+  TabModelList::AddObserver(this);
+  OnTabModelAdded();
+#endif
 }
 
 TabsEventRouter::~TabsEventRouter() {
   BrowserList::RemoveObserver(this);
+#if BUILDFLAG(IS_ANDROID)
+  TabModelList::RemoveObserver(this);
+#endif
 }
 
 bool TabsEventRouter::ShouldTrackBrowser(Browser* browser) {
@@ -199,6 +215,7 @@ void TabsEventRouter::OnTabStripModelChanged(
     TabStripModel* tab_strip_model,
     const TabStripModelChange& change,
     const TabStripSelectionChange& selection) {
+  LOG(INFO) << "TabsEventRouter::OnTabStripModelChanged " << tab_strip_model;
   switch (change.type()) {
     case TabStripModelChange::kInserted: {
       for (const auto& contents : change.GetInsert()->contents) {
@@ -375,8 +392,11 @@ void TabsEventRouter::DispatchTabClosingAt(TabStripModel* tab_strip_model,
   base::Value::Dict object_args;
   object_args.Set(tabs_constants::kWindowIdKey,
                   ExtensionTabUtil::GetWindowIdOfTab(contents));
+  bool closing_all = false;
+  if (tab_strip_model)
+    closing_all = tab_strip_model->closing_all();
   object_args.Set(tabs_constants::kWindowClosing,
-                  tab_strip_model->closing_all());
+                  closing_all);
   args.Append(std::move(object_args));
 
   Profile* profile = Profile::FromBrowserContext(contents->GetBrowserContext());
@@ -581,7 +601,7 @@ void TabsEventRouter::DispatchTabUpdatedEvent(
     const std::set<std::string> changed_property_names) {
   DCHECK(!changed_property_names.empty());
   DCHECK(contents);
-
+  LOG(INFO) << "TabsEventRouter::DispatchTabUpdatedEvent " << contents;
   Profile* profile = Profile::FromBrowserContext(contents->GetBrowserContext());
 
   auto event = std::make_unique<Event>(
@@ -597,22 +617,25 @@ void TabsEventRouter::DispatchTabUpdatedEvent(
 }
 
 void TabsEventRouter::RegisterForTabNotifications(WebContents* contents) {
+#if !BUILDFLAG(IS_ANDROID)
   favicon_scoped_observations_.AddObservation(
       favicon::ContentFaviconDriver::FromWebContents(contents));
 
   ZoomController::FromWebContents(contents)->AddObserver(this);
-
+#endif
   int tab_id = ExtensionTabUtil::GetTabId(contents);
+  LOG(INFO) << "TabsEventRouter::RegisterForTabNotifications tab_id=" << tab_id;
   DCHECK(tab_entries_.find(tab_id) == tab_entries_.end());
   tab_entries_[tab_id] = std::make_unique<TabEntry>(this, contents);
 }
 
 void TabsEventRouter::UnregisterForTabNotifications(WebContents* contents) {
+#if !BUILDFLAG(IS_ANDROID)
   favicon_scoped_observations_.RemoveObservation(
       favicon::ContentFaviconDriver::FromWebContents(contents));
 
   ZoomController::FromWebContents(contents)->RemoveObserver(this);
-
+#endif
   int tab_id = ExtensionTabUtil::GetTabId(contents);
   int removed_count = tab_entries_.erase(tab_id);
   DCHECK_GT(removed_count, 0);
@@ -623,5 +646,53 @@ TabsEventRouter::TabEntry* TabsEventRouter::GetTabEntry(WebContents* contents) {
 
   return it == tab_entries_.end() ? nullptr : it->second.get();
 }
+
+
+
+#if BUILDFLAG(IS_ANDROID)
+void TabsEventRouter::OnTabModelAdded() {
+  LOG(INFO) << "TabsEventRouter::OnTabModelAdded ";
+  if (!observed_tab_model_) {
+    for (TabModel* model : TabModelList::models()) {
+        observed_tab_model_ = model;
+        observed_tab_model_->AddObserver(this);
+        break;
+    }
+  }
+
+}
+
+void TabsEventRouter::DidSelectTab(TabAndroid* tab,
+                                 TabModel::TabSelectionType type) {
+  LOG(INFO) << "TabsEventRouter::DidSelectTab " << tab->web_contents();
+  if (!tab->web_contents())
+    return;
+  DispatchActiveTabChanged(nullptr, tab->web_contents());
+}
+void TabsEventRouter::WillCloseTab(TabAndroid* tab, bool animate) {
+  LOG(INFO) << "TabsEventRouter::WillCloseTab " << tab->web_contents();
+  if (!tab->web_contents())
+    return;
+  DispatchTabClosingAt(nullptr, tab->web_contents(), tab->window_id().id());
+}
+void TabsEventRouter::DidAddTab(TabAndroid* tab, TabModel::TabLaunchType type) {
+  LOG(INFO) << "TabsEventRouter::DidAddTab " << tab->web_contents();
+  if (!tab->web_contents())
+    return;
+  DispatchTabInsertedAt(nullptr, tab->web_contents(), tab->window_id().id(), !tab->IsHidden());
+}
+void TabsEventRouter::OnTabModelRemoved() {
+   LOG(INFO) << "TabsEventRouter::OnTabModelRemoved";
+   if (!observed_tab_model_)
+      return;
+
+    for (const TabModel* remaining_model : TabModelList::models()) {
+      if (observed_tab_model_ == remaining_model)
+        return;
+    }
+    observed_tab_model_->RemoveObserver(this);
+    observed_tab_model_ = nullptr;
+}
+#endif
 
 }  // namespace extensions

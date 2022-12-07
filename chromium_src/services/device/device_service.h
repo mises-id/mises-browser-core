@@ -178,7 +178,7 @@ class DeviceService : public mojom::DeviceService {
   void BindVibrationManager(
       mojo::PendingReceiver<mojom::VibrationManager> receiver) override;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID) //mises
   void BindHidManager(
       mojo::PendingReceiver<mojom::HidManager> receiver) override;
 #endif

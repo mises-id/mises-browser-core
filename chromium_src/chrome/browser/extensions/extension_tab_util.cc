@@ -60,7 +60,11 @@
 #include "extensions/common/permissions/permissions_data.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
 #include "url/gurl.h"
-
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/android/tab_android.h"
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#endif
 using content::NavigationEntry;
 using content::WebContents;
 using extensions::mojom::APIPermissionID;
@@ -163,8 +167,13 @@ bool HasValidMainFrameProcess(content::WebContents* contents) {
 }  // namespace
 
 ExtensionTabUtil::OpenTabParams::OpenTabParams()
+#if BUILDFLAG(IS_ANDROID)
+    : create_browser_if_needed(true) {
+#else
     : create_browser_if_needed(false) {
+#endif
 }
+
 
 ExtensionTabUtil::OpenTabParams::~OpenTabParams() {
 }
@@ -175,6 +184,7 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
                                                  const OpenTabParams& params,
                                                  bool user_gesture,
                                                  std::string* error) {
+  LOG(INFO) << "ExtensionTabUtil::OpenTab" << " step - 1";
   ChromeExtensionFunctionDetails chrome_details(function);
   Profile* profile = Profile::FromBrowserContext(function->browser_context());
   // windowId defaults to "current" window.
@@ -183,31 +193,36 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
     window_id = *params.window_id;
 
   Browser* browser = GetBrowserFromWindowID(chrome_details, window_id, error);
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 2";
   if (!browser) {
+    //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 2a";
     if (!params.create_browser_if_needed)
       return nullptr;
+    //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 2b";
     browser = CreateAndShowBrowser(profile, user_gesture, error);
     if (!browser)
       return nullptr;
   }
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 3";
 
   // Ensure the selected browser is normal.
   if (!browser->is_type_normal() && browser->IsAttemptingToCloseBrowser())
     browser = chrome::FindTabbedBrowser(
         profile, function->include_incognito_information());
   if (!browser || !browser->window()) {
+    //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 3a";
     if (error)
       *error = tabs_constants::kNoCurrentWindowError;
     return nullptr;
   }
-
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 4";
   // TODO(jstritar): Add a constant, chrome.tabs.TAB_ID_ACTIVE, that
   // represents the active tab.
   WebContents* opener = nullptr;
   Browser* opener_browser = nullptr;
   if (params.opener_tab_id.get()) {
     int opener_id = *params.opener_tab_id;
-
+    //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 4a" << opener_id;
     if (!ExtensionTabUtil::GetTabById(
             opener_id, profile, function->include_incognito_information(),
             &opener_browser, nullptr, &opener, nullptr)) {
@@ -218,6 +233,7 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
       return nullptr;
     }
   }
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 5";
 
   // TODO(rafaelw): handle setting remaining tab properties:
   // -title
@@ -232,7 +248,7 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
   } else {
     url = GURL(chrome::kChromeUINewTabURL);
   }
-
+  // LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 6";
   // Default to foreground for the new tab. The presence of 'active' property
   // will override this default.
   bool active = true;
@@ -264,13 +280,15 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
     }
   }
 
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 7";
+
   if (opener_browser && browser != opener_browser) {
     if (error) {
       *error = "Tab opener must be in the same window as the updated tab.";
     }
     return nullptr;
   }
-
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 8";
   // If index is specified, honor the value, but keep it bound to
   // -1 <= index <= tab_strip->count() where -1 invokes the default behavior.
   int index = -1;
@@ -289,7 +307,13 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
   navigate_params.tabstrip_index = index;
   navigate_params.user_gesture = false;
   navigate_params.tabstrip_add_types = add_types;
+#if BUILDFLAG(IS_ANDROID)
+  TabModel* tab_model = *(TabModelList::models().begin());
+  WebContents* web_contents = tab_model->CreateNewTabForDevTools(url);
+  navigate_params.navigated_or_inserted_contents = web_contents;
+#else
   Navigate(&navigate_params);
+#endif
 
   // This happens in locked fullscreen mode.
   if (!navigate_params.navigated_or_inserted_contents) {
@@ -298,7 +322,12 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
     }
     return nullptr;
   }
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 9";
 
+#if BUILDFLAG(IS_ANDROID)
+  TabStripModel* tab_strip = nullptr;
+  int new_index = tab_model->GetActiveIndex();
+#else
   // The tab may have been created in a different window, so make sure we look
   // at the right tab strip.
   TabStripModel* tab_strip = navigate_params.browser->tab_strip_model();
@@ -310,7 +339,8 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
     if (tab_strip->GetIndexOfWebContents(opener) != TabStripModel::kNoTab)
       tab_strip->SetOpenerOfWebContentsAt(new_index, opener);
   }
-
+#endif
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 10";
   if (active)
     navigate_params.navigated_or_inserted_contents->SetInitialFocus();
 
@@ -318,7 +348,7 @@ base::DictionaryValue* ExtensionTabUtil::OpenTab(ExtensionFunction* function,
       ExtensionTabUtil::GetScrubTabBehavior(
           function->extension(), function->source_context_type(),
           navigate_params.navigated_or_inserted_contents);
-
+  //LOG(INFO) << "ExtensionTabUtil::OpenTab" << "step - 111";
   // Return data about the newly created tab.
   return ExtensionTabUtil::CreateTabObject(
              navigate_params.navigated_or_inserted_contents, scrub_tab_behavior,
@@ -415,8 +445,10 @@ std::unique_ptr<api::tabs::Tab> ExtensionTabUtil::CreateTabObject(
     const Extension* extension,
     TabStripModel* tab_strip,
     int tab_index) {
+#if !BUILDFLAG(IS_ANDROID) 
   if (!tab_strip)
     ExtensionTabUtil::GetTabStripModel(contents, &tab_strip, &tab_index);
+#endif  
   auto tab_object = std::make_unique<api::tabs::Tab>();
   tab_object->id = std::make_unique<int>(GetTabIdForExtensions(contents));
   tab_object->index = tab_index;
@@ -434,6 +466,39 @@ std::unique_ptr<api::tabs::Tab> ExtensionTabUtil::CreateTabObject(
     if (group.has_value())
       tab_object->group_id = tab_groups_util::GetGroupId(group.value());
   }
+#if BUILDFLAG(IS_ANDROID)
+  TabModel *tab_model = nullptr;
+  if (!TabModelList::models().empty())
+    tab_model = *(TabModelList::models().begin());
+  if (tab_model) {
+    int openingTab = (tab_model->GetLastNonExtensionActiveIndex());
+    if (extension && extension->id() == "mooikfkahbdckldjjndioackbalphokd")
+      openingTab = (tab_model->GetActiveIndex());
+    if (openingTab == -1)
+      openingTab = 0;
+    if (tab_index == openingTab) {
+      tab_object->active = true;
+    }
+    for (int i = 0; i < tab_model->GetTabCount(); ++i) {
+      int openingTab = (tab_model->GetLastNonExtensionActiveIndex());
+      if (openingTab == -1)
+        openingTab = 0;
+      if (i == openingTab && tab_model->GetWebContentsAt(i) == contents) {
+        tab_object->active = true;
+      }
+
+    }
+    TabAndroid* tab_android = tab_model->GetTabAt(tab_index);
+    if(tab_android) {
+      tab_object->window_id = tab_android->window_id().id();
+      if (tab_android->ExtensionWindowID() != -1) {
+        tab_object->window_id = tab_android->ExtensionWindowID();
+      }
+      LOG(INFO) << "ExtensionTabUtil::CreateTabObject window_id " << tab_object->window_id;
+    }
+  } 
+  LOG(INFO) << "ExtensionTabUtil::CreateTabObject index " << tab_index;
+#endif
 
   auto* audible_helper = RecentlyAudibleHelper::FromWebContents(contents);
   bool audible = false;
@@ -501,6 +566,7 @@ std::unique_ptr<base::ListValue> ExtensionTabUtil::CreateTabList(
     const Extension* extension,
     Feature::Context context) {
   std::unique_ptr<base::ListValue> tab_list(new base::ListValue());
+#if !BUILDFLAG(IS_ANDROID)
   TabStripModel* tab_strip = browser->tab_strip_model();
   for (int i = 0; i < tab_strip->count(); ++i) {
     WebContents* web_contents = tab_strip->GetWebContentsAt(i);
@@ -511,6 +577,26 @@ std::unique_ptr<base::ListValue> ExtensionTabUtil::CreateTabList(
                         i)
             ->ToValue()));
   }
+#else
+  TabModel *tab_strip = nullptr;
+  if (!TabModelList::models().empty())
+    tab_strip = *(TabModelList::models().begin());
+  if (tab_strip) {
+    for (int i = 0; i < tab_strip->GetTabCount(); ++i) {
+      TabAndroid *tab_android = tab_strip->GetTabAt(i);
+      if (!tab_android) {
+        continue;
+      }
+      if (tab_android->ExtensionWindowID() == browser->session_id().id()) {
+            WebContents* web_contents = tab_strip->GetWebContentsAt(i);
+            ExtensionTabUtil::ScrubTabBehavior scrub_tab_behavior =
+              ExtensionTabUtil::GetScrubTabBehavior(extension, context, web_contents);
+                tab_list->Append(base::Value::FromUniquePtrValue(
+                  CreateTabObject(web_contents, scrub_tab_behavior, extension, nullptr, i)->ToValue()));
+      }
+    }
+  }
+#endif
 
   return tab_list;
 }
@@ -563,7 +649,7 @@ ExtensionTabUtil::CreateWindowValueForExtension(
     result->SetKey(tabs_constants::kTabsKey,
                    base::Value::FromUniquePtrValue(
                        CreateTabList(&browser, extension, context)));
-
+  LOG(INFO) << "ExtensionTabUtil::CreateWindowValueForExtension " << browser.session_id().id();
   return result;
 }
 
@@ -707,6 +793,7 @@ bool ExtensionTabUtil::GetTabById(int tab_id,
                                   TabStripModel** tab_strip,
                                   WebContents** contents,
                                   int* tab_index) {
+  //LOG(INFO) << "ExtensionTabUtil::GetTabById" << tab_id;
   if (tab_id == api::tabs::TAB_ID_NONE)
     return false;
   Profile* profile = Profile::FromBrowserContext(browser_context);
@@ -715,11 +802,13 @@ bool ExtensionTabUtil::GetTabById(int tab_id,
           ? profile->GetPrimaryOTRProfile(/*create_if_needed=*/false)
           : nullptr;
   for (auto* target_browser : *BrowserList::GetInstance()) {
+    //LOG(INFO) << "ExtensionTabUtil::GetTabById" << "check profile " << profile << " target_browser " << target_browser << " target_profile " << target_browser->profile();
     if (target_browser->profile() == profile ||
         target_browser->profile() == incognito_profile) {
       TabStripModel* target_tab_strip = target_browser->tab_strip_model();
       for (int i = 0; i < target_tab_strip->count(); ++i) {
         WebContents* target_contents = target_tab_strip->GetWebContentsAt(i);
+	//LOG(INFO) << "ExtensionTabUtil::GetTabById" << "check browser tab " << sessions::SessionTabHelper::IdForTab(target_contents).id();
         if (sessions::SessionTabHelper::IdForTab(target_contents).id() ==
             tab_id) {
           if (browser)
@@ -735,6 +824,23 @@ bool ExtensionTabUtil::GetTabById(int tab_id,
       }
     }
   }
+#if BUILDFLAG(IS_ANDROID)
+      if (!TabModelList::models().empty()) {
+        TabModel * my_tab_strip = *(TabModelList::models().begin());
+        //LOG(INFO) << "ExtensionTabUtil::GetTabById" << "check profile " << profile << " target_model " << my_tab_strip << " target_profile " << my_tab_strip->GetProfile();
+        for (int i = 0; i < my_tab_strip->GetTabCount(); ++i) {
+          WebContents* target_contents = my_tab_strip->GetWebContentsAt(i);
+          //LOG(INFO) << "ExtensionTabUtil::GetTabById" << "check model tab " << sessions::SessionTabHelper::IdForTab(target_contents).id();
+          if (sessions::SessionTabHelper::IdForTab(target_contents).id() == tab_id) {
+            if (contents)
+              *contents = target_contents;
+            if (tab_index)   
+              *tab_index = i;
+            return true;
+          }
+        }
+      }
+#endif
   return false;
 }
 
@@ -875,6 +981,7 @@ void ExtensionTabUtil::CreateTab(std::unique_ptr<WebContents> web_contents,
                                  WindowOpenDisposition disposition,
                                  const gfx::Rect& initial_rect,
                                  bool user_gesture) {
+  LOG(INFO) << "ExtensionTabUtil::CreateTab";
   Profile* profile =
       Profile::FromBrowserContext(web_contents->GetBrowserContext());
   Browser* browser = chrome::FindTabbedBrowser(profile, false);
@@ -1027,4 +1134,25 @@ TabStripModel* ExtensionTabUtil::GetEditableTabStripModel(Browser* browser) {
   return browser->tab_strip_model();
 }
 
+std::unique_ptr<base::DictionaryValue> ExtensionTabUtil::CreateDummyWindowValueForExtension(
+		                    PopulateTabBehavior populate_tab_behavior) {
+  auto  dict = std::make_unique<base::DictionaryValue>();
+
+  dict->SetIntKey(tabs_constants::kIdKey, -1);
+  dict->SetStringKey(tabs_constants::kWindowTypeKey, "");
+  dict->SetBoolKey(tabs_constants::kFocusedKey, false);
+  dict->SetBoolKey(tabs_constants::kIncognitoKey, false);
+  dict->SetBoolKey(tabs_constants::kAlwaysOnTopKey, false);
+
+  dict->SetStringKey(tabs_constants::kShowStateKey, tabs_constants::kShowStateValueNormal);
+  dict->SetIntKey(tabs_constants::kLeftKey, 0);
+  dict->SetIntKey(tabs_constants::kTopKey, 0);
+  dict->SetIntKey(tabs_constants::kWidthKey, 1920);
+  dict->SetIntKey(tabs_constants::kHeightKey, 1080);
+
+  if (populate_tab_behavior == kPopulateTabs) {
+    dict->SetKey(tabs_constants::kTabsKey,base::ListValue());
+  }
+  return dict;
+}
 }  // namespace extensions

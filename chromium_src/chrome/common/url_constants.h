@@ -257,7 +257,7 @@ extern const char kSyncLearnMoreURL[];
 // profile in the Signin Intercept bubble.
 extern const char kSigninInterceptManagedDisclaimerLearnMoreURL[];
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // The URL for the trusted vault sync passphrase opt in.
 extern const char kSyncTrustedVaultOptInURL[];
 #endif
@@ -461,7 +461,7 @@ extern const char kOutdatedPluginLearnMoreURL[];
 // "Learn more" URL for the phone hub notifications and apps access setup.
 extern const char kPhoneHubPermissionLearnMoreURL[];
 
-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
     BUILDFLAG(IS_FUCHSIA)
 
 // "Learn more" URL for the chrome apps deprecation dialog.

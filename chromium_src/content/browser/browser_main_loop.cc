@@ -854,7 +854,7 @@ void BrowserMainLoop::CreateStartupTasks() {
   startup_task_runner_->AddTask(std::move(intercept_main_message_loop_run));
 #endif
 
-#if BUILDFLAG(IS_ANDROID)
+#if false && BUILDFLAG(IS_ANDROID)
   startup_task_runner_->StartRunningTasksAsync();
 #else
   startup_task_runner_->RunAllTasksNow();

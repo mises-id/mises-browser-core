@@ -233,9 +233,12 @@ void OnTracingRequest(const std::string& path,
 ////////////////////////////////////////////////////////////////////////////////
 
 TracingUI::TracingUI(WebUI* web_ui)
-    : WebUIController(web_ui),
-      delegate_(GetContentClient()->browser()->GetTracingDelegate()) {
+    : WebUIController(web_ui){//,
+      //delegate_(GetContentClient()->browser()->GetTracingDelegate()) {
   // Set up the chrome://tracing/ source.
+  if (GetContentClient() && GetContentClient()->browser()) {
+    delegate_.reset(GetContentClient()->browser()->GetTracingDelegate());
+  }  
   WebUIDataSource* source = WebUIDataSource::CreateAndAdd(
       web_ui->GetWebContents()->GetBrowserContext(), kChromeUITracingHost);
   source->DisableTrustedTypesCSP();

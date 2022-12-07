@@ -1807,7 +1807,7 @@ class CONTENT_EXPORT ContentBrowserClient {
       mojo::PendingReceiver<blink::mojom::ManagedConfigurationService>
           receiver);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Allows the embedder to provide an implementation of the Serial API.
   virtual SerialDelegate* GetSerialDelegate();
 #endif
@@ -1848,7 +1848,7 @@ class CONTENT_EXPORT ContentBrowserClient {
   // Authentication API.
   virtual WebAuthenticationDelegate* GetWebAuthenticationDelegate();
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Returns an AuthenticatorRequestClientDelegate subclass instance to provide
   // embedder-specific configuration for a single Web Authentication API request
   // being serviced in a given RenderFrame. The instance is guaranteed to be

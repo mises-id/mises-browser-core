@@ -26,6 +26,9 @@ GlobalShortcutListener::~GlobalShortcutListener() {
 bool GlobalShortcutListener::RegisterAccelerator(
     const ui::Accelerator& accelerator, Observer* observer) {
   CHECK(BrowserThread::CurrentlyOn(BrowserThread::UI));
+#if BUILDFLAG(IS_ANDROID)
+  if (true) return false;
+#endif  
   if (IsShortcutHandlingSuspended())
     return false;
 
@@ -83,6 +86,9 @@ void GlobalShortcutListener::UnregisterAccelerators(Observer* observer) {
 }
 
 void GlobalShortcutListener::SetShortcutHandlingSuspended(bool suspended) {
+#if BUILDFLAG(IS_ANDROID)
+  if (true) return;
+#endif
   CHECK(BrowserThread::CurrentlyOn(BrowserThread::UI));
   if (shortcut_handling_suspended_ == suspended)
     return;

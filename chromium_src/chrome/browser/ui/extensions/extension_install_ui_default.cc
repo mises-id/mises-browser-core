@@ -115,7 +115,7 @@ void OpenAppInstalledUIImpl(const std::string& app_id,
   // chrome://apps/ is not available on ChromeOS.
   // Toast is shown for Ash and Lacros.
   NOTREACHED();
-#else
+#elif !BUILDFLAG(IS_ANDROID)
   Profile* current_profile = profile->GetOriginalProfile();
   Browser* browser = FindOrCreateVisibleBrowser(current_profile);
   if (browser) {
@@ -166,6 +166,7 @@ void ExtensionInstallUIDefault::OnInstallSuccess(
 
   // Extensions aren't enabled by default in incognito so we confirm
   // the install in a normal window.
+#if !BUILDFLAG(IS_ANDROID)
   Profile* current_profile = profile_->GetOriginalProfile();
   Browser* browser = FindOrCreateVisibleBrowser(current_profile);
   if (extension->is_app()) {
@@ -180,6 +181,7 @@ void ExtensionInstallUIDefault::OnInstallSuccess(
   }
 
   ShowPlatformBubble(extension, browser, *icon);
+#endif
 }
 
 void ExtensionInstallUIDefault::OnInstallFailure(

@@ -537,6 +537,14 @@ metrics::OmniboxInputType AutocompleteInput::Parse(
       return metrics::OmniboxInputType::URL;
   }
 
+  //web3 domains
+  for (const base::StringPiece domain : {"eth", "bit"}) {
+    // The +1 accounts for a possible trailing period.
+    if (canonicalized_url->DomainIs(domain) &&
+        (canonicalized_url->host().length() > (domain.length() + 1)))
+      return metrics::OmniboxInputType::URL;
+  }
+
   // No scheme, username, port, and no known TLD on the host.
   // This could be:
   // * A single word "foo"; possibly an intranet site, but more likely a search.

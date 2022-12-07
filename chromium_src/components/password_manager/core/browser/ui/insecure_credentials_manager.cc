@@ -28,7 +28,7 @@
 #include "components/password_manager/core/browser/ui/saved_passwords_presenter.h"
 #include "components/password_manager/core/common/password_manager_features.h"
 
-#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
+#if BUILDFLAG(IS_ANDROID) || !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
 #include "components/password_manager/core/browser/ui/weak_check_utility.h"
 #endif
 
@@ -172,7 +172,7 @@ std::vector<CredentialWithPassword> ExtractInsecureCredentials(
 }
 
 // The function is only used by the weak check.
-#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
+#if BUILDFLAG(IS_ANDROID) || !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
 base::flat_set<std::u16string> ExtractPasswords(
     SavedPasswordsPresenter::SavedPasswordsView password_forms) {
   return base::MakeFlatSet<std::u16string>(password_forms, {},
@@ -246,7 +246,7 @@ InsecureCredentialsManager::~InsecureCredentialsManager() = default;
 
 void InsecureCredentialsManager::Init() {}
 
-#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
+#if BUILDFLAG(IS_ANDROID) || !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
 void InsecureCredentialsManager::StartWeakCheck(
     base::OnceClosure on_check_done) {
   base::ThreadPool::PostTaskAndReplyWithResult(

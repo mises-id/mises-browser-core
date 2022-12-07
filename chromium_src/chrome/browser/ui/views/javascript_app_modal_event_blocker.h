@@ -11,10 +11,17 @@
 #include "chrome/browser/ui/views/javascript_app_modal_event_blocker_mac.h"
 
 using JavascriptAppModalEventBlocker = JavascriptAppModalEventBlockerMac;
+#elif  BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/ui/views/javascript_app_modal_event_blocker_android.h"
+
+using JavascriptAppModalEventBlocker = JavascriptAppModalEventBlockerAndroid;
+
 #else
+
 #include "chrome/browser/ui/views/javascript_app_modal_event_blocker_aura.h"
 
 using JavascriptAppModalEventBlocker = JavascriptAppModalEventBlockerAura;
+
 #endif
 
 #endif  // CHROME_BROWSER_UI_VIEWS_JAVASCRIPT_APP_MODAL_EVENT_BLOCKER_H_

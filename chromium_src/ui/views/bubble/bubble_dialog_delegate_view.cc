@@ -263,7 +263,7 @@ class BubbleDialogDelegate::AnchorViewObserver : public ViewObserver {
 
 // This class is responsible for observing events on a BubbleDialogDelegate's
 // anchor widget and notifying the BubbleDialogDelegate of them.
-#if BUILDFLAG(IS_MAC)
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_MAC)
 class BubbleDialogDelegate::AnchorWidgetObserver : public WidgetObserver {
 #else
 class BubbleDialogDelegate::AnchorWidgetObserver : public WidgetObserver,
@@ -274,7 +274,7 @@ class BubbleDialogDelegate::AnchorWidgetObserver : public WidgetObserver,
   AnchorWidgetObserver(BubbleDialogDelegate* owner, Widget* widget)
       : owner_(owner) {
     widget_observation_.Observe(widget);
-#if !BUILDFLAG(IS_MAC)
+#if false && !BUILDFLAG(IS_MAC)
     window_observation_.Observe(widget->GetNativeWindow());
 #endif
   }
@@ -282,7 +282,7 @@ class BubbleDialogDelegate::AnchorWidgetObserver : public WidgetObserver,
 
   // WidgetObserver:
   void OnWidgetDestroying(Widget* widget) override {
-#if !BUILDFLAG(IS_MAC)
+#if false && !BUILDFLAG(IS_MAC)
     DCHECK(window_observation_.IsObservingSource(widget->GetNativeWindow()));
     window_observation_.Reset();
 #endif
@@ -300,7 +300,7 @@ class BubbleDialogDelegate::AnchorWidgetObserver : public WidgetObserver,
     owner_->OnAnchorBoundsChanged();
   }
 
-#if !BUILDFLAG(IS_MAC)
+#if false && !BUILDFLAG(IS_MAC)
   // aura::WindowObserver:
   void OnWindowTransformed(aura::Window* window,
                            ui::PropertyChangeReason reason) override {
@@ -320,7 +320,7 @@ class BubbleDialogDelegate::AnchorWidgetObserver : public WidgetObserver,
   raw_ptr<BubbleDialogDelegate> owner_;
   base::ScopedObservation<views::Widget, views::WidgetObserver>
       widget_observation_{this};
-#if !BUILDFLAG(IS_MAC)
+#if false && !BUILDFLAG(IS_MAC)
   base::ScopedObservation<aura::Window, aura::WindowObserver>
       window_observation_{this};
 #endif
@@ -671,7 +671,7 @@ gfx::Rect BubbleDialogDelegate::GetAnchorRect() const {
 
   anchor_rect_ = GetAnchorView()->GetAnchorBoundsInScreen();
 
-#if !BUILDFLAG(IS_MAC)
+#if false && !BUILDFLAG(IS_MAC)
   // GetAnchorBoundsInScreen returns values that take anchor widget's
   // translation into account, so undo that here. Without this, features which
   // apply transforms on windows such as ChromeOS overview mode will see bubbles

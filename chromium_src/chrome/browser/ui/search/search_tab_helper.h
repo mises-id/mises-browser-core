@@ -26,7 +26,7 @@
 #include "content/public/browser/web_contents_user_data.h"
 
 #if BUILDFLAG(IS_ANDROID)
-#error "Instant is only used on desktop";
+//#error "Instant is only used on desktop";
 #endif
 
 namespace content {
@@ -90,6 +90,7 @@ class SearchTabHelper : public content::WebContentsObserver,
   void OnDeleteMostVisitedItem(const GURL& url) override;
   void OnUndoMostVisitedDeletion(const GURL& url) override;
   void OnUndoAllMostVisitedDeletions() override;
+  void OnOpenExtension(const GURL& url) override;
 
   // Overridden from InstantServiceObserver:
   void NtpThemeChanged(NtpTheme theme) override;

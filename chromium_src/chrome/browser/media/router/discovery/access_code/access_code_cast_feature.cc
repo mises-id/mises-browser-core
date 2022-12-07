@@ -14,7 +14,7 @@
 #include "components/prefs/pref_service.h"
 #include "components/user_prefs/user_prefs.h"
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "components/prefs/pref_registry_simple.h"
 #endif
 
@@ -26,7 +26,7 @@ const base::Feature kAccessCodeCastRememberDevices{
 
 namespace media_router {
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 
 void RegisterAccessCodeProfilePrefs(PrefRegistrySimple* registry) {
   registry->RegisterBooleanPref(prefs::kAccessCodeCastEnabled, false,

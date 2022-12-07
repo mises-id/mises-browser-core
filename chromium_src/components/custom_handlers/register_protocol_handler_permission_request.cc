@@ -48,6 +48,7 @@ bool RegisterProtocolHandlerPermissionRequest::IsDuplicateOf(
                  other_request)
                  ->handler_.protocol();
 }
+#if !BUILDFLAG(IS_ANDROID)
 
 std::u16string
 RegisterProtocolHandlerPermissionRequest::GetMessageTextFragment() const {
@@ -61,6 +62,7 @@ RegisterProtocolHandlerPermissionRequest::GetMessageTextFragment() const {
                    handler_.GetProtocolDisplayName(),
                    base::UTF8ToUTF16(old_handler.url().host_piece()));
 }
+#endif
 
 void RegisterProtocolHandlerPermissionRequest::PermissionDecided(
     ContentSetting result,

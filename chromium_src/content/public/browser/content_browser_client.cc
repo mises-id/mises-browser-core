@@ -1006,7 +1006,7 @@ void ContentBrowserClient::CreateManagedConfigurationService(
     mojo::PendingReceiver<blink::mojom::ManagedConfigurationService> receiver) {
 }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 SerialDelegate* ContentBrowserClient::GetSerialDelegate() {
   return nullptr;
 }
@@ -1043,7 +1043,7 @@ ContentBrowserClient::GetWebAuthenticationDelegate() {
   return delegate.get();
 }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 std::unique_ptr<AuthenticatorRequestClientDelegate>
 ContentBrowserClient::GetWebAuthenticationRequestDelegate(
     RenderFrameHost* render_frame_host) {

@@ -14,8 +14,9 @@
 #include "chrome/browser/ui/browser_window.h"
 #include "chrome/browser/ui/profile_chooser_constants.h"
 #include "chrome/browser/ui/startup/startup_types.h"
+#include "chrome/browser/ui/browser_list_observer.h"
 
-#if BUILDFLAG(IS_ANDROID)
+#if false && BUILDFLAG(IS_ANDROID)
 #error "Not used on Android"
 #endif
 

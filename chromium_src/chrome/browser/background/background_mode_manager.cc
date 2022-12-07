@@ -628,8 +628,10 @@ void BackgroundModeManager::ExecuteCommand(int command_id, int event_flags) {
       if (bmd) {
         chrome::ShowAboutChrome(bmd->GetBrowserWindow());
       } else {
+  #if !BUILDFLAG(IS_ANDROID)
         ProfilePicker::Show(ProfilePicker::Params::ForBackgroundManager(
             GURL(chrome::kChromeUIHelpURL)));
+  #endif
       }
       break;
     case IDC_TASK_MANAGER:
@@ -637,14 +639,18 @@ void BackgroundModeManager::ExecuteCommand(int command_id, int event_flags) {
       if (bmd) {
         chrome::OpenTaskManager(bmd->GetBrowserWindow());
       } else {
+  #if !BUILDFLAG(IS_ANDROID)
         ProfilePicker::Show(ProfilePicker::Params::ForBackgroundManager(
             GURL(ProfilePicker::kTaskManagerUrl)));
+  #endif
       }
       break;
     case IDC_EXIT:
       RecordMenuItemClick(MENU_ITEM_EXIT);
       base::RecordAction(UserMetricsAction("Exit"));
+ #if !BUILDFLAG(IS_ANDROID)
       chrome::CloseAllBrowsers();
+ #endif
       break;
     case IDC_STATUS_TRAY_KEEP_CHROME_RUNNING_IN_BACKGROUND: {
       // Background mode must already be enabled (as otherwise this menu would
@@ -665,8 +671,10 @@ void BackgroundModeManager::ExecuteCommand(int command_id, int event_flags) {
       if (bmd) {
         bmd->ExecuteCommand(command_id, event_flags);
       } else {
+  #if !BUILDFLAG(IS_ANDROID)
         ProfilePicker::Show(ProfilePicker::Params::FromEntryPoint(
             ProfilePicker::EntryPoint::kBackgroundModeManager));
+  #endif
       }
       break;
   }

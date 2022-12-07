@@ -161,7 +161,7 @@ AX_BASE_EXPORT extern const base::Feature kComputeAXMode;
 AX_BASE_EXPORT bool IsComputeAXModeEnabled();
 #endif  // BUILDFLAG(IS_ANDROID)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 AX_BASE_EXPORT extern const base::Feature kReadAnything;
 
 // Returns true if read anything is enabled. This feature shows users websites,

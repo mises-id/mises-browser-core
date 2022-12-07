@@ -111,8 +111,10 @@ javascript_dialogs::AppModalDialogView* CreateViewsJavaScriptDialog(
 
 }  // namespace
 
+#if !BUILDFLAG(IS_ANDROID)
 void InstallChromeJavaScriptAppModalDialogViewFactory() {
   javascript_dialogs::AppModalDialogManager::GetInstance()
       ->SetNativeDialogFactory(
           base::BindRepeating(&CreateViewsJavaScriptDialog));
 }
+#endif

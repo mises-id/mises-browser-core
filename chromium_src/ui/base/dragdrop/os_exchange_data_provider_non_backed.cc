@@ -200,6 +200,7 @@ bool OSExchangeDataProviderNonBacked::HasFileContents() const {
   return !file_contents_filename_.empty();
 }
 
+#if defined(USE_AURA)
 void OSExchangeDataProviderNonBacked::SetHtml(const std::u16string& html,
                                               const GURL& base_url) {
   formats_ |= OSExchangeData::HTML;
@@ -219,6 +220,7 @@ bool OSExchangeDataProviderNonBacked::GetHtml(std::u16string* html,
 bool OSExchangeDataProviderNonBacked::HasHtml() const {
   return ((formats_ & OSExchangeData::HTML) != 0);
 }
+#endif
 
 void OSExchangeDataProviderNonBacked::SetDragImage(
     const gfx::ImageSkia& image,

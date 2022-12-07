@@ -45,6 +45,11 @@
 #include "ui/gfx/image/image_skia_operations.h"
 #include "ui/native_theme/native_theme.h"
 
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#endif
+
 using extensions::ActionInfo;
 using extensions::CommandService;
 using extensions::ExtensionActionRunner;
@@ -386,8 +391,13 @@ bool ExtensionActionViewController::CanHandleAccelerators() const {
   // always checking IsEnabled(). It's weird to use a keyboard shortcut on a
   // disabled action (in most cases, this will result in opening the context
   // menu).
+#if 1
   if (extension_action_->action_type() == extensions::ActionInfo::TYPE_PAGE)
     return IsEnabled(view_delegate_->GetCurrentWebContents());
+#else
+  if (extension_action_->action_type() == extensions::ActionInfo::TYPE_PAGE)
+    return IsEnabled(TabModelList::GetCurrentTabModel()->GetActiveWebContents());
+#endif
   return true;
 }
 

@@ -26,7 +26,7 @@ bool MediaRouterEnabled(content::BrowserContext* context);
 // process.
 void ClearMediaRouterStoredPrefsForTesting();
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 
 // Enables the media router. Can be disabled in tests unrelated to
 // Media Router where it interferes. Can also be useful to disable for local
@@ -74,6 +74,10 @@ bool DialMediaRouteProviderEnabled();
 // Media Router is enabled for |context|.
 bool GlobalMediaControlsCastStartStopEnabled(content::BrowserContext* context);
 
+#else
+
+extern const base::Feature kDialEnforceUrlIPAddress; //mises
+bool GetCastAllowAllIPsPref(PrefService* pref_service);
 #endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace media_router

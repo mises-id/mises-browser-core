@@ -15,7 +15,7 @@ namespace permissions {
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const char kChooserBluetoothOverviewURL[];
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const char kPermissionsPostPromptSurveyPromptDispositionKey[];
 

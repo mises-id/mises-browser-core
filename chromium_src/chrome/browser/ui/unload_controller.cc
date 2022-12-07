@@ -226,8 +226,9 @@ void UnloadController::CancelWindowClose() {
   if (is_calling_before_unload_handlers())
     std::move(on_close_confirmed_).Run(false);
   is_attempting_to_close_browser_ = false;
-
+#if !BUILDFLAG(IS_ANDROID)
   chrome::OnClosingAllBrowsers(false);
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////

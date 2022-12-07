@@ -26,7 +26,7 @@
 #include "ui/views/widget/native_widget_private.h"
 #include "ui/views/widget/widget.h"
 
-#if defined(USE_AURA)
+#if BUILDFLAG(IS_ANDROID) || defined(USE_AURA)
 #include "ui/aura/client/aura_constants.h"
 #include "ui/aura/window.h"
 #endif
@@ -40,7 +40,7 @@ namespace views {
 
 namespace internal {
 
-#if defined(USE_AURA)
+#if BUILDFLAG(IS_ANDROID) || defined(USE_AURA)
 // This class adds itself as the pre target handler for the |window|
 // passed in. It currently handles touch events and forwards them to the
 // controller. Reason for this approach is views does not get raw touch

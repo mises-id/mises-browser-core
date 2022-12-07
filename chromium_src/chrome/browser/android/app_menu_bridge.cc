@@ -337,44 +337,41 @@ std::string AppMenuBridge_GetRunningExtensionsInternal(Profile* profile, content
    const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
  
    for (const auto& extension : enabled_extensions) {
-       //LOG(INFO) << "[EXTENSIONS] Found extension: " << extension->id();
-       //LOG(INFO) << "[EXTENSIONS] Found extension with name: " << extension->name();
+      //LOG(INFO) << "[EXTENSIONS] Found extension: " << extension->id();
+      //LOG(INFO) << "[EXTENSIONS] Found extension with name: " << extension->name();
       // LOG(INFO) << "[EXTENSIONS] Found extension with short name: " << extension->short_name();
- //      if (ExtensionActionAPI::GetExtensionActionVisibility(extension->id())) {
-       if (true) {
-         //LOG(INFO) << "[EXTENSIONS] Found extension: " << extension->id() << " IS VISIBLE";
-         extensions::ExtensionAction* extension_action_;
-         extensions::ExtensionActionManager* manager =
-             extensions::ExtensionActionManager::Get(profile);
-         const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension->id());
-         if (extension_ptr) {
-           extension_action_ = manager->GetExtensionAction(*extension_ptr);
-           if (!extension_action_) {
-             extension_action_ = manager->GetExtensionAction(*extension_ptr);
-           }
-           if (extension_action_) {
-              //LOG(INFO) << "[EXTENSIONS] Got extension_action_ for " << extension->id();
-              //LOG(INFO) << "[EXTENSIONS] Got access to web_contents: " << web_contents;
-              std::unique_ptr<IconWithBadgeImageSource> icon_badge = GetIconImageSource(extension_ptr, extension_action_, web_contents, gfx::Size(48, 48));
-              gfx::Canvas canvas(gfx::Size(48, 48), 1.0f, false);
-              icon_badge->Draw(&canvas);
-              //LOG(INFO) << "[EXTENSIONS] Canvas drawn";
-              SkBitmap bitmap = canvas.GetBitmap();
-              std::string base64_image = webui::GetBitmapDataUrl(bitmap);
-              //LOG(INFO) << "[EXTENSIONS] Canvas converted to bitmap: " << base64_image << " on " << extension->short_name();
-              if (extension_action_->HasPopup(sessions::SessionTabHelper::IdForTab(web_contents).id())) {
-                GURL popup_url = extension_action_->GetPopupUrl(
-                    sessions::SessionTabHelper::IdForTab(web_contents).id());
-                result += extension->name() + "\x1E" + extension->id() + "\x1E" + popup_url.spec() + "\x1E" + base64_image + "\x1F";
-              } else {
-                // Record separator and Unit separator in ASCII table
-                result += extension->name() + "\x1E" + extension->id() + "\x1E" + "" + "\x1E" + base64_image + "\x1F";
-              }
-           }
-         }
-       } else {
-         //LOG(INFO) << "[EXTENSIONS] (ignoring) extension: " << extension->id() << " IS NOT VISIBLE";
-       }
+      //if (ExtensionActionAPI::GetExtensionActionVisibility(extension->id())) {
+
+      //LOG(INFO) << "[EXTENSIONS] Found extension: " << extension->id() << " IS VISIBLE";
+      extensions::ExtensionAction* extension_action_;
+      extensions::ExtensionActionManager* manager =
+          extensions::ExtensionActionManager::Get(profile);
+      const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension->id());
+      if (extension_ptr) {
+        extension_action_ = manager->GetExtensionAction(*extension_ptr);
+        if (!extension_action_) {
+          extension_action_ = manager->GetExtensionAction(*extension_ptr);
+        }
+        if (extension_action_) {
+          //LOG(INFO) << "[EXTENSIONS] Got extension_action_ for " << extension->id();
+          //LOG(INFO) << "[EXTENSIONS] Got access to web_contents: " << web_contents;
+          std::unique_ptr<IconWithBadgeImageSource> icon_badge = GetIconImageSource(extension_ptr, extension_action_, web_contents, gfx::Size(48, 48));
+          gfx::Canvas canvas(gfx::Size(48, 48), 1.0f, false);
+          icon_badge->Draw(&canvas);
+          //LOG(INFO) << "[EXTENSIONS] Canvas drawn";
+          SkBitmap bitmap = canvas.GetBitmap();
+          std::string base64_image = webui::GetBitmapDataUrl(bitmap);
+          //LOG(INFO) << "[EXTENSIONS] Canvas converted to bitmap: " << base64_image << " on " << extension->short_name();
+          if (extension_action_->HasPopup(sessions::SessionTabHelper::IdForTab(web_contents).id())) {
+            GURL popup_url = extension_action_->GetPopupUrl(
+                sessions::SessionTabHelper::IdForTab(web_contents).id());
+            result += extension->name() + "\x1E" + extension->id() + "\x1E" + popup_url.spec() + "\x1E" + base64_image + "\x1F";
+          } else {
+            // Record separator and Unit separator in ASCII table
+            result += extension->name() + "\x1E" + extension->id() + "\x1E" + "" + "\x1E" + base64_image + "\x1F";
+          }
+        }
+      }
    }
    //LOG(INFO) << "[EXTENSIONS] Result is: " << result;
    return result;

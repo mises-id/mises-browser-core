@@ -1138,11 +1138,12 @@ AccountProfileMapper* ProfileManager::GetAccountProfileMapper() {
 }
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 void ProfileManager::MaybeScheduleProfileForDeletion(
     const base::FilePath& profile_dir,
     ProfileLoadedCallback callback,
     ProfileMetrics::ProfileDelete deletion_source) {
+#if !BUILDFLAG(IS_ANDROID)
   if (!ScheduleProfileDirectoryForDeletion(profile_dir))
     return;
 
@@ -1155,6 +1156,7 @@ void ProfileManager::MaybeScheduleProfileForDeletion(
   ProfileMetrics::LogProfileDeleteUser(deletion_source);
 
   ScheduleProfileForDeletion(profile_dir, std::move(callback));
+#endif
 }
 
 void ProfileManager::ScheduleProfileForDeletion(
@@ -1175,7 +1177,7 @@ void ProfileManager::ScheduleProfileForDeletion(
         DownloadCoreServiceFactory::GetForBrowserContext(profile);
     service->CancelDownloads();
     DCHECK_EQ(0, service->NonMaliciousDownloadCount());
-
+#if !BUILDFLAG(IS_ANDROID)
     // Close all browser windows before deleting the profile. If the user
     // cancels the closing of any tab in an OnBeforeUnload event, profile
     // deletion is also cancelled. (crbug.com/289390)
@@ -1187,11 +1189,14 @@ void ProfileManager::ScheduleProfileForDeletion(
         base::BindRepeating(&CancelProfileDeletion), false);
   } else {
     EnsureActiveProfileExistsBeforeDeletion(std::move(callback), profile_dir);
+#endif
   }
+
 }
 
 void ProfileManager::ScheduleEphemeralProfileForDeletion(
     const base::FilePath& profile_dir) {
+#if !BUILDFLAG(IS_ANDROID)
   DCHECK_EQ(0u, chrome::GetBrowserCount(GetProfileByPath(profile_dir)));
   DCHECK(IsRegisteredAsEphemeral(&GetProfileAttributesStorage(), profile_dir));
 
@@ -1207,6 +1212,7 @@ void ProfileManager::ScheduleEphemeralProfileForDeletion(
   RemoveFromLastActiveProfilesPrefList(profile_dir);
 
   FinishDeletingProfile(profile_dir, new_active_profile_dir.value());
+#endif
 }
 #endif  // !BUILDFLAG(IS_ANDROID)
 

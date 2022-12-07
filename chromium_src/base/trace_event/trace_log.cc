@@ -2363,6 +2363,9 @@ void ConvertableToTraceFormat::EstimateTraceMemoryOverhead(
 
 namespace trace_event_internal {
 
+void Trace(const char* category, const char* name) {
+  //LOG(INFO) << "[kiwi]" << category << name;
+}
 base::trace_event::TraceEventHandle AddTraceEvent(
     char phase,
     const unsigned char* category_group_enabled,

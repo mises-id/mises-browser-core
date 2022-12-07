@@ -16,7 +16,7 @@ namespace performance_manager::features {
 const base::Feature kRunOnMainThread{"RunOnMainThread",
                                      base::FEATURE_DISABLED_BY_DEFAULT};
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const base::Feature kUrgentDiscardingFromPerformanceManager {
   "UrgentDiscardingFromPerformanceManager",
 // Ash Chrome uses memory pressure evaluator instead of performance manager to

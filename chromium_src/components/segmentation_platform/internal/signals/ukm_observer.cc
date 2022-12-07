@@ -19,7 +19,8 @@ namespace segmentation_platform {
 UkmObserver::UkmObserver(ukm::UkmRecorderImpl* ukm_recorder)
     : ukm_recorder_(ukm_recorder), ukm_data_manager_(nullptr) {
   // Listen to |OnUkmAllowedStateChanged| event.
-  ukm_recorder_->AddUkmRecorderObserver(base::flat_set<uint64_t>(), this);
+  if (ukm_recorder_)
+    ukm_recorder_->AddUkmRecorderObserver(base::flat_set<uint64_t>(), this);
 }
 
 UkmObserver::~UkmObserver() {
@@ -37,14 +38,17 @@ void UkmObserver::StartObserving(const UkmConfig& config) {
   UkmConfig::MergeResult result = config_->Merge(config);
   if (result == UkmConfig::NO_NEW_EVENT)
     return;
+  if (ukm_recorder_) {
 
-  ukm_recorder_->RemoveUkmRecorderObserver(this);
-  ukm_recorder_->AddUkmRecorderObserver(config_->GetRawObservedEvents(), this);
+    ukm_recorder_->RemoveUkmRecorderObserver(this);
+    ukm_recorder_->AddUkmRecorderObserver(config_->GetRawObservedEvents(), this);
+   }
 }
 
 void UkmObserver::StopObserving() {
   DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_check_);
-  ukm_recorder_->RemoveUkmRecorderObserver(this);
+  if (ukm_recorder_)
+    ukm_recorder_->RemoveUkmRecorderObserver(this);
 }
 
 void UkmObserver::OnEntryAdded(ukm::mojom::UkmEntryPtr entry) {

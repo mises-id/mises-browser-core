@@ -130,7 +130,7 @@ void ExtensionEnableFlow::CheckPermissionAndMaybePromptUser() {
   }
 
   if (profiles::IsProfileLocked(profile_->GetPath())) {
-#if !BUILDFLAG(IS_CHROMEOS_ASH)
+#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_CHROMEOS_ASH)
     ProfilePicker::Show(ProfilePicker::Params::FromEntryPoint(
         ProfilePicker::EntryPoint::kProfileLocked));
 

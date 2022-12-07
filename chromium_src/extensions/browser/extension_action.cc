@@ -74,7 +74,11 @@ bool HasValue(const std::map<int, T>& map, int tab_id) {
 
 // static
 extension_misc::ExtensionIcons ExtensionAction::ActionIconSize() {
+#if BUILDFLAG(IS_ANDROID)
+  return extension_misc::EXTENSION_ICON_MEDIUM;
+#else
   return extension_misc::EXTENSION_ICON_BITTY;
+#endif
 }
 
 // static

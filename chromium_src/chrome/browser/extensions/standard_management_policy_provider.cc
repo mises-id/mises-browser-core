@@ -33,7 +33,7 @@ bool AdminPolicyIsModifiable(const Extension* source_extension,
 
   bool is_modifiable = true;
 
-  if (Manifest::IsComponentLocation(extension->location()))
+  if (!extension->ShouldExposeViaManagementAPI() && Manifest::IsComponentLocation(extension->location()))
     is_modifiable = false;
   if (!component_or_force_installed &&
       Manifest::IsPolicyLocation(extension->location())) {

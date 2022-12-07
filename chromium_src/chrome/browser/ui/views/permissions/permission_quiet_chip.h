@@ -33,8 +33,8 @@ class PermissionQuietChip : public PermissionChipDelegate {
   // PermissionChipDelegate:
   views::View* CreateBubble() override;
   void ShowBubble() override;
-  const gfx::VectorIcon& GetIconOn() override;
-  const gfx::VectorIcon& GetIconOff() override;
+  permissions::IconId GetIconOn() override;
+  permissions::IconId GetIconOff() override;
   std::u16string GetMessage() override;
   bool ShouldStartOpen() override;
   bool ShouldExpand() override;

@@ -23,7 +23,7 @@
 #include "base/callback_forward.h"
 #endif
 
-#if defined(USE_AURA) || BUILDFLAG(IS_APPLE)
+#if BUILDFLAG(IS_ANDROID) || defined(USE_AURA) || BUILDFLAG(IS_APPLE)
 #include "ui/gfx/geometry/vector2d.h"
 #include "ui/gfx/image/image_skia.h"
 #endif
@@ -101,7 +101,7 @@ class COMPONENT_EXPORT(UI_BASE_DATA_EXCHANGE) OSExchangeDataProvider {
   virtual bool HasHtml() const = 0;
 #endif
 
-#if defined(USE_AURA) || BUILDFLAG(IS_APPLE)
+#if BUILDFLAG(IS_ANDROID) || defined(USE_AURA) || BUILDFLAG(IS_APPLE)
   virtual void SetDragImage(const gfx::ImageSkia& image,
                             const gfx::Vector2d& cursor_offset) = 0;
   virtual gfx::ImageSkia GetDragImage() const = 0;

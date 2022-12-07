@@ -102,7 +102,7 @@ std::u16string PermissionRequest::GetDialogMessageText() const {
 }
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 IconId PermissionRequest::GetIconForChip() {
   return permissions::GetIconId(request_type_);
 }

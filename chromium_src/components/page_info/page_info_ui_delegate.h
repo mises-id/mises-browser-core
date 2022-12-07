@@ -13,7 +13,7 @@
 class PageInfoUiDelegate {
  public:
   virtual ~PageInfoUiDelegate() = default;
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   virtual bool IsBlockAutoPlayEnabled() = 0;
   virtual bool IsMultipleTabsOpen() = 0;
 #endif

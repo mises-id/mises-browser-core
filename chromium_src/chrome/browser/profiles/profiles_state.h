@@ -48,7 +48,7 @@ void RegisterPrefs(PrefRegistrySimple* registry);
 // System Profile directory, which is an invalid last used profile.
 void SetLastUsedProfile(const base::FilePath& profile_dir);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Returns the display name of the specified on-the-record profile (or guest),
 // specified by |profile_path|, used in the avatar button or user manager. If
 // |profile_path| is the guest path, it will return IDS_GUEST_PROFILE_NAME. If
@@ -144,6 +144,8 @@ std::u16string GetDefaultNameForNewSignedInProfile(
 std::u16string GetDefaultNameForNewSignedInProfileWithIncompleteInfo(
     const CoreAccountInfo& account_info);
 #endif  // !BUILDFLAG(IS_CHROMEOS_ASH)
+#else
+bool IsProfileLocked(const base::FilePath& profile_path);
 
 #endif  // !BUILDFLAG(IS_ANDROID)
 

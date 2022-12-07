@@ -27,7 +27,7 @@
 #include "media/base/flinging_controller.h"
 #include "third_party/blink/public/mojom/presentation/presentation.mojom.h"
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "components/media_router/browser/logger_impl.h"
 #include "components/media_router/common/mojom/media_controller.mojom.h"
 #include "mojo/public/cpp/bindings/pending_receiver.h"
@@ -156,7 +156,7 @@ class MediaRouter : public KeyedService {
   virtual std::unique_ptr<media::FlingingController> GetFlingingController(
       const MediaRoute::Id& route_id) = 0;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Returns the IssueManager owned by the MediaRouter. Guaranteed to be
   // non-null.
   virtual IssueManager* GetIssueManager() = 0;

@@ -79,7 +79,7 @@ class ImportantSitesUtil {
       Profile* profile,
       size_t max_results);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Return the top |<=max_results| important registrable domains that have an
   // associated installed app. |max_results| is assumed to be small.
   static std::vector<ImportantDomainInfo> GetInstalledRegisterableDomains(

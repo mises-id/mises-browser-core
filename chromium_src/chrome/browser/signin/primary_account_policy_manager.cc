@@ -302,11 +302,12 @@ void PrimaryAccountPolicyManager::OnUserConfirmedProfileDeletion(
   delete_profile_dialog_manager_.reset();
 
   DCHECK(profiles::IsMultipleProfilesEnabled());
-
+#if !BUILDFLAG(IS_ANDROID)
   g_browser_process->profile_manager()->MaybeScheduleProfileForDeletion(
       profile_path,
       hide_ui_for_testing_ ? base::DoNothing()
                            : base::BindOnce(&webui::OpenNewWindowForProfile),
       ProfileMetrics::DELETE_PROFILE_PRIMARY_ACCOUNT_NOT_ALLOWED);
+#endif
 }
 #endif  // defined(TOOLKIT_VIEWS) && !BUILDFLAG(IS_CHROMEOS)

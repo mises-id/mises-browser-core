@@ -3898,10 +3898,11 @@ FrameTree* WebContentsImpl::CreateNewWindow(
     bool is_new_browsing_instance,
     bool has_user_gesture,
     SessionStorageNamespace* session_storage_namespace) {
+  LOG(INFO) << "WebContentsImpl::CreateNewWindow";
   TRACE_EVENT2("browser,content,navigation", "WebContentsImpl::CreateNewWindow",
                "opener", opener, "params", params);
   DCHECK(opener);
-
+  LOG(INFO) << "WebContentsImpl::CreateNewWindow setp - 1";
   // Give the content browser client a chance to intercept the request and open
   // the URL with an external handler.
   if (GetContentClient()->browser()->OpenExternally(opener, params.target_url,
@@ -4014,7 +4015,6 @@ FrameTree* WebContentsImpl::CreateNewWindow(
     new_contents_impl->GetRenderManager()->CreateProxiesForNewNamedFrame(
         new_contents_impl->GetPrimaryMainFrame()->browsing_context_state());
   }
-
   // Save the window for later if we're not suppressing the opener (since it
   // will be shown immediately).
   if (!params.opener_suppressed) {
@@ -4046,7 +4046,6 @@ FrameTree* WebContentsImpl::CreateNewWindow(
         CreatedWindow(std::move(new_contents), params.target_url);
     AddWebContentsDestructionObserver(new_contents_impl);
   }
-
   if (delegate_) {
     delegate_->WebContentsCreated(this, render_process_id,
                                   opener->GetRoutingID(), params.frame_name,
@@ -4086,7 +4085,6 @@ FrameTree* WebContentsImpl::CreateNewWindow(
       if (!weak_new_contents)
         return nullptr;
     }
-
     if (!was_blocked) {
       std::unique_ptr<NavigationController::LoadURLParams> load_params =
           std::make_unique<NavigationController::LoadURLParams>(

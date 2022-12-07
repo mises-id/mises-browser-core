@@ -145,6 +145,7 @@ void TabAndroid::AttachTabHelpers(content::WebContents* web_contents) {
 TabAndroid::TabAndroid(JNIEnv* env, const JavaRef<jobject>& obj)
     : weak_java_tab_(env, obj),
       session_window_id_(SessionID::InvalidValue()),
+      extension_window_id_(-1),
       content_layer_(cc::Layer::Create()),
       synced_tab_delegate_(new browser_sync::SyncedTabDelegateAndroid(this)) {
   Java_TabImpl_setNativePtr(env, obj, reinterpret_cast<intptr_t>(this));
@@ -230,7 +231,6 @@ void TabAndroid::DeleteFrozenNavigationEntries(
 
 void TabAndroid::SetWindowSessionID(SessionID window_id) {
   session_window_id_ = window_id;
-
   if (!web_contents())
     return;
 

@@ -720,7 +720,7 @@ bool OverlayAgentViews::UpdateHighlight(
   root_layer = widget->GetLayer();
   layer_for_highlighting_screen_offset_ =
       widget->GetContentsView()->GetBoundsInScreen().OffsetFromOrigin();
-#else
+#elif defined(USE_AURA)
   gfx::NativeWindow root = window_and_bounds.first->GetRootWindow();
   root_layer = root->layer();
   layer_for_highlighting_screen_offset_ =

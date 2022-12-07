@@ -159,6 +159,7 @@ class TabModel {
 
   virtual int GetTabCount() const = 0;
   virtual int GetActiveIndex() const = 0;
+  virtual int GetLastNonExtensionActiveIndex() const = 0;
   virtual content::WebContents* GetActiveWebContents() const;
   virtual content::WebContents* GetWebContentsAt(int index) const = 0;
   // This will return NULL if the tab has not yet been initialized.
@@ -178,6 +179,7 @@ class TabModel {
   // Used by Developer Tools to create a new tab with a given URL.
   // Replaces CreateTabForTesting.
   virtual content::WebContents* CreateNewTabForDevTools(const GURL& url) = 0;
+  virtual content::WebContents* CreateNewTabForExtension(const GURL& url, const SessionID::id_type& session_window_id) = 0;
 
   // Return true if we are currently restoring sessions asynchronously.
   virtual bool IsSessionRestoreInProgress() const = 0;

@@ -159,6 +159,7 @@
 #include "chrome/browser/ui/javascript_dialogs/javascript_tab_modal_dialog_manager_delegate_android.h"
 #include "chrome/browser/video_tutorials/video_tutorial_tab_helper.h"
 #include "content/public/common/content_features.h"
+#include "chrome/browser/ui/search/search_tab_helper.h"
 #else
 #include "chrome/browser/accuracy_tips/accuracy_service_factory.h"
 #include "chrome/browser/banners/app_banner_manager_desktop.h"
@@ -476,6 +477,7 @@ void TabHelpers::AttachTabHelpers(WebContents* web_contents) {
         web_contents);
   }
   video_tutorials::VideoTutorialTabHelper::CreateForWebContents(web_contents);
+  SearchTabHelper::CreateForWebContents(web_contents);
 #else
   if (accuracy_tips::AccuracyWebContentsObserver::IsEnabled(web_contents)) {
     accuracy_tips::AccuracyWebContentsObserver::CreateForWebContents(

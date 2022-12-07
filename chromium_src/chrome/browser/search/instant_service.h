@@ -20,6 +20,7 @@
 #include "build/build_config.h"
 #include "chrome/browser/themes/theme_service_observer.h"
 #include "components/history/core/browser/history_types.h"
+#include "components/history/core/browser/history_service.h"
 #include "components/keyed_service/core/keyed_service.h"
 #include "components/ntp_tiles/most_visited_sites.h"
 #include "components/ntp_tiles/ntp_tile.h"
@@ -30,9 +31,12 @@
 #include "ui/native_theme/native_theme.h"
 #include "ui/native_theme/native_theme_observer.h"
 #include "url/gurl.h"
+#include "chrome/common/search/instant_types.h"
 
+#if 0
 #if BUILDFLAG(IS_ANDROID)
 #error "Instant is only used on desktop";
+#endif
 #endif
 
 class InstantServiceObserver;
@@ -48,6 +52,7 @@ class Clock;
 namespace content {
 class BrowserContext;
 class RenderProcessHost;
+class WebContents;
 }  // namespace content
 
 // Tracks render process host IDs that are associated with Instant, i.e.
@@ -103,6 +108,8 @@ class InstantService : public KeyedService,
   void UndoMostVisitedDeletion(const GURL& url);
   // Invoked when the Instant page wants to undo all Most Visited deletions.
   void UndoAllMostVisitedDeletions();
+  
+  void OpenExtension(content::WebContents* web_contents, const GURL& url);
 
   // Invoked to update theme information for the NTP.
   virtual void UpdateNtpTheme();
@@ -157,6 +164,15 @@ class InstantService : public KeyedService,
   // Sets NTP elements theme info that are overridden when custom
   // background is used.
   void SetNtpElementsNtpTheme();
+
+  GURL GetExtensionURL(const std::string& extension_id);
+  
+  void SearchComplete(history::QueryResults results);
+
+  std::vector<InstantMostVisitedItem> most_visited_items_;
+  std::vector<InstantMostVisitedItem> recent_extensions_;
+
+  base::CancelableTaskTracker task_tracker_;
 
   const raw_ptr<Profile> profile_;
 

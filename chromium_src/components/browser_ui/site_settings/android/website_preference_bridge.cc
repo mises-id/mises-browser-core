@@ -204,10 +204,20 @@ ContentSetting GetPermissionSettingForOrigin(
     embedder_url = url;
   else
     embedder_url = GURL(embedder_str);
-  return permissions::PermissionsClient::Get()
+
+  if (permissions::PermissionUtil::IsPermission(content_type)) {
+    return permissions::PermissionsClient::Get()
       ->GetPermissionManager(unwrap(jbrowser_context_handle))
       ->GetPermissionStatusDeprecated(content_type, url, embedder_url)
       .content_setting;
+  } else {
+    // If `content_type` is not permission, then we can directly read its value
+    // from `HostContentSettingsMap`.
+    HostContentSettingsMap* host_content_settings_map =
+        GetHostContentSettingsMap(jbrowser_context_handle);
+    return host_content_settings_map->GetContentSetting(
+        url, embedder_url, content_type);
+  }
 }
 
 void SetPermissionSettingForOrigin(
@@ -470,6 +480,17 @@ static void JNI_WebsitePreferenceBridge_GetChosenObjects(
         env, list, content_settings_type, jorigin, jname, jserialized,
         jis_managed);
   }
+}
+
+static void JNI_WebsitePreferenceBridge_SetPopupSettingForOrigin(
+    JNIEnv* env,
+    const JavaParamRef<jobject>& jbrowser_context_handle,
+    const JavaParamRef<jstring>& origin,
+    jint value,
+    jboolean is_incognito) {
+	JNI_WebsitePreferenceBridge_SetPermissionSettingForOrigin(
+      env,  jbrowser_context_handle, static_cast<int>(ContentSettingsType::POPUPS), origin, origin,
+      static_cast<ContentSetting>(value));
 }
 
 static void JNI_WebsitePreferenceBridge_RevokeObjectPermission(

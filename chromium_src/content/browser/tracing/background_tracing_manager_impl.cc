@@ -93,8 +93,11 @@ void BackgroundTracingManagerImpl::ActivateForProcess(
 }
 
 BackgroundTracingManagerImpl::BackgroundTracingManagerImpl()
-    : delegate_(GetContentClient()->browser()->GetTracingDelegate()),
+    : //delegate_(GetContentClient()->browser()->GetTracingDelegate()),
       trigger_handle_ids_(0) {
+  if (GetContentClient() && GetContentClient()->browser()) {
+    delegate_.reset(GetContentClient()->browser()->GetTracingDelegate());
+  }
   AddEnabledStateObserver(&BackgroundStartupTracingObserver::GetInstance());
 #if BUILDFLAG(IS_ANDROID)
   AddEnabledStateObserver(&BackgroundReachedCodeTracingObserver::GetInstance());

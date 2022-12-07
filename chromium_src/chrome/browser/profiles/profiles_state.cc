@@ -33,7 +33,7 @@
 #include "content/public/browser/browsing_data_remover.h"
 #include "ui/base/l10n/l10n_util.h"
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/ui/browser.h"
 #endif
 
@@ -102,7 +102,7 @@ void SetLastUsedProfile(const base::FilePath& profile_dir) {
   local_state->SetFilePath(prefs::kProfileLastUsed, profile_dir);
 }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 std::u16string GetAvatarNameForProfile(const base::FilePath& profile_path) {
   if (profile_path == ProfileManager::GetGuestProfilePath()) {
     return l10n_util::GetStringUTF16(IDS_GUEST_PROFILE_NAME);

@@ -27,7 +27,7 @@ GlobalError::Severity GlobalError::GetSeverity() { return SEVERITY_MEDIUM; }
 
 ui::ImageModel GlobalError::MenuItemIcon() {
 #if BUILDFLAG(IS_ANDROID)
-  return ui::ImageModel(
+  return ui::ImageModel::FromImage(
       ui::ResourceBundle::GetSharedInstance().GetNativeImageNamed(
           IDR_INPUT_ALERT_MENU));
 #else

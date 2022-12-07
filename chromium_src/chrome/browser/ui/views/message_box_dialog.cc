@@ -291,7 +291,7 @@ const views::Widget* MessageBoxDialog::GetWidget() const {
 }
 
 namespace chrome {
-
+#if !BUILDFLAG(IS_ANDROID)
 MessageBoxResult ShowWarningMessageBox(gfx::NativeWindow parent,
                                        const std::u16string& title,
                                        const std::u16string& message) {
@@ -317,7 +317,7 @@ void ShowWarningMessageBoxWithCheckbox(
                              },
                              std::move(callback)));
 }
-
+#endif
 MessageBoxResult ShowQuestionMessageBoxSync(gfx::NativeWindow parent,
                                             const std::u16string& title,
                                             const std::u16string& message) {

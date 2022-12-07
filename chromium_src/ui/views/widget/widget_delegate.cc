@@ -51,6 +51,7 @@ WidgetDelegate::WidgetDelegate()
 
 WidgetDelegate::~WidgetDelegate() {
   CHECK(can_delete_this_) << "A WidgetDelegate must outlive its Widget";
+  LOG(INFO) << "WidgetDelegate::~WidgetDelegate";
   if (!contents_view_taken_ && default_contents_view_ &&
       !default_contents_view_->parent()) {
     delete default_contents_view_;
@@ -223,6 +224,7 @@ void WidgetDelegate::WindowClosing() {
 }
 
 void WidgetDelegate::DeleteDelegate() {
+  LOG(INFO) << "WidgetDelegate::DeleteDelegate" << params_.owned_by_widget;
   bool owned_by_widget = params_.owned_by_widget;
   ClosureVector delete_callbacks;
   delete_callbacks.swap(delete_delegate_callbacks_);

@@ -6,6 +6,7 @@
 
 #include <memory>
 
+#include "base/logging.h"
 #include "base/bind.h"
 #include "base/path_service.h"
 #include "base/task/current_thread.h"
@@ -42,7 +43,7 @@ ChromeBrowserMainPartsAndroid::~ChromeBrowserMainPartsAndroid() {
 
 int ChromeBrowserMainPartsAndroid::PreCreateThreads() {
   TRACE_EVENT0("startup", "ChromeBrowserMainPartsAndroid::PreCreateThreads");
-
+  LOG(INFO) << "[Kiwi] chrome_browser::PreCreateThreads";
   int result_code = ChromeBrowserMainParts::PreCreateThreads();
 
   // The ChildExitObserver needs to be created before any child process is
@@ -58,7 +59,7 @@ void ChromeBrowserMainPartsAndroid::PostProfileInit(Profile* profile,
                                                     bool is_initial_profile) {
   DCHECK(is_initial_profile);  // No multiprofile on Android, only the initial
                                // call should happen.
-
+  LOG(INFO) << "[Kiwi] chrome_browser::PostProfileInit";
   // Get the OS Data Saver setting. This will be needed later on, so we want to
   // fetch this setting as soon as possible to avoid blocking on it.
   data_saver::FetchDataSaverOSSettingAsynchronously();
@@ -85,6 +86,7 @@ void ChromeBrowserMainPartsAndroid::PostProfileInit(Profile* profile,
 int ChromeBrowserMainPartsAndroid::PreEarlyInitialization() {
   TRACE_EVENT0("startup",
                "ChromeBrowserMainPartsAndroid::PreEarlyInitialization");
+  LOG(INFO) << "[Kiwi] chrome_browser::PreEarlyInitialization";
   content::Compositor::Initialize();
 
   CHECK(base::CurrentThread::IsSet());
@@ -93,6 +95,7 @@ int ChromeBrowserMainPartsAndroid::PreEarlyInitialization() {
 }
 
 void ChromeBrowserMainPartsAndroid::PostEarlyInitialization() {
+  LOG(INFO) << "[Kiwi] chrome_browser::PostEarlyInitialization";
   profile_manager_android_ = std::make_unique<ProfileManagerAndroid>();
   g_browser_process->profile_manager()->AddObserver(
       profile_manager_android_.get());
@@ -100,6 +103,7 @@ void ChromeBrowserMainPartsAndroid::PostEarlyInitialization() {
 }
 
 void ChromeBrowserMainPartsAndroid::PostBrowserStart() {
+  LOG(INFO) << "[Kiwi] chrome_browser::PostBrowserStart";
   ChromeBrowserMainParts::PostBrowserStart();
 
   base::ThreadPool::PostDelayedTask(
@@ -110,5 +114,6 @@ void ChromeBrowserMainPartsAndroid::PostBrowserStart() {
 }
 
 void ChromeBrowserMainPartsAndroid::ShowMissingLocaleMessageBox() {
+  LOG(INFO) << "[Kiwi] chrome_browser::ShowMissingLocaleMessageBox";
   NOTREACHED();
 }

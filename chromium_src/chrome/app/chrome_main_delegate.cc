@@ -583,6 +583,7 @@ ChromeMainDelegate::~ChromeMainDelegate() = default;
 
 absl::optional<int> ChromeMainDelegate::PostEarlyInitialization(
     InvokedIn invoked_in) {
+  LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization step-1";
   DCHECK(base::ThreadPoolInstance::Get());
   const auto* invoked_in_browser =
       absl::get_if<InvokedInBrowserProcess>(&invoked_in);
@@ -591,7 +592,7 @@ absl::optional<int> ChromeMainDelegate::PostEarlyInitialization(
     return absl::nullopt;
     ;
   }
-
+//LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization step-2";
 #if BUILDFLAG(IS_WIN)
   // Initialize the cleaner of left-behind tmp files now that the main thread
   // has its SequencedTaskRunner; see https://crbug.com/1075917.
@@ -607,6 +608,7 @@ absl::optional<int> ChromeMainDelegate::PostEarlyInitialization(
   // cookies need to go through one of Chrome's URLRequestContexts which have
   // a ChromeNetworkDelegate attached that selectively allows cookies again.
   net::URLRequest::SetDefaultCookiePolicyToBlock();
+  //LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization step-3";
 
   // On Chrome OS, IPC (D-Bus, Crosapi) is required to create the FeatureList,
   // which depends on policy from an OS service. So, initialize it at this
@@ -663,13 +665,14 @@ absl::optional<int> ChromeMainDelegate::PostEarlyInitialization(
           ->chrome_feature_list_creator();
   chrome_feature_list_creator->CreateFeatureList();
   CommonEarlyInitialization();
-
+  //LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization step-4";
   // Initializes the resource bundle and determines the locale.
   std::string actual_locale = LoadLocalState(
       chrome_feature_list_creator, invoked_in_browser->is_running_test);
   chrome_feature_list_creator->SetApplicationLocale(actual_locale);
   chrome_feature_list_creator->OverrideCachedUIStrings();
 
+  //LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization step-5";
   // On Chrome OS, initialize D-Bus clients that depend on feature list.
 #if BUILDFLAG(IS_CHROMEOS_ASH)
   ash::InitializeFeatureListDependentDBus();
@@ -682,7 +685,7 @@ absl::optional<int> ChromeMainDelegate::PostEarlyInitialization(
   net::NetworkChangeNotifier::SetFactory(
       new net::NetworkChangeNotifierFactoryAndroid());
 #endif
-
+  //LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization step-6";
   if (base::FeatureList::IsEnabled(
           features::kWriteBasicSystemProfileToPersistentHistogramsFile)) {
     bool record = true;
@@ -693,15 +696,15 @@ absl::optional<int> ChromeMainDelegate::PostEarlyInitialization(
     if (record)
       chrome_content_browser_client_->startup_data()->RecordCoreSystemProfile();
   }
-
+  //LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization step-7";
 #if BUILDFLAG(IS_ANDROID)
   UmaSessionStats::OnStartup();
 #endif
-
+  // LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization step-8";
 #if BUILDFLAG(IS_MAC)
   chrome::CacheChannelInfo();
 #endif
-
+  // LOG(INFO) << "[kiwi]" << "ChromeMainDelegate::PostEarlyInitialization end";
   return absl::nullopt;
 }
 

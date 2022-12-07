@@ -522,9 +522,11 @@ void MenuController::Run(Widget* parent,
 
     native_view_for_gestures_ = native_view_for_gestures;
 
+#if !BUILDFLAG(IS_ANDROID)
     // Only create a MenuPreTargetHandler for non-nested menus. Nested menus
     // will use the existing one.
     menu_pre_target_handler_ = MenuPreTargetHandler::Create(this, owner_);
+#endif
   }
 
 #if BUILDFLAG(IS_MAC)

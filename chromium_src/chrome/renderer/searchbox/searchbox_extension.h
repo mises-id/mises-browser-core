@@ -38,6 +38,7 @@ class SearchBoxExtension {
   static void DispatchKeyCaptureChange(blink::WebLocalFrame* frame);
   static void DispatchMostVisitedChanged(blink::WebLocalFrame* frame);
   static void DispatchThemeChange(blink::WebLocalFrame* frame);
+  static void DispatchMisesInfoChanged(blink::WebLocalFrame* frame, const std::u16string& info);
 };
 
 #endif  // CHROME_RENDERER_SEARCHBOX_SEARCHBOX_EXTENSION_H_

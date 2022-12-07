@@ -185,7 +185,7 @@ bool IsComputeAXModeEnabled() {
 }
 #endif  // BUILDFLAG(IS_ANDROID)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const base::Feature kReadAnything{"ReadAnything",
                                   base::FEATURE_DISABLED_BY_DEFAULT};
 

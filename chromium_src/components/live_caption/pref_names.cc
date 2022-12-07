@@ -10,14 +10,14 @@
 #include "build/build_config.h"
 #include "components/prefs/pref_service.h"
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "components/soda/constants.h"
 #include "media/base/media_switches.h"
 #endif
 
 namespace prefs {
 
-#if !defined(ANDROID)
+#if true || !defined(ANDROID)
 // Whether the Live Caption feature is enabled.
 const char kLiveCaptionEnabled[] =
     "accessibility.captions.live_caption_enabled";

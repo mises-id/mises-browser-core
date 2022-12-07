@@ -26,7 +26,7 @@
 
 namespace {
 
-const gfx::VectorIcon& GetBlockedPermissionIconId(
+permissions::IconId GetBlockedPermissionIconId(
     permissions::PermissionPrompt::Delegate* delegate) {
   DCHECK(delegate);
 
@@ -86,11 +86,11 @@ void PermissionQuietChip::ShowBubble() {
   }
 }
 
-const gfx::VectorIcon& PermissionQuietChip::GetIconOn() {
+permissions::IconId PermissionQuietChip::GetIconOn() {
   return GetBlockedPermissionIconId(delegate_);
 }
 
-const gfx::VectorIcon& PermissionQuietChip::GetIconOff() {
+permissions::IconId PermissionQuietChip::GetIconOff() {
   return GetBlockedPermissionIconId(delegate_);
 }
 

@@ -137,6 +137,11 @@ bool AccountConsistencyModeManager::IsDiceSignInAllowed() {
 }
 #endif  // BUILDFLAG(ENABLE_DICE_SUPPORT)
 
+#if BUILDFLAG(IS_ANDROID)
+bool AccountConsistencyModeManager::IsDiceSignInAllowed() {
+  return false;
+}
+#endif 
 // static
 bool AccountConsistencyModeManager::IsMirrorEnabledForProfile(
     Profile* profile) {

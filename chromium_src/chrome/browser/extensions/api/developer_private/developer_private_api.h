@@ -553,6 +553,7 @@ class DeveloperPrivateLoadUnpackedFunction
   void FileSelected(const base::FilePath& path) override;
   void FileSelectionCanceled() override;
 
+  void CheckFile(const base::FilePath& path);
   // Callback for the UnpackedLoader.
   void OnLoadComplete(const Extension* extension,
                       const base::FilePath& file_path,

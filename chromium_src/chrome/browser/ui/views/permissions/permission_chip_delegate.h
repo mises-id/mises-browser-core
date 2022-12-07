@@ -12,9 +12,6 @@ namespace views {
 class View;
 }
 
-namespace gfx {
-struct VectorIcon;
-}
 
 enum class OmniboxChipTheme;
 
@@ -29,8 +26,8 @@ class PermissionChipDelegate {
   // Show previously created prompt bubble.
   virtual void ShowBubble() = 0;
 
-  virtual const gfx::VectorIcon& GetIconOn() = 0;
-  virtual const gfx::VectorIcon& GetIconOff() = 0;
+  virtual permissions::IconId GetIconOn() = 0;
+  virtual permissions::IconId GetIconOff() = 0;
   virtual std::u16string GetMessage() = 0;
   virtual bool ShouldStartOpen() = 0;
   virtual bool ShouldExpand() = 0;

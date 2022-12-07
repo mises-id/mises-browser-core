@@ -339,6 +339,8 @@
 #include "components/spellcheck/common/spellcheck_features.h"
 #endif  // BUILDFLAG(IS_WIN) && BUILDFLAG(USE_BROWSER_SPELLCHECKER)
 
+#include "chrome/browser/profiles/chrome_browser_main_extra_parts_profiles.h"
+
 namespace {
 
 #if !BUILDFLAG(IS_ANDROID)
@@ -786,9 +788,11 @@ int ChromeBrowserMainParts::PreEarlyInitialization() {
 }
 
 void ChromeBrowserMainParts::PostEarlyInitialization() {
+  //LOG(ERROR) << "[Kiwi] ChromeBrowserMainParts::PostEarlyInitialization - Step 1";
   TRACE_EVENT0("startup", "ChromeBrowserMainParts::PostEarlyInitialization");
   for (auto& chrome_extra_part : chrome_extra_parts_)
     chrome_extra_part->PostEarlyInitialization();
+  //LOG(ERROR) << "[Kiwi] ChromeBrowserMainParts::PostEarlyInitialization - Step 2";
 }
 
 void ChromeBrowserMainParts::ToolkitInitialized() {
@@ -842,10 +846,10 @@ int ChromeBrowserMainParts::PreCreateThreads() {
   // Calls in this function should not post tasks or create threads as
   // components used to handle those tasks are not yet available. This work
   // should be deferred to PreMainMessageLoopRunImpl.
-
+  //LOG(ERROR) << "[Kiwi] ChromeBrowserMainParts::PreCreateThreads - Step 1";
   TRACE_EVENT0("startup", "ChromeBrowserMainParts::PreCreateThreads");
   result_code_ = PreCreateThreadsImpl();
-
+  //LOG(ERROR) << "[Kiwi] ChromeBrowserMainParts::PreCreateThreads - Step 2";
   if (result_code_ == content::RESULT_CODE_NORMAL_EXIT) {
     // These members must be initialized before exiting this function normally.
 #if !BUILDFLAG(IS_ANDROID)
@@ -854,14 +858,14 @@ int ChromeBrowserMainParts::PreCreateThreads() {
 #if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_CHROMEOS_ASH)
     DCHECK(master_prefs_.get());
 #endif
-
+ 
     for (auto& chrome_extra_part : chrome_extra_parts_)
       chrome_extra_part->PreCreateThreads();
   }
-
+  //LOG(ERROR) << "[Kiwi] ChromeBrowserMainParts::PreCreateThreads - Step 3";
   // Create an instance of GpuModeManager to watch gpu mode pref change.
   g_browser_process->gpu_mode_manager();
-
+  //LOG(ERROR) << "[Kiwi] ChromeBrowserMainParts::PreCreateThreads - Step 4";
   return result_code_;
 }
 
@@ -956,12 +960,14 @@ int ChromeBrowserMainParts::ApplyFirstRunPrefs() {
 }
 
 int ChromeBrowserMainParts::PreCreateThreadsImpl() {
+  //LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 1";
   TRACE_EVENT0("startup", "ChromeBrowserMainParts::PreCreateThreadsImpl");
 
   if (browser_process_->GetApplicationLocale().empty()) {
     ShowMissingLocaleMessageBox();
     return chrome::RESULT_CODE_MISSING_DATA;
   }
+  //LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 2";
 
 #if !BUILDFLAG(IS_ANDROID)
   chrome::MaybeShowInvalidUserDataDirWarningDialog();
@@ -971,7 +977,7 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
 
   // Force MediaCaptureDevicesDispatcher to be created on UI thread.
   MediaCaptureDevicesDispatcher::GetInstance();
-
+  //LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 3";
 #if BUILDFLAG(ENABLE_PROCESS_SINGLETON)
   process_singleton_ = std::make_unique<ChromeProcessSingleton>(user_data_dir_);
 #endif  // BUILDFLAG(ENABLE_PROCESS_SINGLETON)
@@ -981,9 +987,9 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
   // Cache first run state early.
   first_run::IsChromeFirstRun();
 #endif  // !BUILDFLAG(IS_ANDROID)
-
+  //LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 4";
   PrefService* local_state = browser_process_->local_state();
-
+  //LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 5";
 #if BUILDFLAG(IS_CHROMEOS_ASH)
   ash::CrosSettings::Initialize(local_state);
   ash::HWDataUsageController::Initialize(local_state);
@@ -997,7 +1003,7 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
         "ChromeBrowserMainParts::PreCreateThreadsImpl:InitBrowserProcessImpl");
     browser_process_->Init();
   }
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 6";
 #if !BUILDFLAG(IS_ANDROID)
   // These members must be initialized before returning from this function.
   // Android doesn't use StartupBrowserCreator.
@@ -1018,7 +1024,7 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
       *base::CommandLine::ForCurrentProcess());
 
   browser_process_->browser_policy_connector()->OnResourceBundleCreated();
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 7";
 // Android does first run in Java instead of native.
 // Chrome OS has its own out-of-box-experience code.
 #if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_CHROMEOS_ASH)
@@ -1049,7 +1055,7 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
   }
 #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) ||
         // BUILDFLAG(IS_OPENBSD)
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 8";
 #if BUILDFLAG(IS_MAC)
   // Get the Keychain API to register for distributed notifications on the main
   // thread, which has a proper CFRunloop, instead of later on the I/O thread,
@@ -1080,7 +1086,7 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
   }
   // IsolateOrigins policy is taken care of through SiteIsolationPrefsObserver
   // (constructed and owned by BrowserProcessImpl).
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 9";
 #if BUILDFLAG(IS_ANDROID)
   // The admin should also be able to use these policies to force Site Isolation
   // off (on Android; using enterprise policies to disable Site Isolation is not
@@ -1094,7 +1100,7 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
         switches::kDisableSiteIsolationForPolicy);
   }
 #endif
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 10";
   if (command_line->HasSwitch(switches::kProfileEmail) &&
       !command_line->HasSwitch(switches::kProfileDirectory)) {
     // Use GetSwitchValueNative() rather than GetSwitchValueASCII() to support
@@ -1108,6 +1114,7 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
 #else
       email = std::move(email_native);
 #endif
+      //LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 11";
       base::FilePath profile_dir =
           browser_process_->profile_manager()->GetProfileDirForEmail(email);
       if (!profile_dir.empty()) {
@@ -1116,17 +1123,18 @@ int ChromeBrowserMainParts::PreCreateThreadsImpl() {
       }
     }
   }
+  //LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 12";
 
   // ChromeOS needs ui::ResourceBundle::InitSharedInstance to be called before
   // this.
   browser_process_->PreCreateThreads();
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 13";
   // This must occur in PreCreateThreads() because it initializes global state
   // which is then read by all threads without synchronization. It must be after
   // browser_process_->PreCreateThreads() as that instantiates the IOThread
   // which is used in SetupMetrics().
   SetupMetrics();
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreCreateThreadsImpl - Step 14";
   return content::RESULT_CODE_NORMAL_EXIT;
 }
 
@@ -1138,6 +1146,7 @@ void ChromeBrowserMainParts::PostCreateThreads() {
   // BrowserMainLoop::InitializeMainThread(). PostCreateThreads is preferred to
   // BrowserThreadsStarted as it matches the PreCreateThreads and CreateThreads
   // stages.
+  //LOG(ERROR) << "ChromeBrowserMainParts::PostCreateThreads - Step 1";
   content::GetIOThreadTaskRunner({})->PostTask(
       FROM_HERE, base::BindOnce(&ThreadProfiler::StartOnChildThread,
                                 metrics::CallStackProfileParams::Thread::kIo));
@@ -1148,11 +1157,13 @@ void ChromeBrowserMainParts::PostCreateThreads() {
       FROM_HERE,
       base::BindOnce(&tracing::TracingSamplerProfiler::CreateOnChildThread));
 #endif
-
-  tracing::SetupBackgroundTracingFieldTrial();
+  //LOG(ERROR) << "ChromeBrowserMainParts::PostCreateThreads - Step 2";
+  //tracing::SetupBackgroundTracingFieldTrial();
 
   for (auto& chrome_extra_part : chrome_extra_parts_)
     chrome_extra_part->PostCreateThreads();
+
+  //LOG(ERROR) << "ChromeBrowserMainParts::PostCreateThreads - Step 3";
 }
 
 int ChromeBrowserMainParts::PreMainMessageLoopRun() {
@@ -1182,10 +1193,13 @@ void ChromeBrowserMainParts::PreProfileInit() {
 
   media::AudioManager::SetGlobalAppName(
       l10n_util::GetStringUTF8(IDS_SHORT_PRODUCT_NAME));
-
-  for (auto& chrome_extra_part : chrome_extra_parts_)
-    chrome_extra_part->PreProfileInit();
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreProfileInit - Step 1";
+  for (auto& chrome_extra_part : chrome_extra_parts_) {
+//LOG(ERROR) << "ChromeBrowserMainParts::PreProfileInit - Extra begin";
+	  chrome_extra_part->PreProfileInit();
+//LOG(ERROR) << "ChromeBrowserMainParts::PreProfileInit - Extra end";
+  }
+//LOG(ERROR) << "ChromeBrowserMainParts::PreProfileInit - Step 2";
 #if !BUILDFLAG(IS_ANDROID)
   // Ephemeral profiles may have been left behind if the browser crashed.
   g_browser_process->profile_manager()->CleanUpEphemeralProfiles();
@@ -1196,7 +1210,7 @@ void ChromeBrowserMainParts::PreProfileInit() {
 #if BUILDFLAG(ENABLE_EXTENSIONS)
   javascript_dialog_extensions_client::InstallClient();
 #endif  // BUILDFLAG(ENABLE_EXTENSIONS)
-
+//LOG(ERROR) << "ChromeBrowserMainParts::PreProfileInit - Step 3";
 #if BUILDFLAG(IS_MAC)
   if (base::FeatureList::IsEnabled(features::kViewsJSAppModalDialog))
     InstallChromeJavaScriptAppModalDialogViewFactory();
@@ -1205,7 +1219,9 @@ void ChromeBrowserMainParts::PreProfileInit() {
 #else
   InstallChromeJavaScriptAppModalDialogViewFactory();
 #endif
+ //LOG(ERROR) << "ChromeBrowserMainParts::PreProfileInit - Step 4";
   media_router::ChromeMediaRouterFactory::DoPlatformInit();
+  //LOG(ERROR) << "ChromeBrowserMainParts::PreProfileInit - Step 5";
 }
 
 void ChromeBrowserMainParts::CallPostProfileInit(Profile* profile) {
@@ -1313,6 +1329,8 @@ void ChromeBrowserMainParts::PostBrowserStart() {
   for (auto& chrome_extra_part : chrome_extra_parts_)
     chrome_extra_part->PostBrowserStart();
 
+  ChromeBrowserMainExtraPartsProfiles::
+      EnsureBrowserContextKeyedServiceFactoriesBuilt();
 #if BUILDFLAG(ENABLE_PROCESS_SINGLETON)
   // Allow ProcessSingleton to process messages.
   // This is done here instead of just relying on the main message loop's start

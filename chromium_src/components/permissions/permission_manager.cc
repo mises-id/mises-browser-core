@@ -312,6 +312,7 @@ void PermissionManager::Shutdown() {
       if (type_to_count.second > 0) {
         PermissionContextBase* context =
             GetPermissionContext(type_to_count.first);
+	DCHECK(context);
         context->RemoveObserver(this);
       }
     }
@@ -512,6 +513,7 @@ PermissionManager::SubscribePermissionStatusChange(
   auto& type_count = subscription_type_counts_[content_type];
   if (type_count == 0) {
     PermissionContextBase* context = GetPermissionContext(content_type);
+    DCHECK(context);
     context->AddObserver(this);
   }
   ++type_count;
@@ -575,6 +577,7 @@ void PermissionManager::UnsubscribePermissionStatusChange(
   type_count->second--;
   if (type_count->second == 0) {
     PermissionContextBase* context = GetPermissionContext(type);
+    DCHECK(context);
     context->RemoveObserver(this);
   }
 }
@@ -678,6 +681,10 @@ PermissionResult PermissionManager::GetPermissionStatusHelper(
   if (status != CONTENT_SETTING_DEFAULT)
     return PermissionResult(status, PermissionStatusSource::UNSPECIFIED);
   PermissionContextBase* context = GetPermissionContext(permission);
+  //DCHECK(context) << "for:" << (int)permission;
+  if (context == nullptr) 
+    return PermissionResult(CONTENT_SETTING_DEFAULT, PermissionStatusSource::UNSPECIFIED);
+
   PermissionResult result = context->GetPermissionStatus(
       render_frame_host, canonical_requesting_origin.DeprecatedGetOriginAsURL(),
       embedding_origin.DeprecatedGetOriginAsURL());

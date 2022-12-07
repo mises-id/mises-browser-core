@@ -197,7 +197,7 @@
 #include "ui/strings/grit/ui_strings.h"
 #include "url/origin.h"
 
-#if BUILDFLAG(USE_RENDERER_SPELLCHECKER)
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(USE_RENDERER_SPELLCHECKER)
 #include "chrome/browser/renderer_context_menu/spelling_options_submenu_observer.h"
 #endif
 
@@ -2047,7 +2047,7 @@ void RenderViewContextMenu::AppendLanguageSettings() {
 #if BUILDFLAG(IS_MAC)
   menu_model_.AddItemWithStringId(IDC_CONTENT_CONTEXT_LANGUAGE_SETTINGS,
                                   IDS_CONTENT_CONTEXT_LANGUAGE_SETTINGS);
-#else
+#elif !BUILDFLAG(IS_ANDROID)
   if (!spelling_options_submenu_observer_) {
     const int kLanguageRadioGroup = 1;
     spelling_options_submenu_observer_ =

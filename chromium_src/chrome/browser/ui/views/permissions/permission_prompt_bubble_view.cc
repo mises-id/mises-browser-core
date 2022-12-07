@@ -337,13 +337,14 @@ void PermissionPromptBubbleView::AddRequestLine(
                              DISTANCE_SUBSECTION_HORIZONTAL_INDENT)),
       provider->GetDistanceMetric(views::DISTANCE_RELATED_LABEL_HORIZONTAL)));
 
+#if !BUILDFLAG(IS_ANDROID)
   constexpr int kPermissionIconSize = 18;
   auto* icon = line_container->AddChildView(
       std::make_unique<views::ImageView>(ui::ImageModel::FromVectorIcon(
           permissions::GetIconId(request->request_type()), ui::kColorIcon,
           kPermissionIconSize)));
   icon->SetVerticalAlignment(views::ImageView::Alignment::kLeading);
-
+#endif
   auto* label = line_container->AddChildView(
       std::make_unique<views::Label>(request->GetMessageTextFragment()));
   label->SetHorizontalAlignment(gfx::ALIGN_LEFT);
@@ -351,8 +352,9 @@ void PermissionPromptBubbleView::AddRequestLine(
 }
 
 void PermissionPromptBubbleView::UpdateAnchorPosition() {
+#if !BUILDFLAG(IS_ANDROID)
   DCHECK_EQ(browser_->window()->GetNativeWindow(), parent_window());
-
+#endif
   bubble_anchor_util::AnchorConfiguration configuration =
       bubble_anchor_util::GetPermissionPromptBubbleAnchorConfiguration(
           browser_);

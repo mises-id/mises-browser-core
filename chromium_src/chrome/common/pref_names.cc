@@ -1336,7 +1336,7 @@ const char kPartitionDefaultZoomLevel[] = "partition.default_zoom_level";
 // be displayed at the default zoom level.
 const char kPartitionPerHostZoomLevels[] = "partition.per_host_zoom_levels";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const char kPinnedTabs[] = "pinned_tabs";
 #endif  // !BUILDFLAG(IS_ANDROID)
 
@@ -1640,7 +1640,7 @@ const char kWebRtcLocalIpsAllowedUrls[] = "webrtc.local_ips_allowed_urls";
 const char kWebRTCAllowLegacyTLSProtocols[] =
     "webrtc.allow_legacy_tls_protocols";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Whether or not this profile has been shown the Welcome page.
 const char kHasSeenWelcomePage[] = "browser.has_seen_welcome_page";
 
@@ -1697,7 +1697,7 @@ const char kUserAgentReduction[] = "user_agent_reduction";
 const char kForceMajorVersionToMinorPositionInUserAgent[] =
     "force_major_version_to_minor_position_in_user_agent";
 
-#if (!BUILDFLAG(IS_ANDROID))
+#if (true || !BUILDFLAG(IS_ANDROID))
 // Boolean determining the side the side panel will be appear on (left / right).
 // True when the side panel is aligned to the right.
 const char kSidePanelHorizontalAlignment[] = "side_panel.is_right_aligned";
@@ -1710,7 +1710,7 @@ const char kIdleProfileCloseTimeout[] = "idle_profile_close_timeout";
 // *************** LOCAL STATE ***************
 // These are attached to the machine/installation
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Used to store the value of the SerialAllowAllPortsForUrls policy.
 const char kManagedSerialAllowAllPortsForUrls[] =
     "managed.serial_allow_all_ports_for_urls";
@@ -1733,7 +1733,7 @@ const char kManagedWebHidAllowDevicesWithHidUsagesForUrls[] =
     "managed.web_hid_allow_devices_with_hid_usages_for_urls";
 #endif  // !BUILDFLAG(IS_ANDROID)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Boolean indicating whether the user has given consent to use Autofill
 // Assistant. Prefs are not synced across devices or platforms and pref
 // keys differ.
@@ -1913,7 +1913,7 @@ const char kShutdownNumProcessesSlow[] = "shutdown.num_processes_slow";
 // before shutting everything down.
 const char kRestartLastSessionOnShutdown[] = "restart.last.session.on.shutdown";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #if !BUILDFLAG(IS_CHROMEOS_ASH)
 // Boolean that specifies whether or not to show security warnings for some
 // potentially bad command-line flags. True by default. Controlled by the
@@ -1956,7 +1956,8 @@ const char kNtpCollapsedSnapshotDocument[] = "ntp.collapsed_snapshot_document";
 
 // Keeps track of sync promo collapsed state in the Other Devices menu.
 const char kNtpCollapsedSyncPromo[] = "ntp.collapsed_sync_promo";
-#else
+#endif
+#if (true)
 // Holds info for New Tab Page custom background
 const char kNtpCustomBackgroundDict[] = "ntp.custom_background_dict";
 const char kNtpCustomBackgroundLocalToDevice[] =
@@ -2045,7 +2046,7 @@ const char kDevToolsSyncedPreferencesSyncEnabled[] =
 const char kDevToolsSyncedPreferencesSyncDisabled[] =
     "devtools.synced_preferences_sync_disabled";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Tracks the number of times the dice signin promo has been shown in the user
 // menu.
 const char kDiceSigninUserMenuPromoCount[] = "sync_promo.user_menu_show_count";
@@ -2630,13 +2631,13 @@ const char kSystemTimezoneAutomaticDetectionPolicy[] =
 
 // Pref name for the policy controlling whether to enable Media Router.
 const char kEnableMediaRouter[] = "media_router.enable_media_router";
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Pref name for the policy controlling whether to force the Cast icon to be
 // shown in the toolbar/overflow menu.
 const char kShowCastIconInToolbar[] = "media_router.show_cast_icon_in_toolbar";
 #endif  // !BUILDFLAG(IS_ANDROID)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Pref name for the policy controlling the way in which users are notified of
 // the need to relaunch the browser for a pending update.
 const char kRelaunchNotification[] = "browser.relaunch_notification";
@@ -2773,7 +2774,7 @@ const char kHardwareAccelerationModePrevious[] =
 // by the cloud policy subsystem.
 const char kDevicePolicyRefreshRate[] = "policy.device_refresh_rate";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // A boolean where true means that the browser has previously attempted to
 // enable autoupdate and failed, so the next out-of-date browser start should
 // not prompt the user to enable autoupdate, it should offer to reinstall Chrome
@@ -2944,7 +2945,7 @@ const char kEasyUnlockLocalStateUserPrefs[] = "easy_unlock.user_prefs";
 const char kRecoveryComponentNeedsElevation[] =
     "recovery_component.needs_elevation";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Boolean that indicates whether Chrome enterprise extension request is enabled
 // or not.
 const char kCloudExtensionRequestEnabled[] =
@@ -3227,7 +3228,7 @@ const char kSitePerProcess[] = "site_isolation.site_per_process";
 extern const char kDisplayCapturePermissionsPolicyEnabled[] =
     "display_capture_permissions_policy_enabled";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Boolean to allow SharedArrayBuffer in non-crossOriginIsolated contexts.
 // TODO(crbug.com/1144104) Remove when migration to COOP+COEP is complete.
 const char kSharedArrayBufferUnrestrictedAccessAllowed[] =
@@ -3314,7 +3315,7 @@ const char kSharingVapidKey[] = "sharing.vapid_key";
 const char kSharingFCMRegistration[] = "sharing.fcm_registration";
 const char kSharingLocalSharingInfo[] = "sharing.local_sharing_info";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Dictionary that contains all of the Hats Survey Metadata.
 const char kHatsSurveyMetadata[] = "hats.survey_metadata";
 #endif  // !BUILDFLAG(IS_ANDROID)
@@ -3385,7 +3386,7 @@ const char kAdbSideloadingPowerwashOnNextRebootNotificationShown[] =
     "adb_sideloading_powerwash_on_next_reboot_notification_shown";
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Boolean pref that indicates whether caret browsing is currently enabled.
 const char kCaretBrowsingEnabled[] = "settings.a11y.caretbrowsing.enabled";
 
@@ -3486,7 +3487,7 @@ const char kDiscountConsentShowInterestIn[] =
 const char kWebXRImmersiveArEnabled[] = "webxr.immersive_ar_enabled";
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // The duration for keepalive requests on browser shutdown.
 const char kFetchKeepaliveDurationOnShutdown[] =
     "fetch_keepalive_duration_on_shutdown";
@@ -3503,7 +3504,7 @@ const char kPdfAnnotationsEnabled[] = "pdf.enable_annotations";
 const char kExplicitlyAllowedNetworkPorts[] =
     "net.explicitly_allowed_network_ports";
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Pref name for whether force-installed web apps (origins) are able to query
 // device attributes.
 const char kDeviceAttributesAllowedForOrigins[] =
@@ -3517,7 +3518,7 @@ const char kDesktopSharingHubEnabled[] =
     "sharing_hub.desktop_sharing_hub_enabled";
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Pref name for the last major version where the What's New page was
 // successfully shown.
 const char kLastWhatsNewVersion[] = "browser.last_whats_new_version";

@@ -122,6 +122,7 @@ void NotificationPlatformBridgeDelegator::Display(
     const message_center::Notification& notification,
     std::unique_ptr<NotificationCommon::Metadata> metadata) {
   NotificationPlatformBridge* bridge = GetBridgeForType(notification_type);
+  if (!bridge) return;
   DCHECK(bridge);
   bridge->Display(notification_type, profile_, notification,
                   std::move(metadata));
@@ -131,6 +132,7 @@ void NotificationPlatformBridgeDelegator::Close(
     NotificationHandler::Type notification_type,
     const std::string& notification_id) {
   NotificationPlatformBridge* bridge = GetBridgeForType(notification_type);
+  if (!bridge) return;
   DCHECK(bridge);
   bridge->Close(profile_, notification_id);
 }
@@ -142,6 +144,7 @@ void NotificationPlatformBridgeDelegator::GetDisplayed(
   // there would be only one bridge to query from.
   NotificationPlatformBridge* bridge =
       system_bridge_ ? system_bridge_.get() : message_center_bridge_.get();
+  if (!bridge) return;
   DCHECK(bridge);
   bridge->GetDisplayed(profile_, std::move(callback));
 }

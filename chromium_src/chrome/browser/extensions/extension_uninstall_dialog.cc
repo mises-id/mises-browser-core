@@ -75,6 +75,7 @@ ExtensionUninstallDialog::ExtensionUninstallDialog(
     ExtensionUninstallDialog::Delegate* delegate)
     : profile_(profile), parent_(parent), delegate_(delegate) {
   DCHECK(delegate_);
+  LOG(ERROR) << "ExtensionUninstallDialog::ExtensionUninstallDialog";
   if (parent)
     parent_window_tracker_ = NativeWindowTracker::Create(parent);
   profile_observation_.Observe(profile_.get());
@@ -87,6 +88,7 @@ void ExtensionUninstallDialog::ConfirmUninstallByExtension(
     const scoped_refptr<const Extension>& triggering_extension,
     UninstallReason reason,
     UninstallSource source) {
+  LOG(ERROR) << "ExtensionUninstallDialog::ConfirmUninstallByExtension";
   triggering_extension_ = triggering_extension;
   ConfirmUninstall(extension, reason, source);
 }
@@ -95,6 +97,7 @@ void ExtensionUninstallDialog::ConfirmUninstall(
     const scoped_refptr<const Extension>& extension,
     UninstallReason reason,
     UninstallSource source) {
+  LOG(ERROR) << "ExtensionUninstallDialog::ConfirmUninstall";
   DCHECK(thread_checker_.CalledOnValidThread());
 
   UMA_HISTOGRAM_ENUMERATION("Extensions.UninstallSource", source,
@@ -128,21 +131,24 @@ void ExtensionUninstallDialog::ConfirmUninstall(
 
 void ExtensionUninstallDialog::OnIconUpdated(ChromeAppIcon* icon) {
   // Ignore initial update.
+  LOG(ERROR) << "ExtensionUninstallDialog::OnIconUpdated";
   if (!icon_ || dialog_shown_)
     return;
   DCHECK_EQ(icon, icon_.get());
-
+  LOG(ERROR) << "ExtensionUninstallDialog::OnIconUpdated" << "step-1";
   dialog_shown_ = true;
 
   if (parent() && parent_window_tracker_->WasNativeWindowClosed()) {
     OnDialogClosed(CLOSE_ACTION_CANCELED);
     return;
   }
-
+  LOG(ERROR) << "ExtensionUninstallDialog::OnIconUpdated" << "step-2";
   if (g_on_will_show_callback != nullptr)
     g_on_will_show_callback->Run(this);
-
-  switch (ScopedTestDialogAutoConfirm::GetAutoConfirmValue()) {
+  LOG(ERROR) << "ExtensionUninstallDialog::OnIconUpdated" << "step-3";
+#if !BUILDFLAG(IS_ANDROID)  
+  ScopedTestDialogAutoConfirm::AutoConfirm value = ScopedTestDialogAutoConfirm::GetAutoConfirmValue();
+  switch (value) {
     case ScopedTestDialogAutoConfirm::NONE:
       Show();
       break;
@@ -157,12 +163,17 @@ void ExtensionUninstallDialog::OnIconUpdated(ChromeAppIcon* icon) {
       OnDialogClosed(CLOSE_ACTION_CANCELED);
       break;
   }
+  LOG(ERROR) << "ExtensionUninstallDialog::OnIconUpdated" << "step-4" << value;
+#else
+  OnDialogClosed(CLOSE_ACTION_UNINSTALL);
+#endif 
 }
 
 void ExtensionUninstallDialog::OnExtensionUninstalled(
     content::BrowserContext* browser_context,
     const Extension* extension,
     UninstallReason reason) {
+ LOG(ERROR) << "ExtensionUninstallDialog::OnExtensionUninstalled";
   // Handle the case when extension was uninstalled externally and we have to
   // close current dialog.
   if (extension != extension_)
@@ -173,6 +184,7 @@ void ExtensionUninstallDialog::OnExtensionUninstalled(
 }
 
 void ExtensionUninstallDialog::OnProfileWillBeDestroyed(Profile* profile) {
+	 LOG(ERROR) << "ExtensionUninstallDialog::OnProfileWillBeDestroyed";
   DCHECK_EQ(profile_, profile);
   profile_ = nullptr;
   profile_observation_.Reset();
@@ -180,6 +192,7 @@ void ExtensionUninstallDialog::OnProfileWillBeDestroyed(Profile* profile) {
 }
 
 std::string ExtensionUninstallDialog::GetHeadingText() {
+	LOG(ERROR) << "ExtensionUninstallDialog::GetHeadingText";
   if (triggering_extension_) {
     return l10n_util::GetStringFUTF8(
         IDS_EXTENSION_PROGRAMMATIC_UNINSTALL_PROMPT_HEADING,
@@ -212,6 +225,7 @@ std::u16string ExtensionUninstallDialog::GetCheckboxLabel() const {
 void ExtensionUninstallDialog::OnDialogClosed(CloseAction action) {
   // Ensure the dialog isn't notified of an uninstallation after the dialog was
   // closed.
+  LOG(ERROR) << "ExtensionUninstallDialog::OnDialogClosed";
   registry_observation_.Reset();
 
   bool success = false;
@@ -249,6 +263,7 @@ void ExtensionUninstallDialog::OnDialogClosed(CloseAction action) {
 }
 
 bool ExtensionUninstallDialog::Uninstall(std::u16string* error) {
+  LOG(ERROR) << "ExtensionUninstallDialog::Uninstall";
   DCHECK(profile_);
   const Extension* current_extension =
       ExtensionRegistry::Get(profile_)->GetExtensionById(

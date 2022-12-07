@@ -1,0 +1,42 @@
+import("//build/config/features.gni")
+import("//components/gcm_driver/config.gni")
+
+source_set("extensions") {
+  # Remove when https://github.com/brave/brave-browser/issues/10661 is resolved
+  check_includes = false
+  sources = [
+   
+  ]
+
+  deps = [
+    ":resources",
+    "//base",
+   
+    "//mises/common",
+    "//mises/common/extensions/api",
+    "//chrome/browser/extensions",
+    "//chrome/common",
+    "//components/gcm_driver:gcm_buildflags",
+    "//components/gcm_driver:gcm_driver",
+    "//components/omnibox/browser:browser",
+    "//components/prefs",
+    "//components/services/patch/content",
+    "//components/services/unzip/content",
+    "//components/update_client:patch_impl",
+    "//components/update_client:unzip_impl",
+    "//content/public/browser",
+    "//extensions/browser",
+    "//extensions/common",
+    "//third_party/re2",
+    "//ui/base",
+    "//url",
+  ]
+}
+
+group("resources") {
+  deps = [
+    "//mises/components/mises_extension:generated_resources",
+    "//mises/components/mises_extension:static_resources",
+  ]
+}
+

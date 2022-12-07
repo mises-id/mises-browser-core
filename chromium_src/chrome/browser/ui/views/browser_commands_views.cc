@@ -35,10 +35,13 @@ views::View* GetActiveWindowRootView(const Browser* browser) {
   if (!active_window)
     return nullptr;
 #endif
-
+#if defined(USE_AURA) || BUILDFLAG(IS_MAC)
   views::Widget* widget =
       views::Widget::GetWidgetForNativeWindow(active_window);
   return widget ? widget->GetRootView() : nullptr;
+#else
+  return nullptr;
+#endif
 }
 }  // namespace
 

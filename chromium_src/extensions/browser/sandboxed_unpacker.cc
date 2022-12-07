@@ -367,13 +367,15 @@ void SandboxedUnpacker::UnzipDone(const base::FilePath& zip_file,
                   l10n_util::GetStringUTF16(IDS_EXTENSION_PACKAGE_UNZIP_ERROR));
     return;
   }
+  extension_root_ = unzip_dir;
+
   base::FilePath verified_contents_path =
       file_util::GetVerifiedContentsPath(extension_root_);
   // If the verified contents are already present in the _metadata folder, we
   // can ignore the verified contents in the header.
   if (compressed_verified_contents_.empty() ||
       base::PathExists(verified_contents_path)) {
-    Unpack(unzip_dir);
+    Unpack(extension_root_);
     return;
   }
   data_decoder_.GzipUncompress(
@@ -449,7 +451,7 @@ void SandboxedUnpacker::StoreVerifiedContentsInExtensionDir(
 void SandboxedUnpacker::Unpack(const base::FilePath& directory) {
   DCHECK(unpacker_io_task_runner_->RunsTasksInCurrentSequence());
 
-  DCHECK(directory.DirName() == temp_dir_.GetPath());
+  DCHECK(directory == extension_root_ && temp_dir_.GetPath().IsParent(directory.DirName()));
 
   base::FilePath manifest_path = extension_root_.Append(kManifestFilename);
 
@@ -901,7 +903,7 @@ bool SandboxedUnpacker::ValidateSignature(
       return false;
     }
   }
-
+  LOG(INFO) << "SandboxedUnpacker::ValidateSignature" << crx_path.value();
   const crx_file::VerifierResult result = crx_file::Verify(
       crx_path, required_format, std::vector<std::vector<uint8_t>>(), hash,
       &public_key_, &extension_id_, &compressed_verified_contents_);

@@ -275,9 +275,11 @@ void ToolbarView::Init() {
   std::unique_ptr<send_tab_to_self::SendTabToSelfToolbarIconView>
       send_tab_to_self_button;
   if (!browser_->profile()->IsOffTheRecord()) {
+#if !BUILDFLAG(IS_ANDROID)
     send_tab_to_self_button =
         std::make_unique<send_tab_to_self::SendTabToSelfToolbarIconView>(
             browser_view_);
+#endif
   }
 
   std::unique_ptr<ToolbarAccountIconContainerView>

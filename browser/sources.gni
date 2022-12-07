@@ -25,7 +25,8 @@ mises_chrome_browser_visibility = [
 ]
 
 mises_chrome_browser_sources = [
-  
+    "//mises/chromium_src/chrome/browser/search/new_tab_page_source.cc",
+    "//mises/chromium_src/chrome/browser/search/new_tab_page_source.h",
 ]
 
 mises_chrome_browser_deps = [
@@ -95,8 +96,6 @@ if (is_android) {
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
     "download/drag_download_item_android.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
-    "search/new_tab_page_source.cc",
-    "search/new_tab_page_source.h",
 
 
   ]

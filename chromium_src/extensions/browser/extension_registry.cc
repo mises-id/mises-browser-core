@@ -8,6 +8,7 @@
 #include "base/strings/string_util.h"
 #include "extensions/browser/extension_registry_factory.h"
 #include "extensions/browser/extension_registry_observer.h"
+#include "extensions/browser/api/web_request/web_request_api.h"
 
 namespace extensions {
 
@@ -61,6 +62,7 @@ void ExtensionRegistry::RemoveObserver(ExtensionRegistryObserver* observer) {
 void ExtensionRegistry::TriggerOnLoaded(const Extension* extension) {
   CHECK(extension);
   DCHECK(enabled_extensions_.Contains(extension->id()));
+  BrowserContextKeyedAPIFactory<WebRequestAPI>::Get(browser_context_);
   for (auto& observer : observers_)
     observer.OnExtensionLoaded(browser_context_, extension);
 }

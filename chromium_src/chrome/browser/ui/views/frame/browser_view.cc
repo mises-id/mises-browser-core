@@ -961,9 +961,13 @@ BrowserView::BrowserView(std::unique_ptr<Browser> browser)
                        weak_ptr_factory_.GetWeakPtr()));
   }
 #endif
+#if BUILDFLAG(IS_ANDROID) 
+  SetOwnedByWidget(true);
+#endif
 }
 
 BrowserView::~BrowserView() {
+  LOG(INFO) << "BrowserView::~BrowserView";
   // Destroy the top controls slide controller first as it depends on the
   // tabstrip model and the browser frame.
   top_controls_slide_controller_.reset();
@@ -1097,6 +1101,9 @@ int BrowserView::GetTabStripHeight() const {
 }
 
 TabSearchBubbleHost* BrowserView::GetTabSearchBubbleHost() {
+  if (!frame_->GetFrameView()) {
+    return nullptr;
+  }
   if (auto* tab_search_host = frame_->GetFrameView()->GetTabSearchBubbleHost())
     return tab_search_host;
   auto* tab_search_button = tab_strip_region_view_->tab_search_button();
@@ -1237,7 +1244,7 @@ void BrowserView::Show() {
   // The fullscreen transition clears out focus, but there are some cases (for
   // example, new window in Mac fullscreen with toolbar showing) where we need
   // restore it.
-  if (frame_->IsFullscreen() &&
+  if (frame_->IsFullscreen() && frame_->GetFrameView() &&
       !frame_->GetFrameView()->ShouldHideTopUIForFullscreen() &&
       GetFocusManager() && !GetFocusManager()->GetFocusedView()) {
     SetFocusToLocationBar(false);
@@ -1278,10 +1285,12 @@ void BrowserView::Close() {
 }
 
 void BrowserView::Activate() {
+  LOG(INFO) << "BrowserView::Activate id:" << browser()->session_id();
   frame_->Activate();
 }
 
 void BrowserView::Deactivate() {
+  LOG(INFO) << "BrowserView::Deactivate id:" << browser()->session_id();
   frame_->Deactivate();
 }
 
@@ -1402,7 +1411,8 @@ void BrowserView::UpdateTitleBar() {
 }
 
 void BrowserView::UpdateFrameColor() {
-  frame_->GetFrameView()->UpdateFrameColor();
+  if (frame_->GetFrameView())
+    frame_->GetFrameView()->UpdateFrameColor();
 }
 
 void BrowserView::BookmarkBarStateChanged(
@@ -1801,7 +1811,9 @@ bool BrowserView::ShouldHideUIForFullscreen() const {
   // Immersive mode needs UI for the slide-down top panel.
   if (immersive_mode_controller_->IsEnabled())
     return false;
-
+  if (!frame_->GetFrameView()) {
+    return false;
+  }
   return frame_->GetFrameView()->ShouldHideTopUIForFullscreen();
 }
 
@@ -3204,11 +3216,14 @@ void BrowserView::SaveWindowPlacement(const gfx::Rect& bounds,
   gfx::Rect saved_bounds = bounds;
   if (chrome::SavedBoundsAreContentBounds(browser_.get())) {
     // Invert the transformation done in GetSavedWindowPlacement().
-    gfx::Size client_size =
+    if (frame_->GetFrameView()) {
+      gfx::Size client_size =
         frame_->GetFrameView()->GetBoundsForClientView().size();
-    if (IsToolbarVisible())
-      client_size.Enlarge(0, -toolbar_->GetPreferredSize().height());
-    saved_bounds.set_size(client_size);
+      if (IsToolbarVisible())
+        client_size.Enlarge(0, -toolbar_->GetPreferredSize().height());
+      saved_bounds.set_size(client_size);
+    }
+    
   }
   chrome::SaveWindowPlacement(browser_.get(), saved_bounds, show_state);
 }
@@ -3710,7 +3725,8 @@ void BrowserView::AddedToWidget() {
     SetToolbarButtonProvider(toolbar_);
 
   frame_->OnBrowserViewInitViewsComplete();
-  frame_->GetFrameView()->UpdateMinimumSize();
+  if (frame_->GetFrameView())
+    frame_->GetFrameView()->UpdateMinimumSize();
   using_native_frame_ = frame_->ShouldUseNativeFrame();
 
   MaybeInitializeWebUITabStrip();
@@ -4118,7 +4134,8 @@ void BrowserView::ProcessFullscreen(bool fullscreen,
   // Undo our anti-jankiness hacks and force a re-layout.
   in_process_fullscreen_ = false;
   ToolbarSizeChanged(false);
-  frame_->GetFrameView()->OnFullscreenStateChanged();
+  if (frame_->GetFrameView())
+    frame_->GetFrameView()->OnFullscreenStateChanged();
 }
 
 bool BrowserView::ShouldUseImmersiveFullscreenForUrl(const GURL& url) const {
@@ -4455,6 +4472,9 @@ void BrowserView::HideDownloadShelf() {
 }
 
 bool BrowserView::CanUserExitFullscreen() const {
+  if (!frame_->GetFrameView()) {
+    return false;
+  }
   return frame_->GetFrameView()->CanUserExitFullscreen();
 }
 

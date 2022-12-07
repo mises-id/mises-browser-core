@@ -96,11 +96,12 @@ class FormDataImporter : public PersonalDataManagerObserver {
   // them.
   void CacheFetchedVirtualCard(const std::u16string& last_four);
 
-#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
+#if BUILDFLAG(IS_ANDROID) || !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
   LocalCardMigrationManager* local_card_migration_manager() {
-    return local_card_migration_manager_.get();
+    //return local_card_migration_manager_.get();
+    return NULL;
   }
-#endif  // !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
+#endif  // mises !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
 
   VirtualCardEnrollmentManager* GetVirtualCardEnrollmentManager() {
     return virtual_card_enrollment_manager_.get();

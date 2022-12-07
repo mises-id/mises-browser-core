@@ -1870,7 +1870,7 @@ void LocalFrameView::PerformPostLayoutTasks(bool visual_viewport_size_changed) {
   if (deferred_to_be_locked_.size() > 0) {
     DCHECK(RuntimeEnabledFeatures::DeferredShapingEnabled());
     for (auto& element : deferred_to_be_locked_) {
-      DCHECK(element->GetLayoutObject()->IsShapingDeferred());
+      DCHECK(element->GetLayoutObject()->IsShapingDeferred()) << element->GetLayoutObject()->DebugName();
       auto& context = element->EnsureDisplayLockContext();
       context.SetRequestedState(EContentVisibility::kAuto);
     }
@@ -1974,6 +1974,11 @@ Color LocalFrameView::DocumentBackgroundColor() {
 
   bool blend_with_base = true;
   LayoutObject* background_source = GetLayoutView();
+
+  auto* settings = frame_->GetSettings();
+  if (settings && settings->GetForceDarkModeEnabled()) {
+    return Color::kBlack;
+  }
 
   // If we have a fullscreen element grab the fullscreen color from the
   // backdrop.

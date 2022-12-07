@@ -2,8 +2,8 @@ const fs = require('fs-extra')
 const path = require('path')
 const pathMap = require('./path-map')
 
-const srcPath = path.resolve(__dirname, '../../../')
-const braveSrcPath = path.join(srcPath, 'brave')
+const srcPath = path.resolve(__dirname, '../../')
+const braveSrcPath = path.join(srcPath, 'src/mises')
 
 /**
  * Generates a tsconfig.json file in the gen/ directory

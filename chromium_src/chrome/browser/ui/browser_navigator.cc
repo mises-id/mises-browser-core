@@ -82,6 +82,12 @@
 #include "components/captive_portal/content/captive_portal_tab_helper.h"
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#endif
+#include "content/public/browser/web_contents.h"
+
 using content::GlobalRequestID;
 using content::NavigationController;
 using content::WebContents;
@@ -592,6 +598,22 @@ std::unique_ptr<content::WebContents> CreateTargetContents(
 base::WeakPtr<content::NavigationHandle> Navigate(NavigateParams* params) {
   TRACE_EVENT1("navigation", "chrome::Navigate", "disposition",
                params->disposition);
+#if BUILDFLAG(IS_ANDROID) 
+  if (true) {
+    if (TabModelList::models().size() == 0)
+      return nullptr;
+    TabModel* tab_model = TabModelList::models()[0];
+    if (params->url.is_valid() && !(params->url.is_empty())) {
+      GURL url = params->url;
+      tab_model->CreateNewTabForDevTools(url.is_empty() ? GURL(chrome::kChromeUINewTabURL) : url);
+    }
+    else if (params->contents_to_insert) {
+      tab_model->CreateTab(nullptr, params->contents_to_insert.release());       
+    }
+    return nullptr;
+  }
+#endif
+
   Browser* source_browser = params->browser;
   if (source_browser)
     params->initiating_profile = source_browser->profile();

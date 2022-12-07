@@ -440,7 +440,7 @@
 #include "third_party/cros_system_api/switches/chrome_switches.h"
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/devtools/chrome_devtools_manager_delegate.h"
 #include "chrome/browser/devtools/devtools_window.h"
 #include "chrome/browser/media/unified_autoplay_config.h"
@@ -1400,7 +1400,7 @@ void ChromeContentBrowserClient::RegisterProfilePrefs(
   registry->RegisterDictionaryPref(
       prefs::kDevToolsBackgroundServicesExpirationDict);
   registry->RegisterBooleanPref(prefs::kSignedHTTPExchangeEnabled, true);
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   registry->RegisterBooleanPref(prefs::kAutoplayAllowed, false);
   registry->RegisterListPref(prefs::kAutoplayAllowlist);
   registry->RegisterIntegerPref(prefs::kFetchKeepaliveDurationOnShutdown, 0);
@@ -1691,7 +1691,7 @@ GURL ChromeContentBrowserClient::GetEffectiveURL(
   if (!profile)
     return url;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // If the input |url| should be assigned to the Instant renderer, make its
   // effective URL distinct from other URLs on the search provider's domain.
   // This needs to happen even if |url| corresponds to an isolated origin; see
@@ -1779,7 +1779,7 @@ bool ChromeContentBrowserClient::ShouldUseSpareRenderProcessHost(
   if (IsTopChromeWebUIURL(site_url))
     return false;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Instant renderers should not use a spare process, because they require
   // passing switches::kInstantProcess to the renderer process when it
   // launches.  A spare process is launched earlier, before it is known which
@@ -2000,7 +2000,7 @@ bool ChromeContentBrowserClient::IsSuitableHost(
   if (!profile)
     return true;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Instant URLs should only be in the instant process and instant process
   // should only have Instant URLs.
   InstantService* instant_service =
@@ -2099,7 +2099,7 @@ void ChromeContentBrowserClient::SiteInstanceGotProcess(
   if (!profile)
     return;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Remember the ID of the Instant process to signal the renderer process
   // on startup in |AppendExtraCommandLineSwitches| below.
   if (search::ShouldAssignURLToInstantRenderer(site_instance->GetSiteURL(),
@@ -2412,7 +2412,7 @@ void ChromeContentBrowserClient::AppendExtraCommandLineSwitches(
             blink::switches::kWebSQLNonSecureContextEnabled);
       }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
       InstantService* instant_service =
           InstantServiceFactory::GetForProfile(profile);
       if (instant_service &&

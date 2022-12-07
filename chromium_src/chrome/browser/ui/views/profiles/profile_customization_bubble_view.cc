@@ -42,7 +42,9 @@ ProfileCustomizationBubbleView* ProfileCustomizationBubbleView::CreateBubble(
   // Return value is only used in tests, so it's fine to return nullptr if a
   // `ProfileCustomizationBubbleView` was not created.
   if (base::FeatureList::IsEnabled(kSyncPromoAfterSigninIntercept)) {
+#if !BUILDFLAG(IS_ANDROID)
     browser->signin_view_controller()->ShowModalProfileCustomizationDialog();
+#endif
     return nullptr;
   }
 

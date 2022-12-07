@@ -39,7 +39,7 @@ bool ShouldDisplayInExtensionSettings(Manifest::Type type,
 }
 
 bool ShouldDisplayInExtensionSettings(const Extension& extension) {
-  return ShouldDisplayInExtensionSettings(extension.GetType(),
+  return extension.ShouldExposeViaManagementAPI() || ShouldDisplayInExtensionSettings(extension.GetType(),
                                           extension.location());
 }
 

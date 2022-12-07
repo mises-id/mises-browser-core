@@ -20,18 +20,26 @@ bool ShouldUseSessionServiceForProfile(const Profile& profile) {
 
 // static
 SessionService* SessionServiceFactory::GetForProfile(Profile* profile) {
+#if BUILDFLAG(IS_ANDROID)
+  return NULL;
+#else
   if (!ShouldUseSessionServiceForProfile(*profile))
     return nullptr;
 
   return static_cast<SessionService*>(
       GetInstance()->GetServiceForBrowserContext(profile, true));
+#endif
 }
 
 // static
 SessionService* SessionServiceFactory::GetForProfileIfExisting(
     Profile* profile) {
+#if BUILDFLAG(IS_ANDROID)
+  return NULL;
+#else
   return static_cast<SessionService*>(
       GetInstance()->GetServiceForBrowserContext(profile, false));
+#endif
 }
 
 // static

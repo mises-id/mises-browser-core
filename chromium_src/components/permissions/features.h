@@ -52,12 +52,13 @@ extern const base::Feature kPermissionPredictionServiceUseUrlOverride;
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const base::Feature kPermissionOnDeviceNotificationPredictions;
 
-#if BUILDFLAG(IS_ANDROID)
+#if true || BUILDFLAG(IS_ANDROID)
 
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const base::Feature kBlockNotificationPromptsIfDisabledOnAppLevel;
 
-#else
+#endif
+#if (true)
 
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const base::Feature kPermissionsPostPromptSurvey;
@@ -78,7 +79,7 @@ COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const base::FeatureParam<double>
     kPermissionOnDeviceNotificationPredictionsHoldbackChance;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const base::FeatureParam<std::string>
     kPermissionsPostPromptSurveyTriggerId;

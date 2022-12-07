@@ -28,7 +28,7 @@
 #include "ui/events/event.h"
 #include "url/gurl.h"
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/extensions/window_controller_list.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_finder.h"
@@ -135,7 +135,7 @@ bool ChromePageInfoUiDelegate::ShouldShowAsk(ContentSettingsType type) {
   return permissions::PermissionUtil::IsGuardContentSetting(type);
 }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 bool ChromePageInfoUiDelegate::ShouldShowSiteSettings(int* link_text_id,
                                                       int* tooltip_text_id) {
   if (GetProfile()->IsGuestSession())

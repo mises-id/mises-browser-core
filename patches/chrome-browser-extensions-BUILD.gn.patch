@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/BUILD.gn b/chrome/browser/extensions/BUILD.gn
-index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..8454e1ce8d61ceefad4a79847ba9019f83780bd1 100644
+index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..04c00a8022276110888acccce0eae5ffdaa8fef0 100644
 --- a/chrome/browser/extensions/BUILD.gn
 +++ b/chrome/browser/extensions/BUILD.gn
 @@ -953,6 +953,16 @@ static_library("extensions") {
@@ -28,3 +28,11 @@ index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..8454e1ce8d61ceefad4a79847ba9019f
      sources +=
          [ "api/image_writer_private/removable_storage_provider_linux.cc" ]
    }
+@@ -1362,6 +1372,7 @@ static_library("extensions") {
+   } else {
+     sources += [ "api/braille_display_private/braille_controller_stub.cc" ]
+   }
++  deps += mises_extensions_resources
+ }
+ 
+ static_library("test_support") {

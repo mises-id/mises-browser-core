@@ -5,7 +5,7 @@
 #include "chrome/browser/ui/search/search_ipc_router.h"
 
 #include <utility>
-
+#include "base/strings/utf_string_conversions.h"
 #include "base/memory/raw_ptr.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/search/instant_service.h"
@@ -22,7 +22,9 @@
 #include "mojo/public/cpp/bindings/pending_associated_receiver.h"
 #include "mojo/public/cpp/bindings/pending_associated_remote.h"
 #include "third_party/blink/public/common/associated_interfaces/associated_interface_provider.h"
-
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/android/mises/mises_controller.h"
+#endif
 namespace {
 
 bool IsInInstantProcess(content::RenderFrameHost* render_frame) {
@@ -95,9 +97,11 @@ void EmbeddedSearchClientFactoryImpl::Connect(
     mojo::PendingAssociatedRemote<search::mojom::EmbeddedSearchClient> client) {
   content::RenderFrameHost* frame = factory_receivers_.GetCurrentTargetFrame();
   const bool is_main_frame = frame->GetParent() == nullptr;
+  LOG(INFO) << "EmbeddedSearchClientFactoryImpl::Connect step - 1";
   if (!IsInInstantProcess(frame) || !is_main_frame) {
     return;
   }
+  LOG(INFO) << "EmbeddedSearchClientFactoryImpl::Connect step - 2";
   client_receiver_->reset();
   client_receiver_->Bind(std::move(receiver));
   embedded_search_client_.reset();
@@ -153,9 +157,12 @@ void SearchIPCRouter::OmniboxFocusChanged(OmniboxFocusState state,
 
 void SearchIPCRouter::SendMostVisitedInfo(
     const InstantMostVisitedInfo& most_visited_info) {
-  if (!policy_->ShouldSendMostVisitedInfo() || !embedded_search_client())
+  LOG(INFO) << "SearchIPCRouter::SendMostVisitedInfo step - 1";
+  OnMisesInfoChanged();
+  //if (!policy_->ShouldSendMostVisitedInfo() || !embedded_search_client())
+  if (!embedded_search_client())
     return;
-
+  LOG(INFO) << "SearchIPCRouter::SendMostVisitedInfo step - 2";
   embedded_search_client()->MostVisitedInfoChanged(most_visited_info);
 }
 
@@ -194,6 +201,16 @@ void SearchIPCRouter::DeleteMostVisitedItem(int page_seq_no, const GURL& url) {
   delegate_->OnDeleteMostVisitedItem(url);
 }
 
+void SearchIPCRouter::OnMisesInfoChanged() {
+  if (!embedded_search_client())
+    return;
+#if BUILDFLAG(IS_ANDROID)
+  std::string info = android::MisesController::GetInstance()->getMisesUserInfo();
+  std::u16string result =  base::UTF8ToUTF16(info.c_str());
+  embedded_search_client()->MisesInfoChanged(result);
+#endif
+}
+
 void SearchIPCRouter::UndoMostVisitedDeletion(int page_seq_no,
                                               const GURL& url) {
   if (page_seq_no != commit_counter_)
@@ -224,3 +241,8 @@ void SearchIPCRouter::set_policy_for_testing(std::unique_ptr<Policy> policy) {
   DCHECK(policy);
   policy_ = std::move(policy);
 }
+
+void SearchIPCRouter::OpenExtension( const GURL& url) {
+  delegate_->OnOpenExtension(url);
+}
+

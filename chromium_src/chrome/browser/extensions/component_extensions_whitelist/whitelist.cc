@@ -21,6 +21,7 @@
 #include "ui/file_manager/grit/file_manager_resources.h"
 #include "ui/keyboard/grit/keyboard_resources.h"
 #endif
+#include "mises/components/mises_extension/grit/mises_extension.h"
 
 namespace extensions {
 

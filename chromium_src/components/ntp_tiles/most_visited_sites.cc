@@ -462,6 +462,9 @@ void MostVisitedSites::OnMostVisitedURLsAvailable(
 
   NTPTilesVector tiles;
   size_t num_tiles = std::min(visited_list.size(), GetMaxNumSites());
+  LOG(INFO) << "[Kiwi] MostVisitedSites::OnMostVisitedURLsAvailable - Step 2: " << num_tiles;
+  LOG(INFO) << "[Kiwi] MostVisitedSites::OnMostVisitedURLsAvailable - Step 2a: " << visited_list.size();
+  LOG(INFO) << "[Kiwi] MostVisitedSites::OnMostVisitedURLsAvailable - Step 2b: " << GetMaxNumSites();
   for (size_t i = 0; i < num_tiles; ++i) {
     const history::MostVisitedURL& visited = visited_list[i];
     if (visited.url.is_empty())
@@ -631,8 +634,11 @@ absl::optional<NTPTile> MostVisitedSites::CreateExploreSitesTile() {
   explore_sites_tile.title = explore_sites_client_->GetExploreSitesTitle();
   explore_sites_tile.source = TileSource::EXPLORE;
   explore_sites_tile.title_source = TileTitleSource::UNKNOWN;
-
+#if !BUILDFLAG(IS_ANDROID)
   return explore_sites_tile;
+#else
+  return absl::nullopt; 
+#endif
 }
 
 void MostVisitedSites::OnCustomLinksChanged() {
@@ -733,6 +739,7 @@ void MostVisitedSites::SaveTilesAndNotify(
     metrics::RecordsMigratedDefaultAppDeleted(
         DeletedTileType::kMostVisitedSite);
   }
+  LOG(INFO) << "[Kiwi] MostVisitedSites::SaveTilesAndNotify - Step 1";
   if (!current_tiles_.has_value() || (*current_tiles_ != fixed_tiles)) {
     current_tiles_.emplace(std::move(fixed_tiles));
 
@@ -746,9 +753,12 @@ void MostVisitedSites::SaveTilesAndNotify(
     prefs_->SetInteger(prefs::kNumPersonalTiles, num_personal_tiles);
   }
 
+  LOG(INFO) << "[Kiwi] MostVisitedSites::SaveTilesAndNotify - Step 2";
+
   if (observers_.empty())
     return;
   sections[SectionType::PERSONALIZED] = *current_tiles_;
+  LOG(INFO) << "[Kiwi] MostVisitedSites::SaveTilesAndNotify - Step 3";
   for (auto& observer : observers_)
     observer.OnURLsAvailable(sections);
 }

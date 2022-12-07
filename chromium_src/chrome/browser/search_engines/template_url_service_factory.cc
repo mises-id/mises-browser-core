@@ -21,11 +21,14 @@
 #include "components/search_engines/default_search_manager.h"
 #include "components/search_engines/search_engines_pref_names.h"
 #include "components/search_engines/template_url_service.h"
+#include "content/public/browser/storage_partition.h"
 #include "rlz/buildflags/buildflags.h"
 
 #if BUILDFLAG(ENABLE_RLZ)
 #include "components/rlz/rlz_tracker.h"  // nogncheck crbug.com/1125897
 #endif
+
+#include "components/search/search_url_fetcher.h"
 
 // static
 TemplateURLService* TemplateURLServiceFactory::GetForProfile(Profile* profile) {

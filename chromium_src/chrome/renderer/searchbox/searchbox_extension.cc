@@ -55,6 +55,9 @@
 #include "url/gurl.h"
 #include "url/url_constants.h"
 #include "v8/include/v8.h"
+#include "chrome/browser/android/mises/mises_controller.h"
+
+#include "chrome/renderer/chrome_render_thread_observer.h"
 
 namespace {
 
@@ -139,7 +142,7 @@ v8::Local<v8::Object> GenerateMostVisitedItemData(
   gin::DataObjectBuilder builder(isolate);
   builder.Set("title", title)
       .Set("direction", base::StringPiece(direction))
-      .Set("url", mv_item.url.spec());
+      .Set("url", mv_item.url.spec()).Set("rid", restricted_id);
 
   // If the suggestion already has a favicon, we populate the element with it.
   if (!mv_item.favicon.spec().empty())
@@ -289,11 +292,25 @@ content::RenderFrame* GetMainRenderFrameForCurrentContext() {
 }
 
 SearchBox* GetSearchBoxForCurrentContext() {
+  LOG(INFO) << "[Kiwi] SearchBox* GetSearchBoxForCurrentContext";
   content::RenderFrame* main_frame = GetMainRenderFrameForCurrentContext();
+  LOG(INFO) << "[Kiwi] SearchBox* GetSearchBoxForCurrentContext - main_frame: " << main_frame;
   if (!main_frame)
     return nullptr;
+  LOG(INFO) << "[Kiwi] SearchBox* GetSearchBoxForCurrentContext - searchbox: " << SearchBox::Get(main_frame);
   return SearchBox::Get(main_frame);
 }
+
+static const char kDispatchMisesInfoResult[] =
+    "if (window.chrome &&"
+    "    window.chrome.embeddedSearch &&"
+    "    window.chrome.embeddedSearch.mises &&"
+    "    window.chrome.embeddedSearch.mises.oninfo &&"
+    "    typeof window.chrome.embeddedSearch.mises"
+    "        .oninfo === 'function') {"
+    "  window.chrome.embeddedSearch.mises.oninfo(%s);"
+    "  true;"
+    "}";
 
 static const char kDispatchFocusChangedScript[] =
     "if (window.chrome &&"
@@ -362,6 +379,41 @@ static const char kDispatchThemeChangeEventScript[] =
     "}";
 
 // ----------------------------------------------------------------------------
+class MisesBindings : public gin::Wrappable<MisesBindings> {
+ public:
+  static gin::WrapperInfo kWrapperInfo;
+
+  MisesBindings();
+  ~MisesBindings() override;
+
+ private:
+  // gin::Wrappable.
+  gin::ObjectTemplateBuilder GetObjectTemplateBuilder(
+      v8::Isolate* isolate) final;
+
+  // Handlers for JS properties.
+  static std::u16string GetInfo();
+
+  MisesBindings(const MisesBindings&) = delete;
+  MisesBindings& operator=(const MisesBindings&) = delete;
+};
+gin::WrapperInfo MisesBindings::kWrapperInfo = {gin::kEmbedderNativeGin};
+
+MisesBindings::MisesBindings() = default;
+
+MisesBindings::~MisesBindings() = default;
+
+gin::ObjectTemplateBuilder MisesBindings::GetObjectTemplateBuilder(
+    v8::Isolate* isolate) {
+  return gin::Wrappable<MisesBindings>::GetObjectTemplateBuilder(isolate)
+      .SetProperty("info", &MisesBindings::GetInfo);
+}
+
+std::u16string  MisesBindings::GetInfo() {
+  SearchBox* search_box = GetSearchBoxForCurrentContext();
+  if (!search_box) return std::u16string();
+  return search_box->mises_info();
+} 
 
 class SearchBoxBindings : public gin::Wrappable<SearchBoxBindings> {
  public:
@@ -460,7 +512,9 @@ class NewTabPageBindings : public gin::Wrappable<NewTabPageBindings> {
   // Handlers for JS properties.
   static bool IsInputInProgress();
   static v8::Local<v8::Value> GetMostVisited(v8::Isolate* isolate);
+  static v8::Local<v8::Value> GetMostVisitedExtensions(v8::Isolate* isolate);
   static bool GetMostVisitedAvailable(v8::Isolate* isolate);
+  static bool IsIncognito(v8::Isolate* isolate);
   static v8::Local<v8::Value> GetNtpTheme(v8::Isolate* isolate);
 
   // Handlers for JS functions visible to all NTPs.
@@ -474,6 +528,8 @@ class NewTabPageBindings : public gin::Wrappable<NewTabPageBindings> {
   // custom links iframe, and/or the local NTP.
   static v8::Local<v8::Value> GetMostVisitedItemData(v8::Isolate* isolate,
                                                      int rid);
+  static void OpenExtension(v8::Isolate* isolate,
+		             v8::Local<v8::Value> rid_value);
 };
 
 gin::WrapperInfo NewTabPageBindings::kWrapperInfo = {gin::kEmbedderNativeGin};
@@ -487,8 +543,11 @@ gin::ObjectTemplateBuilder NewTabPageBindings::GetObjectTemplateBuilder(
   return gin::Wrappable<NewTabPageBindings>::GetObjectTemplateBuilder(isolate)
       .SetProperty("isInputInProgress", &NewTabPageBindings::IsInputInProgress)
       .SetProperty("mostVisited", &NewTabPageBindings::GetMostVisited)
+      .SetProperty("mostVisitedExtensions", &NewTabPageBindings::GetMostVisitedExtensions)
       .SetProperty("mostVisitedAvailable",
                    &NewTabPageBindings::GetMostVisitedAvailable)
+      .SetProperty("isIncognito",
+                   &NewTabPageBindings::IsIncognito)
       .SetProperty("ntpTheme", &NewTabPageBindings::GetNtpTheme)
       // TODO(https://crbug.com/1020450): remove "themeBackgroundInfo" legacy
       // name when we're sure no third-party NTP needs it.
@@ -500,7 +559,9 @@ gin::ObjectTemplateBuilder NewTabPageBindings::GetObjectTemplateBuilder(
       .SetMethod("undoMostVisitedDeletion",
                  &NewTabPageBindings::UndoMostVisitedDeletion)
       .SetMethod("getMostVisitedItemData",
-                 &NewTabPageBindings::GetMostVisitedItemData);
+                 &NewTabPageBindings::GetMostVisitedItemData)
+      .SetMethod("openExtension",
+		 &NewTabPageBindings::OpenExtension);
 }
 
 // static
@@ -521,6 +582,34 @@ bool NewTabPageBindings::IsInputInProgress() {
 }
 
 // static
+v8::Local<v8::Value> NewTabPageBindings::GetMostVisitedExtensions(v8::Isolate* isolate) {
+  const SearchBox* search_box = GetSearchBoxForCurrentContext();
+  if (!search_box)
+    return v8::Null(isolate);
+
+  content::RenderFrame* render_frame = GetMainRenderFrameForCurrentContext();
+
+  // This corresponds to "window.devicePixelRatio" in JavaScript.
+  int render_frame_id = render_frame->GetRoutingID();
+
+  std::vector<InstantMostVisitedItemIDPair> instant_mv_items;
+  search_box->GetMostVisitedExtensions(&instant_mv_items);
+  v8::Local<v8::Context> context = isolate->GetCurrentContext();
+  v8::Local<v8::Object> v8_mv_items =
+      v8::Array::New(isolate, instant_mv_items.size());
+  for (size_t i = 0; i < instant_mv_items.size(); ++i) {
+    InstantRestrictedID rid = instant_mv_items[i].first;
+    v8_mv_items
+        ->CreateDataProperty(
+            context, i,
+            GenerateMostVisitedItemData(isolate, 
+                                    render_frame_id, rid, instant_mv_items[i].second))
+        .Check();
+  }
+  return v8_mv_items;
+}
+
+// static
 v8::Local<v8::Value> NewTabPageBindings::GetMostVisited(v8::Isolate* isolate) {
   const SearchBox* search_box = GetSearchBoxForCurrentContext();
   if (!search_box)
@@ -536,7 +625,7 @@ v8::Local<v8::Value> NewTabPageBindings::GetMostVisited(v8::Isolate* isolate) {
   int render_frame_id = render_frame->GetRoutingID();
 
   std::vector<InstantMostVisitedItemIDPair> instant_mv_items;
-  search_box->GetMostVisitedItems(&instant_mv_items);
+  search_box->GetMostVisitedSites(&instant_mv_items);
   v8::Local<v8::Context> context = isolate->GetCurrentContext();
   v8::Local<v8::Object> v8_mv_items =
       v8::Array::New(isolate, instant_mv_items.size());
@@ -555,10 +644,18 @@ v8::Local<v8::Value> NewTabPageBindings::GetMostVisited(v8::Isolate* isolate) {
 // static
 bool NewTabPageBindings::GetMostVisitedAvailable(v8::Isolate* isolate) {
   const SearchBox* search_box = GetSearchBoxForCurrentContext();
+  if (search_box)
+    LOG(INFO) << "[Kiwi] NewTabPageBindings::GetMostVisitedAvailable - search_box available";
+  else
+    LOG(INFO) << "[Kiwi] NewTabPageBindings::GetMostVisitedAvailable - search_box NOT available";
   if (!search_box)
     return false;
 
   return search_box->AreMostVisitedItemsAvailable();
+}
+
+bool NewTabPageBindings::IsIncognito(v8::Isolate* isolate) {
+  return ChromeRenderThreadObserver::is_incognito_process();
 }
 
 // static
@@ -571,6 +668,19 @@ v8::Local<v8::Value> NewTabPageBindings::GetNtpTheme(v8::Isolate* isolate) {
     return v8::Null(isolate);
   return GenerateNtpTheme(isolate, *theme);
 }
+
+// static
+void NewTabPageBindings::OpenExtension(v8::Isolate* isolate,
+                                               v8::Local<v8::Value> rid_value) {
+  // Manually convert to integer, so that the string "\"1\"" is also accepted.
+  absl::optional<int> rid = CoerceToInt(isolate, *rid_value);
+  if (!rid.has_value())
+    return;
+  SearchBox* search_box = GetSearchBoxForCurrentContext();
+  if (!search_box)
+    return;
+  search_box->OpenExtension(*rid);
+} 
 
 // static
 void NewTabPageBindings::DeleteMostVisitedItem(v8::Isolate* isolate,
@@ -614,7 +724,14 @@ v8::Local<v8::Value> NewTabPageBindings::GetMostVisitedItemData(
     v8::Isolate* isolate,
     int rid) {
   const SearchBox* search_box = GetSearchBoxForCurrentContext();
-  if (!search_box || !HasOrigin(GURL(chrome::kChromeSearchMostVisitedUrl)))
+  if (!search_box || 
+(
+!HasOrigin(GURL(chrome::kChromeSearchMostVisitedUrl))
+&&
+!HasOrigin(GURL("chrome-search://local-ntp/"))
+)
+
+)
     return v8::Null(isolate);
 
   InstantMostVisitedItem item;
@@ -647,6 +764,11 @@ void SearchBoxExtension::Install(blink::WebLocalFrame* frame) {
   if (newtabpage_controller.IsEmpty())
     return;
 
+  gin::Handle<MisesBindings> mises_controller =
+      gin::CreateHandle(isolate, new MisesBindings());
+  if (mises_controller.IsEmpty())
+    return;
+
   v8::Local<v8::Object> chrome =
       content::GetOrCreateChromeObject(isolate, context);
   v8::Local<v8::Object> embedded_search = v8::Object::New(isolate);
@@ -658,12 +780,22 @@ void SearchBoxExtension::Install(blink::WebLocalFrame* frame) {
       ->Set(context, gin::StringToV8(isolate, "newTabPage"),
             newtabpage_controller.ToV8())
       .ToChecked();
+  embedded_search
+      ->Set(context, gin::StringToV8(isolate, "mises"),
+            mises_controller.ToV8())
+      .ToChecked();
   chrome
       ->Set(context, gin::StringToSymbol(isolate, "embeddedSearch"),
             embedded_search)
       .ToChecked();
 }
 
+void SearchBoxExtension::DispatchMisesInfoChanged(blink::WebLocalFrame* frame, const std::u16string& info) {
+  std::string escaped_info = base::GetQuotedJSONString(info);
+  blink::WebString script(blink::WebString::FromUTF8(base::StringPrintf(
+      kDispatchMisesInfoResult, escaped_info.c_str())));
+  Dispatch(frame, script);
+}
 // static
 void SearchBoxExtension::DispatchFocusChange(blink::WebLocalFrame* frame) {
   Dispatch(frame, kDispatchFocusChangedScript);

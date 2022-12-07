@@ -56,6 +56,23 @@
 #include "ui/gfx/color_palette.h"
 #include "ui/gfx/color_utils.h"
 
+
+#include "chrome/browser/search/new_tab_page_source.h"
+#include "extensions/browser/extension_action.h"
+#include "extensions/browser/extension_action_manager.h"
+#include "extensions/common/manifest_handlers/icons_handler.h"
+#include "chrome/browser/extensions/tab_helper.h"
+#include "chrome/browser/extensions/api/extension_action/extension_action_api.h"
+#include "chrome/browser/ui/webui/extensions/extension_icon_source.h"
+#include "ui/gfx/image/image.h"
+#include "ui/gfx/image/image_skia.h"
+#include "ui/gfx/image/image_skia_rep.h"
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#endif
+#include "chrome/browser/history/history_service_factory.h"
+
 InstantService::InstantService(Profile* profile)
     : profile_(profile),
       most_visited_info_(std::make_unique<InstantMostVisitedInfo>()),
@@ -64,6 +81,7 @@ InstantService::InstantService(Profile* profile)
       background_updated_timestamp_(base::TimeTicks::Now()) {
   // The initialization below depends on a typical set of browser threads. Skip
   // it if we are running in a unit test without the full suite.
+  LOG(INFO) << "InstantService::InstantService";
   if (!content::BrowserThread::CurrentlyOn(content::BrowserThread::UI))
     return;
 
@@ -73,6 +91,7 @@ InstantService::InstantService(Profile* profile)
 
   most_visited_sites_ = ChromeMostVisitedSitesFactory::NewForProfile(profile_);
   if (most_visited_sites_) {
+    LOG(INFO) << "InstantService::InstantService step - 1";
     most_visited_sites_->EnableCustomLinks(false);
     most_visited_sites_->AddMostVisitedURLsObserver(
         this, ntp_tiles::kMaxNumMostVisited);
@@ -94,6 +113,8 @@ InstantService::InstantService(Profile* profile)
                     profile_, chrome::FaviconUrlFormat::kFaviconLegacy));
   content::URLDataSource::Add(profile_,
                               std::make_unique<MostVisitedIframeSource>());
+  content::URLDataSource::Add(profile_,
+                              std::make_unique<NewTabPageSource>());
 
   theme_observation_.Observe(native_theme_.get());
 }
@@ -117,8 +138,11 @@ void InstantService::RemoveObserver(InstantServiceObserver* observer) {
 }
 
 void InstantService::OnNewTabPageOpened() {
+  LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened";
   if (most_visited_sites_) {
+    LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened - most_visited_sites_";
     most_visited_sites_->Refresh();
+    most_visited_sites_->RefreshTiles();
   }
 }
 
@@ -207,11 +231,77 @@ void InstantService::OnNativeThemeUpdated(ui::NativeTheme* observed_theme) {
   UpdateNtpTheme();
 }
 
+GURL InstantService::GetExtensionURL(const std::string& extension_id) {
+  std::string url = extensions::kExtensionScheme;
+  url += "://";
+  url += extension_id;
+  return GURL(url.c_str());
+}
+
+void InstantService::SearchComplete(history::QueryResults results) {
+  std::vector<GURL> recent;
+  recent.push_back(GURL("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn"));
+  if (!results.empty()) {
+    for (const auto& item : results){
+      if (item.url().SchemeIs(extensions::kExtensionScheme)) {
+        LOG(INFO) << "[Kiwi] InstantService::SearchComplete- recent extension: " << item.url().GetWithEmptyPath();
+	recent.push_back(item.url().GetWithEmptyPath());
+      }
+    }
+  }
+  std::vector<InstantMostVisitedItem> items;
+  extensions::ExtensionRegistry* registry = extensions::ExtensionRegistry::Get(profile_);
+  const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
+  for (const auto& extension : enabled_extensions) {
+    extensions::ExtensionAction* action = nullptr;
+    extensions::ExtensionActionManager* manager =
+             extensions::ExtensionActionManager::Get(profile_);
+    const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension->id());
+    if (extension_ptr) {
+     action = manager->GetExtensionAction(*extension_ptr);
+    }
+    if (action) {
+       InstantMostVisitedItem item;
+       const int kDefaultTabId = extensions::ExtensionAction::kDefaultTabId;
+       item.url = GetExtensionURL(extension->id());
+       item.title = base::UTF8ToUTF16(action->GetTitle(kDefaultTabId));
+        gfx::Image icon =
+                action->GetExplicitlySetIcon(kDefaultTabId);
+        if (icon.IsEmpty())
+          icon = action->GetDeclarativeIcon(kDefaultTabId);
+        if (icon.IsEmpty())
+          icon = action->GetDefaultIconImage();
+        if (!icon.IsEmpty()) {
+          std::vector<gfx::ImageSkiaRep> image_reps = icon.AsImageSkia().image_reps();
+          for (const gfx::ImageSkiaRep& rep : image_reps) {
+            std::string base64_image = webui::GetBitmapDataUrl(rep.GetBitmap());
+
+            item.favicon = GURL(base64_image);
+          }
+        }
+       LOG(INFO) << "[Kiwi] InstantService::SearchComplete - found extension: " << item.url;
+       items.push_back(item);
+    }
+  }
+  std::sort(
+      items.begin(), items.end(),
+      [&recent](const InstantMostVisitedItem& l, const InstantMostVisitedItem& r) {
+        std::vector<GURL>::iterator itrl = std::find(recent.begin(), recent.end(), l.url);
+        std::vector<GURL>::iterator itrr = std::find(recent.begin(), recent.end(), r.url);
+        return itrl <  itrr;
+  });
+  recent_extensions_.clear();
+  for (const auto& item : items) {
+    LOG(INFO) << "[Kiwi] InstantService::SearchComplete - sort extension: " << item.url;
+    recent_extensions_.push_back(item);
+  }
+  NotifyAboutMostVisitedInfo();
+}
 void InstantService::OnURLsAvailable(
     const std::map<ntp_tiles::SectionType, ntp_tiles::NTPTilesVector>&
         sections) {
   DCHECK(most_visited_sites_);
-  most_visited_info_->items.clear();
+  most_visited_items_.clear();
   // Use only personalized tiles for instant service.
   const ntp_tiles::NTPTilesVector& tiles =
       sections.at(ntp_tiles::SectionType::PERSONALIZED);
@@ -220,15 +310,32 @@ void InstantService::OnURLsAvailable(
     item.url = tile.url;
     item.title = tile.title;
     item.favicon = tile.favicon_url;
-    most_visited_info_->items.push_back(item);
+    most_visited_items_.push_back(item);
   }
-
-  NotifyAboutMostVisitedInfo();
+  std::u16string search_text = base::UTF8ToUTF16(GetExtensionURL("").spec());
+  history::QueryOptions options;
+  options.max_count = 20;
+  options.matching_algorithm =
+	          query_parser::MatchingAlgorithm::ALWAYS_PREFIX_SEARCH;
+  history::HistoryService* hs = HistoryServiceFactory::GetForProfile(
+      profile_, ServiceAccessType::EXPLICIT_ACCESS);
+  hs->QueryHistory(search_text, options,
+                   base::BindOnce(&InstantService::SearchComplete,
+                                  base::Unretained(this)),
+                   &task_tracker_);
 }
 
 void InstantService::OnIconMadeAvailable(const GURL& site_url) {}
 
 void InstantService::NotifyAboutMostVisitedInfo() {
+  LOG(INFO) << "[Kiwi] InstantService::NotifyAboutMostVisitedInfo";
+  most_visited_info_->items.clear();
+  for (const auto& item : recent_extensions_) {
+    most_visited_info_->items.push_back(item);
+  }
+  for (const auto& item : most_visited_items_) {
+    most_visited_info_->items.push_back(item);
+  }
   for (InstantServiceObserver& observer : observers_)
     observer.MostVisitedInfoChanged(*most_visited_info_);
 }
@@ -329,4 +436,43 @@ void InstantService::SetNtpElementsNtpTheme() {
       ThemeService::GetThemeProviderForProfile(profile_);
   theme->logo_alternate = theme_provider.GetDisplayProperty(
                               ThemeProperties::NTP_LOGO_ALTERNATE) == 1;
+}
+
+void InstantService::OpenExtension(content::WebContents* web_contents, const GURL& url) {
+  extensions::ExtensionRegistry* registry = extensions::ExtensionRegistry::Get(profile_);
+  const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
+  for (const auto& extension : enabled_extensions) {
+    extensions::ExtensionAction* action = nullptr;
+    extensions::ExtensionActionManager* manager =
+             extensions::ExtensionActionManager::Get(profile_);
+    const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension->id());
+    if (extension_ptr) {
+     action = manager->GetExtensionAction(*extension_ptr);
+    }  
+    if (action) {
+       const int kDefaultTabId = extensions::ExtensionAction::kDefaultTabId;
+       if (url == GetExtensionURL(extension->id())) {
+          extensions::ExtensionActionAPI* action_api = extensions::ExtensionActionAPI::Get(profile_);
+          if (web_contents != nullptr) {
+            extensions::TabHelper::FromWebContents(web_contents)
+              ->active_tab_permission_granter()
+              ->GrantIfRequested(extension_ptr);
+            
+          }
+          GURL popup = action->GetPopupUrl(kDefaultTabId);
+          if (popup != "") {
+#if BUILDFLAG(IS_ANDROID)           
+            if (!TabModelList::models().empty()){
+              TabModel* tab_model = TabModelList::models()[0];
+              if (tab_model)
+                tab_model->CreateNewTabForDevTools(popup);
+            }
+#endif
+          } else {
+            action_api->DispatchExtensionActionClicked(*action, web_contents, extension_ptr);
+          }
+          break;
+       };
+    }
+  }
 }

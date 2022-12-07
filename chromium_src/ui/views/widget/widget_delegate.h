@@ -17,6 +17,7 @@
 #include "ui/views/metadata/view_factory.h"
 #include "ui/views/view.h"
 #include "ui/views/widget/widget.h"
+#include "ui/gfx/image/image_skia.h" //mises
 
 namespace gfx {
 class ImageSkia;

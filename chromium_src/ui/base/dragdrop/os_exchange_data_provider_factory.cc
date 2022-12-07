@@ -7,7 +7,7 @@
 #include "base/notreached.h"
 #include "build/build_config.h"
 
-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_ANDROID)
 #include "ui/base/dragdrop/os_exchange_data_provider_factory_ozone.h"
 #include "ui/base/dragdrop/os_exchange_data_provider_non_backed.h"
 #elif BUILDFLAG(IS_APPLE)
@@ -37,6 +37,8 @@ OSExchangeDataProviderFactory::CreateProvider() {
   return std::make_unique<OSExchangeDataProviderWin>();
 #elif BUILDFLAG(IS_FUCHSIA)
   // TODO(crbug.com/980371): Implement OSExchangeDataProvider for Fuchsia.
+  return std::make_unique<OSExchangeDataProviderNonBacked>();
+#elif BUILDFLAG(IS_ANDROID)
   return std::make_unique<OSExchangeDataProviderNonBacked>();
 #else
 #error "Unknown operating system"

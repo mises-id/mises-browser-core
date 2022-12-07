@@ -30,11 +30,12 @@
 #include "third_party/blink/public/web/web_frame.h"
 #include "third_party/blink/public/web/web_local_frame.h"
 #include "third_party/blink/public/web/web_performance.h"
+#include "extensions/common/constants.h"
 
 namespace {
 
 // The size of the InstantMostVisitedItem cache.
-const size_t kMaxInstantMostVisitedItemCacheSize = 100;
+const size_t kMaxInstantMostVisitedItemCacheSize = 500;
 
 // Returns true if items stored in |old_item_id_pairs| and |new_items| are
 // equal.
@@ -221,6 +222,29 @@ void SearchBox::GetMostVisitedItems(
   most_visited_items_cache_.GetCurrentItems(items);
 }
 
+bool ItemIsExtension(InstantMostVisitedItemIDPair pair) 
+{ 
+  const GURL&url = pair.second.url;
+  return url.SchemeIs(extensions::kExtensionScheme) && url.GetWithEmptyPath() == url;
+}
+
+bool ItemIsSite(InstantMostVisitedItemIDPair pair)
+{ 
+  return !ItemIsExtension(pair);
+} 
+
+void SearchBox::GetMostVisitedExtensions(
+    std::vector<InstantMostVisitedItemIDPair>* items) const {
+  most_visited_items_cache_.GetCurrentItems(items);
+  items->erase(std::remove_if(items->begin(),items->end(),ItemIsSite), items->end()); 
+}
+
+void SearchBox::GetMostVisitedSites(
+    std::vector<InstantMostVisitedItemIDPair>* items) const {
+  most_visited_items_cache_.GetCurrentItems(items);
+ items->erase(std::remove_if(items->begin(),items->end(),ItemIsExtension), items->end());
+}
+
 bool SearchBox::AreMostVisitedItemsAvailable() const {
   return has_received_most_visited_;
 }
@@ -292,6 +316,7 @@ void SearchBox::FocusChanged(OmniboxFocusState new_focus_state,
 
 void SearchBox::MostVisitedInfoChanged(
     const InstantMostVisitedInfo& most_visited_info) {
+  LOG(INFO) << "[Kiwi] SearchBox::MostVisitedInfoChanged - Step 1";
   has_received_most_visited_ = true;
 
   std::vector<InstantMostVisitedItemIDPair> last_known_items;
@@ -301,8 +326,10 @@ void SearchBox::MostVisitedInfoChanged(
     return;  // Do not send duplicate onmostvisitedchange events.
   }
 
+  LOG(INFO) << "[Kiwi] SearchBox::MostVisitedInfoChanged - Step 2";
   most_visited_items_cache_.AddItems(most_visited_info.items);
   if (can_run_js_in_renderframe_) {
+    LOG(INFO) << "[Kiwi] SearchBox::MostVisitedInfoChanged - Dispatching";
     SearchBoxExtension::DispatchMostVisitedChanged(
         render_frame()->GetWebFrame());
   }
@@ -338,9 +365,28 @@ GURL SearchBox::GetURLForMostVisitedItem(InstantRestrictedID item_id) const {
 }
 
 void SearchBox::DidCommitProvisionalLoad(ui::PageTransition transition) {
+  LOG(INFO) << "[Kiwi] SearchBox::DidCommitProvisionalLoad";
   can_run_js_in_renderframe_ = true;
 }
 
 void SearchBox::OnDestruct() {
   delete this;
 }
+
+void SearchBox::MisesInfoChanged(const std::u16string &info) {
+  LOG(INFO) << "[Kiwi] SearchBox::MisesInfoChanged - Step 1";
+  mises_info_ = info;
+  if (can_run_js_in_renderframe_) {
+      SearchBoxExtension::DispatchMisesInfoChanged(
+          render_frame()->GetWebFrame(), info);
+  }
+}
+
+void SearchBox::OpenExtension(
+    InstantRestrictedID most_visited_item_id) {
+  GURL url = GetURLForMostVisitedItem(most_visited_item_id);
+  if (!url.is_valid())
+    return;
+  embedded_search_service_->OpenExtension(url);
+}
+

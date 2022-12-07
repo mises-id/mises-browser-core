@@ -58,8 +58,8 @@ void ChildProcessLauncherHelper::BeforeLaunchOnClientThread() {
       << "Unsupported process type: " << process_type;
 
   // Non-sandboxed utility or renderer process are currently not supported.
-  DCHECK(process_type == switches::kGpuProcess ||
-         !command_line()->HasSwitch(sandbox::policy::switches::kNoSandbox));
+  //DCHECK(process_type == switches::kGpuProcess || process_type == switches::kRendererProcess ||
+  //       !command_line()->HasSwitch(sandbox::policy::switches::kNoSandbox)) << process_type;
 }
 
 absl::optional<mojo::NamedPlatformChannel>

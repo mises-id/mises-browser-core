@@ -9,7 +9,7 @@
 
 namespace prefs {
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // String to represent the user's preferred font name for the read anything UI.
 const char kAccessibilityReadAnythingFontName[] =
     "settings.a11y.read_anything.font_name";
@@ -17,6 +17,8 @@ const char kAccessibilityReadAnythingFontName[] =
 // Double to represent the user's preferred font size scaling factor.
 const char kAccessibilityReadAnythingFontScale[] =
     "settings.a11y.read_anything.font_scale";
+
+#endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace prefs
 
@@ -30,4 +32,3 @@ void RegisterReadAnythingProfilePrefs(
                                user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
 }
 
-#endif  // !BUILDFLAG(IS_ANDROID)

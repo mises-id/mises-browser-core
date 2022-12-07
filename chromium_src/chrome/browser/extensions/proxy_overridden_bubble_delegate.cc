@@ -43,6 +43,9 @@ ProxyOverriddenBubbleDelegate::~ProxyOverriddenBubbleDelegate() {}
 
 bool ProxyOverriddenBubbleDelegate::ShouldIncludeExtension(
     const Extension* extension) {
+#if BUILDFLAG(IS_ANDROID)
+  if (true) return false;
+#endif
   if (!extension_id_.empty() && extension_id_ != extension->id())
     return false;  // Only one extension can be controlling the proxy at a time.
 

@@ -16,8 +16,11 @@ bool UnhandledKeyboardEventHandler::HandleNativeKeyboardEvent(
     FocusManager* focus_manager) {
   if (event.skip_in_browser)
     return false;
-
+#if BUILDFLAG(IS_ANDROID)
+  return false;
+#else
   return !focus_manager->OnKeyEvent(*(event.os_event->AsKeyEvent()));
+#endif
 }
 
 }  // namespace views

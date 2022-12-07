@@ -18,7 +18,7 @@
 #include "ui/base/clipboard/clipboard_buffer.h"
 #include "url/gurl.h"
 
-#if defined(TOOLKIT_VIEWS)
+#if BUILDFLAG(IS_ANDROID) || defined(TOOLKIT_VIEWS)
 #include "ui/base/clipboard/clipboard_format_type.h"
 #endif
 
@@ -27,7 +27,7 @@ class Pickle;
 class PickleIterator;
 }
 
-#if defined(TOOLKIT_VIEWS)
+#if BUILDFLAG(IS_ANDROID) || defined(TOOLKIT_VIEWS)
 namespace ui {
 class OSExchangeData;
 }
@@ -114,7 +114,7 @@ struct BookmarkNodeData {
 
   ~BookmarkNodeData();
 
-#if defined(TOOLKIT_VIEWS)
+#if BUILDFLAG(IS_ANDROID) || defined(TOOLKIT_VIEWS)
   static const ui::ClipboardFormatType& GetBookmarkFormatType();
 #endif
 
@@ -133,7 +133,7 @@ struct BookmarkNodeData {
   // WriteToClipboard() but will also attempt to read a plain bookmark.
   bool ReadFromClipboard(ui::ClipboardBuffer buffer);
 
-#if defined(TOOLKIT_VIEWS)
+#if BUILDFLAG(IS_ANDROID) || defined(TOOLKIT_VIEWS)
   // Writes elements to data. If there is only one element and it is a URL
   // the URL and title are written to the clipboard in a format other apps can
   // use.

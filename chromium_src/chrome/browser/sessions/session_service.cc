@@ -123,9 +123,11 @@ SessionService::SessionService(Profile* profile)
           InstanceTracker::RegisterNewSessionService(profile)) {
   if (is_first_session_service_)
     LogSessionServiceStartEvent(profile, HasPendingUncleanExit(profile));
+#if !BUILDFLAG(IS_ANDROID)
   closing_all_browsers_subscription_ = chrome::AddClosingAllBrowsersCallback(
       base::BindRepeating(&SessionService::OnClosingAllBrowsersChanged,
                           base::Unretained(this)));
+#endif
   ExitTypeService* exit_type_service =
       ExitTypeService::GetInstanceForProfile(profile);
   if (exit_type_service && exit_type_service->waiting_for_user_to_ack_crash()) {

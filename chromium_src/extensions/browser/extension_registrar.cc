@@ -35,7 +35,17 @@
 #include "chrome/browser/ash/crosapi/browser_util.h"
 #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
 
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/android/tab_android.h"
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+std::string AppMenuBridge_GetRunningExtensionsInternal(Profile* profile, content::WebContents* web_contents);
+#endif
+#include "content/public/browser/web_contents.h"
+#include "chrome/browser/profiles/profile.h"
+
 using content::DevToolsAgentHost;
+
 
 namespace extensions {
 
@@ -320,6 +330,8 @@ void ExtensionRegistrar::ReloadExtension(
     LoadErrorBehavior load_error_behavior) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
 
+  LOG(INFO) << "[EXTENSIONS] We are reloading extension: " << extension_id;
+
   base::FilePath path;
 
   const Extension* disabled_extension =
@@ -396,6 +408,8 @@ void ExtensionRegistrar::OnUnpackedExtensionReloadFailed(
 void ExtensionRegistrar::TerminateExtension(const ExtensionId& extension_id) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
 
+  const ExtensionId saved_extension_id = extension_id;
+  LOG(INFO) << "[EXTENSIONS] Calling ExtensionRegistrar::TerminateExtension on id: " << extension_id;
   scoped_refptr<const Extension> extension =
       registry_->enabled_extensions().GetByID(extension_id);
   if (!extension)
@@ -411,6 +425,7 @@ void ExtensionRegistrar::TerminateExtension(const ExtensionId& extension_id) {
   registry_->AddTerminated(extension);
   registry_->RemoveEnabled(extension_id);
   DeactivateExtension(extension.get(), UnloadedExtensionReason::TERMINATE);
+  ReloadExtension(saved_extension_id, LoadErrorBehavior::kQuiet);
 }
 
 void ExtensionRegistrar::UntrackTerminatedExtension(
@@ -505,6 +520,24 @@ void ExtensionRegistrar::ActivateExtension(const Extension* extension,
   // service worker-based, it may be necessary to spin up its context.
   if (BackgroundInfo::HasLazyContext(extension))
     MaybeSpinUpLazyContext(extension, is_newly_added);
+  
+#if BUILDFLAG(IS_ANDROID)
+  AppMenuBridge_GetRunningExtensionsInternal(Profile::FromBrowserContext(browser_context_), nullptr);
+  TabModelList::TabModelVector tab_model_vector = TabModelList::models();
+  if (!tab_model_vector.size())
+    return ;
+
+  for (TabModel* tab_model : tab_model_vector) {
+    TabAndroid* tab = tab_model->GetTabAt(0);
+    if (!tab)
+      continue ;
+
+    if (tab->web_contents()) {
+      AppMenuBridge_GetRunningExtensionsInternal(Profile::FromBrowserContext(browser_context_), tab->web_contents());
+      continue ;
+    }
+  }
+#endif
 }
 
 void ExtensionRegistrar::DeactivateExtension(const Extension* extension,

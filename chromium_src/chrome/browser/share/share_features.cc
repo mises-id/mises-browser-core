@@ -17,7 +17,7 @@ const base::Feature kSharingDesktopScreenshotsEdit{
 const base::Feature kUpcomingSharingFeatures{"UpcomingSharingFeatures",
                                              base::FEATURE_DISABLED_BY_DEFAULT};
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const base::Feature kDesktopSharePreview{"DesktopSharePreview",
                                          base::FEATURE_DISABLED_BY_DEFAULT};
 extern const char kDesktopSharePreviewVariant16[] = "16";

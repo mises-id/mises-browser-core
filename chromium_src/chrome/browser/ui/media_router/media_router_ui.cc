@@ -263,6 +263,7 @@ std::vector<MediaSinkWithCastModes> MediaRouterUI::GetEnabledSinks() const {
   // communicate dialog-specific information to/from the
   // WiredDisplayMediaRouteProvider.
   std::vector<MediaSinkWithCastModes> enabled_sinks(sinks_);
+#if !BUILDFLAG(IS_ANDROID)
   const std::string display_sink_id =
       WiredDisplayMediaRouteProvider::GetSinkIdForDisplay(
           display_observer_->GetCurrentDisplay());
@@ -270,6 +271,7 @@ std::vector<MediaSinkWithCastModes> MediaRouterUI::GetEnabledSinks() const {
                 [&display_sink_id](const MediaSinkWithCastModes& sink) {
                   return sink.sink.id() == display_sink_id;
                 });
+#endif
 
   return enabled_sinks;
 }

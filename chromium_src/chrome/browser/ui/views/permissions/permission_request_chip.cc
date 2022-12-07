@@ -32,7 +32,7 @@ bool IsCameraOrMicPermission(permissions::RequestType type) {
          type == permissions::RequestType::kMicStream;
 }
 
-const gfx::VectorIcon& GetPermissionIconId(
+permissions::IconId  GetPermissionIconId(
     permissions::PermissionPrompt::Delegate* delegate) {
   DCHECK(delegate);
   auto requests = delegate->Requests();
@@ -46,7 +46,7 @@ const gfx::VectorIcon& GetPermissionIconId(
              : requests[1]->GetIconForChip();
 }
 
-const gfx::VectorIcon& GetBlockedPermissionIconId(
+permissions::IconId  GetBlockedPermissionIconId(
     permissions::PermissionPrompt::Delegate* delegate) {
   DCHECK(delegate);
   auto requests = delegate->Requests();
@@ -118,11 +118,11 @@ void PermissionRequestChip::ShowBubble() {
   }
 }
 
-const gfx::VectorIcon& PermissionRequestChip::GetIconOn() {
+permissions::IconId PermissionRequestChip::GetIconOn() {
   return GetPermissionIconId(delegate_);
 }
 
-const gfx::VectorIcon& PermissionRequestChip::GetIconOff() {
+permissions::IconId PermissionRequestChip::GetIconOff() {
   return GetBlockedPermissionIconId(delegate_);
 }
 

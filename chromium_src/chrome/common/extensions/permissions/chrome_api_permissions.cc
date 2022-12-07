@@ -238,6 +238,7 @@ constexpr APIPermissionInfo::InitInfo permissions_to_register[] = {
      APIPermissionInfo::kFlagCannotBeOptional |
          APIPermissionInfo::kFlagInternal,
      &CreateAPIPermission<SettingsOverrideAPIPermission>},
+    {APIPermissionID::kMisesPrivate, "misesPrivate"},
 };
 
 }  // namespace

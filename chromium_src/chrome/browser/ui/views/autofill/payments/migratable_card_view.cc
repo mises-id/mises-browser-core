@@ -30,7 +30,9 @@
 #include "ui/views/layout/box_layout.h"
 
 namespace autofill {
-
+#if BUILDFLAG(IS_ANDROID)
+MigratableCreditCard::~MigratableCreditCard() {}
+#endif
 MigratableCardView::MigratableCardView(
     const MigratableCreditCard& migratable_credit_card,
     LocalCardMigrationDialogView* parent_dialog,

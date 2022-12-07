@@ -230,7 +230,7 @@ class ProfileManager : public Profile::Delegate {
   // Returns the full path to be used for guest profiles.
   static base::FilePath GetGuestProfilePath();
 
-#if !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_ANDROID)
+#if BUILDFLAG(IS_ANDROID) || !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_ANDROID)
   // Returns the full path to be used for system profiles.
   static base::FilePath GetSystemProfilePath();
 #endif  // !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_ANDROID)
@@ -259,7 +259,7 @@ class ProfileManager : public Profile::Delegate {
   AccountProfileMapper* GetAccountProfileMapper();
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Less strict version of ScheduleProfileForDeletion(), silently exits if
   // profile is either scheduling or marked for deletion.
   void MaybeScheduleProfileForDeletion(

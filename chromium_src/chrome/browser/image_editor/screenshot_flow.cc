@@ -75,6 +75,9 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
   screen_capture_layer_->SetName("ScreenshotRegionSelectionLayer");
   screen_capture_layer_->SetFillsBoundsOpaquely(false);
   screen_capture_layer_->set_delegate(this);
+#if BUILDFLAG(IS_ANDROID)
+  ui::Layer* content_layer = NULL;
+#endif
 #if BUILDFLAG(IS_MAC)
   gfx::Rect bounds = web_contents_->GetViewBounds();
   const gfx::NativeView web_contents_view =
@@ -89,16 +92,19 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
       this,
       base::BindOnce(&ScreenshotFlow::CancelCapture, base::Unretained(this)),
       web_contents_view, web_contents_->GetTopLevelNativeWindow());
-#else
+  content_layer->Add(screen_capture_layer_.get());
+  content_layer->StackAtTop(screen_capture_layer_.get());
+  screen_capture_layer_->SetBounds(bounds);
+#elif defined(USE_AURA)
   const gfx::NativeWindow& native_window = web_contents_->GetNativeView();
   ui::Layer* content_layer = native_window->layer();
   const gfx::Rect bounds = native_window->bounds();
   // Capture mouse down and drag events on our window.
   event_capture_.Observe(native_window);
-#endif
   content_layer->Add(screen_capture_layer_.get());
   content_layer->StackAtTop(screen_capture_layer_.get());
   screen_capture_layer_->SetBounds(bounds);
+#endif
   screen_capture_layer_->SetVisible(true);
 
   SetCursor(ui::mojom::CursorType::kCross);
@@ -122,13 +128,14 @@ void ScreenshotFlow::RemoveUIOverlay() {
     return;
   ui::Layer* content_layer = widget->GetLayer();
   event_capture_mac_.reset();
-#else
+  content_layer->Remove(screen_capture_layer_.get());
+#elif defined(USE_AURA)
   const gfx::NativeWindow& native_window = web_contents_->GetNativeView();
   event_capture_.Reset();
   ui::Layer* content_layer = native_window->layer();
+  content_layer->Remove(screen_capture_layer_.get());
 #endif
 
-  content_layer->Remove(screen_capture_layer_.get());
 
   screen_capture_layer_->set_delegate(nullptr);
   screen_capture_layer_.reset();
@@ -171,7 +178,7 @@ void ScreenshotFlow::CaptureAndRunScreenshotCompleteCallback(
   // we have a DCHECK for development as we expected this call to succeed.
   DCHECK(rval);
   RunScreenshotCompleteCallback(result_code, bounds, img);
-#else
+#elif defined(USE_AURA)
   ui::GrabWindowSnapshotAsyncCallback screenshot_callback =
       base::BindOnce(&ScreenshotFlow::RunScreenshotCompleteCallback, weak_this_,
                      result_code, bounds);
@@ -321,11 +328,12 @@ void ScreenshotFlow::ResetUIOverlayBounds() {
     const gfx::Rect offset_bounds = widget->GetWindowBoundsInScreen();
     bounds.Offset(-offset_bounds.x(), -offset_bounds.y());
   }
-#else
+  screen_capture_layer_->SetBounds(bounds);
+#elif defined(USE_AURA)
   const gfx::NativeWindow& native_window = web_contents_->GetNativeView();
   const gfx::Rect bounds = native_window->bounds();
-#endif
   screen_capture_layer_->SetBounds(bounds);
+#endif
 }
 
 void ScreenshotFlow::OnPaintLayer(const ui::PaintContext& context) {

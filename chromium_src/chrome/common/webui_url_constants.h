@@ -218,7 +218,7 @@ extern const char kChromeUIWebuiGalleryHost[];
 extern const char kChromeUIWelcomeWin10Host[];
 #endif  // BUILDFLAG(IS_WIN)
 
-#if BUILDFLAG(IS_ANDROID)
+#if true || BUILDFLAG(IS_ANDROID)
 extern const char kChromeUIExploreSitesInternalsHost[];
 extern const char kChromeUIJavaCrashURL[];
 extern const char kChromeUINativeBookmarksURL[];
@@ -229,7 +229,8 @@ extern const char kChromeUISnippetsInternalsHost[];
 extern const char kChromeUIUntrustedVideoTutorialsHost[];
 extern const char kChromeUIUntrustedVideoPlayerUrl[];
 extern const char kChromeUIWebApksHost[];
-#else
+#endif
+#if (true)
 extern const char kChromeUIAppServiceInternalsHost[];
 extern const char kChromeUINearbyInternalsHost[];
 extern const char kChromeUINearbyInternalsURL[];
@@ -413,13 +414,13 @@ extern const char kChromeUIWebUIJsErrorURL[];
 extern const char kChromeUIConnectorsInternalsHost[];
 #endif
 
-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
     BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
 extern const char kChromeUIDiscardsHost[];
 extern const char kChromeUIDiscardsURL[];
 #endif
 
-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
     BUILDFLAG(IS_FUCHSIA)
 extern const char kChromeUIWebAppSettingsURL[];
 extern const char kChromeUIWebAppSettingsHost[];
@@ -441,7 +442,7 @@ extern const char kChromeUISandboxHost[];
 
 // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
 // of lacros-chrome is complete.
-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_FUCHSIA) || \
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_FUCHSIA) || \
     (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
 extern const char kChromeUIBrowserSwitchHost[];
 extern const char kChromeUIBrowserSwitchURL[];
@@ -469,7 +470,7 @@ extern const char kChromeUITabStripHost[];
 extern const char kChromeUITabStripURL[];
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 extern const char kChromeUICommanderHost[];
 extern const char kChromeUICommanderURL[];
 extern const char kChromeUIDownloadShelfHost[];

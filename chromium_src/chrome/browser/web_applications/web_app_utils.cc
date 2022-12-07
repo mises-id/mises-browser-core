@@ -240,6 +240,7 @@ content::BrowserContext* GetBrowserContextForWebAppMetrics(
   return is_web_app_metrics_enabled ? original_profile : nullptr;
 }
 
+#if !BUILDFLAG(IS_ANDROID)
 content::mojom::AlternativeErrorPageOverrideInfoPtr GetOfflinePageInfo(
     const GURL& url,
     content::RenderFrameHost* render_frame_host,
@@ -295,6 +296,7 @@ content::mojom::AlternativeErrorPageOverrideInfoPtr GetOfflinePageInfo(
   alternative_error_page_info->resource_id = IDR_WEBAPP_DEFAULT_OFFLINE_HTML;
   return alternative_error_page_info;
 }
+#endif
 
 base::FilePath GetWebAppsRootDirectory(Profile* profile) {
   return profile->GetPath().Append(chrome::kWebAppDirname);

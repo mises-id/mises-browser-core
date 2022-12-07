@@ -14,16 +14,17 @@ class PrefRegistrySyncable;
 
 namespace prefs {
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 
 extern const char kAccessibilityReadAnythingFontName[];
 extern const char kAccessibilityReadAnythingFontScale[];
+
+#endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace prefs
 
 void RegisterReadAnythingProfilePrefs(
     user_prefs::PrefRegistrySyncable* registry);
 
-#endif  // !BUILDFLAG(IS_ANDROID)
 
 #endif  // CHROME_BROWSER_UI_WEBUI_SIDE_PANEL_READ_ANYTHING_READ_ANYTHING_PREFS_H_

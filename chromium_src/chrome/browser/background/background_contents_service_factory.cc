@@ -33,9 +33,11 @@ BackgroundContentsServiceFactory::BackgroundContentsServiceFactory()
     : BrowserContextKeyedServiceFactory(
           "BackgroundContentsService",
           BrowserContextDependencyManager::GetInstance()) {
+#if !BUILDFLAG(IS_ANDROID)
   DependsOn(extensions::ExtensionRegistryFactory::GetInstance());
   DependsOn(extensions::ExtensionSystemFactory::GetInstance());
   DependsOn(extensions::ExtensionHostRegistry::GetFactory());
+#endif
 }
 
 BackgroundContentsServiceFactory::~BackgroundContentsServiceFactory() {}

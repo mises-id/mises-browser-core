@@ -439,7 +439,7 @@ void ExtensionInfoGenerator::CreateExtensionInfo(
   else if ((ext = registry->terminated_extensions().GetByID(id)) != nullptr)
     state = developer::EXTENSION_STATE_TERMINATED;
 
-  if (ext && ui_util::ShouldDisplayInExtensionSettings(*ext))
+  if (ext && (ui_util::ShouldDisplayInExtensionSettings(*ext)))
     CreateExtensionInfoHelper(*ext, state);
 
   if (pending_image_loads_ == 0) {

@@ -116,11 +116,13 @@ void ChromeBrowserMainExtraPartsViews::PreCreateThreads() {
 }
 
 void ChromeBrowserMainExtraPartsViews::PreProfileInit() {
+  LOG(ERROR) << "ChromeBrowserMainExtraPartsViews::PreProfileInit";
   if (ui_devtools::UiDevToolsServer::IsUiDevToolsEnabled(
           ui_devtools::switches::kEnableUiDevTools)) {
     CreateUiDevTools();
   }
-
+#if !BUILDFLAG(IS_ANDROID)
+  LOG(ERROR) << "ChromeBrowserMainExtraPartsViews::PreProfileInit" << "setp - 1";
   media_router::MediaRouterDialogController::SetGetOrCreate(
       base::BindRepeating([](content::WebContents* web_contents) {
         DCHECK(web_contents);
@@ -133,7 +135,8 @@ void ChromeBrowserMainExtraPartsViews::PreProfileInit() {
                 web_contents);
         return controller;
       }));
-
+ #endif
+ LOG(ERROR) << "ChromeBrowserMainExtraPartsViews::PreProfileInit" << "setp - 2";
 // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
 // of lacros-chrome is complete.
 #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)

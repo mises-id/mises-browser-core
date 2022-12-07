@@ -1,0 +1,11 @@
+module search.mojom;
+
+[MisesExtend]
+interface EmbeddedSearch {
+  OpenExtension(url.mojom.Url url);
+};
+ 
+[MisesExtend]
+interface EmbeddedSearchClient { 
+  MisesInfoChanged(mojo_base.mojom.String16 info);
+};

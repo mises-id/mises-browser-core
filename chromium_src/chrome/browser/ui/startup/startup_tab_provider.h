@@ -97,7 +97,7 @@ class StartupTabProvider {
   virtual StartupTabs GetCrosapiTabs() const = 0;
 #endif  // BUILDFLAG(IS_CHROMEOS_LACROS)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Returns tabs related to the What's New UI (if applicable).
   virtual StartupTabs GetNewFeaturesTabs(bool whats_new_enabled) const = 0;
 
@@ -179,7 +179,7 @@ class StartupTabProviderImpl : public StartupTabProvider {
   static StartupTabs GetPostCrashTabsForState(
       bool has_incompatible_applications);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Determines if the what's new page should be shown.
   static StartupTabs GetNewFeaturesTabsForState(bool whats_new_enabled);
 
@@ -239,7 +239,7 @@ class StartupTabProviderImpl : public StartupTabProvider {
   StartupTabs GetCrosapiTabs() const override;
 #endif  // BUILDFLAG(IS_CHROMEOS_LACROS)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   StartupTabs GetNewFeaturesTabs(bool whats_new_enabled) const override;
   StartupTabs GetPrivacySandboxTabs(
       Profile* profile,

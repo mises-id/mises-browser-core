@@ -5,5 +5,4 @@
 
 mises_extensions_resources = [
   "//mises/browser/extensions:resources",
-  "//mises/components/mises_webtorrent/browser/buildflags",
 ]

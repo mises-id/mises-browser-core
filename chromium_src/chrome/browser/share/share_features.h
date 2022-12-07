@@ -17,7 +17,7 @@ extern const base::Feature kScreenshotsForAndroidV2;
 extern const base::Feature kSharingDesktopScreenshotsEdit;
 extern const base::Feature kUpcomingSharingFeatures;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 extern const base::Feature kDesktopSharePreview;
 
 extern const char kDesktopSharePreviewVariant16[];

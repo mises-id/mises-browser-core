@@ -23,13 +23,13 @@
 #include "media/base/media_switches.h"
 #include "ui/base/buildflags.h"
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "components/prefs/pref_registry_simple.h"
 #endif
 
 namespace media_router {
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 const base::Feature kMediaRouter{"MediaRouter",
                                  base::FEATURE_ENABLED_BY_DEFAULT};
 const base::Feature kCastAllowAllIPsFeature{"CastAllowAllIPs",
@@ -100,7 +100,7 @@ bool MediaRouterEnabled(content::BrowserContext* context) {
   return true;
 }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   registry->RegisterBooleanPref(prefs::kMediaRouterCastAllowAllIPs, false,
                                 PrefRegistry::PUBLIC);

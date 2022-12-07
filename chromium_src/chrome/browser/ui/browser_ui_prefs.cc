@@ -44,7 +44,7 @@ uint32_t GetHomeButtonAndHomePageIsNewTabPageFlags() {
 void RegisterBrowserPrefs(PrefRegistrySimple* registry) {
   registry->RegisterBooleanPref(prefs::kAllowFileSelectionDialogs, true);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   registry->RegisterIntegerPref(prefs::kRelaunchNotification, 0);
   registry->RegisterIntegerPref(
       prefs::kRelaunchNotificationPeriod,
@@ -77,7 +77,7 @@ void RegisterBrowserUserPrefs(user_prefs::PrefRegistrySyncable* registry) {
   registry->RegisterBooleanPref(prefs::kWebAppCreateInAppsMenu, true);
   registry->RegisterBooleanPref(prefs::kWebAppCreateInQuickLaunchBar, true);
   registry->RegisterBooleanPref(
-      translate::prefs::kOfferTranslateEnabled, true,
+      translate::prefs::kOfferTranslateEnabled, false,
       user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
   registry->RegisterStringPref(prefs::kCloudPrintEmail, std::string());
   registry->RegisterBooleanPref(prefs::kCloudPrintProxyEnabled, true);

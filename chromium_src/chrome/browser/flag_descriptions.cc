@@ -1599,6 +1599,12 @@ const char kTabSearchMediaTabsName[] = "Tab Search Media Tabs";
 const char kTabSearchMediaTabsDescription[] =
     "Enable indicators on media tabs in Tab Search.";
 
+const char kHorizontalTabSwitcherAndroidName[] =
+    "Enable horizontal tab switcher";
+const char kHorizontalTabSwitcherAndroidDescription[] =
+    "Changes the layout of the Android tab switcher so tabs scroll "
+    "horizontally instead of vertically.";
+
 const char kTabSwitcherOnReturnName[] = "Tab switcher on return";
 const char kTabSwitcherOnReturnDescription[] =
     "Enable tab switcher on return after specified time has elapsed";
@@ -3960,9 +3966,8 @@ const char kEnableAndroidGamepadVibrationDescription[] =
     "Enables the ability to play vibration effects on supported gamepads.";
 
 // Non-Android -----------------------------------------------------------------
-
-#else  // BUILDFLAG(IS_ANDROID)
-
+#endif
+#if true
 const char kAppManagementAppDetailsName[] =
     "Enable App Details in App Management.";
 const char kAppManagementAppDetailsDescription[] =
@@ -6059,7 +6064,7 @@ const char kSideSearchDSESupportDescription[] =
 // Random platform combinations -----------------------------------------------
 
 #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
-    BUILDFLAG(IS_FUCHSIA)
+    BUILDFLAG(IS_FUCHSIA) || true
 
 const char kDesktopDetailedLanguageSettingsName[] =
     "Detailed Language Settings (Desktop)";

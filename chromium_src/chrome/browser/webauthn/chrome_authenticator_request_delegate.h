@@ -53,7 +53,7 @@ class ChromeWebAuthenticationDelegate
 
   ~ChromeWebAuthenticationDelegate() override;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID) //mises
   // content::WebAuthenticationDelegate:
   bool OverrideCallerOriginAndRelyingPartyIdValidation(
       content::BrowserContext* browser_context,

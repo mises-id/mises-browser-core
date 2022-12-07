@@ -54,7 +54,7 @@ HostContentSettingsMapFactory::HostContentSettingsMapFactory()
 #if BUILDFLAG(ENABLE_SUPERVISED_USERS)
   DependsOn(SupervisedUserSettingsServiceFactory::GetInstance());
 #endif
-#if BUILDFLAG(ENABLE_EXTENSIONS)
+#if BUILDFLAG(ENABLE_EXTENSIONS) && !BUILDFLAG(IS_ANDROID)
   DependsOn(extensions::ContentSettingsService::GetFactoryInstance());
 #endif
   // Used by way of ShouldRestoreOldSessionCookies().

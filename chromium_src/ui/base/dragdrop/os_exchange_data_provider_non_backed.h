@@ -69,9 +69,11 @@ class COMPONENT_EXPORT(UI_BASE) OSExchangeDataProviderNonBacked
                        std::string* file_contents) const override;
   bool HasFileContents() const override;
 
+#if defined(USE_AURA)
   void SetHtml(const std::u16string& html, const GURL& base_url) override;
   bool GetHtml(std::u16string* html, GURL* base_url) const override;
   bool HasHtml() const override;
+#endif
   void SetDragImage(const gfx::ImageSkia& image,
                     const gfx::Vector2d& cursor_offset) override;
   gfx::ImageSkia GetDragImage() const override;

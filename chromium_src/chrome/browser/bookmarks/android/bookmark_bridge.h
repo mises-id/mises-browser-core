@@ -26,6 +26,7 @@
 #include "components/optimization_guide/core/optimization_guide_decision.h"
 #include "components/prefs/pref_change_registrar.h"
 #include "url/android/gurl_android.h"
+#include "ui/shell_dialogs/select_file_dialog.h"
 
 namespace bookmarks {
 class BookmarkModel;
@@ -42,7 +43,8 @@ class Profile;
 class BookmarkBridge : public bookmarks::BaseBookmarkModelObserver,
                        public PartnerBookmarksShim::Observer,
                        public ReadingListManager::Observer,
-                       public ProfileObserver {
+                       public ProfileObserver,
+                       public ui::SelectFileDialog::Listener {
  public:
   BookmarkBridge(JNIEnv* env,
                  const base::android::JavaRef<jobject>& obj,
@@ -303,6 +305,15 @@ class BookmarkBridge : public bookmarks::BaseBookmarkModelObserver,
           optimization_guide::OptimizationGuideDecisionWithMetadata>&
           decisions);
 
+  void ImportBookmarks(JNIEnv* env, const base::android::JavaParamRef<jobject>& java_window);
+
+  void ExportBookmarks(JNIEnv* env);
+
+  void FileSelected(const base::FilePath& path,
+                    int index,
+                    void* params) override;
+  void FileSelectionCanceled(void* params) override;
+
  private:
   ~BookmarkBridge() override;
 
@@ -391,6 +402,8 @@ class BookmarkBridge : public bookmarks::BaseBookmarkModelObserver,
 
   // A means of accessing metadata about bookmarks.
   raw_ptr<OptimizationGuideKeyedService> opt_guide_;
+
+  scoped_refptr<ui::SelectFileDialog> select_file_dialog_;
 
   // Weak pointers for creating callbacks that won't call into a destroyed
   // object.

@@ -25,7 +25,7 @@ namespace url_formatter {
 
 // ElideUrl and Elide host require
 // gfx::GetStringWidthF which is not implemented in Android
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // This function takes a GURL object and elides it. It returns a string
 // composed of parts from subdomain, domain, path, filename and query.
 // A "..." is added automatically at the end if the elided string is bigger

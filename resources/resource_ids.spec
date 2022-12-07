@@ -22,4 +22,12 @@
   "mises/components/resources/mises_components_strings.grd": {
     "messages": [50900]
   },
+  "mises/components/mises_extension/extension/resources.grd": {
+    "includes": [55000],
+  },
+  # This file is generated during the build.
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-mises_wallet/mises_wallet.grd": {
+    "META": {"sizes": {"includes": [500]}},
+    "includes": [55500],
+  },
 }

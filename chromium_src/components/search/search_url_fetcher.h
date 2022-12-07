@@ -43,7 +43,7 @@ class SearchURLFetcher
  public:
   explicit SearchURLFetcher(
       scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory, PrefService* prefs, TemplateURLService* template_url_service);
-  virtual ~SearchURLFetcher();
+  ~SearchURLFetcher() override;
 
   virtual void FetchURL();
 
@@ -62,7 +62,7 @@ class SearchURLFetcher
   int search_version() const { return search_version_; }
 
   void OnURLLoadComplete(std::unique_ptr<std::string> response_body);
-  void OnNetworkChanged(net::NetworkChangeNotifier::ConnectionType type);
+  void OnNetworkChanged(net::NetworkChangeNotifier::ConnectionType type) override;
 
   static const char kSearchDomainCheckURL[];
   std::unique_ptr<network::SimpleURLLoader> url_loader_;

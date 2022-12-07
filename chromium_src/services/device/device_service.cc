@@ -235,9 +235,10 @@ void DeviceService::BindVibrationManager(
 #endif
 }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 void DeviceService::BindHidManager(
     mojo::PendingReceiver<mojom::HidManager> receiver) {
+#if  !BUILDFLAG(IS_ANDROID)
   if (IsLaCrOS() && !HidManagerImpl::IsHidServiceTesting()) {
     BindLaCrOSHidManager(std::move(receiver));
   } else {
@@ -245,6 +246,7 @@ void DeviceService::BindHidManager(
       hid_manager_ = std::make_unique<HidManagerImpl>();
     hid_manager_->AddReceiver(std::move(receiver));
   }
+#endif
 }
 #endif
 

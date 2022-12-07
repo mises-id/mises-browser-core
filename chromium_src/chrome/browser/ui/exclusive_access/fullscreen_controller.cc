@@ -114,6 +114,7 @@ bool FullscreenController::IsTabFullscreen() const {
 bool FullscreenController::IsFullscreenForTabOrPending(
     const content::WebContents* web_contents,
     int64_t* display_id) const {
+#if !BUILDFLAG(IS_ANDROID)
   bool is_fullscreen = IsFullscreenWithinTab(web_contents);
   if (!is_fullscreen && web_contents == exclusive_access_tab()) {
     // If we're handling OnTabDeactivated(), |web_contents| is the
@@ -138,6 +139,9 @@ bool FullscreenController::IsFullscreenForTabOrPending(
     }
   }
   return is_fullscreen;
+#else
+  return true;
+#endif
 }
 
 bool FullscreenController::IsFullscreenCausedByTab() const {

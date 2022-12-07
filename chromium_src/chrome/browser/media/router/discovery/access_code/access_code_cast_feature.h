@@ -21,7 +21,7 @@ extern const base::Feature kAccessCodeCastRememberDevices;
 
 namespace media_router {
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 
 namespace prefs {
 // Pref name that allows the AccessCode/QR code scanning dialog button to be

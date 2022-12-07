@@ -79,11 +79,19 @@
 #include "ui/events/keycodes/dom/keycode_converter.h"
 #include "ui/events/keycodes/keyboard_code_conversion.h"
 #include "ui/events/keycodes/keyboard_codes.h"
+#include "net/cert/x509_certificate.h"
 
 // This should be after all other #includes.
 #if defined(_WINDOWS_)  // Detect whether windows.h was included.
 #include "base/win/windows_h_disallowed.h"
 #endif  // defined(_WINDOWS_)
+
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#include "content/public/browser/web_contents.h"
+#include "chrome/browser/android/tab_android.h"
+#endif
 
 using base::DictionaryValue;
 using blink::WebInputEvent;
@@ -1115,9 +1123,10 @@ DevToolsWindow* DevToolsWindow::Create(
     const std::string& panel,
     bool has_other_clients,
     bool browser_connection) {
+  LOG(INFO) << "DevToolsWindow::Create step - 1";
   if (!AllowDevToolsFor(profile, inspected_web_contents))
     return nullptr;
-
+ LOG(INFO) << "DevToolsWindow::Create step - 2";
   if (inspected_web_contents) {
     // Check for a place to dock.
     Browser* browser = nullptr;
@@ -1142,6 +1151,7 @@ DevToolsWindow* DevToolsWindow::Create(
 
   if (!bindings)
     return nullptr;
+  LOG(INFO) << "DevToolsWindow::Create step - 3";
   if (!settings.empty())
     SetPreferencesFromJson(profile, settings);
   return new DevToolsWindow(frontend_type, profile,
@@ -1657,6 +1667,7 @@ void DevToolsWindow::SetOpenNewWindowForPopups(bool value) {
 }
 
 void DevToolsWindow::CreateDevToolsBrowser() {
+  LOG(INFO) << "DevToolsWindow::CreateDevToolsBrowser step - 1";
   PrefService* prefs = profile_->GetPrefs();
   if (!prefs->GetDictionary(prefs::kAppWindowPlacement)
            ->FindKey(kDevToolsApp)) {
@@ -1678,13 +1689,29 @@ void DevToolsWindow::CreateDevToolsBrowser() {
       Browser::CreationStatus::kOk) {
     return;
   }
+  LOG(INFO) << "DevToolsWindow::CreateDevToolsBrowser step - 2";
   browser_ =
       Browser::Create(Browser::CreateParams::CreateForDevTools(profile_));
+  LOG(INFO) << "DevToolsWindow::CreateDevToolsBrowser step - 3";
+#if !BUILDFLAG(IS_ANDROID)
   browser_->tab_strip_model()->AddWebContents(
       OwnedMainWebContents::TakeWebContents(
           std::move(owned_main_web_contents_)),
       -1, ui::PAGE_TRANSITION_AUTO_TOPLEVEL, TabStripModel::ADD_ACTIVE);
+#else
+
+  if (TabModelList::models().size() > 0) {
+    TabModel* tab_model = *(TabModelList::models().begin());
+    WebContents* web_contents = OwnedMainWebContents::TakeWebContents( 
+          std::move(owned_main_web_contents_)).release();
+    TabAndroid* tab = tab_model->GetTabAt(tab_model->GetActiveIndex());
+    if (tab && web_contents) {
+      tab_model->CreateTab(tab, web_contents);
+    }
+  }
+#endif
   OverrideAndSyncDevToolsRendererPrefs();
+  LOG(INFO) << "DevToolsWindow::CreateDevToolsBrowser step - 4";
 }
 
 BrowserWindow* DevToolsWindow::GetInspectedBrowserWindow() {

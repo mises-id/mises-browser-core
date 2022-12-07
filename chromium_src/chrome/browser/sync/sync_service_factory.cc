@@ -236,7 +236,7 @@ SyncServiceFactory::SyncServiceFactory()
   DependsOn(ThemeServiceFactory::GetInstance());
 #endif  // !BUILDFLAG(IS_ANDROID)
   DependsOn(WebDataServiceFactory::GetInstance());
-#if BUILDFLAG(ENABLE_EXTENSIONS)
+#if BUILDFLAG(ENABLE_EXTENSIONS) && !BUILDFLAG(IS_ANDROID)
   DependsOn(
       extensions::ExtensionsBrowserClient::Get()->GetExtensionSystemFactory());
   DependsOn(extensions::StorageFrontend::GetFactoryInstance());

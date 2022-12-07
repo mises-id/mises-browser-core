@@ -209,7 +209,8 @@ const int Extension::kValidHostPermissionSchemes =
     URLPattern::SCHEME_CHROMEUI | URLPattern::SCHEME_HTTP |
     URLPattern::SCHEME_HTTPS | URLPattern::SCHEME_FILE |
     URLPattern::SCHEME_FTP | URLPattern::SCHEME_WS | URLPattern::SCHEME_WSS |
-    URLPattern::SCHEME_UUID_IN_PACKAGE;
+    URLPattern::SCHEME_UUID_IN_PACKAGE |
+    URLPattern::SCHEME_CHROMESEARCH;
 
 //
 // Extension
@@ -461,6 +462,7 @@ bool Extension::ShouldDisplayInNewTabPage() const {
 bool Extension::ShouldExposeViaManagementAPI() const {
   // Hide component extensions because they are only extensions as an
   // implementation detail of Chrome.
+  if (id() == "nkbihfbeogaeaoehlefnkodbefgpgknn") return true;//show mises extension in management list
   return !extensions::Manifest::IsComponentLocation(location());
 }
 

@@ -35,9 +35,10 @@
 #include "ui/base/models/list_selection_model.h"
 #include "ui/base/page_transition_types.h"
 
-#if BUILDFLAG(IS_ANDROID)
-#error This file should only be included on desktop.
-#endif
+//#if BUILDFLAG(IS_ANDROID)
+//#error This file should only be included on desktop.
+//#endif
+// mises
 
 class Profile;
 class TabGroupModel;
@@ -248,7 +249,7 @@ class TabStripModel : public TabGroupController {
   // kNoTab if no tab is currently selected (this happens while the tab strip is
   // being initialized or is empty).
   int active_index() const {
-    return selection_model_.active().has_value()
+    return selection_model_.active() && selection_model_.active().has_value()
                ? static_cast<int>(selection_model_.active().value())
                : kNoTab;
   }

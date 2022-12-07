@@ -30,6 +30,7 @@ void DownloadDangerPrompt::SendSafeBrowsingDownloadReport(
     ClientSafeBrowsingReportRequest::ReportType report_type,
     bool did_proceed,
     const download::DownloadItem& download) {
+#if !BUILDFLAG(IS_ANDROID)
   safe_browsing::SafeBrowsingService* sb_service =
       g_browser_process->safe_browsing_service();
   Profile* profile = Profile::FromBrowserContext(
@@ -52,6 +53,7 @@ void DownloadDangerPrompt::SendSafeBrowsingDownloadReport(
     report->set_token(token);
 
   sb_service->SendDownloadReport(profile, std::move(report));
+#endif
 }
 
 void DownloadDangerPrompt::RecordDownloadDangerPrompt(

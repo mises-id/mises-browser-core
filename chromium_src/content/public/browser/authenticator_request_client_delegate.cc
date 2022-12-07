@@ -19,6 +19,12 @@
 #include "device/fido/win/webauthn_api.h"
 #endif  // BUILDFLAG(IS_WIN)
 
+#if BUILDFLAG(IS_ANDROID)
+namespace device {
+  FidoRequestHandlerBase::Observer::~Observer() = default;
+}
+#endif
+
 namespace content {
 
 WebAuthenticationDelegate::WebAuthenticationDelegate() = default;
@@ -40,7 +46,7 @@ bool WebAuthenticationDelegate::OriginMayUseRemoteDesktopClientOverride(
   return false;
 }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 absl::optional<std::string>
 WebAuthenticationDelegate::MaybeGetRelyingPartyIdOverride(
     const std::string& claimed_relying_party_id,
@@ -124,7 +130,7 @@ int WebAuthenticationDelegate::GetSupportLevel(WebContents* web_contents) {
 }
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 
 AuthenticatorRequestClientDelegate::AuthenticatorRequestClientDelegate() =
     default;

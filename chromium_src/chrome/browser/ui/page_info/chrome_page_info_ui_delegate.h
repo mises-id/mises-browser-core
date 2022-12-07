@@ -48,7 +48,7 @@ class ChromePageInfoUiDelegate : public PageInfoUiDelegate {
   // Handles opening the "More about this page" URL in a new tab.
   void OpenMoreAboutThisPageUrl(const GURL& url, const ui::Event& event);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // If PageInfo should show a link to the site or app's settings page, this
   // will return true and set the params to the appropriate resource IDs (IDS_*).
   // Otherwise, it will return false.

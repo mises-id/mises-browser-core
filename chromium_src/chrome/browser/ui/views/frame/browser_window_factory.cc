@@ -54,6 +54,7 @@ BrowserWindow* BrowserWindow::CreateBrowserWindow(
     browser_frame->SetTabDragKind(TabDragKind::kAllTabs);
   browser_frame->InitBrowserFrame();
 
+#if !BUILDFLAG(IS_ANDROID)
   view->GetWidget()->non_client_view()->SetAccessibleName(
       l10n_util::GetStringUTF16(IDS_PRODUCT_NAME));
 
@@ -61,6 +62,7 @@ BrowserWindow* BrowserWindow::CreateBrowserWindow(
     gfx::SizeF aspect_ratio(view->GetInitialAspectRatio(), 1.0f);
     view->GetWidget()->SetAspectRatio(aspect_ratio);
   }
+#endif
 
 #if defined(USE_AURA)
   // For now, all browser windows are true. This only works when USE_AURA

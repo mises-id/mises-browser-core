@@ -80,7 +80,8 @@ class ChromeDownloadManagerDelegate
                           int64_t total_bytes,
                           DownloadLocationDialogType dialog_type,
                           const base::FilePath& suggested_path,
-                          DownloadDialogBridge::DialogCallback callback);
+                          DownloadDialogBridge::DialogCallback callback,
+                          download::DownloadItem* download);
 
   void SetDownloadDialogBridgeForTesting(DownloadDialogBridge* bridge);
 #endif
@@ -187,7 +188,7 @@ class ChromeDownloadManagerDelegate
   bool ShouldBlockFile(download::DownloadItem* item,
                        download::DownloadDangerType danger_type) const;
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Schedules the ephemeral warning download to be canceled. It will only be
   // canceled if it continues to be an ephemeral warning that hasn't been acted
   // on when the scheduled time arrives.
@@ -305,7 +306,7 @@ class ChromeDownloadManagerDelegate
   // multiple downloads are associated with the same file path.
   bool IsMostRecentDownloadItemAtFilePath(download::DownloadItem* download);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   // Cancels a download if it's still an ephemeral warning (and has not been
   // acted on by the user).
   void CancelForEphemeralWarning(const std::string& guid);
@@ -347,6 +348,8 @@ class ChromeDownloadManagerDelegate
   // database.
   IdCallbackVector id_callbacks_;
   std::unique_ptr<DownloadPrefs> download_prefs_;
+
+  download::DownloadItem* last_download_item_;
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
   // Maps from pending extension installations to DownloadItem IDs.

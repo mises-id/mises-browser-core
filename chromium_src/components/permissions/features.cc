@@ -67,7 +67,7 @@ const base::Feature kPermissionOnDeviceNotificationPredictions{
     "PermissionOnDeviceNotificationPredictions",
     base::FEATURE_DISABLED_BY_DEFAULT};
 
-#if BUILDFLAG(IS_ANDROID)
+#if true ||BUILDFLAG(IS_ANDROID)
 
 // When enabled, blocks notifications permission prompt when Chrome doesn't
 // have app level Notification permission.
@@ -75,7 +75,6 @@ const base::Feature kBlockNotificationPromptsIfDisabledOnAppLevel{
     "BlockNotificationPromptsIfDisabledOnAppLevel",
     base::FEATURE_ENABLED_BY_DEFAULT};
 
-#else
 
 // Controls whether to trigger showing a HaTS survey, with the given
 // `probability` and `trigger_id`, immediately after the user has taken the
@@ -107,7 +106,7 @@ const base::FeatureParam<double>
         "holdback_chance",
         0.0);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Specifies the `trigger_id` of the HaTS survey to trigger immediately after
 // the user has interacted with a permission prompt.
 const base::FeatureParam<std::string> kPermissionsPostPromptSurveyTriggerId{

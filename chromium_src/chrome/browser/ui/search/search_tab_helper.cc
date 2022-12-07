@@ -155,10 +155,12 @@ SearchTabHelper::SearchTabHelper(content::WebContents* web_contents)
                   std::make_unique<SearchIPCRouterPolicyImpl>(web_contents)),
       instant_service_(nullptr) {
   DCHECK(search::IsInstantExtendedAPIEnabled());
-
+  LOG(INFO) << "SearchTabHelper::SearchTabHelper";
   instant_service_ = InstantServiceFactory::GetForProfile(profile());
-  if (instant_service_)
+  if (instant_service_) {
+    LOG(INFO) << "SearchTabHelper::SearchTabHelper step - 1";	  
     instant_service_->AddObserver(this);
+  }
 
   OmniboxTabHelper::CreateForWebContents(web_contents);
   OmniboxTabHelper::FromWebContents(web_contents)->AddObserver(this);
@@ -197,12 +199,13 @@ void SearchTabHelper::OnTabDeactivated() {
 
 void SearchTabHelper::DidStartNavigation(
     content::NavigationHandle* navigation_handle) {
+  LOG(INFO) << "SearchTabHelper::DidStartNavigation step - 1 " << navigation_handle->GetURL();
   if (!navigation_handle->IsInPrimaryMainFrame())
     return;
-
+   LOG(INFO) << "SearchTabHelper::DidStartNavigation step - 2";
   if (navigation_handle->IsSameDocument())
     return;
-
+   LOG(INFO) << "SearchTabHelper::DidStartNavigation step - 3";
   if (web_contents()->GetVisibleURL().DeprecatedGetOriginAsURL() ==
       GURL(chrome::kChromeUINewTabURL).DeprecatedGetOriginAsURL()) {
     RecordConcreteNtp(navigation_handle);
@@ -221,6 +224,7 @@ void SearchTabHelper::DidStartNavigation(
 }
 
 void SearchTabHelper::TitleWasSet(content::NavigationEntry* entry) {
+  LOG(INFO) << "SearchTabHelper::TitleWasSet";
   if (is_setting_title_ || !entry)
     return;
 
@@ -244,6 +248,7 @@ void SearchTabHelper::TitleWasSet(content::NavigationEntry* entry) {
 
 void SearchTabHelper::DidFinishLoad(content::RenderFrameHost* render_frame_host,
                                     const GURL& /* validated_url */) {
+  LOG(INFO) << "SearchTabHelper::DidFinishLoad";
   if (render_frame_host->IsInPrimaryMainFrame() &&
       search::IsInstantNTP(web_contents())) {
     RecordNewTabLoadTime(web_contents());
@@ -252,6 +257,7 @@ void SearchTabHelper::DidFinishLoad(content::RenderFrameHost* render_frame_host,
 
 void SearchTabHelper::NavigationEntryCommitted(
     const content::LoadCommittedDetails& load_details) {
+  LOG(INFO) << "SearchTabHelper::NavigationEntryCommitted";
   if (!load_details.is_main_frame)
     return;
 
@@ -260,6 +266,10 @@ void SearchTabHelper::NavigationEntryCommitted(
 
   if (InInstantProcess(instant_service_, web_contents()))
     ipc_router_.OnNavigationEntryCommitted();
+
+  if (search::IsInstantNTP(web_contents()) && instant_service_) {
+      instant_service_->OnNewTabPageOpened();
+  }
 }
 
 void SearchTabHelper::NtpThemeChanged(NtpTheme theme) {
@@ -296,6 +306,12 @@ void SearchTabHelper::OnUndoMostVisitedDeletion(const GURL& url) {
 void SearchTabHelper::OnUndoAllMostVisitedDeletions() {
   if (instant_service_)
     instant_service_->UndoAllMostVisitedDeletions();
+}
+
+void SearchTabHelper::OnOpenExtension(const GURL& url) {
+  DCHECK(!url.is_empty());
+  if (instant_service_)
+    instant_service_->OpenExtension(&GetWebContents(), url);
 }
 
 void SearchTabHelper::OnOmniboxInputStateChanged() {
