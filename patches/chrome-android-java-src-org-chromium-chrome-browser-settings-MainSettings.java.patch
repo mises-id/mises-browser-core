@@ -1,0 +1,62 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
+index 2a107a4c2923b1fefd1b790eea681e9c3a12664f..1833452f7ce40675f06613e448c4f30d774b2ee6 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
+@@ -183,13 +183,23 @@ public class MainSettings extends PreferenceFragmentCompat
+             setManagedPreferenceDelegateForPreference(PREF_PASSWORDS);
+         }
+ 
++        Preference safetyCheck = findPreference(PREF_SAFETY_CHECK);
++        if (safetyCheck != null)
++            getPreferenceScreen().removePreference(safetyCheck);
++
++	if (true) {
++	    removePreferenceIfPresent("toolbar_options");
++	    removePreferenceIfPresent("nightmode");
++	}
+         setManagedPreferenceDelegateForPreference(PREF_SEARCH_ENGINE);
+ 
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+             // If we are on Android O+ the Notifications preference should lead to the Android
+             // Settings notifications page.
+             Preference notifications = findPreference(PREF_NOTIFICATIONS);
+-            notifications.setOnPreferenceClickListener(preference -> {
++	    if (notifications != null) {
++	    
++              notifications.setOnPreferenceClickListener(preference -> {
+                 Intent intent = new Intent();
+                 intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+                 intent.putExtra(Settings.EXTRA_APP_PACKAGE,
+@@ -197,11 +207,12 @@ public class MainSettings extends PreferenceFragmentCompat
+                 startActivity(intent);
+                 // We handle the click so the default action isn't triggered.
+                 return true;
+-            });
++              });
++	    }
+         } else {
+             // The per-website notification settings page can be accessed from Site
+             // Settings, so we don't need to show this here.
+-            getPreferenceScreen().removePreference(findPreference(PREF_NOTIFICATIONS));
++            removePreferenceIfPresent(PREF_NOTIFICATIONS);
+         }
+ 
+         if (!TemplateUrlServiceFactory.get().isLoaded()) {
+@@ -212,7 +223,7 @@ public class MainSettings extends PreferenceFragmentCompat
+         new AdaptiveToolbarStatePredictor(null).recomputeUiState(uiState -> {
+             // We don't show the toolbar shortcut settings page if disabled from finch.
+             if (uiState.canShowUi) return;
+-            getPreferenceScreen().removePreference(findPreference(PREF_TOOLBAR_SHORTCUT));
++            removePreferenceIfPresent(PREF_TOOLBAR_SHORTCUT);
+         });
+     }
+ 
+@@ -397,6 +408,8 @@ public class MainSettings extends PreferenceFragmentCompat
+     }
+ 
+     private void onSyncPromoPreferenceStateChanged() {
++        if (true)
++            return;
+         if (ChromeFeatureList.isEnabled(ChromeFeatureList.SYNC_ANDROID_PROMOS_WITH_ILLUSTRATION)
+                 || ChromeFeatureList.isEnabled(
+                         ChromeFeatureList.SYNC_ANDROID_PROMOS_WITH_SINGLE_BUTTON)

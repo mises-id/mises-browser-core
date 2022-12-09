@@ -1,0 +1,23 @@
+diff --git a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/TopUiThemeColorProvider.java b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/TopUiThemeColorProvider.java
+index d6481ba93acf3ebe46552c4c5d82aee7159f8156..f79dc42606c7fe78ed118d3f694c9b2bc1733b99 100644
+--- a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/TopUiThemeColorProvider.java
++++ b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/TopUiThemeColorProvider.java
+@@ -26,6 +26,8 @@ import org.chromium.ui.util.ColorUtils;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+ 
++import org.chromium.base.ContextUtils;
++
+ /**
+  * Manages the theme color used on the top part of the UI based on Tab's theme color and other
+  * conditions such as dark mode settings, incognito mode, security state, etc.
+@@ -183,6 +185,9 @@ public class TopUiThemeColorProvider extends ThemeColorProvider {
+         boolean disallowDueToNightMode =
+                 !mAllowThemingInNightMode && ColorUtils.inNightMode(tab.getContext());
+ 
++        if (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false) || ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 2)
++            disallowDueToNightMode = true;
++
+         return tab.isThemingAllowed() && !mIsTablet && !disallowDueToNightMode
+                 && !tab.isNativePage() && !tab.isIncognito();
+     }

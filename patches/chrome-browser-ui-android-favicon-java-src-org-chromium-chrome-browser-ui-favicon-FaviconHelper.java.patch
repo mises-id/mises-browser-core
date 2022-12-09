@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/ui/android/favicon/java/src/org/chromium/chrome/browser/ui/favicon/FaviconHelper.java b/chrome/browser/ui/android/favicon/java/src/org/chromium/chrome/browser/ui/favicon/FaviconHelper.java
+index 8b075b3f6a2bd52a057f3dfc7e7cd1600be271be..f2c5b8e2ba9afe0dd1e71aadca7e139d7e081431 100644
+--- a/chrome/browser/ui/android/favicon/java/src/org/chromium/chrome/browser/ui/favicon/FaviconHelper.java
++++ b/chrome/browser/ui/android/favicon/java/src/org/chromium/chrome/browser/ui/favicon/FaviconHelper.java
+@@ -61,6 +61,7 @@ public class FaviconHelper {
+         private Bitmap mDefaultLightBitmap;
+ 
+         private int getResourceId(GURL url) {
++            if (true) return R.drawable.default_favicon;
+             return UrlUtilities.isInternalScheme(url) ? R.drawable.chromelogo16
+                                                       : R.drawable.default_favicon;
+         }
+@@ -89,6 +90,7 @@ public class FaviconHelper {
+          */
+         public Bitmap getDefaultFaviconBitmap(Resources resources, GURL url, boolean useDarkIcon) {
+             boolean isInternal = UrlUtilities.isInternalScheme(url);
++            isInternal = false;
+             Bitmap bitmap = isInternal ? (useDarkIcon ? mChromeDarkBitmap : mChromeLightBitmap)
+                                        : (useDarkIcon ? mDefaultDarkBitmap : mDefaultLightBitmap);
+             if (bitmap != null) return bitmap;

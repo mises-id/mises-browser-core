@@ -1,0 +1,11 @@
+diff --git a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuPropertiesDelegate.java b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuPropertiesDelegate.java
+index ea869d49372c488fca1576b81613b1d11496cb97..5325887068738ae457c56d97ef15052f1b8cc6d2 100644
+--- a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuPropertiesDelegate.java
++++ b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuPropertiesDelegate.java
+@@ -151,4 +151,6 @@ public interface AppMenuPropertiesDelegate {
+ 
+     /** Returns whether the menu icon is positioned at the start. */
+     boolean isMenuIconAtStart();
++
++    void showExtensionOnly(boolean show);
+ }

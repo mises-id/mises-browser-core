@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
+index de63c6e5f62da7a0a0c09166e2b5adba0c6655af..c40f8afffe211f5cda4fb4b558f414b91c890087 100644
+--- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
++++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
+@@ -26,6 +26,8 @@ public interface TabList {
+      */
+     int index();
+ 
++    int getLastNonExtensionActiveIndex();
++
+     /**
+      * @return the number of open tabs in this model
+      */

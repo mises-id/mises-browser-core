@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
+index fa36a60bf96e9cf5972bacff4e9c29f61ef4478b..31e10d5d0b04678828e60d9300f13c0cafe0a216 100644
+--- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
++++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
+@@ -560,7 +560,7 @@ public class StatusMediator implements PermissionDialogController.Observer,
+         boolean showIconOnNTP = mProfileSupplier.get() != null
+                 && UrlUtilities.isCanonicalizedNTPUrl(mLocationBarDataProvider.getCurrentUrl())
+                 && !mLocationBarDataProvider.isLoading() && !mIsTablet
+-                && (mUrlHasFocus || mUrlFocusPercent > 0);
++                && (mUrlHasFocus || mUrlFocusPercent > 0) && false;
+ 
+         return mSearchEngineLogoUtils.shouldShowSearchEngineLogo(
+                        mLocationBarDataProvider.isIncognito())

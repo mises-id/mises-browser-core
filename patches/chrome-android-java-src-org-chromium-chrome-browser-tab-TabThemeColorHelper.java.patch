@@ -1,0 +1,22 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
+index 37ecd9d5bf0e094f273b1bb584904dcea582ce03..fbcd654624323df7674d0ae42ff6ffff21af463a 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
+@@ -11,6 +11,8 @@ import org.chromium.content_public.browser.NavigationHandle;
+ import org.chromium.net.NetError;
+ import org.chromium.ui.base.WindowAndroid;
+ 
++import org.chromium.components.embedder_support.util.UrlUtilities;
++
+ /**
+  * Monitor changes that indicate a theme color change may be needed from tab contents.
+  */
+@@ -43,6 +45,8 @@ public class TabThemeColorHelper extends EmptyTabObserver {
+     @Override
+     public void onUrlUpdated(Tab tab) {
+         updateIfNeeded(tab, false);
++        if (tab != null && UrlUtilities.isNTPUrl(tab.getUrl().getSpec()))
++            updateIfNeeded(tab, true);
+     }
+ 
+     @Override

@@ -1,0 +1,47 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
+index cce50d2dfaf12fee36c7f4dc7b073829e5208442..82476527dd0fded6672b989bb40ad8714a5d0889 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
+@@ -28,6 +28,7 @@ import java.util.Locale;
+ public class TabSwitcherDrawable extends TintedDrawable {
+     private final float mSingleDigitTextSize;
+     private final float mDoubleDigitTextSize;
++    private final float mTripleDigitTextSize;
+ 
+     private final Rect mTextBounds = new Rect();
+     private final TextPaint mTextPaint;
+@@ -45,7 +46,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
+     public static TabSwitcherDrawable createTabSwitcherDrawable(
+             Context context, @BrandedColorScheme int brandedColorScheme) {
+         Bitmap icon = BitmapFactory.decodeResource(
+-                context.getResources(), R.drawable.btn_tabswitcher_modern);
++                context.getResources(), R.drawable.btn_tabswitcher_mises);
+         return new TabSwitcherDrawable(context, brandedColorScheme, icon);
+     }
+ 
+@@ -57,6 +58,8 @@ public class TabSwitcherDrawable extends TintedDrawable {
+                 context.getResources().getDimension(R.dimen.toolbar_tab_count_text_size_1_digit);
+         mDoubleDigitTextSize =
+                 context.getResources().getDimension(R.dimen.toolbar_tab_count_text_size_2_digit);
++        mTripleDigitTextSize =
++                context.getResources().getDimension(R.dimen.toolbar_tab_count_text_size_3_digit);
+ 
+         mTextPaint = new TextPaint();
+         mTextPaint.setAntiAlias(true);
+@@ -106,6 +109,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
+         mTabCount = tabCount;
+         mIncognito = incognito;
+         float textSizePx = mTabCount > 9 ? mDoubleDigitTextSize : mSingleDigitTextSize;
++        textSizePx = mTabCount > 99 ? mTripleDigitTextSize : textSizePx;
+         mTextPaint.setTextSize(textSizePx);
+         invalidateSelf();
+     }
+@@ -113,7 +117,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
+     private String getTabCountString() {
+         if (mTabCount <= 0) {
+             return "";
+-        } else if (mTabCount > 99) {
++        } else if (mTabCount > 999) {
+             return mIncognito ? ";)" : ":D";
+         } else {
+             return String.format(Locale.getDefault(), "%d", mTabCount);

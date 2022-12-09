@@ -1,0 +1,15 @@
+diff --git a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuDelegate.java b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuDelegate.java
+index b6a966e7416ece8ed3a4b830e9f1e682cc492cc3..d546726aedbfdd9d94a5b12e51f6dfc5a1c0725a 100644
+--- a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuDelegate.java
++++ b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuDelegate.java
+@@ -24,4 +24,8 @@ public interface AppMenuDelegate {
+      *         should be using.
+      */
+     AppMenuPropertiesDelegate createAppMenuPropertiesDelegate();
+-}
+\ No newline at end of file
++
++    void setLastItemTitle(String itemTitle);
++    void setLastVisibleItemTitle(String itemTitle);
++    void setShowExtensionOnly();
++}

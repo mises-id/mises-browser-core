@@ -1,0 +1,22 @@
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
+index e606c013e566ccb14dff721edf1601b1cef966fe..a5a66fb8f0c9a5215677437734345ba1714406bd 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
+@@ -91,6 +91,7 @@ import org.chromium.ui.modelutil.ListObservable.ListObserver;
+ import org.chromium.ui.modelutil.PropertyModel;
+ import org.chromium.ui.modelutil.SimpleRecyclerViewAdapter;
+ import org.chromium.url.GURL;
++import org.chromium.base.ContextUtils;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+@@ -1360,6 +1361,9 @@ class TabListMediator {
+      * reasonable.
+      */
+     private int getSpanCount(int orientation, int screenWidthDp) {
++        if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic")) {
++          return 1;
++        }
+         if (DeviceFormFactor.isNonMultiDisplayContextOnTablet(mContext)
+                 && TabUiFeatureUtilities.isGridTabSwitcherEnabled(mContext)) {
+             return screenWidthDp < TabListCoordinator.MAX_SCREEN_WIDTH_COMPACT_DP

@@ -1,0 +1,15 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/download/DownloadManagerService.java b/chrome/android/java/src/org/chromium/chrome/browser/download/DownloadManagerService.java
+index 03fd1bac967c30bc690416ef55d8fa1ac9815d23..c5df1d4030a58ce20d826599030bb3506832ef9d 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/download/DownloadManagerService.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/download/DownloadManagerService.java
+@@ -536,6 +536,10 @@ public class DownloadManagerService implements DownloadController.Observer,
+                             info, item.getSystemDownloadId(), result.second, isSupportedMimeType);
+                     broadcastDownloadSuccessful(info);
+                 } else {
++		             if (info.getMimeType().equalsIgnoreCase("application/x-chrome-extension")){
++		               mDownloadNotifier.notifyDownloadCanceled(item.getContentId());
++		               return;
++		             }
+                     info = DownloadInfo.Builder.fromDownloadInfo(info)
+                                    .setFailState(FailState.CANNOT_DOWNLOAD)
+                                    .build();
