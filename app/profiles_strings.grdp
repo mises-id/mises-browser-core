@@ -440,6 +440,9 @@
     <message name="IDS_SYNC_USER_NAME_IN_USE_ERROR" desc="Mobile: An error message shown when a user tries to sign in to sync using a user name that's already in use by another profile.">
       This account is already being used on this device.
     </message>
+    <message name="IDS_SYNC_USER_NAME_IN_USE_BY_ERROR" desc="An error message shown when a user tries to sign in to sync using a user name that's already in use by another profile. This error message includes the avatar name of the existing duplicate profile and only appears in the signin error tab modal dialog.">
+      This account is already being used on this device by <ph name="AVATAR_NAME">$1<ex>Jane</ex></ph>.
+    </message>
   </if>
   <if expr="not is_android">
     <message name="IDS_SYNC_USER_NAME_IN_USE_ERROR" desc="An error message shown when a user tries to sign in to sync using a user name that's already in use by another profile.">
@@ -451,7 +454,7 @@
   </if>
 
   <!-- Android does not support multiple profiles and supervised users -->
-  <if expr="not is_android">
+  <if expr="is_android or not is_android">
     <!-- User manager web UI -->
     <if expr="use_titlecase">
       <message name="IDS_SCREEN_LOCK_SIGN_OUT">

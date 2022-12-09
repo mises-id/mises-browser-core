@@ -1,0 +1,13 @@
+diff --git a/mojo/public/js/mojo_bindings_resources.grd b/mojo/public/js/mojo_bindings_resources.grd
+index 4200c003b376b..a094d605e7386 100644
+--- a/mojo/public/js/mojo_bindings_resources.grd
++++ b/mojo/public/js/mojo_bindings_resources.grd
+@@ -14,7 +14,7 @@
+   <release seq="1">
+     <includes>
+       <!-- All resources included on Android should use the lite bindings. -->
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <include name="IDR_MOJO_MOJO_BINDINGS_JS"
+             file="${root_gen_dir}/mojo/public/js/mojo_bindings.js"
+             use_base_dir="false"

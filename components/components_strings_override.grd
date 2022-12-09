@@ -93,7 +93,7 @@
       <part file="payments_strings_override.grdp" />
       <part file="privacy_sandbox_strings_override.grdp" />
       <part file="security_interstitials_strings_override.grdp" />
-      <if expr="not is_ios">
+      <if expr="not is_ios or is_android">
         <part file="history_clusters_strings_override.grdp" />
       </if>
       <if expr="is_android">
@@ -118,7 +118,7 @@
       <if expr="use_titlecase">
         </if>
 
-      <if expr="not is_android">
+      <if expr="not is_android or is_android">
         <if expr="not use_titlecase">
           </if>
         <if expr="use_titlecase">

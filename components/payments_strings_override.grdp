@@ -29,7 +29,7 @@
     </message>
   </if>
 
-  <if expr="not is_android">
+  <if expr="not is_android or is_android">
     </if>
 
   <if expr="not is_win and not is_macosx">
