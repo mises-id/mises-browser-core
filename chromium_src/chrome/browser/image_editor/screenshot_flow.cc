@@ -75,9 +75,7 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
   screen_capture_layer_->SetName("ScreenshotRegionSelectionLayer");
   screen_capture_layer_->SetFillsBoundsOpaquely(false);
   screen_capture_layer_->set_delegate(this);
-#if BUILDFLAG(IS_ANDROID)
-  ui::Layer* content_layer = NULL;
-#endif
+
 #if BUILDFLAG(IS_MAC)
   gfx::Rect bounds = web_contents_->GetViewBounds();
   const gfx::NativeView web_contents_view =
@@ -168,8 +166,9 @@ void ScreenshotFlow::CaptureAndRunScreenshotCompleteCallback(
     RunScreenshotCompleteCallback(result_code, gfx::Rect(), gfx::Image());
     return;
   }
-
+#if !BUILDFLAG(IS_ANDROID)
   gfx::Rect bounds = web_contents_->GetViewBounds();
+#endif
 #if BUILDFLAG(IS_MAC)
   const gfx::NativeView& native_view = web_contents_->GetContentNativeView();
   gfx::Image img;

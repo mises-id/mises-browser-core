@@ -128,7 +128,7 @@ source_set("ui") {
     ]
   }
 
-  if (enable_extensions && toolkit_views) {
+  if (is_android || enable_extensions && toolkit_views) {
     sources += [
     ]
 

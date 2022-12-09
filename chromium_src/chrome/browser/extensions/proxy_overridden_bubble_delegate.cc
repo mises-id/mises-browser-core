@@ -24,7 +24,9 @@ namespace {
 
 // The minimum time to wait (since the extension was installed) before notifying
 // the user about it.
+#if !BUILDFLAG(IS_ANDROID)  
 const int kDaysSinceInstallMin = 7;
+#endif
 
 // Whether the user has been notified about extension overriding the proxy.
 const char kProxyBubbleAcknowledged[] = "ack_proxy_bubble";
@@ -44,8 +46,8 @@ ProxyOverriddenBubbleDelegate::~ProxyOverriddenBubbleDelegate() {}
 bool ProxyOverriddenBubbleDelegate::ShouldIncludeExtension(
     const Extension* extension) {
 #if BUILDFLAG(IS_ANDROID)
-  if (true) return false;
-#endif
+  return false;
+#else
   if (!extension_id_.empty() && extension_id_ != extension->id())
     return false;  // Only one extension can be controlling the proxy at a time.
 
@@ -66,6 +68,7 @@ bool ProxyOverriddenBubbleDelegate::ShouldIncludeExtension(
   extension_id_ = extension->id();
 
   return true;
+#endif
 }
 
 void ProxyOverriddenBubbleDelegate::AcknowledgeExtension(

@@ -27,8 +27,8 @@ bool GlobalShortcutListener::RegisterAccelerator(
     const ui::Accelerator& accelerator, Observer* observer) {
   CHECK(BrowserThread::CurrentlyOn(BrowserThread::UI));
 #if BUILDFLAG(IS_ANDROID)
-  if (true) return false;
-#endif  
+  return false;
+#else  
   if (IsShortcutHandlingSuspended())
     return false;
 
@@ -49,6 +49,7 @@ bool GlobalShortcutListener::RegisterAccelerator(
 
   accelerator_map_[accelerator] = observer;
   return true;
+#endif
 }
 
 void GlobalShortcutListener::UnregisterAccelerator(

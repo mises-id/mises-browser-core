@@ -78,6 +78,7 @@ namespace {
 bool g_skip_main_profile_check_for_testing = false;
 #endif
 
+#if !BUILDFLAG(IS_ANDROID)
 GURL EncodeIconAsUrl(const SkBitmap& bitmap) {
   std::vector<unsigned char> output;
   gfx::PNGCodec::EncodeBGRASkBitmap(bitmap, false, &output);
@@ -88,6 +89,7 @@ GURL EncodeIconAsUrl(const SkBitmap& bitmap) {
       &encoded);
   return GURL("data:image/png;base64," + encoded);
 }
+#endif
 
 // Note: This can never return kBrowser. This is because the user has
 // specified that the web app should be displayed in a window, and thus

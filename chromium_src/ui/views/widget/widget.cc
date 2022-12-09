@@ -386,9 +386,11 @@ void Widget::Init(InitParams params) {
   root_view_.reset(CreateRootView());
 
   // Copy the elements of params that will be used after it is moved.
+#if !BUILDFLAG(IS_ANDROID)
   const InitParams::Type type = params.type;
   const gfx::Rect bounds = params.bounds;
   const ui::WindowShowState show_state = params.show_state;
+#endif
   WidgetDelegate* delegate = params.delegate;
 
   native_widget_->InitNativeWidget(std::move(params));

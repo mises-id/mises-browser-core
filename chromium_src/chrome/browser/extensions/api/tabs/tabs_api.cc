@@ -438,6 +438,7 @@ void SetLockedFullscreenState(Browser* browser, bool pinned) {
 
 // Returns whether the given `bounds` intersect with at least 50% of all the
 // displays.
+#if !BUILDFLAG(IS_ANDROID)
 bool WindowBoundsIntersectDisplays(const gfx::Rect& bounds) {
   int intersect_area = 0;
   for (const auto& display : display::Screen::GetScreen()->GetAllDisplays()) {
@@ -447,6 +448,7 @@ bool WindowBoundsIntersectDisplays(const gfx::Rect& bounds) {
   }
   return intersect_area >= (bounds.size().GetArea() / 2);
 }
+#endif
 
 }  // namespace
 
@@ -1277,11 +1279,11 @@ ExtensionFunction::ResponseAction TabsQueryFunction::Run() {
   std::string title;
   if (params->query_info.title.get())
     title = *params->query_info.title;
-
+#if !BUILDFLAG(IS_ANDROID)
   int window_id = extension_misc::kUnknownWindowId;
   if (params->query_info.window_id.get())
     window_id = *params->query_info.window_id;
-
+#endif
   absl::optional<int> group_id = absl::nullopt;
   if (params->query_info.group_id.get())
     group_id = *params->query_info.group_id;

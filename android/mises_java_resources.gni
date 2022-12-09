@@ -321,8 +321,7 @@ mises_extra_java_resources = [
 
 ]
 
-#mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
-mises_java_resources = [
+mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/drawable/ic_vpn.xml",
     "java/res/drawable/mises_new_group_tab.xml",
     "java/res/values/mises_colors.xml",

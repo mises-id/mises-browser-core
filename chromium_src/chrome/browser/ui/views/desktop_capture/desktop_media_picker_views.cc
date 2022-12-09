@@ -506,7 +506,7 @@ DesktopMediaPickerDialogView::DesktopMediaPickerDialogView(
 #if BUILDFLAG(IS_MAC)
   // On Mac, even modals are shown using separate native windows.
   bool is_separate_native_window = true;
-#else
+#elif defined(USE_AURA)
   bool is_separate_native_window = !modal_dialog;
 #endif
 

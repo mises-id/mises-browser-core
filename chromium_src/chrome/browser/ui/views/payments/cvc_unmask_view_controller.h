@@ -81,13 +81,13 @@ class CvcUnmaskViewController
     // separate prompt after the CVC prompt. On Android, however, this may be
     // offered through a checkbox on the CVC prompt. This feature does not yet
     // exist on iOS.
-    bool ShouldOfferFidoAuth() const override{return false;};
+    bool ShouldOfferFidoAuth() const override;
 
     // This returns true only on Android when the user previously opted-in for
     // FIDO authentication through the settings page and this is the first card
     // downstream since. In this case, the opt-in checkbox is not shown and the
     // opt-in request is sent.
-    bool UserOptedInToFidoFromSettingsPageOnMobile() const  override{return false;};
+    bool UserOptedInToFidoFromSettingsPageOnMobile() const  override;
 #endif
 
  private:

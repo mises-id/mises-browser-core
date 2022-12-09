@@ -40,6 +40,7 @@ using sll = struct sockaddr_dl;
 #define SOCKET_ADDRESS(s) (LLADDR(s))
 #endif
 
+#if !BUILDFLAG(IS_ANDROID)
 void GetDiscoveryNetworkInfoListImpl(
     const struct ifaddrs* if_list,
     std::vector<DiscoveryNetworkInfo>* network_info_list) {
@@ -88,7 +89,7 @@ void GetDiscoveryNetworkInfoListImpl(
                                SOCKET_ADDRESS_LEN(ll_addr))});
   }
 }
-
+#endif
 }  // namespace
 
 std::vector<DiscoveryNetworkInfo> GetDiscoveryNetworkInfoList() {

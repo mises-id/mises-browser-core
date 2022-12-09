@@ -627,11 +627,9 @@ void ExtensionInstallPrompt::LoadImageIfNeeded() {
   // Don't override an icon that was passed in. Also, |profile_| can be null in
   // unit tests.
 #if BUILDFLAG(IS_ANDROID)
-  if (true) {
     ShowConfirmation();
     return;
-  }
-#endif
+#else
   if (!icon_.empty() || !profile_) {
     ShowConfirmation();
     return;
@@ -651,6 +649,7 @@ void ExtensionInstallPrompt::LoadImageIfNeeded() {
   loader->LoadImagesAsync(extension_.get(), images_list,
                           base::BindOnce(&ExtensionInstallPrompt::OnImageLoaded,
                                          weak_factory_.GetWeakPtr()));
+#endif
 }
 
 // Ensures that OnDialogClosed is only called once.
@@ -744,7 +743,6 @@ void ExtensionInstallPrompt::ShowConfirmation() {
 bool ExtensionInstallPrompt::AutoConfirmPromptIfEnabled() {
   // Arnaud, TO DO
 #if BUILDFLAG(IS_ANDROID)
-  if (true) {
       base::ThreadTaskRunnerHandle::Get()->PostTask(
           FROM_HERE,
           base::BindOnce(
@@ -753,8 +751,7 @@ bool ExtensionInstallPrompt::AutoConfirmPromptIfEnabled() {
                                   extensions::ScopedTestDialogAutoConfirm::
                                       GetJustification())));
       return true;
-  }
-#endif  
+#else  
   switch (extensions::ScopedTestDialogAutoConfirm::GetAutoConfirmValue()) {
     case extensions::ScopedTestDialogAutoConfirm::NONE:
       return false;
@@ -792,4 +789,5 @@ bool ExtensionInstallPrompt::AutoConfirmPromptIfEnabled() {
 
   NOTREACHED();
   return false;
+#endif
 }

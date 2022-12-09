@@ -653,11 +653,9 @@ TabsEventRouter::TabEntry* TabsEventRouter::GetTabEntry(WebContents* contents) {
 void TabsEventRouter::OnTabModelAdded() {
   LOG(INFO) << "TabsEventRouter::OnTabModelAdded ";
   if (!observed_tab_model_) {
-    for (TabModel* model : TabModelList::models()) {
-        observed_tab_model_ = model;
-        observed_tab_model_->AddObserver(this);
-        break;
-    }
+    TabModel* model =  *(TabModelList::models().begin());
+    observed_tab_model_ = model;
+    observed_tab_model_->AddObserver(this);
   }
 
 }

@@ -19,7 +19,7 @@ namespace android {
 
 long SysUtils::FirstInstallDateFromJni() {
   JNIEnv* env = AttachCurrentThread();
-  return Java_MisesSysUtils_firstInstallDate(env);
+  return (long)Java_MisesSysUtils_firstInstallDate(env);
 }
 
 std::string SysUtils::ReferrerStringFromJni() {

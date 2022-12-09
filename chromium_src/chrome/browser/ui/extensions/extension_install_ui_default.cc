@@ -56,7 +56,7 @@ using content::WebContents;
 using extensions::Extension;
 
 namespace {
-
+#if !BUILDFLAG(IS_ANDROID)
 Browser* FindOrCreateVisibleBrowser(Profile* profile) {
   // TODO(mpcomplete): remove this workaround for http://crbug.com/244246
   // after fixing http://crbug.com/38676.
@@ -68,6 +68,7 @@ Browser* FindOrCreateVisibleBrowser(Profile* profile) {
     chrome::AddTabAt(browser, GURL(), -1, true);
   return browser;
 }
+#endif
 
 #if BUILDFLAG(IS_CHROMEOS)
 // Toast id and duration for extension install success.
@@ -125,7 +126,7 @@ void OpenAppInstalledUIImpl(const std::string& app_id,
   }
 #endif
 }
-
+#if !BUILDFLAG(IS_ANDROID)
 void ShowAppInstalledNotification(
     scoped_refptr<const extensions::Extension> extension,
     raw_ptr<Profile> profile) {
@@ -140,7 +141,7 @@ void ShowAppInstalledNotification(
   OpenAppInstalledUIImpl(extension->id(), profile);
 #endif  // BUILDFLAG(IS_CHROMEOS)
 }
-
+#endif
 }  // namespace
 
 ExtensionInstallUIDefault::ExtensionInstallUIDefault(

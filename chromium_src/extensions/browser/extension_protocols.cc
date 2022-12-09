@@ -244,6 +244,7 @@ std::pair<base::FilePath, base::Time> ReadResourceFilePathAndLastModifiedTime(
   return std::make_pair(file_path, last_modified_time);
 }
 
+#if !BUILDFLAG(IS_ANDROID)
 bool ExtensionCanLoadInIncognito(bool is_main_frame,
                                  const Extension* extension,
                                  bool extension_enabled_in_incognito) {
@@ -322,7 +323,7 @@ bool AllowExtensionResourceLoad(const network::ResourceRequest& request,
   // No special exceptions for cross-process loading. Block the load.
   return false;
 }
-
+#endif
 // Returns true if the given URL references an icon in the given extension.
 bool URLIsForExtensionIcon(const GURL& url, const Extension* extension) {
   DCHECK(url.SchemeIs(extensions::kExtensionScheme));
@@ -634,10 +635,12 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
     ExtensionRegistry* registry = ExtensionRegistry::Get(browser_context_);
     scoped_refptr<const Extension> extension =
         registry->GenerateInstalledExtensionsSet()->GetByIDorGUID(extension_id);
+#if !BUILDFLAG(IS_ANDROID)
     const ExtensionSet& enabled_extensions = registry->enabled_extensions();
     const ProcessMap* process_map = ProcessMap::Get(browser_context_);
     bool incognito_enabled =
         extensions::util::IsIncognitoEnabled(extension_id, browser_context_);
+#endif
 
     // Redirect guid to id.
     if (base::FeatureList::IsEnabled(

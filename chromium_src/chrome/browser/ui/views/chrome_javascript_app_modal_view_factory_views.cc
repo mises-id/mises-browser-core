@@ -74,7 +74,7 @@ class ChromeJavaScriptAppModalDialogViews
 
   PopunderPreventer popunder_preventer_;
 };
-
+#if !BUILDFLAG(IS_ANDROID) 
 void AdjustWidgetBoundsIfOffscreen(views::Widget* widget) {
   gfx::Rect widget_bounds = widget->GetWindowBoundsInScreen();
   gfx::Rect screen_rect =
@@ -87,7 +87,6 @@ void AdjustWidgetBoundsIfOffscreen(views::Widget* widget) {
     widget->SetBounds(widget_bounds);
   }
 }
-
 javascript_dialogs::AppModalDialogView* CreateViewsJavaScriptDialog(
     javascript_dialogs::AppModalDialogController* controller) {
   javascript_dialogs::AppModalDialogViewViews* dialog =
@@ -108,7 +107,7 @@ javascript_dialogs::AppModalDialogView* CreateViewsJavaScriptDialog(
   AdjustWidgetBoundsIfOffscreen(widget);
   return dialog;
 }
-
+#endif
 }  // namespace
 
 #if !BUILDFLAG(IS_ANDROID)

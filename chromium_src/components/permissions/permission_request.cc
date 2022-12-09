@@ -93,6 +93,9 @@ std::u16string PermissionRequest::GetDialogMessageText() const {
     case RequestType::kVrSession:
       message_id = IDS_VR_INFOBAR_TEXT;
       break;
+    default:
+      NOTREACHED();
+      break;
   }
   DCHECK_NE(0, message_id);
   return l10n_util::GetStringFUTF16(
@@ -207,7 +210,7 @@ std::u16string PermissionRequest::GetMessageTextFragment() const {
     case RequestType::kNotifications:
       message_id = IDS_NOTIFICATION_PERMISSIONS_FRAGMENT;
       break;
-#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN)
+#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_ANDROID)
     case RequestType::kProtectedMediaIdentifier:
       message_id = IDS_PROTECTED_MEDIA_IDENTIFIER_PERMISSION_FRAGMENT;
       break;
@@ -231,6 +234,8 @@ std::u16string PermissionRequest::GetMessageTextFragment() const {
     case RequestType::kWindowPlacement:
       message_id = IDS_WINDOW_PLACEMENT_PERMISSION_FRAGMENT;
       break;
+    default:
+      NOTREACHED();
   }
   DCHECK_NE(0, message_id);
   return l10n_util::GetStringUTF16(message_id);

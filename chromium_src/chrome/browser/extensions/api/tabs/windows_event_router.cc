@@ -354,14 +354,12 @@ void WindowsEventRouter::OnTabModelAdded() {
   LOG(INFO) << "WindowsEventRouter::OnTabModelAdded ";
   // add a dummuy browser for extension api
   if (BrowserList::GetInstance()->size() == 0) {
-    Browser *dummy = Browser::Create(Browser::CreateParams(profile_, false));
+    Browser::Create(Browser::CreateParams(profile_, false));
   }
   if (!observed_tab_model_) {
-    for (TabModel* model : TabModelList::models()) {
-        observed_tab_model_ = model;
-        observed_tab_model_->AddObserver(this);
-        break;
-    }
+    TabModel* model = *(TabModelList::models().begin());
+    observed_tab_model_ = model;
+    observed_tab_model_->AddObserver(this);
   }
 
 }

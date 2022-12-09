@@ -109,6 +109,7 @@ namespace {
 // Returns true if |params.browser| exists and can open a new tab for
 // |params.url|. Not all browsers support multiple tabs, such as app frames and
 // popups. TYPE_APP will only open a new tab if the URL is within the app scope.
+#if !BUILDFLAG(IS_ANDROID)
 bool WindowCanOpenTabs(const NavigateParams& params) {
   if (!params.browser)
     return false;
@@ -496,6 +497,7 @@ base::WeakPtr<content::NavigationHandle> LoadURLInContents(
 
   return target_contents->GetController().LoadURLWithParams(load_url_params);
 }
+#endif
 
 // This class makes sure the Browser object held in |params| is made visible
 // by the time it goes out of scope, provided |params| wants it to be shown.
@@ -528,7 +530,7 @@ class ScopedBrowserShower {
   raw_ptr<NavigateParams> params_;
   raw_ptr<content::WebContents*> contents_;
 };
-
+#if !BUILDFLAG(IS_ANDROID)
 std::unique_ptr<content::WebContents> CreateTargetContents(
     const NavigateParams& params,
     const GURL& url) {
@@ -592,14 +594,13 @@ std::unique_ptr<content::WebContents> CreateTargetContents(
 
   return target_contents;
 }
-
+#endif
 }  // namespace
 
 base::WeakPtr<content::NavigationHandle> Navigate(NavigateParams* params) {
   TRACE_EVENT1("navigation", "chrome::Navigate", "disposition",
                params->disposition);
 #if BUILDFLAG(IS_ANDROID) 
-  if (true) {
     if (TabModelList::models().size() == 0)
       return nullptr;
     TabModel* tab_model = TabModelList::models()[0];
@@ -611,8 +612,7 @@ base::WeakPtr<content::NavigationHandle> Navigate(NavigateParams* params) {
       tab_model->CreateTab(nullptr, params->contents_to_insert.release());       
     }
     return nullptr;
-  }
-#endif
+#else
 
   Browser* source_browser = params->browser;
   if (source_browser)
@@ -915,6 +915,7 @@ base::WeakPtr<content::NavigationHandle> Navigate(NavigateParams* params) {
 
   params->navigated_or_inserted_contents = contents_to_navigate_or_insert;
   return navigation_handle;
+#endif
 }
 
 bool IsHostAllowedInIncognito(const GURL& url) {
