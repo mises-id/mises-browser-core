@@ -1,5 +1,5 @@
 diff --git a/extensions/browser/api/system_cpu/BUILD.gn b/extensions/browser/api/system_cpu/BUILD.gn
-index 38b7f36829d5ebe0a3813d68877e98a00705175f..ccc4e3c084bdc196de18c22dae13659bbed9922c 100644
+index 38b7f36829d5ebe0a3813d68877e98a00705175f..0ba8bf4daaffa4011ab4397ac16aa14d5c619a4d 100644
 --- a/extensions/browser/api/system_cpu/BUILD.gn
 +++ b/extensions/browser/api/system_cpu/BUILD.gn
 @@ -38,6 +38,10 @@ source_set("system_cpu") {
@@ -7,7 +7,7 @@ index 38b7f36829d5ebe0a3813d68877e98a00705175f..ccc4e3c084bdc196de18c22dae13659b
    }
  
 +  if (is_android) {
-+    sources += [ "cpu_info_provider_android.cc" ]
++    sources += [ "//mises/chromium_src/extensions/browser/api/system_cpu/cpu_info_provider_android.cc" ]
 +  }
 +
    if (is_chromeos) {

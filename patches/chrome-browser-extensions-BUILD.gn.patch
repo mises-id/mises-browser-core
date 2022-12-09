@@ -1,25 +1,16 @@
 diff --git a/chrome/browser/extensions/BUILD.gn b/chrome/browser/extensions/BUILD.gn
-index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..04c00a8022276110888acccce0eae5ffdaa8fef0 100644
+index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..86fd3f3932e0f48627d60e475eebbf2333d89091 100644
 --- a/chrome/browser/extensions/BUILD.gn
 +++ b/chrome/browser/extensions/BUILD.gn
-@@ -953,6 +953,16 @@ static_library("extensions") {
+@@ -953,6 +953,7 @@ static_library("extensions") {
      "//ui/strings",
      "//url",
    ]
-+  if (is_android) {
-+    sources += [
-+      "//mises/browser/extensions/api/mises_private/mises_private_api.cc",
-+      "//mises/browser/extensions/api/mises_private/mises_private_api.h",
-+      "global_shortcut_listener_android.cc",
-+      "global_shortcut_listener_android.h",
-+      "system_display/display_info_provider_aura.cc",
-+      "system_display/display_info_provider_aura.h",
-+    ]
-+  }
++  import("//mises/browser/extensions/sources.gni") sources += mises_extensions_sources
  
    if (is_linux || is_mac || is_win) {
      sources += [
-@@ -1261,7 +1271,7 @@ static_library("extensions") {
+@@ -1261,7 +1262,7 @@ static_library("extensions") {
      ]
    }
  
@@ -28,11 +19,3 @@ index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..04c00a8022276110888acccce0eae5ff
      sources +=
          [ "api/image_writer_private/removable_storage_provider_linux.cc" ]
    }
-@@ -1362,6 +1372,7 @@ static_library("extensions") {
-   } else {
-     sources += [ "api/braille_display_private/braille_controller_stub.cc" ]
-   }
-+  deps += mises_extensions_resources
- }
- 
- static_library("test_support") {

@@ -1,0 +1,14 @@
+Name: firebase-analytics
+Short Name: firebase-analytics
+URL: https://firebase.google.com
+Version: 17.6.0
+License: Android Software Development Kit License
+License File: LICENSE
+CPEPrefix: unknown
+Security Critical: yes
+
+Description:
+Firebase Analytics SDK.
+
+Local Modifications:
+No modifications.

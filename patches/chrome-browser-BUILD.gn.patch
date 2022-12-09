@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/BUILD.gn b/chrome/browser/BUILD.gn
-index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..9d693f29fdc29857e15f0d89d31d489f0ad67343 100644
+index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..798c4fd5eef01e47e72f49cdbf0864254d195995 100644
 --- a/chrome/browser/BUILD.gn
 +++ b/chrome/browser/BUILD.gn
 @@ -2490,6 +2490,7 @@ static_library("browser") {
@@ -56,17 +56,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..9d693f29fdc29857e15f0d89d31d489f
      sources += [
        "page_load_metrics/observers/side_search_page_load_metrics_observer.cc",
        "page_load_metrics/observers/side_search_page_load_metrics_observer.h",
-@@ -6653,6 +6657,9 @@ static_library("browser") {
-     if (use_aura && !is_win && !is_chromeos_ash) {
-       sources += [ "background/background_mode_manager_aura.cc" ]
-     }
-+    if (is_android) {
-+      sources += [ "background/background_mode_manager_android.cc" ]
-+    }
-   }
-   if (enable_background_contents) {
-     sources += [
-@@ -7390,7 +7397,7 @@ static_library("browser") {
+@@ -7390,7 +7394,7 @@ static_library("browser") {
      }
    }
  
@@ -75,7 +65,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..9d693f29fdc29857e15f0d89d31d489f
      sources += [
        "sessions/app_session_service.cc",
        "sessions/app_session_service.h",
-@@ -7548,7 +7555,7 @@ static_library("browser") {
+@@ -7548,7 +7552,7 @@ static_library("browser") {
      ]
    }
    if (enable_supervised_users && enable_extensions) {
@@ -84,7 +74,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..9d693f29fdc29857e15f0d89d31d489f
      sources += [
        "supervised_user/supervised_user_extensions_delegate_impl.cc",
        "supervised_user/supervised_user_extensions_delegate_impl.h",
-@@ -7852,10 +7859,12 @@ grit("resources") {
+@@ -7852,10 +7856,12 @@ grit("resources") {
    }
  
    if (is_android) {

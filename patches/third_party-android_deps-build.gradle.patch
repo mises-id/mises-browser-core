@@ -1,0 +1,11 @@
+diff --git a/third_party/android_deps/build.gradle b/third_party/android_deps/build.gradle
+index 853a75e4158172ed18da88dd310e4944a99bbc5e..ace48642a0231cb6e816a02c13fe16c4f1bb3dea 100644
+--- a/third_party/android_deps/build.gradle
++++ b/third_party/android_deps/build.gradle
+@@ -197,5 +197,5 @@ task setUpRepository(type: BuildConfigGenerator) {
+     repositoryPath 'third_party/android_deps'
+     chromiumSourceRoot '../..'
+     cipdBucket 'chromium'
+-    internalTargetVisibility = [ ':*', '//third_party/androidx:*' ]
++    internalTargetVisibility = [ ':*', '//third_party/androidx:*', '//mises/third_party/android_deps*' ]
+ }

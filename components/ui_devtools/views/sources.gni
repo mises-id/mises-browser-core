@@ -1,0 +1,11 @@
+mises_components_ui_devtools_views_sources = []
+
+  if (is_android) {
+    mises_components_ui_devtools_views_sources += [
+      "//mises/chromium_src/components/ui_devtools/views/dom_agent_android.cc",
+      "//mises/chromium_src/components/ui_devtools/views/dom_agent_android.h",
+      "//mises/chromium_src/components/ui_devtools/views/overlay_agent_android.cc",
+      "//mises/chromium_src/components/ui_devtools/views/overlay_agent_android.h",
+    ]
+  }
+

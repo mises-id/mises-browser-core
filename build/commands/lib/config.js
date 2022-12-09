@@ -321,6 +321,10 @@ Config.prototype.buildArgs = function () {
     sparkle_eddsa_private_key: this.sparkleEdDSAPrivateKey,
     sparkle_eddsa_public_key: this.sparkleEdDSAPublicKey,
     use_goma: this.use_goma,
+    enable_extensions: true,
+    enable_pdf: true,
+    enable_plugins: true,
+    enable_remoting: true,
     ...this.extraGnArgs,
   }
 
@@ -499,6 +503,10 @@ Config.prototype.buildArgs = function () {
       // it to 'pac'.
       args.arm_control_flow_integrity = 'pac'
     }
+
+    args.enable_pdf = false
+    args.enable_plugins = false
+    args.enable_remoting = false
 
     // These do not exist on android
     // TODO - recheck

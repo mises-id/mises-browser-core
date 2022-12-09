@@ -1,5 +1,5 @@
 diff --git a/ui/views/BUILD.gn b/ui/views/BUILD.gn
-index f0d388d953f23c2022b622222402c48fa9223e9d..25a18b7429182b82dec9e2b5d3d4a1f6aff83e06 100644
+index f0d388d953f23c2022b622222402c48fa9223e9d..ee9a2a2a602f193fba559c155512d1530523d88c 100644
 --- a/ui/views/BUILD.gn
 +++ b/ui/views/BUILD.gn
 @@ -13,7 +13,7 @@ import("//testing/test.gni")
@@ -11,26 +11,12 @@ index f0d388d953f23c2022b622222402c48fa9223e9d..25a18b7429182b82dec9e2b5d3d4a1f6
  
  config("flags") {
    defines = [ "TOOLKIT_VIEWS=1" ]
-@@ -688,6 +688,22 @@ component("views") {
+@@ -688,6 +688,8 @@ component("views") {
        "//third_party/wtl",
      ]
    }
 + 
-+  if (is_android) {
-+    public += [
-+      "widget/native_widget_android.h",
-+      "controls/native/native_view_host_android.h",
-+    ]
-+    sources += [
-+      "controls/native/native_view_host_android.cc",
-+      "widget/native_widget_android.cc",
-+      "event_monitor_android.cc",
-+      "metrics_android.cc",
-+      "drag_utils_android.cc",
-+      "controls/menu/menu_config_android.cc",
-+      "views_touch_selection_controller_factory_android.cc",
-+    ]
-+  }
++  import("//mises/ui/views/sources.gni") public += mises_ui_view_public  sources += mises_ui_view_sources
  
    if (use_aura) {
      public += [

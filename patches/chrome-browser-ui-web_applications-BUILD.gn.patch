@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/web_applications/BUILD.gn b/chrome/browser/ui/web_applications/BUILD.gn
-index 5d2724f8f3fdfe80c904a6411f0287a6ab284e59..57fb669f0eba0462f2fc14e6c08d42f7a1fdd1c9 100644
+index 5d2724f8f3fdfe80c904a6411f0287a6ab284e59..bf6a7e1c9238735f149dc1b1a5a5795fd850ce67 100644
 --- a/chrome/browser/ui/web_applications/BUILD.gn
 +++ b/chrome/browser/ui/web_applications/BUILD.gn
 @@ -91,6 +91,10 @@ source_set("browser_tests") {
@@ -13,15 +13,6 @@ index 5d2724f8f3fdfe80c904a6411f0287a6ab284e59..57fb669f0eba0462f2fc14e6c08d42f7
  }
  
  # On Lacros, these browser tests require Ash to be running.
-@@ -117,7 +121,7 @@ source_set("app_service_browser_tests") {
-     "//chrome/browser/web_applications",
-     "//chrome/browser/web_applications:web_applications_test_support",
-     "//chrome/test:test_support",
--    "//chrome/test:test_support_ui",
-+      "//chrome/test:test_support_ui",
-     "//components/services/app_service/public/cpp:intents",
-   ]
- 
 @@ -128,4 +132,7 @@ source_set("app_service_browser_tests") {
        "//chromeos/lacros:test_support",
      ]

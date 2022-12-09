@@ -92,7 +92,7 @@ android_aar_prebuilt("google_play_services_ads_identifier_java") {
     ":*",
     "//third_party/androidx:*",
   ]
-  deps = [ ":google_play_services_basement_java" ]
+  deps = [ "$google_play_services_package:google_play_services_basement_java" ]
 }
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
@@ -108,10 +108,10 @@ android_aar_prebuilt("google_play_services_measurement_java") {
   ]
   deps = [
     ":google_play_services_ads_identifier_java",
-    ":google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_basement_java",
     ":google_play_services_measurement_base_java",
     ":google_play_services_measurement_impl_java",
-    ":google_play_services_stats_java",
+    "$google_play_services_package:google_play_services_stats_java",
     "//third_party/androidx:androidx_collection_collection_java",
     "//third_party/androidx:androidx_legacy_legacy_support_core_utils_java",
   ]
@@ -129,17 +129,17 @@ android_aar_prebuilt("google_play_services_measurement_api_java") {
     "//third_party/androidx:*",
   ]
   deps = [
-    ":google_firebase_firebase_common_java",
-    ":google_firebase_firebase_components_java",
-    ":google_firebase_firebase_installations_interop_java",
-    ":google_firebase_firebase_installations_java",
-    ":google_firebase_firebase_measurement_connector_java",
+    "$google_play_services_package:google_firebase_firebase_common_java",
+    "$google_play_services_package:google_firebase_firebase_components_java",
+    "$google_play_services_package:google_firebase_firebase_installations_interop_java",
+    "$google_play_services_package:google_firebase_firebase_installations_java",
+    "$google_play_services_package:google_firebase_firebase_measurement_connector_java",
     ":google_play_services_ads_identifier_java",
-    ":google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_basement_java",
     ":google_play_services_measurement_base_java",
     ":google_play_services_measurement_impl_java",
     ":google_play_services_measurement_sdk_api_java",
-    ":google_play_services_tasks_java",
+    "$google_play_services_package:google_play_services_tasks_java",
   ]
 }
 
@@ -154,7 +154,7 @@ android_aar_prebuilt("google_play_services_measurement_base_java") {
     ":*",
     "//third_party/androidx:*",
   ]
-  deps = [ ":google_play_services_basement_java" ]
+  deps = [ "$google_play_services_package:google_play_services_basement_java" ]
 }
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
@@ -170,9 +170,9 @@ android_aar_prebuilt("google_play_services_measurement_impl_java") {
   ]
   deps = [
     ":google_play_services_ads_identifier_java",
-    ":google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_basement_java",
     ":google_play_services_measurement_base_java",
-    ":google_play_services_stats_java",
+    "$google_play_services_package:google_play_services_stats_java",
     "//third_party/androidx:androidx_collection_collection_java",
     "//third_party/androidx:androidx_core_core_java",
   ]
@@ -190,7 +190,7 @@ android_aar_prebuilt("google_play_services_measurement_sdk_java") {
     "//third_party/androidx:*",
   ]
   deps = [
-    ":google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_basement_java",
     ":google_play_services_measurement_base_java",
     ":google_play_services_measurement_impl_java",
     "//third_party/androidx:androidx_collection_collection_java",
@@ -209,7 +209,54 @@ android_aar_prebuilt("google_play_services_measurement_sdk_api_java") {
     "//third_party/androidx:*",
   ]
   deps = [
-    ":google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_basement_java",
     ":google_play_services_measurement_base_java",
+  ]
+}
+
+
+java_prebuilt("com_github_bumptech_glide_annotations_java") {
+  jar_path = "libs/com_github_bumptech_glide_annotations/annotations-4.11.0.jar"
+  supports_android = true
+  visibility = [ ":*" ]
+}
+
+android_aar_prebuilt("com_caverock_androidsvg_java") {
+  aar_path = "libs/com_caverock_androidsvg/androidsvg-aar-1.4.aar"
+  info_path = "libs/com_caverock_androidsvg/com_caverock_androidsvg_java.info"
+  visibility = [ ":*" ]
+  deps = [
+  ]
+}
+java_annotation_processor("glide_annotation_processor") {
+   jar_path = "libs/com_github_bumptech_glide_compiler/compiler-4.11.0.jar"
+   main_class = "com.bumptech.glide.annotation.compiler.GlideAnnotationProcessor"
+  deps = [
+    ":com_github_bumptech_glide_annotations_java",
+  ]
+}
+
+android_aar_prebuilt("com_kirich1409_svgplugin_java") {
+  aar_path = "libs/com_kirich1409_svgplugin/svg-glide4-plugin-1.2.1.aar"
+  info_path = "libs/com_kirich1409_svgplugin/com_kirich1409_svgplugin_java.info"
+  deps = [
+    ":com_caverock_androidsvg_java",
+    ":com_github_bumptech_glide_annotations_java",
+    ":com_github_bumptech_glide_java"
+  ]
+}
+
+android_library("com_kirich1409_svgimageloaderplugins_java") {
+  annotation_processor_deps = [ ":glide_annotation_processor" ]
+  chromium_code = false
+  sources  = [
+    "libs/com_kirich1409_svgplugin/SvgGlideModule.java",
+  ]
+  deps = [
+    ":com_kirich1409_svgplugin_java",
+    ":com_github_bumptech_glide_annotations_java",
+    ":com_github_bumptech_glide_java",
+    "//third_party/androidx:androidx_annotation_annotation_java",
+    "//third_party/androidx:androidx_fragment_fragment_java",
   ]
 }

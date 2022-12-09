@@ -1,0 +1,17 @@
+diff --git a/chrome/android/java/res/values-hdpi/dimens.xml b/chrome/android/java/res/values-hdpi/dimens.xml
+old mode 100644
+new mode 100755
+index 51d8f55e7dd4326d897325bcd8b55e230154c645..7c0b01472c302e6feac2834d9255660be26b8603
+--- a/chrome/android/java/res/values-hdpi/dimens.xml
++++ b/chrome/android/java/res/values-hdpi/dimens.xml
+@@ -10,6 +10,10 @@
+     <!-- The size of the bounding box for favicons. -->
+     <dimen name="compositor_tab_title_favicon_size">16dp</dimen>
+ 
++    <!-- TabSwitcher -->
++    <dimen name="tabswitcher_border_frame_padding_left">5.333dp</dimen>
++    <dimen name="tabswitcher_border_frame_padding_top">49.333dp</dimen>
++
+     <!-- Location bar -->
+     <dimen name="location_bar_status_separator_width">0.5dp</dimen>
+ </resources>

@@ -88,15 +88,15 @@ if (is_mac) {
 
 if (is_android) {
   mises_chrome_browser_sources += [
-    "//mises/android/app_menu_bridge.cc",
-    "//mises/android/mises/mises_controller.cc",
-    "//mises/android/mises/mises_controller.h",
-    "obsolete_system/obsolete_system_android.cc",
+    "//mises/chromium_src/chrome/browser/android/app_menu_bridge.cc",
+    "//mises/chromium_src/chrome/browser/android/mises/mises_controller.cc",
+    "//mises/chromium_src/chrome/browser/android/mises/mises_controller.h",
+    "//mises/chromium_src/chrome/browser/obsolete_system/obsolete_system_android.cc",
     "upgrade_detector/get_installed_version_fuchsia.cc",
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
-    "download/drag_download_item_android.cc",
+    "//mises/chromium_src/chrome/browser/download/drag_download_item_android.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
-
+    "//mises/chromium_src/chrome/browser/background/background_mode_manager_android.cc"
 
   ]
 

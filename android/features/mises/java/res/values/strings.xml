@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+
+    <string name="msg_notification_service_desc">The LCD(light client daemon) provides an access to the Mises Chain</string>
+    <string name="title_foreground_service_notification_running">LCD is running</string>
+    <string name="title_foreground_service_notification_error">LCD has error, auto-restart in a few minutes</string>
+    <string name="lbl_btn_sticky_notification_open_app">Open Mises Browser</string>
+    <string name="lbl_btn_sticky_notification_restart_lcd">Restart LCD service</string>
+    <string name="lbl_create_mises_id">Create/Restore</string>
+    <string name="lbl_my_data">My Data</string>
+    <string name="lbl_mises_discover">Mises Discover</string>
+    <string name="lbl_wallet">Wallet</string>
+    <string name="lbl_portal">Staking Portal</string>
+    <string name="lbl_nft">NFT</string>
+    <string name="lbl_input_content">Please enter the contents&#8230;</string>
+    <string name="lbl_login">Log in</string>
+    <string name="lbl_message">Message</string>
+    <string name="lbl_login_tip">Go to login Mises ID</string>
+    <string name="lbl_auth_tip">Authorization expires,please reauthorization</string>
+    <string name="lbl_can_not_share_tip">This page can\'t share</string>
+    <string name="lbl_default_browser_tip">Make Mises your default browser</string>
+    <string name="lbl_view_office_site">View Official Website</string>
+    <string name="lbl_invite">Invite</string>
+    <string name="lbl_id_copied_tip">Your Mises ID has been copied</string>
+    <string name="lbl_update_download_complete_tip">An update has just been downloaded, install now?</string>
+</resources>

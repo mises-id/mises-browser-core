@@ -12,23 +12,24 @@
 #include "base/system/sys_info.h"
 #include "base/trace_event/base_tracing.h"
 #include "base/android/jni_string.h"
+#include "mises/build/android/jni_headers/MisesSysUtils_jni.h"
 
 namespace base {
 namespace android {
 
 long SysUtils::FirstInstallDateFromJni() {
   JNIEnv* env = AttachCurrentThread();
-  return Java_SysUtils_firstInstallDate(env);
+  return Java_MisesSysUtils_firstInstallDate(env);
 }
 
 std::string SysUtils::ReferrerStringFromJni() {
   JNIEnv* env = AttachCurrentThread();
-  return ConvertJavaStringToUTF8(env, Java_SysUtils_referrerString(env));
+  return ConvertJavaStringToUTF8(env, Java_MisesSysUtils_referrerString(env));
 }
 
 std::string SysUtils::NightModeSettingsFromJni() {
   JNIEnv* env = AttachCurrentThread();
-  return ConvertJavaStringToUTF8(env, Java_SysUtils_nightModeSettings(env));
+  return ConvertJavaStringToUTF8(env, Java_MisesSysUtils_nightModeSettings(env));
 }
 
 bool SysUtils::IsLowEndDeviceFromJni() {

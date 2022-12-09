@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/BUILD.gn b/chrome/browser/ui/BUILD.gn
-index 3f4929cc5078cea1eac968ef41818823223da20d..b92cbe0bcbb78a16bc4c4fc6ee827b672e23b306 100644
+index 3f4929cc5078cea1eac968ef41818823223da20d..f5584c13a15a30b21d57ad6ef627811e04125790 100644
 --- a/chrome/browser/ui/BUILD.gn
 +++ b/chrome/browser/ui/BUILD.gn
 @@ -945,7 +945,8 @@ static_library("ui") {
@@ -30,7 +30,7 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..b92cbe0bcbb78a16bc4c4fc6ee827b67
      sources += [
        "autofill/payments/virtual_card_selection_dialog_controller.h",
        "autofill/payments/virtual_card_selection_dialog_controller_impl.cc",
-@@ -3426,6 +3427,24 @@ static_library("ui") {
+@@ -3426,6 +3427,13 @@ static_library("ui") {
        "//ui/webui",
      ]
    }
@@ -39,23 +39,12 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..b92cbe0bcbb78a16bc4c4fc6ee827b67
 +      "views/external_protocol_dialog.cc",
 +      "views/external_protocol_dialog.h",
 +    ]
-+    sources += [
-+      "window_sizer/window_sizer_android.cc",
-+      "views/accelerator_utils_android.cc",
-+      "views/frame/browser_non_client_frame_view_factory_views.cc",
-+      "views/frame/native_browser_frame_factory_android.cc",
-+      "views/frame/desktop_browser_frame_android.cc",
-+      "views/frame/desktop_browser_frame_android.h",
-+      "android/native_window_tracker_android.cc",
-+      "android/native_window_tracker_android.h",
-+      "views/chrome_views_delegate_android.cc",
-+    ]
-+    
++    import("//mises/browser/ui/sources.gni") sources += mises_browser_ui_sources
 +  }
  
    if (is_win || is_mac || is_fuchsia || is_linux) {
      sources += [
-@@ -3902,7 +3921,7 @@ static_library("ui") {
+@@ -3902,7 +3910,7 @@ static_library("ui") {
      # to fail on this variant. Since this target is only referenced (but not
      # compiled) on this variant, it's okay to add this "incorrect" dependency
      # to Cast Linux builds so that `gn check` passes.
@@ -64,7 +53,7 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..b92cbe0bcbb78a16bc4c4fc6ee827b67
        public_deps += [
          "//ui/views",
          "//ui/views/controls/webview",
-@@ -4026,7 +4045,16 @@ static_library("ui") {
+@@ -4026,7 +4034,16 @@ static_library("ui") {
      }
    }
  
@@ -82,7 +71,7 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..b92cbe0bcbb78a16bc4c4fc6ee827b67
      sources += [
        "autofill/address_editor_controller.cc",
        "autofill/address_editor_controller.h",
-@@ -5104,6 +5132,49 @@ static_library("ui") {
+@@ -5104,6 +5121,49 @@ static_library("ui") {
        "window_name_prompt/window_name_prompt.cc",
      ]
  
@@ -132,18 +121,13 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..b92cbe0bcbb78a16bc4c4fc6ee827b67
      deps += [
        "side_search:side_search_tab_data_proto",
        "//base",
-@@ -5271,6 +5342,16 @@ static_library("ui") {
+@@ -5271,6 +5331,11 @@ static_library("ui") {
        ]
      }
  
 +    if (is_android) {
 +      sources -= [
 +        "views/screen_capture_notification_ui_views.cc",
-+      ]
-+      sources += [
-+        "views/dropdown_bar_host_android.cc",
-+        "views/profiles/badged_profile_photo.cc",
-+        "views/profiles/badged_profile_photo.h",
 +      ]
 +    }
      if (!is_chromeos) {
