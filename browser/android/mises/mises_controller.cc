@@ -1,9 +1,9 @@
-#include "chrome/browser/android/mises/mises_controller.h"
+#include "mises/browser/android/mises/mises_controller.h"
 #include <jni.h>
 #include "base/android/jni_android.h"
 #include "base/android/jni_string.h"
 #include "base/memory/singleton.h"
-#include "chrome/android/features/mises/jni_headers/MisesController_jni.h"
+#include "mises/android/features/mises/jni_headers/MisesController_jni.h"
 
 namespace android {
 

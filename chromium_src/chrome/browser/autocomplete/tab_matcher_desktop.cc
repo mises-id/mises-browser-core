@@ -56,6 +56,7 @@ WEB_CONTENTS_USER_DATA_KEY_IMPL(AutocompleteClientWebContentsUserData);
 
 bool TabMatcherDesktop::IsTabOpenWithURL(const GURL& url,
                                          const AutocompleteInput* input) const {
+#if !BUILDFLAG(IS_ANDROID)
   const AutocompleteInput empty_input;
   if (!input)
     input = &empty_input;
@@ -65,7 +66,6 @@ bool TabMatcherDesktop::IsTabOpenWithURL(const GURL& url,
   content::WebContents* active_tab = nullptr;
   if (active_browser)
     active_tab = active_browser->tab_strip_model()->GetActiveWebContents();
-#if !BUILDFLAG(IS_ANDROID)
   for (auto* web_contents : GetOpenTabs()) {
     if (web_contents != active_tab &&
         IsStrippedURLEqualToWebContentsURL(stripped_url, web_contents)) {

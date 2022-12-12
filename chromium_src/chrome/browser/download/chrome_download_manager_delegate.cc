@@ -1077,12 +1077,13 @@ void ChromeDownloadManagerDelegate::RequestConfirmation(
         return;
       }
 
-      if (false)
+    #if !BUILDFLAG(IS_ANDROID)
       if (!download_prefs_->PromptForDownload()) {
         DuplicateDownloadDialogBridgeDelegate::GetInstance()->CreateDialog(
             download, suggested_path, web_contents, std::move(callback));
         return;
       }
+    #endif
 
       // This should be passed as a callback parameter
       // but we avoid doing so to limit the amount of code we modify

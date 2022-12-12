@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
-index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..07d83fcec0f3f70253e372e9f00f29edb39d621a 100644
+index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..7d7f5abbad9dda621cf8345ddb200da31269f437 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
 @@ -37,6 +37,11 @@ import org.chromium.ui.UiUtils;
@@ -14,16 +14,19 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..07d83fcec0f3f70253e372e9f00f29ed
  /**
   * Controls the bottom system navigation bar color for the provided {@link Window}.
   */
-@@ -183,7 +188,7 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -182,8 +187,9 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+     @SuppressLint("NewApi")
      private void updateNavigationBarColor() {
          boolean forceDarkNavigation;
-         if (DeviceClassManager.enableAccessibilityLayout(mRootView.getContext())
+-        if (DeviceClassManager.enableAccessibilityLayout(mRootView.getContext())
 -                || TabUiFeatureUtilities.isGridTabSwitcherEnabled(mRootView.getContext())) {
-+                || TabUiFeatureUtilities.isGridTabSwitcherEnabled(mRootView.getContext()) || true) {
++        boolean mises_enforce = true;
++	if (DeviceClassManager.enableAccessibilityLayout(mRootView.getContext())
++                || TabUiFeatureUtilities.isGridTabSwitcherEnabled(mRootView.getContext()) || mises_enforce) {
              forceDarkNavigation = mTabModelSelector.isIncognitoSelected();
          } else {
              boolean overviewVisible = mLayoutManager != null
-@@ -195,6 +200,11 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -195,6 +201,11 @@ class TabbedNavigationBarColorController implements VrModeObserver {
          forceDarkNavigation &= !UiUtils.isSystemUiThemingDisabled();
          forceDarkNavigation |= mIsInFullscreen;
  
@@ -35,7 +38,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..07d83fcec0f3f70253e372e9f00f29ed
          mForceDarkNavigationBarColor = forceDarkNavigation;
          final @ColorInt int navigationBarColor =
                  getNavigationBarColor(mForceDarkNavigationBarColor);
-@@ -215,6 +225,8 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -215,6 +226,8 @@ class TabbedNavigationBarColorController implements VrModeObserver {
              mWindow.setNavigationBarDividerColor(
                      getNavigationBarDividerColor(mForceDarkNavigationBarColor));
          }
@@ -44,7 +47,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..07d83fcec0f3f70253e372e9f00f29ed
      }
  
      /**
-@@ -223,12 +235,19 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -223,12 +236,19 @@ class TabbedNavigationBarColorController implements VrModeObserver {
       */
      public void setNavigationBarScrimFraction(float fraction) {
          mNavigationBarScrimFraction = fraction;
@@ -64,7 +67,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..07d83fcec0f3f70253e372e9f00f29ed
  
          // Adjust the color of navigation bar icons based on color state of the navigation bar.
          if (MathUtils.areFloatsEqual(1f, fraction)) {
-@@ -239,12 +258,16 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -239,12 +259,16 @@ class TabbedNavigationBarColorController implements VrModeObserver {
      }
  
      private @ColorInt int getNavigationBarColor(boolean forceDarkNavigationBar) {
@@ -81,7 +84,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..07d83fcec0f3f70253e372e9f00f29ed
          return forceDarkNavigationBar
                  ? mContext.getColor(R.color.bottom_system_nav_divider_color_light)
                  : SemanticColorUtils.getBottomSystemNavDividerColor(mWindow.getContext());
-@@ -257,4 +280,4 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -257,4 +281,4 @@ class TabbedNavigationBarColorController implements VrModeObserver {
          return ColorUtils.getColorWithOverlay(
                  color, scrimColorOpaque, mNavigationBarScrimFraction * scrimColorAlpha, true);
      }

@@ -89,8 +89,8 @@ if (is_mac) {
 if (is_android) {
   mises_chrome_browser_sources += [
     "//mises/chromium_src/chrome/browser/android/app_menu_bridge.cc",
-    "//mises/chromium_src/chrome/browser/android/mises/mises_controller.cc",
-    "//mises/chromium_src/chrome/browser/android/mises/mises_controller.h",
+    "//mises/browser/android/mises/mises_controller.cc",
+    "//mises/browser/android/mises/mises_controller.h",
     "//mises/chromium_src/chrome/browser/obsolete_system/obsolete_system_android.cc",
     "upgrade_detector/get_installed_version_fuchsia.cc",
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
@@ -103,6 +103,7 @@ if (is_android) {
   mises_chrome_browser_deps += [
     "//mises/browser/android:android_browser_process",
     "//mises/build/android:jni_headers",
+   "//mises/android/features/mises:jni_headers",
     "//chrome/android:jni_headers",
     "//components/sync_device_info",
   ]

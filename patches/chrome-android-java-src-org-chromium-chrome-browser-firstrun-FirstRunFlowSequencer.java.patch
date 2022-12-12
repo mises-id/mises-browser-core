@@ -1,13 +1,14 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java b/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
-index f40dc012580ea4fcb3395e0c86cd65da01736ca0..dd792438ca4b8df08afa1e7b8d541d9b14392123 100644
+index f40dc012580ea4fcb3395e0c86cd65da01736ca0..66a0df9f9a7cc217a5cdebcea7691faee125449f 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
-@@ -236,7 +236,7 @@ public abstract class FirstRunFlowSequencer  {
+@@ -236,7 +236,8 @@ public abstract class FirstRunFlowSequencer  {
       */
      public static boolean checkIfFirstRunIsNecessary(boolean preferLightweightFre, boolean isCct) {
          // If FRE is disabled (e.g. in tests), proceed directly to the intent handling.
 -        if (CommandLine.getInstance().hasSwitch(ChromeSwitches.DISABLE_FIRST_RUN_EXPERIENCE)
-+        if (true || CommandLine.getInstance().hasSwitch(ChromeSwitches.DISABLE_FIRST_RUN_EXPERIENCE)
++        boolean mises_enforce = true;
++	if (mises_enforce || CommandLine.getInstance().hasSwitch(ChromeSwitches.DISABLE_FIRST_RUN_EXPERIENCE)
                  || ApiCompatibilityUtils.isDemoUser()
                  || ApiCompatibilityUtils.isRunningInUserTestHarness()) {
              return false;

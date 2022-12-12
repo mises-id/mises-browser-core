@@ -73,6 +73,12 @@ template("mises_extra_paks") {
       ]
     }
 
+    if (is_android) {
+      deps += [
+        "//content/browser/tracing:resources",
+        "//chrome/browser/resources/discards:resources"
+      ]
+    }
 
     if (defined(invoker.deps)) {
       deps += invoker.deps

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 267d5b1d56041ed17bb0d558bc32619f1826054b..703d07a2d67f9a0b0ebb42e6dcf0a5528d4b616d 100644
+index 267d5b1d56041ed17bb0d558bc32619f1826054b..f99e76005367dbe6f9c32c67e85e179392d98c5d 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -34,6 +34,8 @@ import android.view.View.OnClickListener;
@@ -337,30 +337,34 @@ index 267d5b1d56041ed17bb0d558bc32619f1826054b..703d07a2d67f9a0b0ebb42e6dcf0a552
      }
  
      /**
-@@ -1560,7 +1725,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1560,7 +1725,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
          if (mForceTextureCapture) {
              return CaptureReadinessResult.readyForced();
          }
 -        if (ChromeFeatureList.isEnabled(ChromeFeatureList.SUPPRESS_TOOLBAR_CAPTURES)) {
-+        if (true || ChromeFeatureList.isEnabled(ChromeFeatureList.SUPPRESS_TOOLBAR_CAPTURES)) {
++	boolean mises_enforce = true;
++        if (mises_enforce || ChromeFeatureList.isEnabled(ChromeFeatureList.SUPPRESS_TOOLBAR_CAPTURES)) {
              return getReadinessStateWithSuppression();
          } else {
              return CaptureReadinessResult.unknown(!(urlHasFocus() || mUrlFocusChangeInProgress));
-@@ -1668,7 +1833,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1667,8 +1833,9 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+ 
      @Override
      public void updateButtonVisibility() {
-         boolean hideHomeButton =
+-        boolean hideHomeButton =
 -                !mIsHomeButtonEnabled || getToolbarDataProvider().isInOverviewAndShowingOmnibox();
-+                true || !mIsHomeButtonEnabled || getToolbarDataProvider().isInOverviewAndShowingOmnibox();
++        boolean mises_enforce = true;
++	boolean hideHomeButton =
++                mises_enforce || !mIsHomeButtonEnabled || getToolbarDataProvider().isInOverviewAndShowingOmnibox();
          if (hideHomeButton) {
              removeHomeButton();
          } else {
-@@ -1683,11 +1848,20 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1683,11 +1850,20 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
                  mOptionalButton.setPaddingStart(0);
              }
          }
 +        if (mHandButton != null) {
-+          if (true || !ContextUtils.getAppSharedPreferences().getBoolean("enable_overscroll_button", true))
++          if (mises_enforce || !ContextUtils.getAppSharedPreferences().getBoolean("enable_overscroll_button", true))
 +            mHandButton.setVisibility(GONE);
 +        }
      }
@@ -377,7 +381,7 @@ index 267d5b1d56041ed17bb0d558bc32619f1826054b..703d07a2d67f9a0b0ebb42e6dcf0a552
  
          if (mToggleTabStackButton != null) {
              mToggleTabStackButton.setBrandedColorScheme(brandedColorScheme);
-@@ -1704,6 +1878,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1704,6 +1880,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
          if (mLocationBar != null) mLocationBar.updateVisualsForState();
  
          if (mLayoutUpdater != null) mLayoutUpdater.run();
@@ -386,7 +390,7 @@ index 267d5b1d56041ed17bb0d558bc32619f1826054b..703d07a2d67f9a0b0ebb42e6dcf0a552
      }
  
      @Override
-@@ -1909,7 +2085,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1909,7 +2087,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
          mAnimateNormalToolbar = showToolbar;
          if (mTabSwitcherModeAnimation != null) mTabSwitcherModeAnimation.start();
  
@@ -395,7 +399,7 @@ index 267d5b1d56041ed17bb0d558bc32619f1826054b..703d07a2d67f9a0b0ebb42e6dcf0a552
              finishAnimations();
          }
  
-@@ -2196,7 +2372,9 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -2196,7 +2374,9 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
  
      @Override
      public void onTabCountChanged(int numberOfTabs, boolean isIncognito) {
@@ -406,7 +410,7 @@ index 267d5b1d56041ed17bb0d558bc32619f1826054b..703d07a2d67f9a0b0ebb42e6dcf0a552
          if (mToggleTabStackButton == null) return;
  
          @BrandedColorScheme
-@@ -2381,6 +2559,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -2381,6 +2561,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
       * @return Whether the toolbar shadow should be drawn.
       */
      private boolean shouldDrawShadow() {
@@ -414,7 +418,7 @@ index 267d5b1d56041ed17bb0d558bc32619f1826054b..703d07a2d67f9a0b0ebb42e6dcf0a552
          // TODO(twellington): Move this shadow state information to ToolbarDataProvider and show
          // shadow when incognito NTP is scrolled.
          return mTabSwitcherState == STATIC_TAB && !mForceHideShadow && !hideShadowForIncognitoNtp()
-@@ -2847,4 +3026,220 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -2847,4 +3028,220 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
          return mUrlFocusChangeInProgress || mBrandColorTransitionActive
                  || mOptionalButtonAnimationRunning;
      }

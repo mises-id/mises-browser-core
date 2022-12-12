@@ -126,6 +126,7 @@ android_aar_prebuilt("google_play_services_measurement_api_java") {
   # //third_party/android_deps/build.gradle.
   visibility = [
     ":*",
+    "*",
     "//third_party/androidx:*",
   ]
   deps = [

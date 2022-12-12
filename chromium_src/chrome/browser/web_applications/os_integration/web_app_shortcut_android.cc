@@ -141,6 +141,7 @@ std::string CreateShortcutIcon(const gfx::ImageFamily& icon_images,
   return std::string();
 }
 
+#if !BUILDFLAG(IS_ANDROID)
 bool CreateShortcutAtLocation(const base::FilePath location_path,
                               const base::FilePath& shortcut_filename,
                               const std::string& contents) {
@@ -181,7 +182,6 @@ bool CreateShortcutAtLocation(const base::FilePath location_path,
   return true;
 }
 
-#if !BUILDFLAG(IS_ANDROID)
 bool CreateShortcutOnDesktop(const base::FilePath& shortcut_filename,
                              const std::string& contents) {
   base::FilePath desktop_path = GetDesktopPath();

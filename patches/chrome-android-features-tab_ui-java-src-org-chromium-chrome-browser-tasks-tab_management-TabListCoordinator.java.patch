@@ -1,5 +1,5 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
-index d764e7808bab7706e74288920160475b249da9a1..4c5b1b36ed0a8a8bd57c044b89bbf80f32d78e8e 100644
+index d764e7808bab7706e74288920160475b249da9a1..672316b1be99e6ce8b03fb3b8a6170298ff7b0de 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
 @@ -43,10 +43,15 @@ import org.chromium.ui.modelutil.SimpleRecyclerViewAdapter;
@@ -48,7 +48,7 @@ index d764e7808bab7706e74288920160475b249da9a1..4c5b1b36ed0a8a8bd57c044b89bbf80f
                  GridLayoutManager gridLayoutManager =
                          new GridLayoutManager(context, GRID_LAYOUT_SPAN_COUNT_COMPACT);
                  mRecyclerView.setLayoutManager(gridLayoutManager);
-+                if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic") && componentName != "TabGridDialogInSwitcher" && componentName != "TabGridDialogFromStrip")
++                if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic") && !componentName.equals("TabGridDialogInSwitcher") && !componentName.equals("TabGridDialogFromStrip"))
 +                    mRecyclerView.addItemDecoration(new ClassicStyleSwitcher());
                  mMediator.registerOrientationListener(gridLayoutManager);
                  mMediator.updateSpanCount(gridLayoutManager,

@@ -23,7 +23,7 @@
 #include "mojo/public/cpp/bindings/pending_associated_remote.h"
 #include "third_party/blink/public/common/associated_interfaces/associated_interface_provider.h"
 #if BUILDFLAG(IS_ANDROID)
-#include "chrome/browser/android/mises/mises_controller.h"
+#include "mises/browser/android/mises/mises_controller.h"
 #endif
 namespace {
 

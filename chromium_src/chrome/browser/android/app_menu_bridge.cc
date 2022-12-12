@@ -93,7 +93,7 @@
  #include "ui/base/webui/web_ui_util.h"
 #include "ui/color/color_provider_manager.h"
 #include "ui/native_theme/native_theme.h"
-#include "chrome/android/chrome_jni_headers/AppMenuBridge_jni.h"
+#include "mises/build/android/jni_headers//AppMenuBridge_jni.h"
 #include "content/public/browser/web_contents.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/extensions/api/extension_action/extension_action_api.h"
@@ -102,7 +102,6 @@
 using base::android::ConvertUTF8ToJavaString;
 using base::android::ScopedJavaLocalRef;
 
-static ScopedJavaLocalRef<jstring>;
 
 
 
@@ -192,7 +191,7 @@ static ScopedJavaLocalRef<jstring>;
    // overflowed, we add a decoration so that the user can see which overflowed
    // action wants to run (since they wouldn't be able to see the change from
    // grayscale to color).
-   bool is_overflow = false;
+  // bool is_overflow = false;
  
    bool has_blocked_actions = HasBeenBlocked(web_contents, extension);
  //  image_source->set_state(state);

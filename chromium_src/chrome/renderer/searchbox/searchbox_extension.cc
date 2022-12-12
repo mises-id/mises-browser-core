@@ -55,7 +55,7 @@
 #include "url/gurl.h"
 #include "url/url_constants.h"
 #include "v8/include/v8.h"
-#include "chrome/browser/android/mises/mises_controller.h"
+#include "mises/browser/android/mises/mises_controller.h"
 
 #include "chrome/renderer/chrome_render_thread_observer.h"
 

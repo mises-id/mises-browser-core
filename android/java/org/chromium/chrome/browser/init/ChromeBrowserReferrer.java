@@ -6,7 +6,6 @@ package org.chromium.chrome.browser.init;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -71,6 +70,8 @@ import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerClient.InstallReferrerResponse;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
+import org.chromium.net.ChromiumNetworkAdapter;
+import org.chromium.net.NetworkTrafficAnnotationTag;
 
 /**
  * Application level delegate that handles start up tasks.
@@ -111,7 +112,8 @@ public class ChromeBrowserReferrer extends BroadcastReceiver {
             public void run() {
               try {
                 URL url = new URL("https://update.browser.mises.site/a/install.php?ping=" + URLEncoder.encode(referrer, "UTF-8"));
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                HttpURLConnection urlConnection = (HttpURLConnection) ChromiumNetworkAdapter.openConnection(
+				                            url, NetworkTrafficAnnotationTag.MISSING_TRAFFIC_ANNOTATION);
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 readStream(in);
                 urlConnection.disconnect();

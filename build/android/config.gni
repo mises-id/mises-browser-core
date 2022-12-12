@@ -45,7 +45,7 @@ mises_chrome_java_deps = [
   "//mises/third_party/android_deps:com_kirich1409_svgimageloaderplugins_java",
   "//third_party/android_deps:google_firebase_firebase_messaging_java",
   "//mises/third_party/android_deps:google_firebase_firebase_analytics_java",
-
+  "//mises/third_party/android_deps:google_play_services_measurement_api_java",
 ]
 
 mises_chrome_all_java_deps = [

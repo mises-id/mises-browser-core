@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
-index 98e9409a79745f09b0995d7731950a54cd8268f6..eac58ea57fbb748e28d053bb6f1cf1914fef0bc5 100644
+index 98e9409a79745f09b0995d7731950a54cd8268f6..83dfd583c0365d947d863aa1869ffc41ccebed65 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
 @@ -70,8 +70,8 @@ public class TopToolbarCoordinator implements Toolbar {
@@ -42,7 +42,7 @@ index 98e9409a79745f09b0995d7731950a54cd8268f6..eac58ea57fbb748e28d053bb6f1cf191
              layoutManager.addSceneOverlay(mOverlayCoordinator);
              mToolbarLayout.setOverlayCoordinator(mOverlayCoordinator);
          }
-@@ -408,7 +408,11 @@ public class TopToolbarCoordinator implements Toolbar {
+@@ -408,7 +408,12 @@ public class TopToolbarCoordinator implements Toolbar {
          mToolbarLayout.updateForwardButtonVisibility(canGoForward);
      }
  
@@ -52,6 +52,7 @@ index 98e9409a79745f09b0995d7731950a54cd8268f6..eac58ea57fbb748e28d053bb6f1cf191
 +     * reload button.
 +     * @param isReloading Whether or not the current tab is loading.
 +     */
++    @Override 
      public void updateReloadButtonVisibility(boolean isReloading) {
          mToolbarLayout.updateReloadButtonVisibility(isReloading);
      }

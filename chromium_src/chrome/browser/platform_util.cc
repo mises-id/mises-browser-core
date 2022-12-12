@@ -29,7 +29,7 @@ namespace platform_util {
 namespace {
 
 bool shell_operations_allowed = true;
-
+#if !BUILDFLAG(IS_ANDROID)
 void VerifyAndOpenItemOnBlockingThread(const base::FilePath& path,
                                        OpenItemType type,
                                        OpenOperationCallback callback) {
@@ -55,7 +55,7 @@ void VerifyAndOpenItemOnBlockingThread(const base::FilePath& path,
     content::GetUIThreadTaskRunner({})->PostTask(
         FROM_HERE, base::BindOnce(std::move(callback), OPEN_SUCCEEDED));
 }
-
+#endif
 }  // namespace
 
 namespace internal {

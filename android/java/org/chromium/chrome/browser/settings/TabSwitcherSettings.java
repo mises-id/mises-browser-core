@@ -45,15 +45,6 @@ public class TabSwitcherSettings extends PreferenceFragmentCompat {
         RecordUserAction.record("Settings.TabSwitcher.Opened");
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 
     private PreferenceValues createPreferenceValuesForRadioGroup() {
         String checkedOption = ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default");
