@@ -106,6 +106,7 @@ if (is_android) {
    "//mises/android/features/mises:jni_headers",
     "//chrome/android:jni_headers",
     "//components/sync_device_info",
+     "//chrome/utility:utility",
   ]
 } else {
   mises_chrome_browser_sources += [

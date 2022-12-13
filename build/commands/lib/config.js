@@ -495,7 +495,7 @@ Config.prototype.buildArgs = function () {
     args.enable_mdns = true
 
     // We want it to be enabled for all configurations
-    args.disable_android_lint = false
+    args.disable_android_lint = true
 
     if (this.targetArch === 'arm64') {
       // TODO: Ideally we should properly compile our rust libraries in order to

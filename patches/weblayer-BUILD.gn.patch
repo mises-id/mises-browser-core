@@ -1,0 +1,12 @@
+diff --git a/weblayer/BUILD.gn b/weblayer/BUILD.gn
+index 97b2f3eef91ecff8b3169303dd5c0c41f07df15e..75a5bd50ca5b627b8304d8c34a1846a3c86861dc 100644
+--- a/weblayer/BUILD.gn
++++ b/weblayer/BUILD.gn
+@@ -882,6 +882,7 @@ if (is_android) {
+         "//device/gamepad",
+         "//media/midi",
+         "//ui/events/devices",
++         "//chrome/browser:browser",
+       ]
+     }
+   }
