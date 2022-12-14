@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
-index f655316a6edf4d0d0326ef2343a415a71d861b0f..6cafd72f833ad1f9a3738a074c8ca1de983ee75c 100644
+index f655316a6edf4d0d0326ef2343a415a71d861b0f..b784b0e1fbaef9cc8b97f485497610424fd4f9c9 100644
 --- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
 +++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
 @@ -966,6 +966,11 @@ public final class ChromePreferenceKeys {
@@ -14,15 +14,3 @@ index f655316a6edf4d0d0326ef2343a415a71d861b0f..6cafd72f833ad1f9a3738a074c8ca1de
      /**
       * These values are currently used as SharedPreferences keys, along with the keys in
       * {@link LegacyChromePreferenceKeys#getKeysInUse()}. Add new SharedPreferences keys
-@@ -1107,7 +1112,10 @@ public final class ChromePreferenceKeys {
-                 WEB_FEED_INTRO_LAST_SHOWN_TIME_MS,
-                 WEB_FEED_INTRO_WEB_FEED_ID_SHOWN_TIME_MS_PREFIX.pattern(),
-                 WEB_FEED_INTRO_WEB_FEED_ID_SHOWN_COUNT_PREFIX.pattern(),
--                WEB_SIGNIN_ACCOUNT_PICKER_ACTIVE_DISMISSAL_COUNT
-+                WEB_SIGNIN_ACCOUNT_PICKER_ACTIVE_DISMISSAL_COUNT,
-+		DARKEN_WEBSITES_ENABLED,
-+                MISES_USER_INFO,
-+                MISES_FIRST_RUN
-         );
-         // clang-format on
-     }

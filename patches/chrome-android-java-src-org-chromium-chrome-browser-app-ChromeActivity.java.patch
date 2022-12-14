@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index 34fb55ab008df1831f9e6764a4b1085dd47015a6..203ebc5f12ae3a4c5aa224831918aedba73aea19 100644
+index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a91a3581e2 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
@@ -129,7 +129,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..203ebc5f12ae3a4c5aa224831918aedb
          display.addObserver(mDisplayAndroidObserver);
 +
 +
-+        MisesController.getInstance();
++        MisesController.getInstance().load();
 +
 +	Profile profile = getCurrentTabModel().getProfile();
 +        if (SharedPreferencesManager.getInstance().isMisesFirstRun()) {

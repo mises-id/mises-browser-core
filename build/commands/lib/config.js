@@ -325,6 +325,7 @@ Config.prototype.buildArgs = function () {
     enable_pdf: true,
     enable_plugins: true,
     enable_remoting: true,
+    enable_proguard_obfuscation: false,
     ...this.extraGnArgs,
   }
 
@@ -384,6 +385,7 @@ Config.prototype.buildArgs = function () {
       this.targetOS !== 'android') {
     args.enable_profiling = true
   }
+
 
   if (this.sccache) {
     if (process.platform === 'win32') {

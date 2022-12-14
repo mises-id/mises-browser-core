@@ -1,49 +1,40 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarOverlayMediator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarOverlayMediator.java
-index 07b35008f49cb0d611c4dfff30ff4fe55b6bd2f6..cc6213ba679b1ad387c13b04b6bfed74917fe24e 100644
+index 07b35008f49cb0d611c4dfff30ff4fe55b6bd2f6..bc013ac5fc0c172aa03dfa3e5883847c1ab27683 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarOverlayMediator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarOverlayMediator.java
-@@ -59,40 +59,35 @@ public class TopToolbarOverlayMediator {
+@@ -59,6 +59,9 @@ public class TopToolbarOverlayMediator {
      /** The view state for this overlay. */
      private final PropertyModel mModel;
  
--    /** Whether visibility is controlled internally or manually by the feature. */
--    private boolean mIsVisibilityManuallyControlled;
 +    /** Whether the active layout has its own toolbar to display instead of this one. */
 +    private boolean mLayoutHasOwnToolbar;
++
+     /** Whether visibility is controlled internally or manually by the feature. */
+     private boolean mIsVisibilityManuallyControlled;
  
-     /** Whether the android view for this overlay is visible. */
-     private boolean mIsAndroidViewVisible;
- 
--    /** Whether the overlay should be visible despite other signals. */
--    private boolean mManualVisibility;
--
--    /** Whether a layout that this overlay can be displayed on is showing. */
--    private boolean mIsOnValidLayout;
--
-     TopToolbarOverlayMediator(PropertyModel model, Context context,
-             LayoutStateProvider layoutStateProvider,
-             Callback<ClipDrawableProgressBar.DrawingInfo> progressInfoCallback,
+@@ -77,7 +80,7 @@ public class TopToolbarOverlayMediator {
              ObservableSupplier<Tab> tabSupplier,
              BrowserControlsStateProvider browserControlsStateProvider,
--            TopUiThemeColorProvider topUiThemeColorProvider, int layoutsToShowOn,
+             TopUiThemeColorProvider topUiThemeColorProvider, int layoutsToShowOn,
 -            boolean manualVisibilityControl) {
-+            TopUiThemeColorProvider topUiThemeColorProvider, boolean isGridTabSwitcherEnabled) {
++	    boolean manualVisibilityControl, boolean isGridTabSwitcherEnabled) {
          mContext = context;
          mLayoutStateProvider = layoutStateProvider;
          mProgressInfoCallback = progressInfoCallback;
-         mBrowserControlsStateProvider = browserControlsStateProvider;
+@@ -85,7 +88,7 @@ public class TopToolbarOverlayMediator {
          mTopUiThemeColorProvider = topUiThemeColorProvider;
          mModel = model;
--        mIsVisibilityManuallyControlled = manualVisibilityControl;
- 
--        mIsOnValidLayout = (mLayoutStateProvider.getActiveLayoutType() & layoutsToShowOn) > 0;
+         mIsVisibilityManuallyControlled = manualVisibilityControl;
+-
++ 
+         mIsOnValidLayout = (mLayoutStateProvider.getActiveLayoutType() & layoutsToShowOn) > 0;
          updateVisibility();
  
-         mSceneChangeObserver = new LayoutStateObserver() {
+@@ -93,6 +96,11 @@ public class TopToolbarOverlayMediator {
              @Override
              public void onStartedShowing(@LayoutType int layout, boolean showToolbar) {
--                mIsOnValidLayout = (layout & layoutsToShowOn) > 0;
-+                // TODO(1100332): Once ToolbarSwipeLayout uses a SceneLayer that does not include
+                 mIsOnValidLayout = (layout & layoutsToShowOn) > 0;
++		// TODO(1100332): Once ToolbarSwipeLayout uses a SceneLayer that does not include
 +                //                its own toolbar, only check for the vertical tab switcher.
 +                mLayoutHasOwnToolbar =
 +                        (layout == LayoutType.TAB_SWITCHER && !isGridTabSwitcherEnabled)
@@ -51,7 +42,7 @@ index 07b35008f49cb0d611c4dfff30ff4fe55b6bd2f6..cc6213ba679b1ad387c13b04b6bfed74
                  updateVisibility();
              }
          };
-@@ -137,8 +132,8 @@ public class TopToolbarOverlayMediator {
+@@ -137,8 +145,8 @@ public class TopToolbarOverlayMediator {
                  int yOffset = topOffset + mBrowserControlsStateProvider.getTopControlsMinHeight();
                  mModel.set(TopToolbarOverlayProperties.Y_OFFSET, yOffset);
  
@@ -61,7 +52,7 @@ index 07b35008f49cb0d611c4dfff30ff4fe55b6bd2f6..cc6213ba679b1ad387c13b04b6bfed74
              }
          };
          mBrowserControlsStateProvider.addObserver(mBrowserControlsObserver);
-@@ -160,8 +155,7 @@ public class TopToolbarOverlayMediator {
+@@ -160,8 +168,7 @@ public class TopToolbarOverlayMediator {
      private void updateShadowState() {
          boolean drawControlsAsTexture =
                  BrowserControlsUtils.drawControlsAsTexture(mBrowserControlsStateProvider);
@@ -71,7 +62,7 @@ index 07b35008f49cb0d611c4dfff30ff4fe55b6bd2f6..cc6213ba679b1ad387c13b04b6bfed74
          mModel.set(TopToolbarOverlayProperties.SHOW_SHADOW, showShadow);
      }
  
-@@ -232,13 +226,9 @@ public class TopToolbarOverlayMediator {
+@@ -232,13 +239,9 @@ public class TopToolbarOverlayMediator {
  
      /** Update the visibility of the overlay. */
      private void updateVisibility() {
@@ -88,7 +79,7 @@ index 07b35008f49cb0d611c4dfff30ff4fe55b6bd2f6..cc6213ba679b1ad387c13b04b6bfed74
      }
  
      /** @return Whether this overlay should be attached to the tree. */
-@@ -246,32 +236,6 @@ public class TopToolbarOverlayMediator {
+@@ -246,32 +249,6 @@ public class TopToolbarOverlayMediator {
          return true;
      }
  

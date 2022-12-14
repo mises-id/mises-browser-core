@@ -41,36 +41,38 @@ public class MisesController {
         ThreadUtils.assertOnUiThread();
         if (sInstance == null) {
             sInstance = new MisesController();
-            String json = SharedPreferencesManager.getInstance().getMisesUserInfo();
+        }
+        return sInstance;
+    }
+    public void load() {
+              String json = SharedPreferencesManager.getInstance().getMisesUserInfo();
             if (json == null || json.isEmpty()) {
-                sInstance.mMisesId = "";
-                sInstance.mMisesToken = "";
-                sInstance.mMisesNickname = "";
-                sInstance.mMisesAvatar = "";
-		sInstance.mInfoCache = "";
+                mMisesId = "";
+                mMisesToken = "";
+                mMisesNickname = "";
+                mMisesAvatar = "";
+		mInfoCache = "";
             } else {
                 try {
                     JSONObject jsonMessage = new JSONObject(json);
                     if (jsonMessage.has("misesId")) {
-                        sInstance.mMisesId = jsonMessage.getString("misesId");
+                        mMisesId = jsonMessage.getString("misesId");
                     }
                     if (jsonMessage.has("token")) {
-                        sInstance.mMisesToken = jsonMessage.getString("token");
+                        mMisesToken = jsonMessage.getString("token");
                     }
                     if (jsonMessage.has("nickname")) {
-                        sInstance.mMisesNickname = jsonMessage.getString("nickname");
+                        mMisesNickname = jsonMessage.getString("nickname");
                     }
                     if (jsonMessage.has("avatar")) {
-                        sInstance.mMisesAvatar = jsonMessage.getString("avatar");
+                        mMisesAvatar = jsonMessage.getString("avatar");
                     }
-		    sInstance.mInfoCache = json;
+		    mInfoCache = json;
                 } catch (JSONException e) {
-                    Log.e(TAG, "setMisesUserInfo from cache %s error", json);
-		    sInstance.mInfoCache = "";
+                    Log.e(TAG, "load MisesUserInfo from cache %s error", json);
+		    mInfoCache = "";
                 }
-            }
-        }
-        return sInstance;
+            } 
     }
 
     @CalledByNative

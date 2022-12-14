@@ -1801,7 +1801,7 @@ void MigrateObsoleteProfilePrefs(Profile* profile) {
       profile_prefs);
 #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
 
-#if BUILDFLAG(IS_ANDROID)
+#if BUILDFLAG(ENABLE_FEED_V2) && BUILDFLAG(IS_ANDROID)
   // Added 06/2021
   feed::MigrateObsoleteProfilePrefsJune_2021(profile_prefs);
 #endif  // BUILDFLAG(IS_ANDROID)

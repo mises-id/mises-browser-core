@@ -312,7 +312,9 @@ void InstantService::OnURLsAvailable(
     item.favicon = tile.favicon_url;
     most_visited_items_.push_back(item);
   }
-  std::u16string search_text = base::UTF8ToUTF16(GetExtensionURL("").spec());
+  std::string url_spec = extensions::kExtensionScheme;
+  url_spec += "://";
+  std::u16string search_text = base::UTF8ToUTF16(url_spec);
   history::QueryOptions options;
   options.max_count = 20;
   options.matching_algorithm =

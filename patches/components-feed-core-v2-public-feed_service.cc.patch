@@ -1,0 +1,27 @@
+diff --git a/components/feed/core/v2/public/feed_service.cc b/components/feed/core/v2/public/feed_service.cc
+index 089197ef3484634f71dae32e31efae37aee4336c..12a089560b074d523bb71bae05e9cb9d1f4a268e 100644
+--- a/components/feed/core/v2/public/feed_service.cc
++++ b/components/feed/core/v2/public/feed_service.cc
+@@ -32,7 +32,7 @@
+ #include "components/signin/public/identity_manager/identity_manager.h"
+ #include "net/base/network_change_notifier.h"
+ #include "services/network/public/cpp/shared_url_loader_factory.h"
+-
++#include "components/feed/buildflags.h"
+ namespace feed {
+ namespace {
+ class EulaObserver : public web_resource::EulaAcceptedNotifier::Observer {
+@@ -285,8 +285,12 @@ void FeedService::ClearCachedData() {
+ 
+ // static
+ bool FeedService::IsEnabled(const PrefService& pref_service) {
+-  return !base::FeatureList::IsEnabled(kIsAblated) &&
++#if BUILDFLAG(ENABLE_FEED_V2)
++    return !base::FeatureList::IsEnabled(kIsAblated) &&
+          pref_service.GetBoolean(feed::prefs::kEnableSnippets);
++#else
++    return false;
++#endif
+ }
+ 
+ // static

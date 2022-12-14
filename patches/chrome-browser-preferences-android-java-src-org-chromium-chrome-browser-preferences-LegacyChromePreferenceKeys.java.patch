@@ -1,0 +1,16 @@
+diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
+index 7ec57aa2544b775ec9e4d191d5399e088fc99384..ea4f6fb380d626518e4899e41fc11c99960f5a85 100644
+--- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
++++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
+@@ -145,7 +145,10 @@ public class LegacyChromePreferenceKeys {
+                 ChromePreferenceKeys.VR_SHOULD_REGISTER_ASSETS_COMPONENT_ON_STARTUP,
+                 ChromePreferenceKeys.WEBAPK_UNINSTALLED_PACKAGES,
+                 ChromePreferenceKeys.KEY_ZERO_SUGGEST_LIST_SIZE,
+-                ChromePreferenceKeys.KEY_ZERO_SUGGEST_HEADER_LIST_SIZE
++                ChromePreferenceKeys.KEY_ZERO_SUGGEST_HEADER_LIST_SIZE,
++		ChromePreferenceKeys.DARKEN_WEBSITES_ENABLED,
++                ChromePreferenceKeys.MISES_USER_INFO,
++                ChromePreferenceKeys.MISES_FIRST_RUN
+         );
+         // clang-format on
+     }

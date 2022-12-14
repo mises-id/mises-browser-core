@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarOverlayProperties.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarOverlayProperties.java
-index 668a85060c7823b080debb8c99fb9cb8600550e9..93a2c685589646b2422343d9663d09f313127c27 100644
+index 668a85060c7823b080debb8c99fb9cb8600550e9..64fec69b5629d81bf4560865f73da50df1de3aab 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarOverlayProperties.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarOverlayProperties.java
 @@ -14,18 +14,14 @@ import org.chromium.ui.modelutil.PropertyModel.WritableObjectPropertyKey;
@@ -56,6 +56,6 @@ index 668a85060c7823b080debb8c99fb9cb8600550e9..93a2c685589646b2422343d9663d09f3
 -            new PropertyKey[] {ANONYMIZE, PROGRESS_BAR_INFO, RESOURCE_ID, SHOW_SHADOW,
 -                    TOOLBAR_BACKGROUND_COLOR, URL_BAR_COLOR, URL_BAR_RESOURCE_ID, VISIBLE,
 -                    X_OFFSET, Y_OFFSET};
-+            new PropertyKey[] {RESOURCE_ID, URL_BAR_RESOURCE_ID, TOOLBAR_BACKGROUND_COLOR,
++            new PropertyKey[] {ANONYMIZE, RESOURCE_ID, URL_BAR_RESOURCE_ID, TOOLBAR_BACKGROUND_COLOR,
 +                    URL_BAR_COLOR, X_OFFSET, Y_OFFSET, SHOW_SHADOW, VISIBLE, PROGRESS_BAR_INFO};
  }
