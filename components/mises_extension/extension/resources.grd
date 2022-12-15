@@ -10,7 +10,7 @@
   </outputs>
   <release seq="1">
     <includes>
-    <include name="IDR_MISES_WALLET_MANIFEST" file="mises_wallet\manifest.json" type="BINDATA" />
+    <include name="IDR_MISES_WALLET_MANIFEST" file="mises_wallet/manifest.json" type="BINDATA" />
    <include name="IDR_MISES_WALLET__LOCALES_AM_MESSAGES_JSON" file="mises_wallet/_locales/am/messages.json" type="BINDATA" />
 <include name="IDR_MISES_WALLET__LOCALES_AR_MESSAGES_JSON" file="mises_wallet/_locales/ar/messages.json" type="BINDATA" />
 <include name="IDR_MISES_WALLET__LOCALES_BG_MESSAGES_JSON" file="mises_wallet/_locales/bg/messages.json" type="BINDATA" />

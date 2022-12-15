@@ -25,6 +25,12 @@ mises_chrome_browser_visibility = [
 ]
 
 mises_chrome_browser_sources = [
+    "//mises/browser/mises_browser_main_parts.cc",
+    "//mises/browser/mises_browser_main_parts.h",
+    "//mises/browser/mises_browser_process_impl.cc",
+    "//mises/browser/mises_browser_process_impl.h",
+    "//mises/browser/mises_browser_process.cc",
+    "//mises/browser/mises_browser_process.h",
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.cc",
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.h",
 ]

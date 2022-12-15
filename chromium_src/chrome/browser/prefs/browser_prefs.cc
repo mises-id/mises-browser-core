@@ -243,6 +243,8 @@
 #include "components/ntp_tiles/popular_sites_impl.h"
 #include "components/permissions/contexts/geolocation_permission_context_android.h"
 #include "components/query_tiles/tile_service_prefs.h"
+#else
+#include "components/live_caption/live_caption_controller.h"
 #endif
 #if (true)
 #include "chrome/browser/autofill_assistant/password_change/apc_client.h"
@@ -273,7 +275,6 @@
 #include "chrome/browser/ui/webui/tab_search/tab_search_prefs.h"
 #include "chrome/browser/ui/webui/whats_new/whats_new_ui.h"
 #include "chrome/browser/upgrade_detector/upgrade_detector.h"
-//#include "components/live_caption/live_caption_controller.h"
 #include "components/ntp_tiles/custom_links_manager_impl.h"
 #endif  // BUILDFLAG(IS_ANDROID)
 
@@ -1123,6 +1124,8 @@ void RegisterLocalState(PrefRegistrySimple* registry) {
 
   registry->RegisterIntegerPref(first_run::kTosDialogBehavior, 0);
   registry->RegisterBooleanPref(lens::kLensCameraAssistedSearchEnabled, true);
+#else
+  speech::SodaInstaller::RegisterLocalStatePrefs(registry);
 #endif
 #if (true)
   gcm::RegisterPrefs(registry);
@@ -1131,7 +1134,6 @@ void RegisterLocalState(PrefRegistrySimple* registry) {
   metrics::TabStatsTracker::RegisterPrefs(registry);
   performance_manager::user_tuning::prefs::RegisterLocalStatePrefs(registry);
   RegisterBrowserPrefs(registry);
-  //speech::SodaInstaller::RegisterLocalStatePrefs(registry);
   StartupBrowserCreator::RegisterLocalStatePrefs(registry);
   task_manager::TaskManagerInterface::RegisterPrefs(registry);
   UpgradeDetector::RegisterPrefs(registry);
@@ -1434,14 +1436,17 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry,
   usage_stats::UsageStatsBridge::RegisterProfilePrefs(registry);
   variations::VariationsService::RegisterProfilePrefs(registry);
   video_tutorials::RegisterPrefs(registry);
+#else
+  browser_sync::ForeignSessionHandler::RegisterProfilePrefs(registry);
+  captions::LiveCaptionController::RegisterProfilePrefs(registry);
+  ChromeAuthenticatorRequestDelegate::RegisterProfilePrefs(registry);
+  gcm::RegisterProfilePrefs(registry);
+  CartService::RegisterProfilePrefs(registry);
 #endif
 #if (true)
   ApcClient::RegisterPrefs(registry);
   AppShortcutManager::RegisterProfilePrefs(registry);
-  //browser_sync::ForeignSessionHandler::RegisterProfilePrefs(registry);
   BrowserFeaturePromoSnoozeService::RegisterProfilePrefs(registry);
-  //captions::LiveCaptionController::RegisterProfilePrefs(registry);
-  //ChromeAuthenticatorRequestDelegate::RegisterProfilePrefs(registry);
   DeviceServiceImpl::RegisterProfilePrefs(registry);
   DevToolsWindow::RegisterProfilePrefs(registry);
   DriveService::RegisterProfilePrefs(registry);
@@ -1449,7 +1454,6 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry,
   extensions::CommandService::RegisterProfilePrefs(registry);
   extensions::TabsCaptureVisibleTabFunction::RegisterProfilePrefs(registry);
   first_run::RegisterProfilePrefs(registry);
-  //gcm::RegisterProfilePrefs(registry);
   HatsService::RegisterProfilePrefs(registry);
   NtpCustomBackgroundService::RegisterProfilePrefs(registry);
   media_router::RegisterAccessCodeProfilePrefs(registry);
@@ -1471,7 +1475,6 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry,
   tab_search_prefs::RegisterProfilePrefs(registry);
   TaskModuleService::RegisterProfilePrefs(registry);
   UnifiedAutoplayConfig::RegisterProfilePrefs(registry);
-  //CartService::RegisterProfilePrefs(registry);
 #endif  // BUILDFLAG(IS_ANDROID)
 
 #if BUILDFLAG(IS_CHROMEOS)

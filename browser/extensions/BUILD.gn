@@ -5,6 +5,10 @@ source_set("extensions") {
   # Remove when https://github.com/brave/brave-browser/issues/10661 is resolved
   check_includes = false
   sources = [
+    "mises_extensions_browser_api_provider.cc",
+    "mises_extensions_browser_api_provider.h",
+    "mises_extensions_browser_client_impl.cc",
+    "mises_extensions_browser_client_impl.h",
    
   ]
 

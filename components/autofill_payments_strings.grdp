@@ -75,7 +75,7 @@
   </if>
 
   <!-- Autofill save credit card bubble or infobar prompt -->
-  <if expr="is_android or is_ios">
+  <if expr="not is_android or is_android or is_ios">
       <message name="IDS_AUTOFILL_SAVE_CARD_INFOBAR_ACCEPT" desc="Text to show for the Autofill save credit card infobar accept button.">
         Save
       </message>
@@ -664,17 +664,18 @@
   <message name="IDS_AUTOFILL_PROMO_CODE_SUGGESTIONS_FOOTER_TEXT" desc="Label for the footer text of the autofill suggestions popup when a user clicks on a promo code field. It redirects the user to the offer webview page for more details on the promo code offers suggested. An example of details the user can see is the terms and conditions of the promo code offers that are shown in the autofill suggestions popup.">
     See promo code details
   </message>
-  <if expr="not is_ios and not is_android or is_android">
-<!--
+  <if expr="not is_ios and not is_android">
     <message name="IDS_AUTOFILL_OFFERS_REMINDER_DESCRIPTION_TEXT" desc="Secondary explanatory text for the Desktop bubble shown on the merchant website when an offer is available to use.">
       Pay with <ph name="CARD_DETAIL">$1<ex>Visa - 1234</ex></ph> at checkout
     </message>
--->
     <message name="IDS_AUTOFILL_OFFERS_REMINDER_ICON_TOOLTIP_TEXT" desc="The tooltip text for the offer icon in the location bar.">
       Offer available
     </message>
   </if>
   <if expr="is_android">
+    <message name="IDS_AUTOFILL_OFFERS_REMINDER_ICON_TOOLTIP_TEXT" desc="The tooltip text for the offer icon in the location bar.">
+      Offer available
+    </message>
     <message name="IDS_AUTOFILL_OFFERS_REMINDER_DESCRIPTION_TEXT" desc="Secondary explanatory text for the infobar shown on the merchant website when an offer is available to use." formatter_data="android_java">
       Pay with <ph name="CARD_DETAIL">%1$s<ex>Visa - 1234</ex></ph> at checkout.
     </message>

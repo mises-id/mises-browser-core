@@ -1,131 +1,42 @@
-// Copyright 2015 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+/* Copyright (c) 2019 The Brave Authors. All rights reserved.
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "chrome/browser/extensions/component_extensions_allowlist/allowlist.h"
 
-#include <stddef.h>
+#define IsComponentExtensionAllowlisted IsComponentExtensionAllowlisted_ChromiumImpl  // NOLINT
+#include "src/chrome/browser/extensions/component_extensions_allowlist/allowlist.cc"
+#undef IsComponentExtensionAllowlisted
 
-#include "base/logging.h"
-#include "base/notreached.h"
-#include "build/branding_buildflags.h"
-#include "build/build_config.h"
-#include "build/chromeos_buildflags.h"
-#include "chrome/common/buildflags.h"
-#include "chrome/common/extensions/extension_constants.h"
-#include "chrome/grit/browser_resources.h"
-#include "extensions/common/constants.h"
-#include "printing/buildflags/buildflags.h"
-
-#if BUILDFLAG(IS_CHROMEOS_ASH)
-#include "ash/keyboard/ui/grit/keyboard_resources.h"
-#include "chrome/browser/ash/input_method/component_extension_ime_manager_delegate_impl.h"
-#include "ui/file_manager/grit/file_manager_resources.h"
-#endif
 #include "mises/components/mises_extension/grit/mises_extension.h"
+#include "components/grit/mises_components_resources.h"
+#include "extensions/common/constants.h"
+
 
 namespace extensions {
 
-bool IsComponentExtensionAllowlisted(const std::string& extension_id) {
-  const char* const kAllowed[] = {
-    extension_misc::kInAppPaymentsSupportAppId,
-    extension_misc::kPdfExtensionId,
-#if BUILDFLAG(IS_CHROMEOS)
-    extension_misc::kAssessmentAssistantExtensionId,
-#endif
-#if BUILDFLAG(IS_CHROMEOS_ASH)
-    extension_misc::kAccessibilityCommonExtensionId,
-    extension_misc::kChromeVoxExtensionId,
-    extension_misc::kEnhancedNetworkTtsExtensionId,
-    extension_misc::kEspeakSpeechSynthesisExtensionId,
-    extension_misc::kGoogleSpeechSynthesisExtensionId,
-    extension_misc::kGuestModeTestExtensionId,
-    extension_misc::kSelectToSpeakExtensionId,
-    extension_misc::kSwitchAccessExtensionId,
-#endif
-#if BUILDFLAG(IS_CHROMEOS)
-    extension_misc::kContactCenterInsightsExtensionId,
-#endif
-  };
+  bool IsComponentExtensionAllowlisted(const std::string& extension_id) {
+    const char* const kAllowed[] = {
+      mises_extension_id,
+    };
 
-  for (size_t i = 0; i < std::size(kAllowed); ++i) {
-    if (extension_id == kAllowed[i])
-      return true;
+    for (size_t i = 0; i < std::size(kAllowed); ++i) {
+      if (extension_id == kAllowed[i])
+        return true;
+    }
+
+    return IsComponentExtensionAllowlisted_ChromiumImpl(extension_id);
   }
 
-#if BUILDFLAG(IS_CHROMEOS_ASH)
-  if (ash::input_method::ComponentExtensionIMEManagerDelegateImpl::
-          IsIMEExtensionID(extension_id)) {
-    return true;
+  bool IsComponentExtensionAllowlisted(int manifest_resource_id) {
+    switch (manifest_resource_id) {
+      // Please keep the list in alphabetical order.
+      case IDR_MISES_WALLET_MANIFEST:
+        return true;
+    }
+
+    return IsComponentExtensionAllowlisted_ChromiumImpl(manifest_resource_id);
   }
-#endif
-  LOG(ERROR) << "Component extension with id " << extension_id << " not in "
-             << "allowlist and is not being loaded as a result.";
-  NOTREACHED();
-  return false;
-}
-
-bool IsComponentExtensionAllowlisted(int manifest_resource_id) {
-  switch (manifest_resource_id) {
-    // Please keep the list in alphabetical order.
-    case IDR_CRYPTOTOKEN_MANIFEST:
-    case IDR_MISES_WALLET_MANIFEST:
-#if BUILDFLAG(ENABLE_HANGOUT_SERVICES_EXTENSION)
-    case IDR_HANGOUT_SERVICES_MANIFEST:
-#endif
-    case IDR_IDENTITY_API_SCOPE_APPROVAL_MANIFEST:
-    case IDR_NETWORK_SPEECH_SYNTHESIS_MANIFEST:
-    case IDR_WEBSTORE_MANIFEST:
-
-#if BUILDFLAG(IS_CHROMEOS_ASH)
-    // Separate ChromeOS list, as it is quite large.
-    case IDR_ARC_SUPPORT_MANIFEST:
-    case IDR_AUDIO_PLAYER_MANIFEST:
-    case IDR_CHROME_APP_MANIFEST:
-    case IDR_FILEMANAGER_MANIFEST:
-    case IDR_IMAGE_LOADER_MANIFEST:
-    case IDR_KEYBOARD_MANIFEST:
-#if BUILDFLAG(GOOGLE_CHROME_BRANDING)
-    case IDR_HELP_MANIFEST:
-#endif  // BUILDFLAG(GOOGLE_CHROME_BRANDING)
-#endif  // BUILDFLAG(IS_CHROMEOS_ASH)
-
-#if BUILDFLAG(IS_CHROMEOS)
-    case IDR_CONTACT_CENTER_INSIGHTS_MANIFEST:
-    case IDR_ECHO_MANIFEST:
-#if BUILDFLAG(GOOGLE_CHROME_BRANDING)
-    case IDR_QUICKOFFICE_MANIFEST:
-#endif  // BUILDFLAG(GOOGLE_CHROME_BRANDING)
-#endif  // BUILDFLAG(IS_CHROMEOS)
-      return true;
-  }
-
-  LOG(ERROR) << "Component extension with manifest resource id "
-             << manifest_resource_id << " not in allowlist and is not being "
-             << "loaded as a result.";
-  NOTREACHED();
-  return false;
-}
-
-#if BUILDFLAG(IS_CHROMEOS_ASH)
-bool IsComponentExtensionAllowlistedForSignInProfile(
-    const std::string& extension_id) {
-  const char* const kAllowed[] = {
-      extension_misc::kAccessibilityCommonExtensionId,
-      extension_misc::kChromeVoxExtensionId,
-      extension_misc::kEspeakSpeechSynthesisExtensionId,
-      extension_misc::kGoogleSpeechSynthesisExtensionId,
-      extension_misc::kSelectToSpeakExtensionId,
-      extension_misc::kSwitchAccessExtensionId,
-  };
-
-  for (size_t i = 0; i < std::size(kAllowed); ++i) {
-    if (extension_id == kAllowed[i])
-      return true;
-  }
-
-  return false;
-}
-#endif
 
 }  // namespace extensions

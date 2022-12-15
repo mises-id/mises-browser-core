@@ -92,7 +92,7 @@
           Restart Mises
         </message>
       </if>
-      <if expr="is_android or is_ios">
+      <if expr="not is_android or is_android or is_ios">
           <message name="IDS_SAD_TAB_RELOAD_RESTART_DEVICE" desc="One of the bullet points displayed on the web page if a reload failed to fix the issue, advising the user to restart their device (i.e. phone or tablet)." formatter_data="android_java">
             Restart your device
           </message>

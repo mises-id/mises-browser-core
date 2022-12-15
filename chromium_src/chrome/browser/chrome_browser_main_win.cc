@@ -3,11 +3,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/chromium_src/chrome/browser/chrome_browser_main_posix.h"
+#include "mises/chromium_src/chrome/browser/chrome_browser_main_win.h"
 
 #include "mises/browser/mises_browser_main_parts.h"
 #include "chrome/browser/chrome_browser_main.h"
 
 #define ChromeBrowserMainParts MisesBrowserMainParts
-#include "src/chrome/browser/chrome_browser_main_posix.cc"
+#include "src/chrome/browser/chrome_browser_main_win.cc"
 #undef ChromeBrowserMainParts

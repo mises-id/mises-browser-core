@@ -3,9 +3,11 @@
 #include "extensions/browser/extension_function_registry.h"
 #include "extensions/common/extension.h"
 #include "base/logging.h"
+#if BUILDFLAG(IS_ANDROID)
 #include "mises/browser/android/mises/mises_controller.h"
 #include "base/android/sys_utils.h"
 #include "base/android/application_status_listener.h"
+#endif
 
 namespace extensions {
 namespace api {
@@ -17,14 +19,19 @@ ExtensionFunction::ResponseAction MisesPrivateSetMisesIdFunction::Run() {
       api::mises_private::SetMisesId::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params.get());
   LOG(INFO) << "set mises id :" << params->id;
+#if BUILDFLAG(IS_ANDROID)
   android::MisesController::GetInstance()->setMisesUserInfo(params->id);
+#endif  
   return RespondNow(NoArguments());
 }
 
 
 MisesPrivateGetInstallReferrerFunction::~MisesPrivateGetInstallReferrerFunction() {}
 ExtensionFunction::ResponseAction MisesPrivateGetInstallReferrerFunction::Run() {
-  std::string referrerString = base::android::SysUtils::ReferrerStringFromJni();
+  std::string referrerString;
+#if BUILDFLAG(IS_ANDROID)
+  referrerString = base::android::SysUtils::ReferrerStringFromJni();
+#endif
   return RespondNow(ArgumentList(
     api::mises_private::GetInstallReferrer::Results::Create(referrerString)));
 }
@@ -32,6 +39,7 @@ ExtensionFunction::ResponseAction MisesPrivateGetInstallReferrerFunction::Run() 
 MisesPrivateGetAppStateFunction::~MisesPrivateGetAppStateFunction() {}
 ExtensionFunction::ResponseAction MisesPrivateGetAppStateFunction::Run() {
   api::mises_private::AppState state = api::mises_private::AppState::APP_STATE_NONE;
+#if BUILDFLAG(IS_ANDROID) 
   switch (base::android::ApplicationStatusListener::GetState()) {
     case base::android::ApplicationState::APPLICATION_STATE_UNKNOWN :{
       state = api::mises_private::AppState::APP_STATE_UNKNOWN;
@@ -54,6 +62,7 @@ ExtensionFunction::ResponseAction MisesPrivateGetAppStateFunction::Run() {
       break;
     }
   }
+#endif
   return RespondNow(ArgumentList(
     api::mises_private::GetAppState::Results::Create(state)));
 }

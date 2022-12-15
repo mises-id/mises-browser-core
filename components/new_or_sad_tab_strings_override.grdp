@@ -32,7 +32,7 @@
         </if>
       <if expr="not _google_chrome">
         </if>
-      <if expr="is_android or is_ios">
+      <if expr="not is_android or is_android or is_ios">
           </if>
 
       <message name="IDS_NEW_INCOGNITO_TAB_TITLE" desc="Title of the new private tab page, not to be confused with the action of opening a new private tab.">
