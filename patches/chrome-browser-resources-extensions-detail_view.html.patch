@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/resources/extensions/detail_view.html b/chrome/browser/resources/extensions/detail_view.html
+index 468973971fc2580a4f18f53ce284b575285883da..8eed73cf444a34a4812d0fd06d0f19c4c8a6ad86 100644
+--- a/chrome/browser/resources/extensions/detail_view.html
++++ b/chrome/browser/resources/extensions/detail_view.html
+@@ -372,13 +372,14 @@
+         <template is="dom-if"
+           if="[[shouldShowIncognitoOption_(
+               data.incognitoAccess.isEnabled, incognitoAvailable)]]">
++<div id="enable_incognito"></a>
+           <extensions-toggle-row id="allow-incognito"
+               checked="[[data.incognitoAccess.isActive]]"
+               class="hr"
+               on-change="onAllowIncognitoChange_">
+             <div>
+               <div>$i18n{itemAllowIncognito}</div>
+-              <div class="section-content">$i18n{incognitoInfoWarning}</div>
++<!--              <div class="section-content">$i18n{incognitoInfoWarning}</div> -->
+             </div>
+           </extensions-toggle-row>
+         </template>

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/extensions/sidebar.html b/chrome/browser/resources/extensions/sidebar.html
+index a7e4de0d3c75be58e3965e40e8ba5249b2d0ebf2..b7e9ec6e1fb71b517f59edce91bb237f30b7ef42 100644
+--- a/chrome/browser/resources/extensions/sidebar.html
++++ b/chrome/browser/resources/extensions/sidebar.html
+@@ -80,7 +80,7 @@
+   <div class="separator"></div>
+   <a class="section-item" id="more-extensions" target="_blank"
+       href="$i18n{getMoreExtensionsUrl}" on-click="onMoreExtensionsTap_">
+-    <span>$i18n{openChromeWebStore}</span>
++    <span>Open Chrome Web Store</span>
+     <div class="cr-icon icon-external"></div>
+     <paper-ripple></paper-ripple>
+   </a>

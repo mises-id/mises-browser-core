@@ -1,0 +1,18 @@
+diff --git a/ui/webui/resources/cr_elements/shared_style_css.html b/ui/webui/resources/cr_elements/shared_style_css.html
+index eda419ea6d73d44418c70d4c4bbc2d55ae7a6d40..f2da2d03ef4316174820eb687b9a55d45bb38500 100644
+--- a/ui/webui/resources/cr_elements/shared_style_css.html
++++ b/ui/webui/resources/cr_elements/shared_style_css.html
+@@ -1,3 +1,4 @@
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="import" href="../html/polymer.html">
+ 
+ <link rel="import" href="shared_vars_css.html">
+@@ -69,7 +70,7 @@
+         height: inherit;
+         margin: 0 auto;
+         max-width: var(--cr-centered-card-max-width);
+-        min-width: 550px;
++//        min-width: 550px;
+         position: relative;
+         width: calc(100% * var(--cr-centered-card-width-percentage));
+       }
