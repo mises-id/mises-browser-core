@@ -80,6 +80,15 @@ template("mises_extra_paks") {
       ]
     }
 
+    if (enable_extensions) {
+      sources += [ "$root_gen_dir/mises/components/mises_extension/mises_extension_resources.pak" ]
+
+      deps += [
+        "//mises/common/extensions/api",
+        "//mises/components/mises_extension:resources",
+      ]
+    }
+
     if (defined(invoker.deps)) {
       deps += invoker.deps
     }

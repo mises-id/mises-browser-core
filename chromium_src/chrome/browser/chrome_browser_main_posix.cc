@@ -8,6 +8,8 @@
 #include "mises/browser/mises_browser_main_parts.h"
 #include "chrome/browser/chrome_browser_main.h"
 
+#if !BUILDFLAG(IS_ANDROID)
 #define ChromeBrowserMainParts MisesBrowserMainParts
 #include "src/chrome/browser/chrome_browser_main_posix.cc"
 #undef ChromeBrowserMainParts
+#endif
