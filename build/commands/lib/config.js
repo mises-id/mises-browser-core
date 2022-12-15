@@ -462,18 +462,18 @@ Config.prototype.buildArgs = function () {
     args.enable_jdk_library_desugaring = false
     if (!this.isOfficialBuild()) {
       args.android_channel = 'default'
-      args.chrome_public_manifest_package = 'com.mises.browser_default'
+      args.chrome_public_manifest_package = 'site.mises.browser.default'
     } else if (this.channel === '') {
       args.android_channel = 'stable'
-      args.chrome_public_manifest_package = 'com.mises.browser'
+      args.chrome_public_manifest_package = 'site.mises.browser'
     } else if (this.channel === 'beta') {
-      args.chrome_public_manifest_package = 'com.mises.browser_beta'
+      args.chrome_public_manifest_package = 'site.mises.browser.beta'
       args.exclude_unwind_tables = false
     } else if (this.channel === 'dev') {
-      args.chrome_public_manifest_package = 'com.mises.browser_dev'
+      args.chrome_public_manifest_package = 'site.mises.browser.dev'
     } else if (this.channel === 'nightly') {
       args.android_channel = 'canary'
-      args.chrome_public_manifest_package = 'com.mises.browser_nightly'
+      args.chrome_public_manifest_package = 'site.mises.browser.nightly'
       args.exclude_unwind_tables = false
     }
 
