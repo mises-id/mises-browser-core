@@ -5,6 +5,8 @@
 
 #include "extensions/buildflags/buildflags.h"
 
+#include "mises/browser/profiles/mises_profile_manager.h"
+
 #if BUILDFLAG(ENABLE_EXTENSIONS)
 #include "mises/browser/extensions/mises_extensions_browser_client_impl.h"
 #define ChromeExtensionsBrowserClient MisesExtensionsBrowserClientImpl
@@ -1124,7 +1126,7 @@ void BrowserProcessImpl::CreateProfileManager() {
 
   base::FilePath user_data_dir;
   base::PathService::Get(chrome::DIR_USER_DATA, &user_data_dir);
-  profile_manager_ = std::make_unique<ProfileManager>(user_data_dir);
+  profile_manager_ = std::make_unique<MisesProfileManager>(user_data_dir);
 }
 
 void BrowserProcessImpl::PreCreateThreads() {
@@ -1304,7 +1306,7 @@ void BrowserProcessImpl::CreateSafeBrowsingService() {
   // Set this flag to true so that we don't retry indefinitely to
   // create the service class if there was an error.
   created_safe_browsing_service_ = true;
-#if 0
+#if !BUILDFLAG(IS_ANDROID)
   // The factory can be overridden in tests.
   if (!safe_browsing::SafeBrowsingServiceInterface::HasFactory()) {
     safe_browsing::SafeBrowsingServiceInterface::RegisterFactory(

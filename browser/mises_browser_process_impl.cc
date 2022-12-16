@@ -55,10 +55,9 @@ void MisesBrowserProcessImpl::StartTearDown() {
 #endif
 
 
-ProfileManager* MisesBrowserProcessImpl::profile_manager() {
-  DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
-  return BrowserProcessImpl::profile_manager();
-}
+// ProfileManager* MisesBrowserProcessImpl::profile_manager() {
+//   return BrowserProcessImpl::profile_manager();
+// }
 
 void MisesBrowserProcessImpl::StartMisesServices() {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);

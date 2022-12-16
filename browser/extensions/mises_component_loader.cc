@@ -23,7 +23,7 @@
 #include "extensions/common/constants.h"
 #include "extensions/common/mojom/manifest.mojom.h"
 
-#include "mises/components/mises_extension/grit/mises_extension.h"
+#include "mises/components/mises_extension/grit/mises_wallet.h"
 
 
 using extensions::mojom::ManifestLocation;

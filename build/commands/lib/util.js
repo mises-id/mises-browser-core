@@ -687,13 +687,20 @@ const util = {
     const args = util.buildArgsToString(config.buildArgs())
     const genScript = path.join(config.misesCoreDir, 'vendor', 'gn-project-generators', 'xcode.py')
 
-    const genArgs = [
+    var genArgs = [
       'gen', config.outputDir + "_Xcode",
       '--args="' + args + '"',
       '--ide=json',
       '--json-ide-script="' + genScript + '"',
       '--filters="' + config.xcode_gen_target + '"'
     ]
+    if (config.xcode_gen_target == 'mac') {
+      genArgs = [
+        'gen', config.outputDir,
+        '--args="' + args + '"',
+        '--ide=xcode'
+      ]
+    }
 
     util.run('gn', genArgs, options)
   },

@@ -37,6 +37,7 @@ mises_chrome_browser_sources = [
 
 mises_chrome_browser_deps = [
   "//base",
+  "//mises/browser/profiles",
   "//chrome/browser:browser_process",
   "//chrome/browser/profiles:profile",
   "//chrome/browser/ui",
@@ -124,6 +125,15 @@ if (is_android) {
   ]
 }
 
+if (enable_extensions) {
+  mises_chrome_browser_deps += [
+    "//mises/browser/extensions",
+    "//chrome/browser/extensions",
+    "//extensions/browser",
+    "//extensions/common:common_constants",
+  ]
+
+}
 
 if (is_win) {
   mises_chrome_browser_sources += [

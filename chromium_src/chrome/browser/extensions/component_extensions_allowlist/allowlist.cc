@@ -9,7 +9,7 @@
 #include "src/chrome/browser/extensions/component_extensions_allowlist/allowlist.cc"
 #undef IsComponentExtensionAllowlisted
 
-#include "mises/components/mises_extension/grit/mises_extension.h"
+#include "mises/components/mises_extension/grit/mises_wallet.h"
 #include "components/grit/mises_components_resources.h"
 #include "extensions/common/constants.h"
 
