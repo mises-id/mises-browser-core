@@ -9,7 +9,8 @@ source_set("extensions") {
     "mises_extensions_browser_api_provider.h",
     "mises_extensions_browser_client_impl.cc",
     "mises_extensions_browser_client_impl.h",
-   
+    "mises_component_loader.cc",
+    "mises_component_loader.h",  
   ]
 
   deps = [

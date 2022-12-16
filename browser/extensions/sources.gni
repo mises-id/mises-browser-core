@@ -1,11 +1,5 @@
 mises_extensions_sources = [
 
-    "//mises/browser/extensions/mises_extensions_browser_api_provider.cc",
-    "//mises/browser/extensions/mises_extensions_browser_api_provider.h",
-    "//mises/browser/extensions/mises_extensions_browser_client_impl.cc",
-    "//mises/browser/extensions/mises_extensions_browser_client_impl.h",
-    "//mises/browser/extensions/mises_component_loader.cc",
-    "//mises/browser/extensions/mises_component_loader.h",
     "//mises/browser/extensions/api/mises_private/mises_private_api.cc",
     "//mises/browser/extensions/api/mises_private/mises_private_api.h",
 

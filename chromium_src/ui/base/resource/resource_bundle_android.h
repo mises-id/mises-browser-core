@@ -10,7 +10,7 @@
 
 namespace ui {
 
-COMPONENT_EXPORT(UI_BASE) void MiseLoadMainAndroidPackFile(
+COMPONENT_EXPORT(UI_BASE) void MisesLoadMainAndroidPackFile(
     const char* path_within_apk,
     const base::FilePath& disk_file_path);
 COMPONENT_EXPORT(UI_BASE) void MisesLoadMises100PercentPackFile(
