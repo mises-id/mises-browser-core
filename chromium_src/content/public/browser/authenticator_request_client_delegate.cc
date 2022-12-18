@@ -19,12 +19,6 @@
 #include "device/fido/win/webauthn_api.h"
 #endif  // BUILDFLAG(IS_WIN)
 
-#if BUILDFLAG(IS_ANDROID)
-namespace device {
-  FidoRequestHandlerBase::Observer::~Observer() = default;
-}
-#endif
-
 namespace content {
 
 WebAuthenticationDelegate::WebAuthenticationDelegate() = default;
