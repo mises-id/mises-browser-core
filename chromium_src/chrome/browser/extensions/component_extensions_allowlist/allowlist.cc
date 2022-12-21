@@ -32,7 +32,8 @@ namespace extensions {
   bool IsComponentExtensionAllowlisted(int manifest_resource_id) {
     switch (manifest_resource_id) {
       // Please keep the list in alphabetical order.
-      case IDR_MISES_WALLET_MANIFEST:
+      case IDR_METAMASK_MANIFEST_JSON:
+      case IDR_MISES_WALLET_MANIFEST_JSON:
         return true;
     }
 

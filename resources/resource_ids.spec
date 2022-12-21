@@ -26,8 +26,5 @@
     "includes": [55000],
   },
   # This file is generated during the build.
-  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-mises_wallet/mises_wallet.grd": {
-    "META": {"sizes": {"includes": [500]}},
-    "includes": [55500],
-  },
+
 }

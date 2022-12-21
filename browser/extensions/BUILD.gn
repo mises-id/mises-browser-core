@@ -40,7 +40,6 @@ source_set("extensions") {
 
 group("resources") {
   deps = [
-    "//mises/components/mises_extension:generated_resources",
     "//mises/components/mises_extension:static_resources",
   ]
 }

@@ -87,10 +87,15 @@ void MisesComponentLoader::AddDefaultComponentExtensions(
     bool skip_session_components) {
   ComponentLoader::AddDefaultComponentExtensions(skip_session_components);
 
-  base::FilePath mises_extension_path(FILE_PATH_LITERAL(""));
-  mises_extension_path =
-      mises_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
-  Add(IDR_MISES_WALLET_MANIFEST, mises_extension_path);
+  base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
+  metamask_extension_path =
+      metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
+  Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+
+    base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
+  miseswallet_extension_path =
+      miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
+  Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
 }
 
 
