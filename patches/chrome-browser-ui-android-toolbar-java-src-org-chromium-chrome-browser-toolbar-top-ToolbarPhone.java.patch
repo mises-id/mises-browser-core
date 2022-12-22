@@ -547,7 +547,7 @@ index 267d5b1d56041ed17bb0d558bc32619f1826054b..f99e76005367dbe6f9c32c67e85e1793
 +                        }
 +                    } else if (v.getId() == R.id.tv_wallet) {
 +                        if (tabCreator != null) {
-+                            tabCreator.openSinglePage("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/popup.html");
++                            tabCreator.openSinglePage("chrome-extension://jkpbgdgopmifmokhejofbmgdabapoefl/popup.html");
 +                        }
 +                    } else if (v.getId() == R.id.tv_portal) {
 +                        if (tabCreator != null) {

@@ -301,7 +301,7 @@ public class MisesShareWin extends DialogFragment {
                     public void onClick(View v) {
                         TabCreator tabCreator = mTabCreatorManager.getTabCreator(false);
                         if (tabCreator != null) {
-                            tabCreator.openSinglePage("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/popup.html");
+                            tabCreator.openSinglePage("chrome-extension://jkpbgdgopmifmokhejofbmgdabapoefl/popup.html");
                         }
                     }
                 });

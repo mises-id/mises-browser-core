@@ -18,6 +18,7 @@ namespace extensions {
 
   bool IsComponentExtensionAllowlisted(const std::string& extension_id) {
     const char* const kAllowed[] = {
+      metamask_extension_id,
       mises_extension_id,
     };
 

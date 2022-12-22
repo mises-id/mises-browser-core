@@ -241,6 +241,7 @@ GURL InstantService::GetExtensionURL(const std::string& extension_id) {
 void InstantService::SearchComplete(history::QueryResults results) {
   std::vector<GURL> recent;
   recent.push_back(GURL("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn"));
+  recent.push_back(GURL("chrome-extension://jkpbgdgopmifmokhejofbmgdabapoefl"));
   if (!results.empty()) {
     for (const auto& item : results){
       if (item.url().SchemeIs(extensions::kExtensionScheme)) {

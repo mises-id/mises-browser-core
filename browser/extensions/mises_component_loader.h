@@ -11,6 +11,8 @@
 #include "base/files/file_path.h"
 #include "base/memory/raw_ptr.h"
 #include "chrome/browser/extensions/component_loader.h"
+#include "components/value_store/value_store.h"
+#include "extensions/browser/extension_registry_observer.h"
 
 class PrefService;
 class Profile;
@@ -18,7 +20,7 @@ class Profile;
 namespace extensions {
 
 // For registering, loading, and unloading component extensions.
-class MisesComponentLoader : public ComponentLoader {
+class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObserver  {
  public:
   MisesComponentLoader(ExtensionSystem* extension_system,
                        Profile* browser_context);
@@ -44,11 +46,18 @@ class MisesComponentLoader : public ComponentLoader {
   void ForceAddHangoutServicesExtension();
 
  private:
-
+  void AsyncRunWithMetamaskStorage(value_store::ValueStore* storage);
+  void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
   void ReinstallAsNonComponent(std::string extension_id);
+    // ExtensionRegistryObserver:
+  void OnExtensionReady(content::BrowserContext* browser_context,
+                        const Extension* extension) override;
 
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;
+
+   base::Value metamaskValue;
+
 };
 
 }  // namespace extensions

@@ -6,4 +6,5 @@
 #include "src/extensions/common/constants.cc"
 
 
-const char mises_extension_id[] = "nkbihfbeogaeaoehlefnkodbefgpgknn";
+const char metamask_extension_id[] = "nkbihfbeogaeaoehlefnkodbefgpgknn";
+const char mises_extension_id[] = "jkpbgdgopmifmokhejofbmgdabapoefl";

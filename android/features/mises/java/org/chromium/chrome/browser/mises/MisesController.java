@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class MisesController {
     private static final String TAG = "MisesController";
-    public static final String MISES_EXTENSION_KEY = "nkbihfbeogaeaoehlefnkodbefgpgknn";
     private String mMisesId = "";
     private String mMisesToken = "";
     private String mMisesNickname = "";

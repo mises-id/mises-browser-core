@@ -24,8 +24,9 @@
 #include "extensions/common/mojom/manifest.mojom.h"
 
 #include "mises/components/mises_extension/grit/mises_wallet.h"
-
-
+#include "extensions/browser/api/storage/storage_frontend.h"
+#include "extensions/browser/api/storage/settings_namespace.h"
+#include "extensions/browser/extension_registry.h"
 using extensions::mojom::ManifestLocation;
 
 namespace extensions {
@@ -87,6 +88,8 @@ void MisesComponentLoader::AddDefaultComponentExtensions(
     bool skip_session_components) {
   ComponentLoader::AddDefaultComponentExtensions(skip_session_components);
 
+  ExtensionRegistry::Get(profile_)->AddObserver(this);
+
   base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
   metamask_extension_path =
       metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
@@ -96,7 +99,45 @@ void MisesComponentLoader::AddDefaultComponentExtensions(
   miseswallet_extension_path =
       miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
   Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
+
+  
 }
 
+void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_context,
+                                     const Extension* extension) {
+    if (extension->id() == "nkbihfbeogaeaoehlefnkodbefgpgknn") {
+
+      StorageFrontend* frontend = StorageFrontend::Get(profile_);
+        frontend->RunWithStorage(
+          extension, settings_namespace::LOCAL,
+        base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
+        );
+    }
+    if (extension->id() == "jkpbgdgopmifmokhejofbmgdabapoefl") {
+
+      StorageFrontend* frontend = StorageFrontend::Get(profile_);
+        frontend->RunWithStorage(
+          extension, settings_namespace::LOCAL,
+        base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
+        );
+
+      ExtensionRegistry::Get(profile_)->RemoveObserver(this);
+    }
+}
+void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* storage) {
+  LOG(ERROR) << "AsyncRunWithMetamaskStorage";
+  metamaskValue = base::Value(storage->Get().PassSettings());
+  LOG(ERROR) << "Got Metamask Storage";
+}
+void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
+  LOG(ERROR) << "AsyncRunWithMiseswalletStorage";
+  if (storage->GetBytesInUse("migrated") == 0){
+    LOG(ERROR) << "DoMigrate";
+    storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "migrated", metamaskValue);
+  }
+  
+
+  
+}
 
 }  // namespace extensions
