@@ -128,6 +128,26 @@ void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* 
   LOG(ERROR) << "AsyncRunWithMetamaskStorage";
   metamaskValue = base::Value(storage->Get().PassSettings());
   LOG(ERROR) << "Got Metamask Storage";
+  base::Value::Dict *data = metamaskValue.GetDict().FindDict("data");
+  if (data) {
+    base::Value::Dict *NetworkController = data->FindDict("NetworkController");
+    if (NetworkController) {
+      base::Value::Dict *provider = NetworkController->FindDict("provider");
+      if (provider) {
+        LOG(ERROR) << "Got Metamask Storage provider" << *provider;
+        std::string *provider_type = provider->FindString("type");
+        if (provider_type && *provider_type == "MisesTestNet") {
+          provider->Set("chainId", "0x1");
+          provider->Set("nickname", "");
+          provider->Set("rpcUrl", "");
+          provider->Set("ticker", "ETH");
+          provider->Set("type", "mainnet");
+          storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, metamaskValue.GetDict());
+        }
+
+      }
+    }
+  }
 }
 void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
   LOG(ERROR) << "AsyncRunWithMiseswalletStorage";
