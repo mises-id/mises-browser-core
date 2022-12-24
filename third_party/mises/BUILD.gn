@@ -10,7 +10,8 @@ import("//build/config/android/rules.gni")
 
 android_aar_prebuilt("mises_light_node_java") {
   aar_path = "light.aar"
-  ignore_native_libraries = true
+  extract_native_libraries = true
+  ignore_manifest = true
 }
 
 copy("libmises_light_node") {

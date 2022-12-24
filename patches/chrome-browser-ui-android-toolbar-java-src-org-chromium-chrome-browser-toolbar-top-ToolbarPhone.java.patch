@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 267d5b1d56041ed17bb0d558bc32619f1826054b..f99e76005367dbe6f9c32c67e85e179392d98c5d 100644
+index 267d5b1d56041ed17bb0d558bc32619f1826054b..91aad67cdf244eeb767b93c6a37b65ec604ed4fd 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -34,6 +34,8 @@ import android.view.View.OnClickListener;
