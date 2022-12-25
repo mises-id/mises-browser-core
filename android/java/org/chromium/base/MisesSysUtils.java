@@ -48,19 +48,19 @@ public class MisesSysUtils {
             return;
         Bundle params = new Bundle();
         params.putString(key, value);
-        FirebaseAnalytics.getInstance(context).logEvent(name, bundleParams);
+        FirebaseAnalytics.getInstance(context).logEvent(name, params);
         return ;
     }
     
     @CalledByNative
-    public static void logEvent(final String name, final String key, final String value, final String key1, final String value2) {
+    public static void logEvent(final String name, final String key, final String value, final String key1, final String value1) {
         Context context = ContextUtils.getApplicationContext();
         if (context == null)
             return;
         Bundle params = new Bundle();
         params.putString(key, value);
         params.putString(key1, value1);
-        FirebaseAnalytics.getInstance(context).logEvent(name, bundleParams);
+        FirebaseAnalytics.getInstance(context).logEvent(name, params);
         return ;
     }
 }

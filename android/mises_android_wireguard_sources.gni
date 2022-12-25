@@ -23,16 +23,19 @@ mises_public_apk_or_module_tmpl_loadable_modules = [
     "$_lib_dir1/$android_app_abi/libgojni.so"
 ]
 
-mises_monochrome_public_apk_or_module_tmpl_loadable_modules = [ "$_lib_dir1/$android_app_abi/libgojni.so" ]
+mises_monochrome_public_apk_or_module_tmpl_loadable_modules = [ 
+    "$_lib_dir/$android_app_abi/libwg-go.so",
+    "$_lib_dir1/$android_app_abi/libgojni.so" 
+]
 mises_monochrome_public_apk_or_module_tmpl_secondary_abi_loadable_modules = []
 
 if (android_64bit_target_cpu) {
   mises_monochrome_public_apk_or_module_tmpl_loadable_modules +=
-      [ "$_lib_dir/$android_app_abi/libwg-go.so" ]
+      [  ]
   mises_monochrome_public_apk_or_module_tmpl_secondary_abi_loadable_modules +=
       [ 
-        "$_lib_dir/$android_app_secondary_abi/libwg-go.so",
-        "$_lib_dir1/$android_app_secondary_abi/libgojni.so",
+#        "$_lib_dir/$android_app_secondary_abi/libwg-go.so",
+#        "$_lib_dir1/$android_app_secondary_abi/libgojni.so",
       ]
 }
 

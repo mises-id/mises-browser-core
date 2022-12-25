@@ -30,7 +30,7 @@ MisesPrivateGetInstallReferrerFunction::~MisesPrivateGetInstallReferrerFunction(
 ExtensionFunction::ResponseAction MisesPrivateGetInstallReferrerFunction::Run() {
   std::string referrerString;
 #if BUILDFLAG(IS_ANDROID)
-  referrerString = base::android::SysUtils::ReferrerStringFromJni();
+  referrerString = base::android::MisesSysUtils::ReferrerStringFromJni();
 #endif
   return RespondNow(ArgumentList(
     api::mises_private::GetInstallReferrer::Results::Create(referrerString)));

@@ -175,7 +175,7 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
                                     bool is_update) {
 #if BUILDFLAG(IS_ANDROID) 
   if(extension) {
-    base::android::SysUtils::LogEventFromJni("install_extension", "id", extension->id());
+    base::android::MisesSysUtils::LogEventFromJni("install_extension", "id", extension->id());
   }
 #endif
                                   
@@ -186,7 +186,7 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 
 #if BUILDFLAG(IS_ANDROID) 
   if(extension) {
-    base::android::SysUtils::LogEventFromJni("uninstall_extension", "id", extension->id());
+    base::android::MisesSysUtils::LogEventFromJni("uninstall_extension", "id", extension->id());
   }
 #endif
 
