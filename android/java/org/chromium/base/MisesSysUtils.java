@@ -8,6 +8,8 @@ import org.chromium.base.annotations.MainDex;
 import org.chromium.base.annotations.NativeMethods;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Bundle;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 @JNINamespace("base::android")
 @MainDex
@@ -38,4 +40,27 @@ public class MisesSysUtils {
         return ContextUtils.getAppSharedPreferences().getString("night_mode_settings", "");
     }
 
+
+    @CalledByNative
+    public static void logEvent(final String name, final String key, final String value) {
+        Context context = ContextUtils.getApplicationContext();
+        if (context == null)
+            return;
+        Bundle params = new Bundle();
+        params.putString(key, value);
+        FirebaseAnalytics.getInstance(context).logEvent(name, bundleParams);
+        return ;
+    }
+    
+    @CalledByNative
+    public static void logEvent(final String name, final String key, final String value, final String key1, final String value2) {
+        Context context = ContextUtils.getApplicationContext();
+        if (context == null)
+            return;
+        Bundle params = new Bundle();
+        params.putString(key, value);
+        params.putString(key1, value1);
+        FirebaseAnalytics.getInstance(context).logEvent(name, bundleParams);
+        return ;
+    }
 }

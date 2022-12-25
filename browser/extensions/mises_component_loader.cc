@@ -27,6 +27,10 @@
 #include "extensions/browser/api/storage/storage_frontend.h"
 #include "extensions/browser/api/storage/settings_namespace.h"
 #include "extensions/browser/extension_registry.h"
+
+#if BUILDFLAG(IS_ANDROID)
+#include "base/android/sys_utils.h"
+#endif
 using extensions::mojom::ManifestLocation;
 
 namespace extensions {
@@ -35,7 +39,13 @@ MisesComponentLoader::MisesComponentLoader(ExtensionSystem* extension_system,
                                            Profile* profile)
     : ComponentLoader(extension_system, profile),
       profile_(profile),
-      profile_prefs_(profile->GetPrefs()) {}
+      profile_prefs_(profile->GetPrefs()) {
+
+#if BUILDFLAG(IS_ANDROID)
+  _auto_confirm = std::make_unique<extensions::ScopedTestDialogAutoConfirm>(
+          extensions::ScopedTestDialogAutoConfirm::ACCEPT);
+#endif
+}
 
 MisesComponentLoader::~MisesComponentLoader() = default;
 
@@ -121,7 +131,7 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
         base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
         );
 
-      ExtensionRegistry::Get(profile_)->RemoveObserver(this);
+     
     }
 }
 void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* storage) {
@@ -159,5 +169,27 @@ void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStor
 
   
 }
+
+void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser_context,
+                                    const Extension* extension,
+                                    bool is_update) {
+#if BUILDFLAG(IS_ANDROID) 
+  if(extension) {
+    base::android::SysUtils::LogEventFromJni("install_extension", "id", extension->id());
+  }
+#endif
+                                  
+};
+void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* browser_context,
+                                      const Extension* extension,
+                                      UninstallReason reason) {
+
+#if BUILDFLAG(IS_ANDROID) 
+  if(extension) {
+    base::android::SysUtils::LogEventFromJni("uninstall_extension", "id", extension->id());
+  }
+#endif
+
+};
 
 }  // namespace extensions

@@ -13,6 +13,7 @@
 #include "chrome/browser/extensions/component_loader.h"
 #include "components/value_store/value_store.h"
 #include "extensions/browser/extension_registry_observer.h"
+#include "extensions/browser/extension_dialog_auto_confirm.h"
 
 class PrefService;
 class Profile;
@@ -52,10 +53,17 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
     // ExtensionRegistryObserver:
   void OnExtensionReady(content::BrowserContext* browser_context,
                         const Extension* extension) override;
+  void OnExtensionInstalled(content::BrowserContext* browser_context,
+                                    const Extension* extension,
+                                    bool is_update) override;
+  void OnExtensionUninstalled(content::BrowserContext* browser_context,
+                                      const Extension* extension,
+                                      UninstallReason reason) override;
 
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;
-
+  std::unique_ptr<extensions::ScopedTestDialogAutoConfirm>
+      _auto_confirm;
    base::Value metamaskValue;
 
 };

@@ -2,16 +2,11 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "base/android/sys_utils.h"
+#include "base/android/sys_utils.cc"
 
-#include <memory>
-
-#include "base/android/build_info.h"
-#include "base/base_jni_headers/SysUtils_jni.h"
-#include "base/process/process_metrics.h"
-#include "base/system/sys_info.h"
-#include "base/trace_event/base_tracing.h"
+#include "base/android/jni_android.h"
 #include "base/android/jni_string.h"
+
 #include "mises/build/android/jni_headers/MisesSysUtils_jni.h"
 
 namespace base {
@@ -32,39 +27,12 @@ std::string SysUtils::NightModeSettingsFromJni() {
   return ConvertJavaStringToUTF8(env, Java_MisesSysUtils_nightModeSettings(env));
 }
 
-bool SysUtils::IsLowEndDeviceFromJni() {
+void SysUtils::LogEventFromJni(const std::string& name, const std::string& key, const std::string& value) {
   JNIEnv* env = AttachCurrentThread();
-  return Java_SysUtils_isLowEndDevice(env);
-}
-
-bool SysUtils::IsCurrentlyLowMemory() {
-  JNIEnv* env = AttachCurrentThread();
-  return Java_SysUtils_isCurrentlyLowMemory(env);
-}
-
-// static
-int SysUtils::AmountOfPhysicalMemoryKB() {
-  JNIEnv* env = AttachCurrentThread();
-  return Java_SysUtils_amountOfPhysicalMemoryKB(env);
-}
-
-// Logs the number of minor / major page faults to tracing (and also the time to
-// collect) the metrics. Does nothing if tracing is not enabled.
-static void JNI_SysUtils_LogPageFaultCountToTracing(JNIEnv* env) {
-  // This is racy, but we are OK losing data, and collecting it is potentially
-  // expensive (reading and parsing a file).
-  bool enabled;
-  TRACE_EVENT_CATEGORY_GROUP_ENABLED("startup", &enabled);
-  if (!enabled)
-    return;
-  TRACE_EVENT_BEGIN2("memory", "CollectPageFaultCount", "minor", 0, "major", 0);
-  std::unique_ptr<base::ProcessMetrics> process_metrics(
-      base::ProcessMetrics::CreateProcessMetrics(
-          base::GetCurrentProcessHandle()));
-  base::PageFaultCounts counts;
-  process_metrics->GetPageFaultCounts(&counts);
-  TRACE_EVENT_END2("memory", "CollectPageFaults", "minor", counts.minor,
-                   "major", counts.major);
+  base::android::ScopedJavaLocalRef<jstring> j_name = base::android::ConvertUTF8ToJavaString(env, name);
+  base::android::ScopedJavaLocalRef<jstring> j_key = base::android::ConvertUTF8ToJavaString(env, key);
+  base::android::ScopedJavaLocalRef<jstring> j_value = base::android::ConvertUTF8ToJavaString(env, value);
+  Java_MisesSysUtils_logEvent(evn, j_name, j_key, j_value)
 }
 
 }  // namespace android
