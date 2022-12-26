@@ -1,0 +1,13 @@
+diff --git a/components/crx_file/crx_verifier.cc b/components/crx_file/crx_verifier.cc
+index 75a2c01c0229a91956e240164b7656115a5a7ebb..45bb6cb0689864993b36f5daf4e91a348f2cd361 100644
+--- a/components/crx_file/crx_verifier.cc
++++ b/components/crx_file/crx_verifier.cc
+@@ -221,7 +221,7 @@ VerifierResult Verify(
+     std::vector<uint8_t>* compressed_verified_contents) {
+   std::string public_key_local;
+   std::string crx_id_local;
+-  base::File file(crx_path, base::File::FLAG_OPEN | base::File::FLAG_READ);
++  MISES_CRX_CONTENT_URL_HANDLER
+   if (!file.IsValid())
+     return VerifierResult::ERROR_FILE_NOT_READABLE;
+ 
