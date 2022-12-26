@@ -225,9 +225,9 @@ void SearchURLFetcher::OnURLLoadComplete(
       bool found_existing_search_engine = false;
       bool success = false;
       size_t num_engines = value->GetList().size();
-      for (size_t i = 0; i != num_engines; ++i) {
-        const base::DictionaryValue* engine;
-        if (value->GetDictionary(i, &engine)) {
+      for (base::Value:&entry: value->GetList()) {
+        const base::DictionaryValue* engine = entry.GetIfDict();
+        if (engine) {
           success = true;
           LOG(INFO) << "[Kiwi] Adding to the list one search engine: " << engine;
           std::u16string name;
