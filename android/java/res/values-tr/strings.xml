@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Eklentileri başta göster</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Ana menüde uzantıları daha yüksekte göster</string>
     <string name="contextual_menu_open_in_external_application">Harici uygulamada aç</string>
-    <string name="preferences_restart_is_needed">Yaptığınız değişiklikler Kiwi\'nin yeniden başlatılmasından sonra etkili olacak</string>
+    <string name="preferences_restart_is_needed">Yaptığınız değişiklikler Mises\'nin yeniden başlatılmasından sonra etkili olacak</string>
     <string name="preferences_restart_now">ŞİMDİ YENİDEN BAŞLAT</string>
     <string name="preferences_restart_later">Sonra</string>
     <string name="preferences_autofill">Otomatik doldur</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Web sitelerinin masaüstü sürümünü tercih edin</string>
     <string name="website_settings_desktop_mode_disabled">Web sitelerinin mobil cihazlar için optimize edilmiş sürümünü tercih edin</string>
     <string name="main_menu_mobile_site">Mobil site</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Basit mod etkinleştirildiğinde, Kiwi Tarayıcı web sitelerine web sitesinin daha hafif bir sürümünü sunmaları gerektiğini bildirerek verileri kaydetmeye çalışacaktır. Bu modda Kiwi, yüklemeyi hızlandırmak için sayfadaki belirli resimleri veya öğeleri devre dışı bırakabilir. Trafik, aracılar olmadan doğrudan web sitesine gider. Maksimum miktarda veriden tasarruf etmek için ana menüde \"Sinir bozucu reklamları gizle\"yi işaretlemeniz önerilir. Engellenen reklamlar, veri tasarrufu sayacına dahil edilmez.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Basit mod etkinleştirildiğinde, Mises Tarayıcı web sitelerine web sitesinin daha hafif bir sürümünü sunmaları gerektiğini bildirerek verileri kaydetmeye çalışacaktır. Bu modda Mises, yüklemeyi hızlandırmak için sayfadaki belirli resimleri veya öğeleri devre dışı bırakabilir. Trafik, aracılar olmadan doğrudan web sitesine gider. Maksimum miktarda veriden tasarruf etmek için ana menüde \"Sinir bozucu reklamları gizle\"yi işaretlemeniz önerilir. Engellenen reklamlar, veri tasarrufu sayacına dahil edilmez.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Uzantıları Optimize Edin Web Mağazası</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Uzantılar Web Mağazası\'nın görünümünü iyileştirin</string>
 </resources>

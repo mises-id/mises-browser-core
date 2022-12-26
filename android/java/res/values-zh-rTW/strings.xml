@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">擴充功能置頂顯示</string>
     <string name="accessibility_preferences_show_extensions_first_summary">將擴充功能顯示在主選單中最高的位置</string>
     <string name="contextual_menu_open_in_external_application">在外部應用程式中開啟</string>
-    <string name="preferences_restart_is_needed">您的變更將在重新啟動 Kiwi Browser 後生效</string>
+    <string name="preferences_restart_is_needed">您的變更將在重新啟動 Mises Browser 後生效</string>
     <string name="preferences_restart_now">立即重新啟動</string>
     <string name="preferences_restart_later">稍後</string>
     <string name="preferences_autofill">自動填入</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">偏好電腦版網站</string>
     <string name="website_settings_desktop_mode_disabled">優先使用為行動裝置版本最佳化的網站</string>
     <string name="main_menu_mobile_site">行動版網站</string>
-    <string name="data_reduction_description_lite_mode_kiwi">當啟用精簡模式時，Kiwi Browser 將嘗試透過讓網站知道它們該顯示精簡版網頁以節省數據流量。於此模式下，Kiwi 可能會停用網站上的某些圖片或是元素以提升網頁載入速度。流量將直接進入網站，無需中繼。為了最大程度節省數據流量，建議在主選單中勾選「隱藏煩人的廣告」。已阻擋的廣告不計入數據流量計數器。</string>
+    <string name="data_reduction_description_lite_mode_kiwi">當啟用精簡模式時，Mises Browser 將嘗試透過讓網站知道它們該顯示精簡版網頁以節省數據流量。於此模式下，Mises 可能會停用網站上的某些圖片或是元素以提升網頁載入速度。流量將直接進入網站，無需中繼。為了最大程度節省數據流量，建議在主選單中勾選「隱藏煩人的廣告」。已阻擋的廣告不計入數據流量計數器。</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">最佳化應用程式商店頁面</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">改善應用程式商店的外觀</string>
 </resources>

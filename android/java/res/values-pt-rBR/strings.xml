@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Mostrar extensões primeiro</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Mostrar extensões maiores no menu principal</string>
     <string name="contextual_menu_open_in_external_application">Abrir em aplicativo externo</string>
-    <string name="preferences_restart_is_needed">Suas alterações terão efeito após reiniciar o Kiwi</string>
+    <string name="preferences_restart_is_needed">Suas alterações terão efeito após reiniciar o Mises</string>
     <string name="preferences_restart_now">REINICIAR AGORA</string>
     <string name="preferences_restart_later">Mais tarde</string>
     <string name="preferences_autofill">Auto-preenchimento</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Preferir modo desktop</string>
     <string name="website_settings_desktop_mode_disabled">Preferir versão otimizada dos sites para dispositivos móveis</string>
     <string name="main_menu_mobile_site">Site para dispositivo móvel</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Quando o Modo Lite estiver ativado, o Kiwi Browser tentará economizar dados, informando aos sites que eles devem oferecer uma versão mais leve. Neste modo, o Kiwi pode desativar certas imagens ou elementos na página para acelerar o carregamento. O tráfego vai diretamente para o site sem intermediários. Para economizar uma quantidade máxima de dados, recomendamos marcar a opção \"Bloquear anúncios invasivos\" no menu principal. Anúncios bloqueados não contam para a estatística de economia de dados.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Quando o Modo Lite estiver ativado, o Mises Browser tentará economizar dados, informando aos sites que eles devem oferecer uma versão mais leve. Neste modo, o Mises pode desativar certas imagens ou elementos na página para acelerar o carregamento. O tráfego vai diretamente para o site sem intermediários. Para economizar uma quantidade máxima de dados, recomendamos marcar a opção \"Bloquear anúncios invasivos\" no menu principal. Anúncios bloqueados não contam para a estatística de economia de dados.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Otimizar a Loja de Extensões</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Aprimorar a aparência da Loja de Extensões</string>
 </resources>

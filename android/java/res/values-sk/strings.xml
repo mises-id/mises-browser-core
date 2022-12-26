@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Najprv zobraziť rozšírenia</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Zobrazí rozšírenia vyššie v hlavnej ponuke</string>
     <string name="contextual_menu_open_in_external_application">Otvoriť v externej aplikácii</string>
-    <string name="preferences_restart_is_needed">Vaše zmeny sa prejavia po reštartovaní Kiwi</string>
+    <string name="preferences_restart_is_needed">Vaše zmeny sa prejavia po reštartovaní Mises</string>
     <string name="preferences_restart_now">REŠTARTOVAŤ TERAZ</string>
     <string name="preferences_restart_later">Neskôr</string>
     <string name="preferences_autofill">Automatické vypĺňanie</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Preferuje verziu webovej lokality pre počítač</string>
     <string name="website_settings_desktop_mode_disabled">Preferuje verziu webovej lokality optimalizovanú pre mobil</string>
     <string name="main_menu_mobile_site">Mobilná stránka</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Keď je aktivovaný režim Lite, prehliadač Kiwi sa pokúsi šetriť údaje tým, že webovým stránkam oznámi, že by mali poskytovať odľahčenú verziu webovej stránky. V tomto režime môže prehliadač Kiwi vypnúť niektoré obrázky alebo prvky na stránke, aby sa zrýchlilo načítavanie. Prevádzka smeruje priamo na webovú lokalitu bez sprostredkovateľov. Ak chcete ušetriť maximálne množstvo údajov, odporúčame v hlavnej ponuke začiarknuť možnosť \"Skryť otravné reklamy\". Zablokované reklamy sa nezapočítavajú do počítadla úspory dát.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Keď je aktivovaný režim Lite, prehliadač Mises sa pokúsi šetriť údaje tým, že webovým stránkam oznámi, že by mali poskytovať odľahčenú verziu webovej stránky. V tomto režime môže prehliadač Mises vypnúť niektoré obrázky alebo prvky na stránke, aby sa zrýchlilo načítavanie. Prevádzka smeruje priamo na webovú lokalitu bez sprostredkovateľov. Ak chcete ušetriť maximálne množstvo údajov, odporúčame v hlavnej ponuke začiarknuť možnosť \"Skryť otravné reklamy\". Zablokované reklamy sa nezapočítavajú do počítadla úspory dát.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Optimalizovať Internetový obchod Chrome</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Vylepší vzhľad Internetového obchodu Chrome</string>
 </resources>

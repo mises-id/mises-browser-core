@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">拡張機能を先頭に表示</string>
     <string name="accessibility_preferences_show_extensions_first_summary">メインメニューの先頭に拡張機能を表示します</string>
     <string name="contextual_menu_open_in_external_application">外部アプリで開く</string>
-    <string name="preferences_restart_is_needed">Kiwiを再起動後に変更が反映されます</string>
+    <string name="preferences_restart_is_needed">Misesを再起動後に変更が反映されます</string>
     <string name="preferences_restart_now">今すぐ再起動</string>
     <string name="preferences_restart_later">あとで</string>
     <string name="preferences_autofill">自動入力</string>
@@ -70,7 +70,7 @@
     <string name="website_settings_desktop_mode_enabled">デスクトップ版のウェブサイトを優先します</string>
     <string name="website_settings_desktop_mode_disabled">モバイル向けに最適化されたウェブサイトを優先します</string>
     <string name="main_menu_mobile_site">モバイルサイト</string>
-    <string name="data_reduction_description_lite_mode_kiwi">ライトモードが有効な場合、 Kiwi Browser はウェブサイトに軽量版を提供するべきだと通知することでデータを削減しようとします。 このモードでは、ページ上の特定の画像や要素を無効にして読み込みを高速化することができます。 トラフィックは仲介者なしでウェブサイトに直接行きます。 データを最大限節約するには、メインメニューで「迷惑な広告を非表示にする」ことをお勧めします。 ブロックされた広告は削減されたデータにはカウントされません。</string>
+    <string name="data_reduction_description_lite_mode_kiwi">ライトモードが有効な場合、 Mises Browser はウェブサイトに軽量版を提供するべきだと通知することでデータを削減しようとします。 このモードでは、ページ上の特定の画像や要素を無効にして読み込みを高速化することができます。 トラフィックは仲介者なしでウェブサイトに直接行きます。 データを最大限節約するには、メインメニューで「迷惑な広告を非表示にする」ことをお勧めします。 ブロックされた広告は削減されたデータにはカウントされません。</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">拡張機能ウェブストアの最適化</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">拡張機能ウェブストアの表示を改善します</string>
 </resources>

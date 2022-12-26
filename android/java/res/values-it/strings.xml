@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Mostra prima le estensioni</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Mostra estensioni in alto nel menu principale</string>
     <string name="contextual_menu_open_in_external_application">Seleziona un\'applicazione esterna</string>
-    <string name="preferences_restart_is_needed">Le modifiche avranno effetto al riavvio di Kiwi</string>
+    <string name="preferences_restart_is_needed">Le modifiche avranno effetto al riavvio di Mises</string>
     <string name="preferences_restart_now">RIAVVIA ORA</string>
     <string name="preferences_restart_later">In seguito</string>
     <string name="preferences_autofill">Riempimento automatico</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Preferisci la versione desktop dei siti web</string>
     <string name="website_settings_desktop_mode_disabled">Preferisci la versione mobile ottimizzata dei siti web</string>
     <string name="main_menu_mobile_site">Sito mobile</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Quando la modalità Lite è attivata, Kiwi Browser cercherà di salvare i dati facendo sapere ai siti web che dovrebbero servire una versione più leggera del sito. In questa modalità, Kiwi può disabilitare alcune immagini o elementi sulla pagina per velocizzare il caricamento. Il traffico va direttamente al sito web senza intermediari. Per salvare la quantità massima di dati, si consiglia di selezionare \"Blocca gli annunci fastidiosi\" nel menu principale. Gli annunci bloccati non vengono considerati nel contatore di salvataggio dei dati.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Quando la modalità Lite è attivata, Mises Browser cercherà di salvare i dati facendo sapere ai siti web che dovrebbero servire una versione più leggera del sito. In questa modalità, Mises può disabilitare alcune immagini o elementi sulla pagina per velocizzare il caricamento. Il traffico va direttamente al sito web senza intermediari. Per salvare la quantità massima di dati, si consiglia di selezionare \"Blocca gli annunci fastidiosi\" nel menu principale. Gli annunci bloccati non vengono considerati nel contatore di salvataggio dei dati.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Ottimizza Web Store delle estensioni</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Migliora l\'aspetto del Web Store delle estensioni</string>
 </resources>

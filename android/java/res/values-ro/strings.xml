@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Afișați mai întâi extensiile</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Afișați extensiile mai sus în meniul principal</string>
     <string name="contextual_menu_open_in_external_application">Deschide în aplicaţie externă</string>
-    <string name="preferences_restart_is_needed">Noile setări vor fi aplicate când veți restarta Kiwi</string>
+    <string name="preferences_restart_is_needed">Noile setări vor fi aplicate când veți restarta Mises</string>
     <string name="preferences_restart_now">REPORNIŢI ACUM</string>
     <string name="preferences_restart_later">Mai târziu</string>
     <string name="preferences_autofill">Completare automată</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Preferă versiunea desktop a site-urilor</string>
     <string name="website_settings_desktop_mode_disabled">Preferă o versiune optimizată pentru mobil a site-urilor web</string>
     <string name="main_menu_mobile_site">Site pentru mobil</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Când este activat modul Lite, Kiwi Browser va încerca să salveze datele lăsând site-urile să ştie că ar trebui să arate o versiune mai simplă a website-ului. În acest mod, Kiwi poate dezactiva anumite imagini sau elemente de pe pagină pentru a crește viteza. Traficul este transmis direct către site fără intermediari. Pentru a salva cantitatea maximă de date, se recomandă bifarea opțiunii \"Ascundere reclame enervante\" în meniul principal. Anunţurile blocate nu se numără la contorul de salvare a datelor.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Când este activat modul Lite, Mises Browser va încerca să salveze datele lăsând site-urile să ştie că ar trebui să arate o versiune mai simplă a website-ului. În acest mod, Mises poate dezactiva anumite imagini sau elemente de pe pagină pentru a crește viteza. Traficul este transmis direct către site fără intermediari. Pentru a salva cantitatea maximă de date, se recomandă bifarea opțiunii \"Ascundere reclame enervante\" în meniul principal. Anunţurile blocate nu se numără la contorul de salvare a datelor.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Optimizare a Magazinului Web de Extensii</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Îmbunătățește aspectul Magazinului Web de Extensii</string>
 </resources>

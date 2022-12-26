@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Tiện ích lên trước</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Tiện ích mở rộng ở trên cùng khi ấn</string>
     <string name="contextual_menu_open_in_external_application">Mở bằng ứng dụng bên ngoài</string>
-    <string name="preferences_restart_is_needed">Các thay đổi sẽ có hiệu lực sau khi khởi động lại Kiwi</string>
+    <string name="preferences_restart_is_needed">Các thay đổi sẽ có hiệu lực sau khi khởi động lại Mises</string>
     <string name="preferences_restart_now">KHỞI ĐỘNG LẠI NGAY</string>
     <string name="preferences_restart_later">Để sau</string>
     <string name="preferences_autofill">Tự động điền</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Ưu tiên phiên bản dành cho máy tính của trang web</string>
     <string name="website_settings_desktop_mode_disabled">Ưu tiên phiên bản dành cho điện thoại của trang web</string>
     <string name="main_menu_mobile_site">Trang di động</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Khi Lite Mode được kích hoạt, Kiwi Browser sẽ cố tiết kiệm dữ liệu bằng việc yêu cầu trang web cung cấp phiên bản tối giản của chính nó. Lúc này, Kiwi có thể bỏ một số ảnh hoặc yếu tố của trang để tăng tốc. Bạn sẽ truy cập thẳng vào trang web và bỏ qua trung gian. Để tiết kiệm dữ liệu tối đa, bạn nên chọn \"Chặn quảng cáo phiền toái\" ở Menu (⋮). Bạn sẽ không mất dữ liệu cho cho các quảng cáo bị chặn.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Khi Lite Mode được kích hoạt, Mises Browser sẽ cố tiết kiệm dữ liệu bằng việc yêu cầu trang web cung cấp phiên bản tối giản của chính nó. Lúc này, Mises có thể bỏ một số ảnh hoặc yếu tố của trang để tăng tốc. Bạn sẽ truy cập thẳng vào trang web và bỏ qua trung gian. Để tiết kiệm dữ liệu tối đa, bạn nên chọn \"Chặn quảng cáo phiền toái\" ở Menu (⋮). Bạn sẽ không mất dữ liệu cho cho các quảng cáo bị chặn.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Tối ưu hóa Extensions Web Store</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Cải thiện giao diện của Cửa hàng trực tuyến tiện ích mở rộng</string>
 </resources>

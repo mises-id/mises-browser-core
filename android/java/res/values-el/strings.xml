@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Εμφάνιση επεκτάσεων στην αρχή</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Εμφάνιση επεκτάσεων υψηλότερα στο κύριο μενού</string>
     <string name="contextual_menu_open_in_external_application">Άνοιγμα σε εξωτερική εφαρμογή</string>
-    <string name="preferences_restart_is_needed">Οι αλλαγές σας θα τεθούν σε ισχύ κατά την επανεκκίνηση του Kiwi</string>
+    <string name="preferences_restart_is_needed">Οι αλλαγές σας θα τεθούν σε ισχύ κατά την επανεκκίνηση του Mises</string>
     <string name="preferences_restart_now">ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΩΡΑ</string>
     <string name="preferences_restart_later">Αργότερα</string>
     <string name="preferences_autofill">Autofill</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Προτίμηση της έκδοσης επιφάνειας εργασίας των ιστοσελίδων</string>
     <string name="website_settings_desktop_mode_disabled">Προτίμηση της βελτιστοποιημένης για κινητά έκδοσης των ιστοσελίδων</string>
     <string name="main_menu_mobile_site">Ιστοσελίδα για κινητά</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Όταν η λειτουργία Lite είναι ενεργοποιημένη, o Kiwi Browser θα προσπαθήσει να αποθηκεύσει τα δεδομένα αφήνοντας τους ιστότοπους να γνωρίζουν ότι θα πρέπει να εξυπηρετούν μια ελαφρύτερη έκδοση της ιστοσελίδας. Σε αυτή τη λειτουργία, o Kiwi μπορεί να απενεργοποιήσει ορισμένες εικόνες ή στοιχεία στη σελίδα για να επιταχύνει τη φόρτωση. Η κίνηση πηγαίνει κατευθείαν στην ιστοσελίδα χωρίς μεσάζοντες. Για να αποθηκεύσετε το μέγιστο ποσό δεδομένων, προτείνεται η επιλογή \"Απόκρυψη ενοχλητικών διαφημίσεων\" στο κύριο μενού. Οι αποκλεισμένες διαφημίσεις δεν μετρούν προς τον μετρητή αποθήκευσης δεδομένων.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Όταν η λειτουργία Lite είναι ενεργοποιημένη, o Mises Browser θα προσπαθήσει να αποθηκεύσει τα δεδομένα αφήνοντας τους ιστότοπους να γνωρίζουν ότι θα πρέπει να εξυπηρετούν μια ελαφρύτερη έκδοση της ιστοσελίδας. Σε αυτή τη λειτουργία, o Mises μπορεί να απενεργοποιήσει ορισμένες εικόνες ή στοιχεία στη σελίδα για να επιταχύνει τη φόρτωση. Η κίνηση πηγαίνει κατευθείαν στην ιστοσελίδα χωρίς μεσάζοντες. Για να αποθηκεύσετε το μέγιστο ποσό δεδομένων, προτείνεται η επιλογή \"Απόκρυψη ενοχλητικών διαφημίσεων\" στο κύριο μενού. Οι αποκλεισμένες διαφημίσεις δεν μετρούν προς τον μετρητή αποθήκευσης δεδομένων.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Optimize Extensions Web Store</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Improve the appearance of Extensions Web Store</string>
 </resources>

@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Extensies eerst weergeven</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Extensies hoger in het hoofdmenu weergeven</string>
     <string name="contextual_menu_open_in_external_application">Openen in externe applicatie</string>
-    <string name="preferences_restart_is_needed">Wijzigingen worden van kracht na herstart van Kiwi</string>
+    <string name="preferences_restart_is_needed">Wijzigingen worden van kracht na herstart van Mises</string>
     <string name="preferences_restart_now">HERSTART NU</string>
     <string name="preferences_restart_later">Niet nu</string>
     <string name="preferences_autofill">Automatisch aanvullen</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Voorkeur voor desktopversie van websites</string>
     <string name="website_settings_desktop_mode_disabled">Voorkeur voor mobiele geoptimaliseerde versie van websites</string>
     <string name="main_menu_mobile_site">Mobiele site</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Wanneer Lite-modus is geactiveerd, zal Kiwi Browser proberen gegevens te besparen door de websites te laten weten dat ze een lichtere versie van de website moeten gebruiken. In deze modus kan Kiwi bepaalde foto\'s of elementen op de pagina uitschakelen om het laden te versnellen. Het verkeer gaat rechtstreeks naar de website zonder tussenpersonen. Om het maximum aantal data te besparen, wordt aangeraden om \"Verberg vervelende advertenties\" in het hoofdmenu in te schakelen. Geblokkeerde advertenties tellen niet mee in de teller voor gegevensbesparing.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Wanneer Lite-modus is geactiveerd, zal Mises Browser proberen gegevens te besparen door de websites te laten weten dat ze een lichtere versie van de website moeten gebruiken. In deze modus kan Mises bepaalde foto\'s of elementen op de pagina uitschakelen om het laden te versnellen. Het verkeer gaat rechtstreeks naar de website zonder tussenpersonen. Om het maximum aantal data te besparen, wordt aangeraden om \"Verberg vervelende advertenties\" in het hoofdmenu in te schakelen. Geblokkeerde advertenties tellen niet mee in de teller voor gegevensbesparing.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Optimaliseer de Extensies Webwinkel</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Verbeter het uiterlijk van de Extensies Webwinkel</string>
 </resources>

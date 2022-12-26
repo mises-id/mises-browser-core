@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Add-ons zuerst anzeigen</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Add-ons im Hauptmenü höher anzeigen</string>
     <string name="contextual_menu_open_in_external_application">In externer Anwendung öffnen</string>
-    <string name="preferences_restart_is_needed">Die Änderungen werden nach dem Neustart von Kiwi wirksam</string>
+    <string name="preferences_restart_is_needed">Die Änderungen werden nach dem Neustart von Mises wirksam</string>
     <string name="preferences_restart_now">JETZT NEU STARTEN</string>
     <string name="preferences_restart_later">Später</string>
     <string name="preferences_autofill">Autofill</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Desktop-Version von Webseiten bevorzugen</string>
     <string name="website_settings_desktop_mode_disabled">Mobil-Version von Webseiten bevorzugen</string>
     <string name="main_menu_mobile_site">Mobile Webseite</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Wenn der Lite-Modus aktiviert ist versucht Kiwi Browser die Datenübertragung zu minimieren indem er die Webseiten wissen lässt, dass sie eine einfache Version der Website liefern sollen. In diesem Modus kann Kiwi bestimmte Bilder oder Elemente auf der Seite deaktivieren, um das Laden zu beschleunigen. Die Daten werden nicht über einen externen Dienst geleitet. Zum minimieren der Datenübertragung wird empfohlen, im Hauptmenü \"lästige Werbung ausblenden\" zu aktivieren. Blockierte Werbung wird nicht übertragen.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Wenn der Lite-Modus aktiviert ist versucht Mises Browser die Datenübertragung zu minimieren indem er die Webseiten wissen lässt, dass sie eine einfache Version der Website liefern sollen. In diesem Modus kann Mises bestimmte Bilder oder Elemente auf der Seite deaktivieren, um das Laden zu beschleunigen. Die Daten werden nicht über einen externen Dienst geleitet. Zum minimieren der Datenübertragung wird empfohlen, im Hauptmenü \"lästige Werbung ausblenden\" zu aktivieren. Blockierte Werbung wird nicht übertragen.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Webshop für Erweiterungen optimieren</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Verbessern Sie das Erscheinungsbild des Extensions Web Store</string>
 </resources>

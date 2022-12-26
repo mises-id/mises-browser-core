@@ -40,7 +40,7 @@
     <string name="accessibility_preferences_show_extensions_first_title">Najpierw wyświetlaj rozszerzenia</string>
     <string name="accessibility_preferences_show_extensions_first_summary">Wyświetlaj rozszerzenia wyżej w głównym menu</string>
     <string name="contextual_menu_open_in_external_application">Otwórz w zewnętrznej aplikacji</string>
-    <string name="preferences_restart_is_needed">Twoje zmiany zostaną wprowadzone po ponownym uruchomieniu Kiwi</string>
+    <string name="preferences_restart_is_needed">Twoje zmiany zostaną wprowadzone po ponownym uruchomieniu Mises</string>
     <string name="preferences_restart_now">Zrestartuj teraz</string>
     <string name="preferences_restart_later">Później</string>
     <string name="preferences_autofill">Autouzupełnianie</string>
@@ -69,7 +69,7 @@
     <string name="website_settings_desktop_mode_enabled">Preferuj komputerową wersję stron internetowych</string>
     <string name="website_settings_desktop_mode_disabled">Preferuj wersję stron internetowych zoptymalizowanych dla urządzeń mobilnych</string>
     <string name="main_menu_mobile_site">Wersja mobilna</string>
-    <string name="data_reduction_description_lite_mode_kiwi">Po włączeniu wersji uproszczonej, przeglądarka Kiwi będzie oszczędzać dane, informując strony internetowe, że preferowana jest lżejsza wersja. W tym trybie Kiwi może wyłączyć niektóre obrazy oraz elementy na stronie, aby przyspieszyć ładowanie. Ruch trafia bezpośrednio do witryny bez żadnych połączeń pośredniczących. Aby zaoszczędzić maksymalną ilość danych, zalecamy włączyć \"Ukryj irytujące reklamy\" w menu głównym. Zablokowane reklamy nie wliczają się do licznika oszczędzania danych.</string>
+    <string name="data_reduction_description_lite_mode_kiwi">Po włączeniu wersji uproszczonej, przeglądarka Mises będzie oszczędzać dane, informując strony internetowe, że preferowana jest lżejsza wersja. W tym trybie Mises może wyłączyć niektóre obrazy oraz elementy na stronie, aby przyspieszyć ładowanie. Ruch trafia bezpośrednio do witryny bez żadnych połączeń pośredniczących. Aby zaoszczędzić maksymalną ilość danych, zalecamy włączyć \"Ukryj irytujące reklamy\" w menu głównym. Zablokowane reklamy nie wliczają się do licznika oszczędzania danych.</string>
     <string name="accessibility_preferences_cws_mobile_friendly_title">Zoptymalizuj sklep z rozszerzeniami</string>
     <string name="accessibility_preferences_cws_mobile_friendly_summary">Popraw wygląd sklepu z rozszerzeniami</string>
 </resources>
