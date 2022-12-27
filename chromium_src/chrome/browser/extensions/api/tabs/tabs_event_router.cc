@@ -187,7 +187,9 @@ TabsEventRouter::TabsEventRouter(Profile* profile)
   tab_manager_scoped_observation_.Observe(g_browser_process->GetTabManager());
 #if BUILDFLAG(IS_ANDROID)
   TabModelList::AddObserver(this);
-  OnTabModelAdded();
+  if (!TabModelList::models().empty()) {
+    OnTabModelAdded();
+  }
 #endif
 }
 
