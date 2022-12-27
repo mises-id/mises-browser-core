@@ -1,0 +1,28 @@
+diff --git a/chrome/browser/resources/extensions/toggle_row.ts b/chrome/browser/resources/extensions/toggle_row.ts
+index b2add5114cb0395f5bb4587b2cfd177ca70cb5a2..430c042ac1880d4250f8559d8281f5c298d7e2a9 100644
+--- a/chrome/browser/resources/extensions/toggle_row.ts
++++ b/chrome/browser/resources/extensions/toggle_row.ts
+@@ -29,6 +29,23 @@ export class ExtensionsToggleRowElement extends PolymerElement {
+     return 'extensions-toggle-row';
+   }
+ 
++  override ready() {
++    super.ready();
++    var _incognitoToggle = this;
++    if (this.id == 'allow-incognito' && document.location.hash == '#enable_incognito') {
++      console.log('Executing Kiwi additions: ' + document.location.hash + ' on element: ' + this.id);
++      console.log('Scrolling into view');
++      _incognitoToggle.scrollIntoView({
++        block: "end",
++        behavior: 'smooth'
++      });
++      _incognitoToggle.classList.add("fade");
++      window.setTimeout(function () { _incognitoToggle.classList.add("fadeIn"); }, 1000);
++      window.setTimeout(function () { _incognitoToggle.classList.remove("fadeIn"); }, 1500);
++      window.setTimeout(function () { _incognitoToggle.classList.add("fadeIn"); }, 2000);
++    }
++  }
++
+   static get template() {
+     return getTemplate();
+   }

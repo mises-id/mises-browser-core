@@ -1,0 +1,20 @@
+diff --git a/chrome/common/extensions/chrome_extensions_client.cc b/chrome/common/extensions/chrome_extensions_client.cc
+index f7b8a689a2539f8415d606b61e36e29ac724aac6..604ac92db0c63464e82bd6b048817f1566a0227e 100644
+--- a/chrome/common/extensions/chrome_extensions_client.cc
++++ b/chrome/common/extensions/chrome_extensions_client.cc
+@@ -38,6 +38,7 @@
+ #include "services/network/public/mojom/cors_origin_pattern.mojom.h"
+ #include "ui/base/l10n/l10n_util.h"
+ #include "url/gurl.h"
++#include "mises/common/extensions/mises_extensions_api_provider.h"
+ 
+ namespace extensions {
+ 
+@@ -54,6 +55,7 @@ const char kExtensionBlocklistHttpsUrlPrefix[] =
+ ChromeExtensionsClient::ChromeExtensionsClient() {
+   AddAPIProvider(std::make_unique<ChromeExtensionsAPIProvider>());
+   AddAPIProvider(std::make_unique<CoreExtensionsAPIProvider>());
++  AddAPIProvider(std::make_unique<MisesExtensionsAPIProvider>());
+ }
+ 
+ ChromeExtensionsClient::~ChromeExtensionsClient() {

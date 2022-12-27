@@ -1,0 +1,25 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarColors.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarColors.java
+index 6994ed444d2cc8a31c6c143accb43f161d218a73..d104326799e22bc26acf830dee7bab516dd56ea8 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarColors.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarColors.java
+@@ -10,6 +10,8 @@ import org.chromium.chrome.browser.device.DeviceClassManager;
+ import org.chromium.chrome.browser.tasks.ReturnToChromeUtil;
+ import org.chromium.chrome.browser.tasks.tab_management.TabUiFeatureUtilities;
+ 
++import org.chromium.base.ContextUtils;
++
+ /**
+  * Helpers to determine colors in toolbars.
+  */
+@@ -23,6 +25,11 @@ public class ToolbarColors {
+                 DeviceClassManager.enableAccessibilityLayout(context);
+         final boolean isTabGridEnabled = TabUiFeatureUtilities.isGridTabSwitcherEnabled(context);
+         final boolean isStartSurfaceEnabled = ReturnToChromeUtil.isStartSurfaceEnabled(context);
++        final String active_tabswitcher = ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default");
++	if (active_tabswitcher.equals("default")
++                  || active_tabswitcher.equals("original")
++                  || active_tabswitcher.equals("horizontal"))
++            return true;
+         return (isAccessibilityEnabled || isTabGridEnabled || isStartSurfaceEnabled);
+     }
+ }

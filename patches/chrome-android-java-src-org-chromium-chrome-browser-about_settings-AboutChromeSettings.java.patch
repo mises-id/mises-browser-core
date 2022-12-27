@@ -1,0 +1,23 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
+index c552741f32fc653a66a306fcd27e30d699390c71..197fcfe6015652c2585bb085267ea32249930a7e 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
+@@ -66,7 +66,8 @@ public class AboutChromeSettings
+      * versions are more useful.
+      */
+     public static String getApplicationVersion(Context context, String version) {
+-        if (VersionInfo.isOfficialBuild()) {
++        boolean mises_enforce = false;
++	if (mises_enforce && VersionInfo.isOfficialBuild()) {
+             return version;
+         }
+ 
+@@ -79,7 +80,7 @@ public class AboutChromeSettings
+         }
+         CharSequence updateTimeString = DateUtils.getRelativeTimeSpanString(
+                 info.lastUpdateTime, System.currentTimeMillis(), 0);
+-        return context.getString(R.string.version_with_update_time, version, updateTimeString);
++        return context.getString(R.string.version_with_update_time, info.versionName, updateTimeString);
+     }
+ 
+     @Override

@@ -1,0 +1,57 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tasks/ReturnToChromeUtil.java b/chrome/android/java/src/org/chromium/chrome/browser/tasks/ReturnToChromeUtil.java
+index 4ffc5fcd2b29ec2e4cbf03baf872f107afc098d5..fb147155a8191ebbf1a9f9a08c25698238b62b42 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/tasks/ReturnToChromeUtil.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/tasks/ReturnToChromeUtil.java
+@@ -473,6 +473,7 @@ public final class ReturnToChromeUtil {
+         if (UrlUtilities.isCanonicalizedNTPUrl(intentUrl)
+                 && ReturnToChromeUtil.shouldShowStartSurfaceAsTheHomePage(context)
+                 && !intent.getBooleanExtra(IntentHandler.EXTRA_OPEN_NEW_INCOGNITO_TAB, false)) {
++	    Log.i(TAG, "shouldShowOverviewPageOnStart case 1");
+             return true;
+         }
+ 
+@@ -481,11 +482,15 @@ public final class ReturnToChromeUtil {
+         // If Start surface is enabled and there's no tab existing, handle the initial tab creation.
+         if (isStartSurfaceEnabled && IntentUtils.isMainIntentFromLauncher(intent)
+                 && ReturnToChromeUtil.getTotalTabCount(tabModelSelector) <= 0) {
+-            return true;
++	    Log.i(TAG, "shouldShowOverviewPageOnStart case 2");
++            return false;
+         }
+ 
+         // Checks whether to hide Start surface when last visited tab is a search result page.
+-        if (isStartSurfaceEnabled && shouldHideStartSurfaceWhenLastVisitedTabIsSRP()) return false;
++        if (isStartSurfaceEnabled && shouldHideStartSurfaceWhenLastVisitedTabIsSRP()) {
++	    Log.i(TAG, "shouldShowOverviewPageOnStart case 3");
++	    return false;
++	}
+ 
+         // Checks whether to show the Start surface / grid Tab switcher due to feature flag
+         // TAB_SWITCHER_ON_RETURN_MS.
+@@ -494,19 +499,24 @@ public final class ReturnToChromeUtil {
+                 && ReturnToChromeUtil.shouldShowTabSwitcher(lastBackgroundedTimeMillis);
+ 
+         // If the overview page won't be shown on startup, stops here.
+-        if (!tabSwitcherOnReturn) return false;
++        if (!tabSwitcherOnReturn) {
++	    Log.i(TAG, "shouldShowOverviewPageOnStart case 4");
++	    return false;
++	}
+ 
+         if (isStartSurfaceEnabled) {
+             if (StartSurfaceConfiguration.CHECK_SYNC_BEFORE_SHOW_START_AT_STARTUP.getValue()) {
+                 // We only check the sync status when flag CHECK_SYNC_BEFORE_SHOW_START_AT_STARTUP
+                 // and the Start surface are both enabled.
++		Log.i(TAG, "shouldShowOverviewPageOnStart case 5");
+                 return ReturnToChromeUtil.isPrimaryAccountSync();
+             } else if (!TextUtils.isEmpty(
+                                StartSurfaceConfiguration.BEHAVIOURAL_TARGETING.getValue())) {
++		Log.i(TAG, "shouldShowOverviewPageOnStart case 6");
+                 return ReturnToChromeUtil.userBehaviourSupported();
+             }
+         }
+-
++        Log.i(TAG, "shouldShowOverviewPageOnStart case 7");
+         // If Start surface is disable and should show the Grid tab switcher at startup, or flag
+         // CHECK_SYNC_BEFORE_SHOW_START_AT_STARTUP and behavioural targeting flag aren't enabled,
+         // return true here.

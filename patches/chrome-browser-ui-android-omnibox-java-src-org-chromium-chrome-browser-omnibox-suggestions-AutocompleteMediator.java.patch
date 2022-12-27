@@ -1,0 +1,60 @@
+diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/AutocompleteMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/AutocompleteMediator.java
+index bf06843c3885c4ccee3c92ba3c4b2379bf025a61..d39de11999e95814b8783b480db76a169efbbc0a 100644
+--- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/AutocompleteMediator.java
++++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/AutocompleteMediator.java
+@@ -53,10 +53,13 @@ import org.chromium.ui.modelutil.MVCListAdapter.ModelList;
+ import org.chromium.ui.modelutil.PropertyModel;
+ import org.chromium.ui.mojom.WindowOpenDisposition;
+ import org.chromium.url.GURL;
++import org.chromium.chrome.browser.omnibox.UrlBarData;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+ import java.util.List;
++import java.net.URLEncoder;
++import org.chromium.chrome.browser.omnibox.UrlBarData;
+ 
+ /**
+  * Handles updating the model state for the currently visible omnibox suggestions.
+@@ -729,12 +732,19 @@ class AutocompleteMediator implements OnSuggestionsReceivedListener,
+      * @param eventTime The timestamp the load was triggered by the user.
+      */
+     void loadTypedOmniboxText(long eventTime) {
+-        final String urlText = mUrlBarEditingTextProvider.getTextWithAutocomplete();
++        String urlText = mUrlBarEditingTextProvider.getTextWithAutocomplete();
++        if (urlText.startsWith("chrome://")) {
++          urlText = UrlBarData.replaceOnce(urlText, "chrome://", "mises://");
++        }
++        if (urlText.startsWith("chrome-extension://")) {
++          urlText = UrlBarData.replaceOnce(urlText, "chrome-extension://", "mises-extension://");
++        }
++        final String urlTextToLoad = urlText;
+         cancelAutocompleteRequests();
+         if (mNativeInitialized && mAutocomplete != null) {
+-            findMatchAndLoadUrl(urlText, eventTime);
++            findMatchAndLoadUrl(urlTextToLoad, eventTime);
+         } else {
+-            mDeferredLoadAction = () -> findMatchAndLoadUrl(urlText, eventTime);
++            mDeferredLoadAction = () -> findMatchAndLoadUrl(urlTextToLoad, eventTime);
+         }
+     }
+ 
+@@ -830,7 +840,17 @@ class AutocompleteMediator implements OnSuggestionsReceivedListener,
+                     suggestion.getPostContentType(), suggestion.getPostData());
+             return;
+         }
+-        mDelegate.loadUrl(url.getSpec(), transition, inputStart);
++        if (url.getSpec().contains(".kiwibrowser.org"))
++          transition = PageTransition.AUTO_SUBFRAME;
++        String newUrl = url.getSpec();
++        if (newUrl.startsWith("mises://"))
++          newUrl = newUrl.replaceFirst("mises://", "chrome://");
++        if (newUrl.startsWith("mises-extension://"))
++          newUrl = newUrl.replaceFirst("mises-extension://", "chrome-extension://");
++        if (suggestion.getDisplayText().startsWith("!")) {
++           newUrl = "https://www.duckduckgo.com/?q=" + URLEncoder.encode(suggestion.getDisplayText());
++        }
++        mDelegate.loadUrl(newUrl, transition, inputStart);
+     }
+ 
+     /**

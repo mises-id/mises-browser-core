@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/app_management/BUILD.gn b/ui/webui/resources/cr_components/app_management/BUILD.gn
+index 2043f861c47ab18627c7ca242fae7676b76df0c4..0c3e3ab1e371c01a961262a102055927d6ae6861 100644
+--- a/ui/webui/resources/cr_components/app_management/BUILD.gn
++++ b/ui/webui/resources/cr_components/app_management/BUILD.gn
+@@ -10,7 +10,7 @@ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("app_management.gni")
+ 
+-assert(!is_android && !is_ios)
++# assert(!is_android && !is_ios)
+ 
+ preprocess_folder_tmp = "$root_gen_dir/ui/webui/resources/preprocessed/cr_components/app_management_tmp"
+ preprocess_folder =

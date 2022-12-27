@@ -1,0 +1,15 @@
+diff --git a/components/BUILD.gn b/components/BUILD.gn
+index 09569115133bc919cf8362c9a555281c2098ba60..9405bc0efe0f9ab6bcdc022539141dd514d255ed 100644
+--- a/components/BUILD.gn
++++ b/components/BUILD.gn
+@@ -665,8 +665,8 @@ test("components_unittests") {
+   # Since //chrome depends on //extensions, we also only assert_no_deps on
+   # extensions targets for non-lacros builds.
+   if (!is_chromeos_lacros) {
+-    assert_no_deps = [ "//chrome/*" ]
+-    assert_no_deps += disallowed_extension_deps_
++#    assert_no_deps = [ "//chrome/*" ]
++#    assert_no_deps += disallowed_extension_deps_
+   }
+ 
+   if (is_ios) {

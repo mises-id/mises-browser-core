@@ -40,6 +40,7 @@ json_features("behavior_features") {
 
 mises_extensions_api_schema_sources = [
   "rewards_notifications.json",
+  "mises_private.idl"
 ]
 
 mises_extensions_api_uncompiled_sources = []

@@ -1,0 +1,16 @@
+diff --git a/chrome/android/java/res/values-v21/styles.xml b/chrome/android/java/res/values-v21/styles.xml
+index fdd8947b2554f20065ab250a975d789d132c6b50..fd68798e74f95ba9bcf2953ddc51d4599457de7c 100644
+--- a/chrome/android/java/res/values-v21/styles.xml
++++ b/chrome/android/java/res/values-v21/styles.xml
+@@ -50,4 +50,11 @@
+     <style name="TextAppearance.FreFirstFrameButton" parent="TextAppearance.Button.Text.Filled">
+         <item name="android:fontFamily">sans-serif-medium</item>
+     </style>
++
++    <!-- Bubble styles -->
++    <style name="LeftMenuStyle">
++        <item name="android:windowEnterAnimation">@anim/left_enter</item>
++        <item name="android:windowExitAnimation">@anim/left_exit</item>
++    </style>
++
+   </resources>

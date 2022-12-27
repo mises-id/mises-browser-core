@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/extensions/item.html b/chrome/browser/resources/extensions/item.html
+index 99afc2f277d7dded47a6664c08d5b797c0e73454..2a4757c286155ba8bbfa9265b25fcb24da47935e 100644
+--- a/chrome/browser/resources/extensions/item.html
++++ b/chrome/browser/resources/extensions/item.html
+@@ -46,6 +46,8 @@
+     height: var(--extensions-card-height);
+     /* Duration matches --drawer-transition from toolbar.html. */
+     transition: height 300ms cubic-bezier(.25, .1, .25, 1);
++    /* Card can not we wider than the screen size. */
++    max-width: 100vw;
+   }
+ 
+   #card.dev-mode {

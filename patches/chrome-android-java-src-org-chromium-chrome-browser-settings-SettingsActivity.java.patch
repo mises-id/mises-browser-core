@@ -1,0 +1,14 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/settings/SettingsActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/settings/SettingsActivity.java
+index aa63a081167cc3df44c9cf522a5b575612bfede6..b7698ca4068b4dd2d6ed054daa9c0612362ba02a 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/settings/SettingsActivity.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/settings/SettingsActivity.java
+@@ -305,6 +305,9 @@ public class SettingsActivity extends ChromeBaseAppCompatActivity
+ 
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
++        super.onCreateOptionsMenu(menu);
++        if (true)
++            return true;
+         // By default, every screen in Settings shows a "Help & feedback" menu item.
+         MenuItem help = menu.add(
+                 Menu.NONE, R.id.menu_id_general_help, Menu.CATEGORY_SECONDARY, R.string.menu_help);

@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<!-- Copyright 2018-2021 Mises Browser -->
+<head>
+  <title>New Tab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <meta charset="utf-8">
+  <meta name="google" value="notranslate">
+  <style>
+  html, body { background-color: black; }
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+html {
+    height: 100%
+}
+
+body {
+    background-attachment: fixed !important;
+    position: initial!important;
+    cursor: default;
+    font-family: arial, sans-serif;
+    font-size: small;
+    margin: 0;
+    min-height: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+#ntp-contents {
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    width: 98%
+}
+
+#logo, #fakebox-container {
+    flex-shrink: 0
+}
+
+a:-webkit-any-link {
+    text-decoration: none !important
+}
+
+a:link {
+    text-decoration: none !important
+}
+
+  </style>
+</head>
+<!-- Remember to update the test HTML files in chrome/test/data/local_ntp/
+   whenever making changes to this file.-->
+<body bgcolor="#000000">
+<script>
+if (window.chrome.embeddedSearch.newTabPage.isIncognito) document.body.style.backgroundColor='black';
+</script>
+<style>
+#incognito {
+    -webkit-animation: fadein 1.7s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 1.7s; /* Firefox < 16 */
+        -ms-animation: fadein 1.7s; /* Internet Explorer */
+         -o-animation: fadein 1.7s; /* Opera < 12.1 */
+            animation: fadein 1.7s;
+}
+</style>
+<div id="incognito" style="width: 100%;height: 100%;background:black;">
+  <div style="text-align: center;padding-top:50px;">
+  <img style="width: 64px;border-radius: 50%" src="./images/Private.svg">
+  <br />
+  <span style="color: rgb(182, 182, 182);">
+<h2>Private mode</h2>
+  </span>
+</div>
+</div>
+</body>
+</html>

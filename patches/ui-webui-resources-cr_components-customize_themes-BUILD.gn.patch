@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/customize_themes/BUILD.gn b/ui/webui/resources/cr_components/customize_themes/BUILD.gn
+index 0bf17d923b1a43678068f2bd35c83ba6ed6ca3ca..87630b8ff6dbdfc8c729f2a7c392cc1b67f49a9b 100644
+--- a/ui/webui/resources/cr_components/customize_themes/BUILD.gn
++++ b/ui/webui/resources/cr_components/customize_themes/BUILD.gn
+@@ -9,7 +9,7 @@ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("customize_themes.gni")
+ 
+-assert(!is_android && !is_ios)
++#assert(!is_android && !is_ios)
+ 
+ mojom("mojom") {
+   sources = [ "customize_themes.mojom" ]

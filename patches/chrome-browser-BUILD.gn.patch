@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/BUILD.gn b/chrome/browser/BUILD.gn
-index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..df439180eec484aec272337c4357d1e81e1fe89f 100644
+index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..798c4fd5eef01e47e72f49cdbf0864254d195995 100644
 --- a/chrome/browser/BUILD.gn
 +++ b/chrome/browser/BUILD.gn
 @@ -2490,6 +2490,7 @@ static_library("browser") {
@@ -10,3 +10,83 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..df439180eec484aec272337c4357d1e8
  
    if (is_android) {
      sources += [
+@@ -3480,7 +3481,8 @@ static_library("browser") {
+       ]
+       deps += [ "//chrome/android/modules/dev_ui/provider:native" ]
+     }
+-  } else {
++  }
++  if (true) {
+     #!is_android
+     sources += [
+       "accessibility/caption_bubble_context_browser.h",
+@@ -4514,7 +4516,7 @@ static_library("browser") {
+         "themes/theme_color_policy_handler.h",
+       ]
+     }
+-    if (!is_chromeos_ash) {
++    if (is_android || !is_chromeos_ash) {
+       sources += [
+         "accessibility/soda_installer_impl.cc",
+         "accessibility/soda_installer_impl.h",
+@@ -4596,7 +4598,7 @@ static_library("browser") {
+ 
+     # On Windows, the hashes are embedded in //chrome:chrome_initial rather
+     # than here in :chrome_dll.
+-    if (!is_win) {
++    if (!is_android && !is_win) {
+       deps += [ "//chrome:packed_resources_integrity" ]
+       sources += [ "certificate_viewer_stub.cc" ]
+     }
+@@ -4647,6 +4649,8 @@ static_library("browser") {
+         "component_updater/hyphenation_component_installer.h",
+       ]
+     }
++    sources -= mises_chrome_browser_exception_sources
++    deps -= mises_chrome_browser_exception_deps
+   }
+ 
+   if (is_chromeos_ash) {
+@@ -6567,7 +6571,7 @@ static_library("browser") {
+     ]
+   }
+ 
+-  if (toolkit_views) {
++  if (true || toolkit_views) {
+     sources += [
+       "page_load_metrics/observers/side_search_page_load_metrics_observer.cc",
+       "page_load_metrics/observers/side_search_page_load_metrics_observer.h",
+@@ -7390,7 +7394,7 @@ static_library("browser") {
+     }
+   }
+ 
+-  if (enable_session_service) {
++  if (true || enable_session_service) {
+     sources += [
+       "sessions/app_session_service.cc",
+       "sessions/app_session_service.h",
+@@ -7548,7 +7552,7 @@ static_library("browser") {
+     ]
+   }
+   if (enable_supervised_users && enable_extensions) {
+-    assert(is_chromeos)
++    #assert(is_chromeos)
+     sources += [
+       "supervised_user/supervised_user_extensions_delegate_impl.cc",
+       "supervised_user/supervised_user_extensions_delegate_impl.h",
+@@ -7852,10 +7856,12 @@ grit("resources") {
+   }
+ 
+   if (is_android) {
+-    deps +=
+-        [ "//chrome/browser/ui/webui/explore_sites_internals:mojo_bindings_js" ]
++    deps += [ 
++      "//chrome/browser/ui/webui/explore_sites_internals:mojo_bindings_js",
++      "//chrome/browser/resources/inline_login:web_components",
++    ]
+   }
+-  if (!is_android) {
++  if (true || !is_android) {
+     deps += [
+       "//chrome/browser/resources/media_router/internals:build_ts",
+       "//chrome/browser/share/core/resources:make_share_targets_protobuf",

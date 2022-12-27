@@ -1,0 +1,14 @@
+diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
+index 66ebe840c3eb9a8193c4f944e8356a46cd242e33..0fff8e31d9b33ff56e0ec4c693b9c1881221d672 100644
+--- a/third_party/blink/public/mojom/BUILD.gn
++++ b/third_party/blink/public/mojom/BUILD.gn
+@@ -291,7 +291,8 @@ mojom("mojom_platform") {
+       "//ui/accessibility:ax_enums_mojo",
+       "//ui/latency/mojom",
+     ]
+-  } else {
++  }
++  if (true) {
+     sources += [
+       "direct_sockets/direct_sockets.mojom",
+       "serial/serial.mojom",

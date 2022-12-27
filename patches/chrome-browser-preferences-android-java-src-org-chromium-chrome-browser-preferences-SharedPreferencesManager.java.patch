@@ -1,0 +1,62 @@
+diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/SharedPreferencesManager.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/SharedPreferencesManager.java
+index 8f8a7c257d65159c7f7619ff7c4a2adb31eba6d4..9afb60ed6fd7e86545ba3a843bcb5be808e06a04 100644
+--- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/SharedPreferencesManager.java
++++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/SharedPreferencesManager.java
+@@ -104,6 +104,23 @@ public class SharedPreferencesManager {
+         ContextUtils.getAppSharedPreferences().unregisterOnSharedPreferenceChangeListener(listener);
+     }
+ 
++    public String getMisesUserInfo() {
++        // Convention to keep all the key in preference lower case.
++        return getInstance().readString(ChromePreferenceKeys.MISES_USER_INFO, "");
++    }
++
++    public void setMisesUserInfo(String userinfo) {
++        getInstance().writeString(ChromePreferenceKeys.MISES_USER_INFO, userinfo);
++    }
++
++    public boolean isMisesFirstRun() {
++        return getInstance().readBoolean(ChromePreferenceKeys.MISES_FIRST_RUN, true);
++    }
++
++    public void setMisesFirstRun(boolean isFirst) {
++        getInstance().writeBoolean(ChromePreferenceKeys.MISES_FIRST_RUN, isFirst);
++    }
++
+     /**
+      * Reads set of String values from preferences.
+      *
+@@ -192,7 +209,7 @@ public class SharedPreferencesManager {
+         writeIntUnchecked(key, value);
+     }
+ 
+-    private void writeIntUnchecked(String key, int value) {
++    public void writeIntUnchecked(String key, int value) {
+         SharedPreferences.Editor ed = ContextUtils.getAppSharedPreferences().edit();
+         ed.putInt(key, value);
+         ed.apply();
+@@ -492,6 +509,11 @@ public class SharedPreferencesManager {
+         ed.putBoolean(key, value);
+         ed.apply();
+     }
++    public void writeBooleanUnchecked(String key, boolean value) {
++        SharedPreferences.Editor ed = ContextUtils.getAppSharedPreferences().edit();
++        ed.putBoolean(key, value);
++        ed.apply();
++    }
+ 
+     /**
+      * Writes the given boolean value to the named shared preference and immediately commit to disk.
+@@ -559,6 +581,12 @@ public class SharedPreferencesManager {
+         ed.apply();
+     }
+ 
++    public void writeStringUnchecked(String key, String value) {
++        SharedPreferences.Editor ed = ContextUtils.getAppSharedPreferences().edit();
++        ed.putString(key, value);
++        ed.apply();
++    }
++
+     /**
+      * Writes the given string value to the named shared preference and immediately commit to disk.
+      * @param key The name of the preference to modify.

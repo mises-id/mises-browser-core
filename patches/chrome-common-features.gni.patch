@@ -1,0 +1,24 @@
+diff --git a/chrome/common/features.gni b/chrome/common/features.gni
+index 5b7eaf6abc8253d66f7b00376f12d91083f6998b..65df0dadf2e4405f817dfff9c67bb385295de470 100644
+--- a/chrome/common/features.gni
++++ b/chrome/common/features.gni
+@@ -43,8 +43,8 @@ declare_args() {
+   chrome_root_store_policy_supported = is_mac || is_win
+ 
+   # Enables support for background apps.
+-  enable_background_contents = !is_android && !is_castos
+-  enable_background_mode = !is_android && !is_castos && !is_chromeos
++  enable_background_contents = is_android || !is_android && !is_castos
++  enable_background_mode = is_android || !is_android && !is_castos && !is_chromeos
+ 
+   # Enable the printing system dialog for platforms that support printing
+   # and have a system dialog.
+@@ -74,7 +74,7 @@ declare_args() {
+   enable_wayland_server = is_chromeos_ash
+ 
+   # Enables the webui certificate viewer dialog.
+-  enable_webui_certificate_viewer = toolkit_views
++  enable_webui_certificate_viewer = is_android || toolkit_views
+ 
+   # optimize_webui was moved to ui/base/ui_features.gni
+ }

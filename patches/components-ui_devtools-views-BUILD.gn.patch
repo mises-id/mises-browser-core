@@ -1,0 +1,12 @@
+diff --git a/components/ui_devtools/views/BUILD.gn b/components/ui_devtools/views/BUILD.gn
+index 6b20f6e839137fa2e727e55696e2808283874803..4bc3c6ae78cb6bce35455ec791e2d50cd934eb6f 100644
+--- a/components/ui_devtools/views/BUILD.gn
++++ b/components/ui_devtools/views/BUILD.gn
+@@ -54,6 +54,7 @@ source_set("views") {
+       "overlay_agent_mac.mm",
+     ]
+   }
++  import("//mises/components/ui_devtools/views/sources.gni") sources += mises_components_ui_devtools_views_sources
+ }
+ 
+ source_set("unit_tests") {

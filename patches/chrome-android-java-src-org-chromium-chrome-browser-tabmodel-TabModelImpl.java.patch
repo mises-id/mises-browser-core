@@ -1,0 +1,33 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
+index cd0f74869615277cfc107d0bb505c40c2f36eb26..c2fe2fbdcc60709991caa0d9f48237eaf6271dba 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
+@@ -31,6 +31,7 @@ import org.chromium.ui.mojom.WindowOpenDisposition;
+ import org.chromium.url.GURL;
+ import org.chromium.url.Origin;
+ 
++import android.util.Log;
+ import java.util.ArrayList;
+ import java.util.Collections;
+ import java.util.List;
+@@ -750,6 +751,20 @@ public class TabModelImpl extends TabModelJniBridge {
+         return mIndex;
+     }
+ 
++    @Override
++    public int getLastNonExtensionActiveIndex() {
++//        Log.i("EXTENSIONS", "TabModelImpl - (secondary) getLastNonExtensionActiveIndex");
++        int result = mIndex;
++//        Log.i("EXTENSIONS", "TabModelImpl - (secondary) getLastNonExtensionActiveIndex - " + mIndex);
++        Tab currentTab = getTabAt(mIndex);
++        // We get the adjacent tab in case we are currently on a chrome-extension page
++        if (currentTab != null && currentTab.getUrl() != null && (currentTab.getUrl().getSpec().contains("chrome-extension://")))
++          result = mIndex - 1;
++        if (result < 0)
++          return 0;
++        return result;    
++    }
++
+     @Override
+     protected boolean isSessionRestoreInProgress() {
+         return mModelDelegate.isSessionRestoreInProgress();

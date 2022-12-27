@@ -1,0 +1,16 @@
+diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
+index f655316a6edf4d0d0326ef2343a415a71d861b0f..b784b0e1fbaef9cc8b97f485497610424fd4f9c9 100644
+--- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
++++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
+@@ -966,6 +966,11 @@ public final class ChromePreferenceKeys {
+     public static final String BLUETOOTH_NOTIFICATION_IDS = "Chrome.Bluetooth.NotificationIds";
+     public static final String USB_NOTIFICATION_IDS = "Chrome.USB.NotificationIds";
+ 
++    public static final String DARKEN_WEBSITES_ENABLED = "darken_websites_enabled";
++
++    public static final String MISES_USER_INFO = "mises_user_info";
++    public static final String MISES_FIRST_RUN = "mises_first_run";
++
+     /**
+      * These values are currently used as SharedPreferences keys, along with the keys in
+      * {@link LegacyChromePreferenceKeys#getKeysInUse()}. Add new SharedPreferences keys

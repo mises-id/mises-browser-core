@@ -1,0 +1,34 @@
+diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
+index e7351dc83236255afe210228d6ee5618e917b07f..7fdf53627ff29a48cb7609e53f35fb8288629a3b 100644
+--- a/content/browser/BUILD.gn
++++ b/content/browser/BUILD.gn
+@@ -2530,7 +2530,7 @@ source_set("browser") {
+     ]
+   }
+ 
+-  if (!is_android) {
++  if (!is_android || true) {
+     deps += [ "//content/browser/devtools:devtools_resources_extern" ]
+   }
+ 
+@@ -2976,7 +2976,8 @@ source_set("browser") {
+       deps += [ "//gpu/vulkan/init" ]
+     }
+     libs += [ "jnigraphics" ]
+-  } else {
++  }
++  if (true) {
+     # Not Android.
+     sources += [
+       # The WebAuthn devtools protocol API is not supported in Android yet.
+@@ -3039,7 +3040,9 @@ source_set("browser") {
+       "webauth/virtual_fido_discovery_factory.cc",
+       "webauth/virtual_fido_discovery_factory.h",
+     ]
+-
++    if (is_android) {
++      sources -= ["media/session/audio_focus_delegate_default.cc",]
++    }
+     deps += [
+       "//components/speech",
+       "//third_party/flac",

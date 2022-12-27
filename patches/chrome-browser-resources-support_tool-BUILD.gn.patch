@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/support_tool/BUILD.gn b/chrome/browser/resources/support_tool/BUILD.gn
+index 023b444378583f7c01d9301ffc44c62449a30efc..5c09aa3e5d69a9f45606b808fecdf74e70cc3cfb 100644
+--- a/chrome/browser/resources/support_tool/BUILD.gn
++++ b/chrome/browser/resources/support_tool/BUILD.gn
+@@ -9,7 +9,7 @@ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("support_tool.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ resources_grd_file = "$target_gen_dir/resources.grd"
+ 

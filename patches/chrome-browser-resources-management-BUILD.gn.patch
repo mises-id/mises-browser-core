@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/management/BUILD.gn b/chrome/browser/resources/management/BUILD.gn
+index 6f968981d7bc69f80ca39c33835a69ed19be9e6f..53f2021e47ba08f0e5d537eb4cd39008c2fa3cb8 100644
+--- a/chrome/browser/resources/management/BUILD.gn
++++ b/chrome/browser/resources/management/BUILD.gn
+@@ -10,7 +10,7 @@ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("management.gni")
+ 
+-assert(!is_android, "!is_android check failed")
++# assert(!is_android, "!is_android check failed")
+ 
+ preprocess_folder = "preprocessed"
+ 

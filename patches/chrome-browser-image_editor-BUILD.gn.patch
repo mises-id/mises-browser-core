@@ -1,0 +1,15 @@
+diff --git a/chrome/browser/image_editor/BUILD.gn b/chrome/browser/image_editor/BUILD.gn
+index b2f4392a849626fcb98b619e5364ad8ec0847875..122457afabf038932cac590e819650951651e932 100644
+--- a/chrome/browser/image_editor/BUILD.gn
++++ b/chrome/browser/image_editor/BUILD.gn
+@@ -3,8 +3,8 @@
+ # found in the LICENSE file.
+ import("//build/config/ui.gni")
+ 
+-assert(is_chromeos || is_linux || is_mac || is_win || is_fuchsia,
+-       "Image Editor is for desktop plaforms only")
++#assert(is_chromeos || is_linux || is_mac || is_win || is_fuchsia,
++#       "Image Editor is for desktop plaforms only")
+ 
+ static_library("image_editor_component_util") {
+   sources = [

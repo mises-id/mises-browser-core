@@ -1,0 +1,31 @@
+diff --git a/ui/resources/ui_resources.grd b/ui/resources/ui_resources.grd
+index a6caca5a0345c..495148eb2cc73 100644
+--- a/ui/resources/ui_resources.grd
++++ b/ui/resources/ui_resources.grd
+@@ -111,7 +111,7 @@
+         <structure type="chrome_scaled_image" name="IDR_ZOOMIN_CURSOR" file="zoom_in_cursor.png" />
+         <structure type="chrome_scaled_image" name="IDR_ZOOMOUT_CURSOR" file="zoom_out_cursor.png" />
+       </if>
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <structure type="chrome_scaled_image" name="IDR_CLOSE_2" file="close_2.png" />
+         <structure type="chrome_scaled_image" name="IDR_CLOSE_2_H" file="close_2_hover.png" />
+         <structure type="chrome_scaled_image" name="IDR_CLOSE_2_P" file="close_2_pressed.png" />
+@@ -124,7 +124,7 @@
+       </if>
+       <structure type="chrome_scaled_image" name="IDR_DEFAULT_FAVICON" file="common/default_favicon.png" />
+       <structure type="chrome_scaled_image" name="IDR_DEFAULT_FAVICON_DARK" file="common/default_favicon_dark.png" />
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <structure type="chrome_scaled_image" name="IDR_DEFAULT_FAVICON_32" file="common/default_favicon_32.png" />
+         <structure type="chrome_scaled_image" name="IDR_DEFAULT_FAVICON_DARK_32" file="common/default_favicon_dark_32.png" />
+         <structure type="chrome_scaled_image" name="IDR_DEFAULT_FAVICON_64" file="common/default_favicon_64.png" />
+@@ -149,7 +149,7 @@
+           <structure type="chrome_scaled_image" name="IDR_FOLDER_OPEN" file="common/folder_open.png" />
+         </if>
+       </if>
+-      <if expr="not is_android and not is_ios">
++      <if expr="is_android or not is_android and not is_ios">
+         <structure type="chrome_scaled_image" name="IDR_SIGNAL_0_BAR" file="common/signal_0_bar.png" />
+         <structure type="chrome_scaled_image" name="IDR_SIGNAL_1_BAR" file="common/signal_1_bar.png" />
+         <structure type="chrome_scaled_image" name="IDR_SIGNAL_2_BAR" file="common/signal_2_bar.png" />

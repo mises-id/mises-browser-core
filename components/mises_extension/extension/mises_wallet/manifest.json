@@ -1,0 +1,45 @@
+{
+  "manifest_version": 2,
+
+  "name": "Mises",
+  "description": "Mises is a browser extension wallet for the Inter blockchain ecosystem.",
+  "version": "0.0.5",
+  "icons": {
+    "16": "assets/icon-16.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Mises"
+  },
+  "background": {
+    "scripts": ["browser-polyfill.js", "background.bundle.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "storage",
+    "notifications",
+    "identity",
+    "idle",
+    "notifications",
+    "tabs",
+    "misesPrivate"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["file://*/*", "http://*/*", "https://*/*"],
+      "js": ["browser-polyfill.js", "contentScripts.bundle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    "injectedScript.bundle.js",
+    "assets/logo-256.png",
+    "blocklist.html"
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB",
+  "content_security_policy": "script-src 'self' 'wasm-eval'; object-src 'self'"
+}

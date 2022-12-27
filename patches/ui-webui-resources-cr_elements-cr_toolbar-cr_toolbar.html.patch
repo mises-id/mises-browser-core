@@ -1,0 +1,24 @@
+diff --git a/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.html b/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.html
+index a96e7900db9dac7a897d7b1dfec109786faf2fe2..f8fb5e798ac3d6a3b384e021422f1bd1655b1e7f 100644
+--- a/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.html
++++ b/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.html
+@@ -41,8 +41,8 @@
+         box-sizing: border-box;
+         display: flex;
+         /* 12px to match #rightSpacer + 6px to align with icons in menus. */
+-        padding-inline-start: calc(12px + 6px);
+-        width: var(--cr-toolbar-left-spacer-width, auto);
++        /* padding-inline-start: calc(12px + 6px); 
++        width: var(--cr-toolbar-left-spacer-width, auto); */
+       }
+ 
+       cr-icon-button {
+@@ -64,7 +64,7 @@
+       }
+ 
+       #rightSpacer {
+-        padding-inline-end: 12px;
++        /* padding-inline-end: 12px; */
+       }
+ 
+       :host([narrow]) #centeredContent {

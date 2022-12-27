@@ -1,0 +1,43 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
+index 002c35475398946dfabbe405d549ca109af23eff..b8d8aab26801b38e76d1a14ab1f75a6221e5052e 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
+@@ -24,6 +24,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
+ import org.chromium.components.embedder_support.util.UrlUtilities;
+ import org.chromium.url.GURL;
+ 
++import org.chromium.base.ContextUtils;
++
+ /**
+  * Provides information regarding homepage enabled states and URI.
+  *
+@@ -117,8 +119,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+      * @return Whether to close the app when the user has zero tabs.
+      */
+     public static boolean shouldCloseAppWithZeroTabs() {
+-        return HomepageManager.isHomepageEnabled()
+-                && !UrlUtilities.isNTPUrl(HomepageManager.getHomepageUri());
++        return ContextUtils.getAppSharedPreferences().getBoolean("close_browser_after_last_tab", false);
+     }
+ 
+     /**
+@@ -196,17 +197,8 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+      * Get homepage URI without checking if the homepage is enabled.
+      * @return Homepage URI based on policy and shared preference settings.
+      */
+-    private @NonNull String getHomepageUriIgnoringEnabledState() {
+-        if (HomepagePolicyManager.isHomepageManagedByPolicy()) {
+-            return HomepagePolicyManager.getHomepageUrl();
+-        }
+-        if (getPrefHomepageUseChromeNTP()) {
+-            return UrlConstants.NTP_NON_NATIVE_URL;
+-        }
+-        if (getPrefHomepageUseDefaultUri()) {
+-            return getDefaultHomepageUri();
+-        }
+-        return getPrefHomepageCustomUri();
++    public @NonNull String getHomepageUriIgnoringEnabledState() {
++        return ContextUtils.getAppSharedPreferences().getString("active_homepage", UrlConstants.NTP_NON_NATIVE_URL);
+     }
+ 
+     /**

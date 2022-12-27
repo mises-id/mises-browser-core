@@ -38,12 +38,22 @@ mises_chrome_java_deps = [
   "//third_party/androidx:androidx_lifecycle_lifecycle_livedata_java",
   "//third_party/androidx:androidx_lifecycle_lifecycle_viewmodel_java",
   "//url/mojom:url_mojom_origin_java",
+
+  "//mises/android/features/mises:public_java",
+  "//mises/android/features/mises:java_resources",
+  "//mises/third_party/mises:mises_light_node_java",
+  "//mises/third_party/android_deps:com_kirich1409_svgimageloaderplugins_java",
+  "//third_party/android_deps:google_firebase_firebase_messaging_java",
+  "//mises/third_party/android_deps:google_firebase_firebase_analytics_java",
+  "//mises/third_party/android_deps:google_play_services_measurement_api_java",
 ]
 
 mises_chrome_all_java_deps = [
   "//mises/android/features/tab_ui:java",
   "//mises/browser/partnerbookmarks:delegate_public_impl_java",
   "//mises/browser/partnercustomizations:delegate_public_impl_java",
+
+  "//mises/android/features/mises:jni_headers",
 ]
 
 # To use our overrided enum in java, put the header file of our overrided enum

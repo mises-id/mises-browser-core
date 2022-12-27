@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/signin/BUILD.gn b/chrome/browser/resources/signin/BUILD.gn
+index 50e3f4b301d89f8e47276db16918153b01cd6309..5bbedd08323dc2c1e4d5ec07630c7efbe0b0c758 100644
+--- a/chrome/browser/resources/signin/BUILD.gn
++++ b/chrome/browser/resources/signin/BUILD.gn
+@@ -13,7 +13,7 @@ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("signin.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ preprocess_folder = "preprocessed"
+ 

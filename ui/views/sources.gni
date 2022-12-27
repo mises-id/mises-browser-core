@@ -1,0 +1,17 @@
+mises_ui_view_public = []
+mises_ui_view_sources = []
+if (is_android) {
+  mises_ui_view_public += [
+      "widget/native_widget_android.h",
+      "controls/native/native_view_host_android.h",
+  ]
+  mises_ui_view_sources += [
+      "//mises/chromium_src/ui/views/controls/native/native_view_host_android.cc",
+      "//mises/chromium_src/ui/views/widget/native_widget_android.cc",
+      "//mises/chromium_src/ui/views/event_monitor_android.cc",
+      "//mises/chromium_src/ui/views/metrics_android.cc",
+      "//mises/chromium_src/ui/views/drag_utils_android.cc",
+      "//mises/chromium_src/ui/views/controls/menu/menu_config_android.cc",
+      "//mises/chromium_src/ui/views/views_touch_selection_controller_factory_android.cc",
+  ]
+}

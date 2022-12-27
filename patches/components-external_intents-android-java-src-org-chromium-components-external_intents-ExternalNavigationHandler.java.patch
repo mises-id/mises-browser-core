@@ -1,0 +1,16 @@
+diff --git a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
+index 9b69aa2e9e66ff435307d985819262bfb50ad953..301ab566a6b17d85b051cd333801247142d582f6 100644
+--- a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
++++ b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
+@@ -1583,6 +1583,11 @@ public class ExternalNavigationHandler {
+             return OverrideUrlLoadingResult.forNoOverride();
+         }
+ 
++        final boolean canOpenInExternalApp = ContextUtils.getAppSharedPreferences().getBoolean("open_in_external_app", false);
++        if (!isExternalProtocol && !canOpenInExternalApp && params.getUrl() != null && !params.getUrl().getSpec().contains("play.google.com") && !params.getUrl().getSpec().startsWith("market://")) {
++            return OverrideUrlLoadingResult.forNoOverride();
++        }
++
+         if (isYoutubePairingCode(params.getUrl())) return OverrideUrlLoadingResult.forNoOverride();
+ 
+         if (shouldStayInIncognito(params, isExternalProtocol)) {

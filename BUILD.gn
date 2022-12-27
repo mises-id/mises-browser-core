@@ -135,7 +135,7 @@ if (is_android) {
 
 if (is_mac) {
   group("framework_bundle_data") {
-    deps = [ "components/mises_extension/extension/mises_extension:mises_extension_framework_bundle_data" ]
+    deps = [ ]
   }
 }
 
@@ -144,7 +144,6 @@ group("unpacked_resources") {
     deps = []
     if (enable_extensions) {
       deps = [
-        "//mises/components/mises_extension/extension/mises_extension:locales",
       ]
     }
   }
@@ -237,39 +236,34 @@ group("create_dist") {
   }
 }
 
-if (!is_mac && !is_android && !is_ios) {
+if (!is_mac && !is_ios) {
+  if (!is_android) {
   copy("mises_locale_dist_resources") {
-    deps = [ "//chrome:packed_resources" ]
-
+    deps = [ ]
+    if (!is_android) {
+      deps += [ "//chrome:packed_resources" ]
+    }
     sources = []
     foreach(locale, platform_pak_locales) {
       sources += [ "$root_out_dir/locales/$locale.pak" ]
     }
     outputs = [ "$mises_dist_dir/locales/{{source_file_part}}" ]
   }
-
+  }
   if (enable_extensions) {
     group("mises_extensions_locale_dist_resources") {
       deps = [
-        "//mises/components/mises_extension/extension/mises_extension:locales",
       ]
 
       public_deps = []
       foreach(locale, platform_pak_locales) {
         # public_deps is used intentionaly because ":create_dist_zip" needs the all dependency
         # of all locale files.
-        public_deps += [ ":mises_shields_locales_${locale}" ]
+        public_deps += [  ]
       }
     }
 
     foreach(locale, platform_pak_locales) {
-      copy("mises_shields_locales_${locale}") {
-        deps = [ "//mises/components/mises_extension/extension/mises_extension:locales_$locale" ]
-
-        locale = string_replace(locale, "-", "_")
-        sources = [ "$root_out_dir/resources/mises_extension/_locales/$locale/messages.json" ]
-        outputs = [ "$mises_dist_dir/resources/mises_extension/_locales/$locale/{{source_file_part}}" ]
-      }
     }
   }
 }
@@ -290,7 +284,7 @@ process_version("generate_version") {
   process_only = true
 }
 
-if (!is_android && !is_ios) {
+if (!is_ios) {
   copy("mises_dist_resources") {
     sources = [ "$root_out_dir/version" ]
 
@@ -300,11 +294,13 @@ if (!is_android && !is_ios) {
       ":generate_version",
       ":packed_resources",
       "build/$target_os:mises",
-      "//chrome:packed_resources",
       "//third_party/icu:icudata",
     ]
+    if (!is_android) {
+     deps += ["//chrome:packed_resources",]
+    }
 
-    if (!is_mac) {
+    if (!is_mac && !is_android) {
       sources += [
         "$root_out_dir/$mises_exe",
         "$root_out_dir/mises_100_percent.pak",
@@ -416,12 +412,13 @@ action("create_dist_zips") {
 
     inputs = get_target_outputs(":mises_license_dist_resources")
 
-    if (!is_mac && !is_android && !is_ios) {
+    if (!is_mac  && !is_ios) {
       inputs += get_target_outputs(":mises_dist_resources")
-      inputs += get_target_outputs(":mises_locale_dist_resources")
+      if (!is_android) {
+        inputs += get_target_outputs(":mises_locale_dist_resources")
+      }
       if (enable_extensions) {
         foreach(locale, platform_pak_locales) {
-          inputs += get_target_outputs(":mises_shields_locales_${locale}")
         }
       }
     }
@@ -441,11 +438,13 @@ action("create_dist_zips") {
       "app/$current_os:dist_resources",
     ]
 
-    if (!is_mac && !is_android && !is_ios) {
+    if (!is_mac  && !is_ios) {
       deps += [
         ":mises_dist_resources",
-        ":mises_locale_dist_resources",
       ]
+      if (!is_android) {
+       deps += [":mises_locale_dist_resources"]
+      }
 
       if (enable_extensions) {
         deps += [ ":mises_extensions_locale_dist_resources" ]

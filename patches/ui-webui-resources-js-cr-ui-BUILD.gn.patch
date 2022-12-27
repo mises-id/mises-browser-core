@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/js/cr/ui/BUILD.gn b/ui/webui/resources/js/cr/ui/BUILD.gn
+index 212261941a54211aed02860e3db3c951fd71fe21..ea013aa2d11d6c608a1eb055617ee456cff239f1 100644
+--- a/ui/webui/resources/js/cr/ui/BUILD.gn
++++ b/ui/webui/resources/js/cr/ui/BUILD.gn
+@@ -86,7 +86,7 @@ preprocess_if_expr("preprocess_generated") {
+     "keyboard_shortcut_list.m.js",
+   ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     in_files += [
+       "command.m.js",
+       "context_menu_handler.m.js",

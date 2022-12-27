@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/ntp4/BUILD.gn b/chrome/browser/resources/ntp4/BUILD.gn
+index 072bcec18f5958017cc99bec6c261365c8d3e9d9..68bc20f166a2581195d781216dd404e753c1401c 100644
+--- a/chrome/browser/resources/ntp4/BUILD.gn
++++ b/chrome/browser/resources/ntp4/BUILD.gn
+@@ -7,7 +7,7 @@ import("//tools/grit/grit_rule.gni")
+ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(is_fuchsia || is_linux || is_mac || is_win)
++assert(true || is_fuchsia || is_linux || is_mac || is_win)
+ 
+ grit("apps_resources") {
+   defines = chrome_grit_defines

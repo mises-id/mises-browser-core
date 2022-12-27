@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Bookmarks specific strings (included from generated_resources.grd). -->
 <grit-part>
-  <if expr="not is_android">
-    <if expr="is_win">
+  <if expr="is_android or not is_android">
+	  <if expr="is_win">
       </if>
     </if>
 
@@ -20,7 +20,7 @@
     <message name="IDS_BOOKMARK_BAR_OPEN_INCOGNITO" desc="Menu description for opening bookmark in Private window">
       Open in &amp;Private window
     </message>
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_SHOW_BOOKMARK_BAR" desc="The toggle to show the bookmark bar">
         &amp;Show bookmarks
       </message>
@@ -36,7 +36,7 @@
     <message name="IDS_BOOKMARK_BAR_OPEN_INCOGNITO" desc="In Title Case: Menu description for opening bookmark in Private window">
       Open in &amp;Private Window
     </message>
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_SHOW_BOOKMARK_BAR" desc="In Title Case: The toggle to show the bookmark bar">
         &amp;Show Bookmarks
       </message>

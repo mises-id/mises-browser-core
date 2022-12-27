@@ -20,26 +20,29 @@ async function applyPatches() {
   const patchesPath = path.join(coreRepoPath, 'patches')
   const v8PatchesPath = path.join(patchesPath, 'v8')
   const catapultPatchesPath = path.join(patchesPath, 'third_party', 'catapult')
+  const grdPatchesPath = path.join(patchesPath, 'grd_patches')
 
   const chromiumRepoPath = config.srcDir
   const v8RepoPath = path.join(chromiumRepoPath, 'v8')
   const catapultRepoPath = path.join(chromiumRepoPath, 'third_party', 'catapult')
+  const grdRepoPath = chromiumRepoPath
 
   const chromiumPatcher = new GitPatcher(patchesPath, chromiumRepoPath)
   const v8Patcher = new GitPatcher(v8PatchesPath, v8RepoPath)
   const catapultPatcher = new GitPatcher(catapultPatchesPath, catapultRepoPath)
+  const grdPatcher = new GitPatcher(grdPatchesPath, chromiumRepoPath)
 
   const chromiumPatchStatus = await chromiumPatcher.applyPatches()
   const v8PatchStatus = await v8Patcher.applyPatches()
   const catapultPatchStatus = await catapultPatcher.applyPatches()
-
+  const grdPatchStatus = await grdPatcher.applyPatches()
   // Log status for all patches
   // Differentiate entries for logging
   v8PatchStatus.forEach(s => s.path = path.join('v8', s.path))
   catapultPatchStatus.forEach(
     s => s.path = path.join('third_party', 'catapult', s.path))
   const allPatchStatus =
-    chromiumPatchStatus.concat(v8PatchStatus).concat(catapultPatchStatus)
+    chromiumPatchStatus.concat(v8PatchStatus).concat(catapultPatchStatus).concat(grdPatchStatus)
   Log.allPatchStatus(allPatchStatus, 'Chromium')
 
   const hasPatchError = allPatchStatus.some(p => p.error)
@@ -684,13 +687,20 @@ const util = {
     const args = util.buildArgsToString(config.buildArgs())
     const genScript = path.join(config.misesCoreDir, 'vendor', 'gn-project-generators', 'xcode.py')
 
-    const genArgs = [
+    var genArgs = [
       'gen', config.outputDir + "_Xcode",
       '--args="' + args + '"',
       '--ide=json',
       '--json-ide-script="' + genScript + '"',
       '--filters="' + config.xcode_gen_target + '"'
     ]
+    if (config.xcode_gen_target == 'mac') {
+      genArgs = [
+        'gen', config.outputDir,
+        '--args="' + args + '"',
+        '--ide=xcode'
+      ]
+    }
 
     util.run('gn', genArgs, options)
   },

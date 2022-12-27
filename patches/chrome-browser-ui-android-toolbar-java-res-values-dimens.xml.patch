@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml b/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
+index c463c7ae73f1237bbb02bd3c5fc5b559ef0f1461..b86c31a002e92b2a9097408d2f2aa24451c81b69 100644
+--- a/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
++++ b/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
+@@ -6,6 +6,7 @@
+ <resources>
+     <dimen name="toolbar_tab_count_text_size_1_digit">12dp</dimen>
+     <dimen name="toolbar_tab_count_text_size_2_digit">10dp</dimen>
++    <dimen name="toolbar_tab_count_text_size_3_digit">8dp</dimen>
+ 
+     <!-- Tab Strip Dimensions -->
+     <dimen name="tab_strip_height">0dp</dimen>

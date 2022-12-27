@@ -1,0 +1,38 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarSceneLayer.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarSceneLayer.java
+index 84053b84be8199fab19ecde0f431f89a1f303aa3..7e9a5893b51f38507dd345024ffdb2e96bf24c3d 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarSceneLayer.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarSceneLayer.java
+@@ -4,6 +4,7 @@
+ 
+ package org.chromium.chrome.browser.toolbar.top;
+ 
++import org.chromium.base.ContextUtils;
+ import org.chromium.base.annotations.JNINamespace;
+ import org.chromium.base.annotations.NativeMethods;
+ import org.chromium.base.supplier.Supplier;
+@@ -44,11 +45,12 @@ class TopToolbarSceneLayer extends SceneOverlayLayer {
+                 model.get(TopToolbarOverlayProperties.TOOLBAR_BACKGROUND_COLOR),
+                 model.get(TopToolbarOverlayProperties.URL_BAR_RESOURCE_ID),
+                 model.get(TopToolbarOverlayProperties.URL_BAR_COLOR),
+-                model.get(TopToolbarOverlayProperties.X_OFFSET),
++		model.get(TopToolbarOverlayProperties.X_OFFSET),
+                 model.get(TopToolbarOverlayProperties.Y_OFFSET),
+                 model.get(TopToolbarOverlayProperties.SHOW_SHADOW),
+                 model.get(TopToolbarOverlayProperties.VISIBLE),
+-                model.get(TopToolbarOverlayProperties.ANONYMIZE));
++		model.get(TopToolbarOverlayProperties.ANONYMIZE));
++		//ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false));
+ 
+         if (ChromeFeatureList.isEnabled(ChromeFeatureList.DISABLE_COMPOSITED_PROGRESS_BAR)) {
+             return;
+@@ -94,8 +96,8 @@ class TopToolbarSceneLayer extends SceneOverlayLayer {
+                 SceneLayer contentTree);
+         void updateToolbarLayer(long nativeTopToolbarSceneLayer, TopToolbarSceneLayer caller,
+                 ResourceManager resourceManager, int resourceId, int toolbarBackgroundColor,
+-                int urlBarResourceId, int urlBarColor, float xOffset, float contentOffset,
+-                boolean showShadow, boolean visible, boolean anonymize);
++                int urlBarResourceId, int urlBarColor, float xOffset, float contentOffset, boolean showShadow,
++                boolean visible, boolean anonymize);
+         void updateProgressBar(long nativeTopToolbarSceneLayer, TopToolbarSceneLayer caller,
+                 int progressBarX, int progressBarY, int progressBarWidth, int progressBarHeight,
+                 int progressBarColor, int progressBarBackgroundX, int progressBarBackgroundY,

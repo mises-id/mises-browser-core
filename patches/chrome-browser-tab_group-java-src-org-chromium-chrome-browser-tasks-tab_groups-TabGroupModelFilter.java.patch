@@ -1,0 +1,16 @@
+diff --git a/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java b/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
+index 4b6efd00abad38f8d44041157c15fcead035b46a..fd820be35d49ec9dde5b2b2e47c7d137317a84c8 100644
+--- a/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
++++ b/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
+@@ -853,6 +853,11 @@ public class TabGroupModelFilter extends TabModelFilter {
+         return mCurrentGroupIndex;
+     }
+ 
++    @Override
++    public int getLastNonExtensionActiveIndex() {
++        return INVALID_TAB_INDEX;
++    }
++
+     @Override
+     public int getCount() {
+         return mGroupIdToGroupMap.size();

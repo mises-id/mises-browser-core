@@ -321,6 +321,11 @@ Config.prototype.buildArgs = function () {
     sparkle_eddsa_private_key: this.sparkleEdDSAPrivateKey,
     sparkle_eddsa_public_key: this.sparkleEdDSAPublicKey,
     use_goma: this.use_goma,
+    enable_extensions: true,
+    enable_pdf: true,
+    enable_plugins: true,
+    enable_remoting: true,
+    enable_proguard_obfuscation: false,
     ...this.extraGnArgs,
   }
 
@@ -380,6 +385,7 @@ Config.prototype.buildArgs = function () {
       this.targetOS !== 'android') {
     args.enable_profiling = true
   }
+
 
   if (this.sccache) {
     if (process.platform === 'win32') {
@@ -456,18 +462,18 @@ Config.prototype.buildArgs = function () {
     args.enable_jdk_library_desugaring = false
     if (!this.isOfficialBuild()) {
       args.android_channel = 'default'
-      args.chrome_public_manifest_package = 'com.mises.browser_default'
+      args.chrome_public_manifest_package = 'site.mises.browser_default'
     } else if (this.channel === '') {
       args.android_channel = 'stable'
-      args.chrome_public_manifest_package = 'com.mises.browser'
+      args.chrome_public_manifest_package = 'site.mises.browser'
     } else if (this.channel === 'beta') {
-      args.chrome_public_manifest_package = 'com.mises.browser_beta'
+      args.chrome_public_manifest_package = 'site.mises.browser_beta'
       args.exclude_unwind_tables = false
     } else if (this.channel === 'dev') {
-      args.chrome_public_manifest_package = 'com.mises.browser_dev'
+      args.chrome_public_manifest_package = 'site.mises.browser_dev'
     } else if (this.channel === 'nightly') {
       args.android_channel = 'canary'
-      args.chrome_public_manifest_package = 'com.mises.browser_nightly'
+      args.chrome_public_manifest_package = 'site.mises.browser_nightly'
       args.exclude_unwind_tables = false
     }
 
@@ -491,7 +497,7 @@ Config.prototype.buildArgs = function () {
     args.enable_mdns = true
 
     // We want it to be enabled for all configurations
-    args.disable_android_lint = false
+    args.disable_android_lint = true
 
     if (this.targetArch === 'arm64') {
       // TODO: Ideally we should properly compile our rust libraries in order to
@@ -499,6 +505,10 @@ Config.prototype.buildArgs = function () {
       // it to 'pac'.
       args.arm_control_flow_integrity = 'pac'
     }
+
+    args.enable_pdf = false
+    args.enable_plugins = false
+    args.enable_remoting = false
 
     // These do not exist on android
     // TODO - recheck

@@ -1,0 +1,26 @@
+diff --git a/chrome/renderer/BUILD.gn b/chrome/renderer/BUILD.gn
+index 0ad8a99a23d47ebdc2806cd6fc17b391cd0a58b3..8733e924b29e756f0e427cbd0c032b7985685101 100644
+--- a/chrome/renderer/BUILD.gn
++++ b/chrome/renderer/BUILD.gn
+@@ -380,7 +380,7 @@ static_library("renderer") {
+     ]
+   }
+ 
+-  if (!is_android) {
++  if (!is_android || is_android) {
+     sources += [
+       "accessibility/read_anything_app_controller.cc",
+       "accessibility/read_anything_app_controller.h",
+@@ -391,6 +391,12 @@ static_library("renderer") {
+       "searchbox/searchbox_extension.cc",
+       "searchbox/searchbox_extension.h",
+     ]
++    if (is_android) {
++      sources -= [
++        "media/chrome_speech_recognition_client.cc",
++        "media/chrome_speech_recognition_client.h",
++      ]
++    }
+ 
+     deps += [
+       "//chrome/common/accessibility:mojo_bindings",

@@ -1,0 +1,34 @@
+diff --git a/chrome/browser/resources/BUILD.gn b/chrome/browser/resources/BUILD.gn
+index abaa1bef811c41ec462abef09a95211f5481640e..ccda378f06fee7624619cf2dd5b557e658359793 100644
+--- a/chrome/browser/resources/BUILD.gn
++++ b/chrome/browser/resources/BUILD.gn
+@@ -19,7 +19,7 @@ assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
+ group("resources") {
+   public_deps = [ "segmentation_internals:resources" ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     public_deps += [
+       ":component_extension_resources",
+       ":dev_ui_paks",
+@@ -86,6 +86,11 @@ group("resources") {
+       "ntp4:apps_resources",
+     ]
+   }
++  if (is_android) {
++    public_deps -= [
++      ":dev_ui_paks",
++    ]
++  }
+ 
+   if (is_linux || is_chromeos) {
+     public_deps += [ "webui_js_error:resources" ]
+@@ -155,7 +160,7 @@ if (enable_js_type_check) {
+   }
+ }
+ 
+-if (!is_android) {
++if (true || !is_android) {
+   grit("component_extension_resources") {
+     source = "component_extension_resources.grd"
+ 

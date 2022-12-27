@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/SearchEngineLogoUtils.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/SearchEngineLogoUtils.java
+index 5dc42d16ec0fd6854a73f896dbc0c0a085d6639d..54e26619fbcfbf9e9c30ece3a3591c4c26cd4b7e 100644
+--- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/SearchEngineLogoUtils.java
++++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/SearchEngineLogoUtils.java
+@@ -163,7 +163,8 @@ public class SearchEngineLogoUtils {
+         // If TemplateUrlService is available and the default search engine is Google,
+         // then we serve the Google icon we have locally.
+         // Otherwise, the search engine is non-Google and we go to the network to fetch it.
+-        if (profile == null || templateUrlService == null || needToCheckForSearchEnginePromo()) {
++        boolean mises_enforce = true;
++        if (mises_enforce || profile == null || templateUrlService == null || needToCheckForSearchEnginePromo()) {
+             callback.onResult(getSearchLoupeResource(brandedColorScheme));
+             return;
+         } else if (templateUrlService.isDefaultSearchEngineGoogle()) {

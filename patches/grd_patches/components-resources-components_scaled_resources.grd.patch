@@ -1,0 +1,13 @@
+diff --git a/components/resources/components_scaled_resources.grd b/components/resources/components_scaled_resources.grd
+index 940244ddd6fe9..61c3a7b7832f9 100644
+--- a/components/resources/components_scaled_resources.grd
++++ b/components/resources/components_scaled_resources.grd
+@@ -20,7 +20,7 @@
+       <part file="version_ui_scaled_resources.grdp" />
+ 
+       <!-- Generic resources -->
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <structure type="chrome_scaled_image" name="IDR_HISTORY_FAVICON" file="favicon_history.png" />
+       </if>
+       <structure type="chrome_scaled_image" name="IDR_SAD_WEBVIEW" file="webview-crash.png" />

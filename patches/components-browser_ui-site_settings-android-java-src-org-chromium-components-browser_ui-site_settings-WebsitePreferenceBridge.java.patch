@@ -1,0 +1,23 @@
+diff --git a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
+index 6e33c308a63d0889a38867e4c76ba1ed98e1af42..0476fe8f0ac372453153a1882e399200c1571b43 100644
+--- a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
++++ b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
+@@ -351,6 +351,10 @@ public class WebsitePreferenceBridge {
+         WebsitePreferenceBridgeJni.get().setContentSettingCustomScope(browserContextHandle,
+                 contentSettingType, primaryPattern, secondaryPattern, setting);
+     }
++    public static void setPopupSettingForOrigin(BrowserContextHandle browserContextHandle, String origin, int contentSettingsType, boolean isIncognito) {
++        WebsitePreferenceBridgeJni.get().setPopupSettingForOrigin(browserContextHandle, origin, contentSettingsType, isIncognito);
++    }
++
+ 
+     @NativeMethods
+     public interface Natives {
+@@ -413,5 +417,7 @@ public class WebsitePreferenceBridge {
+         boolean isContentSettingManagedByCustodian(
+                 BrowserContextHandle browserContextHandle, int contentSettingType);
+         boolean getLocationAllowedByPolicy(BrowserContextHandle browserContextHandle);
++        void setPopupSettingForOrigin(BrowserContextHandle browserContextHandle,
++            String origin, int value, boolean isIncognito);
+     }
+ }

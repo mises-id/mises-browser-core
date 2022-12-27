@@ -1,0 +1,19 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/ToolbarTabControllerImpl.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/ToolbarTabControllerImpl.java
+index 8509664ec92cb46b644d42780924659bdf014f76..a7d3f0bfa6aa809436bda59d0ad71ea0501d4095 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/ToolbarTabControllerImpl.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/ToolbarTabControllerImpl.java
+@@ -146,10 +146,13 @@ public class ToolbarTabControllerImpl implements ToolbarTabController {
+         Tab currentTab = mTabSupplier.get();
+         if (currentTab == null) return;
+         String homePageUrl = mHomepageUrlSupplier.get();
++        if (currentTab.isIncognito())
++            homePageUrl = "chrome-search://local-ntp/incognito-ntp.html";
+         boolean is_chrome_internal =
+                 homePageUrl.startsWith(ContentUrlConstants.ABOUT_URL_SHORT_PREFIX)
+                 || homePageUrl.startsWith(UrlConstants.CHROME_URL_SHORT_PREFIX)
+-                || homePageUrl.startsWith(UrlConstants.CHROME_NATIVE_URL_SHORT_PREFIX);
++                || homePageUrl.startsWith(UrlConstants.CHROME_NATIVE_URL_SHORT_PREFIX)
++                || homePageUrl.startsWith("chrome-search://local-ntp/");
+         RecordHistogram.recordBooleanHistogram(
+                 "Navigation.Home.IsChromeInternal", is_chrome_internal);
+         // Log a user action for the !is_chrome_internal case. This value is used as part of a

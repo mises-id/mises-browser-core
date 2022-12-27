@@ -1,0 +1,47 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
+index f77cc6cabeed75fbc3e421cb72d1fa42d0934a97..0c7d170688cc0d5654fe96051e51eec0e0f2d5d7 100644
+--- a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
++++ b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
+@@ -24,6 +24,16 @@
+         app:menuPositionedAtEnd="false"
+         app:tint="@color/default_icon_color_tint_list" />
+ 
++    <ImageButton
++        android:id="@+id/mises_main_button"
++        style="@style/ToolbarButton"
++        android:src="@mipmap/head_small"
++        android:contentDescription="@null"
++        android:paddingStart="11dp"
++        android:paddingEnd="11dp"
++        android:paddingTop="15dp"
++        android:paddingBottom="15dp" />
++
+     <org.chromium.chrome.browser.omnibox.LocationBarPhone
+         android:id="@+id/location_bar"
+         android:layout_width="match_parent"
+@@ -47,10 +57,24 @@
+             android:visibility="gone"
+             android:layout_width="52dp"
+             style="@style/ToolbarButton" />
++
++        <org.chromium.chrome.browser.toolbar.top.HandButton
++            android:id="@+id/hand_button"
++            style="@style/ToolbarButton"
++            android:src="@drawable/btn_toolbar_hand" />
++
++        <org.chromium.ui.widget.ChromeImageButton
++            android:id="@+id/mises_share_button"
++	    style="@style/ToolbarButton"
++	    android:paddingStart="8dp"
++            android:layout_gravity="top"
++            android:src="@drawable/btn_extension"
++            android:contentDescription="@null" />
++
+         <org.chromium.chrome.browser.toolbar.top.ToggleTabStackButton
+             android:id="@+id/tab_switcher_button"
+             style="@style/ToolbarButton"
+-            android:paddingStart="8dp"
++            android:paddingStart="0dp"
+             android:layout_gravity="top"
+             android:contentDescription="@string/accessibility_toolbar_btn_tabswitcher_toggle_default"
+             app:menuMaxWidth="@dimen/tab_switcher_menu_width"

@@ -1,0 +1,22 @@
+diff --git a/ui/views/BUILD.gn b/ui/views/BUILD.gn
+index f0d388d953f23c2022b622222402c48fa9223e9d..ee9a2a2a602f193fba559c155512d1530523d88c 100644
+--- a/ui/views/BUILD.gn
++++ b/ui/views/BUILD.gn
+@@ -13,7 +13,7 @@ import("//testing/test.gni")
+ import("//ui/base/ui_features.gni")
+ import("//ui/views/features.gni")
+ 
+-assert(toolkit_views)
++# assert(toolkit_views)
+ 
+ config("flags") {
+   defines = [ "TOOLKIT_VIEWS=1" ]
+@@ -688,6 +688,8 @@ component("views") {
+       "//third_party/wtl",
+     ]
+   }
++ 
++  import("//mises/ui/views/sources.gni") public += mises_ui_view_public  sources += mises_ui_view_sources
+ 
+   if (use_aura) {
+     public += [

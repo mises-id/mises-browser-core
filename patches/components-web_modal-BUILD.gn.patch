@@ -1,0 +1,13 @@
+diff --git a/components/web_modal/BUILD.gn b/components/web_modal/BUILD.gn
+index 9cdf39faec5a7b43f1931bf6a2d6489fc1ff9254..2f891df0f030858266310896115f6bf46577ac7e 100644
+--- a/components/web_modal/BUILD.gn
++++ b/components/web_modal/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(!is_android && !is_ios)
++# assert(!is_android && !is_ios)
+ 
+ component("web_modal") {
+   sources = [

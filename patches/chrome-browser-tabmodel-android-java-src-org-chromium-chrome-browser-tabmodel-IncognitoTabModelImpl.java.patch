@@ -1,0 +1,16 @@
+diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/IncognitoTabModelImpl.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/IncognitoTabModelImpl.java
+index 46a36548f99730facab8c995ba94489b7faa230c..8a0506a60d80d1ffc64547343a28f753fddfea8c 100644
+--- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/IncognitoTabModelImpl.java
++++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/IncognitoTabModelImpl.java
+@@ -190,6 +190,11 @@ class IncognitoTabModelImpl implements IncognitoTabModel {
+         mDelegateModel.setIndex(i, type, skipLoadingTab);
+     }
+ 
++    @Override
++    public int getLastNonExtensionActiveIndex() {
++        return mDelegateModel.getLastNonExtensionActiveIndex();
++    }
++
+     @Override
+     public boolean isActiveModel() {
+         return mActive;

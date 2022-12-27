@@ -1,0 +1,54 @@
+diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
+index 965d17e347e6cb39dd8d448e0033e91c103afd79..944563d75eb5ffcdd11c7e2597a0460c28d1af26 100644
+--- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
++++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
+@@ -36,6 +36,8 @@ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
+ 
++import org.chromium.base.Log;
++
+ /**
+  * Object responsible for handling the creation, showing, hiding of the AppMenu and notifying the
+  * AppMenuObservers about these actions.
+@@ -57,6 +59,8 @@ class AppMenuHandlerImpl
+ 
+     private Callback<Integer> mTestOptionsItemSelectedListener;
+ 
++    private ModelList mModelList;
++
+     /**
+      * The resource id of the menu item to highlight when the menu next opens. A value of
+      * {@code null} means no item will be highlighted.  This value will be cleared after the menu is
+@@ -181,6 +185,7 @@ class AppMenuHandlerImpl
+             return getCustomItemViewType(id, customViewBinders, customViewTypeOffsetMap);
+         }),
+                 this);
++        mModelList = modelList;
+ 
+         ContextThemeWrapper wrapper =
+                 new ContextThemeWrapper(mContext, R.style.OverflowMenuThemeOverlay);
+@@ -295,7 +300,22 @@ class AppMenuHandlerImpl
+             mTestOptionsItemSelectedListener.onResult(itemId);
+             return;
+         }
+-
++        String lastItemTitle = "";
++        String lastVisibleItemTitle = "";
++        int menuSize = mModelList.size();
++        for (int i = 0; i < menuSize; i++) {
++            if (mModelList.get(i).model.get(AppMenuItemProperties.MENU_ITEM_ID) == itemId) {
++                Log.d("Kiwi", "Comparing Menu Size of Size: " + menuSize + " and ID: " + mModelList.get(i).model.get(AppMenuItemProperties.MENU_ITEM_ID) + " and itemId: " + itemId);
++                CharSequence titleCondensed = mModelList.get(i).model.get(AppMenuItemProperties.TITLE_CONDENSED);
++                Log.d("Kiwi", "Got titleCondensed: " + titleCondensed);
++		lastItemTitle = titleCondensed.toString();
++                CharSequence title = mModelList.get(i).model.get(AppMenuItemProperties.TITLE);
++                lastVisibleItemTitle = title.toString();
++                break;
++            }
++        }
++        mAppMenuDelegate.setLastItemTitle(lastItemTitle);
++        mAppMenuDelegate.setLastVisibleItemTitle(lastVisibleItemTitle);
+         mAppMenuDelegate.onOptionsItemSelected(itemId, mDelegate.getBundleForMenuItem(itemId));
+         if (highlighted) mDelegate.recordHighlightedMenuItemClicked(itemId);
+     }

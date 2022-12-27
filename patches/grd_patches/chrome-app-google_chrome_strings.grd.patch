@@ -1,0 +1,85 @@
+diff --git a/chrome/app/google_chrome_strings.grd b/chrome/app/google_chrome_strings.grd
+index 211b62b8fddc5..d27fd3ddde9c5 100644
+--- a/chrome/app/google_chrome_strings.grd
++++ b/chrome/app/google_chrome_strings.grd
+@@ -274,7 +274,7 @@ chromium_strings.grd. -->
+   <release seq="1">
+     <messages fallback_to_english="true">
+       <!-- Settings specific strings -->
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <part file="settings_google_chrome_strings.grdp" />
+       </if>
+ 
+@@ -863,7 +863,7 @@ Permissions you've already given to websites and apps may apply to this account.
+       </if>
+ 
+       <!-- Enterprise sign-in dialog -->
+-      <if expr="toolkit_views">
++      <if expr="is_android or toolkit_views">
+         <message name="IDS_ENTERPRISE_SIGNIN_TITLE" desc="The title of the dialog to confirm linking the browser profile with the signed-in enterprise account">
+           Link your Chrome data to this account?
+         </message>
+@@ -895,7 +895,7 @@ Permissions you've already given to websites and apps may apply to this account.
+       </if>
+ 
+       <!-- about:browser-switch strings -->
+-      <if expr="toolkit_views and not chromeos_lacros and not chromeos_ash">
++      <if expr="is_android or toolkit_views and not chromeos_lacros and not chromeos_ash">
+         <message name="IDS_ABOUT_BROWSER_SWITCH_DESCRIPTION_UNKNOWN_BROWSER" desc="Description shown while waiting for an alternative browser to open, when the browser name is not auto-detected">
+           Your system administrator has configured Google Chrome to open an alternative browser to access <ph name="TARGET_URL_HOSTNAME">$1<ex>example.com</ex></ph>.
+         </message>
+@@ -1053,7 +1053,7 @@ Permissions you've already given to websites and apps may apply to this account.
+       </if>
+ 
+       <!-- Material Design User Manager -->
+-      <if expr="not is_android and not chromeos_ash">
++      <if expr="is_android or not is_android and not chromeos_ash">
+         <!-- User pod remove sync warning text -->
+         <message name="IDS_LOGIN_POD_USER_REMOVE_WARNING_SYNC" desc="Main text shown as a warning when attempting to remove an user.">
+           This person's browsing data will be deleted from this device. To recover the data, sign in to Chrome as <ph name="USER_EMAIL">$2<ex>foo@example.com</ex></ph>.
+@@ -1137,7 +1137,7 @@ Permissions you've already given to websites and apps may apply to this account.
+       </if>
+ 
+       <!-- content area context menus. Android does not use it -->
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <message name="IDS_CONTENT_CONTEXT_ACCESSIBILITY_LABELS_BUBBLE_TEXT" desc="The text of a bubble that confirms users allows integrating the accessibility labels service of Google to Chromium.">
+           If an image doesn’t have a useful description, Chrome will try to provide one for you. To create descriptions, images are sent to Google. You can turn this off in settings at any time.
+         </message>
+@@ -1229,7 +1229,7 @@ Permissions you've already given to websites and apps may apply to this account.
+       </message>
+ 
+       <!-- Sync errors. Android uses native UI to handle Sync settings -->
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <message name="IDS_SYNC_UPGRADE_CLIENT" desc="Message indicating client needs to be upgraded to the latest version.">
+           Update Chrome to start sync
+         </message>
+@@ -1352,7 +1352,7 @@ Permissions you've already given to websites and apps may apply to this account.
+         </message>
+       </if>
+       <!-- Relaunch notification bubble and dialog. -->
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <if expr="not chromeos_ash">
+           <message name="IDS_RELAUNCH_RECOMMENDED_TITLE" desc="The title of a dialog that tells users that a browser relaunch is recommended for an update available for some number of days.">
+             {0, plural,
+@@ -1397,7 +1397,7 @@ Permissions you've already given to websites and apps may apply to this account.
+       </if>
+ 
+       <!-- Chrome launch blocking dialog. -->
+-      <if expr="not is_android and not chromeos_ash">
++      <if expr="is_android or not is_android and not chromeos_ash">
+         <message name="IDS_ENTERPRISE_STARTUP_CLOUD_POLICY_ENROLLMENT_TOOLTIP" desc="The information message of Chrome launch blocking dialog for machine level user cloud policy enrollment.">
+           Launching Chrome...
+         </message>
+@@ -1413,7 +1413,7 @@ Permissions you've already given to websites and apps may apply to this account.
+       </message>
+ 
+       <!-- User happiness tracking survey UI -->
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <message name="IDS_HATS_BUBBLE_TITLE" translateable="false" desc="The title of Happiness Tracking Survey's invitation banner, it invites users to take a survey">
+           Take a quick survey
+         </message>

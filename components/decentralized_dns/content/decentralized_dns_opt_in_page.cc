@@ -17,8 +17,8 @@
 #include "mises/components/decentralized_dns/content/decentralized_dns_interstitial_controller_client.h"
 #include "mises/components/decentralized_dns/core/utils.h"
 #include "mises/components/l10n/common/localization_util.h"
-#include "components/grit/brave_components_resources.h"
-#include "components/grit/brave_components_strings.h"
+#include "components/grit/mises_components_resources.h"
+#include "components/grit/mises_components_strings.h"
 #include "components/security_interstitials/content/security_interstitial_controller_client.h"
 
 namespace decentralized_dns {

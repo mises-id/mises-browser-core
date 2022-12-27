@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/side_panel/bookmarks/BUILD.gn b/chrome/browser/ui/webui/side_panel/bookmarks/BUILD.gn
+index f3066da46d920d416bad09305f98feff89d1b461..c6271cbb37a59dc136d51b81088b9eb08771b277 100644
+--- a/chrome/browser/ui/webui/side_panel/bookmarks/BUILD.gn
++++ b/chrome/browser/ui/webui/side_panel/bookmarks/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "bookmarks.mojom" ]

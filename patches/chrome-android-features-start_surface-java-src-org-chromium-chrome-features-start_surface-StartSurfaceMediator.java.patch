@@ -1,0 +1,22 @@
+diff --git a/chrome/android/features/start_surface/java/src/org/chromium/chrome/features/start_surface/StartSurfaceMediator.java b/chrome/android/features/start_surface/java/src/org/chromium/chrome/features/start_surface/StartSurfaceMediator.java
+index 9f68d1441a9e08ff71557c5dbed79eaa0a7e6a47..22e2a1752c12435853e1463e959511099d3959a1 100644
+--- a/chrome/android/features/start_surface/java/src/org/chromium/chrome/features/start_surface/StartSurfaceMediator.java
++++ b/chrome/android/features/start_surface/java/src/org/chromium/chrome/features/start_surface/StartSurfaceMediator.java
+@@ -79,6 +79,7 @@ import org.chromium.components.prefs.PrefService;
+ import org.chromium.content_public.browser.BrowserStartupController;
+ import org.chromium.ui.modelutil.PropertyModel;
+ import org.chromium.ui.util.ColorUtils;
++import org.chromium.chrome.browser.feed.FeedFeatures;
+ 
+ /** The mediator implements the logic to interact with the surfaces and caller. */
+ class StartSurfaceMediator implements TabSwitcher.TabSwitcherViewObserver, View.OnClickListener,
+@@ -394,8 +395,7 @@ class StartSurfaceMediator implements TabSwitcher.TabSwitcherViewObserver, View.
+                 }
+             }
+         }
+-
+-        mFeedVisibilityPrefOnStartUp = prefService.getBoolean(Pref.ARTICLES_LIST_VISIBLE);
++        mFeedVisibilityPrefOnStartUp = FeedFeatures.isFeedEnabled() && prefService.getBoolean(Pref.ARTICLES_LIST_VISIBLE);
+     }
+ 
+     void setSecondaryTasksSurfacePropertyModel(PropertyModel propertyModel) {

@@ -1,0 +1,20 @@
+diff --git a/chrome/utility/BUILD.gn b/chrome/utility/BUILD.gn
+index ba5c91ed65b5674a80bb77083cc01a92986631ce..e549924c1eebe33e30809599a1b4fbff701592bd 100644
+--- a/chrome/utility/BUILD.gn
++++ b/chrome/utility/BUILD.gn
+@@ -140,6 +140,15 @@ static_library("utility") {
+     ]
+   }
+ 
++  if (is_android) {
++    sources += [
++      "importer/bookmark_html_reader.cc",
++      "importer/bookmark_html_reader.h",
++      "importer/favicon_reencode.cc",
++      "importer/favicon_reencode.h",
++    ]
++  }
++
+   if (enable_screen_ai_service) {
+     deps += [ "//components/services/screen_ai" ]
+   }

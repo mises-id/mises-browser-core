@@ -87,7 +87,7 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
   </translations>
   <release seq="1">
     <messages fallback_to_english="true">
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <part file="settings_mises_strings_override.grdp" />
       </if>
 
@@ -193,10 +193,10 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="not chromeos_ash">
         </if>
 
-      <if expr="toolkit_views">
+      <if expr="is_android or toolkit_views">
         </if>
 
-      <if expr="toolkit_views and not chromeos_lacros and not chromeos_ash">
+      <if expr="is_android or toolkit_views and not chromeos_lacros and not chromeos_ash">
         </if>
 
       <if expr="not chromeos_ash">
@@ -229,7 +229,7 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="is_macosx">
         </if>
 
-      <if expr="not is_android and not chromeos_ash">
+      <if expr="is_android or not is_android and not chromeos_ash">
         <message name="IDS_LOGIN_POD_USER_REMOVE_WARNING_SYNC" desc="Main text shown as a warning when attempting to remove an user.">
           This profile's browsing data will be deleted from this device. To recover the data, sign in to Mises as <ph name="USER_EMAIL">$2<ex>foo@example.com</ex></ph>.
         </message>
@@ -239,7 +239,7 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="is_win">
         </if>
 
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <if expr="not use_titlecase">
           <message name="IDS_CONTENT_CONTEXT_OPENLINKOFFTHERECORD_INAPP" desc="The name of the command to open a link in a Private browser window when the user is in an app window">
             Open link in Mises &amp;private window
@@ -267,7 +267,7 @@ Permissions you've already given to websites and apps may apply to this account.
         </if>
       <if expr="not use_titlecase">
         </if>
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         </if>
 
       <if expr="use_titlecase">
@@ -283,12 +283,12 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="chromeos_ash">
         </if>
 
-      <if expr="not chromeos_ash and not is_android">
+      <if expr="is_android or not chromeos_ash and not is_android">
         </if>
 
       <if expr="is_win">
         </if>
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <if expr="not chromeos_ash">
           <message name="IDS_RELAUNCH_RECOMMENDED_BODY" desc="The body text of a dialog that tells users that a browser relaunch is recommended for an update with Private counter.">
              {COUNT, plural,
@@ -304,14 +304,14 @@ Permissions you've already given to websites and apps may apply to this account.
           </message>
         </if>
       </if>
-      <if expr="not is_android and not chromeos_ash">
+      <if expr="is_android or not is_android and not chromeos_ash">
          </if>
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         </if>
       <if expr="enable_extensions and enable_supervised_users">
         </if>
 
-      <if expr="not chromeos_ash and not is_android">
+      <if expr="is_android or not chromeos_ash and not is_android">
         <if expr="chromeos_lacros">
           </if>
         <if expr="not chromeos_lacros">

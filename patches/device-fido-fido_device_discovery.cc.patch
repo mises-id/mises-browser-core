@@ -1,0 +1,17 @@
+diff --git a/device/fido/fido_device_discovery.cc b/device/fido/fido_device_discovery.cc
+index c6da0c42262618a68546768982a25bbdc0672f5d..dbd3ef221518a19d4fa1cda59dbca645b63a6328 100644
+--- a/device/fido/fido_device_discovery.cc
++++ b/device/fido/fido_device_discovery.cc
+@@ -95,8 +95,12 @@ FidoDeviceAuthenticator* FidoDeviceDiscovery::GetAuthenticator(
+ }
+ 
+ bool FidoDeviceDiscovery::AddDevice(std::unique_ptr<FidoDevice> device) {
++#if BUILDFLAG(IS_ANDROID)
++  return false;
++#else
+   return AddAuthenticator(
+       std::make_unique<FidoDeviceAuthenticator>(std::move(device)));
++#endif
+ }
+ 
+ bool FidoDeviceDiscovery::AddAuthenticator(

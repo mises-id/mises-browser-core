@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/browser_switch/BUILD.gn b/chrome/browser/resources/browser_switch/BUILD.gn
+index ecc70a689a1584faa3962d3da008e5d79e4ba1f1..7f9271b18bd0151fbd70e2444b0fa6672e44ca69 100644
+--- a/chrome/browser/resources/browser_switch/BUILD.gn
++++ b/chrome/browser/resources/browser_switch/BUILD.gn
+@@ -8,7 +8,7 @@ import("//tools/polymer/html_to_wrapper.gni")
+ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos_lacros || is_fuchsia)
++#assert(is_win || is_mac || is_linux || is_chromeos_lacros || is_fuchsia)
+ 
+ grit("resources") {
+   defines = chrome_grit_defines

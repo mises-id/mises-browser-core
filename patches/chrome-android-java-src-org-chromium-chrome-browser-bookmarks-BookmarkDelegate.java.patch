@@ -1,0 +1,14 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkDelegate.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkDelegate.java
+index 7dd282af3fcd99071b01fa33953f44011a272317..baaaee375c88101ab0a0f1df75edc2739da61138 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkDelegate.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkDelegate.java
+@@ -71,6 +71,9 @@ public interface BookmarkDelegate {
+      */
+     void closeSearchUI();
+ 
++    void importBookmarks();
++    void exportBookmarks();
++
+     /**
+      * Add an observer to bookmark UI changes.
+      */

@@ -304,7 +304,7 @@ are declared in tools/grit/grit_rule.gni.
       </if>
 
       <!-- Settings specific strings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <part file="settings_strings.grdp" />
         <part file="shared_settings_strings.grdp" />
       </if>
@@ -320,12 +320,12 @@ are declared in tools/grit/grit_rule.gni.
       </if>
 
       <!-- Welcome strings -->
-      <if expr="not chromeos_ash and not is_android">
+      <if expr="is_android or not chromeos_ash and not is_android">
         <part file="welcome_strings.grdp" />
       </if>
 
       <!-- What's New strings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <part file="whats_new_strings.grdp" />
       </if>
 
@@ -391,7 +391,7 @@ are declared in tools/grit/grit_rule.gni.
           Permission requested, press ⌘ + Option + Down arrow to respond
         </message>
       </if>
-      <if expr="not chromeos_ash and not chromeos_lacros and not is_macosx and toolkit_views">
+      <if expr="is_android or not chromeos_ash and not chromeos_lacros and not is_macosx and toolkit_views">
         <message name="IDS_PERMISSIONS_REQUESTED_SCREENREADER_ANNOUNCEMENT" desc="Announcement to screen readers on Windows, Linux or Fuchsia when permission is requested to inform users of how to focus the permission UI.">
           Permission requested, press F6 to respond
         </message>
@@ -487,7 +487,7 @@ are declared in tools/grit/grit_rule.gni.
         Disable
       </message>
       <!-- Search strings are only used in webui, so no mobile. -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_SEARCH_CLEARED" desc="Message announced to screenreader users when search is cleared.">
           Search cleared
         </message>
@@ -532,7 +532,7 @@ are declared in tools/grit/grit_rule.gni.
       </if>
 
        <!-- content area context menus. Android does not use it -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_CONTENT_CONTEXT_INSPECTELEMENT" desc="The name of the Inspect Element command in the content area context menu">
           I&amp;nspect
         </message>
@@ -1116,7 +1116,7 @@ are declared in tools/grit/grit_rule.gni.
       </if>
 
       <!-- Page menu. Android has separate strings for its menu -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <if expr="not use_titlecase">
           <message name="IDS_NEW_TAB" desc="The text label of a menu item for opening a new tab">
             New &amp;tab
@@ -2146,7 +2146,7 @@ are declared in tools/grit/grit_rule.gni.
       </message>
 
       <!-- Download Context Menu Items -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <if expr="not use_titlecase">
           <if expr="is_macosx">
             <message name="IDS_DOWNLOAD_MENU_SHOW" desc="Mac: Show the file in the Finder, 'Show in Finder' item" meaning="'show in Finder' on Mac in Sentence case">
@@ -2526,7 +2526,7 @@ are declared in tools/grit/grit_rule.gni.
       </if>
 
       <!-- Desktop omnibox PWA install icon -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_OMNIBOX_PWA_INSTALL_ICON_LABEL" desc="String for the omnibox icon label promoting an app installation">
           Install
         </message>
@@ -3077,7 +3077,7 @@ are declared in tools/grit/grit_rule.gni.
       </message>
 
       <!-- Win certificate selector dialog strings.  -->
-      <if expr="toolkit_views">
+      <if expr="is_android or toolkit_views">
         <message name="IDS_CERT_SELECTOR_SUBJECT_COLUMN" desc="The text of the header for the certificate subject column in the certificate selector dialog.">
           Subject
         </message>
@@ -3109,7 +3109,7 @@ are declared in tools/grit/grit_rule.gni.
       </message>
 
       <!-- WebUI Certificate viewer dialog strings. Android uses an OS-level certificate manager. -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_CERT_INFO_DIALOG_TITLE" desc="Title of dialog displaying info about a certificate">
           Certificate Viewer: <ph name="CERTIFICATE_NAME">$1<ex>www.google.com</ex></ph>
         </message>
@@ -3655,7 +3655,7 @@ are declared in tools/grit/grit_rule.gni.
 
 
       <!-- Task Manager Window -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <if expr="not use_titlecase">
           <message name="IDS_TASK_MANAGER_KILL" desc="The caption of the Task Manager kill button">
             End process
@@ -3962,7 +3962,7 @@ are declared in tools/grit/grit_rule.gni.
       <message name="IDS_UTILITY_PROCESS_FILE_UTILITY_NAME" desc="The name of the utility process used for various Mises specific file operations.">
           Mises File Utilities
       </message>
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_UTILITY_PROCESS_PROFILE_IMPORTER_NAME" desc="The name of the utility process used for importing profiles.">
           Profile Importer
         </message>
@@ -5589,7 +5589,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
         </message>
       </if>
       <if expr="is_android">
-        <message name="IDS_SETTINGS_PASSWORDS_ANDROID_APP" desc="Label for the app a password is for when displaying a credential and the real app display name could not be obtained.">
+        <message name="IDS_SETTINGS_PASSWORDS_ANDROID_APP_MISES" desc="Label for the app a password is for when displaying a credential and the real app display name could not be obtained.">
           App (<ph name="ANDROID_PACKAGE_NAME">$1<ex>com.netflix.mediaclient</ex></ph>)
         </message>
       </if>
@@ -5800,7 +5800,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
       </message>
 
       <!-- about:system strings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_ABOUT_SYS_TITLE" desc="about:system page title">
           About System
         </message>
@@ -5831,7 +5831,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
       </if>
 
       <!-- chrome://browser-switch strings -->
-      <if expr="toolkit_views and not chromeos_lacros and not chromeos_ash">
+      <if expr="is_android or toolkit_views and not chromeos_lacros and not chromeos_ash">
         <message name="IDS_ABOUT_BROWSER_SWITCH_TITLE" desc="about:browser-switch page title">
           Legacy Browser Support
         </message>
@@ -6902,7 +6902,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
       </message>
 
       <!-- Strings for intent picker -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_TOOLTIP_INTENT_PICKER_ICON" desc="The tooltip for the intent picker bubble icon">
           To open this link, choose an app
         </message>
@@ -7325,7 +7325,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
       <message name="IDS_PASSWORD_MANAGER_PASSWORD_LABEL" desc="Label for the password field in a prompt to store new credential" formatter_data="android_java">
         Password
       </message>
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_PASSWORD_MANAGER_UPDATED_BUBBLE_TITLE" desc="Title of the bubble notifying the user that the password was updated.">
           Password updated
         </message>
@@ -7468,13 +7468,13 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
         </if>
       </if>
       <if expr="is_android">
-        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON" desc="Mobile: Button text for the 'Save Password' infobar's 'Remember password' option">
+        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON_ANDROID" desc="Mobile: Button text for the 'Save Password' infobar's 'Remember password' option">
           Save
         </message>
         <message name="IDS_PASSWORD_MANAGER_BLOCKLIST_BUTTON" desc="Mobile: Button text for the 'Save Password' infobar's 'Never remember for this site' option">
           Never
         </message>
-        <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON" desc="Label for the 'update' button in the Update Password infobar. This infobar asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update." formatter_data="android_java">
+        <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON_ANDROID" desc="Label for the 'update' button in the Update Password infobar. This infobar asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update." formatter_data="android_java">
           Update
         </message>
         <message name="IDS_PASSWORD_MANAGER_UPDATE_WITH_FOLLOWUP_BUTTON" desc="Label for the 'update' button in the Update Password prompt that will be followed by username confirmation dialog. This prompt asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update.">
@@ -7519,7 +7519,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
       </if>
 
       <!-- Android uses custom UI for Bookmark importing -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <!-- Import Settings Dialog -->
         <if expr="is_win">
           <message name="IDS_IMPORT_FROM_IE" desc="browser combo box: Microsoft Internet Explorer">
@@ -8470,7 +8470,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
       <!-- Settings related strings not specific to chrome://settings.
            (Settings specific strings are in settings_strings.grdp).
            Android uses native UI for settings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_TOOLBAR_INFORM_SET_HOME_PAGE" desc="The confirmation message when dropping a link on the Home toolbar button">
            Your home page has been set.
         </message>
@@ -8703,7 +8703,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
           Create QR Code for this Link
         </message>
       </if>
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_OMNIBOX_QRCODE_GENERATOR_ICON_LABEL" desc="String for the omnibox icon label for the QR Code Generator">
           QR Code
         </message>
@@ -8766,7 +8766,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
       </message>
 
       <!-- Desktop Screenshots feature within the share hub; desktop-only. -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_BROWSER_SHARING_SCREENSHOT_POST_CAPTURE_TITLE" desc="Title for the dialog shown after a screenshot is captured.">
         Screenshot copied to clipboard
         </message>
@@ -8983,7 +8983,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
       </message>
 
       <!-- Accessiblility strings for Infobars in Views -->
-      <if expr="toolkit_views">
+      <if expr="is_android or toolkit_views">
         <message name="IDS_ACCNAME_INFOBAR_CONTAINER" desc="The accessible name for the infobar container.">
           Infobar Container
         </message>
@@ -9050,7 +9050,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
       </message>
 
       <!-- Managed UI on pages like chrome://settings and chrome://downloads -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <if expr="chromeos_ash">
           <message name="IDS_DEVICE_MANAGED_WITH_HYPERLINK" desc="Message to end users in Enterprise/EDU, with a link for more info (ChromeOS)">
             Your <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph><ph name="DEVICE_TYPE">$2<ex>Chromebook</ex></ph> is managed<ph name="END_LINK">&lt;/a&gt;</ph> by your organization
@@ -9165,7 +9165,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
       </message>
 
       <!-- Strings used for non-Android builds -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_APP_DEFAULT_PAGE_NAME" desc="Default name for the first 'Apps' page on the New Tab Page.">
           Apps
         </message>
@@ -9465,7 +9465,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
         </message>
       </if>
 
-      <if expr="not chromeos_ash and not is_android">
+      <if expr="is_android or not chromeos_ash and not is_android">
         <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_ENTERPRISE_PROFILE_NAME" desc="Default name for work profiles created after signin interception">
           Work
         </message>
@@ -9817,7 +9817,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
       </if>
 
       <!-- Android uses native UI to handle Sync settings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <!-- Sync options dialog strings -->
         <if expr="not chromeos_ash">
           <message name="IDS_SYNC_OVERVIEW" desc="The message that appears in the options dialog when sync has not been set up by the user.">
@@ -9911,7 +9911,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
       </if>
 
       <!-- Translate Bubble -->
-      <if expr="toolkit_views">
+      <if expr="is_android or toolkit_views">
         <message name="IDS_TRANSLATE_BUBBLE_BEFORE_TRANSLATE_TITLE" desc="Title text for the translate bubble when asking to translate a page.">
           Translate this page?
         </message>
@@ -10989,8 +10989,8 @@ Please help our engineers fix this problem. Tell us what happened right before y
         </message>
       </if>
 
-      <!-- Media Galleries. -->
-      <if expr="not is_android">
+      <!-- Media Galleries. mises -->
+      <if expr="is_android or not is_android">
         <message name="IDS_MEDIA_GALLERIES_DIALOG_HEADER" desc="Header for media gallery permissions dialog.">
           Media-File Permissions for "<ph name="EXTENSION">$1<ex>Photo Editor</ex></ph>"
         </message>
@@ -11148,7 +11148,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
       <message name="IDS_DESKTOP_MEDIA_PICKER_MANAGED" desc="Text to display when picker choices have been limited by enterprise policies.">
         Options for sharing are managed by your organization. Some items may be hidden.
       </message>
-      <if expr="toolkit_views">
+      <if expr="is_android or toolkit_views">
         <message name="IDS_DESKTOP_MEDIA_PICKER_SOURCE_TYPE_THIS_TAB" desc="Text for one of the dialog-tabs on the media picker dialog. This dialog-tab controls sharing the current tab.">
           This Tab
         </message>
@@ -11272,7 +11272,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
           <ph name="WINDOW_TITLE">$1<ex>Mises Search</ex></ph> - Permission requested, press ⌘ + Option + Up arrow to respond
         </message>
       </if>
-      <if expr="not chromeos_ash and not chromeos_lacros and not is_macosx and toolkit_views">
+      <if expr="is_android or not chromeos_ash and not chromeos_lacros and not is_macosx and toolkit_views">
         <message name="IDS_TAB_AX_LABEL_PERMISSION_REQUESTED_FORMAT" desc="Accessibility label text for Windows, Linux or Fuchsia, when a tab has a pending request. Example: 'Mises Search - Permission requested, press F6 to respond'.">
           <ph name="WINDOW_TITLE">$1<ex>Mises Search</ex></ph> - Permission requested, press F6 to respond
         </message>
@@ -11501,7 +11501,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
       </message>
     </if>
 
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <!-- Device Chooser Prompt -->
       <message name="IDS_BLUETOOTH_DEVICE_CHOOSER_PROMPT_EXTENSION_NAME" desc="The label that is used to introduce Bluetooth chooser details to the user in a popup when it is from a Mises extension.">
         "<ph name="CHROME_EXTENSION_NAME">$1<ex>Mises Extension Name</ex></ph>" wants to pair
@@ -11567,7 +11567,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </message>
 
     <!-- Serial port chooser -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_SERIAL_PORT_CHOOSER_PROMPT_ORIGIN" desc="The label that is used to introduce serial port chooser details to the user in a popup when it is from a website.">
         <ph name="Origin">$1<ex>www.google.com</ex></ph> wants to connect to a serial port
       </message>
@@ -11607,7 +11607,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </if>
 
     <!-- HID (Human Interface Device) chooser -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_HID_CHOOSER_PROMPT_ORIGIN" desc="The label that is used to introduce the Human Interface Device (HID) chooser details to the user in a popup when it is from a website.">
         <ph name="Origin">$1<ex>www.google.com</ex></ph> wants to connect to a HID device
       </message>
@@ -11640,8 +11640,8 @@ Please help our engineers fix this problem. Tell us what happened right before y
       </message>
     </if>
 
-    <!-- File Handling launch prompt -->
-    <if expr="not is_android">
+    <!-- File Handling launch prompt mises -->
+    <if expr="is_android or not is_android">
       <message name="IDS_WEB_APP_FILE_HANDLING_LIST_SEPARATOR" desc="Text/punctuation that separates items in a lists. For example, this is used in a list of files, such as 'todo_list.txt, shopping_list.txt', and file types/extensions, such as '.txt, .csv.'" meaning="List separator for files.">
          , '''
       </message>
@@ -11685,14 +11685,14 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </if>
 
     <!-- Protocol Handling launch prompt -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_PROTOCOL_HANDLER_INTENT_PICKER_QUESTION" desc="Label on the protocol handler intent picker.">
         Allow app to open <ph name="PROTOCOL_SCHEME">$1<ex>mailto</ex></ph> links?
       </message>
     </if>
 
     <!-- Font Access chooser -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_FONT_ACCESS_CHOOSER_PROMPT_ORIGIN" desc="The label that is used to introduce Local Font Access chooser details to the user in a popup when it is from a website.">
         <ph name="Origin">$1<ex>www.google.com</ex></ph> wants to use local fonts
       </message>
@@ -11818,7 +11818,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </if>
 
     <!-- Download open confirmation dialog -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_DOWNLOAD_OPEN_CONFIRMATION_DIALOG_TITLE" desc="Title of the dialog prompt shown to users when an extension is trying to open a downloaded file.">
         Open download
       </message>
@@ -11988,7 +11988,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </message>
 
     <!-- Relaunch notification bubble and dialog. -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <if expr="not chromeos_ash">
         <message name="IDS_RELAUNCH_ACCEPT_BUTTON" desc="The text in the accept button of a dialog that causes the browser to be relaunched immediately.">
           Relaunch now
@@ -12005,7 +12005,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </if>
 
     <!-- Web-modal dialog shown during Web Authenticaton API requests. -->
-    <if expr="toolkit_views">
+    <if expr="is_android or toolkit_views">
       <message name="IDS_WEBAUTHN_GENERIC_TITLE" desc="Title of most dialogs shown while the user is authenticating on a web site using a security key.">
         Use your security key with <ph name="APP_NAME">$1<ex>google.com</ex></ph>
       </message>
@@ -12387,7 +12387,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </message>
 
     <!-- User happiness tracking survey UI -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <if expr="use_titlecase">
         <message name="IDS_HATS_BUBBLE_OK_LABEL" translateable="false" desc="Button label on Happiness Tracking Survey's invitation banner, clicking the button gives the user's consent on taking the survey.">
           Take Survey
@@ -12680,7 +12680,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </message>
 
     <!-- Extension request -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_ENTERPRISE_EXTENSION_REQUEST_APPROVED_TITLE" desc="The notification title when there are some extension requests approved.">
         {NUM_EXTENSIONS, plural,
           =1 {An extension has been approved}
@@ -13029,7 +13029,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
     </message>
 
     <!-- Automated Password Change on Desktop strings -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_AUTOFILL_ASSISTANT_PASSWORD_CHANGE_ONBOARDING_TITLE" desc="The title for the Automated Password Change on Desktop onboarding dialog. The onboarding dialog is a modal dialog that is shown if a user has not previously consented to using Assistant features.">
         Let Mises Assistant help you change your password
       </message>

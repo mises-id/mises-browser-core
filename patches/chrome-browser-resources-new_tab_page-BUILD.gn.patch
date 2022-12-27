@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/new_tab_page/BUILD.gn b/chrome/browser/resources/new_tab_page/BUILD.gn
+index 06fe62b8897f3bc75a28064398106d12b48ff13f..fa1521fe07f67637d873abe4287b3ca7bfce61f3 100644
+--- a/chrome/browser/resources/new_tab_page/BUILD.gn
++++ b/chrome/browser/resources/new_tab_page/BUILD.gn
+@@ -13,7 +13,7 @@ import("//ui/webui/resources/tools/generate_grd.gni")
+ import("//ui/webui/webui_features.gni")
+ import("./new_tab_page.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ html_to_wrapper("html_wrapper_files") {
+   in_files = html_files

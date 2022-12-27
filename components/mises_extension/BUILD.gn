@@ -6,13 +6,7 @@ import("//tools/grit/repack.gni")
 
 assert(enable_extensions)
 
-pack_web_resources("generated_resources") {
-  resource_name = "mises_extension"
-  output_dir = "$root_gen_dir/mises/components/mises_extension"
 
-  # need wepack and GRD generation first
-  deps = [ "extension/mises_extension" ]
-}
 
 action("web_discovery_project_resources") {
   script = "//mises/script/web_discovery_project.py"
@@ -50,28 +44,24 @@ mises_grit("static_resources") {
   source = "extension/resources.grd"
 
   outputs = [
-    "grit/mises_extension.h",
-    "grit/mises_extension_resources_map.cc",
-    "grit/mises_extension_resources_map.h",
-    "mises_extension_static.pak",
+    "grit/mises_wallet.h",
+    "grit/mises_wallet_resources_map.cc",
+    "grit/mises_wallet_resources_map.h",
+    "mises_wallet_static.pak",
   ]
 
   deps = [
-    ":web_discovery_project_resources",
-    "extension/mises_extension",
   ]
 }
 
 repack("resources") {
   deps = [
-    ":generated_resources",
     ":static_resources",
   ]
 
   sources = [
-    "$root_gen_dir/mises/components/mises_extension/mises_extension_generated.pak",
-    "$root_gen_dir/mises/components/mises_extension/mises_extension_static.pak",
+    "$root_gen_dir/mises/components/mises_extension/mises_wallet_static.pak",
   ]
 
-  output = "$root_gen_dir/mises/components/mises_extension/mises_extension_resources.pak"
+  output = "$root_gen_dir/mises/components/mises_extension/mises_wallet_resources.pak"
 }

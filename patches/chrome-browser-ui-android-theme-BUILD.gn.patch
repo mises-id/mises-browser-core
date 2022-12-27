@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/android/theme/BUILD.gn b/chrome/browser/ui/android/theme/BUILD.gn
+index 5694410c1b185fa9a9197e1fb70107fae87da551..91e849dbed9149a7372f266753b33175b08ea4f8 100644
+--- a/chrome/browser/ui/android/theme/BUILD.gn
++++ b/chrome/browser/ui/android/theme/BUILD.gn
+@@ -26,6 +26,7 @@ android_library("java") {
+     "//third_party/androidx:androidx_appcompat_appcompat_resources_java",
+     "//third_party/androidx:androidx_core_core_java",
+     "//ui/android:ui_no_recycler_view_java",
++    "//url:gurl_java",
+   ]
+   resources_package = "org.chromium.chrome.browser.theme"
+ }

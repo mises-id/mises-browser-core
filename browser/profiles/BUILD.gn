@@ -3,6 +3,8 @@ source_set("profiles") {
   # Remove when https://github.com/brave/brave-browser/issues/10648 is resolved
   check_includes = false
   sources = [
+    "mises_profile_manager.cc",
+    "mises_profile_manager.h",
   ]
 
   public_deps = [ ":util" ]
@@ -27,8 +29,8 @@ source_set("util") {
   check_includes = false
 
   sources = [
-    "profile_util.cc",
-    "profile_util.h",
+   # "profile_util.cc",
+   # "profile_util.h",
   ]
 
   deps = [

@@ -1,0 +1,41 @@
+diff --git a/chrome/browser/resources/extensions/manager.html b/chrome/browser/resources/extensions/manager.html
+index ec2594bfef43611cdf74859e72c8fb0df8ec1046..adeba99079d79a0b1039623a9ccabb5ef83d4f4b 100644
+--- a/chrome/browser/resources/extensions/manager.html
++++ b/chrome/browser/resources/extensions/manager.html
+@@ -4,7 +4,6 @@
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+-    --cr-toolbar-field-width: 680px;
+   }
+ 
+   extensions-sidebar {
+@@ -19,6 +18,17 @@
+   extensions-item {
+     display: inline-block;
+   }
++  
++  #more-extensions {
++    text-align: center;
++    display: block;
++    justify-content: space-between;
++    color: var(--cr-link-color);
++    text-decoration: none;
++  }
++  .footer {
++    margin-bottom: 8px;
++  }
+ </style>
+ <extensions-drop-overlay drag-enabled="[[inDevMode]]">
+ </extensions-drop-overlay>
+@@ -123,3 +133,10 @@
+   </extensions-install-warnings-dialog>
+ </template>
+ <cr-toast-manager></cr-toast-manager>
++
++<div class="footer">
++  <a id="more-extensions" target="_blank"
++      href="$i18n{getMoreExtensionsUrl}" on-click="onMoreExtensionsTap_">
++    <span>Open Chrome Web Store</span>
++  </a>
++</div>

@@ -1,0 +1,13 @@
+diff --git a/content/browser/devtools/BUILD.gn b/content/browser/devtools/BUILD.gn
+index 2bd956f55306e51c4be12b57a1c9c59deba66986..b760b8a1f6978c79045dd335e16f8a2e3ab15e59 100644
+--- a/content/browser/devtools/BUILD.gn
++++ b/content/browser/devtools/BUILD.gn
+@@ -10,7 +10,7 @@ import("//third_party/protobuf/proto_library.gni")
+ import("//tools/grit/grit_rule.gni")
+ 
+ # Android does not support DevTools front-end.
+-if (!is_android) {
++if (true || !is_android) {
+   source_set("devtools_resources_extern") {
+     sources = [ "devtools_resources.cc" ]
+ 

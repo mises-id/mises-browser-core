@@ -92,23 +92,16 @@
           Restart Mises
         </message>
       </if>
-      <if expr="is_android or is_ios">
-	<then>
+      <if expr="not is_android or is_android or is_ios">
           <message name="IDS_SAD_TAB_RELOAD_RESTART_DEVICE" desc="One of the bullet points displayed on the web page if a reload failed to fix the issue, advising the user to restart their device (i.e. phone or tablet)." formatter_data="android_java">
             Restart your device
           </message>
           <message name="IDS_SAD_TAB_RELOAD_LEARN_MORE" desc="The link text displayed on the sad tab page pointing the users to a help article if a reload failed to fix the issue." meaning="Learn more about web pages that fail to load" formatter_data="android_java">
             Learn more
           </message>
-	</then>
-	<else>
-          <message name="IDS_SAD_TAB_RELOAD_RESTART_DEVICE" desc="One of the bullet points displayed on the web page if a reload failed to fix the issue, advising the user to restart their computer.">
-            Restart your computer
-          </message>
           <message name="IDS_SAD_TAB_ERROR_CODE" desc="The message displayed on the crashed web page indicating the type of the crash.">
             Error code: <ph name="ERROR_CODE">$1<ex>STATUS_ACCESS_VIOLATION</ex></ph>
           </message>
-	</else>
       </if>
 
       <!-- New Tab -->
@@ -118,7 +111,7 @@
       <message name="IDS_NEW_INCOGNITO_TAB_TITLE" desc="Title of the new private tab page, not to be confused with the action of opening a new private tab.">
         New Private Tab
       </message>
-      <if expr="not is_android">
+      <if expr="not is_android or is_android">
         <message name="IDS_NEW_TAB_OTR_HEADING" desc="Heading used when a profile opens an OTR window">
           You’ve gone Private
         </message>

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/new_tab_page/icons/BUILD.gn b/chrome/browser/resources/new_tab_page/icons/BUILD.gn
+index 8ae9a3a8755f4bc95efd4023c7b1ad8c822cc064..d7c8952f912b12e3cf5135806e1dccc1091d725c 100644
+--- a/chrome/browser/resources/new_tab_page/icons/BUILD.gn
++++ b/chrome/browser/resources/new_tab_page/icons/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ generate_grd("build_grdp") {
+   grd_prefix = "new_tab_page"

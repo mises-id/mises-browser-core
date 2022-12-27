@@ -128,7 +128,7 @@ source_set("ui") {
     ]
   }
 
-  if (enable_extensions && toolkit_views) {
+  if (is_android || enable_extensions && toolkit_views) {
     sources += [
     ]
 
@@ -145,6 +145,7 @@ source_set("ui") {
 
     deps += [
       "//chrome/browser/extensions",
+      "//mises/components/mises_extension:static_resources",
       "//components/sessions",
       "//extensions/browser",
       "//extensions/common:common_constants",

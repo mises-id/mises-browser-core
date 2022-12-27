@@ -1,0 +1,37 @@
+diff --git a/chrome/android/feed/core/java/src/org/chromium/chrome/browser/feed/NtpFeedSurfaceLifecycleManager.java b/chrome/android/feed/core/java/src/org/chromium/chrome/browser/feed/NtpFeedSurfaceLifecycleManager.java
+index 8eb47da71afe98fb182942c892307b37d09905ec..f1bcc4735e91056ae3c5a9238bf3c69daef52f1c 100644
+--- a/chrome/android/feed/core/java/src/org/chromium/chrome/browser/feed/NtpFeedSurfaceLifecycleManager.java
++++ b/chrome/android/feed/core/java/src/org/chromium/chrome/browser/feed/NtpFeedSurfaceLifecycleManager.java
+@@ -9,7 +9,6 @@ import android.app.Activity;
+ import androidx.annotation.Nullable;
+ import androidx.annotation.VisibleForTesting;
+ 
+-import org.chromium.base.TraceEvent;
+ import org.chromium.chrome.browser.preferences.Pref;
+ import org.chromium.chrome.browser.profiles.Profile;
+ import org.chromium.chrome.browser.tab.EmptyTabObserver;
+@@ -77,10 +76,7 @@ public class NtpFeedSurfaceLifecycleManager extends FeedSurfaceLifecycleManager
+ 
+             @Override
+             public void onPageLoadStarted(Tab tab, GURL url) {
+-                try (TraceEvent e = TraceEvent.scoped(
+-                             "NtpFeedSurfaceLifecycleManager.saveInstanceState")) {
+-                    saveInstanceState();
+-                }
++                saveInstanceState();
+             }
+         };
+         mTab.addObserver(mTabObserver);
+@@ -123,10 +119,8 @@ public class NtpFeedSurfaceLifecycleManager extends FeedSurfaceLifecycleManager
+         // committed entry is for the NTP. The extra data must only be set in the latter case.
+         if (!UrlUtilities.isNTPUrl(entry.getUrl())) return;
+ 
+-        try (TraceEvent e = TraceEvent.scoped("setEntryExtraData")) {
+-            controller.setEntryExtraData(index, FEED_SAVED_INSTANCE_STATE_KEY,
+-                    mCoordinator.getSavedInstanceStateString());
+-        }
++        controller.setEntryExtraData(
++                index, FEED_SAVED_INSTANCE_STATE_KEY, mCoordinator.getSavedInstanceStateString());
+     }
+ 
+     /**

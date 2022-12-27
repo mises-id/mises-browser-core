@@ -1,0 +1,44 @@
+diff --git a/device/fido/BUILD.gn b/device/fido/BUILD.gn
+index c957ea24956014bd6f4252060db4fab9bd62860f..0ee1cfc6a4a56090ce250f39247f0e33c1a42a90 100644
+--- a/device/fido/BUILD.gn
++++ b/device/fido/BUILD.gn
+@@ -73,7 +73,7 @@ component("fido") {
+   ]
+ 
+   # Android implementation of FIDO is delegated to GMSCore.
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "aoa/android_accessory_device.cc",
+       "aoa/android_accessory_device.h",
+@@ -211,7 +211,29 @@ component("fido") {
+       "//services/network/public/mojom",
+     ]
+   }
+-
++  
++  if (false && is_android) {
++    sources += [
++      "filter.cc",
++      "filter.h",
++      "large_blob.cc",
++      "large_blob.h",
++      "authenticator_data.cc",
++      "authenticator_data.h",
++      "authenticator_get_assertion_response.cc",
++      "authenticator_get_assertion_response.h",
++      "fido_request_handler_base.cc",
++      "fido_request_handler_base.h",
++      "fido_discovery_base.cc",
++      "fido_discovery_base.h",
++      "fido_device_discovery.cc",
++      "fido_device_discovery.h",
++      "ble_adapter_manager.cc",
++      "ble_adapter_manager.h",
++      "fido_authenticator.cc",
++      "fido_authenticator.h",
++    ]
++  }
+   if (is_mac) {
+     sources += [
+       "mac/authenticator.h",

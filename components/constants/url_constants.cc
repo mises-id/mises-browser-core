@@ -6,27 +6,27 @@
 #include "mises/components/constants/url_constants.h"
 
 const char kChromeExtensionScheme[] = "chrome-extension";
-const char kBraveUIScheme[] = "brave";
+const char kMisesUIScheme[] = "mises";
 const char kMagnetScheme[] = "magnet";
-const char kBinanceScheme[] = "com.brave.binance";
-const char kGeminiScheme[] = "com.brave.gemini";
-const char kFTXScheme[] = "com.brave.ftx";
+const char kBinanceScheme[] = "site.mises.binance";
+const char kGeminiScheme[] = "site.mises.gemini";
+const char kFTXScheme[] = "site.mises.ftx";
 const char kWidevineTOS[] = "https://policies.google.com/terms";
-const char kRewardsUpholdSupport[] = "https://uphold.com/en/brave/support";
-const char kP3ALearnMoreURL[] = "https://brave.com/P3A";
+const char kRewardsUpholdSupport[] = "https://uphold.com/en/mises/support";
+const char kP3ALearnMoreURL[] = "https://mises.site/P3A";
 const char kP3ASettingsLink[] = "chrome://settings/privacy";
 const char kImportDataHelpURL[] =
-    "https://support.brave.com/hc/en-us/articles/360019782291#safari";
+    "https://support.mises.site/hc/en-us/articles/360019782291#safari";
 const char kCryptoWalletsLearnMoreURL[] =
-    "https://support.brave.com/hc/en-us/articles/360034535452";
+    "https://support.mises.site/hc/en-us/articles/360034535452";
 const char kPermissionPromptLearnMoreUrl[] =
-    "https://github.com/brave/brave-browser/wiki/Web-API-Permissions";
+    "https://github.com/mises-id/mises-browser/wiki/Web-API-Permissions";
 const char kSpeedreaderLearnMoreUrl[] =
-    "https://support.brave.com/hc/en-us/articles/"
+    "https://support.mises.site/hc/en-us/articles/"
     "360045031392-What-is-SpeedReader";
 const char kWebDiscoveryLearnMoreUrl[] =
-    "https://brave.com/privacy/browser/#web-discovery-project";
-const char kBraveSearchUrl[] = "https://search.brave.com/";
+    "https://mises.site/privacy/browser/#web-discovery-project";
+const char kMisesSearchUrl[] = "https://search.mises.site/";
 const char kWidevineLearnMoreUrl[] =
-    "https://support.brave.com/hc/en-us/articles/"
+    "https://support.mises.site/hc/en-us/articles/"
     "360023851591-How-do-I-view-DRM-protected-content-";

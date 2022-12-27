@@ -1,0 +1,22 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/ToolbarSwipeLayout.java b/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/ToolbarSwipeLayout.java
+index b1b12e23747f85fff73c0ba791d9f67a40ca2a1f..4e582e5a8f2643b76c17771bf2072768eb296d8e 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/ToolbarSwipeLayout.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/ToolbarSwipeLayout.java
+@@ -117,7 +117,7 @@ public class ToolbarSwipeLayout extends Layout {
+                     (info) -> {
+                     }, mLeftTabSupplier, mBrowserControlsStateProvider,
+                     () -> mRenderHost.getResourceManager(), topUiColorProvider,
+-                    LayoutType.TOOLBAR_SWIPE, true);
++                    LayoutType.TOOLBAR_SWIPE, true, true);
+             mLeftToolbarOverlay.setManualVisibility(true);
+             layoutManager.addSceneOverlay(mLeftToolbarOverlay);
+ 
+@@ -125,7 +125,7 @@ public class ToolbarSwipeLayout extends Layout {
+                     (info) -> {
+                     }, mRightTabSupplier, mBrowserControlsStateProvider,
+                     () -> mRenderHost.getResourceManager(), topUiColorProvider,
+-                    LayoutType.TOOLBAR_SWIPE, true);
++                    LayoutType.TOOLBAR_SWIPE, true, true);
+             mRightToolbarOverlay.setManualVisibility(true);
+             layoutManager.addSceneOverlay(mRightToolbarOverlay);
+         }

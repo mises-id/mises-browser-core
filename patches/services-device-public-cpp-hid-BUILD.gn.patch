@@ -1,0 +1,13 @@
+diff --git a/services/device/public/cpp/hid/BUILD.gn b/services/device/public/cpp/hid/BUILD.gn
+index fe1a873f6eb824356cf38ec3c416570965ccec3b..0109bebe3acd2c3c21cc39e10018661864981161 100644
+--- a/services/device/public/cpp/hid/BUILD.gn
++++ b/services/device/public/cpp/hid/BUILD.gn
+@@ -8,7 +8,7 @@ import("//build/config/features.gni")
+ source_set("hid") {
+   # HID is not implemented on Android and we want to be particularly careful
+   # about not bloating binary size by accidentially including it.
+-  assert(!is_android)
++  # assert(!is_android)
+ 
+   sources = [
+     "hid_blocklist.cc",

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/feedback_webui/js/BUILD.gn b/chrome/browser/resources/feedback_webui/js/BUILD.gn
+index 21c0985305d5e65649b40ce2f73807dcb1ff9d44..d055aa900a8d6689a798510402b2dfdccad53980 100644
+--- a/chrome/browser/resources/feedback_webui/js/BUILD.gn
++++ b/chrome/browser/resources/feedback_webui/js/BUILD.gn
+@@ -7,7 +7,7 @@ import("//tools/grit/preprocess_if_expr.gni")
+ import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ preprocess_folder = "$target_gen_dir/../preprocessed/js"
+ 

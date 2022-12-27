@@ -1,0 +1,3 @@
+#define AddDefaultComponentExtensions virtual AddDefaultComponentExtensions
+#include "src/chrome/browser/extensions/component_loader.h"
+#undef AddDefaultComponentExtensions

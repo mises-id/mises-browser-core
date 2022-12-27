@@ -1,0 +1,13 @@
+diff --git a/ui/gfx/animation/BUILD.gn b/ui/gfx/animation/BUILD.gn
+index 0485c228d40102a38ed7428f296cb946fbcb6397..090181162f83715c862a6c04f0fb8ea556a9475d 100644
+--- a/ui/gfx/animation/BUILD.gn
++++ b/ui/gfx/animation/BUILD.gn
+@@ -55,7 +55,7 @@ component("animation") {
+     ]
+   }
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "throb_animation.cc",
+       "throb_animation.h",

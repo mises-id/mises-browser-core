@@ -1,0 +1,13 @@
+diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/Origin.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/Origin.java
+index a6ee7ccdc1029d50150ea80c7da4d1f1cf5dbbf8..e22db8511e92fe7d445b91724ae72968146e9043 100644
+--- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/Origin.java
++++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/Origin.java
+@@ -50,7 +50,7 @@ public class Origin {
+ 
+         // This class can only correctly handle certain origins, see https://crbug.com/1019244.
+         String scheme = uri.getScheme();
+-        if (!scheme.equals(UrlConstants.HTTP_SCHEME) && !scheme.equals(UrlConstants.HTTPS_SCHEME)) {
++        if (!scheme.equals(UrlConstants.HTTP_SCHEME) && !scheme.equals(UrlConstants.HTTPS_SCHEME) && !scheme.equals("chrome-extension") && !scheme.equals("kiwi-extension")) {
+             return null;
+         }
+ 

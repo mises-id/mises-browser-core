@@ -1,12 +1,12 @@
 import("//extensions/buildflags/buildflags.gni")
 
-if (is_android || is_ios) {
+if (is_ios) {
   source_set("common") {
     sources = [
       "//extensions/common/constants.cc",
       "//extensions/common/constants.h",
       "//extensions/common/error_utils.cc",
-      "//extensions/common/error_utils.h",
+      "/extensions/common/error_utils.h",
       "//extensions/common/url_pattern.cc",
       "//extensions/common/url_pattern.h",
       "//extensions/common/url_pattern_set.cc",
