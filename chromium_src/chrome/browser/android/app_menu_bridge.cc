@@ -1,3 +1,4 @@
+#include "chrome/browser/android/app_menu_bridge.h"
 #include <jni.h>
 #include <string>
 #include <stddef.h>
@@ -7,7 +8,6 @@
 #include <vector>
 #include <utility>
 
-#include "base/logging.h"
 #include "base/android/build_info.h"
 #include "base/android/jni_string.h"
 #include "base/strings/string_util.h"
@@ -22,7 +22,8 @@
  #include "base/trace_event/trace_event.h"
  #include "base/memory/weak_ptr.h"
  #include "base/values.h"
- #include "chrome/browser/browsing_data/browsing_data_important_sites_util.h"
+#include "base/logging.h"
+#include "chrome/browser/browsing_data/browsing_data_important_sites_util.h"
  #include "chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h"
  #include "chrome/browser/engagement/important_sites_util.h"
  #include "chrome/browser/history/web_history_service_factory.h"
@@ -95,27 +96,37 @@
 #include "ui/native_theme/native_theme.h"
 #include "mises/build/android/jni_headers//AppMenuBridge_jni.h"
 #include "content/public/browser/web_contents.h"
-#include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/extensions/api/extension_action/extension_action_api.h"
 #include "chrome/browser/devtools/devtools_window.h"
 
+#include "base/scoped_observation.h"
+#include "chrome/browser/profiles/profile.h"
+#include "chrome/browser/profiles/profile_observer.h"
+#include "content/public/browser/browser_thread.h"
+
 using base::android::ConvertUTF8ToJavaString;
 using base::android::ScopedJavaLocalRef;
+using base::android::ScopedJavaGlobalRef;
 
 
 
-
- using base::android::JavaParamRef;
+using base::android::JavaParamRef;
  
- using base::android::AttachCurrentThread;
- using base::android::ConvertJavaStringToUTF8;
- using base::android::ConvertUTF8ToJavaString;
- using base::android::HasException;
- using base::android::JavaByteArrayToByteVector;
- using base::android::JavaRef;
- using base::android::ScopedJavaLocalRef;
- using base::android::ToJavaByteArray;
- 
+using base::android::AttachCurrentThread;
+using base::android::ConvertJavaStringToUTF8;
+using base::android::ConvertUTF8ToJavaString;
+using base::android::HasException;
+using base::android::JavaByteArrayToByteVector;
+using base::android::JavaRef;
+using base::android::ScopedJavaLocalRef;
+using base::android::ToJavaByteArray;
+using content::BrowserThread;
+
+
+
+
+namespace {
+/* 
  bool PageActionWantsToRun(
      content::WebContents* web_contents, extensions::ExtensionAction* extension_action_) {
    return extension_action_->action_type() ==
@@ -123,7 +134,7 @@ using base::android::ScopedJavaLocalRef;
           extension_action_->GetIsVisible(
               sessions::SessionTabHelper::IdForTab(web_contents).id());
  }
- 
+*/ 
  
  bool HasBeenBlocked(
      content::WebContents* web_contents, const extensions::Extension* extension) {
@@ -150,8 +161,92 @@ using base::android::ScopedJavaLocalRef;
  
    return extension_action_->GetDefaultIconImage();
  }
+
+}  // namespace
+
+
+
+// static
+AppMenuBridge::Factory* AppMenuBridge::Factory::GetInstance() {
+  return base::Singleton<AppMenuBridge::Factory>::get();
+}
+
+// static
+AppMenuBridge* AppMenuBridge::Factory::GetForProfile(
+    Profile* profile) {
+  return static_cast<AppMenuBridge*>(
+      GetInstance()->GetServiceForBrowserContext(profile->GetOriginalProfile(),
+                                                 true));
+}
+
+AppMenuBridge::Factory::Factory()
+    : ProfileKeyedServiceFactory("AppMenuBridge") {}
+
+AppMenuBridge::Factory::~Factory() {}
+
+KeyedService* AppMenuBridge::Factory::BuildServiceInstanceFor(
+    content::BrowserContext* context) const {
+  Profile* profile = Profile::FromBrowserContext(context);
+
+  return new AppMenuBridge(profile);
+}
+
+
+AppMenuBridge::AppMenuBridge(
+    Profile* profile)
+    : profile_(profile), weak_ptr_factory_(this) {
+  profile_observation_.Observe(profile_.get());
+
+  java_appmenu_bridge_ = Java_AppMenuBridge_createAppMenuBridge(
+      base::android::AttachCurrentThread(), reinterpret_cast<intptr_t>(this));
+}
+
+void AppMenuBridge::OnProfileWillBeDestroyed(Profile* profile) {
+  weak_ptr_factory_.InvalidateWeakPtrs();
+  DestroyJavaObject();
+}
+
+ScopedJavaGlobalRef<jobject> AppMenuBridge::GetJavaAppMenuBridge() {
+  return java_appmenu_bridge_;
+}
+void AppMenuBridge::DestroyJavaObject() {
+  if (!java_appmenu_bridge_)
+    return;
+
+  Java_AppMenuBridge_destroyFromNative(
+      AttachCurrentThread(), ScopedJavaLocalRef<jobject>(java_appmenu_bridge_));
+}
+
+AppMenuBridge::~AppMenuBridge() {
+  if (profile_) {
+    DCHECK(profile_observation_.IsObservingSource(profile_.get()));
+    profile_observation_.Reset();
+  }
+}
+
+
+void AppMenuBridge::Destroy(JNIEnv*, const JavaParamRef<jobject>&) {
+  delete this;
+}
+
+
+
+ScopedJavaLocalRef<jobject> JNI_AppMenuBridge_GetForProfile(
+    JNIEnv* env,
+    const JavaParamRef<jobject>& j_profile) {
+  DCHECK_CURRENTLY_ON(BrowserThread::UI);
+
+  Profile* profile = ProfileAndroid::FromProfileAndroid(j_profile);
+  if (!profile)
+    return nullptr;
+
+  AppMenuBridge* appmenu_bridge = AppMenuBridge::Factory::GetForProfile(profile);
+
+  return ScopedJavaLocalRef(appmenu_bridge->GetJavaAppMenuBridge());
+}
+
  
- std::unique_ptr<IconWithBadgeImageSource> GetIconImageSource(
+ std::unique_ptr<IconWithBadgeImageSource> AppMenuBridge::GetIconImageSource(
      const extensions::Extension* extension,
      extensions::ExtensionAction* extension_action_,
      content::WebContents* web_contents,
@@ -204,8 +299,8 @@ using base::android::ScopedJavaLocalRef;
  }
 
 
-static void JNI_AppMenuBridge_OpenDevTools(
-		JNIEnv* env, const base::android::JavaParamRef<jobject>& jweb_contents){
+void AppMenuBridge::OpenDevTools(
+		JNIEnv* env, const base::android::JavaParamRef<jobject>&obj, const base::android::JavaParamRef<jobject>& jweb_contents){
   LOG(INFO) << "[Kiwi] app_menu_bridge::OpenDevTools";
   content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
   if (!DevToolsWindow::IsDevToolsWindow(web_contents))
@@ -213,113 +308,109 @@ static void JNI_AppMenuBridge_OpenDevTools(
 };
 
 
-static void JNI_AppMenuBridge_DisableProxy(
-		JNIEnv* env, const base::android::JavaParamRef<jobject>&p){
+void AppMenuBridge::DisableProxy(
+		JNIEnv* env, const base::android::JavaParamRef<jobject>&obj){
   LOG(INFO) << "[Kiwi] app_menu_bridge::DisableProxy";
 };
-std::string AppMenuBridge_GetRunningExtensionsInternal(Profile* profile, content::WebContents* web_contents);
-static base::android::ScopedJavaLocalRef<jstring> JNI_AppMenuBridge_GetRunningExtensions(
-		JNIEnv*env, const base::android::JavaParamRef<jobject>& jprofile,
+
+base::android::ScopedJavaLocalRef<jstring> AppMenuBridge::GetRunningExtensions(
+		JNIEnv*env, const base::android::JavaParamRef<jobject>& obj,
 		const base::android::JavaParamRef<jobject>& jweb_contents){
   std::string exts;
   LOG(INFO) << "[Kiwi] app_menu_bridge::GetRunningExtensions";
-  Profile* profile = ProfileAndroid::FromProfileAndroid(jprofile);
-  LOG(INFO) << "[EXTENSIONS] Captured profile: " << profile; 
   content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
-  exts = AppMenuBridge_GetRunningExtensionsInternal(profile, web_contents); 
+  exts = GetRunningExtensionsInternal(web_contents); 
   return ConvertUTF8ToJavaString(env, exts);
 };
 
-static jboolean JNI_AppMenuBridge_IsProxyEnabled(
-		JNIEnv* env, const base::android::JavaParamRef<jobject>& p){
+jboolean AppMenuBridge::IsProxyEnabled(
+		JNIEnv* env, const base::android::JavaParamRef<jobject>& obj){
   LOG(INFO) << "[Kiwi] app_menu_bridge::IsProxyEnabled";
   return 0;
 };
 
-static void JNI_AppMenuBridge_GrantExtensionActiveTab(
-		JNIEnv* env, const base::android::JavaParamRef<jobject>& jprofile,
+void AppMenuBridge::GrantExtensionActiveTab(
+		JNIEnv* env, const base::android::JavaParamRef<jobject>& obj,
 		const base::android::JavaParamRef<jobject>& jweb_contents,
 		const base::android::JavaParamRef<jstring>& j_extension_id){
   LOG(INFO) << "[Kiwi] app_menu_bridge::GrantExtensionActiveTab";
   std::string extension_to_call = ConvertJavaStringToUTF8(env, j_extension_id);
-   LOG(INFO) << "[EXTENSIONS] Calling AppMenu::GrantExtensionActiveTab: " << extension_to_call;
-   Profile* profile = ProfileAndroid::FromProfileAndroid(jprofile);
+  LOG(INFO) << "[EXTENSIONS] Calling AppMenu::GrantExtensionActiveTab: " << extension_to_call;
  
-   extensions::ExtensionRegistry* registry;
+  extensions::ExtensionRegistry* registry;
  
-   registry = extensions::ExtensionRegistry::Get(profile);
+  registry = extensions::ExtensionRegistry::Get(profile_);
  
-   extensions::ExtensionAction* extension_action_;
-   extensions::ExtensionActionManager* manager =
-       extensions::ExtensionActionManager::Get(profile);
-   const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
-   const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension_to_call);
-   if (extension_ptr) {
-     extension_action_ = manager->GetExtensionAction(*extension_ptr);
-     if (!extension_action_) {
-       extension_action_ = manager->GetExtensionAction(*extension_ptr);
-     }
-     if (extension_action_) {
-        content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
-        if (web_contents != nullptr) {
-          LOG(INFO) << "[EXTENSIONS] Granting tab access to: " << extension_to_call;
-          extensions::TabHelper::FromWebContents(web_contents)
-              ->active_tab_permission_granter()
-              ->GrantIfRequested(extension_ptr);
-        }
-     }
-   }
+  extensions::ExtensionAction* extension_action_;
+  extensions::ExtensionActionManager* manager =
+      extensions::ExtensionActionManager::Get(profile_);
+  const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
+  const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension_to_call);
+  if (extension_ptr) {
+    extension_action_ = manager->GetExtensionAction(*extension_ptr);
+    if (!extension_action_) {
+      extension_action_ = manager->GetExtensionAction(*extension_ptr);
+    }
+    if (extension_action_) {
+      content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
+      if (web_contents != nullptr) {
+        LOG(INFO) << "[EXTENSIONS] Granting tab access to: " << extension_to_call;
+        extensions::TabHelper::FromWebContents(web_contents)
+            ->active_tab_permission_granter()
+            ->GrantIfRequested(extension_ptr);
+      }
+    }
+  }
 };
-static void JNI_AppMenuBridge_CallExtension(
-		JNIEnv* env, const base::android::JavaParamRef<jobject>&jprofile,
+
+void AppMenuBridge::CallExtension(
+		JNIEnv* env, const base::android::JavaParamRef<jobject>&obj,
 		const base::android::JavaParamRef<jobject>& jweb_contents,
-                const base::android::JavaParamRef<jstring>& j_extension_id) {
+    const base::android::JavaParamRef<jstring>& j_extension_id) {
   LOG(INFO) << "[Kiwi] app_menu_bridge::CallExtension";
-std::string extension_to_call = ConvertJavaStringToUTF8(env, j_extension_id);
-   LOG(INFO) << "[EXTENSIONS] Calling AppMenu::CallExtension: " << extension_to_call;
-   Profile* profile = ProfileAndroid::FromProfileAndroid(jprofile);
-   LOG(INFO) << "[EXTENSIONS] Captured profile: " << profile;
+  std::string extension_to_call = ConvertJavaStringToUTF8(env, j_extension_id);
+  LOG(INFO) << "[EXTENSIONS] Calling AppMenu::CallExtension: " << extension_to_call;
  
-   // The object that will be used to get the browser action icon for us.
-   // It may load the icon asynchronously (in which case the initial icon
-   // returned by the factory will be transparent), so we have to observe it for
-   // updates to the icon.
-   // The associated ExtensionRegistry; cached for quick checking.
-   extensions::ExtensionRegistry* registry;
- 
-   registry = extensions::ExtensionRegistry::Get(profile);
- 
-   extensions::ExtensionAction* extension_action_;
-   extensions::ExtensionActionManager* manager =
-       extensions::ExtensionActionManager::Get(profile);
-   const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
-   const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension_to_call);
-   if (extension_ptr) {
-     extension_action_ = manager->GetExtensionAction(*extension_ptr);
-     if (!extension_action_) {
-       extension_action_ = manager->GetExtensionAction(*extension_ptr);
-     }
-     if (extension_action_) {
-        LOG(INFO) << "[EXTENSIONS] Dispatching extension_action_ for " << extension_to_call;
-        extensions::ExtensionActionAPI* action_api = extensions::ExtensionActionAPI::Get(profile);
-        content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
-        if (web_contents != nullptr) {
-          LOG(INFO) << "[EXTENSIONS] Granting tab access to: " << extension_to_call;
-          extensions::TabHelper::FromWebContents(web_contents)
-              ->active_tab_permission_granter()
-              ->GrantIfRequested(extension_ptr);
-        }
-        action_api->DispatchExtensionActionClicked(*extension_action_, web_contents, extension_ptr);
-        LOG(INFO) << "[EXTENSIONS] Dispatched JS extension_action_ for " << extension_to_call;
-     }
-   }
+  // The object that will be used to get the browser action icon for us.
+  // It may load the icon asynchronously (in which case the initial icon
+  // returned by the factory will be transparent), so we have to observe it for
+  // updates to the icon.
+  // The associated ExtensionRegistry; cached for quick checking.
+  extensions::ExtensionRegistry* registry;
+
+  registry = extensions::ExtensionRegistry::Get(profile_);
+
+  extensions::ExtensionAction* extension_action_;
+  extensions::ExtensionActionManager* manager =
+      extensions::ExtensionActionManager::Get(profile_);
+  const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
+  const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension_to_call);
+  if (extension_ptr) {
+    extension_action_ = manager->GetExtensionAction(*extension_ptr);
+    if (!extension_action_) {
+      extension_action_ = manager->GetExtensionAction(*extension_ptr);
+    }
+    if (extension_action_) {
+      LOG(INFO) << "[EXTENSIONS] Dispatching extension_action_ for " << extension_to_call;
+      extensions::ExtensionActionAPI* action_api = extensions::ExtensionActionAPI::Get(profile_);
+      content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
+      if (web_contents != nullptr) {
+        LOG(INFO) << "[EXTENSIONS] Granting tab access to: " << extension_to_call;
+        extensions::TabHelper::FromWebContents(web_contents)
+            ->active_tab_permission_granter()
+            ->GrantIfRequested(extension_ptr);
+      }
+      action_api->DispatchExtensionActionClicked(*extension_action_, web_contents, extension_ptr);
+      LOG(INFO) << "[EXTENSIONS] Dispatched JS extension_action_ for " << extension_to_call;
+    }
+  }
 }
 
 
 
 
-std::string AppMenuBridge_GetRunningExtensionsInternal(Profile* profile, content::WebContents* web_contents){
-  LOG(INFO) << "[Kiwi] app_menu_bridge::GetRunningExtensionsInternal";
+std::string AppMenuBridge::GetRunningExtensionsInternal(content::WebContents* web_contents){
+  LOG(INFO) << "[Kiwi] AppMenuBridge::GetRunningExtensionsInternal";
  
    // The object that will be used to get the browser action icon for us.
    // It may load the icon asynchronously (in which case the initial icon
@@ -328,7 +419,7 @@ std::string AppMenuBridge_GetRunningExtensionsInternal(Profile* profile, content
    // The associated ExtensionRegistry; cached for quick checking.
    extensions::ExtensionRegistry* registry;
  
-   registry = extensions::ExtensionRegistry::Get(profile);
+   registry = extensions::ExtensionRegistry::Get(profile_);
  
    std::string result = "";
  
@@ -344,7 +435,7 @@ std::string AppMenuBridge_GetRunningExtensionsInternal(Profile* profile, content
       //LOG(INFO) << "[EXTENSIONS] Found extension: " << extension->id() << " IS VISIBLE";
       extensions::ExtensionAction* extension_action_;
       extensions::ExtensionActionManager* manager =
-          extensions::ExtensionActionManager::Get(profile);
+          extensions::ExtensionActionManager::Get(profile_);
       const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension->id());
       if (extension_ptr) {
         extension_action_ = manager->GetExtensionAction(*extension_ptr);
@@ -375,3 +466,4 @@ std::string AppMenuBridge_GetRunningExtensionsInternal(Profile* profile, content
    //LOG(INFO) << "[EXTENSIONS] Result is: " << result;
    return result;
 }
+

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a91a3581e2 100644
+index 34fb55ab008df1831f9e6764a4b1085dd47015a6..f342ff423b9422d3b819fba46584a1ffb7f069ac 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
@@ -19,13 +19,12 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
  import org.chromium.chrome.browser.dom_distiller.DomDistillerUIUtils;
  import org.chromium.chrome.browser.download.DownloadManagerService;
  import org.chromium.chrome.browser.download.DownloadUtils;
-@@ -252,6 +255,34 @@ import java.util.ArrayList;
+@@ -252,6 +255,33 @@ import java.util.ArrayList;
  import java.util.List;
  import java.util.function.Consumer;
  
 +import org.chromium.base.ContextUtils;
 +import org.chromium.chrome.browser.ApplicationLifetime;
-+import org.chromium.chrome.browser.AppMenuBridge;
 +import org.chromium.chrome.browser.browsing_data.ClearBrowsingDataTabsFragment;
 +import org.chromium.chrome.browser.night_mode.WebContentsDarkModeController;
 +import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
@@ -54,7 +53,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
  /**
   * A {@link AsyncInitializationActivity} that builds and manages a {@link CompositorViewHolder}
   * and associated classes.
-@@ -351,6 +382,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -351,6 +381,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
      @Nullable
      private Bundle mMenuItemData;
  
@@ -63,7 +62,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
      /**
       * The current configuration, used to for diffing when the configuration is changed.
       */
-@@ -482,6 +515,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -482,6 +514,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          // not go through ChromeLauncherActivity that would have normally triggered this.
          mPartnerBrowserRefreshNeeded = !PartnerBrowserCustomizations.getInstance().isInitialized();
  
@@ -72,7 +71,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
          CommandLine commandLine = CommandLine.getInstance();
          if (!commandLine.hasSwitch(ChromeSwitches.DISABLE_FULLSCREEN)) {
              TypedValue threshold = new TypedValue();
-@@ -736,14 +771,25 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -736,14 +770,25 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              // of our control, so we have to disable StrictMode to work. See
              // https://crbug.com/639352.
              try (StrictModeContext ignored = StrictModeContext.allowDiskWrites()) {
@@ -98,7 +97,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
                      TraceEvent.begin("toolbarContainerStub.inflate");
                      toolbarContainerStub.inflate();
                      TraceEvent.end("toolbarContainerStub.inflate");
-@@ -831,12 +877,24 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -831,12 +876,24 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              @Override
              public void onLoadStopped(Tab tab, boolean toDifferentDocument) {
                  postDeferredStartupIfNeeded();
@@ -123,7 +122,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
              }
  
              @Override
-@@ -1735,6 +1793,42 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -1735,6 +1792,42 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              }
          };
          display.addObserver(mDisplayAndroidObserver);
@@ -166,7 +165,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
      }
  
      /**
-@@ -1744,6 +1838,20 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -1744,6 +1837,20 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          return mNativeInitialized;
      }
  
@@ -187,7 +186,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
      @Override
      public boolean onOptionsItemSelected(int itemId, @Nullable Bundle menuItemData) {
          mMenuItemData = menuItemData;
-@@ -2373,10 +2481,40 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2373,10 +2480,41 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
                  mMenuActionHandlers) {
              if (handler.handleMenuOrKeyboardAction(id, fromMenu)) return true;
          }
@@ -215,12 +214,13 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
 +            Tab tab = getActivityTab();
 +            if (tab != null) {
 +                WebContents webContents = tab.getWebContents();
++		Profile profile = Profile.fromWebContents(webContents).getOriginalProfile();
 +                LaunchMetrics.commitLaunchMetrics(webContents);
-+                AppMenuBridge.grantExtensionActiveTab(Profile.fromWebContents(webContents).getOriginalProfile(), webContents, extensionId);
++                AppMenuBridge.getForProfile(profile).grantExtensionActiveTab(webContents, extensionId);
 +                if (!extensionUrl.equals(""))
 +                  getCurrentTabCreator().launchUrl(extensionUrl, TabLaunchType.FROM_CHROME_UI);
 +                else
-+                  AppMenuBridge.callExtension(Profile.fromWebContents(webContents).getOriginalProfile(), webContents, extensionId);
++                  AppMenuBridge.getForProfile(profile).callExtension(webContents, extensionId);
 +                return true;
 +            }
 +            return false;
@@ -344,7 +344,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
              return true;
          }
  
-@@ -2573,6 +2815,35 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2573,6 +2815,37 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -368,19 +368,21 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..a0956800e349587092994aaf3c7cf7a9
 +        }
 +
 +        if (id == R.id.developer_tools_id) {
-+            AppMenuBridge.openDevTools(currentTab.getWebContents());
++            Profile profile = Profile.fromWebContents(currentTab.getWebContents()).getOriginalProfile();
++            AppMenuBridge.getForProfile(profile).openDevTools(currentTab.getWebContents());
 +	    return true;
 +        }
 +
 +        if (id == R.id.disable_proxy_id) {
-+            AppMenuBridge.disableProxy(Profile.fromWebContents(currentTab.getWebContents()).getOriginalProfile());
++	    Profile profile = Profile.fromWebContents(currentTab.getWebContents()).getOriginalProfile();
++            AppMenuBridge.getForProfile(profile).disableProxy();
 +	    return true;
 +        }
 +
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2607,6 +2878,53 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2607,6 +2880,53 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
