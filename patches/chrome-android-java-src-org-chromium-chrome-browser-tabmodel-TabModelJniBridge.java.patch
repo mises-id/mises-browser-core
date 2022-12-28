@@ -1,7 +1,16 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-index 3b7fb7e7984cfb46e86b46656159cb8dd99920ed..cc932c69ab9ab7736fae448e4283d6801d788acb 100644
+index 3b7fb7e7984cfb46e86b46656159cb8dd99920ed..dd9bbcbe0886245fb3c7109c30a1467d89db7510 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
+@@ -147,7 +147,7 @@ public abstract class TabModelJniBridge implements TabModel {
+     @CalledByNative
+     protected Tab createNewTabForDevTools(GURL url) {
+         return getTabCreator(/*incognito=*/false)
+-                .createNewTab(new LoadUrlParams(url), TabLaunchType.FROM_CHROME_UI, null);
++                .createNewTab(new LoadUrlParams(url), TabLaunchType.FROM_CHROME_UI, getTabAt(index()));
+     }
+ 
+     /** Returns whether supplied Tab instance has been grouped together with other Tabs. */
 @@ -181,6 +181,10 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      public abstract int index();
