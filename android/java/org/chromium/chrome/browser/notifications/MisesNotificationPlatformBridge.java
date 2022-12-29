@@ -87,7 +87,7 @@ public class MisesNotificationPlatformBridge extends NotificationPlatformBridge 
         if (mNotificationType == NotificationType.BRAVE_ADS) {
             // TODO(jocelyn): Remove setPriority here since we already set the
             // importance of Ads notification channel to IMPORTANCE_HIGH?
-            return new MisesAdsNotificationBuilder(context).setPriority(Notification.PRIORITY_HIGH);
+            //return new MisesAdsNotificationBuilder(context).setPriority(Notification.PRIORITY_HIGH);
         }
         return super.createNotificationBuilder(context, hasImage);
     }
