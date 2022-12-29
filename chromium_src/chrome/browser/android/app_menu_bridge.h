@@ -21,6 +21,7 @@
 #include "components/prefs/pref_change_registrar.h"
 #include "url/android/gurl_android.h"
 #include "ui/gfx/geometry/size.h"
+#include "chrome/browser/extensions/api/extension_action/extension_action_api.h"
 
 namespace base {
 template<typename T> struct DefaultSingletonTraits;
@@ -38,7 +39,7 @@ class ExtensionAction;
 class IconWithBadgeImageSource;
 class Profile;
 
-class AppMenuBridge :public ProfileObserver, KeyedService {
+class AppMenuBridge :public extensions::ExtensionActionAPI::Observer, ProfileObserver, KeyedService {
  public:
   class Factory : public ProfileKeyedServiceFactory {
    public:
@@ -100,6 +101,13 @@ class AppMenuBridge :public ProfileObserver, KeyedService {
     );
     std::string GetRunningExtensionsInternal(content::WebContents* web_contents);
 private:
+    // ExtensionActionAPI::Observer:
+    void OnExtensionActionUpdated(
+      extensions::ExtensionAction* extension_action,
+      content::WebContents* web_contents,
+      content::BrowserContext* browser_context) override;
+   void OnExtensionActionAPIShuttingDown() override;
+
     void DestroyJavaObject();
 
     std::unique_ptr<IconWithBadgeImageSource> GetIconImageSource(
@@ -108,7 +116,9 @@ private:
       content::WebContents* web_contents,
       const gfx::Size& size
     );
-
+    
+    base::ScopedObservation<extensions::ExtensionActionAPI, extensions::ExtensionActionAPI::Observer>
+      extension_action_observation_{this};
     base::ScopedObservation<Profile, ProfileObserver> profile_observation_{this};
     raw_ptr<Profile> profile_;
     base::android::ScopedJavaGlobalRef<jobject> java_appmenu_bridge_;

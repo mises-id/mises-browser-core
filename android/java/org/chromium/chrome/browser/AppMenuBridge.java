@@ -5,6 +5,7 @@ import org.chromium.base.annotations.NativeMethods;
 import org.chromium.content_public.browser.WebContents;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.base.ThreadUtils;
+import org.chromium.chrome.browser.mises.MisesController;
 
 public class AppMenuBridge {
     private long mNativeAppMenuBridge;
@@ -40,6 +41,11 @@ public class AppMenuBridge {
     public void callExtension(WebContents w,String s){
         AppMenuBridgeJni.get().callExtension(mNativeAppMenuBridge, AppMenuBridge.this,w,s);
     };
+
+    @CalledByNative
+    public void updateExtensionMenuIcon(final String base64Image){
+        MisesController.getInstance().NotifyExtensionDNRActionCountChange(base64Image);
+    }
 
     @CalledByNative
     private void destroyFromNative() {

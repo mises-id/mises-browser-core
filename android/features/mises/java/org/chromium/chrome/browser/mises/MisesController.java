@@ -23,7 +23,8 @@ public class MisesController {
     private static MisesController sInstance;
 
     public interface MisesControllerObserver {
-	    void OnMisesUserInfoChanged();
+	void OnMisesUserInfoChanged();
+        void OnExtensionDNRActionCountChanged(final String base64Image);
     }
 
     ArrayList<MisesControllerObserver> observers_ = new ArrayList<>();
@@ -44,34 +45,42 @@ public class MisesController {
         return sInstance;
     }
     public void load() {
-              String json = SharedPreferencesManager.getInstance().getMisesUserInfo();
-            if (json == null || json.isEmpty()) {
-                mMisesId = "";
-                mMisesToken = "";
-                mMisesNickname = "";
-                mMisesAvatar = "";
-		mInfoCache = "";
-            } else {
-                try {
-                    JSONObject jsonMessage = new JSONObject(json);
-                    if (jsonMessage.has("misesId")) {
-                        mMisesId = jsonMessage.getString("misesId");
-                    }
-                    if (jsonMessage.has("token")) {
-                        mMisesToken = jsonMessage.getString("token");
-                    }
-                    if (jsonMessage.has("nickname")) {
-                        mMisesNickname = jsonMessage.getString("nickname");
-                    }
-                    if (jsonMessage.has("avatar")) {
-                        mMisesAvatar = jsonMessage.getString("avatar");
-                    }
-		    mInfoCache = json;
-                } catch (JSONException e) {
-                    Log.e(TAG, "load MisesUserInfo from cache %s error", json);
-		    mInfoCache = "";
+        String json = SharedPreferencesManager.getInstance().getMisesUserInfo();
+        if (json == null || json.isEmpty()) {
+            mMisesId = "";
+            mMisesToken = "";
+            mMisesNickname = "";
+            mMisesAvatar = "";
+	    mInfoCache = "";
+        } else {
+            try {
+                JSONObject jsonMessage = new JSONObject(json);
+                if (jsonMessage.has("misesId")) {
+                    mMisesId = jsonMessage.getString("misesId");
+		}
+                if (jsonMessage.has("token")) {
+                    mMisesToken = jsonMessage.getString("token");
                 }
-            } 
+                if (jsonMessage.has("nickname")) {
+                    mMisesNickname = jsonMessage.getString("nickname");
+                }
+                if (jsonMessage.has("avatar")) {
+   		    mMisesAvatar = jsonMessage.getString("avatar");
+                }
+	        mInfoCache = json;
+            } catch (JSONException e) {
+                Log.e(TAG, "load MisesUserInfo from cache %s error", json);
+		mInfoCache = "";
+            }
+	    for (MisesControllerObserver observer : observers_) {
+	        observer.OnMisesUserInfoChanged();
+	    }
+        } 
+    }
+    public void NotifyExtensionDNRActionCountChange(final String base64Image) {
+        for (MisesControllerObserver observer : observers_) {
+	    observer.OnExtensionDNRActionCountChanged(base64Image);
+        }
     }
 
     @CalledByNative
