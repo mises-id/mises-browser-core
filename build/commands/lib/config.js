@@ -481,8 +481,9 @@ Config.prototype.buildArgs = function () {
     args.target_android_output_format =
       this.targetAndroidOutputFormat || (this.buildConfig === 'Release' ? 'aab' : 'apk')
     args.android_override_version_name = this.androidOverrideVersionName
-    args.android_override_version_code = this.androidOverrideVersionCode
-
+    if (this.androidOverrideVersionCode) {
+      args.android_override_version_code = this.androidOverrideVersionCode
+    }
     args.mises_android_developer_options_code = this.misesAndroidDeveloperOptionsCode
     args.mises_safetynet_api_key = this.misesSafetyNetApiKey
     args.enable_widevine = false
