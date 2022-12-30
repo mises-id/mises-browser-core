@@ -494,10 +494,8 @@ std::unique_ptr<api::tabs::Tab> ExtensionTabUtil::CreateTabObject(
       if (tab_android->ExtensionWindowID() != -1) {
         tab_object->window_id = tab_android->ExtensionWindowID();
       }
-      LOG(INFO) << "ExtensionTabUtil::CreateTabObject window_id " << tab_object->window_id;
     }
-  } 
-  LOG(INFO) << "ExtensionTabUtil::CreateTabObject index " << tab_index;
+  }
 #endif
 
   auto* audible_helper = RecentlyAudibleHelper::FromWebContents(contents);
