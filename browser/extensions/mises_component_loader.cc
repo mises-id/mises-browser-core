@@ -27,6 +27,7 @@
 #include "extensions/browser/api/storage/storage_frontend.h"
 #include "extensions/browser/api/storage/settings_namespace.h"
 #include "extensions/browser/extension_registry.h"
+#include "extensions/common/constants.h"
 
 #if BUILDFLAG(IS_ANDROID)
 #include "base/android/sys_utils.h"
@@ -100,22 +101,22 @@ void MisesComponentLoader::AddDefaultComponentExtensions(
 
   ExtensionRegistry::Get(profile_)->AddObserver(this);
 
-  base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
-  metamask_extension_path =
-      metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
-  Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
 
-    base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
-  miseswallet_extension_path =
-      miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
-  Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
+
+ 
 
   
+}
+void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_context,
+                                  const Extension* extension) {
+
+    LOG(ERROR) << "OnExtensionLoaded " << extension->id();
+
 }
 
 void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_context,
                                      const Extension* extension) {
-    if (extension->id() == "nkbihfbeogaeaoehlefnkodbefgpgknn") {
+    if (extension->id() == metamask_extension_id) {
 
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
         frontend->RunWithStorage(
@@ -123,7 +124,7 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
         base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
         );
     }
-    if (extension->id() == "jkpbgdgopmifmokhejofbmgdabapoefl") {
+    if (extension->id() == mises_extension_id) {
 
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
         frontend->RunWithStorage(
@@ -191,5 +192,25 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 #endif
 
 };
+
+
+void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
+
+  extensions::ExtensionRegistry* registry =
+      extensions::ExtensionRegistry::Get(profile_);
+  const Extension* extension = registry->GetInstalledExtension(metamask_extension_id);
+  if (!extension) {
+    base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
+    metamask_extension_path =
+        metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
+    Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+  }
+
+  base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
+  miseswallet_extension_path =
+      miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
+  Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
+
+}
 
 }  // namespace extensions
