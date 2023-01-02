@@ -110,7 +110,7 @@ void MisesComponentLoader::AddDefaultComponentExtensions(
 void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_context,
                                   const Extension* extension) {
 
-    LOG(ERROR) << "OnExtensionLoaded " << extension->id();
+    LOG(INFO) << "OnExtensionLoaded " << extension->id();
 
 }
 
@@ -136,16 +136,16 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
     }
 }
 void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* storage) {
-  LOG(ERROR) << "AsyncRunWithMetamaskStorage";
+  LOG(INFO) << "AsyncRunWithMetamaskStorage";
   metamaskValue = base::Value(storage->Get().PassSettings());
-  LOG(ERROR) << "Got Metamask Storage";
+  LOG(INFO) << "Got Metamask Storage";
   base::Value::Dict *data = metamaskValue.GetDict().FindDict("data");
   if (data) {
     base::Value::Dict *NetworkController = data->FindDict("NetworkController");
     if (NetworkController) {
       base::Value::Dict *provider = NetworkController->FindDict("provider");
       if (provider) {
-        LOG(ERROR) << "Got Metamask Storage provider" << *provider;
+        LOG(INFO) << "Got Metamask Storage provider" << *provider;
         std::string *provider_type = provider->FindString("type");
         if (provider_type && *provider_type == "MisesTestNet") {
           provider->Set("chainId", "0x1");
@@ -161,9 +161,9 @@ void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* 
   }
 }
 void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
-  LOG(ERROR) << "AsyncRunWithMiseswalletStorage";
+  LOG(INFO) << "AsyncRunWithMiseswalletStorage";
   if (storage->GetBytesInUse("migrated") == 0){
-    LOG(ERROR) << "DoMigrate";
+    LOG(INFO) << "DoMigrate";
     storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "migrated", metamaskValue);
   }
   
@@ -174,22 +174,28 @@ void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStor
 void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser_context,
                                     const Extension* extension,
                                     bool is_update) {
-#if BUILDFLAG(IS_ANDROID) 
-  if(extension) {
-    base::android::MisesSysUtils::LogEventFromJni("install_extension", "id", extension->id());
-  }
+
+  if(extension && extension->location() != ManifestLocation::kComponent) {
+#if BUILDFLAG(IS_ANDROID)
+    base::android::MisesSysUtils::LogEventFromJni("install_extension", "id", extension->id(), "is_update", is_update?"1":"0");
 #endif
+      LOG(INFO) << "OnExtensionInstalled ";
+  }
+
                                   
 };
 void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
                                       UninstallReason reason) {
 
-#if BUILDFLAG(IS_ANDROID) 
-  if(extension) {
+
+  if(extension && extension->location() != ManifestLocation::kComponent) {
+#if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::LogEventFromJni("uninstall_extension", "id", extension->id());
-  }
 #endif
+      LOG(INFO) << "OnExtensionUninstalled ";
+  }
+
 
 };
 

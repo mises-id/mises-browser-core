@@ -28,6 +28,9 @@
 
 #include "chrome/browser/extensions/api/tabs/tabs_windows_api.h"
 #include "chrome/browser/extensions/api/developer_private/developer_private_api.h"
+#if BUILDFLAG(IS_ANDROID)
+#include "base/android/sys_utils.h"
+#endif
 
 using base::android::AttachCurrentThread;
 using base::android::ConvertUTF8ToJavaString;
@@ -188,7 +191,7 @@ WebContents* TabModelJniBridge::CreateNewTabForDevTools(
   return tab->web_contents();
 }
 content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
-		const GURL& url, const SessionID::id_type& session_window_id){
+		const std::string& extension_id, const GURL& url, const SessionID::id_type& session_window_id){
   LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension";
   JNIEnv* env = AttachCurrentThread();
   ScopedJavaLocalRef<jobject> obj =
@@ -205,6 +208,9 @@ content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
     return NULL;
   }
   tab->SetExtensionWindowID(session_window_id);
+  if (!extension_id.empty()) {
+    base::android::MisesSysUtils::LogEventFromJni("activate_extension", "id", extension_id);
+  }
   return tab->web_contents();
 }
 bool TabModelJniBridge::IsSessionRestoreInProgress() const {

@@ -61,8 +61,9 @@ class TabModelJniBridge : public TabModel {
                              NavigateParams* params) override;
 
   content::WebContents* CreateNewTabForDevTools(const GURL& url) override;
-  content::WebContents* CreateNewTabForExtension(
-		                  const GURL& url, const SessionID::id_type& session_window_id) override;
+  content::WebContents* CreateNewTabForExtension(const std::string& extension_id, 
+                                                 const GURL& url, 
+                                                 const SessionID::id_type& session_window_id) override;
   // Return true if we are currently restoring sessions asynchronously.
   bool IsSessionRestoreInProgress() const override;
 
