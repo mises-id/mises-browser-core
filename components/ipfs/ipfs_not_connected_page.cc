@@ -56,6 +56,7 @@ void IPFSNotConnectedPage::CommandReceived(const std::string& command) {
 
 void IPFSNotConnectedPage::PopulateInterstitialStrings(
     base::Value::Dict& load_time_data) {
+	/*
   load_time_data.Set("tabTitle", brave_l10n::GetLocalizedResourceUTF16String(
                                      IDS_IPFS_NOT_CONNECTED_TITLE));
   load_time_data.Set("heading", brave_l10n::GetLocalizedResourceUTF16String(
@@ -78,10 +79,12 @@ void IPFSNotConnectedPage::PopulateInterstitialStrings(
                      brave_l10n::GetLocalizedResourceUTF16String(
                          IDS_IPFS_NOT_CONNECTED_EXPLANATION));
   load_time_data.Set("finalParagraph", std::u16string());
-}
+*/
+  }
+
 
 int IPFSNotConnectedPage::GetHTMLTemplateId() {
-  return IDR_IPFS_INTERSTITIAL_HTML;
+  return 0;//IDR_IPFS_INTERSTITIAL_HTML;
 }
 
 security_interstitials::SecurityInterstitialPage::TypeID

@@ -298,7 +298,7 @@ void IpfsService::OnDnsConfigChanged(absl::optional<std::string> dns_server) {
 bool IpfsService::WaitUntilExecutionFinished(base::Process process) {
   bool exited = false;
   int exit_code = 0;
-  base::ScopedAllowBaseSyncPrimitives allow_wait_for_process;
+  //base::ScopedAllowBaseSyncPrimitives allow_wait_for_process;
   exited = process.WaitForExitWithTimeout(base::Seconds(10), &exit_code);
   if (!exited)
     process.Terminate(0, true);

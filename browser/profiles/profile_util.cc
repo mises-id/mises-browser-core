@@ -80,10 +80,11 @@ void SetDefaultSearchVersion(Profile* profile, bool is_new_profile) {
       profile->GetPrefs()->FindPreference(prefs::kBraveDefaultSearchVersion);
   if (!pref_default_search_version->HasUserSetting()) {
     profile->GetPrefs()->SetInteger(
-        prefs::kBraveDefaultSearchVersion,
+        prefs::kBraveDefaultSearchVersion,0);
+    /*
         is_new_profile
             ? TemplateURLPrepopulateData::kBraveCurrentDataVersion
-            : TemplateURLPrepopulateData::kBraveFirstTrackedDataVersion);
+            : TemplateURLPrepopulateData::kBraveFirstTrackedDataVersion);*/
   }
 }
 

@@ -31,6 +31,10 @@
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_list.h"
 #endif
+#if BUILDFLAG(ENABLE_IPFS)
+#include "mises/components/ipfs/brave_ipfs_client_updater.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#endif
 
 
 using content::BrowserThread;
@@ -54,6 +58,24 @@ void MisesBrowserProcessImpl::StartTearDown() {
 }
 #endif
 
+#if BUILDFLAG(ENABLE_IPFS)
+ipfs::BraveIpfsClientUpdater* MisesBrowserProcessImpl::ipfs_client_updater() {
+/*
+      	if (ipfs_client_updater_)
+    return ipfs_client_updater_.get();
+
+  base::FilePath user_data_dir;
+  base::PathService::Get(chrome::DIR_USER_DATA, &user_data_dir);
+
+  ipfs_client_updater_ = ipfs::BraveIpfsClientUpdaterFactory(
+      brave_component_updater_delegate(), user_data_dir);
+  return ipfs_client_updater_.get();
+  */
+	ipfs::BraveIpfsClientUpdater *t=nullptr;
+  return t;
+
+}
+#endif  // BUILDFLAG(ENABLE_IPFS)
 
 // ProfileManager* MisesBrowserProcessImpl::profile_manager() {
 //   return BrowserProcessImpl::profile_manager();

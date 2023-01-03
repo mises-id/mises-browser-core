@@ -9,7 +9,7 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include "mises/browser/profiles/profile_util.cc"
+#include "mises/browser/profiles/profile_util.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
 
 #include "mises/components/constants/pref_names.h"

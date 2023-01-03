@@ -34,9 +34,9 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
   // BraveBrowserProcess implementation.
 
   void StartMisesServices() override;
-#if BUILDFLAG(ENABLE_IPFS)
+//#if BUILDFLAG(ENABLE_IPFS)
   ipfs::BraveIpfsClientUpdater* ipfs_client_updater() override;
-#endif
+//#endif
 
  private:
   // BrowserProcessImpl overrides:

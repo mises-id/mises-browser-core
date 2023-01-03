@@ -267,7 +267,7 @@ void IPFSOnboardingPage::PopulateInterstitialStrings(
 }
 
 int IPFSOnboardingPage::GetHTMLTemplateId() {
-  return IDR_IPFS_INTERSTITIAL_ONBOARDING_HTML;
+  return 0;//IDR_IPFS_INTERSTITIAL_ONBOARDING_HTML;
 }
 
 security_interstitials::SecurityInterstitialPage::TypeID
