@@ -22,9 +22,8 @@
     "storage",
     "notifications",
     "identity",
-    "idle",
-    "notifications",
     "tabs",
+    "idle",
     "misesPrivate"
   ],
   "content_scripts": [
