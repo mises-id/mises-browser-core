@@ -819,7 +819,7 @@ ExtensionFunction::ResponseAction WindowsCreateFunction::Run() {
             Error("no tab model."));
     }
     TabModel* tab_model = *(TabModelList::models().begin());
-    WebContents* web_contents = tab_model->CreateNewTabForExtension(url, new_window->session_id().id());
+    WebContents* web_contents = tab_model->CreateNewTabForExtension(extension_id, url, new_window->session_id().id());
     navigate_params.navigated_or_inserted_contents = web_contents;
 #else
     Navigate(&navigate_params);

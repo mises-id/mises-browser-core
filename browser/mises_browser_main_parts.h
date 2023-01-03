@@ -18,6 +18,8 @@ class MisesBrowserMainParts : public ChromeBrowserMainParts {
 
 
   void PostBrowserStart() override;
+    
+  void PostProfileInit(Profile* profile, bool is_initial_profile) override;
 };
 
 #endif  // BRAVE_BROWSER_BRAVE_BROWSER_MAIN_PARTS_H_

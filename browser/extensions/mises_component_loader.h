@@ -46,11 +46,15 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   // hangouts is set.  If the buildflag is not set, it won't add though.
   void ForceAddHangoutServicesExtension();
 
+  void AddMetamaskExtensionOnStartup();
+
  private:
   void AsyncRunWithMetamaskStorage(value_store::ValueStore* storage);
   void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
   void ReinstallAsNonComponent(std::string extension_id);
     // ExtensionRegistryObserver:
+  void OnExtensionLoaded(content::BrowserContext* browser_context,
+                                  const Extension* extension) override;
   void OnExtensionReady(content::BrowserContext* browser_context,
                         const Extension* extension) override;
   void OnExtensionInstalled(content::BrowserContext* browser_context,

@@ -5,4 +5,10 @@
 
 <service android:name="org.chromium.chrome.browser.mises.MisesLCDService"
             android:enabled="true"
-            android:exported="false" />
+	android:exported="false" />
+
+<meta-data
+        android:name="com.google.android.play.billingclient.version"
+        android:value="4.0.0" />
+
+

@@ -624,12 +624,10 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
   }
 
   void Start() {
-    //LOG(INFO) << "ExtensionURLLoader::Start() step - 1";
     if (browser_context_->ShutdownStarted()) {
       CompleteRequestAndDeleteThis(net::ERR_FAILED);
       return;
     }
-    //LOG(INFO) << "ExtensionURLLoader::Start() step - 2";
 
     const std::string extension_id = request_.url.host();
     ExtensionRegistry* registry = ExtensionRegistry::Get(browser_context_);
@@ -659,7 +657,6 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
       client_->OnReceiveRedirect(redirect_info, std::move(response_head));
       return;
     }
-    //LOG(INFO) << "ExtensionURLLoader::Start() step - 3";
 #if !BUILDFLAG(IS_ANDROID)
     if (!AllowExtensionResourceLoad(
             request_, request_.destination,
@@ -679,7 +676,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
       CompleteRequestAndDeleteThis(net::ERR_FAILED);
       return;
     }
-    LOG(INFO) << "ExtensionURLLoader::Start()" << render_process_id_;
+    LOG(INFO) << "ExtensionURLLoader::Start()" << render_process_id_ << "," << request_.url;
 
     LoadExtension(extension, std::move(directory_path));
   }
@@ -762,7 +759,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
   void LoadExtension(scoped_refptr<const Extension> extension,
                      base::FilePath directory_path) {
     DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
-    //LOG(INFO) << "ExtensionURLLoader::LoadExtension  step - 1 " << directory_path;
+    LOG(INFO) << "ExtensionURLLoader::LoadExtension  step - 1 " << directory_path;
     std::string content_security_policy;
     const std::string* cross_origin_embedder_policy = nullptr;
     const std::string* cross_origin_opener_policy = nullptr;
@@ -830,7 +827,6 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
       }
       return;
     }
-    //LOG(INFO) << "ExtensionURLLoader::LoadExtension  step - 2";
     auto headers =
         BuildHttpHeaders(content_security_policy, cross_origin_embedder_policy,
                          cross_origin_opener_policy, send_cors_header,
@@ -838,23 +834,24 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
     // Component extension resources may be part of the embedder's resource
     // files, for example component_extension_resources.pak in Chrome.
     int resource_id = 0;
-//#if 0
     const base::FilePath bundle_resource_path =
         ExtensionsBrowserClient::Get()->GetBundleResourcePath(
             request_, directory_path, &resource_id);
-//#endif
-//    if (!directory_path.empty() && directory_path.value().find("cryptotoken") != std::string::npos) {
-//      const base::FilePath bundle_resource_path =
-//          ExtensionsBrowserClient::Get()->GetBundleResourcePath(
-//              request_, directory_path, &resource_id);
-    if (!bundle_resource_path.empty()) {
-      ExtensionsBrowserClient::Get()->LoadResourceFromResourceBundle(
-          request_, loader_.Unbind(), bundle_resource_path, resource_id,
-          std::move(headers), client_.Unbind());
-      DeleteThis();
-      return;
+    if (!directory_path.empty() && 
+      (directory_path.value().find("cryptotoken") != std::string::npos ||
+      directory_path.value().find("mises_wallet") != std::string::npos ||
+      directory_path.value().find("metamask") != std::string::npos)) {
+      const base::FilePath bundle_resource_path =
+          ExtensionsBrowserClient::Get()->GetBundleResourcePath(
+              request_, directory_path, &resource_id);
+      if (!bundle_resource_path.empty()) {
+        ExtensionsBrowserClient::Get()->LoadResourceFromResourceBundle(
+            request_, loader_.Unbind(), bundle_resource_path, resource_id,
+            std::move(headers), client_.Unbind());
+        DeleteThis();
+        return;
+      }
     }
-//    }
 
     base::FilePath relative_path =
         file_util::ExtensionURLToRelativeFilePath(request_.url);
