@@ -1,0 +1,21 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+import("//mises/build/config.gni")
+import("//mises/components/ipfs/buildflags/buildflags.gni")
+import("//testing/test.gni")
+
+source_set("brave_ipfs_unit_tests") {
+  testonly = true
+  if (enable_ipfs) {
+    sources = [
+
+    ]
+
+    deps = [
+
+    ]
+  }  # if (enable_ipfs)
+}  # source_set("brave_ipfs_unit_tests")

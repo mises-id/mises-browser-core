@@ -10,14 +10,19 @@
 
 #ifndef BRAVE_BROWSER_BRAVE_BROWSER_PROCESS_H_
 #define BRAVE_BROWSER_BRAVE_BROWSER_PROCESS_H_
-
+#include "mises/components/ipfs/buildflags/buildflags.h"
 #include "extensions/buildflags/buildflags.h"
-
+namespace ipfs {
+class BraveIpfsClientUpdater;
+}
 class MisesBrowserProcess {
  public:
   MisesBrowserProcess();
   virtual ~MisesBrowserProcess();
   virtual void StartMisesServices() = 0;
+#if BUILDFLAG(ENABLE_IPFS)
+  virtual ipfs::BraveIpfsClientUpdater* ipfs_client_updater() = 0;
+#endif
 };
 
 extern MisesBrowserProcess* g_mises_browser_process;

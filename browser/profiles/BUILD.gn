@@ -11,6 +11,7 @@ source_set("profiles") {
 
   deps = [
     "//base",
+    "//mises/components/ipfs/buildflags",
     "//chrome/common",
     "//components/gcm_driver:gcm_buildflags",
     "//components/keyed_service/content",
@@ -29,8 +30,8 @@ source_set("util") {
   check_includes = false
 
   sources = [
-   # "profile_util.cc",
-   # "profile_util.h",
+    "profile_util.cc",
+    "profile_util.h",
   ]
 
   deps = [

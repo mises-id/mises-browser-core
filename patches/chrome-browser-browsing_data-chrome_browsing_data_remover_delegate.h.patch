@@ -1,0 +1,27 @@
+diff --git a/chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h b/chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h
+index 942e85a3aba8850a37f1fabf8d1c402661ec1966..a6cd14773ca1e4ebc064aab0a47f81d813a666bb 100644
+--- a/chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h
++++ b/chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h
+@@ -93,7 +93,7 @@ class ChromeBrowsingDataRemoverDelegate
+       network::mojom::NetworkContext::ClearDomainReliabilityCallback)>;
+   void OverrideDomainReliabilityClearerForTesting(
+       DomainReliabilityClearer clearer);
+-
++  BRAVE_CHROME_BROWSING_DATA_REMOVER_DELEGATE_H
+  private:
+   using WebRtcEventLogManager = webrtc_event_logging::WebRtcEventLogManager;
+ 
+@@ -147,11 +147,11 @@ class ChromeBrowsingDataRemoverDelegate
+     kWebAppHistory = 42,
+     kWebAuthnCredentials = 43,
+     kWebrtcVideoPerfHistory = 44,
+-
++    kIPFSCache = 45,
+     // Please update ChromeBrowsingDataRemoverTasks in enums.xml and
+     // History.ClearBrowsingData.Duration.ChromeTask.{Task}
+     // in histograms/metadata/history/histograms.xml when adding entries!
+-    kMaxValue = kWebrtcVideoPerfHistory,
++    kMaxValue = kIPFSCache,
+   };
+ 
+   // Returns the suffix for the

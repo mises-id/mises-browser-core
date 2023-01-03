@@ -7,6 +7,7 @@ import("//mises/browser/autocomplete/sources.gni")
 import("//extensions/buildflags/buildflags.gni")
 import("//mises/chromium_src/chrome/browser/sources.gni")
 import("//mises/build/rust/config.gni")
+import("//mises/browser/ipfs/sources.gni")
 
 mises_chrome_browser_visibility = [
   "//mises/browser/*",
@@ -83,6 +84,7 @@ mises_chrome_browser_deps = [
   "//third_party/widevine/cdm:buildflags",
   "//ui/base",
   "//url",
+  "//mises/components/ipfs/buildflags",
 ]
 
 if (is_mac) {
@@ -215,5 +217,7 @@ if (is_android) {
 
 
 mises_chrome_browser_sources += mises_browser_autocomplete_sources
+mises_chrome_browser_sources += mises_browser_ipfs_sources
 
 mises_chrome_browser_deps += mises_browser_autocomplete_deps
+mises_chrome_browser_deps += mises_browser_ipfs_deps

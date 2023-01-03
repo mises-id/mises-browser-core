@@ -12,7 +12,11 @@
 #include "mises/browser/mises_browser_process.h"
 #include "chrome/browser/browser_process_impl.h"
 #include "extensions/buildflags/buildflags.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
 
+namespace ipfs {
+class BraveIpfsClientUpdater;
+}
 
 class MisesBrowserProcessImpl : public MisesBrowserProcess,
                                 public BrowserProcessImpl {
@@ -30,6 +34,9 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
   // BraveBrowserProcess implementation.
 
   void StartMisesServices() override;
+#if BUILDFLAG(ENABLE_IPFS)
+  ipfs::BraveIpfsClientUpdater* ipfs_client_updater() override;
+#endif
 
  private:
   // BrowserProcessImpl overrides:
