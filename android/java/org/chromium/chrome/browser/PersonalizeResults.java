@@ -166,6 +166,10 @@ public class PersonalizeResults {
        if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ghdejoclpabnhidemhnfagafafcmgcfm")) {
          tab.getWebContents().evaluateJavaScript(RenderStyleContent(DIOWALLET_EXTENSION_STYLES), null);
        }
+       // Metamask
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(METAMASK_EXTENSION_STYLES), null);
+       }
     }
 
     private static String RenderStyleContent(String STYLES) {
@@ -260,6 +264,9 @@ public class PersonalizeResults {
    private static final String DIOWALLET_EXTENSION_STYLES = "'.app{max-width: 100vw;} .create-account,.layout-with-header-content{width: 100%}'";
    // coin 98
    private static final String COIN98_EXTENSION_STYLES = "'.popup-chain-selection{height: 93vh}'";
+
+    // metamask extension wallet 
+   private static final String METAMASK_EXTENSION_STYLES = "'.select-action__select-buttons {display:flex; flex-direction:column;}.select-action__select-button {width:100vw;margin-left:0;}'";
 
     private static final String MAKE_USER_AGENT_WRITABLE = ""
 +"(function() {"
