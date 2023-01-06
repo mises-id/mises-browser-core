@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index 34fb55ab008df1831f9e6764a4b1085dd47015a6..f342ff423b9422d3b819fba46584a1ffb7f069ac 100644
+index 34fb55ab008df1831f9e6764a4b1085dd47015a6..bf0bb6a7c218902e74b1ab9395738c524da07f91 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
@@ -186,7 +186,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..f342ff423b9422d3b819fba46584a1ff
      @Override
      public boolean onOptionsItemSelected(int itemId, @Nullable Bundle menuItemData) {
          mMenuItemData = menuItemData;
-@@ -2373,10 +2480,41 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2373,10 +2480,38 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
                  mMenuActionHandlers) {
              if (handler.handleMenuOrKeyboardAction(id, fromMenu)) return true;
          }
@@ -217,10 +217,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..f342ff423b9422d3b819fba46584a1ff
 +		Profile profile = Profile.fromWebContents(webContents).getOriginalProfile();
 +                LaunchMetrics.commitLaunchMetrics(webContents);
 +                AppMenuBridge.getForProfile(profile).grantExtensionActiveTab(webContents, extensionId);
-+                if (!extensionUrl.equals(""))
-+                  getCurrentTabCreator().launchUrl(extensionUrl, TabLaunchType.FROM_CHROME_UI);
-+                else
-+                  AppMenuBridge.getForProfile(profile).callExtension(webContents, extensionId);
++                AppMenuBridge.getForProfile(profile).callExtension(webContents, extensionId);
 +                return true;
 +            }
 +            return false;
@@ -229,7 +226,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..f342ff423b9422d3b819fba46584a1ff
          if (id == R.id.preferences_id) {
              SettingsLauncher settingsLauncher = new SettingsLauncherImpl();
              settingsLauncher.launchSettingsActivity(this);
-@@ -2510,10 +2648,114 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2510,10 +2645,114 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
  
          if (id == R.id.translate_id) {
              RecordUserAction.record("MobileMenuTranslate");
@@ -344,7 +341,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..f342ff423b9422d3b819fba46584a1ff
              return true;
          }
  
-@@ -2573,6 +2815,37 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2573,6 +2812,37 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -382,7 +379,7 @@ index 34fb55ab008df1831f9e6764a4b1085dd47015a6..f342ff423b9422d3b819fba46584a1ff
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2607,6 +2880,53 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2607,6 +2877,53 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  

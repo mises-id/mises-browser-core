@@ -105,6 +105,9 @@
 #include "content/public/browser/browser_thread.h"
 #include "extensions/common/constants.h"
 
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+
 using base::android::ConvertUTF8ToJavaString;
 using base::android::ScopedJavaLocalRef;
 using base::android::ScopedJavaGlobalRef;
@@ -396,14 +399,25 @@ void AppMenuBridge::CallExtension(
       LOG(INFO) << "[EXTENSIONS] Dispatching extension_action_ for " << extension_to_call;
       extensions::ExtensionActionAPI* action_api = extensions::ExtensionActionAPI::Get(profile_);
       content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
+      int tabid = extensions::ExtensionAction::kDefaultTabId;
       if (web_contents != nullptr) {
         LOG(INFO) << "[EXTENSIONS] Granting tab access to: " << extension_to_call;
         extensions::TabHelper::FromWebContents(web_contents)
             ->active_tab_permission_granter()
             ->GrantIfRequested(extension_ptr);
+        tabid = sessions::SessionTabHelper::IdForTab(web_contents).id();
       }
-      action_api->DispatchExtensionActionClicked(*extension_action_, web_contents, extension_ptr);
-      LOG(INFO) << "[EXTENSIONS] Dispatched JS extension_action_ for " << extension_to_call;
+      GURL popup = extension_action_->GetPopupUrl(tabid);
+      if (popup != "") {  
+        if (!TabModelList::models().empty()){
+            TabModel* tab_model = TabModelList::models()[0];
+            if (tab_model)
+              tab_model->CreateNewTabForDevTools(popup);
+        }
+      } else {
+        action_api->DispatchExtensionActionClicked(*extension_action_, web_contents, extension_ptr);
+        LOG(INFO) << "[EXTENSIONS] Dispatched JS extension_action_ for " << extension_to_call;
+      }
     }
   }
 }

@@ -1430,7 +1430,7 @@ ExtensionFunction::ResponseAction TabsQueryFunction::Run() {
          continue;
        }
 
-      int openingTab = (tab_strip->GetActiveIndex());
+      int openingTab = (tab_strip->GetLastNonExtensionActiveIndex());
       if (openingTab == -1)
         openingTab = 0;
 
