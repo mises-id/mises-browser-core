@@ -485,7 +485,7 @@ void AppMenuBridge::OnExtensionActionUpdated(
     content::WebContents* web_contents,
     content::BrowserContext* browser_context) {
   JNIEnv* env = base::android::AttachCurrentThread();
-  LOG(INFO) << "[Mises] AppMenuBridge::OnExtensionActionUpdated " << extension_action;
+  //LOG(INFO) << "[Mises] AppMenuBridge::OnExtensionActionUpdated " << extension_action;
   if (extension_action) {
     int tab_id = sessions::SessionTabHelper::IdForTab(web_contents).id();
     std::string extension_id = extension_action->extension_id();
@@ -493,7 +493,7 @@ void AppMenuBridge::OnExtensionActionUpdated(
       extensions::ExtensionRegistry* registry = extensions::ExtensionRegistry::Get(profile_);
       const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
       const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension_id);
-      LOG(INFO) << "[Mises] AppMenuBridge::OnExtensionActionUpdated " << extension_action->GetDNRActionCount(tab_id) << "," << extension_action->GetExplicitlySetBadgeText(tab_id);
+      //LOG(INFO) << "[Mises] AppMenuBridge::OnExtensionActionUpdated " << extension_action->GetDNRActionCount(tab_id) << "," << extension_action->GetExplicitlySetBadgeText(tab_id);
       if (extension_ptr && !extension_action->GetExplicitlySetBadgeText(tab_id).empty()) {
         std::unique_ptr<IconWithBadgeImageSource> icon_badge = GetIconImageSource(extension_ptr, extension_action, web_contents, gfx::Size(40, 40));
         gfx::Canvas canvas(gfx::Size(40, 40), 1.0f, false);
