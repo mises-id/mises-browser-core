@@ -52,6 +52,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     private static MLightNode nodeLCD;
     private Thread nodeThread;
     private Thread nodeRestartThread;
+    private String homePath; 
 
     @Nullable
     @Override
@@ -166,10 +167,10 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
         nodeRestartThread.start();
     }
     
-    private void deleteTrustStore(final String home_path) {
+    private void deleteTrustStore() {
         try {
             Log.i(TAG, "deleteTrustStore");
-            File dbdir = new File(home_path + "//.misestm//light//light-client-db.db");
+            File dbdir = new File(homePath + "//.misestm//light//light-client-db.db");
             if ( dbdir.isDirectory() ) {
                 //list all the files in directory
                 File dbfiles[] = dbdir.listFiles();
@@ -184,7 +185,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
 
         }
     }
-    private void initNode(final String home_path) {
+    private void initNode() {
         if (nodeThread != null) {
 	        return;
 	    }
@@ -198,7 +199,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
                 String witness_nodes = "";
                 String chain_id = "";
                 boolean first_run = false;
-                File f = new File(home_path+ "//.misestm//light//light-client-db.db");
+                File f = new File(homePath + "//.misestm//light//light-client-db.db");
                 if (!f.exists()) {
                     first_run = true;
                 }
@@ -232,7 +233,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
                             //if no old light data, restart later
                             Log.e(TAG, "no trust block");
 			                nodeThread = null;
-			                MisesLCDService.this.onError();
+			                MisesLCDService.this.onError("");
 			                return;
                         } else {
                             //leave block_hash and block_height empty so that trust the existing block
@@ -277,8 +278,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
                     Log.e(TAG, "mises light node start error");
 		            nodeLCD = null;
                     //we delete  the trust store here for it could be corupted
-                    deleteTrustStore(home_path);
-                    MisesLCDService.this.onError();
+                    MisesLCDService.this.onError("");
                 }
 		        nodeThread = null;
 
@@ -288,8 +288,11 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     }
    
     
-    private void onErrorUIThread() {
-        Log.e(TAG, "onError " + retryCounter);
+    private void onErrorUIThread(final String reason) {
+        Log.e(TAG, "onError " + reason + ", retry:"+ retryCounter);
+        if (!reason.isEmpty()) {
+            deleteTrustStore();
+        }
 	    try {
           startForeground(SERVICE_ID, getStickyNotification(
             getString(R.string.title_foreground_service_notification_error),
@@ -314,21 +317,22 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     }
 
     @Override
-    public void onError() {
-	    uiThreadHandler.post( () -> {onErrorUIThread();});
+    public void onError(String reason) {
+        final String error_reason = reason;
+	    uiThreadHandler.post( () -> {onErrorUIThread(error_reason);});
     }
     private void restartNode() {
         try {
             if (nodeLCD == null) {
-                final String home_path = this.getApplicationContext().getFilesDir().getAbsolutePath() + File.separator;
-                Lcd.setHomePath(home_path);
-                initNode(home_path);
+                homePath = this.getApplicationContext().getFilesDir().getAbsolutePath() + File.separator;
+                Lcd.setHomePath(homePath);
+                initNode();
             } else {
                 resetNode();
             }
         } catch (Exception e) {
            Log.e(TAG, "mises light node restart error");
-           onError();
+           onError("");
         }
     }
 
