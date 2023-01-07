@@ -166,10 +166,28 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
         });
         nodeRestartThread.start();
     }
+    
+    private void deleteTrustStore(final String home_path) {
+        try {
+            File f = new File(home_path + "//.misestm//light//light-client-db.db")
+            if ( file.isDirectory() ) {
+                //list all the files in directory
+                File files[] = file.listFiles();
+            
+                for (File temp : files) {
+                    //recursive delete
+                    file.delete();
+                }
+            }
+        }catch (Exception e) {
+            Log.e(TAG, "fail to delete trust dtore");
+
+        }
+    }
     private void initNode(final String home_path) {
         if (nodeThread != null) {
-	  return;
-	}
+	        return;
+	    }
         nodeThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -206,16 +224,16 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(TAG, "fail to get mises chain ino");
+                    Log.e(TAG, "fail to get mises chain info");
 
                 }finally {
                     if (block_hash.isEmpty() || block_height.isEmpty()) {
                         if (first_run) {
                             //if no old light data, restart later
                             Log.e(TAG, "no trust block");
-			    nodeThread = null;
-			    MisesLCDService.this.onError();
-			    return;
+			                nodeThread = null;
+			                MisesLCDService.this.onError();
+			                return;
                         } else {
                             //leave block_hash and block_height empty so that trust the existing block
                             Log.i(TAG, "trust the existing block");
@@ -245,22 +263,24 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
 
                 }
                 try {
-		    nodeLCD = Lcd.newMLightNode();
+		            nodeLCD = Lcd.newMLightNode();
                     nodeLCD.setChainID(chain_id);
                     nodeLCD.setEndpoints(primary_node, witness_nodes);
                     nodeLCD.setTrust(block_height, block_hash);
-		    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1) {
-			// these android version dont support isrg_root_x1 CA, so simply make Ssl skip checking CA
-		        nodeLCD.setInsecureSsl(true);
-		    }
+		            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1) {
+			            // these android version dont support isrg_root_x1 CA, so simply make Ssl skip checking CA
+		                nodeLCD.setInsecureSsl(true);
+		            }
                     nodeLCD.serve("tcp://127.0.0.1:26657", MisesLCDService.this);
                     Log.i(TAG, "mises light node started");
                 } catch (Exception e) {
                     Log.e(TAG, "mises light node start error");
-		    nodeLCD = null;
+		            nodeLCD = null;
+                    //we delete  the trust store here for it could be corupted
+                    deleteTrustStore(home_path);
                     MisesLCDService.this.onError();
                 }
-		nodeThread = null;
+		        nodeThread = null;
 
             }
         });
