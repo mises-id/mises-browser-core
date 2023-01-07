@@ -73,9 +73,9 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
         Log.i(TAG, "onStartCommand");
         if (intent != null) {
             if (intent.getAction() != null) {
-		Log.i(TAG, "onStartCommand " + intent.getAction());
+		        Log.i(TAG, "onStartCommand " + intent.getAction());
                 if (intent.getAction().equals(ACTION_RESTART_FOREGROUND_SERVICE)) {
-		    retryCounter = 0;
+		            retryCounter = 0;
                     startLCDService();
                 } else if (intent.getAction().equals(ACTION_OPEN_APP)) {
                     String key_data = intent.getStringExtra(KEY_DATA);
@@ -89,8 +89,8 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     private void openAppHomePage(String keydata) {
         try {
           sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-	} catch (SecurityException e) {
-	}
+	    } catch (SecurityException e) {
+	    }
         Intent newintent = new Intent();
         newintent.setClassName("site.mises.browser", "org.chromium.chrome.browser.ChromeTabbedActivity");
         newintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
@@ -106,17 +106,16 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
 
         // Start foreground service.
         if (!IS_RUNNING) {
-
-	  startLCDService();
-	}
+	        startLCDService();
+	    }
 
     }
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel chan = new NotificationChannel(
-                    CHANNEL_ID,
-                    CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT
+                CHANNEL_ID,
+                CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT
             );
 
             chan.setLightColor(Color.BLUE);
@@ -128,14 +127,14 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
 
     private void startLCDService() {
         Log.i(TAG, "startLCDService");
-	try {
+	    try {
           startForeground(SERVICE_ID, getStickyNotification(
               getString(R.string.title_foreground_service_notification_running),
               getString(R.string.msg_notification_service_desc), true
           ));
-	}
-	catch (Exception ex) {
-	}
+	    }
+	    catch (Exception ex) {
+	    }
         IS_RUNNING = true;
 
         uiThreadHandler.removeCallbacksAndMessages(null);
@@ -169,6 +168,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     
     private void deleteTrustStore(final String home_path) {
         try {
+            Log.i(TAG, "deleteTrustStore");
             File dbdir = new File(home_path + "//.misestm//light//light-client-db.db");
             if ( dbdir.isDirectory() ) {
                 //list all the files in directory
@@ -180,7 +180,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
                 }
             }
         }catch (Exception e) {
-            Log.e(TAG, "fail to delete trust dtore");
+            Log.e(TAG, "fail to delete trust store");
 
         }
     }
@@ -290,14 +290,14 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     
     private void onErrorUIThread() {
         Log.e(TAG, "onError " + retryCounter);
-	try {
+	    try {
           startForeground(SERVICE_ID, getStickyNotification(
             getString(R.string.title_foreground_service_notification_error),
             getString(R.string.msg_notification_service_desc), false
           ));
-	}
-	catch (Exception ex) {
-	}
+	    }
+	    catch (Exception ex) {
+	    }
         int retryDelay = 30000;
         if (retryCounter < 0) {
             retryDelay = 30000;
@@ -307,15 +307,15 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
             retryDelay = 960000;
         }
         retryCounter += 1;
-	uiThreadHandler.removeCallbacksAndMessages(null);
+	    uiThreadHandler.removeCallbacksAndMessages(null);
         uiThreadHandler.postDelayed( () -> {
             startLCDService();
         }, retryDelay); 
     }
+
     @Override
     public void onError() {
-	uiThreadHandler.post( () -> {onErrorUIThread();});
-       
+	    uiThreadHandler.post( () -> {onErrorUIThread();});
     }
     private void restartNode() {
         try {
@@ -344,11 +344,11 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
         // Set big text style.
         builder.setStyle(bigTextStyle);
         builder.setWhen(System.currentTimeMillis());
-	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-	  builder.setSmallIcon(R.mipmap.app_icon);
-	} else {
-          builder.setSmallIcon(R.drawable.ic_launcher);
-	}
+	    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+	        builder.setSmallIcon(R.mipmap.app_icon);
+	    } else {
+            builder.setSmallIcon(R.drawable.ic_launcher);
+	    }
         //val largeIconBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_alarm_on)
         //builder.setLargeIcon(largeIconBitmap)
         // Make the notification max priority.
