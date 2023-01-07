@@ -169,7 +169,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     
     private void deleteTrustStore(final String home_path) {
         try {
-            File dbdir = new File(home_path + "//.misestm//light//light-client-db.db")
+            File dbdir = new File(home_path + "//.misestm//light//light-client-db.db");
             if ( dbdir.isDirectory() ) {
                 //list all the files in directory
                 File dbfiles[] = dbdir.listFiles();
