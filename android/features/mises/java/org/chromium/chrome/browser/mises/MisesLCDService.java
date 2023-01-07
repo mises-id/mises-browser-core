@@ -154,12 +154,12 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
             @Override
             public void run() {
                 Log.i(TAG, "mises light node restarting");
-		try {
-		    nodeLCD.restart();
-		} catch (Exception e) {
-		
-		    Log.i(TAG, "mises light node restart fail");
-		}
+                try {
+                    nodeLCD.restart();
+                } catch (Exception e) {
+                
+                    Log.i(TAG, "mises light node restart fail");
+                }
                 nodeRestartThread = null;
 
             }
@@ -292,6 +292,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
         Log.e(TAG, "onError " + reason + ", retry:"+ retryCounter);
         if (!reason.isEmpty()) {
             deleteTrustStore();
+            nodeLCD = null;
         }
 	    try {
           startForeground(SERVICE_ID, getStickyNotification(
