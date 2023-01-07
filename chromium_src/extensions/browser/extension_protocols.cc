@@ -676,7 +676,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
       CompleteRequestAndDeleteThis(net::ERR_FAILED);
       return;
     }
-    //LOG(INFO) << "ExtensionURLLoader::Start()" << render_process_id_ << "," << request_.url;
+    LOG(INFO) << "ExtensionURLLoader::Start()" << render_process_id_;
 
     LoadExtension(extension, std::move(directory_path));
   }
