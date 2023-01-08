@@ -27,20 +27,69 @@
 #include "content/public/browser/browser_thread.h"
 #include "content/public/browser/url_data_source.h"
 #include "ui/base/l10n/l10n_util.h"
+//For IPFS
+#include "base/metrics/histogram_macros.h"
+#include "mises/browser/brave_ads/ads_service_factory.h"
+#include "mises/browser/brave_federated/brave_federated_service_factory.h"
+#include "mises/browser/brave_news/brave_news_controller_factory.h"
+#include "mises/browser/brave_rewards/rewards_service_factory.h"
+#include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
+#include "mises/browser/profiles/profile_util.h"
+#include "mises/components/brave_today/common/features.h"
+#include "mises/components/content_settings/core/browser/brave_content_settings_pref_provider.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/components/tor/tor_constants.h"
+#include "mises/content/browser/webui/brave_shared_resources_data_source.h"
+//For IPFS
+//#if !BUILDFLAG(USE_GCM_FROM_PLATFORM)
+//#include "brave/browser/gcm_driver/brave_gcm_channel_status.h"
+//#endif
 
+#if BUILDFLAG(ENABLE_IPFS)
+#include "brave/browser/ipfs/ipfs_service_factory.h"
+#endif
+//IPFS end
 
 using content::BrowserThread;
+
+namespace {
+
+void AddBraveSharedResourcesDataSourceToProfile(Profile* profile) {
+  content::URLDataSource::Add(
+      profile,
+      std::make_unique<brave_content::BraveSharedResourcesDataSource>(false));
+  content::URLDataSource::Add(
+      profile,
+      std::make_unique<brave_content::BraveSharedResourcesDataSource>(true));
+}
+
+}  //IPFS namespace
 
 MisesProfileManager::MisesProfileManager(const base::FilePath& user_data_dir)
     : ProfileManager(user_data_dir) {
   MigrateProfileNames();
+  
+    AddObserver(this);//IPFS
+}
+
+MisesProfileManager::~MisesProfileManager() {//IPFS
+  std::vector<Profile*> profiles = GetLoadedProfiles();
+  for (Profile* profile : profiles) {
+    if (brave::IsSessionProfile(profile)) {
+      // passing false for `success` removes the profile from the info cache
+      OnProfileCreationFinished(profile, Profile::CREATE_MODE_ASYNCHRONOUS,
+                                false, false);
+    }
+  }
+  RemoveObserver(this);
 }
 
 void MisesProfileManager::InitProfileUserPrefs(Profile* profile) {
   // migrate obsolete plugin prefs to temporary migration pref because otherwise
   // they get deleteed by PrefProvider before we can migrate them in
   // BravePrefProvider
-
+  content_settings::BravePrefProvider::CopyPluginSettingsForMigration(
+      profile->GetPrefs());
 
 // Chromecast is enabled by default on Android.
 #if !BUILDFLAG(IS_ANDROID)
@@ -65,6 +114,9 @@ void MisesProfileManager::InitProfileUserPrefs(Profile* profile) {
 #endif
 
   ProfileManager::InitProfileUserPrefs(profile);
+  //brave::RecordInitialP3AValues(profile);
+  //brave::SetDefaultSearchVersion(profile, profile->IsNewProfile());
+  //brave::SetDefaultThirdPartyCookieBlockValue(profile);
 }
 
 void MisesProfileManager::DoFinalInitForServices(Profile* profile,
@@ -72,6 +124,25 @@ void MisesProfileManager::DoFinalInitForServices(Profile* profile,
   ProfileManager::DoFinalInitForServices(profile, go_off_the_record);
   if (!do_final_services_init_)
     return;
+//disable them, for IPFS.
+//  brave_ads::AdsServiceFactory::GetForProfile(profile);
+//  brave_rewards::RewardsServiceFactory::GetForProfile(profile);
+//  brave_wallet::BraveWalletServiceFactory::GetServiceForContext(profile);
+#if BUILDFLAG(ENABLE_IPFS)
+  ipfs::IpfsServiceFactory::GetForContext(profile);
+#endif
+//disable them.
+//#if !BUILDFLAG(USE_GCM_FROM_PLATFORM)
+//  gcm::BraveGCMChannelStatus* status =
+//      gcm::BraveGCMChannelStatus::GetForProfile(profile);
+//  DCHECK(status);
+//  status->UpdateGCMDriverStatus();
+//#endif
+//  if (base::FeatureList::IsEnabled(brave_today::features::kBraveNewsFeature)) {
+//    brave_news::BraveNewsControllerFactory::GetForContext(profile);
+//  }
+  brave_federated::BraveFederatedServiceFactory::GetForBrowserContext(profile);
+
 }
 
 bool MisesProfileManager::IsAllowedProfilePath(
@@ -80,11 +151,16 @@ bool MisesProfileManager::IsAllowedProfilePath(
   // want to also be able to create profile in subfolders of user_data_dir.
   return ProfileManager::IsAllowedProfilePath(path) ||
          user_data_dir().IsParent(path.DirName());
+		 
 }
 
 bool MisesProfileManager::LoadProfileByPath(const base::FilePath& profile_path,
                          bool incognito,
                          ProfileLoadedCallback callback) {
+  // For IPFS
+//  if (profile_path.BaseName().value() == tor::kTorProfileDir) {
+//    return false;
+//  }							 
 
   return ProfileManager::LoadProfileByPath(profile_path, incognito,
                                            std::move(callback));
@@ -130,3 +206,22 @@ MisesProfileManagerWithoutInit::MisesProfileManagerWithoutInit(
     : MisesProfileManager(user_data_dir) {
   set_do_final_services_init(false);
 }
+//For IPFS
+void MisesProfileManager::OnProfileAdded(Profile* profile) {
+  // Observe new profiles for creation of OTR profiles so that we can add our
+  // shared resources to them.
+  observed_profiles_.AddObservation(profile);
+  AddBraveSharedResourcesDataSourceToProfile(profile);
+}
+
+void MisesProfileManager::OnOffTheRecordProfileCreated(
+    Profile* off_the_record) {
+  AddBraveSharedResourcesDataSourceToProfile(off_the_record);
+}
+
+void MisesProfileManager::OnProfileWillBeDestroyed(Profile* profile) {
+  if (!profile->IsOffTheRecord()) {
+    observed_profiles_.RemoveObservation(profile);
+  }
+}
+//end ipfs

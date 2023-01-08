@@ -7,6 +7,46 @@ import("//mises/browser/autocomplete/sources.gni")
 import("//extensions/buildflags/buildflags.gni")
 import("//mises/chromium_src/chrome/browser/sources.gni")
 import("//mises/build/rust/config.gni")
+#For IPFS
+#import("//mises/browser/binance/sources.gni")
+#import("//mises/browser/brave_adaptive_captcha/sources.gni")
+#import("//mises/browser/brave_ads/sources.gni")
+#import("//mises/browser/brave_news/sources.gni")
+#import("//mises/browser/brave_rewards/sources.gni")
+#import("//mises/browser/brave_shields/sources.gni")
+#import("//mises/browser/brave_stats/sources.gni")
+#import("//mises/browser/brave_vpn/sources.gni")
+#import("//mises/browser/brave_wallet/android/sources.gni")
+#import("//mises/browser/brave_wallet/notifications/sources.gni")
+#import("//mises/browser/browsing_data/sources.gni")
+#import("//mises/browser/component_updater/sources.gni")
+#import("//mises/browser/crypto_dot_com/sources.gni")
+#import("//mises/browser/debounce/sources.gni")
+#import("//mises/browser/download/sources.gni")
+#import("//mises/browser/ephemeral_storage/sources.gni")
+#import("//mises/browser/ethereum_remote_client/buildflags/buildflags.gni")
+#import("//mises/browser/gemini/sources.gni")
+#import("//mises/browser/greaselion/sources.gni")
+#import("//mises/browser/importer/sources.gni")
+import("//mises/browser/ipfs/sources.gni")
+#import("//mises/browser/new_tab/sources.gni")
+#import("//mises/browser/notifications/sources.gni")
+#import("//mises/browser/ntp_background/sources.gni")
+#import("//mises/browser/permissions/sources.gni")
+#import("//mises/browser/playlist/sources.gni")
+#import("//mises/browser/search_engines/sources.gni")
+#import("//mises/browser/speedreader/sources.gni")
+#import("//mises/browser/themes/sources.gni")
+#import("//mises/browser/web_discovery/sources.gni")
+#import("//mises/chromium_src/chrome/browser/prefs/sources.gni")
+#import("//mises/components/brave_referrals/buildflags/buildflags.gni")
+#import("//mises/components/brave_vpn/buildflags/buildflags.gni")
+#import("//mises/components/brave_wayback_machine/buildflags/buildflags.gni")
+#import("//mises/components/brave_webtorrent/browser/buildflags/buildflags.gni")
+#import("//mises/components/ftx/browser/buildflags/buildflags.gni")
+#import("//mises/components/sidebar/buildflags/buildflags.gni")
+#import("//mises/components/tor/buildflags/buildflags.gni")
+#import("//mises/components/translate/core/common/buildflags.gni")
 
 mises_chrome_browser_visibility = [
   "//mises/browser/*",
@@ -23,6 +63,10 @@ mises_chrome_browser_visibility = [
   "//chrome/app/*",
   "//chrome/test/*",
   "//extensions/*",
+#For IPFS
+  # these are layering violation and need to be fixed
+#  "//mises/components/brave_ads/test:*",
+#  "//mises/components/ipfs/test:*",
 ]
 
 mises_chrome_browser_sources = [
@@ -34,6 +78,26 @@ mises_chrome_browser_sources = [
     "//mises/browser/mises_browser_process.h",
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.cc",
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.h",
+#For IPFS, as it needs some logic that embed services into chromium kernel.
+#    "//mises/browser/mises_browser_main_extra_parts.cc",
+#    "//mises/browser/mises_browser_main_extra_parts.h",
+    "//mises/browser/mises_content_browser_client.cc",
+    "//mises/browser/mises_content_browser_client.h",
+    "//mises/browser/mises_features_interal_names.h",
+    "//mises/browser/mises_local_state_prefs.cc",
+    "//mises/browser/mises_local_state_prefs.h",
+    "//mises/browser/mises_profile_prefs.cc",
+    "//mises/browser/mises_profile_prefs.h",
+#    "//mises/browser/mises_shell_integration.cc",
+#    "//mises/browser/mises_shell_integration.h",
+#    "//mises/browser/mises_tab_helpers.cc",
+#    "//mises/browser/mises_tab_helpers.h",
+    "//mises/browser/browser_context_keyed_service_factories.cc",
+    "//mises/browser/browser_context_keyed_service_factories.h",
+#    "//mises/browser/geolocation/brave_geolocation_permission_context_delegate.cc",
+#    "//mises/browser/geolocation/brave_geolocation_permission_context_delegate.h",
+#    "//mises/browser/update_util.cc",
+#    "//mises/browser/update_util.h",
 ]
 
 mises_chrome_browser_deps = [
@@ -83,6 +147,74 @@ mises_chrome_browser_deps = [
   "//third_party/widevine/cdm:buildflags",
   "//ui/base",
   "//url",
+#For IPFS
+#  "//mises/app:brave_generated_resources_grit",
+  "//mises/browser:browser_process",
+#  "//mises/browser/brave_federated",
+#  "//mises/browser/brave_wallet",
+#  "//mises/browser/brave_wallet:brave_wallet_delegate",
+#  "//mises/browser/brave_wallet:tab_helper",
+#  "//mises/browser/component_updater",
+#  "//mises/browser/content_settings",
+#  "//mises/browser/gcm_driver",
+#  "//mises/browser/metrics/buildflags",
+   "//mises/browser/net",
+#  "//mises/browser/renderer_context_menu",
+#  "//mises/browser/search",
+#  "//mises/browser/skus",
+#  "//mises/browser/sync",
+#  "//mises/browser/themes",
+#  "//mises/browser/ui",
+#  "//mises/common",
+#  "//mises/components/binance/browser/buildflags",
+#  "//mises/components/brave_adaptive_captcha/buildflags",
+#  "//mises/components/brave_ads/browser",
+#  "//mises/components/brave_ads/common",
+#  "//mises/components/brave_federated",
+#  "//mises/components/brave_perf_predictor/browser",
+#  "//mises/components/brave_referrals/buildflags",
+#  "//mises/components/brave_rewards/common/buildflags",
+#  "//mises/components/brave_search/browser",
+#  "//mises/components/brave_search/common",
+#  "//mises/components/brave_search/common:mojom",
+#  "//mises/components/brave_shields/common",
+  "//mises/components/brave_sync",
+  "//mises/components/brave_sync:features",
+  "//mises/components/brave_sync:network_time_helper",
+  "//mises/components/brave_sync:prefs",
+#  "//mises/components/brave_vpn/buildflags",
+#  "//mises/components/brave_wallet/browser",
+#  "//mises/components/brave_wallet/common",
+#  "//mises/components/brave_wallet/common:mojom",
+#  "//mises/components/brave_wayback_machine:buildflags",
+#  "//mises/components/brave_webtorrent/browser/buildflags",
+  "//mises/components/constants",
+#  "//mises/components/cosmetic_filters/browser",
+#  "//mises/components/cosmetic_filters/common:mojom",
+#  "//mises/components/crypto_dot_com/browser/buildflags",
+#  "//mises/components/de_amp/browser",
+#  "//mises/components/de_amp/common",
+#  "//mises/components/gemini/browser/buildflags",
+#  "//mises/components/greaselion/browser/buildflags",
+#  "//mises/components/ipfs/buildflags",
+  "//mises/components/l10n/browser",
+  "//mises/components/l10n/common",
+#  "//mises/components/ntp_background_images/browser",
+#  "//mises/components/ntp_background_images/buildflags",
+#  "//mises/components/ntp_tiles",
+#  "//mises/components/p3a",
+#  "//mises/components/p3a:buildflags",
+#  "//mises/components/playlist/buildflags",
+#  "//mises/components/privacy_sandbox",
+#  "//mises/components/resources",
+#  "//mises/components/sidebar/buildflags",
+#  "//mises/components/skus/browser",
+#  "//mises/components/skus/common",
+#  "//mises/components/speedreader/common:buildflags",
+#  "//mises/components/tor/buildflags",
+#  "//mises/components/translate/core/common:buildflags",
+#  "//mises/components/version_info",
+#  "//mises/services/network/public/cpp",
 ]
 
 if (is_mac) {
@@ -93,6 +225,23 @@ if (is_mac) {
     "//mises/browser/mises_shell_integration_mac.mm",
   ]
 }
+
+#if (enable_sparkle) {
+#  brave_chrome_browser_sources += [
+#    "//mises/browser/mac/sparkle_glue.h",
+#    "//mises/browser/mac/sparkle_glue.mm",
+#    "//mises/browser/mac/su_updater.h",
+#  ]
+#}
+#
+#if (enable_brave_vpn) {
+#  brave_chrome_browser_deps += [ "//mises/components/brave_vpn" ]
+#}
+#
+#if (ethereum_remote_client_enabled) {
+#  brave_chrome_browser_deps +=
+#      [ "//mises/browser/ethereum_remote_client:browser" ]
+#}
 
 if (is_android) {
   mises_chrome_browser_sources += [
@@ -105,9 +254,13 @@ if (is_android) {
     "//mises/chromium_src/chrome/browser/download/drag_download_item_android.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
     "//mises/chromium_src/chrome/browser/background/background_mode_manager_android.cc"
+#For IPFS
+#    "//mises/browser/android/brave_stats_updater_android.cc",
+#    "//mises/browser/sync/brave_sync_devices_android.cc",
+#    "//mises/browser/sync/brave_sync_devices_android.h",
 
   ]
-
+#For IPFS  brave_chrome_browser_sources += brave_browser_brave_wallet_android_sources
   mises_chrome_browser_deps += [
     "//mises/browser/android:android_browser_process",
     "//mises/build/android:jni_headers",
@@ -118,14 +271,41 @@ if (is_android) {
   ]
 } else {
   mises_chrome_browser_sources += [
+#For IPFS 
+#    "//mises/browser/p3a/p3a_core_metrics.cc",
+#    "//mises/browser/p3a/p3a_core_metrics.h",
+#    "//mises/browser/profile_resetter/brave_profile_resetter.cc",
+#    "//mises/browser/profile_resetter/brave_profile_resetter.h",
   ]
 
   mises_chrome_browser_deps += [
     "//mises/app:mises_generated_resources_grit",
     "//components/infobars/content",
+#For IPFS
+#    "//mises/browser/importer",
+#    "//mises/browser/infobars",
+#    "//mises/browser/ui/bookmark",
+#    "//mises/components/brave_search_conversion",
+#    "//mises/components/time_period_storage",
   ]
 }
-
+#For IPFS
+#if (brave_adaptive_captcha_enabled) {
+#  brave_chrome_browser_deps += [ "//mises/browser/brave_ads/tooltips" ]
+#}
+#
+#if (enable_sidebar) {
+#  brave_chrome_browser_deps += [ "//mises/components/sidebar" ]
+#}
+#
+#if (enable_tor) {
+#  brave_chrome_browser_deps += [
+#    "//mises/browser/tor",
+#    "//mises/components/tor",
+#    "//mises/components/tor:common",
+#    "//mises/components/tor:pref_names",
+#  ]
+#}
 if (enable_extensions) {
   mises_chrome_browser_deps += [
     "//mises/browser/extensions",
@@ -133,9 +313,47 @@ if (enable_extensions) {
     "//extensions/browser",
     "//extensions/common:common_constants",
   ]
+#For IPFS  
+#  if (enable_brave_webtorrent) {
+#    brave_chrome_browser_deps +=
+#        [ "//mises/components/brave_webtorrent/browser" ]
+#  }
 
 }
-
+#For IPFS
+#if (enable_brave_referrals) {
+#  brave_chrome_browser_deps += [ "//mises/components/brave_referrals/browser" ]
+#}
+#
+#if (enable_brave_wayback_machine) {
+#  brave_chrome_browser_deps += [ "//mises/components/brave_wayback_machine" ]
+#}
+#
+#if (enable_widevine) {
+#  brave_chrome_browser_sources += [
+#    "//mises/browser/brave_drm_tab_helper.cc",
+#    "//mises/browser/brave_drm_tab_helper.h",
+#  ]
+#  brave_chrome_browser_deps += [
+#    "//mises/browser/widevine",
+#    "//mises/browser/widevine:constants",
+#    "//mises/components/brave_drm",
+#  ]
+#}
+#
+#if (enable_ftx) {
+#  brave_chrome_browser_deps += [ "//mises/browser/ftx" ]
+#}
+#
+#if (enable_brave_translate_go || enable_brave_translate_extension) {
+#  brave_chrome_browser_sources += [
+#    "//mises/browser/translate/brave_translate_prefs_migration.cc",
+#    "//mises/browser/translate/brave_translate_prefs_migration.h",
+#    "//mises/browser/translate/brave_translate_utils.cc",
+#    "//mises/browser/translate/brave_translate_utils.h",
+#  ]
+#}
+#end IPFS
 if (is_win) {
   mises_chrome_browser_sources += [
     "//mises/browser/mises_shell_integration_win.cc",
@@ -163,6 +381,9 @@ if (is_win && is_official_build) {
 
 mises_chrome_browser_public_deps = [
   "//mises/browser:browser_process",
+#For IPFS
+  "//mises/components/brave_sync:constants",
+#  "//mises/components/variations:constants",
 ]
 
 if (is_mac) {
@@ -215,5 +436,64 @@ if (is_android) {
 
 
 mises_chrome_browser_sources += mises_browser_autocomplete_sources
+#For IPFS
+#mises_chrome_browser_sources += mises_browser_binance_sources
+#mises_chrome_browser_sources += mises_browser_brave_adaptive_captcha_sources
+#mises_chrome_browser_sources += mises_browser_brave_ads_sources
+#mises_chrome_browser_sources += mises_browser_brave_wallet_sources
+#mises_chrome_browser_sources += mises_browser_brave_news_sources
+#mises_chrome_browser_sources += mises_browser_brave_vpn_sources
+#mises_chrome_browser_sources += mises_browser_brave_rewards_sources
+#mises_chrome_browser_sources += mises_browser_brave_shields_sources
+#mises_chrome_browser_sources += mises_browser_brave_stats_updater_sources
+#mises_chrome_browser_sources += mises_browser_browsing_data_sources
+#mises_chrome_browser_sources += mises_browser_component_updater_sources
+#mises_chrome_browser_sources += mises_browser_crypto_dot_com_sources
+#mises_chrome_browser_sources += mises_browser_debounce_sources
+#mises_chrome_browser_sources += mises_browser_download_sources
+#mises_chrome_browser_sources += mises_browser_ephemeral_storage_sources
+#mises_chrome_browser_sources += mises_browser_gemini_sources
+#mises_chrome_browser_sources += mises_browser_greaselion_sources
+#mises_chrome_browser_sources += mises_browser_importer_sources
+mises_chrome_browser_sources += mises_browser_ipfs_sources
+#mises_chrome_browser_sources += mises_browser_new_tab_sources
+#mises_chrome_browser_sources += mises_browser_notifications_sources
+#mises_chrome_browser_sources += mises_browser_ntp_background_sources
+#mises_chrome_browser_sources += mises_browser_permissions_sources
+#mises_chrome_browser_sources += mises_browser_playlist_sources
+#mises_chrome_browser_sources += mises_browser_search_engines_sources
+#mises_chrome_browser_sources += mises_browser_speedreader_sources
+#mises_chrome_browser_sources += mises_browser_themes_sources
+#mises_chrome_browser_sources += mises_browser_web_discovery_sources
 
 mises_chrome_browser_deps += mises_browser_autocomplete_deps
+#For IPFS
+#mises_chrome_browser_deps += mises_browser_binance_deps
+#mises_chrome_browser_deps += mises_browser_brave_adaptive_captcha_deps
+#mises_chrome_browser_deps += mises_browser_brave_ads_deps
+#mises_chrome_browser_deps += mises_browser_brave_news_deps
+#mises_chrome_browser_deps += mises_browser_brave_vpn_deps
+#mises_chrome_browser_deps += mises_browser_brave_rewards_deps
+#mises_chrome_browser_deps += mises_browser_brave_shields_deps
+#mises_chrome_browser_deps += mises_browser_brave_stats_updater_deps
+#mises_chrome_browser_deps += mises_browser_browsing_data_deps
+#mises_chrome_browser_deps += mises_browser_component_updater_deps
+#mises_chrome_browser_deps += mises_browser_crypto_dot_com_deps
+#mises_chrome_browser_deps += mises_browser_debounce_deps
+#mises_chrome_browser_deps += mises_browser_download_deps
+#mises_chrome_browser_deps += mises_browser_ephemeral_storage_deps
+#mises_chrome_browser_deps += mises_browser_gemini_deps
+#mises_chrome_browser_deps += mises_browser_greaselion_deps
+#mises_chrome_browser_deps += mises_browser_importer_deps
+mises_chrome_browser_deps += mises_browser_ipfs_deps
+#mises_chrome_browser_deps += mises_browser_new_tab_deps
+#mises_chrome_browser_deps += mises_browser_notifications_deps
+#mises_chrome_browser_deps += mises_browser_ntp_background_deps
+#mises_chrome_browser_deps += mises_browser_permissions_deps
+#mises_chrome_browser_deps += mises_browser_playlist_deps
+#mises_chrome_browser_deps += mises_browser_search_engines_deps
+#mises_chrome_browser_deps += mises_browser_speedreader_deps
+#mises_chrome_browser_deps += mises_browser_themes_deps
+#mises_chrome_browser_deps += mises_browser_web_discovery_deps
+#mises_chrome_browser_deps += mises_chromium_src_chrome_browser_deps
+#mises_chrome_browser_deps += mises_chromium_src_chrome_browser_prefs_deps

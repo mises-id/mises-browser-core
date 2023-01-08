@@ -26,6 +26,14 @@ source_set("browser_process") {
   deps = [
     "//chrome/browser:browser_process",
     "//extensions/buildflags",
+    "//brave/components/ipfs/buildflags",
+#For IPFS
+#    "//brave/browser/ethereum_remote_client/buildflags",
+#    "//brave/components/brave_referrals/buildflags",
+#    "//brave/components/greaselion/browser/buildflags",
+    "//brave/components/ipfs/buildflags",
+#    "//brave/components/speedreader/common:buildflags",
+#    "//brave/components/tor/buildflags",
   ]
 }
 
@@ -34,8 +42,14 @@ group("browser") {
     "//mises:browser_dependencies",
     "//mises/browser/*",
     "//mises/test:*",
+#For IPFS
+#    "//brave/vendor/bat-native-ledger:headers",
 
     # these are layering violation and need to be fixed
+#    "//brave/components/brave_ads/test:brave_ads_unit_tests",
+#    "//brave/components/brave_rewards/browser:testutil",
+#    "//brave/components/brave_rewards/test:brave_rewards_unit_tests",
+#    "//brave/components/ipfs/test:*",
   ]
 
   if (enable_sparkle) {

@@ -1,16 +1,46 @@
+import("//brave/components/tor/buildflags/buildflags.gni")
+import("//components/gcm_driver/config.gni")
 
 source_set("profiles") {
   # Remove when https://github.com/brave/brave-browser/issues/10648 is resolved
   check_includes = false
   sources = [
+#    "brave_bookmark_model_loaded_observer.cc",
+#    "brave_bookmark_model_loaded_observer.h",
+#    "brave_profile_avatar_downloader.cc",
+#    "brave_profile_avatar_downloader.h",
+    "mises_profile_impl.cc",
+    "mises_profile_impl.h",
     "mises_profile_manager.cc",
     "mises_profile_manager.h",
+    "mises_renderer_updater.cc",
+    "mises_renderer_updater.h",
+    "mises_renderer_updater_factory.cc",
+    "mises_renderer_updater_factory.h",
   ]
+
+  if (is_win) {
+    sources += [
+      "brave_profile_shortcut_manager_win.cc",
+      "brave_profile_shortcut_manager_win.h",
+    ]
+  }
 
   public_deps = [ ":util" ]
 
   deps = [
     "//base",
+#    "//brave/browser/gcm_driver",
+    "//brave/common",
+#    "//brave/components/brave_ads/browser",
+#    "//brave/components/brave_rewards/browser",
+#    "//brave/components/brave_sync:prefs",
+#    "//brave/components/brave_wallet/browser",
+#    "//brave/components/brave_wallet/common",
+#    "//mises/components/constants",
+    "//mises/components/ipfs/buildflags",
+#    "//brave/components/tor",
+    "//brave/content:browser",
     "//chrome/common",
     "//components/gcm_driver:gcm_buildflags",
     "//components/keyed_service/content",
@@ -22,6 +52,13 @@ source_set("profiles") {
     "//ui/base",
   ]
 
+  if (use_gcm_from_platform) {
+    deps += [ "//brave/browser/gcm_driver" ]
+  }
+
+  if (enable_tor) {
+    deps += [ "//brave/browser/tor" ]
+  }
 }
 
 source_set("util") {
@@ -29,12 +66,16 @@ source_set("util") {
   check_includes = false
 
   sources = [
-   # "profile_util.cc",
-   # "profile_util.h",
+    "profile_util.cc",
+    "profile_util.h",
   ]
 
   deps = [
     "//base",
+    "//mises/common",
+    "//mises/components/ntp_background_images/common",
+    "//mises/components/search_engines",
+    "//mises/components/tor/buildflags",
     "//components/prefs",
     "//content/public/browser",
   ]

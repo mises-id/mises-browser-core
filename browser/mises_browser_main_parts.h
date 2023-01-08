@@ -16,8 +16,14 @@ class MisesBrowserMainParts : public ChromeBrowserMainParts {
   MisesBrowserMainParts& operator=(const MisesBrowserMainParts&) = delete;
   ~MisesBrowserMainParts() override = default;
 
-
+  void PreBrowserStart() override;
   void PostBrowserStart() override;
+  void PreShutdown() override;
+  void PreProfileInit() override;
+  void PostProfileInit(Profile* profile, bool is_initial_profile) override;
+
+ private:
+  friend class ChromeBrowserMainExtraPartsTor;
 };
 
 #endif  // BRAVE_BROWSER_BRAVE_BROWSER_MAIN_PARTS_H_

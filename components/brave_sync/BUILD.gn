@@ -1,0 +1,130 @@
+import("//mises/components/common/typescript.gni")
+import("//build/buildflag_header.gni")
+import("//build/config/features.gni")
+import("//tools/grit/grit_rule.gni")
+import("//tools/grit/repack.gni")
+
+declare_args() {
+  brave_sync_endpoint = ""
+}
+
+if (is_official_build) {
+  assert(brave_sync_endpoint != "")
+}
+
+buildflag_header("buildflags") {
+  header = "buildflags.h"
+  flags = [ "BRAVE_SYNC_ENDPOINT=\"$brave_sync_endpoint\"" ]
+}
+
+static_library("crypto") {
+  sources = [
+    "crypto/crypto.cc",
+    "crypto/crypto.h",
+  ]
+
+  deps = [
+    "//base",
+    "//mises/vendor/bat-native-tweetnacl:tweetnacl",
+    "//mises/vendor/bip39wally-core-native:bip39wally-core",
+    "//crypto",
+    "//third_party/boringssl",
+  ]
+
+  if (is_android) {
+    deps += [ "//third_party/android_sdk:cpu_features" ]
+  }
+}
+
+source_set("features") {
+  sources = [
+    "features.cc",
+    "features.h",
+  ]
+
+  deps = [ "//base" ]
+}
+
+static_library("network_time_helper") {
+  # Remove when https://github.com/brave/brave-browser/issues/10650 is resolved
+  check_includes = false
+  sources = [
+    "network_time_helper.cc",
+    "network_time_helper.h",
+  ]
+
+  deps = [
+    "//base",
+    "//components/network_time",
+  ]
+
+  if (is_ios) {
+    deps += [ "//ios/web/public" ]
+  }
+}
+
+source_set("prefs") {
+  sources = [
+    "brave_sync_prefs.cc",
+    "brave_sync_prefs.h",
+  ]
+
+  deps = [
+    "//base",
+    "//components/os_crypt",
+    "//components/prefs",
+  ]
+}
+
+source_set("time_limited_codes") {
+  sources = [
+    "qr_code_data.cc",
+    "qr_code_data.h",
+    "qr_code_validator.cc",
+    "qr_code_validator.h",
+    "time_limited_words.cc",
+    "time_limited_words.h",
+  ]
+
+  deps = [
+    ":crypto",
+    "//base",
+  ]
+}
+
+static_library("sync_service_impl_helper") {
+  sources = [
+    "sync_service_impl_helper.cc",
+    "sync_service_impl_helper.h",
+  ]
+
+  deps = [
+    "//base",
+    "//components/sync/driver",
+    "//components/sync_device_info",
+  ]
+}
+
+group("brave_sync") {
+  deps = [
+    ":crypto",
+    ":features",
+    ":network_time_helper",
+    ":prefs",
+    ":time_limited_codes",
+    "//base",
+  ]
+}
+
+group("constants") {
+  public_deps = [ ":buildflags" ]
+}
+
+source_set("unit_tests") {
+  testonly = true
+  sources = [
+  ]
+
+  deps = [
+  ]
+}

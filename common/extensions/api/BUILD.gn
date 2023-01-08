@@ -1,6 +1,7 @@
 import("//mises/resources/mises_grit.gni")
 import("//tools/json_schema_compiler/json_features.gni")
 import("//tools/json_schema_compiler/json_schema_api.gni")
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 
 json_features("api_features") {
   feature_type = "APIFeature"
@@ -10,6 +11,9 @@ json_features("api_features") {
     "//extensions/common/api/_api_features.json",
     "_api_features.json",
   ]
+  if (enable_ipfs) {
+    sources += [ "_ipfs_api_features.json" ]
+  }
 }
 
 json_features("permission_features") {
@@ -42,7 +46,9 @@ mises_extensions_api_schema_sources = [
   "rewards_notifications.json",
   "mises_private.idl"
 ]
-
+if (enable_ipfs) {
+  mises_extensions_api_schema_sources += [ "ipfs.json" ]
+}
 mises_extensions_api_uncompiled_sources = []
 mises_extensions_api_root_namespace = "extensions::api::%(namespace)s"
 mises_extensions_api_schema_include_rules =
