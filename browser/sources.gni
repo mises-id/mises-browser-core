@@ -253,7 +253,7 @@ if (is_android) {
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
     "//mises/chromium_src/chrome/browser/download/drag_download_item_android.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
-    "//mises/chromium_src/chrome/browser/background/background_mode_manager_android.cc"
+    "//mises/chromium_src/chrome/browser/background/background_mode_manager_android.cc",
 #For IPFS
 #    "//mises/browser/android/brave_stats_updater_android.cc",
 #    "//mises/browser/sync/brave_sync_devices_android.cc",

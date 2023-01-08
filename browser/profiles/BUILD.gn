@@ -1,4 +1,4 @@
-import("//brave/components/tor/buildflags/buildflags.gni")
+#import("//brave/components/tor/buildflags/buildflags.gni")
 import("//components/gcm_driver/config.gni")
 
 source_set("profiles") {
@@ -40,7 +40,7 @@ source_set("profiles") {
 #    "//mises/components/constants",
     "//mises/components/ipfs/buildflags",
 #    "//brave/components/tor",
-    "//brave/content:browser",
+    "//miese/content:browser",
     "//chrome/common",
     "//components/gcm_driver:gcm_buildflags",
     "//components/keyed_service/content",
@@ -56,9 +56,9 @@ source_set("profiles") {
     deps += [ "//brave/browser/gcm_driver" ]
   }
 
-  if (enable_tor) {
-    deps += [ "//brave/browser/tor" ]
-  }
+#  if (enable_tor) {
+#    deps += [ "//brave/browser/tor" ]
+#  }
 }
 
 source_set("util") {
@@ -73,9 +73,9 @@ source_set("util") {
   deps = [
     "//base",
     "//mises/common",
-    "//mises/components/ntp_background_images/common",
-    "//mises/components/search_engines",
-    "//mises/components/tor/buildflags",
+#    "//mises/components/ntp_background_images/common",
+#    "//mises/components/search_engines",
+#    "//mises/components/tor/buildflags",
     "//components/prefs",
     "//content/public/browser",
   ]
