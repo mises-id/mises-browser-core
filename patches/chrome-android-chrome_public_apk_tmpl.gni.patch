@@ -1,30 +1,13 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index bf289305713f8e6db146171c824d807195b5daf9..111e4e1bd48aeea9b7420939b0381e0b8c8f56f5 100644
+index bf289305713f8e6db146171c824d807195b5daf9..d1a42a86a3dd60addc2b96b33d397b61ea0c488b 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
-@@ -225,6 +225,16 @@ template("chrome_public_common_apk_or_module_tmpl") {
-       # seconds on my machine).
-       strip_unused_resources = is_official_build
-     }
-+    if (false && _is_bundle) {
-+        # Resources config for blocklisting resource names from obfuscation
-+        resources_config_paths = [
-+          "//android_webview/aapt2.config",
-+          "//chrome/android/aapt2.config",
-+        ]
-+        if (defined(invoker.resources_config_paths)) {
-+          resources_config_paths += invoker.resources_config_paths
-+        }
-+    }
+@@ -33,7 +33,7 @@ default_chrome_public_jinja_variables = [
+ _add_unwind_tables_in_chrome_32bit_apk =
+     is_official_build && (target_cpu == "arm" || target_cpu == "arm64") &&
+     (android_channel == "default" || android_channel == "canary" ||
+-     android_channel == "dev")
++     android_channel == "dev" || android_channel == "stable")
  
-     if (!defined(aapt_locale_allowlist)) {
-       # Include resource strings files only for supported locales.
-@@ -628,7 +638,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
-           resources_config_paths += invoker.resources_config_paths
-         }
-       }
--
-+      
-       if (defined(invoker.never_incremental)) {
-         never_incremental = invoker.never_incremental
-       } else if (!defined(invoker.target_type) ||
+ # A template used to declare any target that will implement a full Chromium
+ # or Chrome application, either as an APK, or an app bundle module.

@@ -676,7 +676,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
       CompleteRequestAndDeleteThis(net::ERR_FAILED);
       return;
     }
-    LOG(INFO) << "ExtensionURLLoader::Start()" << render_process_id_ << "," << request_.url;
+    LOG(INFO) << "ExtensionURLLoader::Start()" << render_process_id_;
 
     LoadExtension(extension, std::move(directory_path));
   }
@@ -759,7 +759,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
   void LoadExtension(scoped_refptr<const Extension> extension,
                      base::FilePath directory_path) {
     DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
-    LOG(INFO) << "ExtensionURLLoader::LoadExtension  step - 1 " << directory_path;
+    //LOG(INFO) << "ExtensionURLLoader::LoadExtension  step - 1 " << directory_path;
     std::string content_security_policy;
     const std::string* cross_origin_embedder_policy = nullptr;
     const std::string* cross_origin_opener_policy = nullptr;
