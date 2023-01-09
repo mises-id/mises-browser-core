@@ -1302,11 +1302,12 @@ void BrowserProcessImpl::CreateBackgroundPrintingManager() {
 }
 
 void BrowserProcessImpl::CreateSafeBrowsingService() {
+
   DCHECK(!safe_browsing_service_);
   // Set this flag to true so that we don't retry indefinitely to
   // create the service class if there was an error.
   created_safe_browsing_service_ = true;
-#if !BUILDFLAG(IS_ANDROID)
+#if 1
   // The factory can be overridden in tests.
   if (!safe_browsing::SafeBrowsingServiceInterface::HasFactory()) {
     safe_browsing::SafeBrowsingServiceInterface::RegisterFactory(
