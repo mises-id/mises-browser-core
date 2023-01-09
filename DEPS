@@ -2,6 +2,7 @@ use_relative_paths = True
 
 deps = {
   "vendor/bip39wally-core-native": "https://github.com/brave-intl/bat-native-bip39wally-core.git@0d3a8713a2b388d2156fe49a70ef3f7cdb44b190",
+  "vendor/bat-native-tweetnacl": "https://github.com/brave-intl/bat-native-tweetnacl.git@800f9d40b7409239ff192e0be634764e747c7a75",
   "vendor/transifex": "https://github.com/transifex/transifex-python@103b6ac7ad937155f7f1497a68d5a05882664d58",
   "vendor/lxml": "https://github.com/lxml/lxml@d01872ccdf7e1e5e825b6c6292b43e7d27ae5fc4",
   "vendor/requests": "https://github.com/kennethreitz/requests@e4d59bedfd3c7f4f254f4f5d036587bcd8152458",

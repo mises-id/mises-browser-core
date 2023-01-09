@@ -3,15 +3,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_service_key_network_delegate_helper.h"
+#include "mises/browser/net/brave_service_key_network_delegate_helper.h"
 
 #include <string>
 #include <vector>
 
 #include "base/no_destructor.h"
-#include "brave/components/constants/brave_services_key.h"
-#include "brave/components/constants/network_constants.h"
-#include "brave/components/update_client/buildflags.h"
+#include "mises/components/constants/brave_services_key.h"
+#include "mises/components/constants/network_constants.h"
+#include "mises/components/update_client/buildflags.h"
 #include "net/base/net_errors.h"
 #include "net/http/http_request_headers.h"
 #include "url/gurl.h"

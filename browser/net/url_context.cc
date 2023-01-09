@@ -3,16 +3,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/url_context.h"
+#include "mises/browser/net/url_context.h"
 
 #include <memory>
 #include <string>
 
-#include "brave/browser/brave_shields/brave_shields_web_contents_observer.h"
-#include "brave/components/brave_shields/browser/brave_shields_util.h"
-#include "brave/components/brave_webtorrent/browser/buildflags/buildflags.h"
-#include "brave/components/brave_webtorrent/browser/webtorrent_util.h"
-#include "brave/components/ipfs/buildflags/buildflags.h"
+//#include "mises/browser/brave_shields/brave_shields_web_contents_observer.h"
+//#include "mises/components/brave_shields/browser/brave_shields_util.h"
+//#include "mises/components/brave_webtorrent/browser/buildflags/buildflags.h"
+//#include "mises/components/brave_webtorrent/browser/webtorrent_util.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
 #include "chrome/browser/content_settings/host_content_settings_map_factory.h"
 #include "chrome/browser/profiles/profile.h"
 #include "content/public/browser/browser_thread.h"
@@ -22,9 +22,9 @@
 #include "url/origin.h"
 
 #if BUILDFLAG(ENABLE_IPFS)
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_utils.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/pref_names.h"
 #include "chrome/common/channel_info.h"
 #include "components/prefs/pref_service.h"
 #include "components/user_prefs/user_prefs.h"

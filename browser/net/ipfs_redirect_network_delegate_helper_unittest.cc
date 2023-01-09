@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/ipfs_redirect_network_delegate_helper.h"
+#include "mises/browser/net/ipfs_redirect_network_delegate_helper.h"
 
 #include <memory>
 #include <string>
@@ -11,11 +11,11 @@
 #include <vector>
 
 #include "base/test/scoped_feature_list.h"
-#include "brave/browser/net/url_context.h"
-#include "brave/components/ipfs/features.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_utils.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/browser/net/url_context.h"
+#include "mises/components/ipfs/features.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/pref_names.h"
 #include "chrome/common/channel_info.h"
 #include "chrome/test/base/chrome_render_view_host_test_harness.h"
 #include "chrome/test/base/testing_profile.h"

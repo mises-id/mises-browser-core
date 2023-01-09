@@ -26,12 +26,12 @@ source_set("browser_process") {
   deps = [
     "//chrome/browser:browser_process",
     "//extensions/buildflags",
-    "//brave/components/ipfs/buildflags",
+    "//mises/components/ipfs/buildflags",
 #For IPFS
 #    "//brave/browser/ethereum_remote_client/buildflags",
 #    "//brave/components/brave_referrals/buildflags",
 #    "//brave/components/greaselion/browser/buildflags",
-    "//brave/components/ipfs/buildflags",
+    "//mises/components/ipfs/buildflags",
 #    "//brave/components/speedreader/common:buildflags",
 #    "//brave/components/tor/buildflags",
   ]

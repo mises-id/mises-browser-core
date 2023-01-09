@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/browser/brave_local_state_prefs.h"
+#include "mises/browser/mises_local_state_prefs.h"
 
 #include "base/values.h"
 //#include "mises/browser/brave_stats/brave_stats_updater.h"

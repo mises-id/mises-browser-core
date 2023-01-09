@@ -9,8 +9,8 @@
 #include <memory>
 
 #include "base/memory/ref_counted.h"
-#include "mises/browser/brave_browser_process.h"
-#include "mises/components/brave_component_updater/browser/brave_component.h"
+#include "mises/browser/mises_browser_process.h"
+#include "mises/components/mises_component_updater/browser/brave_component.h"
 //#include "mises/components/brave_referrals/buildflags/buildflags.h"
 //#include "mises/components/greaselion/browser/buildflags/buildflags.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
@@ -44,9 +44,9 @@ class BraveStatsUpdater;
 }  // namespace brave_stats
 
 namespace greaselion {
-#if BUILDFLAG(ENABLE_GREASELION)
-class GreaselionDownloadService;
-#endif
+//#if BUILDFLAG(ENABLE_GREASELION)
+//class GreaselionDownloadService;
+//#endif
 }  // namespace greaselion
 
 namespace debounce {
@@ -100,8 +100,7 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
 //#endif
 //  debounce::DebounceComponentInstaller* debounce_component_installer() override;
 //  brave_shields::HTTPSEverywhereService* https_everywhere_service() override;
-  brave_component_updater::LocalDataFilesService* local_data_files_service()
-      override;
+  brave_component_updater::LocalDataFilesService* local_data_files_service();//override;
 //#if BUILDFLAG(ENABLE_TOR)
 //  tor::BraveTorClientUpdater* tor_client_updater() override;
 //  tor::BraveTorPluggableTransportUpdater* tor_pluggable_transport_updater()
@@ -128,9 +127,9 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
 
   void CreateProfileManager();
 
-#if BUILDFLAG(ENABLE_TOR)
-  void OnTorEnabledChanged();
-#endif
+//#if BUILDFLAG(ENABLE_TOR)
+//  void OnTorEnabledChanged();
+//#endif
 
   void UpdateBraveDarkMode();
   void OnBraveDarkModeChanged();
@@ -149,24 +148,24 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
   std::unique_ptr<brave_component_updater::ExtensionWhitelistService>
       extension_whitelist_service_;
 #endif
-#if BUILDFLAG(ENABLE_GREASELION)
-  std::unique_ptr<greaselion::GreaselionDownloadService>
-      greaselion_download_service_;
-#endif
+//#if BUILDFLAG(ENABLE_GREASELION)
+//  std::unique_ptr<greaselion::GreaselionDownloadService>
+//      greaselion_download_service_;
+//#endif
   std::unique_ptr<debounce::DebounceComponentInstaller>
       debounce_component_installer_;
   bool created_https_everywhere_service_ = false;
   std::unique_ptr<brave_shields::HTTPSEverywhereService>
       https_everywhere_service_;
   std::unique_ptr<brave_stats::BraveStatsUpdater> brave_stats_updater_;
-#if BUILDFLAG(ENABLE_BRAVE_REFERRALS)
-  std::unique_ptr<brave::BraveReferralsService> brave_referrals_service_;
-#endif
-#if BUILDFLAG(ENABLE_TOR)
-  std::unique_ptr<tor::BraveTorClientUpdater> tor_client_updater_;
-  std::unique_ptr<tor::BraveTorPluggableTransportUpdater>
-      tor_pluggable_transport_updater_;
-#endif
+//#if BUILDFLAG(ENABLE_BRAVE_REFERRALS)
+//  std::unique_ptr<brave::BraveReferralsService> brave_referrals_service_;
+//#endif
+//#if BUILDFLAG(ENABLE_TOR)
+//  std::unique_ptr<tor::BraveTorClientUpdater> tor_client_updater_;
+//  std::unique_ptr<tor::BraveTorPluggableTransportUpdater>
+//      tor_pluggable_transport_updater_;
+//#endif
 #if BUILDFLAG(ENABLE_IPFS)
   std::unique_ptr<ipfs::BraveIpfsClientUpdater> ipfs_client_updater_;
 #endif
@@ -176,10 +175,10 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
       ntp_background_images_service_;
   std::unique_ptr<brave_ads::ResourceComponent> resource_component_;
 
-#if BUILDFLAG(ENABLE_SPEEDREADER)
-  std::unique_ptr<speedreader::SpeedreaderRewriterService>
-      speedreader_rewriter_service_;
-#endif
+//#if BUILDFLAG(ENABLE_SPEEDREADER)
+//  std::unique_ptr<speedreader::SpeedreaderRewriterService>
+//      speedreader_rewriter_service_;
+//#endif
 
   std::unique_ptr<brave::BraveFarblingService> brave_farbling_service_;
 

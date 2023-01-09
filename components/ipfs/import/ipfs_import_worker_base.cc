@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/import/ipfs_import_worker_base.h"
+#include "mises/components/ipfs/import/ipfs_import_worker_base.h"
 
 #include <utility>
 
@@ -17,12 +17,12 @@
 #include "base/task/task_runner_util.h"
 #include "base/task/thread_pool.h"
 #include "base/time/time.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_json_parser.h"
-#include "brave/components/ipfs/ipfs_utils.h"
-#include "brave/components/ipfs/pref_names.h"
-#include "brave/components/ipfs/service_sandbox_type.h"
-#include "components/grit/brave_components_strings.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_json_parser.h"
+#include "mises/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/pref_names.h"
+#include "mises/components/ipfs/service_sandbox_type.h"
+#include "components/grit/mises_components_strings.h"
 #include "components/prefs/pref_registry_simple.h"
 #include "components/prefs/pref_service.h"
 #include "components/user_prefs/user_prefs.h"

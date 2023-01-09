@@ -3,21 +3,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_httpse_network_delegate_helper.h"
+#include "mises/browser/net/brave_httpse_network_delegate_helper.h"
 
 #include <algorithm>
 #include <memory>
 #include <string>
 
 #include "base/threading/scoped_blocking_call.h"
-#include "brave/browser/brave_browser_process.h"
-#include "brave/browser/brave_shields/brave_shields_web_contents_observer.h"
-#include "brave/components/brave_shields/browser/https_everywhere_service.h"
-#include "brave/components/brave_shields/common/brave_shield_constants.h"
+#include "mises/browser/mises_browser_process.h"
+//#include "mises/browser/brave_shields/brave_shields_web_contents_observer.h"
+//#include "mises/components/brave_shields/browser/https_everywhere_service.h"
+//#include "mises/components/brave_shields/common/brave_shield_constants.h"
 #include "content/public/browser/browser_thread.h"
 #include "net/base/net_errors.h"
 
-using brave_shields::BraveShieldsWebContentsObserver;
+//using brave_shields::BraveShieldsWebContentsObserver;
 using content::BrowserThread;
 
 namespace brave {
@@ -74,17 +74,17 @@ int OnBeforeURLRequest_HttpsePreFileWork(
   }
 
   if (is_valid_url) {
-    if (!g_brave_browser_process->https_everywhere_service()
+    if (!g_mises_browser_process->https_everywhere_service()
              ->GetHTTPSURLFromCacheOnly(&ctx->request_url,
                                         ctx->request_identifier,
                                         &ctx->new_url_spec)) {
-      g_brave_browser_process->https_everywhere_service()
+      g_mises_browser_process->https_everywhere_service()
           ->GetTaskRunner()
           ->PostTaskAndReply(
               FROM_HERE,
               base::BindOnce(
                   OnBeforeURLRequest_HttpseFileWork,
-                  g_brave_browser_process->https_everywhere_service()->engine(),
+                  g_mises_browser_process->https_everywhere_service()->engine(),
                   ctx),
               base::BindOnce(
                   base::IgnoreResult(&OnBeforeURLRequest_HttpsePostFileWork),

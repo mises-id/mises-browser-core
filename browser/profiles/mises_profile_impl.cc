@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/browser/profiles/brave_profile_impl.h"
+#include "mises/browser/profiles/mises_profile_impl.h"
 
 #include "mises/browser/profiles/profile_util.h"
 #include "mises/components/constants/pref_names.h"

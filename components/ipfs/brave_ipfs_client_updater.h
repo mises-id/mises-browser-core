@@ -15,7 +15,7 @@
 #include "base/observer_list_types.h"
 #include "base/scoped_observation.h"
 #include "base/task/sequenced_task_runner.h"
-#include "brave/components/brave_component_updater/browser/brave_component.h"
+#include "mises/components/mises_component_updater/browser/brave_component.h"
 #include "build/build_config.h"
 #include "components/component_updater/component_updater_service.h"
 

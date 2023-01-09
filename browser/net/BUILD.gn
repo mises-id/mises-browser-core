@@ -29,28 +29,28 @@ source_set("net") {
 #    "brave_block_safebrowsing_urls.h",
     "brave_common_static_redirect_network_delegate_helper.cc",
     "brave_common_static_redirect_network_delegate_helper.h",
-    "brave_httpse_network_delegate_helper.cc",
-    "brave_httpse_network_delegate_helper.h",
+#    "brave_httpse_network_delegate_helper.cc",
+#    "brave_httpse_network_delegate_helper.h",
     "brave_proxying_url_loader_factory.cc",
     "brave_proxying_url_loader_factory.h",
     "brave_proxying_web_socket.cc",
     "brave_proxying_web_socket.h",
-    "brave_reduce_language_network_delegate_helper.cc",
-    "brave_reduce_language_network_delegate_helper.h",
+#    "brave_reduce_language_network_delegate_helper.cc",
+#    "brave_reduce_language_network_delegate_helper.h",
     "brave_request_handler.cc",
     "brave_request_handler.h",
     "brave_service_key_network_delegate_helper.cc",
     "brave_service_key_network_delegate_helper.h",
-    "brave_site_hacks_network_delegate_helper.cc",
-    "brave_site_hacks_network_delegate_helper.h",
-    "brave_static_redirect_network_delegate_helper.cc",
-    "brave_static_redirect_network_delegate_helper.h",
+#    "brave_site_hacks_network_delegate_helper.cc",
+#    "brave_site_hacks_network_delegate_helper.h",
+#    "brave_static_redirect_network_delegate_helper.cc",
+#    "brave_static_redirect_network_delegate_helper.h",
     "brave_stp_util.cc",
     "brave_stp_util.h",
     "brave_system_request_handler.cc",
     "brave_system_request_handler.h",
-    "decentralized_dns_network_delegate_helper.cc",
-    "decentralized_dns_network_delegate_helper.h",
+#    "decentralized_dns_network_delegate_helper.cc",
+#    "decentralized_dns_network_delegate_helper.h",
     "global_privacy_control_network_delegate_helper.cc",
     "global_privacy_control_network_delegate_helper.h",
     "resource_context_data.cc",
@@ -62,20 +62,20 @@ source_set("net") {
   deps = [
     ":geolocation",
     "//base",
-#    "//brave/app:brave_generated_resources_grit",
-    "//brave/browser/safebrowsing",
-    "//brave/common",
-    "//brave/components/mises_component_updater/browser",
-#    "//brave/components/brave_referrals/buildflags",
-#    "//brave/components/brave_shields/browser",
-#    "//brave/components/brave_shields/common",
-#    "//brave/components/brave_wallet/browser",
-#    "//brave/components/brave_wallet/common",
-#    "//brave/components/brave_webtorrent/browser/buildflags",
-    "//brave/components/decentralized_dns",
-    "//brave/components/ipfs/buildflags",
-#    "//brave/components/update_client:buildflags",
-#    "//brave/extensions:common",
+#    "//mises/app:brave_generated_resources_grit",
+#    "//mises/browser/safebrowsing",
+    "//mises/common",
+    "//mises/components/mises_component_updater/browser",
+#    "//mises/components/brave_referrals/buildflags",
+#    "//mises/components/brave_shields/browser",
+#    "//mises/components/brave_shields/common",
+#    "//mises/components/brave_wallet/browser",
+#    "//mises/components/brave_wallet/common",
+#    "//mises/components/brave_webtorrent/browser/buildflags",
+    "//mises/components/decentralized_dns",
+    "//mises/components/ipfs/buildflags",
+#    "//mises/components/update_client:buildflags",
+#    "//mises/extensions:common",
     "//components/content_settings/core/browser",
     "//components/prefs",
     "//components/proxy_config",
@@ -104,7 +104,7 @@ source_set("net") {
       "ipfs_redirect_network_delegate_helper.h",
     ]
     deps += [
-      "//brave/components/ipfs",
+      "//mises/components/ipfs",
       "//chrome/common:channel_info",
     ]
   }
@@ -115,7 +115,7 @@ source_set("net") {
 #      "brave_referrals_network_delegate_helper.h",
 #    ]
 #
-#    deps += [ "//brave/components/brave_referrals/browser" ]
+#    deps += [ "//mises/components/brave_referrals/browser" ]
 #  }
 #
 #  if (enable_brave_webtorrent) {
@@ -125,7 +125,7 @@ source_set("net") {
 #    ]
 #
 #    deps += [
-#      "//brave/components/brave_webtorrent/browser/",
+#      "//mises/components/brave_webtorrent/browser/",
 #      "//extensions/browser",
 #    ]
 #  }

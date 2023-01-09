@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_proxying_web_socket.h"
+#include "mises/browser/net/brave_proxying_web_socket.h"
 
 #include <utility>
 
@@ -11,8 +11,8 @@
 #include "base/containers/flat_set.h"
 #include "base/strings/string_util.h"
 #include "base/strings/stringprintf.h"
-#include "brave/browser/net/brave_request_handler.h"
-#include "brave/components/constants/network_constants.h"
+#include "mises/browser/net/brave_request_handler.h"
+#include "mises/components/constants/network_constants.h"
 #include "content/public/browser/browser_context.h"
 #include "content/public/browser/browser_task_traits.h"
 #include "content/public/browser/browser_thread.h"

@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at http://mozilla.org/MPL/2.0/.
 
-#include "brave/components/ipfs/ipfs_p3a.h"
+#include "mises/components/ipfs/ipfs_p3a.h"
 
 #include <memory>
 #include "base/test/metrics/histogram_tester.h"
-#include "brave/components/ipfs/ipfs_service.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/components/ipfs/ipfs_service.h"
+#include "mises/components/ipfs/pref_names.h"
 #include "components/prefs/testing_pref_service.h"
 #include "content/public/test/browser_task_environment.h"
 #include "testing/gtest/include/gtest/gtest.h"

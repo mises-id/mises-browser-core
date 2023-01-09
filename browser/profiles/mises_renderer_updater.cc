@@ -3,18 +3,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/browser/profiles/brave_renderer_updater.h"
+#include "mises/browser/profiles/mises_renderer_updater.h"
 
 #include <utility>
 
 #include "base/bind.h"
-#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
-#include "mises/common/brave_renderer_configuration.mojom.h"
-#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
-#include "mises/components/brave_wallet/browser/pref_names.h"
-#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "mises/components/de_amp/browser/de_amp_util.h"
-#include "mises/components/de_amp/common/pref_names.h"
+//#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
+#include "mises/common/mises_renderer_configuration.mojom.h"
+//#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+//#include "mises/components/brave_wallet/browser/pref_names.h"
+//#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+//#include "mises/components/de_amp/browser/de_amp_util.h"
+//#include "mises/components/de_amp/common/pref_names.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/common/pref_names.h"
 #include "components/prefs/pref_service.h"

@@ -41,9 +41,9 @@ class BraveStatsUpdater;
 }  // namespace brave_stats
 
 namespace greaselion {
-#if BUILDFLAG(ENABLE_GREASELION)
-class GreaselionDownloadService;
-#endif
+//#if BUILDFLAG(ENABLE_GREASELION)
+//class GreaselionDownloadService;
+//#endif
 }  // namespace greaselion
 
 namespace debounce {
@@ -76,7 +76,7 @@ class MisesBrowserProcess {
   MisesBrowserProcess();
   virtual ~MisesBrowserProcess();
   virtual void StartBraveServices() = 0;
-  virtual brave_shields::AdBlockService* ad_block_service() = 0;
+//  virtual brave_shields::AdBlockService* ad_block_service() = 0;
 //#if BUILDFLAG(ENABLE_EXTENSIONS)
 //  virtual brave_component_updater::ExtensionWhitelistService*
 //  extension_whitelist_service() = 0;

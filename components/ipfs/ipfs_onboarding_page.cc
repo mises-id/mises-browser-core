@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/ipfs_onboarding_page.h"
+#include "mises/components/ipfs/ipfs_onboarding_page.h"
 
 #include <string>
 #include <utility>
@@ -14,10 +14,10 @@
 #include "base/strings/string_util.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/time/time.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_service.h"
-#include "brave/components/ipfs/pref_names.h"
-#include "brave/components/l10n/common/locale_util.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_service.h"
+#include "mises/components/ipfs/pref_names.h"
+#include "mises/components/l10n/common/locale_util.h"
 #include "components/component_updater/component_updater_service.h"
 #include "components/grit/brave_components_resources.h"
 #include "components/grit/brave_components_strings.h"

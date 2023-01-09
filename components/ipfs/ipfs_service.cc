@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/ipfs_service.h"
+#include "mises/components/ipfs/ipfs_service.h"
 
 #include <utility>
 
@@ -18,16 +18,16 @@
 #include "base/strings/stringprintf.h"
 #include "base/task/task_runner_util.h"
 #include "base/task/thread_pool.h"
-#include "brave/components/ipfs/blob_context_getter_factory.h"
-#include "brave/components/ipfs/buildflags/buildflags.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_json_parser.h"
-#include "brave/components/ipfs/ipfs_network_utils.h"
-#include "brave/components/ipfs/ipfs_ports.h"
-#include "brave/components/ipfs/ipfs_service_observer.h"
-#include "brave/components/ipfs/ipfs_utils.h"
-#include "brave/components/ipfs/pref_names.h"
-#include "brave/components/ipfs/service_sandbox_type.h"
+#include "mises/components/ipfs/blob_context_getter_factory.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_json_parser.h"
+#include "mises/components/ipfs/ipfs_network_utils.h"
+#include "mises/components/ipfs/ipfs_ports.h"
+#include "mises/components/ipfs/ipfs_service_observer.h"
+#include "mises/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/pref_names.h"
+#include "mises/components/ipfs/service_sandbox_type.h"
 #include "build/build_config.h"
 #include "components/grit/brave_components_strings.h"
 #include "components/prefs/pref_registry_simple.h"
@@ -44,9 +44,9 @@
 
 #if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
 #include "base/threading/thread_restrictions.h"
-#include "brave/components/ipfs/import/ipfs_import_worker_base.h"
-#include "brave/components/ipfs/import/ipfs_link_import_worker.h"
-#include "brave/components/ipfs/keys/ipns_keys_manager.h"
+#include "mises/components/ipfs/import/ipfs_import_worker_base.h"
+#include "mises/components/ipfs/import/ipfs_link_import_worker.h"
+#include "mises/components/ipfs/keys/ipns_keys_manager.h"
 #include "content/public/browser/browser_thread.h"
 #include "content/public/browser/service_process_host.h"
 #include "content/public/browser/storage_partition.h"

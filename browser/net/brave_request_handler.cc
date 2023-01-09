@@ -3,29 +3,29 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_request_handler.h"
+#include "mises/browser/net/brave_request_handler.h"
 
 #include <algorithm>
 #include <utility>
 
 #include "base/containers/contains.h"
 #include "base/feature_list.h"
-#include "brave/browser/net/brave_ad_block_csp_network_delegate_helper.h"
-#include "brave/browser/net/brave_ad_block_tp_network_delegate_helper.h"
-#include "brave/browser/net/brave_common_static_redirect_network_delegate_helper.h"
-#include "brave/browser/net/brave_httpse_network_delegate_helper.h"
-#include "brave/browser/net/brave_reduce_language_network_delegate_helper.h"
-#include "brave/browser/net/brave_service_key_network_delegate_helper.h"
-#include "brave/browser/net/brave_site_hacks_network_delegate_helper.h"
-#include "brave/browser/net/brave_stp_util.h"
-#include "brave/browser/net/decentralized_dns_network_delegate_helper.h"
-#include "brave/browser/net/global_privacy_control_network_delegate_helper.h"
-#include "brave/components/brave_referrals/buildflags/buildflags.h"
-#include "brave/components/brave_rewards/browser/net/network_delegate_helper.h"
-#include "brave/components/brave_shields/common/features.h"
-#include "brave/components/brave_webtorrent/browser/buildflags/buildflags.h"
-#include "brave/components/constants/pref_names.h"
-#include "brave/components/ipfs/buildflags/buildflags.h"
+//#include "mises/browser/net/brave_ad_block_csp_network_delegate_helper.h"
+//#include "mises/browser/net/brave_ad_block_tp_network_delegate_helper.h"
+#include "mises/browser/net/brave_common_static_redirect_network_delegate_helper.h"
+#include "mises/browser/net/brave_httpse_network_delegate_helper.h"
+#include "mises/browser/net/brave_reduce_language_network_delegate_helper.h"
+#include "mises/browser/net/brave_service_key_network_delegate_helper.h"
+#include "mises/browser/net/brave_site_hacks_network_delegate_helper.h"
+#include "mises/browser/net/brave_stp_util.h"
+//#include "mises/browser/net/decentralized_dns_network_delegate_helper.h"
+#include "mises/browser/net/global_privacy_control_network_delegate_helper.h"
+//#include "mises/components/brave_referrals/buildflags/buildflags.h"
+//#include "mises/components/brave_rewards/browser/net/network_delegate_helper.h"
+//#include "mises/components/brave_shields/common/features.h"
+//#include "mises/components/brave_webtorrent/browser/buildflags/buildflags.h"
+#include "mises/components/constants/pref_names.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
 #include "chrome/browser/browser_process.h"
 #include "content/public/browser/browser_task_traits.h"
 #include "content/public/browser/browser_thread.h"
@@ -34,17 +34,17 @@
 #include "extensions/common/constants.h"
 #include "net/base/net_errors.h"
 
-#if BUILDFLAG(ENABLE_BRAVE_REFERRALS)
-#include "brave/browser/net/brave_referrals_network_delegate_helper.h"
-#endif
-
-#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
-#include "brave/browser/net/brave_torrent_redirect_network_delegate_helper.h"
-#endif
+//#if BUILDFLAG(ENABLE_BRAVE_REFERRALS)
+//#include "mises/browser/net/brave_referrals_network_delegate_helper.h"
+//#endif
+//
+//#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
+//#include "mises/browser/net/brave_torrent_redirect_network_delegate_helper.h"
+//#endif
 
 #if BUILDFLAG(ENABLE_IPFS)
-#include "brave/browser/net/ipfs_redirect_network_delegate_helper.h"
-#include "brave/components/ipfs/features.h"
+#include "mises/browser/net/ipfs_redirect_network_delegate_helper.h"
+#include "mises/components/ipfs/features.h"
 #endif
 
 static bool IsInternalScheme(std::shared_ptr<brave::BraveRequestInfo> ctx) {
@@ -68,8 +68,8 @@ void BraveRequestHandler::SetupCallbacks() {
       base::BindRepeating(brave::OnBeforeURLRequest_SiteHacksWork);
   before_url_request_callbacks_.push_back(callback);
 
-  callback = base::BindRepeating(brave::OnBeforeURLRequest_AdBlockTPPreWork);
-  before_url_request_callbacks_.push_back(callback);
+//  callback = base::BindRepeating(brave::OnBeforeURLRequest_AdBlockTPPreWork);
+//  before_url_request_callbacks_.push_back(callback);
 
   callback = base::BindRepeating(brave::OnBeforeURLRequest_HttpsePreFileWork);
   before_url_request_callbacks_.push_back(callback);
@@ -78,9 +78,9 @@ void BraveRequestHandler::SetupCallbacks() {
       base::BindRepeating(brave::OnBeforeURLRequest_CommonStaticRedirectWork);
   before_url_request_callbacks_.push_back(callback);
 
-  callback = base::BindRepeating(
-      decentralized_dns::OnBeforeURLRequest_DecentralizedDnsPreRedirectWork);
-  before_url_request_callbacks_.push_back(callback);
+//  callback = base::BindRepeating(
+//      decentralized_dns::OnBeforeURLRequest_DecentralizedDnsPreRedirectWork);
+//  before_url_request_callbacks_.push_back(callback);
 
   callback = base::BindRepeating(brave_rewards::OnBeforeURLRequest);
   before_url_request_callbacks_.push_back(callback);
@@ -107,31 +107,31 @@ void BraveRequestHandler::SetupCallbacks() {
       base::BindRepeating(brave::OnBeforeStartTransaction_BraveServiceKey);
   before_start_transaction_callbacks_.push_back(start_transaction_callback);
 
-#if BUILDFLAG(ENABLE_BRAVE_REFERRALS)
-  start_transaction_callback =
-      base::BindRepeating(brave::OnBeforeStartTransaction_ReferralsWork);
-  before_start_transaction_callbacks_.push_back(start_transaction_callback);
-#endif
+//#if BUILDFLAG(ENABLE_BRAVE_REFERRALS)
+//  start_transaction_callback =
+//      base::BindRepeating(brave::OnBeforeStartTransaction_ReferralsWork);
+//  before_start_transaction_callbacks_.push_back(start_transaction_callback);
+//#endif
 
-  if (base::FeatureList::IsEnabled(
-          brave_shields::features::kBraveReduceLanguage)) {
-    start_transaction_callback =
-        base::BindRepeating(brave::OnBeforeStartTransaction_ReduceLanguageWork);
-    before_start_transaction_callbacks_.push_back(start_transaction_callback);
-  }
+//  if (base::FeatureList::IsEnabled(
+//          brave_shields::features::kBraveReduceLanguage)) {
+//    start_transaction_callback =
+//        base::BindRepeating(brave::OnBeforeStartTransaction_ReduceLanguageWork);
+//    before_start_transaction_callbacks_.push_back(start_transaction_callback);
+//  }
+//
+//#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
+//  brave::OnHeadersReceivedCallback headers_received_callback =
+//      base::BindRepeating(webtorrent::OnHeadersReceived_TorrentRedirectWork);
+//  headers_received_callbacks_.push_back(headers_received_callback);
+//#endif
 
-#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
-  brave::OnHeadersReceivedCallback headers_received_callback =
-      base::BindRepeating(webtorrent::OnHeadersReceived_TorrentRedirectWork);
-  headers_received_callbacks_.push_back(headers_received_callback);
-#endif
-
-  if (base::FeatureList::IsEnabled(
-          ::brave_shields::features::kBraveAdblockCspRules)) {
-    brave::OnHeadersReceivedCallback headers_received_callback2 =
-        base::BindRepeating(brave::OnHeadersReceived_AdBlockCspWork);
-    headers_received_callbacks_.push_back(headers_received_callback2);
-  }
+//  if (base::FeatureList::IsEnabled(
+//          ::brave_shields::features::kBraveAdblockCspRules)) {
+//    brave::OnHeadersReceivedCallback headers_received_callback2 =
+//        base::BindRepeating(brave::OnHeadersReceived_AdBlockCspWork);
+//    headers_received_callbacks_.push_back(headers_received_callback2);
+//  }
 }
 
 bool BraveRequestHandler::IsRequestIdentifierValid(

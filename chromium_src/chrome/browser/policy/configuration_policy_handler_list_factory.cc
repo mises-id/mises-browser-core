@@ -5,9 +5,9 @@
 
 #include "chrome/browser/policy/configuration_policy_handler_list_factory.h"
 
-#include "brave/components/constants/pref_names.h"
-#include "brave/components/ipfs/buildflags/buildflags.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/components/constants/pref_names.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/components/ipfs/pref_names.h"
 //#include "brave/components/tor/buildflags/buildflags.h"
 //#include "brave/components/tor/pref_names.h"
 #include "components/policy/core/browser/configuration_policy_handler.h"

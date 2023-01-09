@@ -10,10 +10,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "brave/components/ipfs/addresses_config.h"
-#include "brave/components/ipfs/import/imported_data.h"
-#include "brave/components/ipfs/node_info.h"
-#include "brave/components/ipfs/repo_stats.h"
+#include "mises/components/ipfs/addresses_config.h"
+#include "mises/components/ipfs/import/imported_data.h"
+#include "mises/components/ipfs/node_info.h"
+#include "mises/components/ipfs/repo_stats.h"
 
 class IPFSJSONParser {
  public:

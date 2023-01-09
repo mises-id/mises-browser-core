@@ -15,9 +15,9 @@
 #include "base/containers/queue.h"
 #include "base/memory/raw_ptr.h"
 #include "base/memory/scoped_refptr.h"
-#include "brave/components/ipfs/blob_context_getter_factory.h"
-#include "brave/components/ipfs/ipfs_network_utils.h"
-#include "brave/components/ipfs/ipfs_service_observer.h"
+#include "mises/components/ipfs/blob_context_getter_factory.h"
+#include "mises/components/ipfs/ipfs_network_utils.h"
+#include "mises/components/ipfs/ipfs_service_observer.h"
 #include "services/network/public/cpp/resource_request.h"
 #include "url/gurl.h"
 

@@ -10,7 +10,7 @@
 #undef LookupSuffixInReversedSet
 
 #include "base/strings/string_util.h"
-#include "brave/net/decentralized_dns/constants.h"
+#include "mises/net/decentralized_dns/constants.h"
 
 namespace net {
 

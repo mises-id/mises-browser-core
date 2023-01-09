@@ -1,0 +1,13 @@
+diff --git a/net/BUILD.gn b/net/BUILD.gn
+index 029d409152339f81d127b5695bbc3d3d0384b4f1..1067642df76c00113de824abbf45b83bc9af3754 100644
+--- a/net/BUILD.gn
++++ b/net/BUILD.gn
+@@ -1119,7 +1119,7 @@ component("net") {
+       "reporting/reporting_uploader.h",
+     ]
+   }
+-
++  sources += brave_net_sources
+   if (is_android) {
+     sources += [
+       "android/android_http_util.cc",

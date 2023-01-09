@@ -9,6 +9,9 @@ source_set("command_ids") {
 
 mises_grit("mises_generated_resources_grit") {
   defines = [
+    "enable_sidebar = false",
+    "enable_speedreader = false",
+    "enable_brave_vpn = false",
   ]
   source = "mises_generated_resources.grd"
   output_dir = "$root_gen_dir/mises"

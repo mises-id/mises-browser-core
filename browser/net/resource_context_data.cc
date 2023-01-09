@@ -3,14 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/resource_context_data.h"
+#include "mises/browser/net/resource_context_data.h"
 
 #include <string>
 #include <utility>
 
-#include "brave/browser/net/brave_proxying_url_loader_factory.h"
-#include "brave/browser/net/brave_proxying_web_socket.h"
-#include "brave/browser/net/brave_request_handler.h"
+#include "mises/browser/net/brave_proxying_url_loader_factory.h"
+#include "mises/browser/net/brave_proxying_web_socket.h"
+#include "mises/browser/net/brave_request_handler.h"
 #include "content/public/browser/browser_context.h"
 #include "net/cookies/site_for_cookies.h"
 

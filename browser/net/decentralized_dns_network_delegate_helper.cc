@@ -3,17 +3,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/decentralized_dns_network_delegate_helper.h"
+#include "mises/browser/net/decentralized_dns_network_delegate_helper.h"
 
 #include <utility>
 #include <vector>
 
-#include "brave/browser/brave_wallet/json_rpc_service_factory.h"
-#include "brave/components/brave_wallet/browser/json_rpc_service.h"
-#include "brave/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "brave/components/decentralized_dns/constants.h"
-#include "brave/components/decentralized_dns/utils.h"
-#include "brave/components/ipfs/ipfs_utils.h"
+#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
+#include "mises/components/brave_wallet/browser/json_rpc_service.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/decentralized_dns/constants.h"
+#include "mises/components/decentralized_dns/utils.h"
+#include "mises/components/ipfs/ipfs_utils.h"
 #include "chrome/browser/browser_process.h"
 #include "content/public/browser/browser_context.h"
 #include "net/base/net_errors.h"

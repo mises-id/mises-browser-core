@@ -73,15 +73,15 @@
 #endif
 
 void MisesBrowserMainParts::PreBrowserStart() {
-#if BUILDFLAG(ENABLE_SPEEDREADER)
-  // Register() must be called after the SerializedNavigationDriver is
-  // initialized, but before any calls to
-  // ContentSerializedNavigationBuilder::ToNavigationEntries()
-  //
-  // TODO(keur): Can we DCHECK the latter condition?
-  DCHECK(sessions::ContentSerializedNavigationDriver::GetInstance());
-  speedreader::SpeedreaderExtendedInfoHandler::Register();
-#endif
+//#if BUILDFLAG(ENABLE_SPEEDREADER)
+//  // Register() must be called after the SerializedNavigationDriver is
+//  // initialized, but before any calls to
+//  // ContentSerializedNavigationBuilder::ToNavigationEntries()
+//  //
+//  // TODO(keur): Can we DCHECK the latter condition?
+//  DCHECK(sessions::ContentSerializedNavigationDriver::GetInstance());
+//  speedreader::SpeedreaderExtendedInfoHandler::Register();
+//#endif
   ChromeBrowserMainParts::PreBrowserStart();
 }
 
@@ -130,35 +130,35 @@ void MisesBrowserMainParts::PostBrowserStart() {
 //  }
 //#endif
 
-#if !BUILDFLAG(IS_ANDROID)
-  Browser* browser = chrome::FindLastActive();
-  content::WebContents* active_web_contents = nullptr;
-
-  if (browser) {
-    active_web_contents = browser->tab_strip_model()->GetActiveWebContents();
-
-    if (active_web_contents) {
-      Profile* profile =
-          Profile::FromBrowserContext(active_web_contents->GetBrowserContext());
-      infobars::ContentInfoBarManager* infobar_manager =
-          infobars::ContentInfoBarManager::FromWebContents(active_web_contents);
-      if (profile && infobar_manager) {
-        BraveConfirmP3AInfoBarDelegate::Create(
-            infobar_manager, g_browser_process->local_state());
-        auto* sync_service = SyncServiceFactory::IsSyncAllowed(profile)
-                                 ? SyncServiceFactory::GetForProfile(profile)
-                                 : nullptr;
-        const bool is_v2_user =
-            sync_service &&
-            sync_service->GetUserSettings()->IsFirstSetupComplete();
-        SyncV2MigrateInfoBarDelegate::Create(infobar_manager, is_v2_user,
-                                             profile, browser);
-
-        SyncCannotRunInfoBarDelegate::Create(infobar_manager, profile, browser);
-      }
-    }
-  }
-#endif  // !BUILDFLAG(IS_ANDROID)
+//#if !BUILDFLAG(IS_ANDROID)
+//  Browser* browser = chrome::FindLastActive();
+//  content::WebContents* active_web_contents = nullptr;
+//
+//  if (browser) {
+//    active_web_contents = browser->tab_strip_model()->GetActiveWebContents();
+//
+//    if (active_web_contents) {
+//      Profile* profile =
+//          Profile::FromBrowserContext(active_web_contents->GetBrowserContext());
+//      infobars::ContentInfoBarManager* infobar_manager =
+//          infobars::ContentInfoBarManager::FromWebContents(active_web_contents);
+//      if (profile && infobar_manager) {
+//        BraveConfirmP3AInfoBarDelegate::Create(
+//            infobar_manager, g_browser_process->local_state());
+//        auto* sync_service = SyncServiceFactory::IsSyncAllowed(profile)
+//                                 ? SyncServiceFactory::GetForProfile(profile)
+//                                 : nullptr;
+//        const bool is_v2_user =
+//            sync_service &&
+//            sync_service->GetUserSettings()->IsFirstSetupComplete();
+//        SyncV2MigrateInfoBarDelegate::Create(infobar_manager, is_v2_user,
+//                                             profile, browser);
+//
+//        SyncCannotRunInfoBarDelegate::Create(infobar_manager, profile, browser);
+//      }
+//    }
+//  }
+//#endif  // !BUILDFLAG(IS_ANDROID)
 }
 
 void MisesBrowserMainParts::PreShutdown() {
@@ -167,21 +167,21 @@ void MisesBrowserMainParts::PreShutdown() {
 
 void MisesBrowserMainParts::PreProfileInit() {
   ChromeBrowserMainParts::PreProfileInit();
-#if !BUILDFLAG(IS_ANDROID)
-  auto* command_line = base::CommandLine::ForCurrentProcess();
-  if (!base::FeatureList::IsEnabled(brave_sync::features::kBraveSync)) {
-    // Disable sync temporarily
-    if (!command_line->HasSwitch(syncer::kDisableSync))
-      command_line->AppendSwitch(syncer::kDisableSync);
-  } else {
-    // Relaunch after flag changes will still have the switch
-    // when switching from disabled to enabled
-    command_line->RemoveSwitch(syncer::kDisableSync);
-  }
-#endif
+//#if !BUILDFLAG(IS_ANDROID)
+//  auto* command_line = base::CommandLine::ForCurrentProcess();
+//  if (!base::FeatureList::IsEnabled(brave_sync::features::kBraveSync)) {
+//    // Disable sync temporarily
+//    if (!command_line->HasSwitch(syncer::kDisableSync))
+//      command_line->AppendSwitch(syncer::kDisableSync);
+//  } else {
+//    // Relaunch after flag changes will still have the switch
+//    // when switching from disabled to enabled
+//    command_line->RemoveSwitch(syncer::kDisableSync);
+//  }
+//#endif
 
-  if (!translate::ShouldUpdateLanguagesList())
-    translate::TranslateLanguageList::DisableUpdate();
+//  if (!translate::ShouldUpdateLanguagesList())
+//    translate::TranslateLanguageList::DisableUpdate();
 }
 
 void MisesBrowserMainParts::PostProfileInit(Profile* profile,
@@ -196,13 +196,13 @@ void MisesBrowserMainParts::PostProfileInit(Profile* profile,
   }
 #endif
 
-#if BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED) && BUILDFLAG(ENABLE_EXTENSIONS)
-  extensions::ExtensionService* service =
-      extensions::ExtensionSystem::Get(profile)->extension_service();
-  if (service) {
-    extensions::ComponentLoader* loader = service->component_loader();
-    static_cast<extensions::BraveComponentLoader*>(loader)
-        ->AddEthereumRemoteClientExtensionOnStartup();
-  }
-#endif
+//#if BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED) && BUILDFLAG(ENABLE_EXTENSIONS)
+//  extensions::ExtensionService* service =
+//      extensions::ExtensionSystem::Get(profile)->extension_service();
+//  if (service) {
+//    extensions::ComponentLoader* loader = service->component_loader();
+//    static_cast<extensions::BraveComponentLoader*>(loader)
+//        ->AddEthereumRemoteClientExtensionOnStartup();
+//  }
+//#endif
 }

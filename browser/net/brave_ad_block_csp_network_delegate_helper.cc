@@ -3,14 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_ad_block_csp_network_delegate_helper.h"
+#include "mises/browser/net/brave_ad_block_csp_network_delegate_helper.h"
 
 #include <string>
 
-#include "brave/browser/brave_browser_process.h"
-#include "brave/browser/net/url_context.h"
-#include "brave/components/brave_shields/browser/ad_block_service.h"
-#include "brave/components/brave_shields/browser/ad_block_service_helper.h"
+#include "mises/browser/brave_browser_process.h"
+#include "mises/browser/net/url_context.h"
+#include "mises/components/brave_shields/browser/ad_block_service.h"
+#include "mises/components/brave_shields/browser/ad_block_service_helper.h"
 #include "net/base/net_errors.h"
 #include "net/http/http_response_headers.h"
 #include "url/gurl.h"

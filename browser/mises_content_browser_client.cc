@@ -16,61 +16,61 @@
 #include "base/system/sys_info.h"
 #include "mises/browser/brave_browser_main_extra_parts.h"
 #include "mises/browser/brave_browser_process.h"
-#include "mises/browser/brave_shields/brave_shields_web_contents_observer.h"
-#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
-#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl.h"
-#include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
-#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
-#include "mises/browser/brave_wallet/keyring_service_factory.h"
-#include "mises/browser/brave_wallet/tx_service_factory.h"
-#include "mises/browser/debounce/debounce_service_factory.h"
-#include "mises/browser/ephemeral_storage/ephemeral_storage_service_factory.h"
-#include "mises/browser/ethereum_remote_client/buildflags/buildflags.h"
+//#include "mises/browser/brave_shields/brave_shields_web_contents_observer.h"
+//#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
+//#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl.h"
+//#include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
+//#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
+//#include "mises/browser/brave_wallet/keyring_service_factory.h"
+//#include "mises/browser/brave_wallet/tx_service_factory.h"
+//#include "mises/browser/debounce/debounce_service_factory.h"
+//#include "mises/browser/ephemeral_storage/ephemeral_storage_service_factory.h"
+//#include "mises/browser/ethereum_remote_client/buildflags/buildflags.h"
 #include "mises/browser/net/brave_proxying_url_loader_factory.h"
 #include "mises/browser/net/brave_proxying_web_socket.h"
-#include "mises/browser/profiles/brave_renderer_updater.h"
-#include "mises/browser/profiles/brave_renderer_updater_factory.h"
+#include "mises/browser/profiles/mises_renderer_updater.h"
+#include "mises/browser/profiles/mises_renderer_updater_factory.h"
 #include "mises/browser/profiles/profile_util.h"
-#include "mises/browser/skus/skus_service_factory.h"
-#include "mises/components/binance/browser/buildflags/buildflags.h"
-#include "mises/components/brave_ads/common/features.h"
-#include "mises/components/brave_federated/features.h"
-#include "mises/components/brave_rewards/browser/rewards_protocol_handler.h"
-#include "mises/components/brave_search/browser/brave_search_default_host.h"
-#include "mises/components/brave_search/browser/brave_search_default_host_private.h"
-#include "mises/components/brave_search/browser/brave_search_fallback_host.h"
-#include "mises/components/brave_search/common/brave_search_default.mojom.h"
-#include "mises/components/brave_search/common/brave_search_fallback.mojom.h"
-#include "mises/components/brave_search/common/brave_search_utils.h"
-#include "mises/components/brave_shields/browser/ad_block_service.h"
-#include "mises/components/brave_shields/browser/brave_farbling_service.h"
-#include "mises/components/brave_shields/browser/brave_shields_util.h"
-#include "mises/components/brave_shields/browser/domain_block_navigation_throttle.h"
-#include "mises/components/brave_shields/common/brave_shield_constants.h"
-#include "mises/components/brave_shields/common/features.h"
-#include "mises/components/brave_vpn/buildflags/buildflags.h"
-#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
-#include "mises/components/brave_wallet/browser/ethereum_provider_impl.h"
-#include "mises/components/brave_wallet/browser/solana_provider_impl.h"
-#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "mises/components/brave_webtorrent/browser/buildflags/buildflags.h"
+//#include "mises/browser/skus/skus_service_factory.h"
+//#include "mises/components/binance/browser/buildflags/buildflags.h"
+//#include "mises/components/brave_ads/common/features.h"
+//#include "mises/components/brave_federated/features.h"
+//#include "mises/components/brave_rewards/browser/rewards_protocol_handler.h"
+//#include "mises/components/brave_search/browser/brave_search_default_host.h"
+//#include "mises/components/brave_search/browser/brave_search_default_host_private.h"
+//#include "mises/components/brave_search/browser/brave_search_fallback_host.h"
+//#include "mises/components/brave_search/common/brave_search_default.mojom.h"
+//#include "mises/components/brave_search/common/brave_search_fallback.mojom.h"
+//#include "mises/components/brave_search/common/brave_search_utils.h"
+//#include "mises/components/brave_shields/browser/ad_block_service.h"
+//#include "mises/components/brave_shields/browser/brave_farbling_service.h"
+//#include "mises/components/brave_shields/browser/brave_shields_util.h"
+//#include "mises/components/brave_shields/browser/domain_block_navigation_throttle.h"
+//#include "mises/components/brave_shields/common/brave_shield_constants.h"
+//#include "mises/components/brave_shields/common/features.h"
+//#include "mises/components/brave_vpn/buildflags/buildflags.h"
+//#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+//#include "mises/components/brave_wallet/browser/ethereum_provider_impl.h"
+//#include "mises/components/brave_wallet/browser/solana_provider_impl.h"
+//#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+//#include "mises/components/brave_webtorrent/browser/buildflags/buildflags.h"
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/constants/webui_url_constants.h"
-#include "mises/components/cosmetic_filters/browser/cosmetic_filters_resources.h"
-#include "mises/components/cosmetic_filters/common/cosmetic_filters.mojom.h"
-#include "mises/components/de_amp/browser/de_amp_throttle.h"
-#include "mises/components/debounce/browser/debounce_navigation_throttle.h"
-#include "mises/components/decentralized_dns/decentralized_dns_navigation_throttle.h"
-#include "mises/components/ftx/browser/buildflags/buildflags.h"
-#include "mises/components/gemini/browser/buildflags/buildflags.h"
+//#include "mises/components/cosmetic_filters/browser/cosmetic_filters_resources.h"
+//#include "mises/components/cosmetic_filters/common/cosmetic_filters.mojom.h"
+//#include "mises/components/de_amp/browser/de_amp_throttle.h"
+//#include "mises/components/debounce/browser/debounce_navigation_throttle.h"
+//#include "mises/components/decentralized_dns/decentralized_dns_navigation_throttle.h"
+//#include "mises/components/ftx/browser/buildflags/buildflags.h"
+//#include "mises/components/gemini/browser/buildflags/buildflags.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
-#include "mises/components/playlist/buildflags/buildflags.h"
-#include "mises/components/playlist/features.h"
-#include "mises/components/sidebar/buildflags/buildflags.h"
-#include "mises/components/skus/common/skus_sdk.mojom.h"
-#include "mises/components/speedreader/common/buildflags.h"
-#include "mises/components/tor/buildflags/buildflags.h"
-#include "mises/components/translate/core/common/brave_translate_switches.h"
+//#include "mises/components/playlist/buildflags/buildflags.h"
+//#include "mises/components/playlist/features.h"
+//#include "mises/components/sidebar/buildflags/buildflags.h"
+//#include "mises/components/skus/common/skus_sdk.mojom.h"
+//#include "mises/components/speedreader/common/buildflags.h"
+//#include "mises/components/tor/buildflags/buildflags.h"
+//#include "mises/components/translate/core/common/brave_translate_switches.h"
 #include "mises/grit/brave_generated_resources.h"
 #include "mises/third_party/blink/renderer/brave_farbling_constants.h"
 #include "build/build_config.h"
@@ -114,10 +114,10 @@
 #include "ui/base/l10n/l10n_util.h"
 
 using blink::web_pref::WebPreferences;
-using brave_shields::BraveShieldsWebContentsObserver;
-using brave_shields::ControlType;
-using brave_shields::GetBraveShieldsEnabled;
-using brave_shields::GetFingerprintingControlType;
+//using brave_shields::BraveShieldsWebContentsObserver;
+//using brave_shields::ControlType;
+//using brave_shields::GetBraveShieldsEnabled;
+//using brave_shields::GetFingerprintingControlType;
 using content::BrowserThread;
 using content::ContentBrowserClient;
 using content::RenderFrameHost;
@@ -129,10 +129,10 @@ using content::WebContents;
 using extensions::ChromeContentBrowserClientExtensionsPart;
 #endif
 
-#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
-#include "brave/browser/extensions/brave_webtorrent_navigation_throttle.h"
-#include "brave/components/brave_webtorrent/browser/content_browser_client_helper.h"
-#endif
+//#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
+//#include "brave/browser/extensions/brave_webtorrent_navigation_throttle.h"
+//#include "brave/components/brave_webtorrent/browser/content_browser_client_helper.h"
+//#endif
 
 #if BUILDFLAG(ENABLE_IPFS)
 #include "mises/browser/ipfs/content_browser_client_helper.h"
@@ -142,80 +142,80 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 #include "mises/components/ipfs/ipfs_navigation_throttle.h"
 #endif
 
-#if BUILDFLAG(ENABLE_TOR)
-#include "mises/browser/tor/onion_location_navigation_throttle_delegate.h"
-#include "mises/browser/tor/tor_profile_service_factory.h"
-#include "mises/components/tor/onion_location_navigation_throttle.h"
-#include "mises/components/tor/tor_navigation_throttle.h"
-#endif
+//#if BUILDFLAG(ENABLE_TOR)
+//#include "mises/browser/tor/onion_location_navigation_throttle_delegate.h"
+//#include "mises/browser/tor/tor_profile_service_factory.h"
+//#include "mises/components/tor/onion_location_navigation_throttle.h"
+//#include "mises/components/tor/tor_navigation_throttle.h"
+//#endif
+//
+//#if BUILDFLAG(ENABLE_SPEEDREADER)
+//#include "mises/browser/speedreader/speedreader_service_factory.h"
+//#include "mises/browser/speedreader/speedreader_tab_helper.h"
+//#include "mises/components/speedreader/speedreader_throttle.h"
+//#include "mises/components/speedreader/speedreader_util.h"
+//#include "third_party/blink/public/mojom/loader/resource_load_info.mojom-shared.h"
+//#endif
+//
+//#if BUILDFLAG(BINANCE_ENABLED)
+//#include "mises/browser/binance/binance_protocol_handler.h"
+//#endif
+//
+//#if BUILDFLAG(GEMINI_ENABLED)
+//#include "mises/browser/gemini/gemini_protocol_handler.h"
+//#endif
+//
+//#if BUILDFLAG(ENABLE_FTX)
+//#include "mises/browser/ftx/ftx_protocol_handler.h"
+//#endif
+//
+//#if BUILDFLAG(ENABLE_WIDEVINE)
+//#include "mises/browser/brave_drm_tab_helper.h"
+//#endif
+//
+//#if BUILDFLAG(ENABLE_BRAVE_VPN)
+//#include "mises/browser/brave_vpn/brave_vpn_service_factory.h"
+//#include "mises/browser/ui/webui/brave_vpn/vpn_panel_ui.h"
+//#include "mises/components/brave_vpn/brave_vpn_utils.h"
+//#include "mises/components/brave_vpn/mojom/brave_vpn.mojom.h"
+//#endif
+//
+//#if BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED)
+//#include "mises/browser/ethereum_remote_client/ethereum_remote_client_constants.h"
+//#include "mises/browser/ethereum_remote_client/ethereum_remote_client_service.h"
+//#include "mises/browser/ethereum_remote_client/ethereum_remote_client_service_factory.h"
+//#endif
+//
+//#if !BUILDFLAG(IS_ANDROID)
+//#include "mises/browser/new_tab/new_tab_shows_navigation_throttle.h"
+//#include "mises/browser/ui/webui/brave_federated/federated_internals.mojom.h"
+//#include "mises/browser/ui/webui/brave_federated/federated_internals_ui.h"
+//#include "mises/browser/ui/webui/brave_rewards/rewards_panel_ui.h"
+//#include "mises/browser/ui/webui/brave_shields/cookie_list_opt_in_ui.h"
+//#include "mises/browser/ui/webui/brave_shields/shields_panel_ui.h"
+//#include "mises/browser/ui/webui/brave_wallet/wallet_page_ui.h"
+//#include "mises/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
+//#include "mises/browser/ui/webui/new_tab_page/brave_new_tab_ui.h"
+//#include "mises/browser/ui/webui/private_new_tab_page/brave_private_new_tab_ui.h"
+//#include "mises/components/brave_new_tab_ui/brave_new_tab_page.mojom.h"
+//#include "mises/components/brave_private_new_tab_ui/common/brave_private_new_tab.mojom.h"
+//#include "mises/components/brave_rewards/common/brave_rewards_panel.mojom.h"
+//#include "mises/components/brave_rewards/common/features.h"
+//#include "mises/components/brave_shields/common/brave_shields_panel.mojom.h"
+//#include "mises/components/brave_shields/common/cookie_list_opt_in.mojom.h"
+//#include "mises/components/brave_today/common/brave_news.mojom.h"
+//#include "mises/components/brave_today/common/features.h"
+//#endif
 
-#if BUILDFLAG(ENABLE_SPEEDREADER)
-#include "mises/browser/speedreader/speedreader_service_factory.h"
-#include "mises/browser/speedreader/speedreader_tab_helper.h"
-#include "mises/components/speedreader/speedreader_throttle.h"
-#include "mises/components/speedreader/speedreader_util.h"
-#include "third_party/blink/public/mojom/loader/resource_load_info.mojom-shared.h"
-#endif
-
-#if BUILDFLAG(BINANCE_ENABLED)
-#include "mises/browser/binance/binance_protocol_handler.h"
-#endif
-
-#if BUILDFLAG(GEMINI_ENABLED)
-#include "mises/browser/gemini/gemini_protocol_handler.h"
-#endif
-
-#if BUILDFLAG(ENABLE_FTX)
-#include "mises/browser/ftx/ftx_protocol_handler.h"
-#endif
-
-#if BUILDFLAG(ENABLE_WIDEVINE)
-#include "mises/browser/brave_drm_tab_helper.h"
-#endif
-
-#if BUILDFLAG(ENABLE_BRAVE_VPN)
-#include "mises/browser/brave_vpn/brave_vpn_service_factory.h"
-#include "mises/browser/ui/webui/brave_vpn/vpn_panel_ui.h"
-#include "mises/components/brave_vpn/brave_vpn_utils.h"
-#include "mises/components/brave_vpn/mojom/brave_vpn.mojom.h"
-#endif
-
-#if BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED)
-#include "mises/browser/ethereum_remote_client/ethereum_remote_client_constants.h"
-#include "mises/browser/ethereum_remote_client/ethereum_remote_client_service.h"
-#include "mises/browser/ethereum_remote_client/ethereum_remote_client_service_factory.h"
-#endif
-
-#if !BUILDFLAG(IS_ANDROID)
-#include "mises/browser/new_tab/new_tab_shows_navigation_throttle.h"
-#include "mises/browser/ui/webui/brave_federated/federated_internals.mojom.h"
-#include "mises/browser/ui/webui/brave_federated/federated_internals_ui.h"
-#include "mises/browser/ui/webui/brave_rewards/rewards_panel_ui.h"
-#include "mises/browser/ui/webui/brave_shields/cookie_list_opt_in_ui.h"
-#include "mises/browser/ui/webui/brave_shields/shields_panel_ui.h"
-#include "mises/browser/ui/webui/brave_wallet/wallet_page_ui.h"
-#include "mises/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
-#include "mises/browser/ui/webui/new_tab_page/brave_new_tab_ui.h"
-#include "mises/browser/ui/webui/private_new_tab_page/brave_private_new_tab_ui.h"
-#include "mises/components/brave_new_tab_ui/brave_new_tab_page.mojom.h"
-#include "mises/components/brave_private_new_tab_ui/common/brave_private_new_tab.mojom.h"
-#include "mises/components/brave_rewards/common/brave_rewards_panel.mojom.h"
-#include "mises/components/brave_rewards/common/features.h"
-#include "mises/components/brave_shields/common/brave_shields_panel.mojom.h"
-#include "mises/components/brave_shields/common/cookie_list_opt_in.mojom.h"
-#include "mises/components/brave_today/common/brave_news.mojom.h"
-#include "mises/components/brave_today/common/features.h"
-#endif
-
-#if BUILDFLAG(IS_ANDROID)
-#include "mises/browser/brave_ads/brave_ads_host_android.h"
-#elif BUILDFLAG(ENABLE_EXTENSIONS)
-#include "mises/browser/brave_ads/brave_ads_host.h"
-#endif  // BUILDFLAG(IS_ANDROID)
-
-#if BUILDFLAG(ENABLE_PLAYLIST)
-#include "mises/browser/ui/webui/playlist_ui.h"
-#endif  // BUILDFLAG(ENABLE_PLAYLIST)
+//#if BUILDFLAG(IS_ANDROID)
+//#include "mises/browser/brave_ads/brave_ads_host_android.h"
+//#elif BUILDFLAG(ENABLE_EXTENSIONS)
+//#include "mises/browser/brave_ads/brave_ads_host.h"
+//#endif  // BUILDFLAG(IS_ANDROID)
+//
+//#if BUILDFLAG(ENABLE_PLAYLIST)
+//#include "mises/browser/ui/webui/playlist_ui.h"
+//#endif  // BUILDFLAG(ENABLE_PLAYLIST)
 
 namespace {
 

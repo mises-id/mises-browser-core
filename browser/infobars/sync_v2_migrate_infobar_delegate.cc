@@ -9,7 +9,7 @@
 #include <utility>
 
 #include "base/feature_list.h"
-#include "mises/browser/ui/brave_pages.h"
+//#include "mises/browser/ui/brave_pages.h"
 #include "mises/components/brave_sync/brave_sync_prefs.h"
 #include "mises/components/brave_sync/features.h"
 #include "mises/components/constants/pref_names.h"

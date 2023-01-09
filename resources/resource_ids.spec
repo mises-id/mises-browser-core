@@ -22,9 +22,19 @@
   "mises/components/resources/mises_components_strings.grd": {
     "messages": [50900]
   },
+  "mises/ui/webui/resources/brave_webui_resources.grd": {
+    "includes": [52000],
+    "structures": [53000],
+  },
+  # This file is generated during the build.
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-ethereum_remote_client_page/ethereum_remote_client_page.grd": {
+    "META": {"sizes": {"includes": [100]}},
+    "includes": [54700],
+  },
   "mises/components/mises_extension/extension/resources.grd": {
     "includes": [55000],
   },
+
   # This file is generated during the build.
 
 }

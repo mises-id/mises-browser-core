@@ -12,9 +12,9 @@
 #include <utility>
 #include <vector>
 
-#include "brave/components/ipfs/blob_context_getter_factory.h"
-#include "brave/components/ipfs/import/imported_data.h"
-#include "brave/components/ipfs/import/ipfs_import_worker_base.h"
+#include "mises/components/ipfs/blob_context_getter_factory.h"
+#include "mises/components/ipfs/import/imported_data.h"
+#include "mises/components/ipfs/import/ipfs_import_worker_base.h"
 #include "url/gurl.h"
 
 namespace ipfs {

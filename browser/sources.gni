@@ -18,8 +18,8 @@ import("//mises/build/rust/config.gni")
 #import("//mises/browser/brave_vpn/sources.gni")
 #import("//mises/browser/brave_wallet/android/sources.gni")
 #import("//mises/browser/brave_wallet/notifications/sources.gni")
-#import("//mises/browser/browsing_data/sources.gni")
-#import("//mises/browser/component_updater/sources.gni")
+import("//mises/browser/browsing_data/sources.gni")
+import("//mises/browser/component_updater/sources.gni")
 #import("//mises/browser/crypto_dot_com/sources.gni")
 #import("//mises/browser/debounce/sources.gni")
 #import("//mises/browser/download/sources.gni")
@@ -154,7 +154,7 @@ mises_chrome_browser_deps = [
 #  "//mises/browser/brave_wallet",
 #  "//mises/browser/brave_wallet:brave_wallet_delegate",
 #  "//mises/browser/brave_wallet:tab_helper",
-#  "//mises/browser/component_updater",
+  "//mises/browser/component_updater",
 #  "//mises/browser/content_settings",
 #  "//mises/browser/gcm_driver",
 #  "//mises/browser/metrics/buildflags",
@@ -446,8 +446,8 @@ mises_chrome_browser_sources += mises_browser_autocomplete_sources
 #mises_chrome_browser_sources += mises_browser_brave_rewards_sources
 #mises_chrome_browser_sources += mises_browser_brave_shields_sources
 #mises_chrome_browser_sources += mises_browser_brave_stats_updater_sources
-#mises_chrome_browser_sources += mises_browser_browsing_data_sources
-#mises_chrome_browser_sources += mises_browser_component_updater_sources
+mises_chrome_browser_sources += mises_browser_browsing_data_sources
+mises_chrome_browser_sources += mises_browser_component_updater_sources
 #mises_chrome_browser_sources += mises_browser_crypto_dot_com_sources
 #mises_chrome_browser_sources += mises_browser_debounce_sources
 #mises_chrome_browser_sources += mises_browser_download_sources
@@ -476,8 +476,8 @@ mises_chrome_browser_deps += mises_browser_autocomplete_deps
 #mises_chrome_browser_deps += mises_browser_brave_rewards_deps
 #mises_chrome_browser_deps += mises_browser_brave_shields_deps
 #mises_chrome_browser_deps += mises_browser_brave_stats_updater_deps
-#mises_chrome_browser_deps += mises_browser_browsing_data_deps
-#mises_chrome_browser_deps += mises_browser_component_updater_deps
+mises_chrome_browser_deps += mises_browser_browsing_data_deps
+mises_chrome_browser_deps += mises_browser_component_updater_deps
 #mises_chrome_browser_deps += mises_browser_crypto_dot_com_deps
 #mises_chrome_browser_deps += mises_browser_debounce_deps
 #mises_chrome_browser_deps += mises_browser_download_deps

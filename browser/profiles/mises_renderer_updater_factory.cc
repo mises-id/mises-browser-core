@@ -3,9 +3,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/browser/profiles/brave_renderer_updater_factory.h"
+#include "mises/browser/profiles/mises_renderer_updater_factory.h"
 
-#include "mises/browser/profiles/brave_renderer_updater.h"
+#include "mises/browser/profiles/mises_renderer_updater.h"
 #include "chrome/browser/profiles/incognito_helpers.h"
 #include "chrome/browser/profiles/profile.h"
 #include "components/keyed_service/content/browser_context_dependency_manager.h"

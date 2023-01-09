@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/ipfs_utils.h"
 
 #include <string>
 #include <vector>
@@ -12,11 +12,11 @@
 #include "base/strings/string_split.h"
 #include "base/strings/string_util.h"
 #include "base/strings/stringprintf.h"
-#include "brave/components/ipfs/features.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_ports.h"
-#include "brave/components/ipfs/keys/ipns_keys_manager.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/components/ipfs/features.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_ports.h"
+#include "mises/components/ipfs/keys/ipns_keys_manager.h"
+#include "mises/components/ipfs/pref_names.h"
 #include "components/base32/base32.h"
 #include "components/prefs/pref_service.h"
 #include "net/base/registry_controlled_domains/registry_controlled_domain.h"

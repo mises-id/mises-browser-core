@@ -6,8 +6,8 @@ source_set("infobars") {
   # Remove when https://github.com/brave/brave-browser/issues/10649 is resolved
   check_includes = false
   sources = [
-    "brave_confirm_p3a_infobar_delegate.cc",
-    "brave_confirm_p3a_infobar_delegate.h",
+#    "brave_confirm_p3a_infobar_delegate.cc",
+#    "brave_confirm_p3a_infobar_delegate.h",
     "sync_cannot_run_infobar_delegate.cc",
     "sync_cannot_run_infobar_delegate.h",
     "sync_v2_migrate_infobar_delegate.cc",
@@ -16,12 +16,12 @@ source_set("infobars") {
 
   deps = [
     "//base",
-    "//mises/app:brave_generated_resources_grit",
+    "//mises/app:mises_generated_resources_grit",
     "//mises/browser/ui",
     "//mises/common:common",
     "//mises/components/brave_sync:features",
     "//mises/components/brave_sync:prefs",
-    "//mises/components/p3a",
+#    "//mises/components/p3a",
     "//chrome/app:chromium_strings",
     "//chrome/browser/ui",
     "//components/infobars/content",

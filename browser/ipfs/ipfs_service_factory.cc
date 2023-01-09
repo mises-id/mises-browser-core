@@ -9,7 +9,7 @@
 #include <utility>
 
 #include "base/path_service.h"
-#include "mises/browser/brave_browser_process.h"
+#include "mises/browser/mises_browser_process.h"
 #include "mises/browser/ipfs/ipfs_blob_context_getter_factory.h"
 #include "mises/browser/ipfs/ipfs_dns_resolver_impl.h"
 #include "mises/browser/profiles/profile_util.h"
@@ -82,8 +82,8 @@ KeyedService* IpfsServiceFactory::BuildServiceInstanceFor(
   auto url_loader = context->GetDefaultStoragePartition()
                         ->GetURLLoaderFactoryForBrowserProcess();
   auto context_getter = std::make_unique<IpfsBlobContextGetterFactory>(context);
-  auto* ipfs_updater = g_brave_browser_process
-                           ? g_brave_browser_process->ipfs_client_updater()
+  auto* ipfs_updater = g_mises_browser_process
+                           ? g_mises_browser_process->ipfs_client_updater()
                            : nullptr;
 #if BUILDFLAG(ENABLE_EXTENSIONS)
   RecordIPFSCompanionInstalled(extensions::ExtensionRegistry::Get(context));

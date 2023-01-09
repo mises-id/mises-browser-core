@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "base/memory/raw_ptr.h"
-#include "mises/common/brave_renderer_configuration.mojom-forward.h"
+#include "mises/common/mises_renderer_configuration.mojom-forward.h"
 #include "components/keyed_service/core/keyed_service.h"
 #include "components/prefs/pref_change_registrar.h"
 #include "components/prefs/pref_member.h"

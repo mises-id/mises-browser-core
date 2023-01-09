@@ -17,9 +17,9 @@
 #include "base/files/file_util.h"
 #include "base/memory/raw_ptr.h"
 #include "base/memory/scoped_refptr.h"
-#include "brave/components/ipfs/blob_context_getter_factory.h"
-#include "brave/components/ipfs/import/imported_data.h"
-#include "brave/components/ipfs/ipfs_network_utils.h"
+#include "mises/components/ipfs/blob_context_getter_factory.h"
+#include "mises/components/ipfs/import/imported_data.h"
+#include "mises/components/ipfs/ipfs_network_utils.h"
 #include "components/version_info/channel.h"
 #include "url/gurl.h"
 

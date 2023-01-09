@@ -12,7 +12,7 @@
 #include "mises/components/decentralized_dns/pref_names.h"
 #include "mises/components/l10n/common/locale_util.h"
 #include "mises/net/decentralized_dns/constants.h"
-#include "components/grit/brave_components_strings.h"
+#include "components/grit/mises_components_strings.h"
 #include "components/prefs/pref_registry_simple.h"
 #include "components/prefs/pref_service.h"
 #include "url/gurl.h"

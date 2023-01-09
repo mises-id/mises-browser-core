@@ -3,12 +3,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/ipfs_redirect_network_delegate_helper.h"
+#include "mises/browser/net/ipfs_redirect_network_delegate_helper.h"
 
 #include <string>
 
-#include "brave/browser/profiles/profile_util.h"
-#include "brave/components/ipfs/ipfs_utils.h"
+#include "mises/browser/profiles/profile_util.h"
+#include "mises/components/ipfs/ipfs_utils.h"
 #include "chrome/common/channel_info.h"
 #include "components/user_prefs/user_prefs.h"
 #include "content/public/browser/browser_context.h"

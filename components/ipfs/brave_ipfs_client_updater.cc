@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/brave_ipfs_client_updater.h"
+#include "mises/components/ipfs/brave_ipfs_client_updater.h"
 
 #include "base/files/file_enumerator.h"
 #include "base/files/file_path.h"
@@ -12,7 +12,7 @@
 #include "base/task/task_runner.h"
 #include "base/task/task_runner_util.h"
 #include "base/task/thread_pool.h"
-#include "brave/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/ipfs_utils.h"
 #include "components/component_updater/component_updater_service.h"
 
 namespace ipfs {

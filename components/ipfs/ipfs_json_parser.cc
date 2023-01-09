@@ -7,13 +7,13 @@
 #include <utility>
 #include <vector>
 
-#include "brave/components/ipfs/ipfs_json_parser.h"
+#include "mises/components/ipfs/ipfs_json_parser.h"
 
 #include "base/json/json_reader.h"
 #include "base/json/json_writer.h"
 #include "base/logging.h"
 #include "base/strings/strcat.h"
-#include "brave/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/ipfs_utils.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
 
 namespace {

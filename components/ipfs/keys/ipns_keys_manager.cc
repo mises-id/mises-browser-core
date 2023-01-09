@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/keys/ipns_keys_manager.h"
+#include "mises/components/ipfs/keys/ipns_keys_manager.h"
 
 #include <memory>
 #include <string>
@@ -11,10 +11,10 @@
 
 #include "base/rand_util.h"
 #include "base/task/thread_pool.h"
-#include "brave/components/ipfs/blob_context_getter_factory.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_json_parser.h"
-#include "brave/components/ipfs/ipfs_network_utils.h"
+#include "mises/components/ipfs/blob_context_getter_factory.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_json_parser.h"
+#include "mises/components/ipfs/ipfs_network_utils.h"
 #include "content/public/browser/browser_task_traits.h"
 #include "content/public/browser/storage_partition.h"
 #include "net/base/mime_util.h"

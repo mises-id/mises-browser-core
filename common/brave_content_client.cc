@@ -8,7 +8,7 @@
 #include <string>
 
 #include "base/memory/ref_counted_memory.h"
-#include "components/grit/brave_components_resources.h"
+#include "components/grit/mises_components_resources.h"
 #include "components/grit/components_resources.h"
 #include "content/public/common/url_constants.h"
 #include "ui/base/resource/resource_bundle.h"

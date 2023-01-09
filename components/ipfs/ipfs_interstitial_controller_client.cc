@@ -3,10 +3,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/ipfs_interstitial_controller_client.h"
+#include "mises/components/ipfs/ipfs_interstitial_controller_client.h"
 
-#include "brave/components/ipfs/ipfs_utils.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/pref_names.h"
 #include "components/prefs/pref_service.h"
 #include "components/security_interstitials/content/settings_page_helper.h"
 #include "components/security_interstitials/core/metrics_helper.h"

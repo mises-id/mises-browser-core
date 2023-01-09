@@ -8,7 +8,7 @@
 
 #include "base/memory/raw_ptr.h"
 #include "base/timer/timer.h"
-#include "brave/components/ipfs/ipfs_service_observer.h"
+#include "mises/components/ipfs/ipfs_service_observer.h"
 #include "components/prefs/pref_change_registrar.h"
 
 class PrefService;

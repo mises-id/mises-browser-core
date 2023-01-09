@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/browser/brave_browser_process_impl.h"
+#include "mises/browser/mises_browser_process_impl.h"
 
 #include <memory>
 #include <string>
@@ -17,13 +17,13 @@
 #include "mises/browser/component_updater/brave_component_updater_configurator.h"
 #include "mises/browser/component_updater/brave_component_updater_delegate.h"
 #include "mises/browser/net/brave_system_request_handler.h"
-#include "mises/browser/profiles/brave_profile_manager.h"
-#include "mises/browser/themes/brave_dark_mode_utils.h"
+#include "mises/browser/profiles/mises_profile_manager.h"
+//#include "mises/browser/themes/brave_dark_mode_utils.h"
 #include "mises/common/brave_channel_info.h"
 //#include "mises/components/brave_ads/browser/component_updater/resource_component.h"
-#include "mises/components/brave_component_updater/browser/brave_on_demand_updater.h"
-#include "mises/components/brave_component_updater/browser/local_data_files_service.h"
-#include "mises/components/brave_referrals/buildflags/buildflags.h"
+#include "mises/components/mises_component_updater/browser/brave_on_demand_updater.h"
+#include "mises/components/mises_component_updater/browser/local_data_files_service.h"
+//#include "mises/components/brave_referrals/buildflags/buildflags.h"
 //#include "mises/components/brave_shields/browser/ad_block_regional_service_manager.h"
 //#include "mises/components/brave_shields/browser/ad_block_service.h"
 //#include "mises/components/brave_shields/browser/ad_block_subscription_service_manager.h"

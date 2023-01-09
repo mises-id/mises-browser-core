@@ -8,7 +8,7 @@
 #include "base/command_line.h"
 #include "mises/components/brave_wayback_machine/brave_wayback_machine_infobar_delegate.h"
 #include "mises/components/brave_wayback_machine/brave_wayback_machine_tab_helper.h"
-#include "mises/components/constants/brave_switches.h"
+#include "mises/components/constants/mises_switches.h"
 #include "components/infobars/content/content_infobar_manager.h"
 #include "components/infobars/core/infobar.h"
 

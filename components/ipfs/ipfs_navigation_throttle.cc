@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/ipfs_navigation_throttle.h"
+#include "mises/components/ipfs/ipfs_navigation_throttle.h"
 
 #include <memory>
 #include <utility>
@@ -11,13 +11,13 @@
 #include "base/bind.h"
 #include "base/rand_util.h"
 #include "base/threading/thread_task_runner_handle.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_interstitial_controller_client.h"
-#include "brave/components/ipfs/ipfs_not_connected_page.h"
-#include "brave/components/ipfs/ipfs_onboarding_page.h"
-#include "brave/components/ipfs/ipfs_service.h"
-#include "brave/components/ipfs/ipfs_utils.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_interstitial_controller_client.h"
+#include "mises/components/ipfs/ipfs_not_connected_page.h"
+#include "mises/components/ipfs/ipfs_onboarding_page.h"
+#include "mises/components/ipfs/ipfs_service.h"
+#include "mises/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/pref_names.h"
 #include "components/prefs/pref_service.h"
 #include "components/security_interstitials/content/security_interstitial_tab_helper.h"
 #include "components/user_prefs/user_prefs.h"

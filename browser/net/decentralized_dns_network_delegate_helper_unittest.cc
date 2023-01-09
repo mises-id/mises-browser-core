@@ -3,21 +3,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/decentralized_dns_network_delegate_helper.h"
+#include "mises/browser/net/decentralized_dns_network_delegate_helper.h"
 
 #include <memory>
 
 #include "base/run_loop.h"
 #include "base/test/scoped_feature_list.h"
-#include "brave/browser/brave_wallet/json_rpc_service_factory.h"
-#include "brave/browser/net/url_context.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_utils.h"
-#include "brave/components/brave_wallet/browser/json_rpc_service.h"
-#include "brave/components/brave_wallet/browser/json_rpc_service_test_utils.h"
-#include "brave/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "brave/components/decentralized_dns/constants.h"
-#include "brave/components/decentralized_dns/pref_names.h"
-#include "brave/components/decentralized_dns/utils.h"
+#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
+#include "mises/browser/net/url_context.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/browser/json_rpc_service.h"
+#include "mises/components/brave_wallet/browser/json_rpc_service_test_utils.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/decentralized_dns/constants.h"
+#include "mises/components/decentralized_dns/pref_names.h"
+#include "mises/components/decentralized_dns/utils.h"
 #include "chrome/test/base/scoped_testing_local_state.h"
 #include "chrome/test/base/testing_browser_process.h"
 #include "chrome/test/base/testing_profile.h"

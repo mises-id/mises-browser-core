@@ -18,7 +18,7 @@ class MisesBrowserMainParts : public ChromeBrowserMainParts {
 
   void PreBrowserStart() override;
   void PostBrowserStart() override;
-  void PreShutdown() override;
+  void PreShutdown();// override;
   void PreProfileInit() override;
   void PostProfileInit(Profile* profile, bool is_initial_profile) override;
 

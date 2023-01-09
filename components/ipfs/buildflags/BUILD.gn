@@ -1,4 +1,4 @@
-import("//brave/components/ipfs/buildflags/buildflags.gni")
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 import("//build/buildflag_header.gni")
 
 buildflag_header("buildflags") {

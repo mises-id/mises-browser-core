@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_ad_block_tp_network_delegate_helper.h"
+#include "mises/browser/net/brave_ad_block_tp_network_delegate_helper.h"
 
 #include <memory>
 #include <string>
@@ -15,15 +15,15 @@
 #include "base/metrics/histogram_macros.h"
 #include "base/no_destructor.h"
 #include "base/strings/string_util.h"
-#include "brave/browser/brave_browser_process.h"
-#include "brave/browser/brave_shields/brave_shields_web_contents_observer.h"
-#include "brave/browser/net/url_context.h"
-#include "brave/components/brave_shields/browser/ad_block_service.h"
-#include "brave/components/brave_shields/common/brave_shield_constants.h"
-#include "brave/components/brave_shields/common/features.h"
-#include "brave/components/constants/network_constants.h"
-#include "brave/components/constants/url_constants.h"
-#include "brave/grit/brave_generated_resources.h"
+#include "mises/browser/brave_browser_process.h"
+#include "mises/browser/brave_shields/brave_shields_web_contents_observer.h"
+#include "mises/browser/net/url_context.h"
+#include "mises/components/brave_shields/browser/ad_block_service.h"
+#include "mises/components/brave_shields/common/brave_shield_constants.h"
+#include "mises/components/brave_shields/common/features.h"
+#include "mises/components/constants/network_constants.h"
+#include "mises/components/constants/url_constants.h"
+#include "mises/grit/brave_generated_resources.h"
 #include "chrome/browser/net/proxy_service_factory.h"
 #include "chrome/browser/net/secure_dns_config.h"
 #include "chrome/browser/net/system_network_context_manager.h"

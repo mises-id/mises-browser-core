@@ -5,7 +5,7 @@
 
 #include "mises/common/extensions/whitelist.h"
 
-#include "mises/components/brave_component_updater/browser/local_data_files_service.h"
+#include "mises/components/mises_component_updater/browser/local_data_files_service.h"
 #include "extensions/common/constants.h"
 
 // This is a hardcoded list of vetted extensions, mostly

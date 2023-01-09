@@ -11,8 +11,8 @@
 
 #include "base/callback.h"
 #include "base/files/file_enumerator.h"
-#include "brave/components/ipfs/blob_context_getter_factory.h"
-#include "brave/components/ipfs/buildflags/buildflags.h"
+#include "mises/components/ipfs/blob_context_getter_factory.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
 #include "services/network/public/cpp/resource_request.h"
 #include "services/network/public/cpp/simple_url_loader.h"
 #include "url/gurl.h"

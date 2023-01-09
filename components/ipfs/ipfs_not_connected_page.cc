@@ -3,16 +3,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/ipfs_not_connected_page.h"
+#include "mises/components/ipfs/ipfs_not_connected_page.h"
 
 #include <ostream>
 #include <utility>
 
 #include "base/notreached.h"
 #include "base/strings/string_number_conversions.h"
-#include "brave/components/l10n/common/locale_util.h"
-#include "components/grit/brave_components_resources.h"
-#include "components/grit/brave_components_strings.h"
+#include "mises/components/l10n/common/locale_util.h"
+#include "components/grit/mises_components_resources.h"
+#include "components/grit/mises_components_strings.h"
 #include "components/security_interstitials/content/security_interstitial_controller_client.h"
 
 namespace ipfs {

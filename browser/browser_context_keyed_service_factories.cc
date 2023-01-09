@@ -117,7 +117,7 @@ void EnsureBrowserContextKeyedServiceFactoriesBuilt() {
 //  if (base::FeatureList::IsEnabled(playlist::features::kPlaylist)) {
 //    playlist::PlaylistServiceFactory::GetInstance();
 //  }
-#endif
+//#endif
 }
 
 }  // namespace brave

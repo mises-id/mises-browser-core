@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_site_hacks_network_delegate_helper.h"
+#include "mises/browser/net/brave_site_hacks_network_delegate_helper.h"
 
 #include <memory>
 #include <string>
@@ -15,8 +15,8 @@
 #include "base/strings/string_piece.h"
 #include "base/strings/string_split.h"
 #include "base/strings/string_util.h"
-#include "brave/components/brave_shields/browser/brave_shields_util.h"
-#include "brave/components/constants/url_constants.h"
+#include "mises/components/brave_shields/browser/brave_shields_util.h"
+#include "mises/components/constants/url_constants.h"
 #include "content/public/common/referrer.h"
 #include "net/base/registry_controlled_domains/registry_controlled_domain.h"
 #include "net/url_request/url_request.h"

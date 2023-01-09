@@ -3,16 +3,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_reduce_language_network_delegate_helper.h"
+#include "mises/browser/net/brave_reduce_language_network_delegate_helper.h"
 
 #include <array>
 #include <string>
 #include <vector>
 
 #include "base/strings/string_split.h"
-#include "brave/browser/brave_browser_process.h"
-#include "brave/components/brave_shields/browser/brave_farbling_service.h"
-#include "brave/components/brave_shields/browser/brave_shields_util.h"
+#include "mises/browser/mises_browser_process.h"
+#include "mises/components/brave_shields/browser/brave_farbling_service.h"
+#include "mises/components/brave_shields/browser/brave_shields_util.h"
 #include "chrome/browser/content_settings/host_content_settings_map_factory.h"
 #include "chrome/browser/profiles/profile.h"
 #include "components/content_settings/core/browser/host_content_settings_map.h"
@@ -48,7 +48,7 @@ std::string FarbleAcceptLanguageHeader(
   }
   // Add a fake q value after the language code.
   brave::FarblingPRNG prng;
-  if (g_brave_browser_process->brave_farbling_service()
+  if (g_mises_browser_process->brave_farbling_service()
           ->MakePseudoRandomGeneratorForURL(
               tab_origin, profile && profile->IsOffTheRecord(), &prng)) {
     accept_language_string += kFakeQValues[prng() % kFakeQValues.size()];

@@ -7,7 +7,7 @@
     "namespace": "ipfs",
     "description": "Use the <code>chrome.ipfs</code> API to control IPFS functionality.",
     "compiler_options": {
-      "implemented_in": "brave/browser/extensions/api/ipfs_api.h"
+      "implemented_in": "mises/browser/extensions/api/ipfs_api.h"
     },
     "events": [
     ],

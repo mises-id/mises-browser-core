@@ -4,15 +4,15 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "chrome/browser/ui/views/page_info/page_info_view_factory.h"
-#include "brave/components/ipfs/buildflags/buildflags.h"
-#include "brave/components/vector_icons/vector_icons.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/components/vector_icons/vector_icons.h"
 #if BUILDFLAG(ENABLE_IPFS)
-#include "brave/components/constants/webui_url_constants.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_utils.h"
-#include "brave/components/l10n/common/locale_util.h"
-#include "brave/components/vector_icons/vector_icons.h"
-#include "brave/grit/brave_theme_resources.h"
+#include "mises/components/constants/webui_url_constants.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_utils.h"
+#include "mises/components/l10n/common/locale_util.h"
+#include "mises/components/vector_icons/vector_icons.h"
+#include "mises/grit/brave_theme_resources.h"
 #include "chrome/browser/ui/page_info/chrome_page_info_ui_delegate.h"
 #include "chrome/browser/ui/views/page_info/page_info_hover_button.h"
 #include "components/grit/brave_components_strings.h"

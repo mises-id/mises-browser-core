@@ -6,7 +6,7 @@
 #ifndef BRAVE_CHROMIUM_SRC_NET_HTTP_TRANSPORT_SECURITY_STATE_H_
 #define BRAVE_CHROMIUM_SRC_NET_HTTP_TRANSPORT_SECURITY_STATE_H_
 
-#include "brave/net/http/partitioned_host_state_map.h"
+#include "mises/net/http/partitioned_host_state_map.h"
 #include "net/base/isolation_info.h"
 
 namespace net {
