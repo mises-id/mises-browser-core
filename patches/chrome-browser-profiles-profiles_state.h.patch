@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/profiles/profiles_state.h b/chrome/browser/profiles/profiles_state.h
+index e3bb7c0f6ba8ccddfce6fd67f02ba8096313bf23..550f87114cd298fd4c33a4f4915f487d83691caf 100644
+--- a/chrome/browser/profiles/profiles_state.h
++++ b/chrome/browser/profiles/profiles_state.h
+@@ -48,7 +48,7 @@ void RegisterPrefs(PrefRegistrySimple* registry);
+ // System Profile directory, which is an invalid last used profile.
+ void SetLastUsedProfile(const base::FilePath& profile_dir);
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ // Returns the display name of the specified on-the-record profile (or guest),
+ // specified by |profile_path|, used in the avatar button or user manager. If
+ // |profile_path| is the guest path, it will return IDS_GUEST_PROFILE_NAME. If

@@ -15,8 +15,8 @@ mises_android_manifest_includes = [
 
 mises_chrome_java_deps = [
   #"//mises/android/java/org/chromium/chrome/browser/search_engines:java",
-  "//mises/browser/notifications/android:mises_java",
-  "//mises/browser/notifications/android:java",
+  #"//mises/browser/notifications/android:mises_java",
+  #"//mises/browser/notifications/android:java",
   #"//mises/browser/safe_browsing/android/java/src/org/chromium/chrome/browser/safe_browsing/settings:java",
   #"//mises/browser/ui/android/logo:java",
   #"//mises/browser/ui/android/omnibox:java",
@@ -49,9 +49,9 @@ mises_chrome_java_deps = [
 ]
 
 mises_chrome_all_java_deps = [
-  "//mises/android/features/tab_ui:java",
-  "//mises/browser/partnerbookmarks:delegate_public_impl_java",
-  "//mises/browser/partnercustomizations:delegate_public_impl_java",
+  #"//mises/android/features/tab_ui:java",
+  #"//mises/browser/partnerbookmarks:delegate_public_impl_java",
+  #"//mises/browser/partnercustomizations:delegate_public_impl_java",
 
   "//mises/android/features/mises:jni_headers",
 ]

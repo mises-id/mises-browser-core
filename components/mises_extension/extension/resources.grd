@@ -967,7 +967,7 @@
 <include name="IDR_MISES_WALLET_ASSETS_ATOM_O_SVG" file="mises_wallet/assets/atom-o.svg" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_BLOCKLIST_SVG" file="mises_wallet/assets/blocklist.svg" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_BRAND_SUB_TEXT_PNG" file="mises_wallet/assets/brand-sub-text.png" type="BINDATA" />
-<include name="IDR_MISES_WALLET_ASSETS_BRAND_TEXT_FIT_LOGO_HEIGHT_PNG" file="mises_wallet/assets/brand-text-fit-logo-height.png" type="BINDATA" />
+<include name="IDR_MISES_WALLET_ASSETS_MISES_PNG" file="mises_wallet/assets/mises.png" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_BRAND_TEXT_PNG" file="mises_wallet/assets/brand-text.png" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_BROKEN_LINK_SVG" file="mises_wallet/assets/broken-link.svg" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_ETHEREUM_SVG" file="mises_wallet/assets/ethereum.svg" type="BINDATA" />
@@ -1016,7 +1016,6 @@
 <include name="IDR_MISES_WALLET_POPUP_HTML" file="mises_wallet/popup.html" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_13C43F11_BUNDLE_JS" file="mises_wallet/popup~popup~13c43f11.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_14020A9E_BUNDLE_JS" file="mises_wallet/popup~popup~14020a9e.bundle.js" type="BINDATA" />
-<include name="IDR_MISES_WALLET_POPUP_POPUP_361F037C_BUNDLE_JS" file="mises_wallet/popup~popup~361f037c.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_402F6FEC_BUNDLE_JS" file="mises_wallet/popup~popup~402f6fec.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_476E6769_BUNDLE_JS" file="mises_wallet/popup~popup~476e6769.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_47DAD47D_BUNDLE_JS" file="mises_wallet/popup~popup~47dad47d.bundle.js" type="BINDATA" />
@@ -1026,7 +1025,6 @@
 <include name="IDR_MISES_WALLET_POPUP_POPUP_64216FA6_BUNDLE_JS" file="mises_wallet/popup~popup~64216fa6.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_6BD0612F_BUNDLE_JS" file="mises_wallet/popup~popup~6bd0612f.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_6BF397A3_BUNDLE_JS" file="mises_wallet/popup~popup~6bf397a3.bundle.js" type="BINDATA" />
-<include name="IDR_MISES_WALLET_POPUP_POPUP_74B7CDC3_BUNDLE_JS" file="mises_wallet/popup~popup~74b7cdc3.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_83FC8F4F_BUNDLE_JS" file="mises_wallet/popup~popup~83fc8f4f.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_9FB01686_BUNDLE_JS" file="mises_wallet/popup~popup~9fb01686.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_AF25FBE0_BUNDLE_JS" file="mises_wallet/popup~popup~af25fbe0.bundle.js" type="BINDATA" />

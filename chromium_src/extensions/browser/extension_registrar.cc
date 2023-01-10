@@ -39,7 +39,7 @@
 #include "chrome/browser/android/tab_android.h"
 #include "chrome/browser/ui/android/tab_model/tab_model.h"
 #include "chrome/browser/ui/android/tab_model/tab_model_list.h"
-std::string AppMenuBridge_GetRunningExtensionsInternal(Profile* profile, content::WebContents* web_contents);
+#include "chrome/browser/android/app_menu_bridge.h"
 #endif
 #include "content/public/browser/web_contents.h"
 #include "chrome/browser/profiles/profile.h"
@@ -522,7 +522,8 @@ void ExtensionRegistrar::ActivateExtension(const Extension* extension,
     MaybeSpinUpLazyContext(extension, is_newly_added);
   
 #if BUILDFLAG(IS_ANDROID)
-  AppMenuBridge_GetRunningExtensionsInternal(Profile::FromBrowserContext(browser_context_), nullptr);
+  Profile *profile = Profile::FromBrowserContext(browser_context_);
+  AppMenuBridge::Factory::GetForProfile(profile)->GetRunningExtensionsInternal(nullptr);
   TabModelList::TabModelVector tab_model_vector = TabModelList::models();
   if (!tab_model_vector.size())
     return ;
@@ -533,7 +534,7 @@ void ExtensionRegistrar::ActivateExtension(const Extension* extension,
       continue ;
 
     if (tab->web_contents()) {
-      AppMenuBridge_GetRunningExtensionsInternal(Profile::FromBrowserContext(browser_context_), tab->web_contents());
+      AppMenuBridge::Factory::GetForProfile(profile)->GetRunningExtensionsInternal(tab->web_contents());
       continue ;
     }
   }

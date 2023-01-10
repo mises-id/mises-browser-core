@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/profiles/profile_manager.h b/chrome/browser/profiles/profile_manager.h
+index 0f3e28ba7dd6e9d33068167968467ab4b02db77d..2858553780be0fcbbdab86488c3b10ef285d33fc 100644
+--- a/chrome/browser/profiles/profile_manager.h
++++ b/chrome/browser/profiles/profile_manager.h
+@@ -230,7 +230,7 @@ class ProfileManager : public Profile::Delegate {
+   // Returns the full path to be used for guest profiles.
+   static base::FilePath GetGuestProfilePath();
+ 
+-#if !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_ANDROID)
+   // Returns the full path to be used for system profiles.
+   static base::FilePath GetSystemProfilePath();
+ #endif  // !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_ANDROID)
+@@ -259,7 +259,7 @@ class ProfileManager : public Profile::Delegate {
+   AccountProfileMapper* GetAccountProfileMapper();
+ #endif
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   // Less strict version of ScheduleProfileForDeletion(), silently exits if
+   // profile is either scheduling or marked for deletion.
+   void MaybeScheduleProfileForDeletion(

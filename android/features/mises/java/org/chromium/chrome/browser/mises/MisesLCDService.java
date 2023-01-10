@@ -52,6 +52,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     private static MLightNode nodeLCD;
     private Thread nodeThread;
     private Thread nodeRestartThread;
+    private String homePath; 
 
     @Nullable
     @Override
@@ -73,9 +74,9 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
         Log.i(TAG, "onStartCommand");
         if (intent != null) {
             if (intent.getAction() != null) {
-		Log.i(TAG, "onStartCommand " + intent.getAction());
+		        Log.i(TAG, "onStartCommand " + intent.getAction());
                 if (intent.getAction().equals(ACTION_RESTART_FOREGROUND_SERVICE)) {
-		    retryCounter = 0;
+		            retryCounter = 0;
                     startLCDService();
                 } else if (intent.getAction().equals(ACTION_OPEN_APP)) {
                     String key_data = intent.getStringExtra(KEY_DATA);
@@ -89,8 +90,8 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     private void openAppHomePage(String keydata) {
         try {
           sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-	} catch (SecurityException e) {
-	}
+	    } catch (SecurityException e) {
+	    }
         Intent newintent = new Intent();
         newintent.setClassName("site.mises.browser", "org.chromium.chrome.browser.ChromeTabbedActivity");
         newintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
@@ -106,17 +107,16 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
 
         // Start foreground service.
         if (!IS_RUNNING) {
-
-	  startLCDService();
-	}
+	        startLCDService();
+	    }
 
     }
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel chan = new NotificationChannel(
-                    CHANNEL_ID,
-                    CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT
+                CHANNEL_ID,
+                CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT
             );
 
             chan.setLightColor(Color.BLUE);
@@ -128,14 +128,14 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
 
     private void startLCDService() {
         Log.i(TAG, "startLCDService");
-	try {
+	    try {
           startForeground(SERVICE_ID, getStickyNotification(
               getString(R.string.title_foreground_service_notification_running),
               getString(R.string.msg_notification_service_desc), true
           ));
-	}
-	catch (Exception ex) {
-	}
+	    }
+	    catch (Exception ex) {
+	    }
         IS_RUNNING = true;
 
         uiThreadHandler.removeCallbacksAndMessages(null);
@@ -154,22 +154,41 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
             @Override
             public void run() {
                 Log.i(TAG, "mises light node restarting");
-		try {
-		    nodeLCD.restart();
-		} catch (Exception e) {
-		
-		    Log.i(TAG, "mises light node restart fail");
-		}
+                try {
+                    nodeLCD.restart();
+                } catch (Exception e) {
+                
+                    Log.i(TAG, "mises light node restart fail");
+                }
                 nodeRestartThread = null;
 
             }
         });
         nodeRestartThread.start();
     }
-    private void initNode(final String home_path) {
+    
+    private void deleteTrustStore() {
+        try {
+            Log.i(TAG, "deleteTrustStore");
+            File dbdir = new File(homePath + "//.misestm//light//light-client-db.db");
+            if ( dbdir.isDirectory() ) {
+                //list all the files in directory
+                File dbfiles[] = dbdir.listFiles();
+            
+                for (File dbfile : dbfiles) {
+                    //recursive delete
+                    dbfile.delete();
+                }
+            }
+        }catch (Exception e) {
+            Log.e(TAG, "fail to delete trust store");
+
+        }
+    }
+    private void initNode() {
         if (nodeThread != null) {
-	  return;
-	}
+	        return;
+	    }
         nodeThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -180,7 +199,7 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
                 String witness_nodes = "";
                 String chain_id = "";
                 boolean first_run = false;
-                File f = new File(home_path+ "//.misestm//light//light-client-db.db");
+                File f = new File(homePath + "//.misestm//light//light-client-db.db");
                 if (!f.exists()) {
                     first_run = true;
                 }
@@ -206,16 +225,16 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(TAG, "fail to get mises chain ino");
+                    Log.e(TAG, "fail to get mises chain info");
 
                 }finally {
                     if (block_hash.isEmpty() || block_height.isEmpty()) {
                         if (first_run) {
                             //if no old light data, restart later
                             Log.e(TAG, "no trust block");
-			    nodeThread = null;
-			    MisesLCDService.this.onError();
-			    return;
+			                nodeThread = null;
+			                MisesLCDService.this.onError("");
+			                return;
                         } else {
                             //leave block_hash and block_height empty so that trust the existing block
                             Log.i(TAG, "trust the existing block");
@@ -245,22 +264,23 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
 
                 }
                 try {
-		    nodeLCD = Lcd.newMLightNode();
+		            nodeLCD = Lcd.newMLightNode();
                     nodeLCD.setChainID(chain_id);
                     nodeLCD.setEndpoints(primary_node, witness_nodes);
                     nodeLCD.setTrust(block_height, block_hash);
-		    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1) {
-			// these android version dont support isrg_root_x1 CA, so simply make Ssl skip checking CA
-		        nodeLCD.setInsecureSsl(true);
-		    }
+		            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1) {
+			            // these android version dont support isrg_root_x1 CA, so simply make Ssl skip checking CA
+		                nodeLCD.setInsecureSsl(true);
+		            }
                     nodeLCD.serve("tcp://127.0.0.1:26657", MisesLCDService.this);
                     Log.i(TAG, "mises light node started");
                 } catch (Exception e) {
                     Log.e(TAG, "mises light node start error");
-		    nodeLCD = null;
-                    MisesLCDService.this.onError();
+		            nodeLCD = null;
+                    //we delete  the trust store here for it could be corupted
+                    MisesLCDService.this.onError("");
                 }
-		nodeThread = null;
+		        nodeThread = null;
 
             }
         });
@@ -268,16 +288,20 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     }
    
     
-    private void onErrorUIThread() {
-        Log.e(TAG, "onError " + retryCounter);
-	try {
+    private void onErrorUIThread(final String reason) {
+        Log.e(TAG, "onError " + reason + ", retry:"+ retryCounter);
+        if (!reason.isEmpty()) {
+            deleteTrustStore();
+            nodeLCD = null;
+        }
+	    try {
           startForeground(SERVICE_ID, getStickyNotification(
             getString(R.string.title_foreground_service_notification_error),
             getString(R.string.msg_notification_service_desc), false
           ));
-	}
-	catch (Exception ex) {
-	}
+	    }
+	    catch (Exception ex) {
+	    }
         int retryDelay = 30000;
         if (retryCounter < 0) {
             retryDelay = 30000;
@@ -287,28 +311,29 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
             retryDelay = 960000;
         }
         retryCounter += 1;
-	uiThreadHandler.removeCallbacksAndMessages(null);
+	    uiThreadHandler.removeCallbacksAndMessages(null);
         uiThreadHandler.postDelayed( () -> {
             startLCDService();
         }, retryDelay); 
     }
+
     @Override
-    public void onError() {
-	uiThreadHandler.post( () -> {onErrorUIThread();});
-       
+    public void onError(String reason) {
+        final String error_reason = reason;
+	    uiThreadHandler.post( () -> {onErrorUIThread(error_reason);});
     }
     private void restartNode() {
         try {
             if (nodeLCD == null) {
-                final String home_path = this.getApplicationContext().getFilesDir().getAbsolutePath() + File.separator;
-                Lcd.setHomePath(home_path);
-                initNode(home_path);
+                homePath = this.getApplicationContext().getFilesDir().getAbsolutePath() + File.separator;
+                Lcd.setHomePath(homePath);
+                initNode();
             } else {
                 resetNode();
             }
         } catch (Exception e) {
            Log.e(TAG, "mises light node restart error");
-           onError();
+           onError("");
         }
     }
 
@@ -324,11 +349,11 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
         // Set big text style.
         builder.setStyle(bigTextStyle);
         builder.setWhen(System.currentTimeMillis());
-	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-	  builder.setSmallIcon(R.mipmap.app_icon);
-	} else {
-          builder.setSmallIcon(R.drawable.ic_launcher);
-	}
+	    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+	        builder.setSmallIcon(R.mipmap.app_icon);
+	    } else {
+            builder.setSmallIcon(R.drawable.ic_launcher);
+	    }
         //val largeIconBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_alarm_on)
         //builder.setLargeIcon(largeIconBitmap)
         // Make the notification max priority.

@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/profiles/profile_window.cc b/chrome/browser/profiles/profile_window.cc
+index f6a90bd08cc3f826c49dc9f2e2e9fba083bf98a8..0dbf648dc7fe47cefcfc3ab6e8c6d653acd80fc7 100644
+--- a/chrome/browser/profiles/profile_window.cc
++++ b/chrome/browser/profiles/profile_window.cc
+@@ -56,7 +56,7 @@
+ #include "extensions/browser/extension_system.h"
+ #endif  // BUILDFLAG(ENABLE_EXTENSIONS)
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ #include "chrome/browser/ui/browser_finder.h"
+ #include "chrome/browser/ui/browser_list.h"
+ #include "chrome/browser/ui/browser_list_observer.h"
+@@ -222,7 +222,7 @@ void OpenBrowserWindowForProfile(base::OnceCallback<void(Profile*)> callback,
+                                             is_first_run, true);
+ }
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ 
+ void LoadProfileAsync(const base::FilePath& path,
+                       base::OnceCallback<void(Profile*)> callback) {

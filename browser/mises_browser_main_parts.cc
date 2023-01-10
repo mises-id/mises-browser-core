@@ -72,6 +72,10 @@
 #include "chrome/browser/profiles/chrome_browser_main_extra_parts_profiles.h"
 #endif
 
+#include "mises/browser/extensions/mises_component_loader.h"
+#include "chrome/browser/extensions/extension_service.h"
+#include "extensions/browser/extension_system.h"
+
 void MisesBrowserMainParts::PreBrowserStart() {
 //#if BUILDFLAG(ENABLE_SPEEDREADER)
 //  // Register() must be called after the SerializedNavigationDriver is
@@ -205,4 +209,12 @@ void MisesBrowserMainParts::PostProfileInit(Profile* profile,
 //        ->AddEthereumRemoteClientExtensionOnStartup();
 //  }
 //#endif
+
+  extensions::ExtensionService* service =
+      extensions::ExtensionSystem::Get(profile)->extension_service();
+  if (service) {
+    extensions::ComponentLoader* loader = service->component_loader();
+    static_cast<extensions::MisesComponentLoader*>(loader)
+        ->AddMetamaskExtensionOnStartup();
+  }
 }

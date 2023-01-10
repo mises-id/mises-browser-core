@@ -166,7 +166,7 @@ void ParseHostPermissions(Extension* extension,
         // the flag here.
         valid_schemes &= ~URLPattern::SCHEME_CHROMEUI;
       }
-      if (pattern.scheme() != "chrome-search" &&
+      if (pattern.scheme() != content::kChromeSearchScheme &&
           !all_urls_includes_chrome_urls) {
         valid_schemes &= ~URLPattern::SCHEME_CHROMESEARCH;
       }

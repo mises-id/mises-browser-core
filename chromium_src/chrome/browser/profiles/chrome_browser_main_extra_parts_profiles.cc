@@ -283,21 +283,15 @@ ChromeBrowserMainExtraPartsProfiles::~ChromeBrowserMainExtraPartsProfiles() =
 // static
 void ChromeBrowserMainExtraPartsProfiles::
     EnsureBrowserContextKeyedServiceFactoriesBuilt(bool full_init) {
-//LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << full_init;
 #if BUILDFLAG(ENABLE_EXTENSIONS)
 if (full_init){
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 1";
   apps::EnsureBrowserContextKeyedServiceFactoriesBuilt();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 2";
   chrome_apps::EnsureBrowserContextKeyedServiceFactoriesBuilt();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 3";
   chrome_apps::api::EnsureBrowserContextKeyedServiceFactoriesBuilt();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 4";
   chrome_extensions::EnsureBrowserContextKeyedServiceFactoriesBuilt();
 #if BUILDFLAG(IS_CHROMEOS)
   chromeos_extensions::EnsureBrowserContextKeyedServiceFactoriesBuilt();
 #endif
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 5";
   extensions::EnsureBrowserContextKeyedServiceFactoriesBuilt();
 }
 #endif
@@ -305,22 +299,15 @@ if (full_init){
   ash::login::SecurityTokenSessionControllerFactory::GetInstance();
   ash::EnsureBrowserContextKeyedServiceFactoriesBuilt();
 #endif
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 6";
   AboutSigninInternalsFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 7";
   AboutThisSiteServiceFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 8";
   AccessContextAuditServiceFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 9";
   AccountConsistencyModeManagerFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 10";
   AccountInvestigatorFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 11";
   AccountReconcilorFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   AccuracyServiceFactory::GetInstance();
 #endif
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 12";
   AdaptiveQuietNotificationPermissionUiEnabler::Factory::GetInstance();
 #if BUILDFLAG(IS_CHROMEOS_ASH)
   app_list::AppListSyncableServiceFactory::GetInstance();
@@ -333,156 +320,109 @@ if (full_init){
 #if BUILDFLAG(IS_CHROMEOS)
   apps::SupportedLinksInfoBarPrefsServiceFactory::GetInstance();
 #endif
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 13";
   if (full_init) AutocompleteClassifierFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 14";
   autofill::PersonalDataManagerFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 15";
   autofill::AutofillOfferManagerFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 16";
   autofill::MerchantPromoCodeManagerFactory::GetInstance();
 #if BUILDFLAG(ENABLE_BACKGROUND_CONTENTS)
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 17";
   BackgroundContentsServiceFactory::GetInstance();
 #endif
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 18";
   BookmarkModelFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 19";
   BookmarkUndoServiceFactory::GetInstance();
-   //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 20";
   if (breadcrumbs::IsEnabled())
     BreadcrumbManagerKeyedServiceFactory::GetInstance();
-    //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 21";
   browser_sync::UserEventServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 22";
   BrowsingDataHistoryObserverService::Factory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 23";
   browsing_topics::BrowsingTopicsServiceFactory::GetInstance();
 #if BUILDFLAG(IS_CHROMEOS_LACROS)
   chromeos::CleanupManagerLacrosFactory::GetInstance();
   chromeos::RemoteAppsProxyLacrosFactory::GetInstance();
 #endif
 #if BUILDFLAG(ENABLE_CAPTIVE_PORTAL_DETECTION)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 24";
   CaptivePortalServiceFactory::GetInstance();
 #endif
 #if !BUILDFLAG(IS_ANDROID)
   CartServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 25";
   if (base::FeatureList::IsEnabled(commerce::kCommerceMerchantViewer))
     MerchantViewerDataManagerFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_CHROMEOS_LACROS)
   CertDbInitializerFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 26";
   CertificateReportingServiceFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   ChromeBrowsingDataLifetimeManagerFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 27";
   if (full_init) ChromeBrowsingDataRemoverDelegateFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 28";
   ChromeSigninClientFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 29";
   ClientHintsFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 30";
   ConsentAuditorFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 31";
   CookieSettingsFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 32";
 #if !BUILDFLAG(IS_ANDROID)
   CouponServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(ENABLE_DICE_SUPPORT)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 33";
   DiceWebSigninInterceptorFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 34";
   DomainDiversityReporterFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 35";
   dom_distiller::DomDistillerServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 36";
   DownloadCoreServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 37";
   BackgroundDownloadServiceFactory::GetInstance();
 #if BUILDFLAG(ENABLE_SESSION_SERVICE)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 38";
   ExitTypeServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 39";
   explore_sites::ExploreSitesServiceFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 40";
   FaviconServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 41";
   feature_engagement::TrackerFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
 
   feedback::FeedbackUploaderFactoryChrome::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 42";
   FindBarStateFactory::GetInstance();
 #if !BUILDFLAG(IS_CHROMEOS_ASH)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 43";
   GAIAInfoUpdateServiceFactory::GetInstance();
 #endif
 #if !BUILDFLAG(IS_ANDROID)
   GlobalErrorServiceFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 44";
   GoogleSearchDomainMixingMetricsEmitterFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 45";
   HistoryServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 46";
   if (full_init) HistoryUiFaviconRequestHandlerFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 47";
   HostContentSettingsMapFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 48";
   HttpsEngagementServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 49";
   IdentityManagerFactory::EnsureFactoryAndDependeeFactoriesBuilt();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 50";
   InMemoryURLIndexFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 51";
 #if true || !BUILDFLAG(IS_ANDROID)
   InstantServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_CHROMEOS_LACROS)
   LacrosFirstRunServiceFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 52";
   LanguageModelManagerFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 53";
   if (base::FeatureList::IsEnabled(
           permissions::features::kOneTimeGeolocationPermission)) {
     LastTabStandingTrackerFactory::GetInstance();
   }
-//LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 54";
   login_detection::LoginDetectionKeyedServiceFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   LoginUIServiceFactory::GetInstance();
   ManagedConfigurationAPIFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 55";
   MediaDrmOriginIdManagerFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 56";
   if (MediaEngagementService::IsEnabled())
     MediaEngagementServiceFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   MediaGalleriesPreferencesFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 57";
   if (base::FeatureList::IsEnabled(media::kUseMediaHistoryStore))
     media_history::MediaHistoryKeyedServiceFactory::GetInstance();
-    //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 58";
   media_router::ChromeLocalPresentationManagerFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 59";
   media_router::ChromeMediaRouterFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   if (base::FeatureList::IsEnabled(features::kAccessCodeCastUI))
@@ -506,42 +446,31 @@ if (full_init){
 #if !BUILDFLAG(IS_ANDROID)
   NTPResourceCacheFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 60";
   OptimizationGuideKeyedServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 61";
   if (optimization_guide::switches::ShouldValidateModel())
     optimization_guide::ModelValidatorKeyedServiceFactory::GetInstance();
-    //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 62";
   page_load_metrics::PageLoadMetricsMemoryTrackerFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 63";
   PasswordStoreFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 64";
   PermissionAuditingServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 65";
   SessionProtoDBFactory<
       persisted_state_db::PersistedStateContentProto>::GetInstance();
 #if true || !BUILDFLAG(IS_ANDROID)
-      //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 66";
   PinnedTabServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(ENABLE_PLUGINS)
   PluginPrefsFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 67";
   PrefMetricsService::Factory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 68";
   PrefsTabHelper::GetServiceInstance();
 #if !BUILDFLAG(IS_ANDROID)
   SessionProtoDBFactory<cart_db::ChromeCartContentProto>::GetInstance();
   SessionProtoDBFactory<coupon_db::CouponContentProto>::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 69";
   SessionProtoDBFactory<commerce_subscription_db::
                             CommerceSubscriptionContentProto>::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
-			     //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 70";
   SessionProtoDBFactory<
       merchant_signal_db::MerchantSignalContentProto>::GetInstance();
 #endif
@@ -550,65 +479,47 @@ if (full_init){
   policy::PolicyCertServiceFactory::GetInstance();
   policy::UserNetworkConfigurationUpdaterFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 71";
   policy::UserCloudPolicyInvalidatorFactory::GetInstance();
 #if !BUILDFLAG(IS_CHROMEOS_ASH)
   policy::UserPolicySigninServiceFactory::GetInstance();
 #endif
 
 #if !BUILDFLAG(IS_CHROMEOS_ASH)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 72";
   enterprise_reporting::CloudProfileReportingServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(BUILD_WITH_TFLITE_LIB)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 73";
   if (base::FeatureList::IsEnabled(
           permissions::features::kPermissionOnDeviceNotificationPredictions)) {
     PredictionModelHandlerFactory::GetInstance();
   }
 #endif  // BUILDFLAG(BUILD_WITH_TFLITE_LIB)
 if (full_init) {
-	//LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 74";
   predictors::AutocompleteActionPredictorFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 75";
   predictors::LoadingPredictorFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 76";
   predictors::PredictorDatabaseFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 77";
   prerender::NoStatePrefetchLinkManagerFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 78";
   prerender::NoStatePrefetchManagerFactory::GetInstance();
 }
-//LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 79";
   PrivacyMetricsServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 80";
   PrivacySandboxServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 81";
   PrivacySandboxSettingsFactory::GetInstance();
 #if BUILDFLAG(IS_CHROMEOS_LACROS)
   ProfileAccountManagerFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 82";
   ProfileNetworkContextServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 83";
   SyncServiceFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   ProfileThemeUpdateServiceFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 84";
   ProtocolHandlerRegistryFactory::GetInstance();
 
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 85";
   ReadingListModelFactory::GetInstance();
 
 #if BUILDFLAG(IS_ANDROID)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 86";
   ReadingListManagerFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 87";
   ReadingListNotificationServiceFactory::GetInstance();
 #endif
 
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 88";
   RendererUpdaterFactory::GetInstance();
 
 #if BUILDFLAG(IS_CHROMEOS)
@@ -619,7 +530,6 @@ if (full_init) {
   performance_manager::SiteDataCacheFacadeFactory::GetInstance();
 #endif
 #if BUILDFLAG(FULL_SAFE_BROWSING)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 89";
   safe_browsing::AdvancedProtectionStatusManagerFactory::GetInstance();
   safe_browsing::ExtensionTelemetryServiceFactory::GetInstance();
 #endif
@@ -627,51 +537,36 @@ if (full_init) {
   if (screentime::IsScreenTimeEnabled())
     screentime::HistoryBridgeFactory::GetInstance();
 #endif
-    //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 90";
   SCTReportingServiceFactory::GetInstance();
 #if BUILDFLAG(IS_ANDROID)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 91";
   SearchPermissionsService::Factory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 92";
   segmentation_platform::SegmentationPlatformServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 93";
   send_tab_to_self::SendTabToSelfClientServiceFactory::GetInstance();
 #if BUILDFLAG(ENABLE_SESSION_SERVICE)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 94";
   SessionServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 95";
   SessionDataServiceFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 96";
   if (full_init) SharingServiceFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   sharing_hub::SharingHubServiceFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 97";
   commerce::ShoppingServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 98";
   ShortcutsBackendFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 99";
   SigninProfileAttributesUpdaterFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 100";
   if (site_engagement::SiteEngagementService::IsEnabled())
     site_engagement::SiteEngagementServiceFactory::GetInstance();
 #if BUILDFLAG(ENABLE_DICE_SUPPORT) || BUILDFLAG(IS_CHROMEOS_LACROS)
-    //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 101";
   SigninManagerFactory::GetInstance();
 #endif
 #if BUILDFLAG(ENABLE_SPELLCHECK)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 102";
   SpellcheckServiceFactory::GetInstance();
 #endif
 #if !BUILDFLAG(IS_ANDROID)
   StorageNotificationServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(ENABLE_SUPERVISED_USERS)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 103";
   SupervisedUserMetricsServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 104";
   if (full_init) SupervisedUserServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_CHROMEOS_ASH)
@@ -680,36 +575,25 @@ if (full_init) {
     ash::CrosWindowManagementContextFactory::GetInstance();
   }
 #endif
-//LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 105";
   TabRestoreServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 106";
   safe_browsing::TailoredSecurityServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 107";
   TemplateURLFetcherFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 108";
   TemplateURLServiceFactory::GetInstance();
 #if true || !BUILDFLAG(IS_ANDROID)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 109";
   ThemeServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 110";
   thin_webview::android::ChromeThinWebViewInitializer::Initialize();
 #endif
 #if BUILDFLAG(ENABLE_EXTENSIONS)
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 111";
   if (full_init) ToolbarActionsModelFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 112";
   TopSitesFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 113";
   translate::TranslateRankerFactory::GetInstance();
 #if BUILDFLAG(IS_WIN)
   TriggeredProfileResetterFactory::GetInstance();
 #endif
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 114";
   UnifiedConsentServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 115";
   UrlLanguageHistogramFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   UsbChooserContextFactory::GetInstance();
@@ -717,17 +601,12 @@ if (full_init) {
 #endif
 #if BUILDFLAG(ENABLE_EXTENSIONS)
 if (full_init) {
-	//LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 116";
   web_app::WebAppMetricsFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 117";
   web_app::WebAppProviderFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 118";
   web_app::WebAppAdjustmentsFactory::GetInstance();
 }
 #endif
-//LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 119";
   WebDataServiceFactory::GetInstance();
-  //LOG(ERROR) << "EnsureBrowserContextKeyedServiceFactoriesBuilt" << "step - 120";
   webrtc_event_logging::WebRtcEventLogManagerKeyedServiceFactory::GetInstance();
 }
 

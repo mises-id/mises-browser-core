@@ -819,7 +819,7 @@ ExtensionFunction::ResponseAction WindowsCreateFunction::Run() {
             Error("no tab model."));
     }
     TabModel* tab_model = *(TabModelList::models().begin());
-    WebContents* web_contents = tab_model->CreateNewTabForExtension(url, new_window->session_id().id());
+    WebContents* web_contents = tab_model->CreateNewTabForExtension(extension_id, url, new_window->session_id().id());
     navigate_params.navigated_or_inserted_contents = web_contents;
 #else
     Navigate(&navigate_params);
@@ -1430,7 +1430,7 @@ ExtensionFunction::ResponseAction TabsQueryFunction::Run() {
          continue;
        }
 
-      int openingTab = (tab_strip->GetActiveIndex());
+      int openingTab = (tab_strip->GetLastNonExtensionActiveIndex());
       if (openingTab == -1)
         openingTab = 0;
 
@@ -1580,12 +1580,12 @@ ExtensionFunction::ResponseAction TabsGetFunction::Run() {
                   NULL, &tab_strip, &contents, &tab_index, &error)) {
     return RespondNow(Error(std::move(error)));
   }
-  LOG(INFO) << "[EXTENSIONS] TabsGetFunction::Run - Step 2";
+  //LOG(INFO) << "[EXTENSIONS] TabsGetFunction::Run - Step 2";
 
   ExtensionFunction::ResponseAction resp =  RespondNow(ArgumentList(tabs::Get::Results::Create(
       *CreateTabObjectHelper(contents, extension(), source_context_type(),
                              tab_strip, tab_index))));
-  LOG(INFO) << "[EXTENSIONS] TabsGetFunction::Run - Step 3";
+  //LOG(INFO) << "[EXTENSIONS] TabsGetFunction::Run - Step 3";
   return resp;
 }
 
