@@ -29,7 +29,7 @@
 #include "mises/browser/net/brave_proxying_url_loader_factory.h"
 #include "mises/browser/net/brave_proxying_web_socket.h"
 //#include "mises/browser/profiles/mises_renderer_updater.h"
-#include "mises/browser/profiles/mises_renderer_updater_factory.h"
+//#include "mises/browser/profiles/mises_renderer_updater_factory.h"
 #include "mises/browser/profiles/profile_util.h"
 //#include "mises/browser/skus/skus_service_factory.h"
 //#include "mises/components/binance/browser/buildflags/buildflags.h"
@@ -429,10 +429,10 @@ void BraveContentBrowserClient::BrowserURLHandlerCreated(
 
 void BraveContentBrowserClient::RenderProcessWillLaunch(
     content::RenderProcessHost* host) {
-  Profile* profile = Profile::FromBrowserContext(host->GetBrowserContext());
-  BraveRendererUpdaterFactory::GetForProfile(profile)->InitializeRenderer(host);
-
-  ChromeContentBrowserClient::RenderProcessWillLaunch(host);
+//  Profile* profile = Profile::FromBrowserContext(host->GetBrowserContext());
+//  BraveRendererUpdaterFactory::GetForProfile(profile)->InitializeRenderer(host);
+//
+//  ChromeContentBrowserClient::RenderProcessWillLaunch(host);
 }
 
 void BraveContentBrowserClient::
