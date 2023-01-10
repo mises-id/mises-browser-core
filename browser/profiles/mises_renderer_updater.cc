@@ -25,24 +25,24 @@
 
 BraveRendererUpdater::BraveRendererUpdater(Profile* profile)
     : profile_(profile), is_wallet_allowed_for_context_(false) {
-  PrefService* pref_service = profile->GetPrefs();
-  brave_wallet_ethereum_provider_.Init(kDefaultEthereumWallet, pref_service);
-  brave_wallet_solana_provider_.Init(kDefaultSolanaWallet, pref_service);
-  de_amp_enabled_.Init(de_amp::kDeAmpPrefEnabled, pref_service);
-
-  pref_change_registrar_.Init(pref_service);
-  pref_change_registrar_.Add(
-      kDefaultEthereumWallet,
-      base::BindRepeating(&BraveRendererUpdater::UpdateAllRenderers,
-                          base::Unretained(this)));
-  pref_change_registrar_.Add(
-      kDefaultSolanaWallet,
-      base::BindRepeating(&BraveRendererUpdater::UpdateAllRenderers,
-                          base::Unretained(this)));
-  pref_change_registrar_.Add(
-      de_amp::kDeAmpPrefEnabled,
-      base::BindRepeating(&BraveRendererUpdater::UpdateAllRenderers,
-                          base::Unretained(this)));
+//  PrefService* pref_service = profile->GetPrefs();
+//  brave_wallet_ethereum_provider_.Init(kDefaultEthereumWallet, pref_service);
+//  brave_wallet_solana_provider_.Init(kDefaultSolanaWallet, pref_service);
+//  de_amp_enabled_.Init(de_amp::kDeAmpPrefEnabled, pref_service);
+//
+//  pref_change_registrar_.Init(pref_service);
+//  pref_change_registrar_.Add(
+//      kDefaultEthereumWallet,
+//      base::BindRepeating(&BraveRendererUpdater::UpdateAllRenderers,
+//                          base::Unretained(this)));
+//  pref_change_registrar_.Add(
+//      kDefaultSolanaWallet,
+//      base::BindRepeating(&BraveRendererUpdater::UpdateAllRenderers,
+//                          base::Unretained(this)));
+//  pref_change_registrar_.Add(
+//      de_amp::kDeAmpPrefEnabled,
+//      base::BindRepeating(&BraveRendererUpdater::UpdateAllRenderers,
+//                          base::Unretained(this)));
 }
 
 BraveRendererUpdater::~BraveRendererUpdater() = default;
@@ -99,38 +99,38 @@ void BraveRendererUpdater::UpdateAllRenderers() {
 void BraveRendererUpdater::UpdateRenderer(
     mojo::AssociatedRemote<brave::mojom::BraveRendererConfiguration>*
         renderer_configuration) {
-  auto default_ethereum_wallet =
-      static_cast<brave_wallet::mojom::DefaultWallet>(
-          brave_wallet_ethereum_provider_.GetValue());
-  bool brave_use_native_ethereum_wallet =
-      (default_ethereum_wallet ==
-           brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension ||
-       default_ethereum_wallet ==
-           brave_wallet::mojom::DefaultWallet::BraveWallet) &&
-      is_wallet_allowed_for_context_ && brave_wallet::IsDappsSupportEnabled();
-  bool allow_overwrite_window_ethereum_provider =
-      default_ethereum_wallet ==
-      brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension;
-
-  auto default_solana_wallet = static_cast<brave_wallet::mojom::DefaultWallet>(
-      brave_wallet_solana_provider_.GetValue());
-  bool brave_use_native_solana_wallet =
-      (default_solana_wallet ==
-           brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension ||
-       default_solana_wallet ==
-           brave_wallet::mojom::DefaultWallet::BraveWallet) &&
-      is_wallet_allowed_for_context_ && brave_wallet::IsDappsSupportEnabled();
-  bool allow_overwrite_window_solana_provider =
-      default_solana_wallet ==
-      brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension;
-
-  PrefService* pref_service = profile_->GetPrefs();
-  bool de_amp_enabled = de_amp::IsDeAmpEnabled(pref_service);
-
-  (*renderer_configuration)
-      ->SetConfiguration(brave::mojom::DynamicParams::New(
-          brave_use_native_ethereum_wallet,
-          allow_overwrite_window_ethereum_provider,
-          brave_use_native_solana_wallet,
-          allow_overwrite_window_solana_provider, de_amp_enabled));
+//  auto default_ethereum_wallet =
+//      static_cast<brave_wallet::mojom::DefaultWallet>(
+//          brave_wallet_ethereum_provider_.GetValue());
+//  bool brave_use_native_ethereum_wallet =
+//      (default_ethereum_wallet ==
+//           brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension ||
+//       default_ethereum_wallet ==
+//           brave_wallet::mojom::DefaultWallet::BraveWallet) &&
+//      is_wallet_allowed_for_context_ && brave_wallet::IsDappsSupportEnabled();
+//  bool allow_overwrite_window_ethereum_provider =
+//      default_ethereum_wallet ==
+//      brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension;
+//
+//  auto default_solana_wallet = static_cast<brave_wallet::mojom::DefaultWallet>(
+//      brave_wallet_solana_provider_.GetValue());
+//  bool brave_use_native_solana_wallet =
+//      (default_solana_wallet ==
+//           brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension ||
+//       default_solana_wallet ==
+//           brave_wallet::mojom::DefaultWallet::BraveWallet) &&
+//      is_wallet_allowed_for_context_ && brave_wallet::IsDappsSupportEnabled();
+//  bool allow_overwrite_window_solana_provider =
+//      default_solana_wallet ==
+//      brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension;
+//
+//  PrefService* pref_service = profile_->GetPrefs();
+//  bool de_amp_enabled = de_amp::IsDeAmpEnabled(pref_service);
+//
+//  (*renderer_configuration)
+//      ->SetConfiguration(brave::mojom::DynamicParams::New(
+//          brave_use_native_ethereum_wallet,
+//          allow_overwrite_window_ethereum_provider,
+//          brave_use_native_solana_wallet,
+//          allow_overwrite_window_solana_provider, de_amp_enabled));
 }

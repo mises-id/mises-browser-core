@@ -13,8 +13,8 @@ source_set("profiles") {
     "mises_profile_impl.h",
     "mises_profile_manager.cc",
     "mises_profile_manager.h",
-    "mises_renderer_updater.cc",
-    "mises_renderer_updater.h",
+#    "mises_renderer_updater.cc",
+#    "mises_renderer_updater.h",
     "mises_renderer_updater_factory.cc",
     "mises_renderer_updater_factory.h",
   ]

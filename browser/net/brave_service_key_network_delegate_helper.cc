@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "base/no_destructor.h"
-#include "mises/components/constants/brave_services_key.h"
+#include "mises/components/constants/mises_services_key.h"
 #include "mises/components/constants/network_constants.h"
 #include "mises/components/update_client/buildflags.h"
 #include "net/base/net_errors.h"

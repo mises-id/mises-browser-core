@@ -12,10 +12,10 @@
 #include "mises/components/ipfs/ipfs_utils.h"
 #include "mises/components/l10n/common/locale_util.h"
 #include "mises/components/vector_icons/vector_icons.h"
-#include "mises/grit/brave_theme_resources.h"
+#include "mises/grit/mises_theme_resources.h"
 #include "chrome/browser/ui/page_info/chrome_page_info_ui_delegate.h"
 #include "chrome/browser/ui/views/page_info/page_info_hover_button.h"
-#include "components/grit/brave_components_strings.h"
+#include "components/grit/mises_components_strings.h"
 
 namespace {
 

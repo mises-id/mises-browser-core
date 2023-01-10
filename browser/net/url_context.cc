@@ -82,12 +82,12 @@ std::shared_ptr<brave::BraveRequestInfo> BraveRequestInfo::MakeCTX(
   ctx->resource_type =
       static_cast<blink::mojom::ResourceType>(request.resource_type);
 
-  ctx->is_webtorrent_disabled =
-#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
-      !webtorrent::IsWebtorrentEnabled(browser_context);
-#else
-      true;
-#endif
+  ctx->is_webtorrent_disabled = true;
+//#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
+//      !webtorrent::IsWebtorrentEnabled(browser_context);
+//#else
+//      true;
+//#endif
 
   ctx->frame_tree_node_id = frame_tree_node_id;
 
@@ -138,10 +138,10 @@ std::shared_ptr<brave::BraveRequestInfo> BraveRequestInfo::MakeCTX(
 
   Profile* profile = Profile::FromBrowserContext(browser_context);
   auto* map = HostContentSettingsMapFactory::GetForProfile(profile);
-  ctx->allow_brave_shields =
-      brave_shields::GetBraveShieldsEnabled(map, ctx->tab_origin);
-  ctx->allow_ads = brave_shields::GetAdControlType(map, ctx->tab_origin) ==
-                   brave_shields::ControlType::ALLOW;
+//  ctx->allow_brave_shields =
+//      brave_shields::GetBraveShieldsEnabled(map, ctx->tab_origin);
+//  ctx->allow_ads = brave_shields::GetAdControlType(map, ctx->tab_origin) ==
+//                   brave_shields::ControlType::ALLOW;
   // Currently, "aggressive" mode is registered as a cosmetic filtering control
   // type, even though it can also affect network blocking.
   ctx->aggressive_blocking =
@@ -154,9 +154,9 @@ std::shared_ptr<brave::BraveRequestInfo> BraveRequestInfo::MakeCTX(
   // use only tab_origin. Since we recreate BraveRequestInfo during consequent
   // stages of navigation, |tab_origin| changes and so does |allow_referrers|
   // flag, which is not what we want for determining referrers.
-  ctx->allow_referrers = brave_shields::AreReferrersAllowed(
-      map,
-      ctx->redirect_source.is_empty() ? ctx->tab_origin : ctx->redirect_source);
+//  ctx->allow_referrers = brave_shields::AreReferrersAllowed(
+//      map,
+//      ctx->redirect_source.is_empty() ? ctx->tab_origin : ctx->redirect_source);
   ctx->upload_data = GetUploadData(request);
 
   ctx->browser_context = browser_context;

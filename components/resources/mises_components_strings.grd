@@ -177,6 +177,7 @@
       </message>
       <!-- WebUI newtab resources -->
       <part file="ipfs_strings.grdp" />
+	  <part file="decentralized_dns_strings.grdp" />
   
     </messages>
   </release>

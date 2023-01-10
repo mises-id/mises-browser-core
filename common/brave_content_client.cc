@@ -65,26 +65,26 @@ BraveContentClient::~BraveContentClient() = default;
 
 base::RefCountedMemory* BraveContentClient::GetDataResourceBytes(
     int resource_id) {
-  if (resource_id == IDR_FLAGS_UI_FLAGS_JS) {
-    const ui::ResourceBundle& resource_bundle =
-        ui::ResourceBundle::GetSharedInstance();
-    const std::string flags_js =
-        resource_bundle.LoadDataResourceString(resource_id) +
-        resource_bundle.LoadDataResourceString(
-            IDR_FLAGS_UI_BRAVE_FLAGS_OVERRIDES_JS);
-    base::RefCountedString* bytes = new base::RefCountedString();
-    bytes->data().assign(flags_js.data(), flags_js.length());
-    return bytes;
-  }
+//  if (resource_id == IDR_FLAGS_UI_FLAGS_JS) {
+//    const ui::ResourceBundle& resource_bundle =
+//        ui::ResourceBundle::GetSharedInstance();
+//    const std::string flags_js =
+//        resource_bundle.LoadDataResourceString(resource_id) +
+//        resource_bundle.LoadDataResourceString(
+//            IDR_FLAGS_UI_BRAVE_FLAGS_OVERRIDES_JS);
+//    base::RefCountedString* bytes = new base::RefCountedString();
+//    bytes->data().assign(flags_js.data(), flags_js.length());
+//    return bytes;
+//  }
   return ChromeContentClient::GetDataResourceBytes(resource_id);
 }
 
 void BraveContentClient::AddAdditionalSchemes(Schemes* schemes) {
-  ChromeContentClient::AddAdditionalSchemes(schemes);
-  schemes->standard_schemes.push_back(content::kBraveUIScheme);
-  schemes->secure_schemes.push_back(content::kBraveUIScheme);
-  schemes->cors_enabled_schemes.push_back(content::kBraveUIScheme);
-  schemes->savable_schemes.push_back(content::kBraveUIScheme);
+//  ChromeContentClient::AddAdditionalSchemes(schemes);
+//  schemes->standard_schemes.push_back(content::kBraveUIScheme);
+//  schemes->secure_schemes.push_back(content::kBraveUIScheme);
+//  schemes->cors_enabled_schemes.push_back(content::kBraveUIScheme);
+//  schemes->savable_schemes.push_back(content::kBraveUIScheme);
 }
 
 void BraveContentClient::AddContentDecryptionModules(

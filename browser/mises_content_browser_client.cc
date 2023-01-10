@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/browser/brave_content_browser_client.h"
+#include "mises/browser/mises_content_browser_client.h"
 
 #include <algorithm>
 #include <string>
@@ -14,8 +14,8 @@
 #include "base/json/json_reader.h"
 #include "base/strings/strcat.h"
 #include "base/system/sys_info.h"
-#include "mises/browser/brave_browser_main_extra_parts.h"
-#include "mises/browser/brave_browser_process.h"
+#include "mises/browser/mises_browser_main_extra_parts.h"
+#include "mises/browser/mises_browser_process.h"
 //#include "mises/browser/brave_shields/brave_shields_web_contents_observer.h"
 //#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
 //#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl.h"
@@ -28,7 +28,7 @@
 //#include "mises/browser/ethereum_remote_client/buildflags/buildflags.h"
 #include "mises/browser/net/brave_proxying_url_loader_factory.h"
 #include "mises/browser/net/brave_proxying_web_socket.h"
-#include "mises/browser/profiles/mises_renderer_updater.h"
+//#include "mises/browser/profiles/mises_renderer_updater.h"
 #include "mises/browser/profiles/mises_renderer_updater_factory.h"
 #include "mises/browser/profiles/profile_util.h"
 //#include "mises/browser/skus/skus_service_factory.h"
@@ -60,7 +60,7 @@
 //#include "mises/components/cosmetic_filters/common/cosmetic_filters.mojom.h"
 //#include "mises/components/de_amp/browser/de_amp_throttle.h"
 //#include "mises/components/debounce/browser/debounce_navigation_throttle.h"
-//#include "mises/components/decentralized_dns/decentralized_dns_navigation_throttle.h"
+#include "mises/components/decentralized_dns/decentralized_dns_navigation_throttle.h"
 //#include "mises/components/ftx/browser/buildflags/buildflags.h"
 //#include "mises/components/gemini/browser/buildflags/buildflags.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
@@ -71,7 +71,7 @@
 //#include "mises/components/speedreader/common/buildflags.h"
 //#include "mises/components/tor/buildflags/buildflags.h"
 //#include "mises/components/translate/core/common/brave_translate_switches.h"
-#include "mises/grit/brave_generated_resources.h"
+#include "mises/grit/mises_generated_resources.h"
 #include "mises/third_party/blink/renderer/brave_farbling_constants.h"
 #include "build/build_config.h"
 #include "chrome/browser/browser_process.h"
@@ -234,166 +234,166 @@ bool HandleURLRewrite(GURL* url, content::BrowserContext* browser_context) {
   return false;
 }
 
-void BindCosmeticFiltersResourcesOnTaskRunner(
-    mojo::PendingReceiver<cosmetic_filters::mojom::CosmeticFiltersResources>
-        receiver) {
-  mojo::MakeSelfOwnedReceiver(
-      std::make_unique<cosmetic_filters::CosmeticFiltersResources>(
-          g_brave_browser_process->ad_block_service()),
-      std::move(receiver));
-}
+//void BindCosmeticFiltersResourcesOnTaskRunner(
+//    mojo::PendingReceiver<cosmetic_filters::mojom::CosmeticFiltersResources>
+//        receiver) {
+//  mojo::MakeSelfOwnedReceiver(
+//      std::make_unique<cosmetic_filters::CosmeticFiltersResources>(
+//          g_brave_browser_process->ad_block_service()),
+//      std::move(receiver));
+//}
 
-void BindBraveAdsHost(
-    content::RenderFrameHost* const frame_host,
-    mojo::PendingReceiver<brave_ads::mojom::BraveAdsHost> receiver) {
-#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(ENABLE_EXTENSIONS)
-  auto* context = frame_host->GetBrowserContext();
-  auto* profile = Profile::FromBrowserContext(context);
-  content::WebContents* web_contents =
-      content::WebContents::FromRenderFrameHost(frame_host);
+//void BindBraveAdsHost(
+//    content::RenderFrameHost* const frame_host,
+//    mojo::PendingReceiver<brave_ads::mojom::BraveAdsHost> receiver) {
+//#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(ENABLE_EXTENSIONS)
+//  auto* context = frame_host->GetBrowserContext();
+//  auto* profile = Profile::FromBrowserContext(context);
+//  content::WebContents* web_contents =
+//      content::WebContents::FromRenderFrameHost(frame_host);
+//
+//  mojo::MakeSelfOwnedReceiver(
+//#if BUILDFLAG(IS_ANDROID)
+//      std::make_unique<brave_ads::BraveAdsHostAndroid>(
+//#elif BUILDFLAG(ENABLE_EXTENSIONS)
+//      std::make_unique<brave_ads::BraveAdsHost>(
+//#endif  // BUILDFLAG(IS_ANDROID)
+//          profile, web_contents),
+//      std::move(receiver));
+//#endif  // BUILDFLAG(IS_ANDROID) || BUILDFLAG(ENABLE_EXTENSIONS)
+//}
 
-  mojo::MakeSelfOwnedReceiver(
-#if BUILDFLAG(IS_ANDROID)
-      std::make_unique<brave_ads::BraveAdsHostAndroid>(
-#elif BUILDFLAG(ENABLE_EXTENSIONS)
-      std::make_unique<brave_ads::BraveAdsHost>(
-#endif  // BUILDFLAG(IS_ANDROID)
-          profile, web_contents),
-      std::move(receiver));
-#endif  // BUILDFLAG(IS_ANDROID) || BUILDFLAG(ENABLE_EXTENSIONS)
-}
+//void BindCosmeticFiltersResources(
+//    content::RenderFrameHost* const frame_host,
+//    mojo::PendingReceiver<cosmetic_filters::mojom::CosmeticFiltersResources>
+//        receiver) {
+//  g_brave_browser_process->ad_block_service()->GetTaskRunner()->PostTask(
+//      FROM_HERE, base::BindOnce(&BindCosmeticFiltersResourcesOnTaskRunner,
+//                                std::move(receiver)));
+//}
 
-void BindCosmeticFiltersResources(
-    content::RenderFrameHost* const frame_host,
-    mojo::PendingReceiver<cosmetic_filters::mojom::CosmeticFiltersResources>
-        receiver) {
-  g_brave_browser_process->ad_block_service()->GetTaskRunner()->PostTask(
-      FROM_HERE, base::BindOnce(&BindCosmeticFiltersResourcesOnTaskRunner,
-                                std::move(receiver)));
-}
+//void MaybeBindEthereumProvider(
+//    content::RenderFrameHost* const frame_host,
+//    mojo::PendingReceiver<brave_wallet::mojom::EthereumProvider> receiver) {
+//  auto* json_rpc_service =
+//      brave_wallet::JsonRpcServiceFactory::GetServiceForContext(
+//          frame_host->GetBrowserContext());
+//
+//  if (!json_rpc_service)
+//    return;
+//
+//  auto* tx_service = brave_wallet::TxServiceFactory::GetServiceForContext(
+//      frame_host->GetBrowserContext());
+//  if (!tx_service)
+//    return;
+//
+//  auto* keyring_service =
+//      brave_wallet::KeyringServiceFactory::GetServiceForContext(
+//          frame_host->GetBrowserContext());
+//  if (!keyring_service)
+//    return;
+//
+//  auto* brave_wallet_service =
+//      brave_wallet::BraveWalletServiceFactory::GetServiceForContext(
+//          frame_host->GetBrowserContext());
+//  if (!brave_wallet_service)
+//    return;
+//
+//  content::WebContents* web_contents =
+//      content::WebContents::FromRenderFrameHost(frame_host);
+//  mojo::MakeSelfOwnedReceiver(
+//      std::make_unique<brave_wallet::EthereumProviderImpl>(
+//          HostContentSettingsMapFactory::GetForProfile(
+//              Profile::FromBrowserContext(frame_host->GetBrowserContext())),
+//          json_rpc_service, tx_service, keyring_service, brave_wallet_service,
+//          std::make_unique<brave_wallet::BraveWalletProviderDelegateImpl>(
+//              web_contents, frame_host),
+//          user_prefs::UserPrefs::Get(web_contents->GetBrowserContext())),
+//      std::move(receiver));
+//}
 
-void MaybeBindEthereumProvider(
-    content::RenderFrameHost* const frame_host,
-    mojo::PendingReceiver<brave_wallet::mojom::EthereumProvider> receiver) {
-  auto* json_rpc_service =
-      brave_wallet::JsonRpcServiceFactory::GetServiceForContext(
-          frame_host->GetBrowserContext());
+//void MaybeBindSolanaProvider(
+//    content::RenderFrameHost* const frame_host,
+//    mojo::PendingReceiver<brave_wallet::mojom::SolanaProvider> receiver) {
+//  auto* keyring_service =
+//      brave_wallet::KeyringServiceFactory::GetServiceForContext(
+//          frame_host->GetBrowserContext());
+//  if (!keyring_service)
+//    return;
+//
+//  auto* brave_wallet_service =
+//      brave_wallet::BraveWalletServiceFactory::GetServiceForContext(
+//          frame_host->GetBrowserContext());
+//  if (!brave_wallet_service)
+//    return;
+//
+//  auto* tx_service = brave_wallet::TxServiceFactory::GetServiceForContext(
+//      frame_host->GetBrowserContext());
+//  if (!tx_service)
+//    return;
+//
+//  content::WebContents* web_contents =
+//      content::WebContents::FromRenderFrameHost(frame_host);
+//  mojo::MakeSelfOwnedReceiver(
+//      std::make_unique<brave_wallet::SolanaProviderImpl>(
+//          keyring_service, brave_wallet_service, tx_service,
+//          std::make_unique<brave_wallet::BraveWalletProviderDelegateImpl>(
+//              web_contents, frame_host)),
+//      std::move(receiver));
+//}
 
-  if (!json_rpc_service)
-    return;
+//void BindBraveSearchFallbackHost(
+//    int process_id,
+//    mojo::PendingReceiver<brave_search::mojom::BraveSearchFallback> receiver) {
+//  content::RenderProcessHost* render_process_host =
+//      content::RenderProcessHost::FromID(process_id);
+//  if (!render_process_host)
+//    return;
+//
+//  content::BrowserContext* context = render_process_host->GetBrowserContext();
+//  mojo::MakeSelfOwnedReceiver(
+//      std::make_unique<brave_search::BraveSearchFallbackHost>(
+//          context->GetDefaultStoragePartition()
+//              ->GetURLLoaderFactoryForBrowserProcess()),
+//      std::move(receiver));
+//}
 
-  auto* tx_service = brave_wallet::TxServiceFactory::GetServiceForContext(
-      frame_host->GetBrowserContext());
-  if (!tx_service)
-    return;
+//void BindBraveSearchDefaultHost(
+//    content::RenderFrameHost* const frame_host,
+//    mojo::PendingReceiver<brave_search::mojom::BraveSearchDefault> receiver) {
+//  auto* context = frame_host->GetBrowserContext();
+//  auto* profile = Profile::FromBrowserContext(context);
+//  if (brave::IsRegularProfile(profile)) {
+//    auto* template_url_service =
+//        TemplateURLServiceFactory::GetForProfile(profile);
+//    const std::string host = frame_host->GetLastCommittedURL().host();
+//    mojo::MakeSelfOwnedReceiver(
+//        std::make_unique<brave_search::BraveSearchDefaultHost>(
+//            host, template_url_service, profile->GetPrefs()),
+//        std::move(receiver));
+//  } else {
+//    // Dummy API which always returns false for private contexts.
+//    mojo::MakeSelfOwnedReceiver(
+//        std::make_unique<brave_search::BraveSearchDefaultHostPrivate>(),
+//        std::move(receiver));
+//  }
+//}
 
-  auto* keyring_service =
-      brave_wallet::KeyringServiceFactory::GetServiceForContext(
-          frame_host->GetBrowserContext());
-  if (!keyring_service)
-    return;
-
-  auto* brave_wallet_service =
-      brave_wallet::BraveWalletServiceFactory::GetServiceForContext(
-          frame_host->GetBrowserContext());
-  if (!brave_wallet_service)
-    return;
-
-  content::WebContents* web_contents =
-      content::WebContents::FromRenderFrameHost(frame_host);
-  mojo::MakeSelfOwnedReceiver(
-      std::make_unique<brave_wallet::EthereumProviderImpl>(
-          HostContentSettingsMapFactory::GetForProfile(
-              Profile::FromBrowserContext(frame_host->GetBrowserContext())),
-          json_rpc_service, tx_service, keyring_service, brave_wallet_service,
-          std::make_unique<brave_wallet::BraveWalletProviderDelegateImpl>(
-              web_contents, frame_host),
-          user_prefs::UserPrefs::Get(web_contents->GetBrowserContext())),
-      std::move(receiver));
-}
-
-void MaybeBindSolanaProvider(
-    content::RenderFrameHost* const frame_host,
-    mojo::PendingReceiver<brave_wallet::mojom::SolanaProvider> receiver) {
-  auto* keyring_service =
-      brave_wallet::KeyringServiceFactory::GetServiceForContext(
-          frame_host->GetBrowserContext());
-  if (!keyring_service)
-    return;
-
-  auto* brave_wallet_service =
-      brave_wallet::BraveWalletServiceFactory::GetServiceForContext(
-          frame_host->GetBrowserContext());
-  if (!brave_wallet_service)
-    return;
-
-  auto* tx_service = brave_wallet::TxServiceFactory::GetServiceForContext(
-      frame_host->GetBrowserContext());
-  if (!tx_service)
-    return;
-
-  content::WebContents* web_contents =
-      content::WebContents::FromRenderFrameHost(frame_host);
-  mojo::MakeSelfOwnedReceiver(
-      std::make_unique<brave_wallet::SolanaProviderImpl>(
-          keyring_service, brave_wallet_service, tx_service,
-          std::make_unique<brave_wallet::BraveWalletProviderDelegateImpl>(
-              web_contents, frame_host)),
-      std::move(receiver));
-}
-
-void BindBraveSearchFallbackHost(
-    int process_id,
-    mojo::PendingReceiver<brave_search::mojom::BraveSearchFallback> receiver) {
-  content::RenderProcessHost* render_process_host =
-      content::RenderProcessHost::FromID(process_id);
-  if (!render_process_host)
-    return;
-
-  content::BrowserContext* context = render_process_host->GetBrowserContext();
-  mojo::MakeSelfOwnedReceiver(
-      std::make_unique<brave_search::BraveSearchFallbackHost>(
-          context->GetDefaultStoragePartition()
-              ->GetURLLoaderFactoryForBrowserProcess()),
-      std::move(receiver));
-}
-
-void BindBraveSearchDefaultHost(
-    content::RenderFrameHost* const frame_host,
-    mojo::PendingReceiver<brave_search::mojom::BraveSearchDefault> receiver) {
-  auto* context = frame_host->GetBrowserContext();
-  auto* profile = Profile::FromBrowserContext(context);
-  if (brave::IsRegularProfile(profile)) {
-    auto* template_url_service =
-        TemplateURLServiceFactory::GetForProfile(profile);
-    const std::string host = frame_host->GetLastCommittedURL().host();
-    mojo::MakeSelfOwnedReceiver(
-        std::make_unique<brave_search::BraveSearchDefaultHost>(
-            host, template_url_service, profile->GetPrefs()),
-        std::move(receiver));
-  } else {
-    // Dummy API which always returns false for private contexts.
-    mojo::MakeSelfOwnedReceiver(
-        std::make_unique<brave_search::BraveSearchDefaultHostPrivate>(),
-        std::move(receiver));
-  }
-}
-
-#if BUILDFLAG(ENABLE_BRAVE_VPN)
-void MaybeBindBraveVpnImpl(
-    content::RenderFrameHost* const frame_host,
-    mojo::PendingReceiver<brave_vpn::mojom::ServiceHandler> receiver) {
-  auto* context = frame_host->GetBrowserContext();
-  brave_vpn::BraveVpnServiceFactory::BindForContext(context,
-                                                    std::move(receiver));
-}
-#endif
-void MaybeBindSkusSdkImpl(
-    content::RenderFrameHost* const frame_host,
-    mojo::PendingReceiver<skus::mojom::SkusService> receiver) {
-  auto* context = frame_host->GetBrowserContext();
-  skus::SkusServiceFactory::BindForContext(context, std::move(receiver));
-}
+//#if BUILDFLAG(ENABLE_BRAVE_VPN)
+//void MaybeBindBraveVpnImpl(
+//    content::RenderFrameHost* const frame_host,
+//    mojo::PendingReceiver<brave_vpn::mojom::ServiceHandler> receiver) {
+//  auto* context = frame_host->GetBrowserContext();
+//  brave_vpn::BraveVpnServiceFactory::BindForContext(context,
+//                                                    std::move(receiver));
+//}
+//#endif
+//void MaybeBindSkusSdkImpl(
+//    content::RenderFrameHost* const frame_host,
+//    mojo::PendingReceiver<skus::mojom::SkusService> receiver) {
+//  auto* context = frame_host->GetBrowserContext();
+//  skus::SkusServiceFactory::BindForContext(context, std::move(receiver));
+//}
 
 }  // namespace
 
@@ -678,41 +678,41 @@ bool BraveContentBrowserClient::HandleExternalProtocol(
 void BraveContentBrowserClient::AppendExtraCommandLineSwitches(
     base::CommandLine* command_line,
     int child_process_id) {
-  ChromeContentBrowserClient::AppendExtraCommandLineSwitches(command_line,
-                                                             child_process_id);
-  std::string process_type =
-      command_line->GetSwitchValueASCII(switches::kProcessType);
-  if (process_type == switches::kRendererProcess) {
-    uint64_t session_token =
-        12345;  // the kinda thing an idiot would have on his luggage
-
-    // Command line parameters from the browser process are propagated to the
-    // renderers *after* ContentBrowserClient::AppendExtraCommandLineSwitches()
-    // is called from RenderProcessHostImpl::AppendRendererCommandLine(). This
-    // means we have to inspect the main browser process' parameters for the
-    // |switches::kTestType| as it will be too soon to find it on command_line.
-    const base::CommandLine& browser_command_line =
-        *base::CommandLine::ForCurrentProcess();
-    if (!browser_command_line.HasSwitch(switches::kTestType)) {
-      content::RenderProcessHost* process =
-          content::RenderProcessHost::FromID(child_process_id);
-      Profile* profile =
-          process ? Profile::FromBrowserContext(process->GetBrowserContext())
-                  : nullptr;
-      session_token =
-          g_brave_browser_process->brave_farbling_service()->session_token(
-              profile && !profile->IsOffTheRecord());
-    }
-    command_line->AppendSwitchASCII("brave_session_token",
-                                    base::NumberToString(session_token));
-
-    // Switches to pass to render processes.
-    static const char* const kSwitchNames[] = {
-        translate::switches::kBraveTranslateUseGoogleEndpoint,
-    };
-    command_line->CopySwitchesFrom(browser_command_line, kSwitchNames,
-                                   std::size(kSwitchNames));
-  }
+//  ChromeContentBrowserClient::AppendExtraCommandLineSwitches(command_line,
+//                                                             child_process_id);
+//  std::string process_type =
+//      command_line->GetSwitchValueASCII(switches::kProcessType);
+//  if (process_type == switches::kRendererProcess) {
+//    uint64_t session_token =
+//        12345;  // the kinda thing an idiot would have on his luggage
+//
+//    // Command line parameters from the browser process are propagated to the
+//    // renderers *after* ContentBrowserClient::AppendExtraCommandLineSwitches()
+//    // is called from RenderProcessHostImpl::AppendRendererCommandLine(). This
+//    // means we have to inspect the main browser process' parameters for the
+//    // |switches::kTestType| as it will be too soon to find it on command_line.
+//    const base::CommandLine& browser_command_line =
+//        *base::CommandLine::ForCurrentProcess();
+//    if (!browser_command_line.HasSwitch(switches::kTestType)) {
+//      content::RenderProcessHost* process =
+//          content::RenderProcessHost::FromID(child_process_id);
+//      Profile* profile =
+//          process ? Profile::FromBrowserContext(process->GetBrowserContext())
+//                  : nullptr;
+//      session_token =
+//          g_brave_browser_process->brave_farbling_service()->session_token(
+//              profile && !profile->IsOffTheRecord());
+//    }
+//    command_line->AppendSwitchASCII("brave_session_token",
+//                                    base::NumberToString(session_token));
+//
+//    // Switches to pass to render processes.
+//    static const char* const kSwitchNames[] = {
+//        translate::switches::kBraveTranslateUseGoogleEndpoint,
+//    };
+//    command_line->CopySwitchesFrom(browser_command_line, kSwitchNames,
+//                                   std::size(kSwitchNames));
+//  }
 }
 
 std::vector<std::unique_ptr<blink::URLLoaderThrottle>>
@@ -725,13 +725,13 @@ BraveContentBrowserClient::CreateURLLoaderThrottles(
   auto result = ChromeContentBrowserClient::CreateURLLoaderThrottles(
       request, browser_context, wc_getter, navigation_ui_data,
       frame_tree_node_id);
-  content::WebContents* contents = wc_getter.Run();
+//  content::WebContents* contents = wc_getter.Run();
 
-  if (contents) {
-    const bool isMainFrame =
-        request.resource_type ==
-        static_cast<int>(blink::mojom::ResourceType::kMainFrame);
-    // Speedreader
+//  if (contents) {
+//    const bool isMainFrame =
+//        request.resource_type ==
+//        static_cast<int>(blink::mojom::ResourceType::kMainFrame);
+//    // Speedreader
 //#if BUILDFLAG(ENABLE_SPEEDREADER)
 //    auto* settings_map = HostContentSettingsMapFactory::GetForProfile(
 //        Profile::FromBrowserContext(browser_context));
@@ -760,13 +760,13 @@ BraveContentBrowserClient::CreateURLLoaderThrottles(
 //#endif  // ENABLE_SPEEDREADER
 
     // De-AMP
-    if (isMainFrame) {
-      if (auto de_amp_throttle = de_amp::DeAmpThrottle::MaybeCreateThrottleFor(
-              base::ThreadTaskRunnerHandle::Get(), request, wc_getter)) {
-        result.push_back(std::move(de_amp_throttle));
-      }
-    }
-  }
+//    if (isMainFrame) {
+//      if (auto de_amp_throttle = de_amp::DeAmpThrottle::MaybeCreateThrottleFor(
+//              base::ThreadTaskRunnerHandle::Get(), request, wc_getter)) {
+//        result.push_back(std::move(de_amp_throttle));
+//      }
+//    }
+//  }
 
   return result;
 }
@@ -833,8 +833,8 @@ void BraveContentBrowserClient::MaybeHideReferrer(
     blink::mojom::ReferrerPtr* referrer) {
   DCHECK(referrer && !referrer->is_null());
 #if BUILDFLAG(ENABLE_EXTENSIONS)
-  if (document_url.SchemeIs(kChromeExtensionScheme) ||
-      request_url.SchemeIs(kChromeExtensionScheme)) {
+  if (document_url.SchemeIs("chrome-extension") ||
+      request_url.SchemeIs("chrome-extension")) {
     return;
   }
 #endif

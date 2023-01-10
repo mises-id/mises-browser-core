@@ -29,7 +29,7 @@
 #include "mises/components/ipfs/pref_names.h"
 #include "mises/components/ipfs/service_sandbox_type.h"
 #include "build/build_config.h"
-#include "components/grit/brave_components_strings.h"
+#include "components/grit/mises_components_strings.h"
 #include "components/prefs/pref_registry_simple.h"
 #include "components/prefs/pref_service.h"
 #include "components/user_prefs/user_prefs.h"

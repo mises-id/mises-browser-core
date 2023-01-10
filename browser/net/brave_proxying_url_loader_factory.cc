@@ -352,11 +352,11 @@ void BraveProxyingURLLoaderFactory::InProgressRequest::
       return;
     }
 
-    auto response = network::mojom::URLResponseHead::New();
-    std::string response_data;
-    brave_shields::MakeStubResponse(ctx_->mock_data_url, request_, &response,
-                                    &response_data);
-
+//    auto response = network::mojom::URLResponseHead::New();
+//    std::string response_data;
+//    brave_shields::MakeStubResponse(ctx_->mock_data_url, request_, &response,
+//                                    &response_data);
+//
     // Create a data pipe for transmitting the response.
     mojo::ScopedDataPipeProducerHandle producer;
     mojo::ScopedDataPipeConsumerHandle consumer;
@@ -610,11 +610,11 @@ void BraveProxyingURLLoaderFactory::InProgressRequest::OnRequestError(
     // be modified
     network::URLLoaderCompletionStatus collapse_status(status);
 
-    if (base::FeatureList::IsEnabled(
-            ::brave_shields::features::kBraveAdblockCollapseBlockedElements) &&
-        ctx_->blocked_by == brave::kAdBlocked) {
-      collapse_status.should_collapse_initiator = true;
-    }
+//    if (base::FeatureList::IsEnabled(
+//            ::brave_shields::features::kBraveAdblockCollapseBlockedElements) &&
+//        ctx_->blocked_by == brave::kAdBlocked) {
+//      collapse_status.should_collapse_initiator = true;
+//    }
 
     target_client_->OnComplete(collapse_status);
   }

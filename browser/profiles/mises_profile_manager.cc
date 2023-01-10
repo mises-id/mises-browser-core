@@ -46,7 +46,7 @@
 //#endif
 
 #if BUILDFLAG(ENABLE_IPFS)
-#include "brave/browser/ipfs/ipfs_service_factory.h"
+#include "mises/browser/ipfs/ipfs_service_factory.h"
 #endif
 //IPFS end
 
