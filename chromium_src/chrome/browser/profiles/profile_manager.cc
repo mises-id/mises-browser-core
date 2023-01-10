@@ -8,13 +8,15 @@
 #if BUILDFLAG(IS_ANDROID)
 
  void ProfileManager::MaybeScheduleProfileForDeletion(
-     const base::FilePath& profile_dir,
-     ProfileLoadedCallback callback,
-     ProfileMetrics::ProfileDelete deletion_source) {
+    const base::FilePath& profile_dir,
+    ProfileLoadedCallback callback,
+    ProfileMetrics::ProfileDelete deletion_source) {
 
  }
  
 void ProfileManager::ScheduleProfileForDeletion(
+    const base::FilePath& profile_dir,
+    ProfileLoadedCallback callback) {
   DCHECK(profiles::IsMultipleProfilesEnabled());
   DCHECK(!IsProfileDirectoryMarkedForDeletion(profile_dir));
 
@@ -28,11 +30,11 @@ void ProfileManager::ScheduleProfileForDeletion(
     service->CancelDownloads();
     DCHECK_EQ(0, service->NonMaliciousDownloadCount());
   }
- }
+}
  
- void ProfileManager::ScheduleEphemeralProfileForDeletion(
-     const base::FilePath& profile_dir) {
+void ProfileManager::ScheduleEphemeralProfileForDeletion(
+    const base::FilePath& profile_dir) {
 
- }
+}
 
 #endif
