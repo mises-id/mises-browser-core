@@ -1,7 +1,16 @@
 diff --git a/chrome/browser/profiles/profile_impl.cc b/chrome/browser/profiles/profile_impl.cc
-index b1a3fc0249f3f6b6458038e6173743a1fd3b5724..51928ad5f94057ada02833ffc5ce5869d6eca9a6 100644
+index b1a3fc0249f3f6b6458038e6173743a1fd3b5724..0d4b00692038da283215f1bfd9ef84c3eb8959fa 100644
 --- a/chrome/browser/profiles/profile_impl.cc
 +++ b/chrome/browser/profiles/profile_impl.cc
+@@ -358,7 +358,7 @@ std::unique_ptr<Profile> Profile::CreateProfile(const base::FilePath& path,
+     NOTREACHED();
+   }
+ 
+-  std::unique_ptr<Profile> profile = base::WrapUnique(new ProfileImpl(
++  std::unique_ptr<Profile> profile = base::WrapUnique(new BraveProfileImpl(
+       path, delegate, create_mode, creation_time, io_task_runner));
+   return profile;
+ }
 @@ -413,7 +413,7 @@ void ProfileImpl::RegisterProfilePrefs(
  
    registry->RegisterBooleanPref(prefs::kForceEphemeralProfiles, false);

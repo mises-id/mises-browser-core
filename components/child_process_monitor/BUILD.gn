@@ -1,0 +1,26 @@
+static_library("child_process_monitor") {
+  # child_process_monitor can only be used once per utility process
+  visibility = [
+    ":unittests",
+    "//mises/components/services/ipfs",
+    "//mises/components/services/tor",
+  ]
+
+  sources = [
+    "child_process_monitor.cc",
+    "child_process_monitor.h",
+  ]
+
+  deps = [ "//base" ]
+}
+
+source_set("unittests") {
+  testonly = true
+  if (!is_android) {
+    sources = []
+
+    deps = [
+
+    ]
+  }
+}

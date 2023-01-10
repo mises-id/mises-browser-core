@@ -1,0 +1,20 @@
+component("cpp") {
+  visibility = [
+    "//chrome/browser",
+    "//services/network/public/cpp:cpp",
+  ]
+
+  output_name = "brave_network_cpp"
+
+  sources = [
+    "system_request_handler.cc",
+    "system_request_handler.h",
+  ]
+
+  deps = [
+    "//base",
+    "//services/network/public/cpp:cpp_base",
+  ]
+
+  defines = [ "IS_NETWORK_CPP_IMPL" ]
+}

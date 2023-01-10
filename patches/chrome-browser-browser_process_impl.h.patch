@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/browser_process_impl.h b/chrome/browser/browser_process_impl.h
+index e2b4d0a33d8ca980194ee4d05dcc833e863d170f..25daaeea6a840936de4464fd9acff8af6b621895 100644
+--- a/chrome/browser/browser_process_impl.h
++++ b/chrome/browser/browser_process_impl.h
+@@ -215,6 +215,7 @@ class BrowserProcessImpl : public BrowserProcess,
+   static void RegisterPrefs(PrefRegistrySimple* registry);
+ 
+  private:
++  friend class MisesBrowserProcessImpl;
+   using WebRtcEventLogManager = webrtc_event_logging::WebRtcEventLogManager;
+ 
+   // KeepAliveStateObserver implementation

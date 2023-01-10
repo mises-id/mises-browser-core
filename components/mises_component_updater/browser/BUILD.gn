@@ -2,6 +2,19 @@ import("//extensions/buildflags/buildflags.gni")
 
 static_library("browser") {
   sources = [
+    "brave_component.cc",
+    "brave_component.h",
+    "brave_on_demand_updater.cc",
+    "brave_on_demand_updater.h",
+    "dat_file_util.cc",
+    "dat_file_util.h",
+    "features.cc",
+    "features.h",
+    "local_data_files_observer.cc",
+    "local_data_files_observer.h",
+    "local_data_files_service.cc",
+    "local_data_files_service.h",
+    "switches.h",
   ]
 
   deps = [
@@ -11,6 +24,10 @@ static_library("browser") {
 
   if (enable_extensions) {
     sources += [
+#      "extension_whitelist_service.cc",
+#      "extension_whitelist_service.h",
     ]
+
+#    deps += [ "//brave/vendor/extension-whitelist/brave:extension-whitelist" ]
   }
 }

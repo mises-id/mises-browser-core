@@ -8,14 +8,18 @@
 
 #include <string>
 
+#include "base/scoped_multi_source_observation.h"
 #include "chrome/browser/profiles/profile_manager.h"
+#include "chrome/browser/profiles/profile_manager_observer.h"
+#include "chrome/browser/profiles/profile_observer.h"
 
 class MisesProfileManager : public ProfileManager {
  public:
   explicit MisesProfileManager(const base::FilePath& user_data_dir);
   MisesProfileManager(const MisesProfileManager&) = delete;
   MisesProfileManager& operator=(const MisesProfileManager&) = delete;
-
+  ~MisesProfileManager() override;
+  
   void InitProfileUserPrefs(Profile* profile) override;
   void SetNonPersonalProfilePrefs(Profile* profile) override;
   bool IsAllowedProfilePath(const base::FilePath& path) const override;
@@ -23,12 +27,21 @@ class MisesProfileManager : public ProfileManager {
                          bool incognito,
                          ProfileLoadedCallback callback) override;
 
+  // ProfileManagerObserver:
+  void OnProfileAdded(Profile* profile) override;
+
+  // ProfileObserver:
+  void OnOffTheRecordProfileCreated(Profile* off_the_record) override;
+  void OnProfileWillBeDestroyed(Profile* profile) override;
+
  protected:
   void DoFinalInitForServices(Profile* profile,
                               bool go_off_the_record) override;
 
  private:
   void MigrateProfileNames();
+  base::ScopedMultiSourceObservation<Profile, ProfileObserver>
+      observed_profiles_{this};
 };
 
 class MisesProfileManagerWithoutInit : public MisesProfileManager {
