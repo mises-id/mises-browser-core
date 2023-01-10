@@ -18,8 +18,8 @@
 #include "mises/components/constants/mises_constants.h"
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/ntp_background_images/common/pref_names.h"
-#include "mises/components/search_engines/brave_prepopulated_engines.h"
-#include "mises/components/tor/buildflags/buildflags.h"
+//#include "mises/components/search_engines/mises_prepopulated_engines.h"
+//#include "mises/components/tor/buildflags/buildflags.h"
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/content_settings/host_content_settings_map_factory.h"
 #include "chrome/browser/profiles/profile.h"
@@ -33,9 +33,9 @@
 using ntp_background_images::prefs::kNewTabPageShowBackgroundImage;
 using ntp_background_images::prefs::kNewTabPageShowSponsoredImagesBackgroundImage; // NOLINT
 
-#if BUILDFLAG(ENABLE_TOR)
-#include "brave/browser/tor/tor_profile_service_factory.h"
-#endif
+//#if BUILDFLAG(ENABLE_TOR)
+//#include "brave/browser/tor/tor_profile_service_factory.h"
+//#endif
 
 namespace brave {
 
@@ -194,18 +194,19 @@ bool IsGuestProfile(content::BrowserContext* context) {
 }
 
 bool IsTorDisabledForProfile(Profile* profile) {
-#if BUILDFLAG(ENABLE_TOR)
-  return TorProfileServiceFactory::IsTorDisabled() ||
-         profile->IsGuestSession();
-#else
-  return true;
-#endif
+return false;
+//#if BUILDFLAG(ENABLE_TOR)
+//  return TorProfileServiceFactory::IsTorDisabled() ||
+//         profile->IsGuestSession();
+//#else
+//  return true;
+//#endif
 }
 
 bool IsRegularProfile(content::BrowserContext* context) {
   auto* profile = Profile::FromBrowserContext(context);
-  return !context->IsTor() &&
-         !profile->IsGuestSession() &&
+  return /*!context->IsTor() &&
+         !profile->IsGuestSession() &&*/
          profile->IsRegularProfile();
 }
 
@@ -221,17 +222,17 @@ void RecordSponsoredImagesEnabledP3A(Profile* profile) {
 void RecordInitialP3AValues(Profile* profile) {
   // Preference is unregistered for some reason in profile_manager_unittest
   // TODO(bsclifton): create a proper testing profile
-  if (!profile->GetPrefs()->FindPreference(kNewTabPageShowBackgroundImage) ||
-      !profile->GetPrefs()->FindPreference(
-          kNewTabPageShowSponsoredImagesBackgroundImage)) {
-    return;
-  }
-  RecordSponsoredImagesEnabledP3A(profile);
-  if (profile->IsRegularProfile()) {
-    brave_shields::MaybeRecordInitialShieldsSettings(
-        profile->GetPrefs(),
-        HostContentSettingsMapFactory::GetForProfile(profile));
-  }
+//  if (!profile->GetPrefs()->FindPreference(kNewTabPageShowBackgroundImage) ||
+//      !profile->GetPrefs()->FindPreference(
+//          kNewTabPageShowSponsoredImagesBackgroundImage)) {
+//    return;
+//  }
+//  RecordSponsoredImagesEnabledP3A(profile);
+//  if (profile->IsRegularProfile()) {
+//    brave_shields::MaybeRecordInitialShieldsSettings(
+//        profile->GetPrefs(),
+//        HostContentSettingsMapFactory::GetForProfile(profile));
+//  }
 }
 
 void SetDefaultSearchVersion(Profile* profile, bool is_new_profile) {

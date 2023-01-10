@@ -381,7 +381,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 //  bool allow_open_search_engines = false;
 //#endif
 //  registry->RegisterBooleanPref(prefs::kAddOpenSearchEngines,
-                                allow_open_search_engines);
+//                                allow_open_search_engines);
 
   // Binance widget
 //#if BUILDFLAG(BINANCE_ENABLED)

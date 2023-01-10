@@ -26,7 +26,7 @@ int OnBeforeStartTransaction_BraveServiceKey(
       {kExtensionUpdaterDomain, GURL(BUILDFLAG(UPDATER_DEV_ENDPOINT)).host(),
        GURL(BUILDFLAG(UPDATER_PROD_ENDPOINT)).host()}};
 
-  const GURL& url = ctx->request_url;
+//  const GURL& url = ctx->request_url;
 
 //  if (url.SchemeIs(url::kHttpsScheme)) {
 //    if (std::any_of(
