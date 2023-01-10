@@ -15,7 +15,7 @@
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/constants/url_constants.h"
 #include "mises/components/l10n/common/locale_util.h"
-#include "mises/grit/brave_generated_resources.h"
+#include "mises/grit/mises_generated_resources.h"
 #include "chrome/browser/infobars/confirm_infobar_creator.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/browser.h"

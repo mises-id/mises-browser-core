@@ -43,7 +43,7 @@ network::ResourceRequest OnBeforeSystemRequest(
 //    patched_request.url = new_url;
 //  }
 //  AddBraveServicesKeyHeader(&patched_request);
-    return url_request; patched_request;
+    return url_request;// patched_request;
 }
 
 }  // namespace brave
