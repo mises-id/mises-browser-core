@@ -28,14 +28,14 @@ int OnBeforeStartTransaction_BraveServiceKey(
 
   const GURL& url = ctx->request_url;
 
-  if (url.SchemeIs(url::kHttpsScheme)) {
-    if (std::any_of(
-            allowed_domains->begin(), allowed_domains->end(),
-            [&url](const auto& domain) { return url.DomainIs(domain); })) {
-      headers->SetHeader(kBraveServicesKeyHeader,
-                         BUILDFLAG(BRAVE_SERVICES_KEY));
-    }
-  }
+//  if (url.SchemeIs(url::kHttpsScheme)) {
+//    if (std::any_of(
+//            allowed_domains->begin(), allowed_domains->end(),
+//            [&url](const auto& domain) { return url.DomainIs(domain); })) {
+//      headers->SetHeader(kBraveServicesKeyHeader,
+//                         BUILDFLAG(BRAVE_SERVICES_KEY));
+//    }
+//  }
   return net::OK;
 }
 
