@@ -1,0 +1,15 @@
+diff --git a/components/omnibox/browser/BUILD.gn b/components/omnibox/browser/BUILD.gn
+index 53214103aa465336f9a8c013487b60cac540e613..bf128efbf31dc23946b9a14d464f55faf604a213 100644
+--- a/components/omnibox/browser/BUILD.gn
++++ b/components/omnibox/browser/BUILD.gn
+@@ -290,7 +290,9 @@ static_library("browser") {
+     "//ui/base",
+     "//ui/gfx",
+   ]
+-
++  
++  sources += mises_components_omnibox_browser_sources deps += mises_components_omnibox_browser_deps
++ 
+   if ((!is_android || enable_vr) && !is_ios) {
+     deps += [ ":vector_icons" ]
+   }

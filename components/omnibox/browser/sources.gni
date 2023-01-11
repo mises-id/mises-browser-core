@@ -5,10 +5,15 @@
 
 mises_components_omnibox_browser_sources = []
 
-  if (is_android) {
-    mises_components_omnibox_browser_sources += [
-      "//mises/components/omnibox/browser/mises_provider.cc",
-      "//mises/components/omnibox/browser/mises_provider.h",
-      "//mises/components/omnibox/browser/mises_provider_data.cc",
-    ]
-  }
+if (is_android) {
+  mises_components_omnibox_browser_sources += [
+    "//mises/components/omnibox/browser/mises_provider.cc",
+    "//mises/components/omnibox/browser/mises_provider.h",
+    "//mises/components/omnibox/browser/mises_provider_data.cc",
+  ]
+}
+
+mises_components_omnibox_browser_deps = [
+  "//base",
+  "//url",
+]
