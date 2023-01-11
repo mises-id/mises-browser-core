@@ -492,15 +492,15 @@ void SafeBrowsingUrlCheckerImpl::ProcessUrls() {
       }
     } else {
       #if BUILDFLAG(IS_ANDROID)
-        LOG(INFO) << "Cg SafeBrowsingUrlCheckerImpl::ProcessUrls() CheckBrowseUrl IS_ANDROID";
+        /* LOG(INFO) << "Cg SafeBrowsingUrlCheckerImpl::ProcessUrls() CheckBrowseUrl IS_ANDROID";
         if (request_destination_ == network::mojom::RequestDestination::kDocument){
-          LOG(INFO) << "Cg SafeBrowsingUrlCheckerImpl::ProcessUrls() CheckBrowseUrl IS_ANDROID !is_subresource";
+          LOG(INFO) << "Cg SafeBrowsingUrlCheckerImpl::ProcessUrls() CheckBrowseUrl IS_ANDROID !is_subresource url=" << url;
           safe_synchronously =
           can_check_db_
               ? database_manager_->CheckBrowseUrl(
                     url, url_checker_delegate_->GetThreatTypes(), this)
               : true;
-        }
+        } */
     #endif //BUILDFLAG(IS_ANDROID)
       #if !BUILDFLAG(IS_ANDROID)
        safe_synchronously =

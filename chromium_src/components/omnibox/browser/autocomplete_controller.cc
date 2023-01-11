@@ -339,7 +339,6 @@ AutocompleteController::AutocompleteController(
       }
     }
   }
-
   if (provider_types & AutocompleteProvider::TYPE_BOOKMARK) {
     bookmark_provider_ = new BookmarkProvider(provider_client_.get());
     providers_.push_back(bookmark_provider_.get());
@@ -1215,7 +1214,7 @@ void AutocompleteController::StartExpireTimer() {
   // when we remove any copied entries. We do this from the time the
   // user stopped typing as some providers (such as SearchProvider)
   // wait for the user to stop typing before they initiate a query.
-  const int kExpireTimeMS = 5000;
+  const int kExpireTimeMS = 500;
 
   if (result_.HasCopiedMatches())
     expire_timer_.Start(FROM_HERE, base::Milliseconds(kExpireTimeMS), this,
