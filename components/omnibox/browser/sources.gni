@@ -3,10 +3,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
-mises_components_omnibox_browser_sources = [
-]
+mises_components_omnibox_browser_sources = []
 
-mises_components_omnibox_browser_deps = [
-  "//base",
-  "//url",
-]
+  if (is_android) {
+    mises_components_omnibox_browser_sources += [
+      "//mises/components/omnibox/browser/mises_provider.cc",
+      "//mises/components/omnibox/browser/mises_provider.h",
+      "//mises/components/omnibox/browser/mises_provider_data.cc",
+    ]
+  }
