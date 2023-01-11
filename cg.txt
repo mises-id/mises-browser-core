@@ -1,0 +1,50 @@
+docker exec -it 287b367c26f3b9b77200f37cc2de02f113416c9a6f2d2e38a8992fd9ddde1ff0 /bin/bash
+
+sudo mount -t cifs //192.168.12.1/mises-browser-core /media/ubuntu/store/code -o username='mises',password='cg2035',vers=2.0
+
+
+ VERSION=v18.12.1
+ DISTRO=linux-x64
+ sudo mkdir -p /usr/local/lib/nodejs
+ sudo tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs 
+
+ docker run -itd  --net=host --name 
+
+VERSION=v18.12.1
+DISTRO=linux-x64
+sudo ln -sf /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm   /usr/local/bin/ 
+sudo ln -sf /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node   /usr/local/bin/
+
+rsync -azrv  ubuntu@192.168.1.23:/media/ubuntu/store/code/mises-browser-core /media/ubuntu/store/code
+rsync.exe -avzr -e " \"/cygdrive/d/cwRsync_5.5.0_x86_Free/bin/ssh.exe\""  ubuntu@192.168.1.23:/media/ubuntu/store/code/mises-browser-core /cygdrive/d/work
+
+rsync -azrv  ubuntu@192.168.1.23:/home/ubuntu/Qv2ray-v2.7.0-linux-x64.AppImage ~/tools
+
+
+1,871,536 
+
+196,623,032,320
+1,885,510 
+196,626,817,024 
+
+SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee7", MODE="0666"
+
+18d1:4ee7
+export https_proxy=http://127.0.0.1:33210 http_proxy=http://127.0.0.1:33210 all_proxy=socks5://127.0.0.1:33211
+
+npm run build  -- --target_os android --target_arch arm64
+
+sudo mount -t cifs //192.168.1.10/mises-browser-core /media/ubuntu/store/code -o username='mises',password='cg2025',sec=ntlmssp,vers=2.0
+
+bash <(curl -L https://github.com/v2fly/fhs-install-v2ray/blob/master/install-release.sh)
+
+python3 ../../build/android/gyp/compile_java.py --depfile=gen/media/base/android/display_java__compile_java.d --generated-dir=gen/media/base/android/display_java/generated_java --jar-path=obj/media/base/android/display_java.javac.jar --java-srcjars=\[\"gen/media/base/android/display_java.generated.srcjar\"\] --target-name //media/base/android:display_java__compile_java --header-jar obj/media/base/android/display_java.turbine.jar --classpath=\[\"obj/media/base/android/display_java.turbine.jar\"\] --classpath=@FileArg\(gen/media/base/android/display_java.build_config.json:deps_info:javac_full_interface_classpath\) --java-version=1.8 --bootclasspath=@FileArg\(gen/media/base/android/display_java.build_config.json:android:sdk_interface_jars\)  --chromium-code=1 --warnings-as-errors=0 --jar-info-exclude-globs=\[\"\*/R.class\",\ \"\*/R\\\$\*.class\",\ \"\*/Manifest.class\",\ \"\*/Manifest\\\$\*.class\",\ \"\*/GEN_JNI.class\"\] @gen/media/base/android/display_java.sources
+
+
+adb logcat | grep 'chromium'  > /media/ubuntu/store/code/mises-browser-core/chromium_log.txt
+
+third_party/android_platform/development/scripts/stack --output-directory out/android_Component_arm64 ../chromium_log.txt
+
+third_party/android_platform/development/scripts/stack --output-directory out/android_Component_arm64 ../chromium_log.txt
+
+UzNg2k3bjYum7M5XrXOmo5AxKouHwvVF9ftTabA0lZ0

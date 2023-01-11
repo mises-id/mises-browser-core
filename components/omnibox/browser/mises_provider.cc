@@ -30,6 +30,7 @@ const int MisesProvider::kRelevance = 10000;
 MisesProvider::MisesProvider(AutocompleteProviderClient* client, AutocompleteProviderListener* listener)
          : AutocompleteProvider(AutocompleteProvider::TYPE_SEARCH), client_(client){
             AddListener(listener);
+            GetTopSiteData();
          }
 
 MisesProvider::~MisesProvider() = default;
@@ -50,112 +51,6 @@ void MisesProvider::Start(const AutocompleteInput& input,
   autocomplete_input_ = nullptr;
 }
 
-
-void MisesProvider::GetTopSiteData() {
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -1";
-    //getMisesMatch
-    net::NetworkTrafficAnnotationTag traffic_annotation =
-            net::DefineNetworkTrafficAnnotation("mises_provider_data", R"(
-        semantics {
-          sender: "Mises Provider"
-          description:
-            "When verifying certificates, the browser may need to fetch "
-            "additional URLs that are encoded in the server-provided "
-            "certificate chain. This may be part of revocation checking ("
-            "Online Certificate Status Protocol, Certificate Revocation List), "
-            "or path building (Authority Information Access fetches). Please "
-            "refer to the following for more on above protocols: "
-            "https://tools.ietf.org/html/rfc6960, "
-            "https://tools.ietf.org/html/rfc5280#section-4.2.1.13, and"
-            "https://tools.ietf.org/html/rfc5280#section-5.2.7."
-          trigger:
-            "Verifying a certificate (likely in response to navigating to an "
-            "'https://' website)."
-          data:
-            "In the case of OCSP this may divulge the website being viewed. No "
-            "user data in other cases."
-          destination: OTHER
-          destination_other:
-            "The URL specified in the mises provider."
-        }
-        policy {
-          cookies_allowed: NO
-          setting: "This feature cannot be disabled by settings."
-          policy_exception_justification: "Not implemented."
-        })");
-    GURL misesApiUrl("https://web3.mises.site/website/top.json");
-    auto resource_request = std::make_unique<network::ResourceRequest>();
-    resource_request->url = misesApiUrl;
-    resource_request->method = "GET";
-    resource_request->credentials_mode = network::mojom::CredentialsMode::kOmit;
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -2";
-    simple_url_loader_ = network::SimpleURLLoader::Create(std::move(resource_request),
-                                                          traffic_annotation);
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -3";
-    simple_url_loader_->DownloadToStringOfUnboundedSizeUntilCrashAndDie(
-            //url_loader_factory_.get(),
-            client_->GetURLLoaderFactory().get(),
-            base::BindOnce(&MisesProvider::OnURLLoadComplete,
-                           base::Unretained(this),simple_url_loader_.get()));
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -4";
-
-}
-
-void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
-                                    std::unique_ptr<std::string> response_body){
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -4.5";
-    int response_code = -1;
-    if (source->ResponseInfo() &&
-        source->ResponseInfo()->headers) {
-        response_code =
-                source->ResponseInfo()->headers->response_code();
-    }
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete code " << response_code;
-    std::string json_string;
-    if (response_body)
-        json_string = std::move(*response_body);
-    LOG(INFO) << "Cg MisesProvider API match string=" << json_string;
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -5";
-    JSONStringValueDeserializer deserializer(json_string);
-    std::string error_msg;
-    std::unique_ptr<base::Value> json_value =
-            deserializer.Deserialize(nullptr, &error_msg);
-
-    if (!response_body || (response_code != net::HTTP_OK)) {
-        const auto* error_value =
-                json_value && json_value->is_dict()
-                ? json_value->FindKeyOfType("message",
-                                            base::Value::Type::STRING)
-                : nullptr;
-
-        LOG(WARNING) << "Server returned wrong response code: " << response_code
-                     << ": " << (error_value ? error_value->GetString() : "Unknown")
-                     << ".";
-
-    }
-        if (!json_value) {
-            LOG(WARNING) << "Unable to deserialize auth code json data: " << error_msg
-                         << ".";
-            return;
-        }
-
-        if (!json_value->is_dict()) {
-            LOG(WARNING) << "Response is not a JSON dictionary.";
-            return;
-        }
-        LOG(INFO) << "Cg MisesProvider::DoAutocomplete -6";
-        base::Value* data_list = json_value->FindListKey("Dn");
-        if (data_list == nullptr) {
-            VLOG(1) << "No mises match found in the response.";
-            return;
-        }
-        std::vector<std::string> new_top_sites;
-        for (const auto& data : data_list->GetListDeprecated()) {
-            new_top_sites.push_back(data.GetString());
-             LOG(INFO) << "Cg MisesProvider::DoAutocomplete new_top_sites=" << data.GetString();
-        }
-        top_sites_ = new_top_sites;
-}
 
 void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
   const std::string input_text = base::ToLowerASCII(base::UTF16ToUTF8(input.text()));
@@ -281,6 +176,113 @@ void MisesProvider::AddMatch(const std::u16string& match_string,
   match.allowed_to_be_default_match = true;
   matches_.push_back(match);
 }
+
+void MisesProvider::GetTopSiteData() {
+    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -1";
+    //getMisesMatch
+    net::NetworkTrafficAnnotationTag traffic_annotation =
+            net::DefineNetworkTrafficAnnotation("mises_provider_data", R"(
+        semantics {
+          sender: "Mises Provider"
+          description:
+            "When verifying certificates, the browser may need to fetch "
+            "additional URLs that are encoded in the server-provided "
+            "certificate chain. This may be part of revocation checking ("
+            "Online Certificate Status Protocol, Certificate Revocation List), "
+            "or path building (Authority Information Access fetches). Please "
+            "refer to the following for more on above protocols: "
+            "https://tools.ietf.org/html/rfc6960, "
+            "https://tools.ietf.org/html/rfc5280#section-4.2.1.13, and"
+            "https://tools.ietf.org/html/rfc5280#section-5.2.7."
+          trigger:
+            "Verifying a certificate (likely in response to navigating to an "
+            "'https://' website)."
+          data:
+            "In the case of OCSP this may divulge the website being viewed. No "
+            "user data in other cases."
+          destination: OTHER
+          destination_other:
+            "The URL specified in the mises provider."
+        }
+        policy {
+          cookies_allowed: NO
+          setting: "This feature cannot be disabled by settings."
+          policy_exception_justification: "Not implemented."
+        })");
+    GURL misesApiUrl("https://web3.mises.site/website/top.json");
+    auto resource_request = std::make_unique<network::ResourceRequest>();
+    resource_request->url = misesApiUrl;
+    resource_request->method = "GET";
+    resource_request->credentials_mode = network::mojom::CredentialsMode::kOmit;
+    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -2";
+    simple_url_loader_ = network::SimpleURLLoader::Create(std::move(resource_request),
+                                                          traffic_annotation);
+    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -3";
+    simple_url_loader_->DownloadToStringOfUnboundedSizeUntilCrashAndDie(
+            //url_loader_factory_.get(),
+            client_->GetURLLoaderFactory().get(),
+            base::BindOnce(&MisesProvider::OnURLLoadComplete,
+                           base::Unretained(this),simple_url_loader_.get()));
+    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -4";
+
+}
+
+void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
+                                    std::unique_ptr<std::string> response_body){
+    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -4.5";
+    int response_code = -1;
+    if (source->ResponseInfo() &&
+        source->ResponseInfo()->headers) {
+        response_code =
+                source->ResponseInfo()->headers->response_code();
+    }
+    LOG(INFO) << "Cg MisesProvider::DoAutocomplete code " << response_code;
+    std::string json_string;
+    if (response_body)
+        json_string = std::move(*response_body);
+    LOG(INFO) << "Cg MisesProvider API match string=" << json_string;
+    LOG(INFO) << "Cg MisesProvider::DoAutocomplete -5";
+    JSONStringValueDeserializer deserializer(json_string);
+    std::string error_msg;
+    std::unique_ptr<base::Value> json_value =
+            deserializer.Deserialize(nullptr, &error_msg);
+
+    if (!response_body || (response_code != net::HTTP_OK)) {
+        const auto* error_value =
+                json_value && json_value->is_dict()
+                ? json_value->FindKeyOfType("message",
+                                            base::Value::Type::STRING)
+                : nullptr;
+
+        LOG(WARNING) << "Server returned wrong response code: " << response_code
+                     << ": " << (error_value ? error_value->GetString() : "Unknown")
+                     << ".";
+
+    }
+        if (!json_value) {
+            LOG(WARNING) << "Unable to deserialize auth code json data: " << error_msg
+                         << ".";
+            return;
+        }
+
+        if (!json_value->is_dict()) {
+            LOG(WARNING) << "Response is not a JSON dictionary.";
+            return;
+        }
+        LOG(INFO) << "Cg MisesProvider::DoAutocomplete -6";
+        base::Value* data_list = json_value->FindListKey("Dn");
+        if (data_list == nullptr) {
+            VLOG(1) << "No mises match found in the response.";
+            return;
+        }
+        std::vector<std::string> new_top_sites;
+        for (const auto& data : data_list->GetListDeprecated()) {
+            new_top_sites.push_back(data.GetString());
+             LOG(INFO) << "Cg MisesProvider::DoAutocomplete new_top_sites=" << data.GetString();
+        }
+        top_sites_ = new_top_sites;
+}
+
 
 void MisesProvider::SortByMises(
     const AutocompleteResult& result) {

@@ -1302,7 +1302,6 @@ void BrowserProcessImpl::CreateBackgroundPrintingManager() {
 }
 
 void BrowserProcessImpl::CreateSafeBrowsingService() {
-
   DCHECK(!safe_browsing_service_);
   // Set this flag to true so that we don't retry indefinitely to
   // create the service class if there was an error.

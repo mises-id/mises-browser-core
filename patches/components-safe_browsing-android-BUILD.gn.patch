@@ -1,0 +1,12 @@
+diff --git a/components/safe_browsing/android/BUILD.gn b/components/safe_browsing/android/BUILD.gn
+index 7c7830816240c54cf8cc8284ea25c5843929ec57..b391c37016d295e536018020a083bbc2140b3709 100644
+--- a/components/safe_browsing/android/BUILD.gn
++++ b/components/safe_browsing/android/BUILD.gn
+@@ -71,6 +71,7 @@ source_set("safe_browsing_api_handler") {
+     "safe_browsing_api_handler_bridge.cc",
+     "safe_browsing_api_handler_bridge.h",
+   ]
++  import("//mises/components/safe_browsing/android/sources.gni") sources += mises_components_safe_browsing_android_sources
+   deps = [
+     ":jni_headers",
+     ":safe_browsing_api_handler_util",

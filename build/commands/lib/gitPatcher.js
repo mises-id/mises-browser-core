@@ -89,12 +89,13 @@ module.exports = class GitPatcher {
 
     const patchesToApply = []
     const patchInfosObsolete = []
-
     for (const filename of patchFilenames) {
       const patchInfoFilename = filename.slice(0, extPatch.length * -1) + extPatchInfo
+      console.log("patchInfoFilename:" + patchInfoFilename)
       const hasPatchInfo = patchInfoFilenames.includes(patchInfoFilename)
       const fullPath = path.join(this.patchDirPath, filename)
       const patchInfoFullPath = path.join(this.patchDirPath, patchInfoFilename)
+      console.log("patchInfoFullPath:" + patchInfoFullPath)
       const needsPatchReason = (!hasPatchInfo)
         ? patchApplyReasons.NO_PATCH_INFO
         : (await this.isPatchStale(fullPath, patchInfoFullPath))

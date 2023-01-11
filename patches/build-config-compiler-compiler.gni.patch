@@ -1,0 +1,13 @@
+diff --git a/build/config/compiler/compiler.gni b/build/config/compiler/compiler.gni
+index 5550eecf148731d8e36191ed510d7a3717c98bad..0b6b164b732b44c342646dd6999cbc5e6b293611 100644
+--- a/build/config/compiler/compiler.gni
++++ b/build/config/compiler/compiler.gni
+@@ -46,7 +46,7 @@ declare_args() {
+   # warnings with known toolchains. Allow overriding this e.g. for Chromium
+   # builds on Linux that could use a different version of the compiler.
+   # With GCC, warnings in no-Chromium code are always not treated as errors.
+-  treat_warnings_as_errors = true
++  treat_warnings_as_errors = false
+ 
+   # How many symbols to include in the build. This affects the performance of
+   # the build since the symbols are large and dealing with them is slow.

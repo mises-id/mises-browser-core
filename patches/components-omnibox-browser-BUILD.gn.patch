@@ -1,0 +1,13 @@
+diff --git a/components/omnibox/browser/BUILD.gn b/components/omnibox/browser/BUILD.gn
+index 53214103aa465336f9a8c013487b60cac540e613..11bef4a4faeca87dd13ea3d48d0e8b7fe07761ce 100644
+--- a/components/omnibox/browser/BUILD.gn
++++ b/components/omnibox/browser/BUILD.gn
+@@ -308,7 +308,7 @@ static_library("browser") {
+       "//components/optimization_guide/core:entities",
+     ]
+   }
+-
++  import("//mises/components/omnibox/browser/sources.gni") sources += mises_components_omnibox_browser_sources
+   if (enable_extensions) {
+     deps += [ "//extensions/common:common_constants" ]
+     sources += [

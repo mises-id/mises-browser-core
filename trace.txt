@@ -1,0 +1,98 @@
+
+[FATAL:security_state_tab_helper.cc(250)] Check failed: false. 
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/apex/com.android.art/lib64/libart.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/system/lib64/libutils.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/system/lib64/libutils.so
+ERROR:root:Can't run llvm-symbolizer! Given binary is not a valid target. path=/system/lib64/libandroid_runtime.so
+
+Stack Trace:
+  RELADDR   FUNCTION                                                                          FILE:LINE
+  v------>  base::debug::StackTrace::StackTrace(unsigned long)                                ../../base/debug/stack_trace.cc:221:12
+  0000000000184eb3  base::debug::StackTrace::StackTrace()                                             ../../base/debug/stack_trace.cc:218:28
+  00000000001a272b  logging::LogMessage::~LogMessage()                                                ../../base/logging.cc:670:29
+  00000000001a3223  logging::LogMessage::~LogMessage()                                                ../../base/logging.cc:664:27
+  0000000001fd22f3  SSLConfigServiceManager::OnPreferenceChanged(PrefService*, std::Cr::basic_string<char, std::Cr::char_traits<char>, std::Cr::allocator<char>> const&)  ../../chrome/browser/ssl/ssl_config_service_manager.cc:195:5
+  0000000001fd2107  SSLConfigServiceManager::SSLConfigServiceManager(PrefService*)                    ../../chrome/browser/ssl/ssl_config_service_manager.cc:130:3
+  0000000001fd20ab  SSLConfigServiceManager::SSLConfigServiceManager(PrefService*)                    ../../chrome/browser/ssl/ssl_config_service_manager.cc:125:27
+  00000000020cb143  SyncServiceAndroidBridge::CanSyncFeatureStart(_JNIEnv*)                           ../../chrome/browser/sync/android/sync_service_android_bridge.cc:112:3
+  v------>  base::android::ScopedJavaLocalRef<_jobjectArray*>::~ScopedJavaLocalRef()          ../../base/android/scoped_java_ref.h:222:27
+  0000000002fbf03f  translate::TranslateMessage::BuildOverflowMenu(_JNIEnv*)                          ../../components/translate/content/android/translate_message.cc:367:3
+  0000000000012ed7  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000000097eb  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  000000000006deb3  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000001d8de3  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000001d3efb  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000509b3b  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000003997  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000509d77  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000003997  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000506fef  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000003817  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000506fef  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000003817  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000506fef  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000003817  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000001cb8d7  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000004f59c7  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000012ffb  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000009567  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  000000000006de97  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000003fe6c3  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000003ffc5f  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000003ffe43  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000002cca33  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000233693  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  0000000000221d3f  <UNKNOWN>                                                                         /apex/com.android.art/lib64/libart.so
+  00000000015daa5b  std::Cr::__split_buffer<optimization_guide::proto::ModelInfo, std::Cr::allocator<optimization_guide::proto::ModelInfo>&>::__split_buffer(unsigned long, unsigned long, std::Cr::allocator<optimization_guide::proto::ModelInfo>&)  ../../buildtools/third_party/libc++/trunk/include/__split_buffer:311:23
+  v------>  web_contents_delegate_android::Java_WebContentsDelegateAndroid_addMessageToConsole(_JNIEnv*, base::android::JavaRef<_jobject*> const&, int, base::android::JavaRef<_jstring*> const&, int, base::android::JavaRef<_jstring*> const&)  gen/components/embedder_support/android/web_contents_delegate_jni_headers/WebContentsDelegateAndroid_jni.h:365:16
+  0000000002fb3d3b  web_contents_delegate_android::WebContentsDelegateAndroid::DidAddMessageToConsole(content::WebContents*, blink::mojom::ConsoleMessageLevel, std::Cr::basic_string<char16_t, std::Cr::char_traits<char16_t>, std::Cr::allocator<char16_t>> const&, int, std::Cr::basic_string<char16_t, std::Cr::char_traits<char16_t>, std::Cr::allocator<char16_t>> const&)  ../../components/embedder_support/android/delegate/web_contents_delegate_android.cc:257:10
+  000000000185dfd3  content::WebContentsImpl::DidChangeVisibleSecurityState()                         ../../mises/chromium_src/content/browser/web_contents/web_contents_impl.cc:2693:16
+  v------>  safe_browsing::(anonymous namespace)::GetEmbeddingWebContentsForInterstitial(content::WebContents*)  ../../components/safe_browsing/content/browser/base_ui_manager.cc:201:30
+  0000000001b4cecf  safe_browsing::BaseUIManager::DisplayBlockingPage(security_interstitials::UnsafeResource const&)  ../../components/safe_browsing/content/browser/base_ui_manager.cc:266:7
+  0000000001b4d34b  void content::WebContentsUserData<(anonymous namespace)::AllowlistUrlSet>::CreateForWebContents<>(content::WebContents*)  ../../content/public/browser/web_contents_user_data.h:47:5
+  0000000001b6c2ef  safe_browsing::SafeBrowsingUIManager::OnBlockingPageDone(std::Cr::vector<security_interstitials::UnsafeResource, std::Cr::allocator<security_interstitials::UnsafeResource>> const&, bool, content::WebContents*, GURL const&, bool)  ../../components/safe_browsing/content/browser/ui_manager.cc:313:7
+  v------>  base::OnceCallback<void ()>::Run() &&                                             ../../base/callback.h:145:12
+  000000000020eb8b  base::TaskAnnotator::RunTaskImpl(base::PendingTask&)                              ../../base/task/common/task_annotator.cc:135:32
+  v------>  void base::TaskAnnotator::RunTask<base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWorkImpl(base::sequence_manager::LazyNow*)::$_0>(perfetto::StaticString, base::PendingTask&, base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWorkImpl(base::sequence_manager::LazyNow*)::$_0&&)  ../../base/task/common/task_annotator.h:74:5
+  00000000002347f3  base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWorkImpl(base::sequence_manager::LazyNow*)  ../../base/task/sequence_manager/thread_controller_with_message_pump_impl.cc:428:21
+  0000000000233f07  base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWork()   ../../base/task/sequence_manager/thread_controller_with_message_pump_impl.cc:298:41
+  00000000002951bb  base::MessagePumpForUI::DoNonDelayedLooperWork(bool)                              ../../base/message_loop/message_pump_android.cc:219:33
+  000000000029514b  base::MessagePumpForUI::OnNonDelayedLooperCallback()                              ../../base/message_loop/message_pump_android.cc:205:3
+  0000000000294c93  base::(anonymous namespace)::NonDelayedLooperCallback(int, int, void*)            ../../base/message_loop/message_pump_android.cc:72:9
+  000000000000b4c3  <UNKNOWN>                                                                         /system/lib64/libutils.so
+  000000000000b0db  <UNKNOWN>                                                                         /system/lib64/libutils.so
+  000000000007d75b  <UNKNOWN>                                                                         /system/lib64/libandroid_runtime.so
+
+-----------------------------------------------------
+
+
+Stack Trace:
+  RELADDR   FUNCTION                                                                          FILE:LINE
+  0000000002b71a4f  CertificateReportingService::BoundedReportList::BoundedReportList(unsigned long)  ../../chrome/browser/safe_browsing/certificate_reporting_service.cc:54:3
+  0000000001b719eb  web_app::CreateShortcutsWithInfo(web_app::ShortcutCreationReason, web_app::ShortcutLocations const&, base::OnceCallback<void (bool)>, std::Cr::unique_ptr<web_app::ShortcutInfo, std::Cr::default_delete<web_app::ShortcutInfo>>)  ../../chrome/browser/web_applications/extensions/web_app_extension_shortcut.cc:134:26
+  000000000001582f  mojo::SimpleWatcher::Context::Notify(unsigned int, MojoHandleSignalsState, unsigned int)  ../../mojo/public/cpp/system/simple_watcher.cc:102:13

@@ -1,0 +1,21 @@
+diff --git a/components/omnibox/browser/autocomplete_controller.cc b/components/omnibox/browser/autocomplete_controller.cc
+index f6a85f48e5743e42788c7d244dd1d7a91174c0c9..acfc97f6b6d2e5bc4e98ba3b7a50a00396c13cc3 100644
+--- a/components/omnibox/browser/autocomplete_controller.cc
++++ b/components/omnibox/browser/autocomplete_controller.cc
+@@ -301,7 +301,7 @@ AutocompleteController::AutocompleteController(
+     // Providers run in the order they're added. Run these async providers 1st
+     // so their async requests can be kicked off before waiting a few
+     // milliseconds for the other sync providers to complete.
+-
++    MISES_AUTOCOMPLETE_CONTROLLER_AUTOCOMPLETE_CONTROLLER
+     if (provider_types & AutocompleteProvider::TYPE_SEARCH) {
+       search_provider_ = new SearchProvider(provider_client_.get(), this);
+       providers_.push_back(search_provider_.get());
+@@ -551,6 +551,7 @@ void AutocompleteController::Start(const AutocompleteInput& input) {
+   // arithmetic mean.
+   base::TimeTicks start_time = base::TimeTicks::Now();
+   for (const auto& provider : providers_) {
++     LOG(INFO) << "Cg AutocompleteController::Start providerName=" << provider->GetName();
+     if (!ShouldRunProvider(provider.get()))
+       continue;
+ 
