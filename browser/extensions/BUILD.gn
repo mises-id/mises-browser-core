@@ -1,3 +1,4 @@
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 import("//build/config/features.gni")
 import("//components/gcm_driver/config.gni")
 
@@ -36,6 +37,14 @@ source_set("extensions") {
     "//ui/base",
     "//url",
   ]
+
+  if (enable_ipfs) {
+    sources += [
+      "api/ipfs_api.cc",
+      "api/ipfs_api.h",
+    ]
+    deps += [ "//mises/components/ipfs" ]
+  }
 }
 
 group("resources") {

@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/profiles/profile_window.h b/chrome/browser/profiles/profile_window.h
-index 1ca4d76551207dd2e9ca6483b2206d47ca3af083..c2f2530b3166779154d0ef8e796a0d9eee1bfa02 100644
+index 1ca4d76551207dd2e9ca6483b2206d47ca3af083..17a6c383841de807c30af9f10dbc467579dcff2b 100644
 --- a/chrome/browser/profiles/profile_window.h
 +++ b/chrome/browser/profiles/profile_window.h
-@@ -15,7 +15,7 @@
- #include "chrome/browser/ui/profile_chooser_constants.h"
+@@ -16,7 +16,7 @@
  #include "chrome/browser/ui/startup/startup_types.h"
  
--#if BUILDFLAG(IS_ANDROID)
-+#if false && BUILDFLAG(IS_ANDROID)
- #error "Not used on Android"
+ #if BUILDFLAG(IS_ANDROID)
+-#error "Not used on Android"
++#include "chrome/browser/ui/browser_list_observer.h"
  #endif
  
+ class Profile;

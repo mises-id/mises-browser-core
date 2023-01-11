@@ -3,18 +3,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
-brave_components_content_settings_core_browser_sources = []
-brave_components_content_settings_core_browser_deps = []
+mises_components_content_settings_core_browser_sources = []
+mises_components_content_settings_core_browser_deps = []
 
 if (!is_ios) {
-  brave_components_content_settings_core_browser_sources += [
+  mises_components_content_settings_core_browser_sources += [
 #    "//brave/components/content_settings/core/browser/brave_content_settings_pref_provider.cc",
 #    "//brave/components/content_settings/core/browser/brave_content_settings_pref_provider.h",
     "//mises/components/content_settings/core/browser/brave_content_settings_utils.cc",
     "//mises/components/content_settings/core/browser/brave_content_settings_utils.h",
   ]
 
-  brave_components_content_settings_core_browser_deps += [
+  mises_components_content_settings_core_browser_deps += [
     "//base",
     "//mises/components/constants",
     "//mises/components/content_settings/core/common",

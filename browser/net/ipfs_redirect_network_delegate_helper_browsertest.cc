@@ -4,10 +4,10 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "base/test/scoped_feature_list.h"
-#include "brave/browser/ipfs/ipfs_service_factory.h"
-#include "brave/components/ipfs/features.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/browser/ipfs/ipfs_service_factory.h"
+#include "mises/components/ipfs/features.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/pref_names.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/test/base/in_process_browser_test.h"

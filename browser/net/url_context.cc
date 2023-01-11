@@ -17,6 +17,7 @@
 #include "chrome/browser/profiles/profile.h"
 #include "content/public/browser/browser_thread.h"
 #include "content/public/browser/render_frame_host.h"
+#include "content/public/browser/web_contents.h"
 #include "net/base/isolation_info.h"
 #include "services/network/public/cpp/resource_request.h"
 #include "url/origin.h"
@@ -136,19 +137,19 @@ std::shared_ptr<brave::BraveRequestInfo> BraveRequestInfo::MakeCTX(
   }
 #endif
 
-  Profile* profile = Profile::FromBrowserContext(browser_context);
-  auto* map = HostContentSettingsMapFactory::GetForProfile(profile);
+  //Profile* profile = Profile::FromBrowserContext(browser_context);
+  //auto* map = HostContentSettingsMapFactory::GetForProfile(profile);
 //  ctx->allow_brave_shields =
 //      brave_shields::GetBraveShieldsEnabled(map, ctx->tab_origin);
 //  ctx->allow_ads = brave_shields::GetAdControlType(map, ctx->tab_origin) ==
 //                   brave_shields::ControlType::ALLOW;
   // Currently, "aggressive" mode is registered as a cosmetic filtering control
   // type, even though it can also affect network blocking.
-  ctx->aggressive_blocking =
-      brave_shields::GetCosmeticFilteringControlType(map, ctx->tab_origin) ==
-      brave_shields::ControlType::BLOCK;
-  ctx->allow_http_upgradable_resource =
-      !brave_shields::GetHTTPSEverywhereEnabled(map, ctx->tab_origin);
+  // ctx->aggressive_blocking =
+  //     brave_shields::GetCosmeticFilteringControlType(map, ctx->tab_origin) ==
+  //     brave_shields::ControlType::BLOCK;
+  // ctx->allow_http_upgradable_resource =
+  //     !brave_shields::GetHTTPSEverywhereEnabled(map, ctx->tab_origin);
 
   // HACK: after we fix multiple creations of BraveRequestInfo we should
   // use only tab_origin. Since we recreate BraveRequestInfo during consequent

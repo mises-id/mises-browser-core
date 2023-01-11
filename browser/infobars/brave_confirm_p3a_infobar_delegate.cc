@@ -12,7 +12,7 @@
 #include "mises/components/constants/url_constants.h"
 #include "mises/components/l10n/common/locale_util.h"
 #include "mises/components/p3a/pref_names.h"
-#include "mises/grit/brave_generated_resources.h"
+#include "mises/grit/mises_generated_resources.h"
 #include "chrome/browser/infobars/confirm_infobar_creator.h"
 #include "chrome/grit/chromium_strings.h"
 #include "components/infobars/content/content_infobar_manager.h"

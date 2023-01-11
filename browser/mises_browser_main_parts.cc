@@ -12,7 +12,7 @@
 //#include "mises/browser/ethereum_remote_client/buildflags/buildflags.h"
 //#include "mises/components/brave_sync/features.h"
 //#include "mises/components/constants/brave_constants.h"
-//#include "mises/components/constants/pref_names.h"
+#include "mises/components/constants/pref_names.h"
 //#include "mises/components/speedreader/common/buildflags.h"
 //#include "mises/components/tor/buildflags/buildflags.h"
 //#include "mises/components/translate/core/common/brave_translate_features.h"

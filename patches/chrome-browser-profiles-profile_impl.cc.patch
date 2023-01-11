@@ -1,8 +1,16 @@
 diff --git a/chrome/browser/profiles/profile_impl.cc b/chrome/browser/profiles/profile_impl.cc
-index b1a3fc0249f3f6b6458038e6173743a1fd3b5724..0d4b00692038da283215f1bfd9ef84c3eb8959fa 100644
+index b1a3fc0249f3f6b6458038e6173743a1fd3b5724..368d609cc3a4c633703ca791d5d173a8e51a05fc 100644
 --- a/chrome/browser/profiles/profile_impl.cc
 +++ b/chrome/browser/profiles/profile_impl.cc
-@@ -358,7 +358,7 @@ std::unique_ptr<Profile> Profile::CreateProfile(const base::FilePath& path,
+@@ -325,6 +325,7 @@ bool LocaleNotChanged(const std::string& pref_locale,
+ 
+ }  // namespace
+ 
++#include "mises/browser/profiles/mises_profile_impl.h"
+ // static
+ std::unique_ptr<Profile> Profile::CreateProfile(const base::FilePath& path,
+                                                 Delegate* delegate,
+@@ -358,7 +359,7 @@ std::unique_ptr<Profile> Profile::CreateProfile(const base::FilePath& path,
      NOTREACHED();
    }
  
@@ -11,7 +19,7 @@ index b1a3fc0249f3f6b6458038e6173743a1fd3b5724..0d4b00692038da283215f1bfd9ef84c3
        path, delegate, create_mode, creation_time, io_task_runner));
    return profile;
  }
-@@ -413,7 +413,7 @@ void ProfileImpl::RegisterProfilePrefs(
+@@ -413,7 +414,7 @@ void ProfileImpl::RegisterProfilePrefs(
  
    registry->RegisterBooleanPref(prefs::kForceEphemeralProfiles, false);
    registry->RegisterBooleanPref(prefs::kEnableMediaRouter, true);

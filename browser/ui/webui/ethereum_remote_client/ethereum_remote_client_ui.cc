@@ -3,13 +3,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/ui/webui/ethereum_remote_client/ethereum_remote_client_ui.h"
+#include "mises/browser/ui/webui/ethereum_remote_client/ethereum_remote_client_ui.h"
 
 #include <memory>
 
-#include "brave/browser/ui/webui/brave_webui_source.h"
-#include "brave/components/ethereum_remote_client_page/resources/grit/ethereum_remote_client_page_generated_map.h"
-#include "brave/ui/webui/resources/grit/brave_webui_resources.h"
+#include "mises/browser/ui/webui/brave_webui_source.h"
+#include "mises/components/ethereum_remote_client_page/resources/grit/ethereum_remote_client_page_generated_map.h"
+#include "mises/ui/webui/resources/grit/brave_webui_resources.h"
 
 EthereumRemoteClientUI::EthereumRemoteClientUI(content::WebUI* web_ui,
                                                const std::string& name)

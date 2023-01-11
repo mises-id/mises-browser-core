@@ -103,6 +103,8 @@ mises_chrome_browser_sources = [
 mises_chrome_browser_deps = [
   "//base",
   "//mises/browser/profiles",
+  "//mises/browser/net",
+  "//mises/services/network/public/cpp",
   "//chrome/browser:browser_process",
   "//chrome/browser/profiles:profile",
   "//chrome/browser/ui",

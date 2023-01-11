@@ -23,7 +23,7 @@
 #include "mises/components/ipfs/ipfs_utils.h"
 #include "mises/components/ipfs/keys/ipns_keys_manager.h"
 #include "mises/components/l10n/common/locale_util.h"
-#include "mises/grit/brave_generated_resources.h"
+#include "mises/grit/mises_generated_resources.h"
 #include "chrome/common/channel_info.h"
 #include "components/prefs/pref_service.h"
 #include "components/user_prefs/user_prefs.h"

@@ -3,16 +3,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/ipfs_utils.h"
+#include "mises/components/ipfs/ipfs_utils.h"
 
 #include <memory>
 #include <vector>
 
 #include "base/strings/string_number_conversions.h"
 #include "base/test/task_environment.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_ports.h"
-#include "brave/components/ipfs/pref_names.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_ports.h"
+#include "mises/components/ipfs/pref_names.h"
 #include "components/prefs/pref_registry_simple.h"
 #include "components/prefs/testing_pref_service.h"
 #include "components/version_info/channel.h"

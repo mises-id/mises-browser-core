@@ -3,9 +3,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/profiles/brave_profile_shortcut_manager_win.h"
+#include "mises/browser/profiles/brave_profile_shortcut_manager_win.h"
 
-#include "brave/browser/profiles/profile_util.h"
+#include "mises/browser/profiles/profile_util.h"
 #include "chrome/browser/profiles/profile_attributes_storage.h"
 #include "chrome/browser/profiles/profile_manager.h"
 

@@ -5,8 +5,8 @@
 
 #include <string>
 
-#include "brave/components/brave_wayback_machine/brave_wayback_machine_utils.h"
-#include "brave/components/brave_wayback_machine/url_constants.h"
+#include "mises/components/brave_wayback_machine/brave_wayback_machine_utils.h"
+#include "mises/components/brave_wayback_machine/url_constants.h"
 #include "net/base/url_util.h"
 #include "testing/gtest/include/gtest/gtest.h"
 #include "url/gurl.h"

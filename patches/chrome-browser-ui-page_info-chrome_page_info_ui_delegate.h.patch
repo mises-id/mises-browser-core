@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/page_info/chrome_page_info_ui_delegate.h b/chrome/browser/ui/page_info/chrome_page_info_ui_delegate.h
+index 2f4fbffe98fe6c8915bc3425d0a0001d06153f0d..6630d500e89644832b435dfcfe2aed4b48e39ab8 100644
+--- a/chrome/browser/ui/page_info/chrome_page_info_ui_delegate.h
++++ b/chrome/browser/ui/page_info/chrome_page_info_ui_delegate.h
+@@ -48,7 +48,7 @@ class ChromePageInfoUiDelegate : public PageInfoUiDelegate {
+   // Handles opening the "More about this page" URL in a new tab.
+   void OpenMoreAboutThisPageUrl(const GURL& url, const ui::Event& event);
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   // If PageInfo should show a link to the site or app's settings page, this
+   // will return true and set the params to the appropriate resource IDs (IDS_*).
+   // Otherwise, it will return false.

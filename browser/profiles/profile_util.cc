@@ -34,7 +34,7 @@ using ntp_background_images::prefs::kNewTabPageShowBackgroundImage;
 using ntp_background_images::prefs::kNewTabPageShowSponsoredImagesBackgroundImage; // NOLINT
 
 //#if BUILDFLAG(ENABLE_TOR)
-//#include "brave/browser/tor/tor_profile_service_factory.h"
+//#include "mises/browser/tor/tor_profile_service_factory.h"
 //#endif
 
 namespace brave {
@@ -174,7 +174,7 @@ bool IsSessionProfile(content::BrowserContext* context) {
 }
 
 bool IsSessionProfilePath(const base::FilePath& path) {
-  return path.DirName().BaseName() == base::FilePath(kSessionProfileDir);
+  return path.DirName().BaseName() == base::FilePath(mises::kSessionProfileDir);
 }
 
 Profile* GetParentProfile(content::BrowserContext* context) {
@@ -236,15 +236,15 @@ void RecordInitialP3AValues(Profile* profile) {
 }
 
 void SetDefaultSearchVersion(Profile* profile, bool is_new_profile) {
-  const PrefService::Preference* pref_default_search_version =
-      profile->GetPrefs()->FindPreference(prefs::kBraveDefaultSearchVersion);
-  if (!pref_default_search_version->HasUserSetting()) {
-    profile->GetPrefs()->SetInteger(
-        prefs::kBraveDefaultSearchVersion,
-        is_new_profile
-            ? TemplateURLPrepopulateData::kBraveCurrentDataVersion
-            : TemplateURLPrepopulateData::kBraveFirstTrackedDataVersion);
-  }
+  // const PrefService::Preference* pref_default_search_version =
+  //     profile->GetPrefs()->FindPreference(prefs::kBraveDefaultSearchVersion);
+  // if (!pref_default_search_version->HasUserSetting()) {
+  //   profile->GetPrefs()->SetInteger(
+  //       prefs::kBraveDefaultSearchVersion,
+  //       is_new_profile
+  //           ? TemplateURLPrepopulateData::kBraveCurrentDataVersion
+  //           : TemplateURLPrepopulateData::kBraveFirstTrackedDataVersion);
+  // }
 }
 
 void SetDefaultThirdPartyCookieBlockValue(Profile* profile) {

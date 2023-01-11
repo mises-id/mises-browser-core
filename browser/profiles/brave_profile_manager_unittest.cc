@@ -6,8 +6,8 @@
 #include <memory>
 
 #include "base/files/scoped_temp_dir.h"
-#include "brave/browser/profiles/brave_profile_manager.h"
-#include "brave/components/constants/pref_names.h"
+#include "mises/browser/profiles/brave_profile_manager.h"
+#include "mises/components/constants/pref_names.h"
 #include "chrome/common/pref_names.h"
 #include "chrome/test/base/scoped_testing_local_state.h"
 #include "chrome/test/base/testing_browser_process.h"

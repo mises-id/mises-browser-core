@@ -55,10 +55,10 @@
 //#include "mises/components/brave_referrals/browser/brave_referrals_service.h"
 //#endif
 //
-//#if BUILDFLAG(ENABLE_EXTENSIONS)
-//#include "mises/common/extensions/whitelist.h"
-//#include "mises/components/brave_component_updater/browser/extension_whitelist_service.h"
-//#endif
+#if BUILDFLAG(ENABLE_EXTENSIONS)
+#include "mises/common/extensions/whitelist.h"
+#include "mises/components/mises_component_updater/browser/extension_whitelist_service.h"
+#endif
 //
 //#if BUILDFLAG(ENABLE_GREASELION)
 //#include "mises/components/greaselion/browser/greaselion_download_service.h"
@@ -117,7 +117,7 @@ MisesBrowserProcessImpl::MisesBrowserProcessImpl(StartupData* startup_data)
 //  brave_referrals_service();
 //#endif
   // early initialize brave stats
-  brave_stats_updater();
+  //brave_stats_updater();
 
   // Disabled on mobile platforms, see for instance issues/6176
 //#if BUILDFLAG(BRAVE_P3A_ENABLED)
@@ -259,15 +259,15 @@ void MisesBrowserProcessImpl::StartBraveServices() {
 //  return debounce_component_installer_.get();
 //}
 
-brave_shields::HTTPSEverywhereService*
-MisesBrowserProcessImpl::https_everywhere_service() {
-  if (!created_https_everywhere_service_) {
-    https_everywhere_service_ = brave_shields::HTTPSEverywhereServiceFactory(
-        brave_component_updater_delegate()->GetTaskRunner());
-    created_https_everywhere_service_ = true;
-  }
-  return https_everywhere_service_.get();
-}
+// brave_shields::HTTPSEverywhereService*
+// MisesBrowserProcessImpl::https_everywhere_service() {
+//   if (!created_https_everywhere_service_) {
+//     https_everywhere_service_ = brave_shields::HTTPSEverywhereServiceFactory(
+//         brave_component_updater_delegate()->GetTaskRunner());
+//     created_https_everywhere_service_ = true;
+//   }
+//   return https_everywhere_service_.get();
+// }
 
 //brave_component_updater::LocalDataFilesService*
 //MisesBrowserProcessImpl::local_data_files_service() {
@@ -344,12 +344,12 @@ MisesBrowserProcessImpl::https_everywhere_service() {
 //  return brave_referrals_service_.get();
 //}
 
-brave_stats::BraveStatsUpdater* MisesBrowserProcessImpl::brave_stats_updater() {
-  if (!brave_stats_updater_)
-    brave_stats_updater_ =
-        std::make_unique<brave_stats::BraveStatsUpdater>(local_state());
-  return brave_stats_updater_.get();
-}
+// brave_stats::BraveStatsUpdater* MisesBrowserProcessImpl::brave_stats_updater() {
+//   if (!brave_stats_updater_)
+//     brave_stats_updater_ =
+//         std::make_unique<brave_stats::BraveStatsUpdater>(local_state());
+//   return brave_stats_updater_.get();
+// }
 
 //brave_ads::ResourceComponent* MisesBrowserProcessImpl::resource_component() {
 //  if (!resource_component_) {
@@ -365,7 +365,7 @@ void MisesBrowserProcessImpl::CreateProfileManager() {
 
   base::FilePath user_data_dir;
   base::PathService::Get(chrome::DIR_USER_DATA, &user_data_dir);
-  profile_manager_ = std::make_unique<BraveProfileManager>(user_data_dir);
+  profile_manager_ = std::make_unique<MisesProfileManager>(user_data_dir);
 }
 
 NotificationPlatformBridge*

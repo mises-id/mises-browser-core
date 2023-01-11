@@ -5,7 +5,7 @@
 
 #include <memory>
 
-#include "brave/components/content_settings/core/browser/brave_content_settings_utils.h"
+#include "mises/components/content_settings/core/browser/brave_content_settings_utils.h"
 #include "chrome/test/base/testing_profile.h"
 #include "components/content_settings/core/common/content_settings_pattern.h"
 #include "content/public/test/browser_task_environment.h"

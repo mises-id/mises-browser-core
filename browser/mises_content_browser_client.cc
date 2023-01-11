@@ -130,8 +130,8 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 #endif
 
 //#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
-//#include "brave/browser/extensions/brave_webtorrent_navigation_throttle.h"
-//#include "brave/components/brave_webtorrent/browser/content_browser_client_helper.h"
+//#include "mises/browser/extensions/brave_webtorrent_navigation_throttle.h"
+//#include "mises/components/brave_webtorrent/browser/content_browser_client_helper.h"
 //#endif
 
 #if BUILDFLAG(ENABLE_IPFS)

@@ -42,7 +42,7 @@
 #include "mises/content/browser/webui/brave_shared_resources_data_source.h"
 //For IPFS
 //#if !BUILDFLAG(USE_GCM_FROM_PLATFORM)
-//#include "brave/browser/gcm_driver/brave_gcm_channel_status.h"
+//#include "mises/browser/gcm_driver/brave_gcm_channel_status.h"
 //#endif
 
 #if BUILDFLAG(ENABLE_IPFS)
@@ -88,8 +88,8 @@ void MisesProfileManager::InitProfileUserPrefs(Profile* profile) {
   // migrate obsolete plugin prefs to temporary migration pref because otherwise
   // they get deleteed by PrefProvider before we can migrate them in
   // BravePrefProvider
-  content_settings::BravePrefProvider::CopyPluginSettingsForMigration(
-      profile->GetPrefs());
+  // content_settings::BravePrefProvider::CopyPluginSettingsForMigration(
+  //     profile->GetPrefs());
 
 // Chromecast is enabled by default on Android.
 #if !BUILDFLAG(IS_ANDROID)
@@ -141,7 +141,7 @@ void MisesProfileManager::DoFinalInitForServices(Profile* profile,
 //  if (base::FeatureList::IsEnabled(brave_today::features::kBraveNewsFeature)) {
 //    brave_news::BraveNewsControllerFactory::GetForContext(profile);
 //  }
-  brave_federated::BraveFederatedServiceFactory::GetForBrowserContext(profile);
+  //brave_federated::BraveFederatedServiceFactory::GetForBrowserContext(profile);
 
 }
 

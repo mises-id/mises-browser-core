@@ -143,7 +143,7 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
       local_data_files_service_;
   std::unique_ptr<brave_component_updater::BraveComponent::Delegate>
       brave_component_updater_delegate_;
-  std::unique_ptr<brave_shields::AdBlockService> ad_block_service_;
+  //std::unique_ptr<brave_shields::AdBlockService> ad_block_service_;
 #if BUILDFLAG(ENABLE_EXTENSIONS)
   std::unique_ptr<brave_component_updater::ExtensionWhitelistService>
       extension_whitelist_service_;
@@ -152,12 +152,12 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
 //  std::unique_ptr<greaselion::GreaselionDownloadService>
 //      greaselion_download_service_;
 //#endif
-  std::unique_ptr<debounce::DebounceComponentInstaller>
-      debounce_component_installer_;
-  bool created_https_everywhere_service_ = false;
-  std::unique_ptr<brave_shields::HTTPSEverywhereService>
-      https_everywhere_service_;
-  std::unique_ptr<brave_stats::BraveStatsUpdater> brave_stats_updater_;
+  // std::unique_ptr<debounce::DebounceComponentInstaller>
+  //     debounce_component_installer_;
+  // bool created_https_everywhere_service_ = false;
+  // std::unique_ptr<brave_shields::HTTPSEverywhereService>
+  //     https_everywhere_service_;
+  //std::unique_ptr<brave_stats::BraveStatsUpdater> brave_stats_updater_;
 //#if BUILDFLAG(ENABLE_BRAVE_REFERRALS)
 //  std::unique_ptr<brave::BraveReferralsService> brave_referrals_service_;
 //#endif
@@ -169,18 +169,18 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
 #if BUILDFLAG(ENABLE_IPFS)
   std::unique_ptr<ipfs::BraveIpfsClientUpdater> ipfs_client_updater_;
 #endif
-  scoped_refptr<brave::BraveP3AService> brave_p3a_service_;
-  scoped_refptr<brave::HistogramsBraveizer> histogram_braveizer_;
-  std::unique_ptr<ntp_background_images::NTPBackgroundImagesService>
-      ntp_background_images_service_;
-  std::unique_ptr<brave_ads::ResourceComponent> resource_component_;
+  //scoped_refptr<brave::BraveP3AService> brave_p3a_service_;
+  //scoped_refptr<brave::HistogramsBraveizer> histogram_braveizer_;
+  // std::unique_ptr<ntp_background_images::NTPBackgroundImagesService>
+  //     ntp_background_images_service_;
+  //std::unique_ptr<brave_ads::ResourceComponent> resource_component_;
 
 //#if BUILDFLAG(ENABLE_SPEEDREADER)
 //  std::unique_ptr<speedreader::SpeedreaderRewriterService>
 //      speedreader_rewriter_service_;
 //#endif
 
-  std::unique_ptr<brave::BraveFarblingService> brave_farbling_service_;
+  //std::unique_ptr<brave::BraveFarblingService> brave_farbling_service_;
 
   SEQUENCE_CHECKER(sequence_checker_);
 };

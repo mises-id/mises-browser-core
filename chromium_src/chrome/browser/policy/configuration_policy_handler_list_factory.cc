@@ -8,8 +8,8 @@
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
 #include "mises/components/ipfs/pref_names.h"
-//#include "brave/components/tor/buildflags/buildflags.h"
-//#include "brave/components/tor/pref_names.h"
+//#include "mises/components/tor/buildflags/buildflags.h"
+//#include "mises/components/tor/pref_names.h"
 #include "components/policy/core/browser/configuration_policy_handler.h"
 #include "components/policy/policy_constants.h"
 

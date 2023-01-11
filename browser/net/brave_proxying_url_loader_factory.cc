@@ -352,8 +352,8 @@ void BraveProxyingURLLoaderFactory::InProgressRequest::
       return;
     }
 
-//    auto response = network::mojom::URLResponseHead::New();
-//    std::string response_data;
+    auto response = network::mojom::URLResponseHead::New();
+    std::string response_data;
 //    brave_shields::MakeStubResponse(ctx_->mock_data_url, request_, &response,
 //                                    &response_data);
 //

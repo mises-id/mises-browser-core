@@ -15,11 +15,11 @@
 #include "base/test/test_timeouts.h"
 #include "base/threading/thread_task_runner_handle.h"
 #include "base/time/time.h"
-#include "brave/browser/brave_rewards/rewards_service_factory.h"
-#include "brave/browser/net/brave_network_audit_allowed_lists.h"
-#include "brave/browser/ui/brave_browser.h"
-#include "brave/components/brave_rewards/browser/rewards_service_impl.h"
-#include "brave/components/sidebar/buildflags/buildflags.h"
+#include "mises/browser/brave_rewards/rewards_service_factory.h"
+#include "mises/browser/net/brave_network_audit_allowed_lists.h"
+#include "mises/browser/ui/brave_browser.h"
+#include "mises/components/brave_rewards/browser/rewards_service_impl.h"
+#include "mises/components/sidebar/buildflags/buildflags.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/test/base/in_process_browser_test.h"
@@ -31,9 +31,9 @@
 #include "third_party/re2/src/re2/re2.h"
 
 #if BUILDFLAG(ENABLE_SIDEBAR)
-#include "brave/browser/ui/sidebar/sidebar_controller.h"
-#include "brave/browser/ui/sidebar/sidebar_model.h"
-#include "brave/components/sidebar/sidebar_item.h"
+#include "mises/browser/ui/sidebar/sidebar_controller.h"
+#include "mises/browser/ui/sidebar/sidebar_model.h"
+#include "mises/components/sidebar/sidebar_item.h"
 #endif
 
 namespace brave {

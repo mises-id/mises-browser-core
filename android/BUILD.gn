@@ -7,7 +7,7 @@ declare_args() {
 java_cpp_enum("mises_android_java_enums_srcjar") {
   sources = [
     "//mises/chromium_src/chrome/browser/notifications/notification_handler.h",
-    "//mises/components/decentralized_dns/core/constants.h",
+    "//mises/components/decentralized_dns/constants.h",
   ]
 }
 

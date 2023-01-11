@@ -1,0 +1,14 @@
+diff --git a/base/threading/thread_restrictions.h b/base/threading/thread_restrictions.h
+index 5455aa07547f753b83dd59c173834034d0673ae7..782311b1625cc1331a8298e70274b8443e79f137 100644
+--- a/base/threading/thread_restrictions.h
++++ b/base/threading/thread_restrictions.h
+@@ -549,7 +549,8 @@ class BASE_EXPORT ScopedAllowBaseSyncPrimitives {
+   ScopedAllowBaseSyncPrimitives(const ScopedAllowBaseSyncPrimitives&) = delete;
+   ScopedAllowBaseSyncPrimitives& operator=(
+       const ScopedAllowBaseSyncPrimitives&) = delete;
+-
++  
++  BRAVE_SCOPED_ALLOW_BASE_SYNC_PRIMITIVES_H
+  private:
+   // This can only be instantiated by friends. Use
+   // ScopedAllowBaseSyncPrimitivesForTesting in unit tests to avoid the friend

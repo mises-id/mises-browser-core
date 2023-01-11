@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/ipfs/ipfs_navigation_throttle.h"
+#include "mises/components/ipfs/ipfs_navigation_throttle.h"
 
 #include <memory>
 #include <string>
@@ -12,13 +12,13 @@
 #include "base/memory/raw_ptr.h"
 #include "base/test/bind.h"
 #include "base/test/scoped_feature_list.h"
-#include "brave/browser/ipfs/ipfs_service_factory.h"
-#include "brave/components/ipfs/features.h"
-#include "brave/components/ipfs/ipfs_constants.h"
-#include "brave/components/ipfs/ipfs_service.h"
-#include "brave/components/ipfs/keys/ipns_keys_manager.h"
-#include "brave/components/ipfs/pref_names.h"
-#include "brave/components/tor/buildflags/buildflags.h"
+#include "mises/browser/ipfs/ipfs_service_factory.h"
+#include "mises/components/ipfs/features.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/ipfs_service.h"
+#include "mises/components/ipfs/keys/ipns_keys_manager.h"
+#include "mises/components/ipfs/pref_names.h"
+#include "mises/components/tor/buildflags/buildflags.h"
 #include "chrome/browser/prefs/browser_prefs.h"
 #include "chrome/test/base/chrome_render_view_host_test_harness.h"
 #include "chrome/test/base/testing_browser_process.h"
@@ -34,7 +34,7 @@
 #include "url/gurl.h"
 
 #if BUILDFLAG(ENABLE_TOR)
-#include "brave/browser/tor/tor_profile_manager.h"
+#include "mises/browser/tor/tor_profile_manager.h"
 #endif
 
 using content::NavigationThrottle;

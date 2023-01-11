@@ -13,7 +13,7 @@
 #include "chrome/browser/profiles/profile_manager_observer.h"
 #include "chrome/browser/profiles/profile_observer.h"
 
-class MisesProfileManager : public ProfileManager {
+class MisesProfileManager : public ProfileManager, ProfileManagerObserver, ProfileObserver {
  public:
   explicit MisesProfileManager(const base::FilePath& user_data_dir);
   MisesProfileManager(const MisesProfileManager&) = delete;

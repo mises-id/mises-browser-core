@@ -40,6 +40,9 @@
         <structure type="chrome_scaled_image" name="IDR_PRODUCT_LOGO_32_DEVELOPMENT" file="mises/linux/product_logo_32_development.png" />
       </if>
 
+      <if expr="enable_ipfs">
+        <structure type="chrome_scaled_image" name="IDR_MISES_IPFS_LOGO" file="mises/ipfs_logo.png" />
+      </if>
 
       <if expr="not is_android">
         <structure type="chrome_scaled_image" name="IDR_TOR_WINDOW_FRAME_GRAPHIC" file="mises/tor_window_frame_graphic.png" />

@@ -8,7 +8,7 @@
 
 #include <string>
 
-#include "brave/components/l10n/browser/locale_helper.h"
+#include "mises/components/l10n/browser/locale_helper.h"
 
 #include "testing/gmock/include/gmock/gmock.h"
 

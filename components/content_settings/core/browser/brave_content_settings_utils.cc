@@ -51,14 +51,14 @@ namespace content_settings {
 const std::vector<ContentSettingsType>& GetShieldsContentSettingsTypes() {
   static const base::NoDestructor<std::vector<ContentSettingsType>>
       kShieldsContentSettingsTypes({
-          ContentSettingsType::BRAVE_ADS,
-          ContentSettingsType::BRAVE_COSMETIC_FILTERING,
-          ContentSettingsType::BRAVE_TRACKERS,
-          ContentSettingsType::BRAVE_HTTP_UPGRADABLE_RESOURCES,
-          ContentSettingsType::BRAVE_FINGERPRINTING_V2,
-          ContentSettingsType::BRAVE_SHIELDS,
-          ContentSettingsType::BRAVE_REFERRERS,
-          ContentSettingsType::BRAVE_COOKIES,
+          // ContentSettingsType::BRAVE_ADS,
+          // ContentSettingsType::BRAVE_COSMETIC_FILTERING,
+          // ContentSettingsType::BRAVE_TRACKERS,
+          // ContentSettingsType::BRAVE_HTTP_UPGRADABLE_RESOURCES,
+          // ContentSettingsType::BRAVE_FINGERPRINTING_V2,
+          // ContentSettingsType::BRAVE_SHIELDS,
+          // ContentSettingsType::BRAVE_REFERRERS,
+          // ContentSettingsType::BRAVE_COOKIES,
       });
 
   return *kShieldsContentSettingsTypes;
@@ -66,22 +66,22 @@ const std::vector<ContentSettingsType>& GetShieldsContentSettingsTypes() {
 
 std::string GetShieldsContentTypeName(const ContentSettingsType& content_type) {
   switch (content_type) {
-    case ContentSettingsType::BRAVE_ADS:
-      return brave_shields::kAds;
-    case ContentSettingsType::BRAVE_COSMETIC_FILTERING:
-      return brave_shields::kCosmeticFiltering;
-    case ContentSettingsType::BRAVE_TRACKERS:
-      return brave_shields::kTrackers;
-    case ContentSettingsType::BRAVE_HTTP_UPGRADABLE_RESOURCES:
-      return brave_shields::kHTTPUpgradableResources;
-    case ContentSettingsType::BRAVE_FINGERPRINTING_V2:
-      return brave_shields::kFingerprintingV2;
-    case ContentSettingsType::BRAVE_SHIELDS:
-      return brave_shields::kBraveShields;
-    case ContentSettingsType::BRAVE_REFERRERS:
-      return brave_shields::kReferrers;
-    case ContentSettingsType::BRAVE_COOKIES:
-      return brave_shields::kCookies;
+    // case ContentSettingsType::BRAVE_ADS:
+    //   return brave_shields::kAds;
+    // case ContentSettingsType::BRAVE_COSMETIC_FILTERING:
+    //   return brave_shields::kCosmeticFiltering;
+    // case ContentSettingsType::BRAVE_TRACKERS:
+    //   return brave_shields::kTrackers;
+    // case ContentSettingsType::BRAVE_HTTP_UPGRADABLE_RESOURCES:
+    //   return brave_shields::kHTTPUpgradableResources;
+    // case ContentSettingsType::BRAVE_FINGERPRINTING_V2:
+    //   return brave_shields::kFingerprintingV2;
+    // case ContentSettingsType::BRAVE_SHIELDS:
+    //   return brave_shields::kBraveShields;
+    // case ContentSettingsType::BRAVE_REFERRERS:
+    //   return brave_shields::kReferrers;
+    // case ContentSettingsType::BRAVE_COOKIES:
+    //   return brave_shields::kCookies;
     default:
       NOTREACHED();
       return std::string();

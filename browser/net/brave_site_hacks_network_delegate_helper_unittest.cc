@@ -3,15 +3,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/net/brave_site_hacks_network_delegate_helper.h"
+#include "mises/browser/net/brave_site_hacks_network_delegate_helper.h"
 
 #include <memory>
 #include <string>
 #include <utility>
 #include <vector>
 
-#include "brave/browser/net/url_context.h"
-#include "brave/components/constants/network_constants.h"
+#include "mises/browser/net/url_context.h"
+#include "mises/components/constants/network_constants.h"
 #include "net/base/net_errors.h"
 #include "net/url_request/url_request_job.h"
 #include "testing/gtest/include/gtest/gtest.h"

@@ -5,10 +5,10 @@
 
 #include <memory>
 
-#include "brave/browser/net/brave_httpse_network_delegate_helper.h"
+#include "mises/browser/net/brave_httpse_network_delegate_helper.h"
 
-#include "brave/browser/net/url_context.h"
-#include "brave/components/constants/network_constants.h"
+#include "mises/browser/net/url_context.h"
+#include "mises/components/constants/network_constants.h"
 #include "chrome/test/base/chrome_render_view_host_test_harness.h"
 #include "content/public/test/browser_task_environment.h"
 #include "net/cookies/site_for_cookies.h"

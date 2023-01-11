@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/ui/page_info/chrome_page_info_ui_delegate.cc b/chrome/browser/ui/page_info/chrome_page_info_ui_delegate.cc
+index 6b3313dce26b1a707ad9e6b6c211923bf337adb6..11db36a01aff38c7381ab278301ec1c1c3cb1dbd 100644
+--- a/chrome/browser/ui/page_info/chrome_page_info_ui_delegate.cc
++++ b/chrome/browser/ui/page_info/chrome_page_info_ui_delegate.cc
+@@ -28,7 +28,7 @@
+ #include "ui/events/event.h"
+ #include "url/gurl.h"
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ #include "chrome/browser/extensions/window_controller_list.h"
+ #include "chrome/browser/ui/browser.h"
+ #include "chrome/browser/ui/browser_finder.h"
+@@ -135,7 +135,7 @@ bool ChromePageInfoUiDelegate::ShouldShowAsk(ContentSettingsType type) {
+   return permissions::PermissionUtil::IsGuardContentSetting(type);
+ }
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ bool ChromePageInfoUiDelegate::ShouldShowSiteSettings(int* link_text_id,
+                                                       int* tooltip_text_id) {
+   if (GetProfile()->IsGuestSession())

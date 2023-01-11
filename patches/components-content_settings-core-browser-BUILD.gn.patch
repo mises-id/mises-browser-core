@@ -1,0 +1,12 @@
+diff --git a/components/content_settings/core/browser/BUILD.gn b/components/content_settings/core/browser/BUILD.gn
+index 592cb548ecdd02f87ac7d80368d7373f013b4ce1..9043fcbc88ed168b88167bc4b599f10b2bd6879a 100644
+--- a/components/content_settings/core/browser/BUILD.gn
++++ b/components/content_settings/core/browser/BUILD.gn
+@@ -81,6 +81,7 @@ static_library("browser") {
+   }
+ 
+   configs += [ "//build/config/compiler:wexit_time_destructors" ]
++  sources += mises_components_content_settings_core_browser_sources deps += mises_components_content_settings_core_browser_deps
+ }
+ 
+ source_set("unit_tests") {

@@ -23,7 +23,7 @@
 #include "mises/components/brave_shields/common/features.h"
 #include "mises/components/constants/network_constants.h"
 #include "mises/components/constants/url_constants.h"
-#include "mises/grit/brave_generated_resources.h"
+#include "mises/grit/mises_generated_resources.h"
 #include "chrome/browser/net/proxy_service_factory.h"
 #include "chrome/browser/net/secure_dns_config.h"
 #include "chrome/browser/net/system_network_context_manager.h"

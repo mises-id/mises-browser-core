@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/net/proxy_resolution/proxy_config_service_tor.h"
+#include "mises/net/proxy_resolution/proxy_config_service_tor.h"
 
 #include <string>
 #include <memory>

@@ -1,12 +1,11 @@
 diff --git a/chrome/browser/profiles/profile_impl.h b/chrome/browser/profiles/profile_impl.h
-index 7db7fd820a931f0d3560c83c53ab5990ccf860cc..7dad73d1d02b02a72b0287947e6dd6e43db22399 100644
+index 7db7fd820a931f0d3560c83c53ab5990ccf860cc..0b49007b6459a31e46005353902f175a0df7cdf3 100644
 --- a/chrome/browser/profiles/profile_impl.h
 +++ b/chrome/browser/profiles/profile_impl.h
-@@ -155,7 +155,7 @@ class ProfileImpl : public Profile {
-   void OnLogin() override;
+@@ -156,6 +156,7 @@ class ProfileImpl : public Profile {
    void InitChromeOSPreferences() override;
  #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
--
+ 
 +  friend class BraveProfileImpl;
    bool IsNewProfile() const override;
  

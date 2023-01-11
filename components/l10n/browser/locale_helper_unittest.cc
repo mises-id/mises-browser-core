@@ -7,7 +7,7 @@
 
 #include "testing/gtest/include/gtest/gtest.h"
 
-#include "brave/components/l10n/browser/locale.h"
+#include "mises/components/l10n/browser/locale.h"
 
 // npm run test -- brave_unit_tests --filter=BraveAds*
 

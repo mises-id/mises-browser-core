@@ -43,7 +43,7 @@ void BraveAddIPFSButtons(views::View* container,
   if (!container || !delegate)
     return;
   container->AddChildView(CreateButton(
-      IDR_BRAVE_IPFS_LOGO, IDS_PAGE_INFO_IPFS_SETTINGS_BUTTON_TEXT,
+      IDR_MISES_IPFS_LOGO, IDS_PAGE_INFO_IPFS_SETTINGS_BUTTON_TEXT,
       IDS_PAGE_INFO_IPFS_SETTINGS_BUTTON_TOOLTIP_TEXT,
       base::BindRepeating(
           [](ChromePageInfoUiDelegate* ui_delegate, const ui::Event& event) {
@@ -51,7 +51,7 @@ void BraveAddIPFSButtons(views::View* container,
           },
           delegate)));
   container->AddChildView(CreateButton(
-      IDR_BRAVE_IPFS_LOGO, IDS_PAGE_INFO_IPFS_DIAGNOSTICS_BUTTON_TEXT,
+      IDR_MISES_IPFS_LOGO, IDS_PAGE_INFO_IPFS_DIAGNOSTICS_BUTTON_TEXT,
       IDS_PAGE_INFO_IPFS_DIAGNOSTICS_BUTTON_TOOLTIP_TEXT,
       base::BindRepeating(
           [](ChromePageInfoUiDelegate* ui_delegate, const ui::Event& event) {
@@ -59,7 +59,7 @@ void BraveAddIPFSButtons(views::View* container,
           },
           delegate)));
   container->AddChildView(CreateButton(
-      IDR_BRAVE_IPFS_LOGO, IDS_PAGE_INFO_IPFS_DOCS_BUTTON_TEXT,
+      IDR_MISES_IPFS_LOGO, IDS_PAGE_INFO_IPFS_DOCS_BUTTON_TEXT,
       IDS_PAGE_INFO_IPFS_DOCS_BUTTON_TEXT_TOOLTIP_TEXT,
       base::BindRepeating(
           [](ChromePageInfoUiDelegate* ui_delegate, const ui::Event& event) {

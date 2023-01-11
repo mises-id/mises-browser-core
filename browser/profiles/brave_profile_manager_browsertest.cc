@@ -7,13 +7,13 @@
 
 #include "base/callback_helpers.h"
 #include "base/strings/utf_string_conversions.h"
-#include "brave/browser/brave_ads/ads_service_factory.h"
-#include "brave/browser/brave_rewards/rewards_service_factory.h"
-#include "brave/components/constants/pref_names.h"
-#include "brave/components/ipfs/buildflags/buildflags.h"
-#include "brave/components/tor/buildflags/buildflags.h"
-#include "brave/components/tor/tor_constants.h"
-#include "brave/components/tor/tor_utils.h"
+#include "mises/browser/brave_ads/ads_service_factory.h"
+#include "mises/browser/brave_rewards/rewards_service_factory.h"
+#include "mises/components/constants/pref_names.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/components/tor/buildflags/buildflags.h"
+#include "mises/components/tor/tor_constants.h"
+#include "mises/components/tor/tor_utils.h"
 #include "build/build_config.h"
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/profiles/profile.h"
@@ -27,8 +27,8 @@
 
 #if BUILDFLAG(ENABLE_IPFS)
 #include "base/test/scoped_feature_list.h"
-#include "brave/browser/ipfs/ipfs_service_factory.h"
-#include "brave/components/ipfs/features.h"
+#include "mises/browser/ipfs/ipfs_service_factory.h"
+#include "mises/components/ipfs/features.h"
 #endif
 
 #if BUILDFLAG(IS_ANDROID)

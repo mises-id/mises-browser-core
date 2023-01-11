@@ -31,7 +31,7 @@
 //#include "mises/components/brave_today/common/features.h"
 //#include "mises/components/brave_vpn/buildflags/buildflags.h"
 //#include "mises/components/brave_wallet/browser/brave_wallet_prefs.h"
-#include "mises/components/brave_wayback_machine/buildflags.h"
+//#include "mises/components/brave_wayback_machine/buildflags.h"
 //#include "mises/components/brave_webtorrent/browser/buildflags/buildflags.h"
 #include "mises/components/constants/pref_names.h"
 //#include "mises/components/crypto_dot_com/browser/buildflags/buildflags.h"

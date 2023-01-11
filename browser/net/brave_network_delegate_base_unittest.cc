@@ -5,8 +5,8 @@
 
 #include <string>
 
-#include "brave/browser/net/brave_stp_util.h"
-#include "brave/browser/net/url_context.h"
+#include "mises/browser/net/brave_stp_util.h"
+#include "mises/browser/net/url_context.h"
 #include "chrome/test/base/chrome_render_view_host_test_harness.h"
 #include "content/public/test/browser_task_environment.h"
 #include "net/http/http_util.h"

@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "base/json/json_reader.h"
-#include "brave/components/ipfs/ipfs_json_parser.h"
+#include "mises/components/ipfs/ipfs_json_parser.h"
 #include "testing/gtest/include/gtest/gtest.h"
 
 typedef testing::Test IPFSJSONParserTest;

@@ -1,0 +1,30 @@
+diff --git a/content/public/browser/content_browser_client.h b/content/public/browser/content_browser_client.h
+index 614766cd642efdeab96acac461c1b0482bf030f3..d5abe2e680e637f3d222e022734d718c85c9bac6 100644
+--- a/content/public/browser/content_browser_client.h
++++ b/content/public/browser/content_browser_client.h
+@@ -1807,7 +1807,7 @@ class CONTENT_EXPORT ContentBrowserClient {
+       mojo::PendingReceiver<blink::mojom::ManagedConfigurationService>
+           receiver);
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   // Allows the embedder to provide an implementation of the Serial API.
+   virtual SerialDelegate* GetSerialDelegate();
+ #endif
+@@ -1848,7 +1848,7 @@ class CONTENT_EXPORT ContentBrowserClient {
+   // Authentication API.
+   virtual WebAuthenticationDelegate* GetWebAuthenticationDelegate();
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   // Returns an AuthenticatorRequestClientDelegate subclass instance to provide
+   // embedder-specific configuration for a single Web Authentication API request
+   // being serviced in a given RenderFrame. The instance is guaranteed to be
+@@ -2021,6 +2021,7 @@ class CONTENT_EXPORT ContentBrowserClient {
+   virtual ui::AXMode GetAXModeForBrowserContext(
+       BrowserContext* browser_context);
+ 
++  MISES_CONTENT_BROWSER_CLIENT_H
+ #if BUILDFLAG(IS_ANDROID)
+   // Defines the heuristics we can use to enable wide color gamut (WCG).
+   enum class WideColorGamutHeuristic {
