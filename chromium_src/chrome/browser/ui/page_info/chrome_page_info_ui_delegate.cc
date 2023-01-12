@@ -19,3 +19,7 @@ bool ChromePageInfoUiDelegate::AddIPFSTabForURL(const GURL& ipfs_url) {
   return false;
 #endif  // !BUILDFLAG(IS_ANDROID)
 }
+bool ChromePageInfoUiDelegate::AddIPFSTabForURL(const GURL& ipfs_url) {
+  return false;
+#endif  // !BUILDFLAG(IS_ANDROID)
+}
