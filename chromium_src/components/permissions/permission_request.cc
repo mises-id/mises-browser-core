@@ -111,7 +111,11 @@ IconId PermissionRequest::GetIconForChip() {
 }
 
 IconId PermissionRequest::GetBlockedIconForChip() {
+#if BUILDFLAG(IS_ANDROID)
+  return GetIconForChip();
+#else
   return permissions::GetBlockedIconId(request_type_);
+#endif
 }
 
 absl::optional<std::u16string> PermissionRequest::GetRequestChipText() const {

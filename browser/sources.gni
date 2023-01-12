@@ -178,15 +178,27 @@ mises_chrome_browser_deps += mises_chromium_src_chrome_browser_deps
 
 mises_chrome_browser_exception_sources = []
 mises_chrome_browser_exception_deps = []
+mises_chrome_browser_exception_allow_circular_includes_from = []
 if (is_android) {
   mises_chrome_browser_exception_sources += [
+    "enterprise/connectors/analysis/content_analysis_delegate.cc",
+    "enterprise/connectors/analysis/content_analysis_delegate.h",
+    "enterprise/connectors/analysis/files_request_handler.cc",
+    "enterprise/connectors/analysis/files_request_handler.h",
+    "enterprise/connectors/analysis/local_binary_upload_service.cc",
+    "enterprise/connectors/analysis/local_binary_upload_service.h",
+    "enterprise/connectors/analysis/page_print_analysis_request.cc",
+    "enterprise/connectors/analysis/page_print_analysis_request.h",
+    "enterprise/connectors/analysis/request_handler_base.cc",
+    "enterprise/connectors/analysis/request_handler_base.h",
+
     "download/download_crx_util_android.cc",
     "resources_integrity.cc",
     "resources_integrity.h",
     "banners/app_banner_manager_desktop.cc",
     "banners/app_banner_manager_desktop.h",
     "metrics/incognito_observer_desktop.cc",
-    "process_singleton_posix.cc",
+    #"process_singleton_posix.cc",
     "policy/chrome_browser_cloud_management_controller_desktop.cc",
     "policy/chrome_browser_cloud_management_controller_desktop.h",
     "policy/chrome_browser_cloud_management_register_watcher.cc",
@@ -196,8 +208,6 @@ if (is_android) {
     "policy/cloud/user_policy_signin_service.cc",
     "policy/cloud/user_policy_signin_service.h",
     "policy/cloud/user_policy_signin_service_internal.h",
-    "enterprise/connectors/analysis/content_analysis_delegate.cc",
-    "enterprise/connectors/analysis/content_analysis_delegate.h",
     "speech/chrome_speech_recognition_service.cc",
     "speech/chrome_speech_recognition_service.h",
     "speech/speech_recognition_service_factory.cc",
@@ -209,8 +219,28 @@ if (is_android) {
     "accessibility/live_caption_speech_recognition_host.cc",
     "media/webrtc/media_stream_focus_delegate.cc",
     "media/webrtc/media_stream_focus_delegate.h",
+    "performance_manager/persistence/site_data/site_data_cache_facade.cc",
+    "performance_manager/persistence/site_data/site_data_cache_facade.h",
+    "performance_manager/persistence/site_data/site_data_cache_facade_factory.cc",
+    "performance_manager/persistence/site_data/site_data_cache_facade_factory.h",
+    "profiles/avatar_menu.cc",
+    "profiles/avatar_menu.h",
+    "profiles/profile_window.cc",
+    "profiles/profile_window.h",
+    "profiles/profile_list_desktop.cc",
+    "profiles/profile_list_desktop.h",
+    "renderer_context_menu/spelling_menu_observer.cc",
+    "renderer_context_menu/spelling_menu_observer.h",
+    "hid/chrome_hid_delegate.cc",
+    "hid/chrome_hid_delegate.h",
   ]
-  mises_chrome_browser_exception_deps += ["//components/live_caption"]
+  mises_chrome_browser_exception_deps += [
+    "//components/live_caption",
+    "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",
+  ]
+  mises_chrome_browser_exception_allow_circular_includes_from += [
+    "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",
+  ]
 }
 
 

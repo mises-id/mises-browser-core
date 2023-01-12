@@ -1869,9 +1869,11 @@ void BrowserView::FullscreenStateChanged() {
 void BrowserView::SetToolbarButtonProvider(ToolbarButtonProvider* provider) {
   toolbar_button_provider_ = provider;
   // Recreate the autofill bubble handler when toolbar button provider changes.
+#if !BUILDFLAG(IS_ANDROID)
   autofill_bubble_handler_ =
       std::make_unique<autofill::AutofillBubbleHandlerImpl>(
           browser_.get(), toolbar_button_provider_);
+#endif
 }
 
 void BrowserView::UpdatePageActionIcon(PageActionIconType type) {
