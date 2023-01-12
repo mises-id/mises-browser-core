@@ -73,7 +73,7 @@ source_set("util") {
   deps = [
     "//base",
     "//mises/common",
-#    "//mises/components/ntp_background_images/common",
+    "//mises/components/ntp_background_images/common",
 #    "//mises/components/search_engines",
 #    "//mises/components/tor/buildflags",
     "//components/prefs",

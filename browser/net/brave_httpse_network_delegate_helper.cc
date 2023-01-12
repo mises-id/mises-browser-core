@@ -22,31 +22,31 @@ using content::BrowserThread;
 
 namespace brave {
 
-void OnBeforeURLRequest_HttpseFileWork(
-    base::WeakPtr<brave_shields::HTTPSEverywhereService::Engine> engine,
-    std::shared_ptr<BraveRequestInfo> ctx) {
-  base::ScopedBlockingCall scoped_blocking_call(FROM_HERE,
-                                                base::BlockingType::WILL_BLOCK);
-  DCHECK_NE(ctx->request_identifier, 0U);
-  if (engine)
-    engine->GetHTTPSURL(&ctx->request_url, ctx->request_identifier,
-                        &ctx->new_url_spec);
-}
+// void OnBeforeURLRequest_HttpseFileWork(
+//     base::WeakPtr<brave_shields::HTTPSEverywhereService::Engine> engine,
+//     std::shared_ptr<BraveRequestInfo> ctx) {
+//   base::ScopedBlockingCall scoped_blocking_call(FROM_HERE,
+//                                                 base::BlockingType::WILL_BLOCK);
+//   DCHECK_NE(ctx->request_identifier, 0U);
+//   if (engine)
+//     engine->GetHTTPSURL(&ctx->request_url, ctx->request_identifier,
+//                         &ctx->new_url_spec);
+// }
 
-void OnBeforeURLRequest_HttpsePostFileWork(
-    const ResponseCallback& next_callback,
-    std::shared_ptr<BraveRequestInfo> ctx) {
-  DCHECK_CURRENTLY_ON(BrowserThread::UI);
+// void OnBeforeURLRequest_HttpsePostFileWork(
+//     const ResponseCallback& next_callback,
+//     std::shared_ptr<BraveRequestInfo> ctx) {
+//   DCHECK_CURRENTLY_ON(BrowserThread::UI);
 
-  if (!ctx->new_url_spec.empty() &&
-    ctx->new_url_spec != ctx->request_url.spec()) {
-    brave_shields::BraveShieldsWebContentsObserver::DispatchBlockedEvent(
-        ctx->request_url, ctx->frame_tree_node_id,
-        brave_shields::kHTTPUpgradableResources);
-  }
+//   if (!ctx->new_url_spec.empty() &&
+//     ctx->new_url_spec != ctx->request_url.spec()) {
+//     brave_shields::BraveShieldsWebContentsObserver::DispatchBlockedEvent(
+//         ctx->request_url, ctx->frame_tree_node_id,
+//         brave_shields::kHTTPUpgradableResources);
+//   }
 
-  next_callback.Run();
-}
+//   next_callback.Run();
+// }
 
 int OnBeforeURLRequest_HttpsePreFileWork(
     const ResponseCallback& next_callback,
@@ -74,29 +74,29 @@ int OnBeforeURLRequest_HttpsePreFileWork(
   }
 
   if (is_valid_url) {
-    if (!g_mises_browser_process->https_everywhere_service()
-             ->GetHTTPSURLFromCacheOnly(&ctx->request_url,
-                                        ctx->request_identifier,
-                                        &ctx->new_url_spec)) {
-      g_mises_browser_process->https_everywhere_service()
-          ->GetTaskRunner()
-          ->PostTaskAndReply(
-              FROM_HERE,
-              base::BindOnce(
-                  OnBeforeURLRequest_HttpseFileWork,
-                  g_mises_browser_process->https_everywhere_service()->engine(),
-                  ctx),
-              base::BindOnce(
-                  base::IgnoreResult(&OnBeforeURLRequest_HttpsePostFileWork),
-                  next_callback, ctx));
-      return net::ERR_IO_PENDING;
-    } else {
-      if (!ctx->new_url_spec.empty()) {
-        brave_shields::BraveShieldsWebContentsObserver::DispatchBlockedEvent(
-            ctx->request_url, ctx->frame_tree_node_id,
-            brave_shields::kHTTPUpgradableResources);
-      }
-    }
+    // if (!g_mises_browser_process->https_everywhere_service()
+    //          ->GetHTTPSURLFromCacheOnly(&ctx->request_url,
+    //                                     ctx->request_identifier,
+    //                                     &ctx->new_url_spec)) {
+    //   g_mises_browser_process->https_everywhere_service()
+    //       ->GetTaskRunner()
+    //       ->PostTaskAndReply(
+    //           FROM_HERE,
+    //           base::BindOnce(
+    //               OnBeforeURLRequest_HttpseFileWork,
+    //               g_mises_browser_process->https_everywhere_service()->engine(),
+    //               ctx),
+    //           base::BindOnce(
+    //               base::IgnoreResult(&OnBeforeURLRequest_HttpsePostFileWork),
+    //               next_callback, ctx));
+    //   return net::ERR_IO_PENDING;
+    // } else {
+      // if (!ctx->new_url_spec.empty()) {
+      //   brave_shields::BraveShieldsWebContentsObserver::DispatchBlockedEvent(
+      //       ctx->request_url, ctx->frame_tree_node_id,
+      //       brave_shields::kHTTPUpgradableResources);
+      // }
+    //}
   }
 
   return net::OK;

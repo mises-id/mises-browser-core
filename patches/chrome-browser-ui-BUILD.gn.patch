@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/BUILD.gn b/chrome/browser/ui/BUILD.gn
-index 3f4929cc5078cea1eac968ef41818823223da20d..f5584c13a15a30b21d57ad6ef627811e04125790 100644
+index 3f4929cc5078cea1eac968ef41818823223da20d..d38e82bfd64d9c258d9049ab5b21121f4f7e4ec8 100644
 --- a/chrome/browser/ui/BUILD.gn
 +++ b/chrome/browser/ui/BUILD.gn
 @@ -945,7 +945,8 @@ static_library("ui") {
@@ -30,21 +30,7 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..f5584c13a15a30b21d57ad6ef627811e
      sources += [
        "autofill/payments/virtual_card_selection_dialog_controller.h",
        "autofill/payments/virtual_card_selection_dialog_controller_impl.cc",
-@@ -3426,6 +3427,13 @@ static_library("ui") {
-       "//ui/webui",
-     ]
-   }
-+  if (is_android) {
-+    sources -= [
-+      "views/external_protocol_dialog.cc",
-+      "views/external_protocol_dialog.h",
-+    ]
-+    import("//mises/browser/ui/sources.gni") sources += mises_browser_ui_sources
-+  }
- 
-   if (is_win || is_mac || is_fuchsia || is_linux) {
-     sources += [
-@@ -3902,7 +3910,7 @@ static_library("ui") {
+@@ -3902,7 +3903,7 @@ static_library("ui") {
      # to fail on this variant. Since this target is only referenced (but not
      # compiled) on this variant, it's okay to add this "incorrect" dependency
      # to Cast Linux builds so that `gn check` passes.
@@ -53,7 +39,7 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..f5584c13a15a30b21d57ad6ef627811e
        public_deps += [
          "//ui/views",
          "//ui/views/controls/webview",
-@@ -4026,7 +4034,16 @@ static_library("ui") {
+@@ -4026,7 +4027,16 @@ static_library("ui") {
      }
    }
  
@@ -67,51 +53,15 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..f5584c13a15a30b21d57ad6ef627811e
 +      ]
 +  }
 +
-+  if (true || toolkit_views) {
++  if (is_android || toolkit_views) {
      sources += [
        "autofill/address_editor_controller.cc",
        "autofill/address_editor_controller.h",
-@@ -5104,6 +5121,49 @@ static_library("ui") {
+@@ -5104,6 +5114,13 @@ static_library("ui") {
        "window_name_prompt/window_name_prompt.cc",
      ]
  
 +    if (is_android) {
-+      sources -= [
-+      "views/autofill/autofill_popup_view_native_views.cc",
-+      "views/autofill/autofill_popup_view_native_views.h",
-+      "views/autofill/payments/card_unmask_prompt_views.cc",
-+      "views/autofill/payments/card_unmask_prompt_views.h",
-+      "views/infobars/confirm_infobar.cc",
-+      "views/infobars/confirm_infobar.h",
-+      "views/overlay/overlay_window_views.cc",
-+      "views/overlay/overlay_window_views.h",
-+      "views/page_info/safety_tip_page_info_bubble_view.cc",
-+      "views/page_info/safety_tip_page_info_bubble_view.h",
-+      "views/passwords/password_generation_popup_view_views.cc",
-+      "views/passwords/password_generation_popup_view_views.h",
-+      "views/ssl_client_certificate_selector.cc",
-+      "views/ssl_client_certificate_selector.h",
-+      "views/webid/fedcm_account_selection_view_desktop.cc",
-+      "views/webid/fedcm_account_selection_view_desktop.h",
-+      "views/autofill/payments/autofill_progress_dialog_views.cc",
-+      "views/autofill/payments/autofill_progress_dialog_views.h",
-+      "views/overlay/video_overlay_window_views.cc",
-+      "views/overlay/video_overlay_window_views.h",
-+      "views/overlay/document_overlay_window_views.cc",
-+      "views/overlay/document_overlay_window_views.h",
-+      "views/autofill/payments/autofill_error_dialog_view_native_views.cc",
-+      "views/autofill/payments/autofill_error_dialog_view_native_views.h",
-+      "views/autofill/payments/card_unmask_authentication_selection_dialog_views.cc",
-+      "views/autofill/payments/card_unmask_authentication_selection_dialog_views.h",
-+      "views/autofill/payments/card_unmask_otp_input_dialog_views.cc",
-+      "views/autofill/payments/card_unmask_otp_input_dialog_views.h",
-+      "views/payments/secure_payment_confirmation_dialog_view.cc",
-+      "views/payments/secure_payment_confirmation_dialog_view.h",
-+      "views/payments/secure_payment_confirmation_no_creds_dialog_view.cc",
-+      "views/payments/secure_payment_confirmation_no_creds_dialog_view.h",
-+      "browser_otr_state.cc",
-+      "browser_otr_state.h",
-+      ]
 +      deps += [
 +      "//components/commerce/core:coupon_db_content_proto",
 +      "//ui/views/controls/webview",
@@ -121,15 +71,11 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..f5584c13a15a30b21d57ad6ef627811e
      deps += [
        "side_search:side_search_tab_data_proto",
        "//base",
-@@ -5271,6 +5331,11 @@ static_library("ui") {
-       ]
-     }
+@@ -5670,6 +5687,7 @@ static_library("ui") {
+       "webui/tab_strip/thumbnail_tracker.h",
+     ]
+   }
++  import("//mises/browser/ui/sources.gni") sources += mises_browser_ui_sources sources -= mises_browser_ui_exception_sources deps -= mises_browser_ui_exception_deps
+ }
  
-+    if (is_android) {
-+      sources -= [
-+        "views/screen_capture_notification_ui_views.cc",
-+      ]
-+    }
-     if (!is_chromeos) {
-       sources += [
-         "sharing_hub/sharing_hub_bubble_controller_desktop_impl.cc",
+ # In GYP this is part of test_support_common.

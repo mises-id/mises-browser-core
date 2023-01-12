@@ -1213,13 +1213,16 @@ void SaveCreditCard(Browser* browser) {
 }
 
 void MigrateLocalCards(Browser* browser) {
+#if !BUILDFLAG(IS_ANDROID)
   WebContents* web_contents =
       browser->tab_strip_model()->GetActiveWebContents();
   autofill::ManageMigrationUiController* controller =
       autofill::ManageMigrationUiController::FromWebContents(web_contents);
   // Show migration-related Ui when the user clicks the credit card icon.
   controller->OnUserClickedCreditCardIcon();
+#endif
 }
+
 
 void SaveAutofillAddress(Browser* browser) {
   WebContents* web_contents =

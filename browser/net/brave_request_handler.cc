@@ -82,8 +82,8 @@ void BraveRequestHandler::SetupCallbacks() {
 //      decentralized_dns::OnBeforeURLRequest_DecentralizedDnsPreRedirectWork);
 //  before_url_request_callbacks_.push_back(callback);
 
-  callback = base::BindRepeating(brave_rewards::OnBeforeURLRequest);
-  before_url_request_callbacks_.push_back(callback);
+  // callback = base::BindRepeating(brave_rewards::OnBeforeURLRequest);
+  // before_url_request_callbacks_.push_back(callback);
 
 #if BUILDFLAG(ENABLE_IPFS)
   if (base::FeatureList::IsEnabled(ipfs::features::kIpfsFeature)) {

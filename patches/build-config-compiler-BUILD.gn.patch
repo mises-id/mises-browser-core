@@ -1,0 +1,13 @@
+diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
+index b6aaae9b69576bfa7259034945607d222d45c36d..c4e94dbac05d24310d1cf5f875cbfbe25fc63b36 100644
+--- a/build/config/compiler/BUILD.gn
++++ b/build/config/compiler/BUILD.gn
+@@ -733,7 +733,7 @@ config("compiler") {
+   # Pass flag to LLD so Android builds can allow debuggerd to properly symbolize
+   # stack crashes (http://crbug.com/919499).
+   if (use_lld && is_android) {
+-    ldflags += [ "-Wl,--no-rosegment" ]
++    ldflags += [ "-Wl,--no-rosegment", "-Wl,--error-limit=0" ]
+   }
+ 
+   # LLD does call-graph-sorted binary layout by default when profile data is

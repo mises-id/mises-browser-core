@@ -15,7 +15,7 @@
 #include "base/strings/string_piece.h"
 #include "base/strings/string_split.h"
 #include "base/strings/string_util.h"
-#include "mises/components/brave_shields/browser/brave_shields_util.h"
+//#include "mises/components/brave_shields/browser/brave_shields_util.h"
 #include "mises/components/constants/url_constants.h"
 #include "content/public/common/referrer.h"
 #include "net/base/registry_controlled_domains/registry_controlled_domain.h"
@@ -159,13 +159,13 @@ bool ApplyPotentialReferrerBlock(std::shared_ptr<BraveRequestInfo> ctx) {
     return false;
   }
 
-  content::Referrer new_referrer;
-  if (brave_shields::MaybeChangeReferrer(
-          ctx->allow_referrers, ctx->allow_brave_shields, GURL(ctx->referrer),
-          ctx->request_url, &new_referrer)) {
-    ctx->new_referrer = new_referrer.url;
-    return true;
-  }
+  // content::Referrer new_referrer;
+  // if (brave_shields::MaybeChangeReferrer(
+  //         ctx->allow_referrers, ctx->allow_brave_shields, GURL(ctx->referrer),
+  //         ctx->request_url, &new_referrer)) {
+  //   ctx->new_referrer = new_referrer.url;
+  //   return true;
+  // }
   return false;
 }
 
@@ -191,14 +191,14 @@ int OnBeforeStartTransaction_SiteHacksWork(
   // Note that this code only affects "Referer" header sent via network - we
   // handle document.referer in content::NavigationRequest (see also
   // |BraveContentBrowserClient::MaybeHideReferrer|).
-  if (!ctx->allow_referrers && ctx->allow_brave_shields &&
-      ctx->redirect_source.is_valid() &&
-      ctx->resource_type == blink::mojom::ResourceType::kMainFrame &&
-      !brave_shields::IsSameOriginNavigation(ctx->redirect_source,
-                                             ctx->request_url)) {
-    // This is a hack that notifies the network layer.
-    ctx->removed_headers.insert("X-Brave-Cap-Referrer");
-  }
+  // if (!ctx->allow_referrers && ctx->allow_brave_shields &&
+  //     ctx->redirect_source.is_valid() &&
+  //     ctx->resource_type == blink::mojom::ResourceType::kMainFrame &&
+  //     !brave_shields::IsSameOriginNavigation(ctx->redirect_source,
+  //                                            ctx->request_url)) {
+  //   // This is a hack that notifies the network layer.
+  //   ctx->removed_headers.insert("X-Brave-Cap-Referrer");
+  // }
   return net::OK;
 }
 

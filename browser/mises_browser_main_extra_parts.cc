@@ -3,11 +3,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/browser/brave_browser_main_extra_parts.h"
+#include "mises/browser/mises_browser_main_extra_parts.h"
 
 #include "base/metrics/histogram_macros.h"
-#include "mises/browser/brave_browser_process_impl.h"
-#include "mises/components/brave_shields/browser/brave_shields_p3a.h"
+#include "mises/browser/mises_browser_process_impl.h"
+//#include "mises/components/brave_shields/browser/brave_shields_p3a.h"
 //#include "mises/components/p3a/brave_p3a_service.h"
 //#include "mises/components/p3a/buildflags.h"
 #include "components/metrics/metrics_pref_names.h"
@@ -38,8 +38,8 @@ void RecordInitialP3AValues() {
       g_browser_process->local_state());
 #endif  // !BUILDFLAG(IS_ANDROID)
 
-  brave_shields::MaybeRecordShieldsUsageP3A(brave_shields::kNeverClicked,
-                                            g_browser_process->local_state());
+  // brave_shields::MaybeRecordShieldsUsageP3A(brave_shields::kNeverClicked,
+  //                                           g_browser_process->local_state());
 
   // Record crash reporting status stats.
   const bool crash_reports_enabled = g_browser_process->local_state()->
