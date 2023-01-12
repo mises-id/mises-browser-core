@@ -3,7 +3,7 @@
 #include "mises/components/omnibox/browser/mises_provider.h"
 #include <stddef.h>
 
-
+std::string MisesProvider::websites_string_ = "";
 std::vector<std::string> MisesProvider::top_sites_ = {
         "home.mises.site",
         "www.did.id",
