@@ -87,7 +87,7 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
 
       AutocompleteMatch match(this, kRelevance, false,
                               AutocompleteMatchType::SEARCH_SUGGEST_ENTITY);
-      match.fill_into_edit = match_string;
+      match.fill_into_edit = kScheme + domain_name;
       //relevance
       match.relevance = kRelevance + relevance + mises_match.relevance;
       match.destination_url = mises_match.destination_url;
