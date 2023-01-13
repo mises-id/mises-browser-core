@@ -9,6 +9,8 @@ mises_common_web_compile_inputs = [
   # Global Definitions
   # Only add actual globally-available type definitions to this directory,
   # see ../definitions/README.md.
+  rebase_path("../definitions/ipfs.d.ts"),
+  rebase_path("../definitions/chromel.d.ts"),
 
   # webpack config changes warrant a re-build of all webpack builds
   rebase_path("../webpack/webpack.config.js"),

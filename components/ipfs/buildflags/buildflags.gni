@@ -1,0 +1,7 @@
+declare_args() {
+  enable_ipfs = true
+}
+
+declare_args() {
+  enable_ipfs_local_node = enable_ipfs && !is_ios
+}

@@ -4,6 +4,7 @@ import("//chrome/common/features.gni")
 import("//components/gcm_driver/config.gni")
 import("//mojo/public/tools/bindings/mojom.gni")
 import("//third_party/widevine/cdm/widevine.gni")
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 
 source_set("favicon_source") {
   # Remove when https://github.com/brave/brave-browser/issues/10614 is resolved
@@ -28,7 +29,16 @@ source_set("ui") {
   check_includes = false
   public_deps = []
   sources = [
+    "webui/mises_webui_source.cc",
+    "webui/mises_webui_source.h",
   ]
+
+  if (enable_ipfs) {
+    sources += [
+      "webui/ipfs_ui.cc",
+      "webui/ipfs_ui.h",
+    ]
+  }
 
   if (!is_android) {
     sources += [
@@ -117,6 +127,13 @@ source_set("ui") {
     deps += [ ":favicon_source" ]
   }
 
+  if (enable_ipfs) {
+    deps += [
+      "//mises/components/ipfs",
+      "//mises/components/ipfs_ui:generated_resources",
+      "//components/component_updater",
+    ]
+  }
 
   if (!is_android) {
     deps += [

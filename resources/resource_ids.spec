@@ -27,4 +27,9 @@
   },
   # This file is generated during the build.
 
+  # This file is generated during the build.
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-ipfs/ipfs.grd": {
+    "META": {"sizes": {"includes": [500]}},
+    "includes": [56500],
+  },
 }

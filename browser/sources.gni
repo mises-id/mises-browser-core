@@ -4,6 +4,7 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import("//mises/browser/autocomplete/sources.gni")
+import("//mises/browser/ipfs/sources.gni")
 import("//extensions/buildflags/buildflags.gni")
 import("//mises/chromium_src/chrome/browser/sources.gni")
 import("//mises/build/rust/config.gni")
@@ -245,5 +246,7 @@ if (is_android) {
 
 
 mises_chrome_browser_sources += mises_browser_autocomplete_sources
-
 mises_chrome_browser_deps += mises_browser_autocomplete_deps
+
+mises_chrome_browser_sources += mises_browser_ipfs_sources
+mises_chrome_browser_deps += mises_browser_ipfs_deps

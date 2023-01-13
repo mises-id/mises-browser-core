@@ -167,6 +167,7 @@
         IPFS page cannot be loaded.
       </message>
   
+      <part file="ipfs_strings.grdp" />
     </messages>
   </release>
 </grit>

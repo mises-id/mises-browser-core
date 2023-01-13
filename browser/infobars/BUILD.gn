@@ -1,0 +1,34 @@
+import("//mises/components/ipfs/buildflags/buildflags.gni")
+import("//build/config/features.gni")
+
+source_set("infobars") {
+  # Remove when https://github.com/brave/brave-browser/issues/10649 is resolved
+  check_includes = false
+  sources = [
+
+  ]
+
+  deps = [
+    "//base",
+    "//mises/app:mises_generated_resources_grit",
+    "//mises/browser/ui",
+    "//mises/common:common",
+    "//chrome/app:chromium_strings",
+    "//chrome/browser/ui",
+    "//components/infobars/content",
+    "//components/infobars/core",
+    "//components/prefs",
+    "//components/strings",
+    "//ui/base",
+    "//ui/views",
+    "//url",
+  ]
+
+  if (enable_ipfs) {
+    deps += [
+      "//mises/components/ipfs",
+      "//components/user_prefs",
+    ]
+  }
+
+}

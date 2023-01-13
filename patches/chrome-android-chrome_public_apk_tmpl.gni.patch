@@ -1,5 +1,5 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index bf289305713f8e6db146171c824d807195b5daf9..d1a42a86a3dd60addc2b96b33d397b61ea0c488b 100644
+index bf289305713f8e6db146171c824d807195b5daf9..869e364dbfabc851c2f473a577a19b691fa58a39 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
 @@ -33,7 +33,7 @@ default_chrome_public_jinja_variables = [

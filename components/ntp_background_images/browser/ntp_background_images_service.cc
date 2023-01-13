@@ -18,7 +18,7 @@
 #include "base/strings/stringprintf.h"
 #include "base/task/task_runner_util.h"
 #include "base/task/thread_pool.h"
-#include "mises/components/brave_component_updater/browser/brave_on_demand_updater.h"
+#include "mises/components/mises_component_updater/browser/brave_on_demand_updater.h"
 #include "mises/components/brave_referrals/browser/brave_referrals_service.h"
 #include "mises/components/brave_referrals/buildflags/buildflags.h"
 #include "mises/components/brave_referrals/common/pref_names.h"
@@ -35,7 +35,7 @@
 #include "components/prefs/pref_registry_simple.h"
 #include "components/prefs/pref_service.h"
 
-using brave_component_updater::BraveOnDemandUpdater;
+using mises_component_updater::BraveOnDemandUpdater;
 
 namespace ntp_background_images {
 

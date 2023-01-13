@@ -2,6 +2,8 @@ import("//extensions/buildflags/buildflags.gni")
 
 static_library("browser") {
   sources = [
+    "mises_component.cc",
+    "mises_component.h",
   ]
 
   deps = [

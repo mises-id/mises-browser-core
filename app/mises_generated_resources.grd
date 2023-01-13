@@ -160,6 +160,7 @@
   <release seq="1">
     <messages fallback_to_english="true">
       <!-- Mises Settings WebUI strings -->
+      <part file="mises_settings_strings.grdp" />
 
       <!--Add new items to the appropriate sections below -->
 

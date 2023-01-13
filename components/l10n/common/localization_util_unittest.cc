@@ -5,7 +5,7 @@
 
 #include "mises/components/l10n/common/localization_util.h"
 
-#include "components/grit/brave_components_strings.h"
+#include "components/grit/mises_components_strings.h"
 #include "testing/gmock/include/gmock/gmock.h"
 #include "testing/gtest/include/gtest/gtest.h"
 

@@ -1,0 +1,27 @@
+/* Copyright (c) 2020 The Brave Authors. All rights reserved.
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "mises/components/ipfs/features.h"
+
+#include "base/feature_list.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
+
+namespace ipfs {
+namespace features {
+  
+#define BASE_FEATURE(feature, name, default_state) \
+  CONSTINIT const base::Feature feature(name, default_state)
+
+BASE_FEATURE(kIpfsFeature,
+             "Ipfs",
+#if BUILDFLAG(ENABLE_IPFS)
+             base::FEATURE_ENABLED_BY_DEFAULT
+#else
+             base::FEATURE_DISABLED_BY_DEFAULT
+#endif
+);
+
+}  // namespace features
+}  // namespace ipfs
