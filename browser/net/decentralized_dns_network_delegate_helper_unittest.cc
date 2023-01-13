@@ -33,7 +33,7 @@
 #include "testing/gtest/include/gtest/gtest.h"
 #include "url/gurl.h"
 
-using brave::ResponseCallback;
+using mises::ResponseCallback;
 
 namespace decentralized_dns {
 

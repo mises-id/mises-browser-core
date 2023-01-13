@@ -1,0 +1,13 @@
+import("//mises/build/cargo.gni")
+import("//mises/build/rust/rust_cxx.gni")
+
+rust_crate("rust_lib") {
+  inputs = [
+    "lib.rs",
+    "Cargo.toml",
+  ]
+}
+
+rust_cxx("cxx") {
+  input = [ "lib.rs" ]
+}

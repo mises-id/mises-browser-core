@@ -18,7 +18,7 @@
 namespace ipfs {
 
 int OnBeforeURLRequest_IPFSRedirectWork(
-    const brave::ResponseCallback& next_callback,
+    const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx) {
   const bool has_ipfs_scheme = IsIPFSScheme(ctx->request_url);
   if (!ctx->browser_context) {
@@ -33,7 +33,7 @@ int OnBeforeURLRequest_IPFSRedirectWork(
   auto* prefs = user_prefs::UserPrefs::Get(ctx->browser_context);
   const bool ipfs_disabled = IsIpfsResolveMethodDisabled(prefs);
 
-  if (has_ipfs_scheme && !brave::IsRegularProfile(ctx->browser_context)) {
+  if (has_ipfs_scheme && !mises::IsRegularProfile(ctx->browser_context)) {
     // Don't allow IPFS requests without translation of IPFS urls.
     ctx->blocked_by = mises::kOtherBlocked;
     // Only net::OK navigation will be actually blocked without commit.

@@ -15,7 +15,7 @@
 namespace ipfs {
 
 int OnBeforeURLRequest_IPFSRedirectWork(
-    const brave::ResponseCallback& next_callback,
+    const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx);
 
 }  // namespace ipfs

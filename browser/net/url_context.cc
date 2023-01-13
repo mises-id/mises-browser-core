@@ -26,7 +26,7 @@
 #include "components/user_prefs/user_prefs.h"
 #endif
 
-namespace brave {
+namespace mises {
 
 namespace {
 
@@ -78,12 +78,7 @@ std::shared_ptr<mises::MisesRequestInfo> MisesRequestInfo::MakeCTX(
   ctx->resource_type =
       static_cast<blink::mojom::ResourceType>(request.resource_type);
 
-  ctx->is_webtorrent_disabled =
-#if BUILDFLAG(ENABLE_BRAVE_WEBTORRENT)
-      !webtorrent::IsWebtorrentEnabled(browser_context);
-#else
-      true;
-#endif
+  ctx->is_webtorrent_disabled = true;
 
   ctx->frame_tree_node_id = frame_tree_node_id;
 
@@ -102,7 +97,7 @@ std::shared_ptr<mises::MisesRequestInfo> MisesRequestInfo::MakeCTX(
   }
   // TODO(iefremov): We still need this for WebSockets, currently
   // |AddChannelRequest| provides only old-fashioned |site_for_cookies|.
-  // (See |BraveProxyingWebSocket|).
+  // (See |MisesProxyingWebSocket|).
   if (ctx->tab_origin.is_empty()) {
     content::WebContents* contents =
         content::WebContents::FromFrameTreeNodeId(ctx->frame_tree_node_id);
@@ -134,32 +129,25 @@ std::shared_ptr<mises::MisesRequestInfo> MisesRequestInfo::MakeCTX(
 
   Profile* profile = Profile::FromBrowserContext(browser_context);
   auto* map = HostContentSettingsMapFactory::GetForProfile(profile);
-  ctx->allow_brave_shields =
-      brave_shields::GetBraveShieldsEnabled(map, ctx->tab_origin);
-  ctx->allow_ads = brave_shields::GetAdControlType(map, ctx->tab_origin) ==
-                   brave_shields::ControlType::ALLOW;
+  ctx->allow_brave_shields = false;
+  ctx->allow_ads = true;
   // Currently, "aggressive" mode is registered as a cosmetic filtering control
   // type, even though it can also affect network blocking.
-  ctx->aggressive_blocking =
-      brave_shields::GetCosmeticFilteringControlType(map, ctx->tab_origin) ==
-      brave_shields::ControlType::BLOCK;
-  ctx->allow_http_upgradable_resource =
-      !brave_shields::GetHTTPSEverywhereEnabled(map, ctx->tab_origin);
+  ctx->aggressive_blocking = false;
+  ctx->allow_http_upgradable_resource = true;
 
   // HACK: after we fix multiple creations of MisesRequestInfo we should
   // use only tab_origin. Since we recreate MisesRequestInfo during consequent
   // stages of navigation, |tab_origin| changes and so does |allow_referrers|
   // flag, which is not what we want for determining referrers.
-  ctx->allow_referrers = brave_shields::AreReferrersAllowed(
-      map,
-      ctx->redirect_source.is_empty() ? ctx->tab_origin : ctx->redirect_source);
+  ctx->allow_referrers =true;
   ctx->upload_data = GetUploadData(request);
 
   ctx->browser_context = browser_context;
 
   // TODO(fmarier): remove this once the hacky code in
   // brave_proxying_url_loader_factory.cc is refactored. See
-  // BraveProxyingURLLoaderFactory::InProgressRequest::UpdateRequestInfo().
+  // MisesProxyingURLLoaderFactory::InProgressRequest::UpdateRequestInfo().
   if (old_ctx) {
     ctx->internal_redirect = old_ctx->internal_redirect;
     ctx->redirect_source = old_ctx->redirect_source;

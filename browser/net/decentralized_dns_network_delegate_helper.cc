@@ -8,9 +8,10 @@
 #include <utility>
 #include <vector>
 
-#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
+
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+
 #include "mises/components/decentralized_dns/core/constants.h"
 #include "mises/components/decentralized_dns/core/utils.h"
 #include "mises/components/ipfs/ipfs_utils.h"
@@ -21,7 +22,7 @@
 namespace decentralized_dns {
 
 int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
-    const brave::ResponseCallback& next_callback,
+    const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx) {
   DCHECK(!next_callback.is_null());
 
@@ -61,7 +62,7 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
 }
 
 void OnBeforeURLRequest_EnsRedirectWork(
-    const brave::ResponseCallback& next_callback,
+    const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx,
     const std::vector<uint8_t>& content_hash,
     bool require_offchain_consent,
@@ -89,7 +90,7 @@ void OnBeforeURLRequest_EnsRedirectWork(
 }
 
 void OnBeforeURLRequest_UnstoppableDomainsRedirectWork(
-    const brave::ResponseCallback& next_callback,
+    const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx,
     const GURL& url,
     brave_wallet::mojom::ProviderError error,

@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/browser/net/brave_request_handler.h"
+#include "mises/browser/net/mises_request_handler.h"
 
 #include <algorithm>
 #include <utility>
@@ -98,7 +98,7 @@ int MisesRequestHandler::OnHeadersReceived(
     scoped_refptr<net::HttpResponseHeaders>* override_response_headers,
     GURL* allowed_unsafe_redirect_url) {
   if (!ctx->tab_origin.is_empty()) {
-    brave::RemoveTrackableSecurityHeadersForThirdParty(
+    mises::RemoveTrackableSecurityHeadersForThirdParty(
         ctx->request_url, url::Origin::Create(ctx->tab_origin),
         original_response_headers, override_response_headers);
   }
@@ -159,9 +159,9 @@ void MisesRequestHandler::RunNextCallback(
   if (ctx->event_type == mises::kOnBeforeRequest) {
     while (before_url_request_callbacks_.size() !=
            ctx->next_url_request_index) {
-      brave::OnBeforeURLRequestCallback callback =
+      mises::OnBeforeURLRequestCallback callback =
           before_url_request_callbacks_[ctx->next_url_request_index++];
-      brave::ResponseCallback next_callback =
+      mises::ResponseCallback next_callback =
           base::BindRepeating(&MisesRequestHandler::RunNextCallback,
                               weak_factory_.GetWeakPtr(), ctx);
       rv = callback.Run(next_callback, ctx);
@@ -175,9 +175,9 @@ void MisesRequestHandler::RunNextCallback(
   } else if (ctx->event_type == mises::kOnBeforeStartTransaction) {
     while (before_start_transaction_callbacks_.size() !=
            ctx->next_url_request_index) {
-      brave::OnBeforeStartTransactionCallback callback =
+      mises::OnBeforeStartTransactionCallback callback =
           before_start_transaction_callbacks_[ctx->next_url_request_index++];
-      brave::ResponseCallback next_callback =
+      mises::ResponseCallback next_callback =
           base::BindRepeating(&MisesRequestHandler::RunNextCallback,
                               weak_factory_.GetWeakPtr(), ctx);
       rv = callback.Run(ctx->headers, next_callback, ctx);
@@ -190,9 +190,9 @@ void MisesRequestHandler::RunNextCallback(
     }
   } else if (ctx->event_type == mises::kOnHeadersReceived) {
     while (headers_received_callbacks_.size() != ctx->next_url_request_index) {
-      brave::OnHeadersReceivedCallback callback =
+      mises::OnHeadersReceivedCallback callback =
           headers_received_callbacks_[ctx->next_url_request_index++];
-      brave::ResponseCallback next_callback =
+      mises::ResponseCallback next_callback =
           base::BindRepeating(&MisesRequestHandler::RunNextCallback,
                               weak_factory_.GetWeakPtr(), ctx);
       rv = callback.Run(ctx->original_response_headers,

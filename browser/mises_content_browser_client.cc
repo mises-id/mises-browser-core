@@ -16,6 +16,8 @@
 #include "base/system/sys_info.h"
 #include "mises/browser/mises_browser_process.h"
 #include "mises/browser/profiles/profile_util.h"
+#include "mises/browser/net/mises_proxying_url_loader_factory.h"
+#include "mises/browser/net/mises_proxying_web_socket.h"
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/constants/webui_url_constants.h"
 #include "mises/components/decentralized_dns/content/decentralized_dns_navigation_throttle.h"
@@ -171,4 +173,60 @@ bool MisesContentBrowserClient::HandleURLOverrideRewrite(
     GURL* url,
     content::BrowserContext* browser_context) {
   return false;
+}
+
+
+bool MisesContentBrowserClient::WillCreateURLLoaderFactory(
+    content::BrowserContext* browser_context,
+    content::RenderFrameHost* frame,
+    int render_process_id,
+    URLLoaderFactoryType type,
+    const url::Origin& request_initiator,
+    absl::optional<int64_t> navigation_id,
+    ukm::SourceIdObj ukm_source_id,
+    mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
+    mojo::PendingRemote<network::mojom::TrustedURLLoaderHeaderClient>*
+        header_client,
+    bool* bypass_redirect_checks,
+    bool* disable_secure_dns,
+    network::mojom::URLLoaderFactoryOverridePtr* factory_override) {
+  bool use_proxy = false;
+  // TODO(iefremov): Skip proxying for certain requests?
+  use_proxy = MisesProxyingURLLoaderFactory::MaybeProxyRequest(
+      browser_context, frame,
+      type == URLLoaderFactoryType::kNavigation ? -1 : render_process_id,
+      factory_receiver);
+
+  use_proxy |= ChromeContentBrowserClient::WillCreateURLLoaderFactory(
+      browser_context, frame, render_process_id, type, request_initiator,
+      std::move(navigation_id), ukm_source_id, factory_receiver, header_client,
+      bypass_redirect_checks, disable_secure_dns, factory_override);
+
+  return use_proxy;
+}
+
+bool MisesContentBrowserClient::WillInterceptWebSocket(
+    content::RenderFrameHost* frame) {
+  return (frame != nullptr);
+}
+
+void MisesContentBrowserClient::CreateWebSocket(
+    content::RenderFrameHost* frame,
+    content::ContentBrowserClient::WebSocketFactory factory,
+    const GURL& url,
+    const net::SiteForCookies& site_for_cookies,
+    const absl::optional<std::string>& user_agent,
+    mojo::PendingRemote<network::mojom::WebSocketHandshakeClient>
+        handshake_client) {
+  auto* proxy = MisesProxyingWebSocket::ProxyWebSocket(
+      frame, std::move(factory), url, site_for_cookies, user_agent,
+      std::move(handshake_client));
+
+  if (ChromeContentBrowserClient::WillInterceptWebSocket(frame)) {
+    ChromeContentBrowserClient::CreateWebSocket(
+        frame, proxy->web_socket_factory(), url, site_for_cookies, user_agent,
+        proxy->handshake_client().Unbind());
+  } else {
+    proxy->Start();
+  }
 }

@@ -49,10 +49,10 @@ class MisesRequestHandler {
   void SetupCallbacks();
   void RunNextCallback(std::shared_ptr<mises::MisesRequestInfo> ctx);
 
-  std::vector<brave::OnBeforeURLRequestCallback> before_url_request_callbacks_;
-  std::vector<brave::OnBeforeStartTransactionCallback>
+  std::vector<mises::OnBeforeURLRequestCallback> before_url_request_callbacks_;
+  std::vector<mises::OnBeforeStartTransactionCallback>
       before_start_transaction_callbacks_;
-  std::vector<brave::OnHeadersReceivedCallback> headers_received_callbacks_;
+  std::vector<mises::OnHeadersReceivedCallback> headers_received_callbacks_;
 
   std::map<uint64_t, net::CompletionOnceCallback> callbacks_;
 

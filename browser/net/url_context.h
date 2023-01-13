@@ -34,7 +34,7 @@ using ResponseCallback = base::RepeatingCallback<void()>;
 }  // namespace brave
 
 namespace brave_rewards {
-int OnBeforeURLRequest(const brave::ResponseCallback& next_callback,
+int OnBeforeURLRequest(const mises::ResponseCallback& next_callback,
                        std::shared_ptr<mises::MisesRequestInfo> ctx);
 }  // namespace brave_rewards
 
@@ -99,7 +99,7 @@ struct MisesRequestInfo {
   scoped_refptr<net::HttpResponseHeaders>* override_response_headers = nullptr;
 
   GURL* allowed_unsafe_redirect_url = nullptr;
-  BraveNetworkDelegateEventType event_type = kUnknownEventType;
+  MisesNetworkDelegateEventType event_type = kUnknownEventType;
   BlockedBy blocked_by = kNotBlocked;
   std::string mock_data_url;
   GURL ipfs_gateway_url;

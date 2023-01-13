@@ -230,7 +230,7 @@ class NTPBackgroundImagesServiceTest : public testing::Test {
   void SetUp() override {
     auto* registry = pref_service_.registry();
     NTPBackgroundImagesService::RegisterLocalStatePrefs(registry);
-    brave::RegisterPrefsForBraveReferralsService(registry);
+    mises::RegisterPrefsForBraveReferralsService(registry);
   }
 
   void Init() {

@@ -31,7 +31,7 @@ class IpfsExtensionApiTest : public ExtensionApiTest {
     feature_list_.InitAndEnableFeature(ipfs::features::kIpfsFeature);
   }
   void SetUp() override {
-    brave::RegisterPathProvider();
+    mises::RegisterPathProvider();
     base::PathService::Get(brave::DIR_TEST_DATA, &extension_dir_);
     extension_dir_ = extension_dir_.AppendASCII("extensions/api_test");
     ExtensionApiTest::SetUp();

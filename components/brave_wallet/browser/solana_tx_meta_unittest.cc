@@ -1,0 +1,228 @@
+/* Copyright (c) 2022 The Brave Authors. All rights reserved.
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "mises/components/brave_wallet/browser/solana_tx_meta.h"
+
+#include <memory>
+#include <string>
+#include <vector>
+
+#include "base/json/json_reader.h"
+#include "base/values.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/browser/solana_instruction_data_decoder.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/brave_wallet/common/brave_wallet_constants.h"
+#include "testing/gtest/include/gtest/gtest.h"
+#include "url/origin.h"
+
+namespace brave_wallet {
+
+TEST(SolanaTxMetaUnitTest, ToTransactionInfo) {
+  std::string from_account = "BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8";
+  std::string to_account = "JDqrvDz8d8tFCADashbUKQDKfJZFobNy13ugN65t1wvV";
+  std::string recent_blockhash = "9sHcv6xwn9YkB8nxTUGKDwPwNnmqVp5oAXxU8Fdkm4J6";
+  uint64_t last_valid_block_height = 3090;
+  const std::vector<uint8_t> data = {2, 0, 0, 0, 128, 150, 152, 0, 0, 0, 0, 0};
+
+  SolanaInstruction instruction(
+      // Program ID
+      mojom::kSolanaSystemProgramId,
+      // Accounts
+      {SolanaAccountMeta(from_account, true, true),
+       SolanaAccountMeta(to_account, false, true)},
+      data);
+  auto tx = std::make_unique<SolanaTransaction>(
+      recent_blockhash, last_valid_block_height, from_account,
+      std::vector<SolanaInstruction>({instruction}));
+  tx->set_to_wallet_address(to_account);
+  tx->set_lamports(10000000u);
+  tx->set_tx_type(mojom::TransactionType::SolanaSystemTransfer);
+
+  SolanaTxMeta meta(std::move(tx));
+  SolanaSignatureStatus status(82, 10, "", "confirmed");
+  meta.set_signature_status(status);
+
+  meta.set_id("meta_id");
+  meta.set_status(mojom::TransactionStatus::Confirmed);
+  meta.set_from("BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8");
+  base::Time::Exploded x{1981, 3, 0, 1, 2};
+  base::Time confirmed_time = meta.confirmed_time();
+  EXPECT_TRUE(base::Time::FromUTCExploded(x, &confirmed_time));
+  meta.set_confirmed_time(confirmed_time);
+  meta.set_submitted_time(confirmed_time - base::Seconds(3));
+  meta.set_created_time(confirmed_time - base::Minutes(1));
+  meta.set_tx_hash(
+      "5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYjCJjBRnbJLgp8uirBgmQpjKhoR4tjF3ZpRzr"
+      "FmBV6UjKdiSZkQUW");
+  meta.set_origin(url::Origin::Create(GURL("https://test.brave.com/")));
+  meta.set_group_id("mockGroupId");
+
+  mojom::TransactionInfoPtr ti = meta.ToTransactionInfo();
+  EXPECT_EQ(ti->id, meta.id());
+  EXPECT_EQ(ti->tx_status, meta.status());
+  EXPECT_EQ(ti->from_address, meta.from());
+  EXPECT_EQ(ti->tx_hash, meta.tx_hash());
+  EXPECT_EQ(
+      ti->origin_info,
+      MakeOriginInfo(url::Origin::Create(GURL("https://test.brave.com/"))));
+  EXPECT_EQ(ti->group_id, meta.group_id());
+
+  EXPECT_EQ(meta.created_time().ToJavaTime(),
+            ti->created_time.InMilliseconds());
+  EXPECT_EQ(meta.submitted_time().ToJavaTime(),
+            ti->submitted_time.InMilliseconds());
+  EXPECT_EQ(meta.confirmed_time().ToJavaTime(),
+            ti->confirmed_time.InMilliseconds());
+
+  EXPECT_EQ(meta.tx()->tx_type(), ti->tx_type);
+  EXPECT_TRUE(ti->tx_params.empty());
+  EXPECT_TRUE(ti->tx_args.empty());
+
+  auto solana_account_meta1 =
+      mojom::SolanaAccountMeta::New(from_account, true, true);
+  auto solana_account_meta2 =
+      mojom::SolanaAccountMeta::New(to_account, false, true);
+  std::vector<mojom::SolanaAccountMetaPtr> account_metas;
+  account_metas.push_back(std::move(solana_account_meta1));
+  account_metas.push_back(std::move(solana_account_meta2));
+  auto mojom_param =
+      mojom::SolanaInstructionParam::New("lamports", "Lamports", "10000000");
+  std::vector<mojom::SolanaInstructionParamPtr> mojom_params;
+  mojom_params.emplace_back(std::move(mojom_param));
+  auto mojom_decoded_data = mojom::DecodedSolanaInstructionData::New(
+      static_cast<uint32_t>(mojom::SolanaSystemInstruction::kTransfer),
+      solana_ins_data_decoder::GetMojomAccountParamsForTesting(
+          mojom::SolanaSystemInstruction::kTransfer, absl::nullopt),
+      std::move(mojom_params));
+  auto mojom_instruction = mojom::SolanaInstruction::New(
+      mojom::kSolanaSystemProgramId, std::move(account_metas), data,
+      std::move(mojom_decoded_data));
+
+  std::vector<mojom::SolanaInstructionPtr> instructions;
+  instructions.push_back(std::move(mojom_instruction));
+
+  ASSERT_TRUE(ti->tx_data_union->is_solana_tx_data());
+  EXPECT_EQ(
+      ti->tx_data_union->get_solana_tx_data(),
+      mojom::SolanaTxData::New(recent_blockhash, last_valid_block_height,
+                               from_account, to_account, "", 10000000, 0,
+                               mojom::TransactionType::SolanaSystemTransfer,
+                               std::move(instructions), nullptr, nullptr));
+}
+
+TEST(SolanaTxMetaUnitTest, ToValue) {
+  std::string from_account = "BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8";
+  std::string to_account = "JDqrvDz8d8tFCADashbUKQDKfJZFobNy13ugN65t1wvV";
+  std::string recent_blockhash = "9sHcv6xwn9YkB8nxTUGKDwPwNnmqVp5oAXxU8Fdkm4J6";
+  const std::vector<uint8_t> data = {2, 0, 0, 0, 128, 150, 152, 0, 0, 0, 0, 0};
+  uint64_t last_valid_block_height = 3090;
+
+  SolanaInstruction instruction(
+      // Program ID
+      mojom::kSolanaSystemProgramId,
+      // Accounts
+      {SolanaAccountMeta(from_account, true, true),
+       SolanaAccountMeta(to_account, false, true)},
+      data);
+  auto tx = std::make_unique<SolanaTransaction>(
+      recent_blockhash, last_valid_block_height, from_account,
+      std::vector<SolanaInstruction>({instruction}));
+  tx->set_to_wallet_address(to_account);
+  tx->set_lamports(10000000u);
+  tx->set_tx_type(mojom::TransactionType::SolanaSystemTransfer);
+
+  SolanaTxMeta meta(std::move(tx));
+  SolanaSignatureStatus status(82, 10, "", "confirmed");
+  meta.set_signature_status(status);
+
+  meta.set_id("meta_id");
+  meta.set_status(mojom::TransactionStatus::Confirmed);
+  meta.set_from("BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8");
+  base::Time::Exploded x{1981, 3, 0, 1, 2};
+  base::Time confirmed_time = meta.confirmed_time();
+  EXPECT_TRUE(base::Time::FromUTCExploded(x, &confirmed_time));
+  meta.set_confirmed_time(confirmed_time);
+  meta.set_submitted_time(confirmed_time - base::Seconds(3));
+  meta.set_created_time(confirmed_time - base::Minutes(1));
+  meta.set_tx_hash(
+      "5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYjCJjBRnbJLgp8uirBgmQpjKhoR4tjF3ZpRzr"
+      "FmBV6UjKdiSZkQUW");
+  meta.set_origin(url::Origin::Create(GURL("https://test.brave.com/")));
+
+  base::Value::Dict value = meta.ToValue();
+  auto expect_value = base::JSONReader::Read(R"(
+    {
+      "id": "meta_id",
+      "status": 4,
+      "from": "BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8",
+      "tx_hash": "5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYjCJjBRnbJLgp8uirBgmQpjKhoR4tjF3ZpRzrFmBV6UjKdiSZkQUW",
+      "origin": "https://test.brave.com/",
+      "confirmed_time": "11996733600000000",
+      "created_time": "11996733540000000",
+      "submitted_time": "11996733597000000",
+      "tx": {
+        "message": {
+          "recent_blockhash": "9sHcv6xwn9YkB8nxTUGKDwPwNnmqVp5oAXxU8Fdkm4J6",
+          "last_valid_block_height": "3090",
+          "fee_payer": "BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8",
+          "instructions": [
+            {
+              "program_id": "11111111111111111111111111111111",
+              "accounts": [
+                {
+                  "pubkey": "BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8",
+                  "is_signer": true,
+                  "is_writable": true
+                },
+                {
+                  "pubkey": "JDqrvDz8d8tFCADashbUKQDKfJZFobNy13ugN65t1wvV",
+                  "is_signer": false,
+                  "is_writable": true
+                }
+              ],
+              "data": "AgAAAICWmAAAAAAA",
+              "decoded_data": {
+                "account_params": [
+                  {
+                    "name": "from_account",
+                    "localized_name": "From Account"
+                  },
+                  {
+                    "name": "to_account",
+                    "localized_name": "To Account"
+                  }
+                ],
+                "params": [
+                  {
+                    "name": "lamports",
+                    "localized_name": "Lamports",
+                    "value": "10000000"
+                  }
+                ],
+                "sys_ins_type": "2"
+              }
+            }
+          ]
+        },
+        "to_wallet_address": "JDqrvDz8d8tFCADashbUKQDKfJZFobNy13ugN65t1wvV",
+        "spl_token_mint_address": "",
+        "lamports": "10000000",
+        "amount": "0",
+        "tx_type": 6
+      },
+      "signature_status": {
+        "slot": "82",
+        "confirmations": "10",
+        "err": "",
+        "confirmation_status": "confirmed"
+      }
+    }
+  )");
+  ASSERT_TRUE(expect_value);
+  EXPECT_EQ(*expect_value, value);
+}
+
+}  // namespace brave_wallet

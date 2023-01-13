@@ -27,7 +27,7 @@ class NTPBackgroundImagesSourceTest : public testing::Test {
   void SetUp() override {
     auto* registry = local_pref_.registry();
     NTPBackgroundImagesService::RegisterLocalStatePrefs(registry);
-    brave::RegisterPrefsForBraveReferralsService(registry);
+    mises::RegisterPrefsForBraveReferralsService(registry);
     service_ =
         std::make_unique<NTPBackgroundImagesService>(nullptr, &local_pref_);
     source_ = std::make_unique<NTPSponsoredImagesSource>(service_.get());
