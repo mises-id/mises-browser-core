@@ -213,17 +213,21 @@ ExtensionFunction::ResponseAction IpfsRemoveIpnsKeyFunction::Run() {
   if (!ipfs_service) {
     return RespondNow(Error("Could not obtain IPFS service"));
   }
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
   ::ipfs::IpnsKeysManager* key_manager = ipfs_service->GetIpnsKeysManager();
   if (!ipfs_service->IsDaemonLaunched() || !key_manager) {
     return RespondNow(Error("IPFS node is not launched"));
   }
+
   std::unique_ptr<ipfs::RemoveIpnsKey::Params> params(
       ipfs::RemoveIpnsKey::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params.get());
   key_manager->RemoveKey(
       params->name, base::BindOnce(&IpfsRemoveIpnsKeyFunction::OnKeyRemoved,
                                    base::RetainedRef(this), key_manager));
+#endif
   return did_respond() ? AlreadyResponded() : RespondLater();
+
 }
 
 void IpfsRemoveIpnsKeyFunction::OnKeyRemoved(::ipfs::IpnsKeysManager* manager,
@@ -243,12 +247,14 @@ ExtensionFunction::ResponseAction IpfsRotateKeyFunction::Run() {
   if (!ipfs_service) {
     return RespondNow(Error("Could not obtain IPFS service"));
   }
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
   std::unique_ptr<ipfs::RotateKey::Params> params(
       ipfs::RotateKey::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params.get());
   ipfs_service->RotateKey(params->name,
                           base::BindOnce(&IpfsRotateKeyFunction::OnKeyRotated,
                                          base::RetainedRef(this)));
+#endif
   return did_respond() ? AlreadyResponded() : RespondLater();
 }
 
@@ -263,16 +269,19 @@ ExtensionFunction::ResponseAction IpfsAddIpnsKeyFunction::Run() {
   if (!ipfs_service) {
     return RespondNow(Error("Could not obtain IPFS service"));
   }
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
   ::ipfs::IpnsKeysManager* key_manager = ipfs_service->GetIpnsKeysManager();
   if (!ipfs_service->IsDaemonLaunched() || !key_manager) {
     return RespondNow(Error("IPFS node is not launched"));
   }
+
   std::unique_ptr<ipfs::AddIpnsKey::Params> params(
       ipfs::AddIpnsKey::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params.get());
   key_manager->GenerateNewKey(
       params->name, base::BindOnce(&IpfsAddIpnsKeyFunction::OnKeyCreated,
                                    base::RetainedRef(this), key_manager));
+#endif
   return did_respond() ? AlreadyResponded() : RespondLater();
 }
 
@@ -296,6 +305,7 @@ ExtensionFunction::ResponseAction IpfsGetIpnsKeysListFunction::Run() {
   if (!ipfs_service) {
     return RespondNow(Error("Could not obtain IPFS service"));
   }
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
   ::ipfs::IpnsKeysManager* key_manager = ipfs_service->GetIpnsKeysManager();
   if (!ipfs_service->IsDaemonLaunched() || !key_manager) {
     return RespondNow(Error("IPFS node is not launched"));
@@ -308,6 +318,9 @@ ExtensionFunction::ResponseAction IpfsGetIpnsKeysListFunction::Run() {
     return RespondLater();
   }
   return RespondNow(OneArgument(MakeResponseFromMap(keys)));
+#else
+  return RespondNow(Error("IPFS node is not enabled"));
+#endif
 }
 
 void IpfsGetIpnsKeysListFunction::OnKeysLoaded(::ipfs::IpnsKeysManager* manager,

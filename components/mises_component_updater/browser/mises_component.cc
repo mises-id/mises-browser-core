@@ -58,11 +58,17 @@ scoped_refptr<base::SequencedTaskRunner> MisesComponent::GetTaskRunner() {
 }
 
 void MisesComponent::AddObserver(ComponentObserver* observer) {
+  if (!delegate_) {
+    return;
+  }
   DCHECK(delegate_);
   delegate_->AddObserver(observer);
 }
 
 void MisesComponent::RemoveObserver(ComponentObserver* observer) {
+  if (!delegate_) {
+    return;
+  }
   DCHECK(delegate_);
   delegate_->RemoveObserver(observer);
 }

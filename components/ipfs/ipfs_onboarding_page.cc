@@ -249,7 +249,7 @@ void IPFSOnboardingPage::PopulateInterstitialStrings(
                          IDS_IPFS_ONBOARDING_INSTALLATION_ERROR));
   load_time_data.Set(
       "peersError",
-      l10n_util::GetStringFUTF16(IDS_IPFS_ONBOARDING_PEERS_ERROR, u"{value}"));
+      brave_l10n::GetStringFUTF16(IDS_IPFS_ONBOARDING_PEERS_ERROR, u"{value}"));
 
 #if !BUILDFLAG(IS_ANDROID)
   std::u16string theme_type =

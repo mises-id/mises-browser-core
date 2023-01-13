@@ -31,6 +31,8 @@ source_set("ui") {
   sources = [
     "webui/mises_webui_source.cc",
     "webui/mises_webui_source.h",
+    "webui/mises_web_ui_controller_factory.cc",
+    "webui/mises_web_ui_controller_factory.h",
   ]
 
   if (enable_ipfs) {
@@ -42,7 +44,8 @@ source_set("ui") {
 
   if (!is_android) {
     sources += [
-      
+      "webui/mises_settings_ui.cc",
+      "webui/mises_settings_ui.h",
     ]
 
   }  # !is_android
@@ -138,6 +141,7 @@ source_set("ui") {
 
   if (!is_android) {
     deps += [
+      "//mises/browser/resources/settings:resources",
       "//chrome/app:chromium_strings",
       "//components/sync_device_info",
       "//mojo/public/cpp/bindings",
@@ -146,18 +150,29 @@ source_set("ui") {
     ]
   }
 
-  if (is_android || enable_extensions && toolkit_views) {
+  if (enable_extensions && toolkit_views) {
     sources += [
+      "views/location_bar/mises_location_bar_view.cc",
+      "views/location_bar/msies_location_bar_view.h",
     ]
 
     if (enable_extensions) {
       sources += [
+        "webui/settings/mises_default_extensions_handler.cc",
+        "webui/settings/mises_default_extensions_handler.h",
       ]
 
       deps += [
         "//third_party/widevine/cdm:buildflags",
       ]
 
+    }
+
+    if (enable_ipfs) {
+      sources += [
+        "views/location_bar/ipfs_location_view.cc",
+        "views/location_bar/ipfs_location_view.h",
+      ]
     }
 
 

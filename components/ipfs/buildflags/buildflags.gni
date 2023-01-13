@@ -3,5 +3,6 @@ declare_args() {
 }
 
 declare_args() {
-  enable_ipfs_local_node = enable_ipfs && !is_ios
+  #enable_ipfs_local_node = enable_ipfs && !is_ios
+  enable_ipfs_local_node = false
 }

@@ -14,6 +14,7 @@
 #include "base/path_service.h"
 #include "base/time/time.h"
 #include "mises/browser/mises_content_browser_client.h"
+#include "mises/common/resource_bundle_helper.h"
 #include "build/build_config.h"
 #include "chrome/common/chrome_features.h"
 #include "chrome/common/chrome_paths.h"
@@ -55,4 +56,42 @@ content::ContentBrowserClient* MisesMainDelegate::CreateContentBrowserClient() {
   }
   return chrome_content_browser_client_.get();
 #endif
+}
+
+
+
+void MisesMainDelegate::PreSandboxStartup() {
+  ChromeMainDelegate::PreSandboxStartup();
+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
+  // Setup NativeMessagingHosts to point to the default Chrome locations
+  // because that's where native apps will create them
+  base::FilePath chrome_user_data_dir;
+  base::FilePath native_messaging_dir;
+#if BUILDFLAG(IS_MAC)
+  base::PathService::Get(base::DIR_APP_DATA, &chrome_user_data_dir);
+  chrome_user_data_dir = chrome_user_data_dir.Append("Google/Chrome");
+  native_messaging_dir = base::FilePath(
+      FILE_PATH_LITERAL("/Library/Google/Chrome/NativeMessagingHosts"));
+#else
+  chrome::GetDefaultUserDataDirectory(&chrome_user_data_dir);
+  native_messaging_dir = base::FilePath(
+      FILE_PATH_LITERAL("/etc/opt/chrome/native-messaging-hosts"));
+#endif  // BUILDFLAG(IS_MAC)
+  base::PathService::OverrideAndCreateIfNeeded(
+      chrome::DIR_USER_NATIVE_MESSAGING,
+      chrome_user_data_dir.Append(FILE_PATH_LITERAL("NativeMessagingHosts")),
+      false, true);
+  base::PathService::OverrideAndCreateIfNeeded(
+      chrome::DIR_NATIVE_MESSAGING, native_messaging_dir, false, true);
+#endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
+
+#if BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_MAC)
+  base::PathService::OverrideAndCreateIfNeeded(
+      chrome::DIR_POLICY_FILES,
+      base::FilePath(FILE_PATH_LITERAL("/etc/mises/policies")), true, false);
+#endif
+
+  if (mises::SubprocessNeedsResourceBundle()) {
+    mises::InitializeResourceBundle();
+  }
 }

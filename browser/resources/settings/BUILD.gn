@@ -1,0 +1,68 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# you can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//mises/browser/resources/settings/sources.gni")
+import("//mises/browser/shell_integrations/buildflags/buildflags.gni")
+import("//mises/build/config.gni")
+import("//mises/resources/mises_grit.gni")
+import("//chrome/common/features.gni")
+import("//extensions/buildflags/buildflags.gni")
+import("//tools/grit/preprocess_if_expr.gni")
+import("//ui/webui/resources/tools/generate_grd.gni")
+
+preprocess_folder = "preprocessed"
+
+# grit (and generate the GRD for) brave's own static resources, they don't need
+# to be part of the build_webui.gni compile.
+# TODO(petemill): It is no longer neccessary to make our own grd and pak, we can add to
+# chromium's static_files list.
+mises_grit("resources") {
+  defines = chrome_grit_defines
+  defines += [
+    "is_release_channel=$is_release_channel",
+  ]
+
+  enable_input_discovery_for_gn_analyze = false
+  source = "$target_gen_dir/mises_settings_resources.grd"
+  deps = [ ":build_grd" ]
+
+  outputs = [
+    "grit/mises_settings_resources.h",
+    "grit/mises_settings_resources_map.cc",
+    "grit/mises_settings_resources_map.h",
+    "mises_settings_resources.pak",
+  ]
+}
+
+generate_grd("build_grd") {
+  grd_prefix = "mises_settings"
+  out_grd = "$target_gen_dir/${grd_prefix}_resources.grd"
+  input_files = [
+    "images/cookies_banner.svg",
+    "images/cookies_banner_dark.svg",
+    "images/permissions_banner.svg",
+    "images/permissions_banner_dark.svg",
+    "images/safe_browsing_banner.svg",
+    "images/safe_browsing_banner_dark.svg",
+  ]
+  input_files_base_dir = rebase_path(".", "//")
+
+  deps = [ ":preprocess" ]
+}
+
+# Move brave files to the place where chromium settings page is compiled from. It should be the same directory
+# that build_webui.gni uses after it performs its own preprocess_if_expr. Once chromium and brave frontend files
+# are all in the same place, build_webui.gni will continue its typescript and rollup compile (etc.) from that
+# directory.
+preprocess_if_expr("preprocess") {
+  defines = [
+    "enable_extensions=$enable_extensions",
+  ]
+  in_folder = "./"
+  out_folder =
+      "$root_gen_dir/chrome/browser/resources/settings/$preprocess_folder"
+
+  in_files = mises_settings_local_files
+}

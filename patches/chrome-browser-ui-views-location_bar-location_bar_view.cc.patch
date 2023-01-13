@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/views/location_bar/location_bar_view.cc b/chrome/browser/ui/views/location_bar/location_bar_view.cc
+index 3698372dbf80de637878c9c02f2b051a88c02f10..aa3e17fd4a7a61c5585718af8721f79ca582382e 100644
+--- a/chrome/browser/ui/views/location_bar/location_bar_view.cc
++++ b/chrome/browser/ui/views/location_bar/location_bar_view.cc
+@@ -650,6 +650,7 @@ void LocationBarView::Layout() {
+     }
+   };
+ 
++  MISES_LAYOUT_TRAILING_DECORATIONS
+   add_trailing_decoration(page_action_icon_container_);
+   for (ContentSettingImageView* view : base::Reversed(content_setting_views_)) {
+     add_trailing_decoration(view);

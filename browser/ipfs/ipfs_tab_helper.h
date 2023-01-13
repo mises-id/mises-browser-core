@@ -30,7 +30,9 @@ class IpfsImportController;
 
 // Determines if IPFS should be active for a given top-level navigation.
 class IPFSTabHelper : public content::WebContentsObserver,
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
                       public IpfsImportController,
+#endif
                       public content::WebContentsUserData<IPFSTabHelper> {
  public:
   IPFSTabHelper(const IPFSTabHelper&) = delete;
@@ -43,10 +45,11 @@ class IPFSTabHelper : public content::WebContentsObserver,
   void SetResolverForTesting(std::unique_ptr<IPFSHostResolver> resolver) {
     resolver_ = std::move(resolver);
   }
-
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
   IpfsImportController* GetImportController() {
     return static_cast<IpfsImportController*>(this);
   }
+#endif
 
   void SetPageURLForTesting(const GURL& url) {
     current_page_url_for_testing_ = url;

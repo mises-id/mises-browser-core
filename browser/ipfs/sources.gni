@@ -13,8 +13,6 @@ if (enable_ipfs) {
   mises_browser_ipfs_sources += [
     "//mises/browser/ipfs/content_browser_client_helper.cc",
     "//mises/browser/ipfs/content_browser_client_helper.h",
-    "//mises/browser/ipfs/import/ipfs_import_controller.cc",
-    "//mises/browser/ipfs/import/ipfs_import_controller.h",
     "//mises/browser/ipfs/import/save_package_observer.cc",
     "//mises/browser/ipfs/import/save_package_observer.h",
     "//mises/browser/ipfs/ipfs_blob_context_getter_factory.cc",
@@ -30,6 +28,12 @@ if (enable_ipfs) {
     "//mises/browser/ipfs/ipfs_tab_helper.cc",
     "//mises/browser/ipfs/ipfs_tab_helper.h",
   ]
+  if (enable_ipfs_local_node) {
+    mises_browser_ipfs_sources += [
+      "//mises/browser/ipfs/import/ipfs_import_controller.cc",
+      "//mises/browser/ipfs/import/ipfs_import_controller.h",
+    ]
+  }
 
   mises_browser_ipfs_deps += [
     "//base",

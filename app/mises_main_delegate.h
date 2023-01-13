@@ -26,6 +26,7 @@ class MisesMainDelegate : public ChromeMainDelegate {
  protected:
   // content::ContentMainDelegate implementation:
   content::ContentBrowserClient* CreateContentBrowserClient() override;
+  void PreSandboxStartup() override;
 };
 
 #endif  // BRAVE_APP_BRAVE_MAIN_DELEGATE_H_
