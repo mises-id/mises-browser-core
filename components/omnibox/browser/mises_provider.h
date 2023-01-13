@@ -57,8 +57,7 @@ private:
 
     static ACMatchClassifications StylesForSingleMatch(
         const std::string &input_text,
-        const std::string &site,
-        const size_t &foundPos);
+        const std::string &match_text);
     
     int GetRelevance(
     const std::string &input_text,
