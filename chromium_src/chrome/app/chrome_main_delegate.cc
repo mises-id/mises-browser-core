@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#include "mises/app/mises_main_delegate.cc"
+
 #include "chrome/app/chrome_main_delegate.h"
 
 #include <stddef.h>

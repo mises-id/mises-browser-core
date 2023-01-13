@@ -90,6 +90,7 @@ source_set("ui") {
   deps = [
     "//mises/chromium_src/chrome/browser/ui",
     "//mises/components/vector_icons",
+    "//mises/components/decentralized_dns/content",
 
     "//base",
     "//chrome/app:command_ids",

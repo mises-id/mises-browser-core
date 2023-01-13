@@ -1,0 +1,220 @@
+import("//mises/components/ipfs/buildflags/buildflags.gni")
+import("//build/buildflag_header.gni")
+import("//build/config/features.gni")
+
+declare_args() {
+  mises_google_api_key = ""
+  mises_google_api_endpoint = ""
+}
+
+buildflag_header("geolocation") {
+  header = "brave_geolocation_buildflags.h"
+
+  flags =
+      [ "GOOGLEAPIS_URL=\"$brave_google_api_endpoint$brave_google_api_key\"" ]
+}
+
+source_set("net") {
+  # Remove when https://github.com/brave/brave-browser/issues/10659 is resolved
+  check_includes = false
+
+  sources = [
+    "brave_ad_block_csp_network_delegate_helper.cc",
+    "brave_ad_block_csp_network_delegate_helper.h",
+    "brave_ad_block_tp_network_delegate_helper.cc",
+    "brave_ad_block_tp_network_delegate_helper.h",
+    "brave_block_safebrowsing_urls.cc",
+    "brave_block_safebrowsing_urls.h",
+    "brave_common_static_redirect_network_delegate_helper.cc",
+    "brave_common_static_redirect_network_delegate_helper.h",
+    "brave_httpse_network_delegate_helper.cc",
+    "brave_httpse_network_delegate_helper.h",
+    "brave_proxying_url_loader_factory.cc",
+    "brave_proxying_url_loader_factory.h",
+    "brave_proxying_web_socket.cc",
+    "brave_proxying_web_socket.h",
+    "brave_query_filter.cc",
+    "brave_query_filter.h",
+    "brave_reduce_language_network_delegate_helper.cc",
+    "brave_reduce_language_network_delegate_helper.h",
+    "brave_request_handler.cc",
+    "brave_request_handler.h",
+    "brave_service_key_network_delegate_helper.cc",
+    "brave_service_key_network_delegate_helper.h",
+    "brave_site_hacks_network_delegate_helper.cc",
+    "brave_site_hacks_network_delegate_helper.h",
+    "brave_static_redirect_network_delegate_helper.cc",
+    "brave_static_redirect_network_delegate_helper.h",
+    "brave_stp_util.cc",
+    "brave_stp_util.h",
+    "brave_system_request_handler.cc",
+    "brave_system_request_handler.h",
+    "decentralized_dns_network_delegate_helper.cc",
+    "decentralized_dns_network_delegate_helper.h",
+    "global_privacy_control_network_delegate_helper.cc",
+    "global_privacy_control_network_delegate_helper.h",
+    "resource_context_data.cc",
+    "resource_context_data.h",
+    "url_context.cc",
+    "url_context.h",
+  ]
+
+  deps = [
+    ":geolocation",
+    "//base",
+    "//brave/app:brave_generated_resources_grit",
+    "//brave/browser/safebrowsing",
+    "//brave/common",
+    "//brave/components/brave_component_updater/browser",
+    "//brave/components/brave_referrals/buildflags",
+    "//brave/components/brave_shields/browser",
+    "//brave/components/brave_shields/common",
+    "//brave/components/brave_wallet/browser",
+    "//brave/components/brave_wallet/common",
+    "//brave/components/brave_webtorrent/browser/buildflags",
+    "//brave/components/decentralized_dns/content",
+    "//brave/components/ipfs/buildflags",
+    "//brave/components/update_client:buildflags",
+    "//brave/extensions:common",
+    "//components/content_settings/core/browser",
+    "//components/prefs",
+    "//components/proxy_config",
+    "//components/user_prefs",
+    "//content/public/browser",
+    "//content/public/common",
+    "//mojo/public/cpp/bindings",
+    "//mojo/public/cpp/system",
+    "//net",
+    "//services/network:network_service",
+    "//services/network/public/cpp",
+    "//services/network/public/mojom",
+    "//third_party/blink/public/common",
+    "//third_party/blink/public/mojom:mojom_platform_headers",
+    "//third_party/re2",
+    "//url",
+  ]
+
+  if (enable_extensions) {
+    deps += [ "//extensions/common:common_constants" ]
+  }
+
+  if (enable_ipfs) {
+    sources += [
+      "ipfs_redirect_network_delegate_helper.cc",
+      "ipfs_redirect_network_delegate_helper.h",
+    ]
+    deps += [
+      "//brave/components/ipfs",
+      "//chrome/common:channel_info",
+    ]
+  }
+
+  if (enable_brave_referrals) {
+    sources += [
+      "brave_referrals_network_delegate_helper.cc",
+      "brave_referrals_network_delegate_helper.h",
+    ]
+
+    deps += [ "//brave/components/brave_referrals/browser" ]
+  }
+
+  if (enable_brave_webtorrent) {
+    sources += [
+      "brave_torrent_redirect_network_delegate_helper.cc",
+      "brave_torrent_redirect_network_delegate_helper.h",
+    ]
+
+    deps += [
+      "//brave/components/brave_webtorrent/browser/",
+      "//extensions/browser",
+    ]
+  }
+}
+
+source_set("browser_tests") {
+  testonly = true
+
+  sources = [
+    "brave_accept_header_browsertest.cc",
+    "brave_network_delegate_browsertest.cc",
+    "brave_network_delegate_hsts_fingerprinting_browsertest.cc",
+    "brave_service_key_network_delegate_helper_browsertest.cc",
+    "brave_site_hacks_network_delegate_helper_browsertest.cc",
+    "brave_system_request_handler_browsertest.cc",
+    "global_privacy_control_network_delegate_helper_browsertest.cc",
+  ]
+  deps = [
+    "//brave/browser/net",
+    "//brave/components/brave_shields/browser",
+    "//brave/components/brave_shields/common",
+    "//brave/components/tor",
+    "//chrome/browser",
+    "//chrome/browser:browser_process",
+    "//chrome/browser/profiles:profile",
+    "//chrome/browser/ui",
+    "//components/content_settings/core/browser",
+    "//components/prefs",
+    "//services/network/public/cpp",
+  ]
+  if (!is_android) {
+    deps += [ "//chrome/test:test_support_ui" ]
+  }
+  if (is_android) {
+    deps += [
+      "//chrome/test:test_support_ui_android",
+      "//net:test_support",
+      "//net/traffic_annotation:test_support",
+    ]
+  }
+  defines = [ "HAS_OUT_OF_PROC_TEST_RUNNER" ]
+}
+
+source_set("unit_tests") {
+  testonly = true
+
+  sources = [
+    "brave_ad_block_tp_network_delegate_helper_unittest.cc",
+    "brave_block_safebrowsing_urls_unittest.cc",
+    "brave_common_static_redirect_network_delegate_helper_unittest.cc",
+    "brave_httpse_network_delegate_helper_unittest.cc",
+    "brave_network_delegate_base_unittest.cc",
+    "brave_query_filter_unittest.cc",
+    "brave_site_hacks_network_delegate_helper_unittest.cc",
+    "brave_static_redirect_network_delegate_helper_unittest.cc",
+    "brave_system_request_handler_unittest.cc",
+  ]
+
+  deps = [
+    "//brave/browser/net",
+    "//brave/browser/net:geolocation",
+    "//brave/components/brave_shields/browser",
+    "//chrome/test:test_support",
+    "//content/test:test_support",
+    "//net",
+    "//net:test_support",
+    "//services/network:network_service",
+    "//testing/gmock",
+    "//testing/gtest",
+    "//third_party/abseil-cpp:absl",
+  ]
+
+  if (enable_brave_webtorrent) {
+    sources += [
+      "//brave/browser/extensions/brave_webtorrent_navigation_throttle_unittest.cc",
+      "//brave/browser/net/brave_torrent_redirect_network_delegate_helper_unittest.cc",
+    ]
+
+    deps += [
+      "//brave/browser/extensions",
+      "//brave/components/brave_referrals/browser",
+    ]
+  }
+  if (enable_brave_referrals) {
+    if (!is_android) {
+      sources += [
+        # TODO(samartnik): this should work on Android, we will review it once unit tests are set up on CI
+        "brave_referrals_network_delegate_helper_unittest.cc",
+      ]
+    }
+  }
+}

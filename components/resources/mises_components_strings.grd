@@ -166,7 +166,9 @@
       <message name="IDS_ERRORPAGES_IPFS_INCOGNITO_HEADING" desc="Heading of the IPFS not available in incognito error page.">
         IPFS page cannot be loaded.
       </message>
-  
+      <if expr="not is_ios">
+        <part file="decentralized_dns_strings.grdp" />
+      </if>
       <part file="ipfs_strings.grdp" />
     </messages>
   </release>

@@ -21,6 +21,8 @@ source_set("extensions") {
    
     "//mises/common",
     "//mises/common/extensions/api",
+    "//mises/components/decentralized_dns/content",
+    "//mises/components/ipfs/buildflags",
     "//chrome/browser/extensions",
     "//chrome/common",
     "//components/gcm_driver:gcm_buildflags",

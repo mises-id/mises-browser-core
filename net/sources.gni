@@ -7,6 +7,4 @@ mises_net_sources = [
   "//mises/net/decentralized_dns/constants.h",
   "//mises/net/http/partitioned_host_state_map.cc",
   "//mises/net/http/partitioned_host_state_map.h",
-  "//mises/net/proxy_resolution/proxy_config_service_tor.cc",
-  "//mises/net/proxy_resolution/proxy_config_service_tor.h",
 ]

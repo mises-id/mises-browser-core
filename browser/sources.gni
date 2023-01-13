@@ -33,6 +33,14 @@ mises_chrome_browser_sources = [
     "//mises/browser/mises_browser_process_impl.h",
     "//mises/browser/mises_browser_process.cc",
     "//mises/browser/mises_browser_process.h",
+    "//mises/browser/mises_local_state_prefs.cc",
+    "//mises/browser/mises_local_state_prefs.h",
+    "//mises/browser/mises_profile_prefs.cc",
+    "//mises/browser/mises_profile_prefs.h",
+
+    "//mises/browser/mises_content_browser_client.cc",
+    "//mises/browser/mises_content_browser_client.h",
+
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.cc",
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.h",
 ]

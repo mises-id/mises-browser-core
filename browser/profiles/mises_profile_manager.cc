@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "mises/components/constants/pref_names.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
 
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/chrome_notification_types.h"
@@ -28,6 +29,10 @@
 #include "content/public/browser/url_data_source.h"
 #include "ui/base/l10n/l10n_util.h"
 
+
+#if BUILDFLAG(ENABLE_IPFS)
+#include "mises/browser/ipfs/ipfs_service_factory.h"
+#endif
 
 using content::BrowserThread;
 
@@ -72,6 +77,9 @@ void MisesProfileManager::DoFinalInitForServices(Profile* profile,
   ProfileManager::DoFinalInitForServices(profile, go_off_the_record);
   if (!do_final_services_init_)
     return;
+#if BUILDFLAG(ENABLE_IPFS)
+  ipfs::IpfsServiceFactory::GetForContext(profile);
+#endif
 }
 
 bool MisesProfileManager::IsAllowedProfilePath(

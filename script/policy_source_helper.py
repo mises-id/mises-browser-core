@@ -6,10 +6,10 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 
-CHROMIUM_POLICY_KEY = 'SOFTWARE\\\\Policies\\\\BraveSoftware\\\\Brave'
+CHROMIUM_POLICY_KEY = 'SOFTWARE\\\\Policies\\\\MisesSoftware\\\\Mises'
 
 
-def AddBravePolicies(template_file_contents):
+def AddMisesPolicies(template_file_contents):
     highest_id = template_file_contents['highest_id_currently_used']
     policies = [
         {
@@ -50,85 +50,7 @@ def AddBravePolicies(template_file_contents):
             'tags': [],
             'desc': ('''This policy allows an admin to specify whether IPFS '''
                      '''feature can be enabled.'''),
-        },
-        {
-            'name': 'BraveRewardsDisabled',
-            'type': 'main',
-            'schema': {'type': 'boolean'},
-            'supported_on': ['chrome.*:105-'],
-            'features': {
-                'dynamic_refresh': False,
-                'per_profile': True,
-                'can_be_recommended': False,
-                'can_be_mandatory': True
-            },
-            'example_value': True,
-            'id': 2,
-            'caption': '''Disable Brave Rewards feature.''',
-            'tags': [],
-            'desc': ('''This policy allows an admin to specify that Brave '''
-                     '''Rewards feature will be disabled.'''),
-        },
-        {
-            'name': 'BraveWalletDisabled',
-            'type': 'main',
-            'schema': {'type': 'boolean'},
-            'supported_on': ['chrome.*:106-'],
-            'features': {
-                'dynamic_refresh': False,
-                'per_profile': True,
-                'can_be_recommended': False,
-                'can_be_mandatory': True
-            },
-            'example_value': True,
-            'id': 3,
-            'caption': '''Disable Brave Wallet feature.''',
-            'tags': [],
-            'desc': ('''This policy allows an admin to specify that Brave '''
-                     '''Wallet feature will be disabled.'''),
-        },
-        {
-            'name': 'BraveShieldsDisabledForUrls',
-            'type': 'main',
-            'schema': {
-              'type': 'array',
-              'items': { 'type': 'string' },
-            },
-            'supported_on': ['chrome.*:107-'],
-            'features': {
-                'dynamic_refresh': False,
-                'per_profile': True,
-                'can_be_recommended': False,
-                'can_be_mandatory': True
-            },
-            'example_value': ['https://brave.com'],
-            'id': 4,
-            'caption': '''Disables Brave Shields for urls.''',
-            'tags': [],
-            'desc': ('''This policy allows an admin to specify that Brave '''
-                     '''Shields disabled.'''),
-        },
-        {
-            'name': 'BraveShieldsEnabledForUrls',
-            'type': 'main',
-            'schema': {
-              'type': 'array',
-              'items': { 'type': 'string' },
-            },
-            'supported_on': ['chrome.*:107-'],
-            'features': {
-                'dynamic_refresh': False,
-                'per_profile': True,
-                'can_be_recommended': False,
-                'can_be_mandatory': True
-            },
-            'example_value': ['https://brave.com'],
-            'id': 5,
-            'caption': '''Enables Brave Shields for urls.''',
-            'tags': [],
-            'desc': ('''This policy allows an admin to specify that Brave '''
-                     '''Shields enabled.'''),
-        },
+        }
     ]
 
     # Our new polices are added with highest id

@@ -5,6 +5,8 @@
 #include "chrome/browser/prefs/browser_prefs.h"
 
 #include <string>
+#include "mises/browser/mises_local_state_prefs.h"
+#include "mises/browser/mises_profile_prefs.h"
 
 #include "base/trace_event/trace_event.h"
 #include "build/branding_buildflags.h"
@@ -1277,6 +1279,7 @@ void RegisterLocalState(PrefRegistrySimple* registry) {
   screen_ai::RegisterLocalStatePrefs(registry);
 #endif  // BUILDFLAG(ENABLE_SCREEN_AI_SERVICE)
 
+  mises::RegisterLocalStatePrefs(registry);
   // This is intentionally last.
   RegisterLocalStatePrefsForMigration(registry);
 }
@@ -1655,6 +1658,8 @@ void RegisterUserProfilePrefs(user_prefs::PrefRegistrySyncable* registry,
   web_app::RegisterInstallBounceMetricProfilePrefs(registry);
   web_app::RegisterDailyWebAppMetricsProfilePrefs(registry);
 #endif
+
+  mises::RegisterProfilePrefs(registry);
 }
 
 void RegisterScreenshotPrefs(PrefRegistrySimple* registry) {
