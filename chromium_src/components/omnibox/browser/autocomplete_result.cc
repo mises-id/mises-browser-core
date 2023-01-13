@@ -261,7 +261,6 @@ void AutocompleteResult::SortAndCull(
   for (auto& match : matches_)
     {
       match.ComputeStrippedDestinationURL(input, template_url_service);
-      LOG(INFO) << "Cg AutocompleteResult::SortAndCull old match url=" << match.destination_url;
     }
     
 
@@ -399,9 +398,6 @@ void AutocompleteResult::SortAndCull(
       }
     }
   }
-   for (auto& match : matches_){
-     LOG(INFO) << "Cg AutocompleteResult::SortAndCull new match url=" << match.destination_url;
-   }
 }
 
 void AutocompleteResult::GroupAndDemoteMatchesInGroups() {

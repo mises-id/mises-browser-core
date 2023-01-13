@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc b/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
-index ed46050d458cf7258968b73e1db89248d647880b..37cdae754f27747d8f38422463278e270641b208 100644
+index ed46050d458cf7258968b73e1db89248d647880b..afd6ce3b5a476ab399040af12e83cfbaf803930e 100644
 --- a/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
 +++ b/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
 @@ -93,7 +93,7 @@ bool IsWebAuthnRPIDListedInSecurityKeyPermitAttestationPolicy(
@@ -7,7 +7,7 @@ index ed46050d458cf7258968b73e1db89248d647880b..37cdae754f27747d8f38422463278e27
                       });
  }
 -
-+#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
  bool IsOriginListedInEnterpriseAttestationSwitch(
      const url::Origin& caller_origin) {
    std::string cmdline_origins =
@@ -20,3 +20,12 @@ index ed46050d458cf7258968b73e1db89248d647880b..37cdae754f27747d8f38422463278e27
  #if BUILDFLAG(IS_WIN)
  // kWebAuthnLastOperationWasNativeAPI is a boolean preference that records
  // whether the last successful operation used the Windows native API. If so
+@@ -272,7 +272,7 @@ GetServerLinkExperiments(
+ 
+ ChromeWebAuthenticationDelegate::~ChromeWebAuthenticationDelegate() = default;
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ 
+ bool ChromeWebAuthenticationDelegate::
+     OverrideCallerOriginAndRelyingPartyIdValidation(

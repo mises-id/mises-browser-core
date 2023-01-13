@@ -3433,7 +3433,7 @@ const char kSecurityTokenSessionNotificationScheduledDomain[] =
     "security_token_session_notification_scheduled";
 #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 // Boolean pref indicating whether user has hidden the cart module on NTP.
 const char kCartModuleHidden[] = "cart_module_hidden";
 // An integer that keeps track of how many times welcome surface has shown in
