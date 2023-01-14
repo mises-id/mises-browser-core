@@ -22,7 +22,7 @@ mises_java_sources = kiwi_java_sources + [
   "//mises/android/java/org/chromium/chrome/browser/app/appmenu/MisesAppMenuPropertiesDelegateImpl.java",
   "//mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
   "//mises/android/java/org/chromium/base/MisesSysUtils.java",
-
+  "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
   "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/ENSSettingsFragment.java",
   "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/RadioButtonGroupENSResolveMethodPreference.java",
   "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/RadioButtonGroupUnstoppableDomainsResolveMethodPreference.java",

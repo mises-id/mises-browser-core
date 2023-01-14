@@ -14,11 +14,35 @@ This file contains all "about" strings.  It is set to NOT be translated, in tran
       <message name="IDS_MENU_BRAVE_WALLET" desc="Brave Wallet menu item text">
       Wallet
     </message>
-          <message name="IDS_MENU_SET_DEFAULT_BROWSER" desc="Title for set default browser menu item">
+      <message name="IDS_MENU_SET_DEFAULT_BROWSER" desc="Title for set default browser menu item">
         Set as Default Browser
       </message>
-            <message name="IDS_BRAVE_VPN" desc="Title for Brave vpn settings">
+      <message name="IDS_BRAVE_VPN" desc="Title for Brave vpn settings">
         Brave VPN
+      </message>
+      <message name="IDS_UNSTOPPABLE_DOMAINS_TITLE" desc="Title for Unstoppable Domains settings.">
+        Unstoppable Domains
+      </message>
+      <message name="IDS_ENS_TITLE" desc="Title for ENS settings.">
+        Ethereum Name Service
+      </message>
+      <message name="IDS_IPFS_GATEWAY_TITLE" desc="Title for IPFS setting.">
+        IPFS Gateway
+      </message>
+      <message name="IDS_IPFS_GATEWAY_SUMMARY" desc="Summary for IPFS gateway setting.">
+        Allows for navigation to IPFS resources through an IPFS Gateway
+      </message>
+      <message name="IDS_RESOLVE_METHOD_TITLE" desc="Title for resolve method preference category.">
+        Resolve Method
+      </message>
+      <message name="IDS_RESOLVE_METHOD_ASK" desc="Text for resolve method Ask.">
+        Ask
+      </message>
+      <message name="IDS_RESOLVE_METHOD_DISABLED" desc="Text for resolve method Disabled.">
+        Disabled
+      </message>
+      <message name="IDS_RESOLVE_METHOD_ETHEREUM" desc="Text for resolve method Ethereum.">
+        Ethereum
       </message>
   </messages>
   </release>

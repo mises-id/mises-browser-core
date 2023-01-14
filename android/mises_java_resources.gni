@@ -337,13 +337,16 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/xml/tabswitcher_preferences.xml",
     "java/res/values/google-services.xml",
     "java/res/drawable-hdpi/ic_menu_mises_forward.png",
-"java/res/drawable-xhdpi/ic_menu_mises_forward.png",
-"java/res/drawable-xxxhdpi/ic_menu_mises_forward.png",
-"java/res/values/channel_constants.xml",
-"java/res/drawable-mdpi/ic_menu_mises_forward.png",
-"java/res/drawable-xxhdpi/ic_menu_mises_forward.png",
+    "java/res/drawable-xhdpi/ic_menu_mises_forward.png",
+    "java/res/drawable-xxxhdpi/ic_menu_mises_forward.png",
+    "java/res/values/channel_constants.xml",
+    "java/res/drawable-mdpi/ic_menu_mises_forward.png",
+    "java/res/drawable-xxhdpi/ic_menu_mises_forward.png",
+    "java/res/xml/unstoppable_domains_preferences.xml",
+    "java/res/xml/ens_preferences.xml",
 
-
+    "java/res/layout/radio_button_group_ens_resolve_method_preference.xml",
+    "java/res/layout/radio_button_group_unstoppable_domains_resolve_method_preference.xml",
 
 
 ]
