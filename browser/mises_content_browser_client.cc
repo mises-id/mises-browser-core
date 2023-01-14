@@ -143,7 +143,7 @@ MisesContentBrowserClient::CreateThrottlesForNavigation(
   throttles.insert(
       throttles.begin(),
       ipfs::IpfsSubframeNavigationThrottle::CreateThrottleFor(handle));
-#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
+
   content::BrowserContext* context =
       handle->GetWebContents()->GetBrowserContext();
   std::unique_ptr<content::NavigationThrottle> ipfs_navigation_throttle =
@@ -153,7 +153,7 @@ MisesContentBrowserClient::CreateThrottlesForNavigation(
           g_browser_process->GetApplicationLocale());
   if (ipfs_navigation_throttle)
     throttles.push_back(std::move(ipfs_navigation_throttle));
-#endif
+
 #endif
 
   std::unique_ptr<content::NavigationThrottle>

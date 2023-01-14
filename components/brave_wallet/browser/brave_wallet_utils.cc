@@ -488,7 +488,7 @@ std::vector<mojom::NetworkInfoPtr> MergeKnownAndCustomChains(
 GURL AddInfuraProjectId(const GURL& url) {
   DCHECK(url.is_valid()) << url.possibly_invalid_spec();
   GURL::Replacements replacements;
-  auto path = GetInfuraProjectID();
+  auto path = std::string("/v3/") + GetInfuraProjectID();
   replacements.SetPathStr(path);
   return url.ReplaceComponents(replacements);
 }

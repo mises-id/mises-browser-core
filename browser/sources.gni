@@ -51,6 +51,7 @@ mises_chrome_browser_deps = [
   "//base",
   "//mises/browser/profiles",
   "//mises/browser/net",
+  "//mises/components/constants",
   "//mises/components/brave_wallet/browser",
   "//mises/components/brave_wallet/common",
   "//mises/components/brave_wallet/common:mojom",

@@ -31,6 +31,14 @@ static_library("ipfs") {
     "pref_names.h",
     "repo_stats.cc",
     "repo_stats.h",
+    "ipfs_navigation_throttle.cc",
+    "ipfs_navigation_throttle.h",
+    "ipfs_onboarding_page.cc",
+    "ipfs_onboarding_page.h",
+    "ipfs_not_connected_page.cc",
+    "ipfs_not_connected_page.h",
+    "ipfs_interstitial_controller_client.cc",
+    "ipfs_interstitial_controller_client.h",
   ]
 
   deps = [
@@ -63,14 +71,7 @@ static_library("ipfs") {
       "import/ipfs_import_worker_base.h",
       "import/ipfs_link_import_worker.cc",
       "import/ipfs_link_import_worker.h",
-      "ipfs_interstitial_controller_client.cc",
-      "ipfs_interstitial_controller_client.h",
-      "ipfs_navigation_throttle.cc",
-      "ipfs_navigation_throttle.h",
-      "ipfs_not_connected_page.cc",
-      "ipfs_not_connected_page.h",
-      "ipfs_onboarding_page.cc",
-      "ipfs_onboarding_page.h",
+
       "keys/ipns_keys_manager.cc",
       "keys/ipns_keys_manager.h",
     ]
