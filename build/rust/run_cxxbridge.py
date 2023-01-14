@@ -13,7 +13,7 @@ from deps_config import RUST_DEPS_PACKAGE_VERSION
 # atomic output that's maximally compatible with ninja.
 sys.path.append(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir,
-                 os.pardir, os.pardir, 'build', 'android', 'gyp'))
+                 os.pardir,  'src','build', 'android', 'gyp'))
 from util import build_utils
 
 import argparse

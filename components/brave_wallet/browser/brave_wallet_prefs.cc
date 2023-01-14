@@ -16,7 +16,7 @@
 #include "mises/components/brave_wallet/browser/pref_names.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/pref_names.h"
-#include "mises/components/p3a_utils/feature_usage.h"
+//#include "mises/components/p3a_utils/feature_usage.h"
 #include "components/prefs/pref_service.h"
 #include "components/prefs/scoped_user_pref_update.h"
 #include "components/sync_preferences/pref_service_syncable.h"
@@ -82,9 +82,9 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   registry->RegisterIntegerPref(kBraveWalletAutoLockMinutes, 5);
   registry->RegisterStringPref(kBraveWalletSelectedAccount, "");
   registry->RegisterBooleanPref(kSupportEip1559OnLocalhostChain, false);
-  p3a_utils::RegisterFeatureUsagePrefs(registry, kBraveWalletP3AFirstUnlockTime,
-                                       kBraveWalletP3ALastUnlockTime,
-                                       kBraveWalletP3AUsedSecondDay, nullptr);
+  // p3a_utils::RegisterFeatureUsagePrefs(registry, kBraveWalletP3AFirstUnlockTime,
+  //                                      kBraveWalletP3ALastUnlockTime,
+  //                                      kBraveWalletP3AUsedSecondDay, nullptr);
   registry->RegisterDictionaryPref(kBraveWalletLastTransactionSentTimeDict);
 }
 
@@ -169,7 +169,6 @@ void MigrateObsoleteProfilePrefs(PrefService* prefs) {
   // Added 10/22 to have is_nft set for existing ERC721 tokens.
   BraveWalletService::MigrateUserAssetsAddIsNFT(prefs);
 
-  JsonRpcService::MigrateMultichainNetworks(prefs);
 
   if (prefs->HasPrefPath(kBraveWalletWeb3ProviderDeprecated)) {
     mojom::DefaultWallet provider = static_cast<mojom::DefaultWallet>(
@@ -197,7 +196,7 @@ void MigrateObsoleteProfilePrefs(PrefService* prefs) {
   // Ethereum transactions were at kBraveWalletTransactions.network_id.tx_id,
   // migrate it to be at kBraveWalletTransactions.ethereum.network_id.tx_id.
   if (!prefs->GetBoolean(kBraveWalletEthereumTransactionsCoinTypeMigrated)) {
-    auto transactions = prefs->GetDict(kBraveWalletTransactions).Clone();
+    auto transactions = prefs->GetDictionary(kBraveWalletTransactions)->GetDict().Clone();
     prefs->ClearPref(kBraveWalletTransactions);
     if (!transactions.empty()) {
       DictionaryPrefUpdate update(prefs, kBraveWalletTransactions);
@@ -207,8 +206,6 @@ void MigrateObsoleteProfilePrefs(PrefService* prefs) {
     prefs->SetBoolean(kBraveWalletEthereumTransactionsCoinTypeMigrated, true);
   }
 
-  // Added 10/2022
-  JsonRpcService::MigrateDeprecatedEthereumTestnets(prefs);
 }
 
 }  // namespace brave_wallet

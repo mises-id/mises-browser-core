@@ -87,8 +87,7 @@ class MisesProxyingURLLoaderFactory
         network::mojom::EarlyHintsPtr early_hints) override;
     void OnReceiveResponse(
         network::mojom::URLResponseHeadPtr response_head,
-        mojo::ScopedDataPipeConsumerHandle body,
-        absl::optional<mojo_base::BigBuffer> cached_metadata) override;
+        mojo::ScopedDataPipeConsumerHandle body) override;
     void OnReceiveRedirect(
         const net::RedirectInfo& redirect_info,
         network::mojom::URLResponseHeadPtr response_head) override;
@@ -97,7 +96,7 @@ class MisesProxyingURLLoaderFactory
                           OnUploadProgressCallback callback) override;
     void OnTransferSizeUpdated(int32_t transfer_size_diff) override;
     void OnComplete(const network::URLLoaderCompletionStatus& status) override;
-
+    void OnReceiveCachedMetadata(mojo_base::BigBuffer data) override;
    private:
     // These two methods combined form the implementation of Restart().
     void UpdateRequestInfo();

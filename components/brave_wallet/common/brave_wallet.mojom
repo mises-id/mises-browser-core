@@ -906,7 +906,7 @@ interface JsonRpcService {
   EnsGetEthAddr(string domain, EnsOffchainLookupOptions? options) => (string address, bool require_offchain_consent, ProviderError error, string error_message);
 
   // SNS lookups
-  SnsGetSolAddr(string domain) => (string address, SolanaProviderError error, string error_message);
+  //SnsGetSolAddr(string domain) => (string address, SolanaProviderError error, string error_message);
 
   // Unstoppable Domains lookups
   UnstoppableDomainsGetWalletAddr(string domain, BlockchainToken? token) => (string address, ProviderError error, string error_message);
@@ -936,12 +936,12 @@ interface JsonRpcService {
   // https://docs.solana.com/developing/clients/jsonrpc-api
 
   // Returns the balance of the account of provided Pubkey.
-  GetSolanaBalance(string pubkey, string chain_id) =>
-      (uint64 balance, SolanaProviderError error, string error_message);
+  //GetSolanaBalance(string pubkey, string chain_id) =>
+  //    (uint64 balance, SolanaProviderError error, string error_message);
   // Returns the token balance of an SPL Token account.
-  GetSPLTokenAccountBalance(string wallet_address, string token_mint_address, string chain_id) =>
-      (string amount, uint8 decimals, string uiAmountString,
-       SolanaProviderError error, string error_message);
+  //GetSPLTokenAccountBalance(string wallet_address, string token_mint_address, string chain_id) =>
+   //   (string amount, uint8 decimals, string uiAmountString,
+   //    SolanaProviderError error, string error_message);
 };
 
 enum TransactionStatus {
@@ -1314,7 +1314,7 @@ interface BraveWalletService {
   NotifyDecryptRequestProcessed(bool approved, url.mojom.Origin origin);
   GetPendingDecryptRequests() => (array<DecryptRequest> requests);
 
-  IsBase58EncodedSolanaPubkey(string key) => (bool result);
+  //IsBase58EncodedSolanaPubkey(string key) => (bool result);
 
   Base58Encode(array<array<uint8>> addresses) => (array<string> addresses);
 

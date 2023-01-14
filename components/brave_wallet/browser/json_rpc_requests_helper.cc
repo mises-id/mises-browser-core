@@ -12,7 +12,7 @@
 #include "base/json/json_writer.h"
 #include "mises/components/brave_wallet/common/eth_request_helper.h"
 #include "mises/components/brave_wallet/common/web3_provider_constants.h"
-#include "mises/components/constants/brave_services_key.h"
+#include "mises/components/constants/mises_services_key.h"
 #include "net/http/http_util.h"
 
 namespace brave_wallet {
@@ -63,11 +63,11 @@ base::flat_map<std::string, std::string> MakeCommonJsonRpcHeaders(
   }
 
   std::unique_ptr<base::Environment> env(base::Environment::Create());
-  std::string brave_key(BUILDFLAG(BRAVE_SERVICES_KEY));
-  if (env->HasVar("BRAVE_SERVICES_KEY")) {
-    env->GetVar("BRAVE_SERVICES_KEY", &brave_key);
+  std::string brave_key(BUILDFLAG(MISES_SERVICES_KEY));
+  if (env->HasVar("MISES_SERVICES_KEY")) {
+    env->GetVar("MISES_SERVICES_KEY", &brave_key);
   }
-  request_headers["x-brave-key"] = std::move(brave_key);
+  request_headers["x-mises-key"] = std::move(brave_key);
 
   return request_headers;
 }

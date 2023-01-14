@@ -56,9 +56,6 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
       PrefService* prefs);
   ~JsonRpcService() override;
 
-  static void MigrateMultichainNetworks(PrefService* prefs);
-  static void MigrateDeprecatedEthereumTestnets(PrefService* prefs);
-
   mojo::PendingRemote<mojom::JsonRpcService> MakeRemote();
   void Bind(mojo::PendingReceiver<mojom::JsonRpcService> receiver);
 
@@ -177,8 +174,8 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
   void EnsGetEthAddr(const std::string& domain,
                      mojom::EnsOffchainLookupOptionsPtr options,
                      EnsGetEthAddrCallback callback) override;
-  void SnsGetSolAddr(const std::string& domain,
-                     SnsGetSolAddrCallback callback) override;
+//   void SnsGetSolAddr(const std::string& domain,
+//                      SnsGetSolAddrCallback callback) override;
 
   bool SetNetwork(const std::string& chain_id,
                   mojom::CoinType coin,
@@ -363,7 +360,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
 
   void SetAPIRequestHelperForTesting(
       scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory);
-
+/*
   // Solana JSON RPCs
   void GetSolanaBalance(const std::string& pubkey,
                         const std::string& chain_id,
@@ -411,6 +408,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                               mojom::SolanaProviderError error,
                               const std::string& error_message)>;
   void GetSolanaBlockHeight(GetSolanaBlockHeightCallback callback);
+  */
 
  private:
   void FireNetworkChanged(mojom::CoinType coin);
@@ -477,10 +475,10 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
       EnsResolverTask* task,
       absl::optional<EnsResolverTaskResult> task_result,
       absl::optional<EnsResolverTaskError> error);
-  void OnSnsGetSolAddrTaskDone(
-      SnsResolverTask* task,
-      absl::optional<SnsResolverTaskResult> task_result,
-      absl::optional<SnsResolverTaskError> error);
+//   void OnSnsGetSolAddrTaskDone(
+//       SnsResolverTask* task,
+//       absl::optional<SnsResolverTaskResult> task_result,
+//       absl::optional<SnsResolverTaskError> error);
   void OnEnsGetEthAddr(EnsGetEthAddrCallback callback,
                        APIRequestResult api_request_result);
   void OnGetFilEstimateGas(GetFilEstimateGasCallback callback,
@@ -546,7 +544,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
 
   void OnGetSupportsInterface(GetSupportsInterfaceCallback callback,
                               APIRequestResult api_request_result);
-
+/*
   // Solana
   void OnGetSolanaBalance(GetSolanaBalanceCallback callback,
                           APIRequestResult api_request_result);
@@ -565,7 +563,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                                 APIRequestResult api_request_result);
   void OnGetSolanaBlockHeight(GetSolanaBlockHeightCallback callback,
                               APIRequestResult api_request_result);
-
+*/
   scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory_;
   std::unique_ptr<APIRequestHelper> api_request_helper_;
   std::unique_ptr<APIRequestHelper> api_request_helper_ens_offchain_;
@@ -591,7 +589,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
   EnsResolverTaskContainer<EnsGetContentHashCallback>
       ens_get_content_hash_tasks_;
 
-  SnsResolverTaskContainer<SnsGetSolAddrCallback> sns_get_sol_addr_tasks_;
+  //SnsResolverTaskContainer<SnsGetSolAddrCallback> sns_get_sol_addr_tasks_;
 
   mojo::ReceiverSet<mojom::JsonRpcService> receivers_;
   PrefService* prefs_ = nullptr;

@@ -40,6 +40,8 @@ mises_chrome_browser_sources = [
 
     "//mises/browser/mises_content_browser_client.cc",
     "//mises/browser/mises_content_browser_client.h",
+    "//mises/browser/browser_context_keyed_service_factories.cc",
+    "//mises/browser/browser_context_keyed_service_factories.h",
 
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.cc",
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.h",

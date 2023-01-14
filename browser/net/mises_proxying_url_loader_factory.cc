@@ -219,11 +219,9 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::OnReceiveEarlyHints(
 
 void MisesProxyingURLLoaderFactory::InProgressRequest::OnReceiveResponse(
     network::mojom::URLResponseHeadPtr head,
-    mojo::ScopedDataPipeConsumerHandle body,
-    absl::optional<mojo_base::BigBuffer> cached_metadata) {
+    mojo::ScopedDataPipeConsumerHandle body) {
   current_response_head_ = std::move(head);
   current_response_body_ = std::move(body);
-  cached_metadata_ = std::move(cached_metadata);
   ctx_->internal_redirect = false;
   HandleResponseOrRedirectHeaders(
       base::BindRepeating(&InProgressRequest::ContinueToResponseStarted,
@@ -266,6 +264,10 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::OnComplete(
 
   // Deletes |this|.
   factory_->RemoveRequest(this);
+}
+void MisesProxyingURLLoaderFactory::InProgressRequest::OnReceiveCachedMetadata(
+  mojo_base::BigBuffer data) {
+  cached_metadata_ = std::move(data);
 }
 
 void MisesProxyingURLLoaderFactory::InProgressRequest::
@@ -362,8 +364,7 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::
     }
 
     // Craft the response.
-    target_client_->OnReceiveResponse(std::move(response), std::move(consumer),
-                                      std::move(cached_metadata_));
+    target_client_->OnReceiveResponse(std::move(response), std::move(consumer));
 
     auto write_data = std::make_unique<WriteData>();
     write_data->client = weak_factory_.GetWeakPtr();
@@ -523,8 +524,7 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::
 
   proxied_client_receiver_.Resume();
   target_client_->OnReceiveResponse(std::move(current_response_head_),
-                                    std::move(current_response_body_),
-                                    std::move(cached_metadata_));
+                                    std::move(current_response_body_));
 }
 
 void MisesProxyingURLLoaderFactory::InProgressRequest::ContinueToBeforeRedirect(

@@ -11,6 +11,7 @@
 #include "mises/components/ipfs/buildflags/buildflags.h"
 #include "chrome/browser/content_settings/host_content_settings_map_factory.h"
 #include "chrome/browser/profiles/profile.h"
+#include "content/public/browser/web_contents.h"
 #include "content/public/browser/browser_thread.h"
 #include "content/public/browser/render_frame_host.h"
 #include "net/base/isolation_info.h"
@@ -89,8 +90,8 @@ std::shared_ptr<mises::MisesRequestInfo> MisesRequestInfo::MakeCTX(
     // cross-site top-level navigations. Fortunately for now it is not a problem
     // for shields functionality. We should reconsider this machinery, also
     // given that this is always empty for subresources.
-    ctx->network_anonymization_key =
-        request.trusted_params->isolation_info.network_anonymization_key();
+    ctx->network_isolation_key =
+        request.trusted_params->isolation_info.network_isolation_key();
     ctx->tab_origin = request.trusted_params->isolation_info.top_frame_origin()
                           .value_or(url::Origin())
                           .GetURL();
@@ -127,8 +128,8 @@ std::shared_ptr<mises::MisesRequestInfo> MisesRequestInfo::MakeCTX(
   }
 #endif
 
-  Profile* profile = Profile::FromBrowserContext(browser_context);
-  auto* map = HostContentSettingsMapFactory::GetForProfile(profile);
+  //Profile* profile = Profile::FromBrowserContext(browser_context);
+  //auto* map = HostContentSettingsMapFactory::GetForProfile(profile);
   ctx->allow_brave_shields = false;
   ctx->allow_ads = true;
   // Currently, "aggressive" mode is registered as a cosmetic filtering control

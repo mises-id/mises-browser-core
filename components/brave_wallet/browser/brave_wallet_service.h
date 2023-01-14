@@ -183,12 +183,12 @@ class BraveWalletService : public KeyedService,
   void NotifyDecryptRequestProcessed(bool approved,
                                      const url::Origin& origin) override;
 
-  void IsBase58EncodedSolanaPubkey(
-      const std::string& key,
-      IsBase58EncodedSolanaPubkeyCallback callback) override;
+//   void IsBase58EncodedSolanaPubkey(
+//       const std::string& key,
+//       IsBase58EncodedSolanaPubkeyCallback callback) override;
 
-  void Base58Encode(const std::vector<std::vector<std::uint8_t>>& addresses,
-                    Base58EncodeCallback callback) override;
+//   void Base58Encode(const std::vector<std::vector<std::uint8_t>>& addresses,
+//                     Base58EncodeCallback callback) override;
 
   // BraveWalletServiceDelegate::Observer:
   void OnActiveOriginChanged(const mojom::OriginInfoPtr& origin_info) override;
@@ -217,7 +217,7 @@ class BraveWalletService : public KeyedService,
 
   void RemovePrefListenersForTests();
 
-  BraveWalletP3A* GetBraveWalletP3A();
+  //BraveWalletP3A* GetBraveWalletP3A();
 
  private:
   friend class EthereumProviderImplUnitTest;
@@ -311,7 +311,7 @@ class BraveWalletService : public KeyedService,
   raw_ptr<JsonRpcService> json_rpc_service_ = nullptr;
   raw_ptr<TxService> tx_service_ = nullptr;
   raw_ptr<PrefService> prefs_ = nullptr;
-  BraveWalletP3A brave_wallet_p3a_;
+  //BraveWalletP3A brave_wallet_p3a_;
   mojo::ReceiverSet<mojom::BraveWalletService> receivers_;
   PrefChangeRegistrar pref_change_registrar_;
   base::RepeatingTimer p3a_periodic_timer_;

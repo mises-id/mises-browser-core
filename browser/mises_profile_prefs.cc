@@ -9,6 +9,8 @@
 
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_prefs.h"
+
 #include "build/build_config.h"
 #include "chrome/browser/prefetch/pref_names.h"
 #include "chrome/browser/prefetch/prefetch_prefs.h"
@@ -29,6 +31,7 @@
 #include "components/search_engines/search_engines_pref_names.h"
 #include "components/signin/public/base/signin_pref_names.h"
 #include "components/sync/base/pref_names.h"
+
 #include "extensions/buildflags/buildflags.h"
 #include "third_party/widevine/cdm/buildflags.h"
 
@@ -52,6 +55,8 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 #if BUILDFLAG(ENABLE_IPFS)
   ipfs::IpfsService::RegisterProfilePrefs(registry);
 #endif
+  // Brave Wallet
+  brave_wallet::RegisterProfilePrefs(registry);
 
 }
 

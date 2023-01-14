@@ -40,20 +40,21 @@
 #include "third_party/abseil-cpp/absl/types/optional.h"
 #include "third_party/boringssl/src/include/openssl/evp.h"
 #include "url/gurl.h"
+#include "components/version_info/version_info.h"
 
 namespace brave_wallet {
 
 namespace {
 
 std::string GenerateMnemonicInternal(uint8_t* entropy, size_t size) {
-  char* words = nullptr;
+  //char* words = nullptr;
   std::string result;
-  if (bip39_mnemonic_from_bytes(nullptr, entropy, size, &words) != WALLY_OK) {
-    LOG(ERROR) << __func__ << ": bip39_mnemonic_from_bytes failed";
-    return result;
-  }
-  result = words;
-  wally_free_string(words);
+  // if (bip39_mnemonic_from_bytes(nullptr, entropy, size, &words) != WALLY_OK) {
+  //   LOG(ERROR) << __func__ << ": bip39_mnemonic_from_bytes failed";
+  //   return result;
+  // }
+  // result = words;
+  // wally_free_string(words);
   return result;
 }
 
@@ -447,7 +448,7 @@ constexpr const char kEnsRegistryContractAddress[] =
 
 const base::Value::List* GetCustomNetworksList(PrefService* prefs,
                                                mojom::CoinType coin) {
-  const auto& custom_networks = prefs->GetDict(kBraveWalletCustomNetworks);
+  const auto& custom_networks = prefs->GetDictionary(kBraveWalletCustomNetworks)->GetDict();
   return custom_networks.FindList(GetPrefKeyForCoinType(coin));
 }
 
@@ -764,20 +765,20 @@ std::unique_ptr<std::vector<uint8_t>> MnemonicToEntropy(
   std::unique_ptr<std::vector<uint8_t>> entropy =
       std::make_unique<std::vector<uint8_t>>(entropy_size);
 
-  size_t written;
-  if (bip39_mnemonic_to_bytes(nullptr, mnemonic.c_str(), entropy->data(),
-                              entropy->size(), &written) != WALLY_OK) {
-    LOG(ERROR) << "bip39_mnemonic_to_bytes failed";
-    return nullptr;
-  }
+  // size_t written;
+  // if (bip39_mnemonic_to_bytes(nullptr, mnemonic.c_str(), entropy->data(),
+  //                             entropy->size(), &written) != WALLY_OK) {
+  //   LOG(ERROR) << "bip39_mnemonic_to_bytes failed";
+  //   return nullptr;
+  // }
   return entropy;
 }
 
 bool IsValidMnemonic(const std::string& mnemonic) {
-  if (bip39_mnemonic_validate(nullptr, mnemonic.c_str()) != WALLY_OK) {
-    LOG(ERROR) << __func__ << ": Invalid mnemonic: " << mnemonic;
-    return false;
-  }
+  // if (bip39_mnemonic_validate(nullptr, mnemonic.c_str()) != WALLY_OK) {
+  //   LOG(ERROR) << __func__ << ": Invalid mnemonic: " << mnemonic;
+  //   return false;
+  // }
   return true;
 }
 
@@ -1343,7 +1344,7 @@ void RemoveCustomNetwork(PrefService* prefs,
 std::vector<std::string> GetAllHiddenNetworks(PrefService* prefs,
                                               mojom::CoinType coin) {
   std::vector<std::string> result;
-  const auto& hidden_networks = prefs->GetDict(kBraveWalletHiddenNetworks);
+  const auto& hidden_networks = prefs->GetDictionary(kBraveWalletHiddenNetworks)->GetDict();
 
   auto* hidden_eth_networks =
       hidden_networks.FindList(GetPrefKeyForCoinType(coin));
@@ -1395,7 +1396,7 @@ void RemoveHiddenNetwork(PrefService* prefs,
 }
 
 std::string GetCurrentChainId(PrefService* prefs, mojom::CoinType coin) {
-  const auto& selected_networks = prefs->GetDict(kBraveWalletSelectedNetworks);
+  const auto& selected_networks = prefs->GetDictionary(kBraveWalletSelectedNetworks)->GetDict();
   const std::string* chain_id =
       selected_networks.FindString(GetPrefKeyForCoinType(coin));
   if (!chain_id)
@@ -1431,7 +1432,7 @@ mojom::OriginInfoPtr MakeOriginInfo(const url::Origin& origin) {
 // Brave/v[version]
 std::string GetWeb3ClientVersion() {
   return base::StringPrintf(
-      "BraveWallet/v%s", version_info::GetBraveChromiumVersionNumber().c_str());
+      "MisesWallet/v%s", version_info::GetVersionNumber().c_str());
 }
 
 bool IsFilecoinKeyringId(const std::string& keyring_id) {

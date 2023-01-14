@@ -44,8 +44,7 @@ MisesRequestHandler::MisesRequestHandler() {
 MisesRequestHandler::~MisesRequestHandler() = default;
 
 void MisesRequestHandler::SetupCallbacks() {
-
-  callback = base::BindRepeating(
+  mises::OnBeforeURLRequestCallback callback = base::BindRepeating(
       decentralized_dns::OnBeforeURLRequest_DecentralizedDnsPreRedirectWork);
   before_url_request_callbacks_.push_back(callback);
 
@@ -97,11 +96,11 @@ int MisesRequestHandler::OnHeadersReceived(
     const net::HttpResponseHeaders* original_response_headers,
     scoped_refptr<net::HttpResponseHeaders>* override_response_headers,
     GURL* allowed_unsafe_redirect_url) {
-  if (!ctx->tab_origin.is_empty()) {
-    mises::RemoveTrackableSecurityHeadersForThirdParty(
-        ctx->request_url, url::Origin::Create(ctx->tab_origin),
-        original_response_headers, override_response_headers);
-  }
+  // if (!ctx->tab_origin.is_empty()) {
+  //   mises::RemoveTrackableSecurityHeadersForThirdParty(
+  //       ctx->request_url, url::Origin::Create(ctx->tab_origin),
+  //       original_response_headers, override_response_headers);
+  // }
 
   if (headers_received_callbacks_.empty() &&
       !ctx->request_url.SchemeIs(content::kChromeUIScheme)) {

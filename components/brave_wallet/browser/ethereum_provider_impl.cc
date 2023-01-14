@@ -1504,9 +1504,9 @@ void EthereumProviderImpl::OnContentSettingChanged(
     const ContentSettingsPattern& primary_pattern,
     const ContentSettingsPattern& secondary_pattern,
     ContentSettingsType content_type) {
-  if (content_type == ContentSettingsType::BRAVE_ETHEREUM) {
-    UpdateKnownAccounts();
-  }
+  // if (content_type == ContentSettingsType::BRAVE_ETHEREUM) {
+  //   UpdateKnownAccounts();
+  // }
 }
 
 void EthereumProviderImpl::AddSuggestToken(mojom::BlockchainTokenPtr token,

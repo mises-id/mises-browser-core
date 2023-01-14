@@ -52,7 +52,7 @@
 #include "mises/components/brave_wallet/common/solana_utils.h"
 #include "mises/components/brave_wallet/common/test_utils.h"
 #include "mises/components/brave_wallet/common/value_conversion_utils.h"
-#include "mises/components/constants/brave_services_key.h"
+#include "mises/components/constants/mises_services_key.h"
 #include "mises/components/decentralized_dns/core/constants.h"
 #include "mises/components/decentralized_dns/core/utils.h"
 #include "mises/components/ipfs/ipfs_service.h"
@@ -941,8 +941,8 @@ class JsonRpcServiceUnitTest : public testing::Test {
                 !expected_cache_header.empty());
             EXPECT_EQ(expected_cache_header, header_value);
           }
-          EXPECT_TRUE(request.headers.GetHeader("x-brave-key", &header_value));
-          EXPECT_EQ(BUILDFLAG(BRAVE_SERVICES_KEY), header_value);
+          EXPECT_TRUE(request.headers.GetHeader("x-mises-key", &header_value));
+          EXPECT_EQ(BUILDFLAG(MISES_SERVICES_KEY), header_value);
           url_loader_factory_.ClearResponses();
           url_loader_factory_.AddResponse(request.url.spec(), content);
         }));

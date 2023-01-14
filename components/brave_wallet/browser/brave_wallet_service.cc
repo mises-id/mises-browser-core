@@ -25,11 +25,11 @@
 #include "mises/components/brave_wallet/common/brave_wallet_response_helpers.h"
 #include "mises/components/brave_wallet/common/eth_address.h"
 #include "mises/components/brave_wallet/common/hex_utils.h"
-#include "mises/components/brave_wallet/common/solana_utils.h"
+//#include "mises/components/brave_wallet/common/solana_utils.h"
 #include "mises/components/brave_wallet/common/value_conversion_utils.h"
 #include "mises/components/brave_wallet/common/web3_provider_constants.h"
-#include "mises/components/p3a_utils/feature_usage.h"
-#include "mises/components/time_period_storage/weekly_storage.h"
+//#include "mises/components/p3a_utils/feature_usage.h"
+//#include "mises/components/time_period_storage/weekly_storage.h"
 #include "components/grit/mises_components_strings.h"
 #include "components/prefs/pref_service.h"
 #include "components/prefs/scoped_user_pref_update.h"
@@ -167,7 +167,7 @@ BraveWalletService::BraveWalletService(
       json_rpc_service_(json_rpc_service),
       tx_service_(tx_service),
       prefs_(prefs),
-      brave_wallet_p3a_(this, keyring_service, prefs),
+      //brave_wallet_p3a_(this, keyring_service, prefs),
       weak_ptr_factory_(this) {
   if (delegate_)
     delegate_->AddObserver(this);
@@ -247,12 +247,12 @@ absl::optional<std::string> BraveWalletService::GetUserAssetAddress(
     return GetChecksumAddress(address, chain_id);
   }
 
-  if (coin == mojom::CoinType::SOL) {
-    std::vector<uint8_t> bytes;
-    if (!::brave_wallet::IsBase58EncodedSolanaPubkey(address))
-      return absl::nullopt;
-    return address;
-  }
+  // if (coin == mojom::CoinType::SOL) {
+  //   std::vector<uint8_t> bytes;
+  //   if (!::brave_wallet::IsBase58EncodedSolanaPubkey(address))
+  //     return absl::nullopt;
+  //   return address;
+  // }
 
   // TODO(spylogsster): Handle Filecoin here when if we need to support tokens
   // other than the native asset in the future.
@@ -291,7 +291,7 @@ std::vector<mojom::BlockchainTokenPtr> BraveWalletService::GetUserAssets(
     return result;
   }
 
-  const auto& user_assets_dict = prefs->GetDict(kBraveWalletUserAssets);
+  const auto& user_assets_dict = prefs->GetDictionary(kBraveWalletUserAssets)->GetDict();
   const auto* tokens = user_assets_dict.FindListByDottedPath(
       base::StrCat({GetPrefKeyForCoinType(coin), ".", network_id}));
   if (!tokens) {
@@ -473,7 +473,7 @@ mojom::BlockchainTokenPtr BraveWalletService::GetUserAsset(
   if (network_id.empty())
     return nullptr;
 
-  const auto& user_assets_dict = prefs_->GetDict(kBraveWalletUserAssets);
+  const auto& user_assets_dict = prefs_->GetDictionary(kBraveWalletUserAssets)->GetDict();
   const auto* user_assets_list = user_assets_dict.FindListByDottedPath(
       base::StrCat({GetPrefKeyForCoinType(coin), ".", network_id}));
   if (!user_assets_list)
@@ -719,7 +719,7 @@ void BraveWalletService::MigrateMultichainUserAssets(PrefService* prefs) {
     return;
 
   auto eth_user_assets =
-      prefs->GetDict(kBraveWalletUserAssetsDeprecated).Clone();
+      prefs->GetDictionary(kBraveWalletUserAssetsDeprecated)->GetDict().Clone();
 
   // Update contract_address key to address.
   for (auto user_asset_list : eth_user_assets) {
@@ -903,7 +903,7 @@ base::Value::Dict BraveWalletService::GetDefaultFilecoinAssets() {
 
 void BraveWalletService::OnP3ATimerFired() {
   RecordWalletUsage(false);
-  brave_wallet_p3a_.Update();
+  //brave_wallet_p3a_.Update();
 }
 
 void BraveWalletService::OnWalletUnlockPreferenceChanged(
@@ -911,46 +911,47 @@ void BraveWalletService::OnWalletUnlockPreferenceChanged(
   RecordWalletUsage(true);
 }
 
-BraveWalletP3A* BraveWalletService::GetBraveWalletP3A() {
-  return &brave_wallet_p3a_;
-}
+// BraveWalletP3A* BraveWalletService::GetBraveWalletP3A() {
+//   return &brave_wallet_p3a_;
+// }
 
 void BraveWalletService::RecordWalletUsage(bool unlocked) {
-  VLOG(1) << "Wallet P3A: starting report";
-  base::Time wallet_last_used = prefs_->GetTime(kBraveWalletLastUnlockTime);
-  base::Time first_p3a_report = prefs_->GetTime(kBraveWalletP3AFirstReportTime);
-  base::Time last_p3a_report = prefs_->GetTime(kBraveWalletP3ALastReportTime);
 
-  VLOG(1) << "Wallet P3A: first report: " << first_p3a_report
-          << " last_report: " << last_p3a_report;
+  // VLOG(1) << "Wallet P3A: starting report";
+  // base::Time wallet_last_used = prefs_->GetTime(kBraveWalletLastUnlockTime);
+  // base::Time first_p3a_report = prefs_->GetTime(kBraveWalletP3AFirstReportTime);
+  // base::Time last_p3a_report = prefs_->GetTime(kBraveWalletP3ALastReportTime);
 
-  WeeklyStorage weekly_store(prefs_, kBraveWalletP3AWeeklyStorage);
-  if (wallet_last_used > last_p3a_report) {
-    weekly_store.ReplaceTodaysValueIfGreater(1);
-    VLOG(1) << "Wallet P3A: Reporting day in week, curr days in week val: "
-            << weekly_store.GetWeeklySum();
-  }
+  // VLOG(1) << "Wallet P3A: first report: " << first_p3a_report
+  //         << " last_report: " << last_p3a_report;
 
-  WriteStatsToHistogram(wallet_last_used, first_p3a_report, last_p3a_report,
-                        weekly_store.GetWeeklySum());
+  // WeeklyStorage weekly_store(prefs_, kBraveWalletP3AWeeklyStorage);
+  // if (wallet_last_used > last_p3a_report) {
+  //   weekly_store.ReplaceTodaysValueIfGreater(1);
+  //   VLOG(1) << "Wallet P3A: Reporting day in week, curr days in week val: "
+  //           << weekly_store.GetWeeklySum();
+  // }
 
-  prefs_->SetTime(kBraveWalletP3ALastReportTime, base::Time::Now());
-  if (first_p3a_report.is_null())
-    prefs_->SetTime(kBraveWalletP3AFirstReportTime, base::Time::Now());
+  // WriteStatsToHistogram(wallet_last_used, first_p3a_report, last_p3a_report,
+  //                       weekly_store.GetWeeklySum());
 
-  if (unlocked) {
-    p3a_utils::RecordFeatureUsage(prefs_, kBraveWalletP3AFirstUnlockTime,
-                                  kBraveWalletP3ALastUnlockTime);
-  } else {
-    // Maybe record existing timestamp in case the user is not new.
-    p3a_utils::MaybeRecordFeatureExistingUsageTimestamp(
-        prefs_, kBraveWalletP3AFirstUnlockTime, kBraveWalletP3ALastUnlockTime,
-        wallet_last_used);
-  }
+  // prefs_->SetTime(kBraveWalletP3ALastReportTime, base::Time::Now());
+  // if (first_p3a_report.is_null())
+  //   prefs_->SetTime(kBraveWalletP3AFirstReportTime, base::Time::Now());
 
-  p3a_utils::RecordFeatureNewUserReturning(
-      prefs_, kBraveWalletP3AFirstUnlockTime, kBraveWalletP3ALastUnlockTime,
-      kBraveWalletP3AUsedSecondDay, kBraveWalletNewUserReturningHistogramName);
+  // if (unlocked) {
+  //   p3a_utils::RecordFeatureUsage(prefs_, kBraveWalletP3AFirstUnlockTime,
+  //                                 kBraveWalletP3ALastUnlockTime);
+  // } else {
+  //   // Maybe record existing timestamp in case the user is not new.
+  //   p3a_utils::MaybeRecordFeatureExistingUsageTimestamp(
+  //       prefs_, kBraveWalletP3AFirstUnlockTime, kBraveWalletP3ALastUnlockTime,
+  //       wallet_last_used);
+  // }
+
+  // p3a_utils::RecordFeatureNewUserReturning(
+  //     prefs_, kBraveWalletP3AFirstUnlockTime, kBraveWalletP3ALastUnlockTime,
+  //     kBraveWalletP3AUsedSecondDay, kBraveWalletNewUserReturningHistogramName);
 }
 
 void BraveWalletService::WriteStatsToHistogram(base::Time wallet_last_used,
@@ -1144,25 +1145,25 @@ void BraveWalletService::OnGetImportInfo(
     return;
   }
 
-  keyring_service_->RestoreWallet(
-      info.mnemonic, new_password, info.is_legacy_crypto_wallets,
-      base::BindOnce(
-          [](ImportFromExternalWalletCallback callback,
-             size_t number_of_accounts, KeyringService* keyring_service,
-             bool is_valid_mnemonic) {
-            if (!is_valid_mnemonic) {
-              std::move(callback).Run(
-                  false,
-                  l10n_util::GetStringUTF8(IDS_WALLET_INVALID_MNEMONIC_ERROR));
-              return;
-            }
-            if (number_of_accounts > 1) {
-              keyring_service->AddAccountsWithDefaultName(number_of_accounts -
-                                                          1);
-            }
-            std::move(callback).Run(is_valid_mnemonic, absl::nullopt);
-          },
-          std::move(callback), info.number_of_accounts, keyring_service_));
+  // keyring_service_->RestoreWallet(
+  //     info.mnemonic, new_password, info.is_legacy_crypto_wallets,
+  //     base::BindOnce(
+  //         [](ImportFromExternalWalletCallback callback,
+  //            size_t number_of_accounts, KeyringService* keyring_service,
+  //            bool is_valid_mnemonic) {
+  //           if (!is_valid_mnemonic) {
+  //             std::move(callback).Run(
+  //                 false,
+  //                 l10n_util::GetStringUTF8(IDS_WALLET_INVALID_MNEMONIC_ERROR));
+  //             return;
+  //           }
+  //           if (number_of_accounts > 1) {
+  //             keyring_service->AddAccountsWithDefaultName(number_of_accounts -
+  //                                                         1);
+  //           }
+  //           std::move(callback).Run(is_valid_mnemonic, absl::nullopt);
+  //         },
+  //         std::move(callback), info.number_of_accounts, keyring_service_));
 }
 
 void BraveWalletService::AddSignMessageRequest(
@@ -1363,16 +1364,16 @@ void BraveWalletService::NotifyGetPublicKeyRequestProcessed(
   bool reject = true;
   if (approved) {
     std::string key;
-    if (!keyring_service_
-             ->GetPublicKeyFromX25519_XSalsa20_Poly1305ByDefaultKeyring(address,
-                                                                        &key)) {
-      base::Value formed_response = GetProviderErrorDictionary(
-          mojom::ProviderError::kInternalError,
-          l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
-      std::move(callback).Run(std::move(id), std::move(formed_response), reject,
-                              "", false);
-      return;
-    }
+    // if (!keyring_service_
+    //          ->GetPublicKeyFromX25519_XSalsa20_Poly1305ByDefaultKeyring(address,
+    //                                                                     &key)) {
+    //   base::Value formed_response = GetProviderErrorDictionary(
+    //       mojom::ProviderError::kInternalError,
+    //       l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+    //   std::move(callback).Run(std::move(id), std::move(formed_response), reject,
+    //                           "", false);
+    //   return;
+    // }
 
     reject = false;
     std::move(callback).Run(std::move(id), base::Value(key), reject, "", false);
@@ -1425,21 +1426,21 @@ void BraveWalletService::NotifyDecryptRequestProcessed(
   }
 }
 
-void BraveWalletService::IsBase58EncodedSolanaPubkey(
-    const std::string& key,
-    IsBase58EncodedSolanaPubkeyCallback callback) {
-  std::move(callback).Run(::brave_wallet::IsBase58EncodedSolanaPubkey(key));
-}
+// void BraveWalletService::IsBase58EncodedSolanaPubkey(
+//     const std::string& key,
+//     IsBase58EncodedSolanaPubkeyCallback callback) {
+//   std::move(callback).Run(::brave_wallet::IsBase58EncodedSolanaPubkey(key));
+// }
 
-void BraveWalletService::Base58Encode(
-    const std::vector<std::vector<std::uint8_t>>& addresses,
-    Base58EncodeCallback callback) {
-  std::vector<std::string> encoded_addresses;
-  for (const auto& address : addresses) {
-    encoded_addresses.push_back(brave_wallet::Base58Encode(address));
-  }
-  std::move(callback).Run(std::move(encoded_addresses));
-}
+// void BraveWalletService::Base58Encode(
+//     const std::vector<std::vector<std::uint8_t>>& addresses,
+//     Base58EncodeCallback callback) {
+//   std::vector<std::string> encoded_addresses;
+//   for (const auto& address : addresses) {
+//     encoded_addresses.push_back(brave_wallet::Base58Encode(address));
+//   }
+//   std::move(callback).Run(std::move(encoded_addresses));
+// }
 
 void BraveWalletService::CancelAllSuggestedTokenCallbacks() {
   add_suggest_token_requests_.clear();
@@ -1525,7 +1526,7 @@ void BraveWalletService::Reset() {
     json_rpc_service_->Reset();
 
   // Clear BraveWalletService
-  ClearBraveWalletServicePrefs(prefs_);
+  //ClearBraveWalletServicePrefs(prefs_);
   CancelAllSuggestedTokenCallbacks();
   CancelAllSignMessageCallbacks();
   CancelAllSignTransactionCallbacks();
@@ -1533,8 +1534,8 @@ void BraveWalletService::Reset() {
   CancelAllGetEncryptionPublicKeyCallbacks();
   CancelAllDecryptCallbacks();
 
-  if (keyring_service_)
-    keyring_service_->Reset();
+  // if (keyring_service_)
+  //   keyring_service_->Reset();
 }
 
 }  // namespace brave_wallet

@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-
+#include "mises/components/brave_wallet/browser/json_rpc_service_factory.h"
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 

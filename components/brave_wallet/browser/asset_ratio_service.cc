@@ -15,7 +15,7 @@
 #include "base/strings/stringprintf.h"
 #include "mises/components/api_request_helper/api_request_helper.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
-#include "mises/components/constants/brave_services_key.h"
+#include "mises/components/constants/mises_services_key.h"
 #include "net/base/load_flags.h"
 #include "net/base/url_util.h"
 #include "services/network/public/cpp/shared_url_loader_factory.h"
@@ -250,11 +250,11 @@ void AssetRatioService::GetPrice(
 
   base::flat_map<std::string, std::string> request_headers;
   std::unique_ptr<base::Environment> env(base::Environment::Create());
-  std::string brave_key(BUILDFLAG(BRAVE_SERVICES_KEY));
-  if (env->HasVar("BRAVE_SERVICES_KEY")) {
-    env->GetVar("BRAVE_SERVICES_KEY", &brave_key);
+  std::string brave_key(BUILDFLAG(MISES_SERVICES_KEY));
+  if (env->HasVar("MISES_SERVICES_KEY")) {
+    env->GetVar("MISES_SERVICES_KEY", &brave_key);
   }
-  request_headers["x-brave-key"] = std::move(brave_key);
+  request_headers["x-mises-key"] = std::move(brave_key);
 
   api_request_helper_->Request(
       "GET", GetPriceURL(from_assets_lower, to_assets_lower, timeframe), "", "",

@@ -11,6 +11,7 @@
 #include <string>
 
 #include "net/base/network_anonymization_key.h"
+#include "net/base/network_isolation_key.h"
 #include "net/http/http_request_headers.h"
 #include "net/http/http_response_headers.h"
 #include "net/url_request/referrer_policy.h"
@@ -111,6 +112,8 @@ struct MisesRequestInfo {
 
   net::NetworkAnonymizationKey network_anonymization_key =
       net::NetworkAnonymizationKey();
+  net::NetworkIsolationKey network_isolation_key =
+      net::NetworkIsolationKey();
 
   // Default to invalid type for resource_type, so delegate helpers
   // can properly detect that the info couldn't be obtained.
