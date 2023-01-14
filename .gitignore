@@ -65,7 +65,7 @@ cmake-build-debug
 docs/build
 docs/_build
 node_modules
-src
+/src
 
 .cipd
 .gclient_entries
@@ -79,4 +79,3 @@ network-audit-results.json
 
 .npmrc
 .mises_latest_successful_sync.json
-

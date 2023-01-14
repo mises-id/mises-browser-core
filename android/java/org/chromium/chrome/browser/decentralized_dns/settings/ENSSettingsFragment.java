@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.chromium.chrome.R;
-import org.chromium.chrome.browser.preferences.BravePrefServiceBridge;
+import org.chromium.chrome.browser.preferences.MisesPrefServiceBridge;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
 
 public class ENSSettingsFragment extends PreferenceFragmentCompat {
@@ -27,12 +27,12 @@ public class ENSSettingsFragment extends PreferenceFragmentCompat {
                         PREF_ENS_RESOLVE_METHOD);
 
         radioButtonGroupENSResolveMethodPreference.initialize(
-                BravePrefServiceBridge.getInstance().getENSResolveMethod());
+                MisesPrefServiceBridge.getInstance().getENSResolveMethod());
 
         radioButtonGroupENSResolveMethodPreference.setOnPreferenceChangeListener(
                 (preference, newValue) -> {
                     int method = (int) newValue;
-                    BravePrefServiceBridge.getInstance().setENSResolveMethod(method);
+                    MisesPrefServiceBridge.getInstance().setENSResolveMethod(method);
                     return true;
                 });
     }
