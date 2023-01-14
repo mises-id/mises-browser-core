@@ -68,10 +68,10 @@ bool IsValidEntropySize(size_t entropy_size) {
 }
 
 std::string GetInfuraProjectID() {
-  std::string project_id(BUILDFLAG(BRAVE_INFURA_PROJECT_ID));
+  std::string project_id(BUILDFLAG(MISES_INFURA_PROJECT_ID));
   std::unique_ptr<base::Environment> env(base::Environment::Create());
-  if (env->HasVar("BRAVE_INFURA_PROJECT_ID")) {
-    env->GetVar("BRAVE_INFURA_PROJECT_ID", &project_id);
+  if (env->HasVar("MISES_INFURA_PROJECT_ID")) {
+    env->GetVar("MISES_INFURA_PROJECT_ID", &project_id);
   }
   return project_id;
 }
@@ -583,7 +583,7 @@ GURL GetInfuraURLForKnownChainId(const std::string& chain_id) {
   if (subdomain.empty())
     return GURL();
   return GURL(
-      base::StringPrintf("https://%s-infura.brave.com/", subdomain.c_str()));
+      base::StringPrintf("https://%s.infura.io/v3/", subdomain.c_str()));
 }
 
 std::string GetInfuraEndpointForKnownChainId(const std::string& chain_id) {

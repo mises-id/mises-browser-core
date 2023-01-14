@@ -10,7 +10,7 @@ preprocess_mojo_manifest = "preprocessed_mojo_manifest.json"
 
 buildflag_header("buildflags") {
   header = "buildflags.h"
-  flags = [ "BRAVE_INFURA_PROJECT_ID=\"$brave_infura_project_id\"" ]
+  flags = [ "MISES_INFURA_PROJECT_ID=\"$mises_infura_project_id\"" ]
 }
 
 static_library("common") {
