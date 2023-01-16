@@ -17,25 +17,15 @@ namespace decentralized_dns {
 
 void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   registry->RegisterIntegerPref(kUnstoppableDomainsResolveMethod,
-                                static_cast<int>(ResolveMethodTypes::ASK));
+                                static_cast<int>(ResolveMethodTypes::ETHEREUM));
   registry->RegisterIntegerPref(kENSResolveMethod,
-                                static_cast<int>(ResolveMethodTypes::ASK));
+                                static_cast<int>(ResolveMethodTypes::ETHEREUM));
   registry->RegisterIntegerPref(
       kEnsOffchainResolveMethod,
       static_cast<int>(EnsOffchainResolveMethod::kAsk));
 }
 
 void MigrateObsoleteLocalStatePrefs(PrefService* local_state) {
-  // Added 05/2022
-  if (static_cast<int>(ResolveMethodTypes::DEPRECATED_DNS_OVER_HTTPS) ==
-      local_state->GetInteger(
-          decentralized_dns::kUnstoppableDomainsResolveMethod)) {
-    local_state->ClearPref(decentralized_dns::kUnstoppableDomainsResolveMethod);
-  }
-  if (static_cast<int>(ResolveMethodTypes::DEPRECATED_DNS_OVER_HTTPS) ==
-      local_state->GetInteger(decentralized_dns::kENSResolveMethod)) {
-    local_state->ClearPref(decentralized_dns::kENSResolveMethod);
-  }
 }
 
 bool IsUnstoppableDomainsTLD(const GURL& url) {

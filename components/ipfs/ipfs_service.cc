@@ -151,7 +151,7 @@ void IpfsService::RegisterProfilePrefs(PrefRegistrySimple* registry) {
   registry->RegisterBooleanPref(kIPFSEnabled, true);
   registry->RegisterIntegerPref(
       kIPFSResolveMethod,
-      static_cast<int>(ipfs::IPFSResolveMethodTypes::IPFS_ASK));
+      static_cast<int>(ipfs::IPFSResolveMethodTypes::IPFS_GATEWAY));
   registry->RegisterBooleanPref(kIPFSAutoFallbackToGateway, false);
   registry->RegisterBooleanPref(kIPFSAutoRedirectGateway, false);
   registry->RegisterBooleanPref(kIPFSAutoRedirectDNSLink, false);

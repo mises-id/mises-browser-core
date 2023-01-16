@@ -29,7 +29,7 @@
         <div class="secondary" hidden="[[!isLocalNodeEnabled_]]">$i18n{ipfsLocalNodeWarning}</div>
       </div>
       <settings-dropdown-menu id="ipfsResolveMethodType"
-                              pref="{{prefs.brave.ipfs.resolve_method}}"
+                              pref="{{prefs.mises.ipfs.resolve_method}}"
                               menu-options="[[ipfsResolveMethod_]]"
                               on-settings-control-change="onChangeIpfsMethod_">
       </settings-dropdown-menu>
@@ -38,7 +38,7 @@
       <div class="flex cr-padded-text">
         <div>$i18n{ipfsPublicGatewayDesc}</div>
         <div class="secondary" id="defaultIPFSGateway">
-          {{prefs.brave.ipfs.public_gateway_address.value}}
+          {{prefs.mises.ipfs.public_gateway_address.value}}
         </div>
       </div>
       <cr-button id="changeIPFSGateway"
@@ -50,7 +50,7 @@
       <div class="flex cr-padded-text">
         <div>$i18n{ipfsNftPublicGatewayDesc}</div>
         <div class="secondary" id="defaultNFTIPFSGateway">
-          {{prefs.brave.ipfs.public_nft_gateway_address.value}}
+          {{prefs.mises.ipfs.public_nft_gateway_address.value}}
         </div>
       </div>
       <cr-button id="changeIPFSNFTGateway"
@@ -60,19 +60,19 @@
     </div>
     <settings-toggle-button id="ipfsAutoGatewayFallbackEnabled"
         class="cr-row"
-        pref="{{prefs.brave.ipfs.auto_fallback_to_gateway}}"
+        pref="{{prefs.mises.ipfs.auto_fallback_to_gateway}}"
         label="$i18n{ipfsAutoFallbackToGatewayLabel}"
         sub-label="$i18n{ipfsAutoFallbackToGatewayDesc}">
     </settings-toggle-button>
     <settings-toggle-button id="ipfsAutoRedirectGateway"
       class="cr-row"
-      pref="{{prefs.brave.ipfs.auto_redirect_gateway}}"
+      pref="{{prefs.mises.ipfs.auto_redirect_gateway}}"
       label="$i18n{ipfsAutoRedirectGatewayLabel}"
       sub-label="$i18n{ipfsAutoRedirectGatewayDesc}">
     </settings-toggle-button>
     <settings-toggle-button id="ipfsAutoRedirectDNSLink"
       class="cr-row"
-      pref="{{prefs.brave.ipfs.auto_redirect_dnslink}}"
+      pref="{{prefs.mises.ipfs.auto_redirect_dnslink}}"
       label="$i18n{ipfsAutoRedirectDNSLinkLabel}"
       sub-label="$i18n{ipfsAutoRedirectDNSLinkDesc}"
       learn-more-url="$i18n{ipfsDNSLinkLearnMoreURL}">
@@ -80,7 +80,7 @@
 
     <settings-toggle-button id="ipfsCompanionEnabled"
       class="cr-row"
-      pref="{{prefs.brave.ipfs_companion_enabled}}"
+      pref="{{prefs.mises.ipfs_companion_enabled}}"
       label="IPFS Companion"
       sub-label="$i18n{ipfsCompanionEnabledDesc}"
       on-settings-boolean-control-change="onIPFSCompanionEnabledChange_">
@@ -139,11 +139,11 @@
     </template>
   </settings-animated-pages>
   <template is="dom-if" if="[[showChangeIPFSGatewayDialog_]]" restamp>
-    <change-ipfs-gateway-dialog pref="{{prefs.brave.ipfs.public_gateway_address}}" prefs="{{prefs}}" on-close="onChangeIPFSGatewayDialogClosed_">
+    <change-ipfs-gateway-dialog pref="{{prefs.mises.ipfs.public_gateway_address}}" prefs="{{prefs}}" on-close="onChangeIPFSGatewayDialogClosed_">
     </change-ipfs-gateway-dialog>
   </template>
   <template is="dom-if" if="[[showChangeIPFSNFTGatewayDialog_]]" restamp>
-    <change-ipfs-gateway-dialog pref="{{prefs.brave.ipfs.public_nft_gateway_address}}" prefs="{{prefs}}" on-close="onChangeIPFSNFTGatewayDialogClosed_">
+    <change-ipfs-gateway-dialog pref="{{prefs.mises.ipfs.public_nft_gateway_address}}" prefs="{{prefs}}" on-close="onChangeIPFSNFTGatewayDialogClosed_">
     </change-ipfs-gateway-dialog>
   </template>
 </template>
