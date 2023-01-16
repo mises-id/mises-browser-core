@@ -277,7 +277,7 @@
 <translation id="1911900517212490188">Zadaný klíč pro obnovení už není podporovaný. Navštivte prosím <ph name="BEGIN_LINK"/>tuto<ph name="END_LINK"/> stránku, získáte zde nový.</translation>
 <translation id="7583327070390027131">Datum dalšího měsíčního příspěvku</translation>
 <translation id="6231182869178328516">Právě jsem přispěl <ph name="NAME"/> pomocí prohlížeče Mises. Podívejte se na https://brave.com/tips.</translation>
-<translation id="5916536234616514390">Líbí se mi, že <ph name="HASHTAG"/>Mises umožňuje podporovat tvůrce! Právě jsem poslal příspěvek tvůrci <ph name="NAME"/> v hodnotě <ph name="HASHTAG2"/> BAT. Pokud se ověří na https://creators.brave.com před <ph name="DATE"/>, zaslaný příspěvek v BAT je jeho!</translation>
+<translation id="5916536234616514390">Líbí se mi, že <ph name="HASHTAG"/>Mises umožňuje podporovat tvůrce! Právě jsem poslal příspěvek tvůrci <ph name="NAME"/> v hodnotě <ph name="HASHTAG2"/> BAT. Pokud se ověří na https://creators.mises.site před <ph name="DATE"/>, zaslaný příspěvek v BAT je jeho!</translation>
 <translation id="8404935570206006581">SpropitnéSMises</translation>
 <translation id="3082557070674409251">Klepnuto</translation>
 <translation id="7119308337584989771">Zamítnuto</translation>

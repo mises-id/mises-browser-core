@@ -281,7 +281,7 @@
 <translation id="1911900517212490188">Введенный ключ восстановления больше не действителен. Пожалуйста, посетите <ph name="BEGIN_LINK"/>эту страницу<ph name="END_LINK"/>, чтобы получить новый ключ.</translation>
 <translation id="7583327070390027131">Следующая дата ежемесячного платежа</translation>
 <translation id="6231182869178328516">Я только что поддержал(а) <ph name="NAME"/> через браузер Mises. Узнать больше можно на https://brave.com/tips.</translation>
-<translation id="5916536234616514390">Здорово, что <ph name="HASHTAG"/>Mises дает мне возможность поддерживать авторов! Только что пользователю <ph name="NAME"/> переведены от меня токены <ph name="HASHTAG2"/>BAT. Чтобы получить их, автору нужно подтвердить профиль на сайте https://creators.brave.com до <ph name="DATE"/>.</translation>
+<translation id="5916536234616514390">Здорово, что <ph name="HASHTAG"/>Mises дает мне возможность поддерживать авторов! Только что пользователю <ph name="NAME"/> переведены от меня токены <ph name="HASHTAG2"/>BAT. Чтобы получить их, автору нужно подтвердить профиль на сайте https://creators.mises.site до <ph name="DATE"/>.</translation>
 <translation id="8404935570206006581">ЧаевыеСMises</translation>
 <translation id="3082557070674409251">Нажато</translation>
 <translation id="7119308337584989771">Отклонено</translation>

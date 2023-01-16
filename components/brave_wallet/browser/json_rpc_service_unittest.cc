@@ -5215,7 +5215,7 @@ class ENSL2JsonRpcServiceUnitTest : public JsonRpcServiceUnitTest {
 
   std::string ens_host() { return "offchainexample.eth"; }
   std::string ens_subdomain_host() { return "test.offchainexample.eth"; }
-  GURL gateway_url() { return GURL("https://gateway.brave.com/"); }
+  GURL gateway_url() { return GURL("https://gateway.mises.site/"); }
   EthAddress resolver_address() {
     return EthAddress::FromHex("0xc1735677a60884abbcf72295e88d47764beda282");
   }

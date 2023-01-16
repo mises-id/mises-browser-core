@@ -25,7 +25,7 @@
     "imageUrl": "logo.png",
     "alt": "Visit Brave Software",
     "companyName": "Brave Software",
-    "destinationUrl": "https://www.brave.com/"
+    "destinationUrl": "https://www.mises.site/"
   },
   "wallpapers": [
     {

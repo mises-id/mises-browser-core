@@ -282,7 +282,7 @@ DuckDuckGo ไม่บันทึกประวัติการค้นห
 <translation id="1911900517212490188">ไม่รองรับคีย์คืนค่าแล้ว โปรดเยี่ยมชม<ph name="BEGIN_LINK"/>ที่นี่<ph name="END_LINK"/>เพื่อรับคีย์ใหม่</translation>
 <translation id="7583327070390027131">วันที่ให้ทิปรายเดือนครั้งถัดไป</translation>
 <translation id="6231182869178328516">ฉันเพิ่งให้ทิป <ph name="NAME"/> ผ่านเบราว์เซอร์ Mises ลองเข้าไปดูได้ที่ https://brave.com/tips</translation>
-<translation id="5916536234616514390">ชื่นชอบที่ <ph name="HASHTAG"/>Mises ให้ฉันสนับสนุนผู้สร้าง! ฉันเพิ่งให้ทิป <ph name="NAME"/> <ph name="HASHTAG2"/>BAT โดยผู้สร้างสามารถตรวจสอบ BAT ที่ได้รับได้ที่ https://creators.brave.com ก่อน <ph name="DATE"/></translation>
+<translation id="5916536234616514390">ชื่นชอบที่ <ph name="HASHTAG"/>Mises ให้ฉันสนับสนุนผู้สร้าง! ฉันเพิ่งให้ทิป <ph name="NAME"/> <ph name="HASHTAG2"/>BAT โดยผู้สร้างสามารถตรวจสอบ BAT ที่ได้รับได้ที่ https://creators.mises.site ก่อน <ph name="DATE"/></translation>
 <translation id="8404935570206006581">TipWithMises</translation>
 <translation id="3082557070674409251">คลิกแล้ว</translation>
 <translation id="7119308337584989771">ปิด</translation>

@@ -277,7 +277,7 @@
 <translation id="1911900517212490188">不再支持输入的还原密钥。请访问 <ph name="BEGIN_LINK"/>here<ph name="END_LINK"/> 获取新密钥。</translation>
 <translation id="7583327070390027131">下个月打赏日期</translation>
 <translation id="6231182869178328516">我最近使用 Mises 浏览器打赏了 <ph name="NAME"/>。快来 https://brave.com/tips 看看吧。</translation>
-<translation id="5916536234616514390">让我很开心的是 <ph name="HASHTAG"/>Mises 让我可以支持创作者！刚刚用 <ph name="HASHTAG2"/>BAT 给 <ph name="NAME"/> 发送了消费。如果对方在 <ph name="DATE"/>前在 https://creators.brave.com 进行验证，那么 BAT 就是他们的！</translation>
+<translation id="5916536234616514390">让我很开心的是 <ph name="HASHTAG"/>Mises 让我可以支持创作者！刚刚用 <ph name="HASHTAG2"/>BAT 给 <ph name="NAME"/> 发送了消费。如果对方在 <ph name="DATE"/>前在 https://creators.mises.site 进行验证，那么 BAT 就是他们的！</translation>
 <translation id="8404935570206006581">TipWithMises</translation>
 <translation id="3082557070674409251">已单击</translation>
 <translation id="7119308337584989771">已放弃</translation>

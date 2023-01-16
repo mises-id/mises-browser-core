@@ -282,7 +282,7 @@ few {# zdroje}
 <translation id="1911900517212490188">Zadaný kľúč na obnovenie už nie je podporovaný. Prejdite <ph name="BEGIN_LINK"/>sem<ph name="END_LINK"/> na získanie nového kľúča.</translation>
 <translation id="7583327070390027131">Dátum nasledujúcich mesačných príspevkov</translation>
 <translation id="6231182869178328516">Práve som dal príspevok <ph name="NAME"/> pomocou prehliadača Mises. Skontrolujte to na stránke https://brave.com/tips.</translation>
-<translation id="5916536234616514390">Je skvelé, že pomocou prehliadača <ph name="HASHTAG"/>Mises môžem podporiť tvorcov obsahu! Práve som daroval používateľovi <ph name="NAME"/> BAT <ph name="HASHTAG2"/>. Ak používateľ vykoná overenie na stránke https://creators.brave.com pred <ph name="DATE"/>, získa BAT!</translation>
+<translation id="5916536234616514390">Je skvelé, že pomocou prehliadača <ph name="HASHTAG"/>Mises môžem podporiť tvorcov obsahu! Práve som daroval používateľovi <ph name="NAME"/> BAT <ph name="HASHTAG2"/>. Ak používateľ vykoná overenie na stránke https://creators.mises.site pred <ph name="DATE"/>, získa BAT!</translation>
 <translation id="8404935570206006581">Príspevok s Mises</translation>
 <translation id="3082557070674409251">Kliknuté</translation>
 <translation id="7119308337584989771">Zamietnuté</translation>

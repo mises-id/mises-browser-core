@@ -864,7 +864,7 @@ TEST(BraveWalletUtilsUnitTest, GetNetworkURLTest) {
   EXPECT_EQ(chain2.rpc_endpoints.front(),
             GetNetworkURL(&prefs, chain2.chain_id, mojom::CoinType::ETH));
 
-  EXPECT_EQ(GURL("https://mainnet-beta-solana.brave.com/rpc"),
+  EXPECT_EQ(GURL("https://mainnet-beta-solana.mises.site/rpc"),
             GetNetworkURL(&prefs, mojom::kSolanaMainnet, mojom::CoinType::SOL));
   auto custom_sol_network =
       GetKnownChain(&prefs, mojom::kSolanaMainnet, mojom::CoinType::SOL);
@@ -906,7 +906,7 @@ TEST(BraveWalletUtilsUnitTest, GetNetworkURLForKnownChains) {
   for (const auto& chain : GetAllKnownChains(&prefs, mojom::CoinType::ETH)) {
     auto network_url =
         GetNetworkURL(&prefs, chain->chain_id, mojom::CoinType::ETH);
-    EXPECT_EQ(base::EndsWith(network_url.host(), ".brave.com"),
+    EXPECT_EQ(base::EndsWith(network_url.host(), ".mises.site"),
               infura_chains.contains(chain->chain_id));
   }
 }
@@ -1009,7 +1009,7 @@ TEST(BraveWalletUtilsUnitTest, GetChain) {
   mojom::NetworkInfo sol_mainnet(
       brave_wallet::mojom::kSolanaMainnet, "Solana Mainnet Beta",
       {"https://explorer.solana.com/"}, {}, 0,
-      {GURL("https://mainnet-beta-solana.brave.com/rpc")}, "SOL", "Solana", 9,
+      {GURL("https://mainnet-beta-solana.mises.site/rpc")}, "SOL", "Solana", 9,
       brave_wallet::mojom::CoinType::SOL, false);
   EXPECT_FALSE(GetChain(&prefs, "0x123", mojom::CoinType::SOL));
   EXPECT_EQ(GetChain(&prefs, "0x65", mojom::CoinType::SOL),
@@ -1182,7 +1182,7 @@ TEST(BraveWalletUtilsUnitTest, CustomNetworkMatchesKnownNetwork) {
   EXPECT_EQ(
       GetNetworkURL(&prefs, mojom::kPolygonMainnetChainId, mojom::CoinType::ETH)
           .GetWithoutFilename(),
-      GURL("https://mainnet-polygon.brave.com/"));
+      GURL("https://mainnet-polygon.mises.site/"));
 
   mojom::NetworkInfo chain1 =
       GetTestNetworkInfo1(mojom::kPolygonMainnetChainId);
@@ -1204,7 +1204,7 @@ TEST(BraveWalletUtilsUnitTest, CustomNetworkMatchesKnownNetwork) {
   EXPECT_EQ(
       GetNetworkURL(&prefs, mojom::kPolygonMainnetChainId, mojom::CoinType::ETH)
           .GetWithoutFilename(),
-      GURL("https://mainnet-polygon.brave.com/"));
+      GURL("https://mainnet-polygon.mises.site/"));
 }
 
 TEST(BraveWalletUtilsUnitTest, RemoveCustomNetwork) {
@@ -1303,12 +1303,12 @@ TEST(BraveWalletUtilsUnitTest, GetCurrentChainId) {
 TEST(BraveWalletUtilsUnitTest, eTLDPlusOne) {
   EXPECT_EQ("", eTLDPlusOne(url::Origin()));
   EXPECT_EQ("brave.com",
-            eTLDPlusOne(url::Origin::Create(GURL("https://blog.brave.com"))));
+            eTLDPlusOne(url::Origin::Create(GURL("https://blog.mises.site"))));
   EXPECT_EQ("brave.com",
-            eTLDPlusOne(url::Origin::Create(GURL("https://...brave.com"))));
+            eTLDPlusOne(url::Origin::Create(GURL("https://...mises.site"))));
   EXPECT_EQ(
       "brave.com",
-      eTLDPlusOne(url::Origin::Create(GURL("https://a.b.c.d.brave.com/1"))));
+      eTLDPlusOne(url::Origin::Create(GURL("https://a.b.c.d.mises.site/1"))));
   EXPECT_EQ("brave.github.io", eTLDPlusOne(url::Origin::Create(GURL(
                                    "https://a.b.brave.github.io/example"))));
   EXPECT_EQ("", eTLDPlusOne(url::Origin::Create(GURL("https://github.io"))));
@@ -1316,10 +1316,10 @@ TEST(BraveWalletUtilsUnitTest, eTLDPlusOne) {
 
 TEST(BraveWalletUtilsUnitTest, MakeOriginInfo) {
   auto origin_info =
-      MakeOriginInfo(url::Origin::Create(GURL("https://blog.brave.com:443")));
-  EXPECT_EQ(url::Origin::Create(GURL("https://blog.brave.com")),
+      MakeOriginInfo(url::Origin::Create(GURL("https://blog.mises.site:443")));
+  EXPECT_EQ(url::Origin::Create(GURL("https://blog.mises.site")),
             origin_info->origin);
-  EXPECT_EQ("https://blog.brave.com", origin_info->origin_spec);
+  EXPECT_EQ("https://blog.mises.site", origin_info->origin_spec);
   EXPECT_EQ("brave.com", origin_info->e_tld_plus_one);
 
   url::Origin empty_origin;

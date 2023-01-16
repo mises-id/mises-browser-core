@@ -102,7 +102,7 @@ export class IPFSPage extends React.Component<Props, {}> {
           </a>
         </div>
         <div style={LinkContainer}>
-          <a style={LearnMoreLink} href='https://support.brave.com/hc/en-us/sections/360010974932-InterPlanetary-File-System-IPFS-' target='_blank'>
+          <a style={LearnMoreLink} href='https://support.mises.site/hc/en-us/sections/360010974932-InterPlanetary-File-System-IPFS-' target='_blank'>
             {getLocale('learnMore')}
           </a>
         </div>

@@ -281,7 +281,7 @@
 <translation id="1911900517212490188">Der eingegebene Wiederherstellungsschlüssel wird nicht mehr unterstützt. Bitte besuchen Sie <ph name="BEGIN_LINK"/>diese Seite<ph name="END_LINK"/>, um einen neuen Schlüssel zu erhalten.</translation>
 <translation id="7583327070390027131">Nächstes monatliches Datum für Trinkgeld</translation>
 <translation id="6231182869178328516">Ich habe gerade <ph name="NAME"/> mit dem Mises-Browser ein Trinkgeld gegeben. Sehen Sie es sich unter https://brave.com/tips an.</translation>
-<translation id="5916536234616514390">Ich liebe es, dass ich mit <ph name="HASHTAG"/>Mises Ersteller unterstützen kann! Ich habe eben <ph name="HASHTAG2"/> TFA als Trinkgeld für <ph name="NAME"/> vergeben. Wenn sich der Ersteller vor dem <ph name="DATE"/> unter https://creators.brave.com verifiziert, gehören die TFA ihm!</translation>
+<translation id="5916536234616514390">Ich liebe es, dass ich mit <ph name="HASHTAG"/>Mises Ersteller unterstützen kann! Ich habe eben <ph name="HASHTAG2"/> TFA als Trinkgeld für <ph name="NAME"/> vergeben. Wenn sich der Ersteller vor dem <ph name="DATE"/> unter https://creators.mises.site verifiziert, gehören die TFA ihm!</translation>
 <translation id="8404935570206006581">TipWithMises</translation>
 <translation id="3082557070674409251">Geklickt</translation>
 <translation id="7119308337584989771">Abgelehnt</translation>

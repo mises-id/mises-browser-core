@@ -35,7 +35,7 @@ constexpr char kTestSponsoredImages[] = R"(
         "logo": {
           "imageUrl":  "logo.png",
           "alt": "Technikke: For music lovers",
-          "destinationUrl": "https://www.brave.com/",
+          "destinationUrl": "https://www.mises.site/",
           "companyName": "Technikke"
         },
         "wallpapers": [
@@ -69,7 +69,7 @@ constexpr char kTestSponsoredImagesWithMultipleCampaigns[] = R"(
             "logo": {
               "imageUrl":  "logo.png",
               "alt": "Technikke: For music lovers",
-              "destinationUrl": "https://www.brave.com/",
+              "destinationUrl": "https://www.mises.site/",
               "companyName": "Technikke"
             },
             "wallpapers": [
@@ -98,7 +98,7 @@ constexpr char kTestSponsoredImagesWithMultipleCampaigns[] = R"(
             "logo": {
               "imageUrl":  "logo-3.png",
               "alt": "Technikke: For music lovers",
-              "destinationUrl": "https://www.brave.com/",
+              "destinationUrl": "https://www.mises.site/",
               "companyName": "Technikke"
             },
             "wallpapers": [
@@ -361,7 +361,7 @@ TEST_F(NTPBackgroundImagesServiceTest, InternalDataTest) {
         "logo": {
           "imageUrl":  "logo.png",
           "alt": "Technikke: For music lovers",
-          "destinationUrl": "https://www.brave.com/",
+          "destinationUrl": "https://www.mises.site/",
           "companyName": "Technikke"
         },
         "wallpapers": [
@@ -500,7 +500,7 @@ const char kTestSuperReferral[] = R"(
         "imageUrl": "logo.png",
         "alt": "Technikke: For music lovers",
         "companyName": "Technikke",
-        "destinationUrl": "https://www.brave.com/?from-super-referreer-demo"
+        "destinationUrl": "https://www.mises.site/?from-super-referreer-demo"
       },
       "wallpapers": [
         {

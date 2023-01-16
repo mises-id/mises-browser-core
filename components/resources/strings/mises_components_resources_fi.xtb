@@ -281,7 +281,7 @@
 <translation id="1911900517212490188">Palautusavainta ei enää tueta. Ole hyvä ja vieraile <ph name="BEGIN_LINK"/>täällä<ph name="END_LINK"/> saadaksesi uuden avaimen.</translation>
 <translation id="7583327070390027131">Seuraava kuukausittaisten tippien päivämäärä</translation>
 <translation id="6231182869178328516">Annoin juuri tipin henkilölle <ph name="NAME"/> Mises-selaimen kautta. Voit tutustua siihen osoitteessa https://brave.com/tips.</translation>
-<translation id="5916536234616514390">Hienoa, että <ph name="HASHTAG"/>Misesn avulla voin tukea sisällöntuottajia! Annoin juuri tipin henkilölle <ph name="NAME"/> käyttäen kohdetta <ph name="HASHTAG2"/>BAT. Jos hän vahvistaa osoitteessa https://creators.brave.com ennen <ph name="DATE"/>, BAT on hänen!</translation>
+<translation id="5916536234616514390">Hienoa, että <ph name="HASHTAG"/>Misesn avulla voin tukea sisällöntuottajia! Annoin juuri tipin henkilölle <ph name="NAME"/> käyttäen kohdetta <ph name="HASHTAG2"/>BAT. Jos hän vahvistaa osoitteessa https://creators.mises.site ennen <ph name="DATE"/>, BAT on hänen!</translation>
 <translation id="8404935570206006581">TippaaMiseslla</translation>
 <translation id="3082557070674409251">Klikattu</translation>
 <translation id="7119308337584989771">Hylätty</translation>

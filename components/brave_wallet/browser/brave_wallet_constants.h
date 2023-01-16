@@ -17,7 +17,7 @@
 
 namespace brave_wallet {
 
-constexpr char kAssetRatioBaseURL[] = "https://ratios.rewards.brave.com/";
+constexpr char kAssetRatioBaseURL[] = "https://ratios.rewards.mises.site";
 
 constexpr uint256_t kDefaultSendEthGasLimit = 21000;
 constexpr uint256_t kDefaultERC20TransferGasLimit = 300000;
@@ -997,7 +997,7 @@ constexpr char kSolanaFeeRecipient[] =
 
 constexpr int64_t kBlockTrackerDefaultTimeInSeconds = 20;
 
-constexpr char kPolygonMainnetEndpoint[] = "https://mainnet-polygon.brave.com/";
+constexpr char kPolygonMainnetEndpoint[] = "https://mainnet-polygon.infura.io/";
 
 // Unstoppable domains record key for ethereum address.
 constexpr char kCryptoEthAddressKey[] = "crypto.ETH.address";
