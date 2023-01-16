@@ -45,6 +45,15 @@
         android:icon="@drawable/ics_edit_homepage"
         android:title="@string/options_homepage_title"
         app:iconTint="@color/default_icon_color_tint_list"/>
+
+     <org.chromium.components.browser_ui.settings.ChromeBasePreference
+        android:fragment="org.chromium.chrome.browser.settings.Web3Settings"
+        android:key="web3"
+        android:order="7"
+        android:icon="@drawable/ics_dev_options"
+        android:title="@string/preferences_web3"
+        app:iconTint="@color/default_icon_color_tint_list"/>
+
     <org.chromium.components.browser_ui.settings.ChromeBasePreference
         android:fragment="org.chromium.chrome.browser.language.settings.LanguageSettings"
         android:key="languages"

@@ -18,9 +18,12 @@ body {
 }
 
 .header-logo {
-  margin: 60px 0 30px 0;
+  margin: 60px auto 30px;
+  width: 150px;
 }
-
+.header-logo img{
+  width: 100%;
+}
 .heading {
   font-size: 20px;
   line-height: 30px;
@@ -50,15 +53,16 @@ body {
   background: #fff;
   border-radius: 16px;
   margin-top: 20px;
-  display: flex;
-  align-items: center;
-  height: 100px;
+  padding: 30px;
+  /* display: flex; */
+  /* align-items: center; */
+  /* height: 100px; */
 }
 
-.button-wrapper {
+/* .button-wrapper {
   width: 35%;
   float: left;
-}
+} */
 
 .button {
   border-radius: 100px;
@@ -90,11 +94,11 @@ body {
   padding: 10px 24px;
 }
 
-.copy-wrapper {
-  width: 65%;
+/* .copy-wrapper {
+  width: 65%; 
   float: right;
   text-align: left;
-}
+} */
 
 .copy-wrapper p {
   font-size: 12px;

@@ -24,11 +24,9 @@ const char kDefaultIPFSNFTGateway[] = "https://nftstorage.link";
 const char kDefaultIPFSLocalGateway[] = "http://localhost";
 const char kIPFSSettingsURL[] = "brave://settings/ipfs";
 const char kIPFSLearnMorePrivacyURL[] =
-    "https://support.mises.site/hc/en-us/articles/"
-    "360051406452-How-does-IPFS-Impact-my-Privacy-";
+    "https://protocol.ai/legal/#privacy-policy";
 const char kIPFSLearnMoreURL[] =
-    "https://support.mises.site/hc/en-us/sections/"
-    "360010974932-InterPlanetary-File-System-IPFS-";
+    "https://www.ipfs.tech";
 const char kRepoStatsPath[] = "/api/v0/repo/stat";
 const char kRepoStatsHumanReadableParamName[] = "human";
 const char kRepoStatsHumanReadableParamValue[] = "true";

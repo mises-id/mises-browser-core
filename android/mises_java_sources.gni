@@ -6,6 +6,7 @@ kiwi_java_sources = [
   "//mises/android/java/org/chromium/chrome/browser/translate/settings/TranslateSettings.java",
   "//mises/android/java/org/chromium/chrome/browser/translate/settings/RadioButtonGroupTranslatePreference.java",
   "//mises/android/java/org/chromium/chrome/browser/settings/TabSwitcherSettings.java",
+  "//mises/android/java/org/chromium/chrome/browser/settings/Web3Settings.java",
   "//mises/android/java/org/chromium/chrome/browser/settings/RadioButtonGroupTabSwitcherPreference.java",
   "//mises/android/java/org/chromium/chrome/browser/settings/ToolbarSettings.java",
   "//mises/android/java/org/chromium/chrome/browser/settings/NightModeSettings.java",

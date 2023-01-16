@@ -342,6 +342,7 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/values/channel_constants.xml",
     "java/res/drawable-mdpi/ic_menu_mises_forward.png",
     "java/res/drawable-xxhdpi/ic_menu_mises_forward.png",
+    "java/res/xml/web3_preferences.xml",
     "java/res/xml/unstoppable_domains_preferences.xml",
     "java/res/xml/ens_preferences.xml",
 
