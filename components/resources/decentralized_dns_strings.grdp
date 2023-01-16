@@ -4,28 +4,28 @@
     Unstoppable Domains
   </message>
   <message name="IDS_UNSTOPPABLE_DOMAINS_OPT_IN_HEADING" desc="Heading of unstoppable domains opt-in interstitial opt-in page.">
-    Enable support of Unstoppable Domains in Brave?
+    Enable support of Unstoppable Domains in Mises?
   </message>
   <message name="IDS_UNSTOPPABLE_DOMAINS_OPT_IN_PRIMARY_PARAGRAPH" desc="Main paragraph of unstoppable domains opt-in interstitial page.">
-    Brave will be using Infura to issue Ethereum JSON-RPC calls to the smart contract from Unstoppable Domains to resolve .crypto (and also .x, .coin, .nft, .dao, .wallet, .blockchain, .bitcoin, .zil) domain name lookup requests. If you enable this, Infura will see those specific domains that you're trying to visit but they will not be able to see other domains. See Infura's <ph name="BEGIN_INFURA_TOU_LINK">$1</ph>terms of use<ph name="END_INFURA_TOU_LINK">$2</ph> and <ph name="BEGIN_INFURA_PRIVACY_LINK">$3</ph>privacy policy<ph name="END_INFURA_PRIVACY_LINK">$4</ph>.
+    Mises will be using Infura to issue Ethereum JSON-RPC calls to the smart contract from Unstoppable Domains to resolve .crypto (and also .x, .coin, .nft, .dao, .wallet, .blockchain, .bitcoin, .zil) domain name lookup requests. If you enable this, Infura will see those specific domains that you're trying to visit but they will not be able to see other domains. See Infura's <ph name="BEGIN_INFURA_TOU_LINK">$1</ph>terms of use<ph name="END_INFURA_TOU_LINK">$2</ph> and <ph name="BEGIN_INFURA_PRIVACY_LINK">$3</ph>privacy policy<ph name="END_INFURA_PRIVACY_LINK">$4</ph>.
   </message>
   <message name="IDS_ENS_OPT_IN_TITLE" desc="Title of interstitial opt-in page for ENS.">
     Ethereum Name Service
   </message>
   <message name="IDS_ENS_OPT_IN_HEADING" desc="Heading of ENS opt-in interstitial opt-in page.">
-    Enable support of Ethereum Name Service (ENS) in Brave?
+    Enable support of Ethereum Name Service (ENS) in Mises?
   </message>
   <message name="IDS_ENS_OPT_IN_PRIMARY_PARAGRAPH" desc="Main paragraph of ENS opt-in interstitial page.">
-    Brave will be using Infura to issue Ethereum JSON-RPC calls to the smart contract from Ethereum Name Service to resolve .eth domain name lookup requests. If you enable this, Infura will see the .eth domain that you're trying to visit but they will not be able to see other domains. See Infura's <ph name="BEGIN_INFURA_TOU_LINK">$1</ph>terms of use<ph name="END_INFURA_TOU_LINK">$2</ph> and <ph name="BEGIN_INFURA_PRIVACY_LINK">$3</ph>privacy policy<ph name="END_INFURA_PRIVACY_LINK">$4</ph>.
+    Mises will be using Infura to issue Ethereum JSON-RPC calls to the smart contract from Ethereum Name Service to resolve .eth domain name lookup requests. If you enable this, Infura will see the .eth domain that you're trying to visit but they will not be able to see other domains. See Infura's <ph name="BEGIN_INFURA_TOU_LINK">$1</ph>terms of use<ph name="END_INFURA_TOU_LINK">$2</ph> and <ph name="BEGIN_INFURA_PRIVACY_LINK">$3</ph>privacy policy<ph name="END_INFURA_PRIVACY_LINK">$4</ph>.
   </message>
     <message name="IDS_ENS_OFFCHAIN_LOOKUP_OPT_IN_TITLE" desc="Title of interstitial opt-in page for ENS offchain lookup.">
     Ethereum Name Service Offchain Lookup
   </message>
   <message name="IDS_ENS_OFFCHAIN_LOOKUP_OPT_IN_HEADING" desc="Heading of ENS offchain lookup opt-in interstitial opt-in page.">
-    Enable support of Ethereum Name Service (ENS) offchain lookup in Brave?
+    Enable support of Ethereum Name Service (ENS) offchain lookup in Mises?
   </message>
   <message name="IDS_ENS_OFFCHAIN_LOOKUP_OPT_IN_PRIMARY_PARAGRAPH" desc="Main paragraph of ENS offchain lookup opt-in interstitial page.">
-    Brave will be using offchain gateways to resolve .eth domain name lookup requests. If you enable this, third party gateways will see the .eth domain that you're trying to visit but they will not be able to see other domains. <ph name="BEGIN_BRAVE_LEARN_MORE_LINK">$1</ph>Learn more<ph name="END_BRAVE_LEARN_MORE_LINK">$2</ph>.
+    Mises will be using offchain gateways to resolve .eth domain name lookup requests. If you enable this, third party gateways will see the .eth domain that you're trying to visit but they will not be able to see other domains. <ph name="BEGIN_BRAVE_LEARN_MORE_LINK">$1</ph>Learn more<ph name="END_BRAVE_LEARN_MORE_LINK">$2</ph>.
   </message>
     <message name="IDS_ENS_OFFCHAIN_LOOKUP_OPT_IN_PROCEED" desc="The text for the ENS offchain lookup opt-in interstitial proceed button.">
     Proceed with offchain lookup

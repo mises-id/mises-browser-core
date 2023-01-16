@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Brave Settings WebUI strings (included from brave_generated_resources.grd). -->
+<!-- Mises Settings WebUI strings (included from mises_generated_resources.grd). -->
 <grit-part>
 
   <!--Add new items to the appropriate sections below -->
@@ -14,13 +14,13 @@
     Gateway
   </message>
   <message name="IDS_IPFS_RESOLVE_OPTION_LOCAL" desc="Select control value for which IPFS resolve method to use">
-    Brave local IPFS node
+    Mises local IPFS node
   </message>
   <message name="IDS_IPFS_RESOLVE_OPTION_DISABLED" desc="Select control value for which IPFS resolve method to use">
     Disabled
   </message>
   <message name="IDS_SETTINGS_IPFS_METHOD_DESC" desc="The description of IPFS protocol on settings page">
-    <ph name="BEGIN_LINK_MPL">&lt;a target="_blank" href="$1"&gt;</ph>Learn more<ph name="END_LINK_MPL">&lt;/a&gt;</ph> about Brave local IPFS node and gateway privacy considerations.
+    <ph name="BEGIN_LINK_MPL">&lt;a target="_blank" href="$1"&gt;</ph>Learn more<ph name="END_LINK_MPL">&lt;/a&gt;</ph> about Mises local IPFS node and gateway privacy considerations.
   </message>
   <message name="IDS_SETTINGS_IPFS_PUBLIC_GATEWAY_DESC" desc="The description of changing IPFS public gateway">
     IPFS public gateway address
@@ -35,7 +35,7 @@
     IPFS public gateway fallback
   </message>
   <message name="IDS_SETTINGS_IPFS_AUTO_FALLBACK_TO_GATEWAY_DESC" desc="The description for the switch of automatically fallback to IPFS public gateway">
-    Automatically fall back to public IPFS gateway if your Brave local IPFS node cannot be reached.
+    Automatically fall back to public IPFS gateway if your Mises local IPFS node cannot be reached.
   </message>
   <message name="IDS_SETTINGS_IPFS_AUTO_REDIRECT_GATEWAY_LABEL" desc="The text label for redirecting IPFS resources to the configured gateway">
     Redirect IPFS resources to the configured IPFS gateway
@@ -51,7 +51,7 @@
     Automatically uses DNSLink to navigate to an IPFS version of a website when possible
   </message>
   <message name="IDS_SETTINGS_IPFS_COMPANION_ENABLED_DESC" desc="The description for IPFS companion switch in settings">
-    Uses the IPFS Companion extension for enhanced IPFS support in Brave, including access to common IPFS tasks from your browser bar.
+    Uses the IPFS Companion extension for enhanced IPFS support in Mises, including access to common IPFS tasks from your browser bar.
   </message>
   <message name="IDS_SETTINGS_CHANGE_IPFS_STORAGE_MAX_LABEL" desc="The text label for Maximum IPFS cache size field">
     Maximum IPFS cache size (GB)
@@ -84,10 +84,10 @@
     Rotate key
   </message>
   <message name="IDS_SETTINGS_IPFS_ROTATION_STOP_ERROR" desc="The error message of the dialog when unable to stop ipfs node">
-    Unable to stop Brave local IPFS node
+    Unable to stop Mises local IPFS node
   </message>
   <message name="IDS_SETTINGS_IPFS_ROTATION_LAUNCH_ERROR" desc="The error message of the dialog when unable to launch ipfs node">
-    Unable to launch Brave local IPFS node
+    Unable to launch Mises local IPFS node
   </message>
   <message name="IDS_SETTINGS_IPFS_PEER_NODE_RESTART" desc="The message to restart node if peers were chagned on IPFS Settings page">
     Restart node to apply changes
@@ -155,7 +155,7 @@
     Invalid gateway address
   </message>
   <message name="IDS_SETTINGS_IPFS_ERROR_INVALID_ADDRESS_ORIGIN_ISOLATION" desc="The error message used when user input an invalid gateway address without origin isolation">
-    Only a valid IPFS gateway with Origin isolation enabled can be used in Brave
+    Only a valid IPFS gateway with Origin isolation enabled can be used in Mises
   </message>
 
   <!--Add new items to the appropriate sections above -->

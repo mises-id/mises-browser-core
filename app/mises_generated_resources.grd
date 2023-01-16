@@ -246,7 +246,7 @@
           Open Link in Private Window with Tor
         </message>
         <message name="IDS_CONTENT_CONTEXT_OPENLINKTOR_INAPP" desc="Title case: The name of the open a link in private window with Tor command">
-          Open Link in Brave Private Window with Tor
+          Open Link in Mises Private Window with Tor
         </message>
         <message name="IDS_APP_MENU_IPFS_SHARE_LOCAL_FILE" desc="Title case: The text label of a menu item to share local file using IPFS.">
           Import and Share a File
@@ -290,7 +290,7 @@
           Open link in private window with Tor
         </message>
         <message name="IDS_CONTENT_CONTEXT_OPENLINKTOR_INAPP" desc="The name of the open a link in private window with Tor command">
-          Open link in Brave private window with Tor
+          Open link in Mises private window with Tor
         </message>
         <message name="IDS_APP_MENU_IPFS_SHARE_LOCAL_FOLDER" desc="The text label of a menu item to share local folder using IPFS.">
           Import and share a directory

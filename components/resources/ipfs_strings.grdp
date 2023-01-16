@@ -28,15 +28,15 @@
     <message name="IDS_IPFS_RUN_GC_BUTTON" desc="Text of garbage collection button on state">Perform a garbage collection sweep</message>
     <message name="IDS_IPFS_GC_ERROR" desc="Text of garbage collection error">Garbage collection error</message>
     <message name="IDS_UTILITY_PROCESS_IPFS_NAME" desc="The utility process which manages IPFS daemon">IPFS Service</message>
-    <message name="IDS_IPFS_OPEN_WEBUI" desc="Title of brave://ipfs webui button">My Node</message>
+    <message name="IDS_IPFS_OPEN_WEBUI" desc="Title of ,mises://ipfs webui button">My Node</message>
     <message name="IDS_IPFS_BADGE_TITLE" desc="Title of page info badge in location bar">IPFS</message>
-    <message name="IDS_IPFS_PEERS_DETAILS_LINK" desc="Link to open details about peers on brave://ipfs.">
+    <message name="IDS_IPFS_PEERS_DETAILS_LINK" desc="Link to open details about peers on mises://ipfs.">
       (details)
     </message>
-    <message name="IDS_IPFS_INSTALL_AND_LAUNCH" desc="Title of brave://ipfs install and launch button.">
+    <message name="IDS_IPFS_INSTALL_AND_LAUNCH" desc="Title of mises://ipfs install and launch button.">
       Install and start
     </message>
-    <message name="IDS_IPFS_LEARN_MORE" desc="Link to open infromation about IPFS on brave://ipfs.">
+    <message name="IDS_IPFS_LEARN_MORE" desc="Link to open infromation about IPFS on mises://ipfs.">
       Learn more about IPFS and privacy
     </message>
     <message name="IDS_IPFS_SERVICE_LAUNCH_RETRY" desc="Retry button text for IPFS interstitial page.">
@@ -49,7 +49,7 @@
       IPFS Not Connected
     </message>
     <message name="IDS_IPFS_NOT_CONNECTED_HEADING" desc="Heading of IPFS not connected interstitial page.">
-      Can't load IPFS resources using Brave local IPFS node
+      Can't load IPFS resources using Mises local IPFS node
     </message>
     <message name="IDS_IPFS_NOT_CONNECTED_PRIMARY_PARAGRAPH" desc="Main paragraph of IPFS not connected interstitial page.">
       Failed to use the local IPFS node to load the requested IPFS resources. Click the "Proceed" button to use the public gateway instead, and to fall back automatically to the public gateway in the future.
@@ -64,7 +64,7 @@
       Hide Advanced
     </message>
     <message name="IDS_IPFS_NOT_CONNECTED_EXPLANATION" desc="The text of the IPFS not connected interstitial that will be displayed when the user presses the 'Advanced' button for additional information.">
-      Brave cannot load the requested IPFS resources either because the Brave local IPFS node did not start, or because there are no connected peers available at the moment. If you choose "Proceed", Brave will automatically fall back to the default public gateway whenever using the Brave local IPFS node fails. You can change this behavior at any point in Brave settings.
+      Mises cannot load the requested IPFS resources either because the Mises local IPFS node did not start, or because there are no connected peers available at the moment. If you choose "Proceed", Mises will automatically fall back to the default public gateway whenever using the Mises local IPFS node fails. You can change this behavior at any point in Mises settings.
     </message>
     <message name="IDS_IPFS_ONBOARDING_TITLE" desc="Title of IPFS onboarding interstitial page.">
       IPFS Preference
@@ -72,8 +72,8 @@
     <message name="IDS_IPFS_ONBOARDING_HEADING" desc="Heading of IPFS onboarding interstitial page.">
       Set your IPFS preference
     </message>
-    <message name="IDS_IPFS_ONBOARDING_LOCAL_NODE_BUTTON" desc="The text for the button that enables a Brave local IPFS node to work with IPFS.">
-      Use a Brave local IPFS node
+    <message name="IDS_IPFS_ONBOARDING_LOCAL_NODE_BUTTON" desc="The text for the button that enables a Mises local IPFS node to work with IPFS.">
+      Use a Mises local IPFS node
     </message>
     <message name="IDS_IPFS_ONBOARDING_PUBLIC_GATEWAY_BUTTON" desc="The text for the button that enables a public gateway to work with IPFS.">
       Use a public gateway
@@ -118,7 +118,7 @@
       This content was loaded over the IPFS protocol
     </message>
     <message name="IDS_PAGE_INFO_IPFS_BUBBLE_TEXT" desc="The text for ips page info bubble.">
-      InterPlanetary File System (IPFS) is a public network for peer-to-peer data storage and delivery. You can learn more about Brave's integration or configure your IPFS settings at any time.
+      InterPlanetary File System (IPFS) is a public network for peer-to-peer data storage and delivery. You can learn more about Mises's integration or configure your IPFS settings at any time.
     </message>
     <message name="IDS_PAGE_INFO_IPFS_SETTINGS_BUTTON_TEXT" desc="The text for ips page info bubble IPFS Settings button.">
       IPFS settings
@@ -157,7 +157,7 @@
       IPFS node internal error
     </message>
     <message name="IDS_IPFS_IMPORT_PARTLY_COMPLETED_NOTIFICATION_BODY" desc="The title for ips import error notification.">
-      The data was successfully uploaded but not moved to the brave-import directory. You can do this manually on the import settings page.
+      The data was successfully uploaded but not moved to the mises-import directory. You can do this manually on the import settings page.
     </message>
     <message name="IDS_IPFS_ROTATE_IDENTITY_TITLE" desc="The title for the link to rotate identity on ipfs diagnostic page.">
       Manage Peer ID and IPNS keys

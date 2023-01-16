@@ -37,6 +37,8 @@ source_set("ui") {
 
   if (enable_ipfs) {
     sources += [
+     # "omnibox/mises_omnibox_client_impl.cc",
+     # "omnibox/mises_omnibox_client_impl.h",
       "webui/ipfs_ui.cc",
       "webui/ipfs_ui.h",
     ]
