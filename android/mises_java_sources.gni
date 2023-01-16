@@ -14,6 +14,7 @@ kiwi_java_sources = [
   
   "//mises/android/java/org/chromium/chrome/browser/compositor/layouts/ChromeAnimation.java",
   "//mises/android/java/org/chromium/chrome/browser/init/InAppUpdater.java",
+ 
 ]
 
 mises_java_sources = kiwi_java_sources + [
@@ -23,6 +24,7 @@ mises_java_sources = kiwi_java_sources + [
   "//mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
   "//mises/android/java/org/chromium/base/MisesSysUtils.java",
   "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
+  "//mises/android/java/org/chromium/chrome/browser/externalnav/MisesExternalNavigationHandler.java",
   "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/ENSSettingsFragment.java",
   "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/RadioButtonGroupENSResolveMethodPreference.java",
   "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/RadioButtonGroupUnstoppableDomainsResolveMethodPreference.java",
