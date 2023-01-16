@@ -1,0 +1,57 @@
+/* Copyright (c) 2021 The Brave Authors. All rights reserved.
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#ifndef BRAVE_COMPONENTS_BRAVE_WALLET_BROWSER_BRAVE_WALLET_PROVIDER_DELEGATE_H_
+#define BRAVE_COMPONENTS_BRAVE_WALLET_BROWSER_BRAVE_WALLET_PROVIDER_DELEGATE_H_
+
+#include <string>
+#include <vector>
+
+#include "base/callback.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom-forward.h"
+#include "third_party/abseil-cpp/absl/types/optional.h"
+#include "url/origin.h"
+
+namespace brave_wallet {
+
+class BraveWalletProviderDelegate {
+ public:
+  using RequestPermissionsCallback = base::OnceCallback<void(
+      mojom::RequestPermissionsError error,
+      const absl::optional<std::vector<std::string>>& allowed_accounts)>;
+  using IsAccountAllowedCallback = base::OnceCallback<void(bool allowed)>;
+  using GetAllowedAccountsCallback =
+      base::OnceCallback<void(bool success, const std::vector<std::string>&)>;
+
+  BraveWalletProviderDelegate() = default;
+  BraveWalletProviderDelegate(const BraveWalletProviderDelegate&) = delete;
+  BraveWalletProviderDelegate& operator=(const BraveWalletProviderDelegate&) =
+      delete;
+  virtual ~BraveWalletProviderDelegate() = default;
+
+  virtual bool IsTabVisible() = 0;
+  virtual void ShowPanel() = 0;
+  virtual void WalletInteractionDetected() = 0;
+  virtual void ShowWalletOnboarding() = 0;
+  virtual void ShowAccountCreation(mojom::CoinType type) = 0;
+  virtual url::Origin GetOrigin() const = 0;
+  virtual void RequestPermissions(mojom::CoinType type,
+                                  const std::vector<std::string>& accounts,
+                                  RequestPermissionsCallback) = 0;
+  virtual void IsAccountAllowed(mojom::CoinType type,
+                                const std::string& account,
+                                IsAccountAllowedCallback callback) = 0;
+  virtual void GetAllowedAccounts(mojom::CoinType type,
+                                  const std::vector<std::string>& accounts,
+                                  GetAllowedAccountsCallback callback) = 0;
+  virtual bool IsPermissionDenied(mojom::CoinType type) = 0;
+  virtual void AddSolanaConnectedAccount(const std::string& account) {}
+  virtual void RemoveSolanaConnectedAccount(const std::string& account) {}
+  virtual bool IsSolanaAccountConnected(const std::string& account);
+};
+
+}  // namespace brave_wallet
+
+#endif  // BRAVE_COMPONENTS_BRAVE_WALLET_BROWSER_BRAVE_WALLET_PROVIDER_DELEGATE_H_

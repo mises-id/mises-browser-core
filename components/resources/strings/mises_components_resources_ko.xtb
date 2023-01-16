@@ -281,7 +281,7 @@
 <translation id="1911900517212490188">입력하신 복원 키는 더 이상 지원되지 않습니다. <ph name="BEGIN_LINK"/>여기<ph name="END_LINK"/>에서 새 키를 받으세요.</translation>
 <translation id="7583327070390027131">다음 월간 팁 날짜</translation>
 <translation id="6231182869178328516">Mises 브라우저를 이용해 <ph name="NAME"/>에게 팁으로 주었습니다. https://brave.com/tips에서 확인해 보세요.</translation>
-<translation id="5916536234616514390"><ph name="HASHTAG"/>Mises 덕분에 제작자를 지원할 수 있어 정말 좋습니다! <ph name="NAME"/> 님에게 <ph name="HASHTAG2"/>BAT 팁을 드렸죠. 받은 분이 <ph name="DATE"/>까지 https://creators.brave.com 페이지에서 검증받으면 BAT가 지급됩니다!</translation>
+<translation id="5916536234616514390"><ph name="HASHTAG"/>Mises 덕분에 제작자를 지원할 수 있어 정말 좋습니다! <ph name="NAME"/> 님에게 <ph name="HASHTAG2"/>BAT 팁을 드렸죠. 받은 분이 <ph name="DATE"/>까지 https://creators.mises.site 페이지에서 검증받으면 BAT가 지급됩니다!</translation>
 <translation id="8404935570206006581">TipWithMises</translation>
 <translation id="3082557070674409251">클릭됨</translation>
 <translation id="7119308337584989771">기각됨</translation>

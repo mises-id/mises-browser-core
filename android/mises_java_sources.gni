@@ -6,6 +6,7 @@ kiwi_java_sources = [
   "//mises/android/java/org/chromium/chrome/browser/translate/settings/TranslateSettings.java",
   "//mises/android/java/org/chromium/chrome/browser/translate/settings/RadioButtonGroupTranslatePreference.java",
   "//mises/android/java/org/chromium/chrome/browser/settings/TabSwitcherSettings.java",
+  "//mises/android/java/org/chromium/chrome/browser/settings/Web3Settings.java",
   "//mises/android/java/org/chromium/chrome/browser/settings/RadioButtonGroupTabSwitcherPreference.java",
   "//mises/android/java/org/chromium/chrome/browser/settings/ToolbarSettings.java",
   "//mises/android/java/org/chromium/chrome/browser/settings/NightModeSettings.java",
@@ -14,6 +15,7 @@ kiwi_java_sources = [
   
   "//mises/android/java/org/chromium/chrome/browser/compositor/layouts/ChromeAnimation.java",
   "//mises/android/java/org/chromium/chrome/browser/init/InAppUpdater.java",
+ 
 ]
 
 mises_java_sources = kiwi_java_sources + [
@@ -22,6 +24,12 @@ mises_java_sources = kiwi_java_sources + [
   "//mises/android/java/org/chromium/chrome/browser/app/appmenu/MisesAppMenuPropertiesDelegateImpl.java",
   "//mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
   "//mises/android/java/org/chromium/base/MisesSysUtils.java",
+  "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
+  "//mises/android/java/org/chromium/chrome/browser/externalnav/MisesExternalNavigationHandler.java",
+  "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/ENSSettingsFragment.java",
+  "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/RadioButtonGroupENSResolveMethodPreference.java",
+  "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/RadioButtonGroupUnstoppableDomainsResolveMethodPreference.java",
+  "//mises/android/java/org/chromium/chrome/browser/decentralized_dns/settings/UnstoppableDomainsSettingsFragment.java",
 ]
 mises_browser_ui_android_appmenu_internal_sources = [
 ]

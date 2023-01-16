@@ -1,3 +1,4 @@
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 mises_utility_importer_sources = []
 mises_utility_importer_deps = []
 mises_utility_importer_public_deps = [
@@ -17,4 +18,7 @@ if (!is_android) {
     "//components/password_manager/core/browser",
     "//components/webdata/common",
   ]
+}
+if (enable_ipfs) {
+  mises_utility_importer_deps += [ "//mises/components/services/ipfs" ]
 }

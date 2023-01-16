@@ -3,5 +3,6 @@ module extensions.mojom;
 [MisesExtend]
 enum APIPermissionID {
   kMisesPrivate,
+  kIpfs,
 };
 

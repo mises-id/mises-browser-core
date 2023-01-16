@@ -4,6 +4,7 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import("//extensions/buildflags/buildflags.gni")
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 
 mises_browser_autocomplete_sources = [
   "//mises/browser/autocomplete/mises_autocomplete_scheme_classifier.cc",
@@ -15,3 +16,7 @@ mises_browser_autocomplete_deps = [
   "//mises/common",
   "//chrome/browser/profiles:profile",
 ]
+
+if (enable_ipfs) {
+  mises_browser_autocomplete_deps += [ "//mises/components/ipfs" ]
+}

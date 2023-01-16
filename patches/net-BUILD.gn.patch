@@ -1,0 +1,12 @@
+diff --git a/net/BUILD.gn b/net/BUILD.gn
+index 029d409152339f81d127b5695bbc3d3d0384b4f1..1ac8541cceb30cca77d51cfcfd28e0c3d5e4431c 100644
+--- a/net/BUILD.gn
++++ b/net/BUILD.gn
+@@ -1119,6 +1119,7 @@ component("net") {
+       "reporting/reporting_uploader.h",
+     ]
+   }
++  sources += mises_net_sources
+ 
+   if (is_android) {
+     sources += [

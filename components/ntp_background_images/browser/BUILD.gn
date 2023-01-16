@@ -35,18 +35,11 @@ static_library("browser") {
 
   deps = [
     "//base",
-    "//mises/components/brave_ads/browser",
-    "//mises/components/brave_ads/common",
-    "//mises/components/brave_component_updater/browser",
-    "//mises/components/brave_referrals/browser",
-    "//mises/components/brave_referrals/common",
-    "//mises/components/brave_rewards/common",
     "//mises/components/l10n/common",
     "//mises/components/ntp_background_images/buildflags",
     "//mises/components/ntp_background_images/common",
     "//mises/components/p3a_utils",
     "//mises/components/time_period_storage",
-    "//mises/vendor/bat-native-ads",
     "//components/component_updater",
     "//components/keyed_service/core",
     "//components/pref_registry:pref_registry",

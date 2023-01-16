@@ -14,6 +14,7 @@
 #include "base/task/thread_pool.h"
 #include "build/build_config.h"
 #include "chrome/browser/component_updater/component_updater_utils.h"
+
 #include "chrome/browser/net/system_network_context_manager.h"
 #include "chrome/common/buildflags.h"
 #include "chrome/common/chrome_paths.h"
@@ -32,6 +33,11 @@
 #include "chrome/browser/ui/browser_list.h"
 #endif
 
+#if BUILDFLAG(ENABLE_IPFS)
+#include "mises/components/ipfs/mises_ipfs_client_updater.h"
+#include "mises/components/ipfs/ipfs_constants.h"
+#endif
+
 
 using content::BrowserThread;
 
@@ -45,6 +51,12 @@ MisesBrowserProcessImpl::MisesBrowserProcessImpl(StartupData* startup_data)
 
 void MisesBrowserProcessImpl::Init() {
   BrowserProcessImpl::Init();
+  #if BUILDFLAG(ENABLE_IPFS)
+  content::ChildProcessSecurityPolicy::GetInstance()->RegisterWebSafeScheme(
+      ipfs::kIPFSScheme);
+  content::ChildProcessSecurityPolicy::GetInstance()->RegisterWebSafeScheme(
+      ipfs::kIPNSScheme);
+  #endif
 
 }
 
@@ -54,6 +66,15 @@ void MisesBrowserProcessImpl::StartTearDown() {
 }
 #endif
 
+
+mises_component_updater::MisesComponent::Delegate*
+MisesBrowserProcessImpl::mises_component_updater_delegate() {
+  // if (!mises_component_updater_delegate_)
+  //   mises_component_updater_delegate_ =
+  //       std::make_unique<mises::MisesComponentUpdaterDelegate>();
+
+  return mises_component_updater_delegate_.get();
+}
 
 // ProfileManager* MisesBrowserProcessImpl::profile_manager() {
 //   return BrowserProcessImpl::profile_manager();
@@ -68,3 +89,18 @@ NotificationPlatformBridge*
 MisesBrowserProcessImpl::notification_platform_bridge() {
   return BrowserProcessImpl::notification_platform_bridge();
 }
+
+
+#if BUILDFLAG(ENABLE_IPFS)
+ipfs::MisesIpfsClientUpdater* MisesBrowserProcessImpl::ipfs_client_updater() {
+  if (ipfs_client_updater_)
+    return ipfs_client_updater_.get();
+
+  base::FilePath user_data_dir;
+  base::PathService::Get(chrome::DIR_USER_DATA, &user_data_dir);
+
+  ipfs_client_updater_ = ipfs::MisesIpfsClientUpdaterFactory(
+      mises_component_updater_delegate(), user_data_dir);
+  return ipfs_client_updater_.get();
+}
+#endif  // BUILDFLAG(ENABLE_IPFS)

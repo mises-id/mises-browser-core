@@ -58,6 +58,7 @@ template("mises_extra_paks") {
       sources += [
         "$root_gen_dir/mises/mises_generated_resources.pak",
         "$root_gen_dir/mises/mises_unscaled_resources.pak",
+        "$root_gen_dir/mises/browser/resources/settings/mises_settings_resources.pak",
       ]
     }
 
@@ -70,6 +71,7 @@ template("mises_extra_paks") {
         "//mises/app:mises_generated_resources_grit",
         "//mises/app/theme:mises_unscaled_resources",
         "//mises/components/resources:strings",
+        "//mises/browser/resources/settings:resources",
       ]
     }
 

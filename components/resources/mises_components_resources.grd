@@ -14,7 +14,11 @@
       <!-- TODO: Define only where needed, via webpack generated output, or use common chrome://resources DataSource -->
       <include name="IDR_MISES_COMMON_TOOLBAR_IMG" file="../img/toolbar/menu_btn.svg" type="BINDATA" />
 
-  
+      <if expr="not is_ios">
+        <part file="decentralized_dns_resources.grdp" />
+      </if>
+
+      <part file="ipfs_resources.grdp" />
     </includes>
   </release>
 </grit>

@@ -2,6 +2,7 @@ import("//mises/resources/mises_grit.gni")
 import("//build/config/locales.gni")
 import("//extensions/buildflags/buildflags.gni")
 import("//tools/grit/repack.gni")
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 
 mises_grit("static_resources") {
   source = "mises_components_resources.grd"
@@ -17,6 +18,7 @@ mises_grit("static_resources") {
   ]
 
   defines = [
+    "enable_ipfs=$enable_ipfs",
   ]
 
   output_dir = "$root_gen_dir/components"
@@ -42,6 +44,13 @@ repack("resources") {
     ]
   }
 
+  if (enable_ipfs) {
+    deps += [ "//mises/components/ipfs_ui:generated_resources" ]
+    sources += [
+      "$root_gen_dir/mises/components/ipfs_ui/resources/ipfs_generated.pak",
+    ]
+  }
+
   output = "$root_gen_dir/components/mises_components_resources.pak"
 }
 
@@ -51,6 +60,7 @@ mises_grit("strings") {
   outputs = [ "grit/mises_components_strings.h" ]
 
   defines = [
+    "enable_ipfs=$enable_ipfs",
   ]
 
   foreach(locale, all_chrome_locales) {

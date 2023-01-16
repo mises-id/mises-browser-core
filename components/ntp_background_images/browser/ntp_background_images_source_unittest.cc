@@ -27,7 +27,7 @@ class NTPBackgroundImagesSourceTest : public testing::Test {
   void SetUp() override {
     auto* registry = local_pref_.registry();
     NTPBackgroundImagesService::RegisterLocalStatePrefs(registry);
-    brave::RegisterPrefsForBraveReferralsService(registry);
+    mises::RegisterPrefsForBraveReferralsService(registry);
     service_ =
         std::make_unique<NTPBackgroundImagesService>(nullptr, &local_pref_);
     source_ = std::make_unique<NTPSponsoredImagesSource>(service_.get());
@@ -51,7 +51,7 @@ TEST_F(NTPBackgroundImagesSourceTest, SponsoredImagesTest) {
           "imageUrl": "logo.png",
           "alt": "Technikke: For music lovers",
           "companyName": "Technikke",
-          "destinationUrl": "https://www.brave.com/?from-super-referreer-demo"
+          "destinationUrl": "https://www.mises.site/?from-super-referreer-demo"
         },
         "wallpapers": [
           {
@@ -108,7 +108,7 @@ TEST_F(NTPBackgroundImagesSourceTest, BackgroundImagesTest) {
             "name": "background-1.jpg",
             "source": "brave-bg-1.webp",
             "author": "Brave software",
-            "link": "https://www.brave.com/",
+            "link": "https://www.mises.site/",
             "originalUrl": "Contributor sent the hi-res version",
             "license": "used with permission"
           },
@@ -116,7 +116,7 @@ TEST_F(NTPBackgroundImagesSourceTest, BackgroundImagesTest) {
             "name": "background-2.jpg",
             "source": "brave-bg-2.webp",
             "author": "Brave software",
-            "link": "https://www.brave.com/",
+            "link": "https://www.mises.site/",
             "originalUrl": "Contributor sent the hi-res version",
             "license": "used with permission"
           },
@@ -124,7 +124,7 @@ TEST_F(NTPBackgroundImagesSourceTest, BackgroundImagesTest) {
             "name": "background-3.jpg",
             "source": "brave-bg-3.webp",
             "author": "Brave software",
-            "link": "https://www.brave.com/",
+            "link": "https://www.mises.site/",
             "originalUrl": "Contributor sent the hi-res version",
             "license": "used with permission"
           },
@@ -132,7 +132,7 @@ TEST_F(NTPBackgroundImagesSourceTest, BackgroundImagesTest) {
             "name": "background-4.jpg",
             "source": "brave-bg-4.webp",
             "author": "Brave software",
-            "link": "https://www.brave.com/",
+            "link": "https://www.mises.site/",
             "originalUrl": "Contributor sent the hi-res version",
             "license": "used with permission"
           }
@@ -160,7 +160,7 @@ TEST_F(NTPBackgroundImagesSourceTest, BasicSuperReferralDataTest) {
           "imageUrl": "logo.png",
           "alt": "Technikke: For music lovers",
           "companyName": "Technikke",
-          "destinationUrl": "https://www.brave.com/?from-super-referreer-demo"
+          "destinationUrl": "https://www.mises.site/?from-super-referreer-demo"
         },
         "wallpapers": [
           {

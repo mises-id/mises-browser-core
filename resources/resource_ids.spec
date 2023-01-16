@@ -9,6 +9,13 @@
   "mises/components/resources/mises_components_resources.grd": {
     "includes": [45100],
   },
+  # This file is generated during the build.
+  "<(SHARED_INTERMEDIATE_DIR)/mises/browser/resources/settings/mises_settings_resources.grd": {
+    "META": {"sizes": {"includes": [400]}},
+    "includes": [45800],
+  },
+
+
   "mises/app/mises_generated_resources.grd": {
     "includes": [46200],
     "messages": [46700],
@@ -27,4 +34,10 @@
   },
   # This file is generated during the build.
 
+
+  # This file is generated during the build.
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-ipfs/ipfs.grd": {
+    "META": {"sizes": {"includes": [500]}},
+    "includes": [56500],
+  },
 }

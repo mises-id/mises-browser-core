@@ -283,7 +283,7 @@
 <translation id="1911900517212490188">Wprowadzony klucz przywracania nie jest już obsługiwany. Przejdź <ph name="BEGIN_LINK"/>tutaj<ph name="END_LINK"/>, aby uzyskać nowy klucz.</translation>
 <translation id="7583327070390027131">Data następnych miesięcznych napiwków</translation>
 <translation id="6231182869178328516">Przekaż napiwek <ph name="NAME"/>, korzystając z przeglądarki Mises. Sprawdź pod adresem https://brave.com/tips.</translation>
-<translation id="5916536234616514390">Bardzo podoba mi się, to że <ph name="HASHTAG"/>Mises pozwala mi na wspieranie twórców! Twórca <ph name="NAME"/> otrzymał mój napiwek w postaci <ph name="HASHTAG2"/>BAT. Jeśli zweryfikuje się na stronie https://creators.brave.com przed <ph name="DATE"/>, BAT-y będą jego!</translation>
+<translation id="5916536234616514390">Bardzo podoba mi się, to że <ph name="HASHTAG"/>Mises pozwala mi na wspieranie twórców! Twórca <ph name="NAME"/> otrzymał mój napiwek w postaci <ph name="HASHTAG2"/>BAT. Jeśli zweryfikuje się na stronie https://creators.mises.site przed <ph name="DATE"/>, BAT-y będą jego!</translation>
 <translation id="8404935570206006581">TipWithMises</translation>
 <translation id="3082557070674409251">Kliknięte</translation>
 <translation id="7119308337584989771">Odrzucone</translation>

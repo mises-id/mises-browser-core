@@ -39,6 +39,7 @@ cargo_build("rust_lib") {
   # but in order to do that we have to dynamically create the mises rust lib
   deps = [
     "//mises/components/json:rust_lib",
+    "//mises/components/brave_wallet/rust:rust_lib",
   ]
 }
 

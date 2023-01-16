@@ -1,0 +1,119 @@
+import("//mises/components/ipfs/buildflags/buildflags.gni")
+import("//extensions/buildflags/buildflags.gni")
+import("//build/buildflag_header.gni")
+import("//build/config/features.gni")
+
+declare_args() {
+  mises_google_api_key = ""
+  mises_google_api_endpoint = ""
+}
+
+source_set("net") {
+  # Remove when https://github.com/brave/brave-browser/issues/10659 is resolved
+  check_includes = false
+
+  sources = [
+  
+    "mises_proxying_url_loader_factory.cc",
+    "mises_proxying_url_loader_factory.h",
+    "mises_proxying_web_socket.cc",
+    "mises_proxying_web_socket.h",
+    "mises_request_handler.cc",
+    "mises_request_handler.h",
+    "decentralized_dns_network_delegate_helper.cc",
+    "decentralized_dns_network_delegate_helper.h",
+    "resource_context_data.cc",
+    "resource_context_data.h",
+    "url_context.cc",
+    "url_context.h",
+  ]
+
+  deps = [
+    "//base",
+    "//mises/app:mises_generated_resources_grit",
+    "//mises/common",
+    "//mises/components/decentralized_dns/content",
+    "//mises/components/ipfs/buildflags",
+    "//mises/components/update_client:buildflags",
+    "//components/content_settings/core/browser",
+    "//components/prefs",
+    "//components/proxy_config",
+    "//components/user_prefs",
+    "//content/public/browser",
+    "//content/public/common",
+    "//mojo/public/cpp/bindings",
+    "//mojo/public/cpp/system",
+    "//net",
+    "//services/network:network_service",
+    "//services/network/public/cpp",
+    "//services/network/public/mojom",
+    "//third_party/blink/public/common",
+    "//third_party/blink/public/mojom:mojom_platform_headers",
+    "//third_party/re2",
+    "//url",
+  ]
+
+  if (enable_extensions) {
+    deps += [ "//extensions/common:common_constants" ]
+  }
+
+  if (enable_ipfs) {
+    sources += [
+      "ipfs_redirect_network_delegate_helper.cc",
+      "ipfs_redirect_network_delegate_helper.h",
+    ]
+    deps += [
+      "//mises/components/ipfs",
+      "//chrome/common:channel_info",
+    ]
+  }
+
+}
+
+source_set("browser_tests") {
+  testonly = true
+
+  sources = [
+  ]
+  deps = [
+    "//mises/browser/net",
+    "//chrome/browser",
+    "//chrome/browser:browser_process",
+    "//chrome/browser/profiles:profile",
+    "//chrome/browser/ui",
+    "//components/content_settings/core/browser",
+    "//components/prefs",
+    "//services/network/public/cpp",
+  ]
+  if (!is_android) {
+    deps += [ "//chrome/test:test_support_ui" ]
+  }
+  if (is_android) {
+    deps += [
+      "//chrome/test:test_support_ui_android",
+      "//net:test_support",
+      "//net/traffic_annotation:test_support",
+    ]
+  }
+  defines = [ "HAS_OUT_OF_PROC_TEST_RUNNER" ]
+}
+
+source_set("unit_tests") {
+  testonly = true
+
+  sources = [
+  ]
+
+  deps = [
+    "//mises/browser/net",
+    "//chrome/test:test_support",
+    "//content/test:test_support",
+    "//net",
+    "//net:test_support",
+    "//services/network:network_service",
+    "//testing/gmock",
+    "//testing/gtest",
+    "//third_party/abseil-cpp:absl",
+  ]
+
+}

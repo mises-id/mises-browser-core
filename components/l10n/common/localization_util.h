@@ -12,6 +12,7 @@ namespace brave_l10n {
 
 // Return localized resource as a UTF-16 string for the given |resource_id|.
 std::u16string GetLocalizedResourceUTF16String(int resource_id);
+std::u16string GetStringFUTF16(int message_id, const std::u16string& a);
 
 }  // namespace brave_l10n
 

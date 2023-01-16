@@ -4,6 +4,7 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import("//mises/browser/autocomplete/sources.gni")
+import("//mises/browser/ipfs/sources.gni")
 import("//extensions/buildflags/buildflags.gni")
 import("//mises/chromium_src/chrome/browser/sources.gni")
 import("//mises/build/rust/config.gni")
@@ -32,6 +33,16 @@ mises_chrome_browser_sources = [
     "//mises/browser/mises_browser_process_impl.h",
     "//mises/browser/mises_browser_process.cc",
     "//mises/browser/mises_browser_process.h",
+    "//mises/browser/mises_local_state_prefs.cc",
+    "//mises/browser/mises_local_state_prefs.h",
+    "//mises/browser/mises_profile_prefs.cc",
+    "//mises/browser/mises_profile_prefs.h",
+
+    "//mises/browser/mises_content_browser_client.cc",
+    "//mises/browser/mises_content_browser_client.h",
+    "//mises/browser/browser_context_keyed_service_factories.cc",
+    "//mises/browser/browser_context_keyed_service_factories.h",
+
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.cc",
     "//mises/chromium_src/chrome/browser/search/new_tab_page_source.h",
 ]
@@ -39,6 +50,11 @@ mises_chrome_browser_sources = [
 mises_chrome_browser_deps = [
   "//base",
   "//mises/browser/profiles",
+  "//mises/browser/net",
+  "//mises/components/constants",
+  "//mises/components/brave_wallet/browser",
+  "//mises/components/brave_wallet/common",
+  "//mises/components/brave_wallet/common:mojom",
   "//chrome/browser:browser_process",
   "//chrome/browser/profiles:profile",
   "//chrome/browser/ui",
@@ -245,5 +261,7 @@ if (is_android) {
 
 
 mises_chrome_browser_sources += mises_browser_autocomplete_sources
-
 mises_chrome_browser_deps += mises_browser_autocomplete_deps
+
+mises_chrome_browser_sources += mises_browser_ipfs_sources
+mises_chrome_browser_deps += mises_browser_ipfs_deps

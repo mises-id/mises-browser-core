@@ -1,0 +1,3 @@
+declare_args() {
+  mises_infura_project_id = ""
+}

@@ -759,7 +759,7 @@ Config.prototype.update = function (options) {
   }
 
   if (options.mises_infura_project_id) {
-    this.infuraProjectId = options.infura_project_id
+    this.infuraProjectId = options.mises_infura_project_id
   }
 
   if (options.binance_client_id) {

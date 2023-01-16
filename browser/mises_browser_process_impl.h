@@ -12,6 +12,8 @@
 #include "mises/browser/mises_browser_process.h"
 #include "chrome/browser/browser_process_impl.h"
 #include "extensions/buildflags/buildflags.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/components/mises_component_updater/browser/mises_component.h"
 
 
 class MisesBrowserProcessImpl : public MisesBrowserProcess,
@@ -31,6 +33,10 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
 
   void StartMisesServices() override;
 
+#if BUILDFLAG(ENABLE_IPFS)
+  ipfs::MisesIpfsClientUpdater* ipfs_client_updater() override;
+#endif
+
  private:
   // BrowserProcessImpl overrides:
   void Init() override;
@@ -38,7 +44,14 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
   void StartTearDown() override;
 #endif
 
+  mises_component_updater::MisesComponent::Delegate*
+  mises_component_updater_delegate();
 
+  std::unique_ptr<mises_component_updater::MisesComponent::Delegate>
+      mises_component_updater_delegate_;
+#if BUILDFLAG(ENABLE_IPFS)
+  std::unique_ptr<ipfs::MisesIpfsClientUpdater> ipfs_client_updater_;
+#endif
 
   SEQUENCE_CHECKER(sequence_checker_);
 };

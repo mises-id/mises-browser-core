@@ -15,6 +15,8 @@ namespace features {
 
 BASE_DECLARE_FEATURE(kBraveNTPBrandedWallpaperDemo);
 BASE_DECLARE_FEATURE(kBraveNTPSuperReferralWallpaper);
+
+#undef BASE_DECLARE_FEATURE
 }  // namespace features
 }  // namespace ntp_background_images
 

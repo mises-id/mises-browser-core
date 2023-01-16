@@ -281,7 +281,7 @@
 <translation id="1911900517212490188">The restore key entered is no longer supported. Please visit <ph name="BEGIN_LINK"/>here<ph name="END_LINK"/> to get a new key.</translation>
 <translation id="7583327070390027131">Next monthly tips date</translation>
 <translation id="6231182869178328516">I just tipped <ph name="NAME"/> using the Mises Browser. Check it out at https://brave.com/tips.</translation>
-<translation id="5916536234616514390">Love that <ph name="HASHTAG"/>Mises lets me support creators! Just tipped <ph name="NAME"/> with <ph name="HASHTAG2"/>BAT. If they verify at https://creators.brave.com before <ph name="DATE"/>, the BAT is theirs!</translation>
+<translation id="5916536234616514390">Love that <ph name="HASHTAG"/>Mises lets me support creators! Just tipped <ph name="NAME"/> with <ph name="HASHTAG2"/>BAT. If they verify at https://creators.mises.site before <ph name="DATE"/>, the BAT is theirs!</translation>
 <translation id="8404935570206006581">TipWithMises</translation>
 <translation id="3082557070674409251">Clicked</translation>
 <translation id="7119308337584989771">Dismissed</translation>

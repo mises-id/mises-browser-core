@@ -1,10 +1,12 @@
 import("//mises/resources/mises_grit.gni")
 import("//chrome/common/features.gni")
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 
 mises_grit("mises_theme_resources") {
   source = "mises_theme_resources.grd"
   defines = chrome_grit_defines
   defines += [
+    "enable_ipfs=$enable_ipfs",
   ]
   outputs = [
     "grit/mises_theme_resources.h",

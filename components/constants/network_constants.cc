@@ -5,23 +5,23 @@
 
 #include "mises/components/constants/network_constants.h"
 
-const char kExtensionUpdaterDomain[] = "extensionupdater.brave.com";
+const char kExtensionUpdaterDomain[] = "extensionupdater.mises.site";
 
-const char kBraveProxyPattern[] = "https://*.brave.com/*";
-const char kBraveSoftwareProxyPattern[] = "https://*.bravesoftware.com/*";
+const char kBraveProxyPattern[] = "https://*.mises.site/*";
+const char kBraveSoftwareProxyPattern[] = "https://*.mises.site/*";
 
 const char kBraveUsageStandardPath[] = "/1/usage/brave-core";
 const char kBraveUsageThresholdPath[] = "/1/usage/brave-core-threshold";
 
-const char kBraveReferralsServer[] = "laptop-updates.brave.com";
+const char kBraveReferralsServer[] = "laptop-updates.mises.site";
 const char kBraveReferralsInitPath[] = "/promo/initialize/nonua";
 const char kBraveReferralsActivityPath[] = "/promo/activity";
 
-const char kBraveSafeBrowsing2Proxy[] = "safebrowsing2.brave.com";
-const char kBraveSafeBrowsingSslProxy[] = "sb-ssl.brave.com";
-const char kBraveRedirectorProxy[] = "redirector.brave.com";
-const char kBraveClients4Proxy[] = "clients4.brave.com";
-const char kBraveStaticProxy[] = "static1.brave.com";
+const char kBraveSafeBrowsing2Proxy[] = "safebrowsing2.mises.site";
+const char kBraveSafeBrowsingSslProxy[] = "sb-ssl.mises.site";
+const char kBraveRedirectorProxy[] = "redirector.mises.site";
+const char kBraveClients4Proxy[] = "clients4.mises.site";
+const char kBraveStaticProxy[] = "static1.mises.site";
 
 const char kAutofillPrefix[] = "https://www.gstatic.com/autofill/*";
 const char kClients4Prefix[] = "*://clients4.google.com/";

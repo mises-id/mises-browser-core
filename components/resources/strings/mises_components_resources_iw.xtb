@@ -282,7 +282,7 @@ other {# sources}
 <translation id="1911900517212490188">מפתח השחזור שהוזן אינו נתמך עוד. נא לבקר ב-<ph name="BEGIN_LINK"/>here<ph name="END_LINK"/> כדי לקבל מפתח חדש.</translation>
 <translation id="7583327070390027131">תאריך הטיפ החודשי הבא</translation>
 <translation id="6231182869178328516">הרגע נתתי טיפ <ph name="NAME"/> באמצעות דפדפן Mises. אפשר לראות את זה ב-https://brave.com/tips.</translation>
-<translation id="5916536234616514390">אני מרוצה מזה ש-<ph name="HASHTAG"/>Mises מאפשר לי לתמוך ביוצרים! בדיוק נתתי טיפ של <ph name="HASHTAG2"/> BAT ל-<ph name="NAME"/>. ברגע שיתבצע אימות בכתובת https://creators.brave.com לפני <ph name="DATE"/>, ה-BAT יעבור!</translation>
+<translation id="5916536234616514390">אני מרוצה מזה ש-<ph name="HASHTAG"/>Mises מאפשר לי לתמוך ביוצרים! בדיוק נתתי טיפ של <ph name="HASHTAG2"/> BAT ל-<ph name="NAME"/>. ברגע שיתבצע אימות בכתובת https://creators.mises.site לפני <ph name="DATE"/>, ה-BAT יעבור!</translation>
 <translation id="8404935570206006581">תנו טיפ עם Mises</translation>
 <translation id="3082557070674409251">נלחץ</translation>
 <translation id="7119308337584989771">נדחה</translation>

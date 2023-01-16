@@ -6,6 +6,7 @@ edition = "2018"
 [dependencies]
 challenge-bypass-ristretto-ffi = { path = "../../components/challenge_bypass_ristretto" }
 json-cxx = { path = "../../components/json/rs" }
+brave-wallet-cxx = { path = "../../components/brave_wallet/rust" }
 
 [patch.crates-io.link-cplusplus_v1]
 path = "../../../third_party/rust/link_cplusplus/v1/crate"

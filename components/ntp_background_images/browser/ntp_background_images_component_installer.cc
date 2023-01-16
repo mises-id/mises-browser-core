@@ -12,13 +12,13 @@
 #include "base/base64.h"
 #include "base/bind.h"
 #include "base/callback.h"
-#include "mises/components/brave_component_updater/browser/brave_on_demand_updater.h"
+#include "mises/components/mises_component_updater/browser/brave_on_demand_updater.h"
 #include "mises/components/ntp_background_images/browser/sponsored_images_component_data.h"
 #include "components/component_updater/component_installer.h"
 #include "components/component_updater/component_updater_service.h"
 #include "crypto/sha2.h"
 
-using brave_component_updater::BraveOnDemandUpdater;
+using mises_component_updater::BraveOnDemandUpdater;
 
 namespace ntp_background_images {
 

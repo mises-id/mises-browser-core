@@ -4,6 +4,7 @@ import("//chrome/common/features.gni")
 import("//components/gcm_driver/config.gni")
 import("//mojo/public/tools/bindings/mojom.gni")
 import("//third_party/widevine/cdm/widevine.gni")
+import("//mises/components/ipfs/buildflags/buildflags.gni")
 
 source_set("favicon_source") {
   # Remove when https://github.com/brave/brave-browser/issues/10614 is resolved
@@ -28,11 +29,25 @@ source_set("ui") {
   check_includes = false
   public_deps = []
   sources = [
+    "webui/mises_webui_source.cc",
+    "webui/mises_webui_source.h",
+    "webui/mises_web_ui_controller_factory.cc",
+    "webui/mises_web_ui_controller_factory.h",
   ]
+
+  if (enable_ipfs) {
+    sources += [
+     # "omnibox/mises_omnibox_client_impl.cc",
+     # "omnibox/mises_omnibox_client_impl.h",
+      "webui/ipfs_ui.cc",
+      "webui/ipfs_ui.h",
+    ]
+  }
 
   if (!is_android) {
     sources += [
-      
+      "webui/mises_settings_ui.cc",
+      "webui/mises_settings_ui.h",
     ]
 
   }  # !is_android
@@ -80,6 +95,7 @@ source_set("ui") {
   deps = [
     "//mises/chromium_src/chrome/browser/ui",
     "//mises/components/vector_icons",
+    "//mises/components/decentralized_dns/content",
 
     "//base",
     "//chrome/app:command_ids",
@@ -117,9 +133,17 @@ source_set("ui") {
     deps += [ ":favicon_source" ]
   }
 
+  if (enable_ipfs) {
+    deps += [
+      "//mises/components/ipfs",
+      "//mises/components/ipfs_ui:generated_resources",
+      "//components/component_updater",
+    ]
+  }
 
   if (!is_android) {
     deps += [
+      "//mises/browser/resources/settings:resources",
       "//chrome/app:chromium_strings",
       "//components/sync_device_info",
       "//mojo/public/cpp/bindings",
@@ -128,18 +152,29 @@ source_set("ui") {
     ]
   }
 
-  if (is_android || enable_extensions && toolkit_views) {
+  if (enable_extensions && toolkit_views) {
     sources += [
+      "views/location_bar/mises_location_bar_view.cc",
+      "views/location_bar/msies_location_bar_view.h",
     ]
 
     if (enable_extensions) {
       sources += [
+        "webui/settings/mises_default_extensions_handler.cc",
+        "webui/settings/mises_default_extensions_handler.h",
       ]
 
       deps += [
         "//third_party/widevine/cdm:buildflags",
       ]
 
+    }
+
+    if (enable_ipfs) {
+      sources += [
+        "views/location_bar/ipfs_location_view.cc",
+        "views/location_bar/ipfs_location_view.h",
+      ]
     }
 
 

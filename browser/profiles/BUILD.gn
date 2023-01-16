@@ -29,8 +29,8 @@ source_set("util") {
   check_includes = false
 
   sources = [
-   # "profile_util.cc",
-   # "profile_util.h",
+    "profile_util.cc",
+    "profile_util.h",
   ]
 
   deps = [

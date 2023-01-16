@@ -80,6 +80,7 @@
     <string name="preferences_translator">Translator</string>
     <string name="preferences_tabswitcher">Tab switcher</string>
     <string name="preferences_nightmode">Night mode</string>
+    <string name="preferences_web3">Web3</string>
 
     <string name="download_preferences_enable_external_download_manager_title">External download manager</string>
     <string name="download_preferences_enable_external_download_manager_summary">Use external download manager (ex: Advanced Download Manager)</string>

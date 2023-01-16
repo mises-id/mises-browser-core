@@ -16,6 +16,8 @@ namespace features {
   
 BASE_DECLARE_FEATURE(kBraveBackgroundVideoPlayback);
 
+#undef BASE_DECLARE_FEATURE
+
 }  // namespace features
 }  // namespace preferences
 

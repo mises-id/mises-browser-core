@@ -14,17 +14,17 @@ namespace decentralized_dns {
 // Ask: Ask users if they want to enable support of unstoppable domains.
 // Ethereum: Resolve domain name using Ethereum JSON-RPC server.
 constexpr char kUnstoppableDomainsResolveMethod[] =
-    "brave.unstoppable_domains.resolve_method";
+    "mises.unstoppable_domains.resolve_method";
 
 // Used to determine which method should be used to resolve ENS domains,
 // between:
 // Disabled: Disable all ENS domains resolution.
 // Ask: Ask users if they want to enable support of ENS.
 // Ethereum: Resolve domain name using Ethereum JSON-RPC server.
-constexpr char kENSResolveMethod[] = "brave.ens.resolve_method";
+constexpr char kENSResolveMethod[] = "mises.ens.resolve_method";
 
 constexpr char kEnsOffchainResolveMethod[] =
-    "brave.ens.offchain_resolve_method";
+    "mises.ens.offchain_resolve_method";
 
 }  // namespace decentralized_dns
 

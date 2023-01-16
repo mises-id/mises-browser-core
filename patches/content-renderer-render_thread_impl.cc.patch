@@ -1,0 +1,12 @@
+diff --git a/content/renderer/render_thread_impl.cc b/content/renderer/render_thread_impl.cc
+index 914ecfff4bcec204e549e7d688d898df4b55f486..99598b8b6742d9e9eb1854ff2edfc211998c6689 100644
+--- a/content/renderer/render_thread_impl.cc
++++ b/content/renderer/render_thread_impl.cc
+@@ -932,6 +932,7 @@ void RenderThreadImpl::InitializeRenderer(
+ }
+ 
+ void RenderThreadImpl::RegisterSchemes() {
++  REGISTER_MISES_SCHEMES_DISPLAY_ISOLATED_AND_NO_JS
+   // chrome:
+   WebString chrome_scheme(WebString::FromASCII(kChromeUIScheme));
+   WebSecurityPolicy::RegisterURLSchemeAsDisplayIsolated(chrome_scheme);

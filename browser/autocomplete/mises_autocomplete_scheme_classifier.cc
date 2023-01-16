@@ -10,7 +10,11 @@
 #include "base/strings/string_util.h"
 #include "mises/components/constants/url_constants.h"
 #include "chrome/browser/profiles/profile.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
 
+#if BUILDFLAG(ENABLE_IPFS)
+#include "mises/components/ipfs/ipfs_constants.h"
+#endif
 
 MisesAutocompleteSchemeClassifier::MisesAutocompleteSchemeClassifier(
     Profile* profile)
@@ -32,5 +36,12 @@ MisesAutocompleteSchemeClassifier::GetInputTypeForScheme(
       base::EqualsCaseInsensitiveASCII(scheme, kMisesUIScheme)) {
     return metrics::OmniboxInputType::URL;
   }
+#if BUILDFLAG(ENABLE_IPFS)
+  if (base::IsStringASCII(scheme) &&
+      (base::EqualsCaseInsensitiveASCII(scheme, ipfs::kIPFSScheme) ||
+       base::EqualsCaseInsensitiveASCII(scheme, ipfs::kIPNSScheme))) {
+    return metrics::OmniboxInputType::URL;
+  }
+#endif
   return ChromeAutocompleteSchemeClassifier::GetInputTypeForScheme(scheme);
 }

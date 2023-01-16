@@ -7,6 +7,9 @@
 
 #include "base/android/jni_string.h"
 #include "mises/components/constants/pref_names.h"
+#include "mises/components/decentralized_dns/core/pref_names.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
+
 #include "build/build_config.h"
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/content_settings/cookie_settings_factory.h"
@@ -21,23 +24,36 @@
 #include "third_party/blink/public/common/peerconnection/webrtc_ip_handling_policy.h"
 #include "url/gurl.h"
 
+#if BUILDFLAG(ENABLE_IPFS)
+#include "mises/components/ipfs/ipfs_constants.h"
+#include "mises/components/ipfs/pref_names.h"
+#endif
+
 
 using base::android::ConvertUTF8ToJavaString;
 using base::android::JavaParamRef;
 using base::android::ScopedJavaLocalRef;
+
+
+namespace {
+
+Profile* GetOriginalProfile() {
+  return ProfileManager::GetActiveUserProfile()->GetOriginalProfile();
+}
+}
 
 namespace chrome {
 namespace android {
 
 void JNI_MisesPrefServiceBridge_SetIpfsGatewayEnabled(JNIEnv* env,
                                                       jboolean enabled) {
-// #if BUILDFLAG(ENABLE_IPFS)
-//   ipfs::IPFSResolveMethodTypes type =
-//       enabled ? ipfs::IPFSResolveMethodTypes::IPFS_ASK
-//               : ipfs::IPFSResolveMethodTypes::IPFS_DISABLED;
-//   GetOriginalProfile()->GetPrefs()->SetInteger(kIPFSResolveMethod,
-//                                                static_cast<int>(type));
-// #endif
+#if BUILDFLAG(ENABLE_IPFS)
+  ipfs::IPFSResolveMethodTypes type =
+      enabled ? ipfs::IPFSResolveMethodTypes::IPFS_ASK
+              : ipfs::IPFSResolveMethodTypes::IPFS_DISABLED;
+  GetOriginalProfile()->GetPrefs()->SetInteger(kIPFSResolveMethod,
+                                               static_cast<int>(type));
+#endif
 }
 
 
@@ -78,26 +94,24 @@ void JNI_MisesPrefServiceBridge_SetReferralDownloadId(
 void JNI_MisesPrefServiceBridge_SetUnstoppableDomainsResolveMethod(
     JNIEnv* env,
     jint method) {
-  // g_browser_process->local_state()->SetInteger(
-  //     decentralized_dns::kUnstoppableDomainsResolveMethod, method);
+  g_browser_process->local_state()->SetInteger(
+      decentralized_dns::kUnstoppableDomainsResolveMethod, method);
 }
 
 jint JNI_MisesPrefServiceBridge_GetUnstoppableDomainsResolveMethod(
     JNIEnv* env) {
-  // return g_browser_process->local_state()->GetInteger(
-  //     decentralized_dns::kUnstoppableDomainsResolveMethod);
-  return 0;
+  return g_browser_process->local_state()->GetInteger(
+      decentralized_dns::kUnstoppableDomainsResolveMethod);
 }
 
 void JNI_MisesPrefServiceBridge_SetENSResolveMethod(JNIEnv* env, jint method) {
-  // g_browser_process->local_state()->SetInteger(
-  //     decentralized_dns::kENSResolveMethod, method);
+  g_browser_process->local_state()->SetInteger(
+      decentralized_dns::kENSResolveMethod, method);
 }
 
 jint JNI_MisesPrefServiceBridge_GetENSResolveMethod(JNIEnv* env) {
-  // return g_browser_process->local_state()->GetInteger(
-  //     decentralized_dns::kENSResolveMethod);
-  return 0;
+  return g_browser_process->local_state()->GetInteger(
+      decentralized_dns::kENSResolveMethod);
 }
 
 
