@@ -297,7 +297,6 @@ AutocompleteController::AutocompleteController(
       search_service_worker_signal_sent_(false),
       template_url_service_(provider_client_->GetTemplateURLService()) {
   provider_types &= ~OmniboxFieldTrial::GetDisabledProviderTypes();
-    LOG(INFO) << "Cg AutocompleteController::AutocompleteController provider_types=" << provider_types;
     //mises provider
   providers_.push_back(new MisesProvider(provider_client_.get(),this));
   if (OmniboxFieldTrial::kAutocompleteStabilityAsyncProvidersFirst.Get()) {
@@ -553,9 +552,7 @@ void AutocompleteController::Start(const AutocompleteInput& input) {
   // arithmetic mean.
   base::TimeTicks start_time = base::TimeTicks::Now();
   for (const auto& provider : providers_) {
-      LOG(INFO) << "Cg AutocompleteController::Start providerName=" << provider->GetName();
     if (!ShouldRunProvider(provider.get())){
-      LOG(INFO) << "Cg AutocompleteController::Start !ShouldRunProvider providerName=" << provider->GetName();
         continue;
     }
     base::TimeTicks provider_start_time = base::TimeTicks::Now();
@@ -648,7 +645,6 @@ void AutocompleteController::StartPrefetch(const AutocompleteInput& input) {
 }
 
 void AutocompleteController::Stop(bool clear_result) {
-   LOG(INFO) << "Cg AutocompleteController::Stop";
   StopHelper(clear_result, false);
 }
 
@@ -875,14 +871,7 @@ void AutocompleteController::UpdateResult(
 
   for (const auto& provider : providers_) {
     if (!ShouldRunProvider(provider.get())){
-       LOG(INFO) << "Cg AutocompleteController::UpdateResult !ShouldRunProvider providerName=" << provider->GetName();
         continue;
-    }
-    for (const auto& match : provider->matches()) {
-      LOG(INFO) << "Cg ProviderMatch providerName=" << provider->GetName()
-      << ",match.content=" << match.contents << ", match.desc="<< match.description
-      << ",image_url=" << match.image_url
-      << ",relevance=" << match.relevance;
     }
     result_.AppendMatches(provider->matches());
     result_.MergeSuggestionGroupsMap(provider->suggestion_groups_map());

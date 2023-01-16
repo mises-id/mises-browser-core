@@ -56,6 +56,8 @@ void MisesProvider::Start(const AutocompleteInput& input,
 
 void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
   const std::string input_text = base::ToLowerASCII(base::UTF16ToUTF8(input.text()));
+  LOG(INFO) << "Cg MisesProvider::Start find input_text="
+      << input_text;
   ACMatches mises_matches;
    static const std::u16string kScheme(u"https://");
   for (auto& mises_match : mises_matches_ ) {
@@ -66,28 +68,29 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
 
     std::string match_text = domain_name_text;
     if (std::string::npos != foundPos) {
-      /*  ACMatchClassifications contents_class =
-          StylesForSingleMatch(input_text, match_text, foundPos);  */
-      //ACMatchClassifications styles;
       int relevance = GetRelevance(input_text, match_text, foundPos);
-  
-      //desc
+     //desc
      const std::u16string& match_string = base::ASCIIToUTF16(match_text);
      std::u16string description_ = match_string;
      TermMatches term_matches = FindTermMatches(base::ASCIIToUTF16(input_text), description_);
      ACMatchClassifications description_class_ = ClassifyTermMatches(term_matches, description_.size(),
-                                           ACMatchClassification::MATCH,
-                                           ACMatchClassification::NONE);
-     //content
+                                           ACMatchClassification::MATCH | ACMatchClassification::URL,
+                                           ACMatchClassification::URL);
+      
+     //content 
      std::u16string contents_ = mises_match.contents;
+     if (contents_.empty()){
+      contents_ = description_;
+     }
      TermMatches term_matches_contents = FindTermMatches(base::ASCIIToUTF16(input_text), contents_);
-     ACMatchClassifications contents_class_ = ClassifyTermMatches(term_matches_contents, contents_.size(),
-                                           ACMatchClassification::MATCH,
-                                           ACMatchClassification::NONE);
+     ACMatchClassifications contents_class_ = ClassifyTermMatches(
+                                           term_matches_contents, contents_.size(),
+                                           ACMatchClassification::MATCH | ACMatchClassification::URL,
+                                           ACMatchClassification::URL);
 
       AutocompleteMatch match(this, kRelevance, false,
                               AutocompleteMatchType::SEARCH_SUGGEST_ENTITY);
-      match.fill_into_edit = match_string;
+      match.fill_into_edit = kScheme + domain_name;
       //relevance
       match.relevance = kRelevance + relevance + mises_match.relevance;
       match.destination_url = mises_match.destination_url;
@@ -98,48 +101,31 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
       match.allowed_to_be_default_match = true;
       match.image_url = mises_match.image_url;
       mises_matches.push_back(match);
-          LOG(INFO) << "Cg MisesProvider::Start find input_text="
-      << input_text
-      << ",contents_text=" << contents_text
-      << ",domain_name=" << domain_name_text
-      << ",match_text=" << match_text
-      << ",relevance=" << relevance
-      << ",score=" << mises_match.relevance;
     }
     }
-       
   CompareWithDemoteByType<AutocompleteMatch> comparing_object(
       input.current_page_classification());
       std::sort(mises_matches.begin(), mises_matches.end(), comparing_object);
-     for (size_t i = 0; (i < mises_matches.size() && matches_.size() < provider_max_matches()); ++i) {
-        if(!mises_matches[i].image_url.is_empty()){
-          client_->PrefetchImage(mises_matches[i].image_url);
-      }
-      matches_.push_back(mises_matches[i]);
+  for (size_t i = 0; (i < mises_matches.size() && matches_.size() < 1); ++i) {
+      if(!mises_matches[i].image_url.is_empty()){
+        client_->PrefetchImage(mises_matches[i].image_url);
+    }
+    matches_.push_back(mises_matches[i]);
   }
   mises_matches.clear();
-  if ((matches_.size() > 0) && !matches_[0].inline_autocompletion.empty()) {
-    // If there's only one possible completion of the user's input and
-    // allowing completions truns out to be okay, give the match a high enough
-    // score to allow it to beat url-what-you-typed and be inlined.
-    matches_[0].SetAllowedToBeDefault(input);
-    if (matches_[0].allowed_to_be_default_match) {
-      matches_[0].relevance = 15000;
-    }
-  }
   NotifyListeners(true); 
 }
 
 // static
 ACMatchClassifications MisesProvider::StylesForSingleMatch(
     const std::string &input_text,
-    const std::string &site,
-    const size_t &foundPos) {
+    const std::string &match_text) {
   ACMatchClassifications styles;
+   size_t foundPos = match_text.find(input_text);
   if (foundPos == 0) {
     styles.push_back(ACMatchClassification(
         0, ACMatchClassification::URL | ACMatchClassification::MATCH));
-    if (site.length() > input_text.length()) {
+    if (match_text.length() > input_text.length()) {
       styles.push_back(ACMatchClassification(input_text.length(),
                                              ACMatchClassification::URL));
     }
@@ -147,7 +133,7 @@ ACMatchClassifications MisesProvider::StylesForSingleMatch(
     styles.push_back(ACMatchClassification(0, ACMatchClassification::URL));
     styles.push_back(ACMatchClassification(
         foundPos, ACMatchClassification::URL | ACMatchClassification::MATCH));
-    if (site.length() > foundPos + input_text.length()) {
+    if (match_text.length() > foundPos + input_text.length()) {
       styles.push_back(
           ACMatchClassification(foundPos + input_text.length(), 0));
     }
@@ -204,7 +190,7 @@ void MisesProvider::GetTopSiteData() {
 
 void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
                                     std::unique_ptr<std::string> response_body){                              
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete";
+    LOG(INFO) << "Cg MisesProvider::OnURLLoadComplete";
     int response_code = -1;
     if (source->ResponseInfo() &&
         source->ResponseInfo()->headers) {
@@ -214,7 +200,6 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
     std::string json_string;
     if (response_body)
         json_string = std::move(*response_body);
-    LOG(INFO) << "Cg MisesProvider API match string=" << json_string;
     JSONStringValueDeserializer deserializer(json_string);
     std::string error_msg;
     std::unique_ptr<base::Value> json_value =
@@ -239,7 +224,7 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
         //const std::string* title = data.FindStringKey("title");
         const std::string* url = data.FindStringKey("url");
         const std::string* logo = data.FindStringKey("logo");
-        const std::string* content = data.FindStringKey("desc");
+        const std::string* content = data.FindStringKey("title");
         const std::string* domain_name = data.FindStringKey("domain_name");
         absl::optional<int> search_score = data.FindIntKey("search_score").value_or(0);
         AutocompleteMatch match;
