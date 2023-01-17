@@ -90,13 +90,13 @@
     <div class="secondary">$i18nRaw{resolveUnstoppableDomainsSubDesc}</div>
   </div>
   <settings-dropdown-menu id="unstoppableDomainsResolveMethodType"
-                          pref="{{prefs.brave.unstoppable_domains.resolve_method}}"
+                          pref="{{prefs.mises.unstoppable_domains.resolve_method}}"
                           menu-options="[[unstoppableDomainsResolveMethod_]]">
 </div>
 <div class="settings-box">
   <div class="start">$i18n{resolveENSDesc}</div>
   <settings-dropdown-menu id="ensResolveMethodType"
-                          pref="{{prefs.brave.ens.resolve_method}}"
+                          pref="{{prefs.mises.ens.resolve_method}}"
                           on-settings-control-change="updateShowENSOffchainLookupRow_"
                           menu-options="[[ensResolveMethod_]]">
 </div>
@@ -107,7 +107,7 @@
       <div class="secondary">$i18nRaw{ensOffchainLookupDesc}</div>
     </div>
     <settings-dropdown-menu id="ensOffchainLookupMethod"
-      pref="{{prefs.brave.ens.offchain_resolve_method}}" menu-options="[[ensOffchainResolveMethod_]]">
+      pref="{{prefs.mises.ens.offchain_resolve_method}}" menu-options="[[ensOffchainResolveMethod_]]">
   </div>
 </template>
 <settings-toggle-button id="webTorrentEnabled"

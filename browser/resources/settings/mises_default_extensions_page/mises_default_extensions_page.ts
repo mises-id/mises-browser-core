@@ -141,7 +141,7 @@ export class SettingBraveDefaultExtensionsPageElement extends SettingBraveDefaul
   computeShowEnsOffchainLookupRow_() {
     if (!this.browserProxy_.isENSL2Enabled())
       return false
-    return !!this.prefs && this.getPref('brave.ens.resolve_method').value === 3
+    return !!this.prefs && this.getPref('mises.end.resolve_method').value === 3
   }
 }
 
