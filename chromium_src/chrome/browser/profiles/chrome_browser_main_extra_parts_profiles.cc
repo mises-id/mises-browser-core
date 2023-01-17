@@ -613,5 +613,5 @@ if (full_init) {
 
 void ChromeBrowserMainExtraPartsProfiles::PreProfileInit() {
   EnsureBrowserContextKeyedServiceFactoriesBuilt();
-  mises::EnsureBrowserContextKeyedServiceFactoriesBuilt();
+  mises::EnsureBrowserContextKeyedServiceFactoriesBuiltExtra();
 }

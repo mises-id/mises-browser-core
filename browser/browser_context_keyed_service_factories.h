@@ -7,6 +7,7 @@
 
 namespace mises {
 
+void EnsureBrowserContextKeyedServiceFactoriesBuiltExtra();
 void EnsureBrowserContextKeyedServiceFactoriesBuilt();
 
 }  // namespace apps
