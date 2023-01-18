@@ -412,7 +412,7 @@ void AppMenuBridge::CallExtension(
         if (!TabModelList::models().empty()){
             TabModel* tab_model = TabModelList::models()[0];
             if (tab_model)
-              tab_model->CreateNewTabForDevTools(popup);
+              tab_model->CreateNewTabForExtension(extension_to_call, popup, 0);
         }
       } else {
         action_api->DispatchExtensionActionClicked(*extension_action_, web_contents, extension_ptr);

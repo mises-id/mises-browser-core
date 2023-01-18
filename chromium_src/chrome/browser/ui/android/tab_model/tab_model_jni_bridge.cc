@@ -191,7 +191,7 @@ WebContents* TabModelJniBridge::CreateNewTabForDevTools(
   return tab->web_contents();
 }
 content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
-		const std::string& extension_id, const GURL& url, const SessionID::id_type& session_window_id){
+		const std::string& extension_id, const GURL& url, const SessionID::id_type session_window_id){
   LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension";
   JNIEnv* env = AttachCurrentThread();
   ScopedJavaLocalRef<jobject> obj =
