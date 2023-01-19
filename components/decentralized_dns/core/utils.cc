@@ -54,6 +54,10 @@ bool IsUnstoppableDomainsResolveMethodEthereum(PrefService* local_state) {
          static_cast<int>(ResolveMethodTypes::ETHEREUM);
 }
 
+bool IsBitTLD(const GURL& url) {
+  return base::EndsWith(url.host_piece(), kBitDomain);
+}
+
 bool IsENSTLD(const GURL& url) {
   return base::EndsWith(url.host_piece(), kEthDomain);
 }

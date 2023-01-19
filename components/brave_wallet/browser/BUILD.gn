@@ -82,6 +82,8 @@ static_library("browser") {
     "unstoppable_domains_dns_resolve.h",
     "unstoppable_domains_multichain_calls.cc",
     "unstoppable_domains_multichain_calls.h",
+    "bit_domains_resolve_calls.cc",
+    "bit_domains_resolve_calls.h",
     "wallet_data_files_installer.cc",
     "wallet_data_files_installer.h",
     "brave_wallet_context_utils.cc",

@@ -78,7 +78,10 @@ constexpr char kDomainPattern[] =
 // Then one of fixed suffixes(should match `supportedUDExtensions` array from
 // send.ts).
 constexpr char kUDPattern[] =
-    "(?:[a-z0-9-]+)\\.(?:crypto|x|coin|nft|dao|wallet|blockchain|bitcoin|zil)";
+    "(?:[a-z0-9-]+)\\.(?:crypto|x|coin|nft|dao|wallet|blockchain|bitcoin|zil|888|klever|hi)";
+
+constexpr char kBITPattern[] =
+    "(?:[a-z0-9-]+)\\.(?:bit)";
 
 net::NetworkTrafficAnnotationTag GetNetworkTrafficAnnotationTag() {
   return net::DefineNetworkTrafficAnnotation("json_rpc_service", R"(
@@ -1475,6 +1478,89 @@ void JsonRpcService::OnEnsGetEthAddr(EnsGetEthAddrCallback callback,
   std::move(callback).Run(address, false, mojom::ProviderError::kSuccess, "");
 }
 
+
+void JsonRpcService::BitResolveDns(
+    const std::string& domain,
+    BitResolveDnsCallback callback) {
+  if (bit_resolve_dns_calls_.HasCall(domain)) {
+    bit_resolve_dns_calls_.AddCallback(domain, std::move(callback));
+    return;
+  }
+
+  if (!IsValidBitDomain(domain)) {
+    std::move(callback).Run(
+        GURL(), mojom::ProviderError::kInvalidParams,
+        l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+    return;
+  }
+
+  base::Value::Dict dictionary;
+  dictionary.Set("account", domain);
+
+  auto data = GetJSON(dictionary);
+
+  bit_resolve_dns_calls_.AddCallback(domain, std::move(callback));
+  std::string chain_id = mojom::kMainnetChainId;
+  auto internal_callback =
+      base::BindOnce(&JsonRpcService::OnBitResolveDns,
+                      weak_ptr_factory_.GetWeakPtr(), domain, chain_id);
+  RequestInternal(std::move(data), true,
+                  GetBitRpcUrl(chain_id),
+                  std::move(internal_callback));
+}
+
+void JsonRpcService::OnBitResolveDns(
+    const std::string& domain,
+    const std::string& chain_id,
+    APIRequestResult api_request_result) {
+  if (!api_request_result.Is2XXResponseCode()) {
+    bit_resolve_dns_calls_.SetError(
+        domain, chain_id, mojom::ProviderError::kInternalError,
+        l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+    return;
+  }
+
+  auto values = ParseDataDict(api_request_result.body());
+  if (!values) {
+    mojom::ProviderError error;
+    std::string error_message;
+    ParseErrorResult<mojom::ProviderError>(api_request_result.body(), &error,
+                                           &error_message);
+    bit_resolve_dns_calls_.SetError(domain, chain_id, error, error_message);
+    return;
+  }
+  GURL resolved_url;
+  const auto* record_list = values->FindList("records");
+  if (record_list) {
+    for (const base::Value& entry : *record_list) {
+      auto* entry_dic = entry.GetIfDict();
+      if (!entry_dic) {
+        continue;
+      }
+      auto* key = entry_dic->FindString("key");
+      if (key && (*key == "dweb.ipfs" || *key == "dweb.ipns" )) {
+        auto* value = entry_dic->FindString("value");
+        if (value) {
+          std::string url_scheme = "ipfs://";
+          if (*key == "dweb.ipns") {
+            url_scheme = "ipns://";
+            
+          }
+          resolved_url = GURL(url_scheme + *value );
+        }
+      }
+    }
+
+  }
+
+  if (!resolved_url.is_valid()) {
+    bit_resolve_dns_calls_.SetNoResult(domain, chain_id);
+    return;
+  }
+
+  bit_resolve_dns_calls_.SetResult(domain, chain_id, std::move(resolved_url));
+}
+
 void JsonRpcService::UnstoppableDomainsResolveDns(
     const std::string& domain,
     UnstoppableDomainsResolveDnsCallback callback) {
@@ -1790,6 +1876,11 @@ bool JsonRpcService::IsValidDomain(const std::string& domain) {
 /*static*/
 bool JsonRpcService::IsValidUnstoppableDomain(const std::string& domain) {
   static const base::NoDestructor<re2::RE2> kDomainRegex(kUDPattern);
+  return re2::RE2::FullMatch(domain, *kDomainRegex);
+}
+/*static*/
+bool JsonRpcService::IsValidBitDomain(const std::string& domain) {
+  static const base::NoDestructor<re2::RE2> kDomainRegex(kBITPattern);
   return re2::RE2::FullMatch(domain, *kDomainRegex);
 }
 
