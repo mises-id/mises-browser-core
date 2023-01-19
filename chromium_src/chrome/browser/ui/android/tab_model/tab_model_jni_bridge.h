@@ -63,7 +63,7 @@ class TabModelJniBridge : public TabModel {
   content::WebContents* CreateNewTabForDevTools(const GURL& url) override;
   content::WebContents* CreateNewTabForExtension(const std::string& extension_id, 
                                                  const GURL& url, 
-                                                 const SessionID::id_type& session_window_id) override;
+                                                 const SessionID::id_type session_window_id) override;
   // Return true if we are currently restoring sessions asynchronously.
   bool IsSessionRestoreInProgress() const override;
 
@@ -87,6 +87,7 @@ class TabModelJniBridge : public TabModel {
   static jclass GetClazz(JNIEnv* env);
 
  protected:
+  SessionID::id_type extension_window_id_ = -1;
   JavaObjectWeakGlobalRef java_object_;
 
   // The observer bridge. This exists as long as there are registered observers.

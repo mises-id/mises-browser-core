@@ -51,6 +51,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
  private:
   void AsyncRunWithMetamaskStorage(value_store::ValueStore* storage);
   void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
+  void MetamaskMigrationDone();
   void ReinstallAsNonComponent(std::string extension_id);
     // ExtensionRegistryObserver:
   void OnExtensionLoaded(content::BrowserContext* browser_context,
@@ -68,7 +69,8 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   raw_ptr<PrefService> profile_prefs_ = nullptr;
   std::unique_ptr<extensions::ScopedTestDialogAutoConfirm>
       _auto_confirm;
-   base::Value metamaskValue;
+  base::Value metamaskValue;
+  bool migration_started_ = false;;
 
 };
 
