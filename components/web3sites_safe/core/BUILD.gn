@@ -1,0 +1,14 @@
+
+static_library("core") {
+  sources = [
+    "web3sites_safe_util.cc",
+    "web3sites_safe_util.h",
+  ]
+
+  deps = [
+
+    "//components/prefs",
+    "//net",
+    "//url",
+  ]
+}

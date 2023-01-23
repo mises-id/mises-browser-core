@@ -1,0 +1,22 @@
+mises_browser_web3sites_safe_sources = []
+mises_browser_web3sites_safe_deps = []
+
+mises_browser_web3sites_safe_sources += [
+  "//mises/browser/web3sites_safe/web3sites_safe_navigation_throttle.h",
+  "//mises/browser/web3sites_safe/web3sites_safe_navigation_throttle.cc",
+  "//mises/browser/web3sites_safe/web3sites_safe_controller_client.h",
+  "//mises/browser/web3sites_safe/web3sites_safe_controller_client.cc",
+  "//mises/browser/web3sites_safe/web3sites_safe_blocking_page.h",
+  "//mises/browser/web3sites_safe/web3sites_safe_blocking_page.cc",
+  "//mises/browser/web3sites_safe/web3sites_safe_tab_storage.h",
+  "//mises/browser/web3sites_safe/web3sites_safe_tab_storage.cc",
+]
+
+mises_browser_web3sites_safe_deps += [
+  "//base",
+  "//mises/components/web3sites_safe/core",
+  "//content/public/browser",
+  "//components/security_interstitials/content:security_interstitial_page",
+  "//components/security_interstitials/core",
+  "//chrome/common",
+]

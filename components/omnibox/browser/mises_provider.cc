@@ -76,8 +76,8 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
      ACMatchClassifications description_class_ = ClassifyTermMatches(term_matches, description_.size(),
                                            ACMatchClassification::MATCH | ACMatchClassification::URL,
                                            ACMatchClassification::URL);
-      
-     //content 
+
+     //content
      std::u16string contents_ = mises_match.contents;
      if (contents_.empty()){
       contents_ = description_;
@@ -113,7 +113,7 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
     matches_.push_back(mises_matches[i]);
   }
   mises_matches.clear();
-  NotifyListeners(true); 
+  NotifyListeners(true);
 }
 
 // static
@@ -189,7 +189,7 @@ void MisesProvider::GetTopSiteData() {
 }
 
 void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
-                                    std::unique_ptr<std::string> response_body){                              
+                                    std::unique_ptr<std::string> response_body){
     LOG(INFO) << "Cg MisesProvider::OnURLLoadComplete";
     int response_code = -1;
     if (source->ResponseInfo() &&
@@ -217,7 +217,7 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
         return;
     }
     LOG(INFO) << "Cg MisesProvider::DoAutocomplete set_new_top_sites";
-    
+
     auto data_list = json_value->GetListDeprecated();
 
     for (const auto& data : data_list) {
