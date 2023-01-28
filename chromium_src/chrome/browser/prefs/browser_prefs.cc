@@ -52,11 +52,11 @@
 #include "chrome/browser/web_applications/web_app_provider.h"
 #include "chrome/browser/web_applications/web_app_utils.h"
 
-void MisesRegisterLocalState(PrefRegistrySimple* registry);
+void MisesRegisterLocalStatePrefs(PrefRegistrySimple* registry);
 void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry);
 #include "src/chrome/browser/prefs/browser_prefs.cc"
 
-void MisesRegisterLocalState(PrefRegistrySimple* registry) {
+void MisesRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
 #if BUILDFLAG(IS_ANDROID)
   gcm::RegisterPrefs(registry);
   IntranetRedirectDetector::RegisterPrefs(registry);
@@ -69,7 +69,7 @@ void MisesRegisterLocalState(PrefRegistrySimple* registry) {
   UpgradeDetector::RegisterPrefs(registry);
   WhatsNewUI::RegisterLocalStatePrefs(registry);
 #endif
-  mises::RegisterLocalState(registry);
+  mises::RegisterLocalStatePrefs(registry);
 }
 void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 #if BUILDFLAG(IS_ANDROID) 
@@ -124,10 +124,11 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   registry->RegisterBooleanPref(prefs::kSidePanelHorizontalAlignment,
                                 base::i18n::IsRTL() ? false : true);
 
-  registry->RegisterBooleanPref(feed::prefs::kArticlesListVisible, true);
 #endif
 
-
+#if !BUILDFLAG(ENABLE_FEED_V2)
+  registry->RegisterBooleanPref(feed::prefs::kArticlesListVisible,false);
+#endif 
 
 #if BUILDFLAG(IS_ANDROID)
   web_app::UserUninstalledPreinstalledWebAppPrefs::RegisterProfilePrefs(registry);
