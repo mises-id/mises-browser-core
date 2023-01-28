@@ -3,9 +3,11 @@
 #include "mises/components/web3sites_safe/core/web3sites_safe_util.h"
 
 #include "base/trace_event/trace_event.h"
+
+#include "base/strings/utf_string_conversions.h"
+#include "components/url_formatter/spoof_checks/common_words/common_words_util.h"
 #include "net/base/registry_controlled_domains/registry_controlled_domain.h"
 #include "net/base/url_util.h"
-
 
 namespace web3sites_safe {
 
@@ -13,7 +15,30 @@ namespace web3sites_safe {
 
 namespace {
 const char* kPrivateRegistriesTreatedAsPublic[] = {"com.de", "com.se"};
+std::string GetHostnameWithoutRegistry(const std::string& hostname) {
+  DCHECK(!hostname.empty());
+  const size_t registry_size =
+      net::registry_controlled_domains::PermissiveGetHostRegistryLength(
+          hostname.c_str(),
+          net::registry_controlled_domains::EXCLUDE_UNKNOWN_REGISTRIES,
+          net::registry_controlled_domains::EXCLUDE_PRIVATE_REGISTRIES);
+  std::string out = hostname.substr(0, hostname.size() - registry_size);
+  base::TrimString(out, ".", &out);
+  return out;
+}
 }//end namespace
+
+//MisesURLCheckResult
+MisesURLCheckResult::MisesURLCheckResult(const GURL& check_url,
+              Type result_type,
+              GURL& safe_url)
+    : check_url(check_url),
+      safe_url(safe_url) {}
+
+MisesURLCheckResult::~MisesURLCheckResult() = default;
+
+MisesURLCheckResult::MisesURLCheckResult(const MisesURLCheckResult&) = default;
+
 
 //MisesDomainInfo
 MisesDomainInfo::MisesDomainInfo(const std::string& arg_hostname,
@@ -34,8 +59,12 @@ MisesDomainInfo GetMisesDomainInfo(const std::string& hostname) {
     return MisesDomainInfo(std::string(), std::string(), std::string());
   }
   const std::string domain_and_registry = MisesGetETLDPlusOne(hostname);
-  const std::string domain_without_registry = domain_and_registry;
-
+  //const std::string domain_without_registry = domain_and_registry;
+const std::string domain_without_registry =
+      domain_and_registry.empty()
+          ? std::string()
+          : GetHostnameWithoutRegistry(
+                domain_and_registry);
 
   return MisesDomainInfo(hostname, domain_and_registry, domain_without_registry);
 }

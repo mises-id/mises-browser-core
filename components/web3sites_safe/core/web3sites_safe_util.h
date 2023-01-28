@@ -9,8 +9,40 @@
 class GURL;
 
 namespace web3sites_safe {
-}
 
+};
+
+struct Web3sitesResultType{
+  enum Type {
+  kNone = 0,
+  kWhite = 1,
+  kFuzzy = 2,
+  kBlack = 3,
+
+  kMaxValue = kBlack,
+};
+};
+struct MisesURLCheckResult {
+
+  const GURL check_url;
+
+  typedef Web3sitesResultType::Type Type;
+
+  Type result_type = Type::kWhite;
+
+  GURL safe_url;
+
+
+  MisesURLCheckResult(const GURL& check_url,
+              Type result_type,
+              GURL& safe_url);
+
+  ~MisesURLCheckResult();
+
+  MisesURLCheckResult(const MisesURLCheckResult& other);
+
+  MisesURLCheckResult& operator=(const MisesURLCheckResult& check_result);
+};
 
 // Used for UKM. There is only a single Web3sitesSafeMatchType per navigation.
 enum class Web3sitesSafeMatchType {

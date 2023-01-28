@@ -34,7 +34,7 @@ Web3sitesSafeControllerClient::Web3sitesSafeControllerClient(
           Profile::FromBrowserContext(web_contents->GetBrowserContext())
               ->GetPrefs(),
           g_browser_process->GetApplicationLocale(),
-          GURL(chrome::kChromeUINewTabURL),
+          GURL("about:blank"),
           /*settings_page_helper=*/nullptr),
       request_url_(request_url),
       safe_url_(safe_url) {}

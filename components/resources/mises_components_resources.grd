@@ -17,7 +17,10 @@
       <if expr="not is_ios">
         <part file="decentralized_dns_resources.grdp" />
       </if>
-
+        <!--web3sites safe -->
+      <if expr="not is_ios">
+        <part file="web3sites_safe_resources.grdp" />
+      </if>
       <part file="ipfs_resources.grdp" />
     </includes>
   </release>

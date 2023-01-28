@@ -1,0 +1,72 @@
+/* lookalike-url */
+.lookalike-url #main-content a {
+  color: var(--google-blue-700);
+  text-decoration: none;
+}
+
+.lookalike-url .icon {
+  background-image: -webkit-image-set(
+    url(../../../../../components/security_interstitials/core/browser/resources/images/1x/info.png) 1x,
+    url(../../../../../components/security_interstitials/core/browser/resources/images/2x/info.png) 2x);
+}
+
+@media (prefers-color-scheme: dark) {
+  .lookalike-url .icon {
+    filter: invert(1);
+  }
+}
+
+
+/* phishing-url */
+
+body.phishing-url {
+  --google-red-900: rgb(165, 14, 14);
+  --google-red-700: rgb(197, 34, 31);
+  --google-red-600: rgb(217, 48, 37);
+  --google-red-500: rgb(234, 67, 53);
+  --google-red-100: rgb(250, 210, 207);
+  --google-red-50: rgb(252, 232, 230);
+  background-color: var(--google-red-600);
+  color: white;
+}
+
+.phishing-url :-webkit-any(
+    a, #details, #details-button, #proceed-button, h1, h2, p, .small-link) {
+  color: white;
+}
+
+.phishing-url .icon {
+  background-image: -webkit-image-set(
+    url(../../../../../components/security_interstitials/core/browser/resources/images/1x/triangle_white.png) 1x,
+    url(../../../../../components/security_interstitials/core/browser/resources/images/2x/triangle_white.png) 2x);
+}
+
+.phishing-url button {
+  background: white;
+  border-color: white;
+  color: var(--google-red-700);
+}
+
+.phishing-url button:active {
+  box-shadow: 0 1px 2px 0 rgba(165, 14, 14, .3),
+      0 2px 6px 2px rgba(165, 14, 14, .15);
+}
+
+.phishing-url button:hover {
+  background: var(--google-red-50);
+}
+
+.phishing-url .secondary-button {
+  background-color: var(--google-red-600);
+  border-color: var(--google-red-100);
+  color: white;
+}
+
+.phishing-url .secondary-button:active {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
+}
+
+.phishing-url .secondary-button:hover {
+  background-color: var(--google-red-500);
+  border-color: var(--google-red-50);
+}

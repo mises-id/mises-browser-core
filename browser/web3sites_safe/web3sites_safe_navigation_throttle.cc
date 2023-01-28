@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 
+#include <unistd.h>
 #include "base/feature_list.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/reputation/reputation_service.h"
@@ -10,7 +11,9 @@
 #include "mises/browser/web3sites_safe/web3sites_safe_tab_storage.h"
 #include "mises/browser/web3sites_safe/web3sites_safe_blocking_page.h"
 #include "components/security_interstitials/content/security_interstitial_tab_helper.h"
+#include "mises/browser/web3sites_safe/web3sites_safe_service.h"
 #include "content/public/browser/navigation_handle.h"
+
 
 namespace {
   typedef content::NavigationThrottle::ThrottleCheckResult ThrottleCheckResult;
@@ -21,8 +24,8 @@ namespace {
          stored_redirect_chain[stored_redirect_chain.size() - 1] == current_url;
 }
 
-const base::Feature kOptimizeLookalikeUrlNavigationThrottle{
-    "OptimizeLookalikeUrlNavigationThrottle",
+const base::Feature kOptimizeWeb3sitesSafeNavigationThrottle{
+    "OptimizeWeb3sitesSafeNavigationThrottle",
 #if BUILDFLAG(IS_ANDROID)
     base::FEATURE_ENABLED_BY_DEFAULT
 #else
@@ -36,13 +39,29 @@ Web3sitesSafeNavigationThrottle::Web3sitesSafeNavigationThrottle(
   content::NavigationHandle* navigation_handle)
   : content::NavigationThrottle(navigation_handle),
   profile_(Profile::FromBrowserContext(
-          navigation_handle->GetWebContents()->GetBrowserContext())){}
+          navigation_handle->GetWebContents()->GetBrowserContext())){
+            auto* service = Web3sitesSafeService::Get(profile_);
+             if (service->Web3sitesNeedUpdating()) {
+                service->UpdateWeb3sites();
+            }
+          }
 
 //~Web3sitesSafeNavigationThrottle
 Web3sitesSafeNavigationThrottle::~Web3sitesSafeNavigationThrottle() {}
 
-
 //WillStartRequest
+ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillStartRequest() {
+  if (profile_->AsTestingProfile())
+    return content::NavigationThrottle::PROCEED;
+
+  /* auto* service = Web3sitesSafeService::Get(profile_);
+  if (base::FeatureList::IsEnabled(kOptimizeWeb3sitesSafeNavigationThrottle) && service->Web3sitesNeedUpdating()) {
+    service->UpdateWeb3sites();
+  } */
+  return content::NavigationThrottle::PROCEED;
+}
+
+//WillProcessResponse
 ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
 
   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::WillStartRequest -1";
@@ -56,7 +75,6 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
       Web3sitesSafeTabStorage::GetOrCreate(handle->GetWebContents());
   const Web3sitesSafeTabStorage::InterstitialParams interstitial_params =
       tab_storage->GetInterstitialParams();
-      bool cg = IsInterstitialReload(handle->GetURL(),interstitial_params.redirect_chain);
   tab_storage->ClearInterstitialParams();
   // If this is a reload and if the current URL is the last URL of the stored
   // redirect chain, the interstitial was probably reloaded. Stop the reload and
@@ -94,6 +112,22 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillFailRequest(){
   return content::NavigationThrottle::PROCEED;
 }
 
+void Web3sitesSafeNavigationThrottle::OnCheckUrlResult(const MisesURLCheckResult& result){
+   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::OnCheckUrlResult -1";
+   if (result.result_type == Web3sitesResultType::kWhite){
+    Resume();
+    return;
+   }
+   content::NavigationHandle* handle = navigation_handle();
+    GURL url = handle->GetURL();
+    const GURL& safe_domain = result.safe_url;
+    const GURL& request_domain = url;
+    ukm::SourceId source_id = ukm::ConvertToSourceId(
+      navigation_handle()->GetNavigationId(), ukm::SourceIdType::NAVIGATION_ID);
+    ShowInterstitial(safe_domain,request_domain,source_id,result.result_type,false);
+    return;
+}
+
 //PerformChecksDeferred
 void Web3sitesSafeNavigationThrottle::PerformChecksDeferred() {
 
@@ -109,29 +143,21 @@ void Web3sitesSafeNavigationThrottle::PerformChecksDeferred() {
      Resume();
      return;
   }
-  if (url.host() == "home.mises.site" || url.host() == "admin.mises.site"){
-    const GURL& safe_domain = GURL("https://gw.mises.site");
-    const GURL& request_domain = url;
-    Web3sitesSafeMatchType  match_type ;
-    ukm::SourceId source_id = ukm::ConvertToSourceId(
-      navigation_handle()->GetNavigationId(), ukm::SourceIdType::NAVIGATION_ID);
-    ShowInterstitial(safe_domain,request_domain,source_id,match_type,false);
-    return;
-  }
-   /* base::SequencedTaskRunnerHandle::Get()->PostTask(
-        FROM_HERE,
-        base::BindOnce(&Web3sitesSafeNavigationThrottle::ShowInterstitial,
-                       weak_ptr_factory_.GetWeakPtr()));
-    return content::NavigationThrottle::DEFER; */
-    Resume();
+   auto callback = std::make_unique<Web3sitesSafeService::MisesURLCheckCallback>(
+      base::BindOnce(&Web3sitesSafeNavigationThrottle::OnCheckUrlResult,
+                       weak_ptr_factory_.GetWeakPtr())
+    );
+    Web3sitesSafeService* service = Web3sitesSafeService::Get(profile_);
+    service->CheckWeb3sitesURL(std::move(callback),url);
     return;
 }
 
+//ShowInterstitial
 void Web3sitesSafeNavigationThrottle::ShowInterstitial(
     const GURL& safe_domain,
     const GURL& lookalike_domain,
     ukm::SourceId source_id,
-    Web3sitesSafeMatchType match_type,
+    Web3sitesResultType::Type result_type,
     bool triggered_by_initial_url) {
   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::ShowInterstitial -1";
 
@@ -143,7 +169,7 @@ void Web3sitesSafeNavigationThrottle::ShowInterstitial(
 
   std::unique_ptr<Web3sitesSafeBlockingPage> blocking_page(
       new Web3sitesSafeBlockingPage(
-          web_contents, safe_domain, lookalike_domain, source_id, match_type,
+          web_contents, safe_domain, lookalike_domain, source_id, result_type,
           handle->IsSignedExchangeInnerResponse(), triggered_by_initial_url,
           std::move(controller)));
 

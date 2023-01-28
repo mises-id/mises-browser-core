@@ -22,7 +22,7 @@ class Web3sitesSafeBlockingPage
       const GURL& safe_url,
       const GURL& request_url,
       ukm::SourceId source_id,
-      Web3sitesSafeMatchType match_type,
+      Web3sitesResultType::Type result_type,
       bool is_signed_exchange,
       bool triggered_by_initial_url,
       std::unique_ptr<
@@ -57,5 +57,6 @@ class Web3sitesSafeBlockingPage
   const GURL safe_url_;
   ukm::SourceId source_id_;
   Web3sitesSafeMatchType match_type_;
+  Web3sitesResultType::Type result_type_;
 
 };

@@ -10,11 +10,15 @@ mises_browser_web3sites_safe_sources += [
   "//mises/browser/web3sites_safe/web3sites_safe_blocking_page.cc",
   "//mises/browser/web3sites_safe/web3sites_safe_tab_storage.h",
   "//mises/browser/web3sites_safe/web3sites_safe_tab_storage.cc",
+  "//mises/browser/web3sites_safe/web3sites_safe_service.h",
+  "//mises/browser/web3sites_safe/web3sites_safe_service.cc",
 ]
 
 mises_browser_web3sites_safe_deps += [
   "//base",
   "//mises/components/web3sites_safe/core",
+  "//mises/components/resources:static_resources",
+  "//mises/components/resources:strings",
   "//content/public/browser",
   "//components/security_interstitials/content:security_interstitial_page",
   "//components/security_interstitials/core",
