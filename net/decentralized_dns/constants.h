@@ -11,7 +11,7 @@ namespace decentralized_dns {
 constexpr const char* kUnstoppableDomains[] = {
     ".888",
     ".bitcoin", ".blockchain",
-    ".coin", ".crypto",
+    ".crypto",
     ".dao", ".hi", ".klever",
     ".nft", ".wallet", ".x", ".zil",
 };

@@ -78,7 +78,7 @@ constexpr char kDomainPattern[] =
 // Then one of fixed suffixes(should match `supportedUDExtensions` array from
 // send.ts).
 constexpr char kUDPattern[] =
-    "(?:[a-z0-9-]+)\\.(?:crypto|x|coin|nft|dao|wallet|blockchain|bitcoin|zil|888|klever|hi)";
+    "(?:[a-z0-9-]+)\\.(?:crypto|x|nft|dao|wallet|blockchain|bitcoin|zil|888|klever|hi)";
 
 constexpr char kBITPattern[] =
     "(?:[a-z0-9-]+)\\.(?:bit)";
