@@ -110,6 +110,7 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
       if(!mises_matches[i].image_url.is_empty()){
         client_->PrefetchImage(mises_matches[i].image_url);
     }
+    mises_matches[i].relevance = 1299;
     matches_.push_back(mises_matches[i]);
   }
   mises_matches.clear();

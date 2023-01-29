@@ -70,3 +70,13 @@ body.phishing-url {
   background-color: var(--google-red-500);
   border-color: var(--google-red-50);
 }
+
+@media (min-width: 240px) and (max-width: 420px) and
+       (min-height: 401px),
+       (min-width: 421px) and (min-height: 240px) and
+       (max-height: 560px) {
+  body.phishing-url .nav-wrapper {
+    background: var(--google-red-600);
+    box-shadow: 0 -12px 24px var(--google-red-600);
+  }
+}
