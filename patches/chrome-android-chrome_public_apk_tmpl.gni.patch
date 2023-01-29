@@ -1,5 +1,5 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index bf289305713f8e6db146171c824d807195b5daf9..869e364dbfabc851c2f473a577a19b691fa58a39 100644
+index bf289305713f8e6db146171c824d807195b5daf9..f6678f3374f79771348b1b9d2e9d54251608a91c 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
 @@ -33,7 +33,7 @@ default_chrome_public_jinja_variables = [
@@ -11,3 +11,30 @@ index bf289305713f8e6db146171c824d807195b5daf9..869e364dbfabc851c2f473a577a19b69
  
  # A template used to declare any target that will implement a full Chromium
  # or Chrome application, either as an APK, or an app bundle module.
+@@ -226,6 +226,17 @@ template("chrome_public_common_apk_or_module_tmpl") {
+       strip_unused_resources = is_official_build
+     }
+ 
++    if (_is_bundle) {
++        # Resources config for blocklisting resource names from obfuscation
++        resources_config_paths = [
++          "//android_webview/aapt2.config",
++          "//chrome/android/aapt2.config",
++        ]
++        if (defined(invoker.resources_config_paths)) {
++          resources_config_paths += invoker.resources_config_paths
++        }
++    }
++
+     if (!defined(aapt_locale_allowlist)) {
+       # Include resource strings files only for supported locales.
+       aapt_locale_allowlist = platform_pak_locales
+@@ -618,7 +629,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
+       }
+ 
+       # We only optimize resources in bundles.
+-      if (_is_bundle_module) {
++      if (_is_bundle_module && false) {
+         # Resources config for blocklisting resource names from obfuscation
+         resources_config_paths = [
+           "//android_webview/aapt2.config",
