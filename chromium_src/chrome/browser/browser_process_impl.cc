@@ -346,7 +346,7 @@ void BrowserProcessImpl::Init() {
   // Make sure webapps client has been set.
   webapps::ChromeWebappsClient::GetInstance();
 
-#if !BUILDFLAG(IS_ANDROID) || true
+#if !BUILDFLAG(IS_ANDROID)
   KeepAliveRegistry::GetInstance()->SetIsShuttingDown(false);
   KeepAliveRegistry::GetInstance()->AddObserver(this);
 #endif  // !BUILDFLAG(IS_ANDROID)
@@ -402,7 +402,7 @@ BrowserProcessImpl::~BrowserProcessImpl() {
   extensions::AppWindowClient::Set(nullptr);
 #endif
 
-#if !BUILDFLAG(IS_ANDROID) || true
+#if !BUILDFLAG(IS_ANDROID)
   KeepAliveRegistry::GetInstance()->RemoveObserver(this);
 #endif
 
@@ -1394,7 +1394,7 @@ void BrowserProcessImpl::Unpin() {
   DCHECK(!shutting_down_);
   shutting_down_ = true;
 
-#if !BUILDFLAG(IS_ANDROID) || true
+#if !BUILDFLAG(IS_ANDROID)
   KeepAliveRegistry::GetInstance()->SetIsShuttingDown();
 #endif  // !BUILDFLAG(IS_ANDROID)
 

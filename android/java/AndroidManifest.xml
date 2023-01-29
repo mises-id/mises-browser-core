@@ -12,3 +12,14 @@
         android:value="4.0.0" />
 
 
+<meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+    android:value="@string/default_fcm_channel_id" />
+<!--add this to keep R.string.project_id from being removed in release build
+otherwise it will be marked as remove in chrome_modern_public_base_bundle_module_unused_resources.config 
+TODO find the reason why R.string.project_id will be marked unused, it should be used in the process of 
+firebase initialization
+-->  
+<meta-data
+    android:name="com.google.firebase.messaging.project_id"
+    android:value="@string/project_id" />
