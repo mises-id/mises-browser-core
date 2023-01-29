@@ -2,11 +2,10 @@ diff --git a/chrome/android/aapt2.config b/chrome/android/aapt2.config
 index ea85a3ea1cb22dfb559197fc9094eb041875e4bc..5575f971b6ee1afe84640872e83a7d4376eaa1dc 100644
 --- a/chrome/android/aapt2.config
 +++ b/chrome/android/aapt2.config
-@@ -1,3 +1,18 @@
+@@ -1,3 +1,17 @@
  drawable/ic_launcher#no_collapse
  drawable/ic_launcher_round#no_collapse
  drawable/shortcut_incognito#no_collapse
-+
 +string/google_app_id#no_collapse
 +string/default_web_client_id#no_collapse
 +string/gcm_defaultSenderId#no_collapse
