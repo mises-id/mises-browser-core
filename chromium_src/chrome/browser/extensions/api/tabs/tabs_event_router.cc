@@ -671,13 +671,13 @@ void TabsEventRouter::DidSelectTab(TabAndroid* tab,
 }
 void TabsEventRouter::WillCloseTab(TabAndroid* tab, bool animate) {
   LOG(INFO) << "TabsEventRouter::WillCloseTab " << tab->web_contents();
-  if (!tab->web_contents() || tab->ExtensionWindowID() != -1)
+  if (!tab->web_contents())
     return;
   DispatchTabClosingAt(nullptr, tab->web_contents(), tab->window_id().id());
 }
 void TabsEventRouter::DidAddTab(TabAndroid* tab, TabModel::TabLaunchType type) {
   LOG(INFO) << "TabsEventRouter::DidAddTab " << tab->web_contents();
-  if (!tab->web_contents() || tab->ExtensionWindowID() != -1)
+  if (!tab->web_contents())
     return;
   DispatchTabInsertedAt(nullptr, tab->web_contents(), tab->window_id().id(), !tab->IsHidden());
 }
