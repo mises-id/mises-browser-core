@@ -301,7 +301,6 @@ mises_extra_java_resources = [
   "java/res/mipmap-hdpi/head_small.png",
   "java/res/mipmap-hdpi/head.png",
   "java/res/mipmap-hdpi/link.png",
-  #"java/res/mipmap-anydpi-v26/ic_launcher.xml",
   "java/res/layout/mises_alert_dialog.xml",
   "java/res/layout/mises_share_dialog.xml",
   "java/res/layout/mises_user_info_menu.xml",
@@ -353,17 +352,6 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
 ]
 mises_base_module_resources = [ 
     "java/res_chromium_base/drawable-night/themed_app_icon.xml",
-#    "java/res_chromium_base/mipmap-hdpi/ic_foreground.png",
-#    "java/res_chromium_base/mipmap-hdpi/ic_background.png",
-#    "java/res_chromium_base/mipmap-mdpi/ic_foreground.png",
-#    "java/res_chromium_base/mipmap-mdpi/ic_background.png",
-#    "java/res_chromium_base/mipmap-xhdpi/ic_foreground.png",
-#    "java/res_chromium_base/mipmap-xhdpi/ic_background.png",
-#    "java/res_chromium_base/mipmap-xxhdpi/ic_foreground.png",
-#    "java/res_chromium_base/mipmap-xxhdpi/ic_background.png",
-#    "java/res_chromium_base/mipmap-xxxhdpi/ic_foreground.png",
-#    "java/res_chromium_base/mipmap-xxxhdpi/ic_background.png",
-#    "java/res/values/google-services.xml",
 ]
 
 # XML preprocessing
