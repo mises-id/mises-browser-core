@@ -48,6 +48,15 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
     return net::ERR_IO_PENDING;
   }
 
+  if (IsBitTLD(ctx->request_url)) {
+    json_rpc_service->BitResolveDns(
+        ctx->request_url.host(),
+        base::BindOnce(&OnBeforeURLRequest_BitRedirectWork,
+                       next_callback, ctx));
+
+    return net::ERR_IO_PENDING;
+  }
+
   if (IsENSTLD(ctx->request_url) &&
       IsENSResolveMethodEthereum(g_browser_process->local_state())) {
     json_rpc_service->EnsGetContentHash(
@@ -90,6 +99,21 @@ void OnBeforeURLRequest_EnsRedirectWork(
 }
 
 void OnBeforeURLRequest_UnstoppableDomainsRedirectWork(
+    const mises::ResponseCallback& next_callback,
+    std::shared_ptr<mises::MisesRequestInfo> ctx,
+    const GURL& url,
+    brave_wallet::mojom::ProviderError error,
+    const std::string& error_message) {
+  if (error == brave_wallet::mojom::ProviderError::kSuccess && url.is_valid()) {
+    ctx->new_url_spec = url.spec();
+  }
+
+  if (!next_callback.is_null())
+    next_callback.Run();
+}
+
+
+void OnBeforeURLRequest_BitRedirectWork(
     const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx,
     const GURL& url,

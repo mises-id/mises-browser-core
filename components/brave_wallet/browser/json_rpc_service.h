@@ -22,6 +22,7 @@
 #include "mises/components/brave_wallet/browser/sns_resolver_task.h"
 #include "mises/components/brave_wallet/browser/solana_transaction.h"
 #include "mises/components/brave_wallet/browser/unstoppable_domains_multichain_calls.h"
+#include "mises/components/brave_wallet/browser/bit_domains_resolve_calls.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/brave_wallet_types.h"
 #include "components/keyed_service/core/keyed_service.h"
@@ -155,6 +156,14 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                               const std::string& owner_address,
                               const std::string& spender_address,
                               GetERC20TokenAllowanceCallback callback) override;
+
+  using BitResolveDnsCallback =
+      base::OnceCallback<void(const GURL& url,
+                              mojom::ProviderError error,
+                              const std::string& error_message)>;
+  void BitResolveDns(
+      const std::string& domain,
+      BitResolveDnsCallback callback);
 
   using UnstoppableDomainsResolveDnsCallback =
       base::OnceCallback<void(const GURL& url,
@@ -447,6 +456,9 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
   void OnUnstoppableDomainsResolveDns(const std::string& domain,
                                       const std::string& chain_id,
                                       APIRequestResult api_request_result);
+  void OnBitResolveDns(const std::string& domain,
+                                      const std::string& chain_id,
+                                      APIRequestResult api_request_result);
   void OnUnstoppableDomainsGetWalletAddr(
       const unstoppable_domains::WalletAddressKey& key,
       const std::string& chain_id,
@@ -516,6 +528,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
   FRIEND_TEST_ALL_PREFIXES(JsonRpcServiceUnitTest, Reset);
   static bool IsValidDomain(const std::string& domain);
   static bool IsValidUnstoppableDomain(const std::string& domain);
+  static bool IsValidBitDomain(const std::string& domain);
 
   void OnGetERC721OwnerOf(GetERC721OwnerOfCallback callback,
                           APIRequestResult api_request_result);
@@ -582,6 +595,8 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                                        std::string>
       ud_get_eth_addr_calls_;
   unstoppable_domains::MultichainCalls<std::string, GURL> ud_resolve_dns_calls_;
+
+  bit::ResolveCalls<std::string, GURL> bit_resolve_dns_calls_;
 
   mojo::RemoteSet<mojom::JsonRpcServiceObserver> observers_;
 
