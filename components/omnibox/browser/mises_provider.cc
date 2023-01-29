@@ -27,6 +27,7 @@
 // As from autocomplete_provider.h:
 // Search Secondary Provider (suggestion)                              |  100++
 const int MisesProvider::kRelevance = 10000;
+const int MisesProvider::kBaseRelevance = 1299;
 
 
 MisesProvider::MisesProvider(AutocompleteProviderClient* client, AutocompleteProviderListener* listener)
@@ -110,7 +111,7 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
       if(!mises_matches[i].image_url.is_empty()){
         client_->PrefetchImage(mises_matches[i].image_url);
     }
-    mises_matches[i].relevance = 1299;
+    mises_matches[i].relevance = kBaseRelevance;
     matches_.push_back(mises_matches[i]);
   }
   mises_matches.clear();
