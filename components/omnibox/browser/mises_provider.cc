@@ -99,7 +99,7 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
       match.contents_class = contents_class_;
       match.description = description_;
       match.description_class = description_class_;
-      match.allowed_to_be_default_match = true;
+      match.allowed_to_be_default_match = false;
       match.image_url = mises_match.image_url;
       mises_matches.push_back(match);
     }
@@ -111,7 +111,7 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
       if(!mises_matches[i].image_url.is_empty()){
         client_->PrefetchImage(mises_matches[i].image_url);
     }
-    mises_matches[i].relevance = kBaseRelevance;
+    mises_matches[i].relevance = CalculateRelevanceForWeb3sites();
     matches_.push_back(mises_matches[i]);
   }
   mises_matches.clear();
@@ -290,9 +290,17 @@ void MisesProvider::AddMatch(const std::u16string& match_string,
   matches_.push_back(match);
 }
 
-void MisesProvider::SortByMises(
-    const AutocompleteResult& result) {
-      LOG(INFO) << "Cg MisesProvider::SortByMises";
-  if (result.empty())
-    return;
+int MisesProvider::CalculateRelevanceForWeb3sites() const {
+  switch (autocomplete_input_->type()) {
+    case metrics::OmniboxInputType::UNKNOWN:
+    case metrics::OmniboxInputType::QUERY:
+      return 1299;
+
+    case metrics::OmniboxInputType::URL:
+      return 849;
+
+    default:
+      NOTREACHED();
+      return 0;
+  }
 }

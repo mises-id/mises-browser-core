@@ -31,7 +31,6 @@ public:
 
     // AutocompleteProvider:
     void Start(const AutocompleteInput &input, bool minimal_changes) override;
-    void SortByMises(const AutocompleteResult& result);
     void GetTopSiteData();
     void OnURLLoadComplete(const network::SimpleURLLoader* source,
                          std::unique_ptr<std::string> response_body);
@@ -47,10 +46,6 @@ private:
 
     static const int kBaseRelevance;
 
-    static std::vector<std::string> top_sites_;
-
-    static std::string websites_string_;
-
     void AddMatch(const std::u16string &match_string,
                   const ACMatchClassifications &styles,
                   const size_t &foundPos,
@@ -60,6 +55,8 @@ private:
     static ACMatchClassifications StylesForSingleMatch(
         const std::string &input_text,
         const std::string &match_text);
+
+    int CalculateRelevanceForWeb3sites() const;
 
     int GetRelevance(
     const std::string &input_text,
