@@ -92,7 +92,7 @@ void OnBeforeURLRequest_EnsRedirectWork(
 
   GURL ipfs_uri = ipfs::ContentHashToCIDv1URL(content_hash);
   if (ipfs_uri.is_valid()) {
-    ctx->new_url_spec = ipfs_uri.spec();
+    ctx->new_url_spec = ipfs_uri.spec() + ctx->request_url.PathForRequest();
   }
 
   next_callback.Run();
@@ -105,7 +105,7 @@ void OnBeforeURLRequest_UnstoppableDomainsRedirectWork(
     brave_wallet::mojom::ProviderError error,
     const std::string& error_message) {
   if (error == brave_wallet::mojom::ProviderError::kSuccess && url.is_valid()) {
-    ctx->new_url_spec = url.spec();
+    ctx->new_url_spec = url.spec() + ctx->request_url.PathForRequest();
   }
 
   if (!next_callback.is_null())
@@ -120,7 +120,9 @@ void OnBeforeURLRequest_BitRedirectWork(
     brave_wallet::mojom::ProviderError error,
     const std::string& error_message) {
   if (error == brave_wallet::mojom::ProviderError::kSuccess && url.is_valid()) {
-    ctx->new_url_spec = url.spec();
+    ctx->new_url_spec = url.spec() + ctx->request_url.PathForRequest();
+  } else {
+    ctx->new_url_spec = "https://" + ctx->request_url.host() + ".cc";
   }
 
   if (!next_callback.is_null())
