@@ -1,0 +1,15 @@
+diff --git a/chrome/browser/download/android/java/res/xml/download_preferences.xml b/chrome/browser/download/android/java/res/xml/download_preferences.xml
+index 2d42d3e298543ec0b81255bf744d6415b33b5190..39635389005a98991a67b3cb6fa998f9e0e736d4 100644
+--- a/chrome/browser/download/android/java/res/xml/download_preferences.xml
++++ b/chrome/browser/download/android/java/res/xml/download_preferences.xml
+@@ -21,4 +21,10 @@
+         android:title="@string/download_location_prompt_enabled_title"
+         android:summaryOn="@string/text_on"
+         android:summaryOff="@string/text_off" />
++
++    <org.chromium.components.browser_ui.settings.ChromeBaseCheckBoxPreference
++        android:key="enable_external_download_manager"
++        android:summary="@string/download_preferences_enable_external_download_manager_summary"
++        android:title="@string/download_preferences_enable_external_download_manager_title" />
++
+ </PreferenceScreen>
