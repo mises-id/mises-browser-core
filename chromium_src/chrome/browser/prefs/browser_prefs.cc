@@ -124,6 +124,9 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   registry->RegisterBooleanPref(prefs::kSidePanelHorizontalAlignment,
                                 base::i18n::IsRTL() ? false : true);
 
+
+  registry->RegisterBooleanPref(prefs::kShowCastIconInToolbar, false);
+
 #endif
 
 #if !BUILDFLAG(ENABLE_FEED_V2)
