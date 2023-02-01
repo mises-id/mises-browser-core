@@ -53,9 +53,10 @@ class Web3sitesSafeNavigationThrottle : public content::NavigationThrottle {
                                        Web3sitesResultType::Type result_type,
                                        bool triggered_by_initial_url);
 
+  raw_ptr<Profile> profile_;
+
   base::WeakPtrFactory<Web3sitesSafeNavigationThrottle> weak_ptr_factory_{
       this};
-  raw_ptr<Profile> profile_;
 
 
 };

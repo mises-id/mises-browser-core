@@ -24,14 +24,14 @@ namespace {
          stored_redirect_chain[stored_redirect_chain.size() - 1] == current_url;
 }
 
-const base::Feature kOptimizeWeb3sitesSafeNavigationThrottle{
+/* const base::Feature kOptimizeWeb3sitesSafeNavigationThrottle{
     "OptimizeWeb3sitesSafeNavigationThrottle",
 #if BUILDFLAG(IS_ANDROID)
     base::FEATURE_ENABLED_BY_DEFAULT
 #else
     base::FEATURE_DISABLED_BY_DEFAULT
 #endif
-};
+}; */
 }
 
 //Web3sitesSafeNavigationThrottle
