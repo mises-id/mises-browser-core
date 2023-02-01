@@ -84,18 +84,18 @@ public final class RadioButtonGroupTabSwitcherPreference
         String checkedTabSwitcher = "";
 
         RadioButtonWithDescription mChoice_default = (RadioButtonWithDescription) mHolder.findViewById(R.id.radio_button_default);
-        RadioButtonWithDescription mChoice_original = (RadioButtonWithDescription) mHolder.findViewById(R.id.radio_button_original);
-        RadioButtonWithDescription mChoice_horizontal = (RadioButtonWithDescription) mHolder.findViewById(R.id.radio_button_horizontal);
+        //RadioButtonWithDescription mChoice_original = (RadioButtonWithDescription) mHolder.findViewById(R.id.radio_button_original);
+        //RadioButtonWithDescription mChoice_horizontal = (RadioButtonWithDescription) mHolder.findViewById(R.id.radio_button_horizontal);
         RadioButtonWithDescription mChoice_classic = (RadioButtonWithDescription) mHolder.findViewById(R.id.radio_button_classic);
         RadioButtonWithDescription mChoice_list = (RadioButtonWithDescription) mHolder.findViewById(R.id.radio_button_list);
         RadioButtonWithDescription mChoice_grid = (RadioButtonWithDescription) mHolder.findViewById(R.id.radio_button_grid);
 
         if (mChoice_list.isChecked()) {
           checkedTabSwitcher = "list";
-        } else if (mChoice_original.isChecked()) {
-          checkedTabSwitcher = "original";
-        } else if (mChoice_horizontal.isChecked()) {
-          checkedTabSwitcher = "horizontal";
+        //} else if (mChoice_original.isChecked()) {
+        //  checkedTabSwitcher = "original";
+        //} else if (mChoice_horizontal.isChecked()) {
+        //  checkedTabSwitcher = "horizontal";
         } else if (mChoice_grid.isChecked()) {
           checkedTabSwitcher = "grid";
         } else if (mChoice_classic.isChecked()) {
@@ -120,8 +120,8 @@ public final class RadioButtonGroupTabSwitcherPreference
         super.onBindViewHolder(holder);
 
         RadioButtonWithDescription mChoice_default = (RadioButtonWithDescription) holder.findViewById(R.id.radio_button_default);
-        RadioButtonWithDescription mChoice_original = (RadioButtonWithDescription) holder.findViewById(R.id.radio_button_original);
-        RadioButtonWithDescription mChoice_horizontal = (RadioButtonWithDescription) holder.findViewById(R.id.radio_button_horizontal);
+        //RadioButtonWithDescription mChoice_original = (RadioButtonWithDescription) holder.findViewById(R.id.radio_button_original);
+        //RadioButtonWithDescription mChoice_horizontal = (RadioButtonWithDescription) holder.findViewById(R.id.radio_button_horizontal);
         RadioButtonWithDescription mChoice_classic = (RadioButtonWithDescription) holder.findViewById(R.id.radio_button_classic);
         RadioButtonWithDescription mChoice_list = (RadioButtonWithDescription) holder.findViewById(R.id.radio_button_list);
         RadioButtonWithDescription mChoice_grid = (RadioButtonWithDescription) holder.findViewById(R.id.radio_button_grid);
@@ -130,13 +130,13 @@ public final class RadioButtonGroupTabSwitcherPreference
         if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("default"))
           mChoice_default.setChecked(true);
 
-        mChoice_original.setPrimaryText("Original (vertical, same as old Chromium)");
-        if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("original"))
-          mChoice_original.setChecked(true);
+        //mChoice_original.setPrimaryText("Original (vertical, same as old Chromium)");
+        //if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("original"))
+        //  mChoice_original.setChecked(true);
 
-        mChoice_horizontal.setPrimaryText("Horizontal (same as old Chromium)");
-        if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("horizontal"))
-          mChoice_horizontal.setChecked(true);
+        //mChoice_horizontal.setPrimaryText("Horizontal (same as old Chromium)");
+        //if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("horizontal"))
+        //  mChoice_horizontal.setChecked(true);
 
         mChoice_classic.setPrimaryText("Vertical (supports tab group)");
         if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic"))

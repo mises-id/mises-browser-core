@@ -17,6 +17,9 @@
 #include "components/grit/mises_components_resources.h"
 #include "components/prefs/pref_change_registrar.h"
 #include "components/prefs/pref_service.h"
+#include "content/public/browser/browser_context.h"
+#include "content/public/browser/browser_task_traits.h"
+#include "content/public/browser/browser_thread.h"
 #include "extensions/browser/extension_prefs.h"
 #include "extensions/browser/extension_registry.h"
 #include "extensions/browser/extension_system.h"
@@ -116,15 +119,15 @@ void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_co
 
 void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_context,
                                      const Extension* extension) {
-    if (extension->id() == metamask_extension_id) {
-
+    if (extension->id() == metamask_extension_id &&  extension->location() == ManifestLocation::kComponent) {
+      migration_started_ = true;
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
         frontend->RunWithStorage(
           extension, settings_namespace::LOCAL,
         base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
         );
     }
-    if (extension->id() == mises_extension_id) {
+    if (extension->id() == mises_extension_id && migration_started_) {
 
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
         frontend->RunWithStorage(
@@ -159,6 +162,15 @@ void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* 
       }
     }
   }
+
+  content::GetUIThreadTaskRunner({})->PostTask(
+    FROM_HERE,
+    base::BindOnce(&MisesComponentLoader::MetamaskMigrationDone, base::Unretained(this)));
+    
+  
+}
+void MisesComponentLoader::MetamaskMigrationDone() {
+
 }
 void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
   LOG(INFO) << "AsyncRunWithMiseswalletStorage";
@@ -212,6 +224,7 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
     Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
   }
 
+  
   base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
   miseswallet_extension_path =
       miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));

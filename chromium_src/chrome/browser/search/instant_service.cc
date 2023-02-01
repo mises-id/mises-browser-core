@@ -468,7 +468,7 @@ void InstantService::OpenExtension(content::WebContents* web_contents, const GUR
             if (!TabModelList::models().empty()){
               TabModel* tab_model = TabModelList::models()[0];
               if (tab_model)
-                tab_model->CreateNewTabForDevTools(popup);
+                tab_model->CreateNewTabForExtension(extension->id(), popup, 0);
             }
 #endif
           } else {

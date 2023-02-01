@@ -36,18 +36,6 @@
         app:primaryText="@string/main_menu_translate" />
 
     <org.chromium.components.browser_ui.widget.RadioButtonWithDescription
-        android:id="@+id/radio_button_original"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:primaryText="@string/main_menu_translate" />
-
-    <org.chromium.components.browser_ui.widget.RadioButtonWithDescription
-        android:id="@+id/radio_button_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:primaryText="@string/main_menu_translate" />
-
-    <org.chromium.components.browser_ui.widget.RadioButtonWithDescription
         android:id="@+id/radio_button_classic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

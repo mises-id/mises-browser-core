@@ -1245,6 +1245,9 @@ std::string GetDefaultBaseCryptocurrency(PrefService* prefs) {
   return prefs->GetString(kDefaultBaseCryptocurrency);
 }
 
+GURL GetBitRpcUrl(const std::string& chain_id) {
+  return GURL("https://indexer-v1.did.id/v2/account/records");
+}
 GURL GetUnstoppableDomainsRpcUrl(const std::string& chain_id) {
   if (base::CompareCaseInsensitiveASCII(
           chain_id, brave_wallet::mojom::kMainnetChainId) == 0 ||
