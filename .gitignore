@@ -79,3 +79,17 @@ network-audit-results.json
 
 .npmrc
 .mises_latest_successful_sync.json
+#cg
+Makefile
+android_debug_build.sh
+android_debug_launch.sh
+cg.txt
+chromium_log.txt
+debug-build.sh
+install_android.sh
+log_addebug.sh
+package-lock.json
+run-debug.sh
+run_adb_log.sh
+android-build-and-install.sh
+linux-build-and-run.sh

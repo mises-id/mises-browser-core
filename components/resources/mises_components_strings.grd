@@ -178,6 +178,9 @@
       <if expr="not is_ios">
         <part file="decentralized_dns_strings.grdp" />
       </if>
+      <if expr="not is_ios">
+        <part file="web3sites_safe_strings.grdp" />
+      </if>
       <part file="ipfs_strings.grdp" />
       <part file="wallet_strings.grdp" />
     </messages>
