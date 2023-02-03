@@ -131,7 +131,7 @@ void Web3sitesSafeService::CheckWeb3sitesURL(std::unique_ptr<MisesURLCheckCallba
     check_url_ = url;
 
     //white list
-    if(IsWeb3sitesWhiteList()){
+    if(IsWeb3sitesWhiteList(check_url_)){
       LOG(INFO) << "Cg Web3sitesSafeService::CheckWeb3sitesURL white list";
       GURL& safe_url = check_url_;
       MisesURLCheckResult check_result(url,Web3sitesResultType::kWhite,safe_url);
@@ -151,16 +151,72 @@ void Web3sitesSafeService::CheckWeb3sitesURL(std::unique_ptr<MisesURLCheckCallba
 }
 
 //IsWeb3sitesWhiteList
-bool Web3sitesSafeService::IsWeb3sitesWhiteList() const{
-  MisesDomainInfo checkURL = GetMisesDomainInfo(check_url_);
-  for(auto web3site : web3sites_origin_){
+bool Web3sitesSafeService::IsWeb3sitesWhiteList(const GURL& url ) const{
+  MisesDomainInfo checkURL = GetMisesDomainInfo(url);
+  for(auto web3site : web3sites_white_){
       if (checkURL.domain_and_registry == web3site.domain_and_registry){
         return true;
       }
   }
   return false;
 }
+//IsWeb3sitesBlackList
+bool Web3sitesSafeService::IsWeb3sitesBlackList(const GURL& url,GURL *suggested_url) const{
+  MisesDomainInfo checkURL = GetMisesDomainInfo(url);
+  for(auto web3site : web3sites_black_){
+      if (checkURL.domain_and_registry == web3site.domain_and_registry){
+        *suggested_url = web3site.object_domain;
+        return true;
+      }
+  }
+  return false;
+}
 
+//IsWeb3sitesFuzzyList
+bool Web3sitesSafeService::IsWeb3sitesFuzzyList(const GURL& url,GURL *suggested_url) const{
+  MisesDomainInfo checkURL = GetMisesDomainInfo(url);
+  for(auto web3site : web3sites_fuzzy_){
+      if (checkURL.domain_and_registry == web3site.domain_and_registry){
+        *suggested_url = web3site.object_domain;
+        return true;
+      }
+  }
+  return false;
+}
+
+//IsLookalike
+bool Web3sitesSafeService::IsLookalike(const GURL& url,GURL *suggested_url) const{
+  if (!check_is_enabled_){
+    return false;
+  }
+  //TODO: record result
+  MisesDomainInfo checkURL = GetMisesDomainInfo(url);
+  //min domain_and_registry size
+  if (checkURL.domain_and_registry.size() < min_check_size_){return false;}
+  //
+  for(auto web3site : web3sites_origin_){
+    if (web3site.hostname.empty() || web3site.domain_without_registry.empty()){continue;}
+    //edit_distance
+    int edit_distance = GetEditDistance(checkURL.domain_without_registry,web3site.domain_without_registry);
+    //lcs
+    const std::string lcs_string = GetLCS(checkURL.hostname,web3site.domain_without_registry);
+    int check_url_len = web3site.domain_without_registry.size();
+    int lcs_len = lcs_string.size();
+    float lcs_rate = float(lcs_len) / float(check_url_len);
+    if (edit_distance <= 3 || lcs_rate >= 0.8){
+      *suggested_url = GURL(web3site.hostname);
+      LOG(INFO) << "Cg Web3sitesSafeService::IsLookalike"
+      << ",check_url=" << checkURL.hostname
+      << ",web3site=" << web3site.domain_without_registry
+      << ",edit_distance=" << edit_distance
+      << ",lcs_string=" << lcs_string
+      << ",lcs_rate=" << lcs_rate
+      ;
+      return true;
+    }
+  }
+  return false;
+}
 //IsWeb3sitesNeedCheck
 bool Web3sitesSafeService::IsWeb3sitesNeedCheck() const{
   LOG(INFO) << "Cg Web3sitesSafeService::IsWeb3sitesNeedCheck";
@@ -313,9 +369,9 @@ void Web3sitesSafeService::UpdateWeb3sites() {
     LOG(INFO) << "Cg Web3sitesSafeService::UpdateWeb3sites";
     //getMisesMatch
     net::NetworkTrafficAnnotationTag traffic_annotation =
-            net::DefineNetworkTrafficAnnotation("web3sites_origin", R"(
+            net::DefineNetworkTrafficAnnotation("web3sites_phishing_config", R"(
         semantics {
-          sender: "Web3sites Origin",
+          sender: "Web3sites Phishing Config",
           description:
             "When verifying certificates, the browser may need to fetch "
             "additional URLs that are encoded in the server-provided "
@@ -341,9 +397,9 @@ void Web3sitesSafeService::UpdateWeb3sites() {
           setting: "This feature cannot be disabled by settings."
           policy_exception_justification: "Not implemented."
         })");
-    GURL getWeb3sitesOriginApi("https://web3.mises.site/website/top.json");
+    GURL getWeb3sitesPhishingConfigJson("https://web3.mises.site/website/phishing_config.json");
     auto resource_request = std::make_unique<network::ResourceRequest>();
-    resource_request->url = getWeb3sitesOriginApi;
+    resource_request->url = getWeb3sitesPhishingConfigJson;
     resource_request->method = "GET";
     resource_request->credentials_mode = network::mojom::CredentialsMode::kOmit;
     simple_url_loader_ = network::SimpleURLLoader::Create(std::move(resource_request),
@@ -380,7 +436,57 @@ void Web3sitesSafeService::OnUpdateWeb3sitesCompleted(const network::SimpleURLLo
         VLOG(1) << "No mises match found in the response.";
         return;
     }
-    if (!json_value->is_list()) {
+    if (!json_value->is_dict()) {
+        LOG(WARNING) << "Response is not a JSON dictionary.";
+        return;
+    }
+    //config
+    check_is_enabled_ = json_value->FindBoolKey("is_enabled").value_or(false);
+    //origin list
+    web3sites_origin_.clear();
+    auto* origin_list = json_value->FindListKey("origin_list");
+    for (const auto& data : origin_list->GetListDeprecated()) {
+        const std::string* domain_name = data.FindStringKey("domain_name");
+        if ((*domain_name).empty()) {continue;}
+        MisesDomainInfo domain_info = GetMisesDomainInfo(*domain_name);
+        web3sites_origin_.push_back(domain_info);
+    }
+    //white list
+    web3sites_white_.clear();
+    auto* white_list = json_value->FindListKey("white_list");
+    for (const auto& data : white_list->GetListDeprecated()) {
+        const std::string* domain_name = data.FindStringKey("domain_name");
+        if ((*domain_name).empty()) {continue;}
+        MisesDomainInfo domain_info = GetMisesDomainInfo(*domain_name);
+        web3sites_white_.push_back(domain_info);
+    }
+    //black list
+    web3sites_black_.clear();
+    auto* black_list = json_value->FindListKey("black_list");
+    for (const auto& data : black_list->GetListDeprecated()) {
+        const std::string* domain_name = data.FindStringKey("domain_name");
+        const std::string* object_site = data.FindStringKey("object_site");
+        if ((*domain_name).empty()) {continue;}
+        MisesDomainInfo domain_info = GetMisesDomainInfo(*domain_name);
+        if (!(*object_site).empty()) {
+          domain_info.object_domain = GURL(*object_site);
+        }
+        web3sites_black_.push_back(domain_info);
+    }
+    //fuzzy list
+    web3sites_fuzzy_.clear();
+    auto* fuzzy_list = json_value->FindListKey("fuzzy_list");
+    for (const auto& data : fuzzy_list->GetListDeprecated()) {
+        const std::string* domain_name = data.FindStringKey("domain_name");
+        const std::string* object_site = data.FindStringKey("object_site");
+        if ((*domain_name).empty()) {continue;}
+        MisesDomainInfo domain_info = GetMisesDomainInfo(*domain_name);
+        if (!(*object_site).empty()) {
+          domain_info.object_domain = GURL(*object_site);
+        }
+        web3sites_fuzzy_.push_back(domain_info);
+    }
+   /*  if (!json_value->is_list()) {
         LOG(WARNING) << "Response is not a JSON dictionary.";
         return;
     }
@@ -392,7 +498,7 @@ void Web3sitesSafeService::OnUpdateWeb3sitesCompleted(const network::SimpleURLLo
         if ((*domain_name).empty()) {continue;}
         MisesDomainInfo domain_info = GetMisesDomainInfo(*domain_name);
         web3sites_origin_.push_back(domain_info);
-    }
+    } */
     last_web3sites_fetch_time_ = clock_->Now();
     is_fetch_web3sites_ = true;
 }

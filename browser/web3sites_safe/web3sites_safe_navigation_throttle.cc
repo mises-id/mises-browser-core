@@ -12,6 +12,7 @@
 #include "mises/browser/web3sites_safe/web3sites_safe_blocking_page.h"
 #include "components/security_interstitials/content/security_interstitial_tab_helper.h"
 #include "mises/browser/web3sites_safe/web3sites_safe_service.h"
+#include "mises/browser/web3sites_safe/web3sites_safe_util.h"
 #include "content/public/browser/navigation_handle.h"
 
 
@@ -66,8 +67,8 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
 
   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::WillStartRequest -1";
   content::NavigationHandle* handle = navigation_handle();
-  GURL url = handle->GetURL();
-  if (!handle->GetURL().SchemeIsHTTPOrHTTPS() || !handle->IsInMainFrame() || handle->IsSameDocument()) {
+ if (!handle->GetURL().SchemeIsHTTPOrHTTPS() || handle->GetNetErrorCode() != net::OK || !handle->IsInMainFrame() ||
+      handle->IsSameDocument()) {
     return content::NavigationThrottle::PROCEED;
   }
   //tab storage
@@ -96,13 +97,13 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
         false /* is_renderer_initiated */));
     return content::NavigationThrottle::CANCEL_AND_IGNORE;
   }
-  //check
-  base::SequencedTaskRunnerHandle::Get()->PostTask(
+  //defer check
+  /* base::SequencedTaskRunnerHandle::Get()->PostTask(
         FROM_HERE,
         base::BindOnce(&Web3sitesSafeNavigationThrottle::PerformChecksDeferred,
                        weak_ptr_factory_.GetWeakPtr()));
-  return content::NavigationThrottle::DEFER;
-  //return PerformChecksDeferred();
+  return content::NavigationThrottle::DEFER; */
+  return PerformChecks();
 }
 
 //WillFailRequest
@@ -112,26 +113,110 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillFailRequest(){
   return content::NavigationThrottle::PROCEED;
 }
 
-void Web3sitesSafeNavigationThrottle::OnCheckUrlResult(const MisesURLCheckResult& result){
-   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::OnCheckUrlResult -1";
-   if (result.result_type == Web3sitesResultType::kWhite){
-    Resume();
-    return;
+//PerformChecks
+ ThrottleCheckResult Web3sitesSafeNavigationThrottle::PerformChecks(){
+  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::PerformCheck -1";
+  content::NavigationHandle* handle = navigation_handle();
+  GURL url = handle->GetURL();
+  const GURL& last_url_in_redirect_chain =
+    navigation_handle()
+        ->GetRedirectChain()[navigation_handle()->GetRedirectChain().size() - 1];
+  DCHECK(last_url_in_redirect_chain == navigation_handle()->GetURL() ||
+        !navigation_handle()->GetBaseURLForDataURL().is_empty());
+
+  // Check for two lookalikes -- at the beginning and end of the redirect chain.
+  const GURL& first_url = navigation_handle()->GetRedirectChain()[0];
+  const GURL& last_url = navigation_handle()->GetURL();
+  if (first_url.host() != last_url.host()){
+    MisesURLCheckResult first_check_result = LocalCheckUrl(first_url);
+    return OnLocalCheckUrlResult(first_check_result);
+  }
+  //last url
+  MisesURLCheckResult last_check_result = LocalCheckUrl(last_url);
+  return OnLocalCheckUrlResult(last_check_result);
+ }
+
+MisesURLCheckResult Web3sitesSafeNavigationThrottle::LocalCheckUrl(const GURL& url)
+{
+
+  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::CheckUrl url=" << url;
+  GURL suggested_url = url;
+  MisesURLCheckResult check_result(url,Web3sitesResultType::kWhite,suggested_url);
+  // Don't warn on non-public domains.
+  if (net::HostStringIsLocalhost(url.host()) ||
+      net::IsHostnameNonUnique(url.host()) ||
+      MisesGetETLDPlusOne(url.host()).empty()) {
+      return check_result;
+  }
+  //is ignored
+  if (ReputationService::Get(profile_)->IsIgnored(url)){
+      LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsIgnored url=" << url;
+      return check_result;
+  }
+   Web3sitesSafeService* service = Web3sitesSafeService::Get(profile_);
+  //is white
+  if (service->IsWeb3sitesWhiteList(url)){
+     LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::CheckIsTopDomain url=" << url;
+     return check_result;
+  }
+  //is top
+  const MisesDomainInfo navigation_domain = GetMisesDomainInfo(url);
+  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::CheckIsTopDomain url=" << url;
+  if(CheckIsTopDomain(navigation_domain)) {
+    LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsTopDomain url=" << url;
+    return check_result;
+  }
+  //is black
+  if (service->IsWeb3sitesBlackList(url,&suggested_url)){
+    LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsWeb3sitesBlackList url=" << url;
+    check_result.result_type = Web3sitesResultType::kBlack;
+    check_result.safe_url = suggested_url;
+    return check_result;
+  }
+  //is fuzzy
+  if (service->IsWeb3sitesFuzzyList(url,&suggested_url)){
+    LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsWeb3sitesFuzzyList url=" << url;
+    check_result.result_type = Web3sitesResultType::kFuzzy;
+    check_result.safe_url = suggested_url;
+    return check_result;
+  }
+  //is lookakie
+  if (service->IsLookalike(url,&suggested_url)){
+    LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsLookalike url=" << url;
+    check_result.result_type = Web3sitesResultType::kFuzzy;
+    check_result.safe_url = suggested_url;
+    return check_result;
+  }
+  return check_result;
+}
+
+//OnLocalCheckUrlResult
+ThrottleCheckResult Web3sitesSafeNavigationThrottle::OnLocalCheckUrlResult(const MisesURLCheckResult& check_url_result){
+   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::OnLocalCheckUrlResult"
+    << ",url=" << check_url_result.check_url
+    << ",result_type=" << check_url_result.result_type
+    << ",safe_url=" << check_url_result.safe_url
+   ;
+   if (check_url_result.result_type == Web3sitesResultType::kWhite){
+     return NavigationThrottle::PROCEED;
    }
-   content::NavigationHandle* handle = navigation_handle();
+   if (check_url_result.result_type == Web3sitesResultType::kBlack || check_url_result.result_type == Web3sitesResultType::kFuzzy){
+    content::NavigationHandle* handle = navigation_handle();
     GURL url = handle->GetURL();
-    const GURL& safe_domain = result.safe_url;
+    const GURL& safe_domain = check_url_result.safe_url;
     const GURL& request_domain = url;
     ukm::SourceId source_id = ukm::ConvertToSourceId(
       navigation_handle()->GetNavigationId(), ukm::SourceIdType::NAVIGATION_ID);
-    ShowInterstitial(safe_domain,request_domain,source_id,result.result_type,false);
-    return;
+    return ShowInterstitial(safe_domain,request_domain,source_id,check_url_result.result_type,false);
+   }
+  return NavigationThrottle::PROCEED;
 }
+
 
 //PerformChecksDeferred
 void Web3sitesSafeNavigationThrottle::PerformChecksDeferred() {
 
-  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::PerformCheck -1";
+  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::PerformChecksDeferred -1";
 
   content::NavigationHandle* handle = navigation_handle();
    GURL url = handle->GetURL();
@@ -143,8 +228,15 @@ void Web3sitesSafeNavigationThrottle::PerformChecksDeferred() {
      Resume();
      return;
   }
+  //is topdomains
+  const MisesDomainInfo navigation_domain = GetMisesDomainInfo(url);
+  if(CheckIsTopDomain(navigation_domain)) {
+     Resume();
+     return;
+  }
+  //check
    auto callback = std::make_unique<Web3sitesSafeService::MisesURLCheckCallback>(
-      base::BindOnce(&Web3sitesSafeNavigationThrottle::OnCheckUrlResult,
+      base::BindOnce(&Web3sitesSafeNavigationThrottle::OnApiCheckUrlResult,
                        weak_ptr_factory_.GetWeakPtr())
     );
     Web3sitesSafeService* service = Web3sitesSafeService::Get(profile_);
@@ -152,8 +244,26 @@ void Web3sitesSafeNavigationThrottle::PerformChecksDeferred() {
     return;
 }
 
+//OnApiCheckUrlResult
+void Web3sitesSafeNavigationThrottle::OnApiCheckUrlResult(const MisesURLCheckResult& check_url_result){
+   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::OnApiCheckUrlResult -1";
+   if (check_url_result.result_type == Web3sitesResultType::kWhite){
+    Resume();
+    return;
+   }
+   content::NavigationHandle* handle = navigation_handle();
+    GURL url = handle->GetURL();
+    const GURL& safe_domain = check_url_result.safe_url;
+    const GURL& request_domain = url;
+    ukm::SourceId source_id = ukm::ConvertToSourceId(
+      navigation_handle()->GetNavigationId(), ukm::SourceIdType::NAVIGATION_ID);
+    ThrottleCheckResult result = ShowInterstitial(safe_domain,request_domain,source_id,check_url_result.result_type,false);
+    CancelDeferredNavigation(result);
+}
+
+
 //ShowInterstitial
-void Web3sitesSafeNavigationThrottle::ShowInterstitial(
+ThrottleCheckResult Web3sitesSafeNavigationThrottle::ShowInterstitial(
     const GURL& safe_domain,
     const GURL& lookalike_domain,
     ukm::SourceId source_id,
@@ -184,8 +294,10 @@ void Web3sitesSafeNavigationThrottle::ShowInterstitial(
   Web3sitesSafeTabStorage::GetOrCreate(handle->GetWebContents())
       ->OnWeb3sitesSafeInterstitialShown(lookalike_domain, referrer,
                                      handle->GetRedirectChain());
-  CancelDeferredNavigation(ThrottleCheckResult(content::NavigationThrottle::CANCEL,
-                             net::ERR_BLOCKED_BY_CLIENT, error_page_contents));
+  return ThrottleCheckResult(content::NavigationThrottle::CANCEL,
+                             net::ERR_BLOCKED_BY_CLIENT, error_page_contents);
+  /* CancelDeferredNavigation(ThrottleCheckResult(content::NavigationThrottle::CANCEL,
+                             net::ERR_BLOCKED_BY_CLIENT, error_page_contents)); */
 }
 
 
