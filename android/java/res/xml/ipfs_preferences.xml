@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2021 The Brave Authors. All rights reserved.
+     This Source Code Form is subject to the terms of the Mozilla Public
+     License, v. 2.0. If a copy of the MPL was not distributed with this file,
+     You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:title="@string/ipfs_title">
+
+        <org.chromium.components.browser_ui.settings.ChromeSwitchPreference
+            android:key="ipfs_gateway"
+            android:order="1"
+            android:title="@string/ipfs_gateway_title"
+            android:summary="@string/ipfs_gateway_summary"
+            android:defaultValue="true" />
+        
+
+        <org.chromium.chrome.browser.ipfs.settings.RadioButtonGroupIPFSGatewayPreference
+            android:key="ipfs_gateway_radio_group"
+            android:order="2"
+            android:selectable="false"
+            app:allowDividerAbove="true"
+            app:allowDividerBelow="false" />
+        
+        <org.chromium.chrome.browser.about_settings.HyperlinkPreference
+        android:key="ipfs_gateway_list"
+        android:order="3"
+        android:title="@string/ipfs_gateway_list_title"
+        app:url="@string/ipfs_gateway_list_url" />
+    </PreferenceCategory>
+</PreferenceScreen>
+

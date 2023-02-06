@@ -17,10 +17,9 @@
         android:key="ens"
         android:order="2"
         android:title="@string/ens_title" />
-    <org.chromium.components.browser_ui.settings.ChromeSwitchPreference
-        android:key="ipfs_gateway"
+    <Preference
+        android:fragment="org.chromium.chrome.browser.ipfs.settings.IPFSSettingsFragment"
+        android:key="ipfs"
         android:order="3"
-        android:title="@string/ipfs_gateway_title"
-        android:summary="@string/ipfs_gateway_summary"
-        android:defaultValue="true" />
+        android:title="@string/ipfs_title" />
 </PreferenceScreen>

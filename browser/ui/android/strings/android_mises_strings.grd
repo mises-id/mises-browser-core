@@ -26,11 +26,32 @@ This file contains all "about" strings.  It is set to NOT be translated, in tran
       <message name="IDS_ENS_TITLE" desc="Title for ENS settings.">
         Ethereum Name Service
       </message>
-      <message name="IDS_IPFS_GATEWAY_TITLE" desc="Title for IPFS setting.">
+      <message name="IDS_IPFS_TITLE" desc="Title for IPFS setting.">
+        IPFS
+      </message>
+      <message name="IDS_IPFS_GATEWAY_TITLE" desc="Title for IPFS Gateway setting.">
         IPFS Gateway
       </message>
       <message name="IDS_IPFS_GATEWAY_SUMMARY" desc="Summary for IPFS gateway setting.">
         Allows for navigation to IPFS resources through an IPFS Gateway
+      </message>
+      <message name="IDS_IPFS_GATEWAY_LIST_TITLE" desc="Title for IPFS Gateway list.">
+        Find An IPFS Public Gateway
+      </message>
+      <message name="IDS_IPFS_GATEWAY_LIST_URL" desc="Url for IPFS Gateway list." translateable="false">
+        https://ipfs.github.io/public-gateway-checker/
+      </message>
+      <message name="IDS_IPFS_GATEWAY_EDIT_HINT" desc="Hint for the text edit on IPFS Preference setting, guiding user to enter their customized IPFS gateway setting">
+        Enter custom IPFS gateway address
+      </message>
+      <message name="IDS_IPFS_GATEWAY_EDIT_TITLE" desc="The title of the screen that allows users to change the gateway URL that opens when they access IPFS resources.">
+        Edit IPFS Gateway
+      </message>
+      <message name="IDS_IPFS_GATEWAY_EDIT_LABEL" desc="The label for the edit text field that allows the user to change the gateway URL that is opened when they access IPFS resources.">
+        IPFS Gateway Address
+      </message>
+      <message name="IDS_IPFS_GATEWAY_DWEB_LINK" desc="The option that allows user to set dweb.link as the gateway.">
+        Use dweb.link
       </message>
       <message name="IDS_RESOLVE_METHOD_TITLE" desc="Title for resolve method preference category.">
         Resolve Method
