@@ -344,9 +344,10 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/xml/web3_preferences.xml",
     "java/res/xml/unstoppable_domains_preferences.xml",
     "java/res/xml/ens_preferences.xml",
-
+    "java/res/xml/ipfs_preferences.xml",
     "java/res/layout/radio_button_group_ens_resolve_method_preference.xml",
     "java/res/layout/radio_button_group_unstoppable_domains_resolve_method_preference.xml",
+    "java/res/layout/radio_button_group_ipfs_gateway_preference.xml",
 
 
 ]

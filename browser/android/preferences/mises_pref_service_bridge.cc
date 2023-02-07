@@ -49,10 +49,18 @@ void JNI_MisesPrefServiceBridge_SetIpfsGatewayEnabled(JNIEnv* env,
                                                       jboolean enabled) {
 #if BUILDFLAG(ENABLE_IPFS)
   ipfs::IPFSResolveMethodTypes type =
-      enabled ? ipfs::IPFSResolveMethodTypes::IPFS_ASK
+      enabled ? ipfs::IPFSResolveMethodTypes::IPFS_GATEWAY
               : ipfs::IPFSResolveMethodTypes::IPFS_DISABLED;
   GetOriginalProfile()->GetPrefs()->SetInteger(kIPFSResolveMethod,
                                                static_cast<int>(type));
+#endif
+}
+
+void JNI_MisesPrefServiceBridge_SetIpfsGateway(JNIEnv* env,
+     const JavaParamRef<jstring>& gatewayUrl) {
+#if BUILDFLAG(ENABLE_IPFS)
+  GetOriginalProfile()->GetPrefs()->SetString(kIPFSPublicGatewayAddress,
+                                              ConvertJavaStringToUTF8(env, gatewayUrl));
 #endif
 }
 
