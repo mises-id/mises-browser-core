@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-
+#include "components/url_formatter/url_formatter.h"
 #include "url/gurl.h"
 
 class GURL;
@@ -32,6 +32,7 @@ struct MisesURLCheckResult {
 
   GURL safe_url;
 
+  MisesURLCheckResult();
 
   MisesURLCheckResult(const GURL& check_url,
               Type result_type,
@@ -76,11 +77,26 @@ struct MisesDomainInfo {
   // is empty.
   const std::string domain_without_registry;
 
+  GURL object_domain;
+
+  // Result of IDN conversion of domain_and_registry field.
+  const url_formatter::IDNConversionResult idn_result;
+  // Skeletons of domain_and_registry field.
+  const url_formatter::Skeletons skeletons;
+
+
+  /* MisesDomainInfo(const std::string& arg_hostname,
+             const std::string& arg_domain_and_registry,
+             const std::string& arg_domain_without_registry); */
 
   MisesDomainInfo(const std::string& arg_hostname,
              const std::string& arg_domain_and_registry,
-             const std::string& arg_domain_without_registry);
+             const std::string& arg_domain_without_registry,
+             const url_formatter::IDNConversionResult& arg_idn_result,
+             const url_formatter::Skeletons& arg_skeletons);
+
   ~MisesDomainInfo();
+
   MisesDomainInfo(const MisesDomainInfo& other);
 };
 
@@ -93,3 +109,5 @@ MisesDomainInfo GetMisesDomainInfo(const std::string& hostname);
 MisesDomainInfo GetMisesDomainInfo(const GURL& url);
 
 std::string MisesGetETLDPlusOne(const std::string& hostname);
+
+bool CheckIsTopDomain(const MisesDomainInfo& domain_info);

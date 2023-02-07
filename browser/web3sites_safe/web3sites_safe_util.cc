@@ -1,6 +1,6 @@
 
 
-#include "mises/components/web3sites_safe/core/web3sites_safe_util.h"
+#include "mises/browser/web3sites_safe/web3sites_safe_util.h"
 
 #include "base/trace_event/trace_event.h"
 
@@ -14,6 +14,7 @@ namespace web3sites_safe {
 }
 
 namespace {
+
 const char* kPrivateRegistriesTreatedAsPublic[] = {"com.de", "com.se"};
 std::string GetHostnameWithoutRegistry(const std::string& hostname) {
   DCHECK(!hostname.empty());
@@ -26,6 +27,7 @@ std::string GetHostnameWithoutRegistry(const std::string& hostname) {
   base::TrimString(out, ".", &out);
   return out;
 }
+
 }//end namespace
 
 //MisesURLCheckResult
@@ -35,18 +37,31 @@ MisesURLCheckResult::MisesURLCheckResult(const GURL& check_url,
     : check_url(check_url),
       safe_url(safe_url) {}
 
+MisesURLCheckResult::MisesURLCheckResult() {};
+
 MisesURLCheckResult::~MisesURLCheckResult() = default;
 
 MisesURLCheckResult::MisesURLCheckResult(const MisesURLCheckResult&) = default;
 
 
 //MisesDomainInfo
-MisesDomainInfo::MisesDomainInfo(const std::string& arg_hostname,
+/* MisesDomainInfo::MisesDomainInfo(const std::string& arg_hostname,
                        const std::string& arg_domain_and_registry,
                        const std::string& arg_domain_without_registry)
     : hostname(arg_hostname),
       domain_and_registry(arg_domain_and_registry),
       domain_without_registry(arg_domain_without_registry) {}
+ */
+MisesDomainInfo::MisesDomainInfo(const std::string& arg_hostname,
+                       const std::string& arg_domain_and_registry,
+                       const std::string& arg_domain_without_registry,
+                       const url_formatter::IDNConversionResult& arg_idn_result,
+                       const url_formatter::Skeletons& arg_skeletons)
+    : hostname(arg_hostname),
+      domain_and_registry(arg_domain_and_registry),
+      domain_without_registry(arg_domain_without_registry),
+      idn_result(arg_idn_result),
+      skeletons(arg_skeletons) {}
 
 MisesDomainInfo::~MisesDomainInfo() = default;
 
@@ -56,7 +71,9 @@ MisesDomainInfo GetMisesDomainInfo(const std::string& hostname) {
   TRACE_EVENT0("navigation", "GetMisesDomainInfo");
   if (net::HostStringIsLocalhost(hostname) ||
       net::IsHostnameNonUnique(hostname)) {
-    return MisesDomainInfo(std::string(), std::string(), std::string());
+    return MisesDomainInfo(std::string(), std::string(), std::string(),
+                      url_formatter::IDNConversionResult(),
+                      url_formatter::Skeletons());
   }
   const std::string domain_and_registry = MisesGetETLDPlusOne(hostname);
   //const std::string domain_without_registry = domain_and_registry;
@@ -66,7 +83,18 @@ const std::string domain_without_registry =
           : GetHostnameWithoutRegistry(
                 domain_and_registry);
 
-  return MisesDomainInfo(hostname, domain_and_registry, domain_without_registry);
+ if (domain_and_registry.empty()) {
+    return MisesDomainInfo(hostname, domain_and_registry, domain_without_registry,
+                      url_formatter::IDNConversionResult(),
+                      url_formatter::Skeletons());
+  }
+
+  const url_formatter::IDNConversionResult idn_result =
+      url_formatter::UnsafeIDNToUnicodeWithDetails(domain_and_registry);
+  const url_formatter::Skeletons skeletons =
+      url_formatter::GetSkeletons(idn_result.result);
+  return MisesDomainInfo(hostname, domain_and_registry, domain_without_registry,
+                    idn_result, skeletons);
 }
 
 MisesDomainInfo GetMisesDomainInfo(const GURL& url) {
@@ -92,4 +120,18 @@ std::string MisesGetETLDPlusOne(const std::string& hostname) {
   }
   // Otherwise, ignore the normal private registry and return the public eTLD+1.
   return pub;
+}
+
+ bool CheckIsTopDomain(const MisesDomainInfo& domain_info) {
+  // Top domains are only accessible through their skeletons, so query the top
+  // domains trie for each skeleton of this domain.
+  for (const std::string& skeleton : domain_info.skeletons) {
+    const url_formatter::TopDomainEntry top_domain =
+        url_formatter::LookupSkeletonInTopDomains(
+            skeleton, url_formatter::SkeletonType::kFull);
+    if (domain_info.domain_and_registry == top_domain.domain) {
+      return true;
+    }
+  }
+  return false;
 }

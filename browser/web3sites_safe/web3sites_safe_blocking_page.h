@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 
-#include "mises/components/web3sites_safe/core/web3sites_safe_util.h"
+#include "mises/browser/web3sites_safe/web3sites_safe_util.h"
 #include "components/security_interstitials/content/security_interstitial_page.h"
 #include "services/metrics/public/cpp/ukm_source_id.h"
 

@@ -7,7 +7,7 @@
 #include "base/time/time.h"
 #include "base/callback_forward.h"
 #include "components/keyed_service/core/keyed_service.h"
-#include "mises/components/web3sites_safe/core/web3sites_safe_util.h"
+#include "mises/browser/web3sites_safe/web3sites_safe_util.h"
 
 namespace network {
 class SharedURLLoaderFactory;
@@ -38,7 +38,13 @@ class Web3sitesSafeService : public KeyedService {
 
    bool IsWeb3sitesNeedCheck() const;
 
-   bool IsWeb3sitesWhiteList() const;
+   bool IsWeb3sitesWhiteList(const GURL& url) const;
+
+   bool IsWeb3sitesBlackList(const GURL& url, GURL *suggested_url) const;
+
+   bool IsWeb3sitesFuzzyList(const GURL& url, GURL *suggested_url) const;
+
+   bool IsLookalike(const GURL& url, GURL *suggested_url) const;
 
    base::Clock* clock() const { return clock_; }
 
@@ -60,7 +66,17 @@ class Web3sitesSafeService : public KeyedService {
 
   raw_ptr<Profile> profile_;
 
+  bool check_is_enabled_ = false;
+
+  size_t min_check_size_ = 5;
+
   std::vector<MisesDomainInfo> web3sites_origin_;
+
+  std::vector<MisesDomainInfo> web3sites_white_;
+
+  std::vector<MisesDomainInfo> web3sites_black_;
+
+  std::vector<MisesDomainInfo> web3sites_fuzzy_;
 
   base::Time last_web3sites_fetch_time_;
 
