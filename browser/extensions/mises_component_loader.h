@@ -51,6 +51,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
  private:
   void AsyncRunWithMetamaskStorage(value_store::ValueStore* storage);
   void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
+  void AsyncRunWithMisesWeb3safeStorage(value_store::ValueStore* storage);
   void MetamaskMigrationDone();
   void ReinstallAsNonComponent(std::string extension_id);
     // ExtensionRegistryObserver:

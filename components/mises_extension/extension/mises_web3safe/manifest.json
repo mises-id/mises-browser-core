@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "MisesShield",
+  "description": "Identify phishing websites and protect your crypto assets.",
+  "version": "1.0",
+
+  "icons": {
+    "16": "icons/ic_16.png",
+    "48": "icons/ic_48.png",
+    "128": "icons/ic_128.png"
+  },
+
+  "permissions": [
+    "storage",
+    "background",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "https://api.test.mises.site/"
+  ],
+  "background": {
+    "service_worker": "js/background.js"
+  },
+
+  "action": {
+    "default_icon": "icons/ic_16.png",
+    "default_title": "MisesShield"
+  },
+
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["js/contentScripts.js"],
+    "css": ["css/contentScripts.css", "css/contentScriptsWeb3Proxy.css"],
+    "run_at": "document_start"
+  }],
+
+  "web_accessible_resources": [{
+    "resources": [
+      "images/*",
+      "js/static/*",
+      "js/contentScriptsWeb3Proxy.js"
+    ],
+    "matches": ["<all_urls>"]
+  }],
+  "key": "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1bHR7eOmS/uxI0uX6rDbyQCysFG9izOAxKAiW5Gp/uBMXPOZ01sL1hQEwH5GGlvygJXG6vh9HLLaEksjtxALjsC2SS5nbqQck4Nk6X2iwil2uU4qLNQ42UPx0n8Qfi2JlkzXl6voe6kWKMWUyj+ePHUvdskKuVPVoZ5nAcJmFY3Osj8WKwst+b8w/McXwRqASRf2b/waIl4PleP3XNvVycpvNGou0e3w54UJDZQuMaeKiQBy1tOCUDnEX0DmLRouac2LdVydviIfm3HVMANBD7sEuU81rk8wu93b8YMUM8arPIkr+dT5gfmotCiahVNrfeXSp3/4tZd5++Tkdqj1bAgMBAAECggEAAkptyBdVP61nV14OWFVvViy4Q634YBN9KzG5tgoJTDaLSypSMJx7lrUIuE5VvJDQfMcsQfLfmzr1zQO7dMEaVjylvqiktzDRrcYHCCUnQb9lgmt8nthbJxVrsp9Hzywn4Gd08UO/x78mhKGuCO7nOhfhGtoC3IenF5vjRZpGXfhHjseM4t9NmgreauNp5Rq26LXJDhFnPaDFkdbZ0XwJ7D2kcw9VUbBDIShiZcS11EeDZPFrQx9sxGmanG/tjpcbmG+JdHFCtjmNgKXha/shb0tEjcCp5FLUqtJ8i2oRykkTSygqxVm1uwj/ztYjZ78BS/7P67qiN9xdmtRLo4dmhQKBgQDaQNS2y4l8Yq2rGOGHhPHcehCNG+1ECjzRKkmf2hnJGFtTnu4ZsBFYy2gVe8a1Hnvgx1d8jgfrhTQk0KDoDc1EzB/4t+NuvTFHvtrfN7CfOZmVVHawUzcHxV2RUmVJfipY6rBJFL/LlOtLP3vX4aLtOMIDE/v5bFwe5yrqN1+iPwKBgQDUzP4jf5c1oi/P3JT9cmmkXzmwRmK3z48TEHCYM0wSH8FfyMTYaRaC5UPyasaGYmCSzm/o180qUbcte8PQydYHX2CYtlK58Elp28ikMsUAzXrOapReOHevVA18gqhaz1KqJPXRzRkxmRO18vyFitI+ZUCEwOAq9mCw1nu3rJUl5QKBgCZxtQZd4+HdH+o7f753VIMZnUC94pVRmFTftghKSrB5cdzQ6e/sa6HQco0WOHI+5GM7udVez1ZVKFIzzaQSik3MBvWwrocbHEse+z7GeH4Tj1IWhrGYduEPiuPGN8EyUBNJg7Pby8z4dlnS3OWyARj4HnScWI4e4DsxTQXkqxvRAoGBAMcmdWyZWtS5zU8Vm2W57n4DFEURChAFsltgFk+KKlYH2/wdM4NojcXAdB9pqBNZ/BFIG1lopLxHL0vkuPQsAB50Nz2T28Xhx4LHSnXIga/nnVeSTPoElJXD7r8otBAQWMecwWUwMbTGErlEBumfanU0YvYaX3A1lXXJtIzHeem1AoGACN/T+hUB0gafJmRS0SjvcQCKeI9/YkNrDwoFHkN+htn3Ol3ty1TQ3zYH1tqQqzN5JlIWbEGFeUGMwTf6WdHgVjLLN3Axi7A06/6pCBkaONAA4knMCXa9z0oRygJO7ZOD4Uffcn/5GnK1rGMheW0VuFM3cdaLKDGbSPylz5au0xQ=",
+  "minimum_chrome_version": "88"
+}
