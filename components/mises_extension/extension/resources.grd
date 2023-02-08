@@ -1039,14 +1039,9 @@
 <include name="IDR_MISES_WEB3SAFE_JS_BACKGROUD_JS" file="mises_web3safe/js/background.js" type="BINDATA" />
 <include name="IDR_MISES_WEB3SAFE_JS_CONTENTSCRIPTS_JS" file="mises_web3safe/js/contentScripts.js" type="BINDATA" />
 <include name="IDR_MISES_WEB3SAFE_JS_CONTENTSCRIPTSWEB3PROXY_JS" file="mises_web3safe/js/contentScriptsWeb3Proxy.js" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_JS_BACKGROUD_JS_MAP" file="mises_web3safe/js/background.js.map" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_JS_CONTENTSCRIPTS_JS_MAP" file="mises_web3safe/js/contentScripts.js.map" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_JS_CONTENTSCRIPTSWEB3PROXY_JS_MAP" file="mises_web3safe/js/contentScriptsWeb3Proxy.js.map" type="BINDATA" />
 
 <include name="IDR_MISES_WEB3SAFE_CSS_CONTENTSCRIPTS_CSS" file="mises_web3safe/css/contentScripts.css" type="BINDATA" />
 <include name="IDR_MISES_WEB3SAFE_CSS_CONTENTSCRIPTSWEB3PROXY_CSS" file="mises_web3safe/css/contentScriptsWeb3Proxy.css" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_CSS_CONTENTSCRIPTS_CSS_MAP" file="mises_web3safe/css/contentScripts.css.map" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_CSS_CONTENTSCRIPTSWEB3PROXY_CSS_MAP" file="mises_web3safe/css/contentScriptsWeb3Proxy.css.map" type="BINDATA" />
 
 <include name="IDR_MISES_WEB3SAFE_ICONS_IC_16_PNG" file="mises_web3safe/icons/ic_16.png" type="BINDATA" />
 <include name="IDR_MISES_WEB3SAFE_ICONS_IC_48_PNG" file="mises_web3safe/icons/ic_16.png" type="BINDATA" />
