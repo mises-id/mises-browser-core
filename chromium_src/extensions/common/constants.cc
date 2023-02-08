@@ -8,3 +8,4 @@
 
 const char metamask_extension_id[] = "nkbihfbeogaeaoehlefnkodbefgpgknn";
 const char mises_extension_id[] = "jkpbgdgopmifmokhejofbmgdabapoefl";
+const char mises_web3safe_extension_id[] = "amofjafjlhcceaaoeepjnhhllkhhhhmm";
