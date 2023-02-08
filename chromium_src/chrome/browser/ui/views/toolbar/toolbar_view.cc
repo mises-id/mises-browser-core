@@ -2,10 +2,10 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-
+#include "build/build_config.h"
 #include "extensions/buildflags/buildflags.h"
 
-#if BUILDFLAG(ENABLE_EXTENSIONS)
+#if !BUILDFLAG(IS_ANDROID) && BUILDFLAG(ENABLE_EXTENSIONS)
 #include "mises/browser/ui/views/location_bar/mises_location_bar_view.h"
 #include "chrome/browser/ui/views/location_bar/location_bar_view.h"
 
@@ -14,6 +14,6 @@
 
 #include "src/chrome/browser/ui/views/toolbar/toolbar_view.cc"
 
-#if BUILDFLAG(ENABLE_EXTENSIONS)
+#if !BUILDFLAG(IS_ANDROID) && BUILDFLAG(ENABLE_EXTENSIONS)
 #undef LocationBarView
 #endif

@@ -7,8 +7,12 @@
 #include "chrome/browser/ui/browser_command_controller.h"
 #include "chrome/browser/ui/browser_content_setting_bubble_model_delegate.h"
 
-
+#if !BUILDFLAG(IS_ANDROID)
 #define BrowserLocationBarModelDelegate  MisesLocationBarModelDelegate
+#endif
 
 #include "src/chrome/browser/ui/browser.cc"
+
+#if !BUILDFLAG(IS_ANDROID)
 #undef BrowserLocationBarModelDelegate
+#endif

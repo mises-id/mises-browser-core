@@ -36,8 +36,6 @@ void MisesLocationBarModelDelegate::FormattedStringFromURL(
   }
 #if BUILDFLAG(ENABLE_IPFS)
   if ((url.SchemeIs(ipfs::kIPFSScheme) || url.SchemeIs(ipfs::kIPNSScheme))) {
-      base::ReplaceFirstSubstringAfterOffset(new_formatted_url, 0, u"chrome://",
-                                           u"mises://");
   }
 #endif
 

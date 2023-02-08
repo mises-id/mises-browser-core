@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/browser.h b/chrome/browser/ui/browser.h
+index dda5c5ade56043dbdc8ee6dd622aa2d057926560..48ec530f92a3a6ccfa89a9ad904fa34195730a98 100644
+--- a/chrome/browser/ui/browser.h
++++ b/chrome/browser/ui/browser.h
+@@ -47,7 +47,7 @@
+ #include "ui/gfx/geometry/rect.h"
+ #include "ui/shell_dialogs/select_file_dialog.h"
+ 
+-#if BUILDFLAG(IS_ANDROID)
++#if false && BUILDFLAG(IS_ANDROID)
+ #error This file should only be included on desktop.
+ #endif
+ 

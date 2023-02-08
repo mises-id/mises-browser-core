@@ -6,12 +6,20 @@
 #ifndef BRAVE_CHROMIUM_SRC_CHROME_BROWSER_UI_VIEWS_LOCATION_BAR_LOCATION_BAR_VIEW_H_
 #define BRAVE_CHROMIUM_SRC_CHROME_BROWSER_UI_VIEWS_LOCATION_BAR_LOCATION_BAR_VIEW_H_
 
+#include "build/build_config.h"
+
+#if !BUILDFLAG(IS_ANDROID)
 #define MISES_LOCATION_BAR_VIEW_H_   \
  private:                            \
   friend class MisesLocationBarView; \
                                      \
  public:                             \
   virtual std::vector<views::View*> GetTrailingViews();
+#else
+#define MISES_LOCATION_BAR_VIEW_H_ \
+ public:                             \
+  virtual std::vector<views::View*> GetTrailingViews();
+#endif
 
 #define GetBorderRadius virtual GetBorderRadius
 #include "src/chrome/browser/ui/views/location_bar/location_bar_view.h"
