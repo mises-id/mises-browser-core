@@ -130,7 +130,8 @@ html, body {
 }
 </style>
 <script>
-fetch('$1')
+const url = new URL('$1');
+fetch(url)
     .then(function(response) {
         // When the page is loaded convert it to text
         return response.text()
@@ -141,7 +142,10 @@ fetch('$1')
       document.close();
     })
     .catch(function(err) {  
-        console.log('Failed to fetch page: ', err);  
+        console.log('Failed to fetch page: ', err);
+        if (url.hostname.endsWith('.bit')) {
+          window.location = 'https://' + url.hostname + '.cc';
+        }
     });
 </script>
 </head>
