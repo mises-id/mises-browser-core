@@ -84,6 +84,9 @@ std::string GenerateResponse(const GURL& url) {
 <html>
 <head>
 <style>
+html, body {
+  height: 100%;
+}
 .container {
   height: 100%;
   display: flex;

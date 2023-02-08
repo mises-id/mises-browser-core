@@ -21,6 +21,7 @@ class MisesLocationBarModelDelegate : public BrowserLocationBarModelDelegate {
   ~MisesLocationBarModelDelegate() override;
   static void FormattedStringFromURL(const GURL& url,
                                      std::u16string* new_formatted_url);
+  security_state::SecurityLevel GetSecurityLevel() const override;
 
  private:
   std::u16string FormattedStringWithEquivalentMeaning(

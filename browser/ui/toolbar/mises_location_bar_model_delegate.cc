@@ -13,12 +13,14 @@
 #include "mises/components/ipfs/ipfs_constants.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/browser.h"
+#include "content/public/browser/navigation_entry.h"
 #include "extensions/buildflags/buildflags.h"
-
 
 #include "mises/components/ipfs/buildflags/buildflags.h"
 #if BUILDFLAG(ENABLE_IPFS)
 #include "mises/components/ipfs/ipfs_constants.h"
+
+#include "mises/browser/net/decentralized_dns_network_delegate_helper.h"
 #endif
 
 MisesLocationBarModelDelegate::MisesLocationBarModelDelegate(Browser* browser)
@@ -52,4 +54,16 @@ MisesLocationBarModelDelegate::FormattedStringWithEquivalentMeaning(
   MisesLocationBarModelDelegate::FormattedStringFromURL(url,
                                                         &new_formatted_url);
   return new_formatted_url;
+}
+
+security_state::SecurityLevel MisesLocationBarModelDelegate::GetSecurityLevel() const  {
+  content::NavigationEntry* entry = GetNavigationEntry();
+  if (entry) {
+    GURL url = entry->GetURL();
+    if (decentralized_dns::ShouldHandleUrl(url)) {
+      return security_state::NONE;
+    }
+  }
+  return BrowserLocationBarModelDelegate::GetSecurityLevel();
+
 }
