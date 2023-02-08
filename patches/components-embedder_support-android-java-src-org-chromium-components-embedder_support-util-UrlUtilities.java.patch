@@ -7,7 +7,7 @@ index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..7503d237d6165f0c93228c39cab2a94f
      private static final HashSet<String> INTERNAL_SCHEMES =
              CollectionUtil.newHashSet(UrlConstants.CHROME_SCHEME, UrlConstants.CHROME_NATIVE_SCHEME,
 -                    ContentUrlConstants.ABOUT_SCHEME);
-+                    ContentUrlConstants.ABOUT_SCHEME, "chrome-search", "kiwi", "kiwi-search", "devtools", "chrome-extension");
++                    ContentUrlConstants.ABOUT_SCHEME, "chrome-search", "mises", "mises-search", "devtools", "chrome-extension");
  
      private static final String TEL_SCHEME = "tel";
  
@@ -19,7 +19,7 @@ index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..7503d237d6165f0c93228c39cab2a94f
 +          return true;
 +        if (gurl.getSpec().startsWith("chrome-search://"))
 +          return true;
-+        if (gurl.getSpec().startsWith("kiwi-search://"))
++        if (gurl.getSpec().startsWith("mises-search://"))
 +          return true;
          return INTERNAL_SCHEMES.contains(gurl.getScheme());
      }
@@ -32,7 +32,7 @@ index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..7503d237d6165f0c93228c39cab2a94f
 +          return true;
 +        if (gurl.getSpec().startsWith("chrome-search://"))
 +          return true;
-+        if (gurl.getSpec().startsWith("kiwi-search://"))
++        if (gurl.getSpec().startsWith("mises-search://"))
 +          return true;
          return UrlConstants.NTP_HOST.equals(gurl.getHost());
      }
@@ -46,9 +46,9 @@ index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..7503d237d6165f0c93228c39cab2a94f
 +                || TextUtils.equals(url, "chrome-search://local-ntp/local-ntp.html")
 +                || TextUtils.equals(url, "chrome-search://local-ntp/incognito-ntp.html")
 +                || TextUtils.equals(url, "chrome-search://local-ntp/new-ntp.html")
-+                || TextUtils.equals(url, "kiwi-search://local-ntp/local-ntp.html")
-+                || TextUtils.equals(url, "kiwi-search://local-ntp/incognito-ntp.html")
-+                || TextUtils.equals(url, "kiwi-search://local-ntp/new-ntp.html");
++                || TextUtils.equals(url, "mises-search://local-ntp/local-ntp.html")
++                || TextUtils.equals(url, "mises-search://local-ntp/incognito-ntp.html")
++                || TextUtils.equals(url, "mises-search://local-ntp/new-ntp.html");
      }
  
      public static String extractPublisherFromPublisherUrl(String publisherUrl) {

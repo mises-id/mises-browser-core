@@ -35,7 +35,7 @@ index 334ed755866a92b78cda5cd5aa4eadba574ff958..0f737e5658d61990d8a4fed49243e422
      @ConnectionSecurityLevel
      int getSecurityLevel(Tab tab, boolean isOfflinePage, @Nullable String publisherUrl) {
 -        if (tab == null || isOfflinePage || isInOverviewAndShowingOmnibox()) {
-+        if (tab == null || isOfflinePage || isInOverviewAndShowingOmnibox() ||  (!TextUtils.isEmpty(tab.getUrl().getSpec()) && (tab.getUrl().getSpec().startsWith("chrome-extension") || tab.getUrl().getSpec().startsWith("chrome") || tab.getUrl().getSpec().startsWith("devtools") || tab.getUrl().getSpec().startsWith("kiwi")))) {
++        if (tab == null || isOfflinePage || isInOverviewAndShowingOmnibox() ||  (!TextUtils.isEmpty(tab.getUrl().getSpec()) && (tab.getUrl().getSpec().startsWith("chrome-extension") || tab.getUrl().getSpec().startsWith("chrome") || tab.getUrl().getSpec().startsWith("devtools") || tab.getUrl().getSpec().startsWith("mises")))) {
              return ConnectionSecurityLevel.NONE;
          }
  
@@ -57,11 +57,11 @@ index 334ed755866a92b78cda5cd5aa4eadba574ff958..0f737e5658d61990d8a4fed49243e422
 +        String currentUrl = getCurrentUrl();
 +        if (currentUrl != null && currentUrl.startsWith("chrome://"))
 +            skipIconForNeutralState = true;
-+        if (currentUrl != null && currentUrl.startsWith("kiwi://"))
++        if (currentUrl != null && currentUrl.startsWith("mises://"))
 +            skipIconForNeutralState = true;
 +        if (currentUrl != null && currentUrl.startsWith("chrome-search://"))
 +            skipIconForNeutralState = true;
-+        if (currentUrl != null && currentUrl.startsWith("kiwi-search://"))
++        if (currentUrl != null && currentUrl.startsWith("mises-search://"))
 +            skipIconForNeutralState = true;
 +
          boolean useLockIconEnabled = false;
