@@ -21,6 +21,16 @@
 
 namespace decentralized_dns {
 
+bool ShouldHandleUrl(const GURL& url) {
+  bool should_handle_ud = IsUnstoppableDomainsTLD(url) &&
+      IsUnstoppableDomainsResolveMethodEthereum(
+          g_browser_process->local_state());
+  bool should_handle_bit = IsBitTLD(url);
+  bool should_handle_ens = IsENSTLD(url) &&
+      IsENSResolveMethodEthereum(g_browser_process->local_state());
+  return should_handle_ud || should_handle_bit || should_handle_ens;
+}
+
 int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
     const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx) {
