@@ -183,7 +183,7 @@ if (is_android) {
       "autofill/payments/save_upi_bubble_controller_impl.h",
   ]
   mises_browser_ui_deps += [
-    "//mises/components/vector_icons"
+    "//mises/components/vector_icons",
   ]
   mises_browser_ui_exception_deps += [
     "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",

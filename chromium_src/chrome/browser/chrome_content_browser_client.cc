@@ -643,6 +643,11 @@
 #include "components/services/screen_ai/public/cpp/utilities.h"
 #endif
 
+#include "mises/components/ipfs/buildflags/buildflags.h"
+#if BUILDFLAG(ENABLE_IPFS)
+#include "mises/components/ipfs/ipfs_url_loader_request_interceptor.h"
+#endif
+
 using blink::mojom::EffectiveConnectionType;
 using blink::web_pref::WebPreferences;
 using content::BrowserThread;
@@ -5342,6 +5347,16 @@ ChromeContentBrowserClient::WillCreateURLLoaderRequestInterceptors(
             frame_tree_node_id, std::make_unique<ChromePdfStreamDelegate>());
     if (pdf_interceptor)
       interceptors.push_back(std::move(pdf_interceptor));
+  }
+#endif
+
+#if BUILDFLAG(ENABLE_IPFS)
+  {
+    std::unique_ptr<content::URLLoaderRequestInterceptor> ipfs_interceptor =
+        ipfs::IPFSURLLoaderRequestInterceptor::MaybeCreateInterceptor(
+            frame_tree_node_id);
+    if (ipfs_interceptor)
+      interceptors.push_back(std::move(ipfs_interceptor));
   }
 #endif
 

@@ -21,7 +21,6 @@
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/constants/webui_url_constants.h"
 #include "mises/components/decentralized_dns/content/decentralized_dns_navigation_throttle.h"
-#include "mises/browser/web3sites_safe/web3sites_safe_navigation_throttle.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
 #include "mises/grit/mises_generated_resources.h"
 #include "build/build_config.h"
@@ -166,11 +165,11 @@ MisesContentBrowserClient::CreateThrottlesForNavigation(
     throttles.push_back(std::move(decentralized_dns_navigation_throttle));
 
   //Web3sitesSafeNavigationThrottle
-  std::unique_ptr<content::NavigationThrottle> web3sites_safe_navigation_throttle =
+ /*  std::unique_ptr<content::NavigationThrottle> web3sites_safe_navigation_throttle =
       Web3sitesSafeNavigationThrottle::MaybeCreateNavigationThrottle(handle);
   if (web3sites_safe_navigation_throttle){
       throttles.push_back(std::move(web3sites_safe_navigation_throttle));
-  }
+  } */
 
   return throttles;
 }

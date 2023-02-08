@@ -12,6 +12,8 @@ mises_browser_web3sites_safe_sources += [
   "//mises/browser/web3sites_safe/web3sites_safe_tab_storage.cc",
   "//mises/browser/web3sites_safe/web3sites_safe_service.h",
   "//mises/browser/web3sites_safe/web3sites_safe_service.cc",
+  "//mises/browser/web3sites_safe/web3sites_safe_util.h",
+  "//mises/browser/web3sites_safe/web3sites_safe_util.cc",
 ]
 
 mises_browser_web3sites_safe_deps += [

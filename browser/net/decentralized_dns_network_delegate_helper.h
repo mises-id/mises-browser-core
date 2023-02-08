@@ -44,6 +44,8 @@ void OnBeforeURLRequest_EnsRedirectWork(
     brave_wallet::mojom::ProviderError error,
     const std::string& error_message);
 
+bool ShouldHandleUrl(const GURL& url);
+
 }  // namespace decentralized_dns
 
 #endif  // BRAVE_BROWSER_NET_DECENTRALIZED_DNS_NETWORK_DELEGATE_HELPER_H_

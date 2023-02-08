@@ -9,6 +9,7 @@
 #if BUILDFLAG(ENABLE_IPFS)
 #include "mises/components/ipfs/ipfs_utils.h"
 #include "components/grit/mises_components_strings.h"
+#include "mises/browser/net/decentralized_dns_network_delegate_helper.h"
 #endif  // BUILDFLAG(ENABLE_IPFS)
 
 #if BUILDFLAG(ENABLE_IPFS)
@@ -22,7 +23,11 @@
 
 std::unique_ptr<PageInfoUI::SecurityDescription>
 PageInfoUI::GetSecurityDescription(const IdentityInfo& identity_info) const {
-  if (!ipfs::IsIPFSScheme(GURL(identity_info.site_identity)))
+  GURL url = GURL(identity_info.site_identity);
+  if (!url.is_valid()) {
+    url = GURL("http://" + identity_info.site_identity);
+  }
+  if (!ipfs::IsIPFSScheme(url) && !decentralized_dns::ShouldHandleUrl(url))
     return GetSecurityDescription_ChromiumImpl(identity_info);
   return CreateSecurityDescription(
       SecuritySummaryColor::GREEN, IDS_PAGE_INFO_IPFS_BUBBLE_TITTLE,

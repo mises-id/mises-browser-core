@@ -6,7 +6,7 @@
 #include "content/public/browser/navigation_handle.h"
 #include "content/public/browser/navigation_throttle.h"
 #include "mises/browser/web3sites_safe/web3sites_safe_blocking_page.h"
-#include "mises/components/web3sites_safe/core/web3sites_safe_util.h"
+#include "mises/browser/web3sites_safe/web3sites_safe_util.h"
 
 
 namespace content {
@@ -38,7 +38,9 @@ class Web3sitesSafeNavigationThrottle : public content::NavigationThrottle {
 
   const char* GetNameForLogging() override;
 
-  void OnCheckUrlResult(const MisesURLCheckResult&);
+  void OnApiCheckUrlResult(const MisesURLCheckResult&);
+
+  ThrottleCheckResult OnLocalCheckUrlResult(const MisesURLCheckResult&);
 
   static std::unique_ptr<Web3sitesSafeNavigationThrottle>
   MaybeCreateNavigationThrottle(content::NavigationHandle* handle);
@@ -47,7 +49,11 @@ class Web3sitesSafeNavigationThrottle : public content::NavigationThrottle {
 
   void PerformChecksDeferred  ();
 
-  void ShowInterstitial(const GURL& safe_domain,
+  ThrottleCheckResult PerformChecks  ();
+
+  MisesURLCheckResult LocalCheckUrl(const GURL& url);
+
+  ThrottleCheckResult ShowInterstitial(const GURL& safe_domain,
                                        const GURL& lookalike_domain,
                                        ukm::SourceId source_id,
                                        Web3sitesResultType::Type result_type,

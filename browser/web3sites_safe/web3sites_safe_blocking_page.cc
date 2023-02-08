@@ -7,7 +7,7 @@
 #include "chrome/common/webui_url_constants.h"
 #include "components/grit/components_resources.h"
 //#include "mises/components/web3sites_safe/core/web3sites_safe_ui_util.h"
-#include "mises/components/web3sites_safe/core/web3sites_safe_util.h"
+#include "mises/browser/web3sites_safe/web3sites_safe_util.h"
 #include "components/security_interstitials/content/security_interstitial_controller_client.h"
 #include "components/security_interstitials/core/common_string_util.h"
 #include "components/security_interstitials/core/metrics_helper.h"
