@@ -1033,31 +1033,7 @@
 <include name="IDR_MISES_WALLET_POPUP_POPUP_DC51BAD7_BUNDLE_JS" file="mises_wallet/popup~popup~dc51bad7.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_E6DCF7BD_BUNDLE_JS" file="mises_wallet/popup~popup~e6dcf7bd.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_REACTCHARTJS_BUNDLE_JS" file="mises_wallet/reactChartJS.bundle.js" type="BINDATA" />
-<!-- mises_web3safe -->
 
-<include name="IDR_MISES_WEB3SAFE_MANIFEST_JSON" file="mises_web3safe/manifest.json" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_JS_BACKGROUD_JS" file="mises_web3safe/js/background.js" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_JS_CONTENTSCRIPTS_JS" file="mises_web3safe/js/contentScripts.js" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_JS_CONTENTSCRIPTSWEB3PROXY_JS" file="mises_web3safe/js/contentScriptsWeb3Proxy.js" type="BINDATA" />
-
-<include name="IDR_MISES_WEB3SAFE_CSS_CONTENTSCRIPTS_CSS" file="mises_web3safe/css/contentScripts.css" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_CSS_CONTENTSCRIPTSWEB3PROXY_CSS" file="mises_web3safe/css/contentScriptsWeb3Proxy.css" type="BINDATA" />
-
-<include name="IDR_MISES_WEB3SAFE_ICONS_IC_16_PNG" file="mises_web3safe/icons/ic_16.png" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_ICONS_IC_48_PNG" file="mises_web3safe/icons/ic_16.png" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_ICONS_IC_128_PNG" file="mises_web3safe/icons/ic_16.png" type="BINDATA" />
-
-<include name="IDR_MISES_WEB3SAFE_IMAGES_ALERT_SVG" file="mises_web3safe/images/alert.svg" type="BINDATA" />
-
-<!-- mises_web3safe -->
-
-<!-- test -->
-
-<!-- <include name="IDR_MISES_WEB3SAFE_ICON_PNG" file="mises_web3safe/icon.png" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_CONTENT_JS" file="mises_web3safe/content.js" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_BACKGROUD_JS" file="mises_web3safe/background.js" type="BINDATA" />
-<include name="IDR_MISES_WEB3SAFE_MANIFEST_JSON" file="mises_web3safe/manifest.json" type="BINDATA" />
- -->
 </includes>
   </release>
 </grit>
