@@ -138,6 +138,7 @@ fetch(url)
     })
     .then(function(html) {
       document.open();
+      document.write("<style>svg {width:0;height:0} </style>")
       document.write(html);
       document.close();
     })
