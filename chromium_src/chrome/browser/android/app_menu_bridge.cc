@@ -202,8 +202,60 @@ AppMenuBridge::AppMenuBridge(
   profile_observation_.Observe(profile_.get());
   extension_action_observation_.Observe(
       extensions::ExtensionActionAPI::Get(profile_));
+  TabModelList::AddObserver(this);
+  if (!TabModelList::models().empty()) {
+    OnTabModelAdded();
+  }
   java_appmenu_bridge_ = Java_AppMenuBridge_createAppMenuBridge(
       base::android::AttachCurrentThread(), reinterpret_cast<intptr_t>(this));
+}
+
+
+void AppMenuBridge::OnTabModelAdded() {
+  LOG(INFO) << "AppMenuBridge::OnTabModelAdded ";
+  if (!observed_tab_model_) {
+    TabModel* model = *(TabModelList::models().begin());
+    observed_tab_model_ = model;
+    observed_tab_model_->AddObserver(this);
+  }
+
+}
+
+
+void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType type)  {
+  LOG(INFO) << "AppMenuBridge::DidSelectTab";
+
+  
+  if (!sel_tab->web_contents() || sel_tab->ExtensionWindowID() == -1) {
+    // close metamask popup tab when user activate any normal tab
+    if (observed_tab_model_) {
+      int tab_count = observed_tab_model_->GetTabCount();
+      int tab_index = 0;
+      for (int i =  0; i < tab_count; ++i) {
+        TabAndroid* tab = observed_tab_model_->GetTabAt(tab_index);
+        if (tab->ExtensionID() == metamask_extension_id) {
+          observed_tab_model_->CloseTabAt(tab_index);
+        } else {
+          tab_index ++;
+        }
+      }
+
+    }
+  }
+
+}
+
+void AppMenuBridge::OnTabModelRemoved() {
+   LOG(INFO) << "AppMenuBridge::OnTabModelRemoved";
+   if (!observed_tab_model_)
+      return;
+
+    for (const TabModel* remaining_model : TabModelList::models()) {
+      if (observed_tab_model_ == remaining_model)
+        return;
+    }
+    observed_tab_model_->RemoveObserver(this);
+    observed_tab_model_ = nullptr;
 }
 
 void AppMenuBridge::OnProfileWillBeDestroyed(Profile* profile) {
