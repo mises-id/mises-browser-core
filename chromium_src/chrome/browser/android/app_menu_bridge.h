@@ -23,6 +23,12 @@
 #include "ui/gfx/geometry/size.h"
 #include "chrome/browser/extensions/api/extension_action/extension_action_api.h"
 
+#include "chrome/browser/ui/android/tab_model/tab_model_list_observer.h"
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_observer.h"
+#include "chrome/browser/android/tab_android.h"
+
 namespace base {
 template<typename T> struct DefaultSingletonTraits;
 }  // namespace base
@@ -39,7 +45,12 @@ class ExtensionAction;
 class IconWithBadgeImageSource;
 class Profile;
 
-class AppMenuBridge :public extensions::ExtensionActionAPI::Observer, ProfileObserver, KeyedService {
+class AppMenuBridge :
+        public extensions::ExtensionActionAPI::Observer, 
+        public TabModelListObserver,
+        public TabModelObserver,
+        public ProfileObserver, 
+        public KeyedService {
  public:
   class Factory : public ProfileKeyedServiceFactory {
    public:
@@ -100,6 +111,12 @@ class AppMenuBridge :public extensions::ExtensionActionAPI::Observer, ProfileObs
         const base::android::JavaParamRef<jstring>& j_extension_id
     );
     std::string GetRunningExtensionsInternal(content::WebContents* web_contents);
+
+  // TabModelListObserver implementation.
+  void OnTabModelAdded() override;
+  void OnTabModelRemoved() override;
+  void DidSelectTab(TabAndroid* tab, TabModel::TabSelectionType type)  override;
+  raw_ptr<TabModel> observed_tab_model_ = nullptr;
 private:
     // ExtensionActionAPI::Observer:
     void OnExtensionActionUpdated(

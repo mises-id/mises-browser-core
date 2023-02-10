@@ -72,6 +72,7 @@ void TabModelJniBridge::TabAddedToModel(JNIEnv* env,
   if (tab){
     tab->SetWindowSessionID(GetSessionId());
     tab->SetExtensionWindowID(extension_window_id_);
+    tab->SetExtensionID(extension_id_);
   }
   // Count tabs that are used for incognito mode inside the browser (excluding
   // off-the-record tabs for incognito CCTs, etc.).
@@ -196,11 +197,13 @@ content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
   LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension";
   JNIEnv* env = AttachCurrentThread();
   extension_window_id_ = session_window_id;
+  extension_id_ = extension_id;
   ScopedJavaLocalRef<jobject> obj =
       Java_TabModelJniBridge_createNewTabForDevTools(
           env, java_object_.get(env),
           url::GURLAndroid::FromNativeGURL(env, url));
   extension_window_id_ = -1;
+  extension_id_ = "";
   if (obj.is_null()) {
     VLOG(0) << "Failed to create java tab";
     return NULL;
