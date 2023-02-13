@@ -1609,13 +1609,13 @@ ExtensionFunction::ResponseAction TabsHighlightFunction::Run() {
   EXTENSION_FUNCTION_VALIDATE(params.get());
   LOG(INFO) << "[EXTENSIONS] TabsHightlightFunction::Run - Step 1";
 
+  Browser* browser = NULL;
+  std::string error;
+#if !BUILDFLAG(IS_ANDROID)
   // Get the window id from the params; default to current window if omitted.
   int window_id = extension_misc::kCurrentWindowId;
   if (params->highlight_info.window_id.get())
     window_id = *params->highlight_info.window_id;
-
-  Browser* browser = NULL;
-  std::string error;
   if (!GetBrowserFromWindowID(this, window_id, &browser, &error))
     return RespondNow(Error(std::move(error)));
 
@@ -1653,6 +1653,38 @@ ExtensionFunction::ResponseAction TabsHighlightFunction::Run() {
   if (!tab_strip_model)
     return RespondNow(Error(tabs_constants::kTabStripNotEditableError));
   tab_strip_model->SetSelectionFromModel(std::move(selection));
+
+#else
+  browser = ChromeExtensionFunctionDetails(this).GetCurrentBrowser();
+  if (!browser)
+    return RespondNow(Error(tabs_constants::kNoCurrentWindowError));
+  TabModel *tab_strip_android = nullptr;
+  if (!TabModelList::models().empty())
+    tab_strip_android = *(TabModelList::models().begin());
+  if (!tab_strip_android)
+    return RespondNow(Error(tabs_constants::kNoCurrentWindowError));
+
+  if (params->highlight_info.tabs.as_integers) {
+    std::vector<int>& tab_indices = *params->highlight_info.tabs.as_integers;
+    // Create a new selection model as we read the list of tab indices.
+    for (size_t i = 0; i < tab_indices.size(); ++i) {
+      int tab_index = tab_indices[i];
+      if (tab_strip_android->GetActiveIndex() != tab_index) {
+        tab_strip_android->SetActiveIndex(tab_index);
+      }
+    }
+  } else {
+    EXTENSION_FUNCTION_VALIDATE(params->highlight_info.tabs.as_integer);
+    int tab_index = *params->highlight_info.tabs.as_integer;
+    if (tab_strip_android->GetActiveIndex() != tab_index) {
+      tab_strip_android->SetActiveIndex(tab_index);
+    }
+  }
+
+
+
+#endif
+
   return RespondNow(OneArgument(base::Value::FromUniquePtrValue(
       ExtensionTabUtil::CreateWindowValueForExtension(
           *browser, extension(), ExtensionTabUtil::kPopulateTabs,
