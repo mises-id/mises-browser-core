@@ -592,17 +592,17 @@ ExtensionFunction::ResponseAction WindowsGetAllFunction::Run() {
   ExtensionTabUtil::PopulateTabBehavior populate_tab_behavior =
       extractor.populate_tabs() ? ExtensionTabUtil::kPopulateTabs
                                 : ExtensionTabUtil::kDontPopulateTabs;
-//#if !BUILDFLAG(IS_ANDROID)
   for (auto* controller : WindowControllerList::GetInstance()->windows()) {
     if (!controller->GetBrowser() ||
         !windows_util::CanOperateOnWindow(this, controller,
                                           extractor.type_filters())) {
       continue;
     }
-    LOG(INFO) << "[EXTENSIONS] WindowsGetAllFunction - Step 2-a found window " << controller->GetBrowser()->session_id();
+    Browser* browser = controller->GetBrowser();
+    LOG(INFO) << "[EXTENSIONS] WindowsGetAllFunction - Step 2-a found window " << browser->session_id();
     window_list.Append(base::Value::FromUniquePtrValue(
         ExtensionTabUtil::CreateWindowValueForExtension(
-            *controller->GetBrowser(), extension(), populate_tab_behavior,
+            *browser, extension(), populate_tab_behavior,
             source_context_type())));
   }
 
