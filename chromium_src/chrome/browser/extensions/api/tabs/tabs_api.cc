@@ -1717,7 +1717,7 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
   std::unique_ptr<tabs::Update::Params> params(
       tabs::Update::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params.get());
-  LOG(INFO) << " TabsUpdateFunction::Run";
+  LOG(INFO) << "[EXTENSIONS] TabsUpdateFunction::Run";
   int tab_id = -1;
   WebContents* contents = NULL;
   if (!params->tab_id.get()) {
@@ -2011,7 +2011,7 @@ bool TabsMoveFunction::MoveTab(int tab_id,
                                base::ListValue* tab_values,
                                int* window_id,
                                std::string* error) {
-  LOG(INFO) << "TabsMoveFunction::MoveTab";
+  LOG(INFO) << "[EXTENSIONS] TabsMoveFunction::MoveTab";
   Browser* source_browser = nullptr;
   TabStripModel* source_tab_strip = nullptr;
   WebContents* contents = nullptr;
@@ -2172,7 +2172,7 @@ ExtensionFunction::ResponseAction TabsRemoveFunction::Run() {
 }
 
 bool TabsRemoveFunction::RemoveTab(int tab_id, std::string* error) {
-  LOG(INFO) << "TabsRemoveFunction::RemoveTab";
+  LOG(INFO) << "[EXTENSIONS] TabsRemoveFunction::RemoveTab";
   Browser* browser = NULL;
   WebContents* contents = NULL;
   if (!GetTabById(tab_id, browser_context(), include_incognito_information(),
@@ -2376,7 +2376,7 @@ ExtensionFunction::ResponseAction TabsUngroupFunction::Run() {
 }
 
 bool TabsUngroupFunction::UngroupTab(int tab_id, std::string* error) {
-  LOG(INFO) << "TabsUngroupFunction::UngroupTab";
+  LOG(INFO) << "[EXTENSIONS] TabsUngroupFunction::UngroupTab";
   Browser* browser = nullptr;
   TabStripModel* tab_strip_model = nullptr;
   int tab_index = -1;
@@ -2825,7 +2825,7 @@ bool ExecuteCodeInTabFunction::CanExecuteScriptOnPage(std::string* error) {
 
 ScriptExecutor* ExecuteCodeInTabFunction::GetScriptExecutor(
     std::string* error) {
-  LOG(INFO) << "ExecuteCodeInTabFunction::GetScriptExecutor";
+  LOG(INFO) << "[EXTENSIONS] ExecuteCodeInTabFunction::GetScriptExecutor";
   Browser* browser = nullptr;
   content::WebContents* contents = nullptr;
 #if !BUILDFLAG(IS_ANDROID)
@@ -2996,7 +2996,7 @@ ExtensionFunction::ResponseAction TabsDiscardFunction::Run() {
   std::unique_ptr<tabs::Discard::Params> params(
       tabs::Discard::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params);
-  LOG(INFO) << "TabsDiscardFunction::Run";
+  LOG(INFO) << "[EXTENSIONS] TabsDiscardFunction::Run";
   WebContents* contents = nullptr;
   // If |tab_id| is given, find the web_contents respective to it.
   // Otherwise invoke discard function in TabManager with null web_contents
@@ -3038,7 +3038,7 @@ ExtensionFunction::ResponseAction TabsGoForwardFunction::Run() {
   std::unique_ptr<tabs::GoForward::Params> params(
       tabs::GoForward::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params.get());
-  LOG(INFO) << "TabsDiscardFunction::Run";
+  LOG(INFO) << "[EXTENSIONS] TabsDiscardFunction::Run";
   int tab_id = params->tab_id ? *params->tab_id : -1;
   std::string error;
   WebContents* web_contents =
@@ -3058,7 +3058,7 @@ ExtensionFunction::ResponseAction TabsGoBackFunction::Run() {
   std::unique_ptr<tabs::GoBack::Params> params(
       tabs::GoBack::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params.get());
-   LOG(INFO) << "TabsGoBackFunction::Run";
+   LOG(INFO) << "[EXTENSIONS] TabsGoBackFunction::Run";
 
   int tab_id = params->tab_id ? *params->tab_id : -1;
   std::string error;
