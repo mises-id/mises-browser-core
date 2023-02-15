@@ -965,8 +965,6 @@
 <include name="IDR_MISES_WALLET_ASSETS_NANUMBARUNGOTHICBOLD_TTF" file="mises_wallet/assets/NanumBarunGothicBold.ttf" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_NANUMBARUNGOTHICLIGHT_TTF" file="mises_wallet/assets/NanumBarunGothicLight.ttf" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_ATOM_O_SVG" file="mises_wallet/assets/atom-o.svg" type="BINDATA" />
-<include name="IDR_MISES_WALLET_ASSETS_BLOCKLIST_SVG" file="mises_wallet/assets/blocklist.svg" type="BINDATA" />
-<include name="IDR_MISES_WALLET_ASSETS_BRAND_SUB_TEXT_PNG" file="mises_wallet/assets/brand-sub-text.png" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_MISES_PNG" file="mises_wallet/assets/mises.png" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_BRAND_TEXT_PNG" file="mises_wallet/assets/brand-text.png" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_BROKEN_LINK_SVG" file="mises_wallet/assets/broken-link.svg" type="BINDATA" />
@@ -1006,11 +1004,10 @@
 <include name="IDR_MISES_WALLET_ASSETS_NUCLEO_ICONS_WOFF2" file="mises_wallet/assets/nucleo-icons.woff2" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_TRASH_SVG" file="mises_wallet/assets/trash.svg" type="BINDATA" />
 <include name="IDR_MISES_WALLET_BACKGROUND_BUNDLE_JS" file="mises_wallet/background.bundle.js" type="BINDATA" />
-<include name="IDR_MISES_WALLET_BLOCKLIST_BUNDLE_JS" file="mises_wallet/blocklist.bundle.js" type="BINDATA" />
-<include name="IDR_MISES_WALLET_BLOCKLIST_HTML" file="mises_wallet/blocklist.html" type="BINDATA" />
 <include name="IDR_MISES_WALLET_BROWSER_POLYFILL_JS" file="mises_wallet/browser-polyfill.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_CONTENTSCRIPTS_BUNDLE_JS" file="mises_wallet/contentScripts.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_INJECTEDSCRIPT_BUNDLE_JS" file="mises_wallet/injectedScript.bundle.js" type="BINDATA" />
+<include name="IDR_MISES_WALLET_INJECTEDSCRIPT_BUNDLE_JS" file="mises_wallet/safeInjectedScript.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_MANIFEST_JSON" file="mises_wallet/manifest.json" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_BUNDLE_JS" file="mises_wallet/popup.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_HTML" file="mises_wallet/popup.html" type="BINDATA" />
