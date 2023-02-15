@@ -1,23 +1,26 @@
 {
-  "manifest_version": 2,
-
+  "manifest_version": 3,
   "name": "Mises",
-  "description": "Mises is a browser extension wallet for the Inter blockchain ecosystem.",
-  "version": "0.1.14",
+  "description": "Mises is a browser extension wallet",
+  "version": "0.2.0",
   "icons": {
     "16": "assets/icon-16.png",
     "48": "assets/icon-48.png",
     "128": "assets/icon-128.png"
   },
-
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html",
-    "default_title": "Mises"
+    "default_title": "Mises",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
   },
   "background": {
-    "scripts": ["browser-polyfill.js", "background.bundle.js"],
-    "persistent": true
+    "service_worker": "background.bundle.js"
   },
+  "author": "https://www.mises.site",
   "permissions": [
     "storage",
     "notifications",
@@ -25,6 +28,12 @@
     "tabs",
     "idle",
     "misesPrivate"
+  ],
+  "host_permissions": [
+    "file://*/*",
+    "http://*/*",
+    "https://*/*",
+    "*://api.*.mises.site/*"
   ],
   "content_scripts": [
     {
@@ -35,10 +44,17 @@
     }
   ],
   "web_accessible_resources": [
-    "injectedScript.bundle.js",
-    "assets/logo-256.png",
-    "blocklist.html"
+    {
+      "resources": [
+        "injectedScript.bundle.js",
+        "safeInjectedScript.bundle.js",
+        "assets/logo-256.png"
+      ],
+      "matches": ["http://*/*", "https://*/*"]
+    }
   ],
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB",
-  "content_security_policy": "script-src 'self' 'wasm-eval'; object-src 'self'"
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  }
 }
