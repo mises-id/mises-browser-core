@@ -36,6 +36,10 @@ public class MisesPrefServiceBridge {
         MisesPrefServiceBridgeJni.get().setIpfsGatewayEnabled(enabled);
     }
 
+    public void setIpfsGateway(String gatewayUrl) {
+        MisesPrefServiceBridgeJni.get().setIpfsGateway(gatewayUrl);
+    }
+
 
     public void setReferralAndroidFirstRunTimestamp(long time) {
         MisesPrefServiceBridgeJni.get().setReferralAndroidFirstRunTimestamp(time);
@@ -78,6 +82,7 @@ public class MisesPrefServiceBridge {
     @NativeMethods
     interface Natives {
         void setIpfsGatewayEnabled(boolean enabled);
+        void setIpfsGateway(String gatewayUrl);
 
         void setReferralAndroidFirstRunTimestamp(long time);
         void setReferralCheckedForPromoCodeFile(boolean value);

@@ -1,0 +1,13 @@
+
+static_library("core") {
+  sources = [
+
+  ]
+
+  deps = [
+
+    "//components/prefs",
+    "//net",
+    "//url",
+  ]
+}

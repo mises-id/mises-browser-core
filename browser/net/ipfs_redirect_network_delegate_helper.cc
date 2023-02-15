@@ -73,8 +73,7 @@ int OnBeforeURLRequest_IPFSRedirectWork(
     // the same as the local case.
     if (ctx->resource_type == blink::mojom::ResourceType::kMainFrame ||
         (IsLocalGatewayURL(new_url) && IsLocalGatewayURL(ctx->initiator_url)) ||
-        (IsDefaultGatewayURL(new_url, prefs) &&
-         IsDefaultGatewayURL(ctx->initiator_url, prefs))) {
+        (IsDefaultGatewayURL(new_url, prefs))) {
       ctx->new_url_spec = new_url.spec();
     } else {
       ctx->blocked_by = mises::kOtherBlocked;

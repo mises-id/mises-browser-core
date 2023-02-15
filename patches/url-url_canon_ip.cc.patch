@@ -1,0 +1,15 @@
+diff --git a/url/url_canon_ip.cc b/url/url_canon_ip.cc
+index 1706377bd850a42989627f9aed4e7efbcb499b08..8031eb309c7e838d83f37a659ea944884a161676 100644
+--- a/url/url_canon_ip.cc
++++ b/url/url_canon_ip.cc
+@@ -163,6 +163,10 @@ CanonHostInfo::Family DoIPv4AddressToNumber(const CHAR* spec,
+     // BROKEN IPv4 address, as opposed to a non-IPv4 hostname.
+     if (family == CanonHostInfo::NEUTRAL && existing_components == 0)
+       return CanonHostInfo::NEUTRAL;
++      
++    // fix for .888 domain
++    if (family == CanonHostInfo::NEUTRAL && existing_components == 1 && component_values[0] == 888)
++        return CanonHostInfo::NEUTRAL;
+ 
+     if (family != CanonHostInfo::IPV4)
+       return CanonHostInfo::BROKEN;

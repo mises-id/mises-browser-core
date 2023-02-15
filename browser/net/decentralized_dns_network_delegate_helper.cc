@@ -21,6 +21,16 @@
 
 namespace decentralized_dns {
 
+bool ShouldHandleUrl(const GURL& url) {
+  bool should_handle_ud = IsUnstoppableDomainsTLD(url) &&
+      IsUnstoppableDomainsResolveMethodEthereum(
+          g_browser_process->local_state());
+  bool should_handle_bit = IsBitTLD(url);
+  bool should_handle_ens = IsENSTLD(url) &&
+      IsENSResolveMethodEthereum(g_browser_process->local_state());
+  return should_handle_ud || should_handle_bit || should_handle_ens;
+}
+
 int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
     const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx) {
@@ -121,8 +131,6 @@ void OnBeforeURLRequest_BitRedirectWork(
     const std::string& error_message) {
   if (error == brave_wallet::mojom::ProviderError::kSuccess && url.is_valid()) {
     ctx->new_url_spec = url.spec() + ctx->request_url.PathForRequest();
-  } else {
-    ctx->new_url_spec = "https://" + ctx->request_url.host() + ".cc";
   }
 
   if (!next_callback.is_null())

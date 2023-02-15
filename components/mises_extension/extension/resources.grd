@@ -961,7 +961,7 @@
 <include name="IDR_METAMASK_VENDOR_TREZOR_CONTENT_SCRIPT_JS" file="metamask/vendor/trezor/content-script.js" type="BINDATA" />
 <include name="IDR_METAMASK_VENDOR_TREZOR_USB_PERMISSIONS_JS" file="metamask/vendor/trezor/usb-permissions.js" type="BINDATA" />
 
-   <include name="IDR_MISES_WALLET_ASSETS_NANUMBARUNGOTHIC_TTF" file="mises_wallet/assets/NanumBarunGothic.ttf" type="BINDATA" />
+<include name="IDR_MISES_WALLET_ASSETS_NANUMBARUNGOTHIC_TTF" file="mises_wallet/assets/NanumBarunGothic.ttf" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_NANUMBARUNGOTHICBOLD_TTF" file="mises_wallet/assets/NanumBarunGothicBold.ttf" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_NANUMBARUNGOTHICLIGHT_TTF" file="mises_wallet/assets/NanumBarunGothicLight.ttf" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_ATOM_O_SVG" file="mises_wallet/assets/atom-o.svg" type="BINDATA" />
@@ -1034,7 +1034,6 @@
 <include name="IDR_MISES_WALLET_POPUP_POPUP_E6DCF7BD_BUNDLE_JS" file="mises_wallet/popup~popup~e6dcf7bd.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_REACTCHARTJS_BUNDLE_JS" file="mises_wallet/reactChartJS.bundle.js" type="BINDATA" />
 
- 
-    </includes>
+</includes>
   </release>
 </grit>

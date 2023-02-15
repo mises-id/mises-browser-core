@@ -39,6 +39,8 @@ static_library("ipfs") {
     "ipfs_not_connected_page.h",
     "ipfs_interstitial_controller_client.cc",
     "ipfs_interstitial_controller_client.h",
+    "ipfs_url_loader_request_interceptor.cc",
+    "ipfs_url_loader_request_interceptor.h",
   ]
 
   deps = [

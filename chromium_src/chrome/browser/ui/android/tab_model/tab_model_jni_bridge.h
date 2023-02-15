@@ -88,6 +88,7 @@ class TabModelJniBridge : public TabModel {
 
  protected:
   SessionID::id_type extension_window_id_ = -1;
+  std::string extension_id_;
   JavaObjectWeakGlobalRef java_object_;
 
   // The observer bridge. This exists as long as there are registered observers.

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grit-part>
+  <include name="IDR_WEB3SITES_SAFE_INTERSTITIAL_HTML" file="../web3sites_safe/content/resources/web3sites_safe_interstitial.html" flattenhtml="true" type="BINDATA" />
+  <include name="IDR_WEB3SITES_SAFE_INTERSTITIAL_JS" file="../web3sites_safe/content/resources/web3sites_safe_interstitial.js" type="BINDATA" />
+  <include name="IDR_WEB3SITES_SAFE_INTERSTITIAL_CSS" file="../web3sites_safe/content/resources/web3sites_safe_interstitial.css" type="BINDATA" />
+</grit-part>

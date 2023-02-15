@@ -7,7 +7,7 @@ index a6ee7ccdc1029d50150ea80c7da4d1f1cf5dbbf8..e22db8511e92fe7d445b91724ae72968
          // This class can only correctly handle certain origins, see https://crbug.com/1019244.
          String scheme = uri.getScheme();
 -        if (!scheme.equals(UrlConstants.HTTP_SCHEME) && !scheme.equals(UrlConstants.HTTPS_SCHEME)) {
-+        if (!scheme.equals(UrlConstants.HTTP_SCHEME) && !scheme.equals(UrlConstants.HTTPS_SCHEME) && !scheme.equals("chrome-extension") && !scheme.equals("kiwi-extension")) {
++        if (!scheme.equals(UrlConstants.HTTP_SCHEME) && !scheme.equals(UrlConstants.HTTPS_SCHEME) && !scheme.equals("chrome-extension") && !scheme.equals("mises-extension")) {
              return null;
          }
  

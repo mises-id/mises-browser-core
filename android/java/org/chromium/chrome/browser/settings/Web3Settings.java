@@ -16,7 +16,6 @@ import org.chromium.base.ContextUtils;
 import org.chromium.base.metrics.RecordUserAction;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.settings.ChromeManagedPreferenceDelegate;
-import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
 import org.chromium.components.embedder_support.util.UrlUtilities;
 import org.chromium.components.url_formatter.UrlFormatter;
@@ -31,7 +30,6 @@ public class Web3Settings extends PreferenceFragmentCompat implements Preference
     private static final String PREF_IPFS_GATEWAY = "ipfs_gateway";
 
     private Preference mUstoppableDomains;
-    private ChromeSwitchPreference mIpfsGatewayPref;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -43,21 +41,14 @@ public class Web3Settings extends PreferenceFragmentCompat implements Preference
         mUstoppableDomains = (Preference) findPreference(PREF_UNSTOPPABLE_DOMAINS);
         mUstoppableDomains.setOnPreferenceChangeListener(this);
 
-        mIpfsGatewayPref = (ChromeSwitchPreference) findPreference(PREF_IPFS_GATEWAY);
-        mIpfsGatewayPref.setOnPreferenceChangeListener(this);
+
 
         RecordUserAction.record("Settings.Web3.Opened");
     }
 
+
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        String key = preference.getKey();
-        SharedPreferences.Editor sharedPreferencesEditor =
-                ContextUtils.getAppSharedPreferences().edit();
-        if (PREF_IPFS_GATEWAY.equals(key)) {
-            MisesPrefServiceBridge.getInstance().setIpfsGatewayEnabled((boolean) newValue);
-        }
-        return true;
+       return true;
     }
-
 }

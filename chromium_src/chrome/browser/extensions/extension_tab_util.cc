@@ -580,13 +580,16 @@ std::unique_ptr<base::ListValue> ExtensionTabUtil::CreateTabList(
   if (!TabModelList::models().empty())
     tab_strip = *(TabModelList::models().begin());
   if (tab_strip) {
+    int window_id = ExtensionTabUtil::GetWindowId(browser);
+    bool is_normal = ExtensionTabUtil::GetBrowserWindowTypeText(*browser) == tabs_constants::kWindowTypeValueNormal;
     for (int i = 0; i < tab_strip->GetTabCount(); ++i) {
       TabAndroid *tab_android = tab_strip->GetTabAt(i);
-      if (!tab_android) {
+      WebContents* web_contents = tab_strip->GetWebContentsAt(i);
+      if (!tab_android || !web_contents) {
         continue;
       }
-      if (tab_android->ExtensionWindowID() == browser->session_id().id()) {
-            WebContents* web_contents = tab_strip->GetWebContentsAt(i);
+      if (tab_android->ExtensionWindowID() == window_id ||
+          (is_normal && (tab_android->ExtensionWindowID() == -1))) {
             ExtensionTabUtil::ScrubTabBehavior scrub_tab_behavior =
               ExtensionTabUtil::GetScrubTabBehavior(extension, context, web_contents);
                 tab_list->Append(base::Value::FromUniquePtrValue(

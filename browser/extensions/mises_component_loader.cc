@@ -106,9 +106,9 @@ void MisesComponentLoader::AddDefaultComponentExtensions(
 
 
 
- 
 
-  
+
+
 }
 void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_context,
                                   const Extension* extension) {
@@ -135,7 +135,7 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
         base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
         );
 
-     
+
     }
 }
 void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* storage) {
@@ -166,8 +166,8 @@ void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* 
   content::GetUIThreadTaskRunner({})->PostTask(
     FROM_HERE,
     base::BindOnce(&MisesComponentLoader::MetamaskMigrationDone, base::Unretained(this)));
-    
-  
+
+
 }
 void MisesComponentLoader::MetamaskMigrationDone() {
 
@@ -178,9 +178,9 @@ void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStor
     LOG(INFO) << "DoMigrate";
     storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "migrated", metamaskValue);
   }
-  
 
-  
+
+
 }
 
 void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser_context,
@@ -194,7 +194,7 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
       LOG(INFO) << "OnExtensionInstalled ";
   }
 
-                                  
+
 };
 void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
@@ -224,7 +224,7 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
     Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
   }
 
-  
+
   base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
   miseswallet_extension_path =
       miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));

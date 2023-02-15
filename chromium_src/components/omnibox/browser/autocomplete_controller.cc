@@ -298,7 +298,9 @@ AutocompleteController::AutocompleteController(
       template_url_service_(provider_client_->GetTemplateURLService()) {
   provider_types &= ~OmniboxFieldTrial::GetDisabledProviderTypes();
     //mises provider
-  providers_.push_back(new MisesProvider(provider_client_.get(),this));
+  #if BUILDFLAG(IS_ANDROID)
+    providers_.push_back(new MisesProvider(provider_client_.get(),this));
+  #endif
   if (OmniboxFieldTrial::kAutocompleteStabilityAsyncProvidersFirst.Get()) {
     // Providers run in the order they're added. Run these async providers 1st
     // so their async requests can be kicked off before waiting a few
