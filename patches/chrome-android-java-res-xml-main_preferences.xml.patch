@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/xml/main_preferences.xml b/chrome/android/java/res/xml/main_preferences.xml
 old mode 100644
 new mode 100755
-index 0cb6ac0bbc6b70c4a8b3fbff84d3006336f55b8d..23c8c73f816e08e7cf7ca24f1f6ec910049f344a
+index 0cb6ac0bbc6b70c4a8b3fbff84d3006336f55b8d..a118136b10ab353a46d852c6fff09bfd6d129452
 --- a/chrome/android/java/res/xml/main_preferences.xml
 +++ b/chrome/android/java/res/xml/main_preferences.xml
 @@ -10,10 +10,6 @@
@@ -29,7 +29,7 @@ index 0cb6ac0bbc6b70c4a8b3fbff84d3006336f55b8d..23c8c73f816e08e7cf7ca24f1f6ec910
          android:fragment="org.chromium.chrome.browser.sync.settings.GoogleServicesSettings"/>
  
      <PreferenceCategory
-@@ -39,85 +35,134 @@
+@@ -39,85 +35,136 @@
          android:fragment="org.chromium.chrome.browser.search_engines.settings.SearchEngineSettings"
          android:key="search_engine"
          android:order="6"
@@ -37,43 +37,46 @@ index 0cb6ac0bbc6b70c4a8b3fbff84d3006336f55b8d..23c8c73f816e08e7cf7ca24f1f6ec910
 +        android:icon="@drawable/ics_search_engine"
 +        android:title="@string/search_engine_settings"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-+    <org.chromium.components.browser_ui.settings.ChromeBasePreference
+     <org.chromium.components.browser_ui.settings.ChromeBasePreference
+-        android:fragment="org.chromium.chrome.browser.password_manager.settings.PasswordSettings"
+-        android:key="passwords"
 +        android:fragment="org.chromium.chrome.browser.homepage.settings.HomepageSettings"
 +        android:key="homepage"
-+        android:order="7"
+         android:order="7"
+-        android:title="@string/password_settings_title"/>
 +        android:icon="@drawable/ics_edit_homepage"
 +        android:title="@string/options_homepage_title"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-+    <org.chromium.components.browser_ui.settings.ChromeBasePreference
++
++     <org.chromium.components.browser_ui.settings.ChromeBasePreference
++        android:fragment="org.chromium.chrome.browser.settings.Web3Settings"
++        android:key="web3"
++        android:order="7"
++        android:icon="@drawable/ics_dev_options"
++        android:title="@string/preferences_web3"
++        app:iconTint="@color/default_icon_color_tint_list"/>
++
+     <org.chromium.components.browser_ui.settings.ChromeBasePreference
+-        android:fragment="org.chromium.chrome.browser.autofill.settings.AutofillPaymentMethodsFragment"
+-        android:key="autofill_payment_methods"
 +        android:fragment="org.chromium.chrome.browser.language.settings.LanguageSettings"
 +        android:key="languages"
 +        android:order="20"
 +        android:icon="@drawable/ics_languages"
 +        android:title="@string/language_settings"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-     <org.chromium.components.browser_ui.settings.ChromeBasePreference
-         android:fragment="org.chromium.chrome.browser.password_manager.settings.PasswordSettings"
-         android:key="passwords"
--        android:order="7"
--        android:title="@string/password_settings_title"/>
++    <org.chromium.components.browser_ui.settings.ChromeBasePreference
++        android:fragment="org.chromium.chrome.browser.password_manager.settings.PasswordSettings"
++        android:key="passwords"
 +        android:order="9"
 +        android:icon="@drawable/ics_passwords"
 +        android:title="@string/password_settings_title"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
 +
-     <org.chromium.components.browser_ui.settings.ChromeBasePreference
--        android:fragment="org.chromium.chrome.browser.autofill.settings.AutofillPaymentMethodsFragment"
--        android:key="autofill_payment_methods"
-+        android:fragment="org.chromium.chrome.browser.settings.Web3Settings"
-+        android:key="web3"
-         android:order="8"
--        android:title="@string/autofill_payment_methods"/>
-+        android:icon="@drawable/ics_dev_options"
-+        android:title="@string/prefs_web3"
-+        app:iconTint="@color/default_icon_color_tint_list"/>
 +    <PreferenceCategory
 +        android:key="autofill_section"
-+        android:order="8"
+         android:order="8"
+-        android:title="@string/autofill_payment_methods"/>
 +        android:title="@string/preferences_autofill"/>
      <org.chromium.components.browser_ui.settings.ChromeBasePreference
          android:fragment="org.chromium.chrome.browser.autofill.settings.AutofillProfilesFragment"

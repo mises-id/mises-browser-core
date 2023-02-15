@@ -27,6 +27,7 @@
 // As from autocomplete_provider.h:
 // Search Secondary Provider (suggestion)                              |  100++
 const int MisesProvider::kRelevance = 10000;
+const int MisesProvider::kBaseRelevance = 1299;
 
 
 MisesProvider::MisesProvider(AutocompleteProviderClient* client, AutocompleteProviderListener* listener)
@@ -76,8 +77,8 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
      ACMatchClassifications description_class_ = ClassifyTermMatches(term_matches, description_.size(),
                                            ACMatchClassification::MATCH | ACMatchClassification::URL,
                                            ACMatchClassification::URL);
-      
-     //content 
+
+     //content
      std::u16string contents_ = mises_match.contents;
      if (contents_.empty()){
       contents_ = description_;
@@ -98,7 +99,7 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
       match.contents_class = contents_class_;
       match.description = description_;
       match.description_class = description_class_;
-      match.allowed_to_be_default_match = true;
+      match.allowed_to_be_default_match = false;
       match.image_url = mises_match.image_url;
       mises_matches.push_back(match);
     }
@@ -110,10 +111,11 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
       if(!mises_matches[i].image_url.is_empty()){
         client_->PrefetchImage(mises_matches[i].image_url);
     }
+    mises_matches[i].relevance = CalculateRelevanceForWeb3sites();
     matches_.push_back(mises_matches[i]);
   }
   mises_matches.clear();
-  NotifyListeners(true); 
+  NotifyListeners(true);
 }
 
 // static
@@ -189,7 +191,7 @@ void MisesProvider::GetTopSiteData() {
 }
 
 void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
-                                    std::unique_ptr<std::string> response_body){                              
+                                    std::unique_ptr<std::string> response_body){
     LOG(INFO) << "Cg MisesProvider::OnURLLoadComplete";
     int response_code = -1;
     if (source->ResponseInfo() &&
@@ -217,7 +219,7 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
         return;
     }
     LOG(INFO) << "Cg MisesProvider::DoAutocomplete set_new_top_sites";
-    
+
     auto data_list = json_value->GetListDeprecated();
 
     for (const auto& data : data_list) {
@@ -288,9 +290,17 @@ void MisesProvider::AddMatch(const std::u16string& match_string,
   matches_.push_back(match);
 }
 
-void MisesProvider::SortByMises(
-    const AutocompleteResult& result) {
-      LOG(INFO) << "Cg MisesProvider::SortByMises";
-  if (result.empty())
-    return;
+int MisesProvider::CalculateRelevanceForWeb3sites() const {
+  switch (autocomplete_input_->type()) {
+    case metrics::OmniboxInputType::UNKNOWN:
+    case metrics::OmniboxInputType::QUERY:
+      return 1299;
+
+    case metrics::OmniboxInputType::URL:
+      return 849;
+
+    default:
+      NOTREACHED();
+      return 0;
+  }
 }

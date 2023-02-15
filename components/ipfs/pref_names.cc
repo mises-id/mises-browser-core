@@ -11,36 +11,36 @@
 // Gateway: Uses a gateway without prompting the user.
 // Local: Uses a local node.
 // Disabled: Disables all IPFS handling.
-const char kIPFSResolveMethod[] = "brave.ipfs.resolve_method";
+const char kIPFSResolveMethod[] = "mises.ipfs.resolve_method";
 // Stores the location of the IPFS binary
-const char kIPFSBinaryPath[] = "brave.ipfs.binary_path";
+const char kIPFSBinaryPath[] = "mises.ipfs.binary_path";
 
 // Used to determine whether to automatically fallback to gateway when the
 // local node is not available.
-const char kIPFSAutoFallbackToGateway[] = "brave.ipfs.auto_fallback_to_gateway";
+const char kIPFSAutoFallbackToGateway[] = "mises.ipfs.auto_fallback_to_gateway";
 
 // Used to automatically redirect Gateway resources with x-ipfs-path
 // header to the configured Brave IPFS gateway.
-const char kIPFSAutoRedirectGateway[] = "brave.ipfs.auto_redirect_gateway";
+const char kIPFSAutoRedirectGateway[] = "mises.ipfs.auto_redirect_gateway";
 
 // Used to automatically redirect for DNSLink resources
-const char kIPFSAutoRedirectDNSLink[] = "brave.ipfs.auto_redirect_dnslink";
+const char kIPFSAutoRedirectDNSLink[] = "mises.ipfs.auto_redirect_dnslink";
 
 // The number of times the infobar is shown to ask the user to install IPFS
-const char kIPFSInfobarCount[] = "brave.ipfs.infobar_count";
+const char kIPFSInfobarCount[] = "mises.ipfs.infobar_count";
 
 // The number of storage used by IPFS Node
-const char kIpfsStorageMax[] = "brave.ipfs.storage_max";
+const char kIpfsStorageMax[] = "mises.ipfs.storage_max";
 
 // Used to enable/disable IPFS via admin policy.
-const char kIPFSEnabled[] = "brave.ipfs.enabled";
+const char kIPFSEnabled[] = "mises.ipfs.enabled";
 
 // Used to determine if local node was ever used.
-const char kIPFSLocalNodeUsed[] = "brave.ipfs.local_node_used";
+const char kIPFSLocalNodeUsed[] = "mises.ipfs.local_node_used";
 
 // Stores IPFS public gateway address to be used when translating IPFS URLs.
-const char kIPFSPublicGatewayAddress[] = "brave.ipfs.public_gateway_address";
+const char kIPFSPublicGatewayAddress[] = "mises.ipfs.public_gateway_address";
 
 // Stores IPFS public gateway address to be used when translating IPFS NFT URLs.
 const char kIPFSPublicNFTGatewayAddress[] =
-    "brave.ipfs.public_nft_gateway_address";
+    "mises.ipfs.public_nft_gateway_address";

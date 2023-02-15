@@ -665,7 +665,7 @@ void TabsEventRouter::OnTabModelAdded() {
 void TabsEventRouter::DidSelectTab(TabAndroid* tab,
                                  TabModel::TabSelectionType type) {
   LOG(INFO) << "TabsEventRouter::DidSelectTab " << tab->web_contents();
-  if (!tab->web_contents())
+  if (!tab->web_contents() || tab->ExtensionWindowID() != -1)
     return;
   DispatchActiveTabChanged(nullptr, tab->web_contents());
 }

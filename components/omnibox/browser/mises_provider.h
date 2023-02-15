@@ -19,7 +19,7 @@ class AutocompleteResult;
 namespace network {
 class SharedURLLoaderFactory;
 class SimpleURLLoader;
-} 
+}
 
 // This is the provider for top Alexa 500 sites URLs
 class MisesProvider : public AutocompleteProvider
@@ -28,26 +28,23 @@ public:
     explicit MisesProvider(AutocompleteProviderClient *client,AutocompleteProviderListener* listener);
     MisesProvider(const MisesProvider &) = delete;
     MisesProvider &operator=(const MisesProvider &) = delete;
-    
+
     // AutocompleteProvider:
     void Start(const AutocompleteInput &input, bool minimal_changes) override;
-    void SortByMises(const AutocompleteResult& result);
     void GetTopSiteData();
     void OnURLLoadComplete(const network::SimpleURLLoader* source,
                          std::unique_ptr<std::string> response_body);
 
     void DoAutocomplete(const AutocompleteInput& input);
 
-    
+
 
 private:
     ~MisesProvider() override;
 
     static const int kRelevance;
 
-    static std::vector<std::string> top_sites_;
-
-    static std::string websites_string_;
+    static const int kBaseRelevance;
 
     void AddMatch(const std::u16string &match_string,
                   const ACMatchClassifications &styles,
@@ -58,7 +55,9 @@ private:
     static ACMatchClassifications StylesForSingleMatch(
         const std::string &input_text,
         const std::string &match_text);
-    
+
+    int CalculateRelevanceForWeb3sites() const;
+
     int GetRelevance(
     const std::string &input_text,
     const std::string &site,

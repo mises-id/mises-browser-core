@@ -83,6 +83,20 @@ absl::optional<base::Value::List> ParseResultList(const std::string& json) {
   return std::move(result->GetList());
 }
 
+absl::optional<base::Value::Dict> ParseDataDict(const std::string& json) {
+    absl::optional<base::Value> records_v =
+      base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
+                                       base::JSONParserOptions::JSON_PARSE_RFC);
+  if (!records_v || !records_v->is_dict()) {
+    LOG(ERROR) << "Invalid response, could not parse JSON, JSON is: " << json;
+    return absl::nullopt;
+  }
+  base::Value* result_v = records_v->GetDict().FindByDottedPath("data");
+  if (!result_v || !result_v->is_dict())
+    return absl::nullopt;
+  return std::move(result_v->GetDict());
+}
+
 bool ParseBoolResult(const std::string& json, bool* value) {
   DCHECK(value);
 

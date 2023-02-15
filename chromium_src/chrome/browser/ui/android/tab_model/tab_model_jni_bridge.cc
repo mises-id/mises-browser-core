@@ -69,9 +69,10 @@ void TabModelJniBridge::TabAddedToModel(JNIEnv* env,
   // Tab#initialize() should have been called by now otherwise we can't push
   // the window id.
   TabAndroid* tab = TabAndroid::GetNativeTab(env, jtab);
-  if (tab)
+  if (tab){
     tab->SetWindowSessionID(GetSessionId());
-
+    tab->SetExtensionWindowID(extension_window_id_);
+  }
   // Count tabs that are used for incognito mode inside the browser (excluding
   // off-the-record tabs for incognito CCTs, etc.).
   if (GetProfile()->IsIncognitoProfile())
@@ -191,13 +192,15 @@ WebContents* TabModelJniBridge::CreateNewTabForDevTools(
   return tab->web_contents();
 }
 content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
-		const std::string& extension_id, const GURL& url, const SessionID::id_type& session_window_id){
+		const std::string& extension_id, const GURL& url, const SessionID::id_type session_window_id){
   LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension";
   JNIEnv* env = AttachCurrentThread();
+  extension_window_id_ = session_window_id;
   ScopedJavaLocalRef<jobject> obj =
       Java_TabModelJniBridge_createNewTabForDevTools(
           env, java_object_.get(env),
           url::GURLAndroid::FromNativeGURL(env, url));
+  extension_window_id_ = -1;
   if (obj.is_null()) {
     VLOG(0) << "Failed to create java tab";
     return NULL;
@@ -207,7 +210,6 @@ content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
     VLOG(0) << "Failed to create java tab";
     return NULL;
   }
-  tab->SetExtensionWindowID(session_window_id);
   if (!extension_id.empty()) {
     base::android::MisesSysUtils::LogEventFromJni("activate_extension", "id", extension_id);
   }

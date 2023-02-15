@@ -28,7 +28,6 @@
 #include "components/rlz/rlz_tracker.h"  // nogncheck crbug.com/1125897
 #endif
 
-#include "components/search/search_url_fetcher.h"
 
 // static
 TemplateURLService* TemplateURLServiceFactory::GetForProfile(Profile* profile) {

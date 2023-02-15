@@ -57,6 +57,11 @@ int LookupSuffixInReversedSet(const unsigned char* graph,
     return kDafsaFound;
   }
 
+  if (base::EndsWith(host, decentralized_dns::kBitDomain)) {
+    *suffix_length = strlen(decentralized_dns::kBitDomain) - 1;
+    return kDafsaFound;
+  }
+
   if (include_private &&
       base::EndsWith(host, decentralized_dns::kDNSForEthDomain)) {
     *suffix_length = strlen(decentralized_dns::kDNSForEthDomain) - 1;

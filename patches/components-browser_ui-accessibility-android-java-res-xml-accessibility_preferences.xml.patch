@@ -1,0 +1,16 @@
+diff --git a/components/browser_ui/accessibility/android/java/res/xml/accessibility_preferences.xml b/components/browser_ui/accessibility/android/java/res/xml/accessibility_preferences.xml
+index 18396bd971c1f08efe61f07ef92e786df2bd534b..a76a27062f74249e1fa602e157c2ae0f1f36edea 100644
+--- a/components/browser_ui/accessibility/android/java/res/xml/accessibility_preferences.xml
++++ b/components/browser_ui/accessibility/android/java/res/xml/accessibility_preferences.xml
+@@ -34,6 +34,11 @@
+         android:summary="@string/accessibility_tab_switcher_summary"
+         android:title="@string/accessibility_tab_switcher_title" />
+ 
++    <org.chromium.components.browser_ui.settings.ChromeBaseCheckBoxPreference
++        android:key="open_in_external_app"
++        android:summary="@string/accessibility_preferences_open_in_external_application_summary"
++        android:title="@string/accessibility_preferences_open_in_external_application_title" />
++
+     <Preference
+         android:key="captions"
+         android:title="@string/accessibility_captions_title"/>
