@@ -1007,7 +1007,7 @@
 <include name="IDR_MISES_WALLET_BROWSER_POLYFILL_JS" file="mises_wallet/browser-polyfill.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_CONTENTSCRIPTS_BUNDLE_JS" file="mises_wallet/contentScripts.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_INJECTEDSCRIPT_BUNDLE_JS" file="mises_wallet/injectedScript.bundle.js" type="BINDATA" />
-<include name="IDR_MISES_WALLET_INJECTEDSCRIPT_BUNDLE_JS" file="mises_wallet/safeInjectedScript.bundle.js" type="BINDATA" />
+<include name="IDR_MISES_WALLET_SAFEINJECTEDSCRIPT_BUNDLE_JS" file="mises_wallet/safeInjectedScript.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_MANIFEST_JSON" file="mises_wallet/manifest.json" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_BUNDLE_JS" file="mises_wallet/popup.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_HTML" file="mises_wallet/popup.html" type="BINDATA" />
