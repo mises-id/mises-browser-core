@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/extensions/extension_install_prompt.cc b/chrome/browser/extensions/extension_install_prompt.cc
+index 339ae3f826da0ef6cde7b9b08ad8ca24a56762fa..e347258d5518b4fc5d3a87e29af3fa1395b33d39 100644
+--- a/chrome/browser/extensions/extension_install_prompt.cc
++++ b/chrome/browser/extensions/extension_install_prompt.cc
+@@ -507,6 +507,7 @@ ExtensionInstallPrompt::ExtensionInstallPrompt(content::WebContents* contents)
+       extension_(nullptr),
+       install_ui_(extensions::CreateExtensionInstallUI(profile_)),
+       show_params_(new ExtensionInstallPromptShowParams(contents)),
++      contents_(contents),
+       did_call_show_dialog_(false) {}
+ 
+ ExtensionInstallPrompt::ExtensionInstallPrompt(Profile* profile,
+@@ -664,6 +665,7 @@ void ExtensionInstallPrompt::ShowConfirmation() {
+ 
+   // Notify observers.
+   prompt_->OnDialogOpened();
++  MISES_EXTENSION_INSTALL_PROMPT_SHOW_CONFIRMATION
+ 
+   // If true, auto confirm is enabled and already handled the result.
+   if (AutoConfirmPromptIfEnabled())
