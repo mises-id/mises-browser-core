@@ -161,6 +161,7 @@ PluginResponseWriter::~PluginResponseWriter() {
 };
 
 void PluginResponseWriter::OnURLRedirect( const GURL& new_url) {
+  //LOG(INFO) << "PluginResponseWriter::OnURLRedirect " << new_url.spec();
   auto response = network::mojom::URLResponseHead::New();
   constexpr int kInternalRedirectStatusCode = 307;
   std::string headers = base::StringPrintf(
@@ -224,7 +225,7 @@ void PluginResponseWriter::OnURLLoaderComplete( std::unique_ptr<std::string> res
 
 void PluginResponseWriter::
     ContinueToBeforeSendHeaders(int error_code) {
-    
+  //LOG(INFO) << "PluginResponseWriter::ContinueToBeforeSendHeaders " << error_code << ", "  << ctx_->provider_error << ", " << ctx_->request_identifier << ", " << ctx_->new_url_spec;
   if (error_code != net::OK) {
     client_->OnComplete(network::URLLoaderCompletionStatus(net::ERR_FAILED));
     std::move(done_callback_).Run();

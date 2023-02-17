@@ -78,6 +78,7 @@ struct MisesRequestInfo {
   absl::optional<int> pending_error;
   std::string new_url_spec;
   std::string failover_url_spec;
+  int provider_error;
   // TODO(iefremov): rename to shields_up.
   bool allow_brave_shields = true;
   bool allow_ads = false;
