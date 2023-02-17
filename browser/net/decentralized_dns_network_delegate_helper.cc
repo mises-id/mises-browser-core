@@ -90,6 +90,9 @@ void OnBeforeURLRequest_EnsRedirectWork(
   DCHECK(!next_callback.is_null());
 
   if (error != brave_wallet::mojom::ProviderError::kSuccess) {
+    if (error == brave_wallet::mojom::ProviderError::kInvalidParams) {
+      ctx->failover_url_spec = "https://app.ens.domains/name/" + ctx->request_url.host();
+    }
     next_callback.Run();
     return;
   }

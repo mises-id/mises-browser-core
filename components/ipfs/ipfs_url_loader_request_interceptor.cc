@@ -39,6 +39,9 @@
 #include "mojo/public/cpp/system/string_data_source.h"
 #include "net/base/net_errors.h"
 #include "net/http/http_response_headers.h"
+#include "net/http/http_util.h"
+#include "net/url_request/redirect_info.h"
+#include "net/url_request/redirect_util.h"
 #include "services/network/public/cpp/url_loader_completion_status.h"
 #include "services/network/public/mojom/url_loader.mojom.h"
 #include "services/network/public/mojom/url_response_head.mojom.h"
@@ -81,6 +84,7 @@ class PluginResponseWriter final {
  private:
   void OnWrite( MojoResult result);
   void OnURLLoaderComplete(std::unique_ptr<std::string> response_body);
+  void OnURLRedirect( const GURL& new_url);
   void LoaderCallback(
     const network::ResourceRequest& resource_request,
     mojo::PendingReceiver<network::mojom::URLLoader> pending_receiver,
@@ -156,6 +160,33 @@ PluginResponseWriter::~PluginResponseWriter() {
     
 };
 
+void PluginResponseWriter::OnURLRedirect( const GURL& new_url) {
+  auto response = network::mojom::URLResponseHead::New();
+  constexpr int kInternalRedirectStatusCode = 307;
+  std::string headers = base::StringPrintf(
+    "HTTP/1.1 %i Internal Redirect\n"
+    "Location: %s\n"
+    "Non-Authoritative-Reason: WebRequest API\n\n",
+    kInternalRedirectStatusCode, new_url.spec().c_str());
+  response->headers = base::MakeRefCounted<net::HttpResponseHeaders>(
+      net::HttpUtil::AssembleRawHeaders(headers));
+  response->encoded_data_length = 0;
+
+  net::RedirectInfo redirect_info = net::RedirectInfo::ComputeRedirectInfo(
+      net::HttpRequestHeaders::kGetMethod, ctx_->request_url,
+      net::SiteForCookies::FromUrl(ctx_->request_url),
+      net::RedirectInfo::FirstPartyURLPolicy::UPDATE_URL_ON_REDIRECT,
+      ctx_->referrer_policy, ctx_->referrer.spec(),
+      kInternalRedirectStatusCode, new_url, absl::nullopt,
+      false /* insecure_scheme_was_upgraded */, false /* copy_fragment */,
+      false /* is_signed_exchange_fallback_redirect */);
+  client_->OnReceiveRedirect(redirect_info, std::move(response));
+  network::URLLoaderCompletionStatus status(net::OK);
+  client_->OnComplete(status);
+  std::move(done_callback_).Run();
+  return;
+}
+
 void PluginResponseWriter::OnURLLoaderComplete( std::unique_ptr<std::string> response_body) {
   int response_code = -1;
   if (simple_loader_->ResponseInfo() && simple_loader_->ResponseInfo()->headers) {
@@ -202,11 +233,13 @@ void PluginResponseWriter::
     
     GURL new_url = GURL(ctx_->new_url_spec);
     if (!new_url.is_valid()) {
-      new_url = GURL(ctx_->failover_url_spec);
-    }
-    if (!new_url.is_valid()) {
-      client_->OnComplete(network::URLLoaderCompletionStatus(net::ERR_FAILED));
-      std::move(done_callback_).Run();
+      GURL failover_url = GURL(ctx_->failover_url_spec);
+      if (failover_url.is_valid()) {
+        OnURLRedirect(failover_url);
+      } else {
+        client_->OnComplete(network::URLLoaderCompletionStatus(net::ERR_FAILED));
+        std::move(done_callback_).Run();
+      }
       return;
     }
     if (new_url.SchemeIsHTTPOrHTTPS()) {
