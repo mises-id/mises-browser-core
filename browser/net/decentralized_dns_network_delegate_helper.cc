@@ -90,7 +90,8 @@ void OnBeforeURLRequest_EnsRedirectWork(
   DCHECK(!next_callback.is_null());
 
   if (error != brave_wallet::mojom::ProviderError::kSuccess) {
-    if (error == brave_wallet::mojom::ProviderError::kInvalidParams) {
+    ctx->provider_error = (int)error;
+    if (error != brave_wallet::mojom::ProviderError::kInternalError) {
       ctx->failover_url_spec = "https://app.ens.domains/name/" + ctx->request_url.host();
     }
     next_callback.Run();
@@ -135,6 +136,7 @@ void OnBeforeURLRequest_BitRedirectWork(
   if (error == brave_wallet::mojom::ProviderError::kSuccess && url.is_valid()) {
     ctx->new_url_spec = url.spec() + ctx->request_url.PathForRequest();
   } else {
+    ctx->provider_error = (int)error;
     ctx->failover_url_spec = "https://" + ctx->request_url.host() + ".cc";
   }
 
