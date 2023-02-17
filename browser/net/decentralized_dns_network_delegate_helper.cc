@@ -131,6 +131,8 @@ void OnBeforeURLRequest_BitRedirectWork(
     const std::string& error_message) {
   if (error == brave_wallet::mojom::ProviderError::kSuccess && url.is_valid()) {
     ctx->new_url_spec = url.spec() + ctx->request_url.PathForRequest();
+  } else {
+    ctx->failover_url_spec = "https://" + ctx->request_url.host() + ".cc";
   }
 
   if (!next_callback.is_null())

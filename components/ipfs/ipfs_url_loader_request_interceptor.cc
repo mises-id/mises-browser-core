@@ -16,6 +16,10 @@
 #include "services/network/public/mojom/fetch_api.mojom-shared.h"
 #include "services/network/public/mojom/url_loader.mojom-forward.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
+#include "content/public/browser/browser_context.h"
+#include "content/public/browser/storage_partition.h"
+#include "services/network/public/cpp/simple_url_loader.h"
+#include "services/network/public/cpp/wrapper_shared_url_loader_factory.h"
 #include "url/gurl.h"
 
 #include <memory>
@@ -38,10 +42,21 @@
 #include "services/network/public/cpp/url_loader_completion_status.h"
 #include "services/network/public/mojom/url_loader.mojom.h"
 #include "services/network/public/mojom/url_response_head.mojom.h"
+#include "mojo/public/cpp/bindings/self_owned_receiver.h"
 
+
+#include "mises/browser/net/mises_proxying_url_loader_factory.h"
+#include "mises/browser/net/resource_context_data.h"
+#include "mises/browser/net/url_context.h"
+#include "mises/browser/net/mises_request_handler.h"
+#include "mises/browser/net/decentralized_dns_network_delegate_helper.h"
+
+#include "mises/browser/ipfs/content_browser_client_helper.h"
+#include "mises/browser/ipfs/ipfs_service_factory.h"
+#include "mises/browser/ipfs/ipfs_subframe_navigation_throttle.h"
+#include "mises/components/ipfs/ipfs_navigation_throttle.h"
 #include "mises/components/ipfs/ipfs_constants.h"
 #include "mises/components/ipfs/ipfs_utils.h"
-#include "mises/browser/net/decentralized_dns_network_delegate_helper.h"
 
 namespace ipfs {
 
@@ -49,8 +64,8 @@ namespace {
 
 class PluginResponseWriter final {
  public:
-  PluginResponseWriter(
-      mojo::PendingRemote<network::mojom::URLLoaderClient> client, const GURL& url);
+  PluginResponseWriter(content::BrowserContext* browser_context,
+      mojo::PendingRemote<network::mojom::URLLoaderClient> client, const network::ResourceRequest& request);
   PluginResponseWriter(const PluginResponseWriter&) = delete;
   PluginResponseWriter& operator=(const PluginResponseWriter&) = delete;
   ~PluginResponseWriter();
@@ -64,114 +79,90 @@ class PluginResponseWriter final {
   void Start(base::OnceClosure done_callback);
 
  private:
-  void OnWrite(base::OnceClosure done_callback, MojoResult result);
-
+  void OnWrite( MojoResult result);
+  void OnURLLoaderComplete(std::unique_ptr<std::string> response_body);
+  void LoaderCallback(
+    const network::ResourceRequest& resource_request,
+    mojo::PendingReceiver<network::mojom::URLLoader> pending_receiver,
+    mojo::PendingRemote<network::mojom::URLLoaderClient> pending_client);
+  void ContinueToBeforeSendHeaders(int error_code);
   std::string body_;
+  GURL redirect_url_;
   mojo::Remote<network::mojom::URLLoaderClient> client_;
   std::unique_ptr<mojo::DataPipeProducer> producer_;
+  std::unique_ptr<network::SimpleURLLoader> simple_loader_;
+  scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory_;
+  std::unique_ptr<MisesRequestHandler> request_handler_;
+  std::shared_ptr<mises::MisesRequestInfo> ctx_;
+  base::OnceClosure done_callback_;
+  base::WeakPtrFactory<PluginResponseWriter> weak_factory_{this};
 };
 
 
-// Generates a response ready to be used for creating the PDF loader. The
-// returned value is a raw string in which the escape characters are not
-// processed.
-// Note: This function is security sensitive since it defines the boundary of
-// HTML and the embedded PDF. Must limit information shared with the PDF plugin
-// process through this response.
-std::string GenerateResponse(const GURL& url) {
+net::NetworkTrafficAnnotationTag trafficAnnotation() {
 
-  static constexpr char kResponseTemplate[] = R"(<!DOCTYPE html>
-<html>
-<head>
-<style>
-html, body {
-  height: 100%;
-}
-.container {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #999 transparent transparent transparent;
-}
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-</style>
-<script>
-const url = new URL('$1');
-fetch(url)
-    .then(function(response) {
-        // When the page is loaded convert it to text
-        return response.text()
-    })
-    .then(function(html) {
-      document.open();
-      document.write("<style>svg {width:0;height:0} </style>")
-      document.write(html);
-      document.close();
-    })
-    .catch(function(err) {  
-        console.log('Failed to fetch page: ', err);
-        if (url.hostname.endsWith('.bit')) {
-          window.location = 'https://' + url.hostname + '.cc';
+ net::NetworkTrafficAnnotationTag traffic_annotation =
+      net::DefineNetworkTrafficAnnotation("ipfs load", R"(
+        semantics {
+          sender: "ipfs loader"
+          description:
+            "Google Chrome may display a list of regionally-popular web sites "
+            "on the New Tab Page. This service fetches the list of these sites."
+          trigger:
+            "Once per day, unless no popular web sites are required because "
+            "the New Tab Page is filled with suggestions based on the user's "
+            "browsing history."
+          data: "A two letter country code based on the user's location."
+          destination: GOOGLE_OWNED_SERVICE
         }
-    });
-</script>
-</head>
-<body>
-<div class="container">
- <div class="lds-ring"><div></div><div></div><div></div><div></div></div> 
- </div>
-</body>
-</html>
-)";
-
-  return base::ReplaceStringPlaceholders(
-      kResponseTemplate,
-      {url.spec()},
-      /*offsets=*/nullptr);
+        policy {
+          cookies_allowed: NO
+          setting: "This feature cannot be disabled in settings."
+          policy_exception_justification:
+            "Not implemented, considered not useful."
+        })");
+  return traffic_annotation;
 }
 
 
 PluginResponseWriter::PluginResponseWriter(
-    mojo::PendingRemote<network::mojom::URLLoaderClient> client, const GURL& url)
-    : body_(GenerateResponse(url)), client_(std::move(client)) {}
+    content::BrowserContext* browser_context,
+    mojo::PendingRemote<network::mojom::URLLoaderClient> client, const network::ResourceRequest&  request)
+    : client_(std::move(client)) {
 
-PluginResponseWriter::~PluginResponseWriter() = default;
 
-void PluginResponseWriter::Start(base::OnceClosure done_callback) {
+  auto resource_request = std::make_unique<network::ResourceRequest>();
+  resource_request->url = request.url;
+  //resource_request->credentials_mode = network::mojom::CredentialsMode::kOmit;
+  url_loader_factory_ = browser_context->GetDefaultStoragePartition()
+                          ->GetURLLoaderFactoryForBrowserProcess();
+
+  request_handler_ = std::make_unique<MisesRequestHandler>();    
+  redirect_url_ = GURL();
+  ctx_ = mises::MisesRequestInfo::MakeCTX(request, 0,
+                                          0, 0,
+                                          browser_context,  nullptr);                                             
+
+}
+void PluginResponseWriter::LoaderCallback(
+    const network::ResourceRequest& resource_request,
+    mojo::PendingReceiver<network::mojom::URLLoader> pending_receiver,
+    mojo::PendingRemote<network::mojom::URLLoaderClient> pending_client) {
+
+}
+
+PluginResponseWriter::~PluginResponseWriter() {
+    
+    
+};
+
+void PluginResponseWriter::OnURLLoaderComplete( std::unique_ptr<std::string> response_body) {
+  int response_code = -1;
+  if (simple_loader_->ResponseInfo() && simple_loader_->ResponseInfo()->headers) {
+    response_code = simple_loader_->ResponseInfo()->headers->response_code();
+  }
+    
+  simple_loader_.reset();
   auto response = network::mojom::URLResponseHead::New();
   response->headers =
       base::MakeRefCounted<net::HttpResponseHeaders>("HTTP/1.1 200 OK");
@@ -179,10 +170,10 @@ void PluginResponseWriter::Start(base::OnceClosure done_callback) {
 
   mojo::ScopedDataPipeProducerHandle producer;
   mojo::ScopedDataPipeConsumerHandle consumer;
-  if (mojo::CreateDataPipe(nullptr, producer, consumer) != MOJO_RESULT_OK) {
+  if (response_code == -1 || !response_body || mojo::CreateDataPipe(nullptr, producer, consumer) != MOJO_RESULT_OK) {
     client_->OnComplete(
-        network::URLLoaderCompletionStatus(net::ERR_INSUFFICIENT_RESOURCES));
-    std::move(done_callback).Run();
+        network::URLLoaderCompletionStatus(net::ERR_FAILED));
+    std::move(done_callback_).Run();
     return;
   }
 
@@ -192,16 +183,66 @@ void PluginResponseWriter::Start(base::OnceClosure done_callback) {
 
   // Caller is required to keep `this` alive until `done_callback` is called, so
   // `base::Unretained(this)` should be safe.
+  body_ = *response_body;
   producer_->Write(
       std::make_unique<mojo::StringDataSource>(
           body_, mojo::StringDataSource::AsyncWritingMode::
                      STRING_STAYS_VALID_UNTIL_COMPLETION),
-      base::BindOnce(&PluginResponseWriter::OnWrite, base::Unretained(this),
-                     std::move(done_callback)));
+      base::BindOnce(&PluginResponseWriter::OnWrite, base::Unretained(this)));
 }
 
-void PluginResponseWriter::OnWrite(base::OnceClosure done_callback,
-                                   MojoResult result) {
+void PluginResponseWriter::
+    ContinueToBeforeSendHeaders(int error_code) {
+    
+  if (error_code != net::OK) {
+    client_->OnComplete(network::URLLoaderCompletionStatus(net::ERR_FAILED));
+    std::move(done_callback_).Run();
+    return;
+  }
+    
+    GURL new_url = GURL(ctx_->new_url_spec);
+    if (!new_url.is_valid()) {
+      new_url = GURL(ctx_->failover_url_spec);
+    }
+    if (!new_url.is_valid()) {
+      client_->OnComplete(network::URLLoaderCompletionStatus(net::ERR_FAILED));
+      std::move(done_callback_).Run();
+      return;
+    }
+    if (new_url.SchemeIsHTTPOrHTTPS()) {
+
+      auto resource_request = std::make_unique<network::ResourceRequest>();
+      resource_request->url = new_url;
+  
+      simple_loader_ = network::SimpleURLLoader::Create(std::move(resource_request),
+                                                     trafficAnnotation());
+      simple_loader_->DownloadToStringOfUnboundedSizeUntilCrashAndDie(
+          url_loader_factory_.get(), base::BindOnce(&PluginResponseWriter::OnURLLoaderComplete, base::Unretained(this)));
+    } else if ( ctx_->request_identifier == 0) {
+        base::RepeatingCallback<void(int)> continuation =
+            base::BindRepeating(&PluginResponseWriter::ContinueToBeforeSendHeaders,
+            weak_factory_.GetWeakPtr());
+        network::ResourceRequest request;
+        request.url = new_url;
+        std::shared_ptr<mises::MisesRequestInfo> ctx = mises::MisesRequestInfo::MakeCTX(request, 0,
+                                        0, 1,
+                                        ctx_->browser_context,  nullptr); 
+        ctx_ = ctx;
+        request_handler_->OnBeforeURLRequest(ctx_, continuation, &redirect_url_);
+        
+    }
+}
+void  PluginResponseWriter::Start(base::OnceClosure done_callback){
+
+   base::RepeatingCallback<void(int)> continuation =
+       base::BindRepeating(&PluginResponseWriter::ContinueToBeforeSendHeaders,
+       weak_factory_.GetWeakPtr());
+  done_callback_ = std::move(done_callback);
+   request_handler_->OnBeforeURLRequest(ctx_, continuation, &redirect_url_);
+   
+
+}
+void PluginResponseWriter::OnWrite(MojoResult result) {
   producer_.reset();
 
   if (result == MOJO_RESULT_OK) {
@@ -214,7 +255,7 @@ void PluginResponseWriter::OnWrite(base::OnceClosure done_callback,
     client_->OnComplete(network::URLLoaderCompletionStatus(net::ERR_FAILED));
   }
 
-  std::move(done_callback).Run();
+  std::move(done_callback_).Run();
 }
 
 
@@ -223,11 +264,14 @@ void FinishLoader(std::unique_ptr<PluginResponseWriter> /*response_writer*/) {
 }
 
 void CreateLoaderAndStart(
+    content::BrowserContext* browser_context,
     const network::ResourceRequest& request,
     mojo::PendingReceiver<network::mojom::URLLoader> receiver,
     mojo::PendingRemote<network::mojom::URLLoaderClient> client) {
+
+    
   auto response_writer =
-      std::make_unique<PluginResponseWriter>(std::move(client), request.url);
+      std::make_unique<PluginResponseWriter>(browser_context, std::move(client), request);
 
   auto* unowned_response_writer = response_writer.get();
   unowned_response_writer->Start(
@@ -254,11 +298,12 @@ void IPFSURLLoaderRequestInterceptor::MaybeCreateLoader(
     const network::ResourceRequest& tentative_resource_request,
     content::BrowserContext* browser_context,
     content::URLLoaderRequestInterceptor::LoaderCallback callback) {
-  std::move(callback).Run(CreateRequestHandler(tentative_resource_request));
+  std::move(callback).Run(CreateRequestHandler(browser_context, tentative_resource_request));
 }
 
 content::URLLoaderRequestInterceptor::RequestHandler
 IPFSURLLoaderRequestInterceptor::CreateRequestHandler(
+    content::BrowserContext* browser_context,
     const network::ResourceRequest& tentative_resource_request) {
   // Only intercept navigation requests.
   if (tentative_resource_request.mode != network::mojom::RequestMode::kNavigate)
@@ -278,7 +323,7 @@ IPFSURLLoaderRequestInterceptor::CreateRequestHandler(
     return {};
   }
 
-  return base::BindOnce(&CreateLoaderAndStart);
+  return base::BindOnce(&CreateLoaderAndStart, browser_context);
 }
 
 }  // namespace pdf

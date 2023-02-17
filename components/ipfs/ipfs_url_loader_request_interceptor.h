@@ -34,6 +34,7 @@ class IPFSURLLoaderRequestInterceptor final
 
  private:
   RequestHandler CreateRequestHandler(
+      content::BrowserContext* browser_context,
       const network::ResourceRequest& tentative_resource_request);
 
   int frame_tree_node_id_;
