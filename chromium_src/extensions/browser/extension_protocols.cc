@@ -837,9 +837,10 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
     const base::FilePath bundle_resource_path =
         ExtensionsBrowserClient::Get()->GetBundleResourcePath(
             request_, directory_path, &resource_id);
-    if (!directory_path.empty() && 
+    if (!directory_path.empty() &&
       (directory_path.value().find("cryptotoken") != std::string::npos ||
       directory_path.value().find("mises_wallet") != std::string::npos ||
+      directory_path.value().find("mises_web3safe") != std::string::npos ||
       directory_path.value().find("metamask") != std::string::npos)) {
       const base::FilePath bundle_resource_path =
           ExtensionsBrowserClient::Get()->GetBundleResourcePath(
