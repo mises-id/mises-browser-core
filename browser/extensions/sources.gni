@@ -7,6 +7,8 @@ mises_extensions_sources = [
     "//mises/browser/extensions/api/rewards_notifications_api.h",
     
 ]
+mises_extensions_exception_sources = [
+]
 
 if (is_android) {
   mises_extensions_sources += [
@@ -14,6 +16,17 @@ if (is_android) {
     "//mises/chromium_src/chrome/browser/extensions/global_shortcut_listener_android.h",
     "system_display/display_info_provider_aura.cc",
     "system_display/display_info_provider_aura.h",
+    "api/messaging/native_message_built_in_host.cc",
+    "api/messaging/native_message_built_in_host.h",
+    "//mises/chromium_src/chrome/browser/extensions/api/messaging/native_message_host_android.cc",
+  ]
+  mises_extensions_exception_sources += [
+      "api/messaging/native_message_process_host.cc",
+      "api/messaging/native_message_process_host.h",
+      "api/messaging/native_messaging_launch_from_native.cc",
+      "api/messaging/native_messaging_launch_from_native.h",
+      "api/messaging/native_process_launcher.cc",
+      "api/messaging/native_process_launcher.h",
   ]
 }
 

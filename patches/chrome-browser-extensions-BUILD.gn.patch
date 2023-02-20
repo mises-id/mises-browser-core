@@ -1,12 +1,12 @@
 diff --git a/chrome/browser/extensions/BUILD.gn b/chrome/browser/extensions/BUILD.gn
-index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..7126027d49ea62827b4f5d3ede0d9c4727880eb0 100644
+index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..3a0d7d00c787a9dafdd5bcaf5f19b188cde514bf 100644
 --- a/chrome/browser/extensions/BUILD.gn
 +++ b/chrome/browser/extensions/BUILD.gn
 @@ -953,6 +953,7 @@ static_library("extensions") {
      "//ui/strings",
      "//url",
    ]
-+  import("//mises/browser/extensions/sources.gni") sources += mises_extensions_sources
++  
  
    if (is_linux || is_mac || is_win) {
      sources += [
@@ -23,7 +23,7 @@ index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..7126027d49ea62827b4f5d3ede0d9c47
    } else {
      sources += [ "api/braille_display_private/braille_controller_stub.cc" ]
    }
-+  deps += mises_extensions_resources
++  import("//mises/browser/extensions/sources.gni") sources -= mises_extensions_exception_sources sources += mises_extensions_sources deps += mises_extensions_resources
  }
  
  static_library("test_support") {
