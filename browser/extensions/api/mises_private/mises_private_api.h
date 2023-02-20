@@ -51,6 +51,20 @@ protected:
 
 };
 
+
+class MisesPrivateNotifyPhishingDetectedFunction : public ExtensionFunction
+{
+public:
+  ExtensionFunction::ResponseAction Run() override;
+  DECLARE_EXTENSION_FUNCTION("misesPrivate.notifyPhishingDetected",
+                             UNKNOWN)
+
+protected:
+  ~MisesPrivateNotifyPhishingDetectedFunction() override;
+  void OnNotificationHandled(int action);
+
+};
+
 }  // namespace api
 }  // namespace extensions
  

@@ -18,7 +18,7 @@ ExtensionFunction::ResponseAction MisesPrivateSetMisesIdFunction::Run() {
   std::unique_ptr<api::mises_private::SetMisesId::Params> params(
       api::mises_private::SetMisesId::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params.get());
-  LOG(INFO) << "set mises id :" << params->id;
+  LOG(INFO) << "MisesPrivate set mises id :" << params->id;
 #if BUILDFLAG(IS_ANDROID)
   android::MisesController::GetInstance()->setMisesUserInfo(params->id);
 #endif  
@@ -66,6 +66,37 @@ ExtensionFunction::ResponseAction MisesPrivateGetAppStateFunction::Run() {
   return RespondNow(ArgumentList(
     api::mises_private::GetAppState::Results::Create(state)));
 }
+
+
+
+
+MisesPrivateNotifyPhishingDetectedFunction::~MisesPrivateNotifyPhishingDetectedFunction() {}
+ExtensionFunction::ResponseAction MisesPrivateNotifyPhishingDetectedFunction::Run() {
+
+#if BUILDFLAG(IS_ANDROID)
+  std::unique_ptr<api::mises_private::NotifyPhishingDetected::Params> params(
+      api::mises_private::NotifyPhishingDetected::Params::Create(args()));
+  EXTENSION_FUNCTION_VALIDATE(params.get());
+  LOG(INFO) << "MisesPrivate notify phishing address :" << params->address;
+  android::MisesController::GetInstance()->notifyPhishingDetected(
+    params->address, base::BindOnce(
+      &MisesPrivateNotifyPhishingDetectedFunction::OnNotificationHandled, base::RetainedRef(this)
+    )
+  );
+  
+  return RespondLater();
+#else
+  return RespondNow(ArgumentList(
+    api::mises_private::NotifyPhishingDetected::Results::Create(api::mises_private::Web3SafeAction:WEB3_SAFE_ACTION_IGNOR)));
+#endif
+}
+
+
+void MisesPrivateNotifyPhishingDetectedFunction::OnNotificationHandled(int action) {
+  Respond(ArgumentList(
+    api::mises_private::NotifyPhishingDetected::Results::Create((api::mises_private::Web3SafeAction)action)));
+}
+
 
 }  // namespace api
 }  // namespace extensions
