@@ -24,7 +24,7 @@ void MisesController::setMisesUserInfo(const std::string& info) {
 
 std::string MisesController::getMisesUserInfo() {
   JNIEnv* env = base::android::AttachCurrentThread();
-  base::android::ScopedJavaLocalRef<jstring> j_mises_json = Java_MisesController_getMisesUserInfo(env); 
+  base::android::ScopedJavaLocalRef<jstring> j_mises_json = Java_MisesController_getMisesUserInfo(env);
   return base::android::ConvertJavaStringToUTF8(env, j_mises_json);
 }
 
@@ -60,7 +60,7 @@ void MisesController::callbackPhishingDetected(
 void JNI_MisesController_CallbackPhishingDetected(JNIEnv* env,
      const base::android::JavaParamRef<jstring>& address, jint action) {
 
-  ::android::MisesController::GetInstance()->callbackPhishingDetected(
+  android::MisesController::GetInstance()->callbackPhishingDetected(
       ConvertJavaStringToUTF8(env, address), action);
 
 }

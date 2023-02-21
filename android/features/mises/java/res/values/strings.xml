@@ -31,6 +31,6 @@
 
     <string name="web3_safe_alert_title"> Phishing Risk Detected </string>
     <string name="web3_safe_block"> Leave the phishing site </string>
-    <string name="web3_safe_ignor"> Ignor </string>
+    <string name="web3_safe_ignor"> Ignore </string>
     <string name="web3_safe_blockem">Powered by Blockem\n Enable more protection with: </string>
 </resources>

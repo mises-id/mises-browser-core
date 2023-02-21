@@ -81,6 +81,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
     private Button btn_block;
     private Button btn_ignor;
     private TextView tv_title;
+    private ImageView iv_blockem;
     private TextView tv_detail;
     private String mAddress;
     private String mUrl;
@@ -110,6 +111,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         this.view = (FrameLayout) inflater.inflate(R.layout.mises_web3_safe_alert, container, false);
         tv_title = view.findViewById(R.id.title);
         tv_detail = view.findViewById(R.id.detail);
+        iv_blockem = view.findViewById(R.id.iv_blockem);
         btn_block = (Button) view.findViewById(R.id.btn_block);
         btn_ignor = (Button) view.findViewById(R.id.btn_ignor);
         mContext = getContext();
@@ -119,13 +121,13 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 
 
         final String txtBegin = "The contract address: ";
-        final String txtEnd = " you're interacting with is identified as a Phishing Address. " + System.lineSeparator();
+        final String txtEnd = "\nyou're interacting with is identified as a Phishing Address. " + System.lineSeparator();
         final String txtNotice = "Please notice the high risk of losing you assets when you continue!";
         SpannableString spannable = new SpannableString(txtBegin + mAddress + txtEnd + txtNotice);
         spannable.setSpan(new ForegroundColorSpan(Color.RED), txtBegin.length(), txtBegin.length()+mAddress.length(), 0);
         spannable.setSpan(new ForegroundColorSpan(Color.BLACK), txtBegin.length()+mAddress.length()+txtEnd.length(), txtBegin.length()+mAddress.length()+txtEnd.length() + txtNotice.length(), 0);
         spannable.setSpan(new StyleSpan(Typeface.BOLD), txtBegin.length()+mAddress.length()+txtEnd.length(), txtBegin.length()+mAddress.length()+txtEnd.length() + txtNotice.length(), 0);
-        
+
         tv_detail.setText( spannable );
 
         btn_ignor.setOnClickListener(new View.OnClickListener() {
@@ -151,13 +153,28 @@ public class MisesWeb3SafeAlert extends DialogFragment {
             }
         });
 
+        //blockem
+        iv_blockem.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              dismiss();
+              TabCreator tabCreator = mTabCreatorManager.getTabCreator(false);
+              if (tabCreator != null) {
+                  tabCreator.openSinglePage("https://www.blockem.io/");
+              }
+              Bundle params = new Bundle();
+              params.putString("step", "blockem");
+              FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
+          }
+      });
+
         mLoadingView = new LoadingView(mContext);
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.CENTER;
         mLoadingView.setLayoutParams(lp);
         mLoadingView.setVisibility(View.GONE);
         view.addView(mLoadingView);
-       
+
         return view;
     }
 
@@ -166,7 +183,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         getDialog().getWindow().setAttributes((WindowManager.LayoutParams) params);
-	
+
 	    Bundle bundleParams = new Bundle();
 	    bundleParams.putString("step", "begin");
 	    FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", bundleParams);

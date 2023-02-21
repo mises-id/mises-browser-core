@@ -22,4 +22,3 @@ namespace misesPrivate {
     static void notifyPhishingDetected(DOMString address, NotifyPhishingDetectedCallback callback);
   };
 };
-

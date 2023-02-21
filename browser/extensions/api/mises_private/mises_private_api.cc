@@ -13,7 +13,7 @@ namespace extensions {
 namespace api {
 
 MisesPrivateSetMisesIdFunction::~MisesPrivateSetMisesIdFunction() {}
- 
+
 ExtensionFunction::ResponseAction MisesPrivateSetMisesIdFunction::Run() {
   std::unique_ptr<api::mises_private::SetMisesId::Params> params(
       api::mises_private::SetMisesId::Params::Create(args()));
@@ -21,7 +21,7 @@ ExtensionFunction::ResponseAction MisesPrivateSetMisesIdFunction::Run() {
   LOG(INFO) << "MisesPrivate set mises id :" << params->id;
 #if BUILDFLAG(IS_ANDROID)
   android::MisesController::GetInstance()->setMisesUserInfo(params->id);
-#endif  
+#endif
   return RespondNow(NoArguments());
 }
 
@@ -39,7 +39,7 @@ ExtensionFunction::ResponseAction MisesPrivateGetInstallReferrerFunction::Run() 
 MisesPrivateGetAppStateFunction::~MisesPrivateGetAppStateFunction() {}
 ExtensionFunction::ResponseAction MisesPrivateGetAppStateFunction::Run() {
   api::mises_private::AppState state = api::mises_private::AppState::APP_STATE_NONE;
-#if BUILDFLAG(IS_ANDROID) 
+#if BUILDFLAG(IS_ANDROID)
   switch (base::android::ApplicationStatusListener::GetState()) {
     case base::android::ApplicationState::APPLICATION_STATE_UNKNOWN :{
       state = api::mises_private::AppState::APP_STATE_UNKNOWN;
@@ -83,11 +83,11 @@ ExtensionFunction::ResponseAction MisesPrivateNotifyPhishingDetectedFunction::Ru
       &MisesPrivateNotifyPhishingDetectedFunction::OnNotificationHandled, base::RetainedRef(this)
     )
   );
-  
+
   return RespondLater();
 #else
   return RespondNow(ArgumentList(
-    api::mises_private::NotifyPhishingDetected::Results::Create(api::mises_private::Web3SafeAction:WEB3_SAFE_ACTION_IGNOR)));
+    api::mises_private::NotifyPhishingDetected::Results::Create(api::mises_private::Web3SafeAction::WEB3_SAFE_ACTION_IGNOR)));
 #endif
 }
 
