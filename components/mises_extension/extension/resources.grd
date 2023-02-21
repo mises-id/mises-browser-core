@@ -979,7 +979,6 @@
 <include name="IDR_MISES_WALLET_ASSETS_ICON_16_PNG" file="mises_wallet/assets/icon-16.png" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_ICON_48_PNG" file="mises_wallet/assets/icon-48.png" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_ICONS8_LOCK_SVG" file="mises_wallet/assets/icons8-lock.svg" type="BINDATA" />
-<include name="IDR_MISES_WALLET_ASSETS_ICONS8_PEN_SVG" file="mises_wallet/assets/icons8-pen.svg" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_ICONS8_TEST_TUBE_SVG" file="mises_wallet/assets/icons8-test-tube.svg" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_ICONS8_TRASH_CAN_SVG" file="mises_wallet/assets/icons8-trash-can.svg" type="BINDATA" />
 <include name="IDR_MISES_WALLET_ASSETS_INFO_MARK_DANGER_SVG" file="mises_wallet/assets/info-mark-danger.svg" type="BINDATA" />
