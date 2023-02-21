@@ -6,6 +6,6 @@
 
 <!-- TODO(crbug.com/839489): Update based on specs. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#ffdd4e47" />
+    <solid android:color="#f03e3e" />
     <corners android:radius="22dp" />
 </shape>
