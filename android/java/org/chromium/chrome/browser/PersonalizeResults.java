@@ -266,7 +266,7 @@ public class PersonalizeResults {
    private static final String COIN98_EXTENSION_STYLES = "'.popup-chain-selection{height: 93vh}'";
 
     // metamask extension wallet 
-   private static final String METAMASK_EXTENSION_STYLES = "'.select-action__select-buttons {display:flex; flex-direction:column;}.select-action__select-button {width:100vw;margin-left:0;}'";
+   private static final String METAMASK_EXTENSION_STYLES = "'.select-action__select-buttons {display:flex; flex-direction:column;}.select-action__select-button {width:100vw;margin-left:0;}html,body{width:100% !important;height:100% !important}'";
 
     private static final String MAKE_USER_AGENT_WRITABLE = ""
 +"(function() {"
