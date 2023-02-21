@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:chrome="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/web3_safe_logo"
+    android:layout_marginRight="0dp"
+    android:layout_marginTop="0dp"
+    android:scaleType="centerInside"/>
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="335dp"
+        android:layout_height="520dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="30dp"
+        android:background="@drawable/mises_share_bg">
+
+        <View
+            android:layout_height="15dp"
+            android:layout_width="match_parent" />
+        <ImageView
+            android:id="@+id/iv_promote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/web3_safe_prompt"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:text="@string/web3_safe_alert_title"
+            android:textColor="#ffdd4e47"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:gravity="start|top"
+            android:singleLine="false"
+            android:padding="16dp"
+            android:maxLength="300"/>
+
+        <Button
+		    chrome:backgroundTint="@null"    
+		    android:id="@+id/btn_block"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/mises_web3_safe_confirm_bg"
+            android:text="@string/web3_safe_block"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_height="15dp"
+            android:layout_width="match_parent" />
+
+	    <Button
+	        chrome:backgroundTint="@null"
+            android:id="@+id/btn_ignor"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/mises_share_cancel_bg"
+            android:text="@string/web3_safe_ignor"
+            android:textAllCaps="false"
+            android:textColor="#ff666666"
+            android:textSize="17sp" />
+
+
+        <View
+            android:layout_height="15dp"
+            android:layout_width="match_parent" />
+
+
+         <TextView
+                 android:id="@+id/tv_blockem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:textColor="#ff999999"
+                android:text="@string/web3_safe_blockem"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+        <View
+            android:layout_height="15dp"
+            android:layout_width="match_parent" />
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+        >
+            <ImageView
+                android:id="@+id/iv_blockem"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/web3_safe_blockem"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

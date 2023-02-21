@@ -84,6 +84,28 @@ kiwi_java_resources = [
     "java/res/drawable-xhdpi/ic_devtools.png",
     "java/res/drawable-xxhdpi/ic_devtools.png",
     "java/res/drawable-xxxhdpi/ic_devtools.png",
+
+
+    "java/res/drawable-hdpi/web3_safe_prompt.png",
+    "java/res/drawable-mdpi/web3_safe_prompt.png",
+    "java/res/drawable-xhdpi/web3_safe_prompt.png",
+    "java/res/drawable-xxhdpi/web3_safe_prompt.png",
+    "java/res/drawable-xxxhdpi/web3_safe_prompt.png",
+
+
+    "java/res/drawable-hdpi/web3_safe_logo.png",
+    "java/res/drawable-mdpi/web3_safe_logo.png",
+    "java/res/drawable-xhdpi/web3_safe_logo.png",
+    "java/res/drawable-xxhdpi/web3_safe_logo.png",
+    "java/res/drawable-xxxhdpi/web3_safe_logo.png",
+
+
+    "java/res/drawable-hdpi/web3_safe_blockem.png",
+    "java/res/drawable-mdpi/web3_safe_blockem.png",
+    "java/res/drawable-xhdpi/web3_safe_blockem.png",
+    "java/res/drawable-xxhdpi/web3_safe_blockem.png",
+    "java/res/drawable-xxxhdpi/web3_safe_blockem.png",
+
     "java/res/layout/radio_button_group_translate_preference.xml",
     "java/res/layout/radio_button_group_tabswitcher_preference.xml",
     "java/res/layout/radio_button_group_nightmode_preference.xml",
@@ -303,6 +325,7 @@ mises_extra_java_resources = [
   "java/res/mipmap-hdpi/link.png",
   "java/res/layout/mises_alert_dialog.xml",
   "java/res/layout/mises_share_dialog.xml",
+  "java/res/layout/mises_web3_safe_alert.xml",
   "java/res/layout/mises_user_info_menu.xml",
 
   "java/res/drawable/mises_share_cancel_bg.xml",
@@ -310,6 +333,7 @@ mises_extra_java_resources = [
   "java/res/drawable/mises_share_bg.xml",
   "java/res/drawable/mises_share_title_bg.xml",
   "java/res/drawable/mises_share_content_bg.xml",
+  "java/res/drawable/mises_web3_safe_confirm_bg.xml",
   "java/res/anim/left_enter.xml",
   "java/res/anim/left_exit.xml",
   "java/res/mipmap-hdpi/ic_menu_mises_forward.png",

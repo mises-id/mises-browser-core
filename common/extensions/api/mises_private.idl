@@ -7,13 +7,18 @@ namespace misesPrivate {
     STOPPED,
     DESTROYED
   };
+  enum Web3SafeAction {
+    BLOCK,
+    IGNOR
+  };
   callback GetInstallReferrerCallback = void(DOMString installReferrer);
   callback GetAppStateCallback = void(AppState state);
+  callback NotifyPhishingDetectedCallback = void(Web3SafeAction action);
   interface Functions {
     // set mises id
     static void setMisesId(DOMString id);
     static void getInstallReferrer(GetInstallReferrerCallback callback);
     static void getAppState(GetAppStateCallback callback);
+    static void notifyPhishingDetected(DOMString address, NotifyPhishingDetectedCallback callback);
   };
 };
-

@@ -26,6 +26,7 @@ android_library("public_java") {
   sources = [
    "java/org/chromium/chrome/browser/mises/MisesController.java",
    "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
+   "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
    "java/org/chromium/chrome/browser/mises/MisesLCDService.java",
    "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
    "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
