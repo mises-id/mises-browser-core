@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Mises",
   "description": "Mises is a browser extension wallet",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "icons": {
     "16": "assets/icon-16.png",
     "48": "assets/icon-48.png",
@@ -30,12 +30,7 @@
     "misesPrivate",
     "nativeMessaging"
   ],
-  "host_permissions": [
-    "file://*/*",
-    "http://*/*",
-    "https://*/*",
-    "*://api.*.mises.site/*"
-  ],
+  "host_permissions": ["file://*/*", "http://*/*", "https://*/*"],
   "content_scripts": [
     {
       "matches": ["file://*/*", "http://*/*", "https://*/*"],
@@ -46,7 +41,11 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["injectedScript.bundle.js", "assets/logo-256.png"],
+      "resources": [
+        "injectedScript.bundle.js",
+        "assets/logo-256.png",
+        "safeInjectedScript.bundle.js"
+      ],
       "matches": ["http://*/*", "https://*/*"]
     }
   ],
