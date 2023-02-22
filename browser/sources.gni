@@ -117,11 +117,17 @@ if (is_android) {
     "//mises/browser/android/mises/mises_controller.cc",
     "//mises/browser/android/mises/mises_controller.h",
     "//mises/chromium_src/chrome/browser/obsolete_system/obsolete_system_android.cc",
+    "//mises/chromium_src/chrome/browser/download/drag_download_item_android.cc",
+    "//mises/chromium_src/chrome/browser/background/background_mode_manager_android.cc",
+    "//mises/chromium_src/chrome/browser/first_run/first_run_internal_android.cc",
+
+    "//chrome/common/process_singleton_lock_posix.cc",
+    "//chrome/common/importer/firefox_importer_utils_linux.cc",
+
     "upgrade_detector/get_installed_version_fuchsia.cc",
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
-    "//mises/chromium_src/chrome/browser/download/drag_download_item_android.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
-    "//mises/chromium_src/chrome/browser/background/background_mode_manager_android.cc"
+    "policy/policy_path_parser_linux.cc",
 
   ]
 
@@ -240,6 +246,7 @@ if (is_android) {
     "performance_manager/persistence/site_data/site_data_cache_facade.h",
     "performance_manager/persistence/site_data/site_data_cache_facade_factory.cc",
     "performance_manager/persistence/site_data/site_data_cache_facade_factory.h",
+    "performance_manager/policies/background_tab_loading_policy.cc",
     "profiles/avatar_menu.cc",
     "profiles/avatar_menu.h",
     "profiles/profile_window.cc",
@@ -248,8 +255,11 @@ if (is_android) {
     "profiles/profile_list_desktop.h",
     "renderer_context_menu/spelling_menu_observer.cc",
     "renderer_context_menu/spelling_menu_observer.h",
+    "renderer_context_menu/render_view_context_menu.cc",
     "hid/chrome_hid_delegate.cc",
     "hid/chrome_hid_delegate.h",
+    "first_run/upgrade_util.cc",
+    
   ]
   mises_chrome_browser_exception_deps += [
     "//components/live_caption",

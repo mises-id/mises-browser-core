@@ -35,11 +35,11 @@ class OneShotTimer;
 namespace brave_wallet {
 
 class EthTransaction;
-class FilTransaction;
+//class FilTransaction;
 class KeyringServiceUnitTest;
 class EthereumProviderImplUnitTest;
-class SolanaProviderImplUnitTest;
-class FilecoinKeyring;
+//class SolanaProviderImplUnitTest;
+//class FilecoinKeyring;
 class JsonRpcService;
 
 // This class is not thread-safe and should have single owner
@@ -159,10 +159,10 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
                              const std::string& password,
                              const std::string& json,
                              ImportAccountCallback callback) override;
-  void ImportFilecoinAccount(const std::string& account_name,
-                             const std::string& private_key,
-                             const std::string& network,
-                             ImportFilecoinAccountCallback callback) override;
+//   void ImportFilecoinAccount(const std::string& account_name,
+//                              const std::string& private_key,
+//                              const std::string& network,
+//                              ImportFilecoinAccountCallback callback) override;
   void AddHardwareAccounts(
       std::vector<mojom::HardwareWalletAccountPtr> info) override;
   void RemoveHardwareAccount(const std::string& address,
@@ -200,8 +200,8 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   void SignTransactionByDefaultKeyring(const std::string& address,
                                        EthTransaction* tx,
                                        uint256_t chain_id);
-  absl::optional<std::string> SignTransactionByFilecoinKeyring(
-      FilTransaction* tx);
+//   absl::optional<std::string> SignTransactionByFilecoinKeyring(
+//       FilTransaction* tx);
 
   struct SignatureWithError {
     SignatureWithError();
