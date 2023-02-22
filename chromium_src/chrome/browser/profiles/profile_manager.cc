@@ -37,4 +37,13 @@ void ProfileManager::ScheduleEphemeralProfileForDeletion(
 
 }
 
+base::FilePath ProfileManager::GetSystemProfilePath() {
+  DCHECK_CURRENTLY_ON(BrowserThread::UI);
+
+  ProfileManager* profile_manager = g_browser_process->profile_manager();
+
+  base::FilePath system_path = profile_manager->user_data_dir();
+  return system_path.Append(chrome::kSystemProfileDir);
+}
+
 #endif

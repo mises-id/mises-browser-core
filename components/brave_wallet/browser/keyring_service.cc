@@ -20,17 +20,17 @@
 #include "mises/components/brave_wallet/browser/brave_wallet_prefs.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
 #include "mises/components/brave_wallet/browser/ethereum_keyring.h"
-#include "mises/components/brave_wallet/browser/filecoin_keyring.h"
+//#include "mises/components/brave_wallet/browser/filecoin_keyring.h"
 #include "mises/components/brave_wallet/browser/hd_keyring.h"
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 #include "mises/components/brave_wallet/browser/pref_names.h"
-#include "mises/components/brave_wallet/browser/solana_keyring.h"
+//#include "mises/components/brave_wallet/browser/solana_keyring.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom-forward.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom-shared.h"
 #include "mises/components/brave_wallet/common/brave_wallet_constants.h"
 #include "mises/components/brave_wallet/common/eth_address.h"
 #include "mises/components/brave_wallet/common/hex_utils.h"
-#include "mises/components/brave_wallet/common/solana_utils.h"
+//#include "mises/components/brave_wallet/common/solana_utils.h"
 #include "components/grit/mises_components_strings.h"
 #include "components/prefs/pref_change_registrar.h"
 #include "components/prefs/pref_service.h"
@@ -332,7 +332,7 @@ bool KeyringService::HasPrefForKeyring(const PrefService& prefs,
 std::vector<std::string> KeyringService::GetAvailableKeyringsFromPrefs(
     PrefService* prefs) {
   DCHECK(prefs);
-  const auto& keyrings_pref = prefs->GetDictionary(kBraveWalletKeyrings);
+  const auto& keyrings_pref = prefs->GetDictionary(kBraveWalletKeyrings)->GetDict();
   std::vector<std::string> keyrings;
   for (const auto&& [key, value] : keyrings_pref) {
     keyrings.push_back(key);
@@ -344,7 +344,7 @@ std::vector<std::string> KeyringService::GetAvailableKeyringsFromPrefs(
 const base::Value* KeyringService::GetPrefForKeyring(const PrefService& prefs,
                                                      const std::string& key,
                                                      const std::string& id) {
-  const auto& keyrings_pref = prefs.GetDictionary(kBraveWalletKeyrings);
+  const auto& keyrings_pref = prefs.GetDictionary(kBraveWalletKeyrings)->GetDict();
   const base::Value::Dict* keyring_dict = keyrings_pref.FindDict(id);
   if (!keyring_dict)
     return nullptr;
@@ -361,7 +361,15 @@ base::Value::Dict& KeyringService::GetPrefForKeyringUpdate(
   DictionaryPrefUpdate update(prefs, kBraveWalletKeyrings);
   base::Value* keyrings_pref = update.Get();
   DCHECK(keyrings_pref);
-  return *keyrings_pref->GetDict().EnsureDict(id)->EnsureDict(key);
+  base::Value* keyring_dict = keyrings_pref->FindKey(id);
+  if (!keyring_dict)
+    keyring_dict =
+        keyrings_pref->SetKey(id, base::Value(base::Value::Type::DICTIONARY));
+  base::Value* pref = keyring_dict->FindKey(key);
+  if (!pref)
+    pref =
+        keyring_dict->SetKey(key, base::Value(base::Value::Type::DICTIONARY));
+  return pref->GetDict();
 }
 
 // static
@@ -373,7 +381,15 @@ void KeyringService::SetPrefForKeyring(PrefService* prefs,
   DictionaryPrefUpdate update(prefs, kBraveWalletKeyrings);
   base::Value* keyrings_pref = update.Get();
   DCHECK(keyrings_pref);
-  keyrings_pref->GetDict().EnsureDict(id)->Set(key, std::move(value));
+  if (!keyrings_pref->FindKey(id)) {
+    keyrings_pref->SetKey(id, base::Value(base::Value::Type::DICTIONARY));
+  }
+
+  base::Value* keyring_dict = keyrings_pref->FindKey(id);
+  if (!keyring_dict)
+    return;
+
+  keyring_dict->SetKey(key, std::move(value));
 }
 
 // static
@@ -386,7 +402,12 @@ void KeyringService::SetAccountMetaForKeyring(
   base::Value::Dict& account_metas =
       GetPrefForKeyringUpdate(prefs, kAccountMetas, id);
 
-  base::Value::Dict* account_meta = account_metas.EnsureDict(account_path);
+  if (!account_metas.Find(account_path))
+    account_metas.Set(account_path,
+                          base::Value(base::Value::Type::DICTIONARY));
+  base::Value::Dict* account_meta = account_metas.FindDict(account_path);
+  if (!account_meta)
+    return;
   if (name)
     account_meta->Set(kAccountName, *name);
   if (address)
@@ -597,15 +618,15 @@ HDKeyring* KeyringService::ResumeKeyring(const std::string& keyring_id,
     if (!private_key)
       continue;
 
-    if (IsFilecoinKeyringId(keyring_id)) {
-      auto* filecoin_keyring = static_cast<FilecoinKeyring*>(keyring);
-      if (filecoin_keyring) {
-        filecoin_keyring->RestoreFilecoinAccount(
-            *private_key, imported_account_info.account_address);
-      }
-    } else {
-      keyring->ImportAccount(*private_key);
-    }
+    // if (IsFilecoinKeyringId(keyring_id)) {
+    //   auto* filecoin_keyring = static_cast<FilecoinKeyring*>(keyring);
+    //   if (filecoin_keyring) {
+    //     filecoin_keyring->RestoreFilecoinAccount(
+    //         *private_key, imported_account_info.account_address);
+    //   }
+    // } else {
+    keyring->ImportAccount(*private_key);
+   // }
   }
 
   return keyring;
@@ -941,63 +962,63 @@ bool KeyringService::IsKeyringExist(const std::string& keyring_id) const {
   return keyrings_.contains(keyring_id) || IsKeyringCreated(keyring_id);
 }
 
-void KeyringService::ImportFilecoinAccount(
-    const std::string& account_name,
-    const std::string& private_key_hex,
-    const std::string& network,
-    ImportFilecoinAccountCallback callback) {
-  const std::string filecoin_keyring_id = GetFilecoinKeyringId(network);
-  if (!LazilyCreateKeyring(filecoin_keyring_id)) {
-    std::move(callback).Run(false, "");
-    VLOG(1) << "Unable to create Filecoin keyring";
-    return;
-  }
+// void KeyringService::ImportFilecoinAccount(
+//     const std::string& account_name,
+//     const std::string& private_key_hex,
+//     const std::string& network,
+//     ImportFilecoinAccountCallback callback) {
+//   const std::string filecoin_keyring_id = GetFilecoinKeyringId(network);
+//   if (!LazilyCreateKeyring(filecoin_keyring_id)) {
+//     std::move(callback).Run(false, "");
+//     VLOG(1) << "Unable to create Filecoin keyring";
+//     return;
+//   }
 
-  if (account_name.empty() || private_key_hex.empty() ||
-      !encryptors_[filecoin_keyring_id]) {
-    std::move(callback).Run(false, "");
-    return;
-  }
+//   if (account_name.empty() || private_key_hex.empty() ||
+//       !encryptors_[filecoin_keyring_id]) {
+//     std::move(callback).Run(false, "");
+//     return;
+//   }
 
-  std::vector<uint8_t> private_key;
-  mojom::FilecoinAddressProtocol protocol;
-  if (!FilecoinKeyring::DecodeImportPayload(private_key_hex, &private_key,
-                                            &protocol)) {
-    std::move(callback).Run(false, "");
-    return;
-  }
+//   std::vector<uint8_t> private_key;
+//   mojom::FilecoinAddressProtocol protocol;
+//   if (!FilecoinKeyring::DecodeImportPayload(private_key_hex, &private_key,
+//                                             &protocol)) {
+//     std::move(callback).Run(false, "");
+//     return;
+//   }
 
-  auto* keyring =
-      static_cast<FilecoinKeyring*>(GetHDKeyringById(filecoin_keyring_id));
+//   auto* keyring =
+//       static_cast<FilecoinKeyring*>(GetHDKeyringById(filecoin_keyring_id));
 
-  if (!keyring) {
-    std::move(callback).Run(false, "");
-    return;
-  }
+//   if (!keyring) {
+//     std::move(callback).Run(false, "");
+//     return;
+//   }
 
-  const std::string address =
-      keyring->ImportFilecoinAccount(private_key, protocol);
-  if (address.empty()) {
-    std::move(callback).Run(false, "");
-    return;
-  }
+//   const std::string address =
+//       keyring->ImportFilecoinAccount(private_key, protocol);
+//   if (address.empty()) {
+//     std::move(callback).Run(false, "");
+//     return;
+//   }
 
-  std::vector<uint8_t> encrypted_key =
-      encryptors_[filecoin_keyring_id]->Encrypt(
-          private_key, GetOrCreateNonceForKeyring(filecoin_keyring_id));
+//   std::vector<uint8_t> encrypted_key =
+//       encryptors_[filecoin_keyring_id]->Encrypt(
+//           private_key, GetOrCreateNonceForKeyring(filecoin_keyring_id));
 
-  ImportedAccountInfo info(account_name, address,
-                           base::Base64Encode(encrypted_key),
-                           mojom::CoinType::FIL);
-  SetImportedAccountForKeyring(prefs_, info, filecoin_keyring_id);
+//   ImportedAccountInfo info(account_name, address,
+//                            base::Base64Encode(encrypted_key),
+//                            mojom::CoinType::FIL);
+//   SetImportedAccountForKeyring(prefs_, info, filecoin_keyring_id);
 
-  SetSelectedAccountForCoinSilently(mojom::CoinType::FIL, address);
-  SetSelectedCoin(prefs_, mojom::CoinType::FIL);
+//   SetSelectedAccountForCoinSilently(mojom::CoinType::FIL, address);
+//   SetSelectedCoin(prefs_, mojom::CoinType::FIL);
 
-  NotifyAccountsChanged();
+//   NotifyAccountsChanged();
 
-  std::move(callback).Run(true, address);
-}
+//   std::move(callback).Run(true, address);
+// }
 
 void KeyringService::ImportAccount(const std::string& account_name,
                                    const std::string& private_key,
@@ -1026,20 +1047,21 @@ void KeyringService::ImportAccount(const std::string& account_name,
         return;
       }
     }
-  } else if (*keyring_id == mojom::kSolanaKeyringId) {
-    if (!LazilyCreateKeyring(*keyring_id)) {
-      VLOG(1) << "Unable to create Solana keyring";
-      std::move(callback).Run(false, "");
-      return;
-    }
-    std::vector<uint8_t> keypair(kSolanaKeypairSize);
-    if (!Base58Decode(private_key, &keypair, keypair.size())) {
-      std::move(callback).Run(false, "");
-      return;
-    }
-    // extract private key from keypair
-    private_key_bytes = std::move(keypair);
-  }
+  } 
+  // else if (*keyring_id == mojom::kSolanaKeyringId) {
+  //   if (!LazilyCreateKeyring(*keyring_id)) {
+  //     VLOG(1) << "Unable to create Solana keyring";
+  //     std::move(callback).Run(false, "");
+  //     return;
+  //   }
+  //   std::vector<uint8_t> keypair(kSolanaKeypairSize);
+  //   if (!Base58Decode(private_key, &keypair, keypair.size())) {
+  //     std::move(callback).Run(false, "");
+  //     return;
+  //   }
+  //   // extract private key from keypair
+  //   private_key_bytes = std::move(keypair);
+  // }
 
   if (private_key_bytes.empty()) {
     std::move(callback).Run(false, "");
@@ -1451,9 +1473,19 @@ void KeyringService::AddHardwareAccounts(
     base::Value::Dict& hardware_keyrings =
         GetPrefForKeyringUpdate(prefs_, kHardwareAccounts, keyring_id);
 
-    hardware_keyrings.EnsureDict(device_id)
-        ->EnsureDict(kAccountMetas)
-        ->Set(info->address, std::move(hw_account));
+    base::Value* device_value = hardware_keyrings.Find(device_id);
+    if (!device_value) {
+      device_value = hardware_keyrings.Set(
+          device_id, base::Value(base::Value::Type::DICTIONARY));
+    }
+
+    base::Value* meta_value = device_value->FindKey(kAccountMetas);
+    if (!meta_value) {
+      meta_value = device_value->SetKey(
+          kAccountMetas, base::Value(base::Value::Type::DICTIONARY));
+    }
+    base::Value::Dict* meta_value_dict = device_value->GetDict().FindDict(kAccountMetas);
+    meta_value_dict->Set(info->address, std::move(hw_account));
     addresses.push_back(info->address);
 
     if (!account_selected) {
@@ -1507,17 +1539,17 @@ void KeyringService::RemoveHardwareAccount(
   std::move(callback).Run(false);
 }
 
-absl::optional<std::string> KeyringService::SignTransactionByFilecoinKeyring(
-    FilTransaction* tx) {
-  if (!tx)
-    return absl::nullopt;
+// absl::optional<std::string> KeyringService::SignTransactionByFilecoinKeyring(
+//     FilTransaction* tx) {
+//   if (!tx)
+//     return absl::nullopt;
 
-  std::string keyring_id = GetFilecoinKeyringId(tx->from().network());
-  auto* keyring = GetHDKeyringById(keyring_id);
-  if (!keyring)
-    return absl::nullopt;
-  return static_cast<FilecoinKeyring*>(keyring)->SignTransaction(tx);
-}
+//   std::string keyring_id = GetFilecoinKeyringId(tx->from().network());
+//   auto* keyring = GetHDKeyringById(keyring_id);
+//   if (!keyring)
+//     return absl::nullopt;
+//   return static_cast<FilecoinKeyring*>(keyring)->SignTransaction(tx);
+// }
 
 void KeyringService::SignTransactionByDefaultKeyring(const std::string& address,
                                                      EthTransaction* tx,
@@ -1962,12 +1994,13 @@ bool KeyringService::CreateKeyringInternal(const std::string& keyring_id,
 
   if (keyring_id == mojom::kDefaultKeyringId) {
     keyrings_[mojom::kDefaultKeyringId] = std::make_unique<EthereumKeyring>();
-  } else if (IsFilecoinKeyringId(keyring_id)) {
-    keyrings_[keyring_id] =
-        std::make_unique<FilecoinKeyring>(GetFilecoinChainId(keyring_id));
-  } else if (keyring_id == mojom::kSolanaKeyringId) {
-    keyrings_[mojom::kSolanaKeyringId] = std::make_unique<SolanaKeyring>();
-  }
+  } 
+  // else if (IsFilecoinKeyringId(keyring_id)) {
+  //   keyrings_[keyring_id] =
+  //       std::make_unique<FilecoinKeyring>(GetFilecoinChainId(keyring_id));
+  // } else if (keyring_id == mojom::kSolanaKeyringId) {
+  //   keyrings_[mojom::kSolanaKeyringId] = std::make_unique<SolanaKeyring>();
+  // }
   auto* keyring = GetHDKeyringById(keyring_id);
   DCHECK(keyring) << "No HDKeyring for " << keyring_id;
   if (keyring)

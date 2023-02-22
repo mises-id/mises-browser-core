@@ -27,6 +27,7 @@ if (is_android) {
       "api/messaging/native_messaging_launch_from_native.h",
       "api/messaging/native_process_launcher.cc",
       "api/messaging/native_process_launcher.h",
+      "api/networking_private/networking_private_ui_delegate_factory_impl.cc",
   ]
 }
 
