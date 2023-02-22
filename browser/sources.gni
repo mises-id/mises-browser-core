@@ -259,6 +259,7 @@ if (is_android) {
     "hid/chrome_hid_delegate.cc",
     "hid/chrome_hid_delegate.h",
     "first_run/upgrade_util.cc",
+    "autocomplete/tab_matcher_desktop.cc",
     
   ]
   mises_chrome_browser_exception_deps += [
