@@ -123,9 +123,11 @@ private:
       extensions::ExtensionAction* extension_action,
       content::WebContents* web_contents,
       content::BrowserContext* browser_context) override;
-   void OnExtensionActionAPIShuttingDown() override;
+    void OnExtensionActionAPIShuttingDown() override;
 
     void DestroyJavaObject();
+
+    void CloseExtensionTabs();
 
     std::unique_ptr<IconWithBadgeImageSource> GetIconImageSource(
       const extensions::Extension* extension,
