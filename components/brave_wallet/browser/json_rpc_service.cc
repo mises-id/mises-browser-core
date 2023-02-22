@@ -595,7 +595,7 @@ void JsonRpcService::GetBlockNumber(GetBlockNumberCallback callback) {
                   network_urls_[mojom::CoinType::ETH],
                   std::move(internal_callback));
 }
-
+/*
 void JsonRpcService::OnGetFilStateSearchMsgLimited(
     GetFilStateSearchMsgLimitedCallback callback,
     const std::string& cid,
@@ -620,7 +620,7 @@ void JsonRpcService::OnGetFilStateSearchMsgLimited(
   std::move(callback).Run(exit_code, mojom::FilecoinProviderError::kSuccess,
                           "");
 }
-
+*/
 void JsonRpcService::OnGetBlockNumber(GetBlockNumberCallback callback,
                                       APIRequestResult api_request_result) {
   if (!api_request_result.Is2XXResponseCode()) {
@@ -702,12 +702,12 @@ void JsonRpcService::GetBalance(const std::string& address,
                     std::move(internal_callback));
     return;
   } else if (coin == mojom::CoinType::FIL) {
-    auto internal_callback =
-        base::BindOnce(&JsonRpcService::OnFilGetBalance,
-                       weak_ptr_factory_.GetWeakPtr(), std::move(callback));
-    RequestInternal(fil::getBalance(address), true, network_url,
-                    std::move(internal_callback));
-    return;
+    // auto internal_callback =
+    //     base::BindOnce(&JsonRpcService::OnFilGetBalance,
+    //                    weak_ptr_factory_.GetWeakPtr(), std::move(callback));
+    // RequestInternal(fil::getBalance(address), true, network_url,
+    //                 std::move(internal_callback));
+    // return;
   }
   std::move(callback).Run("", mojom::ProviderError::kInternalError,
                           l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
@@ -734,6 +734,7 @@ void JsonRpcService::OnEthGetBalance(GetBalanceCallback callback,
   std::move(callback).Run(balance, mojom::ProviderError::kSuccess, "");
 }
 
+/*
 void JsonRpcService::OnFilGetBalance(GetBalanceCallback callback,
                                      APIRequestResult api_request_result) {
   if (!api_request_result.Is2XXResponseCode()) {
@@ -830,6 +831,7 @@ void JsonRpcService::GetFilTransactionCount(const std::string& address,
                   std::move(internal_callback),
                   base::BindOnce(&ConvertUint64ToString, "/result"));
 }
+*/
 
 void JsonRpcService::GetEthTransactionCount(const std::string& address,
                                             GetTxCountCallback callback) {
@@ -847,7 +849,7 @@ void JsonRpcService::GetEthTransactionCount(const std::string& address,
   RequestInternal(eth::eth_getTransactionCount(address, "latest"), true,
                   network_url, std::move(internal_callback));
 }
-
+/*
 void JsonRpcService::OnFilGetTransactionCount(
     GetFilTxCountCallback callback,
     APIRequestResult api_request_result) {
@@ -870,7 +872,7 @@ void JsonRpcService::OnFilGetTransactionCount(
   std::move(callback).Run(static_cast<uint256_t>(count),
                           mojom::FilecoinProviderError::kSuccess, "");
 }
-
+*/
 void JsonRpcService::OnEthGetTransactionCount(
     GetTxCountCallback callback,
     APIRequestResult api_request_result) {
@@ -1712,7 +1714,7 @@ GURL JsonRpcService::GetBlockTrackerUrlFromNetwork(
   }
   return GURL();
 }
-
+/*
 void JsonRpcService::GetFilEstimateGas(const std::string& from_address,
                                        const std::string& to_address,
                                        const std::string& gas_premium,
@@ -1764,6 +1766,7 @@ void JsonRpcService::OnGetFilEstimateGas(GetFilEstimateGasCallback callback,
   std::move(callback).Run(gas_premium, gas_fee_cap, gas_limit,
                           mojom::FilecoinProviderError::kSuccess, "");
 }
+*/
 
 void JsonRpcService::GetEstimateGas(const std::string& from_address,
                                     const std::string& to_address,
@@ -2585,7 +2588,7 @@ void JsonRpcService::Reset() {
   switch_chain_callbacks_.clear();
   switch_chain_ids_.clear();
 }
-
+/*
 void JsonRpcService::SendFilecoinTransaction(
     const std::string& signed_tx,
     SendFilecoinTransactionCallback callback) {
@@ -2632,7 +2635,7 @@ void JsonRpcService::OnSendFilecoinTransaction(
   std::move(callback).Run(cid, mojom::FilecoinProviderError::kSuccess, "");
 }
 
-/*
+
 void JsonRpcService::GetSolanaBalance(const std::string& pubkey,
                                       const std::string& chain_id,
                                       GetSolanaBalanceCallback callback) {

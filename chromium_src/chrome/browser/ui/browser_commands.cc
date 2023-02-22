@@ -1284,12 +1284,12 @@ void Translate(Browser* browser) {
 }
 
 void ManagePasswordsForPage(Browser* browser) {
-  WebContents* web_contents =
-      browser->tab_strip_model()->GetActiveWebContents();
-  ManagePasswordsUIController* controller =
-      ManagePasswordsUIController::FromWebContents(web_contents);
-  TabDialogs::FromWebContents(web_contents)
-      ->ShowManagePasswordsBubble(!controller->IsAutomaticallyOpeningBubble());
+  // WebContents* web_contents =
+  //     browser->tab_strip_model()->GetActiveWebContents();
+  // ManagePasswordsUIController* controller =
+  //     ManagePasswordsUIController::FromWebContents(web_contents);
+  // TabDialogs::FromWebContents(web_contents)
+  //     ->ShowManagePasswordsBubble(!controller->IsAutomaticallyOpeningBubble());
 }
 
 void SendTabToSelfFromPageAction(Browser* browser) {

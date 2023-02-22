@@ -64,7 +64,7 @@ void MisesRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   metrics::TabStatsTracker::RegisterPrefs(registry);
   performance_manager::user_tuning::prefs::RegisterLocalStatePrefs(registry);
   RegisterBrowserPrefs(registry);
-  StartupBrowserCreator::RegisterLocalStatePrefs(registry);
+  //StartupBrowserCreator::RegisterLocalStatePrefs(registry);
   task_manager::TaskManagerInterface::RegisterPrefs(registry);
   UpgradeDetector::RegisterPrefs(registry);
   WhatsNewUI::RegisterLocalStatePrefs(registry);
@@ -97,10 +97,10 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   policy::DeveloperToolsPolicyHandler::RegisterProfilePrefs(registry);
   PromoService::RegisterProfilePrefs(registry);
   RegisterReadAnythingProfilePrefs(registry);
-  settings::SettingsUI::RegisterProfilePrefs(registry);
+  //settings::SettingsUI::RegisterProfilePrefs(registry);
   send_tab_to_self::RegisterProfilePrefs(registry);
   signin::RegisterProfilePrefs(registry);
-  StartupBrowserCreator::RegisterProfilePrefs(registry);
+  //StartupBrowserCreator::RegisterProfilePrefs(registry);
   tab_search_prefs::RegisterProfilePrefs(registry);
   TaskModuleService::RegisterProfilePrefs(registry);
   UnifiedAutoplayConfig::RegisterProfilePrefs(registry);

@@ -624,7 +624,6 @@ void ShowWebAppSettings(Browser* browser,
 #if !BUILDFLAG(IS_ANDROID)
   base::UmaHistogramEnumeration(
       web_app::kAppSettingsPageEntryPointsHistogramName, entry_point);
-#endif
 
   const GURL link_destination(chrome::kChromeUIWebAppSettingsURL + app_id);
   NavigateParams params(browser->profile(), link_destination,
@@ -632,6 +631,7 @@ void ShowWebAppSettings(Browser* browser,
   params.disposition = WindowOpenDisposition::NEW_FOREGROUND_TAB;
   params.browser = browser;
   Navigate(&params);
+#endif
 }
 #endif
 

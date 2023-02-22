@@ -425,26 +425,29 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                                    const std::string& error);
   bool HasRequestFromOrigin(const url::Origin& origin) const;
   void RemoveChainIdRequest(const std::string& chain_id);
-  void OnGetFilStateSearchMsgLimited(
-      GetFilStateSearchMsgLimitedCallback callback,
-      const std::string& cid,
-      APIRequestResult api_request_result);
-  void OnGetFilBlockHeight(GetFilBlockHeightCallback callback,
-                           APIRequestResult api_request_result);
   void OnGetBlockNumber(GetBlockNumberCallback callback,
                         APIRequestResult api_request_result);
   void OnGetFeeHistory(GetFeeHistoryCallback callback,
                        APIRequestResult api_request_result);
   void OnEthGetBalance(GetBalanceCallback callback,
                        APIRequestResult api_request_result);
-  void OnFilGetBalance(GetBalanceCallback callback,
-                       APIRequestResult api_request_result);
   void OnEthGetTransactionCount(GetTxCountCallback callback,
                                 APIRequestResult api_request_result);
+/*
+
+  void OnGetFilStateSearchMsgLimited(
+      GetFilStateSearchMsgLimitedCallback callback,
+      const std::string& cid,
+      APIRequestResult api_request_result);
+  void OnGetFilBlockHeight(GetFilBlockHeightCallback callback,
+                           APIRequestResult api_request_result);
+  void OnFilGetBalance(GetBalanceCallback callback,
+                       APIRequestResult api_request_result);
   void OnFilGetTransactionCount(GetFilTxCountCallback callback,
                                 APIRequestResult api_request_result);
   void OnSendFilecoinTransaction(SendFilecoinTransactionCallback callback,
                                  APIRequestResult api_request_result);
+*/
   void OnGetTransactionReceipt(GetTxReceiptCallback callback,
                                APIRequestResult api_request_result);
   void OnSendRawTransaction(SendRawTxCallback callback,
