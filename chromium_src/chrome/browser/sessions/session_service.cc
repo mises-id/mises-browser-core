@@ -518,7 +518,7 @@ bool SessionService::RestoreIfNecessary(const StartupTabs& startup_tabs,
       MoveCurrentSessionToLastSession();
       move_on_new_browser_ = false;
     }
-#if BUILDFLAG(IS_CHROMEOS)
+#if !BUILDFLAG(IS_ANDROID)
     SessionStartupPref pref = StartupBrowserCreator::GetSessionStartupPref(
         *base::CommandLine::ForCurrentProcess(), profile());
     sessions::TabRestoreService* tab_restore_service =

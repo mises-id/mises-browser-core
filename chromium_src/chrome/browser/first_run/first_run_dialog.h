@@ -22,7 +22,12 @@ namespace first_run {
 // desktop Linux official builds when metrics reporting is not already enabled.
 // Invokes ChangeMetricsReportingState() if consent is given to enable crash
 // reporting, and may initiate the flow to set the default browser.
+#if BUILDFLAG(IS_ANDROID)
 void ShowFirstRunDialog(Profile* profile) {};
+#else
+void ShowFirstRunDialog(Profile* profile);
+#endif
+
 void ShowFirstRunDialogViews(Profile* profile);
 // Maintain Cocoa-based first run dialog until we are confident that views'
 // implementation works well on macOS.

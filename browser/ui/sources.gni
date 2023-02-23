@@ -6,7 +6,6 @@ if (is_android) {
   mises_browser_ui_sources += [
       "//mises/chromium_src/chrome/browser/ui/window_sizer/window_sizer_android.cc",
       "//mises/chromium_src/chrome/browser/ui/views/accelerator_utils_android.cc",
-      "views/frame/browser_non_client_frame_view_factory_views.cc",
       "//mises/chromium_src/chrome/browser/ui/views/frame/native_browser_frame_factory_android.cc",
       "//mises/chromium_src/chrome/browser/ui/views/frame/desktop_browser_frame_android.cc",
       "//mises/chromium_src/chrome/browser/ui/views/frame/desktop_browser_frame_android.h",
@@ -15,9 +14,10 @@ if (is_android) {
       "//mises/chromium_src/chrome/browser/ui/views/chrome_views_delegate_android.cc",
       "//mises/chromium_src/chrome/browser/ui/views/dropdown_bar_host_android.cc",
       "//mises/chromium_src/chrome/browser/ui/startup/startup_browser_creator_android.cc",
+      "//mises/chromium_src/chrome/browser/ui/profile_picker_android.cc",
       "views/profiles/badged_profile_photo.cc",
       "views/profiles/badged_profile_photo.h",
-      "profile_picker.cc",
+      "views/frame/browser_non_client_frame_view_factory_views.cc",
   ]
   mises_browser_ui_exception_sources += [
       "views/payments/contact_info_editor_view_controller.cc",
