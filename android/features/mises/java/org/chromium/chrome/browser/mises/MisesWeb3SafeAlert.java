@@ -129,7 +129,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 
 
         final String txtBegin = "The contract address: ";
-        final String txtEnd = "\nyou're interacting with might a Phishing/Scam address. " + System.lineSeparator();
+        final String txtEnd = "\nyou're interacting with might be a Phishing/Scam address. " + System.lineSeparator();
         final String txtNotice = "\nPlease notice the high risk of losing you assets when you continue!";
         SpannableString spannable = new SpannableString(txtBegin + mAddress + txtEnd + txtNotice);
         spannable.setSpan(new ForegroundColorSpan(Color.RED), txtBegin.length(), txtBegin.length()+mAddress.length(), 0);
