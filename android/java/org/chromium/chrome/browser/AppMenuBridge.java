@@ -24,19 +24,19 @@ public class AppMenuBridge {
         mNativeAppMenuBridge = nativeAppMenuBridge;
     }
     public void openDevTools(WebContents w){
-	AppMenuBridgeJni.get().openDevTools(mNativeAppMenuBridge, AppMenuBridge.this, w);
+	    AppMenuBridgeJni.get().openDevTools(mNativeAppMenuBridge, AppMenuBridge.this, w);
     };
     public void disableProxy(){
-	AppMenuBridgeJni.get().disableProxy(mNativeAppMenuBridge, AppMenuBridge.this);
+	    AppMenuBridgeJni.get().disableProxy(mNativeAppMenuBridge, AppMenuBridge.this);
     };
     public String getRunningExtensions(WebContents w){
-	return AppMenuBridgeJni.get().getRunningExtensions(mNativeAppMenuBridge, AppMenuBridge.this, w);
+	    return AppMenuBridgeJni.get().getRunningExtensions(mNativeAppMenuBridge, AppMenuBridge.this, w);
     };
     public boolean isProxyEnabled(){
         return AppMenuBridgeJni.get().isProxyEnabled(mNativeAppMenuBridge, AppMenuBridge.this);
     };
     public void grantExtensionActiveTab(WebContents w,String s){
-	AppMenuBridgeJni.get().grantExtensionActiveTab(mNativeAppMenuBridge, AppMenuBridge.this, w,s);
+	    AppMenuBridgeJni.get().grantExtensionActiveTab(mNativeAppMenuBridge, AppMenuBridge.this, w,s);
     };
     public void callExtension(WebContents w,String s){
         AppMenuBridgeJni.get().callExtension(mNativeAppMenuBridge, AppMenuBridge.this,w,s);
@@ -65,14 +65,14 @@ public class AppMenuBridge {
 
     @NativeMethods
     interface Natives {
-	AppMenuBridge getForProfile(Profile profile);
-	void openDevTools(long nativeAppMenuBridge, AppMenuBridge caller, WebContents w);
-	void disableProxy(long nativeAppMenuBridge, AppMenuBridge caller);
-	String getRunningExtensions(long nativeAppMenuBridge, AppMenuBridge caller, WebContents w);
-	boolean isProxyEnabled(long nativeAppMenuBridge, AppMenuBridge caller);
-	void grantExtensionActiveTab(long nativeAppMenuBridge, AppMenuBridge caller, WebContents w,String s);
-	void callExtension(long nativeAppMenuBridge, AppMenuBridge caller, WebContents w,String s);
-	void destroy(long nativeAppMenuBridge, AppMenuBridge caller);
+        AppMenuBridge getForProfile(Profile profile);
+        void openDevTools(long nativeAppMenuBridge, AppMenuBridge caller, WebContents w);
+        void disableProxy(long nativeAppMenuBridge, AppMenuBridge caller);
+        String getRunningExtensions(long nativeAppMenuBridge, AppMenuBridge caller, WebContents w);
+        boolean isProxyEnabled(long nativeAppMenuBridge, AppMenuBridge caller);
+        void grantExtensionActiveTab(long nativeAppMenuBridge, AppMenuBridge caller, WebContents w,String s);
+        void callExtension(long nativeAppMenuBridge, AppMenuBridge caller, WebContents w,String s);
+        void destroy(long nativeAppMenuBridge, AppMenuBridge caller);
     }
 }
 

@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import org.chromium.base.annotations.NativeMethods;
 
 public class MisesController {
     private static final String TAG = "MisesController";
@@ -23,8 +24,9 @@ public class MisesController {
     private static MisesController sInstance;
 
     public interface MisesControllerObserver {
-	void OnMisesUserInfoChanged();
+	    void OnMisesUserInfoChanged();
         void OnExtensionDNRActionCountChanged(final String base64Image);
+        void OnWeb3SafePhishingDetected(final String address);
     }
 
     ArrayList<MisesControllerObserver> observers_ = new ArrayList<>();
@@ -51,13 +53,13 @@ public class MisesController {
             mMisesToken = "";
             mMisesNickname = "";
             mMisesAvatar = "";
-	    mInfoCache = "";
+	        mInfoCache = "";
         } else {
             try {
                 JSONObject jsonMessage = new JSONObject(json);
                 if (jsonMessage.has("misesId")) {
                     mMisesId = jsonMessage.getString("misesId");
-		}
+		        }
                 if (jsonMessage.has("token")) {
                     mMisesToken = jsonMessage.getString("token");
                 }
@@ -65,27 +67,35 @@ public class MisesController {
                     mMisesNickname = jsonMessage.getString("nickname");
                 }
                 if (jsonMessage.has("avatar")) {
-   		    mMisesAvatar = jsonMessage.getString("avatar");
+   		            mMisesAvatar = jsonMessage.getString("avatar");
                 }
-	        mInfoCache = json;
+	            mInfoCache = json;
             } catch (JSONException e) {
                 Log.e(TAG, "load MisesUserInfo from cache %s error", json);
-		mInfoCache = "";
+		        mInfoCache = "";
             }
-	    for (MisesControllerObserver observer : observers_) {
-	        observer.OnMisesUserInfoChanged();
-	    }
+            for (MisesControllerObserver observer : observers_) {
+                observer.OnMisesUserInfoChanged();
+            }
         } 
     }
     public void NotifyExtensionDNRActionCountChange(final String base64Image) {
         for (MisesControllerObserver observer : observers_) {
-	    observer.OnExtensionDNRActionCountChanged(base64Image);
+	        observer.OnExtensionDNRActionCountChanged(base64Image);
+        }
+    }
+
+    @CalledByNative
+    public static void NotifyPhishingDetected(final String address) {
+        MisesController instance = getInstance();
+        for (MisesControllerObserver observer : instance.observers_) {
+            observer.OnWeb3SafePhishingDetected(address);
         }
     }
 
     @CalledByNative
     public static String getMisesUserInfo() {
-	return sInstance.mInfoCache;
+	    return sInstance.mInfoCache;
     }
 
     @CalledByNative
@@ -115,7 +125,7 @@ public class MisesController {
                     instance.mMisesAvatar = "";
                 }
                 SharedPreferencesManager.getInstance().setMisesUserInfo(json);
-		sInstance.mInfoCache = json;
+		        sInstance.mInfoCache = json;
             } catch (JSONException e) {
                 Log.e(TAG, "setMisesUserInfo from plugin %s error", json);
             }
@@ -168,5 +178,14 @@ public class MisesController {
 	    mLastShareUrl = "";
 	    mLastShareTitle = "";
 	    mLastShareIcon = "";
+    }
+
+    public void callbackPhishingDetected(final String address, int action) {
+        MisesControllerJni.get().callbackPhishingDetected(address, action);
+    }
+
+    @NativeMethods
+    interface Natives {
+        void callbackPhishingDetected(final String address, int action);
     }
 }
