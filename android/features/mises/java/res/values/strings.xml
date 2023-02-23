@@ -30,7 +30,7 @@
     <string name="lbl_update_download_complete_tip">An update has just been downloaded, install now?</string>
 
     <string name="web3_safe_alert_title">Risk Detected!</string>
-    <string name="web3_safe_block">Continue</string>
+    <string name="web3_safe_block">I understand</string>
     <string name="web3_safe_ignor">Ignore warnings from this site</string>
     <string name="web3_safe_blockem_start">Powered by</string>
     <string name="web3_safe_blockem_end">More protections >></string>
