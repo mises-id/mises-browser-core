@@ -1,1 +1,459 @@
-!function(n){var i={};function r(e){var t;return(i[e]||(t=i[e]={i:e,l:!1,exports:{}},n[e].call(t.exports,t,t.exports,r),t.l=!0,t)).exports}r.m=n,r.c=i,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)r.d(n,i,function(e){return t[e]}.bind(null,i));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=1655)}({1655:function(e,t,n){e.exports=n(1657)},1657:function(e,t,n){"use strict";n.r(t);var i=function(e,s,a,c){return new(a=a||Promise)(function(n,t){function i(e){try{o(c.next(e))}catch(e){t(e)}}function r(e){try{o(c.throw(e))}catch(e){t(e)}}function o(e){var t;e.done?n(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(i,r)}o((c=c.apply(e,s||[])).next())})};const o=new class{constructor(){this.eventListener={addMessageListener:e=>window.addEventListener("message",e),removeMessageListener:e=>window.removeEventListener("message",e),postMessage:e=>window.postMessage(e,window.location.origin)}}requestMethod(e,t){var n=new Uint8Array(8);const o=Array.from(crypto.getRandomValues(n)).map(e=>e.toString(16)).join(""),s={type:"mises-proxy-request",id:o,method:e,params:t};return new Promise((t,n)=>{const i=setTimeout(()=>{t("receive response timeout")},500),r=e=>{var e=this.parseMessage?this.parseMessage(e.data):e.data;e&&"mises-safe-proxy-request-response"===e.type&&e.id===o&&(this.eventListener.removeMessageListener(r),(e=e.result)?e.error?n(new Error(e.error)):(clearTimeout(i),t(e.return)):n(new Error("Result is null")))};this.eventListener.addMessageListener(r),this.eventListener.postMessage(s)})}verifyDomain(e){return i(this,void 0,void 0,function*(){return yield this.requestMethod("verifyDomain",{domain:e})})}verifyContract(e,t){return i(this,void 0,void 0,function*(){return yield this.requestMethod("verifyContract",{contractAddress:e,domain:t})})}consoleLog(e){return this.requestMethod("consoleLog",e)}listenCurrentPage(r){return new Promise((t,n)=>{const i=e=>{var e=e.data;e&&"mises-proxy-listen-current-page"===e.type&&e.method===r&&(this.eventListener.removeMessageListener(i),(e=e.data)?t(e):n(new Error("Result is null")))};this.eventListener.addMessageListener(i)})}postUserDecision(e){var t=new Uint8Array(8),t=Array.from(crypto.getRandomValues(t)).map(e=>e.toString(16)).join("");this.eventListener.postMessage({type:"mises-proxy-listen-current-page",id:t,method:"userDecision",data:{value:e}})}listenUserDecision(){return i(this,void 0,void 0,function*(){return yield this.listenCurrentPage("userDecision")})}};var s=function(e,s,a,c){return new(a=a||Promise)(function(n,t){function i(e){try{o(c.next(e))}catch(e){t(e)}}function r(e){try{o(c.throw(e))}catch(e){t(e)}}function o(e){var t;e.done?n(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(i,r)}o((c=c.apply(e,s||[])).next())})};const r={waitCheck:"waitCheck",pendingCheck:"pendingCheck",finshedCheck:"finshedCheck"},a={whiteDomain:"white",blackDomain:"black",fuzzyDomain:"fuzzy",normalDomain:"normal"},c="mises-safe-container";new class{constructor(){this.container=null,this.config={maxRetryNum:3,retryCount:0},this.domainInfo={domainSafeType:"",hostname:0<window.location.ancestorOrigins.length?(e=>{let t=e;var n=(t=t.match(/^[a-zA-Z0-9-]+:\/\/.+$/)?t.replace(/^[a-zA-Z0-9-]+:\/\//,""):t).indexOf("/"),n=(t=0<=n?t.slice(0,n):t).indexOf("?"),n=(t=0<=n?t.slice(0,n):t).split(".").map(e=>e.trim()).filter(e=>0<e.length);if(n.length<2)throw new Error("Invalid domain: "+e);e=n[n.length-1].indexOf(":");return 0<=e&&(n[n.length-1]=n[n.length-1].slice(0,e)),n.join(".")})(window.location.ancestorOrigins[0]):window.location.hostname,type:a.normalDomain,suggestedDomain:"",checkStatus:r.waitCheck,isShowDomainAlert:!1},this.init()}init(){this.initContainer(),this.initWeb3Proxy()}initContainer(){var e=document.getElementById(c);e?this.container=e:(this.container=document.createElement("div"),this.container.setAttribute("id",c),this.container.setAttribute("class","chrome-extension-base-class"+Math.floor(1e4*Math.random())),document.body.appendChild(this.container))}initWeb3Proxy(){const t={apply:(e,t,r)=>s(this,void 0,void 0,function*(){var t=[...r][0],n=this.isNotableAction(t).result,i=void 0!==t?t.method:"unKonwn";if(this.isShouldVerifyDomain()&&this.verifyDomain(),this.isShouldVerifyContract()&&n){let e;e="eth_signTypedData_v4"===i?(n=t.params[1],JSON.parse(n).domain.verifyingContract):t.params[0].to,o.verifyContract(e,this.domainInfo.hostname)}return e(...r)})},n=setInterval(()=>{var e;void 0!==window.ethereum?(e=new Proxy(window.ethereum.request,t),window.ethereum.request=e,clearInterval(n)):void 0!==window.web3&&(e=new Proxy(window.web3.currentProvider,t),window.web3.currentProvider=e,clearInterval(n))},1e3);setTimeout(()=>{clearInterval(n)},1e4)}isNotableAction(t){try{if(void 0!==t.method){if("eth_sendTransaction"===t.method){let e="transfer";return{result:!0,action:e=0!==t.params.length&&void 0!==t.params[0].data?e:"transfer"}}if("eth_signTypedData_v4"===t.method)return{result:!0,action:"sign"}}return{result:!1}}catch(e){return{result:!1}}}isShouldVerifyContract(){return this.domainInfo.domainSafeType!==a.whiteDomain}isShouldVerifyDomain(){return!1}verifyDomain(){return s(this,void 0,void 0,function*(){if(this.domainInfo.checkStatus===r.finshedCheck)return!0;this.domainInfo.checkStatus=r.pendingCheck;var e=yield o.verifyDomain(this.domainInfo.hostname);this.domainInfo.checkStatus=r.finshedCheck,e?(this.domainInfo.domainSafeType=e.type_string,this.domainInfo.suggestedDomain=e.origin):this.config.retryCount<this.config.maxRetryNum?(this.domainInfo.checkStatus=r.waitCheck,this.config.retryCount++):this.domainInfo.checkStatus=r.finshedCheck})}}}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1654);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 1654:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(1656);
+
+
+/***/ }),
+
+/***/ 1656:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// CONCATENATED MODULE: ./src/content-scripts/safe-inject/post-message.ts
+// proxy scripts 发送和监听消息
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+class ProxyClient {
+    constructor() {
+        this.eventListener = {
+            addMessageListener: (fn) => window.addEventListener("message", fn),
+            removeMessageListener: (fn) => window.removeEventListener("message", fn),
+            postMessage: (message) => window.postMessage(message, window.location.origin),
+        };
+    }
+    requestMethod(method, params) {
+        const bytes = new Uint8Array(8);
+        const id = Array.from(crypto.getRandomValues(bytes))
+            .map((value) => {
+            return value.toString(16);
+        })
+            .join("");
+        const proxyMessage = {
+            type: "mises-proxy-request",
+            id,
+            method,
+            params,
+        };
+        return new Promise((resolve, reject) => {
+            const timer = setTimeout(() => {
+                resolve("receive response timeout");
+            }, 500);
+            const receiveResponse = (e) => {
+                const proxyResponse = this.parseMessage
+                    ? this.parseMessage(e.data)
+                    : e.data;
+                if (!proxyResponse ||
+                    proxyResponse.type !== "mises-safe-proxy-request-response") {
+                    return;
+                }
+                if (proxyResponse.id !== id) {
+                    return;
+                }
+                this.eventListener.removeMessageListener(receiveResponse);
+                const result = proxyResponse.result;
+                if (!result) {
+                    reject(new Error("Result is null"));
+                    return;
+                }
+                if (result.error) {
+                    reject(new Error(result.error));
+                    return;
+                }
+                clearTimeout(timer);
+                resolve(result.return);
+            };
+            this.eventListener.addMessageListener(receiveResponse);
+            this.eventListener.postMessage(proxyMessage);
+        });
+    }
+    verifyDomain(domain) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requestMethod("verifyDomain", { domain });
+        });
+    }
+    verifyContract(contractAddress, domain) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requestMethod("verifyContract", {
+                contractAddress,
+                domain,
+            });
+        });
+    }
+    consoleLog(log) {
+        return this.requestMethod("consoleLog", log);
+    }
+    //CurrentPage
+    listenCurrentPage(method) {
+        return new Promise((resolve, reject) => {
+            const receiveResponse = (e) => {
+                const proxyResponse = e.data;
+                if (!proxyResponse ||
+                    proxyResponse.type !== "mises-proxy-listen-current-page") {
+                    return;
+                }
+                if (proxyResponse.method !== method) {
+                    return;
+                }
+                this.eventListener.removeMessageListener(receiveResponse);
+                const result = proxyResponse.data;
+                if (!result) {
+                    reject(new Error("Result is null"));
+                    return;
+                }
+                resolve(result);
+            };
+            this.eventListener.addMessageListener(receiveResponse);
+        });
+    }
+    postUserDecision(decision) {
+        const bytes = new Uint8Array(8);
+        const id = Array.from(crypto.getRandomValues(bytes))
+            .map((value) => {
+            return value.toString(16);
+        })
+            .join("");
+        const proxyMessage = {
+            type: "mises-proxy-listen-current-page",
+            id,
+            method: "userDecision",
+            data: { value: decision },
+        };
+        this.eventListener.postMessage(proxyMessage);
+    }
+    listenUserDecision() {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("listenUserDecision");
+            return yield this.listenCurrentPage("userDecision");
+        });
+    }
+}
+const proxyClient = new ProxyClient();
+
+
+// CONCATENATED MODULE: ./src/content-scripts/safe-inject/injected-script.tsx
+var injected_script_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+// /* global chrome */
+
+// const dictionary = {
+//   "0x095ea7b3": "approve",
+//   "0xa22cb465": "setApprovalForAll",
+//   "0x0752881a": "transfer",
+//   "0x42842e0e": "safeTransferFrom",
+//   "0xb88d4fde": "safeTransferFrom1",
+// };
+// type dictionaryKeys = keyof typeof dictionary;
+const domainCheckStatus = {
+    waitCheck: "waitCheck",
+    pendingCheck: "pendingCheck",
+    finshedCheck: "finshedCheck",
+};
+const domainSafeType = {
+    whiteDomain: "white",
+    blackDomain: "black",
+    fuzzyDomain: "fuzzy",
+    normalDomain: "normal",
+};
+const containerId = "mises-safe-container";
+const parseOriginToHostname = (param) => {
+    let domain = param;
+    if (domain.match(/^[a-zA-Z0-9-]+:\/\/.+$/)) {
+        domain = domain.replace(/^[a-zA-Z0-9-]+:\/\//, "");
+    }
+    const slash = domain.indexOf("/");
+    if (slash >= 0) {
+        domain = domain.slice(0, slash);
+    }
+    const qMark = domain.indexOf("?");
+    if (qMark >= 0) {
+        domain = domain.slice(0, qMark);
+    }
+    const split = domain
+        .split(".")
+        .map((str) => str.trim())
+        .filter((str) => str.length > 0);
+    if (split.length < 2) {
+        throw new Error(`Invalid domain: ${param}`);
+    }
+    const i = split[split.length - 1].indexOf(":");
+    if (i >= 0) {
+        split[split.length - 1] = split[split.length - 1].slice(0, i);
+    }
+    return split.join(".");
+};
+class injected_script_ContentScripts {
+    constructor() {
+        this.container = null;
+        this.config = {
+            maxRetryNum: 3,
+            retryCount: 0,
+        };
+        this.domainInfo = {
+            domainSafeType: "",
+            hostname: window.location.ancestorOrigins.length > 0
+                ? parseOriginToHostname(window.location.ancestorOrigins[0])
+                : window.location.hostname,
+            type: domainSafeType.normalDomain,
+            suggestedDomain: "",
+            checkStatus: domainCheckStatus.waitCheck,
+            isShowDomainAlert: false,
+        };
+        this.init();
+    }
+    init() {
+        this.initContainer();
+        this.initWeb3Proxy();
+    }
+    // 初始化外层包裹元素
+    initContainer() {
+        const base = document.getElementById(containerId);
+        if (base) {
+            this.container = base;
+            return;
+        }
+        this.container = document.createElement("div");
+        this.container.setAttribute("id", containerId);
+        this.container.setAttribute("class", `chrome-extension-base-class${Math.floor(Math.random() * 10000)}`);
+        document.body.appendChild(this.container);
+    }
+    initWeb3Proxy() {
+        console.log("initWeb3Proxy");
+        // const that = this;
+        // 初始化代理
+        const handler = {
+            apply: (target, _, argumentsList) => injected_script_awaiter(this, void 0, void 0, function* () {
+                const constList = [...argumentsList][0];
+                console.log("Transaction Method Data :>> ", constList);
+                const isNotable = this.isNotableAction(constList).result;
+                const methodName = constList !== undefined ? constList.method : "unKonwn";
+                //is should verifying domain
+                if (this.isShouldVerifyDomain()) {
+                    this.verifyDomain();
+                }
+                if (this.isShouldVerifyContract() && isNotable) {
+                    let contractAddress;
+                    //TODO check
+                    if (methodName === "eth_signTypedData_v4") {
+                        const v4_sign_params = constList.params[1];
+                        const v4_sign_data = JSON.parse(v4_sign_params);
+                        contractAddress = v4_sign_data.domain.verifyingContract;
+                    }
+                    else {
+                        contractAddress = constList.params[0].to;
+                    }
+                    const verifyContractResult = proxyClient.verifyContract(contractAddress, this.domainInfo.hostname);
+                    console.log("verifyContractResult :>>", verifyContractResult);
+                    return target(...argumentsList);
+                    //is should show contract address risking alert
+                }
+                return target(...argumentsList);
+            }),
+        };
+        const proxyInterval = setInterval(() => proxyETH(), 1000);
+        function proxyETH() {
+            if (typeof window.ethereum !== "undefined") {
+                const proxy1 = new Proxy(window.ethereum.request, handler);
+                window.ethereum.request = proxy1;
+                //window.ethereum.send = proxy1;
+                //window.ethereum.sendAsync = proxy1;
+                //window.ethereum.enable = proxy1;
+                console.log("Find ethereum");
+                clearInterval(proxyInterval);
+            }
+            else if (typeof window.web3 !== "undefined") {
+                const proxy2 = new Proxy(window.web3.currentProvider, handler);
+                window.web3.currentProvider = proxy2;
+                console.log("Find web3");
+                clearInterval(proxyInterval);
+            }
+            else {
+                console.log("Did not find ethereum or web3");
+            }
+        }
+        setTimeout(() => {
+            clearInterval(proxyInterval);
+        }, 10000);
+    }
+    //isNotableAction
+    isNotableAction(constList) {
+        // 检查是否为关注的交易
+        try {
+            // const notableActionList = ['approve', 'setApprovalForAll', 'transfer', 'safeTransferFrom', 'safeTransferFrom1'];
+            if (typeof constList.method !== "undefined") {
+                if (constList.method === "eth_sendTransaction") {
+                    let functionName = "transfer";
+                    // 当 params 长度为 0 或 params[0].data 为 undefined 时
+                    if (constList.params.length === 0) {
+                        functionName = "transfer";
+                    }
+                    else if (constList.params[0].data === undefined) {
+                        functionName = "transfer";
+                    }
+                    else {
+                    }
+                    return { result: true, action: functionName };
+                }
+                if (constList.method === "eth_signTypedData_v4") {
+                    return { result: true, action: "sign" };
+                }
+            }
+            return { result: false };
+        }
+        catch (error) {
+            return { result: false };
+        }
+    }
+    //isShouldVerifyContract
+    isShouldVerifyContract() {
+        return this.domainInfo.domainSafeType !== domainSafeType.whiteDomain;
+    }
+    //isShouldVerifyDomain
+    isShouldVerifyDomain() {
+        return false;
+        //ignore list
+        return this.domainInfo.checkStatus !== domainCheckStatus.finshedCheck;
+    }
+    //verifyDomain
+    verifyDomain() {
+        return injected_script_awaiter(this, void 0, void 0, function* () {
+            if (this.domainInfo.checkStatus === domainCheckStatus.finshedCheck) {
+                return true;
+            }
+            /* if (this.domainInfo.checkStatus === domainCheckStatus.pendingCheck) {
+              return false;
+            } */
+            this.domainInfo.checkStatus = domainCheckStatus.pendingCheck;
+            const checkResult = yield proxyClient.verifyDomain(this.domainInfo.hostname);
+            this.domainInfo.checkStatus = domainCheckStatus.finshedCheck;
+            console.log("checkResult :>>", checkResult);
+            //parse the check result
+            if (checkResult) {
+                this.domainInfo.domainSafeType = checkResult.type_string;
+                this.domainInfo.suggestedDomain = checkResult.origin;
+            }
+            else if (this.config.retryCount < this.config.maxRetryNum) {
+                this.domainInfo.checkStatus = domainCheckStatus.waitCheck;
+                this.config.retryCount++;
+                console.log("verifyDomain retry ", this.config.retryCount);
+            }
+            else {
+                this.domainInfo.checkStatus = domainCheckStatus.finshedCheck;
+            }
+        });
+    }
+}
+
+// CONCATENATED MODULE: ./src/content-scripts/safe-inject/index.ts
+
+new injected_script_ContentScripts();
+
+
+/***/ })
+
+/******/ });
