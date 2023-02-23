@@ -43,13 +43,13 @@
             android:text="@string/web3_safe_alert_title"
             android:textColor="#f03e3e"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
 
         <TextView
             android:id="@+id/detail"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="200dp"
             android:layout_weight="1"
             android:textSize="17sp"
             android:gravity="start|top"
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/mises_share_bg"
-            android:id="@+id/checkbox_ignore" 
+            android:id="@+id/checkbox_ignore"
             android:textAllCaps="false"
             android:textColor="#ff666666"
             android:textSize="17sp"

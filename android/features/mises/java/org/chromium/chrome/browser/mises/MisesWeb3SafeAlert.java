@@ -129,8 +129,8 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 
 
         final String txtBegin = "The contract address: ";
-        final String txtEnd = "\nyou're interacting with is identified as a Phishing/Scam address. " + System.lineSeparator();
-        final String txtNotice = "Please notice the high risk of losing you assets when you continue!";
+        final String txtEnd = "\nyou're interacting with might a Phishing/Scam address. " + System.lineSeparator();
+        final String txtNotice = "\nPlease notice the high risk of losing you assets when you continue!";
         SpannableString spannable = new SpannableString(txtBegin + mAddress + txtEnd + txtNotice);
         spannable.setSpan(new ForegroundColorSpan(Color.RED), txtBegin.length(), txtBegin.length()+mAddress.length(), 0);
         spannable.setSpan(new ForegroundColorSpan(Color.BLACK), txtBegin.length()+mAddress.length()+txtEnd.length(), txtBegin.length()+mAddress.length()+txtEnd.length() + txtNotice.length(), 0);
@@ -142,16 +142,20 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         btn_block.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MisesController.getInstance().callbackPhishingDetected(mAddress, 0);
-                dismiss();
                 boolean ignore = checkbox_ignore.isChecked();
+                int userAction = 1;
+                if (ignore) {
+                  userAction = 2;
+                }
+                MisesController.getInstance().callbackPhishingDetected(mAddress, userAction);
+                dismiss();
                 Bundle params = new Bundle();
                 if (ignore) {
                     params.putString("step", "ignor");
                 } else {
                     params.putString("step", "block");
                 }
-                
+
                 FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
             }
         });
