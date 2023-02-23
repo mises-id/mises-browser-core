@@ -1,5 +1,5 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
-index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..7503d237d6165f0c93228c39cab2a94f9cf399da 100644
+index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..06ffcf5c33ea6e3daa3b03640e2495d6320017dc 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 @@ -55,7 +55,7 @@ public class UrlUtilities {

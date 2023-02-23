@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#if BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/ui/profile_picker.h"
 
 #include <string>
@@ -82,9 +81,3 @@ void ProfilePicker::Show(Params&& params) {
 base::FilePath ProfilePicker::GetPickerProfilePath() {
   return ProfileManager::GetSystemProfilePath();
 }
-
-#else
-
-#include "src/chrome/browser/ui/profile_picker.cc"
-
-#endif

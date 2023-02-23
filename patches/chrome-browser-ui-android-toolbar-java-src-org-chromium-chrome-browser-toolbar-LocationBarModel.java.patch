@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
-index 334ed755866a92b78cda5cd5aa4eadba574ff958..0f737e5658d61990d8a4fed49243e422b15dede4 100644
+index 334ed755866a92b78cda5cd5aa4eadba574ff958..7ae1010048d5929bd9d9cda7021699eb4ec87a8d 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
 @@ -290,7 +290,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
