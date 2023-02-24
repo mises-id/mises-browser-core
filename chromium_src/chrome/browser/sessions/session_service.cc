@@ -121,9 +121,9 @@ SessionService::SessionService(Profile* profile)
           SessionServiceBase::SessionServiceType::kSessionRestore),
       is_first_session_service_(
           InstanceTracker::RegisterNewSessionService(profile)) {
+#if !BUILDFLAG(IS_ANDROID)
   if (is_first_session_service_)
     LogSessionServiceStartEvent(profile, HasPendingUncleanExit(profile));
-#if !BUILDFLAG(IS_ANDROID)
   closing_all_browsers_subscription_ = chrome::AddClosingAllBrowsersCallback(
       base::BindRepeating(&SessionService::OnClosingAllBrowsersChanged,
                           base::Unretained(this)));
@@ -210,7 +210,9 @@ bool SessionService::ShouldRestore(Browser* browser) {
   return browser->create_params().restore_id == Browser::kDefaultRestoreId;
 #else
   if (!has_open_trackable_browsers_ &&
+#if !BUILDFLAG(IS_ANDROID)
       !StartupBrowserCreator::InSynchronousProfileLaunch() &&
+#endif
       !SessionRestore::IsRestoring(profile())
 #if BUILDFLAG(IS_MAC)
       // On OSX, a new window should not start a new session if it was opened
@@ -516,6 +518,7 @@ bool SessionService::RestoreIfNecessary(const StartupTabs& startup_tabs,
       MoveCurrentSessionToLastSession();
       move_on_new_browser_ = false;
     }
+#if !BUILDFLAG(IS_ANDROID)
     SessionStartupPref pref = StartupBrowserCreator::GetSessionStartupPref(
         *base::CommandLine::ForCurrentProcess(), profile());
     sessions::TabRestoreService* tab_restore_service =
@@ -530,6 +533,7 @@ bool SessionService::RestoreIfNecessary(const StartupTabs& startup_tabs,
           startup_tabs);
       return true;
     }
+#endif
 #if BUILDFLAG(IS_CHROMEOS)
   } else if (HasPendingUncleanExit(profile())) {
     if (!browser) {

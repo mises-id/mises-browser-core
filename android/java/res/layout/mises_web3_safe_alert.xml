@@ -6,13 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffffff">
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/web3_safe_logo"
-    android:layout_marginRight="0dp"
-    android:layout_marginTop="0dp"
-    android:scaleType="centerInside"/>
 
     <LinearLayout
         android:id="@+id/pop_layout"
@@ -41,8 +34,10 @@
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:text="@string/web3_safe_alert_title"
-            android:textColor="#ffdd4e47"
-            android:textSize="20sp" />
+            android:textColor="#f03e3e"
+            android:textStyle="bold"
+            android:textSize="22sp" />
+
 
         <TextView
             android:id="@+id/detail"
@@ -52,11 +47,11 @@
             android:textSize="17sp"
             android:gravity="start|top"
             android:singleLine="false"
-            android:padding="16dp"
+            android:lineSpacingExtra="6dp"
             android:maxLength="300"/>
 
         <Button
-		    chrome:backgroundTint="@null"    
+		    chrome:backgroundTint="@null"
 		    android:id="@+id/btn_block"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
@@ -71,17 +66,16 @@
             android:layout_height="15dp"
             android:layout_width="match_parent" />
 
-	    <Button
-	        chrome:backgroundTint="@null"
-            android:id="@+id/btn_ignor"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:background="@drawable/mises_share_cancel_bg"
+        <CheckBox
             android:text="@string/web3_safe_ignor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mises_share_bg"
+            android:id="@+id/checkbox_ignore"
             android:textAllCaps="false"
             android:textColor="#ff666666"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            />
 
 
         <View
@@ -89,33 +83,43 @@
             android:layout_width="match_parent" />
 
 
-         <TextView
-                 android:id="@+id/tv_blockem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:ellipsize="end"
-                android:singleLine="false"
-                android:textColor="#ff999999"
-                android:text="@string/web3_safe_blockem"
-                android:textAlignment="center"
-                android:textSize="12sp" />
-        <View
-            android:layout_height="15dp"
-            android:layout_width="match_parent" />
-        <LinearLayout 
+        <LinearLayout
+            android:id="@+id/layout_blockem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_horizontal"
         >
-            <ImageView
-                android:id="@+id/iv_blockem"
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="#ff999999"
+                android:text="@string/web3_safe_blockem_start"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+            <View
+                android:layout_height="match_parent"
+                android:layout_width="5dp" />
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/web3_safe_blockem"
                 android:contentDescription="@null"/>
+            <View
+                android:layout_height="match_parent"
+                android:layout_width="5dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:singleLine="true"
+                android:textColor="#ff999999"
+                android:text="@string/web3_safe_blockem_end"
+                android:textAlignment="center"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

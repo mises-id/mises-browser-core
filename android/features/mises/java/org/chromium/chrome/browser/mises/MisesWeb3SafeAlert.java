@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -27,6 +28,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.app.Dialog;
 
 import org.chromium.chrome.mises.R;
 import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
@@ -79,9 +82,9 @@ public class MisesWeb3SafeAlert extends DialogFragment {
     private FrameLayout view;
 
     private Button btn_block;
-    private Button btn_ignor;
+    private CheckBox checkbox_ignore;
     private TextView tv_title;
-    private ImageView iv_blockem;
+    private LinearLayout layout_blockem;
     private TextView tv_detail;
     private String mAddress;
     private String mUrl;
@@ -101,8 +104,13 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         args.putString("phishing_url", phishingUrl);
         args.putString("phishing_address", phishingAddress);
         f.setArguments(args);
-
         return f;
+    }
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.setCanceledOnTouchOutside(false);
+        return dialog;
     }
 
     @Nullable
@@ -111,9 +119,9 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         this.view = (FrameLayout) inflater.inflate(R.layout.mises_web3_safe_alert, container, false);
         tv_title = view.findViewById(R.id.title);
         tv_detail = view.findViewById(R.id.detail);
-        iv_blockem = view.findViewById(R.id.iv_blockem);
+        layout_blockem = view.findViewById(R.id.layout_blockem);
         btn_block = (Button) view.findViewById(R.id.btn_block);
-        btn_ignor = (Button) view.findViewById(R.id.btn_ignor);
+        checkbox_ignore = (CheckBox) view.findViewById(R.id.checkbox_ignore);
         mContext = getContext();
 
         mAddress = getArguments().getString("phishing_address");
@@ -121,8 +129,8 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 
 
         final String txtBegin = "The contract address: ";
-        final String txtEnd = "\nyou're interacting with is identified as a Phishing Address. " + System.lineSeparator();
-        final String txtNotice = "Please notice the high risk of losing you assets when you continue!";
+        final String txtEnd = "\nyou're interacting with might be a Phishing/Scam address. " + System.lineSeparator();
+        final String txtNotice = "\nPlease notice the risk of losing you assets when you continue!";
         SpannableString spannable = new SpannableString(txtBegin + mAddress + txtEnd + txtNotice);
         spannable.setSpan(new ForegroundColorSpan(Color.RED), txtBegin.length(), txtBegin.length()+mAddress.length(), 0);
         spannable.setSpan(new ForegroundColorSpan(Color.BLACK), txtBegin.length()+mAddress.length()+txtEnd.length(), txtBegin.length()+mAddress.length()+txtEnd.length() + txtNotice.length(), 0);
@@ -130,31 +138,30 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 
         tv_detail.setText( spannable );
 
-        btn_ignor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 销毁弹出框
-                MisesController.getInstance().callbackPhishingDetected(mAddress, 1);
-                dismiss();
-                Bundle params = new Bundle();
-                params.putString("step", "ignor");
-                FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
-            }
-        });
         btn_block.setEnabled(true);
         btn_block.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MisesController.getInstance().callbackPhishingDetected(mAddress, 0);
+                boolean ignore = checkbox_ignore.isChecked();
+                int userAction = 1;
+                if (ignore) {
+                  userAction = 2;
+                }
+                MisesController.getInstance().callbackPhishingDetected(mAddress, userAction);
                 dismiss();
                 Bundle params = new Bundle();
-                params.putString("step", "block");
+                if (ignore) {
+                    params.putString("step", "ignor");
+                } else {
+                    params.putString("step", "block");
+                }
+
                 FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
             }
         });
 
         //blockem
-        iv_blockem.setOnClickListener(new View.OnClickListener() {
+        layout_blockem.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               dismiss();

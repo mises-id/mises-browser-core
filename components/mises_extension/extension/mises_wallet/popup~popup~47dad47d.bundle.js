@@ -11182,20 +11182,12 @@ if (minimal_1.default.util.Long !== long_1.default) {
 /***/ }),
 
 /***/ 202:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 var keys = __webpack_require__(629);
 var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbol';
 
 var toStr = Object.prototype.toString;
-var concat = Array.prototype.concat;
 var origDefineProperty = Object.defineProperty;
-
-var isFunction = function (fn) {
-	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
 var arePropertyDescriptorsSupported = function () {

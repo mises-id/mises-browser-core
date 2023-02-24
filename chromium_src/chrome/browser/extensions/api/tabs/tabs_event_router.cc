@@ -665,9 +665,16 @@ void TabsEventRouter::OnTabModelAdded() {
 void TabsEventRouter::DidSelectTab(TabAndroid* tab,
                                  TabModel::TabSelectionType type) {
   LOG(INFO) << "TabsEventRouter::DidSelectTab " << tab->web_contents();
-  if (!tab->web_contents() || tab->ExtensionWindowID() != -1)
+  if (!tab->web_contents())
     return;
-  DispatchActiveTabChanged(nullptr, tab->web_contents());
+  int tab_id = ExtensionTabUtil::GetTabId(tab->web_contents());
+  if (tab_entries_.find(tab_id) == tab_entries_.end()) {
+    RegisterForTabNotifications(tab->web_contents());
+  }
+  if (tab->ExtensionWindowID() == -1) {
+    DispatchActiveTabChanged(nullptr, tab->web_contents());
+  }
+  
 }
 void TabsEventRouter::WillCloseTab(TabAndroid* tab, bool animate) {
   LOG(INFO) << "TabsEventRouter::WillCloseTab " << tab->web_contents();

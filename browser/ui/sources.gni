@@ -6,7 +6,6 @@ if (is_android) {
   mises_browser_ui_sources += [
       "//mises/chromium_src/chrome/browser/ui/window_sizer/window_sizer_android.cc",
       "//mises/chromium_src/chrome/browser/ui/views/accelerator_utils_android.cc",
-      "views/frame/browser_non_client_frame_view_factory_views.cc",
       "//mises/chromium_src/chrome/browser/ui/views/frame/native_browser_frame_factory_android.cc",
       "//mises/chromium_src/chrome/browser/ui/views/frame/desktop_browser_frame_android.cc",
       "//mises/chromium_src/chrome/browser/ui/views/frame/desktop_browser_frame_android.h",
@@ -14,8 +13,11 @@ if (is_android) {
       "//mises/chromium_src/chrome/browser/ui/android/native_window_tracker_android.h",
       "//mises/chromium_src/chrome/browser/ui/views/chrome_views_delegate_android.cc",
       "//mises/chromium_src/chrome/browser/ui/views/dropdown_bar_host_android.cc",
+      "//mises/chromium_src/chrome/browser/ui/startup/startup_browser_creator_android.cc",
+      "//mises/chromium_src/chrome/browser/ui/profile_picker_android.cc",
       "views/profiles/badged_profile_photo.cc",
       "views/profiles/badged_profile_photo.h",
+      "views/frame/browser_non_client_frame_view_factory_views.cc",
   ]
   mises_browser_ui_exception_sources += [
       "views/payments/contact_info_editor_view_controller.cc",
@@ -113,6 +115,8 @@ if (is_android) {
       "views/autofill/payments/save_card_offer_bubble_views.h",
       "views/autofill/payments/save_upi_offer_bubble_views.cc",
       "views/autofill/payments/save_upi_offer_bubble_views.h",
+      "views/autofill/payments/virtual_card_enroll_bubble_views.cc",
+      "views/autofill/payments/virtual_card_manual_fallback_bubble_views.cc",
 
 
       "views/eye_dropper/eye_dropper_view.cc",
@@ -120,12 +124,19 @@ if (is_android) {
       "views/eye_dropper/eye_dropper_view_mac.h",
       "views/eye_dropper/eye_dropper_view_mac.mm",
 
+      "views/media_router/cast_dialog_view.cc",
+      "views/media_router/media_router_dialog_controller_views.cc",
+      "views/media_router/presentation_receiver_window_view.cc",
+      "views/media_router/presentation_receiver_window_factory.cc",
+
       "tab_contents/chrome_web_contents_view_handle_drop.cc",
       "tab_contents/chrome_web_contents_view_handle_drop.h",
 
       "views/external_protocol_dialog.cc",
-
       "views/external_protocol_dialog.h",
+
+      "webui/discards/discards_ui.cc",
+      "webui/discards/site_data_provider_impl.cc",
       "webui/signin/login_ui_service.cc",
       "webui/signin/login_ui_service.h",
       "webui/signin/login_ui_service_factory.cc",
@@ -134,6 +145,7 @@ if (is_android) {
       "webui/signin/inline_login_handler.h",
       "webui/signin/sync_confirmation_handler.cc",
       "webui/signin/sync_confirmation_handler.h",
+      "webui/signin/sync_confirmation_ui.cc",
 
       "webui/access_code_cast/access_code_cast_dialog.cc",
       "webui/access_code_cast/access_code_cast_dialog.h",
@@ -142,6 +154,18 @@ if (is_android) {
       "webui/access_code_cast/access_code_cast_ui.cc",
       "webui/access_code_cast/access_code_cast_ui.h",
 
+
+      "webui/settings/settings_localized_strings_provider.cc",
+      "webui/settings/settings_clear_browsing_data_handler.cc",
+      "webui/settings/safety_check_handler.cc",
+      "webui/settings/about_handler.cc",
+      "webui/settings/people_handler.cc",
+      "webui/settings/people_handler.h",
+      "webui/settings/settings_ui.cc",
+
+      
+
+      "views/apps/app_dialog/app_uninstall_dialog_view.cc",
       "views/infobars/confirm_infobar.cc",
       "views/infobars/confirm_infobar.h",
       "views/overlay/overlay_window_views.cc",
@@ -150,6 +174,7 @@ if (is_android) {
       "views/page_info/safety_tip_page_info_bubble_view.h",
       "views/passwords/password_generation_popup_view_views.cc",
       "views/passwords/password_generation_popup_view_views.h",
+      "views/passwords/manage_passwords_icon_views.cc",
       "views/ssl_client_certificate_selector.cc",
       "views/ssl_client_certificate_selector.h",
       "views/webid/fedcm_account_selection_view_desktop.cc",
@@ -158,16 +183,13 @@ if (is_android) {
       "views/overlay/video_overlay_window_views.h",
       "views/overlay/document_overlay_window_views.cc",
       "views/overlay/document_overlay_window_views.h",
-      "browser_otr_state.cc",
-      "browser_otr_state.h",
-      "bluetooth/chrome_bluetooth_chooser_controller.cc",
-      "bluetooth/chrome_bluetooth_chooser_controller.h",
       "views/screen_capture_notification_ui_views.cc",
-      "webui/settings/people_handler.cc",
-      "webui/settings/people_handler.h",
+      "views/tab_dialogs_views.cc",
 
       "autofill/payments/local_card_migration_dialog_controller_impl.cc",
       "autofill/payments/local_card_migration_dialog_controller_impl.h",
+      "autofill/payments/local_card_migration_bubble_controller_impl.cc",
+      "autofill/payments/local_card_migration_bubble_controller_impl.h",  
       "autofill/payments/local_card_migration_controller_observer.h",
       "autofill/payments/local_card_migration_dialog.h",
       "autofill/payments/local_card_migration_dialog_factory.h",
@@ -181,6 +203,22 @@ if (is_android) {
       "autofill/payments/save_upi_bubble_controller.h",
       "autofill/payments/save_upi_bubble_controller_impl.cc",
       "autofill/payments/save_upi_bubble_controller_impl.h",
+
+
+      "browser_otr_state.cc",
+      "browser_otr_state.h",
+      "bluetooth/chrome_bluetooth_chooser_controller.cc",
+      "bluetooth/chrome_bluetooth_chooser_controller.h",
+      "passwords/manage_passwords_ui_controller.cc",
+      "passwords/passwords_client_ui_delegate.cc",
+      "pdf/chrome_pdf_web_contents_helper_client.cc",
+      "media_router/presentation_receiver_window_controller.cc",
+      "startup/startup_tab_provider.cc",
+      "startup/startup_browser_creator_impl.cc",
+      "startup/infobar_utils.cc",
+      "startup/web_app_startup_utils.cc",
+      "startup/startup_browser_creator.cc",
+
   ]
   mises_browser_ui_deps += [
     "//mises/components/vector_icons",

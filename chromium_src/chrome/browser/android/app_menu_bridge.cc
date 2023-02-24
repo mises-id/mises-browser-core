@@ -139,6 +139,7 @@ namespace {
               sessions::SessionTabHelper::IdForTab(web_contents).id());
  }
 */ 
+constexpr base::TimeDelta kCloseDelay = base::Milliseconds(200);
  
  bool HasBeenBlocked(
      content::WebContents* web_contents, const extensions::Extension* extension) {
@@ -227,7 +228,17 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
 
   
   if (!sel_tab->web_contents() || sel_tab->ExtensionWindowID() == -1) {
-    // close metamask popup tab when user activate any normal tab
+     base::SequencedTaskRunnerHandle::Get()->PostDelayedTask(
+      FROM_HERE,
+      base::BindOnce(&AppMenuBridge::CloseExtensionTabs,
+                     weak_ptr_factory_.GetWeakPtr()),
+      kCloseDelay);
+  }
+
+}
+
+void AppMenuBridge::CloseExtensionTabs() {
+   // close metamask popup tab when user activate any normal tab
     if (observed_tab_model_) {
       int tab_count = observed_tab_model_->GetTabCount();
       int tab_index = 0;
@@ -241,8 +252,6 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
       }
 
     }
-  }
-
 }
 
 void AppMenuBridge::OnTabModelRemoved() {

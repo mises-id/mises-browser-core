@@ -1102,6 +1102,7 @@ void SessionRestore::RestoreSessionAfterCrash(Browser* browser) {
 
 // static
 void SessionRestore::OpenStartupPagesAfterCrash(Browser* browser) {
+#if !BUILDFLAG(IS_ANDROID)
   WebContents* tab_to_clobber = nullptr;
   if (HasSingleNewTabPage(browser))
     tab_to_clobber = browser->tab_strip_model()->GetActiveWebContents();
@@ -1110,6 +1111,7 @@ void SessionRestore::OpenStartupPagesAfterCrash(Browser* browser) {
       browser, chrome::startup::IsProcessStartup::kYes);
   if (tab_to_clobber && browser->tab_strip_model()->count() > 1)
     chrome::CloseWebContents(browser, tab_to_clobber, true);
+#endif
 }
 
 #if !BUILDFLAG(IS_ANDROID)
