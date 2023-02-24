@@ -490,12 +490,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Migrator = void 0;
-const browser_passworder_1 = __importDefault(__webpack_require__(598));
 class Migrator {
     // run all pending migrations on meta in place
     migrateData() {
@@ -514,8 +510,9 @@ class Migrator {
     }
     enCodeValut(keyringStore, password) {
         return __awaiter(this, void 0, void 0, function* () {
+            const encryptor = __webpack_require__(630);
             const { vault: vaultString } = keyringStore;
-            const vault = (yield browser_passworder_1.default.decrypt(password, vaultString));
+            const vault = (yield encryptor.decrypt(password, vaultString));
             return vault.filter((val) => ["HD Key Tree", "Simple Key Pair"].includes(val.type));
         });
     }
@@ -2002,7 +1999,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretWasmService = void 0;
 const secretjs_1 = __webpack_require__(1095);
 const crypto_1 = __webpack_require__(50);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const cosmos_1 = __webpack_require__(16);
 const router_1 = __webpack_require__(3);
 const buffer_1 = __webpack_require__(4);
@@ -2421,7 +2418,7 @@ __webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport 
 
 // UNUSED EXPORTS: AutoLockAccountService, StartAutoLockMonitoringMsg, LockMsg
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/aes-js/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/aes-js/index.js
 var aes_js = __webpack_require__(196);
 var aes_js_default = /*#__PURE__*/__webpack_require__.n(aes_js);
 
@@ -2432,7 +2429,7 @@ var build = __webpack_require__(50);
 var pbkdf2_browser = __webpack_require__(378);
 var browser_default = /*#__PURE__*/__webpack_require__.n(pbkdf2_browser);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
 var buffer = __webpack_require__(4);
 
 // EXTERNAL MODULE: ../router/build/index.js
@@ -2561,10 +2558,10 @@ var types_build = __webpack_require__(96);
 // EXTERNAL MODULE: ../cosmos/build/index.js
 var cosmos_build = __webpack_require__(16);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/@ethersproject/wallet/lib.esm/index.js + 39 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/wallet/lib.esm/index.js + 39 modules
 var lib_esm = __webpack_require__(250);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/@ethersproject/bytes/lib.esm/index.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/bytes/lib.esm/index.js + 1 modules
 var bytes_lib_esm = __webpack_require__(1);
 
 // EXTERNAL MODULE: ../background/node_modules/joi/dist/joi-browser.min.js
@@ -2626,12 +2623,8 @@ const EIP712MessageValidator = joi_browser_min_default.a.object({
     message: joi_browser_min_default.a.object().required(),
 });
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/@ethersproject/hash/lib.esm/typed-data.js + 4 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/typed-data.js + 4 modules
 var typed_data = __webpack_require__(596);
-
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/@metamask/browser-passworder/dist/index.js
-var dist = __webpack_require__(598);
-var dist_default = /*#__PURE__*/__webpack_require__.n(dist);
 
 // CONCATENATED MODULE: ../background/src/migrator/index.ts
 var migrator_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -2643,8 +2636,7 @@ var migrator_awaiter = (undefined && undefined.__awaiter) || function (thisArg, 
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-
-class migrator_Migrator {
+class Migrator {
     // run all pending migrations on meta in place
     migrateData() {
         return migrator_awaiter(this, void 0, void 0, function* () {
@@ -2662,8 +2654,9 @@ class migrator_Migrator {
     }
     enCodeValut(keyringStore, password) {
         return migrator_awaiter(this, void 0, void 0, function* () {
+            const encryptor = __webpack_require__(630);
             const { vault: vaultString } = keyringStore;
-            const vault = (yield dist_default.a.decrypt(password, vaultString));
+            const vault = (yield encryptor.decrypt(password, vaultString));
             return vault.filter((val) => ["HD Key Tree", "Simple Key Pair"].includes(val.type));
         });
     }
@@ -2723,7 +2716,7 @@ class keyring_KeyRing {
         this.loaded = false;
         this.keyStore = null;
         this.multiKeyStore = [];
-        const migrator = new migrator_Migrator();
+        const migrator = new Migrator();
         this.migrator = migrator;
         migrator.migrateData().then((res) => {
             this.migratorStore = res;
@@ -3591,12 +3584,12 @@ class keyring_KeyRing {
 }
 
 // EXTERNAL MODULE: ../common/build/index.js
-var common_build = __webpack_require__(26);
+var common_build = __webpack_require__(27);
 
 // EXTERNAL MODULE: ../proto-types/cosmos/tx/v1beta1/tx.js
 var tx = __webpack_require__(100);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/long/src/long.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/long/src/long.js
 var src_long = __webpack_require__(7);
 var long_default = /*#__PURE__*/__webpack_require__.n(src_long);
 
@@ -4994,7 +4987,7 @@ class messages_LockMsg extends router_build["Message"] {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return shortenAddress; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(60);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vespaiach_axios_fetch_adapter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(599);
+/* harmony import */ var _vespaiach_axios_fetch_adapter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(598);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8349,7 +8342,7 @@ exports.MISES_SITE_API = "https://api.alb.mises.site/api/v1";
 // export const MISES_POINT = 'http://192.168.1.8:26657';
 exports.MISES_POINT = "http://127.0.0.1:26657";
 const axios_1 = __importDefault(__webpack_require__(60));
-const axios_fetch_adapter_1 = __importDefault(__webpack_require__(599));
+const axios_fetch_adapter_1 = __importDefault(__webpack_require__(598));
 class Request {
     constructor(config) {
         var _a, _b, _c, _d;
@@ -9215,7 +9208,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChainsService = void 0;
 const types_1 = __webpack_require__(523);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const router_1 = __webpack_require__(3);
 const messages_1 = __webpack_require__(228);
 const cosmos_1 = __webpack_require__(16);
@@ -9786,7 +9779,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeyRingService = void 0;
 const keyring_1 = __webpack_require__(229);
 const cosmos_1 = __webpack_require__(16);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const types_1 = __webpack_require__(96);
 const router_1 = __webpack_require__(3);
 const tx_1 = __webpack_require__(100);
@@ -10182,126 +10175,6 @@ class KeyRingService {
 }
 exports.KeyRingService = KeyRingService;
 //# sourceMappingURL=service.js.map
-
-/***/ }),
-
-/***/ 53:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.init = void 0;
-const PersistentMemory = __importStar(__webpack_require__(1020));
-const Chains = __importStar(__webpack_require__(1023));
-const KeyRing = __importStar(__webpack_require__(1026));
-// import * as SecretWasm from "./secret-wasm/internal";
-const BackgroundTx = __importStar(__webpack_require__(1044));
-const Updater = __importStar(__webpack_require__(1047));
-const Tokens = __importStar(__webpack_require__(1050));
-const Interaction = __importStar(__webpack_require__(1054));
-const Permission = __importStar(__webpack_require__(1061));
-// import * as PhishingList from "./phishing-list/internal";
-const AutoLocker = __importStar(__webpack_require__(1064));
-const Mises = __importStar(__webpack_require__(1067));
-const MisesSafe = __importStar(__webpack_require__(1087));
-__exportStar(__webpack_require__(1090), exports);
-__exportStar(__webpack_require__(541), exports);
-__exportStar(__webpack_require__(337), exports);
-__exportStar(__webpack_require__(1091), exports);
-__exportStar(__webpack_require__(1092), exports);
-__exportStar(__webpack_require__(1093), exports);
-__exportStar(__webpack_require__(1176), exports);
-__exportStar(__webpack_require__(1178), exports);
-__exportStar(__webpack_require__(1179), exports);
-__exportStar(__webpack_require__(1180), exports);
-__exportStar(__webpack_require__(525), exports);
-__exportStar(__webpack_require__(1182), exports);
-//import { LedgerOptions } from "./ledger/options";
-//import { MisesSafe } from "./mises-safe/mises";
-function init(router, storeCreator, 
-// Message requester to the content script.
-eventMsgRequester, embedChainInfos, 
-// The origins that are able to pass any permission.
-privilegedOrigins, commonCrypto, notification, experimentalOptions = {}) {
-    var _a;
-    const interactionService = new Interaction.InteractionService(eventMsgRequester, commonCrypto.rng);
-    const persistentMemoryService = new PersistentMemory.PersistentMemoryService();
-    const permissionService = new Permission.PermissionService(storeCreator("permission"), privilegedOrigins);
-    const chainUpdaterService = new Updater.ChainUpdaterService(storeCreator("updator"));
-    const tokensService = new Tokens.TokensService(storeCreator("tokens"));
-    const chainsService = new Chains.ChainsService(storeCreator("chains"), embedChainInfos, {
-        useMemoryKVStoreForSuggestChain: (_a = experimentalOptions.suggestChain) === null || _a === void 0 ? void 0 : _a.useMemoryKVStore,
-    });
-    const keyRingService = new KeyRing.KeyRingService(storeCreator("keyring"), embedChainInfos, commonCrypto);
-    const misesService = new Mises.MisesService(storeCreator("mises"));
-    const misesSafeService = new MisesSafe.MisesSafeService(storeCreator("misesSafe"));
-    // const secretWasmService = new SecretWasm.SecretWasmService(
-    //   storeCreator("secretwasm")
-    // );
-    const backgroundTxService = new BackgroundTx.BackgroundTxService(notification, misesService);
-    // const phishingListService = new PhishingList.PhishingListService({
-    //   blockListUrl:
-    //     "https://raw.githubusercontent.com/chainapsis/phishing-block-list/main/block-list.txt",
-    //   twitterListUrl:
-    //     "https://raw.githubusercontent.com/chainapsis/phishing-block-list/main/twitter-scammer-list.txt",
-    //   fetchingIntervalMs: 3 * 3600 * 1000, // 3 hours
-    //   retryIntervalMs: 10 * 60 * 1000, // 10 mins,
-    //   allowTimeoutMs: 10 * 60 * 1000, // 10 mins,
-    // });
-    const autoLockAccountService = new AutoLocker.AutoLockAccountService(storeCreator("auto-lock-account"));
-    interactionService.init();
-    persistentMemoryService.init();
-    permissionService.init(interactionService, chainsService, keyRingService);
-    chainUpdaterService.init(chainsService);
-    tokensService.init(interactionService, permissionService, chainsService, keyRingService);
-    chainsService.init(chainUpdaterService, interactionService, permissionService);
-    keyRingService.init(interactionService, chainsService, permissionService, misesService);
-    misesService.init();
-    misesSafeService.init();
-    //secretWasmService.init(chainsService, keyRingService, permissionService);
-    backgroundTxService.init(chainsService, permissionService);
-    // phishingListService.init();
-    // No need to wait because user can't interact with app right after launch.
-    autoLockAccountService.init(keyRingService);
-    Interaction.init(router, interactionService);
-    PersistentMemory.init(router, persistentMemoryService);
-    Permission.init(router, permissionService);
-    Updater.init(router, chainUpdaterService);
-    Tokens.init(router, tokensService);
-    Chains.init(router, chainsService);
-    KeyRing.init(router, keyRingService);
-    // SecretWasm.init(router, secretWasmService);
-    BackgroundTx.init(router, backgroundTxService);
-    // PhishingList.init(router, phishingListService);
-    AutoLocker.init(router, autoLockAccountService);
-    Mises.init(router, misesService);
-    MisesSafe.init(router, misesSafeService);
-}
-exports.init = init;
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -11062,6 +10935,126 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ROUTE = void 0;
 exports.ROUTE = "chain-updator";
 //# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ 54:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.init = void 0;
+const PersistentMemory = __importStar(__webpack_require__(1020));
+const Chains = __importStar(__webpack_require__(1023));
+const KeyRing = __importStar(__webpack_require__(1026));
+// import * as SecretWasm from "./secret-wasm/internal";
+const BackgroundTx = __importStar(__webpack_require__(1044));
+const Updater = __importStar(__webpack_require__(1047));
+const Tokens = __importStar(__webpack_require__(1050));
+const Interaction = __importStar(__webpack_require__(1054));
+const Permission = __importStar(__webpack_require__(1061));
+// import * as PhishingList from "./phishing-list/internal";
+const AutoLocker = __importStar(__webpack_require__(1064));
+const Mises = __importStar(__webpack_require__(1067));
+const MisesSafe = __importStar(__webpack_require__(1087));
+__exportStar(__webpack_require__(1090), exports);
+__exportStar(__webpack_require__(541), exports);
+__exportStar(__webpack_require__(337), exports);
+__exportStar(__webpack_require__(1091), exports);
+__exportStar(__webpack_require__(1092), exports);
+__exportStar(__webpack_require__(1093), exports);
+__exportStar(__webpack_require__(1176), exports);
+__exportStar(__webpack_require__(1178), exports);
+__exportStar(__webpack_require__(1179), exports);
+__exportStar(__webpack_require__(1180), exports);
+__exportStar(__webpack_require__(525), exports);
+__exportStar(__webpack_require__(1182), exports);
+//import { LedgerOptions } from "./ledger/options";
+//import { MisesSafe } from "./mises-safe/mises";
+function init(router, storeCreator, 
+// Message requester to the content script.
+eventMsgRequester, embedChainInfos, 
+// The origins that are able to pass any permission.
+privilegedOrigins, commonCrypto, notification, experimentalOptions = {}) {
+    var _a;
+    const interactionService = new Interaction.InteractionService(eventMsgRequester, commonCrypto.rng);
+    const persistentMemoryService = new PersistentMemory.PersistentMemoryService();
+    const permissionService = new Permission.PermissionService(storeCreator("permission"), privilegedOrigins);
+    const chainUpdaterService = new Updater.ChainUpdaterService(storeCreator("updator"));
+    const tokensService = new Tokens.TokensService(storeCreator("tokens"));
+    const chainsService = new Chains.ChainsService(storeCreator("chains"), embedChainInfos, {
+        useMemoryKVStoreForSuggestChain: (_a = experimentalOptions.suggestChain) === null || _a === void 0 ? void 0 : _a.useMemoryKVStore,
+    });
+    const keyRingService = new KeyRing.KeyRingService(storeCreator("keyring"), embedChainInfos, commonCrypto);
+    const misesService = new Mises.MisesService(storeCreator("mises"));
+    const misesSafeService = new MisesSafe.MisesSafeService(storeCreator("misesSafe"));
+    // const secretWasmService = new SecretWasm.SecretWasmService(
+    //   storeCreator("secretwasm")
+    // );
+    const backgroundTxService = new BackgroundTx.BackgroundTxService(notification, misesService);
+    // const phishingListService = new PhishingList.PhishingListService({
+    //   blockListUrl:
+    //     "https://raw.githubusercontent.com/chainapsis/phishing-block-list/main/block-list.txt",
+    //   twitterListUrl:
+    //     "https://raw.githubusercontent.com/chainapsis/phishing-block-list/main/twitter-scammer-list.txt",
+    //   fetchingIntervalMs: 3 * 3600 * 1000, // 3 hours
+    //   retryIntervalMs: 10 * 60 * 1000, // 10 mins,
+    //   allowTimeoutMs: 10 * 60 * 1000, // 10 mins,
+    // });
+    const autoLockAccountService = new AutoLocker.AutoLockAccountService(storeCreator("auto-lock-account"));
+    interactionService.init();
+    persistentMemoryService.init();
+    permissionService.init(interactionService, chainsService, keyRingService);
+    chainUpdaterService.init(chainsService);
+    tokensService.init(interactionService, permissionService, chainsService, keyRingService);
+    chainsService.init(chainUpdaterService, interactionService, permissionService);
+    keyRingService.init(interactionService, chainsService, permissionService, misesService);
+    misesService.init();
+    misesSafeService.init();
+    //secretWasmService.init(chainsService, keyRingService, permissionService);
+    backgroundTxService.init(chainsService, permissionService);
+    // phishingListService.init();
+    // No need to wait because user can't interact with app right after launch.
+    autoLockAccountService.init(keyRingService);
+    Interaction.init(router, interactionService);
+    PersistentMemory.init(router, persistentMemoryService);
+    Permission.init(router, permissionService);
+    Updater.init(router, chainUpdaterService);
+    Tokens.init(router, tokensService);
+    Chains.init(router, chainsService);
+    KeyRing.init(router, keyRingService);
+    // SecretWasm.init(router, secretWasmService);
+    BackgroundTx.init(router, backgroundTxService);
+    // PhishingList.init(router, phishingListService);
+    AutoLocker.init(router, autoLockAccountService);
+    Mises.init(router, misesService);
+    MisesSafe.init(router, misesSafeService);
+}
+exports.init = init;
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 

@@ -159,7 +159,7 @@ exports.ObservableQueryProposal = void 0;
 const chain_query_1 = __webpack_require__(59);
 const types_1 = __webpack_require__(1236);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryProposal extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, _raw, governance) {
         super(kvStore, chainId, chainGetter, `/cosmos/gov/v1beta1/proposals/${_raw.proposal_id}/tally`);
@@ -539,8 +539,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryCw20BalanceRegistry = exports.ObservableQueryCw20BalanceInner = exports.ObservableQueryCw20Balance = void 0;
 const mobx_1 = __webpack_require__(5);
-const common_1 = __webpack_require__(26);
-const unit_1 = __webpack_require__(27);
+const common_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const balances_1 = __webpack_require__(509);
 const contract_query_1 = __webpack_require__(1243);
 class ObservableQueryCw20Balance extends contract_query_1.ObservableCosmwasmContractChainQuery {
@@ -758,8 +758,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQuerySecret20BalanceRegistry = exports.ObservableQuerySecret20BalanceInner = exports.ObservableQuerySecret20Balance = void 0;
 const mobx_1 = __webpack_require__(5);
-const common_1 = __webpack_require__(26);
-const unit_1 = __webpack_require__(27);
+const common_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const balances_1 = __webpack_require__(509);
 const contract_query_1 = __webpack_require__(1246);
 const errors_1 = __webpack_require__(1247);
@@ -897,7 +897,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableSecretContractChainQuery = void 0;
 const chain_query_1 = __webpack_require__(59);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const mobx_1 = __webpack_require__(5);
 const buffer_1 = __webpack_require__(4);
 class ObservableSecretContractChainQuery extends chain_query_1.ObservableChainQuery {
@@ -1090,7 +1090,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryTxFeesFeeTokens = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const mobx_utils_1 = __webpack_require__(202);
+const mobx_utils_1 = __webpack_require__(201);
 class ObservableQueryTxFeesFeeTokens extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter) {
         super(kvStore, chainId, chainGetter, "/osmosis/txfees/v1beta1/fee_tokens");
@@ -1159,7 +1159,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryTxFeesSpotPriceByDenom = exports.ObservableQueryTxFeesSpotPriceByDenomInner = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryTxFeesSpotPriceByDenomInner extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, denom) {
         super(kvStore, chainId, chainGetter, `osmosis/txfees/v1beta1/spot_price_by_denom?denom=${denom}`);
@@ -1290,7 +1290,7 @@ __exportStar(__webpack_require__(1415), exports);
 __exportStar(__webpack_require__(1416), exports);
 __exportStar(__webpack_require__(1418), exports);
 __exportStar(__webpack_require__(1424), exports);
-__exportStar(__webpack_require__(629), exports);
+__exportStar(__webpack_require__(628), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -1325,23 +1325,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CosmosAccountImpl = exports.defaultCosmosMsgOpts = exports.CosmosAccount = void 0;
 const base_1 = __webpack_require__(862);
-const common_1 = __webpack_require__(26);
-const unit_1 = __webpack_require__(27);
+const common_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const tx_1 = __webpack_require__(100);
-const signing_1 = __webpack_require__(627);
+const signing_1 = __webpack_require__(626);
 const keys_1 = __webpack_require__(1413);
-const tx_2 = __webpack_require__(620);
-const tx_3 = __webpack_require__(626);
-const tx_4 = __webpack_require__(621);
-const tx_5 = __webpack_require__(624);
-const tx_6 = __webpack_require__(622);
-const gov_1 = __webpack_require__(623);
+const tx_2 = __webpack_require__(619);
+const tx_3 = __webpack_require__(625);
+const tx_4 = __webpack_require__(620);
+const tx_5 = __webpack_require__(623);
+const tx_6 = __webpack_require__(621);
+const gov_1 = __webpack_require__(622);
 const cosmos_1 = __webpack_require__(16);
 const types_1 = __webpack_require__(863);
 const axios_1 = __importDefault(__webpack_require__(60));
 const deepmerge_1 = __importDefault(__webpack_require__(167));
 const buffer_1 = __webpack_require__(4);
-const utils_1 = __webpack_require__(629);
+const utils_1 = __webpack_require__(628);
 const web3_1 = __webpack_require__(1414);
 const stargate_1 = __webpack_require__(263);
 exports.CosmosAccount = {
@@ -2688,12 +2688,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretAccountImpl = exports.defaultSecretMsgOpts = exports.SecretAccount = void 0;
 const buffer_1 = __webpack_require__(4);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const msg_1 = __webpack_require__(1417);
 const cosmos_1 = __webpack_require__(16);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const deepmerge_1 = __importDefault(__webpack_require__(167));
-const utils_1 = __webpack_require__(629);
+const utils_1 = __webpack_require__(628);
 exports.SecretAccount = {
     use(options) {
         return (base, chainGetter, chainId) => {
@@ -3005,7 +3005,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryMap = exports.ObservableQuery = exports.ObservableQueryBase = exports.DeferInitialQueryController = exports.defaultOptions = void 0;
 const mobx_1 = __webpack_require__(5);
 const axios_1 = __importDefault(__webpack_require__(60));
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const map_1 = __webpack_require__(1014);
 const eventemitter3_1 = __importDefault(__webpack_require__(1232));
 exports.defaultOptions = {
@@ -3788,7 +3788,7 @@ exports.ObservableJsonRPCQueryMap = ObservableJsonRPCQueryMap;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StoreUtils = void 0;
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class StoreUtils {
     static getBalancesFromCurrencies(currenciesMap, bals) {
         const result = [];
@@ -3895,12 +3895,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CosmwasmAccountImpl = exports.defaultCosmwasmMsgOpts = exports.CosmwasmAccount = void 0;
-const common_1 = __webpack_require__(26);
-const unit_1 = __webpack_require__(27);
-const tx_1 = __webpack_require__(625);
+const common_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
+const tx_1 = __webpack_require__(624);
 const buffer_1 = __webpack_require__(4);
 const deepmerge_1 = __importDefault(__webpack_require__(167));
-const utils_1 = __webpack_require__(629);
+const utils_1 = __webpack_require__(628);
 const cosmos_1 = __webpack_require__(16);
 exports.CosmwasmAccount = {
     use(options) {
@@ -4122,8 +4122,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CoinGeckoPriceStore = void 0;
 const common_1 = __webpack_require__(119);
 const axios_1 = __importDefault(__webpack_require__(60));
-const common_2 = __webpack_require__(26);
-const unit_1 = __webpack_require__(27);
+const common_2 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const deepmerge_1 = __importDefault(__webpack_require__(167));
 const mobx_1 = __webpack_require__(5);
 class Throttler {
@@ -4525,8 +4525,8 @@ exports.ObservableQueryGovernance = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
 const params_1 = __webpack_require__(1234);
-const unit_1 = __webpack_require__(27);
-const mobx_utils_1 = __webpack_require__(202);
+const unit_1 = __webpack_require__(26);
+const mobx_utils_1 = __webpack_require__(201);
 const proposal_1 = __webpack_require__(1235);
 class ObservableQueryGovernance extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, _queryPool) {
@@ -4697,9 +4697,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryDelegations = exports.ObservableQueryDelegationsInner = void 0;
 const chain_query_1 = __webpack_require__(59);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const mobx_1 = __webpack_require__(5);
-const mobx_utils_1 = __webpack_require__(202);
+const mobx_utils_1 = __webpack_require__(201);
 const react_query_1 = __webpack_require__(234);
 class ObservableQueryDelegationsInner extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
@@ -4834,9 +4834,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryRewards = exports.ObservableQueryRewardsInner = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const common_1 = __webpack_require__(119);
-const mobx_utils_1 = __webpack_require__(202);
+const mobx_utils_1 = __webpack_require__(201);
 const react_query_1 = __webpack_require__(234);
 class ObservableQueryRewardsInner extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
@@ -5052,7 +5052,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryUnbondingDelegations = exports.ObservableQueryUnbondingDelegationsInner = void 0;
 const chain_query_1 = __webpack_require__(59);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const mobx_1 = __webpack_require__(5);
 const react_query_1 = __webpack_require__(234);
 class ObservableQueryUnbondingDelegationsInner extends chain_query_1.ObservableChainQuery {
@@ -5188,8 +5188,8 @@ const mobx_1 = __webpack_require__(5);
 const common_1 = __webpack_require__(119);
 const axios_1 = __importDefault(__webpack_require__(60));
 const p_queue_1 = __importDefault(__webpack_require__(1435));
-const unit_1 = __webpack_require__(27);
-const mobx_utils_1 = __webpack_require__(202);
+const unit_1 = __webpack_require__(26);
+const mobx_utils_1 = __webpack_require__(201);
 /**
  * Fetch the validator's thumbnail from keybase if the identity exists.
  */
@@ -5347,7 +5347,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryStakingPool = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryStakingPool extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter) {
         super(kvStore, chainId, chainGetter, "/cosmos/staking/v1beta1/pool");
@@ -5444,7 +5444,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryInflation = void 0;
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryInflation {
     constructor(chainId, chainGetter, _queryMint, _queryPool, _querySupplyTotal, _queryIrisMint, _querySifchainAPY, _queryOsmosisEpochs, _queryOsmosisEpochProvisions, _queryOsmosisMintParams, _queryJunoAnnualProvisions, _queryDistributionParams) {
         this.chainId = chainId;
@@ -5921,9 +5921,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryCosmosBalanceRegistry = exports.ObservableQueryCosmosBalances = exports.ObservableQueryBalanceNative = void 0;
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const common_2 = __webpack_require__(119);
 const balances_1 = __webpack_require__(509);
 const chain_query_1 = __webpack_require__(59);
@@ -6053,7 +6053,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQuerySpendableBalances = exports.ObservableChainQuerySpendableBalances = void 0;
 const chain_query_1 = __webpack_require__(59);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const mobx_1 = __webpack_require__(5);
 class ObservableChainQuerySpendableBalances extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, address) {
@@ -6376,7 +6376,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryOsmosisEpochProvisions = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryOsmosisEpochProvisions extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, queryMintParmas) {
         super(kvStore, chainId, chainGetter, `/osmosis/mint/v1beta1/epoch_provisions`);
@@ -6422,7 +6422,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryOsmosisMintParmas = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryOsmosisMintParmas extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter) {
         super(kvStore, chainId, chainGetter, `/osmosis/mint/v1beta1/params`);
@@ -6495,7 +6495,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryDistributionParams = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryDistributionParams extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter) {
         super(kvStore, chainId, chainGetter, "/cosmos/distribution/v1beta1/params");
@@ -6524,7 +6524,7 @@ exports.ObservableQueryDistributionParams = ObservableQueryDistributionParams;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryRPCStatus = void 0;
 const chain_rpc_query_1 = __webpack_require__(1464);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryRPCStatus extends chain_rpc_query_1.ObservableChainQueryRPC {
     constructor(kvStore, chainId, chainGetter) {
         super(kvStore, chainId, chainGetter, "/status");
@@ -6640,7 +6640,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryJunoAnnualProvisions = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 class ObservableQueryJunoAnnualProvisions extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter) {
         super(kvStore, chainId, chainGetter, "/cosmos/mint/v1beta1/annual_provisions");
@@ -7052,7 +7052,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChainStore = exports.ChainInfoInner = void 0;
 const mobx_1 = __webpack_require__(5);
 const cosmos_1 = __webpack_require__(16);
-const mobx_utils_1 = __webpack_require__(202);
+const mobx_utils_1 = __webpack_require__(201);
 class ChainInfoInner {
     constructor(chainInfo) {
         this.unknownDenoms = [];
@@ -7413,7 +7413,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InteractionStore = void 0;
 const router_1 = __webpack_require__(3);
-const background_1 = __webpack_require__(53);
+const background_1 = __webpack_require__(54);
 const mobx_1 = __webpack_require__(5);
 class InteractionStore {
     constructor(router, msgRequester) {
@@ -7552,11 +7552,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PermissionStore = exports.BasicAccessPermissionInnerStore = exports.Secret20ViewingKeyPermissionInnerStore = void 0;
-const background_1 = __webpack_require__(53);
+const background_1 = __webpack_require__(54);
 const mobx_1 = __webpack_require__(5);
 const common_1 = __webpack_require__(119);
 const router_1 = __webpack_require__(3);
-const common_2 = __webpack_require__(26);
+const common_2 = __webpack_require__(27);
 class Secret20ViewingKeyPermissionInnerStore {
     constructor(chainId, contractAddress, requester) {
         this.chainId = chainId;
@@ -7920,7 +7920,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChainSuggestStore = void 0;
-const background_1 = __webpack_require__(53);
+const background_1 = __webpack_require__(54);
 const mobx_1 = __webpack_require__(5);
 class ChainSuggestStore {
     constructor(interactionStore) {
@@ -8011,9 +8011,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeyRingStore = exports.KeyRingSelectablesStore = void 0;
 const router_1 = __webpack_require__(3);
-const background_1 = __webpack_require__(53);
+const background_1 = __webpack_require__(54);
 const mobx_1 = __webpack_require__(5);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 class KeyRingSelectablesStore {
     constructor(chainGetter, requester, chainId, keyRingStore) {
         this.chainGetter = chainGetter;
@@ -8320,9 +8320,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TokensStore = exports.TokensStoreInner = void 0;
 const common_1 = __webpack_require__(119);
 const router_1 = __webpack_require__(3);
-const background_1 = __webpack_require__(53);
+const background_1 = __webpack_require__(54);
 const mobx_1 = __webpack_require__(5);
-const common_2 = __webpack_require__(26);
+const common_2 = __webpack_require__(27);
 const cosmos_1 = __webpack_require__(16);
 class TokensStoreInner {
     constructor(eventListener, chainStore, chainId, requester) {
@@ -8475,7 +8475,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MisesStore = void 0;
 const router_1 = __webpack_require__(3);
 const mobx_1 = __webpack_require__(5);
-const background_1 = __webpack_require__(53);
+const background_1 = __webpack_require__(54);
 class MisesStore {
     constructor(requester) {
         this.requester = requester;
@@ -8595,7 +8595,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MisesSafeStore = void 0;
-const background_1 = __webpack_require__(53);
+const background_1 = __webpack_require__(54);
 const router_1 = __webpack_require__(3);
 const mobx_1 = __webpack_require__(5);
 class MisesSafeStore {
@@ -8671,9 +8671,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IBCChannelStore = exports.IBCChannelStoreInner = void 0;
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const mobx_1 = __webpack_require__(5);
-const mobx_utils_1 = __webpack_require__(202);
+const mobx_utils_1 = __webpack_require__(201);
 const common_2 = __webpack_require__(119);
 const cosmos_1 = __webpack_require__(16);
 class IBCChannelStoreInner {
@@ -8793,7 +8793,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IBCCurrencyRegsitrar = exports.IBCCurrencyRegsitrarInner = void 0;
 const mobx_1 = __webpack_require__(5);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 class IBCCurrencyRegsitrarInner {
     constructor(kvStore, cacheDuration, chainInfoInner, chainStore, accountStore, queriesStore, cosmwasmQueriesStore, coinDenomGenerator) {
         this.kvStore = kvStore;
@@ -9459,7 +9459,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GravityBridgeCurrencyRegsitrar = exports.GravityBridgeCurrencyRegsitrarInner = void 0;
 const mobx_1 = __webpack_require__(5);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 class GravityBridgeCurrencyRegsitrarInner {
     constructor(kvStore, chainInfoInner, chainStore, queriesStore) {
         this.kvStore = kvStore;
@@ -9923,11 +9923,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryBalances = exports.ObservableQueryBalancesInner = exports.ObservableQueryBalanceInner = void 0;
 const chain_query_1 = __webpack_require__(59);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const common_2 = __webpack_require__(119);
-const mobx_utils_1 = __webpack_require__(202);
+const mobx_utils_1 = __webpack_require__(201);
 class ObservableQueryBalanceInner extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, url, denomHelper) {
         super(kvStore, chainId, chainGetter, url);
@@ -10796,7 +10796,7 @@ ContentScriptEnv.produceEnv = (sender) => {
 
 /***/ }),
 
-/***/ 629:
+/***/ 628:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10902,7 +10902,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountSetBaseSuper = exports.AccountSetBase = exports.WalletStatus = void 0;
 const mobx_1 = __webpack_require__(5);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const cosmos_1 = __webpack_require__(16);
 var WalletStatus;
 (function (WalletStatus) {

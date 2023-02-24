@@ -13,7 +13,7 @@ exports.Fee = exports.ModeInfo_Multi = exports.ModeInfo_Single = exports.ModeInf
 /* eslint-disable */
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
-const signing_1 = __webpack_require__(627);
+const signing_1 = __webpack_require__(626);
 const any_1 = __webpack_require__(83);
 const multisig_1 = __webpack_require__(403);
 const coin_1 = __webpack_require__(80);
@@ -1006,7 +1006,7 @@ exports.useAmountConfig = exports.AmountConfig = void 0;
 const chain_1 = __webpack_require__(262);
 const mobx_1 = __webpack_require__(5);
 const errors_1 = __webpack_require__(280);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const react_1 = __webpack_require__(0);
 class AmountConfig extends chain_1.TxChainSetter {
     constructor(chainGetter, queriesStore, initialChainId, sender, feeConfig) {
@@ -1226,7 +1226,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useSendGasConfig = exports.SendGasConfig = void 0;
 const gas_1 = __webpack_require__(1227);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const react_1 = __webpack_require__(0);
 const mobx_1 = __webpack_require__(5);
 const errors_1 = __webpack_require__(280);
@@ -1316,7 +1316,7 @@ exports.useStakedAmountConfig = exports.StakedAmountConfig = void 0;
 const chain_1 = __webpack_require__(262);
 const mobx_1 = __webpack_require__(5);
 const errors_1 = __webpack_require__(280);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const react_1 = __webpack_require__(0);
 class StakedAmountConfig extends chain_1.TxChainSetter {
     constructor(chainGetter, queriesStore, initialChainId, sender, initialValidatorAddress) {
@@ -1525,9 +1525,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useIBCAmountConfig = exports.IBCAmountConfig = void 0;
-const tx_1 = __webpack_require__(201);
+const tx_1 = __webpack_require__(200);
 const mobx_1 = __webpack_require__(5);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const react_1 = __webpack_require__(0);
 class IBCAmountConfig extends tx_1.AmountConfig {
     constructor(chainGetter, queriesStore, initialChainId, sender, feeConfig) {
@@ -1642,7 +1642,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useIBCTransferGasConfig = exports.IBCTransferGasConfig = void 0;
-const tx_1 = __webpack_require__(201);
+const tx_1 = __webpack_require__(200);
 const mobx_1 = __webpack_require__(5);
 const react_1 = __webpack_require__(0);
 class IBCTransferGasConfig extends tx_1.GasConfig {
@@ -3958,8 +3958,8 @@ exports.useFeeConfig = exports.FeeConfig = void 0;
 const types_1 = __webpack_require__(1226);
 const chain_1 = __webpack_require__(262);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
-const mobx_utils_1 = __webpack_require__(202);
+const unit_1 = __webpack_require__(26);
+const mobx_utils_1 = __webpack_require__(201);
 const react_1 = __webpack_require__(0);
 const errors_1 = __webpack_require__(280);
 class FeeConfig extends chain_1.TxChainSetter {
@@ -4549,7 +4549,7 @@ const mobx_1 = __webpack_require__(5);
 const buffer_1 = __webpack_require__(4);
 const abi_1 = __webpack_require__(1311);
 const axios_1 = __importDefault(__webpack_require__(60));
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const eth_ens_namehash_1 = __webpack_require__(1402);
@@ -4743,7 +4743,7 @@ exports.ObservableEnsFetcher = ObservableEnsFetcher;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useSendTxConfig = void 0;
-const index_1 = __webpack_require__(201);
+const index_1 = __webpack_require__(200);
 const send_gas_1 = __webpack_require__(1229);
 const amount_1 = __webpack_require__(1228);
 const useSendTxConfig = (chainGetter, queriesStore, accountStore, chainId, sender, options = {}) => {
@@ -4781,7 +4781,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useDelegateTxConfig = exports.useDelegateGasConfig = exports.useDelegateAmountConfig = exports.DelegateGasConfig = exports.DelegateAmountConfig = void 0;
-const index_1 = __webpack_require__(201);
+const index_1 = __webpack_require__(200);
 const react_1 = __webpack_require__(0);
 const mobx_1 = __webpack_require__(5);
 class DelegateAmountConfig extends index_1.AmountConfig {
@@ -4858,7 +4858,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useUndelegateTxConfig = exports.useUndelegateGasConfig = exports.UndelegateGasConfig = void 0;
-const index_1 = __webpack_require__(201);
+const index_1 = __webpack_require__(200);
 const staked_amount_1 = __webpack_require__(1230);
 const mobx_1 = __webpack_require__(5);
 const react_1 = __webpack_require__(0);
@@ -4920,7 +4920,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useRedelegateTxConfig = exports.useRedelegateGasConfig = exports.RedelegateGasConfig = void 0;
-const index_1 = __webpack_require__(201);
+const index_1 = __webpack_require__(200);
 const staked_amount_1 = __webpack_require__(1230);
 const mobx_1 = __webpack_require__(5);
 const react_1 = __webpack_require__(0);
@@ -5616,7 +5616,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useAddressBookConfig = exports.AddressBookConfigMap = exports.AddressBookConfig = void 0;
 const mobx_1 = __webpack_require__(5);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 const stores_1 = __webpack_require__(43);
 const react_1 = __webpack_require__(0);
 class AddressBookConfig {
@@ -6521,11 +6521,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useSignDocAmountConfig = exports.SignDocAmountConfig = void 0;
-const tx_1 = __webpack_require__(201);
+const tx_1 = __webpack_require__(200);
 const mobx_1 = __webpack_require__(5);
-const unit_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
 const react_1 = __webpack_require__(0);
-const mobx_utils_1 = __webpack_require__(202);
+const mobx_utils_1 = __webpack_require__(201);
 const cosmos_1 = __webpack_require__(16);
 // This config helps the fee config to calculate that the fee is enough to send with considering
 // the amount in the sign doc.
@@ -6756,7 +6756,7 @@ const mobx_1 = __webpack_require__(5);
 const react_1 = __webpack_require__(0);
 const cosmos_1 = __webpack_require__(16);
 const tx_1 = __webpack_require__(100);
-const common_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(27);
 class SignDocHelper {
     constructor(feeConfig, memoConfig) {
         this.feeConfig = feeConfig;
@@ -6890,7 +6890,7 @@ __exportStar(__webpack_require__(1501), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useIBCTransferConfig = void 0;
-const tx_1 = __webpack_require__(201);
+const tx_1 = __webpack_require__(200);
 const amount_1 = __webpack_require__(1251);
 const gas_1 = __webpack_require__(1254);
 const channel_1 = __webpack_require__(1252);
@@ -6938,7 +6938,7 @@ exports.useIBCTransferConfig = useIBCTransferConfig;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useIBCRecipientConfig = exports.IBCRecipientConfig = void 0;
-const tx_1 = __webpack_require__(201);
+const tx_1 = __webpack_require__(200);
 const react_1 = __webpack_require__(0);
 /**
  * IBCRecipientConfig returns the recipient config for IBC transfer.
@@ -7201,7 +7201,7 @@ __exportStar(__webpack_require__(191), exports);
 
 /***/ }),
 
-/***/ 201:
+/***/ 200:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7903,7 +7903,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(1394), exports);
-__exportStar(__webpack_require__(201), exports);
+__exportStar(__webpack_require__(200), exports);
 __exportStar(__webpack_require__(1408), exports);
 __exportStar(__webpack_require__(1409), exports);
 __exportStar(__webpack_require__(1495), exports);
@@ -9775,7 +9775,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 620:
+/***/ 619:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10005,7 +10005,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 621:
+/***/ 620:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10713,7 +10713,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 622:
+/***/ 621:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10726,7 +10726,7 @@ exports.MsgDepositResponse = exports.MsgDeposit = exports.MsgVoteWeightedRespons
 /* eslint-disable */
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
-const gov_1 = __webpack_require__(623);
+const gov_1 = __webpack_require__(622);
 const any_1 = __webpack_require__(83);
 const coin_1 = __webpack_require__(80);
 exports.protobufPackage = "cosmos.gov.v1beta1";
@@ -11163,7 +11163,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 623:
+/***/ 622:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12065,7 +12065,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 624:
+/***/ 623:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12448,7 +12448,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 625:
+/***/ 624:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13219,7 +13219,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 626:
+/***/ 625:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13406,7 +13406,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 627:
+/***/ 626:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -2015,7 +2015,7 @@ function valueEqual(a, b) {
 
 
 
-var punycode = __webpack_require__(628);
+var punycode = __webpack_require__(627);
 var util = __webpack_require__(1076);
 
 exports.parse = urlParse;

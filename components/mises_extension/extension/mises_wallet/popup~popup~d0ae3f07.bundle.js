@@ -9,20 +9,20 @@
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ ConfirmProvider; });
 __webpack_require__.d(__webpack_exports__, "b", function() { return /* binding */ useConfirm; });
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
 var Modal = __webpack_require__(1220);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/ModalBody.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ModalBody.js
 var ModalBody = __webpack_require__(1361);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Button.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Button.js
 var Button = __webpack_require__(255);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-intl/lib/components/message.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/message.js
 var message = __webpack_require__(165);
 
 // EXTERNAL MODULE: ./src/components/confirm/style.module.scss
@@ -163,17 +163,17 @@ __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding *
 
 // UNUSED EXPORTS: NotificationContext
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: ./src/components/notification/style.scss
 var style = __webpack_require__(1564);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/framer-motion/dist/framer-motion.es.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/framer-motion/dist/framer-motion.es.js + 1 modules
 var framer_motion_es = __webpack_require__(159);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Alert.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Alert.js
 var Alert = __webpack_require__(1678);
 
 // CONCATENATED MODULE: ./src/components/notification/element.tsx
@@ -209,7 +209,7 @@ const NotificationContainer = ({ id, properties, initial, variants, }) => {
         }))));
 };
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/mobx/dist/mobx.esm.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx/dist/mobx.esm.js
 var mobx_esm = __webpack_require__(5);
 
 // CONCATENATED MODULE: ./src/components/notification/store.tsx
@@ -317,10 +317,10 @@ __decorate([
     mobx_esm["action"]
 ], store_NotificationStore.prototype, "removeTopRightProperty", null);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
 var es = __webpack_require__(15);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
 var buffer = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./src/components/notification/index.tsx
@@ -850,11 +850,11 @@ __webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport 
 
 // UNUSED EXPORTS: GasAutoContainer
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
 var es = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./src/components/form/gas-form/auto.module.scss
@@ -862,7 +862,7 @@ var auto_module = __webpack_require__(642);
 var auto_module_default = /*#__PURE__*/__webpack_require__.n(auto_module);
 
 // EXTERNAL MODULE: ./src/components/form/input.tsx
-var input = __webpack_require__(204);
+var input = __webpack_require__(203);
 
 // CONCATENATED MODULE: ./src/components/form/gas-form/auto.tsx
 
@@ -897,7 +897,7 @@ var gas_input = __webpack_require__(363);
 var container_module = __webpack_require__(643);
 var container_module_default = /*#__PURE__*/__webpack_require__.n(container_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Alert.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Alert.js
 var Alert = __webpack_require__(1678);
 
 // CONCATENATED MODULE: ./src/components/form/gas-form/container.tsx
@@ -1009,10 +1009,10 @@ module.exports = function (url, options) {
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(208);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(209);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1362);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(615);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(614);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(255);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(647);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(616);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(615);
 /* harmony import */ var _pages_setting_address_book__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(637);
 /* harmony import */ var _address_input_module_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(372);
 /* harmony import */ var _address_input_module_scss__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_address_input_module_scss__WEBPACK_IMPORTED_MODULE_11__);
@@ -1021,7 +1021,7 @@ module.exports = function (url, options) {
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(44);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(15);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(614);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(613);
 /* harmony import */ var _keplr_wallet_ens__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(1194);
 /* harmony import */ var _keplr_wallet_ens__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_ens__WEBPACK_IMPORTED_MODULE_16__);
 
@@ -1122,15 +1122,15 @@ const AddressInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_14__[/* obs
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(649);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(650);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(648);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(617);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(615);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(616);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(616);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(614);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(615);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(15);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(44);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(27);
+/* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(26);
 /* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(614);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(613);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(165);
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(17);
 
@@ -1242,25 +1242,25 @@ const CoinInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_11__[/* observ
 /* unused harmony export FeeButtonsInner */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _fee_buttons_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(199);
+/* harmony import */ var _fee_buttons_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(198);
 /* harmony import */ var _fee_buttons_module_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fee_buttons_module_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(208);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(209);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(649);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(650);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(648);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(617);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(616);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1661);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(255);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(647);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(616);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(615);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(15);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(44);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(165);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(614);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(613);
 /* harmony import */ var _gas_input__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(363);
 /* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(5);
 /* harmony import */ var _gas_form__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(1217);
@@ -1502,8 +1502,8 @@ const FeeButtonsInner = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_13__[/* 
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(208);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(615);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(616);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(614);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(615);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
 
 
@@ -1549,8 +1549,8 @@ const MemoInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_5__[/* observe
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(649);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(650);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(648);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(617);
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(610);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(616);
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(609);
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _channel_registrar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(632);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(15);
@@ -1962,9 +1962,9 @@ module.exports = content.locals || {};
 /* harmony import */ var _keplr_wallet_stores__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_stores__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _components_notification__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(116);
 /* harmony import */ var _components_loading_indicator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(170);
-/* harmony import */ var _keplr_wallet_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(26);
+/* harmony import */ var _keplr_wallet_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(27);
 /* harmony import */ var _keplr_wallet_common__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_common__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(27);
+/* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(26);
 /* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_12__);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -2263,7 +2263,7 @@ const VestingInfo = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__[/* obser
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _components_loading_indicator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(170);
 /* harmony import */ var _page_button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(76);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(614);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(613);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(165);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -2290,6 +2290,7 @@ const SetKeyRingPage = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__[/* ob
     const history = Object(react_router__WEBPACK_IMPORTED_MODULE_4__["useHistory"])();
     const loadingIndicator = Object(_components_loading_indicator__WEBPACK_IMPORTED_MODULE_9__[/* useLoadingIndicator */ "b"])();
     const lock = () => {
+        history.goBack();
         misesStore.setLock();
     };
     return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_layouts__WEBPACK_IMPORTED_MODULE_1__[/* HeaderLayout */ "a"], { showChainName: false, canChangeChainInfo: false, alternativeTitle: intl.formatMessage({ id: "setting.keyring" }), onBackButton: () => {
@@ -5967,7 +5968,7 @@ module.exports = "assets/icon-128.png";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
@@ -5975,7 +5976,7 @@ var react_default = /*#__PURE__*/__webpack_require__.n(react);
 var react_dom = __webpack_require__(1193);
 var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-intl/lib/components/provider.js + 6 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/provider.js + 6 modules
 var provider = __webpack_require__(1683);
 
 // EXTERNAL MODULE: ./src/languages/en.json
@@ -6068,19 +6069,19 @@ const AppIntlProvider = ({ additionalMessages, languageToFiatCurrency, children 
 // EXTERNAL MODULE: ./src/styles/global.scss
 var global = __webpack_require__(1376);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-router/esm/react-router.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-router/esm/react-router.js
 var react_router = __webpack_require__(20);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-router-dom/esm/react-router-dom.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-router-dom/esm/react-router-dom.js
 var react_router_dom = __webpack_require__(1358);
 
 // EXTERNAL MODULE: ../hooks/build/index.js
 var build = __webpack_require__(44);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Button.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Button.js
 var Button = __webpack_require__(255);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
 var es = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./src/stores/index.tsx + 3 modules
@@ -6094,7 +6095,7 @@ var style_module_default = /*#__PURE__*/__webpack_require__.n(style_module);
 var empty_layout_style_module = __webpack_require__(1321);
 var empty_layout_style_module_default = /*#__PURE__*/__webpack_require__.n(empty_layout_style_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/classnames/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/classnames/index.js
 var classnames = __webpack_require__(13);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
@@ -6107,7 +6108,7 @@ const EmptyLayout = (props) => {
     return (react_default.a.createElement("div", { className: classnames_default()(empty_layout_style_module_default.a.container, props.className), style: props.style }, children));
 };
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-intl/lib/components/message.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/message.js
 var message = __webpack_require__(165);
 
 // EXTERNAL MODULE: ../popup/build/index.js
@@ -6334,11 +6335,11 @@ const Secret20ViewingKeyAccessPage = Object(es["a" /* observer */])(() => {
 var register_style_module = __webpack_require__(88);
 var register_style_module_default = /*#__PURE__*/__webpack_require__.n(register_style_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/mobx/dist/mobx.esm.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx/dist/mobx.esm.js
 var mobx_esm = __webpack_require__(5);
 
 // EXTERNAL MODULE: ../common/build/index.js
-var common_build = __webpack_require__(26);
+var common_build = __webpack_require__(27);
 
 // CONCATENATED MODULE: ./src/pages/register/mnemonic/hook.ts
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -6438,20 +6439,20 @@ const useNewMnemonicConfig = (registerConfig) => {
     return newMnemonicConfig;
 };
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
-var useIntl = __webpack_require__(614);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
+var useIntl = __webpack_require__(613);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-hook-form/dist/react-hook-form.es.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-hook-form/dist/react-hook-form.es.js
 var react_hook_form_es = __webpack_require__(75);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/FormGroup.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/FormGroup.js
 var FormGroup = __webpack_require__(208);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Label.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Label.js
 var Label = __webpack_require__(209);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Input.js
-var Input = __webpack_require__(615);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Input.js
+var Input = __webpack_require__(614);
 
 // EXTERNAL MODULE: ./src/components/confirm/index.tsx + 1 modules
 var components_confirm = __webpack_require__(101);
@@ -6667,13 +6668,13 @@ const AdvancedBIP44Option = Object(es["a" /* observer */])(({ bip44Option }) => 
                     } })))) : null));
 });
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Alert.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Alert.js
 var Alert = __webpack_require__(1678);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/ButtonGroup.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ButtonGroup.js
 var ButtonGroup = __webpack_require__(1661);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Form.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Form.js
 var Form = __webpack_require__(1662);
 
 // EXTERNAL MODULE: ./src/components/form/index.tsx + 4 modules
@@ -6871,23 +6872,23 @@ const VerifyMnemonicModePage = Object(es["a" /* observer */])(({ registerConfig,
             } })));
 });
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/ButtonDropdown.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ButtonDropdown.js + 1 modules
 var ButtonDropdown = __webpack_require__(649);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/DropdownToggle.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownToggle.js + 1 modules
 var DropdownToggle = __webpack_require__(650);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/DropdownMenu.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownMenu.js
 var DropdownMenu = __webpack_require__(648);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/DropdownItem.js
-var DropdownItem = __webpack_require__(617);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownItem.js
+var DropdownItem = __webpack_require__(616);
 
 // EXTERNAL MODULE: ./src/pages/register/mnemonic/recover-mnemonic.module.scss
 var recover_mnemonic_module = __webpack_require__(82);
 var recover_mnemonic_module_default = /*#__PURE__*/__webpack_require__.n(recover_mnemonic_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
 var buffer = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./src/pages/register/mnemonic/recover-mnemonic.tsx
@@ -7279,7 +7280,7 @@ const IconOpenEye = ({ width = 28, height = 29, color = "#C6C6CD" }) => {
 };
 
 // EXTERNAL MODULE: ../background/build/index.js
-var background_build = __webpack_require__(53);
+var background_build = __webpack_require__(54);
 
 // EXTERNAL MODULE: ../router-extension/build/index.js
 var router_extension_build = __webpack_require__(56);
@@ -7810,10 +7811,10 @@ const RegisterPage = Object(es["a" /* observer */])(() => {
 // EXTERNAL MODULE: ./src/layouts/index.tsx + 9 modules
 var layouts = __webpack_require__(42);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Card.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Card.js
 var Card = __webpack_require__(1664);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/CardBody.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/CardBody.js
 var CardBody = __webpack_require__(1665);
 
 // EXTERNAL MODULE: ./src/pages/main/style.module.scss
@@ -8003,7 +8004,7 @@ const AccountView = Object(es["a" /* observer */])(() => {
 var tx_button_module = __webpack_require__(385);
 var tx_button_module_default = /*#__PURE__*/__webpack_require__.n(tx_button_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Tooltip.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Tooltip.js
 var Tooltip = __webpack_require__(1205);
 
 // EXTERNAL MODULE: ./node_modules/react-modal/lib/index.js
@@ -8011,7 +8012,7 @@ var lib = __webpack_require__(370);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 // EXTERNAL MODULE: ../unit/build/index.js
-var unit_build = __webpack_require__(27);
+var unit_build = __webpack_require__(26);
 
 // CONCATENATED MODULE: ./src/pages/main/tx-button.tsx
 
@@ -8371,19 +8372,19 @@ const StakeView = Object(es["a" /* observer */])(() => {
 // EXTERNAL MODULE: ./src/pages/main/token.tsx
 var token = __webpack_require__(1327);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/CustomInput.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/CustomInput.js + 1 modules
 var CustomInput = __webpack_require__(1684);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Row.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Row.js
 var Row = __webpack_require__(1679);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Col.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Col.js
 var Col = __webpack_require__(1680);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
 var Modal = __webpack_require__(1220);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/ModalBody.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ModalBody.js
 var ModalBody = __webpack_require__(1361);
 
 // EXTERNAL MODULE: ./src/pages/main/bip44-select-modal.module.scss
@@ -8744,7 +8745,7 @@ const Banner = ({ icon, logo, subtitle }) => {
 var lock_style_module = __webpack_require__(257);
 var lock_style_module_default = /*#__PURE__*/__webpack_require__.n(lock_style_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/delay/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/delay/index.js
 var delay = __webpack_require__(1329);
 var delay_default = /*#__PURE__*/__webpack_require__.n(delay);
 
@@ -8826,9 +8827,10 @@ const LockPage = Object(es["a" /* observer */])(() => {
                 }
                 catch (e) {
                     console.log("Fail to decrypt: " + e.message);
-                    setError("password", "invalid", intl.formatMessage({
-                        id: "lock.input.password.error.invalid",
-                    }));
+                    const message = e.message === "Unmatched mac" ? intl.formatMessage({
+                        id: "lock.input.password.error.invalid"
+                    }) : e.message;
+                    setError("password", "invalid", message);
                     setLoading(false);
                 }
             })) },
@@ -8874,7 +8876,7 @@ const LockPage = Object(es["a" /* observer */])(() => {
 var send_style_module = __webpack_require__(1208);
 var send_style_module_default = /*#__PURE__*/__webpack_require__.n(send_style_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/querystring-es3/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/querystring-es3/index.js
 var querystring_es3 = __webpack_require__(377);
 var querystring_es3_default = /*#__PURE__*/__webpack_require__.n(querystring_es3);
 
@@ -9103,7 +9105,7 @@ var details_tab_module_default = /*#__PURE__*/__webpack_require__.n(details_tab_
 // EXTERNAL MODULE: ../crypto/build/index.js
 var crypto_build = __webpack_require__(50);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Badge.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Badge.js
 var Badge = __webpack_require__(1681);
 
 // CONCATENATED MODULE: ./node_modules/js-yaml/dist/js-yaml.mjs
@@ -15343,7 +15345,7 @@ var manifest = __webpack_require__(267);
 // EXTERNAL MODULE: ../provider/build/index.js
 var provider_build = __webpack_require__(194);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/qrcode.react/lib/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/qrcode.react/lib/index.js
 var qrcode_react_lib = __webpack_require__(1340);
 var qrcode_react_lib_default = /*#__PURE__*/__webpack_require__.n(qrcode_react_lib);
 
@@ -15351,10 +15353,10 @@ var qrcode_react_lib_default = /*#__PURE__*/__webpack_require__.n(qrcode_react_l
 var export_to_mobile_style_module = __webpack_require__(1211);
 var export_to_mobile_style_module_default = /*#__PURE__*/__webpack_require__.n(export_to_mobile_style_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/@walletconnect/client/dist/esm/index.js + 6 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/client/dist/esm/index.js + 6 modules
 var esm = __webpack_require__(1360);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/aes-js/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/aes-js/index.js
 var aes_js = __webpack_require__(196);
 var aes_js_default = /*#__PURE__*/__webpack_require__.n(aes_js);
 
@@ -15995,7 +15997,7 @@ const TransactionIcon = ({ category }) => {
     return react_default.a.createElement(Icon, { color: "#5e72e4", size: 28 });
 };
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-query/es/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-query/es/index.js
 var react_query_es = __webpack_require__(234);
 
 // CONCATENATED MODULE: ./src/pages/transfer/index.tsx
@@ -16095,13 +16097,13 @@ const TransferPage = Object(es["a" /* observer */])(() => {
         })))));
 });
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/@sentry/react/esm/sdk.js + 16 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/react/esm/sdk.js + 16 modules
 var sdk = __webpack_require__(1682);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/@sentry/tracing/esm/index.js + 19 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/tracing/esm/index.js + 19 modules
 var tracing_esm = __webpack_require__(1359);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-idle-timer/dist/index.es.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-idle-timer/dist/index.es.js
 var index_es = __webpack_require__(1351);
 
 // CONCATENATED MODULE: ./src/index.tsx
@@ -16324,24 +16326,24 @@ __webpack_require__.d(__webpack_exports__, "b", function() { return /* binding *
 
 // UNUSED EXPORTS: ChainStore
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/mobx/dist/mobx.esm.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx/dist/mobx.esm.js
 var mobx_esm = __webpack_require__(5);
 
 // EXTERNAL MODULE: ../stores/build/index.js
 var build = __webpack_require__(43);
 
 // EXTERNAL MODULE: ../background/build/index.js
-var background_build = __webpack_require__(53);
+var background_build = __webpack_require__(54);
 
 // EXTERNAL MODULE: ../router/build/index.js
 var router_build = __webpack_require__(3);
 
 // EXTERNAL MODULE: ../common/build/index.js
-var common_build = __webpack_require__(26);
+var common_build = __webpack_require__(27);
 
 // CONCATENATED MODULE: ./src/stores/chain/index.tsx
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -16566,7 +16568,7 @@ ui_config_decorate([
 // EXTERNAL MODULE: ../analytics/build/index.js
 var analytics_build = __webpack_require__(1200);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/amplitude-js/amplitude.esm.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/amplitude-js/amplitude.esm.js
 var amplitude_esm = __webpack_require__(1317);
 
 // EXTERNAL MODULE: ../cosmos/build/index.js
@@ -16886,7 +16888,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 199:
+/***/ 198:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
@@ -16911,7 +16913,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 204:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16923,8 +16925,8 @@ module.exports = content.locals || {};
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(208);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(209);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1362);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(615);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(616);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(614);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(615);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(647);
 /* harmony import */ var _input_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1322);
 /* harmony import */ var _input_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_input_module_scss__WEBPACK_IMPORTED_MODULE_8__);
@@ -17000,7 +17002,7 @@ module.exports = content.locals || {};
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToolTip; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(609);
+/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(608);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _tooltip_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1323);
@@ -17205,7 +17207,7 @@ module.exports = content.locals || {};
 /***/ 267:
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"manifest_version\":3,\"name\":\"Mises\",\"description\":\"Mises is a browser extension wallet\",\"version\":\"0.2.2\",\"icons\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"},\"action\":{\"default_popup\":\"popup.html\",\"default_title\":\"Mises\",\"default_icon\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"}},\"background\":{\"service_worker\":\"background.bundle.js\"},\"author\":\"https://www.mises.site\",\"permissions\":[\"storage\",\"notifications\",\"identity\",\"tabs\",\"idle\",\"misesPrivate\",\"nativeMessaging\"],\"host_permissions\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"content_scripts\":[{\"matches\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"js\":[\"browser-polyfill.js\",\"contentScripts.bundle.js\"],\"run_at\":\"document_start\",\"all_frames\":true}],\"web_accessible_resources\":[{\"resources\":[\"injectedScript.bundle.js\",\"assets/logo-256.png\",\"safeInjectedScript.bundle.js\"],\"matches\":[\"http://*/*\",\"https://*/*\"]}],\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB\",\"content_security_policy\":{\"extension_pages\":\"script-src 'self' 'wasm-unsafe-eval'; object-src 'self';\"}}");
+module.exports = JSON.parse("{\"manifest_version\":3,\"name\":\"Mises\",\"description\":\"Mises is a browser extension wallet\",\"version\":\"0.2.3\",\"icons\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"},\"action\":{\"default_popup\":\"popup.html\",\"default_title\":\"Mises\",\"default_icon\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"}},\"background\":{\"service_worker\":\"background.bundle.js\"},\"author\":\"https://www.mises.site\",\"permissions\":[\"storage\",\"notifications\",\"identity\",\"tabs\",\"idle\",\"misesPrivate\",\"nativeMessaging\"],\"host_permissions\":[\"http://*/*\",\"https://*/*\"],\"content_scripts\":[{\"matches\":[\"http://*/*\",\"https://*/*\"],\"js\":[\"browser-polyfill.js\",\"contentScripts.bundle.js\"],\"run_at\":\"document_start\",\"all_frames\":true}],\"web_accessible_resources\":[{\"resources\":[\"injectedScript.bundle.js\",\"assets/logo-256.png\",\"safeInjectedScript.bundle.js\"],\"matches\":[\"http://*/*\",\"https://*/*\"]}],\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB\",\"content_security_policy\":{\"extension_pages\":\"script-src 'self' 'wasm-unsafe-eval'; object-src 'self';\"}}");
 
 /***/ }),
 
@@ -17695,7 +17697,7 @@ module.exports = function (list, options) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(208);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(615);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(614);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(15);
 
 
@@ -18041,29 +18043,29 @@ __webpack_require__.d(__webpack_exports__, "f", function() { return /* reexport 
 // UNUSED EXPORTS: TextArea, FeeCurrencySelector, FeeButtonsInner, GasInput, IBCChannelRegistrarModal, DestinationChainSelector
 
 // EXTERNAL MODULE: ./src/components/form/input.tsx
-var input = __webpack_require__(204);
+var input = __webpack_require__(203);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/classnames/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/classnames/index.js
 var classnames = __webpack_require__(13);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/FormGroup.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/FormGroup.js
 var FormGroup = __webpack_require__(208);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Label.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Label.js
 var Label = __webpack_require__(209);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Input.js
-var Input = __webpack_require__(615);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Input.js
+var Input = __webpack_require__(614);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/FormFeedback.js
-var FormFeedback = __webpack_require__(616);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/FormFeedback.js
+var FormFeedback = __webpack_require__(615);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
 var buffer = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./src/components/form/textarea.tsx
@@ -18124,10 +18126,10 @@ var chain_selector = __webpack_require__(1272);
 var password_input_module = __webpack_require__(1326);
 var password_input_module_default = /*#__PURE__*/__webpack_require__.n(password_input_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Tooltip.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Tooltip.js
 var Tooltip = __webpack_require__(1205);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-intl/lib/components/message.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/message.js
 var message = __webpack_require__(165);
 
 // CONCATENATED MODULE: ./src/components/form/password-input.tsx
@@ -18192,11 +18194,11 @@ const PasswordInput = Object(react["forwardRef"])((props, ref) => {
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ HeaderLayout; });
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/framer-motion/dist/framer-motion.es.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/framer-motion/dist/framer-motion.es.js + 1 modules
 var framer_motion_es = __webpack_require__(159);
 
 // EXTERNAL MODULE: ./src/layouts/menu/menu.module.scss
@@ -18294,7 +18296,7 @@ const MenuButton = react_default.a.forwardRef((_, ref) => {
 
 
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/classnames/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/classnames/index.js
 var classnames = __webpack_require__(13);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
@@ -18318,7 +18320,7 @@ const Header = ({ fixed, left, right, children, }) => {
 // CONCATENATED MODULE: ./src/components/header/index.tsx
 
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
 var es = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./src/stores/index.tsx + 3 modules
@@ -18338,8 +18340,8 @@ var chain_list_module_default = /*#__PURE__*/__webpack_require__.n(chain_list_mo
 // EXTERNAL MODULE: ./src/components/confirm/index.tsx + 1 modules
 var components_confirm = __webpack_require__(101);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
-var useIntl = __webpack_require__(614);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
+var useIntl = __webpack_require__(613);
 
 // CONCATENATED MODULE: ./src/layouts/header/chain-list.tsx
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -18489,7 +18491,7 @@ const HeaderLayout = (props) => {
 
 /***/ }),
 
-/***/ 610:
+/***/ 609:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
@@ -18514,7 +18516,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 611:
+/***/ 610:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
@@ -18539,7 +18541,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 619:
+/***/ 618:
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -18566,12 +18568,12 @@ module.exports = __webpack_amd_options__;
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(649);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(650);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(648);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(617);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(616);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(255);
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(610);
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(609);
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(204);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(614);
+/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(203);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(613);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(165);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -18687,48 +18689,48 @@ const IBCChannelRegistrarModal = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ AddressBookPage; });
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react/index.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx-react-lite/es/index.js + 17 modules
 var es = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./src/layouts/index.tsx + 9 modules
 var layouts = __webpack_require__(42);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
-var useIntl = __webpack_require__(614);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
+var useIntl = __webpack_require__(613);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-intl/lib/components/message.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/message.js
 var message = __webpack_require__(165);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/react-router/esm/react-router.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-router/esm/react-router.js
 var react_router = __webpack_require__(20);
 
 // EXTERNAL MODULE: ./src/pages/setting/style.module.scss
 var style_module = __webpack_require__(169);
 var style_module_default = /*#__PURE__*/__webpack_require__.n(style_module);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
 var Modal = __webpack_require__(1220);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/ModalBody.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ModalBody.js
 var ModalBody = __webpack_require__(1361);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/ButtonDropdown.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ButtonDropdown.js + 1 modules
 var ButtonDropdown = __webpack_require__(649);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/DropdownToggle.js + 1 modules
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownToggle.js + 1 modules
 var DropdownToggle = __webpack_require__(650);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/DropdownMenu.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownMenu.js
 var DropdownMenu = __webpack_require__(648);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/DropdownItem.js
-var DropdownItem = __webpack_require__(617);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownItem.js
+var DropdownItem = __webpack_require__(616);
 
-// EXTERNAL MODULE: /Users/baoge/Documents/work/mises-wallet/node_modules/reactstrap/es/Button.js
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Button.js
 var Button = __webpack_require__(255);
 
 // EXTERNAL MODULE: ./src/pages/setting/address-book/style.module.scss
@@ -18833,7 +18835,7 @@ const AddAddressModal = Object(es["a" /* observer */])(({ closeModal, recipientC
 });
 
 // EXTERNAL MODULE: ../common/build/index.js
-var build = __webpack_require__(26);
+var build = __webpack_require__(27);
 
 // EXTERNAL MODULE: ../cosmos/build/index.js
 var cosmos_build = __webpack_require__(16);
@@ -19114,7 +19116,7 @@ module.exports = content.locals || {};
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _page_button_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(611);
+/* harmony import */ var _page_button_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(610);
 /* harmony import */ var _page_button_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_page_button_module_scss__WEBPACK_IMPORTED_MODULE_2__);
 
 
