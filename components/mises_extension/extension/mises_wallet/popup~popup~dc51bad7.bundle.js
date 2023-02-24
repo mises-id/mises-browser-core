@@ -136,7 +136,7 @@ module.exports = isValidUTF8;
 
 /***/ }),
 
-/***/ 1200:
+/***/ 1201:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1944,7 +1944,7 @@ exports.default = xs;
 
 /***/ }),
 
-/***/ 1316:
+/***/ 1317:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2091,7 +2091,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(377);
+    querystring = __webpack_require__(378);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -2728,7 +2728,7 @@ Url.prototype.parseHost = function() {
 
 /***/ }),
 
-/***/ 285:
+/***/ 287:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2876,7 +2876,7 @@ module.exports = warning;
 /***/ 766:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var bs58check = __webpack_require__(290)
+/* WEBPACK VAR INJECTION */(function(Buffer) {var bs58check = __webpack_require__(292)
 
 function decodeRaw (buffer, version) {
   // check version only if defined

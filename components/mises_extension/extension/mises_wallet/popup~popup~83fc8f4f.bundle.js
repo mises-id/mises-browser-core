@@ -29,7 +29,7 @@ __exportStar(__webpack_require__(1021), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(331);
+const messages_1 = __webpack_require__(333);
 const constants_1 = __webpack_require__(521);
 const handler_1 = __webpack_require__(1022);
 function init(router, service) {
@@ -49,7 +49,7 @@ exports.init = init;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(331);
+const messages_1 = __webpack_require__(333);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -102,7 +102,7 @@ __exportStar(__webpack_require__(1024), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(228);
+const messages_1 = __webpack_require__(229);
 const constants_1 = __webpack_require__(524);
 const handler_1 = __webpack_require__(1025);
 function init(router, service) {
@@ -133,7 +133,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(228);
+const messages_1 = __webpack_require__(229);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -241,7 +241,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Crypto = void 0;
 const aes_js_1 = __importStar(__webpack_require__(196));
 const crypto_1 = __webpack_require__(50);
-const pbkdf2_1 = __importDefault(__webpack_require__(378));
+const pbkdf2_1 = __importDefault(__webpack_require__(379));
 const buffer_1 = __webpack_require__(4);
 const router_1 = __webpack_require__(3);
 class Crypto {
@@ -585,7 +585,7 @@ exports.trimAminoSignDoc = trimAminoSignDoc;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(334);
+const messages_1 = __webpack_require__(336);
 const constants_1 = __webpack_require__(535);
 const handler_1 = __webpack_require__(1043);
 function init(router, service) {
@@ -638,10 +638,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(334);
+const messages_1 = __webpack_require__(336);
 const cosmos_1 = __webpack_require__(16);
 const tx_1 = __webpack_require__(100);
-const keyring_1 = __webpack_require__(229);
+const keyring_1 = __webpack_require__(230);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -897,7 +897,7 @@ __exportStar(__webpack_require__(1045), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(335);
+const messages_1 = __webpack_require__(337);
 const constants_1 = __webpack_require__(537);
 const handler_1 = __webpack_require__(1046);
 function init(router, service) {
@@ -926,7 +926,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(335);
+const messages_1 = __webpack_require__(337);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -977,7 +977,7 @@ __exportStar(__webpack_require__(1048), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(336);
+const messages_1 = __webpack_require__(338);
 const constants_1 = __webpack_require__(539);
 const handler_1 = __webpack_require__(1049);
 function init(router, service) {
@@ -1008,7 +1008,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(336);
+const messages_1 = __webpack_require__(338);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1082,7 +1082,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(230);
+const messages_1 = __webpack_require__(231);
 const constants_1 = __webpack_require__(542);
 const handler_1 = __webpack_require__(1053);
 function init(router, service) {
@@ -1115,7 +1115,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(230);
+const messages_1 = __webpack_require__(231);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1236,7 +1236,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.interactionForegroundInit = void 0;
-const messages_1 = __webpack_require__(338);
+const messages_1 = __webpack_require__(340);
 const constants_1 = __webpack_require__(546);
 const handler_1 = __webpack_require__(1058);
 function interactionForegroundInit(router, service) {
@@ -1257,7 +1257,7 @@ exports.interactionForegroundInit = interactionForegroundInit;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(338);
+const messages_1 = __webpack_require__(340);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1292,7 +1292,7 @@ const handlePushEventDataMsg = (service) => {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(339);
+const messages_1 = __webpack_require__(341);
 const constants_1 = __webpack_require__(547);
 const handler_1 = __webpack_require__(1060);
 function init(router, service) {
@@ -1313,7 +1313,7 @@ exports.init = init;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(339);
+const messages_1 = __webpack_require__(341);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1370,7 +1370,7 @@ __exportStar(__webpack_require__(1062), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(332);
+const messages_1 = __webpack_require__(334);
 const constants_1 = __webpack_require__(528);
 const handler_1 = __webpack_require__(1063);
 function init(router, service) {
@@ -1403,7 +1403,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(332);
+const messages_1 = __webpack_require__(334);
 const router_1 = __webpack_require__(3);
 const getHandler = (service) => {
     return (env, msg) => {
@@ -1493,7 +1493,7 @@ __exportStar(__webpack_require__(1065), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(340);
+const messages_1 = __webpack_require__(342);
 const constants_1 = __webpack_require__(549);
 const handler_1 = __webpack_require__(1066);
 function init(router, service) {
@@ -1516,7 +1516,7 @@ exports.init = init;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(340);
+const messages_1 = __webpack_require__(342);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1577,8 +1577,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(341), exports);
-__exportStar(__webpack_require__(1085), exports);
+__exportStar(__webpack_require__(343), exports);
+__exportStar(__webpack_require__(1086), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
@@ -1600,11 +1600,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Mises = void 0;
 const mises_js_sdk_1 = __webpack_require__(1069);
-const mises_network_util_1 = __webpack_require__(345);
-const tendermint_rpc_1 = __webpack_require__(317);
-const stargate_1 = __webpack_require__(263);
-const react_query_1 = __webpack_require__(234);
-const service_1 = __webpack_require__(341);
+const mises_network_util_1 = __webpack_require__(232);
+const tendermint_rpc_1 = __webpack_require__(319);
+const stargate_1 = __webpack_require__(265);
+const react_query_1 = __webpack_require__(236);
+const service_1 = __webpack_require__(343);
+const http_client_1 = __webpack_require__(1085);
 class Mises {
     constructor() {
         this.config = mises_js_sdk_1.MSdk.newConfig();
@@ -1624,11 +1625,17 @@ class Mises {
     }
     makeClient() {
         return __awaiter(this, void 0, void 0, function* () {
-            const tmClient = yield tendermint_rpc_1.Tendermint34Client.connect(mises_network_util_1.MISES_POINT);
-            return [
-                stargate_1.QueryClient.withExtensions(tmClient, stargate_1.setupStakingExtension, stargate_1.setupDistributionExtension, stargate_1.setupAuthExtension, stargate_1.setupTxExtension),
-                tmClient,
-            ];
+            try {
+                const tmClient = yield tendermint_rpc_1.Tendermint34Client.create(new http_client_1.HttpClient(mises_network_util_1.MISES_POINT));
+                return [
+                    stargate_1.QueryClient.withExtensions(tmClient, stargate_1.setupStakingExtension, stargate_1.setupDistributionExtension, stargate_1.setupAuthExtension, stargate_1.setupTxExtension),
+                    tmClient,
+                ];
+            }
+            catch (error) {
+                console.log(error);
+                return Promise.reject(error);
+            }
         });
     }
 }
@@ -1642,11 +1649,65 @@ exports.Mises = Mises;
 
 "use strict";
 
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HttpClient = void 0;
+const json_rpc_1 = __webpack_require__(320);
+const rpcclient_1 = __webpack_require__(228);
+const mises_network_util_1 = __webpack_require__(232);
+class HttpClient {
+    constructor(endpoint) {
+        if (typeof endpoint === "string") {
+            // accept host.name:port and assume http protocol
+            this.url = rpcclient_1.hasProtocol(endpoint) ? endpoint : "http://" + endpoint;
+        }
+        else {
+            this.url = endpoint.url;
+            this.headers = endpoint.headers;
+        }
+    }
+    disconnect() {
+        // nothing to be done
+    }
+    execute(request) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield mises_network_util_1.misesRequest({
+                url: this.url,
+                method: "POST",
+                data: request ? JSON.stringify(request) : undefined,
+                headers: Object.assign({ "Content-Type": "application/json" }, this.headers),
+                isCustomRequest: true,
+            });
+            if (json_rpc_1.isJsonRpcErrorResponse(response)) {
+                throw new Error(JSON.stringify(response.error));
+            }
+            return response;
+        });
+    }
+}
+exports.HttpClient = HttpClient;
+//# sourceMappingURL=http-client.js.map
+
+/***/ }),
+
+/***/ 1086:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(346);
+const messages_1 = __webpack_require__(347);
 const constants_1 = __webpack_require__(557);
-const handler_1 = __webpack_require__(1086);
+const handler_1 = __webpack_require__(1087);
 function init(router, service) {
     router.registerMessage(messages_1.BalanceUMISMsg);
     router.registerMessage(messages_1.MisesChainMsg);
@@ -1677,14 +1738,14 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1086:
+/***/ 1087:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(346);
+const messages_1 = __webpack_require__(347);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1808,7 +1869,7 @@ const handlerOpenWallet = (service) => () => {
 
 /***/ }),
 
-/***/ 1087:
+/***/ 1088:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1825,21 +1886,21 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(558), exports);
-__exportStar(__webpack_require__(1088), exports);
+__exportStar(__webpack_require__(1089), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1088:
+/***/ 1089:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(347);
+const messages_1 = __webpack_require__(348);
 const constants_1 = __webpack_require__(559);
-const handler_1 = __webpack_require__(1089);
+const handler_1 = __webpack_require__(1090);
 function init(router, service) {
     router.registerMessage(messages_1.InitSafeMsg);
     router.registerMessage(messages_1.VerifyDomainMsg);
@@ -1852,14 +1913,14 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1089:
+/***/ 1090:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(347);
+const messages_1 = __webpack_require__(348);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1893,28 +1954,6 @@ const handlerSetIsShouldVerifyMsg = (service) => (_, msg) => {
 
 /***/ }),
 
-/***/ 1090:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(520), exports);
-__exportStar(__webpack_require__(331), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ 1091:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1931,8 +1970,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(341), exports);
-__exportStar(__webpack_require__(346), exports);
+__exportStar(__webpack_require__(520), exports);
+__exportStar(__webpack_require__(333), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -1953,7 +1992,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(558), exports);
+__exportStar(__webpack_require__(343), exports);
 __exportStar(__webpack_require__(347), exports);
 //# sourceMappingURL=index.js.map
 
@@ -1975,13 +2014,35 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1094), exports);
-__exportStar(__webpack_require__(1174), exports);
+__exportStar(__webpack_require__(558), exports);
+__exportStar(__webpack_require__(348), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
 /***/ 1094:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1095), exports);
+__exportStar(__webpack_require__(1175), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1095:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1997,7 +2058,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretWasmService = void 0;
-const secretjs_1 = __webpack_require__(1095);
+const secretjs_1 = __webpack_require__(1096);
 const crypto_1 = __webpack_require__(50);
 const common_1 = __webpack_require__(27);
 const cosmos_1 = __webpack_require__(16);
@@ -2129,7 +2190,7 @@ exports.SecretWasmService = SecretWasmService;
 
 /***/ }),
 
-/***/ 1174:
+/***/ 1175:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2137,7 +2198,7 @@ exports.SecretWasmService = SecretWasmService;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetTxEncryptionKeyMsg = exports.RequestDecryptMsg = exports.ReqeustEncryptMsg = exports.GetPubkeyMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(1175);
+const constants_1 = __webpack_require__(1176);
 class GetPubkeyMsg extends router_1.Message {
     constructor(chainId) {
         super();
@@ -2261,7 +2322,7 @@ exports.GetTxEncryptionKeyMsg = GetTxEncryptionKeyMsg;
 
 /***/ }),
 
-/***/ 1175:
+/***/ 1176:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2273,7 +2334,7 @@ exports.ROUTE = "secret-wasm";
 
 /***/ }),
 
-/***/ 1176:
+/***/ 1177:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2290,19 +2351,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(536), exports);
-__exportStar(__webpack_require__(335), exports);
-__exportStar(__webpack_require__(1177), exports);
+__exportStar(__webpack_require__(337), exports);
+__exportStar(__webpack_require__(1178), exports);
 //# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1177:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
 
 /***/ }),
 
@@ -2311,20 +2362,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(538), exports);
-__exportStar(__webpack_require__(336), exports);
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=types.js.map
 
 /***/ }),
 
@@ -2344,9 +2383,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(540), exports);
-__exportStar(__webpack_require__(230), exports);
-__exportStar(__webpack_require__(543), exports);
+__exportStar(__webpack_require__(538), exports);
+__exportStar(__webpack_require__(338), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -2367,10 +2405,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(544), exports);
-__exportStar(__webpack_require__(339), exports);
-__exportStar(__webpack_require__(1181), exports);
-__exportStar(__webpack_require__(545), exports);
+__exportStar(__webpack_require__(540), exports);
+__exportStar(__webpack_require__(231), exports);
+__exportStar(__webpack_require__(543), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -2380,12 +2417,36 @@ __exportStar(__webpack_require__(545), exports);
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(544), exports);
+__exportStar(__webpack_require__(341), exports);
+__exportStar(__webpack_require__(1182), exports);
+__exportStar(__webpack_require__(545), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1182:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 //# sourceMappingURL=types.js.map
 
 /***/ }),
 
-/***/ 1182:
+/***/ 1183:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2402,12 +2463,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(548), exports);
-__exportStar(__webpack_require__(340), exports);
+__exportStar(__webpack_require__(342), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1216:
+/***/ 1217:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2426,7 +2487,7 @@ var aes_js_default = /*#__PURE__*/__webpack_require__.n(aes_js);
 var build = __webpack_require__(50);
 
 // EXTERNAL MODULE: ../background/node_modules/pbkdf2/browser.js
-var pbkdf2_browser = __webpack_require__(378);
+var pbkdf2_browser = __webpack_require__(379);
 var browser_default = /*#__PURE__*/__webpack_require__.n(pbkdf2_browser);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
@@ -2559,7 +2620,7 @@ var types_build = __webpack_require__(96);
 var cosmos_build = __webpack_require__(16);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/wallet/lib.esm/index.js + 39 modules
-var lib_esm = __webpack_require__(250);
+var lib_esm = __webpack_require__(252);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/bytes/lib.esm/index.js + 1 modules
 var bytes_lib_esm = __webpack_require__(1);
@@ -4970,7 +5031,7 @@ class messages_LockMsg extends router_build["Message"] {
 
 /***/ }),
 
-/***/ 1347:
+/***/ 1348:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5138,7 +5199,16 @@ const misesRequest = (config) => __awaiter(void 0, void 0, void 0, function* () 
         if (data.code === "ECONNABORTED") {
             return Promise.reject("ECONNABORTED");
         }
-        return data.data;
+        let response = data;
+        if (config.isCustomRequest) {
+            const res = data;
+            response = {
+                data: res,
+                code: "0",
+                message: "success",
+            };
+        }
+        return response.data;
     }
     catch (error) {
         console.log(error, "error");
@@ -5168,7 +5238,7 @@ function shortenAddress(address = "", prefix = TRUNCATED_ADDRESS_START_CHARS) {
 
 /***/ }),
 
-/***/ 228:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5241,7 +5311,7 @@ exports.RemoveSuggestedChainInfoMsg = RemoveSuggestedChainInfoMsg;
 
 /***/ }),
 
-/***/ 229:
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5282,10 +5352,10 @@ const types_1 = __webpack_require__(96);
 const router_1 = __webpack_require__(3);
 const buffer_1 = __webpack_require__(4);
 const cosmos_1 = __webpack_require__(16);
-const wallet_1 = __webpack_require__(250);
+const wallet_1 = __webpack_require__(252);
 const BytesUtils = __importStar(__webpack_require__(1));
 const eip712_1 = __webpack_require__(534);
-const hash_1 = __webpack_require__(265);
+const hash_1 = __webpack_require__(267);
 const migrator_1 = __webpack_require__(1040);
 var KeyRingStatus;
 (function (KeyRingStatus) {
@@ -6185,7 +6255,7 @@ exports.KeyRing = KeyRing;
 
 /***/ }),
 
-/***/ 230:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6320,7 +6390,211 @@ exports.GetSecret20ViewingKey = GetSecret20ViewingKey;
 
 /***/ }),
 
-/***/ 331:
+/***/ 232:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.shortenAddress = exports.MISES_TRUNCATED_ADDRESS_START_CHARS = exports.TRUNCATED_ADDRESS_END_CHARS = exports.TRUNCATED_ADDRESS_START_CHARS = exports.TRUNCATED_NAME_CHAR_LIMIT = exports.cancelAllRequest = exports.cancelRequest = exports.misesRequest = exports.Request = exports.MISES_POINT = exports.MISES_SITE_API = void 0;
+exports.MISES_SITE_API = "https://api.alb.mises.site/api/v1";
+// export const MISES_SITE_API = 'http://192.168.1.2:8080/api/v1';
+// export const MISES_POINT = 'http://192.168.1.8:26657';
+exports.MISES_POINT = "http://127.0.0.1:26657";
+const axios_1 = __importDefault(__webpack_require__(60));
+const axios_fetch_adapter_1 = __importDefault(__webpack_require__(598));
+class Request {
+    constructor(config) {
+        var _a, _b, _c, _d;
+        this.requestUrlList = [];
+        this.cancelRequestSourceList = [];
+        this.instance = axios_1.default.create(Object.assign(Object.assign({}, config), { adapter: axios_fetch_adapter_1.default }));
+        this.interceptorsObj = config.interceptors;
+        // 拦截器执行顺序 接口请求 -> 实例请求 -> 全局请求 -> 实例响应 -> 全局响应 -> 接口响应
+        this.instance.interceptors.request.use((res) => res, (err) => err);
+        // 使用实例拦截器
+        this.instance.interceptors.request.use((_a = this.interceptorsObj) === null || _a === void 0 ? void 0 : _a.requestInterceptors, (_b = this.interceptorsObj) === null || _b === void 0 ? void 0 : _b.requestInterceptorsCatch);
+        this.instance.interceptors.response.use((_c = this.interceptorsObj) === null || _c === void 0 ? void 0 : _c.responseInterceptors, (_d = this.interceptorsObj) === null || _d === void 0 ? void 0 : _d.responseInterceptorsCatch);
+        // 全局响应拦截器保证最后执行
+        this.instance.interceptors.response.use(
+        // 因为我们接口的数据都在res.data下，所以我们直接返回res.data
+        (res) => {
+            return res.data;
+        }, (err) => err);
+    }
+    /**
+     * @description: 获取指定 url 在 cancelRequestSourceList 中的索引
+     * @param {string} url
+     * @returns {number} 索引位置
+     */
+    getSourceIndex(url) {
+        var _a;
+        return (_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a.findIndex((item) => {
+            return Object.keys(item)[0] === url;
+        });
+    }
+    /**
+     * @description: 删除 requestUrlList 和 cancelRequestSourceList
+     * @param {string} url
+     * @returns {*}
+     */
+    delUrl(url) {
+        var _a, _b, _c;
+        const urlIndex = (_a = this.requestUrlList) === null || _a === void 0 ? void 0 : _a.findIndex((u) => u === url);
+        const sourceIndex = this.getSourceIndex(url);
+        // 删除url和cancel方法
+        urlIndex !== -1 && ((_b = this.requestUrlList) === null || _b === void 0 ? void 0 : _b.splice(urlIndex, 1));
+        sourceIndex !== -1 && ((_c = this.cancelRequestSourceList) === null || _c === void 0 ? void 0 : _c.splice(sourceIndex, 1));
+    }
+    request(config) {
+        return new Promise((resolve, reject) => {
+            var _a, _b;
+            // 如果我们为单个请求设置拦截器，这里使用单个请求的拦截器
+            if ((_a = config.interceptors) === null || _a === void 0 ? void 0 : _a.requestInterceptors) {
+                config = config.interceptors.requestInterceptors(config);
+            }
+            const url = config.url;
+            // url存在保存取消请求方法和当前请求url
+            if (url) {
+                (_b = this.requestUrlList) === null || _b === void 0 ? void 0 : _b.push(url);
+                // TODO 在axios0.22起，对CancelToken已经弃用，需要改成  AbortController 文档：https://axios-http.com/docs/cancellation
+                config.cancelToken = new axios_1.default.CancelToken((c) => {
+                    var _a;
+                    (_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a.push({
+                        [url]: c,
+                    });
+                });
+            }
+            this.instance
+                .request(config)
+                .then((res) => {
+                var _a;
+                // 如果我们为单个响应设置拦截器，这里使用单个响应的拦截器
+                if ((_a = config.interceptors) === null || _a === void 0 ? void 0 : _a.responseInterceptors) {
+                    res = config.interceptors.responseInterceptors(res);
+                }
+                resolve(res);
+            })
+                .catch((err) => {
+                reject(err);
+            })
+                .finally(() => {
+                url && this.delUrl(url);
+            });
+        });
+    }
+    // 取消请求
+    cancelRequest(url) {
+        var _a;
+        if (typeof url === "string") {
+            // 取消单个请求
+            const sourceIndex = this.getSourceIndex(url);
+            sourceIndex >= 0 && ((_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a[sourceIndex][url]());
+        }
+        else {
+            // 存在多个需要取消请求的地址
+            url.forEach((u) => {
+                var _a;
+                const sourceIndex = this.getSourceIndex(u);
+                sourceIndex >= 0 && ((_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a[sourceIndex][u]());
+            });
+        }
+    }
+    // 取消全部请求
+    cancelAllRequest() {
+        var _a;
+        (_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a.forEach((source) => {
+            const key = Object.keys(source)[0];
+            source[key]();
+        });
+    }
+}
+exports.Request = Request;
+const request = new Request({
+    baseURL: exports.MISES_SITE_API,
+    timeout: 3000,
+    interceptors: {
+        // 请求拦截器
+        requestInterceptors: (config) => config,
+        // 响应拦截器
+        responseInterceptors: (result) => {
+            return result;
+        },
+    },
+});
+/**
+ * @description: 函数的描述
+ * @generic D 请求参数
+ * @generic T 响应结构
+ * @param {misesRequestConfig} config 不管是GET还是POST请求都使用data
+ * @returns {Promise}
+ */
+const misesRequest = (config) => __awaiter(void 0, void 0, void 0, function* () {
+    const { method = "GET" } = config;
+    if (method === "get" || method === "GET") {
+        config.params = config.data;
+    }
+    try {
+        const data = yield request.request(config);
+        if (data.code === "ECONNABORTED") {
+            return Promise.reject("ECONNABORTED");
+        }
+        let response = data;
+        if (config.isCustomRequest) {
+            const res = data;
+            response = {
+                data: res,
+                code: "0",
+                message: "success",
+            };
+        }
+        return response.data;
+    }
+    catch (error) {
+        console.log(error, "error");
+        return Promise.reject(error);
+    }
+});
+exports.misesRequest = misesRequest;
+// 取消请求
+const cancelRequest = (url) => request.cancelRequest(url);
+exports.cancelRequest = cancelRequest;
+// 取消全部请求
+const cancelAllRequest = () => request.cancelAllRequest();
+exports.cancelAllRequest = cancelAllRequest;
+// The character limit on ENS names, nicknames and addresses before we truncate
+exports.TRUNCATED_NAME_CHAR_LIMIT = 11;
+// The number of characters to slice from the beginning of an address for truncated format:
+// `${TRUNCATED_ADDRESS_START_CHARS}...${TRUNCATED_ADDRESS_END_CHARS}`
+exports.TRUNCATED_ADDRESS_START_CHARS = 5;
+// The number of characters to slice from the end of an address for truncated format:
+// `${TRUNCATED_ADDRESS_START_CHARS}...${TRUNCATED_ADDRESS_END_CHARS}`
+exports.TRUNCATED_ADDRESS_END_CHARS = 4;
+exports.MISES_TRUNCATED_ADDRESS_START_CHARS = 8;
+function shortenAddress(address = "", prefix = exports.TRUNCATED_ADDRESS_START_CHARS) {
+    if (address.length < exports.TRUNCATED_NAME_CHAR_LIMIT) {
+        return address;
+    }
+    return `${address.slice(0, prefix)}...${address.slice(-exports.TRUNCATED_ADDRESS_END_CHARS)}`;
+}
+exports.shortenAddress = shortenAddress;
+//# sourceMappingURL=mises-network.util.js.map
+
+/***/ }),
+
+/***/ 333:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6368,7 +6642,7 @@ exports.GetPersistentMemoryMsg = GetPersistentMemoryMsg;
 
 /***/ }),
 
-/***/ 332:
+/***/ 334:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6534,7 +6808,7 @@ exports.RemovePermissionsOrigin = RemovePermissionsOrigin;
 
 /***/ }),
 
-/***/ 334:
+/***/ 336:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6543,7 +6817,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestoreKeyStoreMsg = exports.MigratorKeyRingMsg = exports.AddAccountMsg = exports.IsUnlockMsg = exports.ExportKeyRingDatasMsg = exports.CheckPasswordMsg = exports.SetKeyStoreCoinTypeMsg = exports.GetIsKeyStoreCoinTypeSetMsg = exports.ChangeKeyRingMsg = exports.GetMultiKeyStoreInfoMsg = exports.RequestSignDirectMsg = exports.RequestVerifyADR36AminoSignDoc = exports.RequestSignEIP712CosmosTxMsg_v0 = exports.RequestSignAminoMsg = exports.GetKeyMsg = exports.UnlockKeyRingMsg = exports.LockKeyRingMsg = exports.AddPrivateKeyMsg = exports.CreatePrivateKeyMsg = exports.AddMnemonicKeyMsg = exports.CreateMnemonicKeyMsg = exports.ShowKeyRingMsg = exports.UpdateNameKeyRingMsg = exports.DeleteKeyRingMsg = exports.RestoreKeyRingMsg = void 0;
 const router_1 = __webpack_require__(3);
 const constants_1 = __webpack_require__(535);
-const keyring_1 = __webpack_require__(229);
+const keyring_1 = __webpack_require__(230);
 const cosmos_1 = __webpack_require__(16);
 const types_1 = __webpack_require__(96);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -7273,7 +7547,7 @@ exports.RestoreKeyStoreMsg = RestoreKeyStoreMsg;
 
 /***/ }),
 
-/***/ 335:
+/***/ 337:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7320,7 +7594,7 @@ exports.SendTxMsg = SendTxMsg;
 
 /***/ }),
 
-/***/ 336:
+/***/ 338:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7412,7 +7686,7 @@ exports.ResetChainEndpointsMsg = ResetChainEndpointsMsg;
 
 /***/ }),
 
-/***/ 337:
+/***/ 339:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7429,15 +7703,15 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(529), exports);
-__exportStar(__webpack_require__(334), exports);
+__exportStar(__webpack_require__(336), exports);
 __exportStar(__webpack_require__(1051), exports);
-__exportStar(__webpack_require__(229), exports);
+__exportStar(__webpack_require__(230), exports);
 __exportStar(__webpack_require__(534), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 338:
+/***/ 340:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7492,7 +7766,7 @@ exports.PushEventDataMsg = PushEventDataMsg;
 
 /***/ }),
 
-/***/ 339:
+/***/ 341:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7544,7 +7818,7 @@ exports.RejectInteractionMsg = RejectInteractionMsg;
 
 /***/ }),
 
-/***/ 340:
+/***/ 342:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7632,7 +7906,7 @@ exports.LockMsg = LockMsg;
 
 /***/ }),
 
-/***/ 341:
+/***/ 343:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7659,8 +7933,8 @@ exports.MisesService = exports.fetchConfig = void 0;
  * @Description: mises controller
  */
 const mises_1 = __webpack_require__(1068);
-const mises_network_util_1 = __webpack_require__(345);
-const stargate_1 = __webpack_require__(263);
+const mises_network_util_1 = __webpack_require__(232);
+const stargate_1 = __webpack_require__(265);
 const long_1 = __importDefault(__webpack_require__(7));
 const defaultUserInfo = {
     misesId: "",
@@ -8318,202 +8592,7 @@ exports.MisesService = MisesService;
 
 /***/ }),
 
-/***/ 345:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.shortenAddress = exports.MISES_TRUNCATED_ADDRESS_START_CHARS = exports.TRUNCATED_ADDRESS_END_CHARS = exports.TRUNCATED_ADDRESS_START_CHARS = exports.TRUNCATED_NAME_CHAR_LIMIT = exports.cancelAllRequest = exports.cancelRequest = exports.misesRequest = exports.Request = exports.MISES_POINT = exports.MISES_SITE_API = void 0;
-exports.MISES_SITE_API = "https://api.alb.mises.site/api/v1";
-// export const MISES_SITE_API = 'http://192.168.1.2:8080/api/v1';
-// export const MISES_POINT = 'http://192.168.1.8:26657';
-exports.MISES_POINT = "http://127.0.0.1:26657";
-const axios_1 = __importDefault(__webpack_require__(60));
-const axios_fetch_adapter_1 = __importDefault(__webpack_require__(598));
-class Request {
-    constructor(config) {
-        var _a, _b, _c, _d;
-        this.requestUrlList = [];
-        this.cancelRequestSourceList = [];
-        this.instance = axios_1.default.create(Object.assign(Object.assign({}, config), { adapter: axios_fetch_adapter_1.default }));
-        this.interceptorsObj = config.interceptors;
-        // 拦截器执行顺序 接口请求 -> 实例请求 -> 全局请求 -> 实例响应 -> 全局响应 -> 接口响应
-        this.instance.interceptors.request.use((res) => res, (err) => err);
-        // 使用实例拦截器
-        this.instance.interceptors.request.use((_a = this.interceptorsObj) === null || _a === void 0 ? void 0 : _a.requestInterceptors, (_b = this.interceptorsObj) === null || _b === void 0 ? void 0 : _b.requestInterceptorsCatch);
-        this.instance.interceptors.response.use((_c = this.interceptorsObj) === null || _c === void 0 ? void 0 : _c.responseInterceptors, (_d = this.interceptorsObj) === null || _d === void 0 ? void 0 : _d.responseInterceptorsCatch);
-        // 全局响应拦截器保证最后执行
-        this.instance.interceptors.response.use(
-        // 因为我们接口的数据都在res.data下，所以我们直接返回res.data
-        (res) => {
-            return res.data;
-        }, (err) => err);
-    }
-    /**
-     * @description: 获取指定 url 在 cancelRequestSourceList 中的索引
-     * @param {string} url
-     * @returns {number} 索引位置
-     */
-    getSourceIndex(url) {
-        var _a;
-        return (_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a.findIndex((item) => {
-            return Object.keys(item)[0] === url;
-        });
-    }
-    /**
-     * @description: 删除 requestUrlList 和 cancelRequestSourceList
-     * @param {string} url
-     * @returns {*}
-     */
-    delUrl(url) {
-        var _a, _b, _c;
-        const urlIndex = (_a = this.requestUrlList) === null || _a === void 0 ? void 0 : _a.findIndex((u) => u === url);
-        const sourceIndex = this.getSourceIndex(url);
-        // 删除url和cancel方法
-        urlIndex !== -1 && ((_b = this.requestUrlList) === null || _b === void 0 ? void 0 : _b.splice(urlIndex, 1));
-        sourceIndex !== -1 && ((_c = this.cancelRequestSourceList) === null || _c === void 0 ? void 0 : _c.splice(sourceIndex, 1));
-    }
-    request(config) {
-        return new Promise((resolve, reject) => {
-            var _a, _b;
-            // 如果我们为单个请求设置拦截器，这里使用单个请求的拦截器
-            if ((_a = config.interceptors) === null || _a === void 0 ? void 0 : _a.requestInterceptors) {
-                config = config.interceptors.requestInterceptors(config);
-            }
-            const url = config.url;
-            // url存在保存取消请求方法和当前请求url
-            if (url) {
-                (_b = this.requestUrlList) === null || _b === void 0 ? void 0 : _b.push(url);
-                // TODO 在axios0.22起，对CancelToken已经弃用，需要改成  AbortController 文档：https://axios-http.com/docs/cancellation
-                config.cancelToken = new axios_1.default.CancelToken((c) => {
-                    var _a;
-                    (_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a.push({
-                        [url]: c,
-                    });
-                });
-            }
-            this.instance
-                .request(config)
-                .then((res) => {
-                var _a;
-                // 如果我们为单个响应设置拦截器，这里使用单个响应的拦截器
-                if ((_a = config.interceptors) === null || _a === void 0 ? void 0 : _a.responseInterceptors) {
-                    res = config.interceptors.responseInterceptors(res);
-                }
-                resolve(res);
-            })
-                .catch((err) => {
-                reject(err);
-            })
-                .finally(() => {
-                url && this.delUrl(url);
-            });
-        });
-    }
-    // 取消请求
-    cancelRequest(url) {
-        var _a;
-        if (typeof url === "string") {
-            // 取消单个请求
-            const sourceIndex = this.getSourceIndex(url);
-            sourceIndex >= 0 && ((_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a[sourceIndex][url]());
-        }
-        else {
-            // 存在多个需要取消请求的地址
-            url.forEach((u) => {
-                var _a;
-                const sourceIndex = this.getSourceIndex(u);
-                sourceIndex >= 0 && ((_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a[sourceIndex][u]());
-            });
-        }
-    }
-    // 取消全部请求
-    cancelAllRequest() {
-        var _a;
-        (_a = this.cancelRequestSourceList) === null || _a === void 0 ? void 0 : _a.forEach((source) => {
-            const key = Object.keys(source)[0];
-            source[key]();
-        });
-    }
-}
-exports.Request = Request;
-const request = new Request({
-    baseURL: exports.MISES_SITE_API,
-    timeout: 3000,
-    interceptors: {
-        // 请求拦截器
-        requestInterceptors: (config) => config,
-        // 响应拦截器
-        responseInterceptors: (result) => {
-            return result;
-        },
-    },
-});
-/**
- * @description: 函数的描述
- * @generic D 请求参数
- * @generic T 响应结构
- * @param {misesRequestConfig} config 不管是GET还是POST请求都使用data
- * @returns {Promise}
- */
-const misesRequest = (config) => __awaiter(void 0, void 0, void 0, function* () {
-    const { method = "GET" } = config;
-    if (method === "get" || method === "GET") {
-        config.params = config.data;
-    }
-    try {
-        const data = yield request.request(config);
-        if (data.code === "ECONNABORTED") {
-            return Promise.reject("ECONNABORTED");
-        }
-        return data.data;
-    }
-    catch (error) {
-        console.log(error, "error");
-        return Promise.reject(error);
-    }
-});
-exports.misesRequest = misesRequest;
-// 取消请求
-const cancelRequest = (url) => request.cancelRequest(url);
-exports.cancelRequest = cancelRequest;
-// 取消全部请求
-const cancelAllRequest = () => request.cancelAllRequest();
-exports.cancelAllRequest = cancelAllRequest;
-// The character limit on ENS names, nicknames and addresses before we truncate
-exports.TRUNCATED_NAME_CHAR_LIMIT = 11;
-// The number of characters to slice from the beginning of an address for truncated format:
-// `${TRUNCATED_ADDRESS_START_CHARS}...${TRUNCATED_ADDRESS_END_CHARS}`
-exports.TRUNCATED_ADDRESS_START_CHARS = 5;
-// The number of characters to slice from the end of an address for truncated format:
-// `${TRUNCATED_ADDRESS_START_CHARS}...${TRUNCATED_ADDRESS_END_CHARS}`
-exports.TRUNCATED_ADDRESS_END_CHARS = 4;
-exports.MISES_TRUNCATED_ADDRESS_START_CHARS = 8;
-function shortenAddress(address = "", prefix = exports.TRUNCATED_ADDRESS_START_CHARS) {
-    if (address.length < exports.TRUNCATED_NAME_CHAR_LIMIT) {
-        return address;
-    }
-    return `${address.slice(0, prefix)}...${address.slice(-exports.TRUNCATED_ADDRESS_END_CHARS)}`;
-}
-exports.shortenAddress = shortenAddress;
-//# sourceMappingURL=mises-network.util.js.map
-
-/***/ }),
-
-/***/ 346:
+/***/ 347:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9034,7 +9113,7 @@ exports.OpenWalletMsg = OpenWalletMsg;
 
 /***/ }),
 
-/***/ 347:
+/***/ 348:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9137,7 +9216,7 @@ exports.SetIsShouldVerifyMsg = SetIsShouldVerifyMsg;
 
 /***/ }),
 
-/***/ 378:
+/***/ 379:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports.pbkdf2 = __webpack_require__(1028)
@@ -9210,7 +9289,7 @@ exports.ChainsService = void 0;
 const types_1 = __webpack_require__(523);
 const common_1 = __webpack_require__(27);
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(228);
+const messages_1 = __webpack_require__(229);
 const cosmos_1 = __webpack_require__(16);
 const permission_1 = __webpack_require__(525);
 class ChainsService {
@@ -9520,7 +9599,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(526), exports);
 __exportStar(__webpack_require__(527), exports);
-__exportStar(__webpack_require__(332), exports);
+__exportStar(__webpack_require__(334), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -9777,7 +9856,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeyRingService = void 0;
-const keyring_1 = __webpack_require__(229);
+const keyring_1 = __webpack_require__(230);
 const cosmos_1 = __webpack_require__(16);
 const common_1 = __webpack_require__(27);
 const types_1 = __webpack_require__(96);
@@ -10227,7 +10306,7 @@ module.exports = defaultEncoding
 /***/ 532:
 /***/ (function(module, exports, __webpack_require__) {
 
-var md5 = __webpack_require__(289)
+var md5 = __webpack_require__(291)
 var RIPEMD160 = __webpack_require__(145)
 var sha = __webpack_require__(125)
 var Buffer = __webpack_require__(22).Buffer
@@ -10979,19 +11058,19 @@ const Permission = __importStar(__webpack_require__(1061));
 // import * as PhishingList from "./phishing-list/internal";
 const AutoLocker = __importStar(__webpack_require__(1064));
 const Mises = __importStar(__webpack_require__(1067));
-const MisesSafe = __importStar(__webpack_require__(1087));
-__exportStar(__webpack_require__(1090), exports);
-__exportStar(__webpack_require__(541), exports);
-__exportStar(__webpack_require__(337), exports);
+const MisesSafe = __importStar(__webpack_require__(1088));
 __exportStar(__webpack_require__(1091), exports);
+__exportStar(__webpack_require__(541), exports);
+__exportStar(__webpack_require__(339), exports);
 __exportStar(__webpack_require__(1092), exports);
 __exportStar(__webpack_require__(1093), exports);
-__exportStar(__webpack_require__(1176), exports);
-__exportStar(__webpack_require__(1178), exports);
+__exportStar(__webpack_require__(1094), exports);
+__exportStar(__webpack_require__(1177), exports);
 __exportStar(__webpack_require__(1179), exports);
 __exportStar(__webpack_require__(1180), exports);
+__exportStar(__webpack_require__(1181), exports);
 __exportStar(__webpack_require__(525), exports);
-__exportStar(__webpack_require__(1182), exports);
+__exportStar(__webpack_require__(1183), exports);
 //import { LedgerOptions } from "./ledger/options";
 //import { MisesSafe } from "./mises-safe/mises";
 function init(router, storeCreator, 
@@ -11077,9 +11156,9 @@ exports.TokensService = void 0;
 const router_1 = __webpack_require__(3);
 const chains_1 = __webpack_require__(541);
 const cosmos_1 = __webpack_require__(16);
-const keyring_1 = __webpack_require__(337);
+const keyring_1 = __webpack_require__(339);
 const buffer_1 = __webpack_require__(4);
-const messages_1 = __webpack_require__(230);
+const messages_1 = __webpack_require__(231);
 const types_1 = __webpack_require__(543);
 class TokensService {
     constructor(kvStore) {
@@ -11348,7 +11427,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(522), exports);
-__exportStar(__webpack_require__(228), exports);
+__exportStar(__webpack_require__(229), exports);
 __exportStar(__webpack_require__(523), exports);
 //# sourceMappingURL=index.js.map
 
@@ -11526,7 +11605,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(1055), exports);
-__exportStar(__webpack_require__(338), exports);
+__exportStar(__webpack_require__(340), exports);
 __exportStar(__webpack_require__(1056), exports);
 __exportStar(__webpack_require__(1057), exports);
 //# sourceMappingURL=index.js.map
@@ -11573,7 +11652,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoLockAccountService = void 0;
-const keyring_1 = __webpack_require__(337);
+const keyring_1 = __webpack_require__(339);
 class AutoLockAccountService {
     constructor(kvStore, opts = {
         monitoringInterval: 10000,
@@ -11737,7 +11816,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MisesSafeService = void 0;
-const mises_network_util_1 = __webpack_require__(345);
+const mises_network_util_1 = __webpack_require__(232);
 const listenMethods = {
     mVerifyDomain: "verifyDomain",
     mVerifyContract: "verifyContract",

@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[17],{
 
-/***/ 1190:
+/***/ 1191:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -762,12 +762,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(661), exports);
-__exportStar(__webpack_require__(395), exports);
+__exportStar(__webpack_require__(396), exports);
 __exportStar(__webpack_require__(663), exports);
 __exportStar(__webpack_require__(665), exports);
 __exportStar(__webpack_require__(667), exports);
-__exportStar(__webpack_require__(404), exports);
 __exportStar(__webpack_require__(405), exports);
+__exportStar(__webpack_require__(406), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -798,7 +798,7 @@ __exportStar(__webpack_require__(843), exports);
 
 /***/ }),
 
-/***/ 283:
+/***/ 285:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -839,7 +839,7 @@ exports.BaseKVStore = BaseKVStore;
 
 /***/ }),
 
-/***/ 395:
+/***/ 396:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -867,7 +867,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Bech32Address = void 0;
 const bech32_1 = __importStar(__webpack_require__(104));
 const buffer_1 = __webpack_require__(4);
-const address_1 = __webpack_require__(244);
+const address_1 = __webpack_require__(246);
 class Bech32Address {
     constructor(address) {
         this.address = address;
@@ -943,7 +943,7 @@ exports.Bech32Address = Bech32Address;
 
 /***/ }),
 
-/***/ 396:
+/***/ 397:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -978,7 +978,7 @@ ChainIdHelper.VersionFormatRegExp = /(.+)-([\d]+)/;
 
 /***/ }),
 
-/***/ 397:
+/***/ 398:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1002,8 +1002,8 @@ const tx_4 = __webpack_require__(621);
 const tx_5 = __webpack_require__(623);
 const tx_6 = __webpack_require__(624);
 const tx_7 = __webpack_require__(625);
-const unknown_1 = __webpack_require__(401);
-__exportStar(__webpack_require__(401), exports);
+const unknown_1 = __webpack_require__(402);
+__exportStar(__webpack_require__(402), exports);
 class ProtoCodec {
     constructor() {
         this.typeUrlMap = new Map();
@@ -1044,7 +1044,7 @@ exports.defaultProtoCodec.registerAny("/cosmos.authz.v1beta1.MsgRevoke", tx_3.Ms
 
 /***/ }),
 
-/***/ 401:
+/***/ 402:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1079,7 +1079,7 @@ exports.UnknownMessage = UnknownMessage;
 
 /***/ }),
 
-/***/ 402:
+/***/ 403:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1087,7 +1087,7 @@ exports.UnknownMessage = UnknownMessage;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProtoSignDocDecoder = void 0;
 const tx_1 = __webpack_require__(100);
-const codec_1 = __webpack_require__(397);
+const codec_1 = __webpack_require__(398);
 class ProtoSignDocDecoder {
     constructor(signDoc, protoCodec = codec_1.defaultProtoCodec) {
         this.signDoc = signDoc;
@@ -1150,7 +1150,7 @@ exports.ProtoSignDocDecoder = ProtoSignDocDecoder;
 
 /***/ }),
 
-/***/ 404:
+/***/ 405:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1171,7 +1171,7 @@ __exportStar(__webpack_require__(694), exports);
 
 /***/ }),
 
-/***/ 405:
+/***/ 406:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1192,7 +1192,7 @@ __exportStar(__webpack_require__(695), exports);
 
 /***/ }),
 
-/***/ 459:
+/***/ 460:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1200,7 +1200,7 @@ __exportStar(__webpack_require__(695), exports);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Hash = void 0;
 const sha_js_1 = __webpack_require__(125);
-const keccak256_1 = __webpack_require__(1190);
+const keccak256_1 = __webpack_require__(1191);
 const buffer_1 = __webpack_require__(4);
 class Hash {
     static sha256(data) {
@@ -1238,7 +1238,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(703), exports);
 __exportStar(__webpack_require__(767), exports);
-__exportStar(__webpack_require__(459), exports);
+__exportStar(__webpack_require__(460), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -1372,7 +1372,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(396), exports);
+__exportStar(__webpack_require__(397), exports);
 __exportStar(__webpack_require__(664), exports);
 //# sourceMappingURL=index.js.map
 
@@ -1385,7 +1385,7 @@ __exportStar(__webpack_require__(664), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EthermintChainIdHelper = void 0;
-const cosmos_1 = __webpack_require__(396);
+const cosmos_1 = __webpack_require__(397);
 class EthermintChainIdHelper {
     static parse(chainId) {
         const matches = chainId.match("^([a-z]{1,})_{1}([1-9][0-9]*)-{1}([1-9][0-9]*)$");
@@ -1688,8 +1688,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(397), exports);
-__exportStar(__webpack_require__(402), exports);
+__exportStar(__webpack_require__(398), exports);
+__exportStar(__webpack_require__(403), exports);
 __exportStar(__webpack_require__(693), exports);
 //# sourceMappingURL=index.js.map
 
@@ -1702,9 +1702,9 @@ __exportStar(__webpack_require__(693), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SignDocWrapper = void 0;
-const decoder_1 = __webpack_require__(402);
+const decoder_1 = __webpack_require__(403);
 const tx_1 = __webpack_require__(100);
-const adr_36_1 = __webpack_require__(404);
+const adr_36_1 = __webpack_require__(405);
 class SignDocWrapper {
     constructor(signDoc) {
         this.signDoc = signDoc;
@@ -1812,8 +1812,8 @@ exports.SignDocWrapper = SignDocWrapper;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyADR36Amino = exports.verifyADR36AminoSignDoc = exports.makeADR36AminoSignDoc = exports.checkAndValidateADR36AminoSignDoc = void 0;
-const signing_1 = __webpack_require__(405);
-const bech32_1 = __webpack_require__(395);
+const signing_1 = __webpack_require__(406);
+const bech32_1 = __webpack_require__(396);
 const buffer_1 = __webpack_require__(4);
 const crypto_1 = __webpack_require__(50);
 /**
@@ -1990,7 +1990,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(697), exports);
 __exportStar(__webpack_require__(698), exports);
-__exportStar(__webpack_require__(283), exports);
+__exportStar(__webpack_require__(285), exports);
 __exportStar(__webpack_require__(699), exports);
 __exportStar(__webpack_require__(700), exports);
 __exportStar(__webpack_require__(701), exports);
@@ -2015,7 +2015,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExtensionKVStore = void 0;
-const base_1 = __webpack_require__(283);
+const base_1 = __webpack_require__(285);
 class ExtensionKVStore extends base_1.BaseKVStore {
     constructor(prefix) {
         if (!ExtensionKVStore.KVStoreProvider) {
@@ -2050,7 +2050,7 @@ exports.ExtensionKVStore = ExtensionKVStore;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MemoryKVStore = void 0;
-const base_1 = __webpack_require__(283);
+const base_1 = __webpack_require__(285);
 class MemoryKVStoreProvider {
     constructor() {
         this.store = {};
@@ -2285,7 +2285,7 @@ const bip39 = __webpack_require__(105);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const bip32 = __webpack_require__(736);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const bs58check = __webpack_require__(290);
+const bs58check = __webpack_require__(292);
 const buffer_1 = __webpack_require__(4);
 class Mnemonic {
     static generateWallet(rng, path = `m/44'/60'/0'/0/0`, password = "", strength = 256) {
@@ -2354,7 +2354,7 @@ exports.PubKeySecp256k1 = exports.PrivKeySecp256k1 = void 0;
 const elliptic_1 = __webpack_require__(97);
 const crypto_js_1 = __importDefault(__webpack_require__(768));
 const buffer_1 = __webpack_require__(4);
-const hash_1 = __webpack_require__(459);
+const hash_1 = __webpack_require__(460);
 class PrivKeySecp256k1 {
     constructor(privKey) {
         this.privKey = privKey;
