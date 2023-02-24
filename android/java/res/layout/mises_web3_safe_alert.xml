@@ -9,7 +9,6 @@
 <ImageView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:src="@drawable/web3_safe_logo"
     android:layout_marginRight="0dp"
     android:layout_marginTop="0dp"
     android:scaleType="centerInside"/>
