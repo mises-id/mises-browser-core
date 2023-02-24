@@ -42,7 +42,7 @@ if (typeof Object.create === 'function') {
 
 /***/ }),
 
-/***/ 1126:
+/***/ 1127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52,14 +52,14 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Exceptions */
-__export(__webpack_require__(352));
+__export(__webpack_require__(353));
 /** Symmetric encryption APIs */
 var aead_1 = __webpack_require__(569);
 exports.AEAD = aead_1.AEAD;
 var siv_1 = __webpack_require__(570);
 exports.SIV = siv_1.SIV;
 /** STREAM streaming encryption */
-var stream_1 = __webpack_require__(1130);
+var stream_1 = __webpack_require__(1131);
 exports.StreamEncryptor = stream_1.StreamEncryptor;
 exports.StreamDecryptor = stream_1.StreamDecryptor;
 /** MAC functions */
@@ -68,15 +68,15 @@ exports.CMAC = cmac_1.CMAC;
 var pmac_1 = __webpack_require__(572);
 exports.PMAC = pmac_1.PMAC;
 /** Crypto providers */
-var polyfill_1 = __webpack_require__(1131);
+var polyfill_1 = __webpack_require__(1132);
 exports.PolyfillCryptoProvider = polyfill_1.PolyfillCryptoProvider;
-var webcrypto_1 = __webpack_require__(232);
+var webcrypto_1 = __webpack_require__(234);
 exports.WebCryptoProvider = webcrypto_1.WebCryptoProvider;
 
 
 /***/ }),
 
-/***/ 1127:
+/***/ 1128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -163,7 +163,7 @@ exports.default = WebCryptoAes;
 
 /***/ }),
 
-/***/ 1128:
+/***/ 1129:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -211,7 +211,7 @@ exports.default = WebCryptoAesCtr;
 
 /***/ }),
 
-/***/ 1129:
+/***/ 1130:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -245,7 +245,7 @@ exports.ctz = ctz;
 
 /***/ }),
 
-/***/ 1130:
+/***/ 1131:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -264,7 +264,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const aead_1 = __webpack_require__(569);
-const webcrypto_1 = __webpack_require__(232);
+const webcrypto_1 = __webpack_require__(234);
 /** Size of a nonce required by STREAM in bytes */
 exports.NONCE_SIZE = 8;
 /** Byte flag indicating this is the last block in the STREAM (otherwise 0) */
@@ -367,7 +367,7 @@ class NonceEncoder {
 
 /***/ }),
 
-/***/ 1131:
+/***/ 1132:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -381,8 +381,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const aes_1 = __webpack_require__(1132);
-const aes_ctr_1 = __webpack_require__(1133);
+const aes_1 = __webpack_require__(1133);
+const aes_ctr_1 = __webpack_require__(1134);
 /**
  * Pure JavaScript cryptography implementations
  *
@@ -408,7 +408,7 @@ exports.PolyfillCryptoProvider = PolyfillCryptoProvider;
 
 /***/ }),
 
-/***/ 1132:
+/***/ 1133:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -416,7 +416,7 @@ exports.PolyfillCryptoProvider = PolyfillCryptoProvider;
 // Copyright (C) 2016-2017 Dmitry Chestnykh, Tony Arcieri
 // MIT License. See LICENSE file for details.
 Object.defineProperty(exports, "__esModule", { value: true });
-const wipe_1 = __webpack_require__(354);
+const wipe_1 = __webpack_require__(355);
 // Powers of x mod poly in GF(2).
 const POWX = new Uint8Array([
     0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,
@@ -683,7 +683,7 @@ function expandKey(key) {
 
 /***/ }),
 
-/***/ 1133:
+/***/ 1134:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1614,7 +1614,7 @@ Stream.prototype.pipe = function(dest, options) {
 
 /***/ }),
 
-/***/ 1197:
+/***/ 1198:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1802,7 +1802,7 @@ var index = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext || create
 
 /***/ }),
 
-/***/ 1265:
+/***/ 1266:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1829,13 +1829,13 @@ module.exports = function is(a, b) {
 
 /***/ }),
 
-/***/ 1266:
+/***/ 1267:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var implementation = __webpack_require__(1265);
+var implementation = __webpack_require__(1266);
 
 module.exports = function getPolyfill() {
 	return typeof Object.is === 'function' ? Object.is : implementation;
@@ -1844,15 +1844,15 @@ module.exports = function getPolyfill() {
 
 /***/ }),
 
-/***/ 1435:
+/***/ 1436:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const EventEmitter = __webpack_require__(1232);
-const p_timeout_1 = __webpack_require__(1436);
-const priority_queue_1 = __webpack_require__(1438);
+const EventEmitter = __webpack_require__(1233);
+const p_timeout_1 = __webpack_require__(1437);
+const priority_queue_1 = __webpack_require__(1439);
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const empty = () => { };
 const timeoutError = new p_timeout_1.TimeoutError();
@@ -2131,13 +2131,13 @@ exports.default = PQueue;
 
 /***/ }),
 
-/***/ 1436:
+/***/ 1437:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const pFinally = __webpack_require__(1437);
+const pFinally = __webpack_require__(1438);
 
 class TimeoutError extends Error {
 	constructor(message) {
@@ -2196,7 +2196,7 @@ module.exports.TimeoutError = TimeoutError;
 
 /***/ }),
 
-/***/ 1437:
+/***/ 1438:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2219,13 +2219,13 @@ module.exports = (promise, onFinally) => {
 
 /***/ }),
 
-/***/ 1438:
+/***/ 1439:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const lower_bound_1 = __webpack_require__(1439);
+const lower_bound_1 = __webpack_require__(1440);
 class PriorityQueue {
     constructor() {
         this._queue = [];
@@ -2259,7 +2259,7 @@ exports.default = PriorityQueue;
 
 /***/ }),
 
-/***/ 1439:
+/***/ 1440:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2316,7 +2316,7 @@ if (!mobx_esm["makeObservable"]) {
 }
 //# sourceMappingURL=assertEnvironment.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-dom/index.js
-var react_dom = __webpack_require__(361);
+var react_dom = __webpack_require__(362);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx-react-lite/es/utils/reactBatchedUpdates.js
 
@@ -2874,18 +2874,18 @@ function useStaticRendering(enable) {
 
 /***/ }),
 
-/***/ 1543:
+/***/ 1544:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var define = __webpack_require__(202);
-var callBind = __webpack_require__(1264);
+var callBind = __webpack_require__(1265);
 
-var implementation = __webpack_require__(1265);
-var getPolyfill = __webpack_require__(1266);
-var shim = __webpack_require__(1544);
+var implementation = __webpack_require__(1266);
+var getPolyfill = __webpack_require__(1267);
+var shim = __webpack_require__(1545);
 
 var polyfill = callBind(getPolyfill(), Object);
 
@@ -2900,13 +2900,13 @@ module.exports = polyfill;
 
 /***/ }),
 
-/***/ 1544:
+/***/ 1545:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var getPolyfill = __webpack_require__(1266);
+var getPolyfill = __webpack_require__(1267);
 var define = __webpack_require__(202);
 
 module.exports = function shimObjectIs() {
@@ -3337,8 +3337,8 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /** Type which represents AES blocks */
 Object.defineProperty(exports, "__esModule", { value: true });
-const constant_time_1 = __webpack_require__(353);
-const wipe_1 = __webpack_require__(354);
+const constant_time_1 = __webpack_require__(354);
+const wipe_1 = __webpack_require__(355);
 /** An AES block (128-bits) */
 class Block {
     constructor() {
@@ -5142,7 +5142,7 @@ function computedFn(fn, keepAliveOrOptions) {
 
 /***/ }),
 
-/***/ 232:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5156,9 +5156,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const exceptions_1 = __webpack_require__(352);
-const aes_1 = __webpack_require__(1127);
-const aes_ctr_1 = __webpack_require__(1128);
+const exceptions_1 = __webpack_require__(353);
+const aes_1 = __webpack_require__(1128);
+const aes_ctr_1 = __webpack_require__(1129);
 /** Placeholder backend for using pure JavaScript crypto implementations */
 class WebCryptoProvider {
     constructor(crypto = window.crypto) {
@@ -5190,7 +5190,7 @@ exports.WebCryptoProvider = WebCryptoProvider;
 
 /***/ }),
 
-/***/ 352:
+/***/ 353:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5217,7 +5217,7 @@ exports.NotImplementedError = NotImplementedError;
 
 /***/ }),
 
-/***/ 353:
+/***/ 354:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5275,7 +5275,7 @@ exports.equal = equal;
 
 /***/ }),
 
-/***/ 354:
+/***/ 355:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5310,7 +5310,7 @@ exports.wipe = wipe;
 
 /***/ }),
 
-/***/ 355:
+/***/ 356:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5329,7 +5329,7 @@ exports.xor = xor;
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, exports) {
 
 exports.endianness = function () { return 'LE' };
@@ -5400,7 +5400,7 @@ exports.homedir = function () {
 
 
 var base64 = __webpack_require__(89)
-var ieee754 = __webpack_require__(282)
+var ieee754 = __webpack_require__(284)
 var isArray = __webpack_require__(211)
 
 exports.Buffer = Buffer
@@ -7183,7 +7183,7 @@ function isnan (val) {
 
 /***/ }),
 
-/***/ 418:
+/***/ 419:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -7254,7 +7254,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ 425:
+/***/ 426:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7320,11 +7320,11 @@ utils.encode = function encode(arr, enc) {
 
 /***/ }),
 
-/***/ 440:
+/***/ 441:
 /***/ (function(module, exports, __webpack_require__) {
 
 var bn = __webpack_require__(34);
-var brorand = __webpack_require__(291);
+var brorand = __webpack_require__(293);
 
 function MillerRabin(rand) {
   this.rand = rand || new brorand.Rand();
@@ -7442,7 +7442,7 @@ MillerRabin.prototype.getDivisor = function getDivisor(n, k) {
 
 /***/ }),
 
-/***/ 487:
+/***/ 488:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13142,7 +13142,7 @@ if (typeof __MOBX_DEVTOOLS_GLOBAL_HOOK__ === "object") {
 
 /* WEBPACK VAR INJECTION */(function(process) {var fs = __webpack_require__(114)
 var path = __webpack_require__(157)
-var os = __webpack_require__(362)
+var os = __webpack_require__(363)
 
 // Workaround to fix webpack's build warnings: 'the request of a dependency is an expression'
 var runtimeRequire =  true ? require : undefined // eslint-disable-line
@@ -13325,7 +13325,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const webcrypto_1 = __webpack_require__(232);
+const webcrypto_1 = __webpack_require__(234);
 const siv_1 = __webpack_require__(570);
 /** AEAD interface provider for ISIVLike types */
 class AEAD {
@@ -13377,14 +13377,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const constant_time_1 = __webpack_require__(353);
-const wipe_1 = __webpack_require__(354);
-const xor_1 = __webpack_require__(355);
-const exceptions_1 = __webpack_require__(352);
+const constant_time_1 = __webpack_require__(354);
+const wipe_1 = __webpack_require__(355);
+const xor_1 = __webpack_require__(356);
+const exceptions_1 = __webpack_require__(353);
 const block_1 = __webpack_require__(187);
 const cmac_1 = __webpack_require__(571);
 const pmac_1 = __webpack_require__(572);
-const webcrypto_1 = __webpack_require__(232);
+const webcrypto_1 = __webpack_require__(234);
 /** Maximum number of associated data items */
 exports.MAX_ASSOCIATED_DATA = 126;
 /** The AES-SIV mode of authenticated encryption */
@@ -13546,7 +13546,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const block_1 = __webpack_require__(187);
-const xor_1 = __webpack_require__(355);
+const xor_1 = __webpack_require__(356);
 /**
  * The AES-CMAC message authentication code
  */
@@ -13655,9 +13655,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const block_1 = __webpack_require__(187);
-const constant_time_1 = __webpack_require__(353);
-const ctz_1 = __webpack_require__(1129);
-const xor_1 = __webpack_require__(355);
+const constant_time_1 = __webpack_require__(354);
+const ctz_1 = __webpack_require__(1130);
+const xor_1 = __webpack_require__(356);
 // Number of L blocks to precompute (i.e. µ in the PMAC paper)
 // TODO: dynamically compute these as needed
 const PRECOMPUTED_BLOCKS = 31;
@@ -14349,7 +14349,7 @@ exports.PMAC = PMAC;
 
 
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(487);
+var isArgs = __webpack_require__(488);
 
 var origKeys = Object.keys;
 var keysShim = origKeys ? function keys(o) { return origKeys(o); } : __webpack_require__(951);
@@ -14445,7 +14445,7 @@ if (!Object.keys) {
 	// modified from https://github.com/es-shims/es5-shim
 	var has = Object.prototype.hasOwnProperty;
 	var toStr = Object.prototype.toString;
-	var isArgs = __webpack_require__(487); // eslint-disable-line global-require
+	var isArgs = __webpack_require__(488); // eslint-disable-line global-require
 	var isEnumerable = Object.prototype.propertyIsEnumerable;
 	var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 	var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');

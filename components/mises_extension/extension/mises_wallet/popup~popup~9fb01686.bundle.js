@@ -59,15 +59,15 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(1014), exports);
-__exportStar(__webpack_require__(1231), exports);
-__exportStar(__webpack_require__(1421), exports);
+__exportStar(__webpack_require__(1232), exports);
 __exportStar(__webpack_require__(1422), exports);
 __exportStar(__webpack_require__(1423), exports);
+__exportStar(__webpack_require__(1424), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1231:
+/***/ 1232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83,37 +83,37 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1419), exports);
 __exportStar(__webpack_require__(1420), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1233:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1429), exports);
-__exportStar(__webpack_require__(1235), exports);
-__exportStar(__webpack_require__(1234), exports);
-__exportStar(__webpack_require__(1430), exports);
+__exportStar(__webpack_require__(1421), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
 /***/ 1234:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1430), exports);
+__exportStar(__webpack_require__(1236), exports);
+__exportStar(__webpack_require__(1235), exports);
+__exportStar(__webpack_require__(1431), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -143,7 +143,7 @@ exports.ObservableQueryGovParamDeposit = ObservableQueryGovParamDeposit;
 
 /***/ }),
 
-/***/ 1235:
+/***/ 1236:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -157,7 +157,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryProposal = void 0;
 const chain_query_1 = __webpack_require__(59);
-const types_1 = __webpack_require__(1236);
+const types_1 = __webpack_require__(1237);
 const mobx_1 = __webpack_require__(5);
 const unit_1 = __webpack_require__(26);
 class ObservableQueryProposal extends chain_query_1.ObservableChainQuery {
@@ -335,7 +335,7 @@ exports.ObservableQueryProposal = ObservableQueryProposal;
 
 /***/ }),
 
-/***/ 1236:
+/***/ 1237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -356,32 +356,6 @@ var ProposalStatus;
 
 /***/ }),
 
-/***/ 1237:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1431), exports);
-__exportStar(__webpack_require__(1432), exports);
-__exportStar(__webpack_require__(1433), exports);
-__exportStar(__webpack_require__(1434), exports);
-__exportStar(__webpack_require__(1440), exports);
-__exportStar(__webpack_require__(1441), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ 1238:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -398,14 +372,40 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1432), exports);
+__exportStar(__webpack_require__(1433), exports);
+__exportStar(__webpack_require__(1434), exports);
+__exportStar(__webpack_require__(1435), exports);
+__exportStar(__webpack_require__(1441), exports);
 __exportStar(__webpack_require__(1442), exports);
-__exportStar(__webpack_require__(1443), exports);
-__exportStar(__webpack_require__(1444), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
 /***/ 1239:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1443), exports);
+__exportStar(__webpack_require__(1444), exports);
+__exportStar(__webpack_require__(1445), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -480,29 +480,6 @@ exports.ObservableQueryAccount = ObservableQueryAccount;
 
 /***/ }),
 
-/***/ 1240:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1445), exports);
-__exportStar(__webpack_require__(1446), exports);
-__exportStar(__webpack_require__(1447), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ 1241:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -519,13 +496,36 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1446), exports);
+__exportStar(__webpack_require__(1447), exports);
 __exportStar(__webpack_require__(1448), exports);
-__exportStar(__webpack_require__(1449), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
 /***/ 1242:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1449), exports);
+__exportStar(__webpack_require__(1450), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -542,7 +542,7 @@ const mobx_1 = __webpack_require__(5);
 const common_1 = __webpack_require__(27);
 const unit_1 = __webpack_require__(26);
 const balances_1 = __webpack_require__(509);
-const contract_query_1 = __webpack_require__(1243);
+const contract_query_1 = __webpack_require__(1244);
 class ObservableQueryCw20Balance extends contract_query_1.ObservableCosmwasmContractChainQuery {
     constructor(kvStore, chainId, chainGetter, contractAddress, bech32Address) {
         super(kvStore, chainId, chainGetter, contractAddress, {
@@ -610,7 +610,7 @@ exports.ObservableQueryCw20BalanceRegistry = ObservableQueryCw20BalanceRegistry;
 
 /***/ }),
 
-/***/ 1243:
+/***/ 1244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -699,7 +699,7 @@ exports.ObservableCosmwasmContractChainQuery = ObservableCosmwasmContractChainQu
 
 /***/ }),
 
-/***/ 1244:
+/***/ 1245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -735,7 +735,7 @@ exports.ObservableQuerySecretContractCodeHash = ObservableQuerySecretContractCod
 
 /***/ }),
 
-/***/ 1245:
+/***/ 1246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -761,8 +761,8 @@ const mobx_1 = __webpack_require__(5);
 const common_1 = __webpack_require__(27);
 const unit_1 = __webpack_require__(26);
 const balances_1 = __webpack_require__(509);
-const contract_query_1 = __webpack_require__(1246);
-const errors_1 = __webpack_require__(1247);
+const contract_query_1 = __webpack_require__(1247);
+const errors_1 = __webpack_require__(1248);
 class ObservableQuerySecret20Balance extends contract_query_1.ObservableSecretContractChainQuery {
     constructor(kvStore, chainId, chainGetter, apiGetter, contractAddress, bech32Address, viewingKey, querySecretContractCodeHash) {
         super(kvStore, chainId, chainGetter, apiGetter, contractAddress, {
@@ -874,7 +874,7 @@ exports.ObservableQuerySecret20BalanceRegistry = ObservableQuerySecret20BalanceR
 
 /***/ }),
 
-/***/ 1246:
+/***/ 1247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1056,7 +1056,7 @@ exports.ObservableSecretContractChainQuery = ObservableSecretContractChainQuery;
 
 /***/ }),
 
-/***/ 1247:
+/***/ 1248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1075,7 +1075,7 @@ exports.WrongViewingKeyError = WrongViewingKeyError;
 
 /***/ }),
 
-/***/ 1248:
+/***/ 1249:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1144,7 +1144,7 @@ exports.ObservableQueryTxFeesFeeTokens = ObservableQueryTxFeesFeeTokens;
 
 /***/ }),
 
-/***/ 1249:
+/***/ 1250:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1200,7 +1200,7 @@ exports.ObservableQueryTxFeesSpotPriceByDenom = ObservableQueryTxFeesSpotPriceBy
 
 /***/ }),
 
-/***/ 1250:
+/***/ 1251:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1224,27 +1224,6 @@ exports.ObservableQueryTxFeesBaseDenom = ObservableQueryTxFeesBaseDenom;
 
 /***/ }),
 
-/***/ 1255:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1503), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ 1256:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1262,12 +1241,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(1504), exports);
-__exportStar(__webpack_require__(1505), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1410:
+/***/ 1257:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1283,14 +1261,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1411), exports);
-__exportStar(__webpack_require__(862), exports);
-__exportStar(__webpack_require__(1412), exports);
-__exportStar(__webpack_require__(1415), exports);
-__exportStar(__webpack_require__(1416), exports);
-__exportStar(__webpack_require__(1418), exports);
-__exportStar(__webpack_require__(1424), exports);
-__exportStar(__webpack_require__(628), exports);
+__exportStar(__webpack_require__(1505), exports);
+__exportStar(__webpack_require__(1506), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -1300,12 +1272,40 @@ __exportStar(__webpack_require__(628), exports);
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1412), exports);
+__exportStar(__webpack_require__(862), exports);
+__exportStar(__webpack_require__(1413), exports);
+__exportStar(__webpack_require__(1416), exports);
+__exportStar(__webpack_require__(1417), exports);
+__exportStar(__webpack_require__(1419), exports);
+__exportStar(__webpack_require__(1425), exports);
+__exportStar(__webpack_require__(628), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1412:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 //# sourceMappingURL=types.js.map
 
 /***/ }),
 
-/***/ 1412:
+/***/ 1413:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1329,7 +1329,7 @@ const common_1 = __webpack_require__(27);
 const unit_1 = __webpack_require__(26);
 const tx_1 = __webpack_require__(100);
 const signing_1 = __webpack_require__(626);
-const keys_1 = __webpack_require__(1413);
+const keys_1 = __webpack_require__(1414);
 const tx_2 = __webpack_require__(619);
 const tx_3 = __webpack_require__(625);
 const tx_4 = __webpack_require__(620);
@@ -1342,8 +1342,8 @@ const axios_1 = __importDefault(__webpack_require__(60));
 const deepmerge_1 = __importDefault(__webpack_require__(167));
 const buffer_1 = __webpack_require__(4);
 const utils_1 = __webpack_require__(628);
-const web3_1 = __webpack_require__(1414);
-const stargate_1 = __webpack_require__(263);
+const web3_1 = __webpack_require__(1415);
+const stargate_1 = __webpack_require__(265);
 exports.CosmosAccount = {
     use(options) {
         return (base, chainGetter, chainId) => {
@@ -2626,7 +2626,7 @@ exports.CosmosAccountImpl = CosmosAccountImpl;
 
 /***/ }),
 
-/***/ 1415:
+/***/ 1416:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2668,7 +2668,7 @@ exports.getKeplrFromWindow = getKeplrFromWindow;
 
 /***/ }),
 
-/***/ 1416:
+/***/ 1417:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2689,7 +2689,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretAccountImpl = exports.defaultSecretMsgOpts = exports.SecretAccount = void 0;
 const buffer_1 = __webpack_require__(4);
 const common_1 = __webpack_require__(27);
-const msg_1 = __webpack_require__(1417);
+const msg_1 = __webpack_require__(1418);
 const cosmos_1 = __webpack_require__(16);
 const unit_1 = __webpack_require__(26);
 const deepmerge_1 = __importDefault(__webpack_require__(167));
@@ -2946,7 +2946,7 @@ exports.SecretAccountImpl = SecretAccountImpl;
 
 /***/ }),
 
-/***/ 1418:
+/***/ 1419:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2978,7 +2978,7 @@ exports.AccountStore = AccountStore;
 
 /***/ }),
 
-/***/ 1419:
+/***/ 1420:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3007,7 +3007,7 @@ const mobx_1 = __webpack_require__(5);
 const axios_1 = __importDefault(__webpack_require__(60));
 const common_1 = __webpack_require__(27);
 const map_1 = __webpack_require__(1014);
-const eventemitter3_1 = __importDefault(__webpack_require__(1232));
+const eventemitter3_1 = __importDefault(__webpack_require__(1233));
 exports.defaultOptions = {
     cacheMaxAge: 0,
     fetchingInterval: 0,
@@ -3688,7 +3688,7 @@ exports.ObservableQueryMap = ObservableQueryMap;
 
 /***/ }),
 
-/***/ 1420:
+/***/ 1421:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3710,7 +3710,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableJsonRPCQueryMap = exports.ObservableJsonRPCQuery = void 0;
-const index_1 = __webpack_require__(1231);
+const index_1 = __webpack_require__(1232);
 const mobx_1 = __webpack_require__(5);
 const crypto_1 = __webpack_require__(50);
 const buffer_1 = __webpack_require__(4);
@@ -3781,7 +3781,7 @@ exports.ObservableJsonRPCQueryMap = ObservableJsonRPCQueryMap;
 
 /***/ }),
 
-/***/ 1421:
+/***/ 1422:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3818,7 +3818,7 @@ exports.StoreUtils = StoreUtils;
 
 /***/ }),
 
-/***/ 1422:
+/***/ 1423:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3828,7 +3828,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1423:
+/***/ 1424:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3876,7 +3876,7 @@ exports.mergeStores = mergeStores;
 
 /***/ }),
 
-/***/ 1424:
+/***/ 1425:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4095,7 +4095,7 @@ exports.CosmwasmAccountImpl = CosmwasmAccountImpl;
 
 /***/ }),
 
-/***/ 1425:
+/***/ 1426:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4386,7 +4386,7 @@ exports.CoinGeckoPriceStore = CoinGeckoPriceStore;
 
 /***/ }),
 
-/***/ 1426:
+/***/ 1427:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4402,18 +4402,18 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1427), exports);
+__exportStar(__webpack_require__(1428), exports);
 __exportStar(__webpack_require__(59), exports);
 __exportStar(__webpack_require__(509), exports);
-__exportStar(__webpack_require__(1428), exports);
-__exportStar(__webpack_require__(1467), exports);
-__exportStar(__webpack_require__(1471), exports);
-__exportStar(__webpack_require__(1475), exports);
+__exportStar(__webpack_require__(1429), exports);
+__exportStar(__webpack_require__(1468), exports);
+__exportStar(__webpack_require__(1472), exports);
+__exportStar(__webpack_require__(1476), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1427:
+/***/ 1428:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4463,7 +4463,7 @@ exports.QueriesStore = QueriesStore;
 
 /***/ }),
 
-/***/ 1428:
+/***/ 1429:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4492,24 +4492,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Balance = exports.IBC = exports.Account = exports.Supply = exports.Staking = exports.Governance = void 0;
-__exportStar(__webpack_require__(1233), exports);
-__exportStar(__webpack_require__(1237), exports);
+__exportStar(__webpack_require__(1234), exports);
 __exportStar(__webpack_require__(1238), exports);
 __exportStar(__webpack_require__(1239), exports);
 __exportStar(__webpack_require__(1240), exports);
 __exportStar(__webpack_require__(1241), exports);
-exports.Governance = __importStar(__webpack_require__(1236));
+__exportStar(__webpack_require__(1242), exports);
+exports.Governance = __importStar(__webpack_require__(1237));
 exports.Staking = __importStar(__webpack_require__(863));
-exports.Supply = __importStar(__webpack_require__(1450));
-exports.Account = __importStar(__webpack_require__(1451));
-exports.IBC = __importStar(__webpack_require__(1452));
-exports.Balance = __importStar(__webpack_require__(1453));
-__exportStar(__webpack_require__(1454), exports);
+exports.Supply = __importStar(__webpack_require__(1451));
+exports.Account = __importStar(__webpack_require__(1452));
+exports.IBC = __importStar(__webpack_require__(1453));
+exports.Balance = __importStar(__webpack_require__(1454));
+__exportStar(__webpack_require__(1455), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1429:
+/***/ 1430:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4524,10 +4524,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryGovernance = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const params_1 = __webpack_require__(1234);
+const params_1 = __webpack_require__(1235);
 const unit_1 = __webpack_require__(26);
 const mobx_utils_1 = __webpack_require__(201);
-const proposal_1 = __webpack_require__(1235);
+const proposal_1 = __webpack_require__(1236);
 class ObservableQueryGovernance extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, _queryPool) {
         super(kvStore, chainId, chainGetter, 
@@ -4614,7 +4614,7 @@ exports.ObservableQueryGovernance = ObservableQueryGovernance;
 
 /***/ }),
 
-/***/ 1430:
+/***/ 1431:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4674,7 +4674,7 @@ exports.ObservableQueryProposalVote = ObservableQueryProposalVote;
 
 /***/ }),
 
-/***/ 1431:
+/***/ 1432:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4700,7 +4700,7 @@ const chain_query_1 = __webpack_require__(59);
 const unit_1 = __webpack_require__(26);
 const mobx_1 = __webpack_require__(5);
 const mobx_utils_1 = __webpack_require__(201);
-const react_query_1 = __webpack_require__(234);
+const react_query_1 = __webpack_require__(236);
 class ObservableQueryDelegationsInner extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
         super(kvStore, chainId, chainGetter, `/cosmos/staking/v1beta1/delegations/${bech32Address}?pagination.limit=1000`);
@@ -4810,7 +4810,7 @@ exports.ObservableQueryDelegations = ObservableQueryDelegations;
 
 /***/ }),
 
-/***/ 1432:
+/***/ 1433:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4837,7 +4837,7 @@ const mobx_1 = __webpack_require__(5);
 const unit_1 = __webpack_require__(26);
 const common_1 = __webpack_require__(119);
 const mobx_utils_1 = __webpack_require__(201);
-const react_query_1 = __webpack_require__(234);
+const react_query_1 = __webpack_require__(236);
 class ObservableQueryRewardsInner extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
         super(kvStore, chainId, chainGetter, `/cosmos/distribution/v1beta1/delegators/${bech32Address}/rewards`);
@@ -5029,7 +5029,7 @@ exports.ObservableQueryRewards = ObservableQueryRewards;
 
 /***/ }),
 
-/***/ 1433:
+/***/ 1434:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5054,7 +5054,7 @@ exports.ObservableQueryUnbondingDelegations = exports.ObservableQueryUnbondingDe
 const chain_query_1 = __webpack_require__(59);
 const unit_1 = __webpack_require__(26);
 const mobx_1 = __webpack_require__(5);
-const react_query_1 = __webpack_require__(234);
+const react_query_1 = __webpack_require__(236);
 class ObservableQueryUnbondingDelegationsInner extends chain_query_1.ObservableChainQuery {
     constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
         super(kvStore, chainId, chainGetter, `/cosmos/staking/v1beta1/delegators/${bech32Address}/unbonding_delegations?pagination.limit=1000`);
@@ -5157,7 +5157,7 @@ exports.ObservableQueryUnbondingDelegations = ObservableQueryUnbondingDelegation
 
 /***/ }),
 
-/***/ 1434:
+/***/ 1435:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5187,7 +5187,7 @@ const types_1 = __webpack_require__(863);
 const mobx_1 = __webpack_require__(5);
 const common_1 = __webpack_require__(119);
 const axios_1 = __importDefault(__webpack_require__(60));
-const p_queue_1 = __importDefault(__webpack_require__(1435));
+const p_queue_1 = __importDefault(__webpack_require__(1436));
 const unit_1 = __webpack_require__(26);
 const mobx_utils_1 = __webpack_require__(201);
 /**
@@ -5332,7 +5332,7 @@ exports.ObservableQueryValidators = ObservableQueryValidators;
 
 /***/ }),
 
-/***/ 1440:
+/***/ 1441:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5379,7 +5379,7 @@ exports.ObservableQueryStakingPool = ObservableQueryStakingPool;
 
 /***/ }),
 
-/***/ 1441:
+/***/ 1442:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5430,7 +5430,7 @@ exports.ObservableQueryStakingParams = ObservableQueryStakingParams;
 
 /***/ }),
 
-/***/ 1442:
+/***/ 1443:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5593,7 +5593,7 @@ exports.ObservableQueryInflation = ObservableQueryInflation;
 
 /***/ }),
 
-/***/ 1443:
+/***/ 1444:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5614,7 +5614,7 @@ exports.ObservableQueryMintingInfation = ObservableQueryMintingInfation;
 
 /***/ }),
 
-/***/ 1444:
+/***/ 1445:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5654,7 +5654,7 @@ exports.ObservableQuerySupplyTotal = ObservableQuerySupplyTotal;
 
 /***/ }),
 
-/***/ 1445:
+/***/ 1446:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5717,7 +5717,7 @@ exports.ObservableQueryIBCChannel = ObservableQueryIBCChannel;
 
 /***/ }),
 
-/***/ 1446:
+/***/ 1447:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5799,7 +5799,7 @@ exports.ObservableQueryIBCClientState = ObservableQueryIBCClientState;
 
 /***/ }),
 
-/***/ 1447:
+/***/ 1448:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5899,7 +5899,7 @@ exports.ObservableQueryDenomTrace = ObservableQueryDenomTrace;
 
 /***/ }),
 
-/***/ 1448:
+/***/ 1449:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5927,7 +5927,7 @@ const unit_1 = __webpack_require__(26);
 const common_2 = __webpack_require__(119);
 const balances_1 = __webpack_require__(509);
 const chain_query_1 = __webpack_require__(59);
-const react_query_1 = __webpack_require__(234);
+const react_query_1 = __webpack_require__(236);
 class ObservableQueryBalanceNative extends balances_1.ObservableQueryBalanceInner {
     constructor(kvStore, chainId, chainGetter, denomHelper, nativeBalances) {
         super(kvStore, chainId, chainGetter, 
@@ -6039,7 +6039,7 @@ exports.ObservableQueryCosmosBalanceRegistry = ObservableQueryCosmosBalanceRegis
 
 /***/ }),
 
-/***/ 1449:
+/***/ 1450:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6096,16 +6096,6 @@ exports.ObservableQuerySpendableBalances = ObservableQuerySpendableBalances;
 
 /***/ }),
 
-/***/ 1450:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
-
-/***/ }),
-
 /***/ 1451:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6142,19 +6132,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1455:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CosmosQueriesImpl = exports.CosmosQueries = void 0;
-const account_1 = __webpack_require__(1239);
-const supply_1 = __webpack_require__(1238);
-const staking_1 = __webpack_require__(1237);
-const governance_1 = __webpack_require__(1233);
-const ibc_1 = __webpack_require__(1240);
-const sifchain_1 = __webpack_require__(1455);
-const balance_1 = __webpack_require__(1241);
-const iris_minting_1 = __webpack_require__(1456);
-const osmosis_1 = __webpack_require__(1457);
-const distribution_1 = __webpack_require__(1461);
-const status_1 = __webpack_require__(1463);
-const juno_1 = __webpack_require__(1465);
+const account_1 = __webpack_require__(1240);
+const supply_1 = __webpack_require__(1239);
+const staking_1 = __webpack_require__(1238);
+const governance_1 = __webpack_require__(1234);
+const ibc_1 = __webpack_require__(1241);
+const sifchain_1 = __webpack_require__(1456);
+const balance_1 = __webpack_require__(1242);
+const iris_minting_1 = __webpack_require__(1457);
+const osmosis_1 = __webpack_require__(1458);
+const distribution_1 = __webpack_require__(1462);
+const status_1 = __webpack_require__(1464);
+const juno_1 = __webpack_require__(1466);
 exports.CosmosQueries = {
     use(misesStore) {
         return (queriesSetBase, kvStore, chainId, chainGetter) => {
@@ -6194,7 +6194,7 @@ exports.CosmosQueriesImpl = CosmosQueriesImpl;
 
 /***/ }),
 
-/***/ 1455:
+/***/ 1456:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6240,7 +6240,7 @@ exports.ObservableQuerySifchainLiquidityAPY = ObservableQuerySifchainLiquidityAP
 
 /***/ }),
 
-/***/ 1456:
+/***/ 1457:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6258,7 +6258,7 @@ exports.ObservableQueryIrisMintingInfation = ObservableQueryIrisMintingInfation;
 
 /***/ }),
 
-/***/ 1457:
+/***/ 1458:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6274,14 +6274,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1458), exports);
 __exportStar(__webpack_require__(1459), exports);
 __exportStar(__webpack_require__(1460), exports);
+__exportStar(__webpack_require__(1461), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1458:
+/***/ 1459:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6361,7 +6361,7 @@ exports.ObservableQueryOsmosisEpochs = ObservableQueryOsmosisEpochs;
 
 /***/ }),
 
-/***/ 1459:
+/***/ 1460:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6407,7 +6407,7 @@ exports.ObservableQueryOsmosisEpochProvisions = ObservableQueryOsmosisEpochProvi
 
 /***/ }),
 
-/***/ 1460:
+/***/ 1461:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6459,7 +6459,7 @@ exports.ObservableQueryOsmosisMintParmas = ObservableQueryOsmosisMintParmas;
 
 /***/ }),
 
-/***/ 1461:
+/***/ 1462:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6475,12 +6475,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1462), exports);
+__exportStar(__webpack_require__(1463), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1462:
+/***/ 1463:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6516,14 +6516,14 @@ exports.ObservableQueryDistributionParams = ObservableQueryDistributionParams;
 
 /***/ }),
 
-/***/ 1463:
+/***/ 1464:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryRPCStatus = void 0;
-const chain_rpc_query_1 = __webpack_require__(1464);
+const chain_rpc_query_1 = __webpack_require__(1465);
 const unit_1 = __webpack_require__(26);
 class ObservableQueryRPCStatus extends chain_rpc_query_1.ObservableChainQueryRPC {
     constructor(kvStore, chainId, chainGetter) {
@@ -6547,7 +6547,7 @@ exports.ObservableQueryRPCStatus = ObservableQueryRPCStatus;
 
 /***/ }),
 
-/***/ 1464:
+/***/ 1465:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6604,7 +6604,7 @@ exports.ObservableChainQueryRPCMap = ObservableChainQueryRPCMap;
 
 /***/ }),
 
-/***/ 1465:
+/***/ 1466:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6620,12 +6620,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1466), exports);
+__exportStar(__webpack_require__(1467), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1466:
+/***/ 1467:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6671,7 +6671,7 @@ exports.ObservableQueryJunoAnnualProvisions = ObservableQueryJunoAnnualProvision
 
 /***/ }),
 
-/***/ 1467:
+/***/ 1468:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6700,20 +6700,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CosmWasm = void 0;
-__exportStar(__webpack_require__(1242), exports);
-exports.CosmWasm = __importStar(__webpack_require__(1468));
-__exportStar(__webpack_require__(1469), exports);
+__exportStar(__webpack_require__(1243), exports);
+exports.CosmWasm = __importStar(__webpack_require__(1469));
+__exportStar(__webpack_require__(1470), exports);
 //# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1468:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
 
 /***/ }),
 
@@ -6723,9 +6713,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1470:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CosmwasmQueriesImpl = exports.CosmwasmQueries = void 0;
-const cw20_contract_info_1 = __webpack_require__(1470);
-const cw20_balance_1 = __webpack_require__(1242);
+const cw20_contract_info_1 = __webpack_require__(1471);
+const cw20_balance_1 = __webpack_require__(1243);
 exports.CosmwasmQueries = {
     use() {
         return (queriesSetBase, kvStore, chainId, chainGetter) => {
@@ -6746,7 +6746,7 @@ exports.CosmwasmQueriesImpl = CosmwasmQueriesImpl;
 
 /***/ }),
 
-/***/ 1470:
+/***/ 1471:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6761,7 +6761,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryCw20ContractInfo = exports.ObservableQueryCw20ContactInfoInner = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const contract_query_1 = __webpack_require__(1243);
+const contract_query_1 = __webpack_require__(1244);
 class ObservableQueryCw20ContactInfoInner extends contract_query_1.ObservableCosmwasmContractChainQuery {
     constructor(kvStore, chainId, chainGetter, contractAddress) {
         super(kvStore, chainId, chainGetter, contractAddress, { token_info: {} });
@@ -6796,7 +6796,7 @@ exports.ObservableQueryCw20ContractInfo = ObservableQueryCw20ContractInfo;
 
 /***/ }),
 
-/***/ 1471:
+/***/ 1472:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6825,22 +6825,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretWasm = void 0;
-__exportStar(__webpack_require__(1244), exports);
 __exportStar(__webpack_require__(1245), exports);
-__exportStar(__webpack_require__(1247), exports);
-exports.SecretWasm = __importStar(__webpack_require__(1472));
-__exportStar(__webpack_require__(1473), exports);
+__exportStar(__webpack_require__(1246), exports);
+__exportStar(__webpack_require__(1248), exports);
+exports.SecretWasm = __importStar(__webpack_require__(1473));
+__exportStar(__webpack_require__(1474), exports);
 //# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1472:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
 
 /***/ }),
 
@@ -6850,10 +6840,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1474:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretQueriesImpl = exports.SecretQueries = void 0;
-const contract_hash_1 = __webpack_require__(1244);
-const secret20_contract_info_1 = __webpack_require__(1474);
-const secret20_balance_1 = __webpack_require__(1245);
+const contract_hash_1 = __webpack_require__(1245);
+const secret20_contract_info_1 = __webpack_require__(1475);
+const secret20_balance_1 = __webpack_require__(1246);
 exports.SecretQueries = {
     use(options) {
         return (queriesSetBase, kvStore, chainId, chainGetter) => {
@@ -6875,7 +6875,7 @@ exports.SecretQueriesImpl = SecretQueriesImpl;
 
 /***/ }),
 
-/***/ 1474:
+/***/ 1475:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6890,7 +6890,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQuerySecret20ContractInfo = exports.ObservableQuerySecret20ContactInfoInner = void 0;
 const chain_query_1 = __webpack_require__(59);
 const mobx_1 = __webpack_require__(5);
-const contract_query_1 = __webpack_require__(1246);
+const contract_query_1 = __webpack_require__(1247);
 class ObservableQuerySecret20ContactInfoInner extends contract_query_1.ObservableSecretContractChainQuery {
     constructor(kvStore, chainId, chainGetter, apiGetter, contractAddress, querySecretContractCodeHash) {
         // Don't need to set the url initially because it can't request without encyption.
@@ -6936,7 +6936,7 @@ exports.ObservableQuerySecret20ContractInfo = ObservableQuerySecret20ContractInf
 
 /***/ }),
 
-/***/ 1475:
+/***/ 1476:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6965,24 +6965,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TxFeesBaseDenom = exports.TxFeesSpotPriceByDenom = exports.TxFeesFeeTokens = void 0;
-__exportStar(__webpack_require__(1248), exports);
 __exportStar(__webpack_require__(1249), exports);
 __exportStar(__webpack_require__(1250), exports);
-exports.TxFeesFeeTokens = __importStar(__webpack_require__(1476));
-exports.TxFeesSpotPriceByDenom = __importStar(__webpack_require__(1477));
-exports.TxFeesBaseDenom = __importStar(__webpack_require__(1478));
-__exportStar(__webpack_require__(1479), exports);
+__exportStar(__webpack_require__(1251), exports);
+exports.TxFeesFeeTokens = __importStar(__webpack_require__(1477));
+exports.TxFeesSpotPriceByDenom = __importStar(__webpack_require__(1478));
+exports.TxFeesBaseDenom = __importStar(__webpack_require__(1479));
+__exportStar(__webpack_require__(1480), exports);
 //# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1476:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
 
 /***/ }),
 
@@ -7012,10 +7002,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1480:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.OsmosisQueriesImpl = exports.OsmosisQueries = void 0;
-const fee_tokens_1 = __webpack_require__(1248);
-const spot_price_by_denom_1 = __webpack_require__(1249);
-const base_denom_1 = __webpack_require__(1250);
+const fee_tokens_1 = __webpack_require__(1249);
+const spot_price_by_denom_1 = __webpack_require__(1250);
+const base_denom_1 = __webpack_require__(1251);
 exports.OsmosisQueries = {
     use() {
         return (queriesSetBase, kvStore, chainId, chainGetter) => {
@@ -7037,7 +7037,7 @@ exports.OsmosisQueriesImpl = OsmosisQueriesImpl;
 
 /***/ }),
 
-/***/ 1480:
+/***/ 1481:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7350,31 +7350,6 @@ exports.ChainStore = ChainStore;
 
 /***/ }),
 
-/***/ 1481:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1482), exports);
-__exportStar(__webpack_require__(1488), exports);
-__exportStar(__webpack_require__(1489), exports);
-__exportStar(__webpack_require__(1490), exports);
-__exportStar(__webpack_require__(1491), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ 1482:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7392,14 +7367,39 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(1483), exports);
-__exportStar(__webpack_require__(1485), exports);
-__exportStar(__webpack_require__(1486), exports);
-__exportStar(__webpack_require__(1487), exports);
+__exportStar(__webpack_require__(1489), exports);
+__exportStar(__webpack_require__(1490), exports);
+__exportStar(__webpack_require__(1491), exports);
+__exportStar(__webpack_require__(1492), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
 /***/ 1483:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1484), exports);
+__exportStar(__webpack_require__(1486), exports);
+__exportStar(__webpack_require__(1487), exports);
+__exportStar(__webpack_require__(1488), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1484:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7530,7 +7530,7 @@ exports.InteractionStore = InteractionStore;
 
 /***/ }),
 
-/***/ 1485:
+/***/ 1486:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7750,7 +7750,7 @@ exports.PermissionStore = PermissionStore;
 
 /***/ }),
 
-/***/ 1486:
+/***/ 1487:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7907,7 +7907,7 @@ exports.SignInteractionStore = SignInteractionStore;
 
 /***/ }),
 
-/***/ 1487:
+/***/ 1488:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7988,7 +7988,7 @@ exports.ChainSuggestStore = ChainSuggestStore;
 
 /***/ }),
 
-/***/ 1488:
+/***/ 1489:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8305,7 +8305,7 @@ exports.KeyRingStore = KeyRingStore;
 
 /***/ }),
 
-/***/ 1489:
+/***/ 1490:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8451,7 +8451,7 @@ exports.TokensStore = TokensStore;
 
 /***/ }),
 
-/***/ 1490:
+/***/ 1491:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8573,7 +8573,7 @@ exports.MisesStore = MisesStore;
 
 /***/ }),
 
-/***/ 1491:
+/***/ 1492:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8627,7 +8627,7 @@ exports.MisesSafeStore = MisesSafeStore;
 
 /***/ }),
 
-/***/ 1492:
+/***/ 1493:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8643,13 +8643,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1493), exports);
 __exportStar(__webpack_require__(1494), exports);
+__exportStar(__webpack_require__(1495), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1493:
+/***/ 1494:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8779,7 +8779,7 @@ exports.IBCChannelStore = IBCChannelStore;
 
 /***/ }),
 
-/***/ 1494:
+/***/ 1495:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9048,15 +9048,15 @@ exports.IBCCurrencyRegsitrar = IBCCurrencyRegsitrar;
 
 /***/ }),
 
-/***/ 1502:
+/***/ 1503:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeplrETCQueriesImpl = exports.KeplrETCQueries = void 0;
-const erc20_1 = __webpack_require__(1255);
-const axelar_1 = __webpack_require__(1256);
+const erc20_1 = __webpack_require__(1256);
+const axelar_1 = __webpack_require__(1257);
 exports.KeplrETCQueries = {
     use(options) {
         return (queriesSetBase, kvStore, chainId, chainGetter) => {
@@ -9077,7 +9077,7 @@ exports.KeplrETCQueriesImpl = KeplrETCQueriesImpl;
 
 /***/ }),
 
-/***/ 1503:
+/***/ 1504:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9095,7 +9095,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableQueryERC20Metadata = exports.ObservableQueryERC20MetadataInner = exports.ObservableQueryERC20MetadataDecimals = exports.ObservableQueryERC20MetadataSymbol = exports.ObservableQueryERC20MetadataName = void 0;
 const stores_1 = __webpack_require__(43);
 const axios_1 = __importDefault(__webpack_require__(60));
-const abi_1 = __webpack_require__(1311);
+const abi_1 = __webpack_require__(1312);
 const mobx_1 = __webpack_require__(5);
 const erc20MetadataInterface = new abi_1.Interface([
     {
@@ -9279,7 +9279,7 @@ exports.ObservableQueryERC20Metadata = ObservableQueryERC20Metadata;
 
 /***/ }),
 
-/***/ 1504:
+/***/ 1505:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9361,7 +9361,7 @@ exports.AxelarEVMBridgeCurrencyRegistrar = AxelarEVMBridgeCurrencyRegistrar;
 
 /***/ }),
 
-/***/ 1505:
+/***/ 1506:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9424,7 +9424,7 @@ exports.ObservableQueryEVMTokenInfo = ObservableQueryEVMTokenInfo;
 
 /***/ }),
 
-/***/ 1506:
+/***/ 1507:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9440,12 +9440,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1507), exports);
+__exportStar(__webpack_require__(1508), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1507:
+/***/ 1508:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9561,7 +9561,7 @@ exports.MessageRegistry = MessageRegistry;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JSONUint8Array = void 0;
 // The JSON encoder that supports the `Uint8Array`.
-const hex_1 = __webpack_require__(324);
+const hex_1 = __webpack_require__(326);
 class JSONUint8Array {
     static parse(text) {
         return JSON.parse(text, (key, value) => {
@@ -9635,7 +9635,7 @@ exports.getKeplrExtensionRouterId = getKeplrExtensionRouterId;
 
 /***/ }),
 
-/***/ 264:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9673,20 +9673,20 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(323), exports);
 __exportStar(__webpack_require__(325), exports);
-__exportStar(__webpack_require__(326), exports);
 __exportStar(__webpack_require__(327), exports);
 __exportStar(__webpack_require__(328), exports);
 __exportStar(__webpack_require__(329), exports);
 __exportStar(__webpack_require__(330), exports);
+__exportStar(__webpack_require__(331), exports);
+__exportStar(__webpack_require__(332), exports);
 __exportStar(__webpack_require__(183), exports);
 __exportStar(__webpack_require__(184), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 323:
+/***/ 325:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9751,7 +9751,7 @@ exports.Router = Router;
 
 /***/ }),
 
-/***/ 324:
+/***/ 326:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9789,7 +9789,7 @@ exports.fromHex = fromHex;
 
 /***/ }),
 
-/***/ 325:
+/***/ 327:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9799,7 +9799,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 326:
+/***/ 328:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9809,7 +9809,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 327:
+/***/ 329:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9819,7 +9819,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 328:
+/***/ 330:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9839,7 +9839,7 @@ exports.KeplrError = KeplrError;
 
 /***/ }),
 
-/***/ 329:
+/***/ 331:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9868,7 +9868,7 @@ exports.Message = Message;
 
 /***/ }),
 
-/***/ 330:
+/***/ 332:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9898,13 +9898,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1410), exports);
+__exportStar(__webpack_require__(1411), exports);
 __exportStar(__webpack_require__(119), exports);
-__exportStar(__webpack_require__(1425), exports);
 __exportStar(__webpack_require__(1426), exports);
-__exportStar(__webpack_require__(1480), exports);
+__exportStar(__webpack_require__(1427), exports);
 __exportStar(__webpack_require__(1481), exports);
-__exportStar(__webpack_require__(1492), exports);
+__exportStar(__webpack_require__(1482), exports);
+__exportStar(__webpack_require__(1493), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -10110,7 +10110,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(581), exports);
-__exportStar(__webpack_require__(264), exports);
+__exportStar(__webpack_require__(266), exports);
 __exportStar(__webpack_require__(585), exports);
 __exportStar(__webpack_require__(588), exports);
 //# sourceMappingURL=index.js.map
@@ -10520,7 +10520,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExtensionEnv = void 0;
 const router_1 = __webpack_require__(3);
 const popup_1 = __webpack_require__(46);
-const requester_1 = __webpack_require__(264);
+const requester_1 = __webpack_require__(266);
 class PromiseQueue {
     constructor() {
         this.workingOnPromise = false;
@@ -10871,10 +10871,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1502), exports);
-__exportStar(__webpack_require__(1255), exports);
-__exportStar(__webpack_require__(1506), exports);
+__exportStar(__webpack_require__(1503), exports);
 __exportStar(__webpack_require__(1256), exports);
+__exportStar(__webpack_require__(1507), exports);
+__exportStar(__webpack_require__(1257), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),

@@ -122,7 +122,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1136:
+/***/ 1137:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -139,9 +139,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Uint = exports.Int = void 0;
-const big_integer_1 = __importDefault(__webpack_require__(392));
+const big_integer_1 = __importDefault(__webpack_require__(393));
 const decimal_1 = __webpack_require__(141);
-const etc_1 = __webpack_require__(394);
+const etc_1 = __webpack_require__(395);
 class Int {
     /**
      * @param int - Parse a number | bigInteger | string into a bigInt.
@@ -334,10 +334,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Dec = void 0;
-const big_integer_1 = __importDefault(__webpack_require__(392));
+const big_integer_1 = __importDefault(__webpack_require__(393));
 const int_1 = __webpack_require__(140);
-const coin_utils_1 = __webpack_require__(281);
-const etc_1 = __webpack_require__(394);
+const coin_utils_1 = __webpack_require__(283);
+const etc_1 = __webpack_require__(395);
 class Dec {
     /**
      * Create a new Dec from integer with decimal place at prec
@@ -637,7 +637,7 @@ Dec.precisionMultipliers = {};
 
 /***/ }),
 
-/***/ 1629:
+/***/ 1630:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -716,7 +716,7 @@ exports.IntPretty = void 0;
 const int_1 = __webpack_require__(140);
 const decimal_1 = __webpack_require__(141);
 const dec_utils_1 = __webpack_require__(175);
-const coin_utils_1 = __webpack_require__(281);
+const coin_utils_1 = __webpack_require__(283);
 class IntPretty {
     constructor(num) {
         this.floatingDecimalPointRight = 0;
@@ -936,10 +936,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(210), exports);
 __exportStar(__webpack_require__(658), exports);
-__exportStar(__webpack_require__(393), exports);
+__exportStar(__webpack_require__(394), exports);
 __exportStar(__webpack_require__(140), exports);
 __exportStar(__webpack_require__(141), exports);
-__exportStar(__webpack_require__(281), exports);
+__exportStar(__webpack_require__(283), exports);
 __exportStar(__webpack_require__(175), exports);
 __exportStar(__webpack_require__(659), exports);
 __exportStar(__webpack_require__(660), exports);
@@ -947,14 +947,14 @@ __exportStar(__webpack_require__(660), exports);
 
 /***/ }),
 
-/***/ 281:
+/***/ 283:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CoinUtils = void 0;
-const coin_1 = __webpack_require__(393);
+const coin_1 = __webpack_require__(394);
 const int_1 = __webpack_require__(140);
 const decimal_1 = __webpack_require__(141);
 const dec_utils_1 = __webpack_require__(175);
@@ -1088,7 +1088,7 @@ exports.CoinUtils = CoinUtils;
 
 /***/ }),
 
-/***/ 393:
+/***/ 394:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1120,7 +1120,7 @@ exports.Coin = Coin;
 
 /***/ }),
 
-/***/ 394:
+/***/ 395:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
