@@ -30,10 +30,10 @@
     "misesPrivate",
     "nativeMessaging"
   ],
-  "host_permissions": ["http://*/*", "https://*/*"],
+  "host_permissions": ["file://*/*", "http://*/*", "https://*/*"],
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["file://*/*", "http://*/*", "https://*/*"],
       "js": ["browser-polyfill.js", "contentScripts.bundle.js"],
       "run_at": "document_start",
       "all_frames": true
