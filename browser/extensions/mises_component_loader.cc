@@ -216,19 +216,22 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
 
   extensions::ExtensionRegistry* registry =
       extensions::ExtensionRegistry::Get(profile_);
-  const Extension* extension = registry->GetInstalledExtension(metamask_extension_id);
-  if (!extension) {
+  const Extension* metamask_extension = registry->GetInstalledExtension(metamask_extension_id);
+  if (!metamask_extension) {
     base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
     metamask_extension_path =
         metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
     Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
   }
 
+  const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);
+  if (!mises_extension) {
+    base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
+    miseswallet_extension_path =
+        miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
+    Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
+  }
 
-  base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
-  miseswallet_extension_path =
-      miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
-  Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
 
 }
 

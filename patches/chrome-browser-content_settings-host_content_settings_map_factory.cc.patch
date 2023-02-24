@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/content_settings/host_content_settings_map_factory.cc b/chrome/browser/content_settings/host_content_settings_map_factory.cc
+index 242f244a6d3b5a6152703c34d260435c4b50eddc..7f36ae04cc79c5091bf60a1153722fef3b1e2850 100644
+--- a/chrome/browser/content_settings/host_content_settings_map_factory.cc
++++ b/chrome/browser/content_settings/host_content_settings_map_factory.cc
+@@ -54,7 +54,7 @@ HostContentSettingsMapFactory::HostContentSettingsMapFactory()
+ #if BUILDFLAG(ENABLE_SUPERVISED_USERS)
+   DependsOn(SupervisedUserSettingsServiceFactory::GetInstance());
+ #endif
+-#if BUILDFLAG(ENABLE_EXTENSIONS)
++#if BUILDFLAG(ENABLE_EXTENSIONS) && !BUILDFLAG(IS_ANDROID)
+   DependsOn(extensions::ContentSettingsService::GetFactoryInstance());
+ #endif
+   // Used by way of ShouldRestoreOldSessionCookies().
