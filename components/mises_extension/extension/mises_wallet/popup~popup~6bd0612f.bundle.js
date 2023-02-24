@@ -40060,6 +40060,7 @@ var hey_listen_es = __webpack_require__(69);
 
 
 
+
 var createStyler = function (_a) {
     var onRead = _a.onRead,
         onRender = _a.onRender,
@@ -40258,6 +40259,238 @@ var valueTypes = {
     originZ: style_value_types_es["j" /* px */],
     zIndex: stylefire_es_int,
     fillOpacity: style_value_types_es["a" /* alpha */],
+    strokeOpacity: style_value_types_es["a" /* alpha */],
+    numOctaves: stylefire_es_int
+};
+var getValueType = function (key) {
+    return valueTypes[key];
+};
+var getValueAsType = function (value, type) {
+    return type && typeof value === 'number' ? type.transform(value) : value;
+};
+
+var SCROLL_LEFT = 'scrollLeft';
+var SCROLL_TOP = 'scrollTop';
+var scrollKeys = /*#__PURE__*/new Set([SCROLL_LEFT, SCROLL_TOP]);
+
+var blacklist = /*#__PURE__*/new Set([SCROLL_LEFT, SCROLL_TOP, 'transform']);
+var translateAlias = {
+    x: 'translateX',
+    y: 'translateY',
+    z: 'translateZ'
+};
+function isCustomTemplate(v) {
+    return typeof v === 'function';
+}
+function buildTransform(state, transform, transformKeys, transformIsDefault, enableHardwareAcceleration, allowTransformNone) {
+    if (allowTransformNone === void 0) {
+        allowTransformNone = true;
+    }
+    var transformString = '';
+    var transformHasZ = false;
+    transformKeys.sort(sortTransformProps);
+    var numTransformKeys = transformKeys.length;
+    for (var i = 0; i < numTransformKeys; i++) {
+        var key = transformKeys[i];
+        transformString += (translateAlias[key] || key) + "(" + transform[key] + ") ";
+        transformHasZ = key === 'z' ? true : transformHasZ;
+    }
+    if (!transformHasZ && enableHardwareAcceleration) {
+        transformString += 'translateZ(0)';
+    } else {
+        transformString = transformString.trim();
+    }
+    if (isCustomTemplate(state.transform)) {
+        transformString = state.transform(transform, transformIsDefault ? '' : transformString);
+    } else if (allowTransformNone && transformIsDefault) {
+        transformString = 'none';
+    }
+    return transformString;
+}
+function buildStyleProperty(state, enableHardwareAcceleration, styles, transform, transformOrigin, transformKeys, isDashCase, allowTransformNone) {
+    if (enableHardwareAcceleration === void 0) {
+        enableHardwareAcceleration = true;
+    }
+    if (styles === void 0) {
+        styles = {};
+    }
+    if (transform === void 0) {
+        transform = {};
+    }
+    if (transformOrigin === void 0) {
+        transformOrigin = {};
+    }
+    if (transformKeys === void 0) {
+        transformKeys = [];
+    }
+    if (isDashCase === void 0) {
+        isDashCase = false;
+    }
+    if (allowTransformNone === void 0) {
+        allowTransformNone = true;
+    }
+    var transformIsDefault = true;
+    var hasTransform = false;
+    var hasTransformOrigin = false;
+    for (var key in state) {
+        var value = state[key];
+        var valueType = getValueType(key);
+        var valueAsType = getValueAsType(value, valueType);
+        if (isTransformProp(key)) {
+            hasTransform = true;
+            transform[key] = valueAsType;
+            transformKeys.push(key);
+            if (transformIsDefault) {
+                if (valueType.default && value !== valueType.default || !valueType.default && value !== 0) {
+                    transformIsDefault = false;
+                }
+            }
+        } else if (isTransformOriginProp(key)) {
+            transformOrigin[key] = valueAsType;
+            hasTransformOrigin = true;
+        } else if (!blacklist.has(key) || !isCustomTemplate(valueAsType)) {
+            styles[prefixer(key, isDashCase)] = valueAsType;
+        }
+    }
+    if (hasTransform || typeof state.transform === 'function') {
+        styles.transform = buildTransform(state, transform, transformKeys, transformIsDefault, enableHardwareAcceleration, allowTransformNone);
+    }
+    if (hasTransformOrigin) {
+        styles.transformOrigin = (transformOrigin.originX || '50%') + " " + (transformOrigin.originY || '50%') + " " + (transformOrigin.originZ || 0);
+    }
+    return styles;
+}
+function createStyleBuilder(_a) {
+    var _b = _a === void 0 ? {} : _a,
+        _c = _b.enableHardwareAcceleration,
+        enableHardwareAcceleration = _c === void 0 ? true : _c,
+        _d = _b.isDashCase,
+        isDashCase = _d === void 0 ? true : _d,
+        _e = _b.allowTransformNone,
+        allowTransformNone = _e === void 0 ? true : _e;
+    var styles = {};
+    var transform = {};
+    var transformOrigin = {};
+    var transformKeys = [];
+    return function (state) {
+        transformKeys.length = 0;
+        buildStyleProperty(state, enableHardwareAcceleration, styles, transform, transformOrigin, transformKeys, isDashCase, allowTransformNone);
+        return styles;
+    };
+}
+
+function stylefire_es_onRead(key, options) {
+    var element = options.element,
+        preparseOutput = options.preparseOutput;
+    var defaultValueType = getValueType(key);
+    if (isTransformProp(key)) {
+        return defaultValueType ? defaultValueType.default || 0 : 0;
+    } else if (scrollKeys.has(key)) {
+        return element[key];
+    } else {
+        var domValue = window.getComputedStyle(element, null).getPropertyValue(prefixer(key, true)) || 0;
+        return preparseOutput && defaultValueType && defaultValueType.test(domValue) && defaultValueType.parse ? defaultValueType.parse(domValue) : domValue;
+    }
+}
+function stylefire_es_onRender(state, _a, changedValues) {
+    var element = _a.element,
+        buildStyles = _a.buildStyles,
+        hasCSSVariable = _a.hasCSSVariable;
+    Object.assign(element.style, buildStyles(state));
+    if (hasCSSVariable) {
+        var numChangedValues = changedValues.length;
+        for (var i = 0; i < numChangedValues; i++) {
+            var key = changedValues[i];
+            if (key.startsWith('--')) {
+                element.style.setProperty(key, state[key]);
+            }
+        }
+    }
+    if (changedValues.indexOf(SCROLL_LEFT) !== -1) {
+        element[SCROLL_LEFT] = state[SCROLL_LEFT];
+    }
+    if (changedValues.indexOf(SCROLL_TOP) !== -1) {
+        element[SCROLL_TOP] = state[SCROLL_TOP];
+    }
+}
+var cssStyler = /*#__PURE__*/createStyler({
+    onRead: stylefire_es_onRead,
+    onRender: stylefire_es_onRender,
+    uncachedValues: scrollKeys
+});
+function createCssStyler(element, _a) {
+    if (_a === void 0) {
+        _a = {};
+    }
+    var enableHardwareAcceleration = _a.enableHardwareAcceleration,
+        allowTransformNone = _a.allowTransformNone,
+        props = __rest(_a, ["enableHardwareAcceleration", "allowTransformNone"]);
+    return cssStyler(__assign({ element: element, buildStyles: createStyleBuilder({
+            enableHardwareAcceleration: enableHardwareAcceleration,
+            allowTransformNone: allowTransformNone
+        }), preparseOutput: true }, props));
+}
+
+var camelCaseAttributes = /*#__PURE__*/new Set(['baseFrequency', 'diffuseConstant', 'kernelMatrix', 'kernelUnitLength', 'keySplines', 'keyTimes', 'limitingConeAngle', 'markerHeight', 'markerWidth', 'numOctaves', 'targetX', 'targetY', 'surfaceScale', 'specularConstant', 'specularExponent', 'stdDeviation', 'tableValues']);
+
+var defaultOrigin = 0.5;
+var svgAttrsTemplate = function () {
+    return {
+        style: {}
+    };
+};
+var progressToPixels = function (progress, length) {
+    return style_value_types_es["j" /* px */].transform(progress * length);
+};
+var unmeasured = { x: 0, y: 0, width: 0, height: 0 };
+function calcOrigin(origin, offset, size) {
+    return typeof origin === 'string' ? origin : style_value_types_es["j" /* px */].transform(offset + size * origin);
+}
+function calculateSVGTransformOrigin(dimensions, originX, originY) {
+    return calcOrigin(originX, dimensions.x, dimensions.width) + " " + calcOrigin(originY, dimensions.y, dimensions.height);
+}
+var svgStyleConfig = {
+    enableHardwareAcceleration: false,
+    isDashCase: false
+};
+function buildSVGAttrs(_a, dimensions, totalPathLength, cssBuilder, attrs, isDashCase) {
+    if (dimensions === void 0) {
+        dimensions = unmeasured;
+    }
+    if (cssBuilder === void 0) {
+        cssBuilder = createStyleBuilder(svgStyleConfig);
+    }
+    if (attrs === void 0) {
+        attrs = svgAttrsTemplate();
+    }
+    if (isDashCase === void 0) {
+        isDashCase = true;
+    }
+    var attrX = _a.attrX,
+        attrY = _a.attrY,
+        originX = _a.originX,
+        originY = _a.originY,
+        pathLength = _a.pathLength,
+        _b = _a.pathSpacing,
+        pathSpacing = _b === void 0 ? 1 : _b,
+        _c = _a.pathOffset,
+        pathOffset = _c === void 0 ? 0 : _c,
+        state = __rest(_a, ["attrX", "attrY", "originX", "originY", "pathLength", "pathSpacing", "pathOffset"]);
+    var style = cssBuilder(state);
+    for (var key in style) {
+        if (key === 'transform') {
+            attrs.style.transform = style[key];
+        } else {
+            var attrKey = isDashCase && !camelCaseAttributes.has(key) ? camelToDash(key) : key;
+            attrs[attrKey] = style[key];
+        }
+    }
+    if (originX !== undefined || originY !== undefined || style.transform) {
+        attrs.style.transformOrigin = calculateSVGTransformOrigin(dimensions, originX !== undefined ? originX : defaultOrigin, originY !== undefined ? originY : defaultOrigin);
+    }
+    if (attrX !== undefined) attrs.x = attrX;
+    if (attrY !== undefined) attrs.y = attrY;
+    if (totalPathLength !== undefined && pathLength !== undefined) {
         attrs[isDashCase ? 'stroke-dashoffset' : 'strokeDashoffset'] = progressToPixels(-pathOffset, totalPathLength);
         attrs[isDashCase ? 'stroke-dasharray' : 'strokeDasharray'] = progressToPixels(pathLength, totalPathLength) + " " + progressToPixels(pathSpacing, totalPathLength);
     }
