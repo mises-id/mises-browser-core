@@ -16249,6 +16249,7 @@ const RenderRoutes = () => {
 // const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 sdk["a" /* init */]({
+    enabled: "production" === "production",
     dsn: "https://66dc9e60f6764bf4a127e9f11f702b9f@o1162849.ingest.sentry.io/4504417442791424",
     integrations: [new tracing_esm["a" /* BrowserTracing */]()],
     // Set tracesSampleRate to 1.0 to capture 100%
@@ -16591,6 +16592,7 @@ var cosmos_build = __webpack_require__(16);
 
 class root_RootStore {
     constructor() {
+        console.log("init root store");
         this.uiConfigStore = new ui_config_UIConfigStore(new common_build["ExtensionKVStore"]("store_ui_config"));
         const router = new router_extension_build["ExtensionRouter"](router_extension_build["ContentScriptEnv"].produceEnv);
         router.addGuard(router_extension_build["ContentScriptGuards"].checkMessageIsInternal);
@@ -17209,7 +17211,7 @@ module.exports = content.locals || {};
 /***/ 269:
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"manifest_version\":3,\"name\":\"Mises\",\"description\":\"Mises is a browser extension wallet\",\"version\":\"0.2.3\",\"icons\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"},\"action\":{\"default_popup\":\"popup.html\",\"default_title\":\"Mises\",\"default_icon\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"}},\"background\":{\"service_worker\":\"background.bundle.js\"},\"author\":\"https://www.mises.site\",\"permissions\":[\"storage\",\"notifications\",\"identity\",\"tabs\",\"idle\",\"misesPrivate\",\"nativeMessaging\"],\"host_permissions\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"content_scripts\":[{\"matches\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"js\":[\"browser-polyfill.js\",\"contentScripts.bundle.js\"],\"run_at\":\"document_start\",\"all_frames\":true}],\"web_accessible_resources\":[{\"resources\":[\"injectedScript.bundle.js\",\"assets/logo-256.png\",\"safeInjectedScript.bundle.js\"],\"matches\":[\"http://*/*\",\"https://*/*\"]}],\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB\",\"content_security_policy\":{\"extension_pages\":\"script-src 'self' 'wasm-unsafe-eval'; object-src 'self';\"}}");
+module.exports = JSON.parse("{\"manifest_version\":3,\"name\":\"Mises\",\"description\":\"Mises is a browser extension wallet\",\"version\":\"0.2.4\",\"icons\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"},\"action\":{\"default_popup\":\"popup.html\",\"default_title\":\"Mises\",\"default_icon\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"}},\"background\":{\"service_worker\":\"background.bundle.js\"},\"author\":\"https://www.mises.site\",\"permissions\":[\"storage\",\"notifications\",\"identity\",\"tabs\",\"idle\",\"misesPrivate\",\"nativeMessaging\"],\"host_permissions\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"content_scripts\":[{\"matches\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"js\":[\"browser-polyfill.js\",\"contentScripts.bundle.js\"],\"run_at\":\"document_start\",\"all_frames\":true}],\"web_accessible_resources\":[{\"resources\":[\"injectedScript.bundle.js\",\"assets/logo-256.png\",\"safeInjectedScript.bundle.js\"],\"matches\":[\"http://*/*\",\"https://*/*\"]}],\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB\",\"content_security_policy\":{\"extension_pages\":\"script-src 'self' 'wasm-unsafe-eval'; object-src 'self';\"}}");
 
 /***/ }),
 

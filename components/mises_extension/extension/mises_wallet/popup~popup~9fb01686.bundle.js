@@ -8100,6 +8100,7 @@ class KeyRingStore {
         this.keyStoreChangedListeners = [];
         mobx_1.makeObservable(this);
         this.restore();
+        console.log("KeyRingStore>>> init");
     }
     get keyRingType() {
         const keyStore = this.multiKeyStoreInfo.find((keyStore) => keyStore.selected);

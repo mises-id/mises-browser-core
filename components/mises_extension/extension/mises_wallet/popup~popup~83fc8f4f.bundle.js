@@ -2927,8 +2927,18 @@ class keyring_KeyRing {
         this.mnemonic = "";
         this.misesService.lockAll();
     }
+    checkKeyStoreStatus() {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (!this.keyStore || this.type === "none") {
+                console.log("checkKeyStoreStatus");
+                yield this.restore();
+            }
+            return true;
+        });
+    }
     unlock(password) {
         return keyring_awaiter(this, void 0, void 0, function* () {
+            yield this.checkKeyStoreStatus();
             if (!this.keyStore || this.type === "none") {
                 throw new router_build["KeplrError"]("keyring", 144, "Key ring not initialized");
             }
@@ -5534,8 +5544,18 @@ class KeyRing {
         this.mnemonic = "";
         this.misesService.lockAll();
     }
+    checkKeyStoreStatus() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.keyStore || this.type === "none") {
+                console.log("checkKeyStoreStatus");
+                yield this.restore();
+            }
+            return true;
+        });
+    }
     unlock(password) {
         return __awaiter(this, void 0, void 0, function* () {
+            yield this.checkKeyStoreStatus();
             if (!this.keyStore || this.type === "none") {
                 throw new router_1.KeplrError("keyring", 144, "Key ring not initialized");
             }
