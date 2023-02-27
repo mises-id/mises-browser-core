@@ -8100,7 +8100,6 @@ class KeyRingStore {
         this.keyStoreChangedListeners = [];
         mobx_1.makeObservable(this);
         this.restore();
-        console.log("KeyRingStore>>> init");
     }
     get keyRingType() {
         const keyStore = this.multiKeyStoreInfo.find((keyStore) => keyStore.selected);
@@ -10270,10 +10269,15 @@ class InExtensionMessageRequester {
                     ? window.location.origin
                     : `chrome-extension://${browser.runtime.id}`;
             msg.routerMeta = Object.assign(Object.assign({}, msg.routerMeta), { routerId: utils_1.getKeplrExtensionRouterId() });
-            const result = router_1.JSONUint8Array.unwrap(yield browser.runtime.sendMessage({
-                port,
-                type: msg.type(),
-                msg: router_1.JSONUint8Array.wrap(msg),
+            const result = router_1.JSONUint8Array.unwrap(yield new Promise((resolve) => {
+                chrome.runtime.sendMessage({
+                    port,
+                    type: msg.type(),
+                    msg: router_1.JSONUint8Array.wrap(msg),
+                }, (result) => {
+                    console.log(result, "sendMessage-result>>>>>>");
+                    resolve(result);
+                });
             }));
             if (!result) {
                 throw new Error("Null result");
@@ -10301,10 +10305,15 @@ class InExtensionMessageRequester {
                     : `chrome-extension://${browser.runtime.id}`;
             console.log(msg["origin"], "sendMessageToTab");
             msg.routerMeta = Object.assign(Object.assign({}, msg.routerMeta), { routerId: utils_1.getKeplrExtensionRouterId() });
-            const result = router_1.JSONUint8Array.unwrap(yield browser.tabs.sendMessage(tabId, {
-                port,
-                type: msg.type(),
-                msg: router_1.JSONUint8Array.wrap(msg),
+            const result = router_1.JSONUint8Array.unwrap(yield new Promise((resolve) => {
+                chrome.tabs.sendMessage(tabId, {
+                    port,
+                    type: msg.type(),
+                    msg: router_1.JSONUint8Array.wrap(msg),
+                }, (result) => {
+                    console.log(result, "sendMessageToTab-result>>>>>>");
+                    resolve(result);
+                });
             }));
             if (!result) {
                 throw new Error("Null result");
