@@ -16592,7 +16592,6 @@ var cosmos_build = __webpack_require__(16);
 
 class root_RootStore {
     constructor() {
-        console.log("init root store");
         this.uiConfigStore = new ui_config_UIConfigStore(new common_build["ExtensionKVStore"]("store_ui_config"));
         const router = new router_extension_build["ExtensionRouter"](router_extension_build["ContentScriptEnv"].produceEnv);
         router.addGuard(router_extension_build["ContentScriptGuards"].checkMessageIsInternal);

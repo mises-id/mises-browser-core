@@ -510,6 +510,7 @@ class Migrator {
     }
     enCodeValut(keyringStore, password) {
         return __awaiter(this, void 0, void 0, function* () {
+            // eslint-disable-next-line
             const encryptor = __webpack_require__(630);
             const { vault: vaultString } = keyringStore;
             const vault = (yield encryptor.decrypt(password, vaultString));
@@ -703,6 +704,7 @@ const getHandler = (service) => {
 exports.getHandler = getHandler;
 const handleRestoreKeyRingMsg = (service) => {
     return (_env, _msg) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("handleRestoreKeyRingMsg");
         return yield service.restore();
     });
 };
@@ -750,6 +752,7 @@ const handleLockKeyRingMsg = (service) => {
 };
 const handleUnlockKeyRingMsg = (service) => {
     return (_, msg) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("handleUnlockKeyRingMsg");
         return {
             status: yield service.unlock(msg.password),
         };
@@ -1684,6 +1687,7 @@ class HttpClient {
                 method: "POST",
                 data: request ? JSON.stringify(request) : undefined,
                 headers: Object.assign({ "Content-Type": "application/json" }, this.headers),
+                timeout: 5000,
                 isCustomRequest: true,
             });
             if (json_rpc_1.isJsonRpcErrorResponse(response)) {
@@ -2715,6 +2719,7 @@ class Migrator {
     }
     enCodeValut(keyringStore, password) {
         return migrator_awaiter(this, void 0, void 0, function* () {
+            // eslint-disable-next-line
             const encryptor = __webpack_require__(630);
             const { vault: vaultString } = keyringStore;
             const vault = (yield encryptor.decrypt(password, vaultString));
@@ -2938,6 +2943,10 @@ class keyring_KeyRing {
     }
     unlock(password) {
         return keyring_awaiter(this, void 0, void 0, function* () {
+            /**
+             * If the service worker is closed and reopened
+             * the restore will not run, so you need to check whether the keystore needs to be restored again
+             */
             yield this.checkKeyStoreStatus();
             if (!this.keyStore || this.type === "none") {
                 throw new router_build["KeplrError"]("keyring", 144, "Key ring not initialized");
@@ -5555,6 +5564,10 @@ class KeyRing {
     }
     unlock(password) {
         return __awaiter(this, void 0, void 0, function* () {
+            /**
+             * If the service worker is closed and reopened
+             * the restore will not run, so you need to check whether the keystore needs to be restored again
+             */
             yield this.checkKeyStoreStatus();
             if (!this.keyStore || this.type === "none") {
                 throw new router_1.KeplrError("keyring", 144, "Key ring not initialized");
@@ -7969,6 +7982,7 @@ exports.fetchConfig = {
     retry: 3,
     retryDelay: 1000,
 };
+const timeout = 5000;
 class MisesService {
     constructor(kvStore) {
         this.kvStore = kvStore;
@@ -8102,6 +8116,7 @@ class MisesService {
                     url: "/signin",
                     method: "POST",
                     data: query,
+                    timeout,
                 });
                 return data.token;
             }
@@ -8115,6 +8130,7 @@ class MisesService {
             try {
                 return mises_network_util_1.misesRequest({
                     url: "/mises/gasprices",
+                    timeout,
                 });
             }
             catch (error) {
