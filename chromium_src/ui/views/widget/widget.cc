@@ -185,7 +185,6 @@ Widget::Widget(InitParams params) {
 }
 
 Widget::~Widget() {
-  LOG(INFO) << "Widget::~Widget";
   if (widget_delegate_)
     widget_delegate_->WidgetDestroying();
   if (ownership_ == InitParams::WIDGET_OWNS_NATIVE_WIDGET) {
@@ -319,7 +318,6 @@ bool Widget::RequiresNonClientView(InitParams::Type type) {
 
 void Widget::Init(InitParams params) {
   TRACE_EVENT0("views", "Widget::Init");
-  LOG(INFO) << "Widget::Init step - 1";
   if (params.name.empty() && params.delegate) {
     params.name = params.delegate->internal_name();
     // If an internal name was not provided the class name of the contents view
@@ -327,7 +325,6 @@ void Widget::Init(InitParams params) {
     if (params.name.empty() && params.delegate->GetContentsView())
       params.name = params.delegate->GetContentsView()->GetClassName();
   }
-  //LOG(INFO) << "Widget::Init" << "step - 2";
   parent_ = params.parent ? GetWidgetForNativeView(params.parent) : nullptr;
 
   // Subscripbe to parent's paint-as-active change.
@@ -337,7 +334,6 @@ void Widget::Init(InitParams params) {
             base::BindRepeating(&Widget::OnParentShouldPaintAsActiveChanged,
                                 base::Unretained(this)));
   }
-  //LOG(INFO) << "Widget::Init" << "step - 3";
 
   params.child |= (params.type == InitParams::TYPE_CONTROL);
   is_top_level_ = !params.child;
@@ -346,7 +342,6 @@ void Widget::Init(InitParams params) {
       params.type != views::Widget::InitParams::TYPE_WINDOW) {
     params.opacity = views::Widget::InitParams::WindowOpacity::kOpaque;
   }
-  //LOG(INFO) << "Widget::Init" << "step - 3";
   {
     // ViewsDelegate::OnBeforeWidgetInit() may change `params.delegate` either
     // by setting it to null or assigning a different value to it, so handle
@@ -360,7 +355,6 @@ void Widget::Init(InitParams params) {
     widget_delegate_ =
         params.delegate ? params.delegate : default_widget_delegate.release();
   }
-  //LOG(INFO) << "Widget::Init" << "step - 4";
   DCHECK(widget_delegate_);
 
   if (params.opacity == views::Widget::InitParams::WindowOpacity::kInferred)
@@ -377,7 +371,6 @@ void Widget::Init(InitParams params) {
 
   if (params.delegate)
     params.delegate->WidgetInitializing(this);
-  //LOG(INFO) << "Widget::Init" << "step - 5";
   ownership_ = params.ownership;
 #if BUILDFLAG(IS_CHROMEOS_ASH)
   background_elevation_ = params.background_elevation;
@@ -395,11 +388,9 @@ void Widget::Init(InitParams params) {
 
   native_widget_->InitNativeWidget(std::move(params));
 #if !BUILDFLAG(IS_ANDROID)
-  //LOG(INFO) << "Widget::Init" << "step - 6";
   if (type == InitParams::TYPE_MENU)
     is_mouse_button_pressed_ = native_widget_->IsMouseButtonDown();
   if (RequiresNonClientView(type)) {
-    //LOG(INFO) << "Widget::Init" << "step - 7";
     non_client_view_ =
         new NonClientView(widget_delegate_->CreateClientView(this));
     non_client_view_->SetFrameView(CreateNonClientFrameView());
@@ -429,7 +420,6 @@ void Widget::Init(InitParams params) {
       Minimize();
       saved_show_state_ = ui::SHOW_STATE_MINIMIZED;
     }
-    //LOG(INFO) << "Widget::Init" << "step - 8";
   } else if (delegate) {
     SetContentsView(delegate->TransferOwnershipOfContentsView());
     SetInitialBoundsForFramelessWindow(bounds);
@@ -437,16 +427,12 @@ void Widget::Init(InitParams params) {
 
   native_theme_observation_.Observe(GetNativeTheme());
 #endif
-  //LOG(INFO) << "Widget::Init" << "step - 9";
   native_widget_initialized_ = true;
   native_widget_->OnWidgetInitDone();
-  //LOG(INFO) << "Widget::Init" << "step - 10";
   if (delegate)
     delegate->WidgetInitialized();
-  //LOG(INFO) << "Widget::Init" << "step - 11";
   internal::AnyWidgetObserverSingleton::GetInstance()->OnAnyWidgetInitialized(
       this);
-  //LOG(INFO) << "Widget::Init" << "step - 12";
 }
 
 void Widget::ShowEmojiPanel() {
@@ -657,7 +643,6 @@ void Widget::SetShape(std::unique_ptr<ShapeRects> shape) {
 }
 
 void Widget::CloseWithReason(ClosedReason closed_reason) {
-  LOG(INFO) << "Widget::CloseWithReason" << (int)closed_reason;
   if (widget_closed_) {
     // It appears we can hit this code path if you close a modal dialog then
     // close the last browser before the destructor is hit, which triggers
@@ -667,17 +652,14 @@ void Widget::CloseWithReason(ClosedReason closed_reason) {
   if (block_close_) {
     return;
   }
-  LOG(INFO) << "Widget::CloseWithReason setp - 1";
   if (non_client_view_ && non_client_view_->OnWindowCloseRequested() ==
                               CloseRequestResult::kCannotClose) {
     return;
   }
-  LOG(INFO) << "Widget::CloseWithReason setp - 2";
   // This is the last chance to cancel closing.
   if (widget_delegate_ && !widget_delegate_->OnCloseRequested(closed_reason))
     return;
 
-  LOG(INFO) << "Widget::CloseWithReason setp - 3";
   // Cancel widget close on focus lost. This is used in UI Devtools to lock
   // bubbles and in some tests where we want to ignore spurious deactivation.
   if (closed_reason == ClosedReason::kLostFocus &&
@@ -687,24 +669,17 @@ void Widget::CloseWithReason(ClosedReason closed_reason) {
            DisableActivationChangeHandlingType::kIgnoreDeactivationOnly)) {
     return;
   }
-  LOG(INFO) << "Widget::CloseWithReason setp - 4";
   // The actions below can cause this function to be called again, so mark
   // |this| as closed early. See crbug.com/714334
   widget_closed_ = true;
   closed_reason_ = closed_reason;
-  LOG(INFO) << "Widget::CloseWithReason setp - 5";
   SaveWindowPlacement();
-  LOG(INFO) << "Widget::CloseWithReason setp - 6";
   ClearFocusFromWidget();
-  LOG(INFO) << "Widget::CloseWithReason setp - 7";
   for (WidgetObserver& observer : observers_)
     observer.OnWidgetClosing(this);
-  LOG(INFO) << "Widget::CloseWithReason setp - 8";
   internal::AnyWidgetObserverSingleton::GetInstance()->OnAnyWidgetClosing(this);
-  LOG(INFO) << "Widget::CloseWithReason setp - 9";
   if (widget_delegate_)
     widget_delegate_->WindowWillClose();
-  LOG(INFO) << "Widget::CloseWithReason setp - 10";
   native_widget_->Close();
 }
 
@@ -1435,7 +1410,6 @@ void Widget::OnNativeWidgetDestroying() {
 }
 
 void Widget::OnNativeWidgetDestroyed() {
-  LOG(INFO) << "widget::OnNativeWidgetDestroyed";
   for (WidgetObserver& observer : observers_)
     observer.OnWidgetDestroyed(this);
   widget_delegate_->can_delete_this_ = true;
