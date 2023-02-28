@@ -1,94 +1,9 @@
-// Copyright 2015 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-#include "chrome/browser/ui/bookmarks/bookmark_utils_desktop.h"
-
-#include <iterator>
-#include <numeric>
-
-#include "base/bind.h"
-#include "base/callback.h"
-#include "base/containers/contains.h"
-#include "base/containers/flat_set.h"
-#include "base/strings/string_number_conversions.h"
-#include "build/build_config.h"
-#include "chrome/browser/bookmarks/bookmark_model_factory.h"
-#include "chrome/browser/profiles/profile.h"
-#include "chrome/browser/ui/bookmarks/bookmark_editor.h"
-#include "chrome/browser/ui/bookmarks/bookmark_stats.h"
-#include "chrome/browser/ui/bookmarks/bookmark_utils.h"
-#include "chrome/browser/ui/browser.h"
-#include "chrome/browser/ui/browser_navigator.h"
-#include "chrome/browser/ui/browser_window.h"
-#include "chrome/browser/ui/simple_message_box.h"
-#include "chrome/browser/ui/tabs/saved_tab_groups/saved_tab_group.h"
-#include "chrome/browser/ui/tabs/saved_tab_groups/saved_tab_group_keyed_service.h"
-#include "chrome/browser/ui/tabs/saved_tab_groups/saved_tab_group_service_factory.h"
-#include "chrome/browser/ui/tabs/tab_group.h"
-#include "chrome/browser/ui/tabs/tab_group_model.h"
-#include "chrome/grit/chromium_strings.h"
-#include "chrome/grit/generated_resources.h"
-#include "components/bookmarks/browser/bookmark_model.h"
-#include "components/bookmarks/browser/bookmark_node.h"
-#include "components/bookmarks/browser/bookmark_utils.h"
-#include "components/tab_groups/tab_group_id.h"
-#include "content/public/browser/page_navigator.h"
-#include "content/public/browser/web_contents.h"
-#include "ui/base/l10n/l10n_util.h"
-#include "ui/base/window_open_disposition.h"
-#include "url/gurl.h"
-
-using bookmarks::BookmarkModel;
-using bookmarks::BookmarkNode;
+#include "src/chrome/browser/ui/bookmarks/bookmark_utils_desktop.cc"
 
 namespace chrome {
-
-size_t kNumBookmarkUrlsBeforePrompting = 15;
-
 namespace {
 
-// Returns a vector of all URLs in |nodes| and their immediate children.  Only
-// recurses one level deep, not infinitely.  TODO(pkasting): It's not clear why
-// this shouldn't just recurse infinitely.
-std::vector<GURL> GetURLsToOpen(
-    const std::vector<const BookmarkNode*>& nodes,
-    content::BrowserContext* browser_context = nullptr,
-    bool incognito_urls_only = false) {
-  std::vector<GURL> urls;
-
-  const auto AddUrlIfLegal = [&](const GURL url) {
-    if (!incognito_urls_only || IsURLAllowedInIncognito(url, browser_context))
-      urls.push_back(url);
-  };
-
-  for (const BookmarkNode* node : nodes) {
-    if (node->is_url()) {
-      AddUrlIfLegal(node->url());
-    } else {
-      // If the node is not a URL, it is a folder. We want to add those of its
-      // children which are URLs.
-      for (const auto& child : node->children()) {
-        if (child->is_url())
-          AddUrlIfLegal(child->url());
-      }
-    }
-  }
-  return urls;
-}
-
-// Returns the total number of descendants nodes.
-int ChildURLCountTotal(const BookmarkNode* node) {
-  const auto count_children = [](int total, const auto& child) {
-    if (child->is_folder())
-      total += ChildURLCountTotal(child.get());
-    return total + 1;
-  };
-  return std::accumulate(node->children().cbegin(), node->children().cend(), 0,
-                         count_children);
-}
-
-#if true ||!BUILDFLAG(IS_ANDROID)
+#if BUILDFLAG(IS_ANDROID)
 // Returns in |urls|, the url and title pairs for each open tab in browser.
 void GetURLsAndFoldersForOpenTabs(
     Browser* browser,
@@ -115,44 +30,10 @@ void GetURLsAndFoldersForOpenTabs(
 }
 #endif
 
-// Represents a reference set of web contents opened by OpenAllHelper() so that
-// the actual web contents and what browsers they are located in can be
-// determined (if necessary).
-using OpenedWebContentsSet = base::flat_set<const content::WebContents*>;
-
-// Opens all of the URLs in `bookmark_urls` using `navigator` and
-// `initial_disposition` as a starting point. Returns a reference set of the
-// WebContents created; see OpenedWebContentsSet.
-OpenedWebContentsSet OpenAllHelper(content::PageNavigator* navigator,
-                                   std::vector<GURL> bookmark_urls,
-                                   WindowOpenDisposition initial_disposition) {
-  OpenedWebContentsSet::container_type opened_tabs;
-  WindowOpenDisposition disposition = initial_disposition;
-  for (std::vector<GURL>::const_iterator url_it = bookmark_urls.begin();
-       url_it != bookmark_urls.end(); ++url_it) {
-    content::WebContents* opened_tab = navigator->OpenURL(
-        content::OpenURLParams(*url_it, content::Referrer(), disposition,
-                               ui::PAGE_TRANSITION_AUTO_BOOKMARK, false));
-    if (url_it == bookmark_urls.begin()) {
-      // We opened the first URL which may have opened a new window or clobbered
-      // the current page, reset the navigator just to be sure. |opened_tab| may
-      // be null in tests.
-      if (opened_tab)
-        navigator = opened_tab;
-      disposition = WindowOpenDisposition::NEW_BACKGROUND_TAB;
-    }
-
-    if (opened_tab)
-      opened_tabs.push_back(opened_tab);
-  }
-
-  // Constructing the return value in this way is significantly more efficient.
-  return OpenedWebContentsSet(std::move(opened_tabs));
-}
 
 }  // namespace
 
-#if true || !BUILDFLAG(IS_ANDROID)
+#if BUILDFLAG(IS_ANDROID)
 void OpenAllIfAllowed(
     Browser* browser,
     base::OnceCallback<content::PageNavigator*()> get_navigator,
@@ -454,6 +335,6 @@ void GetURLsAndFoldersForTabEntries(
     }
   }
 }
-#endif  // !BUILDFLAG(IS_ANDROID)
+#endif  // BUILDFLAG(IS_ANDROID)
 
 }  // namespace chrome
