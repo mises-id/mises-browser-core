@@ -200,9 +200,8 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
         if (system) {
           extensions::ExtensionService* service = system->extension_service();
           if (service) {
-            //reload mises extension after install
-            service->DisableExtension(mises_extension_id, extensions::disable_reason::DisableReason::DISABLE_USER_ACTION);
-            service->EnableExtension(mises_extension_id);
+            //reload mises extension after install, this fix the multi workservice bug when extension updated
+            service->ReloadExtension(mises_extension_id);
           }
         }
 
