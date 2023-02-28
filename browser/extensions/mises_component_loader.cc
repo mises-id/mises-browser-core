@@ -194,6 +194,20 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
       LOG(INFO) << "OnExtensionInstalled ";
   }
 
+  if(extension && extension->location() == ManifestLocation::kComponent) {
+    if (extension->id() == mises_extension_id ) {
+        extensions::ExtensionSystem* system = extensions::ExtensionSystem::Get(profile_);
+        if (system) {
+          extensions::ExtensionService* service = system->extension_service();
+          if (service) {
+            //reload mises extension after install, this fix the multi workservice bug when extension updated
+            service->ReloadExtension(mises_extension_id);
+          }
+        }
+
+    }
+  }
+
 
 };
 void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* browser_context,
