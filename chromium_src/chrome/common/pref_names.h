@@ -477,7 +477,7 @@ extern const char kPrintPostScriptMode[];
 extern const char kPrintRasterizationMode[];
 #endif
 
-#if !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_ANDROID)
+#if !BUILDFLAG(IS_CHROMEOS_ASH) //&& !BUILDFLAG(IS_ANDROID)
 extern const char kPrintPreviewUseSystemDefaultPrinter[];
 extern const char kUserDataSnapshotRetentionLimit[];
 #endif

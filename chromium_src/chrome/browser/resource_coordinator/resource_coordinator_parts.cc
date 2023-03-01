@@ -1,25 +1,27 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-#include "chrome/browser/resource_coordinator/resource_coordinator_parts.h"
 
 #include "build/build_config.h"
-#include "components/performance_manager/performance_manager_impl.h"
 
-namespace resource_coordinator {
+#include "chrome/browser/resource_coordinator/tab_manager.h"
+#if BUILDFLAG(IS_ANDROID)
 
-ResourceCoordinatorParts::ResourceCoordinatorParts()
-#if true || !BUILDFLAG(IS_ANDROID)
-    : tab_manager_(&tab_load_tracker_),
-      tab_lifecycle_unit_source_(tab_manager_.usage_clock())
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
+
+#undef ANDROID
+
+#include "src/chrome/browser/resource_coordinator/resource_coordinator_parts.cc"
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
+
+#define ANDROID 1
+
+#else
+
+#include "src/chrome/browser/resource_coordinator/resource_coordinator_parts.cc"
+
+
 #endif
-{
-#if true || !BUILDFLAG(IS_ANDROID)
-  tab_lifecycle_unit_source_.AddObserver(&tab_manager_);
-#endif
-}
 
-ResourceCoordinatorParts::~ResourceCoordinatorParts() = default;
 
-}  // namespace resource_coordinator
+
+
