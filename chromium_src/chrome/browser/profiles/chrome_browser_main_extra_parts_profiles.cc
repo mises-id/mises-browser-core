@@ -284,6 +284,7 @@ ChromeBrowserMainExtraPartsProfiles::~ChromeBrowserMainExtraPartsProfiles() =
 // static
 void ChromeBrowserMainExtraPartsProfiles::
     EnsureBrowserContextKeyedServiceFactoriesBuilt(bool full_init) {
+  LOG(INFO) << "EnsureBrowserContextKeyedServiceFactoriesBuilt Begin " << full_init;
 #if BUILDFLAG(ENABLE_EXTENSIONS)
 if (full_init){
   apps::EnsureBrowserContextKeyedServiceFactoriesBuilt();
@@ -302,7 +303,7 @@ if (full_init){
 #endif
   AboutSigninInternalsFactory::GetInstance();
   AboutThisSiteServiceFactory::GetInstance();
-  AccessContextAuditServiceFactory::GetInstance();
+  if (full_init) AccessContextAuditServiceFactory::GetInstance();
   AccountConsistencyModeManagerFactory::GetInstance();
   AccountInvestigatorFactory::GetInstance();
   AccountReconcilorFactory::GetInstance();
@@ -326,7 +327,7 @@ if (full_init){
   autofill::AutofillOfferManagerFactory::GetInstance();
   autofill::MerchantPromoCodeManagerFactory::GetInstance();
 #if BUILDFLAG(ENABLE_BACKGROUND_CONTENTS)
-  BackgroundContentsServiceFactory::GetInstance();
+  if (full_init) BackgroundContentsServiceFactory::GetInstance();
 #endif
   BookmarkModelFactory::GetInstance();
   BookmarkUndoServiceFactory::GetInstance();
@@ -398,7 +399,7 @@ if (full_init){
   IdentityManagerFactory::EnsureFactoryAndDependeeFactoriesBuilt();
   InMemoryURLIndexFactory::GetInstance();
 #if true || !BUILDFLAG(IS_ANDROID)
-  InstantServiceFactory::GetInstance();
+  if (full_init) InstantServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_CHROMEOS_LACROS)
   LacrosFirstRunServiceFactory::GetInstance();
@@ -500,15 +501,15 @@ if (full_init) {
   predictors::PredictorDatabaseFactory::GetInstance();
   prerender::NoStatePrefetchLinkManagerFactory::GetInstance();
   prerender::NoStatePrefetchManagerFactory::GetInstance();
-}
   PrivacyMetricsServiceFactory::GetInstance();
+}
   PrivacySandboxServiceFactory::GetInstance();
   PrivacySandboxSettingsFactory::GetInstance();
 #if BUILDFLAG(IS_CHROMEOS_LACROS)
   ProfileAccountManagerFactory::GetInstance();
 #endif
   ProfileNetworkContextServiceFactory::GetInstance();
-  SyncServiceFactory::GetInstance();
+  if (full_init) SyncServiceFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   ProfileThemeUpdateServiceFactory::GetInstance();
 #endif
@@ -555,7 +556,7 @@ if (full_init) {
   commerce::ShoppingServiceFactory::GetInstance();
   ShortcutsBackendFactory::GetInstance();
   SigninProfileAttributesUpdaterFactory::GetInstance();
-  if (site_engagement::SiteEngagementService::IsEnabled())
+  if (full_init && site_engagement::SiteEngagementService::IsEnabled())
     site_engagement::SiteEngagementServiceFactory::GetInstance();
 #if BUILDFLAG(ENABLE_DICE_SUPPORT) || BUILDFLAG(IS_CHROMEOS_LACROS)
   SigninManagerFactory::GetInstance();
@@ -567,7 +568,7 @@ if (full_init) {
   StorageNotificationServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(ENABLE_SUPERVISED_USERS)
-  SupervisedUserMetricsServiceFactory::GetInstance();
+  if (full_init) SupervisedUserMetricsServiceFactory::GetInstance();
   if (full_init) SupervisedUserServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_CHROMEOS_ASH)
@@ -581,7 +582,7 @@ if (full_init) {
   TemplateURLFetcherFactory::GetInstance();
   TemplateURLServiceFactory::GetInstance();
 #if true || !BUILDFLAG(IS_ANDROID)
-  ThemeServiceFactory::GetInstance();
+  if (full_init) ThemeServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
   thin_webview::android::ChromeThinWebViewInitializer::Initialize();
@@ -589,12 +590,12 @@ if (full_init) {
 #if BUILDFLAG(ENABLE_EXTENSIONS)
   if (full_init) ToolbarActionsModelFactory::GetInstance();
 #endif
-  TopSitesFactory::GetInstance();
+  if (full_init) TopSitesFactory::GetInstance();
   translate::TranslateRankerFactory::GetInstance();
 #if BUILDFLAG(IS_WIN)
   TriggeredProfileResetterFactory::GetInstance();
 #endif
-  UnifiedConsentServiceFactory::GetInstance();
+  if (full_init) UnifiedConsentServiceFactory::GetInstance();
   UrlLanguageHistogramFactory::GetInstance();
 #if !BUILDFLAG(IS_ANDROID)
   UsbChooserContextFactory::GetInstance();
@@ -609,6 +610,8 @@ if (full_init) {
 #endif
   WebDataServiceFactory::GetInstance();
   webrtc_event_logging::WebRtcEventLogManagerKeyedServiceFactory::GetInstance();
+
+  LOG(INFO) << "EnsureBrowserContextKeyedServiceFactoriesBuilt End " << full_init;
 }
 
 void ChromeBrowserMainExtraPartsProfiles::PreProfileInit() {

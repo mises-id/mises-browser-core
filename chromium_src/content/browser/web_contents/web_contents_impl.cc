@@ -3902,7 +3902,7 @@ FrameTree* WebContentsImpl::CreateNewWindow(
   TRACE_EVENT2("browser,content,navigation", "WebContentsImpl::CreateNewWindow",
                "opener", opener, "params", params);
   DCHECK(opener);
-  LOG(INFO) << "WebContentsImpl::CreateNewWindow setp - 1";
+  LOG(INFO) << "WebContentsImpl::CreateNewWindow step - 1";
   // Give the content browser client a chance to intercept the request and open
   // the URL with an external handler.
   if (GetContentClient()->browser()->OpenExternally(opener, params.target_url,
