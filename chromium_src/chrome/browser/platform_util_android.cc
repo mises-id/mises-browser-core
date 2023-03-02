@@ -7,4 +7,8 @@ gfx::NativeView GetViewForWindow(gfx::NativeWindow window) {
   return window;
 }
 
+bool IsBrowserLockedFullscreen(const Browser* browser) {
+  return false;
+}
+
 } // namespace platform_util

@@ -221,7 +221,6 @@ if (is_android) {
     "banners/app_banner_manager_desktop.cc",
     "banners/app_banner_manager_desktop.h",
     "metrics/incognito_observer_desktop.cc",
-    #"process_singleton_posix.cc",
     "policy/chrome_browser_cloud_management_controller_desktop.cc",
     "policy/chrome_browser_cloud_management_controller_desktop.h",
     "policy/chrome_browser_cloud_management_register_watcher.cc",
@@ -260,6 +259,7 @@ if (is_android) {
     "hid/chrome_hid_delegate.h",
     "first_run/upgrade_util.cc",
     "autocomplete/tab_matcher_desktop.cc",
+    "platform_util.cc",
     
   ]
   mises_chrome_browser_exception_deps += [
