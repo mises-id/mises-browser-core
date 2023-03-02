@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/BUILD.gn b/chrome/browser/ui/BUILD.gn
-index 3f4929cc5078cea1eac968ef41818823223da20d..d8ad332a1aba5b49e8942764fc32e5b40a94a806 100644
+index 3f4929cc5078cea1eac968ef41818823223da20d..bef11e28fa5feff89ede1d0d02823b1b72ee5d10 100644
 --- a/chrome/browser/ui/BUILD.gn
 +++ b/chrome/browser/ui/BUILD.gn
 @@ -945,7 +945,8 @@ static_library("ui") {
@@ -21,15 +21,6 @@ index 3f4929cc5078cea1eac968ef41818823223da20d..d8ad332a1aba5b49e8942764fc32e5b4
      sources += [
        "supervised_user/parent_permission_dialog.h",
        "views/supervised_user/extension_install_blocked_by_parent_dialog_view.cc",
-@@ -3353,7 +3354,7 @@ static_library("ui") {
-     deps += [ "//chrome/browser/ui/webui/settings/chromeos/constants:mojom" ]
-   }
- 
--  if (is_win || is_mac || is_linux || is_chromeos || is_fuchsia) {
-+  if ( is_android || is_win || is_mac || is_linux || is_chromeos || is_fuchsia) {
-     sources += [
-       "autofill/payments/virtual_card_selection_dialog_controller.h",
-       "autofill/payments/virtual_card_selection_dialog_controller_impl.cc",
 @@ -3902,7 +3903,7 @@ static_library("ui") {
      # to fail on this variant. Since this target is only referenced (but not
      # compiled) on this variant, it's okay to add this "incorrect" dependency

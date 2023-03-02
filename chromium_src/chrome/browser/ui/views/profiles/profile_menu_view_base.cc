@@ -511,7 +511,7 @@ void ProfileMenuViewBase::ShowBubble(views::Button* anchor_button,
   if (browser->profile()->IsIncognitoProfile()) {
     bubble = new IncognitoMenuView(anchor_button, browser);
   } else {
-#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_CHROMEOS_ASH)
+#if BUILDFLAG(IS_CHROMEOS_ASH)
     // Note: on Ash, Guest Sessions have incognito profiles, and use
     // BUBBLE_VIEW_MODE_INCOGNITO.
     NOTREACHED() << "The profile menu is not implemented on Ash.";

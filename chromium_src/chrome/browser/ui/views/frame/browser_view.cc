@@ -4279,9 +4279,10 @@ void BrowserView::ShowAvatarBubbleFromAvatarButton(bool is_source_accelerator) {
       toolbar_button_provider_->GetAvatarToolbarButton();
   if (!avatar_button)
     return;
-
+#if !BUILDFLAG(IS_ANDROID)
   ProfileMenuViewBase::ShowBubble(avatar_button, browser(),
                                   is_source_accelerator);
+#endif
 }
 
 void BrowserView::MaybeShowProfileSwitchIPH() {
@@ -4302,9 +4303,11 @@ void BrowserView::ShowHatsDialog(
     const SurveyBitsData& product_specific_bits_data,
     const SurveyStringData& product_specific_string_data) {
   // Self deleting on close.
+#if !BUILDFLAG(IS_ANDROID)
   new HatsNextWebDialog(browser(), site_id, std::move(success_callback),
                         std::move(failure_callback), product_specific_bits_data,
                         product_specific_string_data);
+#endif
 }
 
 void BrowserView::ShowIncognitoClearBrowsingDataDialog() {

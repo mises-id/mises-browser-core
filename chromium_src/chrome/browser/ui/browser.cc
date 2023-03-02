@@ -15,4 +15,13 @@
 
 #if !BUILDFLAG(IS_ANDROID)
 #undef BrowserLocationBarModelDelegate
+
+#endif
+
+#if BUILDFLAG(IS_ANDROID) 
+SigninViewController::SigninViewController(Browser* browser)
+    : browser_(browser) {}
+
+SigninViewController::~SigninViewController() {
+}
 #endif

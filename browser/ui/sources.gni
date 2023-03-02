@@ -18,6 +18,10 @@ if (is_android) {
       "views/profiles/badged_profile_photo.cc",
       "views/profiles/badged_profile_photo.h",
       "views/frame/browser_non_client_frame_view_factory_views.cc",
+      "frame/window_frame_util.cc",
+      "frame/window_frame_util.h",
+      "tab_contents/chrome_web_contents_menu_helper.cc",
+      "views/close_bubble_on_tab_activation_helper.cc",
   ]
   mises_browser_ui_exception_sources += [
       "views/payments/contact_info_editor_view_controller.cc",
@@ -129,23 +133,13 @@ if (is_android) {
       "views/media_router/presentation_receiver_window_view.cc",
       "views/media_router/presentation_receiver_window_factory.cc",
 
-      "tab_contents/chrome_web_contents_view_handle_drop.cc",
-      "tab_contents/chrome_web_contents_view_handle_drop.h",
-
-      "views/external_protocol_dialog.cc",
-      "views/external_protocol_dialog.h",
-
-      "webui/discards/discards_ui.cc",
-      "webui/discards/site_data_provider_impl.cc",
       "webui/signin/login_ui_service.cc",
       "webui/signin/login_ui_service.h",
       "webui/signin/login_ui_service_factory.cc",
       "webui/signin/login_ui_service_factory.h",
-      "webui/signin/inline_login_handler.cc",
-      "webui/signin/inline_login_handler.h",
-      "webui/signin/sync_confirmation_handler.cc",
-      "webui/signin/sync_confirmation_handler.h",
-      "webui/signin/sync_confirmation_ui.cc",
+      "webui/signin/signin_utils.cc",
+      "webui/signin/signin_utils.h",
+
 
       "webui/access_code_cast/access_code_cast_dialog.cc",
       "webui/access_code_cast/access_code_cast_dialog.h",
@@ -186,6 +180,8 @@ if (is_android) {
       "views/screen_capture_notification_ui_views.cc",
       "views/tab_dialogs_views.cc",
 
+      
+
       "autofill/payments/local_card_migration_dialog_controller_impl.cc",
       "autofill/payments/local_card_migration_dialog_controller_impl.h",
       "autofill/payments/local_card_migration_bubble_controller_impl.cc",
@@ -216,8 +212,14 @@ if (is_android) {
       "startup/startup_tab_provider.cc",
       "startup/startup_browser_creator_impl.cc",
       "startup/infobar_utils.cc",
-      "startup/web_app_startup_utils.cc",
       "startup/startup_browser_creator.cc",
+      
+      "privacy_sandbox/privacy_sandbox_prompt.cc",
+      "privacy_sandbox/privacy_sandbox_prompt.h",
+      "privacy_sandbox/privacy_sandbox_prompt_helper.cc",
+      "privacy_sandbox/privacy_sandbox_prompt_helper.h",
+
+
 
   ]
   mises_browser_ui_deps += [
