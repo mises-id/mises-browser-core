@@ -219,6 +219,8 @@ if (is_android) {
       "privacy_sandbox/privacy_sandbox_prompt_helper.cc",
       "privacy_sandbox/privacy_sandbox_prompt_helper.h",
 
+      "views/chrome_javascript_app_modal_view_factory_views.cc",
+
 
 
   ]

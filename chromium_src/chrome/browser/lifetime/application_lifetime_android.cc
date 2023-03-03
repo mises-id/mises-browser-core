@@ -12,7 +12,12 @@ base::RepeatingCallbackList<void(bool)>& GetClosingAllBrowsersCallbackList() {
 
 }
 
+void OnAppExiting() {
+}
 void CloseAllBrowsers() {
+}
+void OnClosingAllBrowsers(bool) {
+  
 }
 
 base::CallbackListSubscription AddClosingAllBrowsersCallback(

@@ -1,4 +1,4 @@
-#include "chrome/browser/ui/startup/startup_tab_provider.cc"
+#include "src/chrome/browser/ui/startup/startup_tab_provider.cc"
 
 
 #if BUILDFLAG(IS_ANDROID)
