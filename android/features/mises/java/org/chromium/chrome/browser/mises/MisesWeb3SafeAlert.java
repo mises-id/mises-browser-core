@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -77,17 +78,28 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 
     private static final String TAG = "MisesWeb3SafeAlert";
 
+    private static final String UrlNotifyType = "url";
+    private static final String AddressNotifyType = "address";
+    private static final int userActionNone = 1;
+    private static final int userActionIgnore = 2;
+
     private Context mContext;
 
     private FrameLayout view;
 
     private Button btn_block;
+    private Button btn_ignore;
     private CheckBox checkbox_ignore;
     private TextView tv_title;
     private LinearLayout layout_blockem;
     private TextView tv_detail;
+    private String callback_id;
+    private String mType;
+    private String mLevel;
+    private String mTag;
+    private String suggestedUrl;
     private String mAddress;
-    private String mUrl;
+    private String mDomain;
     private LoadingView mLoadingView;
     private final TabCreatorManager mTabCreatorManager;
 
@@ -96,13 +108,45 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 	    mTabCreatorManager = tabMgr;
     }
 
-    public static MisesWeb3SafeAlert newInstance(TabCreatorManager tabMgr, String phishingUrl,  String phishingAddress) {
+    public static MisesWeb3SafeAlert newInstance(TabCreatorManager tabMgr, String phishingUrl,  String json) {
         MisesWeb3SafeAlert f = new MisesWeb3SafeAlert(tabMgr);
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
-        args.putString("phishing_url", phishingUrl);
-        args.putString("phishing_address", phishingAddress);
+        String suggestedUrl = "";
+        String notifyType = "address";
+        String notifyLevel = "danger";
+        String notifyTag = "potentially_behavior";
+        String address = json;
+        String domain = phishingUrl;
+        try{
+          JSONObject jsonMessage = new JSONObject(json);
+          if (jsonMessage.has("notify_type")) {
+            notifyType = jsonMessage.getString("notify_type");
+          }
+          if (jsonMessage.has("notify_level")) {
+            notifyLevel = jsonMessage.getString("notify_level");
+          }
+          if (jsonMessage.has("notify_tag")) {
+            notifyTag = jsonMessage.getString("notify_tag");
+          }
+          if (jsonMessage.has("address")) {
+            address = jsonMessage.getString("address");
+          }
+          if (jsonMessage.has("suggested_url")) {
+            suggestedUrl = jsonMessage.getString("suggested_url");
+          }
+          if (jsonMessage.has("domain")) {
+            domain = jsonMessage.getString("domain");
+          }
+        } catch (Exception e) {}
+        args.putString("callback_id", json);
+        args.putString("notify_type", notifyType);
+        args.putString("notify_tag", notifyTag);
+        args.putString("notify_level", notifyLevel);
+        args.putString("domain", domain);
+        args.putString("suggested_url", suggestedUrl);
+        args.putString("address", address);
         f.setArguments(args);
         return f;
     }
@@ -117,41 +161,105 @@ public class MisesWeb3SafeAlert extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.view = (FrameLayout) inflater.inflate(R.layout.mises_web3_safe_alert, container, false);
+
+
         tv_title = view.findViewById(R.id.title);
         tv_detail = view.findViewById(R.id.detail);
         layout_blockem = view.findViewById(R.id.layout_blockem);
         btn_block = (Button) view.findViewById(R.id.btn_block);
+        btn_ignore = (Button) view.findViewById(R.id.btn_ignore);
         checkbox_ignore = (CheckBox) view.findViewById(R.id.checkbox_ignore);
         mContext = getContext();
 
-        mAddress = getArguments().getString("phishing_address");
-        mUrl = getArguments().getString("phishing_url");
-
-
-        final String txtBegin = "The contract address: ";
-        final String txtEnd = "\nyou're interacting with might be a Phishing/Scam address. " + System.lineSeparator();
-        final String txtNotice = "\nPlease notice the risk of losing you assets when you continue!";
-        SpannableString spannable = new SpannableString(txtBegin + mAddress + txtEnd + txtNotice);
-        spannable.setSpan(new ForegroundColorSpan(Color.RED), txtBegin.length(), txtBegin.length()+mAddress.length(), 0);
-        spannable.setSpan(new ForegroundColorSpan(Color.BLACK), txtBegin.length()+mAddress.length()+txtEnd.length(), txtBegin.length()+mAddress.length()+txtEnd.length() + txtNotice.length(), 0);
-        spannable.setSpan(new StyleSpan(Typeface.BOLD), txtBegin.length()+mAddress.length()+txtEnd.length(), txtBegin.length()+mAddress.length()+txtEnd.length() + txtNotice.length(), 0);
+        callback_id = getArguments().getString("callback_id");
+        mAddress = getArguments().getString("address");
+        mDomain = getArguments().getString("domain");
+        mType = getArguments().getString("notify_type");
+        mLevel = getArguments().getString("notify_level");
+        mTag = getArguments().getString("notify_tag");
+        suggestedUrl = getArguments().getString("suggested_url");
+        //contract address
+        String tagInfo = "you're interacting with might be a Phishing/Scam address.";
+        String typeInfo = "The contract address: ";
+        String txtValue = mAddress;
+        String notice = "\nPlease notice the risk of losing you assets when you continue!";
+        //notify url
+        if (mType.equals(UrlNotifyType)){
+          //edit tv_title
+          ViewGroup.LayoutParams lp = tv_title.getLayoutParams();
+          float density = getDensity();
+          lp.height=(int)(60 *  density);
+          tv_title.setLayoutParams(lp);
+          //url notify value
+          txtValue = mDomain;
+          typeInfo = "The site: ";
+          //notify tag
+          tagInfo = "is currently on the Mises domain warning list. May trick you into doing something dangerous.";
+          //have suggested url
+          if(suggestedUrl != null && suggestedUrl.length() > 0){
+            btn_block.setText("Go to " + suggestedUrl);
+            checkbox_ignore.setVisibility(View.GONE);
+            btn_ignore.setVisibility(View.VISIBLE);
+            //fuzzy tag
+            if(mTag != null && mTag.equals("fuzzy")){
+              tagInfo = "you just visit looks fake. Attackers sometimes mimic sites by making small, hard-to-see changes to the URL." ;
+            };
+          };
+          layout_blockem.setVisibility(View.GONE);//hidden blockem
+        }
+        if(txtValue == null || txtValue.length() <= 0){
+          txtValue = "example.site";
+        };
+        Log.i(TAG,"txtValue: " + txtValue);
+        final boolean isSuggestedURL = mType.equals(UrlNotifyType) && suggestedUrl != null && suggestedUrl.length() > 0;
+        final String txtBegin = typeInfo;
+        final String txtEnd = "\n"+tagInfo+ " "+ System.lineSeparator();
+        final String txtNotice = notice;
+        SpannableString spannable = new SpannableString(txtBegin + txtValue + txtEnd + txtNotice);
+        spannable.setSpan(new ForegroundColorSpan(Color.RED), txtBegin.length(), txtBegin.length()+txtValue.length(), 0);
+        spannable.setSpan(new ForegroundColorSpan(Color.BLACK), txtBegin.length()+txtValue.length()+txtEnd.length(), txtBegin.length()+txtValue.length()+txtEnd.length() + txtNotice.length(), 0);
+        spannable.setSpan(new StyleSpan(Typeface.BOLD), txtBegin.length()+txtValue.length()+txtEnd.length(), txtBegin.length()+txtValue.length()+txtEnd.length() + txtNotice.length(), 0);
 
         tv_detail.setText( spannable );
+        btn_ignore.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              boolean ignore = checkbox_ignore.isChecked();
+              MisesController.getInstance().callbackPhishingDetected(callback_id, userActionIgnore);
+              dismiss();
+              Bundle params = new Bundle();
+              params.putString("step", "ignore url");
 
+              FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
+          }
+      });
         btn_block.setEnabled(true);
         btn_block.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean ignore = checkbox_ignore.isChecked();
-                int userAction = 1;
-                if (ignore) {
-                  userAction = 2;
+                //suggested url
+                if (isSuggestedURL){
+                  dismiss();
+                  TabCreator tabCreator = mTabCreatorManager.getTabCreator(false);
+                  if (tabCreator != null) {
+                      tabCreator.openSinglePage(suggestedUrl);
+                  }
+                  Bundle params = new Bundle();
+                  params.putString("step", "go to suggested url");
+                  FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
+                  return;
                 }
-                MisesController.getInstance().callbackPhishingDetected(mAddress, userAction);
+                //no suggested url
+                boolean ignore = checkbox_ignore.isChecked();
+                int userAction = userActionNone;
+                if (ignore) {
+                  userAction = userActionIgnore;
+                }
+                MisesController.getInstance().callbackPhishingDetected(callback_id, userAction);
                 dismiss();
                 Bundle params = new Bundle();
                 if (ignore) {
-                    params.putString("step", "ignor");
+                    params.putString("step", "ignore address");
                 } else {
                     params.putString("step", "block");
                 }
@@ -184,6 +292,12 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 
         return view;
     }
+
+    private float getDensity() {
+      DisplayMetrics dm = new DisplayMetrics();
+      getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+      return dm.density;
+  }
 
     @Override
     public void onStart() {

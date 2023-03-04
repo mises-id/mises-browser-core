@@ -66,6 +66,19 @@
             android:layout_height="15dp"
             android:layout_width="match_parent" />
 
+        <Button
+	        chrome:backgroundTint="@null"
+            android:id="@+id/btn_ignore"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/mises_share_cancel_bg"
+            android:text="@string/web3_safe_btn_ignore"
+            android:textAllCaps="false"
+            android:textColor="#ff666666"
+            android:visibility="gone"
+            android:textSize="17sp" />
+
         <CheckBox
             android:text="@string/web3_safe_ignor"
             android:layout_width="match_parent"
