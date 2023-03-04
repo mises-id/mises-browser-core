@@ -245,7 +245,6 @@ const postMsg = (id, res) => {
         id,
         result: { return: res },
     };
-    console.log("content post background message to proxy :>>", contentToProxyMessage, targetOrigin);
     window.postMessage(contentToProxyMessage, targetOrigin);
 };
 const initPostMsgClient = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -265,10 +264,8 @@ const initPostMsgClient = () => __awaiter(void 0, void 0, void 0, function* () {
             console.log("content consoleLog:>>", e.data);
             return;
         }
-        console.log("content start sending message to background :>>", e.data);
         const res = yield new router_extension_build["InExtensionMessageRequester"]().sendMessage(build["BACKGROUND_PORT"], new content_scripts_VerifyDomainMsg(e.data));
         //post msg back to proxyClient
-        console.log("background start sending message to :>>", res);
         //this.postMsg(res);
         postMsg(e.data.id, res);
     }));

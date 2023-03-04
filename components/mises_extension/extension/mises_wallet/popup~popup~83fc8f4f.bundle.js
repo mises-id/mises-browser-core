@@ -5127,8 +5127,8 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const MISES_SITE_API = "https://api.alb.mises.site/api/v1";
-// export const MISES_SITE_API = 'http://192.168.1.2:8080/api/v1';
+const MISES_SITE_API = "https://api.test.mises.site/api/v1";
+//export const MISES_SITE_API = "http://localhost:8080/api/v1";
 // export const MISES_POINT = 'http://192.168.1.8:26657';
 const MISES_POINT = "http://127.0.0.1:26657";
 
@@ -5241,7 +5241,7 @@ class Request {
 }
 const request = new Request({
     baseURL: MISES_SITE_API,
-    timeout: 3000,
+    timeout: 6000,
     interceptors: {
         // 请求拦截器
         requestInterceptors: (config) => config,
@@ -6492,8 +6492,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shortenAddress = exports.MISES_TRUNCATED_ADDRESS_START_CHARS = exports.TRUNCATED_ADDRESS_END_CHARS = exports.TRUNCATED_ADDRESS_START_CHARS = exports.TRUNCATED_NAME_CHAR_LIMIT = exports.cancelAllRequest = exports.cancelRequest = exports.misesRequest = exports.Request = exports.MISES_POINT = exports.MISES_SITE_API = void 0;
-exports.MISES_SITE_API = "https://api.alb.mises.site/api/v1";
-// export const MISES_SITE_API = 'http://192.168.1.2:8080/api/v1';
+exports.MISES_SITE_API = "https://api.test.mises.site/api/v1";
+//export const MISES_SITE_API = "http://localhost:8080/api/v1";
 // export const MISES_POINT = 'http://192.168.1.8:26657';
 exports.MISES_POINT = "http://127.0.0.1:26657";
 const axios_1 = __importDefault(__webpack_require__(60));
@@ -6607,7 +6607,7 @@ class Request {
 exports.Request = Request;
 const request = new Request({
     baseURL: exports.MISES_SITE_API,
-    timeout: 3000,
+    timeout: 6000,
     interceptors: {
         // 请求拦截器
         requestInterceptors: (config) => config,
@@ -8338,43 +8338,52 @@ class MisesService {
     }
     unbondingDelegations(address) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.queryClientAwait();
-            const queryClient = yield this.initQueryClient();
-            if (queryClient !== "await") {
-                const delegatorUnbondingDelegations = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorUnbondingDelegations(address));
-                return delegatorUnbondingDelegations;
+            try {
+                yield this.queryClientAwait();
+                const queryClient = yield this.initQueryClient();
+                if (queryClient !== "await") {
+                    const delegatorUnbondingDelegations = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorUnbondingDelegations(address));
+                    return delegatorUnbondingDelegations;
+                }
             }
+            catch (error) { }
         });
     }
     delegations(address) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.queryClientAwait();
-            const queryClient = yield this.initQueryClient();
-            if (queryClient !== "await") {
-                const delegatorDelegationsResponse = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorDelegations(address));
-                const total = ((_b = (_a = delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.pagination) === null || _a === void 0 ? void 0 : _a.total) === null || _b === void 0 ? void 0 : _b.toNumber()) || 0;
-                if (total > 100 && (delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.delegationResponses)) {
-                    const nextRes = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorDelegations(address, (_c = delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.pagination) === null || _c === void 0 ? void 0 : _c.nextKey));
-                    if (nextRes === null || nextRes === void 0 ? void 0 : nextRes.delegationResponses) {
-                        return {
-                            delegationResponses: [
-                                ...delegatorDelegationsResponse.delegationResponses,
-                                ...nextRes === null || nextRes === void 0 ? void 0 : nextRes.delegationResponses,
-                            ],
-                        };
+            try {
+                yield this.queryClientAwait();
+                const queryClient = yield this.initQueryClient();
+                if (queryClient !== "await") {
+                    const delegatorDelegationsResponse = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorDelegations(address));
+                    const total = ((_b = (_a = delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.pagination) === null || _a === void 0 ? void 0 : _a.total) === null || _b === void 0 ? void 0 : _b.toNumber()) || 0;
+                    if (total > 100 && (delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.delegationResponses)) {
+                        const nextRes = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorDelegations(address, (_c = delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.pagination) === null || _c === void 0 ? void 0 : _c.nextKey));
+                        if (nextRes === null || nextRes === void 0 ? void 0 : nextRes.delegationResponses) {
+                            return {
+                                delegationResponses: [
+                                    ...delegatorDelegationsResponse.delegationResponses,
+                                    ...nextRes === null || nextRes === void 0 ? void 0 : nextRes.delegationResponses,
+                                ],
+                            };
+                        }
                     }
+                    return delegatorDelegationsResponse;
                 }
-                return delegatorDelegationsResponse;
             }
+            catch (error) { }
         });
     }
     rewards(address) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.queryClientAwait();
-            const queryClient = yield this.initQueryClient();
-            if (queryClient !== "await")
-                return queryClient === null || queryClient === void 0 ? void 0 : queryClient.distribution.delegationTotalRewards(address);
+            try {
+                yield this.queryClientAwait();
+                const queryClient = yield this.initQueryClient();
+                if (queryClient !== "await")
+                    return queryClient === null || queryClient === void 0 ? void 0 : queryClient.distribution.delegationTotalRewards(address);
+            }
+            catch (error) { }
         });
     }
     authAccounts(address) {
@@ -8737,7 +8746,6 @@ class MisesService {
     }
     setCacheUserInfo(params) {
         this.userInfo = Object.assign(Object.assign({}, this.userInfo), params);
-        console.log(this.userInfo, "this.userInfo");
         this.save();
     }
     getAddressUserInfo(address) {
@@ -12022,6 +12030,7 @@ const mises_network_util_1 = __webpack_require__(232);
 const listenMethods = {
     mVerifyDomain: "verifyDomain",
     mVerifyContract: "verifyContract",
+    mNotifyFuzzyDomain: "notifyFuzzyDomain",
 };
 const storageKey = {
     ContractTrust: "v3_contract_trust_",
@@ -12031,17 +12040,23 @@ const contractLevel = {
     Safe: "safe",
     Danger: "danger",
 };
+const domainLevel = {
+    White: "white",
+    Normal: "normal",
+    Fuzzy: "fuzzy",
+    Black: "black",
+};
 const userAction = {
     Ignore: "IGNOR",
     Block: "BLOCK",
 };
 const isShouldVerifyStateKey = "isShouldVerify";
-// const TypeBackgroundResponse = "mises-background-response";
 class MisesSafeService {
     constructor(kvStore) {
         this.kvStore = kvStore;
         this.isShouldVerify = true;
         this.domainWhiteListMap = new Map();
+        this.blackNotifyingMap = new Map();
         console.log("MisesSafeService init");
         this.localShouldVerify();
         this.getDomainwhiteList();
@@ -12117,38 +12132,127 @@ class MisesSafeService {
             }
             switch (res.params.method) {
                 case listenMethods.mVerifyDomain:
-                    return this.apiVerifyDomain(res.params.params.domain);
+                    return this.verifyDomain(res.params.params.domain, res.params.params.logo);
+                case listenMethods.mNotifyFuzzyDomain:
+                    return this.notifyFuzzyDomain(res.params.params.domain, res.params.params.suggested_url);
                 case listenMethods.mVerifyContract:
                     return this.verifyContract(res.params.params.contractAddress, res.params.params.domain);
             }
         });
     }
-    getDomainCacheKey(domain) {
-        return storageKey.DomainRisk + domain.replace(".", "-");
-    }
-    getContractCacheKey(contractAddress) {
-        return storageKey.ContractTrust + contractAddress.replace(".", "-");
-    }
-    apiVerifyDomain(domain) {
+    /* VerifyDomain start */
+    verifyDomain(domain, logo) {
         return __awaiter(this, void 0, void 0, function* () {
-            /*  const result = await this.kvStore.get(domain);
+            //is ignore
+            const isIgnore = yield this.isIgnoreDomain(domain);
+            console.log("verifyDomain ignore <<:", isIgnore);
+            if (isIgnore) {
+                return {
+                    domain: domain,
+                    suggested_url: domain,
+                    level: domainLevel.White,
+                    tag: "ignore",
+                };
+            }
+            //in whitelist domain
+            if (this.isDomainWhitelisted(domain)) {
+                return {
+                    domain: domain,
+                    suggested_url: domain,
+                    level: domainLevel.White,
+                    tag: "white",
+                };
+            }
+            const verifyDomainResult = yield this.apiVerifyDomain(domain, logo);
+            console.log("verifyDomainResult: ", verifyDomainResult);
+            //is should alert user
+            if (!this.hasBlackNotifying(domain) &&
+                verifyDomainResult &&
+                verifyDomainResult.level === domainLevel.Black) {
+                console.log("verifyDomain notifyPhishingDetected start: ", domain);
+                this.addBlackNotifying(domain);
+                setTimeout(() => {
+                    this.removeBlackNotifying(domain);
+                }, 3000);
+                const userDecision = yield this.notifyPhishingDetected({
+                    notify_type: "url",
+                    domain: domain,
+                    suggested_url: verifyDomainResult.suggested_url || "",
+                    notify_tag: "black",
+                    notify_level: "danger",
+                });
+                console.log("verifyDomain notifyPhishingDetected result: ", userDecision);
+                if (userDecision === userAction.Ignore) {
+                    console.log("verifyDomain notifyPhishingDetected set: ", userDecision);
+                    this.setIgnorDomain(domain);
+                }
+            }
+            return verifyDomainResult;
+        });
+    }
+    hasBlackNotifying(domain) {
+        return domain !== "" && this.blackNotifyingMap.has(domain);
+    }
+    removeBlackNotifying(domain) {
+        this.blackNotifyingMap.delete(domain);
+    }
+    addBlackNotifying(domain) {
+        this.blackNotifyingMap.set(domain, "1");
+    }
+    notifyFuzzyDomain(domain, suggested_url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("verifyDomain notifyPhishingDetected start: ", domain, suggested_url);
+            const userDecision = yield this.notifyPhishingDetected({
+                notify_type: "url",
+                notify_tag: "fuzzy",
+                domain: domain,
+                notify_level: "warning",
+                suggested_url: suggested_url,
+            });
+            console.log("fuzzyDomain notifyPhishingDetected result: ", userDecision);
+            if (userDecision === userAction.Ignore) {
+                console.log("fuzzyDomain notifyPhishingDetected set: ", userDecision);
+                this.setIgnorDomain(domain);
+            }
+        });
+    }
+    apiVerifyDomain(domain, logo) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.kvStore.get(domain);
             if (result) {
-              return result;
-            } */
+                return result;
+            }
             const res = yield mises_network_util_1.misesRequest({
                 url: "/phishing_site/check",
                 data: {
-                    domain_name: domain,
+                    domain: domain,
+                    logo: logo,
                 },
             });
-            //this.kvStore.set(domain, res);
+            if (res &&
+                (res.level !== domainLevel.Black || res.level !== domainLevel.Fuzzy)) {
+                this.kvStore.set(domain, res);
+            }
             return res;
         });
+    }
+    setIgnorDomain(domain) {
+        this.kvStore.set(this.getDomainCacheKey(domain), "1");
+    }
+    isIgnoreDomain(domain) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.kvStore.get(this.getDomainCacheKey(domain));
+        });
+    }
+    getDomainCacheKey(domain) {
+        return storageKey.DomainRisk + domain.replace(".", "-");
     }
     isDomainWhitelisted(domain) {
         domain = this.parseDomainUntilSecondLevel(domain);
         return domain !== "" && this.domainWhiteListMap.has(domain);
     }
+    /* VerifyDomain end */
+    /* verifyContract start */
     verifyContract(contractAddress, domain) {
         return __awaiter(this, void 0, void 0, function* () {
             //is ignore
@@ -12163,50 +12267,7 @@ class MisesSafeService {
                 };
                 return verifyContractResult;
             }
-            const verifyContractResult = yield this.apiVerifyContract(contractAddress, domain);
-            console.log("verifyContractResult: ", verifyContractResult);
-            //is should alert user
-            if (verifyContractResult &&
-                verifyContractResult.level === contractLevel.Danger) {
-                console.log("notifyPhishingDetected start: ", contractAddress);
-                const userDecision = yield this.notifyPhishingDetected(contractAddress);
-                console.log("notifyPhishingDetected result: ", userDecision);
-                if (userDecision === userAction.Ignore) {
-                    console.log("notifyPhishingDetected set: ", userDecision);
-                    this.setIgnorDomain(domain);
-                }
-            }
-            return verifyContractResult;
-        });
-    }
-    setIgnoreContract(contractAddress) {
-        this.kvStore.set(this.getContractCacheKey(contractAddress), "1");
-    }
-    isIgnoreContract(contractAddress) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.kvStore.get(this.getContractCacheKey(contractAddress));
-        });
-    }
-    setIgnorDomain(domain) {
-        this.kvStore.set(this.getDomainCacheKey(domain), "1");
-    }
-    isIgnoreDomain(domain) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.kvStore.get(this.getDomainCacheKey(domain));
-        });
-    }
-    notifyPhishingDetected(address) {
-        return new Promise((resolve) => {
-            if (browser.misesPrivate &&
-                browser.misesPrivate.notifyPhishingDetected) {
-                browser.misesPrivate.notifyPhishingDetected(address, resolve);
-                return;
-            }
-            resolve("mises");
-        });
-    }
-    apiVerifyContract(contractAddress, domain) {
-        return __awaiter(this, void 0, void 0, function* () {
+            //in whitelist domain
             if (this.isDomainWhitelisted(domain)) {
                 const safeVerifyContractResult = {
                     address: contractAddress,
@@ -12216,6 +12277,29 @@ class MisesSafeService {
                 };
                 return safeVerifyContractResult;
             }
+            const verifyContractResult = yield this.apiVerifyContract(contractAddress, domain);
+            console.log("verifyContractResult: ", verifyContractResult);
+            //is should alert user
+            if (!this.hasBlackNotifying(contractAddress) &&
+                verifyContractResult &&
+                verifyContractResult.level === contractLevel.Danger) {
+                this.addBlackNotifying(contractAddress);
+                setTimeout(() => {
+                    this.removeBlackNotifying(contractAddress);
+                }, 3000);
+                console.log("notifyPhishingDetected start: ", contractAddress);
+                const userDecision = yield this.notifyPhishingDetected({ address: contractAddress, notify_type: "address" });
+                console.log("notifyPhishingDetected result: ", userDecision);
+                if (userDecision === userAction.Ignore) {
+                    console.log("notifyPhishingDetected set: ", userDecision);
+                    this.setIgnorDomain(domain);
+                }
+            }
+            return verifyContractResult;
+        });
+    }
+    apiVerifyContract(contractAddress, domain) {
+        return __awaiter(this, void 0, void 0, function* () {
             //cache
             const result = yield this.kvStore.get(contractAddress);
             if (result) {
@@ -12232,6 +12316,28 @@ class MisesSafeService {
                 this.kvStore.set(contractAddress, res);
             }
             return res;
+        });
+    }
+    setIgnoreContract(contractAddress) {
+        this.kvStore.set(this.getContractCacheKey(contractAddress), "1");
+    }
+    isIgnoreContract(contractAddress) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.kvStore.get(this.getContractCacheKey(contractAddress));
+        });
+    }
+    getContractCacheKey(contractAddress) {
+        return storageKey.ContractTrust + contractAddress.replace(".", "-");
+    }
+    /* verifyContract end */
+    notifyPhishingDetected(params) {
+        return new Promise((resolve) => {
+            if (browser.misesPrivate &&
+                browser.misesPrivate.notifyPhishingDetected) {
+                browser.misesPrivate.notifyPhishingDetected(JSON.stringify(params), resolve);
+                return;
+            }
+            resolve("mises");
         });
     }
 }
