@@ -65,7 +65,7 @@ std::u16string GetDisplayName(
       return extension_name;
   }
 
-  // File URLs should be displayed as "This file".
+  // File URLs should be displayedP as "This file".
   if (origin_url.SchemeIsFile())
     return l10n_util::GetStringUTF16(IDS_PERMISSIONS_BUBBLE_PROMPT_THIS_FILE);
 
