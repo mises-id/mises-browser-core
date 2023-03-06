@@ -37,6 +37,16 @@
             android:textColor="#f03e3e"
             android:textStyle="bold"
             android:textSize="22sp" />
+        <TextView
+            android:id="@+id/domain_title"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:text="@string/web3_safe_alert_title"
+            android:visibility="gone"
+            android:textColor="#f03e3e"
+            android:textStyle="bold"
+            android:textSize="22sp" />
 
 
         <TextView

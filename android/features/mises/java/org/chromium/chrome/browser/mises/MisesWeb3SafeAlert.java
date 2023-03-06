@@ -91,6 +91,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
     private Button btn_ignore;
     private CheckBox checkbox_ignore;
     private TextView tv_title;
+    private TextView tv_domain_title;
     private LinearLayout layout_blockem;
     private TextView tv_detail;
     private String callback_id;
@@ -164,6 +165,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 
 
         tv_title = view.findViewById(R.id.title);
+        tv_domain_title = view.findViewById(R.id.domain_title);
         tv_detail = view.findViewById(R.id.detail);
         layout_blockem = view.findViewById(R.id.layout_blockem);
         btn_block = (Button) view.findViewById(R.id.btn_block);
@@ -186,10 +188,8 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         //notify url
         if (mType.equals(UrlNotifyType)){
           //edit tv_title
-          ViewGroup.LayoutParams lp = tv_title.getLayoutParams();
-          float density = getDensity();
-          lp.height=(int)(60 *  density);
-          tv_title.setLayoutParams(lp);
+          tv_title.setVisibility(View.GONE);
+          tv_domain_title.setVisibility(View.VISIBLE);
           //url notify value
           txtValue = mDomain;
           typeInfo = "The site: ";
