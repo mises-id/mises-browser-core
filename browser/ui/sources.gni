@@ -220,6 +220,17 @@ if (is_android) {
       "privacy_sandbox/privacy_sandbox_prompt_helper.h",
 
       "views/chrome_javascript_app_modal_view_factory_views.cc",
+      
+      "views/desktop_capture/desktop_media_list_controller.cc",
+      "views/desktop_capture/desktop_media_list_controller.h",
+      "views/desktop_capture/desktop_media_list_view.cc",
+      "views/desktop_capture/desktop_media_list_view.h",
+      "views/desktop_capture/desktop_media_picker_views.cc",
+      "views/desktop_capture/desktop_media_picker_views.h",
+      "views/desktop_capture/desktop_media_source_view.cc",
+      "views/desktop_capture/desktop_media_source_view.h",
+      "views/desktop_capture/desktop_media_tab_list.cc",
+      "views/desktop_capture/desktop_media_tab_list.h",
 
 
 

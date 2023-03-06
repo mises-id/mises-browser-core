@@ -967,7 +967,6 @@ BrowserView::BrowserView(std::unique_ptr<Browser> browser)
 }
 
 BrowserView::~BrowserView() {
-  LOG(INFO) << "BrowserView::~BrowserView";
   // Destroy the top controls slide controller first as it depends on the
   // tabstrip model and the browser frame.
   top_controls_slide_controller_.reset();
@@ -1285,12 +1284,10 @@ void BrowserView::Close() {
 }
 
 void BrowserView::Activate() {
-  LOG(INFO) << "BrowserView::Activate id:" << browser()->session_id();
   frame_->Activate();
 }
 
 void BrowserView::Deactivate() {
-  LOG(INFO) << "BrowserView::Deactivate id:" << browser()->session_id();
   frame_->Deactivate();
 }
 
@@ -3225,7 +3222,6 @@ void BrowserView::SaveWindowPlacement(const gfx::Rect& bounds,
         client_size.Enlarge(0, -toolbar_->GetPreferredSize().height());
       saved_bounds.set_size(client_size);
     }
-    
   }
   chrome::SaveWindowPlacement(browser_.get(), saved_bounds, show_state);
 }
