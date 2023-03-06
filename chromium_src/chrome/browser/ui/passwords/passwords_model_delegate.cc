@@ -9,6 +9,6 @@ PasswordsModelDelegateFromWebContents(content::WebContents* web_contents) {
 
 #else
 
-#include "chrome/browser/ui/passwords/passwords_model_delegate.cc"
+#include "src/chrome/browser/ui/passwords/passwords_model_delegate.cc"
 
 #endif

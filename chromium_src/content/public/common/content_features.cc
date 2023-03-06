@@ -1,8 +1,9 @@
 #include "content/public/common/content_features.h"
 
-#define kProactivelySwapBrowsingInstance kProactivelySwapBrowsingInstance_chromium
-#define kReloadHiddenTabsWithCrashedSubframes kReloadHiddenTabsWithCrashedSubframes_chromium
-#define kRequestDesktopSiteExceptions kRequestDesktopSiteExceptions_chromium
+#if BUILDFLAG(IS_ANDROID)
+#define kProactivelySwapBrowsingInstance kProactivelySwapBrowsingInstance_Chromium
+#define kReloadHiddenTabsWithCrashedSubframes kReloadHiddenTabsWithCrashedSubframes_Chromium
+#define kRequestDesktopSiteExceptions kRequestDesktopSiteExceptions_Chromium
 #include "src/content/public/common/content_features.cc"
 #undef kProactivelySwapBrowsingInstance
 #undef kReloadHiddenTabsWithCrashedSubframes
@@ -16,3 +17,9 @@ namespace features {
     const base::Feature kRequestDesktopSiteExceptions{
     "RequestDesktopSiteExceptions", base::FEATURE_ENABLED_BY_DEFAULT};
 }
+
+#else
+
+#include "src/content/public/common/content_features.cc"
+
+#endif

@@ -32,6 +32,8 @@ public:
 
 #define MediaRouterDialogControllerViews MediaRouterDialogControllerViews_Mises
 
-#include "src/chrome/browser/ui/views/chrome_browser_main_extra_parts_views.cc"
+
 
 #endif
+
+#include "src/chrome/browser/ui/views/chrome_browser_main_extra_parts_views.cc"

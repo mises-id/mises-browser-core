@@ -21,18 +21,20 @@
 #include "content/public/browser/web_contents_observer.h"
 #include "content/public/browser/web_contents_user_data.h"
 
-#if BUILDFLAG(IS_ANDROID)
-
-#undef BUILDFLAG_INTERNAL_IS_ANDROID
-#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
 
 #define  NavigationEntryCommitted NavigationEntryCommitted_Chromium( \
       const content::LoadCommittedDetails& load_details); \
       void OnOpenExtension(const GURL& url) override; \
       void NavigationEntryCommitted
 
+#if BUILDFLAG(IS_ANDROID)
+
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
+
+
 #include "src/chrome/browser/ui/search/search_tab_helper.h"
-#undef NavigationEntryCommitted
+
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
@@ -43,5 +45,7 @@
 
 
 #endif
+
+#undef NavigationEntryCommitted
 
 #endif

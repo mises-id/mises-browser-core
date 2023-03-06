@@ -17,12 +17,6 @@
 #include "mojo/public/cpp/bindings/associated_receiver.h"
 
 
-
-#if BUILDFLAG(IS_ANDROID)
-
-#undef BUILDFLAG_INTERNAL_IS_ANDROID
-#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
-
 #define OnUndoMostVisitedDeletion OnOpenExtension(const GURL& url) = 0; \
       virtual void OnUndoMostVisitedDeletion
 #define OnTabDeactivated OnMisesInfoChanged(); \
@@ -30,20 +24,29 @@
   void OpenExtension(const GURL& url) override; \
   void OnTabDeactivated
 
+
+#if BUILDFLAG(IS_ANDROID)
+
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
+
+
+
 #include "src/chrome/browser/ui/search/search_ipc_router.h"
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
-#undef OnUndoMostVisitedDeletion
-#undef OnTabDeactivated
-
 
 #else
 
-#include "src/chrome/browser/ui/search/search_ipc_router.h
+#include "src/chrome/browser/ui/search/search_ipc_router.h"
 
 
 #endif
+
+
+#undef OnUndoMostVisitedDeletion
+#undef OnTabDeactivated
 
 
 
