@@ -318,6 +318,7 @@ bool Widget::RequiresNonClientView(InitParams::Type type) {
 
 void Widget::Init(InitParams params) {
   TRACE_EVENT0("views", "Widget::Init");
+
   if (params.name.empty() && params.delegate) {
     params.name = params.delegate->internal_name();
     // If an internal name was not provided the class name of the contents view
@@ -325,6 +326,7 @@ void Widget::Init(InitParams params) {
     if (params.name.empty() && params.delegate->GetContentsView())
       params.name = params.delegate->GetContentsView()->GetClassName();
   }
+
   parent_ = params.parent ? GetWidgetForNativeView(params.parent) : nullptr;
 
   // Subscripbe to parent's paint-as-active change.
@@ -342,6 +344,7 @@ void Widget::Init(InitParams params) {
       params.type != views::Widget::InitParams::TYPE_WINDOW) {
     params.opacity = views::Widget::InitParams::WindowOpacity::kOpaque;
   }
+
   {
     // ViewsDelegate::OnBeforeWidgetInit() may change `params.delegate` either
     // by setting it to null or assigning a different value to it, so handle
@@ -387,7 +390,9 @@ void Widget::Init(InitParams params) {
   WidgetDelegate* delegate = params.delegate;
 
   native_widget_->InitNativeWidget(std::move(params));
-#if !BUILDFLAG(IS_ANDROID)
+#if BUILDFLAG(IS_ANDROID)
+  CreateNonClientFrameView();
+#else
   if (type == InitParams::TYPE_MENU)
     is_mouse_button_pressed_ = native_widget_->IsMouseButtonDown();
   if (RequiresNonClientView(type)) {
@@ -669,17 +674,22 @@ void Widget::CloseWithReason(ClosedReason closed_reason) {
            DisableActivationChangeHandlingType::kIgnoreDeactivationOnly)) {
     return;
   }
+
   // The actions below can cause this function to be called again, so mark
   // |this| as closed early. See crbug.com/714334
   widget_closed_ = true;
   closed_reason_ = closed_reason;
   SaveWindowPlacement();
   ClearFocusFromWidget();
+
   for (WidgetObserver& observer : observers_)
     observer.OnWidgetClosing(this);
+
   internal::AnyWidgetObserverSingleton::GetInstance()->OnAnyWidgetClosing(this);
+
   if (widget_delegate_)
     widget_delegate_->WindowWillClose();
+
   native_widget_->Close();
 }
 

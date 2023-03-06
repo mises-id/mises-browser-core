@@ -12,6 +12,9 @@ BrowserWindow* BrowserWindow::CreateBrowserWindow(
   // Create the view and the frame. The frame will attach itself via the view
   // so we don't need to do anything with the pointer.
   BrowserView* view = new BrowserView(std::move(browser));
+  #if BUILDFLAG(IS_ANDROID) 
+  view->SetOwnedByWidget(true);
+  #endif
   BrowserFrame* browser_frame = nullptr;
   if (!browser_frame)
     browser_frame = new BrowserFrame(view);
