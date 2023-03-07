@@ -128,16 +128,20 @@ if (is_android) {
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
     "policy/policy_path_parser_linux.cc",
+    "//components/payments/content/payment_request_web_contents_manager.cc",
+    "safe_browsing/extension_telemetry/extension_telemetry_service_factory.cc",
+    "safe_browsing/extension_telemetry/tabs_execute_script_signal.cc",
+    "safe_browsing/extension_telemetry/remote_host_contacted_signal.cc",
 
   ]
 
   mises_chrome_browser_deps += [
     "//mises/browser/android:android_browser_process",
     "//mises/build/android:jni_headers",
-   "//mises/android/features/mises:jni_headers",
+    "//mises/android/features/mises:jni_headers",
     "//chrome/android:jni_headers",
     "//components/sync_device_info",
-     "//chrome/utility:utility",
+    "//chrome/utility:utility",
   ]
 } else {
   mises_chrome_browser_sources += [
@@ -260,7 +264,6 @@ if (is_android) {
     "first_run/upgrade_util.cc",
     "autocomplete/tab_matcher_desktop.cc",
     "platform_util.cc",
-    
   ]
   mises_chrome_browser_exception_deps += [
     "//components/live_caption",

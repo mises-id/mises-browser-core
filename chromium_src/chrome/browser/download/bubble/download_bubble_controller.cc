@@ -498,6 +498,7 @@ void DownloadBubbleUIController::RetryDownload(
 
 void DownloadBubbleUIController::ScheduleCancelForEphemeralWarning(
     const std::string& guid) {
+#if !BUILDFLAG(IS_ANDROID)
   DownloadCoreService* download_core_service =
       DownloadCoreServiceFactory::GetForBrowserContext(profile_);
   if (!download_core_service)
@@ -506,4 +507,5 @@ void DownloadBubbleUIController::ScheduleCancelForEphemeralWarning(
       download_core_service->GetDownloadManagerDelegate();
   if (delegate)
     delegate->ScheduleCancelForEphemeralWarning(guid);
+#endif
 }

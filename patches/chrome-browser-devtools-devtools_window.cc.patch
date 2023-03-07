@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/devtools/devtools_window.cc b/chrome/browser/devtools/devtools_window.cc
+index 0b23420e43afd0febd88090bf41e2f911107d27a..6d3fe6c58f4042f7337b6ca0c864c71e6baa8586 100644
+--- a/chrome/browser/devtools/devtools_window.cc
++++ b/chrome/browser/devtools/devtools_window.cc
+@@ -1680,10 +1680,15 @@ void DevToolsWindow::CreateDevToolsBrowser() {
+   }
+   browser_ =
+       Browser::Create(Browser::CreateParams::CreateForDevTools(profile_));
++#if !BUILDFLAG(IS_ANDROID)
+   browser_->tab_strip_model()->AddWebContents(
+       OwnedMainWebContents::TakeWebContents(
+           std::move(owned_main_web_contents_)),
+       -1, ui::PAGE_TRANSITION_AUTO_TOPLEVEL, TabStripModel::ADD_ACTIVE);
++#else
++  WebContents* web_contents = OwnedMainWebContents::TakeWebContents(std::move(owned_main_web_contents_)).release();
++  CreateTabAndroid(web_contents);
++#endif  
+   OverrideAndSyncDevToolsRendererPrefs();
+ }
+ 
