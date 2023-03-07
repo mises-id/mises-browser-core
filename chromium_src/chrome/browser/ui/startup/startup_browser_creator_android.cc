@@ -10,4 +10,21 @@ void StartupBrowserCreator::OpenStartupPages(Browser*, chrome::startup::IsProces
 
 }
 
+bool HasPendingUncleanExit(Profile* profile) {
+  return false;
+}
+
+bool StartupBrowserCreator::InSynchronousProfileLaunch() {
+  return false;
+}
+SessionStartupPref StartupBrowserCreator::GetSessionStartupPref(
+    const base::CommandLine& command_line,
+    const Profile* profile) {
+  DCHECK(profile);
+  const PrefService* prefs = profile->GetPrefs();
+  SessionStartupPref pref = SessionStartupPref::GetStartupPref(prefs);
+  pref.type = SessionStartupPref::DEFAULT;
+  return pref;
+}
+
 #endif

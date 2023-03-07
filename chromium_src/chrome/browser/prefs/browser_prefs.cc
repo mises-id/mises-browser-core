@@ -34,6 +34,7 @@
 #include "chrome/browser/ui/webui/whats_new/whats_new_ui.h"
 #include "chrome/browser/upgrade_detector/upgrade_detector.h"
 #include "components/ntp_tiles/custom_links_manager_impl.h"
+#include "chrome/browser/sessions/session_service_log.h"
 #endif  // BUILDFLAG(IS_ANDROID)
 
 
@@ -100,6 +101,7 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   tab_search_prefs::RegisterProfilePrefs(registry);
   TaskModuleService::RegisterProfilePrefs(registry);
   UnifiedAutoplayConfig::RegisterProfilePrefs(registry);
+  RegisterSessionServiceLogProfilePrefs(registry);
 #endif
 
 #if BUILDFLAG(IS_ANDROID) 
