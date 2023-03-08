@@ -81,7 +81,6 @@ InstantService::InstantService(Profile* profile)
       background_updated_timestamp_(base::TimeTicks::Now()) {
   // The initialization below depends on a typical set of browser threads. Skip
   // it if we are running in a unit test without the full suite.
-  LOG(INFO) << "InstantService::InstantService";
   if (!content::BrowserThread::CurrentlyOn(content::BrowserThread::UI))
     return;
 
@@ -91,7 +90,6 @@ InstantService::InstantService(Profile* profile)
 
   most_visited_sites_ = ChromeMostVisitedSitesFactory::NewForProfile(profile_);
   if (most_visited_sites_) {
-    LOG(INFO) << "InstantService::InstantService step - 1";
     most_visited_sites_->EnableCustomLinks(false);
     most_visited_sites_->AddMostVisitedURLsObserver(
         this, ntp_tiles::kMaxNumMostVisited);
@@ -138,9 +136,7 @@ void InstantService::RemoveObserver(InstantServiceObserver* observer) {
 }
 
 void InstantService::OnNewTabPageOpened() {
-  LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened";
   if (most_visited_sites_) {
-    LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened - most_visited_sites_";
     most_visited_sites_->Refresh();
     most_visited_sites_->RefreshTiles();
   }
@@ -331,7 +327,6 @@ void InstantService::OnURLsAvailable(
 void InstantService::OnIconMadeAvailable(const GURL& site_url) {}
 
 void InstantService::NotifyAboutMostVisitedInfo() {
-  LOG(INFO) << "[Kiwi] InstantService::NotifyAboutMostVisitedInfo";
   most_visited_info_->items.clear();
   for (const auto& item : recent_extensions_) {
     most_visited_info_->items.push_back(item);

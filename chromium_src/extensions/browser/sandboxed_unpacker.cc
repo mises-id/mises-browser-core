@@ -903,7 +903,7 @@ bool SandboxedUnpacker::ValidateSignature(
       return false;
     }
   }
-  LOG(INFO) << "SandboxedUnpacker::ValidateSignature" << crx_path.value();
+
   const crx_file::VerifierResult result = crx_file::Verify(
       crx_path, required_format, std::vector<std::vector<uint8_t>>(), hash,
       &public_key_, &extension_id_, &compressed_verified_contents_);
