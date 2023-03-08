@@ -331,6 +331,7 @@
     }
     .down{
       width: 15px;
+      height: 8px;
       margin-right: 10px;
       transition: all 0.3s;
       transform: rotate(180deg);
@@ -436,7 +437,12 @@
     localHidden.forEach((val,index)=>{
       const history = localStorage.getItem(val);
       const box = document.getElementById(val);
-      box.style.display = history ? "none" : "grid";
+      if(val!=="mises-extensions"){
+        box.style.display = history ? "none" : "grid";
+      }else{
+        box.style.display = history ? "none" : "flex";
+      }
+      
       if(history){
         titleWrap[index].querySelectorAll(".down").forEach(element=>{
           element.classList.add("down-colse")
@@ -450,7 +456,11 @@
         const box = document.getElementById(id);
         const history = localStorage.getItem(id);
         !history ? localStorage.setItem(id,true) : localStorage.removeItem(id);
-        box.style.display = !history ? "none" : "grid";
+        if(id!=="mises-extensions"){
+          box.style.display = !history ? "none" : "grid";
+        }else{
+          box.style.display = history ? "none" : "flex";
+        }
         titleWrap[index].querySelectorAll(".down").forEach(element=>{
           !history ? element.classList.add("down-colse") : element.classList.remove("down-colse")
         })
