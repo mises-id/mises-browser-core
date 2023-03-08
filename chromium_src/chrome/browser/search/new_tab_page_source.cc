@@ -88,6 +88,12 @@ void NewTabPageSource::StartDataRequest(
     if (base::EndsWith(path, "more@2x.png", base::CompareCase::INSENSITIVE_ASCII))
       SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_MORE_AT_2X_PNG,
                  std::move(callback));
+    if (base::EndsWith(path, "down_black@2x.png", base::CompareCase::INSENSITIVE_ASCII))
+      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_MORE_AT_2X_PNG,
+                 std::move(callback));
+    if (base::EndsWith(path, "down@2x.png", base::CompareCase::INSENSITIVE_ASCII))
+      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_MORE_AT_2X_PNG,
+                 std::move(callback));
   }else if (base::EndsWith(path, ".svg", base::CompareCase::INSENSITIVE_ASCII)) {
     if (base::EndsWith(path, "Private.svg", base::CompareCase::INSENSITIVE_ASCII))
 	          SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_PRIVATE_SVG,
