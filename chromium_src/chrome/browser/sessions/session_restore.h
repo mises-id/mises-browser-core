@@ -1,4 +1,3 @@
-
 #ifndef MISES_BROWSER_SESSIONS_SESSION_RESTORE_H_
 #define MISES_BROWSER_SESSIONS_SESSION_RESTORE_H_
 #define OpenStartupPagesAfterCrash OpenStartupPagesAfterCrash_chromium(Browser* browser); \

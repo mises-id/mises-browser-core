@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_CHROMIUM_SRC_CHROME_BROWSER_BROWSER_PROCESS_IMPL_H_
-#define BRAVE_CHROMIUM_SRC_CHROME_BROWSER_BROWSER_PROCESS_IMPL_H_
+#ifndef MISES_CHROMIUM_SRC_CHROME_BROWSER_BROWSER_PROCESS_IMPL_H_
+#define MISES_CHROMIUM_SRC_CHROME_BROWSER_BROWSER_PROCESS_IMPL_H_
 
 // Note: Init method name is quite common. To re-define only Init in
 // browser_process_impl.h, all other headers are added.
@@ -479,4 +479,4 @@ class BrowserProcessImpl : public BrowserProcess,
 #endif  // !BUILDFLAG(IS_ANDROID)
 #undef Init
 
-#endif  // BRAVE_CHROMIUM_SRC_CHROME_BROWSER_BROWSER_PROCESS_IMPL_H_
+#endif  // MISES_CHROMIUM_SRC_CHROME_BROWSER_BROWSER_PROCESS_IMPL_H_

@@ -1118,8 +1118,9 @@ TabStripModel* ExtensionTabUtil::GetEditableTabStripModel(Browser* browser) {
   return browser->tab_strip_model();
 }
 
-std::unique_ptr<base::DictionaryValue> ExtensionTabUtil::CreateDummyWindowValueForExtension(
-		                    PopulateTabBehavior populate_tab_behavior) {
+#if BUILDFLAG(IS_ANDROID) 
+std::unique_ptr<base::DictionaryValue> CreateDummyWindowValueForExtension(
+		                    ExtensionTabUtil::PopulateTabBehavior populate_tab_behavior) {
   auto  dict = std::make_unique<base::DictionaryValue>();
 
   dict->SetIntKey(tabs_constants::kIdKey, -1);
@@ -1134,9 +1135,10 @@ std::unique_ptr<base::DictionaryValue> ExtensionTabUtil::CreateDummyWindowValueF
   dict->SetIntKey(tabs_constants::kWidthKey, 1920);
   dict->SetIntKey(tabs_constants::kHeightKey, 1080);
 
-  if (populate_tab_behavior == kPopulateTabs) {
+  if (populate_tab_behavior == ExtensionTabUtil::kPopulateTabs) {
     dict->SetKey(tabs_constants::kTabsKey,base::ListValue());
   }
   return dict;
 }
+#endif
 }  // namespace extensions

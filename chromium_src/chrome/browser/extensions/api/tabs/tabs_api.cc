@@ -567,7 +567,7 @@ ExtensionFunction::ResponseAction WindowsGetLastFocusedFunction::Run() {
 #if BUILDFLAG(IS_ANDROID)  
   if (!browser) {
     std::unique_ptr<base::DictionaryValue> windows = 
-	ExtensionTabUtil::CreateDummyWindowValueForExtension(populate_tab_behavior);
+	  extensions::CreateDummyWindowValueForExtension(populate_tab_behavior);
     return RespondNow(
       OneArgument(base::Value::FromUniquePtrValue(std::move(windows))));
   }

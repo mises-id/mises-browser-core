@@ -1,0 +1,13 @@
+diff --git a/ui/views/bubble/bubble_dialog_delegate_view.cc b/ui/views/bubble/bubble_dialog_delegate_view.cc
+index 0e8edf94db4ebad1f87163edebfc1686b09ba462..7cb2cd990b52a0929438654f3e32c5a4de2a7f52 100644
+--- a/ui/views/bubble/bubble_dialog_delegate_view.cc
++++ b/ui/views/bubble/bubble_dialog_delegate_view.cc
+@@ -589,7 +589,7 @@ void BubbleDialogDelegate::OnAnchorWidgetDestroying() {
+ }
+ 
+ void BubbleDialogDelegate::OnBubbleWidgetActivationChanged(bool active) {
+-#if BUILDFLAG(IS_MAC)
++#if BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_ANDROID)
+   // Install |mac_bubble_closer_| the first time the widget becomes active.
+   if (active && !mac_bubble_closer_) {
+     mac_bubble_closer_ = std::make_unique<ui::BubbleCloser>(
