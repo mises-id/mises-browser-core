@@ -18,6 +18,6 @@ mises_ntp_instant_local_files = [
     "images/add.png",
     "images/add@2x.png",
     "images/more@2x.png",
-    "images/down_black@2x.png",
-    "images/down@2x.png",
+    "images/down_black.png",
+    "images/down.png",
 ]
