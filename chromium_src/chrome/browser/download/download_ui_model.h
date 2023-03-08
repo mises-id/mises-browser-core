@@ -19,7 +19,7 @@
 #include "ui/base/models/image_model.h"
 #include "ui/color/color_id.h"
 #include "ui/gfx/vector_icon_types.h"
-
+#include "chrome/browser/download/download_commands.h"
 
 #if BUILDFLAG(IS_ANDROID)
 
