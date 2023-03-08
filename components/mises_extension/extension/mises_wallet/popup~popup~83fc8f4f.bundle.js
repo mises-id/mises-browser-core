@@ -1920,7 +1920,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(558), exports);
-__exportStar(__webpack_require__(1089), exports);
+__exportStar(__webpack_require__(1090), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
@@ -1931,10 +1931,244 @@ __exportStar(__webpack_require__(1089), exports);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.html_similar = void 0;
+const HASH_PRIME = 16777619;
+const HASH_INIT = 671226215;
+const ROLLING_WINDOW = 7;
+const MAX_LENGTH = 64; // Max individual hash length in characters
+const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+//refer http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+function toUTF8Array(str) {
+    // eslint-disable-next-line prefer-const
+    let out = [], p = 0;
+    for (let i = 0; i < str.length; i++) {
+        let c = str.charCodeAt(i);
+        if (c < 128) {
+            out[p++] = c;
+        }
+        else if (c < 2048) {
+            out[p++] = (c >> 6) | 192;
+            out[p++] = (c & 63) | 128;
+        }
+        else if ((c & 0xfc00) == 0xd800 &&
+            i + 1 < str.length &&
+            (str.charCodeAt(i + 1) & 0xfc00) == 0xdc00) {
+            // Surrogate Pair
+            c = 0x10000 + ((c & 0x03ff) << 10) + (str.charCodeAt(++i) & 0x03ff);
+            out[p++] = (c >> 18) | 240;
+            out[p++] = ((c >> 12) & 63) | 128;
+            out[p++] = ((c >> 6) & 63) | 128;
+            out[p++] = (c & 63) | 128;
+        }
+        else {
+            out[p++] = (c >> 12) | 224;
+            out[p++] = ((c >> 6) & 63) | 128;
+            out[p++] = (c & 63) | 128;
+        }
+    }
+    return out;
+}
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */
+function safe_add(x, y) {
+    const lsw = (x & 0xffff) + (y & 0xffff);
+    const msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+    return (msw << 16) | (lsw & 0xffff);
+}
+/*
+  1000 0000
+  1000 0000
+  0000 0001
+*/
+function safe_multiply(x, y) {
+    /*
+      a = a00 + a16
+      b = b00 + b16
+      a*b = (a00 + a16)(b00 + b16)
+        = a00b00 + a00b16 + a16b00 + a16b16
+  
+      a16b16 overflows the 32bits
+     */
+    let xlsw = x & 0xffff;
+    let xmsw = (x >> 16) + (xlsw >> 16);
+    const ylsw = y & 0xffff;
+    const ymsw = (y >> 16) + (ylsw >> 16);
+    const a16 = xmsw;
+    const a00 = xlsw;
+    const b16 = ymsw;
+    const b00 = ylsw;
+    const c00 = a00 * b00;
+    let c16 = c00 >>> 16;
+    c16 += a16 * b00;
+    c16 &= 0xffff; // Not required but improves performance
+    c16 += a00 * b16;
+    xlsw = c00 & 0xffff;
+    xmsw = c16 & 0xffff;
+    return (xmsw << 16) | (xlsw & 0xffff);
+}
+//FNV-1 hash
+function fnv(h, c) {
+    return (safe_multiply(h, HASH_PRIME) ^ c) >>> 0;
+}
+class RollHash {
+    constructor() {
+        this.rolling_window = new Array(ROLLING_WINDOW);
+        this.h1 = 0;
+        this.h2 = 0;
+        this.h3 = 0;
+        this.n = 0;
+        this.rolling_window = new Array(ROLLING_WINDOW);
+        this.h1 = 0;
+        this.h2 = 0;
+        this.h3 = 0;
+        this.n = 0;
+    }
+    update(c) {
+        this.h2 = safe_add(this.h2, -this.h1);
+        const mut = ROLLING_WINDOW * c;
+        this.h2 = safe_add(this.h2, mut) >>> 0;
+        this.h1 = safe_add(this.h1, c);
+        const val = this.rolling_window[this.n % ROLLING_WINDOW] || 0;
+        this.h1 = safe_add(this.h1, -val) >>> 0;
+        this.rolling_window[this.n % ROLLING_WINDOW] = c;
+        this.n++;
+        this.h3 = this.h3 << 5;
+        this.h3 = (this.h3 ^ c) >>> 0;
+    }
+    sum() {
+        return (this.h1 + this.h2 + this.h3) >>> 0;
+    }
+}
+function piecewiseHash(bytes, triggerValue) {
+    const signatures = ["", "", String(triggerValue)];
+    if (bytes.length === 0) {
+        return signatures;
+    }
+    let h1 = HASH_INIT;
+    let h2 = HASH_INIT;
+    const rh = new RollHash();
+    //console.log(triggerValue)
+    for (let i = 0, len = bytes.length; i < len; i++) {
+        const thisByte = bytes[i];
+        h1 = fnv(h1, thisByte);
+        h2 = fnv(h2, thisByte);
+        rh.update(thisByte);
+        if (signatures[0].length < MAX_LENGTH - 1 &&
+            rh.sum() % triggerValue === triggerValue - 1) {
+            signatures[0] += B64.charAt(h1 & 63);
+            h1 = HASH_INIT;
+        }
+        if (signatures[1].length < MAX_LENGTH / 2 - 1 &&
+            rh.sum() % (triggerValue * 2) === triggerValue * 2 - 1) {
+            signatures[1] += B64.charAt(h2 & 63);
+            h2 = HASH_INIT;
+        }
+    }
+    signatures[0] += B64.charAt(h1 & 63);
+    signatures[1] += B64.charAt(h2 & 63);
+    return signatures;
+}
+class HtmlSimilar {
+    constructor() { }
+    digest(data) {
+        const bytes = toUTF8Array(data);
+        let bi = 3;
+        while (bi * MAX_LENGTH < bytes.length) {
+            bi *= 2;
+        }
+        // console.log("bi: ",bi)
+        let signatures;
+        do {
+            signatures = piecewiseHash(bytes, bi);
+            console.log("bi: ", bi, signatures[0], signatures[1]);
+            bi = ~~(bi / 2);
+        } while (bi > 3 && signatures[0].length < MAX_LENGTH / 2);
+        return signatures[2] + ":" + signatures[0] + ":" + signatures[1];
+    }
+    distance(hash1, hash2) {
+        let score = 0;
+        const arr1 = hash1.split(":");
+        const hash1BlockSize = Number(arr1[0]);
+        const hash1String1 = arr1[1];
+        const hash1String2 = arr1[2];
+        const arr2 = hash2.split(":");
+        const hash2BlockSize = Number(arr2[0]);
+        const hash2String1 = arr2[1];
+        const hash2String2 = arr2[2];
+        if (hash1BlockSize == hash2BlockSize && hash1String1 == hash2String1) {
+            return 100;
+        }
+        if (hash1BlockSize != hash2BlockSize &&
+            hash1BlockSize != hash2BlockSize * 2 &&
+            hash2BlockSize != hash1BlockSize * 2) {
+            return score;
+        }
+        if (hash1BlockSize == hash2BlockSize) {
+            const d1 = scoreDistance(hash1String1, hash2String1);
+            const d2 = scoreDistance(hash1String2, hash2String2);
+            score = Math.max(d1, d2);
+        }
+        else if (hash1BlockSize == hash2BlockSize * 2) {
+            score = scoreDistance(hash1String1, hash2String2);
+        }
+        else {
+            score = scoreDistance(hash1String2, hash2String1);
+        }
+        return score;
+    }
+}
+function editDistance(str1, str2) {
+    // write code here
+    let cost, lastdiag, olddiag;
+    const s1 = toUTF8Array(str1);
+    const s2 = toUTF8Array(str2);
+    const lenS1 = s1.length;
+    const lenS2 = s2.length;
+    const column = new Array(1 + lenS1);
+    for (let i = 1; i <= lenS1; i++) {
+        column[i] = i;
+    }
+    for (let x = 1; x <= lenS2; x++) {
+        column[0] = x;
+        lastdiag = x - 1;
+        for (let y = 1; y <= lenS1; y++) {
+            olddiag = column[y];
+            cost = 0;
+            if (s1[y - 1] != s2[x - 1]) {
+                // Replace costs 2 in ssdeep
+                cost = 2;
+            }
+            column[y] = Math.min(column[y] + 1, column[y - 1] + 1, lastdiag + cost);
+            lastdiag = olddiag;
+        }
+    }
+    return column[lenS1];
+}
+function scoreDistance(h1, h2) {
+    let d = editDistance(h1, h2);
+    d = (d * MAX_LENGTH) / (h1.length + h2.length);
+    d = (100 * d) / MAX_LENGTH;
+    d = 100 - d;
+    return d;
+}
+const html_similar = new HtmlSimilar();
+exports.html_similar = html_similar;
+//# sourceMappingURL=html-similar.js.map
+
+/***/ }),
+
+/***/ 1090:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
 const messages_1 = __webpack_require__(348);
 const constants_1 = __webpack_require__(559);
-const handler_1 = __webpack_require__(1090);
+const handler_1 = __webpack_require__(1091);
 function init(router, service) {
     router.registerMessage(messages_1.InitSafeMsg);
     router.registerMessage(messages_1.VerifyDomainMsg);
@@ -1947,7 +2181,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1090:
+/***/ 1091:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1988,7 +2222,7 @@ const handlerSetIsShouldVerifyMsg = (service) => (_, msg) => {
 
 /***/ }),
 
-/***/ 1091:
+/***/ 1092:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2010,7 +2244,7 @@ __exportStar(__webpack_require__(333), exports);
 
 /***/ }),
 
-/***/ 1092:
+/***/ 1093:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2032,7 +2266,7 @@ __exportStar(__webpack_require__(347), exports);
 
 /***/ }),
 
-/***/ 1093:
+/***/ 1094:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2054,7 +2288,7 @@ __exportStar(__webpack_require__(348), exports);
 
 /***/ }),
 
-/***/ 1094:
+/***/ 1095:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2070,13 +2304,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1095), exports);
-__exportStar(__webpack_require__(1175), exports);
+__exportStar(__webpack_require__(1096), exports);
+__exportStar(__webpack_require__(1176), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1095:
+/***/ 1096:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2092,7 +2326,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretWasmService = void 0;
-const secretjs_1 = __webpack_require__(1096);
+const secretjs_1 = __webpack_require__(1097);
 const crypto_1 = __webpack_require__(51);
 const common_1 = __webpack_require__(27);
 const cosmos_1 = __webpack_require__(16);
@@ -2224,7 +2458,7 @@ exports.SecretWasmService = SecretWasmService;
 
 /***/ }),
 
-/***/ 1175:
+/***/ 1176:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2232,7 +2466,7 @@ exports.SecretWasmService = SecretWasmService;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetTxEncryptionKeyMsg = exports.RequestDecryptMsg = exports.ReqeustEncryptMsg = exports.GetPubkeyMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(1176);
+const constants_1 = __webpack_require__(1177);
 class GetPubkeyMsg extends router_1.Message {
     constructor(chainId) {
         super();
@@ -2356,7 +2590,7 @@ exports.GetTxEncryptionKeyMsg = GetTxEncryptionKeyMsg;
 
 /***/ }),
 
-/***/ 1176:
+/***/ 1177:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2368,7 +2602,7 @@ exports.ROUTE = "secret-wasm";
 
 /***/ }),
 
-/***/ 1177:
+/***/ 1178:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2386,12 +2620,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(536), exports);
 __exportStar(__webpack_require__(337), exports);
-__exportStar(__webpack_require__(1178), exports);
+__exportStar(__webpack_require__(1179), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1178:
+/***/ 1179:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2401,7 +2635,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1179:
+/***/ 1180:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2423,7 +2657,7 @@ __exportStar(__webpack_require__(338), exports);
 
 /***/ }),
 
-/***/ 1180:
+/***/ 1181:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2446,7 +2680,7 @@ __exportStar(__webpack_require__(543), exports);
 
 /***/ }),
 
-/***/ 1181:
+/***/ 1182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2464,13 +2698,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(544), exports);
 __exportStar(__webpack_require__(341), exports);
-__exportStar(__webpack_require__(1182), exports);
+__exportStar(__webpack_require__(1183), exports);
 __exportStar(__webpack_require__(545), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1182:
+/***/ 1183:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2480,7 +2714,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1183:
+/***/ 1184:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2502,7 +2736,7 @@ __exportStar(__webpack_require__(342), exports);
 
 /***/ }),
 
-/***/ 1217:
+/***/ 1218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5100,7 +5334,7 @@ class messages_LockMsg extends router_build["Message"] {
 
 /***/ }),
 
-/***/ 1348:
+/***/ 1349:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11269,18 +11503,18 @@ const Permission = __importStar(__webpack_require__(1061));
 const AutoLocker = __importStar(__webpack_require__(1064));
 const Mises = __importStar(__webpack_require__(1067));
 const MisesSafe = __importStar(__webpack_require__(1088));
-__exportStar(__webpack_require__(1091), exports);
+__exportStar(__webpack_require__(1092), exports);
 __exportStar(__webpack_require__(541), exports);
 __exportStar(__webpack_require__(339), exports);
-__exportStar(__webpack_require__(1092), exports);
 __exportStar(__webpack_require__(1093), exports);
 __exportStar(__webpack_require__(1094), exports);
-__exportStar(__webpack_require__(1177), exports);
-__exportStar(__webpack_require__(1179), exports);
+__exportStar(__webpack_require__(1095), exports);
+__exportStar(__webpack_require__(1178), exports);
 __exportStar(__webpack_require__(1180), exports);
 __exportStar(__webpack_require__(1181), exports);
+__exportStar(__webpack_require__(1182), exports);
 __exportStar(__webpack_require__(525), exports);
-__exportStar(__webpack_require__(1183), exports);
+__exportStar(__webpack_require__(1184), exports);
 //import { LedgerOptions } from "./ledger/options";
 //import { MisesSafe } from "./mises-safe/mises";
 function init(router, storeCreator, 
@@ -12027,10 +12261,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MisesSafeService = void 0;
 const mises_network_util_1 = __webpack_require__(232);
+const html_similar_1 = __webpack_require__(1089);
 const listenMethods = {
     mVerifyDomain: "verifyDomain",
     mVerifyContract: "verifyContract",
     mNotifyFuzzyDomain: "notifyFuzzyDomain",
+    mCalculateHtmlSimilarly: "calculateHtmlSimilarly",
 };
 const storageKey = {
     ContractTrust: "v3_contract_trust_",
@@ -12132,16 +12368,29 @@ class MisesSafeService {
             }
             switch (res.params.method) {
                 case listenMethods.mVerifyDomain:
-                    return this.verifyDomain(res.params.params.domain, res.params.params.logo);
+                    return this.verifyDomain(res.params.params.domain, res.params.params.logo, res.params.params.content);
                 case listenMethods.mNotifyFuzzyDomain:
                     return this.notifyFuzzyDomain(res.params.params.domain, res.params.params.suggested_url);
                 case listenMethods.mVerifyContract:
                     return this.verifyContract(res.params.params.contractAddress, res.params.params.domain);
+                case listenMethods.mCalculateHtmlSimilarly:
+                    return this.calculateHtmlSimilarly(res.params.params.html, res.params.params.hash);
             }
         });
     }
+    /* CalculateHtmlSimilarly start */
+    calculateHtmlSimilarly(html, hash) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const request_url_html_body_hash = html_similar_1.html_similar.digest(html);
+            const score = html_similar_1.html_similar.distance(hash, request_url_html_body_hash);
+            console.log("request_url_html_body_hash: ", request_url_html_body_hash);
+            console.log("html_body_fuzzy_hash: ", hash);
+            console.log("html body fuzzy html score: ", score);
+            return score;
+        });
+    }
     /* VerifyDomain start */
-    verifyDomain(domain, logo) {
+    verifyDomain(domain, logo, content) {
         return __awaiter(this, void 0, void 0, function* () {
             //is ignore
             const isIgnore = yield this.isIgnoreDomain(domain);
@@ -12163,7 +12412,7 @@ class MisesSafeService {
                     tag: "white",
                 };
             }
-            const verifyDomainResult = yield this.apiVerifyDomain(domain, logo);
+            const verifyDomainResult = yield this.apiVerifyDomain(domain, logo, content);
             console.log("verifyDomainResult: ", verifyDomainResult);
             //is should alert user
             if (!this.hasBlackNotifying(domain) &&
@@ -12216,17 +12465,19 @@ class MisesSafeService {
             }
         });
     }
-    apiVerifyDomain(domain, logo) {
+    apiVerifyDomain(domain, logo, content) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield this.kvStore.get(domain);
             if (result) {
-                return result;
+                //return result;
             }
             const res = yield mises_network_util_1.misesRequest({
+                method: "POST",
                 url: "/phishing_site/check",
                 data: {
                     domain: domain,
                     logo: logo,
+                    content: content,
                 },
             });
             if (res &&
@@ -12288,7 +12539,10 @@ class MisesSafeService {
                     this.removeBlackNotifying(contractAddress);
                 }, 3000);
                 console.log("notifyPhishingDetected start: ", contractAddress);
-                const userDecision = yield this.notifyPhishingDetected({ address: contractAddress, notify_type: "address" });
+                const userDecision = yield this.notifyPhishingDetected({
+                    address: contractAddress,
+                    notify_type: "address",
+                });
                 console.log("notifyPhishingDetected result: ", userDecision);
                 if (userDecision === userAction.Ignore) {
                     console.log("notifyPhishingDetected set: ", userDecision);

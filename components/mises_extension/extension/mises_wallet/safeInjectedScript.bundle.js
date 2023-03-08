@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1655);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1656);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1655:
+/***/ 1656:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1657);
+module.exports = __webpack_require__(1658);
 
 
 /***/ }),
 
-/***/ 1657:
+/***/ 1658:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -165,9 +165,9 @@ class ProxyClient {
             this.eventListener.postMessage(proxyMessage);
         });
     }
-    verifyDomain(domain, logo) {
+    verifyDomain(domain, logo, content) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.requestMethod("verifyDomain", { domain, logo });
+            return yield this.requestMethod("verifyDomain", { domain, logo, content });
         });
     }
     verifyContract(contractAddress, domain) {
@@ -183,6 +183,14 @@ class ProxyClient {
             return yield this.requestMethod("notifyFuzzyDomain", {
                 domain,
                 suggested_url,
+            });
+        });
+    }
+    calculateHtmlSimilarly(html, hash) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requestMethod("calculateHtmlSimilarly", {
+                html,
+                hash,
             });
         });
     }
@@ -236,231 +244,6 @@ class ProxyClient {
 const proxyClient = new ProxyClient();
 
 
-// CONCATENATED MODULE: ./src/content-scripts/safe-inject/html-similar.ts
-const HASH_PRIME = 16777619;
-const HASH_INIT = 671226215;
-const ROLLING_WINDOW = 7;
-const MAX_LENGTH = 64; // Max individual hash length in characters
-const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-//refer http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
-function toUTF8Array(str) {
-    // eslint-disable-next-line prefer-const
-    let out = [], p = 0;
-    for (let i = 0; i < str.length; i++) {
-        let c = str.charCodeAt(i);
-        if (c < 128) {
-            out[p++] = c;
-        }
-        else if (c < 2048) {
-            out[p++] = (c >> 6) | 192;
-            out[p++] = (c & 63) | 128;
-        }
-        else if ((c & 0xfc00) == 0xd800 &&
-            i + 1 < str.length &&
-            (str.charCodeAt(i + 1) & 0xfc00) == 0xdc00) {
-            // Surrogate Pair
-            c = 0x10000 + ((c & 0x03ff) << 10) + (str.charCodeAt(++i) & 0x03ff);
-            out[p++] = (c >> 18) | 240;
-            out[p++] = ((c >> 12) & 63) | 128;
-            out[p++] = ((c >> 6) & 63) | 128;
-            out[p++] = (c & 63) | 128;
-        }
-        else {
-            out[p++] = (c >> 12) | 224;
-            out[p++] = ((c >> 6) & 63) | 128;
-            out[p++] = (c & 63) | 128;
-        }
-    }
-    return out;
-}
-/*
- * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
- */
-function safe_add(x, y) {
-    const lsw = (x & 0xffff) + (y & 0xffff);
-    const msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-    return (msw << 16) | (lsw & 0xffff);
-}
-/*
-  1000 0000
-  1000 0000
-  0000 0001
-*/
-function safe_multiply(x, y) {
-    /*
-      a = a00 + a16
-      b = b00 + b16
-      a*b = (a00 + a16)(b00 + b16)
-        = a00b00 + a00b16 + a16b00 + a16b16
-  
-      a16b16 overflows the 32bits
-     */
-    let xlsw = x & 0xffff;
-    let xmsw = (x >> 16) + (xlsw >> 16);
-    const ylsw = y & 0xffff;
-    const ymsw = (y >> 16) + (ylsw >> 16);
-    const a16 = xmsw;
-    const a00 = xlsw;
-    const b16 = ymsw;
-    const b00 = ylsw;
-    const c00 = a00 * b00;
-    let c16 = c00 >>> 16;
-    c16 += a16 * b00;
-    c16 &= 0xffff; // Not required but improves performance
-    c16 += a00 * b16;
-    xlsw = c00 & 0xffff;
-    xmsw = c16 & 0xffff;
-    return (xmsw << 16) | (xlsw & 0xffff);
-}
-//FNV-1 hash
-function fnv(h, c) {
-    return (safe_multiply(h, HASH_PRIME) ^ c) >>> 0;
-}
-class RollHash {
-    constructor() {
-        this.rolling_window = new Array(ROLLING_WINDOW);
-        this.h1 = 0;
-        this.h2 = 0;
-        this.h3 = 0;
-        this.n = 0;
-        this.rolling_window = new Array(ROLLING_WINDOW);
-        this.h1 = 0;
-        this.h2 = 0;
-        this.h3 = 0;
-        this.n = 0;
-    }
-    update(c) {
-        this.h2 = safe_add(this.h2, -this.h1);
-        const mut = ROLLING_WINDOW * c;
-        this.h2 = safe_add(this.h2, mut) >>> 0;
-        this.h1 = safe_add(this.h1, c);
-        const val = this.rolling_window[this.n % ROLLING_WINDOW] || 0;
-        this.h1 = safe_add(this.h1, -val) >>> 0;
-        this.rolling_window[this.n % ROLLING_WINDOW] = c;
-        this.n++;
-        this.h3 = this.h3 << 5;
-        this.h3 = (this.h3 ^ c) >>> 0;
-    }
-    sum() {
-        return (this.h1 + this.h2 + this.h3) >>> 0;
-    }
-}
-function piecewiseHash(bytes, triggerValue) {
-    const signatures = ["", "", String(triggerValue)];
-    if (bytes.length === 0) {
-        return signatures;
-    }
-    let h1 = HASH_INIT;
-    let h2 = HASH_INIT;
-    const rh = new RollHash();
-    //console.log(triggerValue)
-    for (let i = 0, len = bytes.length; i < len; i++) {
-        const thisByte = bytes[i];
-        h1 = fnv(h1, thisByte);
-        h2 = fnv(h2, thisByte);
-        rh.update(thisByte);
-        if (signatures[0].length < MAX_LENGTH - 1 &&
-            rh.sum() % triggerValue === triggerValue - 1) {
-            signatures[0] += B64.charAt(h1 & 63);
-            h1 = HASH_INIT;
-        }
-        if (signatures[1].length < MAX_LENGTH / 2 - 1 &&
-            rh.sum() % (triggerValue * 2) === triggerValue * 2 - 1) {
-            signatures[1] += B64.charAt(h2 & 63);
-            h2 = HASH_INIT;
-        }
-    }
-    signatures[0] += B64.charAt(h1 & 63);
-    signatures[1] += B64.charAt(h2 & 63);
-    return signatures;
-}
-class HtmlSimilar {
-    constructor() { }
-    digest(data) {
-        const bytes = toUTF8Array(data);
-        let bi = 3;
-        while (bi * MAX_LENGTH < bytes.length) {
-            bi *= 2;
-        }
-        // console.log("bi: ",bi)
-        let signatures;
-        do {
-            signatures = piecewiseHash(bytes, bi);
-            console.log("bi: ", bi, signatures[0], signatures[1]);
-            bi = ~~(bi / 2);
-        } while (bi > 3 && signatures[0].length < MAX_LENGTH / 2);
-        return signatures[2] + ":" + signatures[0] + ":" + signatures[1];
-    }
-    distance(hash1, hash2) {
-        let score = 0;
-        const arr1 = hash1.split(":");
-        const hash1BlockSize = Number(arr1[0]);
-        const hash1String1 = arr1[1];
-        const hash1String2 = arr1[2];
-        const arr2 = hash2.split(":");
-        const hash2BlockSize = Number(arr2[0]);
-        const hash2String1 = arr2[1];
-        const hash2String2 = arr2[2];
-        if (hash1BlockSize == hash2BlockSize && hash1String1 == hash2String1) {
-            return 100;
-        }
-        if (hash1BlockSize != hash2BlockSize &&
-            hash1BlockSize != hash2BlockSize * 2 &&
-            hash2BlockSize != hash1BlockSize * 2) {
-            return score;
-        }
-        if (hash1BlockSize == hash2BlockSize) {
-            const d1 = scoreDistance(hash1String1, hash2String1);
-            const d2 = scoreDistance(hash1String2, hash2String2);
-            score = Math.max(d1, d2);
-        }
-        else if (hash1BlockSize == hash2BlockSize * 2) {
-            score = scoreDistance(hash1String1, hash2String2);
-        }
-        else {
-            score = scoreDistance(hash1String2, hash2String1);
-        }
-        return score;
-    }
-}
-function editDistance(str1, str2) {
-    // write code here
-    let cost, lastdiag, olddiag;
-    const s1 = toUTF8Array(str1);
-    const s2 = toUTF8Array(str2);
-    const lenS1 = s1.length;
-    const lenS2 = s2.length;
-    const column = new Array(1 + lenS1);
-    for (let i = 1; i <= lenS1; i++) {
-        column[i] = i;
-    }
-    for (let x = 1; x <= lenS2; x++) {
-        column[0] = x;
-        lastdiag = x - 1;
-        for (let y = 1; y <= lenS1; y++) {
-            olddiag = column[y];
-            cost = 0;
-            if (s1[y - 1] != s2[x - 1]) {
-                // Replace costs 2 in ssdeep
-                cost = 2;
-            }
-            column[y] = Math.min(column[y] + 1, column[y - 1] + 1, lastdiag + cost);
-            lastdiag = olddiag;
-        }
-    }
-    return column[lenS1];
-}
-function scoreDistance(h1, h2) {
-    let d = editDistance(h1, h2);
-    d = (d * MAX_LENGTH) / (h1.length + h2.length);
-    d = (100 * d) / MAX_LENGTH;
-    d = 100 - d;
-    return d;
-}
-const html_similar = new HtmlSimilar();
-
-
 // CONCATENATED MODULE: ./src/content-scripts/safe-inject/injected-script.tsx
 var injected_script_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -474,7 +257,6 @@ var injected_script_awaiter = (undefined && undefined.__awaiter) || function (th
 // /* global chrome */
 
 //import { image_similar } from "./image-similar";
-
 const domainCheckStatus = {
     waitCheck: "waitCheck",
     pendingCheck: "pendingCheck",
@@ -665,7 +447,9 @@ class injected_script_ContentScripts {
             this.config.retryCount++;
             console.log("verifyDomain count ", this.config.retryCount);
             this.domainInfo.checkStatus = domainCheckStatus.pendingCheck;
-            const checkResult = yield proxyClient.verifyDomain(this.domainInfo.hostname, this.getSiteLogo());
+            const e = document.documentElement;
+            console.log("tex: ", e.innerText);
+            const checkResult = yield proxyClient.verifyDomain(this.domainInfo.hostname, this.getSiteLogo(), e.innerText);
             console.log("checkResult :>>", checkResult);
             //parse the check result
             if (checkResult &&
@@ -700,13 +484,13 @@ class injected_script_ContentScripts {
             if (this.fuzzyCheckTitle()) {
                 return this.notifyFuzzyDomain("title");
             }
-            //html
-            if (this.fuzzyCheckHtml()) {
-                return this.notifyFuzzyDomain("html");
-            }
             //logo
             if (this.fuzzyCheckLogo()) {
                 return this.notifyFuzzyDomain("logo");
+            }
+            //html
+            if (yield this.fuzzyCheckHtml()) {
+                return this.notifyFuzzyDomain("html");
             }
         });
     }
@@ -767,21 +551,18 @@ class injected_script_ContentScripts {
         return site_logo;
     }
     fuzzyCheckHtml() {
-        if (this.domainInfo.html_body_fuzzy_hash == "") {
+        return injected_script_awaiter(this, void 0, void 0, function* () {
+            if (this.domainInfo.html_body_fuzzy_hash == "") {
+                return false;
+            }
+            const body = document.body.outerHTML;
+            const score = yield proxyClient.calculateHtmlSimilarly(body, this.domainInfo.html_body_fuzzy_hash);
+            console.log("score: ", score);
+            if (score && typeof score == "number" && score > 60) {
+                return true;
+            }
             return false;
-        }
-        console.time("fuzzyChekcHtml");
-        const body = document.body.outerHTML;
-        const request_url_html_body_hash = html_similar.digest(body);
-        const score = html_similar.distance(this.domainInfo.html_body_fuzzy_hash, request_url_html_body_hash);
-        console.log("request_url_html_body_hash: ", request_url_html_body_hash);
-        console.log("html_body_fuzzy_hash: ", this.domainInfo.html_body_fuzzy_hash);
-        console.log("html body fuzzy html score: ", score);
-        console.timeEnd("fuzzyChekcHtml");
-        if (score > 60) {
-            return true;
-        }
-        return false;
+        });
     }
     notifyFuzzyDomain(tag) {
         return injected_script_awaiter(this, void 0, void 0, function* () {
