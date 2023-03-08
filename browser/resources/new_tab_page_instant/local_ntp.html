@@ -93,11 +93,13 @@
     .mises-web3-container{
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      padding-bottom: 15px;
     }
 
     .mises-extensions-container{
       display: flex;
       overflow-x: auto;
+      padding-bottom: 15px;
     }
     .mises-extensions-container .mises-web3-item{
       flex: 0 0 25%;
@@ -134,7 +136,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       background: linear-gradient(to bottom, white, transparent);
-      padding-top: 15px;
+      padding: 15px 0;
     }
     .mises-site-item img{
       width: 50px;
@@ -153,7 +155,6 @@
       margin:15px;
       background: #FFFFFF;
       border-radius: 15px;
-      padding: 0 0 10px;
     }
     .border,.border-bottom{
       position: relative;
@@ -328,48 +329,79 @@
         background: #2b2b2b;
       }
     }
+    .down{
+      width: 15px;
+      margin-right: 10px;
+      transition: all 0.3s;
+      transform: rotate(180deg);
+    }
+    .title-box{
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .down-colse{
+      transform: rotate(0deg);
+    }
   </style>
 </head>
 <!-- Remember to update the test HTML files in chrome/test/data/local_ntp/
    whenever making changes to this file.-->
 <body>
   <div class="web3-site" id="mises-content">
-    <div class="mises-site-container" id="mises-sites">
-      <a class="mises-site-item" href="https://portal.mises.site/">
-        <img src="./images/Staking.png" alt="Staking" class="light-element"/>
-        <img src="./images/Staking-dark.png" alt="Staking" class="dark-element"/>
-        <p>Staking</p>
-      </a>
-      <a class="mises-site-item" href="https://home.mises.site/">
-        <img src="./images/Discover.png" alt="Discover" class="light-element"/>
-        <img src="./images/Discover-dark.png" alt="Discover" class="dark-element"/>
-        <p>Discover</p>
-      </a>
-      <div style="visibility:hidden" id="airdrop-box">
-        <a class="mises-site-item" id="airdrop" href="https://home.mises.site/airdrop">
-          <img src="./images/Airdrop.png" alt="Airdrop" class="light-element"/>
-          <img src="./images/Airdrop-dark.png" alt="Airdrop" class="dark-element"/>
-          <p>Airdrop</p>
+    <div class="box" id="mises-sites">
+      <div class="web3-site-title-box border-bottom">
+        <div class="title-box" data-type="mises-site-box">
+          <img src="./images/down_black@2x.png" alt="downbutton" class="light-element down"/>
+          <img src="./images/down@2x.png" alt="downbutton" class="dark-element down"/>
+          <span class="web3-site-title">Mises Features</span>
+        </div>
+      </div>
+      <div class="mises-site-container" id="mises-site-box">
+        <a class="mises-site-item" href="https://portal.mises.site/">
+          <img src="./images/Staking.png" alt="Staking" class="light-element"/>
+          <img src="./images/Staking-dark.png" alt="Staking" class="dark-element"/>
+          <p>Staking</p>
         </a>
-        <a class="mises-site-item" style="display:none" id="invite" href="https://home.mises.site/myInvitation">
-          <img src="./images/Invite.png" alt="Invite" class="light-element"/>
-          <img src="./images/Invite-dark.png" alt="Invite" class="dark-element"/>
-          <p>Invite</p>
+        <a class="mises-site-item" href="https://home.mises.site/">
+          <img src="./images/Discover.png" alt="Discover" class="light-element"/>
+          <img src="./images/Discover-dark.png" alt="Discover" class="dark-element"/>
+          <p>Discover</p>
         </a>
+        <div style="visibility:hidden" id="airdrop-box">
+          <a class="mises-site-item" id="airdrop" href="https://home.mises.site/airdrop">
+            <img src="./images/Airdrop.png" alt="Airdrop" class="light-element"/>
+            <img src="./images/Airdrop-dark.png" alt="Airdrop" class="dark-element"/>
+            <p>Airdrop</p>
+          </a>
+          <a class="mises-site-item" style="display:none" id="invite" href="https://home.mises.site/myInvitation">
+            <img src="./images/Invite.png" alt="Invite" class="light-element"/>
+            <img src="./images/Invite-dark.png" alt="Invite" class="dark-element"/>
+            <p>Invite</p>
+          </a>
+      </div>
       </div>
     </div>
     <div class="box">
-      <p class="web3-site-title-box border-bottom">
-        <span class="web3-site-title">Web3 Sites</span>
+      <div class="web3-site-title-box border-bottom">
+        <div class="title-box"  data-type="mises-web3">
+          <img src="./images/down_black@2x.png" alt="downbutton" class="light-element down"/>
+          <img src="./images/down@2x.png" alt="downbutton" class="dark-element down"/>
+          <span class="web3-site-title">Web3 Sites</span>
+        </div>
         <a class="view-all" href="https://web3.mises.site">View all <img src="./images/more@2x.png" alt="" ></a>
-      </p>
+      </div>
       <div id="mises-web3" class="mises-web3-container"></div>
     </div>
     <div class="box">
-      <p class="web3-site-title-box border-bottom">
-        <span class="web3-site-title">Extensions</span>
+      <div class="web3-site-title-box border-bottom">
+        <div  class="title-box" data-type="mises-extensions">
+          <img src="./images/down_black@2x.png" alt="downbutton" class="light-element down"/>
+          <img src="./images/down@2x.png" alt="downbutton" class="dark-element down"/>
+          <span class="web3-site-title">Extensions</span>
+        </div>
         <a class="view-all" href="https://web3.mises.site/extensions">More <img src="./images/more@2x.png" alt="" ></a>
-      </p>
+      </div>
       <div id="mises-extensions" class="mises-extensions-container">
       </div>
     </div>
@@ -398,6 +430,32 @@
   }
 
   window.onload = ()=>{
+    const titleWrap = document.querySelectorAll(".title-box");
+    const localHidden = ["mises-site-box", "mises-web3", "mises-extensions"];
+
+    localHidden.forEach((val,index)=>{
+      const history = localStorage.getItem(val);
+      const box = document.getElementById(val);
+      box.style.display = history ? "none" : "grid";
+      if(history){
+        titleWrap[index].querySelectorAll(".down").forEach(element=>{
+          element.classList.add("down-colse")
+        })
+      }
+    })
+
+    titleWrap.forEach((element,index)=>{
+      element.addEventListener('click', (e)=>{
+        const id = element.dataset.type;
+        const box = document.getElementById(id);
+        const history = localStorage.getItem(id);
+        !history ? localStorage.setItem(id,true) : localStorage.removeItem(id);
+        box.style.display = !history ? "none" : "grid";
+        titleWrap[index].querySelectorAll(".down").forEach(element=>{
+          !history ? element.classList.add("down-colse") : element.classList.remove("down-colse")
+        })
+      })
+    })
     const container = document.getElementById('mises-web3');
     const misesWeb3LayoutCache = localStorage.getItem('misesWeb3Layout');
     if(misesWeb3LayoutCache && container){
@@ -1008,7 +1066,7 @@ if (window.chrome.embeddedSearch.newTabPage.isIncognito || typeof localStorage.h
 }
 </script>
 <br />&nbsp;<br />
-<script src="./local-ntp.js" />
+<script src="./local_ntp.js" />
 <script>
 function cleanUpOldTilesIdeas() {
   var values = Object.values(localStorage),
