@@ -3,6 +3,9 @@
 namespace content {
 
 #if BUILDFLAG(IS_ANDROID)
+bool ContentBrowserClient::SupportsAvoidUnnecessaryBeforeUnloadCheckSync_Unused() {
+  return false;
+}
 SerialDelegate* ContentBrowserClient::GetSerialDelegate() {
   return nullptr;
 }

@@ -1,7 +1,3 @@
-// Copyright 2015 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 #ifndef MISES_BROWSER_MEDIA_ROUTER_MEDIA_ROUTER_FEATURE_H_
 #define MISES_BROWSER_MEDIA_ROUTER_MEDIA_ROUTER_FEATURE_H_
 

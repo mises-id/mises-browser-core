@@ -15,8 +15,8 @@
 #if BUILDFLAG(IS_ANDROID)
 #define GetDialogMessageText\
   GetMessageTextFragment() const;\
-  IconId GetIconForChip();\
-  IconId GetBlockedIconForChip();\
+  const gfx::VectorIcon&  GetIconForChip();\
+  const gfx::VectorIcon& GetBlockedIconForChip();\
   absl::optional<std::u16string> GetRequestChipText() const;\
   absl::optional<std::u16string> GetQuietChipText() const;\
   virtual std::u16string GetDialogMessageText

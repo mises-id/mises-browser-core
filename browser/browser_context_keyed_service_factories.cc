@@ -35,7 +35,7 @@ void EnsureBrowserContextKeyedServiceFactoriesBuilt() {
 
 #else
   ChromeBrowserMainExtraPartsProfiles::
-    EnsureBrowserContextKeyedServiceFactoriesBuilt(false);
+    EnsureBrowserContextKeyedServiceFactoriesBuiltAndroid();
 
 #endif
 }

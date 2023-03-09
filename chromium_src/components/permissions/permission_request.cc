@@ -14,6 +14,7 @@
 
 #if BUILDFLAG(IS_ANDROID)
 #include "media/base/android/media_drm_bridge.h"
+#include "ui/gfx/paint_vector_icon.h"
 #endif
 
 namespace permissions {
@@ -106,17 +107,23 @@ std::u16string PermissionRequest::GetDialogMessageText() const {
 #endif
 
 #if true || !BUILDFLAG(IS_ANDROID)
+#if BUILDFLAG(IS_ANDROID)
+const gfx::VectorIcon& PermissionRequest::GetIconForChip() {
+  return gfx::kNoneIcon;
+}
+
+const gfx::VectorIcon& PermissionRequest::GetBlockedIconForChip() {
+  return gfx::kNoneIcon;
+}
+#else 
 IconId PermissionRequest::GetIconForChip() {
   return permissions::GetIconId(request_type_);
 }
 
 IconId PermissionRequest::GetBlockedIconForChip() {
-#if BUILDFLAG(IS_ANDROID)
-  return GetIconForChip();
-#else
   return permissions::GetBlockedIconId(request_type_);
-#endif
 }
+#endif
 
 absl::optional<std::u16string> PermissionRequest::GetRequestChipText() const {
   int message_id;

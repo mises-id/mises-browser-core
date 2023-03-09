@@ -1,31 +1,27 @@
-// Copyright 2021 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-#ifndef COMPONENTS_PERMISSIONS_CONSTANTS_H_
-#define COMPONENTS_PERMISSIONS_CONSTANTS_H_
+#ifndef MISES_COMPONENTS_PERMISSIONS_CONSTANTS_H_
+#define MISES_COMPONENTS_PERMISSIONS_CONSTANTS_H_
 
 #include "base/component_export.h"
 #include "build/build_config.h"
 
-namespace permissions {
 
-// The URL for the Bluetooth Overview help center article in the Web Bluetooth
-// Chooser.
-COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const char kChooserBluetoothOverviewURL[];
+#if BUILDFLAG(IS_ANDROID)
 
-#if true || !BUILDFLAG(IS_ANDROID)
-COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const char kPermissionsPostPromptSurveyPromptDispositionKey[];
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
 
-COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const char kPermissionsPostPromptSurveyHadGestureKey[];
 
-COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const char kPermissionsPostPromptSurveyPromptDispositionReasonKey[];
+#include "src/components/permissions/constants.h"
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
+
+#else
+
+#include "src/components/permissions/constants.h"
+
+
 #endif
 
-}  // namespace permissions
+
 
 #endif  // COMPONENTS_PERMISSIONS_CONSTANTS_H_
