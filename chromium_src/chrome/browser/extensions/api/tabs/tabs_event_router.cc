@@ -137,18 +137,10 @@ bool TabsEventRouter::TabEntry::SetMuted(bool new_val) {
   was_muted_ = new_val;
   return true;
 }
-void TabsEventRouter::TabEntry::DidStopLoading (){
-#if BUILDFLAG(IS_ANDROID)
-  LOG(INFO) << "TabsEventRouter:::TabEntry::DidStopLoading " << web_contents();
-  if (web_contents()) 
-    router_->TabChangedAt(web_contents(), -1, TabChangeType::kLoadingOnly);
-#endif
-}
 
 void TabsEventRouter::TabEntry::NavigationEntryCommitted(
     const content::LoadCommittedDetails& load_details) {
   // Send 'status' of tab change. Expecting 'loading' is fired.
-  LOG(INFO) << "TabsEventRouter:::TabEntry::NavigationEntryCommitted " << web_contents();
   complete_waiting_on_load_ = true;
   std::set<std::string> changed_property_names;
   changed_property_names.insert(tabs_constants::kStatusKey);
@@ -168,7 +160,6 @@ void TabsEventRouter::TabEntry::TitleWasSet(content::NavigationEntry* entry) {
 }
 
 void TabsEventRouter::TabEntry::WebContentsDestroyed() {
-  LOG(INFO) << "TabsEventRouter:::TabEntry::WebContentsDestroyed " << web_contents();
   // This is necessary because it's possible for tabs to be created, detached
   // and then destroyed without ever having been re-attached and closed. This
   // happens in the case of a devtools WebContents that is opened in window,
@@ -217,7 +208,6 @@ void TabsEventRouter::OnTabStripModelChanged(
     TabStripModel* tab_strip_model,
     const TabStripModelChange& change,
     const TabStripSelectionChange& selection) {
-  LOG(INFO) << "TabsEventRouter::OnTabStripModelChanged " << tab_strip_model;
   switch (change.type()) {
     case TabStripModelChange::kInserted: {
       for (const auto& contents : change.GetInsert()->contents) {
@@ -603,7 +593,7 @@ void TabsEventRouter::DispatchTabUpdatedEvent(
     const std::set<std::string> changed_property_names) {
   DCHECK(!changed_property_names.empty());
   DCHECK(contents);
-  LOG(INFO) << "TabsEventRouter::DispatchTabUpdatedEvent " << contents;
+
   Profile* profile = Profile::FromBrowserContext(contents->GetBrowserContext());
 
   auto event = std::make_unique<Event>(
@@ -626,7 +616,6 @@ void TabsEventRouter::RegisterForTabNotifications(WebContents* contents) {
   ZoomController::FromWebContents(contents)->AddObserver(this);
 #endif
   int tab_id = ExtensionTabUtil::GetTabId(contents);
-  LOG(INFO) << "TabsEventRouter::RegisterForTabNotifications tab_id=" << tab_id;
   DCHECK(tab_entries_.find(tab_id) == tab_entries_.end());
   tab_entries_[tab_id] = std::make_unique<TabEntry>(this, contents);
 }
@@ -650,6 +639,14 @@ TabsEventRouter::TabEntry* TabsEventRouter::GetTabEntry(WebContents* contents) {
 }
 
 
+
+void TabsEventRouter::TabEntry::DidStopLoading (){
+#if BUILDFLAG(IS_ANDROID)
+  LOG(INFO) << "TabsEventRouter:::TabEntry::DidStopLoading " << web_contents();
+  if (web_contents()) 
+    router_->TabChangedAt(web_contents(), -1, TabChangeType::kLoadingOnly);
+#endif
+}
 
 #if BUILDFLAG(IS_ANDROID)
 void TabsEventRouter::OnTabModelAdded() {

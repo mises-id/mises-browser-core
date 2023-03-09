@@ -142,7 +142,6 @@ void ZipFileInstaller::ManifestUnzipped(const base::FilePath& unzip_dir,
 void ZipFileInstaller::ManifestRead(
     const base::FilePath& unzip_dir,
     absl::optional<std::string> manifest_content) {
-  LOG(INFO) << "[EXTENSIONS] ZipFileInstaller::ManifestRead - A";
   if (!manifest_content) {
     ReportFailure(std::string(kExtensionHandlerFileUnzipError));
     return;

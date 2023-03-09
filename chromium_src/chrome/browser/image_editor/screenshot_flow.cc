@@ -75,7 +75,6 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
   screen_capture_layer_->SetName("ScreenshotRegionSelectionLayer");
   screen_capture_layer_->SetFillsBoundsOpaquely(false);
   screen_capture_layer_->set_delegate(this);
-
 #if BUILDFLAG(IS_MAC)
   gfx::Rect bounds = web_contents_->GetViewBounds();
   const gfx::NativeView web_contents_view =
@@ -90,15 +89,14 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
       this,
       base::BindOnce(&ScreenshotFlow::CancelCapture, base::Unretained(this)),
       web_contents_view, web_contents_->GetTopLevelNativeWindow());
-  content_layer->Add(screen_capture_layer_.get());
-  content_layer->StackAtTop(screen_capture_layer_.get());
-  screen_capture_layer_->SetBounds(bounds);
 #elif defined(USE_AURA)
   const gfx::NativeWindow& native_window = web_contents_->GetNativeView();
   ui::Layer* content_layer = native_window->layer();
   const gfx::Rect bounds = native_window->bounds();
   // Capture mouse down and drag events on our window.
   event_capture_.Observe(native_window);
+#endif
+#if !BUILDFLAG(IS_ANDROID)
   content_layer->Add(screen_capture_layer_.get());
   content_layer->StackAtTop(screen_capture_layer_.get());
   screen_capture_layer_->SetBounds(bounds);

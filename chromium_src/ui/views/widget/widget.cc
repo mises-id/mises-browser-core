@@ -374,6 +374,7 @@ void Widget::Init(InitParams params) {
 
   if (params.delegate)
     params.delegate->WidgetInitializing(this);
+
   ownership_ = params.ownership;
 #if BUILDFLAG(IS_CHROMEOS_ASH)
   background_elevation_ = params.background_elevation;
@@ -434,8 +435,10 @@ void Widget::Init(InitParams params) {
 #endif
   native_widget_initialized_ = true;
   native_widget_->OnWidgetInitDone();
+
   if (delegate)
     delegate->WidgetInitialized();
+
   internal::AnyWidgetObserverSingleton::GetInstance()->OnAnyWidgetInitialized(
       this);
 }

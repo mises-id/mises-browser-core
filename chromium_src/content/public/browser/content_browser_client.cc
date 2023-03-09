@@ -3,6 +3,12 @@
 namespace content {
 
 #if BUILDFLAG(IS_ANDROID)
+
+void ContentBrowserClient::RegisterAssociatedInterfaceBindersForRenderFrameHost_Chromium(
+      RenderFrameHost& render_frame_host,
+      blink::AssociatedInterfaceRegistry& associated_registry) {
+
+}
 bool ContentBrowserClient::SupportsAvoidUnnecessaryBeforeUnloadCheckSync_Unused() {
   return false;
 }
