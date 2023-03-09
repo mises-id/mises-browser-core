@@ -8,7 +8,7 @@
 #define RegisterAssociatedInterfaceBindersForRenderFrameHost\
     RegisterAssociatedInterfaceBindersForRenderFrameHost_Chromium(\
       content::RenderFrameHost& render_frame_host,\
-      blink::AssociatedInterfaceRegistry& associated_registry) override;\
+      blink::AssociatedInterfaceRegistry& associated_registry);\
     virtual void RegisterAssociatedInterfaceBindersForRenderFrameHost
 #endif
 #include "src/chrome/browser/chrome_content_browser_client.h"
