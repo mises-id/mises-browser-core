@@ -93,13 +93,13 @@
     .mises-web3-container{
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
-      padding-bottom: 15px;
+      padding-bottom: 10px;
     }
 
     .mises-extensions-container{
       display: flex;
       overflow-x: auto;
-      padding-bottom: 15px;
+      padding-bottom: 10px;
     }
     .mises-extensions-container .mises-web3-item{
       flex: 0 0 25%;
@@ -109,8 +109,7 @@
       display: block;
       text-align: center;
       text-decoration: none;
-      margin-top: 15px;
-      margin-bottom: 10px;
+      margin: 10px 0;
     }
     .mises-web3-item img{
       width: 33px;
@@ -136,7 +135,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       background: linear-gradient(to bottom, white, transparent);
-      padding: 15px 0;
+      padding: 10px 0;
     }
     .mises-site-item img{
       width: 50px;
@@ -152,7 +151,7 @@
       color: #333333;
     }
     .box{
-      margin:15px;
+      margin:10px 15px;
       background: #FFFFFF;
       border-radius: 15px;
     }
@@ -182,7 +181,7 @@
     }
     .web3-site-title-box{
       margin: 0 calc((25% - 60px) / 2);
-      padding: 18px 0;
+      padding: 15px 0;
       /* border-bottom: 1px solid #F1F2F3; */
       display: flex;
       justify-content: space-between;
@@ -207,8 +206,8 @@
       background: #F1F2F3;
     }
     .mises-web3-img-box,.grid-image-box{
-      width: 59px;
-      height: 59px;
+      width: 50px;
+      height: 50px;
       position: relative;
       /* border: 1px solid #F1F2F3; */
       border-radius: 13px;
@@ -277,6 +276,9 @@
     .dark-element{
       display: none;
     }
+    .mises-web3-img-box::after{
+      border: 1px solid var(--border-color);
+    }
     @media (prefers-color-scheme: dark) {
       :root {
         --background: #16181A;
@@ -301,9 +303,6 @@
 
       .mises-web3-title{
         color: #ccc;
-      }
-      .mises-web3-img-box::after{
-        border: 1px solid var(--border-color);
       }
       .border-bottom::after{
         background-color: var(--border-color);
@@ -330,10 +329,11 @@
       }
     }
     .down{
-      width: 15px;
+      width: 8px;
+      height: 15px;
       margin-right: 10px;
       transition: all 0.3s;
-      transform: rotate(180deg);
+      transform: rotate(90deg);
     }
     .title-box{
       display:flex;
@@ -341,7 +341,7 @@
       justify-content: center;
     }
     .down-colse{
-      transform: rotate(0deg);
+      transform: rotate(270deg);
     }
   </style>
 </head>
@@ -352,8 +352,8 @@
     <div class="box" id="mises-sites">
       <div class="web3-site-title-box border-bottom">
         <div class="title-box" data-type="mises-site-box">
-          <img src="./images/down_black@2x.png" alt="downbutton" class="light-element down"/>
-          <img src="./images/down@2x.png" alt="downbutton" class="dark-element down"/>
+          <img src="./images/down_black.png" alt="downbutton" class="light-element down"/>
+          <img src="./images/down.png" alt="downbutton" class="dark-element down"/>
           <span class="web3-site-title">Mises Features</span>
         </div>
       </div>
@@ -385,8 +385,8 @@
     <div class="box">
       <div class="web3-site-title-box border-bottom">
         <div class="title-box"  data-type="mises-web3">
-          <img src="./images/down_black@2x.png" alt="downbutton" class="light-element down"/>
-          <img src="./images/down@2x.png" alt="downbutton" class="dark-element down"/>
+          <img src="./images/down_black.png" alt="downbutton" class="light-element down"/>
+          <img src="./images/down.png" alt="downbutton" class="dark-element down"/>
           <span class="web3-site-title">Web3 Sites</span>
         </div>
         <a class="view-all" href="https://web3.mises.site">View all <img src="./images/more@2x.png" alt="" ></a>
@@ -396,8 +396,8 @@
     <div class="box">
       <div class="web3-site-title-box border-bottom">
         <div  class="title-box" data-type="mises-extensions">
-          <img src="./images/down_black@2x.png" alt="downbutton" class="light-element down"/>
-          <img src="./images/down@2x.png" alt="downbutton" class="dark-element down"/>
+          <img src="./images/down_black.png" alt="downbutton" class="light-element down"/>
+          <img src="./images/down.png" alt="downbutton" class="dark-element down"/>
           <span class="web3-site-title">Extensions</span>
         </div>
         <a class="view-all" href="https://web3.mises.site/extensions">More <img src="./images/more@2x.png" alt="" ></a>
@@ -436,7 +436,7 @@
     localHidden.forEach((val,index)=>{
       const history = localStorage.getItem(val);
       const box = document.getElementById(val);
-      box.style.display = history ? "none" : "grid";
+      box.style.display = history ? "none" : (val!=="mises-extensions" ? "grid" : "flex");
       if(history){
         titleWrap[index].querySelectorAll(".down").forEach(element=>{
           element.classList.add("down-colse")
@@ -450,7 +450,7 @@
         const box = document.getElementById(id);
         const history = localStorage.getItem(id);
         !history ? localStorage.setItem(id,true) : localStorage.removeItem(id);
-        box.style.display = !history ? "none" : "grid";
+        box.style.display = !history ? "none" : (id!=="mises-extensions" ? "grid" : "flex");
         titleWrap[index].querySelectorAll(".down").forEach(element=>{
           !history ? element.classList.add("down-colse") : element.classList.remove("down-colse")
         })
