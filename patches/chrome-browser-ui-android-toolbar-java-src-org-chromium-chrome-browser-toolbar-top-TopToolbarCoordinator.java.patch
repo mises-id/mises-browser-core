@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
-index 98e9409a79745f09b0995d7731950a54cd8268f6..44fdbfce75d91ddea2d56f3899d766025d23e00c 100644
+index 98e9409a79745f09b0995d7731950a54cd8268f6..39ae314c73a79ee62a68eab1d94324d714038423 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
 @@ -70,8 +70,8 @@ public class TopToolbarCoordinator implements Toolbar {
@@ -31,17 +31,15 @@ index 98e9409a79745f09b0995d7731950a54cd8268f6..44fdbfce75d91ddea2d56f3899d76602
          mToolbarLayout.setBookmarkClickHandler(bookmarkClickHandler);
          mToolbarLayout.setCustomTabCloseClickHandler(customTabsBackClickHandler);
          mToolbarLayout.setLayoutUpdater(layoutUpdater);
-@@ -268,8 +268,8 @@ public class TopToolbarCoordinator implements Toolbar {
+@@ -268,7 +268,7 @@ public class TopToolbarCoordinator implements Toolbar {
              mOverlayCoordinator = new TopToolbarOverlayCoordinator(mToolbarLayout.getContext(),
                      layoutManager, mControlContainer::getProgressBarDrawingInfo, tabSupplier,
                      browserControlsStateProvider, mResourceManagerSupplier, topUiThemeColorProvider,
 -                    LayoutType.BROWSING | LayoutType.SIMPLE_ANIMATION | LayoutType.TAB_SWITCHER,
--                    false);
 +		    LayoutType.BROWSING | LayoutType.SIMPLE_ANIMATION | LayoutType.TAB_SWITCHER,
-+                    false, mIsGridTabSwitcherEnabled);
+                     false);
              layoutManager.addSceneOverlay(mOverlayCoordinator);
              mToolbarLayout.setOverlayCoordinator(mOverlayCoordinator);
-         }
 @@ -408,7 +408,12 @@ public class TopToolbarCoordinator implements Toolbar {
          mToolbarLayout.updateForwardButtonVisibility(canGoForward);
      }

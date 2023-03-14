@@ -1,0 +1,12 @@
+diff --git a/base/BUILD.gn b/base/BUILD.gn
+index 9fc667eaa2bcfe32058a2f8eabaf2f137e410284..695583e7e2cd483220b2ae3caecf00c0993e360b 100644
+--- a/base/BUILD.gn
++++ b/base/BUILD.gn
+@@ -4237,6 +4237,7 @@ if (is_android) {
+       "android/java/src/org/chromium/base/task/TaskTraits.java",
+       "android/java/src/org/chromium/base/task/TaskTraitsExtensionDescriptor.java",
+     ]
++    sources += mises_java_base_sources
+ 
+     annotation_processor_deps = [ "//base/android/jni_generator:jni_processor" ]
+ 
