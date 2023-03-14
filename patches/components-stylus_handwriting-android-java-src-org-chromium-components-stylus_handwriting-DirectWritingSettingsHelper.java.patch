@@ -1,5 +1,5 @@
 diff --git a/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java b/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
-index 0aa6c61420ed55b9a05979394b34da958a36e3b9..c766ea32b6400b53b972067d282ad6802d182375 100644
+index 0aa6c61420ed55b9a05979394b34da958a36e3b9..ba4c9ee1ba96a721d617e565332f7a6a16351e8e 100644
 --- a/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
 +++ b/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
 @@ -1,16 +1,21 @@
@@ -45,7 +45,7 @@ index 0aa6c61420ed55b9a05979394b34da958a36e3b9..c766ea32b6400b53b972067d282ad680
          return isHoneyboardDefault(context) && isFeatureEnabled(context);
      }
  
-@@ -35,19 +46,52 @@ class DirectWritingSettingsHelper {
+@@ -35,19 +46,55 @@ class DirectWritingSettingsHelper {
       */
      private static boolean isFeatureEnabled(Context context) {
          if (context != null) {
@@ -89,9 +89,12 @@ index 0aa6c61420ed55b9a05979394b34da958a36e3b9..c766ea32b6400b53b972067d282ad680
 +                // On some devices, the DirectWritingServiceCallback constructor is not available
 +                // so this throws a NoSuchMethodException.
 +                dwCallbackClass.getConstructor().isAccessible();
++                Class dwCallbackStubClass = Class.forName(
++                        "android.widget.directwriting.IDirectWritingServiceCallback.Stub");
++                dwCallbackStubClass.getConstructor().isAccessible();
 +                sDirectWritingServiceCallbackAvailable = true;
 +                logDWServiceCallbackFailed(false);
-+            } catch (ClassNotFoundException | NoSuchMethodException e) {
++            } catch (ClassNotFoundException | NoSuchMethodException | NoSuchMethodError e) {
 +                logDWServiceCallbackFailed(true);
 +                sDirectWritingServiceCallbackAvailable = false;
 +            }
