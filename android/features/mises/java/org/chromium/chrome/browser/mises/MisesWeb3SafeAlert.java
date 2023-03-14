@@ -88,7 +88,8 @@ public class MisesWeb3SafeAlert extends DialogFragment {
     private FrameLayout view;
 
     private Button btn_block;
-    private Button btn_ignore;
+    private Button btn_continue;
+    private View view_bottom;
     private CheckBox checkbox_ignore;
     private TextView tv_title;
     private TextView tv_domain_title;
@@ -168,8 +169,9 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         tv_domain_title = view.findViewById(R.id.domain_title);
         tv_detail = view.findViewById(R.id.detail);
         layout_blockem = view.findViewById(R.id.layout_blockem);
+        view_bottom = view.findViewById(R.id.view_bottom);
         btn_block = (Button) view.findViewById(R.id.btn_block);
-        btn_ignore = (Button) view.findViewById(R.id.btn_ignore);
+        btn_continue = (Button) view.findViewById(R.id.btn_continue);
         checkbox_ignore = (CheckBox) view.findViewById(R.id.checkbox_ignore);
         mContext = getContext();
 
@@ -198,8 +200,9 @@ public class MisesWeb3SafeAlert extends DialogFragment {
           //have suggested url
           if(suggestedUrl != null && suggestedUrl.length() > 0){
             btn_block.setText("Go to " + suggestedUrl);
-            checkbox_ignore.setVisibility(View.GONE);
-            btn_ignore.setVisibility(View.VISIBLE);
+            //checkbox_ignore.setVisibility(View.GONE);
+            btn_continue.setVisibility(View.VISIBLE);
+            view_bottom.setVisibility(View.GONE);
             //fuzzy tag
             if(mTag != null && mTag.equals("fuzzy")){
               tagInfo = "you just visit looks fake. Attackers sometimes mimic sites by making small, hard-to-see changes to the URL." ;
@@ -221,15 +224,22 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         spannable.setSpan(new StyleSpan(Typeface.BOLD), txtBegin.length()+txtValue.length()+txtEnd.length(), txtBegin.length()+txtValue.length()+txtEnd.length() + txtNotice.length(), 0);
 
         tv_detail.setText( spannable );
-        btn_ignore.setOnClickListener(new View.OnClickListener() {
+        btn_continue.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               boolean ignore = checkbox_ignore.isChecked();
-              MisesController.getInstance().callbackPhishingDetected(callback_id, userActionIgnore);
+              int userAction = userActionNone;
+              if (ignore) {
+                userAction = userActionIgnore;
+              }
+              MisesController.getInstance().callbackPhishingDetected(callback_id, userAction);
               dismiss();
               Bundle params = new Bundle();
-              params.putString("step", "ignore url");
-
+              if (ignore) {
+                params.putString("step", "ignore url");
+            } else {
+                params.putString("step", "block");
+            }
               FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
           }
       });
@@ -237,9 +247,15 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         btn_block.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              boolean ignore = checkbox_ignore.isChecked();
+                int userAction = userActionNone;
+                if (ignore) {
+                  userAction = userActionIgnore;
+                }
+                MisesController.getInstance().callbackPhishingDetected(callback_id, userAction);
+                dismiss();
                 //suggested url
                 if (isSuggestedURL){
-                  dismiss();
                   TabCreator tabCreator = mTabCreatorManager.getTabCreator(false);
                   if (tabCreator != null) {
                       tabCreator.openSinglePage(suggestedUrl);
@@ -248,23 +264,15 @@ public class MisesWeb3SafeAlert extends DialogFragment {
                   params.putString("step", "go to suggested url");
                   FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
                   return;
+                }else{
+                  Bundle params = new Bundle();
+                  if (ignore) {
+                      params.putString("step", "ignore address");
+                  } else {
+                      params.putString("step", "block");
+                  }
+                  FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
                 }
-                //no suggested url
-                boolean ignore = checkbox_ignore.isChecked();
-                int userAction = userActionNone;
-                if (ignore) {
-                  userAction = userActionIgnore;
-                }
-                MisesController.getInstance().callbackPhishingDetected(callback_id, userAction);
-                dismiss();
-                Bundle params = new Bundle();
-                if (ignore) {
-                    params.putString("step", "ignore address");
-                } else {
-                    params.putString("step", "block");
-                }
-
-                FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
             }
         });
 
