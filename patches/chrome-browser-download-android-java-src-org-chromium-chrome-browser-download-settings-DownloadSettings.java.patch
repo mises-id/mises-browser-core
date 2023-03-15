@@ -67,12 +67,12 @@ index f0dcbd00aff6834e2152b18b347a0d1f218e6dd7..4c10c992b6bef1776e600a454b7db42b
 +
 +    @Override
 +    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-+            Log.i("Kiwi", "[DownloadPreferences] Received activity result, RQ: " + requestCode);
++            Log.i("Mises", "[DownloadPreferences] Received activity result, RQ: " + requestCode);
 +            if (requestCode == 4242 && resultCode == Activity.RESULT_OK && data != null) {
 +                 ComponentName componentName = data.getComponent();
 +                 final String packageName = componentName.getPackageName();
 +                 final String activityName = componentName.getClassName();
-+                 Log.i("Kiwi", "[DownloadPreferences] Received activity result, PN: " + packageName + " - AN: " + activityName);
++                 Log.i("Mises", "[DownloadPreferences] Received activity result, PN: " + packageName + " - AN: " + activityName);
 +                 SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
 +                 sharedPreferencesEditor.putString("selected_external_download_manager_package_name", packageName);
 +                 sharedPreferencesEditor.putString("selected_external_download_manager_activity_name", activityName);
@@ -98,7 +98,7 @@ index f0dcbd00aff6834e2152b18b347a0d1f218e6dd7..4c10c992b6bef1776e600a454b7db42b
 +                    List<ResolveInfo> resInfo = getActivity().getPackageManager().queryIntentActivities(shareIntent, 0);
 +                    if (!resInfo.isEmpty()) {
 +                        for (ResolveInfo info : resInfo) {
-+                            if (!"com.kiwibrowser.browser".equalsIgnoreCase(info.activityInfo.packageName)) {
++                            if (!"site.mises.browser".equalsIgnoreCase(info.activityInfo.packageName)) {
 +                                Intent targetedShare = new Intent(android.content.Intent.ACTION_VIEW);
 +                                targetedShare.setPackage(info.activityInfo.packageName.toLowerCase(Locale.ROOT));
 +                                targetedShareIntents.add(targetedShare);

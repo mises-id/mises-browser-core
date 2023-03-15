@@ -34,7 +34,14 @@
 
 #if BUILDFLAG(IS_ANDROID)
 #include "base/android/sys_utils.h"
+#include "chrome/browser/android/tab_android.h"
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#include "content/public/browser/web_contents.h"
+#include "chrome/browser/profiles/profile.h"
+#include "chrome/browser/android/app_menu_bridge.h"
 #endif
+
 using extensions::mojom::ManifestLocation;
 
 namespace extensions {
@@ -137,6 +144,20 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
 
 
     }
+
+#if BUILDFLAG(IS_ANDROID)
+  //refresh extension menu icon
+  AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(nullptr);
+  TabModelList::TabModelVector tab_model_vector = TabModelList::models();
+  for (TabModel* tab_model : tab_model_vector) {
+    TabAndroid* tab = tab_model->GetTabAt(0);
+    if (tab && tab->web_contents()) {
+      AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(tab->web_contents());
+    }
+  }
+#endif
+
+    
 }
 void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* storage) {
   LOG(INFO) << "AsyncRunWithMetamaskStorage";

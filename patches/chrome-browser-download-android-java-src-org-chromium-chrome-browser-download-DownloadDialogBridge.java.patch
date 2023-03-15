@@ -47,7 +47,7 @@ index de2e05ed19b087400d4b10c1f4c07d8c39f6c8aa..a4064b645fb48e62a0b3c17f860a6a37
 +        String activeDownloadManagerActivityName = ContextUtils.getAppSharedPreferences().getString("selected_external_download_manager_activity_name", "");
 +        String activeDownloadManagerPackageName = ContextUtils.getAppSharedPreferences().getString("selected_external_download_manager_package_name", "");
 +
-+        if (useAdmIfPossible && !TextUtils.isEmpty(activeDownloadManagerPackageName) && !TextUtils.isEmpty(activeDownloadManagerActivityName) && activeDownloadManagerPackageName.equals("com.kiwibrowser.browser") != true
++        if (useAdmIfPossible && !TextUtils.isEmpty(activeDownloadManagerPackageName) && !TextUtils.isEmpty(activeDownloadManagerActivityName) && activeDownloadManagerPackageName.equals("site.mises.browser") != true
 +         && !TextUtils.isEmpty(urlToDownload) && (urlToDownload.toLowerCase(Locale.ROOT).startsWith("http:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("https:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("magnet:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("ftp:"))) {
 +            if (urlToDownload.toLowerCase(Locale.ROOT).contains(".googleusercontent.com/crx"))
 +                return false;
@@ -66,11 +66,11 @@ index de2e05ed19b087400d4b10c1f4c07d8c39f6c8aa..a4064b645fb48e62a0b3c17f860a6a37
 +            intent.putExtra("filename", new File(suggestedPath).getName());
 +
 +            try {
-+                Log.i("Kiwi", "[Download] Starting activity intent [" + activeDownloadManagerPackageName + "/" + activeDownloadManagerActivityName + "]");
++                Log.i("Mises", "[Download] Starting activity intent [" + activeDownloadManagerPackageName + "/" + activeDownloadManagerActivityName + "]");
 +                activity.startActivity(intent);
 +                return true;
 +            } catch (ActivityNotFoundException exception) {
-+                Log.i("Kiwi", "[Download] Starting activity intent: ActivityNotFoundException");
++                Log.i("Mises", "[Download] Starting activity intent: ActivityNotFoundException");
 +            }
 +        }
 +        return false;

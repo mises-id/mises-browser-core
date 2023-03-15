@@ -59,6 +59,6 @@ index c2a0c2847a589557ac6884698ec360480b46d85b..8ea9400908af8d2423fec03f6a2ec2f4
 +          nightModeSettings += "isDarkUi=0";
 +
 +        SharedPreferencesManager.getInstance().writeStringUnchecked("night_mode_settings", nightModeSettings);
-+        Log.i("Kiwi", "SetContentCommandLineFlags - Setting new dark mode settings to [" + nightModeSettings + "]");
++        Log.i("Mises", "SetContentCommandLineFlags - Setting new dark mode settings to [" + nightModeSettings + "]");
 +    }
  }

@@ -365,7 +365,7 @@ index 0bc9a000b8bf96867eef779df79c08528bfd4abc..96bf7450cabeb71c463402cb49a2afc0
 +                adblockMenuCheck.setChecked(false);
 +                adblockMenuLabel.setIcon(R.drawable.ic_adblock_off);
 +            }
-+	    Log.i("Kiwi", "Adblock updateAdblockMenuItem " + String.valueOf(adblockSettingForThisSite));
++	    Log.i("Mises", "Adblock updateAdblockMenuItem " + String.valueOf(adblockSettingForThisSite));
 +       }
 +    }
 +

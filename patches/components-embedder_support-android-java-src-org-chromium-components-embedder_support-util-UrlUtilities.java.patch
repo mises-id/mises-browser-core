@@ -1,5 +1,5 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
-index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..06ffcf5c33ea6e3daa3b03640e2495d6320017dc 100644
+index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..de967722aa6400cb7c1cff7b01d9dcf66f54abaa 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 @@ -55,7 +55,7 @@ public class UrlUtilities {
@@ -37,18 +37,3 @@ index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..06ffcf5c33ea6e3daa3b03640e2495d6
          return UrlConstants.NTP_HOST.equals(gurl.getHost());
      }
  
-@@ -308,7 +320,13 @@ public class UrlUtilities {
-         if (LibraryLoader.getInstance().isInitialized()) return isNTPUrl(url);
-         return TextUtils.equals(url, UrlConstants.NTP_URL)
-                 || TextUtils.equals(url, UrlConstants.NTP_NON_NATIVE_URL)
--                || TextUtils.equals(url, UrlConstants.NTP_ABOUT_URL);
-+                || TextUtils.equals(url, UrlConstants.NTP_ABOUT_URL)
-+                || TextUtils.equals(url, "chrome-search://local-ntp/local-ntp.html")
-+                || TextUtils.equals(url, "chrome-search://local-ntp/incognito-ntp.html")
-+                || TextUtils.equals(url, "chrome-search://local-ntp/new-ntp.html")
-+                || TextUtils.equals(url, "mises-search://local-ntp/local-ntp.html")
-+                || TextUtils.equals(url, "mises-search://local-ntp/incognito-ntp.html")
-+                || TextUtils.equals(url, "mises-search://local-ntp/new-ntp.html");
-     }
- 
-     public static String extractPublisherFromPublisherUrl(String publisherUrl) {

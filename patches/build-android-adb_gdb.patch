@@ -1,0 +1,13 @@
+diff --git a/build/android/adb_gdb b/build/android/adb_gdb
+index 0923210bb69efd559ac4e60aedd9b18dcc671767..3ea38bfca24e13c1938c3c7ac70d9282746b7be2 100755
+--- a/build/android/adb_gdb
++++ b/build/android/adb_gdb
+@@ -356,7 +356,7 @@ fi
+ 
+ if [ -z "$NDK_DIR" ]; then
+   ANDROID_NDK_ROOT=$(PYTHONPATH=$CHROMIUM_SRC/build/android python -c \
+-'from pylib.constants import ANDROID_NDK_ROOT; print ANDROID_NDK_ROOT,')
++	  'from pylib.constants import ANDROID_NDK_ROOT; print(ANDROID_NDK_ROOT),')
+ else
+   if [ ! -d "$NDK_DIR" ]; then
+     panic "Invalid directory: $NDK_DIR"
