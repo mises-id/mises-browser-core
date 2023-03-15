@@ -91,13 +91,13 @@
       }
     }
     .mises-web3-container{
-      display: grid;
+      display: none;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       padding-bottom: 10px;
     }
 
     .mises-extensions-container{
-      display: flex;
+      display: none;
       overflow-x: auto;
       padding-bottom: 10px;
     }
@@ -132,7 +132,7 @@
       padding: 20px 15px;
     } */
     .mises-site-container{
-      display: grid;
+      display: none;
       grid-template-columns: 1fr 1fr 1fr;
       background: linear-gradient(to bottom, white, transparent);
       padding: 10px 0;
@@ -332,8 +332,10 @@
       width: 18px;
       height: 18px;
       margin-right: 10px;
-      transition: all 0.3s;
       transform: rotate(0);
+    }
+    .down-inactive{
+      transition: all 0.3s;
     }
     .title-box{
       display:flex;
@@ -443,7 +445,7 @@
         })
       }
     })
-
+    let timer = null;
     titleWrap.forEach((element,index)=>{
       element.addEventListener('click', (e)=>{
         const id = element.dataset.type;
@@ -452,7 +454,16 @@
         !history ? localStorage.setItem(id,true) : localStorage.removeItem(id);
         box.style.display = !history ? "none" : (id!=="mises-extensions" ? "grid" : "flex");
         titleWrap[index].querySelectorAll(".down").forEach(element=>{
-          !history ? element.classList.add("down-colse") : element.classList.remove("down-colse")
+          element.classList.add("down-inactive");
+          !history ? element.classList.add("down-colse") : element.classList.remove("down-colse");
+          if(timer){
+            clearTimeout(timer);
+            timer = null;
+          }
+          timer = setTimeout(()=>{
+            element.classList.remove("down-inactive");
+            timer = null;
+          },350)
         })
       })
     })
