@@ -1,1 +1,11211 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[16],{1014:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.HasMapStore=void 0;const n=r(5);class i{constructor(e){this.creater=e,this.map=new Map,n.makeObservable(this)}get(e){if(!this.map.has(e)){const t=this.creater(e);n.runInAction(()=>{this.map.set(e,t)})}return this.map.get(e)}has(e){return this.map.has(e)}}s([n.observable.shallow],i.prototype,"map",void 0),t.HasMapStore=i},119:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1014),t),n(r(1232),t),n(r(1422),t),n(r(1423),t),n(r(1424),t)},1232:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1420),t),n(r(1421),t)},1234:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1430),t),n(r(1236),t),n(r(1235),t),n(r(1431),t)},1235:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryGovParamDeposit=t.ObservableQueryGovParamVoting=t.ObservableQueryGovParamTally=void 0;r=r(59);class s extends r.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/cosmos/gov/v1beta1/params/tallying")}}t.ObservableQueryGovParamTally=s;class n extends r.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/cosmos/gov/v1beta1/params/voting")}}t.ObservableQueryGovParamVoting=n;class i extends r.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/cosmos/gov/v1beta1/params/deposit")}}t.ObservableQueryGovParamDeposit=i},1236:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryProposal=void 0,r(59));const i=r(1237),o=r(5),a=r(26);class c extends n.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/cosmos/gov/v1beta1/proposals/${s.proposal_id}/tally`),this._raw=s,this.governance=n,o.makeObservable(this)}canFetch(){return this.proposalStatus===i.ProposalStatus.VOTING_PERIOD}get raw(){return this._raw}get proposalStatus(){switch(this.raw.status){case"PROPOSAL_STATUS_DEPOSIT_PERIOD":return i.ProposalStatus.DEPOSIT_PERIOD;case"PROPOSAL_STATUS_VOTING_PERIOD":return i.ProposalStatus.VOTING_PERIOD;case"PROPOSAL_STATUS_PASSED":return i.ProposalStatus.PASSED;case"PROPOSAL_STATUS_REJECTED":return i.ProposalStatus.REJECTED;case"PROPOSAL_STATUS_FAILED":return i.ProposalStatus.FAILED;default:return i.ProposalStatus.UNSPECIFIED}}get id(){return this.raw.proposal_id}get title(){return this.raw.content.title}get description(){return this.raw.content.description}get turnout(){var e,t=this.governance.getQueryPool(),r=t.bondedTokens.toDec();return!t.response||r.equals(new a.Dec(0))?new a.IntPretty(new a.Dec(0)).ready(!1):(e=(t=this.tally).yes.add(t.no).add(t.abstain).add(t.noWithVeto),new a.IntPretty(e.toDec().quoTruncate(r).mulTruncate(a.DecUtils.getPrecisionDec(2))).ready(t.yes.isReady))}get tally(){var e=this.chainGetter.getChain(this.chainId).stakeCurrency;return this.proposalStatus!==i.ProposalStatus.VOTING_PERIOD?{yes:new a.IntPretty(new a.Int(this.raw.final_tally_result.yes)).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),no:new a.IntPretty(new a.Int(this.raw.final_tally_result.no)).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),abstain:new a.IntPretty(new a.Int(this.raw.final_tally_result.abstain)).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),noWithVeto:new a.IntPretty(new a.Int(this.raw.final_tally_result.no_with_veto)).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals)}:this.response?{yes:new a.IntPretty(new a.Int(this.response.data.tally.yes)).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),no:new a.IntPretty(new a.Int(this.response.data.tally.no)).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),abstain:new a.IntPretty(new a.Int(this.response.data.tally.abstain)).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),noWithVeto:new a.IntPretty(new a.Int(this.response.data.tally.no_with_veto)).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals)}:{yes:new a.IntPretty(new a.Int(0)).ready(!1).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),no:new a.IntPretty(new a.Int(0)).ready(!1).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),abstain:new a.IntPretty(new a.Int(0)).ready(!1).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals),noWithVeto:new a.IntPretty(new a.Int(0)).ready(!1).moveDecimalPointLeft(e.coinDecimals).maxDecimals(e.coinDecimals)}}get total(){var e=this.tally,e=e.yes.add(e.no).add(e.abstain).add(e.noWithVeto),t=this.chainGetter.getChain(this.chainId).stakeCurrency;return new a.CoinPretty(t,e)}get tallyRatio(){var e=this.tally,t=e.yes.add(e.no).add(e.abstain).add(e.noWithVeto);return t.toDec().equals(new a.Dec(0))?{yes:new a.IntPretty(new a.Int(0)).ready(!1),no:new a.IntPretty(new a.Int(0)).ready(!1),abstain:new a.IntPretty(new a.Int(0)).ready(!1),noWithVeto:new a.IntPretty(new a.Int(0)).ready(!1)}:{yes:new a.IntPretty(e.yes.toDec().quoTruncate(t.toDec()).mulTruncate(a.DecUtils.getPrecisionDec(2))).ready(e.yes.isReady),no:new a.IntPretty(e.no.toDec().quoTruncate(t.toDec()).mulTruncate(a.DecUtils.getPrecisionDec(2))).ready(e.no.isReady),abstain:new a.IntPretty(e.abstain.toDec().quoTruncate(t.toDec()).mulTruncate(a.DecUtils.getPrecisionDec(2))).ready(e.abstain.isReady),noWithVeto:new a.IntPretty(e.noWithVeto.toDec().quoTruncate(t.toDec()).mulTruncate(a.DecUtils.getPrecisionDec(2))).ready(e.noWithVeto.isReady)}}}s([o.computed],c.prototype,"turnout",null),s([o.computed],c.prototype,"tally",null),s([o.computed],c.prototype,"total",null),s([o.computed],c.prototype,"tallyRatio",null),t.ObservableQueryProposal=c},1237:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ProposalStatus=void 0,(t=t.ProposalStatus||(t.ProposalStatus={}))[t.UNSPECIFIED=0]="UNSPECIFIED",t[t.DEPOSIT_PERIOD=1]="DEPOSIT_PERIOD",t[t.VOTING_PERIOD=2]="VOTING_PERIOD",t[t.PASSED=3]="PASSED",t[t.REJECTED=4]="REJECTED",t[t.FAILED=5]="FAILED"},1238:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1432),t),n(r(1433),t),n(r(1434),t),n(r(1435),t),n(r(1441),t),n(r(1442),t)},1239:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1443),t),n(r(1444),t),n(r(1445),t)},1240:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryAccount=t.ObservableQueryAccountInner=void 0,r(59));const i=r(5),o=r(16);class a extends n.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,"/cosmos/auth/v1beta1/accounts/"+s),this.bech32Address=s,i.makeObservable(this)}canFetch(){return 0<this.bech32Address.length}get sequence(){if(!this.response)return"0";try{return o.BaseAccount.fromProtoJSON(this.response.data,this.bech32Address).getSequence().toString()}catch(e){return"0"}}get isVestingAccount(){var e;return!!this.response&&!(null==(e=this.response.data)||!e.account.base_vesting_account)}}s([i.computed],a.prototype,"sequence",null),s([i.computed],a.prototype,"isVestingAccount",null),t.ObservableQueryAccountInner=a;class c extends n.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>new a(this.kvStore,this.chainId,this.chainGetter,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r}getQueryBech32Address(e){return this.get(e)}}t.ObservableQueryAccount=c},1241:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1446),t),n(r(1447),t),n(r(1448),t)},1242:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1449),t),n(r(1450),t)},1243:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryCw20BalanceRegistry=t.ObservableQueryCw20BalanceInner=t.ObservableQueryCw20Balance=void 0;const i=r(5),n=r(27),o=r(26);var a=r(509);class c extends r(1244).ObservableCosmwasmContractChainQuery{constructor(e,t,r,s,n){super(e,t,r,s,{balance:{address:n}}),this.contractAddress=s,this.bech32Address=n}canFetch(){return super.canFetch()&&""!==this.bech32Address}}t.ObservableQueryCw20Balance=c;class u extends a.ObservableQueryBalanceInner{constructor(e,t,r,s,n){super(e,t,r,"",s),this.bech32Address=n,i.makeObservable(this),this.queryCw20Balance=new c(e,t,r,s.contractAddress,n)}canFetch(){return!1}*fetch(){yield this.queryCw20Balance.fetch()}get balance(){const t=this.denomHelper.denom;var e=this.chainGetter.getChain(this.chainId).currencies.find(e=>e.coinMinimalDenom===t);if(e)return this.queryCw20Balance.response&&this.queryCw20Balance.response.data.balance?new o.CoinPretty(e,new o.Int(this.queryCw20Balance.response.data.balance)):new o.CoinPretty(e,new o.Int(0)).ready(!1);throw new Error("Unknown currency: "+t)}}s([i.override],u.prototype,"fetch",null),s([i.computed],u.prototype,"balance",null),t.ObservableQueryCw20BalanceInner=u;t.ObservableQueryCw20BalanceRegistry=class{constructor(e){this.kvStore=e}getBalanceInner(e,t,r,s){s=new n.DenomHelper(s);if("cw20"===s.type)return new u(this.kvStore,e,t,s,r)}}},1244:function(e,t,r){"use strict";var i=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},s=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableCosmwasmContractChainQuery=void 0,r(59));const n=r(4),o=r(5);class a extends s.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,a.getUrlFromObj(s,n)),this.contractAddress=s,this.obj=n}onStart(){return super.onStart(),new Promise(t=>{this.disposer=o.autorun(()=>{var e=this.chainGetter.getChain(this.chainId);e.features&&e.features.includes("wasmd_0.24+")?this.url.startsWith("/wasm/v1/")&&this.setUrl("/cosmwasm"+this.url):this.url.startsWith("/cosmwasm/")&&this.setUrl(""+this.url.replace("/cosmwasm","")),t()})})}onStop(){this.disposer&&(this.disposer(),this.disposer=void 0),super.onStop()}static getUrlFromObj(e,t){t=JSON.stringify(t);return`/wasm/v1/contract/${e}/smart/`+n.Buffer.from(t).toString("base64")}canFetch(){return 0!==this.contractAddress.length}fetchResponse(s){const n=Object.create(null,{fetchResponse:{get:()=>super.fetchResponse}});return i(this,void 0,void 0,function*(){var{response:e,headers:t}=yield n.fetchResponse.call(this,s),r=e.data;if(r)return{headers:t,response:{data:r.data,status:e.status,staled:!1,timestamp:Date.now()}};throw new Error("Failed to get the response from the contract")})}}t.ObservableCosmwasmContractChainQuery=a},1245:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQuerySecretContractCodeHash=t.ObservableQuerySecretContractCodeHashInner=void 0;r=r(59);class s extends r.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,`/wasm/contract/${s}/code-hash`),this.contractAddress=s}canFetch(){return 0<this.contractAddress.length}}t.ObservableQuerySecretContractCodeHashInner=s;class n extends r.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>new s(this.kvStore,this.chainId,this.chainGetter,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r}getQueryContract(e){return this.get(e)}}t.ObservableQuerySecretContractCodeHash=n},1246:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},i=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQuerySecret20BalanceRegistry=t.ObservableQuerySecret20BalanceInner=t.ObservableQuerySecret20Balance=void 0;const c=r(5),n=r(27),o=r(26);var a=r(509),u=r(1247);const l=r(1248);class h extends u.ObservableSecretContractChainQuery{constructor(e,t,r,s,n,i,o,a){super(e,t,r,s,n,{balance:{address:i,key:o}},a),this.apiGetter=s,this.contractAddress=n,this.bech32Address=i,this.viewingKey=o,this.querySecretContractCodeHash=a,c.makeObservable(this),this.viewingKey||this.setError({status:0,statusText:"Viewing key is empty",message:"Viewing key is empty"})}canFetch(){return super.canFetch()&&""!==this.bech32Address&&""!==this.viewingKey}fetchResponse(r){const s=Object.create(null,{fetchResponse:{get:()=>super.fetchResponse}});var n;return i(this,void 0,void 0,function*(){var{response:e,headers:t}=yield s.fetchResponse.call(this,r);if(e.data.viewing_key_error)throw new l.WrongViewingKeyError(null==(n=e.data.viewing_key_error)?void 0:n.msg);return{headers:t,response:e}})}}t.ObservableQuerySecret20Balance=h;class d extends a.ObservableQueryBalanceInner{constructor(e,t,r,s,n,i,o){super(e,t,r,"",n),this.apiGetter=s,this.bech32Address=i,this.querySecretContractCodeHash=o,c.makeObservable(this);o="type"in(s=this.currency)&&"secret20"===s.type?s.viewingKey:"";this.querySecret20Balance=new h(e,t,r,this.apiGetter,n.contractAddress,i,o,this.querySecretContractCodeHash)}canFetch(){return!1}*fetch(){yield this.querySecret20Balance.fetch()}get isFetching(){return this.querySecretContractCodeHash.getQueryContract(this.denomHelper.contractAddress).isFetching||this.querySecret20Balance.isFetching}get error(){return this.querySecretContractCodeHash.getQueryContract(this.denomHelper.contractAddress).error||this.querySecret20Balance.error}get balance(){var e=this.denomHelper.denom,t=this.chainGetter.getChain(this.chainId).findCurrency(e);if(t)return this.querySecret20Balance.response&&this.querySecret20Balance.response.data.balance?new o.CoinPretty(t,new o.Int(this.querySecret20Balance.response.data.balance.amount)):new o.CoinPretty(t,new o.Int(0)).ready(!1);throw new Error("Unknown currency: "+e)}}s([c.override],d.prototype,"fetch",null),s([c.computed],d.prototype,"balance",null),t.ObservableQuerySecret20BalanceInner=d;t.ObservableQuerySecret20BalanceRegistry=class{constructor(e,t,r){this.kvStore=e,this.apiGetter=t,this.querySecretContractCodeHash=r}getBalanceInner(e,t,r,s){s=new n.DenomHelper(s);if("secret20"===s.type)return new d(this.kvStore,e,t,this.apiGetter,s,r,this.querySecretContractCodeHash)}}},1247:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},a=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableSecretContractChainQuery=void 0,r(59));const i=r(27),c=r(5),u=r(4);class o extends n.ObservableChainQuery{constructor(e,t,r,s,n,i,o){super(e,t,r,""),this.apiGetter=s,this.contractAddress=n,this.obj=i,this.querySecretContractCodeHash=o,this.keplr=void 0,this._isIniting=!1,c.makeObservable(this)}onStart(){const e=Object.create(null,{onStart:{get:()=>super.onStart}});return a(this,void 0,void 0,function*(){if(e.onStart.call(this),this.keplr||(yield this.initKeplr()),!this.keplr)throw new Error("Failed to get keplr");yield this.querySecretContractCodeHash.getQueryContract(this.contractAddress).waitResponse(),yield this.init()})}get isFetching(){return this.querySecretContractCodeHash.getQueryContract(this.contractAddress).isFetching||null==this.keplr||this._isIniting||super.isFetching}canFetch(){return!!this.querySecretContractCodeHash.getQueryContract(this.contractAddress).response&&0!==this.contractAddress.length&&null!=this.nonce}*initKeplr(){this.keplr=yield*i.toGenerator(this.apiGetter())}*init(){var e;this._isIniting=!0,this.keplr&&this.contractCodeHash&&(e=this.keplr.getEnigmaUtils(this.chainId),e=yield*i.toGenerator(e.encrypt(this.contractCodeHash,this.obj)),this.nonce=e.slice(0,32),e=u.Buffer.from(u.Buffer.from(e).toString("base64")).toString("hex"),this.setUrl(`/wasm/contract/${this.contractAddress}/query/${e}?encoding=hex`)),this._isIniting=!1}fetchResponse(n){const i=Object.create(null,{fetchResponse:{get:()=>super.fetchResponse}});var o;return a(this,void 0,void 0,function*(){let e,t;try{var r=yield i.fetchResponse.call(this,n);e=r.response,t=r.headers}catch(e){if(null!=(o=null==(o=e.response)?void 0:o.data)&&o.error){r=e.response.data.error,r=/rpc error: code = (.+) = encrypted: (.+): (.+)/g.exec(r);if(null!=r&&4===r.length){r=r[2],r=u.Buffer.from(r,"base64");if(this.keplr&&this.nonce){const s=yield this.keplr.getEnigmaUtils(this.chainId).decrypt(r,this.nonce);r=u.Buffer.from(s).toString();throw new Error(r)}}}throw e}r=e.data;if(!this.keplr)throw new Error("Keplr API not initialized");if(!this.nonce)throw new Error("Nonce is unknown");if(!r)throw new Error("Failed to get the response from the contract");const s=yield this.keplr.getEnigmaUtils(this.chainId).decrypt(u.Buffer.from(r.result.smart,"base64"),this.nonce);r=u.Buffer.from(u.Buffer.from(s).toString(),"base64").toString(),r=JSON.parse(r);return{headers:t,response:{data:r,status:e.status,staled:!1,timestamp:Date.now()}}})}getCacheKey(){return this.instance.name+"-"+this.instance.defaults.baseURL+this.instance.getUri({url:`/wasm/contract/${this.contractAddress}/query/${JSON.stringify(this.obj)}?encoding=json`})}get contractCodeHash(){var e=this.querySecretContractCodeHash.getQueryContract(this.contractAddress);if(e.response)return e.response.data.result}}s([c.observable.ref],o.prototype,"keplr",void 0),s([c.observable],o.prototype,"_isIniting",void 0),s([c.flow],o.prototype,"initKeplr",null),s([c.flow],o.prototype,"init",null),s([c.computed],o.prototype,"contractCodeHash",null),t.ObservableSecretContractChainQuery=o},1248:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.WrongViewingKeyError=void 0;class s extends Error{constructor(e){super(e),Object.setPrototypeOf(this,s.prototype)}}t.WrongViewingKeyError=s},1249:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryTxFeesFeeTokens=void 0,r(59));const i=r(5),o=r(201);class a extends n.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/osmosis/txfees/v1beta1/fee_tokens"),this.isTxFeeToken=o.computedFn(e=>!!this.response&&!0===this.feeCurrenciesDenomMap.get(e)),i.makeObservable(this)}setResponse(e){super.setResponse(e);var t=this.chainGetter.getChain(this.chainId),e=e.data.fee_tokens.map(e=>e.denom);t.addUnknownCurrencies(...e)}get feeCurrenciesDenomMap(){var e=new Map;if(this.response)for(const t of this.response.data.fee_tokens)e.set(t.denom,!0);return e}get feeCurrencies(){if(!this.response)return[];var e=[],t=this.chainGetter.getChain(this.chainId);for(const s of this.response.data.fee_tokens){var r=t.findCurrency(s.denom);r&&e.push(r)}return e}}s([i.computed],a.prototype,"feeCurrenciesDenomMap",null),s([i.computed],a.prototype,"feeCurrencies",null),t.ObservableQueryTxFeesFeeTokens=a},1250:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryTxFeesSpotPriceByDenom=t.ObservableQueryTxFeesSpotPriceByDenomInner=void 0,r(59));const i=r(5),o=r(26);class a extends n.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,"osmosis/txfees/v1beta1/spot_price_by_denom?denom="+s),i.makeObservable(this)}get poolId(){return this.response?this.response.data.poolID:""}get spotPriceDec(){return this.response?new o.Dec(this.response.data.spot_price):new o.Dec(0)}}s([i.computed],a.prototype,"spotPriceDec",null),t.ObservableQueryTxFeesSpotPriceByDenomInner=a;class c extends n.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>new a(this.kvStore,this.chainId,this.chainGetter,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r}getQueryDenom(e){return this.get(e)}}t.ObservableQueryTxFeesSpotPriceByDenom=c},1251:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryTxFeesBaseDenom=void 0;var s=r(59);const n=r(5);class i extends s.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/osmosis/txfees/v1beta1/base_denom"),n.makeObservable(this)}get baseDenom(){var e;return null!=(e=null==(e=this.response)?void 0:e.data.base_denom)?e:""}}t.ObservableQueryTxFeesBaseDenom=i},1256:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1504),t)},1257:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1505),t),n(r(1506),t)},1411:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1412),t),n(r(862),t),n(r(1413),t),n(r(1416),t),n(r(1417),t),n(r(1419),t),n(r(1425),t),n(r(628),t)},1412:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1413:function(e,i,t){"use strict";var p=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(i,"__esModule",{value:!0}),i.CosmosAccountImpl=i.defaultCosmosMsgOpts=i.CosmosAccount=void 0;const f=t(862),y=t(27),h=t(26),v=t(100),g=t(626),b=t(1414),u=t(619),d=t(625),l=t(620),a=t(623),m=t(621),_=t(622),O=t(16),w=t(863),s=r(t(60)),o=r(t(167)),C=t(4),S=t(628),I=t(1415),P=t(265);i.CosmosAccount={use(n){return(e,t,r)=>{var s=n.msgOptsCreator?n.msgOptsCreator(r):void 0;return{cosmos:new c(e,t,r,n.queriesStore,o.default(i.defaultCosmosMsgOpts,s||{}),n)}}}},i.defaultCosmosMsgOpts={send:{native:{type:"cosmos-sdk/MsgSend",gas:8e4}},ibcTransfer:{type:"cosmos-sdk/MsgTransfer",gas:45e4},delegate:{type:"cosmos-sdk/MsgDelegate",gas:25e4},undelegate:{type:"cosmos-sdk/MsgUndelegate",gas:25e4},redelegate:{type:"cosmos-sdk/MsgBeginRedelegate",gas:25e4},withdrawRewards:{type:"cosmos-sdk/MsgWithdrawDelegationReward",gas:14e4},govVote:{type:"cosmos-sdk/MsgVote",gas:25e4}};class c{constructor(e,t,r,s,n,i){this.base=e,this.chainGetter=t,this.chainId=r,this.queriesStore=s,this._msgOpts=n,this.txOpts=i,this.broadcastMode="sync",this.base.registerMakeSendTokenFn(this.processMakeSendTokenTx.bind(this)),this.base.registerSendTokenFn(this.processSendToken.bind(this))}get msgOpts(){return this._msgOpts}processMakeSendTokenTx(t,r,e){var s;if("native"===new y.DenomHelper(r.coinMinimalDenom).type)return s=(()=>{let e=new h.Dec(t);return(e=e.mul(h.DecUtils.getPrecisionDec(r.coinDecimals))).truncate().toString()})(),O.Bech32Address.validate(e,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr),e={type:this.msgOpts.send.native.type,value:{from_address:this.base.bech32Address,to_address:e,amount:[{denom:r.coinMinimalDenom,amount:s}]}},this.makeTx("send",{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmos.bank.v1beta1.MsgSend",value:u.MsgSend.encode({fromAddress:e.value.from_address,toAddress:e.value.to_address,amount:e.value.amount}).finish()}],rlpTypes:{MsgValue:[{name:"from_address",type:"string"},{name:"to_address",type:"string"},{name:"amount",type:"TypeAmount[]"}],TypeAmount:[{name:"denom",type:"string"},{name:"amount",type:"string"}]}},e=>{null!=e.code&&0!==e.code||(e=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===r.coinMinimalDenom))&&e.fetch()})}processSendToken(t,r,s,n,i,o,a){var c;return p(this,void 0,void 0,function*(){var e;return"native"===new y.DenomHelper(r.coinMinimalDenom).type&&(e=(()=>{let e=new h.Dec(t);return(e=e.mul(h.DecUtils.getPrecisionDec(r.coinDecimals))).truncate().toString()})(),e={type:this.msgOpts.send.native.type,value:{from_address:this.base.bech32Address,to_address:s,amount:[{denom:r.coinMinimalDenom,amount:e}]}},yield this.sendMsgs("send",{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmos.bank.v1beta1.MsgSend",value:u.MsgSend.encode({fromAddress:e.value.from_address,toAddress:e.value.to_address,amount:e.value.amount}).finish()}]},n,{amount:null!=(c=i.amount)?c:[],gas:null!=(c=i.gas)?c:this.msgOpts.send.native.gas.toString()},o,S.txEventsWithPreOnFulfill(a,e=>{null!=e.code&&0!==e.code||(e=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===r.coinMinimalDenom))&&e.fetch()})),!0)})}sendMsgs(r,s,a="",c,u,l){var h;return p(this,void 0,void 0,function*(){this.base.setTxNotification(""),this.base.setTxTypeInProgress(r);let n,i;try{"function"==typeof s&&(s=yield s());var e=yield this.broadcastMsgs(s,c,a,u,this.broadcastMode);n=e.txHash,i=e.signDoc}catch(e){throw this.base.setTxTypeInProgress(""),null!=(h=this.txOpts.preTxEvents)&&h.onBroadcastFailed&&this.txOpts.preTxEvents.onBroadcastFailed(this.chainId,e),l&&"onBroadcastFailed"in l&&l.onBroadcastFailed&&l.onBroadcastFailed(e),e}let t,o;l&&(o="function"==typeof l?l:(t=l.onBroadcasted,l.onFulfill)),null!=(h=this.txOpts.preTxEvents)&&h.onBroadcasted&&this.txOpts.preTxEvents.onBroadcasted(this.chainId,n),t&&t(n),this.txOpts.misesStore.portForTx(n).then(e=>{var t;this.base.setTxTypeInProgress(""),this.base.setTxNotification("success"),setTimeout(()=>{this.base.setTxNotification("")},2e3);for(const s of i.fee.amount){var r=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===s.denom);r&&r.fetch()}e&&!e.hash&&(e.hash=C.Buffer.from(n).toString("hex")),null!=(t=this.txOpts.preTxEvents)&&t.onFulfill&&this.txOpts.preTxEvents.onFulfill(this.chainId,e),o&&o(e)}).catch(e=>{})})}broadcastMsgs(a,c,u="",l,h="async"){var d;return p(this,void 0,void 0,function*(){if(this.base.walletStatus!==f.WalletStatus.Loaded)throw new Error("Wallet is not loaded: "+this.base.walletStatus);var e=a.aminoMsgs,t=a.protoMsgs;if(0===e.length||0===t.length)throw new Error("There is no msg to send");if(e.length!==t.length)throw new Error("The length of aminoMsgs and protoMsgs are different");var r=yield this.txOpts.misesStore.authAccounts(this.base.bech32Address);if(!r)throw new Error("not found account");r=P.accountFromAny(r);const s=!0===(null==(d=this.chainGetter.getChain(this.chainId).features)?void 0:d.includes("eth-key-sign")),n=s&&this.base.isNanoLedger;if(n&&!a.rlpTypes)throw new Error("RLP types information is needed for signing tx for ethermint chain with ledger");const i=yield this.base.getKeplr();r={chain_id:this.chainId,account_number:r.accountNumber.toString(),sequence:r.sequence.toString(),fee:c,msgs:e,memo:y.escapeHTML(u)};const o=y.sortObjectByKey(r);e=yield p(this,void 0,void 0,function*(){var e;return n?((e=Object.assign({},o)).fee.feePayer=this.base.bech32Address,yield i.experimentalSignEIP712CosmosTx_v0(this.chainId,this.base.bech32Address,{types:Object.assign({EIP712Domain:[{name:"name",type:"string"},{name:"version",type:"string"},{name:"chainId",type:"uint256"},{name:"verifyingContract",type:"string"},{name:"salt",type:"string"}],Tx:[{name:"account_number",type:"string"},{name:"chain_id",type:"string"},{name:"fee",type:"Fee"},{name:"memo",type:"string"},{name:"msgs",type:"Msg[]"},{name:"sequence",type:"string"}],Fee:[{name:"feePayer",type:"string"},{name:"amount",type:"Coin[]"},{name:"gas",type:"string"}],Coin:[{name:"denom",type:"string"},{name:"amount",type:"string"}],Msg:[{name:"type",type:"string"},{name:"value",type:"MsgValue"}]},a.rlpTypes),domain:{name:"Cosmos Web3",version:"1.0.0",chainId:O.EthermintChainIdHelper.parse(this.chainId).ethChainId.toString(),verifyingContract:"cosmos",salt:"0"},primaryType:"Tx"},e,l)):yield i.signAmino(this.chainId,this.base.bech32Address,o,l)}),r=v.TxRaw.encode({bodyBytes:v.TxBody.encode(v.TxBody.fromPartial({messages:t,memo:e.signed.memo,extensionOptions:n?[{typeUrl:"/ethermint.types.v1.ExtensionOptionsWeb3Tx",value:I.ExtensionOptionsWeb3Tx.encode(I.ExtensionOptionsWeb3Tx.fromPartial({typedDataChainId:O.EthermintChainIdHelper.parse(this.chainId).ethChainId.toString(),feePayer:this.base.bech32Address,feePayerSig:C.Buffer.from(e.signature.signature,"base64")})).finish()}]:void 0})).finish(),authInfoBytes:v.AuthInfo.encode({signerInfos:[{publicKey:{typeUrl:s?this.chainId.startsWith("injective")?"/injective.crypto.v1beta1.ethsecp256k1.PubKey":"/ethermint.crypto.v1.ethsecp256k1.PubKey":"/cosmos.crypto.secp256k1.PubKey",value:b.PubKey.encode({key:C.Buffer.from(e.signature.pub_key.value,"base64")}).finish()},modeInfo:{single:{mode:g.SignMode.SIGN_MODE_LEGACY_AMINO_JSON},multi:void 0},sequence:e.signed.sequence}],fee:v.Fee.fromPartial({amount:e.signed.fee.amount,gasLimit:e.signed.fee.gas,payer:n?e.signed.fee.feePayer:void 0})}).finish(),signatures:n?[new Uint8Array(0)]:[C.Buffer.from(e.signature.signature,"base64")]}).finish();return{txHash:yield i.sendTx(this.chainId,r,h),signDoc:e.signed}})}simulateTx(r,e,s=""){return p(this,void 0,void 0,function*(){var e=yield this.txOpts.misesStore.authAccounts(this.base.bech32Address),e=P.accountFromAny(e),e=yield this.txOpts.misesStore.simulate(r,s,e.pubkey,e.sequence),t=e.gasUsed.low;if(Number.isNaN(t))throw new Error("Invalid integer gas: "+e.gasUsed);return{gasUsed:t}})}makeTx(o,i,a){const c=(t={},r="")=>p(this,void 0,void 0,function*(){var e;return"function"==typeof i&&(i=yield i()),this.simulateTx(i.protoMsgs,{amount:null!=(e=t.amount)?e:[]},r)}),u=(t,r="",s,n)=>p(this,void 0,void 0,function*(){if(t.gas<0)throw new Error("Gas is zero or negative");var e={gas:t.gas.toString(),amount:t.gasPrice?[{denom:t.gasPrice.denom,amount:t.gasPrice.amount.mul(new h.Dec(t.gas)).truncate().toString()}]:[]};return this.sendMsgs(o,i,r,e,s,S.txEventsWithPreOnFulfill(n,a))});return{msgs:()=>p(this,void 0,void 0,function*(){return i="function"==typeof i?yield i():i}),simulate:c,simulateAndSend:(r,s="",n,i)=>p(this,void 0,void 0,function*(){this.base.setTxTypeInProgress(o);try{var e=(yield c({},s))["gasUsed"];if(e<0)throw new Error("Gas estimated is zero or negative");var t=Math.floor(r.gasAdjustment*e);return u({gas:t,gasPrice:r.gasPrice},s,n,i)}catch(e){throw this.base.setTxTypeInProgress(""),e}}),send:(e,t="",r,s)=>p(this,void 0,void 0,function*(){return this.sendMsgs(o,i,t,e,r,S.txEventsWithPreOnFulfill(s,a))}),sendWithGasPrice:u}}get instance(){var e=this.chainGetter.getChain(this.chainId);return s.default.create(Object.assign({baseURL:e.rest},e.restConfig))}makeIBCTransferTx(t,r,s,n){if("native"!==new y.DenomHelper(s.coinMinimalDenom).type)throw new Error("Only native token can be sent via IBC");const i=(()=>{let e=new h.Dec(r);return(e=e.mul(h.DecUtils.getPrecisionDec(s.coinDecimals))).truncate().toString()})(),o=this.queriesStore.get(t.counterpartyChainId).cosmos.queryRPCStatus;return this.makeTx("ibcTransfer",()=>p(this,void 0,void 0,function*(){if(yield o.waitFreshResponse(),!o.network)throw new Error("Failed to fetch the network chain id of "+t.counterpartyChainId);if(O.ChainIdHelper.parse(o.network).identifier!==O.ChainIdHelper.parse(t.counterpartyChainId).identifier)throw new Error(`Fetched the network chain id is different with counterparty chain id (${o.network}, ${t.counterpartyChainId})`);if(!o.latestBlockHeight||o.latestBlockHeight.equals(new h.Int("0")))throw new Error("Failed to fetch the latest block of "+t.counterpartyChainId);var e=!0===(null==(e=this.chainGetter.getChain(this.chainId).features)?void 0:e.includes("eth-key-sign"))&&this.base.isNanoLedger?"18446744073709551615":"0",e={type:this.msgOpts.ibcTransfer.type,value:{source_port:t.portId,source_channel:t.channelId,token:{denom:s.coinMinimalDenom,amount:i},sender:this.base.bech32Address,receiver:n,timeout_height:{revision_number:O.ChainIdHelper.parse(o.network).version.toString(),revision_height:o.latestBlockHeight.add(new h.Int("150")).toString()},timeout_timestamp:e}};return"0"===e.value.timeout_height.revision_number&&delete e.value.timeout_height.revision_number,"0"===e.value.timeout_timestamp&&delete e.value.timeout_timestamp,{aminoMsgs:[e],protoMsgs:[{typeUrl:"/ibc.applications.transfer.v1.MsgTransfer",value:d.MsgTransfer.encode(d.MsgTransfer.fromPartial({sourcePort:e.value.source_port,sourceChannel:e.value.source_channel,token:e.value.token,sender:e.value.sender,receiver:e.value.receiver,timeoutHeight:{revisionNumber:e.value.timeout_height.revision_number||"0",revisionHeight:e.value.timeout_height.revision_height},timeoutTimestamp:e.value.timeout_timestamp})).finish()}],rlpTypes:{MsgValue:[{name:"source_port",type:"string"},{name:"source_channel",type:"string"},{name:"token",type:"TypeToken"},{name:"sender",type:"string"},{name:"receiver",type:"string"},{name:"timeout_height",type:"TypeTimeoutHeight"},{name:"timeout_timestamp",type:"uint64"}],TypeToken:[{name:"denom",type:"string"},{name:"amount",type:"string"}],TypeTimeoutHeight:[{name:"revision_number",type:"uint64"},{name:"revision_height",type:"uint64"}]}}}),e=>{null!=e.code&&0!==e.code||(e=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===s.coinMinimalDenom))&&e.fetch()})}sendIBCTransferMsg(s,n,i,o,e="",a={},c,u){var l;return p(this,void 0,void 0,function*(){if("native"!==new y.DenomHelper(i.coinMinimalDenom).type)throw new Error("Only native token can be sent via IBC");const t=(()=>{let e=new h.Dec(n);return(e=e.mul(h.DecUtils.getPrecisionDec(i.coinDecimals))).truncate().toString()})(),r=this.queriesStore.get(s.counterpartyChainId).cosmos.queryRPCStatus;yield this.sendMsgs("ibcTransfer",()=>p(this,void 0,void 0,function*(){if(yield r.waitFreshResponse(),!r.network)throw new Error("Failed to fetch the network chain id of "+s.counterpartyChainId);if(O.ChainIdHelper.parse(r.network).identifier!==O.ChainIdHelper.parse(s.counterpartyChainId).identifier)throw new Error(`Fetched the network chain id is different with counterparty chain id (${r.network}, ${s.counterpartyChainId})`);if(!r.latestBlockHeight||r.latestBlockHeight.equals(new h.Int("0")))throw new Error("Failed to fetch the latest block of "+s.counterpartyChainId);var e={type:this.msgOpts.ibcTransfer.type,value:{source_port:s.portId,source_channel:s.channelId,token:{denom:i.coinMinimalDenom,amount:t},sender:this.base.bech32Address,receiver:o,timeout_height:{revision_number:O.ChainIdHelper.parse(r.network).version.toString(),revision_height:r.latestBlockHeight.add(new h.Int("150")).toString()}}};return"0"===e.value.timeout_height.revision_number&&delete e.value.timeout_height.revision_number,{aminoMsgs:[e],protoMsgs:[{typeUrl:"/ibc.applications.transfer.v1.MsgTransfer",value:d.MsgTransfer.encode(d.MsgTransfer.fromPartial({sourcePort:e.value.source_port,sourceChannel:e.value.source_channel,token:e.value.token,sender:e.value.sender,receiver:e.value.receiver,timeoutHeight:{revisionNumber:e.value.timeout_height.revision_number||"0",revisionHeight:e.value.timeout_height.revision_height}})).finish()}]}}),e,{amount:null!=(l=a.amount)?l:[],gas:null!=(l=a.gas)?l:this.msgOpts.ibcTransfer.gas.toString()},c,S.txEventsWithPreOnFulfill(u,e=>{null!=e.code&&0!==e.code||(e=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===i.coinMinimalDenom))&&e.fetch()}))})}makeDelegateTx(e,t){O.Bech32Address.validate(t,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);var r=this.chainGetter.getChain(this.chainId).stakeCurrency;let s=new h.Dec(e);s=s.mulTruncate(h.DecUtils.getPrecisionDec(r.coinDecimals));e={type:this.msgOpts.delegate.type,value:{delegator_address:this.base.bech32Address,validator_address:t,amount:{denom:r.coinMinimalDenom,amount:s.truncate().toString()}}};return this.makeTx("delegate",{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmos.staking.v1beta1.MsgDelegate",value:l.MsgDelegate.encode({delegatorAddress:e.value.delegator_address,validatorAddress:e.value.validator_address,amount:e.value.amount}).finish()}],rlpTypes:{MsgValue:[{name:"delegator_address",type:"string"},{name:"validator_address",type:"string"},{name:"amount",type:"TypeAmount"}],TypeAmount:[{name:"denom",type:"string"},{name:"amount",type:"string"}]}},e=>{null!=e.code&&0!==e.code||(this.queries.cosmos.queryValidators.getQueryStatus(w.BondStatus.Bonded).fetch(),this.queries.cosmos.queryDelegations.getQueryBech32Address(this.base.bech32Address).fetch(),this.queries.cosmos.queryRewards.getQueryBech32Address(this.base.bech32Address).fetch())})}sendDelegateMsg(r,s,n="",i={},o,a){var c;return p(this,void 0,void 0,function*(){var e=this.chainGetter.getChain(this.chainId).stakeCurrency;let t=new h.Dec(r);t=t.mulTruncate(h.DecUtils.getPrecisionDec(e.coinDecimals));e={type:this.msgOpts.delegate.type,value:{delegator_address:this.base.bech32Address,validator_address:s,amount:{denom:e.coinMinimalDenom,amount:t.truncate().toString()}}};yield this.sendMsgs("delegate",{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmos.staking.v1beta1.MsgDelegate",value:l.MsgDelegate.encode({delegatorAddress:e.value.delegator_address,validatorAddress:e.value.validator_address,amount:e.value.amount}).finish()}]},n,{amount:null!=(c=i.amount)?c:[],gas:null!=(c=i.gas)?c:this.msgOpts.delegate.gas.toString()},o,S.txEventsWithPreOnFulfill(a,e=>{null!=e.code&&0!==e.code||(this.queries.cosmos.queryValidators.getQueryStatus(w.BondStatus.Bonded).fetch(),this.queries.cosmos.queryDelegations.getQueryBech32Address(this.base.bech32Address).fetch(),this.queries.cosmos.queryRewards.getQueryBech32Address(this.base.bech32Address).fetch())}))})}makeUndelegateTx(e,t){O.Bech32Address.validate(t,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);var r=this.chainGetter.getChain(this.chainId).stakeCurrency;let s=new h.Dec(e);s=s.mulTruncate(h.DecUtils.getPrecisionDec(r.coinDecimals));e={type:this.msgOpts.undelegate.type,value:{delegator_address:this.base.bech32Address,validator_address:t,amount:{denom:r.coinMinimalDenom,amount:s.truncate().toString()}}};return this.makeTx("undelegate",{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmos.staking.v1beta1.MsgUndelegate",value:l.MsgUndelegate.encode({delegatorAddress:e.value.delegator_address,validatorAddress:e.value.validator_address,amount:e.value.amount}).finish()}],rlpTypes:{MsgValue:[{name:"delegator_address",type:"string"},{name:"validator_address",type:"string"},{name:"amount",type:"TypeAmount"}],TypeAmount:[{name:"denom",type:"string"},{name:"amount",type:"string"}]}},e=>{null!=e.code&&0!==e.code||(this.queries.cosmos.queryValidators.getQueryStatus(w.BondStatus.Bonded).fetch(),this.queries.cosmos.queryDelegations.getQueryBech32Address(this.base.bech32Address).fetch(),this.queries.cosmos.queryUnbondingDelegations.getQueryBech32Address(this.base.bech32Address).fetch(),this.queries.cosmos.queryRewards.getQueryBech32Address(this.base.bech32Address).fetch())})}sendUndelegateMsg(r,s,n="",i={},o,a){var c;return p(this,void 0,void 0,function*(){var e=this.chainGetter.getChain(this.chainId).stakeCurrency;let t=new h.Dec(r);t=t.mulTruncate(h.DecUtils.getPrecisionDec(e.coinDecimals));e={type:this.msgOpts.undelegate.type,value:{delegator_address:this.base.bech32Address,validator_address:s,amount:{denom:e.coinMinimalDenom,amount:t.truncate().toString()}}};yield this.sendMsgs("undelegate",{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmos.staking.v1beta1.MsgUndelegate",value:l.MsgUndelegate.encode({delegatorAddress:e.value.delegator_address,validatorAddress:e.value.validator_address,amount:e.value.amount}).finish()}]},n,{amount:null!=(c=i.amount)?c:[],gas:null!=(c=i.gas)?c:this.msgOpts.undelegate.gas.toString()},o,S.txEventsWithPreOnFulfill(a,e=>{null!=e.code&&0!==e.code||(this.queries.cosmos.queryValidators.getQueryStatus(w.BondStatus.Bonded).fetch(),this.queries.cosmos.queryDelegations.getQueryBech32Address(this.base.bech32Address).fetch(),this.queries.cosmos.queryUnbondingDelegations.getQueryBech32Address(this.base.bech32Address).fetch(),this.queries.cosmos.queryRewards.getQueryBech32Address(this.base.bech32Address).fetch())}))})}makeBeginRedelegateTx(e,t,r){O.Bech32Address.validate(t,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr),O.Bech32Address.validate(r,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);var s=this.chainGetter.getChain(this.chainId).stakeCurrency;let n=new h.Dec(e);n=n.mulTruncate(h.DecUtils.getPrecisionDec(s.coinDecimals));e={type:this.msgOpts.redelegate.type,value:{delegator_address:this.base.bech32Address,validator_src_address:t,validator_dst_address:r,amount:{denom:s.coinMinimalDenom,amount:n.truncate().toString()}}};return this.makeTx("redelegate",{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmos.staking.v1beta1.MsgBeginRedelegate",value:l.MsgBeginRedelegate.encode({delegatorAddress:e.value.delegator_address,validatorSrcAddress:e.value.validator_src_address,validatorDstAddress:e.value.validator_dst_address,amount:e.value.amount}).finish()}],rlpTypes:{MsgValue:[{name:"delegator_address",type:"string"},{name:"validator_src_address",type:"string"},{name:"validator_dst_address",type:"string"},{name:"amount",type:"TypeAmount"}],TypeAmount:[{name:"denom",type:"string"},{name:"amount",type:"string"}]}},e=>{null!=e.code&&0!==e.code||(this.queries.cosmos.queryValidators.getQueryStatus(w.BondStatus.Bonded).fetch(),this.queries.cosmos.queryDelegations.getQueryBech32Address(this.base.bech32Address).fetch(),this.queries.cosmos.queryRewards.getQueryBech32Address(this.base.bech32Address).fetch())})}sendBeginRedelegateMsg(r,s,n,i="",o={},a,c){var u;return p(this,void 0,void 0,function*(){var e=this.chainGetter.getChain(this.chainId).stakeCurrency;let t=new h.Dec(r);t=t.mulTruncate(h.DecUtils.getPrecisionDec(e.coinDecimals));e={type:this.msgOpts.redelegate.type,value:{delegator_address:this.base.bech32Address,validator_src_address:s,validator_dst_address:n,amount:{denom:e.coinMinimalDenom,amount:t.truncate().toString()}}};yield this.sendMsgs("redelegate",{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmos.staking.v1beta1.MsgBeginRedelegate",value:l.MsgBeginRedelegate.encode({delegatorAddress:e.value.delegator_address,validatorSrcAddress:e.value.validator_src_address,validatorDstAddress:e.value.validator_dst_address,amount:e.value.amount}).finish()}]},i,{amount:null!=(u=o.amount)?u:[],gas:null!=(u=o.gas)?u:this.msgOpts.redelegate.gas.toString()},a,S.txEventsWithPreOnFulfill(c,e=>{null!=e.code&&0!==e.code||(this.queries.cosmos.queryValidators.getQueryStatus(w.BondStatus.Bonded).fetch(),this.queries.cosmos.queryDelegations.getQueryBech32Address(this.base.bech32Address).fetch(),this.queries.cosmos.queryRewards.getQueryBech32Address(this.base.bech32Address).fetch())}))})}makeWithdrawDelegationRewardTx(e){for(const t of e)O.Bech32Address.validate(t,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);e=e.map(e=>({type:this.msgOpts.withdrawRewards.type,value:{delegator_address:this.base.bech32Address,validator_address:e}}));return this.makeTx("withdrawRewards",{aminoMsgs:e,protoMsgs:e.map(e=>({typeUrl:"/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",value:a.MsgWithdrawDelegatorReward.encode({delegatorAddress:e.value.delegator_address,validatorAddress:e.value.validator_address}).finish()})),rlpTypes:{MsgValue:[{name:"delegator_address",type:"string"},{name:"validator_address",type:"string"}]}},e=>{null!=e.code&&0!==e.code||this.queries.cosmos.queryRewards.getQueryBech32Address(this.base.bech32Address).fetch()})}sendWithdrawDelegationRewardMsgs(t,r="",s={},n,i){var o;return p(this,void 0,void 0,function*(){var e=t.map(e=>({type:this.msgOpts.withdrawRewards.type,value:{delegator_address:this.base.bech32Address,validator_address:e}}));yield this.sendMsgs("withdrawRewards",{aminoMsgs:e,protoMsgs:e.map(e=>({typeUrl:"/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",value:a.MsgWithdrawDelegatorReward.encode({delegatorAddress:e.value.delegator_address,validatorAddress:e.value.validator_address}).finish()}))},r,{amount:null!=(o=s.amount)?o:[],gas:null!=(o=s.gas)?o:(this.msgOpts.withdrawRewards.gas*t.length).toString()},n,S.txEventsWithPreOnFulfill(i,e=>{null!=e.code&&0!==e.code||this.queries.cosmos.queryRewards.getQueryBech32Address(this.base.bech32Address).fetch()}))})}makeGovVoteTx(t,e){var r=(()=>{switch(e){case"Yes":return 1;case"Abstain":return 2;case"No":return 3;case"NoWithVeto":return 4}})();const s={type:this.msgOpts.govVote.type,value:{option:r,proposal_id:t,voter:this.base.bech32Address}};return this.makeTx("govVote",{aminoMsgs:[s],protoMsgs:[{typeUrl:"/cosmos.gov.v1beta1.MsgVote",value:m.MsgVote.encode({proposalId:s.value.proposal_id,voter:s.value.voter,option:(()=>{switch(s.value.option){case 1:return _.VoteOption.VOTE_OPTION_YES;case 2:return _.VoteOption.VOTE_OPTION_ABSTAIN;case 3:return _.VoteOption.VOTE_OPTION_NO;case 4:return _.VoteOption.VOTE_OPTION_NO_WITH_VETO;default:return _.VoteOption.VOTE_OPTION_UNSPECIFIED}})()}).finish()}],rlpTypes:{MsgValue:[{name:"proposal_id",type:"uint64"},{name:"voter",type:"string"},{name:"option",type:"int32"}]}},e=>{null!=e.code&&0!==e.code||((e=this.queries.cosmos.queryGovernance.proposals.find(e=>e.id===t))&&e.fetch(),this.queries.cosmos.queryProposalVote.getVote(t,this.base.bech32Address).fetch())})}sendGovVoteMsg(r,s,n="",i={},o,a){var c;return p(this,void 0,void 0,function*(){var e=(()=>{switch(s){case"Yes":return 1;case"Abstain":return 2;case"No":return 3;case"NoWithVeto":return 4}})();const t={type:this.msgOpts.govVote.type,value:{option:e,proposal_id:r,voter:this.base.bech32Address}};yield this.sendMsgs("govVote",{aminoMsgs:[t],protoMsgs:[{typeUrl:"/cosmos.gov.v1beta1.MsgVote",value:m.MsgVote.encode({proposalId:t.value.proposal_id,voter:t.value.voter,option:(()=>{switch(t.value.option){case 1:return _.VoteOption.VOTE_OPTION_YES;case 2:return _.VoteOption.VOTE_OPTION_ABSTAIN;case 3:return _.VoteOption.VOTE_OPTION_NO;case 4:return _.VoteOption.VOTE_OPTION_NO_WITH_VETO;default:return _.VoteOption.VOTE_OPTION_UNSPECIFIED}})()}).finish()}]},n,{amount:null!=(c=i.amount)?c:[],gas:null!=(c=i.gas)?c:this.msgOpts.govVote.gas.toString()},o,S.txEventsWithPreOnFulfill(a,e=>{null!=e.code&&0!==e.code||((e=this.queries.cosmos.queryGovernance.proposals.find(e=>e.id===r))&&e.fetch(),this.queries.cosmos.queryProposalVote.getVote(r,this.base.bech32Address).fetch())}))})}get queries(){return this.queriesStore.get(this.chainId)}}i.CosmosAccountImpl=c},1416:function(e,t,r){"use strict";var s=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.getKeplrFromWindow=void 0;t.getKeplrFromWindow=()=>s(void 0,void 0,void 0,function*(){if("undefined"!=typeof window)return window.misesWallet||("complete"===document.readyState?window.misesWallet:new Promise(t=>{const r=e=>{e.target&&"complete"===e.target.readyState&&(t(window.misesWallet),document.removeEventListener("readystatechange",r))};document.addEventListener("readystatechange",r)}))})},1417:function(e,i,t){"use strict";var l=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(i,"__esModule",{value:!0}),i.SecretAccountImpl=i.defaultSecretMsgOpts=i.SecretAccount=void 0;const h=t(4),u=t(27),d=t(1418),p=t(16),f=t(26),o=r(t(167)),y=t(628);i.SecretAccount={use(n){return(e,t,r)=>{var s=n.msgOptsCreator?n.msgOptsCreator(r):void 0;return{secret:new a(e,t,r,n.queriesStore,o.default(i.defaultSecretMsgOpts,s||{}))}}}},i.defaultSecretMsgOpts={send:{secret20:{gas:25e4}},createSecret20ViewingKey:{gas:15e4},executeSecretWasm:{type:"wasm/MsgExecuteContract"}};class a{constructor(e,t,r,s,n){this.base=e,this.chainGetter=t,this.chainId=r,this.queriesStore=s,this._msgOpts=n,this.base.registerMakeSendTokenFn(this.processMakeSendTokenTx.bind(this)),this.base.registerSendTokenFn(this.processSendToken.bind(this))}get msgOpts(){return this._msgOpts}processMakeSendTokenTx(t,r,e){if("secret20"===new u.DenomHelper(r.coinMinimalDenom).type){var s=(()=>{let e=new f.Dec(t);return(e=e.mul(f.DecUtils.getPrecisionDec(r.coinDecimals))).truncate().toString()})();if("type"in r&&"secret20"===r.type)return p.Bech32Address.validate(e,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr),this.makeExecuteSecretContractTx("send",r.contractAddress,{transfer:{recipient:e,amount:s}},[],e=>{null!=e.code&&0!==e.code||(e=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===r.coinMinimalDenom))&&e.fetch()});throw new Error("Currency is not secret20")}}processSendToken(t,r,s,n,i,o,a){var c;return l(this,void 0,void 0,function*(){var e=new u.DenomHelper(r.coinMinimalDenom);if("secret20"!==e.type)return!1;e=(()=>{let e=new f.Dec(t);return(e=e.mul(f.DecUtils.getPrecisionDec(r.coinDecimals))).truncate().toString()})();if("type"in r&&"secret20"===r.type)return yield this.sendExecuteSecretContractMsg("send",r.contractAddress,{transfer:{recipient:s,amount:e}},[],n,{amount:null!=(c=i.amount)?c:[],gas:null!=(c=i.gas)?c:this.msgOpts.send.secret20.gas.toString()},o,y.txEventsWithPreOnFulfill(a,e=>{null!=e.code&&0!==e.code||(e=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===r.coinMinimalDenom))&&e.fetch()})),!0;throw new Error("Currency is not secret20")})}createSecret20ViewingKey(t,s="",n={},i,o){var a;return l(this,void 0,void 0,function*(){var e=new Uint8Array(32);crypto.getRandomValues(e);const r=h.Buffer.from(e).toString("hex");yield this.makeExecuteSecretContractTx("createSecret20ViewingKey",t,{set_viewing_key:{key:r}},[]).send({amount:null!=(a=n.amount)?a:[],gas:null!=(a=n.gas)?a:this.msgOpts.createSecret20ViewingKey.gas.toString()},s,i,e=>{let t="";null!=e.code&&0!==e.code||(t=r),o&&o(e,t)})})}makeExecuteSecretContractTx(e="executeSecretWasm",t,r,s,n){p.Bech32Address.validate(t,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr);let i;return this.base.cosmos.makeTx(e,()=>l(this,void 0,void 0,function*(){i=yield this.encryptSecretContractMsg(t,r);var e={type:this.msgOpts.executeSecretWasm.type,value:{sender:this.base.bech32Address,contract:t,msg:h.Buffer.from(i).toString("base64"),sent_funds:s}};return{aminoMsgs:[e],protoMsgs:[{typeUrl:"/secret.compute.v1beta1.MsgExecuteContract",value:d.MsgExecuteContract.encode(d.MsgExecuteContract.fromPartial({sender:p.Bech32Address.fromBech32(e.value.sender).address,contract:p.Bech32Address.fromBech32(e.value.contract).address,msg:h.Buffer.from(e.value.msg,"base64"),sentFunds:e.value.sent_funds})).finish()}]}}),n)}sendExecuteSecretContractMsg(e="executeSecretWasm",r,s,n,i="",o,a,c){var u;return l(this,void 0,void 0,function*(){let t;return yield this.base.cosmos.sendMsgs(e,()=>l(this,void 0,void 0,function*(){t=yield this.encryptSecretContractMsg(r,s);var e={type:this.msgOpts.executeSecretWasm.type,value:{sender:this.base.bech32Address,contract:r,msg:h.Buffer.from(t).toString("base64"),sent_funds:n}};return{aminoMsgs:[e],protoMsgs:[{typeUrl:"/secret.compute.v1beta1.MsgExecuteContract",value:d.MsgExecuteContract.encode(d.MsgExecuteContract.fromPartial({sender:p.Bech32Address.fromBech32(e.value.sender).address,contract:p.Bech32Address.fromBech32(e.value.contract).address,msg:h.Buffer.from(e.value.msg,"base64"),sentFunds:e.value.sent_funds})).finish()}]}}),i,{amount:null!=(u=o.amount)?u:[],gas:o.gas},a,c),t})}encryptSecretContractMsg(r,s){return l(this,void 0,void 0,function*(){var e=yield this.queries.secret.querySecretContractCodeHash.getQueryContract(r).waitResponse();if(!e)throw new Error(`Can't get the code hash of the contract (${r})`);var e=e.data.result,t=yield this.base.getKeplr();if(t)return yield t.getEnigmaUtils(this.chainId).encrypt(e,s);throw new Error("Can't get the Keplr API")})}get queries(){return this.queriesStore.get(this.chainId)}}i.SecretAccountImpl=a},1419:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.AccountStore=void 0;const i=r(119),o=r(862);class s extends i.HasMapStore{constructor(r,s,n,...e){super(e=>{var t=new o.AccountSetBaseSuper(r,s,e,n(e));return i.mergeStores(t,[this.chainGetter,e],...this.accountSetCreators)}),this.eventListener=r,this.chainGetter=s,this.storeOptsCreator=n,this.accountSetCreators=e}getAccount(e){return this.get(e)}hasAccount(e){return this.has(e)}}t.AccountStore=s},1420:function(e,r,t){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(r,"__esModule",{value:!0}),r.ObservableQueryMap=r.ObservableQuery=r.ObservableQueryBase=r.DeferInitialQueryController=r.defaultOptions=void 0;const o=t(5),p=i(t(60)),f=t(27);var a=t(1014),i=i(t(1233));r.defaultOptions={cacheMaxAge:0,fetchingInterval:0};class y extends Error{constructor(e){super(e),Object.setPrototypeOf(this,y.prototype)}}class c{constructor(){this.rejectors=[]}get hasCancelable(){return 0<this.rejectors.length}cancel(e){for(;0<this.rejectors.length;){var t=this.rejectors.shift();t&&(t.reject(new y(e)),t.onCancel)&&t.onCancel()}}callOrCanceledWithPromise(e,t){return new Promise((r,s)=>{this.rejectors.push({reject:s,onCancel:t}),e.then(e=>{var t=this.rejectors.findIndex(e=>e.reject===s);0<=t&&this.rejectors.splice(t,1),r(e)},e=>{var t=this.rejectors.findIndex(e=>e.reject===s);0<=t&&this.rejectors.splice(t,1),s(e)})})}callOrCanceled(e,t){return new Promise((r,s)=>{this.rejectors.push({reject:s,onCancel:t}),Promise.resolve().then(()=>{this.rejectors.find(e=>e.reject===s)&&e().then(e=>{var t=this.rejectors.findIndex(e=>e.reject===s);0<=t&&this.rejectors.splice(t,1),r(e)},e=>{var t=this.rejectors.findIndex(e=>e.reject===s);0<=t&&this.rejectors.splice(t,1),s(e)})})})}}class u{constructor(){this._isReady=!1,o.makeObservable(this)}ready(){this._isReady=!0}wait(){return this.isReady?Promise.resolve():new Promise(e=>{const t=o.autorun(()=>{this.isReady&&(e(),t)&&t()})})}get isReady(){return this._isReady}}s([o.observable],u.prototype,"_isReady",void 0),s([o.action],u.prototype,"ready",null),r.DeferInitialQueryController=u;class v{constructor(e,t){this._response=void 0,this._isFetching=!1,this._error=void 0,this._isStarted=!1,this._pendingOnStart=!1,this.observedCount=0,this.intervalId=void 0,this.becomeObserved=()=>{0===this.observedCount&&this.start(),this.observedCount++},this.becomeUnobserved=()=>{this.observedCount--,0===this.observedCount&&this.stop()},this.intervalFetch=()=>{this.isFetching||this.fetch()},this.options=Object.assign(Object.assign({},r.defaultOptions),t),this._instance=e,this.queryCanceler=new c,this.onStartCanceler=new c,this.queryControllerConceler=new c,o.makeObservable(this),o.onBecomeObserved(this,"_response",this.becomeObserved),o.onBecomeObserved(this,"_isFetching",this.becomeObserved),o.onBecomeObserved(this,"_error",this.becomeObserved),o.onBecomeUnobserved(this,"_response",this.becomeUnobserved),o.onBecomeUnobserved(this,"_isFetching",this.becomeUnobserved),o.onBecomeUnobserved(this,"_error",this.becomeUnobserved)}static guessResponseTruncated(e,t){return e&&"string"==typeof e["content-type"]&&e["content-type"].startsWith("application/json")&&t.startsWith("{")}get isObserved(){return 0<this.observedCount}start(){var e;this._isStarted||(this._isStarted=!0,(e=this.onStart())?this.handleAsyncOnStart(e):this.postStart())}*handleAsyncOnStart(e){this._pendingOnStart=!0,this._isFetching=!0;try{yield this.onStartCanceler.callOrCanceledWithPromise(e),this._isStarted&&(this._pendingOnStart=!1,this.postStart())}catch(e){if(!(e instanceof y))throw e}}stop(){this._isStarted&&(this.onStartCanceler.hasCancelable&&this.onStartCanceler.cancel(),this.isFetching&&this.queryCanceler.hasCancelable&&this.cancel(),this._pendingOnStart=!1,this._isFetching=!1,null!=this.intervalId&&clearInterval(this.intervalId),this.intervalId=void 0,this.onStop(),this._isStarted=!1)}get isStarted(){return this._isStarted}postStart(){this.fetch(),0<this.options.fetchingInterval&&(this.intervalId=setInterval(this.intervalFetch,this.options.fetchingInterval))}onStart(){}onStop(){}canFetch(){return!0}get isFetching(){return this._isFetching}get instance(){return this._instance}*fetch(){var s,n,i,o,a;if(this.isStarted&&!this._pendingOnStart){if(v.experimentalDeferInitialQueryController&&!v.experimentalDeferInitialQueryController.isReady){this._isFetching=!0,this.queryControllerConceler.hasCancelable&&this.queryControllerConceler.cancel();try{yield this.queryControllerConceler.callOrCanceled(()=>{var e;return null!=(e=null==(e=v.experimentalDeferInitialQueryController)?void 0:e.wait())?e:Promise.resolve()})}catch(e){if(e instanceof y)return;throw e}if(!this.isStarted)return}if(this.canFetch()){if(this.isFetching&&this.queryCanceler.hasCancelable&&this.cancel("__fetching__proceed__next__"),this._response){if(0<this.options.cacheMaxAge&&this._response.timestamp>Date.now()-this.options.cacheMaxAge)return void(this._isFetching=!1);this._isFetching=!0,this.setResponse(Object.assign(Object.assign({},this._response),{staled:!0}))}else{this._isFetching=!0;var t=this.loadStaledResponse();const d=e=>!(!e||this._response||!(this.options.cacheMaxAge<=0||e.timestamp>Date.now()-this.options.cacheMaxAge)||(this.setResponse(e),0));if(this.options.cacheMaxAge<=0)t.then(e=>{d(e)});else{t=yield*f.toGenerator(t);if(d(t))return void(this._isFetching=!1)}}const h=new AbortController;let e=!1,r=!1;try{let e=!1,{response:t,headers:r}=yield*f.toGenerator(this.queryCanceler.callOrCanceled(()=>(e=!0,this.fetchResponse(h)),()=>{e&&h.abort()}));if(t.data&&"string"==typeof t.data&&(t.data.startsWith("stream was reset:")||g.suspectedResponseDatasWithInvalidValue.includes(t.data)||g.guessResponseTruncated(r,t.data))){if(h.signal.aborted)return;let e=!1;var c=yield*f.toGenerator(this.queryCanceler.callOrCanceled(()=>(e=!0,this.fetchResponse(h)),()=>{e&&h.abort()}));if(t=c.response,r=c.headers,t.data&&"string"==typeof t.data){if(t.data.startsWith("stream was reset:")||g.suspectedResponseDatasWithInvalidValue.includes(t.data))throw new Error(t.data);if(g.guessResponseTruncated(r,t.data))throw new Error("The response data seems to be truncated")}}this.setResponse(t),this.setError(void 0),this.saveResponse(t)}catch(t){if(p.default.isCancel(t))r=!0;else if(t instanceof y)"__fetching__proceed__next__"===t.message&&(e=!0);else if(t.response){let e=t.response.statusText;var u="string"==typeof(null==(s=t.response.headers)?void 0:s["content-type"])?t.response.headers["content-type"]:"",l=(u.startsWith("text/plain")&&"string"==typeof t.response.data&&(e=t.response.data),u.startsWith("application/json")&&null!=(n=t.response.data)&&n.message&&"string"==typeof(null==(i=t.response.data)?void 0:i.message)&&(e=t.response.data.message),{status:t.response.status,statusText:t.response.statusText,message:e,data:t.response.data});this.setError(l)}else t.request?(o={status:0,statusText:"Failed to get response",message:"Failed to get response"},this.setError(o)):(a={status:0,statusText:t.message,message:t.message,data:t},this.setError(a))}finally{r||e||(this._isFetching=!1)}}}}get response(){return this._response}get error(){return this._error}setResponse(e){this._response=e}setError(e){this._error=e}cancel(e){this.queryCanceler.cancel(e)}waitResponse(){if(this.response)return Promise.resolve(this.response);const r=[];let e=!1;return r.push(o.reaction(()=>this.isFetching,()=>{e||(this.isFetching||this.fetch(),e=!0)},{fireImmediately:!0})),new Promise(e=>{var t=o.autorun(()=>{this.isFetching||e(this.response)});r.push(t)}).finally(()=>{for(const e of r)e()})}waitFreshResponse(){const r=[];let e=!1;return r.push(o.reaction(()=>this.isFetching,()=>{e||(this.isFetching||this.fetch(),e=!0)},{fireImmediately:!0})),new Promise(e=>{var t=o.autorun(()=>{this.isFetching||e(this.response)});r.push(t)}).finally(()=>{for(const e of r)e()})}}v.experimentalDeferInitialQueryController=void 0,v.suspectedResponseDatasWithInvalidValue=["The network connection was lost.","The request timed out."],s([o.observable.ref],v.prototype,"_response",void 0),s([o.observable],v.prototype,"_isFetching",void 0),s([o.observable.ref],v.prototype,"_error",void 0),s([o.observable],v.prototype,"_isStarted",void 0),s([o.observable.ref],v.prototype,"_instance",void 0),s([o.action],v.prototype,"start",null),s([o.flow],v.prototype,"handleAsyncOnStart",null),s([o.action],v.prototype,"stop",null),s([o.computed],v.prototype,"instance",null),s([o.flow],v.prototype,"fetch",null),s([o.action],v.prototype,"setResponse",null),s([o.action],v.prototype,"setError",null);class g extends(r.ObservableQueryBase=v){constructor(e,t,r,s={}){super(t,s),this.kvStore=e,this._url="",this.refreshHandler=e=>{(null==e?void 0:e.ifError)&&!this.error||this.fetch()},o.makeObservable(this),this.setUrl(r)}static refreshAllObserved(){g.eventListener.emit("refresh")}static refreshAllObservedIfError(){g.eventListener.emit("refresh",{ifError:!0})}onStart(){super.onStart(),g.eventListener.addListener("refresh",this.refreshHandler)}onStop(){super.onStop(),g.eventListener.addListener("refresh",this.refreshHandler)}get url(){return this._url}setUrl(e){this._url!==e&&(this._url=e,this.fetch())}fetchResponse(t){return n(this,void 0,void 0,function*(){var e=yield this.instance.get(this.url,{signal:t.signal});return{headers:e.headers,response:{data:e.data,status:e.status,staled:!1,timestamp:Date.now()}}})}getCacheKey(){return this.instance.name+"-"+this.instance.defaults.baseURL+this.instance.getUri({url:this.url})}saveResponse(t){return n(this,void 0,void 0,function*(){var e=this.getCacheKey();yield this.kvStore.set(e,t)})}loadStaledResponse(){return n(this,void 0,void 0,function*(){var e=this.getCacheKey(),e=yield this.kvStore.get(e);if(e)return Object.assign(Object.assign({},e),{staled:!0})})}}g.eventListener=new i.default,s([o.observable],g.prototype,"_url",void 0),s([o.action],g.prototype,"setUrl",null),r.ObservableQuery=g;class l extends a.HasMapStore{constructor(e){super(e)}}r.ObservableQueryMap=l},1421:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},i=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableJsonRPCQueryMap=t.ObservableJsonRPCQuery=void 0,r(1232));const o=r(5),a=r(50),c=r(4);r=r(1014);class u extends i.ObservableQuery{constructor(e,t,r,s,n,i={}){super(e,t,r,i),this.method=s,this._params=n,o.makeObservable(this)}get params(){return this._params}setParams(e){this._params=e,this.fetch()}fetchResponse(t){return n(this,void 0,void 0,function*(){var e=yield this.instance.post(this.url,{jsonrpc:"2.0",id:"1",method:this.method,params:this.params},{signal:t.signal});if(e.data.error&&e.data.error.message)throw new Error(e.data.error.message);if(e.data.result)return{headers:e.headers,response:{data:e.data.result,status:e.status,staled:!1,timestamp:Date.now()}};throw new Error("Unknown error")})}getCacheKey(){var e=c.Buffer.from(a.Hash.sha256(c.Buffer.from(JSON.stringify(this.params))).slice(0,8)).toString("hex");return`${super.getCacheKey()}-${this.method}-`+e}}s([o.observable.ref],u.prototype,"_params",void 0),s([o.action],u.prototype,"setParams",null),t.ObservableJsonRPCQuery=u;class l extends r.HasMapStore{constructor(e){super(e)}}t.ObservableJsonRPCQueryMap=l},1422:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.StoreUtils=void 0;const o=r(26);class s{static getBalancesFromCurrencies(e,t){var r=[];for(const i of t){var s,n=e[i.denom];n&&(s=new o.Dec(i.amount)).truncate().gt(new o.Int(0))&&r.push(new o.CoinPretty(n,s))}return r}static getBalanceFromCurrency(e,t){t=s.getBalancesFromCurrencies({[e.coinMinimalDenom]:e},t);return 1===t.length?t[0]:new o.CoinPretty(e,new o.Int(0)).ready(!1)}}t.StoreUtils=s},1423:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1424:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.mergeStores=void 0;t.mergeStores=(t,r,...s)=>{for(let e=0;e<s.length;e++){var n=(0,s[e])(t,...r);for(const i of Object.keys(n)){if(t[i])throw new Error(i+" is already merged");t[i]=n[i]}}return t}},1425:function(e,i,t){"use strict";var l=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(i,"__esModule",{value:!0}),i.CosmwasmAccountImpl=i.defaultCosmwasmMsgOpts=i.CosmwasmAccount=void 0;const u=t(27),h=t(26),d=t(624),p=t(4),o=r(t(167)),f=t(628),a=t(16);i.CosmwasmAccount={use(n){return(e,t,r)=>{var s=n.msgOptsCreator?n.msgOptsCreator(r):void 0;return{cosmwasm:new c(e,t,r,n.queriesStore,o.default(i.defaultCosmwasmMsgOpts,s||{}))}}}},i.defaultCosmwasmMsgOpts={send:{cw20:{gas:15e4}},executeWasm:{type:"wasm/MsgExecuteContract"}};class c{constructor(e,t,r,s,n){this.base=e,this.chainGetter=t,this.chainId=r,this.queriesStore=s,this._msgOpts=n,this.base.registerMakeSendTokenFn(this.processMakeSendTokenTx.bind(this)),this.base.registerSendTokenFn(this.processSendToken.bind(this))}get msgOpts(){return this._msgOpts}processMakeSendTokenTx(t,r,e){if("cw20"===new u.DenomHelper(r.coinMinimalDenom).type){var s=(()=>{let e=new h.Dec(t);return(e=e.mul(h.DecUtils.getPrecisionDec(r.coinDecimals))).truncate().toString()})();if("type"in r&&"cw20"===r.type)return a.Bech32Address.validate(e,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr),this.makeExecuteContractTx("send",r.contractAddress,{transfer:{recipient:e,amount:s}},[],e=>{null!=e.code&&0!==e.code||(e=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===r.coinMinimalDenom))&&e.fetch()});throw new Error("Currency is not cw20")}}processSendToken(t,r,s,n,i,o,a){var c;return l(this,void 0,void 0,function*(){var e=new u.DenomHelper(r.coinMinimalDenom);if("cw20"!==e.type)return!1;e=(()=>{let e=new h.Dec(t);return(e=e.mul(h.DecUtils.getPrecisionDec(r.coinDecimals))).truncate().toString()})();if("type"in r&&"cw20"===r.type)return yield this.sendExecuteContractMsg("send",r.contractAddress,{transfer:{recipient:s,amount:e}},[],n,{amount:null!=(c=i.amount)?c:[],gas:null!=(c=i.gas)?c:this.msgOpts.send.cw20.gas.toString()},o,f.txEventsWithPreOnFulfill(a,e=>{null!=e.code&&0!==e.code||(e=this.queries.queryBalances.getQueryBech32Address(this.base.bech32Address).balances.find(e=>e.currency.coinMinimalDenom===r.coinMinimalDenom))&&e.fetch()})),!0;throw new Error("Currency is not cw20")})}makeExecuteContractTx(e="executeWasm",t,r,s,n){a.Bech32Address.validate(t,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr);t={type:this.msgOpts.executeWasm.type,value:{sender:this.base.bech32Address,contract:t,msg:r,funds:s}};return this.base.cosmos.makeTx(e,{aminoMsgs:[t],protoMsgs:[{typeUrl:"/cosmwasm.wasm.v1.MsgExecuteContract",value:d.MsgExecuteContract.encode({sender:t.value.sender,contract:t.value.contract,msg:p.Buffer.from(JSON.stringify(t.value.msg)),funds:t.value.funds}).finish()}]},n)}sendExecuteContractMsg(t="executeWasm",r,s,n,i="",o,a,c){var u;return l(this,void 0,void 0,function*(){var e={type:this.msgOpts.executeWasm.type,value:{sender:this.base.bech32Address,contract:r,msg:s,funds:n}};yield this.base.cosmos.sendMsgs(t,{aminoMsgs:[e],protoMsgs:[{typeUrl:"/cosmwasm.wasm.v1.MsgExecuteContract",value:d.MsgExecuteContract.encode({sender:e.value.sender,contract:e.value.contract,msg:p.Buffer.from(JSON.stringify(e.value.msg)),funds:e.value.funds}).finish()}]},i,{amount:null!=(u=o.amount)?u:[],gas:o.gas},a,c)})}get queries(){return this.queriesStore.get(this.chainId)}}i.CosmwasmAccountImpl=c},1426:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}},o=(Object.defineProperty(t,"__esModule",{value:!0}),t.CoinGeckoPriceStore=void 0,r(119));const a=i(r(60)),c=r(27),u=r(26),l=i(r(167)),h=r(5);class d{constructor(e){this.duration=e,this.fns=[],this.callback=()=>{null!=this.timeoutId&&(clearTimeout(this.timeoutId),this.timeoutId=void 0),0<this.fns.length&&((0,this.fns[this.fns.length-1])(),this.fns=[])}}call(e){this.duration<=0?e():(this.fns.push(e),null!=this.timeoutId&&clearTimeout(this.timeoutId),this.timeoutId=setTimeout(this.callback,this.duration))}}class p{constructor(e,t,r=0){if(this.array=[],this.map={},this.restored={},this.isRestored=!1,this.storeKey="",!t)throw new Error("Empty store key");this.kvStore=e,this.storeKey=t,this.throttler=new d(r)}has(e){return!0===this.map[e]}add(...e){let t=!1,r=[];for(const n of e)this.isRestored&&this.restored[n]&&(t=!0,delete this.restored[n]),this.has(n)||r.push(n);if(0===r.length)return this.isRestored&&t&&this.throttler.call(()=>this.save()),!1;for(const i of r=[...new Set(r)])this.map[i]=!0;let s=this.array.slice().concat(r);return s=s.sort((e,t)=>e<t?-1:1),this.array=s,this.isRestored&&this.throttler.call(()=>this.save()),!0}get values(){return this.array.slice()}save(){return n(this,void 0,void 0,function*(){yield this.kvStore.set(this.storeKey,this.array.filter(e=>!this.restored[e]))})}restore(){return n(this,void 0,void 0,function*(){var e=yield this.kvStore.get(this.storeKey);if(e){for(const t of e)this.restored[t]=!0;for(const r of this.array)this.restored[r]&&delete this.restored[r];this.add(...e)}this.isRestored=!0})}}class f extends o.ObservableQuery{constructor(e,t,r,s={}){super(e,a.default.create({baseURL:s.baseURL||"https://api.coingecko.com/api/v3"}),"/simple/price"),this.isInitialized=!1;s=null!=(s=s.throttleDuration)?s:250;this._coinIds=new p(e,"__coin_ids",s),this._vsCurrencies=new p(e,"__vs_currencies",s),this._defaultVsCurrency=r,this._supportedVsCurrencies=t,this._throttler=new d(s),h.makeObservable(this),this.restoreDefaultVsCurrency()}onStart(){return super.onStart(),this.init()}init(){return n(this,void 0,void 0,function*(){this.isInitialized||(yield Promise.all([this._coinIds.restore(),this._vsCurrencies.restore()]),this._coinIds.save(),this._vsCurrencies.save(),this.updateURL([],[],!0),this.isInitialized=!0)})}get defaultVsCurrency(){return this._defaultVsCurrency}setDefaultVsCurrency(e){this._defaultVsCurrency=e,this.saveDefaultVsCurrency()}*restoreDefaultVsCurrency(){var e=yield*c.toGenerator(this.kvStore.get("__default_vs_currency"));e&&(this._defaultVsCurrency=e)}saveDefaultVsCurrency(){return n(this,void 0,void 0,function*(){yield this.kvStore.set("__default_vs_currency",this.defaultVsCurrency)})}get supportedVsCurrencies(){return this._supportedVsCurrencies}getFiatCurrency(e){return this._supportedVsCurrencies[e]}canFetch(){return!1}fetchResponse(r){const s=Object.create(null,{fetchResponse:{get:()=>super.fetchResponse}});return n(this,void 0,void 0,function*(){var{response:e,headers:t}=yield s.fetchResponse.call(this,r);return{headers:t,response:Object.assign(Object.assign({},e),{data:l.default(this.response?this.response.data:{},e.data)})}})}updateURL(e,t,r=!1){e=this._coinIds.add(...e),t=this._vsCurrencies.add(...t);if(e||t||r){const s=`/simple/price?ids=${this._coinIds.values.join(",")}&vs_currencies=`+this._vsCurrencies.values.join(",");this.isInitialized?this._throttler.call(()=>this.setUrl(s)):this.setUrl(s)}}getCacheKey(){return this.instance.name+"-"+this.instance.defaults.baseURL+this.instance.getUri({url:"/simple/price"})}getPrice(e,t){if(t=t||this.defaultVsCurrency,this.supportedVsCurrencies[t]&&(this.updateURL([e],[t]),this.response)){e=this.response.data[e];if(e)return e[t]}}calculatePrice(e,t){if(e.currency.coinGeckoId){t=t||this.defaultVsCurrency;var r=this.supportedVsCurrencies[t];if(r)return void 0===(t=this.getPrice(e.currency.coinGeckoId,t))?new u.PricePretty(r,new u.Int(0)).ready(!1):(e=e.toDec(),t=new u.Dec(t.toString()),new u.PricePretty(r,e.mul(t)))}}}s([h.observable],f.prototype,"_defaultVsCurrency",void 0),s([h.action],f.prototype,"setDefaultVsCurrency",null),s([h.flow],f.prototype,"restoreDefaultVsCurrency",null),t.CoinGeckoPriceStore=f},1427:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1428),t),n(r(59),t),n(r(509),t),n(r(1429),t),n(r(1468),t),n(r(1472),t),n(r(1476),t)},1428:function(e,s,t){"use strict";var r=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(s,"__esModule",{value:!0}),s.QueriesStore=s.createQueriesSetBase=void 0;const n=t(5),i=t(509),o=t(119);s.createQueriesSetBase=(e,t,r)=>({queryBalances:new i.ObservableQueryBalances(e,t,r)});class a{constructor(e,t,...r){this.kvStore=e,this.chainGetter=t,this.queriesMap=new Map,this.queriesCreators=r,n.makeObservable(this)}get(t){if(!this.queriesMap.has(t)){const r=s.createQueriesSetBase(this.kvStore,t,this.chainGetter);n.runInAction(()=>{var e=o.mergeStores(r,[this.kvStore,t,this.chainGetter],...this.queriesCreators);this.queriesMap.set(t,e)})}return this.queriesMap.get(t)}}r([n.observable.shallow],a.prototype,"queriesMap",void 0),s.QueriesStore=a},1429:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),i=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)},o=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&s(t,e,r);return n(t,e),t};Object.defineProperty(t,"__esModule",{value:!0}),t.Balance=t.IBC=t.Account=t.Supply=t.Staking=t.Governance=void 0,i(r(1234),t),i(r(1238),t),i(r(1239),t),i(r(1240),t),i(r(1241),t),i(r(1242),t),t.Governance=o(r(1237)),t.Staking=o(r(863)),t.Supply=o(r(1451)),t.Account=o(r(1452)),t.IBC=o(r(1453)),t.Balance=o(r(1454)),i(r(1455),t)},1430:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryGovernance=void 0,r(59));const i=r(5),o=r(1235),a=r(26),c=r(201),u=r(1236);class l extends n.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,"/cosmos/gov/v1beta1/proposals?pagination.limit=3000"),this._queryPool=s,this.paramDeposit=void 0,this.paramVoting=void 0,this.paramTally=void 0,this.getProposal=c.computedFn(t=>this.proposals.find(e=>e.id===t)),i.makeObservable(this)}getQueryPool(){return this._queryPool}getQueryParamDeposit(){return this.paramDeposit||i.runInAction(()=>{this.paramDeposit=new o.ObservableQueryGovParamDeposit(this.kvStore,this.chainId,this.chainGetter)}),this.paramDeposit}getQueryParamVoting(){return this.paramVoting||i.runInAction(()=>{this.paramVoting=new o.ObservableQueryGovParamVoting(this.kvStore,this.chainId,this.chainGetter)}),this.paramVoting}getQueryParamTally(){return this.paramTally||i.runInAction(()=>{this.paramTally=new o.ObservableQueryGovParamTally(this.kvStore,this.chainId,this.chainGetter)}),this.paramTally}get quorum(){var e=this.getQueryParamTally();if(!e.response)return new a.IntPretty(new a.Int(0)).ready(!1);let t=new a.Dec(e.response.data.tally_params.quorum);return t=t.mulTruncate(a.DecUtils.getPrecisionDec(2)),new a.IntPretty(t)}get proposals(){if(!this.response)return[];var e=[];for(const t of this.response.data.proposals)e.push(new u.ObservableQueryProposal(this.kvStore,this.chainId,this.chainGetter,t,this));return e.reverse()}}s([i.observable.ref],l.prototype,"paramDeposit",void 0),s([i.observable.ref],l.prototype,"paramVoting",void 0),s([i.observable.ref],l.prototype,"paramTally",void 0),s([i.computed],l.prototype,"quorum",null),s([i.computed],l.prototype,"proposals",null),t.ObservableQueryGovernance=l},1431:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryProposalVote=t.ObservableQueryProposalVoteInner=void 0;r=r(59);class s extends r.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/cosmos/gov/v1beta1/proposals/${s}/votes/`+n),this.proposalId=s,this.bech32Address=n}get vote(){if(!this.response)return"Unspecified";switch(this.response.data.vote.option){case"VOTE_OPTION_YES":return"Yes";case"VOTE_OPTION_ABSTAIN":return"Abstain";case"VOTE_OPTION_NO":return"No";case"VOTE_OPTION_NO_WITH_VETO":return"NoWithVeto";default:return"Unspecified"}}canFetch(){return 0<this.bech32Address.length}}t.ObservableQueryProposalVoteInner=s;class n extends r.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>{var{proposalId:e,voter:t}=JSON.parse(e);return new s(this.kvStore,this.chainId,this.chainGetter,e,t)}),this.kvStore=e,this.chainId=t,this.chainGetter=r}getVote(e,t){e=JSON.stringify({proposalId:e,voter:t});return this.get(e)}}t.ObservableQueryProposalVote=n},1432:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},i=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryDelegations=t.ObservableQueryDelegationsInner=void 0,r(59));const o=r(26),a=r(5),c=r(201),u=r(236);class l extends i.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/cosmos/staking/v1beta1/delegations/${s}?pagination.limit=1000`),this.duplicatedFetchCheck=!0,this.getDelegationTo=c.computedFn(e=>{var t=this.delegations,r=this.chainGetter.getChain(this.chainId).stakeCurrency;if(!this.response)return new o.CoinPretty(r,new o.Int(0)).ready(!1);for(const s of t)if(s.delegation.validatorAddress===e)return new o.CoinPretty(r,new o.Int(s.balance.amount));return new o.CoinPretty(r,new o.Int(0))}),this.QueryClient=new u.QueryClient,a.makeObservable(this),this.bech32Address=s,this.misesStore=n}canFetch(){return 0<this.bech32Address.length}get total(){var e=this.chainGetter.getChain(this.chainId).stakeCurrency;if(!this.response)return new o.CoinPretty(e,new o.Int(0)).ready(!1);let t=new o.Int(0);for(const r of this.delegations)t=t.add(new o.Int(r.balance.amount));return new o.CoinPretty(e,t)}get delegationBalances(){if(!this.response)return[];var e=this.chainGetter.getChain(this.chainId).stakeCurrency,t=[];if(this.delegations)for(const r of this.delegations)t.push({validatorAddress:r.delegation.validatorAddress,balance:new o.CoinPretty(e,new o.Int(r.balance.amount))});return t}get delegations(){var e;return this.response&&(null==(e=null==(e=this.response)?void 0:e.data)?void 0:e.delegationResponses)||[]}*fetch(){var e;this.bech32Address&&null!=(e=this.QueryClient)&&e.fetchQuery("delegations",()=>n(this,void 0,void 0,function*(){var e=yield this.misesStore.delegations(this.bech32Address);this.setResponse({data:e,status:200,staled:!0,timestamp:(new Date).getTime()})}),this.fetchConfig)}}s([a.computed],l.prototype,"total",null),s([a.computed],l.prototype,"delegationBalances",null),s([a.computed],l.prototype,"delegations",null),s([a.override],l.prototype,"fetch",null),t.ObservableQueryDelegationsInner=l;class h extends i.ObservableChainQueryMap{constructor(e,t,r,s){super(e,t,r,e=>new l(this.kvStore,this.chainId,this.chainGetter,e,this.misesStore)),this.kvStore=e,this.chainId=t,this.chainGetter=r,this.misesStore=s}getQueryBech32Address(e){return this.get(e)}}t.ObservableQueryDelegations=h},1433:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},i=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryRewards=t.ObservableQueryRewardsInner=void 0,r(59));const o=r(5),a=r(26),c=r(119),u=r(201),l=r(236);class h extends i.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/cosmos/distribution/v1beta1/delegators/${s}/rewards`),this.duplicatedFetchCheck=!0,this.getRewardsOf=u.computedFn(t=>{var e=this.chainGetter.getChain(this.chainId).currencies.reduce((e,t)=>("type"in t||(e[t.coinMinimalDenom]=t),e),{}),r=null==(r=null==(r=this.response)?void 0:r.data.rewards)?void 0:r.find(e=>e.validatorAddress===t);return c.StoreUtils.getBalancesFromCurrencies(e,null!=(e=null==r?void 0:r.reward)?e:[])}),this.getStakableRewardOf=u.computedFn(t=>{var e=this.chainGetter.getChain(this.chainId),r=null==(r=null==(r=this.response)?void 0:r.data.rewards)?void 0:r.find(e=>e.validatorAddress===t);return c.StoreUtils.getBalanceFromCurrency(e.stakeCurrency,null!=(e=null==r?void 0:r.reward)?e:[])}),this.getUnstakableRewardsOf=u.computedFn(t=>{const r=this.chainGetter.getChain(this.chainId);var e=r.currencies.reduce((e,t)=>("type"in t||t.coinMinimalDenom===r.stakeCurrency.coinMinimalDenom||(e[t.coinMinimalDenom]=t),e),{}),s=null==(s=null==(s=this.response)?void 0:s.data.rewards)?void 0:s.find(e=>e.validatorAddress===t);return c.StoreUtils.getBalancesFromCurrencies(e,null!=(e=null==s?void 0:s.reward)?e:[])}),this.getDescendingPendingRewardValidatorAddresses=u.computedFn(e=>{if(!this.response)return[];const r=this.chainGetter.getChain(this.chainId);var t=null!=(t=null==(t=this.response.data.rewards)?void 0:t.slice())?t:[];return t.sort((e,t)=>{e=c.StoreUtils.getBalanceFromCurrency(r.stakeCurrency,null!=(e=e.reward)?e:[]),t=c.StoreUtils.getBalanceFromCurrency(r.stakeCurrency,null!=(t=t.reward)?t:[]);return e.toDec().gt(t.toDec())?-1:1}),t.filter(e=>{if(e.reward)for(const t of e.reward)if(new a.Dec(t.amount).truncate().gt(new a.Int(0)))return!0;return!1}).slice(0,e).map(e=>e.validatorAddress)}),this.QueryClient=new l.QueryClient,o.makeObservable(this),this.bech32Address=s,this.misesStore=n}canFetch(){return 0<this.bech32Address.length}get rewards(){var e=this.chainGetter.getChain(this.chainId).currencies.reduce((e,t)=>("type"in t||(e[t.coinMinimalDenom]=t),e),{});return c.StoreUtils.getBalancesFromCurrencies(e,null!=(e=null==(e=null==(e=this.response)?void 0:e.data)?void 0:e.total)?e:[])}get stakableReward(){var e=this.chainGetter.getChain(this.chainId);return c.StoreUtils.getBalanceFromCurrency(e.stakeCurrency,null!=(e=null==(e=null==(e=this.response)?void 0:e.data)?void 0:e.total)?e:[])}get unstakableRewards(){const r=this.chainGetter.getChain(this.chainId);var e=r.currencies.reduce((e,t)=>("type"in t||t.coinMinimalDenom===r.stakeCurrency.coinMinimalDenom||(e[t.coinMinimalDenom]=t),e),{});return c.StoreUtils.getBalancesFromCurrencies(e,null!=(e=null==(e=this.response)?void 0:e.data.total)?e:[])}get pendingRewardValidatorAddresses(){var e;if(!this.response)return[];var t=[];for(const r of null!=(e=this.response.data.rewards)?e:[])if(r.reward)for(const s of r.reward)if(new a.Dec(s.amount).truncate().gt(new a.Int(0))){t.push(r.validatorAddress);break}return t}*fetch(){var e;this.bech32Address&&null!=(e=this.QueryClient)&&e.fetchQuery("rewards",()=>n(this,void 0,void 0,function*(){var e=yield this.misesStore.rewards(this.bech32Address);e&&e.total[0]&&(e.total[0].amount=Number(e.total[0].amount)/Math.pow(10,18)),this.setResponse({data:e,status:200,staled:!0,timestamp:(new Date).getTime()})}),this.fetchConfig)}}s([o.computed],h.prototype,"rewards",null),s([o.computed],h.prototype,"stakableReward",null),s([o.computed],h.prototype,"unstakableRewards",null),s([o.computed],h.prototype,"pendingRewardValidatorAddresses",null),s([o.override],h.prototype,"fetch",null),t.ObservableQueryRewardsInner=h;class d extends i.ObservableChainQueryMap{constructor(e,t,r,s){super(e,t,r,e=>new h(this.kvStore,this.chainId,this.chainGetter,e,s)),this.kvStore=e,this.chainId=t,this.chainGetter=r,this.misesStore=s}getQueryBech32Address(e){return this.get(e)}}t.ObservableQueryRewards=d},1434:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},i=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryUnbondingDelegations=t.ObservableQueryUnbondingDelegationsInner=void 0,r(59));const o=r(26),a=r(5),c=r(236);class u extends i.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/cosmos/staking/v1beta1/delegators/${s}/unbonding_delegations?pagination.limit=1000`),this.duplicatedFetchCheck=!0,this.QueryClient=new c.QueryClient,a.makeObservable(this),this.bech32Address=s,this.misesStore=n}canFetch(){var e;return 0<(null==(e=this.bech32Address)?void 0:e.length)}get total(){var e=this.chainGetter.getChain(this.chainId).stakeCurrency;if(!this.response)return new o.CoinPretty(e,new o.Int(0)).ready(!1);let t=new o.Int(0);for(const r of this.unbondings)for(const s of r.entries)t=t.add(new o.Int(s.balance));return new o.CoinPretty(e,t)}get unbondingBalances(){var e=this.unbondings,t=this.chainGetter.getChain(this.chainId).stakeCurrency,r=[];for(const n of e){var s=[];for(const i of n.entries)s.push({creationHeight:new o.Int(i.creationHeight),completionTime:i.completionTime,balance:new o.CoinPretty(t,new o.Int(i.balance))});r.push({validatorAddress:n.validatorAddress,entries:s})}return r}get unbondings(){var e;return this.response&&(null==(e=this.response.data)?void 0:e.unbondingResponses)||[]}*fetch(){var e;this.bech32Address&&null!=(e=this.QueryClient)&&e.fetchQuery("unbondingDelegations",()=>n(this,void 0,void 0,function*(){var e=yield this.misesStore.unbondingDelegations(this.bech32Address);this.setResponse({data:e,status:200,staled:!0,timestamp:(new Date).getTime()})}),this.fetchConfig)}}s([a.computed],u.prototype,"total",null),s([a.computed],u.prototype,"unbondingBalances",null),s([a.computed],u.prototype,"unbondings",null),s([a.override],u.prototype,"fetch",null),t.ObservableQueryUnbondingDelegationsInner=u;class l extends i.ObservableChainQueryMap{constructor(e,t,r,s){super(e,t,r,e=>new u(this.kvStore,this.chainId,this.chainGetter,e,s)),this.kvStore=e,this.chainId=t,this.chainGetter=r,this.misesStore=s}getQueryBech32Address(e){return this.get(e)}}t.ObservableQueryUnbondingDelegations=l},1435:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})},i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}},o=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryValidators=t.ObservableQueryValidatorsInner=t.ObservableQueryValidatorThumbnail=void 0,r(59));const a=r(863),c=r(5);var u=r(119);const l=i(r(60));i=i(r(1436));const h=r(26),d=r(201);class p extends u.ObservableQuery{constructor(e,t){super(e,l.default.create({baseURL:"https://keybase.io/"}),"_/api/1.0/user/lookup.json?fields=pictures&key_suffix="+t.description.identity),c.makeObservable(this),this.validator=t}canFetch(){return""!==this.validator.description.identity}fetchResponse(e){const t=Object.create(null,{fetchResponse:{get:()=>super.fetchResponse}});return n(this,void 0,void 0,function*(){return yield p.fetchingThumbnailQueue.add(()=>t.fetchResponse.call(this,e))})}get thumbnail(){var e;return 0===(null==(e=this.response)?void 0:e.data.status.code)&&this.response.data.them&&0<this.response.data.them.length&&null!=(e=null==(e=null==(e=this.response.data.them[0].pictures)?void 0:e.primary)?void 0:e.url)?e:""}}p.fetchingThumbnailQueue=new i.default({concurrency:3}),s([c.computed],p.prototype,"thumbnail",null),t.ObservableQueryValidatorThumbnail=p;class f extends o.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,"/cosmos/staking/v1beta1/validators?pagination.limit=1000&status="+(()=>{switch(s){case a.BondStatus.Bonded:return"BOND_STATUS_BONDED";case a.BondStatus.Unbonded:return"BOND_STATUS_UNBONDED";case a.BondStatus.Unbonding:return"BOND_STATUS_UNBONDING";default:return"BOND_STATUS_UNSPECIFIED"}})()),this.status=s,this.thumbnailMap=new Map,this.getValidator=d.computedFn(t=>{return this.validators.find(e=>e.operator_address===t)}),this.getValidatorThumbnail=d.computedFn(t=>{const e=this.validators.find(e=>e.operator_address===t);if(!e)return"";if(!e.description.identity)return"";const r=e.description.identity;return this.thumbnailMap.has(r)||c.runInAction(()=>{this.thumbnailMap.set(r,new p(this.kvStore,e))}),this.thumbnailMap.get(r).thumbnail}),this.getValidatorShare=d.computedFn(t=>{var e,r=this.validators.find(e=>e.operator_address===t);if(r)return e=this.chainGetter.getChain(this.chainId).stakeCurrency,r=new h.Dec(r.tokens).truncate(),new h.CoinPretty(e,r)}),c.makeObservable(this)}get validators(){return this.response?this.response.data.validators:[]}get validatorsSortedByVotingPower(){return this.validators.sort((e,t)=>new h.Dec(e.tokens).gt(new h.Dec(t.tokens))?-1:1)}}s([c.observable.shallow],f.prototype,"thumbnailMap",void 0),s([c.computed],f.prototype,"validators",null),s([c.computed],f.prototype,"validatorsSortedByVotingPower",null),t.ObservableQueryValidatorsInner=f;class y extends o.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>new f(this.kvStore,this.chainId,this.chainGetter,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r}getQueryStatus(e=a.BondStatus.Bonded){return this.get(e)}}t.ObservableQueryValidators=y},1441:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryStakingPool=void 0,r(59));const i=r(5),o=r(26);class a extends n.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/cosmos/staking/v1beta1/pool"),i.makeObservable(this)}get notBondedTokens(){var e=this.chainGetter.getChain(this.chainId);return this.response?new o.CoinPretty(e.stakeCurrency,this.response.data.pool.not_bonded_tokens):new o.CoinPretty(e.stakeCurrency,0)}get bondedTokens(){var e=this.chainGetter.getChain(this.chainId);return this.response?new o.CoinPretty(e.stakeCurrency,this.response.data.pool.bonded_tokens):new o.CoinPretty(e.stakeCurrency,0)}}s([i.computed],a.prototype,"notBondedTokens",null),s([i.computed],a.prototype,"bondedTokens",null),t.ObservableQueryStakingPool=a},1442:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryStakingParams=void 0,r(59));const i=r(5);class o extends n.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/cosmos/staking/v1beta1/params"),i.makeObservable(this)}get unbondingTimeSec(){return this.response?parseInt(this.response.data.params.unbonding_time.replace("s","")):0}get maxValidators(){var e;return null!=(e=null==(e=this.response)?void 0:e.data.params.max_validators)?e:0}get maxEntries(){var e;return null!=(e=null==(e=this.response)?void 0:e.data.params.max_entries)?e:0}get historicalEntries(){var e;return null!=(e=null==(e=this.response)?void 0:e.data.params.historical_entries)?e:0}get bondDenom(){var e;return null!=(e=null==(e=this.response)?void 0:e.data.params.bond_denom)?e:""}}s([i.computed],o.prototype,"unbondingTimeSec",null),t.ObservableQueryStakingParams=o},1443:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryInflation=void 0;const d=r(5),g=r(26);class n{constructor(e,t,r,s,n,i,o,a,c,u,l,h){this.chainId=e,this.chainGetter=t,this._queryMint=r,this._queryPool=s,this._querySupplyTotal=n,this._queryIrisMint=i,this._querySifchainAPY=o,this._queryOsmosisEpochs=a,this._queryOsmosisEpochProvisions=c,this._queryOsmosisMintParams=u,this._queryJunoAnnualProvisions=l,this._queryDistributionParams=h,d.makeObservable(this)}get error(){var e;return null!=(e=null!=(e=this._queryMint.error)?e:this._queryPool.error)?e:this._querySupplyTotal.getQueryStakeDenom().error}get isFetching(){return this._queryMint.isFetching||this._queryPool.isFetching||this._querySupplyTotal.getQueryStakeDenom().isFetching}get inflation(){var t,r,s,n,i,o,a,c,u,l;try{let e;const v=this.chainGetter.getChain(this.chainId);if(v.chainId.startsWith("irishub"))e=new g.Dec(null!=(r=null==(t=this._queryIrisMint.response)?void 0:t.data.result.inflation)?r:"0").mul(g.DecUtils.getPrecisionDec(2));else{if(v.chainId.startsWith("sifchain"))return new g.IntPretty(new g.Dec(this._querySifchainAPY.liquidityAPY.toString()));if(v.chainId.startsWith("osmosis")){var h,d,p,f,y=this._queryOsmosisMintParams;y.epochIdentifier&&(h=this._queryOsmosisEpochs.getEpoch(y.epochIdentifier).duration)&&(d=this._queryOsmosisEpochProvisions.epochProvisions)&&this._querySupplyTotal.getQueryStakeDenom().response&&(p=new g.Dec(d.toDec().mul(y.distributionProportions.staking).truncate().toString()).mul(new g.Dec((31536e3/h).toString())),f=g.DecUtils.getPrecisionDec(8),e=p.quo(f).mul(g.DecUtils.getPrecisionDec(2)))}else if(v.chainId.startsWith("juno")){if(this._queryJunoAnnualProvisions.annualProvisionsRaw&&this._queryPool.response)return i=new g.Dec(this._queryPool.response.data.pool.bonded_tokens),o=this._queryJunoAnnualProvisions.annualProvisionsRaw.quo(i).mul(new g.Dec(1).sub(this._queryDistributionParams.communityTax.toDec())).mul(g.DecUtils.getTenExponentN(2)),new g.IntPretty(o)}else e=new g.Dec(null!=(n=null==(s=this._queryMint.response)?void 0:s.data.inflation)?n:"0").mul(g.DecUtils.getPrecisionDec(2))}return!e||e.equals(new g.Dec(0))?new g.IntPretty(new g.Int(0)).ready(!1):(this._queryPool.response&&(a=new g.Dec(this._queryPool.response.data.pool.bonded_tokens),c=(()=>{if(v.chainId.startsWith("osmosis"))return g.DecUtils.getPrecisionDec(14).toString();if(v.chainId.startsWith("umee")){const e=this._querySupplyTotal.getQueryDenomByQueryString(v.stakeCurrency.coinMinimalDenom).response;return e?e.data.amount.amount:"0"}const e=this._querySupplyTotal.getQueryStakeDenom().response;return e?e.data.amount.amount:"0"})(),(u=new g.Dec(c)).gt(new g.Dec(0)))&&(l=a.quo(u),e=e.mul(new g.Dec(1).sub(this._queryDistributionParams.communityTax.toDec())).quo(l)),new g.IntPretty(e))}catch(e){return new g.IntPretty(new g.Int(0)).ready(!1)}}}s([d.computed],n.prototype,"inflation",null),t.ObservableQueryInflation=n},1444:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryMintingInfation=void 0;class s extends r(59).ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/cosmos/mint/v1beta1/inflation")}canFetch(){return!1}}t.ObservableQueryMintingInfation=s},1445:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQuerySupplyTotal=t.ObservableChainQuerySupplyTotal=void 0;r=r(59);class s extends r.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,"/cosmos/bank/v1beta1/supply/"+s)}}t.ObservableChainQuerySupplyTotal=s;class n extends r.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>new s(this.kvStore,this.chainId,this.chainGetter,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r}getQueryDenom(e){return this.get(e)}getQueryDenomByQueryString(e){return this.get("by_denom?denom="+e)}getQueryStakeDenom(){var e=this.chainGetter.getChain(this.chainId);return this.get(e.stakeCurrency.coinMinimalDenom)}}t.ObservableQuerySupplyTotal=n},1446:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryIBCChannel=t.ObservableChainQueryIBCChannel=void 0;var s=r(59);const n=r(5);class i extends s.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/ibc/core/channel/v1beta1/channels/${n}/ports/`+s),this.portId=s,this.channelId=n}onStart(){return super.onStart(),new Promise(t=>{this.disposer=n.autorun(()=>{var e=this.chainGetter.getChain(this.chainId);e.features&&e.features.includes("ibc-go")&&this.setUrl(`/ibc/core/channel/v1/channels/${this.channelId}/ports/`+this.portId),t()})})}onStop(){this.disposer&&(this.disposer(),this.disposer=void 0),super.onStop()}}t.ObservableChainQueryIBCChannel=i;class o extends s.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>{e=JSON.parse(e);return new i(this.kvStore,this.chainId,this.chainGetter,e.portId,e.channelId)}),this.kvStore=e,this.chainId=t,this.chainGetter=r}getTransferChannel(e){return this.getChannel("transfer",e)}getChannel(e,t){e=JSON.stringify({portId:e,channelId:t});return this.get(e)}}t.ObservableQueryIBCChannel=o},1447:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryIBCClientState=t.ObservableChainQueryClientState=void 0,r(59));const i=r(5);class o extends n.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/ibc/core/channel/v1beta1/channels/${n}/ports/${s}/client_state`),this.portId=s,this.channelId=n}onStart(){return super.onStart(),new Promise(t=>{this.disposer=i.autorun(()=>{var e=this.chainGetter.getChain(this.chainId);e.features&&e.features.includes("ibc-go")&&this.setUrl(`/ibc/core/channel/v1/channels/${this.channelId}/ports/${this.portId}/client_state`),t()})})}onStop(){this.disposer&&(this.disposer(),this.disposer=void 0),super.onStop()}get clientChainId(){var e;return!this.response||null==(e=null==(e=this.response.data.identified_client_state)?void 0:e.client_state)?void 0:e.chain_id}}s([i.computed],o.prototype,"clientChainId",null),t.ObservableChainQueryClientState=o;class a extends n.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>{e=JSON.parse(e);return new o(this.kvStore,this.chainId,this.chainGetter,e.portId,e.channelId)}),this.kvStore=e,this.chainId=t,this.chainGetter=r}getClientStateOnTransferPort(e){return this.getClientState("transfer",e)}getClientState(e,t){e=JSON.stringify({portId:e,channelId:t});return this.get(e)}}t.ObservableQueryIBCClientState=a},1448:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryDenomTrace=t.ObservableChainQueryDenomTrace=void 0,r(59));const i=r(5);class o extends n.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,"/ibc/applications/transfer/v1beta1/denom_traces/"+s),this.hash=s}onStart(){return super.onStart(),new Promise(t=>{this.disposer=i.autorun(()=>{var e=this.chainGetter.getChain(this.chainId);e.features&&e.features.includes("ibc-go")&&this.setUrl("/ibc/apps/transfer/v1/denom_traces/"+this.hash),t()})})}onStop(){this.disposer&&(this.disposer(),this.disposer=void 0),super.onStop()}get paths(){if(!this.response)return[];var t=this.response.data.denom_trace.path.split("/");if(t.length%2!=0)return[];var r=[];for(let e=0;e<t.length;e+=2)r.push(t.slice(e,e+2));return r.map(e=>({portId:e[0],channelId:e[1]}))}get denom(){if(this.response)return this.response.data.denom_trace.base_denom}get denomTrace(){if(this.response&&this.denom)return{denom:this.denom,paths:this.paths}}}s([i.computed],o.prototype,"paths",null),s([i.computed],o.prototype,"denomTrace",null),t.ObservableChainQueryDenomTrace=o;class a extends n.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>new o(this.kvStore,this.chainId,this.chainGetter,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r}getDenomTrace(e){return this.get(e)}}t.ObservableQueryDenomTrace=a},1449:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryCosmosBalanceRegistry=t.ObservableQueryCosmosBalances=t.ObservableQueryBalanceNative=void 0;const i=r(27),o=r(5),a=r(26),c=r(119);var u=r(509),l=r(59);const h=r(236);class d extends u.ObservableQueryBalanceInner{constructor(e,t,r,s,n){super(e,t,r,"",s),this.nativeBalances=n,o.makeObservable(this)}canFetch(){return!1}get isFetching(){return this.nativeBalances.isFetching}get error(){return this.nativeBalances.error}get response(){return this.nativeBalances.response}*fetch(){yield this.nativeBalances.fetch()}get balance(){var e=this.currency;return this.nativeBalances.response?c.StoreUtils.getBalanceFromCurrency(e,this.nativeBalances.response.data.balances):new a.CoinPretty(e,new a.Int(0)).ready(!1)}}s([o.override],d.prototype,"fetch",null),s([o.computed],d.prototype,"balance",null),t.ObservableQueryBalanceNative=d;class p extends l.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/cosmos/bank/v1beta1/balances/${s}?pagination.limit=1000`),this.duplicatedFetchCheck=!0,this.QueryClient=new h.QueryClient,this.bech32Address=s,this.misesStore=n,o.makeObservable(this)}canFetch(){return 0<this.bech32Address.length}*fetch(){var e;null!=(e=this.QueryClient)&&e.fetchQuery("getMisesBalance",()=>this.getMisesBalance(),this.fetchConfig).then(e=>{this.setResponse(e)})}getMisesBalance(){var e;return n(this,void 0,void 0,function*(){return{status:200,data:{balances:[yield null==(e=this.misesStore)?void 0:e.getBalanceUMIS()]},staled:!0,timestamp:(new Date).getTime()}})}setResponse(e){super.setResponse(e);var t=this.chainGetter.getChain(this.chainId),e=e.data.balances.map(e=>e.denom);t.addUnknownCurrencies(...e)}}s([o.override],p.prototype,"fetch",null),t.ObservableQueryCosmosBalances=p;t.ObservableQueryCosmosBalanceRegistry=class{constructor(e,t){this.kvStore=e,this.misesStore=t,this.nativeBalances=new Map}getBalanceInner(e,t,r,s){var n,s=new i.DenomHelper(s);if("native"===s.type)return this.nativeBalances.has(n=e+"/"+r)||this.nativeBalances.set(n,new p(this.kvStore,e,t,r,this.misesStore)),new d(this.kvStore,e,t,s,this.nativeBalances.get(n))}}},1450:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQuerySpendableBalances=t.ObservableChainQuerySpendableBalances=void 0,r(59));const i=r(26);r=r(5);class o extends n.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,"/cosmos/bank/v1beta1/spendable_balances/"+s)}get balances(){if(!this.response)return[];var e=[],t=this.chainGetter.getChain(this.chainId);for(const s of this.response.data.balances){var r=t.findCurrency(s.denom);r&&e.push(new i.CoinPretty(r,s.amount))}return e}}s([r.computed],o.prototype,"balances",null),t.ObservableChainQuerySpendableBalances=o;class a extends n.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>new o(this.kvStore,this.chainId,this.chainGetter,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r}getQueryBech32Address(e){return this.get(e)}}t.ObservableQuerySpendableBalances=a},1451:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1452:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1453:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1454:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1455:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.CosmosQueriesImpl=t.CosmosQueries=void 0;const i=r(1240),o=r(1239),a=r(1238),c=r(1234),u=r(1241),l=r(1456),h=r(1242),d=r(1457),p=r(1458),f=r(1462),y=r(1464),v=r(1466);t.CosmosQueries={use(n){return(e,t,r,s)=>({cosmos:new g(e,t,r,s,n)})}};class g{constructor(e,t,r,s,n){this.queryRPCStatus=new y.ObservableQueryRPCStatus(t,r,s),this.querySifchainAPY=new l.ObservableQuerySifchainLiquidityAPY(t,r),e.queryBalances.addBalanceRegistry(new h.ObservableQueryCosmosBalanceRegistry(t,n)),this.queryAccount=new i.ObservableQueryAccount(t,r,s),this.querySpendableBalances=new h.ObservableQuerySpendableBalances(t,r,s),this.queryMint=new o.ObservableQueryMintingInfation(t,r,s),this.queryPool=new a.ObservableQueryStakingPool(t,r,s),this.queryStakingParams=new a.ObservableQueryStakingParams(t,r,s),this.querySupplyTotal=new o.ObservableQuerySupplyTotal(t,r,s);e=new p.ObservableQueryOsmosisMintParmas(t,r,s);this.queryDistributionParams=new f.ObservableQueryDistributionParams(t,r,s),this.queryInflation=new o.ObservableQueryInflation(r,s,this.queryMint,this.queryPool,this.querySupplyTotal,new d.ObservableQueryIrisMintingInfation(t,r,s),this.querySifchainAPY,new p.ObservableQueryOsmosisEpochs(t,r,s),new p.ObservableQueryOsmosisEpochProvisions(t,r,s,e),e,new v.ObservableQueryJunoAnnualProvisions(t,r,s),this.queryDistributionParams),this.queryRewards=new a.ObservableQueryRewards(t,r,s,n),this.queryDelegations=new a.ObservableQueryDelegations(t,r,s,n),this.queryUnbondingDelegations=new a.ObservableQueryUnbondingDelegations(t,r,s,n),this.queryValidators=new a.ObservableQueryValidators(t,r,s),this.queryGovernance=new c.ObservableQueryGovernance(t,r,s,this.queryPool),this.queryProposalVote=new c.ObservableQueryProposalVote(t,r,s),this.queryIBCClientState=new u.ObservableQueryIBCClientState(t,r,s),this.queryIBCChannel=new u.ObservableQueryIBCChannel(t,r,s),this.queryIBCDenomTrace=new u.ObservableQueryDenomTrace(t,r,s)}}t.CosmosQueriesImpl=g},1456:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}},i=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQuerySifchainLiquidityAPY=void 0,r(119));const o=n(r(60)),a=r(5);class c extends i.ObservableQuery{constructor(e,t){super(e,o.default.create({baseURL:"https://data.sifchain.finance/"}),"beta/validator/stakingRewards"),this.chainId=t,a.makeObservable(this)}canFetch(){return this.chainId.startsWith("sifchain")}get liquidityAPY(){return this.response?100*Number(this.response.data.rate):0}}s([a.computed],c.prototype,"liquidityAPY",null),t.ObservableQuerySifchainLiquidityAPY=c},1457:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryIrisMintingInfation=void 0;class s extends r(59).ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/mint/params")}}t.ObservableQueryIrisMintingInfation=s},1458:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1459),t),n(r(1460),t),n(r(1461),t)},1459:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryOsmosisEpochs=t.ObservableQueryOsmosisEpochsInner=void 0,r(59)),r=r(5);class i{constructor(e,t){this.identifier=e,this.queryEpochs=t}get epoch(){var e;return null==(e=this.queryEpochs.response)?void 0:e.data.epochs.find(e=>e.identifier===this.identifier)}get duration(){return this.epoch?parseInt(this.epoch.duration.replace("s","")):0}get startTime(){return this.epoch?new Date(this.epoch.current_epoch_start_time):new Date(0)}get endTime(){var e=this.startTime;return this.duration?new Date(e.getTime()+1e3*this.duration):e}}s([r.computed],i.prototype,"epoch",null),s([r.computed],i.prototype,"duration",null),s([r.computed],i.prototype,"startTime",null),s([r.computed],i.prototype,"endTime",null),t.ObservableQueryOsmosisEpochsInner=i;class o extends n.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/osmosis/epochs/v1beta1/epochs"),this.map=new Map}getEpoch(e){var t;return this.map.has(e)||(t=new i(e,this),this.map.set(e,t)),this.map.get(e)}}s([r.observable.shallow],o.prototype,"map",void 0),t.ObservableQueryOsmosisEpochs=o},1460:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryOsmosisEpochProvisions=void 0,r(59));const i=r(5),o=r(26);class a extends n.ObservableChainQuery{constructor(e,t,r,s){super(e,t,r,"/osmosis/mint/v1beta1/epoch_provisions"),this.queryMintParmas=s,i.makeObservable(this)}get epochProvisions(){if(this.response&&this.queryMintParmas.mintDenom){var t=this.chainGetter.getChain(this.chainId).currencies.find(e=>e.coinMinimalDenom===this.queryMintParmas.mintDenom);if(!t)throw new Error("Unknown currency");let e=this.response.data.epoch_provisions;return e.includes(".")&&(e=e.slice(0,e.indexOf("."))),new o.CoinPretty(t,new o.Int(e))}}}s([i.computed],a.prototype,"epochProvisions",null),t.ObservableQueryOsmosisEpochProvisions=a},1461:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryOsmosisMintParmas=void 0,r(59));const i=r(5),o=r(26);class a extends n.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/osmosis/mint/v1beta1/params"),i.makeObservable(this)}get mintDenom(){var e;return null==(e=this.response)?void 0:e.data.params.mint_denom}get epochIdentifier(){var e;return null==(e=this.response)?void 0:e.data.params.epoch_identifier}get distributionProportions(){return this.response?{staking:new o.Dec(this.response.data.params.distribution_proportions.staking),poolIncentives:new o.Dec(this.response.data.params.distribution_proportions.pool_incentives),developerRewards:new o.Dec(this.response.data.params.distribution_proportions.developer_rewards)}:{staking:new o.Dec(0),poolIncentives:new o.Dec(0),developerRewards:new o.Dec(0)}}}s([i.computed],a.prototype,"distributionProportions",null),t.ObservableQueryOsmosisMintParmas=a},1462:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1463),t)},1463:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryDistributionParams=void 0,r(59));const i=r(5),o=r(26);class a extends n.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/cosmos/distribution/v1beta1/params"),i.makeObservable(this)}get communityTax(){return this.response?new o.RatePretty(this.response.data.params.community_tax):new o.RatePretty(0)}}s([i.computed],a.prototype,"communityTax",null),t.ObservableQueryDistributionParams=a},1464:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryRPCStatus=void 0;var s=r(1465);const n=r(26);class i extends s.ObservableChainQueryRPC{constructor(e,t,r){super(e,t,r,"/status")}get network(){if(this.response)return this.response.data.result.node_info.network}get latestBlockHeight(){if(this.response)return new n.Int(this.response.data.result.sync_info.latest_block_height)}}t.ObservableQueryRPCStatus=i},1465:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}},i=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableChainQueryRPCMap=t.ObservableChainQueryRPC=void 0,r(119));const o=n(r(60));n=r(5),r=r(119);class a extends i.ObservableQuery{constructor(e,t,r,s){var n=r.getChain(t);super(e,o.default.create(Object.assign({baseURL:n.rpc},n.rpcConfig)),s),this._chainId=t,this.chainGetter=r}get instance(){var e=this.chainGetter.getChain(this.chainId);return o.default.create(Object.assign({baseURL:e.rpc},e.rpcConfig))}get chainId(){return this._chainId}}s([n.override],a.prototype,"instance",null),t.ObservableChainQueryRPC=a;class c extends r.HasMapStore{constructor(e,t,r,s){super(s),this.kvStore=e,this.chainId=t,this.chainGetter=r}}t.ObservableChainQueryRPCMap=c},1466:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1467),t)},1467:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryJunoAnnualProvisions=void 0,r(59));const i=r(5),o=r(26);class a extends n.ObservableChainQuery{constructor(e,t,r){super(e,t,r,"/cosmos/mint/v1beta1/annual_provisions"),i.makeObservable(this)}get annualProvisions(){var e;if(this.response)return e=this.chainGetter.getChain(this.chainId),new o.CoinPretty(e.stakeCurrency,new o.Dec(this.response.data.annual_provisions))}get annualProvisionsRaw(){if(this.response)return new o.Dec(this.response.data.annual_provisions)}}s([i.computed],a.prototype,"annualProvisions",null),s([i.computed],a.prototype,"annualProvisionsRaw",null),t.ObservableQueryJunoAnnualProvisions=a},1468:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),i=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)},o=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&s(t,e,r);return n(t,e),t};Object.defineProperty(t,"__esModule",{value:!0}),t.CosmWasm=void 0,i(r(1243),t),t.CosmWasm=o(r(1469)),i(r(1470),t)},1469:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1470:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.CosmwasmQueriesImpl=t.CosmwasmQueries=void 0;const n=r(1471),i=r(1243);t.CosmwasmQueries={use(){return(e,t,r,s)=>({cosmwasm:new o(e,t,r,s)})}};class o{constructor(e,t,r,s){e.queryBalances.addBalanceRegistry(new i.ObservableQueryCw20BalanceRegistry(t)),this.querycw20ContractInfo=new n.ObservableQueryCw20ContractInfo(t,r,s)}}t.CosmwasmQueriesImpl=o},1471:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryCw20ContractInfo=t.ObservableQueryCw20ContactInfoInner=void 0,r(59)),i=r(5);class o extends r(1244).ObservableCosmwasmContractChainQuery{constructor(e,t,r,s){super(e,t,r,s,{token_info:{}}),this.contractAddress=s}get tokenInfo(){if(this.response&&this.response.data)return this.response.data}}s([i.computed],o.prototype,"tokenInfo",null),t.ObservableQueryCw20ContactInfoInner=o;class a extends n.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>new o(this.kvStore,this.chainId,this.chainGetter,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r}getQueryContract(e){return this.get(e)}}t.ObservableQueryCw20ContractInfo=a},1472:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),i=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)},o=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&s(t,e,r);return n(t,e),t};Object.defineProperty(t,"__esModule",{value:!0}),t.SecretWasm=void 0,i(r(1245),t),i(r(1246),t),i(r(1248),t),t.SecretWasm=o(r(1473)),i(r(1474),t)},1473:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1474:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.SecretQueriesImpl=t.SecretQueries=void 0;const i=r(1245),o=r(1475),a=r(1246);t.SecretQueries={use(n){return(e,t,r,s)=>({secret:new c(e,t,r,s,n.apiGetter)})}};class c{constructor(e,t,r,s,n){this.querySecretContractCodeHash=new i.ObservableQuerySecretContractCodeHash(t,r,s),e.queryBalances.addBalanceRegistry(new a.ObservableQuerySecret20BalanceRegistry(t,n,this.querySecretContractCodeHash)),this.querySecret20ContractInfo=new o.ObservableQuerySecret20ContractInfo(t,r,s,n,this.querySecretContractCodeHash)}}t.SecretQueriesImpl=c},1475:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQuerySecret20ContractInfo=t.ObservableQuerySecret20ContactInfoInner=void 0,r(59));const o=r(5);class i extends r(1247).ObservableSecretContractChainQuery{constructor(e,t,r,s,n,i){super(e,t,r,s,n,{token_info:{}},i),this.apiGetter=s,this.contractAddress=n,this.querySecretContractCodeHash=i,o.makeObservable(this)}get error(){return super.error||this.querySecretContractCodeHash.getQueryContract(this.contractAddress).error}get tokenInfo(){if(this.response)return this.response.data.token_info}}s([o.computed],i.prototype,"tokenInfo",null),t.ObservableQuerySecret20ContactInfoInner=i;class a extends n.ObservableChainQueryMap{constructor(e,t,r,s,n){super(e,t,r,e=>new i(this.kvStore,this.chainId,this.chainGetter,this.apiGetter,e,n)),this.kvStore=e,this.chainId=t,this.chainGetter=r,this.apiGetter=s,this.querySecretContractCodeHash=n}getQueryContract(e){return this.get(e)}}t.ObservableQuerySecret20ContractInfo=a},1476:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),i=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)},o=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&s(t,e,r);return n(t,e),t};Object.defineProperty(t,"__esModule",{value:!0}),t.TxFeesBaseDenom=t.TxFeesSpotPriceByDenom=t.TxFeesFeeTokens=void 0,i(r(1249),t),i(r(1250),t),i(r(1251),t),t.TxFeesFeeTokens=o(r(1477)),t.TxFeesSpotPriceByDenom=o(r(1478)),t.TxFeesBaseDenom=o(r(1479)),i(r(1480),t)},1477:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1478:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1479:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},1480:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.OsmosisQueriesImpl=t.OsmosisQueries=void 0;const n=r(1249),i=r(1250),o=r(1251);t.OsmosisQueries={use(){return(e,t,r,s)=>({osmosis:new a(e,t,r,s)})}};class a{constructor(e,t,r,s){this.queryTxFeesFeeTokens=new n.ObservableQueryTxFeesFeeTokens(t,r,s),this.queryTxFeesSpotPriceByDenom=new i.ObservableQueryTxFeesSpotPriceByDenom(t,r,s),this.queryTxFeesBaseDenom=new o.ObservableQueryTxFeesBaseDenom(t,r,s)}}t.OsmosisQueriesImpl=a},1481:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.ChainStore=t.ChainInfoInner=void 0;const i=r(5),n=r(16),o=r(201);class a{constructor(e){this.unknownDenoms=[],this.registeredCurrencies=[],this.currencyRegistrars=[],this._chainInfo=e,i.makeObservable(this),o.keepAlive(this,"currencyMap")}getCurrencyFromRegistrars(t){for(let e=0;e<this.currencyRegistrars.length;e++){var r=(0,this.currencyRegistrars[e])(t);if(r)return"coinMinimalDenom"in r?[r,!0]:r}}addUnknownCurrencies(...e){for(const s of e)if(!this.unknownDenoms.find(e=>e===s)&&!this.currencyMap.has(s)){this.unknownDenoms.push(s);const n=i.autorun(()=>{var e=this.getCurrencyFromRegistrars(s);if(e){const[t,r]=e;i.runInAction(()=>{var e;t&&(0<=(e=this.unknownDenoms.findIndex(e=>e===s))&&this.unknownDenoms.splice(e,1),this.addOrReplaceCurrency(t)),r&&n()})}else n()})}}registerCurrencyRegistrar(e){this.currencyRegistrars.push(e)}setChainInfo(e){this._chainInfo=e}get raw(){return this._chainInfo}get chainId(){return this._chainInfo.chainId}get currencies(){return this._chainInfo.currencies.concat(this.registeredCurrencies)}get currencyMap(){var e=new Map;for(const t of this.currencies)e.set(t.coinMinimalDenom,t);return e}addCurrencies(...e){var t=this.currencyMap;for(const r of e)t.has(r.coinMinimalDenom)||this.registeredCurrencies.push(r)}removeCurrencies(...e){const t=new Map;for(const r of e)t.set(r,!0);this.registeredCurrencies=this.registeredCurrencies.filter(e=>!t.get(e.coinMinimalDenom))}findCurrency(e){return this.currencyMap.has(e)||(this.addUnknownCurrencies(e),this.currencyMap.has(e))?this.currencyMap.get(e):void 0}forceFindCurrency(e){var t=this.findCurrency(e);return t||{coinMinimalDenom:e,coinDenom:e,coinDecimals:0}}addOrReplaceCurrency(t){var e;this.currencyMap.has(t.coinMinimalDenom)?0<=(e=this.registeredCurrencies.findIndex(e=>e.coinMinimalDenom===t.coinMinimalDenom))&&this.registeredCurrencies.splice(e,1,t):this.registeredCurrencies.push(t)}get stakeCurrency(){return this.raw.stakeCurrency}get alternativeBIP44s(){return this.raw.alternativeBIP44s}get bech32Config(){return this.raw.bech32Config}get beta(){return this.raw.beta}get bip44(){return this.raw.bip44}get chainName(){return this.raw.chainName}get coinType(){return this.raw.coinType}get features(){return this.raw.features}get feeCurrencies(){return this.raw.feeCurrencies}get rest(){return this.raw.rest}get restConfig(){return this.raw.restConfig}get rpc(){return this.raw.rpc}get rpcConfig(){return this.raw.rpcConfig}get walletUrl(){return this.raw.walletUrl}get walletUrlForStaking(){return this.raw.walletUrlForStaking}}s([i.observable.ref],a.prototype,"_chainInfo",void 0),s([i.observable.shallow],a.prototype,"unknownDenoms",void 0),s([i.observable.shallow],a.prototype,"registeredCurrencies",void 0),s([i.observable],a.prototype,"currencyRegistrars",void 0),s([i.action],a.prototype,"addUnknownCurrencies",null),s([i.action],a.prototype,"registerCurrencyRegistrar",null),s([i.action],a.prototype,"setChainInfo",null),s([i.computed],a.prototype,"currencyMap",null),s([i.action],a.prototype,"addCurrencies",null),s([i.action],a.prototype,"removeCurrencies",null),s([i.action],a.prototype,"addOrReplaceCurrency",null),t.ChainInfoInner=a;class c{constructor(e){this.setChainInfoHandlers=[],this._cachedChainInfosMap=new Map,this.setChainInfos(e),i.makeObservable(this)}get chainInfos(){return this._chainInfos}getChain(e){const t=n.ChainIdHelper.parse(e);var r=this.chainInfos.find(e=>n.ChainIdHelper.parse(e.chainId).identifier===t.identifier);if(r)return r;throw new Error("Unknown chain info: "+e)}hasChain(e){const t=n.ChainIdHelper.parse(e);return null!=this.chainInfos.find(e=>n.ChainIdHelper.parse(e.chainId).identifier===t.identifier)}addSetChainInfoHandler(e){this.setChainInfoHandlers.push(e);for(const t of this.chainInfos)e(this._cachedChainInfosMap.get(t.chainId))}setChainInfos(e){var t=[];for(const n of e)if(this._cachedChainInfosMap.has(n.chainId)){var r=this._cachedChainInfosMap.get(n.chainId);r.setChainInfo(n),t.push(r)}else{var s=new a(n);this._cachedChainInfosMap.set(n.chainId,s),t.push(s);for(const i of this.setChainInfoHandlers)i(s)}this._chainInfos=t}}s([i.observable.ref],c.prototype,"_chainInfos",void 0),s([i.action],c.prototype,"setChainInfos",null),t.ChainStore=c},1482:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1483),t),n(r(1489),t),n(r(1490),t),n(r(1491),t),n(r(1492),t)},1483:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1484),t),n(r(1486),t),n(r(1487),t),n(r(1488),t)},1484:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.InteractionStore=void 0;const n=r(3),i=r(54),o=r(5);class a{constructor(e,t){this.router=e,this.msgRequester=t,this.datas=new Map,this.events=new Map,o.makeObservable(this);t=new i.InteractionForegroundService(this);i.interactionForegroundInit(e,t)}getDatas(e){return null!=(e=o.toJS(this.datas.get(e)))?e:[]}getEvents(e){return null!=(e=o.toJS(this.events.get(e)))?e:[]}onInteractionDataReceived(e){this.datas.has(e.type)||this.datas.set(e.type,o.observable.array([],{deep:!1})),this.datas.get(e.type).push(e)}onEventDataReceived(e){this.events.has(e.type)||this.events.set(e.type,o.observable.array([],{deep:!1})),this.events.get(e.type).push(e)}*approve(e,t,r){this.removeData(e,t),yield this.msgRequester.sendMessage(n.BACKGROUND_PORT,new i.ApproveInteractionMsg(t,r))}*approveWithoutRemovingData(e,t){yield this.msgRequester.sendMessage(n.BACKGROUND_PORT,new i.ApproveInteractionMsg(e,t))}*reject(e,t){this.removeData(e,t),yield this.msgRequester.sendMessage(n.BACKGROUND_PORT,new i.RejectInteractionMsg(t))}*rejectAll(e){for(const t of this.getDatas(e))yield this.reject(t.type,t.id)}removeData(e,t){var r;this.datas.has(e)&&(r=this.datas.get(e).find(e=>e.id===t))&&this.datas.get(e).remove(r)}clearEvent(e){this.events.has(e)&&0<this.events.get(e).length&&this.events.set(e,o.observable.array([],{deep:!1}))}}s([o.observable.shallow],a.prototype,"datas",void 0),s([o.observable.shallow],a.prototype,"events",void 0),s([o.action],a.prototype,"onInteractionDataReceived",null),s([o.action],a.prototype,"onEventDataReceived",null),s([o.flow],a.prototype,"approve",null),s([o.flow],a.prototype,"approveWithoutRemovingData",null),s([o.flow],a.prototype,"reject",null),s([o.flow],a.prototype,"rejectAll",null),s([o.action],a.prototype,"removeData",null),s([o.action],a.prototype,"clearEvent",null),t.InteractionStore=a},1486:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.PermissionStore=t.BasicAccessPermissionInnerStore=t.Secret20ViewingKeyPermissionInnerStore=void 0;const i=r(54),o=r(5);var a=r(119);const c=r(3),u=r(27);class l{constructor(e,t,r){this.chainId=e,this.contractAddress=t,this.requester=r,this._origins=[],o.makeObservable(this),this.refreshOrigins()}get origins(){return this._origins}*removeOrigin(e){yield this.requester.sendMessage(c.BACKGROUND_PORT,new i.RemovePermissionOrigin(this.chainId,i.getSecret20ViewingKeyPermissionType(this.contractAddress),e)),yield this.refreshOrigins()}*refreshOrigins(){this._origins=yield*u.toGenerator(this.requester.sendMessage(c.BACKGROUND_PORT,new i.GetPermissionOriginsMsg(this.chainId,i.getSecret20ViewingKeyPermissionType(this.contractAddress))))}}s([o.observable.ref],l.prototype,"_origins",void 0),s([o.flow],l.prototype,"removeOrigin",null),s([o.flow],l.prototype,"refreshOrigins",null),t.Secret20ViewingKeyPermissionInnerStore=l;class h{constructor(e,t){this.chainId=e,this.requester=t,this._origins=[],o.makeObservable(this),this.refreshOrigins()}get origins(){return this._origins}*addOrigin(e){yield this.requester.sendMessage(c.BACKGROUND_PORT,new i.AddPermissionOrigin(this.chainId,i.getBasicAccessPermissionType(),e)),yield this.refreshOrigins()}*removeOrigin(e){yield this.requester.sendMessage(c.BACKGROUND_PORT,new i.RemovePermissionOrigin(this.chainId,i.getBasicAccessPermissionType(),e)),yield this.refreshOrigins()}*refreshOrigins(){this._origins=yield*u.toGenerator(this.requester.sendMessage(c.BACKGROUND_PORT,new i.GetPermissionOriginsMsg(this.chainId,i.getBasicAccessPermissionType())))}}s([o.observable.ref],h.prototype,"_origins",void 0),s([o.flow],h.prototype,"addOrigin",null),s([o.flow],h.prototype,"removeOrigin",null),s([o.flow],h.prototype,"refreshOrigins",null),t.BasicAccessPermissionInnerStore=h;class d extends a.HasMapStore{constructor(e,t){super(e=>{e=JSON.parse(e);return"basicAccess"===e.type?new h(e.chainId,this.requester):new l(e.chainId,e.contractAddress,this.requester)}),this.interactionStore=e,this.requester=t,this._isLoading=!1,o.makeObservable(this)}getBasicAccessInfo(e){e=JSON.stringify({type:"basicAccess",chainId:e,contractAddress:""});return this.get(e)}getOriginPermittedChains(e,t){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(c.BACKGROUND_PORT,new i.GetOriginPermittedChainsMsg(e,t))})}getSecret20ViewingKeyAccessInfo(e,t){e=JSON.stringify({type:"viewingKey",chainId:e,contractAddress:t});return this.get(e)}get waitingBasicAccessPermissions(){var e=[];for(const t of this.waitingDatas)i.isBasicAccessPermissionType(t.data.type)&&e.push({id:t.id,data:{chainIds:t.data.chainIds,origins:t.data.origins}});return e}get waitingSecret20ViewingKeyAccessPermissions(){var e=[];for(const t of this.waitingDatas)i.isSecret20ViewingKeyPermissionType(t.data.type)&&e.push({id:t.id,data:{chainIds:t.data.chainIds,contractAddress:i.splitSecret20ViewingKeyPermissionType(t.data.type),origins:t.data.origins}});return e}get waitingDatas(){return this.interactionStore.getDatas(i.INTERACTION_TYPE_PERMISSION)}*approve(e){this._isLoading=!0;try{yield this.interactionStore.approve(i.INTERACTION_TYPE_PERMISSION,e,{})}finally{this._isLoading=!1}}*reject(e){this._isLoading=!0;try{yield this.interactionStore.reject(i.INTERACTION_TYPE_PERMISSION,e)}finally{this._isLoading=!1}}*rejectAll(){this._isLoading=!0;try{yield this.interactionStore.rejectAll(i.INTERACTION_TYPE_PERMISSION)}finally{this._isLoading=!1}}get isLoading(){return this._isLoading}}s([o.observable],d.prototype,"_isLoading",void 0),s([o.computed],d.prototype,"waitingBasicAccessPermissions",null),s([o.computed],d.prototype,"waitingSecret20ViewingKeyAccessPermissions",null),s([o.flow],d.prototype,"approve",null),s([o.flow],d.prototype,"reject",null),s([o.flow],d.prototype,"rejectAll",null),t.PermissionStore=d},1487:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.SignInteractionStore=void 0;const n=r(5),i=r(16);class o{constructor(e){this.interactionStore=e,this._isLoading=!1,n.makeObservable(this),n.autorun(()=>{var t=this.waitingDatas.slice();if(1<t.length)for(let e=1;e<t.length;e++)this.rejectWithId(t[e].id)})}get waitingDatas(){return this.interactionStore.getDatas("request-sign")}get waitingData(){var e,t=this.waitingDatas;if(0!==t.length)return e="amino"===(t=t[0]).data.mode?i.SignDocWrapper.fromAminoSignDoc(t.data.signDoc):i.SignDocWrapper.fromDirectSignDocBytes(t.data.signDocBytes),{id:t.id,type:t.type,isInternal:t.isInternal,data:{chainId:t.data.chainId,msgOrigin:t.data.msgOrigin,signer:t.data.signer,signDocWrapper:e,signOptions:t.data.signOptions,isADR36WithString:"isADR36WithString"in t.data?t.data.isADR36WithString:void 0,ethSignType:"ethSignType"in t.data?t.data.ethSignType:void 0}}}isEnded(){return 0<this.interactionStore.getEvents("request-sign-end").length}clearEnded(){this.interactionStore.clearEvent("request-sign-end")}waitEnd(){return this.isEnded()?Promise.resolve():new Promise(e=>{const t=n.autorun(()=>{this.isEnded()&&(e(),this.clearEnded(),t())})})}*approveAndWaitEnd(e){if(0!==this.waitingDatas.length){this._isLoading=!0;var t=this.waitingDatas[0].id;try{var r="amino"===e.mode?e.aminoSignDoc:e.protoSignDoc.toBytes();yield this.interactionStore.approveWithoutRemovingData(t,r)}finally{yield this.waitEnd(),this.interactionStore.removeData("request-sign",t),this._isLoading=!1}}}*reject(){if(0!==this.waitingDatas.length){this._isLoading=!0;try{yield this.interactionStore.reject("request-sign",this.waitingDatas[0].id)}finally{this._isLoading=!1}}}*rejectAll(){this._isLoading=!0;try{yield this.interactionStore.rejectAll("request-sign")}finally{this._isLoading=!1}}*rejectWithId(e){yield this.interactionStore.reject("request-sign",e)}get isLoading(){return this._isLoading}}s([n.observable],o.prototype,"_isLoading",void 0),s([n.computed],o.prototype,"waitingData",null),s([n.flow],o.prototype,"approveAndWaitEnd",null),s([n.flow],o.prototype,"reject",null),s([n.flow],o.prototype,"rejectAll",null),s([n.flow],o.prototype,"rejectWithId",null),t.SignInteractionStore=o},1488:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.ChainSuggestStore=void 0;const n=r(54),i=r(5);class o{constructor(e){this.interactionStore=e,this._isLoading=!1,i.makeObservable(this)}get waitingSuggestedChainInfo(){var e=this.interactionStore.getDatas(n.SuggestChainInfoMsg.type());if(0<e.length)return e[0]}*approve(){this._isLoading=!0;try{var e=this.waitingSuggestedChainInfo;e&&(yield this.interactionStore.approve(e.type,e.id,{}))}finally{this._isLoading=!1}}*reject(){this._isLoading=!0;try{var e=this.waitingSuggestedChainInfo;e&&(yield this.interactionStore.reject(e.type,e.id))}finally{this._isLoading=!1}}*rejectAll(){this._isLoading=!0;try{yield this.interactionStore.rejectAll(n.SuggestChainInfoMsg.type())}finally{this._isLoading=!1}}get isLoading(){return this._isLoading}}s([i.observable],o.prototype,"_isLoading",void 0),s([i.flow],o.prototype,"approve",null),s([i.flow],o.prototype,"reject",null),s([i.flow],o.prototype,"rejectAll",null),t.ChainSuggestStore=o},1489:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.KeyRingStore=t.KeyRingSelectablesStore=void 0;const i=r(3),o=r(54),a=r(5),c=r(27);class u{constructor(e,t,r,s){this.chainGetter=e,this.requester=t,this.chainId=r,this.keyRingStore=s,this.isInitializing=!1,this._isKeyStoreCoinTypeSet=!1,this._selectables=[],a.makeObservable(this),this.refresh()}get needSelectCoinType(){var e=this.chainGetter.getChain(this.chainId);return!(!e.alternativeBIP44s||0===e.alternativeBIP44s.length||this.isInitializing||this._isKeyStoreCoinTypeSet)}get selectables(){return this._selectables}*refresh(){var e;"mnemonic"!==this.keyRingStore.keyRingType?(this.isInitializing=!1,this._isKeyStoreCoinTypeSet=!0,this._selectables=[]):(this.isInitializing=!0,e=this.chainGetter.getChain(this.chainId),e=new o.GetIsKeyStoreCoinTypeSetMsg(this.chainId,[e.bip44,...null!=(e=e.alternativeBIP44s)?e:[]]),0===(e=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,e))).length?this._isKeyStoreCoinTypeSet=!0:1===e.length?(yield this.keyRingStore.setKeyStoreCoinType(this.chainId,e[0].path.coinType),this._isKeyStoreCoinTypeSet=!0):(this._selectables=e,this._isKeyStoreCoinTypeSet=!1),this.isInitializing=!1)}}s([a.observable],u.prototype,"isInitializing",void 0),s([a.observable],u.prototype,"_isKeyStoreCoinTypeSet",void 0),s([a.observable.ref],u.prototype,"_selectables",void 0),s([a.computed],u.prototype,"needSelectCoinType",null),s([a.flow],u.prototype,"refresh",null),t.KeyRingSelectablesStore=u;class l{constructor(e,t,r,s,n){this.eventDispatcher=e,this.defaultKdf=t,this.chainGetter=r,this.requester=s,this.interactionStore=n,this.status=o.KeyRingStatus.NOTLOADED,this.multiKeyStoreInfo=[],this.selectablesMap=new Map,this.keyStoreChangedListeners=[],a.makeObservable(this),this.restore()}get keyRingType(){var e=this.multiKeyStoreInfo.find(e=>e.selected);return e?o.KeyRing.getTypeOfKeyStore(e):"none"}*createMnemonicKey(e,t,r,s,n=this.defaultKdf){n=new o.CreateMnemonicKeyMsg(n,e,t,r,s),e=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,n));this.status=e.status,this.multiKeyStoreInfo=e.multiKeyStoreInfo}*createPrivateKey(e,t,r,s=this.defaultKdf){s=new o.CreatePrivateKeyMsg(s,e,t,r),e=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,s));this.status=e.status,this.multiKeyStoreInfo=e.multiKeyStoreInfo}*addMnemonicKey(e,t,r,s=this.defaultKdf){s=new o.AddMnemonicKeyMsg(s,e,t,r);this.multiKeyStoreInfo=(yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,s))).multiKeyStoreInfo}*addPrivateKey(e,t,r=this.defaultKdf){r=new o.AddPrivateKeyMsg(r,e,t);this.multiKeyStoreInfo=(yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,r))).multiKeyStoreInfo}*changeKeyRing(e){e=new o.ChangeKeyRingMsg(e);this.multiKeyStoreInfo=(yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,e))).multiKeyStoreInfo,this.dispatchKeyStoreChangeEvent(),this.selectablesMap.forEach(e=>e.refresh())}*lock(){var e=new o.LockKeyRingMsg,e=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,e));this.status=e.status}*unlock(e){e=new o.UnlockKeyRingMsg(e),e=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,e));this.status=e.status;for(const t of this.interactionStore.getDatas("unlock"))yield this.interactionStore.approve("unlock",t.id,{});this.dispatchKeyStoreChangeEvent(),this.selectablesMap.forEach(e=>e.refresh())}*rejectAll(){yield this.interactionStore.rejectAll("unlock")}*restore(){var e=new o.RestoreKeyRingMsg,e=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,e));this.status=e.status,this.multiKeyStoreInfo=e.multiKeyStoreInfo}showKeyRing(t,r){return n(this,void 0,void 0,function*(){var e=new o.ShowKeyRingMsg(t,r);return yield this.requester.sendMessage(i.BACKGROUND_PORT,e)})}*deleteKeyRing(e,t){var r=this.multiKeyStoreInfo.findIndex(e=>e.selected),t=new o.DeleteKeyRingMsg(e,t),t=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,t));this.status=t.status,this.multiKeyStoreInfo=t.multiKeyStoreInfo,r===e&&(this.dispatchKeyStoreChangeEvent(),this.selectablesMap.forEach(e=>e.refresh()))}*updateNameKeyRing(e,t){t=new o.UpdateNameKeyRingMsg(e,t),t=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,t)),this.multiKeyStoreInfo=t.multiKeyStoreInfo,t=this.multiKeyStoreInfo.findIndex(e=>e.selected);t===e&&this.dispatchKeyStoreChangeEvent()}checkPassword(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new o.CheckPasswordMsg(e))})}getKeyStoreSelectables(e){return this.selectablesMap.has(e)||a.runInAction(()=>{this.selectablesMap.set(e,new u(this.chainGetter,this.requester,e,this))}),this.selectablesMap.get(e)}*setKeyStoreCoinType(e,t){e=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,new o.SetKeyStoreCoinTypeMsg(e,t)));this.multiKeyStoreInfo=(yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,new o.GetMultiKeyStoreInfoMsg))).multiKeyStoreInfo,this.status=e,this.dispatchKeyStoreChangeEvent(),this.selectablesMap.forEach(e=>e.refresh())}exportKeyRingDatas(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new o.ExportKeyRingDatasMsg(e))})}dispatchKeyStoreChangeEvent(){this.eventDispatcher.dispatchEvent("mises_keystorechange");for(const e of this.keyStoreChangedListeners)e()}addKeyStoreChangedListener(e){this.keyStoreChangedListeners.push(e)}removeKeyStoreChangedListener(e){e=this.keyStoreChangedListeners.indexOf(e);0<=e&&this.keyStoreChangedListeners.splice(e,1)}addAccount(t,r){return n(this,void 0,void 0,function*(){var e=yield this.requester.sendMessage(i.BACKGROUND_PORT,new o.AddAccountMsg(t,r));this.multiKeyStoreInfo=e.multiKeyStoreInfo})}migratorKeyRing(t){return n(this,void 0,void 0,function*(){var e=yield this.requester.sendMessage(i.BACKGROUND_PORT,new o.MigratorKeyRingMsg(t));this.multiKeyStoreInfo=e.multiKeyStoreInfo})}restoreKeyStore(){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new o.RestoreKeyStoreMsg)})}}s([a.observable],l.prototype,"status",void 0),s([a.observable],l.prototype,"multiKeyStoreInfo",void 0),s([a.observable.shallow],l.prototype,"selectablesMap",void 0),s([a.computed],l.prototype,"keyRingType",null),s([a.flow],l.prototype,"createMnemonicKey",null),s([a.flow],l.prototype,"createPrivateKey",null),s([a.flow],l.prototype,"addMnemonicKey",null),s([a.flow],l.prototype,"addPrivateKey",null),s([a.flow],l.prototype,"changeKeyRing",null),s([a.flow],l.prototype,"lock",null),s([a.flow],l.prototype,"unlock",null),s([a.flow],l.prototype,"rejectAll",null),s([a.flow],l.prototype,"restore",null),s([a.flow],l.prototype,"deleteKeyRing",null),s([a.flow],l.prototype,"updateNameKeyRing",null),s([a.flow],l.prototype,"setKeyStoreCoinType",null),t.KeyRingStore=l},1490:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.TokensStore=t.TokensStoreInner=void 0,r(119));const i=r(3),o=r(54),a=r(5),c=r(27),u=r(16);class l{constructor(e,t,r,s){this.eventListener=e,this.chainStore=t,this.chainId=r,this.requester=s,this._tokens=[],a.makeObservable(this),this.refreshTokens(),this.eventListener.addEventListener("keplr_keystoreunlock",()=>{this.refreshTokens()}),this.eventListener.addEventListener("mises_keystorechange",()=>{this.refreshTokens()})}get tokens(){return this._tokens}*refreshTokens(){var e=this.chainStore.getChain(this.chainId);e.features&&(e.features.includes("secretwasm")||e.features.includes("cosmwasm"))?(e=new o.GetTokensMsg(this.chainId),this._tokens=yield*c.toGenerator(this.requester.sendMessage(i.BACKGROUND_PORT,e))):this._tokens=[]}*addToken(e){e=new o.AddTokenMsg(this.chainId,e);yield this.requester.sendMessage(i.BACKGROUND_PORT,e),yield this.refreshTokens()}*removeToken(e){e=new o.RemoveTokenMsg(this.chainId,e);yield this.requester.sendMessage(i.BACKGROUND_PORT,e),yield this.refreshTokens()}}s([a.observable.ref],l.prototype,"_tokens",void 0),s([a.flow],l.prototype,"refreshTokens",null),s([a.flow],l.prototype,"addToken",null),s([a.flow],l.prototype,"removeToken",null),t.TokensStoreInner=l;class h extends n.HasMapStore{constructor(e,t,r,s){super(e=>new l(this.eventListener,this.chainStore,e,this.requester)),this.eventListener=e,this.chainStore=t,this.requester=r,this.interactionStore=s,this.prevTokens=new Map,a.makeObservable(this),this.chainStore.addSetChainInfoHandler(r=>{a.autorun(()=>{var e=u.ChainIdHelper.parse(r.chainId),t=null!=(t=this.prevTokens.get(e.identifier))?t:[],t=(r.removeCurrencies(...t.map(e=>e.coinMinimalDenom)),this.getTokensOf(r.chainId));r.addCurrencies(...t.tokens),this.prevTokens.set(e.identifier,t.tokens)})})}getTokensOf(e){return this.get(e)}get waitingSuggestedToken(){var e=this.interactionStore.getDatas(o.SuggestTokenMsg.type());if(0<e.length)return e[0]}*approveSuggestedToken(e){var t=this.waitingSuggestedToken;t&&(yield this.interactionStore.approve(o.SuggestTokenMsg.type(),t.id,e),yield this.getTokensOf(t.data.chainId).refreshTokens())}*rejectSuggestedToken(){var e=this.waitingSuggestedToken;e&&(yield this.interactionStore.reject(o.SuggestTokenMsg.type(),e.id))}*rejectAllSuggestedTokens(){yield this.interactionStore.rejectAll(o.SuggestTokenMsg.type())}}s([a.flow],h.prototype,"approveSuggestedToken",null),s([a.flow],h.prototype,"rejectSuggestedToken",null),s([a.flow],h.prototype,"rejectAllSuggestedTokens",null),t.TokensStore=h},1491:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.MisesStore=void 0;const i=r(3),o=r(5),a=r(54);class c{constructor(e){this.requester=e,this.isInitializing=!1,this.autoLockAccountDuration=0,o.makeObservable(this),this.initAutoLockAccountDuration()}getBalanceUMIS(){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.BalanceUMISMsg)})}isMisesChain(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.MisesChainMsg(e))})}getChainId(){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.GetChainIdMsg)})}unbondingDelegations(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.UnbondingDelegationsMsg(e))})}delegations(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.DelegationsMsg(e))})}rewards(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.RewardsMsg(e))})}authAccounts(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.AuthAccountsMsg(e))})}broadcastTx(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.BroadcastTxMsg(e))})}simulate(e,t,r,s){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.SimulateMsg(e,t,r,s))})}recentTransactions(){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.RecentTransactionsMsg)})}activeUser(){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.ActiveUserMsg)})}portForTx(e){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.PortForTxMsg(e))})}getAutoLockAccountDuration(){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(i.BACKGROUND_PORT,new a.GetAutoLockAccountDurationMsg)})}initAutoLockAccountDuration(){this.getAutoLockAccountDuration().then(e=>this.autoLockAccountDuration=e)}setLastActiveTime(){this.requester.sendMessage(i.BACKGROUND_PORT,new a.StartAutoLockMonitoringMsg)}setLock(){this.requester.sendMessage(i.BACKGROUND_PORT,new a.LockMsg)}saveTranstions(e){this.requester.sendMessage(i.BACKGROUND_PORT,new a.SaveTranstionsMsg(e))}}s([o.observable],c.prototype,"isInitializing",void 0),s([o.observable],c.prototype,"autoLockAccountDuration",void 0),t.MisesStore=c},1492:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.MisesSafeStore=void 0;const i=r(54),o=r(3),a=r(5);class c{constructor(e){this.requester=e,this.isShouldVerify=!0,a.makeObservable(this),this.initSafeConfig()}initSafeConfig(){this.getMisesSafeConfig().then(e=>this.isShouldVerify=e)}getMisesSafeConfig(){return n(this,void 0,void 0,function*(){return yield this.requester.sendMessage(o.BACKGROUND_PORT,new i.GetIsShouldVerifyMsg)})}setMisesSafeConfig(e){this.isShouldVerify=!!e,this.requester.sendMessage(o.BACKGROUND_PORT,new i.SetIsShouldVerifyMsg(e))}}s([a.observable],c.prototype,"isShouldVerify",void 0),t.MisesSafeStore=c},1493:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1494),t),n(r(1495),t)},1494:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.IBCChannelStore=t.IBCChannelStoreInner=void 0;const i=r(27),o=r(5),a=r(201);var c=r(119);const u=r(16);class l{constructor(e,t){this.kvStore=e,this.chainId=t,this.channelMap=new Map,this.getChannelsToPort=a.computedFn(e=>{this.channelMap.has(e)||o.runInAction(()=>{this.channelMap.set(e,o.observable.map({},{deep:!1}))});var t=[];for(const r of this.channelMap.get(e).values())t.push(r);return t}),this.getChannel=a.computedFn((e,t)=>{return null==(e=this.channelMap.get(e))?void 0:e.get(t)}),o.makeObservable(this),this.loadChannels()}getTransferChannels(){return this.getChannelsToPort("transfer")}*addChannel(e){this.channelMap.has(e.portId)||this.channelMap.set(e.portId,o.observable.map({},{deep:!1})),this.channelMap.get(e.portId).set(e.channelId,e),yield this.saveChannels()}*loadChannels(){var e=yield*i.toGenerator(this.kvStore.get(u.ChainIdHelper.parse(this.chainId).identifier+"-channels"));if(e)for(const r of Object.keys(e)){var t=e[r];for(const s of Object.keys(t))this.channelMap.has(r)||this.channelMap.set(r,o.observable.map({},{deep:!1})),this.channelMap.get(r).set(s,t[s])}}saveChannels(){return n(this,void 0,void 0,function*(){const r={};this.channelMap.forEach((e,t)=>{r[t]=(()=>{const r={};return e.forEach((e,t)=>{r[t]=e}),r})()}),yield this.kvStore.set(u.ChainIdHelper.parse(this.chainId).identifier+"-channels",r)})}}s([o.observable.shallow],l.prototype,"channelMap",void 0),s([o.flow],l.prototype,"addChannel",null),s([o.flow],l.prototype,"loadChannels",null),t.IBCChannelStoreInner=l;class h extends c.HasMapStore{constructor(t){super(e=>new l(t,e)),this.kvStore=t}get(e){return super.get(e)}}t.IBCChannelStore=h},1495:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.IBCCurrencyRegsitrar=t.IBCCurrencyRegsitrarInner=void 0;const c=r(5),l=r(27);class n{constructor(e,t,r,s,n,i,o,a){this.kvStore=e,this.cacheDuration=t,this.chainInfoInner=r,this.chainStore=s,this.accountStore=n,this.queriesStore=i,this.cosmwasmQueriesStore=o,this.coinDenomGenerator=a,this.isInitialized=!1,this.isInitializing=!1,this.cacheDenomTracePaths=new Map,c.makeObservable(this)}*restoreCache(){this.isInitializing=!0;const e="cache-ibc-denom-trace-paths/"+this.chainInfoInner.chainId;var t=yield*l.toGenerator(this.kvStore.get(e));if(t)for(const e of Object.keys(t))this.cacheDenomTracePaths.set(e,t[e]);this.isInitialized=!0,this.isInitializing=!1}getCacheIBCDenomData(e){e=this.cacheDenomTracePaths.get(e);if(e&&e.timestamp+this.cacheDuration>Date.now())return e}*setCacheIBCDenomData(e,t){this.cacheDenomTracePaths.set(e,Object.assign(Object.assign({},t),{timestamp:Date.now()}));const r={};this.cacheDenomTracePaths.forEach((e,t)=>{r[t]=e});e="cache-ibc-denom-trace-paths/"+this.chainInfoInner.chainId;yield this.kvStore.set(e,r)}registerUnknownCurrencies(n){n=new l.DenomHelper(n);if("native"===n.type&&n.denom.startsWith("ibc/")){if(this.isInitialized||this.restoreCache(),!this.isInitializing){var i=this.queriesStore.get(this.chainInfoInner.chainId),o=n.denom.replace("ibc/",""),a=this.getCacheIBCDenomData(o);let t,r,s;if(a)s=a.denomTrace,a.originChainId&&this.chainStore.hasChain(a.originChainId)&&(r=this.chainStore.getChain(a.originChainId)),a.counterpartyChainId&&this.chainStore.hasChain(a.counterpartyChainId)&&(t=this.chainStore.getChain(a.counterpartyChainId));else{var a=i.cosmos.queryIBCDenomTrace.getDenomTrace(o);if(s=a.denomTrace){var i=s.paths;let e=this.chainInfoInner.chainId;for(const u of i){var c=this.queriesStore.get(e).cosmos.queryIBCClientState.getClientState(u.portId,u.channelId);if(!c.clientChainId||!this.chainStore.hasChain(c.clientChainId)){r=void 0;break}e=c.clientChainId,r=this.chainStore.getChain(c.clientChainId),t=t||this.chainStore.getChain(c.clientChainId)}r&&this.setCacheIBCDenomData(o,{counterpartyChainId:null===t||void 0===t?void 0:t.chainId,denomTrace:s,originChainId:r.chainId})}}if(r&&s){if(4===s.denom.split(/^(cw20):(\w+)$/).length){let e=r.currencies.find(e=>s&&e.coinMinimalDenom.startsWith(s.denom));if(!e&&this.cosmwasmQueriesStore&&(a=this.cosmwasmQueriesStore.get(r.chainId),i=s.denom.replace("cw20:",""),(o=a.cosmwasm.querycw20ContractInfo.getQueryContract(i)).response)&&(e={type:"cw20",contractAddress:i,coinDecimals:o.response.data.decimals,coinDenom:o.response.data.symbol,coinMinimalDenom:`cw20:${i}:`+o.response.data.name},r.addCurrencies(e)),e)return[{coinDecimals:e.coinDecimals,coinGeckoId:e.coinGeckoId,coinImageUrl:e.coinImageUrl,coinMinimalDenom:n.denom,coinDenom:this.coinDenomGenerator(s,r,t,e),paths:s.paths,originChainId:r.chainId,originCurrency:e},!0]}else{a=r.findCurrency(s.denom);if(a&&!("paths"in a))return[{coinDecimals:a.coinDecimals,coinGeckoId:a.coinGeckoId,coinImageUrl:a.coinImageUrl,coinMinimalDenom:n.denom,coinDenom:this.coinDenomGenerator(s,r,t,a),paths:s.paths,originChainId:r.chainId,originCurrency:a},!0]}return[{coinDecimals:0,coinMinimalDenom:n.denom,coinDenom:this.coinDenomGenerator(s,r,t,void 0),paths:s.paths,originChainId:void 0,originCurrency:void 0},!1]}}return[void 0,!1]}}}s([c.observable],n.prototype,"isInitialized",void 0),s([c.observable],n.prototype,"isInitializing",void 0),s([c.observable.shallow],n.prototype,"cacheDenomTracePaths",void 0),s([c.flow],n.prototype,"restoreCache",null),s([c.flow],n.prototype,"setCacheIBCDenomData",null),t.IBCCurrencyRegsitrarInner=n;class a{constructor(e,t=864e5,r,s,n,i,o=a.defaultCoinDenomGenerator){this.kvStore=e,this.cacheDuration=t,this.chainStore=r,this.accountStore=s,this.queriesStore=n,this.cosmwasmQueriesStore=i,this.coinDenomGenerator=o,this.map=new Map,this.chainStore.addSetChainInfoHandler(e=>this.setChainInfoHandler(e))}static defaultCoinDenomGenerator(e,t,r,s){return s?`${s.coinDenom} (${r?r.chainName:"Unknown"}/${e.paths[0].channelId})`:`${e.denom} (${r?r.chainName:"Unknown"}/${e.paths[0].channelId})`}setChainInfoHandler(e){const t=this.get(e);e.registerCurrencyRegistrar(e=>t.registerUnknownCurrencies(e))}get(e){return this.map.has(e.chainId)||c.runInAction(()=>{this.map.set(e.chainId,new n(this.kvStore,this.cacheDuration,e,this.chainStore,this.accountStore,this.queriesStore,this.cosmwasmQueriesStore,this.coinDenomGenerator))}),this.map.get(e.chainId)}}s([c.observable.shallow],a.prototype,"map",void 0),t.IBCCurrencyRegsitrar=a},1503:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.KeplrETCQueriesImpl=t.KeplrETCQueries=void 0;const i=r(1256),o=r(1257);t.KeplrETCQueries={use(n){return(e,t,r,s)=>({keplrETC:new a(e,t,r,s,n.ethereumURL)})}};class a{constructor(e,t,r,s,n){this.queryERC20Metadata=new i.ObservableQueryERC20Metadata(t,n),this.queryEVMTokenInfo=new o.ObservableQueryEVMTokenInfo(t,r,s)}}t.KeplrETCQueriesImpl=a},1504:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}},i=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryERC20Metadata=t.ObservableQueryERC20MetadataInner=t.ObservableQueryERC20MetadataDecimals=t.ObservableQueryERC20MetadataSymbol=t.ObservableQueryERC20MetadataName=void 0,r(43));const o=n(r(60));n=r(1312);const a=r(5),c=new n.Interface([{constant:!0,inputs:[],name:"name",outputs:[{name:"",type:"string"}],payable:!1,stateMutability:"view",type:"function"},{constant:!0,inputs:[],name:"symbol",outputs:[{name:"",type:"string"}],payable:!1,stateMutability:"view",type:"function"},{constant:!0,inputs:[],name:"decimals",outputs:[{name:"",type:"uint8"}],payable:!1,stateMutability:"view",type:"function"}]);class u extends i.ObservableJsonRPCQuery{constructor(e,t,r){super(e,o.default.create(Object.assign({baseURL:t})),"","eth_call",[{to:r,data:c.encodeFunctionData("name")},"latest"]),a.makeObservable(this)}get name(){if(this.response)try{return c.decodeFunctionResult("name",this.response.data)[0]}catch(e){}}}s([a.computed],u.prototype,"name",null),t.ObservableQueryERC20MetadataName=u;class l extends i.ObservableJsonRPCQuery{constructor(e,t,r){super(e,o.default.create(Object.assign({baseURL:t})),"","eth_call",[{to:r,data:c.encodeFunctionData("symbol")},"latest"]),a.makeObservable(this)}get symbol(){if(this.response)try{return c.decodeFunctionResult("symbol",this.response.data)[0]}catch(e){}}}s([a.computed],l.prototype,"symbol",null),t.ObservableQueryERC20MetadataSymbol=l;class h extends i.ObservableJsonRPCQuery{constructor(e,t,r){super(e,o.default.create(Object.assign({baseURL:t})),"","eth_call",[{to:r,data:c.encodeFunctionData("decimals")},"latest"]),a.makeObservable(this)}get decimals(){if(this.response)try{return c.decodeFunctionResult("decimals",this.response.data)[0]}catch(e){}}}s([a.computed],h.prototype,"decimals",null),t.ObservableQueryERC20MetadataDecimals=h;class d{constructor(e,t,r){this._queryName=new u(e,t,r),this._querySymbol=new l(e,t,r),this._queryDecimals=new h(e,t,r)}get queryName(){return this._queryName}get querySymbol(){return this._querySymbol}get symbol(){return this._querySymbol.symbol}get name(){return this._queryName.name}get decimals(){return this._queryDecimals.decimals}}t.ObservableQueryERC20MetadataInner=d;class p extends i.HasMapStore{constructor(e,t){super(e=>new d(this.kvStore,this.ethereumURL,e)),this.kvStore=e,this.ethereumURL=t}get(e){return super.get(e)}}t.ObservableQueryERC20Metadata=p},1505:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.AxelarEVMBridgeCurrencyRegistrar=t.AxelarEVMBridgeCurrencyRegistrarInner=void 0;const n=r(5);class i{constructor(e,t,r,s,n){this.kvStore=e,this.chainInfoInner=t,this.chainStore=r,this.queriesStore=s,this.mainChain=n}registerUnknownCurrencies(e){var t=this.chainStore.getChain(this.chainInfoInner.chainId);if(t.features&&t.features.includes("axelar-evm-bridge"))return(t=this.queriesStore.get(this.chainInfoInner.chainId).keplrETC.queryEVMTokenInfo.getAsset(this.mainChain,e)).symbol&&null!=t.decimals&&t.isConfirmed?[{coinMinimalDenom:e,coinDenom:t.symbol,coinDecimals:t.decimals},!t.isFetching]:t.isFetching?[void 0,!1]:void 0}}t.AxelarEVMBridgeCurrencyRegistrarInner=i;class o{constructor(e,t,r,s){this.kvStore=e,this.chainStore=t,this.queriesStore=r,this.mainChain=s,this.map=new Map,this.chainStore.addSetChainInfoHandler(e=>this.setChainInfoHandler(e))}setChainInfoHandler(e){const t=this.get(e);e.registerCurrencyRegistrar(e=>t.registerUnknownCurrencies(e))}get(e){return this.map.has(e.chainId)||n.runInAction(()=>{this.map.set(e.chainId,new i(this.kvStore,e,this.chainStore,this.queriesStore,this.mainChain))}),this.map.get(e.chainId)}}s([n.observable.shallow],o.prototype,"map",void 0),t.AxelarEVMBridgeCurrencyRegistrar=o},1506:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryEVMTokenInfo=t.ObservableQueryEVMTokenInfoInner=void 0;r=r(43);class s extends r.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,`/axelar/evm/v1beta1/token_info/${s}?asset=`+n),this._chain=s,this._denom=n}get chain(){return this._chain}get denom(){return this._denom}get tokenName(){var e;return null==(e=this.response)?void 0:e.data.details.token_name}get symbol(){var e;return null==(e=this.response)?void 0:e.data.details.symbol}get decimals(){var e;return null==(e=this.response)?void 0:e.data.details.decimals}get isConfirmed(){var e;return null==(e=this.response)?void 0:e.data.confirmed}get isExternal(){var e;return null==(e=this.response)?void 0:e.data.is_external}}t.ObservableQueryEVMTokenInfoInner=s;class n extends r.ObservableChainQueryMap{constructor(e,t,r){super(e,t,r,e=>{var t=e.indexOf("/"),r=e.slice(0,t),e=e.slice(t+1);return new s(this.kvStore,this.chainId,this.chainGetter,r,e)}),this.kvStore=e,this.chainId=t,this.chainGetter=r}getAsset(e,t){return this.get(e+"/"+t)}}t.ObservableQueryEVMTokenInfo=n},1507:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1508),t)},1508:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o};Object.defineProperty(t,"__esModule",{value:!0}),t.GravityBridgeCurrencyRegsitrar=t.GravityBridgeCurrencyRegsitrarInner=void 0;const n=r(5),i=r(27);class o{constructor(e,t,r,s){this.kvStore=e,this.chainInfoInner=t,this.chainStore=r,this.queriesStore=s}registerUnknownCurrencies(e){var t,r,e=new i.DenomHelper(e);if("native"===e.type&&e.denom.startsWith("gravity0x"))return r=this.queriesStore.get(this.chainInfoInner.chainId),t=e.denom.replace("gravity",""),(r=r.keplrETC.queryERC20Metadata.get(t)).symbol&&null!=r.decimals?[{coinMinimalDenom:e.denom,coinDenom:r.symbol,coinDecimals:r.decimals},!0]:[void 0,!1]}}t.GravityBridgeCurrencyRegsitrarInner=o;class a{constructor(e,t,r){this.kvStore=e,this.chainStore=t,this.queriesStore=r,this.map=new Map,this.chainStore.addSetChainInfoHandler(e=>this.setChainInfoHandler(e))}setChainInfoHandler(e){const t=this.get(e);e.registerCurrencyRegistrar(e=>t.registerUnknownCurrencies(e))}get(e){return this.map.has(e.chainId)||n.runInAction(()=>{this.map.set(e.chainId,new o(this.kvStore,e,this.chainStore,this.queriesStore))}),this.map.get(e.chainId)}}s([n.observable.shallow],a.prototype,"map",void 0),t.GravityBridgeCurrencyRegsitrar=a},183:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.MessageRegistry=void 0;t.MessageRegistry=class{constructor(){this.registeredMsgType=new Map}registerMessage(e){if(this.registeredMsgType.has(e.type()))throw new Error("Already registered type "+e.type());this.registeredMsgType.set(e.type(),e)}parseMessage(e){if(!e.type)throw new Error("Null type");var t=this.registeredMsgType.get(e.type);if(t)return Object.setPrototypeOf(e.msg,t.prototype);throw new Error("Unregistered msg type "+e.type)}}},184:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.JSONUint8Array=void 0;const s=r(326);class n{static parse(e){return JSON.parse(e,(e,t)=>{if("__proto__"===e)throw new Error("__proto__ is disallowed");return t&&"string"==typeof t&&t.startsWith("__uint8array__")?s.fromHex(t.replace("__uint8array__","")):t})}static stringify(e){return JSON.stringify(e,(e,t)=>{if("__proto__"===e)throw new Error("__proto__ is disallowed");return t&&(t instanceof Uint8Array||"object"==typeof t&&"type"in t&&"data"in t&&"Buffer"===t.type&&Array.isArray(t.data))?(e=t instanceof Uint8Array?t:new Uint8Array(t.data),"__uint8array__"+s.toHex(e)):t})}static wrap(e){if(void 0!==e)return JSON.parse(n.stringify(e))}static unwrap(e){if(void 0!==e)return n.parse(JSON.stringify(e))}}t.JSONUint8Array=n},188:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.getKeplrExtensionRouterId=void 0,t.getKeplrExtensionRouterId=function(){var e="undefined"!=typeof window?window:chrome;return null==e.keplrExtensionRouterId&&(e.keplrExtensionRouterId=Math.floor(Math.random()*Number.MAX_SAFE_INTEGER)),e.keplrExtensionRouterId}},266:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(583),t),n(r(584),t)},3:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(325),t),n(r(327),t),n(r(328),t),n(r(329),t),n(r(330),t),n(r(331),t),n(r(332),t),n(r(183),t),n(r(184),t)},325:function(e,t,r){"use strict";var s=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.Router=void 0;const n=r(183),a=r(184);t.Router=class{constructor(e){this.envProducer=e,this.msgRegistry=new n.MessageRegistry,this.registeredHandler=new Map,this.guards=[],this.port=""}registerMessage(e){this.msgRegistry.registerMessage(e)}addHandler(e,t){if(this.registeredHandler.has(e))throw new Error("Already registered type "+e);this.registeredHandler.set(e,t)}addGuard(e){this.guards.push(e)}handleMessage(n,i){var o;return s(this,void 0,void 0,function*(){var e=this.msgRegistry.parseMessage(a.JSONUint8Array.unwrap(n)),t=this.envProducer(i,null!=(o=e.routerMeta)?o:{});for(const s of this.guards)yield s(t,e,i);e.validateBasic();var r=e.route();if(!r)throw new Error("Null router");r=this.registeredHandler.get(r);if(r)return a.JSONUint8Array.wrap(yield r(t,e));throw new Error("Can't get handler")})}}},326:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.fromHex=t.toHex=void 0,t.toHex=function(e){let t="";for(const r of e)t+=("0"+r.toString(16)).slice(-2);return t},t.fromHex=function(t){if(t.length%2!=0)throw new Error("hex string length must be a multiple of 2");var r=[];for(let e=0;e<t.length;e+=2){var s=t.substr(e,2);if(!s.match(/[0-9a-f]{2}/i))throw new Error("hex string contains invalid characters");r.push(parseInt(s,16))}return new Uint8Array(r)}},327:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},328:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},329:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0})},330:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.KeplrError=void 0;class s extends Error{constructor(e,t,r){super(r),this.module=e,this.code=t,Object.setPrototypeOf(this,s.prototype)}}t.KeplrError=s},331:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Message=void 0;t.Message=class{approveExternal(e,t){return!1}}},332:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.WEBPAGE_PORT=t.APP_PORT=t.BACKGROUND_PORT=void 0,t.BACKGROUND_PORT="background",t.APP_PORT="popup",t.WEBPAGE_PORT="webpage"},43:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1411),t),n(r(119),t),n(r(1426),t),n(r(1427),t),n(r(1481),t),n(r(1482),t),n(r(1493),t)},509:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableQueryBalances=t.ObservableQueryBalancesInner=t.ObservableQueryBalanceInner=void 0,r(59));const i=r(27),o=r(5),a=r(26);var c=r(119);const u=r(201);class l extends n.ObservableChainQuery{constructor(e,t,r,s,n){super(e,t,r,s),this.denomHelper=n,o.makeObservable(this)}get currency(){var e=this.denomHelper.denom,t=this.chainGetter.getChain(this.chainId).findCurrency(e);if(t)return t;throw new Error("Unknown currency: "+e)}}s([o.computed],l.prototype,"currency",null),t.ObservableQueryBalanceInner=l;class h{constructor(e,t,r,s,n){this.kvStore=e,this.chainId=t,this.chainGetter=r,this.balanceRegistries=s,this.balanceMap=new Map,this.getBalanceFromCurrency=u.computedFn(t=>{var e=this.balances.find(e=>e.currency.coinMinimalDenom===t.coinMinimalDenom);return e?e.balance:new a.CoinPretty(t,new a.Int(0))}),o.makeObservable(this),this.bech32Address=n}fetch(){this.balanceMap.forEach(e=>e.fetch())}getBalanceInner(r){let s=r.coinMinimalDenom;return"type"in r&&"secret20"===r.type&&(s=r.coinMinimalDenom+"/"+r.viewingKey),this.balanceMap.has(s)||o.runInAction(()=>{let e;for(const t of this.balanceRegistries)if(e=t.getBalanceInner(this.chainId,this.chainGetter,this.bech32Address,r.coinMinimalDenom))break;if(!e)throw new Error("Failed to get and parse the balance for "+s);this.balanceMap.set(s,e)}),this.balanceMap.get(s)}get stakable(){var e=this.chainGetter.getChain(this.chainId);return this.getBalanceInner(e.stakeCurrency)}get balances(){var t=this.chainGetter.getChain(this.chainId),r=[];for(let e=0;e<t.currencies.length;e++){var s=t.currencies[e];r.push(this.getBalanceInner(s))}return r}get positiveBalances(){return this.balances.filter(e=>e.balance.toDec().gt(new a.Dec(0)))}get nonNativeBalances(){return this.balances.filter(e=>"native"!==new i.DenomHelper(e.currency.coinMinimalDenom).type)}get positiveNativeUnstakables(){const t=this.chainGetter.getChain(this.chainId);return this.balances.filter(e=>"native"===new i.DenomHelper(e.currency.coinMinimalDenom).type&&e.balance.toDec().gt(new a.Dec(0))&&e.currency.coinMinimalDenom!==t.stakeCurrency.coinMinimalDenom)}get unstakables(){const t=this.chainGetter.getChain(this.chainId);var r=t.currencies.filter(e=>e.coinMinimalDenom!==t.stakeCurrency.coinMinimalDenom),s=[];for(let e=0;e<r.length;e++){var n=r[e];s.push(this.getBalanceInner(n))}return s}}s([o.observable.shallow],h.prototype,"balanceMap",void 0),s([o.computed],h.prototype,"stakable",null),s([o.computed],h.prototype,"balances",null),s([o.computed],h.prototype,"positiveBalances",null),s([o.computed],h.prototype,"nonNativeBalances",null),s([o.computed],h.prototype,"positiveNativeUnstakables",null),s([o.computed],h.prototype,"unstakables",null),t.ObservableQueryBalancesInner=h;class d extends c.HasMapStore{constructor(e,t,r){super(e=>new h(this.kvStore,this.chainId,this.chainGetter,this.balanceRegistries,e)),this.kvStore=e,this.chainId=t,this.chainGetter=r,this.balanceRegistries=[]}addBalanceRegistry(e){this.balanceRegistries.push(e)}getQueryBech32Address(e){return this.get(e)}}t.ObservableQueryBalances=d},56:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(581),t),n(r(266),t),n(r(585),t),n(r(588),t)},581:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(582),t)},582:function(e,t,r){"use strict";var s=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.ExtensionRouter=void 0;const n=r(3),i=r(188);class o extends n.Router{constructor(e){super(e),this.onMessage=(e,t)=>{var r;if(e.port===this.port&&(null==(r=null==(r=e.msg)?void 0:r.routerMeta)||!r.receiverRouterId||e.msg.routerMeta.receiverRouterId===i.getKeplrExtensionRouterId()))return this.onMessageHandler(e,t)}}listen(e){if(!e)throw new Error("Empty port");this.port=e,browser.runtime.onMessage.addListener(this.onMessage)}unlisten(){this.port="",browser.runtime.onMessage.removeListener(this.onMessage)}onMessageHandler(e,t){return s(this,void 0,void 0,function*(){try{return{return:yield this.handleMessage(e,t)}}catch(e){return e instanceof n.KeplrError?Promise.resolve({error:{code:e.code,module:e.module,message:e.message||e.toString()}}):e?Promise.resolve({error:e.message||e.toString()}):Promise.resolve({error:"Unknown error, and error is null"})}})}}t.ExtensionRouter=o},583:function(e,t,r){"use strict";var i=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.InExtensionMessageRequester=void 0;const o=r(3),a=r(188);t.InExtensionMessageRequester=class{sendMessage(r,s){return i(this,void 0,void 0,function*(){s.validateBasic(),s.origin="undefined"!=typeof window?window.location.origin:"chrome-extension://"+browser.runtime.id,s.routerMeta=Object.assign(Object.assign({},s.routerMeta),{routerId:a.getKeplrExtensionRouterId()});var e=o.JSONUint8Array.unwrap(yield new Promise(t=>{chrome.runtime.sendMessage({port:r,type:s.type(),msg:o.JSONUint8Array.wrap(s)},e=>{t(e)})}));if(!e)throw new Error("Null result");if(e.error)throw"string"==typeof e.error?new Error(e.error):new o.KeplrError(e.error.module,e.error.code,e.error.message);return e.return})}static sendMessageToTab(r,s,n){return i(this,void 0,void 0,function*(){n.validateBasic(),n.origin="undefined"!=typeof window?window.location.origin:"chrome-extension://"+browser.runtime.id,n.routerMeta=Object.assign(Object.assign({},n.routerMeta),{routerId:a.getKeplrExtensionRouterId()});var e=o.JSONUint8Array.unwrap(yield new Promise(t=>{chrome.tabs.sendMessage(r,{port:s,type:n.type(),msg:o.JSONUint8Array.wrap(n)},e=>{t(e)})}));if(!e)throw new Error("Null result");if(e.error)throw"string"==typeof e.error?new Error(e.error):new o.KeplrError(e.error.module,e.error.code,e.error.message);return e.return})}}},584:function(e,t,r){"use strict";var s=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.ContentScriptMessageRequester=void 0;const o=r(3),a=r(188);t.ContentScriptMessageRequester=class{sendMessage(n,i){return s(this,void 0,void 0,function*(){i.validateBasic(),i.origin="undefined"!=typeof window?window.location.origin:"chrome-extension://"+browser.runtime.id,i.routerMeta=Object.assign(Object.assign({},i.routerMeta),{routerId:a.getKeplrExtensionRouterId()});var t=o.JSONUint8Array.wrap(i),r=(yield browser.tabs.query({discarded:!1,status:"complete"})).filter(e=>{if(e.url)return-1<e.url.indexOf(browser.runtime.id)&&-1<e.url.indexOf("interaction=true&interactionInternal=false")||-1<e.url.indexOf("mises.site")||-1<e.url.indexOf("localhost")});for(let e=0;e<r.length;e++){var s=r[e].id;if(s)try{chrome.tabs.sendMessage(s,{port:n,type:i.type(),msg:t},e=>{})}catch(e){}}})}}},585:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(586),t),n(r(587),t)},586:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ExtensionGuards=void 0;class s{}(t.ExtensionGuards=s).checkOriginIsValid=(e,t,r)=>{if(!r.url)throw new Error("url is empty");if(!t.origin)throw new Error("origin is empty");if(new URL(r.url).origin!==t.origin)throw new Error("Invalid origin");return Promise.resolve()},s.checkMessageIsInternal=(e,t,r)=>{if(e.isInternalMsg||t.approveExternal(e,r))return Promise.resolve();throw new Error("Permission rejected")}},587:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ContentScriptGuards=void 0;class s{}(t.ContentScriptGuards=s).checkMessageIsInternal=(e,t,r)=>{if(!e.isInternalMsg||t.approveExternal(e,r))throw new Error("Content script can't handle the message that is able to be sent from external");return Promise.resolve()}},588:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(589),t),n(r(590),t)},589:function(e,t,r){"use strict";var u=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.ExtensionEnv=void 0;const l=r(3),h=r(46),d=r(266);const p=new class{constructor(){this.workingOnPromise=!1,this.queue=[]}enqueue(r){return new Promise((e,t)=>{this.queue.push({fn:r,resolve:e,reject:t}),this.dequeue()})}dequeue(){if(!this.workingOnPromise){const t=this.queue.shift();t&&(this.workingOnPromise=!0,t.fn().then(e=>{t.resolve(e)}).catch(e=>{t.reject(e)}).finally(()=>{this.workingOnPromise=!1,this.dequeue()}))}}};class s{}(t.ExtensionEnv=s).produceEnv=(i,o)=>{var e=s.checkIsInternalMessage(i,browser.runtime.id,browser.runtime.getURL("/"));const a="interaction=true&interactionInternal="+e,c=(t,r,n)=>u(void 0,void 0,void 0,function*(){t.startsWith("/")&&(t=t.slice(1)),t=browser.runtime.getURL("/popup.html#/"+t),t+=(t.includes("?")?"&":"?")+a;let s;var e=yield function(e,t="default"){return u(this,void 0,void 0,function*(){return yield p.enqueue(()=>h.isMobileStatus()?h.openPopupTab(e,t):h.openPopupWindow(e,t))})}(t,null==n?void 0:n.channel);return s=h.isMobileStatus()?e:(yield browser.windows.get(e,{populate:!0})).tabs[0].id,yield u(void 0,void 0,void 0,function*(){var e=yield browser.tabs.get(s);if("complete"!==e.status)return new Promise(r=>{browser.tabs.onUpdated.addListener((e,t)=>{s===e&&"complete"===t.status&&r()})})}),yield d.InExtensionMessageRequester.sendMessageToTab(s,l.APP_PORT,r)});return e?{isInternalMsg:e,requestInteraction:(r,s,n)=>u(void 0,void 0,void 0,function*(){var e;if(null!=n&&n.forceOpenWindow)return yield c(r,s,n);if(r.startsWith("/")&&(r=r.slice(1)),(r=browser.runtime.getURL("/popup.html#/"+r)).includes("?")?r+="&"+a:r+="?"+a,null!=(e=i.tab)&&e.id){let e=yield browser.tabs.query({discarded:!1,status:"complete"});if(0<(e=e.filter(e=>e.url&&-1<e.url.indexOf(browser.runtime.id))).length)for(const t of e)t.id&&browser.tabs.update(t.id,{url:r})}return s.routerMeta=Object.assign(Object.assign({},s.routerMeta),{receiverRouterId:o.routerId}),yield(new d.InExtensionMessageRequester).sendMessage(l.APP_PORT,s)})}:{isInternalMsg:e,requestInteraction:c}},s.checkIsInternalMessage=(e,t,r)=>{if(!e.url)throw new Error("Empty sender url");var s=new URL(e.url);if(!s.origin||"null"===s.origin)throw new Error("Invalid sender url");r=new URL(r);if(r.origin&&"null"!==r.origin)return s.origin===r.origin&&e.id===t;throw new Error("Invalid browser url")}},59:function(e,t,r){"use strict";var s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},n=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}},i=(Object.defineProperty(t,"__esModule",{value:!0}),t.ObservableChainQueryMap=t.ObservableChainQuery=void 0,r(119));const o=n(r(60));n=r(5),r=r(119);class a extends i.ObservableQuery{constructor(e,t,r,s){var n=r.getChain(t);super(e,o.default.create(Object.assign({baseURL:n.rest},n.restConfig)),s),this._chainId=t,this.chainGetter=r,this.fetchConfig={retry:3,retryDelay:1e3}}get instance(){var e=this.chainGetter.getChain(this.chainId);return o.default.create(Object.assign({baseURL:e.rest},e.restConfig))}get chainId(){return this._chainId}}s([n.override],a.prototype,"instance",null),t.ObservableChainQuery=a;class c extends r.HasMapStore{constructor(e,t,r,s){super(s),this.kvStore=e,this.chainId=t,this.chainGetter=r}}t.ObservableChainQueryMap=c},590:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ContentScriptEnv=void 0;class s{}(t.ContentScriptEnv=s).produceEnv=e=>{return{isInternalMsg:e.id===browser.runtime.id,requestInteraction:()=>{throw new Error("ContentScriptEnv doesn't support `requestInteraction`")}}}},628:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.txEventsWithPreOnFulfill=void 0,t.txEventsWithPreOnFulfill=function(e,t){const r=!e||"function"==typeof e?void 0:e.onBroadcasted,s=e?"function"==typeof e?e:e.onFulfill:void 0,n=!t||"function"==typeof t?void 0:t.onBroadcasted,i=t?"function"==typeof t?t:t.onFulfill:void 0;if(r||s||n||i)return{onBroadcasted:r||n?e=>{n&&n(e),r&&r(e)}:void 0,onFulfill:s||i?e=>{i&&i(e),s&&s(e)}:void 0}}},638:function(e,t,r){"use strict";var s=this&&this.__createBinding||(Object.create?function(e,t,r,s){void 0===s&&(s=r),Object.defineProperty(e,s,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,s){e[s=void 0===s?r:s]=t[r]}),n=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||s(t,e,r)};Object.defineProperty(t,"__esModule",{value:!0}),n(r(1503),t),n(r(1256),t),n(r(1507),t),n(r(1257),t)},862:function(e,t,r){"use strict";var n,s=this&&this.__decorate||function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;0<=a;a--)(n=e[a])&&(o=(i<3?n(o):3<i?n(t,r,o):n(t,r))||o);return 3<i&&o&&Object.defineProperty(t,r,o),o},c=this&&this.__awaiter||function(e,o,a,c){return new(a=a||Promise)(function(r,t){function s(e){try{i(c.next(e))}catch(e){t(e)}}function n(e){try{i(c.throw(e))}catch(e){t(e)}}function i(e){var t;e.done?r(e.value):((t=e.value)instanceof a?t:new a(function(e){e(t)})).then(s,n)}i((c=c.apply(e,o||[])).next())})};Object.defineProperty(t,"__esModule",{value:!0}),t.AccountSetBaseSuper=t.AccountSetBase=t.WalletStatus=void 0;const i=r(5),u=r(27),o=r(16);(r=n=t.WalletStatus||(t.WalletStatus={})).NotInit="NotInit",r.Loading="Loading",r.Loaded="Loaded",r.NotExist="NotExist",r.Rejected="Rejected";class a{constructor(e,t,r,s){this.eventListener=e,this.chainGetter=t,this.chainId=r,this.opts=s,this._walletVersion=void 0,this._walletStatus=n.NotInit,this._rejectionReason=void 0,this._name="",this._bech32Address="",this._isNanoLedger=!1,this._txTypeInProgress="",this._txNotification="",this.hasInited=!1,this.sendTokenFns=[],this.makeSendTokenTxFns=[],this.handleInit=()=>this.init(),i.makeObservable(this),this._pubKey=new Uint8Array,s.autoInit&&this.init()}getKeplr(){return this.opts.getKeplr()}registerSendTokenFn(e){this.sendTokenFns.push(e)}registerMakeSendTokenFn(e){this.makeSendTokenTxFns.push(e)}enable(t,r){return c(this,void 0,void 0,function*(){var e=this.chainGetter.getChain(r);this.opts.suggestChain&&(this.opts.suggestChainFn?yield this.opts.suggestChainFn(t,e):yield this.suggestChain(t,e)),yield t.enable(r)})}suggestChain(e,t){return c(this,void 0,void 0,function*(){yield e.experimentalSuggestChain(t.raw)})}*init(){if(this.walletStatus!==n.NotExist){this.hasInited||this.eventListener.addEventListener("mises_keystorechange",this.handleInit),this.hasInited=!0,this._walletStatus=n.Loading;var e=yield*u.toGenerator(this.getKeplr());if(e){this._walletVersion=e.version;try{yield this.enable(e,this.chainId)}catch(e){return this._walletStatus=n.Rejected,void(this._rejectionReason=e)}try{var t=yield*u.toGenerator(e.getKey(this.chainId));this._bech32Address=t.bech32Address,this._isNanoLedger=t.isNanoLedger,this._name=t.name,this._pubKey=t.pubKey,this._walletStatus=n.Loaded}catch(e){this._bech32Address="",this._isNanoLedger=!1,this._name="",this._pubKey=new Uint8Array(0),this._walletStatus=n.Rejected,this._rejectionReason=e}this._walletStatus!==n.Rejected&&(this._rejectionReason=void 0)}else this._walletStatus=n.NotExist}}disconnect(){this._walletStatus=n.NotInit,this.hasInited=!1,this.eventListener.removeEventListener("mises_keystorechange",this.handleInit),this._bech32Address="",this._isNanoLedger=!1,this._name="",this._pubKey=new Uint8Array(0),this._rejectionReason=void 0}get walletVersion(){return this._walletVersion}get isReadyToSendTx(){return this.walletStatus===n.Loaded&&""!==this.bech32Address}get isReadyToSendMsgs(){return this.walletStatus===n.Loaded&&""!==this.bech32Address}makeSendTokenTx(t,r,s){for(let e=0;e<this.makeSendTokenTxFns.length;e++){var n=(0,this.makeSendTokenTxFns[e])(t,r,s);if(n)return n}var e=new u.DenomHelper(r.coinMinimalDenom);throw new Error(`Unsupported type of currency (${e.type})`)}sendToken(t,r,s,n="",i={},o,a){return c(this,void 0,void 0,function*(){for(let e=0;e<this.sendTokenFns.length;e++)if(yield(0,this.sendTokenFns[e])(t,r,s,n,i,o,a))return;var e=new u.DenomHelper(r.coinMinimalDenom);throw new Error(`Unsupported type of currency (${e.type})`)})}get walletStatus(){return this._walletStatus}get rejectionReason(){return this._rejectionReason}get name(){return this._name}get bech32Address(){return this._bech32Address}get pubKey(){return this._pubKey.slice()}get isNanoLedger(){return this._isNanoLedger}get txTypeInProgress(){return this._txTypeInProgress}get txNotification(){return this._txNotification}get isSendingMsg(){return this.txTypeInProgress}get hasEthereumHexAddress(){var e;return null!=(e=null==(e=this.chainGetter.getChain(this.chainId).features)?void 0:e.includes("eth-address-gen"))&&e}get ethereumHexAddress(){return""===this.bech32Address?"":o.Bech32Address.fromBech32(this.bech32Address,this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr).toHex(!0)}}s([i.observable],a.prototype,"_walletVersion",void 0),s([i.observable],a.prototype,"_walletStatus",void 0),s([i.observable.ref],a.prototype,"_rejectionReason",void 0),s([i.observable],a.prototype,"_name",void 0),s([i.observable],a.prototype,"_bech32Address",void 0),s([i.observable],a.prototype,"_isNanoLedger",void 0),s([i.observable],a.prototype,"_txTypeInProgress",void 0),s([i.observable],a.prototype,"_txNotification",void 0),s([i.flow],a.prototype,"init",null),s([i.action],a.prototype,"disconnect",null),s([i.computed],a.prototype,"isReadyToSendTx",null),s([i.computed],a.prototype,"isReadyToSendMsgs",null),s([i.computed],a.prototype,"ethereumHexAddress",null);class l extends(t.AccountSetBase=a){constructor(...e){super(...e),i.makeObservable(this)}setTxTypeInProgress(e){this._txTypeInProgress=e}setTxNotification(e){this._txNotification=e}}s([i.action],l.prototype,"setTxTypeInProgress",null),s([i.action],l.prototype,"setTxNotification",null),t.AccountSetBaseSuper=l},863:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.BondStatus=void 0,(t=t.BondStatus||(t.BondStatus={})).Unbonded="Unbonded",t.Unbonding="Unbonding",t.Bonded="Bonded",t.Unspecified="Unspecified"}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
+
+/***/ 1011:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HasMapStore = void 0;
+const mobx_1 = __webpack_require__(5);
+class HasMapStore {
+    constructor(creater) {
+        this.creater = creater;
+        this.map = new Map();
+        mobx_1.makeObservable(this);
+    }
+    get(key) {
+        if (!this.map.has(key)) {
+            const query = this.creater(key);
+            mobx_1.runInAction(() => {
+                this.map.set(key, query);
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.map.get(key);
+    }
+    has(key) {
+        return this.map.has(key);
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], HasMapStore.prototype, "map", void 0);
+exports.HasMapStore = HasMapStore;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 118:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1011), exports);
+__exportStar(__webpack_require__(1223), exports);
+__exportStar(__webpack_require__(1413), exports);
+__exportStar(__webpack_require__(1414), exports);
+__exportStar(__webpack_require__(1415), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1223:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1411), exports);
+__exportStar(__webpack_require__(1412), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1225:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1421), exports);
+__exportStar(__webpack_require__(1227), exports);
+__exportStar(__webpack_require__(1226), exports);
+__exportStar(__webpack_require__(1422), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1226:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryGovParamDeposit = exports.ObservableQueryGovParamVoting = exports.ObservableQueryGovParamTally = void 0;
+const chain_query_1 = __webpack_require__(59);
+class ObservableQueryGovParamTally extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, `/cosmos/gov/v1beta1/params/tallying`);
+    }
+}
+exports.ObservableQueryGovParamTally = ObservableQueryGovParamTally;
+class ObservableQueryGovParamVoting extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, `/cosmos/gov/v1beta1/params/voting`);
+    }
+}
+exports.ObservableQueryGovParamVoting = ObservableQueryGovParamVoting;
+class ObservableQueryGovParamDeposit extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, `/cosmos/gov/v1beta1/params/deposit`);
+    }
+}
+exports.ObservableQueryGovParamDeposit = ObservableQueryGovParamDeposit;
+//# sourceMappingURL=params.js.map
+
+/***/ }),
+
+/***/ 1227:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryProposal = void 0;
+const chain_query_1 = __webpack_require__(59);
+const types_1 = __webpack_require__(1228);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryProposal extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, _raw, governance) {
+        super(kvStore, chainId, chainGetter, `/cosmos/gov/v1beta1/proposals/${_raw.proposal_id}/tally`);
+        this._raw = _raw;
+        this.governance = governance;
+        mobx_1.makeObservable(this);
+    }
+    canFetch() {
+        return this.proposalStatus === types_1.ProposalStatus.VOTING_PERIOD;
+    }
+    get raw() {
+        return this._raw;
+    }
+    get proposalStatus() {
+        switch (this.raw.status) {
+            case "PROPOSAL_STATUS_DEPOSIT_PERIOD":
+                return types_1.ProposalStatus.DEPOSIT_PERIOD;
+            case "PROPOSAL_STATUS_VOTING_PERIOD":
+                return types_1.ProposalStatus.VOTING_PERIOD;
+            case "PROPOSAL_STATUS_PASSED":
+                return types_1.ProposalStatus.PASSED;
+            case "PROPOSAL_STATUS_REJECTED":
+                return types_1.ProposalStatus.REJECTED;
+            case "PROPOSAL_STATUS_FAILED":
+                return types_1.ProposalStatus.FAILED;
+            default:
+                return types_1.ProposalStatus.UNSPECIFIED;
+        }
+    }
+    get id() {
+        return this.raw.proposal_id;
+    }
+    get title() {
+        return this.raw.content.title;
+    }
+    get description() {
+        return this.raw.content.description;
+    }
+    get turnout() {
+        const pool = this.governance.getQueryPool();
+        const bondedTokenDec = pool.bondedTokens.toDec();
+        if (!pool.response || bondedTokenDec.equals(new unit_1.Dec(0))) {
+            return new unit_1.IntPretty(new unit_1.Dec(0)).ready(false);
+        }
+        const tally = this.tally;
+        const tallySum = tally.yes
+            .add(tally.no)
+            .add(tally.abstain)
+            .add(tally.noWithVeto);
+        // TODO: Use `RatePretty`
+        return new unit_1.IntPretty(tallySum
+            .toDec()
+            .quoTruncate(bondedTokenDec)
+            .mulTruncate(unit_1.DecUtils.getPrecisionDec(2))).ready(tally.yes.isReady);
+    }
+    /**
+     * Return the voting tally.
+     * If the proposal status is passed or rejected, it returns the final tally of the proposal.
+     * If the proposal status is in voting period, it queries the tally to the rest endpoint.
+     * If the querying of tally is not completed, it return the tally with all 0 with not ready option.
+     */
+    get tally() {
+        const stakeCurrency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        if (this.proposalStatus !== types_1.ProposalStatus.VOTING_PERIOD) {
+            return {
+                yes: new unit_1.IntPretty(new unit_1.Int(this.raw.final_tally_result.yes))
+                    .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                    .maxDecimals(stakeCurrency.coinDecimals),
+                no: new unit_1.IntPretty(new unit_1.Int(this.raw.final_tally_result.no))
+                    .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                    .maxDecimals(stakeCurrency.coinDecimals),
+                abstain: new unit_1.IntPretty(new unit_1.Int(this.raw.final_tally_result.abstain))
+                    .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                    .maxDecimals(stakeCurrency.coinDecimals),
+                noWithVeto: new unit_1.IntPretty(new unit_1.Int(this.raw.final_tally_result.no_with_veto))
+                    .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                    .maxDecimals(stakeCurrency.coinDecimals),
+            };
+        }
+        if (!this.response) {
+            return {
+                yes: new unit_1.IntPretty(new unit_1.Int(0))
+                    .ready(false)
+                    .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                    .maxDecimals(stakeCurrency.coinDecimals),
+                no: new unit_1.IntPretty(new unit_1.Int(0))
+                    .ready(false)
+                    .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                    .maxDecimals(stakeCurrency.coinDecimals),
+                abstain: new unit_1.IntPretty(new unit_1.Int(0))
+                    .ready(false)
+                    .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                    .maxDecimals(stakeCurrency.coinDecimals),
+                noWithVeto: new unit_1.IntPretty(new unit_1.Int(0))
+                    .ready(false)
+                    .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                    .maxDecimals(stakeCurrency.coinDecimals),
+            };
+        }
+        return {
+            yes: new unit_1.IntPretty(new unit_1.Int(this.response.data.tally.yes))
+                .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                .maxDecimals(stakeCurrency.coinDecimals),
+            no: new unit_1.IntPretty(new unit_1.Int(this.response.data.tally.no))
+                .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                .maxDecimals(stakeCurrency.coinDecimals),
+            abstain: new unit_1.IntPretty(new unit_1.Int(this.response.data.tally.abstain))
+                .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                .maxDecimals(stakeCurrency.coinDecimals),
+            noWithVeto: new unit_1.IntPretty(new unit_1.Int(this.response.data.tally.no_with_veto))
+                .moveDecimalPointLeft(stakeCurrency.coinDecimals)
+                .maxDecimals(stakeCurrency.coinDecimals),
+        };
+    }
+    get total() {
+        const tally = this.tally;
+        const tallySum = tally.yes
+            .add(tally.no)
+            .add(tally.abstain)
+            .add(tally.noWithVeto);
+        const stakeCurrency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        return new unit_1.CoinPretty(stakeCurrency, tallySum);
+    }
+    get tallyRatio() {
+        const tally = this.tally;
+        const tallySum = tally.yes
+            .add(tally.no)
+            .add(tally.abstain)
+            .add(tally.noWithVeto);
+        if (tallySum.toDec().equals(new unit_1.Dec(0))) {
+            return {
+                yes: new unit_1.IntPretty(new unit_1.Int(0)).ready(false),
+                no: new unit_1.IntPretty(new unit_1.Int(0)).ready(false),
+                abstain: new unit_1.IntPretty(new unit_1.Int(0)).ready(false),
+                noWithVeto: new unit_1.IntPretty(new unit_1.Int(0)).ready(false),
+            };
+        }
+        // TODO: Use `RatePretty`
+        return {
+            yes: new unit_1.IntPretty(tally.yes
+                .toDec()
+                .quoTruncate(tallySum.toDec())
+                .mulTruncate(unit_1.DecUtils.getPrecisionDec(2))).ready(tally.yes.isReady),
+            no: new unit_1.IntPretty(tally.no
+                .toDec()
+                .quoTruncate(tallySum.toDec())
+                .mulTruncate(unit_1.DecUtils.getPrecisionDec(2))).ready(tally.no.isReady),
+            abstain: new unit_1.IntPretty(tally.abstain
+                .toDec()
+                .quoTruncate(tallySum.toDec())
+                .mulTruncate(unit_1.DecUtils.getPrecisionDec(2))).ready(tally.abstain.isReady),
+            noWithVeto: new unit_1.IntPretty(tally.noWithVeto
+                .toDec()
+                .quoTruncate(tallySum.toDec())
+                .mulTruncate(unit_1.DecUtils.getPrecisionDec(2))).ready(tally.noWithVeto.isReady),
+        };
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryProposal.prototype, "turnout", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryProposal.prototype, "tally", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryProposal.prototype, "total", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryProposal.prototype, "tallyRatio", null);
+exports.ObservableQueryProposal = ObservableQueryProposal;
+//# sourceMappingURL=proposal.js.map
+
+/***/ }),
+
+/***/ 1228:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProposalStatus = void 0;
+// This is not the type for result of query.
+var ProposalStatus;
+(function (ProposalStatus) {
+    ProposalStatus[ProposalStatus["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+    ProposalStatus[ProposalStatus["DEPOSIT_PERIOD"] = 1] = "DEPOSIT_PERIOD";
+    ProposalStatus[ProposalStatus["VOTING_PERIOD"] = 2] = "VOTING_PERIOD";
+    ProposalStatus[ProposalStatus["PASSED"] = 3] = "PASSED";
+    ProposalStatus[ProposalStatus["REJECTED"] = 4] = "REJECTED";
+    ProposalStatus[ProposalStatus["FAILED"] = 5] = "FAILED";
+})(ProposalStatus = exports.ProposalStatus || (exports.ProposalStatus = {}));
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1229:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1423), exports);
+__exportStar(__webpack_require__(1424), exports);
+__exportStar(__webpack_require__(1425), exports);
+__exportStar(__webpack_require__(1426), exports);
+__exportStar(__webpack_require__(1432), exports);
+__exportStar(__webpack_require__(1433), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1230:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1434), exports);
+__exportStar(__webpack_require__(1435), exports);
+__exportStar(__webpack_require__(1436), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1231:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryAccount = exports.ObservableQueryAccountInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const cosmos_1 = __webpack_require__(16);
+class ObservableQueryAccountInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, bech32Address) {
+        super(kvStore, chainId, chainGetter, `/cosmos/auth/v1beta1/accounts/${bech32Address}`);
+        this.bech32Address = bech32Address;
+        mobx_1.makeObservable(this);
+    }
+    canFetch() {
+        // If bech32 address is empty, it will always fail, so don't need to fetch it.
+        return this.bech32Address.length > 0;
+    }
+    get sequence() {
+        if (!this.response) {
+            return "0";
+        }
+        // XXX: In launchpad, the status was 200 even if the account not exist.
+        //      However, from stargate, the status becomes 404 if the account not exist.
+        //      This case has not been dealt with yet.
+        //      However, in the case of 404, it will be treated as an error, and in this case the sequence should be 0.
+        try {
+            const account = cosmos_1.BaseAccount.fromProtoJSON(this.response.data, this.bech32Address);
+            return account.getSequence().toString();
+        }
+        catch (_a) {
+            return "0";
+        }
+    }
+    get isVestingAccount() {
+        var _a;
+        if (!this.response) {
+            return false;
+        }
+        return !!((_a = this.response.data) === null || _a === void 0 ? void 0 : _a.account.base_vesting_account);
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryAccountInner.prototype, "sequence", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryAccountInner.prototype, "isVestingAccount", null);
+exports.ObservableQueryAccountInner = ObservableQueryAccountInner;
+class ObservableQueryAccount extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (bech32Address) => {
+            return new ObservableQueryAccountInner(this.kvStore, this.chainId, this.chainGetter, bech32Address);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getQueryBech32Address(bech32Address) {
+        return this.get(bech32Address);
+    }
+}
+exports.ObservableQueryAccount = ObservableQueryAccount;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1232:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1437), exports);
+__exportStar(__webpack_require__(1438), exports);
+__exportStar(__webpack_require__(1439), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1233:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1440), exports);
+__exportStar(__webpack_require__(1441), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1234:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryCw20BalanceRegistry = exports.ObservableQueryCw20BalanceInner = exports.ObservableQueryCw20Balance = void 0;
+const mobx_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
+const balances_1 = __webpack_require__(507);
+const contract_query_1 = __webpack_require__(1235);
+class ObservableQueryCw20Balance extends contract_query_1.ObservableCosmwasmContractChainQuery {
+    constructor(kvStore, chainId, chainGetter, contractAddress, bech32Address) {
+        super(kvStore, chainId, chainGetter, contractAddress, {
+            balance: { address: bech32Address },
+        });
+        this.contractAddress = contractAddress;
+        this.bech32Address = bech32Address;
+    }
+    canFetch() {
+        return super.canFetch() && this.bech32Address !== "";
+    }
+}
+exports.ObservableQueryCw20Balance = ObservableQueryCw20Balance;
+class ObservableQueryCw20BalanceInner extends balances_1.ObservableQueryBalanceInner {
+    constructor(kvStore, chainId, chainGetter, denomHelper, bech32Address) {
+        super(kvStore, chainId, chainGetter, 
+        // No need to set the url at initial.
+        "", denomHelper);
+        this.bech32Address = bech32Address;
+        mobx_1.makeObservable(this);
+        this.queryCw20Balance = new ObservableQueryCw20Balance(kvStore, chainId, chainGetter, denomHelper.contractAddress, bech32Address);
+    }
+    // This method doesn't have the role because the fetching is actually exeucnted in the `ObservableQueryCw20Balance`.
+    canFetch() {
+        return false;
+    }
+    *fetch() {
+        yield this.queryCw20Balance.fetch();
+    }
+    get balance() {
+        const denom = this.denomHelper.denom;
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const currency = chainInfo.currencies.find((cur) => cur.coinMinimalDenom === denom);
+        // TODO: Infer the currency according to its denom (such if denom is `uatom` -> `Atom` with decimal 6)?
+        if (!currency) {
+            throw new Error(`Unknown currency: ${denom}`);
+        }
+        if (!this.queryCw20Balance.response ||
+            !this.queryCw20Balance.response.data.balance) {
+            return new unit_1.CoinPretty(currency, new unit_1.Int(0)).ready(false);
+        }
+        return new unit_1.CoinPretty(currency, new unit_1.Int(this.queryCw20Balance.response.data.balance));
+    }
+}
+__decorate([
+    mobx_1.override
+], ObservableQueryCw20BalanceInner.prototype, "fetch", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryCw20BalanceInner.prototype, "balance", null);
+exports.ObservableQueryCw20BalanceInner = ObservableQueryCw20BalanceInner;
+class ObservableQueryCw20BalanceRegistry {
+    constructor(kvStore) {
+        this.kvStore = kvStore;
+    }
+    getBalanceInner(chainId, chainGetter, bech32Address, minimalDenom) {
+        const denomHelper = new common_1.DenomHelper(minimalDenom);
+        if (denomHelper.type === "cw20") {
+            return new ObservableQueryCw20BalanceInner(this.kvStore, chainId, chainGetter, denomHelper, bech32Address);
+        }
+    }
+}
+exports.ObservableQueryCw20BalanceRegistry = ObservableQueryCw20BalanceRegistry;
+//# sourceMappingURL=cw20-balance.js.map
+
+/***/ }),
+
+/***/ 1235:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableCosmwasmContractChainQuery = void 0;
+const chain_query_1 = __webpack_require__(59);
+const buffer_1 = __webpack_require__(4);
+const mobx_1 = __webpack_require__(5);
+class ObservableCosmwasmContractChainQuery extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, contractAddress, 
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    obj) {
+        super(kvStore, chainId, chainGetter, ObservableCosmwasmContractChainQuery.getUrlFromObj(contractAddress, obj));
+        this.contractAddress = contractAddress;
+        this.obj = obj;
+    }
+    onStart() {
+        super.onStart();
+        return new Promise((resolve) => {
+            this.disposer = mobx_1.autorun(() => {
+                const chainInfo = this.chainGetter.getChain(this.chainId);
+                if (chainInfo.features && chainInfo.features.includes("wasmd_0.24+")) {
+                    if (this.url.startsWith("/wasm/v1/")) {
+                        this.setUrl(`/cosmwasm${this.url}`);
+                    }
+                }
+                else {
+                    if (this.url.startsWith("/cosmwasm/")) {
+                        this.setUrl(`${this.url.replace("/cosmwasm", "")}`);
+                    }
+                }
+                resolve();
+            });
+        });
+    }
+    onStop() {
+        if (this.disposer) {
+            this.disposer();
+            this.disposer = undefined;
+        }
+        super.onStop();
+    }
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    static getUrlFromObj(contractAddress, obj) {
+        const msg = JSON.stringify(obj);
+        const query = buffer_1.Buffer.from(msg).toString("base64");
+        return `/wasm/v1/contract/${contractAddress}/smart/${query}`;
+    }
+    canFetch() {
+        return this.contractAddress.length !== 0;
+    }
+    fetchResponse(abortController) {
+        const _super = Object.create(null, {
+            fetchResponse: { get: () => super.fetchResponse }
+        });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { response, headers } = yield _super.fetchResponse.call(this, abortController);
+            const wasmResult = response.data;
+            if (!wasmResult) {
+                throw new Error("Failed to get the response from the contract");
+            }
+            return {
+                headers,
+                response: {
+                    data: wasmResult.data,
+                    status: response.status,
+                    staled: false,
+                    timestamp: Date.now(),
+                },
+            };
+        });
+    }
+}
+exports.ObservableCosmwasmContractChainQuery = ObservableCosmwasmContractChainQuery;
+//# sourceMappingURL=contract-query.js.map
+
+/***/ }),
+
+/***/ 1236:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQuerySecretContractCodeHash = exports.ObservableQuerySecretContractCodeHashInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+class ObservableQuerySecretContractCodeHashInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, contractAddress) {
+        super(kvStore, chainId, chainGetter, `/wasm/contract/${contractAddress}/code-hash`);
+        this.contractAddress = contractAddress;
+    }
+    canFetch() {
+        return this.contractAddress.length > 0;
+    }
+}
+exports.ObservableQuerySecretContractCodeHashInner = ObservableQuerySecretContractCodeHashInner;
+class ObservableQuerySecretContractCodeHash extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (contractAddress) => {
+            return new ObservableQuerySecretContractCodeHashInner(this.kvStore, this.chainId, this.chainGetter, contractAddress);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getQueryContract(contractAddress) {
+        return this.get(contractAddress);
+    }
+}
+exports.ObservableQuerySecretContractCodeHash = ObservableQuerySecretContractCodeHash;
+//# sourceMappingURL=contract-hash.js.map
+
+/***/ }),
+
+/***/ 1237:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQuerySecret20BalanceRegistry = exports.ObservableQuerySecret20BalanceInner = exports.ObservableQuerySecret20Balance = void 0;
+const mobx_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
+const balances_1 = __webpack_require__(507);
+const contract_query_1 = __webpack_require__(1238);
+const errors_1 = __webpack_require__(1239);
+class ObservableQuerySecret20Balance extends contract_query_1.ObservableSecretContractChainQuery {
+    constructor(kvStore, chainId, chainGetter, apiGetter, contractAddress, bech32Address, viewingKey, querySecretContractCodeHash) {
+        super(kvStore, chainId, chainGetter, apiGetter, contractAddress, {
+            balance: { address: bech32Address, key: viewingKey },
+        }, querySecretContractCodeHash);
+        this.apiGetter = apiGetter;
+        this.contractAddress = contractAddress;
+        this.bech32Address = bech32Address;
+        this.viewingKey = viewingKey;
+        this.querySecretContractCodeHash = querySecretContractCodeHash;
+        mobx_1.makeObservable(this);
+        if (!this.viewingKey) {
+            this.setError({
+                status: 0,
+                statusText: "Viewing key is empty",
+                message: "Viewing key is empty",
+            });
+        }
+    }
+    canFetch() {
+        return (super.canFetch() && this.bech32Address !== "" && this.viewingKey !== "");
+    }
+    fetchResponse(abortController) {
+        const _super = Object.create(null, {
+            fetchResponse: { get: () => super.fetchResponse }
+        });
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            const { response, headers } = yield _super.fetchResponse.call(this, abortController);
+            if (response.data["viewing_key_error"]) {
+                throw new errors_1.WrongViewingKeyError((_a = response.data["viewing_key_error"]) === null || _a === void 0 ? void 0 : _a.msg);
+            }
+            return {
+                headers,
+                response,
+            };
+        });
+    }
+}
+exports.ObservableQuerySecret20Balance = ObservableQuerySecret20Balance;
+class ObservableQuerySecret20BalanceInner extends balances_1.ObservableQueryBalanceInner {
+    constructor(kvStore, chainId, chainGetter, apiGetter, denomHelper, bech32Address, querySecretContractCodeHash) {
+        super(kvStore, chainId, chainGetter, 
+        // No need to set the url at initial.
+        "", denomHelper);
+        this.apiGetter = apiGetter;
+        this.bech32Address = bech32Address;
+        this.querySecretContractCodeHash = querySecretContractCodeHash;
+        mobx_1.makeObservable(this);
+        const viewingKey = (() => {
+            const currency = this.currency;
+            if ("type" in currency && currency.type === "secret20") {
+                return currency.viewingKey;
+            }
+            return "";
+        })();
+        this.querySecret20Balance = new ObservableQuerySecret20Balance(kvStore, chainId, chainGetter, this.apiGetter, denomHelper.contractAddress, bech32Address, viewingKey, this.querySecretContractCodeHash);
+    }
+    // This method doesn't have the role because the fetching is actually exeucnted in the `ObservableQuerySecret20Balance`.
+    canFetch() {
+        return false;
+    }
+    *fetch() {
+        yield this.querySecret20Balance.fetch();
+    }
+    get isFetching() {
+        return (this.querySecretContractCodeHash.getQueryContract(this.denomHelper.contractAddress).isFetching || this.querySecret20Balance.isFetching);
+    }
+    get error() {
+        return (this.querySecretContractCodeHash.getQueryContract(this.denomHelper.contractAddress).error || this.querySecret20Balance.error);
+    }
+    get balance() {
+        const denom = this.denomHelper.denom;
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const currency = chainInfo.findCurrency(denom);
+        // TODO: Infer the currency according to its denom (such if denom is `uatom` -> `Atom` with decimal 6)?
+        if (!currency) {
+            throw new Error(`Unknown currency: ${denom}`);
+        }
+        if (!this.querySecret20Balance.response ||
+            !this.querySecret20Balance.response.data.balance) {
+            return new unit_1.CoinPretty(currency, new unit_1.Int(0)).ready(false);
+        }
+        return new unit_1.CoinPretty(currency, new unit_1.Int(this.querySecret20Balance.response.data.balance.amount));
+    }
+}
+__decorate([
+    mobx_1.override
+], ObservableQuerySecret20BalanceInner.prototype, "fetch", null);
+__decorate([
+    mobx_1.computed
+], ObservableQuerySecret20BalanceInner.prototype, "balance", null);
+exports.ObservableQuerySecret20BalanceInner = ObservableQuerySecret20BalanceInner;
+class ObservableQuerySecret20BalanceRegistry {
+    constructor(kvStore, apiGetter, querySecretContractCodeHash) {
+        this.kvStore = kvStore;
+        this.apiGetter = apiGetter;
+        this.querySecretContractCodeHash = querySecretContractCodeHash;
+    }
+    getBalanceInner(chainId, chainGetter, bech32Address, minimalDenom) {
+        const denomHelper = new common_1.DenomHelper(minimalDenom);
+        if (denomHelper.type === "secret20") {
+            return new ObservableQuerySecret20BalanceInner(this.kvStore, chainId, chainGetter, this.apiGetter, denomHelper, bech32Address, this.querySecretContractCodeHash);
+        }
+    }
+}
+exports.ObservableQuerySecret20BalanceRegistry = ObservableQuerySecret20BalanceRegistry;
+//# sourceMappingURL=secret20-balance.js.map
+
+/***/ }),
+
+/***/ 1238:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableSecretContractChainQuery = void 0;
+const chain_query_1 = __webpack_require__(59);
+const common_1 = __webpack_require__(27);
+const mobx_1 = __webpack_require__(5);
+const buffer_1 = __webpack_require__(4);
+class ObservableSecretContractChainQuery extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, apiGetter, contractAddress, 
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    obj, querySecretContractCodeHash) {
+        // Don't need to set the url initially because it can't request without encyption.
+        super(kvStore, chainId, chainGetter, ``);
+        this.apiGetter = apiGetter;
+        this.contractAddress = contractAddress;
+        this.obj = obj;
+        this.querySecretContractCodeHash = querySecretContractCodeHash;
+        this.keplr = undefined;
+        this._isIniting = false;
+        mobx_1.makeObservable(this);
+    }
+    onStart() {
+        const _super = Object.create(null, {
+            onStart: { get: () => super.onStart }
+        });
+        return __awaiter(this, void 0, void 0, function* () {
+            _super.onStart.call(this);
+            if (!this.keplr) {
+                yield this.initKeplr();
+            }
+            if (!this.keplr) {
+                throw new Error("Failed to get keplr");
+            }
+            yield this.querySecretContractCodeHash
+                .getQueryContract(this.contractAddress)
+                .waitResponse();
+            yield this.init();
+        });
+    }
+    get isFetching() {
+        return (this.querySecretContractCodeHash.getQueryContract(this.contractAddress)
+            .isFetching ||
+            this.keplr == null ||
+            this._isIniting ||
+            super.isFetching);
+    }
+    canFetch() {
+        if (!this.querySecretContractCodeHash.getQueryContract(this.contractAddress)
+            .response) {
+            return false;
+        }
+        return this.contractAddress.length !== 0 && this.nonce != null;
+    }
+    *initKeplr() {
+        this.keplr = yield* common_1.toGenerator(this.apiGetter());
+    }
+    *init() {
+        this._isIniting = true;
+        if (this.keplr && this.contractCodeHash) {
+            const enigmaUtils = this.keplr.getEnigmaUtils(this.chainId);
+            const encrypted = yield* common_1.toGenerator(enigmaUtils.encrypt(this.contractCodeHash, this.obj));
+            this.nonce = encrypted.slice(0, 32);
+            const encoded = buffer_1.Buffer.from(buffer_1.Buffer.from(encrypted).toString("base64")).toString("hex");
+            this.setUrl(`/wasm/contract/${this.contractAddress}/query/${encoded}?encoding=hex`);
+        }
+        this._isIniting = false;
+    }
+    fetchResponse(abortController) {
+        const _super = Object.create(null, {
+            fetchResponse: { get: () => super.fetchResponse }
+        });
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            let response;
+            let headers;
+            try {
+                const fetched = yield _super.fetchResponse.call(this, abortController);
+                response = fetched.response;
+                headers = fetched.headers;
+            }
+            catch (e) {
+                if ((_b = (_a = e.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.error) {
+                    const encryptedError = e.response.data.error;
+                    const errorMessageRgx = /rpc error: code = (.+) = encrypted: (.+): (.+)/g;
+                    const rgxMatches = errorMessageRgx.exec(encryptedError);
+                    if (rgxMatches != null && rgxMatches.length === 4) {
+                        const errorCipherB64 = rgxMatches[2];
+                        const errorCipherBz = buffer_1.Buffer.from(errorCipherB64, "base64");
+                        if (this.keplr && this.nonce) {
+                            const decrypted = yield this.keplr
+                                .getEnigmaUtils(this.chainId)
+                                .decrypt(errorCipherBz, this.nonce);
+                            const errorStr = buffer_1.Buffer.from(decrypted).toString();
+                            // If error is from secret wasm chain itself, decrypt the error message and throw it.
+                            throw new Error(errorStr);
+                        }
+                    }
+                }
+                throw e;
+            }
+            const encResult = response.data;
+            if (!this.keplr) {
+                throw new Error("Keplr API not initialized");
+            }
+            if (!this.nonce) {
+                throw new Error("Nonce is unknown");
+            }
+            if (!encResult) {
+                throw new Error("Failed to get the response from the contract");
+            }
+            const decrypted = yield this.keplr
+                .getEnigmaUtils(this.chainId)
+                .decrypt(buffer_1.Buffer.from(encResult.result.smart, "base64"), this.nonce);
+            const message = buffer_1.Buffer.from(buffer_1.Buffer.from(decrypted).toString(), "base64").toString();
+            const obj = JSON.parse(message);
+            return {
+                headers,
+                response: {
+                    data: obj,
+                    status: response.status,
+                    staled: false,
+                    timestamp: Date.now(),
+                },
+            };
+        });
+    }
+    // Actually, the url of fetching the secret20 balance will be changed every time.
+    // So, we should save it with deterministic key.
+    getCacheKey() {
+        return `${this.instance.name}-${this.instance.defaults.baseURL}${this.instance.getUri({
+            url: `/wasm/contract/${this.contractAddress}/query/${JSON.stringify(this.obj)}?encoding=json`,
+        })}`;
+    }
+    get contractCodeHash() {
+        const queryCodeHash = this.querySecretContractCodeHash.getQueryContract(this.contractAddress);
+        if (!queryCodeHash.response) {
+            return undefined;
+        }
+        // Code hash is persistent, so it is safe not to consider that the response is from cache or network.
+        // TODO: Handle the error case.
+        return queryCodeHash.response.data.result;
+    }
+}
+__decorate([
+    mobx_1.observable.ref
+], ObservableSecretContractChainQuery.prototype, "keplr", void 0);
+__decorate([
+    mobx_1.observable
+], ObservableSecretContractChainQuery.prototype, "_isIniting", void 0);
+__decorate([
+    mobx_1.flow
+], ObservableSecretContractChainQuery.prototype, "initKeplr", null);
+__decorate([
+    mobx_1.flow
+], ObservableSecretContractChainQuery.prototype, "init", null);
+__decorate([
+    mobx_1.computed
+], ObservableSecretContractChainQuery.prototype, "contractCodeHash", null);
+exports.ObservableSecretContractChainQuery = ObservableSecretContractChainQuery;
+//# sourceMappingURL=contract-query.js.map
+
+/***/ }),
+
+/***/ 1239:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WrongViewingKeyError = void 0;
+class WrongViewingKeyError extends Error {
+    constructor(m) {
+        super(m);
+        // Set the prototype explicitly.
+        Object.setPrototypeOf(this, WrongViewingKeyError.prototype);
+    }
+}
+exports.WrongViewingKeyError = WrongViewingKeyError;
+//# sourceMappingURL=errors.js.map
+
+/***/ }),
+
+/***/ 1240:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryTxFeesFeeTokens = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const mobx_utils_1 = __webpack_require__(200);
+class ObservableQueryTxFeesFeeTokens extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/osmosis/txfees/v1beta1/fee_tokens");
+        this.isTxFeeToken = mobx_utils_1.computedFn((coinMinimalDnom) => {
+            if (!this.response) {
+                return false;
+            }
+            return this.feeCurrenciesDenomMap.get(coinMinimalDnom) === true;
+        });
+        mobx_1.makeObservable(this);
+    }
+    setResponse(response) {
+        super.setResponse(response);
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const denoms = response.data.fee_tokens.map((token) => token.denom);
+        chainInfo.addUnknownCurrencies(...denoms);
+    }
+    get feeCurrenciesDenomMap() {
+        const map = new Map();
+        if (!this.response) {
+            return map;
+        }
+        for (const token of this.response.data.fee_tokens) {
+            map.set(token.denom, true);
+        }
+        return map;
+    }
+    get feeCurrencies() {
+        if (!this.response) {
+            return [];
+        }
+        const res = [];
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        for (const token of this.response.data.fee_tokens) {
+            const currency = chainInfo.findCurrency(token.denom);
+            if (currency) {
+                res.push(currency);
+            }
+        }
+        return res;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryTxFeesFeeTokens.prototype, "feeCurrenciesDenomMap", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryTxFeesFeeTokens.prototype, "feeCurrencies", null);
+exports.ObservableQueryTxFeesFeeTokens = ObservableQueryTxFeesFeeTokens;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1241:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryTxFeesSpotPriceByDenom = exports.ObservableQueryTxFeesSpotPriceByDenomInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryTxFeesSpotPriceByDenomInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, denom) {
+        super(kvStore, chainId, chainGetter, `osmosis/txfees/v1beta1/spot_price_by_denom?denom=${denom}`);
+        mobx_1.makeObservable(this);
+    }
+    get poolId() {
+        if (!this.response) {
+            return "";
+        }
+        return this.response.data.poolID;
+    }
+    get spotPriceDec() {
+        if (!this.response) {
+            return new unit_1.Dec(0);
+        }
+        return new unit_1.Dec(this.response.data.spot_price);
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryTxFeesSpotPriceByDenomInner.prototype, "spotPriceDec", null);
+exports.ObservableQueryTxFeesSpotPriceByDenomInner = ObservableQueryTxFeesSpotPriceByDenomInner;
+class ObservableQueryTxFeesSpotPriceByDenom extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (denom) => {
+            return new ObservableQueryTxFeesSpotPriceByDenomInner(this.kvStore, this.chainId, this.chainGetter, denom);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getQueryDenom(denom) {
+        return this.get(denom);
+    }
+}
+exports.ObservableQueryTxFeesSpotPriceByDenom = ObservableQueryTxFeesSpotPriceByDenom;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1242:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryTxFeesBaseDenom = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+class ObservableQueryTxFeesBaseDenom extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/osmosis/txfees/v1beta1/base_denom");
+        mobx_1.makeObservable(this);
+    }
+    get baseDenom() {
+        var _a, _b;
+        return (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.base_denom) !== null && _b !== void 0 ? _b : "";
+    }
+}
+exports.ObservableQueryTxFeesBaseDenom = ObservableQueryTxFeesBaseDenom;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1247:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1495), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1248:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1496), exports);
+__exportStar(__webpack_require__(1497), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1402:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1403), exports);
+__exportStar(__webpack_require__(859), exports);
+__exportStar(__webpack_require__(1404), exports);
+__exportStar(__webpack_require__(1407), exports);
+__exportStar(__webpack_require__(1408), exports);
+__exportStar(__webpack_require__(1410), exports);
+__exportStar(__webpack_require__(1416), exports);
+__exportStar(__webpack_require__(626), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1403:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1404:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CosmosAccountImpl = exports.defaultCosmosMsgOpts = exports.CosmosAccount = void 0;
+const base_1 = __webpack_require__(859);
+const common_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
+const tx_1 = __webpack_require__(100);
+const signing_1 = __webpack_require__(624);
+const keys_1 = __webpack_require__(1405);
+const tx_2 = __webpack_require__(617);
+const tx_3 = __webpack_require__(623);
+const tx_4 = __webpack_require__(618);
+const tx_5 = __webpack_require__(621);
+const tx_6 = __webpack_require__(619);
+const gov_1 = __webpack_require__(620);
+const cosmos_1 = __webpack_require__(16);
+const types_1 = __webpack_require__(860);
+const axios_1 = __importDefault(__webpack_require__(60));
+const deepmerge_1 = __importDefault(__webpack_require__(165));
+const buffer_1 = __webpack_require__(4);
+const utils_1 = __webpack_require__(626);
+const web3_1 = __webpack_require__(1406);
+const stargate_1 = __webpack_require__(265);
+exports.CosmosAccount = {
+    use(options) {
+        return (base, chainGetter, chainId) => {
+            const msgOptsFromCreator = options.msgOptsCreator
+                ? options.msgOptsCreator(chainId)
+                : undefined;
+            return {
+                cosmos: new CosmosAccountImpl(base, chainGetter, chainId, options.queriesStore, deepmerge_1.default(exports.defaultCosmosMsgOpts, msgOptsFromCreator ? msgOptsFromCreator : {}), options),
+            };
+        };
+    },
+};
+/**
+ * @deprecated Predict gas through simulation rather than using a fixed gas.
+ */
+exports.defaultCosmosMsgOpts = {
+    send: {
+        native: {
+            type: "cosmos-sdk/MsgSend",
+            gas: 80000,
+        },
+    },
+    ibcTransfer: {
+        type: "cosmos-sdk/MsgTransfer",
+        gas: 450000,
+    },
+    delegate: {
+        type: "cosmos-sdk/MsgDelegate",
+        gas: 250000,
+    },
+    undelegate: {
+        type: "cosmos-sdk/MsgUndelegate",
+        gas: 250000,
+    },
+    redelegate: {
+        type: "cosmos-sdk/MsgBeginRedelegate",
+        gas: 250000,
+    },
+    // The gas multiplication per rewards.
+    withdrawRewards: {
+        type: "cosmos-sdk/MsgWithdrawDelegationReward",
+        gas: 140000,
+    },
+    govVote: {
+        type: "cosmos-sdk/MsgVote",
+        gas: 250000,
+    },
+};
+class CosmosAccountImpl {
+    constructor(base, chainGetter, chainId, queriesStore, _msgOpts, txOpts) {
+        this.base = base;
+        this.chainGetter = chainGetter;
+        this.chainId = chainId;
+        this.queriesStore = queriesStore;
+        this._msgOpts = _msgOpts;
+        this.txOpts = txOpts;
+        this.broadcastMode = "sync";
+        this.base.registerMakeSendTokenFn(this.processMakeSendTokenTx.bind(this));
+        this.base.registerSendTokenFn(this.processSendToken.bind(this));
+    }
+    /**
+     * @deprecated Predict gas through simulation rather than using a fixed gas.
+     */
+    get msgOpts() {
+        return this._msgOpts;
+    }
+    processMakeSendTokenTx(amount, currency, recipient) {
+        const denomHelper = new common_1.DenomHelper(currency.coinMinimalDenom);
+        if (denomHelper.type === "native") {
+            const actualAmount = (() => {
+                let dec = new unit_1.Dec(amount);
+                dec = dec.mul(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+                return dec.truncate().toString();
+            })();
+            cosmos_1.Bech32Address.validate(recipient, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr);
+            const msg = {
+                type: this.msgOpts.send.native.type,
+                value: {
+                    from_address: this.base.bech32Address,
+                    to_address: recipient,
+                    amount: [
+                        {
+                            denom: currency.coinMinimalDenom,
+                            amount: actualAmount,
+                        },
+                    ],
+                },
+            };
+            return this.makeTx("send", {
+                aminoMsgs: [msg],
+                protoMsgs: [
+                    {
+                        typeUrl: "/cosmos.bank.v1beta1.MsgSend",
+                        value: tx_2.MsgSend.encode({
+                            fromAddress: msg.value.from_address,
+                            toAddress: msg.value.to_address,
+                            amount: msg.value.amount,
+                        }).finish(),
+                    },
+                ],
+                rlpTypes: {
+                    MsgValue: [
+                        { name: "from_address", type: "string" },
+                        { name: "to_address", type: "string" },
+                        { name: "amount", type: "TypeAmount[]" },
+                    ],
+                    TypeAmount: [
+                        { name: "denom", type: "string" },
+                        { name: "amount", type: "string" },
+                    ],
+                },
+            }, (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to send token, refresh the balance.
+                    const queryBalance = this.queries.queryBalances
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .balances.find((bal) => {
+                        return (bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+                    });
+                    if (queryBalance) {
+                        queryBalance.fetch();
+                    }
+                }
+            });
+        }
+    }
+    /**
+     * @deprecated
+     */
+    processSendToken(amount, currency, recipient, memo, stdFee, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const denomHelper = new common_1.DenomHelper(currency.coinMinimalDenom);
+            switch (denomHelper.type) {
+                case "native":
+                    const actualAmount = (() => {
+                        let dec = new unit_1.Dec(amount);
+                        dec = dec.mul(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+                        return dec.truncate().toString();
+                    })();
+                    const msg = {
+                        type: this.msgOpts.send.native.type,
+                        value: {
+                            from_address: this.base.bech32Address,
+                            to_address: recipient,
+                            amount: [
+                                {
+                                    denom: currency.coinMinimalDenom,
+                                    amount: actualAmount,
+                                },
+                            ],
+                        },
+                    };
+                    yield this.sendMsgs("send", {
+                        aminoMsgs: [msg],
+                        protoMsgs: [
+                            {
+                                typeUrl: "/cosmos.bank.v1beta1.MsgSend",
+                                value: tx_2.MsgSend.encode({
+                                    fromAddress: msg.value.from_address,
+                                    toAddress: msg.value.to_address,
+                                    amount: msg.value.amount,
+                                }).finish(),
+                            },
+                        ],
+                    }, memo, {
+                        amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                        gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.send.native.gas.toString(),
+                    }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                        if (tx.code == null || tx.code === 0) {
+                            // After succeeding to send token, refresh the balance.
+                            const queryBalance = this.queries.queryBalances
+                                .getQueryBech32Address(this.base.bech32Address)
+                                .balances.find((bal) => {
+                                return (bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+                            });
+                            if (queryBalance) {
+                                queryBalance.fetch();
+                            }
+                        }
+                    }));
+                    return true;
+            }
+            return false;
+        });
+    }
+    sendMsgs(type, msgs, memo = "", fee, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            this.base.setTxNotification("");
+            this.base.setTxTypeInProgress(type);
+            let txHash;
+            let signDoc;
+            try {
+                if (typeof msgs === "function") {
+                    msgs = yield msgs();
+                }
+                const result = yield this.broadcastMsgs(msgs, fee, memo, signOptions, this.broadcastMode);
+                txHash = result.txHash;
+                signDoc = result.signDoc;
+            }
+            catch (e) {
+                this.base.setTxTypeInProgress("");
+                if ((_a = this.txOpts.preTxEvents) === null || _a === void 0 ? void 0 : _a.onBroadcastFailed) {
+                    this.txOpts.preTxEvents.onBroadcastFailed(this.chainId, e);
+                }
+                if (onTxEvents &&
+                    "onBroadcastFailed" in onTxEvents &&
+                    onTxEvents.onBroadcastFailed) {
+                    onTxEvents.onBroadcastFailed(e);
+                }
+                throw e;
+            }
+            let onBroadcasted;
+            let onFulfill;
+            if (onTxEvents) {
+                if (typeof onTxEvents === "function") {
+                    onFulfill = onTxEvents;
+                }
+                else {
+                    onBroadcasted = onTxEvents.onBroadcasted;
+                    onFulfill = onTxEvents.onFulfill;
+                }
+            }
+            if ((_b = this.txOpts.preTxEvents) === null || _b === void 0 ? void 0 : _b.onBroadcasted) {
+                this.txOpts.preTxEvents.onBroadcasted(this.chainId, txHash);
+            }
+            if (onBroadcasted) {
+                onBroadcasted(txHash);
+            }
+            this.txOpts.misesStore
+                .portForTx(txHash)
+                .then((tx) => {
+                var _a;
+                this.base.setTxTypeInProgress("");
+                this.base.setTxNotification("success");
+                setTimeout(() => {
+                    this.base.setTxNotification("");
+                }, 2000);
+                // After sending tx, the balances is probably changed due to the fee.
+                for (const feeAmount of signDoc.fee.amount) {
+                    const bal = this.queries.queryBalances
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .balances.find((bal) => bal.currency.coinMinimalDenom === feeAmount.denom);
+                    if (bal) {
+                        bal.fetch();
+                    }
+                }
+                // Always add the tx hash data.
+                if (tx && !tx.hash) {
+                    tx.hash = buffer_1.Buffer.from(txHash).toString("hex");
+                }
+                if ((_a = this.txOpts.preTxEvents) === null || _a === void 0 ? void 0 : _a.onFulfill) {
+                    this.txOpts.preTxEvents.onFulfill(this.chainId, tx);
+                }
+                if (onFulfill) {
+                    onFulfill(tx);
+                }
+            })
+                .catch((err) => {
+                console.log(err);
+            });
+        });
+    }
+    // Return the tx hash.
+    broadcastMsgs(msgs, fee, memo = "", signOptions, mode = "async") {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.base.walletStatus !== base_1.WalletStatus.Loaded) {
+                throw new Error(`Wallet is not loaded: ${this.base.walletStatus}`);
+            }
+            const aminoMsgs = msgs.aminoMsgs;
+            const protoMsgs = msgs.protoMsgs;
+            // TODO: Make proto sign doc if `aminoMsgs` is empty or null
+            if (aminoMsgs.length === 0 || protoMsgs.length === 0) {
+                throw new Error("There is no msg to send");
+            }
+            if (aminoMsgs.length !== protoMsgs.length) {
+                throw new Error("The length of aminoMsgs and protoMsgs are different");
+            }
+            const result = yield this.txOpts.misesStore.authAccounts(this.base.bech32Address);
+            if (!result) {
+                throw new Error("not found account");
+            }
+            const account = stargate_1.accountFromAny(result);
+            const useEthereumSign = ((_a = this.chainGetter
+                .getChain(this.chainId)
+                .features) === null || _a === void 0 ? void 0 : _a.includes("eth-key-sign")) === true;
+            const eip712Signing = useEthereumSign && this.base.isNanoLedger;
+            if (eip712Signing && !msgs.rlpTypes) {
+                throw new Error("RLP types information is needed for signing tx for ethermint chain with ledger");
+            }
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const keplr = (yield this.base.getKeplr());
+            const signDocRaw = {
+                chain_id: this.chainId,
+                account_number: account.accountNumber.toString(),
+                sequence: account.sequence.toString(),
+                fee: fee,
+                msgs: aminoMsgs,
+                memo: common_1.escapeHTML(memo),
+            };
+            const signDoc = common_1.sortObjectByKey(signDocRaw);
+            const signResponse = yield (() => __awaiter(this, void 0, void 0, function* () {
+                if (!eip712Signing) {
+                    return yield keplr.signAmino(this.chainId, this.base.bech32Address, signDoc, signOptions);
+                }
+                else {
+                    const altSignDoc = Object.assign({}, signDoc);
+                    // XXX: "feePayer" should be "payer". But, it maybe from ethermint team's mistake.
+                    //      That means this part is not standard.
+                    altSignDoc.fee["feePayer"] = this.base.bech32Address;
+                    return yield keplr.experimentalSignEIP712CosmosTx_v0(this.chainId, this.base.bech32Address, {
+                        types: Object.assign({ EIP712Domain: [
+                                { name: "name", type: "string" },
+                                { name: "version", type: "string" },
+                                { name: "chainId", type: "uint256" },
+                                // XXX: Maybe, non-standard format?
+                                { name: "verifyingContract", type: "string" },
+                                // XXX: Maybe, non-standard format?
+                                { name: "salt", type: "string" },
+                            ], Tx: [
+                                { name: "account_number", type: "string" },
+                                { name: "chain_id", type: "string" },
+                                { name: "fee", type: "Fee" },
+                                { name: "memo", type: "string" },
+                                { name: "msgs", type: "Msg[]" },
+                                { name: "sequence", type: "string" },
+                            ], Fee: [
+                                { name: "feePayer", type: "string" },
+                                { name: "amount", type: "Coin[]" },
+                                { name: "gas", type: "string" },
+                            ], Coin: [
+                                { name: "denom", type: "string" },
+                                { name: "amount", type: "string" },
+                            ], Msg: [
+                                { name: "type", type: "string" },
+                                { name: "value", type: "MsgValue" },
+                            ] }, msgs.rlpTypes),
+                        domain: {
+                            name: "Cosmos Web3",
+                            version: "1.0.0",
+                            chainId: cosmos_1.EthermintChainIdHelper.parse(this.chainId).ethChainId.toString(),
+                            verifyingContract: "cosmos",
+                            salt: "0",
+                        },
+                        primaryType: "Tx",
+                    }, altSignDoc, signOptions);
+                }
+            }))();
+            const signedTx = tx_1.TxRaw.encode({
+                bodyBytes: tx_1.TxBody.encode(tx_1.TxBody.fromPartial({
+                    messages: protoMsgs,
+                    memo: signResponse.signed.memo,
+                    extensionOptions: eip712Signing
+                        ? [
+                            {
+                                typeUrl: "/ethermint.types.v1.ExtensionOptionsWeb3Tx",
+                                value: web3_1.ExtensionOptionsWeb3Tx.encode(web3_1.ExtensionOptionsWeb3Tx.fromPartial({
+                                    typedDataChainId: cosmos_1.EthermintChainIdHelper.parse(this.chainId).ethChainId.toString(),
+                                    feePayer: this.base.bech32Address,
+                                    feePayerSig: buffer_1.Buffer.from(signResponse.signature.signature, "base64"),
+                                })).finish(),
+                            },
+                        ]
+                        : undefined,
+                })).finish(),
+                authInfoBytes: tx_1.AuthInfo.encode({
+                    signerInfos: [
+                        {
+                            publicKey: {
+                                typeUrl: (() => {
+                                    if (!useEthereumSign) {
+                                        return "/cosmos.crypto.secp256k1.PubKey";
+                                    }
+                                    if (this.chainId.startsWith("injective")) {
+                                        return "/injective.crypto.v1beta1.ethsecp256k1.PubKey";
+                                    }
+                                    return "/ethermint.crypto.v1.ethsecp256k1.PubKey";
+                                })(),
+                                value: keys_1.PubKey.encode({
+                                    key: buffer_1.Buffer.from(signResponse.signature.pub_key.value, "base64"),
+                                }).finish(),
+                            },
+                            modeInfo: {
+                                single: {
+                                    mode: signing_1.SignMode.SIGN_MODE_LEGACY_AMINO_JSON,
+                                },
+                                multi: undefined,
+                            },
+                            sequence: signResponse.signed.sequence,
+                        },
+                    ],
+                    fee: tx_1.Fee.fromPartial({
+                        amount: signResponse.signed.fee.amount,
+                        gasLimit: signResponse.signed.fee.gas,
+                        payer: eip712Signing
+                            ? // Fee delegation feature not yet supported. But, for eip712 ethermint signing, we must set fee payer.
+                                signResponse.signed.fee["feePayer"]
+                            : undefined,
+                    }),
+                }).finish(),
+                signatures: !eip712Signing
+                    ? [buffer_1.Buffer.from(signResponse.signature.signature, "base64")]
+                    : [new Uint8Array(0)],
+            }).finish();
+            return {
+                txHash: yield keplr.sendTx(this.chainId, signedTx, mode),
+                signDoc: signResponse.signed,
+            };
+        });
+    }
+    /**
+     * Simulate tx without making state transition on chain or not waiting the tx committed.
+     * Mainly used to estimate the gas needed to process tx.
+     * You should multiply arbitrary number (gas adjustment) for gas before sending tx.
+     *
+     * NOTE: "/cosmos/tx/v1beta1/simulate" returns 400, 500 or (more?) status and error code as a response when tx fails on stimulate.
+     *       Currently, non 200~300 status is handled as error, thus error would be thrown.
+     *
+     * XXX: Uses the simulate request format for cosmos-sdk@0.43+
+     *      Thus, may throw an error if the chain is below cosmos-sdk@0.43
+     *      And, for simplicity, doesn't set the public key to tx bytes.
+     *      Thus, the gas estimated doesn't include the tx bytes size of public key.
+     *
+     * @param msgs
+     * @param fee
+     * @param memo
+     */
+    simulateTx(msgs, _fee, memo = "") {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.txOpts.misesStore.authAccounts(this.base.bech32Address);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const account = stargate_1.accountFromAny(result);
+            const txResult = yield this.txOpts.misesStore.simulate(msgs, memo, 
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            account.pubkey, account.sequence);
+            const gasUsed = txResult.gasUsed.low;
+            if (Number.isNaN(gasUsed)) {
+                throw new Error(`Invalid integer gas: ${txResult.gasUsed}`);
+            }
+            return {
+                gasUsed,
+            };
+        });
+    }
+    makeTx(type, msgs, preOnTxEvents) {
+        const simulate = (fee = {}, memo = "") => __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            if (typeof msgs === "function") {
+                msgs = yield msgs();
+            }
+            return this.simulateTx(msgs.protoMsgs, {
+                amount: (_a = fee.amount) !== null && _a !== void 0 ? _a : [],
+            }, memo);
+        });
+        const sendWithGasPrice = (gasInfo, memo = "", signOptions, onTxEvents) => __awaiter(this, void 0, void 0, function* () {
+            if (gasInfo.gas < 0) {
+                throw new Error("Gas is zero or negative");
+            }
+            const fee = {
+                gas: gasInfo.gas.toString(),
+                amount: gasInfo.gasPrice
+                    ? [
+                        {
+                            denom: gasInfo.gasPrice.denom,
+                            amount: gasInfo.gasPrice.amount
+                                .mul(new unit_1.Dec(gasInfo.gas))
+                                .truncate()
+                                .toString(),
+                        },
+                    ]
+                    : [],
+            };
+            return this.sendMsgs(type, msgs, memo, fee, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, preOnTxEvents));
+        });
+        return {
+            msgs: () => __awaiter(this, void 0, void 0, function* () {
+                if (typeof msgs === "function") {
+                    msgs = yield msgs();
+                }
+                return msgs;
+            }),
+            simulate,
+            simulateAndSend: (feeOptions, memo = "", signOptions, onTxEvents) => __awaiter(this, void 0, void 0, function* () {
+                this.base.setTxTypeInProgress(type);
+                try {
+                    const { gasUsed } = yield simulate({}, memo);
+                    if (gasUsed < 0) {
+                        throw new Error("Gas estimated is zero or negative");
+                    }
+                    const gasAdjusted = Math.floor(feeOptions.gasAdjustment * gasUsed);
+                    return sendWithGasPrice({
+                        gas: gasAdjusted,
+                        gasPrice: feeOptions.gasPrice,
+                    }, memo, signOptions, onTxEvents);
+                }
+                catch (e) {
+                    this.base.setTxTypeInProgress("");
+                    throw e;
+                }
+            }),
+            send: (fee, memo = "", signOptions, onTxEvents) => __awaiter(this, void 0, void 0, function* () {
+                return this.sendMsgs(type, msgs, memo, fee, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, preOnTxEvents));
+            }),
+            sendWithGasPrice,
+        };
+    }
+    get instance() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        return axios_1.default.create(Object.assign({
+            baseURL: chainInfo.rest,
+        }, chainInfo.restConfig));
+    }
+    makeIBCTransferTx(channel, amount, currency, recipient) {
+        if (new common_1.DenomHelper(currency.coinMinimalDenom).type !== "native") {
+            throw new Error("Only native token can be sent via IBC");
+        }
+        const actualAmount = (() => {
+            let dec = new unit_1.Dec(amount);
+            dec = dec.mul(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+            return dec.truncate().toString();
+        })();
+        const destinationInfo = this.queriesStore.get(channel.counterpartyChainId)
+            .cosmos.queryRPCStatus;
+        return this.makeTx("ibcTransfer", () => __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            // Wait until fetching complete.
+            yield destinationInfo.waitFreshResponse();
+            if (!destinationInfo.network) {
+                throw new Error(`Failed to fetch the network chain id of ${channel.counterpartyChainId}`);
+            }
+            if (cosmos_1.ChainIdHelper.parse(destinationInfo.network).identifier !==
+                cosmos_1.ChainIdHelper.parse(channel.counterpartyChainId).identifier) {
+                throw new Error(`Fetched the network chain id is different with counterparty chain id (${destinationInfo.network}, ${channel.counterpartyChainId})`);
+            }
+            if (!destinationInfo.latestBlockHeight ||
+                destinationInfo.latestBlockHeight.equals(new unit_1.Int("0"))) {
+                throw new Error(`Failed to fetch the latest block of ${channel.counterpartyChainId}`);
+            }
+            const useEthereumSign = ((_a = this.chainGetter
+                .getChain(this.chainId)
+                .features) === null || _a === void 0 ? void 0 : _a.includes("eth-key-sign")) === true;
+            const eip712Signing = useEthereumSign && this.base.isNanoLedger;
+            // On ledger with ethermint, eip712 types are required and we can't omit `timeoutTimestamp`.
+            // Although we are not using `timeoutTimestamp` at present, just set it as mas uint64 only for eip712 cosmos tx.
+            const timeoutTimestamp = eip712Signing ? "18446744073709551615" : "0";
+            const msg = {
+                type: this.msgOpts.ibcTransfer.type,
+                value: {
+                    source_port: channel.portId,
+                    source_channel: channel.channelId,
+                    token: {
+                        denom: currency.coinMinimalDenom,
+                        amount: actualAmount,
+                    },
+                    sender: this.base.bech32Address,
+                    receiver: recipient,
+                    timeout_height: {
+                        revision_number: cosmos_1.ChainIdHelper.parse(destinationInfo.network).version.toString(),
+                        // Set the timeout height as the current height + 150.
+                        revision_height: destinationInfo.latestBlockHeight
+                            .add(new unit_1.Int("150"))
+                            .toString(),
+                    },
+                    timeout_timestamp: timeoutTimestamp,
+                },
+            };
+            if (msg.value.timeout_height.revision_number === "0") {
+                delete msg.value.timeout_height.revision_number;
+            }
+            if (msg.value.timeout_timestamp === "0") {
+                delete msg.value.timeout_timestamp;
+            }
+            return {
+                aminoMsgs: [msg],
+                protoMsgs: [
+                    {
+                        typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
+                        value: tx_3.MsgTransfer.encode(tx_3.MsgTransfer.fromPartial({
+                            sourcePort: msg.value.source_port,
+                            sourceChannel: msg.value.source_channel,
+                            token: msg.value.token,
+                            sender: msg.value.sender,
+                            receiver: msg.value.receiver,
+                            timeoutHeight: {
+                                revisionNumber: msg.value.timeout_height.revision_number
+                                    ? msg.value.timeout_height.revision_number
+                                    : "0",
+                                revisionHeight: msg.value.timeout_height.revision_height,
+                            },
+                            timeoutTimestamp: msg.value.timeout_timestamp,
+                        })).finish(),
+                    },
+                ],
+                rlpTypes: {
+                    MsgValue: [
+                        { name: "source_port", type: "string" },
+                        { name: "source_channel", type: "string" },
+                        { name: "token", type: "TypeToken" },
+                        { name: "sender", type: "string" },
+                        { name: "receiver", type: "string" },
+                        { name: "timeout_height", type: "TypeTimeoutHeight" },
+                        { name: "timeout_timestamp", type: "uint64" },
+                    ],
+                    TypeToken: [
+                        { name: "denom", type: "string" },
+                        { name: "amount", type: "string" },
+                    ],
+                    TypeTimeoutHeight: [
+                        { name: "revision_number", type: "uint64" },
+                        { name: "revision_height", type: "uint64" },
+                    ],
+                },
+            };
+        }), (tx) => {
+            if (tx.code == null || tx.code === 0) {
+                // After succeeding to send token, refresh the balance.
+                const queryBalance = this.queries.queryBalances
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .balances.find((bal) => {
+                    return (bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+                });
+                if (queryBalance) {
+                    queryBalance.fetch();
+                }
+            }
+        });
+    }
+    sendIBCTransferMsg(channel, amount, currency, recipient, memo = "", stdFee = {}, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            if (new common_1.DenomHelper(currency.coinMinimalDenom).type !== "native") {
+                throw new Error("Only native token can be sent via IBC");
+            }
+            const actualAmount = (() => {
+                let dec = new unit_1.Dec(amount);
+                dec = dec.mul(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+                return dec.truncate().toString();
+            })();
+            const destinationInfo = this.queriesStore.get(channel.counterpartyChainId)
+                .cosmos.queryRPCStatus;
+            yield this.sendMsgs("ibcTransfer", () => __awaiter(this, void 0, void 0, function* () {
+                // Wait until fetching complete.
+                yield destinationInfo.waitFreshResponse();
+                if (!destinationInfo.network) {
+                    throw new Error(`Failed to fetch the network chain id of ${channel.counterpartyChainId}`);
+                }
+                if (cosmos_1.ChainIdHelper.parse(destinationInfo.network).identifier !==
+                    cosmos_1.ChainIdHelper.parse(channel.counterpartyChainId).identifier) {
+                    throw new Error(`Fetched the network chain id is different with counterparty chain id (${destinationInfo.network}, ${channel.counterpartyChainId})`);
+                }
+                if (!destinationInfo.latestBlockHeight ||
+                    destinationInfo.latestBlockHeight.equals(new unit_1.Int("0"))) {
+                    throw new Error(`Failed to fetch the latest block of ${channel.counterpartyChainId}`);
+                }
+                const msg = {
+                    type: this.msgOpts.ibcTransfer.type,
+                    value: {
+                        source_port: channel.portId,
+                        source_channel: channel.channelId,
+                        token: {
+                            denom: currency.coinMinimalDenom,
+                            amount: actualAmount,
+                        },
+                        sender: this.base.bech32Address,
+                        receiver: recipient,
+                        timeout_height: {
+                            revision_number: cosmos_1.ChainIdHelper.parse(destinationInfo.network).version.toString(),
+                            // Set the timeout height as the current height + 150.
+                            revision_height: destinationInfo.latestBlockHeight
+                                .add(new unit_1.Int("150"))
+                                .toString(),
+                        },
+                    },
+                };
+                if (msg.value.timeout_height.revision_number === "0") {
+                    delete msg.value.timeout_height.revision_number;
+                }
+                return {
+                    aminoMsgs: [msg],
+                    protoMsgs: [
+                        {
+                            typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
+                            value: tx_3.MsgTransfer.encode(tx_3.MsgTransfer.fromPartial({
+                                sourcePort: msg.value.source_port,
+                                sourceChannel: msg.value.source_channel,
+                                token: msg.value.token,
+                                sender: msg.value.sender,
+                                receiver: msg.value.receiver,
+                                timeoutHeight: {
+                                    revisionNumber: msg.value.timeout_height.revision_number
+                                        ? msg.value.timeout_height.revision_number
+                                        : "0",
+                                    revisionHeight: msg.value.timeout_height.revision_height,
+                                },
+                            })).finish(),
+                        },
+                    ],
+                };
+            }), memo, {
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.ibcTransfer.gas.toString(),
+            }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to send token, refresh the balance.
+                    const queryBalance = this.queries.queryBalances
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .balances.find((bal) => {
+                        return (bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+                    });
+                    if (queryBalance) {
+                        queryBalance.fetch();
+                    }
+                }
+            }));
+        });
+    }
+    makeDelegateTx(amount, validatorAddress) {
+        cosmos_1.Bech32Address.validate(validatorAddress, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);
+        const currency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        let dec = new unit_1.Dec(amount);
+        dec = dec.mulTruncate(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+        const msg = {
+            type: this.msgOpts.delegate.type,
+            value: {
+                delegator_address: this.base.bech32Address,
+                validator_address: validatorAddress,
+                amount: {
+                    denom: currency.coinMinimalDenom,
+                    amount: dec.truncate().toString(),
+                },
+            },
+        };
+        return this.makeTx("delegate", {
+            aminoMsgs: [msg],
+            protoMsgs: [
+                {
+                    typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
+                    value: tx_4.MsgDelegate.encode({
+                        delegatorAddress: msg.value.delegator_address,
+                        validatorAddress: msg.value.validator_address,
+                        amount: msg.value.amount,
+                    }).finish(),
+                },
+            ],
+            rlpTypes: {
+                MsgValue: [
+                    { name: "delegator_address", type: "string" },
+                    { name: "validator_address", type: "string" },
+                    { name: "amount", type: "TypeAmount" },
+                ],
+                TypeAmount: [
+                    { name: "denom", type: "string" },
+                    { name: "amount", type: "string" },
+                ],
+            },
+        }, (tx) => {
+            if (tx.code == null || tx.code === 0) {
+                // After succeeding to delegate, refresh the validators and delegations, rewards.
+                this.queries.cosmos.queryValidators
+                    .getQueryStatus(types_1.BondStatus.Bonded)
+                    .fetch();
+                this.queries.cosmos.queryDelegations
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .fetch();
+                this.queries.cosmos.queryRewards
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .fetch();
+            }
+        });
+    }
+    /**
+     * Send `MsgDelegate` msg to the chain.
+     * @param amount Decimal number used by humans.
+     *               If amount is 0.1 and the stake currenct is uatom, actual amount will be changed to the 100000uatom.
+     * @param validatorAddress
+     * @param memo
+     * @param onFulfill
+     */
+    sendDelegateMsg(amount, validatorAddress, memo = "", stdFee = {}, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const currency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+            let dec = new unit_1.Dec(amount);
+            dec = dec.mulTruncate(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+            const msg = {
+                type: this.msgOpts.delegate.type,
+                value: {
+                    delegator_address: this.base.bech32Address,
+                    validator_address: validatorAddress,
+                    amount: {
+                        denom: currency.coinMinimalDenom,
+                        amount: dec.truncate().toString(),
+                    },
+                },
+            };
+            yield this.sendMsgs("delegate", {
+                aminoMsgs: [msg],
+                protoMsgs: [
+                    {
+                        typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
+                        value: tx_4.MsgDelegate.encode({
+                            delegatorAddress: msg.value.delegator_address,
+                            validatorAddress: msg.value.validator_address,
+                            amount: msg.value.amount,
+                        }).finish(),
+                    },
+                ],
+            }, memo, {
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.delegate.gas.toString(),
+            }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to delegate, refresh the validators and delegations, rewards.
+                    this.queries.cosmos.queryValidators
+                        .getQueryStatus(types_1.BondStatus.Bonded)
+                        .fetch();
+                    this.queries.cosmos.queryDelegations
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .fetch();
+                    this.queries.cosmos.queryRewards
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .fetch();
+                }
+            }));
+        });
+    }
+    makeUndelegateTx(amount, validatorAddress) {
+        cosmos_1.Bech32Address.validate(validatorAddress, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);
+        const currency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        let dec = new unit_1.Dec(amount);
+        dec = dec.mulTruncate(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+        const msg = {
+            type: this.msgOpts.undelegate.type,
+            value: {
+                delegator_address: this.base.bech32Address,
+                validator_address: validatorAddress,
+                amount: {
+                    denom: currency.coinMinimalDenom,
+                    amount: dec.truncate().toString(),
+                },
+            },
+        };
+        return this.makeTx("undelegate", {
+            aminoMsgs: [msg],
+            protoMsgs: [
+                {
+                    typeUrl: "/cosmos.staking.v1beta1.MsgUndelegate",
+                    value: tx_4.MsgUndelegate.encode({
+                        delegatorAddress: msg.value.delegator_address,
+                        validatorAddress: msg.value.validator_address,
+                        amount: msg.value.amount,
+                    }).finish(),
+                },
+            ],
+            rlpTypes: {
+                MsgValue: [
+                    { name: "delegator_address", type: "string" },
+                    { name: "validator_address", type: "string" },
+                    { name: "amount", type: "TypeAmount" },
+                ],
+                TypeAmount: [
+                    { name: "denom", type: "string" },
+                    { name: "amount", type: "string" },
+                ],
+            },
+        }, (tx) => {
+            if (tx.code == null || tx.code === 0) {
+                // After succeeding to unbond, refresh the validators and delegations, unbonding delegations, rewards.
+                this.queries.cosmos.queryValidators
+                    .getQueryStatus(types_1.BondStatus.Bonded)
+                    .fetch();
+                this.queries.cosmos.queryDelegations
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .fetch();
+                this.queries.cosmos.queryUnbondingDelegations
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .fetch();
+                this.queries.cosmos.queryRewards
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .fetch();
+            }
+        });
+    }
+    /**
+     * @deprecated
+     * Send `MsgUndelegate` msg to the chain.
+     * @param amount Decimal number used by humans.
+     *               If amount is 0.1 and the stake currenct is uatom, actual amount will be changed to the 100000uatom.
+     * @param validatorAddress
+     * @param memo
+     * @param onFulfill
+     */
+    sendUndelegateMsg(amount, validatorAddress, memo = "", stdFee = {}, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const currency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+            let dec = new unit_1.Dec(amount);
+            dec = dec.mulTruncate(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+            const msg = {
+                type: this.msgOpts.undelegate.type,
+                value: {
+                    delegator_address: this.base.bech32Address,
+                    validator_address: validatorAddress,
+                    amount: {
+                        denom: currency.coinMinimalDenom,
+                        amount: dec.truncate().toString(),
+                    },
+                },
+            };
+            yield this.sendMsgs("undelegate", {
+                aminoMsgs: [msg],
+                protoMsgs: [
+                    {
+                        typeUrl: "/cosmos.staking.v1beta1.MsgUndelegate",
+                        value: tx_4.MsgUndelegate.encode({
+                            delegatorAddress: msg.value.delegator_address,
+                            validatorAddress: msg.value.validator_address,
+                            amount: msg.value.amount,
+                        }).finish(),
+                    },
+                ],
+            }, memo, {
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.undelegate.gas.toString(),
+            }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to unbond, refresh the validators and delegations, unbonding delegations, rewards.
+                    this.queries.cosmos.queryValidators
+                        .getQueryStatus(types_1.BondStatus.Bonded)
+                        .fetch();
+                    this.queries.cosmos.queryDelegations
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .fetch();
+                    this.queries.cosmos.queryUnbondingDelegations
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .fetch();
+                    this.queries.cosmos.queryRewards
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .fetch();
+                }
+            }));
+        });
+    }
+    makeBeginRedelegateTx(amount, srcValidatorAddress, dstValidatorAddress) {
+        cosmos_1.Bech32Address.validate(srcValidatorAddress, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);
+        cosmos_1.Bech32Address.validate(dstValidatorAddress, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);
+        const currency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        let dec = new unit_1.Dec(amount);
+        dec = dec.mulTruncate(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+        const msg = {
+            type: this.msgOpts.redelegate.type,
+            value: {
+                delegator_address: this.base.bech32Address,
+                validator_src_address: srcValidatorAddress,
+                validator_dst_address: dstValidatorAddress,
+                amount: {
+                    denom: currency.coinMinimalDenom,
+                    amount: dec.truncate().toString(),
+                },
+            },
+        };
+        return this.makeTx("redelegate", {
+            aminoMsgs: [msg],
+            protoMsgs: [
+                {
+                    typeUrl: "/cosmos.staking.v1beta1.MsgBeginRedelegate",
+                    value: tx_4.MsgBeginRedelegate.encode({
+                        delegatorAddress: msg.value.delegator_address,
+                        validatorSrcAddress: msg.value.validator_src_address,
+                        validatorDstAddress: msg.value.validator_dst_address,
+                        amount: msg.value.amount,
+                    }).finish(),
+                },
+            ],
+            rlpTypes: {
+                MsgValue: [
+                    { name: "delegator_address", type: "string" },
+                    { name: "validator_src_address", type: "string" },
+                    { name: "validator_dst_address", type: "string" },
+                    { name: "amount", type: "TypeAmount" },
+                ],
+                TypeAmount: [
+                    { name: "denom", type: "string" },
+                    { name: "amount", type: "string" },
+                ],
+            },
+        }, (tx) => {
+            if (tx.code == null || tx.code === 0) {
+                // After succeeding to redelegate, refresh the validators and delegations, rewards.
+                this.queries.cosmos.queryValidators
+                    .getQueryStatus(types_1.BondStatus.Bonded)
+                    .fetch();
+                this.queries.cosmos.queryDelegations
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .fetch();
+                this.queries.cosmos.queryRewards
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .fetch();
+            }
+        });
+    }
+    /**
+     * @deprecated
+     * Send `MsgBeginRedelegate` msg to the chain.
+     * @param amount Decimal number used by humans.
+     *               If amount is 0.1 and the stake currenct is uatom, actual amount will be changed to the 100000uatom.
+     * @param srcValidatorAddress
+     * @param dstValidatorAddress
+     * @param memo
+     * @param onFulfill
+     */
+    sendBeginRedelegateMsg(amount, srcValidatorAddress, dstValidatorAddress, memo = "", stdFee = {}, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const currency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+            let dec = new unit_1.Dec(amount);
+            dec = dec.mulTruncate(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+            const msg = {
+                type: this.msgOpts.redelegate.type,
+                value: {
+                    delegator_address: this.base.bech32Address,
+                    validator_src_address: srcValidatorAddress,
+                    validator_dst_address: dstValidatorAddress,
+                    amount: {
+                        denom: currency.coinMinimalDenom,
+                        amount: dec.truncate().toString(),
+                    },
+                },
+            };
+            yield this.sendMsgs("redelegate", {
+                aminoMsgs: [msg],
+                protoMsgs: [
+                    {
+                        typeUrl: "/cosmos.staking.v1beta1.MsgBeginRedelegate",
+                        value: tx_4.MsgBeginRedelegate.encode({
+                            delegatorAddress: msg.value.delegator_address,
+                            validatorSrcAddress: msg.value.validator_src_address,
+                            validatorDstAddress: msg.value.validator_dst_address,
+                            amount: msg.value.amount,
+                        }).finish(),
+                    },
+                ],
+            }, memo, {
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.redelegate.gas.toString(),
+            }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to redelegate, refresh the validators and delegations, rewards.
+                    this.queries.cosmos.queryValidators
+                        .getQueryStatus(types_1.BondStatus.Bonded)
+                        .fetch();
+                    this.queries.cosmos.queryDelegations
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .fetch();
+                    this.queries.cosmos.queryRewards
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .fetch();
+                }
+            }));
+        });
+    }
+    makeWithdrawDelegationRewardTx(validatorAddresses) {
+        for (const validatorAddress of validatorAddresses) {
+            cosmos_1.Bech32Address.validate(validatorAddress, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixValAddr);
+        }
+        const msgs = validatorAddresses.map((validatorAddress) => {
+            return {
+                type: this.msgOpts.withdrawRewards.type,
+                value: {
+                    delegator_address: this.base.bech32Address,
+                    validator_address: validatorAddress,
+                },
+            };
+        });
+        return this.makeTx("withdrawRewards", {
+            aminoMsgs: msgs,
+            protoMsgs: msgs.map((msg) => {
+                return {
+                    typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
+                    value: tx_5.MsgWithdrawDelegatorReward.encode({
+                        delegatorAddress: msg.value.delegator_address,
+                        validatorAddress: msg.value.validator_address,
+                    }).finish(),
+                };
+            }),
+            rlpTypes: {
+                MsgValue: [
+                    { name: "delegator_address", type: "string" },
+                    { name: "validator_address", type: "string" },
+                ],
+            },
+        }, (tx) => {
+            if (tx.code == null || tx.code === 0) {
+                // After succeeding to withdraw rewards, refresh rewards.
+                this.queries.cosmos.queryRewards
+                    .getQueryBech32Address(this.base.bech32Address)
+                    .fetch();
+            }
+        });
+    }
+    /**
+     * @deprecated
+     */
+    sendWithdrawDelegationRewardMsgs(validatorAddresses, memo = "", stdFee = {}, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const msgs = validatorAddresses.map((validatorAddress) => {
+                return {
+                    type: this.msgOpts.withdrawRewards.type,
+                    value: {
+                        delegator_address: this.base.bech32Address,
+                        validator_address: validatorAddress,
+                    },
+                };
+            });
+            yield this.sendMsgs("withdrawRewards", {
+                aminoMsgs: msgs,
+                protoMsgs: msgs.map((msg) => {
+                    return {
+                        typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
+                        value: tx_5.MsgWithdrawDelegatorReward.encode({
+                            delegatorAddress: msg.value.delegator_address,
+                            validatorAddress: msg.value.validator_address,
+                        }).finish(),
+                    };
+                }),
+            }, memo, {
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : (this.msgOpts.withdrawRewards.gas * validatorAddresses.length).toString(),
+            }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to withdraw rewards, refresh rewards.
+                    this.queries.cosmos.queryRewards
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .fetch();
+                }
+            }));
+        });
+    }
+    makeGovVoteTx(proposalId, option) {
+        const voteOption = (() => {
+            switch (option) {
+                case "Yes":
+                    return 1;
+                case "Abstain":
+                    return 2;
+                case "No":
+                    return 3;
+                case "NoWithVeto":
+                    return 4;
+            }
+        })();
+        const msg = {
+            type: this.msgOpts.govVote.type,
+            value: {
+                option: voteOption,
+                proposal_id: proposalId,
+                voter: this.base.bech32Address,
+            },
+        };
+        return this.makeTx("govVote", {
+            aminoMsgs: [msg],
+            protoMsgs: [
+                {
+                    typeUrl: "/cosmos.gov.v1beta1.MsgVote",
+                    value: tx_6.MsgVote.encode({
+                        proposalId: msg.value.proposal_id,
+                        voter: msg.value.voter,
+                        option: (() => {
+                            switch (msg.value.option) {
+                                case 1:
+                                    return gov_1.VoteOption.VOTE_OPTION_YES;
+                                case 2:
+                                    return gov_1.VoteOption.VOTE_OPTION_ABSTAIN;
+                                case 3:
+                                    return gov_1.VoteOption.VOTE_OPTION_NO;
+                                case 4:
+                                    return gov_1.VoteOption.VOTE_OPTION_NO_WITH_VETO;
+                                default:
+                                    return gov_1.VoteOption.VOTE_OPTION_UNSPECIFIED;
+                            }
+                        })(),
+                    }).finish(),
+                },
+            ],
+            rlpTypes: {
+                MsgValue: [
+                    { name: "proposal_id", type: "uint64" },
+                    { name: "voter", type: "string" },
+                    { name: "option", type: "int32" },
+                ],
+            },
+        }, (tx) => {
+            if (tx.code == null || tx.code === 0) {
+                // After succeeding to vote, refresh the proposal.
+                const proposal = this.queries.cosmos.queryGovernance.proposals.find((proposal) => proposal.id === proposalId);
+                if (proposal) {
+                    proposal.fetch();
+                }
+                const vote = this.queries.cosmos.queryProposalVote.getVote(proposalId, this.base.bech32Address);
+                vote.fetch();
+            }
+        });
+    }
+    /**
+     * @deprecated
+     */
+    sendGovVoteMsg(proposalId, option, memo = "", stdFee = {}, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const voteOption = (() => {
+                switch (option) {
+                    case "Yes":
+                        return 1;
+                    case "Abstain":
+                        return 2;
+                    case "No":
+                        return 3;
+                    case "NoWithVeto":
+                        return 4;
+                }
+            })();
+            const msg = {
+                type: this.msgOpts.govVote.type,
+                value: {
+                    option: voteOption,
+                    proposal_id: proposalId,
+                    voter: this.base.bech32Address,
+                },
+            };
+            yield this.sendMsgs("govVote", {
+                aminoMsgs: [msg],
+                protoMsgs: [
+                    {
+                        typeUrl: "/cosmos.gov.v1beta1.MsgVote",
+                        value: tx_6.MsgVote.encode({
+                            proposalId: msg.value.proposal_id,
+                            voter: msg.value.voter,
+                            option: (() => {
+                                switch (msg.value.option) {
+                                    case 1:
+                                        return gov_1.VoteOption.VOTE_OPTION_YES;
+                                    case 2:
+                                        return gov_1.VoteOption.VOTE_OPTION_ABSTAIN;
+                                    case 3:
+                                        return gov_1.VoteOption.VOTE_OPTION_NO;
+                                    case 4:
+                                        return gov_1.VoteOption.VOTE_OPTION_NO_WITH_VETO;
+                                    default:
+                                        return gov_1.VoteOption.VOTE_OPTION_UNSPECIFIED;
+                                }
+                            })(),
+                        }).finish(),
+                    },
+                ],
+            }, memo, {
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.govVote.gas.toString(),
+            }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to vote, refresh the proposal.
+                    const proposal = this.queries.cosmos.queryGovernance.proposals.find((proposal) => proposal.id === proposalId);
+                    if (proposal) {
+                        proposal.fetch();
+                    }
+                    const vote = this.queries.cosmos.queryProposalVote.getVote(proposalId, this.base.bech32Address);
+                    vote.fetch();
+                }
+            }));
+        });
+    }
+    get queries() {
+        return this.queriesStore.get(this.chainId);
+    }
+}
+exports.CosmosAccountImpl = CosmosAccountImpl;
+//# sourceMappingURL=cosmos.js.map
+
+/***/ }),
+
+/***/ 1407:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getKeplrFromWindow = void 0;
+const getKeplrFromWindow = () => __awaiter(void 0, void 0, void 0, function* () {
+    if (typeof window === "undefined") {
+        return undefined;
+    }
+    if (window.misesWallet) {
+        return window.misesWallet;
+    }
+    if (document.readyState === "complete") {
+        return window.misesWallet;
+    }
+    return new Promise((resolve) => {
+        const documentStateChange = (event) => {
+            if (event.target &&
+                event.target.readyState === "complete") {
+                resolve(window.misesWallet);
+                document.removeEventListener("readystatechange", documentStateChange);
+            }
+        };
+        document.addEventListener("readystatechange", documentStateChange);
+    });
+});
+exports.getKeplrFromWindow = getKeplrFromWindow;
+//# sourceMappingURL=get-keplr.js.map
+
+/***/ }),
+
+/***/ 1408:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SecretAccountImpl = exports.defaultSecretMsgOpts = exports.SecretAccount = void 0;
+const buffer_1 = __webpack_require__(4);
+const common_1 = __webpack_require__(27);
+const msg_1 = __webpack_require__(1409);
+const cosmos_1 = __webpack_require__(16);
+const unit_1 = __webpack_require__(26);
+const deepmerge_1 = __importDefault(__webpack_require__(165));
+const utils_1 = __webpack_require__(626);
+exports.SecretAccount = {
+    use(options) {
+        return (base, chainGetter, chainId) => {
+            const msgOptsFromCreator = options.msgOptsCreator
+                ? options.msgOptsCreator(chainId)
+                : undefined;
+            return {
+                secret: new SecretAccountImpl(base, chainGetter, chainId, options.queriesStore, deepmerge_1.default(exports.defaultSecretMsgOpts, msgOptsFromCreator ? msgOptsFromCreator : {})),
+            };
+        };
+    },
+};
+/**
+ * @deprecated Predict gas through simulation rather than using a fixed gas.
+ */
+exports.defaultSecretMsgOpts = {
+    send: {
+        secret20: {
+            gas: 250000,
+        },
+    },
+    createSecret20ViewingKey: {
+        gas: 150000,
+    },
+    executeSecretWasm: {
+        type: "wasm/MsgExecuteContract",
+    },
+};
+class SecretAccountImpl {
+    constructor(base, chainGetter, chainId, queriesStore, _msgOpts) {
+        this.base = base;
+        this.chainGetter = chainGetter;
+        this.chainId = chainId;
+        this.queriesStore = queriesStore;
+        this._msgOpts = _msgOpts;
+        this.base.registerMakeSendTokenFn(this.processMakeSendTokenTx.bind(this));
+        this.base.registerSendTokenFn(this.processSendToken.bind(this));
+    }
+    /**
+     * @deprecated Predict gas through simulation rather than using a fixed gas.
+     */
+    get msgOpts() {
+        return this._msgOpts;
+    }
+    processMakeSendTokenTx(amount, currency, recipient) {
+        const denomHelper = new common_1.DenomHelper(currency.coinMinimalDenom);
+        if (denomHelper.type === "secret20") {
+            const actualAmount = (() => {
+                let dec = new unit_1.Dec(amount);
+                dec = dec.mul(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+                return dec.truncate().toString();
+            })();
+            if (!("type" in currency) || currency.type !== "secret20") {
+                throw new Error("Currency is not secret20");
+            }
+            cosmos_1.Bech32Address.validate(recipient, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr);
+            return this.makeExecuteSecretContractTx("send", currency.contractAddress, {
+                transfer: {
+                    recipient: recipient,
+                    amount: actualAmount,
+                },
+            }, [], (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to send token, refresh the balance.
+                    const queryBalance = this.queries.queryBalances
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .balances.find((bal) => {
+                        return (bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+                    });
+                    if (queryBalance) {
+                        queryBalance.fetch();
+                    }
+                }
+            });
+        }
+    }
+    /**
+     * @deprecated
+     */
+    processSendToken(amount, currency, recipient, memo, stdFee, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const denomHelper = new common_1.DenomHelper(currency.coinMinimalDenom);
+            switch (denomHelper.type) {
+                case "secret20":
+                    const actualAmount = (() => {
+                        let dec = new unit_1.Dec(amount);
+                        dec = dec.mul(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+                        return dec.truncate().toString();
+                    })();
+                    if (!("type" in currency) || currency.type !== "secret20") {
+                        throw new Error("Currency is not secret20");
+                    }
+                    yield this.sendExecuteSecretContractMsg("send", currency.contractAddress, {
+                        transfer: {
+                            recipient: recipient,
+                            amount: actualAmount,
+                        },
+                    }, [], memo, {
+                        amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                        gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.send.secret20.gas.toString(),
+                    }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                        if (tx.code == null || tx.code === 0) {
+                            // After succeeding to send token, refresh the balance.
+                            const queryBalance = this.queries.queryBalances
+                                .getQueryBech32Address(this.base.bech32Address)
+                                .balances.find((bal) => {
+                                return (bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+                            });
+                            if (queryBalance) {
+                                queryBalance.fetch();
+                            }
+                        }
+                    }));
+                    return true;
+            }
+            return false;
+        });
+    }
+    createSecret20ViewingKey(contractAddress, memo = "", stdFee = {}, signOptions, onFulfill) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const random = new Uint8Array(32);
+            crypto.getRandomValues(random);
+            const key = buffer_1.Buffer.from(random).toString("hex");
+            yield this.makeExecuteSecretContractTx("createSecret20ViewingKey", contractAddress, {
+                set_viewing_key: { key },
+            }, []).send({
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.createSecret20ViewingKey.gas.toString(),
+            }, memo, signOptions, (tx) => {
+                let viewingKey = "";
+                if (tx.code == null || tx.code === 0) {
+                    viewingKey = key;
+                }
+                if (onFulfill) {
+                    onFulfill(tx, viewingKey);
+                }
+            });
+            return;
+        });
+    }
+    makeExecuteSecretContractTx(
+    // This arg can be used to override the type of sending tx if needed.
+    type = "executeSecretWasm", contractAddress, 
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    obj, sentFunds, preOnTxEvents) {
+        cosmos_1.Bech32Address.validate(contractAddress, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr);
+        let encryptedMsg;
+        return this.base.cosmos.makeTx(type, () => __awaiter(this, void 0, void 0, function* () {
+            encryptedMsg = yield this.encryptSecretContractMsg(contractAddress, obj);
+            const msg = {
+                type: this.msgOpts.executeSecretWasm.type,
+                value: {
+                    sender: this.base.bech32Address,
+                    contract: contractAddress,
+                    // callback_code_hash: "",
+                    msg: buffer_1.Buffer.from(encryptedMsg).toString("base64"),
+                    sent_funds: sentFunds,
+                },
+            };
+            return {
+                aminoMsgs: [msg],
+                protoMsgs: [
+                    {
+                        typeUrl: "/secret.compute.v1beta1.MsgExecuteContract",
+                        value: msg_1.MsgExecuteContract.encode(msg_1.MsgExecuteContract.fromPartial({
+                            sender: cosmos_1.Bech32Address.fromBech32(msg.value.sender).address,
+                            contract: cosmos_1.Bech32Address.fromBech32(msg.value.contract)
+                                .address,
+                            msg: buffer_1.Buffer.from(msg.value.msg, "base64"),
+                            sentFunds: msg.value.sent_funds,
+                        })).finish(),
+                    },
+                ],
+            };
+        }), preOnTxEvents);
+    }
+    /**
+     * @deprecated
+     */
+    sendExecuteSecretContractMsg(
+    // This arg can be used to override the type of sending tx if needed.
+    type = "executeSecretWasm", contractAddress, 
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    obj, sentFunds, memo = "", stdFee, signOptions, onTxEvents) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            let encryptedMsg;
+            yield this.base.cosmos.sendMsgs(type, () => __awaiter(this, void 0, void 0, function* () {
+                encryptedMsg = yield this.encryptSecretContractMsg(contractAddress, obj);
+                const msg = {
+                    type: this.msgOpts.executeSecretWasm.type,
+                    value: {
+                        sender: this.base.bech32Address,
+                        contract: contractAddress,
+                        // callback_code_hash: "",
+                        msg: buffer_1.Buffer.from(encryptedMsg).toString("base64"),
+                        sent_funds: sentFunds,
+                    },
+                };
+                return {
+                    aminoMsgs: [msg],
+                    protoMsgs: [
+                        {
+                            typeUrl: "/secret.compute.v1beta1.MsgExecuteContract",
+                            value: msg_1.MsgExecuteContract.encode(msg_1.MsgExecuteContract.fromPartial({
+                                sender: cosmos_1.Bech32Address.fromBech32(msg.value.sender).address,
+                                contract: cosmos_1.Bech32Address.fromBech32(msg.value.contract)
+                                    .address,
+                                msg: buffer_1.Buffer.from(msg.value.msg, "base64"),
+                                sentFunds: msg.value.sent_funds,
+                            })).finish(),
+                        },
+                    ],
+                };
+            }), memo, {
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: stdFee.gas,
+            }, signOptions, onTxEvents);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            return encryptedMsg;
+        });
+    }
+    encryptSecretContractMsg(contractAddress, 
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    obj) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryContractCodeHashResponse = yield this.queries.secret.querySecretContractCodeHash
+                .getQueryContract(contractAddress)
+                .waitResponse();
+            if (!queryContractCodeHashResponse) {
+                throw new Error(`Can't get the code hash of the contract (${contractAddress})`);
+            }
+            const contractCodeHash = queryContractCodeHashResponse.data.result;
+            const keplr = yield this.base.getKeplr();
+            if (!keplr) {
+                throw new Error("Can't get the Keplr API");
+            }
+            const enigmaUtils = keplr.getEnigmaUtils(this.chainId);
+            return yield enigmaUtils.encrypt(contractCodeHash, obj);
+        });
+    }
+    get queries() {
+        return this.queriesStore.get(this.chainId);
+    }
+}
+exports.SecretAccountImpl = SecretAccountImpl;
+//# sourceMappingURL=secret.js.map
+
+/***/ }),
+
+/***/ 1410:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AccountStore = void 0;
+const common_1 = __webpack_require__(118);
+const base_1 = __webpack_require__(859);
+class AccountStore extends common_1.HasMapStore {
+    constructor(eventListener, chainGetter, storeOptsCreator, ...accountSetCreators) {
+        super((chainId) => {
+            const accountSetBase = new base_1.AccountSetBaseSuper(eventListener, chainGetter, chainId, storeOptsCreator(chainId));
+            return common_1.mergeStores(accountSetBase, [this.chainGetter, chainId], ...this.accountSetCreators);
+        });
+        this.eventListener = eventListener;
+        this.chainGetter = chainGetter;
+        this.storeOptsCreator = storeOptsCreator;
+        this.accountSetCreators = accountSetCreators;
+    }
+    getAccount(chainId) {
+        return this.get(chainId);
+    }
+    hasAccount(chainId) {
+        return this.has(chainId);
+    }
+}
+exports.AccountStore = AccountStore;
+//# sourceMappingURL=store.js.map
+
+/***/ }),
+
+/***/ 1411:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryMap = exports.ObservableQuery = exports.ObservableQueryBase = exports.DeferInitialQueryController = exports.defaultOptions = void 0;
+const mobx_1 = __webpack_require__(5);
+const axios_1 = __importDefault(__webpack_require__(60));
+const common_1 = __webpack_require__(27);
+const map_1 = __webpack_require__(1011);
+const eventemitter3_1 = __importDefault(__webpack_require__(1224));
+exports.defaultOptions = {
+    cacheMaxAge: 0,
+    fetchingInterval: 0,
+};
+class FlowCancelerError extends Error {
+    constructor(m) {
+        super(m);
+        // Set the prototype explicitly.
+        Object.setPrototypeOf(this, FlowCancelerError.prototype);
+    }
+}
+class FlowCanceler {
+    constructor() {
+        this.rejectors = [];
+    }
+    get hasCancelable() {
+        return this.rejectors.length > 0;
+    }
+    cancel(message) {
+        while (this.rejectors.length > 0) {
+            const rejector = this.rejectors.shift();
+            if (rejector) {
+                rejector.reject(new FlowCancelerError(message));
+                if (rejector.onCancel) {
+                    rejector.onCancel();
+                }
+            }
+        }
+    }
+    callOrCanceledWithPromise(promise, onCancel) {
+        return new Promise((resolve, reject) => {
+            this.rejectors.push({
+                reject,
+                onCancel,
+            });
+            promise.then((r) => {
+                const i = this.rejectors.findIndex((r) => r.reject === reject);
+                if (i >= 0) {
+                    this.rejectors.splice(i, 1);
+                }
+                resolve(r);
+            }, (e) => {
+                const i = this.rejectors.findIndex((r) => r.reject === reject);
+                if (i >= 0) {
+                    this.rejectors.splice(i, 1);
+                }
+                reject(e);
+            });
+        });
+    }
+    callOrCanceled(fn, onCancel) {
+        return new Promise((resolve, reject) => {
+            this.rejectors.push({
+                reject,
+                onCancel,
+            });
+            Promise.resolve().then(() => {
+                if (!this.rejectors.find((r) => r.reject === reject)) {
+                    return;
+                }
+                fn().then((r) => {
+                    const i = this.rejectors.findIndex((r) => r.reject === reject);
+                    if (i >= 0) {
+                        this.rejectors.splice(i, 1);
+                    }
+                    resolve(r);
+                }, (e) => {
+                    const i = this.rejectors.findIndex((r) => r.reject === reject);
+                    if (i >= 0) {
+                        this.rejectors.splice(i, 1);
+                    }
+                    reject(e);
+                });
+            });
+        });
+    }
+}
+class DeferInitialQueryController {
+    constructor() {
+        this._isReady = false;
+        mobx_1.makeObservable(this);
+    }
+    ready() {
+        this._isReady = true;
+    }
+    wait() {
+        if (this.isReady) {
+            return Promise.resolve();
+        }
+        return new Promise((resolve) => {
+            const disposer = mobx_1.autorun(() => {
+                if (this.isReady) {
+                    resolve();
+                    if (disposer) {
+                        disposer();
+                    }
+                }
+            });
+        });
+    }
+    get isReady() {
+        return this._isReady;
+    }
+}
+__decorate([
+    mobx_1.observable
+], DeferInitialQueryController.prototype, "_isReady", void 0);
+__decorate([
+    mobx_1.action
+], DeferInitialQueryController.prototype, "ready", null);
+exports.DeferInitialQueryController = DeferInitialQueryController;
+/**
+ * Base of the observable query classes.
+ * This recommends to use the Axios to query the response.
+ */
+class ObservableQueryBase {
+    constructor(instance, options) {
+        // Just use the oberable ref because the response is immutable and not directly adjusted.
+        this._response = undefined;
+        this._isFetching = false;
+        this._error = undefined;
+        this._isStarted = false;
+        this._pendingOnStart = false;
+        this.observedCount = 0;
+        // intervalId can be number or NodeJS's Timout object according to the environment.
+        // If environment is browser, intervalId should be number.
+        // If environment is NodeJS, intervalId should be NodeJS.Timeout.
+        this.intervalId = undefined;
+        this.becomeObserved = () => {
+            if (this.observedCount === 0) {
+                this.start();
+            }
+            this.observedCount++;
+        };
+        this.becomeUnobserved = () => {
+            this.observedCount--;
+            if (this.observedCount === 0) {
+                this.stop();
+            }
+        };
+        this.intervalFetch = () => {
+            if (!this.isFetching) {
+                this.fetch();
+            }
+        };
+        this.options = Object.assign(Object.assign({}, exports.defaultOptions), options);
+        this._instance = instance;
+        this.queryCanceler = new FlowCanceler();
+        this.onStartCanceler = new FlowCanceler();
+        this.queryControllerConceler = new FlowCanceler();
+        mobx_1.makeObservable(this);
+        mobx_1.onBecomeObserved(this, "_response", this.becomeObserved);
+        mobx_1.onBecomeObserved(this, "_isFetching", this.becomeObserved);
+        mobx_1.onBecomeObserved(this, "_error", this.becomeObserved);
+        mobx_1.onBecomeUnobserved(this, "_response", this.becomeUnobserved);
+        mobx_1.onBecomeUnobserved(this, "_isFetching", this.becomeUnobserved);
+        mobx_1.onBecomeUnobserved(this, "_error", this.becomeUnobserved);
+    }
+    static guessResponseTruncated(headers, data) {
+        return (headers &&
+            typeof headers["content-type"] === "string" &&
+            headers["content-type"].startsWith("application/json") &&
+            data.startsWith("{"));
+    }
+    get isObserved() {
+        return this.observedCount > 0;
+    }
+    start() {
+        if (!this._isStarted) {
+            this._isStarted = true;
+            const promise = this.onStart();
+            if (promise) {
+                this.handleAsyncOnStart(promise);
+            }
+            else {
+                this.postStart();
+            }
+        }
+    }
+    *handleAsyncOnStart(promise) {
+        this._pendingOnStart = true;
+        this._isFetching = true;
+        try {
+            yield this.onStartCanceler.callOrCanceledWithPromise(promise);
+            if (this._isStarted) {
+                this._pendingOnStart = false;
+                this.postStart();
+            }
+        }
+        catch (e) {
+            if (e instanceof FlowCancelerError) {
+                return;
+            }
+            throw e;
+        }
+    }
+    stop() {
+        if (this._isStarted) {
+            if (this.onStartCanceler.hasCancelable) {
+                this.onStartCanceler.cancel();
+            }
+            if (this.isFetching && this.queryCanceler.hasCancelable) {
+                this.cancel();
+            }
+            this._pendingOnStart = false;
+            this._isFetching = false;
+            if (this.intervalId != null) {
+                clearInterval(this.intervalId);
+            }
+            this.intervalId = undefined;
+            this.onStop();
+            this._isStarted = false;
+        }
+    }
+    get isStarted() {
+        return this._isStarted;
+    }
+    postStart() {
+        this.fetch();
+        if (this.options.fetchingInterval > 0) {
+            this.intervalId = setInterval(this.intervalFetch, this.options.fetchingInterval);
+        }
+    }
+    onStart() {
+        // noop yet.
+        // Override this if you need something to do whenever starting.
+    }
+    onStop() {
+        // noop yet.
+        // Override this if you need something to do whenever starting.
+    }
+    canFetch() {
+        return true;
+    }
+    get isFetching() {
+        return this._isFetching;
+    }
+    // Return the instance.
+    // You can memorize this by using @computed if you need to override this.
+    // NOTE: If this getter returns the different instance with previous instance.
+    // It will be used in the latter fetching.
+    get instance() {
+        return this._instance;
+    }
+    *fetch() {
+        var _a, _b, _c;
+        // If not started, do nothing.
+        if (!this.isStarted || this._pendingOnStart) {
+            return;
+        }
+        if (ObservableQueryBase.experimentalDeferInitialQueryController &&
+            !ObservableQueryBase.experimentalDeferInitialQueryController.isReady) {
+            this._isFetching = true;
+            if (this.queryControllerConceler.hasCancelable) {
+                this.queryControllerConceler.cancel();
+            }
+            try {
+                yield this.queryControllerConceler.callOrCanceled(() => { var _a, _b; return (_b = (_a = ObservableQueryBase.experimentalDeferInitialQueryController) === null || _a === void 0 ? void 0 : _a.wait()) !== null && _b !== void 0 ? _b : Promise.resolve(); });
+            }
+            catch (e) {
+                if (e instanceof FlowCancelerError) {
+                    return;
+                }
+                throw e;
+            }
+            // Recheck
+            if (!this.isStarted) {
+                return;
+            }
+        }
+        if (!this.canFetch()) {
+            return;
+        }
+        // If response is fetching, cancel the previous query.
+        if (this.isFetching && this.queryCanceler.hasCancelable) {
+            // When cancel for the next fetching, it behaves differently from other explicit cancels because fetching continues. Use an error message to identify this.
+            this.cancel("__fetching__proceed__next__");
+        }
+        // If there is no existing response, try to load saved reponse.
+        if (!this._response) {
+            this._isFetching = true;
+            const promise = this.loadStaledResponse();
+            const handleStaledResponse = (staledResponse) => {
+                if (staledResponse && !this._response) {
+                    if (this.options.cacheMaxAge <= 0 ||
+                        staledResponse.timestamp > Date.now() - this.options.cacheMaxAge) {
+                        this.setResponse(staledResponse);
+                        return true;
+                    }
+                }
+                return false;
+            };
+            // When first load, try to load the last response from disk.
+            // Use the last saved response if the last saved response exists and the current response hasn't been set yet.
+            if (this.options.cacheMaxAge <= 0) {
+                // To improve performance, don't wait the loading to proceed if cache age not set.
+                promise.then((staledResponse) => {
+                    handleStaledResponse(staledResponse);
+                });
+            }
+            else {
+                const staledResponse = yield* common_1.toGenerator(promise);
+                if (handleStaledResponse(staledResponse)) {
+                    this._isFetching = false;
+                    return;
+                }
+            }
+        }
+        else {
+            if (this.options.cacheMaxAge > 0) {
+                if (this._response.timestamp > Date.now() - this.options.cacheMaxAge) {
+                    this._isFetching = false;
+                    return;
+                }
+            }
+            this._isFetching = true;
+            // Make the existing response as staled.
+            this.setResponse(Object.assign(Object.assign({}, this._response), { staled: true }));
+        }
+        const abortController = new AbortController();
+        let fetchingProceedNext = false;
+        let skipAxiosCancelError = false;
+        try {
+            let hasStarted = false;
+            let { response, headers } = yield* common_1.toGenerator(this.queryCanceler.callOrCanceled(() => {
+                hasStarted = true;
+                return this.fetchResponse(abortController);
+            }, () => {
+                if (hasStarted) {
+                    abortController.abort();
+                }
+            }));
+            if (response.data &&
+                typeof response.data === "string" &&
+                (response.data.startsWith("stream was reset:") ||
+                    ObservableQuery.suspectedResponseDatasWithInvalidValue.includes(response.data) ||
+                    ObservableQuery.guessResponseTruncated(headers, response.data))) {
+                // In some devices, it is a http ok code, but a strange response is sometimes returned.
+                // It's not that they can't query at all, it seems that they get weird response from time to time.
+                // These causes are not clear.
+                // To solve this problem, if this problem occurs, try the query again, and if that fails, an error is raised.
+                // https://github.com/chainapsis/keplr-wallet/issues/275
+                // https://github.com/chainapsis/keplr-wallet/issues/278
+                // https://github.com/chainapsis/keplr-wallet/issues/318
+                if (abortController.signal.aborted) {
+                    // In this case, it is assumed that it is caused by cancel() and do nothing.
+                    return;
+                }
+                console.log("There is an unknown problem to the response. Request one more time.");
+                // Try to query again.
+                let hasStarted = false;
+                const refetched = yield* common_1.toGenerator(this.queryCanceler.callOrCanceled(() => {
+                    hasStarted = true;
+                    return this.fetchResponse(abortController);
+                }, () => {
+                    if (hasStarted) {
+                        abortController.abort();
+                    }
+                }));
+                response = refetched.response;
+                headers = refetched.headers;
+                if (response.data && typeof response.data === "string") {
+                    if (response.data.startsWith("stream was reset:") ||
+                        ObservableQuery.suspectedResponseDatasWithInvalidValue.includes(response.data)) {
+                        throw new Error(response.data);
+                    }
+                    if (ObservableQuery.guessResponseTruncated(headers, response.data)) {
+                        throw new Error("The response data seems to be truncated");
+                    }
+                }
+            }
+            this.setResponse(response);
+            // Clear the error if fetching succeeds.
+            this.setError(undefined);
+            // Should not wait.
+            this.saveResponse(response);
+        }
+        catch (e) {
+            // If axios canceled, do nothing.
+            if (axios_1.default.isCancel(e)) {
+                skipAxiosCancelError = true;
+                return;
+            }
+            if (e instanceof FlowCancelerError) {
+                // When cancel for the next fetching, it behaves differently from other explicit cancels because fetching continues.
+                if (e.message === "__fetching__proceed__next__") {
+                    fetchingProceedNext = true;
+                }
+                return;
+            }
+            // If error is from Axios, and get response.
+            if (e.response) {
+                // Default is status text
+                let message = e.response.statusText;
+                const contentType = typeof ((_a = e.response.headers) === null || _a === void 0 ? void 0 : _a["content-type"]) === "string"
+                    ? e.response.headers["content-type"]
+                    : "";
+                // Try to figure out the message from the response.
+                // If the contentType in the header is specified, try to use the message from the response.
+                if (contentType.startsWith("text/plain") &&
+                    typeof e.response.data === "string") {
+                    message = e.response.data;
+                }
+                // If the response is an object and "message" field exists, it is used as a message.
+                if (contentType.startsWith("application/json") && ((_b = e.response.data) === null || _b === void 0 ? void 0 : _b.message) &&
+                    typeof ((_c = e.response.data) === null || _c === void 0 ? void 0 : _c.message) === "string") {
+                    message = e.response.data.message;
+                }
+                const error = {
+                    status: e.response.status,
+                    statusText: e.response.statusText,
+                    message,
+                    data: e.response.data,
+                };
+                this.setError(error);
+            }
+            else if (e.request) {
+                // if can't get the response.
+                const error = {
+                    status: 0,
+                    statusText: "Failed to get response",
+                    message: "Failed to get response",
+                };
+                this.setError(error);
+            }
+            else {
+                const error = {
+                    status: 0,
+                    statusText: e.message,
+                    message: e.message,
+                    data: e,
+                };
+                this.setError(error);
+            }
+        }
+        finally {
+            if (!skipAxiosCancelError) {
+                if (!fetchingProceedNext) {
+                    this._isFetching = false;
+                }
+            }
+        }
+    }
+    get response() {
+        return this._response;
+    }
+    get error() {
+        return this._error;
+    }
+    setResponse(response) {
+        this._response = response;
+    }
+    setError(error) {
+        this._error = error;
+    }
+    cancel(message) {
+        this.queryCanceler.cancel(message);
+    }
+    /**
+     * Wait the response and return the response without considering it is staled or fresh.
+     */
+    waitResponse() {
+        if (this.response) {
+            return Promise.resolve(this.response);
+        }
+        const disposers = [];
+        let onceCoerce = false;
+        // Make sure that the fetching is tracked to force to be fetched.
+        disposers.push(mobx_1.reaction(() => this.isFetching, () => {
+            if (!onceCoerce) {
+                if (!this.isFetching) {
+                    this.fetch();
+                }
+                onceCoerce = true;
+            }
+        }, {
+            fireImmediately: true,
+        }));
+        return new Promise((resolve) => {
+            const disposer = mobx_1.autorun(() => {
+                if (!this.isFetching) {
+                    resolve(this.response);
+                }
+            });
+            disposers.push(disposer);
+        }).finally(() => {
+            for (const disposer of disposers) {
+                disposer();
+            }
+        });
+    }
+    /**
+     * Wait the response and return the response until it is fetched.
+     */
+    waitFreshResponse() {
+        const disposers = [];
+        let onceCoerce = false;
+        // Make sure that the fetching is tracked to force to be fetched.
+        disposers.push(mobx_1.reaction(() => this.isFetching, () => {
+            if (!onceCoerce) {
+                if (!this.isFetching) {
+                    this.fetch();
+                }
+                onceCoerce = true;
+            }
+        }, {
+            fireImmediately: true,
+        }));
+        return new Promise((resolve) => {
+            const disposer = mobx_1.autorun(() => {
+                if (!this.isFetching) {
+                    resolve(this.response);
+                }
+            });
+            disposers.push(disposer);
+        }).finally(() => {
+            for (const disposer of disposers) {
+                disposer();
+            }
+        });
+    }
+}
+/**
+ * Allows to decide when to start the first query.
+ *
+ * This is a temporarily added feature to implement custom rpc/lcd feature in keplr extension or mobile.
+ * Because custom rpc/lcd are handled in the background process and the front-end cannot synchronously get those values,
+ * Rather than not showing the UI to the user during the delay, the UI is shown and the start of the query is delayed immediately after getting those values.
+ *
+ * XXX: Having a global field for this feature doesn't seem desirable in the long run.
+ *      Unless it's a keplr extension or mobile, you don't need to care about this field.
+ *      This field will soon be removed and can be replaced by other implementation.
+ *
+ */
+ObservableQueryBase.experimentalDeferInitialQueryController = undefined;
+ObservableQueryBase.suspectedResponseDatasWithInvalidValue = [
+    "The network connection was lost.",
+    "The request timed out.",
+];
+__decorate([
+    mobx_1.observable.ref
+], ObservableQueryBase.prototype, "_response", void 0);
+__decorate([
+    mobx_1.observable
+], ObservableQueryBase.prototype, "_isFetching", void 0);
+__decorate([
+    mobx_1.observable.ref
+], ObservableQueryBase.prototype, "_error", void 0);
+__decorate([
+    mobx_1.observable
+], ObservableQueryBase.prototype, "_isStarted", void 0);
+__decorate([
+    mobx_1.observable.ref
+], ObservableQueryBase.prototype, "_instance", void 0);
+__decorate([
+    mobx_1.action
+], ObservableQueryBase.prototype, "start", null);
+__decorate([
+    mobx_1.flow
+], ObservableQueryBase.prototype, "handleAsyncOnStart", null);
+__decorate([
+    mobx_1.action
+], ObservableQueryBase.prototype, "stop", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryBase.prototype, "instance", null);
+__decorate([
+    mobx_1.flow
+], ObservableQueryBase.prototype, "fetch", null);
+__decorate([
+    mobx_1.action
+], ObservableQueryBase.prototype, "setResponse", null);
+__decorate([
+    mobx_1.action
+], ObservableQueryBase.prototype, "setError", null);
+exports.ObservableQueryBase = ObservableQueryBase;
+/**
+ * ObservableQuery defines the event class to query the result from endpoint.
+ * This supports the stale state if previous query exists.
+ */
+class ObservableQuery extends ObservableQueryBase {
+    constructor(kvStore, instance, url, options = {}) {
+        super(instance, options);
+        this.kvStore = kvStore;
+        this._url = "";
+        this.refreshHandler = (data) => {
+            const ifError = data === null || data === void 0 ? void 0 : data.ifError;
+            if (ifError) {
+                if (this.error) {
+                    this.fetch();
+                }
+            }
+            else {
+                this.fetch();
+            }
+        };
+        mobx_1.makeObservable(this);
+        this.setUrl(url);
+    }
+    static refreshAllObserved() {
+        ObservableQuery.eventListener.emit("refresh");
+    }
+    static refreshAllObservedIfError() {
+        ObservableQuery.eventListener.emit("refresh", {
+            ifError: true,
+        });
+    }
+    onStart() {
+        super.onStart();
+        ObservableQuery.eventListener.addListener("refresh", this.refreshHandler);
+    }
+    onStop() {
+        super.onStop();
+        ObservableQuery.eventListener.addListener("refresh", this.refreshHandler);
+    }
+    get url() {
+        return this._url;
+    }
+    setUrl(url) {
+        if (this._url !== url) {
+            this._url = url;
+            this.fetch();
+        }
+    }
+    fetchResponse(abortController) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.instance.get(this.url, {
+                signal: abortController.signal,
+            });
+            return {
+                headers: result.headers,
+                response: {
+                    data: result.data,
+                    status: result.status,
+                    staled: false,
+                    timestamp: Date.now(),
+                },
+            };
+        });
+    }
+    getCacheKey() {
+        return `${this.instance.name}-${this.instance.defaults.baseURL}${this.instance.getUri({
+            url: this.url,
+        })}`;
+    }
+    saveResponse(response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const key = this.getCacheKey();
+            yield this.kvStore.set(key, response);
+        });
+    }
+    loadStaledResponse() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const key = this.getCacheKey();
+            const response = yield this.kvStore.get(key);
+            if (response) {
+                return Object.assign(Object.assign({}, response), { staled: true });
+            }
+            return undefined;
+        });
+    }
+}
+ObservableQuery.eventListener = new eventemitter3_1.default();
+__decorate([
+    mobx_1.observable
+], ObservableQuery.prototype, "_url", void 0);
+__decorate([
+    mobx_1.action
+], ObservableQuery.prototype, "setUrl", null);
+exports.ObservableQuery = ObservableQuery;
+class ObservableQueryMap extends map_1.HasMapStore {
+    constructor(creater) {
+        super(creater);
+    }
+}
+exports.ObservableQueryMap = ObservableQueryMap;
+//# sourceMappingURL=query.js.map
+
+/***/ }),
+
+/***/ 1412:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableJsonRPCQueryMap = exports.ObservableJsonRPCQuery = void 0;
+const index_1 = __webpack_require__(1223);
+const mobx_1 = __webpack_require__(5);
+const crypto_1 = __webpack_require__(51);
+const buffer_1 = __webpack_require__(4);
+const map_1 = __webpack_require__(1011);
+/**
+ * Experimental implementation for json rpc.
+ */
+class ObservableJsonRPCQuery extends index_1.ObservableQuery {
+    constructor(kvStore, instance, url, method, params, options = {}) {
+        super(kvStore, instance, url, options);
+        this.method = method;
+        this._params = params;
+        mobx_1.makeObservable(this);
+    }
+    get params() {
+        return this._params;
+    }
+    setParams(params) {
+        this._params = params;
+        this.fetch();
+    }
+    fetchResponse(abortController) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.instance.post(this.url, {
+                jsonrpc: "2.0",
+                id: "1",
+                method: this.method,
+                params: this.params,
+            }, {
+                signal: abortController.signal,
+            });
+            if (result.data.error && result.data.error.message) {
+                throw new Error(result.data.error.message);
+            }
+            if (!result.data.result) {
+                throw new Error("Unknown error");
+            }
+            return {
+                headers: result.headers,
+                response: {
+                    data: result.data.result,
+                    status: result.status,
+                    staled: false,
+                    timestamp: Date.now(),
+                },
+            };
+        });
+    }
+    getCacheKey() {
+        const paramsHash = buffer_1.Buffer.from(crypto_1.Hash.sha256(buffer_1.Buffer.from(JSON.stringify(this.params))).slice(0, 8)).toString("hex");
+        return `${super.getCacheKey()}-${this.method}-${paramsHash}`;
+    }
+}
+__decorate([
+    mobx_1.observable.ref
+], ObservableJsonRPCQuery.prototype, "_params", void 0);
+__decorate([
+    mobx_1.action
+], ObservableJsonRPCQuery.prototype, "setParams", null);
+exports.ObservableJsonRPCQuery = ObservableJsonRPCQuery;
+class ObservableJsonRPCQueryMap extends map_1.HasMapStore {
+    constructor(creater) {
+        super(creater);
+    }
+}
+exports.ObservableJsonRPCQueryMap = ObservableJsonRPCQueryMap;
+//# sourceMappingURL=json-rpc.js.map
+
+/***/ }),
+
+/***/ 1413:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.StoreUtils = void 0;
+const unit_1 = __webpack_require__(26);
+class StoreUtils {
+    static getBalancesFromCurrencies(currenciesMap, bals) {
+        const result = [];
+        for (const bal of bals) {
+            const currency = currenciesMap[bal.denom];
+            if (currency) {
+                const amount = new unit_1.Dec(bal.amount);
+                if (amount.truncate().gt(new unit_1.Int(0))) {
+                    result.push(new unit_1.CoinPretty(currency, amount));
+                }
+            }
+        }
+        return result;
+    }
+    static getBalanceFromCurrency(currency, bals) {
+        const result = StoreUtils.getBalancesFromCurrencies({
+            [currency.coinMinimalDenom]: currency,
+        }, bals);
+        if (result.length === 1) {
+            return result[0];
+        }
+        return new unit_1.CoinPretty(currency, new unit_1.Int(0)).ready(false);
+    }
+}
+exports.StoreUtils = StoreUtils;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1414:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1415:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.mergeStores = void 0;
+/**
+ * The pattern of using one store with multiple sub stores is often used.
+ * For example, `queries.cosmos, queries.cosmwasm` is used by putting sub-stores per module in the main store.
+ * This is a function that handles this part in common way.
+ * `merge` is only provided at a shallow level and can't handle properly for deep, nested objects.
+ * Also, if the properties of objects overlap, it does not guarantee proper functioning.
+ *
+ * AFAIK, `variadic tuple types` and `recursive conditional types` features are introduced in typescript 4,
+ * thus, this only works on typescript 4+.
+ *
+ * KR: `Base`로부터 시작해서 Injects의 값들을 강제로 주입(?)한다. 실제 구현은 구리고 단순하다.
+ *      단순히 이후의 object의 field들을 강제로 이전의 결과에 같은 key로 집어넣는다.
+ *      즉, nested object나 deep object는 다루지 못 한다. 또한 `Base`로 전달된 값을 mutate한다.
+ *      같은 key의 field가 이미 이전 결과에 존재한다면 오류를 던진다.
+ *      @keplr-wallet/stores 패키지 내에서 필요로 하는 최소한의 기능만을 한다.
+ *      최소한의 case만을 다룰 수 있기 때문에 어떤 함수인지 이해한 상태로만 사용하길 바람.
+ *
+ * @param baseStore The base store on top.
+ * @param parameters Tuple to pass to fns as parameters.
+ * @param fns The functions to create the merged object.
+ */
+const mergeStores = (baseStore, parameters, ...fns) => {
+    for (let i = 0; i < fns.length; i++) {
+        const fn = fns[i];
+        const r = fn(baseStore, ...parameters);
+        for (const key of Object.keys(r)) {
+            if (baseStore[key]) {
+                throw new Error(`${key} is already merged`);
+            }
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            baseStore[key] = r[key];
+        }
+    }
+    return baseStore;
+};
+exports.mergeStores = mergeStores;
+//# sourceMappingURL=merge.js.map
+
+/***/ }),
+
+/***/ 1416:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CosmwasmAccountImpl = exports.defaultCosmwasmMsgOpts = exports.CosmwasmAccount = void 0;
+const common_1 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
+const tx_1 = __webpack_require__(622);
+const buffer_1 = __webpack_require__(4);
+const deepmerge_1 = __importDefault(__webpack_require__(165));
+const utils_1 = __webpack_require__(626);
+const cosmos_1 = __webpack_require__(16);
+exports.CosmwasmAccount = {
+    use(options) {
+        return (base, chainGetter, chainId) => {
+            const msgOptsFromCreator = options.msgOptsCreator
+                ? options.msgOptsCreator(chainId)
+                : undefined;
+            return {
+                cosmwasm: new CosmwasmAccountImpl(base, chainGetter, chainId, options.queriesStore, deepmerge_1.default(exports.defaultCosmwasmMsgOpts, msgOptsFromCreator ? msgOptsFromCreator : {})),
+            };
+        };
+    },
+};
+/**
+ * @deprecated Predict gas through simulation rather than using a fixed gas.
+ */
+exports.defaultCosmwasmMsgOpts = {
+    send: {
+        cw20: {
+            gas: 150000,
+        },
+    },
+    executeWasm: {
+        type: "wasm/MsgExecuteContract",
+    },
+};
+class CosmwasmAccountImpl {
+    constructor(base, chainGetter, chainId, queriesStore, _msgOpts) {
+        this.base = base;
+        this.chainGetter = chainGetter;
+        this.chainId = chainId;
+        this.queriesStore = queriesStore;
+        this._msgOpts = _msgOpts;
+        this.base.registerMakeSendTokenFn(this.processMakeSendTokenTx.bind(this));
+        this.base.registerSendTokenFn(this.processSendToken.bind(this));
+    }
+    /**
+     * @deprecated Predict gas through simulation rather than using a fixed gas.
+     */
+    get msgOpts() {
+        return this._msgOpts;
+    }
+    processMakeSendTokenTx(amount, currency, recipient) {
+        const denomHelper = new common_1.DenomHelper(currency.coinMinimalDenom);
+        if (denomHelper.type === "cw20") {
+            const actualAmount = (() => {
+                let dec = new unit_1.Dec(amount);
+                dec = dec.mul(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+                return dec.truncate().toString();
+            })();
+            if (!("type" in currency) || currency.type !== "cw20") {
+                throw new Error("Currency is not cw20");
+            }
+            cosmos_1.Bech32Address.validate(recipient, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr);
+            return this.makeExecuteContractTx("send", currency.contractAddress, {
+                transfer: {
+                    recipient: recipient,
+                    amount: actualAmount,
+                },
+            }, [], (tx) => {
+                if (tx.code == null || tx.code === 0) {
+                    // After succeeding to send token, refresh the balance.
+                    const queryBalance = this.queries.queryBalances
+                        .getQueryBech32Address(this.base.bech32Address)
+                        .balances.find((bal) => {
+                        return (bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+                    });
+                    if (queryBalance) {
+                        queryBalance.fetch();
+                    }
+                }
+            });
+        }
+    }
+    /**
+     * @deprecated
+     */
+    processSendToken(amount, currency, recipient, memo, stdFee, signOptions, onTxEvents) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const denomHelper = new common_1.DenomHelper(currency.coinMinimalDenom);
+            switch (denomHelper.type) {
+                case "cw20":
+                    const actualAmount = (() => {
+                        let dec = new unit_1.Dec(amount);
+                        dec = dec.mul(unit_1.DecUtils.getPrecisionDec(currency.coinDecimals));
+                        return dec.truncate().toString();
+                    })();
+                    if (!("type" in currency) || currency.type !== "cw20") {
+                        throw new Error("Currency is not cw20");
+                    }
+                    yield this.sendExecuteContractMsg("send", currency.contractAddress, {
+                        transfer: {
+                            recipient: recipient,
+                            amount: actualAmount,
+                        },
+                    }, [], memo, {
+                        amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                        gas: (_b = stdFee.gas) !== null && _b !== void 0 ? _b : this.msgOpts.send.cw20.gas.toString(),
+                    }, signOptions, utils_1.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
+                        if (tx.code == null || tx.code === 0) {
+                            // After succeeding to send token, refresh the balance.
+                            const queryBalance = this.queries.queryBalances
+                                .getQueryBech32Address(this.base.bech32Address)
+                                .balances.find((bal) => {
+                                return (bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+                            });
+                            if (queryBalance) {
+                                queryBalance.fetch();
+                            }
+                        }
+                    }));
+                    return true;
+            }
+            return false;
+        });
+    }
+    makeExecuteContractTx(
+    // This arg can be used to override the type of sending tx if needed.
+    type = "executeWasm", contractAddress, 
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    obj, funds, preOnTxEvents) {
+        cosmos_1.Bech32Address.validate(contractAddress, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr);
+        const msg = {
+            type: this.msgOpts.executeWasm.type,
+            value: {
+                sender: this.base.bech32Address,
+                contract: contractAddress,
+                msg: obj,
+                funds,
+            },
+        };
+        return this.base.cosmos.makeTx(type, {
+            aminoMsgs: [msg],
+            protoMsgs: [
+                {
+                    typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
+                    value: tx_1.MsgExecuteContract.encode({
+                        sender: msg.value.sender,
+                        contract: msg.value.contract,
+                        msg: buffer_1.Buffer.from(JSON.stringify(msg.value.msg)),
+                        funds: msg.value.funds,
+                    }).finish(),
+                },
+            ],
+        }, preOnTxEvents);
+    }
+    /**
+     * @deprecated
+     */
+    sendExecuteContractMsg(
+    // This arg can be used to override the type of sending tx if needed.
+    type = "executeWasm", contractAddress, 
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    obj, funds, memo = "", stdFee, signOptions, onTxEvents) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            const msg = {
+                type: this.msgOpts.executeWasm.type,
+                value: {
+                    sender: this.base.bech32Address,
+                    contract: contractAddress,
+                    msg: obj,
+                    funds,
+                },
+            };
+            yield this.base.cosmos.sendMsgs(type, {
+                aminoMsgs: [msg],
+                protoMsgs: [
+                    {
+                        typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
+                        value: tx_1.MsgExecuteContract.encode({
+                            sender: msg.value.sender,
+                            contract: msg.value.contract,
+                            msg: buffer_1.Buffer.from(JSON.stringify(msg.value.msg)),
+                            funds: msg.value.funds,
+                        }).finish(),
+                    },
+                ],
+            }, memo, {
+                amount: (_a = stdFee.amount) !== null && _a !== void 0 ? _a : [],
+                gas: stdFee.gas,
+            }, signOptions, onTxEvents);
+        });
+    }
+    get queries() {
+        return this.queriesStore.get(this.chainId);
+    }
+}
+exports.CosmwasmAccountImpl = CosmwasmAccountImpl;
+//# sourceMappingURL=cosmwasm.js.map
+
+/***/ }),
+
+/***/ 1417:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CoinGeckoPriceStore = void 0;
+const common_1 = __webpack_require__(118);
+const axios_1 = __importDefault(__webpack_require__(60));
+const common_2 = __webpack_require__(27);
+const unit_1 = __webpack_require__(26);
+const deepmerge_1 = __importDefault(__webpack_require__(165));
+const mobx_1 = __webpack_require__(5);
+class Throttler {
+    constructor(duration) {
+        this.duration = duration;
+        this.fns = [];
+        this.callback = () => {
+            if (this.timeoutId != null) {
+                clearTimeout(this.timeoutId);
+                this.timeoutId = undefined;
+            }
+            if (this.fns.length > 0) {
+                const fn = this.fns[this.fns.length - 1];
+                fn();
+                this.fns = [];
+            }
+        };
+    }
+    call(fn) {
+        if (this.duration <= 0) {
+            fn();
+            return;
+        }
+        this.fns.push(fn);
+        if (this.timeoutId != null) {
+            clearTimeout(this.timeoutId);
+        }
+        this.timeoutId = setTimeout(this.callback, this.duration);
+    }
+}
+class SortedSetStorage {
+    constructor(kvStore, storeKey, throttleDuration = 0) {
+        this.array = [];
+        this.map = {};
+        this.restored = {};
+        this.isRestored = false;
+        this.storeKey = "";
+        if (!storeKey) {
+            throw new Error("Empty store key");
+        }
+        this.kvStore = kvStore;
+        this.storeKey = storeKey;
+        this.throttler = new Throttler(throttleDuration);
+    }
+    has(value) {
+        return this.map[value] === true;
+    }
+    add(...values) {
+        let forceSave = false;
+        let unknowns = [];
+        for (const value of values) {
+            if (this.isRestored) {
+                if (this.restored[value]) {
+                    forceSave = true;
+                    delete this.restored[value];
+                }
+            }
+            if (!this.has(value)) {
+                unknowns.push(value);
+            }
+        }
+        if (unknowns.length === 0) {
+            if (this.isRestored && forceSave) {
+                // No need to wait
+                this.throttler.call(() => this.save());
+            }
+            return false;
+        }
+        // Remove duplicated.
+        unknowns = [...new Set(unknowns)];
+        for (const unknown of unknowns) {
+            this.map[unknown] = true;
+        }
+        let newArray = this.array.slice().concat(unknowns);
+        newArray = newArray.sort((id1, id2) => {
+            return id1 < id2 ? -1 : 1;
+        });
+        this.array = newArray;
+        if (this.isRestored) {
+            // No need to wait
+            this.throttler.call(() => this.save());
+        }
+        return true;
+    }
+    get values() {
+        return this.array.slice();
+    }
+    save() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.kvStore.set(this.storeKey, this.array.filter((value) => !this.restored[value]));
+        });
+    }
+    restore() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const saved = yield this.kvStore.get(this.storeKey);
+            if (saved) {
+                for (const value of saved) {
+                    this.restored[value] = true;
+                }
+                for (const value of this.array) {
+                    if (this.restored[value]) {
+                        delete this.restored[value];
+                    }
+                }
+                this.add(...saved);
+            }
+            this.isRestored = true;
+        });
+    }
+}
+class CoinGeckoPriceStore extends common_1.ObservableQuery {
+    constructor(kvStore, supportedVsCurrencies, defaultVsCurrency, options = {}) {
+        var _a;
+        const instance = axios_1.default.create({
+            baseURL: options.baseURL || "https://api.coingecko.com/api/v3",
+        });
+        super(kvStore, instance, "/simple/price");
+        this.isInitialized = false;
+        const throttleDuration = (_a = options.throttleDuration) !== null && _a !== void 0 ? _a : 250;
+        this._coinIds = new SortedSetStorage(kvStore, "__coin_ids", throttleDuration);
+        this._vsCurrencies = new SortedSetStorage(kvStore, "__vs_currencies", throttleDuration);
+        this._defaultVsCurrency = defaultVsCurrency;
+        this._supportedVsCurrencies = supportedVsCurrencies;
+        this._throttler = new Throttler(throttleDuration);
+        mobx_1.makeObservable(this);
+        this.restoreDefaultVsCurrency();
+    }
+    onStart() {
+        super.onStart();
+        return this.init();
+    }
+    init() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.isInitialized) {
+                return;
+            }
+            yield Promise.all([this._coinIds.restore(), this._vsCurrencies.restore()]);
+            // No need to wait
+            this._coinIds.save();
+            this._vsCurrencies.save();
+            this.updateURL([], [], true);
+            this.isInitialized = true;
+        });
+    }
+    get defaultVsCurrency() {
+        return this._defaultVsCurrency;
+    }
+    setDefaultVsCurrency(defaultVsCurrency) {
+        this._defaultVsCurrency = defaultVsCurrency;
+        this.saveDefaultVsCurrency();
+    }
+    *restoreDefaultVsCurrency() {
+        const saved = yield* common_2.toGenerator(this.kvStore.get("__default_vs_currency"));
+        if (saved) {
+            this._defaultVsCurrency = saved;
+        }
+    }
+    saveDefaultVsCurrency() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.kvStore.set("__default_vs_currency", this.defaultVsCurrency);
+        });
+    }
+    get supportedVsCurrencies() {
+        return this._supportedVsCurrencies;
+    }
+    getFiatCurrency(currency) {
+        return this._supportedVsCurrencies[currency];
+    }
+    canFetch() {
+        // return (
+        //   this._coinIds.values.length > 0 && this._vsCurrencies.values.length > 0
+        // );
+        return false;
+    }
+    fetchResponse(abortController) {
+        const _super = Object.create(null, {
+            fetchResponse: { get: () => super.fetchResponse }
+        });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { response, headers } = yield _super.fetchResponse.call(this, abortController);
+            // Because this store only queries the price of the tokens that have been requested from start,
+            // it will remove the prior prices that have not been requested to just return the fetching result.
+            // So, to prevent this problem, merge the prior response and current response with retaining the prior response's price.
+            return {
+                headers,
+                response: Object.assign(Object.assign({}, response), {
+                    data: deepmerge_1.default(this.response ? this.response.data : {}, response.data),
+                }),
+            };
+        });
+    }
+    updateURL(coinIds, vsCurrencies, forceSetUrl = false) {
+        const coinIdsUpdated = this._coinIds.add(...coinIds);
+        const vsCurrenciesUpdated = this._vsCurrencies.add(...vsCurrencies);
+        if (coinIdsUpdated || vsCurrenciesUpdated || forceSetUrl) {
+            const url = `/simple/price?ids=${this._coinIds.values.join(",")}&vs_currencies=${this._vsCurrencies.values.join(",")}`;
+            if (!this.isInitialized) {
+                this.setUrl(url);
+            }
+            else {
+                this._throttler.call(() => this.setUrl(url));
+            }
+        }
+    }
+    getCacheKey() {
+        // Because the uri of the coingecko would be changed according to the coin ids and vsCurrencies.
+        // Therefore, just using the uri as the cache key is not useful.
+        return `${this.instance.name}-${this.instance.defaults.baseURL}${this.instance.getUri({
+            url: "/simple/price",
+        })}`;
+    }
+    getPrice(coinId, vsCurrency) {
+        if (!vsCurrency) {
+            vsCurrency = this.defaultVsCurrency;
+        }
+        if (!this.supportedVsCurrencies[vsCurrency]) {
+            return undefined;
+        }
+        this.updateURL([coinId], [vsCurrency]);
+        if (!this.response) {
+            return undefined;
+        }
+        const coinPrices = this.response.data[coinId];
+        if (!coinPrices) {
+            return undefined;
+        }
+        return coinPrices[vsCurrency];
+    }
+    calculatePrice(coin, vsCurrrency) {
+        if (!coin.currency.coinGeckoId) {
+            return undefined;
+        }
+        if (!vsCurrrency) {
+            vsCurrrency = this.defaultVsCurrency;
+        }
+        const fiatCurrency = this.supportedVsCurrencies[vsCurrrency];
+        if (!fiatCurrency) {
+            return undefined;
+        }
+        const price = this.getPrice(coin.currency.coinGeckoId, vsCurrrency);
+        if (price === undefined) {
+            return new unit_1.PricePretty(fiatCurrency, new unit_1.Int(0)).ready(false);
+        }
+        const dec = coin.toDec();
+        const priceDec = new unit_1.Dec(price.toString());
+        return new unit_1.PricePretty(fiatCurrency, dec.mul(priceDec));
+    }
+}
+__decorate([
+    mobx_1.observable
+], CoinGeckoPriceStore.prototype, "_defaultVsCurrency", void 0);
+__decorate([
+    mobx_1.action
+], CoinGeckoPriceStore.prototype, "setDefaultVsCurrency", null);
+__decorate([
+    mobx_1.flow
+], CoinGeckoPriceStore.prototype, "restoreDefaultVsCurrency", null);
+exports.CoinGeckoPriceStore = CoinGeckoPriceStore;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1418:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1419), exports);
+__exportStar(__webpack_require__(59), exports);
+__exportStar(__webpack_require__(507), exports);
+__exportStar(__webpack_require__(1420), exports);
+__exportStar(__webpack_require__(1459), exports);
+__exportStar(__webpack_require__(1463), exports);
+__exportStar(__webpack_require__(1467), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1419:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.QueriesStore = exports.createQueriesSetBase = void 0;
+const mobx_1 = __webpack_require__(5);
+const balances_1 = __webpack_require__(507);
+const common_1 = __webpack_require__(118);
+const createQueriesSetBase = (kvStore, chainId, chainGetter) => {
+    return {
+        queryBalances: new balances_1.ObservableQueryBalances(kvStore, chainId, chainGetter),
+    };
+};
+exports.createQueriesSetBase = createQueriesSetBase;
+class QueriesStore {
+    constructor(kvStore, chainGetter, ...queriesCreators) {
+        this.kvStore = kvStore;
+        this.chainGetter = chainGetter;
+        this.queriesMap = new Map();
+        this.queriesCreators = queriesCreators;
+        mobx_1.makeObservable(this);
+    }
+    get(chainId) {
+        if (!this.queriesMap.has(chainId)) {
+            const queriesSetBase = exports.createQueriesSetBase(this.kvStore, chainId, this.chainGetter);
+            mobx_1.runInAction(() => {
+                const merged = common_1.mergeStores(queriesSetBase, [this.kvStore, chainId, this.chainGetter], ...this.queriesCreators);
+                this.queriesMap.set(chainId, merged);
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.queriesMap.get(chainId);
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], QueriesStore.prototype, "queriesMap", void 0);
+exports.QueriesStore = QueriesStore;
+//# sourceMappingURL=queries.js.map
+
+/***/ }),
+
+/***/ 1420:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Balance = exports.IBC = exports.Account = exports.Supply = exports.Staking = exports.Governance = void 0;
+__exportStar(__webpack_require__(1225), exports);
+__exportStar(__webpack_require__(1229), exports);
+__exportStar(__webpack_require__(1230), exports);
+__exportStar(__webpack_require__(1231), exports);
+__exportStar(__webpack_require__(1232), exports);
+__exportStar(__webpack_require__(1233), exports);
+exports.Governance = __importStar(__webpack_require__(1228));
+exports.Staking = __importStar(__webpack_require__(860));
+exports.Supply = __importStar(__webpack_require__(1442));
+exports.Account = __importStar(__webpack_require__(1443));
+exports.IBC = __importStar(__webpack_require__(1444));
+exports.Balance = __importStar(__webpack_require__(1445));
+__exportStar(__webpack_require__(1446), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1421:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryGovernance = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const params_1 = __webpack_require__(1226);
+const unit_1 = __webpack_require__(26);
+const mobx_utils_1 = __webpack_require__(200);
+const proposal_1 = __webpack_require__(1227);
+class ObservableQueryGovernance extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, _queryPool) {
+        super(kvStore, chainId, chainGetter, 
+        // TODO: Handle pagination
+        "/cosmos/gov/v1beta1/proposals?pagination.limit=3000");
+        this._queryPool = _queryPool;
+        this.paramDeposit = undefined;
+        this.paramVoting = undefined;
+        this.paramTally = undefined;
+        this.getProposal = mobx_utils_1.computedFn((id) => {
+            return this.proposals.find((proposal) => proposal.id === id);
+        });
+        mobx_1.makeObservable(this);
+    }
+    getQueryPool() {
+        return this._queryPool;
+    }
+    getQueryParamDeposit() {
+        if (!this.paramDeposit) {
+            mobx_1.runInAction(() => {
+                this.paramDeposit = new params_1.ObservableQueryGovParamDeposit(this.kvStore, this.chainId, this.chainGetter);
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.paramDeposit;
+    }
+    getQueryParamVoting() {
+        if (!this.paramVoting) {
+            mobx_1.runInAction(() => {
+                this.paramVoting = new params_1.ObservableQueryGovParamVoting(this.kvStore, this.chainId, this.chainGetter);
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.paramVoting;
+    }
+    getQueryParamTally() {
+        if (!this.paramTally) {
+            mobx_1.runInAction(() => {
+                this.paramTally = new params_1.ObservableQueryGovParamTally(this.kvStore, this.chainId, this.chainGetter);
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.paramTally;
+    }
+    get quorum() {
+        const paramTally = this.getQueryParamTally();
+        if (!paramTally.response) {
+            return new unit_1.IntPretty(new unit_1.Int(0)).ready(false);
+        }
+        // TODO: Use `RatePretty`
+        let quorum = new unit_1.Dec(paramTally.response.data.tally_params.quorum);
+        // Multiply 100
+        quorum = quorum.mulTruncate(unit_1.DecUtils.getPrecisionDec(2));
+        return new unit_1.IntPretty(quorum);
+    }
+    get proposals() {
+        if (!this.response) {
+            return [];
+        }
+        const result = [];
+        for (const raw of this.response.data.proposals) {
+            result.push(new proposal_1.ObservableQueryProposal(this.kvStore, this.chainId, this.chainGetter, raw, this));
+        }
+        return result.reverse();
+    }
+}
+__decorate([
+    mobx_1.observable.ref
+], ObservableQueryGovernance.prototype, "paramDeposit", void 0);
+__decorate([
+    mobx_1.observable.ref
+], ObservableQueryGovernance.prototype, "paramVoting", void 0);
+__decorate([
+    mobx_1.observable.ref
+], ObservableQueryGovernance.prototype, "paramTally", void 0);
+__decorate([
+    mobx_1.computed
+], ObservableQueryGovernance.prototype, "quorum", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryGovernance.prototype, "proposals", null);
+exports.ObservableQueryGovernance = ObservableQueryGovernance;
+//# sourceMappingURL=proposals.js.map
+
+/***/ }),
+
+/***/ 1422:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryProposalVote = exports.ObservableQueryProposalVoteInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+class ObservableQueryProposalVoteInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, proposalsId, bech32Address) {
+        super(kvStore, chainId, chainGetter, `/cosmos/gov/v1beta1/proposals/${proposalsId}/votes/${bech32Address}`);
+        this.proposalId = proposalsId;
+        this.bech32Address = bech32Address;
+    }
+    get vote() {
+        if (!this.response) {
+            return "Unspecified";
+        }
+        switch (this.response.data.vote.option) {
+            case "VOTE_OPTION_YES":
+                return "Yes";
+            case "VOTE_OPTION_ABSTAIN":
+                return "Abstain";
+            case "VOTE_OPTION_NO":
+                return "No";
+            case "VOTE_OPTION_NO_WITH_VETO":
+                return "NoWithVeto";
+            default:
+                return "Unspecified";
+        }
+    }
+    canFetch() {
+        // If bech32 address is empty, it will always fail, so don't need to fetch it.
+        return this.bech32Address.length > 0;
+    }
+}
+exports.ObservableQueryProposalVoteInner = ObservableQueryProposalVoteInner;
+class ObservableQueryProposalVote extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (param) => {
+            const { proposalId, voter } = JSON.parse(param);
+            return new ObservableQueryProposalVoteInner(this.kvStore, this.chainId, this.chainGetter, proposalId, voter);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getVote(proposalId, voter) {
+        const param = JSON.stringify({
+            proposalId,
+            voter,
+        });
+        return this.get(param);
+    }
+}
+exports.ObservableQueryProposalVote = ObservableQueryProposalVote;
+//# sourceMappingURL=vote.js.map
+
+/***/ }),
+
+/***/ 1423:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryDelegations = exports.ObservableQueryDelegationsInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const unit_1 = __webpack_require__(26);
+const mobx_1 = __webpack_require__(5);
+const mobx_utils_1 = __webpack_require__(200);
+const react_query_1 = __webpack_require__(235);
+class ObservableQueryDelegationsInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
+        super(kvStore, chainId, chainGetter, `/cosmos/staking/v1beta1/delegations/${bech32Address}?pagination.limit=1000`);
+        this.duplicatedFetchCheck = true;
+        this.getDelegationTo = mobx_utils_1.computedFn((validatorAddress) => {
+            const delegations = this.delegations;
+            const stakeCurrency = this.chainGetter.getChain(this.chainId)
+                .stakeCurrency;
+            if (!this.response) {
+                return new unit_1.CoinPretty(stakeCurrency, new unit_1.Int(0)).ready(false);
+            }
+            for (const delegation of delegations) {
+                if (delegation.delegation.validatorAddress === validatorAddress) {
+                    return new unit_1.CoinPretty(stakeCurrency, new unit_1.Int(delegation.balance.amount));
+                }
+            }
+            return new unit_1.CoinPretty(stakeCurrency, new unit_1.Int(0));
+        });
+        this.QueryClient = new react_query_1.QueryClient();
+        mobx_1.makeObservable(this);
+        this.bech32Address = bech32Address;
+        this.misesStore = misesStore;
+    }
+    canFetch() {
+        // If bech32 address is empty, it will always fail, so don't need to fetch it.
+        return this.bech32Address.length > 0;
+    }
+    get total() {
+        const stakeCurrency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        if (!this.response) {
+            return new unit_1.CoinPretty(stakeCurrency, new unit_1.Int(0)).ready(false);
+        }
+        let totalBalance = new unit_1.Int(0);
+        for (const delegation of this.delegations) {
+            totalBalance = totalBalance.add(new unit_1.Int(delegation.balance.amount));
+        }
+        return new unit_1.CoinPretty(stakeCurrency, totalBalance);
+    }
+    get delegationBalances() {
+        if (!this.response) {
+            return [];
+        }
+        const stakeCurrency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        const result = [];
+        if (this.delegations) {
+            for (const delegation of this.delegations) {
+                result.push({
+                    validatorAddress: delegation.delegation.validatorAddress,
+                    balance: new unit_1.CoinPretty(stakeCurrency, new unit_1.Int(delegation.balance.amount)),
+                });
+            }
+        }
+        return result;
+    }
+    get delegations() {
+        var _a, _b;
+        if (!this.response) {
+            return [];
+        }
+        return ((_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.delegationResponses) || [];
+    }
+    *fetch() {
+        var _a;
+        if (!this.bech32Address) {
+            return;
+        }
+        this._isFetching = true;
+        (_a = this.QueryClient) === null || _a === void 0 ? void 0 : _a.fetchQuery("delegations", () => this.misesStore.delegations(this.bech32Address), this.fetchConfig).then((res) => {
+            this._isFetching = false;
+            this.setResponse({
+                data: res,
+                status: 200,
+                staled: true,
+                timestamp: new Date().getTime(),
+            });
+        }).catch((err) => {
+            this._isFetching = false;
+            this.setError(err);
+        });
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryDelegationsInner.prototype, "total", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryDelegationsInner.prototype, "delegationBalances", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryDelegationsInner.prototype, "delegations", null);
+__decorate([
+    mobx_1.override
+], ObservableQueryDelegationsInner.prototype, "fetch", null);
+exports.ObservableQueryDelegationsInner = ObservableQueryDelegationsInner;
+class ObservableQueryDelegations extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter, misesStore) {
+        super(kvStore, chainId, chainGetter, (bech32Address) => {
+            return new ObservableQueryDelegationsInner(this.kvStore, this.chainId, this.chainGetter, bech32Address, this.misesStore);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+        this.misesStore = misesStore;
+    }
+    getQueryBech32Address(bech32Address) {
+        return this.get(bech32Address);
+    }
+}
+exports.ObservableQueryDelegations = ObservableQueryDelegations;
+//# sourceMappingURL=delegations.js.map
+
+/***/ }),
+
+/***/ 1424:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryRewards = exports.ObservableQueryRewardsInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+const common_1 = __webpack_require__(118);
+const mobx_utils_1 = __webpack_require__(200);
+const react_query_1 = __webpack_require__(235);
+class ObservableQueryRewardsInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
+        super(kvStore, chainId, chainGetter, `/cosmos/distribution/v1beta1/delegators/${bech32Address}/rewards`);
+        this.duplicatedFetchCheck = true;
+        this.getRewardsOf = mobx_utils_1.computedFn((validatorAddress) => {
+            var _a, _b, _c;
+            const chainInfo = this.chainGetter.getChain(this.chainId);
+            const currenciesMap = chainInfo.currencies.reduce((obj, currency) => {
+                // TODO: Handle the contract tokens.
+                if (!("type" in currency)) {
+                    obj[currency.coinMinimalDenom] = currency;
+                }
+                return obj;
+            }, {});
+            const reward = (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.rewards) === null || _b === void 0 ? void 0 : _b.find((r) => {
+                return r.validatorAddress === validatorAddress;
+            });
+            return common_1.StoreUtils.getBalancesFromCurrencies(currenciesMap, (_c = reward === null || reward === void 0 ? void 0 : reward.reward) !== null && _c !== void 0 ? _c : []);
+        });
+        this.getStakableRewardOf = mobx_utils_1.computedFn((validatorAddress) => {
+            var _a, _b, _c;
+            const chainInfo = this.chainGetter.getChain(this.chainId);
+            const reward = (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.rewards) === null || _b === void 0 ? void 0 : _b.find((r) => {
+                return r.validatorAddress === validatorAddress;
+            });
+            return common_1.StoreUtils.getBalanceFromCurrency(chainInfo.stakeCurrency, (_c = reward === null || reward === void 0 ? void 0 : reward.reward) !== null && _c !== void 0 ? _c : []);
+        });
+        this.getUnstakableRewardsOf = mobx_utils_1.computedFn((validatorAddress) => {
+            var _a, _b, _c;
+            const chainInfo = this.chainGetter.getChain(this.chainId);
+            const currenciesMap = chainInfo.currencies.reduce((obj, currency) => {
+                // TODO: Handle the contract tokens.
+                if (!("type" in currency) &&
+                    currency.coinMinimalDenom !== chainInfo.stakeCurrency.coinMinimalDenom) {
+                    obj[currency.coinMinimalDenom] = currency;
+                }
+                return obj;
+            }, {});
+            const reward = (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.rewards) === null || _b === void 0 ? void 0 : _b.find((r) => {
+                return r.validatorAddress === validatorAddress;
+            });
+            return common_1.StoreUtils.getBalancesFromCurrencies(currenciesMap, (_c = reward === null || reward === void 0 ? void 0 : reward.reward) !== null && _c !== void 0 ? _c : []);
+        });
+        /**
+         * getDescendingPendingRewardValidatorAddresses returns the validator addresses in descending order by stakable asset.
+         */
+        // ComputeFn doesn't support the default argument.
+        this.getDescendingPendingRewardValidatorAddresses = mobx_utils_1.computedFn((maxValiadtors) => {
+            var _a, _b;
+            if (!this.response) {
+                return [];
+            }
+            const chainInfo = this.chainGetter.getChain(this.chainId);
+            const rewards = (_b = (_a = this.response.data.rewards) === null || _a === void 0 ? void 0 : _a.slice()) !== null && _b !== void 0 ? _b : [];
+            rewards.sort((reward1, reward2) => {
+                var _a, _b;
+                const amount1 = common_1.StoreUtils.getBalanceFromCurrency(chainInfo.stakeCurrency, (_a = reward1.reward) !== null && _a !== void 0 ? _a : []);
+                const amount2 = common_1.StoreUtils.getBalanceFromCurrency(chainInfo.stakeCurrency, (_b = reward2.reward) !== null && _b !== void 0 ? _b : []);
+                if (amount1.toDec().gt(amount2.toDec())) {
+                    return -1;
+                }
+                else {
+                    return 1;
+                }
+            });
+            return rewards
+                .filter((reward) => {
+                if (reward.reward) {
+                    for (const r of reward.reward) {
+                        const dec = new unit_1.Dec(r.amount);
+                        if (dec.truncate().gt(new unit_1.Int(0))) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            })
+                .slice(0, maxValiadtors)
+                .map((r) => r.validatorAddress);
+        });
+        this.QueryClient = new react_query_1.QueryClient();
+        mobx_1.makeObservable(this);
+        this.bech32Address = bech32Address;
+        this.misesStore = misesStore;
+    }
+    canFetch() {
+        // If bech32 address is empty, it will always fail, so don't need to fetch it.
+        return this.bech32Address.length > 0;
+    }
+    get rewards() {
+        var _a, _b, _c;
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const currenciesMap = chainInfo.currencies.reduce((obj, currency) => {
+            // TODO: Handle the contract tokens.
+            if (!("type" in currency)) {
+                obj[currency.coinMinimalDenom] = currency;
+            }
+            return obj;
+        }, {});
+        return common_1.StoreUtils.getBalancesFromCurrencies(currenciesMap, (_c = (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.total) !== null && _c !== void 0 ? _c : []);
+    }
+    get stakableReward() {
+        var _a, _b, _c;
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        return common_1.StoreUtils.getBalanceFromCurrency(chainInfo.stakeCurrency, (_c = (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.total) !== null && _c !== void 0 ? _c : []);
+    }
+    get unstakableRewards() {
+        var _a, _b;
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const currenciesMap = chainInfo.currencies.reduce((obj, currency) => {
+            // TODO: Handle the contract tokens.
+            if (!("type" in currency) &&
+                currency.coinMinimalDenom !== chainInfo.stakeCurrency.coinMinimalDenom) {
+                obj[currency.coinMinimalDenom] = currency;
+            }
+            return obj;
+        }, {});
+        return common_1.StoreUtils.getBalancesFromCurrencies(currenciesMap, (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.total) !== null && _b !== void 0 ? _b : []);
+    }
+    get pendingRewardValidatorAddresses() {
+        var _a;
+        if (!this.response) {
+            return [];
+        }
+        const result = [];
+        for (const reward of (_a = this.response.data.rewards) !== null && _a !== void 0 ? _a : []) {
+            if (reward.reward) {
+                for (const r of reward.reward) {
+                    const dec = new unit_1.Dec(r.amount);
+                    if (dec.truncate().gt(new unit_1.Int(0))) {
+                        result.push(reward.validatorAddress);
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    *fetch() {
+        var _a;
+        if (!this.bech32Address) {
+            return;
+        }
+        this._isFetching = true;
+        (_a = this.QueryClient) === null || _a === void 0 ? void 0 : _a.fetchQuery("rewards", () => __awaiter(this, void 0, void 0, function* () {
+            const res = yield this.misesStore.rewards(this.bech32Address);
+            if (res && res.total[0])
+                res.total[0].amount = Number(res.total[0].amount) / Math.pow(10, 18);
+            return res;
+        }), this.fetchConfig).then((res) => {
+            this._isFetching = false;
+            this.setResponse({
+                data: res,
+                status: 200,
+                staled: true,
+                timestamp: new Date().getTime(),
+            });
+        }).catch((err) => {
+            this._isFetching = false;
+            this.setError(err);
+        });
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryRewardsInner.prototype, "rewards", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryRewardsInner.prototype, "stakableReward", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryRewardsInner.prototype, "unstakableRewards", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryRewardsInner.prototype, "pendingRewardValidatorAddresses", null);
+__decorate([
+    mobx_1.override
+], ObservableQueryRewardsInner.prototype, "fetch", null);
+exports.ObservableQueryRewardsInner = ObservableQueryRewardsInner;
+class ObservableQueryRewards extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter, misesStore) {
+        super(kvStore, chainId, chainGetter, (bech32Address) => {
+            return new ObservableQueryRewardsInner(this.kvStore, this.chainId, this.chainGetter, bech32Address, misesStore);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+        this.misesStore = misesStore;
+    }
+    getQueryBech32Address(bech32Address) {
+        return this.get(bech32Address);
+    }
+}
+exports.ObservableQueryRewards = ObservableQueryRewards;
+//# sourceMappingURL=rewards.js.map
+
+/***/ }),
+
+/***/ 1425:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryUnbondingDelegations = exports.ObservableQueryUnbondingDelegationsInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const unit_1 = __webpack_require__(26);
+const mobx_1 = __webpack_require__(5);
+const react_query_1 = __webpack_require__(235);
+class ObservableQueryUnbondingDelegationsInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
+        super(kvStore, chainId, chainGetter, `/cosmos/staking/v1beta1/delegators/${bech32Address}/unbonding_delegations?pagination.limit=1000`);
+        this.duplicatedFetchCheck = true;
+        this.QueryClient = new react_query_1.QueryClient();
+        mobx_1.makeObservable(this);
+        this.bech32Address = bech32Address;
+        this.misesStore = misesStore;
+    }
+    canFetch() {
+        var _a;
+        // If bech32 address is empty, it will always fail, so don't need to fetch it.
+        return ((_a = this.bech32Address) === null || _a === void 0 ? void 0 : _a.length) > 0;
+    }
+    get total() {
+        const stakeCurrency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        if (!this.response) {
+            return new unit_1.CoinPretty(stakeCurrency, new unit_1.Int(0)).ready(false);
+        }
+        let totalBalance = new unit_1.Int(0);
+        for (const unbondingDelegation of this.unbondings) {
+            for (const entry of unbondingDelegation.entries) {
+                totalBalance = totalBalance.add(new unit_1.Int(entry.balance));
+            }
+        }
+        return new unit_1.CoinPretty(stakeCurrency, totalBalance);
+    }
+    get unbondingBalances() {
+        const unbondings = this.unbondings;
+        const stakeCurrency = this.chainGetter.getChain(this.chainId).stakeCurrency;
+        const result = [];
+        for (const unbonding of unbondings) {
+            const entries = [];
+            for (const entry of unbonding.entries) {
+                entries.push({
+                    creationHeight: new unit_1.Int(entry.creationHeight),
+                    completionTime: entry.completionTime,
+                    balance: new unit_1.CoinPretty(stakeCurrency, new unit_1.Int(entry.balance)),
+                });
+            }
+            result.push({
+                validatorAddress: unbonding.validatorAddress,
+                entries,
+            });
+        }
+        return result;
+    }
+    get unbondings() {
+        var _a;
+        if (!this.response) {
+            return [];
+        }
+        return ((_a = this.response.data) === null || _a === void 0 ? void 0 : _a.unbondingResponses) || [];
+    }
+    *fetch() {
+        var _a;
+        if (!this.bech32Address) {
+            return;
+        }
+        this._isFetching = true;
+        (_a = this.QueryClient) === null || _a === void 0 ? void 0 : _a.fetchQuery("unbondingDelegations", () => this.misesStore.unbondingDelegations(this.bech32Address), this.fetchConfig).then((res) => {
+            this._isFetching = false;
+            this.setResponse({
+                data: res,
+                status: 200,
+                staled: true,
+                timestamp: new Date().getTime(),
+            });
+        }).catch((err) => {
+            this._isFetching = false;
+            this.setError(err);
+        });
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryUnbondingDelegationsInner.prototype, "total", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryUnbondingDelegationsInner.prototype, "unbondingBalances", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryUnbondingDelegationsInner.prototype, "unbondings", null);
+__decorate([
+    mobx_1.override
+], ObservableQueryUnbondingDelegationsInner.prototype, "fetch", null);
+exports.ObservableQueryUnbondingDelegationsInner = ObservableQueryUnbondingDelegationsInner;
+class ObservableQueryUnbondingDelegations extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter, misesStore) {
+        super(kvStore, chainId, chainGetter, (bech32Address) => {
+            return new ObservableQueryUnbondingDelegationsInner(this.kvStore, this.chainId, this.chainGetter, bech32Address, misesStore);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+        this.misesStore = misesStore;
+    }
+    getQueryBech32Address(bech32Address) {
+        return this.get(bech32Address);
+    }
+}
+exports.ObservableQueryUnbondingDelegations = ObservableQueryUnbondingDelegations;
+//# sourceMappingURL=unbonding-delegations.js.map
+
+/***/ }),
+
+/***/ 1426:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryValidators = exports.ObservableQueryValidatorsInner = exports.ObservableQueryValidatorThumbnail = void 0;
+const chain_query_1 = __webpack_require__(59);
+const types_1 = __webpack_require__(860);
+const mobx_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(118);
+const axios_1 = __importDefault(__webpack_require__(60));
+const p_queue_1 = __importDefault(__webpack_require__(1427));
+const unit_1 = __webpack_require__(26);
+const mobx_utils_1 = __webpack_require__(200);
+/**
+ * Fetch the validator's thumbnail from keybase if the identity exists.
+ */
+class ObservableQueryValidatorThumbnail extends common_1.ObservableQuery {
+    constructor(kvStore, validator) {
+        const instance = axios_1.default.create({
+            baseURL: "https://keybase.io/",
+        });
+        super(kvStore, instance, `_/api/1.0/user/lookup.json?fields=pictures&key_suffix=${validator.description.identity}`);
+        mobx_1.makeObservable(this);
+        this.validator = validator;
+    }
+    canFetch() {
+        return this.validator.description.identity !== "";
+    }
+    fetchResponse(abortController) {
+        const _super = Object.create(null, {
+            fetchResponse: { get: () => super.fetchResponse }
+        });
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield ObservableQueryValidatorThumbnail.fetchingThumbnailQueue.add(() => {
+                return _super.fetchResponse.call(this, abortController);
+            });
+        });
+    }
+    get thumbnail() {
+        var _a, _b, _c, _d;
+        if (((_a = this.response) === null || _a === void 0 ? void 0 : _a.data.status.code) === 0) {
+            if (this.response.data.them && this.response.data.them.length > 0) {
+                return (_d = (_c = (_b = this.response.data.them[0].pictures) === null || _b === void 0 ? void 0 : _b.primary) === null || _c === void 0 ? void 0 : _c.url) !== null && _d !== void 0 ? _d : "";
+            }
+        }
+        return "";
+    }
+}
+/**
+ * Throttle down fetching the thumbnail from Keybase.
+ * If too many requests occurs at the same time, Keybase will reject these requests.
+ * @protected
+ */
+ObservableQueryValidatorThumbnail.fetchingThumbnailQueue = new p_queue_1.default({
+    concurrency: 3,
+});
+__decorate([
+    mobx_1.computed
+], ObservableQueryValidatorThumbnail.prototype, "thumbnail", null);
+exports.ObservableQueryValidatorThumbnail = ObservableQueryValidatorThumbnail;
+class ObservableQueryValidatorsInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, status) {
+        super(kvStore, chainId, chainGetter, `/cosmos/staking/v1beta1/validators?pagination.limit=1000&status=${(() => {
+            switch (status) {
+                case types_1.BondStatus.Bonded:
+                    return "BOND_STATUS_BONDED";
+                case types_1.BondStatus.Unbonded:
+                    return "BOND_STATUS_UNBONDED";
+                case types_1.BondStatus.Unbonding:
+                    return "BOND_STATUS_UNBONDING";
+                default:
+                    return "BOND_STATUS_UNSPECIFIED";
+            }
+        })()}`);
+        this.status = status;
+        this.thumbnailMap = new Map();
+        this.getValidator = mobx_utils_1.computedFn((validatorAddress) => {
+            const validators = this.validators;
+            return validators.find((val) => val.operator_address === validatorAddress);
+        });
+        this.getValidatorThumbnail = mobx_utils_1.computedFn((operatorAddress) => {
+            const validators = this.validators;
+            const validator = validators.find((val) => val.operator_address === operatorAddress);
+            if (!validator) {
+                return "";
+            }
+            if (!validator.description.identity) {
+                return "";
+            }
+            const identity = validator.description.identity;
+            if (!this.thumbnailMap.has(identity)) {
+                mobx_1.runInAction(() => {
+                    this.thumbnailMap.set(identity, new ObservableQueryValidatorThumbnail(this.kvStore, validator));
+                });
+            }
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            return this.thumbnailMap.get(identity).thumbnail;
+        });
+        /**
+         * Return the validator's voting power as human friendly (considering the coin decimals).
+         */
+        this.getValidatorShare = mobx_utils_1.computedFn((operatorAddress) => {
+            const validators = this.validators;
+            const validator = validators.find((val) => val.operator_address === operatorAddress);
+            if (!validator) {
+                return;
+            }
+            const chainInfo = this.chainGetter.getChain(this.chainId);
+            const stakeCurrency = chainInfo.stakeCurrency;
+            const power = new unit_1.Dec(validator.tokens).truncate();
+            return new unit_1.CoinPretty(stakeCurrency, power);
+        });
+        mobx_1.makeObservable(this);
+    }
+    get validators() {
+        if (!this.response) {
+            return [];
+        }
+        return this.response.data.validators;
+    }
+    get validatorsSortedByVotingPower() {
+        const validators = this.validators;
+        return validators.sort((v1, v2) => {
+            return new unit_1.Dec(v1.tokens).gt(new unit_1.Dec(v2.tokens)) ? -1 : 1;
+        });
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], ObservableQueryValidatorsInner.prototype, "thumbnailMap", void 0);
+__decorate([
+    mobx_1.computed
+], ObservableQueryValidatorsInner.prototype, "validators", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryValidatorsInner.prototype, "validatorsSortedByVotingPower", null);
+exports.ObservableQueryValidatorsInner = ObservableQueryValidatorsInner;
+class ObservableQueryValidators extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (status) => {
+            return new ObservableQueryValidatorsInner(this.kvStore, this.chainId, this.chainGetter, status);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getQueryStatus(status = types_1.BondStatus.Bonded) {
+        return this.get(status);
+    }
+}
+exports.ObservableQueryValidators = ObservableQueryValidators;
+//# sourceMappingURL=validators.js.map
+
+/***/ }),
+
+/***/ 1432:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryStakingPool = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryStakingPool extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/cosmos/staking/v1beta1/pool");
+        mobx_1.makeObservable(this);
+    }
+    get notBondedTokens() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        if (!this.response) {
+            return new unit_1.CoinPretty(chainInfo.stakeCurrency, 0);
+        }
+        return new unit_1.CoinPretty(chainInfo.stakeCurrency, this.response.data.pool.not_bonded_tokens);
+    }
+    get bondedTokens() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        if (!this.response) {
+            return new unit_1.CoinPretty(chainInfo.stakeCurrency, 0);
+        }
+        return new unit_1.CoinPretty(chainInfo.stakeCurrency, this.response.data.pool.bonded_tokens);
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryStakingPool.prototype, "notBondedTokens", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryStakingPool.prototype, "bondedTokens", null);
+exports.ObservableQueryStakingPool = ObservableQueryStakingPool;
+//# sourceMappingURL=pool.js.map
+
+/***/ }),
+
+/***/ 1433:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryStakingParams = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+class ObservableQueryStakingParams extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/cosmos/staking/v1beta1/params");
+        mobx_1.makeObservable(this);
+    }
+    get unbondingTimeSec() {
+        if (!this.response) {
+            return 0;
+        }
+        return parseInt(this.response.data.params.unbonding_time.replace("s", ""));
+    }
+    get maxValidators() {
+        var _a, _b;
+        return (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.params.max_validators) !== null && _b !== void 0 ? _b : 0;
+    }
+    get maxEntries() {
+        var _a, _b;
+        return (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.params.max_entries) !== null && _b !== void 0 ? _b : 0;
+    }
+    get historicalEntries() {
+        var _a, _b;
+        return (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.params.historical_entries) !== null && _b !== void 0 ? _b : 0;
+    }
+    get bondDenom() {
+        var _a, _b;
+        return (_b = (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.params.bond_denom) !== null && _b !== void 0 ? _b : "";
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryStakingParams.prototype, "unbondingTimeSec", null);
+exports.ObservableQueryStakingParams = ObservableQueryStakingParams;
+//# sourceMappingURL=params.js.map
+
+/***/ }),
+
+/***/ 1434:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryInflation = void 0;
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryInflation {
+    constructor(chainId, chainGetter, _queryMint, _queryPool, _querySupplyTotal, _queryIrisMint, _querySifchainAPY, _queryOsmosisEpochs, _queryOsmosisEpochProvisions, _queryOsmosisMintParams, _queryJunoAnnualProvisions, _queryDistributionParams) {
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+        this._queryMint = _queryMint;
+        this._queryPool = _queryPool;
+        this._querySupplyTotal = _querySupplyTotal;
+        this._queryIrisMint = _queryIrisMint;
+        this._querySifchainAPY = _querySifchainAPY;
+        this._queryOsmosisEpochs = _queryOsmosisEpochs;
+        this._queryOsmosisEpochProvisions = _queryOsmosisEpochProvisions;
+        this._queryOsmosisMintParams = _queryOsmosisMintParams;
+        this._queryJunoAnnualProvisions = _queryJunoAnnualProvisions;
+        this._queryDistributionParams = _queryDistributionParams;
+        mobx_1.makeObservable(this);
+    }
+    get error() {
+        var _a, _b;
+        return ((_b = (_a = this._queryMint.error) !== null && _a !== void 0 ? _a : this._queryPool.error) !== null && _b !== void 0 ? _b : this._querySupplyTotal.getQueryStakeDenom().error);
+    }
+    get isFetching() {
+        return (this._queryMint.isFetching ||
+            this._queryPool.isFetching ||
+            this._querySupplyTotal.getQueryStakeDenom().isFetching);
+    }
+    // Return an inflation as `IntPrety`.
+    // If the staking pool info is fetched, this will consider this info for calculating the more accurate value.
+    get inflation() {
+        // TODO: Use `RatePretty`
+        var _a, _b, _c, _d;
+        try {
+            let dec;
+            // XXX: Hard coded part for the iris hub and sifchain.
+            // TODO: Remove this part.
+            const chainInfo = this.chainGetter.getChain(this.chainId);
+            if (chainInfo.chainId.startsWith("irishub")) {
+                dec = new unit_1.Dec((_b = (_a = this._queryIrisMint.response) === null || _a === void 0 ? void 0 : _a.data.result.inflation) !== null && _b !== void 0 ? _b : "0").mul(unit_1.DecUtils.getPrecisionDec(2));
+            }
+            else if (chainInfo.chainId.startsWith("sifchain")) {
+                return new unit_1.IntPretty(new unit_1.Dec(this._querySifchainAPY.liquidityAPY.toString()));
+            }
+            else if (chainInfo.chainId.startsWith("osmosis")) {
+                /*
+                  XXX: Temporary and unfinished implementation for the osmosis staking APY.
+                       Osmosis has different minting method.
+                       It mints the fixed token per epoch with deduction feature on the range of epoch.
+                       And, it actually doesn't mint the token, it has the locked token that will be inflated.
+                       So, currently, using the result of `supply total` to calculate the APY is actually not valid
+                       because it included the locked token that is not yet inflated.
+                       So, for now, just assume that the curreny supply is 100,000,000.
+                 */
+                const mintParams = this._queryOsmosisMintParams;
+                if (mintParams.epochIdentifier) {
+                    const epochDuration = this._queryOsmosisEpochs.getEpoch(mintParams.epochIdentifier).duration;
+                    if (epochDuration) {
+                        const epochProvision = this._queryOsmosisEpochProvisions
+                            .epochProvisions;
+                        if (epochProvision &&
+                            this._querySupplyTotal.getQueryStakeDenom().response) {
+                            const mintingEpochProvision = new unit_1.Dec(epochProvision
+                                .toDec()
+                                .mul(mintParams.distributionProportions.staking)
+                                .truncate()
+                                .toString());
+                            const yearMintingProvision = mintingEpochProvision.mul(new unit_1.Dec(((365 * 24 * 3600) / epochDuration).toString()));
+                            const total = unit_1.DecUtils.getPrecisionDec(8);
+                            dec = yearMintingProvision
+                                .quo(total)
+                                .mul(unit_1.DecUtils.getPrecisionDec(2));
+                        }
+                    }
+                }
+            }
+            else if (chainInfo.chainId.startsWith("juno")) {
+                // In juno, the actual supply on chain and the supply recognized by the community are different.
+                // I don't know why, but it's annoying to deal with this problem.
+                if (this._queryJunoAnnualProvisions.annualProvisionsRaw &&
+                    this._queryPool.response) {
+                    const bondedToken = new unit_1.Dec(this._queryPool.response.data.pool.bonded_tokens);
+                    const dec = this._queryJunoAnnualProvisions.annualProvisionsRaw
+                        .quo(bondedToken)
+                        .mul(new unit_1.Dec(1).sub(this._queryDistributionParams.communityTax.toDec()))
+                        .mul(unit_1.DecUtils.getTenExponentN(2));
+                    return new unit_1.IntPretty(dec);
+                }
+            }
+            else {
+                dec = new unit_1.Dec((_d = (_c = this._queryMint.response) === null || _c === void 0 ? void 0 : _c.data.inflation) !== null && _d !== void 0 ? _d : "0").mul(unit_1.DecUtils.getPrecisionDec(2));
+            }
+            if (!dec || dec.equals(new unit_1.Dec(0))) {
+                return new unit_1.IntPretty(new unit_1.Int(0)).ready(false);
+            }
+            if (this._queryPool.response) {
+                const bondedToken = new unit_1.Dec(this._queryPool.response.data.pool.bonded_tokens);
+                const totalStr = (() => {
+                    if (chainInfo.chainId.startsWith("osmosis")) {
+                        // For osmosis, for now, just assume that the current supply is 100,000,000 with 6 decimals.
+                        return unit_1.DecUtils.getPrecisionDec(8 + 6).toString();
+                    }
+                    if (chainInfo.chainId.startsWith("umee")) {
+                        const supplyTotalRes = this._querySupplyTotal.getQueryDenomByQueryString(chainInfo.stakeCurrency.coinMinimalDenom).response;
+                        if (!supplyTotalRes) {
+                            return "0";
+                        }
+                        else {
+                            return supplyTotalRes.data.amount.amount;
+                        }
+                    }
+                    const supplyTotalRes = this._querySupplyTotal.getQueryStakeDenom()
+                        .response;
+                    if (!supplyTotalRes) {
+                        return "0";
+                    }
+                    else {
+                        return supplyTotalRes.data.amount.amount;
+                    }
+                })();
+                const total = new unit_1.Dec(totalStr);
+                if (total.gt(new unit_1.Dec(0))) {
+                    // staking APR is calculated as:
+                    //   new_coins_per_year = inflation_pct * total_supply * (1 - community_pool_tax)
+                    //   apr = new_coins_per_year / total_bonded_tokens
+                    const ratio = bondedToken.quo(total);
+                    dec = dec
+                        .mul(new unit_1.Dec(1).sub(this._queryDistributionParams.communityTax.toDec()))
+                        .quo(ratio);
+                    // TODO: Rounding?
+                }
+            }
+            return new unit_1.IntPretty(dec);
+        }
+        catch (e) {
+            console.log(e);
+            // XXX: There have been reported errors regarding Sifchain.
+            // However, I wasn’t able to reproduce the error so exact cause haven’t been identified.
+            // For now, use try-catch on suspect parts to resolve the issue. Will be on a lookout for a more permanent solution in the future.
+            return new unit_1.IntPretty(new unit_1.Int(0)).ready(false);
+        }
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryInflation.prototype, "inflation", null);
+exports.ObservableQueryInflation = ObservableQueryInflation;
+//# sourceMappingURL=inflation.js.map
+
+/***/ }),
+
+/***/ 1435:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryMintingInfation = void 0;
+const chain_query_1 = __webpack_require__(59);
+class ObservableQueryMintingInfation extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/cosmos/mint/v1beta1/inflation");
+    }
+    canFetch() {
+        return false;
+    }
+}
+exports.ObservableQueryMintingInfation = ObservableQueryMintingInfation;
+//# sourceMappingURL=minting.js.map
+
+/***/ }),
+
+/***/ 1436:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQuerySupplyTotal = exports.ObservableChainQuerySupplyTotal = void 0;
+const chain_query_1 = __webpack_require__(59);
+class ObservableChainQuerySupplyTotal extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, denom) {
+        super(kvStore, chainId, chainGetter, `/cosmos/bank/v1beta1/supply/${denom}`);
+    }
+}
+exports.ObservableChainQuerySupplyTotal = ObservableChainQuerySupplyTotal;
+class ObservableQuerySupplyTotal extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (denom) => {
+            return new ObservableChainQuerySupplyTotal(this.kvStore, this.chainId, this.chainGetter, denom);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getQueryDenom(denom) {
+        return this.get(denom);
+    }
+    // Somewhat strange. Only used for umee.
+    getQueryDenomByQueryString(denom) {
+        return this.get(`by_denom?denom=${denom}`);
+    }
+    getQueryStakeDenom() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        return this.get(chainInfo.stakeCurrency.coinMinimalDenom);
+    }
+}
+exports.ObservableQuerySupplyTotal = ObservableQuerySupplyTotal;
+//# sourceMappingURL=supply.js.map
+
+/***/ }),
+
+/***/ 1437:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryIBCChannel = exports.ObservableChainQueryIBCChannel = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+class ObservableChainQueryIBCChannel extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, portId, channelId) {
+        super(kvStore, chainId, chainGetter, `/ibc/core/channel/v1beta1/channels/${channelId}/ports/${portId}`);
+        this.portId = portId;
+        this.channelId = channelId;
+    }
+    onStart() {
+        super.onStart();
+        return new Promise((resolve) => {
+            this.disposer = mobx_1.autorun(() => {
+                const chainInfo = this.chainGetter.getChain(this.chainId);
+                if (chainInfo.features && chainInfo.features.includes("ibc-go")) {
+                    this.setUrl(`/ibc/core/channel/v1/channels/${this.channelId}/ports/${this.portId}`);
+                }
+                resolve();
+            });
+        });
+    }
+    onStop() {
+        if (this.disposer) {
+            this.disposer();
+            this.disposer = undefined;
+        }
+        super.onStop();
+    }
+}
+exports.ObservableChainQueryIBCChannel = ObservableChainQueryIBCChannel;
+class ObservableQueryIBCChannel extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (key) => {
+            const params = JSON.parse(key);
+            return new ObservableChainQueryIBCChannel(this.kvStore, this.chainId, this.chainGetter, params.portId, params.channelId);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getTransferChannel(channelId) {
+        return this.getChannel("transfer", channelId);
+    }
+    getChannel(portId, channelId) {
+        // Use key as the JSON encoded Object.
+        const key = JSON.stringify({
+            portId,
+            channelId,
+        });
+        return this.get(key);
+    }
+}
+exports.ObservableQueryIBCChannel = ObservableQueryIBCChannel;
+//# sourceMappingURL=channel.js.map
+
+/***/ }),
+
+/***/ 1438:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryIBCClientState = exports.ObservableChainQueryClientState = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+class ObservableChainQueryClientState extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, portId, channelId) {
+        super(kvStore, chainId, chainGetter, `/ibc/core/channel/v1beta1/channels/${channelId}/ports/${portId}/client_state`);
+        this.portId = portId;
+        this.channelId = channelId;
+    }
+    onStart() {
+        super.onStart();
+        return new Promise((resolve) => {
+            this.disposer = mobx_1.autorun(() => {
+                const chainInfo = this.chainGetter.getChain(this.chainId);
+                if (chainInfo.features && chainInfo.features.includes("ibc-go")) {
+                    this.setUrl(`/ibc/core/channel/v1/channels/${this.channelId}/ports/${this.portId}/client_state`);
+                }
+                resolve();
+            });
+        });
+    }
+    onStop() {
+        if (this.disposer) {
+            this.disposer();
+            this.disposer = undefined;
+        }
+        super.onStop();
+    }
+    /**
+     * clientChainId returns the chain id of the client state if the client state's type is known (currently, only tendermint is supported).
+     */
+    get clientChainId() {
+        var _a, _b;
+        if (!this.response) {
+            return undefined;
+        }
+        return (_b = (_a = this.response.data.identified_client_state) === null || _a === void 0 ? void 0 : _a.client_state) === null || _b === void 0 ? void 0 : _b.chain_id;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableChainQueryClientState.prototype, "clientChainId", null);
+exports.ObservableChainQueryClientState = ObservableChainQueryClientState;
+class ObservableQueryIBCClientState extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (key) => {
+            const params = JSON.parse(key);
+            return new ObservableChainQueryClientState(this.kvStore, this.chainId, this.chainGetter, params.portId, params.channelId);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getClientStateOnTransferPort(channelId) {
+        return this.getClientState("transfer", channelId);
+    }
+    getClientState(portId, channelId) {
+        // Use key as the JSON encoded Object.
+        const key = JSON.stringify({
+            portId,
+            channelId,
+        });
+        return this.get(key);
+    }
+}
+exports.ObservableQueryIBCClientState = ObservableQueryIBCClientState;
+//# sourceMappingURL=client-state.js.map
+
+/***/ }),
+
+/***/ 1439:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryDenomTrace = exports.ObservableChainQueryDenomTrace = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+class ObservableChainQueryDenomTrace extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, hash) {
+        super(kvStore, chainId, chainGetter, `/ibc/applications/transfer/v1beta1/denom_traces/${hash}`);
+        this.hash = hash;
+    }
+    onStart() {
+        super.onStart();
+        return new Promise((resolve) => {
+            this.disposer = mobx_1.autorun(() => {
+                const chainInfo = this.chainGetter.getChain(this.chainId);
+                if (chainInfo.features && chainInfo.features.includes("ibc-go")) {
+                    this.setUrl(`/ibc/apps/transfer/v1/denom_traces/${this.hash}`);
+                }
+                resolve();
+            });
+        });
+    }
+    onStop() {
+        if (this.disposer) {
+            this.disposer();
+            this.disposer = undefined;
+        }
+        super.onStop();
+    }
+    get paths() {
+        if (!this.response) {
+            return [];
+        }
+        const rawPaths = this.response.data.denom_trace.path.split("/");
+        if (rawPaths.length % 2 !== 0) {
+            console.log("Failed to parse paths", rawPaths);
+            return [];
+        }
+        const rawPathChunks = [];
+        for (let i = 0; i < rawPaths.length; i += 2) {
+            rawPathChunks.push(rawPaths.slice(i, i + 2));
+        }
+        return rawPathChunks.map((chunk) => {
+            return {
+                portId: chunk[0],
+                channelId: chunk[1],
+            };
+        });
+    }
+    get denom() {
+        if (!this.response) {
+            return undefined;
+        }
+        return this.response.data.denom_trace.base_denom;
+    }
+    get denomTrace() {
+        if (!this.response || !this.denom) {
+            return undefined;
+        }
+        return {
+            denom: this.denom,
+            paths: this.paths,
+        };
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableChainQueryDenomTrace.prototype, "paths", null);
+__decorate([
+    mobx_1.computed
+], ObservableChainQueryDenomTrace.prototype, "denomTrace", null);
+exports.ObservableChainQueryDenomTrace = ObservableChainQueryDenomTrace;
+class ObservableQueryDenomTrace extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (hash) => {
+            return new ObservableChainQueryDenomTrace(this.kvStore, this.chainId, this.chainGetter, hash);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getDenomTrace(hash) {
+        return this.get(hash);
+    }
+}
+exports.ObservableQueryDenomTrace = ObservableQueryDenomTrace;
+//# sourceMappingURL=denom-trace.js.map
+
+/***/ }),
+
+/***/ 1440:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryCosmosBalanceRegistry = exports.ObservableQueryCosmosBalances = exports.ObservableQueryBalanceNative = void 0;
+const common_1 = __webpack_require__(27);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+const common_2 = __webpack_require__(118);
+const balances_1 = __webpack_require__(507);
+const chain_query_1 = __webpack_require__(59);
+const react_query_1 = __webpack_require__(235);
+class ObservableQueryBalanceNative extends balances_1.ObservableQueryBalanceInner {
+    constructor(kvStore, chainId, chainGetter, denomHelper, nativeBalances) {
+        super(kvStore, chainId, chainGetter, 
+        // No need to set the url
+        "", denomHelper);
+        this.nativeBalances = nativeBalances;
+        mobx_1.makeObservable(this);
+    }
+    canFetch() {
+        return false;
+    }
+    get isFetching() {
+        return this.nativeBalances.isFetching;
+    }
+    get error() {
+        return this.nativeBalances.error;
+    }
+    get response() {
+        return this.nativeBalances.response;
+    }
+    *fetch() {
+        yield this.nativeBalances.fetch();
+    }
+    get balance() {
+        const currency = this.currency;
+        if (!this.nativeBalances.response) {
+            return new unit_1.CoinPretty(currency, new unit_1.Int(0)).ready(false);
+        }
+        return common_2.StoreUtils.getBalanceFromCurrency(currency, this.nativeBalances.response.data.balances);
+    }
+}
+__decorate([
+    mobx_1.override
+], ObservableQueryBalanceNative.prototype, "fetch", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryBalanceNative.prototype, "balance", null);
+exports.ObservableQueryBalanceNative = ObservableQueryBalanceNative;
+class ObservableQueryCosmosBalances extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, bech32Address, misesStore) {
+        super(kvStore, chainId, chainGetter, `/cosmos/bank/v1beta1/balances/${bech32Address}?pagination.limit=1000`);
+        this.duplicatedFetchCheck = true;
+        this.QueryClient = new react_query_1.QueryClient();
+        this.bech32Address = bech32Address;
+        this.misesStore = misesStore;
+        mobx_1.makeObservable(this);
+    }
+    canFetch() {
+        // If bech32 address is empty, it will always fail, so don't need to fetch it.
+        return this.bech32Address.length > 0;
+    }
+    *fetch() {
+        var _a;
+        this._isFetching = true;
+        (_a = this.QueryClient) === null || _a === void 0 ? void 0 : _a.fetchQuery("getMisesBalance", () => this.getMisesBalance(), this.fetchConfig).then((result) => {
+            this._isFetching = false;
+            this.setResponse(result);
+        }).catch((error) => {
+            this._isFetching = false;
+            this.setError(error);
+        });
+    }
+    getMisesBalance() {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            const balance = yield ((_a = this.misesStore) === null || _a === void 0 ? void 0 : _a.getBalanceUMIS());
+            const result = {
+                status: 200,
+                data: {
+                    balances: [balance],
+                },
+                staled: true,
+                timestamp: new Date().getTime(),
+            };
+            return result;
+        });
+    }
+    setResponse(response) {
+        super.setResponse(response);
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        // Attempt to register denom in the returned response.
+        // If it's already registered anyway, it's okay because the method below doesn't do anything.
+        // Better to set it all at once as an array to reduce computation.
+        const denoms = response.data.balances.map((coin) => coin.denom);
+        chainInfo.addUnknownCurrencies(...denoms);
+    }
+}
+__decorate([
+    mobx_1.override
+], ObservableQueryCosmosBalances.prototype, "fetch", null);
+exports.ObservableQueryCosmosBalances = ObservableQueryCosmosBalances;
+class ObservableQueryCosmosBalanceRegistry {
+    constructor(kvStore, misesStore) {
+        this.kvStore = kvStore;
+        this.misesStore = misesStore;
+        this.nativeBalances = new Map();
+    }
+    getBalanceInner(chainId, chainGetter, bech32Address, minimalDenom) {
+        const denomHelper = new common_1.DenomHelper(minimalDenom);
+        if (denomHelper.type !== "native") {
+            return;
+        }
+        const key = `${chainId}/${bech32Address}`;
+        if (!this.nativeBalances.has(key)) {
+            this.nativeBalances.set(key, new ObservableQueryCosmosBalances(this.kvStore, chainId, chainGetter, bech32Address, this.misesStore));
+        }
+        return new ObservableQueryBalanceNative(this.kvStore, chainId, chainGetter, denomHelper, 
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.nativeBalances.get(key));
+    }
+}
+exports.ObservableQueryCosmosBalanceRegistry = ObservableQueryCosmosBalanceRegistry;
+//# sourceMappingURL=balances.js.map
+
+/***/ }),
+
+/***/ 1441:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQuerySpendableBalances = exports.ObservableChainQuerySpendableBalances = void 0;
+const chain_query_1 = __webpack_require__(59);
+const unit_1 = __webpack_require__(26);
+const mobx_1 = __webpack_require__(5);
+class ObservableChainQuerySpendableBalances extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, address) {
+        super(kvStore, chainId, chainGetter, `/cosmos/bank/v1beta1/spendable_balances/${address}`);
+    }
+    get balances() {
+        if (!this.response) {
+            return [];
+        }
+        const res = [];
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        for (const bal of this.response.data.balances) {
+            const currency = chainInfo.findCurrency(bal.denom);
+            if (currency) {
+                res.push(new unit_1.CoinPretty(currency, bal.amount));
+            }
+        }
+        return res;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableChainQuerySpendableBalances.prototype, "balances", null);
+exports.ObservableChainQuerySpendableBalances = ObservableChainQuerySpendableBalances;
+class ObservableQuerySpendableBalances extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (denom) => {
+            return new ObservableChainQuerySpendableBalances(this.kvStore, this.chainId, this.chainGetter, denom);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getQueryBech32Address(bech32Address) {
+        return this.get(bech32Address);
+    }
+}
+exports.ObservableQuerySpendableBalances = ObservableQuerySpendableBalances;
+//# sourceMappingURL=spendable.js.map
+
+/***/ }),
+
+/***/ 1442:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1443:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1444:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1445:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1446:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CosmosQueriesImpl = exports.CosmosQueries = void 0;
+const account_1 = __webpack_require__(1231);
+const supply_1 = __webpack_require__(1230);
+const staking_1 = __webpack_require__(1229);
+const governance_1 = __webpack_require__(1225);
+const ibc_1 = __webpack_require__(1232);
+const sifchain_1 = __webpack_require__(1447);
+const balance_1 = __webpack_require__(1233);
+const iris_minting_1 = __webpack_require__(1448);
+const osmosis_1 = __webpack_require__(1449);
+const distribution_1 = __webpack_require__(1453);
+const status_1 = __webpack_require__(1455);
+const juno_1 = __webpack_require__(1457);
+exports.CosmosQueries = {
+    use(misesStore) {
+        return (queriesSetBase, kvStore, chainId, chainGetter) => {
+            return {
+                cosmos: new CosmosQueriesImpl(queriesSetBase, kvStore, chainId, chainGetter, misesStore),
+            };
+        };
+    },
+};
+class CosmosQueriesImpl {
+    constructor(base, kvStore, chainId, chainGetter, misesStore) {
+        this.queryRPCStatus = new status_1.ObservableQueryRPCStatus(kvStore, chainId, chainGetter);
+        this.querySifchainAPY = new sifchain_1.ObservableQuerySifchainLiquidityAPY(kvStore, chainId);
+        base.queryBalances.addBalanceRegistry(new balance_1.ObservableQueryCosmosBalanceRegistry(kvStore, misesStore));
+        this.queryAccount = new account_1.ObservableQueryAccount(kvStore, chainId, chainGetter);
+        this.querySpendableBalances = new balance_1.ObservableQuerySpendableBalances(kvStore, chainId, chainGetter);
+        this.queryMint = new supply_1.ObservableQueryMintingInfation(kvStore, chainId, chainGetter);
+        this.queryPool = new staking_1.ObservableQueryStakingPool(kvStore, chainId, chainGetter);
+        this.queryStakingParams = new staking_1.ObservableQueryStakingParams(kvStore, chainId, chainGetter);
+        this.querySupplyTotal = new supply_1.ObservableQuerySupplyTotal(kvStore, chainId, chainGetter);
+        const osmosisMintParams = new osmosis_1.ObservableQueryOsmosisMintParmas(kvStore, chainId, chainGetter);
+        this.queryDistributionParams = new distribution_1.ObservableQueryDistributionParams(kvStore, chainId, chainGetter);
+        this.queryInflation = new supply_1.ObservableQueryInflation(chainId, chainGetter, this.queryMint, this.queryPool, this.querySupplyTotal, new iris_minting_1.ObservableQueryIrisMintingInfation(kvStore, chainId, chainGetter), this.querySifchainAPY, new osmosis_1.ObservableQueryOsmosisEpochs(kvStore, chainId, chainGetter), new osmosis_1.ObservableQueryOsmosisEpochProvisions(kvStore, chainId, chainGetter, osmosisMintParams), osmosisMintParams, new juno_1.ObservableQueryJunoAnnualProvisions(kvStore, chainId, chainGetter), this.queryDistributionParams);
+        this.queryRewards = new staking_1.ObservableQueryRewards(kvStore, chainId, chainGetter, misesStore);
+        this.queryDelegations = new staking_1.ObservableQueryDelegations(kvStore, chainId, chainGetter, misesStore);
+        this.queryUnbondingDelegations = new staking_1.ObservableQueryUnbondingDelegations(kvStore, chainId, chainGetter, misesStore);
+        this.queryValidators = new staking_1.ObservableQueryValidators(kvStore, chainId, chainGetter);
+        this.queryGovernance = new governance_1.ObservableQueryGovernance(kvStore, chainId, chainGetter, this.queryPool);
+        this.queryProposalVote = new governance_1.ObservableQueryProposalVote(kvStore, chainId, chainGetter);
+        this.queryIBCClientState = new ibc_1.ObservableQueryIBCClientState(kvStore, chainId, chainGetter);
+        this.queryIBCChannel = new ibc_1.ObservableQueryIBCChannel(kvStore, chainId, chainGetter);
+        this.queryIBCDenomTrace = new ibc_1.ObservableQueryDenomTrace(kvStore, chainId, chainGetter);
+    }
+}
+exports.CosmosQueriesImpl = CosmosQueriesImpl;
+//# sourceMappingURL=queries.js.map
+
+/***/ }),
+
+/***/ 1447:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQuerySifchainLiquidityAPY = void 0;
+const common_1 = __webpack_require__(118);
+const axios_1 = __importDefault(__webpack_require__(60));
+const mobx_1 = __webpack_require__(5);
+class ObservableQuerySifchainLiquidityAPY extends common_1.ObservableQuery {
+    constructor(kvStore, chainId) {
+        const instance = axios_1.default.create({
+            baseURL: "https://data.sifchain.finance/",
+        });
+        super(kvStore, instance, `beta/validator/stakingRewards`);
+        this.chainId = chainId;
+        mobx_1.makeObservable(this);
+    }
+    canFetch() {
+        return this.chainId.startsWith("sifchain");
+    }
+    get liquidityAPY() {
+        if (this.response) {
+            return Number(this.response.data.rate) * 100;
+        }
+        return 0;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQuerySifchainLiquidityAPY.prototype, "liquidityAPY", null);
+exports.ObservableQuerySifchainLiquidityAPY = ObservableQuerySifchainLiquidityAPY;
+//# sourceMappingURL=sifchain.js.map
+
+/***/ }),
+
+/***/ 1448:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryIrisMintingInfation = void 0;
+const chain_query_1 = __webpack_require__(59);
+class ObservableQueryIrisMintingInfation extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/mint/params");
+    }
+}
+exports.ObservableQueryIrisMintingInfation = ObservableQueryIrisMintingInfation;
+//# sourceMappingURL=iris-minting.js.map
+
+/***/ }),
+
+/***/ 1449:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1450), exports);
+__exportStar(__webpack_require__(1451), exports);
+__exportStar(__webpack_require__(1452), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1450:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryOsmosisEpochs = exports.ObservableQueryOsmosisEpochsInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+class ObservableQueryOsmosisEpochsInner {
+    constructor(identifier, queryEpochs) {
+        this.identifier = identifier;
+        this.queryEpochs = queryEpochs;
+    }
+    get epoch() {
+        var _a;
+        return (_a = this.queryEpochs.response) === null || _a === void 0 ? void 0 : _a.data.epochs.find((epoch) => epoch.identifier === this.identifier);
+    }
+    get duration() {
+        if (!this.epoch) {
+            return 0;
+        }
+        // Actually, the date type of golang protobuf is returned by the unit of seconds.
+        return parseInt(this.epoch.duration.replace("s", ""));
+    }
+    get startTime() {
+        if (!this.epoch) {
+            return new Date(0);
+        }
+        return new Date(this.epoch.current_epoch_start_time);
+    }
+    get endTime() {
+        const startTime = this.startTime;
+        if (!this.duration) {
+            return startTime;
+        }
+        return new Date(startTime.getTime() + this.duration * 1000);
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryOsmosisEpochsInner.prototype, "epoch", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryOsmosisEpochsInner.prototype, "duration", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryOsmosisEpochsInner.prototype, "startTime", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryOsmosisEpochsInner.prototype, "endTime", null);
+exports.ObservableQueryOsmosisEpochsInner = ObservableQueryOsmosisEpochsInner;
+class ObservableQueryOsmosisEpochs extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/osmosis/epochs/v1beta1/epochs");
+        this.map = new Map();
+    }
+    getEpoch(identifier) {
+        if (!this.map.has(identifier)) {
+            const inner = new ObservableQueryOsmosisEpochsInner(identifier, this);
+            this.map.set(identifier, inner);
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.map.get(identifier);
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], ObservableQueryOsmosisEpochs.prototype, "map", void 0);
+exports.ObservableQueryOsmosisEpochs = ObservableQueryOsmosisEpochs;
+//# sourceMappingURL=epochs.js.map
+
+/***/ }),
+
+/***/ 1451:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryOsmosisEpochProvisions = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryOsmosisEpochProvisions extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, queryMintParmas) {
+        super(kvStore, chainId, chainGetter, `/osmosis/mint/v1beta1/epoch_provisions`);
+        this.queryMintParmas = queryMintParmas;
+        mobx_1.makeObservable(this);
+    }
+    get epochProvisions() {
+        if (!this.response || !this.queryMintParmas.mintDenom) {
+            return;
+        }
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const currency = chainInfo.currencies.find((cur) => cur.coinMinimalDenom === this.queryMintParmas.mintDenom);
+        if (!currency) {
+            throw new Error("Unknown currency");
+        }
+        let provision = this.response.data.epoch_provisions;
+        if (provision.includes(".")) {
+            provision = provision.slice(0, provision.indexOf("."));
+        }
+        return new unit_1.CoinPretty(currency, new unit_1.Int(provision));
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryOsmosisEpochProvisions.prototype, "epochProvisions", null);
+exports.ObservableQueryOsmosisEpochProvisions = ObservableQueryOsmosisEpochProvisions;
+//# sourceMappingURL=epoch-provisions.js.map
+
+/***/ }),
+
+/***/ 1452:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryOsmosisMintParmas = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryOsmosisMintParmas extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, `/osmosis/mint/v1beta1/params`);
+        mobx_1.makeObservable(this);
+    }
+    get mintDenom() {
+        var _a;
+        return (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.params.mint_denom;
+    }
+    get epochIdentifier() {
+        var _a;
+        return (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.params.epoch_identifier;
+    }
+    get distributionProportions() {
+        if (!this.response) {
+            return {
+                staking: new unit_1.Dec(0),
+                poolIncentives: new unit_1.Dec(0),
+                developerRewards: new unit_1.Dec(0),
+            };
+        }
+        return {
+            staking: new unit_1.Dec(this.response.data.params.distribution_proportions.staking),
+            poolIncentives: new unit_1.Dec(this.response.data.params.distribution_proportions.pool_incentives),
+            developerRewards: new unit_1.Dec(this.response.data.params.distribution_proportions.developer_rewards),
+        };
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryOsmosisMintParmas.prototype, "distributionProportions", null);
+exports.ObservableQueryOsmosisMintParmas = ObservableQueryOsmosisMintParmas;
+//# sourceMappingURL=params.js.map
+
+/***/ }),
+
+/***/ 1453:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1454), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1454:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryDistributionParams = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryDistributionParams extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/cosmos/distribution/v1beta1/params");
+        mobx_1.makeObservable(this);
+    }
+    get communityTax() {
+        if (!this.response) {
+            return new unit_1.RatePretty(0);
+        }
+        return new unit_1.RatePretty(this.response.data.params.community_tax);
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryDistributionParams.prototype, "communityTax", null);
+exports.ObservableQueryDistributionParams = ObservableQueryDistributionParams;
+//# sourceMappingURL=params.js.map
+
+/***/ }),
+
+/***/ 1455:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryRPCStatus = void 0;
+const chain_rpc_query_1 = __webpack_require__(1456);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryRPCStatus extends chain_rpc_query_1.ObservableChainQueryRPC {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/status");
+    }
+    get network() {
+        if (!this.response) {
+            return undefined;
+        }
+        return this.response.data.result.node_info.network;
+    }
+    get latestBlockHeight() {
+        if (!this.response) {
+            return undefined;
+        }
+        return new unit_1.Int(this.response.data.result.sync_info.latest_block_height);
+    }
+}
+exports.ObservableQueryRPCStatus = ObservableQueryRPCStatus;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1456:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableChainQueryRPCMap = exports.ObservableChainQueryRPC = void 0;
+const common_1 = __webpack_require__(118);
+const axios_1 = __importDefault(__webpack_require__(60));
+const mobx_1 = __webpack_require__(5);
+const common_2 = __webpack_require__(118);
+class ObservableChainQueryRPC extends common_1.ObservableQuery {
+    constructor(kvStore, chainId, chainGetter, url) {
+        const chainInfo = chainGetter.getChain(chainId);
+        const instance = axios_1.default.create(Object.assign({
+            baseURL: chainInfo.rpc,
+        }, chainInfo.rpcConfig));
+        super(kvStore, instance, url);
+        this._chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    get instance() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        return axios_1.default.create(Object.assign({
+            baseURL: chainInfo.rpc,
+        }, chainInfo.rpcConfig));
+    }
+    get chainId() {
+        return this._chainId;
+    }
+}
+__decorate([
+    mobx_1.override
+], ObservableChainQueryRPC.prototype, "instance", null);
+exports.ObservableChainQueryRPC = ObservableChainQueryRPC;
+class ObservableChainQueryRPCMap extends common_2.HasMapStore {
+    constructor(kvStore, chainId, chainGetter, creater) {
+        super(creater);
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+}
+exports.ObservableChainQueryRPCMap = ObservableChainQueryRPCMap;
+//# sourceMappingURL=chain-rpc-query.js.map
+
+/***/ }),
+
+/***/ 1457:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1458), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1458:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryJunoAnnualProvisions = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+class ObservableQueryJunoAnnualProvisions extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, "/cosmos/mint/v1beta1/annual_provisions");
+        mobx_1.makeObservable(this);
+    }
+    get annualProvisions() {
+        if (!this.response) {
+            return;
+        }
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        return new unit_1.CoinPretty(chainInfo.stakeCurrency, new unit_1.Dec(this.response.data.annual_provisions));
+    }
+    get annualProvisionsRaw() {
+        if (!this.response) {
+            return;
+        }
+        return new unit_1.Dec(this.response.data.annual_provisions);
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryJunoAnnualProvisions.prototype, "annualProvisions", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryJunoAnnualProvisions.prototype, "annualProvisionsRaw", null);
+exports.ObservableQueryJunoAnnualProvisions = ObservableQueryJunoAnnualProvisions;
+//# sourceMappingURL=annual-provisions.js.map
+
+/***/ }),
+
+/***/ 1459:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CosmWasm = void 0;
+__exportStar(__webpack_require__(1234), exports);
+exports.CosmWasm = __importStar(__webpack_require__(1460));
+__exportStar(__webpack_require__(1461), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1460:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1461:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CosmwasmQueriesImpl = exports.CosmwasmQueries = void 0;
+const cw20_contract_info_1 = __webpack_require__(1462);
+const cw20_balance_1 = __webpack_require__(1234);
+exports.CosmwasmQueries = {
+    use() {
+        return (queriesSetBase, kvStore, chainId, chainGetter) => {
+            return {
+                cosmwasm: new CosmwasmQueriesImpl(queriesSetBase, kvStore, chainId, chainGetter),
+            };
+        };
+    },
+};
+class CosmwasmQueriesImpl {
+    constructor(base, kvStore, chainId, chainGetter) {
+        base.queryBalances.addBalanceRegistry(new cw20_balance_1.ObservableQueryCw20BalanceRegistry(kvStore));
+        this.querycw20ContractInfo = new cw20_contract_info_1.ObservableQueryCw20ContractInfo(kvStore, chainId, chainGetter);
+    }
+}
+exports.CosmwasmQueriesImpl = CosmwasmQueriesImpl;
+//# sourceMappingURL=queries.js.map
+
+/***/ }),
+
+/***/ 1462:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryCw20ContractInfo = exports.ObservableQueryCw20ContactInfoInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const contract_query_1 = __webpack_require__(1235);
+class ObservableQueryCw20ContactInfoInner extends contract_query_1.ObservableCosmwasmContractChainQuery {
+    constructor(kvStore, chainId, chainGetter, contractAddress) {
+        super(kvStore, chainId, chainGetter, contractAddress, { token_info: {} });
+        this.contractAddress = contractAddress;
+    }
+    get tokenInfo() {
+        if (!this.response || !this.response.data) {
+            return undefined;
+        }
+        return this.response.data;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryCw20ContactInfoInner.prototype, "tokenInfo", null);
+exports.ObservableQueryCw20ContactInfoInner = ObservableQueryCw20ContactInfoInner;
+class ObservableQueryCw20ContractInfo extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (contractAddress) => {
+            return new ObservableQueryCw20ContactInfoInner(this.kvStore, this.chainId, this.chainGetter, contractAddress);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getQueryContract(contractAddress) {
+        return this.get(contractAddress);
+    }
+}
+exports.ObservableQueryCw20ContractInfo = ObservableQueryCw20ContractInfo;
+//# sourceMappingURL=cw20-contract-info.js.map
+
+/***/ }),
+
+/***/ 1463:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SecretWasm = void 0;
+__exportStar(__webpack_require__(1236), exports);
+__exportStar(__webpack_require__(1237), exports);
+__exportStar(__webpack_require__(1239), exports);
+exports.SecretWasm = __importStar(__webpack_require__(1464));
+__exportStar(__webpack_require__(1465), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1464:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1465:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SecretQueriesImpl = exports.SecretQueries = void 0;
+const contract_hash_1 = __webpack_require__(1236);
+const secret20_contract_info_1 = __webpack_require__(1466);
+const secret20_balance_1 = __webpack_require__(1237);
+exports.SecretQueries = {
+    use(options) {
+        return (queriesSetBase, kvStore, chainId, chainGetter) => {
+            return {
+                secret: new SecretQueriesImpl(queriesSetBase, kvStore, chainId, chainGetter, options.apiGetter),
+            };
+        };
+    },
+};
+class SecretQueriesImpl {
+    constructor(base, kvStore, chainId, chainGetter, apiGetter) {
+        this.querySecretContractCodeHash = new contract_hash_1.ObservableQuerySecretContractCodeHash(kvStore, chainId, chainGetter);
+        base.queryBalances.addBalanceRegistry(new secret20_balance_1.ObservableQuerySecret20BalanceRegistry(kvStore, apiGetter, this.querySecretContractCodeHash));
+        this.querySecret20ContractInfo = new secret20_contract_info_1.ObservableQuerySecret20ContractInfo(kvStore, chainId, chainGetter, apiGetter, this.querySecretContractCodeHash);
+    }
+}
+exports.SecretQueriesImpl = SecretQueriesImpl;
+//# sourceMappingURL=queries.js.map
+
+/***/ }),
+
+/***/ 1466:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQuerySecret20ContractInfo = exports.ObservableQuerySecret20ContactInfoInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const mobx_1 = __webpack_require__(5);
+const contract_query_1 = __webpack_require__(1238);
+class ObservableQuerySecret20ContactInfoInner extends contract_query_1.ObservableSecretContractChainQuery {
+    constructor(kvStore, chainId, chainGetter, apiGetter, contractAddress, querySecretContractCodeHash) {
+        // Don't need to set the url initially because it can't request without encyption.
+        super(kvStore, chainId, chainGetter, apiGetter, contractAddress, { token_info: {} }, querySecretContractCodeHash);
+        this.apiGetter = apiGetter;
+        this.contractAddress = contractAddress;
+        this.querySecretContractCodeHash = querySecretContractCodeHash;
+        mobx_1.makeObservable(this);
+    }
+    get error() {
+        return (super.error ||
+            this.querySecretContractCodeHash.getQueryContract(this.contractAddress)
+                .error);
+    }
+    get tokenInfo() {
+        if (!this.response) {
+            return undefined;
+        }
+        return this.response.data.token_info;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQuerySecret20ContactInfoInner.prototype, "tokenInfo", null);
+exports.ObservableQuerySecret20ContactInfoInner = ObservableQuerySecret20ContactInfoInner;
+class ObservableQuerySecret20ContractInfo extends chain_query_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter, apiGetter, querySecretContractCodeHash) {
+        super(kvStore, chainId, chainGetter, (contractAddress) => {
+            return new ObservableQuerySecret20ContactInfoInner(this.kvStore, this.chainId, this.chainGetter, this.apiGetter, contractAddress, querySecretContractCodeHash);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+        this.apiGetter = apiGetter;
+        this.querySecretContractCodeHash = querySecretContractCodeHash;
+    }
+    getQueryContract(contractAddress) {
+        return this.get(contractAddress);
+    }
+}
+exports.ObservableQuerySecret20ContractInfo = ObservableQuerySecret20ContractInfo;
+//# sourceMappingURL=secret20-contract-info.js.map
+
+/***/ }),
+
+/***/ 1467:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TxFeesBaseDenom = exports.TxFeesSpotPriceByDenom = exports.TxFeesFeeTokens = void 0;
+__exportStar(__webpack_require__(1240), exports);
+__exportStar(__webpack_require__(1241), exports);
+__exportStar(__webpack_require__(1242), exports);
+exports.TxFeesFeeTokens = __importStar(__webpack_require__(1468));
+exports.TxFeesSpotPriceByDenom = __importStar(__webpack_require__(1469));
+exports.TxFeesBaseDenom = __importStar(__webpack_require__(1470));
+__exportStar(__webpack_require__(1471), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1468:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1469:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1470:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1471:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OsmosisQueriesImpl = exports.OsmosisQueries = void 0;
+const fee_tokens_1 = __webpack_require__(1240);
+const spot_price_by_denom_1 = __webpack_require__(1241);
+const base_denom_1 = __webpack_require__(1242);
+exports.OsmosisQueries = {
+    use() {
+        return (queriesSetBase, kvStore, chainId, chainGetter) => {
+            return {
+                osmosis: new OsmosisQueriesImpl(queriesSetBase, kvStore, chainId, chainGetter),
+            };
+        };
+    },
+};
+class OsmosisQueriesImpl {
+    constructor(_, kvStore, chainId, chainGetter) {
+        this.queryTxFeesFeeTokens = new fee_tokens_1.ObservableQueryTxFeesFeeTokens(kvStore, chainId, chainGetter);
+        this.queryTxFeesSpotPriceByDenom = new spot_price_by_denom_1.ObservableQueryTxFeesSpotPriceByDenom(kvStore, chainId, chainGetter);
+        this.queryTxFeesBaseDenom = new base_denom_1.ObservableQueryTxFeesBaseDenom(kvStore, chainId, chainGetter);
+    }
+}
+exports.OsmosisQueriesImpl = OsmosisQueriesImpl;
+//# sourceMappingURL=queries.js.map
+
+/***/ }),
+
+/***/ 1472:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ChainStore = exports.ChainInfoInner = void 0;
+const mobx_1 = __webpack_require__(5);
+const cosmos_1 = __webpack_require__(16);
+const mobx_utils_1 = __webpack_require__(200);
+class ChainInfoInner {
+    constructor(chainInfo) {
+        this.unknownDenoms = [];
+        this.registeredCurrencies = [];
+        /**
+         * 위의 unknownDenoms에 값이 들어오면 밑의 배열의 함수를 순차적으로 실행한다.
+         * 만약 Currency 반환하면 그 registrar이 그 denom을 처리했다고 판단하고 순회를 멈춘다.
+         * 또한 AppCurrency가 아니라 [AppCurrency, boolean]의 튜플을 반활할 수 있는데
+         * 튜플을 반활할 경우 뒤의 boolean이 true일 때우(committed)까지 계속 observe한다.
+         * IBC 토큰을 처리하는 경우처럼 쿼리가 다 되기 전에 raw한 currency를 반환할 필요가 있는 경우처럼
+         * 등록된 currency가 나중에 replace될 수 있는 경우에 사용할 수 있다.
+         */
+        this.currencyRegistrars = [];
+        this._chainInfo = chainInfo;
+        mobx_1.makeObservable(this);
+        mobx_utils_1.keepAlive(this, "currencyMap");
+    }
+    getCurrencyFromRegistrars(coinMinimalDenom) {
+        for (let i = 0; i < this.currencyRegistrars.length; i++) {
+            const registrar = this.currencyRegistrars[i];
+            const currency = registrar(coinMinimalDenom);
+            if (currency) {
+                // AppCurrency일 경우
+                if ("coinMinimalDenom" in currency) {
+                    return [currency, true];
+                }
+                return currency;
+            }
+        }
+        return undefined;
+    }
+    /*
+     * 해당되는 denom의 currency를 모를 때 이 메소드를 사용해서 등록을 요청할 수 있다.
+     * 이미 등록되어 있거나 등록을 시도 중이면 아무 행동도 하지 않는.
+     * 예를들어 네이티브 balance 쿼리에서 모르는 denom이 나오거나
+     * IBC denom의 등록을 요청할 때 쓸 수 있다.
+     */
+    addUnknownCurrencies(...coinMinimalDenoms) {
+        for (const coinMinimalDenom of coinMinimalDenoms) {
+            if (this.unknownDenoms.find((denom) => denom === coinMinimalDenom)) {
+                continue;
+            }
+            if (this.currencyMap.has(coinMinimalDenom)) {
+                continue;
+            }
+            this.unknownDenoms.push(coinMinimalDenom);
+            const disposer = mobx_1.autorun(() => {
+                const registered = this.getCurrencyFromRegistrars(coinMinimalDenom);
+                if (registered) {
+                    const [currency, committed] = registered;
+                    mobx_1.runInAction(() => {
+                        if (currency) {
+                            const index = this.unknownDenoms.findIndex((denom) => denom === coinMinimalDenom);
+                            if (index >= 0) {
+                                this.unknownDenoms.splice(index, 1);
+                            }
+                            this.addOrReplaceCurrency(currency);
+                        }
+                        if (committed) {
+                            disposer();
+                        }
+                    });
+                }
+                else {
+                    disposer();
+                }
+            });
+        }
+    }
+    registerCurrencyRegistrar(registrar) {
+        this.currencyRegistrars.push(registrar);
+    }
+    setChainInfo(chainInfo) {
+        this._chainInfo = chainInfo;
+    }
+    get raw() {
+        return this._chainInfo;
+    }
+    get chainId() {
+        return this._chainInfo.chainId;
+    }
+    get currencies() {
+        return this._chainInfo.currencies.concat(this.registeredCurrencies);
+    }
+    get currencyMap() {
+        const result = new Map();
+        for (const currency of this.currencies) {
+            result.set(currency.coinMinimalDenom, currency);
+        }
+        return result;
+    }
+    addCurrencies(...currencies) {
+        const currencyMap = this.currencyMap;
+        for (const currency of currencies) {
+            if (!currencyMap.has(currency.coinMinimalDenom)) {
+                this.registeredCurrencies.push(currency);
+            }
+        }
+    }
+    removeCurrencies(...coinMinimalDenoms) {
+        const map = new Map();
+        for (const coinMinimalDenom of coinMinimalDenoms) {
+            map.set(coinMinimalDenom, true);
+        }
+        this.registeredCurrencies = this.registeredCurrencies.filter((currency) => !map.get(currency.coinMinimalDenom));
+    }
+    /**
+     * Currency를 반환한다.
+     * 만약 해당 Currency가 없다면 unknown currency에 추가한다.
+     * @param coinMinimalDenom
+     */
+    findCurrency(coinMinimalDenom) {
+        if (this.currencyMap.has(coinMinimalDenom)) {
+            return this.currencyMap.get(coinMinimalDenom);
+        }
+        this.addUnknownCurrencies(coinMinimalDenom);
+        // Unknown denom can be registered synchronously in some cases.
+        // For this case, re-try to get currency.
+        if (this.currencyMap.has(coinMinimalDenom)) {
+            return this.currencyMap.get(coinMinimalDenom);
+        }
+    }
+    /**
+     * findCurrency와 비슷하지만 해당하는 currency가 존재하지 않을 경우 raw currency를 반환한다.
+     * @param coinMinimalDenom
+     */
+    forceFindCurrency(coinMinimalDenom) {
+        const currency = this.findCurrency(coinMinimalDenom);
+        if (!currency) {
+            return {
+                coinMinimalDenom,
+                coinDenom: coinMinimalDenom,
+                coinDecimals: 0,
+            };
+        }
+        return currency;
+    }
+    addOrReplaceCurrency(currency) {
+        if (this.currencyMap.has(currency.coinMinimalDenom)) {
+            const index = this.registeredCurrencies.findIndex((cur) => cur.coinMinimalDenom === currency.coinMinimalDenom);
+            if (index >= 0) {
+                this.registeredCurrencies.splice(index, 1, currency);
+            }
+        }
+        else {
+            this.registeredCurrencies.push(currency);
+        }
+    }
+    get stakeCurrency() {
+        return this.raw.stakeCurrency;
+    }
+    get alternativeBIP44s() {
+        return this.raw.alternativeBIP44s;
+    }
+    get bech32Config() {
+        return this.raw.bech32Config;
+    }
+    get beta() {
+        return this.raw.beta;
+    }
+    get bip44() {
+        return this.raw.bip44;
+    }
+    get chainName() {
+        return this.raw.chainName;
+    }
+    get coinType() {
+        return this.raw.coinType;
+    }
+    get features() {
+        return this.raw.features;
+    }
+    get feeCurrencies() {
+        return this.raw.feeCurrencies;
+    }
+    get rest() {
+        return this.raw.rest;
+    }
+    get restConfig() {
+        return this.raw.restConfig;
+    }
+    get rpc() {
+        return this.raw.rpc;
+    }
+    get rpcConfig() {
+        return this.raw.rpcConfig;
+    }
+    get walletUrl() {
+        return this.raw.walletUrl;
+    }
+    get walletUrlForStaking() {
+        return this.raw.walletUrlForStaking;
+    }
+}
+__decorate([
+    mobx_1.observable.ref
+], ChainInfoInner.prototype, "_chainInfo", void 0);
+__decorate([
+    mobx_1.observable.shallow
+], ChainInfoInner.prototype, "unknownDenoms", void 0);
+__decorate([
+    mobx_1.observable.shallow
+], ChainInfoInner.prototype, "registeredCurrencies", void 0);
+__decorate([
+    mobx_1.observable
+], ChainInfoInner.prototype, "currencyRegistrars", void 0);
+__decorate([
+    mobx_1.action
+], ChainInfoInner.prototype, "addUnknownCurrencies", null);
+__decorate([
+    mobx_1.action
+], ChainInfoInner.prototype, "registerCurrencyRegistrar", null);
+__decorate([
+    mobx_1.action
+], ChainInfoInner.prototype, "setChainInfo", null);
+__decorate([
+    mobx_1.computed
+], ChainInfoInner.prototype, "currencyMap", null);
+__decorate([
+    mobx_1.action
+], ChainInfoInner.prototype, "addCurrencies", null);
+__decorate([
+    mobx_1.action
+], ChainInfoInner.prototype, "removeCurrencies", null);
+__decorate([
+    mobx_1.action
+], ChainInfoInner.prototype, "addOrReplaceCurrency", null);
+exports.ChainInfoInner = ChainInfoInner;
+class ChainStore {
+    constructor(embedChainInfos) {
+        this.setChainInfoHandlers = [];
+        this._cachedChainInfosMap = new Map();
+        this.setChainInfos(embedChainInfos);
+        mobx_1.makeObservable(this);
+    }
+    get chainInfos() {
+        return this._chainInfos;
+    }
+    getChain(chainId) {
+        const chainIdentifier = cosmos_1.ChainIdHelper.parse(chainId);
+        const find = this.chainInfos.find((info) => {
+            return (cosmos_1.ChainIdHelper.parse(info.chainId).identifier ===
+                chainIdentifier.identifier);
+        });
+        if (!find) {
+            throw new Error(`Unknown chain info: ${chainId}`);
+        }
+        return find;
+    }
+    hasChain(chainId) {
+        const chainIdentifier = cosmos_1.ChainIdHelper.parse(chainId);
+        const find = this.chainInfos.find((info) => {
+            return (cosmos_1.ChainIdHelper.parse(info.chainId).identifier ===
+                chainIdentifier.identifier);
+        });
+        return find != null;
+    }
+    addSetChainInfoHandler(handler) {
+        this.setChainInfoHandlers.push(handler);
+        for (const chainInfo of this.chainInfos) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const cached = this._cachedChainInfosMap.get(chainInfo.chainId);
+            handler(cached);
+        }
+    }
+    setChainInfos(chainInfos) {
+        const chainInfoInners = [];
+        for (const chainInfo of chainInfos) {
+            if (this._cachedChainInfosMap.has(chainInfo.chainId)) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                const cached = this._cachedChainInfosMap.get(chainInfo.chainId);
+                cached.setChainInfo(chainInfo);
+                chainInfoInners.push(cached);
+            }
+            else {
+                const chainInfoInner = new ChainInfoInner(chainInfo);
+                this._cachedChainInfosMap.set(chainInfo.chainId, chainInfoInner);
+                chainInfoInners.push(chainInfoInner);
+                for (const handler of this.setChainInfoHandlers) {
+                    handler(chainInfoInner);
+                }
+            }
+        }
+        this._chainInfos = chainInfoInners;
+    }
+}
+__decorate([
+    mobx_1.observable.ref
+], ChainStore.prototype, "_chainInfos", void 0);
+__decorate([
+    mobx_1.action
+], ChainStore.prototype, "setChainInfos", null);
+exports.ChainStore = ChainStore;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1473:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1474), exports);
+__exportStar(__webpack_require__(1480), exports);
+__exportStar(__webpack_require__(1481), exports);
+__exportStar(__webpack_require__(1482), exports);
+__exportStar(__webpack_require__(1483), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1474:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1475), exports);
+__exportStar(__webpack_require__(1477), exports);
+__exportStar(__webpack_require__(1478), exports);
+__exportStar(__webpack_require__(1479), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1475:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.InteractionStore = void 0;
+const router_1 = __webpack_require__(3);
+const background_1 = __webpack_require__(54);
+const mobx_1 = __webpack_require__(5);
+class InteractionStore {
+    constructor(router, msgRequester) {
+        this.router = router;
+        this.msgRequester = msgRequester;
+        this.datas = new Map();
+        this.events = new Map();
+        mobx_1.makeObservable(this);
+        const service = new background_1.InteractionForegroundService(this);
+        background_1.interactionForegroundInit(router, service);
+    }
+    getDatas(type) {
+        var _a;
+        return (_a = mobx_1.toJS(this.datas.get(type))) !== null && _a !== void 0 ? _a : [];
+    }
+    getEvents(type) {
+        var _a;
+        return ((_a = mobx_1.toJS(this.events.get(type))) !== null && _a !== void 0 ? _a : []);
+    }
+    onInteractionDataReceived(data) {
+        if (!this.datas.has(data.type)) {
+            this.datas.set(data.type, mobx_1.observable.array([], {
+                deep: false,
+            }));
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.datas.get(data.type).push(data);
+    }
+    onEventDataReceived(data) {
+        if (!this.events.has(data.type)) {
+            this.events.set(data.type, mobx_1.observable.array([], {
+                deep: false,
+            }));
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.events.get(data.type).push(data);
+    }
+    *approve(type, id, result) {
+        this.removeData(type, id);
+        yield this.msgRequester.sendMessage(router_1.BACKGROUND_PORT, new background_1.ApproveInteractionMsg(id, result));
+    }
+    /**
+     * Approve the interaction without removing the data on the store.
+     * Actually, this method is used for the sign interaction to wait the actual signing ends.
+     * You should make sure that remove the data manually.
+     * @param id
+     * @param result
+     */
+    *approveWithoutRemovingData(id, result) {
+        yield this.msgRequester.sendMessage(router_1.BACKGROUND_PORT, new background_1.ApproveInteractionMsg(id, result));
+    }
+    *reject(type, id) {
+        this.removeData(type, id);
+        yield this.msgRequester.sendMessage(router_1.BACKGROUND_PORT, new background_1.RejectInteractionMsg(id));
+    }
+    *rejectAll(type) {
+        const datas = this.getDatas(type);
+        for (const data of datas) {
+            yield this.reject(data.type, data.id);
+        }
+    }
+    removeData(type, id) {
+        if (this.datas.has(type)) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const find = this.datas.get(type).find((data) => {
+                return data.id === id;
+            });
+            if (find) {
+                this.datas.get(type).remove(find);
+            }
+        }
+    }
+    clearEvent(type) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        if (this.events.has(type) && this.events.get(type).length > 0) {
+            this.events.set(type, mobx_1.observable.array([], {
+                deep: false,
+            }));
+        }
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], InteractionStore.prototype, "datas", void 0);
+__decorate([
+    mobx_1.observable.shallow
+], InteractionStore.prototype, "events", void 0);
+__decorate([
+    mobx_1.action
+], InteractionStore.prototype, "onInteractionDataReceived", null);
+__decorate([
+    mobx_1.action
+], InteractionStore.prototype, "onEventDataReceived", null);
+__decorate([
+    mobx_1.flow
+], InteractionStore.prototype, "approve", null);
+__decorate([
+    mobx_1.flow
+], InteractionStore.prototype, "approveWithoutRemovingData", null);
+__decorate([
+    mobx_1.flow
+], InteractionStore.prototype, "reject", null);
+__decorate([
+    mobx_1.flow
+], InteractionStore.prototype, "rejectAll", null);
+__decorate([
+    mobx_1.action
+], InteractionStore.prototype, "removeData", null);
+__decorate([
+    mobx_1.action
+], InteractionStore.prototype, "clearEvent", null);
+exports.InteractionStore = InteractionStore;
+//# sourceMappingURL=interaction.js.map
+
+/***/ }),
+
+/***/ 1477:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PermissionStore = exports.BasicAccessPermissionInnerStore = exports.Secret20ViewingKeyPermissionInnerStore = void 0;
+const background_1 = __webpack_require__(54);
+const mobx_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(118);
+const router_1 = __webpack_require__(3);
+const common_2 = __webpack_require__(27);
+class Secret20ViewingKeyPermissionInnerStore {
+    constructor(chainId, contractAddress, requester) {
+        this.chainId = chainId;
+        this.contractAddress = contractAddress;
+        this.requester = requester;
+        this._origins = [];
+        mobx_1.makeObservable(this);
+        this.refreshOrigins();
+    }
+    get origins() {
+        return this._origins;
+    }
+    *removeOrigin(origin) {
+        yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.RemovePermissionOrigin(this.chainId, background_1.getSecret20ViewingKeyPermissionType(this.contractAddress), origin));
+        yield this.refreshOrigins();
+    }
+    *refreshOrigins() {
+        this._origins = yield* common_2.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.GetPermissionOriginsMsg(this.chainId, background_1.getSecret20ViewingKeyPermissionType(this.contractAddress))));
+    }
+}
+__decorate([
+    mobx_1.observable.ref
+], Secret20ViewingKeyPermissionInnerStore.prototype, "_origins", void 0);
+__decorate([
+    mobx_1.flow
+], Secret20ViewingKeyPermissionInnerStore.prototype, "removeOrigin", null);
+__decorate([
+    mobx_1.flow
+], Secret20ViewingKeyPermissionInnerStore.prototype, "refreshOrigins", null);
+exports.Secret20ViewingKeyPermissionInnerStore = Secret20ViewingKeyPermissionInnerStore;
+class BasicAccessPermissionInnerStore {
+    constructor(chainId, requester) {
+        this.chainId = chainId;
+        this.requester = requester;
+        this._origins = [];
+        mobx_1.makeObservable(this);
+        this.refreshOrigins();
+    }
+    get origins() {
+        return this._origins;
+    }
+    *addOrigin(origin) {
+        yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.AddPermissionOrigin(this.chainId, background_1.getBasicAccessPermissionType(), origin));
+        yield this.refreshOrigins();
+    }
+    *removeOrigin(origin) {
+        yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.RemovePermissionOrigin(this.chainId, background_1.getBasicAccessPermissionType(), origin));
+        yield this.refreshOrigins();
+    }
+    *refreshOrigins() {
+        this._origins = yield* common_2.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.GetPermissionOriginsMsg(this.chainId, background_1.getBasicAccessPermissionType())));
+    }
+}
+__decorate([
+    mobx_1.observable.ref
+], BasicAccessPermissionInnerStore.prototype, "_origins", void 0);
+__decorate([
+    mobx_1.flow
+], BasicAccessPermissionInnerStore.prototype, "addOrigin", null);
+__decorate([
+    mobx_1.flow
+], BasicAccessPermissionInnerStore.prototype, "removeOrigin", null);
+__decorate([
+    mobx_1.flow
+], BasicAccessPermissionInnerStore.prototype, "refreshOrigins", null);
+exports.BasicAccessPermissionInnerStore = BasicAccessPermissionInnerStore;
+class PermissionStore extends common_1.HasMapStore {
+    constructor(interactionStore, requester) {
+        super((key) => {
+            const data = JSON.parse(key);
+            if (data.type === "basicAccess") {
+                return new BasicAccessPermissionInnerStore(data.chainId, this.requester);
+            }
+            else {
+                return new Secret20ViewingKeyPermissionInnerStore(data.chainId, data.contractAddress, this.requester);
+            }
+        });
+        this.interactionStore = interactionStore;
+        this.requester = requester;
+        this._isLoading = false;
+        mobx_1.makeObservable(this);
+    }
+    getBasicAccessInfo(chainId) {
+        const key = JSON.stringify({
+            type: "basicAccess",
+            chainId,
+            contractAddress: "",
+        });
+        return this.get(key);
+    }
+    getOriginPermittedChains(origin, type) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.GetOriginPermittedChainsMsg(origin, type));
+        });
+    }
+    getSecret20ViewingKeyAccessInfo(chainId, contractAddress) {
+        const key = JSON.stringify({
+            type: "viewingKey",
+            chainId,
+            contractAddress,
+        });
+        return this.get(key);
+    }
+    get waitingBasicAccessPermissions() {
+        const datas = this.waitingDatas;
+        const result = [];
+        for (const data of datas) {
+            if (background_1.isBasicAccessPermissionType(data.data.type)) {
+                result.push({
+                    id: data.id,
+                    data: {
+                        chainIds: data.data.chainIds,
+                        origins: data.data.origins,
+                    },
+                });
+            }
+        }
+        return result;
+    }
+    get waitingSecret20ViewingKeyAccessPermissions() {
+        const datas = this.waitingDatas;
+        const result = [];
+        for (const data of datas) {
+            if (background_1.isSecret20ViewingKeyPermissionType(data.data.type)) {
+                result.push({
+                    id: data.id,
+                    data: {
+                        chainIds: data.data.chainIds,
+                        contractAddress: background_1.splitSecret20ViewingKeyPermissionType(data.data.type),
+                        origins: data.data.origins,
+                    },
+                });
+            }
+        }
+        return result;
+    }
+    get waitingDatas() {
+        return this.interactionStore.getDatas(background_1.INTERACTION_TYPE_PERMISSION);
+    }
+    *approve(id) {
+        this._isLoading = true;
+        try {
+            yield this.interactionStore.approve(background_1.INTERACTION_TYPE_PERMISSION, id, {});
+        }
+        finally {
+            this._isLoading = false;
+        }
+    }
+    *reject(id) {
+        this._isLoading = true;
+        try {
+            yield this.interactionStore.reject(background_1.INTERACTION_TYPE_PERMISSION, id);
+        }
+        finally {
+            this._isLoading = false;
+        }
+    }
+    *rejectAll() {
+        this._isLoading = true;
+        try {
+            yield this.interactionStore.rejectAll(background_1.INTERACTION_TYPE_PERMISSION);
+        }
+        finally {
+            this._isLoading = false;
+        }
+    }
+    get isLoading() {
+        return this._isLoading;
+    }
+}
+__decorate([
+    mobx_1.observable
+], PermissionStore.prototype, "_isLoading", void 0);
+__decorate([
+    mobx_1.computed
+], PermissionStore.prototype, "waitingBasicAccessPermissions", null);
+__decorate([
+    mobx_1.computed
+], PermissionStore.prototype, "waitingSecret20ViewingKeyAccessPermissions", null);
+__decorate([
+    mobx_1.flow
+], PermissionStore.prototype, "approve", null);
+__decorate([
+    mobx_1.flow
+], PermissionStore.prototype, "reject", null);
+__decorate([
+    mobx_1.flow
+], PermissionStore.prototype, "rejectAll", null);
+exports.PermissionStore = PermissionStore;
+//# sourceMappingURL=permission.js.map
+
+/***/ }),
+
+/***/ 1478:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SignInteractionStore = void 0;
+const mobx_1 = __webpack_require__(5);
+const cosmos_1 = __webpack_require__(16);
+class SignInteractionStore {
+    constructor(interactionStore) {
+        this.interactionStore = interactionStore;
+        this._isLoading = false;
+        mobx_1.makeObservable(this);
+        mobx_1.autorun(() => {
+            // Reject all interactions that is not first one.
+            // This interaction can have only one interaction at once.
+            const datas = this.waitingDatas.slice();
+            if (datas.length > 1) {
+                for (let i = 1; i < datas.length; i++) {
+                    this.rejectWithId(datas[i].id);
+                }
+            }
+        });
+    }
+    get waitingDatas() {
+        return this.interactionStore.getDatas("request-sign");
+    }
+    get waitingData() {
+        const datas = this.waitingDatas;
+        if (datas.length === 0) {
+            return undefined;
+        }
+        const data = datas[0];
+        const wrapper = data.data.mode === "amino"
+            ? cosmos_1.SignDocWrapper.fromAminoSignDoc(data.data.signDoc)
+            : cosmos_1.SignDocWrapper.fromDirectSignDocBytes(data.data.signDocBytes);
+        return {
+            id: data.id,
+            type: data.type,
+            isInternal: data.isInternal,
+            data: {
+                chainId: data.data.chainId,
+                msgOrigin: data.data.msgOrigin,
+                signer: data.data.signer,
+                signDocWrapper: wrapper,
+                signOptions: data.data.signOptions,
+                isADR36WithString: "isADR36WithString" in data.data
+                    ? data.data.isADR36WithString
+                    : undefined,
+                ethSignType: "ethSignType" in data.data ? data.data.ethSignType : undefined,
+            },
+        };
+    }
+    isEnded() {
+        return this.interactionStore.getEvents("request-sign-end").length > 0;
+    }
+    clearEnded() {
+        this.interactionStore.clearEvent("request-sign-end");
+    }
+    waitEnd() {
+        if (this.isEnded()) {
+            console.log("isEnded");
+            return Promise.resolve();
+        }
+        return new Promise((resolve) => {
+            const disposer = mobx_1.autorun(() => {
+                if (this.isEnded()) {
+                    console.log("disposer-isEnded");
+                    resolve();
+                    this.clearEnded();
+                    disposer();
+                }
+                else {
+                    console.log(this.interactionStore.getEvents("request-sign-end"));
+                }
+            });
+        });
+    }
+    *approveAndWaitEnd(newSignDocWrapper) {
+        if (this.waitingDatas.length === 0) {
+            return;
+        }
+        console.log(this.waitingDatas);
+        this._isLoading = true;
+        const id = this.waitingDatas[0].id;
+        try {
+            const newSignDoc = newSignDocWrapper.mode === "amino"
+                ? newSignDocWrapper.aminoSignDoc
+                : newSignDocWrapper.protoSignDoc.toBytes();
+            yield this.interactionStore.approveWithoutRemovingData(id, newSignDoc);
+            console.log("newSignDoc");
+        }
+        finally {
+            yield this.waitEnd();
+            this.interactionStore.removeData("request-sign", id);
+            this._isLoading = false;
+            console.log("waitEnd");
+        }
+    }
+    *reject() {
+        if (this.waitingDatas.length === 0) {
+            return;
+        }
+        this._isLoading = true;
+        try {
+            yield this.interactionStore.reject("request-sign", this.waitingDatas[0].id);
+        }
+        finally {
+            this._isLoading = false;
+        }
+    }
+    *rejectAll() {
+        this._isLoading = true;
+        try {
+            yield this.interactionStore.rejectAll("request-sign");
+        }
+        finally {
+            this._isLoading = false;
+        }
+    }
+    *rejectWithId(id) {
+        yield this.interactionStore.reject("request-sign", id);
+    }
+    get isLoading() {
+        return this._isLoading;
+    }
+}
+__decorate([
+    mobx_1.observable
+], SignInteractionStore.prototype, "_isLoading", void 0);
+__decorate([
+    mobx_1.computed
+], SignInteractionStore.prototype, "waitingData", null);
+__decorate([
+    mobx_1.flow
+], SignInteractionStore.prototype, "approveAndWaitEnd", null);
+__decorate([
+    mobx_1.flow
+], SignInteractionStore.prototype, "reject", null);
+__decorate([
+    mobx_1.flow
+], SignInteractionStore.prototype, "rejectAll", null);
+__decorate([
+    mobx_1.flow
+], SignInteractionStore.prototype, "rejectWithId", null);
+exports.SignInteractionStore = SignInteractionStore;
+//# sourceMappingURL=sign.js.map
+
+/***/ }),
+
+/***/ 1479:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ChainSuggestStore = void 0;
+const background_1 = __webpack_require__(54);
+const mobx_1 = __webpack_require__(5);
+class ChainSuggestStore {
+    constructor(interactionStore) {
+        this.interactionStore = interactionStore;
+        this._isLoading = false;
+        mobx_1.makeObservable(this);
+    }
+    get waitingSuggestedChainInfo() {
+        const datas = this.interactionStore.getDatas(background_1.SuggestChainInfoMsg.type());
+        if (datas.length > 0) {
+            return datas[0];
+        }
+    }
+    *approve() {
+        this._isLoading = true;
+        try {
+            const data = this.waitingSuggestedChainInfo;
+            if (data) {
+                yield this.interactionStore.approve(data.type, data.id, {});
+            }
+        }
+        finally {
+            this._isLoading = false;
+        }
+    }
+    *reject() {
+        this._isLoading = true;
+        try {
+            const data = this.waitingSuggestedChainInfo;
+            if (data) {
+                yield this.interactionStore.reject(data.type, data.id);
+            }
+        }
+        finally {
+            this._isLoading = false;
+        }
+    }
+    *rejectAll() {
+        this._isLoading = true;
+        try {
+            yield this.interactionStore.rejectAll(background_1.SuggestChainInfoMsg.type());
+        }
+        finally {
+            this._isLoading = false;
+        }
+    }
+    get isLoading() {
+        return this._isLoading;
+    }
+}
+__decorate([
+    mobx_1.observable
+], ChainSuggestStore.prototype, "_isLoading", void 0);
+__decorate([
+    mobx_1.flow
+], ChainSuggestStore.prototype, "approve", null);
+__decorate([
+    mobx_1.flow
+], ChainSuggestStore.prototype, "reject", null);
+__decorate([
+    mobx_1.flow
+], ChainSuggestStore.prototype, "rejectAll", null);
+exports.ChainSuggestStore = ChainSuggestStore;
+//# sourceMappingURL=chain-suggest.js.map
+
+/***/ }),
+
+/***/ 1480:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.KeyRingStore = exports.KeyRingSelectablesStore = void 0;
+const router_1 = __webpack_require__(3);
+const background_1 = __webpack_require__(54);
+const mobx_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(27);
+class KeyRingSelectablesStore {
+    constructor(chainGetter, requester, chainId, keyRingStore) {
+        this.chainGetter = chainGetter;
+        this.requester = requester;
+        this.chainId = chainId;
+        this.keyRingStore = keyRingStore;
+        this.isInitializing = false;
+        this._isKeyStoreCoinTypeSet = false;
+        this._selectables = [];
+        mobx_1.makeObservable(this);
+        this.refresh();
+    }
+    get needSelectCoinType() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        if (!chainInfo.alternativeBIP44s ||
+            chainInfo.alternativeBIP44s.length === 0) {
+            return false;
+        }
+        return !this.isInitializing && !this._isKeyStoreCoinTypeSet;
+    }
+    get selectables() {
+        return this._selectables;
+    }
+    *refresh() {
+        var _a;
+        // No need to set the coin type if the key store type is not mnemonic.
+        if (this.keyRingStore.keyRingType !== "mnemonic") {
+            this.isInitializing = false;
+            this._isKeyStoreCoinTypeSet = true;
+            this._selectables = [];
+            return;
+        }
+        this.isInitializing = true;
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const msg = new background_1.GetIsKeyStoreCoinTypeSetMsg(this.chainId, [
+            chainInfo.bip44,
+            ...((_a = chainInfo.alternativeBIP44s) !== null && _a !== void 0 ? _a : []),
+        ]);
+        const seletables = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        if (seletables.length === 0) {
+            this._isKeyStoreCoinTypeSet = true;
+        }
+        else if (seletables.length === 1) {
+            yield this.keyRingStore.setKeyStoreCoinType(this.chainId, seletables[0].path.coinType);
+            this._isKeyStoreCoinTypeSet = true;
+        }
+        else {
+            this._selectables = seletables;
+            this._isKeyStoreCoinTypeSet = false;
+        }
+        this.isInitializing = false;
+    }
+}
+__decorate([
+    mobx_1.observable
+], KeyRingSelectablesStore.prototype, "isInitializing", void 0);
+__decorate([
+    mobx_1.observable
+], KeyRingSelectablesStore.prototype, "_isKeyStoreCoinTypeSet", void 0);
+__decorate([
+    mobx_1.observable.ref
+], KeyRingSelectablesStore.prototype, "_selectables", void 0);
+__decorate([
+    mobx_1.computed
+], KeyRingSelectablesStore.prototype, "needSelectCoinType", null);
+__decorate([
+    mobx_1.flow
+], KeyRingSelectablesStore.prototype, "refresh", null);
+exports.KeyRingSelectablesStore = KeyRingSelectablesStore;
+/*
+ Actual key ring logic is managed in persistent background. Refer "src/common/message" and "src/background/keyring"
+ This store only interact with key ring in persistent background.
+ */
+class KeyRingStore {
+    constructor(eventDispatcher, defaultKdf, chainGetter, requester, interactionStore) {
+        this.eventDispatcher = eventDispatcher;
+        this.defaultKdf = defaultKdf;
+        this.chainGetter = chainGetter;
+        this.requester = requester;
+        this.interactionStore = interactionStore;
+        this.status = background_1.KeyRingStatus.NOTLOADED;
+        this.multiKeyStoreInfo = [];
+        this.selectablesMap = new Map();
+        this.keyStoreChangedListeners = [];
+        mobx_1.makeObservable(this);
+        this.restore();
+    }
+    get keyRingType() {
+        const keyStore = this.multiKeyStoreInfo.find((keyStore) => keyStore.selected);
+        if (!keyStore) {
+            return "none";
+        }
+        else {
+            return background_1.KeyRing.getTypeOfKeyStore(keyStore);
+        }
+    }
+    *createMnemonicKey(mnemonic, password, meta, bip44HDPath, kdf = this.defaultKdf) {
+        const msg = new background_1.CreateMnemonicKeyMsg(kdf, mnemonic, password, meta, bip44HDPath);
+        const result = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        this.status = result.status;
+        this.multiKeyStoreInfo = result.multiKeyStoreInfo;
+    }
+    *createPrivateKey(privateKey, password, meta, kdf = this.defaultKdf) {
+        const msg = new background_1.CreatePrivateKeyMsg(kdf, privateKey, password, meta);
+        const result = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        this.status = result.status;
+        this.multiKeyStoreInfo = result.multiKeyStoreInfo;
+    }
+    *addMnemonicKey(mnemonic, meta, bip44HDPath, kdf = this.defaultKdf) {
+        const msg = new background_1.AddMnemonicKeyMsg(kdf, mnemonic, meta, bip44HDPath);
+        this.multiKeyStoreInfo = (yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg))).multiKeyStoreInfo;
+    }
+    *addPrivateKey(privateKey, meta, kdf = this.defaultKdf) {
+        const msg = new background_1.AddPrivateKeyMsg(kdf, privateKey, meta);
+        this.multiKeyStoreInfo = (yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg))).multiKeyStoreInfo;
+    }
+    *changeKeyRing(index) {
+        const msg = new background_1.ChangeKeyRingMsg(index);
+        this.multiKeyStoreInfo = (yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg))).multiKeyStoreInfo;
+        // Emit the key store changed event manually.
+        this.dispatchKeyStoreChangeEvent();
+        this.selectablesMap.forEach((selectables) => selectables.refresh());
+    }
+    *lock() {
+        const msg = new background_1.LockKeyRingMsg();
+        const result = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        this.status = result.status;
+    }
+    *unlock(password) {
+        const msg = new background_1.UnlockKeyRingMsg(password);
+        const result = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        this.status = result.status;
+        // Approve all waiting interaction for the enabling key ring.
+        for (const interaction of this.interactionStore.getDatas("unlock")) {
+            yield this.interactionStore.approve("unlock", interaction.id, {});
+        }
+        this.dispatchKeyStoreChangeEvent();
+        this.selectablesMap.forEach((selectables) => selectables.refresh());
+    }
+    *rejectAll() {
+        yield this.interactionStore.rejectAll("unlock");
+    }
+    *restore() {
+        const msg = new background_1.RestoreKeyRingMsg();
+        const result = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        this.status = result.status;
+        this.multiKeyStoreInfo = result.multiKeyStoreInfo;
+    }
+    showKeyRing(index, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const msg = new background_1.ShowKeyRingMsg(index, password);
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, msg);
+        });
+    }
+    *deleteKeyRing(index, password) {
+        const selectedIndex = this.multiKeyStoreInfo.findIndex((keyStore) => keyStore.selected);
+        const msg = new background_1.DeleteKeyRingMsg(index, password);
+        const result = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        this.status = result.status;
+        this.multiKeyStoreInfo = result.multiKeyStoreInfo;
+        // Selected keystore may be changed if the selected one is deleted.
+        if (selectedIndex === index) {
+            this.dispatchKeyStoreChangeEvent();
+            this.selectablesMap.forEach((selectables) => selectables.refresh());
+        }
+    }
+    *updateNameKeyRing(index, name) {
+        const msg = new background_1.UpdateNameKeyRingMsg(index, name);
+        const result = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        this.multiKeyStoreInfo = result.multiKeyStoreInfo;
+        const selectedIndex = this.multiKeyStoreInfo.findIndex((keyStore) => keyStore.selected);
+        // If selectedIndex and index are same, name could be changed, so dispatch keystore event
+        if (selectedIndex === index) {
+            this.dispatchKeyStoreChangeEvent();
+        }
+    }
+    checkPassword(password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.CheckPasswordMsg(password));
+        });
+    }
+    getKeyStoreSelectables(chainId) {
+        if (!this.selectablesMap.has(chainId)) {
+            mobx_1.runInAction(() => {
+                this.selectablesMap.set(chainId, new KeyRingSelectablesStore(this.chainGetter, this.requester, chainId, this));
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.selectablesMap.get(chainId);
+    }
+    // Set the coin type to current key store.
+    // And, save it, refresh the key store.
+    *setKeyStoreCoinType(chainId, coinType) {
+        const status = yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.SetKeyStoreCoinTypeMsg(chainId, coinType)));
+        this.multiKeyStoreInfo = (yield* common_1.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.GetMultiKeyStoreInfoMsg()))).multiKeyStoreInfo;
+        this.status = status;
+        // Emit the key store changed event manually.
+        this.dispatchKeyStoreChangeEvent();
+        this.selectablesMap.forEach((selectables) => selectables.refresh());
+    }
+    exportKeyRingDatas(password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.ExportKeyRingDatasMsg(password));
+        });
+    }
+    dispatchKeyStoreChangeEvent() {
+        this.eventDispatcher.dispatchEvent("mises_keystorechange");
+        for (const listener of this.keyStoreChangedListeners) {
+            listener();
+        }
+    }
+    addKeyStoreChangedListener(listener) {
+        this.keyStoreChangedListeners.push(listener);
+    }
+    removeKeyStoreChangedListener(listener) {
+        const i = this.keyStoreChangedListeners.indexOf(listener);
+        if (i >= 0) {
+            this.keyStoreChangedListeners.splice(i, 1);
+        }
+    }
+    addAccount(name, bip44HDPath) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.AddAccountMsg(name, bip44HDPath));
+            this.multiKeyStoreInfo = result.multiKeyStoreInfo;
+        });
+    }
+    migratorKeyRing(password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.MigratorKeyRingMsg(password));
+            this.multiKeyStoreInfo = result.multiKeyStoreInfo;
+        });
+    }
+    restoreKeyStore() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.RestoreKeyStoreMsg());
+        });
+    }
+}
+__decorate([
+    mobx_1.observable
+], KeyRingStore.prototype, "status", void 0);
+__decorate([
+    mobx_1.observable
+], KeyRingStore.prototype, "multiKeyStoreInfo", void 0);
+__decorate([
+    mobx_1.observable.shallow
+], KeyRingStore.prototype, "selectablesMap", void 0);
+__decorate([
+    mobx_1.computed
+], KeyRingStore.prototype, "keyRingType", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "createMnemonicKey", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "createPrivateKey", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "addMnemonicKey", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "addPrivateKey", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "changeKeyRing", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "lock", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "unlock", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "rejectAll", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "restore", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "deleteKeyRing", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "updateNameKeyRing", null);
+__decorate([
+    mobx_1.flow
+], KeyRingStore.prototype, "setKeyStoreCoinType", null);
+exports.KeyRingStore = KeyRingStore;
+//# sourceMappingURL=keyring.js.map
+
+/***/ }),
+
+/***/ 1481:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TokensStore = exports.TokensStoreInner = void 0;
+const common_1 = __webpack_require__(118);
+const router_1 = __webpack_require__(3);
+const background_1 = __webpack_require__(54);
+const mobx_1 = __webpack_require__(5);
+const common_2 = __webpack_require__(27);
+const cosmos_1 = __webpack_require__(16);
+class TokensStoreInner {
+    constructor(eventListener, chainStore, chainId, requester) {
+        this.eventListener = eventListener;
+        this.chainStore = chainStore;
+        this.chainId = chainId;
+        this.requester = requester;
+        this._tokens = [];
+        mobx_1.makeObservable(this);
+        this.refreshTokens();
+        // If key store in the keplr extension is unlocked, this event will be dispatched.
+        // This is needed becuase the token such as secret20 exists according to the account.
+        this.eventListener.addEventListener("keplr_keystoreunlock", () => {
+            this.refreshTokens();
+        });
+        // If key store in the keplr extension is changed, this event will be dispatched.
+        // This is needed becuase the token such as secret20 exists according to the account.
+        this.eventListener.addEventListener("mises_keystorechange", () => {
+            this.refreshTokens();
+        });
+    }
+    get tokens() {
+        return this._tokens;
+    }
+    *refreshTokens() {
+        const chainInfo = this.chainStore.getChain(this.chainId);
+        if (chainInfo.features &&
+            // Tokens service is only needed for secretwasm and cosmwasm,
+            // so, there is no need to fetch the registered token if the chain doesn't support the secretwasm and cosmwasm.
+            (chainInfo.features.includes("secretwasm") ||
+                chainInfo.features.includes("cosmwasm"))) {
+            const msg = new background_1.GetTokensMsg(this.chainId);
+            this._tokens = yield* common_2.toGenerator(this.requester.sendMessage(router_1.BACKGROUND_PORT, msg));
+        }
+        else {
+            this._tokens = [];
+        }
+    }
+    *addToken(currency) {
+        const msg = new background_1.AddTokenMsg(this.chainId, currency);
+        yield this.requester.sendMessage(router_1.BACKGROUND_PORT, msg);
+        yield this.refreshTokens();
+    }
+    *removeToken(currency) {
+        const msg = new background_1.RemoveTokenMsg(this.chainId, currency);
+        yield this.requester.sendMessage(router_1.BACKGROUND_PORT, msg);
+        yield this.refreshTokens();
+    }
+}
+__decorate([
+    mobx_1.observable.ref
+], TokensStoreInner.prototype, "_tokens", void 0);
+__decorate([
+    mobx_1.flow
+], TokensStoreInner.prototype, "refreshTokens", null);
+__decorate([
+    mobx_1.flow
+], TokensStoreInner.prototype, "addToken", null);
+__decorate([
+    mobx_1.flow
+], TokensStoreInner.prototype, "removeToken", null);
+exports.TokensStoreInner = TokensStoreInner;
+class TokensStore extends common_1.HasMapStore {
+    constructor(eventListener, chainStore, requester, interactionStore) {
+        super((chainId) => {
+            return new TokensStoreInner(this.eventListener, this.chainStore, chainId, this.requester);
+        });
+        this.eventListener = eventListener;
+        this.chainStore = chainStore;
+        this.requester = requester;
+        this.interactionStore = interactionStore;
+        this.prevTokens = new Map();
+        mobx_1.makeObservable(this);
+        this.chainStore.addSetChainInfoHandler((chainInfoInner) => {
+            mobx_1.autorun(() => {
+                var _a;
+                const chainIdentifier = cosmos_1.ChainIdHelper.parse(chainInfoInner.chainId);
+                // Tokens should be changed whenever the account changed.
+                // But, the added currencies are not removed automatically.
+                // So, we should remove the prev token currencies from the chain info.
+                const prevToken = (_a = this.prevTokens.get(chainIdentifier.identifier)) !== null && _a !== void 0 ? _a : [];
+                chainInfoInner.removeCurrencies(...prevToken.map((token) => token.coinMinimalDenom));
+                const inner = this.getTokensOf(chainInfoInner.chainId);
+                chainInfoInner.addCurrencies(...inner.tokens);
+                this.prevTokens.set(chainIdentifier.identifier, inner.tokens);
+            });
+        });
+    }
+    getTokensOf(chainId) {
+        return this.get(chainId);
+    }
+    get waitingSuggestedToken() {
+        const datas = this.interactionStore.getDatas(background_1.SuggestTokenMsg.type());
+        if (datas.length > 0) {
+            return datas[0];
+        }
+    }
+    *approveSuggestedToken(appCurrency) {
+        const data = this.waitingSuggestedToken;
+        if (data) {
+            yield this.interactionStore.approve(background_1.SuggestTokenMsg.type(), data.id, appCurrency);
+            yield this.getTokensOf(data.data.chainId).refreshTokens();
+        }
+    }
+    *rejectSuggestedToken() {
+        const data = this.waitingSuggestedToken;
+        if (data) {
+            yield this.interactionStore.reject(background_1.SuggestTokenMsg.type(), data.id);
+        }
+    }
+    *rejectAllSuggestedTokens() {
+        yield this.interactionStore.rejectAll(background_1.SuggestTokenMsg.type());
+    }
+}
+__decorate([
+    mobx_1.flow
+], TokensStore.prototype, "approveSuggestedToken", null);
+__decorate([
+    mobx_1.flow
+], TokensStore.prototype, "rejectSuggestedToken", null);
+__decorate([
+    mobx_1.flow
+], TokensStore.prototype, "rejectAllSuggestedTokens", null);
+exports.TokensStore = TokensStore;
+//# sourceMappingURL=tokens.js.map
+
+/***/ }),
+
+/***/ 1482:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MisesStore = void 0;
+const router_1 = __webpack_require__(3);
+const mobx_1 = __webpack_require__(5);
+const background_1 = __webpack_require__(54);
+class MisesStore {
+    constructor(requester) {
+        this.requester = requester;
+        this.isInitializing = false;
+        this.autoLockAccountDuration = 0;
+        mobx_1.makeObservable(this);
+        this.initAutoLockAccountDuration();
+    }
+    getBalanceUMIS(address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.BalanceUMISMsg(address));
+        });
+    }
+    isMisesChain(chainId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.MisesChainMsg(chainId));
+        });
+    }
+    getChainId() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.GetChainIdMsg());
+        });
+    }
+    unbondingDelegations(address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.UnbondingDelegationsMsg(address));
+        });
+    }
+    delegations(address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.DelegationsMsg(address));
+        });
+    }
+    rewards(address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.RewardsMsg(address));
+        });
+    }
+    authAccounts(address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.AuthAccountsMsg(address));
+        });
+    }
+    broadcastTx(tx) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.BroadcastTxMsg(tx));
+        });
+    }
+    simulate(messages, memo, signer, sequence) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.SimulateMsg(messages, memo, signer, sequence));
+        });
+    }
+    recentTransactions() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.RecentTransactionsMsg());
+        });
+    }
+    activeUser() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.ActiveUserMsg());
+        });
+    }
+    portForTx(txId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.PortForTxMsg(txId));
+        });
+    }
+    getAutoLockAccountDuration() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.GetAutoLockAccountDurationMsg());
+        });
+    }
+    initAutoLockAccountDuration() {
+        this.getAutoLockAccountDuration().then((res) => (this.autoLockAccountDuration = res));
+    }
+    setLastActiveTime() {
+        this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.StartAutoLockMonitoringMsg());
+    }
+    setLock() {
+        this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.LockMsg());
+    }
+    saveTranstions(transactions) {
+        this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.SaveTranstionsMsg(transactions));
+    }
+    getLocalCache(address) {
+        return this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.GetLocalCacheMsg(address));
+    }
+    setLocalCache(params) {
+        this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.SetLocalCacheMsg(params));
+    }
+}
+__decorate([
+    mobx_1.observable
+], MisesStore.prototype, "isInitializing", void 0);
+__decorate([
+    mobx_1.observable
+], MisesStore.prototype, "autoLockAccountDuration", void 0);
+exports.MisesStore = MisesStore;
+//# sourceMappingURL=mises.js.map
+
+/***/ }),
+
+/***/ 1483:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MisesSafeStore = void 0;
+const background_1 = __webpack_require__(54);
+const router_1 = __webpack_require__(3);
+const mobx_1 = __webpack_require__(5);
+class MisesSafeStore {
+    constructor(requester) {
+        this.requester = requester;
+        this.isShouldVerify = true;
+        mobx_1.makeObservable(this);
+        this.initSafeConfig();
+    }
+    initSafeConfig() {
+        this.getMisesSafeConfig().then((res) => (this.isShouldVerify = res));
+    }
+    getMisesSafeConfig() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.GetIsShouldVerifyMsg());
+        });
+    }
+    setMisesSafeConfig(state) {
+        console.log(!!state, "setMisesSafeConfig");
+        this.isShouldVerify = !!state;
+        this.requester.sendMessage(router_1.BACKGROUND_PORT, new background_1.SetIsShouldVerifyMsg(state));
+    }
+}
+__decorate([
+    mobx_1.observable
+], MisesSafeStore.prototype, "isShouldVerify", void 0);
+exports.MisesSafeStore = MisesSafeStore;
+//# sourceMappingURL=mises-safe.js.map
+
+/***/ }),
+
+/***/ 1484:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1485), exports);
+__exportStar(__webpack_require__(1486), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1485:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.IBCChannelStore = exports.IBCChannelStoreInner = void 0;
+const common_1 = __webpack_require__(27);
+const mobx_1 = __webpack_require__(5);
+const mobx_utils_1 = __webpack_require__(200);
+const common_2 = __webpack_require__(118);
+const cosmos_1 = __webpack_require__(16);
+class IBCChannelStoreInner {
+    constructor(kvStore, chainId) {
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        // channelMap[portId][channelId]
+        this.channelMap = new Map();
+        this.getChannelsToPort = mobx_utils_1.computedFn((portId) => {
+            if (!this.channelMap.has(portId)) {
+                mobx_1.runInAction(() => {
+                    this.channelMap.set(portId, mobx_1.observable.map({}, {
+                        deep: false,
+                    }));
+                });
+            }
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const channelMapOfPort = this.channelMap.get(portId);
+            const channels = [];
+            for (const channel of channelMapOfPort.values()) {
+                channels.push(channel);
+            }
+            return channels;
+        });
+        this.getChannel = mobx_utils_1.computedFn((portId, channelId) => {
+            var _a;
+            return (_a = this.channelMap.get(portId)) === null || _a === void 0 ? void 0 : _a.get(channelId);
+        });
+        mobx_1.makeObservable(this);
+        this.loadChannels();
+    }
+    getTransferChannels() {
+        return this.getChannelsToPort("transfer");
+    }
+    *addChannel(channel) {
+        if (!this.channelMap.has(channel.portId)) {
+            this.channelMap.set(channel.portId, mobx_1.observable.map({}, {
+                deep: false,
+            }));
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.channelMap.get(channel.portId).set(channel.channelId, channel);
+        yield this.saveChannels();
+    }
+    *loadChannels() {
+        const obj = yield* common_1.toGenerator(this.kvStore.get(`${cosmos_1.ChainIdHelper.parse(this.chainId).identifier}-channels`));
+        if (obj) {
+            for (const portId of Object.keys(obj)) {
+                const map = obj[portId];
+                for (const channelId of Object.keys(map)) {
+                    if (!this.channelMap.has(portId)) {
+                        this.channelMap.set(portId, mobx_1.observable.map({}, { deep: false }));
+                    }
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    const innerMap = this.channelMap.get(portId);
+                    innerMap.set(channelId, map[channelId]);
+                }
+            }
+        }
+    }
+    saveChannels() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const obj = {};
+            this.channelMap.forEach((v, portId) => {
+                obj[portId] = (() => {
+                    const obj = {};
+                    v.forEach((channel, channelId) => {
+                        obj[channelId] = channel;
+                    });
+                    return obj;
+                })();
+            });
+            yield this.kvStore.set(`${cosmos_1.ChainIdHelper.parse(this.chainId).identifier}-channels`, obj);
+        });
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], IBCChannelStoreInner.prototype, "channelMap", void 0);
+__decorate([
+    mobx_1.flow
+], IBCChannelStoreInner.prototype, "addChannel", null);
+__decorate([
+    mobx_1.flow
+], IBCChannelStoreInner.prototype, "loadChannels", null);
+exports.IBCChannelStoreInner = IBCChannelStoreInner;
+/**
+ * IBCChannelStore saves the IBC channel infomations to the storage.
+ */
+class IBCChannelStore extends common_2.HasMapStore {
+    constructor(kvStore) {
+        super((chainId) => {
+            return new IBCChannelStoreInner(kvStore, chainId);
+        });
+        this.kvStore = kvStore;
+    }
+    get(chainId) {
+        return super.get(chainId);
+    }
+}
+exports.IBCChannelStore = IBCChannelStore;
+//# sourceMappingURL=channel.js.map
+
+/***/ }),
+
+/***/ 1486:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.IBCCurrencyRegsitrar = exports.IBCCurrencyRegsitrarInner = void 0;
+const mobx_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(27);
+class IBCCurrencyRegsitrarInner {
+    constructor(kvStore, cacheDuration, chainInfoInner, chainStore, accountStore, queriesStore, cosmwasmQueriesStore, coinDenomGenerator) {
+        this.kvStore = kvStore;
+        this.cacheDuration = cacheDuration;
+        this.chainInfoInner = chainInfoInner;
+        this.chainStore = chainStore;
+        this.accountStore = accountStore;
+        this.queriesStore = queriesStore;
+        this.cosmwasmQueriesStore = cosmwasmQueriesStore;
+        this.coinDenomGenerator = coinDenomGenerator;
+        this.isInitialized = false;
+        this.isInitializing = false;
+        /**
+         * Because the `QueryStore` returns the response from cache first if the last response exists, it takes the IO.
+         * But, if many unknown currencies requested, this make many IO and queries occur at the same time.
+         * This can make the performance issue, so to reduce this problem, use the alternative caching logic
+         * and the denom trace shouldn't be changed in the normal case.
+         * To decrease the number of IO, make sure that reading from storage should happen when the unknown currencies exist
+         * and don't split the data with keys and as posible as combine them to one data structure and key.
+         * @protected
+         */
+        this.cacheDenomTracePaths = new Map();
+        mobx_1.makeObservable(this);
+    }
+    *restoreCache() {
+        this.isInitializing = true;
+        const key = `cache-ibc-denom-trace-paths/${this.chainInfoInner.chainId}`;
+        const obj = yield* common_1.toGenerator(this.kvStore.get(key));
+        if (obj) {
+            for (const key of Object.keys(obj)) {
+                this.cacheDenomTracePaths.set(key, obj[key]);
+            }
+        }
+        this.isInitialized = true;
+        this.isInitializing = false;
+    }
+    getCacheIBCDenomData(denomTraceHash) {
+        const result = this.cacheDenomTracePaths.get(denomTraceHash);
+        if (result && result.timestamp + this.cacheDuration > Date.now()) {
+            return result;
+        }
+    }
+    *setCacheIBCDenomData(denomTraceHash, data) {
+        this.cacheDenomTracePaths.set(denomTraceHash, Object.assign(Object.assign({}, data), { timestamp: Date.now() }));
+        const obj = {};
+        this.cacheDenomTracePaths.forEach((value, key) => {
+            obj[key] = value;
+        });
+        const key = `cache-ibc-denom-trace-paths/${this.chainInfoInner.chainId}`;
+        yield this.kvStore.set(key, obj);
+    }
+    registerUnknownCurrencies(coinMinimalDenom) {
+        const denomHelper = new common_1.DenomHelper(coinMinimalDenom);
+        if (denomHelper.type !== "native" ||
+            !denomHelper.denom.startsWith("ibc/")) {
+            // IBC Currency's denom should start with "ibc/"
+            return;
+        }
+        // When the unknown ibc denom is delivered, try to restore the cache from storage.
+        if (!this.isInitialized) {
+            this.restoreCache();
+        }
+        if (this.isInitializing) {
+            return [undefined, false];
+        }
+        const queries = this.queriesStore.get(this.chainInfoInner.chainId);
+        const hash = denomHelper.denom.replace("ibc/", "");
+        const cached = this.getCacheIBCDenomData(hash);
+        let counterpartyChainInfo;
+        let originChainInfo;
+        let denomTrace;
+        if (cached) {
+            denomTrace = cached.denomTrace;
+            if (cached.originChainId &&
+                this.chainStore.hasChain(cached.originChainId)) {
+                originChainInfo = this.chainStore.getChain(cached.originChainId);
+            }
+            if (cached.counterpartyChainId &&
+                this.chainStore.hasChain(cached.counterpartyChainId)) {
+                counterpartyChainInfo = this.chainStore.getChain(cached.counterpartyChainId);
+            }
+        }
+        else {
+            const queryDenomTrace = queries.cosmos.queryIBCDenomTrace.getDenomTrace(hash);
+            denomTrace = queryDenomTrace.denomTrace;
+            if (denomTrace) {
+                const paths = denomTrace.paths;
+                // The previous chain id from current path.
+                let chainIdBefore = this.chainInfoInner.chainId;
+                for (const path of paths) {
+                    const clientState = this.queriesStore
+                        .get(chainIdBefore)
+                        .cosmos.queryIBCClientState.getClientState(path.portId, path.channelId);
+                    if (clientState.clientChainId &&
+                        this.chainStore.hasChain(clientState.clientChainId)) {
+                        chainIdBefore = clientState.clientChainId;
+                        originChainInfo = this.chainStore.getChain(clientState.clientChainId);
+                        if (!counterpartyChainInfo) {
+                            counterpartyChainInfo = this.chainStore.getChain(clientState.clientChainId);
+                        }
+                    }
+                    else {
+                        originChainInfo = undefined;
+                        break;
+                    }
+                }
+                if (originChainInfo) {
+                    this.setCacheIBCDenomData(hash, {
+                        counterpartyChainId: counterpartyChainInfo === null || counterpartyChainInfo === void 0 ? void 0 : counterpartyChainInfo.chainId,
+                        denomTrace,
+                        originChainId: originChainInfo.chainId,
+                    });
+                }
+            }
+        }
+        if (originChainInfo && denomTrace) {
+            if (denomTrace.denom.split(/^(cw20):(\w+)$/).length === 4) {
+                // If the origin currency is ics20-cw20.
+                let cw20Currency = originChainInfo.currencies.find((cur) => denomTrace && cur.coinMinimalDenom.startsWith(denomTrace.denom));
+                if (!cw20Currency && this.cosmwasmQueriesStore) {
+                    const cosmwasmQuries = this.cosmwasmQueriesStore.get(originChainInfo.chainId);
+                    const contractAddress = denomTrace.denom.replace("cw20:", "");
+                    const contractInfo = cosmwasmQuries.cosmwasm.querycw20ContractInfo.getQueryContract(contractAddress);
+                    if (contractInfo.response) {
+                        cw20Currency = {
+                            type: "cw20",
+                            contractAddress,
+                            coinDecimals: contractInfo.response.data.decimals,
+                            coinDenom: contractInfo.response.data.symbol,
+                            coinMinimalDenom: `cw20:${contractAddress}:${contractInfo.response.data.name}`,
+                        };
+                        originChainInfo.addCurrencies(cw20Currency);
+                    }
+                }
+                if (cw20Currency) {
+                    return [
+                        {
+                            coinDecimals: cw20Currency.coinDecimals,
+                            coinGeckoId: cw20Currency.coinGeckoId,
+                            coinImageUrl: cw20Currency.coinImageUrl,
+                            coinMinimalDenom: denomHelper.denom,
+                            coinDenom: this.coinDenomGenerator(denomTrace, originChainInfo, counterpartyChainInfo, cw20Currency),
+                            paths: denomTrace.paths,
+                            originChainId: originChainInfo.chainId,
+                            originCurrency: cw20Currency,
+                        },
+                        true,
+                    ];
+                }
+            }
+            else {
+                const currency = originChainInfo.findCurrency(denomTrace.denom);
+                if (currency && !("paths" in currency)) {
+                    return [
+                        {
+                            coinDecimals: currency.coinDecimals,
+                            coinGeckoId: currency.coinGeckoId,
+                            coinImageUrl: currency.coinImageUrl,
+                            coinMinimalDenom: denomHelper.denom,
+                            coinDenom: this.coinDenomGenerator(denomTrace, originChainInfo, counterpartyChainInfo, currency),
+                            paths: denomTrace.paths,
+                            originChainId: originChainInfo.chainId,
+                            originCurrency: currency,
+                        },
+                        true,
+                    ];
+                }
+            }
+            // In this case, just show the raw currency.
+            // But, it is possible to know the currency from query later.
+            // So, let them to be observed.
+            return [
+                {
+                    coinDecimals: 0,
+                    coinMinimalDenom: denomHelper.denom,
+                    coinDenom: this.coinDenomGenerator(denomTrace, originChainInfo, counterpartyChainInfo, undefined),
+                    paths: denomTrace.paths,
+                    originChainId: undefined,
+                    originCurrency: undefined,
+                },
+                false,
+            ];
+        }
+        return [undefined, false];
+    }
+}
+__decorate([
+    mobx_1.observable
+], IBCCurrencyRegsitrarInner.prototype, "isInitialized", void 0);
+__decorate([
+    mobx_1.observable
+], IBCCurrencyRegsitrarInner.prototype, "isInitializing", void 0);
+__decorate([
+    mobx_1.observable.shallow
+], IBCCurrencyRegsitrarInner.prototype, "cacheDenomTracePaths", void 0);
+__decorate([
+    mobx_1.flow
+], IBCCurrencyRegsitrarInner.prototype, "restoreCache", null);
+__decorate([
+    mobx_1.flow
+], IBCCurrencyRegsitrarInner.prototype, "setCacheIBCDenomData", null);
+exports.IBCCurrencyRegsitrarInner = IBCCurrencyRegsitrarInner;
+/**
+ * IBCCurrencyRegsitrar gets the native balances that exist on the chain itself (ex. atom, scrt...)
+ * And, IBCCurrencyRegsitrar registers the currencies from IBC to the chain info.
+ * In cosmos-sdk, the denomination of IBC token has the form of "ibc/{hash}".
+ * And, its paths can be found by getting the denom trace from the node.
+ * If the native balance querier's response have the token that is form of IBC token,
+ * this will try to get the denom info by traversing the paths, and register the currency with the decimal and denom info.
+ * But, if failed to traverse the paths, this will register the currency with 0 decimal and the minimal denom even though it is not suitable for human.
+ */
+class IBCCurrencyRegsitrar {
+    constructor(kvStore, cacheDuration = 24 * 3600 * 1000, // 1 days
+    chainStore, accountStore, queriesStore, cosmwasmQueriesStore, coinDenomGenerator = IBCCurrencyRegsitrar.defaultCoinDenomGenerator) {
+        this.kvStore = kvStore;
+        this.cacheDuration = cacheDuration;
+        this.chainStore = chainStore;
+        this.accountStore = accountStore;
+        this.queriesStore = queriesStore;
+        this.cosmwasmQueriesStore = cosmwasmQueriesStore;
+        this.coinDenomGenerator = coinDenomGenerator;
+        this.map = new Map();
+        this.chainStore.addSetChainInfoHandler((chainInfoInner) => this.setChainInfoHandler(chainInfoInner));
+    }
+    static defaultCoinDenomGenerator(denomTrace, _, counterpartyChainInfo, originCurrency) {
+        if (originCurrency) {
+            return `${originCurrency.coinDenom} (${counterpartyChainInfo ? counterpartyChainInfo.chainName : "Unknown"}/${denomTrace.paths[0].channelId})`;
+        }
+        else {
+            return `${denomTrace.denom} (${counterpartyChainInfo ? counterpartyChainInfo.chainName : "Unknown"}/${denomTrace.paths[0].channelId})`;
+        }
+    }
+    setChainInfoHandler(chainInfoInner) {
+        const inner = this.get(chainInfoInner);
+        chainInfoInner.registerCurrencyRegistrar((coinMinimalDenom) => inner.registerUnknownCurrencies(coinMinimalDenom));
+    }
+    get(chainInfoInner) {
+        if (!this.map.has(chainInfoInner.chainId)) {
+            mobx_1.runInAction(() => {
+                this.map.set(chainInfoInner.chainId, new IBCCurrencyRegsitrarInner(this.kvStore, this.cacheDuration, chainInfoInner, this.chainStore, this.accountStore, this.queriesStore, this.cosmwasmQueriesStore, this.coinDenomGenerator));
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.map.get(chainInfoInner.chainId);
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], IBCCurrencyRegsitrar.prototype, "map", void 0);
+exports.IBCCurrencyRegsitrar = IBCCurrencyRegsitrar;
+//# sourceMappingURL=currency-registrar.js.map
+
+/***/ }),
+
+/***/ 1494:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.KeplrETCQueriesImpl = exports.KeplrETCQueries = void 0;
+const erc20_1 = __webpack_require__(1247);
+const axelar_1 = __webpack_require__(1248);
+exports.KeplrETCQueries = {
+    use(options) {
+        return (queriesSetBase, kvStore, chainId, chainGetter) => {
+            return {
+                keplrETC: new KeplrETCQueriesImpl(queriesSetBase, kvStore, chainId, chainGetter, options.ethereumURL),
+            };
+        };
+    },
+};
+class KeplrETCQueriesImpl {
+    constructor(_base, kvStore, chainId, chainGetter, ethereumURL) {
+        this.queryERC20Metadata = new erc20_1.ObservableQueryERC20Metadata(kvStore, ethereumURL);
+        this.queryEVMTokenInfo = new axelar_1.ObservableQueryEVMTokenInfo(kvStore, chainId, chainGetter);
+    }
+}
+exports.KeplrETCQueriesImpl = KeplrETCQueriesImpl;
+//# sourceMappingURL=queries.js.map
+
+/***/ }),
+
+/***/ 1495:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryERC20Metadata = exports.ObservableQueryERC20MetadataInner = exports.ObservableQueryERC20MetadataDecimals = exports.ObservableQueryERC20MetadataSymbol = exports.ObservableQueryERC20MetadataName = void 0;
+const stores_1 = __webpack_require__(43);
+const axios_1 = __importDefault(__webpack_require__(60));
+const abi_1 = __webpack_require__(1302);
+const mobx_1 = __webpack_require__(5);
+const erc20MetadataInterface = new abi_1.Interface([
+    {
+        constant: true,
+        inputs: [],
+        name: "name",
+        outputs: [
+            {
+                name: "",
+                type: "string",
+            },
+        ],
+        payable: false,
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        constant: true,
+        inputs: [],
+        name: "symbol",
+        outputs: [
+            {
+                name: "",
+                type: "string",
+            },
+        ],
+        payable: false,
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        constant: true,
+        inputs: [],
+        name: "decimals",
+        outputs: [
+            {
+                name: "",
+                type: "uint8",
+            },
+        ],
+        payable: false,
+        stateMutability: "view",
+        type: "function",
+    },
+]);
+class ObservableQueryERC20MetadataName extends stores_1.ObservableJsonRPCQuery {
+    constructor(kvStore, ethereumURL, contractAddress) {
+        const instance = axios_1.default.create(Object.assign({
+            baseURL: ethereumURL,
+        }));
+        super(kvStore, instance, "", "eth_call", [
+            {
+                to: contractAddress,
+                data: erc20MetadataInterface.encodeFunctionData("name"),
+            },
+            "latest",
+        ]);
+        mobx_1.makeObservable(this);
+    }
+    get name() {
+        if (!this.response) {
+            return undefined;
+        }
+        try {
+            return erc20MetadataInterface.decodeFunctionResult("name", this.response.data)[0];
+        }
+        catch (e) {
+            console.log(e);
+        }
+        return undefined;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryERC20MetadataName.prototype, "name", null);
+exports.ObservableQueryERC20MetadataName = ObservableQueryERC20MetadataName;
+class ObservableQueryERC20MetadataSymbol extends stores_1.ObservableJsonRPCQuery {
+    constructor(kvStore, ethereumURL, contractAddress) {
+        const instance = axios_1.default.create(Object.assign({
+            baseURL: ethereumURL,
+        }));
+        super(kvStore, instance, "", "eth_call", [
+            {
+                to: contractAddress,
+                data: erc20MetadataInterface.encodeFunctionData("symbol"),
+            },
+            "latest",
+        ]);
+        mobx_1.makeObservable(this);
+    }
+    get symbol() {
+        if (!this.response) {
+            return undefined;
+        }
+        try {
+            return erc20MetadataInterface.decodeFunctionResult("symbol", this.response.data)[0];
+        }
+        catch (e) {
+            console.log(e);
+        }
+        return undefined;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryERC20MetadataSymbol.prototype, "symbol", null);
+exports.ObservableQueryERC20MetadataSymbol = ObservableQueryERC20MetadataSymbol;
+class ObservableQueryERC20MetadataDecimals extends stores_1.ObservableJsonRPCQuery {
+    constructor(kvStore, ethereumURL, contractAddress) {
+        const instance = axios_1.default.create(Object.assign({
+            baseURL: ethereumURL,
+        }));
+        super(kvStore, instance, "", "eth_call", [
+            {
+                to: contractAddress,
+                data: erc20MetadataInterface.encodeFunctionData("decimals"),
+            },
+            "latest",
+        ]);
+        mobx_1.makeObservable(this);
+    }
+    get decimals() {
+        if (!this.response) {
+            return undefined;
+        }
+        try {
+            return erc20MetadataInterface.decodeFunctionResult("decimals", this.response.data)[0];
+        }
+        catch (e) {
+            console.log(e);
+        }
+        return undefined;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryERC20MetadataDecimals.prototype, "decimals", null);
+exports.ObservableQueryERC20MetadataDecimals = ObservableQueryERC20MetadataDecimals;
+class ObservableQueryERC20MetadataInner {
+    constructor(kvStore, ethereumURL, contractAddress) {
+        this._queryName = new ObservableQueryERC20MetadataName(kvStore, ethereumURL, contractAddress);
+        this._querySymbol = new ObservableQueryERC20MetadataSymbol(kvStore, ethereumURL, contractAddress);
+        this._queryDecimals = new ObservableQueryERC20MetadataDecimals(kvStore, ethereumURL, contractAddress);
+    }
+    get queryName() {
+        return this._queryName;
+    }
+    get querySymbol() {
+        return this._querySymbol;
+    }
+    get symbol() {
+        return this._querySymbol.symbol;
+    }
+    get name() {
+        return this._queryName.name;
+    }
+    get decimals() {
+        return this._queryDecimals.decimals;
+    }
+}
+exports.ObservableQueryERC20MetadataInner = ObservableQueryERC20MetadataInner;
+/**
+ * Query ERC20 metadata (https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#IERC20Metadata)
+ * This is on temporal stage to implement currency registrar for gravity bridge and axelar network.
+ * It is not possible to handle multiple networks on Ethereum at the same time.
+ */
+class ObservableQueryERC20Metadata extends stores_1.HasMapStore {
+    constructor(kvStore, ethereumURL) {
+        super((contractAddress) => {
+            return new ObservableQueryERC20MetadataInner(this.kvStore, this.ethereumURL, contractAddress);
+        });
+        this.kvStore = kvStore;
+        this.ethereumURL = ethereumURL;
+    }
+    get(contractAddress) {
+        return super.get(contractAddress);
+    }
+}
+exports.ObservableQueryERC20Metadata = ObservableQueryERC20Metadata;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1496:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AxelarEVMBridgeCurrencyRegistrar = exports.AxelarEVMBridgeCurrencyRegistrarInner = void 0;
+const mobx_1 = __webpack_require__(5);
+class AxelarEVMBridgeCurrencyRegistrarInner {
+    constructor(kvStore, chainInfoInner, chainStore, queriesStore, mainChain) {
+        this.kvStore = kvStore;
+        this.chainInfoInner = chainInfoInner;
+        this.chainStore = chainStore;
+        this.queriesStore = queriesStore;
+        this.mainChain = mainChain;
+    }
+    registerUnknownCurrencies(coinMinimalDenom) {
+        const chainInfo = this.chainStore.getChain(this.chainInfoInner.chainId);
+        if (!chainInfo.features ||
+            !chainInfo.features.includes("axelar-evm-bridge")) {
+            return;
+        }
+        const queries = this.queriesStore.get(this.chainInfoInner.chainId);
+        const tokenInfo = queries.keplrETC.queryEVMTokenInfo.getAsset(this.mainChain, coinMinimalDenom);
+        if (tokenInfo.symbol &&
+            tokenInfo.decimals != null &&
+            tokenInfo.isConfirmed) {
+            return [
+                {
+                    coinMinimalDenom,
+                    coinDenom: tokenInfo.symbol,
+                    coinDecimals: tokenInfo.decimals,
+                },
+                !tokenInfo.isFetching,
+            ];
+        }
+        // There is no matching response after query completes,
+        // there is no way to get the asset info.
+        if (!tokenInfo.isFetching) {
+            return;
+        }
+        return [undefined, false];
+    }
+}
+exports.AxelarEVMBridgeCurrencyRegistrarInner = AxelarEVMBridgeCurrencyRegistrarInner;
+class AxelarEVMBridgeCurrencyRegistrar {
+    constructor(kvStore, chainStore, queriesStore, mainChain) {
+        this.kvStore = kvStore;
+        this.chainStore = chainStore;
+        this.queriesStore = queriesStore;
+        this.mainChain = mainChain;
+        this.map = new Map();
+        this.chainStore.addSetChainInfoHandler((chainInfoInner) => this.setChainInfoHandler(chainInfoInner));
+    }
+    setChainInfoHandler(chainInfoInner) {
+        const inner = this.get(chainInfoInner);
+        chainInfoInner.registerCurrencyRegistrar((coinMinimalDenom) => inner.registerUnknownCurrencies(coinMinimalDenom));
+    }
+    get(chainInfoInner) {
+        if (!this.map.has(chainInfoInner.chainId)) {
+            mobx_1.runInAction(() => {
+                this.map.set(chainInfoInner.chainId, new AxelarEVMBridgeCurrencyRegistrarInner(this.kvStore, chainInfoInner, this.chainStore, this.queriesStore, this.mainChain));
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.map.get(chainInfoInner.chainId);
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], AxelarEVMBridgeCurrencyRegistrar.prototype, "map", void 0);
+exports.AxelarEVMBridgeCurrencyRegistrar = AxelarEVMBridgeCurrencyRegistrar;
+//# sourceMappingURL=currency-registrar.js.map
+
+/***/ }),
+
+/***/ 1497:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryEVMTokenInfo = exports.ObservableQueryEVMTokenInfoInner = void 0;
+const stores_1 = __webpack_require__(43);
+class ObservableQueryEVMTokenInfoInner extends stores_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, _chain, _denom) {
+        super(kvStore, chainId, chainGetter, `/axelar/evm/v1beta1/token_info/${_chain}?asset=${_denom}`);
+        this._chain = _chain;
+        this._denom = _denom;
+    }
+    get chain() {
+        return this._chain;
+    }
+    get denom() {
+        return this._denom;
+    }
+    get tokenName() {
+        var _a;
+        return (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.details.token_name;
+    }
+    get symbol() {
+        var _a;
+        return (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.details.symbol;
+    }
+    get decimals() {
+        var _a;
+        return (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.details.decimals;
+    }
+    get isConfirmed() {
+        var _a;
+        return (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.confirmed;
+    }
+    get isExternal() {
+        var _a;
+        return (_a = this.response) === null || _a === void 0 ? void 0 : _a.data.is_external;
+    }
+}
+exports.ObservableQueryEVMTokenInfoInner = ObservableQueryEVMTokenInfoInner;
+class ObservableQueryEVMTokenInfo extends stores_1.ObservableChainQueryMap {
+    constructor(kvStore, chainId, chainGetter) {
+        super(kvStore, chainId, chainGetter, (key) => {
+            const i = key.indexOf("/");
+            const chain = key.slice(0, i);
+            const denom = key.slice(i + 1);
+            return new ObservableQueryEVMTokenInfoInner(this.kvStore, this.chainId, this.chainGetter, chain, denom);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+    getAsset(chain, denom) {
+        return this.get(`${chain}/${denom}`);
+    }
+}
+exports.ObservableQueryEVMTokenInfo = ObservableQueryEVMTokenInfo;
+//# sourceMappingURL=token-info.js.map
+
+/***/ }),
+
+/***/ 1498:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1499), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1499:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GravityBridgeCurrencyRegsitrar = exports.GravityBridgeCurrencyRegsitrarInner = void 0;
+const mobx_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(27);
+class GravityBridgeCurrencyRegsitrarInner {
+    constructor(kvStore, chainInfoInner, chainStore, queriesStore) {
+        this.kvStore = kvStore;
+        this.chainInfoInner = chainInfoInner;
+        this.chainStore = chainStore;
+        this.queriesStore = queriesStore;
+    }
+    registerUnknownCurrencies(coinMinimalDenom) {
+        const denomHelper = new common_1.DenomHelper(coinMinimalDenom);
+        if (denomHelper.type !== "native" ||
+            !denomHelper.denom.startsWith("gravity0x")) {
+            return;
+        }
+        const queries = this.queriesStore.get(this.chainInfoInner.chainId);
+        const contractAddress = denomHelper.denom.replace("gravity", "");
+        const erc20Metadata = queries.keplrETC.queryERC20Metadata.get(contractAddress);
+        if (erc20Metadata.symbol && erc20Metadata.decimals != null) {
+            return [
+                {
+                    coinMinimalDenom: denomHelper.denom,
+                    coinDenom: erc20Metadata.symbol,
+                    coinDecimals: erc20Metadata.decimals,
+                },
+                true,
+            ];
+        }
+        return [undefined, false];
+    }
+}
+exports.GravityBridgeCurrencyRegsitrarInner = GravityBridgeCurrencyRegsitrarInner;
+class GravityBridgeCurrencyRegsitrar {
+    constructor(kvStore, chainStore, queriesStore) {
+        this.kvStore = kvStore;
+        this.chainStore = chainStore;
+        this.queriesStore = queriesStore;
+        this.map = new Map();
+        this.chainStore.addSetChainInfoHandler((chainInfoInner) => this.setChainInfoHandler(chainInfoInner));
+    }
+    setChainInfoHandler(chainInfoInner) {
+        const inner = this.get(chainInfoInner);
+        chainInfoInner.registerCurrencyRegistrar((coinMinimalDenom) => inner.registerUnknownCurrencies(coinMinimalDenom));
+    }
+    get(chainInfoInner) {
+        if (!this.map.has(chainInfoInner.chainId)) {
+            mobx_1.runInAction(() => {
+                this.map.set(chainInfoInner.chainId, new GravityBridgeCurrencyRegsitrarInner(this.kvStore, chainInfoInner, this.chainStore, this.queriesStore));
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.map.get(chainInfoInner.chainId);
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], GravityBridgeCurrencyRegsitrar.prototype, "map", void 0);
+exports.GravityBridgeCurrencyRegsitrar = GravityBridgeCurrencyRegsitrar;
+//# sourceMappingURL=currency-registrar.js.map
+
+/***/ }),
+
+/***/ 181:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MessageRegistry = void 0;
+class MessageRegistry {
+    constructor() {
+        this.registeredMsgType = new Map();
+    }
+    registerMessage(msgCls) {
+        if (this.registeredMsgType.has(msgCls.type())) {
+            throw new Error(`Already registered type ${msgCls.type()}`);
+        }
+        this.registeredMsgType.set(msgCls.type(), msgCls);
+    }
+    parseMessage(message) {
+        if (!message.type) {
+            throw new Error("Null type");
+        }
+        const msgCls = this.registeredMsgType.get(message.type);
+        if (!msgCls) {
+            throw new Error(`Unregistered msg type ${message.type}`);
+        }
+        return Object.setPrototypeOf(message.msg, msgCls.prototype);
+    }
+}
+exports.MessageRegistry = MessageRegistry;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 182:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.JSONUint8Array = void 0;
+// The JSON encoder that supports the `Uint8Array`.
+const hex_1 = __webpack_require__(325);
+class JSONUint8Array {
+    static parse(text) {
+        return JSON.parse(text, (key, value) => {
+            // Prevent potential prototype poisoning.
+            if (key === "__proto__") {
+                throw new Error("__proto__ is disallowed");
+            }
+            if (value &&
+                typeof value === "string" &&
+                value.startsWith("__uint8array__")) {
+                return hex_1.fromHex(value.replace("__uint8array__", ""));
+            }
+            return value;
+        });
+    }
+    static stringify(obj) {
+        return JSON.stringify(obj, (key, value) => {
+            // Prevent potential prototype poisoning.
+            if (key === "__proto__") {
+                throw new Error("__proto__ is disallowed");
+            }
+            if (value &&
+                (value instanceof Uint8Array ||
+                    (typeof value === "object" &&
+                        "type" in value &&
+                        "data" in value &&
+                        value.type === "Buffer" &&
+                        Array.isArray(value.data)))) {
+                const array = value instanceof Uint8Array ? value : new Uint8Array(value.data);
+                return `__uint8array__${hex_1.toHex(array)}`;
+            }
+            return value;
+        });
+    }
+    static wrap(obj) {
+        if (obj === undefined)
+            return undefined;
+        return JSON.parse(JSONUint8Array.stringify(obj));
+    }
+    static unwrap(obj) {
+        if (obj === undefined)
+            return undefined;
+        return JSONUint8Array.parse(JSON.stringify(obj));
+    }
+}
+exports.JSONUint8Array = JSONUint8Array;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 186:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getKeplrExtensionRouterId = void 0;
+/**
+ * getKeplrExtensionRouterId returns the `window.keplrExtensionRouterId`.
+ * If the `window.keplrExtensionRouterId` is not initialized, it will be initialized and returned.
+ */
+function getKeplrExtensionRouterId() {
+    const globalWindow = typeof window !== "undefined" ? window : chrome;
+    if (globalWindow.keplrExtensionRouterId == null) {
+        globalWindow.keplrExtensionRouterId = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
+    }
+    return globalWindow.keplrExtensionRouterId;
+}
+exports.getKeplrExtensionRouterId = getKeplrExtensionRouterId;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 266:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(580), exports);
+__exportStar(__webpack_require__(581), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(324), exports);
+__exportStar(__webpack_require__(326), exports);
+__exportStar(__webpack_require__(327), exports);
+__exportStar(__webpack_require__(328), exports);
+__exportStar(__webpack_require__(329), exports);
+__exportStar(__webpack_require__(330), exports);
+__exportStar(__webpack_require__(331), exports);
+__exportStar(__webpack_require__(181), exports);
+__exportStar(__webpack_require__(182), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 324:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Router = void 0;
+const encoding_1 = __webpack_require__(181);
+const json_uint8_array_1 = __webpack_require__(182);
+class Router {
+    constructor(envProducer) {
+        this.envProducer = envProducer;
+        this.msgRegistry = new encoding_1.MessageRegistry();
+        this.registeredHandler = new Map();
+        this.guards = [];
+        this.port = "";
+    }
+    registerMessage(msgCls) {
+        this.msgRegistry.registerMessage(msgCls);
+    }
+    addHandler(route, handler) {
+        if (this.registeredHandler.has(route)) {
+            throw new Error(`Already registered type ${route}`);
+        }
+        this.registeredHandler.set(route, handler);
+    }
+    addGuard(guard) {
+        this.guards.push(guard);
+    }
+    handleMessage(message, sender) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            const msg = this.msgRegistry.parseMessage(json_uint8_array_1.JSONUint8Array.unwrap(message));
+            const env = this.envProducer(sender, (_a = msg.routerMeta) !== null && _a !== void 0 ? _a : {});
+            for (const guard of this.guards) {
+                yield guard(env, msg, sender);
+            }
+            // Can happen throw
+            msg.validateBasic();
+            const route = msg.route();
+            if (!route) {
+                throw new Error("Null router");
+            }
+            const handler = this.registeredHandler.get(route);
+            if (!handler) {
+                throw new Error("Can't get handler");
+            }
+            return json_uint8_array_1.JSONUint8Array.wrap(yield handler(env, msg));
+        });
+    }
+}
+exports.Router = Router;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 325:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/*
+  Belows are from @cosmjs/encoding library.
+  To reduce the bundle size of provider, put them directly here.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.fromHex = exports.toHex = void 0;
+function toHex(data) {
+    let out = "";
+    for (const byte of data) {
+        out += ("0" + byte.toString(16)).slice(-2);
+    }
+    return out;
+}
+exports.toHex = toHex;
+function fromHex(hexstring) {
+    if (hexstring.length % 2 !== 0) {
+        throw new Error("hex string length must be a multiple of 2");
+    }
+    const listOfInts = [];
+    for (let i = 0; i < hexstring.length; i += 2) {
+        const hexByteAsString = hexstring.substr(i, 2);
+        if (!hexByteAsString.match(/[0-9a-f]{2}/i)) {
+            throw new Error("hex string contains invalid characters");
+        }
+        listOfInts.push(parseInt(hexByteAsString, 16));
+    }
+    return new Uint8Array(listOfInts);
+}
+exports.fromHex = fromHex;
+//# sourceMappingURL=hex.js.map
+
+/***/ }),
+
+/***/ 326:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=handler.js.map
+
+/***/ }),
+
+/***/ 327:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=interfaces.js.map
+
+/***/ }),
+
+/***/ 328:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 329:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.KeplrError = void 0;
+class KeplrError extends Error {
+    constructor(module, code, message) {
+        super(message);
+        this.module = module;
+        this.code = code;
+        Object.setPrototypeOf(this, KeplrError.prototype);
+    }
+}
+exports.KeplrError = KeplrError;
+//# sourceMappingURL=error.js.map
+
+/***/ }),
+
+/***/ 330:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Message = void 0;
+/**
+ * This messaging system is influenced by cosmos-sdk.
+ * The messages are processed in the following order:
+ * "deserialize message -> approve external -> validate basic -> handler by routing".
+ * This deserializing system has weak polymorphism feature.
+ * Message would be converted to object according to their class and registered type.
+ * But, nested class is not supported. Non primitivie types or array that includes non primitive types in message's fields
+ * can't be decoded to their type properly. In this case, user should set thier prototype manually.
+ */
+class Message {
+    /**
+     * Ask for approval if message is sent externally.
+     */
+    approveExternal(_env, _sender) {
+        return false;
+    }
+}
+exports.Message = Message;
+//# sourceMappingURL=message.js.map
+
+/***/ }),
+
+/***/ 331:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WEBPAGE_PORT = exports.APP_PORT = exports.BACKGROUND_PORT = void 0;
+exports.BACKGROUND_PORT = "background";
+exports.APP_PORT = "popup";
+exports.WEBPAGE_PORT = "webpage";
+//# sourceMappingURL=constant.js.map
+
+/***/ }),
+
+/***/ 43:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1402), exports);
+__exportStar(__webpack_require__(118), exports);
+__exportStar(__webpack_require__(1417), exports);
+__exportStar(__webpack_require__(1418), exports);
+__exportStar(__webpack_require__(1472), exports);
+__exportStar(__webpack_require__(1473), exports);
+__exportStar(__webpack_require__(1484), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 507:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableQueryBalances = exports.ObservableQueryBalancesInner = exports.ObservableQueryBalanceInner = void 0;
+const chain_query_1 = __webpack_require__(59);
+const common_1 = __webpack_require__(27);
+const mobx_1 = __webpack_require__(5);
+const unit_1 = __webpack_require__(26);
+const common_2 = __webpack_require__(118);
+const mobx_utils_1 = __webpack_require__(200);
+class ObservableQueryBalanceInner extends chain_query_1.ObservableChainQuery {
+    constructor(kvStore, chainId, chainGetter, url, denomHelper) {
+        super(kvStore, chainId, chainGetter, url);
+        this.denomHelper = denomHelper;
+        mobx_1.makeObservable(this);
+    }
+    get currency() {
+        const denom = this.denomHelper.denom;
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const currency = chainInfo.findCurrency(denom);
+        // TODO: Infer the currency according to its denom (such if denom is `uatom` -> `Atom` with decimal 6)?
+        if (!currency) {
+            throw new Error(`Unknown currency: ${denom}`);
+        }
+        return currency;
+    }
+}
+__decorate([
+    mobx_1.computed
+], ObservableQueryBalanceInner.prototype, "currency", null);
+exports.ObservableQueryBalanceInner = ObservableQueryBalanceInner;
+class ObservableQueryBalancesInner {
+    constructor(kvStore, chainId, chainGetter, balanceRegistries, bech32Address) {
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+        this.balanceRegistries = balanceRegistries;
+        this.balanceMap = new Map();
+        this.getBalanceFromCurrency = mobx_utils_1.computedFn((currency) => {
+            const bal = this.balances.find((bal) => bal.currency.coinMinimalDenom === currency.coinMinimalDenom);
+            if (bal) {
+                return bal.balance;
+            }
+            return new unit_1.CoinPretty(currency, new unit_1.Int(0));
+        });
+        mobx_1.makeObservable(this);
+        this.bech32Address = bech32Address;
+    }
+    fetch() {
+        this.balanceMap.forEach((bal) => bal.fetch());
+    }
+    getBalanceInner(currency) {
+        let key = currency.coinMinimalDenom;
+        // If the currency is secret20, it will be different according to not only the minimal denom but also the viewing key of the currency.
+        if ("type" in currency && currency.type === "secret20") {
+            key = currency.coinMinimalDenom + "/" + currency.viewingKey;
+        }
+        if (!this.balanceMap.has(key)) {
+            mobx_1.runInAction(() => {
+                let balanceInner;
+                for (const registry of this.balanceRegistries) {
+                    balanceInner = registry.getBalanceInner(this.chainId, this.chainGetter, this.bech32Address, currency.coinMinimalDenom);
+                    if (balanceInner) {
+                        break;
+                    }
+                }
+                if (balanceInner) {
+                    this.balanceMap.set(key, balanceInner);
+                }
+                else {
+                    throw new Error(`Failed to get and parse the balance for ${key}`);
+                }
+            });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return this.balanceMap.get(key);
+    }
+    get stakable() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        return this.getBalanceInner(chainInfo.stakeCurrency);
+    }
+    /**
+     * 알려진 모든 Currency들의 balance를 반환환다.
+     */
+    get balances() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const result = [];
+        for (let i = 0; i < chainInfo.currencies.length; i++) {
+            const currency = chainInfo.currencies[i];
+            result.push(this.getBalanceInner(currency));
+        }
+        return result;
+    }
+    /**
+     * 알려진 모든 Currency들 중 0 이상의 잔고를 가진 balance를 반환환다.
+     */
+    get positiveBalances() {
+        const balances = this.balances;
+        return balances.filter((bal) => bal.balance.toDec().gt(new unit_1.Dec(0)));
+    }
+    /**
+     * Returns that the balances that are not native tokens.
+     * Native token means that the token that exists on the `bank` module.
+     */
+    get nonNativeBalances() {
+        const balances = this.balances;
+        return balances.filter((bal) => new common_1.DenomHelper(bal.currency.coinMinimalDenom).type !== "native");
+    }
+    /**
+     * Returns that the balances that are native tokens with greater than 0 balance.
+     * Native token means that the token that exists on the `bank` module.
+     */
+    get positiveNativeUnstakables() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const balances = this.balances;
+        return balances.filter((bal) => new common_1.DenomHelper(bal.currency.coinMinimalDenom).type === "native" &&
+            bal.balance.toDec().gt(new unit_1.Dec(0)) &&
+            bal.currency.coinMinimalDenom !==
+                chainInfo.stakeCurrency.coinMinimalDenom);
+    }
+    get unstakables() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        const currencies = chainInfo.currencies.filter((cur) => cur.coinMinimalDenom !== chainInfo.stakeCurrency.coinMinimalDenom);
+        const result = [];
+        for (let i = 0; i < currencies.length; i++) {
+            const currency = currencies[i];
+            result.push(this.getBalanceInner(currency));
+        }
+        return result;
+    }
+}
+__decorate([
+    mobx_1.observable.shallow
+], ObservableQueryBalancesInner.prototype, "balanceMap", void 0);
+__decorate([
+    mobx_1.computed
+], ObservableQueryBalancesInner.prototype, "stakable", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryBalancesInner.prototype, "balances", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryBalancesInner.prototype, "positiveBalances", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryBalancesInner.prototype, "nonNativeBalances", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryBalancesInner.prototype, "positiveNativeUnstakables", null);
+__decorate([
+    mobx_1.computed
+], ObservableQueryBalancesInner.prototype, "unstakables", null);
+exports.ObservableQueryBalancesInner = ObservableQueryBalancesInner;
+class ObservableQueryBalances extends common_2.HasMapStore {
+    constructor(kvStore, chainId, chainGetter) {
+        super((bech32Address) => {
+            return new ObservableQueryBalancesInner(this.kvStore, this.chainId, this.chainGetter, this.balanceRegistries, bech32Address);
+        });
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+        this.balanceRegistries = [];
+    }
+    addBalanceRegistry(registry) {
+        this.balanceRegistries.push(registry);
+    }
+    getQueryBech32Address(bech32Address) {
+        return this.get(bech32Address);
+    }
+}
+exports.ObservableQueryBalances = ObservableQueryBalances;
+//# sourceMappingURL=balances.js.map
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(578), exports);
+__exportStar(__webpack_require__(266), exports);
+__exportStar(__webpack_require__(582), exports);
+__exportStar(__webpack_require__(585), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 578:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(579), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 579:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExtensionRouter = void 0;
+const router_1 = __webpack_require__(3);
+const utils_1 = __webpack_require__(186);
+class ExtensionRouter extends router_1.Router {
+    constructor(envProducer) {
+        super(envProducer);
+        // You shouldn't set this handler as async funtion,
+        // because mozila's extension polyfill deals with the message handler as resolved if it returns the `Promise`.
+        // So, if this handler is async function, it always return the `Promise` if it returns `undefined` and it is dealt with as resolved.
+        this.onMessage = (message, sender) => {
+            var _a, _b;
+            if (message.port !== this.port) {
+                return;
+            }
+            // The receiverRouterId will be set when requesting an interaction from the background to the frontend.
+            // If this value exists, it compares this value with the current router id and processes them only if they are the same.
+            if (((_b = (_a = message.msg) === null || _a === void 0 ? void 0 : _a.routerMeta) === null || _b === void 0 ? void 0 : _b.receiverRouterId) &&
+                message.msg.routerMeta.receiverRouterId !== utils_1.getKeplrExtensionRouterId()) {
+                return;
+            }
+            return this.onMessageHandler(message, sender);
+        };
+    }
+    listen(port) {
+        if (!port) {
+            throw new Error("Empty port");
+        }
+        this.port = port;
+        browser.runtime.onMessage.addListener(this.onMessage);
+        // Although security considerations cross-extension communication are in place,
+        // we have put in additional security measures by disbling extension-to-extension communication until a formal security audit has taken place.
+        /*
+        if (browser.runtime.onMessageExternal) {
+          browser.runtime.onMessageExternal.addListener(this.onMessage);
+        }
+         */
+    }
+    unlisten() {
+        this.port = "";
+        browser.runtime.onMessage.removeListener(this.onMessage);
+        // Although security considerations cross-extension communication are in place,
+        // we have put in additional security measures by disbling extension-to-extension communication until a formal security audit has taken place.
+        /*
+        if (browser.runtime.onMessageExternal) {
+          browser.runtime.onMessageExternal.removeListener(this.onMessage);
+        }
+         */
+    }
+    onMessageHandler(message, sender) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.handleMessage(message, sender);
+                return {
+                    return: result,
+                };
+            }
+            catch (e) {
+                console.log(`Failed to process msg ${message.type}: ${(e === null || e === void 0 ? void 0 : e.message) || (e === null || e === void 0 ? void 0 : e.toString())}`);
+                if (e instanceof router_1.KeplrError) {
+                    return Promise.resolve({
+                        error: {
+                            code: e.code,
+                            module: e.module,
+                            message: e.message || e.toString(),
+                        },
+                    });
+                }
+                else if (e) {
+                    return Promise.resolve({
+                        error: e.message || e.toString(),
+                    });
+                }
+                else {
+                    return Promise.resolve({
+                        error: "Unknown error, and error is null",
+                    });
+                }
+            }
+        });
+    }
+}
+exports.ExtensionRouter = ExtensionRouter;
+//# sourceMappingURL=extension.js.map
+
+/***/ }),
+
+/***/ 580:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.InExtensionMessageRequester = void 0;
+const router_1 = __webpack_require__(3);
+const utils_1 = __webpack_require__(186);
+class InExtensionMessageRequester {
+    sendMessage(port, msg) {
+        return __awaiter(this, void 0, void 0, function* () {
+            msg.validateBasic();
+            // Set message's origin.
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            msg["origin"] =
+                typeof window !== "undefined"
+                    ? window.location.origin
+                    : `chrome-extension://${browser.runtime.id}`;
+            msg.routerMeta = Object.assign(Object.assign({}, msg.routerMeta), { routerId: utils_1.getKeplrExtensionRouterId() });
+            const result = router_1.JSONUint8Array.unwrap(yield new Promise((resolve) => {
+                chrome.runtime.sendMessage({
+                    port,
+                    type: msg.type(),
+                    msg: router_1.JSONUint8Array.wrap(msg),
+                }, (result) => {
+                    resolve(result);
+                });
+            }));
+            if (!result) {
+                throw new Error("Null result");
+            }
+            if (result.error) {
+                if (typeof result.error === "string") {
+                    throw new Error(result.error);
+                }
+                else {
+                    throw new router_1.KeplrError(result.error.module, result.error.code, result.error.message);
+                }
+            }
+            return result.return;
+        });
+    }
+    static sendMessageToTab(tabId, port, msg) {
+        return __awaiter(this, void 0, void 0, function* () {
+            msg.validateBasic();
+            // Set message's origin.
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            msg["origin"] =
+                typeof window !== "undefined"
+                    ? window.location.origin
+                    : `chrome-extension://${browser.runtime.id}`;
+            console.log(msg["origin"], "sendMessageToTab");
+            msg.routerMeta = Object.assign(Object.assign({}, msg.routerMeta), { routerId: utils_1.getKeplrExtensionRouterId() });
+            const result = router_1.JSONUint8Array.unwrap(yield new Promise((resolve) => {
+                chrome.tabs.sendMessage(tabId, {
+                    port,
+                    type: msg.type(),
+                    msg: router_1.JSONUint8Array.wrap(msg),
+                }, (result) => {
+                    console.log(result, "sendMessageToTab-result>>>>>>");
+                    resolve(result);
+                });
+            }));
+            if (!result) {
+                throw new Error("Null result");
+            }
+            if (result.error) {
+                if (typeof result.error === "string") {
+                    throw new Error(result.error);
+                }
+                else {
+                    throw new router_1.KeplrError(result.error.module, result.error.code, result.error.message);
+                }
+            }
+            return result.return;
+        });
+    }
+}
+exports.InExtensionMessageRequester = InExtensionMessageRequester;
+//# sourceMappingURL=extension.js.map
+
+/***/ }),
+
+/***/ 581:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ContentScriptMessageRequester = void 0;
+const router_1 = __webpack_require__(3);
+const utils_1 = __webpack_require__(186);
+// The message requester to send the message to the content scripts.
+// This will send message to the tab with the content script.
+// And, this can't handle the result of the message sending.
+// TODO: Research to improve this requester.
+class ContentScriptMessageRequester {
+    sendMessage(port, msg) {
+        return __awaiter(this, void 0, void 0, function* () {
+            msg.validateBasic();
+            // Set message's origin.
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            msg["origin"] =
+                typeof window !== "undefined"
+                    ? window.location.origin
+                    : `chrome-extension://${browser.runtime.id}`;
+            msg.routerMeta = Object.assign(Object.assign({}, msg.routerMeta), { routerId: utils_1.getKeplrExtensionRouterId() });
+            const wrappedMsg = router_1.JSONUint8Array.wrap(msg);
+            const alltabs = yield browser.tabs.query({
+                discarded: false,
+                status: "complete",
+            });
+            const tabs = alltabs.filter((tab) => {
+                if (tab.url) {
+                    return ((tab.url.indexOf(browser.runtime.id) > -1 &&
+                        tab.url.indexOf("interaction=true&interactionInternal=false") >
+                            -1) ||
+                        tab.url.indexOf("mises.site") > -1 ||
+                        tab.url.indexOf("localhost") > -1);
+                }
+            });
+            for (let i = 0; i < tabs.length; i++) {
+                const tabId = tabs[i].id;
+                if (tabId) {
+                    try {
+                        console.log(tabId);
+                        chrome.tabs.sendMessage(tabId, {
+                            port,
+                            type: msg.type(),
+                            msg: wrappedMsg,
+                        }, (result) => {
+                            console.log(result, "browser.tabs.sendMessage: success");
+                        });
+                        console.log(tabId, "browser.tabs.sendMessage");
+                        // Ignore the failure
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
+                }
+            }
+            // This requester can't handle the result of the message.
+            return undefined;
+        });
+    }
+}
+exports.ContentScriptMessageRequester = ContentScriptMessageRequester;
+//# sourceMappingURL=content-script.js.map
+
+/***/ }),
+
+/***/ 582:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(583), exports);
+__exportStar(__webpack_require__(584), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 583:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExtensionGuards = void 0;
+class ExtensionGuards {
+}
+exports.ExtensionGuards = ExtensionGuards;
+ExtensionGuards.checkOriginIsValid = (_, msg, sender) => {
+    // TODO: When is a url undefined?
+    if (!sender.url) {
+        throw new Error("url is empty");
+    }
+    if (!msg.origin) {
+        throw new Error("origin is empty");
+    }
+    const url = new URL(sender.url);
+    if (url.origin !== msg.origin) {
+        throw new Error("Invalid origin");
+    }
+    return Promise.resolve();
+};
+ExtensionGuards.checkMessageIsInternal = (env, msg, sender) => {
+    if (!env.isInternalMsg && !msg.approveExternal(env, sender)) {
+        throw new Error("Permission rejected");
+    }
+    return Promise.resolve();
+};
+//# sourceMappingURL=extension.js.map
+
+/***/ }),
+
+/***/ 584:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ContentScriptGuards = void 0;
+class ContentScriptGuards {
+}
+exports.ContentScriptGuards = ContentScriptGuards;
+// Router in content script will reject all messages that can be sent from the external.
+ContentScriptGuards.checkMessageIsInternal = (env, msg, sender) => {
+    if (!env.isInternalMsg || msg.approveExternal(env, sender)) {
+        throw new Error("Content script can't handle the message that is able to be sent from external");
+    }
+    return Promise.resolve();
+};
+//# sourceMappingURL=content-script.js.map
+
+/***/ }),
+
+/***/ 585:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(586), exports);
+__exportStar(__webpack_require__(587), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 586:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExtensionEnv = void 0;
+const router_1 = __webpack_require__(3);
+const popup_1 = __webpack_require__(46);
+const requester_1 = __webpack_require__(266);
+class PromiseQueue {
+    constructor() {
+        this.workingOnPromise = false;
+        this.queue = [];
+    }
+    enqueue(fn) {
+        return new Promise((resolve, reject) => {
+            this.queue.push({
+                fn,
+                resolve,
+                reject,
+            });
+            this.dequeue();
+        });
+    }
+    dequeue() {
+        if (this.workingOnPromise) {
+            return;
+        }
+        const item = this.queue.shift();
+        if (!item) {
+            return;
+        }
+        this.workingOnPromise = true;
+        item
+            .fn()
+            .then((result) => {
+            item.resolve(result);
+        })
+            .catch((e) => {
+            item.reject(e);
+        })
+            .finally(() => {
+            this.workingOnPromise = false;
+            this.dequeue();
+        });
+    }
+}
+const openPopupQueue = new PromiseQueue();
+// To handle the opening popup more easily,
+// just open the popup one by one.
+function openPopupWindow(url, channel = "default") {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield openPopupQueue.enqueue(() => {
+            return popup_1.isMobileStatus()
+                ? popup_1.openPopupTab(url, channel)
+                : popup_1.openPopupWindow(url, channel);
+        });
+    });
+}
+class ExtensionEnv {
+}
+exports.ExtensionEnv = ExtensionEnv;
+ExtensionEnv.produceEnv = (sender, routerMeta) => {
+    const isInternalMsg = ExtensionEnv.checkIsInternalMessage(sender, browser.runtime.id, browser.runtime.getURL("/"));
+    // Add additional query string for letting the extension know it is for interaction.
+    const queryString = `interaction=true&interactionInternal=${isInternalMsg}`;
+    const openAndSendMsg = (url, msg, options) => __awaiter(void 0, void 0, void 0, function* () {
+        if (url.startsWith("/")) {
+            url = url.slice(1);
+        }
+        url = browser.runtime.getURL("/popup.html#/" + url);
+        url += `${url.includes("?") ? "&" : "?"}${queryString}`;
+        let tabId;
+        const windowId = yield openPopupWindow(url, options === null || options === void 0 ? void 0 : options.channel);
+        if (!popup_1.isMobileStatus()) {
+            const window = yield browser.windows.get(windowId, {
+                populate: true,
+            });
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            tabId = window.tabs[0].id;
+        }
+        else {
+            tabId = windowId;
+        }
+        // Wait until that tab is loaded
+        yield (() => __awaiter(void 0, void 0, void 0, function* () {
+            const tab = yield browser.tabs.get(tabId);
+            if (tab.status === "complete") {
+                console.log("openAndSendMsg-complete");
+                return;
+            }
+            return new Promise((resolve) => {
+                browser.tabs.onUpdated.addListener((_tabId, changeInfo) => {
+                    if (tabId === _tabId && changeInfo.status === "complete") {
+                        console.log("openAndSendMsg");
+                        resolve();
+                    }
+                });
+            });
+        }))();
+        return yield requester_1.InExtensionMessageRequester.sendMessageToTab(tabId, router_1.APP_PORT, msg);
+    });
+    if (!isInternalMsg) {
+        // If msg is from external (probably from webpage), it opens the popup for extension and send the msg back to the tab opened.
+        return {
+            isInternalMsg,
+            requestInteraction: openAndSendMsg,
+        };
+    }
+    else {
+        // If msg is from the extension itself, it can send the msg back to the extension itself.
+        // In this case, this expects that there is only one extension popup have been opened.
+        const requestInteraction = (url, msg, options) => __awaiter(void 0, void 0, void 0, function* () {
+            var _a;
+            if (options === null || options === void 0 ? void 0 : options.forceOpenWindow) {
+                return yield openAndSendMsg(url, msg, options);
+            }
+            if (url.startsWith("/")) {
+                url = url.slice(1);
+            }
+            url = browser.runtime.getURL("/popup.html#/" + url);
+            if (url.includes("?")) {
+                url += "&" + queryString;
+            }
+            else {
+                url += "?" + queryString;
+            }
+            if ((_a = sender.tab) === null || _a === void 0 ? void 0 : _a.id) {
+                let tabs = yield browser.tabs.query({
+                    discarded: false,
+                    status: "complete",
+                });
+                tabs = tabs.filter((val) => val.url && val.url.indexOf(browser.runtime.id) > -1);
+                if (tabs.length > 0) {
+                    for (const tab of tabs) {
+                        if (tab.id) {
+                            browser.tabs.update(tab.id, {
+                                url,
+                            });
+                        }
+                    }
+                }
+            }
+            // const backgroundPage = await browser.runtime.getBackgroundPage();
+            // const views = browser.extension
+            //   .getViews({
+            //     // Request only for the same tab as the requested frontend.
+            //     // But the browser popup itself has no information about tab.
+            //     // Also, if user has multiple windows on, we need another way to distinguish them.
+            //     // See the comment right below this part.
+            //     tabId: sender.tab?.id,
+            //   })
+            //   .filter((window) => {
+            //     // You need to request interaction with the frontend that requested the message.
+            //     // It is difficult to achieve this with the browser api alone.
+            //     // Check the router id under the window of each view
+            //     // and process only the view that has the same router id of the requested frontend.
+            //     return (
+            //       window.location.href !== backgroundPage.location.href &&
+            //       (routerMeta.routerId == null ||
+            //         routerMeta.routerId === window.keplrExtensionRouterId)
+            //     );
+            //   });
+            // if (views.length > 0) {
+            //   for (const view of views) {
+            //     view.location.href = url;
+            //   }
+            // }
+            msg.routerMeta = Object.assign(Object.assign({}, msg.routerMeta), { receiverRouterId: routerMeta.routerId });
+            return yield new requester_1.InExtensionMessageRequester().sendMessage(router_1.APP_PORT, msg);
+        });
+        return {
+            isInternalMsg,
+            requestInteraction,
+        };
+    }
+};
+ExtensionEnv.checkIsInternalMessage = (sender, extensionId, extensionUrl) => {
+    if (!sender.url) {
+        throw new Error("Empty sender url");
+    }
+    const url = new URL(sender.url);
+    if (!url.origin || url.origin === "null") {
+        throw new Error("Invalid sender url");
+    }
+    const browserURL = new URL(extensionUrl);
+    if (!browserURL.origin || browserURL.origin === "null") {
+        throw new Error("Invalid browser url");
+    }
+    if (url.origin !== browserURL.origin) {
+        return false;
+    }
+    return sender.id === extensionId;
+};
+//# sourceMappingURL=extension.js.map
+
+/***/ }),
+
+/***/ 587:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ContentScriptEnv = void 0;
+// ContentScriptEnv only checks the id is same as the extension id.
+// And, doesn't support the request interaction.
+class ContentScriptEnv {
+}
+exports.ContentScriptEnv = ContentScriptEnv;
+ContentScriptEnv.produceEnv = (sender) => {
+    const isInternalMsg = sender.id === browser.runtime.id;
+    return {
+        isInternalMsg,
+        requestInteraction: () => {
+            throw new Error("ContentScriptEnv doesn't support `requestInteraction`");
+        },
+    };
+};
+//# sourceMappingURL=content-script.js.map
+
+/***/ }),
+
+/***/ 59:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ObservableChainQueryMap = exports.ObservableChainQuery = void 0;
+const common_1 = __webpack_require__(118);
+const axios_1 = __importDefault(__webpack_require__(60));
+const mobx_1 = __webpack_require__(5);
+const common_2 = __webpack_require__(118);
+class ObservableChainQuery extends common_1.ObservableQuery {
+    constructor(kvStore, chainId, chainGetter, url) {
+        const chainInfo = chainGetter.getChain(chainId);
+        const instance = axios_1.default.create(Object.assign({
+            baseURL: chainInfo.rest,
+        }, chainInfo.restConfig));
+        super(kvStore, instance, url);
+        this._chainId = chainId;
+        this.chainGetter = chainGetter;
+        this.fetchConfig = {
+            retry: 3,
+            retryDelay: 1000,
+        };
+    }
+    get instance() {
+        const chainInfo = this.chainGetter.getChain(this.chainId);
+        return axios_1.default.create(Object.assign({
+            baseURL: chainInfo.rest,
+        }, chainInfo.restConfig));
+    }
+    get chainId() {
+        return this._chainId;
+    }
+}
+__decorate([
+    mobx_1.override
+], ObservableChainQuery.prototype, "instance", null);
+exports.ObservableChainQuery = ObservableChainQuery;
+class ObservableChainQueryMap extends common_2.HasMapStore {
+    constructor(kvStore, chainId, chainGetter, creater) {
+        super(creater);
+        this.kvStore = kvStore;
+        this.chainId = chainId;
+        this.chainGetter = chainGetter;
+    }
+}
+exports.ObservableChainQueryMap = ObservableChainQueryMap;
+//# sourceMappingURL=chain-query.js.map
+
+/***/ }),
+
+/***/ 626:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.txEventsWithPreOnFulfill = void 0;
+function txEventsWithPreOnFulfill(onTxEvents, preOnTxEvents) {
+    const onBroadcasted = onTxEvents
+        ? typeof onTxEvents === "function"
+            ? undefined
+            : onTxEvents.onBroadcasted
+        : undefined;
+    const onFulfill = onTxEvents
+        ? typeof onTxEvents === "function"
+            ? onTxEvents
+            : onTxEvents.onFulfill
+        : undefined;
+    const onPreBroadcasted = preOnTxEvents
+        ? typeof preOnTxEvents === "function"
+            ? undefined
+            : preOnTxEvents.onBroadcasted
+        : undefined;
+    const onPreFulfill = preOnTxEvents
+        ? typeof preOnTxEvents === "function"
+            ? preOnTxEvents
+            : preOnTxEvents.onFulfill
+        : undefined;
+    if (!onBroadcasted && !onFulfill && !onPreBroadcasted && !onPreFulfill) {
+        return undefined;
+    }
+    return {
+        onBroadcasted: onBroadcasted || onPreBroadcasted
+            ? (txHash) => {
+                if (onPreBroadcasted) {
+                    onPreBroadcasted(txHash);
+                }
+                if (onBroadcasted) {
+                    onBroadcasted(txHash);
+                }
+            }
+            : undefined,
+        onFulfill: onFulfill || onPreFulfill
+            ? (tx) => {
+                if (onPreFulfill) {
+                    onPreFulfill(tx);
+                }
+                if (onFulfill) {
+                    onFulfill(tx);
+                }
+            }
+            : undefined,
+    };
+}
+exports.txEventsWithPreOnFulfill = txEventsWithPreOnFulfill;
+//# sourceMappingURL=utils.js.map
+
+/***/ }),
+
+/***/ 636:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1494), exports);
+__exportStar(__webpack_require__(1247), exports);
+__exportStar(__webpack_require__(1498), exports);
+__exportStar(__webpack_require__(1248), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 859:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AccountSetBaseSuper = exports.AccountSetBase = exports.WalletStatus = void 0;
+const mobx_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(27);
+const cosmos_1 = __webpack_require__(16);
+var WalletStatus;
+(function (WalletStatus) {
+    WalletStatus["NotInit"] = "NotInit";
+    WalletStatus["Loading"] = "Loading";
+    WalletStatus["Loaded"] = "Loaded";
+    WalletStatus["NotExist"] = "NotExist";
+    WalletStatus["Rejected"] = "Rejected";
+})(WalletStatus = exports.WalletStatus || (exports.WalletStatus = {}));
+class AccountSetBase {
+    constructor(eventListener, chainGetter, chainId, opts) {
+        this.eventListener = eventListener;
+        this.chainGetter = chainGetter;
+        this.chainId = chainId;
+        this.opts = opts;
+        this._walletVersion = undefined;
+        this._walletStatus = WalletStatus.NotInit;
+        this._rejectionReason = undefined;
+        this._name = "";
+        this._bech32Address = "";
+        this._isNanoLedger = false;
+        this._txTypeInProgress = "";
+        this._txNotification = "";
+        this.hasInited = false;
+        this.sendTokenFns = [];
+        this.makeSendTokenTxFns = [];
+        this.handleInit = () => this.init();
+        mobx_1.makeObservable(this);
+        this._pubKey = new Uint8Array();
+        if (opts.autoInit) {
+            this.init();
+        }
+    }
+    getKeplr() {
+        return this.opts.getKeplr();
+    }
+    registerSendTokenFn(fn) {
+        this.sendTokenFns.push(fn);
+    }
+    registerMakeSendTokenFn(fn) {
+        this.makeSendTokenTxFns.push(fn);
+    }
+    enable(keplr, chainId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const chainInfo = this.chainGetter.getChain(chainId);
+            if (this.opts.suggestChain) {
+                if (this.opts.suggestChainFn) {
+                    yield this.opts.suggestChainFn(keplr, chainInfo);
+                }
+                else {
+                    yield this.suggestChain(keplr, chainInfo);
+                }
+            }
+            yield keplr.enable(chainId);
+        });
+    }
+    suggestChain(keplr, chainInfo) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield keplr.experimentalSuggestChain(chainInfo.raw);
+        });
+    }
+    *init() {
+        // If wallet status is not exist, there is no need to try to init because it always fails.
+        if (this.walletStatus === WalletStatus.NotExist) {
+            return;
+        }
+        // If the store has never been initialized, add the event listener.
+        if (!this.hasInited) {
+            // If key store in the keplr extension is changed, this event will be dispatched.
+            this.eventListener.addEventListener("mises_keystorechange", this.handleInit);
+        }
+        this.hasInited = true;
+        // Set wallet status as loading whenever try to init.
+        this._walletStatus = WalletStatus.Loading;
+        const keplr = yield* common_1.toGenerator(this.getKeplr());
+        if (!keplr) {
+            this._walletStatus = WalletStatus.NotExist;
+            return;
+        }
+        this._walletVersion = keplr.version;
+        try {
+            yield this.enable(keplr, this.chainId);
+        }
+        catch (e) {
+            console.log(e, "extension init error: enable");
+            this._walletStatus = WalletStatus.Rejected;
+            this._rejectionReason = e;
+            return;
+        }
+        try {
+            const key = yield* common_1.toGenerator(keplr.getKey(this.chainId));
+            this._bech32Address = key.bech32Address;
+            this._isNanoLedger = key.isNanoLedger;
+            this._name = key.name;
+            this._pubKey = key.pubKey;
+            // Set the wallet status as loaded after getting all necessary infos.
+            this._walletStatus = WalletStatus.Loaded;
+        }
+        catch (e) {
+            console.log(e, "extension init error: getKey");
+            console.log(e);
+            // Caught error loading key
+            // Reset properties, and set status to Rejected
+            this._bech32Address = "";
+            this._isNanoLedger = false;
+            this._name = "";
+            this._pubKey = new Uint8Array(0);
+            this._walletStatus = WalletStatus.Rejected;
+            this._rejectionReason = e;
+        }
+        if (this._walletStatus !== WalletStatus.Rejected) {
+            // Reset previous rejection error message
+            this._rejectionReason = undefined;
+        }
+    }
+    disconnect() {
+        this._walletStatus = WalletStatus.NotInit;
+        this.hasInited = false;
+        this.eventListener.removeEventListener("mises_keystorechange", this.handleInit);
+        this._bech32Address = "";
+        this._isNanoLedger = false;
+        this._name = "";
+        this._pubKey = new Uint8Array(0);
+        this._rejectionReason = undefined;
+    }
+    get walletVersion() {
+        return this._walletVersion;
+    }
+    get isReadyToSendTx() {
+        return (this.walletStatus === WalletStatus.Loaded && this.bech32Address !== "");
+    }
+    /**
+     * @deprecated Use `isReadyToSendTx`
+     */
+    get isReadyToSendMsgs() {
+        return (this.walletStatus === WalletStatus.Loaded && this.bech32Address !== "");
+    }
+    makeSendTokenTx(amount, currency, recipient) {
+        for (let i = 0; i < this.makeSendTokenTxFns.length; i++) {
+            const fn = this.makeSendTokenTxFns[i];
+            const res = fn(amount, currency, recipient);
+            if (res) {
+                return res;
+            }
+        }
+        const denomHelper = new common_1.DenomHelper(currency.coinMinimalDenom);
+        throw new Error(`Unsupported type of currency (${denomHelper.type})`);
+    }
+    sendToken(amount, currency, recipient, memo = "", stdFee = {}, signOptions, onTxEvents) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (let i = 0; i < this.sendTokenFns.length; i++) {
+                const fn = this.sendTokenFns[i];
+                if (yield fn(amount, currency, recipient, memo, stdFee, signOptions, onTxEvents)) {
+                    return;
+                }
+            }
+            const denomHelper = new common_1.DenomHelper(currency.coinMinimalDenom);
+            throw new Error(`Unsupported type of currency (${denomHelper.type})`);
+        });
+    }
+    get walletStatus() {
+        return this._walletStatus;
+    }
+    get rejectionReason() {
+        return this._rejectionReason;
+    }
+    get name() {
+        return this._name;
+    }
+    get bech32Address() {
+        return this._bech32Address;
+    }
+    get pubKey() {
+        return this._pubKey.slice();
+    }
+    get isNanoLedger() {
+        return this._isNanoLedger;
+    }
+    /**
+     * Returns the tx type in progress waiting to be committed.
+     * If there is no tx type in progress, this returns an empty string ("").
+     */
+    get txTypeInProgress() {
+        return this._txTypeInProgress;
+    }
+    get txNotification() {
+        return this._txNotification;
+    }
+    /**
+     * @deprecated Use `txTypeInProgress`
+     */
+    get isSendingMsg() {
+        return this.txTypeInProgress;
+    }
+    get hasEthereumHexAddress() {
+        var _a, _b;
+        return ((_b = (_a = this.chainGetter
+            .getChain(this.chainId)
+            .features) === null || _a === void 0 ? void 0 : _a.includes("eth-address-gen")) !== null && _b !== void 0 ? _b : false);
+    }
+    get ethereumHexAddress() {
+        if (this.bech32Address === "") {
+            return "";
+        }
+        return cosmos_1.Bech32Address.fromBech32(this.bech32Address, this.chainGetter.getChain(this.chainId).bech32Config.bech32PrefixAccAddr).toHex(true);
+    }
+}
+__decorate([
+    mobx_1.observable
+], AccountSetBase.prototype, "_walletVersion", void 0);
+__decorate([
+    mobx_1.observable
+], AccountSetBase.prototype, "_walletStatus", void 0);
+__decorate([
+    mobx_1.observable.ref
+], AccountSetBase.prototype, "_rejectionReason", void 0);
+__decorate([
+    mobx_1.observable
+], AccountSetBase.prototype, "_name", void 0);
+__decorate([
+    mobx_1.observable
+], AccountSetBase.prototype, "_bech32Address", void 0);
+__decorate([
+    mobx_1.observable
+], AccountSetBase.prototype, "_isNanoLedger", void 0);
+__decorate([
+    mobx_1.observable
+], AccountSetBase.prototype, "_txTypeInProgress", void 0);
+__decorate([
+    mobx_1.observable
+], AccountSetBase.prototype, "_txNotification", void 0);
+__decorate([
+    mobx_1.flow
+], AccountSetBase.prototype, "init", null);
+__decorate([
+    mobx_1.action
+], AccountSetBase.prototype, "disconnect", null);
+__decorate([
+    mobx_1.computed
+], AccountSetBase.prototype, "isReadyToSendTx", null);
+__decorate([
+    mobx_1.computed
+], AccountSetBase.prototype, "isReadyToSendMsgs", null);
+__decorate([
+    mobx_1.computed
+], AccountSetBase.prototype, "ethereumHexAddress", null);
+exports.AccountSetBase = AccountSetBase;
+class AccountSetBaseSuper extends AccountSetBase {
+    constructor(...params) {
+        super(...params);
+        mobx_1.makeObservable(this);
+    }
+    setTxTypeInProgress(type) {
+        this._txTypeInProgress = type;
+    }
+    setTxNotification(type) {
+        this._txNotification = type;
+    }
+}
+__decorate([
+    mobx_1.action
+], AccountSetBaseSuper.prototype, "setTxTypeInProgress", null);
+__decorate([
+    mobx_1.action
+], AccountSetBaseSuper.prototype, "setTxNotification", null);
+exports.AccountSetBaseSuper = AccountSetBaseSuper;
+//# sourceMappingURL=base.js.map
+
+/***/ }),
+
+/***/ 860:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BondStatus = void 0;
+var BondStatus;
+(function (BondStatus) {
+    BondStatus["Unbonded"] = "Unbonded";
+    BondStatus["Unbonding"] = "Unbonding";
+    BondStatus["Bonded"] = "Bonded";
+    BondStatus["Unspecified"] = "Unspecified";
+})(BondStatus = exports.BondStatus || (exports.BondStatus = {}));
+//# sourceMappingURL=types.js.map
+
+/***/ })
+
+}]);

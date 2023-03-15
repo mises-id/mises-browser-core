@@ -37,6 +37,16 @@
             android:textColor="#f03e3e"
             android:textStyle="bold"
             android:textSize="22sp" />
+        <TextView
+            android:id="@+id/domain_title"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:text="@string/web3_safe_alert_title"
+            android:visibility="gone"
+            android:textColor="#f03e3e"
+            android:textStyle="bold"
+            android:textSize="22sp" />
 
 
         <TextView
@@ -66,6 +76,20 @@
             android:layout_height="15dp"
             android:layout_width="match_parent" />
 
+        <Button
+	        chrome:backgroundTint="@null"
+            android:id="@+id/btn_continue"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/mises_share_cancel_bg"
+            android:text="@string/web3_safe_btn_continue"
+            android:textAllCaps="false"
+            android:textColor="#ff666666"
+            android:visibility="gone"
+            android:layout_marginBottom="5dp"
+            android:textSize="17sp" />
+
         <CheckBox
             android:text="@string/web3_safe_ignor"
             android:layout_width="match_parent"
@@ -76,12 +100,10 @@
             android:textColor="#ff666666"
             android:textSize="17sp"
             />
-
-
         <View
+            android:id="@+id/view_bottom"
             android:layout_height="15dp"
             android:layout_width="match_parent" />
-
 
         <LinearLayout
             android:id="@+id/layout_blockem"
