@@ -1,0 +1,17 @@
+diff --git a/base/mac/foundation_util.mm b/base/mac/foundation_util.mm
+index cee826cf8ca533778c716fd2592e625e93fe7efb..628d166665405f216ef28c3a47006ee0ce6733d1 100644
+--- a/base/mac/foundation_util.mm
++++ b/base/mac/foundation_util.mm
+@@ -408,12 +408,10 @@ CTFontRef NSToCFCast(NSFont* ns_val) {
+ #endif
+ 
+ #if !BUILDFLAG(IS_IOS)
+-CF_CAST_DEFN(SecACL)
+ CF_CAST_DEFN(SecAccessControl)
+ CF_CAST_DEFN(SecCertificate)
+ CF_CAST_DEFN(SecKey)
+ CF_CAST_DEFN(SecPolicy)
+-CF_CAST_DEFN(SecTrustedApplication)
+ #endif
+ 
+ #undef CF_CAST_DEFN

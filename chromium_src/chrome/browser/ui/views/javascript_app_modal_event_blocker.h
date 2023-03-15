@@ -10,7 +10,7 @@ using JavascriptAppModalEventBlocker = JavascriptAppModalEventBlockerAndroid;
 
 #else
 
-#include "chrome/browser/ui/views/javascript_app_modal_event_blocker.h"
+#include "src/chrome/browser/ui/views/javascript_app_modal_event_blocker.h"
 
 #endif
 

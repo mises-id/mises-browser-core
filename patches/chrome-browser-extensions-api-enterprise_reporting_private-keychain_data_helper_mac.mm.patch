@@ -1,0 +1,21 @@
+diff --git a/chrome/browser/extensions/api/enterprise_reporting_private/keychain_data_helper_mac.mm b/chrome/browser/extensions/api/enterprise_reporting_private/keychain_data_helper_mac.mm
+index ca810f8158a8e9ad66a703a43d52f8880572ea7c..0c860385821042b86dacf9c551acd92fd7b807a3 100644
+--- a/chrome/browser/extensions/api/enterprise_reporting_private/keychain_data_helper_mac.mm
++++ b/chrome/browser/extensions/api/enterprise_reporting_private/keychain_data_helper_mac.mm
+@@ -14,7 +14,8 @@
+ 
+ namespace extensions {
+ namespace {
+-
++#pragma clang diagnostic push
++#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+ // Creates an access for a generic password item to share it with other Google
+ // applications with teamid:EQHXZ8M8AV (taken from the signing certificate).
+ OSStatus CreateTargetAccess(NSString* service_name, SecAccessRef* access_ref) {
+@@ -115,5 +116,5 @@ OSStatus VerifyDefaultKeychainUnlocked(bool* unlocked) {
+ 
+   return VerifyKeychainUnlocked(keychain, unlocked);
+ }
+-
++#pragma clang diagnostic pop
+ }  // namespace extensions
