@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1654);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1648);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -113,23 +113,23 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 1654:
+/***/ 1648:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1655);
+module.exports = __webpack_require__(1649);
 
 
 /***/ }),
 
-/***/ 1655:
+/***/ 1649:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _keplr_wallet_provider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(194);
+/* harmony import */ var _keplr_wallet_provider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(192);
 /* harmony import */ var _keplr_wallet_provider__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_provider__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _manifest_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(251);
-var _manifest_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(251, 1);
+/* harmony import */ var _manifest_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(250);
+var _manifest_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(250, 1);
 
 
 
@@ -163,7 +163,7 @@ Object(_keplr_wallet_provider__WEBPACK_IMPORTED_MODULE_0__["injectKeplrToWindow"
 
 /***/ }),
 
-/***/ 167:
+/***/ 165:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -304,7 +304,7 @@ module.exports = deepmerge_1;
 
 /***/ }),
 
-/***/ 183:
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -337,7 +337,7 @@ exports.MessageRegistry = MessageRegistry;
 
 /***/ }),
 
-/***/ 184:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -345,7 +345,7 @@ exports.MessageRegistry = MessageRegistry;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JSONUint8Array = void 0;
 // The JSON encoder that supports the `Uint8Array`.
-const hex_1 = __webpack_require__(326);
+const hex_1 = __webpack_require__(325);
 class JSONUint8Array {
     static parse(text) {
         return JSON.parse(text, (key, value) => {
@@ -396,7 +396,7 @@ exports.JSONUint8Array = JSONUint8Array;
 
 /***/ }),
 
-/***/ 189:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -448,7 +448,7 @@ exports.KeplrEnigmaUtils = KeplrEnigmaUtils;
 
 /***/ }),
 
-/***/ 190:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -526,7 +526,7 @@ exports.CosmJSOfflineSigner = CosmJSOfflineSigner;
 
 /***/ }),
 
-/***/ 191:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -592,7 +592,7 @@ exports.MisesWeb3Client = MisesWeb3Client;
 
 /***/ }),
 
-/***/ 194:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -608,16 +608,16 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(589), exports);
+__exportStar(__webpack_require__(188), exports);
+__exportStar(__webpack_require__(187), exports);
 __exportStar(__webpack_require__(592), exports);
-__exportStar(__webpack_require__(190), exports);
 __exportStar(__webpack_require__(189), exports);
-__exportStar(__webpack_require__(595), exports);
-__exportStar(__webpack_require__(191), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 211:
+/***/ 210:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -629,14 +629,14 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 251:
+/***/ 250:
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"manifest_version\":3,\"name\":\"Mises\",\"description\":\"Mises is a browser extension wallet\",\"version\":\"0.2.5\",\"icons\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"},\"action\":{\"default_popup\":\"popup.html\",\"default_title\":\"Mises\",\"default_icon\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"}},\"background\":{\"service_worker\":\"background.bundle.js\"},\"author\":\"https://www.mises.site\",\"permissions\":[\"storage\",\"notifications\",\"identity\",\"tabs\",\"idle\",\"misesPrivate\",\"nativeMessaging\"],\"host_permissions\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"content_scripts\":[{\"matches\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"js\":[\"browser-polyfill.js\",\"contentScripts.bundle.js\"],\"run_at\":\"document_start\",\"all_frames\":true}],\"web_accessible_resources\":[{\"resources\":[\"injectedScript.bundle.js\",\"assets/logo-256.png\",\"safeInjectedScript.bundle.js\"],\"matches\":[\"http://*/*\",\"https://*/*\"]}],\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB\",\"content_security_policy\":{\"extension_pages\":\"script-src 'self' 'wasm-unsafe-eval'; object-src 'self';\"}}");
 
 /***/ }),
 
-/***/ 284:
+/***/ 283:
 /***/ (function(module, exports) {
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
@@ -744,20 +744,20 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(325), exports);
+__exportStar(__webpack_require__(324), exports);
+__exportStar(__webpack_require__(326), exports);
 __exportStar(__webpack_require__(327), exports);
 __exportStar(__webpack_require__(328), exports);
 __exportStar(__webpack_require__(329), exports);
 __exportStar(__webpack_require__(330), exports);
 __exportStar(__webpack_require__(331), exports);
-__exportStar(__webpack_require__(332), exports);
-__exportStar(__webpack_require__(183), exports);
-__exportStar(__webpack_require__(184), exports);
+__exportStar(__webpack_require__(181), exports);
+__exportStar(__webpack_require__(182), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 325:
+/***/ 324:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -773,8 +773,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Router = void 0;
-const encoding_1 = __webpack_require__(183);
-const json_uint8_array_1 = __webpack_require__(184);
+const encoding_1 = __webpack_require__(181);
+const json_uint8_array_1 = __webpack_require__(182);
 class Router {
     constructor(envProducer) {
         this.envProducer = envProducer;
@@ -822,7 +822,7 @@ exports.Router = Router;
 
 /***/ }),
 
-/***/ 326:
+/***/ 325:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -860,7 +860,7 @@ exports.fromHex = fromHex;
 
 /***/ }),
 
-/***/ 327:
+/***/ 326:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -870,7 +870,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 328:
+/***/ 327:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -880,7 +880,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 329:
+/***/ 328:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -890,7 +890,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 330:
+/***/ 329:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -910,7 +910,7 @@ exports.KeplrError = KeplrError;
 
 /***/ }),
 
-/***/ 331:
+/***/ 330:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -939,7 +939,7 @@ exports.Message = Message;
 
 /***/ }),
 
-/***/ 332:
+/***/ 331:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -968,8 +968,8 @@ exports.WEBPAGE_PORT = "webpage";
 
 
 var base64 = __webpack_require__(89)
-var ieee754 = __webpack_require__(284)
-var isArray = __webpack_require__(211)
+var ieee754 = __webpack_require__(283)
+var isArray = __webpack_require__(210)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2751,7 +2751,7 @@ function isnan (val) {
 
 /***/ }),
 
-/***/ 592:
+/***/ 589:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2771,13 +2771,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Keplr = void 0;
 const router_1 = __webpack_require__(3);
-const types_1 = __webpack_require__(593);
-const enigma_1 = __webpack_require__(189);
-const cosmjs_1 = __webpack_require__(190);
-const deepmerge_1 = __importDefault(__webpack_require__(167));
+const types_1 = __webpack_require__(590);
+const enigma_1 = __webpack_require__(187);
+const cosmjs_1 = __webpack_require__(188);
+const deepmerge_1 = __importDefault(__webpack_require__(165));
 const long_1 = __importDefault(__webpack_require__(7));
 const buffer_1 = __webpack_require__(4);
-const mises_1 = __webpack_require__(191);
+const mises_1 = __webpack_require__(189);
 class Keplr {
     constructor(version, mode, requester) {
         this.version = version;
@@ -3035,7 +3035,7 @@ exports.Keplr = Keplr;
 
 /***/ }),
 
-/***/ 593:
+/***/ 590:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3051,12 +3051,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(594), exports);
+__exportStar(__webpack_require__(591), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 594:
+/***/ 591:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3756,7 +3756,7 @@ exports.VerifyDomainMsg = VerifyDomainMsg;
 
 /***/ }),
 
-/***/ 595:
+/***/ 592:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3776,11 +3776,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InjectedKeplr = exports.injectKeplrToWindow = void 0;
 const router_1 = __webpack_require__(3);
-const enigma_1 = __webpack_require__(189);
-const cosmjs_1 = __webpack_require__(190);
-const deepmerge_1 = __importDefault(__webpack_require__(167));
+const enigma_1 = __webpack_require__(187);
+const cosmjs_1 = __webpack_require__(188);
+const deepmerge_1 = __importDefault(__webpack_require__(165));
 const long_1 = __importDefault(__webpack_require__(7));
-const mises_1 = __webpack_require__(191);
+const mises_1 = __webpack_require__(189);
 function defineUnwritablePropertyIfPossible(o, p, value) {
     const descriptor = Object.getOwnPropertyDescriptor(o, p);
     if (!descriptor || descriptor.writable) {

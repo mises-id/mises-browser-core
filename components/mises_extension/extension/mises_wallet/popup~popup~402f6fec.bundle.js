@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
 
-/***/ 1070:
+/***/ 1067:
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -12,7 +12,7 @@ module.exports = function isBuffer(arg) {
 
 /***/ }),
 
-/***/ 1071:
+/***/ 1068:
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -42,7 +42,7 @@ if (typeof Object.create === 'function') {
 
 /***/ }),
 
-/***/ 1128:
+/***/ 1121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52,31 +52,31 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Exceptions */
-__export(__webpack_require__(353));
+__export(__webpack_require__(352));
 /** Symmetric encryption APIs */
-var aead_1 = __webpack_require__(569);
+var aead_1 = __webpack_require__(566);
 exports.AEAD = aead_1.AEAD;
-var siv_1 = __webpack_require__(570);
+var siv_1 = __webpack_require__(567);
 exports.SIV = siv_1.SIV;
 /** STREAM streaming encryption */
-var stream_1 = __webpack_require__(1132);
+var stream_1 = __webpack_require__(1125);
 exports.StreamEncryptor = stream_1.StreamEncryptor;
 exports.StreamDecryptor = stream_1.StreamDecryptor;
 /** MAC functions */
-var cmac_1 = __webpack_require__(571);
+var cmac_1 = __webpack_require__(568);
 exports.CMAC = cmac_1.CMAC;
-var pmac_1 = __webpack_require__(572);
+var pmac_1 = __webpack_require__(569);
 exports.PMAC = pmac_1.PMAC;
 /** Crypto providers */
-var polyfill_1 = __webpack_require__(1133);
+var polyfill_1 = __webpack_require__(1126);
 exports.PolyfillCryptoProvider = polyfill_1.PolyfillCryptoProvider;
-var webcrypto_1 = __webpack_require__(234);
+var webcrypto_1 = __webpack_require__(233);
 exports.WebCryptoProvider = webcrypto_1.WebCryptoProvider;
 
 
 /***/ }),
 
-/***/ 1129:
+/***/ 1122:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92,7 +92,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const block_1 = __webpack_require__(187);
+const block_1 = __webpack_require__(185);
 /**
  * WebCrypto-based implementation of the AES block cipher.
  *
@@ -163,7 +163,7 @@ exports.default = WebCryptoAes;
 
 /***/ }),
 
-/***/ 1130:
+/***/ 1123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -211,7 +211,7 @@ exports.default = WebCryptoAesCtr;
 
 /***/ }),
 
-/***/ 1131:
+/***/ 1124:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -245,7 +245,7 @@ exports.ctz = ctz;
 
 /***/ }),
 
-/***/ 1132:
+/***/ 1125:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -263,8 +263,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const aead_1 = __webpack_require__(569);
-const webcrypto_1 = __webpack_require__(234);
+const aead_1 = __webpack_require__(566);
+const webcrypto_1 = __webpack_require__(233);
 /** Size of a nonce required by STREAM in bytes */
 exports.NONCE_SIZE = 8;
 /** Byte flag indicating this is the last block in the STREAM (otherwise 0) */
@@ -367,7 +367,7 @@ class NonceEncoder {
 
 /***/ }),
 
-/***/ 1133:
+/***/ 1126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -381,8 +381,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const aes_1 = __webpack_require__(1134);
-const aes_ctr_1 = __webpack_require__(1135);
+const aes_1 = __webpack_require__(1127);
+const aes_ctr_1 = __webpack_require__(1128);
 /**
  * Pure JavaScript cryptography implementations
  *
@@ -408,7 +408,7 @@ exports.PolyfillCryptoProvider = PolyfillCryptoProvider;
 
 /***/ }),
 
-/***/ 1134:
+/***/ 1127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -416,7 +416,7 @@ exports.PolyfillCryptoProvider = PolyfillCryptoProvider;
 // Copyright (C) 2016-2017 Dmitry Chestnykh, Tony Arcieri
 // MIT License. See LICENSE file for details.
 Object.defineProperty(exports, "__esModule", { value: true });
-const wipe_1 = __webpack_require__(355);
+const wipe_1 = __webpack_require__(354);
 // Powers of x mod poly in GF(2).
 const POWX = new Uint8Array([
     0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,
@@ -683,7 +683,7 @@ function expandKey(key) {
 
 /***/ }),
 
-/***/ 1135:
+/***/ 1128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -699,7 +699,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const block_1 = __webpack_require__(187);
+const block_1 = __webpack_require__(185);
 /**
  * Polyfill for the AES-CTR (counter) mode of operation.
  *
@@ -763,13 +763,6 @@ function incrementCounter(counter) {
 /***/ }),
 
 /***/ 114:
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -1307,7 +1300,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(1070);
+exports.isBuffer = __webpack_require__(1067);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -1351,7 +1344,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(1071);
+exports.inherits = __webpack_require__(1068);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -1480,141 +1473,7 @@ exports.callbackify = callbackify;
 
 /***/ }),
 
-/***/ 117:
-/***/ (function(module, exports, __webpack_require__) {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = __webpack_require__(87).EventEmitter;
-var inherits = __webpack_require__(716);
-
-inherits(Stream, EE);
-Stream.Readable = __webpack_require__(176);
-Stream.Writable = __webpack_require__(722);
-Stream.Duplex = __webpack_require__(723);
-Stream.Transform = __webpack_require__(724);
-Stream.PassThrough = __webpack_require__(725);
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-
-/***/ }),
-
-/***/ 1199:
+/***/ 1191:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1802,7 +1661,7 @@ var index = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext || create
 
 /***/ }),
 
-/***/ 1267:
+/***/ 1257:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1829,13 +1688,13 @@ module.exports = function is(a, b) {
 
 /***/ }),
 
-/***/ 1268:
+/***/ 1258:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var implementation = __webpack_require__(1267);
+var implementation = __webpack_require__(1257);
 
 module.exports = function getPolyfill() {
 	return typeof Object.is === 'function' ? Object.is : implementation;
@@ -1844,15 +1703,22 @@ module.exports = function getPolyfill() {
 
 /***/ }),
 
-/***/ 1437:
+/***/ 133:
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 1427:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const EventEmitter = __webpack_require__(1234);
-const p_timeout_1 = __webpack_require__(1438);
-const priority_queue_1 = __webpack_require__(1440);
+const EventEmitter = __webpack_require__(1224);
+const p_timeout_1 = __webpack_require__(1428);
+const priority_queue_1 = __webpack_require__(1430);
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const empty = () => { };
 const timeoutError = new p_timeout_1.TimeoutError();
@@ -2131,13 +1997,13 @@ exports.default = PQueue;
 
 /***/ }),
 
-/***/ 1438:
+/***/ 1428:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const pFinally = __webpack_require__(1439);
+const pFinally = __webpack_require__(1429);
 
 class TimeoutError extends Error {
 	constructor(message) {
@@ -2196,7 +2062,7 @@ module.exports.TimeoutError = TimeoutError;
 
 /***/ }),
 
-/***/ 1439:
+/***/ 1429:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2219,13 +2085,13 @@ module.exports = (promise, onFinally) => {
 
 /***/ }),
 
-/***/ 1440:
+/***/ 1430:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const lower_bound_1 = __webpack_require__(1441);
+const lower_bound_1 = __webpack_require__(1431);
 class PriorityQueue {
     constructor() {
         this._queue = [];
@@ -2259,7 +2125,7 @@ exports.default = PriorityQueue;
 
 /***/ }),
 
-/***/ 1441:
+/***/ 1431:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2316,7 +2182,7 @@ if (!mobx_esm["makeObservable"]) {
 }
 //# sourceMappingURL=assertEnvironment.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-dom/index.js
-var react_dom = __webpack_require__(362);
+var react_dom = __webpack_require__(361);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/mobx-react-lite/es/utils/reactBatchedUpdates.js
 
@@ -2874,18 +2740,18 @@ function useStaticRendering(enable) {
 
 /***/ }),
 
-/***/ 1545:
+/***/ 1537:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var define = __webpack_require__(202);
-var callBind = __webpack_require__(1266);
+var define = __webpack_require__(201);
+var callBind = __webpack_require__(1256);
 
-var implementation = __webpack_require__(1267);
-var getPolyfill = __webpack_require__(1268);
-var shim = __webpack_require__(1546);
+var implementation = __webpack_require__(1257);
+var getPolyfill = __webpack_require__(1258);
+var shim = __webpack_require__(1538);
 
 var polyfill = callBind(getPolyfill(), Object);
 
@@ -2900,14 +2766,14 @@ module.exports = polyfill;
 
 /***/ }),
 
-/***/ 1546:
+/***/ 1538:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var getPolyfill = __webpack_require__(1268);
-var define = __webpack_require__(202);
+var getPolyfill = __webpack_require__(1258);
+var define = __webpack_require__(201);
 
 module.exports = function shimObjectIs() {
 	var polyfill = getPolyfill();
@@ -2922,317 +2788,7 @@ module.exports = function shimObjectIs() {
 
 /***/ }),
 
-/***/ 157:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
-// backported and transplited with Babel, with backwards-compat fixes
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// resolves . and .. elements in a path array with directory names there
-// must be no slashes, empty elements, or device names (c:\) in the array
-// (so also no leading and trailing slashes - it does not distinguish
-// relative and absolute paths)
-function normalizeArray(parts, allowAboveRoot) {
-  // if the path tries to go above the root, `up` ends up > 0
-  var up = 0;
-  for (var i = parts.length - 1; i >= 0; i--) {
-    var last = parts[i];
-    if (last === '.') {
-      parts.splice(i, 1);
-    } else if (last === '..') {
-      parts.splice(i, 1);
-      up++;
-    } else if (up) {
-      parts.splice(i, 1);
-      up--;
-    }
-  }
-
-  // if the path is allowed to go above the root, restore leading ..s
-  if (allowAboveRoot) {
-    for (; up--; up) {
-      parts.unshift('..');
-    }
-  }
-
-  return parts;
-}
-
-// path.resolve([from ...], to)
-// posix version
-exports.resolve = function() {
-  var resolvedPath = '',
-      resolvedAbsolute = false;
-
-  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-    var path = (i >= 0) ? arguments[i] : process.cwd();
-
-    // Skip empty and invalid entries
-    if (typeof path !== 'string') {
-      throw new TypeError('Arguments to path.resolve must be strings');
-    } else if (!path) {
-      continue;
-    }
-
-    resolvedPath = path + '/' + resolvedPath;
-    resolvedAbsolute = path.charAt(0) === '/';
-  }
-
-  // At this point the path should be resolved to a full absolute path, but
-  // handle relative paths to be safe (might happen when process.cwd() fails)
-
-  // Normalize the path
-  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
-    return !!p;
-  }), !resolvedAbsolute).join('/');
-
-  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
-};
-
-// path.normalize(path)
-// posix version
-exports.normalize = function(path) {
-  var isAbsolute = exports.isAbsolute(path),
-      trailingSlash = substr(path, -1) === '/';
-
-  // Normalize the path
-  path = normalizeArray(filter(path.split('/'), function(p) {
-    return !!p;
-  }), !isAbsolute).join('/');
-
-  if (!path && !isAbsolute) {
-    path = '.';
-  }
-  if (path && trailingSlash) {
-    path += '/';
-  }
-
-  return (isAbsolute ? '/' : '') + path;
-};
-
-// posix version
-exports.isAbsolute = function(path) {
-  return path.charAt(0) === '/';
-};
-
-// posix version
-exports.join = function() {
-  var paths = Array.prototype.slice.call(arguments, 0);
-  return exports.normalize(filter(paths, function(p, index) {
-    if (typeof p !== 'string') {
-      throw new TypeError('Arguments to path.join must be strings');
-    }
-    return p;
-  }).join('/'));
-};
-
-
-// path.relative(from, to)
-// posix version
-exports.relative = function(from, to) {
-  from = exports.resolve(from).substr(1);
-  to = exports.resolve(to).substr(1);
-
-  function trim(arr) {
-    var start = 0;
-    for (; start < arr.length; start++) {
-      if (arr[start] !== '') break;
-    }
-
-    var end = arr.length - 1;
-    for (; end >= 0; end--) {
-      if (arr[end] !== '') break;
-    }
-
-    if (start > end) return [];
-    return arr.slice(start, end - start + 1);
-  }
-
-  var fromParts = trim(from.split('/'));
-  var toParts = trim(to.split('/'));
-
-  var length = Math.min(fromParts.length, toParts.length);
-  var samePartsLength = length;
-  for (var i = 0; i < length; i++) {
-    if (fromParts[i] !== toParts[i]) {
-      samePartsLength = i;
-      break;
-    }
-  }
-
-  var outputParts = [];
-  for (var i = samePartsLength; i < fromParts.length; i++) {
-    outputParts.push('..');
-  }
-
-  outputParts = outputParts.concat(toParts.slice(samePartsLength));
-
-  return outputParts.join('/');
-};
-
-exports.sep = '/';
-exports.delimiter = ':';
-
-exports.dirname = function (path) {
-  if (typeof path !== 'string') path = path + '';
-  if (path.length === 0) return '.';
-  var code = path.charCodeAt(0);
-  var hasRoot = code === 47 /*/*/;
-  var end = -1;
-  var matchedSlash = true;
-  for (var i = path.length - 1; i >= 1; --i) {
-    code = path.charCodeAt(i);
-    if (code === 47 /*/*/) {
-        if (!matchedSlash) {
-          end = i;
-          break;
-        }
-      } else {
-      // We saw the first non-path separator
-      matchedSlash = false;
-    }
-  }
-
-  if (end === -1) return hasRoot ? '/' : '.';
-  if (hasRoot && end === 1) {
-    // return '//';
-    // Backwards-compat fix:
-    return '/';
-  }
-  return path.slice(0, end);
-};
-
-function basename(path) {
-  if (typeof path !== 'string') path = path + '';
-
-  var start = 0;
-  var end = -1;
-  var matchedSlash = true;
-  var i;
-
-  for (i = path.length - 1; i >= 0; --i) {
-    if (path.charCodeAt(i) === 47 /*/*/) {
-        // If we reached a path separator that was not part of a set of path
-        // separators at the end of the string, stop now
-        if (!matchedSlash) {
-          start = i + 1;
-          break;
-        }
-      } else if (end === -1) {
-      // We saw the first non-path separator, mark this as the end of our
-      // path component
-      matchedSlash = false;
-      end = i + 1;
-    }
-  }
-
-  if (end === -1) return '';
-  return path.slice(start, end);
-}
-
-// Uses a mixed approach for backwards-compatibility, as ext behavior changed
-// in new Node.js versions, so only basename() above is backported here
-exports.basename = function (path, ext) {
-  var f = basename(path);
-  if (ext && f.substr(-1 * ext.length) === ext) {
-    f = f.substr(0, f.length - ext.length);
-  }
-  return f;
-};
-
-exports.extname = function (path) {
-  if (typeof path !== 'string') path = path + '';
-  var startDot = -1;
-  var startPart = 0;
-  var end = -1;
-  var matchedSlash = true;
-  // Track the state of characters (if any) we see before our first dot and
-  // after any path separator we find
-  var preDotState = 0;
-  for (var i = path.length - 1; i >= 0; --i) {
-    var code = path.charCodeAt(i);
-    if (code === 47 /*/*/) {
-        // If we reached a path separator that was not part of a set of path
-        // separators at the end of the string, stop now
-        if (!matchedSlash) {
-          startPart = i + 1;
-          break;
-        }
-        continue;
-      }
-    if (end === -1) {
-      // We saw the first non-path separator, mark this as the end of our
-      // extension
-      matchedSlash = false;
-      end = i + 1;
-    }
-    if (code === 46 /*.*/) {
-        // If this is our first dot, mark it as the start of our extension
-        if (startDot === -1)
-          startDot = i;
-        else if (preDotState !== 1)
-          preDotState = 1;
-    } else if (startDot !== -1) {
-      // We saw a non-dot and non-path separator before our dot, so we should
-      // have a good chance at having a non-empty extension
-      preDotState = -1;
-    }
-  }
-
-  if (startDot === -1 || end === -1 ||
-      // We saw a non-dot character immediately before the dot
-      preDotState === 0 ||
-      // The (right-most) trimmed path component is exactly '..'
-      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
-    return '';
-  }
-  return path.slice(startDot, end);
-};
-
-function filter (xs, f) {
-    if (xs.filter) return xs.filter(f);
-    var res = [];
-    for (var i = 0; i < xs.length; i++) {
-        if (f(xs[i], i, xs)) res.push(xs[i]);
-    }
-    return res;
-}
-
-// String.prototype.substr - negative index don't work in IE8
-var substr = 'ab'.substr(-1) === 'b'
-    ? function (str, start, len) { return str.substr(start, len) }
-    : function (str, start, len) {
-        if (start < 0) start = str.length + start;
-        return str.substr(start, len);
-    }
-;
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(28)))
-
-/***/ }),
-
-/***/ 166:
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3330,15 +2886,15 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /***/ }),
 
-/***/ 187:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 /** Type which represents AES blocks */
 Object.defineProperty(exports, "__esModule", { value: true });
-const constant_time_1 = __webpack_require__(354);
-const wipe_1 = __webpack_require__(355);
+const constant_time_1 = __webpack_require__(353);
+const wipe_1 = __webpack_require__(354);
 /** An AES block (128-bits) */
 class Block {
     constructor() {
@@ -3398,7 +2954,7 @@ exports.default = Block;
 
 /***/ }),
 
-/***/ 201:
+/***/ 200:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5142,7 +4698,7 @@ function computedFn(fn, keepAliveOrOptions) {
 
 /***/ }),
 
-/***/ 234:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5156,9 +4712,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const exceptions_1 = __webpack_require__(353);
-const aes_1 = __webpack_require__(1129);
-const aes_ctr_1 = __webpack_require__(1130);
+const exceptions_1 = __webpack_require__(352);
+const aes_1 = __webpack_require__(1122);
+const aes_ctr_1 = __webpack_require__(1123);
 /** Placeholder backend for using pure JavaScript crypto implementations */
 class WebCryptoProvider {
     constructor(crypto = window.crypto) {
@@ -5190,7 +4746,7 @@ exports.WebCryptoProvider = WebCryptoProvider;
 
 /***/ }),
 
-/***/ 353:
+/***/ 352:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5217,7 +4773,7 @@ exports.NotImplementedError = NotImplementedError;
 
 /***/ }),
 
-/***/ 354:
+/***/ 353:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5275,7 +4831,7 @@ exports.equal = equal;
 
 /***/ }),
 
-/***/ 355:
+/***/ 354:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5310,7 +4866,7 @@ exports.wipe = wipe;
 
 /***/ }),
 
-/***/ 356:
+/***/ 355:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5325,62 +4881,6 @@ function xor(a, b) {
     }
 }
 exports.xor = xor;
-
-
-/***/ }),
-
-/***/ 363:
-/***/ (function(module, exports) {
-
-exports.endianness = function () { return 'LE' };
-
-exports.hostname = function () {
-    if (typeof location !== 'undefined') {
-        return location.hostname
-    }
-    else return '';
-};
-
-exports.loadavg = function () { return [] };
-
-exports.uptime = function () { return 0 };
-
-exports.freemem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.totalmem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.cpus = function () { return [] };
-
-exports.type = function () { return 'Browser' };
-
-exports.release = function () {
-    if (typeof navigator !== 'undefined') {
-        return navigator.appVersion;
-    }
-    return '';
-};
-
-exports.networkInterfaces
-= exports.getNetworkInterfaces
-= function () { return {} };
-
-exports.arch = function () { return 'javascript' };
-
-exports.platform = function () { return 'browser' };
-
-exports.tmpdir = exports.tmpDir = function () {
-    return '/tmp';
-};
-
-exports.EOL = '\n';
-
-exports.homedir = function () {
-	return '/'
-};
 
 
 /***/ }),
@@ -5400,8 +4900,8 @@ exports.homedir = function () {
 
 
 var base64 = __webpack_require__(89)
-var ieee754 = __webpack_require__(284)
-var isArray = __webpack_require__(211)
+var ieee754 = __webpack_require__(283)
+var isArray = __webpack_require__(210)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -7183,78 +6683,7 @@ function isnan (val) {
 
 /***/ }),
 
-/***/ 419:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
-            (typeof self !== "undefined" && self) ||
-            window;
-var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(scope, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__(720);
-// On some exotic environments, it's not clear which object `setimmediate` was
-// able to install onto.  Search each possibility in the same order as the
-// `setimmediate` library.
-exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
-                       (typeof global !== "undefined" && global.setImmediate) ||
-                       (this && this.setImmediate);
-exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
-                         (typeof global !== "undefined" && global.clearImmediate) ||
-                         (this && this.clearImmediate);
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
-
-/***/ }),
-
-/***/ 426:
+/***/ 424:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7320,11 +6749,11 @@ utils.encode = function encode(arr, enc) {
 
 /***/ }),
 
-/***/ 441:
+/***/ 439:
 /***/ (function(module, exports, __webpack_require__) {
 
 var bn = __webpack_require__(34);
-var brorand = __webpack_require__(293);
+var brorand = __webpack_require__(292);
 
 function MillerRabin(rand) {
   this.rand = rand || new brorand.Rand();
@@ -7442,7 +6871,7 @@ MillerRabin.prototype.getDivisor = function getDivisor(n, k) {
 
 /***/ }),
 
-/***/ 488:
+/***/ 486:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13137,181 +12566,7 @@ if (typeof __MOBX_DEVTOOLS_GLOBAL_HOOK__ === "object") {
 
 /***/ }),
 
-/***/ 556:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {var fs = __webpack_require__(114)
-var path = __webpack_require__(157)
-var os = __webpack_require__(363)
-
-// Workaround to fix webpack's build warnings: 'the request of a dependency is an expression'
-var runtimeRequire =  true ? require : undefined // eslint-disable-line
-
-var vars = (process.config && process.config.variables) || {}
-var prebuildsOnly = !!process.env.PREBUILDS_ONLY
-var abi = process.versions.modules // TODO: support old node where this is undef
-var runtime = isElectron() ? 'electron' : 'node'
-var arch = os.arch()
-var platform = os.platform()
-var libc = process.env.LIBC || (isAlpine(platform) ? 'musl' : 'glibc')
-var armv = process.env.ARM_VERSION || (arch === 'arm64' ? '8' : vars.arm_version) || ''
-var uv = (process.versions.uv || '').split('.')[0]
-
-module.exports = load
-
-function load (dir) {
-  return runtimeRequire(load.path(dir))
-}
-
-load.path = function (dir) {
-  dir = path.resolve(dir || '.')
-
-  try {
-    var name = runtimeRequire(path.join(dir, 'package.json')).name.toUpperCase().replace(/-/g, '_')
-    if (process.env[name + '_PREBUILD']) dir = process.env[name + '_PREBUILD']
-  } catch (err) {}
-
-  if (!prebuildsOnly) {
-    var release = getFirst(path.join(dir, 'build/Release'), matchBuild)
-    if (release) return release
-
-    var debug = getFirst(path.join(dir, 'build/Debug'), matchBuild)
-    if (debug) return debug
-  }
-
-  var prebuild = resolve(dir)
-  if (prebuild) return prebuild
-
-  var nearby = resolve(path.dirname(process.execPath))
-  if (nearby) return nearby
-
-  var target = [
-    'platform=' + platform,
-    'arch=' + arch,
-    'runtime=' + runtime,
-    'abi=' + abi,
-    'uv=' + uv,
-    armv ? 'armv=' + armv : '',
-    'libc=' + libc,
-    'node=' + process.versions.node,
-    (process.versions && process.versions.electron) ? 'electron=' + process.versions.electron : '',
-     true ? 'webpack=true' : undefined // eslint-disable-line
-  ].filter(Boolean).join(' ')
-
-  throw new Error('No native build was found for ' + target + '\n    loaded from: ' + dir + '\n')
-
-  function resolve (dir) {
-    // Find most specific flavor first
-    var prebuilds = path.join(dir, 'prebuilds', platform + '-' + arch)
-    var parsed = readdirSync(prebuilds).map(parseTags)
-    var candidates = parsed.filter(matchTags(runtime, abi))
-    var winner = candidates.sort(compareTags(runtime))[0]
-    if (winner) return path.join(prebuilds, winner.file)
-  }
-}
-
-function readdirSync (dir) {
-  try {
-    return fs.readdirSync(dir)
-  } catch (err) {
-    return []
-  }
-}
-
-function getFirst (dir, filter) {
-  var files = readdirSync(dir).filter(filter)
-  return files[0] && path.join(dir, files[0])
-}
-
-function matchBuild (name) {
-  return /\.node$/.test(name)
-}
-
-function parseTags (file) {
-  var arr = file.split('.')
-  var extension = arr.pop()
-  var tags = { file: file, specificity: 0 }
-
-  if (extension !== 'node') return
-
-  for (var i = 0; i < arr.length; i++) {
-    var tag = arr[i]
-
-    if (tag === 'node' || tag === 'electron' || tag === 'node-webkit') {
-      tags.runtime = tag
-    } else if (tag === 'napi') {
-      tags.napi = true
-    } else if (tag.slice(0, 3) === 'abi') {
-      tags.abi = tag.slice(3)
-    } else if (tag.slice(0, 2) === 'uv') {
-      tags.uv = tag.slice(2)
-    } else if (tag.slice(0, 4) === 'armv') {
-      tags.armv = tag.slice(4)
-    } else if (tag === 'glibc' || tag === 'musl') {
-      tags.libc = tag
-    } else {
-      continue
-    }
-
-    tags.specificity++
-  }
-
-  return tags
-}
-
-function matchTags (runtime, abi) {
-  return function (tags) {
-    if (tags == null) return false
-    if (tags.runtime !== runtime && !runtimeAgnostic(tags)) return false
-    if (tags.abi !== abi && !tags.napi) return false
-    if (tags.uv && tags.uv !== uv) return false
-    if (tags.armv && tags.armv !== armv) return false
-    if (tags.libc && tags.libc !== libc) return false
-
-    return true
-  }
-}
-
-function runtimeAgnostic (tags) {
-  return tags.runtime === 'node' && tags.napi
-}
-
-function compareTags (runtime) {
-  // Precedence: non-agnostic runtime, abi over napi, then by specificity.
-  return function (a, b) {
-    if (a.runtime !== b.runtime) {
-      return a.runtime === runtime ? -1 : 1
-    } else if (a.abi !== b.abi) {
-      return a.abi ? -1 : 1
-    } else if (a.specificity !== b.specificity) {
-      return a.specificity > b.specificity ? -1 : 1
-    } else {
-      return 0
-    }
-  }
-}
-
-function isElectron () {
-  if (process.versions && process.versions.electron) return true
-  if (process.env.ELECTRON_RUN_AS_NODE) return true
-  return typeof window !== 'undefined' && window.process && window.process.type === 'renderer'
-}
-
-function isAlpine (platform) {
-  return platform === 'linux' && fs.existsSync('/etc/alpine-release')
-}
-
-// Exposed for unit tests
-// TODO: move to lib
-load.parseTags = parseTags
-load.matchTags = matchTags
-load.compareTags = compareTags
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(28)))
-
-/***/ }),
-
-/***/ 569:
+/***/ 566:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13325,8 +12580,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const webcrypto_1 = __webpack_require__(234);
-const siv_1 = __webpack_require__(570);
+const webcrypto_1 = __webpack_require__(233);
+const siv_1 = __webpack_require__(567);
 /** AEAD interface provider for ISIVLike types */
 class AEAD {
     /** Create a new AEAD instance with the given key */
@@ -13361,7 +12616,7 @@ exports.AEAD = AEAD;
 
 /***/ }),
 
-/***/ 570:
+/***/ 567:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13377,14 +12632,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const constant_time_1 = __webpack_require__(354);
-const wipe_1 = __webpack_require__(355);
-const xor_1 = __webpack_require__(356);
-const exceptions_1 = __webpack_require__(353);
-const block_1 = __webpack_require__(187);
-const cmac_1 = __webpack_require__(571);
-const pmac_1 = __webpack_require__(572);
-const webcrypto_1 = __webpack_require__(234);
+const constant_time_1 = __webpack_require__(353);
+const wipe_1 = __webpack_require__(354);
+const xor_1 = __webpack_require__(355);
+const exceptions_1 = __webpack_require__(352);
+const block_1 = __webpack_require__(185);
+const cmac_1 = __webpack_require__(568);
+const pmac_1 = __webpack_require__(569);
+const webcrypto_1 = __webpack_require__(233);
 /** Maximum number of associated data items */
 exports.MAX_ASSOCIATED_DATA = 126;
 /** The AES-SIV mode of authenticated encryption */
@@ -13529,7 +12784,7 @@ function zeroIVBits(iv) {
 
 /***/ }),
 
-/***/ 571:
+/***/ 568:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13545,8 +12800,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const block_1 = __webpack_require__(187);
-const xor_1 = __webpack_require__(356);
+const block_1 = __webpack_require__(185);
+const xor_1 = __webpack_require__(355);
 /**
  * The AES-CMAC message authentication code
  */
@@ -13638,7 +12893,7 @@ exports.CMAC = CMAC;
 
 /***/ }),
 
-/***/ 572:
+/***/ 569:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13654,10 +12909,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const block_1 = __webpack_require__(187);
-const constant_time_1 = __webpack_require__(354);
-const ctz_1 = __webpack_require__(1131);
-const xor_1 = __webpack_require__(356);
+const block_1 = __webpack_require__(185);
+const constant_time_1 = __webpack_require__(353);
+const ctz_1 = __webpack_require__(1124);
+const xor_1 = __webpack_require__(355);
 // Number of L blocks to precompute (i.e. µ in the PMAC paper)
 // TODO: dynamically compute these as needed
 const PRECOMPUTED_BLOCKS = 31;
@@ -13815,7 +13070,63 @@ exports.PMAC = PMAC;
 
 /***/ }),
 
-/***/ 627:
+/***/ 600:
+/***/ (function(module, exports) {
+
+exports.endianness = function () { return 'LE' };
+
+exports.hostname = function () {
+    if (typeof location !== 'undefined') {
+        return location.hostname
+    }
+    else return '';
+};
+
+exports.loadavg = function () { return [] };
+
+exports.uptime = function () { return 0 };
+
+exports.freemem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.totalmem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.cpus = function () { return [] };
+
+exports.type = function () { return 'Browser' };
+
+exports.release = function () {
+    if (typeof navigator !== 'undefined') {
+        return navigator.appVersion;
+    }
+    return '';
+};
+
+exports.networkInterfaces
+= exports.getNetworkInterfaces
+= function () { return {} };
+
+exports.arch = function () { return 'javascript' };
+
+exports.platform = function () { return 'browser' };
+
+exports.tmpdir = exports.tmpDir = function () {
+    return '/tmp';
+};
+
+exports.EOL = '\n';
+
+exports.homedir = function () {
+	return '/'
+};
+
+
+/***/ }),
+
+/***/ 625:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -14342,17 +13653,17 @@ exports.PMAC = PMAC;
 
 /***/ }),
 
-/***/ 629:
+/***/ 627:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(488);
+var isArgs = __webpack_require__(486);
 
 var origKeys = Object.keys;
-var keysShim = origKeys ? function keys(o) { return origKeys(o); } : __webpack_require__(951);
+var keysShim = origKeys ? function keys(o) { return origKeys(o); } : __webpack_require__(948);
 
 var originalKeys = Object.keys;
 
@@ -14382,40 +13693,6 @@ module.exports = keysShim;
 
 /***/ }),
 
-/***/ 716:
-/***/ (function(module, exports) {
-
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor
-      ctor.prototype = Object.create(superCtor.prototype, {
-        constructor: {
-          value: ctor,
-          enumerable: false,
-          writable: true,
-          configurable: true
-        }
-      })
-    }
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor
-      var TempCtor = function () {}
-      TempCtor.prototype = superCtor.prototype
-      ctor.prototype = new TempCtor()
-      ctor.prototype.constructor = ctor
-    }
-  }
-}
-
-
-/***/ }),
-
 /***/ 78:
 /***/ (function(module, exports) {
 
@@ -14434,7 +13711,7 @@ assert.equal = function assertEqual(l, r, msg) {
 
 /***/ }),
 
-/***/ 951:
+/***/ 948:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14445,7 +13722,7 @@ if (!Object.keys) {
 	// modified from https://github.com/es-shims/es5-shim
 	var has = Object.prototype.hasOwnProperty;
 	var toStr = Object.prototype.toString;
-	var isArgs = __webpack_require__(488); // eslint-disable-line global-require
+	var isArgs = __webpack_require__(486); // eslint-disable-line global-require
 	var isEnumerable = Object.prototype.propertyIsEnumerable;
 	var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 	var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');

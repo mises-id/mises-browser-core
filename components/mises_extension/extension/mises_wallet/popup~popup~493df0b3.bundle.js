@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[9],{
 
-/***/ 1029:
+/***/ 1026:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1030:
+/***/ 1027:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20,7 +20,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1031:
+/***/ 1028:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30,7 +30,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1032:
+/***/ 1029:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40,7 +40,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1033:
+/***/ 1030:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56,12 +56,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1034), exports);
+__exportStar(__webpack_require__(1031), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1034:
+/***/ 1031:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71,7 +71,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1035:
+/***/ 1032:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81,7 +81,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1036:
+/***/ 1033:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,7 +98,7 @@ var EthSignType;
 
 /***/ }),
 
-/***/ 1037:
+/***/ 1034:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -108,28 +108,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1038:
+/***/ 1035:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 1039:
+/***/ 1036:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 1138:
+/***/ 1131:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 140:
+/***/ 139:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -139,9 +139,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Uint = exports.Int = void 0;
-const big_integer_1 = __importDefault(__webpack_require__(393));
-const decimal_1 = __webpack_require__(141);
-const etc_1 = __webpack_require__(395);
+const big_integer_1 = __importDefault(__webpack_require__(391));
+const decimal_1 = __webpack_require__(140);
+const etc_1 = __webpack_require__(393);
 class Int {
     /**
      * @param int - Parse a number | bigInteger | string into a bigInt.
@@ -324,7 +324,7 @@ exports.Uint = Uint;
 
 /***/ }),
 
-/***/ 141:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -334,10 +334,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Dec = void 0;
-const big_integer_1 = __importDefault(__webpack_require__(393));
-const int_1 = __webpack_require__(140);
-const coin_utils_1 = __webpack_require__(283);
-const etc_1 = __webpack_require__(395);
+const big_integer_1 = __importDefault(__webpack_require__(391));
+const int_1 = __webpack_require__(139);
+const coin_utils_1 = __webpack_require__(282);
+const etc_1 = __webpack_require__(393);
 class Dec {
     /**
      * Create a new Dec from integer with decimal place at prec
@@ -637,22 +637,22 @@ Dec.precisionMultipliers = {};
 
 /***/ }),
 
-/***/ 1631:
+/***/ 1624:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 175:
+/***/ 173:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DecUtils = void 0;
-const decimal_1 = __webpack_require__(141);
-const int_1 = __webpack_require__(140);
+const decimal_1 = __webpack_require__(140);
+const int_1 = __webpack_require__(139);
 class DecUtils {
     static trim(dec) {
         let decStr = typeof dec === "string" ? dec : dec.toString();
@@ -706,17 +706,17 @@ DecUtils.tenExponentNs = {};
 
 /***/ }),
 
-/***/ 210:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IntPretty = void 0;
-const int_1 = __webpack_require__(140);
-const decimal_1 = __webpack_require__(141);
-const dec_utils_1 = __webpack_require__(175);
-const coin_utils_1 = __webpack_require__(283);
+const int_1 = __webpack_require__(139);
+const decimal_1 = __webpack_require__(140);
+const dec_utils_1 = __webpack_require__(173);
+const coin_utils_1 = __webpack_require__(282);
 class IntPretty {
     constructor(num) {
         this.floatingDecimalPointRight = 0;
@@ -934,30 +934,30 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(210), exports);
-__exportStar(__webpack_require__(658), exports);
-__exportStar(__webpack_require__(394), exports);
+__exportStar(__webpack_require__(209), exports);
+__exportStar(__webpack_require__(656), exports);
+__exportStar(__webpack_require__(392), exports);
+__exportStar(__webpack_require__(139), exports);
 __exportStar(__webpack_require__(140), exports);
-__exportStar(__webpack_require__(141), exports);
-__exportStar(__webpack_require__(283), exports);
-__exportStar(__webpack_require__(175), exports);
-__exportStar(__webpack_require__(659), exports);
-__exportStar(__webpack_require__(660), exports);
+__exportStar(__webpack_require__(282), exports);
+__exportStar(__webpack_require__(173), exports);
+__exportStar(__webpack_require__(657), exports);
+__exportStar(__webpack_require__(658), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 283:
+/***/ 282:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CoinUtils = void 0;
-const coin_1 = __webpack_require__(394);
-const int_1 = __webpack_require__(140);
-const decimal_1 = __webpack_require__(141);
-const dec_utils_1 = __webpack_require__(175);
+const coin_1 = __webpack_require__(392);
+const int_1 = __webpack_require__(139);
+const decimal_1 = __webpack_require__(140);
+const dec_utils_1 = __webpack_require__(173);
 class CoinUtils {
     static createCoinsFromPrimitives(coinPrimitives) {
         return coinPrimitives.map((primitive) => {
@@ -1088,14 +1088,14 @@ exports.CoinUtils = CoinUtils;
 
 /***/ }),
 
-/***/ 394:
+/***/ 392:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Coin = void 0;
-const int_1 = __webpack_require__(140);
+const int_1 = __webpack_require__(139);
 class Coin {
     constructor(denom, amount) {
         this.denom = denom;
@@ -1120,7 +1120,7 @@ exports.Coin = Coin;
 
 /***/ }),
 
-/***/ 395:
+/***/ 393:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1193,16 +1193,16 @@ exports.exponentDecStringToDecString = exponentDecStringToDecString;
 
 /***/ }),
 
-/***/ 658:
+/***/ 656:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CoinPretty = void 0;
-const int_pretty_1 = __webpack_require__(210);
-const decimal_1 = __webpack_require__(141);
-const dec_utils_1 = __webpack_require__(175);
+const int_pretty_1 = __webpack_require__(209);
+const decimal_1 = __webpack_require__(140);
+const dec_utils_1 = __webpack_require__(173);
 class CoinPretty {
     constructor(_currency, amount) {
         this._currency = _currency;
@@ -1421,15 +1421,15 @@ exports.CoinPretty = CoinPretty;
 
 /***/ }),
 
-/***/ 659:
+/***/ 657:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PricePretty = void 0;
-const int_pretty_1 = __webpack_require__(210);
-const dec_utils_1 = __webpack_require__(175);
+const int_pretty_1 = __webpack_require__(209);
+const dec_utils_1 = __webpack_require__(173);
 class PricePretty {
     constructor(_fiatCurrency, amount) {
         this._fiatCurrency = _fiatCurrency;
@@ -1600,14 +1600,14 @@ exports.PricePretty = PricePretty;
 
 /***/ }),
 
-/***/ 660:
+/***/ 658:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RatePretty = void 0;
-const int_pretty_1 = __webpack_require__(210);
+const int_pretty_1 = __webpack_require__(209);
 /**
  * RatePretty treats `Dec` in rate form for easy calculation, and displays it as a percentage to the user by using toString().
  * By default, if the value is less than maxDeciamls, it is displayed using an inequality sign (Ex. < 0.001%)
@@ -1735,7 +1735,14 @@ exports.RatePretty = RatePretty;
 
 /***/ }),
 
-/***/ 662:
+/***/ 660:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 703:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -1749,70 +1756,63 @@ exports.RatePretty = RatePretty;
 
 /***/ }),
 
-/***/ 707:
+/***/ 714:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 717:
+/***/ 716:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 719:
+/***/ 742:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 745:
+/***/ 787:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 790:
+/***/ 789:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 792:
+/***/ 796:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 799:
+/***/ 797:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 800:
+/***/ 862:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 865:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 887:
+/***/ 884:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -1835,14 +1835,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(1026), exports);
+__exportStar(__webpack_require__(1027), exports);
+__exportStar(__webpack_require__(1028), exports);
 __exportStar(__webpack_require__(1029), exports);
 __exportStar(__webpack_require__(1030), exports);
-__exportStar(__webpack_require__(1031), exports);
 __exportStar(__webpack_require__(1032), exports);
 __exportStar(__webpack_require__(1033), exports);
-__exportStar(__webpack_require__(1035), exports);
-__exportStar(__webpack_require__(1036), exports);
-__exportStar(__webpack_require__(1037), exports);
+__exportStar(__webpack_require__(1034), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ })
