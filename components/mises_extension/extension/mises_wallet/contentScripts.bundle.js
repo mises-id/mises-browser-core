@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1653);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1647);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -113,168 +113,15 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 1653:
+/***/ 1647:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1659);
+module.exports = __webpack_require__(1653);
 
 
 /***/ }),
 
-/***/ 1659:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "VerifyDomainMsg", function() { return /* binding */ content_scripts_VerifyDomainMsg; });
-
-// EXTERNAL MODULE: ../router/build/index.js
-var build = __webpack_require__(3);
-
-// EXTERNAL MODULE: ../router-extension/build/index.js
-var router_extension_build = __webpack_require__(56);
-
-// EXTERNAL MODULE: ../provider/build/index.js
-var provider_build = __webpack_require__(194);
-
-// CONCATENATED MODULE: ./src/content-scripts/events.ts
-
-class events_PushEventDataMsg extends build["Message"] {
-    constructor(data) {
-        super();
-        this.data = data;
-    }
-    static type() {
-        return "push-event-data";
-    }
-    validateBasic() {
-        if (!this.data.type) {
-            throw new Error("Type should not be empty");
-        }
-    }
-    route() {
-        return "interaction-foreground";
-    }
-    type() {
-        return events_PushEventDataMsg.type();
-    }
-}
-function initEvents(router) {
-    router.registerMessage(events_PushEventDataMsg);
-    router.addHandler("interaction-foreground", (_, msg) => {
-        switch (msg.constructor) {
-            case events_PushEventDataMsg:
-                if (msg.data.type === "keystore-changed") {
-                    window.dispatchEvent(new Event("mises_keystorechange"));
-                }
-                return;
-            default:
-                throw new Error("Unknown msg type");
-        }
-    });
-}
-
-// EXTERNAL MODULE: ./src/manifest.json
-var manifest = __webpack_require__(251);
-
-// CONCATENATED MODULE: ./src/content-scripts/content-scripts.ts
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
-
-
-
-
-provider_build["InjectedKeplr"].startProxy(new provider_build["Keplr"](manifest.version, "core", new router_extension_build["InExtensionMessageRequester"]()));
-const router = new router_extension_build["ExtensionRouter"](router_extension_build["ContentScriptEnv"].produceEnv);
-router.addGuard(router_extension_build["ContentScriptGuards"].checkMessageIsInternal);
-initEvents(router);
-router.listen(build["WEBPAGE_PORT"]);
-const container = document.head || document.documentElement;
-const injectedScript = document.createElement("script");
-injectedScript.src = browser.runtime.getURL("injectedScript.bundle.js");
-injectedScript.type = "text/javascript";
-container.insertBefore(injectedScript, container.children[0]);
-injectedScript.remove();
-document.addEventListener("DOMContentLoaded", () => {
-    initPostMsgClient();
-    const body = document.body;
-    const injectedMisesScript = document.createElement("script");
-    injectedMisesScript.src = browser.runtime.getURL("safeInjectedScript.bundle.js");
-    injectedMisesScript.type = "text/javascript";
-    body.appendChild(injectedMisesScript);
-    injectedMisesScript.remove();
-});
-class content_scripts_VerifyDomainMsg extends build["Message"] {
-    constructor(params) {
-        super();
-        this.params = params;
-    }
-    static type() {
-        return "verify-domain";
-    }
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    validateBasic() {
-        // noop
-    }
-    approveExternal() {
-        return true;
-    }
-    route() {
-        return "mises-safe";
-    }
-    type() {
-        return content_scripts_VerifyDomainMsg.type();
-    }
-}
-// mises-safe
-const postMsg = (id, res) => {
-    const targetOrigin = window.location.origin;
-    const contentToProxyMessage = {
-        type: "mises-safe-proxy-request-response",
-        id,
-        result: { return: res },
-    };
-    window.postMessage(contentToProxyMessage, targetOrigin);
-};
-const initPostMsgClient = () => __awaiter(void 0, void 0, void 0, function* () {
-    window.addEventListener("message", (e) => __awaiter(void 0, void 0, void 0, function* () {
-        // 监听 message 事件
-        if (e.origin !== window.location.origin) {
-            // 验证消息来源地址
-            return;
-        }
-        if (!e.data || e.data.type !== "mises-proxy-request") {
-            return;
-        }
-        if (typeof e.data.method === "undefined") {
-            return;
-        }
-        if (e.data.method === "consoleLog") {
-            console.log("content consoleLog:>>", e.data);
-            return;
-        }
-        const res = yield new router_extension_build["InExtensionMessageRequester"]().sendMessage(build["BACKGROUND_PORT"], new content_scripts_VerifyDomainMsg(e.data));
-        //post msg back to proxyClient
-        //this.postMsg(res);
-        postMsg(e.data.id, res);
-    }));
-});
-
-
-/***/ }),
-
-/***/ 167:
+/***/ 165:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -415,7 +262,158 @@ module.exports = deepmerge_1;
 
 /***/ }),
 
-/***/ 183:
+/***/ 1653:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "VerifyDomainMsg", function() { return /* binding */ content_scripts_VerifyDomainMsg; });
+
+// EXTERNAL MODULE: ../router/build/index.js
+var build = __webpack_require__(3);
+
+// EXTERNAL MODULE: ../router-extension/build/index.js
+var router_extension_build = __webpack_require__(56);
+
+// EXTERNAL MODULE: ../provider/build/index.js
+var provider_build = __webpack_require__(192);
+
+// CONCATENATED MODULE: ./src/content-scripts/events.ts
+
+class events_PushEventDataMsg extends build["Message"] {
+    constructor(data) {
+        super();
+        this.data = data;
+    }
+    static type() {
+        return "push-event-data";
+    }
+    validateBasic() {
+        if (!this.data.type) {
+            throw new Error("Type should not be empty");
+        }
+    }
+    route() {
+        return "interaction-foreground";
+    }
+    type() {
+        return events_PushEventDataMsg.type();
+    }
+}
+function initEvents(router) {
+    router.registerMessage(events_PushEventDataMsg);
+    router.addHandler("interaction-foreground", (_, msg) => {
+        switch (msg.constructor) {
+            case events_PushEventDataMsg:
+                if (msg.data.type === "keystore-changed") {
+                    window.dispatchEvent(new Event("mises_keystorechange"));
+                }
+                return;
+            default:
+                throw new Error("Unknown msg type");
+        }
+    });
+}
+
+// EXTERNAL MODULE: ./src/manifest.json
+var manifest = __webpack_require__(250);
+
+// CONCATENATED MODULE: ./src/content-scripts/content-scripts.ts
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+
+
+provider_build["InjectedKeplr"].startProxy(new provider_build["Keplr"](manifest.version, "core", new router_extension_build["InExtensionMessageRequester"]()));
+const router = new router_extension_build["ExtensionRouter"](router_extension_build["ContentScriptEnv"].produceEnv);
+router.addGuard(router_extension_build["ContentScriptGuards"].checkMessageIsInternal);
+initEvents(router);
+router.listen(build["WEBPAGE_PORT"]);
+const container = document.head || document.documentElement;
+const injectedScript = document.createElement("script");
+injectedScript.src = browser.runtime.getURL("injectedScript.bundle.js");
+injectedScript.type = "text/javascript";
+container.insertBefore(injectedScript, container.children[0]);
+injectedScript.remove();
+const initPostMsgClient = () => __awaiter(void 0, void 0, void 0, function* () {
+    window.addEventListener("message", (e) => __awaiter(void 0, void 0, void 0, function* () {
+        // 监听 message 事件
+        if (e.origin !== window.location.origin) {
+            // 验证消息来源地址
+            return;
+        }
+        if (!e.data || e.data.type !== "mises-proxy-request") {
+            return;
+        }
+        if (typeof e.data.method === "undefined") {
+            return;
+        }
+        if (e.data.method === "consoleLog") {
+            console.log("content consoleLog:>>", e.data);
+            return;
+        }
+        const res = yield new router_extension_build["InExtensionMessageRequester"]().sendMessage(build["BACKGROUND_PORT"], new content_scripts_VerifyDomainMsg(e.data));
+        postMsg(e.data.id, res);
+    }));
+});
+//InjectedSafeScript
+initPostMsgClient();
+const body = document.head || document.documentElement;
+const injectedMisesScript = document.createElement("script");
+injectedMisesScript.src = browser.runtime.getURL("safeInjectedScript.bundle.js");
+injectedMisesScript.type = "text/javascript";
+body.insertBefore(injectedMisesScript, body.children[0]);
+injectedMisesScript.remove();
+document.addEventListener("DOMContentLoaded", () => { });
+class content_scripts_VerifyDomainMsg extends build["Message"] {
+    constructor(params) {
+        super();
+        this.params = params;
+    }
+    static type() {
+        return "verify-domain";
+    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    validateBasic() {
+        // noop
+    }
+    approveExternal() {
+        return true;
+    }
+    route() {
+        return "mises-safe";
+    }
+    type() {
+        return content_scripts_VerifyDomainMsg.type();
+    }
+}
+// mises-safe
+const postMsg = (id, res) => {
+    const targetOrigin = window.location.origin;
+    const contentToProxyMessage = {
+        type: "mises-safe-proxy-request-response",
+        id,
+        result: { return: res },
+    };
+    window.postMessage(contentToProxyMessage, targetOrigin);
+};
+
+
+/***/ }),
+
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -448,7 +446,7 @@ exports.MessageRegistry = MessageRegistry;
 
 /***/ }),
 
-/***/ 184:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -456,7 +454,7 @@ exports.MessageRegistry = MessageRegistry;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JSONUint8Array = void 0;
 // The JSON encoder that supports the `Uint8Array`.
-const hex_1 = __webpack_require__(326);
+const hex_1 = __webpack_require__(325);
 class JSONUint8Array {
     static parse(text) {
         return JSON.parse(text, (key, value) => {
@@ -507,7 +505,7 @@ exports.JSONUint8Array = JSONUint8Array;
 
 /***/ }),
 
-/***/ 188:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -530,7 +528,7 @@ exports.getKeplrExtensionRouterId = getKeplrExtensionRouterId;
 
 /***/ }),
 
-/***/ 189:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -582,7 +580,7 @@ exports.KeplrEnigmaUtils = KeplrEnigmaUtils;
 
 /***/ }),
 
-/***/ 190:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -660,7 +658,7 @@ exports.CosmJSOfflineSigner = CosmJSOfflineSigner;
 
 /***/ }),
 
-/***/ 191:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -726,7 +724,7 @@ exports.MisesWeb3Client = MisesWeb3Client;
 
 /***/ }),
 
-/***/ 194:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -742,16 +740,16 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(589), exports);
+__exportStar(__webpack_require__(188), exports);
+__exportStar(__webpack_require__(187), exports);
 __exportStar(__webpack_require__(592), exports);
-__exportStar(__webpack_require__(190), exports);
 __exportStar(__webpack_require__(189), exports);
-__exportStar(__webpack_require__(595), exports);
-__exportStar(__webpack_require__(191), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 211:
+/***/ 210:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -763,14 +761,14 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 251:
+/***/ 250:
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"manifest_version\":3,\"name\":\"Mises\",\"description\":\"Mises is a browser extension wallet\",\"version\":\"0.2.5\",\"icons\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"},\"action\":{\"default_popup\":\"popup.html\",\"default_title\":\"Mises\",\"default_icon\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"}},\"background\":{\"service_worker\":\"background.bundle.js\"},\"author\":\"https://www.mises.site\",\"permissions\":[\"storage\",\"notifications\",\"identity\",\"tabs\",\"idle\",\"misesPrivate\",\"nativeMessaging\"],\"host_permissions\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"content_scripts\":[{\"matches\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"js\":[\"browser-polyfill.js\",\"contentScripts.bundle.js\"],\"run_at\":\"document_start\",\"all_frames\":true}],\"web_accessible_resources\":[{\"resources\":[\"injectedScript.bundle.js\",\"assets/logo-256.png\",\"safeInjectedScript.bundle.js\"],\"matches\":[\"http://*/*\",\"https://*/*\"]}],\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB\",\"content_security_policy\":{\"extension_pages\":\"script-src 'self' 'wasm-unsafe-eval'; object-src 'self';\"}}");
 
 /***/ }),
 
-/***/ 267:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -786,13 +784,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(583), exports);
-__exportStar(__webpack_require__(584), exports);
+__exportStar(__webpack_require__(580), exports);
+__exportStar(__webpack_require__(581), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 284:
+/***/ 283:
 /***/ (function(module, exports) {
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
@@ -900,20 +898,20 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(325), exports);
+__exportStar(__webpack_require__(324), exports);
+__exportStar(__webpack_require__(326), exports);
 __exportStar(__webpack_require__(327), exports);
 __exportStar(__webpack_require__(328), exports);
 __exportStar(__webpack_require__(329), exports);
 __exportStar(__webpack_require__(330), exports);
 __exportStar(__webpack_require__(331), exports);
-__exportStar(__webpack_require__(332), exports);
-__exportStar(__webpack_require__(183), exports);
-__exportStar(__webpack_require__(184), exports);
+__exportStar(__webpack_require__(181), exports);
+__exportStar(__webpack_require__(182), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 325:
+/***/ 324:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -929,8 +927,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Router = void 0;
-const encoding_1 = __webpack_require__(183);
-const json_uint8_array_1 = __webpack_require__(184);
+const encoding_1 = __webpack_require__(181);
+const json_uint8_array_1 = __webpack_require__(182);
 class Router {
     constructor(envProducer) {
         this.envProducer = envProducer;
@@ -978,7 +976,7 @@ exports.Router = Router;
 
 /***/ }),
 
-/***/ 326:
+/***/ 325:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1016,7 +1014,7 @@ exports.fromHex = fromHex;
 
 /***/ }),
 
-/***/ 327:
+/***/ 326:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1026,7 +1024,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 328:
+/***/ 327:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1036,7 +1034,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 329:
+/***/ 328:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1046,7 +1044,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 330:
+/***/ 329:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1066,7 +1064,7 @@ exports.KeplrError = KeplrError;
 
 /***/ }),
 
-/***/ 331:
+/***/ 330:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1095,7 +1093,7 @@ exports.Message = Message;
 
 /***/ }),
 
-/***/ 332:
+/***/ 331:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1124,8 +1122,8 @@ exports.WEBPAGE_PORT = "webpage";
 
 
 var base64 = __webpack_require__(89)
-var ieee754 = __webpack_require__(284)
-var isArray = __webpack_require__(211)
+var ieee754 = __webpack_require__(283)
+var isArray = __webpack_require__(210)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -3124,15 +3122,15 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(581), exports);
-__exportStar(__webpack_require__(267), exports);
+__exportStar(__webpack_require__(578), exports);
+__exportStar(__webpack_require__(266), exports);
+__exportStar(__webpack_require__(582), exports);
 __exportStar(__webpack_require__(585), exports);
-__exportStar(__webpack_require__(588), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 581:
+/***/ 578:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3148,12 +3146,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(582), exports);
+__exportStar(__webpack_require__(579), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 582:
+/***/ 579:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3170,7 +3168,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExtensionRouter = void 0;
 const router_1 = __webpack_require__(3);
-const utils_1 = __webpack_require__(188);
+const utils_1 = __webpack_require__(186);
 class ExtensionRouter extends router_1.Router {
     constructor(envProducer) {
         super(envProducer);
@@ -3254,7 +3252,7 @@ exports.ExtensionRouter = ExtensionRouter;
 
 /***/ }),
 
-/***/ 583:
+/***/ 580:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3271,7 +3269,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InExtensionMessageRequester = void 0;
 const router_1 = __webpack_require__(3);
-const utils_1 = __webpack_require__(188);
+const utils_1 = __webpack_require__(186);
 class InExtensionMessageRequester {
     sendMessage(port, msg) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -3349,7 +3347,7 @@ exports.InExtensionMessageRequester = InExtensionMessageRequester;
 
 /***/ }),
 
-/***/ 584:
+/***/ 581:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3366,7 +3364,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContentScriptMessageRequester = void 0;
 const router_1 = __webpack_require__(3);
-const utils_1 = __webpack_require__(188);
+const utils_1 = __webpack_require__(186);
 // The message requester to send the message to the content scripts.
 // This will send message to the tab with the content script.
 // And, this can't handle the result of the message sending.
@@ -3427,7 +3425,7 @@ exports.ContentScriptMessageRequester = ContentScriptMessageRequester;
 
 /***/ }),
 
-/***/ 585:
+/***/ 582:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3443,13 +3441,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(586), exports);
-__exportStar(__webpack_require__(587), exports);
+__exportStar(__webpack_require__(583), exports);
+__exportStar(__webpack_require__(584), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 586:
+/***/ 583:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3483,7 +3481,7 @@ ExtensionGuards.checkMessageIsInternal = (env, msg, sender) => {
 
 /***/ }),
 
-/***/ 587:
+/***/ 584:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3504,7 +3502,7 @@ ContentScriptGuards.checkMessageIsInternal = (env, msg, sender) => {
 
 /***/ }),
 
-/***/ 588:
+/***/ 585:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3520,13 +3518,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(589), exports);
-__exportStar(__webpack_require__(590), exports);
+__exportStar(__webpack_require__(586), exports);
+__exportStar(__webpack_require__(587), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 589:
+/***/ 586:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3544,7 +3542,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExtensionEnv = void 0;
 const router_1 = __webpack_require__(3);
 const popup_1 = __webpack_require__(46);
-const requester_1 = __webpack_require__(267);
+const requester_1 = __webpack_require__(266);
 class PromiseQueue {
     constructor() {
         this.workingOnPromise = false;
@@ -3734,7 +3732,7 @@ ExtensionEnv.checkIsInternalMessage = (sender, extensionId, extensionUrl) => {
 
 /***/ }),
 
-/***/ 590:
+/***/ 587:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3759,7 +3757,7 @@ ContentScriptEnv.produceEnv = (sender) => {
 
 /***/ }),
 
-/***/ 592:
+/***/ 589:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3779,13 +3777,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Keplr = void 0;
 const router_1 = __webpack_require__(3);
-const types_1 = __webpack_require__(593);
-const enigma_1 = __webpack_require__(189);
-const cosmjs_1 = __webpack_require__(190);
-const deepmerge_1 = __importDefault(__webpack_require__(167));
+const types_1 = __webpack_require__(590);
+const enigma_1 = __webpack_require__(187);
+const cosmjs_1 = __webpack_require__(188);
+const deepmerge_1 = __importDefault(__webpack_require__(165));
 const long_1 = __importDefault(__webpack_require__(7));
 const buffer_1 = __webpack_require__(4);
-const mises_1 = __webpack_require__(191);
+const mises_1 = __webpack_require__(189);
 class Keplr {
     constructor(version, mode, requester) {
         this.version = version;
@@ -4043,7 +4041,7 @@ exports.Keplr = Keplr;
 
 /***/ }),
 
-/***/ 593:
+/***/ 590:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4059,12 +4057,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(594), exports);
+__exportStar(__webpack_require__(591), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 594:
+/***/ 591:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4764,7 +4762,7 @@ exports.VerifyDomainMsg = VerifyDomainMsg;
 
 /***/ }),
 
-/***/ 595:
+/***/ 592:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4784,11 +4782,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InjectedKeplr = exports.injectKeplrToWindow = void 0;
 const router_1 = __webpack_require__(3);
-const enigma_1 = __webpack_require__(189);
-const cosmjs_1 = __webpack_require__(190);
-const deepmerge_1 = __importDefault(__webpack_require__(167));
+const enigma_1 = __webpack_require__(187);
+const cosmjs_1 = __webpack_require__(188);
+const deepmerge_1 = __importDefault(__webpack_require__(165));
 const long_1 = __importDefault(__webpack_require__(7));
-const mises_1 = __webpack_require__(191);
+const mises_1 = __webpack_require__(189);
 function defineUnwritablePropertyIfPossible(o, p, value) {
     const descriptor = Object.getOwnPropertyDescriptor(o, p);
     if (!descriptor || descriptor.writable) {

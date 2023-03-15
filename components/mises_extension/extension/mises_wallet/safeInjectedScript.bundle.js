@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1656);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1650);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1656:
+/***/ 1650:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1658);
+module.exports = __webpack_require__(1652);
 
 
 /***/ }),
 
-/***/ 1658:
+/***/ 1652:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -268,7 +268,6 @@ const domainSafeLevel = {
     Fuzzy: "fuzzy",
     Normal: "normal",
 };
-const containerId = "mises-safe-container";
 const parseUrlToDomain = (param, type = "domain") => {
     let domain = param;
     if (domain.match(/^[a-zA-Z0-9-]+:\/\/.+$/)) {
@@ -324,20 +323,7 @@ class injected_script_ContentScripts {
         if (window.location.ancestorOrigins.length > 0) {
             return;
         }
-        this.initContainer();
         this.initWeb3Proxy();
-    }
-    // 初始化外层包裹元素
-    initContainer() {
-        const base = document.getElementById(containerId);
-        if (base) {
-            this.container = base;
-            return;
-        }
-        this.container = document.createElement("div");
-        this.container.setAttribute("id", containerId);
-        this.container.setAttribute("class", `chrome-extension-base-class${Math.floor(Math.random() * 10000)}`);
-        document.body.appendChild(this.container);
     }
     initWeb3Proxy() {
         console.log("initWeb3Proxy");
@@ -374,25 +360,30 @@ class injected_script_ContentScripts {
         };
         const proxyInterval = setInterval(() => proxyETH(), 1000);
         function proxyETH() {
+            let isProxy = false;
             if (typeof window.ethereum !== "undefined") {
                 const proxy1 = new Proxy(window.ethereum.request, handler);
+                const proxy2 = new Proxy(window.ethereum.enable, handler);
                 window.ethereum.request = proxy1;
                 //window.ethereum.send = proxy1;
                 //window.ethereum.sendAsync = proxy1;
-                //window.ethereum.enable = proxy1;
+                window.ethereum.enable = proxy2;
+                isProxy = true;
                 console.log("Find ethereum");
-                clearInterval(proxyInterval);
             }
-            else if (typeof window.web3 !== "undefined") {
+            if (typeof window.web3 !== "undefined" &&
+                typeof window.web3.currentProvider !== "undefined") {
                 const proxy2 = new Proxy(window.web3.currentProvider, handler);
                 window.web3.currentProvider = proxy2;
+                isProxy = true;
                 console.log("Find web3");
-                clearInterval(proxyInterval);
             }
-            else {
+            clearInterval(proxyInterval);
+            if (!isProxy) {
                 console.log("Did not find ethereum or web3");
             }
         }
+        proxyETH();
         setTimeout(() => {
             clearInterval(proxyInterval);
         }, 10000);
@@ -448,7 +439,6 @@ class injected_script_ContentScripts {
             console.log("verifyDomain count ", this.config.retryCount);
             this.domainInfo.checkStatus = domainCheckStatus.pendingCheck;
             const e = document.documentElement;
-            console.log("tex: ", e.innerText);
             const checkResult = yield proxyClient.verifyDomain(this.domainInfo.hostname, this.getSiteLogo(), e.innerText);
             console.log("checkResult :>>", checkResult);
             //parse the check result
