@@ -1,0 +1,21 @@
+diff --git a/chrome/browser/ui/views/extensions/settings_overridden_dialog_view_browsertest.cc b/chrome/browser/ui/views/extensions/settings_overridden_dialog_view_browsertest.cc
+index 2537224084f42dab694393133e5174f184aa30c5..7eb49f22ba2a0194c0f74634738a0ba9ab269bd8 100644
+--- a/chrome/browser/ui/views/extensions/settings_overridden_dialog_view_browsertest.cc
++++ b/chrome/browser/ui/views/extensions/settings_overridden_dialog_view_browsertest.cc
+@@ -29,6 +29,7 @@
+ #include "content/public/test/browser_test.h"
+ #include "content/public/test/browser_test_utils.h"
+ #include "ui/views/test/widget_test.h"
++#include "components/vector_icons/vector_icons.h"
+ 
+ namespace {
+ 
+@@ -109,7 +110,7 @@ class SettingsOverriddenDialogViewBrowserTest : public DialogBrowserTest {
+         u"Settings overriden dialog body, which is quite a bit "
+         u"longer than the title alone"};
+     if (show_icon)
+-      params.icon = &kProductIcon;
++      params.icon = &vector_icons::kProductIcon;
+     auto* dialog =
+         new SettingsOverriddenDialogView(std::make_unique<TestDialogController>(
+             std::move(params), &dialog_result_));

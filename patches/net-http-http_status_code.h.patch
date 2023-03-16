@@ -1,0 +1,15 @@
+diff --git a/net/http/http_status_code.h b/net/http/http_status_code.h
+index a4b398b5038c20c5bf131d73f99621c06c4e1737..2ee74b4daa7d42788c34fbc614f3510ad470dd4d 100644
+--- a/net/http/http_status_code.h
++++ b/net/http/http_status_code.h
+@@ -11,7 +11,9 @@ namespace net {
+ 
+ // HTTP status codes.
+ enum HttpStatusCode {
+-
++#ifdef HTTP_STATUS
++#undef HTTP_STATUS
++#endif
+ #define HTTP_STATUS(label, code, reason) HTTP_ ## label = code,
+ #include "net/http/http_status_code_list.h"
+ #undef HTTP_STATUS

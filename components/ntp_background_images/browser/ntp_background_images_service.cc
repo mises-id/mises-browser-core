@@ -262,15 +262,15 @@ void NTPBackgroundImagesService::CheckSuperReferralComponent() {
       return;
     }
 
-    // This below code is for recover above abnormal situation - Shutdown
-    // situation before getting map table or getting initial component.
-    if (brave::BraveReferralsService::IsDefaultReferralCode(code)) {
-      MarkThisInstallIsNotSuperReferralForever();
-    } else {
-      // If current code is not an default one, let's check it after fetching
-      // mapping table.
-      DownloadSuperReferralMappingTable();
-    }
+    // // This below code is for recover above abnormal situation - Shutdown
+    // // situation before getting map table or getting initial component.
+    // if (brave::BraveReferralsService::IsDefaultReferralCode(code)) {
+    //   MarkThisInstallIsNotSuperReferralForever();
+    // } else {
+    //   // If current code is not an default one, let's check it after fetching
+    //   // mapping table.
+    //   DownloadSuperReferralMappingTable();
+    // }
     return;
   }
 

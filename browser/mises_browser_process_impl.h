@@ -29,7 +29,7 @@ class MisesBrowserProcessImpl : public MisesBrowserProcess,
   //ProfileManager* profile_manager() override;
   NotificationPlatformBridge* notification_platform_bridge() override;
 
-  // BraveBrowserProcess implementation.
+  // MisesBrowserProcess implementation.
 
   void StartMisesServices() override;
 

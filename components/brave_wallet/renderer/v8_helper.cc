@@ -90,7 +90,7 @@ void ExecuteScript(blink::WebLocalFrame* web_frame,
   if (web_frame->IsProvisional())
     return;
 
-  brave::LoadScriptWithSafeBuiltins(web_frame, script, name);
+  mises::LoadScriptWithSafeBuiltins(web_frame, script, name);
 }
 
 void SetProviderNonWritable(v8::Local<v8::Context> context,
