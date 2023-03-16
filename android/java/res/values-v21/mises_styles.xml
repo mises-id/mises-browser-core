@@ -10,4 +10,9 @@
         parent="@android:style/TextAppearance.Material.Notification">
         <item name="android:textSize">13sp</item>
     </style>
+    <!-- Bubble styles -->
+    <style name="LeftMenuStyle">
+        <item name="android:windowEnterAnimation">@anim/left_enter</item>
+        <item name="android:windowExitAnimation">@anim/left_exit</item>
+    </style>
 </resources>

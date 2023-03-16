@@ -4,6 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 const os = require('os')
+const fs = require('fs-extra')
 const chalk = require('chalk')
 const logUpdate = require('log-update')
 
@@ -85,6 +86,12 @@ function logPatchStatus ({ reason, path, patchPath, error, warning }) {
   console.log(`  - Patch applied because: ${GitPatcher.patchApplyReasonMessages[reason]}`)
   if (error) {
     console.log(chalk.red(`  - Error - ${error.message}`))
+    const patchFileName = patchPath.replace(
+      "/Users/baoge/Documents/work/mises-browser-core/src/mises/patches/",
+      "")
+    if (!fs.existsSync('patches/err/'+patchFileName)) {
+      fs.copySync('patches/' + patchFileName, 'patches/err/'+patchFileName)
+    }
   }
   if (warning) {
     console.warn(chalk.yellow(`  - Warning - ${warning}`))

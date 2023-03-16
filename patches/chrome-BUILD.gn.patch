@@ -1,8 +1,8 @@
 diff --git a/chrome/BUILD.gn b/chrome/BUILD.gn
-index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e651762fa9f03 100644
+index a4003417d110b805503750c7fb0bfe6cb55bf777..7b1d38600cf787f81c58b735ccda6c12a28f172c 100644
 --- a/chrome/BUILD.gn
 +++ b/chrome/BUILD.gn
-@@ -189,6 +189,7 @@ if (!is_android && !is_mac) {
+@@ -186,6 +186,7 @@ if (!is_android && !is_mac) {
          "common/crash_keys.cc",
          "common/crash_keys.h",
        ]
@@ -10,8 +10,8 @@ index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e6517
  
        deps += [
          ":chrome_dll",
-@@ -487,11 +488,12 @@ if (is_win) {
-       args += [ "--privileged_helper_id=$privileged_helper_name" ]
+@@ -486,11 +487,12 @@ if (is_win) {
+       args += [ "--keystone=0" ]
      }
    }
 +  copy("mises_app_plist") { deps = [ "//mises:mises_app_plist" ] sources = [ "$root_gen_dir/mises/mises_app_plist_tweaked.plist" ] outputs = [ "$root_gen_dir/chrome/{{source_file_part}}" ] }
@@ -32,16 +32,24 @@ index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e6517
  
      if (enable_stripping) {
        # At link time, preserve the global symbols specified in the .exports
-@@ -587,7 +590,7 @@ if (is_win) {
+@@ -583,7 +586,7 @@ if (is_win) {
      args =
          [
            "-b",
--          "${branding_path_component}_strings",
+-          "${branding_path_product}_strings",
 +          _strings_file,
            "-v",
            chrome_version_full,
            "-g",
-@@ -704,9 +707,11 @@ if (is_win) {
+@@ -657,6 +660,7 @@ if (is_win) {
+       # this dependency directly copies the file into the framework's
+       # resources directory.
+       public_deps += [ ":chrome_framework_widevine_signature" ]
++      public_deps -= [ ":chrome_framework_widevine_signature" ]
+     }
+   }
+ 
+@@ -698,9 +702,11 @@ if (is_win) {
        "--scm=0",
      ]
    }
@@ -50,19 +58,26 @@ index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e6517
    compile_entitlements("entitlements") {
      entitlements_templates = [ "app/app-entitlements.plist" ]
 +    entitlements_templates += mises_entitlements_templates
-     if (is_chrome_branded) {
+     if (is_chrome_branded && include_branded_entitlements) {
        # These entitlements are bound to the official Google Chrome signing
        # certificate and will not necessarily work in any other build.
-@@ -730,7 +735,7 @@ if (is_win) {
-       if (defined(invoker.info_plist_target)) {
+@@ -725,6 +731,7 @@ if (is_win) {
          info_plist_target = invoker.info_plist_target
        } else {
--        info_plist_target = ":chrome_helper_plist"
+         info_plist_target = ":chrome_helper_plist"
 +        info_plist_target = ":mises_helper_plist"
        }
  
        extra_substitutions = [
-@@ -1218,6 +1223,7 @@ if (is_win) {
+@@ -903,6 +910,7 @@ if (is_win) {
+         sources += [ "//third_party/updater/chrome_mac_universal_prod/${updater_product_full_name}.app" ]
+       } else {
+         sources += [ "$root_out_dir/${updater_product_full_name}.app" ]
++      sources -= [ "$root_out_dir/${updater_product_full_name}.app" ]
+ 
+         public_deps += [
+           "//chrome/updater/mac:browser_install_script",
+@@ -1212,6 +1220,7 @@ if (is_win) {
        chrome_dylib_version,
        "-Wl,-order_file," + rebase_path("app/framework.order", root_build_dir),
      ]
@@ -70,7 +85,7 @@ index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e6517
  
      if (!is_component_build) {
        # Specify a sensible install_name for static builds. The library is
-@@ -1396,6 +1402,7 @@ if (is_win) {
+@@ -1392,6 +1401,7 @@ if (is_win) {
  
  group("dependencies") {
    public_deps = [
@@ -78,7 +93,7 @@ index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e6517
      "//build:branding_buildflags",
      "//build:chromeos_buildflags",
      "//chrome/browser",
-@@ -1467,7 +1474,7 @@ group("dependencies") {
+@@ -1462,7 +1472,7 @@ group("dependencies") {
  
  if (is_win) {
    process_version_rc_template("chrome_exe_version") {
@@ -87,7 +102,7 @@ index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e6517
      output = "$target_gen_dir/chrome_exe_version.rc"
    }
  
-@@ -1521,6 +1528,7 @@ group("resources") {
+@@ -1516,6 +1526,7 @@ group("resources") {
      "//chrome/browser:resources",
      "//chrome/common:resources",
      "//chrome/renderer:resources",
@@ -95,3 +110,4 @@ index 7804140cb03f5bfb23a07bcfbbaea3a5ea156ed9..11801095fed27d37d9bab0fd699e6517
    ]
  }
  
+

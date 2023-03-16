@@ -1,17 +1,16 @@
 diff --git a/components/policy/tools/generate_policy_source.py b/components/policy/tools/generate_policy_source.py
-index 7fb456b7a0a77d016c5e16ea597dc6f7831131ef..45d98022d1db4ac8c6190abca0f8316a1d4af023 100755
+index 273a7686a494f5813ba7540025f4a95c29bfd8c2..49afbccc92bb69db3959ef79d95916c838c30c55 100755
 --- a/components/policy/tools/generate_policy_source.py
 +++ b/components/policy/tools/generate_policy_source.py
-@@ -53,7 +53,7 @@ PLATFORM_STRINGS = {
-     'chrome.*': ['win', 'mac', 'linux', 'fuchsia'],
+@@ -55,6 +55,7 @@ PLATFORM_STRINGS = {
      'chrome.win7': ['win'],
  }
--
+ 
 +from policy_source_helper import AddMisesPolicies, CHROMIUM_POLICY_KEY
  
  class PolicyDetails:
    """Parses a policy template and caches all its details."""
-@@ -381,6 +381,7 @@ def main():
+@@ -384,6 +385,7 @@ def main():
      chrome_major_version = ParseVersionFile(version_path)
  
    template_file_contents = _LoadJSONFile(template_file_name)
@@ -19,3 +18,4 @@ index 7fb456b7a0a77d016c5e16ea597dc6f7831131ef..45d98022d1db4ac8c6190abca0f8316a
    risk_tags = RiskTags(template_file_contents)
    policy_details = [
        PolicyDetails(policy, chrome_major_version, deprecation_milestone_buffer,
+

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
-index a9d06566d25a1a9baa10bea6f94acced0021584b..a0036018e7496663dfcf7bf5f864b202f141ebe1 100644
+index 25b5e9c0bd70a9a684c540b8fba9185393466940..8554d93141419be0bec4a15617cf8e691a61f38b 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
 @@ -130,6 +130,8 @@ import org.chromium.ui.base.DeviceFormFactor;
