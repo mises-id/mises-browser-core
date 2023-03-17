@@ -1,13 +1,13 @@
 diff --git a/ui/webui/resources/cr_components/color_change_listener/BUILD.gn b/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
-index 3fad7e0e3c7b0283920534063de238369a1627d5..ec26082a7d6a5db41968be441bb43a83cadfcf49 100644
+index 6a2b0ec7ed6a8e17fce9931ed2ea99f0b3d4c7f0..987d8c7031c76cc5847f2ee9ba606afd75cd23d4 100644
 --- a/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
 +++ b/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
-@@ -6,7 +6,7 @@ import("//mojo/public/tools/bindings/mojom.gni")
- import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ import("../../tools/build_cr_component.gni")
  
 -assert(!is_android && !is_ios)
 +# assert(!is_android && !is_ios)
  
- preprocess_folder = "$root_gen_dir/ui/webui/resources/preprocessed/cr_components/color_change_listener"
- 
+ mojom("mojom") {
+   sources = [ "color_change_listener.mojom" ]

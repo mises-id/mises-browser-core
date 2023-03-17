@@ -1,5 +1,5 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
-index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..06ffcf5c33ea6e3daa3b03640e2495d6320017dc 100644
+index 5d4fe9044981485a195a5a544bff0bbeec075df5..68e8ef7bc7c984f18074607f5dddd20db27c20e2 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 @@ -55,7 +55,7 @@ public class UrlUtilities {
@@ -11,7 +11,7 @@ index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..06ffcf5c33ea6e3daa3b03640e2495d6
  
      private static final String TEL_SCHEME = "tel";
  
-@@ -117,6 +117,12 @@ public class UrlUtilities {
+@@ -106,6 +106,12 @@ public class UrlUtilities {
       * @return Whether the URL's scheme is for a internal chrome page.
       */
      public static boolean isInternalScheme(@NonNull GURL gurl) {
@@ -24,7 +24,7 @@ index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..06ffcf5c33ea6e3daa3b03640e2495d6
          return INTERNAL_SCHEMES.contains(gurl.getScheme());
      }
  
-@@ -270,6 +276,12 @@ public class UrlUtilities {
+@@ -266,6 +272,12 @@ public class UrlUtilities {
       */
      public static boolean isNTPUrl(GURL gurl) {
          if (!gurl.isValid() || !isInternalScheme(gurl)) return false;
@@ -37,7 +37,7 @@ index ef4b1c7b35e140f3f5bf5399ef5bc42bbb50a54a..06ffcf5c33ea6e3daa3b03640e2495d6
          return UrlConstants.NTP_HOST.equals(gurl.getHost());
      }
  
-@@ -308,7 +320,13 @@ public class UrlUtilities {
+@@ -304,7 +316,13 @@ public class UrlUtilities {
          if (LibraryLoader.getInstance().isInitialized()) return isNTPUrl(url);
          return TextUtils.equals(url, UrlConstants.NTP_URL)
                  || TextUtils.equals(url, UrlConstants.NTP_NON_NATIVE_URL)

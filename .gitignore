@@ -94,3 +94,4 @@ run_adb_log.sh
 android-build-and-install.sh
 linux-build-and-run.sh
 patches/err
+patches/fixed

@@ -1,16 +1,16 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/PendingTabClosureManager.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/PendingTabClosureManager.java
-index e50544baa39bc1ae73b5828afce195c9be862ecf..3d68f653feddcfab004c5eeaa3877ba0ce61fd83 100644
+index cc2f03a1deb01be726e9a8faa15c7fccd054b8f7..b0f2288b26d0e22de062f548a0f08ba486752b23 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/PendingTabClosureManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/PendingTabClosureManager.java
-@@ -5,6 +5,7 @@
- package org.chromium.chrome.browser.tabmodel;
+@@ -7,6 +7,7 @@ package org.chromium.chrome.browser.tabmodel;
+ import androidx.annotation.NonNull;
  
  import org.chromium.chrome.browser.tab.Tab;
 +import org.chromium.chrome.browser.tab.state.CriticalPersistedTabData;
  
  import java.util.ArrayList;
  import java.util.HashSet;
-@@ -152,6 +153,32 @@ public class PendingTabClosureManager {
+@@ -154,6 +155,32 @@ public class PendingTabClosureManager {
              return mRewoundTabs.indexOf(tab);
          }
  
@@ -41,5 +41,5 @@ index e50544baa39bc1ae73b5828afce195c9be862ecf..3d68f653feddcfab004c5eeaa3877ba0
 +        }
 +
          /**
-          * Resets this list to match the original {@link TabModel}.  Note that if the
-          * {@link TabModel} doesn't support pending closures this model will be empty.  This should
+          * Resets this list to match the original {@link TabList}.  Note that if the
+          * {@link TabList} doesn't support pending closures this model will be empty.  This should

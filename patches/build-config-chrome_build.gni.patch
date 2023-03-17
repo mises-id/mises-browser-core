@@ -1,5 +1,5 @@
 diff --git a/build/config/chrome_build.gni b/build/config/chrome_build.gni
-index b5156d5c677a4e990cca5b5f2024a0fb8f09120c..d5f71b8ef29ad462aeb6c5f0b920e2b26514d06b 100644
+index b5156d5c677a4e990cca5b5f2024a0fb8f09120c..863e783d33159cafb8052dbb86c46357991cc3c6 100644
 --- a/build/config/chrome_build.gni
 +++ b/build/config/chrome_build.gni
 @@ -1,6 +1,7 @@

@@ -1,5 +1,5 @@
 diff --git a/content/browser/tracing/BUILD.gn b/content/browser/tracing/BUILD.gn
-index 9d744a67cfd8f074f9676a1ef7760a9a765ce2a2..efbf9a88d00a830786d9141a5024cb18fd064168 100644
+index ca4bfa39c2d35f2d85c4bff66d6af4f4ea20f447..4f47e6489a10149964db7a00e64b3aab865b517d 100644
 --- a/content/browser/tracing/BUILD.gn
 +++ b/content/browser/tracing/BUILD.gn
 @@ -5,7 +5,7 @@

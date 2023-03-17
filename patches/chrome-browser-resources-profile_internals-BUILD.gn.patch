@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/profile_internals/BUILD.gn b/chrome/browser/resources/profile_internals/BUILD.gn
-index d9f959f4bfbc2af48e57031a612ce49bdbc75ac0..14f53e797b33f49b8d04da4662c0dc4ec5d942e8 100644
+index faa5adf924db7349bd5ee6af96edaf2e462bbb29..f6d5061d5bdbeb52a450dda597f1e98eb7baf384 100644
 --- a/chrome/browser/resources/profile_internals/BUILD.gn
 +++ b/chrome/browser/resources/profile_internals/BUILD.gn
-@@ -9,7 +9,7 @@ import("//tools/polymer/html_to_wrapper.gni")
- import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
+@@ -5,7 +5,7 @@
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//chrome/common/features.gni")
  
 -assert(!is_android)
 +#assert(!is_android)
  
- # Move everything to one folder using preprocess_if_expr.
- preprocess_folder = "preprocessed"
+ build_webui("build") {
+   grd_prefix = "profile_internals"

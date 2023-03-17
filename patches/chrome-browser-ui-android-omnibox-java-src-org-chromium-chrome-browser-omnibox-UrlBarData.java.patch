@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
-index 2b0a1b9c5b45dce60c6d7dc9372c9bf18ac4e8a3..c5ab3ea649b112c305f9ccf514d743e6924ab320 100644
+index 72e64a3edd3a3a5586fad8b324065be5dc3d8e69..34ca5500a048eee28fe3f2114a84f6930fabfe0b 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
-@@ -40,10 +40,15 @@ public class UrlBarData {
+@@ -41,10 +41,15 @@ public class UrlBarData {
      private static final HashSet<String> ACCEPTED_SCHEMES = CollectionUtil.newHashSet(
              ContentUrlConstants.ABOUT_SCHEME, UrlConstants.DATA_SCHEME, UrlConstants.FILE_SCHEME,
              UrlConstants.FTP_SCHEME, UrlConstants.HTTP_SCHEME, UrlConstants.HTTPS_SCHEME,
@@ -19,7 +19,7 @@ index 2b0a1b9c5b45dce60c6d7dc9372c9bf18ac4e8a3..c5ab3ea649b112c305f9ccf514d743e6
      /**
       * Represents an empty URL bar.
       */
-@@ -58,7 +63,7 @@ public class UrlBarData {
+@@ -59,7 +64,7 @@ public class UrlBarData {
      }
  
      public static UrlBarData forUrlAndText(String url, String displayText) {
@@ -28,7 +28,7 @@ index 2b0a1b9c5b45dce60c6d7dc9372c9bf18ac4e8a3..c5ab3ea649b112c305f9ccf514d743e6
      }
  
      /** Returns whether supplied URL should be shown in the Omnibox/Suggestions list. */
-@@ -70,6 +75,16 @@ public class UrlBarData {
+@@ -71,6 +76,16 @@ public class UrlBarData {
              String url, CharSequence displayText, @Nullable String editingText) {
          int pathSearchOffset = 0;
          String displayTextStr = displayText.toString();

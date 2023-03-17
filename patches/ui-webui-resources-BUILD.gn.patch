@@ -1,26 +1,26 @@
 diff --git a/ui/webui/resources/BUILD.gn b/ui/webui/resources/BUILD.gn
-index 483defefa69d971e6c8f369263c445ac248297f5..0b32150ee1fed16304b6c37aab7a0b26b47a0291 100644
+index ed6eb9641ff5bb3a25d475929daf04811c10c009..f9ea524fa2843b198814b0cdf45ee8dc8df0cb56 100644
 --- a/ui/webui/resources/BUILD.gn
 +++ b/ui/webui/resources/BUILD.gn
-@@ -35,7 +35,7 @@ generate_grd("build_grd") {
-     "$root_gen_dir/third_party/jstemplate/resources.grdp",
-   ]
+@@ -15,7 +15,7 @@ generate_grd("build_grd") {
+   input_files = [ "test_loader.html" ]
+   input_files_base_dir = rebase_path(".", "//")
  
 -  if (!is_chromeos_ash && !is_android) {
 +  if (!is_chromeos_ash) {
      # Roboto Font. Roboto-Regular and Roboto-Light is already available on
      # Android, and Roboto-Medium is not used on Android. All 6 weights of
      # Roboto are available on Chrome OS.
-@@ -47,7 +47,7 @@ generate_grd("build_grd") {
-     ]
-   }
+@@ -43,7 +43,7 @@ generate_grd("build_grd") {
+     "$target_gen_dir/js/resources.grdp",
+   ]
  
 -  if (include_polymer) {
 +  if (include_polymer || is_android) {
      public_deps += [
-       "cr_components:build_grdp",
        "cr_components/app_management:build_grdp",
-@@ -106,7 +106,7 @@ generate_grd("build_grd") {
+       "cr_components/customize_themes:build_grdp",
+@@ -110,7 +110,7 @@ generate_grd("build_grd") {
      ]
    }
  
@@ -29,16 +29,7 @@ index 483defefa69d971e6c8f369263c445ac248297f5..0b32150ee1fed16304b6c37aab7a0b26
      public_deps += [
        "cr_components/color_change_listener:build_grdp",
        "//third_party/lottie:build_grdp",
-@@ -147,7 +147,7 @@ group("closure_compile") {
-     "js:closure_compile_modules",
-   ]
- 
--  if (include_polymer) {
-+  if (include_polymer || is_android) {
-     deps += [ "cr_elements:closure_compile" ]
- 
-     if (is_chromeos_ash) {
-@@ -156,6 +156,14 @@ group("closure_compile") {
+@@ -134,6 +134,14 @@ if (is_chromeos_ash) {
    }
  }
  
@@ -52,13 +43,4 @@ index 483defefa69d971e6c8f369263c445ac248297f5..0b32150ee1fed16304b6c37aab7a0b26
 +
  # TypeScript targets
  
- preprocessed_folder = "$target_gen_dir/preprocessed"
-@@ -307,7 +315,7 @@ if (include_polymer) {
-   }
- }
- 
--if (!is_android) {
-+if (true || !is_android) {
-   generate_definitions_js_files += [ "js/cr/ui/focus_without_ink.m.js" ]
- }
- 
+ # TODO(crbug/1402829): This target has no input files and just exists to allow

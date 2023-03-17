@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc b/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
-index 72d811b043287157af9ce8f669ad485596b60330..a62e1098c5322ecf4f75c69b14701b5ae9218e5d 100644
+index 3b4311c801d6f5129cb76fd273a668e703b8189d..5a402e9ba024f18c27f27b272bb09305ec8572dc 100644
 --- a/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
 +++ b/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
-@@ -1150,6 +1150,7 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* web_ui,
+@@ -1034,6 +1034,7 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* web_ui,
    }
    if (url.host_piece() == chrome::kChromeUIWebApksHost)
      return &NewWebUI<WebApksUI>;

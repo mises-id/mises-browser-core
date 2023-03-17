@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/include_polymer.gni b/ui/webui/resources/include_polymer.gni
-index 9367c66a39e25daea7b78822912d87a71f89282b..2fae760cc72d92777148e9206457ada74c6af91d 100644
+index 52daa91cc2319a470692a1d5f24b904842123dcb..56af146a03c7163e4717151fa3fae6965826e6bd 100644
 --- a/ui/webui/resources/include_polymer.gni
 +++ b/ui/webui/resources/include_polymer.gni
 @@ -2,4 +2,4 @@

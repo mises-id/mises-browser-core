@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
-index de2e05ed19b087400d4b10c1f4c07d8c39f6c8aa..a4064b645fb48e62a0b3c17f860a6a378c7ac04b 100644
+index 7b9120a5717c307c7f0fc08529b83842b4460027..73670063be132531e6fb658e3e597d4a4a32871f 100644
 --- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 +++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 @@ -26,6 +26,28 @@ import org.chromium.ui.base.WindowAndroid;
@@ -30,8 +30,8 @@ index de2e05ed19b087400d4b10c1f4c07d8c39f6c8aa..a4064b645fb48e62a0b3c17f860a6a37
 +
  /**
   * Glues download dialogs UI code and handles the communication to download native backend.
-  * When {@link ChromeFeatureList#DOWNLOAD_LATER} is enabled, the following dialogs will be shown in
-@@ -76,16 +98,62 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
+  */
+@@ -65,16 +87,62 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
          mLocationDialog.destroy();
      }
  
@@ -79,8 +79,8 @@ index de2e05ed19b087400d4b10c1f4c07d8c39f6c8aa..a4064b645fb48e62a0b3c17f860a6a37
      @CalledByNative
      private void showDialog(WindowAndroid windowAndroid, long totalBytes,
              @ConnectionType int connectionType, @DownloadLocationDialogType int dialogType,
--            String suggestedPath, boolean supportsLaterDialog, boolean isIncognito) {
-+            String suggestedPath, boolean supportsLaterDialog, boolean isIncognito, String urlToDownload) {
+-            String suggestedPath, boolean isIncognito) {
++            String suggestedPath, boolean isIncognito, String urlToDownload) {
          mWindowAndroid = windowAndroid;
          Activity activity = windowAndroid.getActivity().get();
          if (activity == null) {
@@ -94,4 +94,4 @@ index de2e05ed19b087400d4b10c1f4c07d8c39f6c8aa..a4064b645fb48e62a0b3c17f860a6a37
 +
  
          DownloadDirectoryProvider.getInstance().getAllDirectoriesOptions((dirs) -> {
-             mShowEditLocation = (dirs != null && dirs.size() > 1);
+             ModalDialogManager modalDialogManager =

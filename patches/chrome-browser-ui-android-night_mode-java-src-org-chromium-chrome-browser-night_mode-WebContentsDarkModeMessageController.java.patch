@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeMessageController.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeMessageController.java
-index cc0a4c468b80c1253ab1de5b582f2b17feeeee7e..e59b08290b7fce81cf412e38fc34c2b3a8f01db1 100644
+index 986d1d5b9391b2470f6fed58ac549603d91fbf25..4a2d547e04a2f6be90a9028540450f6291511393 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeMessageController.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeMessageController.java
 @@ -62,6 +62,8 @@ public class WebContentsDarkModeMessageController {

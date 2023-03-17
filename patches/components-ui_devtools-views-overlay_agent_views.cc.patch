@@ -1,5 +1,5 @@
 diff --git a/components/ui_devtools/views/overlay_agent_views.cc b/components/ui_devtools/views/overlay_agent_views.cc
-index 025b86c6d2a96dfa78583143170ae8656794ef24..83e72741e8f9f12dde3078154c2b610cd3992fe5 100644
+index 7768cd64f8a401856f2f80bd31577084a3004fd8..a1fa18e2e31099c0788e9bd954e9004d682ad361 100644
 --- a/components/ui_devtools/views/overlay_agent_views.cc
 +++ b/components/ui_devtools/views/overlay_agent_views.cc
 @@ -720,7 +720,7 @@ bool OverlayAgentViews::UpdateHighlight(

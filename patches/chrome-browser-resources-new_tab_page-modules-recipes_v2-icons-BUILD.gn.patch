@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/new_tab_page/modules/recipes_v2/icons/BUILD.gn b/chrome/browser/resources/new_tab_page/modules/recipes_v2/icons/BUILD.gn
-index a84f8ba2065fa87873f1a0e290597303135c05d9..75ffe943779c8c32a790abc735fd332e02346032 100644
+index d3170b58e8ce92e0267883a5dc7c6d121be5c7c4..196b111c023158e9064b64c1f915e3c0c6f90faa 100644
 --- a/chrome/browser/resources/new_tab_page/modules/recipes_v2/icons/BUILD.gn
 +++ b/chrome/browser/resources/new_tab_page/modules/recipes_v2/icons/BUILD.gn
 @@ -4,7 +4,7 @@

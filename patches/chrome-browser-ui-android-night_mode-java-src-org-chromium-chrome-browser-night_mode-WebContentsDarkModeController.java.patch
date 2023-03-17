@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeController.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeController.java
-index c2a0c2847a589557ac6884698ec360480b46d85b..8ea9400908af8d2423fec03f6a2ec2f44d438c6d 100644
+index e089e9d160db409dd1a7c947cece10d145bb2c19..bbbd6fa14be4176fe7f7d1bb46e551ea5a836fb2 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeController.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeController.java
 @@ -17,6 +17,18 @@ import org.chromium.content_public.browser.WebContents;

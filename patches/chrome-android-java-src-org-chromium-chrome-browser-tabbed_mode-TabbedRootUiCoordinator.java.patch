@@ -1,17 +1,17 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
-index 25b5e9c0bd70a9a684c540b8fba9185393466940..8554d93141419be0bec4a15617cf8e691a61f38b 100644
+index 25b5e9c0bd70a9a684c540b8fba9185393466940..730c2662165676cfce2a9ab1689d3534ed622893 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
-@@ -130,6 +130,8 @@ import org.chromium.ui.base.DeviceFormFactor;
- import org.chromium.ui.base.IntentRequestTracker;
- import org.chromium.ui.modaldialog.ModalDialogManager;
+@@ -136,6 +136,8 @@ import org.chromium.ui.modaldialog.ModalDialogManager;
+ import java.util.function.BooleanSupplier;
+ import java.util.function.Function;
  
 +import org.chromium.base.ContextUtils;
 +
  /**
   * A {@link RootUiCoordinator} variant that controls tabbed-mode specific UI.
   */
-@@ -763,6 +765,8 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
+@@ -849,6 +851,8 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
      }
  
      private void initStatusIndicatorCoordinator(LayoutManagerImpl layoutManager) {

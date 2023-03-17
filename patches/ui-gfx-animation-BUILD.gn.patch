@@ -1,9 +1,9 @@
 diff --git a/ui/gfx/animation/BUILD.gn b/ui/gfx/animation/BUILD.gn
-index 0485c228d40102a38ed7428f296cb946fbcb6397..090181162f83715c862a6c04f0fb8ea556a9475d 100644
+index 9dabaaca3db6ffa286ba49b3aa123a70c07dada3..30235908c3596d19a0a3d3eaba2b0a2b79a57499 100644
 --- a/ui/gfx/animation/BUILD.gn
 +++ b/ui/gfx/animation/BUILD.gn
-@@ -55,7 +55,7 @@ component("animation") {
-     ]
+@@ -49,7 +49,7 @@ component("animation") {
+     sources += [ "animation_linux.cc" ]
    }
  
 -  if (!is_android) {

@@ -1,5 +1,5 @@
 diff --git a/ui/views/BUILD.gn b/ui/views/BUILD.gn
-index f0d388d953f23c2022b622222402c48fa9223e9d..3802bb04dceb0422eb63163055f7815ae31cb459 100644
+index accb869030e59007935fa2363b8138c1508d7396..70d7b6abe0f649b547eb6a833250d89cf5188a00 100644
 --- a/ui/views/BUILD.gn
 +++ b/ui/views/BUILD.gn
 @@ -13,7 +13,7 @@ import("//testing/test.gni")
@@ -11,7 +11,7 @@ index f0d388d953f23c2022b622222402c48fa9223e9d..3802bb04dceb0422eb63163055f7815a
  
  config("flags") {
    defines = [ "TOOLKIT_VIEWS=1" ]
-@@ -688,6 +688,8 @@ component("views") {
+@@ -710,6 +710,8 @@ component("views") {
        "//third_party/wtl",
      ]
    }

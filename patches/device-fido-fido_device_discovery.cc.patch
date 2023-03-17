@@ -1,8 +1,8 @@
 diff --git a/device/fido/fido_device_discovery.cc b/device/fido/fido_device_discovery.cc
-index c6da0c42262618a68546768982a25bbdc0672f5d..dbd3ef221518a19d4fa1cda59dbca645b63a6328 100644
+index d3d30dcfbb0e0d7c2418f00937896c435dc0b108..0bd04ea22783e1fc9fa4d5b25ab49c307f58aa25 100644
 --- a/device/fido/fido_device_discovery.cc
 +++ b/device/fido/fido_device_discovery.cc
-@@ -95,8 +95,12 @@ FidoDeviceAuthenticator* FidoDeviceDiscovery::GetAuthenticator(
+@@ -81,8 +81,12 @@ FidoDeviceAuthenticator* FidoDeviceDiscovery::GetAuthenticatorForTesting(
  }
  
  bool FidoDeviceDiscovery::AddDevice(std::unique_ptr<FidoDevice> device) {

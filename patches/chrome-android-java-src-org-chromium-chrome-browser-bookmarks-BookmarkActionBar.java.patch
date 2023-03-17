@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkActionBar.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkActionBar.java
-index d6c778b440d9189e9eebce14ec3bec0b081a674a..11fb3a75e1a97202748d3a04f3cd06d5dcdaea1e 100644
+index a76bc2d32165004115e578ccf7073bebcfd1d9dd..081434743fa922e36dd85362811c55270d32b23c 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkActionBar.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkActionBar.java
-@@ -88,7 +88,13 @@ public class BookmarkActionBar extends SelectableListToolbar<BookmarkId>
+@@ -84,7 +84,13 @@ public class BookmarkActionBar extends SelectableListToolbar<BookmarkId>
          } else if (menuItem.getItemId() == R.id.search_menu_id) {
              mDelegate.openSearchUI();
              return true;

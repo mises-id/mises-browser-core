@@ -1,70 +1,51 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/ChromeTabCreator.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/ChromeTabCreator.java
-index bb26737fd0f9d4fe702d8a422fe370af6d73ba9c..e6b1ea69ec84dfd1a359da60fdc27ef4c9ca6c69 100644
+index fcd7a43635e1ca5262379701fe37fd271f1d42e3..95ac962654617bcf0c7f2cef66b125429413284d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/ChromeTabCreator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/ChromeTabCreator.java
-@@ -40,6 +40,10 @@ import org.chromium.content_public.browser.WebContents;
- import org.chromium.ui.base.PageTransition;
- import org.chromium.ui.base.WindowAndroid;
- import org.chromium.url.GURL;
-+import android.animation.ValueAnimator;
-+import org.chromium.chrome.browser.mises.MisesController;
-+import org.chromium.chrome.browser.tab.TabSelectionType;
-+import org.chromium.chrome.browser.homepage.HomepageManager;
- 
- /**
-  * This class creates various kinds of new tabs and adds them to the right {@link TabModel}.
-@@ -142,6 +146,11 @@ public class ChromeTabCreator extends TabCreator {
+@@ -208,6 +208,7 @@ public class ChromeTabCreator extends TabCreator {
+                         NewTabPageUtils.decodeOriginFromNtpUrl(loadUrlParams.getUrl()))) {
              return null;
          }
-         try {
-+            try {
-+                ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, 0.0f);
-+            } catch (Throwable t) {
-+
-+            }
-             TraceEvent.begin("ChromeTabCreator.createNewTab");
-             int parentId = parent != null ? parent.getId() : Tab.INVALID_TAB_ID;
- 
-@@ -237,6 +246,11 @@ public class ChromeTabCreator extends TabCreator {
++        setDurationScale(0.0f);
+         // Measure tab creation duration for different launch types to understand tab creation
+         // performance.
+         try (TraceEvent te = TraceEvent.scoped("ChromeTabCreator.createNewTab");
+@@ -307,6 +308,7 @@ public class ChromeTabCreator extends TabCreator {
                  creationState = TabCreationState.LIVE_IN_BACKGROUND;
              }
              mTabModel.addTab(tab, position, type, creationState);
-+            try {
-+                ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, 0.60f);
-+            } catch (Throwable t) {
-+
-+            }
++            setDurationScale(0.6f);
              return tab;
-         } finally {
-             TraceEvent.end("ChromeTabCreator.createNewTab");
-@@ -249,6 +263,11 @@ public class ChromeTabCreator extends TabCreator {
+         }
+     }
+@@ -317,6 +319,7 @@ public class ChromeTabCreator extends TabCreator {
          // The parent tab was already closed.  Do not open child tabs.
          int parentId = parent != null ? parent.getId() : Tab.INVALID_TAB_ID;
          if (mTabModel.isClosurePending(parentId)) return false;
-+        try {
-+            ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, 0.0f);
-+        } catch (Throwable t) {
-+
-+        }
++        setDurationScale(0.0f);
  
-         // If parent is in the same tab model, place the new tab next to it.
-         int position = TabModel.INVALID_TAB_INDEX;
-@@ -273,6 +292,11 @@ public class ChromeTabCreator extends TabCreator {
-                 : ((type == TabLaunchType.FROM_RECENT_TABS) ? TabCreationState.FROZEN_FOR_LAZY_LOAD
-                                                             : TabCreationState.LIVE_IN_BACKGROUND);
-         mTabModel.addTab(tab, position, type, creationState);
-+            try {
-+                ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, 0.60f);
-+            } catch (Throwable t) {
-+
-+            }
-         return true;
+         // Measure tab creation duration for different launch types to understand tab creation
+         // performance using an existing WebContents.
+@@ -347,6 +350,7 @@ public class ChromeTabCreator extends TabCreator {
+                                                      ? TabCreationState.FROZEN_FOR_LAZY_LOAD
+                                                      : TabCreationState.LIVE_IN_BACKGROUND);
+             mTabModel.addTab(tab, position, type, creationState);
++            setDurationScale(0.6f);
+             return true;
+         }
      }
- 
-@@ -491,4 +515,22 @@ public class ChromeTabCreator extends TabCreator {
+@@ -567,4 +571,29 @@ public class ChromeTabCreator extends TabCreator {
      public void setWindowAndroid(WindowAndroid window) {
          mNativeWindow = window;
      }
++
++    private void setDurationScale(float scale) {
++        try {
++            ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, scale);
++        } catch (Throwable t) {
++
++        }
++    }
 +    @Override
 +    public void openSinglePage(String url) {
 +        try {
@@ -82,5 +63,4 @@ index bb26737fd0f9d4fe702d8a422fe370af6d73ba9c..e6b1ea69ec84dfd1a359da60fdc27ef4
 +            TraceEvent.end("TabCreator.openSinglePage");
 +        }
 +    }
-+
  }

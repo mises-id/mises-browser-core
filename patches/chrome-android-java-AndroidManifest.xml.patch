@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/AndroidManifest.xml b/chrome/android/java/AndroidManifest.xml
-index 15c4f76eff3d71436d9f2af1f45d933068b75a3c..f42538fc3f5bf72095f65c52f791b8bb10739779 100644
+index 1dadcc3f156ad64af9e3bef1fd81a93ff5e036f4..d8aea54cfc90017a1fc1ca21746b7e17ed55d2ec 100644
 --- a/chrome/android/java/AndroidManifest.xml
 +++ b/chrome/android/java/AndroidManifest.xml
-@@ -26,7 +26,7 @@ by a child template that "extends" this file.
+@@ -28,7 +28,7 @@ by a child template that "extends" this file.
      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
      <uses-permission-sdk-23 android:name="android.permission.ACCESS_WIFI_STATE" />
      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,7 +11,7 @@ index 15c4f76eff3d71436d9f2af1f45d933068b75a3c..f42538fc3f5bf72095f65c52f791b8bb
      <!--
        Enable runtime permissions as uses-permission in tip of tree builds
        only for ease of development on Android L and earlier. For consumer
-@@ -327,6 +327,7 @@ by a child template that "extends" this file.
+@@ -333,6 +333,7 @@ by a child template that "extends" this file.
              <intent-filter>
                  <action android:name="com.sec.android.airview.HOVER" />
              </intent-filter>

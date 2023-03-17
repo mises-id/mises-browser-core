@@ -1,56 +1,54 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
-index 334ed755866a92b78cda5cd5aa4eadba574ff958..7ae1010048d5929bd9d9cda7021699eb4ec87a8d 100644
+index e3dbd9f3958354ac818e7ee8d0876a0cf4385fc0..fc23c5bf40c3bfaddcec1b8592b638390b8e0a34 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
-@@ -290,7 +290,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
-                 ? getTab().getUrl().getSpec().trim()
-                 : "";
-         if (isInOverviewAndShowingOmnibox()) {
--            return UrlConstants.NTP_URL;
-+            return "chrome-search://local-ntp/local-ntp.html";
-         }
- 
-         return url;
-@@ -342,6 +342,9 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
-                 return buildUrlBarData(mUrlFormatter.format(originalUrl));
+@@ -385,6 +385,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+                 return buildUrlBarData(mUrlFormatter.format(originalUrl), isOfflinePage);
              }
  
-+            if (mTab.getUrl().getSpec().startsWith("devtools://"))
-+                return buildUrlBarData(mTab.getUrl().getSpec(), mTab.getTitle(), "");
++            if (url.startsWith("devtools://")) {
++                return buildUrlBarData(url, false, mTab.getTitle(), "");
++            }
 +
-             if (isOfflinePage()) {
+             if (isOfflinePage) {
                  GURL originalUrl = mTab.getOriginalUrl();
                  formattedUrl = UrlUtilities.stripScheme(mUrlFormatter.format(originalUrl));
-@@ -585,7 +588,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -631,7 +635,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
  
      @Override
-     public int getPageClassification(boolean isFocusedFromFakebox) {
+     public int getPageClassification(boolean isFocusedFromFakebox, boolean isPrefetch) {
 -        if (mNativeLocationBarModelAndroid == 0) return PageClassification.INVALID_SPEC_VALUE;
 +        if (mNativeLocationBarModelAndroid == 0) return PageClassification.NTP_VALUE;
  
          // Provide NTP as page class in overview mode (when Start Surface is enabled). No call
          // to the backend necessary or possible, since there is no tab or navigation entry.
-@@ -610,7 +613,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -657,7 +661,13 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
      @VisibleForTesting
      @ConnectionSecurityLevel
-     int getSecurityLevel(Tab tab, boolean isOfflinePage, @Nullable String publisherUrl) {
+     int getSecurityLevel(Tab tab, boolean isOfflinePage) {
 -        if (tab == null || isOfflinePage || isInOverviewAndShowingOmnibox()) {
-+        if (tab == null || isOfflinePage || isInOverviewAndShowingOmnibox() ||  (!TextUtils.isEmpty(tab.getUrl().getSpec()) && (tab.getUrl().getSpec().startsWith("chrome-extension") || tab.getUrl().getSpec().startsWith("chrome") || tab.getUrl().getSpec().startsWith("devtools") || tab.getUrl().getSpec().startsWith("mises")))) {
++        final String url = tab.getUrl().getSpec();
++        boolean mises_force_safe = !TextUtils.isEmpty(url) && (
++            url.startsWith("chrome-extension") || 
++            url.startsWith("chrome") || 
++            url.startsWith("devtools") || 
++            url.startsWith("mises"));
++        if (tab == null || isOfflinePage || isInOverviewAndShowingOmnibox() || mises_force_safe) {
              return ConnectionSecurityLevel.NONE;
          }
  
-@@ -651,9 +654,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -695,6 +705,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+             return R.drawable.ic_offline_pin_24dp;
          }
  
++        if (mNativeLocationBarModelAndroid == 0) {  
++             return R.drawable.omnibox_info;
++        }
++
          // Return early if native initialization hasn't been done yet.
--        if ((securityLevel == ConnectionSecurityLevel.NONE
--                    || securityLevel == ConnectionSecurityLevel.WARNING)
--                && mNativeLocationBarModelAndroid == 0) {
-+        if (mNativeLocationBarModelAndroid == 0) {
-             return R.drawable.omnibox_info;
-         }
- 
-@@ -661,6 +662,16 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+         if ((securityLevel == ConnectionSecurityLevel.NONE
+                     || securityLevel == ConnectionSecurityLevel.WARNING)
+@@ -706,6 +720,16 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
                  !mSearchEngineLogoUtils.shouldShowSearchEngineLogo(isIncognito())
                  || mNtpDelegate.isCurrentlyVisible() || isInOverviewAndShowingOmnibox();
  
@@ -64,6 +62,6 @@ index 334ed755866a92b78cda5cd5aa4eadba574ff958..7ae1010048d5929bd9d9cda7021699eb
 +        if (currentUrl != null && currentUrl.startsWith("mises-search://"))
 +            skipIconForNeutralState = true;
 +
-         boolean useLockIconEnabled = false;
-         if (mNativeLocationBarModelAndroid != 0) {
-             PrefService prefService = getPrefService();
+         boolean useUpdatedConnectionSecurityIndicators =
+                 mOmniboxUpdatedConnectionSecurityIndicatorsEnabled
+                 && !(hasTab() && mTab.isCustomTab());

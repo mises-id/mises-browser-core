@@ -1,10 +1,10 @@
 diff --git a/ui/webui/resources/cr_components/help_bubble/BUILD.gn b/ui/webui/resources/cr_components/help_bubble/BUILD.gn
-index cbe4967bb8cc045c8e49cced9d7e6c646bea8cb1..411edd544eb49719cc2b02a5106870a32034db22 100644
+index fb15e01caba16d87a2c5f61cce35c535eaaf3fb3..dc586a57143b410cd958d483b353cd0f7edc9911 100644
 --- a/ui/webui/resources/cr_components/help_bubble/BUILD.gn
 +++ b/ui/webui/resources/cr_components/help_bubble/BUILD.gn
-@@ -9,7 +9,7 @@ import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
- import("help_bubble.gni")
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ import("../../tools/build_cr_component.gni")
  
 -assert(!is_android && !is_ios)
 +#assert(!is_android && !is_ios)

@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
-index b2bba05283bc4d06648fe8499bb44d3536837744..377de120af3206826d8c04719de60b150d9d9c79 100644
+index b8788c9bce87ef8438effe48f65ae9aeb6a3177f..30aa62b578f3d1886fc756961ab5b9c0a2f7adf8 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
-@@ -22,6 +22,9 @@ import org.chromium.components.browser_ui.styles.ChromeColors;
+@@ -29,6 +29,9 @@ import org.chromium.ui.base.ViewUtils;
  import org.chromium.ui.modelutil.PropertyKey;
  import org.chromium.ui.modelutil.PropertyModel;
  
@@ -12,16 +12,15 @@ index b2bba05283bc4d06648fe8499bb44d3536837744..377de120af3206826d8c04719de60b15
  /**
   * ViewBinder for TabListRecyclerView.
   */
-@@ -48,6 +51,12 @@ class TabListContainerViewBinder {
+@@ -55,6 +58,11 @@ class TabListContainerViewBinder {
          } else if (INITIAL_SCROLL_INDEX == propertyKey) {
-             // RecyclerView#scrollToPosition(int) behaves incorrectly first time after cold start.
              int index = (Integer) model.get(INITIAL_SCROLL_INDEX);
+             int offset = computeOffset(view, model);
 +            if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic")) {
-+                int space = (int) Math.ceil(75 * Resources.getSystem().getDisplayMetrics().density);
++                offset = (int) Math.ceil(75 * Resources.getSystem().getDisplayMetrics().density);
 +                if (index == 0)
-+                    space = 0;
-+                ((LinearLayoutManager) view.getLayoutManager()).scrollToPositionWithOffset(index, space);
-+            } else
-             ((LinearLayoutManager) view.getLayoutManager()).scrollToPositionWithOffset(index, 0);
-         } else if (TOP_MARGIN == propertyKey) {
-             FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
++                    offset = 0;
++            }
+             // RecyclerView#scrollToPosition(int) behaves incorrectly first time after cold start.
+             ((LinearLayoutManager) view.getLayoutManager())
+                     .scrollToPositionWithOffset(index, offset);

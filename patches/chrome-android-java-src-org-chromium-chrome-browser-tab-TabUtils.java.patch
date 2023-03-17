@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
-index 95c24ccaa0a936e52617f94b8f7d59d137a23119..d08b76bf9322330d59c236eb576b5582513ec17f 100644
+index a7b1589755c726bd59d24343c15da6d79a9f9f17..9aae3418500e6e982b507f3205cc0f9d77d955e6 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
-@@ -38,6 +38,8 @@ import org.chromium.url.GURL;
+@@ -36,6 +36,8 @@ import org.chromium.url.GURL;
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
  
@@ -11,7 +11,7 @@ index 95c24ccaa0a936e52617f94b8f7d59d137a23119..d08b76bf9322330d59c236eb576b5582
  /**
   * Collection of utility methods that operates on Tab.
   */
-@@ -160,6 +162,8 @@ public class TabUtils {
+@@ -178,6 +180,8 @@ public class TabUtils {
                  tabUserAgent = TabUserAgent.DESKTOP;
              } else {
                  tabUserAgent = TabUserAgent.DEFAULT;
@@ -20,16 +20,7 @@ index 95c24ccaa0a936e52617f94b8f7d59d137a23119..d08b76bf9322330d59c236eb576b5582
              }
              CriticalPersistedTabData.from(tab).setUserAgent(tabUserAgent);
          }
-@@ -189,6 +193,8 @@ public class TabUtils {
-      * @return Whether or not the screen size is large enough for desktop sites.
-      */
-     public static boolean isTabLargeEnoughForDesktopSite(Tab tab) {
-+        if ((ContextUtils.getAppSharedPreferences().getBoolean("desktop_mode", false)))
-+            return true;
-         if (!DeviceFormFactor.isNonMultiDisplayContextOnTablet(tab.getContext())) {
-             // The device is a phone, do not check the tab size.
-             return false;
-@@ -217,6 +223,8 @@ public class TabUtils {
+@@ -207,6 +211,8 @@ public class TabUtils {
       * @return Whether the desktop site should be requested.
       */
      public static boolean isDesktopSiteGlobalEnabled(Profile profile) {

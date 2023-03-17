@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/views/location_bar/location_bar_view.h b/chrome/browser/ui/views/location_bar/location_bar_view.h
-index f7d7965f297ff49b5d8a0babae1d427d62256e19..b22393b3a5822c907c5640d01c3220f55273ef72 100644
+index f7d7965f297ff49b5d8a0babae1d427d62256e19..2a5e1af72ad523f8f6a95154a944efb946e9ef41 100644
 --- a/chrome/browser/ui/views/location_bar/location_bar_view.h
 +++ b/chrome/browser/ui/views/location_bar/location_bar_view.h
 @@ -112,6 +112,7 @@ class LocationBarView : public LocationBar,
@@ -26,4 +26,3 @@ index f7d7965f297ff49b5d8a0babae1d427d62256e19..b22393b3a5822c907c5640d01c3220f5
  
    void RecordPageInfoMetrics();
  
-

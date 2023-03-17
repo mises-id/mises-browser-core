@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/image_editor/BUILD.gn b/chrome/browser/image_editor/BUILD.gn
-index b2f4392a849626fcb98b619e5364ad8ec0847875..122457afabf038932cac590e819650951651e932 100644
+index 3acbdae3dd12e4aba644d74f718fd32541d4f838..eb32837368bccd175765346d8ad6114f5d4b7a72 100644
 --- a/chrome/browser/image_editor/BUILD.gn
 +++ b/chrome/browser/image_editor/BUILD.gn
 @@ -3,8 +3,8 @@

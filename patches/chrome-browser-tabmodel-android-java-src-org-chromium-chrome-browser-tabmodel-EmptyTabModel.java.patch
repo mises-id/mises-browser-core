@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModel.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModel.java
-index 6142a504821fb1396b54f35a68326b4b88f501f5..d2175290c2ebd4cf106e5ca4a9d74920860570f2 100644
+index f3745077720cca536a9b1c0117d9b6f3af0c9e57..1ed9e7a9c88b90758706a11a86fff282ddc4ed56 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModel.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModel.java
 @@ -91,6 +91,11 @@ public class EmptyTabModel implements TabModel {

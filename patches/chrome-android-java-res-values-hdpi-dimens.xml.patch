@@ -1,10 +1,10 @@
 diff --git a/chrome/android/java/res/values-hdpi/dimens.xml b/chrome/android/java/res/values-hdpi/dimens.xml
 old mode 100644
 new mode 100755
-index 51d8f55e7dd4326d897325bcd8b55e230154c645..7c0b01472c302e6feac2834d9255660be26b8603
+index 6710fa693a7e9aa17891cadbba351409a932b569..0b50c8b33ecd830eee24caf2c0f71f8ddb9b35d8
 --- a/chrome/android/java/res/values-hdpi/dimens.xml
 +++ b/chrome/android/java/res/values-hdpi/dimens.xml
-@@ -10,6 +10,10 @@
+@@ -10,6 +10,10 @@ found in the LICENSE file.
      <!-- The size of the bounding box for favicons. -->
      <dimen name="compositor_tab_title_favicon_size">16dp</dimen>
  

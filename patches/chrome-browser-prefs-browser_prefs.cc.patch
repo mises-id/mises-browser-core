@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/prefs/browser_prefs.cc b/chrome/browser/prefs/browser_prefs.cc
-index 193d174d20d4511c0288ddaf91bc018524e15f6a..60674cb3a48afed6ea06de47b66ad8b34bcb70de 100644
+index 193d174d20d4511c0288ddaf91bc018524e15f6a..499b6a320cecdb5ee8b157568923194fc93d7eb0 100644
 --- a/chrome/browser/prefs/browser_prefs.cc
 +++ b/chrome/browser/prefs/browser_prefs.cc
 @@ -1356,6 +1356,8 @@ void RegisterLocalState(PrefRegistrySimple* registry) {
@@ -19,4 +19,3 @@ index 193d174d20d4511c0288ddaf91bc018524e15f6a..60674cb3a48afed6ea06de47b66ad8b3
  }
  
  void RegisterUserProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
-

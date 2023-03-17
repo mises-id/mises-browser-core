@@ -1,10 +1,10 @@
 diff --git a/components/permissions/permission_manager.cc b/components/permissions/permission_manager.cc
-index 96d7af0319c885e883669516fc05de60417fa3a1..67482c0108211890b91100389c706f4e15ed0f4c 100644
+index bab22400165cad36a49bd474ffd03203671ef182..96314ef052b06123105b3361e4f5115f7bf388d2 100644
 --- a/components/permissions/permission_manager.cc
 +++ b/components/permissions/permission_manager.cc
-@@ -678,6 +678,10 @@ PermissionResult PermissionManager::GetPermissionStatusHelper(
-   if (status != CONTENT_SETTING_DEFAULT)
-     return PermissionResult(status, PermissionStatusSource::UNSPECIFIED);
+@@ -595,6 +595,10 @@ PermissionResult PermissionManager::GetPermissionStatusInternal(
+   GURL canonical_requesting_origin = PermissionUtil::GetCanonicalOrigin(
+       permission, requesting_origin, embedding_origin);
    PermissionContextBase* context = GetPermissionContext(permission);
 +  //DCHECK(context) << "for:" << (int)permission;
 +  if (!context) 

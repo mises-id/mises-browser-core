@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-index 3b7fb7e7984cfb46e86b46656159cb8dd99920ed..dd9bbcbe0886245fb3c7109c30a1467d89db7510 100644
+index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..3d87f7198f3f4186e6590c9cd60a8224b8d0af23 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 @@ -147,7 +147,7 @@ public abstract class TabModelJniBridge implements TabModel {
