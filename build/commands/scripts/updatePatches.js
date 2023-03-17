@@ -14,6 +14,9 @@ const chromiumPathFilter = (s) => s.length > 0 &&
   !s.includes('google_update_idl') &&
   s !== 'ui/webui/resources/css/text_defaults_md.css'
 
+const grdPathFilter = (s) => s.length > 0 && (
+    s.endsWith('.grd') || s.endsWith('.grdp')) 
+
 module.exports = function RunCommand (options) {
   config.update(options)
 
@@ -24,6 +27,8 @@ module.exports = function RunCommand (options) {
   const v8PatchDir = path.join(patchDir, 'v8')
   const catapultPatchDir = path.join(patchDir, 'third_party', 'catapult')
 
+  const grdPatchDir = path.join(patchDir, 'grd_patches')
+
   Promise.all([
     // chromium
     updatePatches(chromiumDir, patchDir, chromiumPathFilter),
@@ -31,6 +36,9 @@ module.exports = function RunCommand (options) {
     updatePatches(v8Dir, v8PatchDir),
     // third_party/catapult
     updatePatches(catapultDir, catapultPatchDir),
+    //grpd patch
+
+    updatePatches(chromiumDir, grdPatchDir, grdPathFilter),
   ])
   .then(() => {
     console.log('Done.')

@@ -1,5 +1,5 @@
 diff --git a/components/components_strings.grd b/components/components_strings.grd
-index 21e030ab903e9..eacd6f8e3d932 100644
+index 2751b112ece3d9ad60519c642af05b6db40d17a2..b57bcdc4d217411a18ef4362f202cd17348962ea 100644
 --- a/components/components_strings.grd
 +++ b/components/components_strings.grd
 @@ -338,7 +338,7 @@

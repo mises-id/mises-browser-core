@@ -1,8 +1,8 @@
 diff --git a/components/autofill_strings.grdp b/components/autofill_strings.grdp
-index 4b6302228abe5..b5d84f037f50f 100644
+index a2138449625e3c9909469fc7f75b0d8a3c72aa89..b0ce9a9a854a4c82a18dce45ab4d91ae22dbff0a 100644
 --- a/components/autofill_strings.grdp
 +++ b/components/autofill_strings.grdp
-@@ -146,7 +146,7 @@
+@@ -154,7 +154,7 @@
      Show cards from your Google Account
    </message>
  
@@ -11,7 +11,7 @@ index 4b6302228abe5..b5d84f037f50f 100644
      <message name="IDS_AUTOFILL_POPUP_ACCESSIBLE_NODE_DATA" desc="The accessibility text to speak when we display an autofill popup.">
        Autofill
      </message>
-@@ -319,6 +319,21 @@
+@@ -327,6 +327,21 @@
      <message name="IDS_AUTOFILL_EDIT_ADDRESS_DIALOG_TITLE" desc="Title shown at the top of dialog that edits an address before saving it" formatter_data="android_java">
        Edit address
      </message>

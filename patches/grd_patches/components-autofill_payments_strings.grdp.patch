@@ -1,8 +1,8 @@
 diff --git a/components/autofill_payments_strings.grdp b/components/autofill_payments_strings.grdp
-index 6291860e8e9fc..4f14df846719f 100644
+index 4dabfb345aa82fc8cc890f54638daa708ef04d73..5a4b99de728a583c933446820eeec7867ff9c47e 100644
 --- a/components/autofill_payments_strings.grdp
 +++ b/components/autofill_payments_strings.grdp
-@@ -64,7 +64,7 @@
+@@ -70,7 +70,7 @@
      </if>
    </if>
  
@@ -11,7 +11,8 @@ index 6291860e8e9fc..4f14df846719f 100644
      <message name="IDS_AUTOFILL_FIELD_LABEL_PHONE" desc="The label of the Phone entry in a settings-like UI to enter a phone number.">
        Phone
      </message>
-@@ -75,19 +75,15 @@
+@@ -80,20 +80,16 @@
+   </if>
  
    <!-- Autofill save credit card bubble or infobar prompt -->
 -  <if expr="is_android or is_ios">
@@ -32,7 +33,7 @@ index 6291860e8e9fc..4f14df846719f 100644
    </if>
    <if expr="is_android">
      <message name="IDS_AUTOFILL_SAVE_CARD_PROMPT_CONFIRM" desc="Text to show for the Autofill upload save credit card prompt accept button when more information (e.g., CVC) was needed in order to save the card and was entered." formatter_data="android_java">
-@@ -219,7 +215,7 @@
+@@ -210,7 +206,7 @@
    </message>
  
    <!-- Autofill Local card migration bubble or dialog -->
@@ -41,7 +42,7 @@ index 6291860e8e9fc..4f14df846719f 100644
      <message name="IDS_AUTOFILL_GOOGLE_PAY_LOGO_ACCESSIBLE_NAME" desc="The accessible name for the Google Pay logo in the local card migration bubble or dialog.">
        Google Pay logo
      </message>
-@@ -420,7 +416,7 @@
+@@ -435,7 +431,7 @@
  
    <!-- WebAuthn fingerprint opt-in dialog -->
    <!-- Desktop only -->
@@ -50,7 +51,7 @@ index 6291860e8e9fc..4f14df846719f 100644
      <if expr="is_macosx">
        <message name="IDS_AUTOFILL_WEBAUTHN_OPT_IN_DIALOG_TITLE" desc="Headline asking the user if they want to use their device's platform authenticator to confirm their cards in the future instead of CVC.">
          Use device unlock instead of CVC?
-@@ -476,7 +472,7 @@
+@@ -491,7 +487,7 @@
  
    <!-- Webauthn verify pending dialog -->
    <!-- Desktop only -->
@@ -59,7 +60,7 @@ index 6291860e8e9fc..4f14df846719f 100644
      <message name="IDS_AUTOFILL_WEBAUTHN_VERIFY_PENDING_DIALOG_TITLE" desc="Headline of the dialog shown when user has opted in to use platform biometric authenticator and has selected one card to fill the form. This shows the verification of the selected card is in progress.">
          Verifying your identity...
      </message>
-@@ -493,7 +489,7 @@
+@@ -525,7 +521,7 @@
    </message>
  
    <!-- virtual cards related strings - start -->
@@ -68,17 +69,16 @@ index 6291860e8e9fc..4f14df846719f 100644
      <message name="IDS_AUTOFILL_CLOUD_TOKEN_DROPDOWN_OPTION_LABEL" desc="Text shown in the button in the Autofill dropdown menu when a credit card form field is queried, to offer the option to use a virtual card.">
        Use a virtual card number...
      </message>
-@@ -677,6 +673,9 @@
+@@ -723,7 +719,7 @@
+   <message name="IDS_AUTOFILL_PROMO_CODE_SUGGESTIONS_FOOTER_TEXT" desc="Label for the footer text of the autofill suggestions popup when a user clicks on a promo code field. It redirects the user to the offer webview page for more details on the promo code offers suggested. An example of details the user can see is the terms and conditions of the promo code offers that are shown in the autofill suggestions popup.">
+     See promo code details
+   </message>
+-  <if expr="not is_ios and not is_android">
++  <if expr="is_android or not is_ios and not is_android">
+     <message name="IDS_AUTOFILL_OFFERS_REMINDER_ICON_TOOLTIP_TEXT" desc="The tooltip text for the offer icon in the location bar.">
+       Offer available
      </message>
-   </if>
-   <if expr="is_android">
-+    <message name="IDS_AUTOFILL_OFFERS_REMINDER_ICON_TOOLTIP_TEXT" desc="The tooltip text for the offer icon in the location bar.">
-+      Offer available
-+    </message>
-     <message name="IDS_AUTOFILL_OFFERS_REMINDER_DESCRIPTION_TEXT" desc="Secondary explanatory text for the infobar shown on the merchant website when an offer is available to use." formatter_data="android_java">
-       Pay with <ph name="CARD_DETAIL">%1$s<ex>Visa - 1234</ex></ph> at checkout.
-     </message>
-@@ -693,7 +693,7 @@
+@@ -747,7 +743,7 @@
        Details
      </message>
    </if>
