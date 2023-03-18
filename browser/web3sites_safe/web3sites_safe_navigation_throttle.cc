@@ -98,7 +98,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
     return content::NavigationThrottle::CANCEL_AND_IGNORE;
   }
   //defer check
-  /* base::SequencedTaskRunnerHandle::Get()->PostTask(
+  /* base::SequencedTaskRunner::GetCurrentDefault()->PostTask(
         FROM_HERE,
         base::BindOnce(&Web3sitesSafeNavigationThrottle::PerformChecksDeferred,
                        weak_ptr_factory_.GetWeakPtr()));

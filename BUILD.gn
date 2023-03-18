@@ -508,8 +508,8 @@ action("audit_deps") {
 
   args = [
     "--source_root=" + rebase_path("//mises"),
-    "--rustup_path=" + rustup_path,
-    "--cargo_path=" + rustup_path,
+    "--rustup_home=" + rebase_path(rustup_home),
+    "--cargo_home=" + rebase_path(rustup_home),
   ]
 
   if (defined(rustc_toolchain)) {

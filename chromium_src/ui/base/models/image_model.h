@@ -3,7 +3,7 @@
 
 class GlobalError;
 #define IsImageGenerator\
-  IsImageGenerator_Unused(){return false;};\
+  IsImageGenerator_Unused(){return false;}\
   private: friend class ::GlobalError;\
   public: bool IsImageGenerator
 

@@ -117,8 +117,11 @@
   <message name="IDS_OS_SETTINGS_TAG_CELLULAR_RENAME_PROFILE_ALT1" desc="Text for search result item which, when clicked, navigates the user to the Cellular eSIM network settings, with a menu containing a button to rename the currently-connected eSIM Cellular network. Alternate phrase for: 'Rename eSIM Cellular network">
     Rename eSIM profile
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_INSTANT_MOBILE_NETWORKS" desc="Text for search result item which, when clicked, navigates the user to Instant Tethering settings (allows Chromebook to use mobile connection from phone).">
+  <message name="IDS_OS_SETTINGS_TAG_INSTANT_MOBILE_NETWORKS" desc="Text for search result item which, when clicked, navigates the user to Instant Tethering settings (allows Chromebook to use mobile connection from phone). Alternate phrase for: 'Hotspot'">
     Mobile networks
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_INSTANT_MOBILE_NETWORKS_ALT1" desc="Text for search result item which, when clicked, navigates the user to Instant Tethering settings (allows Chromebook to use mobile connection from phone). Alternate phrase for: 'Mobile networks'">
+    Hotspot
   </message>
   <message name="IDS_OS_SETTINGS_TAG_INSTANT_TETHERING_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to Instant Tethering settings (allows Chromebook to use mobile connection from phone), with a toggle to turn off the feature. Alternate phrase for: 'Disable Instant Tethering'">
     Turn off Instant Tethering
@@ -140,6 +143,22 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_VPN" desc="Text for search result item which, when clicked, navigates the user to VPN settings.">
     VPN
+  </message>
+  <!-- TODO(b/260277007): Remove translateble false and upload snapshots when strings finalized. -->
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS" desc="Text for search result item which, when clicked, navigates the user to Audio settings.">
+    Audio
+  </message>
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT1" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+    Volume
+  </message>
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT2" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+    Sound
+  </message>
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT3" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+    Speakers
+  </message>
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT4" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+    Microphone
   </message>
   <message name="IDS_OS_SETTINGS_TAG_AUTO_CONNECT_NETWORK" desc="Text for search result item which, when clicked, navigates the user to settings to toggle whether the device auto-connects to a network. Alternate phrase for: 'Auto connect to network'">
     Automatically connect to network
@@ -186,6 +205,24 @@
   <message name="IDS_OS_SETTINGS_TAG_PROXY_ALT4" desc="Text for search result item which, when clicked, navigates the user to network proxy settings. Alternate phrase for: 'Proxy settings', 'Automatic proxy configuration', 'Direct Internet connection', 'Web proxy autodiscovery'">
     Manual proxy configuration
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_HOTSPOT" desc="Text for search result item which, when clicked, navigates the user to hotspot settings.">
+    Hotspot
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_HOTSPOT_TURN_ON" desc="Text for search result item which, when clicked, navigates the user to Hotspot settings, with a toggle to turn on Bluetooth.">
+    Turn on hotspot
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_HOTSPOT_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to Hotspot settings, with a toggle to turn off Bluetooth.">
+    Turn off hotspot
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_HOTSPOT_AUTO_DISABLED" desc="Text for search result item which, when clicked, navigates the user to settings to toggle whether the hotspot turns off automatically when no devices is connected to it after a fixed of time. Alternate phrase for: 'Automatically turn off hotspot', 'Automatically disable hotspot'">
+    Turn off hotspot automatically
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_HOTSPOT_AUTO_DISABLED_ALT1" desc="Text for search result item which, when clicked, navigates the user to settings to toggle whether the hotspot turns off automatically when no devices is connected to it after a fixed of time. Alternate phrase for: 'Automatically turn off hotspot', 'Automatically disable hotspot'">
+    Automatically turn off hotspot
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_HOTSPOT_AUTO_DISABLED_ALT2" desc="Text for search result item which, when clicked, navigates the user to settings to toggle whether the hotspot turns off automatically when no devices is connected to it after a fixed of time. Alternate phrase for: 'Automatically turn off hotspot', 'Automatically disable hotspot'">
+    Automatically disable hotspot
+  </message>
 
   <!-- Bluetooth section. -->
   <message name="IDS_OS_SETTINGS_TAG_BLUETOOTH" desc="Text for search result item which, when clicked, navigates the user to Bluetooth settings.">
@@ -202,9 +239,6 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_BLUETOOTH_UNPAIR" desc="Text for search result item which, when clicked, navigates the user to Bluetooth settings, with an option to unpair from a device. Alternate phrase for: 'Forget Bluetooth device'">
     Unpair Bluetooth device
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_BLUETOOTH_UNPAIR_ALT1" desc="Text for search result item which, when clicked, navigates the user to Bluetooth settings, with an option to unpair from a device. Alternate phrase for: 'Unpair from a Bluetooth device'">
-    Forget Bluetooth device
   </message>
   <message name="IDS_OS_SETTINGS_TAG_BLUETOOTH_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to Bluetooth settings, with a toggle to turn off Bluetooth. Alternate phrase for: 'Disable Bluetooth'">
     Turn off Bluetooth
@@ -229,6 +263,9 @@
   </message>
  <message name="IDS_OS_SETTINGS_TAG_FAST_PAIR_TURN_OFF_ALT1" desc="Text for search result item which, when clicked, navigates the user to Bluetooth settings, with a toggle to turn off Fast Pair. Alternate phrase for: 'Turn off Fast Pair'">
     Disable Fast Pair
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_FAST_PAIR_SAVED_DEVICES" desc="Text for search result item which, when clicked, navigates the user to Bluetooth settings Saved Devices subpage">
+    Saved devices
   </message>
 
   <!-- MultiDevice section. -->
@@ -685,15 +722,6 @@
   </message>
 
   <!-- Personalization section. -->
-  <message name="IDS_OS_SETTINGS_TAG_PERSONALIZATION" desc="Text for search result item which, when clicked, navigates the user to personalization settings. Alternate phrase for: 'Customization', 'Personal'">
-    Personalization
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_PERSONALIZATION_ALT1" desc="Text for search result item which, when clicked, navigates the user to personalization settings. Alternate phrase for: 'Personalization settings', 'Personal'">
-    Customization
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_PERSONALIZATION_ALT2" desc="Text for search result item which, when clicked, navigates the user to personalization settings. Alternate phrase for: 'Personalization settings', 'Customization'">
-    Personal
-  </message>
   <message name="IDS_OS_SETTINGS_TAG_CHANGE_DEVICE_ACCOUNT_IMAGE" desc="Text for search result item which, when clicked, navigates the user to the settings page page where they can change their device account image (visible on log-in screen). Alternate phrase for: 'Sign-in image', 'Login image', 'Profile picture', 'Profile image'">
     Change device account image
   </message>
@@ -708,39 +736,6 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_CHANGE_DEVICE_ACCOUNT_IMAGE_ALT4" desc="Text for search result item which, when clicked, navigates the user to the settings page page where they can change their device account image (visible on log-in screen). Alternate phrase for: 'Change device account image', 'Sign-in image', 'Login image', 'Profile picture'">
     Profile image
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_CHANGE_WALLPAPER" desc="Text for search result item which, when clicked, navigates the user to wallpaper settings. Alternate phrase for: 'Background', 'Desktop'">
-    Change wallpaper
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_CHANGE_WALLPAPER_ALT1" desc="Text for search result item which, when clicked, navigates the user to wallpaper settings. Alternate phrase for: 'Change wallpaper', 'Desktop'">
-    Background
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_CHANGE_WALLPAPER_ALT2" desc="Text for search result item which, when clicked, navigates the user to wallpaper settings. Alternate phrase for: 'Change wallpaper', 'Background'">
-    Desktop
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_AMBIENT_MODE" desc="Text for search result item which, when clicked, navigates the user to ambient mode settings, which allow the user to set backgrounds to be displayed when the device is idle.">
-    Screen saver
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_AMBIENT_MODE_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to ambient mode settings, with a toggle to enable/disable the feature. Alternate phrase for: 'Disable ambient mode'">
-    Turn off screen saver
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_AMBIENT_MODE_TURN_OFF_ALT1" desc="Text for search result item which, when clicked, navigates the user to ambient mode settings, with a toggle to enable/disable the feature. Alternate phrase for: 'Turn off Ambient mode'">
-    Disable screen saver
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_AMBIENT_MODE_CHOOSE_SOURCE" desc="Text for search result item which, when clicked, navigates the user to ambient mode settings, with buttons to choose a source (e.g., photos from Google Photos or an art gallery).">
-    Choose screen saver background
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_AMBIENT_MODE_TURN_ON" desc="Text for search result item which, when clicked, navigates the user to ambient mode settings, with a toggle to enable/disable the feature. Alternate phrase for: 'Enable Ambient mode'">
-    Turn on screen saver
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_AMBIENT_MODE_TURN_ON_ALT1" desc="Text for search result item which, when clicked, navigates the user to ambient mode settings, with a toggle to enable/disable the feature. Alternate phrase for: 'Turn on Ambient mode'">
-    Enable screen saver
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_AMBIENT_MODE_GOOGLE_PHOTOS_ALBUM" desc="Text for search result item which, when clicked, navigates the user to ambient mode Google Photos album settings, which allow the user to set Google Photos albums to be displayed when the device is idle.">
-    Google Photos album
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_AMBIENT_MODE_ART_GALLERY_ALBUM" desc="Text for search result item which, when clicked, navigates the user to ambient mode Art gallery album settings, which allow the user to set Art gallery albums to be displayed when the device is idle.">
-    Art gallery album
   </message>
 
   <!-- Search and Assistant section. -->
@@ -832,6 +827,9 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_DO_NOT_DISTURB_TURN_OFF_ALT1" desc="Text for search result item which, when clicked, navigates the user to app notification settings with toggle to silence notifications. Alternate phrase for: 'Turn off Do Not Disturb'">
     Unmute Notifications
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_APP_BADGING" desc="Text for search result item which, when clicked, navigates the user to app notification settings with app badging toggle.">
+    App badging
   </message>
   <message name="IDS_OS_SETTINGS_TAG_REMOVE_PLAY_STORE" desc="Text for search result item which, when clicked, navigates the user to Android app settings, with a button to remove the Play Store (Android app store). Alternate phrase for: 'Uninstall Google Play Store'">
     Remove Google Play Store
@@ -974,8 +972,8 @@
   </message>
 
   <!-- Privacy section. -->
-  <message name="IDS_OS_SETTINGS_TAG_PRIVACY" desc="Text for search result item which, when clicked, navigates the user to privacy settings.">
-    Privacy settings
+  <message name="IDS_OS_SETTINGS_TAG_SECURITY_AND_PRIVACY" desc="Text for search result item which, when clicked, navigates the user to the Security and Privacy section.">
+    Security and Privacy
   </message>
   <message name="IDS_OS_SETTINGS_TAG_PRIVACY_VERIFIED_ACCESS" desc="Text for search result item which, when clicked, navigates the user to privacy settings, with a toggle to enable/disable verified access.">
     Verified access
@@ -1018,6 +1016,18 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_SMART_PRIVACY_QUICK_DIM" desc="Text for search result item which, when clicked, navigates the user to the smart privacy subpage with a toggle to enable/disable quick dim." translateable="false">
     Smart screen lock
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_PRIVACY_CONTROLS" desc="Text for search result item which, when clicked, navigates the user to the Privacy controls subpage.">
+    Privacy controls
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_CAMERA" desc="Text for search result item which, when clicked, navigates the user to Camera access settings.">
+    Camera access
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_GEOLOCATION" desc="Text for search result item which, when clicked, navigates the user to Location access settings.">
+    Location access
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_MICROPHONE" desc="Text for search result item which, when clicked, navigates the user to Microphone access settings.">
+    Microphone access
   </message>
 
   <!-- Languages and Input section. -->
@@ -1082,6 +1092,9 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_FILES_NETWORK_FILE_SHARES_ALT1" desc="Text for search result item which, when clicked, navigates the user to network file share (a.k.a. SMB share) settings. Alternate phrase for: 'Network file shares'">
     SMB share
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_FILES_OFFICE" translateable="false" desc="Text for search result item which, when clicked, navigates the user to the Office file handler settings.">
+    Office file settings
   </message>
 
   <!-- Printing section. -->
@@ -1210,10 +1223,10 @@
   <message name="IDS_OS_SETTINGS_TAG_A11Y_DISPLAY_AND_MAGNIFICATION_PAGE_ALT1" desc="Text for search result item which, when clicked, navigates the user to display and magnification accessibility settings. Alternate phrase for: 'Display and magnification'">
     Low vision display tools
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_A11Y_HIGH_CONTRAST" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable high-contrast mode.">
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_HIGH_CONTRAST" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable color-inversion mode (formerly known as high-contrast mode).">
     High contrast mode
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_A11Y_HIGH_CONTRAST_ALT1" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable high-contrast mode. Alternate phrase for: 'High contrast mode'">
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_HIGH_CONTRAST_ALT1" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable color-inversion mode (formerly known as high-contrast mode). Alternate phrase for: 'High contrast mode'">
     Invert colors
   </message>
   <message name="IDS_OS_SETTINGS_TAG_A11Y_FULLSCREEN_MAGNIFIER" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable full-screen magnification.">
@@ -1338,7 +1351,7 @@
     Startup sound
   </message>
   <message name="IDS_OS_SETTINGS_TAG_A11Y_STARTUP_SOUND_ALT1" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable playing a sound upon device startup. Alternate phrase for: 'Startup sound'">
-    Play sound on startup
+    Play sound on device startup
   </message>
   <message name="IDS_OS_SETTINGS_TAG_A11Y_CAPTIONS" desc="Text for search result item which, when clicked, navigates the user to accessibility caption preferences.">
     Caption preferences

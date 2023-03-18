@@ -62,7 +62,7 @@
           Open page in a new Private tab
         </message>
       </if>
-      <if expr="is_macosx or chromeos_ash or chromeos_lacros">
+      <if expr="is_macosx or is_chromeos">
         <message name="IDS_SAD_TAB_RELOAD_CLOSE_TABS" desc="One of the bullet points displayed on the web page if a reload failed to fix the issue, advising the user to close other Mises tabs or apps running on their computer (Mac, ChromeOS).">
           Close other tabs or apps
         </message>
@@ -72,7 +72,7 @@
           Close other tabs or programs
         </message>
       </if>
-      <if expr="is_macosx or chromeos_ash or chromeos_lacros or is_ios">
+      <if expr="is_macosx or is_chromeos or is_ios">
         <message name="IDS_SAD_TAB_RELOAD_CLOSE_NOTABS" desc="One of the bullet points displayed on the web page if a reload failed to fix the issue, advising the user to close other apps running on their computer or device.">
           Close other apps
         </message>
@@ -93,6 +93,7 @@
         </message>
       </if>
       <if expr="not is_android or is_android or is_ios">
+	<then>
           <message name="IDS_SAD_TAB_RELOAD_RESTART_DEVICE" desc="One of the bullet points displayed on the web page if a reload failed to fix the issue, advising the user to restart their device (i.e. phone or tablet)." formatter_data="android_java">
             Restart your device
           </message>
@@ -102,6 +103,15 @@
           <message name="IDS_SAD_TAB_ERROR_CODE" desc="The message displayed on the crashed web page indicating the type of the crash.">
             Error code: <ph name="ERROR_CODE">$1<ex>STATUS_ACCESS_VIOLATION</ex></ph>
           </message>
+	</then>
+	<else>
+          <message name="IDS_SAD_TAB_RELOAD_RESTART_DEVICE" desc="One of the bullet points displayed on the web page if a reload failed to fix the issue, advising the user to restart their computer.">
+            Restart your computer
+          </message>
+          <message name="IDS_SAD_TAB_ERROR_CODE" desc="The message displayed on the crashed web page indicating the type of the crash.">
+            Error code: <ph name="ERROR_CODE">$1<ex>STATUS_ACCESS_VIOLATION</ex></ph>
+          </message>
+	</else>
       </if>
 
       <!-- New Tab -->
@@ -110,6 +120,9 @@
       </message>
       <message name="IDS_NEW_INCOGNITO_TAB_TITLE" desc="Title of the new private tab page, not to be confused with the action of opening a new private tab.">
         New Private Tab
+      </message>
+      <message name="IDS_INCOGNITO_TAB_LEARN_MORE_ACCESSIBILITY_LABEL" desc="Accessibility label for a link labeled 'Learn more' that links to a help article about Private mode.">
+        Learn more about Private
       </message>
       <if expr="not is_android or is_android">
         <message name="IDS_NEW_TAB_OTR_HEADING" desc="Heading used when a profile opens an OTR window">

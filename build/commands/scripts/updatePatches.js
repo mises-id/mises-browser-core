@@ -38,7 +38,7 @@ module.exports = function RunCommand (options) {
     updatePatches(catapultDir, catapultPatchDir),
     //grpd patch
 
-    updatePatches(chromiumDir, grdPatchDir, grdPathFilter),
+    //updatePatches(chromiumDir, grdPatchDir, grdPathFilter),
   ])
   .then(() => {
     console.log('Done.')

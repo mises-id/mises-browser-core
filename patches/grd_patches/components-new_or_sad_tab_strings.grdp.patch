@@ -7,7 +7,7 @@ index b61151dfac65232189e9cb587e8dd8dafd5e1f8c..dfbf4c86f6f9d62df2424e89474890b6
          </message>
        </if>
 -      <if expr="is_android or is_ios">
-+      <if expr="not is_android oris_android or is_ios">
++      <if expr="not is_android or is_android or is_ios">
  	<then>
            <message name="IDS_SAD_TAB_RELOAD_RESTART_DEVICE" desc="One of the bullet points displayed on the web page if a reload failed to fix the issue, advising the user to restart their device (i.e. phone or tablet)." formatter_data="android_java">
              Restart your device

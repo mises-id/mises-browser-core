@@ -122,7 +122,7 @@ void BraveWalletP3A::ReportOnboardingAction(
 
 void BraveWalletP3A::ReportTransactionSent(mojom::CoinType coin,
                                            bool new_send) {
-  DictionaryPrefUpdate last_sent_time_update(
+  ScopedDictPrefUpdate last_sent_time_update(
       pref_service_, kBraveWalletLastTransactionSentTimeDict);
   base::Value::Dict& last_sent_time_dict = last_sent_time_update->GetDict();
 
@@ -188,7 +188,7 @@ void BraveWalletP3A::RecordActiveWalletCount(int count,
       // account, to avoid sending unnecessary data.
       return;
     }
-    DictionaryPrefUpdate active_wallet_dict_update(
+    ScopedDictPrefUpdate active_wallet_dict_update(
         pref_service_, kBraveWalletP3AActiveWalletDict);
     active_wallet_dict_update->GetDict().Set(coin_type_str, true);
   }

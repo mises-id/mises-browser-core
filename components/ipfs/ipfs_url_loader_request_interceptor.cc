@@ -3,7 +3,7 @@
 #include <memory>
 #include <utility>
 
-#include "base/bind.h"
+#include "base/functional/bind.h"
 #include "content/public/browser/url_loader_request_interceptor.h"
 #include "content/public/browser/web_contents.h"
 #include "mojo/public/cpp/bindings/pending_receiver.h"
@@ -22,8 +22,8 @@
 #include <string>
 #include <utility>
 
-#include "base/bind.h"
-#include "base/callback.h"
+#include "base/functional/bind.h"
+#include "base/functional/callback.h"
 #include "base/check_op.h"
 #include "base/memory/scoped_refptr.h"
 #include "base/strings/string_number_conversions.h"
@@ -154,7 +154,7 @@ void PluginResponseWriter::LoaderCallback(
 PluginResponseWriter::~PluginResponseWriter() {
     
     
-};
+}
 
 void PluginResponseWriter::OnURLRedirect( const GURL& new_url) {
   //LOG(INFO) << "PluginResponseWriter::OnURLRedirect " << new_url.spec();
@@ -205,7 +205,8 @@ void PluginResponseWriter::OnURLLoaderComplete( std::unique_ptr<std::string> res
     return;
   }
 
-  client_->OnReceiveResponse(std::move(response), std::move(consumer));
+  client_->OnReceiveResponse(std::move(response), std::move(consumer),
+                             absl::nullopt);
 
   producer_ = std::make_unique<mojo::DataPipeProducer>(std::move(producer));
 

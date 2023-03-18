@@ -1,0 +1,24 @@
+diff --git a/extensions/browser/sandboxed_unpacker.cc b/extensions/browser/sandboxed_unpacker.cc
+index 115d501369532e6a6c83e012562813310070f7e8..f3ee88d543f01691113d736cb080d6d6d14854fc 100644
+--- a/extensions/browser/sandboxed_unpacker.cc
++++ b/extensions/browser/sandboxed_unpacker.cc
+@@ -433,6 +433,10 @@ void SandboxedUnpacker::UnzipDone(const base::FilePath& zip_file,
+                   l10n_util::GetStringUTF16(IDS_EXTENSION_PACKAGE_UNZIP_ERROR));
+     return;
+   }
++#if BUILDFLAG(IS_ANDROID)
++  extension_root_ = unzip_dir;
++#endif
++  
+   base::FilePath verified_contents_path =
+       file_util::GetVerifiedContentsPath(extension_root_);
+   // If the verified contents are already present in the _metadata folder, we
+@@ -515,7 +519,7 @@ void SandboxedUnpacker::StoreVerifiedContentsInExtensionDir(
+ void SandboxedUnpacker::Unpack(const base::FilePath& directory) {
+   DCHECK(unpacker_io_task_runner_->RunsTasksInCurrentSequence());
+ 
+-  DCHECK(directory.DirName() == temp_dir_.GetPath());
++  //DCHECK(directory.DirName() == temp_dir_.GetPath());
+ 
+   base::FilePath manifest_path = extension_root_.Append(kManifestFilename);
+ 

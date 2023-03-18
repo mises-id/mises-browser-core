@@ -42,11 +42,10 @@
  #include "chrome/browser/ui/toolbar/toolbar_action_view_controller.h"
  #include "extensions/browser/extension_host_observer.h"
  #include "ui/gfx/image/image.h"
- #include "base/bind.h"
+ #include "base/functional/bind.h"
  #include "base/command_line.h"
  #include "base/strings/string_util.h"
  #include "base/strings/utf_string_conversions.h"
- #include "base/threading/thread_task_runner_handle.h"
  #include "base/values.h"
  #include "base/android/jni_android.h"
  #include "base/android/jni_array.h"
@@ -228,7 +227,7 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
 
   
   if (!sel_tab->web_contents() || sel_tab->ExtensionWindowID() == -1) {
-     base::SequencedTaskRunnerHandle::Get()->PostDelayedTask(
+     base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
       FROM_HERE,
       base::BindOnce(&AppMenuBridge::CloseExtensionTabs,
                      weak_ptr_factory_.GetWeakPtr()),

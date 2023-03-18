@@ -3,11 +3,10 @@
 #include <memory>
 #include <utility>
 
-#include "base/bind.h"
+#include "base/functional/bind.h"
 #include "base/location.h"
 #include "base/task/single_thread_task_runner.h"
 #include "base/strings/string_util.h"
-#include "base/threading/thread_task_runner_handle.h"
 #include "build/build_config.h"
 #include "ui/base/class_property.h"
 #include "ui/base/dragdrop/os_exchange_data.h"
@@ -382,11 +381,11 @@ std::string NativeWidgetAndroid::GetName() const {
   return std::string();
 }
 
-  const gfx::ImageSkia* NativeWidgetAndroid::GetWindowIcon() {return NULL;};
-  const gfx::ImageSkia* NativeWidgetAndroid::GetWindowAppIcon() {return NULL;};
-  ui::GestureConsumer* NativeWidgetAndroid::GetGestureConsumer() {return NULL;};
-  void NativeWidgetAndroid::OnNativeViewHierarchyWillChange() {};
-  void NativeWidgetAndroid::OnNativeViewHierarchyChanged() {};
+  const gfx::ImageSkia* NativeWidgetAndroid::GetWindowIcon() {return NULL;}
+  const gfx::ImageSkia* NativeWidgetAndroid::GetWindowAppIcon() {return NULL;}
+  ui::GestureConsumer* NativeWidgetAndroid::GetGestureConsumer() {return NULL;}
+  void NativeWidgetAndroid::OnNativeViewHierarchyWillChange() {}
+  void NativeWidgetAndroid::OnNativeViewHierarchyChanged() {}
 
 ////////////////////////////////////////////////////////////////////////////////
 // NativeWidgetAndroid, protected:

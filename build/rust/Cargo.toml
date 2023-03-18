@@ -23,6 +23,7 @@ path = "lib.rs"
 
 [features]
 ios = []
+chromium = []
 
 [profile.dev]
 panic = "abort"

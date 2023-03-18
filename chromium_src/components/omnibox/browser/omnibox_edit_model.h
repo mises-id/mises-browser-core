@@ -5,8 +5,8 @@
 #include "build/build_config.h"
 #if BUILDFLAG(IS_ANDROID)
 
-#define IsStarredMatch IsStarredMatch_Unused(const AutocompleteMatch& match) const{return false;};\
-  gfx::Image GetMatchIcon(const AutocompleteMatch& match,SkColor vector_icon_color){return gfx::Image(); };\
+#define IsStarredMatch IsStarredMatch_Unused(const AutocompleteMatch& match) const{return false;}\
+  gfx::Image GetMatchIcon(const AutocompleteMatch& match,SkColor vector_icon_color){return gfx::Image(); }\
   bool IsStarredMatch
 
 #endif 

@@ -8,7 +8,7 @@
 #include "base/win/windows_types.h"
 #endif  // BUILDFLAG(IS_WIN)
 
-#include "base/callback.h"
+#include "base/functional/callback.h"
 #include "base/check.h"
 #include "base/command_line.h"
 #include "base/files/file_path.h"

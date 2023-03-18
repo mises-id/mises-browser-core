@@ -1,0 +1,62 @@
+diff --git a/chrome/browser/image_editor/screenshot_flow.cc b/chrome/browser/image_editor/screenshot_flow.cc
+index 307688508ee7f494d4b12b525bfe6986fa2b7404..7f8c56857275eb57894ba0688549a20c242099bb 100644
+--- a/chrome/browser/image_editor/screenshot_flow.cc
++++ b/chrome/browser/image_editor/screenshot_flow.cc
+@@ -91,14 +91,18 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
+       base::BindOnce(&ScreenshotFlow::CancelCapture, base::Unretained(this)),
+       web_contents_view, web_contents_->GetTopLevelNativeWindow());
+ #else
++#if defined(USE_AURA)
+   const gfx::NativeWindow& native_window = web_contents_->GetNativeView();
+   ui::Layer* content_layer = native_window->layer();
+   const gfx::Rect bounds = native_window->bounds();
+   // Capture mouse down and drag events on our window.
+   event_capture_.Observe(native_window);
+ #endif
++#endif
++#if BUILDFLAG(IS_MAC) || defined(USE_AURA)
+   content_layer->Add(screen_capture_layer_.get());
+   content_layer->StackAtTop(screen_capture_layer_.get());
++#endif
+   screen_capture_layer_->SetBounds(bounds);
+   screen_capture_layer_->SetVisible(true);
+ 
+@@ -124,6 +128,7 @@ void ScreenshotFlow::RemoveUIOverlay() {
+   ui::Layer* content_layer = widget->GetLayer();
+   event_capture_mac_.reset();
+ #else
++#if defined(USE_AURA)
+   const gfx::NativeWindow& native_window = web_contents_->GetNativeView();
+ #if BUILDFLAG(IS_WIN)
+   // This handles cases where the overlay is removed while a drag is still in
+@@ -134,10 +139,11 @@ void ScreenshotFlow::RemoveUIOverlay() {
+ #endif  // BUILDFLAG(IS_WIN)
+   event_capture_.Reset();
+   ui::Layer* content_layer = native_window->layer();
++#endif
+ #endif  // else
+-
++#if BUILDFLAG(IS_MAC) ||defined(USE_AURA)
+   content_layer->Remove(screen_capture_layer_.get());
+-
++#endif
+   screen_capture_layer_->set_delegate(nullptr);
+   screen_capture_layer_.reset();
+ 
+@@ -169,7 +175,7 @@ void ScreenshotFlow::CaptureAndRunScreenshotCompleteCallback(
+     RunScreenshotCompleteCallback(result_code, gfx::Rect(), gfx::Image());
+     return;
+   }
+-
++#if !BUILDFLAG(IS_ANDROID)
+   gfx::Rect bounds = web_contents_->GetViewBounds();
+ #if BUILDFLAG(IS_MAC)
+   const gfx::NativeView& native_view = web_contents_->GetContentNativeView();
+@@ -187,6 +193,7 @@ void ScreenshotFlow::CaptureAndRunScreenshotCompleteCallback(
+   ui::GrabWindowSnapshotAsync(native_window, region,
+                               std::move(screenshot_callback));
+ #endif
++#endif
+ }
+ 
+ void ScreenshotFlow::CancelCapture() {

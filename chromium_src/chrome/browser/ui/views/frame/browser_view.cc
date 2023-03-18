@@ -18,39 +18,39 @@ public:
   AutofillBubbleBase* ShowSaveCreditCardBubble(
       content::WebContents* web_contents,
       SaveCardBubbleController* controller,
-      bool is_user_gesture) override {return nullptr;};
+      bool is_user_gesture) override {return nullptr;}
 
   AutofillBubbleBase* ShowLocalCardMigrationBubble(
       content::WebContents* web_contents,
       LocalCardMigrationBubbleController* controller,
-      bool is_user_gesture) override {return nullptr;};
+      bool is_user_gesture) override {return nullptr;}
   AutofillBubbleBase* ShowOfferNotificationBubble(
       content::WebContents* contents,
       OfferNotificationBubbleController* controller,
-      bool is_user_gesture) override {return nullptr;};
+      bool is_user_gesture) override {return nullptr;}
   SaveUPIBubble* ShowSaveUPIBubble(
       content::WebContents* web_contents,
-      SaveUPIBubbleController* controller) override {return nullptr;};
+      SaveUPIBubbleController* controller) override {return nullptr;}
   AutofillBubbleBase* ShowSaveAddressProfileBubble(
       content::WebContents* web_contents,
       SaveUpdateAddressProfileBubbleController* controller,
-      bool is_user_gesture) override {return nullptr;};
+      bool is_user_gesture) override {return nullptr;}
   AutofillBubbleBase* ShowUpdateAddressProfileBubble(
       content::WebContents* web_contents,
       SaveUpdateAddressProfileBubbleController* controller,
-      bool is_user_gesture) override {return nullptr;};
+      bool is_user_gesture) override {return nullptr;}
   AutofillBubbleBase* ShowEditAddressProfileDialog(
       content::WebContents* web_contents,
-      EditAddressProfileDialogController* controller) override {return nullptr;};
+      EditAddressProfileDialogController* controller) override {return nullptr;}
   AutofillBubbleBase* ShowVirtualCardManualFallbackBubble(
       content::WebContents* web_contents,
       VirtualCardManualFallbackBubbleController* controller,
-      bool is_user_gesture) override {return nullptr;};
+      bool is_user_gesture) override {return nullptr;}
   AutofillBubbleBase* ShowVirtualCardEnrollBubble(
       content::WebContents* web_contents,
       VirtualCardEnrollBubbleController* controller,
-      bool is_user_gesture) override {return nullptr;};
-  void OnPasswordSaved() override {};
+      bool is_user_gesture) override {return nullptr;}
+  void OnPasswordSaved() override {}
 };
 
 
@@ -63,7 +63,7 @@ class HatsNextWebDialog_Mises {
                     base::OnceClosure success_callback,
                     base::OnceClosure failure_callback,
                     const SurveyBitsData& product_specific_bits_data,
-                    const SurveyStringData& product_specific_string_data) {};
+                    const SurveyStringData& product_specific_string_data) {}
 };
 
 void ProfileMenuViewBase::ShowBubble(views::Button*, Browser*, bool) {

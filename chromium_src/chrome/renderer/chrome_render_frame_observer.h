@@ -7,6 +7,9 @@
 
 #define web_cache_impl_\
   web_cache_impl_Unused;\
+  void DidClearWindowObject_Chromium();\
+  void DidCommitProvisionalLoad_Chromium(ui::PageTransition transition);\
+  void ExecuteWebUIJavaScript_Chromium(const std::u16string& javascript);\
   std::vector<std::u16string> webui_javascript_;\
   web_cache::WebCacheImpl* web_cache_impl_
 

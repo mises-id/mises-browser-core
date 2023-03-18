@@ -448,7 +448,7 @@ constexpr const char kEnsRegistryContractAddress[] =
 
 const base::Value::List* GetCustomNetworksList(PrefService* prefs,
                                                mojom::CoinType coin) {
-  const auto& custom_networks = prefs->GetDictionary(kBraveWalletCustomNetworks)->GetDict();
+  const auto& custom_networks = prefs->GetDict(kBraveWalletCustomNetworks);
   return custom_networks.FindList(GetPrefKeyForCoinType(coin));
 }
 
@@ -1281,8 +1281,8 @@ void AddCustomNetwork(PrefService* prefs, const mojom::NetworkInfo& chain) {
          KnownChainExists(chain.chain_id, chain.coin));
 
   {  // Update needs to be done before GetNetworkId below.
-    DictionaryPrefUpdate update(prefs, kBraveWalletCustomNetworks);
-    base::Value::Dict& dict = update.Get()->GetDict();
+    ScopedDictPrefUpdate update(prefs, kBraveWalletCustomNetworks);
+    base::Value::Dict& dict = update.Get();
     // TODO(cdesouza): Once cr106 is merged, this FindList should be replaced
     // with EnsureList.
     base::Value::List* list = dict.FindList(GetPrefKeyForCoinType(chain.coin));
@@ -1301,8 +1301,8 @@ void AddCustomNetwork(PrefService* prefs, const mojom::NetworkInfo& chain) {
       GetNetworkId(prefs, mojom::CoinType::ETH, chain.chain_id);
   DCHECK(!network_id.empty());  // Not possible for a custom network.
 
-  DictionaryPrefUpdate update(prefs, kBraveWalletUserAssets);
-  base::Value::Dict& user_assets_pref = update.Get()->GetDict();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletUserAssets);
+  base::Value::Dict& user_assets_pref = update.Get();
   base::Value::List& asset_list =
       user_assets_pref
           .SetByDottedPath(base::StrCat({GetPrefKeyForCoinType(chain.coin), ".",
@@ -1329,8 +1329,8 @@ void RemoveCustomNetwork(PrefService* prefs,
                          mojom::CoinType coin) {
   DCHECK(prefs);
 
-  DictionaryPrefUpdate update(prefs, kBraveWalletCustomNetworks);
-  base::Value::Dict& dict = update.Get()->GetDict();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletCustomNetworks);
+  base::Value::Dict& dict = update.Get();
   base::Value::List* list = dict.FindList(GetPrefKeyForCoinType(coin));
   if (!list)
     return;
@@ -1347,7 +1347,7 @@ void RemoveCustomNetwork(PrefService* prefs,
 std::vector<std::string> GetAllHiddenNetworks(PrefService* prefs,
                                               mojom::CoinType coin) {
   std::vector<std::string> result;
-  const auto& hidden_networks = prefs->GetDictionary(kBraveWalletHiddenNetworks)->GetDict();
+  const auto& hidden_networks = prefs->GetDict(kBraveWalletHiddenNetworks);
 
   auto* hidden_eth_networks =
       hidden_networks.FindList(GetPrefKeyForCoinType(coin));
@@ -1366,8 +1366,8 @@ std::vector<std::string> GetAllHiddenNetworks(PrefService* prefs,
 void AddHiddenNetwork(PrefService* prefs,
                       mojom::CoinType coin,
                       const std::string& chain_id) {
-  DictionaryPrefUpdate update(prefs, kBraveWalletHiddenNetworks);
-  base::Value::Dict& dict = update.Get()->GetDict();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletHiddenNetworks);
+  base::Value::Dict& dict = update.Get();
   // TODO(cdesouza): Once cr106 is merged, this FindList should be replaced with
   // EnsureList.
   base::Value::List* list = dict.FindList(GetPrefKeyForCoinType(coin));
@@ -1385,8 +1385,8 @@ void AddHiddenNetwork(PrefService* prefs,
 void RemoveHiddenNetwork(PrefService* prefs,
                          mojom::CoinType coin,
                          const std::string& chain_id) {
-  DictionaryPrefUpdate update(prefs, kBraveWalletHiddenNetworks);
-  base::Value::Dict& dict = update.Get()->GetDict();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletHiddenNetworks);
+  base::Value::Dict& dict = update.Get();
   base::Value::List* list = dict.FindList(GetPrefKeyForCoinType(coin));
   if (!list)
     return;
@@ -1399,7 +1399,7 @@ void RemoveHiddenNetwork(PrefService* prefs,
 }
 
 std::string GetCurrentChainId(PrefService* prefs, mojom::CoinType coin) {
-  const auto& selected_networks = prefs->GetDictionary(kBraveWalletSelectedNetworks)->GetDict();
+  const auto& selected_networks = prefs->GetDict(kBraveWalletSelectedNetworks);
   const std::string* chain_id =
       selected_networks.FindString(GetPrefKeyForCoinType(coin));
   if (!chain_id)

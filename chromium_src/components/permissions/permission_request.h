@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "base/callback.h"
+#include "base/functional/callback.h"
 #include "build/build_config.h"
 #include "components/content_settings/core/common/content_settings.h"
 #include "components/content_settings/core/common/content_settings_types.h"
@@ -15,10 +15,9 @@
 #if BUILDFLAG(IS_ANDROID)
 #define GetDialogMessageText\
   GetMessageTextFragment() const;\
-  const gfx::VectorIcon&  GetIconForChip();\
-  const gfx::VectorIcon& GetBlockedIconForChip();\
-  absl::optional<std::u16string> GetRequestChipText() const;\
-  absl::optional<std::u16string> GetQuietChipText() const;\
+  IconId GetIconForChip();\
+  IconId GetBlockedIconForChip();\
+  absl::optional<std::u16string> GetRequestChipText(ChipTextType type) const;\
   virtual std::u16string GetDialogMessageText
 
 #include "src/components/permissions/permission_request.h"
