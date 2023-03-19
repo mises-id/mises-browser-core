@@ -51,12 +51,12 @@ void SetupIPFSProtocolHandler(const std::string& protocol) {
     // The worker pointer is reference counted. While it is running, the
     // sequence it runs on will hold references it will be automatically
     // freed once all its tasks have finished.
-    base::MakeRefCounted<shell_integration::DefaultProtocolClientWorker>(
+    base::MakeRefCounted<shell_integration::DefaultSchemeClientWorker>(
         protocol)
         ->StartSetAsDefault(base::NullCallback());
   };
 
-  base::MakeRefCounted<shell_integration::DefaultProtocolClientWorker>(protocol)
+  base::MakeRefCounted<shell_integration::DefaultSchemeClientWorker>(protocol)
       ->StartCheckIsDefault(base::BindOnce(isDefaultCallback, protocol));
 }
 
@@ -176,13 +176,14 @@ void IPFSTabHelper::CheckDNSLinkRecord(
   auto resolved_callback = base::BindOnce(&IPFSTabHelper::HostResolvedCallback,
                                           weak_ptr_factory_.GetWeakPtr(),
                                           std::move(x_ipfs_path_header));
-  const auto& network_isolation_key =
+  const auto& network_anonymization_key =
       web_contents()->GetPrimaryMainFrame()
           ? web_contents()
                 ->GetPrimaryMainFrame()
-                ->GetNetworkIsolationKey()
-          : net::NetworkIsolationKey();
-  resolver_->Resolve(host_port_pair, network_isolation_key,
+                ->GetIsolationInfoForSubresources()
+                .network_anonymization_key()
+          : net::NetworkAnonymizationKey();
+  resolver_->Resolve(host_port_pair, network_anonymization_key,
                      net::DnsQueryType::TXT, std::move(resolved_callback));
 }
 

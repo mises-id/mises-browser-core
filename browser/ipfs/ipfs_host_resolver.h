@@ -35,7 +35,7 @@ class IPFSHostResolver : public network::ResolveHostClientBase {
                               const absl::optional<std::string>& dnslink)>;
 
   virtual void Resolve(const net::HostPortPair& host,
-                       const net::NetworkIsolationKey& isolation_key,
+                       const net::NetworkAnonymizationKey& anonymization_key,
                        net::DnsQueryType dns_query_type,
                        HostTextResultsCallback callback);
 
@@ -46,9 +46,9 @@ class IPFSHostResolver : public network::ResolveHostClientBase {
   // network::mojom::ResolveHostClient implementation:
   void OnComplete(int result,
                   const net::ResolveErrorInfo& resolve_error_info,
-                  const absl::optional<net::AddressList>& resolved_addresses
-                  //const absl::optional<net::HostResolverEndpointResults>&
-                   //   endpoint_results_with_metadata
+                  const absl::optional<net::AddressList>& resolved_addresses,
+                  const absl::optional<net::HostResolverEndpointResults>&
+                     endpoint_results_with_metadata
                    ) override;
   void OnTextResults(const std::vector<std::string>& text_results) override;
 

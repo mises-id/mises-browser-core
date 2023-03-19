@@ -445,7 +445,7 @@ void Web3sitesSafeService::OnUpdateWeb3sitesCompleted(const network::SimpleURLLo
     //origin list
     web3sites_origin_.clear();
     auto* origin_list = json_value->FindListKey("origin_list");
-    for (const auto& data : origin_list->GetListDeprecated()) {
+    for (const auto& data : origin_list->GetList()) {
         const std::string* domain_name = data.FindStringKey("domain_name");
         if ((*domain_name).empty()) {continue;}
         MisesDomainInfo domain_info = GetMisesDomainInfo(*domain_name);
@@ -454,7 +454,7 @@ void Web3sitesSafeService::OnUpdateWeb3sitesCompleted(const network::SimpleURLLo
     //white list
     web3sites_white_.clear();
     auto* white_list = json_value->FindListKey("white_list");
-    for (const auto& data : white_list->GetListDeprecated()) {
+    for (const auto& data : white_list->GetList()) {
         const std::string* domain_name = data.FindStringKey("domain_name");
         if ((*domain_name).empty()) {continue;}
         MisesDomainInfo domain_info = GetMisesDomainInfo(*domain_name);
@@ -463,7 +463,7 @@ void Web3sitesSafeService::OnUpdateWeb3sitesCompleted(const network::SimpleURLLo
     //black list
     web3sites_black_.clear();
     auto* black_list = json_value->FindListKey("black_list");
-    for (const auto& data : black_list->GetListDeprecated()) {
+    for (const auto& data : black_list->GetList()) {
         const std::string* domain_name = data.FindStringKey("domain_name");
         const std::string* object_site = data.FindStringKey("object_site");
         if ((*domain_name).empty()) {continue;}
@@ -476,7 +476,7 @@ void Web3sitesSafeService::OnUpdateWeb3sitesCompleted(const network::SimpleURLLo
     //fuzzy list
     web3sites_fuzzy_.clear();
     auto* fuzzy_list = json_value->FindListKey("fuzzy_list");
-    for (const auto& data : fuzzy_list->GetListDeprecated()) {
+    for (const auto& data : fuzzy_list->GetList()) {
         const std::string* domain_name = data.FindStringKey("domain_name");
         const std::string* object_site = data.FindStringKey("object_site");
         if ((*domain_name).empty()) {continue;}
@@ -486,19 +486,7 @@ void Web3sitesSafeService::OnUpdateWeb3sitesCompleted(const network::SimpleURLLo
         }
         web3sites_fuzzy_.push_back(domain_info);
     }
-   /*  if (!json_value->is_list()) {
-        LOG(WARNING) << "Response is not a JSON dictionary.";
-        return;
-    }
-    web3sites_origin_.clear();
-    auto data_list = json_value->GetListDeprecated();
 
-    for (const auto& data : data_list) {
-        const std::string* domain_name = data.FindStringKey("domain_name");
-        if ((*domain_name).empty()) {continue;}
-        MisesDomainInfo domain_info = GetMisesDomainInfo(*domain_name);
-        web3sites_origin_.push_back(domain_info);
-    } */
     last_web3sites_fetch_time_ = clock_->Now();
     is_fetch_web3sites_ = true;
 }

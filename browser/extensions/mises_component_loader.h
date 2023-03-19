@@ -70,7 +70,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   std::unique_ptr<extensions::ScopedTestDialogAutoConfirm>
       _auto_confirm;
   base::Value metamaskValue;
-  bool migration_started_ = false;;
+  bool migration_started_ = false;
 
 };
 

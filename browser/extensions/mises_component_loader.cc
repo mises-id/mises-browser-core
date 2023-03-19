@@ -209,7 +209,7 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
   }
 
 
-};
+}
 void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
                                       UninstallReason reason) {
@@ -223,7 +223,7 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
   }
 
 
-};
+}
 
 
 void MisesComponentLoader::AddMetamaskExtensionOnStartup() {

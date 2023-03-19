@@ -6,7 +6,18 @@
 namespace extensions{
 
 #if BUILDFLAG(IS_ANDROID) 
- std::unique_ptr<base::DictionaryValue> CreateDummyWindowValueForExtension(
+	void CreateTabObjectAndroid(   
+    api::tabs::Tab* tab_object,
+    WebContents* contents,
+    const Extension* extension,
+    int tab_index);
+	void CreateTabListAndroid(
+    const Browser* browser,
+    const Extension* extension,
+    Feature::Context context,
+		base::Value::List& tab_list);
+	bool GetTabByIdAndroid(int tab_id, WebContents** contents, int* tab_index);
+ 	std::unique_ptr<base::DictionaryValue> CreateDummyWindowValueForExtension(
 		  ExtensionTabUtil::PopulateTabBehavior populate_tab_behavior);
 #endif
 

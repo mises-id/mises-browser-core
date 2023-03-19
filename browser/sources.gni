@@ -282,5 +282,5 @@ mises_chrome_browser_sources += mises_browser_ipfs_sources
 mises_chrome_browser_deps += mises_browser_ipfs_deps
 
 #web3sites_safe
-mises_chrome_browser_sources += mises_browser_web3sites_safe_sources
-mises_chrome_browser_deps += mises_browser_web3sites_safe_deps
+#mises_chrome_browser_sources += mises_browser_web3sites_safe_sources
+#mises_chrome_browser_deps += mises_browser_web3sites_safe_deps

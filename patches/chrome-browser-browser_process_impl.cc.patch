@@ -1,0 +1,59 @@
+diff --git a/chrome/browser/browser_process_impl.cc b/chrome/browser/browser_process_impl.cc
+index c559c9dee4da0c1106d2117bb1fdb984670d4486..b3684c2d63d3e8cf36bdd51da183dfcdfa09d9d1 100644
+--- a/chrome/browser/browser_process_impl.cc
++++ b/chrome/browser/browser_process_impl.cc
+@@ -165,7 +165,8 @@
+ #include "chrome/browser/ssl/chrome_security_state_client.h"
+ #include "chrome/browser/webauthn/android/chrome_webauthn_client_android.h"
+ #include "components/webauthn/android/webauthn_client_android.h"
+-#else
++#endif
++#if (true)
+ #include "chrome/browser/devtools/devtools_auto_opener.h"
+ #include "chrome/browser/gcm/gcm_product_util.h"
+ #include "chrome/browser/hid/hid_policy_allowed_devices.h"
+@@ -884,7 +885,7 @@ printing::BackgroundPrintingManager*
+ #endif
+ }
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID)  || true
+ IntranetRedirectDetector* BrowserProcessImpl::intranet_redirect_detector() {
+   DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
+   if (!intranet_redirect_detector_)
+@@ -962,7 +963,7 @@ BrowserProcessImpl::resource_coordinator_parts() {
+   return resource_coordinator_parts_.get();
+ }
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID)  || true
+ SerialPolicyAllowedPorts* BrowserProcessImpl::serial_policy_allowed_ports() {
+   DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
+   if (!serial_policy_allowed_ports_) {
+@@ -1025,7 +1026,7 @@ void BrowserProcessImpl::RegisterPrefs(PrefRegistrySimple* registry) {
+ #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
+ 
+   registry->RegisterBooleanPref(metrics::prefs::kMetricsReportingEnabled,
+-                                GoogleUpdateSettings::GetCollectStatsConsent());
++                                false);
+   registry->RegisterBooleanPref(prefs::kDevToolsRemoteDebuggingAllowed, true);
+ }
+ 
+@@ -1135,7 +1136,7 @@ void BrowserProcessImpl::CreateProfileManager() {
+ 
+   base::FilePath user_data_dir;
+   base::PathService::Get(chrome::DIR_USER_DATA, &user_data_dir);
+-  profile_manager_ = std::make_unique<ProfileManager>(user_data_dir);
++  profile_manager_ = std::make_unique<MisesProfileManager>(user_data_dir);
+ }
+ 
+ void BrowserProcessImpl::PreCreateThreads() {
+@@ -1199,7 +1200,7 @@ void BrowserProcessImpl::PreMainMessageLoopRun() {
+       ChromePluginServiceFilter::GetInstance());
+ #endif  // BUILDFLAG(ENABLE_PLUGINS)
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+   storage_monitor::StorageMonitor::Create();
+ #endif
+ 

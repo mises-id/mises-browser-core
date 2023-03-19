@@ -1,0 +1,106 @@
+diff --git a/chrome/browser/extensions/extension_tab_util.cc b/chrome/browser/extensions/extension_tab_util.cc
+index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9558f0687 100644
+--- a/chrome/browser/extensions/extension_tab_util.cc
++++ b/chrome/browser/extensions/extension_tab_util.cc
+@@ -167,8 +167,10 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
+   std::string error;
+   Browser* browser = GetBrowserFromWindowID(chrome_details, window_id, &error);
+   if (!browser) {
++#if !BUILDFLAG(IS_ANDROID)
+     if (!params.create_browser_if_needed)
+       return base::unexpected(error);
++#endif
+ 
+     browser = CreateAndShowBrowser(profile, user_gesture, &error);
+     if (!browser)
+@@ -259,18 +261,29 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
+   navigate_params.tabstrip_index = index;
+   navigate_params.user_gesture = false;
+   navigate_params.tabstrip_add_types = add_types;
++
++#if BUILDFLAG(IS_ANDROID)
++  TabModel* tab_model = *(TabModelList::models().begin());
++  WebContents* web_contents = tab_model->CreateNewTabForDevTools(url);
++  navigate_params.navigated_or_inserted_contents = web_contents;
++#else
+   base::WeakPtr<content::NavigationHandle> handle = Navigate(&navigate_params);
+   if (handle && params.bookmark_id) {
+     ChromeNavigationUIData* ui_data =
+         static_cast<ChromeNavigationUIData*>(handle->GetNavigationUIData());
+     ui_data->set_bookmark_id(*params.bookmark_id);
+   }
++#endif
+ 
+   // This happens in locked fullscreen mode.
+   if (!navigate_params.navigated_or_inserted_contents) {
+     return base::unexpected(tabs_constants::kLockedFullscreenModeNewTabError);
+   }
+ 
++#if BUILDFLAG(IS_ANDROID)
++  TabStripModel* tab_strip = nullptr;
++  int new_index = tab_model->GetActiveIndex();
++#else
+   // The tab may have been created in a different window, so make sure we look
+   // at the right tab strip.
+   TabStripModel* tab_strip = navigate_params.browser->tab_strip_model();
+@@ -282,6 +295,7 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
+     if (tab_strip->GetIndexOfWebContents(opener) != TabStripModel::kNoTab)
+       tab_strip->SetOpenerOfWebContentsAt(new_index, opener);
+   }
++#endif
+ 
+   if (active)
+     navigate_params.navigated_or_inserted_contents->SetInitialFocus();
+@@ -386,8 +400,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
+     const Extension* extension,
+     TabStripModel* tab_strip,
+     int tab_index) {
++#if !BUILDFLAG(IS_ANDROID) 
+   if (!tab_strip)
+     ExtensionTabUtil::GetTabStripModel(contents, &tab_strip, &tab_index);
++#endif
+   api::tabs::Tab tab_object;
+   tab_object.id = GetTabIdForExtensions(contents);
+   tab_object.index = tab_index;
+@@ -457,6 +473,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
+     }
+   }
+ 
++#if BUILDFLAG(IS_ANDROID)
++  CreateTabObjectAndroid(&tab_object, contents, extension, tab_index);
++#endif
++
+   ScrubTabForExtension(extension, contents, &tab_object, scrub_tab_behavior);
+   return tab_object;
+ }
+@@ -465,6 +485,7 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
+                                                   const Extension* extension,
+                                                   Feature::Context context) {
+   base::Value::List tab_list;
++#if !BUILDFLAG(IS_ANDROID)
+   TabStripModel* tab_strip = browser->tab_strip_model();
+   for (int i = 0; i < tab_strip->count(); ++i) {
+     WebContents* web_contents = tab_strip->GetWebContentsAt(i);
+@@ -474,6 +495,9 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
+                                     tab_strip, i)
+                         .ToValue());
+   }
++#else
++  CreateTabListAndroid(browser, extension, context, tab_list);
++#endif
+ 
+   return tab_list;
+ }
+@@ -688,6 +712,12 @@ bool ExtensionTabUtil::GetTabById(int tab_id,
+       }
+     }
+   }
++
++#if BUILDFLAG(IS_ANDROID)
++  if (GetTabByIdAndroid(tab_id, contents, tab_index)) {
++    return true;
++  }
++#endif 
+   return false;
+ }
+ 
