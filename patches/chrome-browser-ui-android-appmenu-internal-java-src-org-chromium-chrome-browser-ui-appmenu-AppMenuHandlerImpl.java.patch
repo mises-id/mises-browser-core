@@ -38,9 +38,9 @@ index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..7da662a15b09f268b20891addc275cb6
 +        int menuSize = mModelList.size();
 +        for (int i = 0; i < menuSize; i++) {
 +            if (mModelList.get(i).model.get(AppMenuItemProperties.MENU_ITEM_ID) == itemId) {
-+                Log.d("Kiwi", "Comparing Menu Size of Size: " + menuSize + " and ID: " + mModelList.get(i).model.get(AppMenuItemProperties.MENU_ITEM_ID) + " and itemId: " + itemId);
++                Log.d("Mises", "Comparing Menu Size of Size: " + menuSize + " and ID: " + mModelList.get(i).model.get(AppMenuItemProperties.MENU_ITEM_ID) + " and itemId: " + itemId);
 +                CharSequence titleCondensed = mModelList.get(i).model.get(AppMenuItemProperties.TITLE_CONDENSED);
-+                Log.d("Kiwi", "Got titleCondensed: " + titleCondensed);
++                Log.d("Mises", "Got titleCondensed: " + titleCondensed);
 +		lastItemTitle = titleCondensed.toString();
 +                CharSequence title = mModelList.get(i).model.get(AppMenuItemProperties.TITLE);
 +                lastVisibleItemTitle = title.toString();

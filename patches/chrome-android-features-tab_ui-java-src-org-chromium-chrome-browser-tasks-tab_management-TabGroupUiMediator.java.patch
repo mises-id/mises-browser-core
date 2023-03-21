@@ -11,15 +11,6 @@ index d972e414bcaf087074ea6d519750e9dd5f19c356..22f9e5531a8ddd8fc51dba405758da96
  /**
   * A mediator for the TabGroupUi. Responsible for managing the internal state of the component.
   */
-@@ -343,7 +345,7 @@ public class TabGroupUiMediator implements BackPressHandler {
-                 parentTabToAttach = relatedTabs.get(relatedTabs.size() - 1);
-             }
-             mTabCreatorManager.getTabCreator(currentTab.isIncognito())
--                    .createNewTab(new LoadUrlParams(UrlConstants.NTP_URL),
-+                    .createNewTab(new LoadUrlParams("chrome-search://local-ntp/local-ntp.html"),
-                             TabLaunchType.FROM_TAB_GROUP_UI, parentTabToAttach);
-             RecordUserAction.record("MobileNewTabOpened." + TabGroupUiCoordinator.COMPONENT_NAME);
-             if (!currentTab.isIncognito()) {
 @@ -367,6 +369,9 @@ public class TabGroupUiMediator implements BackPressHandler {
       *            not, associated tabs from #getTabsToShowForID will be showing in the tab strip.
       */

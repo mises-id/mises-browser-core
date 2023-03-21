@@ -175,7 +175,7 @@ index 27b8d5b8e3444b7f4098309d5014021b3b784e25..5689cfcc780d13a8f804d42c2a78168e
 +    }
 +    @Override
 +    public void setLastItemTitle(String itemTitle) {
-+	Log.d("Kiwi", "setLastItemTitle:" + itemTitle);
++	Log.d("Mises", "setLastItemTitle:" + itemTitle);
 +        mMenuTitleCondensed = itemTitle;
 +    }
 +
@@ -192,10 +192,10 @@ index 27b8d5b8e3444b7f4098309d5014021b3b784e25..5689cfcc780d13a8f804d42c2a78168e
          }
 -
 +	if (mMenuTitleCondensed != null) {
-+	  Log.d("Kiwi", "onMenuOrKeyboardAction:" + mMenuTitleCondensed);
++	  Log.d("Mises", "onMenuOrKeyboardAction:" + mMenuTitleCondensed);
 +	}
 +	else {
-+	  Log.d("Kiwi", "onMenuOrKeyboardAction");
++	  Log.d("Mises", "onMenuOrKeyboardAction");
 +	}
          @BrowserProfileType
          int type = Profile.getBrowserProfileTypeFromProfile(getCurrentTabModel().getProfile());
@@ -206,7 +206,7 @@ index 27b8d5b8e3444b7f4098309d5014021b3b784e25..5689cfcc780d13a8f804d42c2a78168e
 +            String extensionUrl = "";
 +            if (extensionInfo.length > 2)
 +                extensionUrl = extensionInfo[2];
-+            Log.d("Kiwi", "Pressed extension menu: " + extensionId + " - url: " + extensionUrl);
++            Log.d("Mises", "Pressed extension menu: " + extensionId + " - url: " + extensionUrl);
 +            Bundle bundleParams = new Bundle();
 +            bundleParams.putString("id", extensionId);
 +            bundleParams.putString("from", "menu");
@@ -352,7 +352,7 @@ index 27b8d5b8e3444b7f4098309d5014021b3b784e25..5689cfcc780d13a8f804d42c2a78168e
 +            } else {
 +	      final String origin = currentTab.getUrl().getOrigin().getSpec();
 +              int adblockSettingForThisSite = WebsitePreferenceBridgeJni.get().getPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, origin, origin);
-+              Log.i("Kiwi", "Adblock switch for " + origin + " " + String.valueOf(adblockSettingForThisSite));
++              Log.i("Mises", "Adblock switch for " + origin + " " + String.valueOf(adblockSettingForThisSite));
 +	      if (adblockSettingForThisSite == ContentSettingValues.DEFAULT || adblockSettingForThisSite == ContentSettingValues.BLOCK)
 +                WebsitePreferenceBridgeJni.get().setPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, origin, origin, ContentSettingValues.ALLOW);
 +              else
@@ -384,7 +384,7 @@ index 27b8d5b8e3444b7f4098309d5014021b3b784e25..5689cfcc780d13a8f804d42c2a78168e
          }
  
 +        if (id == R.id.night_mode_switcher_id) {
-+            Log.d("Kiwi", "Initializing night mode with mode: " + ContextUtils.getAppSharedPreferences().getString("active_nightmode", "default"));
++            Log.d("Mises", "Initializing night mode with mode: " + ContextUtils.getAppSharedPreferences().getString("active_nightmode", "default"));
 +            WebContentsDarkModeController.updateDarkModeStringSettings();
 +            boolean isDarkModeEnabled = ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false);
 +            if (!isDarkModeEnabled) {

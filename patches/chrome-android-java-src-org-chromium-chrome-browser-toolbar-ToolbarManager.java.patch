@@ -21,12 +21,4 @@ index 2ec1301de4968a83ba814827d00b371bf09f3ea0..afce340a9385fb000752a936ec9e5c4e
                  // Update the SSL security state as a result of this notification as it will
                  // sometimes be the only update we receive.
                  updateTabLoadingState(true);
-@@ -1622,7 +1627,7 @@ public class ToolbarManager implements UrlFocusChangeListener, ThemeColorObserve
-     @VisibleForTesting
-     static String homepageUrl() {
-         String homePageUrl = HomepageManager.getHomepageUri();
--        if (TextUtils.isEmpty(homePageUrl)) homePageUrl = UrlConstants.NTP_URL;
-+        if (TextUtils.isEmpty(homePageUrl)) homePageUrl = "chrome-search://local-ntp/local-ntp.html";
-         return homePageUrl;
-     }
  

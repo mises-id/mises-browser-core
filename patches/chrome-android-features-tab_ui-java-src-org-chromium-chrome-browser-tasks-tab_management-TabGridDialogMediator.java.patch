@@ -26,12 +26,3 @@ index ebea916076ac9a4ea82a101d1f830f48929638ed..e79c32ce7d08e5962c9f07befff4e034
                  return;
              }
              List<Tab> relatedTabs = getRelatedTabs(currentTab.getId());
-@@ -644,7 +650,7 @@ public class TabGridDialogMediator
- 
-             Tab parentTabToAttach = relatedTabs.get(relatedTabs.size() - 1);
-             mTabCreatorManager.getTabCreator(currentTab.isIncognito())
--                    .createNewTab(new LoadUrlParams(UrlConstants.NTP_URL),
-+                    .createNewTab(new LoadUrlParams("chrome-search://local-ntp/local-ntp.html"),
-                             TabLaunchType.FROM_TAB_GROUP_UI, parentTabToAttach);
-             RecordUserAction.record("MobileNewTabOpened." + mComponentName);
-             if (!currentTab.isIncognito()) {

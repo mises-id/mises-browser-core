@@ -101,7 +101,7 @@ public class ChromeBrowserReferrer extends BroadcastReceiver {
         return;
       }
 
-      Log.i("Kiwi", "Received ChromeBrowserReferrer: [" + referrer + "]");
+      Log.i("Mises", "Received ChromeBrowserReferrer: [" + referrer + "]");
 
       SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
       sharedPreferencesEditor.putString("install_referrer", (String)referrer);
@@ -118,11 +118,11 @@ public class ChromeBrowserReferrer extends BroadcastReceiver {
                 readStream(in);
                 urlConnection.disconnect();
               } catch (MalformedURLException e) {
-                Log.e("Kiwi", "Received ChromeBrowserReferrer with malformed URL");
+                Log.e("Mises", "Received ChromeBrowserReferrer with malformed URL");
               } catch (UnsupportedEncodingException e) {
-                Log.e("Kiwi", "Received ChromeBrowserReferrer with unsupported encoding");
+                Log.e("Mises", "Received ChromeBrowserReferrer with unsupported encoding");
               } catch (IOException e){
-                Log.e("Kiwi", "Received ChromeBrowserReferrer but IOException");
+                Log.e("Mises", "Received ChromeBrowserReferrer but IOException");
               }
             }
       });
@@ -141,27 +141,27 @@ public class ChromeBrowserReferrer extends BroadcastReceiver {
 			ReferrerDetails response = referrerClient.getInstallReferrer();
                     	String referrer = response.getInstallReferrer();
 			if (referrer == null || referrer.length() == 0 || referrer.equals("")) {
-			  Log.i("Kiwi", "Received ChromeBrowserReferrer: []");
+			  Log.i("Mises", "Received ChromeBrowserReferrer: []");
         		  break;
       			}
 
-      			Log.i("Kiwi", "Received ChromeBrowserReferrer: [" + referrer + "]");
+      			Log.i("Mises", "Received ChromeBrowserReferrer: [" + referrer + "]");
 
       			SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
       			sharedPreferencesEditor.putString("install_referrer", (String)referrer);
       			sharedPreferencesEditor.apply();
 		        referrerClient.endConnection();
  		} catch (RemoteException e) {
-                    Log.e("Kiwi", "Could not get ChromeBrowserReferrer: " + e.getMessage());
+                    Log.e("Mises", "Could not get ChromeBrowserReferrer: " + e.getMessage());
                 }
 		break;
             case InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
                 // API not available on the current Play Store app.
-		Log.e("Kiwi", "Could not get ChromeBrowserReferrer: FEATURE_NOT_SUPPORTED" );
+		Log.e("Mises", "Could not get ChromeBrowserReferrer: FEATURE_NOT_SUPPORTED" );
                 break;
             case InstallReferrerResponse.SERVICE_UNAVAILABLE:
                 // Connection couldn't be established.
-		Log.e("Kiwi", "Could not get ChromeBrowserReferrer: SERVICE_UNAVAILABLE" );
+		Log.e("Mises", "Could not get ChromeBrowserReferrer: SERVICE_UNAVAILABLE" );
                 break;
         }
      }
