@@ -1,0 +1,19 @@
+diff --git a/chrome/android/java/res/values-v26/styles.xml b/chrome/android/java/res/values-v26/styles.xml
+old mode 100644
+new mode 100755
+index 8a34cafa367c1a72db4ad49d65faaecb67f30bd9..0c70e36af2ffa0bcd11e268cd5af654914a0c79c
+--- a/chrome/android/java/res/values-v26/styles.xml
++++ b/chrome/android/java/res/values-v26/styles.xml
+@@ -1,9 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-Copyright 2018 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
+--->
++<!-- Copyright 2018 The Chromium Authors. All rights reserved.
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file. -->
+ 
+ <resources>
+     <style name="Theme.Chromium.TabbedMode" parent="Base.Theme.Chromium.TabbedMode">

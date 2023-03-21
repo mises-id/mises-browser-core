@@ -9,7 +9,7 @@
                            const base::FilePath& suggested_virtual_path,\
                            DownloadConfirmationReason reason,\
                            ConfirmationCallback callback);\
-  public: void ScheduleCancelForEphemeralWarning(const std::string& guid){};\
+  public: void ScheduleCancelForEphemeralWarning(const std::string& guid){}\
   protected: void RequestConfirmation
 #endif
 #include "src/chrome/browser/download/chrome_download_manager_delegate.h"

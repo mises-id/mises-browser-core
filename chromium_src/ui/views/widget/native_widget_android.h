@@ -138,6 +138,8 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
   void OnSizeConstraintsChanged() override;
   std::string GetName() const override;
   
+  base::WeakPtr<internal::NativeWidgetPrivate> GetWeakPtr() override;
+  bool IsStackedAbove(gfx::NativeView native_view) override;
   const gfx::ImageSkia* GetWindowIcon() override;
   const gfx::ImageSkia* GetWindowAppIcon() override;
   ui::GestureConsumer* GetGestureConsumer() override;

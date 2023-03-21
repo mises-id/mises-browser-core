@@ -6,6 +6,7 @@
 #define SupportsAvoidUnnecessaryBeforeUnloadCheckSync\
     SupportsAvoidUnnecessaryBeforeUnloadCheckSync_Unused();\
     virtual SerialDelegate* GetSerialDelegate();\
+    virtual DirectSocketsDelegate* GetDirectSocketsDelegate();\
     virtual std::unique_ptr<AuthenticatorRequestClientDelegate> GetWebAuthenticationRequestDelegate(RenderFrameHost* render_frame_host);\
     virtual bool SupportsAvoidUnnecessaryBeforeUnloadCheckSync
 #endif

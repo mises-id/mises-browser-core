@@ -1,5 +1,5 @@
 diff --git a/third_party/android_deps/BUILD.gn b/third_party/android_deps/BUILD.gn
-index 66f105d4cddb0d37428880c62f173e21c6f7fb23..d0c3750458527949e55c08472de8d4f2a1e4f382 100644
+index 66f105d4cddb0d37428880c62f173e21c6f7fb23..f7168e44692a555335ed648b2407f14661a49514 100644
 --- a/third_party/android_deps/BUILD.gn
 +++ b/third_party/android_deps/BUILD.gn
 @@ -1922,6 +1922,7 @@ if (!limit_android_deps) {
@@ -10,7 +10,15 @@ index 66f105d4cddb0d37428880c62f173e21c6f7fb23..d0c3750458527949e55c08472de8d4f2
      ]
      deps = [
        ":google_play_services_basement_java",
-@@ -2021,6 +2022,7 @@ if (!limit_android_deps) {
+@@ -1988,6 +1989,7 @@ if (!limit_android_deps) {
+     # //third_party/android_deps/build.gradle.
+     visibility = [
+       ":*",
++      "//mises/third_party/android_deps:*",
+       "//third_party/androidx:*",
+     ]
+     deps = [
+@@ -2021,6 +2023,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -18,7 +26,7 @@ index 66f105d4cddb0d37428880c62f173e21c6f7fb23..d0c3750458527949e55c08472de8d4f2
      ]
      deps = [
        ":google_firebase_firebase_components_java",
-@@ -2043,6 +2045,7 @@ if (!limit_android_deps) {
+@@ -2043,6 +2046,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -26,7 +34,7 @@ index 66f105d4cddb0d37428880c62f173e21c6f7fb23..d0c3750458527949e55c08472de8d4f2
      ]
      deps = [
        ":google_firebase_firebase_annotations_java",
-@@ -2112,6 +2115,7 @@ if (!limit_android_deps) {
+@@ -2112,6 +2116,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -34,7 +42,7 @@ index 66f105d4cddb0d37428880c62f173e21c6f7fb23..d0c3750458527949e55c08472de8d4f2
      ]
      deps = [
        ":google_firebase_firebase_common_java",
-@@ -2134,6 +2138,7 @@ if (!limit_android_deps) {
+@@ -2134,6 +2139,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -42,7 +50,7 @@ index 66f105d4cddb0d37428880c62f173e21c6f7fb23..d0c3750458527949e55c08472de8d4f2
      ]
      deps = [
        ":google_firebase_firebase_annotations_java",
-@@ -2154,6 +2159,7 @@ if (!limit_android_deps) {
+@@ -2154,6 +2160,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",

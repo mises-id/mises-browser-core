@@ -10,6 +10,9 @@ bool ContentBrowserClient::SupportsAvoidUnnecessaryBeforeUnloadCheckSync_Unused(
 SerialDelegate* ContentBrowserClient::GetSerialDelegate() {
   return nullptr;
 }
+DirectSocketsDelegate* ContentBrowserClient::GetDirectSocketsDelegate() {
+  return nullptr;
+}
 std::unique_ptr<AuthenticatorRequestClientDelegate>
 ContentBrowserClient::GetWebAuthenticationRequestDelegate(
     RenderFrameHost* render_frame_host) {

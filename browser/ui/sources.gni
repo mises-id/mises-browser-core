@@ -26,10 +26,6 @@ if (is_android) {
   mises_browser_ui_exception_sources += [
       "views/payments/contact_info_editor_view_controller.cc",
       "views/payments/contact_info_editor_view_controller.h",
-      "views/payments/credit_card_editor_view_controller.cc",
-      "views/payments/credit_card_editor_view_controller.h",
-      "views/payments/cvc_unmask_view_controller.cc",
-      "views/payments/cvc_unmask_view_controller.h",
       "views/payments/editor_view_controller.cc",
       "views/payments/editor_view_controller.h",
       "views/payments/error_message_view_controller.cc",
@@ -86,8 +82,6 @@ if (is_android) {
       "views/autofill/payments/autofill_error_dialog_view_native_views.h",
       "views/autofill/payments/autofill_progress_dialog_views.cc",
       "views/autofill/payments/autofill_progress_dialog_views.h",
-      "views/autofill/payments/card_unmask_authentication_selection_dialog_views.cc",
-      "views/autofill/payments/card_unmask_authentication_selection_dialog_views.h",
       "views/autofill/payments/card_unmask_otp_input_dialog_views.cc",
       "views/autofill/payments/card_unmask_otp_input_dialog_views.h",
       "views/autofill/payments/card_unmask_prompt_views.cc",
@@ -162,8 +156,6 @@ if (is_android) {
       "views/apps/app_dialog/app_uninstall_dialog_view.cc",
       "views/infobars/confirm_infobar.cc",
       "views/infobars/confirm_infobar.h",
-      "views/overlay/overlay_window_views.cc",
-      "views/overlay/overlay_window_views.h",
       "views/page_info/safety_tip_page_info_bubble_view.cc",
       "views/page_info/safety_tip_page_info_bubble_view.h",
       "views/passwords/password_generation_popup_view_views.cc",
@@ -175,8 +167,6 @@ if (is_android) {
       "views/webid/fedcm_account_selection_view_desktop.h",
       "views/overlay/video_overlay_window_views.cc",
       "views/overlay/video_overlay_window_views.h",
-      "views/overlay/document_overlay_window_views.cc",
-      "views/overlay/document_overlay_window_views.h",
       "views/screen_capture_notification_ui_views.cc",
       "views/tab_dialogs_views.cc",
 
@@ -207,7 +197,6 @@ if (is_android) {
       "bluetooth/chrome_bluetooth_chooser_controller.h",
       "passwords/manage_passwords_ui_controller.cc",
       "passwords/passwords_client_ui_delegate.cc",
-      "pdf/chrome_pdf_web_contents_helper_client.cc",
       "media_router/presentation_receiver_window_controller.cc",
       "startup/startup_tab_provider.cc",
       "startup/startup_browser_creator_impl.cc",
@@ -239,6 +228,7 @@ if (is_android) {
     "//mises/components/vector_icons",
   ]
   mises_browser_ui_exception_deps += [
+    "//components/live_caption",
     "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",
   ]
 }

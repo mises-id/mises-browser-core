@@ -1,5 +1,5 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
-index d972e414bcaf087074ea6d519750e9dd5f19c356..22f9e5531a8ddd8fc51dba405758da968cc577c2 100644
+index d972e414bcaf087074ea6d519750e9dd5f19c356..6b2c6029f1d98b41d9b9c79293ae23e5a9ffc102 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
 @@ -48,6 +48,8 @@ import org.chromium.url.GURL;

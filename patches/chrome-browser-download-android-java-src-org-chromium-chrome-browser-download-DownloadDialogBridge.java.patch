@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
-index 7b9120a5717c307c7f0fc08529b83842b4460027..73670063be132531e6fb658e3e597d4a4a32871f 100644
+index 7b9120a5717c307c7f0fc08529b83842b4460027..ac63ac9d632d6736ea9a23087796cc102feff956 100644
 --- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 +++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 @@ -26,6 +26,28 @@ import org.chromium.ui.base.WindowAndroid;

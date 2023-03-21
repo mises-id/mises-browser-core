@@ -1,0 +1,13 @@
+diff --git a/media/base/media_switches.h b/media/base/media_switches.h
+index e4ac0b57a8155b20fb8a5872f0a5771de9442fd8..5558588cf5929d271b1be3acc76f690839a270d5 100644
+--- a/media/base/media_switches.h
++++ b/media/base/media_switches.h
+@@ -200,7 +200,7 @@ MEDIA_EXPORT BASE_DECLARE_FEATURE(kGlobalMediaControlsAutoDismiss);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kGlobalMediaControlsCrOSUpdatedUI);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kGlobalMediaControlsForCast);
+ #endif
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kMediaRemotingWithoutFullscreen);
+ #endif
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kGlobalMediaControlsForChromeOS);

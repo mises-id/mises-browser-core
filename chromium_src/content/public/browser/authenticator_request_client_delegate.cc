@@ -48,7 +48,7 @@ absl::optional<bool> WebAuthenticationDelegate::
 }
 
 WebAuthenticationRequestProxy* WebAuthenticationDelegate::MaybeGetRequestProxy(
-    BrowserContext* browser_context) {
+    BrowserContext* browser_context,const url::Origin& caller_origin) {
   return nullptr;
 }
 
@@ -85,7 +85,8 @@ void AuthenticatorRequestClientDelegate::ShouldReturnAttestation(
 
 void AuthenticatorRequestClientDelegate::ConfigureCable(
     const url::Origin& origin,
-    device::FidoRequestType request_type,
+    device::CableRequestType request_type,
+    absl::optional<device::ResidentKeyRequirement> resident_key_requirement,
     base::span<const device::CableDiscoveryData> pairings_from_extension,
     device::FidoDiscoveryFactory* fido_discovery_factory) {}
 

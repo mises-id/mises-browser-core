@@ -212,8 +212,6 @@ if (is_android) {
     "enterprise/connectors/analysis/content_analysis_delegate.h",
     "enterprise/connectors/analysis/files_request_handler.cc",
     "enterprise/connectors/analysis/files_request_handler.h",
-    "enterprise/connectors/analysis/local_binary_upload_service.cc",
-    "enterprise/connectors/analysis/local_binary_upload_service.h",
     "enterprise/connectors/analysis/page_print_analysis_request.cc",
     "enterprise/connectors/analysis/page_print_analysis_request.h",
     "enterprise/connectors/analysis/request_handler_base.cc",
@@ -239,7 +237,6 @@ if (is_android) {
     "speech/speech_recognition_service_factory.cc",
     "speech/speech_recognition_service_factory.h",
     "accessibility/live_caption_controller_factory.cc",
-    "accessibility/live_caption_unavailability_notifier.cc",
     "speech/speech_recognition_client_browser_interface_factory.cc",
     "speech/speech_recognition_client_browser_interface.cc",
     "accessibility/live_caption_speech_recognition_host.cc",
@@ -267,6 +264,7 @@ if (is_android) {
   ]
   mises_chrome_browser_exception_deps += [
     "//components/live_caption",
+    "//components/live_caption:live_translate",
     "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",
   ]
   mises_chrome_browser_exception_allow_circular_includes_from += [

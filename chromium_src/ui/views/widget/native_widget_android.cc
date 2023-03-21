@@ -223,7 +223,7 @@ void NativeWidgetAndroid::Close() {
   LOG(INFO) << " NativeWidgetAndroid::Close";
   delegate_->OnNativeWidgetDestroying();
   if (!close_widget_factory_.HasWeakPtrs()) {
-    base::ThreadTaskRunnerHandle::Get()->PostTask(
+      base::SingleThreadTaskRunner::GetCurrentDefault()->PostTask(
         FROM_HERE, base::BindOnce(&NativeWidgetAndroid::CloseNow,
                                   close_widget_factory_.GetWeakPtr()));
   }
@@ -381,11 +381,15 @@ std::string NativeWidgetAndroid::GetName() const {
   return std::string();
 }
 
-  const gfx::ImageSkia* NativeWidgetAndroid::GetWindowIcon() {return NULL;}
-  const gfx::ImageSkia* NativeWidgetAndroid::GetWindowAppIcon() {return NULL;}
-  ui::GestureConsumer* NativeWidgetAndroid::GetGestureConsumer() {return NULL;}
-  void NativeWidgetAndroid::OnNativeViewHierarchyWillChange() {}
-  void NativeWidgetAndroid::OnNativeViewHierarchyChanged() {}
+base::WeakPtr<internal::NativeWidgetPrivate> NativeWidgetAndroid::GetWeakPtr() {
+  return close_widget_factory_.GetWeakPtr();
+}
+bool NativeWidgetAndroid::IsStackedAbove(gfx::NativeView native_view) {return false;}
+const gfx::ImageSkia* NativeWidgetAndroid::GetWindowIcon() {return NULL;}
+const gfx::ImageSkia* NativeWidgetAndroid::GetWindowAppIcon() {return NULL;}
+ui::GestureConsumer* NativeWidgetAndroid::GetGestureConsumer() {return NULL;}
+void NativeWidgetAndroid::OnNativeViewHierarchyWillChange() {}
+void NativeWidgetAndroid::OnNativeViewHierarchyChanged() {}
 
 ////////////////////////////////////////////////////////////////////////////////
 // NativeWidgetAndroid, protected:

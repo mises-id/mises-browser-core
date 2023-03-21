@@ -5,10 +5,10 @@
 #include "build/build_config.h"
 #if BUILDFLAG(IS_ANDROID)
 #define CacheFetchedVirtualCard\
-  CacheFetchedVirtualCard_Unused(){};\
+  CacheFetchedVirtualCard_Unused(){}\
   LocalCardMigrationManager* local_card_migration_manager() {\
     return NULL;\
-  };\
+  }\
   void CacheFetchedVirtualCard
 
 #endif

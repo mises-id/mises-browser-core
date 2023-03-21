@@ -1,10 +1,17 @@
 diff --git a/chrome/android/java/res_chromium_base/drawable/themed_app_icon.xml b/chrome/android/java/res_chromium_base/drawable/themed_app_icon.xml
-index 32a95bc6ee4d53551d84474cfd3ea88911a46620..0e65975139b234eeb85a73bd6afa918c7a9be60c 100644
+index 32a95bc6ee4d53551d84474cfd3ea88911a46620..add94d07ba5f5e637867e22343d68ef18b333c4d 100644
 --- a/chrome/android/java/res_chromium_base/drawable/themed_app_icon.xml
 +++ b/chrome/android/java/res_chromium_base/drawable/themed_app_icon.xml
-@@ -5,25 +5,40 @@ Use of this source code is governed by a BSD-style license that can be
- found in the LICENSE file.
- -->
+@@ -1,29 +1,42 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-Copyright 2022 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
+--->
++<!-- Copyright 2022 The Chromium Authors. All rights reserved.
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file. -->
  
 -<vector xmlns:android="http://schemas.android.com/apk/res/android"
 -    android:width="90dp"

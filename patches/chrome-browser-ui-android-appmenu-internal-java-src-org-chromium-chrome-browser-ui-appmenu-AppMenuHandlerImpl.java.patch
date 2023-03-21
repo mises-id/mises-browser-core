@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
-index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..7da662a15b09f268b20891addc275cb6841aed44 100644
+index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..73db6ac881471141daa6a1f75d660215e14fc29a 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
 @@ -36,6 +36,8 @@ import java.util.HashMap;

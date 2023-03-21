@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/omnibox_popup/BUILD.gn b/chrome/browser/resources/omnibox_popup/BUILD.gn
+index e5fc008205e62ba5c816e80b49fc3bf587ffae89..2984d59abe7678e8668c8b1fbe11b17a6530cfb1 100644
+--- a/chrome/browser/resources/omnibox_popup/BUILD.gn
++++ b/chrome/browser/resources/omnibox_popup/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ 
+-assert(!is_android && !is_ios)
++#assert(!is_android && !is_ios)
+ 
+ build_webui("build") {
+   grd_prefix = "omnibox_popup"
