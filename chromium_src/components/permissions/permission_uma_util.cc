@@ -12,8 +12,8 @@
     return RequestTypeForUma::PERMISSION_SECURITY_KEY_ATTESTATION; \
   case RequestType::kU2fApiRequest: \
     return RequestTypeForUma::PERMISSION_U2F_API_REQUEST; \
-  case RequestType::kWindowPlacement:\
-    return RequestTypeForUma::PERMISSION_WINDOW_PLACEMENT;\
+  case RequestType::kWindowManagement: \
+    return RequestTypeForUma::PERMISSION_WINDOW_MANAGEMENT; \
   case RequestType::kAccessibilityEvents
   
 #include "src/components/permissions/permission_uma_util.cc"

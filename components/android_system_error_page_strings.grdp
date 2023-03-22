@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!--This file is created by l10nUtil.js. Do not edit manually.-->
+<?xml version="1.0" encoding="utf-8"?>
 <grit-part>
   <!-- Strings for displaying error pages with Android system styling -->
       <message name="IDS_ANDROID_ERROR_PAGE_WEBPAGE_NOT_AVAILABLE" desc="The title of the webpage shown when the requested URL in unavailable">

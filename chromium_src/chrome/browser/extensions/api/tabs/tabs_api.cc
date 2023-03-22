@@ -10,7 +10,7 @@
 namespace extensions {
   bool HighlightTabAndroid(const api::tabs::Highlight::Params::HighlightInfo &highlight_info);
   content::WebContents* GetActiveWebContentsAndroid();
-  void GetTabListValueAndroid(base::Value::List& result);
+  void GetTabListValueAndroid(base::Value::List& result, const Extension* extension, Feature::Context context);
   int GetSelectedTabIndexAndroid(content::WebContents** contents);
   int GetSelectedTabIdAndroid();
   void CloseAllExtensionTabsAndroid();
@@ -24,7 +24,7 @@ namespace windows = api::windows;
 namespace tabs = api::tabs;
 
 #if BUILDFLAG(IS_ANDROID)
-bool HighlightTabAndroid(const Highlight::Params::HighlightInfo &highlight_info) {
+bool HighlightTabAndroid(const tabs::Highlight::Params::HighlightInfo &highlight_info) {
 
   TabModel *tab_strip_android = nullptr;
   if (!TabModelList::models().empty())
@@ -33,7 +33,7 @@ bool HighlightTabAndroid(const Highlight::Params::HighlightInfo &highlight_info)
     return false;
 
   if (highlight_info.tabs.as_integers) {
-    std::vector<int>& tab_indices = *highlight_info.tabs.as_integers;
+    const std::vector<int>& tab_indices = *highlight_info.tabs.as_integers;
     // Create a new selection model as we read the list of tab indices.
     for (size_t i = 0; i < tab_indices.size(); ++i) {
       int tab_index = tab_indices[i];
@@ -69,7 +69,7 @@ WebContents* GetActiveWebContentsAndroid() {
   }
   return contents;
 }
-void GetTabListValueAndroid(bbase::Value::List& result) {
+void GetTabListValueAndroid(base::Value::List& result, const Extension* extension, Feature::Context context) {
   TabModel *tab_strip = nullptr;
   if (!TabModelList::models().empty())
     tab_strip = *(TabModelList::models().begin());
@@ -79,10 +79,9 @@ void GetTabListValueAndroid(bbase::Value::List& result) {
       if (!web_contents) {
         continue;
       }
-      result.Append(base::Value::FromUniquePtrValue(CreateTabObjectHelper(
-                         web_contents, extension(), source_context_type(),
-                         nullptr, i)
-                         ->ToValue()));
+      result.Append(CreateTabObjectHelper(
+                         web_contents, extension, context,
+                         nullptr, i).ToValue());
     }
   }
 }
@@ -104,7 +103,7 @@ int GetSelectedTabIndexAndroid(WebContents** contents) {
         continue;
       
       if (web_contents) {
-        contents = web_contents;
+        *contents = web_contents;
         tab_index = i;
         break;
       }

@@ -3,6 +3,24 @@
 namespace features {
 
 #if BUILDFLAG(IS_ANDROID)
+// Enables OS Integration sub managers to execute the
+// registration/unregistration functionality and write the new OS states to the
+// DB.
+BASE_FEATURE(kOsIntegrationSubManagers,
+             "OsIntegrationSubManagers",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+const base::FeatureParam<OsIntegrationSubManagersStage>::Option
+    sub_manager_stages[] = {
+        {OsIntegrationSubManagersStage::kWriteConfig, "write_config"},
+        {OsIntegrationSubManagersStage::kExecuteAndWriteConfig,
+         "execute_and_write_config"}};
+const base::FeatureParam<OsIntegrationSubManagersStage>
+    kOsIntegrationSubManagersStageParam{
+        &kOsIntegrationSubManagers, "stage",
+        OsIntegrationSubManagersStage::kWriteConfig, &sub_manager_stages};
+#endif
+
+#if BUILDFLAG(IS_ANDROID)
 // Enables or disables the Autofill survey triggered by opening a prompt to
 // save address info.
 const base::Feature kAutofillAddressSurvey{"AutofillAddressSurvey",
@@ -256,8 +274,14 @@ const base::FeatureParam<base::TimeDelta>
 
 
 #if BUILDFLAG(IS_ANDROID)
-const base::Feature kWebAppManifestIconUpdating{
-    "WebAppManifestIconUpdating", base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kWebAppManifestIconUpdating,
+             "WebAppManifestIconUpdating",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+
+BASE_FEATURE(kWebAppManifestImmediateUpdating,
+             "WebAppManifestImmediateUpdating",
+             base::FEATURE_ENABLED_BY_DEFAULT);
 #endif  // BUILDFLAG(IS_ANDROID)
 
 }  // namespace features

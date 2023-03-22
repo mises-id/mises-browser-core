@@ -990,6 +990,7 @@ Object.defineProperty(Config.prototype, 'defaultOptions', {
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'tools', 'grit', 'grit', 'extern'))
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'requests'))
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'lxml', 'src'))
+    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'lxml'))
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'transifex'))
     
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'build'))

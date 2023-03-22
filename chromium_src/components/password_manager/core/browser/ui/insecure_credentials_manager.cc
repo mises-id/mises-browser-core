@@ -9,9 +9,9 @@ namespace {
 // The function is only used by the weak check.
 #if BUILDFLAG(IS_ANDROID)
 base::flat_set<std::u16string> ExtractPasswords(
-    SavedPasswordsPresenter::SavedPasswordsView password_forms) {
-  return base::MakeFlatSet<std::u16string>(password_forms, {},
-                                           &PasswordForm::password_value);
+    const std::vector<CredentialUIEntry>& credentials) {
+  return base::MakeFlatSet<std::u16string>(credentials, {},
+                                           &CredentialUIEntry::password);
 }
 #endif  // !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
 

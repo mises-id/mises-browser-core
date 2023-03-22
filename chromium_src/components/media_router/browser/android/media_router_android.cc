@@ -12,8 +12,8 @@ void MediaRouterAndroid::GetMediaController(
       mojo::PendingRemote<mojom::MediaStatusObserver> observer)
 {
 }
-base::Value MediaRouterAndroid::GetState() const {
-  return base::Value(base::Value::Type::DICTIONARY);
+base::Value::Dict MediaRouterAndroid::GetState() const {
+  return base::Value::Dict();
 }
 base::Value MediaRouterAndroid::GetLogs() const {
   return base::Value(base::Value::Type::DICTIONARY);

@@ -92,7 +92,7 @@ void NativeMessageMisesHost::OnMessage(const std::string& request_string) {
 
 scoped_refptr<base::SingleThreadTaskRunner> NativeMessageMisesHost::task_runner()
     const {
-  return base::ThreadTaskRunnerHandle::Get();
+  return base::SingleThreadTaskRunner::GetCurrentDefault();
 }
 
 void NativeMessageMisesHost::ProcessEcho(const base::Value::Dict& request) {

@@ -3,7 +3,22 @@
 
 #include "src/chrome/common/chrome_features.h"
 
+
+
 namespace features {
+
+#if BUILDFLAG(IS_ANDROID)
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kOsIntegrationSubManagers);
+enum class OsIntegrationSubManagersStage {
+  kWriteConfig,
+  kExecuteAndWriteConfig,
+};
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<OsIntegrationSubManagersStage>
+    kOsIntegrationSubManagersStageParam;
+#endif
+
 #if BUILDFLAG(IS_ANDROID) 
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::Feature kAutofillAddressSurvey;
@@ -111,7 +126,10 @@ COMPONENT_EXPORT(CHROME_FEATURES) extern const base::Feature kOnConnectNative;
 
 #if BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kWebAppManifestIconUpdating;
+BASE_DECLARE_FEATURE(kWebAppManifestIconUpdating);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppManifestImmediateUpdating);
 #endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace features

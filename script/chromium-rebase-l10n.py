@@ -9,7 +9,7 @@ import argparse
 import os.path
 import sys
 
-from lxml import etree  # pylint: disable=import-error
+import lxml.etree as etree  # pylint: disable=import-error
 from lib.l10n.grd_utils import (get_override_file_path,
                                 textify,
                                 update_braveified_grd_tree_override,

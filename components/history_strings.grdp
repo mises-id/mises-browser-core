@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!--This file is created by l10nUtil.js. Do not edit manually.-->
+<?xml version="1.0" encoding="utf-8"?>
 <grit-part>
 
   <!-- History UI -->
@@ -39,8 +38,8 @@
   <message name="IDS_HISTORY_FOUND_SEARCH_RESULTS" desc="Message shown when zero or multiple search results are found.">
     Found <ph name="NUMBER_OF_RESULTS">$1</ph> <ph name="SEARCH_RESULTS"><ex>search results</ex>$2</ph> for '<ph name="SEARCH_STRING">$3</ph>'
   </message>
-  <message name="IDS_HISTORY_OTHER_FORMS_OF_HISTORY" desc="The notification at the top of the history page indicating that deleting Mises browsing history will not delete other forms of history stored at Mises My Activity.">
-    Your Mises sync chain may have other forms of browsing history at <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph>myactivity.google.com<ph name="END_LINK">&lt;/a&gt;</ph>
+  <message name="IDS_HISTORY_OTHER_FORMS_OF_HISTORY" desc="The notification at the top of the history page indicating that deleting Chrome browsing history will not delete other forms of history stored at Google My Activity.">
+    Your Google Account may have other forms of browsing history at <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph>myactivity.google.com<ph name="END_LINK">&lt;/a&gt;</ph>
   </message>
   <message name="IDS_HISTORY_LOADING" desc="Text shown when we're loading the user's history">
     Loading...
@@ -85,7 +84,7 @@
     Remove from history
   </message>
   <message name="IDS_HISTORY_REMOVE_PAGE_SUCCESS" desc="Screen reader message that is read after user successfully removes one history item from the item's options menu. The message will reference the page's title.">
-    '<ph name="PAGE_TITLE">$1<ex>Mises Store - My Cart</ex></ph>' deleted
+    '<ph name="PAGE_TITLE">$1<ex>Google Store - My Cart</ex></ph>' deleted
   </message>
   <message name="IDS_HISTORY_REMOVE_SELECTED_ITEMS" desc="Title of the button that allows the user to remove the selected history items">
     Remove selected items

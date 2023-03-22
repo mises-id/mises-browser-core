@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Search tags used for CrOS settings search (go/cros-settings-search). -->
-<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- Network section. -->
   <message name="IDS_OS_SETTINGS_TAG_NETWORK_SETTINGS" desc="Text for search result item which, when clicked, navigates the user to network settings. Alternate phrase for: 'Internet'">
@@ -145,19 +144,19 @@
     VPN
   </message>
   <!-- TODO(b/260277007): Remove translateble false and upload snapshots when strings finalized. -->
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS" desc="Text for search result item which, when clicked, navigates the user to Audio settings.">
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS"  desc="Text for search result item which, when clicked, navigates the user to Audio settings.">
     Audio
   </message>
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT1" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT1"  desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
     Volume
   </message>
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT2" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT2"  desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
     Sound
   </message>
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT3" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT3"  desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
     Speakers
   </message>
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT4" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT4"  desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
     Microphone
   </message>
   <message name="IDS_OS_SETTINGS_TAG_AUTO_CONNECT_NETWORK" desc="Text for search result item which, when clicked, navigates the user to settings to toggle whether the device auto-connects to a network. Alternate phrase for: 'Auto connect to network'">
@@ -302,7 +301,7 @@
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_ON" desc="Text for search result item which, when clicked, navigates the user to Nearby Share settings. Alternate phrase for: 'Enable Nearby Share'">
     Turn on Nearby Share
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_ON_ALT1" desc="Text for search result item which, when clicked, navigates the user to Nearby Share settings. Alternate phrase for: 'Turn on Nearby Share'">
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_ON_ALT1" desc="Text for search result item which, when clicked, navigates the user to Nearby Share settings. Alternate phrase for: 'Turn on Nearby Share'" >
     Enable Nearby Share
   </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to Nearby Share settings. Alternate phrase for: 'Disable Nearby Share'">
@@ -320,7 +319,7 @@
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DEVICE_VISIBILITY_ALT1" desc="Text for search result item which, when clicked, navigates the user to Nearby Share change device visibility button in settings. Alternate phrase for: 'Nearby Share visibility'">
     Nearby Share discoverability
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_CONTACTS" desc="Text for search result item which, when clicked, navigates the user to Nearby Share manage contacts row in settings that opens Mises Contacts.">
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_CONTACTS" desc="Text for search result item which, when clicked, navigates the user to Nearby Share manage contacts row in settings that opens Google Contacts.">
     Nearby Share contacts
   </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DATA_USAGE" desc="Text for search result item which, when clicked, navigates the user to Nearby Share edit data usage button in settings.">
@@ -352,11 +351,11 @@
   </message>
 
 
-  <!-- Profiles section. -->
-  <message name="IDS_OS_SETTINGS_TAG_PEOPLE" desc="Text for search result item which, when clicked, navigates the user to profiles settings.">
-    Profiles
+  <!-- People section. -->
+  <message name="IDS_OS_SETTINGS_TAG_PEOPLE" desc="Text for search result item which, when clicked, navigates the user to people settings.">
+    People
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_PEOPLE_V2" desc="Text for search result item which, when clicked, navigates the user to profiles settings.">
+  <message name="IDS_OS_SETTINGS_TAG_PEOPLE_V2" desc="Text for search result item which, when clicked, navigates the user to people settings.">
     Accounts
   </message>
   <message name="IDS_OS_SETTINGS_TAG_PEOPLE_ACCOUNTS" desc="Text for search result item which, when clicked, navigates the user to accounts settings.">
@@ -366,7 +365,7 @@
     Add account
   </message>
   <message name="IDS_OS_SETTINGS_TAG_PEOPLE_ACCOUNTS_ADD_V2" desc="Text for search result item which, when clicked, navigates the user to accounts settings, with a button to add a new account.">
-    Add Mises sync chain
+    Add Google Account
   </message>
   <message name="IDS_OS_SETTINGS_TAG_PEOPLE_ACCOUNTS_REMOVE" desc="Text for search result item which, when clicked, navigates the user to accounts settings, with an option to remove an account.">
     Remove account
@@ -443,25 +442,25 @@
   <message name="IDS_OS_SETTINGS_TAG_PARENTAL_CONTROLS_ALT2" desc="Text for search result item which, when clicked, navigates the user to parental control settings. Alternate phrase for: 'Parental controls', 'Child accounts'">
     Family Link
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_SYNC_AND_GOOGLE_SERVICES" desc="Text for search result item which, when clicked, navigates the user to settings for Sync (syncs data between multiple Chromebooks) and Mises Services.">
-    Sync and Mises services
+  <message name="IDS_OS_SETTINGS_TAG_SYNC_AND_GOOGLE_SERVICES" desc="Text for search result item which, when clicked, navigates the user to settings for Sync (syncs data between multiple Chromebooks) and Google Services.">
+    Sync and Google services
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_SYNC_ENCRYPTION_OPTIONS" desc="Text for search result item which, when clicked, navigates the user to sync settings, with an option to choose whether synced data is encrypted with the user's Mises account password or with a custom password chosen by the user. Alternate phrase for: 'Sync encryption password'">
+  <message name="IDS_OS_SETTINGS_TAG_SYNC_ENCRYPTION_OPTIONS" desc="Text for search result item which, when clicked, navigates the user to sync settings, with an option to choose whether synced data is encrypted with the user's Google account password or with a custom password chosen by the user. Alternate phrase for: 'Sync encryption password'">
     Sync encryption options
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_SYNC_ENCRYPTION_OPTIONS_ALT1" desc="Text for search result item which, when clicked, navigates the user to sync settings, with an option to choose whether synced data is encrypted with the user's Mises account password or with a custom password chosen by the user. Alternate phrase for: 'Sync encryption options'">
+  <message name="IDS_OS_SETTINGS_TAG_SYNC_ENCRYPTION_OPTIONS_ALT1" desc="Text for search result item which, when clicked, navigates the user to sync settings, with an option to choose whether synced data is encrypted with the user's Google account password or with a custom password chosen by the user. Alternate phrase for: 'Sync encryption options'">
     Sync encryption password
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_SYNC_MANAGEMENT" desc="Text for search result item which, when clicked, navigates the user to sync settings, with the option to decide which types of data are synced via Mises Sync.">
+  <message name="IDS_OS_SETTINGS_TAG_SYNC_MANAGEMENT" desc="Text for search result item which, when clicked, navigates the user to sync settings, with the option to decide which types of data are synced via Chrome Sync.">
     Sync management
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_AUTOCOMPLETE_SEARCHES_AND_URLS" desc="Text for search result item which, when clicked, navigates the user to Mises services settings, with a toggle to enable/disable a feature which autocompletes user searches and URLs using browser history and cookies.">
+  <message name="IDS_OS_SETTINGS_TAG_AUTOCOMPLETE_SEARCHES_AND_URLS" desc="Text for search result item which, when clicked, navigates the user to Google services settings, with a toggle to enable/disable a feature which autocompletes user searches and URLs using browser history and cookies.">
     Autocomplete searches and URLs
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_MAKE_SEARCHES_AND_BROWSER_BETTER" desc="Text for search result item which, when clicked, navigates the user to Mises services settings, with a toggle to enable/disable a feature which sends URLs of pages the user has visited to Mises, which helps to improve search/browsing results.">
-    Send URLs of pages you visit to Mises
+  <message name="IDS_OS_SETTINGS_TAG_MAKE_SEARCHES_AND_BROWSER_BETTER" desc="Text for search result item which, when clicked, navigates the user to Google services settings, with a toggle to enable/disable a feature which sends URLs of pages the user has visited to Google, which helps to improve search/browsing results.">
+    Send URLs of pages you visit to Google
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_GOOGLE_DRIVE_SEARCH_SUGGESTIONS" desc="Text for search result item which, when clicked, navigates the user to Mises services settings, with a toggle to enable/disable a feature which provides suggestions to visit Google Drive items when the user types in the address bar.">
+  <message name="IDS_OS_SETTINGS_TAG_GOOGLE_DRIVE_SEARCH_SUGGESTIONS" desc="Text for search result item which, when clicked, navigates the user to Google services settings, with a toggle to enable/disable a feature which provides suggestions to visit Google Drive items when the user types in the address bar.">
     Google Drive search suggestions
   </message>
 
@@ -763,44 +762,44 @@
   <message name="IDS_OS_SETTINGS_TAG_QUICK_ANSWERS_UNIT_CONVERSION" desc="Text for search result item which, when clicked, navigates the user to Quick Answers settings, with a toggle to enable/disable the Quick Answers unit conversion functionality.">
     Quick Answers unit conversion
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings.">
-    Mises Assistant
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings.">
+    Google Assistant
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_RELATED_INFO" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with a toggle to enable/disable letting Assistant show info related to what's on the screen.">
-    Mises Assistant related information
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_RELATED_INFO" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with a toggle to enable/disable letting Assistant show info related to what's on the screen.">
+    Google Assistant related information
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_QUICK_ANSWERS" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with a toggle to enable/disable letting Assistant show related info when the user right-clicks.">
-    Mises Assistant quick answers
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_QUICK_ANSWERS" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with a toggle to enable/disable letting Assistant show related info when the user right-clicks.">
+    Google Assistant quick answers
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_OK_GOOGLE" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with a toggle to enable/disable letting users summon the Assistant by saying 'Ok Mises' out loud. Alternate phrase for: 'Okay Mises', 'Hey Mises'">
-    Mises Assistant "Ok Mises"
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_OK_GOOGLE" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with a toggle to enable/disable letting users summon the Assistant by saying 'Ok Google' out loud. Alternate phrase for: 'Okay Google', 'Hey Google'">
+    Google Assistant &quot;Ok Google&quot;
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_OK_GOOGLE_ALT1" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with a toggle to enable/disable letting users summon the Assistant by saying 'Ok Mises' out loud. Alternate phrase for: 'Mises Assistant 'Ok Mises'', 'Hey Mises'">
-    Okay Mises
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_OK_GOOGLE_ALT1" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with a toggle to enable/disable letting users summon the Assistant by saying 'Ok Google' out loud. Alternate phrase for: 'Google Assistant 'Ok Google'', 'Hey Google'">
+    Okay Google
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_OK_GOOGLE_ALT2" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with a toggle to enable/disable letting users summon the Assistant by saying 'Ok Mises' out loud. Alternate phrase for: 'Mises Assistant 'Ok Mises'', 'Okay Mises'">
-    Hey Mises
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_OK_GOOGLE_ALT2" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with a toggle to enable/disable letting users summon the Assistant by saying 'Ok Google' out loud. Alternate phrase for: 'Google Assistant 'Ok Google'', 'Okay Google'">
+    Hey Google
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_NOTIFICATIONS" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with a toggle to enable/disable Assistant notifications.">
-    Mises Assistant Notifications
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_NOTIFICATIONS" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with a toggle to enable/disable Assistant notifications.">
+    Google Assistant Notifications
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_PREFERRED_INPUT" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with a toggle to enable/disable having the preferred input be voice instead of keyboard.">
-    Mises Assistant voice input
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_PREFERRED_INPUT" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with a toggle to enable/disable having the preferred input be voice instead of keyboard.">
+    Google Assistant voice input
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with an option to turn functionality off. Alternate phrase for: 'Disable Mises Assistant'">
-    Turn off Mises Assistant
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with an option to turn functionality off. Alternate phrase for: 'Disable Google Assistant'">
+    Turn off Google Assistant
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TURN_OFF_ALT1" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with an option to turn functionality off. Alternate phrase for: 'Turn off Mises Assistant'">
-    Disable Mises Assistant
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TURN_OFF_ALT1" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with an option to turn functionality off. Alternate phrase for: 'Turn off Google Assistant'">
+    Disable Google Assistant
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TURN_ON" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with an option to turn functionality on. Alternate phrase for: 'Enable Mises Assistant'">
-    Turn on Mises Assistant
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TURN_ON" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with an option to turn functionality on. Alternate phrase for: 'Enable Google Assistant'">
+    Turn on Google Assistant
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TURN_ON_ALT1" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with an option to turn functionality on. Alternate phrase for: 'Turn on Mises Assistant'">
-    Enable Mises Assistant
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TURN_ON_ALT1" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with an option to turn functionality on. Alternate phrase for: 'Turn on Google Assistant'">
+    Enable Google Assistant
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TRAIN_VOICE_MODEL" desc="Text for search result item which, when clicked, navigates the user to Mises Assistant settings, with an option to train a voice model to listen for commands such as 'Okay Mises' or 'Hey Mises'">
-    Train Mises Assistant voice model
+  <message name="IDS_OS_SETTINGS_TAG_ASSISTANT_TRAIN_VOICE_MODEL" desc="Text for search result item which, when clicked, navigates the user to Google Assistant settings, with an option to train a voice model to listen for commands such as 'Okay Google' or 'Hey Google'">
+    Train Google Assistant voice model
   </message>
 
   <!-- Apps section. -->
@@ -978,10 +977,10 @@
   <message name="IDS_OS_SETTINGS_TAG_PRIVACY_VERIFIED_ACCESS" desc="Text for search result item which, when clicked, navigates the user to privacy settings, with a toggle to enable/disable verified access.">
     Verified access
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_PRIVACY_CRASH_REPORTS" desc="Text for search result item which, when clicked, navigates the user to privacy settings, with a toggle to enable/disable allowing usage statistics and crash reports to be sent to Mises. Alternate phrase for: 'Feedback reports'">
+  <message name="IDS_OS_SETTINGS_TAG_PRIVACY_CRASH_REPORTS" desc="Text for search result item which, when clicked, navigates the user to privacy settings, with a toggle to enable/disable allowing usage statistics and crash reports to be sent to Google. Alternate phrase for: 'Feedback reports'">
     Usage statistics and crash reports
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_PRIVACY_CRASH_REPORTS_ALT1" desc="Text for search result item which, when clicked, navigates the user to privacy settings, with a toggle to enable/disable allowing usage statistics and crash reports to be sent to Mises. Alternate phrase for: 'Usage statistics and crash reports'">
+  <message name="IDS_OS_SETTINGS_TAG_PRIVACY_CRASH_REPORTS_ALT1" desc="Text for search result item which, when clicked, navigates the user to privacy settings, with a toggle to enable/disable allowing usage statistics and crash reports to be sent to Google. Alternate phrase for: 'Usage statistics and crash reports'">
     Feedback reports
   </message>
   <message name="IDS_OS_SETTINGS_TAG_PRIVACY_PERIPHERAL_DATA_ACCESS_PROTECTION" desc="Text for search result item which, when clicked, navigates the user to privacy settings, with a toggle to enable/disable peripheral data access protection. Alternate phrases include: 'PCIe', 'Thunderbolt', 'USB', 'USB4', 'USB-C'">
@@ -1377,8 +1376,8 @@
   <message name="IDS_OS_SETTINGS_TAG_A11Y_SWITCH_ACCESS_AUTO_SCAN_KEYBOARD" desc="Text for search result item which, when clicked, navigates the user to accessibility switch access settings, with a slider to set the auto-scan repeat rate.">
     Switch access keyboard auto-scan
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_A11Y_LABELS_FROM_GOOGLE" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable getting image descriptions from Mises.">
-    Get image descriptions from Mises
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_LABELS_FROM_GOOGLE" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable getting image descriptions from Google.">
+    Get image descriptions from Google
   </message>
 
   <!-- Reset section. -->
@@ -1414,10 +1413,10 @@
   <message name="IDS_OS_SETTINGS_TAG_ABOUT_HELP" desc="Text for search result item which, when clicked, navigates the user to 'About ChromeOS' settings, with a link which opens the 'Help' app.">
     Help
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ABOUT_REPORT_ISSUE" desc="Text for search result item which, when clicked, navigates the user to 'About ChromeOS' settings, with a link which opens the 'Send feedback to Mises' app. Alternate phrase for: 'Report a bug'">
+  <message name="IDS_OS_SETTINGS_TAG_ABOUT_REPORT_ISSUE" desc="Text for search result item which, when clicked, navigates the user to 'About ChromeOS' settings, with a link which opens the 'Send feedback to Google' app. Alternate phrase for: 'Report a bug'">
     Report an issue
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_ABOUT_REPORT_ISSUE_ALT1" desc="Text for search result item which, when clicked, navigates the user to 'About ChromeOS' settings, with a link which opens the 'Send feedback to Mises' app. Alternate phrase for: 'Report an issue'">
+  <message name="IDS_OS_SETTINGS_TAG_ABOUT_REPORT_ISSUE_ALT1" desc="Text for search result item which, when clicked, navigates the user to 'About ChromeOS' settings, with a link which opens the 'Send feedback to Google' app. Alternate phrase for: 'Report an issue'">
     Report a bug
   </message>
   <message name="IDS_OS_SETTINGS_TAG_ABOUT_TERMS_OF_SERVICE" desc="Text for search result item which, when clicked, navigates the user to 'About ChromeOS' settings, with a link to the Terms of Service.">

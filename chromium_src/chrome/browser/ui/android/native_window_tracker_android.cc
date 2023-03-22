@@ -9,14 +9,14 @@ NativeWindowTrackerAndroid::NativeWindowTrackerAndroid(
 NativeWindowTrackerAndroid::~NativeWindowTrackerAndroid() {
 }
 
-bool NativeWindowTrackerAndroid::WasNativeWindowClosed() const {
+bool NativeWindowTrackerAndroid::WasNativeWindowDestroyed() const {
   return window_ == nullptr;
 }
 
 
 // static
-std::unique_ptr<NativeWindowTracker> NativeWindowTracker::Create(
+std::unique_ptr<views::NativeWindowTracker> views::NativeWindowTracker::Create(
     gfx::NativeWindow window) {
-  return std::unique_ptr<NativeWindowTracker>(
+  return std::unique_ptr<views::NativeWindowTracker>(
       new NativeWindowTrackerAndroid(window));
 }

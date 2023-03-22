@@ -7,9 +7,10 @@
 #include "components/safe_browsing/core/common/proto/csd.pb.h"
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_persister.h"
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_uploader.h"
+#include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_config_manager.h"
 namespace safe_browsing {
-ExtensionTelemetryService::~ExtensionTelemetryService() = default;
 
+ExtensionTelemetryService::~ExtensionTelemetryService() = default;
 
 ExtensionTelemetryService::ExtensionTelemetryService(
     Profile* profile,
@@ -23,6 +24,8 @@ ExtensionTelemetryService::ExtensionTelemetryService(
       enabled_(false),
       current_reporting_interval_(
           base::Seconds(kExtensionTelemetryUploadIntervalSeconds.Get())) {
+  // Register for SB preference change notifications.
+  
 }
 
 void ExtensionTelemetryService::AddSignal(

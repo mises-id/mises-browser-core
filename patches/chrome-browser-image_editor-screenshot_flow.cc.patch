@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/image_editor/screenshot_flow.cc b/chrome/browser/image_editor/screenshot_flow.cc
-index 307688508ee7f494d4b12b525bfe6986fa2b7404..7f8c56857275eb57894ba0688549a20c242099bb 100644
+index 307688508ee7f494d4b12b525bfe6986fa2b7404..cfa4483b96f832c7002098049ebc0a50e4f73330 100644
 --- a/chrome/browser/image_editor/screenshot_flow.cc
 +++ b/chrome/browser/image_editor/screenshot_flow.cc
-@@ -91,14 +91,18 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
+@@ -91,15 +91,19 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
        base::BindOnce(&ScreenshotFlow::CancelCapture, base::Unretained(this)),
        web_contents_view, web_contents_->GetTopLevelNativeWindow());
  #else
@@ -17,10 +17,11 @@ index 307688508ee7f494d4b12b525bfe6986fa2b7404..7f8c56857275eb57894ba0688549a20c
 +#if BUILDFLAG(IS_MAC) || defined(USE_AURA)
    content_layer->Add(screen_capture_layer_.get());
    content_layer->StackAtTop(screen_capture_layer_.get());
-+#endif
    screen_capture_layer_->SetBounds(bounds);
++#endif
    screen_capture_layer_->SetVisible(true);
  
+   SetCursor(ui::mojom::CursorType::kCross);
 @@ -124,6 +128,7 @@ void ScreenshotFlow::RemoveUIOverlay() {
    ui::Layer* content_layer = widget->GetLayer();
    event_capture_mac_.reset();
@@ -60,3 +61,19 @@ index 307688508ee7f494d4b12b525bfe6986fa2b7404..7f8c56857275eb57894ba0688549a20c
  }
  
  void ScreenshotFlow::CancelCapture() {
+@@ -319,6 +326,7 @@ bool ScreenshotFlow::IsUIOverlayShown() {
+ }
+ 
+ void ScreenshotFlow::ResetUIOverlayBounds() {
++#if !BUILDFLAG(IS_ANDROID)
+ #if BUILDFLAG(IS_MAC)
+   gfx::Rect bounds = web_contents_->GetViewBounds();
+   const gfx::NativeView web_contents_view =
+@@ -334,6 +342,7 @@ void ScreenshotFlow::ResetUIOverlayBounds() {
+   const gfx::Rect bounds = native_window->bounds();
+ #endif
+   screen_capture_layer_->SetBounds(bounds);
++#endif
+ }
+ 
+ void ScreenshotFlow::OnPaintLayer(const ui::PaintContext& context) {

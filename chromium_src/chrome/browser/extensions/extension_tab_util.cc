@@ -30,7 +30,7 @@ void CreateTabObjectAndroid(
       tab_object->active = true;
     }
     for (int i = 0; i < tab_model->GetTabCount(); ++i) {
-      int openingTab = (tab_model->GetLastNonExtensionActiveIndex());
+      openingTab = (tab_model->GetLastNonExtensionActiveIndex());
       if (openingTab == -1)
         openingTab = 0;
       if (i == openingTab && tab_model->GetWebContentsAt(i) == contents) {
@@ -70,8 +70,7 @@ void CreateTabListAndroid(
           (is_normal && (tab_android->ExtensionWindowID() == -1))) {
             ExtensionTabUtil::ScrubTabBehavior scrub_tab_behavior =
               ExtensionTabUtil::GetScrubTabBehavior(extension, context, web_contents);
-                tab_list.Append(base::Value::FromUniquePtrValue(
-                  CreateTabObject(web_contents, scrub_tab_behavior, extension, nullptr, i)->ToValue()));
+                tab_list.Append(ExtensionTabUtil::CreateTabObject(web_contents, scrub_tab_behavior, extension, nullptr, i).ToValue());
       }
     }
   }
@@ -95,24 +94,23 @@ bool GetTabByIdAndroid(int tab_id, WebContents** contents, int* tab_index) {
   }
   return false;
 }
-std::unique_ptr<base::DictionaryValue> CreateDummyWindowValueForExtension(
+base::Value::Dict CreateDummyWindowValueForExtension(
 		                    ExtensionTabUtil::PopulateTabBehavior populate_tab_behavior) {
-  auto  dict = std::make_unique<base::DictionaryValue>();
+  base::Value::Dict dict;
+  dict.Set(tabs_constants::kIdKey, -1);
+  dict.Set(tabs_constants::kWindowTypeKey, "");
+  dict.Set(tabs_constants::kFocusedKey, false);
+  dict.Set(tabs_constants::kIncognitoKey, false);
+  dict.Set(tabs_constants::kAlwaysOnTopKey, false);
 
-  dict->SetIntKey(tabs_constants::kIdKey, -1);
-  dict->SetStringKey(tabs_constants::kWindowTypeKey, "");
-  dict->SetBoolKey(tabs_constants::kFocusedKey, false);
-  dict->SetBoolKey(tabs_constants::kIncognitoKey, false);
-  dict->SetBoolKey(tabs_constants::kAlwaysOnTopKey, false);
-
-  dict->SetStringKey(tabs_constants::kShowStateKey, tabs_constants::kShowStateValueNormal);
-  dict->SetIntKey(tabs_constants::kLeftKey, 0);
-  dict->SetIntKey(tabs_constants::kTopKey, 0);
-  dict->SetIntKey(tabs_constants::kWidthKey, 1920);
-  dict->SetIntKey(tabs_constants::kHeightKey, 1080);
+  dict.Set(tabs_constants::kShowStateKey, tabs_constants::kShowStateValueNormal);
+  dict.Set(tabs_constants::kLeftKey, 0);
+  dict.Set(tabs_constants::kTopKey, 0);
+  dict.Set(tabs_constants::kWidthKey, 1920);
+  dict.Set(tabs_constants::kHeightKey, 1080);
 
   if (populate_tab_behavior == ExtensionTabUtil::kPopulateTabs) {
-    dict->SetKey(tabs_constants::kTabsKey,base::ListValue());
+    dict.Set(tabs_constants::kTabsKey,base::Value::List());
   }
   return dict;
 }

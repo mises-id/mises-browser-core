@@ -4,5 +4,5 @@
   // static
   void AppLauncherHandler::RegisterProfilePrefs(
       user_prefs::PrefRegistrySyncable* registry) {
-  };
+  }
 #endif

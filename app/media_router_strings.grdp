@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Media Router-specific strings (included from generated_resources.grd). -->
-<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- General -->
   <message name="IDS_MEDIA_ROUTER_ICON_TOOLTIP_TEXT" desc="Tooltip for the Media Router Action icon, which appears in the toolbar. The tooltip appears on mouseover of the icon.">
@@ -144,10 +143,10 @@
 
   <!-- Cast-to-meeting deprecation/removal -->
   <message name="IDS_MEDIA_ROUTER_CAST_TO_MEETING_DEPRECATED" desc="Used in the Cast dialog to inform the user that starting a presentation from the Cast dialog will no longer work, and using meet.google.com will be the only option.">
-    Soon this option will no longer be supported. To present a tab, use <ph name="GOOGLE_MEET">$1<ex>Mises Meet</ex></ph>.
+    Soon this option will no longer be supported. To present a tab, use <ph name="GOOGLE_MEET">$1<ex>Google Meet</ex></ph>.
   </message>
   <message name="IDS_MEDIA_ROUTER_CAST_TO_MEETING_REMOVED" desc="Used in the Cast dialog to inform the user that starting a presentation from the Cast dialog is not longer supported, and using meet.google.com is the only option.">
-    This option is no longer supported. To present a tab, use <ph name="GOOGLE_MEET">$1<ex>Mises Meet</ex></ph>.
+    This option is no longer supported. To present a tab, use <ph name="GOOGLE_MEET">$1<ex>Google Meet</ex></ph>.
   </message>
 
   <!-- Wired Display Media Route Provider -->
@@ -157,19 +156,19 @@
 
   <!-- Cast feedback dialog (chrome://cast-feedback) -->
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_TITLE" desc="Title of the tab opened by selecting '''Report an issue' from the Cast menu.">
-    Mises Cast Feedback
+    Google Cast Feedback
   </message>
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_NA" desc="Label used for subjective quality ratings where the user expresses no opinion.">
     N/A
   </message>
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_FORM_DESCRIPTION" desc="Text to describe the feedback form.">
-    Your feedback helps us to improve Mises Cast and is appreciated.
+    Your feedback helps us to improve Google Cast and is appreciated.
     For help troubleshooting issues with cast, please refer to the
     <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>
     help center<ph name="END_LINK">&lt;/a&gt;</ph>.
   </message>
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_HEADER" desc="Header of the Media Router feedback page.">
-    Tell us what's happening with Mises Cast.
+    Tell us what's happening with Google Cast.
   </message>
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_YOUR_ANSWER" desc="Placeholder text for inputs in the feedback form.">
     Your answer
@@ -201,7 +200,7 @@
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_ADDITIONAL_COMMENTS" desc="Text for field in feedback form for other comments.">
     Additional comments:
   </message>
-  <message name="IDS_MEDIA_ROUTER_FEEDBACK_ALLOW_CONTACT_BY_EMAIL" desc="Label for a checkbox in a form indicating whether the user is permitting Mises to contact them by email.">
+  <message name="IDS_MEDIA_ROUTER_FEEDBACK_ALLOW_CONTACT_BY_EMAIL" desc="Label for a checkbox in a form indicating whether the user is permitting Google to contact them by email.">
     We may email you for more information or updates
   </message>
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_YOUR_EMAIL_ADDRESS" desc="Default text shown in a text input box for the user to enter their email address.">
@@ -314,22 +313,22 @@
     Send debug logs (recommended)
   </message>
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_PRIVACY_DATA_USAGE" desc="Text with details about data usage of details submitted in the feedback page.">
-    Your Mises version, operating system version, Cast settings,
+    Your Chrome version, operating system version, Cast settings,
     mirroring performance stats, and communication channel diagnostic
     logs will be submitted in addition to any information you choose
     to include above. This feedback is used to diagnose problems and
     help improve the feature. Any personal information you submit,
     whether explicitly or incidentally, will be protected in
     accordance with our privacy policies. By submitting this feedback,
-    you agree that Mises may use feedback that you provide to improve
-    any Mises product or service.
+    you agree that Google may use feedback that you provide to improve
+    any Google product or service.
   </message>
 
   <!-- Cast feedback dialog: discovery -->
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_SETUP_VISIBILITY_QUESTION" desc="Text for the question about device visibility through setup flow">
     Are you able to see your Chromecast in the
     <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>
-    Mises Home app<ph name="END_LINK">&lt;/a&gt;</ph>?
+    Google Home app<ph name="END_LINK">&lt;/a&gt;</ph>?
   </message>
   <message name="IDS_MEDIA_ROUTER_FEEDBACK_YES" desc="Label for yes option.">
     Yes

@@ -24,6 +24,12 @@ public:
       content::WebContents* web_contents,
       LocalCardMigrationBubbleController* controller,
       bool is_user_gesture) override {return nullptr;}
+
+  AutofillBubbleBase* ShowSaveIbanBubble(
+      content::WebContents* web_contents,
+      SaveIbanBubbleController* controller,
+      bool is_user_gesture) override {return nullptr;}
+
   AutofillBubbleBase* ShowOfferNotificationBubble(
       content::WebContents* contents,
       OfferNotificationBubbleController* controller,
@@ -66,9 +72,7 @@ class HatsNextWebDialog_Mises {
                     const SurveyStringData& product_specific_string_data) {}
 };
 
-void ProfileMenuViewBase::ShowBubble(views::Button*, Browser*, bool) {
 
-}
 
 #define AutofillBubbleHandlerImpl AutofillBubbleHandlerImpl_Mises
 #define HatsNextWebDialog HatsNextWebDialog_Mises

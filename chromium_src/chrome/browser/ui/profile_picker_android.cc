@@ -48,10 +48,6 @@ ProfilePicker::Params ProfilePicker::Params::ForBackgroundManager(
 }
 
 
-GURL ProfilePicker::Params::GetInitialURL() const {
-  return GURL();
-}
-
 bool ProfilePicker::Params::CanReusePickerWindow(const Params& other) const {
   return false;
 }

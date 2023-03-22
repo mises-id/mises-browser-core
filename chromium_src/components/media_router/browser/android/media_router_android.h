@@ -21,7 +21,7 @@
       mojo::PendingRemote<mojom::MediaStatusObserver> observer) override;\
   IssueManager* GetIssueManager() override;\
   base::Value GetLogs() const override;\
-  base::Value GetState() const override;\
+  base::Value::Dict GetState() const override;\
   void GetProviderState(\
       mojom::MediaRouteProviderId provider_id,\
       mojom::MediaRouteProvider::GetStateCallback callback) const override;\

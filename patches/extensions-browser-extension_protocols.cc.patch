@@ -1,5 +1,5 @@
 diff --git a/extensions/browser/extension_protocols.cc b/extensions/browser/extension_protocols.cc
-index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..7654c72d97c5bb1ceddff14a7b3931554eef0e71 100644
+index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..418039e982d7d8f9d134bd79a9c6261782cc869b 100644
 --- a/extensions/browser/extension_protocols.cc
 +++ b/extensions/browser/extension_protocols.cc
 @@ -226,6 +226,7 @@ std::pair<base::FilePath, base::Time> ReadResourceFilePathAndLastModifiedTime(
@@ -60,3 +60,12 @@ index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..7654c72d97c5bb1ceddff14a7b393155
        ExtensionsBrowserClient::Get()->LoadResourceFromResourceBundle(
            request_, loader_.Unbind(), bundle_resource_path, resource_id,
            std::move(headers), client_.Unbind());
+@@ -880,7 +890,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+   // We store the ID and get RenderProcessHost each time it's needed. This is to
+   // avoid holding on to stale pointers if we get requests past the lifetime of
+   // the objects.
+-  const int render_process_id_;
++  public: const int render_process_id_; private:
+   const scoped_refptr<extensions::InfoMap> extension_info_map_;
+ 
+   // Tracker for favicon callback.
