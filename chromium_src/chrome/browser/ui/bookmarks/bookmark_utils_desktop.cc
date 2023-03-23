@@ -34,28 +34,20 @@ void GetURLsAndFoldersForOpenTabs(
 }  // namespace
 
 #if BUILDFLAG(IS_ANDROID)
-void OpenAllIfAllowed(
-    Browser* browser,
-    base::OnceCallback<content::PageNavigator*()> get_navigator,
-    const std::vector<const bookmarks::BookmarkNode*>& nodes,
-    WindowOpenDisposition initial_disposition,
-    bool add_to_group) {
+void OpenAllIfAllowed(Browser* browser,
+                      const std::vector<const bookmarks::BookmarkNode*>& nodes,
+                      WindowOpenDisposition initial_disposition,
+                      bool add_to_group) {
     std::vector<UrlAndId> url_and_ids = GetURLsToOpen(
       nodes, browser->profile(),
       initial_disposition == WindowOpenDisposition::OFF_THE_RECORD);
 
   auto do_open = [](Browser* browser,
-                    base::OnceCallback<content::PageNavigator*()> get_navigator,
                     std::vector<UrlAndId> url_and_ids_to_open,
                     WindowOpenDisposition initial_disposition,
                     absl::optional<std::u16string> folder_title,
                     chrome::MessageBoxResult result) {
     if (result != chrome::MESSAGE_BOX_RESULT_YES)
-      return;
-    if (!get_navigator)
-      return;
-    content::PageNavigator* navigator = std::move(get_navigator).Run();
-    if (!navigator)
       return;
     const auto opened_web_contents =
         OpenAllHelper(browser, std::move(url_and_ids_to_open), initial_disposition);
@@ -97,7 +89,7 @@ void OpenAllIfAllowed(
   size_t child_count = url_and_ids.size();
   if (child_count < kNumBookmarkUrlsBeforePrompting) {
     do_open(
-        browser, std::move(get_navigator), std::move(url_and_ids), initial_disposition,
+        browser,  std::move(url_and_ids), initial_disposition,
         add_to_group
             ? absl::optional<std::u16string>(nodes[0]->GetTitledUrlNodeTitle())
             : absl::nullopt,
@@ -114,7 +106,7 @@ void OpenAllIfAllowed(
       l10n_util::GetStringUTF16(IDS_PRODUCT_NAME),
       l10n_util::GetStringFUTF16(IDS_BOOKMARK_BAR_SHOULD_OPEN_ALL,
                                  base::NumberToString16(child_count)),
-      base::BindOnce(do_open, browser, std::move(get_navigator),
+      base::BindOnce(do_open, browser,
                      std::move(url_and_ids), initial_disposition,
                      add_to_group ? absl::optional<std::u16string>(
                                         nodes[0]->GetTitledUrlNodeTitle())

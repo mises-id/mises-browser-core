@@ -3,9 +3,11 @@
 #include "chrome/browser/ui/views/profiles/profile_menu_view_base.h"
 #include "chrome/browser/ui/views/hats/hats_next_web_dialog.h"
 #include "chrome/browser/ui/views/profiles/profile_menu_coordinator.h"
+#include "chrome/browser/ui/performance_controls/high_efficiency_iph_controller.h"
 #if BUILDFLAG(IS_ANDROID)
 
 namespace autofill {
+
 
 class AutofillBubbleHandlerImpl_Mises :public AutofillBubbleHandler{
 public:
@@ -84,10 +86,16 @@ static ProfileMenuCoordinator_Mises* GetOrCreateForBrowser(Browser* browser) {
  }
 };
 
+class HighEfficiencyIPHController_Mises {
+  public:
+   HighEfficiencyIPHController_Mises(Browser* browser) {}
+};
+
 
 #define AutofillBubbleHandlerImpl AutofillBubbleHandlerImpl_Mises
 #define HatsNextWebDialog HatsNextWebDialog_Mises
 #define ProfileMenuCoordinator ProfileMenuCoordinator_Mises
+#define HighEfficiencyIPHController HighEfficiencyIPHController_Mises
 #endif
 
 #include "src/chrome/browser/ui/views/frame/browser_view.cc"

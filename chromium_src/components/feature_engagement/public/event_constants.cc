@@ -41,6 +41,10 @@ const char kFocusHelpBubbleAcceleratorPromoRead[] =
 const char kPerformanceMenuItemActivated[] = "performance_activated";
 const char kSideSearchAutoTriggered[] = "side_search_auto_triggered";
 
+
+
+const char kBatterySaverDialogShown[] = "battery_saver_info_shown";
+
 #endif 
 
 }  // namespace events

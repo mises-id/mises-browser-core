@@ -7,6 +7,12 @@
     PluginObserverAndroid
 #include "src/chrome/browser/ui/tab_helpers.cc"
 #undef PluginObserverAndroid
+
+namespace page_info {
+bool IsPersistentSidePanelEntryFeatureEnabled() {
+  return false;
+}
+}
 #else
 #include "src/chrome/browser/ui/tab_helpers.cc"
 #endif

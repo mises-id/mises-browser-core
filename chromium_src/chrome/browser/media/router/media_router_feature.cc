@@ -3,6 +3,7 @@
 #if BUILDFLAG(IS_ANDROID)
 
  
+#include "chrome/browser/media/router/media_router_feature.h"
 
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
@@ -20,9 +21,7 @@ BASE_FEATURE(kCafMRPDeferredDiscovery,
              "CafMRPDeferredDiscovery",
              base::FEATURE_ENABLED_BY_DEFAULT);
 
-void dummy_run() {
-  LOG(INFO) << kCafMRPDeferredDiscovery.name;
-}
+
 
 }
 

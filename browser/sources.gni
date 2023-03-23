@@ -267,6 +267,7 @@ if (is_android) {
     "metrics/power/process_monitor.cc",
     "metrics/power/power_metrics_reporter.cc",
     "profiles/delete_profile_helper.cc",
+    "accessibility/live_translate_controller_factory.cc",
   ]
   mises_chrome_browser_exception_deps += [
     "//components/live_caption",
