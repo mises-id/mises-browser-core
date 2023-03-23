@@ -58,7 +58,7 @@ void OpenAllIfAllowed(
     if (!navigator)
       return;
     const auto opened_web_contents =
-        OpenAllHelper(navigator, std::move(url_and_ids_to_open), initial_disposition);
+        OpenAllHelper(browser, std::move(url_and_ids_to_open), initial_disposition);
     if (folder_title.has_value()) {
       TabStripModel* model = browser->tab_strip_model();
 
@@ -115,13 +115,13 @@ void OpenAllIfAllowed(
       l10n_util::GetStringFUTF16(IDS_BOOKMARK_BAR_SHOULD_OPEN_ALL,
                                  base::NumberToString16(child_count)),
       base::BindOnce(do_open, browser, std::move(get_navigator),
-                     std::move(urls), initial_disposition,
+                     std::move(url_and_ids), initial_disposition,
                      add_to_group ? absl::optional<std::u16string>(
                                         nodes[0]->GetTitledUrlNodeTitle())
                                   : absl::nullopt));
 }
 
-void OpenAllNow(content::PageNavigator* navigator,
+void OpenAllNow(Browser* browser,
                 const std::vector<const BookmarkNode*>& nodes,
                 WindowOpenDisposition initial_disposition,
                 content::BrowserContext* browser_context) {
@@ -135,7 +135,7 @@ void OpenAllNow(content::PageNavigator* navigator,
       nodes, browser_context,
       initial_disposition == WindowOpenDisposition::OFF_THE_RECORD);
 
-  OpenAllHelper(navigator, std::move(urls), initial_disposition);
+  OpenAllHelper(browser, std::move(urls), initial_disposition);
 }
 
 

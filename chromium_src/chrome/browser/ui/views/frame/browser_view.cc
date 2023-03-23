@@ -2,6 +2,7 @@
 #include "chrome/browser/ui/views/autofill/autofill_bubble_handler_impl.h"
 #include "chrome/browser/ui/views/profiles/profile_menu_view_base.h"
 #include "chrome/browser/ui/views/hats/hats_next_web_dialog.h"
+#include "chrome/browser/ui/views/profiles/profile_menu_coordinator.h"
 #if BUILDFLAG(IS_ANDROID)
 
 namespace autofill {
@@ -72,10 +73,21 @@ class HatsNextWebDialog_Mises {
                     const SurveyStringData& product_specific_string_data) {}
 };
 
+class ProfileMenuCoordinator_Mises {
+public: 
+static ProfileMenuCoordinator_Mises* GetOrCreateForBrowser(Browser* browser) {
+    static ProfileMenuCoordinator_Mises obj;
+    return &obj;
+}
+ void Show(bool) {
+
+ }
+};
 
 
 #define AutofillBubbleHandlerImpl AutofillBubbleHandlerImpl_Mises
 #define HatsNextWebDialog HatsNextWebDialog_Mises
+#define ProfileMenuCoordinator ProfileMenuCoordinator_Mises
 #endif
 
 #include "src/chrome/browser/ui/views/frame/browser_view.cc"

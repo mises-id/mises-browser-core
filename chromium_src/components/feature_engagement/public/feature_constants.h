@@ -8,24 +8,43 @@
 namespace feature_engagement {
 
 #if BUILDFLAG(IS_ANDROID) 
-extern const base::Feature kIPHDesktopSharedHighlightingFeature;
-extern const base::Feature kIPHDesktopTabGroupsNewGroupFeature;
-extern const base::Feature kIPHFocusHelpBubbleScreenReaderPromoFeature;
-extern const base::Feature kIPHGMCCastStartStopFeature;
-extern const base::Feature kIPHLiveCaptionFeature;
-extern const base::Feature kIPHTabAudioMutingFeature;
-extern const base::Feature kIPHPasswordsAccountStorageFeature;
-extern const base::Feature kIPHReadingListDiscoveryFeature;
-extern const base::Feature kIPHReadingListEntryPointFeature;
-extern const base::Feature kIPHIntentChipFeature;
-extern const base::Feature kIPHReadingListInSidePanelFeature;
-extern const base::Feature kIPHReopenTabFeature;
-extern const base::Feature kIPHSideSearchFeature;
-extern const base::Feature kIPHTabSearchFeature;
-extern const base::Feature kIPHWebUITabStripFeature;
-extern const base::Feature kIPHDesktopSnoozeFeature;
-extern const base::Feature kIPHDesktopPwaInstallFeature;
-extern const base::Feature kIPHProfileSwitchFeature;
+
+
+BASE_DECLARE_FEATURE(kIPHBatterySaverModeFeature);
+BASE_DECLARE_FEATURE(kIPHDesktopSharedHighlightingFeature);
+BASE_DECLARE_FEATURE(kIPHDesktopTabGroupsNewGroupFeature);
+BASE_DECLARE_FEATURE(kIPHDesktopCustomizeChromeFeature);
+BASE_DECLARE_FEATURE(kIPHDownloadToolbarButtonFeature);
+BASE_DECLARE_FEATURE(kIPHExtensionsMenuFeature);
+BASE_DECLARE_FEATURE(kIPHFocusHelpBubbleScreenReaderPromoFeature);
+BASE_DECLARE_FEATURE(kIPHGMCCastStartStopFeature);
+BASE_DECLARE_FEATURE(kIPHHighEfficiencyInfoModeFeature);
+BASE_DECLARE_FEATURE(kIPHHighEfficiencyModeFeature);
+BASE_DECLARE_FEATURE(kIPHLiveCaptionFeature);
+BASE_DECLARE_FEATURE(kIPHTabAudioMutingFeature);
+BASE_DECLARE_FEATURE(kIPHPasswordsAccountStorageFeature);
+BASE_DECLARE_FEATURE(kIPHPasswordsManagementBubbleAfterSaveFeature);
+BASE_DECLARE_FEATURE(kIPHPasswordsManagementBubbleDuringSigninFeature);
+BASE_DECLARE_FEATURE(kIPHPasswordsWebAppProfileSwitchFeature);
+BASE_DECLARE_FEATURE(kIPHPerformanceNewBadgeFeature);
+BASE_DECLARE_FEATURE(kIPHPowerBookmarksSidePanelFeature);
+BASE_DECLARE_FEATURE(kIPHPriceTrackingPageActionIconLabelFeature);
+BASE_DECLARE_FEATURE(kIPHReadingListDiscoveryFeature);
+BASE_DECLARE_FEATURE(kIPHReadingListEntryPointFeature);
+BASE_DECLARE_FEATURE(kIPHIntentChipFeature);
+BASE_DECLARE_FEATURE(kIPHReadingListInSidePanelFeature);
+BASE_DECLARE_FEATURE(kIPHReopenTabFeature);
+BASE_DECLARE_FEATURE(kIPHSideSearchAutoTriggeringFeature);
+BASE_DECLARE_FEATURE(kIPHSideSearchFeature);
+BASE_DECLARE_FEATURE(kIPHSideSearchPageActionLabelFeature);
+BASE_DECLARE_FEATURE(kIPHTabSearchFeature);
+BASE_DECLARE_FEATURE(kIPHWebUITabStripFeature);
+BASE_DECLARE_FEATURE(kIPHDesktopSnoozeFeature);
+BASE_DECLARE_FEATURE(kIPHDesktopPwaInstallFeature);
+BASE_DECLARE_FEATURE(kIPHProfileSwitchFeature);
+BASE_DECLARE_FEATURE(kIPHWebUiHelpBubbleTestFeature);
+BASE_DECLARE_FEATURE(kIPHPriceTrackingInSidePanelFeature);
+
 #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) ||
         // BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
 

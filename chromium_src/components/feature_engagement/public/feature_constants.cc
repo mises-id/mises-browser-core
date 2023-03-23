@@ -4,42 +4,109 @@
 namespace feature_engagement {
 
 #if BUILDFLAG(IS_ANDROID)
-const base::Feature kIPHDesktopSharedHighlightingFeature{
-    "IPH_DesktopSharedHighlighting", base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHDesktopTabGroupsNewGroupFeature{
-    "IPH_DesktopTabGroupsNewGroup", base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHFocusHelpBubbleScreenReaderPromoFeature{
-    "IPH_FocusHelpBubbleScreenReaderPromo", base::FEATURE_ENABLED_BY_DEFAULT};
-const base::Feature kIPHGMCCastStartStopFeature{
-    "IPH_GMCCastStartStop", base::FEATURE_ENABLED_BY_DEFAULT};
-const base::Feature kIPHLiveCaptionFeature{"IPH_LiveCaption",
-                                           base::FEATURE_ENABLED_BY_DEFAULT};
-const base::Feature kIPHTabAudioMutingFeature{"IPH_TabAudioMuting",
-                                              base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHPasswordsAccountStorageFeature{
-    "IPH_PasswordsAccountStorage", base::FEATURE_ENABLED_BY_DEFAULT};
-const base::Feature kIPHReadingListDiscoveryFeature{
-    "IPH_ReadingListDiscovery", base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHReadingListEntryPointFeature{
-    "IPH_ReadingListEntryPoint", base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHReadingListInSidePanelFeature{
-    "IPH_ReadingListInSidePanel", base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHReopenTabFeature{"IPH_ReopenTab",
-                                         base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHSideSearchFeature{"IPH_SideSearch",
-                                          base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHTabSearchFeature{"IPH_TabSearch",
-                                         base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHWebUITabStripFeature{"IPH_WebUITabStrip",
-                                             base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHDesktopSnoozeFeature{"IPH_DesktopSnoozeFeature",
-                                             base::FEATURE_DISABLED_BY_DEFAULT};
-const base::Feature kIPHDesktopPwaInstallFeature{
-    "IPH_DesktopPwaInstall", base::FEATURE_ENABLED_BY_DEFAULT};
-const base::Feature kIPHProfileSwitchFeature{"IPH_ProfileSwitch",
-                                             base::FEATURE_ENABLED_BY_DEFAULT};
-const base::Feature kIPHIntentChipFeature{"IPH_IntentChip",
-                                          base::FEATURE_DISABLED_BY_DEFAULT};
+
+BASE_FEATURE(kIPHBatterySaverModeFeature,
+             "IPH_BatterySaverMode",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHDesktopSharedHighlightingFeature,
+             "IPH_DesktopSharedHighlighting",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHDesktopTabGroupsNewGroupFeature,
+             "IPH_DesktopTabGroupsNewGroup",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHDesktopCustomizeChromeFeature,
+             "IPH_DesktopCustomizeChrome",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHDownloadToolbarButtonFeature,
+             "IPH_DownloadToolbarButton",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHExtensionsMenuFeature,
+             "IPH_ExtensionsMenu",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHFocusHelpBubbleScreenReaderPromoFeature,
+             "IPH_FocusHelpBubbleScreenReaderPromo",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHGMCCastStartStopFeature,
+             "IPH_GMCCastStartStop",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHHighEfficiencyInfoModeFeature,
+             "IPH_HighEfficiencyInfoMode",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHHighEfficiencyModeFeature,
+             "IPH_HighEfficiencyMode",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHLiveCaptionFeature,
+             "IPH_LiveCaption",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHTabAudioMutingFeature,
+             "IPH_TabAudioMuting",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPasswordsAccountStorageFeature,
+             "IPH_PasswordsAccountStorage",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPasswordsManagementBubbleAfterSaveFeature,
+             "IPH_PasswordsManagementBubbleAfterSave",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPasswordsManagementBubbleDuringSigninFeature,
+             "IPH_PasswordsManagementBubbleDuringSignin",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPasswordsWebAppProfileSwitchFeature,
+             "IPH_PasswordsWebAppProfileSwitch",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPerformanceNewBadgeFeature,
+             "IPH_PerformanceNewBadge",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPowerBookmarksSidePanelFeature,
+             "IPH_PowerBookmarksSidePanel",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPriceTrackingPageActionIconLabelFeature,
+             "IPH_PriceTrackingPageActionIconLabelFeature",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHReadingListDiscoveryFeature,
+             "IPH_ReadingListDiscovery",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHReadingListEntryPointFeature,
+             "IPH_ReadingListEntryPoint",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHReadingListInSidePanelFeature,
+             "IPH_ReadingListInSidePanel",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHReopenTabFeature,
+             "IPH_ReopenTab",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHSideSearchAutoTriggeringFeature,
+             "IPH_SideSearchAutoTriggering",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHSideSearchFeature,
+             "IPH_SideSearch",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHSideSearchPageActionLabelFeature,
+             "IPH_SideSearchPageActionLabel",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHTabSearchFeature,
+             "IPH_TabSearch",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHWebUITabStripFeature,
+             "IPH_WebUITabStrip",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHDesktopSnoozeFeature,
+             "IPH_DesktopSnoozeFeature",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHDesktopPwaInstallFeature,
+             "IPH_DesktopPwaInstall",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHProfileSwitchFeature,
+             "IPH_ProfileSwitch",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHIntentChipFeature,
+             "IPH_IntentChip",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHWebUiHelpBubbleTestFeature,
+             "IPH_WebUiHelpBubbleTest",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPriceTrackingInSidePanelFeature,
+             "IPH_PriceTrackingInSidePanel",
+             base::FEATURE_ENABLED_BY_DEFAULT);
 #endif  
 
 

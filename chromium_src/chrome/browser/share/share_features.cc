@@ -5,14 +5,22 @@
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
 
-#undef ANDROID
-
 #include "src/chrome/browser/share/share_features.cc"
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
-#define ANDROID 1
 
+namespace share {
+
+BASE_FEATURE(kCrowLaunchTab,
+             "ShareCrowLaunchTab",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+void dummy_run() {
+  LOG(INFO) << kCrowLaunchTab.name;
+}
+
+}
 #else
 
 #include "src/chrome/browser/share/share_features.cc"

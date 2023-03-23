@@ -10,8 +10,10 @@ namespace permissions {
 namespace features {
 
 #if BUILDFLAG(IS_ANDROID)
+
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const base::Feature kPermissionsPostPromptSurvey;
+BASE_DECLARE_FEATURE(kPermissionsPromptSurvey);
+
 
 #endif  // BUILDFLAG(IS_ANDROID)
 
@@ -21,16 +23,17 @@ namespace feature_params {
 
 #if BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const base::FeatureParam<std::string>
-    kPermissionsPostPromptSurveyTriggerId;
+extern const base::FeatureParam<std::string> kPermissionsPromptSurveyTriggerId;
 
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const base::FeatureParam<std::string>
-    kPermissionsPostPromptSurveyRequestTypeFilter;
+    kPermissionsPromptSurveyRequestTypeFilter;
 
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 extern const base::FeatureParam<std::string>
-    kPermissionsPostPromptSurveyActionFilter;
+    kPermissionsPromptSurveyActionFilter;
+
+
 #endif
 
 }  // namespace feature_params

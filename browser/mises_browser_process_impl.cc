@@ -119,4 +119,9 @@ ipfs::MisesIpfsClientUpdater* MisesBrowserProcessImpl::ipfs_client_updater() {
       mises_component_updater_delegate(), user_data_dir);
   return ipfs_client_updater_.get();
 }
+
 #endif  // BUILDFLAG(ENABLE_IPFS)
+
+
+void BrowserProcessImpl::CreateGCMDriver() {
+}

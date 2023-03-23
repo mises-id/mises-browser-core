@@ -8,6 +8,10 @@
 
 #include "components/page_info/page_info_ui_delegate.h"
 
+#if BUILDFLAG(IS_ANDROID)
+#include "components/page_info/core/proto/about_this_site_metadata.pb.h"
+#endif
+
 #if !BUILDFLAG(IS_ANDROID)
 #define ShouldShowAsk                     \
   AddIPFSTabForURL(const GURL& ipfs_url); \
@@ -19,6 +23,10 @@
   AddIPFSTabForURL(const GURL& ipfs_url); \
   bool ShouldShowSiteSettings(int* link_text_id, int* tooltip_text_id); \
   std::u16string GetPermissionDetail(ContentSettingsType type); \
+  void AboutThisSiteSourceClicked(GURL url, const ui::Event& event);\
+  void ShowPrivacySandboxSettings();\
+  void OpenMoreAboutThisPageUrl(const GURL& url, const ui::Event& event);\
+  absl::optional<page_info::proto::SiteInfo> GetAboutThisSiteInfo();\
   void ShowPrivacySandboxAdPersonalization(); \
   bool IsBlockAutoPlayEnabled() override; \
   bool IsMultipleTabsOpen() override; \

@@ -40,4 +40,24 @@ DefaultWebClientState IsDefaultProtocolClient(const std::string& protocol) {
   return UNKNOWN_DEFAULT;
 }
 
+std::u16string GetApplicationNameForScheme(const GURL& url) {
+  return std::u16string();
+}
+DefaultWebClientState IsDefaultClientForScheme(const std::string& scheme) {
+  return UNKNOWN_DEFAULT;
+}
+
+bool SetAsDefaultClientForScheme(const std::string& scheme) {
+  return false;
+}
+
+namespace internal {
+
+DefaultWebClientSetPermission GetPlatformSpecificDefaultWebClientSetPermission(
+    WebClientSetMethod method) {
+  return SET_DEFAULT_UNATTENDED;
+}
+
+} 
+
 }  // namespace shell_integration

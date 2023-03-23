@@ -1,5 +1,5 @@
 diff --git a/chrome/app/chromium_strings.grd b/chrome/app/chromium_strings.grd
-index c0f31231b6d56d749246bb7b323a2d43f421397a..dc952702fd66ecba8c2d5c4af25dbe321f04615a 100644
+index c0f31231b6d56..b9471f2c18c68 100644
 --- a/chrome/app/chromium_strings.grd
 +++ b/chrome/app/chromium_strings.grd
 @@ -272,7 +272,7 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
@@ -101,3 +101,12 @@ index c0f31231b6d56d749246bb7b323a2d43f421397a..dc952702fd66ecba8c2d5c4af25dbe32
          <!-- Profile Picker -->
          <if expr="chromeos_lacros">
            <message name="IDS_PROFILE_PICKER_MAIN_VIEW_SUBTITLE_LACROS" desc="Profile picker main view subtitle">
+@@ -1645,7 +1645,7 @@ Permissions you've already given to websites and apps may apply to this account.
+       </if>
+ 
+       <!-- High Efficiency IPH strings -->
+-      <if expr="not is_android">
++      <if expr="is_android or not is_android">
+         <if expr="use_titlecase">
+           <message name="IDS_HIGH_EFFICIENCY_INFO_MODE_PROMO_TITLE" desc="In Title Case: The title for the high efficiency info mode in-product promo bubble.">
+             Memory Saver Made Chromium Faster

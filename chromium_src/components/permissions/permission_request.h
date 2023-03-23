@@ -15,6 +15,7 @@
 #if BUILDFLAG(IS_ANDROID)
 #define GetDialogMessageText\
   GetMessageTextFragment() const;\
+  bool IsConfirmationChipSupported();\
   IconId GetIconForChip();\
   IconId GetBlockedIconForChip();\
   absl::optional<std::u16string> GetRequestChipText(ChipTextType type) const;\

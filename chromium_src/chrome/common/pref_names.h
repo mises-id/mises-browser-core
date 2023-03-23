@@ -46,6 +46,7 @@ extern const char kWasRestarted[];
 #if BUILDFLAG(IS_ANDROID)
 extern const char kNtpCustomBackgroundDict[];
 extern const char kNtpCustomBackgroundLocalToDevice[];
+extern const char kNtpCustomizeChromeButtonOpenCount[];
 extern const char kNtpDisabledModules[];
 extern const char kNtpModulesOrder[];
 extern const char kNtpModulesVisible[];
@@ -136,6 +137,15 @@ extern const char kLastWhatsNewVersion[];
 #if BUILDFLAG(IS_ANDROID)
 extern const char kLensRegionSearchEnabled[];
 extern const char kSidePanelHorizontalAlignment[];
+extern const char kSidePanelCompanionEntryPinnedToToolbar[];
+extern const char kLensDesktopNTPSearchEnabled[];
+#endif
+
+#if BUILDFLAG(IS_ANDROID)
+extern const char kHighEfficiencyChipExpandedCount[];
+
+extern const char kShouldShowPriceTrackFUEBubble[];
+extern const char kShouldShowSidePanelBookmarkTab[];
 #endif
 
 

@@ -6,6 +6,7 @@
 #include "src/chrome/browser/lifetime/application_lifetime_android.h"
 
 namespace chrome {
+  void RelaunchIgnoreUnloadHandlers();
   void OnAppExiting();
   void CloseAllBrowsers();
   void OnClosingAllBrowsers(bool);

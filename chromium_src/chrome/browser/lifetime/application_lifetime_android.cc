@@ -20,6 +20,9 @@ void CloseAllBrowsers() {
 void OnClosingAllBrowsers(bool) {
   
 }
+void RelaunchIgnoreUnloadHandlers() {
+  
+}
 
 base::CallbackListSubscription AddClosingAllBrowsersCallback(
     base::RepeatingCallback<void(bool)> closing_all_browsers_callback) {

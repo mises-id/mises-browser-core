@@ -12595,7 +12595,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
       <ph name="USB_DEVICE_NAME">$1<ex>Nexus 5</ex></ph> detected
     </message>
 
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <!-- WebHID Notification -->
       <message name="IDS_WEBHID_DEVICE_CONNECTED_BY_EXTENSION_NOTIFICATION_TITLE" desc="Notification title shown to the user when a HID device is being accessed by an extension.">
         An extension is using a HID device

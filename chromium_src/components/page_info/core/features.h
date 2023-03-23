@@ -15,6 +15,14 @@ namespace page_info {
 extern const base::Feature kPageInfoHistoryDesktop;
 // Hides site settings row.
 extern const base::Feature kPageInfoHideSiteSettings;
+
+// Enables Cookies Subpage. For implementation phase.
+BASE_DECLARE_FEATURE(kPageInfoCookiesSubpage);
+
+
+// Enables the new page specific site data dialog.
+BASE_DECLARE_FEATURE(kPageSpecificSiteDataDialog);
+
 #endif
 
 }  // namespace page_info

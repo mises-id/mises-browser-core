@@ -42,6 +42,13 @@ ShortcutLocations GetAppExistingShortCutLocationImpl(
   return ShortcutLocations();
 }
 
+std::vector<base::FilePath> GetShortcutLocations(
+    const ShortcutLocations& locations,
+    const base::FilePath& profile_path,
+    const std::string& app_id) {
+  return std::vector<base::FilePath>();
+}
+
 void DeleteAllShortcutsForProfile(const base::FilePath& profile_path) {}
 
 }  // namespace internals

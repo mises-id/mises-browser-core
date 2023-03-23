@@ -38,6 +38,9 @@ const char kFocusHelpBubbleAcceleratorPressed[] =
 const char kFocusHelpBubbleAcceleratorPromoRead[] =
     "focus_help_bubble_accelerator_promo_read";
 
+const char kPerformanceMenuItemActivated[] = "performance_activated";
+const char kSideSearchAutoTriggered[] = "side_search_auto_triggered";
+
 #endif 
 
 }  // namespace events

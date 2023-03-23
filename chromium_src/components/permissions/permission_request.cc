@@ -101,7 +101,7 @@ std::u16string PermissionRequest::GetDialogMessageText() const {
 }
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
+#if BUILDFLAG(IS_ANDROID)
 
 bool PermissionRequest::IsConfirmationChipSupported() {
   return permissions::IsConfirmationChipSupported(request_type_);
@@ -268,5 +268,7 @@ ContentSettingsType PermissionRequest::GetContentSettingsType() const {
     return type.value();
   return ContentSettingsType::DEFAULT;
 }
+
+
 
 }  // namespace permissions

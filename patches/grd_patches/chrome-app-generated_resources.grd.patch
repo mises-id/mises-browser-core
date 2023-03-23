@@ -1,5 +1,5 @@
 diff --git a/chrome/app/generated_resources.grd b/chrome/app/generated_resources.grd
-index 45bc795e9c51d..ac1df76070ec8 100644
+index 45bc795e9c51d..d4318b38c900a 100644
 --- a/chrome/app/generated_resources.grd
 +++ b/chrome/app/generated_resources.grd
 @@ -306,7 +306,7 @@ are declared in tools/grit/grit_rule.gni.
@@ -317,6 +317,15 @@ index 45bc795e9c51d..ac1df76070ec8 100644
          <message name="IDS_TAB_AX_LABEL_PERMISSION_REQUESTED_FORMAT" desc="Accessibility label text for Windows, Linux or Fuchsia, when a tab has a pending request. Example: 'Google Search - Permission requested, press F6 to respond'.">
            <ph name="WINDOW_TITLE">$1<ex>Google Search</ex></ph> - Permission requested, press F6 to respond
          </message>
+@@ -12595,7 +12595,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+       <ph name="USB_DEVICE_NAME">$1<ex>Nexus 5</ex></ph> detected
+     </message>
+ 
+-    <if expr="not is_android">
++    <if expr="is_android or not is_android">
+       <!-- WebHID Notification -->
+       <message name="IDS_WEBHID_DEVICE_CONNECTED_BY_EXTENSION_NOTIFICATION_TITLE" desc="Notification title shown to the user when a HID device is being accessed by an extension.">
+         An extension is using a HID device
 @@ -12649,7 +12649,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
        </message>
      </if>
