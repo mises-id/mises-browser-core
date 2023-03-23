@@ -12,7 +12,8 @@ void ChromeContentBrowserClient::
         blink::AssociatedInterfaceRegistry& associated_registry) {
   RegisterAssociatedInterfaceBindersForRenderFrameHost_Chromium(render_frame_host, associated_registry);
 #if BUILDFLAG(IS_ANDROID) 
-    associated_registry.AddInterface(base::BindRepeating(
+    associated_registry.AddInterface<
+      search::mojom::EmbeddedSearchConnector>(base::BindRepeating(
         [](content::RenderFrameHost* render_frame_host,
            mojo::PendingAssociatedReceiver<
                search::mojom::EmbeddedSearchConnector> receiver) {

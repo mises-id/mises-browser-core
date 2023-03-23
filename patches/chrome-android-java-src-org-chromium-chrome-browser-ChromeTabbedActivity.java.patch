@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index c0b17bb91cdadf4b1a4e82c5dc2bfdfdad2c1de3..594cb8ceb8169c3eaa542bdc9ccbcda2206f48a9 100644
+index c0b17bb91cdadf4b1a4e82c5dc2bfdfdad2c1de3..7320c9d32be16167c0af4f172acfb7043574e587 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 @@ -224,6 +224,20 @@ import java.util.List;
@@ -168,16 +168,19 @@ index c0b17bb91cdadf4b1a4e82c5dc2bfdfdad2c1de3..594cb8ceb8169c3eaa542bdc9ccbcda2
          } else {
              return super.onMenuOrKeyboardAction(id, fromMenu);
          }
-@@ -3039,4 +3079,60 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -2903,6 +2943,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+         try (TraceEvent e = TraceEvent.scoped("ChromeTabbedActivity.onActivityResult")) {
+             super.onActivityResult(requestCode, resultCode, data);
++            mInAppUpdater.onActivityResult(requestCode,resultCode,data);
+         }
+     }
+ 
+@@ -3039,4 +3080,55 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
          }
          return mIsStartSurfaceRefactorEnabled;
      }
 +
-+    @Override
-+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-+        super.onActivityResult(requestCode,resultCode,data);
-+        mInAppUpdater.onActivityResult(requestCode,resultCode,data);	
-+    }  
 +    private void launchNTP() {
 +        if (getTabModelSelector().isIncognitoSelected()) {
 +            getCurrentTabCreator().launchIncognitoNTP();
@@ -189,12 +192,12 @@ index c0b17bb91cdadf4b1a4e82c5dc2bfdfdad2c1de3..594cb8ceb8169c3eaa542bdc9ccbcda2
 +         String SCRIPT = "if(window.misesModule && window.misesModule.getWindowInformation){window.misesModule.getWindowInformation()} else {console.log('window.misesModule or window.misesModule.getWindowInformation is null')}";
 +            final Context context = ChromeTabbedActivity.this;
 +            if (currentTab == null || currentTab.getWebContents() == null)
-+                return true;
++                return;
 +            if (currentTab.isNativePage() || currentTab.isClosing()
 +                    || currentTab.isShowingErrorPage() ) {
 +                Log.e("mises","share currentTab.isNativePage() || currentTab.isClosing() || currentTab.isShowingErrorPage() || currentTab.isShowingSadTab()");
 +                Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
-+                return true;
++                return;
 +            }
 +            currentTab.getWebContents().evaluateJavaScript(SCRIPT, jsonResult -> {
 +                Log.e("mises share msg : ", jsonResult);
@@ -218,7 +221,7 @@ index c0b17bb91cdadf4b1a4e82c5dc2bfdfdad2c1de3..594cb8ceb8169c3eaa542bdc9ccbcda2
 +                        MisesShareWin shareWin = MisesShareWin.newInstance(ChromeTabbedActivity.this, icon, title, url);
 +                        shareWin.show((ChromeTabbedActivity.this).getSupportFragmentManager(), "MisesShareWin");
 +                    } catch (JSONException e) {
-+                        Log.e("mises", "share is not json"  e.toString());
++                        Log.e("mises", "share is not json" + e.toString());
 +                        Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
 +                        e.printStackTrace();
 +                    }

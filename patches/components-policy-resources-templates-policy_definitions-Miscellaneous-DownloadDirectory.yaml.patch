@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Miscellaneous/DownloadDirectory.yaml b/components/policy/resources/templates/policy_definitions/Miscellaneous/DownloadDirectory.yaml
+index fe671392f44dc46d85d2f35550792289f0d93168..7c274d4630a53e1c57e2d4e3572fb07ab0497aa2 100644
+--- a/components/policy/resources/templates/policy_definitions/Miscellaneous/DownloadDirectory.yaml
++++ b/components/policy/resources/templates/policy_definitions/Miscellaneous/DownloadDirectory.yaml
+@@ -26,6 +26,7 @@ schema:
+ supported_on:
+ - chrome.*:11-
+ - chrome_os:35-
++- android:111-
+ tags:
+ - local-data-access
+ type: string

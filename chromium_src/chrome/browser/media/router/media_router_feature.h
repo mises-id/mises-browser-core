@@ -17,6 +17,9 @@
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
+namespace media_router {
+  BASE_DECLARE_FEATURE(kCafMRPDeferredDiscovery);
+}
 #else
 
 #include "src/chrome/browser/media/router/media_router_feature.h"

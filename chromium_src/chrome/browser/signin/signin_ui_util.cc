@@ -19,7 +19,7 @@ class SigninUiDelegateImplAndroid : public SigninUiDelegate {
                     bool enable_sync,
                     signin_metrics::AccessPoint access_point,
                     signin_metrics::PromoAction promo_action) override{}
-}
+};
 
 
 SigninUiDelegate* GetSigninUiDelegate() {

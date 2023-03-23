@@ -1,5 +1,5 @@
 diff --git a/chrome/app/generated_resources.grd b/chrome/app/generated_resources.grd
-index 45bc795e9c51d..89a38741c5c9f 100644
+index 45bc795e9c51d..ac1df76070ec8 100644
 --- a/chrome/app/generated_resources.grd
 +++ b/chrome/app/generated_resources.grd
 @@ -306,7 +306,7 @@ are declared in tools/grit/grit_rule.gni.
@@ -176,22 +176,30 @@ index 45bc795e9c51d..89a38741c5c9f 100644
          <message name="IDS_PASSWORD_MANAGER_UPDATED_BUBBLE_TITLE" desc="Title of the bubble notifying the user that the password was updated.">
            Password updated
          </message>
-@@ -8286,13 +8286,13 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -8190,7 +8190,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+           </message>
          </if>
-       </if>
-       <if expr="is_android">
--        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON" desc="Mobile: Button text for the 'Save Password' infobar's 'Remember password' option"  formatter_data="android_java">
-+        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON_ANDROID" desc="Mobile: Button text for the 'Save Password' infobar's 'Remember password' option"  formatter_data="android_java">
+ 
+-        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON" desc="Save button text for password manager">
++        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON_MISES" desc="Save button text for password manager">
            Save
          </message>
-         <message name="IDS_PASSWORD_MANAGER_BLOCKLIST_BUTTON" desc="Mobile: Button text for the 'Save Password' infobar's 'Never remember for this site' option">
-           Never
+         <message name="IDS_PASSWORD_MANAGER_SAVE_BUBBLE_OPT_IN_BUTTON" desc="Text for action button in the save bubble that leads the user to opt in to the account-scoped password storage.">
+@@ -8203,12 +8203,12 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+           No thanks
          </message>
--        <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON" desc="Label for the 'update' button in the Update Password infobar. This infobar asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update." formatter_data="android_java">
-+        <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON_ANDROID" desc="Label for the 'update' button in the Update Password infobar. This infobar asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update." formatter_data="android_java">
-           Update
-         </message>
-         <message name="IDS_PASSWORD_MANAGER_CONTINUE_BUTTON" desc="Label for the 'continue' button in the Update Password prompt that will be followed by username confirmation dialog. This prompt asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update.">
+         <if expr="use_titlecase">
+-          <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON" desc="In Title Case: Update button text for password manager">
++          <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON_MISES" desc="In Title Case: Update button text for password manager">
+             Update Password
+           </message>
+         </if>
+         <if expr="not use_titlecase">
+-          <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON" desc="Update button text for password manager">
++          <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON_MISES" desc="Update button text for password manager">
+             Update password
+           </message>
+         </if>
 @@ -8340,7 +8340,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
        </if>
  

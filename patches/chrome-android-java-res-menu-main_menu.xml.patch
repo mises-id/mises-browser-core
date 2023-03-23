@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
 old mode 100644
 new mode 100755
-index 7b267cbe85bab3197ceae76d2a9a5ae593637a39..670365f72fe2257b9779b3ebc82fd10f4e88be6b
+index 7b267cbe85bab3197ceae76d2a9a5ae593637a39..df5fc5aeba60c06bc1a02dd6da98643b80f66893
 --- a/chrome/android/java/res/menu/main_menu.xml
 +++ b/chrome/android/java/res/menu/main_menu.xml
 @@ -1,9 +1,7 @@
@@ -186,19 +186,6 @@ index 7b267cbe85bab3197ceae76d2a9a5ae593637a39..670365f72fe2257b9779b3ebc82fd10f
          <item android:id="@+id/close_all_tabs_menu_id"
              android:title="@string/menu_close_all_tabs"
              android:icon="@drawable/btn_close_white" />
-@@ -181,9 +207,9 @@ found in the LICENSE file.
-         <item android:id="@+id/menu_group_tabs"
-             android:title="@string/menu_group_tabs"
-             android:icon="@drawable/ic_widgets" />
--        <item android:id="@+id/menu_select_tabs"
--            android:title="@string/menu_select_tabs"
--            android:icon="@drawable/ic_select_tabs" />
-+        <item android:id="@+id/track_prices_row_menu_id"
-+            android:title="@string/menu_track_prices"
-+            android:icon="@drawable/ic_trending_down_black" />
-         <item android:id="@id/preferences_id"
-             android:title="@string/menu_settings"
-             android:icon="@drawable/settings_cog" />
 @@ -194,10 +220,10 @@ found in the LICENSE file.
          android:visible="false">
          <item android:id="@id/new_tab_menu_id"

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143cf642c6a 100644
+index 217fb8f44bf566547cada470f7cb831d676b3d92..1a9cf4fdd2842bcc7e33605c1a635b79e85308b3 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -98,12 +98,53 @@ import java.util.ArrayList;
@@ -175,8 +175,12 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
      }
  
      private void setAncestorsShouldClipChildren(boolean clip) {
-@@ -1291,6 +1361,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1289,8 +1359,12 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+             mHomeButton.setAlpha(previousAlpha * floatAlpha);
+             drawChild(canvas, mHomeButton, SystemClock.uptimeMillis());
              mHomeButton.setAlpha(previousAlpha);
++        } else {
++            previousAlpha = 1.0f;
          }
  
 +        previousAlpha = drawMisesMainButton(canvas, previousAlpha, floatAlpha);
@@ -184,7 +188,7 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
          // Draw the location/URL bar.
          previousAlpha = mLocationBar.getPhoneCoordinator().getAlpha();
          mLocationBar.getPhoneCoordinator().setAlpha(previousAlpha * floatAlpha);
-@@ -1311,6 +1383,33 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1311,6 +1385,33 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
              canvas.restore();
          }
  
@@ -218,7 +222,7 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
          // Draw the tab stack button and associated text if necessary.
          if (mTabSwitcherAnimationTabStackDrawable != null && mToggleTabStackButton != null
                  && mUrlExpansionFraction != 1f) {
-@@ -1396,7 +1495,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1396,7 +1497,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
      }
  
      private boolean isChildLeft(View child) {
@@ -228,52 +232,59 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
      }
  
      /**
-@@ -1544,7 +1644,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1540,11 +1642,12 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+ 
+     @Override
+     public CaptureReadinessResult isReadyForTextureCapture() {
++        boolean mises_enforce = true;
+         if (ToolbarFeatures.shouldBlockCapturesForAblation()) {
              return CaptureReadinessResult.notReady(TopToolbarBlockCaptureReason.SCROLL_ABLATION);
          } else if (mForceTextureCapture) {
              return CaptureReadinessResult.readyForced();
 -        } else if (ToolbarFeatures.shouldSuppressCaptures()) {
-+        } else if (true || ToolbarFeatures.shouldSuppressCaptures()) {
++        } else if (mises_enforce || ToolbarFeatures.shouldSuppressCaptures()) {
              return getReadinessStateWithSuppression();
          } else {
              return CaptureReadinessResult.unknown(!(urlHasFocus() || mUrlFocusChangeInProgress));
-@@ -1664,7 +1764,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1663,8 +1766,9 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+ 
      @Override
      public void updateButtonVisibility() {
++        boolean mises_enforce = true;
          boolean hideHomeButton =
 -                !mIsHomeButtonEnabled || getToolbarDataProvider().isInOverviewAndShowingOmnibox();
-+                true || !mIsHomeButtonEnabled || getToolbarDataProvider().isInOverviewAndShowingOmnibox();
++                mises_enforce || !mIsHomeButtonEnabled || getToolbarDataProvider().isInOverviewAndShowingOmnibox();
          if (hideHomeButton) {
              removeHomeButton();
          } else {
-@@ -1679,6 +1779,10 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1679,6 +1783,10 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
                  mOptionalButton.setPaddingStart(0);
              }
          }
 +        if (mHandButton != null) {
-+          if (true || !ContextUtils.getAppSharedPreferences().getBoolean("enable_overscroll_button", true))
++            if (mises_enforce || !ContextUtils.getAppSharedPreferences().getBoolean("enable_overscroll_button", true))
 +            mHandButton.setVisibility(GONE);
 +        }
      }
  
      @Override
-@@ -1700,6 +1804,15 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1700,6 +1808,15 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
          if (mLocationBar != null) mLocationBar.updateVisualsForState();
  
          if (mLayoutUpdater != null) mLayoutUpdater.run();
 +
 +        if (mHomeButton != null) {
-+            ApiCompatibilityUtils.setImageTintList(mHomeButton, tint);
++            ImageViewCompat.setImageTintList(mHomeButton, tint);
 +        }
 +        if (mHandButton != null) {
-+            ApiCompatibilityUtils.setImageTintList(mHandButton, tint);
++            ImageViewCompat.setImageTintList(mHandButton, tint);
 +        }
 +        if (mMisesExtensionButton != null && mExtensionButtonDrawableOveride == null) 
-+            ApiCompatibilityUtils.setImageTintList(mMisesExtensionButton, tint);
++            ImageViewCompat.setImageTintList(mMisesExtensionButton, tint);
      }
  
      @Override
-@@ -1820,7 +1933,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -1820,7 +1937,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
  
          updateButtonsTranslationY();
  
@@ -282,7 +293,7 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
              finishAnimations();
          }
  
-@@ -2114,7 +2227,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -2114,7 +2231,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
  
      @Override
      public void onTabCountChanged(int numberOfTabs, boolean isIncognito) {
@@ -292,16 +303,17 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
          if (mToggleTabStackButton == null) return;
  
          @BrandedColorScheme
-@@ -2282,7 +2396,7 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -2282,7 +2400,8 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
       * Update the visibility of the toolbar shadow.
       */
      private void updateShadowVisibility() {
 -        boolean shouldDrawShadow = shouldDrawShadow();
-+        boolean shouldDrawShadow = false && shouldDrawShadow();
++        boolean mises_enforce = false;
++        boolean shouldDrawShadow = mises_enforce && shouldDrawShadow();
          int shadowVisibility = shouldDrawShadow ? View.VISIBLE : View.INVISIBLE;
  
          if (mToolbarShadow != null && mToolbarShadow.getVisibility() != shadowVisibility) {
-@@ -2748,4 +2862,288 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -2748,4 +2867,288 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
      private int calculateOnFocusHeightIncrease() {
          return (int) (mBackgroundHeightIncreaseWhenFocus * mUrlFocusChangeFraction / 2);
      }
@@ -435,7 +447,7 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
 +      	if (mExtensionButtonDrawableOveride != null) {
 +            imageButton.setImageDrawable(mExtensionButtonDrawableOveride);
 +            imageButton.setImageTintMode(Mode.DST_IN);
-+            ApiCompatibilityUtils.setImageTintList(imageButton, null);
++            ImageViewCompat.setImageTintList(imageButton, null);
 +         } else {
 +            imageButton.setImageResource(R.drawable.btn_extension);
 +            imageButton.setImageTintMode(Mode.SRC_IN);
@@ -447,14 +459,14 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
 +        if (TextUtils.isEmpty(encodedString)) {
 +	    Log.e("Mises","decodeBitmapFromString null");
 +	    return null;
-+	}
-+	try {
-+	    byte[] decoded = Base64.decode(encodedString, Base64.DEFAULT);
-+	    return BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
-+    	} catch (Exception e) {
-+	  Log.e("Mises","decodeBitmapFromString exception");
-+	}
-+	return null;
++        }
++        try {
++            byte[] decoded = Base64.decode(encodedString, Base64.DEFAULT);
++            return BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
++            } catch (Exception e) {
++        Log.e("Mises","decodeBitmapFromString exception");
++        }
++        return null;
 +    }
 +
 +    private float drawMisesExtensionButton(Canvas canvas,float previousAlpha, int rgbAlpha) {
@@ -482,7 +494,7 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
 +
 +            canvas.restore();
 +        }
-+	return previousAlpha;
++	    return previousAlpha;
 +    }
 +    private float drawMisesMainButton(Canvas canvas, float previousAlpha, float floatAlpha) {
 +        if (mMisesMainButton != null && mMisesMainButton.getVisibility() != View.GONE) {
@@ -492,7 +504,7 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
 +            drawChild(canvas, mMisesMainButton, SystemClock.uptimeMillis());
 +            mMisesMainButton.setAlpha(previousAlpha);
 +        }
-+	return previousAlpha;
++	    return previousAlpha;
 +    }
 +    private int getMisesButtonPadding() {
 +        int padding = mToolbarSidePadding;
@@ -558,7 +570,7 @@ index 217fb8f44bf566547cada470f7cb831d676b3d92..61661ae39502a9e0914a0d0b95c16143
 +                        }
 +                    } else if (v.getId() == R.id.tv_invite) {  
 +                        if (tabCreator != null) {
-+                            tabCreator.openSinglePage("https://home.mises.site/myInvitation?misesId="  id);
++                            tabCreator.openSinglePage("https://home.mises.site/myInvitation?misesId=" + id);
 +                        }
 +                    } else if (v.getId() == R.id.tv_login) {
 +                        if (tabCreator != null) {

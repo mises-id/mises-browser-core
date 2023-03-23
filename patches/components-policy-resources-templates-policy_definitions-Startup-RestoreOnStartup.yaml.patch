@@ -1,0 +1,11 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Startup/RestoreOnStartup.yaml b/components/policy/resources/templates/policy_definitions/Startup/RestoreOnStartup.yaml
+index 88a84431082f6e3b279ca3926a6195031836a390..3e0c089a6f186f6d93834b7fdc5db28b4085b092 100644
+--- a/components/policy/resources/templates/policy_definitions/Startup/RestoreOnStartup.yaml
++++ b/components/policy/resources/templates/policy_definitions/Startup/RestoreOnStartup.yaml
+@@ -46,5 +46,6 @@ schema:
+ supported_on:
+ - chrome.*:8-
+ - chrome_os:11-
++- android:111-
+ tags: []
+ type: int-enum

@@ -158,6 +158,12 @@ void AuthenticatorRequestClientDelegate::FinishCollectToken() {}
 void AuthenticatorRequestClientDelegate::OnRetryUserVerification(int attempts) {
 }
 
+void AuthenticatorRequestClientDelegate::SetCredentialIdFilter(
+    std::vector<device::PublicKeyCredentialDescriptor>) {}
+    
+void AuthenticatorRequestClientDelegate::SetUserEntityForMakeCredentialRequest(
+    const device::PublicKeyCredentialUserEntity&) {}
+
 #endif  // !IS_ANDROID
 
 }  // namespace content

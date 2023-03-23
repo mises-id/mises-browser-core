@@ -12,6 +12,7 @@
   void FileSelectionCanceled(void* params) override;\
   scoped_refptr<ui::SelectFileDialog> select_file_dialog_;\
   private:\
+  JavaObjectWeakGlobalRef weak_java_ref_;\
   void DummyFunction
 
 #include "src/chrome/browser/bookmarks/android/bookmark_bridge.h"

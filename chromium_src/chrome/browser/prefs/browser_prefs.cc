@@ -5,7 +5,6 @@
 #include "mises/browser/mises_profile_prefs.h"
 
 #if BUILDFLAG(IS_ANDROID)
-#include "chrome/browser/autofill_assistant/password_change/apc_client.h"
 #include "chrome/browser/cart/cart_service.h"
 #include "chrome/browser/device_api/device_service_impl.h"
 #include "chrome/browser/gcm/gcm_product_util.h"
@@ -18,7 +17,6 @@
 #include "chrome/browser/new_tab_page/modules/drive/drive_service.h"
 #include "chrome/browser/new_tab_page/modules/photos/photos_service.h"
 #include "chrome/browser/new_tab_page/modules/safe_browsing/safe_browsing_handler.h"
-#include "chrome/browser/new_tab_page/modules/task_module/task_module_service.h"
 #include "chrome/browser/new_tab_page/promos/promo_service.h"
 #include "chrome/browser/policy/developer_tools_policy_handler.h"
 #include "chrome/browser/search/background/ntp_custom_background_service.h"
@@ -70,8 +68,8 @@ void MisesRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
 }
 void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 #if BUILDFLAG(IS_ANDROID) 
-  ApcClient::RegisterPrefs(registry);
-  AppShortcutManager::RegisterProfilePrefs(registry);
+  //ApcClient::RegisterPrefs(registry);
+  //AppShortcutManager::RegisterProfilePrefs(registry);
   BrowserFeaturePromoSnoozeService::RegisterProfilePrefs(registry);
   DeviceServiceImpl::RegisterProfilePrefs(registry);
   DevToolsWindow::RegisterProfilePrefs(registry);
@@ -99,7 +97,7 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   signin::RegisterProfilePrefs(registry);
   //StartupBrowserCreator::RegisterProfilePrefs(registry);
   tab_search_prefs::RegisterProfilePrefs(registry);
-  TaskModuleService::RegisterProfilePrefs(registry);
+  //TaskModuleService::RegisterProfilePrefs(registry);
   UnifiedAutoplayConfig::RegisterProfilePrefs(registry);
   RegisterSessionServiceLogProfilePrefs(registry);
 #endif

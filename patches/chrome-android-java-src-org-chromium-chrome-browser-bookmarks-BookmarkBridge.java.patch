@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
-index 9064b9b6ef98aeb75de231eb36033fa810f7e6ca..386da5d95f9db64e201debcc24929f11376d3dff 100644
+index 9064b9b6ef98aeb75de231eb36033fa810f7e6ca..138946e62eb83a3e37f16238fea26f7d52a0bd6d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
-@@ -46,6 +46,17 @@ import java.util.ArrayList;
+@@ -46,11 +46,22 @@ import java.util.ArrayList;
  import java.util.HashSet;
  import java.util.List;
  
@@ -20,6 +20,12 @@ index 9064b9b6ef98aeb75de231eb36033fa810f7e6ca..386da5d95f9db64e201debcc24929f11
  /**
   * Provides the communication channel for Android to fetch and manipulate the
   * bookmark model stored in native.
+  */
+-class BookmarkBridge {
++public class BookmarkBridge {
+     private long mNativeBookmarkBridge;
+     private boolean mIsDestroyed;
+     private boolean mIsDoingExtensiveChanges;
 @@ -190,6 +201,48 @@ class BookmarkBridge {
          return mIsNativeBookmarkModelLoaded;
      }

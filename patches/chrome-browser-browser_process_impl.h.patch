@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/browser_process_impl.h b/chrome/browser/browser_process_impl.h
-index c7fab534552b2e7369410332ad63ee6ca2706c7b..70e7fca0b10a94e6a766913c87a4a678ca78696e 100644
+index c7fab534552b2e7369410332ad63ee6ca2706c7b..38c0570f258976be00032d3d0390ae08ba86b70b 100644
 --- a/chrome/browser/browser_process_impl.h
 +++ b/chrome/browser/browser_process_impl.h
 @@ -35,7 +35,7 @@
@@ -20,7 +20,15 @@ index c7fab534552b2e7369410332ad63ee6ca2706c7b..70e7fca0b10a94e6a766913c87a4a678
    IntranetRedirectDetector* intranet_redirect_detector() override;
  #endif
    const std::string& GetApplicationLocale() override;
-@@ -203,7 +203,7 @@ class BrowserProcessImpl : public BrowserProcess,
+@@ -196,14 +196,14 @@ class BrowserProcessImpl : public BrowserProcess,
+   MediaFileSystemRegistry* media_file_system_registry() override;
+   WebRtcLogUploader* webrtc_log_uploader() override;
+   network_time::NetworkTimeTracker* network_time_tracker() override;
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+   gcm::GCMDriver* gcm_driver() override;
+ #endif
+   resource_coordinator::TabManager* GetTabManager() override;
    resource_coordinator::ResourceCoordinatorParts* resource_coordinator_parts()
        override;
  

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
-index 0bda5cfb312f5f33a511b2212e368d19632944fe..4a66bd4212d3d8a6b4b1821a452a4ffe5482a0af 100644
+index 0bda5cfb312f5f33a511b2212e368d19632944fe..d4122df9a95cd02ff66becc847459ebf20b89061 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
 @@ -51,6 +51,11 @@ import org.chromium.url.GURL;
@@ -36,7 +36,7 @@ index 0bda5cfb312f5f33a511b2212e368d19632944fe..4a66bd4212d3d8a6b4b1821a452a4ffe
 +        return mIntentTracker;
 +    }
 +
-+    Override
++    @Override
 +    public void importBookmarks() {
 +        mBookmarkModel.startImportBookmarks(mWindowAndroid);
 +    }

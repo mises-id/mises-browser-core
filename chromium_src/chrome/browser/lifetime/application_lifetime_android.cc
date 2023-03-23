@@ -1,4 +1,5 @@
 #include "base/no_destructor.h"
+#include "base/callback_list.h"
 #include "src/chrome/browser/lifetime/application_lifetime_android.cc"
 namespace chrome {
 

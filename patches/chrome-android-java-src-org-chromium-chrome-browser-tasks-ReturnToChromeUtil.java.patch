@@ -1,13 +1,14 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tasks/ReturnToChromeUtil.java b/chrome/android/java/src/org/chromium/chrome/browser/tasks/ReturnToChromeUtil.java
-index 6494c7da258dba602350565da7999df3716a8f71..446e9f330422be833e5f717285d7cce093ca4a26 100644
+index 6494c7da258dba602350565da7999df3716a8f71..06630a2c4459bffaaa47302f831327a5a1e4497f 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tasks/ReturnToChromeUtil.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tasks/ReturnToChromeUtil.java
-@@ -463,7 +463,7 @@ public final class ReturnToChromeUtil {
+@@ -463,7 +463,8 @@ public final class ReturnToChromeUtil {
              if (!initialized && !sSkipInitializationCheckForTesting) {
                  return false;
              } else {
 -                return useChromeHomepage();
-+                return false && useChromeHomepage();
++                boolean mises_enforce = false;
++                return mises_enforce && useChromeHomepage();
              }
          }
  

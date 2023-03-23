@@ -370,13 +370,13 @@ void AppMenuBridge::OpenDevTools(
   content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
   if (!DevToolsWindow::IsDevToolsWindow(web_contents))
     DevToolsWindow::OpenDevToolsWindow(web_contents);
-};
+}
 
 
 void AppMenuBridge::DisableProxy(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>&obj){
   LOG(INFO) << "[Mises] AppMenuBridge::DisableProxy";
-};
+}
 
 base::android::ScopedJavaLocalRef<jstring> AppMenuBridge::GetRunningExtensions(
 		JNIEnv*env, const base::android::JavaParamRef<jobject>& obj,
@@ -386,13 +386,13 @@ base::android::ScopedJavaLocalRef<jstring> AppMenuBridge::GetRunningExtensions(
   content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
   exts = GetRunningExtensionsInternal(web_contents); 
   return ConvertUTF8ToJavaString(env, exts);
-};
+}
 
 jboolean AppMenuBridge::IsProxyEnabled(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>& obj){
   LOG(INFO) << "[Mises] AppMenuBridge::IsProxyEnabled";
   return 0;
-};
+}
 
 void AppMenuBridge::GrantExtensionActiveTab(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>& obj,
@@ -426,7 +426,7 @@ void AppMenuBridge::GrantExtensionActiveTab(
       }
     }
   }
-};
+}
 
 void AppMenuBridge::CallExtension(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>&obj,

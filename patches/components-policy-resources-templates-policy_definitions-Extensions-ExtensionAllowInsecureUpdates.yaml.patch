@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionAllowInsecureUpdates.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionAllowInsecureUpdates.yaml
+index cbdf013320441113972742691a285884a84f08f2..d0f22430122d7d2595408b5af30a6dd90b11ed65 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionAllowInsecureUpdates.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionAllowInsecureUpdates.yaml
+@@ -27,6 +27,7 @@ schema:
+ supported_on:
+ - chrome.*:73-77
+ - chrome_os:73-77
++- android:111-
+ tags:
+ - system-security
+ type: main

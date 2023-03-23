@@ -258,9 +258,17 @@ if (is_android) {
     "renderer_context_menu/render_view_context_menu.cc",
     "hid/chrome_hid_delegate.cc",
     "hid/chrome_hid_delegate.h",
+    "hid/hid_system_tray_icon.cc",
+    "hid/hid_connection_tracker.cc",
     "first_run/upgrade_util.cc",
     "autocomplete/tab_matcher_desktop.cc",
     "platform_util.cc",
+    "lifetime/application_lifetime_desktop.cc",
+    "cart/cart_service.cc",
+
+    "cart/fetch_discount_worker.cc",
+    "metrics/power/process_monitor.cc",
+    "profiles/delete_profile_helper.cc",
   ]
   mises_chrome_browser_exception_deps += [
     "//components/live_caption",

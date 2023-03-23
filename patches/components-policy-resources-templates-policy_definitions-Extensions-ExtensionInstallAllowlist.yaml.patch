@@ -1,0 +1,11 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallAllowlist.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallAllowlist.yaml
+index a1bf1d26563d01c992d9e5390d78b74d7e692d86..4195e6ef3f812ebe2d013a3172bd0444dfe8cffe 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallAllowlist.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallAllowlist.yaml
+@@ -24,5 +24,6 @@ schema:
+ supported_on:
+ - chrome.*:86-
+ - chrome_os:86-
++- android:111-
+ tags: []
+ type: list

@@ -17,6 +17,10 @@
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
+namespace share {
+BASE_DECLARE_FEATURE(kCrowLaunchTab);
+}
+
 #else
 
 #include "src/chrome/browser/share/share_features.h"
