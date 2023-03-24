@@ -1,7 +1,16 @@
 diff --git a/ui/base/BUILD.gn b/ui/base/BUILD.gn
-index acd06385277ac91670e5aa3ad386ccb6740a5a52..248495d56064cd5740627413db95934f6ab3ea3c 100644
+index acd06385277ac91670e5aa3ad386ccb6740a5a52..13b2876b7b3c50328ad9eb865bf9cd1a2bc9c3dd 100644
 --- a/ui/base/BUILD.gn
 +++ b/ui/base/BUILD.gn
+@@ -391,7 +391,7 @@ component("base") {
+       "user_activity/user_activity_observer.h",
+     ]
+ 
+-    if (!is_android) {
++    if (true || !is_android) {
+       sources += [
+         "menu_source_utils.cc",
+         "menu_source_utils.h",
 @@ -600,7 +600,7 @@ component("base") {
      ]
    }

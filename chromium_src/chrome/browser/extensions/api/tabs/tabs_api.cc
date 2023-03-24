@@ -41,8 +41,7 @@ bool HighlightTabAndroid(const tabs::Highlight::Params::HighlightInfo &highlight
         tab_strip_android->SetActiveIndex(tab_index);
       }
     }
-  } else {
-    EXTENSION_FUNCTION_VALIDATE(highlight_info.tabs.as_integer);
+  } else if (highlight_info.tabs.as_integer) {
     int tab_index = *highlight_info.tabs.as_integer;
     if (tab_strip_android->GetActiveIndex() != tab_index) {
       tab_strip_android->SetActiveIndex(tab_index);
