@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1655);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1650);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1655:
+/***/ 1650:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1657);
+module.exports = __webpack_require__(1652);
 
 
 /***/ }),
 
-/***/ 1657:
+/***/ 1652:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -136,7 +136,7 @@ class ProxyClient {
         return new Promise((resolve, reject) => {
             const timer = setTimeout(() => {
                 resolve("receive response timeout");
-            }, 500);
+            }, 5000);
             const receiveResponse = (e) => {
                 const proxyResponse = this.parseMessage
                     ? this.parseMessage(e.data)
@@ -165,9 +165,9 @@ class ProxyClient {
             this.eventListener.postMessage(proxyMessage);
         });
     }
-    verifyDomain(domain) {
+    verifyDomain(domain, logo, content) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.requestMethod("verifyDomain", { domain });
+            return yield this.requestMethod("verifyDomain", { domain, logo, content });
         });
     }
     verifyContract(contractAddress, domain) {
@@ -175,6 +175,22 @@ class ProxyClient {
             return yield this.requestMethod("verifyContract", {
                 contractAddress,
                 domain,
+            });
+        });
+    }
+    notifyFuzzyDomain(domain, suggested_url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requestMethod("notifyFuzzyDomain", {
+                domain,
+                suggested_url,
+            });
+        });
+    }
+    calculateHtmlSimilarly(html, hash) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requestMethod("calculateHtmlSimilarly", {
+                html,
+                hash,
             });
         });
     }
@@ -221,7 +237,6 @@ class ProxyClient {
     }
     listenUserDecision() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("listenUserDecision");
             return yield this.listenCurrentPage("userDecision");
         });
     }
@@ -241,27 +256,19 @@ var injected_script_awaiter = (undefined && undefined.__awaiter) || function (th
 };
 // /* global chrome */
 
-// const dictionary = {
-//   "0x095ea7b3": "approve",
-//   "0xa22cb465": "setApprovalForAll",
-//   "0x0752881a": "transfer",
-//   "0x42842e0e": "safeTransferFrom",
-//   "0xb88d4fde": "safeTransferFrom1",
-// };
-// type dictionaryKeys = keyof typeof dictionary;
+//import { image_similar } from "./image-similar";
 const domainCheckStatus = {
     waitCheck: "waitCheck",
     pendingCheck: "pendingCheck",
     finshedCheck: "finshedCheck",
 };
-const domainSafeType = {
-    whiteDomain: "white",
-    blackDomain: "black",
-    fuzzyDomain: "fuzzy",
-    normalDomain: "normal",
+const domainSafeLevel = {
+    White: "white",
+    Black: "black",
+    Fuzzy: "fuzzy",
+    Normal: "normal",
 };
-const containerId = "mises-safe-container";
-const parseOriginToHostname = (param) => {
+const parseUrlToDomain = (param, type = "domain") => {
     let domain = param;
     if (domain.match(/^[a-zA-Z0-9-]+:\/\/.+$/)) {
         domain = domain.replace(/^[a-zA-Z0-9-]+:\/\//, "");
@@ -279,11 +286,14 @@ const parseOriginToHostname = (param) => {
         .map((str) => str.trim())
         .filter((str) => str.length > 0);
     if (split.length < 2) {
-        throw new Error(`Invalid domain: ${param}`);
+        return "";
     }
     const i = split[split.length - 1].indexOf(":");
     if (i >= 0) {
         split[split.length - 1] = split[split.length - 1].slice(0, i);
+    }
+    if (type === "topdomain") {
+        return split[split.length - 2] + "." + split[split.length - 1];
     }
     return split.join(".");
 };
@@ -291,36 +301,29 @@ class injected_script_ContentScripts {
     constructor() {
         this.container = null;
         this.config = {
-            maxRetryNum: 3,
+            maxRetryNum: 1,
             retryCount: 0,
         };
         this.domainInfo = {
-            domainSafeType: "",
+            domainSafeLevel: "",
             hostname: window.location.ancestorOrigins.length > 0
-                ? parseOriginToHostname(window.location.ancestorOrigins[0])
+                ? parseUrlToDomain(window.location.ancestorOrigins[0])
                 : window.location.hostname,
-            type: domainSafeType.normalDomain,
-            suggestedDomain: "",
+            type: domainSafeLevel.Normal,
+            suggested_url: "",
             checkStatus: domainCheckStatus.waitCheck,
-            isShowDomainAlert: false,
+            isFuzzyCheck: false,
+            html_body_fuzzy_hash: "",
+            logo_phash: "",
+            title_keyword: "",
         };
         this.init();
     }
     init() {
-        this.initContainer();
-        this.initWeb3Proxy();
-    }
-    // 初始化外层包裹元素
-    initContainer() {
-        const base = document.getElementById(containerId);
-        if (base) {
-            this.container = base;
+        if (window.location.ancestorOrigins.length > 0) {
             return;
         }
-        this.container = document.createElement("div");
-        this.container.setAttribute("id", containerId);
-        this.container.setAttribute("class", `chrome-extension-base-class${Math.floor(Math.random() * 10000)}`);
-        document.body.appendChild(this.container);
+        this.initWeb3Proxy();
     }
     initWeb3Proxy() {
         console.log("initWeb3Proxy");
@@ -357,25 +360,30 @@ class injected_script_ContentScripts {
         };
         const proxyInterval = setInterval(() => proxyETH(), 1000);
         function proxyETH() {
+            let isProxy = false;
             if (typeof window.ethereum !== "undefined") {
                 const proxy1 = new Proxy(window.ethereum.request, handler);
+                const proxy2 = new Proxy(window.ethereum.enable, handler);
                 window.ethereum.request = proxy1;
                 //window.ethereum.send = proxy1;
                 //window.ethereum.sendAsync = proxy1;
-                //window.ethereum.enable = proxy1;
+                window.ethereum.enable = proxy2;
+                isProxy = true;
                 console.log("Find ethereum");
-                clearInterval(proxyInterval);
             }
-            else if (typeof window.web3 !== "undefined") {
+            if (typeof window.web3 !== "undefined" &&
+                typeof window.web3.currentProvider !== "undefined") {
                 const proxy2 = new Proxy(window.web3.currentProvider, handler);
                 window.web3.currentProvider = proxy2;
+                isProxy = true;
                 console.log("Find web3");
-                clearInterval(proxyInterval);
             }
-            else {
+            clearInterval(proxyInterval);
+            if (!isProxy) {
                 console.log("Did not find ethereum or web3");
             }
         }
+        proxyETH();
         setTimeout(() => {
             clearInterval(proxyInterval);
         }, 10000);
@@ -411,11 +419,10 @@ class injected_script_ContentScripts {
     }
     //isShouldVerifyContract
     isShouldVerifyContract() {
-        return this.domainInfo.domainSafeType !== domainSafeType.whiteDomain;
+        return this.domainInfo.domainSafeLevel !== domainSafeLevel.White;
     }
     //isShouldVerifyDomain
     isShouldVerifyDomain() {
-        return false;
         //ignore list
         return this.domainInfo.checkStatus !== domainCheckStatus.finshedCheck;
     }
@@ -425,26 +432,133 @@ class injected_script_ContentScripts {
             if (this.domainInfo.checkStatus === domainCheckStatus.finshedCheck) {
                 return true;
             }
-            /* if (this.domainInfo.checkStatus === domainCheckStatus.pendingCheck) {
-              return false;
-            } */
+            if (this.config.retryCount >= this.config.maxRetryNum) {
+                return;
+            }
+            this.config.retryCount++;
+            console.log("verifyDomain count ", this.config.retryCount);
             this.domainInfo.checkStatus = domainCheckStatus.pendingCheck;
-            const checkResult = yield proxyClient.verifyDomain(this.domainInfo.hostname);
-            this.domainInfo.checkStatus = domainCheckStatus.finshedCheck;
+            const e = document.documentElement;
+            const checkResult = yield proxyClient.verifyDomain(this.domainInfo.hostname, this.getSiteLogo(), e.innerText);
             console.log("checkResult :>>", checkResult);
             //parse the check result
-            if (checkResult) {
-                this.domainInfo.domainSafeType = checkResult.type_string;
-                this.domainInfo.suggestedDomain = checkResult.origin;
-            }
-            else if (this.config.retryCount < this.config.maxRetryNum) {
-                this.domainInfo.checkStatus = domainCheckStatus.waitCheck;
-                this.config.retryCount++;
-                console.log("verifyDomain retry ", this.config.retryCount);
-            }
-            else {
+            if (checkResult &&
+                checkResult.level &&
+                this.domainInfo.checkStatus != domainCheckStatus.finshedCheck) {
                 this.domainInfo.checkStatus = domainCheckStatus.finshedCheck;
+                this.domainInfo.domainSafeLevel = checkResult.level;
+                this.domainInfo.suggested_url = checkResult.suggested_url;
+                this.domainInfo.html_body_fuzzy_hash =
+                    checkResult.html_body_fuzzy_hash || "";
+                this.domainInfo.logo_phash = checkResult.logo_phash || "";
+                this.domainInfo.title_keyword = checkResult.title_keyword || "";
+                //if domainSafeLevel == fuzzy to check
+                if (this.domainInfo.domainSafeLevel == domainSafeLevel.Fuzzy) {
+                    this.doFuzzyCheck();
+                }
             }
+            if (this.config.retryCount >= this.config.maxRetryNum) {
+                this.domainInfo.checkStatus = domainCheckStatus.finshedCheck;
+                return;
+            }
+        });
+    }
+    //doFuzzyCheck
+    doFuzzyCheck() {
+        return injected_script_awaiter(this, void 0, void 0, function* () {
+            if (this.domainInfo.isFuzzyCheck) {
+                return;
+            }
+            this.domainInfo.isFuzzyCheck = true;
+            //check title
+            if (this.fuzzyCheckTitle()) {
+                return this.notifyFuzzyDomain("title");
+            }
+            //logo
+            if (this.fuzzyCheckLogo()) {
+                return this.notifyFuzzyDomain("logo");
+            }
+            //html
+            if (yield this.fuzzyCheckHtml()) {
+                return this.notifyFuzzyDomain("html");
+            }
+        });
+    }
+    fuzzyCheckTitle() {
+        if (this.domainInfo.title_keyword != "") {
+            const origin_title_keyword = this.domainInfo.title_keyword.toLowerCase();
+            const title = document.title.toLowerCase();
+            console.log("document: ", title);
+            const title_arr = title.toLowerCase().replace(",", "").split(" ");
+            if (title_arr.find((title) => {
+                return title == origin_title_keyword;
+            })) {
+                return true;
+            }
+        }
+        return false;
+    }
+    fuzzyCheckLogo() {
+        const suggested_url_domain = parseUrlToDomain(this.domainInfo.suggested_url, "topdomain");
+        if (suggested_url_domain == "") {
+            return false;
+        }
+        const links = document.querySelectorAll("head > link");
+        for (const link of links) {
+            if (!link.hasAttribute("href")) {
+                continue;
+            }
+            const href = link.getAttribute("href") || "";
+            if (href.indexOf("http") != -1 &&
+                suggested_url_domain === parseUrlToDomain(href)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    getSiteLogo() {
+        const links = document.getElementsByTagName("link");
+        let site_logo = "";
+        if (links.length > 0) {
+            for (let i = 0; i < links.length; i++) {
+                if (i > 10) {
+                    break;
+                }
+                if (links[i].rel.indexOf("icon") > -1) {
+                    const logo = links[i].href;
+                    const sizes = links[i].sizes;
+                    if (site_logo == "") {
+                        site_logo = logo;
+                    }
+                    if (sizes && sizes.toString() == "32x32") {
+                        site_logo = logo;
+                        break;
+                    }
+                }
+            }
+        }
+        console.log("site_logo: ", site_logo);
+        return site_logo;
+    }
+    fuzzyCheckHtml() {
+        return injected_script_awaiter(this, void 0, void 0, function* () {
+            if (this.domainInfo.html_body_fuzzy_hash == "") {
+                return false;
+            }
+            const body = document.body.outerHTML;
+            const score = yield proxyClient.calculateHtmlSimilarly(body, this.domainInfo.html_body_fuzzy_hash);
+            console.log("score: ", score);
+            if (score && typeof score == "number" && score > 60) {
+                return true;
+            }
+            return false;
+        });
+    }
+    notifyFuzzyDomain(tag) {
+        return injected_script_awaiter(this, void 0, void 0, function* () {
+            console.log("doFuzzyCheck notifyFuzzyDomain start tag ", tag);
+            const result = yield proxyClient.notifyFuzzyDomain(this.domainInfo.hostname, this.domainInfo.suggested_url);
+            console.log("doFuzzyCheck result >>: ", result);
         });
     }
 }

@@ -1,5 +1,78 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[15],{
 
+/***/ 1017:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(518), exports);
+__exportStar(__webpack_require__(1018), exports);
+//# sourceMappingURL=internal.js.map
+
+/***/ }),
+
+/***/ 1018:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.init = void 0;
+const messages_1 = __webpack_require__(332);
+const constants_1 = __webpack_require__(519);
+const handler_1 = __webpack_require__(1019);
+function init(router, service) {
+    router.registerMessage(messages_1.SetPersistentMemoryMsg);
+    router.registerMessage(messages_1.GetPersistentMemoryMsg);
+    router.addHandler(constants_1.ROUTE, handler_1.getHandler(service));
+}
+exports.init = init;
+//# sourceMappingURL=init.js.map
+
+/***/ }),
+
+/***/ 1019:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getHandler = void 0;
+const messages_1 = __webpack_require__(332);
+const getHandler = (service) => {
+    return (env, msg) => {
+        switch (msg.constructor) {
+            case messages_1.SetPersistentMemoryMsg:
+                return handleSetPersistentMemoryMsg(service)(env, msg);
+            case messages_1.GetPersistentMemoryMsg:
+                return service.get();
+            default:
+                throw new Error("Unknown msg type");
+        }
+    };
+};
+exports.getHandler = getHandler;
+const handleSetPersistentMemoryMsg = (service) => (_, msg) => {
+    service.set(msg.data);
+    return {
+        success: true,
+    };
+};
+//# sourceMappingURL=handler.js.map
+
+/***/ }),
+
 /***/ 1020:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29,82 +102,9 @@ __exportStar(__webpack_require__(1021), exports);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(333);
-const constants_1 = __webpack_require__(521);
+const messages_1 = __webpack_require__(228);
+const constants_1 = __webpack_require__(522);
 const handler_1 = __webpack_require__(1022);
-function init(router, service) {
-    router.registerMessage(messages_1.SetPersistentMemoryMsg);
-    router.registerMessage(messages_1.GetPersistentMemoryMsg);
-    router.addHandler(constants_1.ROUTE, handler_1.getHandler(service));
-}
-exports.init = init;
-//# sourceMappingURL=init.js.map
-
-/***/ }),
-
-/***/ 1022:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getHandler = void 0;
-const messages_1 = __webpack_require__(333);
-const getHandler = (service) => {
-    return (env, msg) => {
-        switch (msg.constructor) {
-            case messages_1.SetPersistentMemoryMsg:
-                return handleSetPersistentMemoryMsg(service)(env, msg);
-            case messages_1.GetPersistentMemoryMsg:
-                return service.get();
-            default:
-                throw new Error("Unknown msg type");
-        }
-    };
-};
-exports.getHandler = getHandler;
-const handleSetPersistentMemoryMsg = (service) => (_, msg) => {
-    service.set(msg.data);
-    return {
-        success: true,
-    };
-};
-//# sourceMappingURL=handler.js.map
-
-/***/ }),
-
-/***/ 1023:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(522), exports);
-__exportStar(__webpack_require__(1024), exports);
-//# sourceMappingURL=internal.js.map
-
-/***/ }),
-
-/***/ 1024:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.init = void 0;
-const messages_1 = __webpack_require__(229);
-const constants_1 = __webpack_require__(524);
-const handler_1 = __webpack_require__(1025);
 function init(router, service) {
     router.registerMessage(messages_1.GetChainInfosMsg);
     router.registerMessage(messages_1.SuggestChainInfoMsg);
@@ -116,7 +116,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1025:
+/***/ 1022:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,7 +133,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(229);
+const messages_1 = __webpack_require__(228);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -179,7 +179,7 @@ const handleRemoveSuggestedChainInfoMsg = (service) => {
 
 /***/ }),
 
-/***/ 1026:
+/***/ 1023:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -195,13 +195,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(529), exports);
-__exportStar(__webpack_require__(1042), exports);
+__exportStar(__webpack_require__(527), exports);
+__exportStar(__webpack_require__(1039), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1027:
+/***/ 1024:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -239,9 +239,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Crypto = void 0;
-const aes_js_1 = __importStar(__webpack_require__(196));
-const crypto_1 = __webpack_require__(50);
-const pbkdf2_1 = __importDefault(__webpack_require__(379));
+const aes_js_1 = __importStar(__webpack_require__(194));
+const crypto_1 = __webpack_require__(51);
+const pbkdf2_1 = __importDefault(__webpack_require__(377));
 const buffer_1 = __webpack_require__(4);
 const router_1 = __webpack_require__(3);
 class Crypto {
@@ -256,6 +256,28 @@ class Crypto {
                 r: 8,
                 p: 1,
             };
+            random = new Uint8Array(16);
+            const iv = buffer_1.Buffer.from(yield crypto.rng(random));
+            // If the mnemonic is not imported, there will be no mnemonic content
+            if (!text && !password && type === "mnemonic") {
+                return {
+                    version: "1.2",
+                    type,
+                    coinTypeForChain: {},
+                    bip44HDPath,
+                    meta,
+                    crypto: {
+                        cipher: "aes-128-ctr",
+                        cipherparams: {
+                            iv: iv.toString("hex"),
+                        },
+                        ciphertext: "",
+                        kdf,
+                        kdfparams: scryptParams,
+                        mac: "",
+                    },
+                };
+            }
             const derivedKey = yield (() => __awaiter(this, void 0, void 0, function* () {
                 switch (kdf) {
                     case "scrypt":
@@ -278,8 +300,6 @@ class Crypto {
                 }
             }))();
             const buf = buffer_1.Buffer.from(text);
-            random = new Uint8Array(16);
-            const iv = buffer_1.Buffer.from(yield crypto.rng(random));
             const counter = new aes_js_1.Counter(0);
             counter.setBytes(iv);
             const aesCtr = new aes_js_1.default.ModeOfOperation.ctr(derivedKey, counter);
@@ -350,15 +370,15 @@ exports.Crypto = Crypto;
 
 /***/ }),
 
-/***/ 1028:
+/***/ 1025:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var Buffer = __webpack_require__(22).Buffer
 
-var checkParameters = __webpack_require__(530)
-var defaultEncoding = __webpack_require__(531)
-var sync = __webpack_require__(532)
-var toBuffer = __webpack_require__(533)
+var checkParameters = __webpack_require__(528)
+var defaultEncoding = __webpack_require__(529)
+var sync = __webpack_require__(530)
+var toBuffer = __webpack_require__(531)
 
 var ZERO_BUF
 var subtle = global.crypto && global.crypto.subtle
@@ -476,7 +496,7 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
 
 /***/ }),
 
-/***/ 1040:
+/***/ 1037:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -510,7 +530,8 @@ class Migrator {
     }
     enCodeValut(keyringStore, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            const encryptor = __webpack_require__(630);
+            // eslint-disable-next-line
+            const encryptor = __webpack_require__(628);
             const { vault: vaultString } = keyringStore;
             const vault = (yield encryptor.decrypt(password, vaultString));
             return vault.filter((val) => ["HD Key Tree", "Simple Key Pair"].includes(val.type));
@@ -528,7 +549,7 @@ exports.Migrator = Migrator;
 
 /***/ }),
 
-/***/ 1041:
+/***/ 1038:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -578,16 +599,16 @@ exports.trimAminoSignDoc = trimAminoSignDoc;
 
 /***/ }),
 
-/***/ 1042:
+/***/ 1039:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(336);
-const constants_1 = __webpack_require__(535);
-const handler_1 = __webpack_require__(1043);
+const messages_1 = __webpack_require__(335);
+const constants_1 = __webpack_require__(533);
+const handler_1 = __webpack_require__(1040);
 function init(router, service) {
     router.registerMessage(messages_1.RestoreKeyRingMsg);
     router.registerMessage(messages_1.DeleteKeyRingMsg);
@@ -621,7 +642,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1043:
+/***/ 1040:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -638,10 +659,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(336);
+const messages_1 = __webpack_require__(335);
 const cosmos_1 = __webpack_require__(16);
 const tx_1 = __webpack_require__(100);
-const keyring_1 = __webpack_require__(230);
+const keyring_1 = __webpack_require__(229);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -868,6 +889,86 @@ const handleRestoreKeyStore = (service) => {
 
 /***/ }),
 
+/***/ 1041:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(534), exports);
+__exportStar(__webpack_require__(1042), exports);
+//# sourceMappingURL=internal.js.map
+
+/***/ }),
+
+/***/ 1042:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.init = void 0;
+const messages_1 = __webpack_require__(336);
+const constants_1 = __webpack_require__(535);
+const handler_1 = __webpack_require__(1043);
+function init(router, service) {
+    router.registerMessage(messages_1.SendTxMsg);
+    router.addHandler(constants_1.ROUTE, handler_1.getHandler(service));
+}
+exports.init = init;
+//# sourceMappingURL=init.js.map
+
+/***/ }),
+
+/***/ 1043:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getHandler = void 0;
+const router_1 = __webpack_require__(3);
+const messages_1 = __webpack_require__(336);
+const getHandler = (service) => {
+    return (env, msg) => {
+        switch (msg.constructor) {
+            case messages_1.SendTxMsg:
+                return handleSendTxMsg(service)(env, msg);
+            default:
+                throw new router_1.KeplrError("tx", 110, "Unknown msg type");
+        }
+    };
+};
+exports.getHandler = getHandler;
+const handleSendTxMsg = (service) => {
+    return (env, msg) => __awaiter(void 0, void 0, void 0, function* () {
+        yield service.permissionService.checkOrGrantBasicAccessPermission(env, msg.chainId, msg.origin);
+        return yield service.sendTx(msg.chainId, msg.tx, msg.mode);
+    });
+};
+//# sourceMappingURL=handler.js.map
+
+/***/ }),
+
 /***/ 1044:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -901,7 +1002,9 @@ const messages_1 = __webpack_require__(337);
 const constants_1 = __webpack_require__(537);
 const handler_1 = __webpack_require__(1046);
 function init(router, service) {
-    router.registerMessage(messages_1.SendTxMsg);
+    router.registerMessage(messages_1.TryUpdateChainMsg);
+    router.registerMessage(messages_1.SetChainEndpointsMsg);
+    router.registerMessage(messages_1.ResetChainEndpointsMsg);
     router.addHandler(constants_1.ROUTE, handler_1.getHandler(service));
 }
 exports.init = init;
@@ -927,88 +1030,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
 const messages_1 = __webpack_require__(337);
-const getHandler = (service) => {
-    return (env, msg) => {
-        switch (msg.constructor) {
-            case messages_1.SendTxMsg:
-                return handleSendTxMsg(service)(env, msg);
-            default:
-                throw new router_1.KeplrError("tx", 110, "Unknown msg type");
-        }
-    };
-};
-exports.getHandler = getHandler;
-const handleSendTxMsg = (service) => {
-    return (env, msg) => __awaiter(void 0, void 0, void 0, function* () {
-        yield service.permissionService.checkOrGrantBasicAccessPermission(env, msg.chainId, msg.origin);
-        return yield service.sendTx(msg.chainId, msg.tx, msg.mode);
-    });
-};
-//# sourceMappingURL=handler.js.map
-
-/***/ }),
-
-/***/ 1047:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(538), exports);
-__exportStar(__webpack_require__(1048), exports);
-//# sourceMappingURL=internal.js.map
-
-/***/ }),
-
-/***/ 1048:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.init = void 0;
-const messages_1 = __webpack_require__(338);
-const constants_1 = __webpack_require__(539);
-const handler_1 = __webpack_require__(1049);
-function init(router, service) {
-    router.registerMessage(messages_1.TryUpdateChainMsg);
-    router.registerMessage(messages_1.SetChainEndpointsMsg);
-    router.registerMessage(messages_1.ResetChainEndpointsMsg);
-    router.addHandler(constants_1.ROUTE, handler_1.getHandler(service));
-}
-exports.init = init;
-//# sourceMappingURL=init.js.map
-
-/***/ }),
-
-/***/ 1049:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getHandler = void 0;
-const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(338);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1043,7 +1064,7 @@ const handleResetChainEndpointsMsg = (service) => {
 
 /***/ }),
 
-/***/ 1050:
+/***/ 1047:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1059,13 +1080,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(540), exports);
-__exportStar(__webpack_require__(1052), exports);
+__exportStar(__webpack_require__(538), exports);
+__exportStar(__webpack_require__(1049), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1051:
+/***/ 1048:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1075,16 +1096,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1052:
+/***/ 1049:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(231);
-const constants_1 = __webpack_require__(542);
-const handler_1 = __webpack_require__(1053);
+const messages_1 = __webpack_require__(230);
+const constants_1 = __webpack_require__(540);
+const handler_1 = __webpack_require__(1050);
 function init(router, service) {
     router.registerMessage(messages_1.GetTokensMsg);
     router.registerMessage(messages_1.SuggestTokenMsg);
@@ -1098,7 +1119,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1053:
+/***/ 1050:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1115,7 +1136,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(231);
+const messages_1 = __webpack_require__(230);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1174,7 +1195,7 @@ const handleGetSecret20ViewingKey = (service) => {
 
 /***/ }),
 
-/***/ 1054:
+/***/ 1051:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1190,13 +1211,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(544), exports);
-__exportStar(__webpack_require__(1059), exports);
+__exportStar(__webpack_require__(542), exports);
+__exportStar(__webpack_require__(1056), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1055:
+/***/ 1052:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1219,7 +1240,7 @@ exports.InteractionForegroundService = InteractionForegroundService;
 
 /***/ }),
 
-/***/ 1056:
+/***/ 1053:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1229,16 +1250,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1057:
+/***/ 1054:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.interactionForegroundInit = void 0;
-const messages_1 = __webpack_require__(340);
-const constants_1 = __webpack_require__(546);
-const handler_1 = __webpack_require__(1058);
+const messages_1 = __webpack_require__(339);
+const constants_1 = __webpack_require__(544);
+const handler_1 = __webpack_require__(1055);
 function interactionForegroundInit(router, service) {
     router.registerMessage(messages_1.PushInteractionDataMsg);
     router.registerMessage(messages_1.PushEventDataMsg);
@@ -1249,7 +1270,7 @@ exports.interactionForegroundInit = interactionForegroundInit;
 
 /***/ }),
 
-/***/ 1058:
+/***/ 1055:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1257,7 +1278,7 @@ exports.interactionForegroundInit = interactionForegroundInit;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(340);
+const messages_1 = __webpack_require__(339);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1285,16 +1306,16 @@ const handlePushEventDataMsg = (service) => {
 
 /***/ }),
 
-/***/ 1059:
+/***/ 1056:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(341);
-const constants_1 = __webpack_require__(547);
-const handler_1 = __webpack_require__(1060);
+const messages_1 = __webpack_require__(340);
+const constants_1 = __webpack_require__(545);
+const handler_1 = __webpack_require__(1057);
 function init(router, service) {
     router.registerMessage(messages_1.ApproveInteractionMsg);
     router.registerMessage(messages_1.RejectInteractionMsg);
@@ -1305,7 +1326,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1060:
+/***/ 1057:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1313,7 +1334,7 @@ exports.init = init;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(341);
+const messages_1 = __webpack_require__(340);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1341,7 +1362,7 @@ const handleRejectInteractionMsg = (service) => {
 
 /***/ }),
 
-/***/ 1061:
+/***/ 1058:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1357,22 +1378,22 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(526), exports);
-__exportStar(__webpack_require__(1062), exports);
+__exportStar(__webpack_require__(524), exports);
+__exportStar(__webpack_require__(1059), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1062:
+/***/ 1059:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(334);
-const constants_1 = __webpack_require__(528);
-const handler_1 = __webpack_require__(1063);
+const messages_1 = __webpack_require__(333);
+const constants_1 = __webpack_require__(526);
+const handler_1 = __webpack_require__(1060);
 function init(router, service) {
     router.registerMessage(messages_1.EnableAccessMsg);
     router.registerMessage(messages_1.GetPermissionOriginsMsg);
@@ -1387,7 +1408,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1063:
+/***/ 1060:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1403,7 +1424,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(334);
+const messages_1 = __webpack_require__(333);
 const router_1 = __webpack_require__(3);
 const getHandler = (service) => {
     return (env, msg) => {
@@ -1464,7 +1485,7 @@ const handleremoveAllPermissionsOrigin = (service) => {
 
 /***/ }),
 
-/***/ 1064:
+/***/ 1061:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1480,22 +1501,22 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(548), exports);
-__exportStar(__webpack_require__(1065), exports);
+__exportStar(__webpack_require__(546), exports);
+__exportStar(__webpack_require__(1062), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1065:
+/***/ 1062:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(342);
-const constants_1 = __webpack_require__(549);
-const handler_1 = __webpack_require__(1066);
+const messages_1 = __webpack_require__(341);
+const constants_1 = __webpack_require__(547);
+const handler_1 = __webpack_require__(1063);
 function init(router, service) {
     router.registerMessage(messages_1.GetAutoLockAccountDurationMsg);
     router.registerMessage(messages_1.UpdateAutoLockAccountDurationMsg);
@@ -1508,7 +1529,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1066:
+/***/ 1063:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1516,7 +1537,7 @@ exports.init = init;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(342);
+const messages_1 = __webpack_require__(341);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1561,7 +1582,7 @@ const handleLockMsg = (service) => {
 
 /***/ }),
 
-/***/ 1067:
+/***/ 1064:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1577,13 +1598,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(343), exports);
-__exportStar(__webpack_require__(1086), exports);
+__exportStar(__webpack_require__(342), exports);
+__exportStar(__webpack_require__(1079), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1068:
+/***/ 1065:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1599,13 +1620,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Mises = void 0;
-const mises_js_sdk_1 = __webpack_require__(1069);
-const mises_network_util_1 = __webpack_require__(232);
-const tendermint_rpc_1 = __webpack_require__(319);
+const mises_js_sdk_1 = __webpack_require__(1066);
+const mises_network_util_1 = __webpack_require__(231);
+const tendermint_rpc_1 = __webpack_require__(318);
 const stargate_1 = __webpack_require__(265);
-const react_query_1 = __webpack_require__(236);
-const service_1 = __webpack_require__(343);
-const http_client_1 = __webpack_require__(1085);
+const react_query_1 = __webpack_require__(235);
+const service_1 = __webpack_require__(342);
+const http_client_1 = __webpack_require__(1078);
 class Mises {
     constructor() {
         this.config = mises_js_sdk_1.MSdk.newConfig();
@@ -1644,7 +1665,7 @@ exports.Mises = Mises;
 
 /***/ }),
 
-/***/ 1085:
+/***/ 1078:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1660,9 +1681,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HttpClient = void 0;
-const json_rpc_1 = __webpack_require__(320);
-const rpcclient_1 = __webpack_require__(228);
-const mises_network_util_1 = __webpack_require__(232);
+const json_rpc_1 = __webpack_require__(319);
+const rpcclient_1 = __webpack_require__(227);
+const mises_network_util_1 = __webpack_require__(231);
 class HttpClient {
     constructor(endpoint) {
         if (typeof endpoint === "string") {
@@ -1684,6 +1705,7 @@ class HttpClient {
                 method: "POST",
                 data: request ? JSON.stringify(request) : undefined,
                 headers: Object.assign({ "Content-Type": "application/json" }, this.headers),
+                timeout: 5000,
                 isCustomRequest: true,
             });
             if (json_rpc_1.isJsonRpcErrorResponse(response)) {
@@ -1698,16 +1720,16 @@ exports.HttpClient = HttpClient;
 
 /***/ }),
 
-/***/ 1086:
+/***/ 1079:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(347);
-const constants_1 = __webpack_require__(557);
-const handler_1 = __webpack_require__(1087);
+const messages_1 = __webpack_require__(346);
+const constants_1 = __webpack_require__(554);
+const handler_1 = __webpack_require__(1080);
 function init(router, service) {
     router.registerMessage(messages_1.BalanceUMISMsg);
     router.registerMessage(messages_1.MisesChainMsg);
@@ -1731,6 +1753,8 @@ function init(router, service) {
     router.registerMessage(messages_1.PortForTxMsg);
     router.registerMessage(messages_1.SaveTranstionsMsg);
     router.registerMessage(messages_1.OpenWalletMsg);
+    router.registerMessage(messages_1.GetLocalCacheMsg);
+    router.registerMessage(messages_1.SetLocalCacheMsg);
     router.addHandler(constants_1.ROUTE, handler_1.getHandler(service));
 }
 exports.init = init;
@@ -1738,14 +1762,14 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1087:
+/***/ 1080:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(347);
+const messages_1 = __webpack_require__(346);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1793,14 +1817,18 @@ const getHandler = (service) => {
                 return handlerSaveTranstions(service)(env, msg);
             case messages_1.OpenWalletMsg:
                 return handlerOpenWallet(service)(env, msg);
+            case messages_1.GetLocalCacheMsg:
+                return handlerGetLocalCache(service)(env, msg);
+            case messages_1.SetLocalCacheMsg:
+                return handlerSetLocalCache(service)(env, msg);
             default:
                 throw new Error("Unknown msg type");
         }
     };
 };
 exports.getHandler = getHandler;
-const handlerBalanceUMISMsg = (service) => () => {
-    return service.getBalanceUMIS();
+const handlerBalanceUMISMsg = (service) => (_, msg) => {
+    return service.getBalanceUMIS(msg.address);
 };
 const handlerMisesChainMsg = () => (_, msg) => {
     return msg.chainId === "mainnet";
@@ -1865,11 +1893,17 @@ const handlerSaveTranstions = (service) => (_, msg) => {
 const handlerOpenWallet = (service) => () => {
     return service.openWallet();
 };
+const handlerGetLocalCache = (service) => (_, msg) => {
+    return service.getAddressUserInfo(msg.address);
+};
+const handlerSetLocalCache = (service) => (_, msg) => {
+    return service.setCacheUserInfo(msg.params);
+};
 //# sourceMappingURL=handler.js.map
 
 /***/ }),
 
-/***/ 1088:
+/***/ 1081:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1885,22 +1919,256 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(558), exports);
-__exportStar(__webpack_require__(1089), exports);
+__exportStar(__webpack_require__(555), exports);
+__exportStar(__webpack_require__(1083), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1089:
+/***/ 1082:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.html_similar = void 0;
+const HASH_PRIME = 16777619;
+const HASH_INIT = 671226215;
+const ROLLING_WINDOW = 7;
+const MAX_LENGTH = 64; // Max individual hash length in characters
+const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+//refer http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+function toUTF8Array(str) {
+    // eslint-disable-next-line prefer-const
+    let out = [], p = 0;
+    for (let i = 0; i < str.length; i++) {
+        let c = str.charCodeAt(i);
+        if (c < 128) {
+            out[p++] = c;
+        }
+        else if (c < 2048) {
+            out[p++] = (c >> 6) | 192;
+            out[p++] = (c & 63) | 128;
+        }
+        else if ((c & 0xfc00) == 0xd800 &&
+            i + 1 < str.length &&
+            (str.charCodeAt(i + 1) & 0xfc00) == 0xdc00) {
+            // Surrogate Pair
+            c = 0x10000 + ((c & 0x03ff) << 10) + (str.charCodeAt(++i) & 0x03ff);
+            out[p++] = (c >> 18) | 240;
+            out[p++] = ((c >> 12) & 63) | 128;
+            out[p++] = ((c >> 6) & 63) | 128;
+            out[p++] = (c & 63) | 128;
+        }
+        else {
+            out[p++] = (c >> 12) | 224;
+            out[p++] = ((c >> 6) & 63) | 128;
+            out[p++] = (c & 63) | 128;
+        }
+    }
+    return out;
+}
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */
+function safe_add(x, y) {
+    const lsw = (x & 0xffff) + (y & 0xffff);
+    const msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+    return (msw << 16) | (lsw & 0xffff);
+}
+/*
+  1000 0000
+  1000 0000
+  0000 0001
+*/
+function safe_multiply(x, y) {
+    /*
+      a = a00 + a16
+      b = b00 + b16
+      a*b = (a00 + a16)(b00 + b16)
+        = a00b00 + a00b16 + a16b00 + a16b16
+  
+      a16b16 overflows the 32bits
+     */
+    let xlsw = x & 0xffff;
+    let xmsw = (x >> 16) + (xlsw >> 16);
+    const ylsw = y & 0xffff;
+    const ymsw = (y >> 16) + (ylsw >> 16);
+    const a16 = xmsw;
+    const a00 = xlsw;
+    const b16 = ymsw;
+    const b00 = ylsw;
+    const c00 = a00 * b00;
+    let c16 = c00 >>> 16;
+    c16 += a16 * b00;
+    c16 &= 0xffff; // Not required but improves performance
+    c16 += a00 * b16;
+    xlsw = c00 & 0xffff;
+    xmsw = c16 & 0xffff;
+    return (xmsw << 16) | (xlsw & 0xffff);
+}
+//FNV-1 hash
+function fnv(h, c) {
+    return (safe_multiply(h, HASH_PRIME) ^ c) >>> 0;
+}
+class RollHash {
+    constructor() {
+        this.rolling_window = new Array(ROLLING_WINDOW);
+        this.h1 = 0;
+        this.h2 = 0;
+        this.h3 = 0;
+        this.n = 0;
+        this.rolling_window = new Array(ROLLING_WINDOW);
+        this.h1 = 0;
+        this.h2 = 0;
+        this.h3 = 0;
+        this.n = 0;
+    }
+    update(c) {
+        this.h2 = safe_add(this.h2, -this.h1);
+        const mut = ROLLING_WINDOW * c;
+        this.h2 = safe_add(this.h2, mut) >>> 0;
+        this.h1 = safe_add(this.h1, c);
+        const val = this.rolling_window[this.n % ROLLING_WINDOW] || 0;
+        this.h1 = safe_add(this.h1, -val) >>> 0;
+        this.rolling_window[this.n % ROLLING_WINDOW] = c;
+        this.n++;
+        this.h3 = this.h3 << 5;
+        this.h3 = (this.h3 ^ c) >>> 0;
+    }
+    sum() {
+        return (this.h1 + this.h2 + this.h3) >>> 0;
+    }
+}
+function piecewiseHash(bytes, triggerValue) {
+    const signatures = ["", "", String(triggerValue)];
+    if (bytes.length === 0) {
+        return signatures;
+    }
+    let h1 = HASH_INIT;
+    let h2 = HASH_INIT;
+    const rh = new RollHash();
+    //console.log(triggerValue)
+    for (let i = 0, len = bytes.length; i < len; i++) {
+        const thisByte = bytes[i];
+        h1 = fnv(h1, thisByte);
+        h2 = fnv(h2, thisByte);
+        rh.update(thisByte);
+        if (signatures[0].length < MAX_LENGTH - 1 &&
+            rh.sum() % triggerValue === triggerValue - 1) {
+            signatures[0] += B64.charAt(h1 & 63);
+            h1 = HASH_INIT;
+        }
+        if (signatures[1].length < MAX_LENGTH / 2 - 1 &&
+            rh.sum() % (triggerValue * 2) === triggerValue * 2 - 1) {
+            signatures[1] += B64.charAt(h2 & 63);
+            h2 = HASH_INIT;
+        }
+    }
+    signatures[0] += B64.charAt(h1 & 63);
+    signatures[1] += B64.charAt(h2 & 63);
+    return signatures;
+}
+class HtmlSimilar {
+    constructor() { }
+    digest(data) {
+        const bytes = toUTF8Array(data);
+        let bi = 3;
+        while (bi * MAX_LENGTH < bytes.length) {
+            bi *= 2;
+        }
+        // console.log("bi: ",bi)
+        let signatures;
+        do {
+            signatures = piecewiseHash(bytes, bi);
+            console.log("bi: ", bi, signatures[0], signatures[1]);
+            bi = ~~(bi / 2);
+        } while (bi > 3 && signatures[0].length < MAX_LENGTH / 2);
+        return signatures[2] + ":" + signatures[0] + ":" + signatures[1];
+    }
+    distance(hash1, hash2) {
+        let score = 0;
+        const arr1 = hash1.split(":");
+        const hash1BlockSize = Number(arr1[0]);
+        const hash1String1 = arr1[1];
+        const hash1String2 = arr1[2];
+        const arr2 = hash2.split(":");
+        const hash2BlockSize = Number(arr2[0]);
+        const hash2String1 = arr2[1];
+        const hash2String2 = arr2[2];
+        if (hash1BlockSize == hash2BlockSize && hash1String1 == hash2String1) {
+            return 100;
+        }
+        if (hash1BlockSize != hash2BlockSize &&
+            hash1BlockSize != hash2BlockSize * 2 &&
+            hash2BlockSize != hash1BlockSize * 2) {
+            return score;
+        }
+        if (hash1BlockSize == hash2BlockSize) {
+            const d1 = scoreDistance(hash1String1, hash2String1);
+            const d2 = scoreDistance(hash1String2, hash2String2);
+            score = Math.max(d1, d2);
+        }
+        else if (hash1BlockSize == hash2BlockSize * 2) {
+            score = scoreDistance(hash1String1, hash2String2);
+        }
+        else {
+            score = scoreDistance(hash1String2, hash2String1);
+        }
+        return score;
+    }
+}
+function editDistance(str1, str2) {
+    // write code here
+    let cost, lastdiag, olddiag;
+    const s1 = toUTF8Array(str1);
+    const s2 = toUTF8Array(str2);
+    const lenS1 = s1.length;
+    const lenS2 = s2.length;
+    const column = new Array(1 + lenS1);
+    for (let i = 1; i <= lenS1; i++) {
+        column[i] = i;
+    }
+    for (let x = 1; x <= lenS2; x++) {
+        column[0] = x;
+        lastdiag = x - 1;
+        for (let y = 1; y <= lenS1; y++) {
+            olddiag = column[y];
+            cost = 0;
+            if (s1[y - 1] != s2[x - 1]) {
+                // Replace costs 2 in ssdeep
+                cost = 2;
+            }
+            column[y] = Math.min(column[y] + 1, column[y - 1] + 1, lastdiag + cost);
+            lastdiag = olddiag;
+        }
+    }
+    return column[lenS1];
+}
+function scoreDistance(h1, h2) {
+    let d = editDistance(h1, h2);
+    d = (d * MAX_LENGTH) / (h1.length + h2.length);
+    d = (100 * d) / MAX_LENGTH;
+    d = 100 - d;
+    return d;
+}
+const html_similar = new HtmlSimilar();
+exports.html_similar = html_similar;
+//# sourceMappingURL=html-similar.js.map
+
+/***/ }),
+
+/***/ 1083:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(348);
-const constants_1 = __webpack_require__(559);
-const handler_1 = __webpack_require__(1090);
+const messages_1 = __webpack_require__(347);
+const constants_1 = __webpack_require__(556);
+const handler_1 = __webpack_require__(1084);
 function init(router, service) {
     router.registerMessage(messages_1.InitSafeMsg);
     router.registerMessage(messages_1.VerifyDomainMsg);
@@ -1913,14 +2181,14 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1090:
+/***/ 1084:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(348);
+const messages_1 = __webpack_require__(347);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1954,7 +2222,7 @@ const handlerSetIsShouldVerifyMsg = (service) => (_, msg) => {
 
 /***/ }),
 
-/***/ 1091:
+/***/ 1085:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1970,13 +2238,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(520), exports);
-__exportStar(__webpack_require__(333), exports);
+__exportStar(__webpack_require__(518), exports);
+__exportStar(__webpack_require__(332), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1092:
+/***/ 1086:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1992,13 +2260,35 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(343), exports);
+__exportStar(__webpack_require__(342), exports);
+__exportStar(__webpack_require__(346), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1087:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(555), exports);
 __exportStar(__webpack_require__(347), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1093:
+/***/ 1088:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2014,35 +2304,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(558), exports);
-__exportStar(__webpack_require__(348), exports);
+__exportStar(__webpack_require__(1089), exports);
+__exportStar(__webpack_require__(1169), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1094:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1095), exports);
-__exportStar(__webpack_require__(1175), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1095:
+/***/ 1089:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2058,8 +2326,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretWasmService = void 0;
-const secretjs_1 = __webpack_require__(1096);
-const crypto_1 = __webpack_require__(50);
+const secretjs_1 = __webpack_require__(1090);
+const crypto_1 = __webpack_require__(51);
 const common_1 = __webpack_require__(27);
 const cosmos_1 = __webpack_require__(16);
 const router_1 = __webpack_require__(3);
@@ -2190,7 +2458,7 @@ exports.SecretWasmService = SecretWasmService;
 
 /***/ }),
 
-/***/ 1175:
+/***/ 1169:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2198,7 +2466,7 @@ exports.SecretWasmService = SecretWasmService;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetTxEncryptionKeyMsg = exports.RequestDecryptMsg = exports.ReqeustEncryptMsg = exports.GetPubkeyMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(1176);
+const constants_1 = __webpack_require__(1170);
 class GetPubkeyMsg extends router_1.Message {
     constructor(chainId) {
         super();
@@ -2322,7 +2590,7 @@ exports.GetTxEncryptionKeyMsg = GetTxEncryptionKeyMsg;
 
 /***/ }),
 
-/***/ 1176:
+/***/ 1170:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2331,6 +2599,118 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ROUTE = void 0;
 exports.ROUTE = "secret-wasm";
 //# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ 1171:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(534), exports);
+__exportStar(__webpack_require__(336), exports);
+__exportStar(__webpack_require__(1172), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1172:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1173:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(536), exports);
+__exportStar(__webpack_require__(337), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1174:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(538), exports);
+__exportStar(__webpack_require__(230), exports);
+__exportStar(__webpack_require__(541), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1175:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(542), exports);
+__exportStar(__webpack_require__(340), exports);
+__exportStar(__webpack_require__(1176), exports);
+__exportStar(__webpack_require__(543), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1176:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
 
 /***/ }),
 
@@ -2350,125 +2730,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(536), exports);
-__exportStar(__webpack_require__(337), exports);
-__exportStar(__webpack_require__(1178), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1178:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
-
-/***/ }),
-
-/***/ 1179:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(538), exports);
-__exportStar(__webpack_require__(338), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1180:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(540), exports);
-__exportStar(__webpack_require__(231), exports);
-__exportStar(__webpack_require__(543), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1181:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(544), exports);
+__exportStar(__webpack_require__(546), exports);
 __exportStar(__webpack_require__(341), exports);
-__exportStar(__webpack_require__(1182), exports);
-__exportStar(__webpack_require__(545), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1182:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
-
-/***/ }),
-
-/***/ 1183:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(548), exports);
-__exportStar(__webpack_require__(342), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1217:
+/***/ 1210:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2480,14 +2748,14 @@ __webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport 
 // UNUSED EXPORTS: AutoLockAccountService, StartAutoLockMonitoringMsg, LockMsg
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/aes-js/index.js
-var aes_js = __webpack_require__(196);
+var aes_js = __webpack_require__(194);
 var aes_js_default = /*#__PURE__*/__webpack_require__.n(aes_js);
 
 // EXTERNAL MODULE: ../crypto/build/index.js
-var build = __webpack_require__(50);
+var build = __webpack_require__(51);
 
 // EXTERNAL MODULE: ../background/node_modules/pbkdf2/browser.js
-var pbkdf2_browser = __webpack_require__(379);
+var pbkdf2_browser = __webpack_require__(377);
 var browser_default = /*#__PURE__*/__webpack_require__.n(pbkdf2_browser);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
@@ -2523,6 +2791,28 @@ class crypto_Crypto {
                 r: 8,
                 p: 1,
             };
+            random = new Uint8Array(16);
+            const iv = buffer["Buffer"].from(yield crypto.rng(random));
+            // If the mnemonic is not imported, there will be no mnemonic content
+            if (!text && !password && type === "mnemonic") {
+                return {
+                    version: "1.2",
+                    type,
+                    coinTypeForChain: {},
+                    bip44HDPath,
+                    meta,
+                    crypto: {
+                        cipher: "aes-128-ctr",
+                        cipherparams: {
+                            iv: iv.toString("hex"),
+                        },
+                        ciphertext: "",
+                        kdf,
+                        kdfparams: scryptParams,
+                        mac: "",
+                    },
+                };
+            }
             const derivedKey = yield (() => __awaiter(this, void 0, void 0, function* () {
                 switch (kdf) {
                     case "scrypt":
@@ -2545,8 +2835,6 @@ class crypto_Crypto {
                 }
             }))();
             const buf = buffer["Buffer"].from(text);
-            random = new Uint8Array(16);
-            const iv = buffer["Buffer"].from(yield crypto.rng(random));
             const counter = new aes_js["Counter"](0);
             counter.setBytes(iv);
             const aesCtr = new aes_js_default.a.ModeOfOperation.ctr(derivedKey, counter);
@@ -2685,7 +2973,7 @@ const EIP712MessageValidator = joi_browser_min_default.a.object({
 });
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/typed-data.js + 4 modules
-var typed_data = __webpack_require__(596);
+var typed_data = __webpack_require__(593);
 
 // CONCATENATED MODULE: ../background/src/migrator/index.ts
 var migrator_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -2715,7 +3003,8 @@ class Migrator {
     }
     enCodeValut(keyringStore, password) {
         return migrator_awaiter(this, void 0, void 0, function* () {
-            const encryptor = __webpack_require__(630);
+            // eslint-disable-next-line
+            const encryptor = __webpack_require__(628);
             const { vault: vaultString } = keyringStore;
             const vault = (yield encryptor.decrypt(password, vaultString));
             return vault.filter((val) => ["HD Key Tree", "Simple Key Pair"].includes(val.type));
@@ -2772,7 +3061,6 @@ class keyring_KeyRing {
         this.misesService = misesService;
         this.cached = new Map();
         this.password = "";
-        this.mnemonic = "";
         this.migratorStore = { vault: "" };
         this.loaded = false;
         this.keyStore = null;
@@ -2891,7 +3179,7 @@ class keyring_KeyRing {
             this.multiKeyStore.push(this.keyStore);
             const privKey = this.loadPrivKey(60);
             const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
-            yield this.misesService.initQueryClient();
+            // this.misesService.initQueryClient();
             this.misesService.activateUser(ethWallet.privateKey);
             yield this.save();
             return {
@@ -2924,19 +3212,31 @@ class keyring_KeyRing {
         this.privateKey = undefined;
         this.ledgerPublicKeyCache = undefined;
         this.password = "";
-        this.mnemonic = "";
         this.misesService.lockAll();
+    }
+    checkKeyStoreStatus() {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (!this.keyStore || this.type === "none") {
+                console.log("checkKeyStoreStatus");
+                yield this.restore();
+            }
+            return true;
+        });
     }
     unlock(password) {
         return keyring_awaiter(this, void 0, void 0, function* () {
+            /**
+             * If the service worker is closed and reopened
+             * the restore will not run, so you need to check whether the keystore needs to be restored again
+             */
+            console.log("unlocked");
+            yield this.checkKeyStoreStatus();
             if (!this.keyStore || this.type === "none") {
                 throw new router_build["KeplrError"]("keyring", 144, "Key ring not initialized");
             }
-            this.mnemonic = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString();
-            this.mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(this.mnemonic);
             if (this.type === "mnemonic") {
                 // If password is invalid, error will be thrown.
-                this.mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.keyStore, password)).toString());
+                this.mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString());
             }
             else if (this.type === "privateKey") {
                 // If password is invalid, error will be thrown.
@@ -2948,7 +3248,7 @@ class keyring_KeyRing {
             this.password = password;
             const privKey = this.loadPrivKey(60);
             const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
-            yield this.misesService.initQueryClient();
+            // this.misesService.initQueryClient();
             this.misesService.activateUser(ethWallet.privateKey);
         });
     }
@@ -3088,7 +3388,7 @@ class keyring_KeyRing {
                 .slice(0, index)
                 .concat(this.multiKeyStore.slice(index + 1));
             // Make sure that password is valid.
-            yield crypto_Crypto.decrypt(this.crypto, keyStore, password);
+            yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password);
             let keyStoreChanged = false;
             if (this.keyStore) {
                 // If key store is currently selected key store
@@ -3311,7 +3611,7 @@ class keyring_KeyRing {
                 if (!this.checkPassword(password)) {
                     throw new router_build["KeplrError"]("keyring", 222, "Unmatched mac");
                 }
-                const privKey = this.loadMnemonicPrivKey(60, keyStore);
+                const privKey = yield this.loadMnemonicPrivKey(60, keyStore);
                 const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
                 return ethWallet.privateKey.replace("0x", "");
             }
@@ -3322,22 +3622,25 @@ class keyring_KeyRing {
         });
     }
     loadMnemonicPrivKey(coinType, keyStore) {
-        if (this.status !== KeyRingStatus.UNLOCKED || !keyStore) {
-            throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-        }
-        const bip44HDPath = keyring_KeyRing.getKeyStoreBIP44Path(keyStore);
-        const path = `m/44'/${coinType}'/${bip44HDPath.account}'/${bip44HDPath.change}/${bip44HDPath.addressIndex}`;
-        const cachedKey = this.cached.get(path);
-        if (cachedKey) {
-            return new build["PrivKeySecp256k1"](cachedKey);
-        }
-        const mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(this.mnemonic);
-        if (!mnemonicMasterSeed) {
-            throw new router_build["KeplrError"]("keyring", 133, "Key store type is mnemonic and it is unlocked. But, mnemonic is not loaded unexpectedly");
-        }
-        const privKey = build["Mnemonic"].generatePrivateKeyFromMasterSeed(mnemonicMasterSeed, path);
-        this.cached.set(path, privKey);
-        return new build["PrivKeySecp256k1"](privKey);
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED || !keyStore) {
+                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+            }
+            const bip44HDPath = keyring_KeyRing.getKeyStoreBIP44Path(keyStore);
+            const path = `m/44'/${coinType}'/${bip44HDPath.account}'/${bip44HDPath.change}/${bip44HDPath.addressIndex}`;
+            const cachedKey = this.cached.get(path);
+            if (cachedKey) {
+                return new build["PrivKeySecp256k1"](cachedKey);
+            }
+            const mnemonic = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], this.password)).toString();
+            const mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(mnemonic);
+            if (!mnemonicMasterSeed) {
+                throw new router_build["KeplrError"]("keyring", 133, "Key store type is mnemonic and it is unlocked. But, mnemonic is not loaded unexpectedly");
+            }
+            const privKey = build["Mnemonic"].generatePrivateKeyFromMasterSeed(mnemonicMasterSeed, path);
+            this.cached.set(path, privKey);
+            return new build["PrivKeySecp256k1"](privKey);
+        });
     }
     get canSetPath() {
         return this.type === "mnemonic" || this.type === "ledger";
@@ -3347,7 +3650,8 @@ class keyring_KeyRing {
             if (this.status !== KeyRingStatus.UNLOCKED || this.password == "") {
                 throw new router_build["KeplrError"]("keyring", 141, "Key ring is locked or not initialized");
             }
-            const keyStore = yield keyring_KeyRing.CreateMnemonicKeyStore(this.crypto, kdf, mnemonic, this.password, yield this.assignKeyStoreIdMeta(meta), bip44HDPath);
+            console.log(mnemonic);
+            const keyStore = yield keyring_KeyRing.CreateMnemonicKeyStore(this.crypto, kdf, "", "", yield this.assignKeyStoreIdMeta(meta), bip44HDPath);
             this.multiKeyStore.push(keyStore);
             yield this.save();
             return {
@@ -3441,7 +3745,7 @@ class keyring_KeyRing {
                 const type = (_a = keyStore.type) !== null && _a !== void 0 ? _a : "mnemonic";
                 switch (type) {
                     case "mnemonic": {
-                        const mnemonic = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, password)).toString();
+                        const mnemonic = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString();
                         result.push({
                             bip44HDPath: (_b = keyStore.bip44HDPath) !== null && _b !== void 0 ? _b : {
                                 account: 0,
@@ -3551,7 +3855,7 @@ class keyring_KeyRing {
     addAccount(name, bip44HDPath) {
         return keyring_awaiter(this, void 0, void 0, function* () {
             try {
-                const result = yield this.addMnemonicKey("scrypt", this.mnemonic, {
+                const result = yield this.addMnemonicKey("scrypt", "", {
                     name,
                 }, bip44HDPath);
                 return result;
@@ -3614,7 +3918,6 @@ class keyring_KeyRing {
                 const mnemonicKey = mnemonicKeys.find((val) => val.type === "HD Key Tree");
                 if (mnemonicKey) {
                     const mnemonic = buffer["Buffer"].from(mnemonicKey === null || mnemonicKey === void 0 ? void 0 : mnemonicKey.data.mnemonic).toString("utf8");
-                    this.mnemonic = mnemonic;
                     const numberOfAccounts = mnemonicKey === null || mnemonicKey === void 0 ? void 0 : mnemonicKey.data.numberOfAccounts;
                     const firstAccount = yield this._restoreFirstAccount(mnemonic, password);
                     // An account has already been initialized, so need to delete first account number
@@ -5031,7 +5334,7 @@ class messages_LockMsg extends router_build["Message"] {
 
 /***/ }),
 
-/***/ 1348:
+/***/ 1338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5048,7 +5351,7 @@ class messages_LockMsg extends router_build["Message"] {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return shortenAddress; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(60);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vespaiach_axios_fetch_adapter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(598);
+/* harmony import */ var _vespaiach_axios_fetch_adapter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(595);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -5059,7 +5362,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     });
 };
 const MISES_SITE_API = "https://api.alb.mises.site/api/v1";
-// export const MISES_SITE_API = 'http://192.168.1.2:8080/api/v1';
+//export const MISES_SITE_API = "http://localhost:8080/api/v1";
 // export const MISES_POINT = 'http://192.168.1.8:26657';
 const MISES_POINT = "http://127.0.0.1:26657";
 
@@ -5172,7 +5475,7 @@ class Request {
 }
 const request = new Request({
     baseURL: MISES_SITE_API,
-    timeout: 3000,
+    timeout: 6000,
     interceptors: {
         // 请求拦截器
         requestInterceptors: (config) => config,
@@ -5238,7 +5541,7 @@ function shortenAddress(address = "", prefix = TRUNCATED_ADDRESS_START_CHARS) {
 
 /***/ }),
 
-/***/ 229:
+/***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5246,7 +5549,7 @@ function shortenAddress(address = "", prefix = TRUNCATED_ADDRESS_START_CHARS) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RemoveSuggestedChainInfoMsg = exports.SuggestChainInfoMsg = exports.GetChainInfosMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(524);
+const constants_1 = __webpack_require__(522);
 class GetChainInfosMsg extends router_1.Message {
     static type() {
         return "get-chain-infos";
@@ -5311,7 +5614,7 @@ exports.RemoveSuggestedChainInfoMsg = RemoveSuggestedChainInfoMsg;
 
 /***/ }),
 
-/***/ 230:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5346,17 +5649,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeyRing = exports.KeyRingStatus = void 0;
-const crypto_1 = __webpack_require__(1027);
-const crypto_2 = __webpack_require__(50);
+const crypto_1 = __webpack_require__(1024);
+const crypto_2 = __webpack_require__(51);
 const types_1 = __webpack_require__(96);
 const router_1 = __webpack_require__(3);
 const buffer_1 = __webpack_require__(4);
 const cosmos_1 = __webpack_require__(16);
 const wallet_1 = __webpack_require__(252);
 const BytesUtils = __importStar(__webpack_require__(1));
-const eip712_1 = __webpack_require__(534);
+const eip712_1 = __webpack_require__(532);
 const hash_1 = __webpack_require__(267);
-const migrator_1 = __webpack_require__(1040);
+const migrator_1 = __webpack_require__(1037);
 var KeyRingStatus;
 (function (KeyRingStatus) {
     KeyRingStatus[KeyRingStatus["NOTLOADED"] = 0] = "NOTLOADED";
@@ -5379,7 +5682,6 @@ class KeyRing {
         this.misesService = misesService;
         this.cached = new Map();
         this.password = "";
-        this.mnemonic = "";
         this.migratorStore = { vault: "" };
         this.loaded = false;
         this.keyStore = null;
@@ -5498,7 +5800,7 @@ class KeyRing {
             this.multiKeyStore.push(this.keyStore);
             const privKey = this.loadPrivKey(60);
             const ethWallet = new wallet_1.Wallet(privKey.toBytes());
-            yield this.misesService.initQueryClient();
+            // this.misesService.initQueryClient();
             this.misesService.activateUser(ethWallet.privateKey);
             yield this.save();
             return {
@@ -5531,19 +5833,31 @@ class KeyRing {
         this.privateKey = undefined;
         this.ledgerPublicKeyCache = undefined;
         this.password = "";
-        this.mnemonic = "";
         this.misesService.lockAll();
+    }
+    checkKeyStoreStatus() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.keyStore || this.type === "none") {
+                console.log("checkKeyStoreStatus");
+                yield this.restore();
+            }
+            return true;
+        });
     }
     unlock(password) {
         return __awaiter(this, void 0, void 0, function* () {
+            /**
+             * If the service worker is closed and reopened
+             * the restore will not run, so you need to check whether the keystore needs to be restored again
+             */
+            console.log("unlocked");
+            yield this.checkKeyStoreStatus();
             if (!this.keyStore || this.type === "none") {
                 throw new router_1.KeplrError("keyring", 144, "Key ring not initialized");
             }
-            this.mnemonic = buffer_1.Buffer.from(yield crypto_1.Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString();
-            this.mnemonicMasterSeed = crypto_2.Mnemonic.generateMasterSeedFromMnemonic(this.mnemonic);
             if (this.type === "mnemonic") {
                 // If password is invalid, error will be thrown.
-                this.mnemonicMasterSeed = crypto_2.Mnemonic.generateMasterSeedFromMnemonic(buffer_1.Buffer.from(yield crypto_1.Crypto.decrypt(this.crypto, this.keyStore, password)).toString());
+                this.mnemonicMasterSeed = crypto_2.Mnemonic.generateMasterSeedFromMnemonic(buffer_1.Buffer.from(yield crypto_1.Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString());
             }
             else if (this.type === "privateKey") {
                 // If password is invalid, error will be thrown.
@@ -5555,7 +5869,7 @@ class KeyRing {
             this.password = password;
             const privKey = this.loadPrivKey(60);
             const ethWallet = new wallet_1.Wallet(privKey.toBytes());
-            yield this.misesService.initQueryClient();
+            // this.misesService.initQueryClient();
             this.misesService.activateUser(ethWallet.privateKey);
         });
     }
@@ -5695,7 +6009,7 @@ class KeyRing {
                 .slice(0, index)
                 .concat(this.multiKeyStore.slice(index + 1));
             // Make sure that password is valid.
-            yield crypto_1.Crypto.decrypt(this.crypto, keyStore, password);
+            yield crypto_1.Crypto.decrypt(this.crypto, this.multiKeyStore[0], password);
             let keyStoreChanged = false;
             if (this.keyStore) {
                 // If key store is currently selected key store
@@ -5918,7 +6232,7 @@ class KeyRing {
                 if (!this.checkPassword(password)) {
                     throw new router_1.KeplrError("keyring", 222, "Unmatched mac");
                 }
-                const privKey = this.loadMnemonicPrivKey(60, keyStore);
+                const privKey = yield this.loadMnemonicPrivKey(60, keyStore);
                 const ethWallet = new wallet_1.Wallet(privKey.toBytes());
                 return ethWallet.privateKey.replace("0x", "");
             }
@@ -5929,22 +6243,25 @@ class KeyRing {
         });
     }
     loadMnemonicPrivKey(coinType, keyStore) {
-        if (this.status !== KeyRingStatus.UNLOCKED || !keyStore) {
-            throw new router_1.KeplrError("keyring", 143, "Key ring is not unlocked");
-        }
-        const bip44HDPath = KeyRing.getKeyStoreBIP44Path(keyStore);
-        const path = `m/44'/${coinType}'/${bip44HDPath.account}'/${bip44HDPath.change}/${bip44HDPath.addressIndex}`;
-        const cachedKey = this.cached.get(path);
-        if (cachedKey) {
-            return new crypto_2.PrivKeySecp256k1(cachedKey);
-        }
-        const mnemonicMasterSeed = crypto_2.Mnemonic.generateMasterSeedFromMnemonic(this.mnemonic);
-        if (!mnemonicMasterSeed) {
-            throw new router_1.KeplrError("keyring", 133, "Key store type is mnemonic and it is unlocked. But, mnemonic is not loaded unexpectedly");
-        }
-        const privKey = crypto_2.Mnemonic.generatePrivateKeyFromMasterSeed(mnemonicMasterSeed, path);
-        this.cached.set(path, privKey);
-        return new crypto_2.PrivKeySecp256k1(privKey);
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED || !keyStore) {
+                throw new router_1.KeplrError("keyring", 143, "Key ring is not unlocked");
+            }
+            const bip44HDPath = KeyRing.getKeyStoreBIP44Path(keyStore);
+            const path = `m/44'/${coinType}'/${bip44HDPath.account}'/${bip44HDPath.change}/${bip44HDPath.addressIndex}`;
+            const cachedKey = this.cached.get(path);
+            if (cachedKey) {
+                return new crypto_2.PrivKeySecp256k1(cachedKey);
+            }
+            const mnemonic = buffer_1.Buffer.from(yield crypto_1.Crypto.decrypt(this.crypto, this.multiKeyStore[0], this.password)).toString();
+            const mnemonicMasterSeed = crypto_2.Mnemonic.generateMasterSeedFromMnemonic(mnemonic);
+            if (!mnemonicMasterSeed) {
+                throw new router_1.KeplrError("keyring", 133, "Key store type is mnemonic and it is unlocked. But, mnemonic is not loaded unexpectedly");
+            }
+            const privKey = crypto_2.Mnemonic.generatePrivateKeyFromMasterSeed(mnemonicMasterSeed, path);
+            this.cached.set(path, privKey);
+            return new crypto_2.PrivKeySecp256k1(privKey);
+        });
     }
     get canSetPath() {
         return this.type === "mnemonic" || this.type === "ledger";
@@ -5954,7 +6271,8 @@ class KeyRing {
             if (this.status !== KeyRingStatus.UNLOCKED || this.password == "") {
                 throw new router_1.KeplrError("keyring", 141, "Key ring is locked or not initialized");
             }
-            const keyStore = yield KeyRing.CreateMnemonicKeyStore(this.crypto, kdf, mnemonic, this.password, yield this.assignKeyStoreIdMeta(meta), bip44HDPath);
+            console.log(mnemonic);
+            const keyStore = yield KeyRing.CreateMnemonicKeyStore(this.crypto, kdf, "", "", yield this.assignKeyStoreIdMeta(meta), bip44HDPath);
             this.multiKeyStore.push(keyStore);
             yield this.save();
             return {
@@ -6048,7 +6366,7 @@ class KeyRing {
                 const type = (_a = keyStore.type) !== null && _a !== void 0 ? _a : "mnemonic";
                 switch (type) {
                     case "mnemonic": {
-                        const mnemonic = buffer_1.Buffer.from(yield crypto_1.Crypto.decrypt(this.crypto, keyStore, password)).toString();
+                        const mnemonic = buffer_1.Buffer.from(yield crypto_1.Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString();
                         result.push({
                             bip44HDPath: (_b = keyStore.bip44HDPath) !== null && _b !== void 0 ? _b : {
                                 account: 0,
@@ -6158,7 +6476,7 @@ class KeyRing {
     addAccount(name, bip44HDPath) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const result = yield this.addMnemonicKey("scrypt", this.mnemonic, {
+                const result = yield this.addMnemonicKey("scrypt", "", {
                     name,
                 }, bip44HDPath);
                 return result;
@@ -6221,7 +6539,6 @@ class KeyRing {
                 const mnemonicKey = mnemonicKeys.find((val) => val.type === "HD Key Tree");
                 if (mnemonicKey) {
                     const mnemonic = buffer_1.Buffer.from(mnemonicKey === null || mnemonicKey === void 0 ? void 0 : mnemonicKey.data.mnemonic).toString("utf8");
-                    this.mnemonic = mnemonic;
                     const numberOfAccounts = mnemonicKey === null || mnemonicKey === void 0 ? void 0 : mnemonicKey.data.numberOfAccounts;
                     const firstAccount = yield this._restoreFirstAccount(mnemonic, password);
                     // An account has already been initialized, so need to delete first account number
@@ -6255,7 +6572,7 @@ exports.KeyRing = KeyRing;
 
 /***/ }),
 
-/***/ 231:
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6263,7 +6580,7 @@ exports.KeyRing = KeyRing;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetSecret20ViewingKey = exports.RemoveTokenMsg = exports.AddTokenMsg = exports.SuggestTokenMsg = exports.GetTokensMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(542);
+const constants_1 = __webpack_require__(540);
 class GetTokensMsg extends router_1.Message {
     constructor(chainId) {
         super();
@@ -6390,7 +6707,7 @@ exports.GetSecret20ViewingKey = GetSecret20ViewingKey;
 
 /***/ }),
 
-/***/ 232:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6410,11 +6727,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shortenAddress = exports.MISES_TRUNCATED_ADDRESS_START_CHARS = exports.TRUNCATED_ADDRESS_END_CHARS = exports.TRUNCATED_ADDRESS_START_CHARS = exports.TRUNCATED_NAME_CHAR_LIMIT = exports.cancelAllRequest = exports.cancelRequest = exports.misesRequest = exports.Request = exports.MISES_POINT = exports.MISES_SITE_API = void 0;
 exports.MISES_SITE_API = "https://api.alb.mises.site/api/v1";
-// export const MISES_SITE_API = 'http://192.168.1.2:8080/api/v1';
+//export const MISES_SITE_API = "http://localhost:8080/api/v1";
 // export const MISES_POINT = 'http://192.168.1.8:26657';
 exports.MISES_POINT = "http://127.0.0.1:26657";
 const axios_1 = __importDefault(__webpack_require__(60));
-const axios_fetch_adapter_1 = __importDefault(__webpack_require__(598));
+const axios_fetch_adapter_1 = __importDefault(__webpack_require__(595));
 class Request {
     constructor(config) {
         var _a, _b, _c, _d;
@@ -6524,7 +6841,7 @@ class Request {
 exports.Request = Request;
 const request = new Request({
     baseURL: exports.MISES_SITE_API,
-    timeout: 3000,
+    timeout: 6000,
     interceptors: {
         // 请求拦截器
         requestInterceptors: (config) => config,
@@ -6594,7 +6911,7 @@ exports.shortenAddress = shortenAddress;
 
 /***/ }),
 
-/***/ 333:
+/***/ 332:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6602,7 +6919,7 @@ exports.shortenAddress = shortenAddress;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetPersistentMemoryMsg = exports.SetPersistentMemoryMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(521);
+const constants_1 = __webpack_require__(519);
 class SetPersistentMemoryMsg extends router_1.Message {
     constructor(data) {
         super();
@@ -6642,7 +6959,7 @@ exports.GetPersistentMemoryMsg = GetPersistentMemoryMsg;
 
 /***/ }),
 
-/***/ 334:
+/***/ 333:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6650,7 +6967,7 @@ exports.GetPersistentMemoryMsg = GetPersistentMemoryMsg;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RemovePermissionsOrigin = exports.RemovePermissionOrigin = exports.AddPermissionOrigin = exports.GetOriginPermittedChainsMsg = exports.GetPermissionOriginsMsg = exports.EnableAccessMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(528);
+const constants_1 = __webpack_require__(526);
 class EnableAccessMsg extends router_1.Message {
     constructor(chainIds) {
         super();
@@ -6808,7 +7125,7 @@ exports.RemovePermissionsOrigin = RemovePermissionsOrigin;
 
 /***/ }),
 
-/***/ 336:
+/***/ 335:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6816,8 +7133,8 @@ exports.RemovePermissionsOrigin = RemovePermissionsOrigin;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestoreKeyStoreMsg = exports.MigratorKeyRingMsg = exports.AddAccountMsg = exports.IsUnlockMsg = exports.ExportKeyRingDatasMsg = exports.CheckPasswordMsg = exports.SetKeyStoreCoinTypeMsg = exports.GetIsKeyStoreCoinTypeSetMsg = exports.ChangeKeyRingMsg = exports.GetMultiKeyStoreInfoMsg = exports.RequestSignDirectMsg = exports.RequestVerifyADR36AminoSignDoc = exports.RequestSignEIP712CosmosTxMsg_v0 = exports.RequestSignAminoMsg = exports.GetKeyMsg = exports.UnlockKeyRingMsg = exports.LockKeyRingMsg = exports.AddPrivateKeyMsg = exports.CreatePrivateKeyMsg = exports.AddMnemonicKeyMsg = exports.CreateMnemonicKeyMsg = exports.ShowKeyRingMsg = exports.UpdateNameKeyRingMsg = exports.DeleteKeyRingMsg = exports.RestoreKeyRingMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(535);
-const keyring_1 = __webpack_require__(230);
+const constants_1 = __webpack_require__(533);
+const keyring_1 = __webpack_require__(229);
 const cosmos_1 = __webpack_require__(16);
 const types_1 = __webpack_require__(96);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -7547,7 +7864,7 @@ exports.RestoreKeyStoreMsg = RestoreKeyStoreMsg;
 
 /***/ }),
 
-/***/ 337:
+/***/ 336:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7555,7 +7872,7 @@ exports.RestoreKeyStoreMsg = RestoreKeyStoreMsg;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SendTxMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(537);
+const constants_1 = __webpack_require__(535);
 // Return the tx hash
 class SendTxMsg extends router_1.Message {
     constructor(chainId, tx, mode) {
@@ -7594,7 +7911,7 @@ exports.SendTxMsg = SendTxMsg;
 
 /***/ }),
 
-/***/ 338:
+/***/ 337:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7602,7 +7919,7 @@ exports.SendTxMsg = SendTxMsg;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResetChainEndpointsMsg = exports.SetChainEndpointsMsg = exports.TryUpdateChainMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(539);
+const constants_1 = __webpack_require__(537);
 class TryUpdateChainMsg extends router_1.Message {
     constructor(chainId) {
         super();
@@ -7686,7 +8003,7 @@ exports.ResetChainEndpointsMsg = ResetChainEndpointsMsg;
 
 /***/ }),
 
-/***/ 339:
+/***/ 338:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7702,16 +8019,16 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(529), exports);
-__exportStar(__webpack_require__(336), exports);
-__exportStar(__webpack_require__(1051), exports);
-__exportStar(__webpack_require__(230), exports);
-__exportStar(__webpack_require__(534), exports);
+__exportStar(__webpack_require__(527), exports);
+__exportStar(__webpack_require__(335), exports);
+__exportStar(__webpack_require__(1048), exports);
+__exportStar(__webpack_require__(229), exports);
+__exportStar(__webpack_require__(532), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 340:
+/***/ 339:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7719,7 +8036,7 @@ __exportStar(__webpack_require__(534), exports);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PushEventDataMsg = exports.PushInteractionDataMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(546);
+const constants_1 = __webpack_require__(544);
 class PushInteractionDataMsg extends router_1.Message {
     constructor(data) {
         super();
@@ -7766,7 +8083,7 @@ exports.PushEventDataMsg = PushEventDataMsg;
 
 /***/ }),
 
-/***/ 341:
+/***/ 340:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7774,7 +8091,7 @@ exports.PushEventDataMsg = PushEventDataMsg;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RejectInteractionMsg = exports.ApproveInteractionMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(547);
+const constants_1 = __webpack_require__(545);
 class ApproveInteractionMsg extends router_1.Message {
     constructor(id, result) {
         super();
@@ -7818,7 +8135,7 @@ exports.RejectInteractionMsg = RejectInteractionMsg;
 
 /***/ }),
 
-/***/ 342:
+/***/ 341:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7826,7 +8143,7 @@ exports.RejectInteractionMsg = RejectInteractionMsg;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LockMsg = exports.StartAutoLockMonitoringMsg = exports.UpdateAutoLockAccountDurationMsg = exports.GetAutoLockAccountDurationMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(549);
+const constants_1 = __webpack_require__(547);
 class GetAutoLockAccountDurationMsg extends router_1.Message {
     static type() {
         return "get-auto-lock-account-duration";
@@ -7906,7 +8223,7 @@ exports.LockMsg = LockMsg;
 
 /***/ }),
 
-/***/ 343:
+/***/ 342:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7932,8 +8249,8 @@ exports.MisesService = exports.fetchConfig = void 0;
  * @LastEditors: lmk
  * @Description: mises controller
  */
-const mises_1 = __webpack_require__(1068);
-const mises_network_util_1 = __webpack_require__(232);
+const mises_1 = __webpack_require__(1065);
+const mises_network_util_1 = __webpack_require__(231);
 const stargate_1 = __webpack_require__(265);
 const long_1 = __importDefault(__webpack_require__(7));
 const defaultUserInfo = {
@@ -7943,17 +8260,29 @@ const defaultUserInfo = {
     token: "",
     timestamp: 0,
     transtions: [],
+    balance: {
+        denom: "mis",
+        amount: "0",
+    },
+    stakedSum: {
+        denom: "mis",
+        amount: "0",
+    },
 };
 exports.fetchConfig = {
     // To handle sequence mismatch
     retry: 3,
     retryDelay: 1000,
 };
+const timeout = 5000;
 class MisesService {
     constructor(kvStore) {
         this.kvStore = kvStore;
         this.userInfo = defaultUserInfo;
         this.keepAlivePort = null;
+        this.queryClientStatus = false;
+        this.queryClientTryMaxCount = 5;
+        this.queryClientTryCount = 1;
         this.data = {};
     }
     init() {
@@ -7964,19 +8293,47 @@ class MisesService {
             if (this.queryClient) {
                 return this.queryClient;
             }
+            if (this.queryClientStatus) {
+                return "await";
+            }
+            this.queryClientStatus = true;
             this.mises.queryFetchClient.fetchQuery("gasPriceAndLimit", () => this.gasPriceAndLimit(), exports.fetchConfig);
             try {
-                console.log("init start");
+                console.log("init");
                 const clients = yield this.mises.queryFetchClient.fetchQuery("makeClient", () => this.mises.makeClient(), exports.fetchConfig);
                 const [queryClient, tmClient] = clients;
                 this.queryClient = queryClient;
                 this.tmClient = tmClient;
+                this.queryClientStatus = false;
                 console.log("init success");
                 return queryClient;
             }
             catch (error) {
                 console.log(error, "initQueryClient failed");
             }
+        });
+    }
+    queryClientAwait() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryClientStatus = yield this.initQueryClient();
+            return new Promise((resolve, reject) => {
+                if (this.queryClientTryCount === this.queryClientTryMaxCount) {
+                    this.queryClientTryCount = 1; // reset
+                    reject("queryClientAwait timeout");
+                    return;
+                }
+                if (queryClientStatus === "await") {
+                    setTimeout(() => __awaiter(this, void 0, void 0, function* () {
+                        this.queryClientTryCount++;
+                        yield this.queryClientAwait();
+                        resolve();
+                    }), 500 * this.queryClientTryCount);
+                }
+                else {
+                    this.queryClientTryCount = 1;
+                    resolve();
+                }
+            });
         });
     }
     activateUser(priKey) {
@@ -7992,10 +8349,11 @@ class MisesService {
         });
     }
     misesUserInfo() {
-        var _a;
+        var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
-            const misesId = this.activeUser && this.activeUser.address();
-            const userInfo = (yield this.kvStore.get(misesId)) || defaultUserInfo; // init userInfo
+            const misesId = (_a = this.activeUser) === null || _a === void 0 ? void 0 : _a.address();
+            const userInfo = (misesId && (yield this.kvStore.get(misesId))) ||
+                defaultUserInfo; // init userInfo
             const nowTimeStamp = new Date().getTime();
             const expireTokenFlag = userInfo.token &&
                 userInfo.timestamp &&
@@ -8016,7 +8374,7 @@ class MisesService {
             }
             const isRegistered = yield this.activeUser.isRegistered();
             if (isRegistered) {
-                const misesInfo = yield ((_a = this.activeUser) === null || _a === void 0 ? void 0 : _a.info());
+                const misesInfo = yield ((_b = this.activeUser) === null || _b === void 0 ? void 0 : _b.info());
                 userInfo.avatar = misesInfo === null || misesInfo === void 0 ? void 0 : misesInfo.avatarUrl;
                 userInfo.nickname = (misesInfo === null || misesInfo === void 0 ? void 0 : misesInfo.name) || "";
             }
@@ -8082,6 +8440,7 @@ class MisesService {
                     url: "/signin",
                     method: "POST",
                     data: query,
+                    timeout,
                 });
                 return data.token;
             }
@@ -8095,6 +8454,7 @@ class MisesService {
             try {
                 return mises_network_util_1.misesRequest({
                     url: "/mises/gasprices",
+                    timeout,
                 });
             }
             catch (error) {
@@ -8121,7 +8481,7 @@ class MisesService {
                 const activeUser = this.activeUser;
                 const userinfo = yield activeUser.info();
                 const version = userinfo.version.add(1);
-                const { misesId, token, timestamp } = this.userInfo;
+                const { misesId, token, timestamp, balance } = this.userInfo;
                 yield activeUser.setInfo(Object.assign(Object.assign({}, data), { version }));
                 const updateUserInfo = {
                     nickname: data.name ||
@@ -8130,7 +8490,9 @@ class MisesService {
                     token,
                     misesId,
                     timestamp,
+                    balance,
                     transtions: this.userInfo.transtions,
+                    stakedSum: this.userInfo.stakedSum,
                 };
                 this.storeUserInfo(updateUserInfo);
                 return true;
@@ -8177,7 +8539,6 @@ class MisesService {
     }
     resetUserInfo() {
         this.userInfo = defaultUserInfo;
-        this.save();
     }
     storeUserInfo(userInfo) {
         this.userInfo = userInfo;
@@ -8191,11 +8552,19 @@ class MisesService {
             return this.kvStore.set(misesId, this.userInfo);
         }
     }
-    getBalanceUMIS() {
+    getBalanceUMIS(address) {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
+            if (address) {
+                const currentAddressInfo = yield this.kvStore.get(address);
+                return ((currentAddressInfo === null || currentAddressInfo === void 0 ? void 0 : currentAddressInfo.balance) ||
+                    this.mises.coinDefine.toCoinUMIS(long_1.default.ZERO));
+            }
             const balance = yield ((_a = this.activeUser) === null || _a === void 0 ? void 0 : _a.getBalanceUMIS());
-            return this.mises.coinDefine.toCoinUMIS(balance || long_1.default.ZERO);
+            const toCoinUMIS = this.mises.coinDefine.toCoinUMIS(balance || long_1.default.ZERO);
+            this.userInfo.balance = toCoinUMIS;
+            this.save();
+            return toCoinUMIS;
         });
     }
     getChainId() {
@@ -8203,40 +8572,63 @@ class MisesService {
     }
     unbondingDelegations(address) {
         return __awaiter(this, void 0, void 0, function* () {
-            const queryClient = yield this.initQueryClient();
-            return queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorUnbondingDelegations(address);
+            try {
+                yield this.queryClientAwait();
+                const queryClient = yield this.initQueryClient();
+                if (queryClient !== "await") {
+                    const delegatorUnbondingDelegations = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorUnbondingDelegations(address));
+                    return delegatorUnbondingDelegations;
+                }
+            }
+            catch (error) { }
         });
     }
     delegations(address) {
         var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
-            const queryClient = yield this.initQueryClient();
-            const delegatorDelegationsResponse = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorDelegations(address));
-            const total = ((_b = (_a = delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.pagination) === null || _a === void 0 ? void 0 : _a.total) === null || _b === void 0 ? void 0 : _b.toNumber()) || 0;
-            if (total > 100 && (delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.delegationResponses)) {
-                const nextRes = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorDelegations(address, (_c = delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.pagination) === null || _c === void 0 ? void 0 : _c.nextKey));
-                if (nextRes === null || nextRes === void 0 ? void 0 : nextRes.delegationResponses) {
-                    return {
-                        delegationResponses: [
-                            ...delegatorDelegationsResponse.delegationResponses,
-                            ...nextRes === null || nextRes === void 0 ? void 0 : nextRes.delegationResponses,
-                        ],
-                    };
+            try {
+                yield this.queryClientAwait();
+                const queryClient = yield this.initQueryClient();
+                if (queryClient !== "await") {
+                    const delegatorDelegationsResponse = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorDelegations(address));
+                    const total = ((_b = (_a = delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.pagination) === null || _a === void 0 ? void 0 : _a.total) === null || _b === void 0 ? void 0 : _b.toNumber()) || 0;
+                    if (total > 100 && (delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.delegationResponses)) {
+                        const nextRes = yield (queryClient === null || queryClient === void 0 ? void 0 : queryClient.staking.delegatorDelegations(address, (_c = delegatorDelegationsResponse === null || delegatorDelegationsResponse === void 0 ? void 0 : delegatorDelegationsResponse.pagination) === null || _c === void 0 ? void 0 : _c.nextKey));
+                        if (nextRes === null || nextRes === void 0 ? void 0 : nextRes.delegationResponses) {
+                            return {
+                                delegationResponses: [
+                                    ...delegatorDelegationsResponse.delegationResponses,
+                                    ...nextRes === null || nextRes === void 0 ? void 0 : nextRes.delegationResponses,
+                                ],
+                            };
+                        }
+                    }
+                    return delegatorDelegationsResponse;
                 }
             }
-            return delegatorDelegationsResponse;
+            catch (error) { }
         });
     }
     rewards(address) {
         return __awaiter(this, void 0, void 0, function* () {
-            const queryClient = yield this.initQueryClient();
-            return queryClient === null || queryClient === void 0 ? void 0 : queryClient.distribution.delegationTotalRewards(address);
+            try {
+                yield this.queryClientAwait();
+                const queryClient = yield this.initQueryClient();
+                if (queryClient !== "await")
+                    return queryClient === null || queryClient === void 0 ? void 0 : queryClient.distribution.delegationTotalRewards(address);
+            }
+            catch (error) { }
         });
     }
     authAccounts(address) {
         return __awaiter(this, void 0, void 0, function* () {
-            const queryClient = yield this.initQueryClient();
-            return queryClient === null || queryClient === void 0 ? void 0 : queryClient.auth.account(address);
+            try {
+                yield this.queryClientAwait();
+                const queryClient = yield this.initQueryClient();
+                if (queryClient !== "await")
+                    return queryClient === null || queryClient === void 0 ? void 0 : queryClient.auth.account(address);
+            }
+            catch (error) { }
         });
     }
     pollForTx(txId, timeoutMs = 3000 * 15, pollIntervalMs = 3000) {
@@ -8586,27 +8978,41 @@ class MisesService {
             this.handleDisconnect({});
         }
     }
+    setCacheUserInfo(params) {
+        this.userInfo = Object.assign(Object.assign({}, this.userInfo), params);
+        this.save();
+    }
+    getAddressUserInfo(address) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (address) {
+                const currentAddressInfo = yield this.kvStore.get(address);
+                return currentAddressInfo || this.userInfo;
+            }
+            return this.userInfo;
+        });
+    }
 }
 exports.MisesService = MisesService;
 //# sourceMappingURL=service.js.map
 
 /***/ }),
 
-/***/ 347:
+/***/ 346:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OpenWalletMsg = exports.SaveTranstionsMsg = exports.PortForTxMsg = exports.ActiveUserMsg = exports.StakingMsg = exports.SetUserInfoMsg = exports.UserUnFollowMsg = exports.UserFollowMsg = exports.ConnectMsg = exports.DisconnectMsg = exports.HasWalletAccountMsg = exports.MisesAccountMsg = exports.SimulateMsg = exports.BroadcastTxMsg = exports.AuthAccountsMsg = exports.RewardsMsg = exports.DelegationsMsg = exports.UnbondingDelegationsMsg = exports.GetChainIdMsg = exports.RecentTransactionsMsg = exports.MisesChainMsg = exports.BalanceUMISMsg = void 0;
+exports.SetLocalCacheMsg = exports.GetLocalCacheMsg = exports.OpenWalletMsg = exports.SaveTranstionsMsg = exports.PortForTxMsg = exports.ActiveUserMsg = exports.StakingMsg = exports.SetUserInfoMsg = exports.UserUnFollowMsg = exports.UserFollowMsg = exports.ConnectMsg = exports.DisconnectMsg = exports.HasWalletAccountMsg = exports.MisesAccountMsg = exports.SimulateMsg = exports.BroadcastTxMsg = exports.AuthAccountsMsg = exports.RewardsMsg = exports.DelegationsMsg = exports.UnbondingDelegationsMsg = exports.GetChainIdMsg = exports.RecentTransactionsMsg = exports.MisesChainMsg = exports.BalanceUMISMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(557);
+const constants_1 = __webpack_require__(554);
 class BalanceUMISMsg extends router_1.Message {
+    constructor(address) {
+        super();
+        this.address = address;
+    }
     static type() {
         return "balance-umis";
-    }
-    constructor() {
-        super();
     }
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     validateBasic() { }
@@ -9109,11 +9515,49 @@ class OpenWalletMsg extends router_1.Message {
     }
 }
 exports.OpenWalletMsg = OpenWalletMsg;
+class GetLocalCacheMsg extends router_1.Message {
+    constructor(address) {
+        super();
+        this.address = address;
+    }
+    static type() {
+        return "get-local-cache";
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return constants_1.ROUTE;
+    }
+    type() {
+        return GetLocalCacheMsg.type();
+    }
+}
+exports.GetLocalCacheMsg = GetLocalCacheMsg;
+class SetLocalCacheMsg extends router_1.Message {
+    constructor(params) {
+        super();
+        this.params = params;
+    }
+    static type() {
+        return "set-local-cache";
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return constants_1.ROUTE;
+    }
+    type() {
+        return SetLocalCacheMsg.type();
+    }
+}
+exports.SetLocalCacheMsg = SetLocalCacheMsg;
 //# sourceMappingURL=messages.js.map
 
 /***/ }),
 
-/***/ 348:
+/***/ 347:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9121,7 +9565,7 @@ exports.OpenWalletMsg = OpenWalletMsg;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SetIsShouldVerifyMsg = exports.GetIsShouldVerifyMsg = exports.VerifyDomainMsg = exports.InitSafeMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(559);
+const constants_1 = __webpack_require__(556);
 class InitSafeMsg extends router_1.Message {
     constructor(state) {
         super();
@@ -9216,11 +9660,11 @@ exports.SetIsShouldVerifyMsg = SetIsShouldVerifyMsg;
 
 /***/ }),
 
-/***/ 379:
+/***/ 377:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports.pbkdf2 = __webpack_require__(1028)
-exports.pbkdf2Sync = __webpack_require__(532)
+exports.pbkdf2 = __webpack_require__(1025)
+exports.pbkdf2Sync = __webpack_require__(530)
 
 
 /***/ }),
@@ -9232,7 +9676,7 @@ exports.pbkdf2Sync = __webpack_require__(532)
 
 /***/ }),
 
-/***/ 520:
+/***/ 518:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9258,7 +9702,7 @@ exports.PersistentMemoryService = PersistentMemoryService;
 
 /***/ }),
 
-/***/ 521:
+/***/ 519:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9270,7 +9714,7 @@ exports.ROUTE = "persistent-memory";
 
 /***/ }),
 
-/***/ 522:
+/***/ 520:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9286,12 +9730,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChainsService = void 0;
-const types_1 = __webpack_require__(523);
+const types_1 = __webpack_require__(521);
 const common_1 = __webpack_require__(27);
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(229);
+const messages_1 = __webpack_require__(228);
 const cosmos_1 = __webpack_require__(16);
-const permission_1 = __webpack_require__(525);
+const permission_1 = __webpack_require__(523);
 class ChainsService {
     constructor(kvStore, embedChainInfos, experimentalOptions = {}) {
         this.kvStore = kvStore;
@@ -9440,7 +9884,7 @@ exports.ChainsService = ChainsService;
 
 /***/ }),
 
-/***/ 523:
+/***/ 521:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9569,7 +10013,7 @@ exports.ChainInfoSchema = joi_1.default.object({
 
 /***/ }),
 
-/***/ 524:
+/***/ 522:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9581,7 +10025,7 @@ exports.ROUTE = "chains";
 
 /***/ }),
 
-/***/ 525:
+/***/ 523:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9597,14 +10041,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(526), exports);
-__exportStar(__webpack_require__(527), exports);
-__exportStar(__webpack_require__(334), exports);
+__exportStar(__webpack_require__(524), exports);
+__exportStar(__webpack_require__(525), exports);
+__exportStar(__webpack_require__(333), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 526:
+/***/ 524:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9621,7 +10065,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PermissionService = void 0;
 const router_1 = __webpack_require__(3);
-const types_1 = __webpack_require__(527);
+const types_1 = __webpack_require__(525);
 const cosmos_1 = __webpack_require__(16);
 class PermissionService {
     constructor(kvStore, privilegedOrigins) {
@@ -9805,7 +10249,7 @@ exports.PermissionService = PermissionService;
 
 /***/ }),
 
-/***/ 527:
+/***/ 525:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9825,7 +10269,7 @@ exports.isBasicAccessPermissionType = isBasicAccessPermissionType;
 
 /***/ }),
 
-/***/ 528:
+/***/ 526:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9837,7 +10281,7 @@ exports.ROUTE = "permission";
 
 /***/ }),
 
-/***/ 529:
+/***/ 527:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9856,7 +10300,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeyRingService = void 0;
-const keyring_1 = __webpack_require__(230);
+const keyring_1 = __webpack_require__(229);
 const cosmos_1 = __webpack_require__(16);
 const common_1 = __webpack_require__(27);
 const types_1 = __webpack_require__(96);
@@ -9864,7 +10308,7 @@ const router_1 = __webpack_require__(3);
 const tx_1 = __webpack_require__(100);
 const long_1 = __importDefault(__webpack_require__(7));
 const buffer_1 = __webpack_require__(4);
-const amino_sign_doc_1 = __webpack_require__(1041);
+const amino_sign_doc_1 = __webpack_require__(1038);
 class KeyRingService {
     constructor(kvStore, embedChainInfos, crypto) {
         this.kvStore = kvStore;
@@ -10257,7 +10701,7 @@ exports.KeyRingService = KeyRingService;
 
 /***/ }),
 
-/***/ 530:
+/***/ 528:
 /***/ (function(module, exports) {
 
 var MAX_ALLOC = Math.pow(2, 30) - 1 // default in iojs
@@ -10283,7 +10727,7 @@ module.exports = function (iterations, keylen) {
 
 /***/ }),
 
-/***/ 531:
+/***/ 529:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {var defaultEncoding
@@ -10303,17 +10747,17 @@ module.exports = defaultEncoding
 
 /***/ }),
 
-/***/ 532:
+/***/ 530:
 /***/ (function(module, exports, __webpack_require__) {
 
-var md5 = __webpack_require__(291)
-var RIPEMD160 = __webpack_require__(145)
-var sha = __webpack_require__(125)
+var md5 = __webpack_require__(290)
+var RIPEMD160 = __webpack_require__(144)
+var sha = __webpack_require__(124)
 var Buffer = __webpack_require__(22).Buffer
 
-var checkParameters = __webpack_require__(530)
-var defaultEncoding = __webpack_require__(531)
-var toBuffer = __webpack_require__(533)
+var checkParameters = __webpack_require__(528)
+var defaultEncoding = __webpack_require__(529)
+var toBuffer = __webpack_require__(531)
 
 var ZEROS = Buffer.alloc(128)
 var sizes = {
@@ -10415,7 +10859,7 @@ module.exports = pbkdf2
 
 /***/ }),
 
-/***/ 533:
+/***/ 531:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Buffer = __webpack_require__(22).Buffer
@@ -10435,7 +10879,7 @@ module.exports = function (thing, encoding, name) {
 
 /***/ }),
 
-/***/ 534:
+/***/ 532:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10502,7 +10946,7 @@ exports.EIP712MessageValidator = joi_1.default.object({
 
 /***/ }),
 
-/***/ 535:
+/***/ 533:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10514,7 +10958,7 @@ exports.ROUTE = "keyring";
 
 /***/ }),
 
-/***/ 536:
+/***/ 534:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10645,7 +11089,7 @@ exports.BackgroundTxService = BackgroundTxService;
 
 /***/ }),
 
-/***/ 537:
+/***/ 535:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10657,7 +11101,7 @@ exports.ROUTE = "background-tx";
 
 /***/ }),
 
-/***/ 538:
+/***/ 536:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11005,7 +11449,7 @@ exports.ChainUpdaterService = ChainUpdaterService;
 
 /***/ }),
 
-/***/ 539:
+/***/ 537:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11017,127 +11461,7 @@ exports.ROUTE = "chain-updator";
 
 /***/ }),
 
-/***/ 54:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.init = void 0;
-const PersistentMemory = __importStar(__webpack_require__(1020));
-const Chains = __importStar(__webpack_require__(1023));
-const KeyRing = __importStar(__webpack_require__(1026));
-// import * as SecretWasm from "./secret-wasm/internal";
-const BackgroundTx = __importStar(__webpack_require__(1044));
-const Updater = __importStar(__webpack_require__(1047));
-const Tokens = __importStar(__webpack_require__(1050));
-const Interaction = __importStar(__webpack_require__(1054));
-const Permission = __importStar(__webpack_require__(1061));
-// import * as PhishingList from "./phishing-list/internal";
-const AutoLocker = __importStar(__webpack_require__(1064));
-const Mises = __importStar(__webpack_require__(1067));
-const MisesSafe = __importStar(__webpack_require__(1088));
-__exportStar(__webpack_require__(1091), exports);
-__exportStar(__webpack_require__(541), exports);
-__exportStar(__webpack_require__(339), exports);
-__exportStar(__webpack_require__(1092), exports);
-__exportStar(__webpack_require__(1093), exports);
-__exportStar(__webpack_require__(1094), exports);
-__exportStar(__webpack_require__(1177), exports);
-__exportStar(__webpack_require__(1179), exports);
-__exportStar(__webpack_require__(1180), exports);
-__exportStar(__webpack_require__(1181), exports);
-__exportStar(__webpack_require__(525), exports);
-__exportStar(__webpack_require__(1183), exports);
-//import { LedgerOptions } from "./ledger/options";
-//import { MisesSafe } from "./mises-safe/mises";
-function init(router, storeCreator, 
-// Message requester to the content script.
-eventMsgRequester, embedChainInfos, 
-// The origins that are able to pass any permission.
-privilegedOrigins, commonCrypto, notification, experimentalOptions = {}) {
-    var _a;
-    const interactionService = new Interaction.InteractionService(eventMsgRequester, commonCrypto.rng);
-    const persistentMemoryService = new PersistentMemory.PersistentMemoryService();
-    const permissionService = new Permission.PermissionService(storeCreator("permission"), privilegedOrigins);
-    const chainUpdaterService = new Updater.ChainUpdaterService(storeCreator("updator"));
-    const tokensService = new Tokens.TokensService(storeCreator("tokens"));
-    const chainsService = new Chains.ChainsService(storeCreator("chains"), embedChainInfos, {
-        useMemoryKVStoreForSuggestChain: (_a = experimentalOptions.suggestChain) === null || _a === void 0 ? void 0 : _a.useMemoryKVStore,
-    });
-    const keyRingService = new KeyRing.KeyRingService(storeCreator("keyring"), embedChainInfos, commonCrypto);
-    const misesService = new Mises.MisesService(storeCreator("mises"));
-    const misesSafeService = new MisesSafe.MisesSafeService(storeCreator("misesSafe"));
-    // const secretWasmService = new SecretWasm.SecretWasmService(
-    //   storeCreator("secretwasm")
-    // );
-    const backgroundTxService = new BackgroundTx.BackgroundTxService(notification, misesService);
-    // const phishingListService = new PhishingList.PhishingListService({
-    //   blockListUrl:
-    //     "https://raw.githubusercontent.com/chainapsis/phishing-block-list/main/block-list.txt",
-    //   twitterListUrl:
-    //     "https://raw.githubusercontent.com/chainapsis/phishing-block-list/main/twitter-scammer-list.txt",
-    //   fetchingIntervalMs: 3 * 3600 * 1000, // 3 hours
-    //   retryIntervalMs: 10 * 60 * 1000, // 10 mins,
-    //   allowTimeoutMs: 10 * 60 * 1000, // 10 mins,
-    // });
-    const autoLockAccountService = new AutoLocker.AutoLockAccountService(storeCreator("auto-lock-account"));
-    interactionService.init();
-    persistentMemoryService.init();
-    permissionService.init(interactionService, chainsService, keyRingService);
-    chainUpdaterService.init(chainsService);
-    tokensService.init(interactionService, permissionService, chainsService, keyRingService);
-    chainsService.init(chainUpdaterService, interactionService, permissionService);
-    keyRingService.init(interactionService, chainsService, permissionService, misesService);
-    misesService.init();
-    misesSafeService.init();
-    //secretWasmService.init(chainsService, keyRingService, permissionService);
-    backgroundTxService.init(chainsService, permissionService);
-    // phishingListService.init();
-    // No need to wait because user can't interact with app right after launch.
-    autoLockAccountService.init(keyRingService);
-    Interaction.init(router, interactionService);
-    PersistentMemory.init(router, persistentMemoryService);
-    Permission.init(router, permissionService);
-    Updater.init(router, chainUpdaterService);
-    Tokens.init(router, tokensService);
-    Chains.init(router, chainsService);
-    KeyRing.init(router, keyRingService);
-    // SecretWasm.init(router, secretWasmService);
-    BackgroundTx.init(router, backgroundTxService);
-    // PhishingList.init(router, phishingListService);
-    AutoLocker.init(router, autoLockAccountService);
-    Mises.init(router, misesService);
-    MisesSafe.init(router, misesSafeService);
-}
-exports.init = init;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 540:
+/***/ 538:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11154,12 +11478,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TokensService = void 0;
 const router_1 = __webpack_require__(3);
-const chains_1 = __webpack_require__(541);
+const chains_1 = __webpack_require__(539);
 const cosmos_1 = __webpack_require__(16);
-const keyring_1 = __webpack_require__(339);
+const keyring_1 = __webpack_require__(338);
 const buffer_1 = __webpack_require__(4);
-const messages_1 = __webpack_require__(231);
-const types_1 = __webpack_require__(543);
+const messages_1 = __webpack_require__(230);
+const types_1 = __webpack_require__(541);
 class TokensService {
     constructor(kvStore) {
         this.kvStore = kvStore;
@@ -11410,7 +11734,7 @@ exports.TokensService = TokensService;
 
 /***/ }),
 
-/***/ 541:
+/***/ 539:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11426,14 +11750,134 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(522), exports);
-__exportStar(__webpack_require__(229), exports);
-__exportStar(__webpack_require__(523), exports);
+__exportStar(__webpack_require__(520), exports);
+__exportStar(__webpack_require__(228), exports);
+__exportStar(__webpack_require__(521), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 542:
+/***/ 54:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.init = void 0;
+const PersistentMemory = __importStar(__webpack_require__(1017));
+const Chains = __importStar(__webpack_require__(1020));
+const KeyRing = __importStar(__webpack_require__(1023));
+// import * as SecretWasm from "./secret-wasm/internal";
+const BackgroundTx = __importStar(__webpack_require__(1041));
+const Updater = __importStar(__webpack_require__(1044));
+const Tokens = __importStar(__webpack_require__(1047));
+const Interaction = __importStar(__webpack_require__(1051));
+const Permission = __importStar(__webpack_require__(1058));
+// import * as PhishingList from "./phishing-list/internal";
+const AutoLocker = __importStar(__webpack_require__(1061));
+const Mises = __importStar(__webpack_require__(1064));
+const MisesSafe = __importStar(__webpack_require__(1081));
+__exportStar(__webpack_require__(1085), exports);
+__exportStar(__webpack_require__(539), exports);
+__exportStar(__webpack_require__(338), exports);
+__exportStar(__webpack_require__(1086), exports);
+__exportStar(__webpack_require__(1087), exports);
+__exportStar(__webpack_require__(1088), exports);
+__exportStar(__webpack_require__(1171), exports);
+__exportStar(__webpack_require__(1173), exports);
+__exportStar(__webpack_require__(1174), exports);
+__exportStar(__webpack_require__(1175), exports);
+__exportStar(__webpack_require__(523), exports);
+__exportStar(__webpack_require__(1177), exports);
+//import { LedgerOptions } from "./ledger/options";
+//import { MisesSafe } from "./mises-safe/mises";
+function init(router, storeCreator, 
+// Message requester to the content script.
+eventMsgRequester, embedChainInfos, 
+// The origins that are able to pass any permission.
+privilegedOrigins, commonCrypto, notification, experimentalOptions = {}) {
+    var _a;
+    const interactionService = new Interaction.InteractionService(eventMsgRequester, commonCrypto.rng);
+    const persistentMemoryService = new PersistentMemory.PersistentMemoryService();
+    const permissionService = new Permission.PermissionService(storeCreator("permission"), privilegedOrigins);
+    const chainUpdaterService = new Updater.ChainUpdaterService(storeCreator("updator"));
+    const tokensService = new Tokens.TokensService(storeCreator("tokens"));
+    const chainsService = new Chains.ChainsService(storeCreator("chains"), embedChainInfos, {
+        useMemoryKVStoreForSuggestChain: (_a = experimentalOptions.suggestChain) === null || _a === void 0 ? void 0 : _a.useMemoryKVStore,
+    });
+    const keyRingService = new KeyRing.KeyRingService(storeCreator("keyring"), embedChainInfos, commonCrypto);
+    const misesService = new Mises.MisesService(storeCreator("mises"));
+    const misesSafeService = new MisesSafe.MisesSafeService(storeCreator("misesSafe"));
+    // const secretWasmService = new SecretWasm.SecretWasmService(
+    //   storeCreator("secretwasm")
+    // );
+    const backgroundTxService = new BackgroundTx.BackgroundTxService(notification, misesService);
+    // const phishingListService = new PhishingList.PhishingListService({
+    //   blockListUrl:
+    //     "https://raw.githubusercontent.com/chainapsis/phishing-block-list/main/block-list.txt",
+    //   twitterListUrl:
+    //     "https://raw.githubusercontent.com/chainapsis/phishing-block-list/main/twitter-scammer-list.txt",
+    //   fetchingIntervalMs: 3 * 3600 * 1000, // 3 hours
+    //   retryIntervalMs: 10 * 60 * 1000, // 10 mins,
+    //   allowTimeoutMs: 10 * 60 * 1000, // 10 mins,
+    // });
+    const autoLockAccountService = new AutoLocker.AutoLockAccountService(storeCreator("auto-lock-account"));
+    interactionService.init();
+    persistentMemoryService.init();
+    permissionService.init(interactionService, chainsService, keyRingService);
+    chainUpdaterService.init(chainsService);
+    tokensService.init(interactionService, permissionService, chainsService, keyRingService);
+    chainsService.init(chainUpdaterService, interactionService, permissionService);
+    keyRingService.init(interactionService, chainsService, permissionService, misesService);
+    misesService.init();
+    misesSafeService.init();
+    //secretWasmService.init(chainsService, keyRingService, permissionService);
+    backgroundTxService.init(chainsService, permissionService);
+    // phishingListService.init();
+    // No need to wait because user can't interact with app right after launch.
+    autoLockAccountService.init(keyRingService);
+    Interaction.init(router, interactionService);
+    PersistentMemory.init(router, persistentMemoryService);
+    Permission.init(router, permissionService);
+    Updater.init(router, chainUpdaterService);
+    Tokens.init(router, tokensService);
+    Chains.init(router, chainsService);
+    KeyRing.init(router, keyRingService);
+    // SecretWasm.init(router, secretWasmService);
+    BackgroundTx.init(router, backgroundTxService);
+    // PhishingList.init(router, phishingListService);
+    AutoLocker.init(router, autoLockAccountService);
+    Mises.init(router, misesService);
+    MisesSafe.init(router, misesSafeService);
+}
+exports.init = init;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 540:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11445,7 +11889,7 @@ exports.ROUTE = "tokens";
 
 /***/ }),
 
-/***/ 543:
+/***/ 541:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11468,7 +11912,7 @@ exports.splitSecret20ViewingKeyPermissionType = splitSecret20ViewingKeyPermissio
 
 /***/ }),
 
-/***/ 544:
+/***/ 542:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11485,7 +11929,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InteractionService = void 0;
 const router_1 = __webpack_require__(3);
-const foreground_1 = __webpack_require__(545);
+const foreground_1 = __webpack_require__(543);
 class InteractionService {
     constructor(eventMsgRequester, rng) {
         this.eventMsgRequester = eventMsgRequester;
@@ -11588,7 +12032,7 @@ exports.InteractionService = InteractionService;
 
 /***/ }),
 
-/***/ 545:
+/***/ 543:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11604,15 +12048,15 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1055), exports);
-__exportStar(__webpack_require__(340), exports);
-__exportStar(__webpack_require__(1056), exports);
-__exportStar(__webpack_require__(1057), exports);
+__exportStar(__webpack_require__(1052), exports);
+__exportStar(__webpack_require__(339), exports);
+__exportStar(__webpack_require__(1053), exports);
+__exportStar(__webpack_require__(1054), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 546:
+/***/ 544:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11624,7 +12068,7 @@ exports.ROUTE = "interaction-foreground";
 
 /***/ }),
 
-/***/ 547:
+/***/ 545:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11636,7 +12080,7 @@ exports.ROUTE = "interaction";
 
 /***/ }),
 
-/***/ 548:
+/***/ 546:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11652,7 +12096,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoLockAccountService = void 0;
-const keyring_1 = __webpack_require__(339);
+const keyring_1 = __webpack_require__(338);
 class AutoLockAccountService {
     constructor(kvStore, opts = {
         monitoringInterval: 10000,
@@ -11776,7 +12220,7 @@ exports.AutoLockAccountService = AutoLockAccountService;
 
 /***/ }),
 
-/***/ 549:
+/***/ 547:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11788,7 +12232,7 @@ exports.ROUTE = "auto-lock-account";
 
 /***/ }),
 
-/***/ 557:
+/***/ 554:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11800,7 +12244,7 @@ exports.ROUTE = "mises";
 
 /***/ }),
 
-/***/ 558:
+/***/ 555:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11816,10 +12260,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MisesSafeService = void 0;
-const mises_network_util_1 = __webpack_require__(232);
+const mises_network_util_1 = __webpack_require__(231);
+const html_similar_1 = __webpack_require__(1082);
 const listenMethods = {
     mVerifyDomain: "verifyDomain",
     mVerifyContract: "verifyContract",
+    mNotifyFuzzyDomain: "notifyFuzzyDomain",
+    mCalculateHtmlSimilarly: "calculateHtmlSimilarly",
 };
 const storageKey = {
     ContractTrust: "v3_contract_trust_",
@@ -11829,17 +12276,23 @@ const contractLevel = {
     Safe: "safe",
     Danger: "danger",
 };
+const domainLevel = {
+    White: "white",
+    Normal: "normal",
+    Fuzzy: "fuzzy",
+    Black: "black",
+};
 const userAction = {
     Ignore: "IGNOR",
     Block: "BLOCK",
 };
 const isShouldVerifyStateKey = "isShouldVerify";
-// const TypeBackgroundResponse = "mises-background-response";
 class MisesSafeService {
     constructor(kvStore) {
         this.kvStore = kvStore;
         this.isShouldVerify = true;
         this.domainWhiteListMap = new Map();
+        this.blackNotifyingMap = new Map();
         console.log("MisesSafeService init");
         this.localShouldVerify();
         this.getDomainwhiteList();
@@ -11915,38 +12368,143 @@ class MisesSafeService {
             }
             switch (res.params.method) {
                 case listenMethods.mVerifyDomain:
-                    return this.apiVerifyDomain(res.params.params.domain);
+                    return this.verifyDomain(res.params.params.domain, res.params.params.logo, res.params.params.content);
+                case listenMethods.mNotifyFuzzyDomain:
+                    return this.notifyFuzzyDomain(res.params.params.domain, res.params.params.suggested_url);
                 case listenMethods.mVerifyContract:
                     return this.verifyContract(res.params.params.contractAddress, res.params.params.domain);
+                case listenMethods.mCalculateHtmlSimilarly:
+                    return this.calculateHtmlSimilarly(res.params.params.html, res.params.params.hash);
             }
+        });
+    }
+    /* CalculateHtmlSimilarly start */
+    calculateHtmlSimilarly(html, hash) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const request_url_html_body_hash = html_similar_1.html_similar.digest(html);
+            const score = html_similar_1.html_similar.distance(hash, request_url_html_body_hash);
+            console.log("request_url_html_body_hash: ", request_url_html_body_hash);
+            console.log("html_body_fuzzy_hash: ", hash);
+            console.log("html body fuzzy html score: ", score);
+            return score;
+        });
+    }
+    /* VerifyDomain start */
+    verifyDomain(domain, logo, content) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //is ignore
+            const isIgnore = yield this.isIgnoreDomain(domain);
+            console.log("verifyDomain ignore <<:", isIgnore);
+            if (isIgnore) {
+                return {
+                    domain: domain,
+                    suggested_url: domain,
+                    level: domainLevel.White,
+                    tag: "ignore",
+                };
+            }
+            //in whitelist domain
+            if (this.isDomainWhitelisted(domain)) {
+                return {
+                    domain: domain,
+                    suggested_url: domain,
+                    level: domainLevel.White,
+                    tag: "white",
+                };
+            }
+            const verifyDomainResult = yield this.apiVerifyDomain(domain, logo, content);
+            console.log("verifyDomainResult: ", verifyDomainResult);
+            //is should alert user
+            if (!this.hasBlackNotifying(domain) &&
+                verifyDomainResult &&
+                verifyDomainResult.level === domainLevel.Black) {
+                console.log("verifyDomain notifyPhishingDetected start: ", domain);
+                this.addBlackNotifying(domain);
+                setTimeout(() => {
+                    this.removeBlackNotifying(domain);
+                }, 3000);
+                const userDecision = yield this.notifyPhishingDetected({
+                    notify_type: "url",
+                    domain: domain,
+                    suggested_url: verifyDomainResult.suggested_url || "",
+                    notify_tag: "fuzzy",
+                    notify_level: "danger",
+                });
+                console.log("verifyDomain notifyPhishingDetected result: ", userDecision);
+                if (userDecision === userAction.Ignore) {
+                    console.log("verifyDomain notifyPhishingDetected set: ", userDecision);
+                    this.setIgnorDomain(domain);
+                }
+            }
+            return verifyDomainResult;
+        });
+    }
+    hasBlackNotifying(domain) {
+        return domain !== "" && this.blackNotifyingMap.has(domain);
+    }
+    removeBlackNotifying(domain) {
+        this.blackNotifyingMap.delete(domain);
+    }
+    addBlackNotifying(domain) {
+        this.blackNotifyingMap.set(domain, "1");
+    }
+    notifyFuzzyDomain(domain, suggested_url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("verifyDomain notifyPhishingDetected start: ", domain, suggested_url);
+            const userDecision = yield this.notifyPhishingDetected({
+                notify_type: "url",
+                notify_tag: "fuzzy",
+                domain: domain,
+                notify_level: "warning",
+                suggested_url: suggested_url,
+            });
+            console.log("fuzzyDomain notifyPhishingDetected result: ", userDecision);
+            if (userDecision === userAction.Ignore) {
+                console.log("fuzzyDomain notifyPhishingDetected set: ", userDecision);
+                this.setIgnorDomain(domain);
+            }
+        });
+    }
+    apiVerifyDomain(domain, logo, content) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.kvStore.get(domain);
+            if (result) {
+                return result;
+            }
+            const res = yield mises_network_util_1.misesRequest({
+                method: "POST",
+                url: "/phishing_site/check",
+                data: {
+                    domain: domain,
+                    logo: logo,
+                    content: content,
+                },
+            });
+            if (res &&
+                res.level !== domainLevel.Black &&
+                res.level !== domainLevel.Fuzzy) {
+                this.kvStore.set(domain, res);
+            }
+            return res;
+        });
+    }
+    setIgnorDomain(domain) {
+        this.kvStore.set(this.getDomainCacheKey(domain), "1");
+    }
+    isIgnoreDomain(domain) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.kvStore.get(this.getDomainCacheKey(domain));
         });
     }
     getDomainCacheKey(domain) {
         return storageKey.DomainRisk + domain.replace(".", "-");
     }
-    getContractCacheKey(contractAddress) {
-        return storageKey.ContractTrust + contractAddress.replace(".", "-");
-    }
-    apiVerifyDomain(domain) {
-        return __awaiter(this, void 0, void 0, function* () {
-            /*  const result = await this.kvStore.get(domain);
-            if (result) {
-              return result;
-            } */
-            const res = yield mises_network_util_1.misesRequest({
-                url: "/phishing_site/check",
-                data: {
-                    domain_name: domain,
-                },
-            });
-            //this.kvStore.set(domain, res);
-            return res;
-        });
-    }
     isDomainWhitelisted(domain) {
         domain = this.parseDomainUntilSecondLevel(domain);
         return domain !== "" && this.domainWhiteListMap.has(domain);
     }
+    /* VerifyDomain end */
+    /* verifyContract start */
     verifyContract(contractAddress, domain) {
         return __awaiter(this, void 0, void 0, function* () {
             //is ignore
@@ -11961,50 +12519,7 @@ class MisesSafeService {
                 };
                 return verifyContractResult;
             }
-            const verifyContractResult = yield this.apiVerifyContract(contractAddress, domain);
-            console.log("verifyContractResult: ", verifyContractResult);
-            //is should alert user
-            if (verifyContractResult &&
-                verifyContractResult.level === contractLevel.Danger) {
-                console.log("notifyPhishingDetected start: ", contractAddress);
-                const userDecision = yield this.notifyPhishingDetected(contractAddress);
-                console.log("notifyPhishingDetected result: ", userDecision);
-                if (userDecision === userAction.Ignore) {
-                    console.log("notifyPhishingDetected set: ", userDecision);
-                    this.setIgnorDomain(domain);
-                }
-            }
-            return verifyContractResult;
-        });
-    }
-    setIgnoreContract(contractAddress) {
-        this.kvStore.set(this.getContractCacheKey(contractAddress), "1");
-    }
-    isIgnoreContract(contractAddress) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.kvStore.get(this.getContractCacheKey(contractAddress));
-        });
-    }
-    setIgnorDomain(domain) {
-        this.kvStore.set(this.getDomainCacheKey(domain), "1");
-    }
-    isIgnoreDomain(domain) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.kvStore.get(this.getDomainCacheKey(domain));
-        });
-    }
-    notifyPhishingDetected(address) {
-        return new Promise((resolve) => {
-            if (browser.misesPrivate &&
-                browser.misesPrivate.notifyPhishingDetected) {
-                browser.misesPrivate.notifyPhishingDetected(address, resolve);
-                return;
-            }
-            resolve("mises");
-        });
-    }
-    apiVerifyContract(contractAddress, domain) {
-        return __awaiter(this, void 0, void 0, function* () {
+            //in whitelist domain
             if (this.isDomainWhitelisted(domain)) {
                 const safeVerifyContractResult = {
                     address: contractAddress,
@@ -12014,6 +12529,32 @@ class MisesSafeService {
                 };
                 return safeVerifyContractResult;
             }
+            const verifyContractResult = yield this.apiVerifyContract(contractAddress, domain);
+            console.log("verifyContractResult: ", verifyContractResult);
+            //is should alert user
+            if (!this.hasBlackNotifying(contractAddress) &&
+                verifyContractResult &&
+                verifyContractResult.level === contractLevel.Danger) {
+                this.addBlackNotifying(contractAddress);
+                setTimeout(() => {
+                    this.removeBlackNotifying(contractAddress);
+                }, 3000);
+                console.log("notifyPhishingDetected start: ", contractAddress);
+                const userDecision = yield this.notifyPhishingDetected({
+                    address: contractAddress,
+                    notify_type: "address",
+                });
+                console.log("notifyPhishingDetected result: ", userDecision);
+                if (userDecision === userAction.Ignore) {
+                    console.log("notifyPhishingDetected set: ", userDecision);
+                    this.setIgnorDomain(domain);
+                }
+            }
+            return verifyContractResult;
+        });
+    }
+    apiVerifyContract(contractAddress, domain) {
+        return __awaiter(this, void 0, void 0, function* () {
             //cache
             const result = yield this.kvStore.get(contractAddress);
             if (result) {
@@ -12032,13 +12573,35 @@ class MisesSafeService {
             return res;
         });
     }
+    setIgnoreContract(contractAddress) {
+        this.kvStore.set(this.getContractCacheKey(contractAddress), "1");
+    }
+    isIgnoreContract(contractAddress) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.kvStore.get(this.getContractCacheKey(contractAddress));
+        });
+    }
+    getContractCacheKey(contractAddress) {
+        return storageKey.ContractTrust + contractAddress.replace(".", "-");
+    }
+    /* verifyContract end */
+    notifyPhishingDetected(params) {
+        return new Promise((resolve) => {
+            if (browser.misesPrivate &&
+                browser.misesPrivate.notifyPhishingDetected) {
+                browser.misesPrivate.notifyPhishingDetected(JSON.stringify(params), resolve);
+                return;
+            }
+            resolve("mises");
+        });
+    }
 }
 exports.MisesSafeService = MisesSafeService;
 //# sourceMappingURL=service.js.map
 
 /***/ }),
 
-/***/ 559:
+/***/ 556:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

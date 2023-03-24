@@ -14,19 +14,19 @@ var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
-var Modal = __webpack_require__(1221);
+var Modal = __webpack_require__(1214);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ModalBody.js
-var ModalBody = __webpack_require__(1362);
+var ModalBody = __webpack_require__(1352);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Button.js
 var Button = __webpack_require__(257);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/message.js
-var message = __webpack_require__(165);
+var message = __webpack_require__(163);
 
 // EXTERNAL MODULE: ./src/components/confirm/style.module.scss
-var style_module = __webpack_require__(368);
+var style_module = __webpack_require__(366);
 var style_module_default = /*#__PURE__*/__webpack_require__.n(style_module);
 
 // CONCATENATED MODULE: ./src/components/confirm/dialog.tsx
@@ -151,7 +151,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 116:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -168,13 +168,13 @@ var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: ./src/components/notification/style.scss
-var style = __webpack_require__(1565);
+var style = __webpack_require__(1558);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/framer-motion/dist/framer-motion.es.js + 1 modules
-var framer_motion_es = __webpack_require__(159);
+var framer_motion_es = __webpack_require__(157);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Alert.js
-var Alert = __webpack_require__(1679);
+var Alert = __webpack_require__(1674);
 
 // CONCATENATED MODULE: ./src/components/notification/element.tsx
 
@@ -410,7 +410,7 @@ const NotificationProvider = Object(es["a" /* observer */])((props) => {
 
 /***/ }),
 
-/***/ 1187:
+/***/ 1181:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -421,7 +421,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.canUseDOM = undefined;
 
-var _exenv = __webpack_require__(1572);
+var _exenv = __webpack_require__(1565);
 
 var _exenv2 = _interopRequireDefault(_exenv);
 
@@ -437,7 +437,7 @@ exports.default = SafeHTMLElement;
 
 /***/ }),
 
-/***/ 1190:
+/***/ 1184:
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -468,7 +468,7 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
-/***/ 1194:
+/***/ 1188:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -497,20 +497,13 @@ if (true) {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(1374);
+  module.exports = __webpack_require__(1364);
 } else {}
 
 
 /***/ }),
 
-/***/ 1197:
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"main.account.chart.total-balance\":\"Total Balance\",\"main.account.chart.available-balance\":\"Available\",\"main.account.chart.staked-balance\":\"Staked\",\"main.account.button.deposit\":\"Deposit\",\"main.account.button.send\":\"Send\",\"main.account.tooltip.no-asset\":\"No token in your account. Deposit some tokens to send.\",\"main.modal.select-account.title\":\"Select your account\",\"main.modal.select-account.button.select\":\"Select Account\",\"main.modal.select-account.label.address\":\"Address\",\"main.modal.select-account.label.balance\":\"Balance\",\"main.modal.select-account.label.sequence\":\"Previous Txs\",\"main.stake.message.pending-staking-reward\":\"Pending Staking Reward\",\"main.stake.message.stake\":\"Staking\",\"main.transfer.message.activity\":\"Transaction\",\"main.stake.message.earning\":\"Earn up to {apr}% per year\",\"main.stake.button.claim-rewards\":\"Claim\",\"main.transfer.button.activity\":\"View Activities\",\"main.stake.button.stake\":\"View Portal\",\"main.stake.tooltip.no-asset\":\"No token in your account. Deposit some tokens to stake.\",\"main.ibc.transfer.title\":\"IBC Transfer\",\"main.ibc.transfer.paragraph\":\"Send tokens over IBC\",\"main.ibc.transfer.button\":\"Transfer\",\"main.address.copied\":\"Address copied!\",\"main.menu.settings\":\"Settings\",\"main.menu.address-book\":\"Address Book\",\"main.menu.token-list\":\"Token List\",\"main.menu.sign-out\":\"Sign out\",\"main.menu.footer.github\":\"Check it out on GitHub\",\"main.update-chain.confirm.paragraph\":\"Chain information has changed. Verify that a chain upgrade has taken place.\",\"main.update-chain.confirm.yes\":\"Proceed\",\"main.update-chain.confirm.no\":\"Ignore\",\"setting.language\":\"Language\",\"setting.language.automatic\":\"Automatic (Browser default)\",\"setting.language.automatic-with-language\":\"Automatic ({language})\",\"setting.language.en\":\"English\",\"setting.language.ko\":\"한국어\",\"setting.fiat\":\"Currency\",\"setting.fiat.automatic\":\"Automatic\",\"setting.fiat.automatic-with-fiat\":\"Automatic ({fiat})\",\"setting.connections\":\"Manage Connections\",\"setting.connections.paragraph\":\"Manage websites connected to your wallet\",\"setting.connections.confirm.delete-connection.title\":\"Disable Connection\",\"setting.connections.confirm.delete-connection.paragraph\":\"Are you sure you want to disable this connection?\",\"setting.address-book.button.add\":\"Add New\",\"setting.address-book.add-address.title\":\"Add Address\",\"setting.address-book.edit-address.title\":\"Edit Address\",\"setting.address-book.name\":\"Name\",\"setting.address-book.address\":\"Address\",\"setting.address-book.address.error.invalid\":\"Invalid address\",\"setting.address-book.memo\":\"Default Memo (Optional)\",\"setting.address-book.confirm.delete-address.title\":\"Delete Address\",\"setting.address-book.confirm.delete-address.paragraph\":\"Are you sure you want to delete this address?\",\"setting.address-book.button.save\":\"Save\",\"setting.export-to-mobile\":\"Link Mises Mobile\",\"setting.export-to-mobile.input.password\":\"Password\",\"setting.export-to-mobile.input.password.error.required\":\"Password is required\",\"setting.export-to-mobile.input.password.error.invalid\":\"Invalid password\",\"setting.export-to-mobile.button.confirm\":\"Confirm\",\"setting.credit\":\"Special thanks\",\"setting.keyring\":\"Select Account\",\"setting.keyring.button.add\":\"Add Account\",\"setting.keyring.button.import\":\"Import Account\",\"setting.keyring.unnamed-account\":\"Mises Account\",\"setting.keyring.selected-account\":\"(Selected)\",\"setting.keyring.change.password\":\"Reset Password\",\"setting.keyring.change.name\":\"Change Account Name\",\"setting.keyring.change.previous-name\":\"Previous account name\",\"setting.keyring.change.input.name\":\"New account name\",\"setting.keyring.change.input.name.error.required\":\"Account name is required\",\"setting.keyring.change.input.name.error.invalid\":\"Account name is invalid\",\"setting.keyring.change.name.button.save\":\"Save\",\"setting.keyring.create.name\":\"Create Account Name\",\"setting.keyring.create.input.name\":\"New account name\",\"setting.keyring.create.input.name.error.required\":\"Account name is required\",\"setting.keyring.create.input.name.error.invalid\":\"Account name is invalid\",\"setting.keyring.create.name.button.save\":\"Created\",\"setting.keyring.import.name\":\"Import Private Key\",\"setting.keyring.import.input.name\":\"New account name\",\"setting.keyring.import.input.name.error.required\":\"Account name is required\",\"setting.keyring.import.input.name.error.invalid\":\"PrivateKey is invalid\",\"setting.keyring.import.input.private-key.title\":\"Input your private key\",\"setting.keyring.import.name.button.save\":\"Created\",\"setting.export\":\"View Mnemonic Seed\",\"setting.export.private-key\":\"View Private Key\",\"setting.export.warning\":\"Please input your password to proceed\",\"setting.export.input.password\":\"Password\",\"setting.export.input.password.error.required\":\"Password is required\",\"setting.export.input.password.error.invalid\":\"Invalid password\",\"setting.export.button.confirm\":\"Confirm\",\"setting.clear\":\"Delete Account\",\"setting.clear.alert\":\"Make sure you’ve backed up your mnemonic seed before proceeding.\",\"setting.clear.button.back-up\":\"Back-up account\",\"setting.clear.warning\":\"By deleting your account, you will no longer have access to your account on Mises.\",\"setting.clear.input.password\":\"Password\",\"setting.clear.input.password.error.required\":\"Password is required\",\"setting.clear.input.password.error.invalid\":\"Invalid password\",\"setting.clear.button.confirm\":\"Confirm\",\"setting.token.add\":\"Add Token\",\"setting.token.add.contract-address\":\"Contract Address\",\"setting.token.add.name\":\"Name\",\"setting.token.add.symbol\":\"Symbol\",\"setting.token.add.decimals\":\"Decimals\",\"setting.token.add.button.submit\":\"Submit\",\"setting.token.add.secret20.checkbox.import-viewing-key\":\"(Advanced) Import my own viewing key\",\"setting.token.add.secret20.checkbox.use-suggested-viewing-key\":\"Use webpage suggested viewing key\",\"setting.token.add.secret20.viewing-key\":\"Viewing Key\",\"setting.token.manage.confirm.remove-token\":\"Are you sure you’d like to disable this token? You will not be able to see your balance or transfer until you register again.\",\"setting.token.manage.notification.viewing-key.copy\":\"Viewing key copied!\",\"setting.endpoints\":\"Endpoints\",\"setting.endpoints.paragraph\":\"Change into the node you wish to connect\",\"setting.endpoints.button.reset\":\"Reset\",\"setting.endpoints.button.confirm\":\"Confirm\",\"setting.autolock\":\"Auto-Lock Timer\",\"setting.autolock.duration\":\"Set the duration (unit: minutes)\",\"setting.autolock.description\":\"With Auto-Lock enabled, Mises Wallet will lock when the device is in sleep mode\",\"setting.autolock.error.required\":\"Duration is required\",\"setting.autolock.error.out-of-range\":\"It cannot be less than 0 or greater than 4320(3days)\",\"register.name\":\"Account name\",\"register.name.error.required\":\"Account name is required\",\"register.button.back\":\"Back\",\"register.bip44.button.advanced\":\"Advanced\",\"register.bip44.input.hd-path\":\"HD Derivation Path\",\"register.bip44.confirm.clear\":\"Closing this toggle will reset the HD Path. Are you sure you want to proceed?\",\"register.intro.button.new-account.title\":\"Create new account\",\"register.intro.button.new-account.content\":\"Create a new wallet using a new seed\",\"register.intro.button.import-account.title\":\"Import existing account\",\"register.intro.button.import-account.content\":\"Use a 12/24 word seed to import an existing wallet\",\"register.intro.sub-content\":\"All sensitive information is stored only on your device.{br}This process does not require an internet connection.\",\"register.recover.title\":\"Input your seed\",\"register.recover.alt.private-key.title\":\"Input your private key\",\"register.create.title\":\"Mnemonic Seed\",\"register.create.toggle.word12\":\"12 words\",\"register.create.toggle.word24\":\"24 words\",\"register.create.input.password\":\"New Password (minimum 8 characters)\",\"register.create.input.password.error.required\":\"Password is required\",\"register.create.input.password.error.too-short\":\"Too short password\",\"register.create.input.confirm-password\":\"Confirm password\",\"register.create.input.confirm-password.error.required\":\"Confirm password is required\",\"register.create.input.confirm-password.error.unmatched\":\"Password should match\",\"register.create.textarea.mnemonic.place-holder\":\"Type your mnemonic / private key\",\"register.create.textarea.mnemonic.error.invalid\":\"Invalid mnemonic\",\"register.create.textarea.mnemonic.error.too-short\":\"Too short mnemonic\",\"register.create.warning.keep-your-mnemonic.header\":\"Backup your mnemonic seed securely.\",\"register.create.warning.keep-your-mnemonic.paragraph1\":\"Anyone with your mnemonic seed can take your assets.\",\"register.create.warning.keep-your-mnemonic.paragraph2\":\"Lost mnemonic seed can't be recovered.\",\"register.import.textarea.mnemonic.error.required\":\"Mnemonic is required\",\"register.import.textarea.mnemonic.error.invalid\":\"Invalid mnemonic\",\"register.import.textarea.mnemonic.error.too-short\":\"Too short mnemonic\",\"register.import.textarea.private-key.error.required\":\"Private key is required\",\"register.import.textarea.private-key.error.invalid\":\"Invalid private key\",\"register.import.textarea.private-key.error.invalid-length\":\"Invalid length of private key\",\"register.create.button.next\":\"Next\",\"register.ledger.title\":\"Import ledger\",\"register.verify.button.register\":\"Register\",\"register.welcome.title\":\"You’re all set!\",\"register.welcome.content\":\"Open the extension and sign in to begin.\",\"register.welcome.button.done\":\"Done\",\"chain.suggested.title\":\"Chain Add Request\",\"chain.suggested.paragraph\":\"<b>{host}</b> would like to add blockchain <b>{chainId}</b> to Mises.\",\"chain.suggested.button.approve\":\"Approve\",\"chain.suggested.button.reject\":\"Reject\",\"chain.remove.confirm.paragraph\":\"Are you sure to remove the {chainName}?\",\"access.title\":\"Requesting Connection\",\"access.paragraph\":\"<b>{host}</b> is requesting to connect to your Mises account on <b>{chainId}</b>.\",\"access.permission.title\":\"By approving this request, the website will:\",\"access.permission.account\":\"Know your wallet address\",\"access.permission.tx-request\":\"Be able to request signatures for txs\",\"access.permission.secret\":\"Be able to encrypt/decrypt your messages\",\"access.button.approve\":\"Approve\",\"access.button.reject\":\"Reject\",\"access.viewing-key.title\":\"Requesting Viewing Key\",\"access.viewing-key.paragraph\":\"<b>{host}</b> is requesting to get your token's viewing key on <b>{contractAddress}</b>.\",\"access.viewing-key.permission.title\":\"By approving this request, the website will:\",\"access.viewing-key.permission.secret\":\"Be able to know your balance of the token\",\"access.viewing-key.button.approve\":\"Approve\",\"access.viewing-key.button.reject\":\"Reject\",\"lock.input.password\":\"Password\",\"lock.input.password.error.required\":\"Empty password\",\"lock.input.password.error.invalid\":\"Invalid password\",\"lock.alert.capslock\":\"CapsLock is on\",\"lock.button.unlock\":\"Unlock\",\"lock.text.restore\":\"Reset Wallet\",\"lock.text.restore.tips\":\"Wallet won't unlock? You can ERASE your \\n current wallet and setup a new one\",\"lock.modal.text.tips\":\"Are you sure you want to erase your wallet?\",\"lock.modal.text.content\":\"Your current wallet, accounts and assets will be removed permanently. This action cannot be undone.\",\"lock.modal.text.content_second\":\"You can ONLY recover this wallet with your Secret Recovery Phrase. Mises does not have your Secret Recovery Phrase.\",\"lock.modal.button.confirm\":\"I understand, continue\",\"lock.modal.button.cancel\":\"Cancel\",\"send.input.recipient\":\"Recipient\",\"send.input.recipient.error.invalid\":\"Invalid address\",\"send.input.recipient.error.ens-invalid-name\":\"Invalid ENS name format\",\"send.input.recipient.error.ens-not-found\":\"ENS name not found\",\"sned.input.recipient.error.ens-unknown-error\":\"Failed to get address from ENS\",\"send.input.recipient.error.ens-not-supported\":\"ENS not supported for this chain\",\"send.input.amount\":\"Amount\",\"send.input.amount.error.insufficient\":\"Insufficient asset\",\"send.input.memo\":\"Memo (Optional)\",\"send.input.fee\":\"Fee\",\"send.input.fee.error.required\":\"Fee is required\",\"send.input.gas\":\"Gas\",\"send.input-button.balance\":\"Balance\",\"send.button.send\":\"Send\",\"ibc.transfer.next\":\"Next\",\"ibc.transfer.submit\":\"Submit\",\"fee.input.gas\":\"Gas\",\"fee.input.memo\":\"Memo (Optional)\",\"fee.input.fee\":\"Fee\",\"fee.button.set\":\"Set Fee\",\"sign.tab.details\":\"Details\",\"sign.tab.data\":\"Data\",\"sign.list.messages.label\":\"Messages\",\"sign.info.fee\":\"Fee\",\"sign.info.memo\":\"Memo\",\"sign.info.warning.empty-memo\":\"(Empty memo)\",\"sign.info.fee.override\":\"Override fee\",\"sign.info.gas\":\"Gas\",\"sign.button.approve\":\"Approve\",\"sign.button.reject\":\"Reject\",\"sign.button.confirm-ledger\":\"Waiting for Ledger to confirm\",\"sign.list.message.cosmos-sdk/MsgSend.title\":\"Send\",\"sign.list.message.cosmos-sdk/MsgSend.content\":\"<b>{recipient}</b> will receive <b>{amount}</b>\",\"sign.list.message.cosmos-sdk/MsgTransfer.title\":\"IBC Transfer\",\"sign.list.message.cosmos-sdk/MsgTransfer.content\":\"Send <b>{amount}</b> to <b>{receiver}</b> on <b>{channel}</b>\",\"sign.list.message.cosmos-sdk/MsgDelegate.title\":\"Delegate\",\"sign.list.message.cosmos-sdk/MsgDelegate.content\":\"Delegate <b>{amount}</b> to <b>{validator}</b>\",\"sign.list.message.cosmos-sdk/MsgUndelegate.title\":\"Undelegate\",\"sign.list.message.cosmos-sdk/MsgUndelegate.content\":\"Undelegate <b>{amount}</b> from <b>{validator}</b>{br}Asset will be liquid after unbonding period\",\"sign.list.message.cosmos-sdk/MsgBeginRedelegate.title\":\"Redelegate\",\"sign.list.message.cosmos-sdk/MsgBeginRedelegate.content\":\"Redelegate <b>{amount}</b> from <b>{fromValidator}</b> to <b>{toValidator}</b>\",\"sign.list.message.cosmos-sdk/MsgWithdrawDelegatorReward.title\":\"Claim Staking Reward\",\"sign.list.message.cosmos-sdk/MsgWithdrawDelegatorReward.content\":\"Claim pending staking reward from <b>{validator}</b>\",\"sign.list.message.cosmos-sdk/MsgVote.title\":\"Vote\",\"sign.list.message.cosmos-sdk/MsgVote.content\":\"Vote <b>{option}</b> on <b>Proposal {id}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.title\":\"Grant\",\"sign.list.message.cosmos-sdk/MsgGrant.unspecified\":\"Unspecified\",\"sign.list.message.cosmos-sdk/MsgGrant.unrecognized\":\"Unrecognized\",\"sign.list.message.cosmos-sdk/MsgGrant.generic.content\":\"Grant <b>{grantType}</b> permission to <b>{grantee}</b> until <b>{expirationDate}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.sending.content\":\"Grant <b>Send</b> permission to <b>{grantee}</b> until <b>{expirationDate}</b>{br}Max Amount: <b>{maxAmount}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.unlimited\":\"Unlimited\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.content\":\"Grant <b>{grantType}</b> permission to <b>{grantee}</b> until <b>{expirationDate}</b>{br}{validatorListType} Validators: <b>{validators}</b>{br}Max Amount: <b>{maxAmount}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.validatorAllowedLabel\":\"Allowed\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.validatorDeniedLabel\":\"Denied\",\"sign.list.message.cosmos-sdk/MsgRevoke.title\":\"Revoke\",\"sign.list.message.cosmos-sdk/MsgRevoke.content\":\"Revoke <b>{revokeType}</b> permission from <b>{grantee}</b>\",\"sign.list.message.wasm.button.details\":\"Details\",\"sign.list.message.wasm.button.close\":\"Close\",\"sign.list.message.wasm/MsgInstantiateContract.title\":\"Instantiate Wasm Contract\",\"sign.list.message.wasm/MsgInstantiateContract.content\":\"Instantiate code ID <b>{codeId}</b> contract with<only-admin-exist> <b>{admin}</b> admin account and</only-admin-exist> <b>{label}</b> label<only-funds-exist> by funding <b>{funds}</b></only-funds-exist>\",\"sign.list.message.wasm/MsgExecuteContract.title\":\"Execute Wasm Contract\",\"sign.list.message.wasm/MsgExecuteContract.content\":\"Execute contract <b>{address}</b><only-sent-exist> by sending <b>{sent}</b></only-sent-exist>\",\"sign.list.message.wasm/MsgExecuteContract.content.badge.secret-wasm\":\"Encrypted\",\"sign.list.message.wasm/MsgExecuteContract.content.warning.secret-wasm.failed-decryption\":\"Failed to decrypt Secret message. This may be due to Mises viewing key not matching the transaction viewing key.\",\"sign.list.message.cyber/Link.title\":\"Cyberlink\",\"sign.list.message.cyber/Link.content\":\"<b>{neuron}</b> create link {br}<b>{link}</b>\",\"ledger.step1\":\"Step 1\",\"ledger.step1.paragraph\":\"Connect and unlock your Ledger.\",\"ledger.step2\":\"Step 2\",\"ledger.step2.paragraph\":\"Open the {ledgerApp} app on your Ledger device.\",\"ledger.option.webhid.checkbox\":\"Use alternative USB connection method(HID)\",\"ledger.option.webhid.warning\":\"Please copy and paste the following link {link} on your browser and enable ‘experimental web platform features’\",\"ledger.option.webhid.link.copied\":\"Link copied!\",\"ledger.button.next\":\"Next\",\"ledger.confirm.waiting.paragraph\":\"Waiting for confirmation on Ledger device\",\"ledger.confirm.success\":\"Success\",\"ledger.confirm.success.paragraph\":\"This page will automatically close in 3 seconds\",\"ledger.confirm.rejected\":\"Rejected by Ledger\",\"ledger.confirm.rejected.paragraph\":\"This page will automatically close in 3 seconds\",\"fee-buttons.select.low\":\"Low\",\"fee-buttons.select.average\":\"Average\",\"fee-buttons.select.high\":\"High\",\"input.recipient.error.invalid-bech32\":\"Invalid address\",\"input.recipient.error.ens-not-supported\":\"ENS not supported for this chain\",\"input.recipient.error.ens-failed-to-fetch\":\"Failed to get address from ENS\",\"input.recipient.error.invalid-hex\":\"Invalid hex address\",\"input.amount.error.invalid-number\":\"Invalid number\",\"input.amount.error.is-zero\":\"Amount should not be zero\",\"input.amount.error.is-negative\":\"Amount should be positive\",\"input.amount.error.insufficient\":\"Insufficient asset\",\"input.fee.error.insufficient\":\"Insufficient available balance for transaction fee\",\"input.fee.toggle.set-gas\":\"Advanced\",\"input.fee.toggle.set-gas.close\":\"Close\",\"input.fee.selector.fee-currency\":\"Fee Token\",\"confirm.yes\":\"Yes\",\"confirm.no\":\"No\",\"transfer.title\":\"Transaction\",\"transfer.toAddress\":\"To: {address}\",\"transfer.fromAddress\":\"From: {address}\",\"transfer.viewAll\":\"View All\",\"component.form.coin-input.token.label\":\"Token\",\"component.ibc.channel-registrar.chain-selector.label\":\"Destination Chain\",\"component.ibc.channel-registrar.chain-selector.placeholder\":\"Select Chain\",\"component.ibc.channel-registrar.chain-selector.button.add\":\"New IBC Transfer Channel\",\"component.ibc.channel-registrar.chain-selector.add.channel.label\":\"Channel ID\",\"component.ibc.channel-registrar.chain-selector.add.channel.placeholder\":\"Source Channel ID\",\"component.ibc.channel-registrar.chain-selector.add.channel.button\":\"Save\",\"component.waring.experimental-feature.title\":\"Experimental Feature\",\"component.waring.experimental-feature.paragraph\":\"For the brave-hearted cosmonauts\"}");
-
-/***/ }),
-
-/***/ 120:
+/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -525,7 +518,7 @@ module.exports = JSON.parse("{\"main.account.chart.total-balance\":\"Total Balan
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AdditionalSignInPrepend; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdditionalIntlMessages; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AmplitudeApiKey; });
-/* harmony import */ var alt_sign_in__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1200);
+/* harmony import */ var alt_sign_in__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1193);
 /* harmony import */ var alt_sign_in__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(alt_sign_in__WEBPACK_IMPORTED_MODULE_0__);
 
 const CoinGeckoAPIEndPoint = "https://api.coingecko.com/api/v3";
@@ -615,11 +608,143 @@ const AmplitudeApiKey = undefined || "";
 
 /***/ }),
 
+/***/ 1190:
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"main.account.chart.total-balance\":\"Total Balance\",\"main.account.chart.available-balance\":\"Available\",\"main.account.chart.staked-balance\":\"Staked\",\"main.account.button.deposit\":\"Deposit\",\"main.account.button.send\":\"Send\",\"main.account.tooltip.no-asset\":\"No token in your account. Deposit some tokens to send.\",\"main.modal.select-account.title\":\"Select your account\",\"main.modal.select-account.button.select\":\"Select Account\",\"main.modal.select-account.label.address\":\"Address\",\"main.modal.select-account.label.balance\":\"Balance\",\"main.modal.select-account.label.sequence\":\"Previous Txs\",\"main.stake.message.pending-staking-reward\":\"Pending Staking Reward\",\"main.stake.message.stake\":\"Staking\",\"main.transfer.message.activity\":\"Transaction\",\"main.stake.message.earning\":\"Earn up to {apr}% per year\",\"main.stake.button.claim-rewards\":\"Claim\",\"main.transfer.button.activity\":\"View Activities\",\"main.stake.button.stake\":\"View Portal\",\"main.stake.tooltip.no-asset\":\"No token in your account. Deposit some tokens to stake.\",\"main.ibc.transfer.title\":\"IBC Transfer\",\"main.ibc.transfer.paragraph\":\"Send tokens over IBC\",\"main.ibc.transfer.button\":\"Transfer\",\"main.address.copied\":\"Address copied!\",\"main.menu.settings\":\"Settings\",\"main.menu.address-book\":\"Address Book\",\"main.menu.token-list\":\"Token List\",\"main.menu.sign-out\":\"Sign out\",\"main.menu.footer.github\":\"Check it out on GitHub\",\"main.update-chain.confirm.paragraph\":\"Chain information has changed. Verify that a chain upgrade has taken place.\",\"main.update-chain.confirm.yes\":\"Proceed\",\"main.update-chain.confirm.no\":\"Ignore\",\"setting.language\":\"Language\",\"setting.language.automatic\":\"Automatic (Browser default)\",\"setting.language.automatic-with-language\":\"Automatic ({language})\",\"setting.language.en\":\"English\",\"setting.language.ko\":\"한국어\",\"setting.fiat\":\"Currency\",\"setting.fiat.automatic\":\"Automatic\",\"setting.fiat.automatic-with-fiat\":\"Automatic ({fiat})\",\"setting.connections\":\"Manage Connections\",\"setting.connections.paragraph\":\"Manage websites connected to your wallet\",\"setting.connections.confirm.delete-connection.title\":\"Disable Connection\",\"setting.connections.confirm.delete-connection.paragraph\":\"Are you sure you want to disable this connection?\",\"setting.address-book.button.add\":\"Add New\",\"setting.address-book.add-address.title\":\"Add Address\",\"setting.address-book.edit-address.title\":\"Edit Address\",\"setting.address-book.name\":\"Name\",\"setting.address-book.address\":\"Address\",\"setting.address-book.address.error.invalid\":\"Invalid address\",\"setting.address-book.memo\":\"Default Memo (Optional)\",\"setting.address-book.confirm.delete-address.title\":\"Delete Address\",\"setting.address-book.confirm.delete-address.paragraph\":\"Are you sure you want to delete this address?\",\"setting.address-book.button.save\":\"Save\",\"setting.export-to-mobile\":\"Link Mises Mobile\",\"setting.export-to-mobile.input.password\":\"Password\",\"setting.export-to-mobile.input.password.error.required\":\"Password is required\",\"setting.export-to-mobile.input.password.error.invalid\":\"Invalid password\",\"setting.export-to-mobile.button.confirm\":\"Confirm\",\"setting.credit\":\"Special thanks\",\"setting.keyring\":\"Select Account\",\"setting.keyring.button.add\":\"Add Account\",\"setting.keyring.button.import\":\"Import Account\",\"setting.keyring.unnamed-account\":\"Mises Account\",\"setting.keyring.selected-account\":\"(Selected)\",\"setting.keyring.change.password\":\"Reset Password\",\"setting.keyring.change.name\":\"Change Account Name\",\"setting.keyring.change.previous-name\":\"Previous account name\",\"setting.keyring.change.input.name\":\"New account name\",\"setting.keyring.change.input.name.error.required\":\"Account name is required\",\"setting.keyring.change.input.name.error.invalid\":\"Account name is invalid\",\"setting.keyring.change.name.button.save\":\"Save\",\"setting.keyring.create.name\":\"Create Account Name\",\"setting.keyring.create.input.name\":\"New account name\",\"setting.keyring.create.input.name.error.required\":\"Account name is required\",\"setting.keyring.create.input.name.error.invalid\":\"Account name is invalid\",\"setting.keyring.create.name.button.save\":\"Created\",\"setting.keyring.import.name\":\"Import Private Key\",\"setting.keyring.import.input.name\":\"New account name\",\"setting.keyring.import.input.name.error.required\":\"Account name is required\",\"setting.keyring.import.input.name.error.invalid\":\"PrivateKey is invalid\",\"setting.keyring.import.input.private-key.title\":\"Input your private key\",\"setting.keyring.import.name.button.save\":\"Created\",\"setting.export\":\"View Mnemonic Seed\",\"setting.export.private-key\":\"View Private Key\",\"setting.export.warning\":\"Please input your password to proceed\",\"setting.export.input.password\":\"Password\",\"setting.export.input.password.error.required\":\"Password is required\",\"setting.export.input.password.error.invalid\":\"Invalid password\",\"setting.export.button.confirm\":\"Confirm\",\"setting.clear\":\"Delete Account\",\"setting.clear.alert\":\"Make sure you’ve backed up your mnemonic seed before proceeding.\",\"setting.clear.button.back-up\":\"Back-up account\",\"setting.clear.warning\":\"By deleting your account, you will no longer have access to your account on Mises.\",\"setting.clear.input.password\":\"Password\",\"setting.clear.input.password.error.required\":\"Password is required\",\"setting.clear.input.password.error.invalid\":\"Invalid password\",\"setting.clear.button.confirm\":\"Confirm\",\"setting.token.add\":\"Add Token\",\"setting.token.add.contract-address\":\"Contract Address\",\"setting.token.add.name\":\"Name\",\"setting.token.add.symbol\":\"Symbol\",\"setting.token.add.decimals\":\"Decimals\",\"setting.token.add.button.submit\":\"Submit\",\"setting.token.add.secret20.checkbox.import-viewing-key\":\"(Advanced) Import my own viewing key\",\"setting.token.add.secret20.checkbox.use-suggested-viewing-key\":\"Use webpage suggested viewing key\",\"setting.token.add.secret20.viewing-key\":\"Viewing Key\",\"setting.token.manage.confirm.remove-token\":\"Are you sure you’d like to disable this token? You will not be able to see your balance or transfer until you register again.\",\"setting.token.manage.notification.viewing-key.copy\":\"Viewing key copied!\",\"setting.endpoints\":\"Endpoints\",\"setting.endpoints.paragraph\":\"Change into the node you wish to connect\",\"setting.endpoints.button.reset\":\"Reset\",\"setting.endpoints.button.confirm\":\"Confirm\",\"setting.autolock\":\"Auto-Lock Timer\",\"setting.autolock.duration\":\"Set the duration (unit: minutes)\",\"setting.autolock.description\":\"With Auto-Lock enabled, Mises Wallet will lock when the device is in sleep mode\",\"setting.autolock.error.required\":\"Duration is required\",\"setting.autolock.error.out-of-range\":\"It cannot be less than 0 or greater than 4320(3days)\",\"register.name\":\"Account name\",\"register.name.error.required\":\"Account name is required\",\"register.button.back\":\"Back\",\"register.bip44.button.advanced\":\"Advanced\",\"register.bip44.input.hd-path\":\"HD Derivation Path\",\"register.bip44.confirm.clear\":\"Closing this toggle will reset the HD Path. Are you sure you want to proceed?\",\"register.intro.button.new-account.title\":\"Create new account\",\"register.intro.button.new-account.content\":\"Create a new wallet using a new seed\",\"register.intro.button.import-account.title\":\"Import existing account\",\"register.intro.button.import-account.content\":\"Use a 12/24 word seed to import an existing wallet\",\"register.intro.sub-content\":\"All sensitive information is stored only on your device.{br}This process does not require an internet connection.\",\"register.recover.title\":\"Input your seed\",\"register.recover.alt.private-key.title\":\"Input your private key\",\"register.create.title\":\"Mnemonic Seed\",\"register.create.toggle.word12\":\"12 words\",\"register.create.toggle.word24\":\"24 words\",\"register.create.input.password\":\"New Password (minimum 8 characters)\",\"register.create.input.password.error.required\":\"Password is required\",\"register.create.input.password.error.too-short\":\"Too short password\",\"register.create.input.confirm-password\":\"Confirm password\",\"register.create.input.confirm-password.error.required\":\"Confirm password is required\",\"register.create.input.confirm-password.error.unmatched\":\"Password should match\",\"register.create.textarea.mnemonic.place-holder\":\"Type your mnemonic / private key\",\"register.create.textarea.mnemonic.error.invalid\":\"Invalid mnemonic\",\"register.create.textarea.mnemonic.error.too-short\":\"Too short mnemonic\",\"register.create.warning.keep-your-mnemonic.header\":\"Backup your mnemonic seed securely.\",\"register.create.warning.keep-your-mnemonic.paragraph1\":\"Anyone with your mnemonic seed can take your assets.\",\"register.create.warning.keep-your-mnemonic.paragraph2\":\"Lost mnemonic seed can't be recovered.\",\"register.import.textarea.mnemonic.error.required\":\"Mnemonic is required\",\"register.import.textarea.mnemonic.error.invalid\":\"Invalid mnemonic\",\"register.import.textarea.mnemonic.error.too-short\":\"Too short mnemonic\",\"register.import.textarea.private-key.error.required\":\"Private key is required\",\"register.import.textarea.private-key.error.invalid\":\"Invalid private key\",\"register.import.textarea.private-key.error.invalid-length\":\"Invalid length of private key\",\"register.create.button.next\":\"Next\",\"register.ledger.title\":\"Import ledger\",\"register.verify.button.register\":\"Register\",\"register.welcome.title\":\"You’re all set!\",\"register.welcome.content\":\"Open the extension and sign in to begin.\",\"register.welcome.button.done\":\"Done\",\"chain.suggested.title\":\"Chain Add Request\",\"chain.suggested.paragraph\":\"<b>{host}</b> would like to add blockchain <b>{chainId}</b> to Mises.\",\"chain.suggested.button.approve\":\"Approve\",\"chain.suggested.button.reject\":\"Reject\",\"chain.remove.confirm.paragraph\":\"Are you sure to remove the {chainName}?\",\"access.title\":\"Requesting Connection\",\"access.paragraph\":\"<b>{host}</b> is requesting to connect to your Mises account on <b>{chainId}</b>.\",\"access.permission.title\":\"By approving this request, the website will:\",\"access.permission.account\":\"Know your wallet address\",\"access.permission.tx-request\":\"Be able to request signatures for txs\",\"access.permission.secret\":\"Be able to encrypt/decrypt your messages\",\"access.button.approve\":\"Approve\",\"access.button.reject\":\"Reject\",\"access.viewing-key.title\":\"Requesting Viewing Key\",\"access.viewing-key.paragraph\":\"<b>{host}</b> is requesting to get your token's viewing key on <b>{contractAddress}</b>.\",\"access.viewing-key.permission.title\":\"By approving this request, the website will:\",\"access.viewing-key.permission.secret\":\"Be able to know your balance of the token\",\"access.viewing-key.button.approve\":\"Approve\",\"access.viewing-key.button.reject\":\"Reject\",\"lock.input.password\":\"Password\",\"lock.input.password.error.required\":\"Empty password\",\"lock.input.password.error.invalid\":\"Invalid password\",\"lock.alert.capslock\":\"CapsLock is on\",\"lock.button.unlock\":\"Unlock\",\"lock.text.restore\":\"Reset Wallet\",\"lock.text.restore.tips\":\"Wallet won't unlock? You can ERASE your \\n current wallet and setup a new one\",\"lock.modal.text.tips\":\"Are you sure you want to erase your wallet?\",\"lock.modal.text.content\":\"Your current wallet, accounts and assets will be removed permanently. This action cannot be undone.\",\"lock.modal.text.content_second\":\"You can ONLY recover this wallet with your Secret Recovery Phrase. Mises does not have your Secret Recovery Phrase.\",\"lock.modal.button.confirm\":\"I understand, continue\",\"lock.modal.button.cancel\":\"Cancel\",\"send.input.recipient\":\"Recipient\",\"send.input.recipient.error.invalid\":\"Invalid address\",\"send.input.recipient.error.ens-invalid-name\":\"Invalid ENS name format\",\"send.input.recipient.error.ens-not-found\":\"ENS name not found\",\"sned.input.recipient.error.ens-unknown-error\":\"Failed to get address from ENS\",\"send.input.recipient.error.ens-not-supported\":\"ENS not supported for this chain\",\"send.input.amount\":\"Amount\",\"send.input.amount.error.insufficient\":\"Insufficient asset\",\"send.input.memo\":\"Memo (Optional)\",\"send.input.fee\":\"Fee\",\"send.input.fee.error.required\":\"Fee is required\",\"send.input.gas\":\"Gas\",\"send.input-button.balance\":\"Balance\",\"send.button.send\":\"Send\",\"ibc.transfer.next\":\"Next\",\"ibc.transfer.submit\":\"Submit\",\"fee.input.gas\":\"Gas\",\"fee.input.memo\":\"Memo (Optional)\",\"fee.input.fee\":\"Fee\",\"fee.button.set\":\"Set Fee\",\"sign.tab.details\":\"Details\",\"sign.tab.data\":\"Data\",\"sign.list.messages.label\":\"Messages\",\"sign.info.fee\":\"Fee\",\"sign.info.memo\":\"Memo\",\"sign.info.warning.empty-memo\":\"(Empty memo)\",\"sign.info.fee.override\":\"Override fee\",\"sign.info.gas\":\"Gas\",\"sign.button.approve\":\"Approve\",\"sign.button.reject\":\"Reject\",\"sign.button.confirm-ledger\":\"Waiting for Ledger to confirm\",\"sign.list.message.cosmos-sdk/MsgSend.title\":\"Send\",\"sign.list.message.cosmos-sdk/MsgSend.content\":\"<b>{recipient}</b> will receive <b>{amount}</b>\",\"sign.list.message.cosmos-sdk/MsgTransfer.title\":\"IBC Transfer\",\"sign.list.message.cosmos-sdk/MsgTransfer.content\":\"Send <b>{amount}</b> to <b>{receiver}</b> on <b>{channel}</b>\",\"sign.list.message.cosmos-sdk/MsgDelegate.title\":\"Delegate\",\"sign.list.message.cosmos-sdk/MsgDelegate.content\":\"Delegate <b>{amount}</b> to <b>{validator}</b>\",\"sign.list.message.cosmos-sdk/MsgUndelegate.title\":\"Undelegate\",\"sign.list.message.cosmos-sdk/MsgUndelegate.content\":\"Undelegate <b>{amount}</b> from <b>{validator}</b>{br}Asset will be liquid after unbonding period\",\"sign.list.message.cosmos-sdk/MsgBeginRedelegate.title\":\"Redelegate\",\"sign.list.message.cosmos-sdk/MsgBeginRedelegate.content\":\"Redelegate <b>{amount}</b> from <b>{fromValidator}</b> to <b>{toValidator}</b>\",\"sign.list.message.cosmos-sdk/MsgWithdrawDelegatorReward.title\":\"Claim Staking Reward\",\"sign.list.message.cosmos-sdk/MsgWithdrawDelegatorReward.content\":\"Claim pending staking reward from <b>{validator}</b>\",\"sign.list.message.cosmos-sdk/MsgVote.title\":\"Vote\",\"sign.list.message.cosmos-sdk/MsgVote.content\":\"Vote <b>{option}</b> on <b>Proposal {id}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.title\":\"Grant\",\"sign.list.message.cosmos-sdk/MsgGrant.unspecified\":\"Unspecified\",\"sign.list.message.cosmos-sdk/MsgGrant.unrecognized\":\"Unrecognized\",\"sign.list.message.cosmos-sdk/MsgGrant.generic.content\":\"Grant <b>{grantType}</b> permission to <b>{grantee}</b> until <b>{expirationDate}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.sending.content\":\"Grant <b>Send</b> permission to <b>{grantee}</b> until <b>{expirationDate}</b>{br}Max Amount: <b>{maxAmount}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.unlimited\":\"Unlimited\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.content\":\"Grant <b>{grantType}</b> permission to <b>{grantee}</b> until <b>{expirationDate}</b>{br}{validatorListType} Validators: <b>{validators}</b>{br}Max Amount: <b>{maxAmount}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.validatorAllowedLabel\":\"Allowed\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.validatorDeniedLabel\":\"Denied\",\"sign.list.message.cosmos-sdk/MsgRevoke.title\":\"Revoke\",\"sign.list.message.cosmos-sdk/MsgRevoke.content\":\"Revoke <b>{revokeType}</b> permission from <b>{grantee}</b>\",\"sign.list.message.wasm.button.details\":\"Details\",\"sign.list.message.wasm.button.close\":\"Close\",\"sign.list.message.wasm/MsgInstantiateContract.title\":\"Instantiate Wasm Contract\",\"sign.list.message.wasm/MsgInstantiateContract.content\":\"Instantiate code ID <b>{codeId}</b> contract with<only-admin-exist> <b>{admin}</b> admin account and</only-admin-exist> <b>{label}</b> label<only-funds-exist> by funding <b>{funds}</b></only-funds-exist>\",\"sign.list.message.wasm/MsgExecuteContract.title\":\"Execute Wasm Contract\",\"sign.list.message.wasm/MsgExecuteContract.content\":\"Execute contract <b>{address}</b><only-sent-exist> by sending <b>{sent}</b></only-sent-exist>\",\"sign.list.message.wasm/MsgExecuteContract.content.badge.secret-wasm\":\"Encrypted\",\"sign.list.message.wasm/MsgExecuteContract.content.warning.secret-wasm.failed-decryption\":\"Failed to decrypt Secret message. This may be due to Mises viewing key not matching the transaction viewing key.\",\"sign.list.message.cyber/Link.title\":\"Cyberlink\",\"sign.list.message.cyber/Link.content\":\"<b>{neuron}</b> create link {br}<b>{link}</b>\",\"ledger.step1\":\"Step 1\",\"ledger.step1.paragraph\":\"Connect and unlock your Ledger.\",\"ledger.step2\":\"Step 2\",\"ledger.step2.paragraph\":\"Open the {ledgerApp} app on your Ledger device.\",\"ledger.option.webhid.checkbox\":\"Use alternative USB connection method(HID)\",\"ledger.option.webhid.warning\":\"Please copy and paste the following link {link} on your browser and enable ‘experimental web platform features’\",\"ledger.option.webhid.link.copied\":\"Link copied!\",\"ledger.button.next\":\"Next\",\"ledger.confirm.waiting.paragraph\":\"Waiting for confirmation on Ledger device\",\"ledger.confirm.success\":\"Success\",\"ledger.confirm.success.paragraph\":\"This page will automatically close in 3 seconds\",\"ledger.confirm.rejected\":\"Rejected by Ledger\",\"ledger.confirm.rejected.paragraph\":\"This page will automatically close in 3 seconds\",\"fee-buttons.select.low\":\"Low\",\"fee-buttons.select.average\":\"Average\",\"fee-buttons.select.high\":\"High\",\"input.recipient.error.invalid-bech32\":\"Invalid address\",\"input.recipient.error.ens-not-supported\":\"ENS not supported for this chain\",\"input.recipient.error.ens-failed-to-fetch\":\"Failed to get address from ENS\",\"input.recipient.error.invalid-hex\":\"Invalid hex address\",\"input.amount.error.invalid-number\":\"Invalid number\",\"input.amount.error.is-zero\":\"Amount should not be zero\",\"input.amount.error.is-negative\":\"Amount should be positive\",\"input.amount.error.insufficient\":\"Insufficient asset\",\"input.fee.error.insufficient\":\"Insufficient available balance for transaction fee\",\"input.fee.toggle.set-gas\":\"Advanced\",\"input.fee.toggle.set-gas.close\":\"Close\",\"input.fee.selector.fee-currency\":\"Fee Token\",\"confirm.yes\":\"Yes\",\"confirm.no\":\"No\",\"transfer.title\":\"Transaction\",\"transfer.toAddress\":\"To: {address}\",\"transfer.fromAddress\":\"From: {address}\",\"transfer.viewAll\":\"View All\",\"component.form.coin-input.token.label\":\"Token\",\"component.ibc.channel-registrar.chain-selector.label\":\"Destination Chain\",\"component.ibc.channel-registrar.chain-selector.placeholder\":\"Select Chain\",\"component.ibc.channel-registrar.chain-selector.button.add\":\"New IBC Transfer Channel\",\"component.ibc.channel-registrar.chain-selector.add.channel.label\":\"Channel ID\",\"component.ibc.channel-registrar.chain-selector.add.channel.placeholder\":\"Source Channel ID\",\"component.ibc.channel-registrar.chain-selector.add.channel.button\":\"Save\",\"component.waring.experimental-feature.title\":\"Experimental Feature\",\"component.waring.experimental-feature.paragraph\":\"For the brave-hearted cosmonauts\"}");
+
+/***/ }),
+
+/***/ 1196:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1519);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1197:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1525);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1200:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1553);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1201:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1592);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1202:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1598);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ 1203:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1526);
+            var content = __webpack_require__(1611);
 
             content = content.__esModule ? content.default : content;
 
@@ -644,7 +769,32 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1532);
+            var content = __webpack_require__(1613);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1205:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1623);
 
             content = content.__esModule ? content.default : content;
 
@@ -669,7 +819,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1560);
+            var content = __webpack_require__(1633);
 
             content = content.__esModule ? content.default : content;
 
@@ -690,61 +840,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1208:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1599);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1209:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1605);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1210:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1618);
+            var content = __webpack_require__(1504);
 
             content = content.__esModule ? content.default : content;
 
@@ -766,81 +866,6 @@ module.exports = content.locals || {};
 /***/ }),
 
 /***/ 1211:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1620);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1212:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1629);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1214:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1638);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -858,11 +883,11 @@ var react_default = /*#__PURE__*/__webpack_require__.n(react);
 var es = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./src/components/form/gas-form/auto.module.scss
-var auto_module = __webpack_require__(642);
+var auto_module = __webpack_require__(640);
 var auto_module_default = /*#__PURE__*/__webpack_require__.n(auto_module);
 
 // EXTERNAL MODULE: ./src/components/form/input.tsx
-var input = __webpack_require__(203);
+var input = __webpack_require__(202);
 
 // CONCATENATED MODULE: ./src/components/form/gas-form/auto.tsx
 
@@ -891,14 +916,14 @@ const GasAutoContainer = Object(es["a" /* observer */])(({ gasConfig, gasSimulat
 });
 
 // EXTERNAL MODULE: ./src/components/form/gas-input.tsx
-var gas_input = __webpack_require__(364);
+var gas_input = __webpack_require__(362);
 
 // EXTERNAL MODULE: ./src/components/form/gas-form/container.module.scss
-var container_module = __webpack_require__(643);
+var container_module = __webpack_require__(641);
 var container_module_default = /*#__PURE__*/__webpack_require__.n(container_module);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Alert.js
-var Alert = __webpack_require__(1679);
+var Alert = __webpack_require__(1674);
 
 // CONCATENATED MODULE: ./src/components/form/gas-form/container.tsx
 
@@ -931,32 +956,7 @@ const GasContainer = Object(es["a" /* observer */])(({ label, gasConfig, gasSimu
 
 /***/ }),
 
-/***/ 122:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1513);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1226:
+/***/ 1217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -997,32 +997,32 @@ module.exports = function (url, options) {
 
 /***/ }),
 
-/***/ 1263:
+/***/ 1254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddressInput; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1221);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1362);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(208);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1363);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(614);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1214);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1352);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(207);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(208);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1353);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(612);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(257);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(647);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(615);
-/* harmony import */ var _pages_setting_address_book__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(637);
-/* harmony import */ var _address_input_module_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(373);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(645);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(613);
+/* harmony import */ var _pages_setting_address_book__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(635);
+/* harmony import */ var _address_input_module_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(371);
 /* harmony import */ var _address_input_module_scss__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_address_input_module_scss__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(44);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(15);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(613);
-/* harmony import */ var _keplr_wallet_ens__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(1195);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(611);
+/* harmony import */ var _keplr_wallet_ens__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(1189);
 /* harmony import */ var _keplr_wallet_ens__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_ens__WEBPACK_IMPORTED_MODULE_16__);
 
 
@@ -1106,7 +1106,7 @@ const AddressInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_14__[/* obs
 
 /***/ }),
 
-/***/ 1270:
+/***/ 1261:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1115,23 +1115,23 @@ const AddressInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_14__[/* obs
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _coin_input_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(275);
+/* harmony import */ var _coin_input_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(274);
 /* harmony import */ var _coin_input_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_coin_input_module_scss__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(208);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(649);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(650);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(648);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(616);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(614);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(615);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(207);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(208);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(647);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(648);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(646);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(614);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(612);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(613);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(15);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(44);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(26);
 /* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(613);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(165);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(611);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(163);
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(17);
 
 
@@ -1233,7 +1233,7 @@ const CoinInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_11__[/* observ
 
 /***/ }),
 
-/***/ 1271:
+/***/ 1262:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1242,29 +1242,29 @@ const CoinInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_11__[/* observ
 /* unused harmony export FeeButtonsInner */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _fee_buttons_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(198);
+/* harmony import */ var _fee_buttons_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(197);
 /* harmony import */ var _fee_buttons_module_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fee_buttons_module_scss__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(208);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(649);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(650);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(648);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(616);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1662);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(207);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(208);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(647);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(648);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(646);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(614);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1657);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(257);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(647);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(615);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(645);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(613);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(15);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(44);
 /* harmony import */ var _keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_hooks__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(165);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(613);
-/* harmony import */ var _gas_input__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(364);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(163);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(611);
+/* harmony import */ var _gas_input__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(362);
 /* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(5);
-/* harmony import */ var _gas_form__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(1218);
-/* harmony import */ var _coin_input_module_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(275);
+/* harmony import */ var _gas_form__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(1211);
+/* harmony import */ var _coin_input_module_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(274);
 /* harmony import */ var _coin_input_module_scss__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_coin_input_module_scss__WEBPACK_IMPORTED_MODULE_20__);
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(17);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -1493,17 +1493,17 @@ const FeeButtonsInner = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_13__[/* 
 
 /***/ }),
 
-/***/ 1272:
+/***/ 1263:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MemoInput; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(208);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(614);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(615);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(207);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(208);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(612);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(613);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
 
 
@@ -1537,25 +1537,25 @@ const MemoInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_5__[/* observe
 
 /***/ }),
 
-/***/ 1273:
+/***/ 1264:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {/* unused harmony export DestinationChainSelector */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(208);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(649);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(650);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(648);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(616);
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(609);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(207);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(208);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(647);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(648);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(646);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(614);
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(607);
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _channel_registrar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(632);
+/* harmony import */ var _channel_registrar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(630);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(15);
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(17);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(165);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(163);
 
 
 
@@ -1609,7 +1609,7 @@ const DestinationChainSelector = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE
 
 /***/ }),
 
-/***/ 1274:
+/***/ 1265:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1676,7 +1676,7 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 1275:
+/***/ 1266:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1693,11 +1693,11 @@ exports.show = show;
 exports.documentNotReadyOrSSRTesting = documentNotReadyOrSSRTesting;
 exports.resetForTesting = resetForTesting;
 
-var _warning = __webpack_require__(631);
+var _warning = __webpack_require__(629);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _safeHTMLElement = __webpack_require__(1187);
+var _safeHTMLElement = __webpack_require__(1181);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1752,7 +1752,7 @@ function resetForTesting() {
 
 /***/ }),
 
-/***/ 1276:
+/***/ 1267:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1813,39 +1813,39 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 1281:
+/***/ 1272:
 /***/ (function(module, exports) {
 
 module.exports = "assets/brand-text.png";
 
 /***/ }),
 
-/***/ 1282:
+/***/ 1273:
 /***/ (function(module, exports) {
 
 module.exports = "assets/broken-link.svg";
 
 /***/ }),
 
-/***/ 1283:
+/***/ 1274:
 /***/ (function(module, exports) {
 
 module.exports = "assets/icons8-lock.svg";
 
 /***/ }),
 
-/***/ 1315:
+/***/ 1305:
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"main.account.chart.total-balance\":\"총 자산\",\"main.account.chart.available-balance\":\"전송 가능한 자산\",\"main.account.chart.staked-balance\":\"스테이킹된 자산\",\"main.account.button.deposit\":\"입금\",\"main.account.button.send\":\"보내기\",\"main.account.tooltip.no-asset\":\"계정에 자산이 없습니다. 자산을 입금해주세요.\",\"main.modal.select-account.title\":\"계정을 선택하세요\",\"main.modal.select-account.button.select\":\"계정 선택\",\"main.modal.select-account.label.address\":\"주소\",\"main.modal.select-account.label.balance\":\"잔고\",\"main.modal.select-account.label.sequence\":\"보낸 트랜잭션\",\"main.stake.message.pending-staking-reward\":\"스테이킹 보상\",\"main.stake.message.stake\":\"스테이킹\",\"main.transfer.message.activity\":\"활동\",\"main.stake.message.earning\":\"연간 {apr}%의 이자를 받으세요\",\"main.stake.button.claim-rewards\":\"보상 받기\",\"main.transfer.button.activity\":\"활동\",\"main.stake.button.stake\":\"스테이킹\",\"main.stake.tooltip.no-asset\":\"계정에 자산이 없습니다. 자산을 입금해주세요.\",\"main.ibc.transfer.title\":\"IBC 전송\",\"main.ibc.transfer.paragraph\":\"토큰을 IBC를 통해 전송하세요\",\"main.ibc.transfer.button\":\"전송\",\"main.address.copied\":\"주소가 복사되었습니다\",\"main.menu.settings\":\"설정\",\"main.menu.address-book\":\"주소록\",\"main.menu.token-list\":\"토큰 목록\",\"main.menu.sign-out\":\"로그아웃\",\"main.menu.footer.github\":\"깃허브를 확인하세요\",\"main.update-chain.confirm.paragraph\":\"체인의 정보가 변했습니다. 체인이 업데이트되었는지 확인하세요.\",\"main.update-chain.confirm.yes\":\"진행\",\"main.update-chain.confirm.no\":\"무시\",\"setting.language\":\"언어\",\"setting.language.automatic\":\"자동 (브라우저 언어)\",\"setting.language.automatic-with-language\":\"자동 ({language})\",\"setting.fiat\":\"통화\",\"setting.fiat.automatic\":\"자동\",\"setting.fiat.automatic-with-fiat\":\"자동 ({fiat})\",\"setting.connections\":\"연결 관리\",\"setting.connections.paragraph\":\"지갑에 연결을 허용한 웹사이트를 관리합니다\",\"setting.connections.confirm.delete-connection.title\":\"연결 삭제\",\"setting.connections.confirm.delete-connection.paragraph\":\"이 연결을 삭제하시겠습니까?\",\"setting.address-book.button.add\":\"주소 추가\",\"setting.address-book.add-address.title\":\"주소 추가\",\"setting.address-book.edit-address.title\":\"주소 편집\",\"setting.address-book.name\":\"이름\",\"setting.address-book.address\":\"주소\",\"setting.address-book.address.error.invalid\":\"잘못된 주소입니다\",\"setting.address-book.memo\":\"기본 메모 (선택사항)\",\"setting.address-book.confirm.delete-address.title\":\"주소 삭제\",\"setting.address-book.confirm.delete-address.paragraph\":\"이 주소를 삭제하시겠습니까?\",\"setting.address-book.button.save\":\"저장\",\"setting.credit\":\"도움을 주신 분들\",\"setting.keyring\":\"계정 선택\",\"setting.keyring.button.add\":\"계정 추가\",\"setting.keyring.unnamed-account\":\"케플러 계정\",\"setting.keyring.selected-account\":\"(선택됨)\",\"setting.keyring.change.password\":\"비밀번호 재설정\",\"setting.keyring.change.name\":\"계정 이름 변경\",\"setting.keyring.change.previous-name\":\"이전 계정 이름\",\"setting.keyring.change.input.name\":\"새로운 계정 이름\",\"setting.keyring.change.input.name.error.required\":\"계정 이름을 입력하세요\",\"setting.keyring.change.input.name.error.invalid\":\"계정 이름이 유효하지 않습니다\",\"setting.keyring.change.name.button.save\":\"저장\",\"setting.keyring.create.name\":\"새로운 계정 이름\",\"setting.keyring.create.input.name\":\"새로운 계정 이름\",\"setting.keyring.create.input.name.error.required\":\"계정 이름을 입력하세요\",\"setting.keyring.create.input.name.error.invalid\":\"계정 이름이 유효하지 않습니다\",\"setting.keyring.create.name.button.save\":\"만들다\",\"setting.keyring.import.name\":\"개인 키 가져오기\",\"setting.keyring.import.input.name\":\"새로운 계정 이름\",\"setting.keyring.import.input.name.error.required\":\"계정 이름을 입력하세요\",\"setting.keyring.import.input.name.error.invalid\":\"계정 이름이 유효하지 않습니다\",\"setting.keyring.import.input.private-key.title\":\"개인키를 입력해주세요\",\"setting.keyring.import.name.button.save\":\"만들다\",\"setting.export\":\"니모닉 시드 보기\",\"setting.export.private-key\":\"개인키 보기\",\"setting.export.warning\":\"진행하려면 패스워드를 입력하세요\",\"setting.export.input.password\":\"비밀번호\",\"setting.export.input.password.error.required\":\"비밀번호를 입력하세요\",\"setting.export.input.password.error.invalid\":\"잘못된 비밀번호입니다\",\"setting.export.button.confirm\":\"확인\",\"setting.clear\":\"계정 삭제\",\"setting.clear.alert\":\"계정을 삭제하기 전에 니모닉 시드를 가지고 있는지 확인하세요\",\"setting.clear.button.back-up\":\"니모닉 시드 보기\",\"setting.clear.warning\":\"계정을 삭제하면 케플러에서 계정에 접근할 수 없습니다\",\"setting.clear.input.password\":\"비밀번호\",\"setting.clear.input.password.error.required\":\"비밀번호를 입력하세요\",\"setting.clear.input.password.error.invalid\":\"잘못된 비밀번호입니다\",\"setting.clear.button.confirm\":\"확인\",\"setting.token.add\":\"토큰 추가\",\"setting.token.add.contract-address\":\"컨트랙트 주소\",\"setting.token.add.name\":\"이름\",\"setting.token.add.symbol\":\"심볼\",\"setting.token.add.decimals\":\"소수점 자릿수\",\"setting.token.add.button.submit\":\"등록\",\"setting.token.add.secret20.checkbox.import-viewing-key\":\"(고급) 뷰잉키를 이미 가지고 계십니까?\",\"setting.token.add.secret20.checkbox.use-suggested-viewing-key\":\"웹페이지가 제안한 뷰잉키를 사용하시겠습니까?\",\"setting.token.add.secret20.viewing-key\":\"뷰잉 키\",\"setting.token.manage.confirm.remove-token\":\"토큰을 비활성화 하시겠습니까? 다시 등록할 때까지 잔고를 보거나 토큰을 전송할 수 없습니다.\",\"setting.token.manage.notification.viewing-key.copy\":\"뷰잉키가 복사되었습니다\",\"setting.endpoints\":\"노드 주소\",\"setting.endpoints.paragraph\":\"원하는 풀노드를 사용하도록 설정하세요\",\"setting.endpoints.button.reset\":\"초기화\",\"setting.endpoints.button.confirm\":\"확인\",\"setting.autolock\":\"자동 잠금 타이머\",\"setting.autolock.duration\":\"잠금 주기 (단위: 분)\",\"setting.autolock.description\":\"자동 잠금 기능이 활성화 된 경우 기기가 잠금 상태가 되면 설정된 시간과 관계없이 자동으로 지갑을 잠급니다\",\"setting.autolock.error.required\":\"잠금 주기를 입력해주세요\",\"setting.autolock.error.out-of-range\":\"잠금 주기는 0분 보다 작거나 4320분(3일)보다 클 수 없습니다\",\"register.name\":\"계정 이름\",\"register.name.error.required\":\"계정 이름을 입력하세요\",\"register.button.back\":\"뒤로\",\"register.bip44.button.advanced\":\"고급\",\"register.bip44.input.hd-path\":\"BIP44 HD 경로\",\"register.bip44.confirm.clear\":\"고급 옵션을 닫으면 HD 경로가 초기화됩니다. 계속 진행하시겠습니까?\",\"register.intro.button.new-account.title\":\"계정 생성\",\"register.intro.button.new-account.content\":\"새로운 니모닉 시드로 계정을 생성하세요\",\"register.intro.button.import-account.title\":\"기존 계정 불러오기\",\"register.intro.button.import-account.content\":\"12/24 니모닉 단어를 사용하여 계정 불러오기\",\"register.intro.sub-content\":\"모든 정보는 기기에 저장됩니다.{br}이 과정은 인터넷 접속을 필요로하지 않습니다.\",\"register.recover.title\":\"시드를 입력하세요\",\"register.recover.alt.private-key.title\":\"개인키를 입력하세요\",\"register.create.title\":\"니모닉 단어\",\"register.create.toggle.word12\":\"12 단어\",\"register.create.toggle.word24\":\"24 단어\",\"register.create.input.password\":\"새로운 비밀번호 (최소 8자리 이상)\",\"register.create.input.password.error.required\":\"비밀번호를 입력하세요\",\"register.create.input.password.error.too-short\":\"비밀번호가 너무 짧습니다\",\"register.create.input.confirm-password\":\"비밀번호 확인\",\"register.create.input.confirm-password.error.required\":\"비밀번호를 입력하세요\",\"register.create.input.confirm-password.error.unmatched\":\"비밀번호가 일치하지 않습니다\",\"register.create.textarea.mnemonic.place-holder\":\"니모닉 단어 또는 개인키를 입력하세요\",\"register.create.textarea.mnemonic.error.invalid\":\"잘못된 니모닉 단어입니다\",\"register.create.textarea.mnemonic.error.too-short\":\"니모닉 단어가 너무 적습니다\",\"register.create.warning.keep-your-mnemonic.header\":\"니모닉 단어를 안전하게 보관하세요\",\"register.create.warning.keep-your-mnemonic.paragraph1\":\"다른 사람이 니모닉 단어를 알게되면 자산을 뺏길 수 있습니다\",\"register.create.warning.keep-your-mnemonic.paragraph2\":\"니모닉 단어를 잃어버리면 계정을 복구할 수 없습니다\",\"register.import.textarea.private-key.error.invalid\":\"잘못된 개인키 입니다\",\"register.import.textarea.private-key.error.invalid-length\":\"잘못된 길이의 개인키 입니다\",\"register.create.button.next\":\"다음\",\"register.ledger.title\":\"렛저 계정 불러오기\",\"register.verify.button.register\":\"등록\",\"register.welcome.title\":\"준비 완료!\",\"register.welcome.content\":\"확장 프로그램을 열고 로그인하여 인터체인 여행을 시작하세요.\",\"register.welcome.button.done\":\"완료\",\"chain.suggested.title\":\"체인 추가 요청\",\"chain.suggested.paragraph\":\"<b>{host}</b>가 <b>{chainId}</b> 블록체인을 케플러에 추가하길 원합니다.\",\"chain.suggested.button.approve\":\"허락\",\"chain.suggested.button.reject\":\"거부\",\"chain.remove.confirm.paragraph\":\"{chainName}를 삭제하시겠습니까?\",\"access.title\":\"접근 요청\",\"access.paragraph\":\"<b>{host}</b>가 <b>{chainId}</b>에 접근을 요청합니다.\",\"access.permission.title\":\"이 웹사이트는 다음과 같은 권한을 가질 수 있습니다\",\"access.permission.account\":\"계정의 주소를 알 수 있습니다\",\"access.permission.tx-request\":\"트랜잭션 서명을 요청할 수 있습니다\",\"access.permission.secret\":\"메세지를 암호화/복호화할 수 있습니다\",\"access.button.approve\":\"허락\",\"access.button.reject\":\"거부\",\"lock.input.password\":\"비밀번호\",\"lock.input.password.error.required\":\"비밀번호를 입력하세요\",\"lock.input.password.error.invalid\":\"잘못된 비밀번호입니다\",\"lock.alert.capslock\":\"CapsLock이 켜져 있습니다\",\"lock.button.unlock\":\"잠금 해제\",\"lock.text.restore\":\"복원하다\",\"send.input.recipient\":\"받는 주소\",\"send.input.recipient.error.invalid\":\"잘못된 주소입니다\",\"send.input.recipient.error.ens-invalid-name\":\"잘못된 ENS 이름 형식입니다\",\"send.input.recipient.error.ens-not-found\":\"ENS 이름을 찾을 수 없습니다\",\"sned.input.recipient.error.ens-unknown-error\":\"ENS로부터 주소를 받는데 실패했습니다\",\"send.input.recipient.error.ens-not-supported\":\"이 체인에는 ENS가 지원되지 않습니다\",\"send.input.amount\":\"수량\",\"send.input.amount.error.insufficient\":\"자산이 부족합니다\",\"send.input.memo\":\"메모 (선택사항)\",\"send.input.fee\":\"수수료\",\"send.input.fee.error.required\":\"수수료를 입력하세요\",\"send.input.gas\":\"가스\",\"send.input-button.balance\":\"잔고\",\"send.button.send\":\"보내기\",\"ibc.transfer.next\":\"다음\",\"ibc.transfer.submit\":\"보내기\",\"fee.input.gas\":\"가스\",\"fee.input.memo\":\"메모 (선택사항)\",\"fee.input.fee\":\"수수료\",\"fee.button.set\":\"수수료 설정\",\"sign.tab.details\":\"자세히\",\"sign.tab.data\":\"데이터\",\"sign.list.messages.label\":\"메세지\",\"sign.info.fee\":\"수수료\",\"sign.info.memo\":\"메모\",\"sign.info.warning.empty-memo\":\"(빈 메모)\",\"sign.info.fee.override\":\"수수료 변경\",\"sign.info.gas\":\"가스\",\"sign.button.approve\":\"허락\",\"sign.button.reject\":\"거부\",\"sign.button.confirm-ledger\":\"렛저를 확인하세요\",\"sign.list.message.cosmos-sdk/MsgSend.title\":\"보내기\",\"sign.list.message.cosmos-sdk/MsgSend.content\":\"<b>{recipient}</b>가 <b>{amount}</b>를 받을 것입니다\",\"sign.list.message.cosmos-sdk/MsgTransfer.title\":\"IBC 전송\",\"sign.list.message.cosmos-sdk/MsgTransfer.content\":\"채널 <b>{channel}</b>의 <b>{receiver}</b>가 <b>{amount}</b>를 받을 것입니다\",\"sign.list.message.cosmos-sdk/MsgDelegate.title\":\"위임\",\"sign.list.message.cosmos-sdk/MsgDelegate.content\":\"<b>{validator}</b>에게 <b>{amount}</b>를 위임합니다\",\"sign.list.message.cosmos-sdk/MsgUndelegate.title\":\"위임 해제\",\"sign.list.message.cosmos-sdk/MsgUndelegate.content\":\"<b>{validator}</b>로부터 <b>{amount}</b>를 위임해제합니다{br}자산은 언본딩 기간 이후 지급됩니다\",\"sign.list.message.cosmos-sdk/MsgBeginRedelegate.title\":\"재위임\",\"sign.list.message.cosmos-sdk/MsgBeginRedelegate.content\":\"<b>{fromValidator}</b>로부터 <b>{toValidator}</b>에게 <b>{amount}</b>를 재위임합니다\",\"sign.list.message.cosmos-sdk/MsgWithdrawDelegatorReward.title\":\"스테이킹 보상 요청\",\"sign.list.message.cosmos-sdk/MsgWithdrawDelegatorReward.content\":\"<b>{validator}</b>에게 위임된 스테이킹 보상을 요청합니다\",\"sign.list.message.cosmos-sdk/MsgVote.title\":\"투표\",\"sign.list.message.cosmos-sdk/MsgVote.content\":\"<b>제안 {id}</b>에 <b>{option}</b>를 투표합니다\",\"sign.list.message.wasm.button.details\":\"자세히\",\"sign.list.message.wasm.button.close\":\"닫기\",\"sign.list.message.wasm/MsgInstantiateContract.title\":\"Wasm 컨트랙트 활성화\",\"sign.list.message.wasm/MsgInstantiateContract.content\":\"<only-funds-exist><b>{funds}</b>를 전송하여 </only-funds-exist><only-admin-exist><b>{admin}</b>을 관리자 계정으로 가지는 </only-admin-exist><b>{label}</b> 라벨의 Code ID <b>{codeId}</b> 컨트랙트를 활성화합니다\",\"sign.list.message.wasm/MsgExecuteContract.title\":\"Wasm 컨트랙트 실행 요청\",\"sign.list.message.wasm/MsgExecuteContract.content\":\"<only-sent-exist><b>{sent}</b>를 전송하며 </only-sent-exist><b>{address}</b> 컨트랙트를 실행합니다\",\"sign.list.message.wasm/MsgExecuteContract.content.badge.secret-wasm\":\"암호화됨\",\"sign.list.message.wasm/MsgExecuteContract.content.warning.secret-wasm.failed-decryption\":\"메세지를 복호화하지 못 했습니다. 케플러를 통하지 않고 암호화되었을 수 있습니다.\",\"sign.list.message.cosmos-sdk/MsgGrant.title\":\"승인\",\"sign.list.message.cosmos-sdk/MsgGrant.unspecified\":\"정확하지 않음\",\"sign.list.message.cosmos-sdk/MsgGrant.unrecognized\":\"인식되지 않음\",\"sign.list.message.cosmos-sdk/MsgGrant.generic.content\":\"<b>{expirationDate}</b>까지 Grant <b>{grantType}</b>을 <b>{grantee}</b>에 허용합니다\",\"sign.list.message.cosmos-sdk/MsgGrant.sending.content\":\"<b>{expirationDate}</b>까지 Grant <b>보내기</b>를 <b>{grantee}</b>에게 허용합니다{br}최고가: <b>{maxAmount}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.unlimited\":\"무제한\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.content\":\"<b>{expirationDate}</b>까지 Grant <b>{grantType}</b>을 <b>{grantee}</b>에 허용합니다</b>{br}{validatorListType} Validators: <b>{validators}</b>{br}최고가: <b>{maxAmount}</b>\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.validatorAllowedLabel\":\"허가된\",\"sign.list.message.cosmos-sdk/MsgGrant.staking.validatorDeniedLabel\":\"거절당한\",\"sign.list.message.cosmos-sdk/MsgRevoke.title\":\"취소\",\"sign.list.message.cosmos-sdk/MsgRevoke.content\":\"<b>{revokeType}</b>이 <b>{grantee}</b> 허가를 취소합니다\",\"sign.list.message.cyber/Link.title\":\"Cyberlink\",\"sign.list.message.cyber/Link.content\":\"<b>{neuron}</b>가 링크<b>{link}</b>를 생성합니다\",\"ledger.step1\":\"1 단계\",\"ledger.step1.paragraph\":\"렛저를 연결하고 잠금을 해제하세요\",\"ledger.step2\":\"2 단계\",\"ledger.step2.paragraph\":\"렛저에서 {ledgerApp} 앱을 실행하세요\",\"ledger.option.webhid.checkbox\":\"WebUSB 대신 WebHID를 사용합니다\",\"ledger.option.webhid.warning\":\"이 링크 {link}를 복사하고 브라우저 주소 줄에 붙여넣으세요. 그리고 ‘experimental web platform features’ 플래그를 활성화하세요.\",\"ledger.option.webhid.link.copied\":\"링크가 복사되었습니다\",\"ledger.button.next\":\"다음\",\"ledger.confirm.waiting.paragraph\":\"렛저 디바이스에서의 확인을 기다리는 중...\",\"ledger.confirm.success\":\"성공\",\"ledger.confirm.success.paragraph\":\"이 페이지는 3초 후 자동으로 닫힙니다\",\"ledger.confirm.rejected\":\"거부됨\",\"ledger.confirm.rejected.paragraph\":\"이 페이지는 3초 후 자동으로 닫힙니다\",\"fee-buttons.select.low\":\"느림\",\"fee-buttons.select.average\":\"평균\",\"fee-buttons.select.high\":\"빠름\",\"input.recipient.error.invalid-bech32\":\"잘못된 주소입니다\",\"input.recipient.error.ens-not-supported\":\"이 체인에는 ENS가 지원되지 않습니다\",\"input.recipient.error.ens-failed-to-fetch\":\"ENS로부터 주소를 받는데 실패했습니다\",\"input.amount.error.invalid-number\":\"잘못된 숫자입니\",\"input.amount.error.is-zero\":\"0이 아니여야 합니다\",\"input.amount.error.is-negative\":\"양수여야 합니다\",\"input.amount.error.insufficient\":\"자산이 부족합니다\",\"input.fee.error.insufficient\":\"수수료를 낼 충분한 잔고가 없습니다\",\"input.fee.toggle.set-gas\":\"고급\",\"input.fee.toggle.set-gas.close\":\"닫기\",\"input.fee.selector.fee-currency\":\"수수료 토큰\",\"confirm.yes\":\"예\",\"confirm.no\":\"아니요\",\"component.form.coin-input.token.label\":\"토큰\",\"component.ibc.channel-registrar.chain-selector.label\":\"도착 체인\",\"component.ibc.channel-registrar.chain-selector.placeholder\":\"체인을 선택하세요\",\"component.ibc.channel-registrar.chain-selector.button.add\":\"IBC 전송 채널 추가\",\"component.ibc.channel-registrar.chain-selector.add.channel.label\":\"채널 ID\",\"component.ibc.channel-registrar.chain-selector.add.channel.placeholder\":\"채널 ID를 입력하세요\",\"component.ibc.channel-registrar.chain-selector.add.channel.button\":\"저장\",\"component.waring.experimental-feature.title\":\"실험적 기능\",\"component.waring.experimental-feature.paragraph\":\"용감한 우주 여행자를 위한 기능입니다\"}");
 
 /***/ }),
 
-/***/ 1322:
+/***/ 1312:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1514);
+            var content = __webpack_require__(1505);
 
             content = content.__esModule ? content.default : content;
 
@@ -1866,11 +1866,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1323:
+/***/ 1313:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1525);
+            var content = __webpack_require__(1518);
 
             content = content.__esModule ? content.default : content;
 
@@ -1891,11 +1891,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1324:
+/***/ 1314:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1530);
+            var content = __webpack_require__(1523);
 
             content = content.__esModule ? content.default : content;
 
@@ -1916,11 +1916,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1327:
+/***/ 1317:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1558);
+            var content = __webpack_require__(1551);
 
             content = content.__esModule ? content.default : content;
 
@@ -1941,27 +1941,27 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1328:
+/***/ 1318:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TokensView; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _token_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(173);
+/* harmony import */ var _token_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(171);
 /* harmony import */ var _token_module_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_token_module_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15);
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(17);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(20);
-/* harmony import */ var _keplr_wallet_crypto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(50);
+/* harmony import */ var _keplr_wallet_crypto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(51);
 /* harmony import */ var _keplr_wallet_crypto__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_crypto__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1664);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1659);
 /* harmony import */ var _keplr_wallet_stores__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(43);
 /* harmony import */ var _keplr_wallet_stores__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_stores__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _components_notification__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(116);
-/* harmony import */ var _components_loading_indicator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(170);
+/* harmony import */ var _components_notification__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(115);
+/* harmony import */ var _components_loading_indicator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(168);
 /* harmony import */ var _keplr_wallet_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(27);
 /* harmony import */ var _keplr_wallet_common__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_common__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _keplr_wallet_unit__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(26);
@@ -2138,7 +2138,7 @@ const TokensView = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__[/* observ
 
 /***/ }),
 
-/***/ 1329:
+/***/ 1319:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2147,14 +2147,14 @@ const TokensView = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__[/* observ
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(17);
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(370);
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(368);
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1665);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1666);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1667);
-/* harmony import */ var _keplr_wallet_crypto__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(50);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1660);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1661);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1662);
+/* harmony import */ var _keplr_wallet_crypto__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(51);
 /* harmony import */ var _keplr_wallet_crypto__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_keplr_wallet_crypto__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _vesting_info_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(374);
+/* harmony import */ var _vesting_info_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(372);
 /* harmony import */ var _vesting_info_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_vesting_info_module_scss__WEBPACK_IMPORTED_MODULE_8__);
 
 
@@ -2245,7 +2245,7 @@ const VestingInfo = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__[/* obser
 
 /***/ }),
 
-/***/ 1331:
+/***/ 1321:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2257,14 +2257,14 @@ const VestingInfo = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__[/* obser
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(17);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(20);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(257);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1668);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1669);
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(387);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1663);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1664);
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(385);
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _components_loading_indicator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(170);
+/* harmony import */ var _components_loading_indicator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(168);
 /* harmony import */ var _page_button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(76);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(613);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(165);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(611);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(163);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -2427,11 +2427,11 @@ const KeyRingToolsIcon = ({ index, keyStore }) => {
 
 /***/ }),
 
-/***/ 1333:
+/***/ 1323:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1612);
+            var content = __webpack_require__(1605);
 
             content = content.__esModule ? content.default : content;
 
@@ -2452,11 +2452,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1334:
+/***/ 1324:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1613);
+            var content = __webpack_require__(1606);
 
             content = content.__esModule ? content.default : content;
 
@@ -2477,11 +2477,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1335:
+/***/ 1325:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1614);
+            var content = __webpack_require__(1607);
 
             content = content.__esModule ? content.default : content;
 
@@ -2502,11 +2502,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1336:
+/***/ 1326:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1615);
+            var content = __webpack_require__(1608);
 
             content = content.__esModule ? content.default : content;
 
@@ -2527,7 +2527,57 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1337:
+/***/ 1327:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1610);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1329:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1616);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1330:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
@@ -2552,399 +2602,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1338:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-const strictUriEncode = __webpack_require__(1284);
-const decodeComponent = __webpack_require__(1184);
-const splitOnFirst = __webpack_require__(1285);
-
-const isNullOrUndefined = value => value === null || value === undefined;
-
-function encoderForArrayFormat(options) {
-	switch (options.arrayFormat) {
-		case 'index':
-			return key => (result, value) => {
-				const index = result.length;
-
-				if (
-					value === undefined ||
-					(options.skipNull && value === null) ||
-					(options.skipEmptyString && value === '')
-				) {
-					return result;
-				}
-
-				if (value === null) {
-					return [...result, [encode(key, options), '[', index, ']'].join('')];
-				}
-
-				return [
-					...result,
-					[encode(key, options), '[', encode(index, options), ']=', encode(value, options)].join('')
-				];
-			};
-
-		case 'bracket':
-			return key => (result, value) => {
-				if (
-					value === undefined ||
-					(options.skipNull && value === null) ||
-					(options.skipEmptyString && value === '')
-				) {
-					return result;
-				}
-
-				if (value === null) {
-					return [...result, [encode(key, options), '[]'].join('')];
-				}
-
-				return [...result, [encode(key, options), '[]=', encode(value, options)].join('')];
-			};
-
-		case 'comma':
-		case 'separator':
-			return key => (result, value) => {
-				if (value === null || value === undefined || value.length === 0) {
-					return result;
-				}
-
-				if (result.length === 0) {
-					return [[encode(key, options), '=', encode(value, options)].join('')];
-				}
-
-				return [[result, encode(value, options)].join(options.arrayFormatSeparator)];
-			};
-
-		default:
-			return key => (result, value) => {
-				if (
-					value === undefined ||
-					(options.skipNull && value === null) ||
-					(options.skipEmptyString && value === '')
-				) {
-					return result;
-				}
-
-				if (value === null) {
-					return [...result, encode(key, options)];
-				}
-
-				return [...result, [encode(key, options), '=', encode(value, options)].join('')];
-			};
-	}
-}
-
-function parserForArrayFormat(options) {
-	let result;
-
-	switch (options.arrayFormat) {
-		case 'index':
-			return (key, value, accumulator) => {
-				result = /\[(\d*)\]$/.exec(key);
-
-				key = key.replace(/\[\d*\]$/, '');
-
-				if (!result) {
-					accumulator[key] = value;
-					return;
-				}
-
-				if (accumulator[key] === undefined) {
-					accumulator[key] = {};
-				}
-
-				accumulator[key][result[1]] = value;
-			};
-
-		case 'bracket':
-			return (key, value, accumulator) => {
-				result = /(\[\])$/.exec(key);
-				key = key.replace(/\[\]$/, '');
-
-				if (!result) {
-					accumulator[key] = value;
-					return;
-				}
-
-				if (accumulator[key] === undefined) {
-					accumulator[key] = [value];
-					return;
-				}
-
-				accumulator[key] = [].concat(accumulator[key], value);
-			};
-
-		case 'comma':
-		case 'separator':
-			return (key, value, accumulator) => {
-				const isArray = typeof value === 'string' && value.includes(options.arrayFormatSeparator);
-				const isEncodedArray = (typeof value === 'string' && !isArray && decode(value, options).includes(options.arrayFormatSeparator));
-				value = isEncodedArray ? decode(value, options) : value;
-				const newValue = isArray || isEncodedArray ? value.split(options.arrayFormatSeparator).map(item => decode(item, options)) : value === null ? value : decode(value, options);
-				accumulator[key] = newValue;
-			};
-
-		default:
-			return (key, value, accumulator) => {
-				if (accumulator[key] === undefined) {
-					accumulator[key] = value;
-					return;
-				}
-
-				accumulator[key] = [].concat(accumulator[key], value);
-			};
-	}
-}
-
-function validateArrayFormatSeparator(value) {
-	if (typeof value !== 'string' || value.length !== 1) {
-		throw new TypeError('arrayFormatSeparator must be single character string');
-	}
-}
-
-function encode(value, options) {
-	if (options.encode) {
-		return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
-	}
-
-	return value;
-}
-
-function decode(value, options) {
-	if (options.decode) {
-		return decodeComponent(value);
-	}
-
-	return value;
-}
-
-function keysSorter(input) {
-	if (Array.isArray(input)) {
-		return input.sort();
-	}
-
-	if (typeof input === 'object') {
-		return keysSorter(Object.keys(input))
-			.sort((a, b) => Number(a) - Number(b))
-			.map(key => input[key]);
-	}
-
-	return input;
-}
-
-function removeHash(input) {
-	const hashStart = input.indexOf('#');
-	if (hashStart !== -1) {
-		input = input.slice(0, hashStart);
-	}
-
-	return input;
-}
-
-function getHash(url) {
-	let hash = '';
-	const hashStart = url.indexOf('#');
-	if (hashStart !== -1) {
-		hash = url.slice(hashStart);
-	}
-
-	return hash;
-}
-
-function extract(input) {
-	input = removeHash(input);
-	const queryStart = input.indexOf('?');
-	if (queryStart === -1) {
-		return '';
-	}
-
-	return input.slice(queryStart + 1);
-}
-
-function parseValue(value, options) {
-	if (options.parseNumbers && !Number.isNaN(Number(value)) && (typeof value === 'string' && value.trim() !== '')) {
-		value = Number(value);
-	} else if (options.parseBooleans && value !== null && (value.toLowerCase() === 'true' || value.toLowerCase() === 'false')) {
-		value = value.toLowerCase() === 'true';
-	}
-
-	return value;
-}
-
-function parse(query, options) {
-	options = Object.assign({
-		decode: true,
-		sort: true,
-		arrayFormat: 'none',
-		arrayFormatSeparator: ',',
-		parseNumbers: false,
-		parseBooleans: false
-	}, options);
-
-	validateArrayFormatSeparator(options.arrayFormatSeparator);
-
-	const formatter = parserForArrayFormat(options);
-
-	// Create an object with no prototype
-	const ret = Object.create(null);
-
-	if (typeof query !== 'string') {
-		return ret;
-	}
-
-	query = query.trim().replace(/^[?#&]/, '');
-
-	if (!query) {
-		return ret;
-	}
-
-	for (const param of query.split('&')) {
-		let [key, value] = splitOnFirst(options.decode ? param.replace(/\+/g, ' ') : param, '=');
-
-		// Missing `=` should be `null`:
-		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
-		value = value === undefined ? null : ['comma', 'separator'].includes(options.arrayFormat) ? value : decode(value, options);
-		formatter(decode(key, options), value, ret);
-	}
-
-	for (const key of Object.keys(ret)) {
-		const value = ret[key];
-		if (typeof value === 'object' && value !== null) {
-			for (const k of Object.keys(value)) {
-				value[k] = parseValue(value[k], options);
-			}
-		} else {
-			ret[key] = parseValue(value, options);
-		}
-	}
-
-	if (options.sort === false) {
-		return ret;
-	}
-
-	return (options.sort === true ? Object.keys(ret).sort() : Object.keys(ret).sort(options.sort)).reduce((result, key) => {
-		const value = ret[key];
-		if (Boolean(value) && typeof value === 'object' && !Array.isArray(value)) {
-			// Sort object keys, not values
-			result[key] = keysSorter(value);
-		} else {
-			result[key] = value;
-		}
-
-		return result;
-	}, Object.create(null));
-}
-
-exports.extract = extract;
-exports.parse = parse;
-
-exports.stringify = (object, options) => {
-	if (!object) {
-		return '';
-	}
-
-	options = Object.assign({
-		encode: true,
-		strict: true,
-		arrayFormat: 'none',
-		arrayFormatSeparator: ','
-	}, options);
-
-	validateArrayFormatSeparator(options.arrayFormatSeparator);
-
-	const shouldFilter = key => (
-		(options.skipNull && isNullOrUndefined(object[key])) ||
-		(options.skipEmptyString && object[key] === '')
-	);
-
-	const formatter = encoderForArrayFormat(options);
-
-	const objectCopy = {};
-
-	for (const key of Object.keys(object)) {
-		if (!shouldFilter(key)) {
-			objectCopy[key] = object[key];
-		}
-	}
-
-	const keys = Object.keys(objectCopy);
-
-	if (options.sort !== false) {
-		keys.sort(options.sort);
-	}
-
-	return keys.map(key => {
-		const value = object[key];
-
-		if (value === undefined) {
-			return '';
-		}
-
-		if (value === null) {
-			return encode(key, options);
-		}
-
-		if (Array.isArray(value)) {
-			return value
-				.reduce(formatter(key), [])
-				.join('&');
-		}
-
-		return encode(key, options) + '=' + encode(value, options);
-	}).filter(x => x.length > 0).join('&');
-};
-
-exports.parseUrl = (url, options) => {
-	options = Object.assign({
-		decode: true
-	}, options);
-
-	const [url_, hash] = splitOnFirst(url, '#');
-
-	return Object.assign(
-		{
-			url: url_.split('?')[0] || '',
-			query: parse(extract(url), options)
-		},
-		options && options.parseFragmentIdentifier && hash ? {fragmentIdentifier: decode(hash, options)} : {}
-	);
-};
-
-exports.stringifyUrl = (object, options) => {
-	options = Object.assign({
-		encode: true,
-		strict: true
-	}, options);
-
-	const url = removeHash(object.url).split('?')[0] || '';
-	const queryFromUrl = exports.extract(object.url);
-	const parsedQueryFromUrl = exports.parse(queryFromUrl, {sort: false});
-
-	const query = Object.assign(parsedQueryFromUrl, object.query);
-	let queryString = exports.stringify(query, options);
-	if (queryString) {
-		queryString = `?${queryString}`;
-	}
-
-	let hash = getHash(object.url);
-	if (object.fragmentIdentifier) {
-		hash = `#${encode(object.fragmentIdentifier, options)}`;
-	}
-
-	return `${url}${queryString}${hash}`;
-};
-
-
-/***/ }),
-
-/***/ 1339:
+/***/ 1337:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1622);
+            var content = __webpack_require__(1634);
 
             content = content.__esModule ? content.default : content;
 
@@ -2965,11 +2627,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1340:
+/***/ 135:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1623);
+            var content = __webpack_require__(1590);
 
             content = content.__esModule ? content.default : content;
 
@@ -2990,57 +2652,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1347:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1639);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 136:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1597);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1374:
+/***/ 1364:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3056,7 +2668,7 @@ module.exports = content.locals || {};
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),n=__webpack_require__(166),r=__webpack_require__(1223);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
+var aa=__webpack_require__(0),n=__webpack_require__(164),r=__webpack_require__(1365);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
 function ba(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}var da=!1,ea=null,fa=!1,ha=null,ia={onError:function(a){da=!0;ea=a}};function ja(a,b,c,d,e,f,g,h,k){da=!1;ea=null;ba.apply(ia,arguments)}function ka(a,b,c,d,e,f,g,h,k){ja.apply(this,arguments);if(da){if(da){var l=ea;da=!1;ea=null}else throw Error(u(198));fa||(fa=!0,ha=l)}}var la=null,ma=null,na=null;
 function oa(a,b,c){var d=a.type||"unknown-event";a.currentTarget=na(c);ka(d,b,void 0,a);a.currentTarget=null}var pa=null,qa={};
 function ra(){if(pa)for(var a in qa){var b=qa[a],c=pa.indexOf(a);if(!(-1<c))throw Error(u(96,a));if(!sa[c]){if(!b.extractEvents)throw Error(u(97,a));sa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;if(ta.hasOwnProperty(h))throw Error(u(99,h));ta[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ua(k[e],g,h);e=!0}else f.registrationName?(ua(f.registrationName,g,h),e=!0):e=!1;if(!e)throw Error(u(98,d,a));}}}}
@@ -3340,11 +2952,53 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!gk(c))throw Er
 
 /***/ }),
 
-/***/ 1377:
+/***/ 1365:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (true) {
+  module.exports = __webpack_require__(1366);
+} else {}
+
+
+/***/ }),
+
+/***/ 1366:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/** @license React v0.19.1
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var f,g,h,k,l;
+if("undefined"===typeof window||"function"!==typeof MessageChannel){var p=null,q=null,t=function(){if(null!==p)try{var a=exports.unstable_now();p(!0,a);p=null}catch(b){throw setTimeout(t,0),b;}},u=Date.now();exports.unstable_now=function(){return Date.now()-u};f=function(a){null!==p?setTimeout(f,0,a):(p=a,setTimeout(t,0))};g=function(a,b){q=setTimeout(a,b)};h=function(){clearTimeout(q)};k=function(){return!1};l=exports.unstable_forceFrameRate=function(){}}else{var w=window.performance,x=window.Date,
+y=window.setTimeout,z=window.clearTimeout;if("undefined"!==typeof console){var A=window.cancelAnimationFrame;"function"!==typeof window.requestAnimationFrame&&console.error("This browser doesn't support requestAnimationFrame. Make sure that you load a polyfill in older browsers. https://fb.me/react-polyfills");"function"!==typeof A&&console.error("This browser doesn't support cancelAnimationFrame. Make sure that you load a polyfill in older browsers. https://fb.me/react-polyfills")}if("object"===
+typeof w&&"function"===typeof w.now)exports.unstable_now=function(){return w.now()};else{var B=x.now();exports.unstable_now=function(){return x.now()-B}}var C=!1,D=null,E=-1,F=5,G=0;k=function(){return exports.unstable_now()>=G};l=function(){};exports.unstable_forceFrameRate=function(a){0>a||125<a?console.error("forceFrameRate takes a positive int between 0 and 125, forcing framerates higher than 125 fps is not unsupported"):F=0<a?Math.floor(1E3/a):5};var H=new MessageChannel,I=H.port2;H.port1.onmessage=
+function(){if(null!==D){var a=exports.unstable_now();G=a+F;try{D(!0,a)?I.postMessage(null):(C=!1,D=null)}catch(b){throw I.postMessage(null),b;}}else C=!1};f=function(a){D=a;C||(C=!0,I.postMessage(null))};g=function(a,b){E=y(function(){a(exports.unstable_now())},b)};h=function(){z(E);E=-1}}function J(a,b){var c=a.length;a.push(b);a:for(;;){var d=c-1>>>1,e=a[d];if(void 0!==e&&0<K(e,b))a[d]=b,a[c]=e,c=d;else break a}}function L(a){a=a[0];return void 0===a?null:a}
+function M(a){var b=a[0];if(void 0!==b){var c=a.pop();if(c!==b){a[0]=c;a:for(var d=0,e=a.length;d<e;){var m=2*(d+1)-1,n=a[m],v=m+1,r=a[v];if(void 0!==n&&0>K(n,c))void 0!==r&&0>K(r,n)?(a[d]=r,a[v]=c,d=v):(a[d]=n,a[m]=c,d=m);else if(void 0!==r&&0>K(r,c))a[d]=r,a[v]=c,d=v;else break a}}return b}return null}function K(a,b){var c=a.sortIndex-b.sortIndex;return 0!==c?c:a.id-b.id}var N=[],O=[],P=1,Q=null,R=3,S=!1,T=!1,U=!1;
+function V(a){for(var b=L(O);null!==b;){if(null===b.callback)M(O);else if(b.startTime<=a)M(O),b.sortIndex=b.expirationTime,J(N,b);else break;b=L(O)}}function W(a){U=!1;V(a);if(!T)if(null!==L(N))T=!0,f(X);else{var b=L(O);null!==b&&g(W,b.startTime-a)}}
+function X(a,b){T=!1;U&&(U=!1,h());S=!0;var c=R;try{V(b);for(Q=L(N);null!==Q&&(!(Q.expirationTime>b)||a&&!k());){var d=Q.callback;if(null!==d){Q.callback=null;R=Q.priorityLevel;var e=d(Q.expirationTime<=b);b=exports.unstable_now();"function"===typeof e?Q.callback=e:Q===L(N)&&M(N);V(b)}else M(N);Q=L(N)}if(null!==Q)var m=!0;else{var n=L(O);null!==n&&g(W,n.startTime-b);m=!1}return m}finally{Q=null,R=c,S=!1}}
+function Y(a){switch(a){case 1:return-1;case 2:return 250;case 5:return 1073741823;case 4:return 1E4;default:return 5E3}}var Z=l;exports.unstable_IdlePriority=5;exports.unstable_ImmediatePriority=1;exports.unstable_LowPriority=4;exports.unstable_NormalPriority=3;exports.unstable_Profiling=null;exports.unstable_UserBlockingPriority=2;exports.unstable_cancelCallback=function(a){a.callback=null};exports.unstable_continueExecution=function(){T||S||(T=!0,f(X))};
+exports.unstable_getCurrentPriorityLevel=function(){return R};exports.unstable_getFirstCallbackNode=function(){return L(N)};exports.unstable_next=function(a){switch(R){case 1:case 2:case 3:var b=3;break;default:b=R}var c=R;R=b;try{return a()}finally{R=c}};exports.unstable_pauseExecution=function(){};exports.unstable_requestPaint=Z;exports.unstable_runWithPriority=function(a,b){switch(a){case 1:case 2:case 3:case 4:case 5:break;default:a=3}var c=R;R=a;try{return b()}finally{R=c}};
+exports.unstable_scheduleCallback=function(a,b,c){var d=exports.unstable_now();if("object"===typeof c&&null!==c){var e=c.delay;e="number"===typeof e&&0<e?d+e:d;c="number"===typeof c.timeout?c.timeout:Y(a)}else c=Y(a),e=d;c=e+c;a={id:P++,callback:b,priorityLevel:a,startTime:e,expirationTime:c,sortIndex:-1};e>d?(a.sortIndex=e,J(O,a),null===L(N)&&a===L(O)&&(U?h():U=!0,g(W,e-d))):(a.sortIndex=c,J(N,a),T||S||(T=!0,f(X)));return a};
+exports.unstable_shouldYield=function(){var a=exports.unstable_now();V(a);var b=L(N);return b!==Q&&null!==Q&&null!==b&&null!==b.callback&&b.startTime<=a&&b.expirationTime<Q.expirationTime||k()};exports.unstable_wrapCallback=function(a){var b=R;return function(){var c=R;R=b;try{return a.apply(this,arguments)}finally{R=c}}};
+
+
+/***/ }),
+
+/***/ 1368:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1378);
+            var content = __webpack_require__(1369);
 
             content = content.__esModule ? content.default : content;
 
@@ -3365,23 +3019,23 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1378:
+/***/ 1369:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(31);
-var ___CSS_LOADER_AT_RULE_IMPORT_0___ = __webpack_require__(1379);
-var ___CSS_LOADER_GET_URL_IMPORT___ = __webpack_require__(1226);
-var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(1385);
-var ___CSS_LOADER_URL_IMPORT_1___ = __webpack_require__(1386);
-var ___CSS_LOADER_URL_IMPORT_2___ = __webpack_require__(1387);
-var ___CSS_LOADER_URL_IMPORT_3___ = __webpack_require__(1388);
-var ___CSS_LOADER_URL_IMPORT_4___ = __webpack_require__(1389);
-var ___CSS_LOADER_URL_IMPORT_5___ = __webpack_require__(1390);
-var ___CSS_LOADER_URL_IMPORT_6___ = __webpack_require__(1391);
-var ___CSS_LOADER_URL_IMPORT_7___ = __webpack_require__(1392);
-var ___CSS_LOADER_URL_IMPORT_8___ = __webpack_require__(1393);
-var ___CSS_LOADER_URL_IMPORT_9___ = __webpack_require__(1394);
+var ___CSS_LOADER_AT_RULE_IMPORT_0___ = __webpack_require__(1370);
+var ___CSS_LOADER_GET_URL_IMPORT___ = __webpack_require__(1217);
+var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(1376);
+var ___CSS_LOADER_URL_IMPORT_1___ = __webpack_require__(1377);
+var ___CSS_LOADER_URL_IMPORT_2___ = __webpack_require__(1378);
+var ___CSS_LOADER_URL_IMPORT_3___ = __webpack_require__(1379);
+var ___CSS_LOADER_URL_IMPORT_4___ = __webpack_require__(1380);
+var ___CSS_LOADER_URL_IMPORT_5___ = __webpack_require__(1381);
+var ___CSS_LOADER_URL_IMPORT_6___ = __webpack_require__(1382);
+var ___CSS_LOADER_URL_IMPORT_7___ = __webpack_require__(1383);
+var ___CSS_LOADER_URL_IMPORT_8___ = __webpack_require__(1384);
+var ___CSS_LOADER_URL_IMPORT_9___ = __webpack_require__(1385);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.i(___CSS_LOADER_AT_RULE_IMPORT_0___);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800&display=swap);"]);
@@ -3406,7 +3060,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1513:
+/***/ 1504:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3428,7 +3082,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1514:
+/***/ 1505:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3445,7 +3099,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1515:
+/***/ 1506:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3484,7 +3138,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1516:
+/***/ 1507:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3507,7 +3161,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1525:
+/***/ 1518:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3524,7 +3178,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1526:
+/***/ 1519:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3543,11 +3197,11 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1527:
+/***/ 1520:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1528);
+            var content = __webpack_require__(1521);
 
             content = content.__esModule ? content.default : content;
 
@@ -3568,7 +3222,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1528:
+/***/ 1521:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3582,7 +3236,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1529:
+/***/ 1522:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3609,7 +3263,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1530:
+/***/ 1523:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3626,7 +3280,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1531:
+/***/ 1524:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3648,7 +3302,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1532:
+/***/ 1525:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3667,7 +3321,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1533:
+/***/ 1526:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3684,7 +3338,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1534:
+/***/ 1527:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3704,7 +3358,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1535:
+/***/ 1528:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3727,14 +3381,14 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1536:
+/***/ 1529:
 /***/ (function(module, exports) {
 
 module.exports = "assets/trash.svg";
 
 /***/ }),
 
-/***/ 1552:
+/***/ 1545:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3755,7 +3409,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1553:
+/***/ 1546:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3778,7 +3432,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1554:
+/***/ 1547:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3801,7 +3455,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1555:
+/***/ 1548:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3821,7 +3475,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1556:
+/***/ 1549:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3841,7 +3495,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1557:
+/***/ 1550:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3860,7 +3514,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1558:
+/***/ 1551:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3878,7 +3532,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1559:
+/***/ 1552:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3911,7 +3565,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1560:
+/***/ 1553:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3929,14 +3583,14 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1561:
+/***/ 1554:
 /***/ (function(module, exports) {
 
 module.exports = "assets/mises.png";
 
 /***/ }),
 
-/***/ 1562:
+/***/ 1555:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3958,7 +3612,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1563:
+/***/ 1556:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -3978,7 +3632,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1564:
+/***/ 1557:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -4002,11 +3656,11 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1565:
+/***/ 1558:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1566);
+            var content = __webpack_require__(1559);
 
             content = content.__esModule ? content.default : content;
 
@@ -4027,7 +3681,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1566:
+/***/ 1559:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -4041,7 +3695,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1567:
+/***/ 1560:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -4063,7 +3717,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1568:
+/***/ 1561:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4082,7 +3736,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(1194);
+var _reactDom = __webpack_require__(1188);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -4090,19 +3744,19 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _ModalPortal = __webpack_require__(1569);
+var _ModalPortal = __webpack_require__(1562);
 
 var _ModalPortal2 = _interopRequireDefault(_ModalPortal);
 
-var _ariaAppHider = __webpack_require__(1275);
+var _ariaAppHider = __webpack_require__(1266);
 
 var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
 
-var _safeHTMLElement = __webpack_require__(1187);
+var _safeHTMLElement = __webpack_require__(1181);
 
 var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
 
-var _reactLifecyclesCompat = __webpack_require__(1185);
+var _reactLifecyclesCompat = __webpack_require__(1179);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -4360,7 +4014,7 @@ exports.default = Modal;
 
 /***/ }),
 
-/***/ 1569:
+/***/ 1562:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4382,31 +4036,31 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _focusManager = __webpack_require__(1570);
+var _focusManager = __webpack_require__(1563);
 
 var focusManager = _interopRequireWildcard(_focusManager);
 
-var _scopeTab = __webpack_require__(1571);
+var _scopeTab = __webpack_require__(1564);
 
 var _scopeTab2 = _interopRequireDefault(_scopeTab);
 
-var _ariaAppHider = __webpack_require__(1275);
+var _ariaAppHider = __webpack_require__(1266);
 
 var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
 
-var _classList = __webpack_require__(1573);
+var _classList = __webpack_require__(1566);
 
 var classList = _interopRequireWildcard(_classList);
 
-var _safeHTMLElement = __webpack_require__(1187);
+var _safeHTMLElement = __webpack_require__(1181);
 
 var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
 
-var _portalOpenInstances = __webpack_require__(1276);
+var _portalOpenInstances = __webpack_require__(1267);
 
 var _portalOpenInstances2 = _interopRequireDefault(_portalOpenInstances);
 
-__webpack_require__(1574);
+__webpack_require__(1567);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -4784,7 +4438,7 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 1570:
+/***/ 1563:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4801,7 +4455,7 @@ exports.popWithoutFocus = popWithoutFocus;
 exports.setupScopedFocus = setupScopedFocus;
 exports.teardownScopedFocus = teardownScopedFocus;
 
-var _tabbable = __webpack_require__(1274);
+var _tabbable = __webpack_require__(1265);
 
 var _tabbable2 = _interopRequireDefault(_tabbable);
 
@@ -4887,7 +4541,7 @@ function teardownScopedFocus() {
 
 /***/ }),
 
-/***/ 1571:
+/***/ 1564:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4898,7 +4552,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = scopeTab;
 
-var _tabbable = __webpack_require__(1274);
+var _tabbable = __webpack_require__(1265);
 
 var _tabbable2 = _interopRequireDefault(_tabbable);
 
@@ -4983,7 +4637,7 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 1573:
+/***/ 1566:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5076,13 +4730,13 @@ var remove = exports.remove = function remove(element, classString) {
 
 /***/ }),
 
-/***/ 1574:
+/***/ 1567:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _portalOpenInstances = __webpack_require__(1276);
+var _portalOpenInstances = __webpack_require__(1267);
 
 var _portalOpenInstances2 = _interopRequireDefault(_portalOpenInstances);
 
@@ -5139,14 +4793,14 @@ _portalOpenInstances2.default.subscribe(bodyTrap);
 
 /***/ }),
 
-/***/ 1596:
+/***/ 1589:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(31);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@media screen and (min-width: 680px){:root{--popup-size-width: 360px;--large-container-width: 420px;--container-width: 420px;--window-height: 580px}}@media screen and (max-width: 659px){:root{--popup-size-width: 100vw;--large-container-width: 100vw;--container-width: 100vw;--window-height: 100%}}.container-asset-3fFs7FCGdjbZ58DGHWFzM_{flex:1;display:flex;flex-direction:column;justify-content:space-around;align-items:center;padding:14px 0}.container-asset-3fFs7FCGdjbZ58DGHWFzM_ .title-3fPJqHo3Y6koiwz8dDUoi_{font-size:14px;letter-spacing:-0.31px;text-align:center;color:#4a4a4a}.container-asset-3fFs7FCGdjbZ58DGHWFzM_ .fiat-QuOpPd3089lktfa27zrSN{font-size:36px;text-align:center;letter-spacing:-0.8px;color:#000}.container-asset-3fFs7FCGdjbZ58DGHWFzM_ .amount-2LE2KQivutL06VPAgdT2uk{position:relative;display:flex;font-size:18px;text-align:center;letter-spacing:-0.4px;color:#8f8f8f}.container-asset-3fFs7FCGdjbZ58DGHWFzM_ .popper{font-size:14px;min-width:140px}.container-chart-1ghFQJe_1aqt-Ll0KwOow3{position:relative}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ{position:absolute;z-index:1;text-align:center;top:50%;left:50%;transform:translate(-50%, -50%)}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ .big-NDQn2_PLARDUOSsEsNsJu{font-size:13px;color:#32325d}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ .small-3oRmUi9Eehn7HL-ydpdrr0{font-size:20px;color:#32325d;font-weight:bold}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ .indicator-icon-3F_wGVyMcXXJ7CCNRnIbk0{position:absolute;width:100%}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 canvas{position:relative}.legend-Wu4L2QEXtVB9TwJtkUYqD{display:flex;width:100%}.legend-Wu4L2QEXtVB9TwJtkUYqD .label-m7QGcGyJEW9j5ibxplIxQ{letter-spacing:-0.3px;flex:1;display:flex;justify-content:flex-end}.legend-Wu4L2QEXtVB9TwJtkUYqD .value-1TgBA0VFi2Ld1KtpwsaNGp{letter-spacing:-0.3px;flex:1;display:flex;font-weight:bold}", ""]);
+exports.push([module.i, "@media screen and (min-width: 680px){:root{--popup-size-width: 360px;--large-container-width: 420px;--container-width: 420px;--window-height: 580px}}@media screen and (max-width: 659px){:root{--popup-size-width: 100vw;--large-container-width: 100vw;--container-width: 100vw;--window-height: 100%}}.container-asset-3fFs7FCGdjbZ58DGHWFzM_{flex:1;display:flex;flex-direction:column;justify-content:space-around;align-items:center;padding:14px 0}.container-asset-3fFs7FCGdjbZ58DGHWFzM_ .title-3fPJqHo3Y6koiwz8dDUoi_{font-size:14px;letter-spacing:-0.31px;text-align:center;color:#4a4a4a}.container-asset-3fFs7FCGdjbZ58DGHWFzM_ .fiat-QuOpPd3089lktfa27zrSN{font-size:36px;text-align:center;letter-spacing:-0.8px;color:#000}.container-asset-3fFs7FCGdjbZ58DGHWFzM_ .amount-2LE2KQivutL06VPAgdT2uk{position:relative;display:flex;font-size:18px;text-align:center;letter-spacing:-0.4px;color:#8f8f8f}.container-asset-3fFs7FCGdjbZ58DGHWFzM_ .popper{font-size:14px;min-width:140px}.container-chart-1ghFQJe_1aqt-Ll0KwOow3{position:relative}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ{position:absolute;z-index:1;text-align:center;top:50%;left:50%;transform:translate(-50%, -50%)}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ .big-NDQn2_PLARDUOSsEsNsJu{font-size:13px;color:#32325d}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ .small-3oRmUi9Eehn7HL-ydpdrr0{font-size:20px;color:#32325d;font-weight:bold}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ .isBalanceCache-2_OwvZcEItMMSc9LsZPQIm{color:#f8883b}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 .center-text-XycbXlked4D7mBoIHASIQ .indicator-icon-3F_wGVyMcXXJ7CCNRnIbk0{position:absolute;width:100%}.container-chart-1ghFQJe_1aqt-Ll0KwOow3 canvas{position:relative}.legend-Wu4L2QEXtVB9TwJtkUYqD{display:flex;width:100%}.legend-Wu4L2QEXtVB9TwJtkUYqD .label-m7QGcGyJEW9j5ibxplIxQ{letter-spacing:-0.3px;flex:1;display:flex;justify-content:flex-end}.legend-Wu4L2QEXtVB9TwJtkUYqD .value-1TgBA0VFi2Ld1KtpwsaNGp{letter-spacing:-0.3px;flex:1;display:flex;font-weight:bold}", ""]);
 // Exports
 exports.locals = {
 	"container-asset": "container-asset-3fFs7FCGdjbZ58DGHWFzM_",
@@ -5160,6 +4814,7 @@ exports.locals = {
 	"centerText": "center-text-XycbXlked4D7mBoIHASIQ",
 	"big": "big-NDQn2_PLARDUOSsEsNsJu",
 	"small": "small-3oRmUi9Eehn7HL-ydpdrr0",
+	"isBalanceCache": "isBalanceCache-2_OwvZcEItMMSc9LsZPQIm",
 	"indicator-icon": "indicator-icon-3F_wGVyMcXXJ7CCNRnIbk0",
 	"indicatorIcon": "indicator-icon-3F_wGVyMcXXJ7CCNRnIbk0",
 	"legend": "legend-Wu4L2QEXtVB9TwJtkUYqD",
@@ -5171,7 +4826,32 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1597:
+/***/ 159:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1600);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1590:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5197,7 +4877,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1598:
+/***/ 1591:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5226,7 +4906,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1599:
+/***/ 1592:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5245,7 +4925,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1600:
+/***/ 1593:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5266,7 +4946,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1601:
+/***/ 1594:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5290,7 +4970,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1602:
+/***/ 1595:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5317,7 +4997,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1603:
+/***/ 1596:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5343,14 +5023,14 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1604:
+/***/ 1597:
 /***/ (function(module, exports) {
 
 module.exports = "assets/info-mark-danger.svg";
 
 /***/ }),
 
-/***/ 1605:
+/***/ 1598:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5374,7 +5054,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1606:
+/***/ 1599:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5396,7 +5076,32 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1607:
+/***/ 160:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1601);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1600:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5422,7 +5127,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1608:
+/***/ 1601:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5453,7 +5158,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1609:
+/***/ 1602:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5479,32 +5184,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 161:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1607);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1610:
+/***/ 1603:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5526,14 +5206,14 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1611:
+/***/ 1604:
 /***/ (function(module, exports) {
 
 module.exports = "assets/icons8-test-tube.svg";
 
 /***/ }),
 
-/***/ 1612:
+/***/ 1605:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5550,7 +5230,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1613:
+/***/ 1606:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5567,7 +5247,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1614:
+/***/ 1607:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5584,7 +5264,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1615:
+/***/ 1608:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5601,7 +5281,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1616:
+/***/ 1609:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5634,7 +5314,32 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1617:
+/***/ 161:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1589);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1610:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5651,7 +5356,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1618:
+/***/ 1611:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5671,39 +5376,14 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1619:
+/***/ 1612:
 /***/ (function(module, exports) {
 
 module.exports = "assets/icons8-trash-can.svg";
 
 /***/ }),
 
-/***/ 162:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1608);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1620:
+/***/ 1613:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5723,7 +5403,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1621:
+/***/ 1615:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5743,7 +5423,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1622:
+/***/ 1616:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5760,7 +5440,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1623:
+/***/ 1617:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5777,28 +5457,11 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1629:
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(31);
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, "@media screen and (min-width: 680px){:root{--popup-size-width: 360px;--large-container-width: 420px;--container-width: 420px;--window-height: 580px}}@media screen and (max-width: 659px){:root{--popup-size-width: 100vw;--large-container-width: 100vw;--container-width: 100vw;--window-height: 100%}}.container-2IREuiOyDNqzjBAjd_KV_F{display:flex;flex-direction:column;height:100%}", ""]);
-// Exports
-exports.locals = {
-	"container": "container-2IREuiOyDNqzjBAjd_KV_F"
-};
-module.exports = exports;
-
-
-/***/ }),
-
-/***/ 163:
+/***/ 162:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1596);
+            var content = __webpack_require__(1595);
 
             content = content.__esModule ? content.default : content;
 
@@ -5819,21 +5482,38 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 1635:
+/***/ 1623:
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(31);
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "@media screen and (min-width: 680px){:root{--popup-size-width: 360px;--large-container-width: 420px;--container-width: 420px;--window-height: 580px}}@media screen and (max-width: 659px){:root{--popup-size-width: 100vw;--large-container-width: 100vw;--container-width: 100vw;--window-height: 100%}}.container-2IREuiOyDNqzjBAjd_KV_F{display:flex;flex-direction:column;height:100%}", ""]);
+// Exports
+exports.locals = {
+	"container": "container-2IREuiOyDNqzjBAjd_KV_F"
+};
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ 1630:
 /***/ (function(module, exports) {
 
 module.exports = "assets/info-mark.svg";
 
 /***/ }),
 
-/***/ 1636:
+/***/ 1631:
 /***/ (function(module, exports) {
 
 module.exports = "assets/export-to-mobile.svg";
 
 /***/ }),
 
-/***/ 1637:
+/***/ 1632:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5854,7 +5534,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1638:
+/***/ 1633:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5874,7 +5554,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1639:
+/***/ 1634:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5891,32 +5571,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 164:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1602);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 1640:
+/***/ 1635:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -5940,28 +5595,28 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 1646:
+/***/ 1641:
 /***/ (function(module, exports) {
 
 module.exports = "assets/icon-16.png";
 
 /***/ }),
 
-/***/ 1647:
+/***/ 1642:
 /***/ (function(module, exports) {
 
 module.exports = "assets/icon-48.png";
 
 /***/ }),
 
-/***/ 1648:
+/***/ 1643:
 /***/ (function(module, exports) {
 
 module.exports = "assets/icon-128.png";
 
 /***/ }),
 
-/***/ 1656:
+/***/ 1651:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5973,17 +5628,17 @@ var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(1194);
+var react_dom = __webpack_require__(1188);
 var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/provider.js + 6 modules
-var provider = __webpack_require__(1684);
+var provider = __webpack_require__(1679);
 
 // EXTERNAL MODULE: ./src/languages/en.json
-var en = __webpack_require__(1197);
+var en = __webpack_require__(1190);
 
 // EXTERNAL MODULE: ./src/languages/ko.json
-var ko = __webpack_require__(1315);
+var ko = __webpack_require__(1305);
 
 // CONCATENATED MODULE: ./src/languages/index.tsx
 
@@ -6067,13 +5722,13 @@ const AppIntlProvider = ({ additionalMessages, languageToFiatCurrency, children 
 };
 
 // EXTERNAL MODULE: ./src/styles/global.scss
-var global = __webpack_require__(1377);
+var global = __webpack_require__(1368);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-router/esm/react-router.js
 var react_router = __webpack_require__(20);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-router-dom/esm/react-router-dom.js
-var react_router_dom = __webpack_require__(1359);
+var react_router_dom = __webpack_require__(1349);
 
 // EXTERNAL MODULE: ../hooks/build/index.js
 var build = __webpack_require__(44);
@@ -6088,11 +5743,11 @@ var es = __webpack_require__(15);
 var stores = __webpack_require__(17);
 
 // EXTERNAL MODULE: ./src/pages/access/style.module.scss
-var style_module = __webpack_require__(122);
+var style_module = __webpack_require__(121);
 var style_module_default = /*#__PURE__*/__webpack_require__.n(style_module);
 
 // EXTERNAL MODULE: ./src/layouts/empty-layout/style.module.scss
-var empty_layout_style_module = __webpack_require__(1322);
+var empty_layout_style_module = __webpack_require__(1312);
 var empty_layout_style_module_default = /*#__PURE__*/__webpack_require__.n(empty_layout_style_module);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/classnames/index.js
@@ -6109,7 +5764,7 @@ const EmptyLayout = (props) => {
 };
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/message.js
-var message = __webpack_require__(165);
+var message = __webpack_require__(163);
 
 // EXTERNAL MODULE: ../popup/build/index.js
 var popup_build = __webpack_require__(46);
@@ -6174,7 +5829,7 @@ const AccessPage = Object(es["a" /* observer */])(() => {
     }, [waitingPermission]);
     return (react_default.a.createElement(EmptyLayout, { style: { height: "100%", paddingTop: "80px" } },
         react_default.a.createElement("div", { className: style_module_default.a.container },
-            react_default.a.createElement("img", { src: __webpack_require__(376), alt: "logo", style: { width: "92px", height: "92px", margin: "0 auto" } }),
+            react_default.a.createElement("img", { src: __webpack_require__(374), alt: "logo", style: { width: "92px", height: "92px", margin: "0 auto" } }),
             react_default.a.createElement("h1", { className: style_module_default.a.header },
                 react_default.a.createElement(message["a" /* default */], { id: "access.title" })),
             react_default.a.createElement("p", { className: style_module_default.a.paragraph },
@@ -6275,7 +5930,7 @@ const Secret20ViewingKeyAccessPage = Object(es["a" /* observer */])(() => {
     }, [waitingPermission]);
     return (react_default.a.createElement(EmptyLayout, { style: { height: "100%", paddingTop: "80px" } },
         react_default.a.createElement("div", { className: style_module_default.a.container },
-            react_default.a.createElement("img", { src: __webpack_require__(376), alt: "logo", style: { width: "92px", height: "92px", margin: "0 auto" } }),
+            react_default.a.createElement("img", { src: __webpack_require__(374), alt: "logo", style: { width: "92px", height: "92px", margin: "0 auto" } }),
             react_default.a.createElement("h1", { className: style_module_default.a.header },
                 react_default.a.createElement(message["a" /* default */], { id: "access.viewing-key.title" })),
             react_default.a.createElement("p", { className: style_module_default.a.paragraph },
@@ -6440,19 +6095,19 @@ const useNewMnemonicConfig = (registerConfig) => {
 };
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
-var useIntl = __webpack_require__(613);
+var useIntl = __webpack_require__(611);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-hook-form/dist/react-hook-form.es.js
 var react_hook_form_es = __webpack_require__(75);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/FormGroup.js
-var FormGroup = __webpack_require__(208);
+var FormGroup = __webpack_require__(207);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Label.js
-var Label = __webpack_require__(209);
+var Label = __webpack_require__(208);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Input.js
-var Input = __webpack_require__(614);
+var Input = __webpack_require__(612);
 
 // EXTERNAL MODULE: ./src/components/confirm/index.tsx + 1 modules
 var components_confirm = __webpack_require__(101);
@@ -6669,13 +6324,13 @@ const AdvancedBIP44Option = Object(es["a" /* observer */])(({ bip44Option }) => 
 });
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Alert.js
-var Alert = __webpack_require__(1679);
+var Alert = __webpack_require__(1674);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ButtonGroup.js
-var ButtonGroup = __webpack_require__(1662);
+var ButtonGroup = __webpack_require__(1657);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Form.js
-var Form = __webpack_require__(1663);
+var Form = __webpack_require__(1658);
 
 // EXTERNAL MODULE: ./src/components/form/index.tsx + 4 modules
 var components_form = __webpack_require__(40);
@@ -6873,16 +6528,16 @@ const VerifyMnemonicModePage = Object(es["a" /* observer */])(({ registerConfig,
 });
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ButtonDropdown.js + 1 modules
-var ButtonDropdown = __webpack_require__(649);
+var ButtonDropdown = __webpack_require__(647);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownToggle.js + 1 modules
-var DropdownToggle = __webpack_require__(650);
+var DropdownToggle = __webpack_require__(648);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownMenu.js
-var DropdownMenu = __webpack_require__(648);
+var DropdownMenu = __webpack_require__(646);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownItem.js
-var DropdownItem = __webpack_require__(616);
+var DropdownItem = __webpack_require__(614);
 
 // EXTERNAL MODULE: ./src/pages/register/mnemonic/recover-mnemonic.module.scss
 var recover_mnemonic_module = __webpack_require__(82);
@@ -7682,7 +7337,7 @@ const restore_mnemonic_IconOpenEye = ({ width = 28, height = 29, color = "#C6C6C
 
 
 // EXTERNAL MODULE: ./src/pages/register/welcome.module.scss
-var welcome_module = __webpack_require__(1207);
+var welcome_module = __webpack_require__(1200);
 var welcome_module_default = /*#__PURE__*/__webpack_require__.n(welcome_module);
 
 // CONCATENATED MODULE: ./src/pages/register/welcome.tsx
@@ -7733,7 +7388,7 @@ const WelcomePage = () => {
 };
 
 // EXTERNAL MODULE: ./src/config.ui.ts
-var config_ui = __webpack_require__(120);
+var config_ui = __webpack_require__(119);
 
 // CONCATENATED MODULE: ./src/pages/register/index.tsx
 
@@ -7798,7 +7453,7 @@ const RegisterPage = Object(es["a" /* observer */])(() => {
             react_default.a.createElement("div", { className: classnames_default()(register_style_module_default.a.logoInnerContainer, {
                     [register_style_module_default.a.justifyCenter]: registerConfig.isIntro,
                 }) },
-                react_default.a.createElement("img", { className: register_style_module_default.a.icon, src: __webpack_require__(1561), alt: "logo" }))),
+                react_default.a.createElement("img", { className: register_style_module_default.a.icon, src: __webpack_require__(1554), alt: "logo" }))),
         registerConfig.render(),
         registerConfig.isFinalized ? react_default.a.createElement(WelcomePage, null) : null,
         registerConfig.isIntro ? (react_default.a.createElement("div", { className: register_style_module_default.a.subContent },
@@ -7812,13 +7467,13 @@ const RegisterPage = Object(es["a" /* observer */])(() => {
 var layouts = __webpack_require__(42);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Card.js
-var Card = __webpack_require__(1665);
+var Card = __webpack_require__(1660);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/CardBody.js
-var CardBody = __webpack_require__(1666);
+var CardBody = __webpack_require__(1661);
 
 // EXTERNAL MODULE: ./src/pages/main/style.module.scss
-var main_style_module = __webpack_require__(370);
+var main_style_module = __webpack_require__(368);
 var main_style_module_default = /*#__PURE__*/__webpack_require__.n(main_style_module);
 
 // EXTERNAL MODULE: ./src/pages/main/menu.module.scss
@@ -7900,11 +7555,11 @@ const Address = (props) => {
 };
 
 // EXTERNAL MODULE: ./src/pages/main/account.module.scss
-var account_module = __webpack_require__(280);
+var account_module = __webpack_require__(279);
 var account_module_default = /*#__PURE__*/__webpack_require__.n(account_module);
 
 // EXTERNAL MODULE: ./src/components/notification/index.tsx + 3 modules
-var components_notification = __webpack_require__(116);
+var components_notification = __webpack_require__(115);
 
 // EXTERNAL MODULE: ../stores/build/index.js
 var stores_build = __webpack_require__(43);
@@ -8001,14 +7656,14 @@ const AccountView = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/main/tx-button.module.scss
-var tx_button_module = __webpack_require__(386);
+var tx_button_module = __webpack_require__(384);
 var tx_button_module_default = /*#__PURE__*/__webpack_require__.n(tx_button_module);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Tooltip.js
-var Tooltip = __webpack_require__(1206);
+var Tooltip = __webpack_require__(1199);
 
 // EXTERNAL MODULE: ./node_modules/react-modal/lib/index.js
-var lib = __webpack_require__(371);
+var lib = __webpack_require__(369);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 // EXTERNAL MODULE: ../unit/build/index.js
@@ -8026,7 +7681,7 @@ var unit_build = __webpack_require__(26);
 
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const QrCode = __webpack_require__(1575);
+const QrCode = __webpack_require__(1568);
 const DepositModal = ({ bech32Address }) => {
     const qrCodeRef = Object(react["useRef"])(null);
     Object(react["useEffect"])(() => {
@@ -8080,7 +7735,7 @@ const TxButtonView = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/main/asset.module.scss
-var asset_module = __webpack_require__(163);
+var asset_module = __webpack_require__(161);
 var asset_module_default = /*#__PURE__*/__webpack_require__.n(asset_module);
 
 // CONCATENATED MODULE: ./src/pages/main/asset.tsx
@@ -8101,8 +7756,9 @@ var asset_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _ar
 
 
 
+
 const LazyDoughnut = react_default.a.lazy(() => asset_awaiter(void 0, void 0, void 0, function* () {
-    const module = yield __webpack_require__.e(/* import() | reactChartJS */ 21).then(__webpack_require__.t.bind(null, 1950, 7));
+    const module = yield __webpack_require__.e(/* import() | reactChartJS */ 21).then(__webpack_require__.t.bind(null, 1945, 7));
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const chartJS = module.Chart;
@@ -8173,7 +7829,7 @@ const LazyDoughnut = react_default.a.lazy(() => asset_awaiter(void 0, void 0, vo
 }));
 const AssetStakedChartView = Object(es["a" /* observer */])(() => {
     var _a, _b;
-    const { chainStore, accountStore, queriesStore, priceStore } = Object(stores["b" /* useStore */])();
+    const { chainStore, accountStore, queriesStore, priceStore, misesStore, } = Object(stores["b" /* useStore */])();
     const intl = Object(useIntl["a" /* default */])();
     const language = useLanguage();
     const fiatCurrency = language.fiatCurrency;
@@ -8193,6 +7849,8 @@ const AssetStakedChartView = Object(es["a" /* observer */])(() => {
     const stakablePrice = priceStore.calculatePrice(stakable, fiatCurrency);
     const stakedSumPrice = priceStore.calculatePrice(stakedSum, fiatCurrency);
     // const totalPrice = priceStore.calculatePrice(total, fiatCurrency);
+    const [stakableBalance, setStakableBalance] = Object(react["useState"])(stakable);
+    const [stakedSumBalance, setStakedSumBalance] = Object(react["useState"])(stakedSum);
     // If fiat value is fetched, show the value that is multiplied with amount and fiat value.
     // If not, just show the amount of asset.
     const data = (() => {
@@ -8207,18 +7865,56 @@ const AssetStakedChartView = Object(es["a" /* observer */])(() => {
         }
         else {
             return [
-                parseFloat(stakable.toDec().toString()),
-                parseFloat(stakedSum.toDec().toString()),
+                parseFloat(stakableBalance.toDec().toString()),
+                parseFloat(stakedSumBalance.toDec().toString()),
             ];
         }
     })();
-    const tatalBalance = new unit_build["CoinPretty"](stakedSum.currency, data[0] * 1000000 + data[1] * 1000000);
+    const totalBalance = new unit_build["CoinPretty"](stakedSum.currency, data[0] * 1000000 + data[1] * 1000000);
+    Object(react["useEffect"])(() => {
+        const currentAddress = sessionStorage.getItem("currentAddress");
+        if (accountInfo.bech32Address !== currentAddress) {
+            misesStore.getBalanceUMIS(accountInfo.bech32Address).then((res) => {
+                const stakableBalanceCache = new unit_build["CoinPretty"](stakedSum.currency, res.amount);
+                setStakableBalance(stakableBalanceCache);
+            });
+            misesStore
+                .getLocalCache(accountInfo.bech32Address)
+                .then((res) => {
+                var _a;
+                const stakedSumCache = new unit_build["CoinPretty"](stakedSum.currency, ((_a = res.stakedSum) === null || _a === void 0 ? void 0 : _a.amount) || "0");
+                setStakedSumBalance(stakedSumCache);
+            });
+            sessionStorage.setItem("currentAddress", accountInfo.bech32Address);
+        }
+        // eslint-disable-next-line
+    }, [accountInfo.bech32Address]);
+    Object(react["useEffect"])(() => {
+        if (!balanceStakableQuery.isFetching && !balanceStakableQuery.error) {
+            setStakedSumBalance(stakedSum);
+            setStakableBalance(stakable);
+            setTimeout(() => {
+                if (stakedSum.toCoin().amount !== "0") {
+                    const userLocal = {
+                        stakedSum: stakedSum.toCoin(),
+                    };
+                    console.log(userLocal);
+                    misesStore.setLocalCache(userLocal);
+                }
+            }, 500);
+        }
+        // eslint-disable-next-line
+    }, [
+        stakable.toString(),
+        stakedSum.toString(),
+        balanceStakableQuery.isFetching,
+    ]);
     return (react_default.a.createElement(react_default.a.Fragment, null,
         react_default.a.createElement("div", { className: asset_module_default.a.containerChart },
             react_default.a.createElement("div", { className: asset_module_default.a.centerText },
                 react_default.a.createElement("div", { className: asset_module_default.a.big },
                     react_default.a.createElement(message["a" /* default */], { id: "main.account.chart.total-balance" })),
-                react_default.a.createElement("div", { className: asset_module_default.a.small }, tatalBalance.shrink(true).trim(true).maxDecimals(4).toString()),
+                react_default.a.createElement("div", { className: classnames_default()(asset_module_default.a.small) }, totalBalance.shrink(true).trim(true).maxDecimals(4).toString()),
                 react_default.a.createElement("div", { className: asset_module_default.a.indicatorIcon },
                     react_default.a.createElement(react_default.a.Fragment, null, balanceStakableQuery.isFetching ? (react_default.a.createElement("i", { className: "fas fa-spinner fa-spin" })) : balanceStakableQuery.error ? (react_default.a.createElement(tooltip["a" /* ToolTip */], { tooltip: ((_a = balanceStakableQuery.error) === null || _a === void 0 ? void 0 : _a.message) || ((_b = balanceStakableQuery.error) === null || _b === void 0 ? void 0 : _b.statusText), theme: "dark", trigger: "hover", options: {
                             placement: "top",
@@ -8254,12 +7950,12 @@ const AssetStakedChartView = Object(es["a" /* observer */])(() => {
                                     // There are only two labels (stakable, staked (including unbondings)).
                                     if (item.index === 0) {
                                         if (!total.toDec().equals(new unit_build["Dec"](0))) {
-                                            ratio = stakable
+                                            ratio = stakableBalance
                                                 .toDec()
                                                 .quo(total.toDec())
                                                 .mul(unit_build["DecUtils"].getPrecisionDec(2));
                                         }
-                                        return `${stakable
+                                        return `${stakableBalance
                                             .separator("")
                                             .trim(true)
                                             .shrink(true)
@@ -8268,12 +7964,12 @@ const AssetStakedChartView = Object(es["a" /* observer */])(() => {
                                     }
                                     else if (item.index === 1) {
                                         if (!total.toDec().equals(new unit_build["Dec"](0))) {
-                                            ratio = stakedSum
+                                            ratio = stakedSumBalance
                                                 .toDec()
                                                 .quo(total.toDec())
                                                 .mul(unit_build["DecUtils"].getPrecisionDec(2));
                                         }
-                                        return `${stakedSum
+                                        return `${stakedSumBalance
                                             .separator("")
                                             .trim(true)
                                             .shrink(true)
@@ -8294,7 +7990,7 @@ const AssetStakedChartView = Object(es["a" /* observer */])(() => {
                 react_default.a.createElement("div", { style: { minWidth: "16px" } }),
                 react_default.a.createElement("div", { className: asset_module_default.a.value, style: {
                         color: "#525f7f",
-                    } }, stakable.shrink(true).maxDecimals(6).toString())),
+                    } }, stakableBalance.shrink(true).maxDecimals(6).toString())),
             react_default.a.createElement("div", { className: asset_module_default.a.legend },
                 react_default.a.createElement("div", { className: asset_module_default.a.label, style: { color: "#11cdef" } },
                     react_default.a.createElement("span", { className: "badge-dot badge badge-secondary" },
@@ -8303,7 +7999,7 @@ const AssetStakedChartView = Object(es["a" /* observer */])(() => {
                 react_default.a.createElement("div", { style: { minWidth: "16px" } }),
                 react_default.a.createElement("div", { className: asset_module_default.a.value, style: {
                         color: "#525f7f",
-                    } }, stakedSum.shrink(true).maxDecimals(6).toString())))));
+                    } }, stakedSumBalance.shrink(true).maxDecimals(6).toString())))));
 });
 const AssetView = () => {
     return (react_default.a.createElement("div", { className: asset_module_default.a.containerAsset },
@@ -8311,7 +8007,7 @@ const AssetView = () => {
 };
 
 // EXTERNAL MODULE: ./src/pages/main/stake.module.scss
-var stake_module = __webpack_require__(136);
+var stake_module = __webpack_require__(135);
 var stake_module_default = /*#__PURE__*/__webpack_require__.n(stake_module);
 
 // CONCATENATED MODULE: ./src/pages/main/stake.tsx
@@ -8370,29 +8066,29 @@ const StakeView = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/main/token.tsx
-var token = __webpack_require__(1328);
+var token = __webpack_require__(1318);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/CustomInput.js + 1 modules
-var CustomInput = __webpack_require__(1685);
+var CustomInput = __webpack_require__(1680);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Row.js
-var Row = __webpack_require__(1680);
+var Row = __webpack_require__(1675);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Col.js
-var Col = __webpack_require__(1681);
+var Col = __webpack_require__(1676);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
-var Modal = __webpack_require__(1221);
+var Modal = __webpack_require__(1214);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ModalBody.js
-var ModalBody = __webpack_require__(1362);
+var ModalBody = __webpack_require__(1352);
 
 // EXTERNAL MODULE: ./src/pages/main/bip44-select-modal.module.scss
-var bip44_select_modal_module = __webpack_require__(205);
+var bip44_select_modal_module = __webpack_require__(204);
 var bip44_select_modal_module_default = /*#__PURE__*/__webpack_require__.n(bip44_select_modal_module);
 
 // EXTERNAL MODULE: ./src/components/loading-indicator/index.tsx
-var loading_indicator = __webpack_require__(170);
+var loading_indicator = __webpack_require__(168);
 
 // CONCATENATED MODULE: ./src/pages/main/bip44-select-modal.tsx
 var bip44_select_modal_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -8578,7 +8274,7 @@ const BIP44SelectModal = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/main/vesting-info.tsx
-var vesting_info = __webpack_require__(1329);
+var vesting_info = __webpack_require__(1319);
 
 // CONCATENATED MODULE: ./src/pages/main/index.tsx
 var main_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -8721,7 +8417,7 @@ const MainPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/components/banner/style.module.scss
-var banner_style_module = __webpack_require__(164);
+var banner_style_module = __webpack_require__(162);
 var banner_style_module_default = /*#__PURE__*/__webpack_require__.n(banner_style_module);
 
 // CONCATENATED MODULE: ./src/components/banner/index.tsx
@@ -8746,7 +8442,7 @@ var lock_style_module = __webpack_require__(259);
 var lock_style_module_default = /*#__PURE__*/__webpack_require__.n(lock_style_module);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/delay/index.js
-var delay = __webpack_require__(1330);
+var delay = __webpack_require__(1320);
 var delay_default = /*#__PURE__*/__webpack_require__.n(delay);
 
 // CONCATENATED MODULE: ./src/pages/lock/index.tsx
@@ -8836,7 +8532,7 @@ const LockPage = Object(es["a" /* observer */])(() => {
                     setLoading(false);
                 }
             })) },
-            react_default.a.createElement(Banner, { icon: __webpack_require__(376), logo: __webpack_require__(1281) }),
+            react_default.a.createElement(Banner, { icon: __webpack_require__(374), logo: __webpack_require__(1272) }),
             react_default.a.createElement(components_form["f" /* PasswordInput */], { label: intl.formatMessage({
                     id: "lock.input.password",
                 }), name: "password", error: errors.password && errors.password.message, ref: (ref) => {
@@ -8860,7 +8556,7 @@ const LockPage = Object(es["a" /* observer */])(() => {
                             width: "32px",
                             height: "32px",
                             marginRight: "12px",
-                        }, src: __webpack_require__(1604), alt: "info" })),
+                        }, src: __webpack_require__(1597), alt: "info" })),
                 react_default.a.createElement("div", { className: lock_style_module_default.a.title },
                     react_default.a.createElement(message["a" /* default */], { id: "lock.modal.text.tips" })),
                 react_default.a.createElement("div", { className: lock_style_module_default.a.content },
@@ -8875,11 +8571,11 @@ const LockPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/send/style.module.scss
-var send_style_module = __webpack_require__(1209);
+var send_style_module = __webpack_require__(1202);
 var send_style_module_default = /*#__PURE__*/__webpack_require__.n(send_style_module);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/querystring-es3/index.js
-var querystring_es3 = __webpack_require__(378);
+var querystring_es3 = __webpack_require__(376);
 var querystring_es3_default = /*#__PURE__*/__webpack_require__.n(querystring_es3);
 
 // CONCATENATED MODULE: ./src/pages/send/index.tsx
@@ -9086,10 +8782,10 @@ const SendPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/setting/keyring/index.tsx
-var keyring = __webpack_require__(1331);
+var keyring = __webpack_require__(1321);
 
 // EXTERNAL MODULE: ./src/pages/sign/style.module.scss
-var sign_style_module = __webpack_require__(161);
+var sign_style_module = __webpack_require__(159);
 var sign_style_module_default = /*#__PURE__*/__webpack_require__.n(sign_style_module);
 
 // CONCATENATED MODULE: ./src/pages/sign/data-tab.tsx
@@ -9101,14 +8797,14 @@ const DataTab = Object(es["a" /* observer */])(({ signDocHelper }) => {
 });
 
 // EXTERNAL MODULE: ./src/pages/sign/details-tab.module.scss
-var details_tab_module = __webpack_require__(162);
+var details_tab_module = __webpack_require__(160);
 var details_tab_module_default = /*#__PURE__*/__webpack_require__.n(details_tab_module);
 
 // EXTERNAL MODULE: ../crypto/build/index.js
-var crypto_build = __webpack_require__(50);
+var crypto_build = __webpack_require__(51);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Badge.js
-var Badge = __webpack_require__(1682);
+var Badge = __webpack_require__(1677);
 
 // CONCATENATED MODULE: ./node_modules/js-yaml/dist/js-yaml.mjs
 
@@ -12945,7 +12641,7 @@ var jsYaml = {
 
 
 // EXTERNAL MODULE: ../proto-types/cosmos/staking/v1beta1/authz.js
-var authz = __webpack_require__(276);
+var authz = __webpack_require__(275);
 
 // CONCATENATED MODULE: ./src/pages/sign/messages.tsx
 /* eslint-disable react/display-name */
@@ -13442,10 +13138,10 @@ function renderAminoMessage(msgOpts, msg, currencies, intl) {
 }
 
 // EXTERNAL MODULE: ../proto-types/cosmos/authz/v1beta1/authz.js
-var v1beta1_authz = __webpack_require__(597);
+var v1beta1_authz = __webpack_require__(594);
 
 // EXTERNAL MODULE: ../proto-types/cosmos/bank/v1beta1/authz.js
-var bank_v1beta1_authz = __webpack_require__(1332);
+var bank_v1beta1_authz = __webpack_require__(1322);
 
 // CONCATENATED MODULE: ./src/pages/sign/direct.tsx
 
@@ -13909,11 +13605,11 @@ const SignPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/chain/suggest/style.module.scss
-var suggest_style_module = __webpack_require__(375);
+var suggest_style_module = __webpack_require__(373);
 var suggest_style_module_default = /*#__PURE__*/__webpack_require__.n(suggest_style_module);
 
 // EXTERNAL MODULE: ./src/components/alert-experimental-feature/style.module.scss
-var alert_experimental_feature_style_module = __webpack_require__(388);
+var alert_experimental_feature_style_module = __webpack_require__(386);
 var alert_experimental_feature_style_module_default = /*#__PURE__*/__webpack_require__.n(alert_experimental_feature_style_module);
 
 // CONCATENATED MODULE: ./src/components/alert-experimental-feature/index.tsx
@@ -13924,7 +13620,7 @@ var alert_experimental_feature_style_module_default = /*#__PURE__*/__webpack_req
 const AlertExperimentalFeature = () => {
     return (react_default.a.createElement(Alert["a" /* default */], { className: alert_experimental_feature_style_module_default.a.warning, color: "warning" },
         react_default.a.createElement("div", { className: alert_experimental_feature_style_module_default.a.imgContainer },
-            react_default.a.createElement("img", { src: __webpack_require__(1611), alt: "experiment" })),
+            react_default.a.createElement("img", { src: __webpack_require__(1604), alt: "experiment" })),
         react_default.a.createElement("div", { className: alert_experimental_feature_style_module_default.a.content },
             react_default.a.createElement("div", { className: alert_experimental_feature_style_module_default.a.title },
                 react_default.a.createElement(message["a" /* default */], { id: "component.waring.experimental-feature.title" })),
@@ -13972,7 +13668,7 @@ const ChainSuggestedPage = Object(es["a" /* observer */])(() => {
     }, [analyticsStore, chainSuggestStore.waitingSuggestedChainInfo]);
     return (react_default.a.createElement(EmptyLayout, { style: { height: "100%", paddingTop: "80px" } },
         react_default.a.createElement("div", { className: suggest_style_module_default.a.container },
-            react_default.a.createElement("img", { src: __webpack_require__(376), alt: "logo", style: { width: "92px", height: "92px", margin: "0 auto" } }),
+            react_default.a.createElement("img", { src: __webpack_require__(374), alt: "logo", style: { width: "92px", height: "92px", margin: "0 auto" } }),
             react_default.a.createElement("h1", { className: suggest_style_module_default.a.header },
                 react_default.a.createElement(message["a" /* default */], { id: "chain.suggested.title" })),
             react_default.a.createElement("p", { className: suggest_style_module_default.a.paragraph },
@@ -14015,7 +13711,7 @@ const ChainSuggestedPage = Object(es["a" /* observer */])(() => {
 var page_button = __webpack_require__(76);
 
 // EXTERNAL MODULE: ./src/pages/setting/style.module.scss
-var setting_style_module = __webpack_require__(169);
+var setting_style_module = __webpack_require__(167);
 var setting_style_module_default = /*#__PURE__*/__webpack_require__.n(setting_style_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/index.tsx
@@ -14180,7 +13876,7 @@ const SettingFiatPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/setting/connections/style.module.scss
-var connections_style_module = __webpack_require__(1333);
+var connections_style_module = __webpack_require__(1323);
 var connections_style_module_default = /*#__PURE__*/__webpack_require__.n(connections_style_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/connections/basic-access.tsx
@@ -14232,7 +13928,7 @@ const SettingConnectionsPage = Object(es["a" /* observer */])(() => {
                 return (react_default.a.createElement(page_button["a" /* PageButton */], { title: origin, key: origin, onClick: (e) => basic_access_awaiter(void 0, void 0, void 0, function* () {
                         e.preventDefault();
                         if (yield confirm.confirm({
-                            img: (react_default.a.createElement("img", { alt: "unlink", src: __webpack_require__(1282), style: { height: "80px" } })),
+                            img: (react_default.a.createElement("img", { alt: "unlink", src: __webpack_require__(1273), style: { height: "80px" } })),
                             title: intl.formatMessage({
                                 id: "setting.connections.confirm.delete-connection.title",
                             }),
@@ -14291,7 +13987,7 @@ const SettingSecret20ViewingKeyConnectionsPage = Object(es["a" /* observer */])(
                 return (react_default.a.createElement(page_button["a" /* PageButton */], { title: origin, key: origin, onClick: (e) => connections_viewing_key_awaiter(void 0, void 0, void 0, function* () {
                         e.preventDefault();
                         if (yield confirm.confirm({
-                            img: (react_default.a.createElement("img", { alt: "unlink", src: __webpack_require__(1282), style: { height: "80px" } })),
+                            img: (react_default.a.createElement("img", { alt: "unlink", src: __webpack_require__(1273), style: { height: "80px" } })),
                             title: intl.formatMessage({
                                 id: "setting.connections.viewing-key.confirm.delete-connection.title",
                             }),
@@ -14310,10 +14006,10 @@ const SettingSecret20ViewingKeyConnectionsPage = Object(es["a" /* observer */])(
 
 
 // EXTERNAL MODULE: ./src/pages/setting/address-book/index.tsx + 1 modules
-var address_book = __webpack_require__(637);
+var address_book = __webpack_require__(635);
 
 // EXTERNAL MODULE: ./src/pages/setting/credit/style.module.scss
-var credit_style_module = __webpack_require__(1334);
+var credit_style_module = __webpack_require__(1324);
 var credit_style_module_default = /*#__PURE__*/__webpack_require__.n(credit_style_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/credit/index.tsx
@@ -14353,7 +14049,7 @@ const CreditPage = () => {
 };
 
 // EXTERNAL MODULE: ./src/pages/setting/keyring/change/name.module.scss
-var name_module = __webpack_require__(1335);
+var name_module = __webpack_require__(1325);
 var name_module_default = /*#__PURE__*/__webpack_require__.n(name_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/keyring/change/name.tsx
@@ -14436,7 +14132,7 @@ const ChangeNamePage = Object(es["a" /* observer */])(() => {
 
 
 // EXTERNAL MODULE: ./src/pages/setting/keyring/createAccount/name.module.scss
-var createAccount_name_module = __webpack_require__(1336);
+var createAccount_name_module = __webpack_require__(1326);
 var createAccount_name_module_default = /*#__PURE__*/__webpack_require__.n(createAccount_name_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/keyring/createAccount/name.tsx
@@ -14509,7 +14205,7 @@ const CreateNamePage = Object(es["a" /* observer */])(() => {
 
 
 // EXTERNAL MODULE: ./src/pages/setting/keyring/importAccount/name.module.scss
-var importAccount_name_module = __webpack_require__(281);
+var importAccount_name_module = __webpack_require__(280);
 var importAccount_name_module_default = /*#__PURE__*/__webpack_require__.n(importAccount_name_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/keyring/importAccount/index.tsx
@@ -14798,11 +14494,11 @@ const importAccount_IconOpenEye = ({ width = 28, height = 29, color = "#C6C6CD" 
 };
 
 // EXTERNAL MODULE: ./src/pages/setting/clear/style.module.scss
-var clear_style_module = __webpack_require__(1337);
+var clear_style_module = __webpack_require__(1327);
 var clear_style_module_default = /*#__PURE__*/__webpack_require__.n(clear_style_module);
 
 // EXTERNAL MODULE: ./src/pages/setting/clear/warning-view.module.scss
-var warning_view_module = __webpack_require__(1210);
+var warning_view_module = __webpack_require__(1203);
 var warning_view_module_default = /*#__PURE__*/__webpack_require__.n(warning_view_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/clear/warning-view.tsx
@@ -14824,7 +14520,7 @@ const WarningView = ({ index, keyStore }) => {
             react_default.a.createElement(Button["a" /* default */], { size: "sm", style: { float: "right", marginTop: "10px" }, color: "white", outline: true, onClick: onBackUpMnemonicButtonClick },
                 react_default.a.createElement(message["a" /* default */], { id: "setting.clear.button.back-up" })))) : null,
         react_default.a.createElement("div", { className: warning_view_module_default.a.trashContainer },
-            react_default.a.createElement("img", { src: __webpack_require__(1619), alt: "trash-can" }),
+            react_default.a.createElement("img", { src: __webpack_require__(1612), alt: "trash-can" }),
             react_default.a.createElement("div", null,
                 react_default.a.createElement(message["a" /* default */], { id: "setting.clear.warning" })))));
 };
@@ -14904,7 +14600,7 @@ const ClearPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/setting/export/warning-view.module.scss
-var export_warning_view_module = __webpack_require__(1211);
+var export_warning_view_module = __webpack_require__(1204);
 var export_warning_view_module_default = /*#__PURE__*/__webpack_require__.n(export_warning_view_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/export/warning-view.tsx
@@ -14913,17 +14609,17 @@ var export_warning_view_module_default = /*#__PURE__*/__webpack_require__.n(expo
 
 const warning_view_WarningView = () => {
     return (react_default.a.createElement("div", { className: export_warning_view_module_default.a.innerContainer },
-        react_default.a.createElement("img", { className: export_warning_view_module_default.a.imgLock, src: __webpack_require__(1283), alt: "lock" }),
+        react_default.a.createElement("img", { className: export_warning_view_module_default.a.imgLock, src: __webpack_require__(1274), alt: "lock" }),
         react_default.a.createElement("p", null,
             react_default.a.createElement(message["a" /* default */], { id: "setting.export.warning" }))));
 };
 
-// EXTERNAL MODULE: ./node_modules/query-string/index.js
-var query_string = __webpack_require__(1338);
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/query-string/index.js
+var query_string = __webpack_require__(1328);
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
 // EXTERNAL MODULE: ./src/pages/setting/export/style.module.scss
-var export_style_module = __webpack_require__(644);
+var export_style_module = __webpack_require__(642);
 var export_style_module_default = /*#__PURE__*/__webpack_require__.n(export_style_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/export/index.tsx
@@ -15007,7 +14703,7 @@ const ExportPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/setting/token/add/style.module.scss
-var add_style_module = __webpack_require__(1339);
+var add_style_module = __webpack_require__(1329);
 var add_style_module_default = /*#__PURE__*/__webpack_require__.n(add_style_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/token/add/index.tsx
@@ -15234,7 +14930,7 @@ const AddTokenPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/setting/token/manage/style.module.scss
-var manage_style_module = __webpack_require__(1340);
+var manage_style_module = __webpack_require__(1330);
 var manage_style_module_default = /*#__PURE__*/__webpack_require__.n(manage_style_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/token/manage/index.tsx
@@ -15342,24 +15038,24 @@ const ManageTokenPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/manifest.json
-var manifest = __webpack_require__(269);
+var manifest = __webpack_require__(250);
 
 // EXTERNAL MODULE: ../provider/build/index.js
-var provider_build = __webpack_require__(194);
+var provider_build = __webpack_require__(192);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/qrcode.react/lib/index.js
-var qrcode_react_lib = __webpack_require__(1341);
+var qrcode_react_lib = __webpack_require__(1331);
 var qrcode_react_lib_default = /*#__PURE__*/__webpack_require__.n(qrcode_react_lib);
 
 // EXTERNAL MODULE: ./src/pages/setting/export-to-mobile/style.module.scss
-var export_to_mobile_style_module = __webpack_require__(1212);
+var export_to_mobile_style_module = __webpack_require__(1205);
 var export_to_mobile_style_module_default = /*#__PURE__*/__webpack_require__.n(export_to_mobile_style_module);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/client/dist/esm/index.js + 6 modules
-var esm = __webpack_require__(1361);
+var esm = __webpack_require__(1351);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/aes-js/index.js
-var aes_js = __webpack_require__(196);
+var aes_js = __webpack_require__(194);
 var aes_js_default = /*#__PURE__*/__webpack_require__.n(aes_js);
 
 // CONCATENATED MODULE: ./src/pages/setting/export-to-mobile/index.tsx
@@ -15423,7 +15119,7 @@ const EnterPasswordToExportKeyRingView = Object(es["a" /* observer */])(({ onSet
                     width: "32px",
                     height: "32px",
                     marginRight: "12px",
-                }, src: __webpack_require__(1635), alt: "info" }),
+                }, src: __webpack_require__(1630), alt: "info" }),
             react_default.a.createElement("div", { style: {
                     display: "flex",
                     flexDirection: "column",
@@ -15444,7 +15140,7 @@ const EnterPasswordToExportKeyRingView = Object(es["a" /* observer */])(({ onSet
         react_default.a.createElement("img", { style: {
                 marginLeft: "80px",
                 marginRight: "80px",
-            }, src: __webpack_require__(1636), alt: "export-to-mobile" }),
+            }, src: __webpack_require__(1631), alt: "export-to-mobile" }),
         react_default.a.createElement("div", { style: {
                 padding: "0 20px",
                 textAlign: "center",
@@ -15647,7 +15343,7 @@ const LogPageViewWrapper = ({ children }) => {
 };
 
 // EXTERNAL MODULE: ./src/pages/setting/endpoints/style.module.scss
-var endpoints_style_module = __webpack_require__(645);
+var endpoints_style_module = __webpack_require__(643);
 var endpoints_style_module_default = /*#__PURE__*/__webpack_require__.n(endpoints_style_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/endpoints/index.tsx
@@ -15827,7 +15523,7 @@ const SettingEndpointsPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: ./src/pages/setting/autolock/description-view.module.scss
-var description_view_module = __webpack_require__(1214);
+var description_view_module = __webpack_require__(1207);
 var description_view_module_default = /*#__PURE__*/__webpack_require__.n(description_view_module);
 
 // CONCATENATED MODULE: ./src/pages/setting/autolock/description-view.tsx
@@ -15839,17 +15535,17 @@ var description_view_module_default = /*#__PURE__*/__webpack_require__.n(descrip
 const DescriptionView = Object(es["a" /* observer */])(() => {
     const { uiConfigStore } = Object(stores["b" /* useStore */])();
     return (react_default.a.createElement("div", { className: description_view_module_default.a.innerContainer },
-        react_default.a.createElement("img", { className: description_view_module_default.a.imgLock, src: __webpack_require__(1283), alt: "lock" }),
+        react_default.a.createElement("img", { className: description_view_module_default.a.imgLock, src: __webpack_require__(1274), alt: "lock" }),
         uiConfigStore.platform !== "firefox" ? (react_default.a.createElement("p", null,
             react_default.a.createElement(message["a" /* default */], { id: "setting.autolock.description" }))) : null));
 });
 
 // EXTERNAL MODULE: ./src/pages/setting/autolock/style.module.scss
-var autolock_style_module = __webpack_require__(1347);
+var autolock_style_module = __webpack_require__(1337);
 var autolock_style_module_default = /*#__PURE__*/__webpack_require__.n(autolock_style_module);
 
 // EXTERNAL MODULE: ../background/src/auto-lock-account/index.ts + 13 modules
-var auto_lock_account = __webpack_require__(1217);
+var auto_lock_account = __webpack_require__(1210);
 
 // CONCATENATED MODULE: ./src/pages/setting/autolock/index.tsx
 var autolock_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -15939,7 +15635,7 @@ var transfer_style_module = __webpack_require__(260);
 var transfer_style_module_default = /*#__PURE__*/__webpack_require__.n(transfer_style_module);
 
 // EXTERNAL MODULE: ../background/src/mises/mises-network.util.ts
-var mises_network_util = __webpack_require__(1348);
+var mises_network_util = __webpack_require__(1338);
 
 // CONCATENATED MODULE: ./src/pages/transfer/icon/approve-icon.component.tsx
 
@@ -16000,7 +15696,7 @@ const TransactionIcon = ({ category }) => {
 };
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-query/es/index.js
-var react_query_es = __webpack_require__(236);
+var react_query_es = __webpack_require__(235);
 
 // CONCATENATED MODULE: ./src/pages/transfer/index.tsx
 var transfer_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -16100,13 +15796,13 @@ const TransferPage = Object(es["a" /* observer */])(() => {
 });
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/react/esm/sdk.js + 16 modules
-var sdk = __webpack_require__(1683);
+var sdk = __webpack_require__(1678);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/tracing/esm/index.js + 19 modules
-var tracing_esm = __webpack_require__(1360);
+var tracing_esm = __webpack_require__(1350);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-idle-timer/dist/index.es.js
-var index_es = __webpack_require__(1352);
+var index_es = __webpack_require__(1342);
 
 // CONCATENATED MODULE: ./src/index.tsx
 
@@ -16163,10 +15859,10 @@ var index_es = __webpack_require__(1352);
 
 window.misesWallet = new provider_build["Keplr"](manifest.version, "core", new router_extension_build["InExtensionMessageRequester"]());
 // Make sure that icon file will be included in bundle
-__webpack_require__(376);
-__webpack_require__(1646);
-__webpack_require__(1647);
-__webpack_require__(1648);
+__webpack_require__(374);
+__webpack_require__(1641);
+__webpack_require__(1642);
+__webpack_require__(1643);
 Object(mobx_esm["configure"])({
     enforceActions: "always",
 });
@@ -16199,7 +15895,7 @@ const StateRenderer = Object(es["a" /* observer */])(() => {
     }
     else if (keyRingStore.status === background_build["KeyRingStatus"].NOTLOADED) {
         return (react_default.a.createElement("div", { style: { height: "100%" } },
-            react_default.a.createElement(Banner, { icon: __webpack_require__(376), logo: __webpack_require__(1281) })));
+            react_default.a.createElement(Banner, { icon: __webpack_require__(374), logo: __webpack_require__(1272) })));
     }
     else {
         return react_default.a.createElement("div", null, "Unknown status");
@@ -16249,26 +15945,35 @@ const RenderRoutes = () => {
 // const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 sdk["a" /* init */]({
+    enabled: "production" === "production",
     dsn: "https://66dc9e60f6764bf4a127e9f11f702b9f@o1162849.ingest.sentry.io/4504417442791424",
     integrations: [new tracing_esm["a" /* BrowserTracing */]()],
+    release: manifest.version,
     // Set tracesSampleRate to 1.0 to capture 100%
     // of transactions for performance monitoring.
     // We recommend adjusting this value in production
     tracesSampleRate: 1.0,
     beforeSend: (event, hint) => {
-        var _a;
-        console.log(hint, event);
-        if (hint.originalException &&
-            [
-                "Error: Failed to fetch",
-                "UnhandledRejection: Non-Error promise rejection captured with keys: message",
-            ].includes((_a = hint.originalException) === null || _a === void 0 ? void 0 : _a.toString())) {
-            // logEvent(analytics, "misesWallet_error", {
-            //   error_message: hint.originalException?.toString(),
-            // });
-            return null;
+        if (hint.originalException) {
+            console.log(event, hint.originalException.toString());
+            const errorConnection = hint.originalException.toString().indexOf("connection reset by peer") >
+                -1;
+            const failedToFetch = hint.originalException.toString().indexOf("Failed to fetch") > -1 ||
+                hint.originalException
+                    .toString()
+                    .indexOf("Cannot read properties of undefined (reading 'response')") >
+                    -1;
+            const promiseNonError = hint.originalException
+                .toString()
+                .indexOf("Non-Error promise rejection captured with keys: message") >
+                -1;
+            if (promiseNonError || errorConnection || failedToFetch) {
+                // logEvent(analytics, "misesWallet_error", {
+                //   error_message: hint.originalException?.toString(),
+                // });
+                return null;
+            }
         }
-        console.log(event);
         return event;
     },
 });
@@ -16284,19 +15989,11 @@ react_dom_default.a.render(react_default.a.createElement(stores["a" /* StoreProv
 
 /***/ }),
 
-/***/ 1678:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(1656);
-
-
-/***/ }),
-
-/***/ 169:
+/***/ 167:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1533);
+            var content = __webpack_require__(1526);
 
             content = content.__esModule ? content.default : content;
 
@@ -16314,6 +16011,64 @@ var update = api(content, options);
 
 
 module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1673:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(1651);
+
+
+/***/ }),
+
+/***/ 168:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoadingIndicatorProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return useLoadingIndicator; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1214);
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1201);
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const LoadingIndicatorContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])(undefined);
+const LoadingIndicatorProvider = ({ children }) => {
+    const [loadingList, setLoadingList] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+    const isLoading = loadingList.find((loading) => loading.isLoading) != null;
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(LoadingIndicatorContext.Provider, { value: {
+            setIsLoading: (type, isLoading) => {
+                const loading = loadingList.find((loading) => loading.type === type);
+                if (loading) {
+                    if (loading.isLoading === isLoading) {
+                        return;
+                    }
+                    loading.isLoading = isLoading;
+                    setLoadingList(loadingList.concat());
+                }
+                else {
+                    setLoadingList(loadingList.concat({
+                        type,
+                        isLoading,
+                    }));
+                }
+            },
+        } },
+        isLoading ? (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], { modalClassName: _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.modal, contentClassName: _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.modalContentEmpty, isOpen: true, centered: true },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", { className: "fa fa-spinner fa-spin fa-2x fa-fw" }))) : null,
+        children));
+};
+function useLoadingIndicator() {
+    const state = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(LoadingIndicatorContext);
+    if (!state)
+        throw new Error("You probably forgot to use LoadingIndicatorProvider");
+    return state;
+}
+
 
 /***/ }),
 
@@ -16480,13 +16235,13 @@ __decorate([
 ], chain_ChainStore.prototype, "resetChainEndpoints", null);
 
 // EXTERNAL MODULE: ./src/config.ts
-var config = __webpack_require__(381);
+var config = __webpack_require__(379);
 
 // EXTERNAL MODULE: ./src/config.ui.ts
-var config_ui = __webpack_require__(120);
+var config_ui = __webpack_require__(119);
 
 // EXTERNAL MODULE: ../stores-etc/build/index.js
-var stores_etc_build = __webpack_require__(638);
+var stores_etc_build = __webpack_require__(636);
 
 // EXTERNAL MODULE: ../router-extension/build/index.js
 var router_extension_build = __webpack_require__(56);
@@ -16568,10 +16323,10 @@ ui_config_decorate([
 ], ui_config_UIConfigStore.prototype, "setShowAdvancedIBCTransfer", null);
 
 // EXTERNAL MODULE: ../analytics/build/index.js
-var analytics_build = __webpack_require__(1201);
+var analytics_build = __webpack_require__(1194);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/amplitude-js/amplitude.esm.js
-var amplitude_esm = __webpack_require__(1318);
+var amplitude_esm = __webpack_require__(1308);
 
 // EXTERNAL MODULE: ../cosmos/build/index.js
 var cosmos_build = __webpack_require__(16);
@@ -16815,61 +16570,11 @@ const useStore = () => {
 
 /***/ }),
 
-/***/ 170:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoadingIndicatorProvider; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return useLoadingIndicator; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1221);
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1208);
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-const LoadingIndicatorContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])(undefined);
-const LoadingIndicatorProvider = ({ children }) => {
-    const [loadingList, setLoadingList] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-    const isLoading = loadingList.find((loading) => loading.isLoading) != null;
-    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(LoadingIndicatorContext.Provider, { value: {
-            setIsLoading: (type, isLoading) => {
-                const loading = loadingList.find((loading) => loading.type === type);
-                if (loading) {
-                    if (loading.isLoading === isLoading) {
-                        return;
-                    }
-                    loading.isLoading = isLoading;
-                    setLoadingList(loadingList.concat());
-                }
-                else {
-                    setLoadingList(loadingList.concat({
-                        type,
-                        isLoading,
-                    }));
-                }
-            },
-        } },
-        isLoading ? (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], { modalClassName: _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.modal, contentClassName: _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default.a.modalContentEmpty, isOpen: true, centered: true },
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", { className: "fa fa-spinner fa-spin fa-2x fa-fw" }))) : null,
-        children));
-};
-function useLoadingIndicator() {
-    const state = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(LoadingIndicatorContext);
-    if (!state)
-        throw new Error("You probably forgot to use LoadingIndicatorProvider");
-    return state;
-}
-
-
-/***/ }),
-
-/***/ 173:
+/***/ 171:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1598);
+            var content = __webpack_require__(1591);
 
             content = content.__esModule ? content.default : content;
 
@@ -16890,11 +16595,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 198:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1554);
+            var content = __webpack_require__(1547);
 
             content = content.__esModule ? content.default : content;
 
@@ -16915,7 +16620,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 203:
+/***/ 202:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16924,13 +16629,13 @@ module.exports = content.locals || {};
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(208);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1363);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(614);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(615);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(647);
-/* harmony import */ var _input_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1323);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(207);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(208);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1353);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(612);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(613);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(645);
+/* harmony import */ var _input_module_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1313);
 /* harmony import */ var _input_module_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_input_module_scss__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var buffer___WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(4);
 /* harmony import */ var buffer___WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(buffer___WEBPACK_IMPORTED_MODULE_9__);
@@ -16972,11 +16677,11 @@ const Input = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])((props, r
 
 /***/ }),
 
-/***/ 205:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1600);
+            var content = __webpack_require__(1593);
 
             content = content.__esModule ? content.default : content;
 
@@ -16997,6 +16702,13 @@ module.exports = content.locals || {};
 
 /***/ }),
 
+/***/ 250:
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"manifest_version\":3,\"name\":\"Mises\",\"description\":\"Mises is a browser extension wallet\",\"version\":\"0.2.5\",\"icons\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"},\"action\":{\"default_popup\":\"popup.html\",\"default_title\":\"Mises\",\"default_icon\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"}},\"background\":{\"service_worker\":\"background.bundle.js\"},\"author\":\"https://www.mises.site\",\"permissions\":[\"storage\",\"notifications\",\"identity\",\"tabs\",\"idle\",\"misesPrivate\",\"nativeMessaging\"],\"host_permissions\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"content_scripts\":[{\"matches\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"js\":[\"browser-polyfill.js\",\"contentScripts.bundle.js\"],\"run_at\":\"document_start\",\"all_frames\":true}],\"web_accessible_resources\":[{\"resources\":[\"injectedScript.bundle.js\",\"assets/logo-256.png\",\"safeInjectedScript.bundle.js\"],\"matches\":[\"http://*/*\",\"https://*/*\"]}],\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB\",\"content_security_policy\":{\"extension_pages\":\"script-src 'self' 'wasm-unsafe-eval'; object-src 'self';\"}}");
+
+/***/ }),
+
 /***/ 251:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17004,10 +16716,10 @@ module.exports = content.locals || {};
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToolTip; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(608);
+/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(606);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _tooltip_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1324);
+/* harmony import */ var _tooltip_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1314);
 /* harmony import */ var _tooltip_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_tooltip_module_scss__WEBPACK_IMPORTED_MODULE_3__);
 
 
@@ -17135,7 +16847,7 @@ ToolTip.defaultProps = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1563);
+            var content = __webpack_require__(1556);
 
             content = content.__esModule ? content.default : content;
 
@@ -17160,7 +16872,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1603);
+            var content = __webpack_require__(1596);
 
             content = content.__esModule ? content.default : content;
 
@@ -17185,7 +16897,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1640);
+            var content = __webpack_require__(1635);
 
             content = content.__esModule ? content.default : content;
 
@@ -17206,18 +16918,36 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 269:
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"manifest_version\":3,\"name\":\"Mises\",\"description\":\"Mises is a browser extension wallet\",\"version\":\"0.2.3\",\"icons\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"},\"action\":{\"default_popup\":\"popup.html\",\"default_title\":\"Mises\",\"default_icon\":{\"16\":\"assets/icon-16.png\",\"48\":\"assets/icon-48.png\",\"128\":\"assets/icon-128.png\"}},\"background\":{\"service_worker\":\"background.bundle.js\"},\"author\":\"https://www.mises.site\",\"permissions\":[\"storage\",\"notifications\",\"identity\",\"tabs\",\"idle\",\"misesPrivate\",\"nativeMessaging\"],\"host_permissions\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"content_scripts\":[{\"matches\":[\"file://*/*\",\"http://*/*\",\"https://*/*\"],\"js\":[\"browser-polyfill.js\",\"contentScripts.bundle.js\"],\"run_at\":\"document_start\",\"all_frames\":true}],\"web_accessible_resources\":[{\"resources\":[\"injectedScript.bundle.js\",\"assets/logo-256.png\",\"safeInjectedScript.bundle.js\"],\"matches\":[\"http://*/*\",\"https://*/*\"]}],\"key\":\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxlpHRb1I8/ks1bU2jiOFj7QRyGTV6NOO4VVmhkdzomhMxWIHf70QwxxYhxm52NCyRGoSc+hUqAc6gyGPzjPM5hhmtk4/MwjXyPkaJ7X1tlc5lOfTkXhntKffOGvB15JylxFbDb/Il2T9MoCUrDzkD+Y3jdBJ5PfiomiEl/uz2Gpgwvx118/qc9pBCPVZOP4sUAMlgKkvWksJ7s/u6birdR+15dM3jtwYYwMCE3lqfsJuWXYHMAlG6iUbEbo9kQCHI+TtyF0QU/w4NeY5fX6C1cXrqWPweI7KiEtADMdmmxNif/QaTsOhpGr6DDfHoGevQcF6lu8/dAJmk8YIiqXBQIDAQAB\",\"content_security_policy\":{\"extension_pages\":\"script-src 'self' 'wasm-unsafe-eval'; object-src 'self';\"}}");
-
-/***/ }),
-
-/***/ 275:
+/***/ 274:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1553);
+            var content = __webpack_require__(1546);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 278:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1522);
 
             content = content.__esModule ? content.default : content;
 
@@ -17242,7 +16972,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1529);
+            var content = __webpack_require__(1557);
 
             content = content.__esModule ? content.default : content;
 
@@ -17267,32 +16997,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1564);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 281:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1616);
+            var content = __webpack_require__(1609);
 
             content = content.__esModule ? content.default : content;
 
@@ -17690,16 +17395,16 @@ module.exports = function (list, options) {
 
 /***/ }),
 
-/***/ 364:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GasInput; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(208);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(614);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(207);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(208);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(612);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(15);
 
 
@@ -17723,11 +17428,36 @@ const GasInput = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_4__[/* observer
 
 /***/ }),
 
+/***/ 366:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1507);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ 368:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1516);
+            var content = __webpack_require__(1555);
 
             content = content.__esModule ? content.default : content;
 
@@ -17748,32 +17478,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 370:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1562);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 371:
+/***/ 369:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17783,7 +17488,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Modal = __webpack_require__(1568);
+var _Modal = __webpack_require__(1561);
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
@@ -17794,11 +17499,61 @@ module.exports = exports["default"];
 
 /***/ }),
 
+/***/ 371:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1545);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 372:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1594);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ 373:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1552);
+            var content = __webpack_require__(1602);
 
             content = content.__esModule ? content.default : content;
 
@@ -17820,63 +17575,13 @@ module.exports = content.locals || {};
 /***/ }),
 
 /***/ 374:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1601);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 375:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1609);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 376:
 /***/ (function(module, exports) {
 
 module.exports = "assets/logo-256.png";
 
 /***/ }),
 
-/***/ 381:
+/***/ 379:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17929,11 +17634,61 @@ const PrivilegedOrigins = [];
 
 /***/ }),
 
+/***/ 383:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1527);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 384:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1560);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ 385:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1534);
+            var content = __webpack_require__(1599);
 
             content = content.__esModule ? content.default : content;
 
@@ -17958,57 +17713,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1567);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 387:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1606);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 388:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1610);
+            var content = __webpack_require__(1603);
 
             content = content.__esModule ? content.default : content;
 
@@ -18045,7 +17750,7 @@ __webpack_require__.d(__webpack_exports__, "f", function() { return /* reexport 
 // UNUSED EXPORTS: TextArea, FeeCurrencySelector, FeeButtonsInner, GasInput, IBCChannelRegistrarModal, DestinationChainSelector
 
 // EXTERNAL MODULE: ./src/components/form/input.tsx
-var input = __webpack_require__(203);
+var input = __webpack_require__(202);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react/index.js
 var react = __webpack_require__(0);
@@ -18056,16 +17761,16 @@ var classnames = __webpack_require__(13);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/FormGroup.js
-var FormGroup = __webpack_require__(208);
+var FormGroup = __webpack_require__(207);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Label.js
-var Label = __webpack_require__(209);
+var Label = __webpack_require__(208);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Input.js
-var Input = __webpack_require__(614);
+var Input = __webpack_require__(612);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/FormFeedback.js
-var FormFeedback = __webpack_require__(615);
+var FormFeedback = __webpack_require__(613);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
 var buffer = __webpack_require__(4);
@@ -18097,42 +17802,42 @@ const TextArea = Object(react["forwardRef"])((props, ref) => {
 });
 
 // EXTERNAL MODULE: ./src/components/form/address-input.tsx
-var address_input = __webpack_require__(1263);
+var address_input = __webpack_require__(1254);
 
 // EXTERNAL MODULE: ./src/components/form/coin-input.tsx
-var coin_input = __webpack_require__(1270);
+var coin_input = __webpack_require__(1261);
 
 // EXTERNAL MODULE: ./src/components/form/fee-buttons/fee-buttons.tsx
-var fee_buttons = __webpack_require__(1271);
+var fee_buttons = __webpack_require__(1262);
 
 // CONCATENATED MODULE: ./src/components/form/fee-buttons/index.ts
 
 
 // EXTERNAL MODULE: ./src/components/form/memo-input.tsx
-var memo_input = __webpack_require__(1272);
+var memo_input = __webpack_require__(1263);
 
 // EXTERNAL MODULE: ./src/components/form/gas-input.tsx
-var gas_input = __webpack_require__(364);
+var gas_input = __webpack_require__(362);
 
 // EXTERNAL MODULE: ./src/components/form/ibc/channel-registrar.tsx
-var channel_registrar = __webpack_require__(632);
+var channel_registrar = __webpack_require__(630);
 
 // EXTERNAL MODULE: ./src/components/form/ibc/chain-selector.tsx
-var chain_selector = __webpack_require__(1273);
+var chain_selector = __webpack_require__(1264);
 
 // CONCATENATED MODULE: ./src/components/form/ibc/index.tsx
 
 
 
 // EXTERNAL MODULE: ./src/components/form/password-input.module.scss
-var password_input_module = __webpack_require__(1327);
+var password_input_module = __webpack_require__(1317);
 var password_input_module_default = /*#__PURE__*/__webpack_require__.n(password_input_module);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Tooltip.js
-var Tooltip = __webpack_require__(1206);
+var Tooltip = __webpack_require__(1199);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/message.js
-var message = __webpack_require__(165);
+var message = __webpack_require__(163);
 
 // CONCATENATED MODULE: ./src/components/form/password-input.tsx
 
@@ -18201,10 +17906,10 @@ var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/framer-motion/dist/framer-motion.es.js + 1 modules
-var framer_motion_es = __webpack_require__(159);
+var framer_motion_es = __webpack_require__(157);
 
 // EXTERNAL MODULE: ./src/layouts/menu/menu.module.scss
-var menu_module = __webpack_require__(1203);
+var menu_module = __webpack_require__(1196);
 var menu_module_default = /*#__PURE__*/__webpack_require__.n(menu_module);
 
 // CONCATENATED MODULE: ./src/layouts/menu/menu.tsx
@@ -18303,7 +18008,7 @@ var classnames = __webpack_require__(13);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./src/components/header/style/header.module.scss
-var header_module = __webpack_require__(1527);
+var header_module = __webpack_require__(1520);
 
 // CONCATENATED MODULE: ./src/components/header/style/index.tsx
 
@@ -18329,21 +18034,21 @@ var es = __webpack_require__(15);
 var stores = __webpack_require__(17);
 
 // EXTERNAL MODULE: ./src/layouts/header/style.module.scss
-var style_module = __webpack_require__(279);
+var style_module = __webpack_require__(278);
 var style_module_default = /*#__PURE__*/__webpack_require__.n(style_module);
 
 // EXTERNAL MODULE: ./src/components/tooltip/index.tsx
 var tooltip = __webpack_require__(251);
 
 // EXTERNAL MODULE: ./src/layouts/header/chain-list.module.scss
-var chain_list_module = __webpack_require__(641);
+var chain_list_module = __webpack_require__(639);
 var chain_list_module_default = /*#__PURE__*/__webpack_require__.n(chain_list_module);
 
 // EXTERNAL MODULE: ./src/components/confirm/index.tsx + 1 modules
 var components_confirm = __webpack_require__(101);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
-var useIntl = __webpack_require__(613);
+var useIntl = __webpack_require__(611);
 
 // CONCATENATED MODULE: ./src/layouts/header/chain-list.tsx
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -18459,7 +18164,7 @@ const header_Header = Object(es["a" /* observer */])(({ showChainName, canChange
 });
 
 // EXTERNAL MODULE: ./src/layouts/header-layout/style.module.scss
-var header_layout_style_module = __webpack_require__(1204);
+var header_layout_style_module = __webpack_require__(1197);
 var header_layout_style_module_default = /*#__PURE__*/__webpack_require__.n(header_layout_style_module);
 
 // CONCATENATED MODULE: ./src/layouts/header-layout/index.tsx
@@ -18493,11 +18198,11 @@ const HeaderLayout = (props) => {
 
 /***/ }),
 
-/***/ 609:
+/***/ 607:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1557);
+            var content = __webpack_require__(1550);
 
             content = content.__esModule ? content.default : content;
 
@@ -18518,11 +18223,11 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 610:
+/***/ 608:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1535);
+            var content = __webpack_require__(1528);
 
             content = content.__esModule ? content.default : content;
 
@@ -18543,7 +18248,7 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ 618:
+/***/ 616:
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -18553,7 +18258,7 @@ module.exports = __webpack_amd_options__;
 
 /***/ }),
 
-/***/ 632:
+/***/ 630:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18562,21 +18267,21 @@ module.exports = __webpack_amd_options__;
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(17);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1221);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1362);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1663);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(208);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(209);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(649);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(650);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(648);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(616);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1214);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1352);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1658);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(207);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(208);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(647);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(648);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(646);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(614);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(257);
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(609);
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(607);
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(203);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(613);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(165);
+/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(202);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(611);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(163);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -18683,7 +18388,7 @@ const IBCChannelRegistrarModal = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE
 
 /***/ }),
 
-/***/ 637:
+/***/ 635:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18702,41 +18407,41 @@ var es = __webpack_require__(15);
 var layouts = __webpack_require__(42);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/useIntl.js
-var useIntl = __webpack_require__(613);
+var useIntl = __webpack_require__(611);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-intl/lib/components/message.js
-var message = __webpack_require__(165);
+var message = __webpack_require__(163);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/react-router/esm/react-router.js
 var react_router = __webpack_require__(20);
 
 // EXTERNAL MODULE: ./src/pages/setting/style.module.scss
-var style_module = __webpack_require__(169);
+var style_module = __webpack_require__(167);
 var style_module_default = /*#__PURE__*/__webpack_require__.n(style_module);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Modal.js + 1 modules
-var Modal = __webpack_require__(1221);
+var Modal = __webpack_require__(1214);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ModalBody.js
-var ModalBody = __webpack_require__(1362);
+var ModalBody = __webpack_require__(1352);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/ButtonDropdown.js + 1 modules
-var ButtonDropdown = __webpack_require__(649);
+var ButtonDropdown = __webpack_require__(647);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownToggle.js + 1 modules
-var DropdownToggle = __webpack_require__(650);
+var DropdownToggle = __webpack_require__(648);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownMenu.js
-var DropdownMenu = __webpack_require__(648);
+var DropdownMenu = __webpack_require__(646);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/DropdownItem.js
-var DropdownItem = __webpack_require__(616);
+var DropdownItem = __webpack_require__(614);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/reactstrap/es/Button.js
 var Button = __webpack_require__(257);
 
 // EXTERNAL MODULE: ./src/pages/setting/address-book/style.module.scss
-var address_book_style_module = __webpack_require__(385);
+var address_book_style_module = __webpack_require__(383);
 var address_book_style_module_default = /*#__PURE__*/__webpack_require__.n(address_book_style_module);
 
 // EXTERNAL MODULE: ./src/stores/index.tsx + 3 modules
@@ -18849,7 +18554,7 @@ var components_confirm = __webpack_require__(101);
 var hooks_build = __webpack_require__(44);
 
 // EXTERNAL MODULE: ./src/config.ui.ts
-var config_ui = __webpack_require__(120);
+var config_ui = __webpack_require__(119);
 
 // CONCATENATED MODULE: ./src/pages/setting/address-book/index.tsx
 var address_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -18916,7 +18621,7 @@ const AddressBookPage = Object(es["a" /* observer */])(({ onBackButton, hideChai
                     e.preventDefault();
                     e.stopPropagation();
                     if (yield confirm.confirm({
-                        img: (react_default.a.createElement("img", { src: __webpack_require__(1536), style: { height: "80px" } })),
+                        img: (react_default.a.createElement("img", { src: __webpack_require__(1529), style: { height: "80px" } })),
                         title: intl.formatMessage({
                             id: "setting.address-book.confirm.delete-address.title",
                         }),
@@ -18984,11 +18689,61 @@ const AddressBookPage = Object(es["a" /* observer */])(({ onBackButton, hideChai
 
 /***/ }),
 
+/***/ 639:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1524);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 640:
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(32);
+            var content = __webpack_require__(1548);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ 641:
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1531);
+            var content = __webpack_require__(1549);
 
             content = content.__esModule ? content.default : content;
 
@@ -19013,7 +18768,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1555);
+            var content = __webpack_require__(1615);
 
             content = content.__esModule ? content.default : content;
 
@@ -19038,57 +18793,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1556);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 644:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1621);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ 645:
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(32);
-            var content = __webpack_require__(1637);
+            var content = __webpack_require__(1632);
 
             content = content.__esModule ? content.default : content;
 
@@ -19118,7 +18823,7 @@ module.exports = content.locals || {};
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _page_button_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(610);
+/* harmony import */ var _page_button_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(608);
 /* harmony import */ var _page_button_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_page_button_module_scss__WEBPACK_IMPORTED_MODULE_2__);
 
 
@@ -19154,7 +18859,7 @@ const PageButton = (props) => {
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1559);
+            var content = __webpack_require__(1552);
 
             content = content.__esModule ? content.default : content;
 
@@ -19179,7 +18884,7 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(32);
-            var content = __webpack_require__(1515);
+            var content = __webpack_require__(1506);
 
             content = content.__esModule ? content.default : content;
 

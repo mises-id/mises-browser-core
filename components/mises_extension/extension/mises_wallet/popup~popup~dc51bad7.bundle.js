@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[20],{
 
-/***/ 1074:
+/***/ 1071:
 /***/ (function(module, exports) {
 
 module.exports = extend
@@ -26,7 +26,7 @@ function extend() {
 
 /***/ }),
 
-/***/ 1076:
+/***/ 1073:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50,93 +50,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 1083:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(__dirname) {
-
-try {
-  module.exports = __webpack_require__(556)(__dirname);
-} catch (e) {
-  module.exports = __webpack_require__(1084);
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, "/"))
-
-/***/ }),
-
-/***/ 1084:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Checks if a given buffer contains only correct UTF-8.
- * Ported from https://www.cl.cam.ac.uk/%7Emgk25/ucs/utf8_check.c by
- * Markus Kuhn.
- *
- * @param {Buffer} buf The buffer to check
- * @return {Boolean} `true` if `buf` contains only correct UTF-8, else `false`
- * @public
- */
-const isValidUTF8 = (buf) => {
-  var len = buf.length;
-  var i = 0;
-
-  while (i < len) {
-    if (buf[i] < 0x80) {  // 0xxxxxxx
-      i++;
-    } else if ((buf[i] & 0xe0) === 0xc0) {  // 110xxxxx 10xxxxxx
-      if (
-        i + 1 === len ||
-        (buf[i + 1] & 0xc0) !== 0x80 ||
-        (buf[i] & 0xfe) === 0xc0  // overlong
-      ) {
-        return false;
-      } else {
-        i += 2;
-      }
-    } else if ((buf[i] & 0xf0) === 0xe0) {  // 1110xxxx 10xxxxxx 10xxxxxx
-      if (
-        i + 2 >= len ||
-        (buf[i + 1] & 0xc0) !== 0x80 ||
-        (buf[i + 2] & 0xc0) !== 0x80 ||
-        buf[i] === 0xe0 && (buf[i + 1] & 0xe0) === 0x80 ||  // overlong
-        buf[i] === 0xed && (buf[i + 1] & 0xe0) === 0xa0     // surrogate (U+D800 - U+DFFF)
-      ) {
-        return false;
-      } else {
-        i += 3;
-      }
-    } else if ((buf[i] & 0xf8) === 0xf0) {  // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-      if (
-        i + 3 >= len ||
-        (buf[i + 1] & 0xc0) !== 0x80 ||
-        (buf[i + 2] & 0xc0) !== 0x80 ||
-        (buf[i + 3] & 0xc0) !== 0x80 ||
-        buf[i] === 0xf0 && (buf[i + 1] & 0xf0) === 0x80 ||  // overlong
-        buf[i] === 0xf4 && buf[i + 1] > 0x8f || buf[i] > 0xf4  // > U+10FFFF
-      ) {
-        return false;
-      } else {
-        i += 4;
-      }
-    } else {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-module.exports = isValidUTF8;
-
-
-/***/ }),
-
-/***/ 1201:
+/***/ 1194:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -190,7 +104,7 @@ exports.AnalyticsStore = AnalyticsStore;
 
 /***/ }),
 
-/***/ 131:
+/***/ 130:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -210,8 +124,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NO_IL = exports.NO = exports.MemoryStream = exports.Stream = void 0;
-var ponyfill_1 = __webpack_require__(948);
-var globalthis_1 = __webpack_require__(950);
+var ponyfill_1 = __webpack_require__(945);
+var globalthis_1 = __webpack_require__(947);
 var $$observable = ponyfill_1.default(globalthis_1.getPolyfill());
 var NO = {};
 exports.NO = NO;
@@ -1944,7 +1858,7 @@ exports.default = xs;
 
 /***/ }),
 
-/***/ 1317:
+/***/ 1307:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1988,7 +1902,7 @@ function valueEqual(a, b) {
 
 /***/ }),
 
-/***/ 155:
+/***/ 154:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2015,8 +1929,8 @@ function valueEqual(a, b) {
 
 
 
-var punycode = __webpack_require__(627);
-var util = __webpack_require__(1076);
+var punycode = __webpack_require__(625);
+var util = __webpack_require__(1073);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -2091,7 +2005,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(378);
+    querystring = __webpack_require__(376);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -2728,7 +2642,7 @@ Url.prototype.parseHost = function() {
 
 /***/ }),
 
-/***/ 287:
+/***/ 286:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2803,7 +2717,7 @@ function config (name) {
 
 /***/ }),
 
-/***/ 631:
+/***/ 629:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2873,10 +2787,10 @@ module.exports = warning;
 
 /***/ }),
 
-/***/ 766:
+/***/ 763:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var bs58check = __webpack_require__(292)
+/* WEBPACK VAR INJECTION */(function(Buffer) {var bs58check = __webpack_require__(291)
 
 function decodeRaw (buffer, version) {
   // check version only if defined
