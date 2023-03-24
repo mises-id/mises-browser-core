@@ -241,7 +241,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
   if (!results.empty()) {
     for (const auto& item : results){
       if (item.url().SchemeIs(extensions::kExtensionScheme)) {
-        LOG(INFO) << "[Kiwi] InstantService::SearchComplete- recent extension: " << item.url().GetWithEmptyPath();
+        LOG(INFO) << "[Mises] InstantService::SearchComplete- recent extension: " << item.url().GetWithEmptyPath();
 	recent.push_back(item.url().GetWithEmptyPath());
       }
     }
@@ -276,7 +276,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
             item.favicon = GURL(base64_image);
           }
         }
-       LOG(INFO) << "[Kiwi] InstantService::SearchComplete - found extension: " << item.url;
+       LOG(INFO) << "[Mises] InstantService::SearchComplete - found extension: " << item.url;
        items.push_back(item);
     }
   }
@@ -289,7 +289,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
   });
   recent_extensions_.clear();
   for (const auto& item : items) {
-    LOG(INFO) << "[Kiwi] InstantService::SearchComplete - sort extension: " << item.url;
+    LOG(INFO) << "[Mises] InstantService::SearchComplete - sort extension: " << item.url;
     recent_extensions_.push_back(item);
   }
   NotifyAboutMostVisitedInfo();

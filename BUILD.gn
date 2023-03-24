@@ -53,7 +53,7 @@ if (!is_ios) {
     data_deps = [ ":unpacked_resources" ]
 
     if (!is_ios) {
-      deps += [ ":packed_resources" ]
+      #deps += [ ":packed_resources" ]
     }
   }
 
@@ -124,15 +124,14 @@ group("resources") {
 if (is_android) {
   android_assets("mises_pak_assets") {
     sources = [
-      #"$root_build_dir/mises_100_percent.pak",
-      #"$root_build_dir/mises_resources.pak",
+      "$root_build_dir/mises_100_percent.pak",
+      "$root_build_dir/mises_resources.pak",
       "//mises/LICENSE.html",
     ]
     deps = [ 
       "//mises:browser_dependencies",
-      "//mises:packed_resources_100_percent",
-      "//mises:packed_resources_extra",
     ]
+    public_deps = [":packed_resources",]
     disable_compression = true
   }
 }

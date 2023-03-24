@@ -1,9 +1,11 @@
 #include "build/build_config.h"
+#include "chrome/browser/ui/views/frame/browser_view.h"
 #include "chrome/browser/ui/views/autofill/autofill_bubble_handler_impl.h"
 #include "chrome/browser/ui/views/profiles/profile_menu_view_base.h"
 #include "chrome/browser/ui/views/hats/hats_next_web_dialog.h"
 #include "chrome/browser/ui/views/profiles/profile_menu_coordinator.h"
-#include "chrome/browser/ui/performance_controls/high_efficiency_iph_controller.h"
+#include "chrome/browser/ui/browser_window.h"
+
 #if BUILDFLAG(IS_ANDROID)
 
 namespace autofill {
@@ -96,7 +98,19 @@ class HighEfficiencyIPHController_Mises {
 #define HatsNextWebDialog HatsNextWebDialog_Mises
 #define ProfileMenuCoordinator ProfileMenuCoordinator_Mises
 #define HighEfficiencyIPHController HighEfficiencyIPHController_Mises
+#define GetDownloadBubbleUIController GetDownloadBubbleUIController_Chromium
+
 #endif
+
 
 #include "src/chrome/browser/ui/views/frame/browser_view.cc"
 
+#if BUILDFLAG(IS_ANDROID)
+#undef GetDownloadBubbleUIController
+
+DownloadBubbleUIController* BrowserView::GetDownloadBubbleUIController() {
+  if (!toolbar_button_provider_)
+    return nullptr;
+  return GetDownloadBubbleUIController_Chromium();
+}
+#endif

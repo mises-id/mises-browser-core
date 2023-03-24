@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!-- Profiles specific strings (included from generated_resources.grd). -->
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- Supervised User (Legacy and Accounts for Kids) Avatar Menu -->
   <message name="IDS_CHILD_INFO_ONE_CUSTODIAN" desc="Text which explains that a child user is managed by a single parent.">
@@ -23,20 +24,20 @@
         other {# open guest windows}
       }
   </message>
-  <message name="IDS_INCOGNITO_BUBBLE_ACCESSIBLE_TITLE" desc="Accessible title of the avatar menu, opened in Incognito mode. The message also shows the number of open Incognito windows if they are more than one. [ICU Syntax]">
+  <message name="IDS_INCOGNITO_BUBBLE_ACCESSIBLE_TITLE" desc="Accessible title of the avatar menu, opened in Private mode. The message also shows the number of open Private windows if they are more than one. [ICU Syntax]">
       {0, plural,
-        =1 {Incognito}
-        other {# open Incognito windows}
+        =1 {Private}
+        other {# open Private windows}
       }
   </message>
-  <message name="IDS_AVATAR_BUTTON_INCOGNITO" desc="Short label for the avatar button when the user is in Incognito mode and the number of open Incognito windows if there are more than one Incognito window open. [ICU Syntax]" meaning="This window is browsing in Incognito mode and there are more than one Incognito windows open. The counter is not shown when there is only one Incognito window open.">
+  <message name="IDS_AVATAR_BUTTON_INCOGNITO" desc="Short label for the avatar button when the user is in Private mode and the number of open Private windows if there are more than one Private window open. [ICU Syntax]" meaning="This window is browsing in Incognito mode and there are more than one Incognito windows open. The counter is not shown when there is only one Incognito window open.">
     {0, plural,
-      =1 {Incognito}
-      other {Incognito (#)}
+      =1 {Private}
+      other {Private (#)}
     }
   </message>
-  <message name="IDS_AVATAR_BUTTON_INCOGNITO_TOOLTIP" desc="Tooltip for the avatar button when the user is in Incognito mode.">
-    You're Incognito
+  <message name="IDS_AVATAR_BUTTON_INCOGNITO_TOOLTIP" desc="Tooltip for the avatar button when the user is in Private mode.">
+    You're Private
   </message>
   <message name="IDS_AVATAR_BUTTON_SYNC_ERROR" desc="Short label for the avatar button when there are sync errors for the current profile." meaning="An error has occurred during sync">
     Error
@@ -60,7 +61,7 @@
   </message>
   <if expr="is_macosx">
     <message name="IDS_PROFILES_CREATE_NEW_PROFILE_OPTION" desc="In Title Case. Create new profile menu item and button title.">
-      Add Person...
+      Add Profile...
     </message>
     <message name="IDS_PROFILES_ADD_PROFILE_LABEL" desc="In Title Case. Menu item for adding a new profile.">
       Add Profile...
@@ -169,13 +170,12 @@
     User <ph name="VALUE">$1<ex>1</ex></ph>
   </message>
   <message name="IDS_NEW_NUMBERED_PROFILE_NAME" desc="The name given to a newly created profile. Displayed in wrench menu and settings UI using the --new-profile-management flag.">
-    Person <ph name="VALUE">$1<ex>1</ex></ph>
+    Profile <ph name="VALUE">$1<ex>1</ex></ph>
   </message>
   <message name="IDS_SINGLE_PROFILE_DISPLAY_NAME" desc="The name displayed by the avatar button if only one profile exists.">
     You
   </message>
-  <message name="IDS_GUEST_PROFILE_NAME" desc="The name given to the guest
-  browsing profile. Displayed in the avatar menu bubble and button UI.">
+  <message name="IDS_GUEST_PROFILE_NAME" desc="The name given to the guest   browsing profile. Displayed in the avatar menu bubble and button UI.">
     Guest
   </message>
 
@@ -410,7 +410,7 @@
     Not signed in
   </message>
   <message name="IDS_PROFILES_CREATE_BUTTON_LABEL" desc="The label that appears on the profile create button in the options dialog to allow a user to create a new profile.">
-    Add person...
+    Add profile...
   </message>
   <message name="IDS_PROFILES_MANAGE_BUTTON_LABEL" desc="The label that appears on the profile manage button in the options dialog to allow a user to manage their profile.">
     Edit...
@@ -431,10 +431,10 @@
     Your administrator has made a system-wide change that disables some old profiles.
   </message>
   <message name="IDS_OLD_PROFILES_DISABLED_ADD_PERSON_SUGGESTION" desc="The suggestion that tells the user to create a new profile when the user tries to use an old profile that is disabled by policy">
-    To continue, click OK, then click Add Person to create a new profile for your email address.
+    To continue, click OK, then click Add Profile to create a new profile for your email address.
   </message>
   <message name="IDS_OLD_PROFILES_DISABLED_ADD_PERSON_SUGGESTION_WITH_DOMAIN" desc="The suggestion that tells the user to create a new profile with the domain when the user tries to use an old profile that is disabled by policy">
-    To continue, click OK, then click Add Person to create a new profile for your <ph name="DOMAIN">$1<ex>example.com</ex></ph> email address.
+    To continue, click OK, then click Add Profile to create a new profile for your <ph name="DOMAIN">$1<ex>example.com</ex></ph> email address.
   </message>
   <message name="IDS_OLD_PROFILES_DISABLED_REMOVED_OLD_PROFILE" desc="The suggestion that tells the user to delete old profile when the user tries to use an old profile that is disabled by policy">
     Although you can no longer access your old profile, you can still remove it.
@@ -579,7 +579,7 @@
       Guest mode
     </message>
     <message name="IDS_PROFILE_PICKER_BACK_BUTTON_ARIA_LABEL" desc="Label for a button that navigates user to the previous page from a profile picker subpage">
-      Back from <ph name="PAGE_TITLE">$1<ex>Set up your new Chrome profile</ex></ph> page
+      Back from <ph name="PAGE_TITLE">$1<ex>Set up your new Mises profile</ex></ph> page
     </message>
     <message name="IDS_PROFILE_PICKER_BACK_BUTTON_SIGN_IN_LABEL" desc="Label for a button that navigates user to the previous page from the 'Sign in' page">
       Back from sign in
@@ -605,8 +605,8 @@
     <message name="IDS_PROFILE_PICKER_PROFILE_MENU_CUSTOMIZE_TEXT" desc="Text of the customize button in profile card menu">
       Edit
     </message>
-    <message name="IDS_PROFILE_PICKER_PROFILE_MENU_INCOGNITO_TEXT" desc="Text of the Incognito button in profile card menu">
-      Incognito
+    <message name="IDS_PROFILE_PICKER_PROFILE_MENU_INCOGNITO_TEXT" desc="Text of the Private button in profile card menu">
+      Private
     </message>
     <message name="IDS_PROFILE_PICKER_ASK_ON_STARTUP" desc="Text for the checkbox on the profile picker main view">
       Show on startup
@@ -728,16 +728,16 @@
         Delete this profile and browsing data?
       </message>
       <message name="IDS_PROFILE_PICKER_REMOVE_WARNING_SIGNED_IN_PROFILE_LACROS" desc="Remove warning message shown for signed in profiles shown when the user selects remove from the 3 dotted menu">
-        This will permanently delete browsing data from this device. The Google Accounts in this profile may be used by other apps on your <ph name="DEVICE_TYPE">$1<ex>Chromebook</ex></ph>. You can remove these accounts in <ph name="BEGIN_LINK">&lt;a is="action-link" target="_blank"&gt;</ph><ph name="SETTING_SECTION">$2<ex>Settings</ex></ph> > <ph name="ACCOUNTS_SECTION">$3<ex>Accounts</ex></ph><ph name="END_LINK">&lt;/a&gt;</ph>.
+        This will permanently delete browsing data from this device. The Mises sync chains in this profile may be used by other apps on your <ph name="DEVICE_TYPE">$1<ex>Chromebook</ex></ph>. You can remove these accounts in <ph name="BEGIN_LINK">&lt;a is="action-link" target="_blank"&gt;</ph><ph name="SETTING_SECTION">$2<ex>Settings</ex></ph> &gt; <ph name="ACCOUNTS_SECTION">$3<ex>Accounts</ex></ph><ph name="END_LINK">&lt;/a&gt;</ph>.
       </message>
-      <message name="IDS_PRIMARY_PROFILE_FIRST_RUN_NEXT_BUTTON_LABEL" desc="Label of the 'next' button of the landing screen in first run experience for the primary profile. The screen promotes Chrome sync.">
+      <message name="IDS_PRIMARY_PROFILE_FIRST_RUN_NEXT_BUTTON_LABEL" desc="Label of the 'next' button of the landing screen in first run experience for the primary profile. The screen promotes Mises sync.">
         Let's go
       </message>
     </if>
 
     <!-- First Run Experience strings -->
     <if expr="not chromeos_lacros">
-      <message name="IDS_FRE_SIGN_IN_TITLE" desc="The title for the sign in page explaining to the users the benefits of signing in to Chrome">
+      <message name="IDS_FRE_SIGN_IN_TITLE" desc="The title for the sign in page explaining to the users the benefits of signing in to Mises">
         Sign in for more benefits
       </message>
       <message name="IDS_FRE_DEVICES_CARD_TITLE" desc="The title of the benefits card explaining to the the users that they can continue their work on any of their signed in devices">
@@ -746,10 +746,10 @@
       <message name="IDS_FRE_DEVICES_CARD_DESCRIPTION" desc="The description of the benefits card explaining to the users that they can continue their work on any of their signed in devices">
         Pick up where you left off on any device
       </message>
-      <message name="IDS_FRE_SECURITY_CARD_TITLE" desc="The title of the benefits card explaining to the users that signing in to Chrome offers strong security features">
+      <message name="IDS_FRE_SECURITY_CARD_TITLE" desc="The title of the benefits card explaining to the users that signing in to Mises offers strong security features">
         Stronger security
       </message>
-      <message name="IDS_FRE_SECURITY_CARD_DESCRIPTION" desc="The description of the benefits card explaining to the users that signing in to Chrome will grant them more security thus protecting their passwords and more">
+      <message name="IDS_FRE_SECURITY_CARD_DESCRIPTION" desc="The description of the benefits card explaining to the users that signing in to Mises will grant them more security thus protecting their passwords and more">
         Extra protection to your passwords and more
       </message>
       <message name="IDS_FRE_BACKUP_CARD_TITLE" desc="The title of the benefits card explaining to the users that they can back up their stuff and use them across all signed in devices">
@@ -758,10 +758,10 @@
       <message name="IDS_FRE_BACKUP_CARD_DESCRIPTION" desc="The description of the benefits card giving users examples of data they can back up when they sign in">
         Store your bookmarks and more with sync
       </message>
-      <message name="IDS_FRE_DECLINE_SIGN_IN_BUTTON_TITLE" desc="The title of the button giving the users the choice not to sign in to Chrome">
+      <message name="IDS_FRE_DECLINE_SIGN_IN_BUTTON_TITLE" desc="The title of the button giving the users the choice not to sign in to Mises">
         Don't sign in
       </message>
-      <message name="IDS_FRE_ACCEPT_SIGN_IN_BUTTON_TITLE" desc="The title of the button giving the users the choice to sign in to Chrome">
+      <message name="IDS_FRE_ACCEPT_SIGN_IN_BUTTON_TITLE" desc="The title of the button giving the users the choice to sign in to Mises">
         Sign in
       </message>
       <message name="IDS_FRE_MANAGED_DESCRIPTION" desc="The disclaimer explaining to the users that their device is managed by their organization">

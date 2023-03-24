@@ -126,7 +126,8 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 #endif
 
 #if !BUILDFLAG(ENABLE_FEED_V2)
-  registry->RegisterBooleanPref(feed::prefs::kArticlesListVisible,false);
+  feed::prefs::RegisterFeedSharedProfilePrefs(registry);
+  feed::RegisterProfilePrefs(registry);
 #endif 
 
 #if BUILDFLAG(IS_ANDROID)

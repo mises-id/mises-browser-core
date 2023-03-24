@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- Security summary strings -->
   <message name="IDS_PAGE_INFO_SECURE_SUMMARY" desc="A short summary phrase at the top of the Page Info bubble (which shows when you click the lock icon) that indicates that the connection to the current website is secure.">
@@ -28,7 +29,7 @@
 
   <!-- Internal page summary strings -->
   <!-- Note: IDS_PAGE_INFO_INTERNAL_PAGE would be here, but it is in components_{chromium,google_chrome}_strings.grd because it uses the browser name. -->
-  <message name="IDS_PAGE_INFO_EXTENSION_PAGE" desc="Message to display in the page info bubble when the page you are on is a chrome-extension:// page. This refers to Chrome extensions.">
+  <message name="IDS_PAGE_INFO_EXTENSION_PAGE" desc="Message to display in the page info bubble when the page you are on is a chrome-extension:// page. This refers to Mises extensions.">
     You're viewing an extension page
   </message>
   <message name="IDS_PAGE_INFO_VIEW_SOURCE_PAGE" desc="Message to display in the page info bubble when you are viewing page sources by using |View page source| option from the right click menu.">
@@ -38,10 +39,10 @@
     You're viewing a developer tools page
   </message>
   <message name="IDS_PAGE_INFO_READER_MODE_PAGE_SECURE" desc="Message to display in the page info bubble when the page you are viewing is the reader mode version of an article which was retrieved over a secure connection.">
-    Chrome simplified this page to make it easier to read. Chrome retrieved the original page over a secure connection.
+    Mises simplified this page to make it easier to read. Mises retrieved the original page over a secure connection.
   </message>
   <message name="IDS_PAGE_INFO_READER_MODE_PAGE" desc="Message to display in the page info bubble when the page you are viewing is the reader mode version of an article which was retrieved over an insecure connection.">
-    Chrome simplified this page to make it easier to read. Chrome retrieved the original page over an insecure connection.
+    Mises simplified this page to make it easier to read. Mises retrieved the original page over an insecure connection.
   </message>
 
   <!-- Safety Tip summary strings -->
@@ -52,7 +53,7 @@
     Yes, continue
   </message>
   <message name="IDS_PAGE_INFO_SAFETY_TIP_LOOKALIKE_TITLE" desc="Title of Safety Tip infobar on a domain that looks like another domain.">
-    Did you mean <ph name='LOOKALIKE_DOMAIN'>$1<ex>google.com</ex></ph>?
+    Did you mean <ph name="LOOKALIKE_DOMAIN">$1<ex>google.com</ex></ph>?
   </message>
   <message name="IDS_PAGE_INFO_SAFETY_TIP_DESCRIPTION" desc="Body of a warning when the user visits a page that triggered a Safety Tip.">
     Attackers sometimes mimic sites by making hard-to-see changes to the web address.
@@ -68,7 +69,7 @@
     Your information (for example, passwords or credit card numbers) is private when it is sent to this site.
   </message>
   <message name="IDS_PAGE_INFO_SECURE_DETAILS_V2" desc="A short paragraph explaining a secure site to the user.">
-    The site's connection is secure unless Chrome tells you otherwise.
+    The site's connection is secure unless Mises tells you otherwise.
   </message>
   <message name="IDS_PAGE_INFO_ADMIN_PROVIDED_CERT_DETAILS" desc="A short paragraph explaining a site using an administrator-provided certificate to the user.">
     You have accessed content using an administrator-provided certificate. Data you provide to <ph name="DOMAIN">$1<ex>www.google.com</ex></ph> can be intercepted by your administrator.
@@ -105,13 +106,13 @@
     Check your passwords
   </message>
   <if expr="_google_chrome">
-    <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SAVED" desc="A short paragraph explaining to a Chrome user that they have reused their saved password on the current website.">
-      You just entered your password on a deceptive site. To secure your accounts, Chrome recommends checking your saved passwords.
+    <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SAVED" desc="A short paragraph explaining to a Mises user that they have reused their saved password on the current website.">
+      You just entered your password on a deceptive site. To secure your accounts, Mises recommends checking your saved passwords.
     </message>
   </if>
   <if expr="not _google_chrome">
-    <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SAVED" desc="A short paragraph explaining to a Chromium user that they have reused their saved password on the current website.">
-      You just entered your password on a deceptive site. To secure your accounts, Chromium recommends checking your saved passwords.
+    <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SAVED" desc="A short paragraph explaining to a Mises user that they have reused their saved password on the current website.">
+      You just entered your password on a deceptive site. To secure your accounts, Mises recommends checking your saved passwords.
     </message>
   </if>
   <if expr="use_titlecase">
@@ -197,7 +198,7 @@
       <ph name="CITY">$1<ex>Mountain View</ex></ph>, <ph name="COUNTRY">$2<ex>US</ex></ph>
     </message>
     <message name="IDS_PAGE_INFO_SECURITY_TAB_SECURE_IDENTITY_EV_VERIFIED" desc="Describes the legal entity that the current page's HTTPS certificate was issued to. Shown in the certificate area in the Page Info bubble when a HTTPS site with a valid EV certificate is loaded.">
-      Issued to: <ph name="ORGANIZATION">$1<ex>Google LLC</ex></ph> [<ph name="JURISDICTION">$2<ex>US</ex></ph>]
+      Issued to: <ph name="ORGANIZATION">$1<ex>Mises LLC</ex></ph> [<ph name="JURISDICTION">$2<ex>US</ex></ph>]
     </message>
 
     <!-- Certificate Viewer link -->
@@ -238,7 +239,7 @@
     <if expr="is_android">
     <!-- Only used in the dialog shown after tapping "Details" in page info -->
     <message name="IDS_PAGE_INFO_SECURE_IDENTITY_VERIFIED" desc="The text of the identity section when the page is secure and uses a valid certificate">
-      <ph name="BROWSER">$1<ex>Chromium</ex></ph> verified that <ph name="ISSUER">$2<ex>VeriSign</ex></ph> issued this website's certificate.
+      <ph name="BROWSER">$1<ex>Mises</ex></ph> verified that <ph name="ISSUER">$2<ex>VeriSign</ex></ph> issued this website's certificate.
     </message>
     </if>
 
@@ -345,8 +346,8 @@
     <message name="IDS_PAGE_INFO_STATE_TEXT_NOT_ALLOWED" desc="The Page Info permission subpage and the main page info page contain a label which shows the state of the site permission. This is the text shown if the permission is not allowed (blocked or ask state) by any source (the user, the administrator, etc.).">
       Not allowed
     </message>
-    <message name="IDS_PAGE_INFO_STATE_TEXT_NOT_ALLOWED_IN_INCOGNITO" desc="The Page Info permission subpage and the main page info page contain a label which shows the state of the site permission. This is the text shown if the permission is not allowed in incognito mode.">
-      Not allowed in Incognito
+    <message name="IDS_PAGE_INFO_STATE_TEXT_NOT_ALLOWED_IN_INCOGNITO" desc="The Page Info permission subpage and the main page info page contain a label which shows the state of the site permission. This is the text shown if the permission is not allowed in private mode.">
+      Not allowed in Private
     </message>
     <message name="IDS_PAGE_INFO_STATE_TEXT_NOT_ALLOWED_INSECURE" desc="The Page Info permission subpage and the main page info page contain a label which shows the state of the site permission. This is the text shown if the permission is not allowed in non-secure sites.">
       Not allowed for non-secure sites
@@ -461,7 +462,7 @@
     </message>
 
     <!-- Site settings link -->
-    <message name="IDS_PAGE_INFO_SITE_SETTINGS_LINK" desc="This is the text of the link pointing to Chrome's Site Settings page. This appears at the bottom of the Permissions pane of the Page Information Window.">
+    <message name="IDS_PAGE_INFO_SITE_SETTINGS_LINK" desc="This is the text of the link pointing to Mises's Site Settings page. This appears at the bottom of the Permissions pane of the Page Information Window.">
       Site settings
     </message>
     <message name="IDS_PAGE_INFO_SITE_SETTINGS_TOOLTIP" desc="The text of the tooltip on IDS_PAGE_INFO_SITE_SETTINGS_LINK.">
@@ -487,7 +488,7 @@
     <message name="IDS_PAGE_INFO_PERMISSION_ASK_BY_EXTENSION" desc="The label used underneath a permission listed in the Page Info bubble if the permission was explicitly set to 'Ask' by one of the user's extensions.">
       Setting controlled by an extension
     </message>
-    <message name="IDS_PAGE_INFO_PERMISSION_AUTOMATICALLY_BLOCKED" desc="The label used underneath a permission listed in the Page Info bubble if the permission was blocked by Chrome on behalf of the user.">
+    <message name="IDS_PAGE_INFO_PERMISSION_AUTOMATICALLY_BLOCKED" desc="The label used underneath a permission listed in the Page Info bubble if the permission was blocked by Mises on behalf of the user.">
       Automatically blocked
     </message>
     <message name="IDS_PAGE_INFO_PERMISSION_ADS_SUBTITLE" desc="A subtitle shown under the ‘Ads’ setting indicating that a site has, in the past, shown intrusive or misleading ads. Shown when user clicks/taps the lock/'Danger' icon in the address bar. Used on both desktop and Android platforms" formatter_data="android_java">
@@ -513,36 +514,36 @@
     <!-- Password Protection -->
     <if expr="_google_chrome">
       <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS" desc="A short paragraph explaining to the user that they has reuse their google password on current website.">
-        You could lose access to your Google Account. Chrome recommends changing your password now. You'll be asked to sign in.
+        You could lose access to your Mises sync chain. Mises recommends changing your password now. You'll be asked to sign in.
       </message>
-      <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SYNC" desc="A short paragraph explaining to a Chrome sync user that they have reused their Google password on the current website.">
-        Chrome can help you protect your Google Account and change your password.
+      <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SYNC" desc="A short paragraph explaining to a Mises sync user that they have reused their Mises password on the current website.">
+        Mises can help you protect your Mises sync chain and change your password.
       </message>
-      <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SIGNED_IN_NON_SYNC" desc="A short paragraph explaining to a non-sync user that they have reused their Google password on the current website.">
-        You just entered your password on a deceptive site. Chrome can help. To change your password and notify Google that your account may be at risk, click Protect Account.
+      <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SIGNED_IN_NON_SYNC" desc="A short paragraph explaining to a non-sync user that they have reused their Mises password on the current website.">
+        You just entered your password on a deceptive site. Mises can help. To change your password and notify Mises that your account may be at risk, click Protect Account.
       </message>
       <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_ENTERPRISE" desc="A short paragraph explaining to the user that they have reused their password on the current website.">
-        You could lose access to your organization's account or experience identity theft. Chrome recommends changing your password now.
+        You could lose access to your organization's account or experience identity theft. Mises recommends changing your password now.
       </message>
       <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_ENTERPRISE_WITH_ORG_NAME" desc="A short paragraph explaining to the user that they have reused their password on the current website.">
-        You could lose access to your <ph name="ORG_NAME">$1<ex>Google</ex></ph> account or experience identity theft. Chrome recommends changing your password now.
+        You could lose access to your <ph name="ORG_NAME">$1<ex>Mises</ex></ph> account or experience identity theft. Mises recommends changing your password now.
       </message>
     </if>
     <if expr="not _google_chrome">
       <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS" desc="A short paragraph explaining to the user that they has reuse their google password on current website.">
-        You could lose access to your Google Account. Chromium recommends changing your password now. You'll be asked to sign in.
+        You could lose access to your Mises sync chain. Mises recommends changing your password now. You'll be asked to sign in.
       </message>
-      <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SYNC" desc="A short paragraph explaining to a Chrome sync user that they have reused their Google password on the current website.">
-        Chromium can help you protect your Google Account and change your password.
+      <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SYNC" desc="A short paragraph explaining to a Mises sync user that they have reused their Mises password on the current website.">
+        Mises can help you protect your Mises sync chain and change your password.
       </message>
-      <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SIGNED_IN_NON_SYNC" desc="A short paragraph explaining to a non-sync user that they have reused their Google password on the current website.">
-        You just entered your password on a deceptive site. Chromium can help. To change your password and notify Google that your account may be at risk, click Protect Account.
+      <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_SIGNED_IN_NON_SYNC" desc="A short paragraph explaining to a non-sync user that they have reused their Mises password on the current website.">
+        You just entered your password on a deceptive site. Mises can help. To change your password and notify Mises that your account may be at risk, click Protect Account.
       </message>
       <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_ENTERPRISE" desc="A short paragraph explaining to the user that they have reused their password on the current website.">
-        You could lose access to your organization's account or experience identity theft. Chromium recommends changing your password now.
+        You could lose access to your organization's account or experience identity theft. Mises recommends changing your password now.
       </message>
       <message name="IDS_PAGE_INFO_CHANGE_PASSWORD_DETAILS_ENTERPRISE_WITH_ORG_NAME" desc="A short paragraph explaining to the user that they have reused their password on the current website.">
-        You could lose access to your <ph name="ORG_NAME">$1<ex>Google</ex></ph> account or experience identity theft. Chromium recommends changing your password now.
+        You could lose access to your <ph name="ORG_NAME">$1<ex>Mises</ex></ph> account or experience identity theft. Mises recommends changing your password now.
       </message>
     </if>
 
@@ -748,10 +749,10 @@
     Show ad personalization details
   </message>
   <message name="IDS_PAGE_INFO_AD_PERSONALIZATION_TOPICS_AND_INTEREST_GROUP_DESCRIPTION" desc="The description label that explains to the user that the current site has accessed the Topics API and joined the user to an interest group. The label is located in 'Ad personalization' subpage in page info bubble.">
-    This site defines interests other sites can use to show you ads. This site also gets your interests from Chrome to show you more relevant ads.
+    This site defines interests other sites can use to show you ads. This site also gets your interests from Mises to show you more relevant ads.
   </message>
-  <message name="IDS_PAGE_INFO_AD_PERSONALIZATION_TOPICS_DESCRIPTION"  desc="The description label that explains to the user that the current site has accessed the Topics API. The label is located in 'Ad personalization' subpage in page info bubble.">
-   This site gets your interests from Chrome to show you more relevant ads
+  <message name="IDS_PAGE_INFO_AD_PERSONALIZATION_TOPICS_DESCRIPTION" desc="The description label that explains to the user that the current site has accessed the Topics API. The label is located in 'Ad personalization' subpage in page info bubble.">
+   This site gets your interests from Mises to show you more relevant ads
   </message>
   <message name="IDS_PAGE_INFO_AD_PERSONALIZATION_INTEREST_GROUP_DESCRIPTION" desc="The description label that explains to the user that the current site has joined the user to an interest group. The label is located in 'Ad personalization' subpage in page info bubble.">
     This site defines interests other sites can use to show you ads
@@ -775,14 +776,14 @@
   <message name="IDS_PAGE_INFO_AD_PRIVACY_TOOLTIP" desc="A tooltip label that appears when a user hovers over the 'Ad privacy' button label. 1) Navigate to any site. 2) Click the icon (often a lock) to the left of the URL in the address bar. Information about the page you're viewing appears. The 'Ad privacy' label will appear above the 'Site settings' button. 3) Hover over the 'Ad privacy' button label and this text will appear to help users understand why they might want to open 'Ad privacy'.">
     See info used to show you ads
   </message>
-  <message name="IDS_PAGE_INFO_AD_PRIVACY_TOPICS_DESCRIPTION"  desc="1 of 3 possible descriptions a user might see when they choose 'Ad privacy' from page info for a specific site. 1) Navigate to any site. 2) Click the icon (often a lock) to the left of the URL in the address bar. Information about the page you're viewing appears. The 'Ad privacy' label will appear above the 'Site settings' button. 3) Click on Ad privacy. This string describes the case that the site being viewed uses the Ad topics setting. What's the Ad topics setting? When on, Chrome will estimate the user's topics of interest based on their recent browsing history and then show up to 3 of those topics with a site so that the site can better personalize ads (a privacy-preserving way to replicate some of the functionality of third-party cookies). In this case, we're informing the user that this site uses the Ad topics API and we're showing the user the ad topics Chrome has shared with the site. A button 'Manage ad privacy' allows the user to turn 'Ad privacy' settings on/off or to block specific ad topics.">
-    This site gets your ad topics from Chrome to show you more relevant ads
+  <message name="IDS_PAGE_INFO_AD_PRIVACY_TOPICS_DESCRIPTION" desc="1 of 3 possible descriptions a user might see when they choose 'Ad privacy' from page info for a specific site. 1) Navigate to any site. 2) Click the icon (often a lock) to the left of the URL in the address bar. Information about the page you're viewing appears. The 'Ad privacy' label will appear above the 'Site settings' button. 3) Click on Ad privacy. This string describes the case that the site being viewed uses the Ad topics setting. What's the Ad topics setting? When on, Mises will estimate the user's topics of interest based on their recent browsing history and then show up to 3 of those topics with a site so that the site can better personalize ads (a privacy-preserving way to replicate some of the functionality of third-party cookies). In this case, we're informing the user that this site uses the Ad topics API and we're showing the user the ad topics Mises has shared with the site. A button 'Manage ad privacy' allows the user to turn 'Ad privacy' settings on/off or to block specific ad topics.">
+    This site gets your ad topics from Mises to show you more relevant ads
   </message>
-  <message name="IDS_PAGE_INFO_AD_PRIVACY_FLEDGE_DESCRIPTION" desc="2 of 3 possible descriptions a user might see when they choose 'Ad privacy' from page info for a specific site. 1) Navigate to any site. 2) Click the icon (often a lock) to the left of the URL in the address bar. Information about the page you're viewing appears. The 'Ad privacy' label will appear above the 'Site settings' button. 3) Click on Ad privacy. This string describes the case that the site being viewed uses the Site-suggested ads setting. What's the Site-suggested ads setting? When on, a site can determine a user's interests, save info with Chrome relative to those interests. Later, as a user continues browsing, a site can ask Chrome for a user's interests and the first site can (through Chrome) suggest ads the user might like. In this case, we're informing the user that this site uses the Site-suggested ads API. A button 'Manage ad privacy' allows the user to turn 'Ad privacy' settings on/off or to block specific ad topics.">
+  <message name="IDS_PAGE_INFO_AD_PRIVACY_FLEDGE_DESCRIPTION" desc="2 of 3 possible descriptions a user might see when they choose 'Ad privacy' from page info for a specific site. 1) Navigate to any site. 2) Click the icon (often a lock) to the left of the URL in the address bar. Information about the page you're viewing appears. The 'Ad privacy' label will appear above the 'Site settings' button. 3) Click on Ad privacy. This string describes the case that the site being viewed uses the Site-suggested ads setting. What's the Site-suggested ads setting? When on, a site can determine a user's interests, save info with Mises relative to those interests. Later, as a user continues browsing, a site can ask Mises for a user's interests and the first site can (through Mises) suggest ads the user might like. In this case, we're informing the user that this site uses the Site-suggested ads API. A button 'Manage ad privacy' allows the user to turn 'Ad privacy' settings on/off or to block specific ad topics.">
     This site determines things you like and then suggests ads to other sites
   </message>
-  <message name="IDS_PAGE_INFO_AD_PRIVACY_TOPICS_AND_FLEDGE_DESCRIPTION" desc="3 of 3 possible descriptions a user might see when they choose 'Ad privacy' from page info for a specific site. 1) Navigate to any site. 2) Click the icon (often a lock) to the left of the URL in the address bar. Information about the page you're viewing appears. The 'Ad privacy' label will appear above the 'Site settings' button. 3) Click on Ad privacy. This string describes the case that the site being viewed uses both the Ad topics &amp; Site-suggested ads settings. AD TOPICS: When on, Chrome will estimate the user's topics of interest based on their recent browsing history and then show up to 3 of those topics with a site so that the site can better personalize ads (a privacy-preserving way to replicate some of the functionality of third-party cookies). SITE-SUGGESTED ADS: When on, a site can determine a user's interests, save info with Chrome relative to those interests. Later, as a user continues browsing, a site can ask Chrome for a user's interests and the first site can (through Chrome) suggest ads the user might like. In this case, we're informing the user that this site 1) has asked Chrome for the user's interests (the Ad topics setting), and 2) uses the Site-suggested ads API (this site determines the user's interests and then can suggest ads to other sites as the user continues browsing). A button 'Manage ad privacy' allows the user to turn 'Ad privacy' settings on/off or to block specific ad topics or sites.">
-    This site determines things you like and then suggests ads to other sites. This site also gets your ad topics from Chrome to show you more relevant ads.
+  <message name="IDS_PAGE_INFO_AD_PRIVACY_TOPICS_AND_FLEDGE_DESCRIPTION" desc="3 of 3 possible descriptions a user might see when they choose 'Ad privacy' from page info for a specific site. 1) Navigate to any site. 2) Click the icon (often a lock) to the left of the URL in the address bar. Information about the page you're viewing appears. The 'Ad privacy' label will appear above the 'Site settings' button. 3) Click on Ad privacy. This string describes the case that the site being viewed uses both the Ad topics &amp; Site-suggested ads settings. AD TOPICS: When on, Mises will estimate the user's topics of interest based on their recent browsing history and then show up to 3 of those topics with a site so that the site can better personalize ads (a privacy-preserving way to replicate some of the functionality of third-party cookies). SITE-SUGGESTED ADS: When on, a site can determine a user's interests, save info with Mises relative to those interests. Later, as a user continues browsing, a site can ask Mises for a user's interests and the first site can (through Mises) suggest ads the user might like. In this case, we're informing the user that this site 1) has asked Mises for the user's interests (the Ad topics setting), and 2) uses the Site-suggested ads API (this site determines the user's interests and then can suggest ads to other sites as the user continues browsing). A button 'Manage ad privacy' allows the user to turn 'Ad privacy' settings on/off or to block specific ad topics or sites.">
+    This site determines things you like and then suggests ads to other sites. This site also gets your ad topics from Mises to show you more relevant ads.
   </message>
   <message name="IDS_PAGE_INFO_AD_PRIVACY_SUBPAGE_MANAGE_BUTTON" desc="A button label that opens the Ad privacy page, allowing a user to turn on / off the ad privacy settings and to manage the topics and sites that influence ad personalization.">
     Manage ad privacy

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
-index 409b7fbfa3d183cc8eabf0fc5d18aa14d69f7c07..1272ef49837697b46a865ff1cdc0b84ffa086dc5 100644
+index 409b7fbfa3d183cc8eabf0fc5d18aa14d69f7c07..73f61c52ef6497762bb71ff17dce2f05e17c0988 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 @@ -97,6 +97,32 @@ import java.util.ArrayList;
@@ -369,15 +369,7 @@ index 409b7fbfa3d183cc8eabf0fc5d18aa14d69f7c07..1272ef49837697b46a865ff1cdc0b84f
      /**
       * @param currentTab The currentTab for which the app menu is showing.
       * @return Whether the reader mode preferences menu item should be displayed.
-@@ -881,6 +1108,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
-         MenuItem addTohomescreenItem = menu.findItem(R.id.add_to_homescreen_id);
-         MenuItem installWebAppItem = menu.findItem(R.id.install_webapp_id);
-         MenuItem openWebApkItem = menu.findItem(R.id.open_webapk_id);
-+        if (addTohomescreenItem == null || installWebAppItem == null || openWebApkItem == null) return ;
- 
-         addTohomescreenItem.setVisible(false);
-         installWebAppItem.setVisible(false);
-@@ -953,7 +1181,62 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -953,7 +1180,62 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
       */
      protected void prepareTranslateMenuItem(Menu menu, @Nullable Tab currentTab) {
          boolean isTranslateVisible = currentTab != null && shouldShowTranslateMenuItem(currentTab);
@@ -440,7 +432,7 @@ index 409b7fbfa3d183cc8eabf0fc5d18aa14d69f7c07..1272ef49837697b46a865ff1cdc0b84f
      }
  
      @Override
-@@ -974,6 +1257,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -974,6 +1256,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
  
      @Override
      public void onMenuDismissed() {
@@ -448,7 +440,7 @@ index 409b7fbfa3d183cc8eabf0fc5d18aa14d69f7c07..1272ef49837697b46a865ff1cdc0b84f
          mReloadPropertyModel = null;
          if (mUpdateMenuItemVisible) {
              UpdateMenuItemHelper.getInstance().onMenuDismissed();
-@@ -1064,6 +1348,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1064,6 +1347,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
       */
      protected void updateBookmarkMenuItemShortcut(
              MenuItem bookmarkMenuItemShortcut, @Nullable Tab currentTab, boolean fromCCT) {
@@ -456,7 +448,7 @@ index 409b7fbfa3d183cc8eabf0fc5d18aa14d69f7c07..1272ef49837697b46a865ff1cdc0b84f
          if (!mBookmarkModelSupplier.hasValue() || currentTab == null) {
              // If the BookmarkModel still isn't available, assume the bookmark menu item is not
              // editable.
-@@ -1093,6 +1378,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1093,6 +1377,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
       */
      protected void updateBookmarkMenuItemRow(
              MenuItem bookmarkMenuItemAdd, MenuItem bookmarkMenuItemEdit, @Nullable Tab currentTab) {
@@ -464,7 +456,7 @@ index 409b7fbfa3d183cc8eabf0fc5d18aa14d69f7c07..1272ef49837697b46a865ff1cdc0b84f
          // If the bookmark menu item row is disabled, then hide both item.
          if (!BookmarkFeatures.isBookmarkMenuItemAsDedicatedRowEnabled()
                  || !mBookmarkModelSupplier.hasValue() || currentTab == null) {
-@@ -1244,7 +1530,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1244,7 +1529,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          // Hide app menu item if on non-NTP chrome:// page or auto dark not enabled.
          boolean isAutoDarkEnabled = isAutoDarkWebContentsEnabled();
          boolean itemVisible = currentTab != null && !isChromeScheme && isAutoDarkEnabled;
@@ -475,7 +467,7 @@ index 409b7fbfa3d183cc8eabf0fc5d18aa14d69f7c07..1272ef49837697b46a865ff1cdc0b84f
          if (!itemVisible) return;
  
          // Set text based on if site is blocked or not.
-@@ -1300,4 +1588,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1300,4 +1587,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          }
          return R.color.default_icon_color_secondary_tint_list;
      }

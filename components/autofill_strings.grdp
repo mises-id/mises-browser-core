@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
 
   <if expr="not is_ios">
@@ -24,29 +25,29 @@
   <message name="IDS_AUTOFILL_WARNING_MIXED_FORM" desc="Warning text shown when autofill is disabled due to a form on a secure site being submitted over an insecure connection.">
     This form is not secure. Autofill has been turned off.
   </message>
-  <message name="IDS_AUTOFILL_CREDIT_CARD_SIGNIN_PROMO" desc="Promo text shown alongside credit card suggestions to get people to sign in.">
-    To use cards from your Google Account, sign in to Chrome
+  <message name="IDS_AUTOFILL_CREDIT_CARD_SIGNIN_PROMO" desc="Promo text shown alongside credit card suggestions to get profiles to sign in.">
+    To use cards from your Mises sync chain, sign in to Mises
   </message>
   <if expr="_google_chrome">
     <message name="IDS_AUTOFILL_DELETE_AUTOCOMPLETE_SUGGESTION_CONFIRMATION_BODY" desc="Text in a dialog to confirm that the user wants to delete an autocomplete form history suggestion.">
-      Remove form suggestion from Chrome?
+      Remove form suggestion from Mises?
     </message>
     <message name="IDS_AUTOFILL_DELETE_CREDIT_CARD_SUGGESTION_CONFIRMATION_BODY" desc="Text in a dialog to confirm that the user wants to delete a credit card from Autofill.">
-      Remove credit card from Chrome?
+      Remove credit card from Mises?
     </message>
     <message name="IDS_AUTOFILL_DELETE_PROFILE_SUGGESTION_CONFIRMATION_BODY" desc="Text in a dialog to confirm that the user wants to delete an address from Autofill.">
-      Remove address from Chrome?
+      Remove address from Mises?
     </message>
   </if>
   <if expr="not _google_chrome">
     <message name="IDS_AUTOFILL_DELETE_AUTOCOMPLETE_SUGGESTION_CONFIRMATION_BODY" desc="Text in a dialog to confirm that the user wants to delete an autocomplete form history suggestion.">
-      Remove form suggestion from Chromium?
+      Remove form suggestion from Mises?
     </message>
     <message name="IDS_AUTOFILL_DELETE_CREDIT_CARD_SUGGESTION_CONFIRMATION_BODY" desc="Text in a dialog to confirm that the user wants to delete a credit card from Autofill.">
-      Remove credit card from Chromium?
+      Remove credit card from Mises?
     </message>
     <message name="IDS_AUTOFILL_DELETE_PROFILE_SUGGESTION_CONFIRMATION_BODY" desc="Text in a dialog to confirm that the user wants to delete an address from Autofill.">
-      Remove address from Chromium?
+      Remove address from Mises?
     </message>
   </if>
   <message name="IDS_AUTOFILL_CC_AMEX" desc="Full American Express credit card name." formatter_data="android_java">
@@ -64,7 +65,7 @@
   <message name="IDS_AUTOFILL_CC_ELO" desc="Elo credit card name.">
     Elo
   </message>
-  <message name="IDS_AUTOFILL_CC_GOOGLE_PAY" desc="Google pay brand name">
+  <message name="IDS_AUTOFILL_CC_GOOGLE_PAY" desc="Mises pay brand name">
     Google Pay
   </message>
   <message name="IDS_AUTOFILL_CC_JCB" desc="JCB credit card name." formatter_data="android_java">
@@ -117,7 +118,7 @@
       Manage payment methods...
     </message>
 
-    <message name="IDS_AUTOFILL_MANAGE_PASSWORDS" desc="The text displayed at the bottom of the Autofill popup to allow the user to manage passwords that can be used by Chrome Autofill. Imperative. When the user clicks on it, opens the Passwords section of the Settings page." meaning="Manage passwords in the user profile that can be used by Chrome Autofill.">
+    <message name="IDS_AUTOFILL_MANAGE_PASSWORDS" desc="The text displayed at the bottom of the Autofill popup to allow the user to manage passwords that can be used by Mises Autofill. Imperative. When the user clicks on it, opens the Passwords section of the Settings page." meaning="Manage passwords in the user profile that can be used by Chrome Autofill.">
       Manage passwords...
     </message>
   </if>
@@ -130,7 +131,7 @@
       Manage Payment Methods...
     </message>
 
-    <message name="IDS_AUTOFILL_MANAGE_PASSWORDS" desc="In Title Case: The text displayed at the bottom of the Autofill popup to allow the user to manage passwords that can be used by Chrome Autofill. Imperative. When the user clicks on it, opens the Passwords section of the Settings page." meaning="Manage passwords in the user profile that can be used by Chrome Autofill.">
+    <message name="IDS_AUTOFILL_MANAGE_PASSWORDS" desc="In Title Case: The text displayed at the bottom of the Autofill popup to allow the user to manage passwords that can be used by Mises Autofill. Imperative. When the user clicks on it, opens the Passwords section of the Settings page." meaning="Manage passwords in the user profile that can be used by Chrome Autofill.">
       Manage Passwords...
     </message>
   </if>
@@ -150,8 +151,8 @@
   </message>
   </if>
 
-  <message name="IDS_AUTOFILL_SHOW_ACCOUNT_CARDS" desc="Text shown as an option in the Autofill dropdown. Imperative. When clicked, additional payment cards (e.g., credit/debit cards) that were previously saved in the user's Google Account will be added to the list of suggestions being displayed.">
-    Show cards from your Google Account
+  <message name="IDS_AUTOFILL_SHOW_ACCOUNT_CARDS" desc="Text shown as an option in the Autofill dropdown. Imperative. When clicked, additional payment cards (e.g., credit/debit cards) that were previously saved in the user's Mises sync chain will be added to the list of suggestions being displayed.">
+    Show cards from your Mises sync chain
   </message>
 
   <if expr="not is_android or is_android">

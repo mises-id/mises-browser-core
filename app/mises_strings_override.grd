@@ -346,7 +346,7 @@ Permissions you've already given to websites and apps may apply to this account.
           </if>
       </if>
 
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <if expr="use_titlecase">
           </if>
         <if expr="not use_titlecase">

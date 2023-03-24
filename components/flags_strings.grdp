@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- about:flags
       Not translated. See discussion at: https://crbug.com/587272
@@ -159,7 +160,7 @@
     Unsupported features
   </message>
   <message name="IDS_DEPRECATED_FEATURES_PAGE_WARNING_EXPLANATION" desc="Warning to users that features are deprecated. Shown prominently at the top of the page.">
-    These features are disabled by default. They will not be available in future versions of Chrome.
+    These features are disabled by default. They will not be available in future versions of Mises.
   </message>
   <message name="IDS_DEPRECATED_FEATURES_NO_RESULTS" desc="Message shown when searching and no results were found.">
     No matching features

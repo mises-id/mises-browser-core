@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 #
 # Copyright (c) 2022 The Brave Authors. All rights reserved.
 # This Source Code Form is subject to the terms of the Mozilla Public
