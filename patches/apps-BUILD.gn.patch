@@ -1,5 +1,5 @@
 diff --git a/apps/BUILD.gn b/apps/BUILD.gn
-index f93f4fbcc1ff16dc6b2831a9e97004ebeb32d821..484ddccef1ed1206eface84850461a7df86212f7 100644
+index d14c89436b97b6e4eddce91a9d257496f3fe5a59..1ae93bc3998f1f7c2bd99167d8744be0b43cbd13 100644
 --- a/apps/BUILD.gn
 +++ b/apps/BUILD.gn
 @@ -7,7 +7,7 @@ import("//build/config/features.gni")

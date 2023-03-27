@@ -90,14 +90,8 @@ int TabModelJniBridge::GetActiveIndex() const {
   return Java_TabModelJniBridge_index(env, java_object_.get(env));
 }
 
-int TabModelJniBridge::GetLastNonExtensionActiveIndex() const {
-  JNIEnv* env = AttachCurrentThread();
-  return Java_TabModelJniBridge_getLastNonExtensionActiveIndex(env, java_object_.get(env));
-}
-
 void TabModelJniBridge::CreateTab(TabAndroid* parent,
                                   WebContents* web_contents) {
-  LOG(INFO) << "TabModelJniBridge::CreateTab";
   JNIEnv* env = AttachCurrentThread();
   Profile* profile =
       Profile::FromBrowserContext(web_contents->GetBrowserContext());
@@ -110,7 +104,6 @@ void TabModelJniBridge::CreateTab(TabAndroid* parent,
 
 void TabModelJniBridge::HandlePopupNavigation(TabAndroid* parent,
                                               NavigateParams* params) {
-  LOG(INFO) << "TabModelJniBridge::HandlePopupNavigation";
   DCHECK_EQ(params->source_contents, parent->web_contents());
   DCHECK(!params->contents_to_insert);
   DCHECK(!params->switch_to_singleton_tab);
@@ -173,7 +166,6 @@ void TabModelJniBridge::CloseTabAt(int index) {
 
 WebContents* TabModelJniBridge::CreateNewTabForDevTools(
     const GURL& url) {
-  LOG(INFO) << "TabModelJniBridge::CreateNewTabForDevTools";
   // TODO(dfalcantara): Change the Java side so that it creates and returns the
   //                    WebContents, which we can load the URL on and return.
   JNIEnv* env = AttachCurrentThread();
@@ -192,32 +184,7 @@ WebContents* TabModelJniBridge::CreateNewTabForDevTools(
   }
   return tab->web_contents();
 }
-content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
-		const std::string& extension_id, const GURL& url, const SessionID::id_type session_window_id){
-  LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension";
-  JNIEnv* env = AttachCurrentThread();
-  extension_window_id_ = session_window_id;
-  extension_id_ = extension_id;
-  ScopedJavaLocalRef<jobject> obj =
-      Java_TabModelJniBridge_createNewTabForDevTools(
-          env, java_object_.get(env),
-          url::GURLAndroid::FromNativeGURL(env, url));
-  extension_window_id_ = -1;
-  extension_id_ = "";
-  if (obj.is_null()) {
-    VLOG(0) << "Failed to create java tab";
-    return NULL;
-  }
-  TabAndroid* tab = TabAndroid::GetNativeTab(env, obj);
-  if (!tab) {
-    VLOG(0) << "Failed to create java tab";
-    return NULL;
-  }
-  if (!extension_id.empty()) {
-    base::android::MisesSysUtils::LogEventFromJni("activate_extension", "id", extension_id);
-  }
-  return tab->web_contents();
-}
+
 bool TabModelJniBridge::IsSessionRestoreInProgress() const {
   JNIEnv* env = AttachCurrentThread();
   return Java_TabModelJniBridge_isSessionRestoreInProgress(
@@ -279,4 +246,36 @@ static jlong JNI_TabModelJniBridge_Init(JNIEnv* env,
       env, obj, ProfileAndroid::FromProfileAndroid(j_profile),
       static_cast<ActivityType>(j_activity_type));
   return reinterpret_cast<intptr_t>(tab_model);
+}
+
+
+int TabModelJniBridge::GetLastNonExtensionActiveIndex() const {
+  JNIEnv* env = AttachCurrentThread();
+  return Java_TabModelJniBridge_getLastNonExtensionActiveIndex(env, java_object_.get(env));
+}
+content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
+		const std::string& extension_id, const GURL& url, const SessionID::id_type session_window_id){
+  LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension";
+  JNIEnv* env = AttachCurrentThread();
+  extension_window_id_ = session_window_id;
+  extension_id_ = extension_id;
+  ScopedJavaLocalRef<jobject> obj =
+      Java_TabModelJniBridge_createNewTabForDevTools(
+          env, java_object_.get(env),
+          url::GURLAndroid::FromNativeGURL(env, url));
+  extension_window_id_ = -1;
+  extension_id_ = "";
+  if (obj.is_null()) {
+    VLOG(0) << "Failed to create java tab";
+    return NULL;
+  }
+  TabAndroid* tab = TabAndroid::GetNativeTab(env, obj);
+  if (!tab) {
+    VLOG(0) << "Failed to create java tab";
+    return NULL;
+  }
+  if (!extension_id.empty()) {
+    base::android::MisesSysUtils::LogEventFromJni("activate_extension", "id", extension_id);
+  }
+  return tab->web_contents();
 }

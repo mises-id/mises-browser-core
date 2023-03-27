@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/menu_button/MenuButtonCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/menu_button/MenuButtonCoordinator.java
-index c49da395bdbd5259afb41451d72671c61663a86c..71c9e6716238efdfce519493720ad333cf12d87a 100644
+index ba0d02ba3dbb645cb67f93c35d77ba901ffa57d4..a0a9ad1af697b77233341ef92091e0f30846159c 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/menu_button/MenuButtonCoordinator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/menu_button/MenuButtonCoordinator.java
 @@ -247,4 +247,7 @@ public class MenuButtonCoordinator {

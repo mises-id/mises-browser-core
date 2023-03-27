@@ -1,0 +1,50 @@
+diff --git a/extensions/browser/zipfile_installer.cc b/extensions/browser/zipfile_installer.cc
+index 2a6a54c0625320036817438366b1cc546430f515..2dd232ca689853eb320510b2727610b9ac0e5acd 100644
+--- a/extensions/browser/zipfile_installer.cc
++++ b/extensions/browser/zipfile_installer.cc
+@@ -25,6 +25,7 @@
+ namespace extensions {
+ 
+ namespace {
++[[clang::no_destroy]]static base::FilePath additional_path;
+ 
+ constexpr char kExtensionHandlerTempDirError[] =
+     "Could not create temporary directory for zipped extension.";
+@@ -126,10 +127,12 @@ void ZipFileInstaller::ManifestUnzipped(const base::FilePath& unzip_dir,
+     ReportFailure(kExtensionHandlerFileUnzipError);
+     return;
+   }
++  base::FilePath new_unzip_dir;
++  new_unzip_dir = unzip_dir.Append(additional_path);
+ 
+   io_task_runner_->PostTaskAndReplyWithResult(
+       FROM_HERE,
+-      base::BindOnce(&ReadFileContent, unzip_dir.Append(kManifestFilename)),
++      base::BindOnce(&ReadFileContent, new_unzip_dir.Append(kManifestFilename)),
+       base::BindOnce(&ZipFileInstaller::ManifestRead, this, unzip_dir));
+ }
+ 
+@@ -203,7 +206,9 @@ void ZipFileInstaller::UnzipDone(const base::FilePath& unzip_dir,
+     return;
+   }
+ 
+-  std::move(done_callback_).Run(zip_file_, unzip_dir, std::string());
++  base::FilePath new_unzip_dir;
++  new_unzip_dir = unzip_dir.Append(additional_path);
++  std::move(done_callback_).Run(zip_file_, new_unzip_dir, std::string());
+ }
+ 
+ void ZipFileInstaller::ReportFailure(const std::string& error) {
+@@ -230,6 +235,12 @@ bool ZipFileInstaller::ShouldExtractFile(bool is_theme,
+ // static
+ bool ZipFileInstaller::IsManifestFile(const base::FilePath& file_path) {
+   CHECK(!file_path.IsAbsolute());
++#if BUILDFLAG(IS_ANDROID)
++  if (base::FilePath::CompareEqualIgnoreCase(file_path.BaseName().value(), kManifestFilename)) {
++    additional_path = file_path.DirName();
++    return true;
++  }
++#endif
+   return base::FilePath::CompareEqualIgnoreCase(file_path.value(),
+                                                 kManifestFilename);
+ }

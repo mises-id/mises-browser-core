@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/app_settings/BUILD.gn b/chrome/browser/resources/app_settings/BUILD.gn
-index 6b03ab0c28088280433f18612401d40dd4e89d7a..96da6dc227031072e56b11a64fcacb686961cb27 100644
+index 5600a51b43ad11e65d2c5929cb96cf7f7b6e8a15..00b7ba1d666ccb6e0c40047a1b83eddfea3b08c8 100644
 --- a/chrome/browser/resources/app_settings/BUILD.gn
 +++ b/chrome/browser/resources/app_settings/BUILD.gn
-@@ -9,7 +9,7 @@ import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
- import("./app_settings.gni")
+@@ -5,7 +5,7 @@
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//chrome/common/features.gni")
  
 -assert(is_win || is_mac || is_linux || is_fuchsia)
 +assert(true || is_win || is_mac || is_linux || is_fuchsia)
  
- resources_grd_file = "$target_gen_dir/resources.grd"
- 
+ build_webui("build") {
+   grd_prefix = "app_settings"

@@ -1,8 +1,8 @@
 diff --git a/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.html b/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.html
-index a96e7900db9dac7a897d7b1dfec109786faf2fe2..f8fb5e798ac3d6a3b384e021422f1bd1655b1e7f 100644
+index 690654a0c76a9fef4b63664b81da5483061ee3e5..d732c50873e9ec541eaa22c6503f44d35e026ef6 100644
 --- a/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.html
 +++ b/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.html
-@@ -41,8 +41,8 @@
+@@ -42,8 +42,8 @@
          box-sizing: border-box;
          display: flex;
          /* 12px to match #rightSpacer + 6px to align with icons in menus. */
@@ -13,7 +13,7 @@ index a96e7900db9dac7a897d7b1dfec109786faf2fe2..f8fb5e798ac3d6a3b384e021422f1bd1
        }
  
        cr-icon-button {
-@@ -64,7 +64,7 @@
+@@ -65,7 +65,7 @@
        }
  
        #rightSpacer {

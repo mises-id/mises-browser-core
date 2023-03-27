@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_CHROMIUM_SRC_BASE_THREADING_THREAD_RESTRICTIONS_H_
-#define BRAVE_CHROMIUM_SRC_BASE_THREADING_THREAD_RESTRICTIONS_H_
+#ifndef MISES_CHROMIUM_SRC_BASE_THREADING_THREAD_RESTRICTIONS_H_
+#define MISES_CHROMIUM_SRC_BASE_THREADING_THREAD_RESTRICTIONS_H_
 
 class MisesBrowsingDataRemoverDelegate;
 namespace ipfs {
@@ -18,4 +18,4 @@ class IpfsService;
 #include "src/base/threading/thread_restrictions.h"
 #undef MISES_SCOPED_ALLOW_BASE_SYNC_PRIMITIVES_H
 
-#endif  // BRAVE_CHROMIUM_SRC_BASE_THREADING_THREAD_RESTRICTIONS_H_
+#endif  // MISES_CHROMIUM_SRC_BASE_THREADING_THREAD_RESTRICTIONS_H_

@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_CHROMIUM_SRC_CRYPTO_AEAD_H_
-#define BRAVE_CHROMIUM_SRC_CRYPTO_AEAD_H_
+#ifndef MISES_CHROMIUM_SRC_CRYPTO_AEAD_H_
+#define MISES_CHROMIUM_SRC_CRYPTO_AEAD_H_
 
 // DO NOT use OverrideNonceLength, this can only be called from
 // PasswordEncryptor::DecryptForImporter
@@ -24,4 +24,4 @@
 
 #undef NonceLength
 
-#endif  // BRAVE_CHROMIUM_SRC_CRYPTO_AEAD_H_
+#endif  // MISES_CHROMIUM_SRC_CRYPTO_AEAD_H_

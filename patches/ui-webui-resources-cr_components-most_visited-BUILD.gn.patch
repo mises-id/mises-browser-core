@@ -1,13 +1,13 @@
 diff --git a/ui/webui/resources/cr_components/most_visited/BUILD.gn b/ui/webui/resources/cr_components/most_visited/BUILD.gn
-index cf37adc2a5ca98ab404c9be3af8e94ace89a269e..2ac907fe9c724138cdc2cab1546bea419196397c 100644
+index 713df97dcfbe669036e5d5bdfea05b6506a6ef78..3ecede331d6ca27b081190a2a97e5dddab255746 100644
 --- a/ui/webui/resources/cr_components/most_visited/BUILD.gn
 +++ b/ui/webui/resources/cr_components/most_visited/BUILD.gn
-@@ -8,7 +8,7 @@ import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
- import("most_visited.gni")
+@@ -6,7 +6,7 @@ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//ui/webui/webui_features.gni")
+ import("../../tools/build_cr_component.gni")
  
 -assert(!is_android && !is_ios)
 +#assert(!is_android && !is_ios)
  
- preprocess_folder =
-     "$root_gen_dir/ui/webui/resources/preprocessed/cr_components/most_visited"
+ mojom("mojom") {
+   sources = [ "most_visited.mojom" ]

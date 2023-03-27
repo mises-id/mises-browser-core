@@ -1,0 +1,11 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Miscellaneous/DeveloperToolsDisabled.yaml b/components/policy/resources/templates/policy_definitions/Miscellaneous/DeveloperToolsDisabled.yaml
+index 2dc643d296628f86692b7e36f8db63a26b09ee0d..0ea21085db4ce0f1cc025c5091687685071ced02 100644
+--- a/components/policy/resources/templates/policy_definitions/Miscellaneous/DeveloperToolsDisabled.yaml
++++ b/components/policy/resources/templates/policy_definitions/Miscellaneous/DeveloperToolsDisabled.yaml
+@@ -31,5 +31,6 @@ schema:
+ supported_on:
+ - chrome.*:9-
+ - chrome_os:11-
++- android:111-
+ tags: []
+ type: main

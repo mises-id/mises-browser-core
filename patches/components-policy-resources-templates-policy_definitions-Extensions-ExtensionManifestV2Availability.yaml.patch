@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionManifestV2Availability.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionManifestV2Availability.yaml
+index 028f22d6b8b2c9d69de13202d02510a383f08a06..251971a44c95185f4d146b90799d0d223c7a4c41 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionManifestV2Availability.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionManifestV2Availability.yaml
+@@ -19,6 +19,7 @@ desc: |-
+ supported_on:
+ - chrome.*:110-
+ - chrome_os:110-
++- android:111-
+ future_on:
+ - fuchsia
+ features:

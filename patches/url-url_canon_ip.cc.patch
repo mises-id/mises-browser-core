@@ -1,5 +1,5 @@
 diff --git a/url/url_canon_ip.cc b/url/url_canon_ip.cc
-index 1706377bd850a42989627f9aed4e7efbcb499b08..8031eb309c7e838d83f37a659ea944884a161676 100644
+index 7c2baa696adddd35b8a256b74ba63a3396fb22fa..9276a783d5a7d3897cb0ff6f72f12680a93a36be 100644
 --- a/url/url_canon_ip.cc
 +++ b/url/url_canon_ip.cc
 @@ -163,6 +163,10 @@ CanonHostInfo::Family DoIPv4AddressToNumber(const CHAR* spec,

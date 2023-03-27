@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
-index c92de7d1eda7ddb69c8fe7b4f9ad95166bb2a46a..6c6a272c34eb38ea3dfae052fce1be5a83e2ab02 100644
+index 8ff483accaac9d3439d344cadc0c31a0366c8705..ef396c7a26cea8cafd6084a90221aadf8c424ab1 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
-@@ -77,6 +77,8 @@ import org.chromium.content_public.common.ResourceRequestBody;
+@@ -80,6 +80,8 @@ import org.chromium.content_public.common.ResourceRequestBody;
  import org.chromium.ui.base.PageTransition;
  import org.chromium.ui.base.WindowAndroid;
  import org.chromium.ui.interpolators.BakedBezierInterpolator;
@@ -11,7 +11,7 @@ index c92de7d1eda7ddb69c8fe7b4f9ad95166bb2a46a..6c6a272c34eb38ea3dfae052fce1be5a
  
  import java.util.ArrayList;
  import java.util.List;
-@@ -274,7 +276,7 @@ class LocationBarMediator
+@@ -283,7 +285,7 @@ class LocationBarMediator
          if (hasFocus) {
              if (mNativeInitialized) RecordUserAction.record("FocusLocation");
              UrlBarData urlBarData = mLocationBarDataProvider.getUrlBarData();
@@ -20,7 +20,7 @@ index c92de7d1eda7ddb69c8fe7b4f9ad95166bb2a46a..6c6a272c34eb38ea3dfae052fce1be5a
                  setUrlBarText(urlBarData, UrlBar.ScrollType.NO_SCROLL, SelectionState.SELECT_ALL);
              }
          } else {
-@@ -333,6 +335,7 @@ class LocationBarMediator
+@@ -342,6 +344,7 @@ class LocationBarMediator
      }
  
      /* package */ void setUrlFocusChangeFraction(float fraction) {
@@ -28,7 +28,7 @@ index c92de7d1eda7ddb69c8fe7b4f9ad95166bb2a46a..6c6a272c34eb38ea3dfae052fce1be5a
          mUrlFocusChangeFraction = fraction;
          if (mIsTablet) {
              mLocationBarDataProvider.getNewTabPageDelegate().setUrlFocusChangeAnimationPercent(
-@@ -1322,6 +1325,12 @@ class LocationBarMediator
+@@ -1373,6 +1376,12 @@ class LocationBarMediator
  
      @Override
      public void loadUrlFromVoice(String url) {

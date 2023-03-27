@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml b/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
-index c463c7ae73f1237bbb02bd3c5fc5b559ef0f1461..b86c31a002e92b2a9097408d2f2aa24451c81b69 100644
+index 1a3aa3cf001e9c9df06fee869084ef89c729b31f..e94a7b5ee0448f0a266cf3a9497dbfdb7e2b13e8 100644
 --- a/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
 +++ b/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
-@@ -6,6 +6,7 @@
+@@ -8,6 +8,7 @@ found in the LICENSE file.
  <resources>
      <dimen name="toolbar_tab_count_text_size_1_digit">12dp</dimen>
      <dimen name="toolbar_tab_count_text_size_2_digit">10dp</dimen>

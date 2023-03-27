@@ -1,0 +1,19 @@
+diff --git a/chrome/android/java/res/values-h600dp/dimens.xml b/chrome/android/java/res/values-h600dp/dimens.xml
+old mode 100644
+new mode 100755
+index bd45d15b6494d830ae3c36224d6da0b96e9b01c9..6b44ed51fc6955ef323b0895d196d08add30c29b
+--- a/chrome/android/java/res/values-h600dp/dimens.xml
++++ b/chrome/android/java/res/values-h600dp/dimens.xml
+@@ -1,8 +1,8 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-Copyright 2013 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
++<!-- Copyright 2013 The Chromium Authors. All rights reserved.
++
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file.
+ -->
+ <resources xmlns:tools="http://schemas.android.com/tools">
+     <!-- Incognito NTP -->

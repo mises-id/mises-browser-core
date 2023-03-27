@@ -1,0 +1,76 @@
+diff --git a/chrome/renderer/searchbox/searchbox_extension.cc b/chrome/renderer/searchbox/searchbox_extension.cc
+index 42322bbe46d65e7b427c9564ed2e663cabd535b5..dda0264427b5433e70cf26455188177697a19b77 100644
+--- a/chrome/renderer/searchbox/searchbox_extension.cc
++++ b/chrome/renderer/searchbox/searchbox_extension.cc
+@@ -139,7 +139,7 @@ v8::Local<v8::Object> GenerateMostVisitedItemData(
+   gin::DataObjectBuilder builder(isolate);
+   builder.Set("title", title)
+       .Set("direction", base::StringPiece(direction))
+-      .Set("url", mv_item.url.spec());
++      .Set("url", mv_item.url.spec()).Set("rid", restricted_id);
+ 
+   // If the suggestion already has a favicon, we populate the element with it.
+   if (!mv_item.favicon.spec().empty())
+@@ -474,6 +474,10 @@ class NewTabPageBindings : public gin::Wrappable<NewTabPageBindings> {
+   // custom links iframe, and/or the local NTP.
+   static v8::Local<v8::Value> GetMostVisitedItemData(v8::Isolate* isolate,
+                                                      int rid);
++  static v8::Local<v8::Value> GetMostVisitedExtensions(v8::Isolate* isolate);
++  static bool IsIncognito(v8::Isolate* isolate);
++  static void OpenExtension(v8::Isolate* isolate,
++                            v8::Local<v8::Value> rid_value);
+ };
+ 
+ gin::WrapperInfo NewTabPageBindings::kWrapperInfo = {gin::kEmbedderNativeGin};
+@@ -485,8 +489,10 @@ NewTabPageBindings::~NewTabPageBindings() = default;
+ gin::ObjectTemplateBuilder NewTabPageBindings::GetObjectTemplateBuilder(
+     v8::Isolate* isolate) {
+   return gin::Wrappable<NewTabPageBindings>::GetObjectTemplateBuilder(isolate)
++      .SetProperty("isIncognito", &NewTabPageBindings::IsIncognito)
+       .SetProperty("isInputInProgress", &NewTabPageBindings::IsInputInProgress)
+       .SetProperty("mostVisited", &NewTabPageBindings::GetMostVisited)
++      .SetProperty("mostVisitedExtensions", &NewTabPageBindings::GetMostVisitedExtensions)
+       .SetProperty("mostVisitedAvailable",
+                    &NewTabPageBindings::GetMostVisitedAvailable)
+       .SetProperty("ntpTheme", &NewTabPageBindings::GetNtpTheme)
+@@ -495,6 +501,8 @@ gin::ObjectTemplateBuilder NewTabPageBindings::GetObjectTemplateBuilder(
+       .SetProperty("themeBackgroundInfo", &NewTabPageBindings::GetNtpTheme)
+       .SetMethod("deleteMostVisitedItem",
+                  &NewTabPageBindings::DeleteMostVisitedItem)
++      .SetMethod("openExtension",
++                 &NewTabPageBindings::OpenExtension)
+       .SetMethod("undoAllMostVisitedDeletions",
+                  &NewTabPageBindings::UndoAllMostVisitedDeletions)
+       .SetMethod("undoMostVisitedDeletion",
+@@ -614,7 +622,7 @@ v8::Local<v8::Value> NewTabPageBindings::GetMostVisitedItemData(
+     v8::Isolate* isolate,
+     int rid) {
+   const SearchBox* search_box = GetSearchBoxForCurrentContext();
+-  if (!search_box || !HasOrigin(GURL(chrome::kChromeSearchMostVisitedUrl)))
++  if (!search_box || (!HasOrigin(GURL(chrome::kChromeSearchMostVisitedUrl)) && !HasOrigin(GURL("chrome-search://local-ntp/"))))
+     return v8::Null(isolate);
+ 
+   InstantMostVisitedItem item;
+@@ -646,6 +654,11 @@ void SearchBoxExtension::Install(blink::WebLocalFrame* frame) {
+       gin::CreateHandle(isolate, new NewTabPageBindings());
+   if (newtabpage_controller.IsEmpty())
+     return;
++  
++  gin::Handle<MisesBindings> mises_controller =
++      gin::CreateHandle(isolate, new MisesBindings());
++  if (mises_controller.IsEmpty())
++    return;
+ 
+   v8::Local<v8::Object> chrome =
+       content::GetOrCreateChromeObject(isolate, context);
+@@ -658,6 +671,10 @@ void SearchBoxExtension::Install(blink::WebLocalFrame* frame) {
+       ->Set(context, gin::StringToV8(isolate, "newTabPage"),
+             newtabpage_controller.ToV8())
+       .ToChecked();
++  embedded_search
++      ->Set(context, gin::StringToV8(isolate, "mises"),
++            mises_controller.ToV8())
++      .ToChecked();
+   chrome
+       ->Set(context, gin::StringToSymbol(isolate, "embeddedSearch"),
+             embedded_search)

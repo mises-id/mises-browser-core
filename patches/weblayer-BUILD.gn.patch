@@ -1,12 +1,12 @@
 diff --git a/weblayer/BUILD.gn b/weblayer/BUILD.gn
-index 97b2f3eef91ecff8b3169303dd5c0c41f07df15e..7624c2b5e15a99550f3c5eb5cda947635bacb830 100644
+index 9289dea4e671ccf133edc766ff10123e083188a7..7290cee18dc871c5f4c1e8171cc4af453ba8d504 100644
 --- a/weblayer/BUILD.gn
 +++ b/weblayer/BUILD.gn
-@@ -866,6 +866,7 @@ if (is_android) {
+@@ -848,6 +848,7 @@ if (is_android) {
        "//base",
        "//weblayer/browser/java:jni",
-       "//weblayer/browser/java:weblayer_jni_registration",
+       "//weblayer/browser/java:weblayer_jni_registration($default_toolchain)",
 +      "//chrome/browser:browser"
      ]
      sources = [
-       "$target_gen_dir/browser/java/weblayer_jni_registration.h",
+       "browser/web_view_compatibility_helper_impl.cc",

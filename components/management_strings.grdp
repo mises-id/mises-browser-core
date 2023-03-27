@@ -19,7 +19,7 @@
       Settings
     </message>
   </if>
-  
+
   <!-- Subtitles of the ChromeOS version of the management page -->
   <if expr="chromeos_ash">
     <message name="IDS_MANAGEMENT_SUBTITLE_MANAGED" desc="Title of chrome://management page, shows when device is managed by an unknown manager">
@@ -60,25 +60,28 @@
     <if expr="not chromeos_ash">
       <if expr="_google_chrome">
         <message name="IDS_MANAGEMENT_BROWSER_NOTICE" desc="Message shown when the (Mises-branded) Mises browser is managed, it indicates what the administrator can do on the browser.">
-        Your administrator can change your browser setup remotely. Activity on this device may also be managed outside of Mises. <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
+        Your administrator can change your browser setup remotely. Activity on this device may also be managed outside of Mises. <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1" aria-label="$2"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
         </message>
         <message name="IDS_MANAGEMENT_NOT_MANAGED_NOTICE" desc="Message indicating that the (Mises-branded) Mises browser is not managed">
-        This browser is not managed by a company or other organization. Activity on this device may be managed outside of Mises. <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
+        This browser is not managed by a company or other organization. Activity on this device may be managed outside of Mises. <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1" aria-label="$2"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
         </message>
       </if>
       <if expr="not _google_chrome">
         <message name="IDS_MANAGEMENT_BROWSER_NOTICE" desc="Message shown when the (non-Mises-branded) Mises browser is managed, it indicates what the administrator can do on the browser.">
-        Your administrator can change your browser setup remotely. Activity on this device may also be managed outside of Mises. <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
+        Your administrator can change your browser setup remotely. Activity on this device may also be managed outside of Mises. <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1" aria-label="$2"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
         </message>
         <message name="IDS_MANAGEMENT_NOT_MANAGED_NOTICE" desc="Message indicating that the (non-Mises-branded) Mises browser is not managed">
-        This browser is not managed by a company or other organization. Activity on this device may be managed outside of Mises. <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
+        This browser is not managed by a company or other organization. Activity on this device may be managed outside of Mises. <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1" aria-label="$2"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
         </message>
       </if>
+      <message name="IDS_MANAGEMENT_LEARN_MORE_ACCCESSIBILITY_TEXT" desc="Accessibility text for a 'Learn more' link that links to a help article about how the browser is managed.">
+        Learn more about how your browser is managed
+      </message>
     </if>
   </if>
-  
+
   <!-- ChromeOS managed status section -->
-  <if expr="chromeos_ash">
+  <if expr="is_chromeos">
     <message name="IDS_MANAGEMENT_DEVICE_NOT_MANAGED" desc="Message indicating that the device and account are not managed">
       This device and account are not managed by a company or other organization.
     </message>
@@ -98,7 +101,7 @@
   chrome://management for managed devices, please add it to
   go/chrome-policy-privacy-note-mappings
   -->
-  <if expr="chromeos_ash">
+  <if expr="is_chromeos">
     <!-- Strings related to Local trust roots section -->
     <message name="IDS_MANAGEMENT_LOCAL_TRUST_ROOTS" desc="Title of the types of local trust roots section of the page">
       Custom root certificates
@@ -124,6 +127,9 @@
     </message>
     <message name="IDS_MANAGEMENT_REPORT_DEVICE_AUDIO_STATUS" desc="Message stating that administrators see attached audio peripherals.">
       Audio peripherals attached
+    </message>
+    <message name="IDS_MANAGEMENT_REPORT_DEVICE_GRAPHICS_STATUS" desc="Message stating that administrators see attached display peripherals.">
+      Display peripherals attached
     </message>
     <message name="IDS_MANAGEMENT_REPORT_DEVICE_PERIPHERALS" desc="Message stating that administrators see attached peripherals when an affiliated user is logged in.">
       Peripherals attached to this device while you are logged in
@@ -158,7 +164,7 @@
       other {Actions taken with data flagged as confidential (# actions since login). <ph name="BEGIN_LINK">&lt;a target="_blank" href="https://support.google.com/chrome/a/?p=chromeos_datacontrols"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>}}
     </message>
     <message name="IDS_MANAGEMENT_REPORT_LOGIN_LOGOUT" desc="Message stating that administrators can see device Login and Logout events.">
-      Device login/logout history, including timestamps and failed attempts
+      Device access actions such as logins (including failed login reasons), logouts, locks, and unlocks
     </message>
     <message name="IDS_MANAGEMENT_REPORT_CRD_SESSIONS" desc="Message stating that administrators can see Mises Remote Desktop events.">
       Mises Remote Desktop history, including timestamps, hosts and client session ids
@@ -275,17 +281,23 @@
     <message name="IDS_MANAGEMENT_PAGE_PRINTED_EVENT" desc="Event for the page print scanning feature.">
       Page is printed
     </message>
+    <message name="IDS_MANAGEMENT_FILE_TRANSFER_EVENT" desc="Event for the file transfer scanning feature.">
+      File is copied or moved
+    </message>
     <message name="IDS_MANAGEMENT_ENTERPRISE_REPORTING_EVENT" desc="Event for the enterprise reporting feature">
       Security event occurs
     </message>
     <message name="IDS_MANAGEMENT_PAGE_VISITED_EVENT" desc="Event for the real time URL check feature.">
       Page is visited
     </message>
+    <message name="IDS_MANAGEMENT_SCREEN_CAPTURE_EVENT" desc="Event for the multi screen capture feature.">
+      Screen capture has started
+    </message>
     <message name="IDS_MANAGEMENT_FILE_ATTACHED_VISIBLE_DATA" desc="Description of the visible data for the file attachment scanning feature.">
-      Files you upload or attach are sent to Google Cloud or third parties for analysis. For example, they might be scanned for sensitive data or malware.
+      Files you upload or attach are sent to Google Cloud or third parties for analysis. For example, they might be scanned for sensitive data or malware and might be stored based on company policies.
     </message>
     <message name="IDS_MANAGEMENT_FILE_DOWNLOADED_VISIBLE_DATA" desc="Description of the visible data for the file download scanning feature.">
-      Files you download are sent to Google Cloud or third parties for analysis. For example, they might be scanned for sensitive data or malware.
+      Files you download are sent to Google Cloud or third parties for analysis. For example, they might be scanned for sensitive data or malware and might be stored based on company policies.
     </message>
     <message name="IDS_MANAGEMENT_TEXT_ENTERED_VISIBLE_DATA" desc="Description of the visible data for the text entry scanning feature.">
       Text you paste or attach is sent to Google Cloud or third parties for analysis. For example, it might be scanned for sensitive data.
@@ -293,11 +305,17 @@
     <message name="IDS_MANAGEMENT_PAGE_PRINTED_VISIBLE_DATA" desc="Description of the visible data for the page print scanning feature.">
       The content of pages you print is sent to Google Cloud or third parties for analysis. For example, it might be scanned for sensitive data.
     </message>
+    <message name="IDS_MANAGEMENT_FILE_TRANSFER_VISIBLE_DATA" desc="Description of the visible data for the file transfer scanning feature.">
+      Files you copy or move are sent to Google Cloud or third parties for analysis. For example, they might be scanned for sensitive data or malware and might be stored based on company policies.
+    </message>
+    <message name="IDS_MANAGEMENT_SCREEN_CAPTURE_DATA" desc="Description of the visible data for the multi screen capture feature.">
+      Applications authorized by your administrator can capture all screens attached to your device. This information can be processed locally or uploaded to your organization’s servers.
+    </message>
     <message name="IDS_MANAGEMENT_ENTERPRISE_REPORTING_VISIBLE_DATA" desc="Description of the visible data for the Connectors reporting feature">
       When security events are flagged by Mises, relevant data about the events is sent to your administrator. This can include URLs of pages you visit in Mises, file names or metadata, and the username that you use to sign in to web based applications, your device and Mises.
     </message>
     <message name="IDS_MANAGEMENT_PAGE_VISITED_VISIBLE_DATA" desc="Description of the visible data for the real time URL check feature.">
-      URLs of pages you visit are sent to Google Cloud or third parties for analysis. For example, they might be scanned to detect unsafe websites.
+      URLs of pages you visit are sent to Google Cloud or third parties for analysis. For example, they might be scanned to detect unsafe websites or filter websites based on rules set by the administrator.
     </message>
   </if>
 </grit-part>

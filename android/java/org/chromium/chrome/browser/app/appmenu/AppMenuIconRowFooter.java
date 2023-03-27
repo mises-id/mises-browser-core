@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.widget.ImageViewCompat;
 
 import org.chromium.base.ApiCompatibilityUtils;
 import org.chromium.chrome.R;
@@ -115,7 +116,7 @@ public class AppMenuIconRowFooter extends LinearLayout implements View.OnClickLi
         if (bookmarkBridge.hasBookmarkIdForTab(currentTab)) {
             mBookmarkButton.setImageResource(R.drawable.btn_star_filled);
             mBookmarkButton.setContentDescription(getContext().getString(R.string.edit_bookmark));
-            ApiCompatibilityUtils.setImageTintList(mBookmarkButton,
+            ImageViewCompat.setImageTintList(mBookmarkButton,
                     AppCompatResources.getColorStateList(
                             getContext(), R.color.default_icon_color_accent1_tint_list));
         } else {

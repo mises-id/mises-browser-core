@@ -1,5 +1,16 @@
 use_relative_paths = True
 
+gclient_gn_args_file = 'build/config/gclient_args.gni'
+gclient_gn_args = [
+  'mises_rust_version'
+]
+
+vars = {
+  'mises_rust_version': '"1.67.0"',
+  'download_prebuilt_sparkle': True,
+}
+
+
 deps = {
   "vendor/transifex": "https://github.com/transifex/transifex-python@103b6ac7ad937155f7f1497a68d5a05882664d58",
   "vendor/lxml": "https://github.com/lxml/lxml@d01872ccdf7e1e5e825b6c6292b43e7d27ae5fc4",
@@ -15,10 +26,6 @@ deps = {
 recursedeps = [
   'vendor/omaha'
 ]
-
-vars = {
-  'download_prebuilt_sparkle': True
-}
 
 hooks = [
   {
@@ -43,31 +50,31 @@ hooks = [
     'name': 'download_rust_deps',
     'pattern': '.',
     'condition': 'checkout_android',
-    'action': ['vpython3', 'script/download_rust_deps.py', 'android'],
+    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'android'],
   },
   {
     'name': 'download_rust_deps',
     'pattern': '.',
     'condition': 'checkout_ios',
-    'action': ['vpython3', 'script/download_rust_deps.py', 'ios'],
+    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'ios'],
   },
   {
     'name': 'download_rust_deps',
     'pattern': '.',
     'condition': 'checkout_win',
-    'action': ['vpython3', 'script/download_rust_deps.py', 'win32'],
+    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'win32'],
   },
   {
     'name': 'download_rust_deps',
     'pattern': '.',
     'condition': 'checkout_mac',
-    'action': ['vpython3', 'script/download_rust_deps.py', 'darwin'],
+    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'darwin'],
   },
   {
     'name': 'download_rust_deps',
     'pattern': '.',
     'condition': 'checkout_linux',
-    'action': ['vpython3', 'script/download_rust_deps.py', 'linux'],
+    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'linux'],
   },
   # {
   #   # Install Web Discovery Project dependencies for Windows, Linux, and macOS

@@ -9,7 +9,7 @@
 #include <utility>
 
 #include "base/base64.h"
-#include "base/callback_helpers.h"
+#include "base/functional/callback_helpers.h"
 #include "base/containers/contains.h"
 #include "base/json/json_reader.h"
 #include "base/json/json_writer.h"
@@ -403,7 +403,7 @@ void SnsResolverTask::SetResultForTesting(
 }
 
 void SnsResolverTask::ScheduleWorkOnTask() {
-  base::SequencedTaskRunnerHandle::Get()->PostTask(
+  base::SequencedTaskRunner::GetCurrentDefault()->PostTask(
       FROM_HERE, base::BindOnce(&SnsResolverTask::WorkOnTask,
                                 weak_ptr_factory_.GetWeakPtr()));
 }

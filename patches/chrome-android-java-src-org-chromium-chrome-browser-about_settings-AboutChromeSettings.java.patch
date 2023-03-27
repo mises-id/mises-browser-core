@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
-index c552741f32fc653a66a306fcd27e30d699390c71..197fcfe6015652c2585bb085267ea32249930a7e 100644
+index f59f62fdf971b060d7919dd47d0edc858a8849a1..517da874e1e4b5e66b7faa5ab9e905387e4b53ea 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
 @@ -66,7 +66,8 @@ public class AboutChromeSettings

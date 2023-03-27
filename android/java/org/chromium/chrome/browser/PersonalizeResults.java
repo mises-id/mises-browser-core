@@ -191,7 +191,7 @@ public class PersonalizeResults {
             if (sHost.contains(".google."))
                 return true;
         } catch(MalformedURLException e) {
-          Log.w("Kiwi", "MalformedURLException "+ e.getMessage());
+          Log.w("Mises", "MalformedURLException "+ e.getMessage());
         }
 
         return false;

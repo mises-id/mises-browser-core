@@ -3,10 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_CHROMIUM_SRC_CHROME_BROWSER_UI_PAGE_INFO_CHROME_PAGE_INFO_UI_DELEGATE_H_
-#define BRAVE_CHROMIUM_SRC_CHROME_BROWSER_UI_PAGE_INFO_CHROME_PAGE_INFO_UI_DELEGATE_H_
+#ifndef MISES_CHROMIUM_SRC_CHROME_BROWSER_UI_PAGE_INFO_CHROME_PAGE_INFO_UI_DELEGATE_H_
+#define MISES_CHROMIUM_SRC_CHROME_BROWSER_UI_PAGE_INFO_CHROME_PAGE_INFO_UI_DELEGATE_H_
 
 #include "components/page_info/page_info_ui_delegate.h"
+
+#if BUILDFLAG(IS_ANDROID)
+#include "components/page_info/core/proto/about_this_site_metadata.pb.h"
+#endif
 
 #if !BUILDFLAG(IS_ANDROID)
 #define ShouldShowAsk                     \
@@ -19,6 +23,10 @@
   AddIPFSTabForURL(const GURL& ipfs_url); \
   bool ShouldShowSiteSettings(int* link_text_id, int* tooltip_text_id); \
   std::u16string GetPermissionDetail(ContentSettingsType type); \
+  void AboutThisSiteSourceClicked(GURL url, const ui::Event& event);\
+  void ShowPrivacySandboxSettings();\
+  void OpenMoreAboutThisPageUrl(const GURL& url, const ui::Event& event);\
+  absl::optional<page_info::proto::SiteInfo> GetAboutThisSiteInfo();\
   void ShowPrivacySandboxAdPersonalization(); \
   bool IsBlockAutoPlayEnabled() override; \
   bool IsMultipleTabsOpen() override; \
@@ -30,5 +38,5 @@
 
 #undef ShouldShowAsk
 
-#endif  // BRAVE_CHROMIUM_SRC_CHROME_BROWSER_UI_PAGE_INFO_CHROME_PAGE_INFO_UI_DELEGATE_H_
+#endif  // MISES_CHROMIUM_SRC_CHROME_BROWSER_UI_PAGE_INFO_CHROME_PAGE_INFO_UI_DELEGATE_H_
 

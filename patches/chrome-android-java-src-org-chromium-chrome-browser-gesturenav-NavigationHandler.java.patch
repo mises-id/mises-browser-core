@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/NavigationHandler.java b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/NavigationHandler.java
-index 46405c1d3a271c03c160148d58f8317a34306503..d83a60b60535d6858e906922e9733b3536c643a4 100644
+index 56676300b9c54675be8fd7a436191427b93d8996..3ac6e82a1c222894c51ffb4315e61335b07fc70c 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/NavigationHandler.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/NavigationHandler.java
 @@ -43,7 +43,7 @@ class NavigationHandler implements TouchEventObserver {

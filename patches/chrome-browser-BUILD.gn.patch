@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/BUILD.gn b/chrome/browser/BUILD.gn
-index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d10577d096 100644
+index 42712ea4134e177836ed79026fa16114356fe850..70e54ae906b9e2dd0a146b6c6545a00899bfaa23 100644
 --- a/chrome/browser/BUILD.gn
 +++ b/chrome/browser/BUILD.gn
-@@ -2490,6 +2490,7 @@ static_library("browser") {
+@@ -2536,6 +2536,7 @@ static_library("browser") {
        "performance_monitor/metric_evaluator_helper_posix.h",
      ]
    }
@@ -10,7 +10,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d1
  
    if (is_android) {
      sources += [
-@@ -3480,7 +3481,8 @@ static_library("browser") {
+@@ -3479,7 +3480,8 @@ static_library("browser") {
        ]
        deps += [ "//chrome/android/modules/dev_ui/provider:native" ]
      }
@@ -20,7 +20,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d1
      #!is_android
      sources += [
        "accessibility/caption_bubble_context_browser.h",
-@@ -4514,7 +4516,7 @@ static_library("browser") {
+@@ -4475,7 +4477,7 @@ static_library("browser") {
          "themes/theme_color_policy_handler.h",
        ]
      }
@@ -29,7 +29,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d1
        sources += [
          "accessibility/soda_installer_impl.cc",
          "accessibility/soda_installer_impl.h",
-@@ -4596,7 +4598,7 @@ static_library("browser") {
+@@ -4569,7 +4571,7 @@ static_library("browser") {
  
      # On Windows, the hashes are embedded in //chrome:chrome_initial rather
      # than here in :chrome_dll.
@@ -38,8 +38,8 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d1
        deps += [ "//chrome:packed_resources_integrity" ]
        sources += [ "certificate_viewer_stub.cc" ]
      }
-@@ -4647,6 +4649,9 @@ static_library("browser") {
-         "component_updater/hyphenation_component_installer.h",
+@@ -4610,6 +4612,9 @@ static_library("browser") {
+         "feedback/system_logs/log_sources/chrome_root_store_log_source.h",
        ]
      }
 +    sources -= mises_chrome_browser_exception_sources
@@ -48,7 +48,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d1
    }
  
    if (is_chromeos_ash) {
-@@ -6567,7 +6572,7 @@ static_library("browser") {
+@@ -6437,7 +6442,7 @@ static_library("browser") {
      ]
    }
  
@@ -57,7 +57,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d1
      sources += [
        "page_load_metrics/observers/side_search_page_load_metrics_observer.cc",
        "page_load_metrics/observers/side_search_page_load_metrics_observer.h",
-@@ -7390,7 +7395,7 @@ static_library("browser") {
+@@ -7282,7 +7287,7 @@ static_library("browser") {
      }
    }
  
@@ -66,7 +66,7 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d1
      sources += [
        "sessions/app_session_service.cc",
        "sessions/app_session_service.h",
-@@ -7548,7 +7553,7 @@ static_library("browser") {
+@@ -7456,7 +7461,7 @@ static_library("browser") {
      ]
    }
    if (enable_supervised_users && enable_extensions) {
@@ -75,16 +75,9 @@ index ef07cd4a80a95e73f2725de8631e1d7cdb7bec49..4403767e5aa5c87905e51ade8bdd48d1
      sources += [
        "supervised_user/supervised_user_extensions_delegate_impl.cc",
        "supervised_user/supervised_user_extensions_delegate_impl.h",
-@@ -7852,10 +7857,12 @@ grit("resources") {
-   }
- 
-   if (is_android) {
--    deps +=
--        [ "//chrome/browser/ui/webui/explore_sites_internals:mojo_bindings_js" ]
-+    deps += [ 
-+      "//chrome/browser/ui/webui/explore_sites_internals:mojo_bindings_js",
-+      "//chrome/browser/resources/inline_login:web_components",
-+    ]
+@@ -7726,7 +7731,7 @@ grit("resources") {
+       "//chrome/browser/resources/video_tutorials:build_ts",
+     ]
    }
 -  if (!is_android) {
 +  if (true || !is_android) {

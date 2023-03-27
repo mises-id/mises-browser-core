@@ -1,10 +1,10 @@
 diff --git a/ui/webui/resources/cr_components/customize_themes/BUILD.gn b/ui/webui/resources/cr_components/customize_themes/BUILD.gn
-index 0bf17d923b1a43678068f2bd35c83ba6ed6ca3ca..87630b8ff6dbdfc8c729f2a7c392cc1b67f49a9b 100644
+index d5f209441d3d320cfffb3d166f90cffb160e1063..de6d395dbd1909947b7a3afbf37c1cdb16bc054a 100644
 --- a/ui/webui/resources/cr_components/customize_themes/BUILD.gn
 +++ b/ui/webui/resources/cr_components/customize_themes/BUILD.gn
-@@ -9,7 +9,7 @@ import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
- import("customize_themes.gni")
+@@ -6,7 +6,7 @@ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//ui/webui/webui_features.gni")
+ import("../../tools/build_cr_component.gni")
  
 -assert(!is_android && !is_ios)
 +#assert(!is_android && !is_ios)

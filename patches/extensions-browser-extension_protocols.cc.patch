@@ -1,0 +1,71 @@
+diff --git a/extensions/browser/extension_protocols.cc b/extensions/browser/extension_protocols.cc
+index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..418039e982d7d8f9d134bd79a9c6261782cc869b 100644
+--- a/extensions/browser/extension_protocols.cc
++++ b/extensions/browser/extension_protocols.cc
+@@ -226,6 +226,7 @@ std::pair<base::FilePath, base::Time> ReadResourceFilePathAndLastModifiedTime(
+   return std::make_pair(file_path, last_modified_time);
+ }
+ 
++#if !BUILDFLAG(IS_ANDROID)
+ bool ExtensionCanLoadInIncognito(bool is_main_frame,
+                                  const Extension* extension,
+                                  bool extension_enabled_in_incognito) {
+@@ -304,6 +305,7 @@ bool AllowExtensionResourceLoad(const network::ResourceRequest& request,
+   // No special exceptions for cross-process loading. Block the load.
+   return false;
+ }
++#endif
+ 
+ // Returns true if the given URL references an icon in the given extension.
+ bool URLIsForExtensionIcon(const GURL& url, const Extension* extension) {
+@@ -607,10 +609,12 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+     ExtensionRegistry* registry = ExtensionRegistry::Get(browser_context_);
+     scoped_refptr<const Extension> extension =
+         registry->GenerateInstalledExtensionsSet()->GetByIDorGUID(extension_id);
++#if !BUILDFLAG(IS_ANDROID)
+     const ExtensionSet& enabled_extensions = registry->enabled_extensions();
+     const ProcessMap* process_map = ProcessMap::Get(browser_context_);
+     bool incognito_enabled =
+         extensions::util::IsIncognitoEnabled(extension_id, browser_context_);
++#endif
+ 
+     // Redirect guid to id.
+     if (base::FeatureList::IsEnabled(
+@@ -630,6 +634,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+       return;
+     }
+ 
++#if !BUILDFLAG(IS_ANDROID)
+     if (!AllowExtensionResourceLoad(
+             request_, request_.destination,
+             static_cast<ui::PageTransition>(request_.transition_type),
+@@ -639,6 +644,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+       CompleteRequestAndDeleteThis(net::ERR_BLOCKED_BY_CLIENT);
+       return;
+     }
++#endif
+ 
+     base::FilePath directory_path;
+     if (!GetDirectoryForExtensionURL(
+@@ -808,7 +814,11 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+     const base::FilePath bundle_resource_path =
+         ExtensionsBrowserClient::Get()->GetBundleResourcePath(
+             request_, directory_path, &resource_id);
+-    if (!bundle_resource_path.empty()) {
++    bool mises_enforce = !bundle_resource_path.empty() && (
++      directory_path.value().find("cryptotoken") != std::string::npos ||
++      directory_path.value().find("mises_wallet") != std::string::npos ||
++      directory_path.value().find("metamask") != std::string::npos);
++    if (!bundle_resource_path.empty() || mises_enforce) {
+       ExtensionsBrowserClient::Get()->LoadResourceFromResourceBundle(
+           request_, loader_.Unbind(), bundle_resource_path, resource_id,
+           std::move(headers), client_.Unbind());
+@@ -880,7 +890,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+   // We store the ID and get RenderProcessHost each time it's needed. This is to
+   // avoid holding on to stale pointers if we get requests past the lifetime of
+   // the objects.
+-  const int render_process_id_;
++  public: const int render_process_id_; private:
+   const scoped_refptr<extensions::InfoMap> extension_info_map_;
+ 
+   // Tracker for favicon callback.

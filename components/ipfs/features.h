@@ -11,12 +11,9 @@
 namespace ipfs {
 namespace features {
 
-#define BASE_DECLARE_FEATURE(kFeature) \
-  extern CONSTINIT const base::Feature kFeature
-  
+
 BASE_DECLARE_FEATURE(kIpfsFeature);
 
-#undef BASE_DECLARE_FEATURE
 }  // namespace features
 }  // namespace ipfs
 

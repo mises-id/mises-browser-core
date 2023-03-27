@@ -10,7 +10,7 @@
 #include <utility>
 
 #include "base/base64.h"
-#include "base/bind.h"
+#include "base/functional/bind.h"
 #include "base/feature_list.h"
 #include "base/json/json_writer.h"
 #include "base/no_destructor.h"
@@ -434,10 +434,8 @@ bool JsonRpcService::SetNetwork(const std::string& chain_id,
 
   chain_ids_[coin] = chain_id;
   network_urls_[coin] = network_url;
-  DictionaryPrefUpdate update(prefs_, kBraveWalletSelectedNetworks);
-  base::Value* dict = update.Get();
-  DCHECK(dict);
-  dict->SetStringKey(GetPrefKeyForCoinType(coin), chain_id);
+  ScopedDictPrefUpdate update(prefs_, kBraveWalletSelectedNetworks);
+  update->Set(GetPrefKeyForCoinType(coin), chain_id);
 
   if (!silent) {
     FireNetworkChanged(coin);
@@ -490,9 +488,9 @@ void JsonRpcService::UpdateIsEip1559(const std::string& chain_id,
   } else {
     // TODO(apaymyshev): move all work with kBraveWalletCustomNetworks into one
     // file.
-    DictionaryPrefUpdate update(prefs_, kBraveWalletCustomNetworks);
+    ScopedDictPrefUpdate update(prefs_, kBraveWalletCustomNetworks);
     for (base::Value& item :
-         *update.Get()->GetDict().FindList(kEthereumPrefKey)) {
+         *update.Get().FindList(kEthereumPrefKey)) {
       base::Value::Dict* custom_network = item.GetIfDict();
       if (!custom_network)
         continue;

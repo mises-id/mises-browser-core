@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/side_panel/user_notes/BUILD.gn b/chrome/browser/ui/webui/side_panel/user_notes/BUILD.gn
+index 4c7293ab0c00b57752d79e12c4841b8f447f8829..954a70fa59c1edd41ee05efca9bb6c0c1ab7651a 100644
+--- a/chrome/browser/ui/webui/side_panel/user_notes/BUILD.gn
++++ b/chrome/browser/ui/webui/side_panel/user_notes/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "user_notes.mojom" ]

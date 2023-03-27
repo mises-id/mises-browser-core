@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModelFilter.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModelFilter.java
-index ff3efa07346c4d62d59624f2a082adc8cb2611bb..416084cc7d75325cbf188431c5e84366ddf68abf 100644
+index 7dc09bea688ddfda9eb92e35c68c36b228630573..4a169835bfa21705a2841ffc66ddc3393d783024 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModelFilter.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModelFilter.java
-@@ -45,6 +45,11 @@ public class EmptyTabModelFilter extends TabModelFilter {
+@@ -50,6 +50,11 @@ public class EmptyTabModelFilter extends TabModelFilter {
          return getTabModel().index();
      }
  

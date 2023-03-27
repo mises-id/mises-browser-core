@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/SharedPreferencesManager.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/SharedPreferencesManager.java
-index 8f8a7c257d65159c7f7619ff7c4a2adb31eba6d4..9afb60ed6fd7e86545ba3a843bcb5be808e06a04 100644
+index 0fda5fb5f4c1b864e7f2e2c78fffcc9d000f517d..734c0d10539004ac4652d27c05e7e2aee073e2d6 100644
 --- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/SharedPreferencesManager.java
 +++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/SharedPreferencesManager.java
-@@ -104,6 +104,23 @@ public class SharedPreferencesManager {
+@@ -106,6 +106,23 @@ public class SharedPreferencesManager {
          ContextUtils.getAppSharedPreferences().unregisterOnSharedPreferenceChangeListener(listener);
      }
  
@@ -26,7 +26,7 @@ index 8f8a7c257d65159c7f7619ff7c4a2adb31eba6d4..9afb60ed6fd7e86545ba3a843bcb5be8
      /**
       * Reads set of String values from preferences.
       *
-@@ -192,7 +209,7 @@ public class SharedPreferencesManager {
+@@ -194,7 +211,7 @@ public class SharedPreferencesManager {
          writeIntUnchecked(key, value);
      }
  
@@ -35,7 +35,7 @@ index 8f8a7c257d65159c7f7619ff7c4a2adb31eba6d4..9afb60ed6fd7e86545ba3a843bcb5be8
          SharedPreferences.Editor ed = ContextUtils.getAppSharedPreferences().edit();
          ed.putInt(key, value);
          ed.apply();
-@@ -492,6 +509,11 @@ public class SharedPreferencesManager {
+@@ -494,6 +511,11 @@ public class SharedPreferencesManager {
          ed.putBoolean(key, value);
          ed.apply();
      }
@@ -47,7 +47,7 @@ index 8f8a7c257d65159c7f7619ff7c4a2adb31eba6d4..9afb60ed6fd7e86545ba3a843bcb5be8
  
      /**
       * Writes the given boolean value to the named shared preference and immediately commit to disk.
-@@ -559,6 +581,12 @@ public class SharedPreferencesManager {
+@@ -562,6 +584,12 @@ public class SharedPreferencesManager {
          ed.apply();
      }
  

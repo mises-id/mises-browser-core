@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
-index 31bb1db62c3abc23805d49d97a3d4f654500be4d..ae407b245f601dfbf096184756f998b4fa2377b2 100644
+index 22916061069c2ac199af2064911c3951cf9be32f..e8fa7592dea7d888644c7f37704eb0e0315cfd14 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
 @@ -102,12 +102,12 @@ class UrlBarMediator
@@ -17,7 +17,7 @@ index 31bb1db62c3abc23805d49d97a3d4f654500be4d..ae407b245f601dfbf096184756f998b4
              Uri uri = Uri.parse(data.url);
              String scheme = uri.getScheme();
              if (!TextUtils.isEmpty(scheme)
-@@ -129,6 +129,8 @@ class UrlBarMediator
+@@ -133,6 +133,8 @@ class UrlBarMediator
      }
  
      private void pushTextToModel() {

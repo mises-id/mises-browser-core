@@ -1,5 +1,5 @@
 diff --git a/components/zoom/BUILD.gn b/components/zoom/BUILD.gn
-index c3c862ffe95d2cdf63b73a5ac25d1e1bdfc9c54a..00cbbe560e81e5b84d06efbee9d2db4aefaa515e 100644
+index 2589cd082d35c4cf5c7524cc34f7f4671e1a23c2..118d22e86e76ac12814494a9c53581d08e7514e1 100644
 --- a/components/zoom/BUILD.gn
 +++ b/components/zoom/BUILD.gn
 @@ -2,7 +2,7 @@

@@ -10,13 +10,8 @@
 
 namespace preferences {
 namespace features {
-
-#define BASE_DECLARE_FEATURE(kFeature) \
-  extern CONSTINIT const base::Feature kFeature
   
 BASE_DECLARE_FEATURE(kBraveBackgroundVideoPlayback);
-
-#undef BASE_DECLARE_FEATURE
 
 }  // namespace features
 }  // namespace preferences

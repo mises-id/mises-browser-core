@@ -2,7 +2,7 @@ import("//mises/build/config.gni")
 import("//mises/build/mac/config.gni")
 import("//build/util/branding.gni")
 import("//chrome/common/features.gni")
-import("//build/util/version.gni")
+import("//chrome/version.gni")
 import("//third_party/widevine/cdm/widevine.gni")
 
 packaging_dir = "$mises_packaging_base_dir/" +

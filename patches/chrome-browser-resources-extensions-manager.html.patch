@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/extensions/manager.html b/chrome/browser/resources/extensions/manager.html
-index ec2594bfef43611cdf74859e72c8fb0df8ec1046..adeba99079d79a0b1039623a9ccabb5ef83d4f4b 100644
+index 8945c4ae90a6c84ab1edbd01cb5db43e81f4e479..0f0473072642d8cb80361a851867bbd3db2dc606 100644
 --- a/chrome/browser/resources/extensions/manager.html
 +++ b/chrome/browser/resources/extensions/manager.html
 @@ -4,7 +4,6 @@
@@ -28,7 +28,7 @@ index ec2594bfef43611cdf74859e72c8fb0df8ec1046..adeba99079d79a0b1039623a9ccabb5e
  </style>
  <extensions-drop-overlay drag-enabled="[[inDevMode]]">
  </extensions-drop-overlay>
-@@ -123,3 +133,10 @@
+@@ -125,3 +135,10 @@
    </extensions-install-warnings-dialog>
  </template>
  <cr-toast-manager></cr-toast-manager>

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/webui/side_panel/bookmarks/BUILD.gn b/chrome/browser/ui/webui/side_panel/bookmarks/BUILD.gn
-index f3066da46d920d416bad09305f98feff89d1b461..c6271cbb37a59dc136d51b81088b9eb08771b277 100644
+index 124b66d54af6d681041177f838544deef77a1702..d4d21cb3b0cc5c6e0828e02cd4894ed355955593 100644
 --- a/chrome/browser/ui/webui/side_panel/bookmarks/BUILD.gn
 +++ b/chrome/browser/ui/webui/side_panel/bookmarks/BUILD.gn
 @@ -4,7 +4,7 @@

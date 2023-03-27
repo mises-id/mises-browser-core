@@ -10,6 +10,5 @@ const char kMisesUIScheme[] = "mises";
 const char kBinanceScheme[] = "site.mises.binance";
 const char kGeminiScheme[] = "site.mises.gemini";
 const char kFTXScheme[] = "csite.mises.ftx";
-const char kChromeSearchScheme[] = "chrome-search";
 }
 

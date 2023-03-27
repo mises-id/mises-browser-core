@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/theme/BUILD.gn b/chrome/browser/ui/android/theme/BUILD.gn
-index 5694410c1b185fa9a9197e1fb70107fae87da551..91e849dbed9149a7372f266753b33175b08ea4f8 100644
+index 4f9a492455591e12d96cd9322dbe9e764e59d1b1..a99d48c78099e2e38ba2b18fc39164c4448cf797 100644
 --- a/chrome/browser/ui/android/theme/BUILD.gn
 +++ b/chrome/browser/ui/android/theme/BUILD.gn
 @@ -26,6 +26,7 @@ android_library("java") {

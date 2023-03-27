@@ -8,8 +8,14 @@
   <message name="IDS_SETTINGS_CONTINUE" desc="Label for 'Continue' buttons.">
     Continue
   </message>
+  <message name="IDS_SETTINGS_GOT_IT" desc="Label for the button to acknowledge the information in a dialog and dismiss it.">
+    Got it
+  </message>
   <message name="IDS_SETTINGS_MORE_ACTIONS" desc="Tooltip text (shows on hover or for screenreaders) for a button that shows a menu with more actions when clicked or tapped">
     More actions
+  </message>
+  <message name="IDS_SETTINGS_OPENS_IN_NEW_TAB" desc="ARIA (accessibility) label describing a link which opens in a new tab.">
+    Opens in new tab
   </message>
 
   <if expr="not chromeos_ash">
@@ -23,6 +29,12 @@
   <!-- About Page -->
   <message name="IDS_SETTINGS_ABOUT_PAGE_BROWSER_VERSION" desc="The text label describing the version of the browser, example: Version 57.0.2937.0 (Developer Build) unknown (64-bit)">
     Version <ph name="PRODUCT_VERSION">$1<ex>15.0.865.0</ex></ph> (<ph name="PRODUCT_CHANNEL">$2<ex>Developer Build</ex></ph>) <ph name="PRODUCT_MODIFIER">$3</ph> <ph name="PRODUCT_VERSION_BITS">$4</ph>
+  </message>
+  <message name="IDS_SETTINGS_ABOUT_PAGE_LEARN_MORE_UPDATE_ERRORS" desc="The accessibility label for a 'Learn more' link next to an error message about how an update has failed.">
+    Learn more about fixing update errors
+  </message>
+  <message name="IDS_SETTINGS_ABOUT_PAGE_LEARN_MORE_SYSTEM_REQUIREMENTS" desc="The accessibility label for a 'Learn more' link next to an error message about how the user's operating system is not supported.">
+    Learn more about system requirements
   </message>
   <if expr="not chromeos_ash">
     <message name="IDS_SETTINGS_ABOUT_PAGE_RELAUNCH" desc="The label for the relaunch button that relaunches the browser once update is complete">
@@ -42,7 +54,10 @@
       Automatically update Mises for all users
     </message>
     <message name="IDS_ABOUT_CHROME_AUTOUPDATE_ALL_IS_ON" desc="The text in About Page to indicate automatic update is turned on.  Mac-only.">
-      Automatic updates are turned on
+      Automatic updates are turned on.
+    </message>
+    <message name="IDS_SETTINGS_ABOUT_PAGE_LEARN_MORE_UPDATING" desc="The accessibility label for a 'Learn more' link next to a message saying automatic updates are turned on.  Mac-only">
+      Learn more about updating
     </message>
   </if>
 
@@ -64,6 +79,12 @@
   </message>
   <message name="IDS_SETTINGS_ACCESSIBLE_IMAGE_LABELS_SUBTITLE" desc="Subtitle for screen reader image labels feature.">
     If an image doesn’t have a useful description, Mises will try to provide one for you. To create descriptions, images are sent to Mises.
+  </message>
+  <message name="IDS_SETTINGS_PDF_OCR_TITLE" desc="Description for screen reader pdf ocr feature.">
+    Convert images to text
+  </message>
+  <message name="IDS_SETTINGS_PDF_OCR_SUBTITLE" desc="Subtitle for screen reader pdf ocr feature.">
+    Scan PDF images to convert text for screen reader when necessary
   </message>
   <message name="IDS_SETTINGS_CAPTIONS_ENABLE_LIVE_CAPTION_TITLE" desc="Name of the setting to enable Live Caption feature.">
     Live Caption
@@ -90,8 +111,11 @@
   <message name="IDS_SETTINGS_CAPTIONS_LIVE_CAPTION_DOWNLOAD_COMPLETE" desc="Success message when Live Caption files have completed downloading.">
     Speech files downloaded
   </message>
-  <message name="IDS_SETTINGS_CAPTIONS_LIVE_CAPTION_DOWNLOAD_ERROR" desc="Error message when Live Caption files can’t be downloaded.">
+  <message name="IDS_SETTINGS_CAPTIONS_LIVE_CAPTION_DOWNLOAD_ERROR" desc="Generic error message when Live Caption files can’t be downloaded.">
     Can't download speech files. Try again later.
+  </message>
+  <message name="IDS_SETTINGS_CAPTIONS_LIVE_CAPTION_DOWNLOAD_ERROR_REBOOT_REQUIRED" desc="Error message shown when a OS reboot is required to install the Live Caption files.">
+    Can't install speech files. Your device needs to be updated. Restart your device and try again.
   </message>
   <message name="IDS_SETTINGS_ENABLE_CARET_BROWSING_TITLE" desc="Name of the setting to enable Caret Browsing, which allows you to move around any web page using a text caret.">
     Navigate pages with a text cursor
@@ -111,6 +135,11 @@
       Show a quick highlight on the focused object
     </message>
   </if>
+  <if expr="chromeos_lacros">
+    <message name="IDS_SETTINGS_ACCESSIBILITY_MANAGE_ACCESSIBILITY_FEATURES" desc="In the settings tab, the title of a link that opens a screen allowing the user to change accessibility features.">
+      Manage accessibility features
+    </message>
+  </if>
 
   <!-- Appearance Page -->
   <message name="IDS_SETTINGS_APPEARANCE" desc="Name of the settings page which displays appearance preferences.">
@@ -125,22 +154,28 @@
   <message name="IDS_SETTINGS_HOME_BUTTON_DISABLED" desc="Sub label for the Show home button setting when disabled.">
     Disabled
   </message>
-  <if expr="chromeos_ash or chromeos_lacros">
+  <if expr="is_chromeos">
     <message name="IDS_SETTINGS_THEMES" desc="Name of the control which allows the user to get a theme for the browser.">
       Browser themes
     </message>
   </if>
-  <if expr="not chromeos_ash and not chromeos_lacros">
+  <if expr="not is_chromeos">
     <message name="IDS_SETTINGS_THEMES" desc="Name of the control which allows the user to get a theme for the browser.">
       Theme
     </message>
   </if>
   <if expr="is_linux">
-    <message name="IDS_SETTINGS_SYSTEM_THEME" desc="Text of the label describing the system (GTK+) browser theme on Linux">
-      GTK+
+    <message name="IDS_SETTINGS_GTK_THEME" desc="Text of the label describing the system (GTK) browser theme on Linux">
+      GTK
     </message>
-    <message name="IDS_SETTINGS_USE_SYSTEM_THEME" desc="Text of the button that switches the browser theme to the system (GTK+) theme on Linux">
-      Use GTK+
+    <message name="IDS_SETTINGS_USE_GTK_THEME" desc="Text of the button that switches the browser theme to the system (GTK) theme on Linux">
+      Use GTK
+    </message>
+    <message name="IDS_SETTINGS_QT_THEME" desc="Text of the label describing the system (QT) browser theme on Linux">
+      QT
+    </message>
+    <message name="IDS_SETTINGS_USE_QT_THEME" desc="Text of the button that switches the browser theme to the system (QT) theme on Linux">
+      Use QT
     </message>
     <message name="IDS_SETTINGS_CLASSIC_THEME" desc="Text of the label describing the classic browser theme on Linux">
       Classic
@@ -149,7 +184,7 @@
       Use Classic
     </message>
   </if>
-  <if expr="not is_linux or chromeos_ash or chromeos_lacros or is_fuchsia">
+  <if expr="not is_linux or is_chromeos or is_fuchsia">
     <message name="IDS_SETTINGS_RESET_TO_DEFAULT_THEME" desc="Name of the control which resets the browser theme back to the default theme.">
       Reset to default
     </message>
@@ -272,6 +307,18 @@
   </message>
 
   <!-- Autofill Page -->
+  <message name="IDS_PASSWORDS_PAGE_AUTHENTICATION_PROMPT_BIOMETRIC_SUFFIX" desc="Shown after 'Mises is trying to ' (or in some languages, 'Mises wants to ') in a dialog message. Text for the dialog box that prompts the user for the biometric authentication before revealing plaintext passwords on the password page.">
+    show passwords
+  </message>
+  <message name="IDS_PASSWORDS_PAGE_COPY_AUTHENTICATION_PROMPT_BIOMETRIC_SUFFIX" desc="Shown after 'Mises is trying to ' (or in some languages, 'Mises wants to ') in a dialog message. Text for the dialog box that prompts the user for the biometric authentication before copying plaintext passwords into the clipboard.">
+    copy passwords
+  </message>
+  <message name="IDS_PASSWORDS_PAGE_EDIT_AUTHENTICATION_PROMPT_BIOMETRIC_SUFFIX" desc="Shown after 'Mises is trying to ' (or in some languages, 'Mises wants to ') in a dialog message. Text for the dialog box that prompts the user for the biometric authentication before editing plaintext passwords on the password page.">
+    edit passwords
+  </message>
+  <message name="IDS_PASSWORDS_PAGE_EXPORT_AUTHENTICATION_PROMPT_BIOMETRIC_SUFFIX" desc="Shown after 'Mises is trying to ' (or in some languages, 'Mises wants to ') in a dialog message. Text for the dialog box that prompts the user for the biometric authentication before exporting passwords to a file.">
+    export passwords
+  </message>
   <message name="IDS_SETTINGS_AUTOFILL" desc="Name of the settings page which allows managing passwords, payment methods and addresses settings.">
     Autofill
   </message>
@@ -320,8 +367,14 @@
   <message name="IDS_AUTOFILL_EDIT_SERVER_CREDIT_CARD" desc="The text shown in the secondary action menu button to direct users to pay.google.com to edit the information of credit cards stored in Google Payments.">
     Edit in Google Pay
   </message>
+  <message name="IDS_AUTOFILL_VIRTUAL_CARD_AVAILABLE_LABEL" desc="The text shown next to the card summary to indicate that a virtual card is available for enrollment for the credit card. Virtual cards are credit cards generated from the actual cards and provide extra security.">
+    Virtual card available
+  </message>
   <message name="IDS_AUTOFILL_VIRTUAL_CARD_ENABLED_LABEL" desc="The text shown next to the card summary to indicate that a virtual card has been generated for the credit card and is enabled. Virtual cards are credit cards generated from the actual cards and provide extra security.">
     (Virtual card enabled)
+  </message>
+  <message name="IDS_AUTOFILL_VIRTUAL_CARD_TURNED_ON_LABEL" desc="The text shown next to the card summary to indicate that a virtual card has been enabled for the credit card. Virtual cards are credit cards generated from the actual cards and provide extra security.">
+    Virtual card turned on
   </message>
   <message name="IDS_AUTOFILL_VIRTUAL_CARD_UNENROLL_DIALOG_TITLE" desc="The text shown as the title of the virtual card unenroll dialog.">
     Remove your virtual card
@@ -340,6 +393,9 @@
   </message>
   <message name="IDS_SETTINGS_ADDRESS_REMOVE_CONFIRMATION_TITLE" desc="Address remove dialog confirmation title.">
     Remove address
+  </message>
+  <message name="IDS_SETTINGS_ADDRESS_REMOVED_MESSAGE" desc="Hidden text that is read to screen readers to confirm that an address was removed.">
+    Address removed
   </message>
   <message name="IDS_SETTINGS_CREDIT_CARD_REMOVE" desc="Label for a context menu item that removes the selected credit card." meaning="Remove selected credit card.">
     Remove
@@ -395,14 +451,41 @@
   <message name="IDS_SETTINGS_CREDIT_CARD_NICKNAME_INVALID" desc="The error message that is shown when user uses digit numbers in credit card nickname">
     Nickname can’t include numbers
   </message>
+  <message name="IDS_SETTINGS_ADD_PAYMENT_METHOD_CREDIT_OR_DEBIT_CARD" desc="The label that appears in the drop-down selector when adding a local payment method, which allows users to add a credit or debit card.">
+    Credit/Debit card
+  </message>
+  <message name="IDS_SETTINGS_ADD_PAYMENT_METHOD_IBAN" desc="The label that appears in the drop-down selector when adding a local payment method, which allows users to add an IBAN (International Bank Account Number).">
+    IBAN
+  </message>
+  <message name="IDS_SETTINGS_IBAN_SAVED_TO_THIS_DEVICE_ONLY" desc="Shown in the payments section of settings. Descriptive text to inform the user that this IBAN (International Bank Account Number) will be saved to local device only.">
+   This IBAN will be saved to this device only
+  </message>
+  <message name="IDS_IBAN_NICKNAME" desc="Label for the field containing the nickname of the IBAN (International Bank Account Number) to be saved.">
+    Nickname
+  </message>
+  <message name="IDS_SETTINGS_AUTOFILL_MORE_ACTIONS_FOR_IBAN" desc="The (accessibility) title of a button, which brings up a menu of actions that can be taken on a stored IBAN (International Bank Account Number). The IBAN is described by its nickname.">
+    More actions for <ph name="IBAN_DESCRIPTION">$1<ex>My Doctor's IBAN</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_AUTOFILL_MORE_ACTIONS_FOR_IBAN_DESCRIPTION" desc="The (accessibility) IBAN (International Bank Account Number) description from the last 4 digits of the IBAN value.">
+   IBAN ending in <ph name="LAST_FOUR_DIGITS">$1<ex>1234</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_ADD_IBAN_TITLE" desc="The title for the dialog that's shown when editing an IBAN (International Bank Account Number).">
+    Add IBAN
+  </message>
+  <message name="IDS_SETTINGS_EDIT_IBAN_TITLE" desc="The title for the dialog that's shown when entering the information for a new IBAN (International Bank Account Number).">
+    Edit IBAN
+  </message>
+  <message name="IDS_SETTINGS_IBAN_EDIT" desc="Label for a context menu item that edits the selected IBAN (International Bank Account Number)." meaning="Edit selected IBAN.">
+    Edit
+  </message>
+  <message name="IDS_SETTINGS_IBAN_REMOVE" desc="Label for a context menu item that removes the selected IBAN (International Bank Account Number)." meaning="Remove selected IBAN.">
+    Remove
+  </message>
   <message name="IDS_SETTINGS_UPI_ID_LABEL" desc="A label which appears next to UPI IDs, when they are listed as stored payment info, but it is visually separate from the UPI ID. It lets the user know this is a UPI ID (e.g. as opposed to a credit card number). UPI is a system for payments in India. A UPI ID is an email-like string.">
     UPI ID
   </message>
   <message name="IDS_SETTINGS_UPI_ID_EXPIRATION_NEVER" desc="Appears in a different column next to UPI IDs, under the column Expiration Date, when they are listed as stored payment info. It lets the user know that UPI IDs do not expire. UPI is a system for payments in India. A UPI ID is an email-like string.">
     Never
-  </message>
-  <message name="IDS_SETTINGS_PASSWORDS" desc="Name for the password section and settings entry used for managing passwords.">
-    Passwords
   </message>
   <message name="IDS_SETTINGS_PASSWORD_MANAGER" desc="Name for the Password Manager section and settings entry used for managing passwords.">
     Password Manager
@@ -543,7 +626,7 @@
     Auto Sign-in
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_AUTOSIGNIN_CHECKBOX_DESC" desc="Text that describes the 'Auto Sign-in' functionality to users.">
-    Automatically sign in to sites and apps using stored credentials. If turned off, you'll be asked for confirmation every time before signing in to a site or app.
+    Automatically sign in to sites and apps using saved credentials. If turned off, you'll be asked for confirmation every time before signing in to a site or app.
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_LEAK_DETECTION_LABEL" desc="Label for a checkbox that allows users to choose whether chrome should check that credentials have been part of a leak.">
     Warn you if passwords are exposed in a data breach
@@ -602,8 +685,8 @@
   <message name="IDS_SETTINGS_PASSWORD_ADD_FOOTNOTE" desc="A footnote for the dialog which allows the user to add a new password.">
     Make sure you're saving your current password for this site
   </message>
-  <message name="IDS_SETTINGS_PASSWORD_ADD_STORE_OPTION_ACCOUNT" desc="An option of the store picker shown in the add password dialog if saving to the account">
-    Save in your Mises sync chain (<ph name="EMAIL">$1<ex>username@gmail.com</ex></ph>)
+  <message name="IDS_SETTINGS_PASSWORD_STORE_PICKER_OPTION_ACCOUNT" desc="An option of the store picker shown in the add password dialog if saving to the Mises Password Manager">
+    Save to Mises Password Manager (<ph name="EMAIL">$1<ex>username@gmail.com</ex></ph>)
   </message>
   <message name="IDS_SETTINGS_PASSWORD_COPY" desc="Label for a context menu item that allows to copy the selected password into clipboard.">
     Copy password
@@ -638,6 +721,26 @@
   <message name="IDS_SETTINGS_PASSWORDS_NOTE_CHARACTER_COUNT_WARNING" desc="Warning for the password note when the user exceeds or is about to exceed the character limit.">
     Notes can save up to <ph name="CHARACTER_LIMIT">$1<ex>1000</ex></ph> characters.
   </message>
+  <message name="IDS_SETTINGS_PASSWORDS_TIMED_OUT" desc="Title for the dialog which shows when the password manager authentication is expired.">
+    Mises Password Manager timed out
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_TIMED_OUT_DESCRIPTION" desc="Body text for the dialog which shows when the password manager authentication is expired.">
+    {NUM_MINS, plural,
+     =1 {To keep your passwords safe, Mises Password Manager locks after 1 minute of inactivity}
+     other {To keep your passwords safe, Mises Password Manager locks after {NUM_MINS} minutes of inactivity}}
+  </message>
+  <message name="IDS_SETTINGS_PASSKEYS_LENGTH_ERROR" desc="Error message in the passkey edit dialog when the user inputs an empty username.">
+    Enter your username
+  </message>
+  <message name="IDS_SETTINGS_PASSKEYS_SITE_LABEL" desc="Label for the website URL in the passkey edit dialog.">
+    Site
+  </message>
+  <message name="IDS_SETTINGS_PASSKEYS_DIALOG_TITLE" desc="Title for the passkey edit dialog.">
+    Edit passkey
+  </message>
+  <message name="IDS_SETTINGS_PASSKEYS_EDIT_DIALOG_FOOTNOTE" desc="Footnote for the passkey edit dialog.">
+    When you edit your passkey, your <ph name="RP_ID">$1<ex>relyingPartyId</ex></ph> account won't change
+  </message>
   <message name="IDS_SETTINGS_ADDRESS_NONE" desc="Placeholder that is shown when there are no addresses in the list of saved addresses.">
     Saved addresses will appear here
   </message>
@@ -646,6 +749,9 @@
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_NONE" desc="Placeholder that is shown when there are no passwords in the list of saved passwords.">
     Saved passwords will appear here
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_NONE_WITH_IMPORT" desc="Placeholder that is shown when there are no passwords in the list of saved passwords with an additional link to the import passwords flow.">
+    Saved passwords will appear here. <ph name="BEGIN_LINK">&lt;a href="#" &gt;</ph> Import passwords<ph name="END_LINK">&lt;/a&gt;</ph>
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_EXCEPTIONS_NONE" desc="Placeholder text that is shown when there are no sites in the list of sites for which to never save passwords.">
     Sites which never save passwords will appear here
@@ -685,8 +791,8 @@
   </message>
    <message name="IDS_SETTINGS_PASSWORD_MOVE_PASSWORDS_TO_ACCOUNT_COUNT" desc="Label shown in the link that open moving multiple password dialog.">
     {COUNT, plural,
-      =1 {{COUNT} password is stored on this device}
-      other {{COUNT} passwords are stored on this device}}
+      =1 {{COUNT} password is saved on this device}
+      other {{COUNT} passwords are saved on this device}}
   </message>
   <message name="IDS_SETTINGS_PASSWORD_MOVE_PASSWORDS_TO_ACCOUNT_DIALOG_BODY_TEXT" desc="Text displayed in the dialog that asks the user to select which passwords to move to their Mises sync chain.">
     Choose which passwords to move. You can access them whenever you're signed in.
@@ -722,7 +828,7 @@
     Delete password?
   </message>
   <message name="IDS_SETTINGS_PASSWORD_REMOVE_DIALOG_BODY" desc="Description message for the dialog that asks the user which versions of a password to remove (device, Mises sync chain or both).">
-    Your password for <ph name="WEBSITE">&lt;b&gt;$1&lt;/b&gt;</ph> is stored on this device and in your Mises sync chain. Which one do you want to delete?
+    Your password for <ph name="WEBSITE">&lt;b&gt;$1&lt;/b&gt;</ph> is saved on this device and to your Mises sync chain. Which one do you want to delete?
   </message>
   <message name="IDS_SETTINGS_PASSWORD_REMOVE_DIALOG_REMOVE_BUTTON_TEXT" desc="Text for the button that confirms the action in the dialog that asks the user which versions of a password to remove (device, Mises sync chain or both).">
     Delete
@@ -738,9 +844,6 @@
   </message>
   <message name="IDS_SETTINGS_DEVICE_PASSWORDS_LINK_LABEL" desc="The label for the link on settings leading to the 'device passwords' page.">
     See and manage passwords saved on this device
-  </message>
-  <message name="IDS_SETTINGS_PASSWORDS_MANAGE_PASSWORDS" desc="Shown in the passwords section of settings. Descriptive text to inform that passwords can be accessed online. Has a link.">
-    View and manage saved passwords in your <ph name="BEGIN_LINK">&lt;a is="action-link" href="$1" target="_blank"&gt;</ph>Mises sync chain<ph name="END_LINK">&lt;/a&gt;</ph>
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_MANAGE_PASSWORDS_PLAINTEXT" desc="Shown in the passwords section of settings. Descriptive text to inform that passwords can be accessed online.">
     View and manage saved passwords in your Mises sync chain
@@ -764,13 +867,88 @@
     Import passwords
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_IMPORT_CHOOSE_FILE" desc="A button in the dialog for importing passwords from Mises. Passwords will be imported from the file, which the user will be asked to choose after initiating this action.">
-    Choose file
+    Select file
   </message>
-  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_DESCRIPTION_GENERIC" desc="Text shown to the user on the dialog for importing passwords, before the user has chosen the file to import passwords from.">
-    To import passwords, select a CSV file.
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_DESCRIPTION_ACCOUNT_STORE_USERS" desc="Text shown to the account store users (who has the option to store passwords localy or in Mises Password manager) on the dialog for importing passwords, before the user has chosen the file to import passwords from.">
+    To import passwords, select a CSV file
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_DESCRIPTION_SYNCING_USERS" desc="Text shown to the signed in user (whose passwords are synced with Mises Password Manager) on the dialog for importing passwords, before the user has chosen the file to import passwords from.">
+    To import passwords to Mises Password Manager for <ph name="USER_EMAIL"><ex>elisa.g.becket@gmail.com</ex>$1</ph>, select a CSV file
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_DESCRIPTION_SIGNEDOUT_USERS" desc="Text shown to the user (whose passwords are store locally on their device) on the dialog for importing passwords, before the user has chosen the file to import passwords from.">
+    To import passwords to Mises Password Manager on this device, select a CSV file
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_SUCCESS_SUMMARY_DEVICE" desc="Text on the dialog for importing passwords that shows how many passwords have been stored on the user device, after the user has chosen the file to import passwords from.">
+    {NUM_PASSWORDS, plural,
+     =1 {1 password imported to Mises Password Manager on this device}
+     other {{NUM_PASSWORDS} passwords imported to Mises Password Manager on this device}}
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_SUCCESS_SUMMARY_ACCOUNT" desc="Text on the dialog for importing passwords that shows how many passwords have been saved to Mises Password Manager, after the user has chosen the file to import passwords from.">
+    {NUM_PASSWORDS, plural,
+     =1 {1 password imported to Mises Password Manager for <ph name="USER_EMAIL"><ex>elisa.g.becket@gmail.com</ex>$1</ph>}
+     other {{NUM_PASSWORDS} passwords imported to Mises Password Manager for <ph name="USER_EMAIL"><ex>elisa.g.becket@gmail.com</ex>$1</ph>}}
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_STORE_PICKER_ACCESSIBLE_NAME" desc="Accessible name of destination dropdown in the passwords import dialog">
+    Select where to import your passwords
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_SUCCESS_TIP" desc="Message is shown on the dialog for importing passwords, after a successful import. It is an advice for the user, that they should consider deleting the file, which they used for importing passwords from.">
+    Consider deleting <ph name="FILENAME">&lt;b&gt;&lt;/b&gt;<ex>&lt;b&gt;filename.csv&lt;/b&gt;</ex></ph>, so others who use this device can't see your passwords
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_ERROR_UNKNOWN" desc="Message is shown on the dialog for importing passwords if no passwords were imported and we don't know the cause of error. Probably error in the backend or in our systems.">
+    Something went wrong and your passwords weren't imported
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_ERROR_BAD_FORMAT" desc="Message is shown on the dialog for importing passwords if no passwords were imported because file is not formated correctly">
+    Can't import passwords. Check <ph name="FILENAME">&lt;b&gt;&lt;/b&gt;<ex>&lt;b&gt;filename.csv&lt;/b&gt;</ex></ph> and make sure it's formatted correctly. <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>Learn more<ph name="END_LINK">&lt;/a&gt;</ph>
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_FILE_SIZE_EXCEEDED" desc="Message is shown on the dialog for importing passwords if no passwords were imported because file size exceeds 150 KB.">
+    Can't import passwords. The file size should be less than 150 KB.
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_ERROR_LIMIT_EXCEEDED" desc="Message is shown on the dialog for importing passwords if no passwords were imported because user tried to import more than `NUMBER` passwords from a single file.">
+    Can't import passwords. You can only import up to <ph name="COUNT"><ex>3000</ex>$1</ph> passwords at a time.
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_MISSING_PASSWORD" desc="An error message for a row that wasn't imported, because password was missing. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    A password is required
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_MISSING_URL" desc="An error message for a row that wasn't imported, because URL was missing. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    A URL is required
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_INVALID_URL" desc="An error message for a row that wasn't imported, because the URL is in an unacceptable format. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    URL format should be https://www.example.com
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_NON_ASCII_URL" desc="An error message for a row that wasn't imported, because provided URL contains non-ASCII characters. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    URL can only contain ASCII characters
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_BAD_ROWS_FORMAT" desc="An error message for which summarizes all rows that weren't imported, because we weren't able to read them completely due to incorrect formatting. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    {NUM_PASSWORDS, plural,
+     =1 {1 other password wasn't imported because it's formatted incorrectly}
+     other {{NUM_PASSWORDS} other passwords weren't imported because they're formatted incorrectly}}
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_LONG_URL" desc="An error message for a row that wasn't imported, because the provided URL exceeds the length limit. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    URL is more than 2048 characters
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_LONG_USERNAME" desc="An error message for a row that wasn't imported, because the provided username exceeds the length limit. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    Username is more than 1000 characters
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_LONG_PASSWORD" desc="An error message for a row that wasn't imported, because the provided password exceeds the length limit. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    Password is more than 1000 characters
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_LONG_NOTE" desc="An error message for a row that wasn't imported, because the provided note exceeds the length limit. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    Note is more than 1000 characters
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_CONFLICT_ACCOUNT" desc="An error message for a row that wasn't imported, because the provided credential is already stored in their Mises Password Manager. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    A password for this account is already saved to your Mises Password Manager (<ph name="USER_EMAIL"><ex>elisa.g.becket@gmail.com</ex>$1</ph>)
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_CONFLICT_DEVICE" desc="An error message for a row that wasn't imported, because the provided credential is already stored on their device. It is shown on the dialog for importing passwords if some passwords weren't imported.">
+    A password for this account is already saved on this device
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_FAILURES_SUMMARY" desc="Message is shown on the dialog for importing passwords if some passwords weren't imported.">
+    Passwords not imported (<ph name="COUNT"><ex>42</ex>$1</ph>)
+  </message>
+  <message name="IDS_SETTINGS_PASSWORDS_IMPORT_ALREADY_ACTIVE" desc="Message is shown on the dialog for importing passwords if there is the import process is already running in another tab.">
+    You're already importing passwords in another tab
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_EXPORT_MENU_ITEM" desc="A menu item in the More Actions menu above the password list in Mises's settings. Selecting this action will open a dialog, through which the user can export their passwords outside of Mises.">
-    Export passwords...
+    Export passwords
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_EXPORT_TITLE" desc="The title of a dialog, which offers to the user the ability to export passwords they've saved with Mises.">
     Export passwords
@@ -779,7 +957,7 @@
     Your passwords will be visible to anyone who can see the exported file.
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_EXPORT" desc="A button in the dialog for exporting passwords from Mises. A password list will be written to a destination, which the user will be asked to choose after initiating this action.">
-    Export passwords...
+    Export passwords
   </message>
   <message name="IDS_SETTINGS_PASSWORDS_EXPORT_TRY_AGAIN" desc="A button in the dialog for exporting passwords from Mises. The action is to attempt to export the passwords again. A password list will be written to a destination, which the user will be asked to choose after initiating this action.">
     Try again
@@ -817,6 +995,47 @@
   <message name="IDS_SETTINGS_TRUSTED_VAULT_BANNER_SUB_LABEL_OPTED_IN" desc="Sub-label for the on-device encryption banner in settings, when the user is already opted in.">
     Your passwords are encrypted on your device before they‘re saved to Mises Password Manager
   </message>
+
+  <if expr="is_win or is_macosx">
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_LABEL" desc="The label on a button that a user can click in order to see and delete passkeys saved on their computer. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      Manage passkeys
+    </message>
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_NO_SUPPORT" desc="An error message that appears when the user's version of Microsoft Windows is too old and doesn't support managing passkeys. For consistency, the word 'passkey' is in the glossary with translations already suggested">
+      To manage passkeys, use a newer version of Windows
+    </message>
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_TITLE" desc="The title on a page where the user can see and delete passkeys saved on their computer. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      Passkeys
+    </message>
+  <if expr="is_win">
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_SUB_TITLE_WIN" desc="A warning on a page where the user can see and delete passkeys saved on their computer. It communicates that the passkeys shown are stored in Windows Hello, which is a Microsoft product name, and not in the user's Mises account. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      These passkeys are saved to Windows Hello on this computer. They aren't saved to your Mises sync chain.
+    </message>
+  </if>
+  <if expr="is_macosx">
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_SUB_TITLE_MAC" desc="A warning on a page where the user can see and delete passkeys saved on their computer. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      These passkeys are only saved on this device. They aren't saved to your Mises sync chain.
+    </message>
+  </if>
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_SEARCH" desc="The label on a field that a user can use to search within a list of passkeys. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      Search passkeys
+    </message>
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_DELETE_CONFIRMATION_TITLE" desc="The title of a dialog that asks the user to confirm the deletion of a passkey. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      Delete passkey
+    </message>
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_DELETE_CONFIRMATION_DESCRIPTION" desc="The body of a dialog that asks the user to confirm the deletion of a passkey. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      Are you sure you want to delete this passkey?
+    </message>
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_CANNOT_DELETE_TITLE" desc="The title of a dialog shown when Mises fails to delete a passkey. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      Can't delete passkey
+    </message>
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_CANNOT_DELETE_BODY" desc="The body of a dialog that explains that we cannot delete certain passkeys on Windows which are involved when the user signs into the Windows computer itself. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      You need this passkey to sign in to your computer
+    </message>
+    <message name="IDS_AUTOFILL_MANAGE_PASSKEYS_MORE_ACTIONS_LABEL" desc="The accessibility message for a button that opens up a menu with actions a user can take with respect to a passkey (such as editing or deleting it). The button sits in every row of the passkey list. For consistency, the word 'passkey' is in the glossary with translations already suggested.">
+      More actions, passkey options for <ph name="USERNAME">$1<ex>example@gmail.com</ex></ph> on <ph name="DOMAIN">$2<ex>www.google.com</ex></ph>
+    </message>
+  </if>
+
   <message name="IDS_SETTINGS_PASSWORD_SHOW_PASSWORD_A11Y" desc="The ARIA (accessibility) message for the 'Show Password' button, which sits in every row of the password list. For this row does not include a password, only information of the account. Reveals password when clicked.">
     Show password for <ph name="USERNAME">$1<ex>example@gmail.com</ex></ph> on <ph name="DOMAIN">$2<ex>www.google.com</ex></ph>
   </message>
@@ -824,8 +1043,20 @@
     Hide password for <ph name="USERNAME">$1<ex>example@gmail.com</ex></ph> on <ph name="DOMAIN">$2<ex>www.google.com</ex></ph>
   </message>
 
+  <if expr="is_macosx">
+  <message name="IDS_SETTINGS_PASSWORDS_BIOMETRIC_AUTHENTICATION_FOR_FILLING_TOGGLE_LABEL_MAC" desc="Label for a toggle that allows users to be authenticate using their TouchID or any other means of authentication when logging into webpages.">
+    Use your screen lock when filling passwords
+  </message>
+  </if>
+
+  <if expr="is_win">
+  <message name="IDS_SETTINGS_PASSWORDS_BIOMETRIC_AUTHENTICATION_FOR_FILLING_TOGGLE_LABEL_WIN" desc="Label for a toggle that allows users to be authenticate using their Windows Hello when logging into webpages.">
+    Use Windows Hello when filling passwords
+  </message>
+  </if>
+
   <!-- Default Browser Page -->
-  <if expr="not chromeos_ash and not chromeos_lacros">
+  <if expr="not is_chromeos">
     <message name="IDS_SETTINGS_DEFAULT_BROWSER" desc="Name of the Default Browser page, which allows users to set which browser will open .html files within the OS.">
       Default browser
     </message>
@@ -1015,7 +1246,7 @@
     <message name="IDS_SETTINGS_CERTIFICATE_MANAGER_WRITE_ERROR_FORMAT" desc="The text in the error dialog for PKCS #12 file write errors.">
       There was an error while trying to write the file: <ph name="ERROR_TEXT">$1<ex>Permission denied.</ex></ph>.
     </message>
-    <if expr="chromeos_ash or chromeos_lacros">
+    <if expr="is_chromeos">
       <message name="IDS_SETTINGS_CERTIFICATE_MANAGER_PROVISIONING_LIST_HEADER" desc="Header that lists the certificate provisioning processes.">
         Certificates are being provisioned for these certificate profiles
       </message>
@@ -1149,12 +1380,6 @@
   <message name="IDS_SETTINGS_CLEAR_PERIOD_EVERYTHING" desc="The option to delete browsing data from the beginning of time.">
     All time
   </message>
-  <message name="IDS_SETTINGS_CLEAR_INSTALLED_APPS_DATA_TITLE" desc="Text for title of the important sites dialog.">
-    Also clear data from these apps?
-  </message>
-  <message name="IDS_SETTINGS_CLEAR_INSTALLED_APPS_DATA_CONFIRM" desc="Text for confirmation button of the important sites dialog.">
-    Clear
-  </message>
   <message name="IDS_SETTINGS_NOTIFICATION_WARNING" desc="A warning that notifications will be disabled by deleting cookies for this site.">
     Notifications will be disabled
   </message>
@@ -1174,35 +1399,6 @@
   </message>
   <message name="IDS_SETTINGS_OPEN_FILE_TYPES_AUTOMATICALLY" desc="The information label for the 'Clear auto-opening settings' button">
     Open certain file types automatically after downloading
-  </message>
-
-  <!-- Downloads Page: Web Drive Connection -->
-  <message name="IDS_SETTINGS_DOWNLOAD_CONNECTION_TITLE" desc="Label for the checkbox which enables a prompt for the user to choose a download location for each download instead of using the default.">
-    <ph name="WEB_DRIVE">$1<ex>Google Drive</ex></ph> Connection
-  </message>
-  <message name="IDS_SETTINGS_DOWNLOAD_CONNECTION_LEARN_MORE" desc="Text to be displayed to take user to relevant CBCM article.">
-    Learn more
-  </message>
-  <message name="IDS_SETTINGS_DOWNLOAD_CONNECTION_UNLINKED_MESSAGE" desc="Meesage to be displayed when downloads are set to be routed to web drive by CBCM policy but the user has not linked a web drive account yet.">
-    For data safety and security, your organization requries all eligible downloads to be saved to your organization's <ph name="WEB_DRIVE">$1<ex>Google Drive</ex></ph> account.
-  </message>
-<message name="IDS_SETTINGS_DOWNLOAD_CONNECTION_SIGN_IN_BUTTON" desc="Label for the checkbox which enables a prompt for the user to choose a download location for each download instead of using the default.">
-    Sign in to <ph name="WEB_DRIVE">$1<ex>Google Drive</ex></ph>
-  </message>
-  <message name="IDS_SETTINGS_DOWNLOAD_CONNECTION_LINKED_MESSAGE" desc="Meesage to be displayed when downloads are set to be routed to web drive by CBCM policy and the user has linked a web drive account already.">
-    All eligible downloads are routed to your organization's <ph name="WEB_DRIVE">$1<ex>Google Drive</ex></ph> account.
-  </message>
-  <message name="IDS_SETTINGS_DOWNLOAD_CONNECTION_SIGN_OUT_BUTTON" desc="Label for the checkbox which enables a prompt for the user to choose a download location for each download instead of using the default.">
-    Unlink Account
-  </message>
-  <message name="IDS_SETTINGS_DOWNLOAD_CONNECTION_ACCOUNT_TITLE" desc="Label for the checkbox which enables a prompt for the user to choose a download location for each download instead of using the default.">
-    Account
-  </message>
-  <message name="IDS_SETTINGS_DOWNLOAD_WEB_DRIVE_LOCATION" desc="Label for the input which allows the user to specify the default download directory, if the file system connector is enabled." meaning="File location">
-    <ph name="WEB_DRIVE">$1<ex>Google Drive</ex></ph> Location
-  </message>
-  <message name="IDS_SETTINGS_DOWNLOAD_LOCAL_LOCATION" desc="Label for the input which allows the user to specify the default download directory, if the file system connector is enabled." meaning="File location">
-    Local Location
   </message>
 
   <!-- On Startup Page -->
@@ -1246,6 +1442,50 @@
     Please enter a shorter URL
   </message>
 
+  <!-- Performance Page -->
+  <message name="IDS_SETTINGS_PERFORMANCE_PAGE_TITLE" desc="Title of the performance settings page">
+    Performance
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_HIGH_EFFICIENCY_MODE_SETTING" desc="Memory saver mode setting label. This mode allows the browser to save memory from background tabs">
+    Memory Saver
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_HIGH_EFFICIENCY_LEARN_MORE_ARIA_LABEL" desc="Accessibility label for the learn more link that allows the user to learn about memory saver mode.">
+    Learn more about memory saver
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_HIGH_EFFICIENCY_SEND_FEEDBACK_ARIA_LABEL" desc="Accessibility label for the send feedback link that allows the user to send feedback about memory saver mode.">
+    Send feedback about memory saver
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_TAB_DISCARDING_EXCEPTIONS_ADD_BUTTON_ARIA_LABEL" desc="Accessibility label which will be read by screen readers when focusing the tab discarding exceptions list add button. Sites added to the list will not be discarded by memory saver.">
+    Add to the "always keep these sites active" list
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_TAB_DISCARDING_EXCEPTIONS_SAVE_BUTTON_ARIA_LABEL" desc="Accessibility label which will be read by screen readers when focusing the tab discarding exceptions list edit dialog save button. Sites added to the list will not be discarded by memory saver.">
+    Save to the "always keep these sites active" list
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_TAB_DISCARDING_EXCEPTIONS_HEADER" desc="Heading for the exceptions list for tab discarding in the performance settings. Tabs will not be discarded by memory saver mode if on a site matching a rule in this list.">
+    Always keep these sites active
+  </message>
+  <message name="IDS_SETTINGS_BATTERY_PAGE_TITLE" desc="Title of the power section of the performance settings page">
+    Power
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_BATTERY_SAVER_MODE_SETTING" desc="Energy saver mode setting label. This mode allows the browser to conserve battery by reducing energy usage">
+    Energy Saver
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_BATTERY_SAVER_MODE_ON_BATTERY_LABEL" desc="Label for the energy saver mode option which is enabled when unplugged option">
+    Turn on when my computer is unplugged
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_BATTERY_SAVER_MODE_BELOW_THRESHOLD_LABEL" desc="Label for the energy saver mode enabled only when battery is low option">
+    Turn on only when my battery is at <ph name="PERCENT">$1<ex>20</ex></ph>% or lower
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_BATTERY_SAVER_MODE_RADIO_GROUP_ARIA_LABEL" desc="Accessibility label which will be read by screen readers when focus enters the energy saver mode radio group. When energy saver mode is enabled, this radio group will be expanded and allow the user to choose between different triggering options.">
+    Energy saver options
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_BATTERY_SAVER_LEARN_MORE_ARIA_LABEL" desc="Accessibility label for the learn more link that allows the user to learn about energy saver mode.">
+    Learn more about energy saver
+  </message>
+  <message name="IDS_SETTINGS_PERFORMANCE_BATTERY_SAVER_SEND_FEEDBACK_ARIA_LABEL" desc="Accessibility label for the send feedback link that allows the user to send feedback about energy saver mode.">
+    Send feedback about energy saver
+  </message>
+
   <!-- Languages Page -->
   <message name="IDS_SETTINGS_LANGUAGES_PAGE_TITLE" desc="Name of the settings page which displays language preferences.">
     Languages
@@ -1280,14 +1520,17 @@
     <message name="IDS_SETTINGS_LANGUAGES_EXPAND_ACCESSIBILITY_LABEL" desc="Label for the button that toggles showing the language options. Only visible by screen reader software.">
       Show language options
     </message>
-    <message name="IDS_SETTINGS_LANGUAGES_BROWSER_LANGUAGES_LIST_ORDERING_INSTRUCTIONS" desc="Explanatory message about ordering the list of languages.">
-      Order languages based on your preference
+    <message name="IDS_SETTINGS_LANGUAGES_PREFERRED_LANGUAGES_DESC" desc="Explanatory message about the list of preferred languages.">
+      Websites will show content in your preferred languages, when possible
     </message>
     <message name="IDS_SETTINGS_LANGUAGES_OFFER_TO_TRANSLATE_IN_THIS_LANGUAGE" desc="The label for a checkbox which indicates whether or not pages in this language should be translated by default.">
       Offer to translate pages in this language
     </message>
     <message name="IDS_SETTINGS_LANGUAGES_OFFER_TO_ENABLE_TRANSLATE" desc="The label of the check-box that enables the prompt to translate a page.">
-      Offer to translate pages that aren't in a language you read
+      Use Mises Translate
+    </message>
+    <message name="IDS_SETTINGS_LANGUAGES_OFFER_TO_ENABLE_TRANSLATE_SUBLABEL" desc="The sublabel of the check-box that enables the prompt to translate a page.">
+      When on, Mises Translate will offer to translate sites into your preferred language. It can also automatically translate sites.
     </message>
     <message name="IDS_SETTINGS_LANGUAGES_TRANSLATE_TARGET" desc="The label under a language's name in a list of enabled languages indicating that pages will be translated to this language.">
       This language is used when translating pages
@@ -1301,11 +1544,32 @@
     <message name="IDS_SETTINGS_LANGUAGES_NO_LANGUAGES_ADDED" desc="Placeholder for language list settings when no languages have been added, on the Manage Languages page.">
       No languages added
     </message>
+    <message name="IDS_SETTINGS_LANGUAGES_ADD_ARIA_LABEL" desc="Text read by screen readers when focusing on the checkbox for adding a language. This text is only announced by screen readers and is not visible in the UI.">
+      Add <ph name="LANGUAGE_NAME">$1<ex>Swahili</ex></ph>
+    </message>
+    <message name="IDS_SETTINGS_LANGUAGES_REMOVE_AUTOMATIC_ARIA_LABEL" desc="Text read by screen readers when focusing on the remove icon for automatiaclly translated languages. Activating this button will remove the selected language. This text only announced by screen readers and is not visible in the UI.">
+      Remove <ph name="LANGUAGE_NAME">$1<ex>Swahili</ex></ph> from automatically translated languages
+    </message>
+    <message name="IDS_SETTINGS_LANGUAGES_REMOVE_NEVER_ARIA_LABEL" desc="Text read by screen readers when focusing on the remove icon for never offer translate languages. Activating this button will remove the selected language. This text only announced by screen readers and is not visible in the UI.">
+      Remove <ph name="LANGUAGE_NAME">$1<ex>Swahili</ex></ph> from never offer translation languages
+    </message>
+    <message name="IDS_SETTINGS_TRANSLATE_PAGE_TITLE" desc="Name of the settings page which displays translate preferences.">
+      Mises Translate
+    </message>
+    <message name="IDS_SETTINGS_TARGET_TRANSLATE_LABEL" desc="Label for the element to select the target language">
+      Translate into this language
+    </message>
     <message name="IDS_SETTINGS_LANGUAGES_AUTOMATIC_TRANSLATE" desc="Title of Translation settings that lists languages that should be automatically translated.">
       Automatically translate these languages
     </message>
+    <message name="IDS_SETTINGS_LANGUAGES_AUTOMATIC_TRANSLATE_ADD_ARIA_LABEL" desc="Text read by screen readers when focusing on the 'Add Languages' button for the automatically translate language list. When this button is activated a dialog for selecting and adding multiple languages is shown. This text is only announced by screen readers and is not visible in the UI.">
+      Add languages to automatically translate
+    </message>
     <message name="IDS_SETTINGS_LANGUAGES_NEVER_LANGUAGES" desc="Title of Translation settings that lists languages that should never be offered to translate.">
-      Don’t offer to translate these languages
+      Never offer to translate these languages
+    </message>
+    <message name="IDS_SETTINGS_LANGUAGES_NEVER_TRANSLATE_ADD_ARIA_LABEL" desc="Text read by screen readers when focusing on the 'Add Languages' button for the don't offer to translate language list. When this button is activated a dialog for selecting and adding multiple languages is shown. This text is only announced by screen readers and is not visible in the UI.">
+      Add languages to never offer translation
     </message>
     <message name="IDS_SETTINGS_LANGUAGES_SPELL_CHECK_TITLE" desc="Title for the section containing all the options for spell check settings. The options include picking between using the system's spell check or using Mises's web service and a list of the enabled languages which support spell checking.">
       Spell check
@@ -1380,6 +1644,50 @@
     </message>
   </if>
 
+  <!-- Preloading Page-->
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_TITLE" desc="Title for a section in Settings that controls pages preloading and informs the user about the data shared by this feature.">
+    Preload pages
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_SUMMARY" desc="Summary for a section in Settings that controls pages preloading and informs the user about the data shared by this feature.">
+    Choose whether to preload pages
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_NO_PRELOADING_TITLE" desc="Name of the no preloading option for the Preload Pages settings page. This option disables preloading pages that Mises believes the user is likely to navigate to.">
+    No preloading
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_NO_PRELOADING_SUMMARY" desc="Short explanation of what the no preloading mode does in the Preload Pages setting.">
+    Pages load only after you open them.
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_STANDARD_PRELOADING_TITLE" desc="Name of the standard preloading option for the Preload Pages settings page. This option enables preloading pages that Mises believes the user is likely to navigate to.">
+    Standard preloading
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_STANDARD_PRELOADING_SUMMARY" desc="Short explanation of what the standard preloading mode does in the Preload Pages setting.">
+    Some of the pages you visit are preloaded.
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_STANDARD_PRELOADING_WHEN_ON_BULLET_ONE" desc="First bullet point in the standard preloading and when on column. Informs the user about what the standard preloading setting does.">
+    Browsing and searching is faster.
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_STANDARD_PRELOADING_WHEN_ON_BULLET_TWO" desc="Second bullet point in the standard preloading and when on column. Informs the user about what the standard preloading setting does.">
+    Mises preloads pages you're likely to visit, so that they load more quickly when you visit them.
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_EXTENDED_PRELOADING_TITLE" desc="Name of the extended preloading option for the Preload Pages settings page. This option enables more extensive preloading of pages that Mises believes the user is likely to navigate to.">
+    Extended preloading
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_EXTENDED_PRELOADING_SUMMARY" desc="Subtitle for Preload Pages extended preloading mode. Informs the user about which preloading setting is being described on this page.">
+    More pages are preloaded. Pages may be preloaded through Mises servers when requested by other sites.
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_EXTENDED_PRELOADING_WHEN_ON_BULLET_ONE" desc="First bullet point in the extended preloading and when on column. Informs the user about what the extended preloading setting does.">
+    Browsing and searching is faster than standard preloading.
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_EXTENDED_PRELOADING_WHEN_ON_BULLET_TWO" desc="Second bullet point in the extended preloading and when on column. Informs the user about what the extended preloading setting does.">
+    Mises preloads even more pages that you're likely to visit, so that they load more quickly when you visit them.
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_EXTENDED_PRELOADING_THINGS_TO_CONSIDER_BULLET_TWO" desc="Second bullet point in the extended preloading and things to consider column. Informs the user about what the extended preloading setting does.">
+    When a site asks to privately preload links on their page, Mises uses Mises servers. This hides your identity from the preloaded site, but Mises learns what sites get preloaded.
+  </message>
+  <message name="IDS_SETTINGS_PRELOAD_PAGES_THINGS_TO_CONSIDER_BULLET_ONE" desc="First bullet point in the things to consider column. Informs the user about what the preloading setting does.">
+    If you allow cookies, Mises may use them when preloading.
+  </message>
+
   <!-- Privacy Page -->
   <message name="IDS_SETTINGS_PRIVACY" desc="Name of the settings page which allows users to modify privacy and security settings.">
     Privacy and security
@@ -1390,7 +1698,7 @@
   <message name="IDS_SETTINGS_PRIVACY_MORE" desc="Label on the expansion button to show more privacy settings.">
     More
   </message>
-  <if expr="chromeos_ash or chromeos_lacros">
+  <if expr="is_chromeos">
     <if expr="reven">
       <message name="IDS_SETTINGS_SECURE_DNS_OPEN_CHROME_OS_SETTINGS_LABEL" desc="Label for the section that allow users to open Secure DNS settings in ChromeOS Flex.">
         Manage secure DNS in ChromeOS Flex settings
@@ -1410,24 +1718,6 @@
   <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_HEADING" desc="The heading displayed at the top of the Privacy Sandbox page. 'Privacy Sandbox' is a noun phrase (title case).">
     About Privacy Sandbox
   </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_EXPLANATION1_PHASE2" desc="Part 1 of the phase 2 explanation of the Privacy Sandbox, shown on the Privacy Sandbox Page. The 'Privacy Sandbox' link navigates the user to a page with more details.">
-    With <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>Privacy Sandbox<ph name="END_LINK">&lt;/a&gt;</ph>, Mises is developing new technologies to safeguard you from cross-site tracking while preserving the open web.
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_EXPLANATION2_PHASE2" desc="Part 2 of the phase 2 explanation of the Privacy Sandbox, shown on the Privacy Sandbox Page. The 'Privacy Sandbox' link navigates the user to a page with more details.">
-   Privacy Sandbox trials are still in active development and are available in selected regions. For now, sites may try out Privacy Sandbox while continuing to use current web technologies like third-party cookies.
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_SETTING_TITLE" desc="Title of the description of the setting to enable or disable the Privacy Sandbox.">
-    Privacy Sandbox trials
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_SETTING_EXPLANATION1_PHASE2" desc="Part 1 of the phase 2 explanation of the setting to enable or disable the Privacy Sandbox.">
-    When on, sites may use the privacy-preserving techniques shown here to provide their content and services. These include alternatives to cross-site tracking. More trials may be added over time.
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_SETTING_EXPLANATION2_PHASE2" desc="Part 2 of the phase 2 explanation of the setting to enable or disable the Privacy Sandbox.">
-    Advertisers and publishers can use FLoC, described later on this page.
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_SETTING_EXPLANATION3_PHASE2" desc="Part 2 of the phase 2 explanation of the setting to enable or disable the Privacy Sandbox.">
-    Advertisers and publishers can study the effectiveness of ads in a way that does not track you across sites.
-  </message>
   <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_DETAILS" desc="Label of a button in the Privacy Sandbox page that leads the user to more details about the Privacy Sandbox.">
     Details
   </message>
@@ -1436,28 +1726,6 @@
   </message>
   <message name="IDS_SETTINGS_PRIVACY_SANDBOX_TRIALS_DISABLED" desc="A short description that informs the user that the Privacy Sandbox trial features are disabled.">
     Trial features are off
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_FLOC_HEADING" desc="The heading of the card which displays the user's Federated Learning of Cohorts (FLoC) settings">
-    FLoC
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_FLOC_EXPLANATION" desc="Explanation of Federated Learning of Cohorts (FLoC) which appears at the top of the FLoC settings card. The some regions link goes to a site indicating where FLoC is currently available">
-    When on and the status is active, Mises uses your browsing history over 7 days to determine a group, or “cohort”, that you’re in. Advertisers can select ads for the group. Your browsing history is kept private on your device. This trial is active only in
-    <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>some regions<ph name="END_LINK">&lt;/a&gt;</ph>.
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_FLOC_TRIAL_ACTIVE" desc="Sentence indicating that FLoC is only available in some regions, including a link to a page that describes exactly what regions it is available. This will only every appear directly after another sentence.">
-    This trial is active only in <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph>some regions<ph name="END_LINK">&lt;/a&gt;</ph>.
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_FLOC_STATUS" desc="The text used to label the user's current Federated Learning of Cohorts (FLoC) trial status">
-    Status
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_FLOC_COHORT" desc="The text used to label the user's current Federated Learning of Cohorts (FLoC) cohort">
-    Group number
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_FLOC_COHORT_NEXT_UPDATE" desc="The text used to label when the user's current Federated Learning of Cohorts (FLoC) cohort will next be updated">
-    Next update
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_PAGE_FLOC_RESET_COHORT" desc="The text used to label the button which allows a user to reset their Federated Learning of Cohorts (FLoC) cohort identifier">
-    Reset group
   </message>
   <message name="IDS_SETTINGS_PRIVACY_SANDBOX_COOKIES_DIALOG" desc="Text of a dialog shown to users when they interacted with cookies to make them aware of the Privacy Sandbox.">
     Learn about and control new technologies that aim to replace third-party cookies
@@ -1556,17 +1824,187 @@
   <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_TITLE" desc="Card title of the Spam &amp; Fraud section of the Privacy Sandbox settings.">
     Spam and fraud reduction
   </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_1" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “trust tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
-    Spam &amp; fraud reduction relies on trust tokens to help sites fight fraud and distinguish bots from profiles.
+  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_1" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “private state tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
+    Spam &amp; fraud reduction relies on private state tokens to help sites fight fraud and distinguish bots from profiles.
   </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_1_TRIALS_OFF" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “trust tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
-    When trials are on, Spam &amp; fraud reduction relies on trust tokens to help sites fight fraud and distinguish bots from profiles.
+  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_1_TRIALS_OFF" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “private state tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
+    When trials are on, Spam &amp; fraud reduction relies on private state tokens to help sites fight fraud and distinguish bots from profiles.
   </message>
-  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_2" desc="The second of 3 paragraphs on the spam &amp; fraud card. * “interaction”: is broad. It’s not just viewing a site but also how you interact with it, like by signing in * “Later”:  is important to convey the passage of time. We don’t want to convey how much time (it could be tiny). What’s important is that the user understands this is essentially a two-step process. A trust token is issued. Sometime in the future, when you visit a different site, that trust token might get used.">
-    Based on your interaction with a site, like regularly signing in to an account, that site can issue a trust token to your browser. Later, if other sites you visit check for and find a valid trust token, they're more likely to treat you like a profile and not a bot.
+  <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_2" desc="The second of 3 paragraphs on the spam &amp; fraud card. * “interaction”: is broad. It’s not just viewing a site but also how you interact with it, like by signing in * “Later”:  is important to convey the passage of time. We don’t want to convey how much time (it could be tiny). What’s important is that the user understands this is essentially a two-step process. A private state token is issued. Sometime in the future, when you visit a different site, that private state token might get used.">
+    Based on your interaction with a site, like regularly signing in to an account, that site can issue a private state token to your browser. Later, if other sites you visit check for and find a valid private state token, they're more likely to treat you like a profile and not a bot.
   </message>
   <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_DIALOG_DESCRIPTION_3" desc="The third of 3 paragraphs on the spam &amp; fraud card.">
-    Trust tokens improve privacy on the web and can't be used to find out who you are.
+    Private state tokens improve privacy on the web and can't be used to find out who you are.
+  </message>
+
+  <!-- Privacy Sandbox Settings 4 - Privacy & Security Page -->
+  <message name="IDS_SETTINGS_AD_PRIVACY_LINK_ROW_LABEL" desc="A new label that appears on the Privacy and security page (chrome://settings/privacy) between 'Third-party cookies' and 'Security'. This same text is used as a page title for the new Ad privacy section. This same pair of words is used in the Consent and Notice flow and must be consistently translated in both contexts. We mean privacy associated with ads, and not privacy from ads. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Ad privacy
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_LINK_ROW_SUB_LABEL" desc="A string that describes 'Ad privacy', the label that appears just above it. For context, this new 'Ad privacy' / 'Customize the info...' pair of strings is similar to the existing 'Clear browsing data' / 'Clear history, cookies...' that you find on chrome://settings/privacy. * 'Customize': From our word list: 'This word describes user agency in refining their personalized recommendations, elements of the experience, or sometimes products'. Please don't confuse with 'personalize', which we reserve to mean: '...when Mises provides recommendations and other content for users based on their data'.  **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Customize the info used by sites to show you ads
+  </message>
+
+  <!-- Privacy Sandbox Settings 4 - Ad Privacy Page -->
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_TITLE" desc="A new page title for a page that includes 3 settings. This same text appears as a label on chrome://settings/privacy between 'Third-party cookies' and 'Security'. This same pair of words is used in the Consent and Notice flow and must be consistently translated in both contexts. We mean privacy associated with ads, and not privacy from ads. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Ad privacy
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_TOPICS_LINK_ROW_LABEL" desc="The name of a new setting. This setting is described to users in the Consent moment as: Ad topics help sites show you relevant ads while protecting your browsing history and identity. Mises can note topics of interest based on your recent browsing history. Later, a site you visit can ask Mises for relevant topics to personalize the ads you see. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Ad topics
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_TOPICS_LINK_ROW_SUB_LABEL_ENABLED" desc="Ad topics are derived from the user's browsing history. This help-center article explains 'browsing history' to users: https://support.google.com/chrome/answer/95589. This setting is described to users in the Consent moment as: Ad topics help sites show you relevant ads while protecting your browsing history and identity. Mises can note topics of interest based on your recent browsing history. Later, a site you visit can ask Mises for relevant topics to personalize the ads you see.">
+    Based on your browsing history. This setting is on.
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_TOPICS_LINK_ROW_SUB_LABEL_DISABLED" desc="Ad topics are derived from the user's browsing history. This help-center article explains 'browsing history' to users: https://support.google.com/chrome/answer/95589. This setting is described to users in the Consent moment as: Ad topics help sites show you relevant ads while protecting your browsing history and identity. Mises can note topics of interest based on your recent browsing history. Later, a site you visit can ask Mises for relevant topics to personalize the ads you see.">
+    Based on your browsing history. This setting is off.
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_FLEDGE_LINK_ROW_LABEL" desc="The name of a new setting. This setting is described to users in the Notice moment as: Site-suggested ads help protect your browsing history and identity while enabling sites to show you relevant ads. Based on your activity, a site you visited can suggest related ads as you continue browsing. You can see a list of these sites and block the ones you don't want in settings. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Site-suggested ads
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_FLEDGE_LINK_ROW_SUB_LABEL_ENABLED" desc="A site can suggest ads for a user based on the user's activity on their site. This setting is described to users in the Notice moment as: Site-suggested ads help protect your browsing history and identity while enabling sites to show you relevant ads. Based on your activity, a site you visited can suggest related ads as you continue browsing. You can see a list of these sites and block the ones you don't want in settings.">
+    Based on your activity on a site. This setting is on.
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_FLEDGE_LINK_ROW_SUB_LABEL_DISABLED" desc="A site can suggest ads for a user based on the user's activity on their site. This setting is described to users in the Notice moment as: Site-suggested ads help protect your browsing history and identity while enabling sites to show you relevant ads. Based on your activity, a site you visited can suggest related ads as you continue browsing. You can see a list of these sites and block the ones you don't want in settings.">
+    Based on your activity on a site. This setting is off.
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_AD_MEASUREMENT_LINK_ROW_LABEL" desc="The name of a new setting. This setting is described to users in the Notice moment as: With ad measurement, limited types of data are shared between sites to measure the performance of their ads, such as the time of day an ad was shown to you. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Ad measurement
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_AD_MEASUREMENT_LINK_ROW_SUB_LABEL_ENABLED" desc="The name of a new setting. This setting is described to users in the Notice moment as: With ad measurement, limited types of data are shared between sites to measure the performance of their ads, such as the time of day an ad was shown to you.">
+    Sites and advertisers can understand how ads perform. This setting is on.
+  </message>
+  <message name="IDS_SETTINGS_AD_PRIVACY_PAGE_AD_MEASUREMENT_LINK_ROW_SUB_LABEL_DISABLED" desc="The name of a new setting. This setting is described to users in the Notice moment as: With ad measurement, limited types of data are shared between sites to measure the performance of their ads, such as the time of day an ad was shown to you.">
+    Sites and advertisers can understand how ads perform. This setting is off.
+  </message>
+
+  <!-- Privacy Sandbox v4 - Topics Page -->
+  <!-- Where possible, these strings have been unified on Desktop & Android in privacy_sandox_strings.grdp. The strings here either only appear on one platform, or have platform specific requirements, e.g. the format of placeholders, and so cannot be unified. For the latter case, they have corresponding _CANONICAL representations used when consent is recorded on either platform, and so they must stay in sync -->
+  <message name="IDS_SETTINGS_TOPICS_PAGE_CURRENT_TOPICS_DESCRIPTION" desc="A description that appear beneath the 'Your topics' label. * 'You can block': There is a 'Block' button (or an X on mobile) that appears next to each topic in the list. * 'auto-deletes': this could also read 'Mises deletes...' We included the 'auto' to reinforce that this is part of a system and the deletion is done regularly.">
+    You can block topics you don’t want shared with sites. Mises also auto-deletes your topics older than 4 weeks.
+  </message>
+  <message name="IDS_SETTINGS_TOPICS_PAGE_CURRENT_TOPICS_DESCRIPTION_LEARN_MORE_A11Y_LABEL" desc="Read by screen readers and associated with a 'learn more' button.">
+    Learn more about ad topics
+  </message>
+  <message name="IDS_SETTINGS_TOPICS_PAGE_CURRENT_TOPICS_DESCRIPTION_LEARN_MORE_LINK" desc="Text read by screen readers to help users distinguish this 'Learn more' link from others that might get added to this page.">
+    Learn more
+  </message>
+  <message name="IDS_SETTINGS_TOPICS_PAGE_CURRENT_TOPICS_REGION_A11Y_DESCRIPTION" desc="An explanation read by screen readers that describes the list of topics.">
+    List of topics estimated by Mises based on your recent browsing history
+  </message>
+  <message name="IDS_SETTINGS_TOPICS_PAGE_BLOCKED_TOPICS_REGION_A11Y_DESCRIPTION" desc="Read by screen readers to describe the list of blocked topics.">
+    List of topics you blocked that you don't want shared with sites
+  </message>
+  <message name="IDS_SETTINGS_TOPICS_PAGE_FOOTER" desc="This footer helps the user understand that this setting is just one signal among others that affect whether this user sees personalized ads on a site. We define 'personalize' as 'when Mises provides recommendations and other content for users based on their data'. At a high level, there are 4 things that affect whether an ad is personalized in this context: * 'this setting' refers to the 'Ad topics' setting. The user is on this page. * 'Site-suggested ads': this is a link to the other new ad setting Mises is launching and that sites can use to personalize ads a user sees. * 'cookie settings': this is a link to the cookies control section in Mises settings. The Privacy Sandbox project deprecates third-party cookies, but it's a process, and we're launching new functionality that will replace important functionality of cookies. Until third-party cookies are deprecated, the two systems remain active in Mises. * 'site you're viewing personalizes ads': When a user engages with a site, Mises has no control over whether that site shows the user personalized ads. Imagine you visit www.interesting-site.com and they know a lot about you already based on previous visits. They can personalize content and ads to you if they like. They can use an ad-serving product, like Facebook or Mises Ads to deliver personalized ads. They can also use the new Privacy Sandbox APIs (if they so choose) in order to get more information about the user that could be helpful to them in order to personalize ads. Those 2 APIs (settings, from the user's perspective), are 'Ad topics' and 'Site-suggested ads'.">
+    As you browse, whether an ad you see is personalized depends on this setting, <ph name="BEGIN_LINK1">&lt;a href="$1" target="_blank"&gt;</ph>Site-suggested ads<ph name="LINK_END1">&lt;/a&gt;</ph>, your <ph name="BEGIN_LINK2">&lt;a href="$2" target="_blank"&gt;</ph>cookie settings<ph name="LINK_END2">&lt;/a&gt;</ph>, and if the site you’re viewing personalizes ads
+  </message>
+
+  <!-- Privacy Sandbox Settings 4 - Fledge Page -->
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_TITLE" desc="A page title and the name of a new setting. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Site-suggested ads
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_TOGGLE_LABEL" desc="The label for a new setting.">
+    Site-suggested ads
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_TOGGLE_SUB_LABEL" desc="A description of the new Site-suggested ads setting. This text appears beneath the name of the new setting, 'Site-suggested ads', and is associated with the control that a user can turn on or off. * 'determine what you like': Based on your interaction with a site, that site can define your interests any way it wants. For example, if you put a pair of red running shoes in a shopping cart, the site might define an interest as 'red_running_shoes_size_36'. * 'suggest ads as you continue browsing': 1) you interact with a site and if defines an interest for you. That information is saved with Mises. 2) You continue browsing. 3) a new site you visit checks with Mises if 'Site-suggested ads' is turned on and then can request information related to that user. 4) The site might end up showing ads related to 'red_running_shoes_size_36'. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Sites you visit can determine what you like and then suggest ads as you continue browsing
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_HEADING" desc="A label for a list of sites the user has visited. The list of sites looks similar to the user's browsing history, but this is a distinct list. * 'browsing history' is a list of the sites the user has visited. To learn more about 'browsing history', search for that term in the Mises Help Center. * This list of 'Sites' is a subset of the user's browsing history. 1) Only sites that use the 'Site-suggested ads' API (https://developer.chrome.com/docs/privacy-sandbox/fledge/) can appear on this list. 2) This list is based on recent sites the user has visited and sites older than 4 weeks are regularly deleted.">
+    Sites
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_DESCRIPTION" desc="A paragraph beneath the 'Sites' label. It explains how users can control the sites that appear in the list. * 'block sites': When a user blocks a site, that site may no longer save info with Mises about the user's visit. As the user continues to browse, they will not see ads suggested by the blocked site. * 'auto-deletes': We included the 'auto' to reinforce that this is part of a system and the deletion is done regularly.">
+    You can block sites you don't want. Mises also auto-deletes sites from the list that are older than 4 weeks.
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_DESCRIPTION_LEARN_MORE" desc="A button label that opens a dialog box allowing the user to learn more about the Site-suggested ads setting.">
+    Learn more
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_DESCRIPTION_DISABLED" desc="1 of 2 descriptions that appear if there are no sites in the list. This string is for the case that the Site-suggested ads setting isn't on.">
+    When on, a list of sites you visit that guess your interests appears here
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_DESCRIPTION_EMPTY" desc="1 of 2 descriptions that appear if there are no sites in the list. This string is for the case that the Site-suggested ads setting IS on, but the user hasn't browsed any sites that have called the Site-suggested ads API.">
+    It can take up to a week for a list of sites to appear here based on your browsing history
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_REGION_A11Y_DESCRIPTION" desc="Read by screen readers to describe a list of sites that appear on the page.">
+    List of recent sites you visited that can suggest ads to other sites as you keep browsing
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_SEE_ALL_SITES_LABEL" desc="Text that serves as a button. Because the list of sites might be long, we only show the most recent sites. This button allows the user to browse all sites (because sites are auto-deleted every 4 weeks, the list is never older than 4 weeks).">
+    See all sites
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCK_SITE" desc="A button associated with each of the sites in the user's 'Site-suggested ads' list. If the user clicks 'Block', that site will get moved to the 'Sites you blocked' page.">
+    Block
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCK_SITE_A11Y_LABEL" desc="A button label read by screen readers that indicates which site will get blocked. The list is of sites the user has recently visited and that use the Site-suggested ads API to suggest ads to other sites as the user continues browsing.">
+    Block <ph name="DOMAIN">$1<ex>example.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCKED_SITES_HEADING" desc="A label that serves as a button to open the 'Sites you blocked' page.">
+    Sites you blocked
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCKED_SITES_DESCRIPTION" desc="1 of 2 possible descriptions that appear beneath the 'Sites' title. In this case, the user has previously blocked sites. * 'pool of sites': We want to express that by clicking 'Add', the user is making a site eligible again for consideration.">
+    Add a site back if you want it in the pool of sites that can guess what you like
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCKED_SITES_DESCRIPTION_EMPTY" desc="2 of 2 possible descriptions beneath the 'Sites you blocked' title. In this case, the list is empty (the user hasn't blocked any sites).">
+    Blocked sites appear here
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCKED_SITES_REGION_A11Y_DESCRIPTION" desc="Read by screen readers to describe what this list of sites is.">
+    List of sites you blocked that you don't want suggesting ads to other sites
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_ALLOW_SITE" desc="A button associated with each of the user's blocked sites. When the user clicks 'Add', it makes that site eligible. Clicking 'Add' doesn't automatically put the added site back onto the list of 'Sites'. For that to happen, a user would have to browse to that site again and the site would have to use the Site-suggested ads to save interests for this user.">
+    Add
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_ALLOW_SITE_A11Y_LABEL" desc="A button label read by screen readers that indicates which site will get added back to the pool of potential sites.">
+    Add <ph name="DOMAIN">$1<ex>example.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_FOOTER" desc="This footer helps the user understand that this setting is just one signal among others that affect whether this user sees personalized ads on a site. We define 'personalize' as 'when Mises provides recommendations and other content for users based on their data'. At a high level, there are 4 things that affect whether an ad is personalized in this context: * 'this setting' refers to the 'Site-suggested ads' setting. The user is on this page. * 'Ad topics': this is a link to the other new ad setting Mises is launching and that sites can use to personalize ads a user sees. * 'cookie settings': this is a link to the cookies control section in Mises settings. The Privacy Sandbox project deprecates third-party cookies, but it's a process, and we're launching new functionality that will replace important functionality of cookies. Until third-party cookies are deprecated, the two systems remain active in Mises. * 'site you're viewing personalizes ads': When a user engages with a site, Mises has no control over whether that site shows the user personalized ads. Imagine you visit www.interesting-site.com and they know a lot about you already based on previous visits. They can personalize content and ads to you if they like. They can use an ad-serving product, like Facebook or Mises Ads to deliver personalized ads. They can also use the new Privacy Sandbox APIs (if they so choose) in order to get more information about the user that could be helpful to them in order to personalize ads. Those 2 APIs (settings, from the user's perspective), are 'Ad topics' and 'Site-suggested ads'.">
+    As you browse, whether an ad you see is personalized depends on this setting, <ph name="BEGIN_LINK1">&lt;a href="$1" target="_blank"&gt;</ph>Ad topics<ph name="LINK_END1">&lt;/a&gt;</ph>, your <ph name="BEGIN_LINK2">&lt;a href="$2" target="_blank"&gt;</ph>cookie settings<ph name="LINK_END2">&lt;/a&gt;</ph>, and if the site you're viewing personalizes ads
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_LEARN_MORE_HEADING" desc="The title of a dialog box that explains site-suggested ads in more detail.">
+    More about site-suggested ads
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_LEARN_MORE_BULLET_1" desc="1 of 3 paragraphs on the Learn more page for Site-suggested ads. * 'It's common...' this sentence is intended to be reassuring. Many sites the user visits are retaining some information about the user, such as their preferred language if the site has a language picker. If cookies are allowed, this info might be stored with a first-party cookie on the user's device. Sites can also store limited information with Mises.">
+    It's common for sites you visit to remember things you're interested in, to personalize your experience. Sites can also store information with Mises about your interests.
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_LEARN_MORE_BULLET_2" desc="2 of 3 paragraphs on the Learn more page for Site-suggested ads.">
+    For example, if you visit a site that sells long-distance running shoes, the site might decide that you're interested in running marathons. Later, if you visit a different site, that site can show you an ad for running shoes suggested by the first site.
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_LEARN_MORE_BULLET_3" desc="3 of 3 paragraphs on the Learn more page for Site-suggested ads. * 'Auto-deletes': This could just read 'Mises deletes...' but we include the 'auto' to suggest that the deletion happens regularly and as part of the system. * 'A site you visit again...': We want to reassure the user. We just told them sites are automatically deleted. And yet, a user might see the same site in the list month after month if they visit that site regularly.">
+    Mises auto-deletes sites that are older than 4 weeks. A site you visit again might reappear on the list. Or you can block a site from suggesting ads for you.
+  </message>
+  <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_DESCRIPTION_LEARN_MORE_A11Y_LABEL" desc="Text read by screen readers to help users distinguish this 'Learn more' link from others that might get added to this page.">
+    Learn more about site-suggested ads
+  </message>
+
+  <!-- Privacy Sandbox Settings 4 - Ad Measurement Page -->
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_TITLE" desc="A page title and the name of a new setting. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Ad measurement
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_TOGGLE_LABEL" desc="The label for a new setting.">
+    Ad measurement
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_TOGGLE_SUB_LABEL" desc="A description of the new Ad measurement setting. This text appears beneath the name of the new setting, 'Ad measurement', and is associated with the control that a user can turn on or off. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an 'Ad privacy' page in Mises settings. For an equivalent structure, see 'Security' on chrome://settings/privacy that opens chrome://settings/security. Likewise, 'Ad privacy' on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+    Sites and advertisers can measure the performance of their ads
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_ENABLED_HEADING" desc="A label above bullet points that explain the functionality of this setting.">
+    When on
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_CONSIDER_HEADING" desc="A label above bullet points that note things the user might want to consider when turning this setting on or off.">
+    Things to consider
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_ENABLED_BULLET_1" desc="1 of 3 bullets in the 'When on' section that describes the Ad measurement setting. * 'Limited types of data': The Ad measurement API (for developers) and the Ad measurement control (for users) is offered by Mises. But Mises is a 'pass through', helping one site communicate information to another about the performance of an ad. That's where this passive construction comes from. Mises facilitates, but shouldn't be seen as a major actor here. And we don't want to suggest anything like 'Mises limits the types of data shared between sites,' because Mises can't do that. Any 2 sites can have a side agreement to share as much info as they like.">
+    Limited types of data are shared between sites to measure the performance of their ads, such as the time of day an ad was shown to you
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_ENABLED_BULLET_2" desc="2 of 3 bullets in the 'When on' section that describes the Ad measurement setting.">
+    Ad-measurement data is deleted regularly from your device
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_ENABLED_BULLET_3" desc="3 of 3 bullets in the 'When on' section that describes the Ad measurement setting. If reports were instantaneous, a site could receive a report and then consult which visitors most recently visited the site.">
+    Your browsing history is kept private on your device and reports are sent with a delay to protect your identity
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_CONSIDER_BULLET_1" desc="1 of 3 bullets in the 'Things to consider' section that describes the Ad measurement setting.">
+    You can always delete ad-measurement data by deleting your browsing data
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_CONSIDER_BULLET_2" desc="2 of 3 bullets in the 'Things to consider' section that describes the Ad measurement setting.">
+    Mises limits the total amount of data that sites can share through the browser to measure ad performance
+  </message>
+  <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_CONSIDER_BULLET_3" desc="3 of 3 bullets in the 'Things to consider' section that describes the Ad measurement setting.">
+    Your Android device may include a similar setting. If Ad measurement is turned on in Mises and on your Android device, a company may be able to measure the effectiveness of an ad across web sites you visit and apps you use.
   </message>
 
   <!-- Privacy Guide -->
@@ -1638,9 +2076,6 @@
   </message>
   <message name="IDS_SETTINGS_PRIVACY_GUIDE_MSBB_PRIVACY_DESCRIPTION1" desc="A part of the privacy description of 'make searches and browsing better' in the 'Privacy Guide'.">
     URLs you visit are sent to Mises to predict what sites you might visit next
-  </message>
-  <message name="IDS_SETTINGS_PRIVACY_GUIDE_CLEAR_ON_EXIT_CARD_HEADER" desc="Header of the 'clear cookies on exit' card in the 'Privacy Guide'.">
-    Review automatic data clearing
   </message>
   <message name="IDS_SETTINGS_PRIVACY_GUIDE_HISTORY_SYNC_CARD_HEADER" desc="Header of the history sync card in the 'Privacy Guide'.">
     Choose whether to sync history
@@ -1770,6 +2205,50 @@
   <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW" desc="Text for a button that allows users to review safety check findings, such as compromised passwords or blocklisted extensions.">
     Review
   </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_ALLOW_AGAIN_ARIA_LABEL" desc="'Unused Site Permissions' shows unused websites for which permissions have been revoked. This accessibility label describes the action to undo the revokation and grant permissions for the website again. Only visible by screen reader software.">
+    Allow permissions again for <ph name="WEBSITE">$1<ex>website.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_ALLOW_AGAIN_LABEL" desc="'Unused Site Permissions' shows unused websites for which permissions have been revoked. This label is for the action to undo the revokation and allow the site permissions again.">
+    Allow again
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_HEADER_ARIA_LABEL" desc="'Unused Site Permissions' shows the revoked permissions of unused websites. This label is the aria label for the review button on the Privacy and Security settings page.">
+    Review removed permissions
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_HEADER_LABEL" desc="'Unused Site Permissions' shows the revoked permissions of unused websites. This label is the header of the module in the site settings page. The number represents the number of sites for which permissions were revoked.">
+    {NUM_SITES, plural,
+     =1 {Permissions removed from <ph name="BEGIN_BOLD">&lt;b&gt;</ph>1 site<ph name="END_BOLD">&lt;/b&gt;</ph> you haven’t visited in a while}
+     other {Permissions removed from <ph name="BEGIN_BOLD">&lt;b&gt;</ph>{NUM_SITES} sites<ph name="END_BOLD">&lt;/b&gt;</ph> you haven’t visited in a while}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_REMOVED_ONE_PERMISSION_LABEL" desc="'Unused Site Permissions' shows the revoked permissions of unused websites. This text describes which permission was removed and is shown if there is exactly one permission.">
+    Removed <ph name="PERMISSION">$1<ex>location</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_REMOVED_TWO_PERMISSIONS_LABEL" desc="'Unused Site Permissions' shows the revoked permissions of unused websites. This text describes which permissions were removed and is shown if there are exactly two permissions.">
+    Removed <ph name="PERMISSION_1">$1<ex>location</ex></ph>, <ph name="PERMISSION_2">$2<ex>notifications</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_REMOVED_THREE_PERMISSIONS_LABEL" desc="'Unused Site Permissions' shows the revoked permissions of unused websites. This text describes which permissions were removed and is shown if there are exactly three permissions.">
+    Removed <ph name="PERMISSION_1">$1<ex>location</ex></ph>, <ph name="PERMISSION_2">$2<ex>notifications</ex></ph>, <ph name="PERMISSION_3">$3<ex>camera</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_REMOVED_FOUR_OR_MORE_PERMISSIONS_LABEL" desc="'Unused Site Permissions' shows the revoked permissions of unused websites. This text describes which permissions were removed and is shown if there are four or more permissions. The number indicates the count of permisions that are not shown explicitly. The number is always two or larger.">
+    Removed <ph name="PERMISSION_1">$1<ex>location</ex></ph>, <ph name="PERMISSION_2">$2<ex>notifications</ex></ph>, and <ph name="COUNT">$3<ex>2</ex></ph> more
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_PRIMARY_LABEL" desc="'Unused Site Permissions' shows unused websites for which permissions have been revoked. This label is the header of the module in the site settings page. The number represents the number of unused sites.">
+    {NUM_SITES, plural,
+     =1 {Permissions removed for 1 site}
+     other {Permissions removed for {NUM_SITES} sites}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_SECONDARY_LABEL" desc="'Unused Site Permissions' shows unused websites for which permissions have been revoked. This label is the description of the module in the site settings page.">
+    {NUM_SITES, plural,
+     =1 {To protect your data, permissions were removed from a site you haven't visited in 2 months}
+     other {To protect your data, permissions were removed from sites you haven't visited in 2 months}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_TOAST_BULK_LABEL" desc="'Unused Site Permissions' shows unused websites for which permissions have been revoked. This label is shown in a toast popup message after a user has clicked a button to acknowledge all revoked permissions.">
+    {NUM_SITES, plural,
+     =1 {Review complete for 1 site}
+     other {Review complete for {NUM_SITES} sites}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_UNUSED_SITE_PERMISSIONS_TOAST_LABEL" desc="'Unused Site Permissions' shows unused websites for which permissions have been revoked. This label is shown after a user has taken action to allow some permissions again.">
+    Permissions allowed again for <ph name="WEBSITE">$1<ex>www.example.com</ex></ph>
+  </message>
   <message name="IDS_SETTINGS_SAFETY_CHECK_UPDATES_PRIMARY_LABEL" desc="'Updates' is an element in safety check that shows the update status of Mises.">
     Updates
   </message>
@@ -1833,54 +2312,73 @@
   <message name="IDS_SETTINGS_SAFETY_CHECK_EXTENSIONS_BUTTON_ARIA_LABEL" desc="Accessibility text for the button that allows users to review their extensions settings.">
     Review extensions
   </message>
-  <if expr="is_win and _google_chrome">
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_PRIMARY_LABEL" desc="'Unwanted software protection' is an element in safety check that finds harmful software installed on the computer and allows users to remove it.">
-      Device software
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_BUTTON_ARIA_LABEL" desc="Accessiblity text for the button that allows users to review and remove harmful software found on their computer.">
-      Review device software
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_NO_UWS_WITHOUT_TIMESTAMP" desc="This text describes that Mises can check if any known harmful software is installed on the user's computer.">
-      Mises can check your computer for harmful software
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_NO_UWS_WITH_TIMESTAMP_AFTER_SECONDS" desc="This text describes that Mises did not find any known harmful software installed on the user's computer, and that it checked for harmful softwrae the last time a certain time ago.">
-      Mises didn't find harmful software on your computer • Checked just now
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_NO_UWS_WITH_TIMESTAMP_AFTER_MINUTES" desc="This text describes that Mises did not find any known harmful software installed on the user's computer, and that it checked for harmful softwrae the last time a certain time ago.">
-      {NUM_MINS, plural,
-       =1 {Mises didn't find harmful software on your computer • Checked 1 minute ago}
-       other {Mises didn't find harmful software on your computer • Checked {NUM_MINS} minutes ago}}
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_NO_UWS_WITH_TIMESTAMP_AFTER_HOURS" desc="This text describes that Mises did not find any known harmful software installed on the user's computer, and that it checked for harmful softwrae the last time a certain time ago.">
-      {NUM_HOURS, plural,
-       =1 {Mises didn't find harmful software on your computer • Checked 1 hour ago}
-       other {Mises didn't find harmful software on your computer • Checked {NUM_HOURS} hours ago}}
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_NO_UWS_WITH_TIMESTAMP_YESTERDAY" desc="This text describes that Mises did not find any known harmful software installed on the user's computer, and that it checked for harmful softwrae the last time a certain time ago.">
-      Mises didn't find harmful software on your computer • Checked yesterday
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_NO_UWS_WITH_TIMESTAMP_AFTER_DAYS" desc="This text describes that Mises did not find any known harmful software installed on the user's computer, and that it checked for harmful softwrae the last time a certain time ago.">
-      {NUM_DAYS, plural,
-       =1 {Mises didn't find harmful software on your computer • Checked 1 day ago}
-       other {Mises didn't find harmful software on your computer • Checked {NUM_DAYS} days ago}}
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_INFECTED" desc="This text describes that Mises found harmful software on the computer.">
-      Mises found harmful software on your computer
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_SCANNING" desc="This text describes that Mises is currently checking the user's device for unwanted software. This takes a couple of minutes.">
-      Mises is checking your computer for harmful software...
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_REMOVING" desc="This text describes that Mises is currently removing unwanted software frrom the user.s device. This takes a couple of minutes.">
-      Mises is removing harmful software from your computer...
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_DISABLED_BY_ADMIN" desc="This text describes that Mises can't check for unwanted software because an administrator disabled the feature.">
-      <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph>Your administrator<ph name="END_LINK">&lt;/a&gt;</ph> has turned off checking for harmful software
-    </message>
-    <message name="IDS_SETTINGS_SAFETY_CHECK_CHROME_CLEANER_ERROR" desc="This text describes that Mises can't check for unwanted software due to an error.">
-      Something went wrong. Click for more details.
-    </message>
-  </if>
-
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_PRIMARY_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is the header of the module in the site settings notification page. The number represents the number of notification permissions to be reviewed.">
+    {NUM_SITES, plural,
+     =1 {Review 1 site that sent a lot of notifications}
+     other {Review {NUM_SITES} sites that sent a lot of notifications}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_NOTIFICATION_PERMISSIONS_REVIEW_BUTTON_ARIA_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is used for the ARIA label of the button of the module in the site settings notification page.">
+    Review notification permissions
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_SECONDARY_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is the description of the module in site settings notification page.">
+    {NUM_SITES, plural,
+     =1 {This site sent a lot of notifications recently. You can stop it from sending future notifications.}
+     other {These sites sent a lot of notifications recently. You can stop them from sending future notifications.}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_NOTIFICATION_PERMISSION_REVIEW_IGNORED_TOAST_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is to indicate for which site the user has explicitly allowed permissions.">
+    Notifications allowed for <ph name="SITE">$1<ex>www.example.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_NOTIFICATION_PERMISSION_REVIEW_BLOCKED_TOAST_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is to indicate for which site the user has blocked permissions.">
+    Notifications not allowed for <ph name="SITE">$1<ex>www.example.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_NOTIFICATION_PERMISSION_REVIEW_RESET_TOAST_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is to indicate for which site the user has reset the notification permissions.">
+    Notifications not allowed for <ph name="SITE">$1<ex>www.example.com</ex></ph>. You’ll be asked again on your next visit.
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_COUNT_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label holds the details of the item and shows how many notifications are sent.">
+    {NUM_NOTIFICATION, plural,
+     =1 {About 1 notification a day}
+     other {About {NUM_NOTIFICATION} notifications a day}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_DONT_ALLOW_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is for the action to block notifications from a specific website.">
+    Don't allow
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_DONT_ALLOW_ARIA_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This ARIA (accessibility) label is for the action to block notifications from a specific website.">
+    Don't allow notifications from <ph name="WEBSITE">$1<ex>website.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_IGNORE_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is for the action to allow the website so that the permissions will be never revoked later.">
+    Always allow notifications from this site
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_IGNORE_ARIA_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This ARIA (accessibility) label is is for the action to allow the website so that the permissions will be never revoked later.">
+    Always allow notifications from <ph name="WEBSITE">$1<ex>website.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_RESET_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is for resetting the permission to the 'ask' state.">
+    Don’t allow but ask later
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_RESET_ARIA_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This ARIA (accessibility) label is for resetings the permission to the 'ask' state.">
+    Don’t allow notifications from <ph name="WEBSITE">$1<ex>website.com</ex></ph> but ask later
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_MORE_ACTIONS_ARIA_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This ARIA (accessibility) label is to show more actions for a notification permissions item.">
+    More actions for <ph name="WEBSITE">$1<ex>website.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_NOTIFICATION_PERMISSIONS_HEADER_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is for the header in Privacy and Security Settings page that surface an entry point to the module itself. The integer input represents the number of notification permissions to be reviewed.">
+    {NUM_SITES, plural,
+     =1 {Review <ph name="BEGIN_BOLD">&lt;b&gt;</ph>1 site<ph name="END_BOLD">&lt;/b&gt;</ph> that recently sent a lot of notifications}
+     other {Review <ph name="BEGIN_BOLD">&lt;b&gt;</ph>{NUM_SITES} sites<ph name="END_BOLD">&lt;/b&gt;</ph> that recently sent a lot of notifications}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_NOTIFICATION_PERMISSION_REVIEW_BLOCK_ALL_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is for a button that allows the user to block notifications for all selected sites.">
+    Block all
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_NOTIFICATION_PERMISSION_REVIEW_BLOCK_ALL_TOAST_LABEL" desc="'Review Notification Permissions' shows the websites that send a lot of notifications. This label is to indicate for how many sites the user has blocked permissions.">
+    {NUM_SITES, plural,
+    =1 {Notifications not allowed for 1 site}
+    other {Notifications not allowed for {NUM_SITES} sites}}
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_SITE_PERMISSIONS_REVIEW_DONE_LABEL" desc="Text indicating that the user has no more actions to perform. This text, together with a checkmark, appear in place of a UI where the user can review permissions for a list of websites. The text is shown after the user has taken action and there are no more websites listed.">
+    All done for now
+  </message>
+  <message name="IDS_SETTINGS_SAFETY_CHECK_TOAST_UNDO_BUTTON_LABEL" desc="After the user has modified permissions for a website, a toast popup message is shown with this text next to a description of the action taken. The user can click this text to undo the action. For example, this text would be next to a descriptiton that says 'Allowed notification permissions for example.com'.">
+    Undo
+  </message>
   <message name="IDS_SETTINGS_NETWORK_PREDICTION_ENABLED_LABEL" desc="In the advanced options tab, the text next to the checkbox that enables prediction of network actions.  Actions include browser-initiated DNS prefetching, TCP and SSL preconnection, and prerendering of webpages.">
     Preload pages for faster browsing and searching
   </message>
@@ -1965,7 +2463,7 @@
   <message name="IDS_SETTINGS_PERMISSIONS" desc="Name of the settings page which allows users to manage permissions and site content settings">
     Permissions and content settings
   </message>
-  <message name="IDS_SETTINGS_PERMISSIONS_DESCRIPTION" desc="Description of the controls available on the permisisons and site content settings page">
+  <message name="IDS_SETTINGS_PERMISSIONS_DESCRIPTION" desc="Description of the controls available on the permissions and site content settings page">
     Controls what information sites can use and show (location, camera, pop-ups, and more)
   </message>
   <message name="IDS_SETTINGS_SECURITY" desc="Name of the settings page which allows   users to manage security settings">
@@ -2009,6 +2507,11 @@
   <message name="IDS_SETTINGS_SECURE_DNS_DESCRIPTION" desc="Secondary, continued explanation of secure DNS in Privacy options">
     Determines how to connect to websites over a secure connection
   </message>
+  <if expr="chromeos_ash">
+    <message name="IDS_SETTINGS_SECURE_DNS_WITH_IDENTIFIERS_DESCRIPTION" desc="Secondary, continued explanation of secure DNS in Privacy options">
+      Determines how to connect to websites over a secure connection. This uses a managed service provider at <ph name="DNS_SERVER_TEMPLATE_WITH_IDENTIFIER">$1<ex>https://dns.example.net/dns-query{?dns}</ex></ph>
+    </message>
+  </if>
   <message name="IDS_SETTINGS_AUTOMATIC_MODE_DESCRIPTION" desc="Text of the radio button that puts secure DNS in auto-upgrade mode">
     With your current service provider
   </message>
@@ -2122,6 +2625,9 @@
   <message name="IDS_SETTINGS_RESET_BANNER_RESET_BUTTON_TEXT" desc="The text on the reset button in the Automatic Settings Reset Banner suggesting to reset ALL settings after an automatic reset of SOME settings.">
     Reset all settings
   </message>
+  <message name="IDS_SETTINGS_RESET_LEARN_MORE_ACCESSIBILITY_TEXT" desc="Accessibility label for a 'Learn more' link that links out to a help article about resetting settings.">
+    Learn more about resetting settings
+  </message>
 
   <!-- Reset card title and Mises Cleanup item on Windows -->
   <if expr="is_win and _google_chrome">
@@ -2138,7 +2644,10 @@
     Search engine
   </message>
   <message name="IDS_SETTINGS_SEARCH_EXPLANATION" desc="Explanation for the search engine dropdown setting.">
-    Search engine used in the address bar
+    Search engine used in the address bar.
+  </message>
+  <message name="IDS_SETTINGS_SEARCH_EXPLANATION_ACCESSIBILITY_LABEL" desc="Accessibility label for a 'learn more' link which links to an article about setting a default search engine.">
+    Learn more about default search engines
   </message>
   <message name="IDS_SETTINGS_SEARCH_MANAGE_SEARCH_ENGINES" desc="Label for the Manage Search Engines button.">
     Manage search engines
@@ -2199,9 +2708,6 @@
   <message name="IDS_SETTINGS_SEARCH_ENGINES_NO_INACTIVE_SHORTCUTS" desc="Text shown when the 'Inactive Shortcuts' section is empty">
     No inactive shortcuts
   </message>
-  <message name="IDS_SETTINGS_SEARCH_ENGINES_OTHER_ENGINES" desc="Label for 'other' Search Engines section">
-    Other search engines
-  </message>
   <message name="IDS_SETTINGS_SEARCH_ENGINES_NO_OTHER_ENGINES" desc="Label shown when the 'other' Search engines section is empty">
     Other saved search engines will appear here
   </message>
@@ -2219,9 +2725,6 @@
   </message>
   <message name="IDS_SETTINGS_SEARCH_ENGINES_INACTIVE_SITE" desc="Label for a table column that holds the name of a site or page in the 'Inactive shortcuts' section">
     Inactive sites
-  </message>
-  <message name="IDS_SETTINGS_SEARCH_ENGINES_KEYWORD" desc="Label for Keyword column header for a search engine">
-    Keyword
   </message>
   <message name="IDS_SETTINGS_SEARCH_ENGINES_SHORTCUT" desc="Label for Shortcut column header for a search engine or site search entry">
     Shortcut
@@ -2315,6 +2818,9 @@
   <message name="IDS_SETTINGS_SITE_SETTINGS_DEFAULT_BEHAVIOR_DESCRIPTION" desc="Description for the site settings default behavior.">
     Sites automatically follow this setting when you visit them
   </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_NOTIFICATIONS_DEFAULT_BEHAVIOR_DESC" desc="Description for the site settings notifications content setting default behavior.">
+    Sites automatically follow this setting when you visit them. Sites usually send notifications to let you know about breaking news or chat messages.
+  </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_CUSTOMIZED_BEHAVIORS" desc="Label for the site settings exceptions.">
     Customized behaviors
   </message>
@@ -2327,11 +2833,11 @@
   <message name="IDS_SETTINGS_SITE_SETTINGS_ADS_DESCRIPTION" desc="Description of the ads content setting. In order to comply with the ND4C regulations the translations for this message should use one of the legally approved terms as an alternative to 'free'.">
     Sites usually show ads so they can provide content or services free of charge. But, some sites are known to show intrusive or misleading ads.
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_ADS_ALLOWED" desc="Label for the enabled option of the ads content setting.">
-    All sites can show any ads to you
+  <message name="IDS_SETTINGS_SITE_SETTINGS_ADS_ALLOWED" desc="1 of 2 states for the 'Intrusive ads' setting.">
+    Any site you visit can show any ad to you
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_ADS_BLOCKED" desc="Label for the disabled option of the ads content setting.">
-    Block ads on sites that show intrusive or misleading ads
+  <message name="IDS_SETTINGS_SITE_SETTINGS_ADS_BLOCKED" desc="2 of 2 states for the 'intrusive ads' setting.">
+    Ads are blocked on sites known to show intrusive or misleading ads
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_ADS_ALLOWED_EXCEPTIONS" desc="Label for the allowed exceptions site list of the ads content setting.">
     Allowed to show any ads
@@ -2796,6 +3302,75 @@
   <message name="IDS_SETTINGS_COOKIES_PAGE" desc="Title of the cookies settings page">
     Cookies and other site data
   </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_DESCRIPTION" desc="An explanation of what third-party cookies are that appear beneath the page title: 'Third-party cookies'. * 'embed': A site you visit uses HTML to construct the page. HTML tags include references to images, like img src='filename.jpg', that are used to show an image. 'filename.jpg' can be a local file owned by the site you visit or a site can embed an external file with something like img src='www.third-party-site.com/images/filename.jpg'. This image is embedded into the site you visit and www.third-party-site.com can set a third-party cookie onto your device.">
+    A site you visit can embed content from other sites, for example, images, ads, and text. Cookies set by these other sites are called third-party cookies.
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_DEFAULT_BEHAVIOR_HEADING" desc="A label on a permissions page. For example, see the Microphone permission at chrome://settings/content/microphone.">
+    Default behavior
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_DEFAULT_BEHAVIOR_DESCRIPTION" desc="A description of what 'Default behavior' means. For example, see the Microphone permission at chrome://settings/content/microphone.">
+    Sites automatically follow this setting when you visit them
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_CUSTOMIZED_BEHAVIOR_HEADING" desc="A label on a permissions page. For example, see the Microphone permission at chrome://settings/content/microphone.">
+    Customized behaviors
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_CUSTOMIZED_BEHAVIOR_DESCRIPTION" desc="A description of 'customized behaviors' that appear beneath the 'Customized behaviors' title. For example, see the Microphone permission at chrome://settings/content/microphone.">
+    Sites listed below follow a custom setting instead of the default
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_ALLOW_EXCEPTIONS_SUB_HEADING" desc="A description of an exception bucket">
+    Allowed to use third-party cookies
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_TITLE" desc="The title of a new page. Today, Mises has a 'Cookies and other site data' page at chrome://settings/cookies. As part of the Privacy Sandbox project (see below), Mises is deprecating third-party cookies but maintaining first-party cookies. As a step towards the ultimate deprecation of third-party cookies, we're first separating them from other forms of 'site data', making it easier to eventually remove this page completely. Cookies are often used for honorable objectives, and the difference between first and third-party cookies is important (see any of the many resources online such as https://termly.io/resources/articles/first-party-cookies-vs-third-party-cookies/.">
+    Third-party cookies
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_LINK_ROW_LABEL" desc="This text is the label of a page. Here, it serves as a button that opens the new page.">
+    Third-party cookies
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_LINK_ROW_SUB_LABEL_ENABLED" desc="1 of 3 possible states for the Third-party cookies setting. This text appears beneath the 'Third-party cookies' button label.">
+    Third-party cookies are allowed
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_LINK_ROW_SUB_LABEL_DISABLED_INCOGNITO" desc="2 of 3 possible states for the Third-party cookies setting. This text appears beneath the 'Third-party cookies' button label.">
+    Third-party cookies are blocked in Private mode
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_LINK_ROW_SUB_LABEL_DISABLED" desc="3 of 3 possible states for the Third-party cookies setting. This text appears beneath the 'Third-party cookies' button label.">
+    Third-party cookies are blocked
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_ALLOW_RADIO_LABEL" desc="1 of 3 options the user has to configure cookies. See the cookies page for context: chrome://settings/cookies.">
+    Allow third-party cookies
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_ALLOW_EXPAND_A11Y_LABEL" desc="This text is read by screenreaders and helps users find more info about this choice.">
+    More about allowing third-party cookies
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_ALLOW_BULLET_1" desc="1 of 2 bullets that describes the 'Allow all cookies' option.">
+    Sites can use cookies to improve your browsing experience, for example, to keep you signed in or to remember items in your shopping cart
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_ALLOW_BULLET_2" desc="2 of 2 bullets that describes the 'Allow all cookies' option. Sites use third-party cookies to 'see your browsing activity across different sites'. Third-party cookies aren't necessarily bad. 1) Personalized ads can be useful to the user (though the tracking that generally accompanies the use of third-party cookies for ads isn't). But 2) third-party cookies are also used for spam protection and for anti-tracking efforts.">
+    Sites can use cookies to see your browsing activity across different sites, for example, to personalize ads
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_BLOCK_INCOGNITO_RADIO_LABEL" desc="2 of 3 options the user has to configure cookies. See the cookies page for context: chrome://settings/cookies. For more about Private mode, see Mises's Help Center.">
+    Block third-party cookies in Private mode
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_BLOCK_INCOGNITO_EXPAND_A11Y_LABEL" desc="This text is read by screenreaders and helps users find more info about this choice.">
+    More about blocking third-party cookies in Private mode
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_BLOCK_INCOGNITO_BULLET_1" desc="1 of 2 bullets that describes the 'Block third-party cookies in Private mode' option.">
+    Sites can use cookies to improve your browsing experience, for example, to keep you signed in or to remember items in your shopping cart
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_BLOCK_INCOGNITO_BULLET_2" desc="2 of 2 bullets that describes the 'Block third-party cookies in Private mode' option.">
+    While in Private, sites can't use your cookies to see your browsing activity across sites. Your browsing activity isn't used for things like personalizing ads. Features on some sites may not work.
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_BLOCK_RADIO_LABEL" desc="3 of 3 options the user has to configure cookies. See the cookies page for context: chrome://settings/cookies">
+    Block third-party cookies
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_BLOCK_EXPAND_A11Y_LABEL" desc="This text is read by screenreaders and helps users find more info about this choice.">
+    More about blocking third-party cookies
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_BLOCK_BULLET_1" desc="1 of 2 bullets that describes the 'Block third-party cookies' option.">
+    Sites can use cookies to improve your browsing experience, for example, to keep you signed in or to remember items in your shopping cart
+  </message>
+  <message name="IDS_SETTINGS_THIRD_PARTY_COOKIES_PAGE_BLOCK_BULLET_2" desc="2 of 2 bullets that describe the 'Block third-party cookies' option">
+    Sites can't use your cookies to see your browsing activity across different sites, for example, to personalize ads. Features on some sites may not work
+  </message>
   <message name="IDS_SETTINGS_COOKIES_CONTROLS" desc="Title of the general cookies control section.">
     General settings
   </message>
@@ -2823,6 +3398,9 @@
   <message name="IDS_SETTINGS_COOKIES_BLOCK_THIRD_PARTY_INCOGNITO_BULLET_TWO" desc="Description for the first bullet of block third party cookies in Private radio toggle">
     While in Private, sites can't use your cookies to see your browsing activity across different sites, for example, to personalize ads. Features on some sites may not work.
   </message>
+  <message name="IDS_SETTINGS_COOKIES_BLOCK_THIRD_PARTY_INCOGNITO_BULLET_TWO_FPS" desc="Description for the first bullet of block third party cookies in Private radio toggle">
+    While in Private, sites can't use your cookies to see your browsing activity across sites, even related sites. Your browsing activity isn't used for things like personalizing ads. Features on some sites may not work.
+  </message>
   <message name="IDS_SETTINGS_COOKIES_BLOCK_THIRD_PARTY" desc="Label for block third party cookies radio toggle">
     Block third-party cookies
   </message>
@@ -2849,6 +3427,12 @@
   </message>
   <message name="IDS_SETTINGS_COOKIES_BLOCK_ALL_BULLET_THREE" desc="Description for the third bullet of block all cookies radio toggle">
     Features on many sites may not work
+  </message>
+  <message name="IDS_SETTINGS_COOKIES_FIRST_PARTY_SETS_TOGGLE_LABEL" desc="Label for the toggle that allows the user to control first-party sets enabled sharing between related sites">
+    Allow related sites to see your activity in the group
+  </message>
+  <message name="IDS_SETTINGS_COOKIES_FIRST_PARTY_SETS_TOGGLE_SUB_LABEL" desc="Sub-label for the toggle that allows the user to control first-party sets enabled sharing between related sites">
+    A company can define a group of sites that can use cookies to share your activity in the group. This is off in Private.
   </message>
   <message name="IDS_SETTINGS_COOKIES_CLEAR_ON_EXIT" desc="Label for the toggle that allows the user to automatically delete their cookies and site data when they close all browser windows.">
     Clear cookies and site data when you close all windows
@@ -3008,20 +3592,20 @@
   <message name="IDS_SETTINGS_SITE_SETTINGS_AUTOMATIC_DOWNLOAD_ASK_RECOMMENDED" desc="The allow label for automatic download in site settings (with the 'recommended' suffix).">
     Ask when a site tries to download files automatically after the first file (recommended)
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_PLACEMENT_DESCRIPTION" desc="Description of the window placement site setting.">
-    Sites usually open and place windows to show additional documents or fullscreen content on your screens
+  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_MANAGEMENT_DESCRIPTION" desc="Description of the window management site setting.">
+    Sites usually ask for information about your displays so they can open and place windows intelligently, like showing documents or full-screen content side by side
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_PLACEMENT_ASK" desc="Label for the enabled option of the window placement site setting.">
-    Sites can ask to use info about your screens to open and place windows
+  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_MANAGEMENT_ASK" desc="Label for the enabled option of the window management site setting.">
+    Sites can ask to manage windows on all your displays
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_PLACEMENT_BLOCKED" desc="Label for the disabled option of the window placement site setting.">
-    Don't allow sites use info about your screens to open and place windows
+  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_MANAGEMENT_BLOCKED" desc="Label for the disabled option of the window management site setting.">
+    Don't allow sites to manage windows on all your displays
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_PLACEMENT_ASK_EXCEPTIONS" desc="Label for the enabled exceptions site list of the window placement site setting.">
-    Allowed to use info about your screens to open and place windows
+  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_MANAGEMENT_ASK_EXCEPTIONS" desc="Label for the enabled exceptions site list of the window management site setting.">
+    Allowed to manage windows on all your displays
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_PLACEMENT_BLOCKED_EXCEPTIONS" desc="Label for the blocked exceptions site list of the window placement site setting.">
-    Not allowed to use info about your screens to open and place windows
+  <message name="IDS_SETTINGS_SITE_SETTINGS_WINDOW_MANAGEMENT_BLOCKED_EXCEPTIONS" desc="Label for the blocked exceptions site list of the window management site setting.">
+    Not allowed to manage windows on all your displays
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_IDLE_DETECTION_BLOCK" desc="The block label for the idle detection site settings.">
     Block sites from knowing when you're actively using this device
@@ -3129,33 +3713,6 @@
   <message name="IDS_SETTINGS_SITE_SETTINGS_GROUP_DELETE" desc="The clear storage button label, used to delete storage data for a group of sites.">
     Clear data
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_HEADER" desc="A header for the list of showing all cookies and site data.">
-    All cookies and site data
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_LINK" desc="Label for link showing all cookies and site data.">
-    See all cookies and site data
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_REMOVE" desc="Label for the button to delete a single site cookie.">
-    Remove
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_REMOVE_ALL" desc="Label for the button to delete all cookies for a site.">
-    Remove All
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_REMOVE_ALL_SHOWN" desc="Label for the button to delete all visible cookies for a site.">
-    Remove All Shown
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_REMOVE_ALL_THIRD_PARTY" desc="Label for the subpage button to open a confirmation dialog to remove all cookies available in third-party contexts.">
-    Remove Third-Party Cookies
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_THIRD_PARTY_COOKIE_REMOVE_DIALOG_TITLE" desc="Title of the dialog that warns about deleting third-party cookie data.">
-    Clear third-party cookies
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_THIRD_PARTY_COOKIE_REMOVE_CONFIRMATION" desc="Text for the dialog that warns about deleting third-party cookie data.">
-    This will delete all cookies and site data available in third-party contexts. Do you want to continue?
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_CLEAR_THIRD_PARTY_COOKIES" desc="Label for the confirmation dialog button to delete all cookies and site data for third-party contexts.">
-    Clear third-party cookies
-  </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_THIRD_PARTY_COOKIES_EXCEPTION_LABEL" desc="Label for site exceptions that affect third party cookies.">
     Including third-party cookies on this site
   </message>
@@ -3164,6 +3721,12 @@
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_CLEAR_DISPLAYED_STORAGE_DIALOG_TITLE" desc="Title of the dialog that warns about deleting displayed site data.">
     Clear displayed data?
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_FIRST_PARTY_SETS_LEARN_MORE" desc="Label for first-party sets explainer with a learn more link shown when sites are filtered by first-party set owner">
+     These sites are in a group defined by <ph name="FPS_OWNER">$1<ex>google.com</ex></ph>. Sites in a group can see your activity in the group.
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_FIRST_PARTY_SETS_LEARN_MORE_ACCESSIBILITY" desc="Accessibility label learn more link about first-party sets shown when user filters sites by first-party set owner">
+     Learn more about related sites in a new tab
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_CLEAR_ALL_STORAGE_DESCRIPTION" desc="Label describing how much total disk space chrome is using, next to the clear all button">
     Total storage used by sites: <ph name="TOTAL_USAGE">$1<ex>8 GB</ex></ph>
@@ -3176,6 +3739,23 @@
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_CLEAR_DISPLAYED_STORAGE_LABEL" desc="Label for button to clear displayed site data">
     Clear displayed data
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_SITE_DETAILS_SUBPAGE_ACCESSIBILITY_LABEL" desc="The (accessibility) label for subpage button that navigates to site details from all sites page.">
+    Show site details for <ph name="SITE_GROUP">$1<ex>google.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_FIRST_PARTY_SETS_MEMBERSHIP_LABEL" desc="Label displaying how many members are in a first-party set for a specific site. This is displayed on site entries in all sites page and site details page.">
+    {MEMBERS, plural,
+        =1 {1 site in <ph name="FPS_OWNER">{FPS_OWNER}<ex>google.com</ex></ph>'s group}
+        other {{MEMBERS} sites in <ph name="FPS_OWNER">{FPS_OWNER}<ex>google.com</ex></ph>'s group}}
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_FIRST_PARTY_SETS_MORE_ACTIONS_TITLE" desc="The (accessibility) title of a button, which brings up a menu of actions that can be taken on a site group.">
+    More actions for <ph name="SITE_GROUP">$1<ex>google.com</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_FIRST_PARTY_SETS_SHOW_RELATED_SITES_BUTTON" desc="Label for the button on the first-party sets more actions menu to allow users to filter sites by the first-party set owner.">
+    Show sites in same group
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_FIRST_PARTY_SETS_SITE_CLEAR_STORAGE_BUTTON" desc="Label for the button on the first-party sets more actions menu to allow users to clear data and permissions for a specific site entry.">
+    Clear data and permissions
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_CLEAR_ALL_STORAGE_CONFIRMATION" desc="Text for the dialog that warns about clearing storage used by all sites.">
     This will clear <ph name="TOTAL_USAGE">$1<ex>8 GB</ex></ph> of data stored by sites
@@ -3195,12 +3775,6 @@
   <message name="IDS_SETTINGS_SITE_SETTINGS_CLEAR_DISPLAYED_STORAGE_SIGN_OUT" desc="Text for the dialog that warns about being signed out when clearing storage used by displayed sites.">
     You'll be signed out of displayed sites, including in open tabs
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_REMOVE_DIALOG_TITLE" desc="Title of the dialog that warns about deleting all site data.">
-    Clear site data
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_SUBPAGE" desc="A label for cookie subpage, stating which site we're showing data for.">
-    <ph name="SITE">$1<ex>www.example.com</ex></ph> locally stored data
-  </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_SITE_RESET_CONFIRMATION" desc="Text for the dialog that warns about resetting all permissions for a site.">
     Reset site permissions for <ph name="SITE">$1<ex>www.example.com</ex></ph>?
   </message>
@@ -3218,6 +3792,9 @@
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_SITE_CLEAR_STORAGE_OFFLINE_DATA" desc="Text for the dialog that warns about loss of offline data when clearing all storage data.">
     Any offline data will be cleared
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_REMOVE_SITE_AD_PERSONALIZATION" desc="A bullet in a list of data that gets deleted from the user's device when they choose 'Clear data' for a specific site. 1) Go to chrome://settings/content. 2) From the 'Recent activity' list, choose a site. 3) Click the 'Clear data' button. The 'Clear site data?' dialog appears. This string will appear as a new bullet at the bottom of the dialog.">
+    Data that affects ad personalization is deleted
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_SITE_CLEAR_STORAGE_APPS" desc="Text for the dialog that warns about loss of offline data for installed app when clearing all storage data for site.">
     Offline data in installed app will also be cleared
@@ -3251,15 +3828,6 @@
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_SITE_GROUP_DELETE_APPS" desc="Text for the dialog that warns about installed apps losing offline data when clearing all storage data for the site group.">
     Offline data in installed apps will also be cleared
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_ORIGIN_DELETE_CONFIRMATION" desc="Text for the dialog that warns about clearing all storage data for an origin.">
-    This will clear all data and cookies stored by <ph name="ORIGIN_NAME">$1<ex>www.example.com</ex></ph>
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_ORIGIN_DELETE_CONFIRMATION_INSTALLED" desc="Text for the dialog that warns about clearing all storage data for an origin that has one or more installed apps.">
-    This will clear all data and cookies stored by <ph name="ORIGIN_NAME">$1<ex>www.example.com</ex></ph> and its installed apps
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_REMOVE_MULTIPLE" desc="Text for the dialog that warns about deleting all site data.">
-    This will delete any data stored on your device for all the sites shown. Do you want to continue?
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_REMOVE_SITE_ORIGIN_DIALOG_TITLE" desc="Title of the confirmation dialog when a user selects to remove a specific origin">
     Clear site data and permissions for <ph name="SITE_NAME">$1<ex>www.example.com</ex></ph>?
@@ -3297,17 +3865,11 @@
   <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_REMOVE_SITE" desc="Label for the trashcan button to delete all cookies and site data for a specific site (ex: all the cookies set on google.com).">
     Remove <ph name="SITE">$1<ex>google.com</ex></ph>
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIES_CLEAR_ALL" desc="Text for the button that clears all site data.">
-    Clear all
-  </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_SITE_RESET_ALL" desc="Text for the button that resets the site's permissions back to the defaults.">
     Reset
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_SITE_CLEAR_STORAGE" desc="Text for the button that clears the storage used by a site, excluding cookies.">
     Clear
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIE_SEARCH" desc="A placeholder label shown inside the Cookie Data filter textbox as a hint that the user can enter a substring to search for.">
-    Search cookies
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_HANDLER_IS_DEFAULT" desc="A label showing that a certain handler for a given protocol is the default.">
     Default
@@ -3339,14 +3901,85 @@
   <message name="IDS_SETTINGS_SITE_SETTINGS_NO_SITES_FOUND" desc="Explanation shown when there are no matching search results on All Sites page.">
     No sites found
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_BLUETOOTH_SCANNING_ASK" desc="The label that is used to show the Bluetooth scanning setting is set to ask in site settings.">
-    Ask when a site wants to discover nearby Bluetooth devices
+  <message name="IDS_SETTINGS_SITE_SETTINGS_BLUETOOTH_SCANNING_DESCRIPTION" desc="Description text on the page controlling whether sites can use Bluetooth scanning.">
+    Sites usually look for Bluetooth devices for features like setting up or syncing a low-energy beacon, a health or fitness tracker, or a smart light bulb
   </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_BLUETOOTH_SCANNING_ASK_RECOMMENDED" desc="The label that is used to show the Bluetooth scanning setting is set to ask (with the 'recommended' suffix) in site settings.">
-    Ask when a site wants to discover nearby Bluetooth devices (recommended)
+  <message name="IDS_SETTINGS_SITE_SETTINGS_BLUETOOTH_SCANNING_ASK" desc="The label that is used to show the Bluetooth scanning setting is set to ask in site settings.">
+    Sites can ask to look for Bluetooth devices
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_BLUETOOTH_SCANNING_BLOCK" desc="The label that is used to show the Bluetooth scanning setting is set to block in site settings.">
-    Do not allow any site to discover nearby Bluetooth devices
+    Don't allow sites to look for Bluetooth devices
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_BLUETOOTH_SCANNING_ALLOWED_EXCEPTIONS" desc="The label for the section that displayed sites that are always allowed to use bluetooth scanning.">
+    Allowed to look for Bluetooth devices
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_BLUETOOTH_SCANNING_BLOCKED_EXCEPTIONS" desc="The label for the section that displayed sites that are never allowed to use bluetooth scanning.">
+    Not allowed to look for Bluetooth devices
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_EXTENSION_ID_DESCRIPTION" desc="Description for an extension using its extension id.">
+    ID: <ph name="EXTENSION_ID">$1<ex>mhabknllooicelmdboebjilbohdbihln</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_PAGE_SITE_DATA_ALLOWED_SUB_LABEL" desc="1 of 3 possible states for the On-device site data setting. This text appears beneath the 'On-device site data' label and shows the user the state of the setting. With this status, sites have the most flexibility.">
+    Sites can save data on your device
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_PAGE_SITE_DATA_BLOCKED_SUB_LABEL" desc="2 of 3 possible states for the On-device site data setting. This text appears beneath the 'On-device site data' label and shows the user the state of the setting. With this status, sites have the least flexibility.">
+    Sites aren't allowed to save data on your device
+  </message>
+  <message name="IDS_SETTINGS_SITE_SETTINGS_PAGE_SITE_DATA_CLEAR_ON_EXIT_SUB_LABEL" desc="3 of 3 possible states for the On-device site data setting. This text appears beneath the 'On-device site data' label and shows the user the state of the setting. With this status, data stored on the user's device is deleted each time the user closes all Mises windows.">
+    Site data is cleared from your device when you close all windows
+  </message>
+
+  <!-- Site Settings - Site Data Page-->
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_TITLE" desc="A page title for a new page. What is 'On-device site data'? When you interact with a site, that site can remember things about what you do. For example, you might place a pair of shoes in a shopping cart, close down your browser, and find those same shoes in your shopping cart when you visit the same site a week later. Sometimes that info is saved in the Cloud. Sometimes that info is saved on the user's device. There are several ways a site can save info to the user's device—for example, with cookies (text files saved to your device), small JavaScript databases, and even Mises's new ad settings that are part of the Privacy Sandbox project (see details below). This page introduces the concept of on-device site data, allows the user to see which sites are using it, and allows the user to delete all saved data or just data from specific sites.">
+    On-device site data
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_DESCRIPTION" desc="A paragraph that appear beneath the page title: 'On-device site data'. It defines what on-device site data is. What is 'On-device site data'? When you interact with a site, that site can remember things about what you do. For example, you might place a pair of shoes in a shopping cart, close down your browser, and find those same shoes in your shopping cart when you visit the same site a week later. Sometimes that info is saved in the Cloud. Sometimes that info is saved on the user's device. There are several ways a site can save info to the user's device—for example, with cookies (text files saved to your device), small JavaScript databases, and even Mises's new ad settings that are part of the Privacy Sandbox project (see details below). This page introduces the concept of on-device site data, allows the user to see which sites are using it, and allows the user to delete all saved data or just data from specific sites. **** CONTEXT PRIVACY SANDBOX **** Mises's Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com.">
+    A site you visit can save info about what you're doing so that it works as you would expect — for example, to keep you signed in to a site or to save items in your shopping cart. Often sites save this info temporarily on your device.
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_DEFAULT_BEHAVIOR_HEADING" desc="A label on a permissions page. For example, see the Microphone permission at chrome://settings/content/microphone.">
+    Default behavior
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_DEFAULT_BEHAVIOR_DESCRIPTION" desc="A description of what 'Default behavior' means. For example, see the Microphone permission at chrome://settings/content/microphone.">
+    Sites automatically follow this setting when you visit them
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_ALLOW_RADIO_LABEL" desc="1 of 3 choices the user has regarding the 'default behavior' of the 'On-device site data' setting. This offers sites the most flexibility.">
+    Allow sites to save data on your device
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_ALLOW_RADIO_SUB_LABEL" desc="A description of the benefit/cost of choosing 'Sites can save content on your device'.">
+    Sites are more likely to work as you would expect
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_CLEAR_ON_EXIT_RADIO_LABEL" desc="2 of 3 choices the user has regarding the 'default behavior' of the 'On-device site data' setting.">
+    Delete data sites have saved to your device when you close all windows
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_BLOCK_RADIO_LABEL" desc="3 of 3 choices the user has regarding the 'default behavior' of the 'On-device site data' setting. We include 'not recommended' because the user could have a poor experience with any given site. Imagine getting prompted to sign in again every time you click a link?">
+    Don't allow sites to save data on your device (not recommended)
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_BLOCK_RADIO_SUB_LABEL" desc="A description of the benefit/cost of choosing 'Sites can save content on your device. * 'don't want to leave information on your device': We think that most users should allow all on-device site data because sites might break if they don't. But there are cases for which this info could prove harmful. Imagine a case of domestic abuse and a tech-savvy partner who can go into Mises settings and find saved information about the activity of their partner. Or a journalist working in a sensitive environment. We want to convey the value of this option without alarming users.">
+    Sites may not work as you would expect. Choose this option if you don't want to leave information on your device about sites you visit.
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_CUSTOMIZED_BEHAVIOR_HEADING" desc="A label on a permissions page. For example, see the Microphone permission at chrome://settings/content/microphone.">
+    Customized behaviors
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_CUSTOMIZED_BEHAVIOR_DESCRIPTION" desc="A description of 'customized behaviors' that appear beneath the 'Customized behaviors' title. For example, see the Microphone permission at chrome://settings/content/microphone.">
+    Sites listed below follow a custom setting instead of the default
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_ALLOW_EXCEPTIONS_SUB_HEADING" desc="1 of 3. A label within 'Customized behaviors' that allows for exceptions to the 'On-device site data' setting. This label and the list of sites that can appear beneath it is only relevant if the user has chosen to not allow 'on-device site data' as the default value above.">
+    Allowed to save data on your device
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_BLOCK_EXCEPTIONS_SUB_HEADING" desc="3 of 3. A label within 'Customized behaviors' that allows for exceptions to the 'On-device site data' setting. This label and the list of sites that can appear beneath it is only relevant if the user has chosen to allow 'on-device site data' as the default value above.">
+    Not allowed to save data on your device
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_BLOCK_CONFIRM_DIALOG_TITLE" desc="The title of a dialog box that appears if the user chooses 'Don't allow sites to save data on your device (not recommended)'. This dialog essentially serves as a 'are you sure?' reminder.">
+    Sites you visit may stop working as designed
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_BLOCK_CONFIRM_DIALOG_DESCRIPTION" desc="A paragraph beneath the 'Sites you visit may stop working as designed' title on a dialog box that appears when a user chooses 'Don't allow sites to save data on your device (not recommended)'. We want to convey that sites are generally designed to rely on saving some information about the user. Usually this is benign, but sites can abuse this power, and so we qualify the statement with 'often'.">
+    Most sites you visit probably save data to your device, often to improve your experience by saving your preferences or information you share with the site. We recommend keeping this setting on.
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_BLOCK_CONFIRM_DIALOG_CONFIRM_BUTTON" desc="A button label. The user chose 'Don't allow sites to save data on your device (not recommended)'. As an 'are you sure' moment, we show the user a dialog box titled 'Sites you visit may stop working as designed.'. This string allows the user to confirm their intention to turn this setting off.">
+    Turn off
+  </message>
+  <message name="IDS_SETTINGS_SITE_DATA_PAGE_BLOCK_CONFIRM_DIALOG_CANCEL_BUTTON" desc="A button label on the 'Sites you visit may stop working as designed' dialog.">
+    Cancel
   </message>
 
   <message name="IDS_SETTINGS_NO_BLUETOOTH_DEVICES_FOUND" desc="Explanation for not showing Bluetooth devices in site settings.">
@@ -3463,6 +4096,9 @@
   <message name="IDS_SETTINGS_SYNC_DISCONNECT_MANAGED_PROFILE_EXPLANATION" desc="The text to display in the 'Sign out of Mises' dialog to stop syncing for managed profiles.">
     Because this account is managed by <ph name="DOMAIN">$1<ex>example.com</ex></ph>, your bookmarks, history, passwords, and other settings will be cleared from this device. However, your data will remain stored in your Mises sync chain and can be managed on <ph name="BEGIN_LINK">&lt;a href="$2" target="_blank"&gt;<ex>&lt;a href="$2" target="_blank"&gt;</ex></ph>Mises Dashboard<ph name="END_LINK">&lt;/a&gt;<ex>&lt;/a&gt;</ex></ph>.
   </message>
+  <message name="IDS_SETTINGS_TURN_OFF_SYNC_MANAGED_PROFILE_EXPLANATION" desc="The text to display in the 'Turn Sync off' dialog to stop syncing for managed profiles.">
+    Because this account is managed by <ph name="DOMAIN">$1<ex>example.com</ex></ph> you will not be signed out of your Mises sync chain. Your bookmarks, history, passwords, and other settings will no longer be synced. However, your previously synced data will remain stored in your Mises sync chain and can be managed on <ph name="BEGIN_LINK">&lt;a href="$2" target="_blank"&gt;<ex>&lt;a href="$2" target="_blank"&gt;</ex></ph>Mises Dashboard<ph name="END_LINK">&lt;/a&gt;<ex>&lt;/a&gt;</ex></ph>.
+  </message>
   <message name="IDS_SETTINGS_TURN_OFF_SYNC_DIALOG_TITLE" desc="The text to display on the title of the dialog to turn off sync.">
     Turn off sync?
   </message>
@@ -3530,6 +4166,9 @@
   <message name="IDS_SETTINGS_ENCRYPT_WITH_SYNC_PASSPHRASE_LABEL" desc="Label for the radio button which, when selected, causes synced settings to be encrypted with a user-provided password.">
     Encrypt synced data with your own <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;<ex>&lt;a href="$1" target="_blank"&gt;</ex></ph>sync passphrase<ph name="END_LINK">&lt;/a&gt;<ex>&lt;/a&gt;</ex></ph>. This doesn't include payment methods and addresses from Google Pay.
   </message>
+  <message name="IDS_NEW_SETTINGS_ENCRYPT_WITH_SYNC_PASSPHRASE_LABEL" desc="Label for the radio button which, when selected, causes synced settings to be encrypted with a user-provided password.">
+    Encrypt synced data with your own <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;<ex>&lt;a href="$1" target="_blank"&gt;</ex></ph>sync passphrase<ph name="END_LINK">&lt;/a&gt;<ex>&lt;/a&gt;</ex></ph>. Payment methods and addresses from Google Pay won’t be encrypted. Browsing history from Mises won’t sync.
+  </message>
   <message name="IDS_SETTINGS_PASSPHRASE_EXPLANATION_TEXT" desc="Message shown when explicit passphrase is selected.">
     Only someone with your passphrase can read your encrypted data. The passphrase is not sent to or stored by Mises. If you forget your passphrase or want to change this setting, you'll need to <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;<ex>&lt;a href="$1" target="_blank"&gt;</ex></ph>reset sync<ph name="END_LINK">&lt;/a&gt;<ex>&lt;/a&gt;</ex></ph>.
   </message>
@@ -3546,7 +4185,7 @@
     Control how your browsing history is used to personalize Search and more
   </message>
 
-  <if expr="not chromeos_ash and not chromeos_lacros">
+  <if expr="not is_chromeos">
     <!-- Import Settings Dialog -->
     <message name="IDS_SETTINGS_IMPORT_SETTINGS_TITLE" desc="Dialog title for import dialog.">
       Import bookmarks and settings
@@ -3653,7 +4292,7 @@
       System
     </message>
   </if>
-  <if expr="not chromeos_ash and not chromeos_lacros">
+  <if expr="not is_chromeos">
     <message name="IDS_SETTINGS_SYSTEM_HARDWARE_ACCELERATION_LABEL" desc="Label for the checkbox that forces Mises to render via hardware acceleration (GPU) when available.">
       Use hardware acceleration when available
     </message>

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/download/android/java/res/xml/download_preferences.xml b/chrome/browser/download/android/java/res/xml/download_preferences.xml
-index 2d42d3e298543ec0b81255bf744d6415b33b5190..39635389005a98991a67b3cb6fa998f9e0e736d4 100644
+index 9f964afd5f5985f77fed31e0cea0f94c83e0786a..10e63683d59c2661567e2e099ccd669d38316479 100644
 --- a/chrome/browser/download/android/java/res/xml/download_preferences.xml
 +++ b/chrome/browser/download/android/java/res/xml/download_preferences.xml
-@@ -21,4 +21,10 @@
+@@ -17,4 +17,10 @@ found in the LICENSE file.
          android:title="@string/download_location_prompt_enabled_title"
          android:summaryOn="@string/text_on"
          android:summaryOff="@string/text_off" />

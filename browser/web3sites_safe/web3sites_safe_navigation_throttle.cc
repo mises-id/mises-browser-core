@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include "base/feature_list.h"
 #include "chrome/browser/profiles/profile.h"
-#include "chrome/browser/reputation/reputation_service.h"
 #include "mises/browser/web3sites_safe/web3sites_safe_controller_client.h"
 #include "mises/browser/web3sites_safe/web3sites_safe_tab_storage.h"
 #include "mises/browser/web3sites_safe/web3sites_safe_blocking_page.h"
@@ -98,7 +97,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
     return content::NavigationThrottle::CANCEL_AND_IGNORE;
   }
   //defer check
-  /* base::SequencedTaskRunnerHandle::Get()->PostTask(
+  /* base::SequencedTaskRunner::GetCurrentDefault()->PostTask(
         FROM_HERE,
         base::BindOnce(&Web3sitesSafeNavigationThrottle::PerformChecksDeferred,
                        weak_ptr_factory_.GetWeakPtr()));

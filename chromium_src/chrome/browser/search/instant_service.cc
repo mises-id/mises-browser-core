@@ -7,8 +7,8 @@
 #include <stddef.h>
 #include <string>
 
-#include "base/bind.h"
-#include "base/callback.h"
+#include "base/functional/bind.h"
+#include "base/functional/callback.h"
 #include "base/files/file_util.h"
 #include "base/memory/ptr_util.h"
 #include "base/observer_list.h"
@@ -81,7 +81,6 @@ InstantService::InstantService(Profile* profile)
       background_updated_timestamp_(base::TimeTicks::Now()) {
   // The initialization below depends on a typical set of browser threads. Skip
   // it if we are running in a unit test without the full suite.
-  LOG(INFO) << "InstantService::InstantService";
   if (!content::BrowserThread::CurrentlyOn(content::BrowserThread::UI))
     return;
 
@@ -91,7 +90,6 @@ InstantService::InstantService(Profile* profile)
 
   most_visited_sites_ = ChromeMostVisitedSitesFactory::NewForProfile(profile_);
   if (most_visited_sites_) {
-    LOG(INFO) << "InstantService::InstantService step - 1";
     most_visited_sites_->EnableCustomLinks(false);
     most_visited_sites_->AddMostVisitedURLsObserver(
         this, ntp_tiles::kMaxNumMostVisited);
@@ -138,9 +136,7 @@ void InstantService::RemoveObserver(InstantServiceObserver* observer) {
 }
 
 void InstantService::OnNewTabPageOpened() {
-  LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened";
   if (most_visited_sites_) {
-    LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened - most_visited_sites_";
     most_visited_sites_->Refresh();
     most_visited_sites_->RefreshTiles();
   }
@@ -245,7 +241,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
   if (!results.empty()) {
     for (const auto& item : results){
       if (item.url().SchemeIs(extensions::kExtensionScheme)) {
-        LOG(INFO) << "[Kiwi] InstantService::SearchComplete- recent extension: " << item.url().GetWithEmptyPath();
+        LOG(INFO) << "[Mises] InstantService::SearchComplete- recent extension: " << item.url().GetWithEmptyPath();
 	recent.push_back(item.url().GetWithEmptyPath());
       }
     }
@@ -280,7 +276,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
             item.favicon = GURL(base64_image);
           }
         }
-       LOG(INFO) << "[Kiwi] InstantService::SearchComplete - found extension: " << item.url;
+       LOG(INFO) << "[Mises] InstantService::SearchComplete - found extension: " << item.url;
        items.push_back(item);
     }
   }
@@ -293,7 +289,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
   });
   recent_extensions_.clear();
   for (const auto& item : items) {
-    LOG(INFO) << "[Kiwi] InstantService::SearchComplete - sort extension: " << item.url;
+    LOG(INFO) << "[Mises] InstantService::SearchComplete - sort extension: " << item.url;
     recent_extensions_.push_back(item);
   }
   NotifyAboutMostVisitedInfo();
@@ -331,7 +327,6 @@ void InstantService::OnURLsAvailable(
 void InstantService::OnIconMadeAvailable(const GURL& site_url) {}
 
 void InstantService::NotifyAboutMostVisitedInfo() {
-  LOG(INFO) << "[Kiwi] InstantService::NotifyAboutMostVisitedInfo";
   most_visited_info_->items.clear();
   for (const auto& item : recent_extensions_) {
     most_visited_info_->items.push_back(item);

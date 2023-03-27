@@ -10,8 +10,8 @@
 #include <vector>
 
 #include "base/base64.h"
-#include "base/bind.h"
-#include "base/callback.h"
+#include "base/functional/bind.h"
+#include "base/functional/callback.h"
 #include "mises/components/mises_component_updater/browser/brave_on_demand_updater.h"
 #include "mises/components/ntp_background_images/browser/sponsored_images_component_data.h"
 #include "components/component_updater/component_installer.h"
@@ -57,7 +57,7 @@ class NTPBackgroundImagesComponentInstallerPolicy
       const base::Value& manifest,
       const base::FilePath& install_dir) override;
   void OnCustomUninstall() override;
-  bool VerifyInstallation(const base::Value& manifest,
+  bool VerifyInstallation(const base::Value::Dict& manifest,
                           const base::FilePath& install_dir) const override;
   void ComponentReady(const base::Version& version,
                       const base::FilePath& path,
@@ -119,7 +119,7 @@ void NTPBackgroundImagesComponentInstallerPolicy::ComponentReady(
 }
 
 bool NTPBackgroundImagesComponentInstallerPolicy::VerifyInstallation(
-    const base::Value& manifest,
+    const base::Value::Dict& manifest,
     const base::FilePath& install_dir) const {
   return true;
 }

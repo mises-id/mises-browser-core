@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include "base/callback_forward.h"
+#include "base/functional/callback_forward.h"
 #include "base/memory/weak_ptr.h"
 #include "extensions/browser/extension_event_histogram_value.h"
 #include "extensions/browser/extension_function.h"

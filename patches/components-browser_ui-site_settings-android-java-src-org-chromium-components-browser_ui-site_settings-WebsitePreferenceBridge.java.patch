@@ -1,8 +1,8 @@
 diff --git a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
-index 6e33c308a63d0889a38867e4c76ba1ed98e1af42..0476fe8f0ac372453153a1882e399200c1571b43 100644
+index 811d3c26ece35fe7ada97bb8c01ca177eca561f8..650b9f2f4dadb124148cf54ed1cd7543bb5386ee 100644
 --- a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
 +++ b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
-@@ -351,6 +351,10 @@ public class WebsitePreferenceBridge {
+@@ -363,6 +363,10 @@ public class WebsitePreferenceBridge {
          WebsitePreferenceBridgeJni.get().setContentSettingCustomScope(browserContextHandle,
                  contentSettingType, primaryPattern, secondaryPattern, setting);
      }
@@ -11,12 +11,12 @@ index 6e33c308a63d0889a38867e4c76ba1ed98e1af42..0476fe8f0ac372453153a1882e399200
 +    }
 +
  
-     @NativeMethods
-     public interface Natives {
-@@ -413,5 +417,7 @@ public class WebsitePreferenceBridge {
-         boolean isContentSettingManagedByCustodian(
-                 BrowserContextHandle browserContextHandle, int contentSettingType);
+     /**
+      * Convert pattern to domain wildcard pattern. If fail to extract domain from the pattern,
+@@ -447,5 +451,7 @@ public class WebsitePreferenceBridge {
          boolean getLocationAllowedByPolicy(BrowserContextHandle browserContextHandle);
+         String toDomainWildcardPattern(String pattern);
+         String toHostOnlyPattern(String pattern);
 +        void setPopupSettingForOrigin(BrowserContextHandle browserContextHandle,
 +            String origin, int value, boolean isIncognito);
      }

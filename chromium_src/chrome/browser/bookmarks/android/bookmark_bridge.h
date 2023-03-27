@@ -1,7 +1,3 @@
-// Copyright 2013 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 #ifndef MISES_BROWSER_BOOKMARKS_ANDROID_BOOKMARK_BRIDGE_H_
 #define MISES_BROWSER_BOOKMARKS_ANDROID_BOOKMARK_BRIDGE_H_
 #include "components/bookmarks/browser/base_bookmark_model_observer.h"
@@ -16,6 +12,7 @@
   void FileSelectionCanceled(void* params) override;\
   scoped_refptr<ui::SelectFileDialog> select_file_dialog_;\
   private:\
+  JavaObjectWeakGlobalRef weak_java_ref_;\
   void DummyFunction
 
 #include "src/chrome/browser/bookmarks/android/bookmark_bridge.h"

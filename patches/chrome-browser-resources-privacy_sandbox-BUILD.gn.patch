@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/privacy_sandbox/BUILD.gn b/chrome/browser/resources/privacy_sandbox/BUILD.gn
-index 7da179964151dd960ce76f202ee2ee3dbb27c7ad..7f12e43436cbdf610a04cf3e03bee08d81074e32 100644
+index 71b7e2ed341bfadbdd31bab4ac6388ba75110a2c..ec427eaf798a6e952967935686ceffe0fce877be 100644
 --- a/chrome/browser/resources/privacy_sandbox/BUILD.gn
 +++ b/chrome/browser/resources/privacy_sandbox/BUILD.gn
-@@ -10,7 +10,7 @@ import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
- import("privacy_sandbox.gni")
+@@ -5,7 +5,7 @@
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//chrome/common/features.gni")
  
 -assert(!is_android, "!is_android check failed")
 +#assert(!is_android, "!is_android check failed")
  
- preprocess_folder = "preprocessed"
- 
+ build_webui("build") {
+   grd_prefix = "privacy_sandbox"

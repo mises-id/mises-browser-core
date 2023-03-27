@@ -9,7 +9,7 @@
 #include <memory>
 #include <string>
 
-#include "base/callback.h"
+#include "base/functional/callback.h"
 #include "base/files/file_enumerator.h"
 #include "mises/components/ipfs/blob_context_getter_factory.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"

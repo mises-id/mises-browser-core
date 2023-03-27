@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/side_panel/customize_chrome/BUILD.gn b/chrome/browser/ui/webui/side_panel/customize_chrome/BUILD.gn
+index bc0ece0de9f1e51fb51fa0047a1adfc90abfef38..6642094135fe1710ccf6c41cedbffc1f4f505a3a 100644
+--- a/chrome/browser/ui/webui/side_panel/customize_chrome/BUILD.gn
++++ b/chrome/browser/ui/webui/side_panel/customize_chrome/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "customize_chrome.mojom" ]

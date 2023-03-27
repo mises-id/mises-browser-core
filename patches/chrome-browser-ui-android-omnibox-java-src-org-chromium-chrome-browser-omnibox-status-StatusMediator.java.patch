@@ -1,20 +1,15 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
-index fa36a60bf96e9cf5972bacff4e9c29f61ef4478b..d498b2188eb20e347ccbf4ea1f55e0c3d73a3af7 100644
+index 79b36bef9089e04dfa1099462c87afb7367cb4a7..566d317ff5e6d50a807d0b997b19c7ff148e8aec 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
-@@ -557,11 +557,12 @@ public class StatusMediator implements PermissionDialogController.Observer,
-      */
-     boolean shouldDisplaySearchEngineIcon() {
-         boolean showIconWhenFocused = mUrlHasFocus && mShowStatusIconWhenUrlFocused;
--        boolean showIconOnNTP = mProfileSupplier.get() != null
-+        boolean mises_enforce = false;
-+	boolean showIconOnNTP = mProfileSupplier.get() != null
-                 && UrlUtilities.isCanonicalizedNTPUrl(mLocationBarDataProvider.getCurrentUrl())
-                 && !mLocationBarDataProvider.isLoading() && !mIsTablet
--                && (mUrlHasFocus || mUrlFocusPercent > 0);
+@@ -540,8 +540,8 @@ public class StatusMediator implements PermissionDialogController.Observer,
+         if (mUrlHasFocus && mShowStatusIconWhenUrlFocused) {
+             return true;
+         }
 -
-+                && (mUrlHasFocus || mUrlFocusPercent > 0) && mises_enforce;
-+       
-         return mSearchEngineLogoUtils.shouldShowSearchEngineLogo(
-                        mLocationBarDataProvider.isIncognito())
-                 && (showIconWhenFocused || showIconOnNTP);
+-        return (mUrlHasFocus || mUrlFocusPercent > 0) && isNTPOrStartSurfaceVisible()
++        boolean mises_enforced = false;
++        return mises_enforced && (mUrlHasFocus || mUrlFocusPercent > 0) && isNTPOrStartSurfaceVisible()
+                 && mProfileSupplier.get() != null;
+     }
+ 

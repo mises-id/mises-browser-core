@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java b/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
-index 4b6efd00abad38f8d44041157c15fcead035b46a..fd820be35d49ec9dde5b2b2e47c7d137317a84c8 100644
+index b1396ab7d6f14189e3c88d1e2cc65d9148c09b45..8691870f3ed811959b84f2916643e36fc33aac06 100644
 --- a/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
 +++ b/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
-@@ -853,6 +853,11 @@ public class TabGroupModelFilter extends TabModelFilter {
-         return mCurrentGroupIndex;
+@@ -850,6 +850,11 @@ public class TabGroupModelFilter extends TabModelFilter {
+         return mAbsentSelectedTab == null;
      }
  
 +    @Override
@@ -12,5 +12,5 @@ index 4b6efd00abad38f8d44041157c15fcead035b46a..fd820be35d49ec9dde5b2b2e47c7d137
 +    }
 +
      @Override
-     public int getCount() {
-         return mGroupIdToGroupMap.size();
+     @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
+     public void markTabStateInitialized() {

@@ -4,6 +4,6 @@ void PrefValueStore::UpdateExtensionPrefStore(PrefStore* extension_prefs) {
   InitPrefStore(EXTENSION_STORE, extension_prefs);
 }
 
-bool PrefValueStore::DummyHasPrefStore() {
+bool PrefValueStore::DummyIsInitializationComplete() {
   return false;
 }

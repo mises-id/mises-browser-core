@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/new_tab_page/modules/drive/BUILD.gn b/chrome/browser/new_tab_page/modules/drive/BUILD.gn
-index 7674ac96362335464da5a54038edb3abd66c2269..724c176b4f342c175963cc1c1a9dae3608f6e969 100644
+index 362f0861a1934923456dda88a1fd8051be16b89a..c2f081e7927eced5941a57d1a4800c1ba32700ef 100644
 --- a/chrome/browser/new_tab_page/modules/drive/BUILD.gn
 +++ b/chrome/browser/new_tab_page/modules/drive/BUILD.gn
 @@ -4,7 +4,7 @@
