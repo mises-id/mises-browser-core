@@ -27,6 +27,7 @@ class MisesController {
     std::vector<NotifyPhishingDetectedCallback>;
   void notifyPhishingDetected(const std::string& address, NotifyPhishingDetectedCallback callback);
   void callbackPhishingDetected(const std::string& address, int action);
+  void recordEvent(const std::string& params);
  private:
   friend struct base::DefaultSingletonTraits<MisesController>;
 
