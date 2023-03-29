@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/feed/android/feed_service_bridge.cc b/chrome/browser/feed/android/feed_service_bridge.cc
+index a8e3f1429fed6586d8e7f2c466a6271c61c204a3..7fc7f3219206e5c41b0d10c4db5dc5db720c2ba1 100644
+--- a/chrome/browser/feed/android/feed_service_bridge.cc
++++ b/chrome/browser/feed/android/feed_service_bridge.cc
+@@ -208,6 +208,8 @@ uint64_t FeedServiceBridge::GetReliabilityLoggingId() {
+ 
+ // static
+ bool FeedServiceBridge::IsSignedIn() {
++  if (!GetFeedService())
++    return false;
+   return GetFeedService()->IsSignedIn();
+ }
+ 
