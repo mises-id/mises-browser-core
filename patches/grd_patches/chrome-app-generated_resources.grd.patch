@@ -176,30 +176,6 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_PASSWORD_MANAGER_UPDATED_BUBBLE_TITLE" desc="Title of the bubble notifying the user that the password was updated.">
            Password updated
          </message>
-@@ -8190,7 +8190,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
-           </message>
-         </if>
- 
--        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON" desc="Save button text for password manager">
-+        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON_MISES" desc="Save button text for password manager">
-           Save
-         </message>
-         <message name="IDS_PASSWORD_MANAGER_SAVE_BUBBLE_OPT_IN_BUTTON" desc="Text for action button in the save bubble that leads the user to opt in to the account-scoped password storage.">
-@@ -8203,12 +8203,12 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
-           No thanks
-         </message>
-         <if expr="use_titlecase">
--          <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON" desc="In Title Case: Update button text for password manager">
-+          <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON_MISES" desc="In Title Case: Update button text for password manager">
-             Update Password
-           </message>
-         </if>
-         <if expr="not use_titlecase">
--          <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON" desc="Update button text for password manager">
-+          <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON_MISES" desc="Update button text for password manager">
-             Update password
-           </message>
-         </if>
 @@ -8340,7 +8340,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
        </if>
  

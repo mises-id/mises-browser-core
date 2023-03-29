@@ -101,7 +101,6 @@ std::u16string PermissionRequest::GetDialogMessageText() const {
 }
 #endif
 
-#if BUILDFLAG(IS_ANDROID)
 
 bool PermissionRequest::IsConfirmationChipSupported() {
   return permissions::IsConfirmationChipSupported(request_type_);
@@ -235,7 +234,6 @@ std::u16string PermissionRequest::GetMessageTextFragment() const {
   DCHECK_NE(0, message_id);
   return l10n_util::GetStringUTF16(message_id);
 }
-#endif
 
 void PermissionRequest::PermissionGranted(bool is_one_time) {
   std::move(permission_decided_callback_)
