@@ -57,8 +57,8 @@ void MisesProvider::Start(const AutocompleteInput& input,
 
 void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
   const std::string input_text = base::ToLowerASCII(base::UTF16ToUTF8(input.text()));
-  LOG(INFO) << "Cg MisesProvider::Start find input_text="
-      << input_text;
+  // LOG(INFO) << "Cg MisesProvider::Start find input_text="
+  //     << input_text;
   ACMatches mises_matches;
    static const std::u16string kScheme(u"https://");
   for (auto& mises_match : mises_matches_ ) {
