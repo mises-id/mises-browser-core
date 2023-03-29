@@ -12,7 +12,7 @@ void SearchTabHelper::OnOpenExtension(const GURL& url) {
 
 void SearchTabHelper::NavigationEntryCommitted(
     const content::LoadCommittedDetails& load_details) {
-  LOG(INFO) << "SearchTabHelper::NavigationEntryCommitted";
+  LOG(INFO) << "[Mises] SearchTabHelper::NavigationEntryCommitted";
   SearchTabHelper::NavigationEntryCommitted_Chromium(load_details);
 
   if (search::IsInstantNTP(web_contents()) && instant_service_) {

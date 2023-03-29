@@ -1,5 +1,5 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
-index 5d4fe9044981485a195a5a544bff0bbeec075df5..68e8ef7bc7c984f18074607f5dddd20db27c20e2 100644
+index 5d4fe9044981485a195a5a544bff0bbeec075df5..684258cc1ff1e8130a59eb3808d50dbfb86e1012 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 @@ -55,7 +55,7 @@ public class UrlUtilities {
@@ -28,11 +28,11 @@ index 5d4fe9044981485a195a5a544bff0bbeec075df5..68e8ef7bc7c984f18074607f5dddd20d
       */
      public static boolean isNTPUrl(GURL gurl) {
          if (!gurl.isValid() || !isInternalScheme(gurl)) return false;
-+        if ("local-ntp".equals(gurl.getHost()))
++        // if ("local-ntp".equals(gurl.getHost()))
++        //   return true;
++        if (gurl.getSpec().startsWith("chrome-search://") && "local-ntp".equals(gurl.getHost()))
 +          return true;
-+        if (gurl.getSpec().startsWith("chrome-search://"))
-+          return true;
-+        if (gurl.getSpec().startsWith("mises-search://"))
++        if (gurl.getSpec().startsWith("mises-search://") && "local-ntp".equals(gurl.getHost()))
 +          return true;
          return UrlConstants.NTP_HOST.equals(gurl.getHost());
      }

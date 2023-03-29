@@ -1,0 +1,13 @@
+diff --git a/components/search/search.cc b/components/search/search.cc
+index fec11508c12e07dca3af9969ab2e57d1f83410c3..8482a1ef25fd3a069c87791e659136dc31ec993f 100644
+--- a/components/search/search.cc
++++ b/components/search/search.cc
+@@ -13,7 +13,7 @@
+ namespace search {
+ 
+ bool IsInstantExtendedAPIEnabled() {
+-#if BUILDFLAG(IS_IOS) || BUILDFLAG(IS_ANDROID)
++#if BUILDFLAG(IS_IOS) // || BUILDFLAG(IS_ANDROID)
+   return false;
+ #else
+   return true;
