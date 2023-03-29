@@ -7,8 +7,7 @@
 
 #include <utility>
 
-#include "base/bind.h"
-#include "base/threading/sequenced_task_runner_handle.h"
+#include "base/functional/bind.h"
 #include "mises/components/decentralized_dns/content/decentralized_dns_interstitial_controller_client.h"
 #include "mises/components/decentralized_dns/content/decentralized_dns_opt_in_page.h"
 #include "mises/components/decentralized_dns/content/ens_offchain_lookup_interstitial_controller_client.h"
@@ -60,7 +59,7 @@ DecentralizedDnsNavigationThrottle::WillStartRequest() {
   if ((IsUnstoppableDomainsTLD(url) &&
        IsUnstoppableDomainsResolveMethodAsk(local_state_)) ||
       (IsENSTLD(url) && IsENSResolveMethodAsk(local_state_))) {
-    base::SequencedTaskRunnerHandle::Get()->PostTask(
+    base::SequencedTaskRunner::GetCurrentDefault()->PostTask(
         FROM_HERE,
         base::BindOnce(&DecentralizedDnsNavigationThrottle::ShowInterstitial,
                        weak_ptr_factory_.GetWeakPtr()));
@@ -75,7 +74,7 @@ DecentralizedDnsNavigationThrottle::WillFailRequest() {
   auto* handle = navigation_handle();
   if (handle &&
       handle->GetNetErrorCode() == net::ERR_ENS_OFFCHAIN_LOOKUP_NOT_SELECTED) {
-    base::SequencedTaskRunnerHandle::Get()->PostTask(
+    base::SequencedTaskRunner::GetCurrentDefault()->PostTask(
         FROM_HERE, base::BindOnce(&DecentralizedDnsNavigationThrottle::
                                       ShowEnsOffchainLookupInterstitial,
                                   weak_ptr_factory_.GetWeakPtr()));

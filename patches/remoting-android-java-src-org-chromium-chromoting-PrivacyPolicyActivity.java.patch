@@ -1,5 +1,5 @@
 diff --git a/remoting/android/java/src/org/chromium/chromoting/PrivacyPolicyActivity.java b/remoting/android/java/src/org/chromium/chromoting/PrivacyPolicyActivity.java
-index 8f4ec28b43d52cf43042b8ba7141664c9276c71b..9d01bbe94e77367f88db555dd55a9edb06816895 100644
+index 60b7de53988a85aa482be1f9aa0e5519a644cc7a..d3b0281f0dd09584bffa5bc095cc69115909c4b7 100644
 --- a/remoting/android/java/src/org/chromium/chromoting/PrivacyPolicyActivity.java
 +++ b/remoting/android/java/src/org/chromium/chromoting/PrivacyPolicyActivity.java
 @@ -8,7 +8,7 @@ package org.chromium.chromoting;

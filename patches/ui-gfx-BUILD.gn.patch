@@ -1,8 +1,8 @@
 diff --git a/ui/gfx/BUILD.gn b/ui/gfx/BUILD.gn
-index 9fd5b696fbf8ef4ee2fafc293eb9288763a812f0..4edbb76b473e2805e3732355fa173485e230d98a 100644
+index d2692c7422e4694a783876addc1b283d451e937f..4ab656b8526d06447f46f401e1b054183d6514f3 100644
 --- a/ui/gfx/BUILD.gn
 +++ b/ui/gfx/BUILD.gn
-@@ -397,7 +397,7 @@ component("gfx") {
+@@ -402,7 +402,7 @@ component("gfx") {
      ]
    }
  

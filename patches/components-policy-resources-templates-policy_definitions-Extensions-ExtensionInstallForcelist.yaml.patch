@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallForcelist.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallForcelist.yaml
+index 8091186fcd4d3501562b22d7bd9d0e06c0774aeb..c0d7b199fd4b82b08c6755a76fd9dfacc1de997d 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallForcelist.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallForcelist.yaml
+@@ -36,6 +36,7 @@ schema:
+ supported_on:
+ - chrome.*:9-
+ - chrome_os:11-
++- android:111-
+ tags:
+ - full-admin-access
+ type: list

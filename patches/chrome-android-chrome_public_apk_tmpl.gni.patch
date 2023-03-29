@@ -1,17 +1,8 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index bf289305713f8e6db146171c824d807195b5daf9..f6678f3374f79771348b1b9d2e9d54251608a91c 100644
+index 35cc9620e875d8481db03650226caf81316926bf..794f4e7543c9bdf850627c1d9b86a027b67bc857 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
-@@ -33,7 +33,7 @@ default_chrome_public_jinja_variables = [
- _add_unwind_tables_in_chrome_32bit_apk =
-     is_official_build && (target_cpu == "arm" || target_cpu == "arm64") &&
-     (android_channel == "default" || android_channel == "canary" ||
--     android_channel == "dev")
-+     android_channel == "dev" || android_channel == "stable")
- 
- # A template used to declare any target that will implement a full Chromium
- # or Chrome application, either as an APK, or an app bundle module.
-@@ -226,6 +226,17 @@ template("chrome_public_common_apk_or_module_tmpl") {
+@@ -142,6 +142,17 @@ template("chrome_public_common_apk_or_module_tmpl") {
        strip_unused_resources = is_official_build
      }
  
@@ -29,7 +20,7 @@ index bf289305713f8e6db146171c824d807195b5daf9..f6678f3374f79771348b1b9d2e9d5425
      if (!defined(aapt_locale_allowlist)) {
        # Include resource strings files only for supported locales.
        aapt_locale_allowlist = platform_pak_locales
-@@ -618,7 +629,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
+@@ -540,7 +551,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
        }
  
        # We only optimize resources in bundles.

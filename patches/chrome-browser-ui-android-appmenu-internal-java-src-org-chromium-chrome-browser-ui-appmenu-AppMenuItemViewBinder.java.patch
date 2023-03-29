@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
-index 0daadf26b5deb119ac20074c83550d64b6a7c83f..8432677cd524ee1d51af82dbbd4af23b53f602af 100644
+index 4ea61c86b97ad19432c1642d5a130a479b396331..0dc784fb7585758faadef01665b7743855963d85 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
 @@ -27,6 +27,10 @@ import org.chromium.ui.modelutil.PropertyModel;
@@ -13,10 +13,10 @@ index 0daadf26b5deb119ac20074c83550d64b6a7c83f..8432677cd524ee1d51af82dbbd4af23b
  /**
   * The binder to bind the app menu  {@link PropertyModel} with the view.
   */
-@@ -60,6 +64,13 @@ class AppMenuItemViewBinder {
-             Drawable icon = model.get(AppMenuItemProperties.ICON);
-             ChromeImageView imageView = (ChromeImageView) view.findViewById(R.id.menu_item_icon);
+@@ -62,6 +66,14 @@ class AppMenuItemViewBinder {
              imageView.setImageDrawable(icon);
+             imageView.setVisibility(icon == null ? View.GONE : View.VISIBLE);
+ 
 +            CharSequence titleCondensed = model.get(AppMenuItemProperties.TITLE_CONDENSED);
 +            if (titleCondensed != null && titleCondensed.toString().contains("Extension: ")) {
 +                imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.DST);
@@ -24,23 +24,19 @@ index 0daadf26b5deb119ac20074c83550d64b6a7c83f..8432677cd524ee1d51af82dbbd4af23b
 +            } else {
 +                imageView.setColorFilter(null);
 +            }
-             imageView.setVisibility(icon == null ? View.GONE : View.VISIBLE);
- 
++
              // tint the icon
-@@ -69,6 +80,9 @@ class AppMenuItemViewBinder {
+             @ColorRes
+             int colorResId = model.get(AppMenuItemProperties.ICON_COLOR_RES);
+@@ -69,6 +81,11 @@ class AppMenuItemViewBinder {
                  // If there is no color assigned to the icon, use the default color.
                  colorResId = R.color.default_icon_color_secondary_tint_list;
              }
++
 +            if (titleCondensed != null && titleCondensed.toString().contains("Extension (inactive): ")) {
 +                colorResId = R.color.default_text_color_disabled_list;
 +            }
-             ApiCompatibilityUtils.setImageTintList(imageView,
++
+             ImageViewCompat.setImageTintList(imageView,
                      AppCompatResources.getColorStateList(imageView.getContext(), colorResId));
          } else if (key == AppMenuItemProperties.CLICK_HANDLER) {
-@@ -247,4 +261,4 @@ class AppMenuItemViewBinder {
-         // Menu items may be hidden by command line flags before they get to this point.
-         button.setVisibility(View.VISIBLE);
-     }
--}
-\ No newline at end of file
-+}

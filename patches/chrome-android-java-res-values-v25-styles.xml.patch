@@ -1,0 +1,19 @@
+diff --git a/chrome/android/java/res/values-v25/styles.xml b/chrome/android/java/res/values-v25/styles.xml
+old mode 100644
+new mode 100755
+index 6b5f73fd0c9b744ef7887199794437d3ac2a320b..5f95deec5e97cb5c18d9e5ec536e15cfe3aeaac3
+--- a/chrome/android/java/res/values-v25/styles.xml
++++ b/chrome/android/java/res/values-v25/styles.xml
+@@ -1,9 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-Copyright 2016 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
+--->
++<!-- Copyright 2016 The Chromium Authors. All rights reserved.
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file. -->
+ 
+ <resources xmlns:tools="http://schemas.android.com/tools">
+     <style name="LauncherTheme" parent="Theme.BrowserUI.NoDisplay" />

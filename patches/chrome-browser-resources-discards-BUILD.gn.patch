@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/discards/BUILD.gn b/chrome/browser/resources/discards/BUILD.gn
-index bca8b56f3e33f4cbd545f7f32aec3e19ceb7c06a..cf477f096656380f02a9d3361357e3cc5bffd74f 100644
+index 3ee63a28f6a2da953046364d60d4e0f3d119a1fb..58ef4a230c973dfc6425c92d88f0c90725b2a4a8 100644
 --- a/chrome/browser/resources/discards/BUILD.gn
 +++ b/chrome/browser/resources/discards/BUILD.gn
 @@ -9,7 +9,7 @@ import("//tools/polymer/html_to_wrapper.gni")

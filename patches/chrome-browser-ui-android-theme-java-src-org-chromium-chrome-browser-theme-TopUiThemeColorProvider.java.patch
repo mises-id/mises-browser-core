@@ -1,17 +1,17 @@
 diff --git a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/TopUiThemeColorProvider.java b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/TopUiThemeColorProvider.java
-index d6481ba93acf3ebe46552c4c5d82aee7159f8156..f79dc42606c7fe78ed118d3f694c9b2bc1733b99 100644
+index c90868e4bf2eef343d6f3abf5fd25a7642aaaec6..844559110c5592c8ae1de962670253654a61964e 100644
 --- a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/TopUiThemeColorProvider.java
 +++ b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/TopUiThemeColorProvider.java
-@@ -26,6 +26,8 @@ import org.chromium.ui.util.ColorUtils;
- import java.lang.annotation.Retention;
- import java.lang.annotation.RetentionPolicy;
+@@ -18,6 +18,8 @@ import org.chromium.chrome.browser.ui.theme.BrandedColorScheme;
+ import org.chromium.components.browser_ui.styles.ChromeColors;
+ import org.chromium.ui.util.ColorUtils;
  
 +import org.chromium.base.ContextUtils;
 +
  /**
   * Manages the theme color used on the top part of the UI based on Tab's theme color and other
   * conditions such as dark mode settings, incognito mode, security state, etc.
-@@ -183,6 +185,9 @@ public class TopUiThemeColorProvider extends ThemeColorProvider {
+@@ -160,6 +162,9 @@ public class TopUiThemeColorProvider extends ThemeColorProvider {
          boolean disallowDueToNightMode =
                  !mAllowThemingInNightMode && ColorUtils.inNightMode(tab.getContext());
  

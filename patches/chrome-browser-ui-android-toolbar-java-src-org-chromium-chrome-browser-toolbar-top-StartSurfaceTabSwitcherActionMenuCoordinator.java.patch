@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceTabSwitcherActionMenuCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceTabSwitcherActionMenuCoordinator.java
-index ea23d5ae125aad7db7fad7857021d67d1864de7f..b3230e9876144fb799b9b35bb845868d270ec0cc 100644
+index cda3aca3c4bd5fd83c1e6963a19e2d4f0a2bbe74..10f197d2dbb4f8fc65bcccc2bf2b436cfa27cf27 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceTabSwitcherActionMenuCoordinator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceTabSwitcherActionMenuCoordinator.java
 @@ -9,6 +9,8 @@ import android.view.View.OnLongClickListener;

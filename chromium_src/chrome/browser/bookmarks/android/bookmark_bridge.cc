@@ -1,24 +1,23 @@
-// Copyright 2013 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-
 #include "base/files/file_util.h"
-#include "chrome/common/chrome_paths_internal.h"
-#include "chrome/browser/ui/chrome_select_file_policy.h"
 #include "base/android/content_uri_utils.h"
 #include "base/android/path_utils.h"
 #include "base/strings/utf_string_conversions.h"
+#include "base/threading/thread_restrictions.h"
+
+
+#include "chrome/common/importer/imported_bookmark_entry.h"
+#include "chrome/common/importer/importer_data_types.h"
+#include "chrome/common/url_constants.h"
+#include "chrome/common/chrome_paths_internal.h"
+#include "chrome/browser/ui/chrome_select_file_policy.h"
 #include "chrome/utility/importer/bookmark_html_reader.h"
 #include "chrome/browser/bookmarks/bookmark_html_writer.h"
 #include "chrome/browser/importer/profile_writer.h"
 #include "chrome/browser/platform_util.h"
 #include "chrome/browser/ui/chrome_select_file_policy.h"
-#include "chrome/common/importer/imported_bookmark_entry.h"
-#include "chrome/common/importer/importer_data_types.h"
-#include "chrome/common/url_constants.h"
 #include "components/url_formatter/url_fixer.h"
 #include "ui/android/window_android.h"
+
 
 #include "src/chrome/browser/bookmarks/android/bookmark_bridge.cc"
 
@@ -35,21 +34,27 @@ void BookmarkBridge::FileSelected(const base::FilePath& file_path, int index,
 
   LOG(ERROR) << "Bookmarks - Copying from " << file_path << " to " << file_path_tmp;
 
-  base::CopyFile(file_path, file_path_tmp);
-
-  LOG(ERROR) << "Bookmarks - Reading " << file_path_tmp;
 
   std::vector<ImportedBookmarkEntry> bookmarks;
   std::vector<importer::SearchEngineInfo> search_engines;
+  
+  {
+    base::ScopedAllowBlockingForTesting allow_blocking;
 
-  bookmark_html_reader::ImportBookmarksFile(
-      base::RepeatingCallback<bool(void)>(),
-      base::RepeatingCallback<bool(const GURL&)>(),
-      file_path_tmp,
-      &bookmarks,
-      &search_engines,
-      nullptr);
-  base::DeleteFile(file_path_tmp);
+    base::CopyFile(file_path, file_path_tmp);
+
+    LOG(ERROR) << "Bookmarks - Reading " << file_path_tmp;
+
+
+    bookmark_html_reader::ImportBookmarksFile(
+        base::RepeatingCallback<bool(void)>(),
+        base::RepeatingCallback<bool(const GURL&)>(),
+        file_path_tmp,
+        &bookmarks,
+        &search_engines,
+        nullptr);
+    base::DeleteFile(file_path_tmp);
+  }
 
   auto *writer = new ProfileWriter(profile_);
 

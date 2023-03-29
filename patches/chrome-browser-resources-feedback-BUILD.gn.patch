@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/feedback/BUILD.gn b/chrome/browser/resources/feedback/BUILD.gn
+index a97f116bb1bc12d2c710e92491d8b02d8a93ba57..79b7abf3519af1a0588ff44d327b679c735a9f29 100644
+--- a/chrome/browser/resources/feedback/BUILD.gn
++++ b/chrome/browser/resources/feedback/BUILD.gn
+@@ -6,7 +6,7 @@ import("//build/config/chromeos/ui_mode.gni")
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//chrome/common/features.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "feedback"

@@ -1,0 +1,11 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/BlockExternalExtensions.yaml b/components/policy/resources/templates/policy_definitions/Extensions/BlockExternalExtensions.yaml
+index 7f724d480bfa5180d005eeb51bbe0e18147a6c8c..72e9a509be56e302cffb531b4311dcd7117c7f44 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/BlockExternalExtensions.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/BlockExternalExtensions.yaml
+@@ -22,5 +22,6 @@ schema:
+   type: boolean
+ supported_on:
+ - chrome.*:80-
++- android:111-
+ tags: []
+ type: main

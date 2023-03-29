@@ -1,9 +1,9 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
-index 314fad32870fbd74f5c545e960f7403fb59656e4..a47df903943c98e1fb82de2a8e10c3323d57cc48 100644
+index 0bda5cfb312f5f33a511b2212e368d19632944fe..d4122df9a95cd02ff66becc847459ebf20b89061 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
-@@ -42,6 +42,11 @@ import org.chromium.url.GURL;
- 
+@@ -51,6 +51,11 @@ import org.chromium.url.GURL;
+ import java.util.List;
  import java.util.Stack;
  
 +import android.app.Activity;
@@ -14,33 +14,28 @@ index 314fad32870fbd74f5c545e960f7403fb59656e4..a47df903943c98e1fb82de2a8e10c332
  /**
   * The new bookmark manager that is planned to replace the existing bookmark manager. It holds all
   * views and shared logics between tablet and phone. For tablet/phone specific logics, see
-@@ -76,7 +81,9 @@ public class BookmarkManager
-     private BookmarkItemsAdapter mAdapter;
-     private BookmarkDragStateDelegate mDragStateDelegate;
-     private AdapterDataObserver mAdapterDataObserver;
--
-+    
+@@ -64,6 +69,9 @@ public class BookmarkManager implements BookmarkDelegate, SearchDelegate,
+ 
+     private static boolean sPreventLoadingForTesting;
+ 
 +    private ActivityWindowAndroid mWindowAndroid;
 +    private IntentRequestTracker mIntentTracker;
-     private final BookmarkModelObserver mBookmarkModelObserver = new BookmarkModelObserver() {
-         @Override
-         public void bookmarkNodeChildrenReordered(BookmarkItem node) {
-@@ -274,6 +281,11 @@ public class BookmarkManager
++
+     private Context mContext;
+     private ComponentName mOpenBookmarkComponentName;
+     private ViewGroup mMainView;
+@@ -301,6 +309,22 @@ public class BookmarkManager implements BookmarkDelegate, SearchDelegate,
          if (!isDialogUi) {
              RecordUserAction.record("MobileBookmarkManagerPageOpen");
          }
 +        mIntentTracker = IntentRequestTracker.createFromActivity((Activity)context);
-+	mWindowAndroid = new ActivityWindowAndroid(context, true, mIntentTracker);
++        mWindowAndroid = new ActivityWindowAndroid(context, true, mIntentTracker);
 +    }
++
 +    public IntentRequestTracker intentTracker() {
 +        return mIntentTracker;
-     }
- 
-     @Override
-@@ -544,6 +556,16 @@ public class BookmarkManager
-         mToolbar.hideSearchView();
-     }
- 
++    }
++
 +    @Override
 +    public void importBookmarks() {
 +        mBookmarkModel.startImportBookmarks(mWindowAndroid);
@@ -49,8 +44,6 @@ index 314fad32870fbd74f5c545e960f7403fb59656e4..a47df903943c98e1fb82de2a8e10c332
 +    @Override
 +    public void exportBookmarks() {
 +        mBookmarkModel.startExportBookmarks();
-+    }
-+
+     }
+ 
      @Override
-     public void addUIObserver(BookmarkUIObserver observer) {
-         mUIObservers.addObserver(observer);

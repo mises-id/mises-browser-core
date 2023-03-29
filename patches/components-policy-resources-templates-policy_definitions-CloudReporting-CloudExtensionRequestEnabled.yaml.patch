@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/CloudReporting/CloudExtensionRequestEnabled.yaml b/components/policy/resources/templates/policy_definitions/CloudReporting/CloudExtensionRequestEnabled.yaml
+index 405fdc054bfa1dad7c6ccfea55676c4557bb6cc4..82c3df3944f491e862647885c8706bfac2723d23 100644
+--- a/components/policy/resources/templates/policy_definitions/CloudReporting/CloudExtensionRequestEnabled.yaml
++++ b/components/policy/resources/templates/policy_definitions/CloudReporting/CloudExtensionRequestEnabled.yaml
+@@ -30,6 +30,7 @@ schema:
+ supported_on:
+ - chrome.*:85-
+ - chrome_os:85-
++- android:111-
+ tags:
+ - admin-sharing
+ - google-sharing

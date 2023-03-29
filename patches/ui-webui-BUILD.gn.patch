@@ -1,5 +1,5 @@
 diff --git a/ui/webui/BUILD.gn b/ui/webui/BUILD.gn
-index 873d5ae5d12ae76174ab60125bc1e148fca6066d..bd08c635f4a0233e9c590124c96874001bb1e5ba 100644
+index 8f400abfbe4645a20cbc6f8b68ecc67173172343..ab30edcbf6941989606501f5e4afd100b58d8c32 100644
 --- a/ui/webui/BUILD.gn
 +++ b/ui/webui/BUILD.gn
 @@ -32,7 +32,7 @@ static_library("webui") {

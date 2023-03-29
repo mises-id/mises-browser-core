@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/extension_install_prompt.cc b/chrome/browser/extensions/extension_install_prompt.cc
-index 339ae3f826da0ef6cde7b9b08ad8ca24a56762fa..e347258d5518b4fc5d3a87e29af3fa1395b33d39 100644
+index 2e786c291fc0b4511f55bb44535e0839dbfc0787..b36a0c5fae03b5dc7b4331b3cd76705b205188c9 100644
 --- a/chrome/browser/extensions/extension_install_prompt.cc
 +++ b/chrome/browser/extensions/extension_install_prompt.cc
-@@ -507,6 +507,7 @@ ExtensionInstallPrompt::ExtensionInstallPrompt(content::WebContents* contents)
+@@ -502,6 +502,7 @@ ExtensionInstallPrompt::ExtensionInstallPrompt(content::WebContents* contents)
        extension_(nullptr),
        install_ui_(extensions::CreateExtensionInstallUI(profile_)),
        show_params_(new ExtensionInstallPromptShowParams(contents)),
@@ -10,7 +10,7 @@ index 339ae3f826da0ef6cde7b9b08ad8ca24a56762fa..e347258d5518b4fc5d3a87e29af3fa13
        did_call_show_dialog_(false) {}
  
  ExtensionInstallPrompt::ExtensionInstallPrompt(Profile* profile,
-@@ -664,6 +665,7 @@ void ExtensionInstallPrompt::ShowConfirmation() {
+@@ -659,6 +660,7 @@ void ExtensionInstallPrompt::ShowConfirmation() {
  
    // Notify observers.
    prompt_->OnDialogOpened();

@@ -1,5 +1,5 @@
 diff --git a/components/custom_handlers/BUILD.gn b/components/custom_handlers/BUILD.gn
-index b036c5a479f971edad87e8624494e3c3b448ab79..9156dd9eac597f596bc0cc5f4059483bf3b2a242 100644
+index 475a2be6868df95527fb795fcfbbf6f28865f2f8..10047c4bbf0e6a19b4728c24276801a1eb093d28 100644
 --- a/components/custom_handlers/BUILD.gn
 +++ b/components/custom_handlers/BUILD.gn
 @@ -29,7 +29,7 @@ static_library("custom_handlers") {

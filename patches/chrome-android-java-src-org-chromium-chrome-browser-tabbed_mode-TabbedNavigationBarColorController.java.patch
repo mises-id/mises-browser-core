@@ -1,10 +1,10 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
-index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..7d7f5abbad9dda621cf8345ddb200da31269f437 100644
+index 84356e537d84b4d0e598f71ca49acd634d591d9b..254b6f3c604fbd1fe011d8ac9b1bcbdb70a3e39d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
-@@ -37,6 +37,11 @@ import org.chromium.ui.UiUtils;
+@@ -35,6 +35,11 @@ import org.chromium.components.browser_ui.styles.SemanticColorUtils;
+ import org.chromium.ui.UiUtils;
  import org.chromium.ui.util.ColorUtils;
- import org.chromium.ui.vr.VrModeObserver;
  
 +import org.chromium.base.ContextUtils;
 +import android.graphics.Color;
@@ -14,7 +14,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..7d7f5abbad9dda621cf8345ddb200da3
  /**
   * Controls the bottom system navigation bar color for the provided {@link Window}.
   */
-@@ -182,8 +187,9 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -166,8 +171,9 @@ class TabbedNavigationBarColorController {
      @SuppressLint("NewApi")
      private void updateNavigationBarColor() {
          boolean forceDarkNavigation;
@@ -26,7 +26,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..7d7f5abbad9dda621cf8345ddb200da3
              forceDarkNavigation = mTabModelSelector.isIncognitoSelected();
          } else {
              boolean overviewVisible = mLayoutManager != null
-@@ -195,6 +201,11 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -179,6 +185,11 @@ class TabbedNavigationBarColorController {
          forceDarkNavigation &= !UiUtils.isSystemUiThemingDisabled();
          forceDarkNavigation |= mIsInFullscreen;
  
@@ -38,7 +38,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..7d7f5abbad9dda621cf8345ddb200da3
          mForceDarkNavigationBarColor = forceDarkNavigation;
          final @ColorInt int navigationBarColor =
                  getNavigationBarColor(mForceDarkNavigationBarColor);
-@@ -215,6 +226,8 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -199,6 +210,8 @@ class TabbedNavigationBarColorController {
              mWindow.setNavigationBarDividerColor(
                      getNavigationBarDividerColor(mForceDarkNavigationBarColor));
          }
@@ -47,7 +47,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..7d7f5abbad9dda621cf8345ddb200da3
      }
  
      /**
-@@ -223,12 +236,19 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -207,12 +220,19 @@ class TabbedNavigationBarColorController {
       */
      public void setNavigationBarScrimFraction(float fraction) {
          mNavigationBarScrimFraction = fraction;
@@ -67,7 +67,7 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..7d7f5abbad9dda621cf8345ddb200da3
  
          // Adjust the color of navigation bar icons based on color state of the navigation bar.
          if (MathUtils.areFloatsEqual(1f, fraction)) {
-@@ -239,12 +259,16 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+@@ -223,12 +243,16 @@ class TabbedNavigationBarColorController {
      }
  
      private @ColorInt int getNavigationBarColor(boolean forceDarkNavigationBar) {
@@ -84,10 +84,3 @@ index 625fc8d314b16e04fec46d5239bdfdeac992d2fe..7d7f5abbad9dda621cf8345ddb200da3
          return forceDarkNavigationBar
                  ? mContext.getColor(R.color.bottom_system_nav_divider_color_light)
                  : SemanticColorUtils.getBottomSystemNavDividerColor(mWindow.getContext());
-@@ -257,4 +281,4 @@ class TabbedNavigationBarColorController implements VrModeObserver {
-         return ColorUtils.getColorWithOverlay(
-                 color, scrimColorOpaque, mNavigationBarScrimFraction * scrimColorAlpha, true);
-     }
--}
-\ No newline at end of file
-+}

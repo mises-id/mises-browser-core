@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarColors.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarColors.java
-index 6994ed444d2cc8a31c6c143accb43f161d218a73..d104326799e22bc26acf830dee7bab516dd56ea8 100644
+index 8b86aeb8ef0210b2865adb56fabb19f1f772f924..1f74edc1aedb43cf6678db195fc2518607734610 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarColors.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarColors.java
 @@ -10,6 +10,8 @@ import org.chromium.chrome.browser.device.DeviceClassManager;

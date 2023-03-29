@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/resources/settings/settings.gni b/chrome/browser/resources/settings/settings.gni
-index 55bfd93d27da2be10a56511d9ab47de14bfc4189..68938c6e96bbedd4b97d99b5468f75185fee6328 100644
+index 4952b09b0e7a6b8ba558c0edc84e640ba4bc3971..755474b2fe91bce67d4edd818d9c054a5df8890b 100644
 --- a/chrome/browser/resources/settings/settings.gni
 +++ b/chrome/browser/resources/settings/settings.gni
-@@ -5,7 +5,7 @@
- import("//build/config/chromeos/ui_mode.gni")
+@@ -4,7 +4,7 @@
+ 
  import("//third_party/closure_compiler/compile_js.gni")
  
 -assert(!is_android, "Android does not use these settings")

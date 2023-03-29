@@ -1,0 +1,19 @@
+diff --git a/chrome/android/java/res/values-sw600dp/drawables.xml b/chrome/android/java/res/values-sw600dp/drawables.xml
+old mode 100644
+new mode 100755
+index 8b5877183520549e809d4f7914f4ab464726c838..c7e625157a1333523a84cea0c7b95a4b88ea77c9
+--- a/chrome/android/java/res/values-sw600dp/drawables.xml
++++ b/chrome/android/java/res/values-sw600dp/drawables.xml
+@@ -1,9 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-Copyright 2019 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
+--->
++<!-- Copyright 2019 The Chromium Authors. All rights reserved.
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file. -->
+ <resources>
+     <drawable name="bg_white_dialog">@drawable/dialog_bg_no_shadow</drawable>
+ </resources>

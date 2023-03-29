@@ -1,26 +1,17 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index e000e324eadb5bd010cac23f372c30e2c7da2d3f..b0bada713160d63e0b4ba1ae13664877d023622d 100644
+index c0b17bb91cdadf4b1a4e82c5dc2bfdfdad2c1de3..2dc96e3edb625f0c0aeac64ba776130bbeb29cfd 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-@@ -36,6 +36,7 @@ import androidx.lifecycle.Lifecycle;
- import androidx.lifecycle.LifecycleObserver;
- import androidx.lifecycle.LifecycleRegistry;
+@@ -224,6 +224,20 @@ import java.util.List;
+ import java.util.Locale;
+ import java.util.Set;
  
 +import org.chromium.base.ContextUtils;
- import org.chromium.base.CallbackController;
- import org.chromium.base.CommandLine;
- import org.chromium.base.IntentUtils;
-@@ -226,7 +227,20 @@ import java.lang.annotation.RetentionPolicy;
- import java.util.HashSet;
- import java.util.List;
- import java.util.Locale;
 +import android.net.Uri;
 +import org.chromium.components.url_formatter.UrlFormatter;
 +import org.chromium.chrome.browser.init.ChromeBrowserReferrer;
 +import org.chromium.chrome.browser.init.InAppUpdater;
- 
 +import org.chromium.chrome.browser.homepage.HomepageManager;
-+
 +import android.animation.ValueAnimator;
 +import org.chromium.chrome.browser.mises.MisesController;
 +import org.chromium.chrome.browser.mises.MisesShareWin;
@@ -28,10 +19,11 @@ index e000e324eadb5bd010cac23f372c30e2c7da2d3f..b0bada713160d63e0b4ba1ae13664877
 +import org.json.JSONException;
 +import org.json.JSONObject;
 +import org.chromium.chrome.browser.feed.FeedFeatures;
++
  /**
   * This is the main activity for ChromeMobile when not running in document mode.  All the tabs
   * are accessible via a chrome specific tab switching UI.
-@@ -248,7 +262,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -245,7 +259,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
      // Maximum delay for initial tab creation. This is for homepage and NTP, not previous tabs
      // restore. This is needed because we do not know when reading PartnerBrowserCustomizations
      // provider will be finished.
@@ -40,38 +32,25 @@ index e000e324eadb5bd010cac23f372c30e2c7da2d3f..b0bada713160d63e0b4ba1ae13664877
  
      /**
       * Sending an intent with this action to Chrome will cause it to close all tabs
-@@ -352,6 +366,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -341,6 +355,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
  
      // Time at which an intent was received and handled.
      private long mIntentHandlingTimeMs;
-+    
 +    private InAppUpdater mInAppUpdater = new InAppUpdater();
  
      /**
       * Whether the StartSurface is shown when Chrome is launched.
-@@ -708,7 +724,6 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-             if (TabUiFeatureUtilities.isGridTabSwitcherEnabled(this)) {
-                 createTabSwitcherOrStartSurface(compositorViewHolder, compositorViewHolder);
-             }
--
-             // clang-format off
-             mLayoutManager = new LayoutManagerChromePhone(compositorViewHolder, mContentContainer,
-                     mStartSurfaceSupplier, mTabSwitcherSupplier, getTabContentManagerSupplier(),
-@@ -838,7 +853,11 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                 getTabModelSelector().getModel(false).commitAllTabClosures();
-                 // This assumes that the keyboard can not be seen at the same time as the
-                 // newtab button on the toolbar.
--                getCurrentTabCreator().launchNTP();
-+                if (getTabModelSelector().isIncognitoSelected()) {
-+                  getCurrentTabCreator().launchIncognitoNTP();
-+                } else {
-+                  getCurrentTabCreator().launchUrl(HomepageManager.getInstance().getHomepageUriIgnoringEnabledState(), TabLaunchType.FROM_CHROME_UI);
-+                }
+@@ -833,7 +848,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+                         (getLayoutManager().getActiveLayoutType() == LayoutType.TAB_SWITCHER)
+                         ? TabLaunchType.FROM_TAB_SWITCHER_UI
+                         : TabLaunchType.FROM_CHROME_UI;
+-                getCurrentTabCreator().launchNTP(tabLaunchType);
++                launchNTP();
                  mLocaleManager.showSearchEnginePromoIfNeeded(ChromeTabbedActivity.this, null);
                  if (getTabModelSelector().isIncognitoSelected()) {
                      RecordUserAction.record("MobileToolbarStackViewNewIncognitoTab");
-@@ -915,6 +934,12 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                         this, getWindow(), mLayoutManager, mTabModelSelector);
+@@ -904,6 +919,12 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+                         getWindow(), mLayoutManager, mTabModelSelector, getLifecycleDispatcher());
              }
  
 +            try {
@@ -83,36 +62,36 @@ index e000e324eadb5bd010cac23f372c30e2c7da2d3f..b0bada713160d63e0b4ba1ae13664877
              mUIWithNativeInitialized = true;
              onAccessibilityTabSwitcherModeChanged();
  
-@@ -954,6 +979,18 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
- 
+@@ -944,6 +965,19 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
      @Override
      public void onNewIntent(Intent intent) {
-+        if (intent != null) {
-+            if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_MAIN)) {
-+                String url = intent.getStringExtra("mises_url");
-+                if (url != null && !url.isEmpty()) {
-+                    url = UrlFormatter.fixupUrl(url).getSpec();
-+                    Intent newintent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-+                    newintent.setPackage(getPackageName());
-+                    startActivity(newintent);
+         try (TraceEvent e = TraceEvent.scoped("ChromeTabbedActivity.onNewIntent")) {
++
++            if (intent != null) {
++                if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_MAIN)) {
++                    String url = intent.getStringExtra("mises_url");
++                    if (url != null && !url.isEmpty()) {
++                        url = UrlFormatter.fixupUrl(url).getSpec();
++                        Intent newintent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
++                        newintent.setPackage(getPackageName());
++                        startActivity(newintent);
++                    }
 +                }
-+		
 +            }
-+        }
-         // The intent to use in maybeDispatchExplicitMainViewIntent(). We're explicitly
-         // adding NEW_TASK flag to make sure backing from CCT brings up the caller activity,
-         // and not Chrome
-@@ -1000,6 +1037,9 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
++
+             // The intent to use in maybeDispatchExplicitMainViewIntent(). We're explicitly
+             // adding NEW_TASK flag to make sure backing from CCT brings up the caller activity,
+             // and not Chrome
+@@ -999,6 +1033,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
              } else {
                  initializeCompositorContent();
              }
-+            
-+	    ChromeBrowserReferrer.handleInstallReferrer(this);
-+	    mInAppUpdater.startCheck(this);
++            ChromeBrowserReferrer.handleInstallReferrer(this);
++	        mInAppUpdater.startCheck(this);
  
              // All this initialization can be expensive so it's split into multiple tasks.
              PostTask.postTask(UiThreadTaskTraits.DEFAULT,
-@@ -1080,13 +1120,20 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -1071,11 +1107,12 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
          SearchEngineChoiceNotification.handleSearchEngineChoice(
                  this, getSnackbarManager(), SETTINGS_LAUNCHER);
  
@@ -125,110 +104,72 @@ index e000e324eadb5bd010cac23f372c30e2c7da2d3f..b0bada713160d63e0b4ba1ae13664877
 +        mInAppUpdater.onResume(this);
      }
  
-+    @Override
-+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-+        super.onActivityResult(requestCode,resultCode,data);
-+        mInAppUpdater.onActivityResult(requestCode,resultCode,data);	
-+    }  
-+
      @Override
-     public void onPauseWithNative() {
-         mTabModelSelector.commitAllTabClosures();
-@@ -1321,7 +1368,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                     CipherFactory.getInstance().restoreFromBundle(getSavedInstanceState());
+@@ -1296,6 +1333,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
  
              boolean noRestoreState =
--                    CommandLine.getInstance().hasSwitch(ChromeSwitches.NO_RESTORE_STATE);
-+                    CommandLine.getInstance().hasSwitch(ChromeSwitches.NO_RESTORE_STATE) ||
-+                    ContextUtils.getAppSharedPreferences().getBoolean("close_tabs_on_exit", false);
+                     CommandLine.getInstance().hasSwitch(ChromeSwitches.NO_RESTORE_STATE);
++            noRestoreState = noRestoreState || ContextUtils.getAppSharedPreferences().getBoolean("close_tabs_on_exit", false);
              if (noRestoreState) {
                  // Clear the state files because they are inconsistent and useless from now on.
                  mTabModelOrchestrator.clearState();
-@@ -1417,19 +1465,23 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-         // If the start surface or grid tab switcher will be shown on start, do not create a new
-         // tab.
-         if (!shouldShowOverviewPageOnStart()) {
-+	    Log.i(TAG, "#createInitialTab step - 1.");
-             String url = HomepageManager.getHomepageUri();
-             if (TextUtils.isEmpty(url)) {
--                url = UrlConstants.NTP_URL;
-+                url = "chrome-search://local-ntp/local-ntp.html";
-             } else {
-                 // Migrate legacy NTP URLs (chrome://newtab) to the newer format
-                 // (chrome-native://newtab)
-                 if (UrlUtilities.isNTPUrl(url)) {
--                    url = UrlConstants.NTP_URL;
-+                    url = "chrome-search://local-ntp/local-ntp.html";
-                 }
+@@ -1364,15 +1402,16 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+                     }
+                 }, INITIAL_TAB_CREATION_TIMEOUT_MS);
              }
-+	    Log.i(TAG, "#createInitialTab step - 2." + url);
- 
-             getTabCreator(false).launchUrl(url, TabLaunchType.FROM_STARTUP);
--        }
-+        } else {
-+	  Log.i(TAG, "#createInitialTab step - 3.");
-+	}
- 
-         // If we didn't call setInitialOverviewState() in onStartWithNative() because
-         // mPendingInitialTabCreation was true then do so now.
-@@ -1468,7 +1520,11 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+-
+             // If initial tab creation is pending, this will instead be handled when we create the
+             // initial tab in #createInitialTab.
+             if (!mPendingInitialTabCreation) {
+                 Tab currentTab = getActivityTab();
+                 boolean isTabNtp = isTabRegularNtp(currentTab);
+-                if (isTabNtp && !currentTab.isNativePage()) {
++                boolean isTabNativeUrl = currentTab != null && currentTab.getUrl().getScheme().equals(UrlConstants.CHROME_NATIVE_SCHEME);
++                if (isTabNtp && isTabNativeUrl && !currentTab.isNativePage()) {
+                     // This will be a NTP, but the native page hasn't been created yet. Need to wait
+                     // for this to be created before allowing the toolbar to draw.
++                    Log.i(TAG, "#initializeState begin content change");
+                     currentTab.addObserver(new EmptyTabObserver() {
+                         @Override
+                         public void onContentChanged(Tab tab) {
+@@ -1459,7 +1498,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
                              this, getCurrentTabModel().isIncognito(), isTablet())) {
                  mLayoutManager.showLayout(LayoutType.BROWSING, true);
                  if (getTabModelSelector().getCurrentModel().getCount() == 0) {
 -                    getCurrentTabCreator().launchNTP();
-+                    if (getTabModelSelector().isIncognitoSelected()) {
-+                        getCurrentTabCreator().launchIncognitoNTP();
-+                    } else {
-+                        getCurrentTabCreator().launchUrl(HomepageManager.getInstance().getHomepageUriIgnoringEnabledState(), TabLaunchType.FROM_CHROME_UI);
-+                    }
++                    launchNTP();
                  }
              }
          }
-@@ -1622,18 +1678,18 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                         return;
-                     }
- 
--                    if (url == null || url.equals(UrlConstants.NTP_URL)) {
-+                    if (url == null || url.equals(UrlConstants.NTP_URL) || url.equals("chrome-search://local-ntp/local-ntp.html")) {
+@@ -1616,15 +1655,15 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+                     if (url == null || url.equals(UrlConstants.NTP_URL)) {
                          if (fromLauncherShortcut) {
                              getTabCreator(true).launchUrl(
 -                                    UrlConstants.NTP_URL, TabLaunchType.FROM_LAUNCHER_SHORTCUT);
-+                                    "chrome-search://local-ntp/incognito-ntp.html", TabLaunchType.FROM_LAUNCHER_SHORTCUT);
++                                     "chrome-search://local-ntp/incognito-ntp.html", TabLaunchType.FROM_LAUNCHER_SHORTCUT);
                              recordLauncherShortcutAction(true);
                              reportNewTabShortcutUsed(true);
                          } else if (fromAppWidget) {
                              RecordUserAction.record("QuickActionSearchWidget.StartIncognito");
                              getTabCreator(true).launchUrl(
 -                                    UrlConstants.NTP_URL, TabLaunchType.FROM_APP_WIDGET);
-+                                    "chrome-search://local-ntp/incognito-ntp.html", TabLaunchType.FROM_APP_WIDGET);
++                                     "chrome-search://local-ntp/incognito-ntp.html", TabLaunchType.FROM_APP_WIDGET);
                          } else if (IncognitoTabLauncher.didCreateIntent(intent)) {
 -                            Tab tab = getTabCreator(true).launchUrl(UrlConstants.NTP_URL,
-+                            Tab tab = getTabCreator(true).launchUrl("chrome-search://local-ntp/incognito-ntp.html",
++                            Tab tab = getTabCreator(true).launchUrl( "chrome-search://local-ntp/incognito-ntp.html",
                                      TabLaunchType.FROM_LAUNCH_NEW_INCOGNITO_TAB);
                              if (IncognitoTabLauncher.shouldFocusOmnibox(intent)) {
                                  // Since the Tab is created in the foreground, its View will gain
-@@ -1649,7 +1705,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -1640,7 +1679,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
                          } else {
                              // Used by the Account management screen to open a new incognito tab.
                              // Account management screen collects its metrics separately.
 -                            getTabCreator(true).launchUrl(UrlConstants.NTP_URL,
-+                            getTabCreator(true).launchUrl("chrome-search://local-ntp/incognito-ntp.html",
++                            getTabCreator(true).launchUrl( "chrome-search://local-ntp/incognito-ntp.html",
                                      TabLaunchType.FROM_CHROME_UI, intent, mIntentHandlingTimeMs);
                          }
                      } else {
-@@ -1789,8 +1845,10 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-         mContentContainer = (ViewGroup) findViewById(android.R.id.content);
-         mControlContainer = (ToolbarControlContainer) findViewById(R.id.control_container);
- 
-+        boolean isLegacyTabSwitcher = false;
-+
-         Supplier<Boolean> dialogVisibilitySupplier = null;
--        if (TabUiFeatureUtilities.isTabGroupsAndroidEnabled(this)) {
-+        if (TabUiFeatureUtilities.isTabGroupsAndroidEnabled(this) && !isLegacyTabSwitcher) {
-             dialogVisibilitySupplier = () -> {
-                 boolean isTabSwitcherOnlyRefactorEnabled =
-                         ReturnToChromeUtil.isTabSwitcherOnlyRefactorEnabled(this);
-@@ -2127,7 +2185,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -2140,7 +2179,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
              reportNewTabShortcutUsed(false);
              if (fromMenu) RecordUserAction.record("MobileMenuNewTab.AppMenu");
  
@@ -237,21 +178,45 @@ index e000e324eadb5bd010cac23f372c30e2c7da2d3f..b0bada713160d63e0b4ba1ae13664877
  
              mLocaleManager.showSearchEnginePromoIfNeeded(this, null);
          } else if (id == R.id.new_incognito_tab_menu_id) {
-@@ -2230,7 +2288,49 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -2241,6 +2280,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+             TabModel currentModel = mTabModelSelector.getCurrentModel();
+             if (!currentModel.isIncognito()) currentModel.openMostRecentlyClosedEntry();
              RecordUserAction.record("MobileTabClosedUndoShortCut");
-         } else if (id == R.id.enter_vr_id) {
-             VrModuleProvider.getDelegate().enterVrIfNecessary();
--        } else {
 +        } else if (id == R.id.mises_forward_menu_id) {
-+            String SCRIPT = "if(window.misesModule && window.misesModule.getWindowInformation){window.misesModule.getWindowInformation()} else {console.log('window.misesModule or window.misesModule.getWindowInformation is null')}";
++            handleForward(currentTab);
+         } else {
+             return super.onMenuOrKeyboardAction(id, fromMenu);
+         }
+@@ -2903,6 +2944,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+         try (TraceEvent e = TraceEvent.scoped("ChromeTabbedActivity.onActivityResult")) {
+             super.onActivityResult(requestCode, resultCode, data);
++            mInAppUpdater.onActivityResult(requestCode,resultCode,data);
+         }
+     }
+ 
+@@ -3039,4 +3081,55 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+         }
+         return mIsStartSurfaceRefactorEnabled;
+     }
++
++    private void launchNTP() {
++        if (getTabModelSelector().isIncognitoSelected()) {
++            getCurrentTabCreator().launchIncognitoNTP();
++        } else {
++            getCurrentTabCreator().launchUrl(HomepageManager.getInstance().getHomepageUriIgnoringEnabledState(), TabLaunchType.FROM_CHROME_UI);
++        }
++    }
++    private void handleForward(final Tab currentTab) {
++         String SCRIPT = "if(window.misesModule && window.misesModule.getWindowInformation){window.misesModule.getWindowInformation()} else {console.log('window.misesModule or window.misesModule.getWindowInformation is null')}";
 +            final Context context = ChromeTabbedActivity.this;
 +            if (currentTab == null || currentTab.getWebContents() == null)
-+                return true;
++                return;
 +            if (currentTab.isNativePage() || currentTab.isClosing()
 +                    || currentTab.isShowingErrorPage() ) {
 +                Log.e("mises","share currentTab.isNativePage() || currentTab.isClosing() || currentTab.isShowingErrorPage() || currentTab.isShowingSadTab()");
 +                Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
-+                return true;
++                return;
 +            }
 +            currentTab.getWebContents().evaluateJavaScript(SCRIPT, jsonResult -> {
 +                Log.e("mises share msg : ", jsonResult);
@@ -284,13 +249,5 @@ index e000e324eadb5bd010cac23f372c30e2c7da2d3f..b0bada713160d63e0b4ba1ae13664877
 +                    Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
 +                }
 +            });
-+	} else {
-             return super.onMenuOrKeyboardAction(id, fromMenu);
-         }
-         return true;
-@@ -2976,4 +3076,5 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-             }
-         });
-     }
-+	
++    }
  }

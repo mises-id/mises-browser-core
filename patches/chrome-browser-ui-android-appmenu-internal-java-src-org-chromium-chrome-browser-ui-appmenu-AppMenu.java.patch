@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
-index b42c2c36b8865360dd13533d6b0d5d5fea78fe7d..8e7736deb77c7ebe4a1127e22dd501bf6ae2b810 100644
+index fbbc57577be59a8bc7cd4045b622331214237600..85f351c455297974de6580a9413e1263bf1b70bb 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
-@@ -33,6 +33,14 @@ import android.widget.ListView;
+@@ -32,6 +32,14 @@ import android.widget.ListView;
  import android.widget.PopupWindow;
  
  import androidx.annotation.ColorInt;
@@ -17,7 +17,7 @@ index b42c2c36b8865360dd13533d6b0d5d5fea78fe7d..8e7736deb77c7ebe4a1127e22dd501bf
  import androidx.annotation.IdRes;
  import androidx.annotation.Nullable;
  import androidx.annotation.VisibleForTesting;
-@@ -56,6 +64,28 @@ import org.chromium.ui.widget.Toast;
+@@ -55,6 +63,29 @@ import org.chromium.ui.widget.Toast;
  import java.util.ArrayList;
  import java.util.List;
  
@@ -42,11 +42,12 @@ index b42c2c36b8865360dd13533d6b0d5d5fea78fe7d..8e7736deb77c7ebe4a1127e22dd501bf
 +import org.chromium.base.annotations.CalledByNative;
 +import org.chromium.chrome.browser.profiles.Profile;
 +import org.chromium.content_public.browser.WebContents;
++import android.os.Build;
 +
  /**
   * Shows a popup of menuitems anchored to a host view. When a item is selected we call
   * AppMenuHandlerImpl.AppMenuDelegate.onOptionsItemSelected with the appropriate MenuItem.
-@@ -226,6 +256,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -221,6 +252,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
                      isMenuIconAtStart ? R.style.StartIconMenuAnim : R.style.EndIconMenuAnim);
          }
  
@@ -55,7 +56,7 @@ index b42c2c36b8865360dd13533d6b0d5d5fea78fe7d..8e7736deb77c7ebe4a1127e22dd501bf
          // Turn off window animations for low end devices.
          if (SysUtils.isLowEndDevice()) mPopup.setAnimationStyle(0);
  
-@@ -299,13 +331,13 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -293,13 +326,13 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
                  popupHeight, anchorView.getRootView().getLayoutDirection());
          mPopup.setContentView(contentView);
  
@@ -64,7 +65,7 @@ index b42c2c36b8865360dd13533d6b0d5d5fea78fe7d..8e7736deb77c7ebe4a1127e22dd501bf
 -        }
 -
          try {
-+        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) && Build.VERSION.SDK_INT == 24) {
++        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) && Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
 +            mPopup.showAsDropDown(anchorView.getRootView(), popupPosition[0], popupPosition[1]);
 +        } else {
              mPopup.showAtLocation(anchorView.getRootView(), Gravity.NO_GRAVITY, popupPosition[0],
@@ -73,7 +74,7 @@ index b42c2c36b8865360dd13533d6b0d5d5fea78fe7d..8e7736deb77c7ebe4a1127e22dd501bf
          } catch (WindowManager.BadTokenException e) {
              // Intentionally ignore BadTokenException. This can happen in a real edge case where
              // parent.getWindowToken is not valid. See http://crbug.com/826052 &
-@@ -328,7 +360,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -322,7 +355,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          }
  
          // Don't animate the menu items for low end devices.
@@ -83,7 +84,7 @@ index b42c2c36b8865360dd13533d6b0d5d5fea78fe7d..8e7736deb77c7ebe4a1127e22dd501bf
              mListView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                  @Override
                  public void onLayoutChange(View v, int left, int top, int right, int bottom,
-@@ -534,7 +567,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -528,7 +562,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          int anchorViewImpactHeight = mIsByPermanentButton ? anchorView.getHeight() : 0;
  
          // Set appDimensions.height() for abnormal anchorViewLocation.
@@ -93,12 +94,12 @@ index b42c2c36b8865360dd13533d6b0d5d5fea78fe7d..8e7736deb77c7ebe4a1127e22dd501bf
              anchorViewY = appDimensions.height();
          }
          int availableScreenSpace = Math.max(
-@@ -557,6 +591,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -551,6 +586,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          int menuHeight = calculateHeightForItems(
                  menuItemIds, heightList, groupDividerResourceId, availableScreenSpace);
          menuHeight += footerHeight + headerHeight + padding.top + padding.bottom;
 +        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) && menuItemIds.size() >= 7) {
-+            if (Build.VERSION.SDK_INT < 25)
++            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1)
 +              menuHeight = (int) (menuHeight / 1.55);
 +            else
 +              menuHeight = (int) (menuHeight / 1.45);

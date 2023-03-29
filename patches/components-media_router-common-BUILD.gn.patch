@@ -1,9 +1,9 @@
 diff --git a/components/media_router/common/BUILD.gn b/components/media_router/common/BUILD.gn
-index 5a57c318fe76638159c4d8b1548e9650cd7936ce..23b220a2a0ef2ca84069973d01272aa81ee29842 100644
+index aab022aefc38005bc314017d6c0eeabdae90f5ae..ab13a7d8cc1f1eafd2095331fdb8a315650baedd 100644
 --- a/components/media_router/common/BUILD.gn
 +++ b/components/media_router/common/BUILD.gn
-@@ -36,7 +36,7 @@ static_library("common") {
-     "mojom:route_request_result_code",
+@@ -38,7 +38,7 @@ static_library("common") {
+     "//third_party/blink/public:blink_headers",
    ]
  
 -  if (!is_android) {

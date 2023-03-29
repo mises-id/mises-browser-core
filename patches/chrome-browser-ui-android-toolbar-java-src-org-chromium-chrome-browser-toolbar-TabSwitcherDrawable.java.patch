@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
-index cce50d2dfaf12fee36c7f4dc7b073829e5208442..82476527dd0fded6672b989bb40ad8714a5d0889 100644
+index 7a9248b936c3a68337720504494b7d35685987b3..2881c8f5a2f4d51ffc7090622bcd43427a6d292d 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
 @@ -28,6 +28,7 @@ import java.util.Locale;

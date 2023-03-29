@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/access_code_cast/BUILD.gn b/chrome/browser/resources/access_code_cast/BUILD.gn
-index dd8e0a74a2721574aa49fa0234627c448bb09f3f..8fe0fa3ce20f6c3ffb3438a7296d787ceb577602 100644
+index dd7a6efc3b58019fbabaed60a8ce05af9d4eb8c4..d00113dc8757e59056f60631ff8dc93ae92ea52e 100644
 --- a/chrome/browser/resources/access_code_cast/BUILD.gn
 +++ b/chrome/browser/resources/access_code_cast/BUILD.gn
-@@ -9,7 +9,7 @@ import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
- import("./access_code_cast.gni")
+@@ -4,7 +4,7 @@
+ 
+ import("//chrome/browser/resources/tools/build_webui.gni")
  
 -assert(!is_android, "access_code_cast is not for android.")
 +# assert(!is_android, "access_code_cast is not for android.")
  
- resources_grd_file = "$target_gen_dir/resources.grd"
- 
+ build_webui("build") {
+   grd_prefix = "access_code_cast"

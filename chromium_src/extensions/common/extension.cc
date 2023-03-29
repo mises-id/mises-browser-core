@@ -9,10 +9,8 @@ bool Extension::ShouldExposeViaManagementAPI() const {
 }
 }
 
-#define SCHEME_UUID_IN_PACKAGE SCHEME_UUID_IN_PACKAGE | URLPattern::SCHEME_CHROMESEARCH
 #define ShouldExposeViaManagementAPI ShouldExposeViaManagementAPI_ChromiumImpl
 
 #include "src/extensions/common/extension.cc"
 
 #undef ShouldExposeViaManagementAPI
-#undef SCHEME_UUID_IN_PACKAGE

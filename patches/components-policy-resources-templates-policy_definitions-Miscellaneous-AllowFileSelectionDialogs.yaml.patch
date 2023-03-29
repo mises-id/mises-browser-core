@@ -1,0 +1,11 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Miscellaneous/AllowFileSelectionDialogs.yaml b/components/policy/resources/templates/policy_definitions/Miscellaneous/AllowFileSelectionDialogs.yaml
+index 1548990eeab69e0bf03521cacb9bbb15cdb13413..f711347c9bd11d2c2f7f15704325649a532e1b43 100644
+--- a/components/policy/resources/templates/policy_definitions/Miscellaneous/AllowFileSelectionDialogs.yaml
++++ b/components/policy/resources/templates/policy_definitions/Miscellaneous/AllowFileSelectionDialogs.yaml
+@@ -22,5 +22,6 @@ schema:
+   type: boolean
+ supported_on:
+ - chrome.*:12-
++- android:111-
+ tags: []
+ type: main

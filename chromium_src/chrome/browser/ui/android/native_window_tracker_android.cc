@@ -1,7 +1,3 @@
-// Copyright 2014 The Chromium Authors
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 #include "chrome/browser/ui/android/native_window_tracker_android.h"
 #include "ui/android/window_android.h"
 
@@ -13,14 +9,14 @@ NativeWindowTrackerAndroid::NativeWindowTrackerAndroid(
 NativeWindowTrackerAndroid::~NativeWindowTrackerAndroid() {
 }
 
-bool NativeWindowTrackerAndroid::WasNativeWindowClosed() const {
+bool NativeWindowTrackerAndroid::WasNativeWindowDestroyed() const {
   return window_ == nullptr;
 }
 
 
 // static
-std::unique_ptr<NativeWindowTracker> NativeWindowTracker::Create(
+std::unique_ptr<views::NativeWindowTracker> views::NativeWindowTracker::Create(
     gfx::NativeWindow window) {
-  return std::unique_ptr<NativeWindowTracker>(
+  return std::unique_ptr<views::NativeWindowTracker>(
       new NativeWindowTrackerAndroid(window));
 }

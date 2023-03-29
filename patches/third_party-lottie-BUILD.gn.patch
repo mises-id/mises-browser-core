@@ -1,5 +1,5 @@
 diff --git a/third_party/lottie/BUILD.gn b/third_party/lottie/BUILD.gn
-index 3a18ad7f8d6d255f546a5cd4b3b7ce6d62c35a4b..5532d14b6aaf194a890caad02eab3266865c8d47 100644
+index b32da9ff1d5e7fc378e607a111304722b10cc9a3..cef35b6609e525f08848cf8011de0d42a9929954 100644
 --- a/third_party/lottie/BUILD.gn
 +++ b/third_party/lottie/BUILD.gn
 @@ -6,7 +6,7 @@ import("//chrome/browser/resources/tools/optimize_webui.gni")

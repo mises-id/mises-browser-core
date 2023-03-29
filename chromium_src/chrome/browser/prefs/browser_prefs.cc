@@ -1,7 +1,3 @@
-// Copyright 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 #include "chrome/browser/prefs/browser_prefs.h"
 
 #include <string>
@@ -9,7 +5,6 @@
 #include "mises/browser/mises_profile_prefs.h"
 
 #if BUILDFLAG(IS_ANDROID)
-#include "chrome/browser/autofill_assistant/password_change/apc_client.h"
 #include "chrome/browser/cart/cart_service.h"
 #include "chrome/browser/device_api/device_service_impl.h"
 #include "chrome/browser/gcm/gcm_product_util.h"
@@ -22,7 +17,6 @@
 #include "chrome/browser/new_tab_page/modules/drive/drive_service.h"
 #include "chrome/browser/new_tab_page/modules/photos/photos_service.h"
 #include "chrome/browser/new_tab_page/modules/safe_browsing/safe_browsing_handler.h"
-#include "chrome/browser/new_tab_page/modules/task_module/task_module_service.h"
 #include "chrome/browser/new_tab_page/promos/promo_service.h"
 #include "chrome/browser/policy/developer_tools_policy_handler.h"
 #include "chrome/browser/search/background/ntp_custom_background_service.h"
@@ -38,6 +32,7 @@
 #include "chrome/browser/ui/webui/whats_new/whats_new_ui.h"
 #include "chrome/browser/upgrade_detector/upgrade_detector.h"
 #include "components/ntp_tiles/custom_links_manager_impl.h"
+#include "chrome/browser/sessions/session_service_log.h"
 #endif  // BUILDFLAG(IS_ANDROID)
 
 
@@ -73,8 +68,8 @@ void MisesRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
 }
 void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 #if BUILDFLAG(IS_ANDROID) 
-  ApcClient::RegisterPrefs(registry);
-  AppShortcutManager::RegisterProfilePrefs(registry);
+  //ApcClient::RegisterPrefs(registry);
+  //AppShortcutManager::RegisterProfilePrefs(registry);
   BrowserFeaturePromoSnoozeService::RegisterProfilePrefs(registry);
   DeviceServiceImpl::RegisterProfilePrefs(registry);
   DevToolsWindow::RegisterProfilePrefs(registry);
@@ -102,8 +97,9 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   signin::RegisterProfilePrefs(registry);
   //StartupBrowserCreator::RegisterProfilePrefs(registry);
   tab_search_prefs::RegisterProfilePrefs(registry);
-  TaskModuleService::RegisterProfilePrefs(registry);
+  //TaskModuleService::RegisterProfilePrefs(registry);
   UnifiedAutoplayConfig::RegisterProfilePrefs(registry);
+  RegisterSessionServiceLogProfilePrefs(registry);
 #endif
 
 #if BUILDFLAG(IS_ANDROID) 
@@ -130,7 +126,8 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 #endif
 
 #if !BUILDFLAG(ENABLE_FEED_V2)
-  registry->RegisterBooleanPref(feed::prefs::kArticlesListVisible,false);
+  feed::prefs::RegisterFeedSharedProfilePrefs(registry);
+  feed::RegisterProfilePrefs(registry);
 #endif 
 
 #if BUILDFLAG(IS_ANDROID)

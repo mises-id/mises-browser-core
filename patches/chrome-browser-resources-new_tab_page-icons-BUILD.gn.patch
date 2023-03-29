@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/new_tab_page/icons/BUILD.gn b/chrome/browser/resources/new_tab_page/icons/BUILD.gn
-index 8ae9a3a8755f4bc95efd4023c7b1ad8c822cc064..d7c8952f912b12e3cf5135806e1dccc1091d725c 100644
+index ba3ca425bc417c6a2ccfb5f77123c2d25b282c75..6a0fcf55220662e820d92633bf55ddbfc52734d5 100644
 --- a/chrome/browser/resources/new_tab_page/icons/BUILD.gn
 +++ b/chrome/browser/resources/new_tab_page/icons/BUILD.gn
 @@ -4,7 +4,7 @@

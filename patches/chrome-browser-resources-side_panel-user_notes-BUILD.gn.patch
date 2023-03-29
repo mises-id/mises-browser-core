@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/side_panel/user_notes/BUILD.gn b/chrome/browser/resources/side_panel/user_notes/BUILD.gn
+index fbf1e2aa913918764367ae4ae4511b442a976425..313389689b25ece6f8218ab63268307c4b721dd4 100644
+--- a/chrome/browser/resources/side_panel/user_notes/BUILD.gn
++++ b/chrome/browser/resources/side_panel/user_notes/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "side_panel_user_notes"

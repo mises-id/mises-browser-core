@@ -1,8 +1,8 @@
 diff --git a/extensions/BUILD.gn b/extensions/BUILD.gn
-index 2da77af1c44ecefa97b3661fc490796467f0e816..969f1e94a493c9abe57e7884ecabee54091821fb 100644
+index eb5b6dc41f187b7b82257aa5c7588f498861e771..180b052c2c12856ba6759585226960c5c7c5a2ba 100644
 --- a/extensions/BUILD.gn
 +++ b/extensions/BUILD.gn
-@@ -243,6 +243,7 @@ repack("shell_and_test_pak") {
+@@ -240,6 +240,7 @@ repack("shell_and_test_pak") {
    ]
  }
  
@@ -10,7 +10,7 @@ index 2da77af1c44ecefa97b3661fc490796467f0e816..969f1e94a493c9abe57e7884ecabee54
  test("extensions_unittests") {
    use_xvfb = use_xvfb_in_this_config
  
-@@ -294,6 +295,7 @@ test("extensions_unittests") {
+@@ -290,6 +291,7 @@ test("extensions_unittests") {
      ]
    }
  }

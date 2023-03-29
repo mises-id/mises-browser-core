@@ -1,8 +1,8 @@
 diff --git a/chrome/android/chrome_common_shared_library.gni b/chrome/android/chrome_common_shared_library.gni
-index 2a73ab3c8699460c0beb3c00cabf9fa96c0f7735..bc45f870fd8d8072a5c6099424fc8fe3ad00f1ba 100644
+index f23200549c9b57f1b45ed4268c6705657d57ae7b..4ca403ea928f8978c4a0945aa0623aca54d6a8c9 100644
 --- a/chrome/android/chrome_common_shared_library.gni
 +++ b/chrome/android/chrome_common_shared_library.gni
-@@ -116,6 +116,10 @@ template("chrome_common_shared_library") {
+@@ -119,6 +119,10 @@ template("chrome_common_shared_library") {
      }
  
      # Handle VR JNI registration and dependencies.

@@ -323,15 +323,16 @@ GURL GetNewTabPageURL(Profile* profile) {
 #if !BUILDFLAG(IS_ANDROID) || true
 
 bool ShouldAssignURLToInstantRenderer(const GURL& url, Profile* profile) {
-  if (url.SchemeIs(chrome::kChromeSearchScheme))
-    return true;
   if (!url.is_valid() || !profile || !IsInstantExtendedAPIEnabled() ||
       url.SchemeIs(content::kChromeUIScheme)) {
+    //LOG(INFO) << "[Mises] ShouldAssignURLToInstantRenderer " << url << " " << " skip";
     return false;
   }
 
-  return IsNTPOrRelatedURLHelper(url, profile) ||
+  bool ret = IsNTPOrRelatedURLHelper(url, profile) ||
          url.SchemeIs(chrome::kChromeSearchScheme);
+  //LOG(INFO) << "[Mises] ShouldAssignURLToInstantRenderer " << url << " " << ret;
+  return ret;
 }
 
 bool ShouldUseProcessPerSiteForInstantSiteURL(const GURL& site_url,
@@ -372,9 +373,11 @@ bool HandleNewTabURLRewrite(GURL* url,
     return false;
 
   if (!(url->SchemeIs(content::kChromeUIScheme) &&
-        url->host() == chrome::kChromeUINewTabHost) &&
-      !(url->SchemeIs(chrome::kChromeSearchScheme) &&
-        url->host_piece() == chrome::kChromeSearchLocalNtpHost)) {
+        url->host() == chrome::kChromeUINewTabHost)) {
+    return false;
+  }
+  if (!(url->SchemeIs(chrome::kChromeSearchScheme) &&
+        url->host() == "local-ntp")) {
     return false;
   }
 

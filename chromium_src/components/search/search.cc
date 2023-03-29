@@ -1,7 +1,3 @@
-// Copyright 2014 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 #include "components/search/search.h"
 
 #include "build/build_config.h"
@@ -10,27 +6,23 @@
 #include "components/search_engines/template_url.h"
 #include "components/search_engines/template_url_service.h"
 
-namespace search {
 
-bool IsInstantExtendedAPIEnabled() {
-#if BUILDFLAG(IS_IOS)// || BUILDFLAG(IS_ANDROID)
-  return false;
+
+#if BUILDFLAG(IS_ANDROID)
+
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
+
+
+#include "src/components/search/search.cc"
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
+
 #else
-  return true;
+
+#include "src/components/search/search.cc"
+
+
 #endif
-}
 
-bool DefaultSearchProviderIsGoogle(
-    const TemplateURLService* template_url_service) {
-  if (!template_url_service)
-    return false;
-  const TemplateURL* default_provider =
-      template_url_service->GetDefaultSearchProvider();
-  if (!default_provider)
-    return false;
-  return default_provider->GetEngineType(
-             template_url_service->search_terms_data()) ==
-         SearchEngineType::SEARCH_ENGINE_GOOGLE;
-}
 
-}  // namespace search

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/webapps/WebappActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/webapps/WebappActivity.java
-index 7b2518efeef700d62657662bd748cec3531805ef..fc21d290b556dd20d779d7768536b86361afd615 100644
+index 79ac05cd3d7ccb2a17fc6023b511b1080e55a96c..7a3a8ec0d7ca58cf7a6e4b33111b1c09d94411b2 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/webapps/WebappActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/webapps/WebappActivity.java
 @@ -96,4 +96,7 @@ public class WebappActivity extends BaseCustomTabActivity {

@@ -1,34 +1,35 @@
 diff --git a/chrome/android/java/res/values/strings.xml b/chrome/android/java/res/values/strings.xml
 old mode 100644
 new mode 100755
-index 0876356c6e07d90c402725bb51651d1212e4c5dc..385720d4efc7765b4cdb8fa80bcaacc40840538a
+index b842fe7e295e7f4fafa99f5879a1604afe4e44c1..385720d4efc7765b4cdb8fa80bcaacc40840538a
 --- a/chrome/android/java/res/values/strings.xml
 +++ b/chrome/android/java/res/values/strings.xml
 @@ -1,16 +1,119 @@
  <?xml version="1.0" encoding="utf-8"?>
--<!-- Copyright (c) 2012 The Chromium Authors. All rights reserved.
- 
--     Use of this source code is governed by a BSD-style license that can be
--     found in the LICENSE file.
+-<!--
+-Copyright 2012 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
 --->
+ 
+-<!-- DO NOT ADD STRINGS HERE.
 +<resources
 +    xmlns:android="http://schemas.android.com/apk/res/android"
 +    xmlns:tools="http://schemas.android.com/tools"
 +    tools:ignore="MissingTranslation">
  
--<!-- DO NOT ADD STRINGS HERE.
+-    Android chrome strings now live in
+-    chrome/browser/ui/android/strings/android_chrome_strings.grd
 +    <string name="main_menu_ads_and_trackers_blocked" tools:ignore="PluralsCandidate">"%1$d ads &amp; trackers blocked"</string>
 +    <string name="main_menu_ads_blocked_since">"Since %1$s"</string>
  
--    Android chrome strings now live in
--    chrome/browser/ui/android/strings/android_chrome_strings.grd
-+    <string name="main_menu_adblock">Hide annoying ads</string>
- 
 -    See http://www.chromium.org/developers/design-documents/ui-localization
 --->
-+    <string name="main_menu_clear_data">Clear data</string>
++    <string name="main_menu_adblock">Hide annoying ads</string>
  
 -<resources/>
++    <string name="main_menu_clear_data">Clear data</string>
++
 +    <string name="main_menu_translate">Translate</string>
 +    <string name="main_menu_translate_undo">Stop translate</string>
 +

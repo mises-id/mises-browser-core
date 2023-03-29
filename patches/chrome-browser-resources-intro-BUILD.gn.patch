@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/intro/BUILD.gn b/chrome/browser/resources/intro/BUILD.gn
+index fcca3facbb8494e776c35ec97d4024be3ca05b61..1f094245eca7d4372098be24be9ea229fc9ccf25 100644
+--- a/chrome/browser/resources/intro/BUILD.gn
++++ b/chrome/browser/resources/intro/BUILD.gn
+@@ -6,7 +6,7 @@ import("//build/config/chromeos/ui_mode.gni")
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//components/signin/features.gni")
+ 
+-assert(is_chromeos_lacros || enable_dice_support)
++#assert(is_chromeos_lacros || enable_dice_support)
+ 
+ build_webui("build") {
+   grd_prefix = "intro"

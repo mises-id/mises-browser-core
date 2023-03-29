@@ -1,8 +1,8 @@
 diff --git a/components/storage_monitor/BUILD.gn b/components/storage_monitor/BUILD.gn
-index 529def5f24ab5992cf305a43479ab55afd03f9ac..53a357e0a0f039e8e9429e900ab0e51189c1c604 100644
+index 546f194a24bb9d65d2e20eccc963da3dfa313a5a..7c1a884f1ee8c6b23780d8763fe648895b77b971 100644
 --- a/components/storage_monitor/BUILD.gn
 +++ b/components/storage_monitor/BUILD.gn
-@@ -70,7 +70,7 @@ static_library("storage_monitor") {
+@@ -73,7 +73,7 @@ static_library("storage_monitor") {
        ]
        deps += [ "//services/device/public/mojom" ]
      }

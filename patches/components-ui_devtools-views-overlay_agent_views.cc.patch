@@ -1,0 +1,13 @@
+diff --git a/components/ui_devtools/views/overlay_agent_views.cc b/components/ui_devtools/views/overlay_agent_views.cc
+index 7768cd64f8a401856f2f80bd31577084a3004fd8..a1fa18e2e31099c0788e9bd954e9004d682ad361 100644
+--- a/components/ui_devtools/views/overlay_agent_views.cc
++++ b/components/ui_devtools/views/overlay_agent_views.cc
+@@ -720,7 +720,7 @@ bool OverlayAgentViews::UpdateHighlight(
+   root_layer = widget->GetLayer();
+   layer_for_highlighting_screen_offset_ =
+       widget->GetContentsView()->GetBoundsInScreen().OffsetFromOrigin();
+-#else
++#elif defined(USE_AURA)
+   gfx::NativeWindow root = window_and_bounds.first->GetRootWindow();
+   root_layer = root->layer();
+   layer_for_highlighting_screen_offset_ =

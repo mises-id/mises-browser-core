@@ -9,14 +9,13 @@
 #include <memory>
 #include <utility>
 
-#include "base/bind.h"
+#include "base/functional/bind.h"
 #include "base/command_line.h"
 #include "base/feature_list.h"
 #include "base/files/file_util.h"
 #include "base/json/json_reader.h"
 #include "base/path_service.h"
 #include "base/strings/stringprintf.h"
-#include "base/task/task_runner_util.h"
 #include "base/task/thread_pool.h"
 #include "mises/components/mises_component_updater/browser/brave_on_demand_updater.h"
 #include "mises/components/brave_referrals/browser/brave_referrals_service.h"
@@ -262,15 +261,15 @@ void NTPBackgroundImagesService::CheckSuperReferralComponent() {
       return;
     }
 
-    // This below code is for recover above abnormal situation - Shutdown
-    // situation before getting map table or getting initial component.
-    if (brave::BraveReferralsService::IsDefaultReferralCode(code)) {
-      MarkThisInstallIsNotSuperReferralForever();
-    } else {
-      // If current code is not an default one, let's check it after fetching
-      // mapping table.
-      DownloadSuperReferralMappingTable();
-    }
+    // // This below code is for recover above abnormal situation - Shutdown
+    // // situation before getting map table or getting initial component.
+    // if (brave::BraveReferralsService::IsDefaultReferralCode(code)) {
+    //   MarkThisInstallIsNotSuperReferralForever();
+    // } else {
+    //   // If current code is not an default one, let's check it after fetching
+    //   // mapping table.
+    //   DownloadSuperReferralMappingTable();
+    // }
     return;
   }
 

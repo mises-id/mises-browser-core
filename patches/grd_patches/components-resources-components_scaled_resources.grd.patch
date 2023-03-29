@@ -1,5 +1,5 @@
 diff --git a/components/resources/components_scaled_resources.grd b/components/resources/components_scaled_resources.grd
-index 940244ddd6fe9..61c3a7b7832f9 100644
+index ae09c2dddd092cc1958249a6256c2237ee7afa7b..9cd1fb913c8d1c1ffeb1bad87a419c23c1fa4015 100644
 --- a/components/resources/components_scaled_resources.grd
 +++ b/components/resources/components_scaled_resources.grd
 @@ -20,7 +20,7 @@
@@ -9,5 +9,5 @@ index 940244ddd6fe9..61c3a7b7832f9 100644
 -      <if expr="not is_android">
 +      <if expr="is_android or not is_android">
          <structure type="chrome_scaled_image" name="IDR_HISTORY_FAVICON" file="favicon_history.png" />
+         <structure type="chrome_scaled_image" name="IDR_PASSWORD_MANAGER_FAVICON" file="favicon_password_manager.png" />
        </if>
-       <structure type="chrome_scaled_image" name="IDR_SAD_WEBVIEW" file="webview-crash.png" />

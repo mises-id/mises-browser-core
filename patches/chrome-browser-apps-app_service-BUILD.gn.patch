@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/apps/app_service/BUILD.gn b/chrome/browser/apps/app_service/BUILD.gn
+index 69d806787a461d3a734bc6d8abfc7cfbe4e131f7..187ea1830536848e3689c7784ddb3f7597a151f1 100644
+--- a/chrome/browser/apps/app_service/BUILD.gn
++++ b/chrome/browser/apps/app_service/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//build/config/chromeos/ui_mode.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ source_set("app_service") {
+   sources = [

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/BUILD.gn b/chrome/browser/extensions/BUILD.gn
-index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..3a0d7d00c787a9dafdd5bcaf5f19b188cde514bf 100644
+index 33e53463ff9d733d0fbaef14925719602a7c3efd..09b724cfef1521db95043f7d63772c2d4d2558d9 100644
 --- a/chrome/browser/extensions/BUILD.gn
 +++ b/chrome/browser/extensions/BUILD.gn
-@@ -953,6 +953,7 @@ static_library("extensions") {
+@@ -962,6 +962,7 @@ static_library("extensions") {
      "//ui/strings",
      "//url",
    ]
@@ -10,7 +10,7 @@ index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..3a0d7d00c787a9dafdd5bcaf5f19b188
  
    if (is_linux || is_mac || is_win) {
      sources += [
-@@ -1261,7 +1262,7 @@ static_library("extensions") {
+@@ -1273,7 +1274,7 @@ static_library("extensions") {
      ]
    }
  
@@ -19,7 +19,7 @@ index 9a61d5cc1a1c33017cad6fd9e0d4617fc824ecf8..3a0d7d00c787a9dafdd5bcaf5f19b188
      sources +=
          [ "api/image_writer_private/removable_storage_provider_linux.cc" ]
    }
-@@ -1362,6 +1363,7 @@ static_library("extensions") {
+@@ -1375,6 +1376,7 @@ static_library("extensions") {
    } else {
      sources += [ "api/braille_display_private/braille_controller_stub.cc" ]
    }

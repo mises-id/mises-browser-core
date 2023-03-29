@@ -97,8 +97,8 @@ TxStateManager::TxStateManager(PrefService* prefs,
 TxStateManager::~TxStateManager() = default;
 
 void TxStateManager::AddOrUpdateTx(const TxMeta& meta) {
-  DictionaryPrefUpdate update(prefs_, kBraveWalletTransactions);
-  base::Value::Dict& dict = update.Get()->GetDict();
+  ScopedDictPrefUpdate update(prefs_, kBraveWalletTransactions);
+  base::Value::Dict& dict = update.Get();
   const std::string path = GetTxPrefPathPrefix() + "." + meta.id();
 
   bool is_add = dict.FindByDottedPath(path) == nullptr;
@@ -118,7 +118,7 @@ void TxStateManager::AddOrUpdateTx(const TxMeta& meta) {
 }
 
 std::unique_ptr<TxMeta> TxStateManager::GetTx(const std::string& id) {
-  const auto& dict = prefs_->GetDictionary(kBraveWalletTransactions)->GetDict();
+  const auto& dict = prefs_->GetDict(kBraveWalletTransactions);
   const base::Value::Dict* value =
       dict.FindDictByDottedPath(GetTxPrefPathPrefix() + "." + id);
   if (!value)
@@ -128,22 +128,21 @@ std::unique_ptr<TxMeta> TxStateManager::GetTx(const std::string& id) {
 }
 
 void TxStateManager::DeleteTx(const std::string& id) {
-  DictionaryPrefUpdate update(prefs_, kBraveWalletTransactions);
-  base::Value* dict = update.Get();
-  dict->GetDict().RemoveByDottedPath(GetTxPrefPathPrefix() + "." + id);
+  ScopedDictPrefUpdate update(prefs_, kBraveWalletTransactions);
+  update->RemoveByDottedPath(
+      base::JoinString({GetTxPrefPathPrefix(), id}, "."));
 }
 
 void TxStateManager::WipeTxs() {
-  DictionaryPrefUpdate update(prefs_, kBraveWalletTransactions);
-  base::Value* dict = update.Get();
-  dict->GetDict().RemoveByDottedPath(GetTxPrefPathPrefix());
+  ScopedDictPrefUpdate update(prefs_, kBraveWalletTransactions);
+  update->RemoveByDottedPath(GetTxPrefPathPrefix());
 }
 
 std::vector<std::unique_ptr<TxMeta>> TxStateManager::GetTransactionsByStatus(
     absl::optional<mojom::TransactionStatus> status,
     absl::optional<std::string> from) {
   std::vector<std::unique_ptr<TxMeta>> result;
-  const auto& dict = prefs_->GetDictionary(kBraveWalletTransactions)->GetDict();
+  const auto& dict = prefs_->GetDict(kBraveWalletTransactions);
   const base::Value::Dict* network_dict =
       dict.FindDictByDottedPath(GetTxPrefPathPrefix());
   if (!network_dict)

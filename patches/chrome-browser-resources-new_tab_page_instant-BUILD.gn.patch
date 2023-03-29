@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/new_tab_page_instant/BUILD.gn b/chrome/browser/resources/new_tab_page_instant/BUILD.gn
-index 03078cf0e3ee67d820c87fe6161635eefed7d332..836335a17bc5e62771405f82e2e4adb0cf696d7c 100644
+index d62a0226a8e6913b253607708759a7b3ded03263..e1e1dbe8c8424fb6074d12a961f7416aec577c07 100644
 --- a/chrome/browser/resources/new_tab_page_instant/BUILD.gn
 +++ b/chrome/browser/resources/new_tab_page_instant/BUILD.gn
 @@ -7,7 +7,7 @@ import("//tools/grit/grit_rule.gni")

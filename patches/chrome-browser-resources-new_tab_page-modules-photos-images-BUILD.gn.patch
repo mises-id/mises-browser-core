@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/new_tab_page/modules/photos/images/BUILD.gn b/chrome/browser/resources/new_tab_page/modules/photos/images/BUILD.gn
-index e1e44ab8abec0d010665c3d6a334f3690f171742..8d3755427e0dbcde995751dad5fead66874f5fec 100644
+index 182bfc1f27fd23f95a7d265746e730080c44b4b6..0f4e477fc58c0314d6ed64fabe0a9f6db44bfad8 100644
 --- a/chrome/browser/resources/new_tab_page/modules/photos/images/BUILD.gn
 +++ b/chrome/browser/resources/new_tab_page/modules/photos/images/BUILD.gn
 @@ -4,7 +4,7 @@

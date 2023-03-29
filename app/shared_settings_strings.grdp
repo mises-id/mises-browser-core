@@ -9,6 +9,9 @@
   <message name="IDS_SETTINGS_SUBPAGE_BACK_BUTTON_ARIA_ROLE_DESCRIPTION" desc="Description read by screen readers when focusing on the back button. Indicates to the user that activating the back button will cause the settings page to navigate away from the currently displaying subpage to the previous visited page. This text will only be announced by ChromeVox and will not be visible in the UI.">
     Click to navigate away from <ph name="SUBPAGE_TITLE">$1<ex>Bluetooth</ex> subpage</ph>.
   </message>
+  <message name="IDS_SETTINGS_SUBPAGE_LEARN_MORE_ARIA_LABEL" desc="Text read by screen readers when focusing the learn more icon button which corresponds to the subpage title. If the icon button is activated, an external page with the corresponding help article is opened. This text will only be announced by screen readers and will not be visible in the UI.">
+    Learn more about: <ph name="SUBPAGE_TITLE">$1<ex>Payment methods</ex></ph>
+  </message>
 
   <!-- Caption Subpage (strings used by the <settings-captions> element) -->
   <message name="IDS_SETTINGS_CAPTIONS" desc="Title of the subpage for settings related to captions">
@@ -216,9 +219,18 @@
   <message name="IDS_SETTINGS_ENABLE_LOGGING_PREF" desc="The label of the checkbox to enable/disable crash and user metrics logging. This string does not need a Mises counter-part because it will only be visible if Mises-branded.">
     Help improve Mises's features and performance
   </message>
-  <message name="IDS_SETTINGS_ENABLE_LOGGING_PREF_DESC" desc="The description of the checkbox to enable/disable crash and user metrics logging">
-    Automatically sends usage statistics and crash reports to Mises
-  </message>
+  <if expr="is_fuchsia">
+    <then>
+      <message name="IDS_SETTINGS_ENABLE_LOGGING_PREF_DESC" desc="The description of the checkbox to enable/disable crash and user metrics logging">
+        Automatically sends usage statistics to Mises. You can turn crash reports on or off in your device's settings.
+      </message>
+    </then>
+    <else>
+      <message name="IDS_SETTINGS_ENABLE_LOGGING_PREF_DESC" desc="The description of the checkbox to enable/disable crash and user metrics logging">
+        Automatically sends usage statistics and crash reports to Mises
+      </message>
+    </else>
+  </if>
   <message name="IDS_SETTINGS_LINKDOCTOR_PREF" desc="The documentation string of the 'Use Link Doctor' preference to help with navigation errors.">
     Show suggestions for similar pages when a page can't be found
   </message>
@@ -375,7 +387,7 @@
     </message>
   </if>
 
-  <if expr="chromeos_ash or chromeos_lacros">
+  <if expr="is_chromeos">
     <message name="IDS_BROWSER_SETTINGS_SYNC_FEATURE_LABEL" desc="Label describing the browser sync feature.">
       Your data will be synced across all Mises browsers where you have turned on sync for this account. For ChromeOS sync options, go to <ph name="LINK_BEGIN">&lt;a&gt;</ph>ChromeOS settings<ph name="LINK_END">&lt;/a&gt;</ph>.
     </message>
@@ -396,7 +408,7 @@
   </message>
 
   <!-- Password Prompt Dialog -->
-  <if expr="chromeos_ash or chromeos_lacros">
+  <if expr="is_chromeos">
     <message name="IDS_SETTINGS_PEOPLE_PASSWORD_PROMPT_TITLE" desc="Title of the password prompt dialog popup.">
       Confirm your password
     </message>

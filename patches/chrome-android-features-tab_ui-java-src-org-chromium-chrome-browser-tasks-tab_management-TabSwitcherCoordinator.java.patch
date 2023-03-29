@@ -1,9 +1,9 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
-index a3107369f820aae019e43dc6fa3133d43adb225b..14f8d74c2d1b16c0c7ed99b579d70c2da8fa1d53 100644
+index a9974b5800c68ad3999b938fd091f4ad81550e81..194f8f2c4401ddcbbb57c0a055849c92676f5e62 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
-@@ -61,6 +61,8 @@ import org.chromium.ui.resources.dynamics.DynamicResourceLoader;
- 
+@@ -70,6 +70,8 @@ import org.chromium.ui.resources.dynamics.DynamicResourceLoader;
+ import java.util.ArrayList;
  import java.util.List;
  
 +import org.chromium.base.ContextUtils;
@@ -11,8 +11,8 @@ index a3107369f820aae019e43dc6fa3133d43adb225b..14f8d74c2d1b16c0c7ed99b579d70c2d
  /**
   * Parent coordinator that is responsible for showing a grid or carousel of tabs for the main
   * TabSwitcher UI.
-@@ -197,6 +199,11 @@ public class TabSwitcherCoordinator
-             @NonNull ModalDialogManager modalDialogManager) {
+@@ -177,6 +179,11 @@ public class TabSwitcherCoordinator
+             @Nullable BackPressManager backPressManager) {
          try (TraceEvent e = TraceEvent.scoped("TabSwitcherCoordinator.constructor")) {
              mActivity = activity;
 +	    final String active_tabswitcher = ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default");

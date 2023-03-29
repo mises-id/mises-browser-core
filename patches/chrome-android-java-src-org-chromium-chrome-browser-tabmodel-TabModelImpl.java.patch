@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
-index cd0f74869615277cfc107d0bb505c40c2f36eb26..a576b31705b3a1c79292234e9328f79645e4ec1e 100644
+index 86b2bcd19ed2f7de629dd648b0211a58cdc1441f..98860a792dc371bcb0f31c598eb834241eedd7e1 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 @@ -31,6 +31,7 @@ import org.chromium.ui.mojom.WindowOpenDisposition;
@@ -10,7 +10,7 @@ index cd0f74869615277cfc107d0bb505c40c2f36eb26..a576b31705b3a1c79292234e9328f796
  import java.util.ArrayList;
  import java.util.Collections;
  import java.util.List;
-@@ -750,6 +751,26 @@ public class TabModelImpl extends TabModelJniBridge {
+@@ -763,6 +764,26 @@ public class TabModelImpl extends TabModelJniBridge {
          return mIndex;
      }
  

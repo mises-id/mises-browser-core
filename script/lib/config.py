@@ -16,7 +16,7 @@ PLATFORM = {
 SOURCE_ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..', '..'))
 CHROMIUM_ROOT = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+    os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
 BRAVE_CORE_ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..', '..'))
 

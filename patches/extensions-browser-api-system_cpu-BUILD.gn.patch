@@ -1,5 +1,5 @@
 diff --git a/extensions/browser/api/system_cpu/BUILD.gn b/extensions/browser/api/system_cpu/BUILD.gn
-index 38b7f36829d5ebe0a3813d68877e98a00705175f..0ba8bf4daaffa4011ab4397ac16aa14d5c619a4d 100644
+index 11b7144fa63da52f8a738cf18307e34db8ae239e..60685ae20026b800ea1cc103164dcd0795c2c20c 100644
 --- a/extensions/browser/api/system_cpu/BUILD.gn
 +++ b/extensions/browser/api/system_cpu/BUILD.gn
 @@ -38,6 +38,10 @@ source_set("system_cpu") {

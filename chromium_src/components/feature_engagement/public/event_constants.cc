@@ -1,17 +1,11 @@
-// Copyright 2017 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+#include "src/components/feature_engagement/public/event_constants.cc"
 
-#include "components/feature_engagement/public/event_constants.h"
-
-#include "build/build_config.h"
 
 namespace feature_engagement {
 
 namespace events {
 
-#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
+#if BUILDFLAG(IS_ANDROID)
 const char kNewTabOpened[] = "new_tab_opened";
 const char kSixthTabOpened[] = "sixth_tab_opened";
 const char kTabGroupCreated[] = "tab_group_created";
@@ -44,26 +38,14 @@ const char kFocusHelpBubbleAcceleratorPressed[] =
 const char kFocusHelpBubbleAcceleratorPromoRead[] =
     "focus_help_bubble_accelerator_promo_read";
 
-#endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) ||
-        // BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
+const char kPerformanceMenuItemActivated[] = "performance_activated";
+const char kSideSearchAutoTriggered[] = "side_search_auto_triggered";
 
-#if BUILDFLAG(IS_IOS)
-const char kChromeOpened[] = "chrome_opened";
-const char kIncognitoTabOpened[] = "incognito_tab_opened";
-const char kClearedBrowsingData[] = "cleared_browsing_data";
-const char kViewedReadingList[] = "viewed_reading_list";
-const char kTriggeredTranslateInfobar[] = "triggered_translate_infobar";
-const char kBottomToolbarOpened[] = "bottom_toolbar_opened";
-const char kDiscoverFeedLoaded[] = "discover_feed_loaded";
-const char kDesktopVersionRequested[] = "desktop_version_requested";
-const char kDefaultSiteViewShown[] = "default_site_view_shown";
-const char kPasswordSuggestionsShown[] = "password_suggestions_shown";
-const char kPasswordSuggestionSelected[] = "password_suggestion_selected";
-#endif  // BUILDFLAG(IS_IOS)
 
-#if BUILDFLAG(IS_ANDROID)
-const char kPwaInstallMenuSelected[] = "pwa_install_menu_clicked";
-#endif  // BUILDFLAG(IS_ANDROID)
+
+const char kBatterySaverDialogShown[] = "battery_saver_info_shown";
+
+#endif 
 
 }  // namespace events
 

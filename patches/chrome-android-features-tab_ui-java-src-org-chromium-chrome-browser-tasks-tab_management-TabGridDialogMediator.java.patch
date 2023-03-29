@@ -1,17 +1,17 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
-index e2589f3948f812731e1197f043495edf90093fe7..d15f7b22acc895cceb244154f070cb1101e66b43 100644
+index ebea916076ac9a4ea82a101d1f830f48929638ed..8ca650652d4b869f0ba8db501366653060151259 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
-@@ -48,6 +48,8 @@ import org.chromium.ui.modelutil.PropertyModel;
- 
+@@ -57,6 +57,8 @@ import java.util.ArrayList;
  import java.util.List;
+ import java.util.Locale;
  
 +import org.chromium.chrome.browser.homepage.HomepageManager;
 +
  /**
   * A mediator for the TabGridDialog component, responsible for communicating
   * with the components' coordinator as well as managing the business logic
-@@ -514,8 +516,12 @@ public class TabGridDialogMediator implements SnackbarManager.SnackbarController
+@@ -634,8 +636,12 @@ public class TabGridDialogMediator
              Tab currentTab = mTabModelSelector.getTabById(mCurrentTabId);
              hideDialog(false);
              if (currentTab == null) {
@@ -26,12 +26,3 @@ index e2589f3948f812731e1197f043495edf90093fe7..d15f7b22acc895cceb244154f070cb11
                  return;
              }
              List<Tab> relatedTabs = getRelatedTabs(currentTab.getId());
-@@ -524,7 +530,7 @@ public class TabGridDialogMediator implements SnackbarManager.SnackbarController
- 
-             Tab parentTabToAttach = relatedTabs.get(relatedTabs.size() - 1);
-             mTabCreatorManager.getTabCreator(currentTab.isIncognito())
--                    .createNewTab(new LoadUrlParams(UrlConstants.NTP_URL),
-+                    .createNewTab(new LoadUrlParams("chrome-search://local-ntp/local-ntp.html"),
-                             TabLaunchType.FROM_TAB_GROUP_UI, parentTabToAttach);
-             RecordUserAction.record("MobileNewTabOpened." + mComponentName);
-             if (!currentTab.isIncognito()) {

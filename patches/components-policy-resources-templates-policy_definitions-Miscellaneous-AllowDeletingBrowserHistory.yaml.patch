@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Miscellaneous/AllowDeletingBrowserHistory.yaml b/components/policy/resources/templates/policy_definitions/Miscellaneous/AllowDeletingBrowserHistory.yaml
+index da5afc5cbeaf57de11757d7c125445c54dae134d..be53103cc52c2924bdeba84d486141de436314c5 100644
+--- a/components/policy/resources/templates/policy_definitions/Miscellaneous/AllowDeletingBrowserHistory.yaml
++++ b/components/policy/resources/templates/policy_definitions/Miscellaneous/AllowDeletingBrowserHistory.yaml
+@@ -22,6 +22,7 @@ schema:
+ supported_on:
+ - chrome.*:57-
+ - chrome_os:57-
++- android:111-
+ tags:
+ - local-data-access
+ - admin-sharing

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/extensions/detail_view.html b/chrome/browser/resources/extensions/detail_view.html
-index 468973971fc2580a4f18f53ce284b575285883da..8eed73cf444a34a4812d0fd06d0f19c4c8a6ad86 100644
+index 4410e67cdf63007f361f3011c08b0de6c46cb8d8..39b9ce219db506f7976415f7f3338011edd20682 100644
 --- a/chrome/browser/resources/extensions/detail_view.html
 +++ b/chrome/browser/resources/extensions/detail_view.html
-@@ -372,13 +372,14 @@
+@@ -412,13 +412,14 @@
          <template is="dom-if"
            if="[[shouldShowIncognitoOption_(
                data.incognitoAccess.isEnabled, incognitoAvailable)]]">

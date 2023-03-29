@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/SideSlideLayout.java b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/SideSlideLayout.java
-index 96670e0ae4b631b3b142eef9bdddefde68dd0c85..9c7df568696a6520daf4ffad7f99d107211f773b 100644
+index 2408838f86d32f2c798925db33212516d1a98041..8bfe0da6e6cb588ee288d1ad32adf9780588fe55 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/SideSlideLayout.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/SideSlideLayout.java
 @@ -57,7 +57,7 @@ public class SideSlideLayout extends ViewGroup {

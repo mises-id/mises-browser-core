@@ -291,7 +291,7 @@ std::vector<mojom::BlockchainTokenPtr> BraveWalletService::GetUserAssets(
     return result;
   }
 
-  const auto& user_assets_dict = prefs->GetDictionary(kBraveWalletUserAssets)->GetDict();
+  const auto& user_assets_dict = prefs->GetDict(kBraveWalletUserAssets);
   const auto* tokens = user_assets_dict.FindListByDottedPath(
       base::StrCat({GetPrefKeyForCoinType(coin), ".", network_id}));
   if (!tokens) {
@@ -333,17 +333,15 @@ bool BraveWalletService::AddUserAsset(mojom::BlockchainTokenPtr token,
     }
   }
 
-  DictionaryPrefUpdate update(prefs, kBraveWalletUserAssets);
-  auto* user_assets_pref = update.Get()->GetIfDict();
-  DCHECK(user_assets_pref);
+  ScopedDictPrefUpdate update(prefs, kBraveWalletUserAssets);
+  base::Value::Dict& user_assets_pref = update.Get();
 
   const auto path =
       base::StrCat({GetPrefKeyForCoinType(token->coin), ".", network_id});
-  auto* user_assets_list = user_assets_pref->FindListByDottedPath(path);
+  auto* user_assets_list = user_assets_pref.FindListByDottedPath(path);
   if (!user_assets_list) {
     user_assets_list =
-        user_assets_pref
-            ->SetByDottedPath(path, base::Value(base::Value::Type::LIST))
+        user_assets_pref.SetByDottedPath(path, base::Value::List())
             ->GetIfList();
   }
   DCHECK(user_assets_list);
@@ -403,11 +401,8 @@ bool BraveWalletService::RemoveUserAsset(mojom::BlockchainTokenPtr token) {
   if (network_id.empty())
     return false;
 
-  DictionaryPrefUpdate update(prefs_, kBraveWalletUserAssets);
-  auto* user_assets_pref = update.Get()->GetIfDict();
-  DCHECK(user_assets_pref);
-
-  auto* user_assets_list = user_assets_pref->FindListByDottedPath(
+  ScopedDictPrefUpdate update(prefs_, kBraveWalletUserAssets);
+  auto* user_assets_list = update->FindListByDottedPath(
       base::StrCat({GetPrefKeyForCoinType(token->coin), ".", network_id}));
   if (!user_assets_list)
     return false;
@@ -440,11 +435,8 @@ bool BraveWalletService::SetUserAssetVisible(mojom::BlockchainTokenPtr token,
   if (network_id.empty())
     return false;
 
-  DictionaryPrefUpdate update(prefs_, kBraveWalletUserAssets);
-  auto* user_assets_pref = update.Get()->GetIfDict();
-  DCHECK(user_assets_pref);
-
-  auto* user_assets_list = user_assets_pref->FindListByDottedPath(
+  ScopedDictPrefUpdate update(prefs_, kBraveWalletUserAssets);
+  auto* user_assets_list = update->FindListByDottedPath(
       base::StrCat({GetPrefKeyForCoinType(token->coin), ".", network_id}));
   if (!user_assets_list)
     return false;
@@ -473,7 +465,7 @@ mojom::BlockchainTokenPtr BraveWalletService::GetUserAsset(
   if (network_id.empty())
     return nullptr;
 
-  const auto& user_assets_dict = prefs_->GetDictionary(kBraveWalletUserAssets)->GetDict();
+  const auto& user_assets_dict = prefs_->GetDict(kBraveWalletUserAssets);
   const auto* user_assets_list = user_assets_dict.FindListByDottedPath(
       base::StrCat({GetPrefKeyForCoinType(coin), ".", network_id}));
   if (!user_assets_list)
@@ -690,8 +682,8 @@ void BraveWalletService::MigrateUserAssetEthContractAddress(
     return;
   }
 
-  DictionaryPrefUpdate update(prefs, kBraveWalletUserAssetsDeprecated);
-  auto& user_assets_pref = update.Get()->GetDict();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletUserAssetsDeprecated);
+  auto& user_assets_pref = update.Get();
 
   for (auto user_asset_list : user_assets_pref) {
     auto& item = user_asset_list.second.GetList();
@@ -719,7 +711,7 @@ void BraveWalletService::MigrateMultichainUserAssets(PrefService* prefs) {
     return;
 
   auto eth_user_assets =
-      prefs->GetDictionary(kBraveWalletUserAssetsDeprecated)->GetDict().Clone();
+      prefs->GetDict(kBraveWalletUserAssetsDeprecated).Clone();
 
   // Update contract_address key to address.
   for (auto user_asset_list : eth_user_assets) {
@@ -754,8 +746,8 @@ void BraveWalletService::MigrateUserAssetsAddPreloadingNetworks(
     return;
   }
 
-  DictionaryPrefUpdate update(prefs, kBraveWalletUserAssets);
-  auto& user_assets_pref = update.Get()->GetDict();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletUserAssets);
+  auto& user_assets_pref = update.Get();
 
   // For each user asset list in ethereum known chains, check if it has the
   // native token (address is empty) in the list already, if not, insert a
@@ -793,8 +785,8 @@ void BraveWalletService::MigrateUserAssetsAddIsNFT(PrefService* prefs) {
     return;
   }
 
-  DictionaryPrefUpdate update(prefs, kBraveWalletUserAssets);
-  auto& user_assets_pref = update.Get()->GetDict();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletUserAssets);
+  auto& user_assets_pref = update.Get();
 
   for (auto user_asset_dict_per_cointype : user_assets_pref) {
     if (!user_asset_dict_per_cointype.second.is_dict())

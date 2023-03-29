@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
-index df862c170560de774fd51ae31fc5bf9e1c29cadc..443414eebe4e2e994cba61fd28dec584533f5a72 100644
+index d66ed8aebc7313f5a3ebe5845d217cdf77290454..affd5a09ead0c07d96aecb34c6eee0a17ae46cc9 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
 @@ -17,6 +17,9 @@ import org.chromium.content_public.browser.LoadUrlParams;
@@ -12,17 +12,16 @@ index df862c170560de774fd51ae31fc5bf9e1c29cadc..443414eebe4e2e994cba61fd28dec584
  /**
   * Creates Tabs.  If the TabCreator creates Tabs asynchronously, null pointers will be returned
   * everywhere instead of a Tab.
-@@ -94,7 +97,28 @@ public abstract class TabCreator {
-     public final void launchNTP() {
+@@ -113,9 +116,26 @@ public abstract class TabCreator {
+     public final void launchNTP(@TabLaunchType int type) {
          try {
              TraceEvent.begin("TabCreator.launchNTP");
--            launchUrl(UrlConstants.NTP_URL, TabLaunchType.FROM_CHROME_UI);
-+            launchUrl(ContextUtils.getAppSharedPreferences().getString("active_homepage", UrlConstants.NTP_NON_NATIVE_URL), TabLaunchType.FROM_CHROME_UI);
-+        } finally {
-+            TraceEvent.end("TabCreator.launchNTP");
-+        }
-+
-+    }
+-            launchUrl(UrlConstants.NTP_URL, type);
++            launchUrl(ContextUtils.getAppSharedPreferences().getString("active_homepage", UrlConstants.NTP_NON_NATIVE_URL), type);
+         } finally {
+             TraceEvent.end("TabCreator.launchNTP");
+         }
+     }
 +
 +    public void openSinglePage(String url) {
 +        try {
@@ -32,13 +31,12 @@ index df862c170560de774fd51ae31fc5bf9e1c29cadc..443414eebe4e2e994cba61fd28dec584
 +        }
 +    }
 +
-+    /**
-+     * Creates a new tab and loads the NTP.
-+     */
 +    public final void launchIncognitoNTP() {
 +        try {
-+            TraceEvent.begin("TabCreator.launchNTP");
++            TraceEvent.begin("TabCreator.launchIncognitoNTP");
 +            launchUrl("chrome-search://local-ntp/incognito-ntp.html", TabLaunchType.FROM_CHROME_UI);
-         } finally {
-             TraceEvent.end("TabCreator.launchNTP");
-         }
++         } finally {
++             TraceEvent.end("TabCreator.launchIncognitoNTP");
++         }
++    }
+ }

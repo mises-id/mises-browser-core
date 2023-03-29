@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-index 002c35475398946dfabbe405d549ca109af23eff..b8d8aab26801b38e76d1a14ab1f75a6221e5052e 100644
+index c7990ad6b19cccdbadf454106d7a175b6c093e7b..40b6e70a02e1a7c36a58cf301393303120b9b3f2 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 @@ -24,6 +24,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
@@ -27,7 +27,7 @@ index 002c35475398946dfabbe405d549ca109af23eff..b8d8aab26801b38e76d1a14ab1f75a62
       */
 -    private @NonNull String getHomepageUriIgnoringEnabledState() {
 -        if (HomepagePolicyManager.isHomepageManagedByPolicy()) {
--            return HomepagePolicyManager.getHomepageUrl();
+-            return HomepagePolicyManager.getHomepageUrl().getSpec();
 -        }
 -        if (getPrefHomepageUseChromeNTP()) {
 -            return UrlConstants.NTP_NON_NATIVE_URL;

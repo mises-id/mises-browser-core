@@ -13,7 +13,5 @@ group("storybook") {
   deps = [
     "//mojo/public/js:bindings",
     "//mojo/public/js:resources",
-    "//ui/webui/resources/js:cr.m",
-    "//ui/webui/resources/js:preprocess",
   ]
 }

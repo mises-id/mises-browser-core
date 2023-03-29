@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuDelegate.java b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuDelegate.java
-index b6a966e7416ece8ed3a4b830e9f1e682cc492cc3..d546726aedbfdd9d94a5b12e51f6dfc5a1c0725a 100644
+index c2b74e81aaf6e8df259e120a49733d8b0efe4614..222b2ea7fe35cef580158646320fdc1cbecb40f4 100644
 --- a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuDelegate.java
 +++ b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuDelegate.java
 @@ -24,4 +24,8 @@ public interface AppMenuDelegate {
