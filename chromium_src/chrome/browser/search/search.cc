@@ -372,12 +372,10 @@ bool HandleNewTabURLRewrite(GURL* url,
   if (!IsInstantExtendedAPIEnabled())
     return false;
 
-  if (!(url->SchemeIs(content::kChromeUIScheme) &&
-        url->host() == chrome::kChromeUINewTabHost)) {
-    return false;
-  }
-  if (!(url->SchemeIs(chrome::kChromeSearchScheme) &&
-        url->host() == "local-ntp")) {
+   if (!(url->SchemeIs(content::kChromeUIScheme) &&
+        url->host() == chrome::kChromeUINewTabHost) &&
+      !(url->SchemeIs(chrome::kChromeSearchScheme) &&
+        url->host_piece() == chrome::kChromeSearchLocalNtpHost)) {
     return false;
   }
 
