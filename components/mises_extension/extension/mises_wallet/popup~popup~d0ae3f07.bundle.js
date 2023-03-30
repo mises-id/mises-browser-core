@@ -15956,6 +15956,7 @@ sdk["a" /* init */]({
     beforeSend: (event, hint) => {
         if (hint.originalException) {
             console.log(event, hint.originalException.toString());
+            const timeout = hint.originalException.toString().indexOf("ECONNABORTED") > -1;
             const errorConnection = hint.originalException.toString().indexOf("connection reset by peer") >
                 -1;
             const failedToFetch = hint.originalException.toString().indexOf("Failed to fetch") > -1 ||
@@ -15967,7 +15968,7 @@ sdk["a" /* init */]({
                 .toString()
                 .indexOf("Non-Error promise rejection captured with keys: message") >
                 -1;
-            if (promiseNonError || errorConnection || failedToFetch) {
+            if (promiseNonError || errorConnection || failedToFetch || timeout) {
                 // logEvent(analytics, "misesWallet_error", {
                 //   error_message: hint.originalException?.toString(),
                 // });
