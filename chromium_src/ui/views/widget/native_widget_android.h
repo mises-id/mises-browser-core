@@ -167,6 +167,7 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
   bool destroying_;
   bool is_active_;
   bool is_hidden_;
+  bool is_closed_;
 
   std::unique_ptr<TooltipManagerAura> tooltip_manager_;
 
@@ -181,7 +182,7 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
 
   // The following factory is used for calls to close the NativeWidgetAndroid
   // instance.
-  base::WeakPtrFactory<NativeWidgetAndroid> close_widget_factory_{this};
+  base::WeakPtrFactory<NativeWidgetAndroid> widget_factory_{this};
 
 };
 
