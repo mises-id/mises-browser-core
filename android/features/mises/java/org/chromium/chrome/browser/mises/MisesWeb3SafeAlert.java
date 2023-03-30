@@ -219,6 +219,8 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         final String txtEnd = "\n"+tagInfo+ " "+ System.lineSeparator();
         final String txtNotice = notice;
         SpannableString spannable = new SpannableString(txtBegin + txtValue + txtEnd + txtNotice);
+        spannable.setSpan(new ForegroundColorSpan(0xff666666), 0,
+            txtBegin.length() + txtValue.length() + txtEnd.length() + txtNotice.length(), 0);
         spannable.setSpan(new ForegroundColorSpan(Color.RED), txtBegin.length(), txtBegin.length()+txtValue.length(), 0);
         spannable.setSpan(new ForegroundColorSpan(Color.BLACK), txtBegin.length()+txtValue.length()+txtEnd.length(), txtBegin.length()+txtValue.length()+txtEnd.length() + txtNotice.length(), 0);
         spannable.setSpan(new StyleSpan(Typeface.BOLD), txtBegin.length()+txtValue.length()+txtEnd.length(), txtBegin.length()+txtValue.length()+txtEnd.length() + txtNotice.length(), 0);

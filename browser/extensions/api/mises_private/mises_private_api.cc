@@ -96,6 +96,23 @@ void MisesPrivateNotifyPhishingDetectedFunction::OnNotificationHandled(int actio
   Respond(ArgumentList(
     api::mises_private::NotifyPhishingDetected::Results::Create((api::mises_private::Web3SafeAction)action)));
 }
+//----------------------------------------------------------------
+//log event
+MisesPrivateRecordEventFunction::~MisesPrivateRecordEventFunction() {}
+ExtensionFunction::ResponseAction MisesPrivateRecordEventFunction::Run() {
+
+#if BUILDFLAG(IS_ANDROID)
+  std::unique_ptr<api::mises_private::RecordEvent::Params> params(
+      api::mises_private::RecordEvent::Params::Create(args()));
+  EXTENSION_FUNCTION_VALIDATE(params.get());
+  LOG(INFO) << "MisesPrivate set log event params :" << params->data;
+  android::MisesController::GetInstance()->recordEvent(
+    params->data
+  );
+
+#endif
+  return RespondNow(NoArguments());
+}
 
 
 }  // namespace api
