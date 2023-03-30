@@ -1,6 +1,6 @@
 #ifndef CHROME_BROWSER_EXTENSIONS_API_MISES_PRIVATE_MISES_PRIVATE_API_H_
 #define CHROME_BROWSER_EXTENSIONS_API_MISES_PRIVATE_MISES_PRIVATE_API_H_
- 
+
 #include <stdint.h>
 
 #include <memory>
@@ -64,8 +64,21 @@ protected:
   void OnNotificationHandled(int action);
 
 };
+//web3site visit log
+class MisesPrivateRecordEventFunction : public ExtensionFunction
+{
+public:
+  ExtensionFunction::ResponseAction Run() override;
+  DECLARE_EXTENSION_FUNCTION("misesPrivate.recordEvent",
+                             UNKNOWN)
+
+protected:
+  ~MisesPrivateRecordEventFunction() override;
+
+};
+
 
 }  // namespace api
 }  // namespace extensions
- 
+
 #endif  // CHROME_BROWSER_EXTENSIONS_API_MISES_PRIVATE_MISES_PRIVATE_API_H_

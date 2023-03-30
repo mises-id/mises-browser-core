@@ -3170,6 +3170,7 @@ class keyring_KeyRing {
     }
     createMnemonicKey(kdf, mnemonic, password, meta, bip44HDPath) {
         return keyring_awaiter(this, void 0, void 0, function* () {
+            yield this.checkKeyStoreStatus();
             if (![KeyRingStatus.EMPTY, KeyRingStatus.MIGRATOR].includes(this.status)) {
                 throw new router_build["KeplrError"]("keyring", 142, "Key ring is not loaded or not empty");
             }
@@ -5791,6 +5792,7 @@ class KeyRing {
     }
     createMnemonicKey(kdf, mnemonic, password, meta, bip44HDPath) {
         return __awaiter(this, void 0, void 0, function* () {
+            yield this.checkKeyStoreStatus();
             if (![KeyRingStatus.EMPTY, KeyRingStatus.MIGRATOR].includes(this.status)) {
                 throw new router_1.KeplrError("keyring", 142, "Key ring is not loaded or not empty");
             }
@@ -8343,9 +8345,6 @@ class MisesService {
             const userInfo = yield this.misesUserInfo();
             this.storeUserInfo(userInfo);
             this.initKeepAlive();
-            browser.storage.local.set({
-                setAccount: true,
-            });
         });
     }
     misesUserInfo() {
@@ -8767,8 +8766,9 @@ class MisesService {
     }
     hasWalletAccount() {
         return __awaiter(this, void 0, void 0, function* () {
-            const { setAccount } = yield browser.storage.local.get("setAccount");
-            return !!setAccount;
+            const items = yield browser.storage.local.get("keyring/key-multi-store");
+            const list = items["keyring/key-multi-store"] || [];
+            return list.length > 0;
         });
     }
     staking(params) {
@@ -12267,6 +12267,8 @@ const listenMethods = {
     mVerifyContract: "verifyContract",
     mNotifyFuzzyDomain: "notifyFuzzyDomain",
     mCalculateHtmlSimilarly: "calculateHtmlSimilarly",
+    mRecordVisitWeb3siteEvent: "recordVisitWeb3siteEvent",
+    mRecordUseContractEvent: "recordUseContractEvent",
 };
 const storageKey = {
     ContractTrust: "v3_contract_trust_",
@@ -12375,6 +12377,10 @@ class MisesSafeService {
                     return this.verifyContract(res.params.params.contractAddress, res.params.params.domain);
                 case listenMethods.mCalculateHtmlSimilarly:
                     return this.calculateHtmlSimilarly(res.params.params.html, res.params.params.hash);
+                case listenMethods.mRecordVisitWeb3siteEvent:
+                    return this.recordVisitWeb3siteEvent(res.params.params.domain);
+                case listenMethods.mRecordUseContractEvent:
+                    return this.recordUseContractEvent(res.params.params.contractAddress, res.params.params.domain);
             }
         });
     }
@@ -12593,6 +12599,45 @@ class MisesSafeService {
                 return;
             }
             resolve("mises");
+        });
+    }
+    //recordVisitWeb3siteEvent
+    recordVisitWeb3siteEvent(domain) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("recordVisitWeb3siteEvent", domain);
+            const params = { key1: "domain", value1: domain };
+            this.recordEvent({
+                event_type: "visit_web3site",
+                params: params,
+            });
+        });
+    }
+    //recordUseContractEvent
+    recordUseContractEvent(contractAddress, domain) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("recordUseContractEvent", domain, contractAddress);
+            const params = {
+                key1: "domain",
+                value1: domain,
+                key2: "contract",
+                value2: contractAddress,
+            };
+            this.recordEvent({
+                event_type: "use_contract",
+                params: params,
+            });
+        });
+    }
+    //recordEvent
+    recordEvent(params) {
+        console.log("recordEvent", params);
+        console.log("recordEvent", JSON.stringify(params));
+        return new Promise(() => {
+            if (browser.misesPrivate &&
+                browser.misesPrivate.recordEvent) {
+                browser.misesPrivate.recordEvent(JSON.stringify(params));
+                return;
+            }
         });
     }
 }

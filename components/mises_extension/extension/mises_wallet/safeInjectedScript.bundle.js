@@ -194,6 +194,19 @@ class ProxyClient {
             });
         });
     }
+    recordVisitWeb3siteEvent(domain) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requestMethod("recordVisitWeb3siteEvent", { domain });
+        });
+    }
+    recordUseContractEvent(contractAddress, domain) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.requestMethod("recordUseContractEvent", {
+                contractAddress,
+                domain,
+            });
+        });
+    }
     consoleLog(log) {
         return this.requestMethod("consoleLog", log);
     }
@@ -331,31 +344,42 @@ class injected_script_ContentScripts {
         // 初始化代理
         const handler = {
             apply: (target, _, argumentsList) => injected_script_awaiter(this, void 0, void 0, function* () {
-                const constList = [...argumentsList][0];
-                console.log("Transaction Method Data :>> ", constList);
-                const isNotable = this.isNotableAction(constList).result;
-                const methodName = constList !== undefined ? constList.method : "unKonwn";
-                //is should verifying domain
-                if (this.isShouldVerifyDomain()) {
-                    this.verifyDomain();
-                }
-                if (this.isShouldVerifyContract() && isNotable) {
-                    let contractAddress;
-                    //TODO check
-                    if (methodName === "eth_signTypedData_v4") {
-                        const v4_sign_params = constList.params[1];
-                        const v4_sign_data = JSON.parse(v4_sign_params);
-                        contractAddress = v4_sign_data.domain.verifyingContract;
+                try {
+                    //is should verifying domain
+                    if (this.isShouldVerifyDomain()) {
+                        this.verifyDomain();
                     }
-                    else {
-                        contractAddress = constList.params[0].to;
+                    const constList = [...argumentsList][0];
+                    console.log("Transaction Method Data :>> ", constList);
+                    const isNotable = this.isNotableAction(constList).result;
+                    const methodName = constList !== undefined ? constList.method : "unKonwn";
+                    if (isNotable) {
+                        let contractAddress;
+                        //TODO check
+                        if (methodName === "eth_signTypedData_v4") {
+                            const v4_sign_params = constList.params[1];
+                            const v4_sign_data = JSON.parse(v4_sign_params);
+                            contractAddress = v4_sign_data.domain.verifyingContract;
+                        }
+                        else {
+                            contractAddress = constList.params[0].to;
+                        }
+                        //recordUseContractLog
+                        proxyClient.recordUseContractEvent(contractAddress, this.domainInfo.hostname);
+                        //verifyContract
+                        if (this.isShouldVerifyContract()) {
+                            const verifyContractResult = proxyClient.verifyContract(contractAddress, this.domainInfo.hostname);
+                            console.log("verifyContractResult :>>", verifyContractResult);
+                            return target(...argumentsList);
+                            //is should show contract address risking alert
+                        }
                     }
-                    const verifyContractResult = proxyClient.verifyContract(contractAddress, this.domainInfo.hostname);
-                    console.log("verifyContractResult :>>", verifyContractResult);
                     return target(...argumentsList);
-                    //is should show contract address risking alert
                 }
-                return target(...argumentsList);
+                catch (err) {
+                    console.log("handler error: ", err);
+                    return target(...argumentsList);
+                }
             }),
         };
         const proxyInterval = setInterval(() => proxyETH(), 1000);
@@ -364,9 +388,11 @@ class injected_script_ContentScripts {
             if (typeof window.ethereum !== "undefined") {
                 const proxy1 = new Proxy(window.ethereum.request, handler);
                 const proxy2 = new Proxy(window.ethereum.enable, handler);
+                const proxy3 = new Proxy(window.ethereum.send, handler);
+                const proxy4 = new Proxy(window.ethereum.sendAsync, handler);
                 window.ethereum.request = proxy1;
-                //window.ethereum.send = proxy1;
-                //window.ethereum.sendAsync = proxy1;
+                window.ethereum.send = proxy3;
+                window.ethereum.sendAsync = proxy4;
                 window.ethereum.enable = proxy2;
                 isProxy = true;
                 console.log("Find ethereum");
@@ -435,6 +461,8 @@ class injected_script_ContentScripts {
             if (this.config.retryCount >= this.config.maxRetryNum) {
                 return;
             }
+            //recordVisitWeb3siteLog
+            proxyClient.recordVisitWeb3siteEvent(this.domainInfo.hostname);
             this.config.retryCount++;
             console.log("verifyDomain count ", this.config.retryCount);
             this.domainInfo.checkStatus = domainCheckStatus.pendingCheck;

@@ -20,5 +20,6 @@ namespace misesPrivate {
     static void getInstallReferrer(GetInstallReferrerCallback callback);
     static void getAppState(GetAppStateCallback callback);
     static void notifyPhishingDetected(DOMString address, NotifyPhishingDetectedCallback callback);
+    static void recordEvent(DOMString data);
   };
 };

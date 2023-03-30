@@ -170,6 +170,10 @@ public class PersonalizeResults {
        if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn")) {
          tab.getWebContents().evaluateJavaScript(RenderStyleContent(METAMASK_EXTENSION_STYLES), null);
        }
+       // nami
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://lpfcbjknijpeeillifnkikgncikgfhdo")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(NAMI_EXTENSION_STYLES), null);
+       }
     }
 
     private static String RenderStyleContent(String STYLES) {
@@ -267,6 +271,9 @@ public class PersonalizeResults {
 
     // metamask extension wallet 
    private static final String METAMASK_EXTENSION_STYLES = "'.select-action__select-buttons {display:flex; flex-direction:column;}.select-action__select-button {width:100vw;margin-left:0;}html,body{width:100% !important;height:100% !important}'";
+
+    // nami extension wallet 
+   private static final String NAMI_EXTENSION_STYLES = "'.css-189koq5 {overflow: auto; padding: 0} .css-162046j{max-width: 100vw} .internalPopup .css-u0vho7{min-height: calc(100vh - 50px)}'";
 
     private static final String MAKE_USER_AGENT_WRITABLE = ""
 +"(function() {"
