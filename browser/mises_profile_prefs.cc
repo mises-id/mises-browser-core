@@ -58,6 +58,8 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   // Brave Wallet
   brave_wallet::RegisterProfilePrefs(registry);
 
+  registry->RegisterBooleanPref(kPreinstallMetamaskEnabled, true);
+
 }
 
 }  // namespace mises
