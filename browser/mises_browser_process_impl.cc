@@ -123,5 +123,7 @@ ipfs::MisesIpfsClientUpdater* MisesBrowserProcessImpl::ipfs_client_updater() {
 #endif  // BUILDFLAG(ENABLE_IPFS)
 
 
+#if BUILDFLAG(IS_ANDROID)
 void BrowserProcessImpl::CreateGCMDriver() {
 }
+#endif

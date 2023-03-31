@@ -49,7 +49,8 @@ NativeWidgetAndroid::NativeWidgetAndroid(internal::NativeWidgetDelegate* delegat
       ownership_(Widget::InitParams::NATIVE_WIDGET_OWNS_WIDGET),
       destroying_(false),
       is_active_(false),
-      is_hidden_(false){
+      is_hidden_(false),
+      is_closed_(false){
 }
 
 // static
@@ -222,10 +223,11 @@ void NativeWidgetAndroid::SetShape(std::unique_ptr<Widget::ShapeRects> shape) {
 void NativeWidgetAndroid::Close() {
   LOG(INFO) << " NativeWidgetAndroid::Close";
   delegate_->OnNativeWidgetDestroying();
-  if (!close_widget_factory_.HasWeakPtrs()) {
-      base::SingleThreadTaskRunner::GetCurrentDefault()->PostTask(
-        FROM_HERE, base::BindOnce(&NativeWidgetAndroid::CloseNow,
-                                  close_widget_factory_.GetWeakPtr()));
+  if (!is_closed_) {
+    is_closed_ = true;
+    base::SingleThreadTaskRunner::GetCurrentDefault()->PostTask(
+      FROM_HERE, base::BindOnce(&NativeWidgetAndroid::CloseNow,
+                              widget_factory_.GetWeakPtr()));
   }
 }
 
@@ -382,7 +384,7 @@ std::string NativeWidgetAndroid::GetName() const {
 }
 
 base::WeakPtr<internal::NativeWidgetPrivate> NativeWidgetAndroid::GetWeakPtr() {
-  return close_widget_factory_.GetWeakPtr();
+  return widget_factory_.GetWeakPtr();
 }
 bool NativeWidgetAndroid::IsStackedAbove(gfx::NativeView native_view) {return false;}
 const gfx::ImageSkia* NativeWidgetAndroid::GetWindowIcon() {return NULL;}
