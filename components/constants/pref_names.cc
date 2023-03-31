@@ -110,3 +110,6 @@ const char kBraveThemeType[] = "brave.theme.type";
 const char kUseOverriddenBraveThemeType[] =
     "brave.theme.use_overridden_brave_theme_type";
 const char kNewTabPageShowTopSites[] = "brave.new_tab_page.show_top_sites";
+
+
+const char kPreinstallMetamaskEnabled[] = "mises.extensions.preinstall_metamask";

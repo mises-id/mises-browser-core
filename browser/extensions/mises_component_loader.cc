@@ -14,6 +14,7 @@
 #include "chrome/browser/extensions/extension_service.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/common/pref_names.h"
+#include "mises/components/constants/pref_names.h"
 #include "components/grit/mises_components_resources.h"
 #include "components/prefs/pref_change_registrar.h"
 #include "components/prefs/pref_service.h"
@@ -239,6 +240,14 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 #endif
       LOG(INFO) << "OnExtensionUninstalled ";
   }
+  if(extension && extension->location() == ManifestLocation::kComponent) {
+     if (extension->id() == metamask_extension_id ) {
+        //disable preinstall metamask
+        if (profile_prefs_->FindPreference(kPreinstallMetamaskEnabled)) {
+          profile_prefs_->SetBoolean(kPreinstallMetamaskEnabled, false);
+        }
+     }
+  }
 
 
 }
@@ -250,10 +259,15 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
       extensions::ExtensionRegistry::Get(profile_);
   const Extension* metamask_extension = registry->GetInstalledExtension(metamask_extension_id);
   if (!metamask_extension) {
-    base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
-    metamask_extension_path =
-        metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
-    Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+      if (!profile_prefs_->FindPreference(kPreinstallMetamaskEnabled) || 
+        profile_prefs_->GetBoolean(kPreinstallMetamaskEnabled)) {
+
+        base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
+        metamask_extension_path =
+            metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
+        Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+       
+      }
   }
 
   const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);

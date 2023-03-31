@@ -8,3 +8,5 @@
 
 const char metamask_extension_id[] = "nkbihfbeogaeaoehlefnkodbefgpgknn";
 const char mises_extension_id[] = "jkpbgdgopmifmokhejofbmgdabapoefl";
+
+const char okx_extension_id[] = "mcohilncbfahbmgdjkbpemcciiolgcge";
