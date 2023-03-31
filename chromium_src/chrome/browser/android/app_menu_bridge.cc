@@ -237,13 +237,13 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
 }
 
 void AppMenuBridge::CloseExtensionTabs() {
-   // close metamask popup tab when user activate any normal tab
+   // close metamask/okx popup tab when user activate any normal tab
     if (observed_tab_model_) {
       int tab_count = observed_tab_model_->GetTabCount();
       int tab_index = 0;
       for (int i =  0; i < tab_count; ++i) {
         TabAndroid* tab = observed_tab_model_->GetTabAt(tab_index);
-        if (tab->ExtensionID() == metamask_extension_id) {
+        if (tab->ExtensionID() == metamask_extension_id || tab->ExtensionID() == okx_extension_id) {
           observed_tab_model_->CloseTabAt(tab_index);
         } else {
           tab_index ++;

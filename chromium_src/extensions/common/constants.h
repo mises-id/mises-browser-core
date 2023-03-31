@@ -11,5 +11,6 @@
 
 EXTENSIONS_EXPORT extern const char metamask_extension_id[];
 EXTENSIONS_EXPORT extern const char mises_extension_id[];
+EXTENSIONS_EXPORT extern const char okx_extension_id[];
 
 #endif  // MISES_CHROMIUM_SRC_EXTENSIONS_COMMON_CONSTANTS_H_
