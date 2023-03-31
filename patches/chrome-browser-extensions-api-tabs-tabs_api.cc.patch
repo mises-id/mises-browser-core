@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_api.cc b/chrome/browser/extensions/api/tabs/tabs_api.cc
-index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841f989089c 100644
+index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..9ea6ce7234bed20d7fe1cdfa1276126ea9ea013f 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_api.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_api.cc
 @@ -424,6 +424,7 @@ void SetLockedFullscreenState(Browser* browser, bool pinned) {
@@ -207,7 +207,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    Profile* profile = Profile::FromBrowserContext(browser_context());
    Browser* last_active_browser =
        chrome::FindAnyBrowser(profile, include_incognito_information());
-@@ -1217,6 +1278,30 @@ ExtensionFunction::ResponseAction TabsQueryFunction::Run() {
+@@ -1217,6 +1278,34 @@ ExtensionFunction::ResponseAction TabsQueryFunction::Run() {
                         web_contents->IsAudioMuted())) {
          continue;
        }
@@ -223,13 +223,17 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
 +         continue;
 +      }
 +
-+      int openingTab = (tab_strip_android->GetLastNonExtensionActiveIndex());
++      int openingTab = tab_strip_android->GetLastNonExtensionActiveIndex();
++      if (params->query_info.last_focused_window) {
++        openingTab = tab_strip_android->GetActiveIndex();
++      }
 +      if (openingTab == -1)
 +        openingTab = 0;
 +
 +      if (!MatchesBool(params->query_info.active, i == openingTab)) {
 +         continue;
 +      }
++      
 +
 +      if (!web_contents) {
 +        continue;
@@ -238,7 +242,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
  
        if (!title.empty() || !url_patterns.is_empty()) {
          // "title" and "url" properties are considered privileged data and can
-@@ -1363,6 +1448,7 @@ ExtensionFunction::ResponseAction TabsHighlightFunction::Run() {
+@@ -1363,6 +1452,7 @@ ExtensionFunction::ResponseAction TabsHighlightFunction::Run() {
        tabs::Highlight::Params::Create(args()));
    EXTENSION_FUNCTION_VALIDATE(params.get());
  
@@ -246,7 +250,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    // Get the window id from the params; default to current window if omitted.
    int window_id = params->highlight_info.window_id.value_or(
        extension_misc::kCurrentWindowId);
-@@ -1406,6 +1492,11 @@ ExtensionFunction::ResponseAction TabsHighlightFunction::Run() {
+@@ -1406,6 +1496,11 @@ ExtensionFunction::ResponseAction TabsHighlightFunction::Run() {
    if (!tab_strip_model)
      return RespondNow(Error(tabs_constants::kTabStripNotEditableError));
    tab_strip_model->SetSelectionFromModel(std::move(selection));
@@ -258,7 +262,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    return RespondNow(
        WithArguments(ExtensionTabUtil::CreateWindowValueForExtension(
            *browser, extension(), ExtensionTabUtil::kPopulateTabs,
-@@ -1442,6 +1533,7 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1442,6 +1537,7 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
    int tab_id = -1;
    WebContents* contents = nullptr;
    if (!params->tab_id) {
@@ -266,7 +270,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
      Browser* browser = ChromeExtensionFunctionDetails(this).GetCurrentBrowser();
      if (!browser)
        return RespondNow(Error(tabs_constants::kNoCurrentWindowError));
-@@ -1450,6 +1542,9 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1450,6 +1546,9 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
      if (!tab_strip_model)
        return RespondNow(Error(tabs_constants::kTabStripNotEditableError));
      contents = tab_strip_model->GetActiveWebContents();
@@ -276,7 +280,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
      if (!contents)
        return RespondNow(Error(tabs_constants::kNoSelectedTabError));
      tab_id = sessions::SessionTabHelper::IdForTab(contents).id();
-@@ -1458,9 +1553,10 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1458,9 +1557,10 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
    }
  
    int tab_index = -1;
@@ -288,7 +292,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    if (!GetTabById(tab_id, browser_context(), include_incognito_information(),
                    &browser, &tab_strip, &contents, &tab_index, &error)) {
      return RespondNow(Error(std::move(error)));
-@@ -1471,7 +1567,17 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1471,7 +1571,17 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
  
    if (!ExtensionTabUtil::BrowserSupportsTabs(browser))
      return RespondNow(Error(tabs_constants::kNoCurrentWindowError));
@@ -307,7 +311,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    web_contents_ = contents;
  
    // TODO(rafaelw): handle setting remaining tab properties:
-@@ -1481,11 +1587,13 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1481,11 +1591,13 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
    // Navigate the tab to a new location if the url is different.
    if (params->update_properties.url) {
      std::string updated_url = *params->update_properties.url;
@@ -321,7 +325,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
      if (!UpdateURL(updated_url, tab_id, &error))
        return RespondNow(Error(std::move(error)));
    }
-@@ -1506,10 +1614,16 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1506,10 +1618,16 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
      if (!ExtensionTabUtil::IsTabStripEditable())
        return RespondNow(Error(tabs_constants::kTabStripNotEditableError));
  
@@ -338,7 +342,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    }
  
    if (params->update_properties.highlighted) {
-@@ -1518,10 +1632,12 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1518,10 +1636,12 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
      if (!ExtensionTabUtil::IsTabStripEditable())
        return RespondNow(Error(tabs_constants::kTabStripNotEditableError));
  
@@ -351,7 +355,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    }
  
    if (params->update_properties.pinned) {
-@@ -1530,11 +1646,13 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1530,11 +1650,13 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
      if (!ExtensionTabUtil::IsTabStripEditable())
        return RespondNow(Error(tabs_constants::kTabStripNotEditableError));
  
@@ -365,7 +369,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    }
  
    if (params->update_properties.muted &&
-@@ -1545,6 +1663,7 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1545,6 +1667,7 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
          base::NumberToString(tab_id))));
    }
  
@@ -373,7 +377,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    if (params->update_properties.opener_tab_id) {
      int opener_id = *params->update_properties.opener_tab_id;
      WebContents* opener_contents = nullptr;
-@@ -1576,6 +1695,7 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
+@@ -1576,6 +1699,7 @@ ExtensionFunction::ResponseAction TabsUpdateFunction::Run() {
          web_contents_)
          ->SetAutoDiscardable(state);
    }
@@ -381,7 +385,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
  
    return RespondNow(GetResult());
  }
-@@ -1697,6 +1817,10 @@ bool TabsMoveFunction::MoveTab(int tab_id,
+@@ -1697,6 +1821,10 @@ bool TabsMoveFunction::MoveTab(int tab_id,
      *error = tabs_constants::kTabStripNotEditableError;
      return false;
    }
@@ -392,7 +396,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
  
    if (window_id && *window_id != ExtensionTabUtil::GetWindowIdOfTab(contents)) {
      Browser* target_browser = nullptr;
-@@ -1751,6 +1875,7 @@ bool TabsMoveFunction::MoveTab(int tab_id,
+@@ -1751,6 +1879,7 @@ bool TabsMoveFunction::MoveTab(int tab_id,
    *new_index += 1;
  
    return true;
@@ -400,7 +404,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
  }
  
  ExtensionFunction::ResponseAction TabsReloadFunction::Run() {
-@@ -1835,11 +1960,13 @@ bool TabsRemoveFunction::RemoveTab(int tab_id, std::string* error) {
+@@ -1835,11 +1964,13 @@ bool TabsRemoveFunction::RemoveTab(int tab_id, std::string* error) {
      return false;
    }
  
@@ -414,7 +418,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    // The tab might not immediately close after calling Close() below, so we
    // should wait until WebContentsDestroyed is called before responding.
    web_contents_destroyed_observers_.push_back(
-@@ -2356,6 +2483,7 @@ ExecuteCodeFunction::InitResult ExecuteCodeInTabFunction::Init() {
+@@ -2356,6 +2487,7 @@ ExecuteCodeFunction::InitResult ExecuteCodeInTabFunction::Init() {
    // If the tab ID wasn't given then it needs to be converted to the
    // currently active tab's ID.
    if (tab_id == -1) {
@@ -422,7 +426,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
      Browser* browser = chrome_details_.GetCurrentBrowser();
      // Can happen during shutdown.
      if (!browser)
-@@ -2364,6 +2492,12 @@ ExecuteCodeFunction::InitResult ExecuteCodeInTabFunction::Init() {
+@@ -2364,6 +2496,12 @@ ExecuteCodeFunction::InitResult ExecuteCodeInTabFunction::Init() {
      // Can happen during shutdown.
      if (!ExtensionTabUtil::GetDefaultTab(browser, &web_contents, &tab_id))
        return set_init_result_error(tabs_constants::kNoTabInBrowserWindowError);
@@ -435,7 +439,7 @@ index 4a6a78ad1d2b2f4a097245272610f7038047fb6d..4c2213588b73e8d2468b8594e6497841
    }
  
    execute_tab_id_ = tab_id;
-@@ -2448,7 +2582,11 @@ ScriptExecutor* ExecuteCodeInTabFunction::GetScriptExecutor(
+@@ -2448,7 +2586,11 @@ ScriptExecutor* ExecuteCodeInTabFunction::GetScriptExecutor(
    bool success = GetTabById(execute_tab_id_, browser_context(),
                              include_incognito_information(), &browser, nullptr,
                              &contents, nullptr, error) &&
