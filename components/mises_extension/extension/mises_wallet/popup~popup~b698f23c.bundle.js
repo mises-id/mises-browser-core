@@ -13,7 +13,7 @@ exports.Fee = exports.ModeInfo_Multi = exports.ModeInfo_Single = exports.ModeInf
 /* eslint-disable */
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
-const signing_1 = __webpack_require__(624);
+const signing_1 = __webpack_require__(625);
 const any_1 = __webpack_require__(83);
 const multisig_1 = __webpack_require__(402);
 const coin_1 = __webpack_require__(80);
@@ -826,7 +826,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 1189:
+/***/ 1191:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -842,12 +842,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1393), exports);
+__exportStar(__webpack_require__(1394), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1218:
+/***/ 1219:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -863,7 +863,7 @@ exports.DefaultGasPriceStep = {
 
 /***/ }),
 
-/***/ 1219:
+/***/ 1220:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -876,7 +876,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useZeroAllowedGasConfig = exports.useGasConfig = exports.GasConfig = void 0;
-const chain_1 = __webpack_require__(264);
+const chain_1 = __webpack_require__(265);
 const mobx_1 = __webpack_require__(5);
 const react_1 = __webpack_require__(0);
 class GasConfig extends chain_1.TxChainSetter {
@@ -990,7 +990,7 @@ exports.useZeroAllowedGasConfig = useZeroAllowedGasConfig;
 
 /***/ }),
 
-/***/ 1220:
+/***/ 1221:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1003,9 +1003,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useAmountConfig = exports.AmountConfig = void 0;
-const chain_1 = __webpack_require__(264);
+const chain_1 = __webpack_require__(265);
 const mobx_1 = __webpack_require__(5);
-const errors_1 = __webpack_require__(281);
+const errors_1 = __webpack_require__(282);
 const unit_1 = __webpack_require__(26);
 const react_1 = __webpack_require__(0);
 class AmountConfig extends chain_1.TxChainSetter {
@@ -1212,7 +1212,7 @@ exports.useAmountConfig = useAmountConfig;
 
 /***/ }),
 
-/***/ 1221:
+/***/ 1222:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1225,11 +1225,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useSendGasConfig = exports.SendGasConfig = void 0;
-const gas_1 = __webpack_require__(1219);
+const gas_1 = __webpack_require__(1220);
 const common_1 = __webpack_require__(27);
 const react_1 = __webpack_require__(0);
 const mobx_1 = __webpack_require__(5);
-const errors_1 = __webpack_require__(281);
+const errors_1 = __webpack_require__(282);
 class SendGasConfig extends gas_1.GasConfig {
     constructor(chainGetter, accountStore, initialChainId, amountConfig) {
         super(chainGetter, initialChainId);
@@ -1300,7 +1300,7 @@ exports.useSendGasConfig = useSendGasConfig;
 
 /***/ }),
 
-/***/ 1222:
+/***/ 1223:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1313,9 +1313,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useStakedAmountConfig = exports.StakedAmountConfig = void 0;
-const chain_1 = __webpack_require__(264);
+const chain_1 = __webpack_require__(265);
 const mobx_1 = __webpack_require__(5);
-const errors_1 = __webpack_require__(281);
+const errors_1 = __webpack_require__(282);
 const unit_1 = __webpack_require__(26);
 const react_1 = __webpack_require__(0);
 class StakedAmountConfig extends chain_1.TxChainSetter {
@@ -1512,7 +1512,7 @@ exports.useStakedAmountConfig = useStakedAmountConfig;
 
 /***/ }),
 
-/***/ 1243:
+/***/ 1244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1555,7 +1555,7 @@ exports.useIBCAmountConfig = useIBCAmountConfig;
 
 /***/ }),
 
-/***/ 1244:
+/***/ 1245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1569,7 +1569,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useIBCChannelConfig = exports.IBCChannelConfig = void 0;
 const mobx_1 = __webpack_require__(5);
-const errors_1 = __webpack_require__(1245);
+const errors_1 = __webpack_require__(1246);
 const react_1 = __webpack_require__(0);
 class IBCChannelConfig {
     constructor() {
@@ -1610,7 +1610,7 @@ exports.useIBCChannelConfig = useIBCChannelConfig;
 
 /***/ }),
 
-/***/ 1245:
+/***/ 1246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1629,7 +1629,7 @@ exports.ChannelNotSetError = ChannelNotSetError;
 
 /***/ }),
 
-/***/ 1246:
+/***/ 1247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1674,7 +1674,7 @@ exports.useIBCTransferGasConfig = useIBCTransferGasConfig;
 
 /***/ }),
 
-/***/ 1322:
+/***/ 1323:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1749,7 +1749,7 @@ if (minimal_1.default.util.Long !== long_1.default) {
 
 /***/ }),
 
-/***/ 1386:
+/***/ 1387:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1820,7 +1820,7 @@ exports.useInteractionInfo = useInteractionInfo;
 
 /***/ }),
 
-/***/ 1390:
+/***/ 1391:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1834,9 +1834,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useMemoConfig = exports.MemoConfig = void 0;
 const mobx_1 = __webpack_require__(5);
-const chain_1 = __webpack_require__(264);
+const chain_1 = __webpack_require__(265);
 const react_1 = __webpack_require__(0);
-const errors_1 = __webpack_require__(281);
+const errors_1 = __webpack_require__(282);
 class MemoConfig extends chain_1.TxChainSetter {
     constructor(chainGetter, initialChainId) {
         super(chainGetter, initialChainId);
@@ -3942,7 +3942,7 @@ const wordlist = {
 
 /***/ }),
 
-/***/ 1391:
+/***/ 1392:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3955,13 +3955,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useFeeConfig = exports.FeeConfig = void 0;
-const types_1 = __webpack_require__(1218);
-const chain_1 = __webpack_require__(264);
+const types_1 = __webpack_require__(1219);
+const chain_1 = __webpack_require__(265);
 const mobx_1 = __webpack_require__(5);
 const unit_1 = __webpack_require__(26);
 const mobx_utils_1 = __webpack_require__(200);
 const react_1 = __webpack_require__(0);
-const errors_1 = __webpack_require__(281);
+const errors_1 = __webpack_require__(282);
 class FeeConfig extends chain_1.TxChainSetter {
     constructor(chainGetter, queriesStore, initialChainId, sender, amountConfig, gasConfig, additionAmountToNeedFee = true) {
         super(chainGetter, initialChainId);
@@ -4322,7 +4322,7 @@ exports.useFeeConfig = useFeeConfig;
 
 /***/ }),
 
-/***/ 1392:
+/***/ 1393:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4335,13 +4335,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useRecipientConfig = exports.RecipientConfig = void 0;
-const chain_1 = __webpack_require__(264);
+const chain_1 = __webpack_require__(265);
 const mobx_1 = __webpack_require__(5);
-const errors_1 = __webpack_require__(281);
+const errors_1 = __webpack_require__(282);
 const cosmos_1 = __webpack_require__(16);
 const react_1 = __webpack_require__(0);
-const ens_1 = __webpack_require__(1189);
-const address_1 = __webpack_require__(245);
+const ens_1 = __webpack_require__(1191);
+const address_1 = __webpack_require__(246);
 const buffer_1 = __webpack_require__(4);
 class RecipientConfig extends chain_1.TxChainSetter {
     constructor(chainGetter, initialChainId) {
@@ -4520,7 +4520,7 @@ exports.useRecipientConfig = useRecipientConfig;
 
 /***/ }),
 
-/***/ 1393:
+/***/ 1394:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4547,12 +4547,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObservableEnsFetcher = void 0;
 const mobx_1 = __webpack_require__(5);
 const buffer_1 = __webpack_require__(4);
-const abi_1 = __webpack_require__(1302);
+const abi_1 = __webpack_require__(1303);
 const axios_1 = __importDefault(__webpack_require__(60));
 const common_1 = __webpack_require__(27);
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const eth_ens_namehash_1 = __webpack_require__(1394);
+const eth_ens_namehash_1 = __webpack_require__(1395);
 const ensRegistryInterface = new abi_1.Interface([
     {
         constant: true,
@@ -4736,7 +4736,7 @@ exports.ObservableEnsFetcher = ObservableEnsFetcher;
 
 /***/ }),
 
-/***/ 1395:
+/***/ 1396:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4744,8 +4744,8 @@ exports.ObservableEnsFetcher = ObservableEnsFetcher;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useSendTxConfig = void 0;
 const index_1 = __webpack_require__(199);
-const send_gas_1 = __webpack_require__(1221);
-const amount_1 = __webpack_require__(1220);
+const send_gas_1 = __webpack_require__(1222);
+const amount_1 = __webpack_require__(1221);
 const useSendTxConfig = (chainGetter, queriesStore, accountStore, chainId, sender, options = {}) => {
     const amountConfig = amount_1.useAmountConfig(chainGetter, queriesStore, chainId, sender);
     const memoConfig = index_1.useMemoConfig(chainGetter, chainId);
@@ -4768,7 +4768,7 @@ exports.useSendTxConfig = useSendTxConfig;
 
 /***/ }),
 
-/***/ 1396:
+/***/ 1397:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4845,7 +4845,7 @@ exports.useDelegateTxConfig = useDelegateTxConfig;
 
 /***/ }),
 
-/***/ 1397:
+/***/ 1398:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4859,7 +4859,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useUndelegateTxConfig = exports.useUndelegateGasConfig = exports.UndelegateGasConfig = void 0;
 const index_1 = __webpack_require__(199);
-const staked_amount_1 = __webpack_require__(1222);
+const staked_amount_1 = __webpack_require__(1223);
 const mobx_1 = __webpack_require__(5);
 const react_1 = __webpack_require__(0);
 class UndelegateGasConfig extends index_1.GasConfig {
@@ -4907,7 +4907,7 @@ exports.useUndelegateTxConfig = useUndelegateTxConfig;
 
 /***/ }),
 
-/***/ 1398:
+/***/ 1399:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4921,7 +4921,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useRedelegateTxConfig = exports.useRedelegateGasConfig = exports.RedelegateGasConfig = void 0;
 const index_1 = __webpack_require__(199);
-const staked_amount_1 = __webpack_require__(1222);
+const staked_amount_1 = __webpack_require__(1223);
 const mobx_1 = __webpack_require__(5);
 const react_1 = __webpack_require__(0);
 class RedelegateGasConfig extends index_1.GasConfig {
@@ -4971,7 +4971,7 @@ exports.useRedelegateTxConfig = useRedelegateTxConfig;
 
 /***/ }),
 
-/***/ 1399:
+/***/ 1400:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4990,7 +4990,7 @@ exports.useGasSimulator = exports.GasSimulator = void 0;
 const mobx_1 = __webpack_require__(5);
 const react_1 = __webpack_require__(0);
 const cosmos_1 = __webpack_require__(16);
-const chain_1 = __webpack_require__(264);
+const chain_1 = __webpack_require__(265);
 const axios_1 = __importDefault(__webpack_require__(60));
 class GasSimulatorState {
     constructor() {
@@ -5381,7 +5381,7 @@ exports.useGasSimulator = useGasSimulator;
 
 /***/ }),
 
-/***/ 1400:
+/***/ 1401:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5593,7 +5593,7 @@ exports.useRegisterConfig = useRegisterConfig;
 
 /***/ }),
 
-/***/ 1401:
+/***/ 1402:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5741,7 +5741,7 @@ exports.useAddressBookConfig = useAddressBookConfig;
 
 /***/ }),
 
-/***/ 1405:
+/***/ 1406:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5887,7 +5887,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 1406:
+/***/ 1407:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6016,7 +6016,88 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 1409:
+/***/ 141:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Timestamp = exports.protobufPackage = void 0;
+/* eslint-disable */
+const long_1 = __importDefault(__webpack_require__(7));
+const minimal_1 = __importDefault(__webpack_require__(9));
+exports.protobufPackage = "google.protobuf";
+function createBaseTimestamp() {
+    return { seconds: "0", nanos: 0 };
+}
+exports.Timestamp = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.seconds !== "0") {
+            writer.uint32(8).int64(message.seconds);
+        }
+        if (message.nanos !== 0) {
+            writer.uint32(16).int32(message.nanos);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseTimestamp();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.seconds = longToString(reader.int64());
+                    break;
+                case 2:
+                    message.nanos = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            seconds: isSet(object.seconds) ? String(object.seconds) : "0",
+            nanos: isSet(object.nanos) ? Number(object.nanos) : 0,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        message.seconds !== undefined && (obj.seconds = message.seconds);
+        message.nanos !== undefined && (obj.nanos = Math.round(message.nanos));
+        return obj;
+    },
+    fromPartial(object) {
+        var _a, _b;
+        const message = createBaseTimestamp();
+        message.seconds = (_a = object.seconds) !== null && _a !== void 0 ? _a : "0";
+        message.nanos = (_b = object.nanos) !== null && _b !== void 0 ? _b : 0;
+        return message;
+    },
+};
+function longToString(long) {
+    return long.toString();
+}
+if (minimal_1.default.util.Long !== long_1.default) {
+    minimal_1.default.util.Long = long_1.default;
+    minimal_1.default.configure();
+}
+function isSet(value) {
+    return value !== null && value !== undefined;
+}
+//# sourceMappingURL=timestamp.js.map
+
+/***/ }),
+
+/***/ 1410:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6405,88 +6486,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 141:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Timestamp = exports.protobufPackage = void 0;
-/* eslint-disable */
-const long_1 = __importDefault(__webpack_require__(7));
-const minimal_1 = __importDefault(__webpack_require__(9));
-exports.protobufPackage = "google.protobuf";
-function createBaseTimestamp() {
-    return { seconds: "0", nanos: 0 };
-}
-exports.Timestamp = {
-    encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.seconds !== "0") {
-            writer.uint32(8).int64(message.seconds);
-        }
-        if (message.nanos !== 0) {
-            writer.uint32(16).int32(message.nanos);
-        }
-        return writer;
-    },
-    decode(input, length) {
-        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
-        let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseTimestamp();
-        while (reader.pos < end) {
-            const tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    message.seconds = longToString(reader.int64());
-                    break;
-                case 2:
-                    message.nanos = reader.int32();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-            }
-        }
-        return message;
-    },
-    fromJSON(object) {
-        return {
-            seconds: isSet(object.seconds) ? String(object.seconds) : "0",
-            nanos: isSet(object.nanos) ? Number(object.nanos) : 0,
-        };
-    },
-    toJSON(message) {
-        const obj = {};
-        message.seconds !== undefined && (obj.seconds = message.seconds);
-        message.nanos !== undefined && (obj.nanos = Math.round(message.nanos));
-        return obj;
-    },
-    fromPartial(object) {
-        var _a, _b;
-        const message = createBaseTimestamp();
-        message.seconds = (_a = object.seconds) !== null && _a !== void 0 ? _a : "0";
-        message.nanos = (_b = object.nanos) !== null && _b !== void 0 ? _b : 0;
-        return message;
-    },
-};
-function longToString(long) {
-    return long.toString();
-}
-if (minimal_1.default.util.Long !== long_1.default) {
-    minimal_1.default.util.Long = long_1.default;
-    minimal_1.default.configure();
-}
-function isSet(value) {
-    return value !== null && value !== undefined;
-}
-//# sourceMappingURL=timestamp.js.map
-
-/***/ }),
-
-/***/ 1487:
+/***/ 1488:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6502,13 +6502,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1488), exports);
 __exportStar(__webpack_require__(1489), exports);
+__exportStar(__webpack_require__(1490), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1488:
+/***/ 1489:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6739,7 +6739,7 @@ exports.useSignDocAmountConfig = useSignDocAmountConfig;
 
 /***/ }),
 
-/***/ 1489:
+/***/ 1490:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6857,7 +6857,7 @@ exports.useSignDocHelper = useSignDocHelper;
 
 /***/ }),
 
-/***/ 1490:
+/***/ 1491:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6873,17 +6873,17 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1243), exports);
 __exportStar(__webpack_require__(1244), exports);
 __exportStar(__webpack_require__(1245), exports);
 __exportStar(__webpack_require__(1246), exports);
-__exportStar(__webpack_require__(1491), exports);
-__exportStar(__webpack_require__(1493), exports);
+__exportStar(__webpack_require__(1247), exports);
+__exportStar(__webpack_require__(1492), exports);
+__exportStar(__webpack_require__(1494), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1491:
+/***/ 1492:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6891,10 +6891,10 @@ __exportStar(__webpack_require__(1493), exports);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useIBCTransferConfig = void 0;
 const tx_1 = __webpack_require__(199);
-const amount_1 = __webpack_require__(1243);
-const gas_1 = __webpack_require__(1246);
-const channel_1 = __webpack_require__(1244);
-const reciepient_1 = __webpack_require__(1492);
+const amount_1 = __webpack_require__(1244);
+const gas_1 = __webpack_require__(1247);
+const channel_1 = __webpack_require__(1245);
+const reciepient_1 = __webpack_require__(1493);
 /**
  * useIBCTransferConfig returns the configs for IBC transfer.
  * The recipient config's chain id should be the destination chain id for IBC.
@@ -6931,7 +6931,7 @@ exports.useIBCTransferConfig = useIBCTransferConfig;
 
 /***/ }),
 
-/***/ 1492:
+/***/ 1493:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6970,7 +6970,7 @@ exports.useIBCRecipientConfig = useIBCRecipientConfig;
 
 /***/ }),
 
-/***/ 1493:
+/***/ 1494:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7217,25 +7217,25 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(281), exports);
-__exportStar(__webpack_require__(1218), exports);
-__exportStar(__webpack_require__(1390), exports);
-__exportStar(__webpack_require__(1391), exports);
+__exportStar(__webpack_require__(282), exports);
 __exportStar(__webpack_require__(1219), exports);
+__exportStar(__webpack_require__(1391), exports);
 __exportStar(__webpack_require__(1392), exports);
 __exportStar(__webpack_require__(1220), exports);
+__exportStar(__webpack_require__(1393), exports);
 __exportStar(__webpack_require__(1221), exports);
-__exportStar(__webpack_require__(1395), exports);
-__exportStar(__webpack_require__(264), exports);
+__exportStar(__webpack_require__(1222), exports);
 __exportStar(__webpack_require__(1396), exports);
+__exportStar(__webpack_require__(265), exports);
 __exportStar(__webpack_require__(1397), exports);
 __exportStar(__webpack_require__(1398), exports);
 __exportStar(__webpack_require__(1399), exports);
+__exportStar(__webpack_require__(1400), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 264:
+/***/ 265:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7279,7 +7279,7 @@ exports.TxChainSetter = TxChainSetter;
 
 /***/ }),
 
-/***/ 275:
+/***/ 276:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7508,7 +7508,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 281:
+/***/ 282:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7902,12 +7902,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1386), exports);
+__exportStar(__webpack_require__(1387), exports);
 __exportStar(__webpack_require__(199), exports);
-__exportStar(__webpack_require__(1400), exports);
 __exportStar(__webpack_require__(1401), exports);
-__exportStar(__webpack_require__(1487), exports);
-__exportStar(__webpack_require__(1490), exports);
+__exportStar(__webpack_require__(1402), exports);
+__exportStar(__webpack_require__(1488), exports);
+__exportStar(__webpack_require__(1491), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -8047,10 +8047,15 @@ function closePopupTab() {
         const lastTabId = (yield browser.storage.local.get("lastTabId")).lastTabId;
         console.log(openerTabId, "openerTabId");
         if (openerTabId) {
-            yield browser.tabs.update(openerTabId, {
-                active: true,
-                highlighted: true,
-            });
+            try {
+                yield browser.tabs.update(openerTabId, {
+                    active: true,
+                    highlighted: true,
+                });
+            }
+            catch (error) {
+                console.log(error, "closePopupTab");
+            }
             browser.storage.local.set({
                 _openerTab: "",
                 lastTabId: "",
@@ -9775,7 +9780,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 617:
+/***/ 618:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9789,7 +9794,7 @@ exports.MsgMultiSendResponse = exports.MsgMultiSend = exports.MsgSendResponse = 
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
 const coin_1 = __webpack_require__(80);
-const bank_1 = __webpack_require__(680);
+const bank_1 = __webpack_require__(682);
 exports.protobufPackage = "cosmos.bank.v1beta1";
 function createBaseMsgSend() {
     return { fromAddress: "", toAddress: "", amount: [] };
@@ -10005,7 +10010,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 618:
+/***/ 619:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10019,7 +10024,7 @@ exports.MsgUndelegateResponse = exports.MsgUndelegate = exports.MsgBeginRedelega
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
 const timestamp_1 = __webpack_require__(141);
-const staking_1 = __webpack_require__(681);
+const staking_1 = __webpack_require__(683);
 const any_1 = __webpack_require__(83);
 const coin_1 = __webpack_require__(80);
 exports.protobufPackage = "cosmos.staking.v1beta1";
@@ -10713,7 +10718,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 619:
+/***/ 620:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10726,7 +10731,7 @@ exports.MsgDepositResponse = exports.MsgDeposit = exports.MsgVoteWeightedRespons
 /* eslint-disable */
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
-const gov_1 = __webpack_require__(620);
+const gov_1 = __webpack_require__(621);
 const any_1 = __webpack_require__(83);
 const coin_1 = __webpack_require__(80);
 exports.protobufPackage = "cosmos.gov.v1beta1";
@@ -11163,7 +11168,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 620:
+/***/ 621:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12065,7 +12070,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 621:
+/***/ 622:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12448,7 +12453,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 622:
+/***/ 623:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12461,7 +12466,7 @@ exports.MsgClearAdminResponse = exports.MsgClearAdmin = exports.MsgUpdateAdminRe
 /* eslint-disable */
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
-const types_1 = __webpack_require__(688);
+const types_1 = __webpack_require__(690);
 const coin_1 = __webpack_require__(80);
 exports.protobufPackage = "cosmwasm.wasm.v1";
 function createBaseMsgStoreCode() {
@@ -13219,7 +13224,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 623:
+/***/ 624:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13233,7 +13238,7 @@ exports.MsgTransferResponse = exports.MsgTransfer = exports.protobufPackage = vo
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
 const coin_1 = __webpack_require__(80);
-const client_1 = __webpack_require__(689);
+const client_1 = __webpack_require__(691);
 exports.protobufPackage = "ibc.applications.transfer.v1";
 function createBaseMsgTransfer() {
     return {
@@ -13406,7 +13411,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 624:
+/***/ 625:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13853,7 +13858,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 680:
+/***/ 682:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14342,7 +14347,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 681:
+/***/ 683:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14356,7 +14361,7 @@ exports.Pool = exports.RedelegationResponse = exports.RedelegationEntryResponse 
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
 const timestamp_1 = __webpack_require__(141);
-const types_1 = __webpack_require__(682);
+const types_1 = __webpack_require__(684);
 const any_1 = __webpack_require__(83);
 const duration_1 = __webpack_require__(399);
 const coin_1 = __webpack_require__(80);
@@ -15968,7 +15973,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 682:
+/***/ 684:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15982,9 +15987,9 @@ exports.TxProof = exports.BlockMeta = exports.LightBlock = exports.SignedHeader 
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
 const timestamp_1 = __webpack_require__(141);
-const proof_1 = __webpack_require__(683);
-const types_1 = __webpack_require__(684);
-const validator_1 = __webpack_require__(685);
+const proof_1 = __webpack_require__(685);
+const types_1 = __webpack_require__(686);
+const validator_1 = __webpack_require__(687);
 exports.protobufPackage = "tendermint.types";
 /** BlockIdFlag indicates which BlcokID the signature is for */
 var BlockIDFlag;
@@ -17342,7 +17347,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 683:
+/***/ 685:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17719,7 +17724,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 684:
+/***/ 686:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17853,7 +17858,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 685:
+/***/ 687:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17866,7 +17871,7 @@ exports.SimpleValidator = exports.Validator = exports.ValidatorSet = exports.pro
 /* eslint-disable */
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
-const keys_1 = __webpack_require__(686);
+const keys_1 = __webpack_require__(688);
 exports.protobufPackage = "tendermint.types";
 function createBaseValidatorSet() {
     return { validators: [], proposer: undefined, totalVotingPower: "0" };
@@ -18147,7 +18152,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 686:
+/***/ 688:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18268,7 +18273,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 687:
+/***/ 689:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18631,7 +18636,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 688:
+/***/ 690:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19369,7 +19374,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 689:
+/***/ 691:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19383,7 +19388,7 @@ exports.Params = exports.Height = exports.UpgradeProposal = exports.ClientUpdate
 const long_1 = __importDefault(__webpack_require__(7));
 const minimal_1 = __importDefault(__webpack_require__(9));
 const any_1 = __webpack_require__(83);
-const upgrade_1 = __webpack_require__(690);
+const upgrade_1 = __webpack_require__(692);
 exports.protobufPackage = "ibc.core.client.v1";
 function createBaseIdentifiedClientState() {
     return { clientId: "", clientState: undefined };
@@ -19868,7 +19873,7 @@ function isSet(value) {
 
 /***/ }),
 
-/***/ 690:
+/***/ 692:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
