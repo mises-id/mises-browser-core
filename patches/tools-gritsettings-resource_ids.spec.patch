@@ -1,5 +1,5 @@
 diff --git a/tools/gritsettings/resource_ids.spec b/tools/gritsettings/resource_ids.spec
-index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..f1594610af6d0746a8c688b5095c08534c63c015 100644
+index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..7939a1e05af2d5a544899fe9ffc4ff82a8ef05fd 100644
 --- a/tools/gritsettings/resource_ids.spec
 +++ b/tools/gritsettings/resource_ids.spec
 @@ -44,6 +44,9 @@
@@ -836,7 +836,7 @@ index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..f1594610af6d0746a8c688b5095c0853
    },
    # END chromeos/ section.
  
-@@ -770,52 +773,52 @@
+@@ -770,52 +773,55 @@
    "ash/components/arc/input_overlay/resources/input_overlay_resources.grd": {
      # Big alignment at start of section.
      "META": {"align": 1000},
@@ -848,6 +848,9 @@ index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..f1594610af6d0746a8c688b5095c0853
    # Google Chrome.
    "components/components_chromium_strings.grd": {
 -    "messages": [3520],
++    "messages": [5020],
++  },
++  "components/components_mises_strings.grd": {
 +    "messages": [5020],
    },
    "components/components_google_chrome_strings.grd": {
@@ -903,7 +906,7 @@ index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..f1594610af6d0746a8c688b5095c0853
    },
    # END components/ section.
  
-@@ -887,10 +890,10 @@
+@@ -887,10 +893,10 @@
    },
    "ios_internal/chrome/app/ios_internal_chromium_strings.grd": {
      "META": {"join": 2},
@@ -916,7 +919,7 @@ index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..f1594610af6d0746a8c688b5095c0853
    },
    # END ios_internal/ section.
  
-@@ -899,19 +902,19 @@
+@@ -899,19 +905,19 @@
    "content/content_resources.grd": {
      # Big alignment at start of section.
      "META": {"join": 2, "align": 100},
@@ -940,7 +943,7 @@ index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..f1594610af6d0746a8c688b5095c0853
    },
    # END content/ section.
  
-@@ -921,10 +924,10 @@
+@@ -921,10 +927,10 @@
    "ios/web/ios_web_resources.grd": {
      # Big alignment at start of section.
      "META": {"align": 100},
@@ -953,7 +956,7 @@ index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..f1594610af6d0746a8c688b5095c0853
    },
    # END ios/web/ section.
  
-@@ -933,163 +936,163 @@
+@@ -933,163 +939,163 @@
    "ash/ash_strings.grd": {
      # Big alignment at start of section.
      "META": {"join": 2, "align": 100},
@@ -1167,7 +1170,7 @@ index 15e77b25cc0b10e59d154d2389d4b8dbaca6391a..f1594610af6d0746a8c688b5095c0853
    },
  
    # This file is generated during the build.
-@@ -1098,13 +1101,13 @@
+@@ -1098,13 +1104,13 @@
      # In debug build, devtools frontend sources are not bundled and therefore
      # includes a lot of individual resources
      "META": {"sizes": {"includes": [2100],}},
