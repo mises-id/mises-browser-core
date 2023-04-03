@@ -1,5 +1,5 @@
 diff --git a/build/config/compiler/compiler.gni b/build/config/compiler/compiler.gni
-index 4738ee80d307cc9eee52b03912e388ee13c1552a..beaa8d6ee17a27eaa4215cd6726f1c6157e1cda1 100644
+index 4738ee80d307cc9eee52b03912e388ee13c1552a..20f8d41867cfd12fd77ee8b720bd0b434ec7ab63 100644
 --- a/build/config/compiler/compiler.gni
 +++ b/build/config/compiler/compiler.gni
 @@ -238,7 +238,7 @@ can_unwind_with_cfi_table = is_android && !is_component_build &&
@@ -7,7 +7,7 @@ index 4738ee80d307cc9eee52b03912e388ee13c1552a..beaa8d6ee17a27eaa4215cd6726f1c61
  # TODO(crbug.com/1090409): Replace can_unwind_with_cfi_table with this once
  # sampling profiler is enabled on android.
 -enable_arm_cfi_table = is_android && !is_component_build && current_cpu == "arm"
-+enable_arm_cfi_table = is_official_build && is_android && !is_component_build && current_cpu == "arm"
++enable_arm_cfi_table = !is_official_build && is_android && !is_component_build && current_cpu == "arm"
  
  declare_args() {
    # Whether to use the gold linker from binutils instead of lld or bfd.
