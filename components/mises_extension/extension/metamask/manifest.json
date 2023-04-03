@@ -74,6 +74,7 @@
     "clipboardWrite",
     "http://localhost:8545/",
     "https://*.infura.io/",
+    "https://*.codefi.network/",
     "https://chainid.network/chains.json",
     "https://lattice.gridplus.io/*",
     "activeTab",
@@ -82,7 +83,7 @@
     "notifications"
   ],
   "short_name": "MetaMask",
-  "content_security_policy": "frame-ancestors 'none'",
+  "content_security_policy": "frame-ancestors 'none'; script-src 'self'; object-src 'self'",
   "externally_connectable": {
     "matches": [
       "https://metamask.io/*"
@@ -93,5 +94,5 @@
   },
   "minimum_chrome_version": "66",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlcgI4VVL4JUvo6hlSgeCZp9mGltZrzFvc2Asqzb1dDGO9baoYOe+QRoh27/YyVXugxni480Q/R147INhBOyQZVMhZOD5pFMVutia9MHMaZhgRXzrK3BHtNSkKLL1c5mhutQNwiLqLtFkMSGvka91LoMEC8WTI0wi4tACnJ5FyFZQYzvtqy5sXo3VS3gzfOBluLKi7BxYcaUJjNrhOIxl1xL2qgK5lDrDOLKcbaurDiwqofVtAFOL5sM3uJ6D8nOO9tG+T7hoobRFN+nxk43PHgCv4poicOv+NMZQEk3da1m/xfuzXV88NcE/YRbRLwAS82m3gsJZKc6mLqm4wZHzBwIDAQAB",
-  "version": "10.25.0"
+  "version": "10.27.0"
 }
