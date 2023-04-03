@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[15],{
 
-/***/ 1017:
+/***/ 1019:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,21 +17,21 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(518), exports);
-__exportStar(__webpack_require__(1018), exports);
+__exportStar(__webpack_require__(1020), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1018:
+/***/ 1020:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(332);
+const messages_1 = __webpack_require__(333);
 const constants_1 = __webpack_require__(519);
-const handler_1 = __webpack_require__(1019);
+const handler_1 = __webpack_require__(1021);
 function init(router, service) {
     router.registerMessage(messages_1.SetPersistentMemoryMsg);
     router.registerMessage(messages_1.GetPersistentMemoryMsg);
@@ -42,14 +42,14 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1019:
+/***/ 1021:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(332);
+const messages_1 = __webpack_require__(333);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -73,7 +73,7 @@ const handleSetPersistentMemoryMsg = (service) => (_, msg) => {
 
 /***/ }),
 
-/***/ 1020:
+/***/ 1022:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90,12 +90,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(520), exports);
-__exportStar(__webpack_require__(1021), exports);
+__exportStar(__webpack_require__(1023), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1021:
+/***/ 1023:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -104,7 +104,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
 const messages_1 = __webpack_require__(228);
 const constants_1 = __webpack_require__(522);
-const handler_1 = __webpack_require__(1022);
+const handler_1 = __webpack_require__(1024);
 function init(router, service) {
     router.registerMessage(messages_1.GetChainInfosMsg);
     router.registerMessage(messages_1.SuggestChainInfoMsg);
@@ -116,7 +116,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1022:
+/***/ 1024:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -179,7 +179,7 @@ const handleRemoveSuggestedChainInfoMsg = (service) => {
 
 /***/ }),
 
-/***/ 1023:
+/***/ 1025:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -196,12 +196,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(527), exports);
-__exportStar(__webpack_require__(1039), exports);
+__exportStar(__webpack_require__(1041), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1024:
+/***/ 1026:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -370,7 +370,7 @@ exports.Crypto = Crypto;
 
 /***/ }),
 
-/***/ 1025:
+/***/ 1027:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var Buffer = __webpack_require__(22).Buffer
@@ -496,7 +496,7 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
 
 /***/ }),
 
-/***/ 1037:
+/***/ 1039:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -531,7 +531,7 @@ class Migrator {
     enCodeValut(keyringStore, password) {
         return __awaiter(this, void 0, void 0, function* () {
             // eslint-disable-next-line
-            const encryptor = __webpack_require__(628);
+            const encryptor = __webpack_require__(629);
             const { vault: vaultString } = keyringStore;
             const vault = (yield encryptor.decrypt(password, vaultString));
             return vault.filter((val) => ["HD Key Tree", "Simple Key Pair"].includes(val.type));
@@ -549,7 +549,7 @@ exports.Migrator = Migrator;
 
 /***/ }),
 
-/***/ 1038:
+/***/ 1040:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -599,16 +599,16 @@ exports.trimAminoSignDoc = trimAminoSignDoc;
 
 /***/ }),
 
-/***/ 1039:
+/***/ 1041:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(335);
+const messages_1 = __webpack_require__(336);
 const constants_1 = __webpack_require__(533);
-const handler_1 = __webpack_require__(1040);
+const handler_1 = __webpack_require__(1042);
 function init(router, service) {
     router.registerMessage(messages_1.RestoreKeyRingMsg);
     router.registerMessage(messages_1.DeleteKeyRingMsg);
@@ -642,7 +642,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1040:
+/***/ 1042:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -659,7 +659,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(335);
+const messages_1 = __webpack_require__(336);
 const cosmos_1 = __webpack_require__(16);
 const tx_1 = __webpack_require__(100);
 const keyring_1 = __webpack_require__(229);
@@ -889,7 +889,7 @@ const handleRestoreKeyStore = (service) => {
 
 /***/ }),
 
-/***/ 1041:
+/***/ 1043:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -906,21 +906,21 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(534), exports);
-__exportStar(__webpack_require__(1042), exports);
+__exportStar(__webpack_require__(1044), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1042:
+/***/ 1044:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(336);
+const messages_1 = __webpack_require__(337);
 const constants_1 = __webpack_require__(535);
-const handler_1 = __webpack_require__(1043);
+const handler_1 = __webpack_require__(1045);
 function init(router, service) {
     router.registerMessage(messages_1.SendTxMsg);
     router.addHandler(constants_1.ROUTE, handler_1.getHandler(service));
@@ -930,7 +930,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1043:
+/***/ 1045:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -947,7 +947,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(336);
+const messages_1 = __webpack_require__(337);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -969,7 +969,7 @@ const handleSendTxMsg = (service) => {
 
 /***/ }),
 
-/***/ 1044:
+/***/ 1046:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -986,21 +986,21 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(536), exports);
-__exportStar(__webpack_require__(1045), exports);
+__exportStar(__webpack_require__(1047), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1045:
+/***/ 1047:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(337);
+const messages_1 = __webpack_require__(338);
 const constants_1 = __webpack_require__(537);
-const handler_1 = __webpack_require__(1046);
+const handler_1 = __webpack_require__(1048);
 function init(router, service) {
     router.registerMessage(messages_1.TryUpdateChainMsg);
     router.registerMessage(messages_1.SetChainEndpointsMsg);
@@ -1012,7 +1012,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1046:
+/***/ 1048:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1029,7 +1029,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(337);
+const messages_1 = __webpack_require__(338);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1064,7 +1064,7 @@ const handleResetChainEndpointsMsg = (service) => {
 
 /***/ }),
 
-/***/ 1047:
+/***/ 1049:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1081,12 +1081,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(538), exports);
-__exportStar(__webpack_require__(1049), exports);
+__exportStar(__webpack_require__(1051), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1048:
+/***/ 1050:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1096,7 +1096,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1049:
+/***/ 1051:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1105,7 +1105,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
 const messages_1 = __webpack_require__(230);
 const constants_1 = __webpack_require__(540);
-const handler_1 = __webpack_require__(1050);
+const handler_1 = __webpack_require__(1052);
 function init(router, service) {
     router.registerMessage(messages_1.GetTokensMsg);
     router.registerMessage(messages_1.SuggestTokenMsg);
@@ -1119,7 +1119,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1050:
+/***/ 1052:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1195,7 +1195,7 @@ const handleGetSecret20ViewingKey = (service) => {
 
 /***/ }),
 
-/***/ 1051:
+/***/ 1053:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1212,12 +1212,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(542), exports);
-__exportStar(__webpack_require__(1056), exports);
+__exportStar(__webpack_require__(1058), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1052:
+/***/ 1054:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1240,7 +1240,7 @@ exports.InteractionForegroundService = InteractionForegroundService;
 
 /***/ }),
 
-/***/ 1053:
+/***/ 1055:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1250,16 +1250,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 1054:
+/***/ 1056:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.interactionForegroundInit = void 0;
-const messages_1 = __webpack_require__(339);
+const messages_1 = __webpack_require__(340);
 const constants_1 = __webpack_require__(544);
-const handler_1 = __webpack_require__(1055);
+const handler_1 = __webpack_require__(1057);
 function interactionForegroundInit(router, service) {
     router.registerMessage(messages_1.PushInteractionDataMsg);
     router.registerMessage(messages_1.PushEventDataMsg);
@@ -1270,7 +1270,7 @@ exports.interactionForegroundInit = interactionForegroundInit;
 
 /***/ }),
 
-/***/ 1055:
+/***/ 1057:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1278,7 +1278,7 @@ exports.interactionForegroundInit = interactionForegroundInit;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(339);
+const messages_1 = __webpack_require__(340);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1306,16 +1306,16 @@ const handlePushEventDataMsg = (service) => {
 
 /***/ }),
 
-/***/ 1056:
+/***/ 1058:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(340);
+const messages_1 = __webpack_require__(341);
 const constants_1 = __webpack_require__(545);
-const handler_1 = __webpack_require__(1057);
+const handler_1 = __webpack_require__(1059);
 function init(router, service) {
     router.registerMessage(messages_1.ApproveInteractionMsg);
     router.registerMessage(messages_1.RejectInteractionMsg);
@@ -1326,7 +1326,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1057:
+/***/ 1059:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1334,7 +1334,7 @@ exports.init = init;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(340);
+const messages_1 = __webpack_require__(341);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1362,7 +1362,7 @@ const handleRejectInteractionMsg = (service) => {
 
 /***/ }),
 
-/***/ 1058:
+/***/ 1060:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1379,21 +1379,21 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(524), exports);
-__exportStar(__webpack_require__(1059), exports);
+__exportStar(__webpack_require__(1061), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1059:
+/***/ 1061:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(333);
+const messages_1 = __webpack_require__(334);
 const constants_1 = __webpack_require__(526);
-const handler_1 = __webpack_require__(1060);
+const handler_1 = __webpack_require__(1062);
 function init(router, service) {
     router.registerMessage(messages_1.EnableAccessMsg);
     router.registerMessage(messages_1.GetPermissionOriginsMsg);
@@ -1408,7 +1408,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1060:
+/***/ 1062:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1424,7 +1424,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
-const messages_1 = __webpack_require__(333);
+const messages_1 = __webpack_require__(334);
 const router_1 = __webpack_require__(3);
 const getHandler = (service) => {
     return (env, msg) => {
@@ -1485,7 +1485,7 @@ const handleremoveAllPermissionsOrigin = (service) => {
 
 /***/ }),
 
-/***/ 1061:
+/***/ 1063:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1502,26 +1502,27 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(546), exports);
-__exportStar(__webpack_require__(1062), exports);
+__exportStar(__webpack_require__(1064), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1062:
+/***/ 1064:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const messages_1 = __webpack_require__(341);
+const messages_1 = __webpack_require__(231);
 const constants_1 = __webpack_require__(547);
-const handler_1 = __webpack_require__(1063);
+const handler_1 = __webpack_require__(1065);
 function init(router, service) {
     router.registerMessage(messages_1.GetAutoLockAccountDurationMsg);
     router.registerMessage(messages_1.UpdateAutoLockAccountDurationMsg);
     router.registerMessage(messages_1.StartAutoLockMonitoringMsg);
     router.registerMessage(messages_1.LockMsg);
+    router.registerMessage(messages_1.KeepAliveMsg);
     router.addHandler(constants_1.ROUTE, handler_1.getHandler(service));
 }
 exports.init = init;
@@ -1529,7 +1530,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1063:
+/***/ 1065:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1537,7 +1538,7 @@ exports.init = init;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const router_1 = __webpack_require__(3);
-const messages_1 = __webpack_require__(341);
+const messages_1 = __webpack_require__(231);
 const getHandler = (service) => {
     return (env, msg) => {
         switch (msg.constructor) {
@@ -1549,6 +1550,8 @@ const getHandler = (service) => {
                 return handleStartAutoLockMonitoringMsg(service)(env, msg);
             case messages_1.LockMsg:
                 return handleLockMsg(service)(env, msg);
+            case messages_1.KeepAliveMsg:
+                return handleKeepAliveMsg(service)(env, msg);
             default:
                 throw new router_1.KeplrError("auto-lock-account", 100, "Unknown msg type");
         }
@@ -1578,11 +1581,17 @@ const handleLockMsg = (service) => {
         return service.lock();
     };
 };
+const handleKeepAliveMsg = (service) => {
+    return () => {
+        console.log("keepAlive start");
+        return service.keepAlive();
+    };
+};
 //# sourceMappingURL=handler.js.map
 
 /***/ }),
 
-/***/ 1064:
+/***/ 1066:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1599,12 +1608,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(342), exports);
-__exportStar(__webpack_require__(1079), exports);
+__exportStar(__webpack_require__(1081), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1065:
+/***/ 1067:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1620,13 +1629,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Mises = void 0;
-const mises_js_sdk_1 = __webpack_require__(1066);
-const mises_network_util_1 = __webpack_require__(231);
-const tendermint_rpc_1 = __webpack_require__(318);
-const stargate_1 = __webpack_require__(265);
-const react_query_1 = __webpack_require__(235);
+const mises_js_sdk_1 = __webpack_require__(1068);
+const mises_network_util_1 = __webpack_require__(232);
+const tendermint_rpc_1 = __webpack_require__(319);
+const stargate_1 = __webpack_require__(266);
+const react_query_1 = __webpack_require__(236);
 const service_1 = __webpack_require__(342);
-const http_client_1 = __webpack_require__(1078);
+const http_client_1 = __webpack_require__(1080);
 class Mises {
     constructor() {
         this.config = mises_js_sdk_1.MSdk.newConfig();
@@ -1665,7 +1674,7 @@ exports.Mises = Mises;
 
 /***/ }),
 
-/***/ 1078:
+/***/ 1080:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1681,9 +1690,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HttpClient = void 0;
-const json_rpc_1 = __webpack_require__(319);
+const json_rpc_1 = __webpack_require__(320);
 const rpcclient_1 = __webpack_require__(227);
-const mises_network_util_1 = __webpack_require__(231);
+const mises_network_util_1 = __webpack_require__(232);
 class HttpClient {
     constructor(endpoint) {
         if (typeof endpoint === "string") {
@@ -1720,7 +1729,7 @@ exports.HttpClient = HttpClient;
 
 /***/ }),
 
-/***/ 1079:
+/***/ 1081:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1729,7 +1738,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
 const messages_1 = __webpack_require__(346);
 const constants_1 = __webpack_require__(554);
-const handler_1 = __webpack_require__(1080);
+const handler_1 = __webpack_require__(1082);
 function init(router, service) {
     router.registerMessage(messages_1.BalanceUMISMsg);
     router.registerMessage(messages_1.MisesChainMsg);
@@ -1762,7 +1771,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1080:
+/***/ 1082:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1903,7 +1912,7 @@ const handlerSetLocalCache = (service) => (_, msg) => {
 
 /***/ }),
 
-/***/ 1081:
+/***/ 1083:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1920,12 +1929,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(555), exports);
-__exportStar(__webpack_require__(1083), exports);
+__exportStar(__webpack_require__(1085), exports);
 //# sourceMappingURL=internal.js.map
 
 /***/ }),
 
-/***/ 1082:
+/***/ 1084:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2159,7 +2168,7 @@ exports.html_similar = html_similar;
 
 /***/ }),
 
-/***/ 1083:
+/***/ 1085:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2168,7 +2177,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
 const messages_1 = __webpack_require__(347);
 const constants_1 = __webpack_require__(556);
-const handler_1 = __webpack_require__(1084);
+const handler_1 = __webpack_require__(1086);
 function init(router, service) {
     router.registerMessage(messages_1.InitSafeMsg);
     router.registerMessage(messages_1.VerifyDomainMsg);
@@ -2181,7 +2190,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1084:
+/***/ 1086:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2222,7 +2231,7 @@ const handlerSetIsShouldVerifyMsg = (service) => (_, msg) => {
 
 /***/ }),
 
-/***/ 1085:
+/***/ 1087:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2239,12 +2248,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(518), exports);
-__exportStar(__webpack_require__(332), exports);
+__exportStar(__webpack_require__(333), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1086:
+/***/ 1088:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2266,7 +2275,7 @@ __exportStar(__webpack_require__(346), exports);
 
 /***/ }),
 
-/***/ 1087:
+/***/ 1089:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2288,7 +2297,7 @@ __exportStar(__webpack_require__(347), exports);
 
 /***/ }),
 
-/***/ 1088:
+/***/ 1090:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2304,13 +2313,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1089), exports);
-__exportStar(__webpack_require__(1169), exports);
+__exportStar(__webpack_require__(1091), exports);
+__exportStar(__webpack_require__(1171), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1089:
+/***/ 1091:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2326,7 +2335,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SecretWasmService = void 0;
-const secretjs_1 = __webpack_require__(1090);
+const secretjs_1 = __webpack_require__(1092);
 const crypto_1 = __webpack_require__(51);
 const common_1 = __webpack_require__(27);
 const cosmos_1 = __webpack_require__(16);
@@ -2458,7 +2467,7 @@ exports.SecretWasmService = SecretWasmService;
 
 /***/ }),
 
-/***/ 1169:
+/***/ 1171:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2466,7 +2475,7 @@ exports.SecretWasmService = SecretWasmService;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetTxEncryptionKeyMsg = exports.RequestDecryptMsg = exports.ReqeustEncryptMsg = exports.GetPubkeyMsg = void 0;
 const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(1170);
+const constants_1 = __webpack_require__(1172);
 class GetPubkeyMsg extends router_1.Message {
     constructor(chainId) {
         super();
@@ -2590,7 +2599,7 @@ exports.GetTxEncryptionKeyMsg = GetTxEncryptionKeyMsg;
 
 /***/ }),
 
-/***/ 1170:
+/***/ 1172:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2599,39 +2608,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ROUTE = void 0;
 exports.ROUTE = "secret-wasm";
 //# sourceMappingURL=constants.js.map
-
-/***/ }),
-
-/***/ 1171:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(534), exports);
-__exportStar(__webpack_require__(336), exports);
-__exportStar(__webpack_require__(1172), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1172:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
 
 /***/ }),
 
@@ -2651,13 +2627,46 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(536), exports);
+__exportStar(__webpack_require__(534), exports);
 __exportStar(__webpack_require__(337), exports);
+__exportStar(__webpack_require__(1174), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
 /***/ 1174:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ 1175:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(536), exports);
+__exportStar(__webpack_require__(338), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1176:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2680,40 +2689,6 @@ __exportStar(__webpack_require__(541), exports);
 
 /***/ }),
 
-/***/ 1175:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(542), exports);
-__exportStar(__webpack_require__(340), exports);
-__exportStar(__webpack_require__(1176), exports);
-__exportStar(__webpack_require__(543), exports);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 1176:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=types.js.map
-
-/***/ }),
-
 /***/ 1177:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2730,2612 +2705,47 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(546), exports);
+__exportStar(__webpack_require__(542), exports);
 __exportStar(__webpack_require__(341), exports);
+__exportStar(__webpack_require__(1178), exports);
+__exportStar(__webpack_require__(543), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 1210:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 1178:
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ messages_GetAutoLockAccountDurationMsg; });
-__webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ messages_UpdateAutoLockAccountDurationMsg; });
-
-// UNUSED EXPORTS: AutoLockAccountService, StartAutoLockMonitoringMsg, LockMsg
-
-// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/aes-js/index.js
-var aes_js = __webpack_require__(194);
-var aes_js_default = /*#__PURE__*/__webpack_require__.n(aes_js);
-
-// EXTERNAL MODULE: ../crypto/build/index.js
-var build = __webpack_require__(51);
-
-// EXTERNAL MODULE: ../background/node_modules/pbkdf2/browser.js
-var pbkdf2_browser = __webpack_require__(377);
-var browser_default = /*#__PURE__*/__webpack_require__.n(pbkdf2_browser);
-
-// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
-var buffer = __webpack_require__(4);
-
-// EXTERNAL MODULE: ../router/build/index.js
-var router_build = __webpack_require__(3);
-
-// CONCATENATED MODULE: ../background/src/keyring/crypto.ts
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
-
-
-
-
-class crypto_Crypto {
-    static encrypt(crypto, kdf, type, text, password, meta, bip44HDPath) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let random = new Uint8Array(32);
-            const salt = buffer["Buffer"].from(yield crypto.rng(random)).toString("hex");
-            const scryptParams = {
-                salt,
-                dklen: 32,
-                n: 32768,
-                r: 8,
-                p: 1,
-            };
-            random = new Uint8Array(16);
-            const iv = buffer["Buffer"].from(yield crypto.rng(random));
-            // If the mnemonic is not imported, there will be no mnemonic content
-            if (!text && !password && type === "mnemonic") {
-                return {
-                    version: "1.2",
-                    type,
-                    coinTypeForChain: {},
-                    bip44HDPath,
-                    meta,
-                    crypto: {
-                        cipher: "aes-128-ctr",
-                        cipherparams: {
-                            iv: iv.toString("hex"),
-                        },
-                        ciphertext: "",
-                        kdf,
-                        kdfparams: scryptParams,
-                        mac: "",
-                    },
-                };
-            }
-            const derivedKey = yield (() => __awaiter(this, void 0, void 0, function* () {
-                switch (kdf) {
-                    case "scrypt":
-                        return yield crypto.scrypt(password, scryptParams);
-                    case "sha256":
-                        return build["Hash"].sha256(buffer["Buffer"].from(`${salt}/${password}`));
-                    case "pbkdf2":
-                        return new Promise((resolve, reject) => {
-                            browser_default.a.pbkdf2(password, salt, 4000, 32, "sha256", (err, derivedKey) => {
-                                if (err) {
-                                    reject(err);
-                                }
-                                else {
-                                    resolve(new Uint8Array(derivedKey));
-                                }
-                            });
-                        });
-                    default:
-                        throw new router_build["KeplrError"]("keyring", 220, "Unknown kdf");
-                }
-            }))();
-            const buf = buffer["Buffer"].from(text);
-            const counter = new aes_js["Counter"](0);
-            counter.setBytes(iv);
-            const aesCtr = new aes_js_default.a.ModeOfOperation.ctr(derivedKey, counter);
-            const ciphertext = buffer["Buffer"].from(aesCtr.encrypt(buf));
-            // Mac is sha256(last 16 bytes of derived key + ciphertext)
-            const mac = build["Hash"].sha256(buffer["Buffer"].concat([
-                buffer["Buffer"].from(derivedKey.slice(derivedKey.length / 2)),
-                ciphertext,
-            ]));
-            return {
-                version: "1.2",
-                type,
-                coinTypeForChain: {},
-                bip44HDPath,
-                meta,
-                crypto: {
-                    cipher: "aes-128-ctr",
-                    cipherparams: {
-                        iv: iv.toString("hex"),
-                    },
-                    ciphertext: ciphertext.toString("hex"),
-                    kdf,
-                    kdfparams: scryptParams,
-                    mac: buffer["Buffer"].from(mac).toString("hex"),
-                },
-            };
-        });
-    }
-    static decrypt(crypto, keyStore, password) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const derivedKey = yield (() => __awaiter(this, void 0, void 0, function* () {
-                switch (keyStore.crypto.kdf) {
-                    case "scrypt":
-                        return yield crypto.scrypt(password, keyStore.crypto.kdfparams);
-                    case "sha256":
-                        return build["Hash"].sha256(buffer["Buffer"].from(`${keyStore.crypto.kdfparams.salt}/${password}`));
-                    case "pbkdf2":
-                        return new Promise((resolve, reject) => {
-                            browser_default.a.pbkdf2(password, keyStore.crypto.kdfparams.salt, 4000, 32, "sha256", (err, derivedKey) => {
-                                if (err) {
-                                    reject(err);
-                                }
-                                else {
-                                    resolve(new Uint8Array(derivedKey));
-                                }
-                            });
-                        });
-                    default:
-                        throw new router_build["KeplrError"]("keyring", 220, "Unknown kdf");
-                }
-            }))();
-            const counter = new aes_js["Counter"](0);
-            counter.setBytes(buffer["Buffer"].from(keyStore.crypto.cipherparams.iv, "hex"));
-            const aesCtr = new aes_js_default.a.ModeOfOperation.ctr(derivedKey, counter);
-            const mac = build["Hash"].sha256(buffer["Buffer"].concat([
-                buffer["Buffer"].from(derivedKey.slice(derivedKey.length / 2)),
-                buffer["Buffer"].from(keyStore.crypto.ciphertext, "hex"),
-            ]));
-            if (!buffer["Buffer"].from(mac).equals(buffer["Buffer"].from(keyStore.crypto.mac, "hex"))) {
-                throw new router_build["KeplrError"]("keyring", 222, "Unmatched mac");
-            }
-            return buffer["Buffer"].from(aesCtr.decrypt(buffer["Buffer"].from(keyStore.crypto.ciphertext, "hex")));
-        });
-    }
-}
-
-// EXTERNAL MODULE: ../types/build/index.js
-var types_build = __webpack_require__(96);
-
-// EXTERNAL MODULE: ../cosmos/build/index.js
-var cosmos_build = __webpack_require__(16);
-
-// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/wallet/lib.esm/index.js + 39 modules
-var lib_esm = __webpack_require__(252);
-
-// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/bytes/lib.esm/index.js + 1 modules
-var bytes_lib_esm = __webpack_require__(1);
-
-// EXTERNAL MODULE: ../background/node_modules/joi/dist/joi-browser.min.js
-var joi_browser_min = __webpack_require__(41);
-var joi_browser_min_default = /*#__PURE__*/__webpack_require__.n(joi_browser_min);
-
-// CONCATENATED MODULE: ../background/src/keyring/eip712.ts
-
-// https://eips.ethereum.org/EIPS/eip-712
-const EIP712PropertyFieldValidator = joi_browser_min_default.a.object({
-    name: joi_browser_min_default.a.string().min(1).required(),
-    // TODO: Check valid types (string, bool, address, uint256...)
-    type: joi_browser_min_default.a.string().min(1).required(),
-});
-const EIP712DomainTypeValidator = joi_browser_min_default.a.array()
-    .items(joi_browser_min_default.a.object({
-    name: joi_browser_min_default.a.string().valid("name").required(),
-    type: joi_browser_min_default.a.string().valid("string").required(),
-}), joi_browser_min_default.a.object({
-    name: joi_browser_min_default.a.string().valid("version").required(),
-    type: joi_browser_min_default.a.string().valid("string").required(),
-}), joi_browser_min_default.a.object({
-    name: joi_browser_min_default.a.string().valid("chainId").required(),
-    type: joi_browser_min_default.a.string().valid("uint256").required(),
-}), joi_browser_min_default.a.object({
-    name: joi_browser_min_default.a.string().valid("verifyingContract").required(),
-    // From https://eips.ethereum.org/EIPS/eip-712, (string) may be non-standard?
-    // But, ethermint set this type as string.
-    type: joi_browser_min_default.a.string().valid("address", "string").required(),
-}), joi_browser_min_default.a.object({
-    name: joi_browser_min_default.a.string().valid("salt").required(),
-    // From https://eips.ethereum.org/EIPS/eip-712, (string) may be non-standard?
-    // But, ethermint set this type as string.
-    type: joi_browser_min_default.a.string().valid("bytes32", "string").required(),
-}))
-    .unique()
-    .min(1)
-    .custom((value) => {
-    // Sort by name
-    const domainFieldNames = [
-        "name",
-        "version",
-        "chainId",
-        "verifyingContract",
-        "salt",
-    ];
-    return value.sort((a, b) => {
-        return (domainFieldNames.indexOf(a.name) - domainFieldNames.indexOf(b.name));
-    });
-});
-const EIP712MessageValidator = joi_browser_min_default.a.object({
-    types: joi_browser_min_default.a.object({
-        EIP712Domain: EIP712DomainTypeValidator.required(),
-    })
-        .unknown(true)
-        .required(),
-    primaryType: joi_browser_min_default.a.string().min(1).required(),
-    domain: joi_browser_min_default.a.object().required(),
-    message: joi_browser_min_default.a.object().required(),
-});
-
-// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/typed-data.js + 4 modules
-var typed_data = __webpack_require__(593);
-
-// CONCATENATED MODULE: ../background/src/migrator/index.ts
-var migrator_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-class Migrator {
-    // run all pending migrations on meta in place
-    migrateData() {
-        return migrator_awaiter(this, void 0, void 0, function* () {
-            const { migrated } = yield browser.storage.local.get();
-            if (migrated && migrated.data) {
-                const keyringStore = migrated.data.KeyringController || {
-                    vault: "",
-                };
-                return keyringStore;
-            }
-            return {
-                vault: "",
-            };
-        });
-    }
-    enCodeValut(keyringStore, password) {
-        return migrator_awaiter(this, void 0, void 0, function* () {
-            // eslint-disable-next-line
-            const encryptor = __webpack_require__(628);
-            const { vault: vaultString } = keyringStore;
-            const vault = (yield encryptor.decrypt(password, vaultString));
-            return vault.filter((val) => ["HD Key Tree", "Simple Key Pair"].includes(val.type));
-        });
-    }
-    clearCache() {
-        console.log("clear data");
-        return browser.storage.local.set({
-            migrated: "done",
-        });
-    }
-}
-
-// CONCATENATED MODULE: ../background/src/keyring/keyring.ts
-var keyring_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
-
-
-
-
-
-
-
-
-
-
-var KeyRingStatus;
-(function (KeyRingStatus) {
-    KeyRingStatus[KeyRingStatus["NOTLOADED"] = 0] = "NOTLOADED";
-    KeyRingStatus[KeyRingStatus["EMPTY"] = 1] = "EMPTY";
-    KeyRingStatus[KeyRingStatus["LOCKED"] = 2] = "LOCKED";
-    KeyRingStatus[KeyRingStatus["UNLOCKED"] = 3] = "UNLOCKED";
-    KeyRingStatus[KeyRingStatus["MIGRATOR"] = 4] = "MIGRATOR";
-})(KeyRingStatus || (KeyRingStatus = {}));
-const KeyStoreKey = "key-store";
-const KeyMultiStoreKey = "key-multi-store";
-/*
- Keyring stores keys in persistent backround.
- And, this manages the state, crypto, address, signing and so on...
- */
-class keyring_KeyRing {
-    constructor(embedChainInfos, kvStore, crypto, misesService) {
-        this.embedChainInfos = embedChainInfos;
-        this.kvStore = kvStore;
-        this.crypto = crypto;
-        this.misesService = misesService;
-        this.cached = new Map();
-        this.password = "";
-        this.migratorStore = { vault: "" };
-        this.loaded = false;
-        this.keyStore = null;
-        this.multiKeyStore = [];
-        const migrator = new Migrator();
-        this.migrator = migrator;
-        migrator.migrateData().then((res) => {
-            this.migratorStore = res;
-        });
-    }
-    static getTypeOfKeyStore(keyStore) {
-        const type = keyStore.type;
-        if (type == null) {
-            return "mnemonic";
-        }
-        if (type !== "mnemonic" && type !== "privateKey" && type !== "ledger") {
-            throw new router_build["KeplrError"]("keyring", 132, "Invalid type of key store");
-        }
-        return type;
-    }
-    get type() {
-        if (!this.keyStore) {
-            return "none";
-        }
-        else {
-            return keyring_KeyRing.getTypeOfKeyStore(this.keyStore);
-        }
-    }
-    isLocked() {
-        return (this.privateKey == null &&
-            this.mnemonicMasterSeed == null &&
-            this.ledgerPublicKeyCache == null);
-    }
-    get privateKey() {
-        return this._privateKey;
-    }
-    set privateKey(privateKey) {
-        this._privateKey = privateKey;
-        this._mnemonicMasterSeed = undefined;
-        this._ledgerPublicKeyCache = undefined;
-        this.cached = new Map();
-    }
-    get mnemonicMasterSeed() {
-        return this._mnemonicMasterSeed;
-    }
-    set mnemonicMasterSeed(masterSeed) {
-        this._mnemonicMasterSeed = masterSeed;
-        this._privateKey = undefined;
-        this._ledgerPublicKeyCache = undefined;
-        this.cached = new Map();
-    }
-    get ledgerPublicKeyCache() {
-        return this._ledgerPublicKeyCache;
-    }
-    set ledgerPublicKeyCache(publicKeys) {
-        this._mnemonicMasterSeed = undefined;
-        this._privateKey = undefined;
-        this._ledgerPublicKeyCache = publicKeys;
-        this.cached = new Map();
-    }
-    get status() {
-        if (!this.loaded) {
-            return KeyRingStatus.NOTLOADED;
-        }
-        if (!this.keyStore && this.migratorStore.vault) {
-            return KeyRingStatus.MIGRATOR;
-        }
-        if (!this.keyStore) {
-            return KeyRingStatus.EMPTY;
-        }
-        else if (!this.isLocked()) {
-            return KeyRingStatus.UNLOCKED;
-        }
-        else {
-            return KeyRingStatus.LOCKED;
-        }
-    }
-    getKeyStoreCoinType(chainId) {
-        if (!this.keyStore) {
-            return undefined;
-        }
-        if (!this.keyStore.coinTypeForChain) {
-            return undefined;
-        }
-        return this.keyStore.coinTypeForChain[cosmos_build["ChainIdHelper"].parse(chainId).identifier];
-    }
-    getKey(chainId, defaultCoinType, useEthereumAddress) {
-        return this.loadKey(this.computeKeyStoreCoinType(chainId, defaultCoinType), useEthereumAddress);
-    }
-    getKeyStoreMeta(key) {
-        var _a;
-        if (!this.keyStore || this.keyStore.meta == null) {
-            return "";
-        }
-        return (_a = this.keyStore.meta[key]) !== null && _a !== void 0 ? _a : "";
-    }
-    computeKeyStoreCoinType(chainId, defaultCoinType) {
-        var _a;
-        if (!this.keyStore) {
-            throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-        }
-        return this.keyStore.coinTypeForChain
-            ? (_a = this.keyStore.coinTypeForChain[cosmos_build["ChainIdHelper"].parse(chainId).identifier]) !== null && _a !== void 0 ? _a : defaultCoinType : defaultCoinType;
-    }
-    getKeyFromCoinType(coinType, useEthereumAddress) {
-        return this.loadKey(coinType, useEthereumAddress);
-    }
-    createMnemonicKey(kdf, mnemonic, password, meta, bip44HDPath) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            yield this.checkKeyStoreStatus();
-            if (![KeyRingStatus.EMPTY, KeyRingStatus.MIGRATOR].includes(this.status)) {
-                throw new router_build["KeplrError"]("keyring", 142, "Key ring is not loaded or not empty");
-            }
-            this.mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(mnemonic);
-            this.keyStore = yield keyring_KeyRing.CreateMnemonicKeyStore(this.crypto, kdf, mnemonic, password, yield this.assignKeyStoreIdMeta(meta), bip44HDPath);
-            this.password = password;
-            this.multiKeyStore.push(this.keyStore);
-            const privKey = this.loadPrivKey(60);
-            const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
-            // this.misesService.initQueryClient();
-            this.misesService.activateUser(ethWallet.privateKey);
-            yield this.save();
-            return {
-                status: this.status,
-                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
-            };
-        });
-    }
-    createPrivateKey(kdf, privateKey, password, meta) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (this.status !== KeyRingStatus.EMPTY) {
-                throw new router_build["KeplrError"]("keyring", 142, "Key ring is not loaded or not empty");
-            }
-            this.privateKey = privateKey;
-            this.keyStore = yield keyring_KeyRing.CreatePrivateKeyStore(this.crypto, kdf, privateKey, password, yield this.assignKeyStoreIdMeta(meta));
-            this.password = password;
-            this.multiKeyStore.push(this.keyStore);
-            yield this.save();
-            return {
-                status: this.status,
-                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
-            };
-        });
-    }
-    lock() {
-        if (this.status !== KeyRingStatus.UNLOCKED) {
-            throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-        }
-        this.mnemonicMasterSeed = undefined;
-        this.privateKey = undefined;
-        this.ledgerPublicKeyCache = undefined;
-        this.password = "";
-        this.misesService.lockAll();
-    }
-    checkKeyStoreStatus() {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (!this.keyStore || this.type === "none") {
-                console.log("checkKeyStoreStatus");
-                yield this.restore();
-            }
-            return true;
-        });
-    }
-    unlock(password) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            /**
-             * If the service worker is closed and reopened
-             * the restore will not run, so you need to check whether the keystore needs to be restored again
-             */
-            console.log("unlocked");
-            yield this.checkKeyStoreStatus();
-            if (!this.keyStore || this.type === "none") {
-                throw new router_build["KeplrError"]("keyring", 144, "Key ring not initialized");
-            }
-            if (this.type === "mnemonic") {
-                // If password is invalid, error will be thrown.
-                this.mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString());
-            }
-            else if (this.type === "privateKey") {
-                // If password is invalid, error will be thrown.
-                this.privateKey = buffer["Buffer"].from(buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.keyStore, password)).toString(), "hex");
-            }
-            else {
-                throw new router_build["KeplrError"]("keyring", 145, "Unexpected type of keyring");
-            }
-            this.password = password;
-            const privKey = this.loadPrivKey(60);
-            const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
-            // this.misesService.initQueryClient();
-            this.misesService.activateUser(ethWallet.privateKey);
-        });
-    }
-    save() {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            yield this.kvStore.set(KeyStoreKey, this.keyStore);
-            yield this.kvStore.set(KeyMultiStoreKey, this.multiKeyStore);
-        });
-    }
-    restore() {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            console.log("keyring restore");
-            const keyStore = yield this.kvStore.get(KeyStoreKey);
-            if (!keyStore) {
-                this.keyStore = null;
-            }
-            else {
-                this.keyStore = keyStore;
-            }
-            const multiKeyStore = yield this.kvStore.get(KeyMultiStoreKey);
-            if (!multiKeyStore) {
-                // Restore the multi keystore if key store exist 13t multi Key store is empty.
-                // This case will occur if extension is updated from the prior version that doesn't support the multi key store.
-                // This line ensures the backward compatibility.
-                if (keyStore) {
-                    keyStore.meta = yield this.assignKeyStoreIdMeta({});
-                    this.multiKeyStore = [keyStore];
-                }
-                else {
-                    this.multiKeyStore = [];
-                }
-                yield this.save();
-            }
-            else {
-                this.multiKeyStore = multiKeyStore;
-            }
-            let hasLegacyKeyStore = false;
-            // In prior of version 1.2, bip44 path didn't tie with the keystore, and bip44 exists on the chain info.
-            // But, after some chain matures, they decided the bip44 path's coin type.
-            // So, some chain can have the multiple bip44 coin type (one is the standard coin type and other is the legacy coin type).
-            // We should support the legacy coin type, so we determined that the coin type ties with the keystore.
-            // To decrease the barrier of existing users, set the alternative coin type by force if the keystore version is prior than 1.2.
-            if (this.keyStore) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                if (this.keyStore.version === "1" || this.keyStore.version === "1.1") {
-                    hasLegacyKeyStore = true;
-                    this.updateLegacyKeyStore(this.keyStore);
-                }
-            }
-            for (const keyStore of this.multiKeyStore) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                if (keyStore.version === "1" || keyStore.version === "1.1") {
-                    hasLegacyKeyStore = true;
-                    this.updateLegacyKeyStore(keyStore);
-                }
-            }
-            if (hasLegacyKeyStore) {
-                yield this.save();
-            }
-            console.log("keyring restore done");
-            this.loaded = true;
-        });
-    }
-    updateLegacyKeyStore(keyStore) {
-        keyStore.version = "1.2";
-        for (const chainInfo of this.embedChainInfos) {
-            const coinType = (() => {
-                if (chainInfo.alternativeBIP44s &&
-                    chainInfo.alternativeBIP44s.length > 0) {
-                    return chainInfo.alternativeBIP44s[0].coinType;
-                }
-                else {
-                    return chainInfo.bip44.coinType;
-                }
-            })();
-            keyStore.coinTypeForChain = Object.assign(Object.assign({}, keyStore.coinTypeForChain), { [cosmos_build["ChainIdHelper"].parse(chainInfo.chainId).identifier]: coinType });
-        }
-    }
-    isKeyStoreCoinTypeSet(chainId) {
-        if (!this.keyStore) {
-            throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-        }
-        return (this.keyStore.coinTypeForChain &&
-            this.keyStore.coinTypeForChain[cosmos_build["ChainIdHelper"].parse(chainId).identifier] !== undefined);
-    }
-    setKeyStoreCoinType(chainId, coinType) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (!this.keyStore) {
-                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-            }
-            if (this.keyStore.coinTypeForChain &&
-                this.keyStore.coinTypeForChain[cosmos_build["ChainIdHelper"].parse(chainId).identifier] !== undefined) {
-                throw new router_build["KeplrError"]("keyring", 110, "Coin type already set");
-            }
-            this.keyStore.coinTypeForChain = Object.assign(Object.assign({}, this.keyStore.coinTypeForChain), { [cosmos_build["ChainIdHelper"].parse(chainId).identifier]: coinType });
-            const keyStoreInMulti = this.multiKeyStore.find((keyStore) => {
-                return (keyring_KeyRing.getKeyStoreId(keyStore) ===
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    keyring_KeyRing.getKeyStoreId(this.keyStore));
-            });
-            if (keyStoreInMulti) {
-                keyStoreInMulti.coinTypeForChain = Object.assign({}, this.keyStore.coinTypeForChain);
-            }
-            yield this.save();
-        });
-    }
-    removeAllKeyStoreCoinType(chainId) {
-        var _a, _b;
-        const identifier = cosmos_build["ChainIdHelper"].parse(chainId).identifier;
-        if (this.keyStore) {
-            const coinTypeForChain = (_a = this.keyStore.coinTypeForChain) !== null && _a !== void 0 ? _a : {};
-            delete coinTypeForChain[identifier];
-            this.keyStore.coinTypeForChain = coinTypeForChain;
-        }
-        for (const keyStore of this.multiKeyStore) {
-            const coinTypeForChain = (_b = keyStore.coinTypeForChain) !== null && _b !== void 0 ? _b : {};
-            delete coinTypeForChain[identifier];
-            keyStore.coinTypeForChain = coinTypeForChain;
-        }
-        this.save();
-    }
-    deleteKeyRing(index, password) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (this.status !== KeyRingStatus.UNLOCKED) {
-                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-            }
-            if (this.password !== password) {
-                throw new router_build["KeplrError"]("keyring", 121, "Invalid password");
-            }
-            const keyStore = this.multiKeyStore[index];
-            if (!keyStore) {
-                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-            }
-            const multiKeyStore = this.multiKeyStore
-                .slice(0, index)
-                .concat(this.multiKeyStore.slice(index + 1));
-            // Make sure that password is valid.
-            yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password);
-            let keyStoreChanged = false;
-            if (this.keyStore) {
-                // If key store is currently selected key store
-                if (keyring_KeyRing.getKeyStoreId(keyStore) === keyring_KeyRing.getKeyStoreId(this.keyStore)) {
-                    // If there is a key store left
-                    if (multiKeyStore.length > 0) {
-                        // Lock key store at first
-                        yield this.lock();
-                        // Select first key store
-                        this.keyStore = multiKeyStore[0];
-                        // And unlock it
-                        yield this.unlock(password);
-                    }
-                    else {
-                        // Else clear keyring.
-                        this.keyStore = null;
-                        this.mnemonicMasterSeed = undefined;
-                        this.privateKey = undefined;
-                        this.ledgerPublicKeyCache = undefined;
-                        this.misesService.lockAll();
-                    }
-                    keyStoreChanged = true;
-                }
-            }
-            this.multiKeyStore = multiKeyStore;
-            yield this.save();
-            return {
-                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
-                keyStoreChanged,
-            };
-        });
-    }
-    updateNameKeyRing(index, name) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (this.status !== KeyRingStatus.UNLOCKED) {
-                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-            }
-            const keyStore = this.multiKeyStore[index];
-            if (!keyStore) {
-                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-            }
-            keyStore.meta = Object.assign(Object.assign({}, keyStore.meta), { name: name });
-            // If select key store and changed store are same, sync keystore
-            if (this.keyStore &&
-                keyring_KeyRing.getKeyStoreId(this.keyStore) === keyring_KeyRing.getKeyStoreId(keyStore)) {
-                this.keyStore = keyStore;
-            }
-            yield this.save();
-            return this.getMultiKeyStoreInfo();
-        });
-    }
-    loadKey(coinType, useEthereumAddress = false) {
-        if (this.status !== KeyRingStatus.UNLOCKED) {
-            throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-        }
-        if (!this.keyStore) {
-            throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-        }
-        const privKey = this.loadPrivKey(coinType);
-        const pubKey = privKey.getPubKey();
-        if (useEthereumAddress) {
-            // For Ethereum Key-Gen Only:
-            const wallet = new lib_esm["Wallet"](privKey.toBytes());
-            return {
-                algo: "ethsecp256k1",
-                pubKey: pubKey.toBytes(),
-                address: buffer["Buffer"].from(wallet.address.replace("0x", ""), "hex"),
-                isNanoLedger: false,
-            };
-        }
-        // Default
-        return {
-            algo: "secp256k1",
-            pubKey: pubKey.toBytes(),
-            address: pubKey.getAddress(),
-            isNanoLedger: false,
-        };
-    }
-    loadPrivKey(coinType) {
-        if (this.status !== KeyRingStatus.UNLOCKED ||
-            this.type === "none" ||
-            !this.keyStore) {
-            throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-        }
-        const bip44HDPath = keyring_KeyRing.getKeyStoreBIP44Path(this.keyStore);
-        if (this.type === "mnemonic") {
-            const path = `m/44'/${coinType}'/${bip44HDPath.account}'/${bip44HDPath.change}/${bip44HDPath.addressIndex}`;
-            const cachedKey = this.cached.get(path);
-            if (cachedKey) {
-                return new build["PrivKeySecp256k1"](cachedKey);
-            }
-            if (!this.mnemonicMasterSeed) {
-                throw new router_build["KeplrError"]("keyring", 133, "Key store type is mnemonic and it is unlocked. But, mnemonic is not loaded unexpectedly");
-            }
-            const privKey = build["Mnemonic"].generatePrivateKeyFromMasterSeed(this.mnemonicMasterSeed, path);
-            this.cached.set(path, privKey);
-            return new build["PrivKeySecp256k1"](privKey);
-        }
-        else if (this.type === "privateKey") {
-            // If key store type is private key, path will be ignored.
-            if (!this.privateKey) {
-                throw new router_build["KeplrError"]("keyring", 134, "Key store type is private key and it is unlocked. But, private key is not loaded unexpectedly");
-            }
-            return new build["PrivKeySecp256k1"](this.privateKey);
-        }
-        else {
-            throw new router_build["KeplrError"]("keyring", 145, "Unexpected type of keyring");
-        }
-    }
-    sign(env, chainId, defaultCoinType, message, useEthereumSigning) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            console.log(env);
-            if (this.status !== KeyRingStatus.UNLOCKED) {
-                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-            }
-            if (!this.keyStore) {
-                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-            }
-            const coinType = this.computeKeyStoreCoinType(chainId, defaultCoinType);
-            const privKey = this.loadPrivKey(coinType);
-            const signature = useEthereumSigning
-                ? privKey.signDigest32(build["Hash"].keccak256(message))
-                : privKey.sign(message);
-            // Signing indicates an explicit use of this coin type.
-            // Mainly, this logic exists to explicitly set the coin type when signing by an external request.
-            if (!this.isKeyStoreCoinTypeSet(chainId)) {
-                yield this.setKeyStoreCoinType(chainId, coinType);
-            }
-            console.log("sign");
-            return signature;
-            // }
-        });
-    }
-    signEthereum(env, chainId, defaultCoinType, message, type) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            console.log(env);
-            if (this.status !== KeyRingStatus.UNLOCKED) {
-                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-            }
-            if (!this.keyStore) {
-                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-            }
-            const coinType = this.computeKeyStoreCoinType(chainId, defaultCoinType);
-            // Allow signing with Ethereum for chains with coinType !== 60
-            const privKey = this.loadPrivKey(coinType);
-            const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
-            switch (type) {
-                case types_build["EthSignType"].MESSAGE: {
-                    // Sign bytes with prefixed Ethereum magic
-                    const signature = yield ethWallet.signMessage(message);
-                    return bytes_lib_esm["arrayify"](signature);
-                }
-                case types_build["EthSignType"].TRANSACTION: {
-                    // Sign Ethereum transaction
-                    const signature = yield ethWallet.signTransaction(JSON.parse(buffer["Buffer"].from(message).toString()));
-                    return bytes_lib_esm["arrayify"](signature);
-                }
-                case types_build["EthSignType"].EIP712: {
-                    const data = yield EIP712MessageValidator.validateAsync(JSON.parse(buffer["Buffer"].from(message).toString()));
-                    // Since ethermint eip712 tx uses non-standard format, it cannot pass validation of ethersjs.
-                    // Therefore, it should be handled at a slightly lower level.
-                    const signature = yield ethWallet._signingKey().signDigest(build["Hash"].keccak256(buffer["Buffer"].concat([
-                        // eth separator
-                        buffer["Buffer"].from("19", "hex"),
-                        // Version: 1
-                        buffer["Buffer"].from("01", "hex"),
-                        buffer["Buffer"].from(typed_data["a" /* TypedDataEncoder */]
-                            .hashStruct("EIP712Domain", { EIP712Domain: data.types.EIP712Domain }, data.domain)
-                            .replace("0x", ""), "hex"),
-                        buffer["Buffer"].from(typed_data["a" /* TypedDataEncoder */]
-                            .from(
-                        // Seems that there is no way to set primary type and the first type becomes primary type.
-                        (() => {
-                            const types = Object.assign({}, data.types);
-                            delete types["EIP712Domain"];
-                            const primary = types[data.primaryType];
-                            if (!primary) {
-                                throw new Error(`No matched primary type: ${data.primaryType}`);
-                            }
-                            delete types[data.primaryType];
-                            return Object.assign({ [data.primaryType]: primary }, types);
-                        })())
-                            .hash(data.message)
-                            .replace("0x", ""), "hex"),
-                    ])));
-                    return buffer["Buffer"].concat([
-                        buffer["Buffer"].from(signature.r.replace("0x", ""), "hex"),
-                        buffer["Buffer"].from(signature.s.replace("0x", ""), "hex"),
-                        // The metamask doesn't seem to consider the chain id in this case... (maybe bug on metamask?)
-                        signature.recoveryParam
-                            ? buffer["Buffer"].from("1c", "hex")
-                            : buffer["Buffer"].from("1b", "hex"),
-                    ]);
-                }
-                default:
-                    throw new Error(`Unknown sign type: ${type}`);
-            }
-        });
-    }
-    // Show private key or mnemonic key if password is valid.
-    showKeyRing(index, password) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (this.status !== KeyRingStatus.UNLOCKED) {
-                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-            }
-            if (this.password !== password) {
-                throw new router_build["KeplrError"]("keyring", 121, "Invalid password");
-            }
-            // If the index is -1, the mnemonic is exported
-            if (index === -1) {
-                const keyStore = this.multiKeyStore[0];
-                return buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, password)).toString();
-            }
-            const keyStore = this.multiKeyStore[index];
-            if (!keyStore) {
-                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
-            }
-            if (keyStore.type === "mnemonic") {
-                // If password is invalid, error will be thrown.
-                if (!this.checkPassword(password)) {
-                    throw new router_build["KeplrError"]("keyring", 222, "Unmatched mac");
-                }
-                const privKey = yield this.loadMnemonicPrivKey(60, keyStore);
-                const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
-                return ethWallet.privateKey.replace("0x", "");
-            }
-            else {
-                // If password is invalid, error will be thrown.
-                return buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, password)).toString();
-            }
-        });
-    }
-    loadMnemonicPrivKey(coinType, keyStore) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (this.status !== KeyRingStatus.UNLOCKED || !keyStore) {
-                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
-            }
-            const bip44HDPath = keyring_KeyRing.getKeyStoreBIP44Path(keyStore);
-            const path = `m/44'/${coinType}'/${bip44HDPath.account}'/${bip44HDPath.change}/${bip44HDPath.addressIndex}`;
-            const cachedKey = this.cached.get(path);
-            if (cachedKey) {
-                return new build["PrivKeySecp256k1"](cachedKey);
-            }
-            const mnemonic = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], this.password)).toString();
-            const mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(mnemonic);
-            if (!mnemonicMasterSeed) {
-                throw new router_build["KeplrError"]("keyring", 133, "Key store type is mnemonic and it is unlocked. But, mnemonic is not loaded unexpectedly");
-            }
-            const privKey = build["Mnemonic"].generatePrivateKeyFromMasterSeed(mnemonicMasterSeed, path);
-            this.cached.set(path, privKey);
-            return new build["PrivKeySecp256k1"](privKey);
-        });
-    }
-    get canSetPath() {
-        return this.type === "mnemonic" || this.type === "ledger";
-    }
-    addMnemonicKey(kdf, mnemonic, meta, bip44HDPath) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (this.status !== KeyRingStatus.UNLOCKED || this.password == "") {
-                throw new router_build["KeplrError"]("keyring", 141, "Key ring is locked or not initialized");
-            }
-            console.log(mnemonic);
-            const keyStore = yield keyring_KeyRing.CreateMnemonicKeyStore(this.crypto, kdf, "", "", yield this.assignKeyStoreIdMeta(meta), bip44HDPath);
-            this.multiKeyStore.push(keyStore);
-            yield this.save();
-            return {
-                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
-            };
-        });
-    }
-    _checkPrivateKey(privatekeyStore, currentKey) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (Array.isArray(privatekeyStore) && privatekeyStore.length > 0) {
-                const privatePromiseKeyStore = privatekeyStore.map((keyStore) => keyring_awaiter(this, void 0, void 0, function* () {
-                    return buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, this.password)).toString();
-                }));
-                const privateKeyStoreList = yield Promise.all(privatePromiseKeyStore);
-                return privateKeyStoreList.some((privateKey) => privateKey === currentKey);
-            }
-            return false;
-        });
-    }
-    addPrivateKey(kdf, privateKey, meta) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (this.status !== KeyRingStatus.UNLOCKED || this.password == "") {
-                throw new router_build["KeplrError"]("keyring", 141, "Key ring is locked or not initialized");
-            }
-            const privatekeyStore = this.multiKeyStore.filter((val) => val.type === "privateKey");
-            if (privatekeyStore.length > 0) {
-                const isChecked = yield this._checkPrivateKey(privatekeyStore, buffer["Buffer"].from(privateKey).toString("hex"));
-                if (isChecked) {
-                    throw new router_build["KeplrError"]("keyring", 141, "Don't repeat the import privateKey");
-                }
-            }
-            const keyStore = yield keyring_KeyRing.CreatePrivateKeyStore(this.crypto, kdf, privateKey, this.password, yield this.assignKeyStoreIdMeta(meta));
-            this.multiKeyStore.push(keyStore);
-            yield this.save();
-            return {
-                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
-            };
-        });
-    }
-    changeKeyStoreFromMultiKeyStore(index) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (this.status !== KeyRingStatus.UNLOCKED || this.password == "") {
-                throw new router_build["KeplrError"]("keyring", 141, "Key ring is locked or not initialized");
-            }
-            const keyStore = this.multiKeyStore[index];
-            if (!keyStore) {
-                throw new router_build["KeplrError"]("keyring", 120, "Invalid keystore");
-            }
-            this.keyStore = keyStore;
-            yield this.unlock(this.password);
-            yield this.save();
-            return {
-                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
-            };
-        });
-    }
-    getMultiKeyStoreInfo() {
-        const result = [];
-        for (const keyStore of this.multiKeyStore) {
-            result.push({
-                version: keyStore.version,
-                type: keyStore.type,
-                meta: keyStore.meta,
-                coinTypeForChain: keyStore.coinTypeForChain,
-                bip44HDPath: keyStore.bip44HDPath,
-                selected: this.keyStore
-                    ? keyring_KeyRing.getKeyStoreId(keyStore) ===
-                        keyring_KeyRing.getKeyStoreId(this.keyStore)
-                    : false,
-            });
-        }
-        return result;
-    }
-    checkPassword(password) {
-        if (!this.password) {
-            throw new router_build["KeplrError"]("keyring", 100, "Keyring is locked");
-        }
-        return this.password === password;
-    }
-    exportKeyRingDatas(password) {
-        var _a, _b, _c, _d, _e;
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            if (!this.password) {
-                throw new router_build["KeplrError"]("keyring", 100, "Keyring is locked");
-            }
-            if (this.password !== password) {
-                throw new router_build["KeplrError"]("keyring", 121, "Invalid password");
-            }
-            const result = [];
-            for (const keyStore of this.multiKeyStore) {
-                const type = (_a = keyStore.type) !== null && _a !== void 0 ? _a : "mnemonic";
-                switch (type) {
-                    case "mnemonic": {
-                        const mnemonic = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString();
-                        result.push({
-                            bip44HDPath: (_b = keyStore.bip44HDPath) !== null && _b !== void 0 ? _b : {
-                                account: 0,
-                                change: 0,
-                                addressIndex: 0,
-                            },
-                            coinTypeForChain: keyStore.coinTypeForChain,
-                            key: mnemonic,
-                            meta: (_c = keyStore.meta) !== null && _c !== void 0 ? _c : {},
-                            type: "mnemonic",
-                        });
-                        break;
-                    }
-                    case "privateKey": {
-                        const privateKey = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, password)).toString();
-                        result.push({
-                            bip44HDPath: (_d = keyStore.bip44HDPath) !== null && _d !== void 0 ? _d : {
-                                account: 0,
-                                change: 0,
-                                addressIndex: 0,
-                            },
-                            coinTypeForChain: keyStore.coinTypeForChain,
-                            key: privateKey,
-                            meta: (_e = keyStore.meta) !== null && _e !== void 0 ? _e : {},
-                            type: "privateKey",
-                        });
-                        break;
-                    }
-                }
-            }
-            return result;
-        });
-    }
-    static CreateMnemonicKeyStore(crypto, kdf, mnemonic, password, meta, bip44HDPath) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            return yield crypto_Crypto.encrypt(crypto, kdf, "mnemonic", mnemonic, password, meta, bip44HDPath);
-        });
-    }
-    static CreatePrivateKeyStore(crypto, kdf, privateKey, password, meta) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            return yield crypto_Crypto.encrypt(crypto, kdf, "privateKey", buffer["Buffer"].from(privateKey).toString("hex"), password, meta);
-        });
-    }
-    assignKeyStoreIdMeta(meta) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            // `__id__` is used to distinguish the key store.
-            return Object.assign({}, meta, {
-                __id__: (yield this.getIncrementalNumber()).toString(),
-            });
-        });
-    }
-    static getKeyStoreId(keyStore) {
-        var _a;
-        const id = (_a = keyStore.meta) === null || _a === void 0 ? void 0 : _a.__id__;
-        if (!id) {
-            throw new router_build["KeplrError"]("keyring", 131, "Key store's id is empty");
-        }
-        return id;
-    }
-    static getKeyStoreBIP44Path(keyStore) {
-        if (!keyStore.bip44HDPath) {
-            return {
-                account: 0,
-                change: 0,
-                addressIndex: 0,
-            };
-        }
-        keyring_KeyRing.validateBIP44Path(keyStore.bip44HDPath);
-        return keyStore.bip44HDPath;
-    }
-    static validateBIP44Path(bip44Path) {
-        if (!Number.isInteger(bip44Path.account) || bip44Path.account < 0) {
-            throw new router_build["KeplrError"]("keyring", 100, "Invalid account in hd path");
-        }
-        if (!Number.isInteger(bip44Path.change) ||
-            !(bip44Path.change === 0 || bip44Path.change === 1)) {
-            throw new router_build["KeplrError"]("keyring", 102, "Invalid change in hd path");
-        }
-        if (!Number.isInteger(bip44Path.addressIndex) ||
-            bip44Path.addressIndex < 0) {
-            throw new router_build["KeplrError"]("keyring", 101, "Invalid address index in hd path");
-        }
-    }
-    getIncrementalNumber() {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            let num = yield this.kvStore.get("incrementalNumber");
-            if (num === undefined) {
-                num = 0;
-            }
-            num++;
-            yield this.kvStore.set("incrementalNumber", num);
-            return num;
-        });
-    }
-    // XXX: There are other way to handle tx with ethermint on ledger.
-    //      However, some chains have probably competitive spirit with evmos.
-    //      They make unnecessary and silly minor changes to ethermint spec.
-    //      Thus, there is a probability that it will potentially not work on other chains and they blame us.
-    //      So, block them explicitly for now.
-    throwErrorIfEthermintWithLedgerButNotEvmos(chainId) {
-        if (this.keyStore && this.keyStore.type === "ledger") {
-            if (!chainId.startsWith("evmos_")) {
-                throw new router_build["KeplrError"]("keyring", 152, "Ledger is unsupported for this chain");
-            }
-        }
-    }
-    addAccount(name, bip44HDPath) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            try {
-                const result = yield this.addMnemonicKey("scrypt", "", {
-                    name,
-                }, bip44HDPath);
-                return result;
-            }
-            catch (error) {
-                throw new Error(error);
-            }
-        });
-    }
-    _restoreFirstAccount(mnemonic, password) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            return this.createMnemonicKey("scrypt", mnemonic, password, {
-                name: "Account 1",
-            }, {
-                account: 0,
-                change: 0,
-                addressIndex: 0,
-            });
-        });
-    }
-    _addAccounts(addNumber, mnemonicKeys) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            const accounts = new Array(addNumber).fill("").map((_value, index) => {
-                const bip44HDPath = {
-                    account: 0,
-                    addressIndex: index + 1,
-                    change: 0,
-                };
-                const name = `Account ${index + 2}`;
-                return {
-                    bip44HDPath,
-                    name,
-                };
-            });
-            let multiKeyStore = {
-                multiKeyStoreInfo: [],
-            };
-            for (let index = 0; index < accounts.length; index++) {
-                const element = accounts[index];
-                multiKeyStore = yield this.addAccount(element.name, element.bip44HDPath);
-            }
-            // add private key account
-            const simpleKeys = mnemonicKeys.find((val) => val.type === "Simple Key Pair");
-            if ((simpleKeys === null || simpleKeys === void 0 ? void 0 : simpleKeys.data.length) > 0) {
-                for (let index = 0; index < (simpleKeys === null || simpleKeys === void 0 ? void 0 : simpleKeys.data.length); index++) {
-                    const element = simpleKeys === null || simpleKeys === void 0 ? void 0 : simpleKeys.data[index];
-                    const privateKey = buffer["Buffer"].from(element, "hex");
-                    multiKeyStore = yield this.addPrivateKey("scrypt", privateKey, {
-                        name: `Account ${multiKeyStore.multiKeyStoreInfo.length + 1}`,
-                    });
-                }
-            }
-            return multiKeyStore;
-        });
-    }
-    migratorKeyRing(password) {
-        return keyring_awaiter(this, void 0, void 0, function* () {
-            try {
-                const mnemonicKeys = yield this.migrator.enCodeValut(this.migratorStore, password);
-                const mnemonicKey = mnemonicKeys.find((val) => val.type === "HD Key Tree");
-                if (mnemonicKey) {
-                    const mnemonic = buffer["Buffer"].from(mnemonicKey === null || mnemonicKey === void 0 ? void 0 : mnemonicKey.data.mnemonic).toString("utf8");
-                    const numberOfAccounts = mnemonicKey === null || mnemonicKey === void 0 ? void 0 : mnemonicKey.data.numberOfAccounts;
-                    const firstAccount = yield this._restoreFirstAccount(mnemonic, password);
-                    // An account has already been initialized, so need to delete first account number
-                    const addNumber = numberOfAccounts > 1 ? numberOfAccounts - 1 : 0;
-                    // clear thhe metamask cache data
-                    yield this.migrator.clearCache();
-                    this.migratorStore = {
-                        vault: "",
-                    };
-                    return addNumber > 0
-                        ? yield this._addAccounts(addNumber, mnemonicKeys)
-                        : firstAccount;
-                }
-                return {
-                    multiKeyStoreInfo: [],
-                };
-            }
-            catch (error) {
-                throw new Error(error);
-            }
-        });
-    }
-    restoreKeyStore() {
-        this.keyStore = null;
-        this.multiKeyStore = [];
-        this.save();
-    }
-}
-
-// EXTERNAL MODULE: ../common/build/index.js
-var common_build = __webpack_require__(27);
-
-// EXTERNAL MODULE: ../proto-types/cosmos/tx/v1beta1/tx.js
-var tx = __webpack_require__(100);
-
-// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/long/src/long.js
-var src_long = __webpack_require__(7);
-var long_default = /*#__PURE__*/__webpack_require__.n(src_long);
-
-// CONCATENATED MODULE: ../background/src/keyring/amino-sign-doc.ts
-
-const TrimAminoSignDocScheme = joi_browser_min_default.a.object({
-    chain_id: joi_browser_min_default.a.string().allow(""),
-    account_number: joi_browser_min_default.a.string().allow(""),
-    sequence: joi_browser_min_default.a.string().allow(""),
-    fee: joi_browser_min_default.a.object({
-        amount: joi_browser_min_default.a.array().items(joi_browser_min_default.a.object({
-            denom: joi_browser_min_default.a.string().allow(""),
-            amount: joi_browser_min_default.a.string().allow(""),
-        })),
-        gas: joi_browser_min_default.a.string().allow(""),
-        payer: joi_browser_min_default.a.string().allow(""),
-        granter: joi_browser_min_default.a.string().allow(""),
-        // XXX: "feePayer" should be "payer". But, it maybe from ethermint team's mistake.
-        //      That means this part is not standard.
-        feePayer: joi_browser_min_default.a.string().allow(""),
-    }),
-    msgs: joi_browser_min_default.a.array().items(joi_browser_min_default.a.any()),
-    memo: joi_browser_min_default.a.string().allow(""),
-    timeout_height: joi_browser_min_default.a.string().allow(""),
-});
-/**
- * Trim unknown fields from sign doc.
- * The purpose of this function is not validate the sign doc, but only trim unknown fields.
- * @param signDoc
- */
-function trimAminoSignDoc(signDoc) {
-    const res = TrimAminoSignDocScheme.validate(signDoc, {
-        stripUnknown: true,
-    });
-    if (res.error) {
-        throw res.error;
-    }
-    return res.value;
-}
-
-// CONCATENATED MODULE: ../background/src/keyring/service.ts
-var service_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
-
-
-
-
-
-
-
-
-class service_KeyRingService {
-    constructor(kvStore, embedChainInfos, crypto) {
-        this.kvStore = kvStore;
-        this.embedChainInfos = embedChainInfos;
-        this.crypto = crypto;
-        this.onChainRemoved = (chainId) => {
-            this.keyRing.removeAllKeyStoreCoinType(chainId);
-        };
-    }
-    init(interactionService, chainsService, permissionService, misesService) {
-        this.interactionService = interactionService;
-        this.chainsService = chainsService;
-        this.permissionService = permissionService;
-        this.keyRing = new keyring_KeyRing(this.embedChainInfos, this.kvStore, this.crypto, misesService);
-        this.chainsService.addChainRemovedHandler(this.onChainRemoved);
-    }
-    restore() {
-        return service_awaiter(this, void 0, void 0, function* () {
-            yield this.keyRing.restore();
-            return {
-                status: this.keyRing.status,
-                multiKeyStoreInfo: this.keyRing.getMultiKeyStoreInfo(),
-            };
-        });
-    }
-    enable(env) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            if (this.keyRing.status === KeyRingStatus.EMPTY) {
-                yield this.interactionService.waitApprove(env, "/register", "register", {});
-                return this.keyRing.status;
-            }
-            if (this.keyRing.status === KeyRingStatus.NOTLOADED) {
-                yield this.keyRing.restore();
-            }
-            if ([KeyRingStatus.LOCKED, KeyRingStatus.MIGRATOR].includes(this.keyRing.status)) {
-                console.log("unlock", env);
-                yield this.interactionService.waitApprove(env, "/unlock", "unlock", {});
-                return this.keyRing.status;
-            }
-            return this.keyRing.status;
-        });
-    }
-    get keyRingStatus() {
-        return this.keyRing.status;
-    }
-    deleteKeyRing(index, password) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            let keyStoreChanged = false;
-            try {
-                const result = yield this.keyRing.deleteKeyRing(index, password);
-                keyStoreChanged = result.keyStoreChanged;
-                return {
-                    multiKeyStoreInfo: result.multiKeyStoreInfo,
-                    status: this.keyRing.status,
-                };
-            }
-            finally {
-                if (keyStoreChanged) {
-                    this.interactionService.dispatchEvent(router_build["WEBPAGE_PORT"], "keystore-changed", {});
-                }
-            }
-        });
-    }
-    updateNameKeyRing(index, name) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            const multiKeyStoreInfo = yield this.keyRing.updateNameKeyRing(index, name);
-            return {
-                multiKeyStoreInfo,
-            };
-        });
-    }
-    showKeyRing(index, password) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return yield this.keyRing.showKeyRing(index, password);
-        });
-    }
-    createMnemonicKey(kdf, mnemonic, password, meta, bip44HDPath) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            // TODO: Check mnemonic checksum.
-            return yield this.keyRing.createMnemonicKey(kdf, mnemonic, password, meta, bip44HDPath);
-        });
-    }
-    createPrivateKey(kdf, privateKey, password, meta) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return yield this.keyRing.createPrivateKey(kdf, privateKey, password, meta);
-        });
-    }
-    lock() {
-        this.keyRing.lock();
-        return this.keyRing.status;
-    }
-    unlock(password) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            yield this.keyRing.unlock(password);
-            return this.keyRing.status;
-        });
-    }
-    getKey(chainId) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
-            if (ethereumKeyFeatures.address || ethereumKeyFeatures.signing) {
-                // Check the comment on the method itself.
-                this.keyRing.throwErrorIfEthermintWithLedgerButNotEvmos(chainId);
-            }
-            return this.keyRing.getKey(chainId, yield this.chainsService.getChainCoinType(chainId), ethereumKeyFeatures.address);
-        });
-    }
-    getKeyStoreMeta(key) {
-        return this.keyRing.getKeyStoreMeta(key);
-    }
-    getKeyRingType() {
-        return this.keyRing.type;
-    }
-    requestSignAmino(env, msgOrigin, chainId, signer, signDoc, signOptions) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            signDoc = Object.assign(Object.assign({}, signDoc), { memo: Object(common_build["escapeHTML"])(signDoc.memo) });
-            signDoc = trimAminoSignDoc(signDoc);
-            signDoc = Object(common_build["sortObjectByKey"])(signDoc);
-            const coinType = yield this.chainsService.getChainCoinType(chainId);
-            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
-            if (ethereumKeyFeatures.address || ethereumKeyFeatures.signing) {
-                // Check the comment on the method itself.
-                this.keyRing.throwErrorIfEthermintWithLedgerButNotEvmos(chainId);
-            }
-            const key = yield this.keyRing.getKey(chainId, coinType, ethereumKeyFeatures.address);
-            const bech32Prefix = (yield this.chainsService.getChainInfo(chainId))
-                .bech32Config.bech32PrefixAccAddr;
-            const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32(bech32Prefix);
-            if (signer !== bech32Address) {
-                throw new router_build["KeplrError"]("keyring", 231, "Signer mismatched");
-            }
-            const isADR36SignDoc = Object(cosmos_build["checkAndValidateADR36AminoSignDoc"])(signDoc, bech32Prefix);
-            if (isADR36SignDoc) {
-                if (signDoc.msgs[0].value.signer !== signer) {
-                    throw new router_build["KeplrError"]("keyring", 233, "Unmatched signer in sign doc");
-                }
-            }
-            if (signOptions.isADR36WithString != null && !isADR36SignDoc) {
-                throw new router_build["KeplrError"]("keyring", 236, 'Sign doc is not for ADR-36. But, "isADR36WithString" option is defined');
-            }
-            if (signOptions.ethSignType && !isADR36SignDoc) {
-                throw new Error("Eth sign type can be requested with only ADR-36 amino sign doc");
-            }
-            let newSignDoc = (yield this.interactionService.waitApprove(env, "/sign", "request-sign", {
-                msgOrigin,
-                chainId,
-                mode: "amino",
-                signDoc,
-                signer,
-                signOptions,
-                isADR36SignDoc,
-                isADR36WithString: signOptions.isADR36WithString,
-                ethSignType: signOptions.ethSignType,
-            }));
-            newSignDoc = Object.assign(Object.assign({}, newSignDoc), { memo: Object(common_build["escapeHTML"])(newSignDoc.memo) });
-            if (isADR36SignDoc) {
-                // Validate the new sign doc, if it was for ADR-36.
-                if (Object(cosmos_build["checkAndValidateADR36AminoSignDoc"])(signDoc, bech32Prefix)) {
-                    if (signDoc.msgs[0].value.signer !== signer) {
-                        throw new router_build["KeplrError"]("keyring", 232, "Unmatched signer in new sign doc");
-                    }
-                }
-                else {
-                    throw new router_build["KeplrError"]("keyring", 237, "Signing request was for ADR-36. But, accidentally, new sign doc is not for ADR-36");
-                }
-            }
-            // Handle Ethereum signing
-            if (signOptions.ethSignType) {
-                if (newSignDoc.msgs.length !== 1) {
-                    // Validate number of messages
-                    throw new Error("Invalid number of messages for Ethereum sign request");
-                }
-                const signBytes = buffer["Buffer"].from(newSignDoc.msgs[0].value.data, "base64");
-                try {
-                    const signatureBytes = yield this.keyRing.signEthereum(env, chainId, coinType, signBytes, signOptions.ethSignType);
-                    return {
-                        signed: newSignDoc,
-                        signature: {
-                            pub_key: Object(cosmos_build["encodeSecp256k1Pubkey"])(key.pubKey),
-                            signature: buffer["Buffer"].from(signatureBytes).toString("base64"),
-                        },
-                    };
-                }
-                finally {
-                    this.interactionService.dispatchEvent(router_build["APP_PORT"], "request-sign-end", {});
-                }
-            }
-            try {
-                const signature = yield this.keyRing.sign(env, chainId, coinType, Object(cosmos_build["serializeSignDoc"])(newSignDoc), ethereumKeyFeatures.signing);
-                return {
-                    signed: newSignDoc,
-                    signature: Object(cosmos_build["encodeSecp256k1Signature"])(key.pubKey, signature),
-                };
-            }
-            finally {
-                this.interactionService.dispatchEvent(router_build["APP_PORT"], "request-sign-end", {});
-            }
-        });
-    }
-    requestSignEIP712CosmosTx_v0(env, msgOrigin, chainId, signer, eip712, signDoc, signOptions) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            signDoc = Object.assign(Object.assign({}, signDoc), { memo: Object(common_build["escapeHTML"])(signDoc.memo) });
-            signDoc = trimAminoSignDoc(signDoc);
-            signDoc = Object(common_build["sortObjectByKey"])(signDoc);
-            const coinType = yield this.chainsService.getChainCoinType(chainId);
-            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
-            if (ethereumKeyFeatures.address || ethereumKeyFeatures.signing) {
-                // Check the comment on the method itself.
-                this.keyRing.throwErrorIfEthermintWithLedgerButNotEvmos(chainId);
-            }
-            const key = yield this.keyRing.getKey(chainId, coinType, ethereumKeyFeatures.address);
-            const bech32Prefix = (yield this.chainsService.getChainInfo(chainId))
-                .bech32Config.bech32PrefixAccAddr;
-            const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32(bech32Prefix);
-            if (signer !== bech32Address) {
-                throw new router_build["KeplrError"]("keyring", 231, "Signer mismatched");
-            }
-            let newSignDoc = (yield this.interactionService.waitApprove(env, "/sign", "request-sign", {
-                msgOrigin,
-                chainId,
-                mode: "amino",
-                signDoc,
-                signer,
-                signOptions,
-                isADR36SignDoc: false,
-                ethSignType: types_build["EthSignType"].EIP712,
-            }));
-            newSignDoc = Object.assign(Object.assign({}, newSignDoc), { memo: Object(common_build["escapeHTML"])(newSignDoc.memo) });
-            try {
-                const signature = yield this.keyRing.signEthereum(env, chainId, coinType, buffer["Buffer"].from(JSON.stringify({
-                    types: eip712.types,
-                    domain: eip712.domain,
-                    primaryType: eip712.primaryType,
-                    message: newSignDoc,
-                })), types_build["EthSignType"].EIP712);
-                return {
-                    signed: newSignDoc,
-                    signature: {
-                        pub_key: Object(cosmos_build["encodeSecp256k1Pubkey"])(key.pubKey),
-                        // Return eth signature (r | s | v) 65 bytes.
-                        signature: buffer["Buffer"].from(signature).toString("base64"),
-                    },
-                };
-            }
-            finally {
-                this.interactionService.dispatchEvent(router_build["APP_PORT"], "request-sign-end", {});
-            }
-        });
-    }
-    requestSignDirect(env, msgOrigin, chainId, signer, signDoc, signOptions) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            const coinType = yield this.chainsService.getChainCoinType(chainId);
-            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
-            if (ethereumKeyFeatures.address || ethereumKeyFeatures.signing) {
-                // Check the comment on the method itself.
-                this.keyRing.throwErrorIfEthermintWithLedgerButNotEvmos(chainId);
-            }
-            const key = yield this.keyRing.getKey(chainId, coinType, ethereumKeyFeatures.address);
-            const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32((yield this.chainsService.getChainInfo(chainId)).bech32Config
-                .bech32PrefixAccAddr);
-            if (signer !== bech32Address) {
-                throw new router_build["KeplrError"]("keyring", 231, "Signer mismatched");
-            }
-            const newSignDocBytes = (yield this.interactionService.waitApprove(env, "/sign", "request-sign", {
-                msgOrigin,
-                chainId,
-                mode: "direct",
-                signDocBytes: tx["SignDoc"].encode(signDoc).finish(),
-                signer,
-                signOptions,
-            }));
-            const newSignDoc = tx["SignDoc"].decode(newSignDocBytes);
-            try {
-                const signature = yield this.keyRing.sign(env, chainId, coinType, newSignDocBytes, ethereumKeyFeatures.signing);
-                return {
-                    signed: Object.assign(Object.assign({}, newSignDoc), { accountNumber: long_default.a.fromString(newSignDoc.accountNumber) }),
-                    signature: Object(cosmos_build["encodeSecp256k1Signature"])(key.pubKey, signature),
-                };
-            }
-            finally {
-                this.interactionService.dispatchEvent(router_build["APP_PORT"], "request-sign-end", {});
-            }
-        });
-    }
-    verifyADR36AminoSignDoc(chainId, signer, data, signature) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            const coinType = yield this.chainsService.getChainCoinType(chainId);
-            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
-            const key = yield this.keyRing.getKey(chainId, coinType, ethereumKeyFeatures.address);
-            const bech32Prefix = (yield this.chainsService.getChainInfo(chainId))
-                .bech32Config.bech32PrefixAccAddr;
-            const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32(bech32Prefix);
-            if (signer !== bech32Address) {
-                throw new router_build["KeplrError"]("keyring", 231, "Signer mismatched");
-            }
-            if (signature.pub_key.type !== "tendermint/PubKeySecp256k1") {
-                throw new router_build["KeplrError"]("keyring", 211, `Unsupported type of pub key: ${signature.pub_key.type}`);
-            }
-            if (buffer["Buffer"].from(key.pubKey).toString("base64") !== signature.pub_key.value) {
-                throw new router_build["KeplrError"]("keyring", 210, "Pub key unmatched");
-            }
-            const signDoc = Object(cosmos_build["makeADR36AminoSignDoc"])(signer, data);
-            return Object(cosmos_build["verifyADR36AminoSignDoc"])(bech32Prefix, signDoc, buffer["Buffer"].from(signature.pub_key.value, "base64"), buffer["Buffer"].from(signature.signature, "base64"));
-        });
-    }
-    sign(env, chainId, message) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return this.keyRing.sign(env, chainId, yield this.chainsService.getChainCoinType(chainId), message, (yield this.chainsService.getChainEthereumKeyFeatures(chainId)).signing);
-        });
-    }
-    addMnemonicKey(kdf, mnemonic, meta, bip44HDPath) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return this.keyRing.addMnemonicKey(kdf, mnemonic, meta, bip44HDPath);
-        });
-    }
-    addPrivateKey(kdf, privateKey, meta) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return this.keyRing.addPrivateKey(kdf, privateKey, meta);
-        });
-    }
-    changeKeyStoreFromMultiKeyStore(index) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            try {
-                return yield this.keyRing.changeKeyStoreFromMultiKeyStore(index);
-            }
-            finally {
-                this.interactionService.dispatchEvent(router_build["WEBPAGE_PORT"], "keystore-changed", {});
-            }
-        });
-    }
-    checkPassword(password) {
-        return this.keyRing.checkPassword(password);
-    }
-    getMultiKeyStoreInfo() {
-        return this.keyRing.getMultiKeyStoreInfo();
-    }
-    isKeyStoreCoinTypeSet(chainId) {
-        return this.keyRing.isKeyStoreCoinTypeSet(chainId);
-    }
-    setKeyStoreCoinType(chainId, coinType) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            const prevCoinType = this.keyRing.computeKeyStoreCoinType(chainId, yield this.chainsService.getChainCoinType(chainId));
-            yield this.keyRing.setKeyStoreCoinType(chainId, coinType);
-            if (prevCoinType !== coinType) {
-                this.interactionService.dispatchEvent(router_build["WEBPAGE_PORT"], "keystore-changed", {});
-            }
-        });
-    }
-    getKeyStoreBIP44Selectables(chainId, paths) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            if (this.isKeyStoreCoinTypeSet(chainId)) {
-                return [];
-            }
-            const result = [];
-            const chainInfo = yield this.chainsService.getChainInfo(chainId);
-            for (const path of paths) {
-                const key = yield this.keyRing.getKeyFromCoinType(path.coinType, (yield this.chainsService.getChainEthereumKeyFeatures(chainId)).address);
-                const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32(chainInfo.bech32Config.bech32PrefixAccAddr);
-                result.push({
-                    path,
-                    bech32Address,
-                });
-            }
-            return result;
-        });
-    }
-    exportKeyRingDatas(password) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return yield this.keyRing.exportKeyRingDatas(password);
-        });
-    }
-    addAccount(name, bip44HDPath) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return yield this.keyRing.addAccount(name, bip44HDPath);
-        });
-    }
-    migratorKeyRing(password) {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return yield this.keyRing.migratorKeyRing(password);
-        });
-    }
-    restoreKeyStore() {
-        return service_awaiter(this, void 0, void 0, function* () {
-            return yield this.keyRing.restoreKeyStore();
-        });
-    }
-}
-
-// CONCATENATED MODULE: ../background/src/keyring/constants.ts
-const ROUTE = "keyring";
-
-// CONCATENATED MODULE: ../background/src/keyring/messages.ts
-
-
-
-
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const bip39 = __webpack_require__(105);
-
-
-class messages_RestoreKeyRingMsg extends router_build["Message"] {
-    static type() {
-        return "restore-keyring";
-    }
-    constructor() {
-        super();
-    }
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    validateBasic() { }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_RestoreKeyRingMsg.type();
-    }
-}
-class messages_DeleteKeyRingMsg extends router_build["Message"] {
-    constructor(index, password) {
-        super();
-        this.index = index;
-        this.password = password;
-    }
-    static type() {
-        return "delete-keyring";
-    }
-    validateBasic() {
-        if (!Number.isInteger(this.index)) {
-            throw new router_build["KeplrError"]("keyring", 201, "Invalid index");
-        }
-        if (!this.password) {
-            throw new router_build["KeplrError"]("keyring", 274, "password not set");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_DeleteKeyRingMsg.type();
-    }
-}
-class messages_UpdateNameKeyRingMsg extends router_build["Message"] {
-    constructor(index, name) {
-        super();
-        this.index = index;
-        this.name = name;
-    }
-    static type() {
-        return "update-name-keyring";
-    }
-    validateBasic() {
-        if (!Number.isInteger(this.index)) {
-            throw new router_build["KeplrError"]("keyring", 201, "Invalid index");
-        }
-        if (!this.name) {
-            throw new router_build["KeplrError"]("keyring", 273, "name not set");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_UpdateNameKeyRingMsg.type();
-    }
-}
-class messages_ShowKeyRingMsg extends router_build["Message"] {
-    constructor(index, password) {
-        super();
-        this.index = index;
-        this.password = password;
-    }
-    static type() {
-        return "show-keyring";
-    }
-    validateBasic() {
-        if (!Number.isInteger(this.index)) {
-            throw new router_build["KeplrError"]("keyring", 201, "Invalid index");
-        }
-        if (!this.password) {
-            throw new router_build["KeplrError"]("keyring", 274, "password not set");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_ShowKeyRingMsg.type();
-    }
-}
-class messages_CreateMnemonicKeyMsg extends router_build["Message"] {
-    constructor(kdf, mnemonic, password, meta, bip44HDPath) {
-        super();
-        this.kdf = kdf;
-        this.mnemonic = mnemonic;
-        this.password = password;
-        this.meta = meta;
-        this.bip44HDPath = bip44HDPath;
-    }
-    static type() {
-        return "create-mnemonic-key";
-    }
-    validateBasic() {
-        if (this.kdf !== "scrypt" &&
-            this.kdf !== "sha256" &&
-            this.kdf !== "pbkdf2") {
-            throw new router_build["KeplrError"]("keyring", 202, "Invalid kdf");
-        }
-        if (!this.mnemonic) {
-            throw new router_build["KeplrError"]("keyring", 272, "mnemonic not set");
-        }
-        if (!this.password) {
-            throw new router_build["KeplrError"]("keyring", 274, "password not set");
-        }
-        // Validate mnemonic.
-        // Checksome is not validate in this method.
-        // Keeper should handle the case of invalid checksome.
-        try {
-            bip39.mnemonicToEntropy(this.mnemonic);
-        }
-        catch (e) {
-            if (e.message !== "Invalid mnemonic checksum") {
-                throw e;
-            }
-        }
-        keyring_KeyRing.validateBIP44Path(this.bip44HDPath);
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_CreateMnemonicKeyMsg.type();
-    }
-}
-class messages_AddMnemonicKeyMsg extends router_build["Message"] {
-    constructor(kdf, mnemonic, meta, bip44HDPath) {
-        super();
-        this.kdf = kdf;
-        this.mnemonic = mnemonic;
-        this.meta = meta;
-        this.bip44HDPath = bip44HDPath;
-    }
-    static type() {
-        return "add-mnemonic-key";
-    }
-    validateBasic() {
-        if (this.kdf !== "scrypt" &&
-            this.kdf !== "sha256" &&
-            this.kdf !== "pbkdf2") {
-            throw new router_build["KeplrError"]("keyring", 202, "Invalid kdf");
-        }
-        if (!this.mnemonic) {
-            throw new router_build["KeplrError"]("keyring", 272, "mnemonic not set");
-        }
-        // Validate mnemonic.
-        // Checksome is not validate in this method.
-        // Keeper should handle the case of invalid checksome.
-        try {
-            bip39.mnemonicToEntropy(this.mnemonic);
-        }
-        catch (e) {
-            if (e.message !== "Invalid mnemonic checksum") {
-                throw e;
-            }
-        }
-        keyring_KeyRing.validateBIP44Path(this.bip44HDPath);
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_AddMnemonicKeyMsg.type();
-    }
-}
-class messages_CreatePrivateKeyMsg extends router_build["Message"] {
-    constructor(kdf, privateKey, password, meta) {
-        super();
-        this.kdf = kdf;
-        this.privateKey = privateKey;
-        this.password = password;
-        this.meta = meta;
-    }
-    static type() {
-        return "create-private-key";
-    }
-    validateBasic() {
-        if (this.kdf !== "scrypt" &&
-            this.kdf !== "sha256" &&
-            this.kdf !== "pbkdf2") {
-            throw new router_build["KeplrError"]("keyring", 202, "Invalid kdf");
-        }
-        if (!this.privateKey || this.privateKey.length === 0) {
-            throw new router_build["KeplrError"]("keyring", 275, "private key not set");
-        }
-        if (this.privateKey.length !== 32) {
-            throw new router_build["KeplrError"]("keyring", 260, "invalid length of private key");
-        }
-        if (!this.password) {
-            throw new router_build["KeplrError"]("keyring", 274, "password not set");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_CreatePrivateKeyMsg.type();
-    }
-}
-class messages_AddPrivateKeyMsg extends router_build["Message"] {
-    constructor(kdf, privateKey, meta) {
-        super();
-        this.kdf = kdf;
-        this.privateKey = privateKey;
-        this.meta = meta;
-    }
-    static type() {
-        return "add-private-key";
-    }
-    validateBasic() {
-        if (this.kdf !== "scrypt" &&
-            this.kdf !== "sha256" &&
-            this.kdf !== "pbkdf2") {
-            throw new router_build["KeplrError"]("keyring", 202, "Invalid kdf");
-        }
-        if (!this.privateKey || this.privateKey.length === 0) {
-            throw new router_build["KeplrError"]("keyring", 275, "private key not set");
-        }
-        if (this.privateKey.length !== 32) {
-            throw new router_build["KeplrError"]("keyring", 260, "invalid length of private key");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_AddPrivateKeyMsg.type();
-    }
-}
-class messages_LockKeyRingMsg extends router_build["Message"] {
-    static type() {
-        return "lock-keyring";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        // noop
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_LockKeyRingMsg.type();
-    }
-}
-class messages_UnlockKeyRingMsg extends router_build["Message"] {
-    constructor(password = "") {
-        super();
-        this.password = password;
-    }
-    static type() {
-        return "unlock-keyring";
-    }
-    validateBasic() {
-        if (!this.password) {
-            throw new router_build["KeplrError"]("keyring", 274, "password not set");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_UnlockKeyRingMsg.type();
-    }
-}
-class messages_GetKeyMsg extends router_build["Message"] {
-    constructor(chainId) {
-        super();
-        this.chainId = chainId;
-    }
-    static type() {
-        return "get-key";
-    }
-    validateBasic() {
-        if (!this.chainId) {
-            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
-        }
-    }
-    approveExternal() {
-        return true;
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_GetKeyMsg.type();
-    }
-}
-class messages_RequestSignAminoMsg extends router_build["Message"] {
-    constructor(chainId, signer, signDoc, signOptions = {}) {
-        super();
-        this.chainId = chainId;
-        this.signer = signer;
-        this.signDoc = signDoc;
-        this.signOptions = signOptions;
-    }
-    static type() {
-        return "request-sign-amino";
-    }
-    validateBasic() {
-        var _a, _b;
-        if (!this.chainId) {
-            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
-        }
-        if (!this.signer) {
-            throw new router_build["KeplrError"]("keyring", 230, "signer not set");
-        }
-        // Validate bech32 address.
-        cosmos_build["Bech32Address"].validate(this.signer);
-        // Check and validate the ADR-36 sign doc.
-        // ADR-36 sign doc doesn't have the chain id
-        if (!Object(cosmos_build["checkAndValidateADR36AminoSignDoc"])(this.signDoc)) {
-            if (this.signOptions.ethSignType) {
-                throw new Error("Eth sign type can be requested with only ADR-36 amino sign doc");
-            }
-            if (this.signDoc.chain_id !== this.chainId) {
-                throw new router_build["KeplrError"]("keyring", 234, "Chain id in the message is not matched with the requested chain id");
-            }
-        }
-        else {
-            if (this.signDoc.msgs[0].value.signer !== this.signer) {
-                throw new router_build["KeplrError"]("keyring", 233, "Unmatched signer in sign doc");
-            }
-            if (this.signOptions.ethSignType) {
-                switch (this.signOptions.ethSignType) {
-                    // TODO: Check chain id in tx data.
-                    // case EthSignType.TRANSACTION:
-                    case types_build["EthSignType"].EIP712: {
-                        const message = JSON.parse(buffer["Buffer"].from(this.signDoc.msgs[0].value.data, "base64").toString());
-                        const { ethChainId } = cosmos_build["EthermintChainIdHelper"].parse(this.chainId);
-                        if (parseFloat((_a = message.domain) === null || _a === void 0 ? void 0 : _a.chainId) !== ethChainId) {
-                            throw new Error(`Unmatched chain id for eth (expected: ${ethChainId}, actual: ${(_b = message.domain) === null || _b === void 0 ? void 0 : _b.chainId})`);
-                        }
-                    }
-                    // XXX: There is no way to check chain id if type is message because eth personal sign standard doesn't define chain id field.
-                    // case EthSignType.MESSAGE:
-                }
-            }
-        }
-        if (!this.signOptions) {
-            throw new router_build["KeplrError"]("keyring", 235, "Sign options are null");
-        }
-    }
-    approveExternal() {
-        return true;
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_RequestSignAminoMsg.type();
-    }
-}
-class messages_RequestSignEIP712CosmosTxMsg_v0 extends router_build["Message"] {
-    constructor(chainId, signer, eip712, signDoc, signOptions) {
-        super();
-        this.chainId = chainId;
-        this.signer = signer;
-        this.eip712 = eip712;
-        this.signDoc = signDoc;
-        this.signOptions = signOptions;
-    }
-    static type() {
-        return "request-sign-eip-712-cosmos-tx-v0";
-    }
-    validateBasic() {
-        if (!this.chainId) {
-            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
-        }
-        if (!this.signer) {
-            throw new router_build["KeplrError"]("keyring", 230, "signer not set");
-        }
-        // Validate bech32 address.
-        cosmos_build["Bech32Address"].validate(this.signer);
-        // Check and validate the ADR-36 sign doc.
-        // ADR-36 sign doc doesn't have the chain id
-        if (!Object(cosmos_build["checkAndValidateADR36AminoSignDoc"])(this.signDoc)) {
-            if (this.signDoc.chain_id !== this.chainId) {
-                throw new router_build["KeplrError"]("keyring", 234, "Chain id in the message is not matched with the requested chain id");
-            }
-            const { ethChainId } = cosmos_build["EthermintChainIdHelper"].parse(this.chainId);
-            if (parseFloat(this.eip712.domain.chainId) !== ethChainId) {
-                throw new Error(`Unmatched chain id for eth (expected: ${ethChainId}, actual: ${this.eip712.domain.chainId})`);
-            }
-        }
-        else {
-            throw new Error("Can't sign ADR-36 with EIP-712");
-        }
-        if (!this.signOptions) {
-            throw new router_build["KeplrError"]("keyring", 235, "Sign options are null");
-        }
-    }
-    approveExternal() {
-        return true;
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_RequestSignEIP712CosmosTxMsg_v0.type();
-    }
-}
-class messages_RequestVerifyADR36AminoSignDoc extends router_build["Message"] {
-    constructor(chainId, signer, data, signature) {
-        super();
-        this.chainId = chainId;
-        this.signer = signer;
-        this.data = data;
-        this.signature = signature;
-    }
-    static type() {
-        return "request-verify-adr-36-amino-doc";
-    }
-    validateBasic() {
-        if (!this.chainId) {
-            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
-        }
-        if (!this.signer) {
-            throw new router_build["KeplrError"]("keyring", 230, "signer not set");
-        }
-        if (!this.signature) {
-            throw new router_build["KeplrError"]("keyring", 271, "Signature not set");
-        }
-        // Validate bech32 address.
-        cosmos_build["Bech32Address"].validate(this.signer);
-    }
-    approveExternal() {
-        return true;
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_RequestVerifyADR36AminoSignDoc.type();
-    }
-}
-class messages_RequestSignDirectMsg extends router_build["Message"] {
-    constructor(chainId, signer, signDoc, signOptions = {}) {
-        super();
-        this.chainId = chainId;
-        this.signer = signer;
-        this.signDoc = signDoc;
-        this.signOptions = signOptions;
-    }
-    static type() {
-        return "request-sign-direct";
-    }
-    validateBasic() {
-        if (!this.chainId) {
-            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
-        }
-        if (!this.signer) {
-            throw new router_build["KeplrError"]("keyring", 230, "signer not set");
-        }
-        // Validate bech32 address.
-        cosmos_build["Bech32Address"].validate(this.signer);
-        const signDoc = tx["SignDoc"].fromPartial({
-            bodyBytes: this.signDoc.bodyBytes,
-            authInfoBytes: this.signDoc.authInfoBytes,
-            chainId: this.signDoc.chainId,
-            accountNumber: this.signDoc.accountNumber,
-        });
-        if (signDoc.chainId !== this.chainId) {
-            throw new router_build["KeplrError"]("keyring", 234, "Chain id in the message is not matched with the requested chain id");
-        }
-        if (!this.signOptions) {
-            throw new router_build["KeplrError"]("keyring", 235, "Sign options are null");
-        }
-    }
-    approveExternal() {
-        return true;
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_RequestSignDirectMsg.type();
-    }
-}
-class messages_GetMultiKeyStoreInfoMsg extends router_build["Message"] {
-    static type() {
-        return "get-multi-key-store-info";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        // noop
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_GetMultiKeyStoreInfoMsg.type();
-    }
-}
-class messages_ChangeKeyRingMsg extends router_build["Message"] {
-    constructor(index) {
-        super();
-        this.index = index;
-    }
-    static type() {
-        return "change-keyring";
-    }
-    validateBasic() {
-        if (this.index < 0) {
-            throw new router_build["KeplrError"]("keyring", 200, "Index is negative");
-        }
-        if (!Number.isInteger(this.index)) {
-            throw new router_build["KeplrError"]("keyring", 201, "Invalid index");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_ChangeKeyRingMsg.type();
-    }
-}
-// Return the list of selectable path.
-// If coin type was set for the key store, will return empty array.
-class messages_GetIsKeyStoreCoinTypeSetMsg extends router_build["Message"] {
-    constructor(chainId, paths) {
-        super();
-        this.chainId = chainId;
-        this.paths = paths;
-    }
-    static type() {
-        return "get-is-keystore-coin-type-set";
-    }
-    validateBasic() {
-        if (!this.chainId) {
-            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
-        }
-        if (this.paths.length === 0) {
-            throw new router_build["KeplrError"]("keyring", 250, "empty bip44 path list");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_GetIsKeyStoreCoinTypeSetMsg.type();
-    }
-}
-class messages_SetKeyStoreCoinTypeMsg extends router_build["Message"] {
-    constructor(chainId, coinType) {
-        super();
-        this.chainId = chainId;
-        this.coinType = coinType;
-    }
-    static type() {
-        return "set-keystore-coin-type";
-    }
-    validateBasic() {
-        if (!this.chainId) {
-            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
-        }
-        if (this.coinType < 0) {
-            throw new router_build["KeplrError"]("keyring", 240, "coin type can not be negative");
-        }
-        if (!Number.isInteger(this.coinType)) {
-            throw new router_build["KeplrError"]("keyring", 241, "coin type should be integer");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_SetKeyStoreCoinTypeMsg.type();
-    }
-}
-class messages_CheckPasswordMsg extends router_build["Message"] {
-    constructor(password) {
-        super();
-        this.password = password;
-    }
-    static type() {
-        return "check-keyring-password";
-    }
-    validateBasic() {
-        if (!this.password) {
-            throw new router_build["KeplrError"]("keyring", 274, "password not set");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_CheckPasswordMsg.type();
-    }
-}
-class messages_ExportKeyRingDatasMsg extends router_build["Message"] {
-    constructor(password) {
-        super();
-        this.password = password;
-    }
-    static type() {
-        return "export-keyring-datas";
-    }
-    validateBasic() {
-        if (!this.password) {
-            throw new router_build["KeplrError"]("keyring", 274, "password not set");
-        }
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_ExportKeyRingDatasMsg.type();
-    }
-}
-class messages_IsUnlockMsg extends router_build["Message"] {
-    static type() {
-        return "isUnlocked";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        //noop
-    }
-    approveExternal() {
-        return true;
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_IsUnlockMsg.type();
-    }
-}
-class messages_AddAccountMsg extends router_build["Message"] {
-    constructor(name, bip44HDPath) {
-        super();
-        this.name = name;
-        this.bip44HDPath = bip44HDPath;
-    }
-    static type() {
-        return "add-account";
-    }
-    validateBasic() {
-        //noop
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_AddAccountMsg.type();
-    }
-}
-class messages_MigratorKeyRingMsg extends router_build["Message"] {
-    constructor(password) {
-        super();
-        this.password = password;
-    }
-    static type() {
-        return "migrator";
-    }
-    validateBasic() {
-        //noop
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_MigratorKeyRingMsg.type();
-    }
-}
-class messages_RestoreKeyStoreMsg extends router_build["Message"] {
-    static type() {
-        return "remove-all-Key-store";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        //noop
-    }
-    route() {
-        return ROUTE;
-    }
-    type() {
-        return messages_RestoreKeyStoreMsg.type();
-    }
-}
-
-// CONCATENATED MODULE: ../background/src/keyring/types.ts
-
-
-// CONCATENATED MODULE: ../background/src/keyring/index.ts
-
-
-
-
-
-
-// CONCATENATED MODULE: ../background/src/auto-lock-account/service.ts
-var auto_lock_account_service_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
-class service_AutoLockAccountService {
-    constructor(kvStore, opts = {
-        monitoringInterval: 10000,
-    }) {
-        this.kvStore = kvStore;
-        this.opts = opts;
-        // Unit: ms
-        this.autoLockDuration = 15 * 60 * 1000;
-        this.appStateCheckTimer = null;
-        this.autoLockTimer = null;
-    }
-    init(keyringService) {
-        return auto_lock_account_service_awaiter(this, void 0, void 0, function* () {
-            this.keyringService = keyringService;
-            browser.idle.onStateChanged.addListener((idle) => {
-                this.stateChangedHandler(idle);
-            });
-            yield this.loadDuration();
-        });
-    }
-    stateChangedHandler(newState) {
-        if (this.autoLockDuration > 0) {
-            if (newState === "locked") {
-                this.stopAppStateCheckTimer();
-                this.stopAutoLockTimer();
-                this.lock();
-            }
-        }
-    }
-    startAppStateCheckTimer() {
-        if (this.autoLockDuration > 0 && this.keyRingIsUnlocked) {
-            this.stopAutoLockTimer();
-            this.startAutoLockTimer();
-        }
-    }
-    stopAppStateCheckTimer() {
-        if (this.appStateCheckTimer != null) {
-            clearTimeout(this.appStateCheckTimer);
-            this.appStateCheckTimer = null;
-        }
-    }
-    checkAppIsActive() {
-        // const background = browser.extension.getBackgroundPage();
-        // const views = browser.extension.getViews();
-        // if (background) {
-        //   for (const view of views) {
-        //     if (background.location.href !== view.location.href) {
-        //       return true;
-        //     }
-        //   }
-        // } else if (views.length > 0) {
-        //   return true;
-        // }
-        return false;
-    }
-    startAutoLockTimer() {
-        if (!this.keyRingIsUnlocked) {
-            throw new Error("Keyring is not unlocked");
-        }
-        if (this.autoLockDuration <= 0) {
-            return;
-        }
-        this.autoLockTimer = setTimeout(() => {
-            this.stopAppStateCheckTimer();
-            this.stopAutoLockTimer();
-            this.lock();
-        }, this.autoLockDuration);
-    }
-    stopAutoLockTimer() {
-        if (this.autoLockTimer != null) {
-            clearTimeout(this.autoLockTimer);
-            this.autoLockTimer = null;
-        }
-    }
-    lock() {
-        return auto_lock_account_service_awaiter(this, void 0, void 0, function* () {
-            if (this.keyRingIsUnlocked) {
-                this.keyringService.lock();
-                let tabs = yield browser.tabs.query({
-                    discarded: false,
-                    status: "complete",
-                });
-                tabs = tabs.filter((val) => val.url && val.url.indexOf(browser.runtime.id) > -1);
-                for (const tab of tabs) {
-                    browser.tabs.reload(tab.id);
-                }
-            }
-        });
-    }
-    get keyRingIsUnlocked() {
-        if (this.keyringService == null) {
-            throw new Error("Keyring service is null");
-        }
-        return this.keyringService.keyRingStatus === KeyRingStatus.UNLOCKED;
-    }
-    getAutoLockDuration() {
-        return this.autoLockDuration;
-    }
-    setDuration(duration) {
-        this.autoLockDuration = duration;
-        if (duration <= 0) {
-            this.stopAppStateCheckTimer();
-            this.stopAutoLockTimer();
-        }
-        return this.kvStore.set("autoLockDuration", duration);
-    }
-    loadDuration() {
-        return auto_lock_account_service_awaiter(this, void 0, void 0, function* () {
-            const duration = yield this.kvStore.get("autoLockDuration");
-            if (duration == null) {
-                this.autoLockDuration = 15 * 60 * 1000;
-            }
-            else {
-                this.autoLockDuration = duration;
-            }
-        });
-    }
-}
-
-// CONCATENATED MODULE: ../background/src/auto-lock-account/constants.ts
-const constants_ROUTE = "auto-lock-account";
-
-// CONCATENATED MODULE: ../background/src/auto-lock-account/messages.ts
-
-
-class messages_GetAutoLockAccountDurationMsg extends router_build["Message"] {
-    static type() {
-        return "get-auto-lock-account-duration";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        // noop
-    }
-    route() {
-        return constants_ROUTE;
-    }
-    type() {
-        return messages_GetAutoLockAccountDurationMsg.type();
-    }
-}
-class messages_UpdateAutoLockAccountDurationMsg extends router_build["Message"] {
-    constructor(duration) {
-        super();
-        this.duration = duration;
-    }
-    static type() {
-        return "update-auto-lock-account-duration";
-    }
-    validateBasic() {
-        if (this.duration < 0) {
-            throw new router_build["KeplrError"]("auto-lock-account", 101, "duration cannot be set to a negative number.");
-        }
-    }
-    route() {
-        return constants_ROUTE;
-    }
-    type() {
-        return messages_UpdateAutoLockAccountDurationMsg.type();
-    }
-}
-class messages_StartAutoLockMonitoringMsg extends router_build["Message"] {
-    static type() {
-        return "start-auto-lock-monitoring";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        // noop
-    }
-    route() {
-        return constants_ROUTE;
-    }
-    type() {
-        return messages_StartAutoLockMonitoringMsg.type();
-    }
-}
-class messages_LockMsg extends router_build["Message"] {
-    static type() {
-        return "lock-msg";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        // noop
-    }
-    route() {
-        return constants_ROUTE;
-    }
-    type() {
-        return messages_LockMsg.type();
-    }
-}
-
-// CONCATENATED MODULE: ../background/src/auto-lock-account/index.ts
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=types.js.map
 
 /***/ }),
 
-/***/ 1338:
+/***/ 1179:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(546), exports);
+__exportStar(__webpack_require__(231), exports);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5650,17 +3060,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeyRing = exports.KeyRingStatus = void 0;
-const crypto_1 = __webpack_require__(1024);
+const crypto_1 = __webpack_require__(1026);
 const crypto_2 = __webpack_require__(51);
 const types_1 = __webpack_require__(96);
 const router_1 = __webpack_require__(3);
 const buffer_1 = __webpack_require__(4);
 const cosmos_1 = __webpack_require__(16);
-const wallet_1 = __webpack_require__(252);
+const wallet_1 = __webpack_require__(253);
 const BytesUtils = __importStar(__webpack_require__(1));
 const eip712_1 = __webpack_require__(532);
-const hash_1 = __webpack_require__(267);
-const migrator_1 = __webpack_require__(1037);
+const hash_1 = __webpack_require__(268);
+const migrator_1 = __webpack_require__(1039);
 var KeyRingStatus;
 (function (KeyRingStatus) {
     KeyRingStatus[KeyRingStatus["NOTLOADED"] = 0] = "NOTLOADED";
@@ -6714,6 +4124,112 @@ exports.GetSecret20ViewingKey = GetSecret20ViewingKey;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.KeepAliveMsg = exports.LockMsg = exports.StartAutoLockMonitoringMsg = exports.UpdateAutoLockAccountDurationMsg = exports.GetAutoLockAccountDurationMsg = void 0;
+const router_1 = __webpack_require__(3);
+const constants_1 = __webpack_require__(547);
+class GetAutoLockAccountDurationMsg extends router_1.Message {
+    static type() {
+        return "get-auto-lock-account-duration";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return constants_1.ROUTE;
+    }
+    type() {
+        return GetAutoLockAccountDurationMsg.type();
+    }
+}
+exports.GetAutoLockAccountDurationMsg = GetAutoLockAccountDurationMsg;
+class UpdateAutoLockAccountDurationMsg extends router_1.Message {
+    constructor(duration) {
+        super();
+        this.duration = duration;
+    }
+    static type() {
+        return "update-auto-lock-account-duration";
+    }
+    validateBasic() {
+        if (this.duration < 0) {
+            throw new router_1.KeplrError("auto-lock-account", 101, "duration cannot be set to a negative number.");
+        }
+    }
+    route() {
+        return constants_1.ROUTE;
+    }
+    type() {
+        return UpdateAutoLockAccountDurationMsg.type();
+    }
+}
+exports.UpdateAutoLockAccountDurationMsg = UpdateAutoLockAccountDurationMsg;
+class StartAutoLockMonitoringMsg extends router_1.Message {
+    static type() {
+        return "start-auto-lock-monitoring";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return constants_1.ROUTE;
+    }
+    type() {
+        return StartAutoLockMonitoringMsg.type();
+    }
+}
+exports.StartAutoLockMonitoringMsg = StartAutoLockMonitoringMsg;
+class LockMsg extends router_1.Message {
+    static type() {
+        return "lock-msg";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return constants_1.ROUTE;
+    }
+    type() {
+        return LockMsg.type();
+    }
+}
+exports.LockMsg = LockMsg;
+class KeepAliveMsg extends router_1.Message {
+    static type() {
+        return "keepAlive-msg";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return constants_1.ROUTE;
+    }
+    type() {
+        return KeepAliveMsg.type();
+    }
+}
+exports.KeepAliveMsg = KeepAliveMsg;
+//# sourceMappingURL=messages.js.map
+
+/***/ }),
+
+/***/ 232:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -6913,7 +4429,7 @@ exports.shortenAddress = shortenAddress;
 
 /***/ }),
 
-/***/ 332:
+/***/ 333:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6961,7 +4477,7 @@ exports.GetPersistentMemoryMsg = GetPersistentMemoryMsg;
 
 /***/ }),
 
-/***/ 333:
+/***/ 334:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7127,7 +4643,7 @@ exports.RemovePermissionsOrigin = RemovePermissionsOrigin;
 
 /***/ }),
 
-/***/ 335:
+/***/ 336:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7866,7 +5382,7 @@ exports.RestoreKeyStoreMsg = RestoreKeyStoreMsg;
 
 /***/ }),
 
-/***/ 336:
+/***/ 337:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7913,7 +5429,7 @@ exports.SendTxMsg = SendTxMsg;
 
 /***/ }),
 
-/***/ 337:
+/***/ 338:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8005,7 +5521,7 @@ exports.ResetChainEndpointsMsg = ResetChainEndpointsMsg;
 
 /***/ }),
 
-/***/ 338:
+/***/ 339:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8022,15 +5538,15 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(527), exports);
-__exportStar(__webpack_require__(335), exports);
-__exportStar(__webpack_require__(1048), exports);
+__exportStar(__webpack_require__(336), exports);
+__exportStar(__webpack_require__(1050), exports);
 __exportStar(__webpack_require__(229), exports);
 __exportStar(__webpack_require__(532), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 339:
+/***/ 340:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8085,7 +5601,7 @@ exports.PushEventDataMsg = PushEventDataMsg;
 
 /***/ }),
 
-/***/ 340:
+/***/ 341:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8137,94 +5653,6 @@ exports.RejectInteractionMsg = RejectInteractionMsg;
 
 /***/ }),
 
-/***/ 341:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LockMsg = exports.StartAutoLockMonitoringMsg = exports.UpdateAutoLockAccountDurationMsg = exports.GetAutoLockAccountDurationMsg = void 0;
-const router_1 = __webpack_require__(3);
-const constants_1 = __webpack_require__(547);
-class GetAutoLockAccountDurationMsg extends router_1.Message {
-    static type() {
-        return "get-auto-lock-account-duration";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        // noop
-    }
-    route() {
-        return constants_1.ROUTE;
-    }
-    type() {
-        return GetAutoLockAccountDurationMsg.type();
-    }
-}
-exports.GetAutoLockAccountDurationMsg = GetAutoLockAccountDurationMsg;
-class UpdateAutoLockAccountDurationMsg extends router_1.Message {
-    constructor(duration) {
-        super();
-        this.duration = duration;
-    }
-    static type() {
-        return "update-auto-lock-account-duration";
-    }
-    validateBasic() {
-        if (this.duration < 0) {
-            throw new router_1.KeplrError("auto-lock-account", 101, "duration cannot be set to a negative number.");
-        }
-    }
-    route() {
-        return constants_1.ROUTE;
-    }
-    type() {
-        return UpdateAutoLockAccountDurationMsg.type();
-    }
-}
-exports.UpdateAutoLockAccountDurationMsg = UpdateAutoLockAccountDurationMsg;
-class StartAutoLockMonitoringMsg extends router_1.Message {
-    static type() {
-        return "start-auto-lock-monitoring";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        // noop
-    }
-    route() {
-        return constants_1.ROUTE;
-    }
-    type() {
-        return StartAutoLockMonitoringMsg.type();
-    }
-}
-exports.StartAutoLockMonitoringMsg = StartAutoLockMonitoringMsg;
-class LockMsg extends router_1.Message {
-    static type() {
-        return "lock-msg";
-    }
-    constructor() {
-        super();
-    }
-    validateBasic() {
-        // noop
-    }
-    route() {
-        return constants_1.ROUTE;
-    }
-    type() {
-        return LockMsg.type();
-    }
-}
-exports.LockMsg = LockMsg;
-//# sourceMappingURL=messages.js.map
-
-/***/ }),
-
 /***/ 342:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8251,9 +5679,9 @@ exports.MisesService = exports.fetchConfig = void 0;
  * @LastEditors: lmk
  * @Description: mises controller
  */
-const mises_1 = __webpack_require__(1065);
-const mises_network_util_1 = __webpack_require__(231);
-const stargate_1 = __webpack_require__(265);
+const mises_1 = __webpack_require__(1067);
+const mises_network_util_1 = __webpack_require__(232);
+const stargate_1 = __webpack_require__(266);
 const long_1 = __importDefault(__webpack_require__(7));
 const defaultUserInfo = {
     misesId: "",
@@ -8344,7 +5772,7 @@ class MisesService {
             console.log("activateUser", this.activeUser);
             const userInfo = yield this.misesUserInfo();
             this.storeUserInfo(userInfo);
-            this.initKeepAlive();
+            // this.initKeepAlive();
         });
     }
     misesUserInfo() {
@@ -8388,7 +5816,7 @@ class MisesService {
         this.resetUserInfo();
         this.mises.misesUser.lockAll();
         this.activeUser = undefined;
-        this.disconnectKeepAlive();
+        // this.disconnectKeepAlive();
         // this.setToMisesPrivate(defaultUserInfo);
     }
     generateAuth(nonce) {
@@ -9663,7 +7091,7 @@ exports.SetIsShouldVerifyMsg = SetIsShouldVerifyMsg;
 /***/ 377:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports.pbkdf2 = __webpack_require__(1025)
+exports.pbkdf2 = __webpack_require__(1027)
 exports.pbkdf2Sync = __webpack_require__(530)
 
 
@@ -10043,7 +7471,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(524), exports);
 __exportStar(__webpack_require__(525), exports);
-__exportStar(__webpack_require__(333), exports);
+__exportStar(__webpack_require__(334), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -10308,7 +7736,7 @@ const router_1 = __webpack_require__(3);
 const tx_1 = __webpack_require__(100);
 const long_1 = __importDefault(__webpack_require__(7));
 const buffer_1 = __webpack_require__(4);
-const amino_sign_doc_1 = __webpack_require__(1038);
+const amino_sign_doc_1 = __webpack_require__(1040);
 class KeyRingService {
     constructor(kvStore, embedChainInfos, crypto) {
         this.kvStore = kvStore;
@@ -10336,12 +7764,12 @@ class KeyRingService {
     }
     enable(env) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (this.keyRing.status === keyring_1.KeyRingStatus.NOTLOADED) {
+                yield this.keyRing.restore();
+            }
             if (this.keyRing.status === keyring_1.KeyRingStatus.EMPTY) {
                 yield this.interactionService.waitApprove(env, "/register", "register", {});
                 return this.keyRing.status;
-            }
-            if (this.keyRing.status === keyring_1.KeyRingStatus.NOTLOADED) {
-                yield this.keyRing.restore();
             }
             if ([keyring_1.KeyRingStatus.LOCKED, keyring_1.KeyRingStatus.MIGRATOR].includes(this.keyRing.status)) {
                 console.log("unlock", env);
@@ -10750,7 +8178,7 @@ module.exports = defaultEncoding
 /***/ 530:
 /***/ (function(module, exports, __webpack_require__) {
 
-var md5 = __webpack_require__(290)
+var md5 = __webpack_require__(291)
 var RIPEMD160 = __webpack_require__(144)
 var sha = __webpack_require__(124)
 var Buffer = __webpack_require__(22).Buffer
@@ -11480,7 +8908,7 @@ exports.TokensService = void 0;
 const router_1 = __webpack_require__(3);
 const chains_1 = __webpack_require__(539);
 const cosmos_1 = __webpack_require__(16);
-const keyring_1 = __webpack_require__(338);
+const keyring_1 = __webpack_require__(339);
 const buffer_1 = __webpack_require__(4);
 const messages_1 = __webpack_require__(230);
 const types_1 = __webpack_require__(541);
@@ -11786,31 +9214,31 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-const PersistentMemory = __importStar(__webpack_require__(1017));
-const Chains = __importStar(__webpack_require__(1020));
-const KeyRing = __importStar(__webpack_require__(1023));
+const PersistentMemory = __importStar(__webpack_require__(1019));
+const Chains = __importStar(__webpack_require__(1022));
+const KeyRing = __importStar(__webpack_require__(1025));
 // import * as SecretWasm from "./secret-wasm/internal";
-const BackgroundTx = __importStar(__webpack_require__(1041));
-const Updater = __importStar(__webpack_require__(1044));
-const Tokens = __importStar(__webpack_require__(1047));
-const Interaction = __importStar(__webpack_require__(1051));
-const Permission = __importStar(__webpack_require__(1058));
+const BackgroundTx = __importStar(__webpack_require__(1043));
+const Updater = __importStar(__webpack_require__(1046));
+const Tokens = __importStar(__webpack_require__(1049));
+const Interaction = __importStar(__webpack_require__(1053));
+const Permission = __importStar(__webpack_require__(1060));
 // import * as PhishingList from "./phishing-list/internal";
-const AutoLocker = __importStar(__webpack_require__(1061));
-const Mises = __importStar(__webpack_require__(1064));
-const MisesSafe = __importStar(__webpack_require__(1081));
-__exportStar(__webpack_require__(1085), exports);
-__exportStar(__webpack_require__(539), exports);
-__exportStar(__webpack_require__(338), exports);
-__exportStar(__webpack_require__(1086), exports);
+const AutoLocker = __importStar(__webpack_require__(1063));
+const Mises = __importStar(__webpack_require__(1066));
+const MisesSafe = __importStar(__webpack_require__(1083));
 __exportStar(__webpack_require__(1087), exports);
+__exportStar(__webpack_require__(539), exports);
+__exportStar(__webpack_require__(339), exports);
 __exportStar(__webpack_require__(1088), exports);
-__exportStar(__webpack_require__(1171), exports);
+__exportStar(__webpack_require__(1089), exports);
+__exportStar(__webpack_require__(1090), exports);
 __exportStar(__webpack_require__(1173), exports);
-__exportStar(__webpack_require__(1174), exports);
 __exportStar(__webpack_require__(1175), exports);
-__exportStar(__webpack_require__(523), exports);
+__exportStar(__webpack_require__(1176), exports);
 __exportStar(__webpack_require__(1177), exports);
+__exportStar(__webpack_require__(523), exports);
+__exportStar(__webpack_require__(1179), exports);
 //import { LedgerOptions } from "./ledger/options";
 //import { MisesSafe } from "./mises-safe/mises";
 function init(router, storeCreator, 
@@ -11843,7 +9271,7 @@ privilegedOrigins, commonCrypto, notification, experimentalOptions = {}) {
     //   retryIntervalMs: 10 * 60 * 1000, // 10 mins,
     //   allowTimeoutMs: 10 * 60 * 1000, // 10 mins,
     // });
-    const autoLockAccountService = new AutoLocker.AutoLockAccountService(storeCreator("auto-lock-account"));
+    const autoLockAccountService = new AutoLocker.AutoLockAccountService(storeCreator("auto-lock-account"), eventMsgRequester);
     interactionService.init();
     persistentMemoryService.init();
     permissionService.init(interactionService, chainsService, keyRingService);
@@ -12048,10 +9476,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1052), exports);
-__exportStar(__webpack_require__(339), exports);
-__exportStar(__webpack_require__(1053), exports);
 __exportStar(__webpack_require__(1054), exports);
+__exportStar(__webpack_require__(340), exports);
+__exportStar(__webpack_require__(1055), exports);
+__exportStar(__webpack_require__(1056), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -12096,17 +9524,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoLockAccountService = void 0;
-const keyring_1 = __webpack_require__(338);
+const keyring_1 = __webpack_require__(339);
+const router_1 = __webpack_require__(3);
+const messages_1 = __webpack_require__(231);
 class AutoLockAccountService {
-    constructor(kvStore, opts = {
+    constructor(kvStore, eventMsgRequester, opts = {
         monitoringInterval: 10000,
     }) {
         this.kvStore = kvStore;
+        this.eventMsgRequester = eventMsgRequester;
         this.opts = opts;
         // Unit: ms
         this.autoLockDuration = 15 * 60 * 1000;
+        // Unit: ms
+        this.keepAliveDuration = 15 * 1000;
         this.appStateCheckTimer = null;
         this.autoLockTimer = null;
+        this.keepAliveTimer = null;
     }
     init(keyringService) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -12214,6 +9648,24 @@ class AutoLockAccountService {
             }
         });
     }
+    keepAlive() {
+        this.clearKeepAliveTimer();
+        if (this.keyRingIsUnlocked) {
+            this.keepAliveTimer = setTimeout(() => {
+                const msg = new messages_1.KeepAliveMsg();
+                this.eventMsgRequester.sendMessage(router_1.BACKGROUND_PORT, msg).finally(() => {
+                    console.log("keepAlive");
+                    this.keepAlive();
+                });
+            }, this.keepAliveDuration);
+        }
+    }
+    clearKeepAliveTimer() {
+        if (this.keepAliveTimer) {
+            clearTimeout(this.keepAliveTimer);
+            this.keepAliveTimer = null;
+        }
+    }
 }
 exports.AutoLockAccountService = AutoLockAccountService;
 //# sourceMappingURL=service.js.map
@@ -12260,8 +9712,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MisesSafeService = void 0;
-const mises_network_util_1 = __webpack_require__(231);
-const html_similar_1 = __webpack_require__(1082);
+const mises_network_util_1 = __webpack_require__(232);
+const html_similar_1 = __webpack_require__(1084);
 const listenMethods = {
     mVerifyDomain: "verifyDomain",
     mVerifyContract: "verifyContract",
@@ -12655,6 +10107,2666 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ROUTE = void 0;
 exports.ROUTE = "mises-safe";
 //# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ 608:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ messages_GetAutoLockAccountDurationMsg; });
+__webpack_require__.d(__webpack_exports__, "c", function() { return /* reexport */ messages_UpdateAutoLockAccountDurationMsg; });
+__webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ messages_KeepAliveMsg; });
+
+// UNUSED EXPORTS: AutoLockAccountService, StartAutoLockMonitoringMsg, LockMsg
+
+// EXTERNAL MODULE: ../background/src/keyring/index.ts + 9 modules
+var keyring = __webpack_require__(635);
+
+// EXTERNAL MODULE: ../router/build/index.js
+var build = __webpack_require__(3);
+
+// CONCATENATED MODULE: ../background/src/auto-lock-account/constants.ts
+const ROUTE = "auto-lock-account";
+
+// CONCATENATED MODULE: ../background/src/auto-lock-account/messages.ts
+
+
+class messages_GetAutoLockAccountDurationMsg extends build["Message"] {
+    static type() {
+        return "get-auto-lock-account-duration";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_GetAutoLockAccountDurationMsg.type();
+    }
+}
+class messages_UpdateAutoLockAccountDurationMsg extends build["Message"] {
+    constructor(duration) {
+        super();
+        this.duration = duration;
+    }
+    static type() {
+        return "update-auto-lock-account-duration";
+    }
+    validateBasic() {
+        if (this.duration < 0) {
+            throw new build["KeplrError"]("auto-lock-account", 101, "duration cannot be set to a negative number.");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_UpdateAutoLockAccountDurationMsg.type();
+    }
+}
+class messages_StartAutoLockMonitoringMsg extends build["Message"] {
+    static type() {
+        return "start-auto-lock-monitoring";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_StartAutoLockMonitoringMsg.type();
+    }
+}
+class messages_LockMsg extends build["Message"] {
+    static type() {
+        return "lock-msg";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_LockMsg.type();
+    }
+}
+class messages_KeepAliveMsg extends build["Message"] {
+    static type() {
+        return "keepAlive-msg";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_KeepAliveMsg.type();
+    }
+}
+
+// CONCATENATED MODULE: ../background/src/auto-lock-account/service.ts
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+class service_AutoLockAccountService {
+    constructor(kvStore, eventMsgRequester, opts = {
+        monitoringInterval: 10000,
+    }) {
+        this.kvStore = kvStore;
+        this.eventMsgRequester = eventMsgRequester;
+        this.opts = opts;
+        // Unit: ms
+        this.autoLockDuration = 15 * 60 * 1000;
+        // Unit: ms
+        this.keepAliveDuration = 15 * 1000;
+        this.appStateCheckTimer = null;
+        this.autoLockTimer = null;
+        this.keepAliveTimer = null;
+    }
+    init(keyringService) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.keyringService = keyringService;
+            browser.idle.onStateChanged.addListener((idle) => {
+                this.stateChangedHandler(idle);
+            });
+            yield this.loadDuration();
+        });
+    }
+    stateChangedHandler(newState) {
+        if (this.autoLockDuration > 0) {
+            if (newState === "locked") {
+                this.stopAppStateCheckTimer();
+                this.stopAutoLockTimer();
+                this.lock();
+            }
+        }
+    }
+    startAppStateCheckTimer() {
+        if (this.autoLockDuration > 0 && this.keyRingIsUnlocked) {
+            this.stopAutoLockTimer();
+            this.startAutoLockTimer();
+        }
+    }
+    stopAppStateCheckTimer() {
+        if (this.appStateCheckTimer != null) {
+            clearTimeout(this.appStateCheckTimer);
+            this.appStateCheckTimer = null;
+        }
+    }
+    checkAppIsActive() {
+        // const background = browser.extension.getBackgroundPage();
+        // const views = browser.extension.getViews();
+        // if (background) {
+        //   for (const view of views) {
+        //     if (background.location.href !== view.location.href) {
+        //       return true;
+        //     }
+        //   }
+        // } else if (views.length > 0) {
+        //   return true;
+        // }
+        return false;
+    }
+    startAutoLockTimer() {
+        if (!this.keyRingIsUnlocked) {
+            throw new Error("Keyring is not unlocked");
+        }
+        if (this.autoLockDuration <= 0) {
+            return;
+        }
+        this.autoLockTimer = setTimeout(() => {
+            this.stopAppStateCheckTimer();
+            this.stopAutoLockTimer();
+            this.lock();
+        }, this.autoLockDuration);
+    }
+    stopAutoLockTimer() {
+        if (this.autoLockTimer != null) {
+            clearTimeout(this.autoLockTimer);
+            this.autoLockTimer = null;
+        }
+    }
+    lock() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.keyRingIsUnlocked) {
+                this.keyringService.lock();
+                let tabs = yield browser.tabs.query({
+                    discarded: false,
+                    status: "complete",
+                });
+                tabs = tabs.filter((val) => val.url && val.url.indexOf(browser.runtime.id) > -1);
+                for (const tab of tabs) {
+                    browser.tabs.reload(tab.id);
+                }
+            }
+        });
+    }
+    get keyRingIsUnlocked() {
+        if (this.keyringService == null) {
+            throw new Error("Keyring service is null");
+        }
+        return this.keyringService.keyRingStatus === keyring["a" /* KeyRingStatus */].UNLOCKED;
+    }
+    getAutoLockDuration() {
+        return this.autoLockDuration;
+    }
+    setDuration(duration) {
+        this.autoLockDuration = duration;
+        if (duration <= 0) {
+            this.stopAppStateCheckTimer();
+            this.stopAutoLockTimer();
+        }
+        return this.kvStore.set("autoLockDuration", duration);
+    }
+    loadDuration() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const duration = yield this.kvStore.get("autoLockDuration");
+            if (duration == null) {
+                this.autoLockDuration = 15 * 60 * 1000;
+            }
+            else {
+                this.autoLockDuration = duration;
+            }
+        });
+    }
+    keepAlive() {
+        this.clearKeepAliveTimer();
+        if (this.keyRingIsUnlocked) {
+            this.keepAliveTimer = setTimeout(() => {
+                const msg = new messages_KeepAliveMsg();
+                this.eventMsgRequester.sendMessage(build["BACKGROUND_PORT"], msg).finally(() => {
+                    console.log("keepAlive");
+                    this.keepAlive();
+                });
+            }, this.keepAliveDuration);
+        }
+    }
+    clearKeepAliveTimer() {
+        if (this.keepAliveTimer) {
+            clearTimeout(this.keepAliveTimer);
+            this.keepAliveTimer = null;
+        }
+    }
+}
+
+// CONCATENATED MODULE: ../background/src/auto-lock-account/index.ts
+
+
+
+
+/***/ }),
+
+/***/ 635:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ KeyRingStatus; });
+
+// UNUSED EXPORTS: KeyRingService, RestoreKeyRingMsg, DeleteKeyRingMsg, UpdateNameKeyRingMsg, ShowKeyRingMsg, CreateMnemonicKeyMsg, AddMnemonicKeyMsg, CreatePrivateKeyMsg, AddPrivateKeyMsg, LockKeyRingMsg, UnlockKeyRingMsg, GetKeyMsg, RequestSignAminoMsg, RequestSignEIP712CosmosTxMsg_v0, RequestVerifyADR36AminoSignDoc, RequestSignDirectMsg, GetMultiKeyStoreInfoMsg, ChangeKeyRingMsg, GetIsKeyStoreCoinTypeSetMsg, SetKeyStoreCoinTypeMsg, CheckPasswordMsg, ExportKeyRingDatasMsg, IsUnlockMsg, AddAccountMsg, MigratorKeyRingMsg, RestoreKeyStoreMsg, KeyRing, EIP712PropertyFieldValidator, EIP712DomainTypeValidator, EIP712MessageValidator
+
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/aes-js/index.js
+var aes_js = __webpack_require__(194);
+var aes_js_default = /*#__PURE__*/__webpack_require__.n(aes_js);
+
+// EXTERNAL MODULE: ../crypto/build/index.js
+var build = __webpack_require__(51);
+
+// EXTERNAL MODULE: ../background/node_modules/pbkdf2/browser.js
+var pbkdf2_browser = __webpack_require__(377);
+var browser_default = /*#__PURE__*/__webpack_require__.n(pbkdf2_browser);
+
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/node-libs-browser/node_modules/buffer/index.js
+var buffer = __webpack_require__(4);
+
+// EXTERNAL MODULE: ../router/build/index.js
+var router_build = __webpack_require__(3);
+
+// CONCATENATED MODULE: ../background/src/keyring/crypto.ts
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+
+
+class crypto_Crypto {
+    static encrypt(crypto, kdf, type, text, password, meta, bip44HDPath) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let random = new Uint8Array(32);
+            const salt = buffer["Buffer"].from(yield crypto.rng(random)).toString("hex");
+            const scryptParams = {
+                salt,
+                dklen: 32,
+                n: 32768,
+                r: 8,
+                p: 1,
+            };
+            random = new Uint8Array(16);
+            const iv = buffer["Buffer"].from(yield crypto.rng(random));
+            // If the mnemonic is not imported, there will be no mnemonic content
+            if (!text && !password && type === "mnemonic") {
+                return {
+                    version: "1.2",
+                    type,
+                    coinTypeForChain: {},
+                    bip44HDPath,
+                    meta,
+                    crypto: {
+                        cipher: "aes-128-ctr",
+                        cipherparams: {
+                            iv: iv.toString("hex"),
+                        },
+                        ciphertext: "",
+                        kdf,
+                        kdfparams: scryptParams,
+                        mac: "",
+                    },
+                };
+            }
+            const derivedKey = yield (() => __awaiter(this, void 0, void 0, function* () {
+                switch (kdf) {
+                    case "scrypt":
+                        return yield crypto.scrypt(password, scryptParams);
+                    case "sha256":
+                        return build["Hash"].sha256(buffer["Buffer"].from(`${salt}/${password}`));
+                    case "pbkdf2":
+                        return new Promise((resolve, reject) => {
+                            browser_default.a.pbkdf2(password, salt, 4000, 32, "sha256", (err, derivedKey) => {
+                                if (err) {
+                                    reject(err);
+                                }
+                                else {
+                                    resolve(new Uint8Array(derivedKey));
+                                }
+                            });
+                        });
+                    default:
+                        throw new router_build["KeplrError"]("keyring", 220, "Unknown kdf");
+                }
+            }))();
+            const buf = buffer["Buffer"].from(text);
+            const counter = new aes_js["Counter"](0);
+            counter.setBytes(iv);
+            const aesCtr = new aes_js_default.a.ModeOfOperation.ctr(derivedKey, counter);
+            const ciphertext = buffer["Buffer"].from(aesCtr.encrypt(buf));
+            // Mac is sha256(last 16 bytes of derived key + ciphertext)
+            const mac = build["Hash"].sha256(buffer["Buffer"].concat([
+                buffer["Buffer"].from(derivedKey.slice(derivedKey.length / 2)),
+                ciphertext,
+            ]));
+            return {
+                version: "1.2",
+                type,
+                coinTypeForChain: {},
+                bip44HDPath,
+                meta,
+                crypto: {
+                    cipher: "aes-128-ctr",
+                    cipherparams: {
+                        iv: iv.toString("hex"),
+                    },
+                    ciphertext: ciphertext.toString("hex"),
+                    kdf,
+                    kdfparams: scryptParams,
+                    mac: buffer["Buffer"].from(mac).toString("hex"),
+                },
+            };
+        });
+    }
+    static decrypt(crypto, keyStore, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const derivedKey = yield (() => __awaiter(this, void 0, void 0, function* () {
+                switch (keyStore.crypto.kdf) {
+                    case "scrypt":
+                        return yield crypto.scrypt(password, keyStore.crypto.kdfparams);
+                    case "sha256":
+                        return build["Hash"].sha256(buffer["Buffer"].from(`${keyStore.crypto.kdfparams.salt}/${password}`));
+                    case "pbkdf2":
+                        return new Promise((resolve, reject) => {
+                            browser_default.a.pbkdf2(password, keyStore.crypto.kdfparams.salt, 4000, 32, "sha256", (err, derivedKey) => {
+                                if (err) {
+                                    reject(err);
+                                }
+                                else {
+                                    resolve(new Uint8Array(derivedKey));
+                                }
+                            });
+                        });
+                    default:
+                        throw new router_build["KeplrError"]("keyring", 220, "Unknown kdf");
+                }
+            }))();
+            const counter = new aes_js["Counter"](0);
+            counter.setBytes(buffer["Buffer"].from(keyStore.crypto.cipherparams.iv, "hex"));
+            const aesCtr = new aes_js_default.a.ModeOfOperation.ctr(derivedKey, counter);
+            const mac = build["Hash"].sha256(buffer["Buffer"].concat([
+                buffer["Buffer"].from(derivedKey.slice(derivedKey.length / 2)),
+                buffer["Buffer"].from(keyStore.crypto.ciphertext, "hex"),
+            ]));
+            if (!buffer["Buffer"].from(mac).equals(buffer["Buffer"].from(keyStore.crypto.mac, "hex"))) {
+                throw new router_build["KeplrError"]("keyring", 222, "Unmatched mac");
+            }
+            return buffer["Buffer"].from(aesCtr.decrypt(buffer["Buffer"].from(keyStore.crypto.ciphertext, "hex")));
+        });
+    }
+}
+
+// EXTERNAL MODULE: ../types/build/index.js
+var types_build = __webpack_require__(96);
+
+// EXTERNAL MODULE: ../cosmos/build/index.js
+var cosmos_build = __webpack_require__(16);
+
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/wallet/lib.esm/index.js + 39 modules
+var lib_esm = __webpack_require__(253);
+
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/bytes/lib.esm/index.js + 1 modules
+var bytes_lib_esm = __webpack_require__(1);
+
+// EXTERNAL MODULE: ../background/node_modules/joi/dist/joi-browser.min.js
+var joi_browser_min = __webpack_require__(41);
+var joi_browser_min_default = /*#__PURE__*/__webpack_require__.n(joi_browser_min);
+
+// CONCATENATED MODULE: ../background/src/keyring/eip712.ts
+
+// https://eips.ethereum.org/EIPS/eip-712
+const EIP712PropertyFieldValidator = joi_browser_min_default.a.object({
+    name: joi_browser_min_default.a.string().min(1).required(),
+    // TODO: Check valid types (string, bool, address, uint256...)
+    type: joi_browser_min_default.a.string().min(1).required(),
+});
+const EIP712DomainTypeValidator = joi_browser_min_default.a.array()
+    .items(joi_browser_min_default.a.object({
+    name: joi_browser_min_default.a.string().valid("name").required(),
+    type: joi_browser_min_default.a.string().valid("string").required(),
+}), joi_browser_min_default.a.object({
+    name: joi_browser_min_default.a.string().valid("version").required(),
+    type: joi_browser_min_default.a.string().valid("string").required(),
+}), joi_browser_min_default.a.object({
+    name: joi_browser_min_default.a.string().valid("chainId").required(),
+    type: joi_browser_min_default.a.string().valid("uint256").required(),
+}), joi_browser_min_default.a.object({
+    name: joi_browser_min_default.a.string().valid("verifyingContract").required(),
+    // From https://eips.ethereum.org/EIPS/eip-712, (string) may be non-standard?
+    // But, ethermint set this type as string.
+    type: joi_browser_min_default.a.string().valid("address", "string").required(),
+}), joi_browser_min_default.a.object({
+    name: joi_browser_min_default.a.string().valid("salt").required(),
+    // From https://eips.ethereum.org/EIPS/eip-712, (string) may be non-standard?
+    // But, ethermint set this type as string.
+    type: joi_browser_min_default.a.string().valid("bytes32", "string").required(),
+}))
+    .unique()
+    .min(1)
+    .custom((value) => {
+    // Sort by name
+    const domainFieldNames = [
+        "name",
+        "version",
+        "chainId",
+        "verifyingContract",
+        "salt",
+    ];
+    return value.sort((a, b) => {
+        return (domainFieldNames.indexOf(a.name) - domainFieldNames.indexOf(b.name));
+    });
+});
+const EIP712MessageValidator = joi_browser_min_default.a.object({
+    types: joi_browser_min_default.a.object({
+        EIP712Domain: EIP712DomainTypeValidator.required(),
+    })
+        .unknown(true)
+        .required(),
+    primaryType: joi_browser_min_default.a.string().min(1).required(),
+    domain: joi_browser_min_default.a.object().required(),
+    message: joi_browser_min_default.a.object().required(),
+});
+
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/typed-data.js + 4 modules
+var typed_data = __webpack_require__(593);
+
+// CONCATENATED MODULE: ../background/src/migrator/index.ts
+var migrator_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+class Migrator {
+    // run all pending migrations on meta in place
+    migrateData() {
+        return migrator_awaiter(this, void 0, void 0, function* () {
+            const { migrated } = yield browser.storage.local.get();
+            if (migrated && migrated.data) {
+                const keyringStore = migrated.data.KeyringController || {
+                    vault: "",
+                };
+                return keyringStore;
+            }
+            return {
+                vault: "",
+            };
+        });
+    }
+    enCodeValut(keyringStore, password) {
+        return migrator_awaiter(this, void 0, void 0, function* () {
+            // eslint-disable-next-line
+            const encryptor = __webpack_require__(629);
+            const { vault: vaultString } = keyringStore;
+            const vault = (yield encryptor.decrypt(password, vaultString));
+            return vault.filter((val) => ["HD Key Tree", "Simple Key Pair"].includes(val.type));
+        });
+    }
+    clearCache() {
+        console.log("clear data");
+        return browser.storage.local.set({
+            migrated: "done",
+        });
+    }
+}
+
+// CONCATENATED MODULE: ../background/src/keyring/keyring.ts
+var keyring_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+var KeyRingStatus;
+(function (KeyRingStatus) {
+    KeyRingStatus[KeyRingStatus["NOTLOADED"] = 0] = "NOTLOADED";
+    KeyRingStatus[KeyRingStatus["EMPTY"] = 1] = "EMPTY";
+    KeyRingStatus[KeyRingStatus["LOCKED"] = 2] = "LOCKED";
+    KeyRingStatus[KeyRingStatus["UNLOCKED"] = 3] = "UNLOCKED";
+    KeyRingStatus[KeyRingStatus["MIGRATOR"] = 4] = "MIGRATOR";
+})(KeyRingStatus || (KeyRingStatus = {}));
+const KeyStoreKey = "key-store";
+const KeyMultiStoreKey = "key-multi-store";
+/*
+ Keyring stores keys in persistent backround.
+ And, this manages the state, crypto, address, signing and so on...
+ */
+class keyring_KeyRing {
+    constructor(embedChainInfos, kvStore, crypto, misesService) {
+        this.embedChainInfos = embedChainInfos;
+        this.kvStore = kvStore;
+        this.crypto = crypto;
+        this.misesService = misesService;
+        this.cached = new Map();
+        this.password = "";
+        this.migratorStore = { vault: "" };
+        this.loaded = false;
+        this.keyStore = null;
+        this.multiKeyStore = [];
+        const migrator = new Migrator();
+        this.migrator = migrator;
+        migrator.migrateData().then((res) => {
+            this.migratorStore = res;
+        });
+    }
+    static getTypeOfKeyStore(keyStore) {
+        const type = keyStore.type;
+        if (type == null) {
+            return "mnemonic";
+        }
+        if (type !== "mnemonic" && type !== "privateKey" && type !== "ledger") {
+            throw new router_build["KeplrError"]("keyring", 132, "Invalid type of key store");
+        }
+        return type;
+    }
+    get type() {
+        if (!this.keyStore) {
+            return "none";
+        }
+        else {
+            return keyring_KeyRing.getTypeOfKeyStore(this.keyStore);
+        }
+    }
+    isLocked() {
+        return (this.privateKey == null &&
+            this.mnemonicMasterSeed == null &&
+            this.ledgerPublicKeyCache == null);
+    }
+    get privateKey() {
+        return this._privateKey;
+    }
+    set privateKey(privateKey) {
+        this._privateKey = privateKey;
+        this._mnemonicMasterSeed = undefined;
+        this._ledgerPublicKeyCache = undefined;
+        this.cached = new Map();
+    }
+    get mnemonicMasterSeed() {
+        return this._mnemonicMasterSeed;
+    }
+    set mnemonicMasterSeed(masterSeed) {
+        this._mnemonicMasterSeed = masterSeed;
+        this._privateKey = undefined;
+        this._ledgerPublicKeyCache = undefined;
+        this.cached = new Map();
+    }
+    get ledgerPublicKeyCache() {
+        return this._ledgerPublicKeyCache;
+    }
+    set ledgerPublicKeyCache(publicKeys) {
+        this._mnemonicMasterSeed = undefined;
+        this._privateKey = undefined;
+        this._ledgerPublicKeyCache = publicKeys;
+        this.cached = new Map();
+    }
+    get status() {
+        if (!this.loaded) {
+            return KeyRingStatus.NOTLOADED;
+        }
+        if (!this.keyStore && this.migratorStore.vault) {
+            return KeyRingStatus.MIGRATOR;
+        }
+        if (!this.keyStore) {
+            return KeyRingStatus.EMPTY;
+        }
+        else if (!this.isLocked()) {
+            return KeyRingStatus.UNLOCKED;
+        }
+        else {
+            return KeyRingStatus.LOCKED;
+        }
+    }
+    getKeyStoreCoinType(chainId) {
+        if (!this.keyStore) {
+            return undefined;
+        }
+        if (!this.keyStore.coinTypeForChain) {
+            return undefined;
+        }
+        return this.keyStore.coinTypeForChain[cosmos_build["ChainIdHelper"].parse(chainId).identifier];
+    }
+    getKey(chainId, defaultCoinType, useEthereumAddress) {
+        return this.loadKey(this.computeKeyStoreCoinType(chainId, defaultCoinType), useEthereumAddress);
+    }
+    getKeyStoreMeta(key) {
+        var _a;
+        if (!this.keyStore || this.keyStore.meta == null) {
+            return "";
+        }
+        return (_a = this.keyStore.meta[key]) !== null && _a !== void 0 ? _a : "";
+    }
+    computeKeyStoreCoinType(chainId, defaultCoinType) {
+        var _a;
+        if (!this.keyStore) {
+            throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+        }
+        return this.keyStore.coinTypeForChain
+            ? (_a = this.keyStore.coinTypeForChain[cosmos_build["ChainIdHelper"].parse(chainId).identifier]) !== null && _a !== void 0 ? _a : defaultCoinType : defaultCoinType;
+    }
+    getKeyFromCoinType(coinType, useEthereumAddress) {
+        return this.loadKey(coinType, useEthereumAddress);
+    }
+    createMnemonicKey(kdf, mnemonic, password, meta, bip44HDPath) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            yield this.checkKeyStoreStatus();
+            if (![KeyRingStatus.EMPTY, KeyRingStatus.MIGRATOR].includes(this.status)) {
+                throw new router_build["KeplrError"]("keyring", 142, "Key ring is not loaded or not empty");
+            }
+            this.mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(mnemonic);
+            this.keyStore = yield keyring_KeyRing.CreateMnemonicKeyStore(this.crypto, kdf, mnemonic, password, yield this.assignKeyStoreIdMeta(meta), bip44HDPath);
+            this.password = password;
+            this.multiKeyStore.push(this.keyStore);
+            const privKey = this.loadPrivKey(60);
+            const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
+            // this.misesService.initQueryClient();
+            this.misesService.activateUser(ethWallet.privateKey);
+            yield this.save();
+            return {
+                status: this.status,
+                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
+            };
+        });
+    }
+    createPrivateKey(kdf, privateKey, password, meta) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.EMPTY) {
+                throw new router_build["KeplrError"]("keyring", 142, "Key ring is not loaded or not empty");
+            }
+            this.privateKey = privateKey;
+            this.keyStore = yield keyring_KeyRing.CreatePrivateKeyStore(this.crypto, kdf, privateKey, password, yield this.assignKeyStoreIdMeta(meta));
+            this.password = password;
+            this.multiKeyStore.push(this.keyStore);
+            yield this.save();
+            return {
+                status: this.status,
+                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
+            };
+        });
+    }
+    lock() {
+        if (this.status !== KeyRingStatus.UNLOCKED) {
+            throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+        }
+        this.mnemonicMasterSeed = undefined;
+        this.privateKey = undefined;
+        this.ledgerPublicKeyCache = undefined;
+        this.password = "";
+        this.misesService.lockAll();
+    }
+    checkKeyStoreStatus() {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (!this.keyStore || this.type === "none") {
+                console.log("checkKeyStoreStatus");
+                yield this.restore();
+            }
+            return true;
+        });
+    }
+    unlock(password) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            /**
+             * If the service worker is closed and reopened
+             * the restore will not run, so you need to check whether the keystore needs to be restored again
+             */
+            console.log("unlocked");
+            yield this.checkKeyStoreStatus();
+            if (!this.keyStore || this.type === "none") {
+                throw new router_build["KeplrError"]("keyring", 144, "Key ring not initialized");
+            }
+            if (this.type === "mnemonic") {
+                // If password is invalid, error will be thrown.
+                this.mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString());
+            }
+            else if (this.type === "privateKey") {
+                // If password is invalid, error will be thrown.
+                this.privateKey = buffer["Buffer"].from(buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.keyStore, password)).toString(), "hex");
+            }
+            else {
+                throw new router_build["KeplrError"]("keyring", 145, "Unexpected type of keyring");
+            }
+            this.password = password;
+            const privKey = this.loadPrivKey(60);
+            const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
+            // this.misesService.initQueryClient();
+            this.misesService.activateUser(ethWallet.privateKey);
+        });
+    }
+    save() {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            yield this.kvStore.set(KeyStoreKey, this.keyStore);
+            yield this.kvStore.set(KeyMultiStoreKey, this.multiKeyStore);
+        });
+    }
+    restore() {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            console.log("keyring restore");
+            const keyStore = yield this.kvStore.get(KeyStoreKey);
+            if (!keyStore) {
+                this.keyStore = null;
+            }
+            else {
+                this.keyStore = keyStore;
+            }
+            const multiKeyStore = yield this.kvStore.get(KeyMultiStoreKey);
+            if (!multiKeyStore) {
+                // Restore the multi keystore if key store exist 13t multi Key store is empty.
+                // This case will occur if extension is updated from the prior version that doesn't support the multi key store.
+                // This line ensures the backward compatibility.
+                if (keyStore) {
+                    keyStore.meta = yield this.assignKeyStoreIdMeta({});
+                    this.multiKeyStore = [keyStore];
+                }
+                else {
+                    this.multiKeyStore = [];
+                }
+                yield this.save();
+            }
+            else {
+                this.multiKeyStore = multiKeyStore;
+            }
+            let hasLegacyKeyStore = false;
+            // In prior of version 1.2, bip44 path didn't tie with the keystore, and bip44 exists on the chain info.
+            // But, after some chain matures, they decided the bip44 path's coin type.
+            // So, some chain can have the multiple bip44 coin type (one is the standard coin type and other is the legacy coin type).
+            // We should support the legacy coin type, so we determined that the coin type ties with the keystore.
+            // To decrease the barrier of existing users, set the alternative coin type by force if the keystore version is prior than 1.2.
+            if (this.keyStore) {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                if (this.keyStore.version === "1" || this.keyStore.version === "1.1") {
+                    hasLegacyKeyStore = true;
+                    this.updateLegacyKeyStore(this.keyStore);
+                }
+            }
+            for (const keyStore of this.multiKeyStore) {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                if (keyStore.version === "1" || keyStore.version === "1.1") {
+                    hasLegacyKeyStore = true;
+                    this.updateLegacyKeyStore(keyStore);
+                }
+            }
+            if (hasLegacyKeyStore) {
+                yield this.save();
+            }
+            console.log("keyring restore done");
+            this.loaded = true;
+        });
+    }
+    updateLegacyKeyStore(keyStore) {
+        keyStore.version = "1.2";
+        for (const chainInfo of this.embedChainInfos) {
+            const coinType = (() => {
+                if (chainInfo.alternativeBIP44s &&
+                    chainInfo.alternativeBIP44s.length > 0) {
+                    return chainInfo.alternativeBIP44s[0].coinType;
+                }
+                else {
+                    return chainInfo.bip44.coinType;
+                }
+            })();
+            keyStore.coinTypeForChain = Object.assign(Object.assign({}, keyStore.coinTypeForChain), { [cosmos_build["ChainIdHelper"].parse(chainInfo.chainId).identifier]: coinType });
+        }
+    }
+    isKeyStoreCoinTypeSet(chainId) {
+        if (!this.keyStore) {
+            throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+        }
+        return (this.keyStore.coinTypeForChain &&
+            this.keyStore.coinTypeForChain[cosmos_build["ChainIdHelper"].parse(chainId).identifier] !== undefined);
+    }
+    setKeyStoreCoinType(chainId, coinType) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (!this.keyStore) {
+                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+            }
+            if (this.keyStore.coinTypeForChain &&
+                this.keyStore.coinTypeForChain[cosmos_build["ChainIdHelper"].parse(chainId).identifier] !== undefined) {
+                throw new router_build["KeplrError"]("keyring", 110, "Coin type already set");
+            }
+            this.keyStore.coinTypeForChain = Object.assign(Object.assign({}, this.keyStore.coinTypeForChain), { [cosmos_build["ChainIdHelper"].parse(chainId).identifier]: coinType });
+            const keyStoreInMulti = this.multiKeyStore.find((keyStore) => {
+                return (keyring_KeyRing.getKeyStoreId(keyStore) ===
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    keyring_KeyRing.getKeyStoreId(this.keyStore));
+            });
+            if (keyStoreInMulti) {
+                keyStoreInMulti.coinTypeForChain = Object.assign({}, this.keyStore.coinTypeForChain);
+            }
+            yield this.save();
+        });
+    }
+    removeAllKeyStoreCoinType(chainId) {
+        var _a, _b;
+        const identifier = cosmos_build["ChainIdHelper"].parse(chainId).identifier;
+        if (this.keyStore) {
+            const coinTypeForChain = (_a = this.keyStore.coinTypeForChain) !== null && _a !== void 0 ? _a : {};
+            delete coinTypeForChain[identifier];
+            this.keyStore.coinTypeForChain = coinTypeForChain;
+        }
+        for (const keyStore of this.multiKeyStore) {
+            const coinTypeForChain = (_b = keyStore.coinTypeForChain) !== null && _b !== void 0 ? _b : {};
+            delete coinTypeForChain[identifier];
+            keyStore.coinTypeForChain = coinTypeForChain;
+        }
+        this.save();
+    }
+    deleteKeyRing(index, password) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED) {
+                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+            }
+            if (this.password !== password) {
+                throw new router_build["KeplrError"]("keyring", 121, "Invalid password");
+            }
+            const keyStore = this.multiKeyStore[index];
+            if (!keyStore) {
+                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+            }
+            const multiKeyStore = this.multiKeyStore
+                .slice(0, index)
+                .concat(this.multiKeyStore.slice(index + 1));
+            // Make sure that password is valid.
+            yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password);
+            let keyStoreChanged = false;
+            if (this.keyStore) {
+                // If key store is currently selected key store
+                if (keyring_KeyRing.getKeyStoreId(keyStore) === keyring_KeyRing.getKeyStoreId(this.keyStore)) {
+                    // If there is a key store left
+                    if (multiKeyStore.length > 0) {
+                        // Lock key store at first
+                        yield this.lock();
+                        // Select first key store
+                        this.keyStore = multiKeyStore[0];
+                        // And unlock it
+                        yield this.unlock(password);
+                    }
+                    else {
+                        // Else clear keyring.
+                        this.keyStore = null;
+                        this.mnemonicMasterSeed = undefined;
+                        this.privateKey = undefined;
+                        this.ledgerPublicKeyCache = undefined;
+                        this.misesService.lockAll();
+                    }
+                    keyStoreChanged = true;
+                }
+            }
+            this.multiKeyStore = multiKeyStore;
+            yield this.save();
+            return {
+                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
+                keyStoreChanged,
+            };
+        });
+    }
+    updateNameKeyRing(index, name) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED) {
+                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+            }
+            const keyStore = this.multiKeyStore[index];
+            if (!keyStore) {
+                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+            }
+            keyStore.meta = Object.assign(Object.assign({}, keyStore.meta), { name: name });
+            // If select key store and changed store are same, sync keystore
+            if (this.keyStore &&
+                keyring_KeyRing.getKeyStoreId(this.keyStore) === keyring_KeyRing.getKeyStoreId(keyStore)) {
+                this.keyStore = keyStore;
+            }
+            yield this.save();
+            return this.getMultiKeyStoreInfo();
+        });
+    }
+    loadKey(coinType, useEthereumAddress = false) {
+        if (this.status !== KeyRingStatus.UNLOCKED) {
+            throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+        }
+        if (!this.keyStore) {
+            throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+        }
+        const privKey = this.loadPrivKey(coinType);
+        const pubKey = privKey.getPubKey();
+        if (useEthereumAddress) {
+            // For Ethereum Key-Gen Only:
+            const wallet = new lib_esm["Wallet"](privKey.toBytes());
+            return {
+                algo: "ethsecp256k1",
+                pubKey: pubKey.toBytes(),
+                address: buffer["Buffer"].from(wallet.address.replace("0x", ""), "hex"),
+                isNanoLedger: false,
+            };
+        }
+        // Default
+        return {
+            algo: "secp256k1",
+            pubKey: pubKey.toBytes(),
+            address: pubKey.getAddress(),
+            isNanoLedger: false,
+        };
+    }
+    loadPrivKey(coinType) {
+        if (this.status !== KeyRingStatus.UNLOCKED ||
+            this.type === "none" ||
+            !this.keyStore) {
+            throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+        }
+        const bip44HDPath = keyring_KeyRing.getKeyStoreBIP44Path(this.keyStore);
+        if (this.type === "mnemonic") {
+            const path = `m/44'/${coinType}'/${bip44HDPath.account}'/${bip44HDPath.change}/${bip44HDPath.addressIndex}`;
+            const cachedKey = this.cached.get(path);
+            if (cachedKey) {
+                return new build["PrivKeySecp256k1"](cachedKey);
+            }
+            if (!this.mnemonicMasterSeed) {
+                throw new router_build["KeplrError"]("keyring", 133, "Key store type is mnemonic and it is unlocked. But, mnemonic is not loaded unexpectedly");
+            }
+            const privKey = build["Mnemonic"].generatePrivateKeyFromMasterSeed(this.mnemonicMasterSeed, path);
+            this.cached.set(path, privKey);
+            return new build["PrivKeySecp256k1"](privKey);
+        }
+        else if (this.type === "privateKey") {
+            // If key store type is private key, path will be ignored.
+            if (!this.privateKey) {
+                throw new router_build["KeplrError"]("keyring", 134, "Key store type is private key and it is unlocked. But, private key is not loaded unexpectedly");
+            }
+            return new build["PrivKeySecp256k1"](this.privateKey);
+        }
+        else {
+            throw new router_build["KeplrError"]("keyring", 145, "Unexpected type of keyring");
+        }
+    }
+    sign(env, chainId, defaultCoinType, message, useEthereumSigning) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            console.log(env);
+            if (this.status !== KeyRingStatus.UNLOCKED) {
+                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+            }
+            if (!this.keyStore) {
+                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+            }
+            const coinType = this.computeKeyStoreCoinType(chainId, defaultCoinType);
+            const privKey = this.loadPrivKey(coinType);
+            const signature = useEthereumSigning
+                ? privKey.signDigest32(build["Hash"].keccak256(message))
+                : privKey.sign(message);
+            // Signing indicates an explicit use of this coin type.
+            // Mainly, this logic exists to explicitly set the coin type when signing by an external request.
+            if (!this.isKeyStoreCoinTypeSet(chainId)) {
+                yield this.setKeyStoreCoinType(chainId, coinType);
+            }
+            console.log("sign");
+            return signature;
+            // }
+        });
+    }
+    signEthereum(env, chainId, defaultCoinType, message, type) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            console.log(env);
+            if (this.status !== KeyRingStatus.UNLOCKED) {
+                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+            }
+            if (!this.keyStore) {
+                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+            }
+            const coinType = this.computeKeyStoreCoinType(chainId, defaultCoinType);
+            // Allow signing with Ethereum for chains with coinType !== 60
+            const privKey = this.loadPrivKey(coinType);
+            const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
+            switch (type) {
+                case types_build["EthSignType"].MESSAGE: {
+                    // Sign bytes with prefixed Ethereum magic
+                    const signature = yield ethWallet.signMessage(message);
+                    return bytes_lib_esm["arrayify"](signature);
+                }
+                case types_build["EthSignType"].TRANSACTION: {
+                    // Sign Ethereum transaction
+                    const signature = yield ethWallet.signTransaction(JSON.parse(buffer["Buffer"].from(message).toString()));
+                    return bytes_lib_esm["arrayify"](signature);
+                }
+                case types_build["EthSignType"].EIP712: {
+                    const data = yield EIP712MessageValidator.validateAsync(JSON.parse(buffer["Buffer"].from(message).toString()));
+                    // Since ethermint eip712 tx uses non-standard format, it cannot pass validation of ethersjs.
+                    // Therefore, it should be handled at a slightly lower level.
+                    const signature = yield ethWallet._signingKey().signDigest(build["Hash"].keccak256(buffer["Buffer"].concat([
+                        // eth separator
+                        buffer["Buffer"].from("19", "hex"),
+                        // Version: 1
+                        buffer["Buffer"].from("01", "hex"),
+                        buffer["Buffer"].from(typed_data["a" /* TypedDataEncoder */]
+                            .hashStruct("EIP712Domain", { EIP712Domain: data.types.EIP712Domain }, data.domain)
+                            .replace("0x", ""), "hex"),
+                        buffer["Buffer"].from(typed_data["a" /* TypedDataEncoder */]
+                            .from(
+                        // Seems that there is no way to set primary type and the first type becomes primary type.
+                        (() => {
+                            const types = Object.assign({}, data.types);
+                            delete types["EIP712Domain"];
+                            const primary = types[data.primaryType];
+                            if (!primary) {
+                                throw new Error(`No matched primary type: ${data.primaryType}`);
+                            }
+                            delete types[data.primaryType];
+                            return Object.assign({ [data.primaryType]: primary }, types);
+                        })())
+                            .hash(data.message)
+                            .replace("0x", ""), "hex"),
+                    ])));
+                    return buffer["Buffer"].concat([
+                        buffer["Buffer"].from(signature.r.replace("0x", ""), "hex"),
+                        buffer["Buffer"].from(signature.s.replace("0x", ""), "hex"),
+                        // The metamask doesn't seem to consider the chain id in this case... (maybe bug on metamask?)
+                        signature.recoveryParam
+                            ? buffer["Buffer"].from("1c", "hex")
+                            : buffer["Buffer"].from("1b", "hex"),
+                    ]);
+                }
+                default:
+                    throw new Error(`Unknown sign type: ${type}`);
+            }
+        });
+    }
+    // Show private key or mnemonic key if password is valid.
+    showKeyRing(index, password) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED) {
+                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+            }
+            if (this.password !== password) {
+                throw new router_build["KeplrError"]("keyring", 121, "Invalid password");
+            }
+            // If the index is -1, the mnemonic is exported
+            if (index === -1) {
+                const keyStore = this.multiKeyStore[0];
+                return buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, password)).toString();
+            }
+            const keyStore = this.multiKeyStore[index];
+            if (!keyStore) {
+                throw new router_build["KeplrError"]("keyring", 130, "Key store is empty");
+            }
+            if (keyStore.type === "mnemonic") {
+                // If password is invalid, error will be thrown.
+                if (!this.checkPassword(password)) {
+                    throw new router_build["KeplrError"]("keyring", 222, "Unmatched mac");
+                }
+                const privKey = yield this.loadMnemonicPrivKey(60, keyStore);
+                const ethWallet = new lib_esm["Wallet"](privKey.toBytes());
+                return ethWallet.privateKey.replace("0x", "");
+            }
+            else {
+                // If password is invalid, error will be thrown.
+                return buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, password)).toString();
+            }
+        });
+    }
+    loadMnemonicPrivKey(coinType, keyStore) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED || !keyStore) {
+                throw new router_build["KeplrError"]("keyring", 143, "Key ring is not unlocked");
+            }
+            const bip44HDPath = keyring_KeyRing.getKeyStoreBIP44Path(keyStore);
+            const path = `m/44'/${coinType}'/${bip44HDPath.account}'/${bip44HDPath.change}/${bip44HDPath.addressIndex}`;
+            const cachedKey = this.cached.get(path);
+            if (cachedKey) {
+                return new build["PrivKeySecp256k1"](cachedKey);
+            }
+            const mnemonic = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], this.password)).toString();
+            const mnemonicMasterSeed = build["Mnemonic"].generateMasterSeedFromMnemonic(mnemonic);
+            if (!mnemonicMasterSeed) {
+                throw new router_build["KeplrError"]("keyring", 133, "Key store type is mnemonic and it is unlocked. But, mnemonic is not loaded unexpectedly");
+            }
+            const privKey = build["Mnemonic"].generatePrivateKeyFromMasterSeed(mnemonicMasterSeed, path);
+            this.cached.set(path, privKey);
+            return new build["PrivKeySecp256k1"](privKey);
+        });
+    }
+    get canSetPath() {
+        return this.type === "mnemonic" || this.type === "ledger";
+    }
+    addMnemonicKey(kdf, mnemonic, meta, bip44HDPath) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED || this.password == "") {
+                throw new router_build["KeplrError"]("keyring", 141, "Key ring is locked or not initialized");
+            }
+            console.log(mnemonic);
+            const keyStore = yield keyring_KeyRing.CreateMnemonicKeyStore(this.crypto, kdf, "", "", yield this.assignKeyStoreIdMeta(meta), bip44HDPath);
+            this.multiKeyStore.push(keyStore);
+            yield this.save();
+            return {
+                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
+            };
+        });
+    }
+    _checkPrivateKey(privatekeyStore, currentKey) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (Array.isArray(privatekeyStore) && privatekeyStore.length > 0) {
+                const privatePromiseKeyStore = privatekeyStore.map((keyStore) => keyring_awaiter(this, void 0, void 0, function* () {
+                    return buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, this.password)).toString();
+                }));
+                const privateKeyStoreList = yield Promise.all(privatePromiseKeyStore);
+                return privateKeyStoreList.some((privateKey) => privateKey === currentKey);
+            }
+            return false;
+        });
+    }
+    addPrivateKey(kdf, privateKey, meta) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED || this.password == "") {
+                throw new router_build["KeplrError"]("keyring", 141, "Key ring is locked or not initialized");
+            }
+            const privatekeyStore = this.multiKeyStore.filter((val) => val.type === "privateKey");
+            if (privatekeyStore.length > 0) {
+                const isChecked = yield this._checkPrivateKey(privatekeyStore, buffer["Buffer"].from(privateKey).toString("hex"));
+                if (isChecked) {
+                    throw new router_build["KeplrError"]("keyring", 141, "Don't repeat the import privateKey");
+                }
+            }
+            const keyStore = yield keyring_KeyRing.CreatePrivateKeyStore(this.crypto, kdf, privateKey, this.password, yield this.assignKeyStoreIdMeta(meta));
+            this.multiKeyStore.push(keyStore);
+            yield this.save();
+            return {
+                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
+            };
+        });
+    }
+    changeKeyStoreFromMultiKeyStore(index) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (this.status !== KeyRingStatus.UNLOCKED || this.password == "") {
+                throw new router_build["KeplrError"]("keyring", 141, "Key ring is locked or not initialized");
+            }
+            const keyStore = this.multiKeyStore[index];
+            if (!keyStore) {
+                throw new router_build["KeplrError"]("keyring", 120, "Invalid keystore");
+            }
+            this.keyStore = keyStore;
+            yield this.unlock(this.password);
+            yield this.save();
+            return {
+                multiKeyStoreInfo: this.getMultiKeyStoreInfo(),
+            };
+        });
+    }
+    getMultiKeyStoreInfo() {
+        const result = [];
+        for (const keyStore of this.multiKeyStore) {
+            result.push({
+                version: keyStore.version,
+                type: keyStore.type,
+                meta: keyStore.meta,
+                coinTypeForChain: keyStore.coinTypeForChain,
+                bip44HDPath: keyStore.bip44HDPath,
+                selected: this.keyStore
+                    ? keyring_KeyRing.getKeyStoreId(keyStore) ===
+                        keyring_KeyRing.getKeyStoreId(this.keyStore)
+                    : false,
+            });
+        }
+        return result;
+    }
+    checkPassword(password) {
+        if (!this.password) {
+            throw new router_build["KeplrError"]("keyring", 100, "Keyring is locked");
+        }
+        return this.password === password;
+    }
+    exportKeyRingDatas(password) {
+        var _a, _b, _c, _d, _e;
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            if (!this.password) {
+                throw new router_build["KeplrError"]("keyring", 100, "Keyring is locked");
+            }
+            if (this.password !== password) {
+                throw new router_build["KeplrError"]("keyring", 121, "Invalid password");
+            }
+            const result = [];
+            for (const keyStore of this.multiKeyStore) {
+                const type = (_a = keyStore.type) !== null && _a !== void 0 ? _a : "mnemonic";
+                switch (type) {
+                    case "mnemonic": {
+                        const mnemonic = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, this.multiKeyStore[0], password)).toString();
+                        result.push({
+                            bip44HDPath: (_b = keyStore.bip44HDPath) !== null && _b !== void 0 ? _b : {
+                                account: 0,
+                                change: 0,
+                                addressIndex: 0,
+                            },
+                            coinTypeForChain: keyStore.coinTypeForChain,
+                            key: mnemonic,
+                            meta: (_c = keyStore.meta) !== null && _c !== void 0 ? _c : {},
+                            type: "mnemonic",
+                        });
+                        break;
+                    }
+                    case "privateKey": {
+                        const privateKey = buffer["Buffer"].from(yield crypto_Crypto.decrypt(this.crypto, keyStore, password)).toString();
+                        result.push({
+                            bip44HDPath: (_d = keyStore.bip44HDPath) !== null && _d !== void 0 ? _d : {
+                                account: 0,
+                                change: 0,
+                                addressIndex: 0,
+                            },
+                            coinTypeForChain: keyStore.coinTypeForChain,
+                            key: privateKey,
+                            meta: (_e = keyStore.meta) !== null && _e !== void 0 ? _e : {},
+                            type: "privateKey",
+                        });
+                        break;
+                    }
+                }
+            }
+            return result;
+        });
+    }
+    static CreateMnemonicKeyStore(crypto, kdf, mnemonic, password, meta, bip44HDPath) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            return yield crypto_Crypto.encrypt(crypto, kdf, "mnemonic", mnemonic, password, meta, bip44HDPath);
+        });
+    }
+    static CreatePrivateKeyStore(crypto, kdf, privateKey, password, meta) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            return yield crypto_Crypto.encrypt(crypto, kdf, "privateKey", buffer["Buffer"].from(privateKey).toString("hex"), password, meta);
+        });
+    }
+    assignKeyStoreIdMeta(meta) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            // `__id__` is used to distinguish the key store.
+            return Object.assign({}, meta, {
+                __id__: (yield this.getIncrementalNumber()).toString(),
+            });
+        });
+    }
+    static getKeyStoreId(keyStore) {
+        var _a;
+        const id = (_a = keyStore.meta) === null || _a === void 0 ? void 0 : _a.__id__;
+        if (!id) {
+            throw new router_build["KeplrError"]("keyring", 131, "Key store's id is empty");
+        }
+        return id;
+    }
+    static getKeyStoreBIP44Path(keyStore) {
+        if (!keyStore.bip44HDPath) {
+            return {
+                account: 0,
+                change: 0,
+                addressIndex: 0,
+            };
+        }
+        keyring_KeyRing.validateBIP44Path(keyStore.bip44HDPath);
+        return keyStore.bip44HDPath;
+    }
+    static validateBIP44Path(bip44Path) {
+        if (!Number.isInteger(bip44Path.account) || bip44Path.account < 0) {
+            throw new router_build["KeplrError"]("keyring", 100, "Invalid account in hd path");
+        }
+        if (!Number.isInteger(bip44Path.change) ||
+            !(bip44Path.change === 0 || bip44Path.change === 1)) {
+            throw new router_build["KeplrError"]("keyring", 102, "Invalid change in hd path");
+        }
+        if (!Number.isInteger(bip44Path.addressIndex) ||
+            bip44Path.addressIndex < 0) {
+            throw new router_build["KeplrError"]("keyring", 101, "Invalid address index in hd path");
+        }
+    }
+    getIncrementalNumber() {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            let num = yield this.kvStore.get("incrementalNumber");
+            if (num === undefined) {
+                num = 0;
+            }
+            num++;
+            yield this.kvStore.set("incrementalNumber", num);
+            return num;
+        });
+    }
+    // XXX: There are other way to handle tx with ethermint on ledger.
+    //      However, some chains have probably competitive spirit with evmos.
+    //      They make unnecessary and silly minor changes to ethermint spec.
+    //      Thus, there is a probability that it will potentially not work on other chains and they blame us.
+    //      So, block them explicitly for now.
+    throwErrorIfEthermintWithLedgerButNotEvmos(chainId) {
+        if (this.keyStore && this.keyStore.type === "ledger") {
+            if (!chainId.startsWith("evmos_")) {
+                throw new router_build["KeplrError"]("keyring", 152, "Ledger is unsupported for this chain");
+            }
+        }
+    }
+    addAccount(name, bip44HDPath) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.addMnemonicKey("scrypt", "", {
+                    name,
+                }, bip44HDPath);
+                return result;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        });
+    }
+    _restoreFirstAccount(mnemonic, password) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            return this.createMnemonicKey("scrypt", mnemonic, password, {
+                name: "Account 1",
+            }, {
+                account: 0,
+                change: 0,
+                addressIndex: 0,
+            });
+        });
+    }
+    _addAccounts(addNumber, mnemonicKeys) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            const accounts = new Array(addNumber).fill("").map((_value, index) => {
+                const bip44HDPath = {
+                    account: 0,
+                    addressIndex: index + 1,
+                    change: 0,
+                };
+                const name = `Account ${index + 2}`;
+                return {
+                    bip44HDPath,
+                    name,
+                };
+            });
+            let multiKeyStore = {
+                multiKeyStoreInfo: [],
+            };
+            for (let index = 0; index < accounts.length; index++) {
+                const element = accounts[index];
+                multiKeyStore = yield this.addAccount(element.name, element.bip44HDPath);
+            }
+            // add private key account
+            const simpleKeys = mnemonicKeys.find((val) => val.type === "Simple Key Pair");
+            if ((simpleKeys === null || simpleKeys === void 0 ? void 0 : simpleKeys.data.length) > 0) {
+                for (let index = 0; index < (simpleKeys === null || simpleKeys === void 0 ? void 0 : simpleKeys.data.length); index++) {
+                    const element = simpleKeys === null || simpleKeys === void 0 ? void 0 : simpleKeys.data[index];
+                    const privateKey = buffer["Buffer"].from(element, "hex");
+                    multiKeyStore = yield this.addPrivateKey("scrypt", privateKey, {
+                        name: `Account ${multiKeyStore.multiKeyStoreInfo.length + 1}`,
+                    });
+                }
+            }
+            return multiKeyStore;
+        });
+    }
+    migratorKeyRing(password) {
+        return keyring_awaiter(this, void 0, void 0, function* () {
+            try {
+                const mnemonicKeys = yield this.migrator.enCodeValut(this.migratorStore, password);
+                const mnemonicKey = mnemonicKeys.find((val) => val.type === "HD Key Tree");
+                if (mnemonicKey) {
+                    const mnemonic = buffer["Buffer"].from(mnemonicKey === null || mnemonicKey === void 0 ? void 0 : mnemonicKey.data.mnemonic).toString("utf8");
+                    const numberOfAccounts = mnemonicKey === null || mnemonicKey === void 0 ? void 0 : mnemonicKey.data.numberOfAccounts;
+                    const firstAccount = yield this._restoreFirstAccount(mnemonic, password);
+                    // An account has already been initialized, so need to delete first account number
+                    const addNumber = numberOfAccounts > 1 ? numberOfAccounts - 1 : 0;
+                    // clear thhe metamask cache data
+                    yield this.migrator.clearCache();
+                    this.migratorStore = {
+                        vault: "",
+                    };
+                    return addNumber > 0
+                        ? yield this._addAccounts(addNumber, mnemonicKeys)
+                        : firstAccount;
+                }
+                return {
+                    multiKeyStoreInfo: [],
+                };
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        });
+    }
+    restoreKeyStore() {
+        this.keyStore = null;
+        this.multiKeyStore = [];
+        this.save();
+    }
+}
+
+// EXTERNAL MODULE: ../common/build/index.js
+var common_build = __webpack_require__(27);
+
+// EXTERNAL MODULE: ../proto-types/cosmos/tx/v1beta1/tx.js
+var tx = __webpack_require__(100);
+
+// EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/long/src/long.js
+var src_long = __webpack_require__(7);
+var long_default = /*#__PURE__*/__webpack_require__.n(src_long);
+
+// CONCATENATED MODULE: ../background/src/keyring/amino-sign-doc.ts
+
+const TrimAminoSignDocScheme = joi_browser_min_default.a.object({
+    chain_id: joi_browser_min_default.a.string().allow(""),
+    account_number: joi_browser_min_default.a.string().allow(""),
+    sequence: joi_browser_min_default.a.string().allow(""),
+    fee: joi_browser_min_default.a.object({
+        amount: joi_browser_min_default.a.array().items(joi_browser_min_default.a.object({
+            denom: joi_browser_min_default.a.string().allow(""),
+            amount: joi_browser_min_default.a.string().allow(""),
+        })),
+        gas: joi_browser_min_default.a.string().allow(""),
+        payer: joi_browser_min_default.a.string().allow(""),
+        granter: joi_browser_min_default.a.string().allow(""),
+        // XXX: "feePayer" should be "payer". But, it maybe from ethermint team's mistake.
+        //      That means this part is not standard.
+        feePayer: joi_browser_min_default.a.string().allow(""),
+    }),
+    msgs: joi_browser_min_default.a.array().items(joi_browser_min_default.a.any()),
+    memo: joi_browser_min_default.a.string().allow(""),
+    timeout_height: joi_browser_min_default.a.string().allow(""),
+});
+/**
+ * Trim unknown fields from sign doc.
+ * The purpose of this function is not validate the sign doc, but only trim unknown fields.
+ * @param signDoc
+ */
+function trimAminoSignDoc(signDoc) {
+    const res = TrimAminoSignDocScheme.validate(signDoc, {
+        stripUnknown: true,
+    });
+    if (res.error) {
+        throw res.error;
+    }
+    return res.value;
+}
+
+// CONCATENATED MODULE: ../background/src/keyring/service.ts
+var service_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+
+
+
+
+
+
+class service_KeyRingService {
+    constructor(kvStore, embedChainInfos, crypto) {
+        this.kvStore = kvStore;
+        this.embedChainInfos = embedChainInfos;
+        this.crypto = crypto;
+        this.onChainRemoved = (chainId) => {
+            this.keyRing.removeAllKeyStoreCoinType(chainId);
+        };
+    }
+    init(interactionService, chainsService, permissionService, misesService) {
+        this.interactionService = interactionService;
+        this.chainsService = chainsService;
+        this.permissionService = permissionService;
+        this.keyRing = new keyring_KeyRing(this.embedChainInfos, this.kvStore, this.crypto, misesService);
+        this.chainsService.addChainRemovedHandler(this.onChainRemoved);
+    }
+    restore() {
+        return service_awaiter(this, void 0, void 0, function* () {
+            yield this.keyRing.restore();
+            return {
+                status: this.keyRing.status,
+                multiKeyStoreInfo: this.keyRing.getMultiKeyStoreInfo(),
+            };
+        });
+    }
+    enable(env) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            if (this.keyRing.status === KeyRingStatus.NOTLOADED) {
+                yield this.keyRing.restore();
+            }
+            if (this.keyRing.status === KeyRingStatus.EMPTY) {
+                yield this.interactionService.waitApprove(env, "/register", "register", {});
+                return this.keyRing.status;
+            }
+            if ([KeyRingStatus.LOCKED, KeyRingStatus.MIGRATOR].includes(this.keyRing.status)) {
+                console.log("unlock", env);
+                yield this.interactionService.waitApprove(env, "/unlock", "unlock", {});
+                return this.keyRing.status;
+            }
+            return this.keyRing.status;
+        });
+    }
+    get keyRingStatus() {
+        return this.keyRing.status;
+    }
+    deleteKeyRing(index, password) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            let keyStoreChanged = false;
+            try {
+                const result = yield this.keyRing.deleteKeyRing(index, password);
+                keyStoreChanged = result.keyStoreChanged;
+                return {
+                    multiKeyStoreInfo: result.multiKeyStoreInfo,
+                    status: this.keyRing.status,
+                };
+            }
+            finally {
+                if (keyStoreChanged) {
+                    this.interactionService.dispatchEvent(router_build["WEBPAGE_PORT"], "keystore-changed", {});
+                }
+            }
+        });
+    }
+    updateNameKeyRing(index, name) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            const multiKeyStoreInfo = yield this.keyRing.updateNameKeyRing(index, name);
+            return {
+                multiKeyStoreInfo,
+            };
+        });
+    }
+    showKeyRing(index, password) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return yield this.keyRing.showKeyRing(index, password);
+        });
+    }
+    createMnemonicKey(kdf, mnemonic, password, meta, bip44HDPath) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            // TODO: Check mnemonic checksum.
+            return yield this.keyRing.createMnemonicKey(kdf, mnemonic, password, meta, bip44HDPath);
+        });
+    }
+    createPrivateKey(kdf, privateKey, password, meta) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return yield this.keyRing.createPrivateKey(kdf, privateKey, password, meta);
+        });
+    }
+    lock() {
+        this.keyRing.lock();
+        return this.keyRing.status;
+    }
+    unlock(password) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            yield this.keyRing.unlock(password);
+            return this.keyRing.status;
+        });
+    }
+    getKey(chainId) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
+            if (ethereumKeyFeatures.address || ethereumKeyFeatures.signing) {
+                // Check the comment on the method itself.
+                this.keyRing.throwErrorIfEthermintWithLedgerButNotEvmos(chainId);
+            }
+            return this.keyRing.getKey(chainId, yield this.chainsService.getChainCoinType(chainId), ethereumKeyFeatures.address);
+        });
+    }
+    getKeyStoreMeta(key) {
+        return this.keyRing.getKeyStoreMeta(key);
+    }
+    getKeyRingType() {
+        return this.keyRing.type;
+    }
+    requestSignAmino(env, msgOrigin, chainId, signer, signDoc, signOptions) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            signDoc = Object.assign(Object.assign({}, signDoc), { memo: Object(common_build["escapeHTML"])(signDoc.memo) });
+            signDoc = trimAminoSignDoc(signDoc);
+            signDoc = Object(common_build["sortObjectByKey"])(signDoc);
+            const coinType = yield this.chainsService.getChainCoinType(chainId);
+            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
+            if (ethereumKeyFeatures.address || ethereumKeyFeatures.signing) {
+                // Check the comment on the method itself.
+                this.keyRing.throwErrorIfEthermintWithLedgerButNotEvmos(chainId);
+            }
+            const key = yield this.keyRing.getKey(chainId, coinType, ethereumKeyFeatures.address);
+            const bech32Prefix = (yield this.chainsService.getChainInfo(chainId))
+                .bech32Config.bech32PrefixAccAddr;
+            const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32(bech32Prefix);
+            if (signer !== bech32Address) {
+                throw new router_build["KeplrError"]("keyring", 231, "Signer mismatched");
+            }
+            const isADR36SignDoc = Object(cosmos_build["checkAndValidateADR36AminoSignDoc"])(signDoc, bech32Prefix);
+            if (isADR36SignDoc) {
+                if (signDoc.msgs[0].value.signer !== signer) {
+                    throw new router_build["KeplrError"]("keyring", 233, "Unmatched signer in sign doc");
+                }
+            }
+            if (signOptions.isADR36WithString != null && !isADR36SignDoc) {
+                throw new router_build["KeplrError"]("keyring", 236, 'Sign doc is not for ADR-36. But, "isADR36WithString" option is defined');
+            }
+            if (signOptions.ethSignType && !isADR36SignDoc) {
+                throw new Error("Eth sign type can be requested with only ADR-36 amino sign doc");
+            }
+            let newSignDoc = (yield this.interactionService.waitApprove(env, "/sign", "request-sign", {
+                msgOrigin,
+                chainId,
+                mode: "amino",
+                signDoc,
+                signer,
+                signOptions,
+                isADR36SignDoc,
+                isADR36WithString: signOptions.isADR36WithString,
+                ethSignType: signOptions.ethSignType,
+            }));
+            newSignDoc = Object.assign(Object.assign({}, newSignDoc), { memo: Object(common_build["escapeHTML"])(newSignDoc.memo) });
+            if (isADR36SignDoc) {
+                // Validate the new sign doc, if it was for ADR-36.
+                if (Object(cosmos_build["checkAndValidateADR36AminoSignDoc"])(signDoc, bech32Prefix)) {
+                    if (signDoc.msgs[0].value.signer !== signer) {
+                        throw new router_build["KeplrError"]("keyring", 232, "Unmatched signer in new sign doc");
+                    }
+                }
+                else {
+                    throw new router_build["KeplrError"]("keyring", 237, "Signing request was for ADR-36. But, accidentally, new sign doc is not for ADR-36");
+                }
+            }
+            // Handle Ethereum signing
+            if (signOptions.ethSignType) {
+                if (newSignDoc.msgs.length !== 1) {
+                    // Validate number of messages
+                    throw new Error("Invalid number of messages for Ethereum sign request");
+                }
+                const signBytes = buffer["Buffer"].from(newSignDoc.msgs[0].value.data, "base64");
+                try {
+                    const signatureBytes = yield this.keyRing.signEthereum(env, chainId, coinType, signBytes, signOptions.ethSignType);
+                    return {
+                        signed: newSignDoc,
+                        signature: {
+                            pub_key: Object(cosmos_build["encodeSecp256k1Pubkey"])(key.pubKey),
+                            signature: buffer["Buffer"].from(signatureBytes).toString("base64"),
+                        },
+                    };
+                }
+                finally {
+                    this.interactionService.dispatchEvent(router_build["APP_PORT"], "request-sign-end", {});
+                }
+            }
+            try {
+                const signature = yield this.keyRing.sign(env, chainId, coinType, Object(cosmos_build["serializeSignDoc"])(newSignDoc), ethereumKeyFeatures.signing);
+                return {
+                    signed: newSignDoc,
+                    signature: Object(cosmos_build["encodeSecp256k1Signature"])(key.pubKey, signature),
+                };
+            }
+            finally {
+                this.interactionService.dispatchEvent(router_build["APP_PORT"], "request-sign-end", {});
+            }
+        });
+    }
+    requestSignEIP712CosmosTx_v0(env, msgOrigin, chainId, signer, eip712, signDoc, signOptions) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            signDoc = Object.assign(Object.assign({}, signDoc), { memo: Object(common_build["escapeHTML"])(signDoc.memo) });
+            signDoc = trimAminoSignDoc(signDoc);
+            signDoc = Object(common_build["sortObjectByKey"])(signDoc);
+            const coinType = yield this.chainsService.getChainCoinType(chainId);
+            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
+            if (ethereumKeyFeatures.address || ethereumKeyFeatures.signing) {
+                // Check the comment on the method itself.
+                this.keyRing.throwErrorIfEthermintWithLedgerButNotEvmos(chainId);
+            }
+            const key = yield this.keyRing.getKey(chainId, coinType, ethereumKeyFeatures.address);
+            const bech32Prefix = (yield this.chainsService.getChainInfo(chainId))
+                .bech32Config.bech32PrefixAccAddr;
+            const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32(bech32Prefix);
+            if (signer !== bech32Address) {
+                throw new router_build["KeplrError"]("keyring", 231, "Signer mismatched");
+            }
+            let newSignDoc = (yield this.interactionService.waitApprove(env, "/sign", "request-sign", {
+                msgOrigin,
+                chainId,
+                mode: "amino",
+                signDoc,
+                signer,
+                signOptions,
+                isADR36SignDoc: false,
+                ethSignType: types_build["EthSignType"].EIP712,
+            }));
+            newSignDoc = Object.assign(Object.assign({}, newSignDoc), { memo: Object(common_build["escapeHTML"])(newSignDoc.memo) });
+            try {
+                const signature = yield this.keyRing.signEthereum(env, chainId, coinType, buffer["Buffer"].from(JSON.stringify({
+                    types: eip712.types,
+                    domain: eip712.domain,
+                    primaryType: eip712.primaryType,
+                    message: newSignDoc,
+                })), types_build["EthSignType"].EIP712);
+                return {
+                    signed: newSignDoc,
+                    signature: {
+                        pub_key: Object(cosmos_build["encodeSecp256k1Pubkey"])(key.pubKey),
+                        // Return eth signature (r | s | v) 65 bytes.
+                        signature: buffer["Buffer"].from(signature).toString("base64"),
+                    },
+                };
+            }
+            finally {
+                this.interactionService.dispatchEvent(router_build["APP_PORT"], "request-sign-end", {});
+            }
+        });
+    }
+    requestSignDirect(env, msgOrigin, chainId, signer, signDoc, signOptions) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            const coinType = yield this.chainsService.getChainCoinType(chainId);
+            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
+            if (ethereumKeyFeatures.address || ethereumKeyFeatures.signing) {
+                // Check the comment on the method itself.
+                this.keyRing.throwErrorIfEthermintWithLedgerButNotEvmos(chainId);
+            }
+            const key = yield this.keyRing.getKey(chainId, coinType, ethereumKeyFeatures.address);
+            const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32((yield this.chainsService.getChainInfo(chainId)).bech32Config
+                .bech32PrefixAccAddr);
+            if (signer !== bech32Address) {
+                throw new router_build["KeplrError"]("keyring", 231, "Signer mismatched");
+            }
+            const newSignDocBytes = (yield this.interactionService.waitApprove(env, "/sign", "request-sign", {
+                msgOrigin,
+                chainId,
+                mode: "direct",
+                signDocBytes: tx["SignDoc"].encode(signDoc).finish(),
+                signer,
+                signOptions,
+            }));
+            const newSignDoc = tx["SignDoc"].decode(newSignDocBytes);
+            try {
+                const signature = yield this.keyRing.sign(env, chainId, coinType, newSignDocBytes, ethereumKeyFeatures.signing);
+                return {
+                    signed: Object.assign(Object.assign({}, newSignDoc), { accountNumber: long_default.a.fromString(newSignDoc.accountNumber) }),
+                    signature: Object(cosmos_build["encodeSecp256k1Signature"])(key.pubKey, signature),
+                };
+            }
+            finally {
+                this.interactionService.dispatchEvent(router_build["APP_PORT"], "request-sign-end", {});
+            }
+        });
+    }
+    verifyADR36AminoSignDoc(chainId, signer, data, signature) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            const coinType = yield this.chainsService.getChainCoinType(chainId);
+            const ethereumKeyFeatures = yield this.chainsService.getChainEthereumKeyFeatures(chainId);
+            const key = yield this.keyRing.getKey(chainId, coinType, ethereumKeyFeatures.address);
+            const bech32Prefix = (yield this.chainsService.getChainInfo(chainId))
+                .bech32Config.bech32PrefixAccAddr;
+            const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32(bech32Prefix);
+            if (signer !== bech32Address) {
+                throw new router_build["KeplrError"]("keyring", 231, "Signer mismatched");
+            }
+            if (signature.pub_key.type !== "tendermint/PubKeySecp256k1") {
+                throw new router_build["KeplrError"]("keyring", 211, `Unsupported type of pub key: ${signature.pub_key.type}`);
+            }
+            if (buffer["Buffer"].from(key.pubKey).toString("base64") !== signature.pub_key.value) {
+                throw new router_build["KeplrError"]("keyring", 210, "Pub key unmatched");
+            }
+            const signDoc = Object(cosmos_build["makeADR36AminoSignDoc"])(signer, data);
+            return Object(cosmos_build["verifyADR36AminoSignDoc"])(bech32Prefix, signDoc, buffer["Buffer"].from(signature.pub_key.value, "base64"), buffer["Buffer"].from(signature.signature, "base64"));
+        });
+    }
+    sign(env, chainId, message) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return this.keyRing.sign(env, chainId, yield this.chainsService.getChainCoinType(chainId), message, (yield this.chainsService.getChainEthereumKeyFeatures(chainId)).signing);
+        });
+    }
+    addMnemonicKey(kdf, mnemonic, meta, bip44HDPath) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return this.keyRing.addMnemonicKey(kdf, mnemonic, meta, bip44HDPath);
+        });
+    }
+    addPrivateKey(kdf, privateKey, meta) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return this.keyRing.addPrivateKey(kdf, privateKey, meta);
+        });
+    }
+    changeKeyStoreFromMultiKeyStore(index) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.keyRing.changeKeyStoreFromMultiKeyStore(index);
+            }
+            finally {
+                this.interactionService.dispatchEvent(router_build["WEBPAGE_PORT"], "keystore-changed", {});
+            }
+        });
+    }
+    checkPassword(password) {
+        return this.keyRing.checkPassword(password);
+    }
+    getMultiKeyStoreInfo() {
+        return this.keyRing.getMultiKeyStoreInfo();
+    }
+    isKeyStoreCoinTypeSet(chainId) {
+        return this.keyRing.isKeyStoreCoinTypeSet(chainId);
+    }
+    setKeyStoreCoinType(chainId, coinType) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            const prevCoinType = this.keyRing.computeKeyStoreCoinType(chainId, yield this.chainsService.getChainCoinType(chainId));
+            yield this.keyRing.setKeyStoreCoinType(chainId, coinType);
+            if (prevCoinType !== coinType) {
+                this.interactionService.dispatchEvent(router_build["WEBPAGE_PORT"], "keystore-changed", {});
+            }
+        });
+    }
+    getKeyStoreBIP44Selectables(chainId, paths) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            if (this.isKeyStoreCoinTypeSet(chainId)) {
+                return [];
+            }
+            const result = [];
+            const chainInfo = yield this.chainsService.getChainInfo(chainId);
+            for (const path of paths) {
+                const key = yield this.keyRing.getKeyFromCoinType(path.coinType, (yield this.chainsService.getChainEthereumKeyFeatures(chainId)).address);
+                const bech32Address = new cosmos_build["Bech32Address"](key.address).toBech32(chainInfo.bech32Config.bech32PrefixAccAddr);
+                result.push({
+                    path,
+                    bech32Address,
+                });
+            }
+            return result;
+        });
+    }
+    exportKeyRingDatas(password) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return yield this.keyRing.exportKeyRingDatas(password);
+        });
+    }
+    addAccount(name, bip44HDPath) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return yield this.keyRing.addAccount(name, bip44HDPath);
+        });
+    }
+    migratorKeyRing(password) {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return yield this.keyRing.migratorKeyRing(password);
+        });
+    }
+    restoreKeyStore() {
+        return service_awaiter(this, void 0, void 0, function* () {
+            return yield this.keyRing.restoreKeyStore();
+        });
+    }
+}
+
+// CONCATENATED MODULE: ../background/src/keyring/constants.ts
+const ROUTE = "keyring";
+
+// CONCATENATED MODULE: ../background/src/keyring/messages.ts
+
+
+
+
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const bip39 = __webpack_require__(105);
+
+
+class messages_RestoreKeyRingMsg extends router_build["Message"] {
+    static type() {
+        return "restore-keyring";
+    }
+    constructor() {
+        super();
+    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    validateBasic() { }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_RestoreKeyRingMsg.type();
+    }
+}
+class messages_DeleteKeyRingMsg extends router_build["Message"] {
+    constructor(index, password) {
+        super();
+        this.index = index;
+        this.password = password;
+    }
+    static type() {
+        return "delete-keyring";
+    }
+    validateBasic() {
+        if (!Number.isInteger(this.index)) {
+            throw new router_build["KeplrError"]("keyring", 201, "Invalid index");
+        }
+        if (!this.password) {
+            throw new router_build["KeplrError"]("keyring", 274, "password not set");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_DeleteKeyRingMsg.type();
+    }
+}
+class messages_UpdateNameKeyRingMsg extends router_build["Message"] {
+    constructor(index, name) {
+        super();
+        this.index = index;
+        this.name = name;
+    }
+    static type() {
+        return "update-name-keyring";
+    }
+    validateBasic() {
+        if (!Number.isInteger(this.index)) {
+            throw new router_build["KeplrError"]("keyring", 201, "Invalid index");
+        }
+        if (!this.name) {
+            throw new router_build["KeplrError"]("keyring", 273, "name not set");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_UpdateNameKeyRingMsg.type();
+    }
+}
+class messages_ShowKeyRingMsg extends router_build["Message"] {
+    constructor(index, password) {
+        super();
+        this.index = index;
+        this.password = password;
+    }
+    static type() {
+        return "show-keyring";
+    }
+    validateBasic() {
+        if (!Number.isInteger(this.index)) {
+            throw new router_build["KeplrError"]("keyring", 201, "Invalid index");
+        }
+        if (!this.password) {
+            throw new router_build["KeplrError"]("keyring", 274, "password not set");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_ShowKeyRingMsg.type();
+    }
+}
+class messages_CreateMnemonicKeyMsg extends router_build["Message"] {
+    constructor(kdf, mnemonic, password, meta, bip44HDPath) {
+        super();
+        this.kdf = kdf;
+        this.mnemonic = mnemonic;
+        this.password = password;
+        this.meta = meta;
+        this.bip44HDPath = bip44HDPath;
+    }
+    static type() {
+        return "create-mnemonic-key";
+    }
+    validateBasic() {
+        if (this.kdf !== "scrypt" &&
+            this.kdf !== "sha256" &&
+            this.kdf !== "pbkdf2") {
+            throw new router_build["KeplrError"]("keyring", 202, "Invalid kdf");
+        }
+        if (!this.mnemonic) {
+            throw new router_build["KeplrError"]("keyring", 272, "mnemonic not set");
+        }
+        if (!this.password) {
+            throw new router_build["KeplrError"]("keyring", 274, "password not set");
+        }
+        // Validate mnemonic.
+        // Checksome is not validate in this method.
+        // Keeper should handle the case of invalid checksome.
+        try {
+            bip39.mnemonicToEntropy(this.mnemonic);
+        }
+        catch (e) {
+            if (e.message !== "Invalid mnemonic checksum") {
+                throw e;
+            }
+        }
+        keyring_KeyRing.validateBIP44Path(this.bip44HDPath);
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_CreateMnemonicKeyMsg.type();
+    }
+}
+class messages_AddMnemonicKeyMsg extends router_build["Message"] {
+    constructor(kdf, mnemonic, meta, bip44HDPath) {
+        super();
+        this.kdf = kdf;
+        this.mnemonic = mnemonic;
+        this.meta = meta;
+        this.bip44HDPath = bip44HDPath;
+    }
+    static type() {
+        return "add-mnemonic-key";
+    }
+    validateBasic() {
+        if (this.kdf !== "scrypt" &&
+            this.kdf !== "sha256" &&
+            this.kdf !== "pbkdf2") {
+            throw new router_build["KeplrError"]("keyring", 202, "Invalid kdf");
+        }
+        if (!this.mnemonic) {
+            throw new router_build["KeplrError"]("keyring", 272, "mnemonic not set");
+        }
+        // Validate mnemonic.
+        // Checksome is not validate in this method.
+        // Keeper should handle the case of invalid checksome.
+        try {
+            bip39.mnemonicToEntropy(this.mnemonic);
+        }
+        catch (e) {
+            if (e.message !== "Invalid mnemonic checksum") {
+                throw e;
+            }
+        }
+        keyring_KeyRing.validateBIP44Path(this.bip44HDPath);
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_AddMnemonicKeyMsg.type();
+    }
+}
+class messages_CreatePrivateKeyMsg extends router_build["Message"] {
+    constructor(kdf, privateKey, password, meta) {
+        super();
+        this.kdf = kdf;
+        this.privateKey = privateKey;
+        this.password = password;
+        this.meta = meta;
+    }
+    static type() {
+        return "create-private-key";
+    }
+    validateBasic() {
+        if (this.kdf !== "scrypt" &&
+            this.kdf !== "sha256" &&
+            this.kdf !== "pbkdf2") {
+            throw new router_build["KeplrError"]("keyring", 202, "Invalid kdf");
+        }
+        if (!this.privateKey || this.privateKey.length === 0) {
+            throw new router_build["KeplrError"]("keyring", 275, "private key not set");
+        }
+        if (this.privateKey.length !== 32) {
+            throw new router_build["KeplrError"]("keyring", 260, "invalid length of private key");
+        }
+        if (!this.password) {
+            throw new router_build["KeplrError"]("keyring", 274, "password not set");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_CreatePrivateKeyMsg.type();
+    }
+}
+class messages_AddPrivateKeyMsg extends router_build["Message"] {
+    constructor(kdf, privateKey, meta) {
+        super();
+        this.kdf = kdf;
+        this.privateKey = privateKey;
+        this.meta = meta;
+    }
+    static type() {
+        return "add-private-key";
+    }
+    validateBasic() {
+        if (this.kdf !== "scrypt" &&
+            this.kdf !== "sha256" &&
+            this.kdf !== "pbkdf2") {
+            throw new router_build["KeplrError"]("keyring", 202, "Invalid kdf");
+        }
+        if (!this.privateKey || this.privateKey.length === 0) {
+            throw new router_build["KeplrError"]("keyring", 275, "private key not set");
+        }
+        if (this.privateKey.length !== 32) {
+            throw new router_build["KeplrError"]("keyring", 260, "invalid length of private key");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_AddPrivateKeyMsg.type();
+    }
+}
+class messages_LockKeyRingMsg extends router_build["Message"] {
+    static type() {
+        return "lock-keyring";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_LockKeyRingMsg.type();
+    }
+}
+class messages_UnlockKeyRingMsg extends router_build["Message"] {
+    constructor(password = "") {
+        super();
+        this.password = password;
+    }
+    static type() {
+        return "unlock-keyring";
+    }
+    validateBasic() {
+        if (!this.password) {
+            throw new router_build["KeplrError"]("keyring", 274, "password not set");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_UnlockKeyRingMsg.type();
+    }
+}
+class messages_GetKeyMsg extends router_build["Message"] {
+    constructor(chainId) {
+        super();
+        this.chainId = chainId;
+    }
+    static type() {
+        return "get-key";
+    }
+    validateBasic() {
+        if (!this.chainId) {
+            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
+        }
+    }
+    approveExternal() {
+        return true;
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_GetKeyMsg.type();
+    }
+}
+class messages_RequestSignAminoMsg extends router_build["Message"] {
+    constructor(chainId, signer, signDoc, signOptions = {}) {
+        super();
+        this.chainId = chainId;
+        this.signer = signer;
+        this.signDoc = signDoc;
+        this.signOptions = signOptions;
+    }
+    static type() {
+        return "request-sign-amino";
+    }
+    validateBasic() {
+        var _a, _b;
+        if (!this.chainId) {
+            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
+        }
+        if (!this.signer) {
+            throw new router_build["KeplrError"]("keyring", 230, "signer not set");
+        }
+        // Validate bech32 address.
+        cosmos_build["Bech32Address"].validate(this.signer);
+        // Check and validate the ADR-36 sign doc.
+        // ADR-36 sign doc doesn't have the chain id
+        if (!Object(cosmos_build["checkAndValidateADR36AminoSignDoc"])(this.signDoc)) {
+            if (this.signOptions.ethSignType) {
+                throw new Error("Eth sign type can be requested with only ADR-36 amino sign doc");
+            }
+            if (this.signDoc.chain_id !== this.chainId) {
+                throw new router_build["KeplrError"]("keyring", 234, "Chain id in the message is not matched with the requested chain id");
+            }
+        }
+        else {
+            if (this.signDoc.msgs[0].value.signer !== this.signer) {
+                throw new router_build["KeplrError"]("keyring", 233, "Unmatched signer in sign doc");
+            }
+            if (this.signOptions.ethSignType) {
+                switch (this.signOptions.ethSignType) {
+                    // TODO: Check chain id in tx data.
+                    // case EthSignType.TRANSACTION:
+                    case types_build["EthSignType"].EIP712: {
+                        const message = JSON.parse(buffer["Buffer"].from(this.signDoc.msgs[0].value.data, "base64").toString());
+                        const { ethChainId } = cosmos_build["EthermintChainIdHelper"].parse(this.chainId);
+                        if (parseFloat((_a = message.domain) === null || _a === void 0 ? void 0 : _a.chainId) !== ethChainId) {
+                            throw new Error(`Unmatched chain id for eth (expected: ${ethChainId}, actual: ${(_b = message.domain) === null || _b === void 0 ? void 0 : _b.chainId})`);
+                        }
+                    }
+                    // XXX: There is no way to check chain id if type is message because eth personal sign standard doesn't define chain id field.
+                    // case EthSignType.MESSAGE:
+                }
+            }
+        }
+        if (!this.signOptions) {
+            throw new router_build["KeplrError"]("keyring", 235, "Sign options are null");
+        }
+    }
+    approveExternal() {
+        return true;
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_RequestSignAminoMsg.type();
+    }
+}
+class messages_RequestSignEIP712CosmosTxMsg_v0 extends router_build["Message"] {
+    constructor(chainId, signer, eip712, signDoc, signOptions) {
+        super();
+        this.chainId = chainId;
+        this.signer = signer;
+        this.eip712 = eip712;
+        this.signDoc = signDoc;
+        this.signOptions = signOptions;
+    }
+    static type() {
+        return "request-sign-eip-712-cosmos-tx-v0";
+    }
+    validateBasic() {
+        if (!this.chainId) {
+            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
+        }
+        if (!this.signer) {
+            throw new router_build["KeplrError"]("keyring", 230, "signer not set");
+        }
+        // Validate bech32 address.
+        cosmos_build["Bech32Address"].validate(this.signer);
+        // Check and validate the ADR-36 sign doc.
+        // ADR-36 sign doc doesn't have the chain id
+        if (!Object(cosmos_build["checkAndValidateADR36AminoSignDoc"])(this.signDoc)) {
+            if (this.signDoc.chain_id !== this.chainId) {
+                throw new router_build["KeplrError"]("keyring", 234, "Chain id in the message is not matched with the requested chain id");
+            }
+            const { ethChainId } = cosmos_build["EthermintChainIdHelper"].parse(this.chainId);
+            if (parseFloat(this.eip712.domain.chainId) !== ethChainId) {
+                throw new Error(`Unmatched chain id for eth (expected: ${ethChainId}, actual: ${this.eip712.domain.chainId})`);
+            }
+        }
+        else {
+            throw new Error("Can't sign ADR-36 with EIP-712");
+        }
+        if (!this.signOptions) {
+            throw new router_build["KeplrError"]("keyring", 235, "Sign options are null");
+        }
+    }
+    approveExternal() {
+        return true;
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_RequestSignEIP712CosmosTxMsg_v0.type();
+    }
+}
+class messages_RequestVerifyADR36AminoSignDoc extends router_build["Message"] {
+    constructor(chainId, signer, data, signature) {
+        super();
+        this.chainId = chainId;
+        this.signer = signer;
+        this.data = data;
+        this.signature = signature;
+    }
+    static type() {
+        return "request-verify-adr-36-amino-doc";
+    }
+    validateBasic() {
+        if (!this.chainId) {
+            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
+        }
+        if (!this.signer) {
+            throw new router_build["KeplrError"]("keyring", 230, "signer not set");
+        }
+        if (!this.signature) {
+            throw new router_build["KeplrError"]("keyring", 271, "Signature not set");
+        }
+        // Validate bech32 address.
+        cosmos_build["Bech32Address"].validate(this.signer);
+    }
+    approveExternal() {
+        return true;
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_RequestVerifyADR36AminoSignDoc.type();
+    }
+}
+class messages_RequestSignDirectMsg extends router_build["Message"] {
+    constructor(chainId, signer, signDoc, signOptions = {}) {
+        super();
+        this.chainId = chainId;
+        this.signer = signer;
+        this.signDoc = signDoc;
+        this.signOptions = signOptions;
+    }
+    static type() {
+        return "request-sign-direct";
+    }
+    validateBasic() {
+        if (!this.chainId) {
+            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
+        }
+        if (!this.signer) {
+            throw new router_build["KeplrError"]("keyring", 230, "signer not set");
+        }
+        // Validate bech32 address.
+        cosmos_build["Bech32Address"].validate(this.signer);
+        const signDoc = tx["SignDoc"].fromPartial({
+            bodyBytes: this.signDoc.bodyBytes,
+            authInfoBytes: this.signDoc.authInfoBytes,
+            chainId: this.signDoc.chainId,
+            accountNumber: this.signDoc.accountNumber,
+        });
+        if (signDoc.chainId !== this.chainId) {
+            throw new router_build["KeplrError"]("keyring", 234, "Chain id in the message is not matched with the requested chain id");
+        }
+        if (!this.signOptions) {
+            throw new router_build["KeplrError"]("keyring", 235, "Sign options are null");
+        }
+    }
+    approveExternal() {
+        return true;
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_RequestSignDirectMsg.type();
+    }
+}
+class messages_GetMultiKeyStoreInfoMsg extends router_build["Message"] {
+    static type() {
+        return "get-multi-key-store-info";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        // noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_GetMultiKeyStoreInfoMsg.type();
+    }
+}
+class messages_ChangeKeyRingMsg extends router_build["Message"] {
+    constructor(index) {
+        super();
+        this.index = index;
+    }
+    static type() {
+        return "change-keyring";
+    }
+    validateBasic() {
+        if (this.index < 0) {
+            throw new router_build["KeplrError"]("keyring", 200, "Index is negative");
+        }
+        if (!Number.isInteger(this.index)) {
+            throw new router_build["KeplrError"]("keyring", 201, "Invalid index");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_ChangeKeyRingMsg.type();
+    }
+}
+// Return the list of selectable path.
+// If coin type was set for the key store, will return empty array.
+class messages_GetIsKeyStoreCoinTypeSetMsg extends router_build["Message"] {
+    constructor(chainId, paths) {
+        super();
+        this.chainId = chainId;
+        this.paths = paths;
+    }
+    static type() {
+        return "get-is-keystore-coin-type-set";
+    }
+    validateBasic() {
+        if (!this.chainId) {
+            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
+        }
+        if (this.paths.length === 0) {
+            throw new router_build["KeplrError"]("keyring", 250, "empty bip44 path list");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_GetIsKeyStoreCoinTypeSetMsg.type();
+    }
+}
+class messages_SetKeyStoreCoinTypeMsg extends router_build["Message"] {
+    constructor(chainId, coinType) {
+        super();
+        this.chainId = chainId;
+        this.coinType = coinType;
+    }
+    static type() {
+        return "set-keystore-coin-type";
+    }
+    validateBasic() {
+        if (!this.chainId) {
+            throw new router_build["KeplrError"]("keyring", 270, "chain id not set");
+        }
+        if (this.coinType < 0) {
+            throw new router_build["KeplrError"]("keyring", 240, "coin type can not be negative");
+        }
+        if (!Number.isInteger(this.coinType)) {
+            throw new router_build["KeplrError"]("keyring", 241, "coin type should be integer");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_SetKeyStoreCoinTypeMsg.type();
+    }
+}
+class messages_CheckPasswordMsg extends router_build["Message"] {
+    constructor(password) {
+        super();
+        this.password = password;
+    }
+    static type() {
+        return "check-keyring-password";
+    }
+    validateBasic() {
+        if (!this.password) {
+            throw new router_build["KeplrError"]("keyring", 274, "password not set");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_CheckPasswordMsg.type();
+    }
+}
+class messages_ExportKeyRingDatasMsg extends router_build["Message"] {
+    constructor(password) {
+        super();
+        this.password = password;
+    }
+    static type() {
+        return "export-keyring-datas";
+    }
+    validateBasic() {
+        if (!this.password) {
+            throw new router_build["KeplrError"]("keyring", 274, "password not set");
+        }
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_ExportKeyRingDatasMsg.type();
+    }
+}
+class messages_IsUnlockMsg extends router_build["Message"] {
+    static type() {
+        return "isUnlocked";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        //noop
+    }
+    approveExternal() {
+        return true;
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_IsUnlockMsg.type();
+    }
+}
+class messages_AddAccountMsg extends router_build["Message"] {
+    constructor(name, bip44HDPath) {
+        super();
+        this.name = name;
+        this.bip44HDPath = bip44HDPath;
+    }
+    static type() {
+        return "add-account";
+    }
+    validateBasic() {
+        //noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_AddAccountMsg.type();
+    }
+}
+class messages_MigratorKeyRingMsg extends router_build["Message"] {
+    constructor(password) {
+        super();
+        this.password = password;
+    }
+    static type() {
+        return "migrator";
+    }
+    validateBasic() {
+        //noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_MigratorKeyRingMsg.type();
+    }
+}
+class messages_RestoreKeyStoreMsg extends router_build["Message"] {
+    static type() {
+        return "remove-all-Key-store";
+    }
+    constructor() {
+        super();
+    }
+    validateBasic() {
+        //noop
+    }
+    route() {
+        return ROUTE;
+    }
+    type() {
+        return messages_RestoreKeyStoreMsg.type();
+    }
+}
+
+// CONCATENATED MODULE: ../background/src/keyring/types.ts
+
+
+// CONCATENATED MODULE: ../background/src/keyring/index.ts
+
+
+
+
+
+
 
 /***/ })
 

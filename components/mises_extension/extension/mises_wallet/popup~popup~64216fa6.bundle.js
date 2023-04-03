@@ -1082,7 +1082,7 @@ function _extends() {
     if (typeof window !== 'undefined' && typeof window.Buffer !== 'undefined') {
       Buffer = window.Buffer;
     } else {
-      Buffer = __webpack_require__(1035).Buffer;
+      Buffer = __webpack_require__(1037).Buffer;
     }
   } catch (e) {
   }
@@ -4592,8 +4592,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeHexLeadingZeros = exports.sanitizeHex = exports.addHexPrefix = exports.removeHexPrefix = exports.padRight = exports.padLeft = exports.sanitizeBytes = exports.swapHex = exports.swapBytes = exports.splitBytes = exports.calcByteLength = exports.trimRight = exports.trimLeft = exports.concatArrays = exports.concatBuffers = exports.getEncoding = exports.getType = exports.isArrayBuffer = exports.isTypedArray = exports.isBuffer = exports.isHexString = exports.isBinaryString = exports.binaryToNumber = exports.binaryToUtf8 = exports.binaryToHex = exports.binaryToArray = exports.binaryToBuffer = exports.numberToBinary = exports.numberToUtf8 = exports.numberToHex = exports.numberToArray = exports.numberToBuffer = exports.utf8ToBinary = exports.utf8ToNumber = exports.utf8ToHex = exports.utf8ToArray = exports.utf8ToBuffer = exports.hexToBinary = exports.hexToNumber = exports.hexToUtf8 = exports.hexToArray = exports.hexToBuffer = exports.arrayToBinary = exports.arrayToNumber = exports.arrayToUtf8 = exports.arrayToHex = exports.arrayToBuffer = exports.bufferToBinary = exports.bufferToNumber = exports.bufferToUtf8 = exports.bufferToHex = exports.bufferToArray = void 0;
-const is_typedarray_1 = __importDefault(__webpack_require__(1280));
-const typedarray_to_buffer_1 = __importDefault(__webpack_require__(1625));
+const is_typedarray_1 = __importDefault(__webpack_require__(1281));
+const typedarray_to_buffer_1 = __importDefault(__webpack_require__(1626));
 const ENC_HEX = "hex";
 const ENC_UTF8 = "utf8";
 const ENC_BIN = "binary";
@@ -4981,13 +4981,13 @@ __webpack_require__.d(__webpack_exports__, "t", function() { return /* reexport 
 // UNUSED EXPORTS: detectOS, isAndroid, isIOS, isNode, getFromWindow, getFromWindowOrThrow, getDocumentOrThrow, getDocument, getNavigatorOrThrow, getNavigator, getLocationOrThrow, getCryptoOrThrow, getCrypto, getLocalStorageOrThrow, getLocalStorage, safeJsonParse, safeJsonStringify, formatIOSMobile, saveMobileLinkInfo, getMobileRegistryEntry, getMobileLinkRegistry, getWalletRegistryUrl, getDappRegistryUrl, getAppLogoUrl, formatMobileRegistryEntry, formatMobileRegistry, reservedEvents, stateMethods, infuraNetworks, convertArrayBufferToUtf8, convertArrayBufferToNumber, concatArrayBuffers, convertBufferToUtf8, convertBufferToHex, convertBufferToNumber, concatBuffers, convertUtf8ToArrayBuffer, convertUtf8ToBuffer, convertUtf8ToHex, convertUtf8ToNumber, convertHexToBuffer, convertHexToUtf8, convertHexToNumber, convertNumberToBuffer, convertNumberToArrayBuffer, convertNumberToUtf8, toChecksumAddress, isValidAddress, sanitizeHex, addHexPrefix, removeHexPrefix, removeHexLeadingZeros, logDeprecationWarning, getInfuraRpcUrl, getRpcUrl, promisify, parseQueryString, formatQueryString, isEmptyString, isEmptyArray, isBuffer, isTypedArray, isArrayBuffer, getType, getEncoding, isHexString, isJsonRpcSubscription
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/window-metadata/dist/cjs/index.js
-var cjs = __webpack_require__(1332);
+var cjs = __webpack_require__(1333);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/window-getters/dist/cjs/index.js
 var dist_cjs = __webpack_require__(137);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/detect-browser/es/index.js
-var es = __webpack_require__(1333);
+var es = __webpack_require__(1334);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/browser-utils/dist/esm/browser.js
 
@@ -5182,7 +5182,7 @@ const infuraNetworks = {
 };
 //# sourceMappingURL=constants.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/utils/node_modules/bn.js/lib/bn.js
-var bn = __webpack_require__(609);
+var bn = __webpack_require__(610);
 var bn_default = /*#__PURE__*/__webpack_require__.n(bn);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/encoding/dist/cjs/index.js
@@ -5263,7 +5263,7 @@ function convertNumberToHex(num, noPrefix) {
 var sha3 = __webpack_require__(91);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/jsonrpc-utils/dist/esm/index.js
-var esm = __webpack_require__(1334);
+var esm = __webpack_require__(1335);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/utils/dist/esm/misc.js
 
@@ -5502,7 +5502,7 @@ function formatRpcError(error) {
 }
 //# sourceMappingURL=payload.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/utils/node_modules/query-string/index.js
-var query_string = __webpack_require__(1206);
+var query_string = __webpack_require__(1208);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/utils/dist/esm/url.js
 
@@ -6405,9 +6405,9 @@ var steps = (function (steps, direction) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Uint64 = exports.Uint53 = exports.Uint32 = exports.Int53 = exports.Decimal = void 0;
-var decimal_1 = __webpack_require__(861);
+var decimal_1 = __webpack_require__(863);
 Object.defineProperty(exports, "Decimal", { enumerable: true, get: function () { return decimal_1.Decimal; } });
-var integers_1 = __webpack_require__(863);
+var integers_1 = __webpack_require__(865);
 Object.defineProperty(exports, "Int53", { enumerable: true, get: function () { return integers_1.Int53; } });
 Object.defineProperty(exports, "Uint32", { enumerable: true, get: function () { return integers_1.Uint32; } });
 Object.defineProperty(exports, "Uint53", { enumerable: true, get: function () { return integers_1.Uint53; } });
@@ -6427,7 +6427,7 @@ Object.defineProperty(exports, "Uint64", { enumerable: true, get: function () { 
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getMainCarrier; });
 /* unused harmony export makeMain */
 /* unused harmony export setHubOnCarrier */
-/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(263);
+/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(264);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(172);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(93);
@@ -8091,7 +8091,7 @@ const VERIFY_OP = "verify";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return markFunctionWrapped; });
 /* unused harmony export objectify */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return urlEncode; });
-/* harmony import */ var _browser_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1339);
+/* harmony import */ var _browser_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1340);
 /* harmony import */ var _is_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(73);
 /* harmony import */ var _string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(370);
 
@@ -8387,28 +8387,28 @@ function objectify(wat) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stringToPath = exports.Slip10RawIndex = exports.slip10CurveFromString = exports.Slip10Curve = exports.Slip10 = exports.pathToString = exports.sha512 = exports.Sha512 = exports.sha256 = exports.Sha256 = exports.sha1 = exports.Sha1 = exports.Secp256k1Signature = exports.ExtendedSecp256k1Signature = exports.Secp256k1 = exports.ripemd160 = exports.Ripemd160 = exports.Random = exports.Xchacha20poly1305Ietf = exports.xchacha20NonceLength = exports.isArgon2idOptions = exports.Ed25519Keypair = exports.Ed25519 = exports.Argon2id = exports.keccak256 = exports.Keccak256 = exports.Hmac = exports.EnglishMnemonic = exports.Bip39 = void 0;
-var bip39_1 = __webpack_require__(867);
+var bip39_1 = __webpack_require__(869);
 Object.defineProperty(exports, "Bip39", { enumerable: true, get: function () { return bip39_1.Bip39; } });
 var englishmnemonic_1 = __webpack_require__(468);
 Object.defineProperty(exports, "EnglishMnemonic", { enumerable: true, get: function () { return englishmnemonic_1.EnglishMnemonic; } });
 var hmac_1 = __webpack_require__(469);
 Object.defineProperty(exports, "Hmac", { enumerable: true, get: function () { return hmac_1.Hmac; } });
-var keccak_1 = __webpack_require__(874);
+var keccak_1 = __webpack_require__(876);
 Object.defineProperty(exports, "Keccak256", { enumerable: true, get: function () { return keccak_1.Keccak256; } });
 Object.defineProperty(exports, "keccak256", { enumerable: true, get: function () { return keccak_1.keccak256; } });
-var libsodium_1 = __webpack_require__(875);
+var libsodium_1 = __webpack_require__(877);
 Object.defineProperty(exports, "Argon2id", { enumerable: true, get: function () { return libsodium_1.Argon2id; } });
 Object.defineProperty(exports, "Ed25519", { enumerable: true, get: function () { return libsodium_1.Ed25519; } });
 Object.defineProperty(exports, "Ed25519Keypair", { enumerable: true, get: function () { return libsodium_1.Ed25519Keypair; } });
 Object.defineProperty(exports, "isArgon2idOptions", { enumerable: true, get: function () { return libsodium_1.isArgon2idOptions; } });
 Object.defineProperty(exports, "xchacha20NonceLength", { enumerable: true, get: function () { return libsodium_1.xchacha20NonceLength; } });
 Object.defineProperty(exports, "Xchacha20poly1305Ietf", { enumerable: true, get: function () { return libsodium_1.Xchacha20poly1305Ietf; } });
-var random_1 = __webpack_require__(881);
+var random_1 = __webpack_require__(883);
 Object.defineProperty(exports, "Random", { enumerable: true, get: function () { return random_1.Random; } });
-var ripemd_1 = __webpack_require__(882);
+var ripemd_1 = __webpack_require__(884);
 Object.defineProperty(exports, "Ripemd160", { enumerable: true, get: function () { return ripemd_1.Ripemd160; } });
 Object.defineProperty(exports, "ripemd160", { enumerable: true, get: function () { return ripemd_1.ripemd160; } });
-var secp256k1_1 = __webpack_require__(883);
+var secp256k1_1 = __webpack_require__(885);
 Object.defineProperty(exports, "Secp256k1", { enumerable: true, get: function () { return secp256k1_1.Secp256k1; } });
 var secp256k1signature_1 = __webpack_require__(472);
 Object.defineProperty(exports, "ExtendedSecp256k1Signature", { enumerable: true, get: function () { return secp256k1signature_1.ExtendedSecp256k1Signature; } });
@@ -8420,7 +8420,7 @@ Object.defineProperty(exports, "Sha256", { enumerable: true, get: function () { 
 Object.defineProperty(exports, "sha256", { enumerable: true, get: function () { return sha_1.sha256; } });
 Object.defineProperty(exports, "Sha512", { enumerable: true, get: function () { return sha_1.Sha512; } });
 Object.defineProperty(exports, "sha512", { enumerable: true, get: function () { return sha_1.sha512; } });
-var slip10_1 = __webpack_require__(885);
+var slip10_1 = __webpack_require__(887);
 Object.defineProperty(exports, "pathToString", { enumerable: true, get: function () { return slip10_1.pathToString; } });
 Object.defineProperty(exports, "Slip10", { enumerable: true, get: function () { return slip10_1.Slip10; } });
 Object.defineProperty(exports, "Slip10Curve", { enumerable: true, get: function () { return slip10_1.Slip10Curve; } });
@@ -8437,22 +8437,22 @@ Object.defineProperty(exports, "stringToPath", { enumerable: true, get: function
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var bech32_1 = __webpack_require__(1091);
+var bech32_1 = __webpack_require__(1093);
 exports.Bech32 = bech32_1.Bech32;
-var decimal_1 = __webpack_require__(1092);
+var decimal_1 = __webpack_require__(1094);
 exports.Decimal = decimal_1.Decimal;
 var encoding_1 = __webpack_require__(557);
 exports.Encoding = encoding_1.Encoding;
-var integers_1 = __webpack_require__(1093);
+var integers_1 = __webpack_require__(1095);
 exports.Int53 = integers_1.Int53;
 exports.Uint32 = integers_1.Uint32;
 exports.Uint53 = integers_1.Uint53;
 exports.Uint64 = integers_1.Uint64;
-var json_1 = __webpack_require__(1094);
+var json_1 = __webpack_require__(1096);
 exports.isJsonCompatibleValue = json_1.isJsonCompatibleValue;
 exports.isJsonCompatibleDictionary = json_1.isJsonCompatibleDictionary;
 exports.isJsonCompatibleArray = json_1.isJsonCompatibleArray;
-var transactionencoder_1 = __webpack_require__(1095);
+var transactionencoder_1 = __webpack_require__(1097);
 exports.TransactionEncoder = transactionencoder_1.TransactionEncoder;
 var typechecks_1 = __webpack_require__(559);
 exports.isNonNullObject = typechecks_1.isNonNullObject;
@@ -8550,7 +8550,7 @@ function getGlobalSingleton(name, creator, obj) {
 /* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1640);
+module.exports = __webpack_require__(1641);
 
 
 /***/ }),
@@ -8678,21 +8678,21 @@ const STANDARD_ERROR_MAP = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.toUtf8 = exports.fromUtf8 = exports.toRfc3339 = exports.fromRfc3339 = exports.toHex = exports.fromHex = exports.Bech32 = exports.toBase64 = exports.fromBase64 = exports.toAscii = exports.fromAscii = void 0;
-var ascii_1 = __webpack_require__(886);
+var ascii_1 = __webpack_require__(888);
 Object.defineProperty(exports, "fromAscii", { enumerable: true, get: function () { return ascii_1.fromAscii; } });
 Object.defineProperty(exports, "toAscii", { enumerable: true, get: function () { return ascii_1.toAscii; } });
-var base64_1 = __webpack_require__(887);
+var base64_1 = __webpack_require__(889);
 Object.defineProperty(exports, "fromBase64", { enumerable: true, get: function () { return base64_1.fromBase64; } });
 Object.defineProperty(exports, "toBase64", { enumerable: true, get: function () { return base64_1.toBase64; } });
-var bech32_1 = __webpack_require__(888);
+var bech32_1 = __webpack_require__(890);
 Object.defineProperty(exports, "Bech32", { enumerable: true, get: function () { return bech32_1.Bech32; } });
-var hex_1 = __webpack_require__(889);
+var hex_1 = __webpack_require__(891);
 Object.defineProperty(exports, "fromHex", { enumerable: true, get: function () { return hex_1.fromHex; } });
 Object.defineProperty(exports, "toHex", { enumerable: true, get: function () { return hex_1.toHex; } });
-var rfc3339_1 = __webpack_require__(890);
+var rfc3339_1 = __webpack_require__(892);
 Object.defineProperty(exports, "fromRfc3339", { enumerable: true, get: function () { return rfc3339_1.fromRfc3339; } });
 Object.defineProperty(exports, "toRfc3339", { enumerable: true, get: function () { return rfc3339_1.toRfc3339; } });
-var utf8_1 = __webpack_require__(891);
+var utf8_1 = __webpack_require__(893);
 Object.defineProperty(exports, "fromUtf8", { enumerable: true, get: function () { return utf8_1.fromUtf8; } });
 Object.defineProperty(exports, "toUtf8", { enumerable: true, get: function () { return utf8_1.toUtf8; } });
 //# sourceMappingURL=index.js.map
@@ -8705,16 +8705,16 @@ Object.defineProperty(exports, "toUtf8", { enumerable: true, get: function () { 
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isUint8Array = exports.isNonNullObject = exports.sleep = exports.assertDefinedAndNotNull = exports.assertDefined = exports.assert = exports.arrayContentStartsWith = exports.arrayContentEquals = void 0;
-var arrays_1 = __webpack_require__(918);
+var arrays_1 = __webpack_require__(920);
 Object.defineProperty(exports, "arrayContentEquals", { enumerable: true, get: function () { return arrays_1.arrayContentEquals; } });
 Object.defineProperty(exports, "arrayContentStartsWith", { enumerable: true, get: function () { return arrays_1.arrayContentStartsWith; } });
-var assert_1 = __webpack_require__(919);
+var assert_1 = __webpack_require__(921);
 Object.defineProperty(exports, "assert", { enumerable: true, get: function () { return assert_1.assert; } });
 Object.defineProperty(exports, "assertDefined", { enumerable: true, get: function () { return assert_1.assertDefined; } });
 Object.defineProperty(exports, "assertDefinedAndNotNull", { enumerable: true, get: function () { return assert_1.assertDefinedAndNotNull; } });
-var sleep_1 = __webpack_require__(920);
+var sleep_1 = __webpack_require__(922);
 Object.defineProperty(exports, "sleep", { enumerable: true, get: function () { return sleep_1.sleep; } });
-var typechecks_1 = __webpack_require__(921);
+var typechecks_1 = __webpack_require__(923);
 Object.defineProperty(exports, "isNonNullObject", { enumerable: true, get: function () { return typechecks_1.isNonNullObject; } });
 Object.defineProperty(exports, "isUint8Array", { enumerable: true, get: function () { return typechecks_1.isUint8Array; } });
 //# sourceMappingURL=index.js.map
@@ -8742,8 +8742,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(__webpack_require__(1626), exports);
 __exportStar(__webpack_require__(1627), exports);
+__exportStar(__webpack_require__(1628), exports);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -8769,17 +8769,17 @@ Object.defineProperty(exports, "pubkeyToAddress", { enumerable: true, get: funct
 Object.defineProperty(exports, "pubkeyToRawAddress", { enumerable: true, get: function () { return addresses_1.pubkeyToRawAddress; } });
 Object.defineProperty(exports, "rawEd25519PubkeyToRawAddress", { enumerable: true, get: function () { return addresses_1.rawEd25519PubkeyToRawAddress; } });
 Object.defineProperty(exports, "rawSecp256k1PubkeyToRawAddress", { enumerable: true, get: function () { return addresses_1.rawSecp256k1PubkeyToRawAddress; } });
-var coins_1 = __webpack_require__(896);
+var coins_1 = __webpack_require__(898);
 Object.defineProperty(exports, "coin", { enumerable: true, get: function () { return coins_1.coin; } });
 Object.defineProperty(exports, "coins", { enumerable: true, get: function () { return coins_1.coins; } });
 Object.defineProperty(exports, "parseCoins", { enumerable: true, get: function () { return coins_1.parseCoins; } });
-var encoding_1 = __webpack_require__(309);
+var encoding_1 = __webpack_require__(310);
 Object.defineProperty(exports, "decodeAminoPubkey", { enumerable: true, get: function () { return encoding_1.decodeAminoPubkey; } });
 Object.defineProperty(exports, "decodeBech32Pubkey", { enumerable: true, get: function () { return encoding_1.decodeBech32Pubkey; } });
 Object.defineProperty(exports, "encodeAminoPubkey", { enumerable: true, get: function () { return encoding_1.encodeAminoPubkey; } });
 Object.defineProperty(exports, "encodeBech32Pubkey", { enumerable: true, get: function () { return encoding_1.encodeBech32Pubkey; } });
 Object.defineProperty(exports, "encodeSecp256k1Pubkey", { enumerable: true, get: function () { return encoding_1.encodeSecp256k1Pubkey; } });
-var multisig_1 = __webpack_require__(897);
+var multisig_1 = __webpack_require__(899);
 Object.defineProperty(exports, "createMultisigThresholdPubkey", { enumerable: true, get: function () { return multisig_1.createMultisigThresholdPubkey; } });
 var paths_1 = __webpack_require__(475);
 Object.defineProperty(exports, "makeCosmoshubPath", { enumerable: true, get: function () { return paths_1.makeCosmoshubPath; } });
@@ -8789,18 +8789,18 @@ Object.defineProperty(exports, "isMultisigThresholdPubkey", { enumerable: true, 
 Object.defineProperty(exports, "isSecp256k1Pubkey", { enumerable: true, get: function () { return pubkeys_1.isSecp256k1Pubkey; } });
 Object.defineProperty(exports, "isSinglePubkey", { enumerable: true, get: function () { return pubkeys_1.isSinglePubkey; } });
 Object.defineProperty(exports, "pubkeyType", { enumerable: true, get: function () { return pubkeys_1.pubkeyType; } });
-var secp256k1hdwallet_1 = __webpack_require__(898);
+var secp256k1hdwallet_1 = __webpack_require__(900);
 Object.defineProperty(exports, "extractKdfConfiguration", { enumerable: true, get: function () { return secp256k1hdwallet_1.extractKdfConfiguration; } });
 Object.defineProperty(exports, "Secp256k1HdWallet", { enumerable: true, get: function () { return secp256k1hdwallet_1.Secp256k1HdWallet; } });
-var secp256k1wallet_1 = __webpack_require__(899);
+var secp256k1wallet_1 = __webpack_require__(901);
 Object.defineProperty(exports, "Secp256k1Wallet", { enumerable: true, get: function () { return secp256k1wallet_1.Secp256k1Wallet; } });
-var signature_1 = __webpack_require__(310);
+var signature_1 = __webpack_require__(311);
 Object.defineProperty(exports, "decodeSignature", { enumerable: true, get: function () { return signature_1.decodeSignature; } });
 Object.defineProperty(exports, "encodeSecp256k1Signature", { enumerable: true, get: function () { return signature_1.encodeSecp256k1Signature; } });
-var signdoc_1 = __webpack_require__(311);
+var signdoc_1 = __webpack_require__(312);
 Object.defineProperty(exports, "makeSignDoc", { enumerable: true, get: function () { return signdoc_1.makeSignDoc; } });
 Object.defineProperty(exports, "serializeSignDoc", { enumerable: true, get: function () { return signdoc_1.serializeSignDoc; } });
-var stdtx_1 = __webpack_require__(900);
+var stdtx_1 = __webpack_require__(902);
 Object.defineProperty(exports, "isStdTx", { enumerable: true, get: function () { return stdtx_1.isStdTx; } });
 Object.defineProperty(exports, "makeStdTx", { enumerable: true, get: function () { return stdtx_1.makeStdTx; } });
 var wallet_1 = __webpack_require__(476);
@@ -8815,21 +8815,21 @@ Object.defineProperty(exports, "executeKdf", { enumerable: true, get: function (
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.toUtf8 = exports.fromUtf8 = exports.toRfc3339 = exports.fromRfc3339 = exports.toHex = exports.fromHex = exports.Bech32 = exports.toBase64 = exports.fromBase64 = exports.toAscii = exports.fromAscii = void 0;
-var ascii_1 = __webpack_require__(924);
+var ascii_1 = __webpack_require__(926);
 Object.defineProperty(exports, "fromAscii", { enumerable: true, get: function () { return ascii_1.fromAscii; } });
 Object.defineProperty(exports, "toAscii", { enumerable: true, get: function () { return ascii_1.toAscii; } });
-var base64_1 = __webpack_require__(925);
+var base64_1 = __webpack_require__(927);
 Object.defineProperty(exports, "fromBase64", { enumerable: true, get: function () { return base64_1.fromBase64; } });
 Object.defineProperty(exports, "toBase64", { enumerable: true, get: function () { return base64_1.toBase64; } });
-var bech32_1 = __webpack_require__(926);
+var bech32_1 = __webpack_require__(928);
 Object.defineProperty(exports, "Bech32", { enumerable: true, get: function () { return bech32_1.Bech32; } });
-var hex_1 = __webpack_require__(927);
+var hex_1 = __webpack_require__(929);
 Object.defineProperty(exports, "fromHex", { enumerable: true, get: function () { return hex_1.fromHex; } });
 Object.defineProperty(exports, "toHex", { enumerable: true, get: function () { return hex_1.toHex; } });
-var rfc3339_1 = __webpack_require__(928);
+var rfc3339_1 = __webpack_require__(930);
 Object.defineProperty(exports, "fromRfc3339", { enumerable: true, get: function () { return rfc3339_1.fromRfc3339; } });
 Object.defineProperty(exports, "toRfc3339", { enumerable: true, get: function () { return rfc3339_1.toRfc3339; } });
-var utf8_1 = __webpack_require__(929);
+var utf8_1 = __webpack_require__(931);
 Object.defineProperty(exports, "fromUtf8", { enumerable: true, get: function () { return utf8_1.fromUtf8; } });
 Object.defineProperty(exports, "toUtf8", { enumerable: true, get: function () { return utf8_1.toUtf8; } });
 //# sourceMappingURL=index.js.map
@@ -8894,7 +8894,7 @@ class functiontostring_FunctionToString  {constructor() { functiontostring_Funct
 var logger = __webpack_require__(49);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/misc.js
-var misc = __webpack_require__(263);
+var misc = __webpack_require__(264);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/string.js
 var string = __webpack_require__(370);
@@ -9393,28 +9393,28 @@ exports.getLocalStorage = getLocalStorage;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.coins = exports.coin = exports.executeKdf = exports.makeSignDoc = exports.makeSignBytes = exports.makeAuthInfoBytes = exports.isOfflineDirectSigner = exports.Registry = exports.isTxBodyEncodeObject = exports.isTsProtoGeneratedType = exports.isPbjsGeneratedType = exports.encodePubkey = exports.decodePubkey = exports.makeCosmoshubPath = exports.DirectSecp256k1Wallet = exports.extractKdfConfiguration = exports.DirectSecp256k1HdWallet = exports.decodeTxRaw = exports.parseCoins = void 0;
 // This type happens to be shared between Amino and Direct sign modes
-var coins_1 = __webpack_require__(864);
+var coins_1 = __webpack_require__(866);
 Object.defineProperty(exports, "parseCoins", { enumerable: true, get: function () { return coins_1.parseCoins; } });
-var decode_1 = __webpack_require__(865);
+var decode_1 = __webpack_require__(867);
 Object.defineProperty(exports, "decodeTxRaw", { enumerable: true, get: function () { return decode_1.decodeTxRaw; } });
-var directsecp256k1hdwallet_1 = __webpack_require__(866);
+var directsecp256k1hdwallet_1 = __webpack_require__(868);
 Object.defineProperty(exports, "DirectSecp256k1HdWallet", { enumerable: true, get: function () { return directsecp256k1hdwallet_1.DirectSecp256k1HdWallet; } });
 Object.defineProperty(exports, "extractKdfConfiguration", { enumerable: true, get: function () { return directsecp256k1hdwallet_1.extractKdfConfiguration; } });
-var directsecp256k1wallet_1 = __webpack_require__(911);
+var directsecp256k1wallet_1 = __webpack_require__(913);
 Object.defineProperty(exports, "DirectSecp256k1Wallet", { enumerable: true, get: function () { return directsecp256k1wallet_1.DirectSecp256k1Wallet; } });
-var paths_1 = __webpack_require__(912);
+var paths_1 = __webpack_require__(914);
 Object.defineProperty(exports, "makeCosmoshubPath", { enumerable: true, get: function () { return paths_1.makeCosmoshubPath; } });
-var pubkey_1 = __webpack_require__(913);
+var pubkey_1 = __webpack_require__(915);
 Object.defineProperty(exports, "decodePubkey", { enumerable: true, get: function () { return pubkey_1.decodePubkey; } });
 Object.defineProperty(exports, "encodePubkey", { enumerable: true, get: function () { return pubkey_1.encodePubkey; } });
-var registry_1 = __webpack_require__(916);
+var registry_1 = __webpack_require__(918);
 Object.defineProperty(exports, "isPbjsGeneratedType", { enumerable: true, get: function () { return registry_1.isPbjsGeneratedType; } });
 Object.defineProperty(exports, "isTsProtoGeneratedType", { enumerable: true, get: function () { return registry_1.isTsProtoGeneratedType; } });
 Object.defineProperty(exports, "isTxBodyEncodeObject", { enumerable: true, get: function () { return registry_1.isTxBodyEncodeObject; } });
 Object.defineProperty(exports, "Registry", { enumerable: true, get: function () { return registry_1.Registry; } });
-var signer_1 = __webpack_require__(917);
+var signer_1 = __webpack_require__(919);
 Object.defineProperty(exports, "isOfflineDirectSigner", { enumerable: true, get: function () { return signer_1.isOfflineDirectSigner; } });
-var signing_1 = __webpack_require__(312);
+var signing_1 = __webpack_require__(313);
 Object.defineProperty(exports, "makeAuthInfoBytes", { enumerable: true, get: function () { return signing_1.makeAuthInfoBytes; } });
 Object.defineProperty(exports, "makeSignBytes", { enumerable: true, get: function () { return signing_1.makeSignBytes; } });
 Object.defineProperty(exports, "makeSignDoc", { enumerable: true, get: function () { return signing_1.makeSignDoc; } });
@@ -9437,7 +9437,7 @@ Object.defineProperty(exports, "coins", { enumerable: true, get: function () { r
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return makeSession; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return updateSession; });
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(172);
-/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(263);
+/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(264);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
 
 
@@ -9824,7 +9824,7 @@ const browserPerformanceTimeOrigin = (() => {
 
 //# sourceMappingURL=time.js.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1184)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1186)(module)))
 
 /***/ }),
 /* 173 */,
@@ -9841,21 +9841,21 @@ const browserPerformanceTimeOrigin = (() => {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.toUtf8 = exports.fromUtf8 = exports.toRfc3339 = exports.fromRfc3339 = exports.toHex = exports.fromHex = exports.Bech32 = exports.toBase64 = exports.fromBase64 = exports.toAscii = exports.fromAscii = void 0;
-var ascii_1 = __webpack_require__(984);
+var ascii_1 = __webpack_require__(986);
 Object.defineProperty(exports, "fromAscii", { enumerable: true, get: function () { return ascii_1.fromAscii; } });
 Object.defineProperty(exports, "toAscii", { enumerable: true, get: function () { return ascii_1.toAscii; } });
-var base64_1 = __webpack_require__(985);
+var base64_1 = __webpack_require__(987);
 Object.defineProperty(exports, "fromBase64", { enumerable: true, get: function () { return base64_1.fromBase64; } });
 Object.defineProperty(exports, "toBase64", { enumerable: true, get: function () { return base64_1.toBase64; } });
-var bech32_1 = __webpack_require__(986);
+var bech32_1 = __webpack_require__(988);
 Object.defineProperty(exports, "Bech32", { enumerable: true, get: function () { return bech32_1.Bech32; } });
-var hex_1 = __webpack_require__(987);
+var hex_1 = __webpack_require__(989);
 Object.defineProperty(exports, "fromHex", { enumerable: true, get: function () { return hex_1.fromHex; } });
 Object.defineProperty(exports, "toHex", { enumerable: true, get: function () { return hex_1.toHex; } });
-var rfc3339_1 = __webpack_require__(988);
+var rfc3339_1 = __webpack_require__(990);
 Object.defineProperty(exports, "fromRfc3339", { enumerable: true, get: function () { return rfc3339_1.fromRfc3339; } });
 Object.defineProperty(exports, "toRfc3339", { enumerable: true, get: function () { return rfc3339_1.toRfc3339; } });
-var utf8_1 = __webpack_require__(989);
+var utf8_1 = __webpack_require__(991);
 Object.defineProperty(exports, "fromUtf8", { enumerable: true, get: function () { return utf8_1.fromUtf8; } });
 Object.defineProperty(exports, "toUtf8", { enumerable: true, get: function () { return utf8_1.toUtf8; } });
 //# sourceMappingURL=index.js.map
@@ -9870,24 +9870,24 @@ Object.defineProperty(exports, "toUtf8", { enumerable: true, get: function () { 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var bip39_1 = __webpack_require__(1097);
+var bip39_1 = __webpack_require__(1099);
 exports.Bip39 = bip39_1.Bip39;
 var englishmnemonic_1 = __webpack_require__(561);
 exports.EnglishMnemonic = englishmnemonic_1.EnglishMnemonic;
 var hmac_1 = __webpack_require__(562);
 exports.Hmac = hmac_1.Hmac;
-var keccak_1 = __webpack_require__(1114);
+var keccak_1 = __webpack_require__(1116);
 exports.Keccak256 = keccak_1.Keccak256;
-var libsodium_1 = __webpack_require__(1115);
+var libsodium_1 = __webpack_require__(1117);
 exports.Xchacha20poly1305Ietf = libsodium_1.Xchacha20poly1305Ietf;
 exports.Argon2id = libsodium_1.Argon2id;
 exports.Ed25519 = libsodium_1.Ed25519;
 exports.Ed25519Keypair = libsodium_1.Ed25519Keypair;
-var random_1 = __webpack_require__(1116);
+var random_1 = __webpack_require__(1118);
 exports.Random = random_1.Random;
-var ripemd_1 = __webpack_require__(1117);
+var ripemd_1 = __webpack_require__(1119);
 exports.Ripemd160 = ripemd_1.Ripemd160;
-var secp256k1_1 = __webpack_require__(1118);
+var secp256k1_1 = __webpack_require__(1120);
 exports.Secp256k1 = secp256k1_1.Secp256k1;
 var secp256k1signature_1 = __webpack_require__(563);
 exports.ExtendedSecp256k1Signature = secp256k1signature_1.ExtendedSecp256k1Signature;
@@ -9896,7 +9896,7 @@ var sha_1 = __webpack_require__(564);
 exports.Sha1 = sha_1.Sha1;
 exports.Sha256 = sha_1.Sha256;
 exports.Sha512 = sha_1.Sha512;
-var slip10_1 = __webpack_require__(1119);
+var slip10_1 = __webpack_require__(1121);
 exports.Slip10 = slip10_1.Slip10;
 exports.Slip10Curve = slip10_1.Slip10Curve;
 exports.Slip10RawIndex = slip10_1.Slip10RawIndex;
@@ -9916,7 +9916,7 @@ exports.slip10CurveFromString = slip10_1.slip10CurveFromString;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return id; });
 /* harmony import */ var _ethersproject_keccak256__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
-/* harmony import */ var _ethersproject_strings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(262);
+/* harmony import */ var _ethersproject_strings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(263);
 
 
 function id(text) {
@@ -9934,9 +9934,9 @@ function id(text) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return addGlobalEventProcessor; });
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(172);
-/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(610);
+/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(611);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49);
-/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(263);
+/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(264);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(93);
 /* harmony import */ var _session_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(155);
 
@@ -10640,7 +10640,7 @@ module.exports = _asyncToGenerator;
 /* WEBPACK VAR INJECTION */(function(process, module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dynamicRequire; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isNodeEnv; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return loadModule; });
-/* harmony import */ var _env_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1340);
+/* harmony import */ var _env_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1341);
 
 
 /**
@@ -10708,7 +10708,7 @@ function loadModule(moduleName) {
 
 //# sourceMappingURL=node.js.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(28), __webpack_require__(1184)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(28), __webpack_require__(1186)(module)))
 
 /***/ }),
 /* 206 */,
@@ -10735,7 +10735,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.pubkeyToAddress = exports.pubkeyToRawAddress = exports.rawSecp256k1PubkeyToRawAddress = exports.rawEd25519PubkeyToRawAddress = void 0;
 const crypto_1 = __webpack_require__(84);
 const encoding_1 = __webpack_require__(109);
-const encoding_2 = __webpack_require__(309);
+const encoding_2 = __webpack_require__(310);
 const pubkeys_1 = __webpack_require__(221);
 function rawEd25519PubkeyToRawAddress(pubkeyData) {
     if (pubkeyData.length !== 32) {
@@ -10821,24 +10821,24 @@ exports.isMultisigThresholdPubkey = isMultisigThresholdPubkey;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.toUtf8 = exports.fromUtf8 = exports.toRfc3339 = exports.fromRfc3339 = exports.toHex = exports.fromHex = exports.toBech32 = exports.normalizeBech32 = exports.fromBech32 = exports.Bech32 = exports.toBase64 = exports.fromBase64 = exports.toAscii = exports.fromAscii = void 0;
-var ascii_1 = __webpack_require__(901);
+var ascii_1 = __webpack_require__(903);
 Object.defineProperty(exports, "fromAscii", { enumerable: true, get: function () { return ascii_1.fromAscii; } });
 Object.defineProperty(exports, "toAscii", { enumerable: true, get: function () { return ascii_1.toAscii; } });
-var base64_1 = __webpack_require__(902);
+var base64_1 = __webpack_require__(904);
 Object.defineProperty(exports, "fromBase64", { enumerable: true, get: function () { return base64_1.fromBase64; } });
 Object.defineProperty(exports, "toBase64", { enumerable: true, get: function () { return base64_1.toBase64; } });
-var bech32_1 = __webpack_require__(903);
+var bech32_1 = __webpack_require__(905);
 Object.defineProperty(exports, "Bech32", { enumerable: true, get: function () { return bech32_1.Bech32; } });
 Object.defineProperty(exports, "fromBech32", { enumerable: true, get: function () { return bech32_1.fromBech32; } });
 Object.defineProperty(exports, "normalizeBech32", { enumerable: true, get: function () { return bech32_1.normalizeBech32; } });
 Object.defineProperty(exports, "toBech32", { enumerable: true, get: function () { return bech32_1.toBech32; } });
-var hex_1 = __webpack_require__(904);
+var hex_1 = __webpack_require__(906);
 Object.defineProperty(exports, "fromHex", { enumerable: true, get: function () { return hex_1.fromHex; } });
 Object.defineProperty(exports, "toHex", { enumerable: true, get: function () { return hex_1.toHex; } });
-var rfc3339_1 = __webpack_require__(905);
+var rfc3339_1 = __webpack_require__(907);
 Object.defineProperty(exports, "fromRfc3339", { enumerable: true, get: function () { return rfc3339_1.fromRfc3339; } });
 Object.defineProperty(exports, "toRfc3339", { enumerable: true, get: function () { return rfc3339_1.toRfc3339; } });
-var utf8_1 = __webpack_require__(906);
+var utf8_1 = __webpack_require__(908);
 Object.defineProperty(exports, "fromUtf8", { enumerable: true, get: function () { return utf8_1.fromUtf8; } });
 Object.defineProperty(exports, "toUtf8", { enumerable: true, get: function () { return utf8_1.toUtf8; } });
 //# sourceMappingURL=index.js.map
@@ -14730,7 +14730,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.randomBytes = exports.wrapConstructorWithOpts = exports.wrapConstructor = exports.checkOpts = exports.Hash = exports.concatBytes = exports.toBytes = exports.utf8ToBytes = exports.asyncLoop = exports.nextTick = exports.hexToBytes = exports.bytesToHex = exports.isLE = exports.rotr = exports.createView = exports.u32 = exports.u8 = void 0;
 // The import here is via the package name. This is to ensure
 // that exports mapping/resolution does fall into place.
-const crypto_1 = __webpack_require__(940);
+const crypto_1 = __webpack_require__(942);
 // Cast array to different type
 const u8 = (arr) => new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
 exports.u8 = u8;
@@ -14905,18 +14905,18 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValueAndUpdates = exports.toListPromise = exports.fromListPromise = exports.firstEvent = exports.dropDuplicates = exports.DefaultValueProducer = exports.concat = void 0;
-var concat_1 = __webpack_require__(944);
+var concat_1 = __webpack_require__(946);
 Object.defineProperty(exports, "concat", { enumerable: true, get: function () { return concat_1.concat; } });
-var defaultvalueproducer_1 = __webpack_require__(950);
+var defaultvalueproducer_1 = __webpack_require__(952);
 Object.defineProperty(exports, "DefaultValueProducer", { enumerable: true, get: function () { return defaultvalueproducer_1.DefaultValueProducer; } });
-var dropduplicates_1 = __webpack_require__(951);
+var dropduplicates_1 = __webpack_require__(953);
 Object.defineProperty(exports, "dropDuplicates", { enumerable: true, get: function () { return dropduplicates_1.dropDuplicates; } });
-var promise_1 = __webpack_require__(952);
+var promise_1 = __webpack_require__(954);
 Object.defineProperty(exports, "firstEvent", { enumerable: true, get: function () { return promise_1.firstEvent; } });
 Object.defineProperty(exports, "fromListPromise", { enumerable: true, get: function () { return promise_1.fromListPromise; } });
 Object.defineProperty(exports, "toListPromise", { enumerable: true, get: function () { return promise_1.toListPromise; } });
-__exportStar(__webpack_require__(953), exports);
-var valueandupdates_1 = __webpack_require__(954);
+__exportStar(__webpack_require__(955), exports);
+var valueandupdates_1 = __webpack_require__(956);
 Object.defineProperty(exports, "ValueAndUpdates", { enumerable: true, get: function () { return valueandupdates_1.ValueAndUpdates; } });
 //# sourceMappingURL=index.js.map
 
@@ -14944,14 +14944,15 @@ exports.hasProtocol = hasProtocol;
 /* 229 */,
 /* 230 */,
 /* 231 */,
-/* 232 */
+/* 232 */,
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 // Re-exports for IOV Core 2.x compatibility
-var math_1 = __webpack_require__(1098);
+var math_1 = __webpack_require__(1100);
 exports.Int53 = math_1.Int53;
 exports.Uint32 = math_1.Uint32;
 exports.Uint53 = math_1.Uint53;
@@ -14973,19 +14974,18 @@ var utils_1 = __webpack_require__(560);
 exports.isNonNullObject = utils_1.isNonNullObject;
 exports.isUint8Array = utils_1.isUint8Array;
 // Symbols not (yet) existent in CosmJS
-var json_1 = __webpack_require__(1110);
+var json_1 = __webpack_require__(1112);
 exports.isJsonCompatibleValue = json_1.isJsonCompatibleValue;
 exports.isJsonCompatibleDictionary = json_1.isJsonCompatibleDictionary;
 exports.isJsonCompatibleArray = json_1.isJsonCompatibleArray;
-var transactionencoder_1 = __webpack_require__(1111);
+var transactionencoder_1 = __webpack_require__(1113);
 exports.TransactionEncoder = transactionencoder_1.TransactionEncoder;
 // Deprecated symbols to be removed in the next mayor release
-var encoding_2 = __webpack_require__(1112);
+var encoding_2 = __webpack_require__(1114);
 exports.Encoding = encoding_2.Encoding;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 233 */,
 /* 234 */,
 /* 235 */,
 /* 236 */,
@@ -14997,7 +14997,8 @@ exports.Encoding = encoding_2.Encoding;
 /* 242 */,
 /* 243 */,
 /* 244 */,
-/* 245 */
+/* 245 */,
+/* 246 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16368,10 +16369,10 @@ function getCreate2Address(from, salt, initCodeHash) {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 246 */,
 /* 247 */,
 /* 248 */,
-/* 249 */
+/* 249 */,
+/* 250 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16380,9 +16381,9 @@ const version = "hash/5.7.0";
 //# sourceMappingURL=_version.js.map
 
 /***/ }),
-/* 250 */,
 /* 251 */,
-/* 252 */
+/* 252 */,
+/* 253 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16398,7 +16399,7 @@ __webpack_require__.d(__webpack_exports__, "verifyTypedData", function() { retur
 var lib_esm = __webpack_require__(1);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/bignumber/lib.esm/bignumber.js + 1 modules
-var bignumber = __webpack_require__(1655);
+var bignumber = __webpack_require__(1656);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/keccak256/lib.esm/index.js
 var keccak256_lib_esm = __webpack_require__(21);
@@ -17094,7 +17095,7 @@ class lib_esm_VoidSigner extends lib_esm_Signer {
 }
 //# sourceMappingURL=index.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/message.js
-var lib_esm_message = __webpack_require__(334);
+var lib_esm_message = __webpack_require__(335);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/typed-data.js + 4 modules
 var typed_data = __webpack_require__(593);
@@ -17220,7 +17221,7 @@ const Base58 = new lib_esm_BaseX("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmn
 //console.log(Base58.encode(Base58.decode("Qmd2V777o5XvJbYMeMb8k2nU5f8d3ciUQ5YpYuWhzv8iDj")))
 //# sourceMappingURL=index.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/strings/lib.esm/utf8.js + 1 modules
-var utf8 = __webpack_require__(262);
+var utf8 = __webpack_require__(263);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/hash.js/lib/hash.js
 var lib_hash = __webpack_require__(47);
@@ -18497,7 +18498,7 @@ function getAccountPath(index) {
 }
 //# sourceMappingURL=index.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/random/lib.esm/random.js
-var random = __webpack_require__(1476);
+var random = __webpack_require__(1477);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/json-wallets/node_modules/aes-js/index.js
 var aes_js = __webpack_require__(79);
@@ -19466,8 +19467,8 @@ function verifyTypedData(domain, types, value, signature) {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 253 */,
-/* 254 */
+/* 254 */,
+/* 255 */
 /***/ (function(module, exports) {
 
 function _classCallCheck(instance, Constructor) {
@@ -19479,7 +19480,7 @@ function _classCallCheck(instance, Constructor) {
 module.exports = _classCallCheck;
 
 /***/ }),
-/* 255 */
+/* 256 */
 /***/ (function(module, exports) {
 
 function _defineProperties(target, props) {
@@ -19501,13 +19502,13 @@ function _createClass(Constructor, protoProps, staticProps) {
 module.exports = _createClass;
 
 /***/ }),
-/* 256 */,
 /* 257 */,
 /* 258 */,
 /* 259 */,
 /* 260 */,
 /* 261 */,
-/* 262 */
+/* 262 */,
+/* 263 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19780,7 +19781,7 @@ function toUtf8CodePoints(str, form = UnicodeNormalizationForm.current) {
 //# sourceMappingURL=utf8.js.map
 
 /***/ }),
-/* 263 */
+/* 264 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19995,8 +19996,8 @@ function arrayify(maybeArray) {
 
 
 /***/ }),
-/* 264 */,
-/* 265 */
+/* 265 */,
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20025,7 +20026,7 @@ exports.assertIsDeliverTxSuccess = exports.assertIsDeliverTxFailure = exports.Si
 exports.parseCoins = exports.makeCosmoshubPath = exports.coins = exports.coin = exports.TimeoutError = exports.StargateClient = exports.isDeliverTxSuccess = exports.isDeliverTxFailure = void 0;
 var accounts_1 = __webpack_require__(466);
 Object.defineProperty(exports, "accountFromAny", { enumerable: true, get: function () { return accounts_1.accountFromAny; } });
-var aminomsgs_1 = __webpack_require__(923);
+var aminomsgs_1 = __webpack_require__(925);
 Object.defineProperty(exports, "isAminoMsgBeginRedelegate", { enumerable: true, get: function () { return aminomsgs_1.isAminoMsgBeginRedelegate; } });
 Object.defineProperty(exports, "isAminoMsgCreateValidator", { enumerable: true, get: function () { return aminomsgs_1.isAminoMsgCreateValidator; } });
 Object.defineProperty(exports, "isAminoMsgDelegate", { enumerable: true, get: function () { return aminomsgs_1.isAminoMsgDelegate; } });
@@ -20045,7 +20046,7 @@ Object.defineProperty(exports, "isAminoMsgWithdrawDelegatorReward", { enumerable
 Object.defineProperty(exports, "isAminoMsgWithdrawValidatorCommission", { enumerable: true, get: function () { return aminomsgs_1.isAminoMsgWithdrawValidatorCommission; } });
 var aminotypes_1 = __webpack_require__(481);
 Object.defineProperty(exports, "AminoTypes", { enumerable: true, get: function () { return aminotypes_1.AminoTypes; } });
-var encodeobjects_1 = __webpack_require__(930);
+var encodeobjects_1 = __webpack_require__(932);
 Object.defineProperty(exports, "isMsgDelegateEncodeObject", { enumerable: true, get: function () { return encodeobjects_1.isMsgDelegateEncodeObject; } });
 Object.defineProperty(exports, "isMsgDepositEncodeObject", { enumerable: true, get: function () { return encodeobjects_1.isMsgDepositEncodeObject; } });
 Object.defineProperty(exports, "isMsgSendEncodeObject", { enumerable: true, get: function () { return encodeobjects_1.isMsgSendEncodeObject; } });
@@ -20057,8 +20058,8 @@ Object.defineProperty(exports, "isMsgWithdrawDelegatorRewardEncodeObject", { enu
 var fee_1 = __webpack_require__(482);
 Object.defineProperty(exports, "calculateFee", { enumerable: true, get: function () { return fee_1.calculateFee; } });
 Object.defineProperty(exports, "GasPrice", { enumerable: true, get: function () { return fee_1.GasPrice; } });
-exports.logs = __importStar(__webpack_require__(931));
-var multisignature_1 = __webpack_require__(932);
+exports.logs = __importStar(__webpack_require__(933));
+var multisignature_1 = __webpack_require__(934);
 Object.defineProperty(exports, "makeMultisignedTx", { enumerable: true, get: function () { return multisignature_1.makeMultisignedTx; } });
 var queries_1 = __webpack_require__(483);
 Object.defineProperty(exports, "createPagination", { enumerable: true, get: function () { return queries_1.createPagination; } });
@@ -20077,7 +20078,7 @@ var search_1 = __webpack_require__(496);
 Object.defineProperty(exports, "isSearchByHeightQuery", { enumerable: true, get: function () { return search_1.isSearchByHeightQuery; } });
 Object.defineProperty(exports, "isSearchBySentFromOrToQuery", { enumerable: true, get: function () { return search_1.isSearchBySentFromOrToQuery; } });
 Object.defineProperty(exports, "isSearchByTagsQuery", { enumerable: true, get: function () { return search_1.isSearchByTagsQuery; } });
-var signingstargateclient_1 = __webpack_require__(982);
+var signingstargateclient_1 = __webpack_require__(984);
 Object.defineProperty(exports, "defaultRegistryTypes", { enumerable: true, get: function () { return signingstargateclient_1.defaultRegistryTypes; } });
 Object.defineProperty(exports, "SigningStargateClient", { enumerable: true, get: function () { return signingstargateclient_1.SigningStargateClient; } });
 var stargateclient_1 = __webpack_require__(506);
@@ -20095,8 +20096,8 @@ Object.defineProperty(exports, "parseCoins", { enumerable: true, get: function (
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 266 */,
-/* 267 */
+/* 267 */,
+/* 268 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20120,7 +20121,7 @@ var id = __webpack_require__(191);
 var lib_esm = __webpack_require__(1);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/strings/lib.esm/utf8.js + 1 modules
-var utf8 = __webpack_require__(262);
+var utf8 = __webpack_require__(263);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/keccak256/lib.esm/index.js
 var keccak256_lib_esm = __webpack_require__(21);
@@ -20129,7 +20130,7 @@ var keccak256_lib_esm = __webpack_require__(21);
 var logger_lib_esm = __webpack_require__(6);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/_version.js
-var _version = __webpack_require__(249);
+var _version = __webpack_require__(250);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/base64/lib.esm/base64.js
 
@@ -20654,7 +20655,7 @@ function dnsEncode(name) {
 }
 //# sourceMappingURL=namehash.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/message.js
-var message = __webpack_require__(334);
+var message = __webpack_require__(335);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/typed-data.js + 4 modules
 var typed_data = __webpack_require__(593);
@@ -20670,8 +20671,8 @@ var typed_data = __webpack_require__(593);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 268 */,
-/* 269 */
+/* 269 */,
+/* 270 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20679,7 +20680,7 @@ var typed_data = __webpack_require__(593);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SpanRecorder; });
 /* unused harmony export spanStatusfromHttpCode */
 /* harmony import */ var _sentry_utils_esm_buildPolyfills__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(388);
-/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(263);
+/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(264);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(172);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(81);
@@ -21066,7 +21067,7 @@ function spanStatusfromHttpCode(httpStatus) {
 
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21077,8 +21078,8 @@ function spanStatusfromHttpCode(httpStatus) {
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(73);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(205);
-/* harmony import */ var _errors_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1341);
-/* harmony import */ var _idletransaction_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(273);
+/* harmony import */ var _errors_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1342);
+/* harmony import */ var _idletransaction_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(274);
 /* harmony import */ var _transaction_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(378);
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(61);
 
@@ -21378,12 +21379,12 @@ function addExtensionMethods() {
 
 //# sourceMappingURL=hubextensions.js.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1184)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1186)(module)))
 
 /***/ }),
-/* 271 */,
 /* 272 */,
-/* 273 */
+/* 273 */,
+/* 274 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21394,7 +21395,7 @@ function addExtensionMethods() {
 /* unused harmony export IdleTransactionSpanRecorder */
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(172);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
-/* harmony import */ var _span_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(269);
+/* harmony import */ var _span_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(270);
 /* harmony import */ var _transaction_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(378);
 
 
@@ -21700,9 +21701,9 @@ function clearActiveTransaction(hub) {
 
 
 /***/ }),
-/* 274 */,
 /* 275 */,
-/* 276 */
+/* 276 */,
+/* 277 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21728,7 +21729,7 @@ class SentryError extends Error {
 
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(72);
@@ -21755,7 +21756,6 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 278 */,
 /* 279 */,
 /* 280 */,
 /* 281 */,
@@ -21785,34 +21785,35 @@ module.exports = _objectSpread;
 /* 305 */,
 /* 306 */,
 /* 307 */,
-/* 308 */
+/* 308 */,
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.toUtf8 = exports.fromUtf8 = exports.toRfc3339 = exports.fromRfc3339 = exports.toHex = exports.fromHex = exports.Bech32 = exports.toBase64 = exports.fromBase64 = exports.toAscii = exports.fromAscii = void 0;
-var ascii_1 = __webpack_require__(868);
+var ascii_1 = __webpack_require__(870);
 Object.defineProperty(exports, "fromAscii", { enumerable: true, get: function () { return ascii_1.fromAscii; } });
 Object.defineProperty(exports, "toAscii", { enumerable: true, get: function () { return ascii_1.toAscii; } });
-var base64_1 = __webpack_require__(869);
+var base64_1 = __webpack_require__(871);
 Object.defineProperty(exports, "fromBase64", { enumerable: true, get: function () { return base64_1.fromBase64; } });
 Object.defineProperty(exports, "toBase64", { enumerable: true, get: function () { return base64_1.toBase64; } });
-var bech32_1 = __webpack_require__(870);
+var bech32_1 = __webpack_require__(872);
 Object.defineProperty(exports, "Bech32", { enumerable: true, get: function () { return bech32_1.Bech32; } });
-var hex_1 = __webpack_require__(871);
+var hex_1 = __webpack_require__(873);
 Object.defineProperty(exports, "fromHex", { enumerable: true, get: function () { return hex_1.fromHex; } });
 Object.defineProperty(exports, "toHex", { enumerable: true, get: function () { return hex_1.toHex; } });
-var rfc3339_1 = __webpack_require__(872);
+var rfc3339_1 = __webpack_require__(874);
 Object.defineProperty(exports, "fromRfc3339", { enumerable: true, get: function () { return rfc3339_1.fromRfc3339; } });
 Object.defineProperty(exports, "toRfc3339", { enumerable: true, get: function () { return rfc3339_1.toRfc3339; } });
-var utf8_1 = __webpack_require__(873);
+var utf8_1 = __webpack_require__(875);
 Object.defineProperty(exports, "fromUtf8", { enumerable: true, get: function () { return utf8_1.fromUtf8; } });
 Object.defineProperty(exports, "toUtf8", { enumerable: true, get: function () { return utf8_1.toUtf8; } });
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22008,7 +22009,7 @@ exports.encodeBech32Pubkey = encodeBech32Pubkey;
 //# sourceMappingURL=encoding.js.map
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22017,7 +22018,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.decodeSignature = exports.encodeSecp256k1Signature = void 0;
 /* eslint-disable @typescript-eslint/naming-convention */
 const encoding_1 = __webpack_require__(109);
-const encoding_2 = __webpack_require__(309);
+const encoding_2 = __webpack_require__(310);
 const pubkeys_1 = __webpack_require__(221);
 /**
  * Takes a binary pubkey and signature to create a signature object
@@ -22051,7 +22052,7 @@ exports.decodeSignature = decodeSignature;
 //# sourceMappingURL=signature.js.map
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22100,7 +22101,7 @@ exports.serializeSignDoc = serializeSignDoc;
 //# sourceMappingURL=signdoc.js.map
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22165,16 +22166,16 @@ exports.makeSignBytes = makeSignBytes;
 //# sourceMappingURL=signing.js.map
 
 /***/ }),
-/* 313 */,
 /* 314 */,
-/* 315 */
+/* 315 */,
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SHA2 = void 0;
-const _assert_js_1 = __webpack_require__(939);
+const _assert_js_1 = __webpack_require__(941);
 const utils_js_1 = __webpack_require__(225);
 // Polyfill for Safari 14
 function setBigUint64(view, byteOffset, value, isLE) {
@@ -22282,9 +22283,9 @@ exports.SHA2 = SHA2;
 
 
 /***/ }),
-/* 316 */,
 /* 317 */,
-/* 318 */
+/* 318 */,
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22310,7 +22311,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlockIdFlag = exports.Tendermint34Client = exports.tendermint34 = exports.VoteType = exports.SubscriptionEventType = exports.Method = exports.broadcastTxSyncSuccess = exports.broadcastTxCommitSuccess = exports.WebsocketClient = exports.HttpClient = exports.toSeconds = exports.toRfc3339WithNanoseconds = exports.fromSeconds = exports.fromRfc3339WithNanoseconds = exports.DateTime = exports.rawSecp256k1PubkeyToRawAddress = exports.rawEd25519PubkeyToRawAddress = exports.pubkeyToRawAddress = exports.pubkeyToAddress = void 0;
-var addresses_1 = __webpack_require__(983);
+var addresses_1 = __webpack_require__(985);
 Object.defineProperty(exports, "pubkeyToAddress", { enumerable: true, get: function () { return addresses_1.pubkeyToAddress; } });
 Object.defineProperty(exports, "pubkeyToRawAddress", { enumerable: true, get: function () { return addresses_1.pubkeyToRawAddress; } });
 Object.defineProperty(exports, "rawEd25519PubkeyToRawAddress", { enumerable: true, get: function () { return addresses_1.rawEd25519PubkeyToRawAddress; } });
@@ -22324,32 +22325,32 @@ Object.defineProperty(exports, "toSeconds", { enumerable: true, get: function ()
 var rpcclients_1 = __webpack_require__(498); // TODO: Why do we export those outside of this package?
 Object.defineProperty(exports, "HttpClient", { enumerable: true, get: function () { return rpcclients_1.HttpClient; } });
 Object.defineProperty(exports, "WebsocketClient", { enumerable: true, get: function () { return rpcclients_1.WebsocketClient; } });
-var tendermint34_1 = __webpack_require__(320);
+var tendermint34_1 = __webpack_require__(321);
 Object.defineProperty(exports, "broadcastTxCommitSuccess", { enumerable: true, get: function () { return tendermint34_1.broadcastTxCommitSuccess; } });
 Object.defineProperty(exports, "broadcastTxSyncSuccess", { enumerable: true, get: function () { return tendermint34_1.broadcastTxSyncSuccess; } });
 Object.defineProperty(exports, "Method", { enumerable: true, get: function () { return tendermint34_1.Method; } });
 Object.defineProperty(exports, "SubscriptionEventType", { enumerable: true, get: function () { return tendermint34_1.SubscriptionEventType; } });
 Object.defineProperty(exports, "VoteType", { enumerable: true, get: function () { return tendermint34_1.VoteType; } });
-exports.tendermint34 = __importStar(__webpack_require__(320));
-var tendermint34_2 = __webpack_require__(320);
+exports.tendermint34 = __importStar(__webpack_require__(321));
+var tendermint34_2 = __webpack_require__(321);
 Object.defineProperty(exports, "Tendermint34Client", { enumerable: true, get: function () { return tendermint34_2.Tendermint34Client; } });
 var types_1 = __webpack_require__(505);
 Object.defineProperty(exports, "BlockIdFlag", { enumerable: true, get: function () { return types_1.BlockIdFlag; } });
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.jsonRpcCode = exports.isJsonRpcSuccessResponse = exports.isJsonRpcErrorResponse = exports.parseJsonRpcSuccessResponse = exports.parseJsonRpcResponse = exports.parseJsonRpcRequest = exports.parseJsonRpcId = exports.parseJsonRpcErrorResponse = exports.JsonRpcClient = exports.makeJsonRpcId = void 0;
-var id_1 = __webpack_require__(991);
+var id_1 = __webpack_require__(993);
 Object.defineProperty(exports, "makeJsonRpcId", { enumerable: true, get: function () { return id_1.makeJsonRpcId; } });
-var jsonrpcclient_1 = __webpack_require__(992);
+var jsonrpcclient_1 = __webpack_require__(994);
 Object.defineProperty(exports, "JsonRpcClient", { enumerable: true, get: function () { return jsonrpcclient_1.JsonRpcClient; } });
-var parse_1 = __webpack_require__(993);
+var parse_1 = __webpack_require__(995);
 Object.defineProperty(exports, "parseJsonRpcErrorResponse", { enumerable: true, get: function () { return parse_1.parseJsonRpcErrorResponse; } });
 Object.defineProperty(exports, "parseJsonRpcId", { enumerable: true, get: function () { return parse_1.parseJsonRpcId; } });
 Object.defineProperty(exports, "parseJsonRpcRequest", { enumerable: true, get: function () { return parse_1.parseJsonRpcRequest; } });
@@ -22362,7 +22363,7 @@ Object.defineProperty(exports, "jsonRpcCode", { enumerable: true, get: function 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22371,19 +22372,19 @@ Object.defineProperty(exports, "jsonRpcCode", { enumerable: true, get: function 
 // `import { tendermint34 } from "@cosmjs/tendermint-rpc"`
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tendermint34Client = exports.VoteType = exports.broadcastTxSyncSuccess = exports.broadcastTxCommitSuccess = exports.SubscriptionEventType = exports.Method = void 0;
-var requests_1 = __webpack_require__(321);
+var requests_1 = __webpack_require__(322);
 Object.defineProperty(exports, "Method", { enumerable: true, get: function () { return requests_1.Method; } });
 Object.defineProperty(exports, "SubscriptionEventType", { enumerable: true, get: function () { return requests_1.SubscriptionEventType; } });
-var responses_1 = __webpack_require__(999);
+var responses_1 = __webpack_require__(1001);
 Object.defineProperty(exports, "broadcastTxCommitSuccess", { enumerable: true, get: function () { return responses_1.broadcastTxCommitSuccess; } });
 Object.defineProperty(exports, "broadcastTxSyncSuccess", { enumerable: true, get: function () { return responses_1.broadcastTxSyncSuccess; } });
 Object.defineProperty(exports, "VoteType", { enumerable: true, get: function () { return responses_1.VoteType; } });
-var tendermint34client_1 = __webpack_require__(1000);
+var tendermint34client_1 = __webpack_require__(1002);
 Object.defineProperty(exports, "Tendermint34Client", { enumerable: true, get: function () { return tendermint34client_1.Tendermint34Client; } });
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22439,7 +22440,7 @@ exports.buildQuery = buildQuery;
 //# sourceMappingURL=requests.js.map
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22647,7 +22648,6 @@ exports.encodeBlockId = encodeBlockId;
 //# sourceMappingURL=encodings.js.map
 
 /***/ }),
-/* 323 */,
 /* 324 */,
 /* 325 */,
 /* 326 */,
@@ -22658,7 +22658,8 @@ exports.encodeBlockId = encodeBlockId;
 /* 331 */,
 /* 332 */,
 /* 333 */,
-/* 334 */
+/* 334 */,
+/* 335 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22666,7 +22667,7 @@ exports.encodeBlockId = encodeBlockId;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return hashMessage; });
 /* harmony import */ var _ethersproject_bytes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _ethersproject_keccak256__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(21);
-/* harmony import */ var _ethersproject_strings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(262);
+/* harmony import */ var _ethersproject_strings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(263);
 
 
 
@@ -22684,7 +22685,6 @@ function hashMessage(message) {
 //# sourceMappingURL=message.js.map
 
 /***/ }),
-/* 335 */,
 /* 336 */,
 /* 337 */,
 /* 338 */,
@@ -22704,21 +22704,21 @@ function hashMessage(message) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ascii_1 = __webpack_require__(1101);
+var ascii_1 = __webpack_require__(1103);
 Object.defineProperty(exports, "fromAscii", { enumerable: true, get: function () { return ascii_1.fromAscii; } });
 Object.defineProperty(exports, "toAscii", { enumerable: true, get: function () { return ascii_1.toAscii; } });
-var base64_1 = __webpack_require__(1102);
+var base64_1 = __webpack_require__(1104);
 Object.defineProperty(exports, "fromBase64", { enumerable: true, get: function () { return base64_1.fromBase64; } });
 Object.defineProperty(exports, "toBase64", { enumerable: true, get: function () { return base64_1.toBase64; } });
-var bech32_1 = __webpack_require__(1103);
+var bech32_1 = __webpack_require__(1105);
 Object.defineProperty(exports, "Bech32", { enumerable: true, get: function () { return bech32_1.Bech32; } });
-var hex_1 = __webpack_require__(1104);
+var hex_1 = __webpack_require__(1106);
 Object.defineProperty(exports, "fromHex", { enumerable: true, get: function () { return hex_1.fromHex; } });
 Object.defineProperty(exports, "toHex", { enumerable: true, get: function () { return hex_1.toHex; } });
-var rfc3339_1 = __webpack_require__(1105);
+var rfc3339_1 = __webpack_require__(1107);
 Object.defineProperty(exports, "fromRfc3339", { enumerable: true, get: function () { return rfc3339_1.fromRfc3339; } });
 Object.defineProperty(exports, "toRfc3339", { enumerable: true, get: function () { return rfc3339_1.toRfc3339; } });
-var utf8_1 = __webpack_require__(1106);
+var utf8_1 = __webpack_require__(1108);
 Object.defineProperty(exports, "fromUtf8", { enumerable: true, get: function () { return utf8_1.fromUtf8; } });
 Object.defineProperty(exports, "toUtf8", { enumerable: true, get: function () { return utf8_1.toUtf8; } });
 //# sourceMappingURL=index.js.map
@@ -23014,7 +23014,7 @@ function escapeStringForRegex(regexString) {
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(172);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(81);
-/* harmony import */ var _span_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(269);
+/* harmony import */ var _span_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(270);
 
 
 
@@ -23318,18 +23318,18 @@ module.exports = _inheritsLoose;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _walletconnect_randombytes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1291);
+/* harmony import */ var _walletconnect_randombytes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1292);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "randomBytes", function() { return _walletconnect_randombytes__WEBPACK_IMPORTED_MODULE_0__["a"]; });
 
-/* harmony import */ var _aes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1292);
+/* harmony import */ var _aes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1293);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "aesCbcDecrypt", function() { return _aes__WEBPACK_IMPORTED_MODULE_1__["a"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "aesCbcEncrypt", function() { return _aes__WEBPACK_IMPORTED_MODULE_1__["b"]; });
 
-/* harmony import */ var _hmac__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1293);
+/* harmony import */ var _hmac__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1294);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "hmacSha256Sign", function() { return _hmac__WEBPACK_IMPORTED_MODULE_2__["a"]; });
 
-/* harmony import */ var _sha2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1298);
+/* harmony import */ var _sha2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1299);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(603);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(74);
 
@@ -23464,8 +23464,8 @@ exports.accountFromAny = void 0;
 const math_1 = __webpack_require__(66);
 const proto_signing_1 = __webpack_require__(151);
 const utils_1 = __webpack_require__(110);
-const auth_1 = __webpack_require__(313);
-const vesting_1 = __webpack_require__(922);
+const auth_1 = __webpack_require__(314);
+const vesting_1 = __webpack_require__(924);
 function uint64FromProto(input) {
     return math_1.Uint64.fromString(input.toString());
 }
@@ -23584,7 +23584,7 @@ exports.accountFromAny = accountFromAny;
     if (typeof window !== 'undefined' && typeof window.Buffer !== 'undefined') {
       Buffer = window.Buffer;
     } else {
-      Buffer = __webpack_require__(862).Buffer;
+      Buffer = __webpack_require__(864).Buffer;
     }
   } catch (e) {
   }
@@ -27239,7 +27239,7 @@ exports.Hmac = Hmac;
     if (typeof window !== 'undefined' && typeof window.Buffer !== 'undefined') {
       Buffer = window.Buffer;
     } else {
-      Buffer = __webpack_require__(884).Buffer;
+      Buffer = __webpack_require__(886).Buffer;
     }
   } catch (e) {
   }
@@ -30981,16 +30981,16 @@ exports.sha512 = sha512;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isUint8Array = exports.isNonNullObject = exports.sleep = exports.assertDefinedAndNotNull = exports.assertDefined = exports.assert = exports.arrayContentStartsWith = exports.arrayContentEquals = void 0;
-var arrays_1 = __webpack_require__(892);
+var arrays_1 = __webpack_require__(894);
 Object.defineProperty(exports, "arrayContentEquals", { enumerable: true, get: function () { return arrays_1.arrayContentEquals; } });
 Object.defineProperty(exports, "arrayContentStartsWith", { enumerable: true, get: function () { return arrays_1.arrayContentStartsWith; } });
-var assert_1 = __webpack_require__(893);
+var assert_1 = __webpack_require__(895);
 Object.defineProperty(exports, "assert", { enumerable: true, get: function () { return assert_1.assert; } });
 Object.defineProperty(exports, "assertDefined", { enumerable: true, get: function () { return assert_1.assertDefined; } });
 Object.defineProperty(exports, "assertDefinedAndNotNull", { enumerable: true, get: function () { return assert_1.assertDefinedAndNotNull; } });
-var sleep_1 = __webpack_require__(894);
+var sleep_1 = __webpack_require__(896);
 Object.defineProperty(exports, "sleep", { enumerable: true, get: function () { return sleep_1.sleep; } });
-var typechecks_1 = __webpack_require__(895);
+var typechecks_1 = __webpack_require__(897);
 Object.defineProperty(exports, "isNonNullObject", { enumerable: true, get: function () { return typechecks_1.isNonNullObject; } });
 Object.defineProperty(exports, "isUint8Array", { enumerable: true, get: function () { return typechecks_1.isUint8Array; } });
 //# sourceMappingURL=index.js.map
@@ -31088,16 +31088,16 @@ exports.decrypt = decrypt;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isUint8Array = exports.isNonNullObject = exports.isDefined = exports.sleep = exports.assertDefinedAndNotNull = exports.assertDefined = exports.assert = exports.arrayContentStartsWith = exports.arrayContentEquals = void 0;
-var arrays_1 = __webpack_require__(907);
+var arrays_1 = __webpack_require__(909);
 Object.defineProperty(exports, "arrayContentEquals", { enumerable: true, get: function () { return arrays_1.arrayContentEquals; } });
 Object.defineProperty(exports, "arrayContentStartsWith", { enumerable: true, get: function () { return arrays_1.arrayContentStartsWith; } });
-var assert_1 = __webpack_require__(908);
+var assert_1 = __webpack_require__(910);
 Object.defineProperty(exports, "assert", { enumerable: true, get: function () { return assert_1.assert; } });
 Object.defineProperty(exports, "assertDefined", { enumerable: true, get: function () { return assert_1.assertDefined; } });
 Object.defineProperty(exports, "assertDefinedAndNotNull", { enumerable: true, get: function () { return assert_1.assertDefinedAndNotNull; } });
-var sleep_1 = __webpack_require__(909);
+var sleep_1 = __webpack_require__(911);
 Object.defineProperty(exports, "sleep", { enumerable: true, get: function () { return sleep_1.sleep; } });
-var typechecks_1 = __webpack_require__(910);
+var typechecks_1 = __webpack_require__(912);
 Object.defineProperty(exports, "isDefined", { enumerable: true, get: function () { return typechecks_1.isDefined; } });
 Object.defineProperty(exports, "isNonNullObject", { enumerable: true, get: function () { return typechecks_1.isNonNullObject; } });
 Object.defineProperty(exports, "isUint8Array", { enumerable: true, get: function () { return typechecks_1.isUint8Array; } });
@@ -31180,7 +31180,7 @@ exports.AminoTypes = void 0;
 const amino_1 = __webpack_require__(128);
 const encoding_1 = __webpack_require__(129);
 const utils_1 = __webpack_require__(110);
-const gov_1 = __webpack_require__(314);
+const gov_1 = __webpack_require__(315);
 const any_1 = __webpack_require__(50);
 const long_1 = __importDefault(__webpack_require__(7));
 function omitDefault(input) {
@@ -31666,24 +31666,24 @@ exports.calculateFee = calculateFee;
 // Base symbols
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decodeCosmosSdkDecFromProto = exports.createProtobufRpcClient = exports.createPagination = exports.setupTxExtension = exports.setupStakingExtension = exports.setupMintExtension = exports.setupIbcExtension = exports.setupGovExtension = exports.setupDistributionExtension = exports.setupBankExtension = exports.setupAuthExtension = exports.QueryClient = void 0;
-var queryclient_1 = __webpack_require__(933);
+var queryclient_1 = __webpack_require__(935);
 Object.defineProperty(exports, "QueryClient", { enumerable: true, get: function () { return queryclient_1.QueryClient; } });
 // Extensions
-var auth_1 = __webpack_require__(955);
+var auth_1 = __webpack_require__(957);
 Object.defineProperty(exports, "setupAuthExtension", { enumerable: true, get: function () { return auth_1.setupAuthExtension; } });
-var bank_1 = __webpack_require__(957);
+var bank_1 = __webpack_require__(959);
 Object.defineProperty(exports, "setupBankExtension", { enumerable: true, get: function () { return bank_1.setupBankExtension; } });
-var distribution_1 = __webpack_require__(959);
+var distribution_1 = __webpack_require__(961);
 Object.defineProperty(exports, "setupDistributionExtension", { enumerable: true, get: function () { return distribution_1.setupDistributionExtension; } });
-var gov_1 = __webpack_require__(962);
+var gov_1 = __webpack_require__(964);
 Object.defineProperty(exports, "setupGovExtension", { enumerable: true, get: function () { return gov_1.setupGovExtension; } });
-var ibc_1 = __webpack_require__(964);
+var ibc_1 = __webpack_require__(966);
 Object.defineProperty(exports, "setupIbcExtension", { enumerable: true, get: function () { return ibc_1.setupIbcExtension; } });
-var mint_1 = __webpack_require__(972);
+var mint_1 = __webpack_require__(974);
 Object.defineProperty(exports, "setupMintExtension", { enumerable: true, get: function () { return mint_1.setupMintExtension; } });
-var staking_1 = __webpack_require__(975);
+var staking_1 = __webpack_require__(977);
 Object.defineProperty(exports, "setupStakingExtension", { enumerable: true, get: function () { return staking_1.setupStakingExtension; } });
-var tx_1 = __webpack_require__(977);
+var tx_1 = __webpack_require__(979);
 Object.defineProperty(exports, "setupTxExtension", { enumerable: true, get: function () { return tx_1.setupTxExtension; } });
 var utils_1 = __webpack_require__(98);
 Object.defineProperty(exports, "createPagination", { enumerable: true, get: function () { return utils_1.createPagination; } });
@@ -31700,7 +31700,7 @@ Object.defineProperty(exports, "decodeCosmosSdkDecFromProto", { enumerable: true
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ensureLeftNeighbor = exports.ensureSpec = exports.calculateExistenceRoot = exports.verifyNonExistence = exports.verifyExistence = exports.smtSpec = exports.tendermintSpec = exports.iavlSpec = void 0;
 const codecimpl_1 = __webpack_require__(224);
-const ops_1 = __webpack_require__(937);
+const ops_1 = __webpack_require__(939);
 const specs_1 = __webpack_require__(485);
 exports.iavlSpec = {
     leafSpec: {
@@ -32149,11 +32149,11 @@ exports.DateTime = DateTime;
 // This folder contains Tendermint-specific RPC clients
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebsocketClient = exports.instanceOfRpcStreamingClient = exports.HttpClient = void 0;
-var httpclient_1 = __webpack_require__(990);
+var httpclient_1 = __webpack_require__(992);
 Object.defineProperty(exports, "HttpClient", { enumerable: true, get: function () { return httpclient_1.HttpClient; } });
 var rpcclient_1 = __webpack_require__(227);
 Object.defineProperty(exports, "instanceOfRpcStreamingClient", { enumerable: true, get: function () { return rpcclient_1.instanceOfRpcStreamingClient; } });
-var websocketclient_1 = __webpack_require__(995);
+var websocketclient_1 = __webpack_require__(997);
 Object.defineProperty(exports, "WebsocketClient", { enumerable: true, get: function () { return websocketclient_1.WebsocketClient; } });
 //# sourceMappingURL=index.js.map
 
@@ -32367,7 +32367,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SocketWrapper = void 0;
-const isomorphic_ws_1 = __importDefault(__webpack_require__(997));
+const isomorphic_ws_1 = __importDefault(__webpack_require__(999));
 function environmentIsNodeJs() {
     return (typeof process !== "undefined" &&
         typeof process.versions !== "undefined" &&
@@ -32558,7 +32558,7 @@ exports.createJsonRpcRequest = createJsonRpcRequest;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hashBlock = exports.hashTx = void 0;
 const crypto_1 = __webpack_require__(84);
-const encodings_1 = __webpack_require__(322);
+const encodings_1 = __webpack_require__(323);
 // hash is sha256
 // https://github.com/tendermint/tendermint/blob/master/UPGRADING.md#v0260
 function hashTx(tx) {
@@ -32654,7 +32654,7 @@ exports.StargateClient = exports.assertIsDeliverTxFailure = exports.assertIsDeli
 /* eslint-disable @typescript-eslint/naming-convention */
 const encoding_1 = __webpack_require__(129);
 const math_1 = __webpack_require__(66);
-const tendermint_rpc_1 = __webpack_require__(318);
+const tendermint_rpc_1 = __webpack_require__(319);
 const utils_1 = __webpack_require__(110);
 const accounts_1 = __webpack_require__(466);
 const queries_1 = __webpack_require__(483);
@@ -33151,11 +33151,11 @@ exports.isUint8Array = isUint8Array;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var assert_1 = __webpack_require__(1107);
+var assert_1 = __webpack_require__(1109);
 Object.defineProperty(exports, "assert", { enumerable: true, get: function () { return assert_1.assert; } });
-var sleep_1 = __webpack_require__(1108);
+var sleep_1 = __webpack_require__(1110);
 Object.defineProperty(exports, "sleep", { enumerable: true, get: function () { return sleep_1.sleep; } });
-var typechecks_1 = __webpack_require__(1109);
+var typechecks_1 = __webpack_require__(1111);
 Object.defineProperty(exports, "isNonNullObject", { enumerable: true, get: function () { return typechecks_1.isNonNullObject; } });
 Object.defineProperty(exports, "isUint8Array", { enumerable: true, get: function () { return typechecks_1.isUint8Array; } });
 //# sourceMappingURL=index.js.map
@@ -33507,7 +33507,7 @@ __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding *
 var lib_esm = __webpack_require__(1);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/bignumber/lib.esm/bignumber.js + 1 modules
-var bignumber = __webpack_require__(1655);
+var bignumber = __webpack_require__(1656);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/keccak256/lib.esm/index.js
 var keccak256_lib_esm = __webpack_require__(21);
@@ -33781,7 +33781,7 @@ function getCreate2Address(from, salt, initCodeHash) {
 var properties_lib_esm = __webpack_require__(12);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/_version.js
-var _version = __webpack_require__(249);
+var _version = __webpack_require__(250);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/hash/lib.esm/id.js
 var id = __webpack_require__(191);
@@ -34241,9 +34241,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios_lib_core_settle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(360);
 /* harmony import */ var axios_lib_core_settle__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios_lib_core_settle__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var axios_lib_helpers_buildURL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(236);
+/* harmony import */ var axios_lib_helpers_buildURL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(237);
 /* harmony import */ var axios_lib_helpers_buildURL__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios_lib_helpers_buildURL__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var axios_lib_core_buildFullPath__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(237);
+/* harmony import */ var axios_lib_core_buildFullPath__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(238);
 /* harmony import */ var axios_lib_core_buildFullPath__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios_lib_core_buildFullPath__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var axios_lib_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(45);
 /* harmony import */ var axios_lib_utils__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios_lib_utils__WEBPACK_IMPORTED_MODULE_4__);
@@ -34472,7 +34472,7 @@ function enhanceError(error, config, code, request, response) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getEnvelopeEndpointWithUrlEncodedAuth; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getReportDialogEndpoint; });
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(81);
-/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(644);
+/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(646);
 
 
 const SENTRY_API_VERSION = '7';
@@ -37111,7 +37111,7 @@ var EC$1 = elliptic_1.ec;
     if (typeof window !== 'undefined' && typeof window.Buffer !== 'undefined') {
       Buffer = window.Buffer;
     } else {
-      Buffer = __webpack_require__(1036).Buffer;
+      Buffer = __webpack_require__(1038).Buffer;
     }
   } catch (e) {
   }
@@ -40653,15 +40653,15 @@ class IEvents {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1294);
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1295);
 /* harmony reexport (checked) */ if(__webpack_require__.o(_env__WEBPACK_IMPORTED_MODULE_0__, "isConstantTime")) __webpack_require__.d(__webpack_exports__, "isConstantTime", function() { return _env__WEBPACK_IMPORTED_MODULE_0__["isConstantTime"]; });
 
-/* harmony import */ var _pkcs7__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1295);
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1296);
+/* harmony import */ var _pkcs7__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1296);
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1297);
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony reexport (checked) */ if(__webpack_require__.o(_types__WEBPACK_IMPORTED_MODULE_2__, "isConstantTime")) __webpack_require__.d(__webpack_exports__, "isConstantTime", function() { return _types__WEBPACK_IMPORTED_MODULE_2__["isConstantTime"]; });
 
-/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1297);
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1298);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isConstantTime", function() { return _validators__WEBPACK_IMPORTED_MODULE_3__["a"]; });
 
 
@@ -40676,7 +40676,8 @@ class IEvents {
 /* 606 */,
 /* 607 */,
 /* 608 */,
-/* 609 */
+/* 609 */,
+/* 610 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {(function (module, exports) {
@@ -40731,7 +40732,7 @@ class IEvents {
 
   var Buffer;
   try {
-    Buffer = __webpack_require__(1624).Buffer;
+    Buffer = __webpack_require__(1625).Buffer;
   } catch (e) {
   }
 
@@ -44110,7 +44111,7 @@ class IEvents {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(95)(module)))
 
 /***/ }),
-/* 610 */
+/* 611 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44312,7 +44313,6 @@ class SyncPromise {
 
 
 /***/ }),
-/* 611 */,
 /* 612 */,
 /* 613 */,
 /* 614 */,
@@ -44329,7 +44329,8 @@ class SyncPromise {
 /* 625 */,
 /* 626 */,
 /* 627 */,
-/* 628 */
+/* 628 */,
+/* 629 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44573,16 +44574,16 @@ exports.generateSalt = generateSalt;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer, __webpack_require__(11)))
 
 /***/ }),
-/* 629 */,
 /* 630 */,
-/* 631 */
+/* 631 */,
+/* 632 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getIntegrationsToSetup; });
 /* unused harmony export installedIntegrations */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return setupIntegrations; });
-/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(263);
+/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(264);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
 /* harmony import */ var _hub_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(68);
 /* harmony import */ var _scope_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(193);
@@ -44682,8 +44683,8 @@ function setupIntegrations(integrations) {
 
 
 /***/ }),
-/* 632 */,
-/* 633 */
+/* 633 */,
+/* 634 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44692,7 +44693,7 @@ function setupIntegrations(integrations) {
 /* unused harmony export nodeStackLineParser */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return stackParserFromStackParserOptions; });
 /* unused harmony export stripSentryFramesAndReverse */
-/* harmony import */ var _buildPolyfills__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1355);
+/* harmony import */ var _buildPolyfills__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1356);
 
 
 const STACKTRACE_LIMIT = 50;
@@ -44889,7 +44890,6 @@ function nodeStackLineParser(getModule) {
 
 
 /***/ }),
-/* 634 */,
 /* 635 */,
 /* 636 */,
 /* 637 */,
@@ -44899,14 +44899,16 @@ function nodeStackLineParser(getModule) {
 /* 641 */,
 /* 642 */,
 /* 643 */,
-/* 644 */
+/* 644 */,
+/* 645 */,
+/* 646 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export dsnFromString */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dsnToString; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return makeDsn; });
-/* harmony import */ var _error_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(276);
+/* harmony import */ var _error_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(277);
 
 
 /** Regular expression used to parse a Dsn. */
@@ -45019,8 +45021,6 @@ function makeDsn(from) {
 
 
 /***/ }),
-/* 645 */,
-/* 646 */,
 /* 647 */,
 /* 648 */,
 /* 649 */,
@@ -45041,7 +45041,9 @@ function makeDsn(from) {
 /* 664 */,
 /* 665 */,
 /* 666 */,
-/* 667 */
+/* 667 */,
+/* 668 */,
+/* 669 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45100,7 +45102,7 @@ function asPromise(fn, ctx/*, varargs */) {
 
 
 /***/ }),
-/* 668 */
+/* 670 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45246,7 +45248,7 @@ base64.test = function test(string) {
 
 
 /***/ }),
-/* 669 */
+/* 671 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45329,7 +45331,7 @@ EventEmitter.prototype.emit = function emit(evt) {
 
 
 /***/ }),
-/* 670 */
+/* 672 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45671,7 +45673,7 @@ function readUintBE(buf, pos) {
 
 
 /***/ }),
-/* 671 */
+/* 673 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45695,7 +45697,7 @@ function inquire(moduleName) {
 
 
 /***/ }),
-/* 672 */
+/* 674 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45807,7 +45809,7 @@ utf8.write = function utf8_write(string, buffer, offset) {
 
 
 /***/ }),
-/* 673 */
+/* 675 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45862,8 +45864,6 @@ function pool(alloc, slice, size) {
 
 
 /***/ }),
-/* 674 */,
-/* 675 */,
 /* 676 */,
 /* 677 */,
 /* 678 */,
@@ -46049,7 +46049,9 @@ function pool(alloc, slice, size) {
 /* 858 */,
 /* 859 */,
 /* 860 */,
-/* 861 */
+/* 861 */,
+/* 862 */,
+/* 863 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46212,8 +46214,8 @@ exports.Decimal = Decimal;
 //# sourceMappingURL=decimal.js.map
 
 /***/ }),
-/* 862 */,
-/* 863 */
+/* 864 */,
+/* 865 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46421,7 +46423,7 @@ const _uint64Class = Uint64;
 //# sourceMappingURL=integers.js.map
 
 /***/ }),
-/* 864 */
+/* 866 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46455,7 +46457,7 @@ exports.parseCoins = parseCoins;
 //# sourceMappingURL=coins.js.map
 
 /***/ }),
-/* 865 */
+/* 867 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46478,7 +46480,7 @@ exports.decodeTxRaw = decodeTxRaw;
 //# sourceMappingURL=decode.js.map
 
 /***/ }),
-/* 866 */
+/* 868 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46489,7 +46491,7 @@ const amino_1 = __webpack_require__(128);
 const crypto_1 = __webpack_require__(84);
 const encoding_1 = __webpack_require__(222);
 const utils_1 = __webpack_require__(477);
-const signing_1 = __webpack_require__(312);
+const signing_1 = __webpack_require__(313);
 const wallet_1 = __webpack_require__(478);
 const serializationTypeV1 = "directsecp256k1hdwallet-v1";
 /**
@@ -46726,7 +46728,7 @@ exports.DirectSecp256k1HdWallet = DirectSecp256k1HdWallet;
 //# sourceMappingURL=directsecp256k1hdwallet.js.map
 
 /***/ }),
-/* 867 */
+/* 869 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46752,7 +46754,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Bip39 = void 0;
-const encoding_1 = __webpack_require__(308);
+const encoding_1 = __webpack_require__(309);
 const bip39 = __importStar(__webpack_require__(105));
 const englishmnemonic_1 = __webpack_require__(468);
 class Bip39 {
@@ -46789,7 +46791,7 @@ exports.Bip39 = Bip39;
 //# sourceMappingURL=bip39.js.map
 
 /***/ }),
-/* 868 */
+/* 870 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46828,7 +46830,7 @@ exports.fromAscii = fromAscii;
 //# sourceMappingURL=ascii.js.map
 
 /***/ }),
-/* 869 */
+/* 871 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46869,7 +46871,7 @@ exports.fromBase64 = fromBase64;
 //# sourceMappingURL=base64.js.map
 
 /***/ }),
-/* 870 */
+/* 872 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46913,7 +46915,7 @@ exports.Bech32 = Bech32;
 //# sourceMappingURL=bech32.js.map
 
 /***/ }),
-/* 871 */
+/* 873 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46946,7 +46948,7 @@ exports.fromHex = fromHex;
 //# sourceMappingURL=hex.js.map
 
 /***/ }),
-/* 872 */
+/* 874 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47004,7 +47006,7 @@ exports.toRfc3339 = toRfc3339;
 //# sourceMappingURL=rfc3339.js.map
 
 /***/ }),
-/* 873 */
+/* 875 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47022,7 +47024,7 @@ exports.fromUtf8 = fromUtf8;
 //# sourceMappingURL=utf8.js.map
 
 /***/ }),
-/* 874 */
+/* 876 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47058,7 +47060,7 @@ exports.keccak256 = keccak256;
 //# sourceMappingURL=keccak.js.map
 
 /***/ }),
-/* 875 */
+/* 877 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47072,7 +47074,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Xchacha20poly1305Ietf = exports.xchacha20NonceLength = exports.Ed25519 = exports.Ed25519Keypair = exports.Argon2id = exports.isArgon2idOptions = void 0;
-const utils_1 = __webpack_require__(876);
+const utils_1 = __webpack_require__(878);
 const libsodium_wrappers_1 = __importDefault(__webpack_require__(470));
 function isArgon2idOptions(thing) {
     if (!(0, utils_1.isNonNullObject)(thing))
@@ -47159,29 +47161,29 @@ exports.Xchacha20poly1305Ietf = Xchacha20poly1305Ietf;
 //# sourceMappingURL=libsodium.js.map
 
 /***/ }),
-/* 876 */
+/* 878 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isUint8Array = exports.isNonNullObject = exports.sleep = exports.assertDefinedAndNotNull = exports.assertDefined = exports.assert = exports.arrayContentStartsWith = exports.arrayContentEquals = void 0;
-var arrays_1 = __webpack_require__(877);
+var arrays_1 = __webpack_require__(879);
 Object.defineProperty(exports, "arrayContentEquals", { enumerable: true, get: function () { return arrays_1.arrayContentEquals; } });
 Object.defineProperty(exports, "arrayContentStartsWith", { enumerable: true, get: function () { return arrays_1.arrayContentStartsWith; } });
-var assert_1 = __webpack_require__(878);
+var assert_1 = __webpack_require__(880);
 Object.defineProperty(exports, "assert", { enumerable: true, get: function () { return assert_1.assert; } });
 Object.defineProperty(exports, "assertDefined", { enumerable: true, get: function () { return assert_1.assertDefined; } });
 Object.defineProperty(exports, "assertDefinedAndNotNull", { enumerable: true, get: function () { return assert_1.assertDefinedAndNotNull; } });
-var sleep_1 = __webpack_require__(879);
+var sleep_1 = __webpack_require__(881);
 Object.defineProperty(exports, "sleep", { enumerable: true, get: function () { return sleep_1.sleep; } });
-var typechecks_1 = __webpack_require__(880);
+var typechecks_1 = __webpack_require__(882);
 Object.defineProperty(exports, "isNonNullObject", { enumerable: true, get: function () { return typechecks_1.isNonNullObject; } });
 Object.defineProperty(exports, "isUint8Array", { enumerable: true, get: function () { return typechecks_1.isUint8Array; } });
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 877 */
+/* 879 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47227,7 +47229,7 @@ exports.arrayContentStartsWith = arrayContentStartsWith;
 //# sourceMappingURL=arrays.js.map
 
 /***/ }),
-/* 878 */
+/* 880 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47256,7 +47258,7 @@ exports.assertDefinedAndNotNull = assertDefinedAndNotNull;
 //# sourceMappingURL=assert.js.map
 
 /***/ }),
-/* 879 */
+/* 881 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47270,7 +47272,7 @@ exports.sleep = sleep;
 //# sourceMappingURL=sleep.js.map
 
 /***/ }),
-/* 880 */
+/* 882 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47313,7 +47315,7 @@ exports.isUint8Array = isUint8Array;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 881 */
+/* 883 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47348,7 +47350,7 @@ exports.Random = Random;
 //# sourceMappingURL=random.js.map
 
 /***/ }),
-/* 882 */
+/* 884 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47385,7 +47387,7 @@ exports.ripemd160 = ripemd160;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 883 */
+/* 885 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47395,7 +47397,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Secp256k1 = void 0;
-const encoding_1 = __webpack_require__(308);
+const encoding_1 = __webpack_require__(309);
 const bn_js_1 = __importDefault(__webpack_require__(471));
 const elliptic_1 = __importDefault(__webpack_require__(97));
 const secp256k1signature_1 = __webpack_require__(472);
@@ -47505,8 +47507,8 @@ exports.Secp256k1 = Secp256k1;
 //# sourceMappingURL=secp256k1.js.map
 
 /***/ }),
-/* 884 */,
-/* 885 */
+/* 886 */,
+/* 887 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47516,7 +47518,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stringToPath = exports.pathToString = exports.Slip10 = exports.Slip10RawIndex = exports.slip10CurveFromString = exports.Slip10Curve = void 0;
-const encoding_1 = __webpack_require__(308);
+const encoding_1 = __webpack_require__(309);
 const math_1 = __webpack_require__(66);
 const bn_js_1 = __importDefault(__webpack_require__(471));
 const elliptic_1 = __importDefault(__webpack_require__(97));
@@ -47698,7 +47700,7 @@ exports.stringToPath = stringToPath;
 //# sourceMappingURL=slip10.js.map
 
 /***/ }),
-/* 886 */
+/* 888 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47737,7 +47739,7 @@ exports.fromAscii = fromAscii;
 //# sourceMappingURL=ascii.js.map
 
 /***/ }),
-/* 887 */
+/* 889 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47778,7 +47780,7 @@ exports.fromBase64 = fromBase64;
 //# sourceMappingURL=base64.js.map
 
 /***/ }),
-/* 888 */
+/* 890 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47822,7 +47824,7 @@ exports.Bech32 = Bech32;
 //# sourceMappingURL=bech32.js.map
 
 /***/ }),
-/* 889 */
+/* 891 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47855,7 +47857,7 @@ exports.fromHex = fromHex;
 //# sourceMappingURL=hex.js.map
 
 /***/ }),
-/* 890 */
+/* 892 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47913,7 +47915,7 @@ exports.toRfc3339 = toRfc3339;
 //# sourceMappingURL=rfc3339.js.map
 
 /***/ }),
-/* 891 */
+/* 893 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47931,7 +47933,7 @@ exports.fromUtf8 = fromUtf8;
 //# sourceMappingURL=utf8.js.map
 
 /***/ }),
-/* 892 */
+/* 894 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47977,7 +47979,7 @@ exports.arrayContentStartsWith = arrayContentStartsWith;
 //# sourceMappingURL=arrays.js.map
 
 /***/ }),
-/* 893 */
+/* 895 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48006,7 +48008,7 @@ exports.assertDefinedAndNotNull = assertDefinedAndNotNull;
 //# sourceMappingURL=assert.js.map
 
 /***/ }),
-/* 894 */
+/* 896 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48020,7 +48022,7 @@ exports.sleep = sleep;
 //# sourceMappingURL=sleep.js.map
 
 /***/ }),
-/* 895 */
+/* 897 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48063,7 +48065,7 @@ exports.isUint8Array = isUint8Array;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 896 */
+/* 898 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48139,7 +48141,7 @@ exports.parseCoins = parseCoins;
 //# sourceMappingURL=coins.js.map
 
 /***/ }),
-/* 897 */
+/* 899 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48187,7 +48189,7 @@ exports.createMultisigThresholdPubkey = createMultisigThresholdPubkey;
 //# sourceMappingURL=multisig.js.map
 
 /***/ }),
-/* 898 */
+/* 900 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48199,8 +48201,8 @@ const encoding_1 = __webpack_require__(109);
 const utils_1 = __webpack_require__(474);
 const addresses_1 = __webpack_require__(220);
 const paths_1 = __webpack_require__(475);
-const signature_1 = __webpack_require__(310);
-const signdoc_1 = __webpack_require__(311);
+const signature_1 = __webpack_require__(311);
+const signdoc_1 = __webpack_require__(312);
 const wallet_1 = __webpack_require__(476);
 const serializationTypeV1 = "secp256k1wallet-v1";
 /**
@@ -48434,7 +48436,7 @@ exports.Secp256k1HdWallet = Secp256k1HdWallet;
 //# sourceMappingURL=secp256k1hdwallet.js.map
 
 /***/ }),
-/* 899 */
+/* 901 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48444,8 +48446,8 @@ exports.Secp256k1Wallet = void 0;
 const crypto_1 = __webpack_require__(84);
 const encoding_1 = __webpack_require__(109);
 const addresses_1 = __webpack_require__(220);
-const signature_1 = __webpack_require__(310);
-const signdoc_1 = __webpack_require__(311);
+const signature_1 = __webpack_require__(311);
+const signdoc_1 = __webpack_require__(312);
 /**
  * A wallet that holds a single secp256k1 keypair.
  *
@@ -48496,7 +48498,7 @@ exports.Secp256k1Wallet = Secp256k1Wallet;
 //# sourceMappingURL=secp256k1wallet.js.map
 
 /***/ }),
-/* 900 */
+/* 902 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48520,7 +48522,7 @@ exports.makeStdTx = makeStdTx;
 //# sourceMappingURL=stdtx.js.map
 
 /***/ }),
-/* 901 */
+/* 903 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48559,7 +48561,7 @@ exports.fromAscii = fromAscii;
 //# sourceMappingURL=ascii.js.map
 
 /***/ }),
-/* 902 */
+/* 904 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48604,7 +48606,7 @@ exports.fromBase64 = fromBase64;
 //# sourceMappingURL=base64.js.map
 
 /***/ }),
-/* 903 */
+/* 905 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48680,7 +48682,7 @@ exports.Bech32 = Bech32;
 //# sourceMappingURL=bech32.js.map
 
 /***/ }),
-/* 904 */
+/* 906 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48714,7 +48716,7 @@ exports.fromHex = fromHex;
 //# sourceMappingURL=hex.js.map
 
 /***/ }),
-/* 905 */
+/* 907 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48771,7 +48773,7 @@ exports.toRfc3339 = toRfc3339;
 //# sourceMappingURL=rfc3339.js.map
 
 /***/ }),
-/* 906 */
+/* 908 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48796,7 +48798,7 @@ exports.fromUtf8 = fromUtf8;
 //# sourceMappingURL=utf8.js.map
 
 /***/ }),
-/* 907 */
+/* 909 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48842,7 +48844,7 @@ exports.arrayContentStartsWith = arrayContentStartsWith;
 //# sourceMappingURL=arrays.js.map
 
 /***/ }),
-/* 908 */
+/* 910 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48871,7 +48873,7 @@ exports.assertDefinedAndNotNull = assertDefinedAndNotNull;
 //# sourceMappingURL=assert.js.map
 
 /***/ }),
-/* 909 */
+/* 911 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48885,7 +48887,7 @@ exports.sleep = sleep;
 //# sourceMappingURL=sleep.js.map
 
 /***/ }),
-/* 910 */
+/* 912 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48938,7 +48940,7 @@ exports.isDefined = isDefined;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 911 */
+/* 913 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48948,7 +48950,7 @@ exports.DirectSecp256k1Wallet = void 0;
 const amino_1 = __webpack_require__(128);
 const crypto_1 = __webpack_require__(84);
 const encoding_1 = __webpack_require__(222);
-const signing_1 = __webpack_require__(312);
+const signing_1 = __webpack_require__(313);
 /**
  * A wallet that holds a single secp256k1 keypair.
  *
@@ -49001,7 +49003,7 @@ exports.DirectSecp256k1Wallet = DirectSecp256k1Wallet;
 //# sourceMappingURL=directsecp256k1wallet.js.map
 
 /***/ }),
-/* 912 */
+/* 914 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49026,7 +49028,7 @@ exports.makeCosmoshubPath = makeCosmoshubPath;
 //# sourceMappingURL=paths.js.map
 
 /***/ }),
-/* 913 */
+/* 915 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49037,8 +49039,8 @@ exports.decodePubkey = exports.encodePubkey = void 0;
 const amino_1 = __webpack_require__(128);
 const encoding_1 = __webpack_require__(222);
 const math_1 = __webpack_require__(66);
-const keys_1 = __webpack_require__(914);
-const keys_2 = __webpack_require__(915);
+const keys_1 = __webpack_require__(916);
+const keys_2 = __webpack_require__(917);
 const any_1 = __webpack_require__(50);
 function encodePubkey(pubkey) {
     if ((0, amino_1.isSecp256k1Pubkey)(pubkey)) {
@@ -49102,9 +49104,9 @@ exports.decodePubkey = decodePubkey;
 //# sourceMappingURL=pubkey.js.map
 
 /***/ }),
-/* 914 */,
-/* 915 */,
-/* 916 */
+/* 916 */,
+/* 917 */,
+/* 918 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49254,7 +49256,7 @@ exports.Registry = Registry;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 917 */
+/* 919 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49268,7 +49270,7 @@ exports.isOfflineDirectSigner = isOfflineDirectSigner;
 //# sourceMappingURL=signer.js.map
 
 /***/ }),
-/* 918 */
+/* 920 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49314,7 +49316,7 @@ exports.arrayContentStartsWith = arrayContentStartsWith;
 //# sourceMappingURL=arrays.js.map
 
 /***/ }),
-/* 919 */
+/* 921 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49343,7 +49345,7 @@ exports.assertDefinedAndNotNull = assertDefinedAndNotNull;
 //# sourceMappingURL=assert.js.map
 
 /***/ }),
-/* 920 */
+/* 922 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49357,7 +49359,7 @@ exports.sleep = sleep;
 //# sourceMappingURL=sleep.js.map
 
 /***/ }),
-/* 921 */
+/* 923 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49400,8 +49402,8 @@ exports.isUint8Array = isUint8Array;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 922 */,
-/* 923 */
+/* 924 */,
+/* 925 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49485,7 +49487,7 @@ exports.isAminoMsgTransfer = isAminoMsgTransfer;
 //# sourceMappingURL=aminomsgs.js.map
 
 /***/ }),
-/* 924 */
+/* 926 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49524,7 +49526,7 @@ exports.fromAscii = fromAscii;
 //# sourceMappingURL=ascii.js.map
 
 /***/ }),
-/* 925 */
+/* 927 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49565,7 +49567,7 @@ exports.fromBase64 = fromBase64;
 //# sourceMappingURL=base64.js.map
 
 /***/ }),
-/* 926 */
+/* 928 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49609,7 +49611,7 @@ exports.Bech32 = Bech32;
 //# sourceMappingURL=bech32.js.map
 
 /***/ }),
-/* 927 */
+/* 929 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49642,7 +49644,7 @@ exports.fromHex = fromHex;
 //# sourceMappingURL=hex.js.map
 
 /***/ }),
-/* 928 */
+/* 930 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49700,7 +49702,7 @@ exports.toRfc3339 = toRfc3339;
 //# sourceMappingURL=rfc3339.js.map
 
 /***/ }),
-/* 929 */
+/* 931 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49718,7 +49720,7 @@ exports.fromUtf8 = fromUtf8;
 //# sourceMappingURL=utf8.js.map
 
 /***/ }),
-/* 930 */
+/* 932 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49761,7 +49763,7 @@ exports.isMsgVoteEncodeObject = isMsgVoteEncodeObject;
 //# sourceMappingURL=encodeobjects.js.map
 
 /***/ }),
-/* 931 */
+/* 933 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49851,7 +49853,7 @@ exports.findAttribute = findAttribute;
 //# sourceMappingURL=logs.js.map
 
 /***/ }),
-/* 932 */
+/* 934 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49864,7 +49866,7 @@ exports.makeMultisignedTx = exports.makeCompactBitArray = void 0;
 const amino_1 = __webpack_require__(128);
 const encoding_1 = __webpack_require__(129);
 const proto_signing_1 = __webpack_require__(151);
-const multisig_1 = __webpack_require__(307);
+const multisig_1 = __webpack_require__(308);
 const signing_1 = __webpack_require__(179);
 const tx_1 = __webpack_require__(108);
 const tx_2 = __webpack_require__(108);
@@ -49925,7 +49927,7 @@ exports.makeMultisignedTx = makeMultisignedTx;
 //# sourceMappingURL=multisignature.js.map
 
 /***/ }),
-/* 933 */
+/* 935 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49933,7 +49935,7 @@ exports.makeMultisignedTx = makeMultisignedTx;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.QueryClient = void 0;
 /* eslint-disable no-dupe-class-members, @typescript-eslint/ban-types, @typescript-eslint/naming-convention */
-const ics23_1 = __webpack_require__(934);
+const ics23_1 = __webpack_require__(936);
 const encoding_1 = __webpack_require__(129);
 const stream_1 = __webpack_require__(226);
 const utils_1 = __webpack_require__(110);
@@ -50078,7 +50080,7 @@ exports.QueryClient = QueryClient;
 //# sourceMappingURL=queryclient.js.map
 
 /***/ }),
-/* 934 */
+/* 936 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50087,7 +50089,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyNonExistence = exports.verifyExistence = exports.tendermintSpec = exports.iavlSpec = exports.calculateExistenceRoot = exports.verifyNonMembership = exports.verifyMembership = exports.ics23 = void 0;
 var codecimpl_1 = __webpack_require__(224);
 Object.defineProperty(exports, "ics23", { enumerable: true, get: function () { return codecimpl_1.ics23; } });
-var ics23_1 = __webpack_require__(935);
+var ics23_1 = __webpack_require__(937);
 Object.defineProperty(exports, "verifyMembership", { enumerable: true, get: function () { return ics23_1.verifyMembership; } });
 Object.defineProperty(exports, "verifyNonMembership", { enumerable: true, get: function () { return ics23_1.verifyNonMembership; } });
 var proofs_1 = __webpack_require__(484);
@@ -50099,14 +50101,14 @@ Object.defineProperty(exports, "verifyNonExistence", { enumerable: true, get: fu
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 935 */
+/* 937 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.batchVerifyNonMembership = exports.batchVerifyMembership = exports.verifyNonMembership = exports.verifyMembership = void 0;
-const compress_1 = __webpack_require__(936);
+const compress_1 = __webpack_require__(938);
 const proofs_1 = __webpack_require__(484);
 const specs_1 = __webpack_require__(485);
 /*
@@ -50220,7 +50222,7 @@ function getNonExistForKey(proof, key) {
 //# sourceMappingURL=ics23.js.map
 
 /***/ }),
-/* 936 */
+/* 938 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50327,16 +50329,16 @@ function decompressExist(exist, lookup) {
 //# sourceMappingURL=compress.js.map
 
 /***/ }),
-/* 937 */
+/* 939 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.doHash = exports.applyInner = exports.applyLeaf = void 0;
-const ripemd160_1 = __webpack_require__(938);
-const sha256_1 = __webpack_require__(941);
-const sha512_1 = __webpack_require__(942);
+const ripemd160_1 = __webpack_require__(940);
+const sha256_1 = __webpack_require__(943);
+const sha512_1 = __webpack_require__(944);
 const codecimpl_1 = __webpack_require__(224);
 function applyLeaf(leaf, key, value) {
     if (key.length === 0) {
@@ -50454,14 +50456,14 @@ function encodeFixed32Le(n) {
 //# sourceMappingURL=ops.js.map
 
 /***/ }),
-/* 938 */
+/* 940 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ripemd160 = exports.RIPEMD160 = void 0;
-const _sha2_js_1 = __webpack_require__(315);
+const _sha2_js_1 = __webpack_require__(316);
 const utils_js_1 = __webpack_require__(225);
 // https://homes.esat.kuleuven.be/~bosselae/ripemd160.html
 // https://homes.esat.kuleuven.be/~bosselae/ripemd160/pdf/AB-9601/AB-9601.pdf
@@ -50564,7 +50566,7 @@ exports.ripemd160 = (0, utils_js_1.wrapConstructor)(() => new RIPEMD160());
 
 
 /***/ }),
-/* 939 */
+/* 941 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50622,7 +50624,7 @@ exports.default = assert;
 
 
 /***/ }),
-/* 940 */
+/* 942 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50636,14 +50638,14 @@ exports.crypto = {
 
 
 /***/ }),
-/* 941 */
+/* 943 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sha256 = void 0;
-const _sha2_js_1 = __webpack_require__(315);
+const _sha2_js_1 = __webpack_require__(316);
 const utils_js_1 = __webpack_require__(225);
 // Choice: a ? b : c
 const Chi = (a, b, c) => (a & b) ^ (~a & c);
@@ -50753,15 +50755,15 @@ exports.sha256 = (0, utils_js_1.wrapConstructor)(() => new SHA256());
 
 
 /***/ }),
-/* 942 */
+/* 944 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sha384 = exports.sha512_256 = exports.sha512 = exports.SHA512 = void 0;
-const _sha2_js_1 = __webpack_require__(315);
-const _u64_js_1 = __webpack_require__(943);
+const _sha2_js_1 = __webpack_require__(316);
+const _u64_js_1 = __webpack_require__(945);
 const utils_js_1 = __webpack_require__(225);
 // Round contants (first 32 bits of the fractional parts of the cube roots of the first 80 primes 2..409):
 // prettier-ignore
@@ -50970,7 +50972,7 @@ exports.sha384 = (0, utils_js_1.wrapConstructor)(() => new SHA384());
 
 
 /***/ }),
-/* 943 */
+/* 945 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51044,7 +51046,7 @@ exports.default = u64;
 
 
 /***/ }),
-/* 944 */
+/* 946 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51146,12 +51148,12 @@ exports.concat = concat;
 //# sourceMappingURL=concat.js.map
 
 /***/ }),
-/* 945 */,
-/* 946 */,
 /* 947 */,
 /* 948 */,
 /* 949 */,
-/* 950 */
+/* 950 */,
+/* 951 */,
+/* 952 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51212,7 +51214,7 @@ exports.DefaultValueProducer = DefaultValueProducer;
 //# sourceMappingURL=defaultvalueproducer.js.map
 
 /***/ }),
-/* 951 */
+/* 953 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51251,7 +51253,7 @@ exports.dropDuplicates = dropDuplicates;
 //# sourceMappingURL=dropduplicates.js.map
 
 /***/ }),
-/* 952 */
+/* 954 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51323,7 +51325,7 @@ exports.firstEvent = firstEvent;
 //# sourceMappingURL=promise.js.map
 
 /***/ }),
-/* 953 */
+/* 955 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51394,7 +51396,7 @@ exports.lastValue = lastValue;
 //# sourceMappingURL=reducer.js.map
 
 /***/ }),
-/* 954 */
+/* 956 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51448,14 +51450,14 @@ exports.ValueAndUpdates = ValueAndUpdates;
 //# sourceMappingURL=valueandupdates.js.map
 
 /***/ }),
-/* 955 */
+/* 957 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupAuthExtension = void 0;
-const query_1 = __webpack_require__(956);
+const query_1 = __webpack_require__(958);
 const utils_1 = __webpack_require__(98);
 function setupAuthExtension(base) {
     const rpc = (0, utils_1.createProtobufRpcClient)(base);
@@ -51475,8 +51477,8 @@ exports.setupAuthExtension = setupAuthExtension;
 //# sourceMappingURL=auth.js.map
 
 /***/ }),
-/* 956 */,
-/* 957 */
+/* 958 */,
+/* 959 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51485,7 +51487,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupBankExtension = void 0;
 /* eslint-disable @typescript-eslint/naming-convention */
 const utils_1 = __webpack_require__(110);
-const query_1 = __webpack_require__(958);
+const query_1 = __webpack_require__(960);
 const utils_2 = __webpack_require__(98);
 function setupBankExtension(base) {
     const rpc = (0, utils_2.createProtobufRpcClient)(base);
@@ -51530,8 +51532,8 @@ exports.setupBankExtension = setupBankExtension;
 //# sourceMappingURL=bank.js.map
 
 /***/ }),
-/* 958 */,
-/* 959 */
+/* 960 */,
+/* 961 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51542,7 +51544,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupDistributionExtension = void 0;
 /* eslint-disable @typescript-eslint/naming-convention */
-const query_1 = __webpack_require__(960);
+const query_1 = __webpack_require__(962);
 const long_1 = __importDefault(__webpack_require__(7));
 const utils_1 = __webpack_require__(98);
 function setupDistributionExtension(base) {
@@ -51613,16 +51615,16 @@ exports.setupDistributionExtension = setupDistributionExtension;
 //# sourceMappingURL=distribution.js.map
 
 /***/ }),
-/* 960 */,
-/* 961 */,
-/* 962 */
+/* 962 */,
+/* 963 */,
+/* 964 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupGovExtension = void 0;
-const query_1 = __webpack_require__(963);
+const query_1 = __webpack_require__(965);
 const utils_1 = __webpack_require__(98);
 function setupGovExtension(base) {
     const rpc = (0, utils_1.createProtobufRpcClient)(base);
@@ -51689,8 +51691,8 @@ exports.setupGovExtension = setupGovExtension;
 //# sourceMappingURL=gov.js.map
 
 /***/ }),
-/* 963 */,
-/* 964 */
+/* 965 */,
+/* 966 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51703,12 +51705,12 @@ exports.setupIbcExtension = void 0;
 /* eslint-disable @typescript-eslint/naming-convention */
 const encoding_1 = __webpack_require__(129);
 const math_1 = __webpack_require__(66);
-const query_1 = __webpack_require__(965);
-const channel_1 = __webpack_require__(316);
-const query_2 = __webpack_require__(967);
-const query_3 = __webpack_require__(968);
-const query_4 = __webpack_require__(969);
-const tendermint_1 = __webpack_require__(970);
+const query_1 = __webpack_require__(967);
+const channel_1 = __webpack_require__(317);
+const query_2 = __webpack_require__(969);
+const query_3 = __webpack_require__(970);
+const query_4 = __webpack_require__(971);
+const tendermint_1 = __webpack_require__(972);
 const long_1 = __importDefault(__webpack_require__(7));
 const utils_1 = __webpack_require__(98);
 function decodeTendermintClientStateAny(clientState) {
@@ -52049,14 +52051,14 @@ exports.setupIbcExtension = setupIbcExtension;
 //# sourceMappingURL=ibc.js.map
 
 /***/ }),
-/* 965 */,
-/* 966 */,
 /* 967 */,
 /* 968 */,
 /* 969 */,
 /* 970 */,
 /* 971 */,
-/* 972 */
+/* 972 */,
+/* 973 */,
+/* 974 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52064,8 +52066,8 @@ exports.setupIbcExtension = setupIbcExtension;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupMintExtension = void 0;
 const utils_1 = __webpack_require__(110);
-const query_1 = __webpack_require__(973);
-const __1 = __webpack_require__(265);
+const query_1 = __webpack_require__(975);
+const __1 = __webpack_require__(266);
 const utils_2 = __webpack_require__(98);
 function setupMintExtension(base) {
     const rpc = (0, __1.createProtobufRpcClient)(base);
@@ -52101,9 +52103,9 @@ exports.setupMintExtension = setupMintExtension;
 //# sourceMappingURL=mint.js.map
 
 /***/ }),
-/* 973 */,
-/* 974 */,
-/* 975 */
+/* 975 */,
+/* 976 */,
+/* 977 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52114,7 +52116,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupStakingExtension = void 0;
 /* eslint-disable @typescript-eslint/naming-convention */
-const query_1 = __webpack_require__(976);
+const query_1 = __webpack_require__(978);
 const long_1 = __importDefault(__webpack_require__(7));
 const utils_1 = __webpack_require__(98);
 function setupStakingExtension(base) {
@@ -52221,8 +52223,8 @@ exports.setupStakingExtension = setupStakingExtension;
 //# sourceMappingURL=staking.js.map
 
 /***/ }),
-/* 976 */,
-/* 977 */
+/* 978 */,
+/* 979 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52234,7 +52236,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupTxExtension = void 0;
 const proto_signing_1 = __webpack_require__(151);
 const signing_1 = __webpack_require__(179);
-const service_1 = __webpack_require__(978);
+const service_1 = __webpack_require__(980);
 const tx_1 = __webpack_require__(108);
 const long_1 = __importDefault(__webpack_require__(7));
 const utils_1 = __webpack_require__(98);
@@ -52285,11 +52287,11 @@ exports.setupTxExtension = setupTxExtension;
 //# sourceMappingURL=tx.js.map
 
 /***/ }),
-/* 978 */,
-/* 979 */,
 /* 980 */,
 /* 981 */,
-/* 982 */
+/* 982 */,
+/* 983 */,
+/* 984 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52303,18 +52305,18 @@ const amino_1 = __webpack_require__(128);
 const encoding_1 = __webpack_require__(129);
 const math_1 = __webpack_require__(66);
 const proto_signing_1 = __webpack_require__(151);
-const tendermint_rpc_1 = __webpack_require__(318);
+const tendermint_rpc_1 = __webpack_require__(319);
 const utils_1 = __webpack_require__(110);
 const tx_1 = __webpack_require__(479);
-const tx_2 = __webpack_require__(1004);
-const tx_3 = __webpack_require__(1005);
-const tx_4 = __webpack_require__(1006);
+const tx_2 = __webpack_require__(1006);
+const tx_3 = __webpack_require__(1007);
+const tx_4 = __webpack_require__(1008);
 const signing_1 = __webpack_require__(179);
 const tx_5 = __webpack_require__(108);
-const tx_6 = __webpack_require__(1007);
-const tx_7 = __webpack_require__(1008);
-const tx_8 = __webpack_require__(1009);
-const tx_9 = __webpack_require__(1010);
+const tx_6 = __webpack_require__(1009);
+const tx_7 = __webpack_require__(1010);
+const tx_8 = __webpack_require__(1011);
+const tx_9 = __webpack_require__(1012);
 const long_1 = __importDefault(__webpack_require__(7));
 const aminotypes_1 = __webpack_require__(481);
 const fee_1 = __webpack_require__(482);
@@ -52560,7 +52562,7 @@ exports.SigningStargateClient = SigningStargateClient;
 //# sourceMappingURL=signingstargateclient.js.map
 
 /***/ }),
-/* 983 */
+/* 985 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52603,7 +52605,7 @@ exports.pubkeyToAddress = pubkeyToAddress;
 //# sourceMappingURL=addresses.js.map
 
 /***/ }),
-/* 984 */
+/* 986 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52642,7 +52644,7 @@ exports.fromAscii = fromAscii;
 //# sourceMappingURL=ascii.js.map
 
 /***/ }),
-/* 985 */
+/* 987 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52683,7 +52685,7 @@ exports.fromBase64 = fromBase64;
 //# sourceMappingURL=base64.js.map
 
 /***/ }),
-/* 986 */
+/* 988 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52727,7 +52729,7 @@ exports.Bech32 = Bech32;
 //# sourceMappingURL=bech32.js.map
 
 /***/ }),
-/* 987 */
+/* 989 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52760,7 +52762,7 @@ exports.fromHex = fromHex;
 //# sourceMappingURL=hex.js.map
 
 /***/ }),
-/* 988 */
+/* 990 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52818,7 +52820,7 @@ exports.toRfc3339 = toRfc3339;
 //# sourceMappingURL=rfc3339.js.map
 
 /***/ }),
-/* 989 */
+/* 991 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52836,7 +52838,7 @@ exports.fromUtf8 = fromUtf8;
 //# sourceMappingURL=utf8.js.map
 
 /***/ }),
-/* 990 */
+/* 992 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52846,7 +52848,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HttpClient = exports.http = void 0;
-const json_rpc_1 = __webpack_require__(319);
+const json_rpc_1 = __webpack_require__(320);
 const axios_1 = __importDefault(__webpack_require__(60));
 const rpcclient_1 = __webpack_require__(227);
 function filterBadStatus(res) {
@@ -52893,7 +52895,7 @@ exports.HttpClient = HttpClient;
 //# sourceMappingURL=httpclient.js.map
 
 /***/ }),
-/* 991 */
+/* 993 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52916,7 +52918,7 @@ exports.makeJsonRpcId = makeJsonRpcId;
 //# sourceMappingURL=id.js.map
 
 /***/ }),
-/* 992 */
+/* 994 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52951,14 +52953,14 @@ exports.JsonRpcClient = JsonRpcClient;
 //# sourceMappingURL=jsonrpcclient.js.map
 
 /***/ }),
-/* 993 */
+/* 995 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseJsonRpcResponse = exports.parseJsonRpcSuccessResponse = exports.parseJsonRpcErrorResponse = exports.parseJsonRpcRequest = exports.parseJsonRpcId = void 0;
-const compatibility_1 = __webpack_require__(994);
+const compatibility_1 = __webpack_require__(996);
 /**
  * Extracts ID field from request or response object.
  *
@@ -53083,7 +53085,7 @@ exports.parseJsonRpcResponse = parseJsonRpcResponse;
 //# sourceMappingURL=parse.js.map
 
 /***/ }),
-/* 994 */
+/* 996 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53138,15 +53140,15 @@ exports.isJsonCompatibleDictionary = isJsonCompatibleDictionary;
 //# sourceMappingURL=compatibility.js.map
 
 /***/ }),
-/* 995 */
+/* 997 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebsocketClient = void 0;
-const json_rpc_1 = __webpack_require__(319);
-const socket_1 = __webpack_require__(996);
+const json_rpc_1 = __webpack_require__(320);
+const socket_1 = __webpack_require__(998);
 const stream_1 = __webpack_require__(226);
 const xstream_1 = __webpack_require__(130);
 const rpcclient_1 = __webpack_require__(227);
@@ -53318,7 +53320,7 @@ exports.WebsocketClient = WebsocketClient;
 //# sourceMappingURL=websocketclient.js.map
 
 /***/ }),
-/* 996 */
+/* 998 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53328,7 +53330,7 @@ exports.StreamingSocket = exports.SocketWrapper = exports.ReconnectingSocket = e
 var queueingstreamingsocket_1 = __webpack_require__(500);
 Object.defineProperty(exports, "ConnectionStatus", { enumerable: true, get: function () { return queueingstreamingsocket_1.ConnectionStatus; } });
 Object.defineProperty(exports, "QueueingStreamingSocket", { enumerable: true, get: function () { return queueingstreamingsocket_1.QueueingStreamingSocket; } });
-var reconnectingsocket_1 = __webpack_require__(998);
+var reconnectingsocket_1 = __webpack_require__(1000);
 Object.defineProperty(exports, "ReconnectingSocket", { enumerable: true, get: function () { return reconnectingsocket_1.ReconnectingSocket; } });
 var socketwrapper_1 = __webpack_require__(502);
 Object.defineProperty(exports, "SocketWrapper", { enumerable: true, get: function () { return socketwrapper_1.SocketWrapper; } });
@@ -53337,8 +53339,8 @@ Object.defineProperty(exports, "StreamingSocket", { enumerable: true, get: funct
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 997 */,
-/* 998 */
+/* 999 */,
+/* 1000 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53422,7 +53424,7 @@ exports.ReconnectingSocket = ReconnectingSocket;
 //# sourceMappingURL=reconnectingsocket.js.map
 
 /***/ }),
-/* 999 */
+/* 1001 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53458,7 +53460,7 @@ var VoteType;
 //# sourceMappingURL=responses.js.map
 
 /***/ }),
-/* 1000 */
+/* 1002 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53486,8 +53488,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tendermint34Client = void 0;
 const jsonrpc_1 = __webpack_require__(503);
 const rpcclients_1 = __webpack_require__(498);
-const adaptor_1 = __webpack_require__(1001);
-const requests = __importStar(__webpack_require__(321));
+const adaptor_1 = __webpack_require__(1003);
+const requests = __importStar(__webpack_require__(322));
 class Tendermint34Client {
     /**
      * Use `Tendermint34Client.connect` or `Tendermint34Client.create` to create an instance.
@@ -53773,7 +53775,7 @@ exports.Tendermint34Client = Tendermint34Client;
 //# sourceMappingURL=tendermint34client.js.map
 
 /***/ }),
-/* 1001 */
+/* 1003 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53781,8 +53783,8 @@ exports.Tendermint34Client = Tendermint34Client;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.adaptor34 = void 0;
 const hasher_1 = __webpack_require__(504);
-const requests_1 = __webpack_require__(1002);
-const responses_1 = __webpack_require__(1003);
+const requests_1 = __webpack_require__(1004);
+const responses_1 = __webpack_require__(1005);
 exports.adaptor34 = {
     params: requests_1.Params,
     responses: responses_1.Responses,
@@ -53792,7 +53794,7 @@ exports.adaptor34 = {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 1002 */
+/* 1004 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53821,8 +53823,8 @@ exports.Params = void 0;
 /* eslint-disable @typescript-eslint/naming-convention */
 const encoding_1 = __webpack_require__(180);
 const jsonrpc_1 = __webpack_require__(503);
-const encodings_1 = __webpack_require__(322);
-const requests = __importStar(__webpack_require__(321));
+const encodings_1 = __webpack_require__(323);
+const requests = __importStar(__webpack_require__(322));
 function encodeHeightParam(param) {
     return {
         height: (0, encodings_1.may)(encodings_1.Integer.encode, param.height),
@@ -53931,7 +53933,7 @@ exports.Params = Params;
 //# sourceMappingURL=requests.js.map
 
 /***/ }),
-/* 1003 */
+/* 1005 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53943,7 +53945,7 @@ const encoding_1 = __webpack_require__(180);
 const utils_1 = __webpack_require__(477);
 const dates_1 = __webpack_require__(497);
 const types_1 = __webpack_require__(505);
-const encodings_1 = __webpack_require__(322);
+const encodings_1 = __webpack_require__(323);
 const hasher_1 = __webpack_require__(504);
 function decodeAbciInfo(data) {
     return {
@@ -54348,8 +54350,6 @@ exports.Responses = Responses;
 //# sourceMappingURL=responses.js.map
 
 /***/ }),
-/* 1004 */,
-/* 1005 */,
 /* 1006 */,
 /* 1007 */,
 /* 1008 */,
@@ -54435,7 +54435,9 @@ exports.Responses = Responses;
 /* 1088 */,
 /* 1089 */,
 /* 1090 */,
-/* 1091 */
+/* 1091 */,
+/* 1092 */,
+/* 1093 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54466,7 +54468,7 @@ exports.Bech32 = Bech32;
 //# sourceMappingURL=bech32.js.map
 
 /***/ }),
-/* 1092 */
+/* 1094 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54585,7 +54587,7 @@ exports.Decimal = Decimal;
 //# sourceMappingURL=decimal.js.map
 
 /***/ }),
-/* 1093 */
+/* 1095 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54763,7 +54765,7 @@ exports.Uint64 = Uint64;
 //# sourceMappingURL=integers.js.map
 
 /***/ }),
-/* 1094 */
+/* 1096 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54817,7 +54819,7 @@ exports.isJsonCompatibleDictionary = isJsonCompatibleDictionary;
 //# sourceMappingURL=json.js.map
 
 /***/ }),
-/* 1095 */
+/* 1097 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54919,8 +54921,8 @@ exports.TransactionEncoder = TransactionEncoder;
 //# sourceMappingURL=transactionencoder.js.map
 
 /***/ }),
-/* 1096 */,
-/* 1097 */
+/* 1098 */,
+/* 1099 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54933,10 +54935,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const encoding_1 = __webpack_require__(232);
+const encoding_1 = __webpack_require__(233);
 const bip39 = __importStar(__webpack_require__(105));
 const pbkdf2_1 = __webpack_require__(212);
-const unorm = __importStar(__webpack_require__(1113));
+const unorm = __importStar(__webpack_require__(1115));
 const englishmnemonic_1 = __webpack_require__(561);
 class Bip39 {
     static encode(entropy) {
@@ -54976,15 +54978,15 @@ exports.Bip39 = Bip39;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 1098 */
+/* 1100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var decimal_1 = __webpack_require__(1099);
+var decimal_1 = __webpack_require__(1101);
 Object.defineProperty(exports, "Decimal", { enumerable: true, get: function () { return decimal_1.Decimal; } });
-var integers_1 = __webpack_require__(1100);
+var integers_1 = __webpack_require__(1102);
 Object.defineProperty(exports, "Int53", { enumerable: true, get: function () { return integers_1.Int53; } });
 Object.defineProperty(exports, "Uint32", { enumerable: true, get: function () { return integers_1.Uint32; } });
 Object.defineProperty(exports, "Uint53", { enumerable: true, get: function () { return integers_1.Uint53; } });
@@ -54992,7 +54994,7 @@ Object.defineProperty(exports, "Uint64", { enumerable: true, get: function () { 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 1099 */
+/* 1101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55132,7 +55134,7 @@ exports.Decimal = Decimal;
 //# sourceMappingURL=decimal.js.map
 
 /***/ }),
-/* 1100 */
+/* 1102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55307,7 +55309,7 @@ exports.Uint64 = Uint64;
 //# sourceMappingURL=integers.js.map
 
 /***/ }),
-/* 1101 */
+/* 1103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55346,7 +55348,7 @@ exports.fromAscii = fromAscii;
 //# sourceMappingURL=ascii.js.map
 
 /***/ }),
-/* 1102 */
+/* 1104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55387,7 +55389,7 @@ exports.fromBase64 = fromBase64;
 //# sourceMappingURL=base64.js.map
 
 /***/ }),
-/* 1103 */
+/* 1105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55431,7 +55433,7 @@ exports.Bech32 = Bech32;
 //# sourceMappingURL=bech32.js.map
 
 /***/ }),
-/* 1104 */
+/* 1106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55464,7 +55466,7 @@ exports.fromHex = fromHex;
 //# sourceMappingURL=hex.js.map
 
 /***/ }),
-/* 1105 */
+/* 1107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55522,7 +55524,7 @@ exports.toRfc3339 = toRfc3339;
 //# sourceMappingURL=rfc3339.js.map
 
 /***/ }),
-/* 1106 */
+/* 1108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55561,7 +55563,7 @@ exports.fromUtf8 = fromUtf8;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 1107 */
+/* 1109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55577,7 +55579,7 @@ exports.assert = assert;
 //# sourceMappingURL=assert.js.map
 
 /***/ }),
-/* 1108 */
+/* 1110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55591,7 +55593,7 @@ exports.sleep = sleep;
 //# sourceMappingURL=sleep.js.map
 
 /***/ }),
-/* 1109 */
+/* 1111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55628,7 +55630,7 @@ exports.isUint8Array = isUint8Array;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 1110 */
+/* 1112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55682,7 +55684,7 @@ exports.isJsonCompatibleDictionary = isJsonCompatibleDictionary;
 //# sourceMappingURL=json.js.map
 
 /***/ }),
-/* 1111 */
+/* 1113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55784,7 +55786,7 @@ exports.TransactionEncoder = TransactionEncoder;
 //# sourceMappingURL=transactionencoder.js.map
 
 /***/ }),
-/* 1112 */
+/* 1114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55841,8 +55843,8 @@ exports.Encoding = Encoding;
 //# sourceMappingURL=encoding.js.map
 
 /***/ }),
-/* 1113 */,
-/* 1114 */
+/* 1115 */,
+/* 1116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55872,7 +55874,7 @@ exports.Keccak256 = Keccak256;
 //# sourceMappingURL=keccak.js.map
 
 /***/ }),
-/* 1115 */
+/* 1117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55953,7 +55955,7 @@ exports.Xchacha20poly1305Ietf = Xchacha20poly1305Ietf;
 //# sourceMappingURL=libsodium.js.map
 
 /***/ }),
-/* 1116 */
+/* 1118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55987,7 +55989,7 @@ exports.Random = Random;
 //# sourceMappingURL=random.js.map
 
 /***/ }),
-/* 1117 */
+/* 1119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55996,7 +55998,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const encoding_1 = __webpack_require__(232);
+const encoding_1 = __webpack_require__(233);
 const ripemd160_1 = __importDefault(__webpack_require__(144));
 const { toHex } = encoding_1.Encoding;
 class Ripemd160 {
@@ -56019,7 +56021,7 @@ exports.Ripemd160 = Ripemd160;
 //# sourceMappingURL=ripemd.js.map
 
 /***/ }),
-/* 1118 */
+/* 1120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56028,7 +56030,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const encoding_1 = __webpack_require__(232);
+const encoding_1 = __webpack_require__(233);
 const bn_js_1 = __importDefault(__webpack_require__(34));
 const elliptic_1 = __importDefault(__webpack_require__(97));
 const secp256k1signature_1 = __webpack_require__(563);
@@ -56136,7 +56138,7 @@ exports.Secp256k1 = Secp256k1;
 //# sourceMappingURL=secp256k1.js.map
 
 /***/ }),
-/* 1119 */
+/* 1121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56145,7 +56147,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const encoding_1 = __webpack_require__(232);
+const encoding_1 = __webpack_require__(233);
 const bn_js_1 = __importDefault(__webpack_require__(34));
 const elliptic_1 = __importDefault(__webpack_require__(97));
 const hmac_1 = __webpack_require__(562);
@@ -56295,8 +56297,6 @@ exports.Slip10 = Slip10;
 //# sourceMappingURL=slip10.js.map
 
 /***/ }),
-/* 1120 */,
-/* 1121 */,
 /* 1122 */,
 /* 1123 */,
 /* 1124 */,
@@ -56370,7 +56370,9 @@ exports.Slip10 = Slip10;
 /* 1192 */,
 /* 1193 */,
 /* 1194 */,
-/* 1195 */
+/* 1195 */,
+/* 1196 */,
+/* 1197 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56618,8 +56620,6 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 
 
 /***/ }),
-/* 1196 */,
-/* 1197 */,
 /* 1198 */,
 /* 1199 */,
 /* 1200 */,
@@ -56628,14 +56628,16 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 /* 1203 */,
 /* 1204 */,
 /* 1205 */,
-/* 1206 */
+/* 1206 */,
+/* 1207 */,
+/* 1208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const strictUriEncode = __webpack_require__(1628);
-const decodeComponent = __webpack_require__(1178);
-const splitOnFirst = __webpack_require__(1275);
+const strictUriEncode = __webpack_require__(1629);
+const decodeComponent = __webpack_require__(1180);
+const splitOnFirst = __webpack_require__(1276);
 
 const isNullOrUndefined = value => value === null || value === undefined;
 
@@ -57013,8 +57015,8 @@ exports.stringifyUrl = (input, options) => {
 
 
 /***/ }),
-/* 1207 */,
-/* 1208 */
+/* 1209 */,
+/* 1210 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57213,7 +57215,7 @@ function supportsHistory() {
 
 
 /***/ }),
-/* 1209 */
+/* 1211 */
 /***/ (function(module, exports) {
 
 function _getPrototypeOf(o) {
@@ -57226,9 +57228,8 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf;
 
 /***/ }),
-/* 1210 */,
-/* 1211 */,
-/* 1212 */
+/* 1212 */,
+/* 1213 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57242,7 +57243,7 @@ function invariant(condition, message, Err) {
 //# sourceMappingURL=invariant.js.map
 
 /***/ }),
-/* 1213 */
+/* 1214 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57252,7 +57253,7 @@ function invariant(condition, message, Err) {
 /* unused harmony export getGlobalAmplitudeNamespace */
 /* unused harmony export asyncSleep */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return prototypeJsFix; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1195);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1197);
 
 /**
  * Checks whether we're in a Node.js environment
@@ -57333,7 +57334,6 @@ var prototypeJsFix = function () {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(28), __webpack_require__(11)))
 
 /***/ }),
-/* 1214 */,
 /* 1215 */,
 /* 1216 */,
 /* 1217 */,
@@ -57368,7 +57368,8 @@ var prototypeJsFix = function () {
 /* 1246 */,
 /* 1247 */,
 /* 1248 */,
-/* 1249 */
+/* 1249 */,
+/* 1250 */
 /***/ (function(module, exports) {
 
 function _arrayLikeToArray(arr, len) {
@@ -57384,10 +57385,10 @@ function _arrayLikeToArray(arr, len) {
 module.exports = _arrayLikeToArray;
 
 /***/ }),
-/* 1250 */
+/* 1251 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeToArray = __webpack_require__(1249);
+var arrayLikeToArray = __webpack_require__(1250);
 
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
@@ -57401,7 +57402,6 @@ function _unsupportedIterableToArray(o, minLen) {
 module.exports = _unsupportedIterableToArray;
 
 /***/ }),
-/* 1251 */,
 /* 1252 */,
 /* 1253 */,
 /* 1254 */,
@@ -57431,7 +57431,8 @@ module.exports = _unsupportedIterableToArray;
 /* 1278 */,
 /* 1279 */,
 /* 1280 */,
-/* 1281 */
+/* 1281 */,
+/* 1282 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57446,7 +57447,7 @@ const isNodeJs = _walletconnect_environment__WEBPACK_IMPORTED_MODULE_0__["isNode
 //# sourceMappingURL=env.js.map
 
 /***/ }),
-/* 1282 */
+/* 1283 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57501,7 +57502,7 @@ function formatErrorMessage(error) {
 //# sourceMappingURL=format.js.map
 
 /***/ }),
-/* 1283 */
+/* 1284 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57546,28 +57547,28 @@ function isValidTrailingWildcardRoute(route) {
 //# sourceMappingURL=routing.js.map
 
 /***/ }),
-/* 1284 */
+/* 1285 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _walletconnect_jsonrpc_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1285);
+/* harmony import */ var _walletconnect_jsonrpc_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1286);
 /* unused harmony reexport * */
 
 //# sourceMappingURL=types.js.map
 
 /***/ }),
-/* 1285 */
+/* 1286 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _jsonrpc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1286);
+/* harmony import */ var _jsonrpc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1287);
 /* harmony import */ var _jsonrpc__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_jsonrpc__WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
 /* harmony import */ var _misc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(602);
 /* unused harmony reexport * */
-/* harmony import */ var _provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1287);
+/* harmony import */ var _provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1288);
 /* unused harmony reexport * */
-/* harmony import */ var _validator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1288);
+/* harmony import */ var _validator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1289);
 /* harmony import */ var _validator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_validator__WEBPACK_IMPORTED_MODULE_3__);
 /* unused harmony reexport * */
 
@@ -57577,13 +57578,13 @@ function isValidTrailingWildcardRoute(route) {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 1286 */
+/* 1287 */
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=jsonrpc.js.map
 
 /***/ }),
-/* 1287 */
+/* 1288 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57610,13 +57611,13 @@ class IJsonRpcProvider extends IBaseJsonRpcProvider {
 //# sourceMappingURL=provider.js.map
 
 /***/ }),
-/* 1288 */
+/* 1289 */
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 1289 */
+/* 1290 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57649,7 +57650,7 @@ function isLocalhostUrl(url) {
 //# sourceMappingURL=url.js.map
 
 /***/ }),
-/* 1290 */
+/* 1291 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57680,7 +57681,7 @@ function isJsonRpcValidationInvalid(validation) {
 //# sourceMappingURL=validators.js.map
 
 /***/ }),
-/* 1291 */
+/* 1292 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57695,7 +57696,7 @@ function randomBytes(length) {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 1292 */
+/* 1293 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57712,7 +57713,7 @@ function aesCbcDecrypt(iv, key, data) {
 //# sourceMappingURL=aes.js.map
 
 /***/ }),
-/* 1293 */
+/* 1294 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57745,7 +57746,7 @@ async function hmacSha512Verify(key, msg, sig) {
 //# sourceMappingURL=hmac.js.map
 
 /***/ }),
-/* 1294 */
+/* 1295 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57757,7 +57758,7 @@ async function hmacSha512Verify(key, msg, sig) {
 //# sourceMappingURL=env.js.map
 
 /***/ }),
-/* 1295 */
+/* 1296 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57795,13 +57796,13 @@ const pkcs7 = {
 //# sourceMappingURL=pkcs7.js.map
 
 /***/ }),
-/* 1296 */
+/* 1297 */
 /***/ (function(module, exports) {
 
 //# sourceMappingURL=types.js.map
 
 /***/ }),
-/* 1297 */
+/* 1298 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57825,7 +57826,7 @@ function isConstantTime(arr1, arr2) {
 //# sourceMappingURL=validators.js.map
 
 /***/ }),
-/* 1298 */
+/* 1299 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57848,7 +57849,7 @@ async function ripemd160(msg) {
 //# sourceMappingURL=sha2.js.map
 
 /***/ }),
-/* 1299 */
+/* 1300 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57896,7 +57897,7 @@ function extractTraceparentData(traceparent) {
 
 
 /***/ }),
-/* 1300 */
+/* 1301 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57908,7 +57909,7 @@ const SDK_VERSION = '7.28.1';
 
 
 /***/ }),
-/* 1301 */
+/* 1302 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57955,7 +57956,7 @@ function initAndBind(
 
 
 /***/ }),
-/* 1302 */
+/* 1303 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60197,7 +60198,7 @@ class abstract_coder_Reader {
 }
 //# sourceMappingURL=abstract-coder.js.map
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/address/lib.esm/index.js + 10 modules
-var lib_esm = __webpack_require__(245);
+var lib_esm = __webpack_require__(246);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@ethersproject/abi/lib.esm/coders/address.js
 
@@ -61660,7 +61661,7 @@ class interface_Interface {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 1303 */
+/* 1304 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61671,10 +61672,10 @@ __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding *
 // UNUSED EXPORTS: DEFAULT_TRANSPORT_BUFFER_SIZE
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/error.js
-var esm_error = __webpack_require__(276);
+var esm_error = __webpack_require__(277);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/syncpromise.js
-var syncpromise = __webpack_require__(610);
+var syncpromise = __webpack_require__(611);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/promisebuffer.js
 
@@ -61781,7 +61782,7 @@ function makePromiseBuffer(limit) {
 //# sourceMappingURL=promisebuffer.js.map
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/envelope.js
-var esm_envelope = __webpack_require__(1348);
+var esm_envelope = __webpack_require__(1349);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/ratelimit.js
 // Intentionally keeping the key broad, as we don't know for sure what rate limit headers get returned from backend
@@ -61979,7 +61980,7 @@ function getEventForEnvelopeItem(item, type) {
 
 
 /***/ }),
-/* 1304 */
+/* 1305 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61988,34 +61989,34 @@ function getEventForEnvelopeItem(item, type) {
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ baseclient_BaseClient; });
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/dsn.js
-var esm_dsn = __webpack_require__(644);
+var esm_dsn = __webpack_require__(646);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/logger.js
 var logger = __webpack_require__(49);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/misc.js
-var misc = __webpack_require__(263);
+var misc = __webpack_require__(264);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/is.js
 var is = __webpack_require__(73);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/syncpromise.js
-var syncpromise = __webpack_require__(610);
+var syncpromise = __webpack_require__(611);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/envelope.js
-var esm_envelope = __webpack_require__(1348);
+var esm_envelope = __webpack_require__(1349);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/time.js
 var time = __webpack_require__(172);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/normalize.js
-var normalize = __webpack_require__(1346);
+var normalize = __webpack_require__(1347);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/string.js
 var string = __webpack_require__(370);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/error.js
-var error = __webpack_require__(276);
+var error = __webpack_require__(277);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/api.js
 var api = __webpack_require__(596);
@@ -62089,7 +62090,7 @@ function createEventEnvelope(
 //# sourceMappingURL=envelope.js.map
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/integration.js
-var esm_integration = __webpack_require__(631);
+var esm_integration = __webpack_require__(632);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/scope.js
 var esm_scope = __webpack_require__(193);
@@ -62884,20 +62885,20 @@ function isTransactionEvent(event) {
 
 
 /***/ }),
-/* 1305 */,
 /* 1306 */,
 /* 1307 */,
 /* 1308 */,
-/* 1309 */
+/* 1309 */,
+/* 1310 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(1500);
+var arrayWithoutHoles = __webpack_require__(1501);
 
-var iterableToArray = __webpack_require__(1501);
+var iterableToArray = __webpack_require__(1502);
 
-var unsupportedIterableToArray = __webpack_require__(1250);
+var unsupportedIterableToArray = __webpack_require__(1251);
 
-var nonIterableSpread = __webpack_require__(1502);
+var nonIterableSpread = __webpack_require__(1503);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
@@ -62906,8 +62907,8 @@ function _toConsumableArray(arr) {
 module.exports = _toConsumableArray;
 
 /***/ }),
-/* 1310 */,
-/* 1311 */
+/* 1311 */,
+/* 1312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/////////////////////////////////////////////////////////////////////////////////
@@ -63753,7 +63754,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
         exports.UAParser = UAParser;
     } else {
         // requirejs env (optional)
-        if ("function" === FUNC_TYPE && __webpack_require__(616)) {
+        if ("function" === FUNC_TYPE && __webpack_require__(617)) {
             !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
                 return UAParser;
             }).call(exports, __webpack_require__, exports, module),
@@ -63789,10 +63790,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
 
 
 /***/ }),
-/* 1312 */,
 /* 1313 */,
 /* 1314 */,
-/* 1315 */
+/* 1315 */,
+/* 1316 */
 /***/ (function(module, exports) {
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -63813,7 +63814,6 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 module.exports = _objectWithoutPropertiesLoose;
 
 /***/ }),
-/* 1316 */,
 /* 1317 */,
 /* 1318 */,
 /* 1319 */,
@@ -63829,7 +63829,8 @@ module.exports = _objectWithoutPropertiesLoose;
 /* 1329 */,
 /* 1330 */,
 /* 1331 */,
-/* 1332 */
+/* 1332 */,
+/* 1333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63933,23 +63934,23 @@ exports.getWindowMetadata = getWindowMetadata;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 1333 */,
-/* 1334 */
+/* 1334 */,
+/* 1335 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(102);
 /* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(365);
-/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1281);
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1282);
 /* harmony reexport (checked) */ if(__webpack_require__.o(_env__WEBPACK_IMPORTED_MODULE_2__, "payloadId")) __webpack_require__.d(__webpack_exports__, "payloadId", function() { return _env__WEBPACK_IMPORTED_MODULE_2__["payloadId"]; });
 
-/* harmony import */ var _format__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1282);
+/* harmony import */ var _format__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1283);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "payloadId", function() { return _format__WEBPACK_IMPORTED_MODULE_3__["a"]; });
 
-/* harmony import */ var _routing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1283);
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1284);
-/* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1289);
-/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1290);
+/* harmony import */ var _routing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1284);
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1285);
+/* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1290);
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1291);
 
 
 
@@ -63961,15 +63962,15 @@ exports.getWindowMetadata = getWindowMetadata;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 1335 */
+/* 1336 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _walletconnect_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(38);
-/* harmony import */ var _network__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1336);
+/* harmony import */ var _network__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1337);
 
 
-const WS = typeof global.WebSocket !== "undefined" ? global.WebSocket : __webpack_require__(1629);
+const WS = typeof global.WebSocket !== "undefined" ? global.WebSocket : __webpack_require__(1630);
 class SocketTransport {
     constructor(opts) {
         this.opts = opts;
@@ -64160,7 +64161,7 @@ function getWebSocketUrl(_url, protocol, version) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
 
 /***/ }),
-/* 1336 */
+/* 1337 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64192,9 +64193,9 @@ class NetworkMonitor {
 //# sourceMappingURL=network.js.map
 
 /***/ }),
-/* 1337 */,
 /* 1338 */,
-/* 1339 */
+/* 1339 */,
+/* 1340 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64358,7 +64359,7 @@ function getDomElement(selector) {
 
 
 /***/ }),
-/* 1340 */
+/* 1341 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64392,12 +64393,12 @@ function isBrowserBundle() {
 
 
 /***/ }),
-/* 1341 */
+/* 1342 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return registerErrorInstrumentation; });
-/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1354);
+/* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1355);
 /* harmony import */ var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(61);
 
@@ -64428,11 +64429,11 @@ function errorCallback() {
 
 
 /***/ }),
-/* 1342 */,
-/* 1343 */
+/* 1343 */,
+/* 1344 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var setPrototypeOf = __webpack_require__(1636);
+var setPrototypeOf = __webpack_require__(1637);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -64452,7 +64453,7 @@ function _inherits(subClass, superClass) {
 module.exports = _inherits;
 
 /***/ }),
-/* 1344 */
+/* 1345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(601);
@@ -64470,16 +64471,16 @@ function _possibleConstructorReturn(self, call) {
 module.exports = _possibleConstructorReturn;
 
 /***/ }),
-/* 1345 */
+/* 1346 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(1637);
+var arrayWithHoles = __webpack_require__(1638);
 
-var iterableToArrayLimit = __webpack_require__(1638);
+var iterableToArrayLimit = __webpack_require__(1639);
 
-var unsupportedIterableToArray = __webpack_require__(1250);
+var unsupportedIterableToArray = __webpack_require__(1251);
 
-var nonIterableRest = __webpack_require__(1639);
+var nonIterableRest = __webpack_require__(1640);
 
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
@@ -64488,7 +64489,7 @@ function _slicedToArray(arr, i) {
 module.exports = _slicedToArray;
 
 /***/ }),
-/* 1346 */
+/* 1347 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64496,9 +64497,9 @@ module.exports = _slicedToArray;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return normalizeToSize; });
 /* unused harmony export walk */
 /* harmony import */ var _is_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73);
-/* harmony import */ var _memo_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1347);
+/* harmony import */ var _memo_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1348);
 /* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
-/* harmony import */ var _stacktrace_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(633);
+/* harmony import */ var _stacktrace_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(634);
 
 
 
@@ -64745,7 +64746,7 @@ function jsonSize(value) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
 
 /***/ }),
-/* 1347 */
+/* 1348 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64798,7 +64799,7 @@ function memoBuilder() {
 
 
 /***/ }),
-/* 1348 */
+/* 1349 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64811,8 +64812,8 @@ function memoBuilder() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getSdkMetadataForEnvelopeHeader; });
 /* unused harmony export parseEnvelope */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return serializeEnvelope; });
-/* harmony import */ var _dsn_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(644);
-/* harmony import */ var _normalize_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1346);
+/* harmony import */ var _dsn_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(646);
+/* harmony import */ var _normalize_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1347);
 /* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
 
 
@@ -65029,8 +65030,8 @@ function createEventEnvelopeHeaders(
 
 
 /***/ }),
-/* 1349 */,
-/* 1350 */
+/* 1350 */,
+/* 1351 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65041,10 +65042,10 @@ __webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport 
 // UNUSED EXPORTS: addExtensionMethods, startIdleTransaction, Integrations, Span, spanStatusfromHttpCode, SpanStatus, Transaction, IdleTransaction, getActiveTransaction, hasTracingEnabled, BROWSER_TRACING_INTEGRATION_ID, defaultRequestInstrumentationOptions, instrumentOutgoingRequests, TRACEPARENT_REGEXP, extractTraceparentData, stripUrlQueryAndFragment
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/tracing/esm/hubextensions.js
-var hubextensions = __webpack_require__(270);
+var hubextensions = __webpack_require__(271);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/buildPolyfills/_optionalChain.js
-var _optionalChain = __webpack_require__(1355);
+var _optionalChain = __webpack_require__(1356);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/buildPolyfills/_nullishCoalesce.js
 var _nullishCoalesce = __webpack_require__(388);
@@ -65053,7 +65054,7 @@ var _nullishCoalesce = __webpack_require__(388);
 var logger = __webpack_require__(49);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/tracing.js
-var tracing = __webpack_require__(1299);
+var tracing = __webpack_require__(1300);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/is.js
 var is = __webpack_require__(73);
@@ -65206,10 +65207,10 @@ function objectToBaggageHeader(object) {
 //# sourceMappingURL=baggage.js.map
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/browser.js
-var browser = __webpack_require__(1339);
+var browser = __webpack_require__(1340);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/tracing/esm/idletransaction.js
-var idletransaction = __webpack_require__(273);
+var idletransaction = __webpack_require__(274);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/tracing/esm/utils.js
 var utils = __webpack_require__(61);
@@ -66298,7 +66299,7 @@ function _tagMetricInfo(transaction) {
 //# sourceMappingURL=index.js.map
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/instrument.js
-var instrument = __webpack_require__(1354);
+var instrument = __webpack_require__(1355);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/string.js
 var string = __webpack_require__(370);
@@ -66907,7 +66908,7 @@ if (typeof __SENTRY_TRACING__ === 'undefined' || __SENTRY_TRACING__) {
 
 
 /***/ }),
-/* 1351 */
+/* 1352 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66924,7 +66925,7 @@ __webpack_require__.d(dist_esm_namespaceObject, "decrypt", function() { return d
 var esm = __webpack_require__(38);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/socket-transport/dist/esm/index.js
-var dist_esm = __webpack_require__(1335);
+var dist_esm = __webpack_require__(1336);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@walletconnect/core/dist/esm/errors.js
 const ERROR_SESSION_CONNECTED = "Session currently connected";
@@ -68069,9 +68070,9 @@ class esm_WalletConnect extends core_dist_esm {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 1352 */,
 /* 1353 */,
-/* 1354 */
+/* 1354 */,
+/* 1355 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68079,8 +68080,8 @@ class esm_WalletConnect extends core_dist_esm {
 /* harmony import */ var _is_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73);
 /* harmony import */ var _logger_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
 /* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
-/* harmony import */ var _stacktrace_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(633);
-/* harmony import */ var _supports_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1208);
+/* harmony import */ var _stacktrace_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(634);
+/* harmony import */ var _supports_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1210);
 /* harmony import */ var _worldwide_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(93);
 
 
@@ -68659,7 +68660,7 @@ function instrumentUnhandledRejection() {
 
 
 /***/ }),
-/* 1355 */
+/* 1356 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68726,7 +68727,6 @@ function _optionalChain(ops) {
 
 
 /***/ }),
-/* 1356 */,
 /* 1357 */,
 /* 1358 */,
 /* 1359 */,
@@ -68746,67 +68746,67 @@ function _optionalChain(ops) {
 /* 1373 */,
 /* 1374 */,
 /* 1375 */,
-/* 1376 */
+/* 1376 */,
+/* 1377 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-solid-900.eot";
 
 /***/ }),
-/* 1377 */
+/* 1378 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-solid-900.woff2";
 
 /***/ }),
-/* 1378 */
+/* 1379 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-solid-900.woff";
 
 /***/ }),
-/* 1379 */
+/* 1380 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-solid-900.ttf";
 
 /***/ }),
-/* 1380 */
+/* 1381 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-solid-900.svg";
 
 /***/ }),
-/* 1381 */
+/* 1382 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-brands-400.eot";
 
 /***/ }),
-/* 1382 */
+/* 1383 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-brands-400.woff2";
 
 /***/ }),
-/* 1383 */
+/* 1384 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-brands-400.woff";
 
 /***/ }),
-/* 1384 */
+/* 1385 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-brands-400.ttf";
 
 /***/ }),
-/* 1385 */
+/* 1386 */
 /***/ (function(module, exports) {
 
 module.exports = "assets/fa-brands-400.svg";
 
 /***/ }),
-/* 1386 */,
 /* 1387 */,
 /* 1388 */,
 /* 1389 */,
@@ -68814,11 +68814,12 @@ module.exports = "assets/fa-brands-400.svg";
 /* 1391 */,
 /* 1392 */,
 /* 1393 */,
-/* 1394 */
+/* 1394 */,
+/* 1395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process, Buffer) {(function (global, factory) {
-	 true ? module.exports = factory(__webpack_require__(625)) :
+	 true ? module.exports = factory(__webpack_require__(626)) :
 	undefined;
 })(this, (function (require$$0) { 'use strict';
 
@@ -70294,7 +70295,6 @@ module.exports = "assets/fa-brands-400.svg";
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11), __webpack_require__(28), __webpack_require__(4).Buffer))
 
 /***/ }),
-/* 1395 */,
 /* 1396 */,
 /* 1397 */,
 /* 1398 */,
@@ -70375,7 +70375,8 @@ module.exports = "assets/fa-brands-400.svg";
 /* 1473 */,
 /* 1474 */,
 /* 1475 */,
-/* 1476 */
+/* 1476 */,
+/* 1477 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70429,7 +70430,6 @@ function randomBytes(length) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
 
 /***/ }),
-/* 1477 */,
 /* 1478 */,
 /* 1479 */,
 /* 1480 */,
@@ -70452,10 +70452,11 @@ function randomBytes(length) {
 /* 1497 */,
 /* 1498 */,
 /* 1499 */,
-/* 1500 */
+/* 1500 */,
+/* 1501 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeToArray = __webpack_require__(1249);
+var arrayLikeToArray = __webpack_require__(1250);
 
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) return arrayLikeToArray(arr);
@@ -70464,7 +70465,7 @@ function _arrayWithoutHoles(arr) {
 module.exports = _arrayWithoutHoles;
 
 /***/ }),
-/* 1501 */
+/* 1502 */
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
@@ -70474,7 +70475,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray;
 
 /***/ }),
-/* 1502 */
+/* 1503 */
 /***/ (function(module, exports) {
 
 function _nonIterableSpread() {
@@ -70484,14 +70485,14 @@ function _nonIterableSpread() {
 module.exports = _nonIterableSpread;
 
 /***/ }),
-/* 1503 */,
 /* 1504 */,
 /* 1505 */,
 /* 1506 */,
 /* 1507 */,
 /* 1508 */,
 /* 1509 */,
-/* 1510 */
+/* 1510 */,
+/* 1511 */
 /***/ (function(module, exports) {
 
 function _interopRequireDefault(obj) {
@@ -70503,7 +70504,6 @@ function _interopRequireDefault(obj) {
 module.exports = _interopRequireDefault;
 
 /***/ }),
-/* 1511 */,
 /* 1512 */,
 /* 1513 */,
 /* 1514 */,
@@ -70618,7 +70618,8 @@ module.exports = _interopRequireDefault;
 /* 1623 */,
 /* 1624 */,
 /* 1625 */,
-/* 1626 */
+/* 1626 */,
+/* 1627 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70642,7 +70643,7 @@ exports.isBrowserCryptoAvailable = isBrowserCryptoAvailable;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
 
 /***/ }),
-/* 1627 */
+/* 1628 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70669,7 +70670,7 @@ exports.isBrowser = isBrowser;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(28)))
 
 /***/ }),
-/* 1628 */
+/* 1629 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70678,7 +70679,7 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 
 
 /***/ }),
-/* 1629 */
+/* 1630 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70693,13 +70694,13 @@ module.exports = function () {
 
 
 /***/ }),
-/* 1630 */,
 /* 1631 */,
 /* 1632 */,
 /* 1633 */,
 /* 1634 */,
 /* 1635 */,
-/* 1636 */
+/* 1636 */,
+/* 1637 */
 /***/ (function(module, exports) {
 
 function _setPrototypeOf(o, p) {
@@ -70714,7 +70715,7 @@ function _setPrototypeOf(o, p) {
 module.exports = _setPrototypeOf;
 
 /***/ }),
-/* 1637 */
+/* 1638 */
 /***/ (function(module, exports) {
 
 function _arrayWithHoles(arr) {
@@ -70724,7 +70725,7 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles;
 
 /***/ }),
-/* 1638 */
+/* 1639 */
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
@@ -70757,7 +70758,7 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit;
 
 /***/ }),
-/* 1639 */
+/* 1640 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
@@ -70767,11 +70768,11 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest;
 
 /***/ }),
-/* 1640 */,
 /* 1641 */,
 /* 1642 */,
 /* 1643 */,
-/* 1644 */
+/* 1644 */,
+/* 1645 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70833,7 +70834,6 @@ function getNumberOfUrlSegments(url) {
 
 
 /***/ }),
-/* 1645 */,
 /* 1646 */,
 /* 1647 */,
 /* 1648 */,
@@ -70842,7 +70842,8 @@ function getNumberOfUrlSegments(url) {
 /* 1651 */,
 /* 1652 */,
 /* 1653 */,
-/* 1654 */
+/* 1654 */,
+/* 1655 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70879,7 +70880,7 @@ var index = memoize_browser_esm(function (prop) {
 
 
 /***/ }),
-/* 1655 */
+/* 1656 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71212,7 +71213,6 @@ function _base16To36(value) {
 //# sourceMappingURL=bignumber.js.map
 
 /***/ }),
-/* 1656 */,
 /* 1657 */,
 /* 1658 */,
 /* 1659 */,
@@ -71234,7 +71234,8 @@ function _base16To36(value) {
 /* 1675 */,
 /* 1676 */,
 /* 1677 */,
-/* 1678 */
+/* 1678 */,
+/* 1679 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71243,16 +71244,16 @@ function _base16To36(value) {
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ sdk_init; });
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/version.js
-var version = __webpack_require__(1300);
+var version = __webpack_require__(1301);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/index.js + 3 modules
 var esm = __webpack_require__(131);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/integration.js
-var integration = __webpack_require__(631);
+var integration = __webpack_require__(632);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/sdk.js
-var sdk = __webpack_require__(1301);
+var sdk = __webpack_require__(1302);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/hub.js
 var esm_hub = __webpack_require__(68);
@@ -71261,28 +71262,28 @@ var esm_hub = __webpack_require__(68);
 var api = __webpack_require__(596);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/stacktrace.js
-var stacktrace = __webpack_require__(633);
+var stacktrace = __webpack_require__(634);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/supports.js
-var supports = __webpack_require__(1208);
+var supports = __webpack_require__(1210);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/logger.js
 var logger = __webpack_require__(49);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/syncpromise.js
-var syncpromise = __webpack_require__(610);
+var syncpromise = __webpack_require__(611);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/instrument.js
-var instrument = __webpack_require__(1354);
+var instrument = __webpack_require__(1355);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/buildPolyfills/_optionalChain.js
-var _optionalChain = __webpack_require__(1355);
+var _optionalChain = __webpack_require__(1356);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/baseclient.js + 1 modules
-var baseclient = __webpack_require__(1304);
+var baseclient = __webpack_require__(1305);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/envelope.js
-var esm_envelope = __webpack_require__(1348);
+var esm_envelope = __webpack_require__(1349);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/time.js
 var time = __webpack_require__(172);
@@ -71315,7 +71316,7 @@ function createClientReportEnvelope(
 //# sourceMappingURL=clientreport.js.map
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/dsn.js
-var esm_dsn = __webpack_require__(644);
+var esm_dsn = __webpack_require__(646);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/is.js
 var is = __webpack_require__(73);
@@ -71324,10 +71325,10 @@ var is = __webpack_require__(73);
 var object = __webpack_require__(81);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/normalize.js
-var normalize = __webpack_require__(1346);
+var normalize = __webpack_require__(1347);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/misc.js
-var misc = __webpack_require__(263);
+var misc = __webpack_require__(264);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/react/node_modules/@sentry/browser/esm/eventbuilder.js
 
@@ -71769,7 +71770,7 @@ function wrap(
 //# sourceMappingURL=helpers.js.map
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/browser.js
-var browser = __webpack_require__(1339);
+var browser = __webpack_require__(1340);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/severity.js
 // Note: Ideally the `SeverityLevel` type would be derived from `validSeverityLevels`, but that would mean either
@@ -71813,7 +71814,7 @@ function severityLevelFromString(level) {
 var string = __webpack_require__(370);
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/utils/esm/url.js
-var esm_url = __webpack_require__(1644);
+var esm_url = __webpack_require__(1645);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/react/node_modules/@sentry/browser/esm/integrations/breadcrumbs.js
 
@@ -73314,7 +73315,7 @@ class httpcontext_HttpContext  {constructor() { httpcontext_HttpContext.prototyp
 //# sourceMappingURL=httpcontext.js.map
 
 // EXTERNAL MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/core/esm/transports/base.js + 2 modules
-var base = __webpack_require__(1303);
+var base = __webpack_require__(1304);
 
 // CONCATENATED MODULE: /Volumes/GameDrive/code/a-mises/mises-wallet/node_modules/@sentry/react/node_modules/@sentry/browser/esm/transports/utils.js
 
