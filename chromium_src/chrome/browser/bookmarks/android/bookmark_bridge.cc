@@ -62,9 +62,10 @@ void BookmarkBridge::FileSelected(const base::FilePath& file_path, int index,
     writer->AddBookmarks(bookmarks, u"Imported");
   }
 
+
+    
   JNIEnv* env = AttachCurrentThread();
-  ScopedJavaLocalRef<jobject> obj = weak_java_ref_.get(env);
-  if (obj.is_null())
+  if (!env || !java_bookmark_model_)
     return;
 
   std::string message = "";
@@ -72,7 +73,7 @@ void BookmarkBridge::FileSelected(const base::FilePath& file_path, int index,
     message = "Imported " + std::to_string(bookmarks.size()) + " bookmarks";
   else
     message = "No bookmarks have been imported";
-  Java_BookmarkBridge_bookmarksImported(env, obj, ConvertUTF8ToJavaString(env, message));
+  Java_BookmarkBridge_bookmarksImported(env, ScopedJavaLocalRef<jobject>(java_bookmark_model_), ConvertUTF8ToJavaString(env, message));
 }
 
 void BookmarkBridge::FileSelectionCanceled(void* params) {
@@ -121,11 +122,10 @@ void BookmarkBridge::ExportBookmarks(JNIEnv* env) {
 
   bookmark_html_writer::WriteBookmarks(profile_, file_path, NULL);
 
-  ScopedJavaLocalRef<jobject> obj = weak_java_ref_.get(env);
-  if (obj.is_null())
+  if (!env || !java_bookmark_model_)
     return;
 
-  Java_BookmarkBridge_bookmarksExported(env, obj, ConvertUTF8ToJavaString(env, file_path.MaybeAsASCII()));
+  Java_BookmarkBridge_bookmarksExported(env, ScopedJavaLocalRef<jobject>(java_bookmark_model_), ConvertUTF8ToJavaString(env, file_path.MaybeAsASCII()));
 }
 
 
