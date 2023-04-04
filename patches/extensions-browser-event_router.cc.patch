@@ -1,5 +1,5 @@
 diff --git a/extensions/browser/event_router.cc b/extensions/browser/event_router.cc
-index a57d1337a443d4371597a311aa585009d8d6593b..85cc78f6d99c0c9400a3696d5e3c288103f694f7 100644
+index a57d1337a443d4371597a311aa585009d8d6593b..ea93dea308f023767f4be4654f9afc355d41c9be 100644
 --- a/extensions/browser/event_router.cc
 +++ b/extensions/browser/event_router.cc
 @@ -44,6 +44,7 @@
@@ -14,7 +14,7 @@ index a57d1337a443d4371597a311aa585009d8d6593b..85cc78f6d99c0c9400a3696d5e3c2881
  void EventRouter::DispatchEventImpl(const std::string& restrict_to_extension_id,
                                      const GURL& restrict_to_url,
                                      std::unique_ptr<Event> event) {
-+  LOG(INFO) << "[Mises] EventRouter::DispatchEventImpl: " << event->event_name;
++  //LOG(INFO) << "[Mises] EventRouter::DispatchEventImpl: " << event->event_name;
    DCHECK(event);
    // We don't expect to get events from a completely different browser context.
    DCHECK(!event->restrict_to_browser_context ||

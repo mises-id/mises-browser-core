@@ -79,7 +79,7 @@ InstantService::InstantService(Profile* profile)
       pref_service_(profile_->GetPrefs()),
       native_theme_(ui::NativeTheme::GetInstanceForNativeUi()),
       background_updated_timestamp_(base::TimeTicks::Now()) {
-  LOG(INFO) << "[Mises] InstantService::InstantService ";
+  //LOG(INFO) << "[Mises] InstantService::InstantService ";
   // The initialization below depends on a typical set of browser threads. Skip
   // it if we are running in a unit test without the full suite.
   if (!content::BrowserThread::CurrentlyOn(content::BrowserThread::UI))
@@ -121,7 +121,7 @@ InstantService::InstantService(Profile* profile)
 InstantService::~InstantService() = default;
 
 void InstantService::AddInstantProcess(int process_id) {
-  LOG(INFO) << "[Mises] InstantService::AddInstantProcess " << process_id;
+  //LOG(INFO) << "[Mises] InstantService::AddInstantProcess " << process_id;
   process_ids_.insert(process_id);
 }
 
@@ -218,7 +218,7 @@ void InstantService::Observe(int type,
 }
 
 void InstantService::OnRendererProcessTerminated(int process_id) {
-  LOG(INFO) << "[Mises] InstantService::OnRendererProcessTerminated " << process_id;
+  //LOG(INFO) << "[Mises] InstantService::OnRendererProcessTerminated " << process_id;
   process_ids_.erase(process_id);
 }
 
@@ -244,7 +244,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
   if (!results.empty()) {
     for (const auto& item : results){
       if (item.url().SchemeIs(extensions::kExtensionScheme)) {
-        LOG(INFO) << "[Mises] InstantService::SearchComplete - recent extension: " << item.url().GetWithEmptyPath();
+        //LOG(INFO) << "[Mises] InstantService::SearchComplete - recent extension: " << item.url().GetWithEmptyPath();
 	      recent.push_back(item.url().GetWithEmptyPath());
       }
     }
@@ -279,7 +279,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
             item.favicon = GURL(base64_image);
           }
         }
-       LOG(INFO) << "[Mises] InstantService::SearchComplete - found extension: " << item.url;
+       //LOG(INFO) << "[Mises] InstantService::SearchComplete - found extension: " << item.url;
        items.push_back(item);
     }
   }
@@ -292,7 +292,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
   });
   recent_extensions_.clear();
   for (const auto& item : items) {
-    LOG(INFO) << "[Mises] InstantService::SearchComplete - sort extension: " << item.url;
+    //LOG(INFO) << "[Mises] InstantService::SearchComplete - sort extension: " << item.url;
     recent_extensions_.push_back(item);
   }
   NotifyAboutMostVisitedInfo();
