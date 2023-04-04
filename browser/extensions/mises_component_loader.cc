@@ -110,18 +110,12 @@ void MisesComponentLoader::AddDefaultComponentExtensions(
     bool skip_session_components) {
   ComponentLoader::AddDefaultComponentExtensions(skip_session_components);
 
-  ExtensionRegistry::Get(profile_)->AddObserver(this);
-
-
-
-
-
-
 }
+
 void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_context,
                                   const Extension* extension) {
 
-    LOG(INFO) << "OnExtensionLoaded " << extension->id();
+    LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionLoaded " << extension->id();
 
 }
 
@@ -158,16 +152,16 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
 
 }
 void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* storage) {
-  LOG(INFO) << "AsyncRunWithMetamaskStorage";
+  LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithMetamaskStorage";
   metamaskValue = base::Value(storage->Get().PassSettings());
-  LOG(INFO) << "Got Metamask Storage";
+  LOG(INFO) << "[Mises] Got Metamask Storage";
   base::Value::Dict *data = metamaskValue.GetDict().FindDict("data");
   if (data) {
     base::Value::Dict *NetworkController = data->FindDict("NetworkController");
     if (NetworkController) {
       base::Value::Dict *provider = NetworkController->FindDict("provider");
       if (provider) {
-        LOG(INFO) << "Got Metamask Storage provider" << *provider;
+        LOG(INFO) << "[Mises] Got Metamask Storage provider" << *provider;
         std::string *provider_type = provider->FindString("type");
         if (provider_type && *provider_type == "MisesTestNet") {
           provider->Set("chainId", "0x1");
@@ -192,9 +186,9 @@ void MisesComponentLoader::MetamaskMigrationDone() {
 
 }
 void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
-  LOG(INFO) << "AsyncRunWithMiseswalletStorage";
+  LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithMiseswalletStorage";
   if (storage->GetBytesInUse("migrated") == 0){
-    LOG(INFO) << "DoMigrate";
+    LOG(INFO) << "[Mises] DoMigrate";
     storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "migrated", metamaskValue);
   }
 
@@ -210,19 +204,21 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 #if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::LogEventFromJni("install_extension", "id", extension->id(), "is_update", is_update?"1":"0");
 #endif
-      LOG(INFO) << "OnExtensionInstalled ";
+    LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionInstalled";
   }
 
   if(extension && extension->location() == ManifestLocation::kComponent) {
+    LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionInstalled " << extension->id();
     if (extension->id() == mises_extension_id ) {
-        extensions::ExtensionSystem* system = extensions::ExtensionSystem::Get(profile_);
-        if (system) {
-          extensions::ExtensionService* service = system->extension_service();
-          if (service) {
-            //reload mises extension after install, this fix the multi workservice bug when extension updated
-            service->ReloadExtension(mises_extension_id);
-          }
+      extensions::ExtensionSystem* system = extensions::ExtensionSystem::Get(profile_);
+      if (system) {
+        extensions::ExtensionService* service = system->extension_service();
+        if (service) {
+          //reload mises extension after install, this fix the multi workservice bug when extension updated
+          LOG(INFO) << "[Mises] mises extension reload";
+          service->ReloadExtension(mises_extension_id);
         }
+      }
 
     }
   }
@@ -238,7 +234,7 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 #if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::LogEventFromJni("uninstall_extension", "id", extension->id());
 #endif
-      LOG(INFO) << "OnExtensionUninstalled ";
+    LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionUninstalled";
   }
   if(extension && extension->location() == ManifestLocation::kComponent) {
      if (extension->id() == metamask_extension_id ) {
@@ -254,6 +250,9 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 
 
 void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
+  LOG(INFO) << "[Mises] MisesComponentLoader::AddMetamaskExtensionOnStartup ";
+
+  ExtensionRegistry::Get(profile_)->AddObserver(this);
 
   extensions::ExtensionRegistry* registry =
       extensions::ExtensionRegistry::Get(profile_);
