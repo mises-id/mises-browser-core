@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/extension_tab_util.cc b/chrome/browser/extensions/extension_tab_util.cc
-index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9558f0687 100644
+index e58a56c5f09b099a4990917a15bc18f16e5c047c..2567311a9f8bf19398ce517c7b0196ef5b72099e 100644
 --- a/chrome/browser/extensions/extension_tab_util.cc
 +++ b/chrome/browser/extensions/extension_tab_util.cc
 @@ -167,8 +167,10 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
@@ -13,12 +13,15 @@ index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9
  
      browser = CreateAndShowBrowser(profile, user_gesture, &error);
      if (!browser)
-@@ -259,18 +261,29 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
+@@ -259,18 +261,32 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
    navigate_params.tabstrip_index = index;
    navigate_params.user_gesture = false;
    navigate_params.tabstrip_add_types = add_types;
 +
 +#if BUILDFLAG(IS_ANDROID)
++  if (TabModelList::models().empty()) {
++    return base::unexpected("Tabs model not initialized");
++  } 
 +  TabModel* tab_model = *(TabModelList::models().begin());
 +  WebContents* web_contents = tab_model->CreateNewTabForDevTools(url);
 +  navigate_params.navigated_or_inserted_contents = web_contents;
@@ -43,7 +46,7 @@ index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9
    // The tab may have been created in a different window, so make sure we look
    // at the right tab strip.
    TabStripModel* tab_strip = navigate_params.browser->tab_strip_model();
-@@ -282,6 +295,7 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
+@@ -282,6 +298,7 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
      if (tab_strip->GetIndexOfWebContents(opener) != TabStripModel::kNoTab)
        tab_strip->SetOpenerOfWebContentsAt(new_index, opener);
    }
@@ -51,7 +54,7 @@ index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9
  
    if (active)
      navigate_params.navigated_or_inserted_contents->SetInitialFocus();
-@@ -386,8 +400,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
+@@ -386,8 +403,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
      const Extension* extension,
      TabStripModel* tab_strip,
      int tab_index) {
@@ -62,7 +65,7 @@ index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9
    api::tabs::Tab tab_object;
    tab_object.id = GetTabIdForExtensions(contents);
    tab_object.index = tab_index;
-@@ -457,6 +473,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
+@@ -457,6 +476,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
      }
    }
  
@@ -73,7 +76,7 @@ index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9
    ScrubTabForExtension(extension, contents, &tab_object, scrub_tab_behavior);
    return tab_object;
  }
-@@ -465,6 +485,7 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
+@@ -465,6 +488,7 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
                                                    const Extension* extension,
                                                    Feature::Context context) {
    base::Value::List tab_list;
@@ -81,7 +84,7 @@ index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9
    TabStripModel* tab_strip = browser->tab_strip_model();
    for (int i = 0; i < tab_strip->count(); ++i) {
      WebContents* web_contents = tab_strip->GetWebContentsAt(i);
-@@ -474,6 +495,9 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
+@@ -474,6 +498,9 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
                                      tab_strip, i)
                          .ToValue());
    }
@@ -91,7 +94,7 @@ index e58a56c5f09b099a4990917a15bc18f16e5c047c..8a98d8ff13748425ef140373946b07e9
  
    return tab_list;
  }
-@@ -688,6 +712,12 @@ bool ExtensionTabUtil::GetTabById(int tab_id,
+@@ -688,6 +715,12 @@ bool ExtensionTabUtil::GetTabById(int tab_id,
        }
      }
    }

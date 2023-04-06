@@ -1,5 +1,6 @@
 package org.chromium.chrome.browser.mises;
 
+import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +14,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+
+import android.app.ForegroundServiceStartNotAllowedException;
 
 import lcd.MLightNode;
 import lcd.MLightNodeDelegator;
@@ -37,6 +40,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.lang.SecurityException;
+
+
 
 public class MisesLCDService extends Service implements MLightNodeDelegator {
     private static final String CHANNEL_ID = "1001";
@@ -407,9 +412,27 @@ public class MisesLCDService extends Service implements MLightNodeDelegator {
     public void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
-	if (IS_RUNNING) {
-          stopService();
-	}
+        if (IS_RUNNING) {
+            stopService();
+        }
+    }
+
+    static public void maybeStartService(final Application application) {
+        Log.i(TAG, "maybeStartService");
+        if (!MisesLCDService.IS_RUNNING) {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    Log.i(TAG, "start MisesLCDService1");
+                    application.startForegroundService(new Intent(application, MisesLCDService.class));
+                } else {
+                    Log.i(TAG, "start MisesLCDService2");
+                    application.startService(new Intent(application, MisesLCDService.class));
+                }
+            }
+            catch (ForegroundServiceStartNotAllowedException e) {
+                   Log.i(TAG, "fail to start MisesLCDService with ForegroundServiceStartNotAllowedException");
+            }
+        }
     }
 
 

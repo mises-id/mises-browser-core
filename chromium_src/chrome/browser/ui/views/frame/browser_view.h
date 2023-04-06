@@ -8,12 +8,15 @@
 #define HighEfficiencyIPHController HighEfficiencyIPHController_Mises
 #define GetDownloadBubbleUIController GetDownloadBubbleUIController_Chromium();\
    DownloadBubbleUIController* GetDownloadBubbleUIController
+#define ShouldHideUIForFullscreen ShouldHideUIForFullscreen_Chromium() const;\
+   bool ShouldHideUIForFullscreen
 class HighEfficiencyIPHController_Mises;
 #endif
 #include "src/chrome/browser/ui/views/frame/browser_view.h"
 #if BUILDFLAG(IS_ANDROID)
 #undef GetDownloadBubbleUIController
 #undef HighEfficiencyIPHController
+#undef ShouldHideUIForFullscreen
 #endif
 
 #endif  // CHROME_BROWSER_UI_VIEWS_FRAME_BROWSER_VIEW_H_

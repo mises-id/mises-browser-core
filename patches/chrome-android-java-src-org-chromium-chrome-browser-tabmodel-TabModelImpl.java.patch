@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
-index 86b2bcd19ed2f7de629dd648b0211a58cdc1441f..98860a792dc371bcb0f31c598eb834241eedd7e1 100644
+index 86b2bcd19ed2f7de629dd648b0211a58cdc1441f..285c69ddb0862ec66b3e4a962146a22583263048 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 @@ -31,6 +31,7 @@ import org.chromium.ui.mojom.WindowOpenDisposition;
@@ -10,25 +10,23 @@ index 86b2bcd19ed2f7de629dd648b0211a58cdc1441f..98860a792dc371bcb0f31c598eb83424
  import java.util.ArrayList;
  import java.util.Collections;
  import java.util.List;
-@@ -763,6 +764,26 @@ public class TabModelImpl extends TabModelJniBridge {
+@@ -763,6 +764,24 @@ public class TabModelImpl extends TabModelJniBridge {
          return mIndex;
      }
  
 +    @Override
 +    public int getLastNonExtensionActiveIndex() {
-+//        Log.i("EXTENSIONS", "TabModelImpl - (secondary) getLastNonExtensionActiveIndex");
 +        int result = mIndex;
-+//        Log.i("EXTENSIONS", "TabModelImpl - (secondary) getLastNonExtensionActiveIndex - " + mIndex);
 +        Tab currentTab = getTabAt(mIndex);
 +        // We get the adjacent tab in case we are currently on a chrome-extension page
 +        if (currentTab != null && currentTab.getUrl() != null && (currentTab.getUrl().getSpec().contains("chrome-extension://"))) {
 +          Tab parentTab = findTabInAllTabModels(CriticalPersistedTabData.from(currentTab).getParentId());
-+	  if (parentTab != null) {
-+	    result =  indexOf(parentTab);
-+	  } else {
-+            result = mIndex - 1;
-+	  }	
-+	}
++            if (parentTab != null) {
++                result =  indexOf(parentTab);
++            } else {
++                    result = mIndex - 1;
++            }	
++	    }
 +        if (result < 0)
 +          return 0;
 +        return result;    

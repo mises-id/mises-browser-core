@@ -1,0 +1,19 @@
+diff --git a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/SingleWebsiteSettings.java b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/SingleWebsiteSettings.java
+index 0b4f8a43c96253c807f22945060a74802c99f36c..993c419ca243ae589edd1554c90e5ad887d6c6df 100644
+--- a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/SingleWebsiteSettings.java
++++ b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/SingleWebsiteSettings.java
+@@ -259,7 +259,13 @@ public class SingleWebsiteSettings extends SiteSettingsPreferenceFragment
+      */
+     public static Bundle createFragmentArgsForSite(String url) {
+         Bundle fragmentArgs = new Bundle();
+-        String origin = Origin.createOrThrow(url).toString();
++        String origin;
++        try {
++            origin = Origin.createOrThrow(url).toString();
++        }
++        catch (IllegalArgumentException e) {
++            origin = "localhost";
++        }    
+         fragmentArgs.putSerializable(EXTRA_SITE_ADDRESS, WebsiteAddress.create(origin));
+         return fragmentArgs;
+     }
