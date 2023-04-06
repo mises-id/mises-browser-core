@@ -99,7 +99,7 @@ class HighEfficiencyIPHController_Mises {
 #define ProfileMenuCoordinator ProfileMenuCoordinator_Mises
 #define HighEfficiencyIPHController HighEfficiencyIPHController_Mises
 #define GetDownloadBubbleUIController GetDownloadBubbleUIController_Chromium
-
+#define ShouldHideUIForFullscreen ShouldHideUIForFullscreen_Chromium
 #endif
 
 
@@ -107,10 +107,14 @@ class HighEfficiencyIPHController_Mises {
 
 #if BUILDFLAG(IS_ANDROID)
 #undef GetDownloadBubbleUIController
+#undef ShouldHideUIForFullscreen
 
 DownloadBubbleUIController* BrowserView::GetDownloadBubbleUIController() {
   if (!toolbar_button_provider_)
     return nullptr;
   return GetDownloadBubbleUIController_Chromium();
+}
+bool BrowserView::ShouldHideUIForFullscreen() const {
+    return false;
 }
 #endif
