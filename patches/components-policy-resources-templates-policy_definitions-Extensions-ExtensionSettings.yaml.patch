@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionSettings.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionSettings.yaml
+index d2580d5b6c48f73f2b28d4cf7e72b9e4d749d229..1753249f1b8766b3c8b465982e6ce1c25980306c 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionSettings.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionSettings.yaml
+@@ -138,6 +138,7 @@ schema:
+ supported_on:
+ - chrome.*:62-
+ - chrome_os:62-
++- android:111-
+ tags: []
+ type: dict
+ url_schema: https://www.chromium.org/administrators/policy-list-3/extension-settings-full

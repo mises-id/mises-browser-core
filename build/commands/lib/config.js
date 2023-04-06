@@ -381,6 +381,7 @@ Config.prototype.buildArgs = function () {
   }
 
   if (this.isDebug() &&
+      !this.isComponentBuild() &&
       this.targetOS !== 'ios' &&
       this.targetOS !== 'android') {
     args.enable_profiling = true
@@ -988,7 +989,7 @@ Object.defineProperty(Config.prototype, 'defaultOptions', {
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'script'))
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'tools', 'grit', 'grit', 'extern'))
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'requests'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'lxml', 'src'))
+    //env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'lxml', 'src'))
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'transifex'))
     
     env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'build'))

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/strings/android_chrome_strings.grd b/chrome/browser/ui/android/strings/android_chrome_strings.grd
-index 49a0ac19d12e4..d987263139d25 100644
+index cd320c39ca381d190c7b18c5ed9b48d50a82b5b9..b3c21853e3c780c170ea7b29954a472f60981219 100644
 --- a/chrome/browser/ui/android/strings/android_chrome_strings.grd
 +++ b/chrome/browser/ui/android/strings/android_chrome_strings.grd
-@@ -3445,6 +3445,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
+@@ -3588,6 +3588,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
        <message name="IDS_MENU_STOP_REFRESH" desc="Tooltip on Android for the button to stop refreshing the current web page. [CHAR_LIMIT=27]">
          Stop refreshing
        </message>

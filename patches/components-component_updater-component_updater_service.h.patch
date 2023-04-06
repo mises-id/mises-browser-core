@@ -1,8 +1,8 @@
 diff --git a/components/component_updater/component_updater_service.h b/components/component_updater/component_updater_service.h
-index 8cb5fc372868f06be776b4bbd571fe82b85f6ba3..71a202688ffbc4284f68b4f0ddd8ac8652aedba0 100644
+index 1e4b99ad44579c7679a7edcd88e7d5d3c81a5372..95f7e983a4feca083f6bc14eab96f3d0cf1cc17b 100644
 --- a/components/component_updater/component_updater_service.h
 +++ b/components/component_updater/component_updater_service.h
-@@ -180,6 +180,7 @@ class ComponentUpdateService {
+@@ -186,6 +186,7 @@ class ComponentUpdateService {
  
    friend class speech::SodaInstallerImpl;
    friend class ::ComponentsHandler;
@@ -10,7 +10,7 @@ index 8cb5fc372868f06be776b4bbd571fe82b85f6ba3..71a202688ffbc4284f68b4f0ddd8ac86
    FRIEND_TEST_ALL_PREFIXES(ComponentInstallerTest, RegisterComponent);
  };
  
-@@ -193,7 +194,7 @@ class OnDemandUpdater {
+@@ -199,7 +200,7 @@ class OnDemandUpdater {
    enum class Priority { BACKGROUND = 0, FOREGROUND = 1 };
  
    virtual ~OnDemandUpdater() = default;

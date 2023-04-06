@@ -16,12 +16,38 @@ public class MisesAutocompleteMediatorClassAdapter extends MisesClassVisitor {
     public MisesAutocompleteMediatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(sAutocompleteMediator, sMisesAutocompleteMediator);
+        redirectConstructor(sAutocompleteMediator, sMisesAutocompleteMediator);
 
-        // deleteField(sMisesAutocompleteMediator, "mNativeInitialized");
-        // makeProtectedField(sAutocompleteMediator, "mNativeInitialized");
 
-        // deleteField(sMisesAutocompleteMediator, "mDropdownViewInfoListManager");
-        // makeProtectedField(sAutocompleteMediator, "mDropdownViewInfoListManager");
+        deleteField(sMisesAutocompleteMediator, "mUrlBarEditingTextProvider");
+        makeProtectedField(sAutocompleteMediator, "mUrlBarEditingTextProvider");
+
+        deleteField(sMisesAutocompleteMediator, "mNativeInitialized");
+        makeProtectedField(sAutocompleteMediator, "mNativeInitialized");
+
+        deleteField(sMisesAutocompleteMediator, "mAutocomplete");
+        makeProtectedField(sAutocompleteMediator, "mAutocomplete");
+
+
+        deleteField(sMisesAutocompleteMediator, "mDeferredLoadAction");
+        makeProtectedField(sAutocompleteMediator, "mDeferredLoadAction");
+
+
+        deleteMethod(sMisesAutocompleteMediator, "cancelAutocompleteRequests");
+        makePublicMethod(sAutocompleteMediator, "cancelAutocompleteRequests");
+
+        deleteMethod(sMisesAutocompleteMediator, "findMatchAndLoadUrl");
+        makePublicMethod(sAutocompleteMediator, "findMatchAndLoadUrl");
+
+        deleteMethod(sMisesAutocompleteMediator, "findSuggestionInAutocompleteResult");
+        makePublicMethod(sAutocompleteMediator, "findSuggestionInAutocompleteResult");
+                
+        deleteMethod(sMisesAutocompleteMediator, "getElapsedTimeSinceInputChange");
+        makePublicMethod(sAutocompleteMediator, "getElapsedTimeSinceInputChange");
+
+        makePublicMethod(sAutocompleteMediator, "updateSuggestionUrlIfNeeded");
+        addMethodAnnotation(sMisesAutocompleteMediator,
+                "updateSuggestionUrlIfNeeded", "Ljava/lang/Override;");
+
     }
 }

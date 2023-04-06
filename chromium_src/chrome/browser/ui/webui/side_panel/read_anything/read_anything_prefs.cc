@@ -1,34 +1,24 @@
-// Copyright 2022 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 
-#include "chrome/browser/ui/webui/side_panel/read_anything/read_anything_prefs.h"
+#include "build/build_config.h"
 
-#include "chrome/browser/ui/views/side_panel/read_anything/read_anything_constants.h"
-#include "components/pref_registry/pref_registry_syncable.h"
+#if BUILDFLAG(IS_ANDROID)
 
-namespace prefs {
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
 
-#if true || !BUILDFLAG(IS_ANDROID)
-// String to represent the user's preferred font name for the read anything UI.
-const char kAccessibilityReadAnythingFontName[] =
-    "settings.a11y.read_anything.font_name";
+#undef ANDROID
 
-// Double to represent the user's preferred font size scaling factor.
-const char kAccessibilityReadAnythingFontScale[] =
-    "settings.a11y.read_anything.font_scale";
+#include "src/chrome/browser/ui/webui/side_panel/read_anything/read_anything_prefs.cc"
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
-#endif  // !BUILDFLAG(IS_ANDROID)
+#define ANDROID 1
 
-}  // namespace prefs
+#else
 
-void RegisterReadAnythingProfilePrefs(
-    user_prefs::PrefRegistrySyncable* registry) {
-  registry->RegisterStringPref(prefs::kAccessibilityReadAnythingFontName,
-                               kReadAnythingDefaultFontName,
-                               user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
-  registry->RegisterDoublePref(prefs::kAccessibilityReadAnythingFontScale,
-                               kReadAnythingDefaultFontScale,
-                               user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
-}
+#include "src/chrome/browser/ui/webui/side_panel/read_anything/read_anything_prefs.cc"
+
+
+#endif
+
 

@@ -1,14 +1,9 @@
-// Copyright 2021 The Chromium Authors
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 #include <memory>
 #include <string>
 #include <utility>
 
 #include "base/json/json_reader.h"
 #include "base/json/json_writer.h"
-#include "base/threading/thread_task_runner_handle.h"
 #include "base/values.h"
 #include "content/public/browser/browser_context.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
@@ -97,7 +92,7 @@ void NativeMessageMisesHost::OnMessage(const std::string& request_string) {
 
 scoped_refptr<base::SingleThreadTaskRunner> NativeMessageMisesHost::task_runner()
     const {
-  return base::ThreadTaskRunnerHandle::Get();
+  return base::SingleThreadTaskRunner::GetCurrentDefault();
 }
 
 void NativeMessageMisesHost::ProcessEcho(const base::Value::Dict& request) {

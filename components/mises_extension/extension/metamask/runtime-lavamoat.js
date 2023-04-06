@@ -7,6 +7,7 @@
   const {
     RegExp,
     Reflect,
+    Proxy,
     Object,
     Error,
     Array,
@@ -89,7 +90,7 @@
     const {
       scuttleGlobalThis,
       scuttleGlobalThisExceptions,
-    } = {"scuttleGlobalThis":false}
+    } = {"scuttleGlobalThis":true,"scuttleGlobalThisExceptions":["toString","getComputedStyle","addEventListener","removeEventListener","ShadowRoot","HTMLElement","Element","pageXOffset","pageYOffset","visualViewport","Reflect","Set","Object","navigator","harden","console","location","/cdc_[a-zA-Z0-9]+_[a-zA-Z]+/iu","performance","parseFloat","innerWidth","innerHeight","Symbol","Math","DOMRect","Number","Array","crypto","Function","Uint8Array","String","Promise","__SENTRY__","appState","extra","stateHooks","sentryHooks","sentry"]}
 
     // identify the globalRef
     const globalRef = (typeof globalThis !== 'undefined') ? globalThis : (typeof self !== 'undefined') ? self : (typeof global !== 'undefined') ? global : undefined
@@ -11187,27 +11188,31 @@ module.exports = {
       const avoidForLavaMoatCompatibility = ['Compartment', 'Error', 'globalThis']
       const propsToAvoid = new Set([...avoidForLavaMoatCompatibility, ...extraPropsToAvoid])
 
+      const obj = Object.create(null)
       for (const prop of props) {
+        function set() {
+          console.warn(
+            `LavaMoat - property "${prop}" of globalThis cannot be set under scuttling mode. ` +
+            'To learn more visit https://github.com/LavaMoat/LavaMoat/pull/360.',
+          )
+        }
+        function get() {
+          throw new Error(
+            `LavaMoat - property "${prop}" of globalThis is inaccessible under scuttling mode. ` +
+            'To learn more visit https://github.com/LavaMoat/LavaMoat/pull/360.',
+          )
+        }
         if (shouldAvoidProp(propsToAvoid, prop)) {
           continue
         }
-        if (Object.getOwnPropertyDescriptor(globalRef, prop)?.configurable === false) {
+        let desc = Object.getOwnPropertyDescriptor(globalRef, prop)
+        if (desc && desc.configurable === true) {
+          desc = { configurable: false, set, get }
+        } else if (desc && desc.writable === true) {
+          const p = new Proxy(obj, { getPrototypeOf: get, get, set } )
+          desc = { configurable: false, writable: false, value: p }
+        } else {
           continue
-        }
-        const desc = {
-          set: () => {
-            console.warn(
-              `LavaMoat - property "${prop}" of globalThis cannot be set under scuttling mode. ` +
-              'To learn more visit https://github.com/LavaMoat/LavaMoat/pull/360.',
-            )
-          },
-          get: () => {
-            throw new Error(
-              `LavaMoat - property "${prop}" of globalThis is inaccessible under scuttling mode. ` +
-              'To learn more visit https://github.com/LavaMoat/LavaMoat/pull/360.',
-            )
-          },
-          configurable: false,
         }
         Object.defineProperty(globalRef, prop, desc)
       }

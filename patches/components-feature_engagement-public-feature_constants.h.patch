@@ -1,0 +1,13 @@
+diff --git a/components/feature_engagement/public/feature_constants.h b/components/feature_engagement/public/feature_constants.h
+index 90610f1e76447e35a3db7e4c5686f54d26c3c33a..63489d2faf93350b247eeb04e1fefbffc09c2fd5 100644
+--- a/components/feature_engagement/public/feature_constants.h
++++ b/components/feature_engagement/public/feature_constants.h
+@@ -21,7 +21,7 @@ BASE_DECLARE_FEATURE(kUseClientConfigIPH);
+ // A feature to ensure all arrays can contain at least one feature.
+ BASE_DECLARE_FEATURE(kIPHDummyFeature);
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
++#if true || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
+     BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
+ BASE_DECLARE_FEATURE(kIPHBatterySaverModeFeature);
+ BASE_DECLARE_FEATURE(kIPHDesktopSharedHighlightingFeature);

@@ -5,6 +5,8 @@
 
 #include "components/page_info/page_info_ui.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
+#include "chrome/common/url_constants.h"
+#include "extensions/common/constants.h"
 
 #if BUILDFLAG(ENABLE_IPFS)
 #include "mises/components/ipfs/ipfs_utils.h"
@@ -27,10 +29,20 @@ PageInfoUI::GetSecurityDescription(const IdentityInfo& identity_info) const {
   if (!url.is_valid()) {
     url = GURL("http://" + identity_info.site_identity);
   }
-  if (!ipfs::IsIPFSScheme(url) && !decentralized_dns::ShouldHandleUrl(url))
-    return GetSecurityDescription_ChromiumImpl(identity_info);
-  return CreateSecurityDescription(
+  if (ipfs::IsIPFSScheme(url)  || decentralized_dns::ShouldHandleUrl(url))
+    return CreateSecurityDescription(
       SecuritySummaryColor::GREEN, IDS_PAGE_INFO_IPFS_BUBBLE_TITTLE,
       IDS_PAGE_INFO_IPFS_BUBBLE_TEXT, SecurityDescriptionType::CONNECTION);
+  
+  if (url.SchemeIs(chrome::kChromeSearchScheme)) 
+    return CreateSecurityDescription(
+      SecuritySummaryColor::GREEN, 0, IDS_PAGE_INFO_INTERNAL_PAGE,
+                                       SecurityDescriptionType::INTERNAL);
+
+  if (url.SchemeIs(extensions::kExtensionScheme)) 
+    return CreateSecurityDescription(
+      SecuritySummaryColor::GREEN, 0, IDS_PAGE_INFO_EXTENSION_PAGE,
+                                       SecurityDescriptionType::INTERNAL);
+  return GetSecurityDescription_ChromiumImpl(identity_info);
 }
 #endif  // BUILDFLAG(ENABLE_IPFS)

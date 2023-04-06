@@ -12,10 +12,6 @@
 namespace brave_wallet {
 namespace features {
 
-#define BASE_DECLARE_FEATURE(kFeature) \
-  extern CONSTINIT const base::Feature kFeature
-  
-
 
 BASE_DECLARE_FEATURE(kNativeBraveWalletFeature);
 BASE_DECLARE_FEATURE(kBraveWalletFilecoinFeature);
@@ -26,7 +22,6 @@ BASE_DECLARE_FEATURE(kBraveWalletDappsSupportFeature);
 BASE_DECLARE_FEATURE(kBraveWalletENSL2Feature);
 BASE_DECLARE_FEATURE(kBraveWalletSnsFeature);
 
-#undef BASE_DECLARE_FEATURE
 
 }  // namespace features
 }  // namespace brave_wallet

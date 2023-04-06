@@ -13,28 +13,29 @@
 #include "mises/components/l10n/common/localization_util.h"
 #include "mises/grit/mises_theme_resources.h"
 #include "chrome/browser/ui/page_info/chrome_page_info_ui_delegate.h"
-#include "chrome/browser/ui/views/page_info/page_info_hover_button.h"
+#include "chrome/browser/ui/views/controls/rich_hover_button.h"
 #include "components/grit/mises_components_strings.h"
+#include "ui/base/l10n/l10n_util.h"
 
 namespace {
 
 const char kIPFSDocsURL[] = "https://docs.ipfs.io/";
 
-std::unique_ptr<PageInfoHoverButton> CreateButton(
+std::unique_ptr<RichHoverButton> CreateButton(
     int logo_resource_id,
     int text_resource_id,
     int tooltip_resource_id,
     views::Button::PressedCallback callback) {
   auto& bundle = ui::ResourceBundle::GetSharedInstance();
   const auto& ipfs_logo = *bundle.GetImageSkiaNamed(logo_resource_id);
-  const std::u16string& tooltip =
+  const std::u16string& title_text =
+      brave_l10n::GetLocalizedResourceUTF16String(text_resource_id);
+  const std::u16string& tooltip_text =
       brave_l10n::GetLocalizedResourceUTF16String(tooltip_resource_id);
 
-  return std::make_unique<PageInfoHoverButton>(
-      std::move(callback), ui::ImageModel::FromImageSkia(ipfs_logo),
-      text_resource_id, std::u16string(),
-      PageInfoViewFactory::VIEW_ID_PAGE_INFO_LINK_OR_BUTTON_COOKIE_DIALOG,
-      tooltip, std::u16string());
+  return std::make_unique<RichHoverButton>(
+      std::move(callback), ui::ImageModel::FromImageSkia(ipfs_logo), title_text,
+      std::u16string(), tooltip_text, std::u16string());
 }
 
 void MisesAddIPFSButtons(views::View* container,

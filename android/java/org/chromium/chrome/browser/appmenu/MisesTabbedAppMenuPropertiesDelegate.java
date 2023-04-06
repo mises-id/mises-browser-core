@@ -21,7 +21,7 @@ import org.chromium.base.supplier.OneshotSupplier;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.ActivityTabProvider;
 import org.chromium.chrome.browser.app.appmenu.AppMenuIconRowFooter;
-import org.chromium.chrome.browser.bookmarks.BookmarkBridge;
+import org.chromium.chrome.browser.bookmarks.BookmarkModel;
 import org.chromium.chrome.browser.feed.webfeed.WebFeedBridge;
 import org.chromium.chrome.browser.feed.webfeed.WebFeedSnackbarController;
 import org.chromium.chrome.browser.flags.ChromeFeatureList;
@@ -41,7 +41,7 @@ import org.chromium.ui.modaldialog.ModalDialogManager;
 public class MisesTabbedAppMenuPropertiesDelegate extends TabbedAppMenuPropertiesDelegate {
     private Menu mMenu;
     private AppMenuDelegate mAppMenuDelegate;
-    private ObservableSupplier<BookmarkBridge> mBookmarkModelSupplier;
+    private ObservableSupplier<BookmarkModel> mBookmarkModelSupplier;
 
     public MisesTabbedAppMenuPropertiesDelegate(Context context,
             ActivityTabProvider activityTabProvider,
@@ -50,7 +50,7 @@ public class MisesTabbedAppMenuPropertiesDelegate extends TabbedAppMenuPropertie
             AppMenuDelegate appMenuDelegate,
             OneshotSupplier<LayoutStateProvider> layoutStateProvider,
             OneshotSupplier<StartSurface> startSurfaceSupplier,
-            ObservableSupplier<BookmarkBridge> bookmarkBridgeSupplier,
+            ObservableSupplier<BookmarkModel> bookmarkBridgeSupplier,
             WebFeedSnackbarController.FeedLauncher feedLauncher,
             ModalDialogManager modalDialogManager, SnackbarManager snackbarManager,
             @NonNull OneshotSupplier<IncognitoReauthController>

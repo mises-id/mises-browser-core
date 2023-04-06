@@ -1,0 +1,20 @@
+diff --git a/content/browser/picture_in_picture/document_picture_in_picture_window_controller_impl.cc b/content/browser/picture_in_picture/document_picture_in_picture_window_controller_impl.cc
+index e86494ba0246af4111135bbcf5c4fb9c85d3e1ed..4ceb4f0e71927b7b5ed77d1b325b7eeebd3cc3eb 100644
+--- a/content/browser/picture_in_picture/document_picture_in_picture_window_controller_impl.cc
++++ b/content/browser/picture_in_picture/document_picture_in_picture_window_controller_impl.cc
+@@ -22,6 +22,7 @@
+ 
+ namespace content {
+ 
++#if !BUILDFLAG(IS_ANDROID)
+ // static
+ DocumentPictureInPictureWindowController*
+ PictureInPictureWindowController::GetOrCreateDocumentPictureInPictureController(
+@@ -29,6 +30,7 @@ PictureInPictureWindowController::GetOrCreateDocumentPictureInPictureController(
+   return DocumentPictureInPictureWindowControllerImpl::
+       GetOrCreateForWebContents(web_contents);
+ }
++#endif
+ 
+ // static
+ DocumentPictureInPictureWindowControllerImpl*

@@ -1,30 +1,26 @@
-// Copyright 2022 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-#ifndef CHROME_BROWSER_UI_WEBUI_SIDE_PANEL_READ_ANYTHING_READ_ANYTHING_PREFS_H_
-#define CHROME_BROWSER_UI_WEBUI_SIDE_PANEL_READ_ANYTHING_READ_ANYTHING_PREFS_H_
+#ifndef MISES_BROWSER_UI_WEBUI_SIDE_PANEL_READ_ANYTHING_READ_ANYTHING_PREFS_H_
+#define MISES_BROWSER_UI_WEBUI_SIDE_PANEL_READ_ANYTHING_READ_ANYTHING_PREFS_H_
 
 #include "build/build_config.h"
 #include "chrome/common/buildflags.h"
 
-namespace user_prefs {
-class PrefRegistrySyncable;
-}
 
-namespace prefs {
+#if BUILDFLAG(IS_ANDROID)
 
-#if true || !BUILDFLAG(IS_ANDROID)
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
 
-extern const char kAccessibilityReadAnythingFontName[];
-extern const char kAccessibilityReadAnythingFontScale[];
 
-#endif  // !BUILDFLAG(IS_ANDROID)
+#include "src/chrome/browser/ui/webui/side_panel/read_anything/read_anything_prefs.h"
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
-}  // namespace prefs
+#else
 
-void RegisterReadAnythingProfilePrefs(
-    user_prefs::PrefRegistrySyncable* registry);
+#include "src/chrome/browser/ui/webui/side_panel/read_anything/read_anything_prefs.h"
+
+
+#endif
 
 
 #endif  // CHROME_BROWSER_UI_WEBUI_SIDE_PANEL_READ_ANYTHING_READ_ANYTHING_PREFS_H_

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
-index 6b9d60b1cc1ac7ae2950dea55672f6dd6d42d9a1..53f9446aefbfc0e7750e1be7b5a5e280cd201e33 100644
+index 3aa79ab29b6d05a676d7dd43a73907b66826151a..0f0362155c14b5a357b457e435f223a3f6aa5c47 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
-@@ -43,10 +43,12 @@ public class ThemeSettingsFragment extends PreferenceFragmentCompat {
+@@ -45,10 +45,12 @@ public class ThemeSettingsFragment
                  (RadioButtonGroupThemePreference) findPreference(PREF_UI_THEME_PREF);
          mWebContentsDarkModeEnabled = WebContentsDarkModeController.isGlobalUserSettingsEnabled(
                  Profile.getLastUsedRegularProfile());
@@ -15,7 +15,7 @@ index 6b9d60b1cc1ac7ae2950dea55672f6dd6d42d9a1..53f9446aefbfc0e7750e1be7b5a5e280
              if (ChromeFeatureList.isEnabled(
                          ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
                  if (radioButtonGroupThemePreference.isDarkenWebsitesEnabled()
-@@ -59,6 +61,7 @@ public class ThemeSettingsFragment extends PreferenceFragmentCompat {
+@@ -61,6 +63,7 @@ public class ThemeSettingsFragment
              }
              int theme = (int) newValue;
              sharedPreferencesManager.writeInt(UI_THEME_SETTING, theme);
@@ -23,7 +23,7 @@ index 6b9d60b1cc1ac7ae2950dea55672f6dd6d42d9a1..53f9446aefbfc0e7750e1be7b5a5e280
              return true;
          });
  
-@@ -72,6 +75,7 @@ public class ThemeSettingsFragment extends PreferenceFragmentCompat {
+@@ -74,6 +77,7 @@ public class ThemeSettingsFragment
                      getArguments().getInt(KEY_THEME_SETTINGS_ENTRY));
          }
  

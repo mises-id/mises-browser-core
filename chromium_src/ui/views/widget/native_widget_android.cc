@@ -1,20 +1,12 @@
-
-
-
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 #include "ui/views/widget/native_widget_android.h"
 
 #include <memory>
 #include <utility>
 
-#include "base/bind.h"
+#include "base/functional/bind.h"
 #include "base/location.h"
 #include "base/task/single_thread_task_runner.h"
 #include "base/strings/string_util.h"
-#include "base/threading/thread_task_runner_handle.h"
 #include "build/build_config.h"
 #include "ui/base/class_property.h"
 #include "ui/base/dragdrop/os_exchange_data.h"
@@ -57,7 +49,8 @@ NativeWidgetAndroid::NativeWidgetAndroid(internal::NativeWidgetDelegate* delegat
       ownership_(Widget::InitParams::NATIVE_WIDGET_OWNS_WIDGET),
       destroying_(false),
       is_active_(false),
-      is_hidden_(false){
+      is_hidden_(false),
+      is_closed_(false){
 }
 
 // static
@@ -230,10 +223,11 @@ void NativeWidgetAndroid::SetShape(std::unique_ptr<Widget::ShapeRects> shape) {
 void NativeWidgetAndroid::Close() {
   LOG(INFO) << " NativeWidgetAndroid::Close";
   delegate_->OnNativeWidgetDestroying();
-  if (!close_widget_factory_.HasWeakPtrs()) {
-    base::ThreadTaskRunnerHandle::Get()->PostTask(
-        FROM_HERE, base::BindOnce(&NativeWidgetAndroid::CloseNow,
-                                  close_widget_factory_.GetWeakPtr()));
+  if (!is_closed_) {
+    is_closed_ = true;
+    base::SingleThreadTaskRunner::GetCurrentDefault()->PostTask(
+      FROM_HERE, base::BindOnce(&NativeWidgetAndroid::CloseNow,
+                              widget_factory_.GetWeakPtr()));
   }
 }
 
@@ -389,11 +383,15 @@ std::string NativeWidgetAndroid::GetName() const {
   return std::string();
 }
 
-  const gfx::ImageSkia* NativeWidgetAndroid::GetWindowIcon() {return NULL;};
-  const gfx::ImageSkia* NativeWidgetAndroid::GetWindowAppIcon() {return NULL;};
-  ui::GestureConsumer* NativeWidgetAndroid::GetGestureConsumer() {return NULL;};
-  void NativeWidgetAndroid::OnNativeViewHierarchyWillChange() {};
-  void NativeWidgetAndroid::OnNativeViewHierarchyChanged() {};
+base::WeakPtr<internal::NativeWidgetPrivate> NativeWidgetAndroid::GetWeakPtr() {
+  return widget_factory_.GetWeakPtr();
+}
+bool NativeWidgetAndroid::IsStackedAbove(gfx::NativeView native_view) {return false;}
+const gfx::ImageSkia* NativeWidgetAndroid::GetWindowIcon() {return NULL;}
+const gfx::ImageSkia* NativeWidgetAndroid::GetWindowAppIcon() {return NULL;}
+ui::GestureConsumer* NativeWidgetAndroid::GetGestureConsumer() {return NULL;}
+void NativeWidgetAndroid::OnNativeViewHierarchyWillChange() {}
+void NativeWidgetAndroid::OnNativeViewHierarchyChanged() {}
 
 ////////////////////////////////////////////////////////////////////////////////
 // NativeWidgetAndroid, protected:

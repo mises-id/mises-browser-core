@@ -1,9 +1,9 @@
 diff --git a/ui/resources/BUILD.gn b/ui/resources/BUILD.gn
-index 044cfba1ae65ea8918c9469413ace0136f96853b..1539adc92fc3897dc14c814278891fea667d99ce 100644
+index 67a0edca7b8d654b42363fc9f80da3b6fb45f61e..e22004e1a660474787795aa61f0d52596d10c97e 100644
 --- a/ui/resources/BUILD.gn
 +++ b/ui/resources/BUILD.gn
-@@ -169,7 +169,7 @@ repack("repack_ui_test_pak_100_percent") {
-     ]
+@@ -163,7 +163,7 @@ repack("repack_ui_test_pak_100_percent") {
+     deps += [ "//ui/chromeos/resources" ]
    }
  
 -  if (toolkit_views) {
@@ -11,7 +11,7 @@ index 044cfba1ae65ea8918c9469413ace0136f96853b..1539adc92fc3897dc14c814278891fea
      deps += [ "//ui/views/resources" ]
      sources += [
        "$root_gen_dir/third_party/blink/public/resources/blink_resources.pak",
-@@ -187,7 +187,7 @@ repack("repack_ui_test_pak_200_percent") {
+@@ -181,7 +181,7 @@ repack("repack_ui_test_pak_200_percent") {
  
    deps = [ "//ui/resources" ]
  

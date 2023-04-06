@@ -20,7 +20,6 @@ namespace extensions {
     const char* const kAllowed[] = {
       metamask_extension_id,
       mises_extension_id,
-      //mises_web3safe_extension_id,
     };
 
     for (size_t i = 0; i < std::size(kAllowed); ++i) {

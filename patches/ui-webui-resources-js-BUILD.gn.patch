@@ -1,13 +1,13 @@
 diff --git a/ui/webui/resources/js/BUILD.gn b/ui/webui/resources/js/BUILD.gn
-index a61f00ac4ed75519ad48d9a7d49741d33541eb4b..caa962b3ca7e9197326c9091eb764a8b0abf8e4e 100644
+index acefb77255b811934acb11a0f16aca1d5347d731..ed129dbb3448c6a75c30458d5b7a524c6706644a 100644
 --- a/ui/webui/resources/js/BUILD.gn
 +++ b/ui/webui/resources/js/BUILD.gn
-@@ -13,7 +13,7 @@ preprocess_folder = "$root_gen_dir/ui/webui/resources/preprocessed/js"
- preprocess_gen_manifest = "preprocessed_gen_manifest.json"
- preprocess_src_manifest = "preprocessed_src_manifest.json"
+@@ -5,7 +5,7 @@
+ import("//build/config/chromeos/ui_mode.gni")
+ import("../tools/build_cr_component.gni")
  
 -include_polymer = !is_android && !is_ios
 +include_polymer = is_android || !is_android && !is_ios
  
- generate_grd("build_grdp") {
+ build_cr_component("build") {
    grd_prefix = "webui_js"

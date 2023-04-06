@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/webui_gallery/BUILD.gn b/chrome/browser/resources/webui_gallery/BUILD.gn
-index a76d484f09195b9884b4efb3b035f72c8c8177ea..a971ff86aae8f8c70255e8657e9964fc8234d6b9 100644
+index df2bc2ff78e7f035174cb9b6fee5a7332e69714e..7b4415d2768f621a62faf1dc8c9180baa0f84beb 100644
 --- a/chrome/browser/resources/webui_gallery/BUILD.gn
 +++ b/chrome/browser/resources/webui_gallery/BUILD.gn
-@@ -8,7 +8,7 @@ import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
- import("webui_gallery.gni")
+@@ -4,7 +4,7 @@
+ 
+ import("//chrome/browser/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +# assert(!is_android)
  
- grit("resources") {
-   # These arguments are needed since the grd is generated at build time.
+ build_webui("build") {
+   grd_prefix = "webui_gallery"

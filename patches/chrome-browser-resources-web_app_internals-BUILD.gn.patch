@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/web_app_internals/BUILD.gn b/chrome/browser/resources/web_app_internals/BUILD.gn
+index 84e8af445f2d9788f2a953a44a39baf26f2f1fe3..ea61c38b90f52ebcfa69e155269cb1a39f3fc4d9 100644
+--- a/chrome/browser/resources/web_app_internals/BUILD.gn
++++ b/chrome/browser/resources/web_app_internals/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "web_app_internals"

@@ -41,7 +41,7 @@ public class MisesExternalNavigationHandler extends ExternalNavigationHandler {
     }
 
 
-    @SuppressLint("VisibleForTests")
+     @SuppressLint("VisibleForTests")
     public OverrideUrlLoadingResult clobberCurrentTabWithFallbackUrl(
             String browserFallbackUrl, ExternalNavigationParams params) {
         // Below is an actual code that was used prior to deletion of
@@ -55,7 +55,6 @@ public class MisesExternalNavigationHandler extends ExternalNavigationHandler {
             params.getRedirectHandler().setShouldNotOverrideUrlLoadingOnCurrentRedirectChain();
         }
         GURL browserFallbackGURL = new GURL(browserFallbackUrl);
-        return clobberCurrentTab(browserFallbackGURL, params.getReferrerUrl(),
-                params.getInitiatorOrigin(), params.isRendererInitiated());
+        return OverrideUrlLoadingResult.forNavigateTab(browserFallbackGURL, params);
     }
 }

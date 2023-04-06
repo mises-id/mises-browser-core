@@ -1,16 +1,14 @@
 diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
-index 7ec57aa2544b775ec9e4d191d5399e088fc99384..ea4f6fb380d626518e4899e41fc11c99960f5a85 100644
+index cbeb37f164f7aa1f116e190ea0bac5e13be72884..0278a2661b415295effe97f1ff3c4764733f573f 100644
 --- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
 +++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
-@@ -145,7 +145,10 @@ public class LegacyChromePreferenceKeys {
-                 ChromePreferenceKeys.VR_SHOULD_REGISTER_ASSETS_COMPONENT_ON_STARTUP,
+@@ -142,6 +142,9 @@ public class LegacyChromePreferenceKeys {
+                 ChromePreferenceKeys.UI_THEME_SETTING,
+                 ChromePreferenceKeys.VERIFIED_DIGITAL_ASSET_LINKS,
                  ChromePreferenceKeys.WEBAPK_UNINSTALLED_PACKAGES,
-                 ChromePreferenceKeys.KEY_ZERO_SUGGEST_LIST_SIZE,
--                ChromePreferenceKeys.KEY_ZERO_SUGGEST_HEADER_LIST_SIZE
-+                ChromePreferenceKeys.KEY_ZERO_SUGGEST_HEADER_LIST_SIZE,
-+		ChromePreferenceKeys.DARKEN_WEBSITES_ENABLED,
++                ChromePreferenceKeys.DARKEN_WEBSITES_ENABLED,
 +                ChromePreferenceKeys.MISES_USER_INFO,
-+                ChromePreferenceKeys.MISES_FIRST_RUN
++                ChromePreferenceKeys.MISES_FIRST_RUN,
+                 ChromePreferenceKeys.KEY_ZERO_SUGGEST_LIST_SIZE
          );
          // clang-format on
-     }

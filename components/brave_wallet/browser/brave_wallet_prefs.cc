@@ -196,12 +196,11 @@ void MigrateObsoleteProfilePrefs(PrefService* prefs) {
   // Ethereum transactions were at kBraveWalletTransactions.network_id.tx_id,
   // migrate it to be at kBraveWalletTransactions.ethereum.network_id.tx_id.
   if (!prefs->GetBoolean(kBraveWalletEthereumTransactionsCoinTypeMigrated)) {
-    auto transactions = prefs->GetDictionary(kBraveWalletTransactions)->GetDict().Clone();
+    auto transactions = prefs->GetDict(kBraveWalletTransactions).Clone();
     prefs->ClearPref(kBraveWalletTransactions);
     if (!transactions.empty()) {
-      DictionaryPrefUpdate update(prefs, kBraveWalletTransactions);
-      base::Value* dict = update.Get();
-      dict->SetPath(kEthereumPrefKey, base::Value(std::move(transactions)));
+      ScopedDictPrefUpdate update(prefs, kBraveWalletTransactions);
+      update->Set(kEthereumPrefKey, std::move(transactions));
     }
     prefs->SetBoolean(kBraveWalletEthereumTransactionsCoinTypeMigrated, true);
   }

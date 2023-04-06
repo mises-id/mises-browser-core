@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/SwipeRefreshHandler.java b/chrome/android/java/src/org/chromium/chrome/browser/SwipeRefreshHandler.java
-index 3f99136bb70694601f50e50bad5d1734afcb2c17..bdf2e74ab8df2011bdb040ddbe877ffff8da3751 100644
+index 083e1ec9f49efd961750cd5343d81ca3c52efe4c..cc880fe3e31e0c1af3fcc91996901064dfaf0d2d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/SwipeRefreshHandler.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/SwipeRefreshHandler.java
 @@ -31,6 +31,8 @@ import org.chromium.ui.OverscrollAction;
@@ -11,7 +11,7 @@ index 3f99136bb70694601f50e50bad5d1734afcb2c17..bdf2e74ab8df2011bdb040ddbe877fff
  /**
   * An overscroll handler implemented in terms a modified version of the Android
   * compat library's SwipeRefreshLayout effect.
-@@ -225,6 +227,8 @@ public class SwipeRefreshHandler
+@@ -227,6 +229,8 @@ public class SwipeRefreshHandler
          if (mSwipeType == OverscrollAction.PULL_TO_REFRESH) {
              mSwipeRefreshLayout.pull(yDelta);
          } else if (mSwipeType == OverscrollAction.HISTORY_NAVIGATION) {
@@ -20,7 +20,7 @@ index 3f99136bb70694601f50e50bad5d1734afcb2c17..bdf2e74ab8df2011bdb040ddbe877fff
              if (mNavigationCoordinator != null) mNavigationCoordinator.pull(xDelta);
          }
          TraceEvent.end("SwipeRefreshHandler.pull");
-@@ -236,6 +240,8 @@ public class SwipeRefreshHandler
+@@ -238,6 +242,8 @@ public class SwipeRefreshHandler
          if (mSwipeType == OverscrollAction.PULL_TO_REFRESH) {
              mSwipeRefreshLayout.release(allowRefresh);
          } else if (mSwipeType == OverscrollAction.HISTORY_NAVIGATION) {

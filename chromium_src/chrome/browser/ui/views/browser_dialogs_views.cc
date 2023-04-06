@@ -1,4 +1,4 @@
-// Copyright 2015 The Chromium Authors. All rights reserved.
+// Copyright 2015 The Chromium Authors
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -23,8 +23,8 @@
 // This file provides definitions of desktop browser dialog-creation methods for
 // all toolkit-views platforms.
 
-#if !BUILDFLAG(IS_ANDROID)
 // static
+#if !BUILDFLAG(IS_ANDROID)
 std::unique_ptr<LoginHandler> LoginHandler::Create(
     const net::AuthChallengeInfo& auth_info,
     content::WebContents* web_contents,
@@ -40,11 +40,13 @@ void BookmarkEditor::Show(gfx::NativeWindow parent_window,
                           const EditDetails& details,
                           Configuration configuration,
                           OnSaveCallback on_save_callback) {
+#if !BUILDFLAG(IS_ANDROID)
   auto editor = std::make_unique<BookmarkEditorView>(
       profile, details.parent_node, details, configuration,
       std::move(on_save_callback));
   editor->Show(parent_window);
   editor.release();  // BookmarkEditorView is self-deleting
+#endif
 }
 
 void ChromeDevicePermissionsPrompt::ShowDialog() {

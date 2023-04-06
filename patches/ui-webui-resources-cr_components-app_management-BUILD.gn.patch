@@ -1,13 +1,13 @@
 diff --git a/ui/webui/resources/cr_components/app_management/BUILD.gn b/ui/webui/resources/cr_components/app_management/BUILD.gn
-index 2043f861c47ab18627c7ca242fae7676b76df0c4..0c3e3ab1e371c01a961262a102055927d6ae6861 100644
+index ee76641d7374139d96b0a79a029eb6cf0e5958a6..4d5d9bd0cfabd3774591a12a2cfe0dd42ed55383 100644
 --- a/ui/webui/resources/cr_components/app_management/BUILD.gn
 +++ b/ui/webui/resources/cr_components/app_management/BUILD.gn
-@@ -10,7 +10,7 @@ import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
- import("app_management.gni")
+@@ -6,7 +6,7 @@ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//ui/webui/webui_features.gni")
+ import("../../tools/build_cr_component.gni")
  
 -assert(!is_android && !is_ios)
 +# assert(!is_android && !is_ios)
  
- preprocess_folder_tmp = "$root_gen_dir/ui/webui/resources/preprocessed/cr_components/app_management_tmp"
- preprocess_folder =
+ mojom("mojo_bindings") {
+   sources = [ "app_management.mojom" ]

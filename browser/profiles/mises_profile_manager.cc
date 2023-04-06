@@ -67,6 +67,9 @@ void MisesProfileManager::InitProfileUserPrefs(Profile* profile) {
     }
   }
 
+#else
+  PrefService* prefs = profile->GetPrefs();
+  prefs->SetBoolean(prefs::kSigninAllowed, false);
 #endif
 
   ProfileManager::InitProfileUserPrefs(profile);

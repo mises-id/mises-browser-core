@@ -1,8 +1,8 @@
 diff --git a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/ContentSettingsResources.java b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/ContentSettingsResources.java
-index 277bf66836204469f3f4c2a7a7a7357222613654..12128137121f6a764236ccd68c023019276de46f 100644
+index c03b6eaea35502906c7f81cc5396669a24bf5828..2bb2c8f5d3bc526a06ccba594120e688badf40b1 100644
 --- a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/ContentSettingsResources.java
 +++ b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/ContentSettingsResources.java
-@@ -328,7 +328,7 @@ public class ContentSettingsResources {
+@@ -357,7 +357,7 @@ public class ContentSettingsResources {
       * @return A {@link Drawable} that is the blocked version of the square icon passed in.
       *         Achieved by adding a diagonal strike through the icon.
       */

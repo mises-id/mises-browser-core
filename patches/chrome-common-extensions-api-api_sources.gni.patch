@@ -1,5 +1,5 @@
 diff --git a/chrome/common/extensions/api/api_sources.gni b/chrome/common/extensions/api/api_sources.gni
-index 3511ad13742210130d37efbddc91c61e376fe7c2..3a97bd9b5b35c97dc8bd706795393a98d021bb0f 100644
+index 1e0f1779d08107ffa552df995403487638a165e9..2a151bf5c5f91812d76888f71129d294c50b16b6 100644
 --- a/chrome/common/extensions/api/api_sources.gni
 +++ b/chrome/common/extensions/api/api_sources.gni
 @@ -69,7 +69,7 @@ schema_sources_ = [
@@ -11,7 +11,7 @@ index 3511ad13742210130d37efbddc91c61e376fe7c2..3a97bd9b5b35c97dc8bd706795393a98
    schema_sources_ += [ "processes.idl" ]
  }
  
-@@ -150,7 +150,6 @@ if (is_chromeos_ash) {
+@@ -156,7 +156,6 @@ if (is_chromeos_ash) {
  }
  
  chrome_extensions_api_schema_sources = get_path_info(schema_sources_, "abspath")

@@ -6,6 +6,7 @@
 #include "mises/build/android/jni_headers/MisesNotificationPlatformBridge_jni.h"
 #include "chrome/browser/notifications/notification_platform_bridge_android.h"
 #include "chrome/android/chrome_jni_headers/NotificationPlatformBridge_jni.h"
+#include "chrome/browser/notifications/notification_platform_bridge.h"
 
 namespace {
 
@@ -19,7 +20,17 @@ class UnusedClass {
 
 }  // namespace
 
+
 #define Java_NotificationPlatformBridge_create \
   Java_MisesNotificationPlatformBridge_create
+#define CanHandleType CanHandleType_Chromium
 #include "src/chrome/browser/notifications/notification_platform_bridge_android.cc"
 #undef Java_NotificationPlatformBridge_create
+#undef CanHandleType
+
+
+// static
+bool NotificationPlatformBridge::CanHandleType(
+    NotificationHandler::Type notification_type) {
+  return true;
+}

@@ -1,8 +1,8 @@
 diff --git a/chrome/common/BUILD.gn b/chrome/common/BUILD.gn
-index 20b82925438f560c26e1bd32f3bd1c9a0a6345ac..00ef6fd06849e45385290ba55f3f3b14624f6761 100644
+index e81374ea2d0b8c56e516a118c4e1db10d369bdd1..622a8944861aeee8bfd29e7a7c0a1411c3ec0d38 100644
 --- a/chrome/common/BUILD.gn
 +++ b/chrome/common/BUILD.gn
-@@ -89,6 +89,7 @@ source_set("channel_info") {
+@@ -90,6 +90,7 @@ source_set("channel_info") {
    } else if (is_fuchsia) {
      sources += [ "channel_info_fuchsia.cc" ]
    }
@@ -10,7 +10,7 @@ index 20b82925438f560c26e1bd32f3bd1c9a0a6345ac..00ef6fd06849e45385290ba55f3f3b14
  }
  
  source_set("ini_parser") {
-@@ -404,7 +405,8 @@ static_library("common_lib") {
+@@ -403,7 +404,8 @@ static_library("common_lib") {
        "media/chrome_media_drm_bridge_client.cc",
        "media/chrome_media_drm_bridge_client.h",
      ]

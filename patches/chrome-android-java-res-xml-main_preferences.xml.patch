@@ -1,10 +1,23 @@
 diff --git a/chrome/android/java/res/xml/main_preferences.xml b/chrome/android/java/res/xml/main_preferences.xml
 old mode 100644
 new mode 100755
-index 0cb6ac0bbc6b70c4a8b3fbff84d3006336f55b8d..a118136b10ab353a46d852c6fff09bfd6d129452
+index 231c5c00a8ce60f9e47fc032b413b7091343c45b..a118136b10ab353a46d852c6fff09bfd6d129452
 --- a/chrome/android/java/res/xml/main_preferences.xml
 +++ b/chrome/android/java/res/xml/main_preferences.xml
-@@ -10,10 +10,6 @@
+@@ -1,9 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-Copyright 2015 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
+--->
++<!-- Copyright 2015 The Chromium Authors. All rights reserved.
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file. -->
+ 
+ <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+@@ -12,10 +10,6 @@ found in the LICENSE file.
      <org.chromium.chrome.browser.sync.settings.SyncPromoPreference
          android:key="sync_promo"
          android:order="0"/>
@@ -15,7 +28,7 @@ index 0cb6ac0bbc6b70c4a8b3fbff84d3006336f55b8d..a118136b10ab353a46d852c6fff09bfd
      <org.chromium.chrome.browser.sync.settings.SignInPreference
          android:key="sign_in"
          android:order="2"
-@@ -25,10 +21,10 @@
+@@ -27,10 +21,10 @@ found in the LICENSE file.
          android:title="@string/sync_category_title"/>
      <org.chromium.components.browser_ui.settings.ChromeBasePreference
          android:key="google_services"
@@ -29,7 +42,7 @@ index 0cb6ac0bbc6b70c4a8b3fbff84d3006336f55b8d..a118136b10ab353a46d852c6fff09bfd
          android:fragment="org.chromium.chrome.browser.sync.settings.GoogleServicesSettings"/>
  
      <PreferenceCategory
-@@ -39,85 +35,136 @@
+@@ -41,85 +35,136 @@ found in the LICENSE file.
          android:fragment="org.chromium.chrome.browser.search_engines.settings.SearchEngineSettings"
          android:key="search_engine"
          android:order="6"

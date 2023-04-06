@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/ToolbarTabControllerImpl.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/ToolbarTabControllerImpl.java
-index 8509664ec92cb46b644d42780924659bdf014f76..a7d3f0bfa6aa809436bda59d0ad71ea0501d4095 100644
+index 557401b52855c19455e637d5ed1642645050457a..2ed76df032091e440141d7c533beae77d3ce7e82 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/ToolbarTabControllerImpl.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/ToolbarTabControllerImpl.java
-@@ -146,10 +146,13 @@ public class ToolbarTabControllerImpl implements ToolbarTabController {
+@@ -113,10 +113,13 @@ public class ToolbarTabControllerImpl implements ToolbarTabController {
          Tab currentTab = mTabSupplier.get();
          if (currentTab == null) return;
          String homePageUrl = mHomepageUrlSupplier.get();

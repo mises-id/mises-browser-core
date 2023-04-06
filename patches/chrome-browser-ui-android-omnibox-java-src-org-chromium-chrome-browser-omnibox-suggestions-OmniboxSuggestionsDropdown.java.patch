@@ -1,16 +1,16 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
-index 1754fba47f6a0d31b2a163f175ac01f534abcfca..034ba586e1839bea6721fc0df79de9c3ac972674 100644
+index 5654e8c92fa29ca7b64260bf79b4ab06ca8ac0f9..201ddfe66a91e6c1b0521f186e960074a7d66777 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
-@@ -27,6 +27,7 @@ import androidx.core.view.ViewCompat;
- import androidx.recyclerview.widget.LinearLayoutManager;
- import androidx.recyclerview.widget.RecyclerView;
+@@ -42,6 +42,7 @@ import org.chromium.ui.base.ViewUtils;
  
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
 +import org.chromium.base.ContextUtils;
- import org.chromium.base.TraceEvent;
- import org.chromium.base.metrics.TimingMetric;
- import org.chromium.base.task.PostTask;
-@@ -315,11 +316,37 @@ public class OmniboxSuggestionsDropdown extends RecyclerView {
+ 
+ /** A widget for showing a list of omnibox suggestions. */
+ public class OmniboxSuggestionsDropdown extends RecyclerView {
+@@ -433,11 +434,37 @@ public class OmniboxSuggestionsDropdown extends RecyclerView {
          try (TraceEvent tracing = TraceEvent.scoped("OmniboxSuggestionsList.Measure");
                  TimingMetric metric = SuggestionsMetrics.recordSuggestionListMeasureTime()) {
              int anchorBottomRelativeToContent = calculateAnchorBottomRelativeToContent();

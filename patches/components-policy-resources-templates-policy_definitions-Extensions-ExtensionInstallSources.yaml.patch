@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallSources.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallSources.yaml
+index b72ca7848951cecd1bfc51b960f4360215ac001a..6c66e010589a07fb382395b34146c763423b5c85 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallSources.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionInstallSources.yaml
+@@ -21,6 +21,7 @@ schema:
+ supported_on:
+ - chrome.*:21-
+ - chrome_os:21-
++- android:111-
+ tags:
+ - full-admin-access
+ - system-security

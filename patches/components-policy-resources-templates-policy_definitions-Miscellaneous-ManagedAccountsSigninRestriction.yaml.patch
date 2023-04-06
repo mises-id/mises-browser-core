@@ -1,0 +1,11 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Miscellaneous/ManagedAccountsSigninRestriction.yaml b/components/policy/resources/templates/policy_definitions/Miscellaneous/ManagedAccountsSigninRestriction.yaml
+index d867eb49d7f3b1f8b21b38fccf298083bc8a3e03..3589b1fd3cc56f3db197de0aa38e72011851ea83 100644
+--- a/components/policy/resources/templates/policy_definitions/Miscellaneous/ManagedAccountsSigninRestriction.yaml
++++ b/components/policy/resources/templates/policy_definitions/Miscellaneous/ManagedAccountsSigninRestriction.yaml
+@@ -67,5 +67,6 @@ schema:
+   type: string
+ supported_on:
+ - chrome.*:94-
++- android:111-
+ tags: []
+ type: string-enum

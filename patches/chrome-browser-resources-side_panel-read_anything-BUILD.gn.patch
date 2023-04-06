@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/side_panel/read_anything/BUILD.gn b/chrome/browser/resources/side_panel/read_anything/BUILD.gn
+index e5bc4afebfb751bccc751c9cbf94b9029098f6d3..6f5c3c0c69234fbbae2d7461d31617a910281d04 100644
+--- a/chrome/browser/resources/side_panel/read_anything/BUILD.gn
++++ b/chrome/browser/resources/side_panel/read_anything/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//chrome/browser/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "side_panel_read_anything"

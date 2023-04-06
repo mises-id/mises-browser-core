@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
-index de63c6e5f62da7a0a0c09166e2b5adba0c6655af..c40f8afffe211f5cda4fb4b558f414b91c890087 100644
+index 409173d49c446ba6ab90fa8da6261d67245c3af2..552912723aef096e8c2710e547c55d18e2531734 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
 @@ -26,6 +26,8 @@ public interface TabList {

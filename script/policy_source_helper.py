@@ -54,7 +54,7 @@ def AddMisesPolicies(template_file_contents):
     ]
 
     # Our new polices are added with highest id
-    next_id = highest_id
+    next_id = highest_id + 1
     for policy in policies:
         next_id += 1
         policy['id'] = next_id

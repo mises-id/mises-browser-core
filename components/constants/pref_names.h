@@ -95,4 +95,7 @@ extern const char kDontAskForCrashReporting[];
 // kEnableMediaRouterOnRestart on restart.
 extern const char kEnableMediaRouterOnRestart[];
 
+
+extern const char kPreinstallMetamaskEnabled[];
+
 #endif  // BRAVE_COMPONENTS_CONSTANTS_PREF_NAMES_H_

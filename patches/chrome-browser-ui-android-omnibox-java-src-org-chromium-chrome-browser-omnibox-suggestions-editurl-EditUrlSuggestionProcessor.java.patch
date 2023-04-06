@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
-index 005283bd6191e8a68c4c6af25d67367f52af5c19..b47192dbcfc06bb305d0d7e532d0f260f1e0b601 100644
+index c494a4481cfc3b9e503e5d7e3f13b423b55188f2..d1f29fa4e961c5cd3a8d4d567735a386315acaec 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
 @@ -31,6 +31,10 @@ import org.chromium.ui.modelutil.PropertyModel;

@@ -1,5 +1,6 @@
 mises_ui_view_public = []
 mises_ui_view_sources = []
+mises_ui_view_exception_sources = []
 if (is_android) {
   mises_ui_view_public += [
       "widget/native_widget_android.h",
@@ -13,5 +14,7 @@ if (is_android) {
       "//mises/chromium_src/ui/views/drag_utils_android.cc",
       "//mises/chromium_src/ui/views/controls/menu/menu_config_android.cc",
       "//mises/chromium_src/ui/views/views_touch_selection_controller_factory_android.cc",
+  ]
+  mises_ui_view_exception_sources += [
   ]
 }

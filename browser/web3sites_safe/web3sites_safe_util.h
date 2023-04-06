@@ -10,17 +10,15 @@ class GURL;
 
 namespace web3sites_safe {
 
-};
-
 struct Web3sitesResultType{
   enum Type {
-  kNone = 0,
-  kWhite = 1,
-  kFuzzy = 2,
-  kBlack = 3,
+    kNone = 0,
+    kWhite = 1,
+    kFuzzy = 2,
+    kBlack = 3,
 
-  kMaxValue = kBlack,
-};
+    kMaxValue = kBlack,
+  };
 };
 struct MisesURLCheckResult {
 
@@ -43,16 +41,16 @@ struct MisesURLCheckResult {
   MisesURLCheckResult(const MisesURLCheckResult& other);
 
   MisesURLCheckResult& operator=(const MisesURLCheckResult& check_result);
-};
+}
 
 // Used for UKM. There is only a single Web3sitesSafeMatchType per navigation.
-enum class Web3sitesSafeMatchType {
+enum Web3sitesSafeMatchType {
   kNone = 0,
 };
 
 // Used for UKM. There is only a single Web3sitesSafeBlockingPageUserAction per
 // navigation.
-enum class Web3sitesSafeBlockingPageUserAction {
+enum Web3sitesSafeBlockingPageUserAction {
   kInterstitialNotShown = 0,
   kClickThrough = 1,
   kAcceptSuggestion = 2,
@@ -98,7 +96,7 @@ struct MisesDomainInfo {
   ~MisesDomainInfo();
 
   MisesDomainInfo(const MisesDomainInfo& other);
-};
+}
 
 // Returns a MisesDomainInfo instance computed from |hostname|. Will return empty
 // fields for non-unique hostnames (e.g. site.test), localhost or sites whose
@@ -111,3 +109,5 @@ MisesDomainInfo GetMisesDomainInfo(const GURL& url);
 std::string MisesGetETLDPlusOne(const std::string& hostname);
 
 bool CheckIsTopDomain(const MisesDomainInfo& domain_info);
+
+}

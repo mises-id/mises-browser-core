@@ -1,5 +1,5 @@
 diff --git a/components/ui_devtools/views/BUILD.gn b/components/ui_devtools/views/BUILD.gn
-index 6b20f6e839137fa2e727e55696e2808283874803..4bc3c6ae78cb6bce35455ec791e2d50cd934eb6f 100644
+index 2b27259f0f2dbe9d380a77eb9d5e3fdc10acd655..f24bd19739b6e2ec2f8adaf93eec7042a3d1ded0 100644
 --- a/components/ui_devtools/views/BUILD.gn
 +++ b/components/ui_devtools/views/BUILD.gn
 @@ -54,6 +54,7 @@ source_set("views") {

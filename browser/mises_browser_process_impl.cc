@@ -9,7 +9,7 @@
 #include <string>
 #include <utility>
 
-#include "base/bind.h"
+#include "base/functional/bind.h"
 #include "base/path_service.h"
 #include "base/task/thread_pool.h"
 #include "build/build_config.h"
@@ -25,9 +25,14 @@
 #include "services/network/public/cpp/resource_request.h"
 #include "services/network/public/cpp/shared_url_loader_factory.h"
 #include "url/gurl.h"
+#include "extensions/browser/extensions_browser_client.h"
 
 #if BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/flags/android/chrome_feature_list.h"
+#include "chrome/browser/profiles/chrome_browser_main_extra_parts_profiles.h"
+#include "chrome/browser/startup_data.h"
+#include "components/keyed_service/content/browser_context_dependency_manager.h"
+#include "components/pref_registry/pref_registry_syncable.h"
 #else
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_list.h"
@@ -50,7 +55,18 @@ MisesBrowserProcessImpl::MisesBrowserProcessImpl(StartupData* startup_data)
 }
 
 void MisesBrowserProcessImpl::Init() {
+  LOG(INFO) << "MisesBrowserProcessImpl::Init";
   BrowserProcessImpl::Init();
+  DCHECK(extensions::ExtensionsBrowserClient::Get());
+  #if BUILDFLAG(IS_ANDROID)
+  ChromeBrowserMainExtraPartsProfiles::
+      EnsureBrowserContextKeyedServiceFactoriesBuilt();
+
+    auto* startup_data = g_browser_process->startup_data();
+    auto pref_registry = startup_data->TakePrefRegistrySyncable();
+    BrowserContextDependencyManager::GetInstance()
+      ->RegisterProfilePrefsForServices(pref_registry.get());
+  #endif
   #if BUILDFLAG(ENABLE_IPFS)
   content::ChildProcessSecurityPolicy::GetInstance()->RegisterWebSafeScheme(
       ipfs::kIPFSScheme);
@@ -103,4 +119,11 @@ ipfs::MisesIpfsClientUpdater* MisesBrowserProcessImpl::ipfs_client_updater() {
       mises_component_updater_delegate(), user_data_dir);
   return ipfs_client_updater_.get();
 }
+
 #endif  // BUILDFLAG(ENABLE_IPFS)
+
+
+#if BUILDFLAG(IS_ANDROID)
+void BrowserProcessImpl::CreateGCMDriver() {
+}
+#endif

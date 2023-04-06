@@ -1,28 +1,25 @@
-// Copyright 2022 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-#ifndef CHROME_BROWSER_PROFILES_GUEST_PROFILE_CREATION_LOGGER_H_
-#define CHROME_BROWSER_PROFILES_GUEST_PROFILE_CREATION_LOGGER_H_
+#ifndef MISES_BROWSER_PROFILES_GUEST_PROFILE_CREATION_LOGGER_H_
+#define MISES_BROWSER_PROFILES_GUEST_PROFILE_CREATION_LOGGER_H_
 
 #include "build/build_config.h"
 
-#if false && BUILDFLAG(IS_ANDROID)
-#error Guest profiles not supported, this file should not be included.
+
+#if BUILDFLAG(IS_ANDROID)
+
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
+
+
+#include "src/chrome/browser/profiles/guest_profile_creation_logger.h"
+#undef BUILDFLAG_INTERNAL_IS_ANDROID
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
+
+#else
+
+#include "src/chrome/browser/profiles/guest_profile_creation_logger.h"
+
+
 #endif
 
-class Profile;
-
-namespace profile {
-
-// Records the creation of the provided Guest `profile`.
-void RecordGuestParentCreation(Profile* profile);
-
-// Records the creation of the provided off-the-record Guest `profile`. Does
-// nothing if there is already a child (derived OTR profile) recorded for its
-// original profile.
-void MaybeRecordGuestChildCreation(Profile* profile);
-
-}  // namespace profile
 
 #endif  // CHROME_BROWSER_PROFILES_GUEST_PROFILE_CREATION_LOGGER_H_

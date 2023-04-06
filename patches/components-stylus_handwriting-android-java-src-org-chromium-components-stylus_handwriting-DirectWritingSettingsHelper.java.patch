@@ -1,109 +1,18 @@
 diff --git a/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java b/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
-index 0aa6c61420ed55b9a05979394b34da958a36e3b9..ba4c9ee1ba96a721d617e565332f7a6a16351e8e 100644
+index c766ea32b6400b53b972067d282ad6802d182375..ba4c9ee1ba96a721d617e565332f7a6a16351e8e 100644
 --- a/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
 +++ b/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
-@@ -1,16 +1,21 @@
--// Copyright 2022 The Chromium Authors. All rights reserved.
-+// Copyright 2022 The Chromium Authors
- // Use of this source code is governed by a BSD-style license that can be
- // found in the LICENSE file.
- 
- package org.chromium.components.stylus_handwriting;
- 
- import android.content.Context;
-+import android.os.Build;
- import android.provider.Settings;
- 
-+import androidx.annotation.Nullable;
-+
-+import org.chromium.base.metrics.RecordHistogram;
-+
- /**
-  * Helper class for Direct writing feature support and settings.
-  */
--class DirectWritingSettingsHelper {
-+public class DirectWritingSettingsHelper {
-     private DirectWritingSettingsHelper() {}
- 
-     // System setting for direct writing service. This setting is currently found under
-@@ -19,11 +24,17 @@ class DirectWritingSettingsHelper {
-     private static final int DIRECT_WRITING_ENABLED = 1;
-     private static final int DIRECT_WRITING_DISABLED = 0;
- 
-+    private static @Nullable Boolean sDirectWritingServiceCallbackAvailable;
-+
-     // Samsung keyboard package names.
-     private static final String HONEYBOARD_SERVICE_PKG_NAME =
-             DirectWritingConstants.SERVICE_PKG_NAME + "/.service.HoneyBoardService";
- 
--    static boolean isEnabled(Context context) {
-+    public static boolean isEnabled(Context context) {
-+        // Samsung keyboard supports handwriting in Chrome and Webview from Android S onwards.
-+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return false;
-+        // Check to see if we are able to instantiate the DirectWritingServiceCallback.
-+        if (!isDirectWritingServiceCallbackAvailable()) return false;
-         return isHoneyboardDefault(context) && isFeatureEnabled(context);
-     }
- 
-@@ -35,19 +46,55 @@ class DirectWritingSettingsHelper {
-      */
-     private static boolean isFeatureEnabled(Context context) {
-         if (context != null) {
--            return Settings.System.getInt(context.getContentResolver(), URI_DIRECT_WRITING,
--                           /* default */ DIRECT_WRITING_DISABLED)
--                    == DIRECT_WRITING_ENABLED;
-+            try {
-+                return Settings.System.getInt(context.getContentResolver(), URI_DIRECT_WRITING,
-+                               /* default */ DIRECT_WRITING_DISABLED)
-+                        == DIRECT_WRITING_ENABLED;
-+            } catch (SecurityException e) {
-+                // On some devices, URI_DIRECT_WRITING is not readable and trying to do so will
-+                // throw a security exception. https://crbug.com/1356155.
-+                return false;
-+            }
-         }
-         return false;
-     }
- 
-     private static boolean isHoneyboardDefault(Context context) {
-         if (context != null) {
--            String defaultIme = Settings.Secure.getString(
--                    context.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);
--            return HONEYBOARD_SERVICE_PKG_NAME.equals(defaultIme);
-+            try {
-+                String defaultIme = Settings.Secure.getString(
-+                        context.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);
-+                return HONEYBOARD_SERVICE_PKG_NAME.equals(defaultIme);
-+            } catch (SecurityException e) {
-+                return false;
-+            }
-         }
-         return false;
-     }
-+
-+    private static boolean isDirectWritingServiceCallbackAvailable() {
-+        if (sDirectWritingServiceCallbackAvailable == null) {
-+            try {
-+                Class dwCallbackClass = Class.forName(
-+                        "org.chromium.components.stylus_handwriting.DirectWritingServiceCallback");
-+                // On some devices, the DirectWritingServiceCallback constructor is not available
-+                // so this throws a NoSuchMethodException.
-+                dwCallbackClass.getConstructor().isAccessible();
+@@ -80,9 +80,12 @@ public class DirectWritingSettingsHelper {
+                 // On some devices, the DirectWritingServiceCallback constructor is not available
+                 // so this throws a NoSuchMethodException.
+                 dwCallbackClass.getConstructor().isAccessible();
 +                Class dwCallbackStubClass = Class.forName(
 +                        "android.widget.directwriting.IDirectWritingServiceCallback.Stub");
 +                dwCallbackStubClass.getConstructor().isAccessible();
-+                sDirectWritingServiceCallbackAvailable = true;
-+                logDWServiceCallbackFailed(false);
+                 sDirectWritingServiceCallbackAvailable = true;
+                 logDWServiceCallbackFailed(false);
+-            } catch (ClassNotFoundException | NoSuchMethodException e) {
 +            } catch (ClassNotFoundException | NoSuchMethodException | NoSuchMethodError e) {
-+                logDWServiceCallbackFailed(true);
-+                sDirectWritingServiceCallbackAvailable = false;
-+            }
-+        }
-+        return sDirectWritingServiceCallbackAvailable;
-+    }
-+
-+    private static void logDWServiceCallbackFailed(boolean didFail) {
-+        RecordHistogram.recordBooleanHistogram(
-+                "InputMethod.VirtualKeyboard.Handwriting.DWServiceCallbackFailed", didFail);
-+    }
- }
+                 logDWServiceCallbackFailed(true);
+                 sDirectWritingServiceCallbackAvailable = false;
+             }

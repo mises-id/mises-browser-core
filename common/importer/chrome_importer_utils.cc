@@ -190,11 +190,7 @@ std::vector<std::string> GetImportableListFromChromeExtensionsList(
       continue;
 
     if (auto* manifest_dict = dict.FindDict("manifest")) {
-      // TODO(cdesouza): Whenever Manifest::GetTypeFromManifestValue gets
-      // refactored upstream to take a base::Value::Dict reference, also
-      // remove the cloning done here to convert back to value.
-      if (Manifest::GetTypeFromManifestValue(base::Value::AsDictionaryValue(
-              base::Value(manifest_dict->Clone()))) ==
+      if (Manifest::GetTypeFromManifestValue(*manifest_dict) ==
           Manifest::TYPE_EXTENSION) {
         extensions.push_back(key);
       }

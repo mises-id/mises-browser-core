@@ -1,10 +1,22 @@
 diff --git a/chrome/android/java/res/values-xhdpi/dimens.xml b/chrome/android/java/res/values-xhdpi/dimens.xml
 old mode 100644
 new mode 100755
-index 7e17cb5a0224b5fed2441f9185e91adfcb9eaf2a..de9197f48d7332f64b89963cb0af3c74e131892c
+index 19635a45e105208a081133d4792ad9a13c748e65..de9197f48d7332f64b89963cb0af3c74e131892c
 --- a/chrome/android/java/res/values-xhdpi/dimens.xml
 +++ b/chrome/android/java/res/values-xhdpi/dimens.xml
-@@ -9,4 +9,8 @@
+@@ -1,12 +1,16 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ 
+-<!--
+-Copyright 2015 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
++<!-- Copyright (c) 2015 The Chromium Authors. All rights reserved.
++
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file.
+ -->
+ 
  <resources>
      <!-- The size of the bounding box for favicons. -->
      <dimen name="compositor_tab_title_favicon_size">18dp</dimen>

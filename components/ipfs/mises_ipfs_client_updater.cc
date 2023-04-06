@@ -10,7 +10,6 @@
 #include "base/files/file_util.h"
 #include "base/logging.h"
 #include "base/task/task_runner.h"
-#include "base/task/task_runner_util.h"
 #include "base/task/thread_pool.h"
 #include "mises/components/ipfs/ipfs_utils.h"
 #include "components/component_updater/component_updater_service.h"
@@ -111,8 +110,8 @@ void MisesIpfsClientUpdater::OnEvent(Events event, const std::string& id) {
 void MisesIpfsClientUpdater::OnComponentReady(const std::string& component_id,
                                               const base::FilePath& install_dir,
                                               const std::string& manifest) {
-  base::PostTaskAndReplyWithResult(
-      GetTaskRunner().get(), FROM_HERE,
+  GetTaskRunner()->PostTaskAndReplyWithResult(
+      FROM_HERE,
       base::BindOnce(&InitExecutablePath, install_dir),
       base::BindOnce(&MisesIpfsClientUpdater::SetExecutablePath,
                      weak_ptr_factory_.GetWeakPtr()));

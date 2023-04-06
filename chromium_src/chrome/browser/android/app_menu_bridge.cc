@@ -42,11 +42,10 @@
  #include "chrome/browser/ui/toolbar/toolbar_action_view_controller.h"
  #include "extensions/browser/extension_host_observer.h"
  #include "ui/gfx/image/image.h"
- #include "base/bind.h"
+ #include "base/functional/bind.h"
  #include "base/command_line.h"
  #include "base/strings/string_util.h"
  #include "base/strings/utf_string_conversions.h"
- #include "base/threading/thread_task_runner_handle.h"
  #include "base/values.h"
  #include "base/android/jni_android.h"
  #include "base/android/jni_array.h"
@@ -228,7 +227,7 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
 
   
   if (!sel_tab->web_contents() || sel_tab->ExtensionWindowID() == -1) {
-     base::SequencedTaskRunnerHandle::Get()->PostDelayedTask(
+     base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
       FROM_HERE,
       base::BindOnce(&AppMenuBridge::CloseExtensionTabs,
                      weak_ptr_factory_.GetWeakPtr()),
@@ -238,13 +237,13 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
 }
 
 void AppMenuBridge::CloseExtensionTabs() {
-   // close metamask popup tab when user activate any normal tab
+   // close metamask/okx popup tab when user activate any normal tab
     if (observed_tab_model_) {
       int tab_count = observed_tab_model_->GetTabCount();
       int tab_index = 0;
       for (int i =  0; i < tab_count; ++i) {
         TabAndroid* tab = observed_tab_model_->GetTabAt(tab_index);
-        if (tab->ExtensionID() == metamask_extension_id) {
+        if (tab->ExtensionID() == metamask_extension_id || tab->ExtensionID() == okx_extension_id) {
           observed_tab_model_->CloseTabAt(tab_index);
         } else {
           tab_index ++;
@@ -371,13 +370,13 @@ void AppMenuBridge::OpenDevTools(
   content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
   if (!DevToolsWindow::IsDevToolsWindow(web_contents))
     DevToolsWindow::OpenDevToolsWindow(web_contents);
-};
+}
 
 
 void AppMenuBridge::DisableProxy(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>&obj){
   LOG(INFO) << "[Mises] AppMenuBridge::DisableProxy";
-};
+}
 
 base::android::ScopedJavaLocalRef<jstring> AppMenuBridge::GetRunningExtensions(
 		JNIEnv*env, const base::android::JavaParamRef<jobject>& obj,
@@ -387,13 +386,13 @@ base::android::ScopedJavaLocalRef<jstring> AppMenuBridge::GetRunningExtensions(
   content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
   exts = GetRunningExtensionsInternal(web_contents); 
   return ConvertUTF8ToJavaString(env, exts);
-};
+}
 
 jboolean AppMenuBridge::IsProxyEnabled(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>& obj){
   LOG(INFO) << "[Mises] AppMenuBridge::IsProxyEnabled";
   return 0;
-};
+}
 
 void AppMenuBridge::GrantExtensionActiveTab(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>& obj,
@@ -427,7 +426,7 @@ void AppMenuBridge::GrantExtensionActiveTab(
       }
     }
   }
-};
+}
 
 void AppMenuBridge::CallExtension(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>&obj,

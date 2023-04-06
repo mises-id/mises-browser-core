@@ -1,5 +1,5 @@
 diff --git a/services/device/public/cpp/hid/BUILD.gn b/services/device/public/cpp/hid/BUILD.gn
-index fe1a873f6eb824356cf38ec3c416570965ccec3b..0109bebe3acd2c3c21cc39e10018661864981161 100644
+index 8585a16c336912ee81e8d84d909043685b16534c..e343e618f664bdd3a8406e51400263ee7c02382e 100644
 --- a/services/device/public/cpp/hid/BUILD.gn
 +++ b/services/device/public/cpp/hid/BUILD.gn
 @@ -8,7 +8,7 @@ import("//build/config/features.gni")

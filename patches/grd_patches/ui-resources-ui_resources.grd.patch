@@ -1,5 +1,5 @@
 diff --git a/ui/resources/ui_resources.grd b/ui/resources/ui_resources.grd
-index a6caca5a0345c..495148eb2cc73 100644
+index a6caca5a0345c9b1e725b79570b4769c96570d66..495148eb2cc73da530cb04c4a10dbc2c1e8d7bfd 100644
 --- a/ui/resources/ui_resources.grd
 +++ b/ui/resources/ui_resources.grd
 @@ -111,7 +111,7 @@

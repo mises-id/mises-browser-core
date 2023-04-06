@@ -1,5 +1,8 @@
 module search.mojom;
 
+import "url/mojom/url.mojom";
+import "mojo/public/mojom/base/string16.mojom";
+
 [MisesExtend]
 interface EmbeddedSearch {
   OpenExtension(url.mojom.Url url);

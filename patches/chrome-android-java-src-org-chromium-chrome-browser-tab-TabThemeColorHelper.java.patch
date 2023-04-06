@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
-index 37ecd9d5bf0e094f273b1bb584904dcea582ce03..fbcd654624323df7674d0ae42ff6ffff21af463a 100644
+index 9a19d40d776c223b4ef97d319719afc4fe006000..d4cd142e2f20ed0e2ee73d1468b4322b12cb2e17 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
 @@ -11,6 +11,8 @@ import org.chromium.content_public.browser.NavigationHandle;

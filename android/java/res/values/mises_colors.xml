@@ -9,4 +9,6 @@
 
    <color name="shield_text_color">#212529</color>
    <color name="brave_tab_view_card_selected_bg">@color/baseline_primary_200</color>
+   <color name="light_background_color">@color/default_bg_color_baseline</color>
+   <color name="resizing_background_color">@color/default_bg_color_baseline</color>
 </resources>

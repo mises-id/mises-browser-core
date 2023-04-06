@@ -16,7 +16,6 @@
 #include "base/strings/strcat.h"
 #include "base/strings/string_util.h"
 #include "base/strings/stringprintf.h"
-#include "base/task/task_runner_util.h"
 #include "base/task/thread_pool.h"
 #include "mises/components/ipfs/blob_context_getter_factory.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
@@ -538,7 +537,7 @@ void IpfsService::OnGetConnectedPeers(
   bool success = response.Is2XXResponseCode();
   last_peers_retry_value_for_test_ = retry_number;
   if (response.error_code() == net::ERR_CONNECTION_REFUSED && retry_number) {
-    base::SequencedTaskRunnerHandle::Get()->PostDelayedTask(
+    base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
         FROM_HERE,
         base::BindOnce(&IpfsService::GetConnectedPeers,
                        weak_factory_.GetWeakPtr(), std::move(callback),
@@ -667,8 +666,8 @@ void IpfsService::ShutdownDaemon(BoolCallback callback) {
 }
 
 void IpfsService::GetConfig(GetConfigCallback callback) {
-  base::PostTaskAndReplyWithResult(
-      file_task_runner_.get(), FROM_HERE,
+  file_task_runner_->PostTaskAndReplyWithResult(
+      FROM_HERE,
       base::BindOnce(&LoadConfigFileOnFileTaskRunner, GetConfigFilePath()),
       base::BindOnce(&IpfsService::OnConfigLoaded, weak_factory_.GetWeakPtr(),
                      std::move(callback)));

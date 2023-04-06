@@ -5,7 +5,7 @@
 #include "base/memory/weak_ptr.h"
 #include "url/gurl.h"
 #include "base/time/time.h"
-#include "base/callback_forward.h"
+#include "base/functional/callback_forward.h"
 #include "components/keyed_service/core/keyed_service.h"
 #include "mises/browser/web3sites_safe/web3sites_safe_util.h"
 

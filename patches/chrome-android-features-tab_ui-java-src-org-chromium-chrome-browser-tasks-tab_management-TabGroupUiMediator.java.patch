@@ -1,9 +1,9 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
-index 3aaba6cf491fda4f27a1965d91201f8c8da43d1c..2e2993701c1355f98784e8b2b7089290295be852 100644
+index d972e414bcaf087074ea6d519750e9dd5f19c356..6b2c6029f1d98b41d9b9c79293ae23e5a9ffc102 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
-@@ -57,6 +57,8 @@ import org.chromium.url.GURL;
- import java.util.ArrayList;
+@@ -48,6 +48,8 @@ import org.chromium.url.GURL;
+ 
  import java.util.List;
  
 +import org.chromium.base.ContextUtils;
@@ -11,16 +11,7 @@ index 3aaba6cf491fda4f27a1965d91201f8c8da43d1c..2e2993701c1355f98784e8b2b7089290
  /**
   * A mediator for the TabGroupUi. Responsible for managing the internal state of the component.
   */
-@@ -440,7 +442,7 @@ public class TabGroupUiMediator implements SnackbarManager.SnackbarController, B
-                 parentTabToAttach = relatedTabs.get(relatedTabs.size() - 1);
-             }
-             mTabCreatorManager.getTabCreator(currentTab.isIncognito())
--                    .createNewTab(new LoadUrlParams(UrlConstants.NTP_URL),
-+                    .createNewTab(new LoadUrlParams("chrome-search://local-ntp/local-ntp.html"),
-                             TabLaunchType.FROM_TAB_GROUP_UI, parentTabToAttach);
-             RecordUserAction.record("MobileNewTabOpened." + TabGroupUiCoordinator.COMPONENT_NAME);
-             if (!currentTab.isIncognito()) {
-@@ -473,6 +475,9 @@ public class TabGroupUiMediator implements SnackbarManager.SnackbarController, B
+@@ -367,6 +369,9 @@ public class TabGroupUiMediator implements BackPressHandler {
       *            not, associated tabs from #getTabsToShowForID will be showing in the tab strip.
       */
      private void resetTabStripWithRelatedTabsForId(int id) {

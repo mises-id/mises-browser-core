@@ -210,9 +210,6 @@ CHAR_LIMIT guidelines:
       <message name="IDS_PREFS_SECTION_ADVANCED" desc="Title of &quot;Advanced&quot; section of preferences. [CHAR_LIMIT=32]">
         Advanced
       </message>
-      <message name="IDS_ENTER_VR" desc="Menu item for entering VR. [CHAR_LIMIT=27]">
-        Enter VR
-      </message>
 
       <!-- Notification channels -->
       <message name="IDS_NOTIFICATION_CATEGORY_GROUP_GENERAL" desc="Subheading for &quot;General&quot; section of a list of notification categories. [CHAR_LIMIT=32]">
@@ -532,9 +529,6 @@ CHAR_LIMIT guidelines:
       <message name="IDS_AUTOFILL_PAYMENTS_AUTHENTICATOR_SELECTION_DIALOG_PROGRESS_BAR_MESSAGE" desc="Message shown on the progress bar after the user selects an authenticator from a list of options and proceeds.">
         Contacting your bank\u2026
       </message>
-      <message name="IDS_AUTOFILL_PAYMENTS_AUTHENTICATOR_SELECTION_DIALOG_POSITIVE_BUTTON_LABEL" desc="Positive button label for the dialog where the user selects an authenticator from a list of options.">
-        Continue
-      </message>
       <message name="IDS_AUTOFILL_PAYMENTS_AUTHENTICATOR_SELECTION_DIALOG_NEGATIVE_BUTTON_LABEL" desc="Negative button label for the dialog where the user selects an authenticator from a list of options.">
         Cancel
       </message>
@@ -745,6 +739,12 @@ CHAR_LIMIT guidelines:
       <message name="IDS_UPM_ERROR_NOTIFICATION_CONTENTS" translateable="false" desc="The contents of the UI surface shown when the new password manager backend encounters an error, prompting the user to file a bug.">
         The unified password manager was automatically disabled. Please submit an issue via the bug app!
       </message>
+      <message name="IDS_PASSWORDS_NOT_SECURE_FILLING" desc="The title of the dialog which is shown when the user attempts to enter obfuscated text to a regular text field.">
+        Not secure
+      </message>
+      <message name="IDS_PASSWORDS_NOT_SECURE_FILLING_DETAILS" desc="The message of the dialog which is shown when the user attempts to enter obfuscated text to a regular text field.">
+        To protect your privacy, Mises will not autofill your password in this field.
+      </message>
 
       <!-- Lock Screen Fragment -->
       <message name="IDS_LOCKSCREEN_DESCRIPTION_COPY" desc="When a user attempts to copy a password for a particular website into clipboard in Mises's settings, Mises launches a lock screen to verify the user's identity and displays the following explanation.">
@@ -803,6 +803,18 @@ CHAR_LIMIT guidelines:
       <message name="IDS_PREFS_PRIVACY_SECURITY" desc="Title for the Privacy and Security preferences. [CHAR_LIMIT=32]">
         Privacy and security
       </message>
+      <message name="IDS_PRIVACY_SECTION_TITLE" desc="Title for the Privacy settings section.">
+        Privacy
+      </message>
+      <message name="IDS_SECURITY_SECTION_TITLE" desc="Title for the Security settings section.">
+        Security
+      </message>
+      <message name="IDS_AD_PRIVACY_LINK_ROW_LABEL" desc="A new label that appears on the Privacy and security page (chrome://settings/privacy) between 'Third-party cookies' and 'Security'. This same text is used as a page title for the new Ad privacy section. This same pair of words is used in the Consent and Notice flow and must be consistently translated in both contexts. We mean privacy associated with ads, and not privacy from ads. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Ad privacy
+      </message>
+      <message name="IDS_AD_PRIVACY_LINK_ROW_SUB_LABEL" desc="A string that describes 'Ad privacy', the label that appears just above it. For context, this new 'Ad privacy' / 'Customize the info...' pair of strings is similar to the existing 'Clear browsing data' / 'Clear history, cookies...' that you find on chrome://settings/privacy. * 'Customize': From our word list: 'This word describes user agency in refining their personalized recommendations, elements of the experience, or sometimes products'. Please don't confuse with 'personalize', which we reserve to mean: '...when Mises provides recommendations and other content for users based on their data'. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Customize the info used by sites to show you ads
+      </message>
       <message name="IDS_CONTEXTUAL_SEARCH_TITLE" desc="Name for the Contextual Search feature, which allows users to search for a term in a web page by tapping on it.">
         Touch to Search
       </message>
@@ -852,44 +864,8 @@ For example, some websites may respond to this request by showing you ads that a
       <message name="IDS_PRIVACY_SANDBOX_STATUS_DISABLED" desc="Status text, displayed when the Privacy sandbox APIs are disabled.">
         Trial features are off
       </message>
-      <message name="IDS_PRIVACY_SANDBOX_DESCRIPTION_TITLE" desc="Title for the description text of 'Privacy Sandbox'.">
-        About Privacy Sandbox
-      </message>
-      <message name="IDS_PRIVACY_SANDBOX_DESCRIPTION_TWO" desc="Description of the 'Privacy Sandbox' when phase 2 flag is enabled.">
-        With <ph name="BEGIN_LINK">&lt;link&gt;</ph>Privacy Sandbox<ph name="END_LINK">&lt;/link&gt;</ph>, Mises is developing new technologies to safeguard you from cross-site tracking while preserving the open web.
-
-Privacy Sandbox trials are still in active development and are available in selected regions. For now, sites may try out Privacy Sandbox while continuing to use current web technologies like third-party cookies.
-      </message>
-      <message name="IDS_PRIVACY_SANDBOX_TOGGLE" desc="Title for the Privacy Sandbox toggle.">
-        Privacy Sandbox trials
-      </message>
-      <message name="IDS_PRIVACY_SANDBOX_TOGGLE_DESCRIPTION_TWO" desc="Description for the Privacy Sandbox toggle when phase 2 flag is enabled.">
-        When on, sites may use the privacy-preserving techniques shown here to provide their content and services. These include alternatives to cross-site tracking. More trials may be added over time.
-
-<ph name="BEGIN_LIST_ITEM1">&lt;li1&gt;</ph>Advertisers and publishers can use FLoC.<ph name="END_LIST_ITEM1">&lt;/li1&gt;</ph>
-
-<ph name="BEGIN_LIST_ITEM2">&lt;li2&gt;</ph>Advertisers and publishers can study the effectiveness of ads in a way that does not track you across sites.<ph name="END_LIST_ITEM2">&lt;/li2&gt;</ph>
-      </message>
       <message name="IDS_PRIVACY_SANDBOX_SNACKBAR_MESSAGE" desc="The text displayed in the snackbar, which gives the user an option to navigate to the Privacy Sandbox settings page. 'Privacy sandbox' has TC ID 5753235213964358658.">
         Learn about and control new technologies that aim to replace third-party cookies
-      </message>
-      <message name="IDS_PREFS_PRIVACY_SANDBOX_FLOC" desc="Title for the FLoC preferences as part of the Privacy Sandbox.">
-        FLoC
-      </message>
-      <message name="IDS_PRIVACY_SANDBOX_FLOC_DESCRIPTION" desc="Sentence indicating that FLoC is only available in some regions, including a link to a page that describes exactly what regions it is available. This will only ever appear directly after another sentence.">
-        This trial is active only in <ph name="BEGIN_LINK">&lt;link&gt;</ph>some regions<ph name="END_LINK">&lt;/link&gt;</ph>.
-      </message>
-      <message name="IDS_PRIVACY_SANDBOX_FLOC_STATUS_TITLE" desc="Title for FLoC experiment status.">
-        Status
-      </message>
-      <message name="IDS_PRIVACY_SANDBOX_FLOC_GROUP_TITLE" desc="Title for FLoC group.">
-        Group number
-      </message>
-      <message name="IDS_PRIVACY_SANDBOX_FLOC_UPDATE_TITLE" desc="Title for FLoC update.">
-        Next update
-      </message>
-      <message name="IDS_PRIVACY_SANDBOX_FLOC_RESET_BUTTON" desc="Button text to reset FLoC group ID.">
-        Reset group
       </message>
 
       <message name="IDS_PRIVACY_SANDBOX_TRIALS_TITLE" desc="The title of the settings page on which the user can find all Privacy Sandbox trials. When launched, this page will appear at chrome://settings/privacySandbox. To get there: 1) go to Mises settings 2) From the main menu (top left of the page) choose “Security and privacy” 3) At the bottom of the page, choose “Privacy Sandbox” There are 3 cards on this page that are presented as features. Only the first includes controls the user can manage, but we want to convey that Privacy Sandbox includes all of the things on this page.">
@@ -938,19 +914,19 @@ When you delete your browsing history — all or for a specific site — you als
       <message name="IDS_PRIVACY_SANDBOX_SPAM_FRAUD_SUMMARY" desc="The description of card 3 of 3. * “help”: This API is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
         Help sites fight fraud and distinguish bots from profiles
       </message>
-      <message name="IDS_PRIVACY_SANDBOX_SPAM_FRAUD_DESCRIPTION_TRIALS_ON" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “trust tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players. * “interaction”: is broad. It’s not just viewing a site but also how you interact with it, like by signing in * “Later”:  is important to convey the passage of time. We don’t want to convey how much time (it could be tiny). What’s important is that the user understands this is essentially a two-step process. A trust token is issued. Sometime in the future, when hyou visit a different site, that trust token might get used. ">
-        Spam &amp; fraud reduction relies on trust tokens to help sites fight fraud and distinguish bots from profiles.
+      <message name="IDS_PRIVACY_SANDBOX_SPAM_FRAUD_DESCRIPTION_TRIALS_ON" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “private state tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players. * “interaction”: is broad. It’s not just viewing a site but also how you interact with it, like by signing in * “Later”:  is important to convey the passage of time. We don’t want to convey how much time (it could be tiny). What’s important is that the user understands this is essentially a two-step process. A private state token is issued. Sometime in the future, when hyou visit a different site, that private state token might get used. ">
+        Spam &amp; fraud reduction relies on private state tokens to help sites fight fraud and distinguish bots from profiles.
 
-Based on your interaction with a site, like regularly signing in to an account, that site can issue a trust token to your browser. Later, if other sites you visit check for and find a valid trust token, they’re more likely to treat you like a profile and not a bot.
+Based on your interaction with a site, like regularly signing in to an account, that site can issue a private state token to your browser. Later, if other sites you visit check for and find a valid private state token, they’re more likely to treat you like a profile and not a bot.
 
-Trust tokens improve privacy on the web and can’t be used to find out who you are.
+Private state tokens improve privacy on the web and can’t be used to find out who you are.
       </message>
-            <message name="IDS_PRIVACY_SANDBOX_SPAM_FRAUD_DESCRIPTION_TRIALS_OFF" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “trust tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players. * “interaction”: is broad. It’s not just viewing a site but also how you interact with it, like by signing in * “Later”:  is important to convey the passage of time. We don’t want to convey how much time (it could be tiny). What’s important is that the user understands this is essentially a two-step process. A trust token is issued. Sometime in the future, when hyou visit a different site, that trust token might get used. ">
-        When trials are on, Spam &amp; fraud reduction relies on trust tokens to help sites fight fraud and distinguish bots from profiles.
+            <message name="IDS_PRIVACY_SANDBOX_SPAM_FRAUD_DESCRIPTION_TRIALS_OFF" desc="The first of 3 paragraphs on the spam &amp; fraud card. This is a behind-the-scenes upgrade to Mises. There aren’t any user controls or data to interact with, at least not yet. * “private state tokens”: explained in the next paragraph * “help”: This feature is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players. * “interaction”: is broad. It’s not just viewing a site but also how you interact with it, like by signing in * “Later”:  is important to convey the passage of time. We don’t want to convey how much time (it could be tiny). What’s important is that the user understands this is essentially a two-step process. A private state token is issued. Sometime in the future, when hyou visit a different site, that private state token might get used. ">
+        When trials are on, Spam &amp; fraud reduction relies on private state tokens to help sites fight fraud and distinguish bots from profiles.
 
-Based on your interaction with a site, like regularly signing in to an account, that site can issue a trust token to your browser. Later, if other sites you visit check for and find a valid trust token, they’re more likely to treat you like a profile and not a bot.
+Based on your interaction with a site, like regularly signing in to an account, that site can issue a private state token to your browser. Later, if other sites you visit check for and find a valid private state token, they’re more likely to treat you like a profile and not a bot.
 
-Trust tokens improve privacy on the web and can’t be used to find out who you are.
+Private state tokens improve privacy on the web and can’t be used to find out who you are.
       </message>
       <message name="IDS_PRIVACY_SANDBOX_LEARN_MORE_DESCRIPTION_TOPICS_1" desc="TOPICS API Bullet 1 of 3 that appear beneath the “Your interests as estimated by Mises” subtitle. We break the description into the 3 pieces users most care about: 1) what data, 2) why this data, 3) what can I do about it? * “What data is used:” is bold and serves as a label to help profiles skimming the page. * “Your browsing history”: The user’s browsing history is available beneath the “History” menu at Mises’s top level. The Topics API estimates topics of interest based on sites in the user’s browsing history that are participating in the trials.">
         <ph name="BEGIN_BOLD">&lt;b&gt;</ph>What data is used:<ph name="END_BOLD">&lt;/b&gt;</ph> Your browsing history, a record of sites you’ve visited using Mises on this device.
@@ -1053,14 +1029,14 @@ Trust tokens improve privacy on the web and can’t be used to find out who you 
       <message name="IDS_PRIVACY_SANDBOX_CONSENT_HEADING_ONE" desc="1 of 2 subtitles on the page. We want to write for users who skim the page. That means that the page title, the sub titles, and the button label all work well together as a mini story: 1) Help us build a more private web How? 2) Limit sharing between sites 3) More control over the ads you see 4) Yes, I’ll try it">
         Limited sharing between sites
       </message>
-      <message name="IDS_PRIVACY_SANDBOX_CONSENT_DESCRIPTION_ONE" desc="* “exploring” conveys that this is a work in progress. * “restrict” means to lessen. We don’t want to suggest that we’re “eliminating” cross-site tracking. * “cross-site tracking”: An example: a user visits site A and then site B. Based on how third-party cookies work today, when that user later visits site C, site C can be aware that the user visited sites A and B, and can even have some sense for what they did on those sites. * “stop ad spam and fraud”:  This feature isn’t really related to restricting cross-site tracking but we combined these features in the same sentence / section for structural reasons.">
-        We’re exploring ways to restrict cross-site tracking while enabling sites to stop ad spam and fraud.
+      <message name="IDS_PRIVACY_SANDBOX_CONSENT_DESCRIPTION_ONE" desc="The description beneath the “Limited sharing between sites” subtitle. * “exploring” conveys that this is a work in progress. * “restrict” means to lessen. We don’t want to suggest that we’re “eliminating” cross-site tracking. * “tracking”: An example: a user visits site A and then site B. Based on how third-party cookies work today, when that user later visits site C, site C can be aware that the user visited sites A and B, and can even have some sense for what they did on those sites. * “stop ad spam and fraud”:  This feature isn’t really related to restricting cross-site tracking but we combined these features in the same sentence / section for structural reasons.">
+        We’re exploring ways to restrict tracking while enabling sites to stop ad spam and fraud.
       </message>
       <message name="IDS_PRIVACY_SANDBOX_CONSENT_HEADING_TWO" desc="2 of 2 subtitles on the page. We want to write for users who skim the page. That means that the page title, the sub titles, and the button label all work well together as a mini story: 1) Help us build a more private web How? 2) Limit sharing between sites 3) More control over the ads you see 4) Yes, I’ll try it">
         More control over the ads you see
       </message>
-      <message name="IDS_PRIVACY_SANDBOX_CONSENT_DESCRIPTION_TWO" desc="A paragraph beneath the “More control over the ads you see” subtitle. * “During the trials”: The trials happens in addition to today’s current system based on third-party cookies. In other words, even by agreeing to or remaining in a trial,, the user’s core experience doesn’t change much. This is an experiment, and we need the user to understand as much. * “see and remove topics of interests”: we want to stress the element of control * “estimate topics”: Topics of interest include things like “Live comedy” and “Rock music”. Mises estimates these interests based on the sites users visit. It’s an “estimation”, and we don’t want to suggest that we know with certainty the user’s interests. Avoid words like “guess”, “establish”, “define”, etc. (in place of “estimate”). * “recent browsing history”: Later in the UI, we define this as “a record of sites you’ve visited using Mises on this device.” By “recent”, we mean the last 3 weeks (also defined later in the UI).">
-        During the trials, you can see and remove topics of interest sites use to show you ads. Mises estimates your interests based on your recent browsing history.
+      <message name="IDS_PRIVACY_SANDBOX_CONSENT_DESCRIPTION_TWO" desc="A paragraph beneath the “More control over the ads you see” subtitle. * “see and remove topics of interests”: we want to stress the element of control * “estimate topics”: Topics of interest include things like “Live comedy” and “Rock music”. Mises estimates these interests based on the sites users visit. It’s an “estimation”, and we don’t want to suggest that we know with certainty the user’s interests. Avoid words like “guess”, “establish”, “define”, etc. (in place of “estimate”). * “recent browsing history”: Later in the UI, we define this as “a record of sites you’ve visited using Mises on this device.” By “recent”, we mean the last 3 weeks (also defined later in the UI).">
+        You can see and remove topics of interest sites use to show you ads. Mises estimates your interests based on your recent browsing history.
       </message>
       <message name="IDS_PRIVACY_SANDBOX_CONSENT_DROPDOWN_BUTTON" desc="Learn more link * Unfolds content within the page * The text that appears describes 2 ways in which a site can target ads: the “Topics API” and the “FLEDGE API”. You can see what those are at www.privacysanbox.com or they’re described for the user’s benefit in other text. * “ad personalization” can mean different things in different contexts. Here, we’re using it as a simple noun. In other words, it’s not the name of a control but a descriptive term used to describe the personalization of ads in the Mises browser. This “ad personalization” shouldn’t be confused with the setting in the Mises sync chain called “Ad personalization”.">
         Learn more about ad personalization in Mises
@@ -1089,8 +1065,175 @@ Trust tokens improve privacy on the web and can’t be used to find out who you 
       <message name="IDS_PRIVACY_SANDBOX_NOTICE_SHEET_TITLE" desc="CONTEXT: there are updates to the Mises browser each month. Just after the user accepts the latest update, this message will appear. The title of the page. * “Help us” is intended to convey a sense of collaboration. Privacy Sandbox is an ongoing multi-year effort. There are sites participating to help us and we also need users to agree to these trials so that we can measure the effectiveness of the features we're building. * “build” is intended to convey that this is a process. The user is agreeing to an effort rather than a stable set of features. Something like “make” doesn't have the same nuance. * See www.privacysandbox.com for more context.">
         Help us build a better web
       </message>
-      <message name="IDS_PRIVACY_SANDBOX_NOTICE_SHEET_DESCRIPTION" desc="* “ad spam”: Spam related to web advertising. * “estimate your interests”: Topics of interest include things like “Live comedy” and “Rock music”. Mises estimates these interests based on the sites users visit. It’s an “estimation”, and we don’t want to suggest that we know with certainty the user’s interests. Avoid words like “guess”, “establish”, “define”, etc. (in place of “estimate”).">
-        Mises is exploring ways to limit ad spam, fraud, and sharing between sites. Mises also <ph name="BEGIN_LINK">&lt;link&gt;</ph>estimates your interests<ph name="END_LINK">&lt;/link&gt;</ph> that sites can use to show you ads. You can manage your interests in settings.
+      <message name="IDS_PRIVACY_SANDBOX_NOTICE_SHEET_DESCRIPTION" desc="* “Mises is finding new ways”: “finding” is meant to convey a work in progress, like “build” in the title. The features are live and functional, but still in beta. So we want a verb that’s stronger than “exploring” but weaker than “launching”. * “reduce tracking”: This used to read “reduce cross-site tracking”, but we’ve dropped “cross-site” because it makes the idea unnecessarily complicated. * “estimate your interests”: Topics of interest include things like “Live comedy” and “Rock music”. Mises estimates these interests based on the sites users visit. It’s an “estimation”, and we don’t want to suggest that we know with certainty the user’s interests. Avoid words like “guess”, “establish”, “define”, etc. (in place of “estimate”). * “Then” is an important keyword. It suggests some amount of time later. The first step is that interests are generated. Later (minutes or weeks), a different site might request interests.">
+        Mises is finding new ways to reduce tracking and keep you even safer as you browse. Mises also <ph name="BEGIN_LINK">&lt;link&gt;</ph>estimates your interests<ph name="END_LINK">&lt;/link&gt;</ph> and enables you to manage them. Then, sites you visit can ask Mises for your interests to show you ads.
+      </message>
+
+      <!-- Privacy Sandbox v4 - Consent & Notice Flow -->
+      <message name="IDS_PRIVACY_SANDBOX_M1_NOTICE_EEA_BULLET_2" desc="* This is 2 of 2 bullets that site beneath the sentence: 'We’re launching new ways to limit what sites can learn about you when they show you personalized ads, for example:' * 'ad measurement' is the name of a new setting we're launching and that appears on the Ad privacy page of Mises settings.  * 'limited types of data': This setting helps an advertiser associate a user's actions on one site with their actions on another. For example, a user sees an ad on one site and then later buys that product from the company that sells the product. The ad measurement setting allows Mises to help a company make the association between the two sites so that the first site can be fairly compensated for showing an ad. Compared with third-party cookies, very little info is shared between sites to support this functionality.  **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** CONTEXT EEA NOTICE **** 1) This screen provides notice to Mises users in the European Economic Area (EEA). It follows guidelines established by the GDPR.  2) This screen is the second of 2 screens. This second screen describes 2 settings: “Site-suggested ads” and “Ad measurement”. The first screen describes the “Ad topics” setting. " formatter_data="android_java">
+        With ad measurement, limited types of data can be shared among sites and apps to measure the performance of their ads, such as the time of day an ad was shown to you.
+      </message>
+      <message name="IDS_PRIVACY_SANDBOX_M1_NOTICE_ROW_DESCRIPTION_3" desc="A paragraph on the 'Enhanced ad privacy in Mises' page that provides notice to Mises users outside of the EEA. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** CONTEXT ROW NOTICE **** 1) This screen provides notice to Mises users outside of the European Economic Area (EEA) (we typically refer to this screen as “Rest of World” or “ROW”). It follows guidelines established by the GDPR.  2) We’re using similar but distinct content for EEA / ROW because legal requirements differ. For ROW, we can provide notice for all 3 settings, and so all 3 settings can appear on a single screen. " formatter_data="android_java">
+        To measure the performance of an ad, limited types of data can be shared among sites, such as the time of day an ad was shown to you.
+      </message>
+      <message name="IDS_PRIVACY_SANDBOX_M1_NOTICE_EEA_LEARN_MORE_DESCRIPTION_ANDROID" desc="As part of Privacy Sandbox (see details below), both Mises and Android devices will have a new setting called 'Ad measurement'. Some details are different, but these settings essentially do the same thing. The Mises setting allows sites you visit to ask Mises for information that helps them measure the performance of their ads, linking 1) an ad for site B the user sees on site A, with 2) a purchase or other action the user might take on site B. On Android, it's essentially the same story only it's between apps and not sites. The challenge is that on Android, Mises is a browser but it's also an App. This paragraph helps the user understand that, if both settings are on, information about the user's actions on a site might be connected with actions the user takes in an app. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com.">
+        Your Android device may include a similar setting. If Ad measurement is turned on in Mises and on your Android device, a company may be able to measure the effectiveness of an ad across web sites you visit and apps you use.
+      </message>
+      <message name="IDS_PRIVACY_SANDBOX_M1_NOTICE_ROW_LEARN_MORE_DESCRIPTION_ANDROID" desc="As part of Privacy Sandbox (see details below), both Mises and Android devices will have a new setting called 'Ad measurement'. Some details are different, but these settings essentially do the same thing. The Mises setting allows sites you visit to ask Mises for information that helps them measure the performance of their ads, linking 1) an ad for site B the user sees on site A, with 2) a purchase or other action the user might take on site B. On Android, it's essentially the same story only it's between apps and not sites. The challenge is that on Android, Mises is a browser but it's also an App. This paragraph helps the user understand that, if both settings are on, information about the user's actions on a site might be connected with actions the user takes in an app. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com.">
+        Your Android device may include a similar setting. If Ad measurement is turned on in Mises and on your Android device, a company may be able to measure the effectiveness of an ad across web sites you visit and apps you use.
+      </message>
+
+      <!-- Privacy Sandbox v4 - Ad Privacy Page -->
+      <message name="IDS_AD_PRIVACY_PAGE_TITLE" desc="A new page title for a page that includes 3 settings. This same text appears as a label on chrome://settings/privacy between 'Third-party cookies' and 'Security'. This same pair of words is used in the Consent and Notice flow and must be consistently translated in both contexts. We mean privacy associated with ads, and not privacy from ads. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Ad privacy
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_TOPICS_LINK_ROW_LABEL" desc="The name of a new setting. This setting is described to users in the Consent moment as: Ad topics help sites show you relevant ads while protecting your browsing history and identity. Mises can note topics of interest based on your recent browsing history. Later, a site you visit can ask Mises for relevant topics to personalize the ads you see. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Ad topics
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_TOPICS_LINK_ROW_SUB_LABEL_ENABLED" desc="Ad topics are derived from the user's browsing history. This help-center article explains 'browsing history' to users: https://support.google.com/chrome/answer/95589. This setting is described to users in the Consent moment as: Ad topics help sites show you relevant ads while protecting your browsing history and identity. Mises can note topics of interest based on your recent browsing history. Later, a site you visit can ask Mises for relevant topics to personalize the ads you see.">
+        Based on your browsing history. This setting is on.
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_TOPICS_LINK_ROW_SUB_LABEL_DISABLED" desc="Ad topics are derived from the user's browsing history. This help-center article explains 'browsing history' to users: https://support.google.com/chrome/answer/95589. This setting is described to users in the Consent moment as: Ad topics help sites show you relevant ads while protecting your browsing history and identity. Mises can note topics of interest based on your recent browsing history. Later, a site you visit can ask Mises for relevant topics to personalize the ads you see.">
+        Based on your browsing history. This setting is off.
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_FLEDGE_LINK_ROW_LABEL" desc="The name of a new setting. This setting is described to users in the Notice moment as: Site-suggested ads help protect your browsing history and identity while enabling sites to show you relevant ads. Based on your activity, a site you visited can suggest related ads as you continue browsing. You can see a list of these sites and block the ones you don’t want in settings. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Site-suggested ads
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_FLEDGE_LINK_ROW_SUB_LABEL_ENABLED" desc="A site can suggest ads for a user based on the user's activity on their site. This setting is described to users in the Notice moment as: Site-suggested ads help protect your browsing history and identity while enabling sites to show you relevant ads. Based on your activity, a site you visited can suggest related ads as you continue browsing. You can see a list of these sites and block the ones you don’t want in settings.">
+        Based on your activity on a site. This setting is on.
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_FLEDGE_LINK_ROW_SUB_LABEL_DISABLED" desc="A site can suggest ads for a user based on the user's activity on their site. This setting is described to users in the Notice moment as: Site-suggested ads help protect your browsing history and identity while enabling sites to show you relevant ads. Based on your activity, a site you visited can suggest related ads as you continue browsing. You can see a list of these sites and block the ones you don’t want in settings.">
+        Based on your activity on a site. This setting is off.
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_AD_MEASUREMENT_LINK_ROW_LABEL" desc="The name of a new setting. This setting is described to users in the Notice moment as: With ad measurement, limited types of data are shared between sites to measure the performance of their ads, such as the time of day an ad was shown to you. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Ad measurement
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_AD_MEASUREMENT_LINK_ROW_SUB_LABEL_ENABLED" desc="The name of a new setting. This setting is described to users in the Notice moment as: With ad measurement, limited types of data are shared between sites to measure the performance of their ads, such as the time of day an ad was shown to you.">
+        Sites and advertisers can understand how ads perform. This setting is on.
+      </message>
+      <message name="IDS_AD_PRIVACY_PAGE_AD_MEASUREMENT_LINK_ROW_SUB_LABEL_DISABLED" desc="The name of a new setting. This setting is described to users in the Notice moment as: With ad measurement, limited types of data are shared between sites to measure the performance of their ads, such as the time of day an ad was shown to you.">
+        Sites and advertisers can understand how ads perform. This setting is off.
+      </message>
+
+      <!-- Privacy Sandbox v4 - Topics Page -->
+      <!-- Where possible, these strings have been unified on Desktop & Android in privacy_sandox_strings.grdp. The strings here either only appear on one platform, or have platform specific requirements, e.g. the format of placeholders, and so cannot be unified. For the latter case, they have corresponding _CANONICAL representations used when consent is recorded on either platform, and so they must stay in sync -->
+      <message name="IDS_SETTINGS_TOPICS_PAGE_BLOCKED_TOPICS_SUB_PAGE_TITLE" desc="A page title. Topics that the user blocked appear on this page.">
+        Topics you blocked
+      </message>
+      <message name="IDS_SETTINGS_TOPICS_PAGE_CURRENT_TOPICS_DESCRIPTION" desc="A description that appear beneath the 'Your topics' label. * 'You can block': There is a 'Block' button (or an X on mobile) that appears next to each topic in the list. * 'auto-deletes': this could also read 'Mises deletes...' We included the 'auto' to reinforce that this is part of a system and the deletion is done regularly.">
+        You can block topics you don't want shared with sites. Mises also auto-deletes your topics older than 4 weeks. <ph name="BEGIN_LINK">&lt;link&gt;</ph>Learn more<ph name="END_LINK">&lt;/link&gt;</ph>
+      </message>
+      <message name="IDS_SETTINGS_TOPICS_PAGE_FOOTER" desc="This footer helps the user understand that this setting is just one signal among others that affect whether this user sees personalized ads on a site. We define 'personalize' as 'when Mises provides recommendations and other content for users based on their data'. At a high level, there are 4 things that affect whether an ad is personalized in this context: * 'this setting' refers to the 'Ad topics' setting. The user is on this page. * 'Site-suggested ads': this is a link to the other new ad setting Mises is launching and that sites can use to personalize ads a user sees. * 'cookie settings': this is a link to the cookies control section in Mises settings. The Privacy Sandbox project deprecates third-party cookies, but it's a process, and we're launching new functionality that will replace important functionality of cookies. Until third-party cookies are deprecated, the two systems remain active in Mises. * 'site you're viewing personalizes ads': When a user engages with a site, Mises has no control over whether that site shows the user personalized ads. Imagine you visit www.interesting-site.com and they know a lot about you already based on previous visits. They can personalize content and ads to you if they like. They can use an ad-serving product, like Facebook or Mises Ads to deliver personalized ads. They can also use the new Privacy Sandbox APIs (if they so choose) in order to get more information about the user that could be helpful to them in order to personalize ads. Those 2 APIs (settings, from the user's perspective), are 'Ad topics' and 'Site-suggested ads'.">
+        As you browse, whether an ad you see is personalized depends on this setting, <ph name="BEGIN_LINK_1">&lt;link1&gt;</ph>Site-suggested ads<ph name="END_LINK_1">&lt;/link1&gt;</ph>, your <ph name="BEGIN_LINK_2">&lt;link2&gt;</ph>cookie settings<ph name="END_LINK_2">&lt;/link2&gt;</ph>, and if the site you're viewing personalizes ads.
+      </message>
+      <message name="IDS_SETTINGS_TOPICS_PAGE_BLOCK_TOPIC_SNACKBAR" desc="A confirmation that appears after a user blocks a topic. This page is only applicable if the user has the Ad topics setting turned on. If they do, Mises estimates the user's topics of interests and then sites can ask for topics to help personalize ads. If a user dosn't like a specific topic, they can block it.">
+        Blocked topic
+      </message>
+      <message name="IDS_SETTINGS_TOPICS_PAGE_ADD_TOPIC_SNACKBAR" desc="A confirmation that appears after a user un-blocks a topic. This page is only applicable if the user has the Ad topics setting turned on. If they do, Mises estimates the user's topics of interests and then sites can ask for topics to help personalize ads. If a user dosn't like a specific topic, they can block it. **** The user can also unblock a topic, the language is important, because 'unblocking' doesn't bring the topic back to the list of active topics. It simply adds a topic back to the list of potential topics that Mises might estimate at a later time as the user continues browsing.">
+        Added topic back to potential topics
+      </message>
+
+      <!-- Privacy Sandbox v4 - Fledge Page -->
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_TITLE" desc="A page title and the name of a new setting. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Site-suggested ads
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_TOGGLE_LABEL" desc="The label for a new setting.">
+        Site-suggested ads
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_TOGGLE_SUB_LABEL" desc="A description of the new Site-suggested ads setting. This text appears beneath the name of the new setting, 'Site-suggested ads', and is associated with the control that a user can turn on or off. * 'determine what you like': Based on your interaction with a site, that site can define your interests any way it wants. For example, if you put a pair of red running shoes in a shopping cart, the site might define an interest as 'red_running_shoes_size_36'. * 'suggest ads as you continue browsing': 1) you interact with a site and if defines an interest for you. That information is saved with Mises. 2) You continue browsing. 3) a new site you visit checks with Mises if 'Site-suggested ads' is turned on and then can request information related to that user. 4) The site might end up showing ads related to 'red_running_shoes_size_36'. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Sites you visit can determine what you like and then suggest ads as you continue browsing
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_HEADING" desc="A label for a list of sites the user has visited. The list of sites looks similar to the user's browsing history, but this is a distinct list. * 'browsing history' is a list of the sites the user has visited. See the Help-center definition here: https://support.google.com/chrome/answer/95589 * This list of 'Sites' is a subset of the user's browsing history. 1) Only sites that use the 'Site-suggested ads' API (https://developer.chrome.com/docs/privacy-sandbox/fledge/) can appear on this list. 2) This list is based on recent sites the user has visited and sites older than 4 weeks are regularly deleted.">
+        Sites
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_DESCRIPTION" desc="A paragraph beneath the 'Sites' label. It explains how users can control the sites that appear in the list. * 'block sites': When a user blocks a site, that site may no longer save info with Mises about the user's visit. As the user continues to browse, they will not see ads suggested by the blocked site. * 'auto-deletes': We included the 'auto' to reinforce that this is part of a system and the deletion is done regularly. ">
+        You can block sites you don’t want. Mises also auto-deletes sites from the list that are older than 4 weeks. <ph name="BEGIN_LINK">&lt;link&gt;</ph>Learn more<ph name="END_LINK">&lt;/link&gt;</ph>
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_DESCRIPTION_DISABLED" desc="1 of 3 possible descriptions that appear beneath the 'Sites' title. If this setting is off, no sites appear. The link opens a dialog box that provides more information about Site-suggested ads.">
+        When on, a list of sites you visit that guess your interests appears here.
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_CURRENT_SITES_DESCRIPTION_EMPTY" desc="1 of 3 possible descriptions that appear beneath the 'Sites' title. This setting could be on but no topics appear in the list. This text explains why.">
+        It can take up to a week for a list of sites to appear here based on your browsing history.
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_SEE_ALL_SITES_LABEL" desc="Text that serves as a button. Because the list of sites might be long, we only show the most recent sites. This button allows the user to browse all sites (because sites are auto-deleted every 4 weeks, the list is never older than 4 weeks).">
+        See all sites
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCKED_SITES_HEADING" desc="A label that serves as a button to open the 'Sites you blocked' page.">
+        Sites you blocked
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_FOOTER" desc="This footer helps the user understand that this setting is just one signal among others that affect whether this user sees personalized ads on a site. We define 'personalize' as 'when Mises provides recommendations and other content for users based on their data'. At a high level, there are 4 things that affect whether an ad is personalized in this context: * 'this setting' refers to the 'Site-suggested ads' setting. The user is on this page. * 'Ad topics': this is a link to the other new ad setting Mises is launching and that sites can use to personalize ads a user sees. * 'cookie settings': this is a link to the cookies control section in Mises settings. The Privacy Sandbox project deprecates third-party cookies, but it's a process, and we're launching new functionality that will replace important functionality of cookies. Until third-party cookies are deprecated, the two systems remain active in Mises. * 'site you're viewing personalizes ads': When a user engages with a site, Mises has no control over whether that site shows the user personalized ads. Imagine you visit www.interesting-site.com and they know a lot about you already based on previous visits. They can personalize content and ads to you if they like. They can use an ad-serving product, like Facebook or Mises Ads to deliver personalized ads. They can also use the new Privacy Sandbox APIs (if they so choose) in order to get more information about the user that could be helpful to them in order to personalize ads. Those 2 APIs (settings, from the user's perspective), are 'Ad topics' and 'Site-suggested ads'.">
+        As you browse, whether an ad you see is personalized depends on this setting, <ph name="BEGIN_LINK_1">&lt;link1&gt;</ph>Ad topics<ph name="END_LINK_1">&lt;/link1&gt;</ph>, your <ph name="BEGIN_LINK_2">&lt;link2&gt;</ph>cookie settings<ph name="END_LINK_2">&lt;/link2&gt;</ph>, and if the site you’re viewing personalizes ads
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_ALL_SITES_SUB_PAGE_TITLE" desc="The page title that shows all sites. This is a subpage.">
+        All sites
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCKED_SITES_SUB_PAGE_TITLE" desc="The page title that shows blocked sites. This is a subpage.">
+        Sites you blocked
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCKED_SITES_DESCRIPTION" desc="1 of 2 possible descriptions that appear beneath the 'Sites you blocked' title. In this case, the user has previously blocked sites. * 'pool of sites': We want to express that by clicking 'Add', the user is making a site eligible again for consideration.">
+        Add a site back if you want it in the pool of sites that can guess what you like
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCKED_SITES_DESCRIPTION_EMPTY" desc="1 of 2 possible descriptions beneath the 'Sites you blocked' title. In this case, the list is empty (the user hasn't blocked any sites).">
+        Blocked sites appear here
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_LEARN_MORE_HEADING" desc="The title of a dialog box that explains site-suggested ads in more detail.">
+        More about site-suggested ads
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_LEARN_MORE_BULLET_1" desc="1 of 3 paragraphs on the Learn more page for Site-suggested ads. * 'It's common...' this sentence is intended to be reassuring. Many sites the user visits are retaining some information about the user, such as their preferred language if the site has a language picker. If cookies are allowed, this info might be stored with a first-party cookie on the user's device. Sites can also store limited information with Mises.">
+        It’s common for sites you visit to remember things you’re interested in, to personalize your experience. Sites can also store information with Mises about your interests.
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_LEARN_MORE_BULLET_2" desc="2 of 3 paragraphs on the Learn more page for Site-suggested ads.">
+        For example, if you visit a site that sells long-distance running shoes, the site might decide that you’re interested in running marathons. Later, if you visit a different site, that site can show you an ad for running shoes suggested by the first site.
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_LEARN_MORE_BULLET_3" desc="3 of 3 paragraphs on the Learn more page for Site-suggested ads. * 'Auto-deletes': This could just read 'Mises deletes...' but we include the 'auto' to suggest that the deletion happens regularly and as part of the system. * 'A site you visit again...': We want to reassure the user. We just told them sites are automatically deleted. And yet, a user might see the same site in the list month after month if they visit that site regularly.">
+        Mises auto-deletes sites that are older than 4 weeks. A site you visit again might reappear on the list. Or you can block a site from suggesting ads for you.
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCK_SITE_A11Y_LABEL" desc="A button label read by screen readers that indicates which site will get blocked. The list is of sites the user has recently visited and that use the Site-suggested ads API to suggest ads to other sites as the user continues browsing.">
+        Block <ph name="DOMAIN">%1$s<ex>example.com</ex></ph>
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_ALLOW_SITE_A11Y_LABEL" desc="A button label read by screen readers that indicates which site will get added back to the pool of potential sites.">
+        Add <ph name="DOMAIN">%1$s<ex>example.com</ex></ph>
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_BLOCK_SITE_SNACKBAR" desc="A confirmation that appears after a user blocks a site. This page is only applicable if the user has the Site-suggested ads setting turned on. If they do, a site can choose ads that they later suggest to other sites. If a user dosn't want a site to suggest ads for them, they can block a site.">
+        Blocked site
+      </message>
+      <message name="IDS_SETTINGS_FLEDGE_PAGE_ADD_SITE_SNACKBAR" desc="A confirmation that appears after a user unblocks a site. This page is only applicable if the user has the Site-suggested ads setting turned on. If they do, a site can choose ads that they later suggest to other sites. If a user dosn't want a site to suggest ads for them, they can block a site. **** The user can also unblock a site. The language is important, because 'unblocking' doesn't bring the site back to the list of active sites. It simply makes a site eligible again to suggest ads, but the user would need to visit that site to trigger it again and have it appear in the list.">
+        Added site back to potential sites
+      </message>
+
+      <!-- Privacy Sandbox v4 - Ad Measurement Page -->
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_TITLE" desc="A page title and the name of a new setting. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Ad measurement
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_TOGGLE_LABEL" desc="The label for a new setting. ">
+        Ad measurement
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_TOGGLE_SUB_LABEL" desc="A description of the new Ad measurement setting. This text appears beneath the name of the new setting, 'Ad measurement', and is associated with the control that a user can turn on or off. **** CONTEXT PRIVACY SANDBOX **** Mises’s Privacy Sandbox initiative 1) deprecates third-party cookies in Mises, 2) supports free and open content on the web (by finding better ways to support ads online), 3) while providing stronger privacy protections for users. You can see a high-level description of this public project at www.privacysanbox.com. **** NEW SETTINGS SECTION IN CHROME **** 3 new ad-specific settings appear on an “Ad privacy” page in Mises settings. For an equivalent structure, see “Security” on chrome://settings/privacy that opens chrome://settings/security. Likewise, “Ad privacy” on chrome://settings/privacy will open chrome://settings/AdPrivacy.">
+        Sites and advertisers can measure the performance of their ads
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_ENABLED_HEADING" desc="A label above bullet points that explain the functionality of this setting.">
+        When on
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_CONSIDER_HEADING" desc="A label above bullet points that note things the user might want to consider when turning this setting on or off.">
+        Things to consider
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_ENABLED_BULLET_1" desc="1 of 3 bullets in the 'When on' section that describes the Ad measurement setting. * 'Limited types of data': The Ad measurement API (for developers) and the Ad measurement control (for users) is offered by Mises. But Mises is a 'pass through', helping one site communicate information to another about the performance of an ad. That's where this passive construction comes from. Mises facilitates, but shouldn't be seen as a major actor here. And we don't want to suggest anything like 'Mises limits the types of data shared between sites,' because Mises can't do that. Any 2 sites can have a side agreement to share as much info as they like. ">
+        Limited types of data are shared between sites to measure the performance of their ads, such as the time of day an ad was shown to you
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_ENABLED_BULLET_2" desc="2 of 3 bullets in the 'When on' section that describes the Ad measurement setting.">
+        Ad-measurement data is deleted regularly from your device
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_ENABLED_BULLET_3" desc="3 of 3 bullets in the 'When on' section that describes the Ad measurement setting. If reports were instantaneous, a site could receive a report and then consult which visitors most recently visited the site.">
+        Your browsing history is kept private on your device and reports are sent with a delay to protect your identity
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_CONSIDER_BULLET_1" desc="1 or 3 bullets in the 'Things to consider section that describes the Ad measurement setting.">
+        You can always delete ad-measurement data by deleting your browsing data
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_CONSIDER_BULLET_2" desc="2 or 3 bullets in the 'Things to consider section that describes the Ad measurement setting.">
+        Mises limits the total amount of data that sites can share through the browser to measure ad performance
+      </message>
+      <message name="IDS_SETTINGS_AD_MEASUREMENT_PAGE_CONSIDER_BULLET_3" desc="3 or 3 bullets in the 'Things to consider section that describes the Ad measurement setting.">
+        Your Android device may include a similar setting. If Ad measurement is turned on in Mises and on your Android device, a company may be able to measure the effectiveness of an ad across web sites you visit and apps you use.
       </message>
 
       <!-- Secure DNS Settings.  Used by //chrome/browser/privacy. -->
@@ -1248,143 +1391,143 @@ Your Mises account may have other forms of browsing history like searches and ac
         <ph name="NUMBER_OF_ITEMS">%1$s<ex>3</ex></ph> items deleted
       </message>
 
-      <!-- Privacy Review -->
-      <message name="IDS_PREFS_PRIVACY_REVIEW_TITLE" desc="The title of the privacy review menu item.">
+      <!-- Privacy Guide -->
+      <message name="IDS_PREFS_PRIVACY_GUIDE_TITLE" desc="The title of the privacy guide menu item.">
         Privacy guide
       </message>
-      <message name="IDS_PREFS_PRIVACY_REVIEW_SUMMARY" desc="The summary of the privacy menu item.">
+      <message name="IDS_PREFS_PRIVACY_GUIDE_SUMMARY" desc="The summary of the privacy menu item.">
         Review key privacy and security controls
       </message>
-      <message name="IDS_PRIVACY_REVIEW_WELCOME_TITLE" desc="Title on the welcome page of the privacy review.">
+      <message name="IDS_PRIVACY_GUIDE_WELCOME_TITLE" desc="Title on the welcome page of the privacy guide.">
         A guide of your privacy choices
       </message>
-      <message name="IDS_PRIVACY_REVIEW_WELCOME_DESCRIPTION" desc="Description on the welcome page of the privacy review.">
+      <message name="IDS_PRIVACY_GUIDE_WELCOME_DESCRIPTION" desc="Description on the welcome page of the privacy guide.">
         Take a guided tour of key privacy and security controls. For more options, go to individual settings.
       </message>
-      <message name="IDS_PRIVACY_REVIEW_START_BUTTON" desc="Text on the privacy review start button on the welcome screen.">
+      <message name="IDS_PRIVACY_GUIDE_START_BUTTON" desc="Text on the privacy guide start button on the welcome screen.">
         Let’s go
       </message>
-      <message name="IDS_PRIVACY_REVIEW_WHEN_ON" desc="Header of a description text that describes the behavior of a particular feature. This description is shown to users alongside the feature itself." meaning="Privacy Guide - feature benefits">
+      <message name="IDS_PRIVACY_GUIDE_WHEN_ON" desc="Header of a description text that describes the behavior of a particular feature. This description is shown to users alongside the feature itself." meaning="Privacy Guide - feature benefits">
         When on
       </message>
-      <message name="IDS_PRIVACY_REVIEW_THINGS_TO_CONSIDER" desc="Header of a text column that describes things users should consider about a feature. This description is shown to users alongside the feature itself." meaning="Privacy Guide - feature considerations">
+      <message name="IDS_PRIVACY_GUIDE_THINGS_TO_CONSIDER" desc="Header of a text column that describes things users should consider about a feature. This description is shown to users alongside the feature itself." meaning="Privacy Guide - feature considerations">
         Things to consider
       </message>
-      <message name="IDS_PRIVACY_REVIEW_MSBB_ITEM_ONE" desc="First bullet point that describes the details of the MSBB toggle.">
+      <message name="IDS_PRIVACY_GUIDE_MSBB_ITEM_ONE" desc="First bullet point that describes the details of the MSBB toggle.">
         You’ll browse faster because content is proactively loaded based on your current webpage visit
       </message>
-      <message name="IDS_PRIVACY_REVIEW_MSBB_ITEM_TWO" desc="Second bullet point that describes the details of the MSBB toggle.">
+      <message name="IDS_PRIVACY_GUIDE_MSBB_ITEM_TWO" desc="Second bullet point that describes the details of the MSBB toggle.">
         You’ll get improved suggestions in the address bar
       </message>
-      <message name="IDS_PRIVACY_REVIEW_MSBB_ITEM_THREE" desc="Third bullet point that describes the details of the MSBB toggle.">
+      <message name="IDS_PRIVACY_GUIDE_MSBB_ITEM_THREE" desc="Third bullet point that describes the details of the MSBB toggle.">
         URLs you visit are sent to Mises to predict what sites you might visit next
       </message>
-      <message name="IDS_PRIVACY_REVIEW_MSBB_ITEM_FOUR" desc="Fourth bullet point that describes the details of the MSBB toggle.">
+      <message name="IDS_PRIVACY_GUIDE_MSBB_ITEM_FOUR" desc="Fourth bullet point that describes the details of the MSBB toggle.">
         If you also share Mises usage reports, those reports include the URLs you visit
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SYNC_TOGGLE" desc="Title for the history sync toggle.">
+      <message name="IDS_PRIVACY_GUIDE_HISTORY_SYNC_TOGGLE" desc="Title for the history sync toggle.">
         History sync
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SYNC_ITEM_ONE" desc="First bullet point that describes the details of the history sync toggle.">
+      <message name="IDS_PRIVACY_GUIDE_HISTORY_SYNC_ITEM_ONE" desc="First bullet point that describes the details of the history sync toggle.">
         You’ll have your history on all your synced devices so you can continue what you were doing
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SYNC_ITEM_TWO" desc="Second bullet point that describes the details of the history sync toggle.">
+      <message name="IDS_PRIVACY_GUIDE_HISTORY_SYNC_ITEM_TWO" desc="Second bullet point that describes the details of the history sync toggle.">
         If Mises is also your default search engine, you’ll see better, contextually relevant suggestions
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SYNC_ITEM_THREE" desc="Third bullet point that describes the details of the history sync toggle.">
+      <message name="IDS_PRIVACY_GUIDE_HISTORY_SYNC_ITEM_THREE" desc="Third bullet point that describes the details of the history sync toggle.">
         The URLs you visit are saved to your Mises sync chain
       </message>
-      <message name="IDS_PRIVACY_REVIEW_COOKIES_INTRO" desc="Text introducing the cookies control.">
+      <message name="IDS_PRIVACY_GUIDE_COOKIES_INTRO" desc="Text introducing the cookies control.">
         Choose when to block third-party cookies
       </message>
-      <message name="IDS_PRIVACY_REVIEW_COOKIES_BLOCK_INCOGNITO_TITLE" desc="Title for the radio button for blocking third-party cookies in private.">
+      <message name="IDS_PRIVACY_GUIDE_COOKIES_BLOCK_INCOGNITO_TITLE" desc="Title for the radio button for blocking third-party cookies in private.">
         Block while using private
       </message>
-      <message name="IDS_PRIVACY_REVIEW_COOKIES_BLOCK_INCOGNITO_DESCRIPTION" desc="Description for the radio button for blocking third-party cookies in private.">
+      <message name="IDS_PRIVACY_GUIDE_COOKIES_BLOCK_INCOGNITO_DESCRIPTION" desc="Description for the radio button for blocking third-party cookies in private.">
         While in private, sites can’t use your cookies to see your browsing activity across different sites, for example, to personalize ads. Features on some sites may break.
       </message>
-      <message name="IDS_PRIVACY_REVIEW_COOKIES_BLOCK_ALWAYS_TITLE" desc="Title for the radio button for blocking third-party cookies always.">
+      <message name="IDS_PRIVACY_GUIDE_COOKIES_BLOCK_ALWAYS_TITLE" desc="Title for the radio button for blocking third-party cookies always.">
         Block all the time
       </message>
-      <message name="IDS_PRIVACY_REVIEW_COOKIES_BLOCK_ALWAYS_DESCRIPTION" desc="Description for the radio button for blocking third-party cookies always.">
+      <message name="IDS_PRIVACY_GUIDE_COOKIES_BLOCK_ALWAYS_DESCRIPTION" desc="Description for the radio button for blocking third-party cookies always.">
         Sites can only use your cookies to see your browsing activity only on their own site
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SAFE_BROWSING_INTRO" desc="Text introducing the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SAFE_BROWSING_INTRO" desc="Text introducing the Safe Browsing control.">
         Choose your Safe Browsing protection
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SAFE_BROWSING_ENHANCED_TITLE" desc="Title for the radio button for the enhanced Safe Browsing.">
+      <message name="IDS_PRIVACY_GUIDE_SAFE_BROWSING_ENHANCED_TITLE" desc="Title for the radio button for the enhanced Safe Browsing.">
         Enhanced protection
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SAFE_BROWSING_ENHANCED_DESCRIPTION" desc="Description for the radio button for the enhanced Safe Browsing.">
+      <message name="IDS_PRIVACY_GUIDE_SAFE_BROWSING_ENHANCED_DESCRIPTION" desc="Description for the radio button for the enhanced Safe Browsing.">
         Faster, proactive protection against dangerous websites, downloads, and extensions
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SAFE_BROWSING_STANDARD_TITLE" desc="Title for the radio button for the standard Safe Browsing.">
+      <message name="IDS_PRIVACY_GUIDE_SAFE_BROWSING_STANDARD_TITLE" desc="Title for the radio button for the standard Safe Browsing.">
         Standard protection
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SAFE_BROWSING_STANDARD_DESCRIPTION" desc="Description for the radio button for the standard Safe Browsing.">
+      <message name="IDS_PRIVACY_GUIDE_SAFE_BROWSING_STANDARD_DESCRIPTION" desc="Description for the radio button for the standard Safe Browsing.">
         Standard protection against websites, downloads, and extensions that are known to be dangerous
       </message>
-      <message name="IDS_PRIVACY_REVIEW_FINISH_BUTTON" desc="Text on the button to finish the privacy review">
+      <message name="IDS_PRIVACY_GUIDE_FINISH_BUTTON" desc="Text on the button to finish the privacy guide">
         Finish
       </message>
-      <message name="IDS_PRIVACY_REVIEW_DONE_TITLE" desc="Title on the final page of the privacy review">
+      <message name="IDS_PRIVACY_GUIDE_DONE_TITLE" desc="Title on the final page of the privacy guide">
         Review complete!
       </message>
-      <message name="IDS_PRIVACY_REVIEW_DONE_DESCRIPTION" desc="Subtitle on the final page of the privacy review">
+      <message name="IDS_PRIVACY_GUIDE_DONE_DESCRIPTION" desc="Subtitle on the final page of the privacy guide">
         Explore more settings below or finish now
       </message>
-      <message name="IDS_PRIVACY_REVIEW_PRIVACY_SANDBOX_HEADING" desc="Title for the Privacy Sandbox item on the final page of the privacy review">
+      <message name="IDS_PRIVACY_GUIDE_PRIVACY_SANDBOX_HEADING" desc="Title for the Privacy Sandbox item on the final page of the privacy guide">
         Privacy Sandbox trial
       </message>
-      <message name="IDS_PRIVACY_REVIEW_PRIVACY_SANDBOX_DESCRIPTION" desc="Description for the Privacy Sandbox item on the final page of the privacy review">
+      <message name="IDS_PRIVACY_GUIDE_PRIVACY_SANDBOX_DESCRIPTION" desc="Description for the Privacy Sandbox item on the final page of the privacy guide">
         See how Mises plans to safeguard you from cross-site tracking while preserving the open web
       </message>
-      <message name="IDS_PRIVACY_REVIEW_WEB_APP_ACTIVITY_HEADING" desc="Title for the Web and App Activity item on the final page of the privacy review">
+      <message name="IDS_PRIVACY_GUIDE_WEB_APP_ACTIVITY_HEADING" desc="Title for the Web and App Activity item on the final page of the privacy guide">
         Web &amp; App Activity
       </message>
-      <message name="IDS_PRIVACY_REVIEW_WEB_APP_ACTIVITY_DESCRIPTION" desc="Description for the Web and App Activity item on the final page of the privacy review">
+      <message name="IDS_PRIVACY_GUIDE_WEB_APP_ACTIVITY_DESCRIPTION" desc="Description for the Web and App Activity item on the final page of the privacy guide">
         Choose whether to include Mises history for more personalized experiences in Mises services
       </message>
-      <message name="IDS_PRIVACY_REVIEW_EXPLANATION_CONTENT_DESCRIPTION" desc="The content description for the privacy review explanation bottom sheet. Read as accessibility string when tapping on the bottom sheet.">
+      <message name="IDS_PRIVACY_GUIDE_EXPLANATION_CONTENT_DESCRIPTION" desc="The content description for the privacy guide explanation bottom sheet. Read as accessibility string when tapping on the bottom sheet.">
         Privacy guide explanation
       </message>
-      <message name="IDS_PRIVACY_REVIEW_EXPLANATION_OPENED_HALF" desc="The accessibility string read when the privacy review explanation bottom sheet is half opened.">
+      <message name="IDS_PRIVACY_GUIDE_EXPLANATION_OPENED_HALF" desc="The accessibility string read when the privacy guide explanation bottom sheet is half opened.">
         Privacy guide explanation opened at half height
       </message>
-      <message name="IDS_PRIVACY_REVIEW_EXPLANATION_OPENED_FULL" desc="The accessibility string read when the privacy review explanation bottom sheet is fully opened.">
+      <message name="IDS_PRIVACY_GUIDE_EXPLANATION_OPENED_FULL" desc="The accessibility string read when the privacy guide explanation bottom sheet is fully opened.">
         Privacy guide explanation opened at full height
       </message>
-      <message name="IDS_PRIVACY_REVIEW_EXPLANATION_CLOSED_DESCRIPTION" desc="The accessibility string read when the privacy review explanation bottom sheet is closed.">
+      <message name="IDS_PRIVACY_GUIDE_EXPLANATION_CLOSED_DESCRIPTION" desc="The accessibility string read when the privacy guide explanation bottom sheet is closed.">
         Privacy guide explanation closed
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_STANDARD_ITEM_ONE" desc="First bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_STANDARD_ITEM_ONE" desc="First bullet point that describes the details of the Safe Browsing control.">
         Detects and warns you about dangerous events when they happen
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_STANDARD_ITEM_TWO" desc="Second bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_STANDARD_ITEM_TWO" desc="Second bullet point that describes the details of the Safe Browsing control.">
         Checks URLs with a list of unsafe sites stored in Mises
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_STANDARD_ITEM_THREE" desc="Third bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_STANDARD_ITEM_THREE" desc="Third bullet point that describes the details of the Safe Browsing control.">
         If a site tries to steal your password, or when you download a harmful file, Mises may send URLs including bits of page content to Safe Browsing
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_ENHANCED_ITEM_ONE" desc="First bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_ENHANCED_ITEM_ONE" desc="First bullet point that describes the details of the Safe Browsing control.">
         Predicts and warns you about dangerous events before they happen
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_ENHANCED_ITEM_TWO" desc="Second bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_ENHANCED_ITEM_TWO" desc="Second bullet point that describes the details of the Safe Browsing control.">
         Keeps you safe on Mises and may be used to improve your security in other Mises apps when you are signed in
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_ENHANCED_ITEM_THREE" desc="Third bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_ENHANCED_ITEM_THREE" desc="Third bullet point that describes the details of the Safe Browsing control.">
         Improves security for you and everyone on the web
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_ENHANCED_ITEM_FOUR" desc="Fourth bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_ENHANCED_ITEM_FOUR" desc="Fourth bullet point that describes the details of the Safe Browsing control.">
         Warns you if passwords are exposed in a data breach
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_ENHANCED_ITEM_FIVE" desc="Fifth bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_ENHANCED_ITEM_FIVE" desc="Fifth bullet point that describes the details of the Safe Browsing control.">
         Sends URLs to Safe Browsing to check them
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_ENHANCED_ITEM_SIX" desc="Sixth bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_ENHANCED_ITEM_SIX" desc="Sixth bullet point that describes the details of the Safe Browsing control.">
         Also sends a small sample of pages, downloads, extension activity, and system information to help discover new threats
       </message>
-      <message name="IDS_PRIVACY_REVIEW_SB_ENHANCED_ITEM_SEVEN" desc="Seventh bullet point that describes the details of the Safe Browsing control.">
+      <message name="IDS_PRIVACY_GUIDE_SB_ENHANCED_ITEM_SEVEN" desc="Seventh bullet point that describes the details of the Safe Browsing control.">
         Temporarily links this data to your Mises sync chain when you’re signed in, to protect you across Mises apps
       </message>
 
@@ -1678,23 +1821,15 @@ Your Mises account may have other forms of browsing history like searches and ac
       </message>
 
         <!-- Mixed content download -->
-        <message name="IDS_MIXED_CONTENT_DOWNLOAD_DIALOG_TITLE" desc="Title of the dialog for asking user to confirm a mixed content download">
+        <message name="IDS_INSECURE_DOWNLOAD_DIALOG_TITLE" desc="Title of the dialog for asking user to confirm an insecure download">
           File can’t be downloaded securely
         </message>
-        <message name="IDS_MIXED_CONTENT_DOWNLOAD_DIALOG_CONFIRM_TEXT" desc="Text label for the confirm button on the mixed content download dialog for user to confirm the download.">
+        <message name="IDS_INSECURE_DOWNLOAD_DIALOG_CONFIRM_TEXT" desc="Text label for the confirm button on the insecure download dialog for user to confirm the download.">
           Keep
         </message>
-        <message name="IDS_MIXED_CONTENT_DOWNLOAD_DIALOG_DISCARD_TEXT" desc="Text label for the cancel button on the mixed content download dialog for user to confirm the download.">
+        <message name="IDS_INSECURE_DOWNLOAD_DIALOG_DISCARD_TEXT" desc="Text label for the cancel button on the insecure download dialog for user to confirm the download.">
           Discard
         </message>
-
-      <!-- Download later -->
-      <message name="IDS_DOWNLOAD_DATE_TIME_PICKER_NEXT_TEXT" desc="The text for the positive button of the download date time picker dialog.">
-        Next
-      </message>
-      <message name="IDS_DOWNLOAD_LATER_PROMPT_ENABLED_TITLE" desc="A setting text to ask whether to show a dialog about when to download.">
-        Ask when to save files
-      </message>
 
       <!-- Downloads location -->
       <message name="IDS_DOWNLOADS_LOCATION_SELECTOR_TITLE" desc="Title of the preference that allows the user to select which of the folders they would like to make the default location to save their downloads.">
@@ -1769,6 +1904,9 @@ Your Mises account may have other forms of browsing history like searches and ac
       <message name="IDS_RENAME_EXTENSION_MESSAGE" desc="Message to warn users the danger of changing file extension.">
         If you change the file extension, the file may open in a different application and potentially be a hazard to your device.
       </message>
+      <message name="IDS_RENAME_FILE_ACCESSIBILITY_HINT" desc="Hint displayed on screen and available to assistive tech for the edit text field for new file name.">
+        New file name
+      </message>
 
        <!-- Duplicate download -->
        <message name="IDS_DUPLICATE_DOWNLOAD_DIALOG_CONFIRM_TEXT" desc="Text label for the confirm button on the dangerous download dialog for user to confirm the download.">
@@ -1837,27 +1975,39 @@ Your Mises account may have other forms of browsing history like searches and ac
       <message name="IDS_ACCOUNT_MANAGEMENT_CHILD_CONTENT_ALL" desc="Setting that permits child accounts to visit any websites.">
         Allow all sites
       </message>
+      <message name="IDS_ACCOUNT_MANAGEMENT_HEADER_NO_PARENTAL_DATA" desc="String saying that child should go to parent for help for child account.">
+        If you need help, ask your parent
+      </message>
+      <message name="IDS_ACCOUNT_MANAGEMENT_HEADER_ONE_PARENT_NAME" desc="String saying that child should go to parent for help with email of single parent for child account.">
+        If you need help, ask your parent (<ph name="PARENT_NAME">%1$s<ex>parent1@gmail.com</ex></ph>)
+      </message>
+      <message name="IDS_ACCOUNT_MANAGEMENT_HEADER_TWO_PARENT_NAMES" desc="String saying that child should go to parent for help with email of two parents for child account.">
+        If you need help, ask your parent (<ph name="PARENT_NAME_1">%1$s<ex>parent1@gmail.com</ex></ph> or <ph name="PARENT_NAME_2">%2$s<ex>parent2@gmail.com</ex></ph>)
+      </message>
+      <message name="IDS_DEFAULT_GOOGLE_ACCOUNT_USERNAME" desc="Default username for accounts that cannot have the email address displayed.">
+        Mises sync chain user
+      </message>
 
-      <!-- Parent approval widget. TODO(crbug.com/1330900): enable translations once strings are finalized. -->
-      <message name="IDS_PARENT_WEBSITE_APPROVAL_TITLE" desc="The title text displayed in the bottom sheet asking a parent to allow or not allow a website." translateable="false">
+      <!-- Parent approval widget. -->
+      <message name="IDS_PARENT_WEBSITE_APPROVAL_TITLE" desc="The title text displayed in the bottom sheet asking a parent to allow or not allow a website.">
         <ph name="CHILD_NAME">%1$s<ex>Alice</ex></ph> wants you to approve this website:
       </message>
-      <message name="IDS_PARENT_WEBSITE_APPROVAL_ALL_OF_DOMAIN" desc="The text which tells the parent that all of a particular domain will be allowed if they approve the request." translateable="false">
+      <message name="IDS_PARENT_WEBSITE_APPROVAL_ALL_OF_DOMAIN" desc="The text which tells the parent that all of a particular domain will be allowed if they approve the request.">
         All pages of <ph name="DOMAIN">%1$s<ex>netflix.com</ex></ph>
       </message>
-      <message name="IDS_PARENT_WEBSITE_APPROVAL_APPROVE_BUTTON" desc="The text displayed on the button to approve a website." translateable="false">
+      <message name="IDS_PARENT_WEBSITE_APPROVAL_APPROVE_BUTTON" desc="The text displayed on the button to approve a website.">
         Approve
       </message>
-      <message name="IDS_PARENT_WEBSITE_APPROVAL_DENY_BUTTON" desc="The text displayed on the button to not approve a website." translateable="false">
+      <message name="IDS_PARENT_WEBSITE_APPROVAL_DENY_BUTTON" desc="The text displayed on the button to not approve a website.">
         Don’t approve
       </message>
-      <message name="IDS_PARENT_WEBSITE_APPROVAL_CONTENT_DESCRIPTION" desc="The content description for the bottom sheet allowing a parent to approve or deny a request to view a website." translateable="false">
+      <message name="IDS_PARENT_WEBSITE_APPROVAL_CONTENT_DESCRIPTION" desc="The content description for the bottom sheet allowing a parent to approve or deny a request to view a website.">
         Option to approve or not approve a website
       </message>
-      <message name="IDS_PARENT_WEBSITE_APPROVAL_FULL_HEIGHT" desc="Accessibility string read when the parent website approval bottom sheet is opened at full height." translateable="false">
+      <message name="IDS_PARENT_WEBSITE_APPROVAL_FULL_HEIGHT" desc="Accessibility string read when the parent website approval bottom sheet is opened at full height.">
         Option to approve or not approve a website opened at full height
       </message>
-      <message name="IDS_PARENT_WEBSITE_APPROVAL_CLOSED" desc="Accessibility string read when the parent website approval bottom sheet is closed." translateable="false">
+      <message name="IDS_PARENT_WEBSITE_APPROVAL_CLOSED" desc="Accessibility string read when the parent website approval bottom sheet is closed.">
         Option to approve or not approve a website closed
       </message>
 
@@ -2034,6 +2184,10 @@ Your Mises account may have other forms of browsing history like searches and ac
       <message name="IDS_SYNC_CUSTOM_PASSPHRASE" desc="Prompt user to create a custom sync password.">
         Passphrase encryption doesn’t include payment methods and addresses from Google Pay. Only someone with your passphrase can read your encrypted data. The passphrase is not sent to or stored by Mises. If you forget your passphrase or want to change this setting you'll need to reset sync. <ph name="BEGIN_LINK">&lt;learnmore&gt;</ph>Learn more<ph name="END_LINK">&lt;/learnmore&gt;</ph>
       </message>
+      <message name="IDS_NEW_SYNC_CUSTOM_PASSPHRASE" desc="Prompt user to create a custom sync password.">
+        Payment methods and addresses from Google Pay won’t be encrypted. Browsing history from Mises won’t sync.
+Only someone with your passphrase can read your encrypted data. The passphrase is not sent to or stored by Mises. If you forget your passphrase or want to change this setting, you’ll need to reset sync. <ph name="BEGIN_LINK">&lt;learnmore&gt;</ph>Learn more<ph name="END_LINK">&lt;/learnmore&gt;</ph>
+      </message>
       <message name="IDS_SYNC_ENTER_CUSTOM_PASSPHRASE_HINT" desc="Hint for the passphrase field when user is to type in a passphrase. [CHAR_LIMIT=30]">
         Passphrase
       </message>
@@ -2100,6 +2254,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       </message>
       <message name="IDS_HINT_SYNC_AUTH_ERROR" desc="Hint message to resolve sync auth error.">
         Sign in again to start sync
+      </message>
+      <message name="IDS_HINT_SYNC_AUTH_ERROR_MODERN" desc="Hint message to resolve sync auth error updated to align with the UPM error message.">
+        Sign back in to start sync
       </message>
       <message name="IDS_HINT_SYNC_RECOVERABILITY_DEGRADED_FOR_EVERYTHING" desc="Hint message to resolve sync degraded recoverability, for users that have not chosen to encrypt all sync data">
         Make sure you can always access your sync data
@@ -2201,11 +2358,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
         Loading…
       </message>
 
-      <!-- InfoBar -->
-      <message name="IDS_TOP_BAR_SCREEN_POSITION" desc="Accessibility label to inform users about the InfoBar location">
-        Options available near top of the screen
-      </message>
-
       <!-- DuplicateDownloadInfoBar -->
       <message name="IDS_DUPLICATE_DOWNLOAD_INFOBAR_TEXT" desc="Prompt text for the confirmation dialog asking whether the user really wants to download a file when there already exists a file with the same name">
         Do you want to download <ph name="FILE_NAME">^1<ex>specialfile.pdf</ex></ph> again?
@@ -2243,20 +2395,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
         {FILE_COUNT, plural,
           =1 {1 download pending}
           other {# downloads pending}}
-      </message>
-      <message name="IDS_DOWNLOAD_MESSAGE_MULTIPLE_DOWNLOAD_SCHEDULED" desc="Download message label describing that one or more downloads are scheduled">
-        {FILE_COUNT, plural,
-          =1 {1 download scheduled}
-          other {# downloads scheduled}}
-      </message>
-      <message name="IDS_DOWNLOAD_MESSAGE_DOWNLOAD_SCHEDULED_DESCRIPTION_ON_WIFI" desc="Download message text describing that user can find about their download status from notifications.">
-        Download will start when on Wi-Fi
-      </message>
-      <message name="IDS_DOWNLOAD_MESSAGE_DOWNLOAD_SCHEDULED_DESCRIPTION_ON_DATE" desc="Download message text describing that the download was scheduled to start at a later date.">
-        Download will start on <ph name="date">%1$s<ex>Feb 28 2020</ex></ph>.
-      </message>
-      <message name="IDS_DOWNLOAD_MESSAGE_DOWNLOAD_SCHEDULED_DESCRIPTION_ON_TIME" desc="Download message text describing that the download was scheduled to start at a later time.">
-        Download will start at <ph name="time">%1$s<ex>8:30PM</ex></ph>.
       </message>
 
       <message name="IDS_INCOGNITO_DOWNLOAD_MESSAGE_TITLE" desc="Download title displayed in a prompt message when the user downloads a file in Private mode.">
@@ -2387,6 +2525,12 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_CONTEXTMENU_SEARCH_IMAGE_WITH_GOOGLE_LENS" desc="Context sensitive menu item for deep linking into google lens. [CHAR_LIMIT=30]">
         Search image with Google Lens <ph name="BEGIN_NEW">&lt;new&gt;</ph>New<ph name="END_NEW">&lt;/new&gt;</ph>
       </message>
+      <message name="IDS_CONTEXTMENU_SEARCH_IMAGE_WITH_GOOGLE_LENS_ALT_TEXT_1" desc="ALT TXT 1: Context sensitive menu item for deep linking into google lens. [CHAR_LIMIT=44]">
+        Search image with Mises <ph name="BEGIN_NEW">&lt;new&gt;</ph>New<ph name="END_NEW">&lt;/new&gt;</ph>
+      </message>
+      <message name="IDS_CONTEXTMENU_SEARCH_IMAGE_WITH_GOOGLE_LENS_ALT_TEXT_2" desc="ALT TXT 2: Context sensitive menu item for deep linking into google lens. [CHAR_LIMIT=30]">
+        Search inside image with Mises <ph name="BEGIN_NEW">&lt;new&gt;</ph>New<ph name="END_NEW">&lt;/new&gt;</ph>
+      </message>
       <message name="IDS_CONTEXTMENU_TRANSLATE_IMAGE_WITH_GOOGLE_LENS" desc="Context sensitive chip for deep linking into google lens for translate results. [CHAR_LIMIT=30]">
           Translate image with Google Lens <ph name="BEGIN_NEW">&lt;new&gt;</ph>New<ph name="END_NEW">&lt;/new&gt;</ph>
       </message>
@@ -2416,9 +2560,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       </message>
       <message name="IDS_CONTEXTMENU_READ_LATER" desc="Context sensitive menu item for marking a link to be read later. We're also labeling it *New* to draw attention to it when first released. [CHAR_LIMIT=30]">
         Add to reading list <ph name="BEGIN_NEW">&lt;new&gt;</ph>New<ph name="END_NEW">&lt;/new&gt;</ph>
-      </message>
-      <message name="IDS_CONTEXTMENU_PERFORMANCE_INFO_FAST" desc="This string is shown in the context sensitive menu for links and is shown underneath the link URL. It indicates to the user that the link's target page is fast-loading and responsive. [CHAR_LIMIT=30]">
-        Fast page
       </message>
       <message name="IDS_CONTEXTMENU_SHARE_HIGHLIGHT" desc="This string is shown in the context menu for resharing the link-to-text.">
         Share highlight
@@ -2468,11 +2609,20 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_APP_BANNER_ADD" desc="A button in an app banner to confirm adding a site to homescreen">
         Add
       </message>
-      <message name="IDS_NOTIFICATION_WEBAPK_INSTALL_IN_PROGRESS" desc="Indicates that the adding of a WebAPK is in progress.">
-        Adding <ph name="WEBAPK_NAME">%1$s<ex>Progressive Web Apps</ex></ph>...
+      <message name="IDS_NOTIFICATION_WEBAPK_INSTALL_IN_PROGRESS" desc="Indicates that the installation of a WebAPK is in progress.">
+        Installing <ph name="WEBAPK_NAME">%1$s<ex>Web App Name</ex></ph>...
       </message>
       <message name="IDS_NOTIFICATION_WEBAPK_INSTALLED" desc="Indicates that a WebAPK has been successfully added to Home screen.">
-        Added to Home screen
+        App installed
+      </message>
+      <message name="IDS_NOTIFICATION_WEBAPK_INSTALL_FAILED" desc="Indicates that the WebAPK install was unsuccessful.">
+        Couldn’t install <ph name="WEBAPK_NAME">%1$s<ex>Progressive Web Apps</ex></ph>.
+      </message>
+      <message name="IDS_NOTIFICATION_WEBAPK_INSTALL_FAILED_CONTENTS_GENERAL" desc="Indicates that the WebAPK install was unsuccessful.">
+        Something went wrong.
+      </message>
+      <message name="IDS_WEBAPK_INSTALL_FAILED_ACTION_OPEN" desc="Indicates that the WebAPK install was unsuccessful.">
+        Go back to site
       </message>
       <message name="IDS_IPH_PWA_INSTALL_AVAILABLE_TEXT" desc="The in-product-help message for PWAs that can be installed to the device.">
         Install this app
@@ -2525,9 +2675,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       </message>
       <message name="IDS_NOTIFICATION_MANAGE_BUTTON" desc="Text of a button shown on notifications, that opens the Mises notifications settings page. This allows users to edit notification settings when a site asks them to allow notifications. [CHAR_LIMIT=9]">
         Manage
-      </message>
-      <message name="IDS_NOTIFICATION_WORK_PROFILE_BADGE_CONTENT_DESCRIPTION" desc="Content description of the work profile badge in the notification.">
-        Work profile
       </message>
 
       <!-- Download UI -->
@@ -2737,9 +2884,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_DOWNLOAD_MANAGER_JUST_NOW" desc="Text on a label describing that the associated download event happened just now.">
         Just now
       </message>
-      <message name="IDS_DOWNLOAD_MANAGER_SCHEDULED_LATER" desc="Text on a label describing that the associated download is scheduled to start later.">
-        Scheduled for later
-      </message>
       <message name="IDS_DOWNLOAD_MANAGER_OFFLINE_HOME" desc="The title text on download home indicating that we are in offline mode.">
         Offline Home
       </message>
@@ -2793,6 +2937,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
      <message name="IDS_INCOGNITO_REAUTH_LOCK_ACTION_TEXT" desc="The label of the button which upon click would turn on the corresponding Mises level Private lock setting after a re-authentication.">
        Turn on Private lock
      </message>
+     <message name="IDS_INCOGNITO_REAUTH_SNACKBAR_TEXT" desc="The label of the snackbar notification which appears after the private re-authentication is turned on from the promo card shown inside the Private grid tab switcher.">
+        Private tabs will be locked when you leave Mises
+     </message>
 
       <!-- Autofill/Wallet integration prompt -->
       <message name="IDS_CARD_UNMASK_INPUT_HINT" desc="Hint text for an input field containing the user's credit card CVC (card verification code).">
@@ -2833,6 +2980,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_FRE_BROWSER_MANAGED_BY_ORGANIZATION" desc="Text that indicates the browser is managed by policy">
         Your browser is managed by your organization
       </message>
+      <message name="IDS_FRE_BROWSER_MANAGED_BY_PARENTS" desc="Text that indicates the browser is managed by parents">
+        Your browser is managed by your parents
+       </message>
 
       <!-- Signin First Run strings -->
       <message name="IDS_SIGNIN_FRE_DISMISS_BUTTON" desc="Button on the very first screen of Mises to continue without signing into Mises. Ensure consistency with OneMises strings while still omitting “Mises” (see e.g. TC ID 5336438894576002929).">
@@ -2896,6 +3046,18 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_SIGNIN_TITLE" desc="Title for the screen that asks users to sign-in and turn on Sync. [CHAR_LIMIT=27]">
         Turn on sync?
       </message>
+      <message name="IDS_SYNC_CONSENT_TITLE" desc="This string appears as a heading on a full-page screen that asks users if they want to turn on sync. 'Sync' is short for 'synchronization'. The tone should be informative and inviting. [CHAR_LIMIT=35]">
+        Turn on sync
+      </message>
+      <message name="IDS_SYNC_CONSENT_TITLE_VARIATION" desc="This string appears as a heading on a full-page screen that asks users if they want to turn on sync. 'Sync' is short for 'synchronization'. [CHAR_LIMIT=20]">
+        Sync
+      </message>
+      <message name="IDS_SYNC_CONSENT_SUBTITLE" desc="This string appears as a subheading on a full-page screen that asks users if they want to turn on sync. This string explains to users that they can back up their Mises data and use it on all their computers, phones, and other devices; a user's Mises data includes their bookmarks, passwords, history, settings, and more. The word 'stuff' can be translated as 'data' or similar if there is no natural translation of 'stuff'. Maintain the level of formality that your language generally uses in the Mises app. The tone should be informative and inviting. [CHAR_LIMIT=100]">
+        Back up your stuff and use it on any device
+      </message>
+      <message name="IDS_SYNC_CONSENT_SUBTITLE_VARIATION" desc="This string appears as a subheading on a full-page screen that asks users if they want to turn on sync. This string explains to users that they can get their Mises data on all their computers, phones, and other devices; a user's Mises data includes their bookmarks, passwords, history, settings, and more. Maintain the level of formality that your language generally uses in the Mises app. The tone should be informative and inviting. [CHAR_LIMIT=100]">
+        Sync your data on all devices
+      </message>
       <message name="IDS_SIGNIN_SYNC_TITLE" desc="Title of Sync feature for the screen that asks users to sign-in and turn on Sync.">
         Sync your passwords, history &amp; more on all devices
       </message>
@@ -2904,6 +3066,18 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       </message>
       <message name="IDS_SIGNIN_DETAILS_DESCRIPTION" desc="Message with a link to customize Sync settings. Shown on the screen that asks the user to turn on Sync.">
         You can always choose what to sync in <ph name="BEGIN_LINK1">&lt;LINK1&gt;</ph>settings<ph name="END_LINK1">&lt;/LINK1&gt;</ph>.
+      </message>
+      <message name="IDS_SYNC_CONSENT_DETAILS_DESCRIPTION" desc="This string appears in the footer on a full-page screen that asks users if they want to turn on sync. 'Sync' is short for 'synchronization'. The first sentence informs the user where they can go to change their mind or to customize what Mises data types they choose to sync (a user's Mises data includes their bookmarks, passwords, history, settings, and more). The second sentence informs the user that if they choose to sync, then their history may be used to personalize Search and other services. Translate 'history' according to https://localization.google.com/glossary/termset?gid=27517723&amp;tsid=59c3162. [CHAR_LIMIT=200].">
+        You can always choose what to sync in <ph name="BEGIN_LINK1">&lt;LINK1&gt;</ph>settings<ph name="END_LINK1">&lt;/LINK1&gt;</ph>. Mises may personalize Search and other services based on your history.
+      </message>
+      <message name="IDS_SYNC_CONSENT_BOOKMARKS_TEXT" desc="This string appears as an item in a list of sync data types on a full-page screen that asks users if they want to turn on sync. Translate 'bookmarks' according to https://localization.google.com/glossary/termset?gid=27517723&amp;tsid=59c31bb. [CHAR_LIMIT=25]">
+        Bookmarks
+      </message>
+      <message name="IDS_SYNC_CONSENT_AUTOFILL_TEXT" desc="This string appears as an item in a list of sync data types on a full-page screen that asks users if they want to turn on sync. Translate 'autofill' according to https://localization.google.com/glossary/termset?gid=27517723&amp;tsid=77d3626. [CHAR_LIMIT=25]">
+        Autofill
+      </message>
+      <message name="IDS_SYNC_CONSENT_HISTORY_TEXT" desc="This string appears as an item in a list of sync data types on a full-page screen that asks users if they want to turn on sync. Translate 'history' according to https://localization.google.com/glossary/termset?gid=27517723&amp;tsid=59c3162. Translate 'and more' so that it conveys that there are additional similar items that are not listed. [CHAR_LIMIT=30]">
+        History and more
       </message>
       <message name="IDS_SIGNIN_ACCEPT_BUTTON" desc="Text for the confirmation button in the sign-in screen. By clicking this button users signs in and turns on Sync. [CHAR_LIMIT=20]">
         Yes, I'm in
@@ -2921,7 +3095,7 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
         Sign in to Mises, closed.
       </message>
       <message name="IDS_SIGNIN_ACCOUNT_PICKER_BOTTOM_SHEET_SUBTITLE" desc="The subtitle for the account picker bottom sheet that tells the user what happens if the button 'Continue as John Doe' is clicked">
-        Sign in to this site and Mises with your Mises sync chain.
+        Sign in to this site and Mises
       </message>
       <message name="IDS_SIGNIN_ACCOUNT_PICKER_BOTTOM_SHEET_SUBTITLE_FOR_SEND_TAB_TO_SELF" desc="The subtitle for the account picker bottom sheet that tells the user what happens if the button 'Continue as John Doe' is clicked, when send-tab-to-self triggered the UI.">
         To send this tab to another device, sign in to Mises on both devices
@@ -2946,8 +3120,11 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       </message>
 
       <!-- Personalized Signin Promos Strings -->
-      <message name="IDS_SIGNIN_PROMO_CONTINUE_AS" desc="Button to sign into Mises with the displayed account and without having to reenter a password. ‘John’ is replaced with the user’s given name, or the user’s full name if the given name is not available. Ensure consistency with related OneMises sign-in buttons (see e.g. TC ID 5569230012177947065).">
+      <message name="IDS_SYNC_PROMO_CONTINUE_AS" desc="Button to sign into Mises with the displayed account and without having to reenter a password. ‘John’ is replaced with the user’s given name, or the user’s full name if the given name is not available. Ensure consistency with related OneMises sign-in buttons (see e.g. TC ID 5569230012177947065).">
         Continue as <ph name="USER_FULL_NAME">%1$s<ex>John</ex></ph>
+      </message>
+      <message name="IDS_SYNC_PROMO_CONTINUE" desc="Button to sign into Mises, similar to IDS_SYNC_PROMO_CONTINUE_AS. Used when the user's display names are not available and the email address cannot be displayed.">
+        Continue
       </message>
       <message name="IDS_SIGNIN_PROMO_CHOOSE_ACCOUNT" desc="Button that the user can press if they are not the profile that Mises found (opposite of 'Continue as Joe Doe').">
         Not <ph name="EMAIL">%1$s<ex>john.doe@example.com</ex></ph>?
@@ -2959,65 +3136,29 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_SYNC_PROMO_DESCRIPTION_BOOKMARKS" desc="This string is the body of a card that appears when the user opens Mises's bookmarks; the user may be signed in to Mises, but isn't syncing their Mises data. The headline above this string is 'Get all your bookmarks'. There's no character limit but try to keep the translation under 120 characters." meaning="This message means that the user can get the bookmarks from their computer on their phone, and their phone's bookmarks on their computer. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
         Sync to get your bookmarks from your other devices
       </message>
-      <message name="IDS_SIGNIN_PROMO_DESCRIPTION_BOOKMARKS" desc="Description string for 'Continue as' signin promo shown in Bookmarks screen.">
-        To get your bookmarks on all your devices, turn on sync
-      </message>
-      <message name="IDS_SIGNIN_PROMO_DESCRIPTION_BOOKMARKS_NO_ACCOUNT" desc="Description string for 'Continue as' signin promo shown in Bookmarks screen. This version of the string is shown when there are no accounts on the device.">
-        To get your bookmarks on all your devices, sign in and turn on sync
-      </message>
       <message name="IDS_SYNC_PROMO_TITLE_NTP_CONTENT_SUGGESTIONS" desc="This string is the headline of a card that appears when the user visits Mises's new tab page; the user may be signed in to Mises, but isn't syncing their Mises data. The line below this string is 'Sync to get the most relevant content from Mises'. [CHAR_LIMIT=70]" meaning="This headline means that the user is missing out on more interesting and relevant news articles. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
-        See content for you
-      </message>
-      <message name="IDS_SYNC_PROMO_ALTERNATIVE_TITLE_NTP_CONTENT_SUGGESTIONS" desc="This string is the headline of a card that appears when the user visits Mises's new tab page; the user may be signed in to Mises, but isn't syncing their Mises data. The line below this string is 'Sync to get the most relevant content from Mises'. [CHAR_LIMIT=70]" meaning="This headline means that the user is missing out on more interesting and relevant news articles. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
         Get better suggestions
       </message>
       <message name="IDS_SYNC_PROMO_DESCRIPTION_NTP_CONTENT_SUGGESTIONS" desc="This string is the body of a card that appears when the user visits Mises's new tab page; the user may be signed in to Mises, but isn't syncing their Mises data. The headline above this string is 'See stories for you'. There's no character limit but try to keep the translation under 120 characters." meaning="This message means that the user is missing out on more interesting and relevant news articles. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
         Sync to get the most relevant content from Mises
       </message>
-      <message name="IDS_SIGNIN_PROMO_DESCRIPTION_NTP_CONTENT_SUGGESTIONS" desc="Description string for 'Continue as' signin promo shown in NTP content suggestions screen. This version of the string is shown when there are no accounts on the device.">
-        To get personalized content suggested by Mises, turn on sync
-      </message>
-      <message name="IDS_SIGNIN_PROMO_DESCRIPTION_NTP_CONTENT_SUGGESTIONS_NO_ACCOUNT" desc="Description string for 'Continue as' signin promo shown in NTP content suggestions screen. This version of the string is shown when there are no accounts on the device.">
-        To get personalized content suggested by Mises, sign in and turn on sync
-      </message>
       <message name="IDS_SYNC_PROMO_TITLE_RECENT_TABS" desc="This string is the headline of a card that appears when the user opens Mises's recent tabs. The user may be signed in to Mises, but isn't syncing their Mises data. The line below this string is 'Sync to get your tabs from your other devices'. [CHAR_LIMIT=70]" meaning="This headline means that the user can see some of their recent tabs from their computer on their phone, and their phone's recent tabs on their computer. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
-        Continue from another device
-      </message>
-      <message name="IDS_SYNC_PROMO_ALTERNATIVE_TITLE_RECENT_TABS" desc="This string is the headline of a card that appears when the user opens Mises's recent tabs. The user may be signed in to Mises, but isn't syncing their Mises data. The line below this string is 'Sync to get your tabs from your other devices'. [CHAR_LIMIT=70]" meaning="This headline means that the user can see some of their recent tabs from their computer on their phone, and their phone's recent tabs on their computer. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
         Get all your tabs
       </message>
       <message name="IDS_SYNC_PROMO_DESCRIPTION_RECENT_TABS" desc="This string is the body of a card that appears when the user opens Mises's recent tabs. The user may be signed in to Mises, but isn't syncing their Mises data. There's no character limit but try to keep the translation under 120 characters." meaning="The headline above this string is 'Continue from another device'. This message means that the user can see some of their recent tabs from their computer on their phone, and their phone's recent tabs on their computer. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
         Sync to get your tabs from your other devices
       </message>
-      <message name="IDS_SIGNIN_PROMO_DESCRIPTION_RECENT_TABS" desc="Description string for 'Continue as' signin promo shown in Recent Tabs screen.">
-        To get your tabs from your other devices, turn on sync
-      </message>
-      <message name="IDS_SIGNIN_PROMO_DESCRIPTION_RECENT_TABS_NO_ACCOUNT" desc="Description string for 'Continue as' signin promo shown in Recent Tabs screen. This version of the string is shown when there are no accounts on the device.">
-        To get your tabs from your other devices, sign in and turn on sync
-      </message>
       <message name="IDS_SYNC_PROMO_TITLE_SETTINGS" desc="This string is the headline of a card that appears when the user opens Mises's settings; the user may be signed in to Mises, but isn't syncing their Mises data. The line below this string is 'Sync to get your passwords, bookmarks and more on all your devices'. [CHAR_LIMIT=70]" meaning="This headline means that the user can use Chrome more easily by syncing their passwords, bookmarks, settings, and more.. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
-        Browse more easily
-      </message>
-      <message name="IDS_SYNC_PROMO_ALTERNATIVE_TITLE_SETTINGS" desc="This string is the headline of a card that appears when the user opens Mises's settings; the user may be signed in to Mises, but isn't syncing their Mises data. The line below this string is 'Sync to get your passwords, bookmarks and more on all your devices'. [CHAR_LIMIT=70]" meaning="This headline means that the user can use Chrome more easily by syncing their passwords, bookmarks, settings, and more.. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
         Use Mises your way
       </message>
       <message name="IDS_SYNC_PROMO_DESCRIPTION_SETTINGS" desc="This string is the body of a card that appears when the user opens Mises's settings; the user may be signed in to Mises, but isn't syncing their Mises data. The headline above this string is 'Browse more easily'. There's no character limit but try to keep the translation under 120 characters." meaning="This message means that the user can use Chrome more easily by syncing their passwords, bookmarks, settings, and more.. We want users to read this card and tap the 'Continue' button and turn on sync. The tone should be inviting.">
         Sync to get your passwords, bookmarks and more on your other devices
-      </message>
-      <message name="IDS_SIGNIN_PROMO_DESCRIPTION_SETTINGS" desc="Description string for 'Continue as' signin promo shown in Settings screen. Turning on sync enables syncing browser settings, autofill data, bookmarks, passwords, history and other data used for browser personalization.">
-        To sync and personalize across devices, turn on sync
-      </message>
-      <message name="IDS_SIGNIN_PROMO_DESCRIPTION_SETTINGS_NO_ACCOUNT" desc="Description string for 'Continue as' signin promo shown in Settings screen. This version of the string is shown when there are no accounts on the device. Turning on sync enables syncing browser settings, autofill data, bookmarks, passwords, history and other data used for browser personalization.">
-        To sync and personalize across devices, sign in and turn on sync
       </message>
       <message name="IDS_SIGNIN_PROMO_CHOOSE_ANOTHER_ACCOUNT" desc="Button that the user can press if they want to select a different account before signing in. This button is shown below 'Continue as Joe Doe' button that signs user in with default account.">
         Choose another account
       </message>
       <message name="IDS_SYNC_PROMO_TURN_ON_SYNC" desc="Button that the user can press if they want to turn on sync with this account.">
         Turn on sync
-      </message>
-      <message name="IDS_SYNC_PROMO_CONTINUE" desc="This string is the button of a card that asks the user to turn on sync; the user may be signed in to Mises, but isn't syncing their Mises data. We want users to read this card and consider tapping the 'Continue' button and turn on sync. [CHAR_LIMIT=30] instead." meaning="Open the screen where the user can turn on sync">
-        Continue
       </message>
 
       <message name="IDS_EXTERNAL_APP_RESTRICTED_ACCESS_ERROR" desc="A message shown to the user if Mises receives a file view request to something Mises does not have access to view.">
@@ -3097,6 +3238,36 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_NTP_MANAGE_FEED" desc="Menu item to manage feed settings from the feed header overflow menu.">
         Manage
       </message>
+      <message name="IDS_CORMORANT_CREATOR_CONTENT_UNAVAILABLE_ERROR_TITLE" desc="Creator page error title when the creator has no content available.">
+        Nothing to show yet
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_CONTENT_UNAVAILABLE_ERROR_DESCRIPTION" desc="Creator page error description when the creator has no content available.">
+        You'll see content when it becomes available
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_GENERAL_ERROR_TITLE" desc="Creator page general error title when something goes wrong.">
+        Something went wrong
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_GENERAL_ERROR_DESCRIPTION" desc="Creator page general error description when something goes wrong.">
+        Try again later
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_FOLLOW_SUCCESS_SNACKBAR" desc="Creator page snackbar messsage after successfully following a particular site.">
+        Following <ph name="SITE_NAME">%1$s<ex>Reuters</ex></ph>
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_FOLLOW_FAILURE_SNACKBAR" desc="Creator page snackbar messsage after a failing to follow a particular site but the reason for the failure is unknown.">
+        Can’t follow. Something went wrong.
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_UNFOLLOW_SUCCESS_SNACKBAR" desc="Creator page snackbar messsage after successfully unfollowing a particular site.">
+        Unfollowed <ph name="SITE_NAME">%1$s<ex>Reuters</ex></ph>
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_UNFOLLOW_FAILURE_SNACKBAR" desc="Creator page snackbar messsage after a failing to unfollow a particular site but the reason for the failure is unknown.">
+        Can’t unfollow. Something went wrong.
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_OFFLINE_FAILURE_SNACKBAR" desc="Creator page snackbar messsage after a user take a follow/unfollow action while offline.">
+        You’re offline. Check your internet connection and try again.
+      </message>
+      <message name="IDS_CORMORANT_CREATOR_PREVIEW" desc="Accessibility readout for the title of a Creator feed, informing the user that it's the preview of the feed content from a particular website.">
+        <ph name="SITE_NAME">%1$s<ex>Reuters</ex></ph> Preview
+      </message>
       <message name="IDS_FEED_MANAGE_ACTIVITY" desc="Menu item to manage my activity from the feed header overflow menu.">
         Activity
       </message>
@@ -3167,6 +3338,7 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_NTP_FEED_MENU_IPH" desc="In-product help that points at the menu icon for the news feed on Mises's new tab page. This string instructs the user to open the menu for settings that let them control the content that appears on the feed.">
         Control your stories and activity here
       </message>
+      <message name="IDS_NTP_NEW" desc="Text in a badge indicating a section is new, thereby drawing attention to a new feature. [CHAR_LIMIT=6]">New</message>
       <message name="IDS_ACCESSIBILITY_NTP_FEED_MENU_BUTTON" desc="Content description for the feed header menu button. Please use the branded term for Discover, as listed under Product Names in the Mises Glossary Manager (TC ID 1799975766543019278).">
         Options for Discover
       </message>
@@ -3219,36 +3391,7 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
         Restore tab group of <ph name="TAB_COUNT">%1$s<ex>5</ex></ph> tabs as a new background tab group.
       </message>
       <message name="IDS_WEB_FEED_AWARENESS" desc="Educating the user about the web feed.">
-        Follow any sites you want
-      </message>
-
-      <!-- Explore sites strings -->
-      <message name="IDS_EXPLORE_SITES_TITLE" desc="Title of a section showing different categories, each with a number of popular websites">
-        Explore
-      </message>
-      <message name="IDS_NTP_EXPLORE_SITES_MORE" desc="Text on a button leading to a complete view of all categories for all popular websites">
-        More categories
-      </message>
-      <message name="IDS_EXPLORE_SITES_LOADING_FROM_NET" desc="Caption for an indeterminate loading spinner indicating that we are loading the data from the internet">
-        Finding the best from the web…
-      </message>
-      <message name="IDS_EXPLORE_SITES_LOADING_ERROR" desc="Caption text indicating that a set of site icons and links failed to load.">
-        Can't load this page
-      </message>
-      <message name="IDS_EXPLORE_SITES_LOADING_ERROR_NEXT_STEPS_TAG" desc="Text on an error screen indicating posible steps to resolve the error.">
-        Try:
-      </message>
-      <message name="IDS_EXPLORE_SITES_LOADING_ERROR_NEXT_STEPS_RELOAD" desc="Text on an error screen indicating that reloading the page can fix this error.">
-        Reloading the page
-      </message>
-      <message name="IDS_EXPLORE_SITES_LOADING_ERROR_NEXT_STEPS_CHECK_CONNECTION" desc="Text on an error screen indicating that checking network connection can fix this error.">
-        Checking your internet connection
-      </message>
-      <message name="IDS_EXPLORE_SITES_IPH" desc="An in-product-help message for the explore sites feature on Android. The message encourages users to open a tab that contains categorized links to websites that are popular in their country.">
-        See popular websites
-      </message>
-      <message name="IDS_EXPLORE_SITES_IPH_ACCESSIBILITY" desc="An in-product-help message for the explore sites feature on Android. The message encourages users to open a tab that contains categorized links to websites that are popular in their country. This message specifies which button must be tapped so that screen reader users can find the view this is referring to.">
-        See popular websites by tapping the "Top sites" button
+        See content you follow here
       </message>
 
       <!-- Video tutorials -->
@@ -3525,8 +3668,8 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_MENU_GROUP_TABS" desc="Menu item for grouping tabs. [CHAR_LIMIT=27]">
         Group tabs
       </message>
-      <message name="IDS_MENU_TRACK_PRICES" desc="Menu item for tracking prices on tabs. [CHAR_LIMIT=27]">
-        Track prices
+      <message name="IDS_MENU_SELECT_TABS" desc="Menu item for bulk editing tabs. [CHAR_LIMIT=27]">
+        Select tabs
       </message>
       <message name="IDS_MENU_GET_IMAGE_DESCRIPTIONS" desc="Menu item to start getting alt text accessibility image labels/descriptions [CHAR_LIMIT=27]">
         Get image descriptions
@@ -3713,6 +3856,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_READING_LIST_MARK_AS_READ" desc="The text for the action to mark the reading list as read.">
         Mark as read
       </message>
+      <message name="IDS_READING_LIST_MARK_AS_UNREAD" desc="The text for the action to mark the reading list as unread.">
+        Mark as unread
+      </message>
       <message name="IDS_READING_LIST_REMINDER_NOTIFICATION_TITLE" desc="The title of the reminder notification for reading list.">
         Catch up on your reading list
       </message>
@@ -3752,15 +3898,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
 
       <message name="IDS_OFFLINE_PAGES_AUTO_FETCH_READY_NOTIFICATION_TEXT" desc="Text inside a notification explaining that the page has been fetched and is ready to view. This is the subtext of the notification and appars below the web page title. When the notification is tapped, the page is opened in Mises.">
         Page is ready to view
-      </message>
-
-      <!-- Offline indicator -->
-      <message name="IDS_OFFLINE_INDICATOR_OFFLINE_TITLE" desc="Text to be displayed in the snackbar that lets the users know they are offline.">
-        No connection
-      </message>
-
-      <message name="IDS_OFFLINE_INDICATOR_VIEW_OFFLINE_CONTENT" desc="A text label on the snackbar widget to bring up the list of offline content.">
-        See downloads
       </message>
 
       <!-- Offline indicator v2 -->
@@ -3822,19 +3959,45 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_READER_MODE_MESSAGE_BUTTON" desc="The label for the button to open the current page in reader mode.">
         View
       </message>
+      <message name="IDS_READER_MODE_ACTION_CHIP_LABEL_SIMPLIFY_PAGE" desc="The label for the action chip shown on the toolbar to open the current page in reader mode. [CHAR_LIMIT=27]">
+        Simplify page
+      </message>
       <message name="IDS_CONTENT_PROVIDER_SEARCH_DESCRIPTION" desc="Description for Mises's entry in QSB's list of search suggestion providers [CHAR_LIMIT=32]">
         Bookmarks and web history
       </message>
 
       <!-- Mises survey -->
-      <message name="IDS_CHROME_SURVEY_PROMPT" desc="Message shown that invites the user to take a survey about Mises. 'Help' and 'improve' are imperative verbs. 'Take survey' is a tappable link. When tapped, a survey about Mises opens.">
-        Help improve Mises. <ph name="BEGIN_LINK">&lt;LINK&gt;</ph>Take survey<ph name="END_LINK">&lt;/LINK&gt;</ph>
-      </message>
       <message name="IDS_CHROME_SURVEY_MESSAGE_TITLE" desc="Message shown that invites the user to take a survey about Mises. 'Help' and 'improve' are imperative verbs.">
         Help improve Mises?
       </message>
       <message name="IDS_CHROME_SURVEY_MESSAGE_BUTTON" desc="The label for the button to open a survey for Mises.">
         Take survey
+      </message>
+
+      <!-- Request Desktop Site -->
+      <message name="IDS_RDS_GLOBAL_DEFAULT_ON_MESSAGE_TITLE" desc="Title of the message shown when the desktop site global setting is default-enabled on premium tablets.">
+        Desktop sites requested by default
+      </message>
+      <message name="IDS_RDS_GLOBAL_DEFAULT_ON_MESSAGE_BUTTON" desc="Text on the button reflecting an opt-out of the default setting update.">
+        Update settings
+      </message>
+      <message name="IDS_RDS_GLOBAL_OPT_IN_MESSAGE_TITLE" desc="Title of the message shown for the user to opt in to the desktop site global setting based on device conditions.">
+        Request desktop sites by default?
+      </message>
+      <message name="IDS_RDS_APP_MENU_USER_EDUCATION_DIALOG_TITLE" desc="Title of the dialog shown to educate the user about the desktop site app menu site-level setting.">
+        Mises will remember your choice
+      </message>
+      <message name="IDS_RDS_APP_MENU_USER_EDUCATION_DIALOG_MESSAGE" desc="Message on the dialog shown to educate the user about the desktop site app menu site-level setting.">
+        When you select desktop site once, the setting is applied to the site each time you visit
+      </message>
+      <message name="IDS_RDS_SITE_SETTINGS_GENERIC_IPH_TEXT_DESKTOP" desc="Message on the generic text bubble shown to educate the user about using the desktop site site-level setting to switch to desktop mode.">
+        You can request the desktop site for <ph name="HOST_NAME">%1$s<ex>www.example.com</ex></ph>
+      </message>
+      <message name="IDS_RDS_SITE_SETTINGS_GENERIC_IPH_TEXT_MOBILE" desc="Message on the generic text bubble shown to educate the user about using the desktop site site-level setting to switch to mobile mode.">
+        You can request the mobile site for <ph name="HOST_NAME">%1$s<ex>www.example.com</ex></ph>
+      </message>
+      <message name="IDS_RDS_SITE_SETTINGS_SPECIFIC_IPH_TEXT" desc="Message on the text bubble shown on specific websites more functional in desktop mode to educate the user about using the desktop site site-level setting.">
+        Switch to desktop site for a better view of this site
       </message>
 
       <!-- Accessibility -->
@@ -4024,6 +4187,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_UNDO_BAR_CLOSE_ALL_MESSAGE" desc="Message shown when you can undo a close all tabs action.">
         <ph name="TAB_COUNT">%1$s<ex>3</ex></ph> tabs closed
       </message>
+      <message name="IDS_CONFIRM_DELETE_MESSAGE" desc="Message shown or announced to get confirmation on whether a file should be deleted.">
+        Do you want to delete <ph name="ITEM_TITLE">%1$s<ex>example.pdf</ex></ph>?
+      </message>
       <message name="IDS_DELETE_MESSAGE" desc="Message shown or announced when an item has been deleted. This message is short for a sentence &quot;ITEM_TITLE has been deleted&quot;, not a noun &quot;ITEM_TITLE, which is a deleted item&quot;.">
         Deleted <ph name="ITEM_TITLE">%1$s<ex>YouTube</ex></ph>
       </message>
@@ -4130,8 +4296,11 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_WEB_FEED_FOLLOW_SUCCESS_SNACKBAR_MESSAGE" desc="The snackbar message after a successful Web Feed follow request.">
         Following <ph name="SITE_NAME">%1$s<ex>Reuters</ex></ph>
       </message>
-      <message name="IDS_WEB_FEED_FOLLOW_SUCCESS_SNACKBAR_ACTION" desc="The snackbar action after a successful Web Feed follow request.">
-        Go to feed
+      <message name="IDS_WEB_FEED_FOLLOW_SUCCESS_SNACKBAR_ACTION_GO_TO_FOLLOWING" desc="The snackbar action after a successful Web Feed follow request, that will take the user to the Following feed.">
+        Go to Following
+      </message>
+      <message name="IDS_WEB_FEED_FOLLOW_SUCCESS_SNACKBAR_ACTION_REFRESH" desc="The snackbar action after a successful Web Feed follow request, that will refresh the Following feed contents. [CHAR_LIMIT=20]">
+        Refresh
       </message>
       <message name="IDS_WEB_FEED_FOLLOW_GENERIC_FAILURE_SNACKBAR_MESSAGE" desc="The generic snackbar message after an unsuccessful Web Feed follow request.">
         Can’t follow. Something went wrong.
@@ -4160,8 +4329,11 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_WEB_FEED_POST_FOLLOW_DIALOG_STORIES_NOT_READY_DESCRIPTION" desc="The body text of the dialog presented a few times after a successful Web Feed follow request, when content from that Web Feed is not readily available. Please use the branded term for Discover, as listed under Product Names in the Mises Glossary Manager (TC ID 1799975766543019278).">
         Soon, you’ll see stories from <ph name="SITE_NAME">%1$s<ex>Reuters</ex></ph> when you open a new tab. Sites you follow are saved in your Mises account. You can manage them in Discover settings.
       </message>
-      <message name="IDS_WEB_FEED_POST_FOLLOW_DIALOG_OPEN_A_NEW_TAB" desc="The main action of the dialog presented a few times after a successful Web Feed follow request, when content from from that Web Feed is immediately available.">
-        Open a new tab
+      <message name="IDS_WEB_FEED_POST_FOLLOW_DIALOG_GO_TO_FOLLOWING" desc="The main action of the dialog presented a few times after a successful Web Feed follow request, when content from from that Web Feed is immediately available. It will take the user to the Following feed.">
+        Go to Following
+      </message>
+      <message name="IDS_WEB_FEED_POST_FOLLOW_DIALOG_GOT_IT" desc="The main action of the dialog presented a few times after a successful Web Feed follow request, when content from from that Web Feed is immediately available. The user is already at the Following feed so it will do nothing.">
+        Got it
       </message>
 
       <!-- Storage Preference UI strings for clearing storage. -->
@@ -4286,15 +4458,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_WEBAPK_NETWORK_ERROR_MESSAGE_TUNNEL_CONNECTION_FAILED" desc="The error message for ERROR_TUNNEL_CONNECTION_FAILED.">
         Establishing a tunnel via proxy server failed
       </message>
-      <message name="IDS_LAUNCHPAD_TITLE" desc="Title of WebAPKs launchpad page">
-        Apps
-      </message>
-      <message name="IDS_LAUNCHPAD_MENU_UNINSTALL" desc="Text that displays on the Launchpad app management menu that allows user to open the setting to uninstall the app. ">
-        Uninstall
-      </message>
-      <message name="IDS_LAUNCHPAD_MENU_SITE_SETTINGS" desc="Text that displays on the Launchpad app management menu that allows the user to open the site setting page.">
-        Site settings
-      </message>
 
       <!-- Keyboard shortcuts in Android N-->
       <message name="IDS_KEYBOARD_SHORTCUT_OPEN_NEW_TAB" desc="A text label that appears next to the keyboard shortcut to open a new tab in Mises. The shortcut description is shown in a system dialog along with all other supported shortcuts. [CHAR_LIMIT=55]">
@@ -4368,9 +4531,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_VR_MODULE_TITLE" desc="Text shown when the VR module is referenced in install start, success, failure UI (e.g. in IDS_MODULE_INSTALL_START_TEXT, which will expand to 'Installing Virtual Reality for Mises…').">
         Virtual Reality
       </message>
-      <message name="IDS_VR_PREPARING_VR_TOAST_STANDALONE_TEXT" desc="Text shown on a toast when Mises's VR browser could not be started due to the VR module missing.">
-        Mises is still preparing for VR. Restart Mises later.
-      </message>
       <message name="IDS_VR_PREPARING_VR_NOTIFICATION_TITLE" desc="Title of a notifaction shown in VR if VR browser not ready yet. [CHAR_LIMIT=23]">
         Something went wrong.
       </message>
@@ -4394,14 +4554,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       </message>
       <message name="IDS_MODULE_INSTALL_FAILURE_TEXT" desc="Text shown on an infobar when Mises failed to install a dynamic feature module.">
         Unable to install <ph name="module">%1$s<ex>augmented reality</ex></ph> for Mises
-      </message>
-
-      <!-- Instant Apps -->
-      <message name="IDS_INSTANT_APPS_MESSAGE_TITLE" desc="Title of the message shown to prompt the user to open an Instant App.">
-        Open app for <ph name="appname">%1$s</ph>?
-      </message>
-      <message name="IDS_ACCESSIBILITY_INSTANT_APPS_MESSAGE_TITLE_CONTENT_DESCRIPTION" desc="Accessibility text for the title of the Instant Apps message.">
-        Open app for <ph name="appname">%1$s</ph> with Google Play?
       </message>
 
       <!-- Custom Context Menu Informations -->
@@ -4505,18 +4657,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_IPH_IDENTITY_DISC_ACCESSIBILITY_TEXT" desc="The in-product-help accessibility text prompting the user that tapping identity disc will navigate to 'Sync and Mises services' settings page.">
         To manage your Mises account, tap the "Manage account" button
       </message>
-      <message name="IDS_IPH_MIC_TOOLBAR_GENERIC_MESSAGE_TEXT" desc="The in-product-help message encouraging to execute a voice search.">
-        Search with your voice
-      </message>
-      <message name="IDS_IPH_MIC_TOOLBAR_GENERIC_MESSAGE_ACCESSIBILITY_TEXT" desc="The in-product-help message encouraging to execute a voice search.">
-        Tap the mic to search with your voice
-      </message>
-      <message name="IDS_IPH_MIC_TOOLBAR_EXAMPLE_QUERY_TEXT" desc="The in-product-help message encouraging to execute a voice search by giving an example command to try.">
-        Try “What’s the weather today?”
-      </message>
-      <message name="IDS_IPH_MIC_TOOLBAR_EXAMPLE_QUERY_ACCESSIBILITY_TEXT" desc="The in-product-help message encouraging to execute a voice search by giving an example command to try.">
-        To check the weather, tap the mic and say “What’s the weather today?”
-      </message>
       <message name="IDS_IPH_NTP_WITHOUT_FEED_TEXT" desc="The in-product-help message to open the new tab page with personalized top sites.">
         See your top sites
       </message>
@@ -4540,6 +4680,12 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       </message>
       <message name="IDS_IPH_TRANSLATE_MENU_BUTTON_ACCESSIBILITY_TEXT" desc="The in-product-help accessibility text after a successful navigation prompting user to translate current page.">
         Translate this page to any language from the More options button
+      </message>
+      <message name="IDS_IPH_TRANSLATE_MESSAGE_DISMISSED_TEXT" desc="The in-product-help message after the prompt for the user to translate the current page has disappeared, in order to show the user how to bring the translate prompt back.">
+        Translate pages here
+      </message>
+      <message name="IDS_IPH_TRANSLATE_MESSAGE_DISMISSED_ACCESSIBILITY_TEXT" desc="The in-product-help message spoken by screen readers after the prompt for the user to translate the current page has disappeared, in order to show the user how to bring the translate prompt back.">
+        Translate pages from the More Options button
       </message>
       <message name="IDS_IPH_SHARED_HIGHLIGHTING_BUILDER" desc="The in-product-help message to notify the user that the share action can preemptively share a link-to-text.">
         New: share a link that scrolls to this text
@@ -4770,12 +4916,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_NEAR_OOM_INTERVENTION_DECLINE" desc="The text of the button letting the user decline the browser's intervention, so that the page can resume what it was doing.">
          Resume
       </message>
-      <message name="IDS_NEAR_OOM_REDUCTION_MESSAGE" desc="The message stating that the browser removed some content of the page using too much memory.">
-         This page uses too much memory, so Mises removed some content.
-      </message>
-      <message name="IDS_NEAR_OOM_REDUCTION_DECLINE" desc="The text of the button letting the user decline the browser's intervention, so that the page can be reloaded.">
-         Show original
-      </message>
 
       <!-- Autofill Assistant preferences -->
       <!-- TODO(b/168178344): Move to Assistant settings strings section below. -->
@@ -4784,24 +4924,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       </message>
       <message name="IDS_PREFS_AUTOFILL_ASSISTANT_SUMMARY" desc="Summary for the Autofill Assistant preferences screen.">
         Helps you complete tasks, such as checkout, throughout the web
-      </message>
-      <message name="IDS_PREFS_WEB_ASSISTANCE_SECTION_TITLE" desc="Title for the web assistance section">
-        Web Assistance
-      </message>
-      <message name="IDS_PREFS_AUTOFILL_ASSISTANT_GET_HELP_TITLE" desc="Title for the switch toggling whether Autofill Assistant is enabled.">
-        Get help with tasks on the web
-      </message>
-      <message name="IDS_PREFS_AUTOFILL_ASSISTANT_GET_HELP_SUMMARY" desc="Description for the Autofill Assistant toggle.">
-        To help you complete tasks, Mises will receive the URLs and contents of sites on which you use Assistant, as well as information you submit through Assistant
-      </message>
-      <message name="IDS_PREFS_AUTOFILL_ASSISTANT_PROACTIVE_HELP_TITLE" desc="Title for the switch toggling whether proactive help is enabled. When turned on, the Assistant will be able to proactively show up (without explicit user prompt) and offer to help.">
-        Proactive Help
-      </message>
-      <message name="IDS_PREFS_AUTOFILL_ASSISTANT_PROACTIVE_HELP_SUMMARY" desc="Description for the proactive help toggle. It explains that the Assistant may appear proactively when it detects that it can help the user. ">
-        Assistant will appear when it detects that it can help you on supported websites
-      </message>
-      <message name="IDS_PREFS_PROACTIVE_HELP_SYNC_LINK" desc="Disclaimer that appears after the proactive help toggle, but only if 'make search and browsing better'[MSBB] is switched off. Proactive help is only possible while MSBB is turned on, which is the default for signed-in users. If MSBB is off, the proactive help setting will be grayed out and this disclaimer is shown.">
-        To use this setting <ph name="BEGIN_LINK">&lt;link&gt;</ph>Make searches and browsing better<ph name="END_LINK">&lt;/link&gt;</ph> must be turned on
       </message>
       <!-- Usage Stats strings -->
       <message name="IDS_USAGE_STATS_CONSENT_TITLE" desc="Title for activity authorizing Digital Wellbeing to access Mises usage data">
@@ -4829,10 +4951,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <!-- Tab Group Tab Switcher strings -->
       <message name="IDS_TAB_MANAGEMENT_MODULE_TITLE" desc="Text shown when the Tab Management module is referenced in install start, success, failure UI (e.g. in IDS_MODULE_INSTALL_START_TEXT, which will expand to 'Installing Tab management for Mises…').">
         Tab management
-      </message>
-
-      <message name="IDS_AUTOFILL_ASSISTANT_MODULE_TITLE" desc="Text shown when the Foo module is referenced in install start, success,         failure UI (e.g. in IDS_MODULE_INSTALL_START_TEXT, which will expand to         'Installing Assistant for Mises…').">
-  Mises Assistant in Mises
       </message>
 
       <message name="IDS_DEV_UI_MODULE_TITLE" desc="Text shown when the Developer UI module is referenced in install start, success, failure UI (e.g. in IDS_MODULE_INSTALL_START_TEXT, which will expand to 'Installing Developer UI for Mises…').">
@@ -4983,12 +5101,12 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
         Connect with QR Code?
       </message>
 
-      <message name="IDS_CABLEV2_QR_BODY_PHONE" desc="The body text on a screen that confirms that the user wants to connect to a computer that displayed a QR code. This message is specific to phones and won't appear on tablets.">
-        You can use this phone to sign in on the computer that’s displaying this QR code.
+      <message name="IDS_CABLEV2_QR_BODY_PHONE" desc="The body text on a screen that confirms that the user wants to connect to a device that displayed a QR code. This message is specific to phones and won't appear on tablets. The device displaying the QR code might be a computer, laptop, phone, table, or even TV.">
+        You can use this phone to sign in on the device that’s displaying this QR code.
       </message>
 
-      <message name="IDS_CABLEV2_QR_BODY_TABLET" desc="The body text on a screen that confirms that the user wants to connect to a computer that displayed a QR code. This message is specific to tablets and won't appear on phones.">
-        You can use this tablet to sign in on the computer that’s displaying this QR code.
+      <message name="IDS_CABLEV2_QR_BODY_TABLET" desc="The body text on a screen that confirms that the user wants to connect to a device that displayed a QR code. This message is specific to tablets and won't appear on phones. The device displaying the QR code might be a computer, laptop, phone, table, or even TV.">
+        You can use this tablet to sign in on the device that’s displaying this QR code.
       </message>
 
       <message name="IDS_CABLEV2_QR_REMEMBER" desc="The label of a checkbox that appears on a screen confirming that the user wants to connect to a computer from which they just scanned a QR code. If the computer is 'remembered' then it'll be able to connect to the phone automatically in the future. The 'computer' is a laptop, desktop, or (eventually) another phone or tablet.">
@@ -5055,10 +5173,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
 
       <message name="IDS_SHARING_COPY_GIF" desc="Label for the Copy GIF button in the sharing hub.">
         Copy GIF
-      </message>
-
-      <message name="IDS_SHARING_LIGHTWEIGHT_REACTIONS" desc="Label for the Add emotion button in sharing hub.">
-        Add emotion
       </message>
 
       <message name="IDS_SHARING_SCREENSHOT" desc="Label for Screenshot button in the sharing hub.">
@@ -5213,71 +5327,6 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
         Share content only
       </message>
 
-      <!-- Lightweight Reactions strings -->
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_CREATING_GIF" desc="Message displayed above the progress bar when the reaction GIF is being generated.">
-        Creating GIF <ph name="PERCENT">%1$d<ex>13</ex></ph>%%
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_CREATING_GIF_ANNOUNCEMENT" is_accessibility_with_no_ui="true" desc="The accessibility text to read when GIF creation begins.">
-        Creating GIF
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_REACTION_MOVED_ANNOUNCEMENT" is_accessibility_with_no_ui="true" desc="The accessibility text to read when a reaction is moved.">
-        Reaction moved
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_REACTION_DELETED_ANNOUNCEMENT" is_accessibility_with_no_ui="true" desc="The accessibility text to read when a reaction is deleted.">
-        Reaction deleted
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_REACTION_DUPLICATED_ANNOUNCEMENT" is_accessibility_with_no_ui="true" desc="The accessibility text to read when a reaction is duplicated.">
-        Reaction duplicated
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_TOOLBAR_ANNOUNCEMENT" is_accessibility_with_no_ui="true" desc="The accessibility text to read when the lightweight reactions toolbar is selected. The user can then select a reaction from the toolbar to place on the screen.">
-        Choose an emotion
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_REACTION_CHANGED_ANNOUNCEMENT" is_accessibility_with_no_ui="true" desc="The accessibility text to read when a reaction is selected from the toolbar and the active reaction is changed.">
-        Reaction changed
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_REACTION_ADDED_ANNOUNCEMENT" is_accessibility_with_no_ui="true" desc="The accessibility text to read when a reaction is added to the scene.">
-        Reaction added
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_RESIZE_AND_ROTATE_BUTTON" is_accessibility_with_no_ui="true" desc="The accessibility text to read when the resize and rotate editing tool is selected. The user can then resize and rotate the reaction on the scene.">
-        Resize and rotate
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_REACTION_ADJUSTED_ANNOUNCEMENT" is_accessibility_with_no_ui="true" desc="The accessibility text to read when a reaction is resized or rotated.">
-        Reaction adjusted
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_DUPLICATE_BUTTON" is_accessibility_with_no_ui="true" desc="The accessibility text to read when the duplicate editing tool is selected. The user can then dupicate the reaction on the scene.">
-        Duplicate
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_TITLE_FOR_SHARE" desc="The title of the shared lightweight reaction.">
-        Emotion GIF <ph name="CURRENT_DATE_ISO">%1$s<ex>2020-09-16</ex></ph>
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_FILENAME_PREFIX" desc="The file name prefix of the shared lightweight reaction. Followed by the timestamp.">
-        chrome_emotion_gif_<ph name="CURRENT_TIMESTAMP_MS">%1$s<ex>1582667748515</ex></ph>
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_ERROR_ASSET_FETCH" desc="Message displayed in a toast when the Lightweight Reactions assets cannot be downloaded from the server.">
-        Can’t download reactions. Try again.
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_ERROR_SCREENSHOT" desc="Message displayed in a toast when taking a screenshot fails during Lightweight Reactions initialization.">
-        Can’t take a screenshot. Try again.
-      </message>
-
-      <message name="IDS_LIGHTWEIGHT_REACTIONS_ERROR_MAX_REACTIONS_REACHED" desc="Message displayed in a toast when the user tries to add more than the maximum allowed reactions to the scene.">
-        You can add up to <ph name="MAX_NUM_REACTIONS">%1$d<ex>10</ex></ph> reactions
-      </message>
-
       <!-- Share Screenshot strings -->
       <message name="IDS_SCREENSHOT_EDIT_TITLE" desc="The text shown on the share option for screenshots.">
         Edit
@@ -5382,17 +5431,20 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_NOTIFICATION_PERMISSION_RATIONALE_DIALOG_MESSAGE" desc="The body text of a dialog explaining the benefits of enabling Mises notifications.">
         You’ll be able to easily manage media controls, Private sessions, downloads and more
       </message>
-      <message name="IDS_NOTIFICATION_PERMISSION_RATIONALE_DIALOG_TITLE_VARIATION_2" desc="The title of a dialog shown to users before asking for notification permission.">
-        Manage media controls, Private tabs, and more with notifications
-      </message>
-      <message name="IDS_NOTIFICATION_PERMISSION_RATIONALE_DIALOG_MESSAGE_VARIATION_2" desc="The body text of a dialog explaining the benefits of enabling Mises notifications.">
-        You can disable notifications by visiting settings
-      </message>
       <message name="IDS_NOTIFICATION_PERMISSION_RATIONALE_ACCEPT_BUTTON_TEXT" desc="The text of the positive button on the notification permission prompt dialog">
         Continue
       </message>
       <message name="IDS_NOTIFICATION_PERMISSION_RATIONALE_REJECT_BUTTON_TEXT" desc="The text of the negative button on the notification permission prompt dialog">
         No thanks
+      </message>
+      <message name="IDS_NOTIFICATION_PERMISSION_RATIONALE_CONTENT_DESCRIPTION" desc="The content description for the notification permission rationale bottom sheet. Read as accessibility string when tapping on the bottom sheet.">
+        Notification permission flow
+      </message>
+      <message name="IDS_NOTIFICATION_PERMISSION_RATIONALE_OPENED_FULL" desc="The accessibility string read when the notification permission rationale bottom sheet is fully opened.">
+        Notification permission flow opened at full height
+      </message>
+      <message name="IDS_NOTIFICATION_PERMISSION_RATIONALE_CLOSED_DESCRIPTION" desc="The accessibility string read when the notification permission rationale bottom sheet is closed.">
+        Notification permission flow closed
       </message>
 
       <!-- Get Image Descriptions -->
@@ -5621,10 +5673,29 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
       <message name="IDS_PASSWORD_EDIT_DIALOG_UNSYNCED_FOOTER" desc="Footer for a dialog which allows users to see and edit passwords while saving/updating a new credential. Displayed for users who are not syncing passwords.">
         Passwords are saved to Password Manager on this device
       </message>
-
+      <message name="IDS_PASSWORD_MANAGER_DROPDOWN_BUTTON_DESCRIPTION" desc="This is a description that will be used for the TalkBack to describe the button with the down arrow that opens a dropdown with a list of items.">
+        Select from the dropdown list
+      </message>
       <!-- Price tracking strings -->
       <message name="IDS_PRICE_DROP_SPOTTED_IPH" desc="This text appears in the IPH when a user opens a new tab page and an item in any of their open tabs has a price drop.">
         Price drop spotted
+      </message>
+
+      <!-- Restore Custom Tab strings -->
+      <message name="IDS_RESTORE_CUSTOM_TAB_TITLE" desc="Appears in pop-up message title when the previous Custom Tab session a user engaged with can be restored.">
+        Resume your last task?
+      </message>
+      <message name="IDS_RESTORE_CUSTOM_TAB_DESCRIPTION" desc="Appears in pop-up message description when the previous Custom Tab session a user engaged with can be restored and in pop-up which gives the option to undo that restoration.">
+        Easily continue where you left off
+      </message>
+      <message name="IDS_RESTORE_CUSTOM_TAB_BUTTON_TEXT" desc="Appears as pop-up message button text to direct the user to restore a previously engaged with Custom Tab session.">
+        Restore
+      </message>
+      <message name="IDS_UNDO_RESTORATION_TITLE" desc="Appears in pop-up message title when a Custom Tab session is restored, giving the user the option to undo the restoration.">
+        Task resumed
+      </message>
+      <message name="IDS_UNDO_RESTORATION_BUTTON_TEXT" desc="Appears in pop-up message button text when a Custom Tab session is restored, giving the user the option to undo the restoration.">
+        Undo
       </message>
     </messages>
   </release>

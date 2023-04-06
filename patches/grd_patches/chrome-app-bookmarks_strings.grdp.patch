@@ -1,5 +1,5 @@
 diff --git a/chrome/app/bookmarks_strings.grdp b/chrome/app/bookmarks_strings.grdp
-index 8bf7ea1817763..b90323031c244 100644
+index 8bf7ea1817763bfd05ef6d48d8b3b9320d10898f..b90323031c244f9e7e4adcceae2b1079429f0ab8 100644
 --- a/chrome/app/bookmarks_strings.grdp
 +++ b/chrome/app/bookmarks_strings.grdp
 @@ -2,8 +2,8 @@

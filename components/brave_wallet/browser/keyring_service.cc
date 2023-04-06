@@ -312,12 +312,13 @@ void KeyringService::MigrateObsoleteProfilePrefs(PrefService* prefs) {
   }
 
   // Moving hardware part under default keyring.
-  DictionaryPrefUpdate update(prefs, kBraveWalletKeyrings);
-  auto* obsolete = update->FindDictKey(kHardwareAccounts);
+  ScopedDictPrefUpdate update(prefs, kBraveWalletKeyrings);
+  auto* obsolete = update->FindDict(kHardwareAccounts);
   if (obsolete) {
-    SetPrefForKeyring(prefs, kHardwareAccounts, obsolete->Clone(),
+    SetPrefForKeyring(prefs, kHardwareAccounts, 
+                      base::Value(obsolete->Clone()),
                       mojom::kDefaultKeyringId);
-    update->RemovePath(kHardwareAccounts);
+    update->Remove(kHardwareAccounts);
   }
 }
 
@@ -332,7 +333,7 @@ bool KeyringService::HasPrefForKeyring(const PrefService& prefs,
 std::vector<std::string> KeyringService::GetAvailableKeyringsFromPrefs(
     PrefService* prefs) {
   DCHECK(prefs);
-  const auto& keyrings_pref = prefs->GetDictionary(kBraveWalletKeyrings)->GetDict();
+  const auto& keyrings_pref = prefs->GetDict(kBraveWalletKeyrings);
   std::vector<std::string> keyrings;
   for (const auto&& [key, value] : keyrings_pref) {
     keyrings.push_back(key);
@@ -344,7 +345,7 @@ std::vector<std::string> KeyringService::GetAvailableKeyringsFromPrefs(
 const base::Value* KeyringService::GetPrefForKeyring(const PrefService& prefs,
                                                      const std::string& key,
                                                      const std::string& id) {
-  const auto& keyrings_pref = prefs.GetDictionary(kBraveWalletKeyrings)->GetDict();
+  const auto& keyrings_pref = prefs.GetDict(kBraveWalletKeyrings);
   const base::Value::Dict* keyring_dict = keyrings_pref.FindDict(id);
   if (!keyring_dict)
     return nullptr;
@@ -356,20 +357,10 @@ const base::Value* KeyringService::GetPrefForKeyring(const PrefService& prefs,
 base::Value::Dict& KeyringService::GetPrefForKeyringUpdate(
     PrefService* prefs,
     const std::string& key,
-    const std::string& id) {
+    const std::string& keyring_id) {
   DCHECK(prefs);
-  DictionaryPrefUpdate update(prefs, kBraveWalletKeyrings);
-  base::Value* keyrings_pref = update.Get();
-  DCHECK(keyrings_pref);
-  base::Value* keyring_dict = keyrings_pref->FindKey(id);
-  if (!keyring_dict)
-    keyring_dict =
-        keyrings_pref->SetKey(id, base::Value(base::Value::Type::DICTIONARY));
-  base::Value* pref = keyring_dict->FindKey(key);
-  if (!pref)
-    pref =
-        keyring_dict->SetKey(key, base::Value(base::Value::Type::DICTIONARY));
-  return pref->GetDict();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletKeyrings);
+  return *update->EnsureDict(keyring_id)->EnsureDict(key);
 }
 
 // static
@@ -378,18 +369,8 @@ void KeyringService::SetPrefForKeyring(PrefService* prefs,
                                        base::Value value,
                                        const std::string& id) {
   DCHECK(prefs);
-  DictionaryPrefUpdate update(prefs, kBraveWalletKeyrings);
-  base::Value* keyrings_pref = update.Get();
-  DCHECK(keyrings_pref);
-  if (!keyrings_pref->FindKey(id)) {
-    keyrings_pref->SetKey(id, base::Value(base::Value::Type::DICTIONARY));
-  }
-
-  base::Value* keyring_dict = keyrings_pref->FindKey(id);
-  if (!keyring_dict)
-    return;
-
-  keyring_dict->SetKey(key, std::move(value));
+  ScopedDictPrefUpdate update(prefs, kBraveWalletKeyrings);
+  update->EnsureDict(id)->Set(key, std::move(value));
 }
 
 // static

@@ -1,18 +1,14 @@
-// Copyright 2015 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+#include "build/build_config.h"
 
+#if BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/ui/passwords/passwords_model_delegate.h"
-
-#include "chrome/browser/ui/passwords/manage_passwords_ui_controller.h"
-
 base::WeakPtr<PasswordsModelDelegate>
 PasswordsModelDelegateFromWebContents(content::WebContents* web_contents) {
-  DCHECK(web_contents);
-#if !BUILDFLAG(IS_ANDROID)
-  return ManagePasswordsUIController::FromWebContents(web_contents)->
-      GetModelDelegateProxy();
-#else
   return nullptr;
-#endif
 }
+
+#else
+
+#include "src/chrome/browser/ui/passwords/passwords_model_delegate.cc"
+
+#endif

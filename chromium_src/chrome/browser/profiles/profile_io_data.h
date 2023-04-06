@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_CHROMIUM_SRC_CHROME_BROWSER_PROFILES_PROFILE_IO_DATA_H_
-#define BRAVE_CHROMIUM_SRC_CHROME_BROWSER_PROFILES_PROFILE_IO_DATA_H_
+#ifndef MISES_CHROMIUM_SRC_CHROME_BROWSER_PROFILES_PROFILE_IO_DATA_H_
+#define MISES_CHROMIUM_SRC_CHROME_BROWSER_PROFILES_PROFILE_IO_DATA_H_
 
 #include <string>
 #include "url/gurl.h"
@@ -22,4 +22,4 @@
 #undef IsHandledURL
 #undef IsHandledProtocol
 
-#endif  // BRAVE_CHROMIUM_SRC_CHROME_BROWSER_PROFILES_PROFILE_IO_DATA_H_
+#endif  // MISES_CHROMIUM_SRC_CHROME_BROWSER_PROFILES_PROFILE_IO_DATA_H_

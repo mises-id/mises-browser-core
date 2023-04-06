@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabManagementDelegateImpl.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabManagementDelegateImpl.java
-index fa55a5eba614f0068e00cab3989492fd7174216b..5a08198102ea629a6c786d2713184806ebbf38bf 100644
+index f2f5833930bcd9a4f047f0360d1ab91612a2c6a5..2ad389818241f772d564038d75a125a64ac06bda 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabManagementDelegateImpl.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabManagementDelegateImpl.java
-@@ -42,6 +42,8 @@ import org.chromium.components.browser_ui.widget.scrim.ScrimCoordinator;
+@@ -45,6 +45,8 @@ import org.chromium.components.browser_ui.widget.scrim.ScrimCoordinator;
  import org.chromium.ui.modaldialog.ModalDialogManager;
  import org.chromium.ui.resources.dynamics.DynamicResourceLoader;
  
@@ -11,7 +11,7 @@ index fa55a5eba614f0068e00cab3989492fd7174216b..5a08198102ea629a6c786d2713184806
  /**
   * Impl class that will resolve components for tab management.
   */
-@@ -75,14 +77,18 @@ public class TabManagementDelegateImpl implements TabManagementDelegate {
+@@ -80,14 +82,18 @@ public class TabManagementDelegateImpl implements TabManagementDelegate {
                      "Downloaded_Enabled");
          }
  
@@ -31,6 +31,6 @@ index fa55a5eba614f0068e00cab3989492fd7174216b..5a08198102ea629a6c786d2713184806
 -                        ? TabListCoordinator.TabListMode.LIST
 -                        : TabListCoordinator.TabListMode.GRID,
 +                mode,
-                 rootView, dynamicResourceLoaderSupplier, snackbarManager, modalDialogManager);
+                 rootView, dynamicResourceLoaderSupplier, snackbarManager, modalDialogManager,
+                 incognitoReauthControllerSupplier, backPressManager);
      }
- 

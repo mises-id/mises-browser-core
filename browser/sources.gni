@@ -128,16 +128,20 @@ if (is_android) {
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
     "policy/policy_path_parser_linux.cc",
+    "//components/payments/content/payment_request_web_contents_manager.cc",
+    "safe_browsing/extension_telemetry/extension_telemetry_service_factory.cc",
+    "safe_browsing/extension_telemetry/tabs_execute_script_signal.cc",
+    "safe_browsing/extension_telemetry/remote_host_contacted_signal.cc",
 
   ]
 
   mises_chrome_browser_deps += [
     "//mises/browser/android:android_browser_process",
     "//mises/build/android:jni_headers",
-   "//mises/android/features/mises:jni_headers",
+    "//mises/android/features/mises:jni_headers",
     "//chrome/android:jni_headers",
     "//components/sync_device_info",
-     "//chrome/utility:utility",
+    "//chrome/utility:utility",
   ]
 } else {
   mises_chrome_browser_sources += [
@@ -208,8 +212,6 @@ if (is_android) {
     "enterprise/connectors/analysis/content_analysis_delegate.h",
     "enterprise/connectors/analysis/files_request_handler.cc",
     "enterprise/connectors/analysis/files_request_handler.h",
-    "enterprise/connectors/analysis/local_binary_upload_service.cc",
-    "enterprise/connectors/analysis/local_binary_upload_service.h",
     "enterprise/connectors/analysis/page_print_analysis_request.cc",
     "enterprise/connectors/analysis/page_print_analysis_request.h",
     "enterprise/connectors/analysis/request_handler_base.cc",
@@ -221,7 +223,6 @@ if (is_android) {
     "banners/app_banner_manager_desktop.cc",
     "banners/app_banner_manager_desktop.h",
     "metrics/incognito_observer_desktop.cc",
-    #"process_singleton_posix.cc",
     "policy/chrome_browser_cloud_management_controller_desktop.cc",
     "policy/chrome_browser_cloud_management_controller_desktop.h",
     "policy/chrome_browser_cloud_management_register_watcher.cc",
@@ -236,7 +237,6 @@ if (is_android) {
     "speech/speech_recognition_service_factory.cc",
     "speech/speech_recognition_service_factory.h",
     "accessibility/live_caption_controller_factory.cc",
-    "accessibility/live_caption_unavailability_notifier.cc",
     "speech/speech_recognition_client_browser_interface_factory.cc",
     "speech/speech_recognition_client_browser_interface.cc",
     "accessibility/live_caption_speech_recognition_host.cc",
@@ -260,10 +260,18 @@ if (is_android) {
     "hid/chrome_hid_delegate.h",
     "first_run/upgrade_util.cc",
     "autocomplete/tab_matcher_desktop.cc",
-    
+    "platform_util.cc",
+
+    "hid/hid_system_tray_icon.cc",
+    "lifetime/application_lifetime_desktop.cc",
+    "metrics/power/process_monitor.cc",
+    "metrics/power/power_metrics_reporter.cc",
+    "profiles/delete_profile_helper.cc",
+    "accessibility/live_translate_controller_factory.cc",
   ]
   mises_chrome_browser_exception_deps += [
     "//components/live_caption",
+    "//components/live_caption:live_translate",
     "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",
   ]
   mises_chrome_browser_exception_allow_circular_includes_from += [
@@ -279,5 +287,5 @@ mises_chrome_browser_sources += mises_browser_ipfs_sources
 mises_chrome_browser_deps += mises_browser_ipfs_deps
 
 #web3sites_safe
-mises_chrome_browser_sources += mises_browser_web3sites_safe_sources
-mises_chrome_browser_deps += mises_browser_web3sites_safe_deps
+#mises_chrome_browser_sources += mises_browser_web3sites_safe_sources
+#mises_chrome_browser_deps += mises_browser_web3sites_safe_deps

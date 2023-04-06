@@ -7,13 +7,14 @@
 
 #include <string>
 
-#include "base/bind.h"
+#include "base/functional/bind.h"
 #include "base/command_line.h"
 #include "base/feature_list.h"
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/extensions/extension_service.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/common/pref_names.h"
+#include "mises/components/constants/pref_names.h"
 #include "components/grit/mises_components_resources.h"
 #include "components/prefs/pref_change_registrar.h"
 #include "components/prefs/pref_service.h"
@@ -34,6 +35,13 @@
 
 #if BUILDFLAG(IS_ANDROID)
 #include "base/android/sys_utils.h"
+#include "chrome/browser/android/tab_android.h"
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#include "content/public/browser/web_contents.h"
+#include "chrome/browser/profiles/profile.h"
+#include "chrome/browser/android/app_menu_bridge.h"
+
 #endif
 using extensions::mojom::ManifestLocation;
 
@@ -102,18 +110,12 @@ void MisesComponentLoader::AddDefaultComponentExtensions(
     bool skip_session_components) {
   ComponentLoader::AddDefaultComponentExtensions(skip_session_components);
 
-  ExtensionRegistry::Get(profile_)->AddObserver(this);
-
-
-
-
-
-
 }
+
 void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_context,
                                   const Extension* extension) {
 
-    LOG(INFO) << "OnExtensionLoaded " << extension->id();
+    LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionLoaded " << extension->id();
 
 }
 
@@ -134,21 +136,32 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
           extension, settings_namespace::LOCAL,
         base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
         );
-
-
     }
+
+#if BUILDFLAG(IS_ANDROID)
+  //refresh extension menu icon
+  AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(nullptr);
+  TabModelList::TabModelVector tab_model_vector = TabModelList::models();
+  for (TabModel* tab_model : tab_model_vector) {
+    TabAndroid* tab = tab_model->GetTabAt(0);
+    if (tab && tab->web_contents()) {
+      AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(tab->web_contents());
+    }
+  }
+#endif
+
 }
 void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* storage) {
-  LOG(INFO) << "AsyncRunWithMetamaskStorage";
+  LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithMetamaskStorage";
   metamaskValue = base::Value(storage->Get().PassSettings());
-  LOG(INFO) << "Got Metamask Storage";
+  LOG(INFO) << "[Mises] Got Metamask Storage";
   base::Value::Dict *data = metamaskValue.GetDict().FindDict("data");
   if (data) {
     base::Value::Dict *NetworkController = data->FindDict("NetworkController");
     if (NetworkController) {
       base::Value::Dict *provider = NetworkController->FindDict("provider");
       if (provider) {
-        LOG(INFO) << "Got Metamask Storage provider" << *provider;
+        LOG(INFO) << "[Mises] Got Metamask Storage provider" << *provider;
         std::string *provider_type = provider->FindString("type");
         if (provider_type && *provider_type == "MisesTestNet") {
           provider->Set("chainId", "0x1");
@@ -173,9 +186,9 @@ void MisesComponentLoader::MetamaskMigrationDone() {
 
 }
 void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
-  LOG(INFO) << "AsyncRunWithMiseswalletStorage";
+  LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithMiseswalletStorage";
   if (storage->GetBytesInUse("migrated") == 0){
-    LOG(INFO) << "DoMigrate";
+    LOG(INFO) << "[Mises] DoMigrate";
     storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "migrated", metamaskValue);
   }
 
@@ -191,25 +204,27 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 #if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::LogEventFromJni("install_extension", "id", extension->id(), "is_update", is_update?"1":"0");
 #endif
-      LOG(INFO) << "OnExtensionInstalled ";
+    LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionInstalled";
   }
 
   if(extension && extension->location() == ManifestLocation::kComponent) {
+    LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionInstalled " << extension->id();
     if (extension->id() == mises_extension_id ) {
-        extensions::ExtensionSystem* system = extensions::ExtensionSystem::Get(profile_);
-        if (system) {
-          extensions::ExtensionService* service = system->extension_service();
-          if (service) {
-            //reload mises extension after install, this fix the multi workservice bug when extension updated
-            service->ReloadExtension(mises_extension_id);
-          }
+      extensions::ExtensionSystem* system = extensions::ExtensionSystem::Get(profile_);
+      if (system) {
+        extensions::ExtensionService* service = system->extension_service();
+        if (service) {
+          //reload mises extension after install, this fix the multi workservice bug when extension updated
+          LOG(INFO) << "[Mises] mises extension reload";
+          service->ReloadExtension(mises_extension_id);
         }
+      }
 
     }
   }
 
 
-};
+}
 void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
                                       UninstallReason reason) {
@@ -219,23 +234,39 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 #if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::LogEventFromJni("uninstall_extension", "id", extension->id());
 #endif
-      LOG(INFO) << "OnExtensionUninstalled ";
+    LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionUninstalled";
+  }
+  if(extension && extension->location() == ManifestLocation::kComponent) {
+     if (extension->id() == metamask_extension_id ) {
+        //disable preinstall metamask
+        if (profile_prefs_->FindPreference(kPreinstallMetamaskEnabled)) {
+          profile_prefs_->SetBoolean(kPreinstallMetamaskEnabled, false);
+        }
+     }
   }
 
 
-};
+}
 
 
 void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
+  LOG(INFO) << "[Mises] MisesComponentLoader::AddMetamaskExtensionOnStartup ";
+
+  ExtensionRegistry::Get(profile_)->AddObserver(this);
 
   extensions::ExtensionRegistry* registry =
       extensions::ExtensionRegistry::Get(profile_);
   const Extension* metamask_extension = registry->GetInstalledExtension(metamask_extension_id);
   if (!metamask_extension) {
-    base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
-    metamask_extension_path =
-        metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
-    Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+      if (!profile_prefs_->FindPreference(kPreinstallMetamaskEnabled) || 
+        profile_prefs_->GetBoolean(kPreinstallMetamaskEnabled)) {
+
+        base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
+        metamask_extension_path =
+            metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
+        Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+       
+      }
   }
 
   const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);

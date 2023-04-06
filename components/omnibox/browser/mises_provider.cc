@@ -47,7 +47,7 @@ void MisesProvider::Start(const AutocompleteInput& input,
   if (!prefs) {
     return;
   }
-    if (input.focus_type() != OmniboxFocusType::DEFAULT || input.text().empty())
+    if (input.focus_type() != metrics::OmniboxFocusType::INTERACTION_DEFAULT || input.text().empty())
       return;
     if ((input.type() == metrics::OmniboxInputType::EMPTY))
       return;
@@ -57,8 +57,8 @@ void MisesProvider::Start(const AutocompleteInput& input,
 
 void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
   const std::string input_text = base::ToLowerASCII(base::UTF16ToUTF8(input.text()));
-  LOG(INFO) << "Cg MisesProvider::Start find input_text="
-      << input_text;
+  // LOG(INFO) << "Cg MisesProvider::Start find input_text="
+  //     << input_text;
   ACMatches mises_matches;
    static const std::u16string kScheme(u"https://");
   for (auto& mises_match : mises_matches_ ) {
@@ -220,9 +220,7 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
     }
     LOG(INFO) << "Cg MisesProvider::DoAutocomplete set_new_top_sites";
 
-    auto data_list = json_value->GetListDeprecated();
-
-    for (const auto& data : data_list) {
+    for (const auto& data : json_value->GetList()) {
         //const std::string* title = data.FindStringKey("title");
         const std::string* url = data.FindStringKey("url");
         const std::string* logo = data.FindStringKey("logo");
