@@ -1,0 +1,61 @@
+##
+## Upstream tests to disable
+##
+## When adding a new filter to this list, please include a short description of
+## why the filter is required and create an associated tracking issue.
+##
+
+# These tests fail because we disable adding Open Search engines by default.
+# See https://github.com/brave/brave-browser/issues/14496
+# We short circuit the SearchEngineTabHelper::PageHasOpenSearchDescriptionDocument
+# via SearchEngineTabHelper::IsFormSubmit in chromium_src override.
+-PersistentBackground/ExtensionWebRequestApiTestWithContextType.WebRequestTestOSDD/0
+-ServiceWorker/ExtensionWebRequestApiTestWithContextType.WebRequestTestOSDD/0
+
+-AccessCodeCastHandlerBrowserTest.*
+-AdsPageLoadMetricsObserverBrowserTest.*
+-BluetoothLowEnergyApiTest.*
+-CaptureHandleBrowserTest.*
+-ConditionalFocusBrowserTest.*
+-ContextMenuIncognitoFilterBrowserTest.*
+-DomainReliabilityPrefetchProxyBrowserTest.*
+-ExtensionDialogTest.*
+-ExtensionStartupTest.*
+-ExternalProtocolHandlerSandboxBrowserTest.*
+-IndividualNetworkContextsPrefetchProxyBrowserTest.*
+-LayoutInstabilityTest.*
+-MultiscreenWindowPlacementPermissionContextTest.IsExtendedCrossOriginAllow
+-MultiscreenWindowPlacementPermissionContextTest.IsExtendedCrossOriginDeny
+-MultiscreenWindowPlacementPermissionContextTest.IsExtendedSameOriginAllow
+-NewTabUIBrowserTest.*
+-NewTabUIProcessPerTabTest.*
+-OzonePlatformTest.*
+-PolicyTestPrefetchProxyBrowserTest.*
+-PolicyTestSetTimeoutWithout1MsClamp.DisablePolicy
+-PPAPINaClPNaClNonSfiTest.*
+-PrefetchProxyBrowserTest.*
+-PrefetchProxyWithDecoyRequestsBrowserTest.*
+-PrefetchProxyWithNSPBrowserTest.*
+-PrintBrowserTest.*
+-ProfileMainNetworkContext/NetworkContextConfigurationBrowserTest.Hsts/*
+-ProbingAndNSPEnabledPrefetchProxyBrowserTest.*
+-ProbingEnabled_CanaryOff_HTTPHead_PrefetchProxyBrowserTest.*
+-ProbingEnabled_CanaryOn_BothCanaryGood_PrefetchProxyBrowserTest.*
+-ProbingEnabled_CanaryOn_TLSCanaryBad_DNSCanaryBad_PrefetchProxyBrowserTest.*
+-ProbingEnabled_CanaryOn_TLSCanaryBad_DNSCanaryGood_PrefetchProxyBrowserTest.*
+-ProbingEnabled_CanaryOn_TLSCanaryBadDisabled_DNSCanaryGood_PrefetchProxyBrowserTest.*
+-ProbingEnabled_CanaryOn_TLSCanaryGood_DNSCanaryBad_PrefetchProxyBrowserTest.*
+-ProcessMemoryMetricsEmitterTest.*
+-PushSubscriptionWithExpirationTimeTest.*
+-SingleProcessBrowserTest.*
+-SpeculationNonPrivatePrefetchesPrefetchProxyTest.*
+-SpeculationPrefetchProxyTest.*
+-SpellingOptionsSubMenuObserverTest.*
+-SSLReportingPrefetchProxyBrowserTest.*
+-TabCaptureApiTest.*
+-WebAppIntegrationBrowserTestMacWinLinux.*
+-WebAppOpaqueBrowserFrameViewTest.*
+-WebAuthnCableSecondFactor.*
+-WebRtcBrowserTest.*
+-WebRtcDisableEncryptionFlagBrowserTest.*
+-ZeroCacheTimePrefetchProxyBrowserTest.*
