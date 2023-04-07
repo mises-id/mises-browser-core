@@ -326,7 +326,7 @@ public class PersonalizeResults {
     private static final String LEAP_WALLET_STYLES = "'.mt-16.items-start.justify-center .flex.flex-row{flex-direction: column}'";
 
   // talisman extension wallet 
-    private static final String TALISMAN_WALLET_STYLES = "'.inline-grid.grid-cols-2.gap-12{grid-template-columns: auto} .transition-colors.text-body.flex.flex-col.justify-between.rounded{width: 100%} .ktDzRo{max-width: 100%} .itkJEU > section > .hflex > .content{width: 100vw}'";
+    private static final String TALISMAN_WALLET_STYLES = "'.inline-grid.grid-cols-2.gap-12{grid-template-columns: auto} .transition-colors.text-body.flex.flex-col.justify-between.rounded{width: 100%} .ktDzRo{max-width: 100%} .itkJEU > section > .hflex > .content{width: 100vw} img.absolute.left-12{width: 50px; top: 88px} .bxBcOW{top: 2.4rem}'";
   // yoroi extension wallet 
     private static final String YOROI_WALLET_STYLES = "'.TermsOfUseText_terms.TermsOfUseText_fixedHeight{max-height: calc(100vh - 484px)} .TermsOfUseForm_component .TermsOfUseForm_checkbox{flex-direction: column;align-items: start} .MainCards_heroCardsList{overflow-x: auto;} .YoroiModern .WalletAdd_component .WalletAdd_heroCardsItemLink, .YoroiRevamp .WalletAdd_component .WalletAdd_heroCardsItemLink{max-width: 100%;} .css-u2ag5c{min-width: 90vw}'";
   // dioxied extension wallet 
