@@ -174,6 +174,42 @@ public class PersonalizeResults {
        if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://lpfcbjknijpeeillifnkikgncikgfhdo")) {
          tab.getWebContents().evaluateJavaScript(RenderStyleContent(NAMI_EXTENSION_STYLES), null);
        }
+       // bitski
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://feejiigddaafeojfddjjlmfkabimkell")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(BITSKI_STYLES), null);
+       }
+       // xdifi
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://hmeobnfnfcmdkdcmlblgagmfpfboieaf")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(XDIFI_STYLES), null);
+       }
+       // ever wallet
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://cgeeodpfagjceefieflmdfphplkenlfk")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(EVER_WALLET_STYLES), null);
+       }
+       // leap cosmos wallet
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://fcfcfllfndlomdhbehjjcoimbgofdncg")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(LEAP_WALLET_STYLES), null);
+       }
+       // talisman-polkadot wallet
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://fijngjgcjhjmmpcmkeiomlglpeiijkld")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(TALISMAN_WALLET_STYLES), null);
+       }
+       // talisman-polkadot wallet
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ffnbelfdoeiohenkjibnmadjiehjhajb")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(YOROI_WALLET_STYLES), null);
+       }
+       // dioxied wallet
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ghdejoclpabnhidemhnfagafafcmgcfm")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(DIOXIED_WALLET_STYLES), null);
+       }
+       // theta wallet
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ckelpdlfgochnkdgikcgbimdcfgpkhgk")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(THETE_WALLET_STYLES), null);
+       }
+       // fetch wallet
+       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ellkdbaphhldpeajbepobaecooaoafpg")) {
+         tab.getWebContents().evaluateJavaScript(RenderStyleContent(FETCG_EXTENSION_STYLES), null);
+       }
     }
 
     private static String RenderStyleContent(String STYLES) {
@@ -201,7 +237,9 @@ public class PersonalizeResults {
    private static final String TRONLINK_EXTENSION_STYLES = "'#root, body, html {width:100vw} body, html {overflow:auto;} .accountsPage .accountInfo,.pageContainer {width:100vw}'";
 
    // keplr 
-   private static final String KEPLR_EXTENSION_STYLES = "'html,body,#app {width:100vw} .container-3Ms4OvCWNwJapzrn-T5Uyd {margin-left:0;width:100vw} .container-3Ms4OvCWNwJapzrn-T5Uyd.large {margin-left:0;width:100vw} .background-xbpI23q2_pUFQsakAulEU {width:100vw}'";
+   private static final String KEPLR_EXTENSION_STYLES = "'html,body,#app {width:100vw} .container-3Ms4OvCWNwJapzrn-T5Uyd {margin-left:0;width:90vw} .container-3Ms4OvCWNwJapzrn-T5Uyd.large {margin-left:0;width:100vw} .background-xbpI23q2_pUFQsakAulEU {width:100vw}'";
+   // keplr 
+   private static final String FETCG_EXTENSION_STYLES = "'html,body,#app {width:100vw} .container-3Ms4OvCWNwJapzrn-T5Uyd {margin-left:0;width:90vw} .container-3Ms4OvCWNwJapzrn-T5Uyd.large {margin-left:0;width:100vw} .background-xbpI23q2_pUFQsakAulEU {width:100vw}'";
 
    // hulio 
    private static final String HULIO_EXTENSION_STYLES = "'#interaction {padding:unset}'";
@@ -225,7 +263,7 @@ public class PersonalizeResults {
    private static final String EZDEFI_EXTENSION_STYLES = "'#root {height:auto!important} .privacy-policy-page .confirmModal .content-area {height:calc(100vh - 245px);} .container {width:100vw}'";
 
    // lilico 
-   private static final String LILICO_EXTENSION_STYLES = "'body .h-full{width:100vw!important;height:100vh!important}body .css-8exq99 {display: block} body .css-ukvzfb {width: 100vw} body .css-ff30gh {padding: 24px 24px 32px} body .css-168mpgf,body .css-11ickte,body .css-qbxbh8,body .css-r0k0t6{width:95vw;height:auto;} body .css-18xmly0 {width: 100%} body .css-rgv6dd {width:95vw;height:auto;} body .css-105skla{width:95vw;height:auto;} body .css-1uez6az{width:auto;} body .css-1qjqn4b{width:95vw;height:auto;}body .css-qxmw80{font-size:0.8rem} .css-1aiq4ho,.css-19gyshh{width: 100vw} .css-tlszgr{width: 100%}'";
+   private static final String LILICO_EXTENSION_STYLES = "'body .h-full{width:100vw!important;height:100vh!important}body .css-8exq99 {display: block;padding-left: 20px;padding-right:20px} body .css-ukvzfb {width: 100vw;height: auto} body .css-ff30gh {padding: 24px 24px 32px} body .css-168mpgf,body .css-11ickte,body .css-qbxbh8,body .css-r0k0t6{width:95vw;height:auto;} body .css-18xmly0 {width: 100%} body .css-rgv6dd {width:95vw;height:auto;} body .css-105skla{width:95vw;height:auto;} body .css-1uez6az{width:auto;} body .css-1qjqn4b{width:95vw;height:auto;}body .css-qxmw80{font-size:0.8rem} .css-1aiq4ho,.css-19gyshh{width: 100vw} .css-tlszgr{width: 100%}'";
 
    // xdefi 
    private static final String XDEFI_EXTENSION_STYLES = "'.gsrcgK,.index-module__wrapper___W2wCS .index-module__buttonWrapper___TqFk5  {flex-direction: column;align-items: center;} .index-module__onboarding___XQLfD .index-module__contentContainer___Iujo0 .index-module__body___grFff {width: 100vw;min-width:100vw;padding: 0 20px} .jeVaVP{min-width:100%} .izXqrv{width:90vw}'";
@@ -269,12 +307,33 @@ public class PersonalizeResults {
    // coin 98
    private static final String COIN98_EXTENSION_STYLES = "'.popup-chain-selection{height: 93vh}'";
 
-    // metamask extension wallet 
+  // metamask extension wallet 
    private static final String METAMASK_EXTENSION_STYLES = "'.select-action__select-buttons {display:flex; flex-direction:column;}.select-action__select-button {width:100vw;margin-left:0;}html,body{width:100% !important;height:100% !important}'";
 
-    // nami extension wallet 
+  // nami extension wallet 
    private static final String NAMI_EXTENSION_STYLES = "'.css-189koq5 {overflow: auto; padding: 0} .css-162046j{max-width: 100vw} .internalPopup .css-u0vho7{min-height: calc(100vh - 50px)}'";
 
+  // bitski extension wallet 
+   private static final String BITSKI_STYLES = "'.h-screen {height: 94vh!important}'";
+
+   // xdifi extension wallet 
+  private static final String XDIFI_STYLES = "'.eCVsxE,.bmgqC {flex-direction: column} .hOUSGf,.khrviK,{max-width: 100vw;} .bmgqC{align-items: center;} .iXKWaq{max-width: 50vw;}'";
+  
+  // ever extension wallet 
+    private static final String EVER_WALLET_STYLES = "'.slide--landing .slide__content{max-width: 100%;}'";
+  
+  // leap extension wallet 
+    private static final String LEAP_WALLET_STYLES = "'.mt-16.items-start.justify-center .flex.flex-row{flex-direction: column}'";
+
+  // talisman extension wallet 
+    private static final String TALISMAN_WALLET_STYLES = "'.inline-grid.grid-cols-2.gap-12{grid-template-columns: auto} .transition-colors.text-body.flex.flex-col.justify-between.rounded{width: 100%} .ktDzRo{max-width: 100%} .itkJEU > section > .hflex > .content{width: 100vw}'";
+  // yoroi extension wallet 
+    private static final String YOROI_WALLET_STYLES = "'.TermsOfUseText_terms.TermsOfUseText_fixedHeight{max-height: calc(100vh - 484px)} .TermsOfUseForm_component .TermsOfUseForm_checkbox{flex-direction: column;align-items: start} .MainCards_heroCardsList{overflow-x: auto;} .YoroiModern .WalletAdd_component .WalletAdd_heroCardsItemLink, .YoroiRevamp .WalletAdd_component .WalletAdd_heroCardsItemLink{max-width: 100%;} .css-u2ag5c{min-width: 90vw}'";
+  // dioxied extension wallet 
+    private static final String DIOXIED_WALLET_STYLES = "'.layout-with-header-content{overflow-y: auto}'";
+
+  // thete extension wallet 
+    private static final String THETE_WALLET_STYLES = "'.OptionsPage__option-cards{flex-direction: column; gap: 10px;} #root, body{overflow-y: auto;}'";
     private static final String MAKE_USER_AGENT_WRITABLE = ""
 +"(function() {"
 +"    function createProperty(value) {"
