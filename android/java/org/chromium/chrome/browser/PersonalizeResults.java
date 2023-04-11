@@ -311,7 +311,7 @@ public class PersonalizeResults {
    private static final String METAMASK_EXTENSION_STYLES = "'.select-action__select-buttons {display:flex; flex-direction:column;}.select-action__select-button {width:100vw;margin-left:0;}html,body{width:100% !important;height:100% !important}'";
 
   // nami extension wallet 
-   private static final String NAMI_EXTENSION_STYLES = "'.css-189koq5 {overflow: auto; padding: 0} .css-162046j{max-width: 100vw} .internalPopup .css-u0vho7{min-height: calc(100vh - 50px)}'";
+   private static final String NAMI_EXTENSION_STYLES = "'.css-189koq5 {overflow: auto; padding: 0} .css-162046j{max-width: 100vw} #internalPopup .css-u0vho7{min-height: calc(100vh - 50px)}'";
 
   // bitski extension wallet 
    private static final String BITSKI_STYLES = "'.h-screen {height: 94vh!important}'";
