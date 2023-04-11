@@ -1,16 +1,92 @@
 diff --git a/extensions/BUILD.gn b/extensions/BUILD.gn
-index eb5b6dc41f187b7b82257aa5c7588f498861e771..180b052c2c12856ba6759585226960c5c7c5a2ba 100644
+index eb5b6dc41f187b7b82257aa5c7588f498861e771..13dcb6bc39c772e58e6fc5b68f5af4cab45f79d7 100644
 --- a/extensions/BUILD.gn
 +++ b/extensions/BUILD.gn
-@@ -240,6 +240,7 @@ repack("shell_and_test_pak") {
+@@ -11,6 +11,10 @@ import("//ui/base/ui_features.gni")
+ 
+ assert(enable_extensions)
+ 
++if (is_android) {
++  import("//build/config/android/rules.gni")
++}
++
+ if (is_component_build) {
+   component("extensions") {
+     visibility = [
+@@ -210,14 +214,14 @@ repack("shell_and_test_pak") {
+     "$root_gen_dir/extensions/extensions_resources.pak",
+     "$root_gen_dir/extensions/shell/app_shell_resources.pak",
+     "$root_gen_dir/extensions/strings/extensions_strings_en-US.pak",
+-    "$root_gen_dir/mojo/public/js/mojo_bindings_resources.pak",
+-    "$root_gen_dir/third_party/blink/public/resources/blink_resources.pak",
+-    "$root_gen_dir/third_party/blink/public/resources/blink_scaled_resources_100_percent.pak",
+-    "$root_gen_dir/third_party/blink/public/strings/blink_strings_en-US.pak",
+-    "$root_gen_dir/ui/resources/ui_resources_100_percent.pak",
+-    "$root_gen_dir/ui/strings/app_locale_settings_en-US.pak",
+-    "$root_gen_dir/ui/strings/ax_strings_en-US.pak",
+-    "$root_gen_dir/ui/strings/ui_strings_en-US.pak",
++    #"$root_gen_dir/mojo/public/js/mojo_bindings_resources.pak",
++    #"$root_gen_dir/third_party/blink/public/resources/blink_resources.pak",
++    #"$root_gen_dir/third_party/blink/public/resources/blink_scaled_resources_100_percent.pak",
++    #"$root_gen_dir/third_party/blink/public/strings/blink_strings_en-US.pak",
++    #"$root_gen_dir/ui/resources/ui_resources_100_percent.pak",
++    #"$root_gen_dir/ui/strings/app_locale_settings_en-US.pak",
++    #"$root_gen_dir/ui/strings/ax_strings_en-US.pak",
++    #"$root_gen_dir/ui/strings/ui_strings_en-US.pak",
+   ]
+ 
+   output = "$root_out_dir/extensions_shell_and_test.pak"
+@@ -231,15 +235,16 @@ repack("shell_and_test_pak") {
+     "//device/bluetooth/strings",
+     "//extensions/shell:resources",
+     "//extensions/strings",
+-    "//mojo/public/js:resources",
+-    "//third_party/blink/public:resources",
+-    "//third_party/blink/public:scaled_resources_100_percent",
+-    "//third_party/blink/public/strings",
+-    "//ui/resources",
+-    "//ui/strings",
++    #"//mojo/public/js:resources",
++    #"//third_party/blink/public:resources",
++    #"//third_party/blink/public:scaled_resources_100_percent",
++    #"//third_party/blink/public/strings",
++    #"//ui/resources",
++    #"//ui/strings",
    ]
  }
  
-+if (!is_android) {
++if (true || !is_android) {
  test("extensions_unittests") {
    use_xvfb = use_xvfb_in_this_config
  
-@@ -290,6 +291,7 @@ test("extensions_unittests") {
+@@ -278,6 +283,26 @@ test("extensions_unittests") {
+     "//third_party/mesa_headers",
+   ]
+ 
++  if (is_android) {
++    deps -= [":extensions_resources",]
++    deps += [
++      "//base:base_java_unittest_support",
++      "//content/public/android:content_java",
++      "//content/public/browser",
++      "//gin:v8_snapshot_assets",
++      "//net",
++      "//services/data_decoder/public/cpp/android:safe_json_java",
++      "//ui/android:ui_java",
++      "//ui/base",
++      "//ui/gfx",
++    ]
++    data_deps += [
++      ":shell_and_test_pak",
++      "//third_party/mesa_headers",
++      "//ui/resources:ui_test_pak_data",
++    ]
++  }
++
+   if (is_fuchsia) {
+     # TODO(https://crbug.com/1185811): Investigate removing the requirement for
+     # job_policy_ambient_mark_vmo_exec for the sake of V8's allocator in tests.
+@@ -290,6 +315,7 @@ test("extensions_unittests") {
      ]
    }
  }

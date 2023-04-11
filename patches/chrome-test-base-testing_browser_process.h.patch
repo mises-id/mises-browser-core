@@ -1,0 +1,47 @@
+diff --git a/chrome/test/base/testing_browser_process.h b/chrome/test/base/testing_browser_process.h
+index c14a48112dd98636c35554709843f48eb1911606..07866fcee2f69a73a59d25d77a33f617edfb6e88 100644
+--- a/chrome/test/base/testing_browser_process.h
++++ b/chrome/test/base/testing_browser_process.h
+@@ -27,7 +27,7 @@
+ #include "media/media_buildflags.h"
+ #include "printing/buildflags/buildflags.h"
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+ #include "chrome/browser/upgrade_detector/build_state.h"
+ #endif
+ 
+@@ -107,7 +107,7 @@ class TestingBrowserProcess : public BrowserProcess {
+   extensions::EventRouterForwarder* extension_event_router_forwarder() override;
+   NotificationUIManager* notification_ui_manager() override;
+   NotificationPlatformBridge* notification_platform_bridge() override;
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+   IntranetRedirectDetector* intranet_redirect_detector() override;
+ #endif
+   void CreateDevToolsProtocolHandler() override;
+@@ -136,13 +136,13 @@ class TestingBrowserProcess : public BrowserProcess {
+ 
+   network_time::NetworkTimeTracker* network_time_tracker() override;
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+   gcm::GCMDriver* gcm_driver() override;
+ #endif
+   resource_coordinator::TabManager* GetTabManager() override;
+   resource_coordinator::ResourceCoordinatorParts* resource_coordinator_parts()
+       override;
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+   SerialPolicyAllowedPorts* serial_policy_allowed_ports() override;
+   HidPolicyAllowedDevices* hid_policy_allowed_devices() override;
+   HidSystemTrayIcon* hid_system_tray_icon() override;
+@@ -236,7 +236,7 @@ class TestingBrowserProcess : public BrowserProcess {
+   std::unique_ptr<resource_coordinator::ResourceCoordinatorParts>
+       resource_coordinator_parts_;
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+   std::unique_ptr<SerialPolicyAllowedPorts> serial_policy_allowed_ports_;
+   std::unique_ptr<HidPolicyAllowedDevices> hid_policy_allowed_devices_;
+   std::unique_ptr<HidSystemTrayIcon> hid_system_tray_icon_;
