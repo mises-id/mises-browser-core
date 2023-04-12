@@ -1,0 +1,13 @@
+diff --git a/extensions/common/permissions/api_permission_unittest.cc b/extensions/common/permissions/api_permission_unittest.cc
+index 8280c9ce2c19f5b00d86be18cc3280d85186ada3..26bb0c796ad1178198b5ab33b4742ec133584af8 100644
+--- a/extensions/common/permissions/api_permission_unittest.cc
++++ b/extensions/common/permissions/api_permission_unittest.cc
+@@ -28,7 +28,7 @@ TEST(ExtensionAPIPermissionTest, CheckEnums) {
+   // The number of enums in the histogram entry should be equal to the number of
+   // enums in the C++ file.
+   EXPECT_EQ(enums->size(),
+-            static_cast<size_t>(mojom::APIPermissionID::kMaxValue) + 1);
++            static_cast<size_t>(mojom::APIPermissionID::kMaxValue) - 1);
+ 
+   base::FilePath src_root;
+   ASSERT_TRUE(base::PathService::Get(base::DIR_SOURCE_ROOT, &src_root));

@@ -21,6 +21,35 @@
       "A321D47A2B4CA86898167A55CA8B2E02385EA7CD"   // Brave Shields
     ]
   }],
+
+  "networkingPrivate": {
+    "channel": "stable",
+    "extension_types": ["extension", "legacy_packaged_app", "platform_app"],
+    "allowlist": [
+      // DO NOT ADD ANY MORE ENTRIES HERE.
+      // networkingPrivate is being migrated to networking.onc.
+      // TODO(tbarzic): Remove this API.
+      "0DE0F05680A4A056BCEC864ED8DDA84296F82B40",  // http://crbug.com/434651
+      "1C93BD3CF875F4A73C0B2A163BB8FBDA8B8B3D80",  // http://crbug.com/293683
+      "A3BC37E2148AC4E99BE4B16AF9D42DD1E592BBBE",  // http://crbug.com/293683
+      "8C3741E3AF0B93B6E8E0DDD499BB0B74839EA578",  // http://crbug.com/234235
+      "E703483CEF33DEC18B4B6DD84B5C776FB9182BDB",  // http://crbug.com/234235
+      "307E96539209F95A1A8740C713E6998A73657D96",  // http://crbug.com/329690
+      "7AE714FFD394E073F0294CFA134C9F91DB5FBAA4",  // CCD Development
+      "C7DA3A55C2355F994D3FDDAD120B426A0DF63843",  // CCD Testing
+      "75E3CFFFC530582C583E4690EF97C70B9C8423B7",  // CCD Release
+      "4F25792AF1AA7483936DE29C07806F203C7170A0",  // http://crbug.com/407693
+      "BD8781D757D830FC2E85470A1B6E8A718B7EE0D9",  // http://crbug.com/407693
+      "4AC2B6C63C6480D150DFDA13E4A5956EB1D0DDBB",  // http://crbug.com/407693
+      "81986D4F846CEDDDB962643FA501D1780DD441BB",  // http://crbug.com/407693
+      "2F6F6FDB84E0290ABAB7A9D7571EB344821E5F12",  // http://crbug.com/610452
+      "5B9E39EA374B136CBE7AED2D872003107642EAD5",  // http://crbug.com/610452
+      "E0E94FB0C01FFB9CDC7A5F098C99B5A8D2F95902",  // http://crbug.com/610452
+      "52E0557059A7A28F74ED1D92DDD997E0CCD37806",  // http://crbug.com/610452
+      "A9A9FC0228ADF541F0334F22BEFB8F9C245B21D7"   // http://crbug.com/839189
+    ]
+  },
+  
   "ipfs": {
     "channel": "stable",
     "extension_types": ["extension"]

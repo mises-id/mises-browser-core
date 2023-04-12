@@ -7,11 +7,11 @@ namespace extensions{
 void ExtensionRegistrar::TerminateExtension(const ExtensionId& extension_id) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
 
-  const ExtensionId saved_extension_id = extension_id;
+  // const ExtensionId saved_extension_id = extension_id;
   LOG(INFO) << "[EXTENSIONS] Calling ExtensionRegistrar::TerminateExtension on id: " << extension_id;
   TerminateExtension_Chromium(extension_id);
 #if BUILDFLAG(IS_ANDROID)
-  ReloadExtension(saved_extension_id, LoadErrorBehavior::kQuiet);
+  // ReloadExtension(saved_extension_id, LoadErrorBehavior::kQuiet);
 #endif
 }
 

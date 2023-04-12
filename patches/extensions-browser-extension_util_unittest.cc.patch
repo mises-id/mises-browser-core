@@ -1,0 +1,14 @@
+diff --git a/extensions/browser/extension_util_unittest.cc b/extensions/browser/extension_util_unittest.cc
+index 2bf48cc28dda741d8b3a7e852c6ee380d0eca94a..48badb65de169bebc450e7bc49db1b822e6bd421 100644
+--- a/extensions/browser/extension_util_unittest.cc
++++ b/extensions/browser/extension_util_unittest.cc
+@@ -74,6 +74,9 @@ TEST(ExtensionUtilTest, ExtensionIdForSiteInstance) {
+   scoped_refptr<content::SiteInstance> extension_site_instance =
+       content::SiteInstance::CreateForURL(
+           &test_context, Extension::GetBaseURLFromExtensionId(kExtensionId1));
++          
++  EXPECT_EQ(Extension::GetBaseURLFromExtensionId(kExtensionId1),
++            extension_site_instance->GetSiteURL());
+   EXPECT_EQ(kExtensionId1,
+             util::GetExtensionIdForSiteInstance(*extension_site_instance));
+ 

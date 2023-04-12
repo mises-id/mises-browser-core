@@ -19,6 +19,7 @@ const l10nDeleteTranslations = require('../lib/l10nDeleteTranslations')
 const createDist = require('../lib/createDist')
 const test = require('../lib/test')
 const gnCheck = require('../lib/gnCheck')
+const gnList = require('../lib/gnList')
 const pylint = require('../lib/pylint')
 
 const collect = (value, accumulator) => {
@@ -61,6 +62,16 @@ program
   .option('--target_environment <target_environment>', 'target environment (device, catalyst, simulator)')
   .arguments('[build_config]')
   .action(gnCheck)
+
+program
+  .command('gn_list')
+  .option('-C <build_dir>', 'build config (out/Debug, out/Release')
+  .option('--target_os <target_os>', 'target OS')
+  .option('--target_arch <target_arch>', 'target architecture')
+  .option('--target_android_base <target_android_base>', 'target Android OS apk (classic, modern, mono)', 'classic')
+  .option('--target_environment <target_environment>', 'target environment (device, catalyst, simulator)')
+  .arguments('[build_config]')
+  .action(gnList)
 
 program
   .command('apply_patches')

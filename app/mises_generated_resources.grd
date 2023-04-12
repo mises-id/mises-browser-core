@@ -191,6 +191,9 @@
       </message>
     </if>
 
+      <message name="IDS_EXTENSION_PROMPT_WARNING_MISES" desc="Permisson string for access to mises api.">
+        interact with mises 
+      </message>
 
       <!-- IPFS -->
       <message name="IDS_LOCATION_BAR_OPEN_USING_IPFS" desc="Button in location bar to open ipfs available site.">

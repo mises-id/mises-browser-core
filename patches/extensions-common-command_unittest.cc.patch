@@ -1,0 +1,13 @@
+diff --git a/extensions/common/command_unittest.cc b/extensions/common/command_unittest.cc
+index 49c158ff0afccb7bbe4a349028df38cb596a1883..2b802c9ec6f29f32a653aa1113a685f00447b67f 100644
+--- a/extensions/common/command_unittest.cc
++++ b/extensions/common/command_unittest.cc
+@@ -236,7 +236,7 @@ TEST(CommandTest, ExtensionCommandParsingFallback) {
+ #elif BUILDFLAG(IS_LINUX)
+   ui::Accelerator accelerator(ui::VKEY_L,
+                               ui::EF_SHIFT_DOWN | ui::EF_CONTROL_DOWN);
+-#elif BUILDFLAG(IS_FUCHSIA)
++#elif BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_ANDROID)
+   // TODO(crbug.com/1312215): Change this once we decide on a unique platform
+   // key for Fuchsia.
+   ui::Accelerator accelerator(ui::VKEY_L,
