@@ -1,0 +1,17 @@
+diff --git a/extensions/shell/test/shell_test_launcher_delegate.cc b/extensions/shell/test/shell_test_launcher_delegate.cc
+index d1866b345972b864a7411e5f9a8a20bf19dde893..40ff8fe13d0688e78c6bc7e22cee3308a16d8c33 100644
+--- a/extensions/shell/test/shell_test_launcher_delegate.cc
++++ b/extensions/shell/test/shell_test_launcher_delegate.cc
+@@ -31,10 +31,11 @@ std::string
+ AppShellTestLauncherDelegate::GetUserDataDirectoryCommandLineSwitch() {
+   return switches::kContentShellDataPath;
+ }
+-
++#if !BUILDFLAG(IS_ANDROID)
+ content::ContentMainDelegate*
+ AppShellTestLauncherDelegate::CreateContentMainDelegate() {
+   return new TestShellMainDelegate();
+ }
++#endif
+ 
+ }  // namespace extensions

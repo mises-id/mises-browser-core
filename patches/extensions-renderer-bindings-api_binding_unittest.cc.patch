@@ -1,0 +1,16 @@
+diff --git a/extensions/renderer/bindings/api_binding_unittest.cc b/extensions/renderer/bindings/api_binding_unittest.cc
+index 6360b35727306d4e976ea198684af6a7e2d8b351..b67ca561a52ce93846adca03cb01812441fc7534 100644
+--- a/extensions/renderer/bindings/api_binding_unittest.cc
++++ b/extensions/renderer/bindings/api_binding_unittest.cc
+@@ -777,9 +777,11 @@ TEST_F(APIBindingUnittest, TestProperties) {
+             GetStringPropertyFromObject(binding_object, context, "linuxOnly"));
+   EXPECT_EQ("undefined",
+             GetStringPropertyFromObject(binding_object, context, "lacrosOnly"));
++#if !BUILDFLAG(IS_ANDROID)
+   EXPECT_EQ("\"nonlinux\"", GetStringPropertyFromObject(binding_object, context,
+                                                         "notLinuxOrLacros"));
+ #endif
++#endif
+ }
+ 
+ TEST_F(APIBindingUnittest, TestRefProperties) {

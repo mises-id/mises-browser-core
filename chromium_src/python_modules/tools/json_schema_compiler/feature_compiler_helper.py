@@ -18,3 +18,4 @@ def DiscardMisesOverridesFromDupes(dupes):
     dupes.discard('sockets.udp')
     dupes.discard('sockets.tcpServer')
     dupes.discard('tabs')
+    dupes.discard('networkingPrivate')
