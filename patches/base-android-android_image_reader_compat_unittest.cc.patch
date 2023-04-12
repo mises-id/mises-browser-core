@@ -1,0 +1,13 @@
+diff --git a/base/android/android_image_reader_compat_unittest.cc b/base/android/android_image_reader_compat_unittest.cc
+index af31ec02faeffe16eef9874f31c1d4ac7f485a3a..2ec81c04e3aff50085acde2fbc7e7a11f4499049 100644
+--- a/base/android/android_image_reader_compat_unittest.cc
++++ b/base/android/android_image_reader_compat_unittest.cc
+@@ -27,7 +27,7 @@ TEST_F(AndroidImageReaderTest, GetImageReaderInstance) {
+   // version OREO.
+   EXPECT_EQ(AndroidImageReader::GetInstance().IsSupported(),
+             base::android::BuildInfo::GetInstance()->sdk_int() >=
+-                base::android::SDK_VERSION_P);
++                base::android::SDK_VERSION_Q);
+ }
+ 
+ // There should be only 1 instance of AndroidImageReader im memory. Hence 2

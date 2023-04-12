@@ -1,0 +1,12 @@
+diff --git a/chrome/test/base/test_browser_window.h b/chrome/test/base/test_browser_window.h
+index dd90fb399a39c2dfb79b5a4806795f60fdb6b183..ac58f593b858c0f08e018b7b9b2d911372198c83 100644
+--- a/chrome/test/base/test_browser_window.h
++++ b/chrome/test/base/test_browser_window.h
+@@ -19,6 +19,7 @@
+ #include "chrome/browser/ui/browser_window.h"
+ #include "chrome/browser/ui/location_bar/location_bar.h"
+ #include "chrome/browser/ui/translate/partial_translate_bubble_model.h"
++#include "chrome/browser/ui/browser_list_observer.h"
+ #include "chrome/common/buildflags.h"
+ #include "ui/base/interaction/element_identifier.h"
+ 

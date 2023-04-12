@@ -154,6 +154,38 @@ test("mises_unit_tests") {
     ]
   }
 
+
+  if (is_linux) {
+    configs += [ "//mises/build/linux:linux_channel_names" ]
+  }
+
+  if (is_android) {
+    deps += [
+      ":mises_public_test_apk",
+      "//mises:mises_pak_assets",
+      "//chrome:chrome_android_core",
+      "//chrome/android:chrome_apk_paks",
+      "//chrome/test/android:chrome_java_test_support_common",
+      "//components/gcm_driver/instance_id/android:instance_id_driver_test_support_java",
+    ]
+    if (use_v8_context_snapshot) {
+      deps += [ "//tools/v8_context_snapshot:v8_context_snapshot_assets" ]
+    }
+
+    if (!use_v8_context_snapshot || include_both_v8_snapshots) {
+      deps += [ "//gin:v8_snapshot_assets" ]
+    }
+
+    data += [
+      "$root_gen_dir/chrome/android/chrome_apk_paks/chrome_100_percent.pak",
+      "$root_gen_dir/chrome/android/chrome_apk_paks/locales/en-US.pak",
+      "$root_gen_dir/chrome/android/chrome_apk_paks/resources.pak",
+      "$root_out_dir/mises_100_percent.pak",
+      "$root_out_dir/mises_resources.pak",
+    ]
+  } else {
+    deps += [ ]
+  }
 }
 
 
@@ -350,5 +382,99 @@ test("mises_browser_tests") {
     sources += android_only_test_sources
   } else {
     public_deps = [ ":browser_tests_runner" ]
+  }
+}
+
+
+# All in this section is for running instrumentation java tests
+if (is_android) {
+  mises_public_test_manifest_package = "site.mises.browser.tests"
+
+  mises_public_test_apk_manifest =
+      "$root_gen_dir/mises_public_test_apk_manifest/AndroidManifest.xml"
+
+  jinja_template("mises_public_test_apk_manifest") {
+    input = "//mises/android/javatests/AndroidManifest.xml"
+    includes = [ "//chrome/android/java/AndroidManifest.xml" ]
+    output = mises_public_test_apk_manifest
+    variables = default_chrome_public_jinja_variables
+    variables += [
+      "manifest_package=$mises_public_test_manifest_package",
+      "min_sdk_version=19",
+      "target_sdk_version=$android_sdk_version",
+    ]
+  }
+
+  chrome_public_common_apk_or_module_tmpl("mises_public_test_apk") {
+    testonly = true
+    target_type = "instrumentation_test_apk"
+    apk_name = "MisesPublicTest"
+    android_manifest = mises_public_test_apk_manifest
+    android_manifest_dep = ":mises_public_test_apk_manifest"
+    shared_libraries = [ "//chrome/android:libchromefortest" ]
+    if (!is_java_debug) {
+      proguard_enabled = true
+      proguard_configs = [
+        "//mises/android/java/proguard.flags",
+        "//mises/android/java/apk_for_test.flags",
+      ]
+    }
+
+    sources = [
+    ]
+
+    deps = [
+      "//base:base_java",
+      "//base:base_java_test_support",
+      "//mises/components/brave_wallet/common:mojom_java",
+      "//chrome/android:chrome_apk_pak_assets",
+      "//chrome/android:chrome_public_base_module_java_for_test",
+      "//chrome/browser/android/lifecycle:java",
+      "//chrome/browser/back_press/android:java",
+      "//chrome/browser/browser_controls/android:java",
+      "//chrome/browser/feed/android:java",
+      "//chrome/browser/flags:java",
+      "//chrome/browser/fullscreen/android:java",
+      "//chrome/browser/language/android:java",
+      "//chrome/browser/password_manager/android:java",
+      "//chrome/browser/preferences:java",
+      "//chrome/browser/prefetch/android:java",
+      "//chrome/browser/privacy_sandbox/android:java",
+      "//chrome/browser/profiles/android:java",
+      "//chrome/browser/safe_browsing/android:java",
+      "//chrome/browser/safety_check/android:java",
+      "//chrome/browser/settings:test_support_java",
+      "//chrome/browser/share:java",
+      "//chrome/browser/tab:java",
+      "//chrome/browser/tabmodel:java",
+      "//chrome/browser/ui/android/appmenu:java",
+      "//chrome/browser/ui/android/logo:java",
+      "//chrome/browser/ui/android/native_page:java",
+      "//chrome/browser/ui/android/omnibox:java",
+      "//chrome/browser/ui/android/theme:java",
+      "//chrome/browser/ui/android/toolbar:java",
+      "//chrome/browser/ui/messages/android:java",
+      "//chrome/browser/user_education:java",
+      "//chrome/test/android:chrome_java_integration_test_support",
+      "//chrome/test/android:chrome_java_test_support_common",
+      "//components/browser_ui/bottomsheet/android:java",
+      "//components/browser_ui/settings/android:java",
+      "//components/browser_ui/site_settings/android:java",
+      "//components/browser_ui/widget/android:java",
+      "//components/embedder_support/android:browser_context_java",
+      "//components/omnibox/browser:browser_java",
+      "//components/password_manager/core/browser:password_manager_java_enums",
+      "//components/permissions/android:java",
+      "//components/search_engines/android:java",
+      "//components/sync/android:sync_java",
+      "//content/public/android:content_full_java",
+      "//third_party/android_support_test_runner:runner_java",
+      "//third_party/androidx:androidx_appcompat_appcompat_java",
+      "//third_party/androidx:androidx_preference_preference_java",
+      "//third_party/androidx:androidx_test_runner_java",
+      "//third_party/junit",
+      "//ui/android:ui_no_recycler_view_java",
+      "//url/mojom:url_mojom_gurl_java",
+    ]
   }
 }

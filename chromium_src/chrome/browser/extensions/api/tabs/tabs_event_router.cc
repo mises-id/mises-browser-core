@@ -6,9 +6,14 @@ namespace extensions {
 
 void TabsEventRouter::TabEntry::DidStopLoading (){
 #if BUILDFLAG(IS_ANDROID)
-  LOG(INFO) << "TabsEventRouter:::TabEntry::DidStopLoading " << web_contents();
-  if (web_contents()) 
-    router_->TabChangedAt(web_contents(), -1, TabChangeType::kLoadingOnly);
+  WebContents* contents = web_contents();
+  // notify tab changed when the WebContents is not destroying, 
+  // and is still attaching to the tab
+  if (contents && contents->GetDelegate()) {
+    LOG(INFO) << "TabsEventRouter:::TabEntry::DidStopLoading " << contents;
+    router_->TabChangedAt(contents, -1, TabChangeType::kLoadingOnly);
+  }
+    
 #endif
 }
 
