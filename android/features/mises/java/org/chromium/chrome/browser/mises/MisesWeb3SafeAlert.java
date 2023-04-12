@@ -187,6 +187,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         String typeInfo = "The contract address: ";
         String txtValue = mAddress;
         String notice = "\nPlease notice the risk of losing you assets when you continue!";
+        String eventType = "contract_alert";//event log type
         //notify url
         if (mType.equals(UrlNotifyType)){
           //edit tv_title
@@ -209,6 +210,13 @@ public class MisesWeb3SafeAlert extends DialogFragment {
             };
           };
           layout_blockem.setVisibility(View.GONE);//hidden blockem
+          eventType = "domain_alert";//event log type
+        }
+        //event logging
+        if(mDomain != null && mDomain.length() > 0){
+          Bundle eventParams = new Bundle();
+          eventParams.putString("domain", mDomain);
+          FirebaseAnalytics.getInstance(getContext()).logEvent(eventType, eventParams);
         }
         if(txtValue == null || txtValue.length() <= 0){
           txtValue = "example.site";
@@ -240,7 +248,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
               if (ignore) {
                 params.putString("step", "ignore url");
             } else {
-                params.putString("step", "block");
+                params.putString("step", "block url");
             }
               FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
           }
@@ -271,7 +279,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
                   if (ignore) {
                       params.putString("step", "ignore address");
                   } else {
-                      params.putString("step", "block");
+                      params.putString("step", "block address");
                   }
                   FirebaseAnalytics.getInstance(getContext()).logEvent("mises_web3_safe_alert", params);
                 }
