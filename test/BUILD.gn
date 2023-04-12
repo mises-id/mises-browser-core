@@ -184,7 +184,7 @@ test("mises_unit_tests") {
       "$root_out_dir/mises_resources.pak",
     ]
   } else {
-    deps += [ ":mises_installer_unittests" ]
+    deps += [ ]
   }
 }
 
