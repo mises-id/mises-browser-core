@@ -122,20 +122,23 @@ void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_co
 void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_context,
                                      const Extension* extension) {
     if (extension->id() == metamask_extension_id &&  extension->location() == ManifestLocation::kComponent) {
-      migration_started_ = true;
+      metamask_ready_ = true;
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
         frontend->RunWithStorage(
           extension, settings_namespace::LOCAL,
         base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
         );
     }
-    if (extension->id() == mises_extension_id && migration_started_) {
+    if (extension->id() == mises_extension_id && metamask_ready_) {
 
-      StorageFrontend* frontend = StorageFrontend::Get(profile_);
+      if (profile_prefs_->FindPreference(kMisesDidMigrated) && !profile_prefs_->GetBoolean(kMisesDidMigrated)) {
+        profile_prefs_->SetBoolean(kMisesDidMigrated, true);
+        StorageFrontend* frontend = StorageFrontend::Get(profile_);
         frontend->RunWithStorage(
           extension, settings_namespace::LOCAL,
         base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
         );
+      }
     }
 
 #if BUILDFLAG(IS_ANDROID)
