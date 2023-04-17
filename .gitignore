@@ -95,3 +95,4 @@ android-build-and-install.sh
 linux-build-and-run.sh
 patches/err
 patches/fixed
+.boto
