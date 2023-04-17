@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/AndroidManifest.xml b/chrome/android/java/AndroidManifest.xml
-index 1dadcc3f156ad64af9e3bef1fd81a93ff5e036f4..d8aea54cfc90017a1fc1ca21746b7e17ed55d2ec 100644
+index 6124a0bc18edf26648bfcdcf257160dca8ac1e77..2fc38fd8113ecbd7073d0fa55ca4b2f71e648378 100644
 --- a/chrome/android/java/AndroidManifest.xml
 +++ b/chrome/android/java/AndroidManifest.xml
 @@ -28,7 +28,7 @@ by a child template that "extends" this file.
@@ -11,7 +11,7 @@ index 1dadcc3f156ad64af9e3bef1fd81a93ff5e036f4..d8aea54cfc90017a1fc1ca21746b7e17
      <!--
        Enable runtime permissions as uses-permission in tip of tree builds
        only for ease of development on Android L and earlier. For consumer
-@@ -333,6 +333,7 @@ by a child template that "extends" this file.
+@@ -339,6 +339,7 @@ by a child template that "extends" this file.
              <intent-filter>
                  <action android:name="com.sec.android.airview.HOVER" />
              </intent-filter>
@@ -19,7 +19,7 @@ index 1dadcc3f156ad64af9e3bef1fd81a93ff5e036f4..d8aea54cfc90017a1fc1ca21746b7e17
              <meta-data android:name="android.app.searchable"
                  android:resource="@xml/searchable" />
          </activity-alias>
-@@ -1187,7 +1188,7 @@ by a child template that "extends" this file.
+@@ -1193,7 +1194,7 @@ by a child template that "extends" this file.
              android:theme="@style/Theme.MaterialComponents"
              android:configChanges="orientation|keyboardHidden|keyboard|screenSize|mcc|mnc|screenLayout|smallestScreenSize" >
          </activity>

@@ -1,9 +1,9 @@
 diff --git a/chrome/common/accessibility/BUILD.gn b/chrome/common/accessibility/BUILD.gn
-index 67b77a72bf51e77f45be42b974be71e25c59e93f..35be9e2c84bc36e2a813a60351da61cdca94b4cd 100644
+index d18c1271e418306c26aa4d4258613897c41f9896..2263a76a86c25ef8167382cb517d045efc72d2ed 100644
 --- a/chrome/common/accessibility/BUILD.gn
 +++ b/chrome/common/accessibility/BUILD.gn
-@@ -4,7 +4,7 @@
- 
+@@ -5,7 +5,7 @@
+ import("//components/services/screen_ai/buildflags/features.gni")
  import("//mojo/public/tools/bindings/mojom.gni")
  
 -assert(!is_android)

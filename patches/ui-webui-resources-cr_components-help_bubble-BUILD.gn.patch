@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/help_bubble/BUILD.gn b/ui/webui/resources/cr_components/help_bubble/BUILD.gn
-index fb15e01caba16d87a2c5f61cce35c535eaaf3fb3..dc586a57143b410cd958d483b353cd0f7edc9911 100644
+index ceb621d6b3410eeb506ec0299232698de7285c31..418dce4475101c5f9c9714592a4384397dc0b81a 100644
 --- a/ui/webui/resources/cr_components/help_bubble/BUILD.gn
 +++ b/ui/webui/resources/cr_components/help_bubble/BUILD.gn
 @@ -5,7 +5,7 @@

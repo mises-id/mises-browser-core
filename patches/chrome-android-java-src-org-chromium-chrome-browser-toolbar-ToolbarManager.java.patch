@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
-index 2ec1301de4968a83ba814827d00b371bf09f3ea0..1149602bcd95ae85f5faad3b8cfe67fac06eb40b 100644
+index 18ffd7c83c7384b7d5889940dd9e053cd0e7c210..dc06a511b5b072717c14fae0f5fb5baf78db76b9 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
 @@ -176,6 +176,10 @@ import org.chromium.url.GURL;

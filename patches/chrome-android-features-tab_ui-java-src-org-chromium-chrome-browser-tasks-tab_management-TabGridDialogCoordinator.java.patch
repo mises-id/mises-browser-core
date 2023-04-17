@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
-index 2595dc5e9dcb49d2fbba2861d262cf56014f812b..c5d0fe5a471ee28c9376799765cf0ea82e479131 100644
+index 86ffa34a732d5152f6e11626c6030041fd558893..b3642256b45ff6a86473dedb1fb572f7b2f92fa2 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
-@@ -35,6 +35,8 @@ import org.chromium.ui.modelutil.PropertyModelChangeProcessor;
+@@ -33,6 +33,8 @@ import org.chromium.ui.modelutil.PropertyModelChangeProcessor;
  
  import java.util.List;
  
@@ -34,7 +34,7 @@ index 2595dc5e9dcb49d2fbba2861d262cf56014f812b..c5d0fe5a471ee28c9376799765cf0ea8
                      activity, tabModelSelector,
                      (tabId, thumbnailSize, callback, forceUpdate, writeBack, isSelected)
                              -> {
-@@ -150,6 +157,10 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
+@@ -145,6 +152,10 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
              @TabListCoordinator.TabListMode
              int mode = SysUtils.isLowEndDevice() ? TabListCoordinator.TabListMode.LIST
                                                   : TabListCoordinator.TabListMode.GRID;

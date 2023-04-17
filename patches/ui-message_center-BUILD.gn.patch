@@ -1,5 +1,5 @@
 diff --git a/ui/message_center/BUILD.gn b/ui/message_center/BUILD.gn
-index 1bd8354cde5eb3c4b1e730827f9ae62ba615ee63..4b8508900c31797d2d93505a9449e9a3649cb8fc 100644
+index 9710cad612d9ed3068bdf80597727be689105ca4..9b8a45db202e58b884a5ce642515b763e53e91c5 100644
 --- a/ui/message_center/BUILD.gn
 +++ b/ui/message_center/BUILD.gn
 @@ -36,7 +36,7 @@ component("message_center") {

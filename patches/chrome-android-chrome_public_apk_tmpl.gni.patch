@@ -1,8 +1,8 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index 35cc9620e875d8481db03650226caf81316926bf..794f4e7543c9bdf850627c1d9b86a027b67bc857 100644
+index 56949f4bb7496f40204bfc72f74123104f5ea1ff..a8c9a6e8f63e107ccf411efc4d32ddd71f6a97f3 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
-@@ -142,6 +142,17 @@ template("chrome_public_common_apk_or_module_tmpl") {
+@@ -326,6 +326,17 @@ template("chrome_public_common_apk_or_module_tmpl") {
        strip_unused_resources = is_official_build
      }
  
@@ -20,7 +20,7 @@ index 35cc9620e875d8481db03650226caf81316926bf..794f4e7543c9bdf850627c1d9b86a027
      if (!defined(aapt_locale_allowlist)) {
        # Include resource strings files only for supported locales.
        aapt_locale_allowlist = platform_pak_locales
-@@ -540,7 +551,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
+@@ -712,7 +723,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
        }
  
        # We only optimize resources in bundles.

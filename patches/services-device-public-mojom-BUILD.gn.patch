@@ -1,8 +1,8 @@
 diff --git a/services/device/public/mojom/BUILD.gn b/services/device/public/mojom/BUILD.gn
-index f2d13c795f790b905682f0c0bb12df86173d24a6..ab55ad971dcdab9eb57317319861268c8de7b7bf 100644
+index 7a61ba6cd0fb10ae8370a3611215f1ca87e32d45..38e7262501fa1426f80cda27374b3028e8971a65 100644
 --- a/services/device/public/mojom/BUILD.gn
 +++ b/services/device/public/mojom/BUILD.gn
-@@ -93,7 +93,7 @@ mojom("device_service") {
+@@ -94,7 +94,7 @@ mojom("device_service") {
      enabled_features += [ "enable_input_device_manager" ]
    }
  

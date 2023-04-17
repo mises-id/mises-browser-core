@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/BUILD.gn b/chrome/browser/resources/BUILD.gn
-index cafe4607b5b9c2f08f0f8f5cb737525a32108f3d..2f6e99f5ed7decba2fc40cae46bb22ef8b1d2654 100644
+index 9c34d7380f61fa2a2d32b78824e50ac7646ea546..d1837a5d21f5b29999016d07974223688590bd3f 100644
 --- a/chrome/browser/resources/BUILD.gn
 +++ b/chrome/browser/resources/BUILD.gn
 @@ -19,7 +19,7 @@ assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
@@ -9,9 +9,9 @@ index cafe4607b5b9c2f08f0f8f5cb737525a32108f3d..2f6e99f5ed7decba2fc40cae46bb22ef
 -  if (!is_android) {
 +  if (true || !is_android) {
      public_deps += [
+       ":app_icon_resources",
        ":component_extension_resources",
-       ":dev_ui_paks",
-@@ -99,6 +99,11 @@ group("resources") {
+@@ -100,6 +100,11 @@ group("resources") {
        "ntp4:apps_resources",
      ]
    }
@@ -23,7 +23,7 @@ index cafe4607b5b9c2f08f0f8f5cb737525a32108f3d..2f6e99f5ed7decba2fc40cae46bb22ef
  
    if (is_linux || is_chromeos) {
      public_deps += [ "webui_js_error:resources" ]
-@@ -146,7 +151,7 @@ if (is_chromeos_ash && enable_js_type_check) {
+@@ -145,7 +150,7 @@ if (is_chromeos_ash && enable_js_type_check) {
    }
  }
  

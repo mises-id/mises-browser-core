@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/tab_search/BUILD.gn b/chrome/browser/resources/tab_search/BUILD.gn
-index 8e9a9fd72790b2c117dbbe14dbbf1164fac171ef..ee7c5d6275fde6b4d5e2a2dd106b3c38a6b37913 100644
+index 7d566385522961ec5456483a7b04c4be00b90b0b..e9a75b6df644f8b82648d3c5dba1291b47043f9a 100644
 --- a/chrome/browser/resources/tab_search/BUILD.gn
 +++ b/chrome/browser/resources/tab_search/BUILD.gn
-@@ -7,7 +7,7 @@ import("//chrome/common/features.gni")
+@@ -7,7 +7,7 @@ import("//ui/webui/resources/tools/build_webui.gni")
  import("//ui/webui/resources/tools/generate_grd.gni")
  import("//ui/webui/webui_features.gni")
  

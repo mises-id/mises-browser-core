@@ -1,5 +1,5 @@
 diff --git a/extensions/test/extensions_unittests_main.cc b/extensions/test/extensions_unittests_main.cc
-index 5192d47bdc8d890aef137ca95f9768b23fc1198b..69c918055e1dace6f3bd6345ad128fd3411d2222 100644
+index d9e86fa1da51bc5cff646353a3eb6365952828f1..318ac43652ec9339eeec64d60ba86090b61bd079 100644
 --- a/extensions/test/extensions_unittests_main.cc
 +++ b/extensions/test/extensions_unittests_main.cc
 @@ -19,6 +19,7 @@

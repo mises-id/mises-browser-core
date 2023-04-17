@@ -1,5 +1,5 @@
 diff --git a/components/commerce/core/BUILD.gn b/components/commerce/core/BUILD.gn
-index e024e19e95cace9156e3dbb15e2a7ff2058b897e..3b63d2e28475781be0e4d2323fb0c2d8187b71e2 100644
+index 7d11bd541cfd9f9e62b37b69373d10c66d17089a..e9cd382245d0d991af11f80809cbacacefcdd85f 100644
 --- a/components/commerce/core/BUILD.gn
 +++ b/components/commerce/core/BUILD.gn
 @@ -86,7 +86,8 @@ if (is_android) {

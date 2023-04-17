@@ -1,8 +1,8 @@
 diff --git a/chrome/renderer/BUILD.gn b/chrome/renderer/BUILD.gn
-index 6a646ba3e19753001ff4f1278a543b52a03587c4..8aa11daed66603767c95b9c951da286d43955422 100644
+index 53733390bf73dee58d08a58d049c21ac5af0448e..33c8b0a9162a730dcde5bd63b5e62cbacff8a157 100644
 --- a/chrome/renderer/BUILD.gn
 +++ b/chrome/renderer/BUILD.gn
-@@ -390,7 +390,7 @@ static_library("renderer") {
+@@ -396,7 +396,7 @@ static_library("renderer") {
      ]
    }
  
@@ -11,7 +11,7 @@ index 6a646ba3e19753001ff4f1278a543b52a03587c4..8aa11daed66603767c95b9c951da286d
      sources += [
        "accessibility/ax_tree_distiller.cc",
        "accessibility/ax_tree_distiller.h",
-@@ -403,6 +403,12 @@ static_library("renderer") {
+@@ -411,6 +411,12 @@ static_library("renderer") {
        "searchbox/searchbox_extension.cc",
        "searchbox/searchbox_extension.h",
      ]

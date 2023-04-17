@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
-index 5654e8c92fa29ca7b64260bf79b4ab06ca8ac0f9..201ddfe66a91e6c1b0521f186e960074a7d66777 100644
+index 9a45760efeab8cd2fcee11bbd02908cc415b1dd1..ed1f87f4e758b32e2313a0a2fd05569307f96c43 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
 @@ -42,6 +42,7 @@ import org.chromium.ui.base.ViewUtils;

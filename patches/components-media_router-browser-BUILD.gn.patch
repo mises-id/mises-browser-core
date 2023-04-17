@@ -1,5 +1,5 @@
 diff --git a/components/media_router/browser/BUILD.gn b/components/media_router/browser/BUILD.gn
-index 057b13bb99a66485de35ab715837793177dc6408..eb50c027933bde90be06dbcdeac21ddbd7760118 100644
+index 4db9ab0b6e5470430eadfdc7cfea73b755bfb01a..41ec76aa604bf84da5a73f43081e0e3786705f6c 100644
 --- a/components/media_router/browser/BUILD.gn
 +++ b/components/media_router/browser/BUILD.gn
 @@ -76,7 +76,9 @@ source_set("browser") {

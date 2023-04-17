@@ -1,8 +1,8 @@
 diff --git a/weblayer/BUILD.gn b/weblayer/BUILD.gn
-index 9289dea4e671ccf133edc766ff10123e083188a7..7290cee18dc871c5f4c1e8171cc4af453ba8d504 100644
+index 3e43348e924bb966d6736206942afa69d366599b..63b4a38915993e832b1a03958f48c90dea36db19 100644
 --- a/weblayer/BUILD.gn
 +++ b/weblayer/BUILD.gn
-@@ -848,6 +848,7 @@ if (is_android) {
+@@ -851,6 +851,7 @@ if (is_android) {
        "//base",
        "//weblayer/browser/java:jni",
        "//weblayer/browser/java:weblayer_jni_registration($default_toolchain)",

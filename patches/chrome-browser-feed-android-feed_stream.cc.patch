@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/feed/android/feed_stream.cc b/chrome/browser/feed/android/feed_stream.cc
-index 40b93b5e4a399d39f8bc3cd58a2298d0e92973c8..56e53d85a846ab0ad1c42cefaacba41def08a2f9 100644
+index ba59eb7d49c3b47b945d515ff92c79cca4728bf5..bad989a704e811c7aea5bcfd0920b6516261c4b5 100644
 --- a/chrome/browser/feed/android/feed_stream.cc
 +++ b/chrome/browser/feed/android/feed_stream.cc
-@@ -261,6 +261,8 @@ void FeedStream::ReportStreamScrollStart(JNIEnv* env,
+@@ -269,6 +269,8 @@ void FeedStream::ReportStreamScrollStart(JNIEnv* env,
  void FeedStream::ReportOtherUserAction(JNIEnv* env,
                                         const JavaParamRef<jobject>& obj,
                                         int action_type) {
@@ -11,7 +11,7 @@ index 40b93b5e4a399d39f8bc3cd58a2298d0e92973c8..56e53d85a846ab0ad1c42cefaacba41d
    feed_stream_api_->ReportOtherUserAction(
        GetStreamType(), static_cast<FeedUserActionType>(action_type));
  }
-@@ -273,6 +275,8 @@ int FeedStream::GetSurfaceId(JNIEnv* env,
+@@ -281,6 +283,8 @@ int FeedStream::GetSurfaceId(JNIEnv* env,
  jlong FeedStream::GetLastFetchTimeMs(
      JNIEnv* env,
      const base::android::JavaParamRef<jobject>& obj) {

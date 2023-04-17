@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/side_panel/history_clusters/BUILD.gn b/chrome/browser/resources/side_panel/history_clusters/BUILD.gn
-index 5da0a73edeb0812c57ba4cafad535a3a23fbd7f8..5a22c2f689a266f0a67d1b47c9f86fc131651f1f 100644
+index d49180f1422e1704aca57a6aa0f8a542146067d3..4e0af268240541669261fd4888d55ad07414a814 100644
 --- a/chrome/browser/resources/side_panel/history_clusters/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/history_clusters/BUILD.gn
 @@ -4,7 +4,7 @@
  
- import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +#assert(!is_android)

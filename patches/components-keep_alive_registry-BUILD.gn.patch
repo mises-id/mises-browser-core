@@ -1,5 +1,5 @@
 diff --git a/components/keep_alive_registry/BUILD.gn b/components/keep_alive_registry/BUILD.gn
-index bf3144a94926f3350c8765fccafac1d93d9ee93b..2111b4a8687b1ea435dc4f9a4faeee1f407acd94 100644
+index f1df4c7e3932bdfa52a1286243029b767f938c16..b80278c900b4257d58155e7ba7716e6f369b0066 100644
 --- a/components/keep_alive_registry/BUILD.gn
 +++ b/components/keep_alive_registry/BUILD.gn
 @@ -2,7 +2,7 @@

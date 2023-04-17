@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/side_panel/shared/BUILD.gn b/chrome/browser/resources/side_panel/shared/BUILD.gn
-index 197c76ec44a3f25546036cef33fad31f735ac6c4..9abdbcb37b38c5433d3903289e58b53771b4c2dd 100644
+index 4bde9cbe0af954dc998e533ab071970609154dd0..9cdd7b46447f92b37ebe17b66ef1e7cddddcf2bf 100644
 --- a/chrome/browser/resources/side_panel/shared/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/shared/BUILD.gn
 @@ -4,7 +4,7 @@
  
- import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +#assert(!is_android)

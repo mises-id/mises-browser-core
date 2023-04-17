@@ -1,11 +1,11 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
-index 3aa79ab29b6d05a676d7dd43a73907b66826151a..0f0362155c14b5a357b457e435f223a3f6aa5c47 100644
+index abaa76033029bc100248a9bce5fe91515e3a9f5e..cf09121f0d0a9884b2b5733b060275ca8024ded9 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
-@@ -45,10 +45,12 @@ public class ThemeSettingsFragment
+@@ -47,10 +47,12 @@ public class ThemeSettingsFragment
                  (RadioButtonGroupThemePreference) findPreference(PREF_UI_THEME_PREF);
-         mWebContentsDarkModeEnabled = WebContentsDarkModeController.isGlobalUserSettingsEnabled(
-                 Profile.getLastUsedRegularProfile());
+         mWebContentsDarkModeEnabled =
+                 WebContentsDarkModeController.isGlobalUserSettingsEnabled(mProfile);
 +        mWebContentsDarkModeEnabled = false;
          radioButtonGroupThemePreference.initialize(
                  NightModeUtils.getThemeSetting(), mWebContentsDarkModeEnabled);
@@ -15,7 +15,7 @@ index 3aa79ab29b6d05a676d7dd43a73907b66826151a..0f0362155c14b5a357b457e435f223a3
              if (ChromeFeatureList.isEnabled(
                          ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
                  if (radioButtonGroupThemePreference.isDarkenWebsitesEnabled()
-@@ -61,6 +63,7 @@ public class ThemeSettingsFragment
+@@ -63,6 +65,7 @@ public class ThemeSettingsFragment
              }
              int theme = (int) newValue;
              sharedPreferencesManager.writeInt(UI_THEME_SETTING, theme);
@@ -23,11 +23,11 @@ index 3aa79ab29b6d05a676d7dd43a73907b66826151a..0f0362155c14b5a357b457e435f223a3
              return true;
          });
  
-@@ -74,6 +77,7 @@ public class ThemeSettingsFragment
+@@ -76,6 +79,7 @@ public class ThemeSettingsFragment
                      getArguments().getInt(KEY_THEME_SETTINGS_ENTRY));
          }
  
 +        if (false)
          if (ChromeFeatureList.isEnabled(
                      ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
-             WebContentsDarkModeMessageController.notifyEventSettingsOpened(
+             WebContentsDarkModeMessageController.notifyEventSettingsOpened(mProfile);

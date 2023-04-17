@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/most_visited/BUILD.gn b/ui/webui/resources/cr_components/most_visited/BUILD.gn
-index 713df97dcfbe669036e5d5bdfea05b6506a6ef78..3ecede331d6ca27b081190a2a97e5dddab255746 100644
+index ff6eb7acce643597c62613c6dc639b64c64c68d7..88856721ffd370784c96e6901f65f92e17818813 100644
 --- a/ui/webui/resources/cr_components/most_visited/BUILD.gn
 +++ b/ui/webui/resources/cr_components/most_visited/BUILD.gn
 @@ -6,7 +6,7 @@ import("//mojo/public/tools/bindings/mojom.gni")

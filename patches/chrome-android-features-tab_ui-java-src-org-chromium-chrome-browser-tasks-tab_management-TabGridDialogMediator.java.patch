@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
-index ebea916076ac9a4ea82a101d1f830f48929638ed..8ca650652d4b869f0ba8db501366653060151259 100644
+index 19dd96359b6eae139eec7a94fbf49e542d799da4..37f6b0023095a120300bc2a3797520e8c02962b1 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
-@@ -57,6 +57,8 @@ import java.util.ArrayList;
+@@ -56,6 +56,8 @@ import java.util.ArrayList;
  import java.util.List;
  import java.util.Locale;
  
@@ -11,7 +11,7 @@ index ebea916076ac9a4ea82a101d1f830f48929638ed..8ca650652d4b869f0ba8db5013666530
  /**
   * A mediator for the TabGridDialog component, responsible for communicating
   * with the components' coordinator as well as managing the business logic
-@@ -634,8 +636,12 @@ public class TabGridDialogMediator
+@@ -629,8 +631,12 @@ public class TabGridDialogMediator
              Tab currentTab = mTabModelSelector.getTabById(mCurrentTabId);
              hideDialog(false);
              if (currentTab == null) {

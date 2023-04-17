@@ -1,5 +1,5 @@
 diff --git a/ui/views/widget/widget.cc b/ui/views/widget/widget.cc
-index 13d32438918d07e961901e54ae9f9b8b06e7020e..15d8b085383c56f08e82d54a715b37fa30fa902d 100644
+index 1e80a2a1d3271806e0f4e301263846bc2b6fc4c2..53554076dac7fb6dfb2509f0061680dcf2269995 100644
 --- a/ui/views/widget/widget.cc
 +++ b/ui/views/widget/widget.cc
 @@ -432,12 +432,15 @@ void Widget::Init(InitParams params) {
@@ -26,7 +26,7 @@ index 13d32438918d07e961901e54ae9f9b8b06e7020e..15d8b085383c56f08e82d54a715b37fa
    native_widget_initialized_ = true;
    native_widget_->OnWidgetInitDone();
  
-@@ -1985,12 +1989,13 @@ void Widget::OnDragWillStart() {}
+@@ -1983,12 +1987,13 @@ void Widget::OnDragWillStart() {}
  void Widget::OnDragComplete() {}
  
  const ui::NativeTheme* Widget::GetNativeTheme() const {

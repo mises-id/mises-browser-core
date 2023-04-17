@@ -1,5 +1,5 @@
 diff --git a/content/browser/devtools/BUILD.gn b/content/browser/devtools/BUILD.gn
-index 85be27d2909d6ea4e5ca5582498f5b6b5c9a6d70..807c74433cd34272c050f76f13174fd901f35acb 100644
+index e29f1f853c5bfd56045f16e2991936639b880a28..c13c26d1f02344c80c21356b47757cac00dd78df 100644
 --- a/content/browser/devtools/BUILD.gn
 +++ b/content/browser/devtools/BUILD.gn
 @@ -10,7 +10,7 @@ import("//third_party/protobuf/proto_library.gni")
