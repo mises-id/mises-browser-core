@@ -345,6 +345,9 @@
     .down-colse{
       transform: rotate(0);
     }
+    #mises-content, #add-button{
+      display: none;
+    }
   </style>
 </head>
 <!-- Remember to update the test HTML files in chrome/test/data/local_ntp/
@@ -487,10 +490,6 @@
     // get install extensions
     const extensions = chrome.embeddedSearch.newTabPage.mostVisitedExtensions;
     setExtensions(extensions);
-    if (window.chrome.embeddedSearch.newTabPage.isIncognito){
-      document.getElementById('add-button').style.display='none';
-      document.getElementById('mises-content').style.display='none';
-    }
   }
   
   function setExtensions(extensions){
@@ -671,10 +670,14 @@ function instant_grid()
   }
 }
 
-if (window.chrome.embeddedSearch.newTabPage.isIncognito)
-{
+if (window.chrome.embeddedSearch.newTabPage.isIncognito){
   document.body.style.backgroundColor='black';
   document.getElementById('incognito').style.display='block';
+}
+
+if (!window.chrome.embeddedSearch.newTabPage.isIncognito){
+  document.getElementById('add-button').style.display='block';
+  document.getElementById('mises-content').style.display='block';
 }
 else
 {
