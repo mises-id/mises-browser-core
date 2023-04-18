@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/discards/BUILD.gn b/chrome/browser/resources/discards/BUILD.gn
-index 3ee63a28f6a2da953046364d60d4e0f3d119a1fb..58ef4a230c973dfc6425c92d88f0c90725b2a4a8 100644
+index dbbc0e960c3c26552998d53ea2a32e6e4df8356e..b424be5353a39f94f2525e5614b1f0402f9720fa 100644
 --- a/chrome/browser/resources/discards/BUILD.gn
 +++ b/chrome/browser/resources/discards/BUILD.gn
-@@ -9,7 +9,7 @@ import("//tools/polymer/html_to_wrapper.gni")
- import("//tools/typescript/ts_library.gni")
+@@ -5,7 +5,7 @@
+ import("//ui/webui/resources/tools/build_webui.gni")
  import("//ui/webui/resources/tools/generate_grd.gni")
  
 -assert(!is_android)
 +#assert(!is_android)
  
- preprocess_folder = "preprocessed"
- tsc_folder = "tsc"
+ build_webui("build") {
+   grd_prefix = "discards"

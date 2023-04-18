@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc b/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
-index e807658fa6d5e5317add3ba2b66da3a803da81a1..bd1cd0223b766bae3d7e4e524d00acf0617d5046 100644
+index c0f3385709c0ac527c389a5f96ac9fc7a269c2da..5f6100e980671d97f25cb8d7de42369a2cb21200 100644
 --- a/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
 +++ b/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
 @@ -96,7 +96,7 @@ bool IsWebAuthnRPIDListedInSecurityKeyPermitAttestationPolicy(

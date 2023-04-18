@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabStateBrowserControlsVisibilityDelegate.java b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabStateBrowserControlsVisibilityDelegate.java
-index 808a6ce2cbf060078e88b8f53a2a487ba75b1f4f..1d66258c6d4b89799caad9c96db9db300eab8061 100644
+index 569d90a9f3f8f4470d889363992c6b8b1a45c553..fcb0d038c044f4894c625b186330a661b8e7b59d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabStateBrowserControlsVisibilityDelegate.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabStateBrowserControlsVisibilityDelegate.java
 @@ -25,6 +25,8 @@ import org.chromium.content_public.browser.WebContents;
@@ -11,7 +11,7 @@ index 808a6ce2cbf060078e88b8f53a2a487ba75b1f4f..1d66258c6d4b89799caad9c96db9db30
  /**
   * Determines the desired visibility of the browser controls based on the current state of a given
   * tab.
-@@ -200,6 +202,18 @@ public class TabStateBrowserControlsVisibilityDelegate
+@@ -195,6 +197,18 @@ public class TabStateBrowserControlsVisibilityDelegate
          enableHidingBrowserControls &= !ChromeAccessibilityUtil.get().isAccessibilityEnabled();
          enableHidingBrowserControls &= DeviceClassManager.enableFullscreen();
  

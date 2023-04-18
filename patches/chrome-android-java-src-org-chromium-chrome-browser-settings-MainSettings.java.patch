@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-index 6a8e28d741e7e99ce20f5f6c56d0fd2a81f7a240..40b984081360f69cf3b407bb3c4b25c7f438534b 100644
+index 17bb9f503c8013ee4eeeb2a00b2b641b46656621..122685c601af504428ee6a0181a9c210d6a34620 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-@@ -181,6 +181,12 @@ public class MainSettings extends PreferenceFragmentCompat
+@@ -183,6 +183,12 @@ public class MainSettings extends PreferenceFragmentCompat
              setManagedPreferenceDelegateForPreference(PREF_PASSWORDS);
          }
  
@@ -15,7 +15,7 @@ index 6a8e28d741e7e99ce20f5f6c56d0fd2a81f7a240..40b984081360f69cf3b407bb3c4b25c7
          setManagedPreferenceDelegateForPreference(PREF_SEARCH_ENGINE);
  
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-@@ -193,6 +199,7 @@ public class MainSettings extends PreferenceFragmentCompat
+@@ -195,6 +201,7 @@ public class MainSettings extends PreferenceFragmentCompat
              PackageManager pm = getActivity().getPackageManager();
              if (intent.resolveActivity(pm) != null) {
                  Preference notifications = findPreference(PREF_NOTIFICATIONS);
@@ -23,7 +23,7 @@ index 6a8e28d741e7e99ce20f5f6c56d0fd2a81f7a240..40b984081360f69cf3b407bb3c4b25c7
                  notifications.setOnPreferenceClickListener(preference -> {
                      startActivity(intent);
                      // We handle the click so the default action isn't triggered.
-@@ -215,7 +222,7 @@ public class MainSettings extends PreferenceFragmentCompat
+@@ -218,7 +225,7 @@ public class MainSettings extends PreferenceFragmentCompat
          new AdaptiveToolbarStatePredictor(null).recomputeUiState(uiState -> {
              // We don't show the toolbar shortcut settings page if disabled from finch.
              if (uiState.canShowUi) return;

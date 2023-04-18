@@ -1,4 +1,5 @@
 #include "chrome/browser/ui/startup/startup_browser_creator.h"
+#include "chrome/browser/profiles/profile.h"
 
 #if BUILDFLAG(IS_ANDROID)
 

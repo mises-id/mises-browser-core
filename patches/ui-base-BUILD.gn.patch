@@ -1,17 +1,17 @@
 diff --git a/ui/base/BUILD.gn b/ui/base/BUILD.gn
-index acd06385277ac91670e5aa3ad386ccb6740a5a52..13b2876b7b3c50328ad9eb865bf9cd1a2bc9c3dd 100644
+index 6a5d2b0d11af3dabf3cdcd21b666fbb5dfe288c1..8745334f667e7cfe08d944e143ec3790139cab4b 100644
 --- a/ui/base/BUILD.gn
 +++ b/ui/base/BUILD.gn
-@@ -391,7 +391,7 @@ component("base") {
-       "user_activity/user_activity_observer.h",
+@@ -402,7 +402,7 @@ component("base") {
+       "themed_vector_icon.h",
      ]
  
--    if (!is_android) {
-+    if (true || !is_android) {
+-    if (!is_android && !is_ios) {
++    if (true || !is_android && !is_ios) {
        sources += [
          "menu_source_utils.cc",
          "menu_source_utils.h",
-@@ -600,7 +600,7 @@ component("base") {
+@@ -612,7 +612,7 @@ component("base") {
      ]
    }
  
@@ -20,7 +20,7 @@ index acd06385277ac91670e5aa3ad386ccb6740a5a52..13b2876b7b3c50328ad9eb865bf9cd1a
      sources -= [
        "dragdrop/drop_target_event.cc",
        "dragdrop/drop_target_event.h",
-@@ -617,12 +617,18 @@ component("base") {
+@@ -629,12 +629,18 @@ component("base") {
      deps += [ ":ui_base_jni_headers" ]
      libs += [ "jnigraphics" ]
  

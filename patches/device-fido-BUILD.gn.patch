@@ -1,8 +1,8 @@
 diff --git a/device/fido/BUILD.gn b/device/fido/BUILD.gn
-index 64d353ec5f7dedc52762e53f760e0d7694b2278f..d588861fe60c032d3440b4281c85265da1775031 100644
+index 760da1eb71e5648fe2fb35343f8fb2c58cb6e811..283100e231e3badca4930229d0ad3458db4766c7 100644
 --- a/device/fido/BUILD.gn
 +++ b/device/fido/BUILD.gn
-@@ -81,7 +81,7 @@ component("fido") {
+@@ -82,7 +82,7 @@ component("fido") {
    ]
  
    # Android implementation of FIDO is delegated to GMSCore.
@@ -11,7 +11,7 @@ index 64d353ec5f7dedc52762e53f760e0d7694b2278f..d588861fe60c032d3440b4281c85265d
      sources += [
        "aoa/android_accessory_device.cc",
        "aoa/android_accessory_device.h",
-@@ -213,7 +213,29 @@ component("fido") {
+@@ -214,7 +214,29 @@ component("fido") {
        "//services/network/public/mojom",
      ]
    }

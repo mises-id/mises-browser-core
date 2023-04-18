@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/privacy_sandbox/BUILD.gn b/chrome/browser/resources/privacy_sandbox/BUILD.gn
-index 71b7e2ed341bfadbdd31bab4ac6388ba75110a2c..ec427eaf798a6e952967935686ceffe0fce877be 100644
+index 987bd2fd7f63d88978bbb9eed9264c4660a6bd76..58e4c724728e261b8e81cce4579fd1c127cca7c1 100644
 --- a/chrome/browser/resources/privacy_sandbox/BUILD.gn
 +++ b/chrome/browser/resources/privacy_sandbox/BUILD.gn
 @@ -5,7 +5,7 @@
- import("//chrome/browser/resources/tools/build_webui.gni")
  import("//chrome/common/features.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android, "!is_android check failed")
 +#assert(!is_android, "!is_android check failed")

@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/management/BUILD.gn b/chrome/browser/resources/management/BUILD.gn
-index 386eaf976bf67530f9d5c6bfe9adce12b7ab7e72..aac0531ad73a936c76150a672b81babc711a15ca 100644
+index 01258eb4af64272d8c2d782d5339e33cbc347b07..0922c86815cb8ecf5bc793a43a9cb4ae606ff271 100644
 --- a/chrome/browser/resources/management/BUILD.gn
 +++ b/chrome/browser/resources/management/BUILD.gn
 @@ -5,7 +5,7 @@
- import("//chrome/browser/resources/tools/build_webui.gni")
  import("//chrome/common/features.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android, "!is_android check failed")
 +# assert(!is_android, "!is_android check failed")

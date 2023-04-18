@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/media_router/internals/BUILD.gn b/chrome/browser/resources/media_router/internals/BUILD.gn
-index ebd904ddf87cc4788a84fb7b68e6c221b88183dc..5a4c95f49ecb7973ac370c80e4f05d437447665b 100644
+index 4315ed31a40b7e8d7efe164ebd4a6aea095422f4..b0c46b6ba586f2647262441dcda4bd880e850746 100644
 --- a/chrome/browser/resources/media_router/internals/BUILD.gn
 +++ b/chrome/browser/resources/media_router/internals/BUILD.gn
 @@ -4,7 +4,7 @@

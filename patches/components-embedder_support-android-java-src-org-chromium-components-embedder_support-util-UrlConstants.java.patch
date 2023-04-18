@@ -1,5 +1,5 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
-index b8302d18b2c75933f7b0f7bcd6fdf5587273f0e5..5296636345689e99badc912a4d3b42d3558255e6 100644
+index fcb24d2ecd26cdd2f097f5272607f4722c03b8df..170b6e29295c7087065e863c392664c28e22a62e 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
 @@ -46,8 +46,8 @@ public class UrlConstants {

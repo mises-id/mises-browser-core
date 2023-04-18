@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/identity_internals/BUILD.gn b/chrome/browser/resources/identity_internals/BUILD.gn
-index 749de7e0bad8737cbb8114178fefe450edd428a7..0ede274f0fa12f6f5512ecb315db59192acb6b94 100644
+index 219b930405c3d1d8481547f1b9cef38685bec24a..812ece4fe2cf3d4642d02bbf4fd8b2d84880f343 100644
 --- a/chrome/browser/resources/identity_internals/BUILD.gn
 +++ b/chrome/browser/resources/identity_internals/BUILD.gn
 @@ -4,7 +4,7 @@
  
- import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +#assert(!is_android)

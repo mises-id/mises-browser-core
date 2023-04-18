@@ -1,0 +1,33 @@
+import("//ui/webui/resources/tools/build_webui.gni")
+
+build_webui("build") {
+  grd_prefix = "new_tab_page_instant"
+  static_files = [
+    "most_visited_title.css",
+    "most_visited_title.html",
+    "local_ntp.css",
+    "local_ntp.html",
+    "local_ntp.js",
+    "incognito_ntp.html",
+    "new_ntp.html",
+    "mises_logo.png",
+    "loadingImage.js",
+    "images/Private.svg",
+    "images/Airdrop.png",
+    "images/Discover.png",
+    "images/Invite.png",
+    "images/Staking.png",
+    "images/Airdrop-dark.png",
+    "images/Discover-dark.png",
+    "images/Invite-dark.png",
+    "images/Staking-dark.png",
+    "images/add.png",
+    "images/add@2x.png",
+    "images/more@2x.png",
+    "images/down.png",
+  ]
+  non_web_component_files = [ "most_visited_title.ts" ]
+
+  ts_use_local_config = false
+  ts_definitions = [ "embedded_search.d.ts" ]
+}

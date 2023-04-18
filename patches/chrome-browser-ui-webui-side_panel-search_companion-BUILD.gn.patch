@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/side_panel/search_companion/BUILD.gn b/chrome/browser/ui/webui/side_panel/search_companion/BUILD.gn
+index 42e59c0c95d0871b068ef2eea80b099c957d5fe6..df252d83b7e9a1c5b74d3901c6a6bdf6af1cf872 100644
+--- a/chrome/browser/ui/webui/side_panel/search_companion/BUILD.gn
++++ b/chrome/browser/ui/webui/side_panel/search_companion/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+ # Feature dependent on side panel only available on desktop.
+-assert(!is_android)
++# assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "search_companion.mojom" ]

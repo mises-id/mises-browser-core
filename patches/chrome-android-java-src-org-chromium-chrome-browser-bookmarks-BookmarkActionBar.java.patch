@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkActionBar.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkActionBar.java
-index a76bc2d32165004115e578ccf7073bebcfd1d9dd..081434743fa922e36dd85362811c55270d32b23c 100644
+index 6a945f0e24d30377ca8282dd1786c65e0e03d185..14b7b1ef9f01ba5bec8d8435df943a865f2b389e 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkActionBar.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkActionBar.java
 @@ -84,7 +84,13 @@ public class BookmarkActionBar extends SelectableListToolbar<BookmarkId>

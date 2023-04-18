@@ -16,7 +16,7 @@ base::Value::Dict MediaRouterAndroid::GetState() const {
   return base::Value::Dict();
 }
 base::Value MediaRouterAndroid::GetLogs() const {
-  return base::Value(base::Value::Type::DICTIONARY);
+  return base::Value(base::Value::Type::DICT);
 }
 LoggerImpl* MediaRouterAndroid::GetLogger(){
   return &logger_;
@@ -25,5 +25,8 @@ void MediaRouterAndroid::GetProviderState(
     mojom::MediaRouteProviderId provider_id,
     mojom::MediaRouteProvider::GetStateCallback callback) const {
     std::move(callback).Run(mojom::ProviderStatePtr());
+}
+MediaRouterDebugger& MediaRouterAndroid::GetDebugger() {
+  return media_router_debugger_;
 }
 }  // namespace media_router

@@ -1,0 +1,20 @@
+diff --git a/chrome/app/theme/BUILD.gn b/chrome/app/theme/BUILD.gn
+index 05627a44d0fec2963be170297cd7371ead146bbd..fc8e05298d0766d67a24ce747592f0520af18788 100644
+--- a/chrome/app/theme/BUILD.gn
++++ b/chrome/app/theme/BUILD.gn
+@@ -21,6 +21,7 @@ grit("theme_resources") {
+     ":chrome_unscaled_resources",
+     "//ui/resources",
+   ]
++  deps += ["//mises/app/theme:mises_theme_resources"]
+ 
+   output_dir = "$root_gen_dir/chrome"
+ }
+@@ -32,6 +33,7 @@ grit("chrome_unscaled_resources") {
+     "grit/chrome_unscaled_resources.h",
+     "chrome_unscaled_resources.pak",
+   ]
++  deps = ["//mises/app/theme:mises_unscaled_resources"]
+ 
+   output_dir = "$root_gen_dir/chrome"
+ }

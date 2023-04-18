@@ -1,8 +1,8 @@
 diff --git a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
-index cf27acbf656fa24c6abdaf5a307146fbd6ceb6bf..4740255ea9851f5a145ed55cbb60101dfabb031d 100644
+index aa8217e4135c853116ffa9961bd149ec78d41907..0eee540bbb223a39e10cf4bf5848462b847d5656 100644
 --- a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
 +++ b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
-@@ -1512,6 +1512,11 @@ public class ExternalNavigationHandler {
+@@ -1548,6 +1548,11 @@ public class ExternalNavigationHandler {
              return OverrideUrlLoadingResult.forNoOverride();
          }
  

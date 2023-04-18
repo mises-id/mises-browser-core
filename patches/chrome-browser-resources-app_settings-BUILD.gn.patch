@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/app_settings/BUILD.gn b/chrome/browser/resources/app_settings/BUILD.gn
-index 5600a51b43ad11e65d2c5929cb96cf7f7b6e8a15..00b7ba1d666ccb6e0c40047a1b83eddfea3b08c8 100644
+index b31ce66ee7abbcde190f1f89e0eb05a911b0cb64..5a432fcc1d5210acecd34309ec5aa49310f6956d 100644
 --- a/chrome/browser/resources/app_settings/BUILD.gn
 +++ b/chrome/browser/resources/app_settings/BUILD.gn
 @@ -5,7 +5,7 @@
- import("//chrome/browser/resources/tools/build_webui.gni")
  import("//chrome/common/features.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(is_win || is_mac || is_linux || is_fuchsia)
 +assert(true || is_win || is_mac || is_linux || is_fuchsia)

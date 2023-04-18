@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-index c7990ad6b19cccdbadf454106d7a175b6c093e7b..40b6e70a02e1a7c36a58cf301393303120b9b3f2 100644
+index 47e346168cf3eb3be2adf9aacef86a63ed83930e..28ab73965eb6107e040ada967f9418d1550c4190 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-@@ -24,6 +24,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
+@@ -25,6 +25,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
  import org.chromium.components.embedder_support.util.UrlUtilities;
  import org.chromium.url.GURL;
  
@@ -11,7 +11,7 @@ index c7990ad6b19cccdbadf454106d7a175b6c093e7b..40b6e70a02e1a7c36a58cf3013933031
  /**
   * Provides information regarding homepage enabled states and URI.
   *
-@@ -117,8 +119,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -118,8 +120,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
       * @return Whether to close the app when the user has zero tabs.
       */
      public static boolean shouldCloseAppWithZeroTabs() {
@@ -21,7 +21,7 @@ index c7990ad6b19cccdbadf454106d7a175b6c093e7b..40b6e70a02e1a7c36a58cf3013933031
      }
  
      /**
-@@ -196,17 +197,8 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -200,17 +201,8 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
       * Get homepage URI without checking if the homepage is enabled.
       * @return Homepage URI based on policy and shared preference settings.
       */

@@ -39,7 +39,6 @@
 #include "chrome/browser/web_applications/daily_metrics_helper.h"
 #include "chrome/browser/web_applications/externally_installed_web_app_prefs.h"
 #include "chrome/browser/web_applications/install_bounce_metric.h"
-#include "chrome/browser/web_applications/isolation_prefs_utils.h"
 #include "chrome/browser/web_applications/policy/web_app_policy_manager.h"
 #include "chrome/browser/web_applications/preinstalled_web_app_manager.h"
 #include "chrome/browser/web_applications/user_uninstalled_preinstalled_web_app_prefs.h"
@@ -136,9 +135,9 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   web_app::PreinstalledWebAppManager::RegisterProfilePrefs(registry);
   web_app::WebAppPolicyManager::RegisterProfilePrefs(registry);
   web_app::WebAppPrefsUtilsRegisterProfilePrefs(registry);
-  web_app::IsolationPrefsUtilsRegisterProfilePrefs(registry);
   web_app::RegisterInstallBounceMetricProfilePrefs(registry);
   web_app::RegisterDailyWebAppMetricsProfilePrefs(registry);
+  web_app::WebAppShortcutManager::RegisterProfilePrefs(registry);
 #endif
 
 

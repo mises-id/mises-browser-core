@@ -1,8 +1,8 @@
 diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
-index 62a5aa48fdf02da4951202f62c74305b1c279dc1..81a4d27bdeafb7fa62877d387248ee90345ffdfc 100644
+index 9961afba10bcbd5c81ca4363899f331b42d8abb1..636a58ce755d44713aac3d01f29ac5ba0cd3fd35 100644
 --- a/content/browser/BUILD.gn
 +++ b/content/browser/BUILD.gn
-@@ -3095,6 +3095,8 @@ source_set("browser") {
+@@ -3094,6 +3094,8 @@ source_set("browser") {
      }
      libs += [ "jnigraphics" ]
    } else {
@@ -11,7 +11,7 @@ index 62a5aa48fdf02da4951202f62c74305b1c279dc1..81a4d27bdeafb7fa62877d387248ee90
      # Not Android.
      sources += [
        # The WebAuthn devtools protocol API is not supported in Android yet.
-@@ -3169,6 +3171,10 @@ source_set("browser") {
+@@ -3166,6 +3168,10 @@ source_set("browser") {
        "picture_in_picture/document_picture_in_picture_window_controller_impl.h",
      ]
  

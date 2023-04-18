@@ -7,6 +7,7 @@
 #include "base/observer_list.h"
 #include "components/media_router/browser/android/media_router_android_bridge.h"
 #include "components/media_router/browser/media_router_base.h"
+#include "components/media_router/browser/media_router_debugger.h"
 #include "mojo/public/cpp/bindings/pending_remote.h"
 #include "mojo/public/cpp/bindings/receiver.h"
 #include "mojo/public/cpp/bindings/remote.h"
@@ -26,8 +27,10 @@
       mojom::MediaRouteProviderId provider_id,\
       mojom::MediaRouteProvider::GetStateCallback callback) const override;\
   LoggerImpl* GetLogger() override;\
+  MediaRouterDebugger& GetDebugger() override;\
   IssueManager issue_manange_;\
   LoggerImpl logger_;\
+  MediaRouterDebugger media_router_debugger_;\
   void Initialize
 
 #include "src/components/media_router/browser/android/media_router_android.h"

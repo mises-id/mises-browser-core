@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/cookies/cookies_api.cc b/chrome/browser/extensions/api/cookies/cookies_api.cc
-index 9521c1e245f82ccd333b700b83c5f8265e4c996f..b07e5029630b7974e84f6e5eeb5a04cca3e4ecf1 100644
+index d97c8fd1ecbd58d3ea57366f1db52d010da21718..9c55e6ffaa3d587e8d1846a962b27fd90282f307 100644
 --- a/chrome/browser/extensions/api/cookies/cookies_api.cc
 +++ b/chrome/browser/extensions/api/cookies/cookies_api.cc
 @@ -40,6 +40,7 @@
@@ -24,7 +24,7 @@ index 9521c1e245f82ccd333b700b83c5f8265e4c996f..b07e5029630b7974e84f6e5eeb5a04cc
  }
  
  CookiesGetAllFunction::CookiesGetAllFunction() {
-@@ -392,7 +395,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
+@@ -386,7 +389,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
            safe_browsing::kExtensionTelemetryCookiesGetAllSignal)) {
      return;
    }
@@ -33,7 +33,7 @@ index 9521c1e245f82ccd333b700b83c5f8265e4c996f..b07e5029630b7974e84f6e5eeb5a04cc
    auto cookies_get_all_signal =
        std::make_unique<safe_browsing::CookiesGetAllSignal>(
            extension_id(), parsed_args_->details.domain.value_or(std::string()),
-@@ -403,6 +406,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
+@@ -397,6 +400,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
            parsed_args_->details.url.value_or(std::string()),
            parsed_args_->details.session.value_or(false));
    telemetry_service->AddSignal(std::move(cookies_get_all_signal));

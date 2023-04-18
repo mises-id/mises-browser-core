@@ -1,5 +1,5 @@
 diff --git a/extensions/common/command_unittest.cc b/extensions/common/command_unittest.cc
-index 49c158ff0afccb7bbe4a349028df38cb596a1883..2b802c9ec6f29f32a653aa1113a685f00447b67f 100644
+index 6898a572e9957b7948dc9e66db0d7b670526daa4..aad064c73ee2b6c26111d367260fc17a8a2c5611 100644
 --- a/extensions/common/command_unittest.cc
 +++ b/extensions/common/command_unittest.cc
 @@ -236,7 +236,7 @@ TEST(CommandTest, ExtensionCommandParsingFallback) {

@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/app_management/BUILD.gn b/ui/webui/resources/cr_components/app_management/BUILD.gn
-index ee76641d7374139d96b0a79a029eb6cf0e5958a6..4d5d9bd0cfabd3774591a12a2cfe0dd42ed55383 100644
+index 63afa629aee9994b8b2ed54baad428c0c4d4d0a1..a6e354153a86b1183de0b74bf05c21263bec1d74 100644
 --- a/ui/webui/resources/cr_components/app_management/BUILD.gn
 +++ b/ui/webui/resources/cr_components/app_management/BUILD.gn
 @@ -6,7 +6,7 @@ import("//mojo/public/tools/bindings/mojom.gni")

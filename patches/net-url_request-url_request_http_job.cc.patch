@@ -1,8 +1,8 @@
 diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
-index 31b8af59f7b5e56c340287fbef2db846101a0803..24b25b92aa4ea7aa533eaa43e551bd80350671b3 100644
+index 48d7ae0d56f206e3dcf4ddd13ae45d8c3297388c..cb2a87d50ea8285b68668e21ea2d2fe09cdf3035 100644
 --- a/net/url_request/url_request_http_job.cc
 +++ b/net/url_request/url_request_http_job.cc
-@@ -606,6 +606,10 @@ void URLRequestHttpJob::AddExtraHeaders() {
+@@ -615,6 +615,10 @@ void URLRequestHttpJob::AddExtraHeaders() {
    request_info_.extra_headers.SetAcceptEncodingIfMissing(
        request()->url(), request()->accepted_stream_types(),
        request()->context()->enable_brotli());
