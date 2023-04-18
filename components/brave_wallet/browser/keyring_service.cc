@@ -382,13 +382,7 @@ void KeyringService::SetAccountMetaForKeyring(
     const std::string& id) {
   base::Value::Dict& account_metas =
       GetPrefForKeyringUpdate(prefs, kAccountMetas, id);
-
-  if (!account_metas.Find(account_path))
-    account_metas.Set(account_path,
-                          base::Value(base::Value::Type::DICTIONARY));
-  base::Value::Dict* account_meta = account_metas.FindDict(account_path);
-  if (!account_meta)
-    return;
+  base::Value::Dict* account_meta = account_metas.EnsureDict(account_path);
   if (name)
     account_meta->Set(kAccountName, *name);
   if (address)
@@ -1454,19 +1448,9 @@ void KeyringService::AddHardwareAccounts(
     base::Value::Dict& hardware_keyrings =
         GetPrefForKeyringUpdate(prefs_, kHardwareAccounts, keyring_id);
 
-    base::Value* device_value = hardware_keyrings.Find(device_id);
-    if (!device_value) {
-      device_value = hardware_keyrings.Set(
-          device_id, base::Value(base::Value::Type::DICTIONARY));
-    }
-
-    base::Value* meta_value = device_value->FindKey(kAccountMetas);
-    if (!meta_value) {
-      meta_value = device_value->SetKey(
-          kAccountMetas, base::Value(base::Value::Type::DICTIONARY));
-    }
-    base::Value::Dict* meta_value_dict = device_value->GetDict().FindDict(kAccountMetas);
-    meta_value_dict->Set(info->address, std::move(hw_account));
+    hardware_keyrings.EnsureDict(device_id)
+        ->EnsureDict(kAccountMetas)
+        ->Set(info->address, std::move(hw_account));
     addresses.push_back(info->address);
 
     if (!account_selected) {

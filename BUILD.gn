@@ -53,7 +53,7 @@ if (!is_ios) {
     data_deps = [ ":unpacked_resources" ]
 
     if (!is_ios) {
-      #deps += [ ":packed_resources" ]
+      deps += [ ":packed_resources" ]
     }
   }
 

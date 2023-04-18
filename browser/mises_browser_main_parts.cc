@@ -13,6 +13,7 @@
 #include "mises/browser/extensions/mises_component_loader.h"
 #include "chrome/browser/extensions/extension_service.h"
 #include "extensions/browser/extension_system.h"
+#include "chrome/browser/profiles/profile.h"
 
 void MisesBrowserMainParts::PostBrowserStart() {
   ChromeBrowserMainParts::PostBrowserStart();

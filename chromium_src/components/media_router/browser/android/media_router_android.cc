@@ -16,7 +16,7 @@ base::Value::Dict MediaRouterAndroid::GetState() const {
   return base::Value::Dict();
 }
 base::Value MediaRouterAndroid::GetLogs() const {
-  return base::Value(base::Value::Type::DICTIONARY);
+  return base::Value(base::Value::Type::DICT);
 }
 LoggerImpl* MediaRouterAndroid::GetLogger(){
   return &logger_;

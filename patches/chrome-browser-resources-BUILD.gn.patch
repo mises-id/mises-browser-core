@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/BUILD.gn b/chrome/browser/resources/BUILD.gn
-index 9c34d7380f61fa2a2d32b78824e50ac7646ea546..d1837a5d21f5b29999016d07974223688590bd3f 100644
+index 9c34d7380f61fa2a2d32b78824e50ac7646ea546..58d230ed15e0af2c6eb8dc58ad2eada0c8e9ed20 100644
 --- a/chrome/browser/resources/BUILD.gn
 +++ b/chrome/browser/resources/BUILD.gn
 @@ -19,7 +19,7 @@ assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
@@ -11,6 +11,15 @@ index 9c34d7380f61fa2a2d32b78824e50ac7646ea546..d1837a5d21f5b29999016d0797422368
      public_deps += [
        ":app_icon_resources",
        ":component_extension_resources",
+@@ -37,7 +37,7 @@ group("resources") {
+       "inline_login:resources",
+       "management:resources",
+       "new_tab_page:resources",
+-      "new_tab_page_instant:resources",
++      "//mises/browser/resources/new_tab_page_instant:resources",
+       "new_tab_page_third_party:resources",
+       "omnibox_popup:resources",
+       "password_manager:resources",
 @@ -100,6 +100,11 @@ group("resources") {
        "ntp4:apps_resources",
      ]

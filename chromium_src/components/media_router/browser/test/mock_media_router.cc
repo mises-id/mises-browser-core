@@ -17,7 +17,7 @@ base::Value::Dict MockMediaRouter::GetState() const {
   return base::Value::Dict();
 }
 base::Value MockMediaRouter::GetLogs() const {
-  return base::Value(base::Value::Type::DICTIONARY);
+  return base::Value(base::Value::Type::DICT);
 }
 LoggerImpl* MockMediaRouter::GetLogger(){
   return &logger_;
