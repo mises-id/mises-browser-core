@@ -183,7 +183,7 @@ void ChromeBrowserMainExtraPartsProfiles::
 #if BUILDFLAG(IS_ANDROID)
   SearchPermissionsService::Factory::GetInstance();
 #endif
-  segmentation_platform::SegmentationPlatformServiceFactory::GetInstance();
+  //segmentation_platform::SegmentationPlatformServiceFactory::GetInstance();
   send_tab_to_self::SendTabToSelfClientServiceFactory::GetInstance();
 #if BUILDFLAG(ENABLE_SESSION_SERVICE)
   SessionServiceFactory::GetInstance();
