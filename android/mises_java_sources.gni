@@ -45,4 +45,5 @@ mises_java_base_module_sources = [
 ]
 mises_java_base_module_deps = [
   "//mises/third_party/android_deps:google_firebase_firebase_analytics_java",
+  "//third_party/android_deps:playcore_java",
 ]

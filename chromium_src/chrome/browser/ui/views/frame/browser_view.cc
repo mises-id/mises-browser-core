@@ -8,8 +8,14 @@
 
 #if BUILDFLAG(IS_ANDROID)
 
+#include "components/autofill/core/browser/ui/payments/payments_bubble_closed_reasons.h"
+
 namespace autofill {
 
+PaymentsBubbleClosedReason GetPaymentsBubbleClosedReasonFromWidget(
+    const views::Widget* widget) {
+    return PaymentsBubbleClosedReason::kUnknown;
+}
 
 class AutofillBubbleHandlerImpl_Mises :public AutofillBubbleHandler{
 public:
@@ -30,10 +36,11 @@ public:
       LocalCardMigrationBubbleController* controller,
       bool is_user_gesture) override {return nullptr;}
 
-  AutofillBubbleBase* ShowSaveIbanBubble(
-      content::WebContents* web_contents,
-      SaveIbanBubbleController* controller,
-      bool is_user_gesture) override {return nullptr;}
+  AutofillBubbleBase* ShowIbanBubble(
+    content::WebContents* web_contents,
+    IbanBubbleController* controller,
+    bool is_user_gesture,
+    IbanBubbleType bubble_type) override {return nullptr;}
 
   AutofillBubbleBase* ShowOfferNotificationBubble(
       content::WebContents* contents,

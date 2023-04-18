@@ -1,0 +1,13 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ChromeAppsWebViewPermissiveBehaviorAllowed.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ChromeAppsWebViewPermissiveBehaviorAllowed.yaml
+index fcc339978c9e8d919096cbe04731f07c939f8e3e..25bcee1a6ffd64f56d045bbd8beb9e72a37cc1ca 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/ChromeAppsWebViewPermissiveBehaviorAllowed.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/ChromeAppsWebViewPermissiveBehaviorAllowed.yaml
+@@ -39,6 +39,8 @@ desc: |-
+ # is enabled by default, launch this policy, and specify the timeline in the
+ # description.
+ # On ChromeOS, this policy should reach an LTS release before being removed.
++supported_on:
++- android:111-
+ future_on:
+ - chrome.*
+ - chrome_os

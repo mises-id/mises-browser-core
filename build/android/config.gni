@@ -30,6 +30,7 @@ mises_chrome_java_deps = [
   "//mises/third_party/android_deps:com_wireguard_android_J__unpack_aar",
   "//mises/third_party/android_deps:com_wireguard_android_java",
   "//mises/third_party/android_deps:google_play_services_safetynet_java",
+  "//mises/third_party/android_deps:com_google_android_play_core_app_update_java",
   #"//mises/third_party/zxing:zxing_java",
   #"//mises/vendor/bat-native-ledger/include/bat/ledger/public/interfaces:ledger_types_java",
   "//third_party/android_deps:google_play_services_vision_common_java",
@@ -52,7 +53,7 @@ mises_chrome_all_java_deps = [
   #"//mises/android/features/tab_ui:java",
   #"//mises/browser/partnerbookmarks:delegate_public_impl_java",
   #"//mises/browser/partnercustomizations:delegate_public_impl_java",
-
+  "//third_party/android_deps:playcore_java",
   "//mises/android/features/mises:jni_headers",
 ]
 

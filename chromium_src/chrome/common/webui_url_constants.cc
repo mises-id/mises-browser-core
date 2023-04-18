@@ -26,6 +26,10 @@ const char kChromeUIReadAnythingSidePanelURL[] =
     "chrome://read-anything-side-panel.top-chrome/";
 const char kChromeUIReadLaterHost[] = "read-later.top-chrome";
 const char kChromeUIReadLaterURL[] = "chrome://read-later.top-chrome/";
+const char kChromeUISearchCompanionSidePanelHost[] =
+    "search-companion-side-panel.top-chrome";
+const char kChromeUISearchCompanionSidePanelURL[] =
+    "chrome://search-companion-side-panel.top-chrome/";
 const char kChromeUIUntrustedFeedURL[] = "chrome-untrusted://feed/";
 const char kChromeUIUserNotesSidePanelHost[] =
     "user-notes-side-panel.top-chrome";
@@ -33,6 +37,8 @@ const char kChromeUIUserNotesSidePanelURL[] =
     "chrome://user-notes-side-panel.top-chrome/";
 const char kChromeUIOmniboxPopupHost[] = "omnibox-popup.top-chrome";
 const char kChromeUIOmniboxPopupURL[] = "chrome://omnibox-popup.top-chrome/";
+const char kChromeUISuggestInternalsHost[] = "suggest-internals";
+const char kChromeUISuggestInternalsURL[] = "chrome://suggest-internals/";
 const char kChromeUIWebAppInternalsHost[] = "web-app-internals";
 const char kChromeUIWebUITestHost[] = "webui-test";
 #endif

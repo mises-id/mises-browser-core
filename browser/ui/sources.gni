@@ -73,8 +73,6 @@ if (is_android) {
       "views/payments/view_stack.h",
 
 
-      "views/autofill/autofill_popup_view_native_views.cc",
-      "views/autofill/autofill_popup_view_native_views.h",
       "views/autofill/autofill_bubble_handler_impl.cc",
       "views/autofill/autofill_bubble_handler_impl.h",
 
@@ -170,6 +168,7 @@ if (is_android) {
       "views/overlay/video_overlay_window_views.h",
       "views/screen_capture_notification_ui_views.cc",
       "views/tab_dialogs_views.cc",
+      "views/autofill/popup/popup_view_views.cc",
 
       
 

@@ -1,0 +1,12 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Miscellaneous/HeadlessMode.yaml b/components/policy/resources/templates/policy_definitions/Miscellaneous/HeadlessMode.yaml
+index 0376a3a37a732225d2c3cb487f90b73665077666..9bfda727ddb1f94c73edf56419c698f245dc607a 100644
+--- a/components/policy/resources/templates/policy_definitions/Miscellaneous/HeadlessMode.yaml
++++ b/components/policy/resources/templates/policy_definitions/Miscellaneous/HeadlessMode.yaml
+@@ -26,6 +26,7 @@ schema:
+ supported_on:
+ - chrome.*:91-
+ - fuchsia:106-
++- android:112-
+ future_on:
+ - chrome_os
+ tags: []

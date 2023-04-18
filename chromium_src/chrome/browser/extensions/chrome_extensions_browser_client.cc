@@ -8,7 +8,16 @@
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_persister.h"
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_uploader.h"
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_config_manager.h"
+#include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_file_processor.h"
+#include "components/safe_browsing/core/common/features.h"
 namespace safe_browsing {
+
+ExtensionTelemetryFileProcessor::~ExtensionTelemetryFileProcessor() = default;
+
+ExtensionTelemetryFileProcessor::ExtensionTelemetryFileProcessor()
+    : max_files_to_process_(kExtensionTelemetryFileDataMaxFilesToProcess.Get()),
+      max_file_size_(kExtensionTelemetryFileDataMaxFileSizeBytes.Get()),
+      max_files_to_read_(1000) {}
 
 ExtensionTelemetryService::~ExtensionTelemetryService() = default;
 

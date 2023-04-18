@@ -52,7 +52,7 @@ if (!is_ios) {
 
     data_deps = [ ":unpacked_resources" ]
 
-    if (!is_ios) {
+    if (!is_ios && !is_android) {
       deps += [ ":packed_resources" ]
     }
   }

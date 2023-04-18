@@ -1,0 +1,14 @@
+diff --git a/ui/base/clipboard/BUILD.gn b/ui/base/clipboard/BUILD.gn
+index d5da00d21fcc73afb2249f90b02c78284a01acef..2594df321bb0a2a2296d9d916383d96b45b95498 100644
+--- a/ui/base/clipboard/BUILD.gn
++++ b/ui/base/clipboard/BUILD.gn
+@@ -109,7 +109,8 @@ component("clipboard") {
+       "clipboard_android.cc",
+       "clipboard_android.h",
+     ]
+-  } else {
++  }
++  if (true) {
+     sources += [
+       "clipboard_data.cc",
+       "clipboard_data.h",

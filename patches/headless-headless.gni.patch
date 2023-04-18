@@ -1,0 +1,11 @@
+diff --git a/headless/headless.gni b/headless/headless.gni
+index 1cf72ab01d19a9e07acafa1323e58741e3d4c566..ff19a9fa29a817985bc2198ef6f1457766793f8f 100644
+--- a/headless/headless.gni
++++ b/headless/headless.gni
+@@ -17,5 +17,5 @@ declare_args() {
+   headless_use_policy = true
+ 
+   # Platforms where headless mode is supported.
+-  headless_mode_policy_supported = !is_android && !is_ios && !is_chromeos
++  headless_mode_policy_supported = is_android || !is_android && !is_ios && !is_chromeos
+ }

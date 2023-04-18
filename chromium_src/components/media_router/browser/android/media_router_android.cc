@@ -26,4 +26,7 @@ void MediaRouterAndroid::GetProviderState(
     mojom::MediaRouteProvider::GetStateCallback callback) const {
     std::move(callback).Run(mojom::ProviderStatePtr());
 }
+MediaRouterDebugger& MediaRouterAndroid::GetDebugger() {
+  return media_router_debugger_;
+}
 }  // namespace media_router

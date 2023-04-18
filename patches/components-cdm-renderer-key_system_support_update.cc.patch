@@ -1,0 +1,14 @@
+diff --git a/components/cdm/renderer/key_system_support_update.cc b/components/cdm/renderer/key_system_support_update.cc
+index f37b9dab2ffbf1b5dfaf5c3e3b31f658b274931e..cc98e8ba44ab9be9225b710e541c8b736fda0f9d 100644
+--- a/components/cdm/renderer/key_system_support_update.cc
++++ b/components/cdm/renderer/key_system_support_update.cc
+@@ -496,7 +496,9 @@ void AddAndroidPlatformKeySystem(
+     const media::mojom::KeySystemCapabilityPtr& capability,
+     bool can_persist_data,
+     KeySystemInfos* key_systems) {
++#if BUILDFLAG(ENABLE_WIDEVINE)
+   DCHECK_NE(key_system, kWidevineKeySystem);
++#endif
+ 
+   // When using MediaDrm, we assume it'll always try to persist some data.
+   // If we don't allow data to be persisted, then skip this key system.

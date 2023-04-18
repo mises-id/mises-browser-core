@@ -135,9 +135,9 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   web_app::PreinstalledWebAppManager::RegisterProfilePrefs(registry);
   web_app::WebAppPolicyManager::RegisterProfilePrefs(registry);
   web_app::WebAppPrefsUtilsRegisterProfilePrefs(registry);
-  web_app::IsolationPrefsUtilsRegisterProfilePrefs(registry);
   web_app::RegisterInstallBounceMetricProfilePrefs(registry);
   web_app::RegisterDailyWebAppMetricsProfilePrefs(registry);
+  web_app::WebAppShortcutManager::RegisterProfilePrefs(registry);
 #endif
 
 

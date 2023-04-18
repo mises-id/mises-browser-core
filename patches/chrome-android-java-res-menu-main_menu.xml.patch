@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
 old mode 100644
 new mode 100755
-index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..e8113c5b67056ab0a0c7a793e76271ee4c40e62e
+index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f076c6511f
 --- a/chrome/android/java/res/menu/main_menu.xml
 +++ b/chrome/android/java/res/menu/main_menu.xml
 @@ -1,9 +1,7 @@
@@ -42,7 +42,14 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..e8113c5b67056ab0a0c7a793e76271ee
          <item android:id="@+id/move_to_other_window_menu_id"
              android:title="@string/menu_move_to_other_window"
              android:icon="@drawable/ic_open_in_browser" />
-@@ -65,24 +66,24 @@ found in the LICENSE file.
+@@ -59,30 +60,30 @@ found in the LICENSE file.
+             android:title="@null" />
+         <item android:id="@+id/open_history_menu_id"
+             android:title="@string/menu_history"
+-            android:icon="@drawable/ic_history_googblue_24dp" />
++            android:icon="@drawable/ic_history_googblue_24dp" />        
+         <item android:id="@+id/quick_delete_menu_id"
+             android:title="@string/menu_quick_delete"
              android:icon="@drawable/quick_delete_trash_bin_icon_24dp"/>
          <item android:id="@+id/downloads_menu_id"
              android:title="@string/menu_downloads"
