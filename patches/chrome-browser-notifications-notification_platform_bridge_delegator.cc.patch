@@ -1,0 +1,24 @@
+diff --git a/chrome/browser/notifications/notification_platform_bridge_delegator.cc b/chrome/browser/notifications/notification_platform_bridge_delegator.cc
+index 094bb61f2d26835ed1c338330953823d577a85fe..1cf9816d7b0dc2a552a0de114f9f53c5ca1c7db0 100644
+--- a/chrome/browser/notifications/notification_platform_bridge_delegator.cc
++++ b/chrome/browser/notifications/notification_platform_bridge_delegator.cc
+@@ -122,7 +122,8 @@ void NotificationPlatformBridgeDelegator::Display(
+     const message_center::Notification& notification,
+     std::unique_ptr<NotificationCommon::Metadata> metadata) {
+   NotificationPlatformBridge* bridge = GetBridgeForType(notification_type);
+-  DCHECK(bridge);
++  //DCHECK(bridge);
++  if (bridge)
+   bridge->Display(notification_type, profile_, notification,
+                   std::move(metadata));
+ }
+@@ -131,7 +132,8 @@ void NotificationPlatformBridgeDelegator::Close(
+     NotificationHandler::Type notification_type,
+     const std::string& notification_id) {
+   NotificationPlatformBridge* bridge = GetBridgeForType(notification_type);
+-  DCHECK(bridge);
++  //DCHECK(bridge);
++  if (bridge)
+   bridge->Close(profile_, notification_id);
+ }
+ 

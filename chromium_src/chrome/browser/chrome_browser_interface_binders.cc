@@ -17,7 +17,6 @@
 #include "chrome/browser/ui/webui/downloads/downloads_ui.h"
 #include "chrome/browser/ui/webui/feed/feed.mojom.h"
 #include "chrome/browser/ui/webui/feed/feed_ui.h"
-#include "chrome/browser/ui/webui/image_editor/image_editor.mojom.h"
 #if !defined(OFFICIAL_BUILD)
 #include "chrome/browser/ui/webui/new_tab_page/foo/foo.mojom.h"  // nogncheck crbug.com/1125897
 #endif
