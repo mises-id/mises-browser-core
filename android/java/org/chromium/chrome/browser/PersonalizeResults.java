@@ -144,7 +144,8 @@ public class PersonalizeResults {
        }
        // Martian Aptos Wallet
        if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://efbglgofoippbgcjepnhiblaibcnclgk")) {
-        tab.getWebContents().evaluateJavaScript("(function() {window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=1200\") }); })();", null);
+        tab.getWebContents().evaluateJavaScript("(function() {window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=device-width\") }); })();", null);
+        tab.getWebContents().evaluateJavaScript(RenderStyleContent(MARTIAN_EXTENSION_STYLES), null);
        }
        // StarMask
        if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://mfhbebgoclkghebffdldpobeajmbecfk")) {
@@ -290,7 +291,7 @@ public class PersonalizeResults {
    private static final String PONTEM_EXTENSION_STYLES = "'.Welcome_component__yTuSP .Welcome_expandImage__CUQsJ {display: none !important} .Welcome_mobileImage__5pIgx{display: block !important}'";
   
    // Martian Aptos Wallet
-   private static final String MARTIAN_EXTENSION_STYLES = "(function(){window.addEventListener('load', function() { console.log('hack style'); setTimeout(()=>{document.querySelector('.main_main_cont').parentElement.style.width = '100vw';},1000); var styleTag = document.createElement('style'); styleTag.type='text/css'; styleTag.innerHTML = \".main_main_cont{width:95vw} .faohDz,.caWQbO {font-size: 34px;} .css-1o6ow4v,.css-krw8lj {width: 100%;height: auto;} .css-9hz2xg,.css-1vrddje{width:100%}\";document.body.appendChild(styleTag);})})()";
+   private static final String MARTIAN_EXTENSION_STYLES = "'.sc-beqWaB.fdTxvX {font-size: 36px} .MuiGrid-item.css-1o6ow4v,.MuiGrid-item.css-krw8lj{max-width: 100%} .main_main_cont{max-width: 100%} header+div{width: 93vw} .MuiGrid-item.css-mimkti{padding: 0} .MuiInputBase-colorPrimary.css-1nn34ff{width: 80vw} .MuiGrid-item.css-1pxj66c,.MuiGrid-item.css-fhsby0,.MuiGrid-item.css-12ffmac{width: 100%} .sc-ktEKTO.zidSu{flex: 300px 0 0;margin-right: 20px;}.MuiGrid-root.MuiGrid-item.css-1wxaqej+div{overflow-x: auto;overflow-y: hidden;box-sizing: border-box;width: 100%;}.sc-dmqHEX.cmYkMv{width: 100%;max-width: 100%;}.MuiGrid-container.css-p5uq5n,.MuiGrid-root.css-9hz2xg{width: 100%}.MuiGrid-item.css-1se9gly{width: 40%}.MuiGrid-item.css-6nu8rw{width: 90%}'";
 
    // StarMask 
    private static final String STERMASK_EXTENSION_STYLES = "'.select-action__select-buttons {flex-direction:column} .select-action__select-button {margin-left:0;margin-bottom:10px} .first-time-flow{padding:20px}'";
