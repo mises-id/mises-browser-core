@@ -27,7 +27,7 @@ android_library("public_java") {
    "java/org/chromium/chrome/browser/mises/MisesController.java",
    "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
    "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
-   "java/org/chromium/chrome/browser/mises/MisesLCDService.java",
+   "java/org/chromium/chrome/browser/mises/MisesLCDServiceImpl.java",
    "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
    "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
    "java/org/chromium/chrome/browser/mises/MisesUtil.java",
@@ -70,7 +70,8 @@ android_library("public_java") {
     "//mises/third_party/android_deps:com_kirich1409_svgimageloaderplugins_java",
     "//mises/third_party/android_deps:google_firebase_firebase_analytics_java", 
     "//mises/third_party/android_deps:google_play_services_measurement_api_java",
-"//mises/third_party/mises:mises_light_node_java",
+    "//mises/third_party/mises:mises_light_node_java",
+    "//chrome/android:base_module_java",
   ]
   annotation_processor_deps = [ "//base/android/jni_generator:jni_processor" ]
   resources_package = "org.chromium.chrome.mises"

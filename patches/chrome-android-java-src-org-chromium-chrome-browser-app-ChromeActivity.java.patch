@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index 6d1275819c9c4171b8beaf8306ecf047712e4337..9d57f3d518aeaf3c61ac40ad1035d4ea4fcee65f 100644
+index 6d1275819c9c4171b8beaf8306ecf047712e4337..2f27fd5a08fd511f5cad8775d2ee79c872ddad5c 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
@@ -42,7 +42,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..9d57f3d518aeaf3c61ac40ad1035d4ea
 +import org.chromium.chrome.browser.mises.MisesController;
 +
 +import org.chromium.chrome.browser.AppMenuBridge;
-+import org.chromium.chrome.browser.mises.MisesLCDService;
++import org.chromium.chrome.browser.mises.MisesLCDServiceImpl;
 +import android.view.Gravity;
 +import org.chromium.components.browser_ui.widget.CoordinatorLayoutForPointer;
 +import com.google.firebase.analytics.FirebaseAnalytics;
@@ -125,7 +125,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..9d57f3d518aeaf3c61ac40ad1035d4ea
          }
  
          getManualFillingComponent().onResume();
-+        MisesLCDService.maybeStartService(getApplication());
++        MisesLCDServiceImpl.maybeStartService(getApplication());
      }
  
      private void ensureFullscreenVideoPictureInPictureController() {

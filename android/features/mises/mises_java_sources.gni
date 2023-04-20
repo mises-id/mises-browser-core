@@ -7,7 +7,7 @@ mises_java_sources = [
   "java/src/org/chromium/chrome/browser/mises/MisesController.java",
   "java/src/org/chromium/chrome/browser/mises/MisesShareWin.java",
   "java/src/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
-  "java/src/org/chromium/chrome/browser/mises/MisesLCDService.java",
+  "java/src/org/chromium/chrome/browser/mises/MisesLCDServiceImpl.java",
   "java/src/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
   "java/src/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
   "java/src/org/chromium/chrome/browser/mises/MisesUtil.java",
