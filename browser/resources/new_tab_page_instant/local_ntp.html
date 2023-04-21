@@ -905,6 +905,9 @@ try {
       console.log('Fetch failed for: ' + err.message);
 }
   }
+  if(!rootDomain){
+    rootDomain = item.title
+  }
   innerDiv.innerHTML = '<img id="closeImg" src="' + closeImg + '" class="closeImg closeImgInvisible" height="20" width="20" style="position: absolute; right: 0px; border: 0px;" /><a id="tile_target" href="' + item.url + '"><div class="grid-image-box"><img border="0" class="grid-image serverIdea" title="' + item.url + '" src="' + imageUri + '" id="icon' + randomId + '" onError="invalidate_image(this)" width="33" style="max-height: 33px; border-radius: 5px;" /></div><span class="mises-web3-title">' + rootDomain + '</span></a>';
   innerDiv.style.minHeight = '64px';
 
