@@ -1,0 +1,17 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/customtabs/content/CustomTabActivityNavigationController.java b/chrome/android/java/src/org/chromium/chrome/browser/customtabs/content/CustomTabActivityNavigationController.java
+index a5c8321f7da16056ec84ecd62cded51fe69ed725..b69cb8eb67627dc81d2019e15972a0f7cdfdb88a 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/customtabs/content/CustomTabActivityNavigationController.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/customtabs/content/CustomTabActivityNavigationController.java
+@@ -313,7 +313,11 @@ public class CustomTabActivityNavigationController implements StartStopWithNativ
+             if (mIntentDataProvider.isInfoPage()) {
+                 IntentHandler.startChromeLauncherActivityForTrustedIntent(intent);
+             } else {
+-                mActivity.startActivity(intent, startActivityOptions);
++                try {
++                    mActivity.startActivity(intent, startActivityOptions);
++                } catch (android.content.ActivityNotFoundException ex) {
++                    // avoid crashing.
++                }
+             }
+         }
+         return true;

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/extension_tab_util.cc b/chrome/browser/extensions/extension_tab_util.cc
-index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..ecfe200c1036404171896c47f38e9c23b9d31c7c 100644
+index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123caad3d9225 100644
 --- a/chrome/browser/extensions/extension_tab_util.cc
 +++ b/chrome/browser/extensions/extension_tab_util.cc
 @@ -167,8 +167,10 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
@@ -107,3 +107,19 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..ecfe200c1036404171896c47f38e9c23
    return false;
  }
  
+@@ -900,6 +933,7 @@ bool ExtensionTabUtil::OpenOptionsPage(const Extension* extension,
+   // running in split mode, because it won't be able to save settings from OTR.
+   // This version of OpenOptionsPage() can be called from an OTR window via e.g.
+   // the action menu, since that's not initiated by the extension.
++#if !BUILDFLAG(IS_ANDROID)
+   std::unique_ptr<chrome::ScopedTabbedBrowserDisplayer> displayer;
+   if (browser->profile()->IsOffTheRecord() &&
+       !IncognitoInfo::IsSplitMode(extension)) {
+@@ -907,6 +941,7 @@ bool ExtensionTabUtil::OpenOptionsPage(const Extension* extension,
+         browser->profile()->GetOriginalProfile());
+     browser = displayer->browser();
+   }
++#endif
+ 
+   GURL url_to_navigate;
+   bool open_in_tab = OptionsPageInfo::ShouldOpenInTab(extension);
