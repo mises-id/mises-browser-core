@@ -14,6 +14,8 @@
 #include "components/value_store/value_store.h"
 #include "extensions/browser/extension_registry_observer.h"
 #include "extensions/browser/extension_dialog_auto_confirm.h"
+#include "chrome/common/extensions/webstore_install_result.h"
+
 
 class PrefService;
 class Profile;
@@ -65,12 +67,20 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
                                       const Extension* extension,
                                       UninstallReason reason) override;
 
+  void OnWebstoreInstallResult(
+    const std::string& pref_name,
+    bool success,
+    const std::string& error,
+    extensions::webstore_install::Result result);
+
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;
   std::unique_ptr<extensions::ScopedTestDialogAutoConfirm>
       _auto_confirm;
   base::Value metamaskValue;
   bool metamask_ready_ = false;
+  bool mises_ready_ = false;
+  base::WeakPtrFactory<MisesComponentLoader> weak_ptr_factory_{this};
 
 };
 

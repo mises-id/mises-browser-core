@@ -41,8 +41,64 @@
 #include "content/public/browser/web_contents.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/android/app_menu_bridge.h"
+#endif
+
+#if BUILDFLAG(ENABLE_EXTENSIONS)
+#include "chrome/browser/extensions/webstore_install_with_prompt.h"
+#include "chrome/common/extensions/webstore_install_result.h"
+#include "extensions/browser/extension_file_task_runner.h"
+#endif
+
+#include "base/strings/utf_string_conversions.h"
+#include "chrome/browser/notifications/notification_display_service.h"
+#include "chrome/browser/notifications/notification_display_service_factory.h"
+#include "ui/message_center/public/cpp/notification.h"
+#include "ui/message_center/public/cpp/notification_types.h"
+#include "ui/message_center/public/cpp/notifier_id.h"
+
+namespace {
+
+#if BUILDFLAG(ENABLE_EXTENSIONS)
+
+// Silent installer via websotre w/o any prompt or bubble.
+class WebstoreInstallerForImporting
+    : public extensions::WebstoreInstallWithPrompt {
+ public:
+  using WebstoreInstallWithPrompt::WebstoreInstallWithPrompt;
+
+ private:
+  ~WebstoreInstallerForImporting() override = default;
+
+  std::unique_ptr<ExtensionInstallPrompt::Prompt>
+      CreateInstallPrompt() const override {
+    return nullptr;
+  }
+  bool ShouldShowPostInstallUI() const override { return true; }
+};
 
 #endif
+
+std::unique_ptr<message_center::Notification> CreateMessageCenterNotification(
+    const std::u16string& title,
+    const std::u16string& body,
+    const std::string& uuid,
+    const GURL& link) {
+  message_center::RichNotificationData notification_data;
+  // hack to prevent origin from showing in the notification
+  notification_data.context_message = u" ";
+  auto notification = std::make_unique<message_center::Notification>(
+      message_center::NOTIFICATION_TYPE_SIMPLE, uuid, title, body,
+      ui::ImageModel(), std::u16string(), link,
+      message_center::NotifierId(message_center::NotifierType::SYSTEM_COMPONENT,
+                                 "service.mises"),
+      notification_data, nullptr);
+
+  return notification;
+}
+
+
+}  // namespace
+
 using extensions::mojom::ManifestLocation;
 
 namespace extensions {
@@ -121,25 +177,27 @@ void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_co
 
 void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_context,
                                      const Extension* extension) {
-    if (extension->id() == metamask_extension_id &&  extension->location() == ManifestLocation::kComponent) {
-      metamask_ready_ = true;
+  if (extension->id() == metamask_extension_id) {
+    metamask_ready_ = true;
+    StorageFrontend* frontend = StorageFrontend::Get(profile_);
+      frontend->RunWithStorage(
+        extension, settings_namespace::LOCAL,
+      base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
+      );
+  }
+  if (extension->id() == mises_extension_id) {
+    mises_ready_ = true;
+  }
+  if (mises_ready_ && metamask_ready_) {
+    if (profile_prefs_->FindPreference(kMisesDidMigrated) && !profile_prefs_->GetBoolean(kMisesDidMigrated)) {
+      profile_prefs_->SetBoolean(kMisesDidMigrated, true);
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
-        frontend->RunWithStorage(
-          extension, settings_namespace::LOCAL,
-        base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
-        );
+      frontend->RunWithStorage(
+        extension, settings_namespace::LOCAL,
+      base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
+      );
     }
-    if (extension->id() == mises_extension_id && metamask_ready_) {
-
-      if (profile_prefs_->FindPreference(kMisesDidMigrated) && !profile_prefs_->GetBoolean(kMisesDidMigrated)) {
-        profile_prefs_->SetBoolean(kMisesDidMigrated, true);
-        StorageFrontend* frontend = StorageFrontend::Get(profile_);
-        frontend->RunWithStorage(
-          extension, settings_namespace::LOCAL,
-        base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
-        );
-      }
-    }
+  }
 
 #if BUILDFLAG(IS_ANDROID)
   //refresh extension menu icon
@@ -239,17 +297,28 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 #endif
     LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionUninstalled";
   }
-  if(extension && extension->location() == ManifestLocation::kComponent) {
-     if (extension->id() == metamask_extension_id ) {
-        //disable preinstall metamask
-        if (profile_prefs_->FindPreference(kPreinstallMetamaskEnabled)) {
-          profile_prefs_->SetBoolean(kPreinstallMetamaskEnabled, false);
-        }
-     }
+  if(extension && extension->id() == metamask_extension_id) {
+    //disable preinstall metamask
+    if (profile_prefs_->FindPreference(kPreinstallMetamaskEnabled)) {
+      profile_prefs_->SetBoolean(kPreinstallMetamaskEnabled, false);
+    }
   }
 
 
 }
+
+
+void MisesComponentLoader::OnWebstoreInstallResult(
+    const std::string& extension_id,
+    bool success,
+    const std::string& error,
+    extensions::webstore_install::Result result) {
+      LOG(INFO) << "[Mises] MisesComponentLoader::OnWebstoreInstallResult " << result;
+  if (result != extensions::webstore_install::Result::SUCCESS &&
+      result != extensions::webstore_install::Result::LAUNCH_IN_PROGRESS) {
+  }
+}
+
 
 
 void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
@@ -264,10 +333,26 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
       if (!profile_prefs_->FindPreference(kPreinstallMetamaskEnabled) || 
         profile_prefs_->GetBoolean(kPreinstallMetamaskEnabled)) {
 
-        base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
-        metamask_extension_path =
-            metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
-        Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+        // base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
+        // metamask_extension_path =
+        //     metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
+        // Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+
+        auto notification = CreateMessageCenterNotification(
+            base::UTF8ToUTF16(std::string("Extensions")), 
+            base::UTF8ToUTF16(std::string("Preinstalling Metamask extension from chrome webstore, it will take a few seconds")),
+            base::GenerateGUID(),
+            GURL("mises://extensions"));
+        NotificationDisplayServiceFactory::GetForProfile(profile_)->Display(
+            NotificationHandler::Type::SEND_TAB_TO_SELF, *notification, nullptr);
+
+        scoped_refptr<WebstoreInstallerForImporting> installer =
+            new WebstoreInstallerForImporting(
+                metamask_extension_id, profile_,
+                base::BindOnce(
+                    &MisesComponentLoader::OnWebstoreInstallResult,
+                    weak_ptr_factory_.GetWeakPtr(), metamask_extension_id));
+        installer->BeginInstall();
        
       }
   }
