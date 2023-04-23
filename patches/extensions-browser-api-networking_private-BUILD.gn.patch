@@ -1,0 +1,13 @@
+diff --git a/extensions/browser/api/networking_private/BUILD.gn b/extensions/browser/api/networking_private/BUILD.gn
+index 9ae8caa5654790ae379106b84f326dbf473959c8..97aaa8030fa5856cb473d2c078cd0a0639ccb8e7 100644
+--- a/extensions/browser/api/networking_private/BUILD.gn
++++ b/extensions/browser/api/networking_private/BUILD.gn
+@@ -61,7 +61,7 @@ source_set("networking_private") {
+               ]
+ 
+     deps += [ "//dbus" ]
+-  } else if (is_win || is_mac || is_fuchsia) {
++  } else if (is_win || is_mac || is_fuchsia || is_android) {
+     sources = default_sources + [
+                 "networking_private_event_router_nonchromeos.cc",
+                 "networking_private_service_client.cc",

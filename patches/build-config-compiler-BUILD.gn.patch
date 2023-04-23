@@ -1,8 +1,8 @@
 diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
-index ef3285ae74e1bf95389e2c30da001b0d6ef7a8e0..cf5b83fbbae40538b8b7bf1e260850d423714122 100644
+index 9afb4425840b92a5c16e5ce5e11086a778cf8451..7a206632a1918a4ad2de9a5a9e0c64fb1326c307 100644
 --- a/build/config/compiler/BUILD.gn
 +++ b/build/config/compiler/BUILD.gn
-@@ -769,7 +769,7 @@ config("compiler") {
+@@ -771,7 +771,7 @@ config("compiler") {
    # Pass flag to LLD so Android builds can allow debuggerd to properly symbolize
    # stack crashes (http://crbug.com/919499).
    if (use_lld && is_android) {

@@ -1,4 +1,5 @@
 #include "extensions/browser/ui_util.h"
+#include "extensions/common/constants.h"
 
 #define ShouldDisplayInExtensionSettings ShouldDisplayInExtensionSettings_Chromium
 #include "src/extensions/browser/ui_util.cc"
@@ -14,7 +15,9 @@ bool ShouldDisplayInExtensionSettings(Manifest::Type type,
 }
 
 bool ShouldDisplayInExtensionSettings(const Extension& extension) {
-  return extension.ShouldExposeViaManagementAPI() || ShouldDisplayInExtensionSettings_Chromium(extension.GetType(),
+  if (extension.id() == metamask_extension_id) return true;
+  if (extension.id() == mises_extension_id) return true;
+  return ShouldDisplayInExtensionSettings_Chromium(extension.GetType(),
                                           extension.location());
 }
 

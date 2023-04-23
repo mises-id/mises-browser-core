@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/side_panel/bookmarks/BUILD.gn b/chrome/browser/resources/side_panel/bookmarks/BUILD.gn
-index 54882fd577f0969e0d889d4e92eb091eac8376e6..8d47e982b97eb5f7ba704bbb1158c9644e21b113 100644
+index f1731abdbf04dcbacf19988f4c56c9960d7d48c0..09c5a06198f3b4992c4526243f204d201f700547 100644
 --- a/chrome/browser/resources/side_panel/bookmarks/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/bookmarks/BUILD.gn
 @@ -4,7 +4,7 @@
  
- import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +#assert(!is_android)

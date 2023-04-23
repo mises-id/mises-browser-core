@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/feedback/BUILD.gn b/chrome/browser/resources/feedback/BUILD.gn
-index a97f116bb1bc12d2c710e92491d8b02d8a93ba57..79b7abf3519af1a0588ff44d327b679c735a9f29 100644
+index ce31b6b7ead95798b5c2557a7524637415faab41..92a10cd185ce3d8279b665199af188440d60d087 100644
 --- a/chrome/browser/resources/feedback/BUILD.gn
 +++ b/chrome/browser/resources/feedback/BUILD.gn
 @@ -6,7 +6,7 @@ import("//build/config/chromeos/ui_mode.gni")
- import("//chrome/browser/resources/tools/build_webui.gni")
  import("//chrome/common/features.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +#assert(!is_android)

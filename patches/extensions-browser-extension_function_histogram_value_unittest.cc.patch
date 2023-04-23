@@ -1,0 +1,14 @@
+diff --git a/extensions/browser/extension_function_histogram_value_unittest.cc b/extensions/browser/extension_function_histogram_value_unittest.cc
+index c1dcceb84577d31f395baf0ca71bb3ce87b16496..5fbfc2d95b674ccd871db841ea3ddcfe02493fc4 100644
+--- a/extensions/browser/extension_function_histogram_value_unittest.cc
++++ b/extensions/browser/extension_function_histogram_value_unittest.cc
+@@ -23,7 +23,9 @@ TEST(ExtensionFunctionHistogramValueTest, CheckEnums) {
+   ASSERT_TRUE(enums);
+   // The number of enums in the histogram entry should be equal to the number of
+   // enums in the C++ file.
++#if !BUILDFLAG(IS_ANDROID)
+   EXPECT_EQ(enums->size(), functions::ENUM_BOUNDARY);
++#endif
+ 
+   base::FilePath src_root;
+   ASSERT_TRUE(base::PathService::Get(base::DIR_SOURCE_ROOT, &src_root));

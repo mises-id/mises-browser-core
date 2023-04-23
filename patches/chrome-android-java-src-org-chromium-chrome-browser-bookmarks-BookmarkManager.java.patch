@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
-index 0bda5cfb312f5f33a511b2212e368d19632944fe..d4122df9a95cd02ff66becc847459ebf20b89061 100644
+index afb4b6eeb880a3c03aba5c58a8a0de9fcb165ac9..13260a368d221a5f9776554cfb29236ca10b980f 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManager.java
-@@ -51,6 +51,11 @@ import org.chromium.url.GURL;
+@@ -45,6 +45,11 @@ import org.chromium.url.GURL;
  import java.util.List;
  import java.util.Stack;
  
@@ -14,7 +14,7 @@ index 0bda5cfb312f5f33a511b2212e368d19632944fe..d4122df9a95cd02ff66becc847459ebf
  /**
   * The new bookmark manager that is planned to replace the existing bookmark manager. It holds all
   * views and shared logics between tablet and phone. For tablet/phone specific logics, see
-@@ -64,6 +69,9 @@ public class BookmarkManager implements BookmarkDelegate, SearchDelegate,
+@@ -58,6 +63,9 @@ public class BookmarkManager implements BookmarkDelegate, SearchDelegate,
  
      private static boolean sPreventLoadingForTesting;
  
@@ -22,8 +22,8 @@ index 0bda5cfb312f5f33a511b2212e368d19632944fe..d4122df9a95cd02ff66becc847459ebf
 +    private IntentRequestTracker mIntentTracker;
 +
      private Context mContext;
-     private ComponentName mOpenBookmarkComponentName;
      private ViewGroup mMainView;
+     private BookmarkModel mBookmarkModel;
 @@ -301,6 +309,22 @@ public class BookmarkManager implements BookmarkDelegate, SearchDelegate,
          if (!isDialogUi) {
              RecordUserAction.record("MobileBookmarkManagerPageOpen");

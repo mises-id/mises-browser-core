@@ -1,8 +1,8 @@
 diff --git a/extensions/browser/api/system_cpu/BUILD.gn b/extensions/browser/api/system_cpu/BUILD.gn
-index 11b7144fa63da52f8a738cf18307e34db8ae239e..60685ae20026b800ea1cc103164dcd0795c2c20c 100644
+index 2f39c29f7fbb0ebf3657e811cf7e5dac7a880a33..84d9cee1356677e9822efa6f01452d652f1e2c60 100644
 --- a/extensions/browser/api/system_cpu/BUILD.gn
 +++ b/extensions/browser/api/system_cpu/BUILD.gn
-@@ -38,6 +38,10 @@ source_set("system_cpu") {
+@@ -40,6 +40,10 @@ source_set("system_cpu") {
      sources += [ "cpu_info_provider_win.cc" ]
    }
  

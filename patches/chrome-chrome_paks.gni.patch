@@ -1,8 +1,8 @@
 diff --git a/chrome/chrome_paks.gni b/chrome/chrome_paks.gni
-index a16658689a69ec01328b483502e469b9e37d3b26..d8b4de0188f1dc19788603c4f2f3d1e89c172a2c 100644
+index b3f457a9ce65635b0dfe909432648b727b8e853f..0a8aa223a093cc7c04c9bd21db8ee33f5e291de2 100644
 --- a/chrome/chrome_paks.gni
 +++ b/chrome/chrome_paks.gni
-@@ -142,7 +142,7 @@ template("chrome_extra_paks") {
+@@ -148,7 +148,7 @@ template("chrome_extra_paks") {
        sources += invoker.additional_paks
      }
  
@@ -11,7 +11,16 @@ index a16658689a69ec01328b483502e469b9e37d3b26..d8b4de0188f1dc19788603c4f2f3d1e8
        # New paks should be added here by default.
        sources += [
          "$root_gen_dir/chrome/access_code_cast_resources.pak",
-@@ -406,7 +406,7 @@ template("chrome_extra_paks") {
+@@ -207,7 +207,7 @@ template("chrome_extra_paks") {
+         "//chrome/browser/resources/inline_login:resources",
+         "//chrome/browser/resources/management:resources",
+         "//chrome/browser/resources/new_tab_page:resources",
+-        "//chrome/browser/resources/new_tab_page_instant:resources",
++        "//mises/browser/resources/new_tab_page_instant:resources",
+         "//chrome/browser/resources/new_tab_page_third_party:resources",
+         "//chrome/browser/resources/omnibox_popup:resources",
+         "//chrome/browser/resources/password_manager:resources",
+@@ -416,7 +416,7 @@ template("chrome_extra_paks") {
        sources += [ "$root_gen_dir/chrome/webui_js_error_resources.pak" ]
        deps += [ "//chrome/browser/resources/webui_js_error:resources" ]
      }
@@ -20,7 +29,7 @@ index a16658689a69ec01328b483502e469b9e37d3b26..d8b4de0188f1dc19788603c4f2f3d1e8
        sources += [
          "$root_gen_dir/chrome/intro_resources.pak",
          "$root_gen_dir/chrome/profile_picker_resources.pak",
-@@ -440,12 +440,12 @@ template("chrome_extra_paks") {
+@@ -450,12 +450,12 @@ template("chrome_extra_paks") {
        deps += [ "//chrome/browser/resources/connectors_internals:resources" ]
      }
  

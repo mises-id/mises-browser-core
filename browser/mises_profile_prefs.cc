@@ -59,6 +59,8 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   brave_wallet::RegisterProfilePrefs(registry);
 
   registry->RegisterBooleanPref(kPreinstallMetamaskEnabled, true);
+  registry->RegisterBooleanPref(kMisesDidMigrated, false);
+  
 
 }
 

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
-index cbeb37f164f7aa1f116e190ea0bac5e13be72884..0278a2661b415295effe97f1ff3c4764733f573f 100644
+index 90c2c91f5f03cafa37bf066b82f2b4c0b3358967..d68b9f3c0811137e8e7501db916200822dd25418 100644
 --- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
 +++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
-@@ -142,6 +142,9 @@ public class LegacyChromePreferenceKeys {
+@@ -141,6 +141,9 @@ public class LegacyChromePreferenceKeys {
                  ChromePreferenceKeys.UI_THEME_SETTING,
                  ChromePreferenceKeys.VERIFIED_DIGITAL_ASSET_LINKS,
                  ChromePreferenceKeys.WEBAPK_UNINSTALLED_PACKAGES,

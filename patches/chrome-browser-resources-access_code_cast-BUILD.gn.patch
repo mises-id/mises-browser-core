@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/access_code_cast/BUILD.gn b/chrome/browser/resources/access_code_cast/BUILD.gn
-index dd7a6efc3b58019fbabaed60a8ce05af9d4eb8c4..d00113dc8757e59056f60631ff8dc93ae92ea52e 100644
+index 479a3a70d3abe16b0de5f62864107b3137fe6574..b00f13a90c4e33033a576da80c6ad45653982a21 100644
 --- a/chrome/browser/resources/access_code_cast/BUILD.gn
 +++ b/chrome/browser/resources/access_code_cast/BUILD.gn
 @@ -4,7 +4,7 @@
  
- import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android, "access_code_cast is not for android.")
 +# assert(!is_android, "access_code_cast is not for android.")

@@ -17,6 +17,7 @@
     "gclient": "node ./build/commands/scripts/gclient.js",
     "build": "node ./build/commands/scripts/commands.js build",
     "gn_check": "node ./build/commands/scripts/commands.js gn_check",
+    "gn_list": "node ./build/commands/scripts/commands.js gn_list",
     "versions": "node ./build/commands/scripts/commands.js versions",
     "upload": "node ./build/commands/scripts/commands.js upload",
     "update_patches": "node ./build/commands/scripts/commands.js update_patches",
@@ -61,7 +62,7 @@
     "projects": {
       "chrome": {
         "dir": "src",
-        "tag": "111.0.5563.64",
+        "tag": "112.0.5615.121",
         "repository": {
           "url": "https://github.com/chromium/chromium"
         }

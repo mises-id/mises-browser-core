@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridPanelViewBinder.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridPanelViewBinder.java
-index 07b2d0a5dc1a6c5411cf2b64984f1744007e7de9..56b9fc39fd5eb5595ff2badd9602bb100298dd4b 100644
+index 18dbeabaf24cf0b22754f6dd4d56312c0be3039a..112157c5fe664ffcddc9b3f6bf5a35a007010f6f 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridPanelViewBinder.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridPanelViewBinder.java
-@@ -42,6 +42,9 @@ import org.chromium.ui.base.ViewUtils;
+@@ -43,6 +43,9 @@ import org.chromium.ui.base.ViewUtils;
  import org.chromium.ui.modelutil.PropertyKey;
  import org.chromium.ui.modelutil.PropertyModel;
  
@@ -12,9 +12,9 @@ index 07b2d0a5dc1a6c5411cf2b64984f1744007e7de9..56b9fc39fd5eb5595ff2badd9602bb10
  /**
   * ViewBinder for TabGridDialog.
   */
-@@ -175,6 +178,11 @@ class TabGridPanelViewBinder {
+@@ -176,6 +179,11 @@ class TabGridPanelViewBinder {
      private static void setScrollIndex(RecyclerView view, int index) {
-         GridLayoutManager layoutManager = (GridLayoutManager) view.getLayoutManager();
+         LinearLayoutManager layoutManager = (LinearLayoutManager) view.getLayoutManager();
          int offset = computeOffset(view, layoutManager);
 +        if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic")) {
 +            offset = (int) Math.ceil(75 * Resources.getSystem().getDisplayMetrics().density);

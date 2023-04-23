@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/ntp4/BUILD.gn b/chrome/browser/resources/ntp4/BUILD.gn
-index a32036ea61566493436ffcf9c89a5c9cb115749f..c4a2948cd763c53daf167b1530302d0273b95100 100644
+index e995d2398d9f356162d1f5cad2e03581323dcf3e..1b3176efd596588b87cb3f236fb9a84ce837db76 100644
 --- a/chrome/browser/resources/ntp4/BUILD.gn
 +++ b/chrome/browser/resources/ntp4/BUILD.gn
 @@ -7,7 +7,7 @@ import("//tools/grit/grit_rule.gni")

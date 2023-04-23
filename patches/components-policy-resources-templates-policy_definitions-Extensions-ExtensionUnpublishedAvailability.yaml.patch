@@ -1,0 +1,14 @@
+diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionUnpublishedAvailability.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionUnpublishedAvailability.yaml
+index b4d53ad97b3a74e2fa594c533f8be32085e3fe21..6c422ae905fbb76d3b7dee2b92d8ac9e47d63f24 100644
+--- a/components/policy/resources/templates/policy_definitions/Extensions/ExtensionUnpublishedAvailability.yaml
++++ b/components/policy/resources/templates/policy_definitions/Extensions/ExtensionUnpublishedAvailability.yaml
+@@ -13,7 +13,8 @@ desc: |-
+ 
+   If the policy is set to <ph name="ALLOW_UNPUBLISHED">AllowUnpublished</ph> (0) or not set, extensions that are unpublished on the Chrome Web Store are allowed.
+   If the policy is set to <ph name="DISABLE_UNPUBLISHED">DisableUnpublished</ph> (1), extensions that are unpublished on the Chrome Web Store are disabled.
+-
++supported_on:
++- android:111-
+ future_on:
+ - chrome.*
+ - chrome_os

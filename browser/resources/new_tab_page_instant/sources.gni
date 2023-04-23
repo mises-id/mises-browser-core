@@ -1,5 +1,5 @@
 mises_ntp_instant_local_files = [
-   "local_ntp.css",
+    "local_ntp.css",
     "local_ntp.html",
     "local_ntp.js",
     "incognito_ntp.html",
@@ -20,3 +20,6 @@ mises_ntp_instant_local_files = [
     "images/more@2x.png",
     "images/down.png",
 ]
+
+mises_ntp_preprocess_extra_deps =
+    [ "//mises/browser/resources/new_tab_page_instant:preprocess" ]

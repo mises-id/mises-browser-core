@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
-index a9974b5800c68ad3999b938fd091f4ad81550e81..194f8f2c4401ddcbbb57c0a055849c92676f5e62 100644
+index d2c78ecfe19e91b6923d8e48c6ae8e4f2068ca14..9c89b8eaf4d77177f4e7d9239fb2890c4ba610de 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
-@@ -70,6 +70,8 @@ import org.chromium.ui.resources.dynamics.DynamicResourceLoader;
+@@ -72,6 +72,8 @@ import org.chromium.ui.resources.dynamics.DynamicResourceLoader;
  import java.util.ArrayList;
  import java.util.List;
  
@@ -11,7 +11,7 @@ index a9974b5800c68ad3999b938fd091f4ad81550e81..194f8f2c4401ddcbbb57c0a055849c92
  /**
   * Parent coordinator that is responsible for showing a grid or carousel of tabs for the main
   * TabSwitcher UI.
-@@ -177,6 +179,11 @@ public class TabSwitcherCoordinator
+@@ -181,6 +183,11 @@ public class TabSwitcherCoordinator
              @Nullable BackPressManager backPressManager) {
          try (TraceEvent e = TraceEvent.scoped("TabSwitcherCoordinator.constructor")) {
              mActivity = activity;

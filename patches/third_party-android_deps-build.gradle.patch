@@ -1,5 +1,5 @@
 diff --git a/third_party/android_deps/build.gradle b/third_party/android_deps/build.gradle
-index 7abcf103782916d0dc8be03baec1ae913aaa1816..eef15e3e5556cf35407a40d88f52c24681bce525 100644
+index 2e5770f3e927f360530f5c57e243edfcecd57261..e6f6ce6dd393461b0cb776f6edd1f120c7ac6a77 100644
 --- a/third_party/android_deps/build.gradle
 +++ b/third_party/android_deps/build.gradle
 @@ -205,5 +205,5 @@ task setUpRepository(type: BuildConfigGenerator) {

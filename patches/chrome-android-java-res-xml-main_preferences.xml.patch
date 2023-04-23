@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/xml/main_preferences.xml b/chrome/android/java/res/xml/main_preferences.xml
 old mode 100644
 new mode 100755
-index 231c5c00a8ce60f9e47fc032b413b7091343c45b..a118136b10ab353a46d852c6fff09bfd6d129452
+index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823be041adc7
 --- a/chrome/android/java/res/xml/main_preferences.xml
 +++ b/chrome/android/java/res/xml/main_preferences.xml
 @@ -1,9 +1,7 @@
@@ -42,7 +42,7 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..a118136b10ab353a46d852c6fff09bfd
          android:fragment="org.chromium.chrome.browser.sync.settings.GoogleServicesSettings"/>
  
      <PreferenceCategory
-@@ -41,85 +35,136 @@ found in the LICENSE file.
+@@ -41,85 +35,143 @@ found in the LICENSE file.
          android:fragment="org.chromium.chrome.browser.search_engines.settings.SearchEngineSettings"
          android:key="search_engine"
          android:order="6"
@@ -50,17 +50,13 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..a118136b10ab353a46d852c6fff09bfd
 +        android:icon="@drawable/ics_search_engine"
 +        android:title="@string/search_engine_settings"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-     <org.chromium.components.browser_ui.settings.ChromeBasePreference
--        android:fragment="org.chromium.chrome.browser.password_manager.settings.PasswordSettings"
--        android:key="passwords"
++    <org.chromium.components.browser_ui.settings.ChromeBasePreference
 +        android:fragment="org.chromium.chrome.browser.homepage.settings.HomepageSettings"
 +        android:key="homepage"
-         android:order="7"
--        android:title="@string/password_settings_title"/>
++        android:order="7"
 +        android:icon="@drawable/ics_edit_homepage"
 +        android:title="@string/options_homepage_title"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-+
 +     <org.chromium.components.browser_ui.settings.ChromeBasePreference
 +        android:fragment="org.chromium.chrome.browser.settings.Web3Settings"
 +        android:key="web3"
@@ -68,76 +64,69 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..a118136b10ab353a46d852c6fff09bfd
 +        android:icon="@drawable/ics_dev_options"
 +        android:title="@string/preferences_web3"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-+
-     <org.chromium.components.browser_ui.settings.ChromeBasePreference
--        android:fragment="org.chromium.chrome.browser.autofill.settings.AutofillPaymentMethodsFragment"
--        android:key="autofill_payment_methods"
++    <org.chromium.components.browser_ui.settings.ChromeBasePreference
 +        android:fragment="org.chromium.chrome.browser.language.settings.LanguageSettings"
 +        android:key="languages"
 +        android:order="20"
 +        android:icon="@drawable/ics_languages"
 +        android:title="@string/language_settings"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-+    <org.chromium.components.browser_ui.settings.ChromeBasePreference
-+        android:fragment="org.chromium.chrome.browser.password_manager.settings.PasswordSettings"
-+        android:key="passwords"
+     <org.chromium.components.browser_ui.settings.ChromeBasePreference
+         android:fragment="org.chromium.chrome.browser.password_manager.settings.PasswordSettings"
+         android:key="passwords"
+-        android:order="7"
+-        android:title="@string/password_settings_title"/>
 +        android:order="9"
 +        android:icon="@drawable/ics_passwords"
 +        android:title="@string/password_settings_title"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-+
-+    <PreferenceCategory
-+        android:key="autofill_section"
-         android:order="8"
+     <org.chromium.components.browser_ui.settings.ChromeBasePreference
+         android:fragment="org.chromium.chrome.browser.autofill.settings.AutofillPaymentMethodsFragment"
+         android:key="autofill_payment_methods"
+-        android:order="8"
 -        android:title="@string/autofill_payment_methods"/>
-+        android:title="@string/preferences_autofill"/>
++        android:order="9"
++        android:icon="@drawable/ics_payments"
++        android:title="@string/autofill_payment_methods"
++        app:iconTint="@color/default_icon_color_tint_list"/>
      <org.chromium.components.browser_ui.settings.ChromeBasePreference
          android:fragment="org.chromium.chrome.browser.autofill.settings.AutofillProfilesFragment"
          android:key="autofill_addresses"
          android:order="9"
 -        android:title="@string/autofill_addresses_settings_title"/>
--    <Preference
--        android:fragment="org.chromium.chrome.browser.privacy.settings.PrivacySettings"
--        android:key="privacy"
 +        android:icon="@drawable/ics_addresses"
 +        android:title="@string/autofill_addresses_settings_title"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-+    <org.chromium.components.browser_ui.settings.ChromeBasePreference
-+        android:fragment="org.chromium.chrome.browser.autofill.settings.AutofillPaymentMethodsFragment"
-+        android:key="autofill_payment_methods"
-+        android:order="9"
-+        android:icon="@drawable/ics_payments"
-+        android:title="@string/autofill_payment_methods"
-+        app:iconTint="@color/default_icon_color_tint_list"/>
-+
-+    <PreferenceCategory
-+        android:key="appearence_section"
-         android:order="10"
+     <Preference
+         android:fragment="org.chromium.chrome.browser.privacy.settings.PrivacySettings"
+         android:key="privacy"
+-        android:order="10"
 -        android:title="@string/prefs_privacy_security"/>
 -    <Preference
 -        android:fragment="org.chromium.chrome.browser.safety_check.SafetyCheckSettingsFragment"
 -        android:key="safety_check"
-+        android:title="@string/appearance_preferences"/>
-+    <org.chromium.components.browser_ui.settings.ChromeBasePreference
-+        android:fragment="org.chromium.chrome.browser.settings.NightModeSettings"
-+        android:key="nightmode"
-         android:order="11"
+-        android:order="11"
 -        android:title="@string/prefs_safety_check"/>
--    <Preference
--        android:key="notifications"
++        android:icon="@drawable/ics_privacy_security"
++        android:order="9"
++        android:title="@string/prefs_privacy_security"
++        app:iconTint="@color/default_icon_color_tint_list"/>
+     <Preference
+         android:key="notifications"
 -        android:order="12"
 -        android:title="@string/prefs_notifications"/>
 -    <Preference
-+        android:icon="@drawable/ics_night_mode"
-+        android:title="@string/preferences_nightmode"
-+        app:iconTint="@color/default_icon_color_tint_list"/>
-+    <org.chromium.components.browser_ui.settings.ChromeBasePreference
-         android:fragment="org.chromium.chrome.browser.night_mode.settings.ThemeSettingsFragment"
-         android:key="ui_theme"
+-        android:fragment="org.chromium.chrome.browser.night_mode.settings.ThemeSettingsFragment"
+-        android:key="ui_theme"
 -        android:order="13"
 -        android:title="@string/theme_settings" />
--
--    <PreferenceCategory
++        android:order="9"
++        android:icon="@drawable/ics_notifications"
++        android:title="@string/prefs_notifications"
++        app:iconTint="@color/default_icon_color_tint_list"/>
++
+ 
+     <PreferenceCategory
 -        android:key="advanced_section"
 -        android:order="14"
 -        android:title="@string/prefs_section_advanced"/>
@@ -146,6 +135,19 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..a118136b10ab353a46d852c6fff09bfd
 -        android:key="homepage"
 -        android:order="15"
 -        android:title="@string/options_homepage_title"/>
++        android:key="appearence_section"
++        android:order="10"
++        android:title="@string/appearance_preferences"/>
++    <org.chromium.components.browser_ui.settings.ChromeBasePreference
++        android:fragment="org.chromium.chrome.browser.settings.NightModeSettings"
++        android:key="nightmode"
++        android:order="11"
++        android:icon="@drawable/ics_night_mode"
++        android:title="@string/preferences_nightmode"
++        app:iconTint="@color/default_icon_color_tint_list"/>
++    <org.chromium.components.browser_ui.settings.ChromeBasePreference
++        android:fragment="org.chromium.chrome.browser.night_mode.settings.ThemeSettingsFragment"
++        android:key="ui_theme"
 +        android:order="11"
 +        android:icon="@drawable/ics_theme"
 +        android:title="@string/theme_settings"

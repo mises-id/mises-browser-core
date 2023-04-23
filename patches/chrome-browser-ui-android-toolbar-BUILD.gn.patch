@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/BUILD.gn b/chrome/browser/ui/android/toolbar/BUILD.gn
-index 89b5a238fa9b2a508566c161d8e89bc3fdbe683d..ad02b7c6496f6fb578e922dcb25c4c6897ec6638 100644
+index 9a3ee5650101af465f6479c3cbb17830e5b3525c..01b81f75ed80ef513806436fb29fdb5bfe8a2c1d 100644
 --- a/chrome/browser/ui/android/toolbar/BUILD.gn
 +++ b/chrome/browser/ui/android/toolbar/BUILD.gn
-@@ -184,6 +184,15 @@ android_library("java") {
+@@ -188,6 +188,15 @@ android_library("java") {
  
    annotation_processor_deps = [ "//base/android/jni_generator:jni_processor" ]
    resources_package = "org.chromium.chrome.browser.toolbar"
@@ -18,7 +18,7 @@ index 89b5a238fa9b2a508566c161d8e89bc3fdbe683d..ad02b7c6496f6fb578e922dcb25c4c68
  }
  
  generate_jni("jni_headers") {
-@@ -279,7 +288,7 @@ android_resources("java_resources") {
+@@ -283,7 +292,7 @@ android_resources("java_resources") {
      "java/res/values/values.xml",
      "java/res/xml/adaptive_toolbar_preference.xml",
    ]

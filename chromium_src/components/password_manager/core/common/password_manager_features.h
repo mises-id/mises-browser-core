@@ -8,6 +8,8 @@ namespace password_manager::features {
 
 #if BUILDFLAG(IS_ANDROID) 
 BASE_DECLARE_FEATURE(kRevampedPasswordManagementBubble);
+BASE_DECLARE_FEATURE(kMemoryMapWeaknessCheckDictionaries);
+BASE_DECLARE_FEATURE(kPasswordManagerRedesign);
 #endif
 
 }  // namespace password_manager::features

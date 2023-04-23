@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/new_tab_page/BUILD.gn b/chrome/browser/resources/new_tab_page/BUILD.gn
-index 976a44fe7a3a6206a597153a3c5eed518471f66c..72f5c63523e4dcfa54a8a6e302f70574dd339ec6 100644
+index 445a8a6e7a95798709cc7563da237dee56efd34a..2741bf1b4e1e0c0c0087eda9c2b90eab81bf56fb 100644
 --- a/chrome/browser/resources/new_tab_page/BUILD.gn
 +++ b/chrome/browser/resources/new_tab_page/BUILD.gn
-@@ -12,7 +12,7 @@ import("./new_tab_page.gni")
- import("./preprocess_if_expr_sourcemaps.gni")
- import("./ts_library_sourcemaps.gni")
+@@ -8,7 +8,7 @@ import("./new_tab_page.gni")
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +#assert(!is_android)
  
  grd_prefix = "new_tab_page"
- preprocess_folder = "preprocessed"
+ 

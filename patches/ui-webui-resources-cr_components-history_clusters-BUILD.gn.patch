@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/history_clusters/BUILD.gn b/ui/webui/resources/cr_components/history_clusters/BUILD.gn
-index 93ec5c64e0a610aaa54802582058211f4773fd7d..64a393cd79acb1f4d04b23b6cbd19c05bc44c999 100644
+index 8fcbccdfa705f910aa33d7a32a5df99fc9e5a158..0588db983ed811533a47b5ef129d7a63cd8535ff 100644
 --- a/ui/webui/resources/cr_components/history_clusters/BUILD.gn
 +++ b/ui/webui/resources/cr_components/history_clusters/BUILD.gn
 @@ -6,7 +6,7 @@ import("//mojo/public/tools/bindings/mojom.gni")

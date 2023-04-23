@@ -1,8 +1,8 @@
 diff --git a/ui/webui/resources/BUILD.gn b/ui/webui/resources/BUILD.gn
-index ed6eb9641ff5bb3a25d475929daf04811c10c009..fc9a3c2c176b8aa175c2869b9678b776b2c1e9e1 100644
+index b9bac52390e72642c485fc9e82d82a02b5b97894..ef6443c87457582ae554de0c6ebd38ca1ff36d0e 100644
 --- a/ui/webui/resources/BUILD.gn
 +++ b/ui/webui/resources/BUILD.gn
-@@ -15,7 +15,7 @@ generate_grd("build_grd") {
+@@ -14,7 +14,7 @@ generate_grd("build_grd") {
    input_files = [ "test_loader.html" ]
    input_files_base_dir = rebase_path(".", "//")
  
@@ -11,7 +11,7 @@ index ed6eb9641ff5bb3a25d475929daf04811c10c009..fc9a3c2c176b8aa175c2869b9678b776
      # Roboto Font. Roboto-Regular and Roboto-Light is already available on
      # Android, and Roboto-Medium is not used on Android. All 6 weights of
      # Roboto are available on Chrome OS.
-@@ -43,7 +43,7 @@ generate_grd("build_grd") {
+@@ -40,7 +40,7 @@ generate_grd("build_grd") {
      "$target_gen_dir/js/resources.grdp",
    ]
  
@@ -20,7 +20,7 @@ index ed6eb9641ff5bb3a25d475929daf04811c10c009..fc9a3c2c176b8aa175c2869b9678b776
      public_deps += [
        "cr_components/app_management:build_grdp",
        "cr_components/customize_themes:build_grdp",
-@@ -110,7 +110,7 @@ generate_grd("build_grd") {
+@@ -109,7 +109,7 @@ generate_grd("build_grd") {
      ]
    }
  
@@ -28,4 +28,4 @@ index ed6eb9641ff5bb3a25d475929daf04811c10c009..fc9a3c2c176b8aa175c2869b9678b776
 +  if (!is_android && !is_ios || is_android) {
      public_deps += [
        "cr_components/color_change_listener:build_grdp",
-       "//third_party/lottie:build_grdp",
+       "cr_components/image_service:build_grdp",

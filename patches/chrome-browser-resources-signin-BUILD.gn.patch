@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/signin/BUILD.gn b/chrome/browser/resources/signin/BUILD.gn
-index cde6595ba0df1bfc048ad6c41a2b0b29f64670a4..b5cb580add40bffe76dcd1322e466eec961423ad 100644
+index f6072d11633ef424d4daba74d4b544f7215afc64..70cc6260075a2b66520ed4a3a52d7b1d8a8184ea 100644
 --- a/chrome/browser/resources/signin/BUILD.gn
 +++ b/chrome/browser/resources/signin/BUILD.gn
-@@ -7,7 +7,7 @@ import("//chrome/browser/resources/tools/build_webui.gni")
- import("//chrome/common/features.gni")
+@@ -7,7 +7,7 @@ import("//chrome/common/features.gni")
  import("//components/signin/features.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +#assert(!is_android)

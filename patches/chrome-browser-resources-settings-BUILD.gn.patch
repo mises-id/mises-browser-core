@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/settings/BUILD.gn b/chrome/browser/resources/settings/BUILD.gn
-index 16e6d00fd3b5d2588164bf26e8aff462cabaced4..dfe357cc56dfbb494cd4b0547a82fb9e138b9a10 100644
+index ec72da2b743fc5d279fd6d3a548a233dd4fd1e1f..0ab2aa91ad23ce44bda85c2016090fd394d4c808 100644
 --- a/chrome/browser/resources/settings/BUILD.gn
 +++ b/chrome/browser/resources/settings/BUILD.gn
-@@ -10,7 +10,7 @@ import("//third_party/closure_compiler/compile_js.gni")
+@@ -9,7 +9,7 @@ import("//ui/webui/resources/tools/build_webui.gni")
  import("//ui/webui/webui_features.gni")
  import("./settings.gni")
  
 -assert(!is_android, "Android does not use these settings")
 +#assert(!is_android, "Android does not use these settings")
  
- if (is_chromeos_ash) {
-   group("closure_compile") {
+ build_webui("build") {
+   grd_prefix = "settings"

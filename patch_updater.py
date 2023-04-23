@@ -4,6 +4,7 @@ import sys
 import os
 import glob
 import subprocess
+import argparse
 
 src_root = 'src/'
 class Applier():
@@ -56,7 +57,6 @@ class Applier():
                 with open(patch, 'r') as f:
                     print(f.read())
                 exit()
-            self.run(patch)
         else:
             print(patch, "not-appliable")
 
@@ -124,8 +124,14 @@ class Applier():
 
 
 def main():
+    argument_parser = argparse.ArgumentParser()
+    argument_parser.add_argument('--apply', action='store_true')
+    args = argument_parser.parse_args()
     applier = Applier()
-    applier.start(True)
+    if args.apply:
+        applier.start(False)
+    else:
+        applier.start(True)
 
 if __name__ == '__main__':
     main()

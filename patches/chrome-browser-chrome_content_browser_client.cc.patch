@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/chrome_content_browser_client.cc b/chrome/browser/chrome_content_browser_client.cc
-index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca8c77adc5 100644
+index 600dd1ab9abc48b9d302b1fd0b6333f2e810b8f6..4afd850e767738215f555ec13a0f6d016db0c1bc 100644
 --- a/chrome/browser/chrome_content_browser_client.cc
 +++ b/chrome/browser/chrome_content_browser_client.cc
-@@ -1582,7 +1582,7 @@ void ChromeContentBrowserClient::RegisterProfilePrefs(
+@@ -1594,7 +1594,7 @@ void ChromeContentBrowserClient::RegisterProfilePrefs(
    registry->RegisterDictionaryPref(
        prefs::kDevToolsBackgroundServicesExpirationDict);
    registry->RegisterBooleanPref(prefs::kSignedHTTPExchangeEnabled, true);
@@ -11,7 +11,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
    registry->RegisterBooleanPref(prefs::kAutoplayAllowed, false);
    registry->RegisterListPref(prefs::kAutoplayAllowlist);
    registry->RegisterIntegerPref(prefs::kFetchKeepaliveDurationOnShutdown, 0);
-@@ -1908,7 +1908,7 @@ GURL ChromeContentBrowserClient::GetEffectiveURL(
+@@ -1912,7 +1912,7 @@ GURL ChromeContentBrowserClient::GetEffectiveURL(
    if (!profile)
      return url;
  
@@ -20,7 +20,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
    // If the input |url| should be assigned to the Instant renderer, make its
    // effective URL distinct from other URLs on the search provider's domain.
    // This needs to happen even if |url| corresponds to an isolated origin; see
-@@ -1977,7 +1977,7 @@ bool ChromeContentBrowserClient::ShouldUseProcessPerSite(
+@@ -1981,7 +1981,7 @@ bool ChromeContentBrowserClient::ShouldUseProcessPerSite(
      return true;
    }
  
@@ -29,7 +29,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
    if (search::ShouldUseProcessPerSiteForInstantSiteURL(site_url, profile))
      return true;
  #endif
-@@ -2007,7 +2007,7 @@ bool ChromeContentBrowserClient::ShouldUseSpareRenderProcessHost(
+@@ -2011,7 +2011,7 @@ bool ChromeContentBrowserClient::ShouldUseSpareRenderProcessHost(
      return false;
    }
  
@@ -38,7 +38,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
    // Instant renderers should not use a spare process, because they require
    // passing switches::kInstantProcess to the renderer process when it
    // launches.  A spare process is launched earlier, before it is known which
-@@ -2047,7 +2047,7 @@ bool ChromeContentBrowserClient::DoesWebUIUrlRequireProcessLock(
+@@ -2051,7 +2051,7 @@ bool ChromeContentBrowserClient::DoesWebUIUrlRequireProcessLock(
    // embeds those tiles, should be locked.  This allows most visited tiles to
    // stay in their parent (i.e., third-party NTP's) process.
    if (url.SchemeIs(chrome::kChromeSearchScheme) &&
@@ -47,7 +47,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
      return false;
    }
  
-@@ -2230,7 +2230,7 @@ bool ChromeContentBrowserClient::ShouldStayInParentProcessForNTP(
+@@ -2234,7 +2234,7 @@ bool ChromeContentBrowserClient::ShouldStayInParentProcessForNTP(
    //
    // TODO(crbug.com/624410): clean up the logic for detecting NTP.
    return url.SchemeIs(chrome::kChromeSearchScheme) &&
@@ -56,7 +56,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
           search::IsNTPURL(parent_site_url);
  }
  
-@@ -2244,7 +2244,7 @@ bool ChromeContentBrowserClient::IsSuitableHost(
+@@ -2248,7 +2248,7 @@ bool ChromeContentBrowserClient::IsSuitableHost(
    if (!profile)
      return true;
  
@@ -65,7 +65,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
    // Instant URLs should only be in the instant process and instant process
    // should only have Instant URLs.
    InstantService* instant_service =
-@@ -2296,7 +2296,7 @@ absl::optional<blink::ParsedPermissionsPolicy>
+@@ -2300,7 +2300,7 @@ absl::optional<blink::ParsedPermissionsPolicy>
  ChromeContentBrowserClient::GetPermissionsPolicyForIsolatedWebApp(
      content::BrowserContext* browser_context,
      const url::Origin& app_origin) {
@@ -74,7 +74,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
    // Extensions are exempt from manifest policy enforcement and retain the
    // default frame permissions policy.
    if (app_origin.scheme() == extensions::kExtensionScheme) {
-@@ -2349,7 +2349,7 @@ void ChromeContentBrowserClient::SiteInstanceGotProcess(
+@@ -2353,7 +2353,7 @@ void ChromeContentBrowserClient::SiteInstanceGotProcess(
    if (!profile)
      return;
  
@@ -83,8 +83,8 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
    // Remember the ID of the Instant process to signal the renderer process
    // on startup in |AppendExtraCommandLineSwitches| below.
    if (search::ShouldAssignURLToInstantRenderer(site_instance->GetSiteURL(),
-@@ -2714,7 +2714,7 @@ void ChromeContentBrowserClient::AppendExtraCommandLineSwitches(
-             blink::switches::kPrefixedStorageInfoEnabled);
+@@ -2701,7 +2701,7 @@ void ChromeContentBrowserClient::AppendExtraCommandLineSwitches(
+         command_line->AppendSwitch(blink::switches::kWebSQLAccess);
        }
  
 -#if !BUILDFLAG(IS_ANDROID)
@@ -92,7 +92,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
        InstantService* instant_service =
            InstantServiceFactory::GetForProfile(profile);
        if (instant_service &&
-@@ -4270,7 +4270,7 @@ void ChromeContentBrowserClient::BrowserURLHandlerCreated(
+@@ -4303,7 +4303,7 @@ void ChromeContentBrowserClient::BrowserURLHandlerCreated(
    handler->AddHandlerPair(&HandleChromeAboutAndChromeSyncRewrite,
                            BrowserURLHandler::null_handler());
  
@@ -101,7 +101,7 @@ index 6170a5656eb83185a057d52bd973e37fdfe4b65c..32a98c04d2d569f4b3f58ca7213892ca
    // Handler to rewrite chrome://newtab on Android.
    handler->AddHandlerPair(&chrome::android::HandleAndroidNativePageURL,
                            BrowserURLHandler::null_handler());
-@@ -5925,6 +5925,16 @@ ChromeContentBrowserClient::WillCreateURLLoaderRequestInterceptors(
+@@ -5976,6 +5976,16 @@ ChromeContentBrowserClient::WillCreateURLLoaderRequestInterceptors(
    }
  #endif
  

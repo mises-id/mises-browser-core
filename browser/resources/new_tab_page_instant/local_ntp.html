@@ -345,6 +345,9 @@
     .down-colse{
       transform: rotate(0);
     }
+    #mises-content, #add-button{
+      display: none;
+    }
   </style>
 </head>
 <!-- Remember to update the test HTML files in chrome/test/data/local_ntp/
@@ -487,10 +490,6 @@
     // get install extensions
     const extensions = chrome.embeddedSearch.newTabPage.mostVisitedExtensions;
     setExtensions(extensions);
-    if (window.chrome.embeddedSearch.newTabPage.isIncognito){
-      document.getElementById('add-button').style.display='none';
-      document.getElementById('mises-content').style.display='none';
-    }
   }
   
   function setExtensions(extensions){
@@ -671,10 +670,14 @@ function instant_grid()
   }
 }
 
-if (window.chrome.embeddedSearch.newTabPage.isIncognito)
-{
+if (window.chrome.embeddedSearch.newTabPage.isIncognito){
   document.body.style.backgroundColor='black';
   document.getElementById('incognito').style.display='block';
+}
+
+if (!window.chrome.embeddedSearch.newTabPage.isIncognito){
+  document.getElementById('add-button').style.display='block';
+  document.getElementById('mises-content').style.display='block';
 }
 else
 {
@@ -901,6 +904,9 @@ try {
 } catch (err) {
       console.log('Fetch failed for: ' + err.message);
 }
+  }
+  if(!rootDomain){
+    rootDomain = item.title
   }
   innerDiv.innerHTML = '<img id="closeImg" src="' + closeImg + '" class="closeImg closeImgInvisible" height="20" width="20" style="position: absolute; right: 0px; border: 0px;" /><a id="tile_target" href="' + item.url + '"><div class="grid-image-box"><img border="0" class="grid-image serverIdea" title="' + item.url + '" src="' + imageUri + '" id="icon' + randomId + '" onError="invalidate_image(this)" width="33" style="max-height: 33px; border-radius: 5px;" /></div><span class="mises-web3-title">' + rootDomain + '</span></a>';
   innerDiv.style.minHeight = '64px';

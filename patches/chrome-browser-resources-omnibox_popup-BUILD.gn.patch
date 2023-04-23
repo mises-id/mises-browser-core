@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/resources/omnibox_popup/BUILD.gn b/chrome/browser/resources/omnibox_popup/BUILD.gn
-index e5fc008205e62ba5c816e80b49fc3bf587ffae89..2984d59abe7678e8668c8b1fbe11b17a6530cfb1 100644
+index 56cd7960f1bae139ec86558d7846c8c12f11bd0a..f78e5573edd9fd04e63a5a61bf822f25a597e061 100644
 --- a/chrome/browser/resources/omnibox_popup/BUILD.gn
 +++ b/chrome/browser/resources/omnibox_popup/BUILD.gn
 @@ -4,7 +4,7 @@
  
- import("//chrome/browser/resources/tools/build_webui.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android && !is_ios)
 +#assert(!is_android && !is_ios)

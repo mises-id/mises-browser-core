@@ -1,20 +1,19 @@
 diff --git a/chrome/android/features/start_surface/java/src/org/chromium/chrome/features/start_surface/StartSurfaceMediator.java b/chrome/android/features/start_surface/java/src/org/chromium/chrome/features/start_surface/StartSurfaceMediator.java
-index 70b2c10ade205e2749b6722f7342b5c66bb01090..5e0ba29bc5825759f8da0a24efc644e6a90a025c 100644
+index bea0930ccfa9b600dfa720b27554ddd2ab85e285..378e292aa413115a9f6a1afd7ba19663fb182b69 100644
 --- a/chrome/android/features/start_surface/java/src/org/chromium/chrome/features/start_surface/StartSurfaceMediator.java
 +++ b/chrome/android/features/start_surface/java/src/org/chromium/chrome/features/start_surface/StartSurfaceMediator.java
-@@ -89,6 +89,7 @@ import org.chromium.components.prefs.PrefService;
+@@ -97,6 +97,7 @@ import org.chromium.components.prefs.PrefService;
  import org.chromium.content_public.browser.LoadUrlParams;
  import org.chromium.ui.modelutil.PropertyModel;
  import org.chromium.ui.util.ColorUtils;
 +import org.chromium.chrome.browser.feed.FeedFeatures;
  
- /** The mediator implements the logic to interact with the surfaces and caller. */
- class StartSurfaceMediator implements TabSwitcher.TabSwitcherViewObserver, View.OnClickListener,
-@@ -469,8 +470,7 @@ class StartSurfaceMediator implements TabSwitcher.TabSwitcherViewObserver, View.
-                 }
-             }
+ import java.util.List;
+ 
+@@ -536,7 +537,7 @@ class StartSurfaceMediator implements TabSwitcher.TabSwitcherViewObserver, View.
+         if (mTabSwitcherModule != null) {
+             mTabSwitcherModule.initWithNative();
          }
--
 -        mFeedVisibilityPrefOnStartUp = prefService.getBoolean(Pref.ARTICLES_LIST_VISIBLE);
 +        mFeedVisibilityPrefOnStartUp = FeedFeatures.isFeedEnabled() && prefService.getBoolean(Pref.ARTICLES_LIST_VISIBLE);
      }

@@ -1,5 +1,5 @@
 diff --git a/chrome/common/features.gni b/chrome/common/features.gni
-index d2036b24d9a3be29e2dec7c16083b8280bee5a57..a7a1d33dc759df763cf10d8d694a9801bc179c78 100644
+index 03a01aa30e8ea0efe2d7b05f2fb1ff3e3ad2a1a9..d32ab9cdd49b2e2da373beedce7b1e3951f1447d 100644
 --- a/chrome/common/features.gni
 +++ b/chrome/common/features.gni
 @@ -40,8 +40,8 @@ declare_args() {

@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/feed/BUILD.gn b/chrome/browser/resources/feed/BUILD.gn
-index beb35ef46ea7ca184396ee30bb4ff7e1c33a3349..f5798231ef846339f904e1ff1b3995a4a59486f9 100644
+index 5e6865a67a5d96501da2cf947f1d6753537c15e4..2b471a3916a55dc36134e70dd0ae1c064fcd582b 100644
 --- a/chrome/browser/resources/feed/BUILD.gn
 +++ b/chrome/browser/resources/feed/BUILD.gn
-@@ -7,7 +7,7 @@ import("//tools/grit/preprocess_if_expr.gni")
- import("//tools/typescript/ts_library.gni")
- import("//ui/webui/resources/tools/generate_grd.gni")
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +# assert(!is_android)
  
- preprocess_folder = "preprocessed"
- 
+ build_webui("build") {
+   grd_prefix = "feed"

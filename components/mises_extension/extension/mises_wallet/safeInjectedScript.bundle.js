@@ -312,9 +312,11 @@ const parseUrlToDomain = (param, type = "domain") => {
 };
 class injected_script_ContentScripts {
     constructor() {
+        this.blackNotifyingMap = new Map();
+        this.isRecordVisitDomain = false;
         this.container = null;
         this.config = {
-            maxRetryNum: 1,
+            maxRetryNum: 5,
             retryCount: 0,
         };
         this.domainInfo = {
@@ -343,16 +345,18 @@ class injected_script_ContentScripts {
         // const that = this;
         // 初始化代理
         const handler = {
-            apply: (target, _, argumentsList) => injected_script_awaiter(this, void 0, void 0, function* () {
+            apply: (target, thisArg, argumentsList) => injected_script_awaiter(this, void 0, void 0, function* () {
                 try {
-                    //is should verifying domain
-                    if (this.isShouldVerifyDomain()) {
-                        this.verifyDomain();
-                    }
                     const constList = [...argumentsList][0];
                     console.log("Transaction Method Data :>> ", constList);
                     const isNotable = this.isNotableAction(constList).result;
                     const methodName = constList !== undefined ? constList.method : "unKonwn";
+                    //record visit web3site
+                    this.recordVisitWeb3site();
+                    //is should verifying domain
+                    if (this.isShouldVerifyDomain()) {
+                        this.verifyDomain(methodName);
+                    }
                     if (isNotable) {
                         let contractAddress;
                         //TODO check
@@ -365,35 +369,69 @@ class injected_script_ContentScripts {
                             contractAddress = constList.params[0].to;
                         }
                         //recordUseContractLog
-                        proxyClient.recordUseContractEvent(contractAddress, this.domainInfo.hostname);
+                        this.recordUseContract(contractAddress);
                         //verifyContract
                         if (this.isShouldVerifyContract()) {
-                            const verifyContractResult = proxyClient.verifyContract(contractAddress, this.domainInfo.hostname);
-                            console.log("verifyContractResult :>>", verifyContractResult);
-                            return target(...argumentsList);
+                            this.verifyContract(contractAddress);
+                            return Reflect.apply(target, thisArg, argumentsList);
                             //is should show contract address risking alert
                         }
                     }
-                    return target(...argumentsList);
+                    return Reflect.apply(target, thisArg, argumentsList);
                 }
                 catch (err) {
                     console.log("handler error: ", err);
-                    return target(...argumentsList);
+                    return Reflect.apply(target, thisArg, argumentsList);
                 }
             }),
+        };
+        const handlerEnable = {
+            apply: (target, thisArg, argumentsList) => injected_script_awaiter(this, void 0, void 0, function* () {
+                try {
+                    const constList = [...argumentsList][0];
+                    console.log("handlerEnable Transaction Method Data :>> ", constList);
+                    //record visit web3site
+                    this.recordVisitWeb3site();
+                    //is should verifying domain
+                    if (this.isShouldVerifyDomain()) {
+                        this.verifyDomain("eth_requestAccounts");
+                    }
+                    return Reflect.apply(target, thisArg, argumentsList);
+                }
+                catch (err) {
+                    console.log("handler error: ", err);
+                    return Reflect.apply(target, thisArg, argumentsList);
+                }
+            }),
+        };
+        const handlerSend = {
+            apply: (target, thisArg, args) => {
+                const [payloadOrMethod, callbackOrParams] = args;
+                console.log("handlerSend args :>> ", args);
+                if (typeof payloadOrMethod === "string") {
+                    return window.ethereum.request({
+                        method: payloadOrMethod,
+                        params: callbackOrParams,
+                    });
+                }
+                if (!callbackOrParams) {
+                    return Reflect.apply(target, thisArg, args);
+                }
+                return window.ethereum.sendAsync(payloadOrMethod, callbackOrParams);
+            },
         };
         const proxyInterval = setInterval(() => proxyETH(), 1000);
         function proxyETH() {
             let isProxy = false;
             if (typeof window.ethereum !== "undefined") {
-                const proxy1 = new Proxy(window.ethereum.request, handler);
-                const proxy2 = new Proxy(window.ethereum.enable, handler);
-                const proxy3 = new Proxy(window.ethereum.send, handler);
-                const proxy4 = new Proxy(window.ethereum.sendAsync, handler);
-                window.ethereum.request = proxy1;
-                window.ethereum.send = proxy3;
-                window.ethereum.sendAsync = proxy4;
-                window.ethereum.enable = proxy2;
+                const proxyRequest = new Proxy(window.ethereum.request, handler);
+                const proxyEnable = new Proxy(window.ethereum.enable, handlerEnable);
+                const proxySend = new Proxy(window.ethereum.send, handlerSend);
+                const proxySendAsync = new Proxy(window.ethereum.sendAsync, handler);
+                window.ethereum.request = proxyRequest;
+                window.ethereum.send = proxySend;
+                window.ethereum.sendAsync = proxySendAsync;
+                window.ethereum.enable = proxyEnable;
                 isProxy = true;
                 console.log("Find ethereum");
             }
@@ -452,28 +490,77 @@ class injected_script_ContentScripts {
         //ignore list
         return this.domainInfo.checkStatus !== domainCheckStatus.finshedCheck;
     }
-    //verifyDomain
-    verifyDomain() {
+    //record use contract
+    recordUseContract(contractAddress) {
         return injected_script_awaiter(this, void 0, void 0, function* () {
-            if (this.domainInfo.checkStatus === domainCheckStatus.finshedCheck) {
-                return true;
-            }
-            if (this.config.retryCount >= this.config.maxRetryNum) {
+            proxyClient.recordUseContractEvent(contractAddress, this.domainInfo.hostname);
+        });
+    }
+    //record visit web3site
+    recordVisitWeb3site() {
+        return injected_script_awaiter(this, void 0, void 0, function* () {
+            if (this.isRecordVisitDomain) {
                 return;
             }
-            //recordVisitWeb3siteLog
+            this.isRecordVisitDomain = true;
             proxyClient.recordVisitWeb3siteEvent(this.domainInfo.hostname);
+        });
+    }
+    //verify contract
+    verifyContract(contractAddress) {
+        return injected_script_awaiter(this, void 0, void 0, function* () {
+            if (this.hasBlackNotifying(contractAddress)) {
+                console.log("verifyContract hasBlackNotifying: ", contractAddress);
+                return;
+            }
+            this.addBlackNotifying(contractAddress);
+            setTimeout(() => {
+                this.removeBlackNotifying(contractAddress);
+            }, 1000 * 60 * 1);
+            const verifyContractResult = yield proxyClient.verifyContract(contractAddress, this.domainInfo.hostname);
+            console.log("verifyContractResult :>>", verifyContractResult);
+            //if verify contract failed
+            if (!verifyContractResult || !verifyContractResult.level) {
+                this.removeBlackNotifying(contractAddress);
+            }
+        });
+    }
+    hasBlackNotifying(key) {
+        return key !== "" && this.blackNotifyingMap.has(key);
+    }
+    removeBlackNotifying(key) {
+        this.blackNotifyingMap.delete(key);
+    }
+    addBlackNotifying(key) {
+        this.blackNotifyingMap.set(key, "1");
+    }
+    //verifyDomain
+    verifyDomain(methodName) {
+        return injected_script_awaiter(this, void 0, void 0, function* () {
+            if (this.config.retryCount >= this.config.maxRetryNum) {
+                console.log("verifyDomain maxRetryNum  ", this.config.maxRetryNum);
+                return;
+            }
+            const domain = this.domainInfo.hostname;
+            if (this.config.retryCount > 0 && methodName != "eth_requestAccounts") {
+                console.log("verifyDomain not eth_requestAccounts >> ", domain, methodName);
+                return;
+            }
+            if (this.hasBlackNotifying(domain)) {
+                console.log("verifyDomain hasBlackNotifying: ", domain);
+                return;
+            }
+            this.addBlackNotifying(domain);
+            setTimeout(() => {
+                this.removeBlackNotifying(domain);
+            }, 1000 * 5);
             this.config.retryCount++;
             console.log("verifyDomain count ", this.config.retryCount);
-            this.domainInfo.checkStatus = domainCheckStatus.pendingCheck;
             const e = document.documentElement;
             const checkResult = yield proxyClient.verifyDomain(this.domainInfo.hostname, this.getSiteLogo(), e.innerText);
             console.log("checkResult :>>", checkResult);
             //parse the check result
-            if (checkResult &&
-                checkResult.level &&
-                this.domainInfo.checkStatus != domainCheckStatus.finshedCheck) {
-                this.domainInfo.checkStatus = domainCheckStatus.finshedCheck;
+            if (checkResult && checkResult.level) {
                 this.domainInfo.domainSafeLevel = checkResult.level;
                 this.domainInfo.suggested_url = checkResult.suggested_url;
                 this.domainInfo.html_body_fuzzy_hash =
@@ -485,8 +572,8 @@ class injected_script_ContentScripts {
                     this.doFuzzyCheck();
                 }
             }
-            if (this.config.retryCount >= this.config.maxRetryNum) {
-                this.domainInfo.checkStatus = domainCheckStatus.finshedCheck;
+            if (!checkResult || !checkResult.level) {
+                this.removeBlackNotifying(domain);
                 return;
             }
         });

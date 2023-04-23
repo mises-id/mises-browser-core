@@ -7,6 +7,12 @@ namespace password_manager::features {
 BASE_FEATURE(kRevampedPasswordManagementBubble,
              "RevampedPasswordManagementBubble",
              base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kMemoryMapWeaknessCheckDictionaries,
+             "MemoryMapWeaknessCheckDictionaries",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kPasswordManagerRedesign,
+             "PasswordManagerRedesign",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 #endif
 
 }  // namespace password_manager::features

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
-index abb3f4b71a9ca38fa9b9db258d5d8df0e0a63ba1..c9d9022d227f4080cced1e53135a76c84ebcff46 100644
+index d3006af4e3883b09c7e7980a07a1dc8c6dba1dfb..22a78518b026bf040660d23421e02ab1c6606425 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
 @@ -85,6 +85,7 @@ import org.chromium.ui.modelutil.ListObservable.ListObserver;
@@ -10,7 +10,7 @@ index abb3f4b71a9ca38fa9b9db258d5d8df0e0a63ba1..c9d9022d227f4080cced1e53135a76c8
  
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
-@@ -1488,6 +1489,9 @@ class TabListMediator {
+@@ -1492,6 +1493,9 @@ class TabListMediator {
       * reasonable.
       */
      private int getSpanCount(int orientation, int screenWidthDp) {

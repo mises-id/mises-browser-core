@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/feed/android/feed_stream.cc b/chrome/browser/feed/android/feed_stream.cc
+index ba59eb7d49c3b47b945d515ff92c79cca4728bf5..bad989a704e811c7aea5bcfd0920b6516261c4b5 100644
+--- a/chrome/browser/feed/android/feed_stream.cc
++++ b/chrome/browser/feed/android/feed_stream.cc
+@@ -269,6 +269,8 @@ void FeedStream::ReportStreamScrollStart(JNIEnv* env,
+ void FeedStream::ReportOtherUserAction(JNIEnv* env,
+                                        const JavaParamRef<jobject>& obj,
+                                        int action_type) {
++  if (!feed_stream_api_)
++    return;
+   feed_stream_api_->ReportOtherUserAction(
+       GetStreamType(), static_cast<FeedUserActionType>(action_type));
+ }
+@@ -281,6 +283,8 @@ int FeedStream::GetSurfaceId(JNIEnv* env,
+ jlong FeedStream::GetLastFetchTimeMs(
+     JNIEnv* env,
+     const base::android::JavaParamRef<jobject>& obj) {
++  if (!feed_stream_api_)
++    return 0;
+   return feed_stream_api_->GetLastFetchTime(GetStreamType()).ToDoubleT() * 1000;
+ }
+ 

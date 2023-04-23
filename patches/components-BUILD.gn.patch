@@ -1,8 +1,8 @@
 diff --git a/components/BUILD.gn b/components/BUILD.gn
-index 6b3872497da5af46c2967f64283c6acd2cc2253b..430440ad23a08b33bcc657191a4fac8b9b182b3b 100644
+index dee253d4ca4857768035c39af9dfd66743ac1fa1..b9366037e7e54d5ef5b0293a46c6b591acb153f0 100644
 --- a/components/BUILD.gn
 +++ b/components/BUILD.gn
-@@ -698,8 +698,8 @@ test("components_unittests") {
+@@ -692,8 +692,8 @@ test("components_unittests") {
    # Since //chrome depends on //extensions, we also only assert_no_deps on
    # extensions targets for non-lacros builds.
    if (!is_chromeos_lacros) {

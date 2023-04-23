@@ -1,5 +1,5 @@
 diff --git a/chrome/renderer/chrome_content_renderer_client.cc b/chrome/renderer/chrome_content_renderer_client.cc
-index eab276d6ebe235cc0fcc8305984b6389fcce23dd..a0c74ba90384c9b41615a69737ff4f60f0fe1544 100644
+index a91227b208c16cfc1d67107752727d9889301878..6abe9c457a774532ce5c801a77475da82a561804 100644
 --- a/chrome/renderer/chrome_content_renderer_client.cc
 +++ b/chrome/renderer/chrome_content_renderer_client.cc
 @@ -169,7 +169,8 @@
@@ -12,7 +12,7 @@ index eab276d6ebe235cc0fcc8305984b6389fcce23dd..a0c74ba90384c9b41615a69737ff4f60
  #include "chrome/renderer/searchbox/searchbox.h"
  #include "chrome/renderer/searchbox/searchbox_extension.h"
  #include "components/search/ntp_features.h"  // nogncheck
-@@ -711,7 +712,7 @@ void ChromeContentRendererClient::RenderFrameCreated(
+@@ -723,7 +724,7 @@ void ChromeContentRendererClient::RenderFrameCreated(
          render_frame, ISOLATED_WORLD_ID_TRANSLATE, associated_interfaces);
    }
  
@@ -21,7 +21,7 @@ index eab276d6ebe235cc0fcc8305984b6389fcce23dd..a0c74ba90384c9b41615a69737ff4f60
    base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
    if (command_line->HasSwitch(switches::kInstantProcess) &&
        render_frame->IsMainFrame()) {
-@@ -1415,7 +1416,7 @@ void ChromeContentRendererClient::WillSendRequest(
+@@ -1427,7 +1428,7 @@ void ChromeContentRendererClient::WillSendRequest(
    if (!url.ProtocolIs(chrome::kChromeSearchScheme))
      return;
  

@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/omnibox/BUILD.gn b/ui/webui/resources/cr_components/omnibox/BUILD.gn
-index 800ee8691c228d5f1c8fd68820ece0e78a0c2bec..81cec11dcf8e832ae0d84d982d3f0741c97fc6dc 100644
+index a546b1c3db7c24a7af9db801f727cd4833ba11e3..ad329810edb4dadeab627c45ca70e02f0d6a1c36 100644
 --- a/ui/webui/resources/cr_components/omnibox/BUILD.gn
 +++ b/ui/webui/resources/cr_components/omnibox/BUILD.gn
 @@ -4,7 +4,7 @@
