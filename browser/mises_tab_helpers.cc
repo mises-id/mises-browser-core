@@ -15,14 +15,17 @@
 #include "mises/browser/ipfs/ipfs_service_factory.h"
 #include "mises/browser/ipfs/ipfs_tab_helper.h"
 #endif
+#include "components/zoom/zoom_controller.h"
 
 
 namespace mises {
+  void AttachTabHelpers(content::WebContents* web_contents) {
 
-void AttachTabHelpers(content::WebContents* web_contents) {
-
-#if BUILDFLAG(ENABLE_IPFS)
-  ipfs::IPFSTabHelper::MaybeCreateForWebContents(web_contents);
-#endif
-
+  #if BUILDFLAG(ENABLE_IPFS)
+    ipfs::IPFSTabHelper::MaybeCreateForWebContents(web_contents);
+  #endif
+  #if BUILDFLAG(IS_ANDROID)
+    zoom::ZoomController::CreateForWebContents(web_contents);
+  #endif
+  }
 }
