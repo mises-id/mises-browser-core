@@ -40,9 +40,98 @@
 #include "chrome/browser/ui/android/tab_model/tab_model_list.h"
 #include "content/public/browser/web_contents.h"
 #include "chrome/browser/profiles/profile.h"
-#include "chrome/browser/android/app_menu_bridge.h"
+#include "chrome/browser/android/app_menu_bridge.h" 
+#include "components/messages/android/message_dispatcher_bridge.h"
+#include "components/messages/android/message_enums.h"
+#include "components/messages/android/message_wrapper.h"
+#endif
+
+#if BUILDFLAG(ENABLE_EXTENSIONS)
+#include "chrome/browser/extensions/webstore_install_with_prompt.h"
+#include "chrome/common/extensions/webstore_install_result.h"
+#include "extensions/browser/extension_file_task_runner.h"
+#include "content/public/browser/web_contents.h"
+#include "ui/base/l10n/l10n_util.h"
+#include "chrome/grit/generated_resources.h"
+#include "chrome/browser/android/android_theme_resources.h"
+#include "chrome/browser/android/resource_mapper.h"
+#endif
+
+#include "base/strings/strcat.h"
+#include "base/strings/utf_string_conversions.h"
+#include "chrome/browser/notifications/notification_display_service.h"
+#include "chrome/browser/notifications/notification_display_service_factory.h"
+#include "ui/message_center/public/cpp/notification.h"
+#include "ui/message_center/public/cpp/notification_types.h"
+#include "ui/message_center/public/cpp/notifier_id.h"
+#include "components/grit/mises_components_strings.h"
+
+namespace {
+
+#if BUILDFLAG(ENABLE_EXTENSIONS)
+
+// Silent installer via websotre w/o any prompt or bubble.
+class WebstoreInstallerForImporting
+    : public extensions::WebstoreInstallWithPrompt {
+ public:
+  using WebstoreInstallWithPrompt::WebstoreInstallWithPrompt;
+
+ private:
+  ~WebstoreInstallerForImporting() override = default;
+
+  std::unique_ptr<ExtensionInstallPrompt::Prompt>
+      CreateInstallPrompt() const override {
+    return nullptr;
+  }
+  bool ShouldShowPostInstallUI() const override { return true; }
+};
 
 #endif
+
+#if BUILDFLAG(IS_ANDROID)
+
+content::WebContents* GetWebContentsForProfile(Profile* profile) {
+  for (const TabModel* tab_model : TabModelList::models()) {
+    if (tab_model->GetProfile() != profile)
+      continue;
+
+    int tab_count = tab_model->GetTabCount();
+    for (int i = 0; i < tab_count; i++) {
+      content::WebContents* web_contents = tab_model->GetWebContentsAt(i);
+      if (web_contents)
+        return web_contents;
+    }
+  }
+  return nullptr;
+}
+#else
+
+std::unique_ptr<message_center::Notification> CreateMessageCenterNotification(
+    const std::u16string& title,
+    const std::u16string& body,
+    const std::string& uuid,
+    const GURL& link) {
+  message_center::RichNotificationData notification_data;
+  // hack to prevent origin from showing in the notification
+  notification_data.context_message = u" ";
+  auto notification = std::make_unique<message_center::Notification>(
+      message_center::NOTIFICATION_TYPE_SIMPLE, uuid, title, body,
+      ui::ImageModel(), std::u16string(), link,
+      message_center::NotifierId(message_center::NotifierType::SYSTEM_COMPONENT,
+                                 "service.mises"),
+      notification_data, nullptr);
+
+  return notification;
+}
+
+
+#endif
+
+const static int kPreinstallMaxTry = 2;
+
+
+}  // namespace
+
 using extensions::mojom::ManifestLocation;
 
 namespace extensions {
@@ -121,35 +210,35 @@ void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_co
 
 void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_context,
                                      const Extension* extension) {
-    if (extension->id() == metamask_extension_id &&  extension->location() == ManifestLocation::kComponent) {
-      metamask_ready_ = true;
+  if (extension->id() == metamask_extension_id) {
+    metamask_ready_ = true;
+    StorageFrontend* frontend = StorageFrontend::Get(profile_);
+      frontend->RunWithStorage(
+        extension, settings_namespace::LOCAL,
+      base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
+    );
+    DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
+  }
+  if (extension->id() == mises_extension_id) {
+    mises_ready_ = true;
+  }
+  if (mises_ready_ && metamask_ready_) {
+    if (profile_prefs_->FindPreference(kMisesDidMigrated) && !profile_prefs_->GetBoolean(kMisesDidMigrated)) {
+      profile_prefs_->SetBoolean(kMisesDidMigrated, true);
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
-        frontend->RunWithStorage(
-          extension, settings_namespace::LOCAL,
-        base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
-        );
+      frontend->RunWithStorage(
+        extension, settings_namespace::LOCAL,
+      base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
+      );
     }
-    if (extension->id() == mises_extension_id && metamask_ready_) {
-
-      if (profile_prefs_->FindPreference(kMisesDidMigrated) && !profile_prefs_->GetBoolean(kMisesDidMigrated)) {
-        profile_prefs_->SetBoolean(kMisesDidMigrated, true);
-        StorageFrontend* frontend = StorageFrontend::Get(profile_);
-        frontend->RunWithStorage(
-          extension, settings_namespace::LOCAL,
-        base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
-        );
-      }
-    }
+  }
 
 #if BUILDFLAG(IS_ANDROID)
   //refresh extension menu icon
   AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(nullptr);
-  TabModelList::TabModelVector tab_model_vector = TabModelList::models();
-  for (TabModel* tab_model : tab_model_vector) {
-    TabAndroid* tab = tab_model->GetTabAt(0);
-    if (tab && tab->web_contents()) {
-      AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(tab->web_contents());
-    }
+  content::WebContents* web_contents = GetWebContentsForProfile(profile_);
+  if (web_contents) {
+    AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(web_contents);
   }
 #endif
 
@@ -239,21 +328,151 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 #endif
     LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionUninstalled";
   }
-  if(extension && extension->location() == ManifestLocation::kComponent) {
-     if (extension->id() == metamask_extension_id ) {
-        //disable preinstall metamask
-        if (profile_prefs_->FindPreference(kPreinstallMetamaskEnabled)) {
-          profile_prefs_->SetBoolean(kPreinstallMetamaskEnabled, false);
-        }
-     }
+  if(extension && extension->id() == metamask_extension_id) {
+    //disable preinstall metamask
+    if (profile_prefs_->FindPreference(kPreinstallMetamaskEnabled)) {
+      profile_prefs_->SetBoolean(kPreinstallMetamaskEnabled, false);
+    }
   }
 
 
 }
 
 
+void MisesComponentLoader::OnWebstoreInstallResult(
+    const std::string& extension_id,
+    bool success,
+    const std::string& error,
+    extensions::webstore_install::Result result) {
+  LOG(INFO) << "[Mises] MisesComponentLoader::OnWebstoreInstallResult " << result;
+  if (result != extensions::webstore_install::Result::SUCCESS &&
+      result != extensions::webstore_install::Result::LAUNCH_IN_PROGRESS) {
+    if (metamask_preinstall_try_counter_ < kPreinstallMaxTry) {
+        base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+          FROM_HERE,
+          base::BindOnce(
+            &MisesComponentLoader::PreInstallMetamaskFromWebStore,
+            weak_ptr_factory_.GetWeakPtr()),
+          base::Seconds(2 * metamask_preinstall_try_counter_ + 1 ));
+
+    } else {
+#if BUILDFLAG(IS_ANDROID)
+      base::android::MisesSysUtils::LogEventFromJni("preinstall_extension_fail", "id", extension_id);
+#endif
+      DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
+      base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+        FROM_HERE,
+        base::BindOnce(
+          &MisesComponentLoader::ShowPreInstallMessage,
+          weak_ptr_factory_.GetWeakPtr(), true), 
+        base::Seconds(1));
+    }
+  }
+
+ if (result == extensions::webstore_install::Result::SUCCESS) {
+#if BUILDFLAG(IS_ANDROID)
+    base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "id", extension_id);
+#endif
+ }
+}
+
+
+void MisesComponentLoader::ShowPreInstallMessage(bool is_fail) {
+  LOG(INFO) << "[Mises] MisesComponentLoader::ShowPreInstallMessage " << is_fail;
+  std::u16string title = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_TITLE);
+  std::u16string description;
+  if (!is_fail) {
+    description = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL);
+  } else {
+    description = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL_FAIL);
+  }
+  GURL link =  GURL(base::StrCat(
+        {"https://chrome.google.com/webstore/detail/", metamask_extension_id}));
+  std::string guid = base::GenerateGUID();
+#if !BUILDFLAG(IS_ANDROID)
+  auto notification = CreateMessageCenterNotification(
+    title, description, guid,link
+  );
+  NotificationDisplayServiceFactory::GetForProfile(profile_)->Display(
+      NotificationHandler::Type::SEND_TAB_TO_SELF, *notification, nullptr);
+#else
+  base::WeakPtr<content::WebContents> web_contents;
+  if (profile_ != nullptr &&
+          GetWebContentsForProfile(profile_) != nullptr) {
+    web_contents = GetWebContentsForProfile(profile_)->GetWeakPtr();
+  } else {
+    web_contents = nullptr;
+  }
+  std::unique_ptr<messages::MessageWrapper> message = std::make_unique<messages::MessageWrapper>(
+      messages::MessageIdentifier::SEND_TAB_TO_SELF);
+  message->SetTitle(title);
+  message->SetDescription(description);
+  message->SetPrimaryButtonText(
+      l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_OPEN));
+  message->SetIconResourceId(ResourceMapper::MapToJavaDrawableId(IDR_EXTENSIONS));
+  message->SetActionClick(base::BindOnce(
+      &MisesComponentLoader::OnMessageOpened,
+      weak_ptr_factory_.GetWeakPtr(), link, guid));
+  message->SetDismissCallback(base::BindOnce(
+      &MisesComponentLoader::OnMessageDismissed,
+      weak_ptr_factory_.GetWeakPtr(), guid));
+
+  if (web_contents) {
+    messages::MessageDispatcherBridge::Get()->EnqueueWindowScopedMessage(
+        message.get(), web_contents->GetTopLevelNativeWindow(),
+        messages::MessagePriority::kNormal);
+  }
+  message_ = std::move(message);
+#endif
+  
+}
+
+void MisesComponentLoader::OnMessageOpened(GURL url, std::string guid) {
+  LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageOpened";
+  content::OpenURLParams params(url, content::Referrer(),
+                                WindowOpenDisposition::NEW_FOREGROUND_TAB,
+                                ui::PAGE_TRANSITION_AUTO_TOPLEVEL, false);
+  params.should_replace_current_entry = false;
+  content::WebContents* web_contents = GetWebContentsForProfile(profile_);
+  if (web_contents) {
+      web_contents->OpenURL(params);
+  }
+  
+  DismissMessageInternal(messages::DismissReason::PRIMARY_ACTION);
+}
+void MisesComponentLoader::OnMessageDismissed(
+  std::string guid, messages::DismissReason dismiss_reason) {    
+  LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageDismissed";                                    
+  message_.reset();
+}
+
+void MisesComponentLoader::DismissMessageInternal(
+    messages::DismissReason dismiss_reason) {
+#if BUILDFLAG(IS_ANDROID)
+  if (!message_)
+    return;
+  messages::MessageDispatcherBridge::Get()->DismissMessage(message_.get(),
+                                                           dismiss_reason);
+#endif
+}
+
+void MisesComponentLoader::PreInstallMetamaskFromWebStore() {
+  LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallMetamaskFromWebStore";
+  if (!message_) {
+    ShowPreInstallMessage(false);
+  }
+  metamask_preinstall_try_counter_ ++;
+
+  scoped_refptr<WebstoreInstallerForImporting> installer =
+      new WebstoreInstallerForImporting(
+          metamask_extension_id, profile_,
+          base::BindOnce(
+              &MisesComponentLoader::OnWebstoreInstallResult,
+              weak_ptr_factory_.GetWeakPtr(), metamask_extension_id));
+  installer->BeginInstall();
+}
 void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
-  LOG(INFO) << "[Mises] MisesComponentLoader::AddMetamaskExtensionOnStartup ";
+  LOG(INFO) << "[Mises] MisesComponentLoader::AddMetamaskExtensionOnStartup";
 
   ExtensionRegistry::Get(profile_)->AddObserver(this);
 
@@ -264,10 +483,14 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
       if (!profile_prefs_->FindPreference(kPreinstallMetamaskEnabled) || 
         profile_prefs_->GetBoolean(kPreinstallMetamaskEnabled)) {
 
-        base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
-        metamask_extension_path =
-            metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
-        Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+        base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+          FROM_HERE,
+          base::BindOnce(
+            &MisesComponentLoader::PreInstallMetamaskFromWebStore,
+            weak_ptr_factory_.GetWeakPtr()),
+        base::Seconds(1));
+
+
        
       }
   }

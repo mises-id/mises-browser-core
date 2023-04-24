@@ -1,4 +1,7 @@
 #include "build/build_config.h"
+#include "mises/browser/mises_tab_helpers.h"
+#define MISES_TAB_HELPERS mises::AttachTabHelpers(web_contents);
+
 #if BUILDFLAG(IS_ANDROID)
 
 #include "chrome/browser/ui/search/search_tab_helper.h"

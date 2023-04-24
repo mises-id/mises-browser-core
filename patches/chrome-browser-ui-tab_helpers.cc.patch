@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/tab_helpers.cc b/chrome/browser/ui/tab_helpers.cc
+index fc2b6837aa5a602705faedc31cdf35e851b49f9d..94a846856c73fc211b27f0994b37f26d15491760 100644
+--- a/chrome/browser/ui/tab_helpers.cc
++++ b/chrome/browser/ui/tab_helpers.cc
+@@ -297,6 +297,7 @@ void TabHelpers::AttachTabHelpers(WebContents* web_contents) {
+   Profile* profile =
+       Profile::FromBrowserContext(web_contents->GetBrowserContext());
+ 
++  MISES_TAB_HELPERS
+   // --- Section 1: Common tab helpers ---
+ #if defined(TOOLKIT_VIEWS)
+   if (page_info::IsPersistentSidePanelEntryFeatureEnabled()) {

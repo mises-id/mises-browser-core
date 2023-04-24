@@ -1,5 +1,5 @@
 diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
-index 48d7ae0d56f206e3dcf4ddd13ae45d8c3297388c..cb2a87d50ea8285b68668e21ea2d2fe09cdf3035 100644
+index 48d7ae0d56f206e3dcf4ddd13ae45d8c3297388c..26dbe41dc83b18149366fdf3e8cf065ae4d584b2 100644
 --- a/net/url_request/url_request_http_job.cc
 +++ b/net/url_request/url_request_http_job.cc
 @@ -615,6 +615,10 @@ void URLRequestHttpJob::AddExtraHeaders() {
@@ -8,7 +8,7 @@ index 48d7ae0d56f206e3dcf4ddd13ae45d8c3297388c..cb2a87d50ea8285b68668e21ea2d2fe0
        request()->context()->enable_brotli());
 +  
 +  if (request_info_.url.host().find("chrome.google.com") != std::string::npos) {
-+    request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.64 Safari/537.36");
++    request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36");
 +  }
  
    if (http_user_agent_settings_) {

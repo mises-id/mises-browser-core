@@ -39,6 +39,9 @@ mises_chrome_browser_sources = [
     "//mises/browser/mises_profile_prefs.cc",
     "//mises/browser/mises_profile_prefs.h",
 
+    "//mises/browser/mises_tab_helpers.cc",
+    "//mises/browser/mises_tab_helpers.h",
+
     "//mises/browser/mises_content_browser_client.cc",
     "//mises/browser/mises_content_browser_client.h",
     "//mises/browser/browser_context_keyed_service_factories.cc",
