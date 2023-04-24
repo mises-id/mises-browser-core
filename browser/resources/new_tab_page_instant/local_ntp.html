@@ -9,10 +9,6 @@
   <meta name="google" value="notranslate">
   <script src="loadingImage.js"></script>
   <script>
-    // window.chrome.embeddedSearch = {
-    //   newTabPage:{}
-    // }
-    if (window.chrome.embeddedSearch.newTabPage.isIncognito) document.body.style.backgroundColor='black';
   </script>
   <style>
     .full-hidden {
@@ -146,7 +142,7 @@
       text-align: center;
     }
     .mises-site-item p{
-      margin: 8px 0 0 ;
+      margin: 8px 0 14px ;
       font-size: 14px;
       color: #333333;
     }
@@ -215,7 +211,6 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto;
-      
     }
     .mises-web3-title{
       display: block;
@@ -350,14 +345,11 @@
     }
   </style>
 </head>
-<!-- Remember to update the test HTML files in chrome/test/data/local_ntp/
-   whenever making changes to this file.-->
 <body>
   <div class="web3-site" id="mises-content">
     <div class="box" id="mises-sites">
       <div class="web3-site-title-box border-bottom">
         <div class="title-box" data-type="mises-site-box">
-          <!-- <img src="./images/down_black.png" alt="downbutton" class="light-element down"/> -->
           <img src="./images/down.png" alt="downbutton" class="down"/>
           <span class="web3-site-title">Mises Features</span>
         </div>
@@ -373,24 +365,11 @@
           <img src="./images/Discover-dark.png" alt="Discover" class="dark-element"/>
           <p>Discover</p>
         </a>
-        <div style="visibility:hidden" id="airdrop-box">
-          <a class="mises-site-item" id="airdrop" href="https://home.mises.site/airdrop">
-            <img src="./images/Airdrop.png" alt="Airdrop" class="light-element"/>
-            <img src="./images/Airdrop-dark.png" alt="Airdrop" class="dark-element"/>
-            <p>Airdrop</p>
-          </a>
-          <a class="mises-site-item" style="display:none" id="invite" href="https://home.mises.site/myInvitation">
-            <img src="./images/Invite.png" alt="Invite" class="light-element"/>
-            <img src="./images/Invite-dark.png" alt="Invite" class="dark-element"/>
-            <p>Invite</p>
-          </a>
-      </div>
       </div>
     </div>
     <div class="box">
       <div class="web3-site-title-box border-bottom">
         <div class="title-box"  data-type="mises-web3">
-          <!-- <img src="./images/down_black.png" alt="downbutton" class="light-element down"/> -->
           <img src="./images/down.png" alt="downbutton" class="down"/>
           <span class="web3-site-title">Web3 Sites</span>
         </div>
@@ -401,7 +380,6 @@
     <div class="box">
       <div class="web3-site-title-box border-bottom">
         <div  class="title-box" data-type="mises-extensions">
-          <!-- <img src="./images/down_black.png" alt="downbutton" class="light-element down"/> -->
           <img src="./images/down.png" alt="downbutton" class="down"/>
           <span class="web3-site-title">Extensions</span>
         </div>
@@ -470,23 +448,47 @@
         })
       })
     })
+    const nowTime = Date.now();
+    const cacheExpiredTime = localStorage.getItem('cacheExpiredTime') || 0;
+    const expiredTime = 24 * 60 * 60 * 1000; // 1 day
+    const isRefresh = nowTime - Number(cacheExpiredTime) > expiredTime
+
     const container = document.getElementById('mises-web3');
     const misesWeb3LayoutCache = localStorage.getItem('misesWeb3Layout');
     if(misesWeb3LayoutCache && container){
       container.innerHTML = misesWeb3LayoutCache;
     }
-    fetch('https://web3.mises.site/website/recommend.json').then(res=>{
-      return res.json()
-    }).then(res=>{
-      const items = renderSiteItems(res)
-      if(misesWeb3LayoutCache!==items.join('')){
-        localStorage.setItem('misesWeb3Layout', items.join(''));
-        if(container) container.innerHTML = items.join('');
-      }
-    })
-    //document.getElementById('extensions-add-button').addEventListener('click', function(){
-    //  window.open('https://web3.mises.site','_blank')
-    //})
+
+    const siteContainer = document.getElementById('mises-site-box');
+    const misessiteLayoutCache = localStorage.getItem('misessiteLayout');
+    if(misessiteLayoutCache && siteContainer){
+      siteContainer.innerHTML = misessiteLayoutCache;
+    }
+
+    if(isRefresh){
+      localStorage.setItem('cacheExpiredTime', Date.now());
+
+      fetch('https://web3.mises.site/website/recommend.json').then(res=>{
+        return res.json()
+      }).then(res=>{
+        const items = renderSiteItems(res)
+        if(misesWeb3LayoutCache!==items.join('')){
+          localStorage.setItem('misesWeb3Layout', items.join(''));
+          if(container) container.innerHTML = items.join('');
+        }
+      })
+
+      fetch('https://web3.mises.site/website/feature_list.json').then(res=>{
+        return res.json()
+      }).then(res=>{
+        const items = renderSiteItems(res)
+        if(misessiteLayoutCache!==items.join('')){
+          localStorage.setItem('misessiteLayout', items.join(''));
+          if(siteContainer) siteContainer.innerHTML = items.join('');
+        }
+      })
+    }
+    
     // get install extensions
     const extensions = chrome.embeddedSearch.newTabPage.mostVisitedExtensions;
     setExtensions(extensions);
@@ -509,48 +511,6 @@
       chrome.embeddedSearch.newTabPage.openExtension(rid);
     })
   }
-
-  const oninfochange = res=>{
-    if(res){
-      const data = JSON.parse(res)
-      const isAirdropMisesId = localStorage.getItem(res.misesId);
-      if(!isAirdropMisesId){
-        getIsAirdrop(data.misesId).then(res=>{
-          if(res.data&&res.data.is_airdropped){
-            localStorage.setItem(data.misesId, true);
-            showInvite()
-            showBox()
-            console.log('cache isAirdropMisesId:'+ res.misesId);
-          }else{
-            showBox()
-          }
-        }).catch(()=>{
-          showBox()
-        })
-      }else{
-        console.log('get cache isAirdropMisesId:'+ res.misesId);
-        showInvite()
-        showBox()
-      }
-    }else{
-      showBox()
-    }
-  }
-  const info = chrome.embeddedSearch.mises.info;
-  chrome.embeddedSearch.mises.oninfo = oninfochange;
-  oninfochange(info);
-function getIsAirdrop(misesId){
-    return new Promise((reslove,reject)=>{
-      fetch(url+'/api/v1/mises_user/did:mises:'+misesId).then(res=>res.json()).then(reslove).catch(reject);
-    })
-  }
-function showBox(){
-  document.getElementById('airdrop-box').style.visibility = 'unset';
-}
-function showInvite(){
-  document.getElementById('invite').style.display = 'block';
-  document.getElementById('airdrop').style.display = 'none';
-}
 function replaceInnerHTML(oldDiv, html) {
     var newDiv = oldDiv.cloneNode(false);
     newDiv.innerHTML = html;
@@ -669,16 +629,18 @@ function instant_grid()
       document.getElementById('fake-bookmarks-grid').style.display = 'grid';
   }
 }
+if(window.chrome.embeddedSearch.newTabPage){
+  if (window.chrome.embeddedSearch.newTabPage.isIncognito){
+    document.body.style.backgroundColor='black';
+    document.getElementById('incognito').style.display='block';
+  }
 
-if (window.chrome.embeddedSearch.newTabPage.isIncognito){
-  document.body.style.backgroundColor='black';
-  document.getElementById('incognito').style.display='block';
+  if (!window.chrome.embeddedSearch.newTabPage.isIncognito){
+    document.getElementById('add-button').style.display='block';
+    document.getElementById('mises-content').style.display='block';
+  }
 }
 
-if (!window.chrome.embeddedSearch.newTabPage.isIncognito){
-  document.getElementById('add-button').style.display='block';
-  document.getElementById('mises-content').style.display='block';
-}
 else
 {
 try {
@@ -999,11 +961,6 @@ function toggle_edit_mode(isCloseImg = false)
   } else {
     iseditable = true;
     globalGrid.dragifierOn();
-    // Array.prototype.forEach.call(document.getElementsByClassName("grid-item"), function (el) { 
-    //   if (!el.classList.contains('grid-idea')) {
-    //     el.style.WebkitAnimation = 'shadow-inset-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'; 
-    //   } 
-    // });
     Array.prototype.forEach.call(document.getElementsByClassName('closeImg'), function (el) { el.classList.remove('closeImgInvisible'); });
   }
   window.setTimeout(function () { save_grid_snapshot(); }, 100);
