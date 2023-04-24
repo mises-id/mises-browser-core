@@ -260,7 +260,7 @@ content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
   extension_window_id_ = session_window_id;
   extension_id_ = extension_id;
   ScopedJavaLocalRef<jobject> obj =
-      Java_TabModelJniBridge_createNewTabForDevTools(
+      Java_TabModelJniBridge_createNewTabForExtensions(
           env, java_object_.get(env),
           url::GURLAndroid::FromNativeGURL(env, url));
   extension_window_id_ = -1;
