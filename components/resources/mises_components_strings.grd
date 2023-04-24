@@ -162,6 +162,19 @@
   </translations>
   <release seq="1">
     <messages fallback_to_english="true">
+
+      <message name="IDS_EXTENSIONS_MESSAGE_TITLE" desc="Message title for extension preinstall.">
+        Extensions
+      </message>
+      <message name="IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL" desc="Message detail for extension preinstall.">
+        Installing Metamask extension from chrome webstore, it will take a few seconds.
+      </message>
+      <message name="IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL_FAIL" desc="Message detail for extension preinstall.">
+        Failed to install Metamask extension, please open chrome webstore to install it manually.
+      </message>
+      <message name="IDS_EXTENSIONS_MESSAGE_OPEN" desc="Open action for extension preinstall.">
+        Open WebStore
+      </message>
       <!-- Error pages -->
       <message name="IDS_ERRORPAGES_IPFS_INCOGNITO_HEADING" desc="Heading of the IPFS not available in incognito error page.">
         IPFS page cannot be loaded.

@@ -15,10 +15,12 @@
 #include "extensions/browser/extension_registry_observer.h"
 #include "extensions/browser/extension_dialog_auto_confirm.h"
 #include "chrome/common/extensions/webstore_install_result.h"
+#include "components/messages/android/message_wrapper.h"
 
 
 class PrefService;
 class Profile;
+class GURL;
 
 namespace extensions {
 
@@ -66,12 +68,18 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   void OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
                                       UninstallReason reason) override;
-
+  void PreInstallMetamaskFromWebStore();
   void OnWebstoreInstallResult(
     const std::string& pref_name,
     bool success,
     const std::string& error,
     extensions::webstore_install::Result result);
+  
+  void ShowPreInstallMessage(bool is_fail);
+  void OnMessageOpened(GURL url, std::string guid);
+  void OnMessageDismissed(std::string guid,
+                          messages::DismissReason dismiss_reason);
+  void DismissMessageInternal(messages::DismissReason dismiss_reason);
 
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;
@@ -80,6 +88,8 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   base::Value metamaskValue;
   bool metamask_ready_ = false;
   bool mises_ready_ = false;
+  int metamask_preinstall_try_counter_ = 0;
+  std::unique_ptr<messages::MessageWrapper> message_;
   base::WeakPtrFactory<MisesComponentLoader> weak_ptr_factory_{this};
 
 };

@@ -1,0 +1,10 @@
+diff --git a/chrome/browser/android/resource_id.h b/chrome/browser/android/resource_id.h
+index ad12af21a836f0fb06f60e40de1f7b3b57028e98..9dc18fc638e0fd4006d31497961ce8fad5ac9c29 100644
+--- a/chrome/browser/android/resource_id.h
++++ b/chrome/browser/android/resource_id.h
+@@ -118,3 +118,5 @@ DECLARE_RESOURCE_ID(IDR_ANDROID_ABOUT_THIS_SITE_LOGO_24DP,
+ DECLARE_RESOURCE_ID(IDR_ANDROID_ABOUT_THIS_SITE_LOGO_24DP,
+                     R.drawable.ic_info_outline_grey_24dp)
+ #endif  // BUILDFLAG(GOOGLE_CHROME_BRANDING) && BUILDFLAG(IS_ANDROID)
++
++DECLARE_RESOURCE_ID(IDR_EXTENSIONS, R.drawable.ic_extensions)
