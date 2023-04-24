@@ -1,17 +1,32 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..3d87f7198f3f4186e6590c9cd60a8224b8d0af23 100644
+index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..b7abf7c0e5f7008e649736227c085bbbe2bd4ab8 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-@@ -147,7 +147,7 @@ public abstract class TabModelJniBridge implements TabModel {
+@@ -22,6 +22,7 @@ import org.chromium.content_public.common.ResourceRequestBody;
+ import org.chromium.ui.base.WindowAndroid;
+ import org.chromium.url.GURL;
+ import org.chromium.url.Origin;
++import org.chromium.ui.base.PageTransition;
+ 
+ /**
+  * Bridges between the C++ and Java {@link TabModel} interfaces.
+@@ -147,7 +148,14 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      protected Tab createNewTabForDevTools(GURL url) {
          return getTabCreator(/*incognito=*/false)
 -                .createNewTab(new LoadUrlParams(url), TabLaunchType.FROM_CHROME_UI, null);
 +                .createNewTab(new LoadUrlParams(url), TabLaunchType.FROM_CHROME_UI, getTabAt(index()));
++    }
++
++    @CalledByNative
++    protected Tab createNewTabForExtensions(GURL url) {
++        final LoadUrlParams param = new LoadUrlParams(url, PageTransition.AUTO_TOPLEVEL);
++        return getTabCreator(/*incognito=*/false)
++                .createNewTab(param, TabLaunchType.FROM_LINK, getTabAt(index()));
      }
  
      /** Returns whether supplied Tab instance has been grouped together with other Tabs. */
-@@ -181,6 +181,10 @@ public abstract class TabModelJniBridge implements TabModel {
+@@ -181,6 +189,10 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      public abstract int index();
  
