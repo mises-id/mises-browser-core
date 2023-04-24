@@ -9,9 +9,6 @@
   <meta name="google" value="notranslate">
   <script src="loadingImage.js"></script>
   <script>
-    // window.chrome.embeddedSearch = {
-    //   newTabPage:{}
-    // }
   </script>
   <style>
     .full-hidden {
@@ -349,14 +346,11 @@
     }
   </style>
 </head>
-<!-- Remember to update the test HTML files in chrome/test/data/local_ntp/
-   whenever making changes to this file.-->
 <body>
   <div class="web3-site" id="mises-content">
     <div class="box" id="mises-sites">
       <div class="web3-site-title-box border-bottom">
         <div class="title-box" data-type="mises-site-box">
-          <!-- <img src="./images/down_black.png" alt="downbutton" class="light-element down"/> -->
           <img src="./images/down.png" alt="downbutton" class="down"/>
           <span class="web3-site-title">Mises Features</span>
         </div>
@@ -372,24 +366,11 @@
           <img src="./images/Discover-dark.png" alt="Discover" class="dark-element"/>
           <p>Discover</p>
         </a>
-        <!-- <div style="visibility:hidden" id="airdrop-box">
-          <a class="mises-site-item" id="airdrop" href="https://home.mises.site/airdrop">
-            <img src="./images/Airdrop.png" alt="Airdrop" class="light-element"/>
-            <img src="./images/Airdrop-dark.png" alt="Airdrop" class="dark-element"/>
-            <p>Airdrop</p>
-          </a>
-          <a class="mises-site-item" style="display:none" id="invite" href="https://home.mises.site/myInvitation">
-            <img src="./images/Invite.png" alt="Invite" class="light-element"/>
-            <img src="./images/Invite-dark.png" alt="Invite" class="dark-element"/>
-            <p>Invite</p>
-          </a>
-      </div> -->
       </div>
     </div>
     <div class="box">
       <div class="web3-site-title-box border-bottom">
         <div class="title-box"  data-type="mises-web3">
-          <!-- <img src="./images/down_black.png" alt="downbutton" class="light-element down"/> -->
           <img src="./images/down.png" alt="downbutton" class="down"/>
           <span class="web3-site-title">Web3 Sites</span>
         </div>
@@ -400,7 +381,6 @@
     <div class="box">
       <div class="web3-site-title-box border-bottom">
         <div  class="title-box" data-type="mises-extensions">
-          <!-- <img src="./images/down_black.png" alt="downbutton" class="light-element down"/> -->
           <img src="./images/down.png" alt="downbutton" class="down"/>
           <span class="web3-site-title">Extensions</span>
         </div>
@@ -523,48 +503,6 @@
       chrome.embeddedSearch.newTabPage.openExtension(rid);
     })
   }
-
-  // const oninfochange = res=>{
-  //   if(res){
-  //     const data = JSON.parse(res)
-  //     const isAirdropMisesId = localStorage.getItem(res.misesId);
-  //     if(!isAirdropMisesId){
-  //       getIsAirdrop(data.misesId).then(res=>{
-  //         if(res.data&&res.data.is_airdropped){
-  //           localStorage.setItem(data.misesId, true);
-  //           showInvite()
-  //           showBox()
-  //           console.log('cache isAirdropMisesId:'+ res.misesId);
-  //         }else{
-  //           showBox()
-  //         }
-  //       }).catch(()=>{
-  //         showBox()
-  //       })
-  //     }else{
-  //       console.log('get cache isAirdropMisesId:'+ res.misesId);
-  //       showInvite()
-  //       showBox()
-  //     }
-  //   }else{
-  //     showBox()
-  //   }
-  // }
-  // const info = chrome.embeddedSearch.mises.info;
-  // chrome.embeddedSearch.mises.oninfo = oninfochange;
-  // oninfochange(info);
-// function getIsAirdrop(misesId){
-//     return new Promise((reslove,reject)=>{
-//       fetch(url+'/api/v1/mises_user/did:mises:'+misesId).then(res=>res.json()).then(reslove).catch(reject);
-//     })
-//   }
-// function showBox(){
-//   document.getElementById('airdrop-box').style.visibility = 'unset';
-// }
-// function showInvite(){
-//   document.getElementById('invite').style.display = 'block';
-//   document.getElementById('airdrop').style.display = 'none';
-// }
 function replaceInnerHTML(oldDiv, html) {
     var newDiv = oldDiv.cloneNode(false);
     newDiv.innerHTML = html;
@@ -1015,11 +953,6 @@ function toggle_edit_mode(isCloseImg = false)
   } else {
     iseditable = true;
     globalGrid.dragifierOn();
-    // Array.prototype.forEach.call(document.getElementsByClassName("grid-item"), function (el) { 
-    //   if (!el.classList.contains('grid-idea')) {
-    //     el.style.WebkitAnimation = 'shadow-inset-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'; 
-    //   } 
-    // });
     Array.prototype.forEach.call(document.getElementsByClassName('closeImg'), function (el) { el.classList.remove('closeImgInvisible'); });
   }
   window.setTimeout(function () { save_grid_snapshot(); }, 100);
