@@ -12,7 +12,6 @@
     // window.chrome.embeddedSearch = {
     //   newTabPage:{}
     // }
-    if (window.chrome.embeddedSearch.newTabPage.isIncognito) document.body.style.backgroundColor='black';
   </script>
   <style>
     .full-hidden {
@@ -146,7 +145,7 @@
       text-align: center;
     }
     .mises-site-item p{
-      margin: 8px 0 0 ;
+      margin: 8px 0 14px ;
       font-size: 14px;
       color: #333333;
     }
@@ -373,7 +372,7 @@
           <img src="./images/Discover-dark.png" alt="Discover" class="dark-element"/>
           <p>Discover</p>
         </a>
-        <div style="visibility:hidden" id="airdrop-box">
+        <!-- <div style="visibility:hidden" id="airdrop-box">
           <a class="mises-site-item" id="airdrop" href="https://home.mises.site/airdrop">
             <img src="./images/Airdrop.png" alt="Airdrop" class="light-element"/>
             <img src="./images/Airdrop-dark.png" alt="Airdrop" class="dark-element"/>
@@ -384,7 +383,7 @@
             <img src="./images/Invite-dark.png" alt="Invite" class="dark-element"/>
             <p>Invite</p>
           </a>
-      </div>
+      </div> -->
       </div>
     </div>
     <div class="box">
@@ -484,6 +483,21 @@
         if(container) container.innerHTML = items.join('');
       }
     })
+
+    const siteContainer = document.getElementById('mises-site-box');
+    const misessiteLayoutCache = localStorage.getItem('misessiteLayout');
+    if(misessiteLayoutCache && siteContainer){
+      siteContainer.innerHTML = misessiteLayoutCache;
+    }
+    fetch('https://web3.mises.site/website/feature_list.json').then(res=>{
+      return res.json()
+    }).then(res=>{
+      const items = renderSiteItems(res)
+      if(misessiteLayoutCache!==items.join('')){
+        localStorage.setItem('misessiteLayout', items.join(''));
+        if(siteContainer) siteContainer.innerHTML = items.join('');
+      }
+    })
     //document.getElementById('extensions-add-button').addEventListener('click', function(){
     //  window.open('https://web3.mises.site','_blank')
     //})
@@ -510,47 +524,47 @@
     })
   }
 
-  const oninfochange = res=>{
-    if(res){
-      const data = JSON.parse(res)
-      const isAirdropMisesId = localStorage.getItem(res.misesId);
-      if(!isAirdropMisesId){
-        getIsAirdrop(data.misesId).then(res=>{
-          if(res.data&&res.data.is_airdropped){
-            localStorage.setItem(data.misesId, true);
-            showInvite()
-            showBox()
-            console.log('cache isAirdropMisesId:'+ res.misesId);
-          }else{
-            showBox()
-          }
-        }).catch(()=>{
-          showBox()
-        })
-      }else{
-        console.log('get cache isAirdropMisesId:'+ res.misesId);
-        showInvite()
-        showBox()
-      }
-    }else{
-      showBox()
-    }
-  }
-  const info = chrome.embeddedSearch.mises.info;
-  chrome.embeddedSearch.mises.oninfo = oninfochange;
-  oninfochange(info);
-function getIsAirdrop(misesId){
-    return new Promise((reslove,reject)=>{
-      fetch(url+'/api/v1/mises_user/did:mises:'+misesId).then(res=>res.json()).then(reslove).catch(reject);
-    })
-  }
-function showBox(){
-  document.getElementById('airdrop-box').style.visibility = 'unset';
-}
-function showInvite(){
-  document.getElementById('invite').style.display = 'block';
-  document.getElementById('airdrop').style.display = 'none';
-}
+  // const oninfochange = res=>{
+  //   if(res){
+  //     const data = JSON.parse(res)
+  //     const isAirdropMisesId = localStorage.getItem(res.misesId);
+  //     if(!isAirdropMisesId){
+  //       getIsAirdrop(data.misesId).then(res=>{
+  //         if(res.data&&res.data.is_airdropped){
+  //           localStorage.setItem(data.misesId, true);
+  //           showInvite()
+  //           showBox()
+  //           console.log('cache isAirdropMisesId:'+ res.misesId);
+  //         }else{
+  //           showBox()
+  //         }
+  //       }).catch(()=>{
+  //         showBox()
+  //       })
+  //     }else{
+  //       console.log('get cache isAirdropMisesId:'+ res.misesId);
+  //       showInvite()
+  //       showBox()
+  //     }
+  //   }else{
+  //     showBox()
+  //   }
+  // }
+  // const info = chrome.embeddedSearch.mises.info;
+  // chrome.embeddedSearch.mises.oninfo = oninfochange;
+  // oninfochange(info);
+// function getIsAirdrop(misesId){
+//     return new Promise((reslove,reject)=>{
+//       fetch(url+'/api/v1/mises_user/did:mises:'+misesId).then(res=>res.json()).then(reslove).catch(reject);
+//     })
+//   }
+// function showBox(){
+//   document.getElementById('airdrop-box').style.visibility = 'unset';
+// }
+// function showInvite(){
+//   document.getElementById('invite').style.display = 'block';
+//   document.getElementById('airdrop').style.display = 'none';
+// }
 function replaceInnerHTML(oldDiv, html) {
     var newDiv = oldDiv.cloneNode(false);
     newDiv.innerHTML = html;
@@ -669,16 +683,18 @@ function instant_grid()
       document.getElementById('fake-bookmarks-grid').style.display = 'grid';
   }
 }
+if(window.chrome.embeddedSearch.newTabPage){
+  if (window.chrome.embeddedSearch.newTabPage.isIncognito){
+    document.body.style.backgroundColor='black';
+    document.getElementById('incognito').style.display='block';
+  }
 
-if (window.chrome.embeddedSearch.newTabPage.isIncognito){
-  document.body.style.backgroundColor='black';
-  document.getElementById('incognito').style.display='block';
+  if (!window.chrome.embeddedSearch.newTabPage.isIncognito){
+    document.getElementById('add-button').style.display='block';
+    document.getElementById('mises-content').style.display='block';
+  }
 }
 
-if (!window.chrome.embeddedSearch.newTabPage.isIncognito){
-  document.getElementById('add-button').style.display='block';
-  document.getElementById('mises-content').style.display='block';
-}
 else
 {
 try {
