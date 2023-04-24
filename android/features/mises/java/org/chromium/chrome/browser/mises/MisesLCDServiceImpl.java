@@ -78,7 +78,13 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
     public void onCreate() {
         super.onCreate();
         Log.i(TAG, "onCreate");
-        startForegroundService();
+        //Create Notification channel for all the notifications sent from this app.
+        createNotificationChannel();
+
+        // Start foreground service.
+        if (!IS_RUNNING) {
+	        startLCDService();
+	    }
 
     }
 
@@ -102,26 +108,15 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
 
     private void openAppHomePage(String keydata) {
         try {
-          getService().sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-	} catch (SecurityException e) {
-	}
+            getService().sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+	    } catch (SecurityException e) {
+	    }
         Intent newintent = new Intent();
         newintent.setClassName("site.mises.browser", "org.chromium.chrome.browser.ChromeTabbedActivity");
         newintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
         getService().startActivity(newintent);
 
 
-
-    }
-
-    private void startForegroundService() {
-        //Create Notification channel for all the notifications sent from this app.
-        createNotificationChannel();
-
-        // Start foreground service.
-        if (!IS_RUNNING) {
-	        startLCDService();
-	    }
 
     }
 
@@ -141,13 +136,12 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
 
     private void startLCDService() {
         Log.i(TAG, "startLCDService");
-	  try {
-              getService().startForeground(SERVICE_ID, getStickyNotification(
+	    try {
+            getService().startForeground(SERVICE_ID, getStickyNotification(
               mContext.getResources().getString(R.string.title_foreground_service_notification_running),
               mContext.getResources().getString(R.string.msg_notification_service_desc), true
-          ));
-	    }
-	    catch (Exception ex) {
+            ));
+	    } catch (Exception ex) {
 	    }
         IS_RUNNING = true;
 
@@ -159,6 +153,7 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
             getService().stopForeground(true);
         }, 5000);
     }
+
     private void resetNode() {
         if (nodeRestartThread != null) {
           return;
