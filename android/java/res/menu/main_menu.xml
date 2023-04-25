@@ -44,6 +44,9 @@
         <item android:id="@+id/new_tab_menu_id"
             android:title="@string/menu_new_tab"
             android:icon="@drawable/ic_new_tab" />
+        <item android:id="@+id/new_home_tab_menu_id"
+            android:title="@string/menu_new_home_tab"
+            android:icon="@drawable/btn_toolbar_home" />
         <item android:id="@+id/new_incognito_tab_menu_id"
             android:title="@string/menu_new_incognito_tab"
             android:icon="@drawable/ic_incognito" />
