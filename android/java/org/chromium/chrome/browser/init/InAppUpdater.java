@@ -46,13 +46,13 @@ public class InAppUpdater {
                     this.startDownload(appUpdateInfo, act);
 
                 } else if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS){
-		    Log.i(TAG,"update was in progress");
+		            Log.i(TAG,"update was in progress");
                     if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-			popupCompleteUpdate(act);
-		    } else {
-		        this.startDownload(appUpdateInfo, act);
-		    }
-		} else {
+			            popupCompleteUpdate(act);
+		            } else {
+		                this.startDownload(appUpdateInfo, act);
+		            }
+		        } else {
                     Log.i(TAG,"no update " + String.valueOf(appUpdateInfo.updateAvailability()) );
                 }
             }).addOnCompleteListener(appUpdateInfo -> {

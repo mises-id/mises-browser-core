@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
-index bab4cb91f75cc8a8f3b238d6e658df93b8980af8..4aed3db6a8a031de93a31d7835da6a304ef583f9 100644
+index bab4cb91f75cc8a8f3b238d6e658df93b8980af8..994cfec04cbc596ea9a08dd90cfe7ab082ebff97 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
 @@ -45,11 +45,22 @@ import java.util.ArrayList;
@@ -37,10 +37,10 @@ index bab4cb91f75cc8a8f3b238d6e658df93b8980af8..4aed3db6a8a031de93a31d7835da6a30
 +        BookmarkBridgeJni.get().importBookmarks(mNativeBookmarkBridge, window);
 +    }
 +
-+    public void startExportBookmarks() {
++    public void startExportBookmarks(final WindowAndroid window) {
 +        assert mIsNativeBookmarkModelLoaded;
 +
-+        BookmarkBridgeJni.get().exportBookmarks(mNativeBookmarkBridge);
++        BookmarkBridgeJni.get().exportBookmarks(mNativeBookmarkBridge, window);
 +    }
 +
 +    @CalledByNative
@@ -81,6 +81,6 @@ index bab4cb91f75cc8a8f3b238d6e658df93b8980af8..4aed3db6a8a031de93a31d7835da6a30
          boolean isBookmarked(long nativeBookmarkBridge, GURL url);
 +
 +	void importBookmarks(long nativeBookmarkBridge, WindowAndroid window);
-+	void exportBookmarks(long nativeBookmarkBridge);
++	void exportBookmarks(long nativeBookmarkBridge, WindowAndroid window);
      }
  }
