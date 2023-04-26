@@ -44,6 +44,8 @@
 #include "components/messages/android/message_dispatcher_bridge.h"
 #include "components/messages/android/message_enums.h"
 #include "components/messages/android/message_wrapper.h"
+#include "chrome/browser/android/android_theme_resources.h"
+#include "chrome/browser/android/resource_mapper.h"
 #endif
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
@@ -53,8 +55,7 @@
 #include "content/public/browser/web_contents.h"
 #include "ui/base/l10n/l10n_util.h"
 #include "chrome/grit/generated_resources.h"
-#include "chrome/browser/android/android_theme_resources.h"
-#include "chrome/browser/android/resource_mapper.h"
+#include "chrome/browser/extensions/webstore_installer.h"
 #endif
 
 #include "base/strings/strcat.h"
@@ -66,27 +67,89 @@
 #include "ui/message_center/public/cpp/notifier_id.h"
 #include "components/grit/mises_components_strings.h"
 
-namespace {
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
+namespace extensions {
+
 
 // Silent installer via websotre w/o any prompt or bubble.
 class WebstoreInstallerForImporting
-    : public extensions::WebstoreInstallWithPrompt {
+    : public WebstoreStandaloneInstaller  {
  public:
-  using WebstoreInstallWithPrompt::WebstoreInstallWithPrompt;
 
- private:
+  WebstoreInstallerForImporting(
+      const std::string& webstore_item_id,
+      Profile* profile,
+      Callback callback)
+      : WebstoreStandaloneInstaller(webstore_item_id,
+                                    profile,
+                                    std::move(callback)),
+        dummy_web_contents_(
+            content::WebContents::Create(content::WebContents::CreateParams(profile))),
+        parent_window_(nullptr) {
+    set_install_source(WebstoreInstaller::INSTALL_SOURCE_OTHER);
+  }
+
+  content::WebContents* GetWebContents() const override{
+    return dummy_web_contents_.get();
+  }
+
+protected:
+  friend class base::RefCountedThreadSafe<WebstoreInstallerForImporting>;
   ~WebstoreInstallerForImporting() override = default;
+
+  bool CheckRequestorAlive() const override{
+    return true;
+  }
 
   std::unique_ptr<ExtensionInstallPrompt::Prompt>
       CreateInstallPrompt() const override {
     return nullptr;
   }
-  bool ShouldShowPostInstallUI() const override { return true; }
+  std::unique_ptr<ExtensionInstallPrompt> CreateInstallUI() override{
+    // Create an ExtensionInstallPrompt. If the parent window is NULL, the dialog
+    // will be placed in the middle of the screen.
+    return std::make_unique<ExtensionInstallPrompt>(profile(), parent_window_);
+  }
+  bool ShouldShowPostInstallUI() const override { 
+    return false; 
+  }
+
+  void OnInstallPromptDone(ExtensionInstallPrompt::DoneCallbackPayload payload) override {
+    if (payload.result == ExtensionInstallPrompt::Result::USER_CANCELED) {
+        CompleteInstall(webstore_install::USER_CANCELLED,
+                        webstore_install::kUserCancelledError);
+        return;
+      }
+
+      if (payload.result == ExtensionInstallPrompt::Result::ABORTED ||
+          !CheckRequestorAlive()) {
+        CompleteInstall(webstore_install::ABORTED, std::string());
+        return;
+      }
+
+      DCHECK(payload.result == ExtensionInstallPrompt::Result::ACCEPTED);
+
+      std::unique_ptr<WebstoreInstaller::Approval> approval = CreateApproval();
+
+      auto installer = base::MakeRefCounted<WebstoreInstaller>(
+          profile(), this, GetWebContents(), id(), std::move(approval),
+          install_source());
+      installer->Start();
+  }
+private:
+  std::unique_ptr<content::WebContents> dummy_web_contents_;
+  gfx::NativeWindow parent_window_;
 };
 
+
+
+}
+
 #endif
+namespace {
+
+
 
 #if BUILDFLAG(IS_ANDROID)
 
@@ -217,7 +280,12 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
         extension, settings_namespace::LOCAL,
       base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
     );
-    DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
+#if BUILDFLAG(IS_ANDROID)
+    if (extension->location() != ManifestLocation::kComponent) {
+      DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
+    }
+    
+#endif
   }
   if (extension->id() == mises_extension_id) {
     mises_ready_ = true;
@@ -358,8 +426,9 @@ void MisesComponentLoader::OnWebstoreInstallResult(
     } else {
 #if BUILDFLAG(IS_ANDROID)
       base::android::MisesSysUtils::LogEventFromJni("preinstall_extension_fail", "id", extension_id);
-#endif
       DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
+#endif
+      
       base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
         FROM_HERE,
         base::BindOnce(
@@ -429,6 +498,7 @@ void MisesComponentLoader::ShowPreInstallMessage(bool is_fail) {
 
 void MisesComponentLoader::OnMessageOpened(GURL url, std::string guid) {
   LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageOpened";
+#if BUILDFLAG(IS_ANDROID)
   content::OpenURLParams params(url, content::Referrer(),
                                 WindowOpenDisposition::NEW_FOREGROUND_TAB,
                                 ui::PAGE_TRANSITION_AUTO_TOPLEVEL, false);
@@ -437,30 +507,36 @@ void MisesComponentLoader::OnMessageOpened(GURL url, std::string guid) {
   if (web_contents) {
       web_contents->OpenURL(params);
   }
-  
+
   DismissMessageInternal(messages::DismissReason::PRIMARY_ACTION);
+#endif
 }
+
+#if BUILDFLAG(IS_ANDROID)  
 void MisesComponentLoader::OnMessageDismissed(
   std::string guid, messages::DismissReason dismiss_reason) {    
-  LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageDismissed";                                    
+  LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageDismissed";
+                                
   message_.reset();
 }
 
 void MisesComponentLoader::DismissMessageInternal(
     messages::DismissReason dismiss_reason) {
-#if BUILDFLAG(IS_ANDROID)
   if (!message_)
     return;
   messages::MessageDispatcherBridge::Get()->DismissMessage(message_.get(),
                                                            dismiss_reason);
-#endif
+
 }
+#endif
 
 void MisesComponentLoader::PreInstallMetamaskFromWebStore() {
   LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallMetamaskFromWebStore";
+#if BUILDFLAG(IS_ANDROID)
   if (!message_) {
     ShowPreInstallMessage(false);
   }
+#endif
   metamask_preinstall_try_counter_ ++;
 
   scoped_refptr<WebstoreInstallerForImporting> installer =
@@ -471,6 +547,7 @@ void MisesComponentLoader::PreInstallMetamaskFromWebStore() {
               weak_ptr_factory_.GetWeakPtr(), metamask_extension_id));
   installer->BeginInstall();
 }
+
 void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
   LOG(INFO) << "[Mises] MisesComponentLoader::AddMetamaskExtensionOnStartup";
 
