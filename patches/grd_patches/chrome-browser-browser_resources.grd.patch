@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/browser_resources.grd b/chrome/browser/browser_resources.grd
-index fb935917fd857..fe320657da38e 100644
+index c989a9ea6a2c7..87f8c31212ebd 100644
 --- a/chrome/browser/browser_resources.grd
 +++ b/chrome/browser/browser_resources.grd
 @@ -8,7 +8,7 @@
@@ -31,7 +31,7 @@ index fb935917fd857..fe320657da38e 100644
        </if>
 @@ -259,7 +259,7 @@
          </if>
-         <include name="IDR_BRAILLE_MANIFEST" file="resources\chromeos\accessibility\braille_ime_manifest.json" type="BINDATA" />
+         <include name="IDR_BRAILLE_MANIFEST" file="resources\chromeos\accessibility\braille_ime\manifest.json" type="BINDATA" />
        </if>
 -      <if expr="not is_android">
 +      <if expr="not is_android or is_android">
