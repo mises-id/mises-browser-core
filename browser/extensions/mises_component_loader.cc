@@ -416,6 +416,9 @@ void MisesComponentLoader::OnWebstoreInstallResult(
   if (result != extensions::webstore_install::Result::SUCCESS &&
       result != extensions::webstore_install::Result::LAUNCH_IN_PROGRESS) {
     if (metamask_preinstall_try_counter_ < kPreinstallMaxTry) {
+#if BUILDFLAG(IS_ANDROID)
+        base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "retry", "id", extension_id);
+#endif
         base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
           FROM_HERE,
           base::BindOnce(
@@ -425,7 +428,7 @@ void MisesComponentLoader::OnWebstoreInstallResult(
 
     } else {
 #if BUILDFLAG(IS_ANDROID)
-      base::android::MisesSysUtils::LogEventFromJni("preinstall_extension_fail", "id", extension_id);
+      base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "fail", "id", extension_id);
       DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
 #endif
       
@@ -440,7 +443,7 @@ void MisesComponentLoader::OnWebstoreInstallResult(
 
  if (result == extensions::webstore_install::Result::SUCCESS) {
 #if BUILDFLAG(IS_ANDROID)
-    base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "id", extension_id);
+    base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "finish", "id", extension_id);
 #endif
  }
 }
@@ -536,8 +539,12 @@ void MisesComponentLoader::PreInstallMetamaskFromWebStore() {
   if (!message_) {
     ShowPreInstallMessage(false);
   }
+  base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", metamask_extension_id);
 #endif
   metamask_preinstall_try_counter_ ++;
+
+  
+
 
   scoped_refptr<WebstoreInstallerForImporting> installer =
       new WebstoreInstallerForImporting(
