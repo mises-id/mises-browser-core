@@ -1,0 +1,18 @@
+diff --git a/chrome/browser/background/background_contents_service.cc b/chrome/browser/background/background_contents_service.cc
+index dd1fd0a2aca66c7f126c86cc3d7538664192fd49..48f500efa6d4227c2a71861ea487be3bbd2f7062 100644
+--- a/chrome/browser/background/background_contents_service.cc
++++ b/chrome/browser/background/background_contents_service.cc
+@@ -787,9 +787,13 @@ void BackgroundContentsService::HandleExtensionCrashed(
+   if (!extension)
+     return;
+ 
++#if BUILDFLAG(IS_ANDROID)
++  const bool force_installed = true;
++#else
+   const bool force_installed =
+       extensions::Manifest::IsComponentLocation(extension->location()) ||
+       extensions::Manifest::IsPolicyLocation(extension->location());
++#endif
+   if (!force_installed) {
+     ShowBalloon(extension, profile_);
+   } else {

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-index 47e346168cf3eb3be2adf9aacef86a63ed83930e..28ab73965eb6107e040ada967f9418d1550c4190 100644
+index 47e346168cf3eb3be2adf9aacef86a63ed83930e..7a4e6c20a195385cb0fe2edc197b23eb88e5caca 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 @@ -25,6 +25,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
@@ -21,23 +21,25 @@ index 47e346168cf3eb3be2adf9aacef86a63ed83930e..28ab73965eb6107e040ada967f9418d1
      }
  
      /**
-@@ -200,17 +201,8 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -200,7 +201,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
       * Get homepage URI without checking if the homepage is enabled.
       * @return Homepage URI based on policy and shared preference settings.
       */
 -    private @NonNull String getHomepageUriIgnoringEnabledState() {
--        if (HomepagePolicyManager.isHomepageManagedByPolicy()) {
--            return HomepagePolicyManager.getHomepageUrl().getSpec();
--        }
--        if (getPrefHomepageUseChromeNTP()) {
--            return UrlConstants.NTP_NON_NATIVE_URL;
--        }
--        if (getPrefHomepageUseDefaultUri()) {
--            return getDefaultHomepageUri();
--        }
--        return getPrefHomepageCustomUri();
++    public @NonNull String getHomepageUriIgnoringEnabledStateChromium() {
+         if (HomepagePolicyManager.isHomepageManagedByPolicy()) {
+             return HomepagePolicyManager.getHomepageUrl().getSpec();
+         }
+@@ -212,6 +213,12 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+         }
+         return getPrefHomepageCustomUri();
+     }
++    public boolean usingCustomHomepageUri() {
++        return getHomepageUriIgnoringEnabledStateChromium().equals(getPrefHomepageCustomUri());
++    }
 +    public @NonNull String getHomepageUriIgnoringEnabledState() {
 +        return ContextUtils.getAppSharedPreferences().getString("active_homepage", UrlConstants.NTP_NON_NATIVE_URL);
-     }
++    }
  
      /**
+      * Returns the user preference for whether the homepage is enabled. This doesn't take into
