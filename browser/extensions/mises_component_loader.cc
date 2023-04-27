@@ -540,7 +540,6 @@ void MisesComponentLoader::PreInstallMetamaskFromWebStore() {
   if (!message_) {
     ShowPreInstallMessage(false);
   }
-  base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", metamask_extension_id);
 #endif
   metamask_preinstall_try_counter_ ++;
 
@@ -567,7 +566,9 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
   if (!metamask_extension) {
       if (!profile_prefs_->FindPreference(kPreinstallMetamaskEnabled) || 
         profile_prefs_->GetBoolean(kPreinstallMetamaskEnabled)) {
-
+#if BUILDFLAG(IS_ANDROID)
+        base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", metamask_extension_id);
+#endif
         base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
           FROM_HERE,
           base::BindOnce(
