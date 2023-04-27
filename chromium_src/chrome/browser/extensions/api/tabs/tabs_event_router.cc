@@ -18,6 +18,18 @@ void TabsEventRouter::TabEntry::DidStopLoading (){
 }
 
 #if BUILDFLAG(IS_ANDROID)
+
+void TabsEventRouter::MaybeRegisterForTabNotifications(TabAndroid* tab) {
+  if (tab && tab->web_contents()) {
+    int tab_id = ExtensionTabUtil::GetTabId(tab->web_contents());
+    if (tab_entries_.find(tab_id) == tab_entries_.end()) {
+      RegisterForTabNotifications(tab->web_contents());
+    }
+  }
+}
+// void TabsEventRouter::OnInitWebContents(TabAndroid* tab)  {
+//   MaybeRegisterForTabNotifications(tab);
+// }
 void TabsEventRouter::OnTabModelAdded() {
   LOG(INFO) << "TabsEventRouter::OnTabModelAdded ";
   if (!observed_tab_model_) {
@@ -26,6 +38,18 @@ void TabsEventRouter::OnTabModelAdded() {
     observed_tab_model_->AddObserver(this);
   }
 
+  if (observed_tab_model_) {
+      int tab_count = observed_tab_model_->GetTabCount();
+      for (int i =  0; i < tab_count; ++i) {
+        TabAndroid* tab = observed_tab_model_->GetTabAt(i);
+        if (tab) {
+          //tab->AddObserver(this);
+          MaybeRegisterForTabNotifications(tab);
+        }
+      }
+
+    }
+
 }
 
 void TabsEventRouter::DidSelectTab(TabAndroid* tab,
@@ -33,10 +57,7 @@ void TabsEventRouter::DidSelectTab(TabAndroid* tab,
   LOG(INFO) << "TabsEventRouter::DidSelectTab " << tab->web_contents();
   if (!tab->web_contents())
     return;
-  int tab_id = ExtensionTabUtil::GetTabId(tab->web_contents());
-  if (tab_entries_.find(tab_id) == tab_entries_.end()) {
-    RegisterForTabNotifications(tab->web_contents());
-  }
+  MaybeRegisterForTabNotifications(tab);
   if (tab->ExtensionWindowID() == -1) {
     DispatchActiveTabChanged(nullptr, tab->web_contents());
   }
@@ -44,12 +65,14 @@ void TabsEventRouter::DidSelectTab(TabAndroid* tab,
 }
 void TabsEventRouter::WillCloseTab(TabAndroid* tab, bool animate) {
   LOG(INFO) << "TabsEventRouter::WillCloseTab " << tab->web_contents();
+  //tab->RemoveObserver(this);
   if (!tab->web_contents())
     return;
   DispatchTabClosingAt(nullptr, tab->web_contents(), tab->window_id().id());
 }
 void TabsEventRouter::DidAddTab(TabAndroid* tab, TabModel::TabLaunchType type) {
   LOG(INFO) << "TabsEventRouter::DidAddTab " << tab->web_contents();
+  //tab->AddObserver(this);
   if (!tab->web_contents())
     return;
   DispatchTabInsertedAt(nullptr, tab->web_contents(), tab->window_id().id(), !tab->IsHidden());

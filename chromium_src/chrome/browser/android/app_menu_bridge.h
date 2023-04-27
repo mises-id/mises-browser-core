@@ -117,6 +117,8 @@ class AppMenuBridge :
   void OnTabModelRemoved() override;
   void DidSelectTab(TabAndroid* tab, TabModel::TabSelectionType type)  override;
   raw_ptr<TabModel> observed_tab_model_ = nullptr;
+
+  void CloseExtensionTabs(const std::string& extension_id);
 private:
     // ExtensionActionAPI::Observer:
     void OnExtensionActionUpdated(
@@ -127,7 +129,7 @@ private:
 
     void DestroyJavaObject();
 
-    void CloseExtensionTabs();
+    void CloseWalletTabs();
 
     std::unique_ptr<IconWithBadgeImageSource> GetIconImageSource(
       const extensions::Extension* extension,

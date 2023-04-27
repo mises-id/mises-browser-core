@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_event_router.cc b/chrome/browser/extensions/api/tabs/tabs_event_router.cc
-index c72256066c8085bac1a0492fe6b7a25c98f88f54..c96a7a6ba0c3d8184f411f2fe49b9104bdb53e91 100644
+index c72256066c8085bac1a0492fe6b7a25c98f88f54..df23ec1389a206a9baa1170efe9c53b9dfc1492a 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_event_router.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_event_router.cc
 @@ -173,10 +173,21 @@ TabsEventRouter::TabsEventRouter(Profile* profile)
@@ -33,10 +33,11 @@ index c72256066c8085bac1a0492fe6b7a25c98f88f54..c96a7a6ba0c3d8184f411f2fe49b9104
    args.Append(std::move(object_args));
  
    Profile* profile = Profile::FromBrowserContext(contents->GetBrowserContext());
-@@ -601,10 +612,12 @@ void TabsEventRouter::DispatchTabUpdatedEvent(
+@@ -601,10 +612,13 @@ void TabsEventRouter::DispatchTabUpdatedEvent(
  }
  
  void TabsEventRouter::RegisterForTabNotifications(WebContents* contents) {
++  LOG(INFO) << "TabsEventRouter::RegisterForTabNotifications " << contents;
 +#if !BUILDFLAG(IS_ANDROID)
    favicon_scoped_observations_.AddObservation(
        favicon::ContentFaviconDriver::FromWebContents(contents));
@@ -46,10 +47,11 @@ index c72256066c8085bac1a0492fe6b7a25c98f88f54..c96a7a6ba0c3d8184f411f2fe49b9104
  
    int tab_id = ExtensionTabUtil::GetTabId(contents);
    DCHECK(tab_entries_.find(tab_id) == tab_entries_.end());
-@@ -612,12 +625,14 @@ void TabsEventRouter::RegisterForTabNotifications(WebContents* contents) {
+@@ -612,12 +626,15 @@ void TabsEventRouter::RegisterForTabNotifications(WebContents* contents) {
  }
  
  void TabsEventRouter::UnregisterForTabNotifications(WebContents* contents) {
++  LOG(INFO) << "TabsEventRouter::UnregisterForTabNotifications " << contents;
 +#if !BUILDFLAG(IS_ANDROID)
    if (auto* zoom_controller = ZoomController::FromWebContents(contents);
        zoom_scoped_observations_.IsObservingSource(zoom_controller)) {

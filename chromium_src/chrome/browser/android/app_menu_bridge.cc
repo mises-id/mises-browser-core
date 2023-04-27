@@ -229,21 +229,22 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
   if (!sel_tab->web_contents() || sel_tab->ExtensionWindowID() == -1) {
      base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
       FROM_HERE,
-      base::BindOnce(&AppMenuBridge::CloseExtensionTabs,
+      base::BindOnce(&AppMenuBridge::CloseWalletTabs,
                      weak_ptr_factory_.GetWeakPtr()),
       kCloseDelay);
   }
 
 }
 
-void AppMenuBridge::CloseExtensionTabs() {
-   // close metamask/okx popup tab when user activate any normal tab
+void AppMenuBridge::CloseExtensionTabs(const std::string& extension_id) {
+   
     if (observed_tab_model_) {
       int tab_count = observed_tab_model_->GetTabCount();
+      //this method is a bit strange, by using extra tab_index to track the tabs when CloseTabAt in loop
       int tab_index = 0;
       for (int i =  0; i < tab_count; ++i) {
         TabAndroid* tab = observed_tab_model_->GetTabAt(tab_index);
-        if (tab->ExtensionID() == metamask_extension_id || tab->ExtensionID() == okx_extension_id) {
+        if (tab->ExtensionID() == extension_id) {
           observed_tab_model_->CloseTabAt(tab_index);
         } else {
           tab_index ++;
@@ -251,6 +252,13 @@ void AppMenuBridge::CloseExtensionTabs() {
       }
 
     }
+}
+
+
+void AppMenuBridge::CloseWalletTabs() {
+  // close metamask/okx popup tab when user activate any normal tab
+   CloseExtensionTabs(metamask_extension_id);
+   CloseExtensionTabs(okx_extension_id);
 }
 
 void AppMenuBridge::OnTabModelRemoved() {

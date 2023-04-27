@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_event_router.h b/chrome/browser/extensions/api/tabs/tabs_event_router.h
-index f7b2f07f2d9801a5ffacfe27ffd38e03ea0ca3ca..ff11e8c32a447b03be9caaff149e74e2ac3d464d 100644
+index f7b2f07f2d9801a5ffacfe27ffd38e03ea0ca3ca..35eb4f415c30839800277c2fe17780dc1b211780 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_event_router.h
 +++ b/chrome/browser/extensions/api/tabs/tabs_event_router.h
 @@ -25,6 +25,14 @@
@@ -28,7 +28,7 @@ index f7b2f07f2d9801a5ffacfe27ffd38e03ea0ca3ca..ff11e8c32a447b03be9caaff149e74e2
                          public BrowserTabStripTrackerDelegate,
                          public BrowserListObserver,
                          public favicon::FaviconDriverObserver,
-@@ -91,6 +103,16 @@ class TabsEventRouter : public TabStripModelObserver,
+@@ -91,6 +103,17 @@ class TabsEventRouter : public TabStripModelObserver,
    void OnAutoDiscardableStateChange(content::WebContents* contents,
                                      bool is_auto_discardable) override;
  
@@ -39,13 +39,14 @@ index f7b2f07f2d9801a5ffacfe27ffd38e03ea0ca3ca..ff11e8c32a447b03be9caaff149e74e2
 +  void DidSelectTab(TabAndroid* tab, TabModel::TabSelectionType type)  override;
 +  void WillCloseTab(TabAndroid* tab, bool animate) override;
 +  void DidAddTab(TabAndroid* tab, TabModel::TabLaunchType type) override;
++  void MaybeRegisterForTabNotifications(TabAndroid* tab);
 +  raw_ptr<TabModel> observed_tab_model_ = nullptr;
 +#endif
 +
   private:
    // Methods called from OnTabStripModelChanged.
    void DispatchTabInsertedAt(TabStripModel* tab_strip_model,
-@@ -183,6 +205,7 @@ class TabsEventRouter : public TabStripModelObserver,
+@@ -183,6 +206,7 @@ class TabsEventRouter : public TabStripModelObserver,
          const content::LoadCommittedDetails& load_details) override;
      void TitleWasSet(content::NavigationEntry* entry) override;
      void WebContentsDestroyed() override;
