@@ -7,7 +7,9 @@
 #define DestroyJavaObject DestroyJavaObject();\
   public:\
   void ImportBookmarks(JNIEnv* env, const base::android::JavaParamRef<jobject>& java_window);\
-  void ExportBookmarks(JNIEnv* env);\
+  void ExportBookmarks(JNIEnv* env, const base::android::JavaParamRef<jobject>& java_window);\
+  void BookmarksExportTo(const base::FilePath& file_path);\
+  void BookmarksImportFrom(const base::FilePath& file_path);\
   void FileSelected(const base::FilePath& path, int index, void* params) override; \
   void FileSelectionCanceled(void* params) override;\
   scoped_refptr<ui::SelectFileDialog> select_file_dialog_;\

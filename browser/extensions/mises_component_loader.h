@@ -15,8 +15,9 @@
 #include "extensions/browser/extension_registry_observer.h"
 #include "extensions/browser/extension_dialog_auto_confirm.h"
 #include "chrome/common/extensions/webstore_install_result.h"
+#if BUILDFLAG(IS_ANDROID)
 #include "components/messages/android/message_wrapper.h"
-
+#endif
 
 class PrefService;
 class Profile;
@@ -77,9 +78,11 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   
   void ShowPreInstallMessage(bool is_fail);
   void OnMessageOpened(GURL url, std::string guid);
+#if BUILDFLAG(IS_ANDROID)
   void OnMessageDismissed(std::string guid,
                           messages::DismissReason dismiss_reason);
   void DismissMessageInternal(messages::DismissReason dismiss_reason);
+#endif
 
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;
@@ -89,7 +92,9 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   bool metamask_ready_ = false;
   bool mises_ready_ = false;
   int metamask_preinstall_try_counter_ = 0;
+#if BUILDFLAG(IS_ANDROID)
   std::unique_ptr<messages::MessageWrapper> message_;
+#endif
   base::WeakPtrFactory<MisesComponentLoader> weak_ptr_factory_{this};
 
 };

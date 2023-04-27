@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
 old mode 100644
 new mode 100755
-index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f076c6511f
+index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..3cd5fe2bb887c7e58be6a2ace0eb858acf058c23
 --- a/chrome/android/java/res/menu/main_menu.xml
 +++ b/chrome/android/java/res/menu/main_menu.xml
 @@ -1,9 +1,7 @@
@@ -17,7 +17,7 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
  
  <!-- TODO(crbug.com/1119550): explore replacing with a programmatically created
       menu.  -->
-@@ -37,18 +35,21 @@ found in the LICENSE file.
+@@ -37,18 +35,24 @@ found in the LICENSE file.
                  android:icon="@drawable/btn_reload_stop"/>
              </menu>
          </item>
@@ -31,6 +31,9 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
              android:title="@string/menu_new_tab"
 -            android:icon="@drawable/ic_add_box_rounded_corner" />
 +            android:icon="@drawable/ic_new_tab" />
++        <item android:id="@+id/new_home_tab_menu_id"
++            android:title="@string/menu_new_home_tab"
++            android:icon="@drawable/btn_toolbar_home" />
          <item android:id="@+id/new_incognito_tab_menu_id"
              android:title="@string/menu_new_incognito_tab"
 -            android:icon="@drawable/incognito_simple" />
@@ -42,7 +45,7 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
          <item android:id="@+id/move_to_other_window_menu_id"
              android:title="@string/menu_move_to_other_window"
              android:icon="@drawable/ic_open_in_browser" />
-@@ -59,30 +60,30 @@ found in the LICENSE file.
+@@ -59,30 +63,30 @@ found in the LICENSE file.
              android:title="@null" />
          <item android:id="@+id/open_history_menu_id"
              android:title="@string/menu_history"
@@ -81,7 +84,7 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
                <item android:id="@+id/direct_share_menu_id"
                  android:title="@null" />
            </menu>
-@@ -101,10 +102,10 @@ found in the LICENSE file.
+@@ -101,10 +105,10 @@ found in the LICENSE file.
              android:icon="@drawable/price_tracking_enabled_filled" />
          <item android:id="@+id/find_in_page_id"
              android:title="@string/menu_find_in_page"
@@ -94,7 +97,7 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
          <item android:id="@+id/add_to_homescreen_id"
              android:title="@string/menu_add_to_homescreen"
              android:icon="@drawable/ic_add_to_home_screen" />
-@@ -119,23 +120,25 @@ found in the LICENSE file.
+@@ -119,23 +123,25 @@ found in the LICENSE file.
            <menu>
                <item android:id="@+id/request_desktop_site_id"
                  android:title="@string/menu_request_desktop_site"
@@ -126,7 +129,7 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
          <item android:id="@+id/paint_preview_show_id"
              android:title="@string/menu_paint_preview_show"
              android:icon="@drawable/ic_photo_camera" />
-@@ -147,6 +150,25 @@ found in the LICENSE file.
+@@ -147,6 +153,25 @@ found in the LICENSE file.
          <item android:id="@+id/reader_mode_prefs_id"
              android:title="@string/menu_reader_mode_prefs"
              android:icon="@drawable/reader_mode_prefs_icon" />
@@ -152,7 +155,7 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
          <item android:id="@+id/preferences_id"
              android:title="@string/menu_settings"
              android:icon="@drawable/settings_cog" />
-@@ -157,7 +179,11 @@ found in the LICENSE file.
+@@ -157,7 +182,11 @@ found in the LICENSE file.
              android:title="@null" />
          <item android:id="@+id/managed_by_menu_id"
              android:title="@string/managed_browser"
@@ -165,7 +168,7 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
      </group>
  
      <!-- Items shown only in the tab switcher -->
-@@ -165,10 +191,10 @@ found in the LICENSE file.
+@@ -165,10 +194,10 @@ found in the LICENSE file.
          android:visible="false">
          <item android:id="@id/new_tab_menu_id"
              android:title="@string/menu_new_tab"
@@ -178,7 +181,7 @@ index 51b289da1bd561da4db5faac2a4c7691c28b2bb5..5425735080bcbfada0b78d6360f946f0
          <item android:id="@+id/close_all_tabs_menu_id"
              android:title="@string/menu_close_all_tabs"
              android:icon="@drawable/btn_close_white" />
-@@ -194,10 +220,10 @@ found in the LICENSE file.
+@@ -194,10 +223,10 @@ found in the LICENSE file.
          android:visible="false">
          <item android:id="@id/new_tab_menu_id"
              android:title="@string/menu_new_tab"

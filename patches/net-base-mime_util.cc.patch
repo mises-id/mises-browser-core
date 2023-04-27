@@ -1,0 +1,15 @@
+diff --git a/net/base/mime_util.cc b/net/base/mime_util.cc
+index fbf739f1bfcaf1d09b0725c10b5c5d0a574c8f3f..8ddf56edae6eab3d7a203872f7c747636216b800 100644
+--- a/net/base/mime_util.cc
++++ b/net/base/mime_util.cc
+@@ -317,6 +317,10 @@ bool MimeUtil::GetMimeTypeFromFile(const base::FilePath& file_path,
+   base::FilePath::StringType file_name_str = file_path.Extension();
+   if (file_name_str.empty())
+     return false;
++  if (file_path.BaseName().MaybeAsASCII() == "bookmarks.html") {
++    *result = "binary/octet-stream";
++    return true;
++  }
+   return GetMimeTypeFromExtension(file_name_str.substr(1), result);
+ }
+ 

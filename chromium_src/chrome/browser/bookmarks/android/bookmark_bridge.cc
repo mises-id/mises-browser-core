@@ -21,9 +21,21 @@
 
 #include "src/chrome/browser/bookmarks/android/bookmark_bridge.cc"
 
-void BookmarkBridge::FileSelected(const base::FilePath& file_path, int index,
-                            void* params) {
-  LOG(ERROR) << "Bookmarks - Bookmarks file to be imported is present in " << file_path;
+void BookmarkBridge::BookmarksExportTo(const base::FilePath& file_path) {
+
+  LOG(INFO) << "Bookmarks - export to " << file_path;
+
+
+  JNIEnv* env = AttachCurrentThread();
+  if (!env || !java_bookmark_model_)
+    return;
+
+  Java_BookmarkBridge_bookmarksExported(env, 
+    ScopedJavaLocalRef<jobject>(java_bookmark_model_), 
+    ConvertUTF8ToJavaString(env, file_path.MaybeAsASCII()));
+}
+void BookmarkBridge::BookmarksImportFrom(const base::FilePath& file_path) {
+  LOG(INFO) << "Bookmarks - import from " << file_path;
 
   base::FilePath file_path_tmp;
   if (!base::android::GetCacheDirectory(&file_path_tmp)) {
@@ -74,6 +86,11 @@ void BookmarkBridge::FileSelected(const base::FilePath& file_path, int index,
   else
     message = "No bookmarks have been imported";
   Java_BookmarkBridge_bookmarksImported(env, ScopedJavaLocalRef<jobject>(java_bookmark_model_), ConvertUTF8ToJavaString(env, message));
+
+}
+void BookmarkBridge::FileSelected(const base::FilePath& file_path, int index,
+                            void* params) {
+  BookmarksImportFrom(file_path);
 }
 
 void BookmarkBridge::FileSelectionCanceled(void* params) {
@@ -94,38 +111,38 @@ void BookmarkBridge::ImportBookmarks(JNIEnv* env, const base::android::JavaParam
   file_type_info.extensions = {{FILE_PATH_LITERAL("html"), FILE_PATH_LITERAL("htm")}};
   file_type_info.allowed_paths = ui::SelectFileDialog::FileTypeInfo::NATIVE_PATH;
 
-  select_file_dialog_->SelectFile(
-        ui::SelectFileDialog::SELECT_OPEN_FILE,
-        std::u16string(),
-        base::FilePath(),
-        &file_type_info,
-        0,
-        base::FilePath::StringType(),
-        window,
-        NULL);
-}
-
-
-void BookmarkBridge::ExportBookmarks(JNIEnv* env) {
-  DCHECK(IsLoaded());
-
-  base::FilePath file_path;
-  if (!base::android::GetDownloadsDirectory(&file_path)) {
+  base::FilePath default_location;
+  if (!base::android::GetDownloadsDirectory(&default_location)) {
     LOG(ERROR) << "Bookmarks - Getting Download Directory";
     return;
   }
+  default_location = default_location.Append(FILE_PATH_LITERAL("bookmarks.html"));
+  select_file_dialog_->SelectFile(
+        ui::SelectFileDialog::SELECT_OPEN_FILE,
+        std::u16string(),
+        default_location,
+        &file_type_info,
+        0,
+        FILE_PATH_LITERAL("html"),
+        window,
+        nullptr);
+}
 
-  file_path = file_path.Append(FILE_PATH_LITERAL("bookmarks.html"));
 
-  LOG(ERROR) << "Bookmarks - Output path is " << file_path;
+void BookmarkBridge::ExportBookmarks(JNIEnv* env, const base::android::JavaParamRef<jobject>& java_window) {
+  DCHECK(IsLoaded());
 
-
-  bookmark_html_writer::WriteBookmarks(profile_, file_path, NULL);
-
-  if (!env || !java_bookmark_model_)
+  base::FilePath default_location;
+  if (!base::android::GetDownloadsDirectory(&default_location)) {
+    LOG(ERROR) << "Bookmarks - Getting Download Directory";
     return;
+  }
+  default_location = default_location.Append(FILE_PATH_LITERAL("bookmarks.html"));
 
-  Java_BookmarkBridge_bookmarksExported(env, ScopedJavaLocalRef<jobject>(java_bookmark_model_), ConvertUTF8ToJavaString(env, file_path.MaybeAsASCII()));
+
+  bookmark_html_writer::WriteBookmarks(profile_, default_location, NULL);
+
+  BookmarksExportTo(default_location);
 }
 
 

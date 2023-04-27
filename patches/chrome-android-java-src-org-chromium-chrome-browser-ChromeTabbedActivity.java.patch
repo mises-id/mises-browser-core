@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index 098dcda489758c6deddf36cc03d686840b2d4c01..ab03a7a0d81f7a87bb84d62900e6af74d5430461 100644
+index 098dcda489758c6deddf36cc03d686840b2d4c01..281d431d80cdac9d76b47ecd35ef09809a2df4d4 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 @@ -225,6 +225,20 @@ import java.util.List;
@@ -180,16 +180,27 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..ab03a7a0d81f7a87bb84d62900e6af74
  
              mLocaleManager.showSearchEnginePromoIfNeeded(this, null);
          } else if (id == R.id.new_incognito_tab_menu_id) {
-@@ -2242,6 +2281,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -2242,6 +2281,19 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
              TabModel currentModel = mTabModelSelector.getCurrentModel();
              if (!currentModel.isIncognito()) currentModel.openMostRecentlyClosedEntry();
              RecordUserAction.record("MobileTabClosedUndoShortCut");
 +        } else if (id == R.id.mises_forward_menu_id) {
 +            handleForward(currentTab);
++        } else if (id == R.id.new_home_tab_menu_id) {
++            getTabModelSelector().getModel(false).commitAllTabClosures();
++            RecordUserAction.record("MobileMenuNewHomeTab");
++            RecordUserAction.record("MobileNewHomeTabOpened");
++            ReturnToChromeUtil.onNewTabOpened();
++            reportNewTabShortcutUsed(false);
++            if (fromMenu) RecordUserAction.record("MobileMenuNewHomeTab.AppMenu");
++
++            getTabCreator(false).launchUrl(HomepageManager.getInstance().getHomepageUriIgnoringEnabledStateChromium(), TabLaunchType.FROM_CHROME_UI);
++
++            mLocaleManager.showSearchEnginePromoIfNeeded(this, null);
          } else if (id == R.id.quick_delete_menu_id
                  && QuickDeleteController.isQuickDeleteEnabled()) {
              assert !mTabModelSelector.getCurrentModel().isIncognito()
-@@ -2925,6 +2966,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -2925,6 +2977,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
      public void onActivityResult(int requestCode, int resultCode, Intent data) {
          try (TraceEvent e = TraceEvent.scoped("ChromeTabbedActivity.onActivityResult")) {
              super.onActivityResult(requestCode, resultCode, data);
@@ -197,7 +208,7 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..ab03a7a0d81f7a87bb84d62900e6af74
          }
      }
  
-@@ -3061,4 +3103,55 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -3061,4 +3114,55 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
          }
          return mIsStartSurfaceRefactorEnabled;
      }
