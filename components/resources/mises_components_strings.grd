@@ -167,10 +167,10 @@
         Extensions
       </message>
       <message name="IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL" desc="Message detail for extension preinstall.">
-        Installing Metamask extension from chrome webstore, it will take a few seconds.
+        Updating Metamask extension from chrome webstore, it will take a few seconds.
       </message>
       <message name="IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL_FAIL" desc="Message detail for extension preinstall.">
-        Failed to install Metamask extension, please open chrome webstore to install it manually.
+        Failed to update Metamask extension, please open chrome webstore to install it manually.
       </message>
       <message name="IDS_EXTENSIONS_MESSAGE_OPEN" desc="Open action for extension preinstall.">
         Open WebStore

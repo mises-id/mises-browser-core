@@ -240,6 +240,7 @@ void AppMenuBridge::CloseExtensionTabs(const std::string& extension_id) {
    
     if (observed_tab_model_) {
       int tab_count = observed_tab_model_->GetTabCount();
+      //this method is a bit strange, by using extra tab_index to track the tabs when CloseTabAt in loop
       int tab_index = 0;
       for (int i =  0; i < tab_count; ++i) {
         TabAndroid* tab = observed_tab_model_->GetTabAt(tab_index);

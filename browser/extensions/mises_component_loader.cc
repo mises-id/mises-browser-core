@@ -273,11 +273,11 @@ void MisesComponentLoader::OnExtensionLoaded(content::BrowserContext* browser_co
 
 void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_context,
                                      const Extension* extension) {
-  if (extension->id() == metamask_extension_id) {
+  if (extension->id() == metamask_extension_id && !metamask_ready_) {
     metamask_ready_ = true;
     StorageFrontend* frontend = StorageFrontend::Get(profile_);
-      frontend->RunWithStorage(
-        extension, settings_namespace::LOCAL,
+    frontend->RunWithStorage(
+      extension, settings_namespace::LOCAL,
       base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
     );
 #if BUILDFLAG(IS_ANDROID)
