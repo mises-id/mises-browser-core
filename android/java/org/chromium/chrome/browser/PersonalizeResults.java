@@ -415,9 +415,9 @@ public class PersonalizeResults {
     private static final String RAMP_SCRIPT = ""
 +"(function() {"
 +"window.addEventListener('load', function() {"
-+"const getStorage = sessionStorage.getItem('buyMerchantInfo')"
++"const getStorage = sessionStorage.getItem('buyMerchantInfo');"
 +"if(document.referrer === 'https://fiat.mises.site/' && (!getStorage || JSON.parse(getStorage).appId === '')){"
-+"sessionStorage.setItem('buyMerchantInfo','{\"appId\":\"2f26SEACdsbRf91t\",\"merchantParam\":\"\"}')}"
++"sessionStorage.setItem('buyMerchantInfo','{\"appId\":\"2f26SEACdsbRf91t\",\"merchantParam\":\"\"}')"
 +"}"
 +"})"
 +"})();";
