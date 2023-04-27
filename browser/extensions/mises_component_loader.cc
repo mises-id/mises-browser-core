@@ -443,6 +443,7 @@ void MisesComponentLoader::OnWebstoreInstallResult(
 
  if (result == extensions::webstore_install::Result::SUCCESS) {
 #if BUILDFLAG(IS_ANDROID)
+    AppMenuBridge::Factory::GetForProfile(profile_)->CloseExtensionTabs(extension_id);
     base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "finish", "id", extension_id);
 #endif
  }
