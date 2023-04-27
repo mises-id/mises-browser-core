@@ -78,6 +78,10 @@ public class MisesPrefServiceBridge {
         return MisesPrefServiceBridgeJni.get().getENSResolveMethod();
     }
 
+    public void setDarkModeEnabled(boolean enabled) {
+        MisesPrefServiceBridgeJni.get().setDarkModeEnabled(enabled);
+    }
+
 
     @NativeMethods
     interface Natives {
@@ -94,6 +98,8 @@ public class MisesPrefServiceBridge {
         void setENSResolveMethod(int method);
         int getUnstoppableDomainsResolveMethod();
         int getENSResolveMethod();
+
+        void setDarkModeEnabled(boolean enabled);
 
     }
 }

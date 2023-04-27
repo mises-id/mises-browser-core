@@ -73,6 +73,8 @@ class MisesContentBrowserClient : public ChromeContentBrowserClient {
       const absl::optional<std::string>& user_agent,
       mojo::PendingRemote<network::mojom::WebSocketHandshakeClient>
           handshake_client) override;
+  void OverrideWebkitPrefs(content::WebContents* web_contents,
+                           blink::web_pref::WebPreferences* prefs) override;
           
   static bool HandleURLOverrideRewrite(
       GURL* url,
