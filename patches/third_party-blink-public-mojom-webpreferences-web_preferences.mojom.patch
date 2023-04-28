@@ -1,0 +1,12 @@
+diff --git a/third_party/blink/public/mojom/webpreferences/web_preferences.mojom b/third_party/blink/public/mojom/webpreferences/web_preferences.mojom
+index 5d764552d3f8bc30b6d6efa83ca3ff120dba4b54..f00354b43bed122d4f3e5e441251ae7f5aaed166 100644
+--- a/third_party/blink/public/mojom/webpreferences/web_preferences.mojom
++++ b/third_party/blink/public/mojom/webpreferences/web_preferences.mojom
+@@ -358,6 +358,7 @@ struct WebPreferences {
+   // Enable forcibly modifying content rendering to result in a light on dark
+   // color scheme.
+   bool force_dark_mode_enabled;
++  int32 force_night_mode;
+ 
+   // Default (used if the page or UA doesn't override these) values for page
+   // scale limits. These are set directly on the WebView so there's no analogue

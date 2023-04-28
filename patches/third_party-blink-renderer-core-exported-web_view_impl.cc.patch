@@ -1,0 +1,15 @@
+diff --git a/third_party/blink/renderer/core/exported/web_view_impl.cc b/third_party/blink/renderer/core/exported/web_view_impl.cc
+index 823d6d2ab3772c29b75e60794862a4e02fc62495..aff369a6c545b8d93b0c79ae4f7bc2cb54bf41d5 100644
+--- a/third_party/blink/renderer/core/exported/web_view_impl.cc
++++ b/third_party/blink/renderer/core/exported/web_view_impl.cc
+@@ -1707,6 +1707,10 @@ void WebView::ApplyWebPreferences(const web_pref::WebPreferences& prefs,
+ #endif  // BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
+ 
+   settings->SetForceDarkModeEnabled(prefs.force_dark_mode_enabled);
++  if (prefs.force_night_mode >= 0) {
++    WebThemeEngineHelper::SetGlobalForceDarkModeEnabled(prefs.force_night_mode == 1);
++  }
++  
+ 
+   settings->SetAccessibilityAlwaysShowFocus(prefs.always_show_focus);
+   settings->SetAutoplayPolicy(prefs.autoplay_policy);
