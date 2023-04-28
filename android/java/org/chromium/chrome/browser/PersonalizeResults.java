@@ -13,19 +13,19 @@ import java.net.MalformedURLException;
 
 public class PersonalizeResults {
     public static void SetupDefaultUserAgent(final Profile profile) {
-	  String [] urlUseDesktop = new String [] {
-	      "https://www.aptosnames.com",
-	      "https://app.arcade.xyz/loans",
-	      "https://gm.xyz",
-	      "https://link3.to",
-	      "https://chartex.pro",
-	      "https://app.slingshot.finance",
-	      "https://bridge.terra.money"
-	  };
-	  for (int i = 0; i < urlUseDesktop.length; i++) {
-	     final GURL url = new GURL(urlUseDesktop[i]);
-	     RequestDesktopUtils.setRequestDesktopSiteContentSettingsForUrl(profile, url, true);
-	  }
+      String [] urlUseDesktop = new String [] {
+          "https://www.aptosnames.com",
+          "https://app.arcade.xyz/loans",
+          "https://gm.xyz",
+          "https://link3.to",
+          "https://chartex.pro",
+          "https://app.slingshot.finance",
+          "https://bridge.terra.money"
+      };
+      for (int i = 0; i < urlUseDesktop.length; i++) {
+        final GURL url = new GURL(urlUseDesktop[i]);
+        RequestDesktopUtils.setRequestDesktopSiteContentSettingsForUrl(profile, url, true);
+      }
     }
     public static void Execute(final Tab tab) {
        final boolean shouldRewrapText = ContextUtils.getAppSharedPreferences().getBoolean("text_rewrap", false);
