@@ -247,8 +247,10 @@ void MisesContentBrowserClient::OverrideWebkitPrefs(
       Profile::FromBrowserContext(web_contents->GetBrowserContext());
   PrefService* prefs = profile->GetPrefs();
   if (prefs->GetBoolean(prefs::kWebKitForceDarkModeEnabled)) {
-      web_prefs->force_dark_mode_enabled = true;
+    web_prefs->force_night_mode = 1;
+  } else {
+    web_prefs->force_night_mode = 0;
   }
-  LOG(INFO) << "MisesContentBrowserClient::OverrideWebkitPrefs " << web_prefs->force_dark_mode_enabled;
+  LOG(INFO) << "MisesContentBrowserClient::OverrideWebkitPrefs " << web_contents << ", force_night_mode=" << web_prefs->force_night_mode;
                        
 }

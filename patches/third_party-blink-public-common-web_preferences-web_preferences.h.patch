@@ -1,0 +1,12 @@
+diff --git a/third_party/blink/public/common/web_preferences/web_preferences.h b/third_party/blink/public/common/web_preferences/web_preferences.h
+index 418233a0c46fa0837c9bd11e360d5279c1b1ff6d..23e71d4a2e3f9d54b0ae72ff6813ca0584832e55 100644
+--- a/third_party/blink/public/common/web_preferences/web_preferences.h
++++ b/third_party/blink/public/common/web_preferences/web_preferences.h
+@@ -266,6 +266,7 @@ struct BLINK_COMMON_EXPORT WebPreferences {
+   // Enable forcibly modifying content rendering to result in a light on dark
+   // color scheme.
+   bool force_dark_mode_enabled = false;
++  int force_night_mode = -1;
+ 
+   // Default (used if the page or UA doesn't override these) values for page
+   // scale limits. These are set directly on the WebView so there's no analogue

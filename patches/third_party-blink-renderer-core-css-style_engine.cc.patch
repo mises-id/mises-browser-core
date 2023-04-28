@@ -1,0 +1,22 @@
+diff --git a/third_party/blink/renderer/core/css/style_engine.cc b/third_party/blink/renderer/core/css/style_engine.cc
+index d968edc03199d6557a737a0928b91d5e2f267096..91d88f16fcf67a709c350640c4243d2a5b56b818 100644
+--- a/third_party/blink/renderer/core/css/style_engine.cc
++++ b/third_party/blink/renderer/core/css/style_engine.cc
+@@ -154,7 +154,7 @@ StyleEngine::StyleEngine(Document& document)
+     DCHECK(document.GetSettings());
+     preferred_color_scheme_ = document.GetSettings()->GetPreferredColorScheme();
+     force_dark_mode_enabled_ =
+-        document.GetSettings()->GetForceDarkModeEnabled();
++        document.GetSettings()->GetForceDarkModeEnabled() || WebThemeEngineHelper::GlobalForceDarkModeEnabled();
+     UpdateColorSchemeMetrics();
+   }
+ 
+@@ -3501,7 +3501,7 @@ void StyleEngine::UpdateColorScheme() {
+       preferred_color_scheme_;
+   preferred_color_scheme_ = settings->GetPreferredColorScheme();
+   bool old_force_dark_mode_enabled = force_dark_mode_enabled_;
+-  force_dark_mode_enabled_ = settings->GetForceDarkModeEnabled();
++  force_dark_mode_enabled_ = settings->GetForceDarkModeEnabled() || WebThemeEngineHelper::GlobalForceDarkModeEnabled();
+ 
+   if (const auto* overrides =
+           GetDocument().GetPage()->GetMediaFeatureOverrides()) {
