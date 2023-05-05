@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148a3c49bab 100644
+index 6d1275819c9c4171b8beaf8306ecf047712e4337..43c4089728f5e273c191f5812e913d6cfb0f1535 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
@@ -19,7 +19,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
  import org.chromium.chrome.browser.dom_distiller.DomDistillerUIUtils;
  import org.chromium.chrome.browser.download.DownloadManagerService;
  import org.chromium.chrome.browser.download.DownloadUtils;
-@@ -251,6 +254,33 @@ import java.util.ArrayList;
+@@ -251,6 +254,34 @@ import java.util.ArrayList;
  import java.util.List;
  import java.util.function.Consumer;
  
@@ -49,11 +49,12 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
 +import org.chromium.chrome.browser.firstrun.FirstRunFlowSequencer;
 +import org.chromium.chrome.browser.firstrun.FirstRunStatus;
 +import org.chromium.chrome.browser.preferences.MisesPrefServiceBridge;
++import org.chromium.chrome.browser.logcat.LogcatDump;
 +
  /**
   * A {@link AsyncInitializationActivity} that builds and manages a {@link CompositorViewHolder}
   * and associated classes.
-@@ -353,6 +383,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -353,6 +384,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
      @Nullable
      private Bundle mMenuItemData;
  
@@ -62,7 +63,15 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
      /**
       * The current configuration, used to for diffing when the configuration is changed.
       */
-@@ -483,6 +515,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -415,6 +448,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+         CachedFeatureFlags.onStartOrResumeCheckpoint();
+         super.onPreCreate();
+         initializeBackPressHandling();
++        LogcatDump.MaybeStartLog(this, getWindowAndroid());
+     }
+ 
+     @Override
+@@ -483,6 +517,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          // not go through ChromeLauncherActivity that would have normally triggered this.
          mPartnerBrowserRefreshNeeded = !PartnerBrowserCustomizations.getInstance().isInitialized();
  
@@ -71,7 +80,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
          CommandLine commandLine = CommandLine.getInstance();
          if (!commandLine.hasSwitch(ChromeSwitches.DISABLE_FULLSCREEN)) {
              TypedValue threshold = new TypedValue();
-@@ -739,14 +773,25 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -739,14 +775,25 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              // of our control, so we have to disable StrictMode to work. See
              // https://crbug.com/639352.
              try (StrictModeContext ignored = StrictModeContext.allowDiskWrites()) {
@@ -97,7 +106,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
                      TraceEvent.begin("toolbarContainerStub.inflate");
                      toolbarContainerStub.inflate();
                      TraceEvent.end("toolbarContainerStub.inflate");
-@@ -834,12 +879,24 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -834,12 +881,24 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              @Override
              public void onLoadStopped(Tab tab, boolean toDifferentDocument) {
                  postDeferredStartupIfNeeded();
@@ -122,7 +131,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
              }
  
              @Override
-@@ -1174,6 +1231,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -1174,6 +1233,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          }
  
          getManualFillingComponent().onResume();
@@ -130,7 +139,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
      }
  
      private void ensureFullscreenVideoPictureInPictureController() {
-@@ -1733,6 +1791,28 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -1733,6 +1793,28 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              }
          };
          display.addObserver(mDisplayAndroidObserver);
@@ -159,7 +168,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
      }
  
      private boolean maybeOnScreenSizeChange() {
-@@ -1749,6 +1829,20 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -1749,6 +1831,20 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          return mNativeInitialized;
      }
  
@@ -180,7 +189,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
      @Override
      public boolean onOptionsItemSelected(int itemId, @Nullable Bundle menuItemData) {
          mMenuItemData = menuItemData;
-@@ -2390,10 +2484,38 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2390,10 +2486,38 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
                  mMenuActionHandlers) {
              if (handler.handleMenuOrKeyboardAction(id, fromMenu)) return true;
          }
@@ -220,7 +229,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
          if (id == R.id.preferences_id) {
              SettingsLauncher settingsLauncher = new SettingsLauncherImpl();
              settingsLauncher.launchSettingsActivity(this);
-@@ -2504,10 +2626,114 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2504,10 +2628,114 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
  
          if (id == R.id.translate_id) {
              RecordUserAction.record("MobileMenuTranslate");
@@ -335,7 +344,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
              return true;
          }
  
-@@ -2558,6 +2784,37 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2558,6 +2786,37 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -373,7 +382,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..cc631c77840dbc38bff666583016f148
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2592,6 +2849,54 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2592,6 +2851,54 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  

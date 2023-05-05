@@ -24,14 +24,24 @@ android_resources("java_resources") {
 
 android_library("public_java") {
   sources = [
-   "java/org/chromium/chrome/browser/mises/MisesController.java",
-   "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
-   "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
-   "java/org/chromium/chrome/browser/mises/MisesLCDServiceImpl.java",
-   "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
-   "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
-   "java/org/chromium/chrome/browser/mises/MisesUtil.java",
-   "java/org/chromium/chrome/browser/mises/MyFirebaseMessagingService.java",
+    "java/org/chromium/chrome/browser/mises/MisesController.java",
+    "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
+    "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
+    "java/org/chromium/chrome/browser/mises/MisesLCDServiceImpl.java",
+    "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
+    "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
+    "java/org/chromium/chrome/browser/mises/MisesUtil.java",
+    "java/org/chromium/chrome/browser/mises/MyFirebaseMessagingService.java",
+    "java/org/chromium/chrome/browser/logcat/FileLogDumper.java",
+    "java/org/chromium/chrome/browser/logcat/RemoteLogDumper.java",
+    "java/org/chromium/chrome/browser/logcat/ILogDumper.java",
+    "java/org/chromium/chrome/browser/logcat/LogcatDump.java",
+    "java/org/chromium/chrome/browser/websocketclient/WebSocketClient.java",
+    "java/org/chromium/chrome/browser/websocketclient/common/Utils.java",
+    "java/org/chromium/chrome/browser/websocketclient/exceptions/IllegalSchemeException.java",
+    "java/org/chromium/chrome/browser/websocketclient/exceptions/InvalidReceivedFrameException.java",
+    "java/org/chromium/chrome/browser/websocketclient/exceptions/InvalidServerHandshakeException.java",
+    "java/org/chromium/chrome/browser/websocketclient/model/Payload.java",
  ]
 
   deps = [
