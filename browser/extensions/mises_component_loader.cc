@@ -362,7 +362,7 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 
   if(extension && extension->location() != ManifestLocation::kComponent) {
 #if BUILDFLAG(IS_ANDROID)
-    base::android::MisesSysUtils::LogEventFromJni("install_extension", "id", extension->id(), "is_update", is_update?"1":"0");
+    base::android::MisesSysUtils::LogEventFromJni(is_update?"update_extension":"install_extension", "id", extension->id());
 #endif
     LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionInstalled";
   }
