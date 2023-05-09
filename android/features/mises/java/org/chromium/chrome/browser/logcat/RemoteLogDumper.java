@@ -54,7 +54,7 @@ public class RemoteLogDumper implements ILogDumper {
 
     private Config config;
 
-    private volatile boolean isWritable = false;
+    private volatile boolean isWritable;
 
     private SimpleDateFormat simpleDateFormat;
 

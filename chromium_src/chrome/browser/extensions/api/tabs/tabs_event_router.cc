@@ -1,3 +1,4 @@
+#include "url/url_constants.h"
 #include "src/chrome/browser/extensions/api/tabs/tabs_event_router.cc"
 
 namespace extensions {
@@ -10,8 +11,12 @@ void TabsEventRouter::TabEntry::DidStopLoading (){
   // notify tab changed when the WebContents is not destroying, 
   // and is still attaching to the tab
   if (contents && contents->GetDelegate()) {
-    LOG(INFO) << "TabsEventRouter:::TabEntry::DidStopLoading " << contents;
-    router_->TabChangedAt(contents, -1, TabChangeType::kLoadingOnly);
+    const GURL &gurl = contents->GetURL();
+    if (gurl.SchemeIs(url::kHttpScheme) || gurl.SchemeIs(url::kHttpsScheme)) {
+
+      LOG(INFO) << "TabsEventRouter:::TabEntry::DidStopLoading " << contents;
+      router_->TabChangedAt(contents, -1, TabChangeType::kLoadingOnly);
+    }
   }
     
 #endif

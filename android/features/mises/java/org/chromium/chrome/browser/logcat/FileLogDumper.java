@@ -16,14 +16,14 @@ public class FileLogDumper implements ILogDumper {
 
     public static class Config {
         private String logDir;
-        private String logFileBaseName = "logcat";
-        private int expiresToCleanInSeconds = 3600 * 24 * 2;
-        private int checkCleanCreatedTimes = 10;
-        private boolean isGzipEnabled = false;
+        private final String logFileBaseName = "logcat";
+        private final int expiresToCleanInSeconds = 3600 * 24 * 2;
+        private final int checkCleanCreatedTimes = 10;
+        private final boolean isGzipEnabled = false;
 
-        private int copyBufferSize = 8192;
-        private String subDirDateFormat = "yyyyMMdd";
-        private String subDirDateFormatSuffix = "_HH-mm-ss";
+        private final int copyBufferSize = 8192;
+        private final String subDirDateFormat = "yyyyMMdd";
+        private final String subDirDateFormatSuffix = "_HH-mm-ss";
     }
 
     private static final String TAG = "FileLogDumper";
@@ -32,15 +32,15 @@ public class FileLogDumper implements ILogDumper {
 
     private String logDir;
 
-    private volatile boolean isDirWritable = false;
+    private volatile boolean isDirWritable;
 
     private Object cleanLock = new Object();
 
     private SimpleDateFormat simpleDateFormat;
 
-    private String lastSubDirName = null;
+    private String lastSubDirName;
 
-    private int fileCount = 0;
+    private int fileCount;
 
     public FileLogDumper() {
         this(new Config());
