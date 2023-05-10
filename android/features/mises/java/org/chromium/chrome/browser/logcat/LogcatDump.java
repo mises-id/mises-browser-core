@@ -120,7 +120,7 @@ public class LogcatDump {
 
         if (config.heartBeatRateAtSeconds > 0) {
             Runnable heartbeatTask = new Runnable() {
-                private int count = 0;
+                private int count;
 
                 @Override
                 public void run() {
