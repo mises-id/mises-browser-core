@@ -1,4 +1,4 @@
-#include "url/url_constants.h"
+#include "chrome/common/webui_url_constants.h"
 #include "src/chrome/browser/extensions/api/tabs/tabs_event_router.cc"
 
 namespace extensions {
@@ -12,8 +12,7 @@ void TabsEventRouter::TabEntry::DidStopLoading (){
   // and is still attaching to the tab
   if (contents && contents->GetDelegate()) {
     const GURL &gurl = contents->GetURL();
-    if (gurl.SchemeIs(url::kHttpScheme) || gurl.SchemeIs(url::kHttpsScheme)) {
-
+    if (gurl != GURL(chrome::kChromeUINewTabURL)) {
       LOG(INFO) << "TabsEventRouter:::TabEntry::DidStopLoading " << contents;
       router_->TabChangedAt(contents, -1, TabChangeType::kLoadingOnly);
     }
