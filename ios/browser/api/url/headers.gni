@@ -1,0 +1,7 @@
+browser_api_url_public_headers = [
+  "//mises/ios/browser/api/url/url_formatter.h",
+  "//mises/ios/browser/api/url/url_origin_ios.h",
+  "//mises/ios/browser/api/url/url_pattern_ios.h",
+  "//mises/ios/browser/api/url/url_spoof_checker.h",
+  "//mises/ios/browser/api/url/url_utils.h",
+]

@@ -7,7 +7,7 @@ import os
 
 # Version number and URL for pre-configured rust dependency package
 # e.g. rust_deps_mac_0.1.0.gz
-DEPS_PACKAGES_URL = "https://brave-build-deps-public.s3.brave.com"
+DEPS_PACKAGES_URL = "https://brave-build-deps-public.s3.mises.site"
 RUST_DEPS_PACKAGE_VERSION = "1.1.0"
 MAC_TOOLCHAIN_ROOT = os.path.join(os.path.dirname(os.path.dirname(
                                   os.path.dirname(__file__))),

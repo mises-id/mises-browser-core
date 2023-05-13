@@ -1,0 +1,34 @@
+# Copyright (c) 2019 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//build/config/ios/rules.gni")
+import("//testing/test.gni")
+
+ios_xctest_test("brave_core_ios_tests") {
+  configs += [ "//build/config/compiler:enable_arc" ]
+  sources = [
+    "dictionary_transform_test.mm",
+    "main.mm",
+    "net_test.mm",
+    "startup_test.mm",
+    "test_foo.h",
+    "test_foo.mm",
+    "vector_transform_test.mm",
+  ]
+
+  deps = [
+    "//base",
+    "//mises/ios/app",
+    "//mises/ios/browser/api/net",
+    "//ios/third_party/material_components_ios:material_components_ios+bundle",
+    "//ios/third_party/material_components_ios:material_components_ios+link",
+    "//net",
+  ]
+
+  frameworks = [
+    "Foundation.framework",
+    "Security.framework",
+  ]
+}

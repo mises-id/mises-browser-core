@@ -1,4 +1,10 @@
-# pylint: disable=import-error,too-many-return-statements,no-self-use,too-many-branches
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/.
+
+# pylint: disable=import-error,too-many-return-statements,no-self-use
+# pylint: disable=too-many-branches
 
 import os
 
@@ -309,9 +315,9 @@ class BaseDictionaryValueMojoTypemap(MojoTypemap):
     def DefaultObjCValue(self, default):
         return "@{}"
     def ObjCToCpp(self, accessor):
-        return "mises::BaseValueDictFromNSDictionary(%s)" % accessor
+        return "brave::BaseValueDictFromNSDictionary(%s)" % accessor
     def CppToObjC(self, accessor):
-        return "mises::NSDictionaryFromBaseValueDict(%s.Clone())" % accessor
+        return "brave::NSDictionaryFromBaseValueDict(%s.Clone())" % accessor
 
 class BaseListValueMojoTypemap(MojoTypemap):
     @staticmethod
@@ -325,9 +331,9 @@ class BaseListValueMojoTypemap(MojoTypemap):
     def DefaultObjCValue(self, default):
         return "@[]"
     def ObjCToCpp(self, accessor):
-        return "mises::BaseValueFromNSArray(%s)" % accessor
+        return "brave::BaseValueFromNSArray(%s)" % accessor
     def CppToObjC(self, accessor):
-        return "mises::NSArrayFromBaseValue(%s.Clone())" % accessor
+        return "brave::NSArrayFromBaseValue(%s.Clone())" % accessor
 
 class PendingRemoteMojoTypemap(MojoTypemap):
     @staticmethod
@@ -461,19 +467,7 @@ class Generator(generator.Generator):
         return set(remotes)
 
     def _GetExpectedCppParamType(self, kind):
-        def is_move_only_kind(kind):
-            if mojom.IsStructKind(kind) or mojom.IsUnionKind(kind):
-                return True
-            if mojom.IsArrayKind(kind):
-                return is_move_only_kind(kind.kind)
-            if mojom.IsMapKind(kind):
-                return (is_move_only_kind(kind.value_kind) or
-                        is_move_only_kind(kind.key_kind))
-            if mojom.IsAnyHandleOrInterfaceKind(kind):
-                return True
-            return False
-        should_pass_param_by_value = ((not mojom.IsReferenceKind(kind)) or
-                                      is_move_only_kind(kind))
+        should_pass_param_by_value = self._ShouldPassParamByValue(kind)
         typemap = MojoTypemapForKind(kind, False)
         typestring = typemap.ExpectedCppType()
         if (mojom.IsNullableKind(kind)
@@ -582,11 +576,15 @@ class Generator(generator.Generator):
             raise Exception("No typemap found for the given kind: %s" % kind)
         cpp_assign = typemap.ObjCToCpp(accessor)
         if mojom.IsNullableKind(kind):
-            if (isinstance(typemap, (StructMojoTypemap, UnionMojoTypemap))):
-                cpp_assign = "%s ? %s : nullptr" % (accessor, cpp_assign)
-            else:
+            if ((self._IsTypemappedKind(kind)
+                 and not self.typemap[self._GetFullMojomNameForKind(
+                     kind)]["nullable_is_same_type"])
+                    or not isinstance(typemap,
+                                      (StructMojoTypemap, UnionMojoTypemap))):
                 cpp_assign = "%s ? absl::make_optional(%s) : absl::nullopt" % (
                     accessor, cpp_assign)
+            else:
+                cpp_assign = "%s ? %s : nullptr" % (accessor, cpp_assign)
         return cpp_assign
 
     def _CppToObjCAssign(self, field, prefix=None, suffix=None):
@@ -595,13 +593,51 @@ class Generator(generator.Generator):
                                field.name, (suffix if suffix else ""))
         typemap = MojoTypemapForKind(kind)
         if mojom.IsNullableKind(kind):
-            if mojom.IsStructKind(kind) or mojom.IsUnionKind(kind):
-                value_accessor = accessor
-            else:
+            if ((self._IsTypemappedKind(kind)
+                 and not self.typemap[self._GetFullMojomNameForKind(
+                     kind)]["nullable_is_same_type"])
+                    or not isinstance(typemap,
+                                      (StructMojoTypemap, UnionMojoTypemap))):
                 value_accessor = "%s.value()" % accessor
+            else:
+                value_accessor = accessor
             return "%s ? %s : nil" % (
                 accessor, typemap.CppToObjC(value_accessor))
         return typemap.CppToObjC(accessor)
+
+    def _GetFullMojomNameForKind(self, kind):
+        return kind.qualified_name
+
+    def _IsTypemappedKind(self, kind):
+        return hasattr(kind, "name") and \
+            self._GetFullMojomNameForKind(kind) in self.typemap
+
+    def _ShouldPassParamByValue(self, kind):
+        return ((not mojom.IsReferenceKind(kind)) or self._IsMoveOnlyKind(kind)
+                or self._IsCopyablePassByValue(kind))
+
+    def _IsCopyablePassByValue(self, kind):
+        if not self._IsTypemappedKind(kind):
+            return False
+        return self.typemap[self._GetFullMojomNameForKind(
+            kind)]["copyable_pass_by_value"]
+
+    def _IsMoveOnlyKind(self, kind):
+        if self._IsTypemappedKind(kind):
+            if mojom.IsEnumKind(kind):
+                return False
+            return self.typemap[self._GetFullMojomNameForKind(
+                kind)]["move_only"]
+        if mojom.IsStructKind(kind) or mojom.IsUnionKind(kind):
+            return True
+        if mojom.IsArrayKind(kind):
+            return self._IsMoveOnlyKind(kind.kind)
+        if mojom.IsMapKind(kind):
+            return (self._IsMoveOnlyKind(kind.value_kind)
+                    or self._IsMoveOnlyKind(kind.key_kind))
+        if mojom.IsAnyHandleOrInterfaceKind(kind):
+            return True
+        return False
 
     def _ConstObjCAssign(self, constant):
         kind = constant.kind
@@ -647,16 +683,16 @@ class Generator(generator.Generator):
                         receivers.add(param.kind.kind)
 
         # We handle imports from mojo base types with custom typemaps, so only
-        # other Mises imports should only be included
-        mises_imports = [i for i in self.module.imports if
-                         i.path.startswith('mises/')]
+        # other Brave imports should only be included
+        brave_imports = [i for i in self.module.imports if
+                         i.path.startswith('brave/')]
 
         for interface in self.module.interfaces:
             all_enums.extend(interface.enums)
         return {
             "all_enums": all_enums,
             "enums": self.module.enums,
-            "imports": mises_imports,
+            "imports": brave_imports,
             "interfaces": all_interfaces,
             "interface_bridges": receivers,
             "kinds": self.module.kinds,
@@ -665,7 +701,8 @@ class Generator(generator.Generator):
             "class_prefix": ObjCPrefixFromModule(self.module),
             "structs": all_structs,
             "unions": all_unions,
-            "constants": self.module.constants
+            "constants": self.module.constants,
+            "generate_namespace": self.generateNamespace
         }
 
     @UseJinja("module.h.tmpl")

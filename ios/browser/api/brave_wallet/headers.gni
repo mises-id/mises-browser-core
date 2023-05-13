@@ -1,0 +1,9 @@
+brave_wallet_public_headers = [
+  "//mises/ios/browser/api/brave_wallet/brave_wallet_api.h",
+  "//mises/ios/browser/api/brave_wallet/brave_wallet_provider_delegate_ios.h",
+  "//mises/ios/browser/api/brave_wallet/brave_wallet_solana_utils.h",
+  "//mises/ios/browser/api/brave_wallet/token_registry_utils.h",
+  "$root_gen_dir/mises/ios/browser/api/brave_wallet/brave_wallet.mojom.objc.h",
+]
+brave_wallet_public_deps =
+    [ "//mises/ios/browser/api/brave_wallet:wallet_mojom_wrappers" ]

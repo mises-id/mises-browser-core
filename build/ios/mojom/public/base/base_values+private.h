@@ -1,17 +1,17 @@
-/* Copyright (c) 2022 The Mises Authors. All rights reserved.
+/* Copyright (c) 2022 The Brave Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef MISES_BUILD_IOS_MOJOM_PUBLIC_BASE_BASE_VALUES_PRIVATE_H_
-#define MISES_BUILD_IOS_MOJOM_PUBLIC_BASE_BASE_VALUES_PRIVATE_H_
+#ifndef BRAVE_BUILD_IOS_MOJOM_PUBLIC_BASE_BASE_VALUES_PRIVATE_H_
+#define BRAVE_BUILD_IOS_MOJOM_PUBLIC_BASE_BASE_VALUES_PRIVATE_H_
 
 #include "base/values.h"
 #include "mises/build/ios/mojom/public/base/base_values.h"
 
 @class MojoBaseValue;
 
-namespace mises {
+namespace brave {
 
 // Clone the contents of a `base::Value` whos type is `base::Value::Type::LIST`
 // into an Obj-C NSArray container. Any types found within the `base::Value`
@@ -19,7 +19,7 @@ namespace mises {
 NSArray<MojoBaseValue*>* NSArrayFromBaseValue(const base::Value);
 
 // Clone the contents of a `base::Value` whos type is
-// `base::Value::Type::DICTIONARY`.  Any types found within the `base::Value`
+// `base::Value::Type::DICT`.  Any types found within the `base::Value`
 // that are unsupported or `NONE` will become `NSNull`
 NSDictionary<NSString*, MojoBaseValue*>* NSDictionaryFromBaseValue(
     const base::Value);
@@ -29,7 +29,7 @@ NSDictionary<NSString*, MojoBaseValue*>* NSDictionaryFromBaseValue(
 base::Value BaseValueFromNSArray(NSArray<MojoBaseValue*>*);
 
 // Clone the contents of an NSDictionary into a `base::Value` with the type
-// `base::Value::Type::DICTIONARY`
+// `base::Value::Type::DICT`
 base::Value BaseValueFromNSDictionary(NSDictionary<NSString*, MojoBaseValue*>*);
 
 NSDictionary<NSString*, MojoBaseValue*>* NSDictionaryFromBaseValueDict(
@@ -37,11 +37,11 @@ NSDictionary<NSString*, MojoBaseValue*>* NSDictionaryFromBaseValueDict(
 base::Value::Dict BaseValueDictFromNSDictionary(
     NSDictionary<NSString*, MojoBaseValue*>*);
 
-}  // namespace mises
+}  // namespace brave
 
 @interface MojoBaseValue (Private)
 - (instancetype)initWithValue:(const base::Value)value;
 - (base::Value)cppObjPtr;
 @end
 
-#endif  // MISES_BUILD_IOS_MOJOM_PUBLIC_BASE_BASE_VALUES_PRIVATE_H_
+#endif  // BRAVE_BUILD_IOS_MOJOM_PUBLIC_BASE_BASE_VALUES_PRIVATE_H_

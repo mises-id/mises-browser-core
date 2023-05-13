@@ -1,0 +1,104 @@
+# Copyright (c) 2019 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//mises/ios/browser/api/brave_wallet/headers.gni")
+import("//mises/ios/browser/api/certificate/headers.gni")
+import("//mises/ios/browser/api/favicon/headers.gni")
+import("//mises/ios/browser/api/ipfs/headers.gni")
+import("//mises/ios/browser/api/opentabs/headers.gni")
+import("//mises/ios/browser/api/qr_code/headers.gni")
+import("//mises/ios/browser/api/session_restore/headers.gni")
+import("//mises/ios/browser/api/url/headers.gni")
+import("//mises/ios/browser/api/web/web_state/headers.gni")
+import("//build/config/compiler/compiler.gni")
+import("//build/config/ios/rules.gni")
+
+# lld is required when building arm64 with optimization in order to avoid
+# runtime crashes
+assert(is_debug || current_cpu != "arm64" || use_lld,
+       "Optimized arm64 iOS builds require lld")
+
+config("internal_config") {
+  visibility = [ ":*" ]
+  ldflags =
+      [ "-Wl,-rpath,/usr/lib/swift,-rpath,@executable_path/../Frameworks" ]
+}
+
+group("mises_ios") {
+  public_deps = [ ":brave_core_ios_framework" ]
+}
+
+group("mises_ios_tests") {
+  testonly = true
+  public_deps = [ "testing:brave_core_ios_tests" ]
+}
+
+brave_core_public_headers = [
+  "//mises/build/ios/mojom/public/base/base_values.h",
+  "//mises/ios/app/brave_core_main.h",
+  "//mises/ios/app/brave_core_switches.h",
+  "//mises/ios/browser/brave_wallet/brave_wallet_factory_wrappers.h",
+  "//mises/ios/browser/api/bookmarks/brave_bookmarks_api.h",
+  "//mises/ios/browser/api/bookmarks/brave_bookmarks_observer.h",
+  "//mises/ios/browser/api/bookmarks/importer/brave_bookmarks_importer.h",
+  "//mises/ios/browser/api/bookmarks/exporter/brave_bookmarks_exporter.h",
+  "//mises/ios/browser/api/history/brave_history_api.h",
+  "//mises/ios/browser/api/history/brave_history_observer.h",
+  "//mises/ios/browser/api/net/certificate_utility.h",
+  "//mises/ios/browser/api/password/brave_password_api.h",
+  "//mises/ios/browser/api/password/brave_password_observer.h",
+  "//mises/ios/browser/api/web_image/web_image.h",
+  "//mises/ios/browser/keyed_service/keyed_service_factory_wrapper.h",
+  "//mises/ios/browser/api/version_info/version_info_ios.h",
+]
+
+brave_core_public_headers += brave_wallet_public_headers
+brave_core_public_headers += browser_api_certificate_public_headers
+brave_core_public_headers += browser_api_favicon_public_headers
+brave_core_public_headers += browser_api_opentabs_public_headers
+brave_core_public_headers += browser_api_qr_code_public_headers
+brave_core_public_headers += browser_api_session_restore_public_headers
+brave_core_public_headers += browser_api_url_public_headers
+brave_core_public_headers += browser_api_web_webstate_public_headers
+brave_core_public_headers += ipfs_public_headers
+
+action("brave_core_umbrella_header") {
+  script = "//build/config/ios/generate_umbrella_header.py"
+
+  full_header_path = target_gen_dir + "/BraveCore.h"
+  outputs = [ full_header_path ]
+
+  args = [
+    "--output-path",
+    rebase_path(full_header_path, root_build_dir),
+  ]
+
+  args += rebase_path(brave_core_public_headers, root_build_dir)
+}
+
+ios_framework_bundle("brave_core_ios_framework") {
+  output_name = "BraveCore"
+  output_dir = root_out_dir
+
+  info_plist = "Info.plist"
+
+  configs += [
+    ":internal_config",
+    "//mises/build/rust:strip_rust_symbols",
+    "//build/config/compiler:enable_arc",
+  ]
+
+  deps = [
+    ":brave_core_umbrella_header",
+    "//mises/ios/app",
+  ]
+
+  deps += brave_wallet_public_deps
+
+  sources = brave_core_public_headers
+
+  public_headers = get_target_outputs(":brave_core_umbrella_header")
+  public_headers += brave_core_public_headers
+}
