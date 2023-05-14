@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/brave_wallet/external_wallets_importer.h"
+#include "mises/browser/brave_wallet/external_wallets_importer.h"
 
 #include <utility>
 #include <vector>
@@ -16,12 +16,12 @@
 #include "base/task/sequenced_task_runner.h"
 #include "base/task/thread_pool.h"
 #include "base/types/cxx23_to_underlying.h"
-#include "brave/browser/ethereum_remote_client/buildflags/buildflags.h"
-#include "brave/components/brave_wallet/browser/password_encryptor.h"
-#include "brave/third_party/argon2/src/include/argon2.h"
+//#include "mises/browser/ethereum_remote_client/buildflags/buildflags.h"
+#include "mises/components/brave_wallet/browser/password_encryptor.h"
+#include "mises/third_party/argon2/src/include/argon2.h"
 #include "components/value_store/value_store.h"
 #include "extensions/browser/api/storage/backend_task_runner.h"
-#include "extensions/browser/api/storage/storage_frontend.h"
+#include "extnsions/browser/api/storage/storage_frontend.h"
 #include "extensions/browser/extension_prefs.h"
 #include "extensions/browser/extension_registry.h"
 #include "extensions/browser/extension_system.h"
@@ -30,10 +30,11 @@
 #include "third_party/boringssl/src/include/openssl/digest.h"
 #include "third_party/boringssl/src/include/openssl/hkdf.h"
 
+#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
 #if BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED)
-#include "brave/browser/ethereum_remote_client/ethereum_remote_client_constants.h"
-#include "brave/browser/ethereum_remote_client/ethereum_remote_client_service.h"
-#include "brave/browser/ethereum_remote_client/ethereum_remote_client_service_factory.h"
+#include "mises/browser/ethereum_remote_client/ethereum_remote_client_constants.h"
+#include "mises/browser/ethereum_remote_client/ethereum_remote_client_service.h"
+#include "mises/browser/ethereum_remote_client/ethereum_remote_client_service_factory.h"
 #endif
 
 using extensions::Extension;

@@ -3,14 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/brave_wallet/brave_wallet_tab_helper.h"
+#include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
 
 #include <string>
 #include <utility>
 #include <vector>
 
-#include "brave/components/brave_wallet/browser/permission_utils.h"
-#include "brave/components/constants/webui_url_constants.h"
+#include "mises/components/brave_wallet/browser/permission_utils.h"
+#include "mises/components/constants/webui_url_constants.h"
 #include "components/permissions/permission_request.h"
 #include "components/permissions/permission_request_manager.h"
 #include "components/permissions/request_type.h"
@@ -18,7 +18,7 @@
 #include "content/public/browser/web_contents.h"
 
 #if !BUILDFLAG(IS_ANDROID)
-#include "brave/browser/ui/brave_wallet/wallet_bubble_manager_delegate.h"
+#include "mises/browser/ui/brave_wallet/wallet_bubble_manager_delegate.h"
 #endif
 
 namespace brave_wallet {
@@ -131,9 +131,9 @@ GURL BraveWalletTabHelper::GetBubbleURL() {
   // types.
   if (manager->Requests().empty() ||
       (manager->Requests()[0]->request_type() !=
-           permissions::RequestType::kBraveEthereum &&
+           permissions::RequestType::kMisesEthereum &&
        manager->Requests()[0]->request_type() !=
-           permissions::RequestType::kBraveSolana))
+           permissions::RequestType::kMisesSolana))
     return webui_url;
 
   // Handle ConnectWithSite (ethereum permission) request.

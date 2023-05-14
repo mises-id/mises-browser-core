@@ -1,11 +1,12 @@
 diff --git a/chrome/browser/safe_browsing/cloud_content_scanning/file_analysis_request.h b/chrome/browser/safe_browsing/cloud_content_scanning/file_analysis_request.h
-index 09ed45d3b59c7651da03fab0fe0807df9720d634..13911bad7264c5a5c5d43e6eeaa09c3b7743f961 100644
+index 09ed45d3b59c7651da03fab0fe0807df9720d634..0a7c427b6e7cb89a1f47b29fc60cf760ff815b1d 100644
 --- a/chrome/browser/safe_browsing/cloud_content_scanning/file_analysis_request.h
 +++ b/chrome/browser/safe_browsing/cloud_content_scanning/file_analysis_request.h
-@@ -11,8 +11,10 @@
+@@ -11,8 +11,11 @@
  #include "chrome/browser/enterprise/connectors/service_provider_config.h"
  #include "chrome/browser/safe_browsing/cloud_content_scanning/binary_upload_service.h"
  #include "chrome/common/safe_browsing/archive_analyzer_results.h"
++#include "components/safe_browsing/buildflags.h"
 +#if BUILDFLAG(FULL_SAFE_BROWSING)
  #include "chrome/services/file_util/public/cpp/sandboxed_rar_analyzer.h"
  #include "chrome/services/file_util/public/cpp/sandboxed_zip_analyzer.h"
@@ -13,7 +14,7 @@ index 09ed45d3b59c7651da03fab0fe0807df9720d634..13911bad7264c5a5c5d43e6eeaa09c3b
  
  namespace safe_browsing {
  
-@@ -81,11 +83,13 @@ class FileAnalysisRequest : public BinaryUploadService::Request {
+@@ -81,11 +84,13 @@ class FileAnalysisRequest : public BinaryUploadService::Request {
    // GetRequestData call.
    bool delay_opening_file_;
  

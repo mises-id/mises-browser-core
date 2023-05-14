@@ -3,15 +3,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/brave_wallet/browser/brave_wallet_p3a.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_p3a.h"
 #include "base/test/metrics/histogram_tester.h"
-#include "brave/browser/brave_wallet/brave_wallet_service_factory.h"
-#include "brave/browser/brave_wallet/keyring_service_factory.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_service.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_utils.h"
-#include "brave/components/brave_wallet/browser/keyring_service.h"
-#include "brave/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "brave/components/brave_wallet/common/features.h"
+#include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
+#include "mises/browser/brave_wallet/keyring_service_factory.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_service.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/browser/keyring_service.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/brave_wallet/common/features.h"
 #include "chrome/test/base/scoped_testing_local_state.h"
 #include "chrome/test/base/testing_browser_process.h"
 #include "chrome/test/base/testing_profile_manager.h"

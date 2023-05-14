@@ -12,7 +12,7 @@
 #include "base/process/process.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
 
-namespace brave {
+namespace mises {
 class ProcessLauncher {
   ProcessLauncher();
   ~ProcessLauncher();

@@ -18,7 +18,7 @@
 #include "base/memory/scoped_refptr.h"
 #include "base/path_service.h"
 #include "base/strings/sys_string_conversions.h"
-#include "mises/components/brave_component_updater/browser/brave_on_demand_updater.h"
+#include "mises/components/mises_component_updater/browser/mises_on_demand_updater.h"
 #include "mises/components/brave_wallet/browser/wallet_data_files_installer.h"
 #include "mises/ios/app/brave_main_delegate.h"
 #include "mises/ios/browser/api/bookmarks/brave_bookmarks_api+private.h"
@@ -295,7 +295,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
 
 - (void)registerComponentsForUpdate:
     (component_updater::ComponentUpdateService*)cus {
-  brave_component_updater::BraveOnDemandUpdater::GetInstance()
+  mises_component_updater::MisesOnDemandUpdater::GetInstance()
       ->RegisterOnDemandUpdateCallback(
           base::BindRepeating(&component_updater::BraveOnDemandUpdate));
 

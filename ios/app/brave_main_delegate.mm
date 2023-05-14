@@ -11,9 +11,9 @@
 #include "base/files/file_path.h"
 #include "base/mac/bundle_locations.h"
 #include "base/path_service.h"
-#include "mises/components/brave_component_updater/browser/brave_component.h"
-#include "mises/components/brave_component_updater/browser/features.h"
-#include "mises/components/brave_component_updater/browser/switches.h"
+#include "mises/components/mises_component_updater/browser/brave_component.h"
+#include "mises/components/mises_component_updater/browser/features.h"
+#include "mises/components/mises_component_updater/browser/switches.h"
 #include "mises/components/update_client/buildflags.h"
 #include "components/browser_sync/browser_sync_switches.h"
 #include "components/component_updater/component_updater_switches.h"
@@ -30,9 +30,9 @@ namespace {
 std::string GetUpdateURLHost() {
   const base::CommandLine& command_line =
       *base::CommandLine::ForCurrentProcess();
-  if (!command_line.HasSwitch(brave_component_updater::kUseGoUpdateDev) &&
+  if (!command_line.HasSwitch(mises_component_updater::kUseGoUpdateDev) &&
       !base::FeatureList::IsEnabled(
-          brave_component_updater::kUseDevUpdaterUrl)) {
+          mises_component_updater::kUseDevUpdaterUrl)) {
     return BUILDFLAG(UPDATER_PROD_ENDPOINT);
   }
   return BUILDFLAG(UPDATER_DEV_ENDPOINT);

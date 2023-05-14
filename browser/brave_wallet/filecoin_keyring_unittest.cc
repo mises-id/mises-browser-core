@@ -3,12 +3,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/brave_wallet/browser/filecoin_keyring.h"
+#include "mises/components/brave_wallet/browser/filecoin_keyring.h"
 
 #include "base/base64.h"
 #include "base/strings/string_number_conversions.h"
-#include "brave/components/brave_wallet/browser/keyring_service.h"
-#include "brave/components/filecoin/rs/src/lib.rs.h"
+#include "mises/components/brave_wallet/browser/keyring_service.h"
+#include "mises/components/filecoin/rs/src/lib.rs.h"
 #include "testing/gtest/include/gtest/gtest.h"
 
 namespace brave_wallet {

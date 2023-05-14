@@ -15,8 +15,8 @@
 #include "base/memory/weak_ptr.h"
 #include "base/sequence_checker.h"
 #include "base/values.h"
-#include "brave/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "brave/components/brave_wallet/common/brave_wallet_types.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/brave_wallet/common/brave_wallet_types.h"
 
 namespace content {
 class BrowserContext;

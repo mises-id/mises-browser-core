@@ -14,8 +14,9 @@
 #include "base/containers/flat_map.h"
 #include "base/memory/raw_ptr.h"
 #include "base/memory/weak_ptr.h"
+#include "mises/components/brave_wallet/browser/eth_block_tracker.h"
+#include "mises/components/brave_wallet/browser/eth_logs_tracker.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "mises/components/brave_wallet/common/web3_provider_constants.h"
 #include "components/content_settings/core/browser/content_settings_observer.h"
 #include "mojo/public/cpp/bindings/pending_remote.h"
 #include "mojo/public/cpp/bindings/receiver.h"
@@ -39,7 +40,9 @@ class EthereumProviderImpl final
       public mojom::JsonRpcServiceObserver,
       public mojom::TxServiceObserver,
       public brave_wallet::mojom::KeyringServiceObserver,
-      public content_settings::Observer {
+      public content_settings::Observer,
+      public EthBlockTracker::Observer,
+      public EthLogsTracker::Observer {
  public:
   using GetAllowedAccountsCallback =
       base::OnceCallback<void(const std::vector<std::string>& accounts,
@@ -81,6 +84,14 @@ class EthereumProviderImpl final
   // Used for personal_ecRecover
   void RecoverAddress(const std::string& message,
                       const std::string& signature,
+                      RequestCallback callback,
+                      base::Value id);
+
+  void EthSubscribe(const std::string& event_type,
+                    absl::optional<base::Value::Dict> filter,
+                    RequestCallback callback,
+                    base::Value id);
+  void EthUnsubscribe(const std::string& subscription_id,
                       RequestCallback callback,
                       base::Value id);
 
@@ -160,9 +171,13 @@ class EthereumProviderImpl final
   FRIEND_TEST_ALL_PREFIXES(EthereumProviderImplUnitTest, RequestEthCoinbase);
   FRIEND_TEST_ALL_PREFIXES(EthereumProviderImplUnitTest,
                            RequestEthereumPermissionsWithAccounts);
+  FRIEND_TEST_ALL_PREFIXES(EthereumProviderImplUnitTest, EthSubscribe);
+  FRIEND_TEST_ALL_PREFIXES(EthereumProviderImplUnitTest, EthSubscribeLogs);
+  FRIEND_TEST_ALL_PREFIXES(EthereumProviderImplUnitTest,
+                           EthSubscribeLogsFiltered);
   friend class EthereumProviderImplUnitTest;
 
-  // mojom::BraveWalletProvider:
+  // mojom::EthereumProvider:
   void Init(
       mojo::PendingRemote<mojom::EventsListener> events_listener) override;
   void Request(base::Value input, RequestCallback callback) override;
@@ -170,6 +185,7 @@ class EthereumProviderImpl final
   void Send(const std::string& method,
             base::Value params,
             SendCallback callback) override;
+  void SendAsync(base::Value input, SendAsyncCallback callback) override;
   void GetChainId(GetChainIdCallback callback) override;
   void IsLocked(IsLockedCallback callback) override;
 
@@ -180,6 +196,7 @@ class EthereumProviderImpl final
                                           const std::string& error) override;
   void OnIsEip1559Changed(const std::string& chain_id,
                           bool is_eip1559) override {}
+
   void OnSwitchEthereumChainRequested(const std::string& chain_id,
                                       const GURL& origin) {}
   void OnSwitchEthereumChainRequestProcessed(bool approved,
@@ -190,6 +207,7 @@ class EthereumProviderImpl final
   void OnNewUnapprovedTx(mojom::TransactionInfoPtr tx_info) override {}
   void OnUnapprovedTxUpdated(mojom::TransactionInfoPtr tx_info) override {}
   void OnTransactionStatusChanged(mojom::TransactionInfoPtr tx_info) override;
+  void OnTxServiceReset() override {}
 
   void OnAddEthereumChain(const std::string& chain_id,
                           mojom::ProviderError error,
@@ -233,6 +251,7 @@ class EthereumProviderImpl final
       mojom::ProviderError error,
       const std::string& error_message);
   void ContinueSignMessage(const std::string& address,
+                           const std::string& domain,
                            const std::string& message,
                            std::vector<uint8_t>&& message_to_sign,
                            const absl::optional<std::string>& domain_hash,
@@ -255,6 +274,7 @@ class EthereumProviderImpl final
                                      base::Value id,
                                      const std::string& normalized_json_request,
                                      const url::Origin& origin,
+                                     bool sign_only,
                                      mojom::NetworkInfoPtr chain);
   void ContinueGetEncryptionPublicKey(
       RequestCallback callback,
@@ -288,6 +308,7 @@ class EthereumProviderImpl final
       const std::string& normalized_json_request,
       const url::Origin& origin,
       mojom::NetworkInfoPtr chain,
+      bool sign_only,
       mojom::KeyringInfoPtr keyring_info);
 
   // content_settings::Observer:
@@ -312,11 +333,14 @@ class EthereumProviderImpl final
   void Unlocked() override;
   void BackedUp() override {}
   void AccountsChanged() override {}
+  void AccountsAdded(mojom::CoinType coin,
+                     const std::vector<std::string>& addresses) override {}
   void AutoLockMinutesChanged() override {}
   void SelectedAccountChanged(mojom::CoinType coin) override;
 
   void CommonRequestOrSendAsync(base::ValueView input_value,
-                                RequestCallback callback);
+                                RequestCallback request_callback,
+                                bool format_json_rpc_response);
 
   void RequestEthereumPermissions(RequestCallback callback,
                                   base::Value id,
@@ -343,6 +367,32 @@ class EthereumProviderImpl final
       const url::Origin& origin,
       RequestPermissionsError error,
       const absl::optional<std::vector<std::string>>& allowed_accounts);
+  void OnSendRawTransaction(RequestCallback callback,
+                            base::Value id,
+                            const std::string& tx_hash,
+                            mojom::ProviderError error,
+                            const std::string& error_message);
+  void OnGetBlockByNumber(base::Value result,
+                          mojom::ProviderError,
+                          const std::string&);
+
+  void OnResponse(bool format_json_rpc_response,
+                  RequestCallback callback,
+                  base::Value id,
+                  base::Value formed_response,
+                  const bool reject,
+                  const std::string& first_allowed_account,
+                  const bool update_bind_js_properties);
+
+  // EthBlockTracker::Observer:
+  void OnLatestBlock(uint256_t block_num) override;
+  void OnNewBlock(uint256_t block_num) override;
+  bool UnsubscribeBlockObserver(const std::string& subscription_id);
+
+  // EthLogsTracker::Observer:
+  void OnLogsReceived(const std::string& subscription,
+                      base::Value rawlogs) override;
+  bool UnsubscribeLogObserver(const std::string& subscription_id);
 
   raw_ptr<HostContentSettingsMap> host_content_settings_map_ = nullptr;
   std::unique_ptr<BraveWalletProviderDelegate> delegate_;
@@ -363,11 +413,15 @@ class EthereumProviderImpl final
   mojo::Receiver<mojom::TxServiceObserver> tx_observer_receiver_{this};
   mojo::Receiver<brave_wallet::mojom::KeyringServiceObserver>
       keyring_observer_receiver_{this};
-  std::vector<std::string> known_allowed_accounts;
-  bool first_known_accounts_check = true;
+  std::vector<std::string> known_allowed_accounts_;
+  std::vector<std::string> eth_subscriptions_;
+  std::vector<std::string> eth_log_subscriptions_;
+  EthBlockTracker eth_block_tracker_;
+  EthLogsTracker eth_logs_tracker_;
+  bool first_known_accounts_check_ = true;
   PrefService* prefs_ = nullptr;
   bool wallet_onboarding_shown_ = false;
-  base::WeakPtrFactory<EthereumProviderImpl> weak_factory_;
+  base::WeakPtrFactory<EthereumProviderImpl> weak_factory_{this};
 };
 
 }  // namespace brave_wallet

@@ -3,23 +3,23 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/brave_wallet/browser/eth_pending_tx_tracker.h"
+#include "mises/components/brave_wallet/browser/eth_pending_tx_tracker.h"
 
 #include <memory>
 #include <utility>
 
 #include "base/functional/bind.h"
 #include "base/test/bind.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_constants.h"
-#include "brave/components/brave_wallet/browser/eth_nonce_tracker.h"
-#include "brave/components/brave_wallet/browser/eth_transaction.h"
-#include "brave/components/brave_wallet/browser/eth_tx_meta.h"
-#include "brave/components/brave_wallet/browser/eth_tx_state_manager.h"
-#include "brave/components/brave_wallet/browser/json_rpc_service.h"
-#include "brave/components/brave_wallet/browser/tx_meta.h"
-#include "brave/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "brave/components/brave_wallet/common/brave_wallet_types.h"
-#include "brave/components/brave_wallet/common/eth_address.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
+#include "mises/components/brave_wallet/browser/eth_nonce_tracker.h"
+#include "mises/components/brave_wallet/browser/eth_transaction.h"
+#include "mises/components/brave_wallet/browser/eth_tx_meta.h"
+#include "mises/components/brave_wallet/browser/eth_tx_state_manager.h"
+#include "mises/components/brave_wallet/browser/json_rpc_service.h"
+#include "mises/components/brave_wallet/browser/tx_meta.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/brave_wallet/common/brave_wallet_types.h"
+#include "mises/components/brave_wallet/common/eth_address.h"
 #include "chrome/browser/prefs/browser_prefs.h"
 #include "chrome/test/base/testing_profile.h"
 #include "components/prefs/pref_service.h"

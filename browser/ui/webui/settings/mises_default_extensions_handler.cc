@@ -73,7 +73,7 @@ base::Value::List GetResolveMethodList() {
                       brave_l10n::GetLocalizedResourceUTF16String(
                           IDS_DECENTRALIZED_DNS_RESOLVE_OPTION_DISABLED)));
   list.Append(
-      MakeSelectValue(ResolveMethodTypes::ETHEREUM,
+      MakeSelectValue(ResolveMethodTypes::ENABLED,
                       brave_l10n::GetLocalizedResourceUTF16String(
                           IDS_DECENTRALIZED_DNS_RESOLVE_OPTION_ETHEREUM)));
 

@@ -3,12 +3,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/brave_wallet/asset_ratio_service_factory.h"
+#include "mises/browser/brave_wallet/asset_ratio_service_factory.h"
 
 #include <utility>
 
-#include "brave/browser/brave_wallet/brave_wallet_context_utils.h"
-#include "brave/components/brave_wallet/browser/asset_ratio_service.h"
+#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
+#include "mises/components/brave_wallet/browser/asset_ratio_service.h"
 #include "chrome/browser/profiles/incognito_helpers.h"
 #include "components/keyed_service/content/browser_context_dependency_manager.h"
 #include "content/public/browser/storage_partition.h"

@@ -6,10 +6,10 @@
 #ifndef BRAVE_BROWSER_BRAVE_WALLET_BRAVE_WALLET_IPFS_SERVICE_FACTORY_H_
 #define BRAVE_BROWSER_BRAVE_WALLET_BRAVE_WALLET_IPFS_SERVICE_FACTORY_H_
 
-#include "brave/components/brave_wallet/browser/brave_wallet_ipfs_service.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_ipfs_service.h"
 
 #include "base/memory/singleton.h"
-#include "brave/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "components/keyed_service/content/browser_context_keyed_service_factory.h"
 #include "components/keyed_service/core/keyed_service.h"
 #include "content/public/browser/browser_context.h"

@@ -3,18 +3,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/components/brave_wallet/browser/brave_wallet_prefs.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_prefs.h"
 
 #include <memory>
 #include <utility>
 
 #include "base/strings/string_util.h"
 #include "base/test/scoped_feature_list.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_constants.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_utils.h"
-#include "brave/components/brave_wallet/browser/pref_names.h"
-#include "brave/components/brave_wallet/common/features.h"
-#include "brave/components/brave_wallet/common/test_utils.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/browser/pref_names.h"
+#include "mises/components/brave_wallet/common/features.h"
+#include "mises/components/brave_wallet/common/test_utils.h"
 #include "chrome/browser/prefs/browser_prefs.h"
 #include "chrome/test/base/testing_profile.h"
 #include "components/prefs/pref_service.h"

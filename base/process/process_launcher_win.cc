@@ -14,7 +14,7 @@
 #include "base/win/scoped_handle.h"
 #include "base/win/scoped_process_information.h"
 
-namespace brave {
+namespace mises {
 ProcessLauncher::ProcessLauncher() = default;
 ProcessLauncher::~ProcessLauncher() = default;
 

@@ -60,7 +60,7 @@ bool ParseRequestingOrigin(permissions::RequestType type,
 
 /**
  * Given old_origin, adding account info to its host part and return as
- * new_origin. If type != kBraveEthereum, there would be separater like
+ * new_origin. If type != kMisesEthereum, there would be separater like
  * https://origin__BrG4...
  */
 bool GetSubRequestOrigin(permissions::RequestType type,

@@ -20,7 +20,6 @@ namespace brave_wallet {
 absl::optional<std::string> EncodeJupiterTransactionParams(
     mojom::JupiterSwapParamsPtr params) {
   DCHECK(params);
-/*
   base::Value::Dict tx_params;
 
   // The code below does the following two things:
@@ -116,8 +115,6 @@ absl::optional<std::string> EncodeJupiterTransactionParams(
   }
 
   return result;
-*/
-    return absl::nullopt;
 }
 
 }  // namespace brave_wallet

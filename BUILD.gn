@@ -285,7 +285,7 @@ if (!is_ios) {
     deps = [
       ":mises",
       ":mises_license_dist_resources",
-      "//mises/components/version_info::generate_version",
+      "//mises/components/version_info:generate_version",
       ":packed_resources",
       "build/$target_os:mises",
       "//third_party/icu:icudata",

@@ -27,8 +27,12 @@ namespace brave_wallet {
 bool IsNativeWalletEnabled();
 bool IsFilecoinEnabled();
 bool IsSolanaEnabled();
+bool ShouldShowTxStatusInToolbar();
+bool IsNftPinningEnabled();
+bool IsPanelV2Enabled();
 bool ShouldCreateDefaultSolanaAccount();
 bool IsDappsSupportEnabled();
+bool IsBitcoinEnabled();
 
 // Generate mnemonic from random entropy following BIP39.
 // |entropy_size| should be specify in bytes
@@ -53,8 +57,6 @@ bool EncodeStringArray(const std::vector<std::string>& input,
                        std::string* output);
 
 bool DecodeString(size_t offset, const std::string& input, std::string* output);
-bool DecodeStringArray(const std::string& input,
-                       std::vector<std::string>* output);
 
 // Updates preferences for when the wallet is unlocked.
 // This is done in a utils function instead of in the KeyringService
@@ -112,7 +114,6 @@ void SetDefaultBaseCurrency(PrefService* prefs, const std::string& currency);
 std::string GetDefaultBaseCurrency(PrefService* prefs);
 void SetDefaultBaseCryptocurrency(PrefService* prefs,
                                   const std::string& cryptocurrency);
-bool GetShowWalletTestNetworks(PrefService* prefs);
 void SetSelectedCoin(PrefService* prefs, mojom::CoinType coin);
 mojom::CoinType GetSelectedCoin(PrefService* prefs);
 std::string GetDefaultBaseCryptocurrency(PrefService* prefs);
@@ -126,7 +127,9 @@ GURL GetBitRpcUrl(const std::string& chain_id);
 GURL GetUnstoppableDomainsRpcUrl(const std::string& chain_id);
 std::string GetUnstoppableDomainsProxyReaderContractAddress(
     const std::string& chain_id);
+GURL GetEnsRpcUrl();
 std::string GetEnsRegistryContractAddress(const std::string& chain_id);
+GURL GetSnsRpcUrl();
 
 // Append chain value to kBraveWalletCustomNetworks dictionary pref.
 void AddCustomNetwork(PrefService* prefs, const mojom::NetworkInfo& chain);
@@ -135,8 +138,8 @@ void RemoveCustomNetwork(PrefService* prefs,
                          const std::string& chain_id_to_remove,
                          mojom::CoinType coin);
 
-std::vector<std::string> GetAllHiddenNetworks(PrefService* prefs,
-                                              mojom::CoinType coin);
+std::vector<std::string> GetHiddenNetworks(PrefService* prefs,
+                                           mojom::CoinType coin);
 void AddHiddenNetwork(PrefService* prefs,
                       mojom::CoinType coin,
                       const std::string& chain_id);
@@ -153,6 +156,20 @@ mojom::NetworkInfoPtr GetChain(PrefService* prefs,
 std::string GetCurrentChainId(PrefService* prefs, mojom::CoinType coin);
 
 std::string GetPrefKeyForCoinType(mojom::CoinType coin);
+
+// Converts string representation of CoinType to enum.
+absl::optional<mojom::CoinType> GetCoinTypeFromPrefKey(const std::string& key);
+
+// Resolves chain_id from network_id.
+absl::optional<std::string> GetChainId(PrefService* prefs,
+                                       const mojom::CoinType& coin,
+                                       const std::string& network_id);
+
+// Resolves chain_id from network_id (including custom networks).
+absl::optional<std::string> GetChainIdByNetworkId(
+    PrefService* prefs,
+    const mojom::CoinType& coin,
+    const std::string& network_id);
 
 // Returns a string used for web3_clientVersion in the form of
 // BraveWallet/v[chromium-version]. Note that we expose only the Chromium

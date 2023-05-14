@@ -79,7 +79,9 @@ std::string EthSignTypedDataHelper::EncodeType(
   for (size_t i = 0; i < type.GetList().size(); ++i) {
     const std::string* type_str = type.GetList()[i].FindStringKey("type");
     const std::string* name_str = type.GetList()[i].FindStringKey("name");
-    DCHECK(type_str && name_str);
+    if (!type_str || !name_str) {
+      return std::string();
+    }
     base::StrAppend(&result, {*type_str, " ", *name_str});
     if (i != type.GetList().size() - 1)
       base::StrAppend(&result, {","});
@@ -139,7 +141,9 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeData(
     const auto& field = item.GetDict();
     const std::string* type_str = field.FindString("type");
     const std::string* name_str = field.FindString("name");
-    DCHECK(type_str && name_str);
+    if (!type_str || !name_str) {
+      return absl::nullopt;
+    }
     const base::Value* value = data.Find(*name_str);
     if (value) {
       auto encoded_field = EncodeField(*type_str, *value);

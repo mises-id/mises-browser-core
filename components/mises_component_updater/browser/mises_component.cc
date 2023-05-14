@@ -98,4 +98,4 @@ MisesComponent::Delegate* MisesComponent::delegate() {
   return delegate_;
 }
 
-}  // namespace brave_component_updater
+}  // namespace mises_component_updater

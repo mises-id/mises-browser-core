@@ -10,7 +10,7 @@
 #include "mises/components/ipfs/buildflags/buildflags.h"
 #include "mises/components/p3a/buildflags.h"
 #include "mises/components/p3a/p3a_service.h"
-#include "mises/ios/browser/brave_stats/brave_stats_prefs.h"
+//#include "mises/ios/browser/brave_stats/brave_stats_prefs.h"
 #include "components/pref_registry/pref_registry_syncable.h"
 
 #if BUILDFLAG(ENABLE_IPFS)
@@ -28,7 +28,7 @@ void BraveRegisterBrowserStatePrefs(
 }
 
 void BraveRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
-  brave_stats::RegisterLocalStatePrefs(registry);
+  //brave_stats::RegisterLocalStatePrefs(registry);
   brave_wallet::RegisterLocalStatePrefs(registry);
   brave_wallet::RegisterLocalStatePrefsForMigration(registry);
   decentralized_dns::RegisterLocalStatePrefs(registry);

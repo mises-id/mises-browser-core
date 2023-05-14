@@ -36,6 +36,7 @@ static_library("ipfs") {
   deps = [
     "buildflags",
     "//base",
+    "//mises/base",
     "//mises/components/api_request_helper",
     "//mises/components/mises_component_updater/browser/",
     "//mises/components/resources:static_resources",
@@ -76,6 +77,12 @@ static_library("ipfs") {
       "ipfs_url_loader_request_interceptor.h",
       "keys/ipns_keys_manager.cc",
       "keys/ipns_keys_manager.h",
+      "pin/ipfs_base_pin_service.cc",
+      "pin/ipfs_base_pin_service.h",
+      "pin/ipfs_local_pin_service.cc",
+      "pin/ipfs_local_pin_service.h",
+      "pin/ipfs_pin_rpc_types.cc",
+      "pin/ipfs_pin_rpc_types.h",
     ]
     deps += [
       "//mises/components/l10n/common",

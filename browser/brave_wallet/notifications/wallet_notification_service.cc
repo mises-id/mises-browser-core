@@ -3,17 +3,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/brave_wallet/notifications/wallet_notification_service.h"
+#include "mises/browser/brave_wallet/notifications/wallet_notification_service.h"
 
 #include <memory>
 #include <string>
 
 #include "base/strings/utf_string_conversions.h"
-#include "brave/components/brave_wallet/browser/tx_service.h"
+#include "mises/components/brave_wallet/browser/tx_service.h"
 #include "chrome/browser/notifications/notification_display_service.h"
 #include "chrome/browser/notifications/notification_display_service_factory.h"
 #include "chrome/browser/profiles/profile.h"
-#include "components/grit/brave_components_strings.h"
+#include "components/grit/mises_components_strings.h"
 #include "ui/base/l10n/l10n_util.h"
 #include "ui/base/models/image_model.h"
 #include "ui/message_center/public/cpp/notification.h"

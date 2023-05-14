@@ -1,3 +1,8 @@
+// Copyright (c) 2023 The Brave Authors. All rights reserved.
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+// You can obtain one at https://mozilla.org/MPL/2.0/.
+
 use core::fmt;
 use curve25519_dalek;
 use ed25519_dalek_bip32::derivation_path::{
@@ -77,11 +82,12 @@ mod ffi {
             self: &Ed25519DalekExtendedSecretKey,
             path: String,
         ) -> Box<Ed25519DalekExtendedSecretKeyResult>;
-        fn derive_child(
+        fn derive_hardened_child(
             self: &Ed25519DalekExtendedSecretKey,
             index: u32,
         ) -> Box<Ed25519DalekExtendedSecretKeyResult>;
         fn keypair_raw(self: &Ed25519DalekExtendedSecretKey) -> [u8; 64];
+        fn secret_key_raw(self: &Ed25519DalekExtendedSecretKey) -> [u8; 32];
         fn public_key_raw(self: &Ed25519DalekExtendedSecretKey) -> [u8; 32];
         fn sign(
             self: &Ed25519DalekExtendedSecretKey,
@@ -199,7 +205,9 @@ impl Ed25519DalekExtendedSecretKey {
                 .and_then(|d_path| Ok(self.0.derive(&d_path)?)),
         ))
     }
-    fn derive_child(&self, index: u32) -> Box<Ed25519DalekExtendedSecretKeyResult> {
+    fn derive_hardened_child(
+        &self, index: u32
+    ) -> Box<Ed25519DalekExtendedSecretKeyResult> {
         Box::new(Ed25519DalekExtendedSecretKeyResult::from(
             ChildIndex::hardened(index)
                 .map_err(|err| Error::from(err))
@@ -211,6 +219,9 @@ impl Ed25519DalekExtendedSecretKey {
         bytes[..SECRET_KEY_LENGTH].copy_from_slice(&self.0.secret_key.to_bytes());
         bytes[SECRET_KEY_LENGTH..].copy_from_slice(&self.0.public_key().to_bytes());
         bytes
+    }
+    fn secret_key_raw(&self) -> [u8; SECRET_KEY_LENGTH] {
+        self.0.secret_key.to_bytes()
     }
     fn public_key_raw(&self) -> [u8; PUBLIC_KEY_LENGTH] {
         self.0.public_key().to_bytes()

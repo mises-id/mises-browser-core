@@ -44,6 +44,8 @@ class JSEthereumProvider final : public gin::Wrappable<JSEthereumProvider>,
   // mojom::EventsListener
   void AccountsChangedEvent(const std::vector<std::string>& accounts) override;
   void ChainChangedEvent(const std::string& chain_id) override;
+  void MessageEvent(const std::string& subscription_id,
+                    base::Value result) override;
 
  private:
   explicit JSEthereumProvider(content::RenderFrame* render_frame);
@@ -53,10 +55,11 @@ class JSEthereumProvider final : public gin::Wrappable<JSEthereumProvider>,
   void OnDestruct() override {}
   void WillReleaseScriptContext(v8::Local<v8::Context>,
                                 int32_t world_id) override;
+  void DidDispatchDOMContentLoadedEvent() override;
 
   bool EnsureConnected();
 
-  void FireEvent(const std::string& event, base::Value event_args);
+  void FireEvent(const std::string& event, base::ValueView event_args);
   void OnGetChainId(const std::string& chain_id);
   void ConnectEvent();
   void DisconnectEvent(const std::string& message);
@@ -80,7 +83,6 @@ class JSEthereumProvider final : public gin::Wrappable<JSEthereumProvider>,
                             std::unique_ptr<v8::Global<v8::Function>> callback,
                             v8::Global<v8::Promise::Resolver> promise_resolver,
                             v8::Isolate* isolate,
-                            bool force_json_response,
                             base::Value id,
                             base::Value formed_response,
                             const bool reject,
@@ -96,13 +98,13 @@ class JSEthereumProvider final : public gin::Wrappable<JSEthereumProvider>,
                     std::unique_ptr<v8::Global<v8::Function>> callback,
                     v8::Global<v8::Promise::Resolver> promise_resolver,
                     v8::Isolate* isolate,
-                    bool force_json_response,
                     base::Value formed_response,
                     bool success);
 
   mojo::Remote<mojom::EthereumProvider> ethereum_provider_;
   mojo::Receiver<mojom::EventsListener> receiver_{this};
   bool is_connected_ = false;
+  bool script_context_released_ = false;
   std::string chain_id_;
   std::string first_allowed_account_;
   base::WeakPtrFactory<JSEthereumProvider> weak_ptr_factory_{this};

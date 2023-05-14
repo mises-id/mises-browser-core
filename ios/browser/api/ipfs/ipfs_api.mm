@@ -5,7 +5,7 @@
 
 #include "mises/ios/browser/api/ipfs/ipfs_api.h"
 
-#import "brave/base/mac/conversions.h"
+#import "mises/base/mac/conversions.h"
 #include "mises/components/ipfs/ipfs_constants.h"
 #include "mises/components/ipfs/ipfs_utils.h"
 #include "mises/ios/browser/api/ipfs/ipfs_api+private.h"

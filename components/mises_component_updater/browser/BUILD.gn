@@ -4,6 +4,8 @@ static_library("browser") {
   sources = [
     "mises_component.cc",
     "mises_component.h",
+    "mises_on_demand_updater.cc",
+    "mises_on_demand_updater.h",
   ]
 
   deps = [

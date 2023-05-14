@@ -10,10 +10,13 @@
 
 #include "base/base64.h"
 #include "base/notreached.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 #include "mises/components/brave_wallet/browser/solana_block_tracker.h"
 #include "mises/components/brave_wallet/browser/solana_instruction_builder.h"
 #include "mises/components/brave_wallet/browser/solana_keyring.h"
+#include "mises/components/brave_wallet/browser/solana_message.h"
+#include "mises/components/brave_wallet/browser/solana_message_header.h"
 #include "mises/components/brave_wallet/browser/solana_tx_meta.h"
 #include "mises/components/brave_wallet/browser/solana_tx_state_manager.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
@@ -75,6 +78,7 @@ void SolanaTxManager::AddUnapprovedTransaction(
   meta.set_group_id(group_id);
   meta.set_created_time(base::Time::Now());
   meta.set_status(mojom::TransactionStatus::Unapproved);
+  meta.set_chain_id(GetCurrentChainId(prefs_, mojom::CoinType::SOL));
   tx_state_manager_->AddOrUpdateTx(meta);
   std::move(callback).Run(true, meta.id(), "");
 }
@@ -188,8 +192,9 @@ void SolanaTxManager::OnSendSolanaTransaction(
 
   tx_state_manager_->AddOrUpdateTx(*meta);
 
-  if (success)
+  if (success) {
     UpdatePendingTransactions();
+  }
 
   std::move(callback).Run(
       error_message.empty(),
@@ -204,8 +209,9 @@ void SolanaTxManager::UpdatePendingTransactions() {
 void SolanaTxManager::OnGetBlockHeight(uint64_t block_height,
                                        mojom::SolanaProviderError error,
                                        const std::string& error_message) {
-  if (error != mojom::SolanaProviderError::kSuccess)
+  if (error != mojom::SolanaProviderError::kSuccess) {
     return;
+  }
 
   auto pending_transactions = tx_state_manager_->GetTransactionsByStatus(
       mojom::TransactionStatus::Submitted, absl::nullopt);
@@ -230,17 +236,20 @@ void SolanaTxManager::OnGetSignatureStatuses(
         signature_statuses,
     mojom::SolanaProviderError error,
     const std::string& error_message) {
-  if (error != mojom::SolanaProviderError::kSuccess)
+  if (error != mojom::SolanaProviderError::kSuccess) {
     return;
+  }
 
-  if (tx_meta_ids.size() != signature_statuses.size())
+  if (tx_meta_ids.size() != signature_statuses.size()) {
     return;
+  }
 
   for (size_t i = 0; i < tx_meta_ids.size(); i++) {
     std::unique_ptr<SolanaTxMeta> meta =
         GetSolanaTxStateManager()->GetSolanaTx(tx_meta_ids[i]);
-    if (!meta)
+    if (!meta) {
       continue;
+    }
 
     if (!signature_statuses[i]) {
       if (meta->tx()->message()->last_valid_block_height() &&
@@ -326,8 +335,16 @@ void SolanaTxManager::MakeSystemProgramTransferTxData(
   std::vector<SolanaInstruction> vec;
   vec.emplace_back(std::move(instruction.value()));
   // recent_blockhash will be updated when we are going to send out the tx.
-  SolanaTransaction transaction("" /* recent_blockhash*/, 0, from,
-                                std::move(vec));
+  auto msg = SolanaMessage::CreateLegacyMessage("" /* recent_blockhash*/, 0,
+                                                from, std::move(vec));
+  if (!msg) {
+    std::move(callback).Run(
+        nullptr, mojom::SolanaProviderError::kInternalError,
+        l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+    return;
+  }
+
+  SolanaTransaction transaction(std::move(*msg));
   transaction.set_to_wallet_address(to);
   transaction.set_tx_type(mojom::TransactionType::SolanaSystemTransfer);
   transaction.set_lamports(lamports);
@@ -455,8 +472,17 @@ void SolanaTxManager::OnGetAccountInfo(
   instructions.push_back(std::move(*transfer_instruction));
 
   // recent_blockhash will be updated when we are going to send out the tx.
-  SolanaTransaction transaction("" /* recent_blockhash*/, 0,
-                                from_wallet_address, std::move(instructions));
+  auto msg = SolanaMessage::CreateLegacyMessage("" /* recent_blockhash*/, 0,
+                                                from_wallet_address,
+                                                std::move(instructions));
+  if (!msg) {
+    std::move(callback).Run(
+        nullptr, mojom::SolanaProviderError::kInternalError,
+        l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+    return;
+  }
+
+  SolanaTransaction transaction(std::move(*msg));
   transaction.set_to_wallet_address(to_wallet_address);
   transaction.set_spl_token_mint_address(spl_token_mint_address);
   transaction.set_amount(amount);

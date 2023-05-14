@@ -7,9 +7,9 @@
 #include "base/android/jni_android.h"
 #include "base/android/jni_string.h"
 #include "base/notreached.h"
-#include "brave/browser/brave_wallet/brave_wallet_provider_delegate_impl_helper.h"
-#include "brave/browser/brave_wallet/brave_wallet_tab_helper.h"
-#include "brave/build/android/jni_headers/BraveWalletProviderDelegateImplHelper_jni.h"
+#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl_helper.h"
+#include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
+#include "mises/build/android/jni_headers/BraveWalletProviderDelegateImplHelper_jni.h"
 #include "content/public/browser/render_frame_host.h"
 #include "content/public/browser/web_contents.h"
 

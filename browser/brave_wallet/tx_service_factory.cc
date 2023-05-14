@@ -3,17 +3,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/brave_wallet/tx_service_factory.h"
+#include "mises/browser/brave_wallet/tx_service_factory.h"
 
 #include <memory>
 #include <utility>
 
-#include "brave/browser/brave_wallet/asset_ratio_service_factory.h"
-#include "brave/browser/brave_wallet/brave_wallet_context_utils.h"
-#include "brave/browser/brave_wallet/json_rpc_service_factory.h"
-#include "brave/browser/brave_wallet/keyring_service_factory.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_constants.h"
-#include "brave/components/brave_wallet/browser/tx_service.h"
+#include "mises/browser/brave_wallet/asset_ratio_service_factory.h"
+#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
+#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
+#include "mises/browser/brave_wallet/keyring_service_factory.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
+#include "mises/components/brave_wallet/browser/tx_service.h"
 #include "chrome/browser/profiles/incognito_helpers.h"
 #include "components/keyed_service/content/browser_context_dependency_manager.h"
 #include "components/user_prefs/user_prefs.h"
@@ -21,7 +21,7 @@
 #include "services/network/public/cpp/shared_url_loader_factory.h"
 
 #if !BUILDFLAG(IS_ANDROID)
-#include "brave/browser/brave_wallet/wallet_notification_helper.h"
+#include "mises/browser/brave_wallet/wallet_notification_helper.h"
 #endif
 
 namespace brave_wallet {

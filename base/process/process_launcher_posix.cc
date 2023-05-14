@@ -11,7 +11,7 @@
 #include "base/files/file_util.h"
 #include "base/process/launch.h"
 
-namespace brave {
+namespace mises {
 
 ProcessLauncher::ProcessLauncher() = default;
 ProcessLauncher::~ProcessLauncher() = default;

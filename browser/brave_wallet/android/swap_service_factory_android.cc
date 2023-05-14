@@ -4,8 +4,8 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "base/android/jni_android.h"
-#include "brave/browser/brave_wallet/swap_service_factory.h"
-#include "brave/build/android/jni_headers/SwapServiceFactory_jni.h"
+#include "mises/browser/brave_wallet/swap_service_factory.h"
+#include "mises/build/android/jni_headers/SwapServiceFactory_jni.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/profiles/profile_android.h"
 #include "mojo/public/cpp/bindings/pending_receiver.h"

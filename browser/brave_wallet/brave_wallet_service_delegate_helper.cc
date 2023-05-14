@@ -5,14 +5,14 @@
 
 #include <memory>
 
-#include "brave/components/brave_wallet/browser/brave_wallet_service_delegate.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_service_delegate.h"
 #include "build/build_config.h"
 #include "content/public/browser/browser_context.h"
 
 #if BUILDFLAG(IS_ANDROID)
-#include "brave/browser/brave_wallet/brave_wallet_service_delegate_impl_android.h"
+#include "mises/browser/brave_wallet/brave_wallet_service_delegate_impl_android.h"
 #else
-#include "brave/browser/brave_wallet/brave_wallet_service_delegate_impl.h"
+#include "mises/browser/brave_wallet/brave_wallet_service_delegate_impl.h"
 #endif
 
 namespace brave_wallet {

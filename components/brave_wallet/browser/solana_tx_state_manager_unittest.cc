@@ -70,12 +70,14 @@ TEST_F(SolanaTxStateManagerUnitTest, SolanaTxMetaAndValue) {
       // Program ID
       mojom::kSolanaSystemProgramId,
       // Accounts
-      {SolanaAccountMeta(from_account, true, true),
-       SolanaAccountMeta(to_account, false, true)},
+      {SolanaAccountMeta(from_account, absl::nullopt, true, true),
+       SolanaAccountMeta(to_account, absl::nullopt, false, true)},
       data);
-  auto tx = std::make_unique<SolanaTransaction>(
+  auto msg = SolanaMessage::CreateLegacyMessage(
       recent_blockhash, last_valid_block_height, from_account,
       std::vector<SolanaInstruction>({instruction}));
+  ASSERT_TRUE(msg);
+  auto tx = std::make_unique<SolanaTransaction>(std::move(*msg));
 
   SolanaTxMeta meta(std::move(tx));
   meta.set_signature_status(SolanaSignatureStatus(82, 10, "", "confirmed"));
@@ -88,7 +90,7 @@ TEST_F(SolanaTxStateManagerUnitTest, SolanaTxMetaAndValue) {
   meta.set_tx_hash(
       "5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYjCJjBRnbJLgp8uirBgmQpjKhoR4tjF3ZpRzr"
       "FmBV6UjKdiSZkQUW");
-  meta.set_origin(url::Origin::Create(GURL("https://test.mises.site/")));
+  meta.set_origin(url::Origin::Create(GURL("https://test.brave.com/")));
   meta.set_group_id("mockGroupId");
 
   base::Value::Dict meta_value = meta.ToValue();

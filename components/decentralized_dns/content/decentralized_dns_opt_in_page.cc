@@ -80,7 +80,7 @@ void DecentralizedDnsOptInPage::PopulateInterstitialStrings(
       u"</a>",
   };
 
-  if (IsUnstoppableDomainsTLD(request_url_)) {
+  if (IsUnstoppableDomainsTLD(request_url_.host_piece())) {
     load_time_data.Set("tabTitle", brave_l10n::GetLocalizedResourceUTF16String(
                                        IDS_UNSTOPPABLE_DOMAINS_OPT_IN_TITLE));
     load_time_data.Set("heading", brave_l10n::GetLocalizedResourceUTF16String(

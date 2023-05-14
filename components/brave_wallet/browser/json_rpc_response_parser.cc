@@ -12,35 +12,22 @@
 
 namespace brave_wallet {
 
-absl::optional<base::Value> ParseResultValue(const std::string& json);
-
-bool ParseSingleStringResult(const std::string& json, std::string* result) {
-  DCHECK(result);
-
-  auto result_v = ParseResultValue(json);
+absl::optional<std::string> ParseSingleStringResult(
+    const base::Value& json_value) {
+  auto result_v = ParseResultValue(json_value);
   if (!result_v)
-    return false;
+    return absl::nullopt;
 
   const std::string* result_str = result_v->GetIfString();
   if (!result_str)
-    return false;
-
-  *result = *result_str;
-
-  return true;
-}
-
-absl::optional<std::string> ParseSingleStringResult(const std::string& json) {
-  std::string result;
-  if (!ParseSingleStringResult(json, &result))
     return absl::nullopt;
 
-  return result;
+  return *result_str;
 }
 
 absl::optional<std::vector<uint8_t>> ParseDecodedBytesResult(
-    const std::string& json) {
-  auto result_v = ParseResultValue(json);
+    const base::Value& json_value) {
+  auto result_v = ParseResultValue(json_value);
   if (!result_v)
     return absl::nullopt;
 
@@ -51,71 +38,46 @@ absl::optional<std::vector<uint8_t>> ParseDecodedBytesResult(
   return PrefixedHexStringToBytes(*result_str);
 }
 
-absl::optional<base::Value> ParseResultValue(const std::string& json) {
-  absl::optional<base::Value> records_v =
-      base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
-                                       base::JSONParserOptions::JSON_PARSE_RFC);
-  if (!records_v || !records_v->is_dict()) {
-    LOG(ERROR) << "Invalid response, could not parse JSON, JSON is: " << json;
+absl::optional<base::Value> ParseResultValue(const base::Value& json_value) {
+  auto response = json_rpc_responses::RPCResponse::FromValue(json_value);
+  if (!response || !response->result)
     return absl::nullopt;
-  }
-
-  base::Value* result_v = records_v->GetDict().FindByDottedPath("result");
-  if (!result_v)
-    return absl::nullopt;
-
-  return std::move(*result_v);
+  return std::move(*response->result);
 }
 
-absl::optional<base::Value::Dict> ParseResultDict(const std::string& json) {
-  auto result = ParseResultValue(json);
+absl::optional<base::Value::Dict> ParseResultDict(
+    const base::Value& json_value) {
+  auto result = ParseResultValue(json_value);
   if (!result || !result->is_dict())
     return absl::nullopt;
 
   return std::move(result->GetDict());
 }
 
-absl::optional<base::Value::List> ParseResultList(const std::string& json) {
-  auto result = ParseResultValue(json);
+absl::optional<base::Value::List> ParseResultList(
+    const base::Value& json_value) {
+  auto result = ParseResultValue(json_value);
   if (!result || !result->is_list())
     return absl::nullopt;
 
   return std::move(result->GetList());
 }
 
-absl::optional<base::Value::Dict> ParseDataDict(const std::string& json) {
-    absl::optional<base::Value> records_v =
-      base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
-                                       base::JSONParserOptions::JSON_PARSE_RFC);
-  if (!records_v || !records_v->is_dict()) {
-    LOG(ERROR) << "Invalid response, could not parse JSON, JSON is: " << json;
+absl::optional<bool> ParseBoolResult(const base::Value& json_value) {
+  auto result = ParseSingleStringResult(json_value);
+  if (!result)
     return absl::nullopt;
-  }
-  base::Value* result_v = records_v->GetDict().FindByDottedPath("data");
-  if (!result_v || !result_v->is_dict())
-    return absl::nullopt;
-  return std::move(result_v->GetDict());
-}
 
-bool ParseBoolResult(const std::string& json, bool* value) {
-  DCHECK(value);
-
-  std::string result;
-  if (!ParseSingleStringResult(json, &result))
-    return false;
-
-  if (result ==
+  if (*result ==
       "0x0000000000000000000000000000000000000000000000000000000000000001") {
-    *value = true;
     return true;
-  } else if (result ==
+  } else if (*result ==
              "0x000000000000000000000000000000000000000000000000000000000000000"
              "0") {
-    *value = false;
-    return true;
+    return false;
   }
 
-  return false;
+  return absl::nullopt;
 }
 
 absl::optional<std::string> ConvertUint64ToString(const std::string& path,
@@ -149,10 +111,11 @@ absl::optional<std::string> ConvertMultiUint64ToString(
 }
 
 absl::optional<std::string> ConvertMultiUint64InObjectArrayToString(
-    const std::string& path,
+    const std::string& path_to_list,
+    const std::string& path_to_object,
     const std::vector<std::string>& keys,
     const std::string& json) {
-  if (path.empty() || json.empty() || keys.empty())
+  if (path_to_list.empty() || json.empty() || keys.empty())
     return absl::nullopt;
 
   std::string converted_json(json);
@@ -160,7 +123,7 @@ absl::optional<std::string> ConvertMultiUint64InObjectArrayToString(
     if (key.empty())
       return absl::nullopt;
     converted_json = std::string(json::convert_uint64_in_object_array_to_string(
-        path, key, converted_json));
+        path_to_list, path_to_object, key, converted_json));
     if (converted_json.empty())
       return absl::nullopt;
   }

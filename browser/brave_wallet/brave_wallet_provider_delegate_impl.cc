@@ -3,19 +3,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/brave_wallet/brave_wallet_provider_delegate_impl.h"
+#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl.h"
 
 #include <string>
 #include <utility>
 #include <vector>
 
 #include "base/functional/bind.h"
-#include "brave/browser/brave_wallet/brave_wallet_provider_delegate_impl_helper.h"
-#include "brave/browser/brave_wallet/brave_wallet_tab_helper.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_constants.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_utils.h"
-#include "brave/components/brave_wallet/browser/permission_utils.h"
-#include "brave/components/permissions/contexts/brave_wallet_permission_context.h"
+#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl_helper.h"
+#include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/browser/permission_utils.h"
+#include "mises/components/permissions/contexts/brave_wallet_permission_context.h"
 #include "components/content_settings/core/common/content_settings.h"
 #include "content/public/browser/render_frame_host.h"
 #include "content/public/browser/visibility.h"
@@ -70,9 +70,9 @@ absl::optional<permissions::RequestType> CoinTypeToPermissionRequestType(
     mojom::CoinType coin_type) {
   switch (coin_type) {
     case mojom::CoinType::ETH:
-      return permissions::RequestType::kBraveEthereum;
+      return permissions::RequestType::kMisesEthereum;
     case mojom::CoinType::SOL:
-      return permissions::RequestType::kBraveSolana;
+      return permissions::RequestType::kMisesSolana;
     default:
       return absl::nullopt;
   }

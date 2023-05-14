@@ -57,9 +57,9 @@ void TxManager::GetTransactionInfo(const std::string& tx_meta_id,
   std::move(callback).Run(meta->ToTransactionInfo());
 }
 
-void TxManager::GetAllTransactionInfo(const std::string& from,
+void TxManager::GetAllTransactionInfo(const absl::optional<std::string>& from,
                                       GetAllTransactionInfoCallback callback) {
-  if (from.empty()) {
+  if (from.has_value() && from->empty()) {
     std::move(callback).Run(std::vector<mojom::TransactionInfoPtr>());
     return;
   }
@@ -91,9 +91,12 @@ void TxManager::RejectTransaction(const std::string& tx_meta_id,
 }
 
 void TxManager::CheckIfBlockTrackerShouldRun() {
-  bool locked = keyring_service_->IsLocked();
+  // TODO(darkdh): each keyring should have their own block tracker check.
+  bool keyring_created =
+      keyring_service_->IsKeyringCreated(mojom::kDefaultKeyringId);
+  bool locked = keyring_service_->IsLockedSync();
   bool running = block_tracker_->IsRunning();
-  if (!locked && !running) {
+  if (keyring_created && !locked && !running) {
     block_tracker_->Start(base::Seconds(kBlockTrackerDefaultTimeInSeconds));
   } else if ((locked || known_no_pending_tx_) && running) {
     block_tracker_->Stop();

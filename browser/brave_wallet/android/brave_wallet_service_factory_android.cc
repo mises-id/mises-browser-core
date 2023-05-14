@@ -4,9 +4,9 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "base/android/jni_android.h"
-#include "brave/browser/brave_wallet/brave_wallet_service_factory.h"
-#include "brave/build/android/jni_headers/BraveWalletServiceFactory_jni.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_service.h"
+#include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
+#include "mises/build/android/jni_headers/BraveWalletServiceFactory_jni.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_service.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/profiles/profile_android.h"
 #include "mojo/public/cpp/bindings/pending_receiver.h"

@@ -45,19 +45,11 @@ namespace {
 void UpdateCustomNetworks(PrefService* prefs,
                           const std::vector<base::Value::Dict>& values,
                           brave_wallet::mojom::CoinType coin) {
-  DictionaryPrefUpdate update(prefs, kBraveWalletCustomNetworks);
-  base::Value* dict = update.Get();
-  ASSERT_TRUE(dict);
-  base::Value* list = dict->FindKey(GetPrefKeyForCoinType(coin));
-  if (!list) {
-    list = dict->SetKey(GetPrefKeyForCoinType(coin),
-                        base::Value(base::Value::Type::LIST));
-  }
-  ASSERT_TRUE(list);
-  auto& list_value = list->GetList();
-  list_value.clear();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletCustomNetworks);
+  base::Value::List* list = update->EnsureList(GetPrefKeyForCoinType(coin));
+  list->clear();
   for (auto& it : values) {
-    list_value.Append(it.Clone());
+    list->Append(it.Clone());
   }
 }
 
@@ -475,187 +467,6 @@ TEST(BraveWalletUtilsUnitTest, DecodeString) {
       &output));
 }
 
-TEST(BraveWalletUtilsUnitTest, DecodeStringArray) {
-  std::vector<std::string> output;
-  EXPECT_TRUE(DecodeStringArray(
-      // count of elements in input array
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // offsets to array elements
-      "0000000000000000000000000000000000000000000000000000000000000060"
-      "00000000000000000000000000000000000000000000000000000000000000a0"
-      "00000000000000000000000000000000000000000000000000000000000000e0"
-      // count for "one"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "one"
-      "6f6e650000000000000000000000000000000000000000000000000000000000"
-      // count for "two"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "two"
-      "74776f0000000000000000000000000000000000000000000000000000000000"
-      // count for "three"
-      "0000000000000000000000000000000000000000000000000000000000000005"
-      // encoding for "three"
-      "7468726565000000000000000000000000000000000000000000000000000000",
-      &output));
-  std::vector<std::string> expected_output({"one", "two", "three"});
-  EXPECT_EQ(output, expected_output);
-
-  output.clear();
-  EXPECT_TRUE(DecodeStringArray(
-      "0000000000000000000000000000000000000000000000000000000000000005"
-      // offsets to array elements
-      "00000000000000000000000000000000000000000000000000000000000000a0"
-      "00000000000000000000000000000000000000000000000000000000000000e0"
-      "0000000000000000000000000000000000000000000000000000000000000140"
-      "0000000000000000000000000000000000000000000000000000000000000180"
-      "00000000000000000000000000000000000000000000000000000000000001e0"
-      // count for "one"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "one"
-      "6f6e650000000000000000000000000000000000000000000000000000000000"
-      // count for "one two three four five six seven eight nine"
-      "000000000000000000000000000000000000000000000000000000000000002c"
-      // encoding for "one two three four five six seven eight nine"
-      "6f6e652074776f20746872656520666f75722066697665207369782073657665"
-      "6e206569676874206e696e650000000000000000000000000000000000000000"
-      // count for "two"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "two"
-      "74776f0000000000000000000000000000000000000000000000000000000000"
-      // count for "one two three four five six seven eight nine ten"
-      "0000000000000000000000000000000000000000000000000000000000000030"
-      // encoding for "one two three four five six seven eight nine ten"
-      "6f6e652074776f20746872656520666f75722066697665207369782073657665"
-      "6e206569676874206e696e652074656e00000000000000000000000000000000"
-      // count for "three"
-      "0000000000000000000000000000000000000000000000000000000000000005"
-      // encoding for "three"
-      "7468726565000000000000000000000000000000000000000000000000000000",
-      &output));
-  expected_output = {"one", "one two three four five six seven eight nine",
-                     "two", "one two three four five six seven eight nine ten",
-                     "three"};
-  EXPECT_EQ(output, expected_output);
-
-  output.clear();
-  EXPECT_TRUE(DecodeStringArray(
-      "0000000000000000000000000000000000000000000000000000000000000006"
-      // offsets to array elements
-      "00000000000000000000000000000000000000000000000000000000000000c0"
-      "00000000000000000000000000000000000000000000000000000000000000e0"
-      "0000000000000000000000000000000000000000000000000000000000000120"
-      "0000000000000000000000000000000000000000000000000000000000000140"
-      "0000000000000000000000000000000000000000000000000000000000000180"
-      "00000000000000000000000000000000000000000000000000000000000001a0"
-      // count for ""
-      "0000000000000000000000000000000000000000000000000000000000000000"
-      // count for "one"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "one"
-      "6f6e650000000000000000000000000000000000000000000000000000000000"
-      // count for ""
-      "0000000000000000000000000000000000000000000000000000000000000000"
-      // count for "two"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "two"
-      "74776f0000000000000000000000000000000000000000000000000000000000"
-      // count for ""
-      "0000000000000000000000000000000000000000000000000000000000000000"
-      // count for "three"
-      "0000000000000000000000000000000000000000000000000000000000000005"
-      // encoding for "three"
-      "7468726565000000000000000000000000000000000000000000000000000000",
-      &output));
-  expected_output = {"", "one", "", "two", "", "three"};
-  EXPECT_EQ(output, expected_output);
-
-  // Test invalid input.
-  output.clear();
-  EXPECT_FALSE(DecodeStringArray("", &output));
-  EXPECT_FALSE(DecodeStringArray("1", &output));
-  EXPECT_FALSE(DecodeStringArray("z", &output));
-  EXPECT_FALSE(DecodeStringArray("\xF0\x8F\xBF\xBE", &output));
-  EXPECT_FALSE(DecodeStringArray(
-      // count of array elements
-      "0000000000000000000000000000000000000000000000000000000000000001"
-      // invalid data offset to string element.
-      "0000000000000000000000000000000000000000000000000000000000001",
-      &output));
-  EXPECT_FALSE(DecodeStringArray(
-      // count of array elements
-      "0000000000000000000000000000000000000000000000000000000000000002"
-      // out-of-bound offset to array element
-      "00000000000000000000000000000000000000000000000000000000000001e0",
-      &output));
-
-  EXPECT_FALSE(DecodeStringArray(
-      // Mismatched count of elements in input array
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // offsets to array elements
-      "0000000000000000000000000000000000000000000000000000000000000060"
-      "00000000000000000000000000000000000000000000000000000000000000a0"
-      // count for "one"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "one"
-      "6f6e650000000000000000000000000000000000000000000000000000000000"
-      // count for "two"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "two"
-      "74776f0000000000000000000000000000000000000000000000000000000000",
-      &output));
-
-  EXPECT_FALSE(DecodeStringArray(
-      // count of elements in input array
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // offsets to array elements, last offset point to non-existed data
-      "0000000000000000000000000000000000000000000000000000000000000060"
-      "00000000000000000000000000000000000000000000000000000000000000a0"
-      "00000000000000000000000000000000000000000000000000000000000000e0"
-      // count for "one"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "one"
-      "6f6e650000000000000000000000000000000000000000000000000000000000"
-      // count for "two"
-      "0000000000000000000000000000000000000000000000000000000000000003"
-      // encoding for "two"
-      "74776f0000000000000000000000000000000000000000000000000000000000",
-      &output));
-
-  // Missing data offset and data.
-  EXPECT_FALSE(DecodeStringArray(
-      // count of elements in input array
-      "0000000000000000000000000000000000000000000000000000000000000001",
-      &output));
-
-  // Missing data.
-  EXPECT_FALSE(DecodeStringArray(
-      // count of elements in input array
-      "0000000000000000000000000000000000000000000000000000000000000001"
-      // offset for "one", data missing
-      "0000000000000000000000000000000000000000000000000000000000000020",
-      &output));
-
-  // Missing count.
-  EXPECT_FALSE(DecodeStringArray(
-      // count of elements in input array
-      "0000000000000000000000000000000000000000000000000000000000000001"
-      // offset for "one"
-      "0000000000000000000000000000000000000000000000000000000000000020"
-      // encoding for "one"
-      "6f6e650000000000000000000000000000000000000000000000000000000000",
-      &output));
-
-  // Missing encoding of string.
-  EXPECT_FALSE(DecodeStringArray(
-      // count of elements in input array
-      "0000000000000000000000000000000000000000000000000000000000000001"
-      // offset for "one"
-      "0000000000000000000000000000000000000000000000000000000000000020"
-      // count for "one"
-      "0000000000000000000000000000000000000000000000000000000000000003",
-      &output));
-}
-
 TEST(BraveWalletUtilsUnitTest, TransactionReceiptAndValue) {
   TransactionReceipt tx_receipt;
   tx_receipt.transaction_hash =
@@ -711,7 +522,7 @@ TEST(BraveWalletUtilsUnitTest, KnownChainExists) {
   UpdateCustomNetworks(&prefs, std::move(values), mojom::CoinType::ETH);
 
   auto known_chains = GetAllKnownChains(&prefs, mojom::CoinType::ETH);
-  EXPECT_EQ(known_chains.size(), 11u);
+  EXPECT_EQ(known_chains.size(), 12u);
   for (auto& known_chain : known_chains) {
     EXPECT_TRUE(KnownChainExists(known_chain->chain_id, mojom::CoinType::ETH));
     // Test that uppercase chain ID works too
@@ -799,8 +610,8 @@ TEST(BraveWalletUtilsUnitTest, GetAllChainsTest) {
   // Custom Polygon chain takes place of known one.
   // Custom unknown chain becomes last.
   auto expected_chains = std::move(known_chains);
-  EXPECT_EQ(expected_chains[1]->chain_id, mojom::kPolygonMainnetChainId);
-  expected_chains[1] = chain1.Clone();
+  EXPECT_EQ(expected_chains[2]->chain_id, mojom::kPolygonMainnetChainId);
+  expected_chains[2] = chain1.Clone();
   expected_chains.push_back(chain2.Clone());
 
   auto all_chains = GetAllChains(&prefs, mojom::CoinType::ETH);
@@ -864,7 +675,7 @@ TEST(BraveWalletUtilsUnitTest, GetNetworkURLTest) {
   EXPECT_EQ(chain2.rpc_endpoints.front(),
             GetNetworkURL(&prefs, chain2.chain_id, mojom::CoinType::ETH));
 
-  EXPECT_EQ(GURL("https://mainnet-beta-solana.mises.site/rpc"),
+  EXPECT_EQ(GURL("https://mainnet-beta-solana.brave.com/rpc"),
             GetNetworkURL(&prefs, mojom::kSolanaMainnet, mojom::CoinType::SOL));
   auto custom_sol_network =
       GetKnownChain(&prefs, mojom::kSolanaMainnet, mojom::CoinType::SOL);
@@ -900,13 +711,14 @@ TEST(BraveWalletUtilsUnitTest, GetNetworkURLForKnownChains) {
       brave_wallet::mojom::kPolygonMainnetChainId,
       brave_wallet::mojom::kOptimismMainnetChainId,
       brave_wallet::mojom::kAuroraMainnetChainId,
+      brave_wallet::mojom::kAvalancheMainnetChainId,
       brave_wallet::mojom::kGoerliChainId,
       brave_wallet::mojom::kSepoliaChainId};
 
   for (const auto& chain : GetAllKnownChains(&prefs, mojom::CoinType::ETH)) {
     auto network_url =
         GetNetworkURL(&prefs, chain->chain_id, mojom::CoinType::ETH);
-    EXPECT_EQ(base::EndsWith(network_url.host(), ".mises.site"),
+    EXPECT_EQ(base::EndsWith(network_url.host(), ".brave.com"),
               infura_chains.contains(chain->chain_id));
   }
 }
@@ -935,7 +747,6 @@ TEST(BraveWalletUtilsUnitTest, GetKnownChain) {
   const base::flat_set<std::string> non_eip1559_networks = {
       brave_wallet::mojom::kLocalhostChainId,
       brave_wallet::mojom::kBinanceSmartChainMainnetChainId,
-      brave_wallet::mojom::kCeloMainnetChainId,
       brave_wallet::mojom::kOptimismMainnetChainId,
       brave_wallet::mojom::kAuroraMainnetChainId};
 
@@ -1009,7 +820,7 @@ TEST(BraveWalletUtilsUnitTest, GetChain) {
   mojom::NetworkInfo sol_mainnet(
       brave_wallet::mojom::kSolanaMainnet, "Solana Mainnet Beta",
       {"https://explorer.solana.com/"}, {}, 0,
-      {GURL("https://mainnet-beta-solana.mises.site/rpc")}, "SOL", "Solana", 9,
+      {GURL("https://mainnet-beta-solana.brave.com/rpc")}, "SOL", "Solana", 9,
       brave_wallet::mojom::CoinType::SOL, false);
   EXPECT_FALSE(GetChain(&prefs, "0x123", mojom::CoinType::SOL));
   EXPECT_EQ(GetChain(&prefs, "0x65", mojom::CoinType::SOL),
@@ -1027,11 +838,12 @@ TEST(BraveWalletUtilsUnitTest, GetChain) {
 
 TEST(BraveWalletUtilsUnitTest, GetAllKnownEthNetworkIds) {
   const std::vector<std::string> expected_network_ids(
-      {"mainnet", mojom::kPolygonMainnetChainId,
-       mojom::kBinanceSmartChainMainnetChainId, mojom::kCeloMainnetChainId,
-       mojom::kAvalancheMainnetChainId, mojom::kFantomMainnetChainId,
-       mojom::kOptimismMainnetChainId, mojom::kAuroraMainnetChainId, "goerli",
-       "sepolia", "http://localhost:7545/"});
+      {"mainnet", mojom::kAuroraMainnetChainId, mojom::kPolygonMainnetChainId,
+       mojom::kBinanceSmartChainMainnetChainId, mojom::kAvalancheMainnetChainId,
+       mojom::kFantomMainnetChainId, mojom::kOptimismMainnetChainId, "goerli",
+       "sepolia", "http://localhost:7545/",
+       mojom::kFilecoinEthereumMainnetChainId,
+       mojom::kFilecoinEthereumTestnetChainId});
   ASSERT_EQ(GetAllKnownNetworksForTesting().size(),
             expected_network_ids.size());
   EXPECT_EQ(GetAllKnownEthNetworkIds(), expected_network_ids);
@@ -1128,6 +940,7 @@ TEST(BraveWalletUtilsUnitTest, AddCustomNetwork) {
   EXPECT_EQ(*asset_list1[0].FindStringKey("symbol"), "symbol");
   EXPECT_EQ(*asset_list1[0].FindBoolKey("is_erc20"), false);
   EXPECT_EQ(*asset_list1[0].FindBoolKey("is_erc721"), false);
+  EXPECT_EQ(*asset_list1[0].FindBoolKey("is_erc1155"), false);
   EXPECT_EQ(*asset_list1[0].FindIntKey("decimals"), 11);
   EXPECT_EQ(*asset_list1[0].FindStringKey("logo"), "https://url1.com");
   EXPECT_EQ(*asset_list1[0].FindBoolKey("visible"), true);
@@ -1142,6 +955,7 @@ TEST(BraveWalletUtilsUnitTest, AddCustomNetwork) {
   EXPECT_EQ(*asset_list2[0].FindStringKey("symbol"), "symbol2");
   EXPECT_EQ(*asset_list2[0].FindBoolKey("is_erc20"), false);
   EXPECT_EQ(*asset_list2[0].FindBoolKey("is_erc721"), false);
+  EXPECT_EQ(*asset_list2[0].FindBoolKey("is_erc1155"), false);
   EXPECT_EQ(*asset_list2[0].FindIntKey("decimals"), 22);
   EXPECT_EQ(*asset_list2[0].FindStringKey("logo"), "");
   EXPECT_EQ(*asset_list2[0].FindBoolKey("visible"), true);
@@ -1182,7 +996,7 @@ TEST(BraveWalletUtilsUnitTest, CustomNetworkMatchesKnownNetwork) {
   EXPECT_EQ(
       GetNetworkURL(&prefs, mojom::kPolygonMainnetChainId, mojom::CoinType::ETH)
           .GetWithoutFilename(),
-      GURL("https://mainnet-polygon.mises.site/"));
+      GURL("https://mainnet-polygon.brave.com/"));
 
   mojom::NetworkInfo chain1 =
       GetTestNetworkInfo1(mojom::kPolygonMainnetChainId);
@@ -1204,7 +1018,7 @@ TEST(BraveWalletUtilsUnitTest, CustomNetworkMatchesKnownNetwork) {
   EXPECT_EQ(
       GetNetworkURL(&prefs, mojom::kPolygonMainnetChainId, mojom::CoinType::ETH)
           .GetWithoutFilename(),
-      GURL("https://mainnet-polygon.mises.site/"));
+      GURL("https://mainnet-polygon.brave.com/"));
 }
 
 TEST(BraveWalletUtilsUnitTest, RemoveCustomNetwork) {
@@ -1244,34 +1058,48 @@ TEST(BraveWalletUtilsUnitTest, RemoveCustomNetwork) {
 }
 
 TEST(BraveWalletUtilsUnitTest, HiddenNetworks) {
+  sync_preferences::TestingPrefServiceSyncable prefs;
+  RegisterProfilePrefs(prefs.registry());
+
+  EXPECT_THAT(
+      GetHiddenNetworks(&prefs, mojom::CoinType::ETH),
+      ElementsAreArray<std::string>(
+          {mojom::kGoerliChainId, mojom::kSepoliaChainId,
+           mojom::kLocalhostChainId, mojom::kFilecoinEthereumTestnetChainId}));
+  EXPECT_THAT(GetHiddenNetworks(&prefs, mojom::CoinType::FIL),
+              ElementsAreArray<std::string>(
+                  {mojom::kFilecoinTestnet, mojom::kLocalhostChainId}));
+  EXPECT_THAT(GetHiddenNetworks(&prefs, mojom::CoinType::SOL),
+              ElementsAreArray<std::string>({mojom::kSolanaDevnet,
+                                             mojom::kSolanaTestnet,
+                                             mojom::kLocalhostChainId}));
+
   for (auto coin :
        {mojom::CoinType::ETH, mojom::CoinType::FIL, mojom::CoinType::SOL}) {
-    TestingPrefServiceSimple prefs;
-    prefs.registry()->RegisterDictionaryPref(kBraveWalletHiddenNetworks);
+    for (auto& default_hidden : GetHiddenNetworks(&prefs, coin)) {
+      RemoveHiddenNetwork(&prefs, coin, default_hidden);
+    }
 
-    EXPECT_THAT(GetAllHiddenNetworks(&prefs, coin),
+    EXPECT_THAT(GetHiddenNetworks(&prefs, coin),
                 ElementsAreArray<std::string>({}));
 
     AddHiddenNetwork(&prefs, coin, "0x123");
-    EXPECT_THAT(GetAllHiddenNetworks(&prefs, coin),
-                ElementsAreArray({"0x123"}));
+    EXPECT_THAT(GetHiddenNetworks(&prefs, coin), ElementsAreArray({"0x123"}));
     AddHiddenNetwork(&prefs, coin, "0x123");
-    EXPECT_THAT(GetAllHiddenNetworks(&prefs, coin),
-                ElementsAreArray({"0x123"}));
+    EXPECT_THAT(GetHiddenNetworks(&prefs, coin), ElementsAreArray({"0x123"}));
 
     RemoveHiddenNetwork(&prefs, coin, "0x555");
-    EXPECT_THAT(GetAllHiddenNetworks(&prefs, coin),
-                ElementsAreArray({"0x123"}));
+    EXPECT_THAT(GetHiddenNetworks(&prefs, coin), ElementsAreArray({"0x123"}));
 
     AddHiddenNetwork(&prefs, coin, "0x7");
-    EXPECT_THAT(GetAllHiddenNetworks(&prefs, coin),
+    EXPECT_THAT(GetHiddenNetworks(&prefs, coin),
                 ElementsAreArray({"0x123", "0x7"}));
 
     RemoveHiddenNetwork(&prefs, coin, "0x123");
-    EXPECT_THAT(GetAllHiddenNetworks(&prefs, coin), ElementsAreArray({"0x7"}));
+    EXPECT_THAT(GetHiddenNetworks(&prefs, coin), ElementsAreArray({"0x7"}));
 
     RemoveHiddenNetwork(&prefs, coin, "0x7");
-    EXPECT_THAT(GetAllHiddenNetworks(&prefs, coin),
+    EXPECT_THAT(GetHiddenNetworks(&prefs, coin),
                 ElementsAreArray<std::string>({}));
   }
 }
@@ -1303,12 +1131,12 @@ TEST(BraveWalletUtilsUnitTest, GetCurrentChainId) {
 TEST(BraveWalletUtilsUnitTest, eTLDPlusOne) {
   EXPECT_EQ("", eTLDPlusOne(url::Origin()));
   EXPECT_EQ("brave.com",
-            eTLDPlusOne(url::Origin::Create(GURL("https://blog.mises.site"))));
+            eTLDPlusOne(url::Origin::Create(GURL("https://blog.brave.com"))));
   EXPECT_EQ("brave.com",
-            eTLDPlusOne(url::Origin::Create(GURL("https://...mises.site"))));
+            eTLDPlusOne(url::Origin::Create(GURL("https://...brave.com"))));
   EXPECT_EQ(
       "brave.com",
-      eTLDPlusOne(url::Origin::Create(GURL("https://a.b.c.d.mises.site/1"))));
+      eTLDPlusOne(url::Origin::Create(GURL("https://a.b.c.d.brave.com/1"))));
   EXPECT_EQ("brave.github.io", eTLDPlusOne(url::Origin::Create(GURL(
                                    "https://a.b.brave.github.io/example"))));
   EXPECT_EQ("", eTLDPlusOne(url::Origin::Create(GURL("https://github.io"))));
@@ -1316,10 +1144,10 @@ TEST(BraveWalletUtilsUnitTest, eTLDPlusOne) {
 
 TEST(BraveWalletUtilsUnitTest, MakeOriginInfo) {
   auto origin_info =
-      MakeOriginInfo(url::Origin::Create(GURL("https://blog.mises.site:443")));
-  EXPECT_EQ(url::Origin::Create(GURL("https://blog.mises.site")),
+      MakeOriginInfo(url::Origin::Create(GURL("https://blog.brave.com:443")));
+  EXPECT_EQ(url::Origin::Create(GURL("https://blog.brave.com")),
             origin_info->origin);
-  EXPECT_EQ("https://blog.mises.site", origin_info->origin_spec);
+  EXPECT_EQ("https://blog.brave.com", origin_info->origin_spec);
   EXPECT_EQ("brave.com", origin_info->e_tld_plus_one);
 
   url::Origin empty_origin;
@@ -1345,6 +1173,76 @@ TEST(BraveWalletUtilsUnitTest, GetActiveEndpointUrl) {
   chain.active_rpc_endpoint_index = 0;
   chain.rpc_endpoints.clear();
   EXPECT_EQ(GURL(), GetActiveEndpointUrl(chain));
+}
+
+TEST(BraveWalletUtilsUnitTest, GetUnstoppableDomainsRpcUrl) {
+  EXPECT_EQ(AddInfuraProjectId(GURL("https://mainnet-infura.brave.com")),
+            GetUnstoppableDomainsRpcUrl(mojom::kMainnetChainId));
+  EXPECT_EQ(AddInfuraProjectId(GURL("https://mainnet-polygon.brave.com")),
+            GetUnstoppableDomainsRpcUrl(mojom::kPolygonMainnetChainId));
+}
+
+TEST(BraveWalletUtilsUnitTest, GetEnsRpcUrl) {
+  EXPECT_EQ(AddInfuraProjectId(GURL("https://mainnet-infura.brave.com")),
+            GetEnsRpcUrl());
+}
+
+TEST(BraveWalletUtilsUnitTest, GetSnsRpcUrl) {
+  EXPECT_EQ(GURL("https://mainnet-beta-solana.brave.com/rpc"), GetSnsRpcUrl());
+}
+
+TEST(BraveWalletUtilsUnitTest, GetChainIdByNetworkId) {
+  TestingPrefServiceSimple prefs;
+  prefs.registry()->RegisterDictionaryPref(kBraveWalletCustomNetworks);
+  prefs.registry()->RegisterBooleanPref(kSupportEip1559OnLocalhostChain, false);
+
+  for (auto coin :
+       {mojom::CoinType::ETH, mojom::CoinType::FIL, mojom::CoinType::SOL}) {
+    ASSERT_TRUE(GetAllCustomChains(&prefs, coin).empty());
+    std::vector<base::Value::Dict> values;
+    mojom::NetworkInfo chain1 = GetTestNetworkInfo1();
+    chain1.coin = coin;
+    values.push_back(NetworkInfoToValue(chain1));
+    mojom::NetworkInfo chain2 = GetTestNetworkInfo2();
+    chain2.coin = coin;
+    if (coin != mojom::CoinType::ETH) {
+      chain2.is_eip1559 = false;
+    }
+    values.push_back(NetworkInfoToValue(chain2));
+    UpdateCustomNetworks(&prefs, std::move(values), coin);
+  }
+
+  auto getChainIdByNetworkIdCheck = [&](const mojom::CoinType& coin_type) {
+    for (const auto& chain : GetAllChains(&prefs, coin_type)) {
+      std::string nid;
+      if (chain->coin == mojom::CoinType::ETH) {
+        nid = GetKnownEthNetworkId(chain->chain_id);
+      }
+      if (chain->coin == mojom::CoinType::SOL) {
+        nid = GetKnownSolNetworkId(chain->chain_id);
+      }
+      if (chain->coin == mojom::CoinType::FIL) {
+        nid = GetKnownFilNetworkId(chain->chain_id);
+      }
+      if (nid.empty()) {
+        nid = chain->chain_id;
+        // GetNetworkId supports only ETH for custom networks atm.
+        if (chain->coin != mojom::CoinType::ETH) {
+          ASSERT_FALSE(GetChainIdByNetworkId(&prefs, coin_type, nid));
+          continue;
+        }
+      }
+      auto chainId = GetChainIdByNetworkId(&prefs, coin_type, nid);
+      ASSERT_TRUE(chainId.has_value());
+      EXPECT_EQ(chain->chain_id, chainId.value());
+    }
+    ASSERT_FALSE(GetChainIdByNetworkId(&prefs, coin_type, ""));
+  };
+
+  for (auto coin :
+       {mojom::CoinType::ETH, mojom::CoinType::FIL, mojom::CoinType::SOL}) {
+    getChainIdByNetworkIdCheck(coin);
+  }
 }
 
 }  // namespace brave_wallet

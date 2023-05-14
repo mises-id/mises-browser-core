@@ -3,18 +3,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/brave_wallet/notifications/wallet_notification_service.h"
+#include "mises/browser/brave_wallet/notifications/wallet_notification_service.h"
 
 #include <memory>
 #include <utility>
 #include <vector>
 
-#include "brave/components/brave_wallet/browser/eth_transaction.h"
-#include "brave/components/brave_wallet/browser/eth_tx_meta.h"
-#include "brave/components/brave_wallet/browser/json_rpc_service.h"
-#include "brave/components/brave_wallet/browser/keyring_service.h"
-#include "brave/components/brave_wallet/browser/tx_service.h"
-#include "brave/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/brave_wallet/browser/eth_transaction.h"
+#include "mises/components/brave_wallet/browser/eth_tx_meta.h"
+#include "mises/components/brave_wallet/browser/json_rpc_service.h"
+#include "mises/components/brave_wallet/browser/keyring_service.h"
+#include "mises/components/brave_wallet/browser/tx_service.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "chrome/browser/notifications/notification_display_service_tester.h"
 #include "chrome/test/base/testing_profile.h"
 #include "components/prefs/testing_pref_service.h"
