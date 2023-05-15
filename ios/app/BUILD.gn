@@ -14,12 +14,12 @@ source_set("app") {
   ]
 
   sources = [
-    "brave_core_main.h",
-    "brave_core_main.mm",
-    "brave_core_switches.h",
-    "brave_core_switches.mm",
-    "brave_main_delegate.h",
-    "brave_main_delegate.mm",
+    "mises_core_main.h",
+    "mises_core_main.mm",
+    "mises_core_switches.h",
+    "mises_core_switches.mm",
+    "mises_main_delegate.h",
+    "mises_main_delegate.mm",
   ]
 
   deps = [

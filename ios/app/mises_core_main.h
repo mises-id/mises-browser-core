@@ -3,24 +3,24 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_IOS_APP_BRAVE_CORE_MAIN_H_
-#define BRAVE_IOS_APP_BRAVE_CORE_MAIN_H_
+#ifndef BRAVE_IOS_APP_MISES_CORE_MAIN_H_
+#define BRAVE_IOS_APP_MISES_CORE_MAIN_H_
 
 #import <Foundation/Foundation.h>
 
-#import "brave_core_switches.h"  // NOLINT
+#import "mises_core_switches.h"  // NOLINT
 
 @class BraveBookmarksAPI;
 @class BraveHistoryAPI;
 @class BravePasswordAPI;
 @class BraveOpenTabsAPI;
-@class BraveP3AUtils;
+//@class BraveP3AUtils;
 @class BraveSendTabAPI;
-@class BraveSyncAPI;
-@class BraveSyncProfileServiceIOS;
-@class BraveStats;
+//@class BraveSyncAPI;
+//@class BraveSyncProfileServiceIOS;
+//@class BraveStats;
 @class BraveWalletAPI;
-@class AdblockService;
+//@class AdblockService;
 @class BraveTabGeneratorAPI;
 @class WebImageDownloader;
 @protocol IpfsAPI;
@@ -53,9 +53,9 @@ OBJC_EXPORT
 
 @property(nonatomic, readonly) BraveSendTabAPI* sendTabAPI;
 
-@property(nonatomic, readonly) BraveSyncAPI* syncAPI;
+//@property(nonatomic, readonly) BraveSyncAPI* syncAPI;
 
-@property(nonatomic, readonly) BraveSyncProfileServiceIOS* syncProfileService;
+//@property(nonatomic, readonly) BraveSyncProfileServiceIOS* syncProfileService;
 
 @property(nonatomic, readonly) BraveTabGeneratorAPI* tabGeneratorAPI;
 
@@ -80,16 +80,16 @@ OBJC_EXPORT
 
 @property(readonly) BraveWalletAPI* braveWalletAPI;
 
-@property(readonly) BraveStats* braveStats;
+//@property(readonly) BraveStats* braveStats;
 
-@property(readonly) AdblockService* adblockService;
+//@property(readonly) AdblockService* adblockService;
 
 @property(readonly) id<IpfsAPI> ipfsAPI;
 
 - (void)initializeP3AServiceForChannel:(NSString*)channel
                          weekOfInstall:(NSString*)weekOfInstall;
 
-@property(readonly) BraveP3AUtils* p3aUtils;
+//@property(readonly) BraveP3AUtils* p3aUtils;
 
 /// Sets up bundle path overrides and initializes ICU from the BraveCore bundle
 /// without setting up a BraveCoreMain instance.
@@ -101,4 +101,4 @@ OBJC_EXPORT
 
 NS_ASSUME_NONNULL_END
 
-#endif  // BRAVE_IOS_APP_BRAVE_CORE_MAIN_H_
+#endif  // BRAVE_IOS_APP_MISES_CORE_MAIN_H_

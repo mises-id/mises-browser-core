@@ -7,8 +7,8 @@
 
 const char kExtensionUpdaterDomain[] = "extensionupdater.mises.site";
 
-const char kBraveProxyPattern[] = "https://*.mises.site/*";
-const char kBraveSoftwareProxyPattern[] = "https://*.mises.site/*";
+const char kMisesProxyPattern[] = "https://*.mises.site/*";
+const char kMisesSoftwareProxyPattern[] = "https://*.mises.site/*";
 
 const char kBraveUsageStandardPath[] = "/1/usage/brave-core";
 const char kBraveUsageThresholdPath[] = "/1/usage/brave-core-threshold";
@@ -57,8 +57,8 @@ const char kWidevineGoogleDlPrefix[] =
     "*://dl.google.com/*oimompecagnajdejgnnjijobebaeigek*";
 
 const char kUserAgentHeader[] = "User-Agent";
-const char kBravePartnerHeader[] = "X-Brave-Partner";
-const char kBraveServicesKeyHeader[] = "BraveServiceKey";
+const char kMisesPartnerHeader[] = "X-Mises-Partner";
+const char kMisesServicesKeyHeader[] = "MisesServiceKey";
 
 const char kBittorrentMimeType[] = "application/x-bittorrent";
 const char kOctetStreamMimeType[] = "application/octet-stream";

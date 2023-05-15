@@ -13,7 +13,7 @@ _current_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(
     1,
     os.path.join(_current_dir,
-                 *([os.pardir] * 4 + ['mojo/public/tools/mojom'])))
+                 *([os.pardir] * 3 + ['src/mojo/public/tools/mojom'])))
 
 # pylint: disable=import-error,wrong-import-position
 from mojom.generate import template_expander

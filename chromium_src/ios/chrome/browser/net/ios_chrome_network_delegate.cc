@@ -10,14 +10,14 @@
 #undef IOSChromeNetworkDelegate
 
 #include "mises/components/constants/mises_services_key.h"
-#include "mises/components/constants/brave_services_key_helper.h"
+#include "mises/components/constants/mises_services_key_helper.h"
 #include "mises/components/constants/network_constants.h"
 
 namespace {
 
-void AddBraveServicesKeyHeader(net::URLRequest* request) {
-  if (brave::ShouldAddBraveServicesKeyHeader(request->url())) {
-    request->SetExtraRequestHeaderByName(kBraveServicesKeyHeader,
+void AddMisesServicesKeyHeader(net::URLRequest* request) {
+  if (mises::ShouldAddMisesServicesKeyHeader(request->url())) {
+    request->SetExtraRequestHeaderByName(kMisesServicesKeyHeader,
                                          BUILDFLAG(MISES_SERVICES_KEY),
                                          true /* overrwrite */);
   }
@@ -33,6 +33,6 @@ int IOSChromeNetworkDelegate::OnBeforeURLRequest(
     GURL* new_url) {
   const auto result = IOSChromeNetworkDelegate_ChromiumImpl::OnBeforeURLRequest(
       request, std::move(callback), new_url);
-  ::AddBraveServicesKeyHeader(request);
+  ::AddMisesServicesKeyHeader(request);
   return result;
 }

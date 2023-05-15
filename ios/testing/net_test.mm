@@ -74,8 +74,8 @@ static const char* brave_test_cert = R"(
 
 - (void)testAcceptableCertificates {
   std::size_t acceptable_certs_count =
-      sizeof(net::kBraveAcceptableCerts) /
-          sizeof(net::kBraveAcceptableCerts[0]) -
+      sizeof(net::kMisesAcceptableCerts) /
+          sizeof(net::kMisesAcceptableCerts[0]) -
       1;
 
   NSArray<NSData*>* certs = [BraveCertificateUtility acceptableSPKIHashes];
@@ -83,7 +83,7 @@ static const char* brave_test_cert = R"(
   XCTAssertTrue([certs count] > 3);
   XCTAssertTrue([certs count] == acceptable_certs_count);
 
-  std::string test_cert = std::string(net::kBraveAcceptableCerts[0]);
+  std::string test_cert = std::string(net::kMisesAcceptableCerts[0]);
   if (test_cert.size() > 0) {
     NSData* data = [NSData dataWithBytes:&test_cert[0] length:test_cert.size()];
     XCTAssertNotNil(data);

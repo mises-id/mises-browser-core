@@ -16,7 +16,7 @@
 #include "mises/components/brave_wallet/renderer/resource_helper.h"
 #include "mises/components/brave_wallet/renderer/v8_helper.h"
 #include "mises/components/brave_wallet/resources/grit/brave_wallet_script_generated.h"
-#include "components/grit/brave_components_resources.h"
+#include "components/grit/mises_components_resources.h"
 #include "components/grit/mises_components_strings.h"
 #include "content/public/common/isolated_world_ids.h"
 #include "content/public/renderer/v8_value_converter.h"

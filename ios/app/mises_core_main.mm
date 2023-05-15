@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#import "mises/ios/app/brave_core_main.h"
+#import "mises/ios/app/mises_core_main.h"
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -20,7 +20,7 @@
 #include "base/strings/sys_string_conversions.h"
 #include "mises/components/mises_component_updater/browser/mises_on_demand_updater.h"
 #include "mises/components/brave_wallet/browser/wallet_data_files_installer.h"
-#include "mises/ios/app/brave_main_delegate.h"
+#include "mises/ios/app/mises_main_delegate.h"
 #include "mises/ios/browser/api/bookmarks/brave_bookmarks_api+private.h"
 #include "mises/ios/browser/api/brave_wallet/brave_wallet_api+private.h"
 #include "mises/ios/browser/api/history/brave_history_api+private.h"
@@ -63,6 +63,7 @@
 #include "ios/public/provider/chrome/browser/ui_utils/ui_utils_api.h"
 #include "ios/web/public/init/web_main.h"
 #include "services/network/public/cpp/shared_url_loader_factory.h"
+#define BUILDFLAG_INTERNAL_MISES_P3A_ENABLED() (0)
 
 // Chromium logging is global, therefore we cannot link this to the instance in
 // question
@@ -87,16 +88,18 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   BrowserList* _browserList;
   BrowserList* _otr_browserList;
   ChromeBrowserState* _mainBrowserState;
+#if BUILDFLAG(MISES_P3A_ENABLED)
   scoped_refptr<p3a::P3AService> _p3a_service;
   scoped_refptr<p3a::HistogramsBraveizer> _histogram_braveizer;
+#endif
 }
 @property(nonatomic) BraveBookmarksAPI* bookmarksAPI;
 @property(nonatomic) BraveHistoryAPI* historyAPI;
 @property(nonatomic) BravePasswordAPI* passwordAPI;
 @property(nonatomic) BraveOpenTabsAPI* openTabsAPI;
 @property(nonatomic) BraveSendTabAPI* sendTabAPI;
-@property(nonatomic) BraveSyncAPI* syncAPI;
-@property(nonatomic) BraveSyncProfileServiceIOS* syncProfileService;
+//@property(nonatomic) BraveSyncAPI* syncAPI;
+//@property(nonatomic) BraveSyncProfileServiceIOS* syncProfileService;
 @property(nonatomic) BraveTabGeneratorAPI* tabGeneratorAPI;
 @property(nonatomic) WebImageDownloader* webImageDownloader;
 @property(nonatomic) BraveWalletAPI* braveWalletAPI;
@@ -219,7 +222,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
         GetApplicationContext()->GetComponentUpdateService();
     DCHECK(cus);
 
-    _adblockService = [[AdblockService alloc] initWithComponentUpdater:cus];
+    //_adblockService = [[AdblockService alloc] initWithComponentUpdater:cus];
     [self registerComponentsForUpdate:cus];
   }
   return self;
@@ -231,8 +234,8 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   _openTabsAPI = nil;
   _passwordAPI = nil;
   _sendTabAPI = nil;
-  _syncProfileService = nil;
-  _syncAPI = nil;
+  //_syncProfileService = nil;
+  //_syncAPI = nil;
   _tabGeneratorAPI = nil;
   _webImageDownloader = nil;
 
@@ -302,7 +305,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   RegisterSafetyTipsComponent(cus);
   brave_wallet::RegisterWalletDataFilesComponent(cus);
 
-  [self.adblockService registerDefaultShieldsComponent];
+  //[self.adblockService registerDefaultShieldsComponent];
 }
 
 + (void)setLogHandler:(BraveCoreLogHandler)logHandler {
@@ -395,22 +398,22 @@ static bool CustomLogHandler(int severity,
   return _sendTabAPI;
 }
 
-- (BraveSyncAPI*)syncAPI {
-  if (!_syncAPI) {
-    _syncAPI = [[BraveSyncAPI alloc] initWithBrowserState:_mainBrowserState];
-  }
-  return _syncAPI;
-}
+// - (BraveSyncAPI*)syncAPI {
+//   if (!_syncAPI) {
+//     _syncAPI = [[BraveSyncAPI alloc] initWithBrowserState:_mainBrowserState];
+//   }
+//   return _syncAPI;
+// }
 
-- (BraveSyncProfileServiceIOS*)syncProfileService {
-  if (!_syncProfileService) {
-    syncer::SyncService* sync_service_ =
-        SyncServiceFactory::GetForBrowserState(_mainBrowserState);
-    _syncProfileService = [[BraveSyncProfileServiceIOS alloc]
-        initWithProfileSyncService:sync_service_];
-  }
-  return _syncProfileService;
-}
+// - (BraveSyncProfileServiceIOS*)syncProfileService {
+//   if (!_syncProfileService) {
+//     syncer::SyncService* sync_service_ =
+//         SyncServiceFactory::GetForBrowserState(_mainBrowserState);
+//     _syncProfileService = [[BraveSyncProfileServiceIOS alloc]
+//         initWithProfileSyncService:sync_service_];
+//   }
+//   return _syncProfileService;
+// }
 
 - (BraveTabGeneratorAPI*)tabGeneratorAPI {
   if (!_tabGeneratorAPI) {
@@ -436,9 +439,9 @@ static bool CustomLogHandler(int severity,
   return _braveWalletAPI;
 }
 
-- (BraveStats*)braveStats {
-  return [[BraveStats alloc] initWithBrowserState:_mainBrowserState];
-}
+// - (BraveStats*)braveStats {
+//   return [[BraveStats alloc] initWithBrowserState:_mainBrowserState];
+// }
 
 - (id<IpfsAPI>)ipfsAPI {
   if (!_ipfsAPI) {
@@ -449,7 +452,7 @@ static bool CustomLogHandler(int severity,
 
 - (void)initializeP3AServiceForChannel:(NSString*)channel
                          weekOfInstall:(NSString*)weekOfInstall {
-#if BUILDFLAG(BRAVE_P3A_ENABLED)
+#if BUILDFLAG(MISES_P3A_ENABLED)
   _p3a_service = base::MakeRefCounted<p3a::P3AService>(
       GetApplicationContext()->GetLocalState(),
       base::SysNSStringToUTF8(channel), base::SysNSStringToUTF8(weekOfInstall),
@@ -457,14 +460,14 @@ static bool CustomLogHandler(int severity,
   _p3a_service->InitCallbacks();
   _p3a_service->Init(GetApplicationContext()->GetSharedURLLoaderFactory());
   _histogram_braveizer = p3a::HistogramsBraveizer::Create();
-#endif  // BUILDFLAG(BRAVE_P3A_ENABLED)
+#endif  // BUILDFLAG(MISES_P3A_ENABLED)
 }
 
-- (BraveP3AUtils*)p3aUtils {
-  return [[BraveP3AUtils alloc]
-      initWithBrowserState:_mainBrowserState
-                localState:GetApplicationContext()->GetLocalState()];
-}
+// - (BraveP3AUtils*)p3aUtils {
+//   return [[BraveP3AUtils alloc]
+//       initWithBrowserState:_mainBrowserState
+//                 localState:GetApplicationContext()->GetLocalState()];
+// }
 
 + (bool)initializeICUForTesting {
   base::FilePath path;

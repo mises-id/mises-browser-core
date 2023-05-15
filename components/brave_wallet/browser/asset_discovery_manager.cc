@@ -89,14 +89,14 @@ absl::optional<std::string> SimpleHashChainIdToChainId(
   return simple_hash_chain_id_lookup->at(simple_hash_chain_id);
 }
 
-base::flat_map<std::string, std::string> MakeBraveServicesKeyHeader() {
+base::flat_map<std::string, std::string> MakeMisesServicesKeyHeader() {
   base::flat_map<std::string, std::string> request_headers;
   std::unique_ptr<base::Environment> env(base::Environment::Create());
-  std::string brave_key(BUILDFLAG(MISES_SERVICES_KEY));
+  std::string mises_key(BUILDFLAG(MISES_SERVICES_KEY));
   if (env->HasVar("MISES_SERVICES_KEY")) {
-    env->GetVar("MISES_SERVICES_KEY", &brave_key);
+    env->GetVar("MISES_SERVICES_KEY", &mises_key);
   }
-  request_headers["x-brave-key"] = std::move(brave_key);
+  request_headers["x-mises-key"] = std::move(mises_key);
 
   return request_headers;
 }
@@ -434,7 +434,7 @@ void AssetDiscoveryManager::FetchNFTsFromSimpleHash(
 
   api_request_helper_->Request("GET", url, "", "", true,
                                std::move(internal_callback),
-                               MakeBraveServicesKeyHeader());
+                               MakeMisesServicesKeyHeader());
 }
 
 void AssetDiscoveryManager::OnFetchNFTsFromSimpleHash(
@@ -472,7 +472,7 @@ void AssetDiscoveryManager::OnFetchNFTsFromSimpleHash(
                        coin, std::move(callback));
     api_request_helper_->Request("GET", result.value().first, "", "", true,
                                  std::move(internal_callback),
-                                 MakeBraveServicesKeyHeader());
+                                 MakeMisesServicesKeyHeader());
     return;
   }
 

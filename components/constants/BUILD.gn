@@ -45,3 +45,16 @@ source_set("constants") {
   public_deps = [ ":mises_services_key" ]
   deps = [ "//base" ]
 }
+
+source_set("mises_service_key_helper") {
+  sources = [
+    "mises_services_key_helper.cc",
+    "mises_services_key_helper.h",
+  ]
+
+  deps = [
+    ":constants",
+    "//mises/extensions:common",  # instead of //extensions/common, for iOS
+    "//url",
+  ]
+}

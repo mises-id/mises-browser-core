@@ -7,14 +7,14 @@
 #define BRAVE_CHROMIUM_SRC_IOS_CHROME_BROWSER_NET_IOS_CHROME_NETWORK_DELEGATE_H__
 
 class IOSChromeNetworkDelegate;
-using IOSChromeNetworkDelegate_BraveImpl = IOSChromeNetworkDelegate;
+using IOSChromeNetworkDelegate_MisesImpl = IOSChromeNetworkDelegate;
 
 #define IOSChromeNetworkDelegate IOSChromeNetworkDelegate_ChromiumImpl
-#define BRAVE_IOS_CHROME_NETWORK_DELEGATE_H \
-  friend IOSChromeNetworkDelegate_BraveImpl;
+#define MISES_IOS_CHROME_NETWORK_DELEGATE_H \
+  friend IOSChromeNetworkDelegate_MisesImpl;
 #include "src/ios/chrome/browser/net/ios_chrome_network_delegate.h"  // IWYU pragma: export
 #undef IOSChromeNetworkDelegate
-#undef BRAVE_IOS_CHROME_NETWORK_DELEGATE_H
+#undef MISES_IOS_CHROME_NETWORK_DELEGATE_H
 
 class IOSChromeNetworkDelegate : public IOSChromeNetworkDelegate_ChromiumImpl {
  public:

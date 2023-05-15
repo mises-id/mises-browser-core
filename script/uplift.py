@@ -11,7 +11,7 @@ import re
 import sys
 import json
 
-from lib.config import get_env_var, BRAVE_CORE_ROOT
+from lib.config import get_env_var, MISES_CORE_ROOT
 from lib.util import execute, scoped_cwd
 from lib.helpers import *
 from lib.github import (GitHub, get_authenticated_user_login, parse_user_logins,
@@ -67,7 +67,7 @@ class PrConfig(object):
             if len(self.parsed_owners) == 0:
                 self.parsed_owners = [
                     get_authenticated_user_login(self.github_token)]
-            self.labels = parse_labels(self.github_token, BRAVE_CORE_REPO,
+            self.labels = parse_labels(self.github_token, MISES_CORE_REPO,
                                        args.labels, verbose=self.is_verbose)
             if self.is_verbose:
                 print('[INFO] config: ' + str(vars(self)))
@@ -160,7 +160,7 @@ def parse_args():
 
 def get_remote_version(branch_to_compare):
     global config
-    decoded_file = get_file_contents(config.github_token, BRAVE_CORE_REPO,
+    decoded_file = get_file_contents(config.github_token, MISES_CORE_REPO,
                                      'package.json', branch_to_compare)
     json_file = json.loads(decoded_file)
     return json_file['version']
@@ -191,13 +191,13 @@ def main():
     if result != 0:
         return result
 
-    result = fetch_origin_check_staged(BRAVE_CORE_ROOT)
+    result = fetch_origin_check_staged(MISES_CORE_ROOT)
     if result != 0:
         return result
 
     # get all channel branches (starting at master)
-    brave_core_version = get_remote_version('master')
-    remote_branches = get_remote_channel_branches(brave_core_version)
+    mises_core_version = get_remote_version('master')
+    remote_branches = get_remote_channel_branches(mises_core_version)
     top_level_base = 'master'
     issues_fixed = []
 
@@ -218,7 +218,7 @@ def main():
     if args.uplift_using_pr:
         try:
             pr_number = int(args.uplift_using_pr)
-            repo = GitHub(config.github_token).repos(BRAVE_CORE_REPO)
+            repo = GitHub(config.github_token).repos(MISES_CORE_REPO)
             # get enough details from PR to check out locally
             response = repo.pulls(pr_number).get()
             head = response['head']
@@ -254,7 +254,7 @@ def main():
         execute(['git', 'fetch', 'origin', 'pull/' +
                 args.uplift_using_pr + '/head'])
         # create local branch which matches the contents of the PR
-        with scoped_cwd(BRAVE_CORE_ROOT):
+        with scoped_cwd(MISES_CORE_ROOT):
             # check if branch exists already
             try:
                 branch_sha = execute(
@@ -274,10 +274,10 @@ def main():
                 execute(['git', 'checkout', '-b', local_branch, head_sha])
 
     # If title isn't set already, generate one from first commit
-    local_branch = get_local_branch_name(BRAVE_CORE_ROOT)
+    local_branch = get_local_branch_name(MISES_CORE_ROOT)
     if not config.title and not args.uplift_using_pr:
         config.title = get_title_from_first_commit(
-            BRAVE_CORE_ROOT, top_level_base)
+            MISES_CORE_ROOT, top_level_base)
 
     # Create a branch for each channel
     print('\nCreating branches...')
@@ -298,7 +298,7 @@ def main():
         return 1
 
     print('\nPushing local branches to remote...')
-    push_branches_to_remote(BRAVE_CORE_ROOT, config.branches_to_push,
+    push_branches_to_remote(MISES_CORE_ROOT, config.branches_to_push,
                             dryrun=config.is_dryrun, token=config.github_token)
 
     try:
@@ -322,7 +322,7 @@ def main():
 
 def is_sha(ref):
     global config
-    repo = GitHub(config.github_token).repos(BRAVE_CORE_REPO)
+    repo = GitHub(config.github_token).repos(MISES_CORE_REPO)
     try:
         repo.git.commits(str(ref)).get()
     except Exception as e:
@@ -353,7 +353,7 @@ def create_branch(channel, top_level_base, remote_base, local_branch, args):
     else:
         compare_from = 'origin/' + top_level_base
 
-    with scoped_cwd(BRAVE_CORE_ROOT):
+    with scoped_cwd(MISES_CORE_ROOT):
         # get SHA for all commits (in order)
         sha_list = execute(['git', 'log', compare_from + '..HEAD',
                            '--pretty=format:%h', '--reverse'])
@@ -418,7 +418,7 @@ def get_milestone_for_branch(channel_branch):
     global config
     if not config.milestones:
         config.milestones = get_milestones(
-            config.github_token, BRAVE_CORE_REPO)
+            config.github_token, MISES_CORE_REPO)
     for milestone in config.milestones:
         if (milestone['title'].startswith(channel_branch + ' - ') or
            milestone['title'].startswith('Android ' + channel_branch + ' - ')):
@@ -468,7 +468,7 @@ def submit_pr(channel, top_level_base, remote_base,
             pr_body += '- [ ] The associated issue milestone is set to the smallest version ' \
                        'that the changes is landed on.'
 
-        number = create_pull_request(config.github_token, BRAVE_CORE_REPO, pr_title, pr_body,
+        number = create_pull_request(config.github_token, MISES_CORE_REPO, pr_title, pr_body,
                                      branch_src=local_branch, branch_dst=pr_dst,
                                      open_in_browser=True, verbose=config.is_verbose, dryrun=config.is_dryrun)
 
@@ -477,10 +477,10 @@ def submit_pr(channel, top_level_base, remote_base,
             config.master_pr_number = number
 
         # assign milestone / reviewer(s) / owner(s)
-        add_reviewers_to_pull_request(config.github_token, BRAVE_CORE_REPO, number,
+        add_reviewers_to_pull_request(config.github_token, MISES_CORE_REPO, number,
                                       team_reviewers=config.team_reviewers,
                                       verbose=config.is_verbose, dryrun=config.is_dryrun)
-        set_issue_details(config.github_token, BRAVE_CORE_REPO, number, milestone_number,
+        set_issue_details(config.github_token, MISES_CORE_REPO, number, milestone_number,
                           config.parsed_owners, config.labels,
                           verbose=config.is_verbose, dryrun=config.is_dryrun)
     except Exception as e:

@@ -4,7 +4,7 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 #import <XCTest/XCTest.h>
-#import "mises/ios/app/brave_core_main.h"
+#import "mises/ios/app/mises_core_main.h"
 
 @interface BraveCoreMainStartupTest : XCTestCase
 @end

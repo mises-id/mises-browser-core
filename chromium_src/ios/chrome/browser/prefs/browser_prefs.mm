@@ -3,13 +3,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/components/brave_sync/brave_sync_prefs.h"
+//#include "mises/components/brave_sync/brave_sync_prefs.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_prefs.h"
 #include "mises/components/brave_wallet/browser/keyring_service.h"
 #include "mises/components/decentralized_dns/core/utils.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
-#include "mises/components/p3a/buildflags.h"
-#include "mises/components/p3a/p3a_service.h"
+//#include "mises/components/p3a/buildflags.h"
+//#include "mises/components/p3a/p3a_service.h"
 //#include "mises/ios/browser/brave_stats/brave_stats_prefs.h"
 #include "components/pref_registry/pref_registry_syncable.h"
 
@@ -19,7 +19,7 @@
 
 void BraveRegisterBrowserStatePrefs(
     user_prefs::PrefRegistrySyncable* registry) {
-  brave_sync::Prefs::RegisterProfilePrefs(registry);
+ // brave_sync::Prefs::RegisterProfilePrefs(registry);
   brave_wallet::RegisterProfilePrefs(registry);
   brave_wallet::RegisterProfilePrefsForMigration(registry);
 #if BUILDFLAG(ENABLE_IPFS)
@@ -32,9 +32,9 @@ void BraveRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   brave_wallet::RegisterLocalStatePrefs(registry);
   brave_wallet::RegisterLocalStatePrefsForMigration(registry);
   decentralized_dns::RegisterLocalStatePrefs(registry);
-#if BUILDFLAG(BRAVE_P3A_ENABLED)
-  p3a::P3AService::RegisterPrefs(registry, false);
-#endif
+// #if BUILDFLAG(MISES_P3A_ENABLED)
+//   p3a::P3AService::RegisterPrefs(registry, false);
+// #endif
 }
 
 void BraveMigrateObsoleteBrowserStatePrefs(PrefService* prefs) {

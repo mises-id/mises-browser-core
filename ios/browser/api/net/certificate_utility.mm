@@ -51,11 +51,11 @@ namespace {
 @implementation BraveCertificateUtility
 + (NSArray<NSData*>*)acceptableSPKIHashes {
   NSMutableArray* result = [[NSMutableArray alloc] init];
-  for (std::size_t i = 0; i < sizeof(net::kBraveAcceptableCerts) /
-                                  sizeof(net::kBraveAcceptableCerts[0]);
+  for (std::size_t i = 0; i < sizeof(net::kMisesAcceptableCerts) /
+                                  sizeof(net::kMisesAcceptableCerts[0]);
        ++i) {
-    if (net::kBraveAcceptableCerts[i]) {
-      std::string data = std::string(net::kBraveAcceptableCerts[i]);
+    if (net::kMisesAcceptableCerts[i]) {
+      std::string data = std::string(net::kMisesAcceptableCerts[i]);
       if (data.size() > 0) {
         [result addObject:[NSData dataWithBytes:&data[0] length:data.size()]];
       }

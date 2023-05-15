@@ -42,11 +42,11 @@ def main():
             gpg_passphrase = args.gpg_passphrase
     s3_test_buckets = args.s3_test_buckets
 
-    if os.environ.get('BRAVE_CORE_DIR'):
-        brave_core_dir = os.environ.get('BRAVE_CORE_DIR')
+    if os.environ.get('MISES_CORE_DIR'):
+        mises_core_dir = os.environ.get('MISES_CORE_DIR')
     else:
         logging.error(
-            "Error: Required environment variable \'BRAVE_CORE_DIR\' not set! Exiting...")
+            "Error: Required environment variable \'MISES_CORE_DIR\' not set! Exiting...")
         exit(1)
 
     if args.debug:
@@ -58,7 +58,7 @@ def main():
         logging.debug('gpg_full_key_id: {}'.format(gpg_full_key_id))
         logging.debug('gpg_passphrase: {}'.format("NOTAREALPASSWORD"))
         logging.debug('s3_test_buckets: {}'.format(s3_test_buckets))
-        logging.debug('brave_core_dir: {}'.format(brave_core_dir))
+        logging.debug('mises_core_dir: {}'.format(mises_core_dir))
 
     # verify we have the the GPG key we're expecting in the public keyring
     list_keys_cmd = "/usr/bin/gpg2 --list-keys --with-subkey-fingerprints | grep {}".format(
@@ -161,7 +161,7 @@ def main():
         else:
             bucket = 'brave-browser-apt-staging-'
 
-        upload_script = os.path.join(brave_core_dir, 'script', item)
+        upload_script = os.path.join(mises_core_dir, 'script', item)
 
         TESTCHANNEL = 'test'
 
