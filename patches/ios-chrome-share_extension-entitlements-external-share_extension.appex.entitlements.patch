@@ -1,0 +1,15 @@
+diff --git a/ios/chrome/share_extension/entitlements/external/share_extension.appex.entitlements b/ios/chrome/share_extension/entitlements/external/share_extension.appex.entitlements
+index 96ad8751490c60a136bcdbc7aedc0ae6d3a48786..6c7577058a606b73790839a35c7e8ce08346fc8a 100644
+--- a/ios/chrome/share_extension/entitlements/external/share_extension.appex.entitlements
++++ b/ios/chrome/share_extension/entitlements/external/share_extension.appex.entitlements
+@@ -6,8 +6,8 @@
+ 	<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>
+ 	<key>com.apple.security.application-groups</key>
+ 	<array>
+-		<string>group.${IOS_BUNDLE_ID_PREFIX}.chrome</string>
+-		<string>group.${IOS_BUNDLE_ID_PREFIX}.common</string>
++		<string>group.${IOS_BUNDLE_ID_PREFIX}.browser.ios</string>
++		<string>group.${IOS_BUNDLE_ID_PREFIX}.common.ios</string>
+ 	</array>
+ </dict>
+ </plist>

@@ -1,0 +1,22 @@
+diff --git a/ios/chrome/app/resources/Chrome.entitlements b/ios/chrome/app/resources/Chrome.entitlements
+index 26660fad719ea10f8e166d0045e01bde3f8b5167..d5b35a7289f3c8ea8188ebcd32394615c3ce1960 100644
+--- a/ios/chrome/app/resources/Chrome.entitlements
++++ b/ios/chrome/app/resources/Chrome.entitlements
+@@ -6,10 +6,15 @@
+ 	<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>
+ 	<key>com.apple.security.application-groups</key>
+ 	<array>
+-		<string>group.${IOS_BUNDLE_ID_PREFIX}.chrome</string>
+-		<string>group.${IOS_BUNDLE_ID_PREFIX}.common</string>
++		<string>group.${IOS_BUNDLE_ID_PREFIX}.browser.ios</string>
++		<string>group.${IOS_BUNDLE_ID_PREFIX}.common.ios</string>
+ 	</array>
+ 	<key>com.apple.developer.authentication-services.autofill-credential-provider</key>
+ 	<true/>
++	<key>com.apple.developer.associated-domains</key>
++	<array>
++		<string>applinks:link.mises.site</string>
++		<string>applinks:mises.page.link</string>
++	</array>
+ </dict>
+ </plist>

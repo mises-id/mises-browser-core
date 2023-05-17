@@ -1,0 +1,26 @@
+diff --git a/ios/chrome/browser/prefs/browser_prefs.mm b/ios/chrome/browser/prefs/browser_prefs.mm
+index 5dd5f5d1dd8373387be046675520b283ab100735..c3d16673004c5d00c87a7b01869af5b820cb911c 100644
+--- a/ios/chrome/browser/prefs/browser_prefs.mm
++++ b/ios/chrome/browser/prefs/browser_prefs.mm
+@@ -273,6 +273,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+ 
+   registry->RegisterBooleanPref(prefs::kIosCredentialProviderPromoPolicyEnabled,
+                                 true);
++  MISES_REGISTER_LOCAL_STATE_PREFS
+ }
+ 
+ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+@@ -413,6 +414,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+ 
+   // Register pref used to determine if the Price Tracking UI has been shown.
+   registry->RegisterBooleanPref(prefs::kPriceNotificationsHasBeenShown, false);
++  MISES_REGISTER_BROWSER_STATE_PREFS
+ }
+ 
+ // This method should be periodically pruned of year+ old migrations.
+@@ -558,4 +560,5 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
+   if (prefs->FindPreference(kUserClassifierLastTimeToUseSuggestions)) {
+     prefs->ClearPref(kUserClassifierLastTimeToUseSuggestions);
+   }
++  MISES_MIGRATE_OBSOLETE_BROWSER_STATE_PREFS
+ }

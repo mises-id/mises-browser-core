@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/common/app_group/app_group_constants.mm b/ios/chrome/common/app_group/app_group_constants.mm
+index c3b84068b4c49a95eebb215948c946c87feb55c6..c8483e9eb80fe5a036c4d65ae26457d21feec6ad 100644
+--- a/ios/chrome/common/app_group/app_group_constants.mm
++++ b/ios/chrome/common/app_group/app_group_constants.mm
+@@ -82,7 +82,7 @@
+   NSString* group =
+       [bundle objectForInfoDictionaryKey:@"KSCommonApplicationGroup"];
+   if (![group length]) {
+-    return [NSString stringWithFormat:@"group.%s.common",
++    return [NSString stringWithFormat:@"group.%s.common.ios",
+                                       BUILDFLAG(IOS_APP_BUNDLE_ID_PREFIX), nil];
+   }
+   return group;

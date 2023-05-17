@@ -1,7 +1,16 @@
 diff --git a/ios/chrome/app/BUILD.gn b/ios/chrome/app/BUILD.gn
-index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..8c0e7581cce0acd15e2d03db2e8620954b981e58 100644
+index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..bb4ac4068c288ab2d27f06e41ea00f65604be984 100644
 --- a/ios/chrome/app/BUILD.gn
 +++ b/ios/chrome/app/BUILD.gn
+@@ -686,7 +686,7 @@ ios_app_bundle("chrome") {
+ 
+   deps = [
+     ":main",
+-
++    "//mises/ios/app",
+     # Use the provider API controlled by args.gn.
+     ios_provider_target,
+   ]
 @@ -754,8 +754,7 @@ ios_app_bundle("chrome") {
    # (see https://crbug.com/1394553 for details of the build failure). This
    # is a stop-gap solution.

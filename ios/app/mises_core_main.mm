@@ -77,7 +77,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityInfo = logging::LOGGING_INFO;
 const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
     logging::LOGGING_VERBOSE;
 
-@interface BraveCoreMain () {
+@interface MisesCoreMain () {
   std::unique_ptr<BraveWebClient> _webClient;
   std::unique_ptr<BraveMainDelegate> _delegate;
   std::vector<std::string> _argv_store;
@@ -106,7 +106,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
 @property(nonatomic) IpfsAPIImpl* ipfsAPI;
 @end
 
-@implementation BraveCoreMain
+@implementation MisesCoreMain
 
 - (instancetype)initWithUserAgent:(NSString*)userAgent {
   return [self initWithUserAgent:userAgent additionalSwitches:@[]];
@@ -132,14 +132,14 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
                name:UIApplicationWillTerminateNotification
              object:nil];
 
-    @autoreleasepool {
-      ios::RegisterPathProvider();
+    // @autoreleasepool {
+    //   ios::RegisterPathProvider();
 
-      // Bundled components are not supported on ios, so DIR_USER_DATA is passed
-      // for all three arguments.
-      component_updater::RegisterPathProvider(
-          ios::DIR_USER_DATA, ios::DIR_USER_DATA, ios::DIR_USER_DATA);
-    }
+    //   // Bundled components are not supported on ios, so DIR_USER_DATA is passed
+    //   // for all three arguments.
+    //   component_updater::RegisterPathProvider(
+    //       ios::DIR_USER_DATA, ios::DIR_USER_DATA, ios::DIR_USER_DATA);
+    // }
 
     NSBundle* baseBundle = base::mac::OuterBundle();
     base::mac::SetBaseBundleID(
@@ -182,6 +182,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
       _raw_args[i] = _argv_store[i].c_str();
     }
     params.argv = _raw_args.get();
+    params.register_exit_manager = false;
 
     // Setup WebMain
     _webMain = std::make_unique<web::WebMain>(std::move(params));

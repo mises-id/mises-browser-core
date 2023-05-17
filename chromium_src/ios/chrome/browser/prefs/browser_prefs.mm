@@ -17,7 +17,7 @@
 #include "mises/components/ipfs/ipfs_service.h"
 #endif
 
-void BraveRegisterBrowserStatePrefs(
+void MisesRegisterBrowserStatePrefs(
     user_prefs::PrefRegistrySyncable* registry) {
  // brave_sync::Prefs::RegisterProfilePrefs(registry);
   brave_wallet::RegisterProfilePrefs(registry);
@@ -27,7 +27,7 @@ void BraveRegisterBrowserStatePrefs(
 #endif
 }
 
-void BraveRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+void MisesRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   //brave_stats::RegisterLocalStatePrefs(registry);
   brave_wallet::RegisterLocalStatePrefs(registry);
   brave_wallet::RegisterLocalStatePrefsForMigration(registry);
@@ -37,13 +37,13 @@ void BraveRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
 // #endif
 }
 
-void BraveMigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
+void MisesMigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
   brave_wallet::KeyringService::MigrateObsoleteProfilePrefs(prefs);
   brave_wallet::MigrateObsoleteProfilePrefs(prefs);
 }
 
-#define BRAVE_REGISTER_BROWSER_STATE_PREFS BraveRegisterBrowserStatePrefs(registry);
-#define BRAVE_REGISTER_LOCAL_STATE_PREFS BraveRegisterLocalStatePrefs(registry);
-#define BRAVE_MIGRATE_OBSOLETE_BROWSER_STATE_PREFS \
-  BraveMigrateObsoleteBrowserStatePrefs(prefs);
+#define MISES_REGISTER_BROWSER_STATE_PREFS MisesRegisterBrowserStatePrefs(registry);
+#define MISES_REGISTER_LOCAL_STATE_PREFS MisesRegisterLocalStatePrefs(registry);
+#define MISES_MIGRATE_OBSOLETE_BROWSER_STATE_PREFS \
+  MisesMigrateObsoleteBrowserStatePrefs(prefs);
 #include "src/ios/chrome/browser/prefs/browser_prefs.mm"

@@ -12,7 +12,7 @@
 @implementation BraveCoreMainStartupTest
 
 - (void)testBraveCoreMainStartup {
-  auto core = [[BraveCoreMain alloc] initWithUserAgent:@"UnitTest"];
+  auto core = [[MisesCoreMain alloc] initWithUserAgent:@"UnitTest"];
   [core scheduleLowPriorityStartupTasks];
 }
 

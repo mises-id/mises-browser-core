@@ -19,6 +19,7 @@
 #include "components/variations/synthetic_trials_active_group_id_provider.h"
 #include "components/variations/variations_ids_provider.h"
 #include "components/variations/variations_switches.h"
+#import "components/variations/variations_crash_keys.h"
 #include "ios/chrome/browser/application_context/application_context_impl.h"
 #include "ios/chrome/browser/browser_state/browser_state_keyed_service_factories.h"
 #include "ios/chrome/browser/browser_state/chrome_browser_state.h"
@@ -29,6 +30,8 @@
 #include "ios/web/public/thread/web_thread.h"
 #include "ui/base/l10n/l10n_util_mac.h"
 #include "ui/base/resource/resource_bundle.h"
+#import "ios/chrome/browser/open_from_clipboard/create_clipboard_recent_content.h"
+#import "components/open_from_clipboard/clipboard_recent_content.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
@@ -87,7 +90,7 @@ void BraveWebMainParts::PreCreateThreads() {
 
   SetupFieldTrials();
 
-  // variations::InitCrashKeys();
+  variations::InitCrashKeys();
   // metrics::EnableExpiryChecker(::kExpiredHistogramsHashes,
   //                              ::kNumExpiredHistograms);
 
@@ -139,6 +142,9 @@ void BraveWebMainParts::PreMainMessageLoopRun() {
   // ContentSettingsPattern need to be initialized before creating the
   // ChromeBrowserState.
   ContentSettingsPattern::SetNonWildcardDomainNonPortSchemes(nullptr, 0);
+
+// Ensure ClipboadRecentContentIOS is created.
+  ClipboardRecentContent::SetInstance(CreateClipboardRecentContentIOS());
 
   // Ensure that the browser state is initialized.
   EnsureBrowserStateKeyedServiceFactoriesBuilt();

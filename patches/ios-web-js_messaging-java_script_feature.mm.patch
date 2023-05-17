@@ -1,0 +1,12 @@
+diff --git a/ios/web/js_messaging/java_script_feature.mm b/ios/web/js_messaging/java_script_feature.mm
+index 2d0d74cd02a5a955a360177f71ee381fd08eb06c..f4184d67e365b7ae046a27b58fdb3c949e12c4ff 100644
+--- a/ios/web/js_messaging/java_script_feature.mm
++++ b/ios/web/js_messaging/java_script_feature.mm
+@@ -178,6 +178,7 @@
+ 
+   JavaScriptContentWorld* content_world =
+       feature_manager->GetContentWorldForFeature(this);
++  if (!content_world) return false;
+   DCHECK(content_world);
+ 
+   return web_frame->GetWebFrameInternal()->CallJavaScriptFunctionInContentWorld(

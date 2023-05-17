@@ -41,7 +41,7 @@ typedef bool (^BraveCoreLogHandler)(BraveCoreLogSeverity severity,
                                     NSString* formattedMessage);
 
 OBJC_EXPORT
-@interface BraveCoreMain : NSObject
+@interface MisesCoreMain : NSObject
 
 @property(nonatomic, readonly) BraveBookmarksAPI* bookmarksAPI;
 
@@ -92,7 +92,7 @@ OBJC_EXPORT
 //@property(readonly) BraveP3AUtils* p3aUtils;
 
 /// Sets up bundle path overrides and initializes ICU from the BraveCore bundle
-/// without setting up a BraveCoreMain instance.
+/// without setting up a MisesCoreMain instance.
 ///
 /// Should only be called in unit tests
 + (bool)initializeICUForTesting;

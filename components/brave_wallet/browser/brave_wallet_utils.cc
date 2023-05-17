@@ -430,37 +430,14 @@ const std::vector<const mojom::NetworkInfo*>& GetKnownFilNetworks() {
   return *networks.get();
 }
 
-const base::flat_map<std::string, std::string> kInfuraSubdomains = {
-    {brave_wallet::mojom::kMainnetChainId, "mainnet"},
-    {brave_wallet::mojom::kGoerliChainId, "goerli"},
-    {brave_wallet::mojom::kSepoliaChainId, "sepolia"}};
 
-const base::flat_set<std::string> kInfuraChains = {
-    brave_wallet::mojom::kMainnetChainId,
-    brave_wallet::mojom::kPolygonMainnetChainId,
-    brave_wallet::mojom::kOptimismMainnetChainId,
-    brave_wallet::mojom::kAuroraMainnetChainId,
-    brave_wallet::mojom::kAvalancheMainnetChainId,
-    brave_wallet::mojom::kSepoliaChainId,
-    brave_wallet::mojom::kGoerliChainId};
 
-const base::flat_map<std::string, std::string> kSolanaSubdomains = {
-    {brave_wallet::mojom::kSolanaMainnet, "mainnet"},
-    {brave_wallet::mojom::kSolanaTestnet, "testnet"},
-    {brave_wallet::mojom::kSolanaDevnet, "devnet"}};
 
-const base::flat_map<std::string, std::string> kFilecoinSubdomains = {
-    {brave_wallet::mojom::kFilecoinMainnet, "mainnet"},
-    {brave_wallet::mojom::kFilecoinTestnet, "testnet"}};
 
-// Addesses taken from https://docs.unstoppabledomains.com/developer-toolkit/
-// smart-contracts/uns-smart-contracts/#proxyreader
-const base::flat_map<std::string, std::string>
-    kUnstoppableDomainsProxyReaderContractAddressMap = {
-        {brave_wallet::mojom::kMainnetChainId,
-         "0xc3C2BAB5e3e52DBF311b2aAcEf2e40344f19494E"},
-        {brave_wallet::mojom::kPolygonMainnetChainId,
-         "0xA3f32c8cd786dc089Bd1fC175F2707223aeE5d00"}};
+
+
+
+
 
 constexpr const char kEnsRegistryContractAddress[] =
     "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e";
@@ -513,6 +490,15 @@ GURL AddInfuraProjectId(const GURL& url) {
 }
 
 GURL MaybeAddInfuraProjectId(const GURL& url) {
+
+  static const base::flat_set<std::string>& kInfuraChains = {
+    brave_wallet::mojom::kMainnetChainId,
+    brave_wallet::mojom::kPolygonMainnetChainId,
+    brave_wallet::mojom::kOptimismMainnetChainId,
+    brave_wallet::mojom::kAuroraMainnetChainId,
+    brave_wallet::mojom::kAvalancheMainnetChainId,
+    brave_wallet::mojom::kSepoliaChainId,
+    brave_wallet::mojom::kGoerliChainId};
   if (!url.is_valid())
     return GURL();
   for (const auto& infura_chain_id : kInfuraChains) {
@@ -614,6 +600,10 @@ std::string GetInfuraEndpointForKnownChainId(const std::string& chain_id) {
 }
 
 std::string GetInfuraSubdomainForKnownChainId(const std::string& chain_id) {
+static const base::flat_map<std::string, std::string>& kInfuraSubdomains = {
+    {brave_wallet::mojom::kMainnetChainId, "mainnet"},
+    {brave_wallet::mojom::kGoerliChainId, "goerli"},
+    {brave_wallet::mojom::kSepoliaChainId, "sepolia"}};
   std::string chain_id_lower = base::ToLowerASCII(chain_id);
   if (kInfuraSubdomains.contains(chain_id_lower))
     return kInfuraSubdomains.at(chain_id_lower);
@@ -621,6 +611,10 @@ std::string GetInfuraSubdomainForKnownChainId(const std::string& chain_id) {
 }
 
 std::string GetSolanaSubdomainForKnownChainId(const std::string& chain_id) {
+  static const base::flat_map<std::string, std::string>& kSolanaSubdomains = {
+    {brave_wallet::mojom::kSolanaMainnet, "mainnet"},
+    {brave_wallet::mojom::kSolanaTestnet, "testnet"},
+    {brave_wallet::mojom::kSolanaDevnet, "devnet"}};
   std::string chain_id_lower = base::ToLowerASCII(chain_id);
   if (kSolanaSubdomains.contains(chain_id_lower))
     return kSolanaSubdomains.at(chain_id_lower);
@@ -628,6 +622,9 @@ std::string GetSolanaSubdomainForKnownChainId(const std::string& chain_id) {
 }
 
 std::string GetFilecoinSubdomainForKnownChainId(const std::string& chain_id) {
+static const base::flat_map<std::string, std::string>& kFilecoinSubdomains = {
+    {brave_wallet::mojom::kFilecoinMainnet, "mainnet"},
+    {brave_wallet::mojom::kFilecoinTestnet, "testnet"}};
   std::string chain_id_lower = base::ToLowerASCII(chain_id);
   if (kFilecoinSubdomains.contains(chain_id_lower))
     return kFilecoinSubdomains.at(chain_id_lower);
@@ -1290,6 +1287,14 @@ GURL GetUnstoppableDomainsRpcUrl(const std::string& chain_id) {
 
 std::string GetUnstoppableDomainsProxyReaderContractAddress(
     const std::string& chain_id) {
+// Addesses taken from https://docs.unstoppabledomains.com/developer-toolkit/
+// smart-contracts/uns-smart-contracts/#proxyreader
+static const base::flat_map<std::string, std::string>&
+    kUnstoppableDomainsProxyReaderContractAddressMap = {
+        {brave_wallet::mojom::kMainnetChainId,
+         "0xc3C2BAB5e3e52DBF311b2aAcEf2e40344f19494E"},
+        {brave_wallet::mojom::kPolygonMainnetChainId,
+         "0xA3f32c8cd786dc089Bd1fC175F2707223aeE5d00"}};
   std::string chain_id_lower = base::ToLowerASCII(chain_id);
   if (kUnstoppableDomainsProxyReaderContractAddressMap.contains(chain_id_lower))
     return kUnstoppableDomainsProxyReaderContractAddressMap.at(chain_id_lower);
