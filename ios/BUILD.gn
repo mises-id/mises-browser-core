@@ -88,6 +88,7 @@ ios_framework_bundle("mises_core_ios_framework") {
     ":internal_config",
     "//mises/build/rust:strip_rust_symbols",
     "//build/config/compiler:enable_arc",
+     "//build/config/compiler:enable_legacy_dispatch",
   ]
 
   deps = [

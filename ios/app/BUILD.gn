@@ -40,6 +40,7 @@ source_set("app") {
     "//mises/ios/browser/api/qr_code",
     "//mises/ios/browser/api/web_image",
     "//mises/ios/browser/component_updater",
+    "//mises/ios/third_party/mises",
     "//components/browser_sync",
     "//components/component_updater",
     "//components/component_updater/installer_policies",

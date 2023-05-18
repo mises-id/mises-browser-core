@@ -1,0 +1,29 @@
+diff --git a/ios/chrome/app/main_application_delegate.mm b/ios/chrome/app/main_application_delegate.mm
+index d5bed6b579a20b34293996957ee5c696f4b28365..c3448c9cf5961a527aa1c4d76ee098149c51834a 100644
+--- a/ios/chrome/app/main_application_delegate.mm
++++ b/ios/chrome/app/main_application_delegate.mm
+@@ -38,6 +38,7 @@
+ #import "ios/chrome/browser/ui/main/scene_delegate.h"
+ #import "ios/chrome/browser/ui/main/scene_state.h"
+ #import "ios/web/common/uikit_ui_util.h"
++#import "mises/ios/third_party/mises/mises_utils.h"
+ 
+ #if !defined(__has_feature) || !__has_feature(objc_arc)
+ #error "This file requires ARC support."
+@@ -151,9 +152,16 @@ - (BOOL)application:(UIApplication*)application
+              name:UIApplicationWillEnterForegroundNotification
+            object:nil];
+ 
++  [Mises didFinishLaunching];
+   return requiresHandling;
+ }
+ 
++- (BOOL)application:(UIApplication *)app
++            openURL:(NSURL *)url
++            options:(NSDictionary<NSString *, id> *)options {
++    return [Mises handleOpenUrl:url];
++}
++
+ - (void)applicationWillTerminate:(UIApplication*)application {
+   // Any report captured from this point on should be noted as after terminate.
+   crash_keys::SetCrashedAfterAppWillTerminate();
