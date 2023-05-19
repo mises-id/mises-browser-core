@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/content_suggestions/cells/content_suggestions_most_visited_item.h b/ios/chrome/browser/ui/content_suggestions/cells/content_suggestions_most_visited_item.h
+index e11c36a50d73141f9898366ec55212fc6db9712e..a862578ab4a9db30950df0520710ba69c1712524 100644
+--- a/ios/chrome/browser/ui/content_suggestions/cells/content_suggestions_most_visited_item.h
++++ b/ios/chrome/browser/ui/content_suggestions/cells/content_suggestions_most_visited_item.h
+@@ -36,6 +36,8 @@ class GURL;
+ // Index position of this item.
+ @property(nonatomic, assign) int index;
+ 
++@property(nonatomic, assign) GURL iconURL;
++
+ @end
+ 
+ #endif  // IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CELLS_CONTENT_SUGGESTIONS_MOST_VISITED_ITEM_H_

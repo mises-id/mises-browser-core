@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h b/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
+index 9362f01064b56db6169b2f342ad2cb3769fd8b75..59d3efa6ac6ee19d15a8f59b5d4759b013c1400f 100644
+--- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
++++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
+@@ -20,6 +20,8 @@
+ // Handles the actions following a tap on a trending query.
+ - (void)loadSuggestedQuery:(QuerySuggestionConfig*)config;
+ 
++- (void)openMisesWeb3Home;
++
+ @end
+ 
+ #endif  // IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_COMMANDS_H_

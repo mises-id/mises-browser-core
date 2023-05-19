@@ -1,0 +1,21 @@
+diff --git a/components/ntp_tiles/most_visited_sites.cc b/components/ntp_tiles/most_visited_sites.cc
+index 762e82011effb46b574b38739eaf986f75f0228f..6fd9756c85d7437003063476bce6dd84ac332907 100644
+--- a/components/ntp_tiles/most_visited_sites.cc
++++ b/components/ntp_tiles/most_visited_sites.cc
+@@ -821,4 +821,16 @@ void MostVisitedSites::AddToHostsAndTotalCount(const NTPTilesVector& new_tiles,
+   DCHECK_LE(*total_tile_count, GetMaxNumSites());
+ }
+ 
++void MostVisitedSites::FetchPopularSitesIcons(
++    const PopularSites::SitesVector& sites_vector) {
++    for (const PopularSites::Site& popular_site : sites_vector) {
++        icon_cacher_->StartFetchPopularSites(
++            popular_site,
++            base::BindOnce(&MostVisitedSites::OnIconMadeAvailable,
++                           base::Unretained(this), popular_site.url),
++            base::BindOnce(&MostVisitedSites::OnIconMadeAvailable,
++                           base::Unretained(this), popular_site.url));
++    }
++}
++
+ }  // namespace ntp_tiles

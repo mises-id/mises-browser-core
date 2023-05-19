@@ -1,0 +1,61 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
+index a2e470ed643c7bebeee13bea7745a28c48a6a162..5ba75757317e658e4a1246f79fd811f3fa59c12b 100644
+--- a/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
++++ b/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
+@@ -34,6 +34,9 @@
+ #import "ios/web/public/web_state.h"
+ #import "url/gurl.h"
+ 
++#import "mises/ios/third_party/mises/mises_utils.h"
++#import "ios/chrome/browser/ui/util/pasteboard_util.h"
++
+ #if !defined(__has_feature) || !__has_feature(objc_arc)
+ #error "This file requires ARC support."
+ #endif
+@@ -251,6 +254,46 @@ - (void)popupMenuTableViewController:(PopupMenuTableViewController*)sender
+       RecordAction(UserMetricsAction("MobileMenuPriceNotifications"));
+       [self.dispatcher showPriceNotifications];
+       break;
++          
++              case PopupMenuActionMises:
++                RecordAction(UserMetricsAction("MobileMenuOpenMises"));
++                  [Mises popupMetamask];
++                break;
++              case PopupMenuActionMisesAccount:
++                StoreTextInPasteboard([[Mises account] misesId]);
++                break;
++              case PopupMenuActionMisesMyData:
++                RecordAction(UserMetricsAction("MobileMenuOpenMisesMyData"));
++                [self.dispatcher openSinglePage:@"https://home.mises.site/userInfo"];
++          
++                break;
++          
++              case PopupMenuActionMisesDiscover:
++                RecordAction(UserMetricsAction("MobileMenuOpenMisesDiscover"));
++                [self.dispatcher openSinglePage:@"https://home.mises.site/home/discover"];
++                break;
++              case PopupMenuActionMisesWallet:
++                RecordAction(UserMetricsAction("MobileMenuOpenMisesWallet"));
++                [Mises popupMetamask];
++                break;
++              case PopupMenuActionMisesStakingPortal:
++                RecordAction(UserMetricsAction("MobileMenuOpenMisesStakingPortal"));
++                [self.dispatcher openSinglePage:@"https://portal.mises.site"];
++                break;
++              case PopupMenuActionMisesNft:
++                RecordAction(UserMetricsAction("MobileMenuOpenMisesNft"));
++                [self.dispatcher openSinglePage:@"https://home.mises.site/nft"];
++                break;
++              case PopupMenuActionMisesInvite: {
++                RecordAction(UserMetricsAction("MobileMenuOpenMisesInvite"));
++                NSString *url = @"https://home.mises.site/myInvitation?misesId=";
++                [self.dispatcher openSinglePage:[url stringByAppendingString:[[Mises account] misesId]]];
++                break;
++                }
++              case PopupMenuActionMisesOfficialSite:
++                RecordAction(UserMetricsAction("MobileMenuOpenMisesOfficialSite"));
++                [self.dispatcher openSinglePage:@"https://www.mises.site"];
++                break;
+     default:
+       NOTREACHED() << "Unexpected identifier";
+       break;

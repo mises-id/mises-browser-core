@@ -1,0 +1,167 @@
+diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
+index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb064757547224a91 100644
+--- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
++++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
+@@ -73,6 +73,9 @@
+ #import "third_party/abseil-cpp/absl/types/optional.h"
+ #import "ui/base/l10n/l10n_util_mac.h"
+ 
++#import "mises/ios/browser/ui/content_suggestions/cells/content_suggestions_mises_item.h"
++#import "mises/ios/browser/ui/content_suggestions/cells/content_suggestions_mises_box_item.h"
++
+ #if !defined(__has_feature) || !__has_feature(objc_arc)
+ #error "This file requires ARC support."
+ #endif
+@@ -83,8 +86,8 @@
+ using RequestSource = SearchTermsData::RequestSource;
+ 
+ // Maximum number of most visited tiles fetched.
+-const NSInteger kMaxNumMostVisitedTiles = 4;
+-
++const NSInteger kMaxNumMostVisitedTiles = 8;
++static NSData* gWeb3SitesCache = nil;
+ }  // namespace
+ 
+ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
+@@ -155,6 +158,14 @@ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
+ @property(nonatomic, strong)
+     NSMutableArray<QuerySuggestionConfig*>* trendingQueries;
+ 
++@property(nonatomic, strong)
++    NSArray<ContentSuggestionsMostVisitedItem*>* misesWeb3siteItems;
++@property(nonatomic, strong)
++    ContentSuggestionsSectionInformation* misesSectionInfo;
++@property(nonatomic, strong)
++    ContentSuggestionsSectionInformation* misesBoxMarginInfo;
++@property(nonatomic, strong)
++    ContentSuggestionsSectionInformation* misesWeb3siteSectionInfo;
+ @end
+ 
+ @implementation ContentSuggestionsMediator
+@@ -203,6 +214,10 @@ @implementation ContentSuggestionsMediator
+       _startSuggestServiceResponseBridge =
+           std::make_unique<StartSuggestServiceResponseBridge>(self);
+     }
++      
++    _misesSectionInfo = MisesSectionInformation();
++    _misesBoxMarginInfo = MisesBoxMarginInformation();
++    _misesWeb3siteSectionInfo = MisesWeb3siteSectionInformation();
+   }
+   return self;
+ }
+@@ -526,6 +541,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
+       return;
+     }
+   }
++  for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
++    if (item.URL == siteURL) {
++      [self.faviconMediator fetchFaviconForMostVisited:item];
++      return;
++    }
++  }
+ }
+ 
+ #pragma mark - Private
+@@ -535,6 +556,7 @@ - (void)useFreshMostVisited {
+   if ([self shouldHideMVTForTileAblation]) {
+     return;
+   }
++  [self fetchWeb3site];
+   self.mostVisitedItems = self.freshMostVisitedItems;
+   [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
+   [self.feedDelegate contentSuggestionsWasUpdated];
+@@ -773,4 +795,94 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
+   }
+ }
+ 
++
++- (void) fetchWeb3site {
++    if ([self.misesWeb3siteItems count] > 0) {
++      // If some content is already displayed to the user, do not update without a
++      // user action.
++      return;
++    }
++    if (gWeb3SitesCache != nil) {
++        ContentSuggestionsMediator* mediator = self;
++        dispatch_async(dispatch_get_main_queue(), ^{
++            [mediator handleWeb3SitesResponse:gWeb3SitesCache];
++            [mediator reloadAllData];
++            [self.feedDelegate contentSuggestionsWasUpdated];
++        });
++        return;
++    }
++
++    NSString * apiURLStr =[NSString stringWithFormat:@"https://web3.mises.site/website/recommend.json"];
++    NSMutableURLRequest *dataRqst = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:apiURLStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
++
++    NSURLSession *session=[NSURLSession sharedSession];
++    NSURLSessionTask *dataTask=[session dataTaskWithRequest:dataRqst completionHandler:^(NSData * _Nullable responseData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
++
++        NSString *responseString = [[NSString alloc] initWithBytes:[responseData bytes] length:[responseData length] encoding:NSUTF8StringEncoding];
++        NSData *stringData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
++        ContentSuggestionsMediator* mediator = self;
++        dispatch_async(dispatch_get_main_queue(), ^{
++            [mediator handleWeb3SitesResponse:stringData];
++            [mediator reloadAllData];
++            [self.feedDelegate contentSuggestionsWasUpdated];
++        });
++
++    }];
++    [dataTask resume];
++
++}
++- (void) handleWeb3SitesResponse:(NSData*) data {
++    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
++
++    NSMutableArray<ContentSuggestionsMostVisitedItem*> *items = [NSMutableArray array];
++    for (id element in json) {
++      ntp_tiles::NTPTile tile;
++      tile.url = GURL(base::SysNSStringToUTF8(element[@"url"]));
++      tile.title = base::SysNSStringToUTF16(element[@"title"]);
++      tile.favicon_url = GURL(base::SysNSStringToUTF8(element[@"logo"]));
++      ContentSuggestionsMostVisitedItem* item =
++        ConvertNTPTile(tile, self.mostVisitedSectionInfo);
++      item.commandHandler = self.commandHandler;
++      item.incognitoAvailable = self.incognitoAvailable;
++      [items addObject:item];
++        NSLog(@"[fetchWeb3site]:item=%@", element);
++    }
++    [self updateMisesWeb3SiteItems:items];
++    gWeb3SitesCache = data;
++}
++
++- (void) fetchIconForMisesWeb3SiteItems {
++    ntp_tiles::PopularSites::SitesVector sites;
++    for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
++        std::u16string title = base::SysNSStringToUTF16(item.title);
++        sites.emplace_back(title, GURL(item.URL), GURL(),
++                GURL(item.iconURL), item.titleSource);
++    }
++    _mostVisitedSites->FetchPopularSitesIcons(sites);
++}
++
++- (void)updateMisesWeb3SiteItems:
++    (NSArray<ContentSuggestionsMostVisitedItem*> *)items {
++
++    self.misesWeb3siteItems = items;
++
++
++    for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
++      [self.faviconMediator fetchFaviconForMostVisited:item];
++    }
++
++    [self fetchIconForMisesWeb3SiteItems];
++
++
++
++
++ }
++
++- (void)openMisesWeb3Home {
++  UrlLoadParams params = UrlLoadParams::InCurrentTab(GURL("https://web3.mises.site/"));
++  params.web_params.transition_type = ui::PAGE_TRANSITION_LINK;
++  UrlLoadingBrowserAgent::FromBrowser(self.browser)->Load(params);
++
++}
++
+ @end

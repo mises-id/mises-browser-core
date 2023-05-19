@@ -1,0 +1,17 @@
+diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.h b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.h
+index 2e5def4ac54f205d131a5d3df911af4140eb4844..de570fd0f04b0020a25c7c1b0adb9f0c5ccd3ffa 100644
+--- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.h
++++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.h
+@@ -7,9 +7,11 @@
+ 
+ #import "ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.h"
+ 
++#import "mises/ios/browser/ui/toolbar/mises_toolbar_delegate.h"
++
+ // View controller for the secondary part of the adaptive toolbar. It is the
+ // part containing the controls displayed only on specific size classes.
+-@interface SecondaryToolbarViewController : AdaptiveToolbarViewController
++@interface SecondaryToolbarViewController : AdaptiveToolbarViewController<MisesToolbarDelegate>
+ @end
+ 
+ #endif  // IOS_CHROME_BROWSER_UI_TOOLBAR_SECONDARY_TOOLBAR_VIEW_CONTROLLER_H_

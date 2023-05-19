@@ -1,0 +1,10 @@
+import("//build/config/locales.gni")
+import("//tools/grit/grit_rule.gni")
+import("//mises/resources/mises_grit.gni")
+
+
+#mises_grit("ios_mises_strings") {
+#  source = "ios_mises_strings.grd"
+#  output_dir = "$root_gen_dir/mises/ios/app"
+#  outputs = [ "grit/ios_mises_strings.h" ]
+#}

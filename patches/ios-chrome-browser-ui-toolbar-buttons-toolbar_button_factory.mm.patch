@@ -1,0 +1,25 @@
+diff --git a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_factory.mm b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_factory.mm
+index 52d87ac877e6588a6a985e09f507d4757e68cb2c..dbb5c536d35ddd54f50bd1e44d093bfcd9f0a95e 100644
+--- a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_factory.mm
++++ b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_factory.mm
+@@ -277,4 +277,20 @@ - (void)configureButton:(ToolbarButton*)button width:(CGFloat)width {
+   };
+ }
+ 
++- (ToolbarButton*)misesButton {
++  ToolbarButton* misesButton = [ToolbarButton
++      toolbarButtonWithImage:[[UIImage imageNamed:@"mises_user_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
++  [self configureButton:misesButton width:kAdaptiveToolbarButtonWidth];
++  [misesButton addTarget:self.actionHandler
++                 action:@selector(misesMenuAction)
++       forControlEvents:UIControlEventTouchUpInside];
++  misesButton.visibilityMask =
++      self.visibilityConfiguration.misesButtonVisibility;
++    UIImageView *imageView = misesButton.imageView;
++    [imageView.layer setCornerRadius:kAdaptiveToolbarIconSize/2];
++    [imageView.layer setMasksToBounds:YES];
++  misesButton.accessibilityIdentifier =
++      kToolbarMisesButtonIdentifier;
++  return misesButton;
++}
+ @end

@@ -162,6 +162,8 @@
       <!-- Mises Settings WebUI strings -->
       <part file="mises_settings_strings.grdp" />
 
+
+
       <!--Add new items to the appropriate sections below -->
 
       <!-- App Menu -->

@@ -1,0 +1,19 @@
+diff --git a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.mm b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.mm
+index ee41edeca806f7aea9bd22b67a517a2d0318ec46..a5c7b4e54121c46f72e8dece1c979262ea9cecbe 100644
+--- a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.mm
++++ b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.mm
+@@ -127,4 +127,14 @@ - (ToolbarComponentVisibility)locationBarLeadingButtonVisibility {
+   }
+ }
+ 
++- (ToolbarComponentVisibility)misesButtonVisibility {
++  switch (self.type) {
++    case PRIMARY:
++      return ToolbarComponentVisibilityAlways &
++             ~ToolbarComponentVisibilitySplit;
++    case SECONDARY:
++      return ToolbarComponentVisibilitySplit;
++  }
++}
++
+ @end

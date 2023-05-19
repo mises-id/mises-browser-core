@@ -1,0 +1,63 @@
+diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
+index 1908561664e074c35cf74710ce577230d016aabc..0f2a2bbe6d93ca38cb9a6c9dc00d29db88d20d56 100644
+--- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
++++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
+@@ -48,6 +48,8 @@ @interface SecondaryToolbarView ()<ToolbarCollapsing>
+ // Button to create a new tab, redefined as readwrite.
+ @property(nonatomic, strong, readwrite) ToolbarButton* openNewTabButton;
+ 
++@property(nonatomic, strong, readwrite) ToolbarButton* misesButton;
++
+ @end
+ 
+ @implementation SecondaryToolbarView
+@@ -61,6 +63,8 @@ @implementation SecondaryToolbarView
+ @synthesize openNewTabButton = _openNewTabButton;
+ @synthesize tabGridButton = _tabGridButton;
+ 
++@synthesize misesButton = _misesButton;
++
+ #pragma mark - Public
+ 
+ - (instancetype)initWithButtonFactory:(ToolbarButtonFactory*)factory {
+@@ -100,6 +104,8 @@ - (void)setUp {
+   self.openNewTabButton = [self.buttonFactory openNewTabButton];
+   self.tabGridButton = [self.buttonFactory tabGridButton];
+   self.toolsMenuButton = [self.buttonFactory toolsMenuButton];
++    
++  self.misesButton = [self.buttonFactory misesButton];
+ 
+   // Move the tools menu button such as it looks visually balanced with the
+   // button on the other side of the toolbar.
+@@ -108,7 +114,7 @@ - (void)setUp {
+       CGAffineTransformMakeTranslation(textDirection * kToolsMenuOffset, 0);
+ 
+   self.allButtons = @[
+-    self.backButton, self.forwardButton, self.openNewTabButton,
++    self.misesButton, self.backButton, self.forwardButton, //self.openNewTabButton,
+     self.tabGridButton, self.toolsMenuButton
+   ];
+ 
+@@ -173,4 +179,22 @@ - (CGFloat)collapsedToolbarHeight {
+   return 0.0;
+ }
+ 
++
++- (void)updateMisesAvatar:(UIImage*)image {
++
++    if (image == nil) {
++        UIImage* icon = [[UIImage imageNamed:@"mises_user_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
++        [self.misesButton setImage:icon forState:UIControlStateNormal];
++        return;
++    }
++
++    CGSize newSize = CGSizeMake(kAdaptiveToolbarIconSize, kAdaptiveToolbarIconSize);
++    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
++    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
++    UIImage *resized_image = UIGraphicsGetImageFromCurrentImageContext();
++    UIGraphicsEndImageContext();
++    UIImage *icon = [resized_image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
++    [self.misesButton setImage:icon forState:UIControlStateNormal];
++}
++
+ @end

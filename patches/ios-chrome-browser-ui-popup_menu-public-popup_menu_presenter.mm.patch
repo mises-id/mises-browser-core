@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/public/popup_menu_presenter.mm b/ios/chrome/browser/ui/popup_menu/public/popup_menu_presenter.mm
+index cdeb19a62a0d4c7cb9f39bbfd6a6e12c68bdcfea..f1c9b8aef57cd71339299165b69ac8f158ead7cc 100644
+--- a/ios/chrome/browser/ui/popup_menu/public/popup_menu_presenter.mm
++++ b/ios/chrome/browser/ui/popup_menu/public/popup_menu_presenter.mm
+@@ -19,7 +19,7 @@
+ const CGFloat kMinHeight = 200;
+ const CGFloat kMinWidth = 200;
+ const CGFloat kMaxWidth = 300;
+-const CGFloat kMaxHeight = 435;
++const CGFloat kMaxHeight = 500;
+ const CGFloat kMinWidthDifference = 50;
+ const CGFloat kMinHorizontalMargin = 5;
+ const CGFloat kMinVerticalMargin = 15;

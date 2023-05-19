@@ -1,0 +1,25 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_coordinator.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_coordinator.mm
+index 8c2860d031a50a5724d6efffe3c2c9d89cb9661c..d192562cb287f46ce32c6aed67d38a7abd2590be 100644
+--- a/ios/chrome/browser/ui/popup_menu/popup_menu_coordinator.mm
++++ b/ios/chrome/browser/ui/popup_menu/popup_menu_coordinator.mm
+@@ -70,7 +70,7 @@
+ namespace {
+ // Returns the corresponding command type for a Popup menu `type`.
+ PopupMenuCommandType CommandTypeFromPopupType(PopupMenuType type) {
+-  if (type == PopupMenuTypeToolsMenu)
++  if (type == PopupMenuTypeToolsMenu || type == PopupMenuTypeMisesMenu)
+     return PopupMenuCommandTypeToolsMenu;
+   return PopupMenuCommandTypeDefault;
+ }
+@@ -650,4 +650,11 @@ - (void)trackToolsMenuNoHorizontalScrollOrAction {
+       feature_engagement::events::kOverflowMenuNoHorizontalScrollOrAction);
+ }
+ 
++
++- (void)showMisesMenuPopup {
++  // The metric is registered at the toolbar level.
++  [self presentPopupOfType:PopupMenuTypeMisesMenu
++      fromLayoutGuideNamed:kMisesButtonGuide];
++}
++
+ @end

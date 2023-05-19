@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_factory.h b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_factory.h
+index a19e52c805389d215fc85cf182fa0e1f75afd987..a4032278c97e7ca932dfef07f97c18cf73dc32c6 100644
+--- a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_factory.h
++++ b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_factory.h
+@@ -54,6 +54,8 @@
+ // Button to cancel the edit of the location bar.
+ - (UIButton*)cancelButton;
+ 
++- (ToolbarButton*)misesButton;
++
+ @end
+ 
+ #endif  // IOS_CHROME_BROWSER_UI_TOOLBAR_BUTTONS_TOOLBAR_BUTTON_FACTORY_H_

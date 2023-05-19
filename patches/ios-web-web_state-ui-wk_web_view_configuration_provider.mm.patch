@@ -1,0 +1,21 @@
+diff --git a/ios/web/web_state/ui/wk_web_view_configuration_provider.mm b/ios/web/web_state/ui/wk_web_view_configuration_provider.mm
+index 47ab2268507c5a01acc0a447cea8bb629c436107..e3d5f2a1dadf167f3b84fd9eb4d2d9a8a38302f2 100644
+--- a/ios/web/web_state/ui/wk_web_view_configuration_provider.mm
++++ b/ios/web/web_state/ui/wk_web_view_configuration_provider.mm
+@@ -25,6 +25,7 @@
+ #import "ios/web/web_state/ui/wk_content_rule_list_provider.h"
+ #import "ios/web/web_state/ui/wk_web_view_configuration_provider_observer.h"
+ #import "ios/web/webui/crw_web_ui_scheme_handler.h"
++#import "mises/ios/third_party/mises/mises_java_script_feature.h"
+ 
+ #if !defined(__has_feature) || !__has_feature(objc_arc)
+ #error "This file requires ARC support."
+@@ -204,6 +205,8 @@
+       ->ConfigureHandlers(userContentController);
+   SessionRestoreJavaScriptFeature::FromBrowserState(browser_state_)
+       ->ConfigureHandlers(userContentController);
++  MisesJavaScriptFeature::FromBrowserState(browser_state_)
++      ->ConfigureHandlers(userContentController);
+ 
+   // Main frame script depends upon scripts injected into all frames, so the
+   // "AllFrames" scripts must be injected first.

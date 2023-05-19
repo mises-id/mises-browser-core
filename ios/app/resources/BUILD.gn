@@ -14,7 +14,7 @@ repack("repack_unscaled_resources") {
   visibility = [ ":resources" ]
   output = "$target_gen_dir/mises_resources.pak"
   sources = [ "$root_gen_dir/components/mises_components_resources.pak" ]
-  deps = [ "//mises/components/resources" ]
+  deps = [ "//mises/components/resources",]
   copy_data_to_bundle = true
 }
 
