@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..82113c699a70631e736b3c594b1c1eaf3c46b0cd 100644
+index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b9eb882dc3c303820c8ff5d3a2a69106c95f3444 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -73,6 +73,9 @@
@@ -172,7 +172,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..82113c699a70631e736b3c594b1c1eaf
 +
 +- (void) fetchIconForMisesWeb3SiteItems {
 +    ntp_tiles::PopularSites::SitesVector sites;
-+    for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
++    for (ContentSuggestionsMostVisitedItem* item in self.freshMisesWeb3siteItems) {
 +        std::u16string title = base::SysNSStringToUTF16(item.title);
 +        sites.emplace_back(title, GURL(item.URL), GURL(),
 +                GURL(item.iconURL), item.titleSource);

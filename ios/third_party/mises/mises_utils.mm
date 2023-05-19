@@ -273,6 +273,21 @@ enum MetamaskUIPendingStatus {
 //        
 //    }];
     dispatch_async(dispatch_get_main_queue(), ^{
+        NSArray *paths = NSSearchPathForDirectoriesInDomains( NSCachesDirectory,
+                                                                 NSUserDomainMask, YES);
+        NSString *cacheDirectory = [paths objectAtIndex:0];
+        if (cacheDirectory) {
+            NSString* firSettingDir = [cacheDirectory stringByAppendingPathComponent:@"com.crashlytics.data/site.mises.browser.ios/v5/settings/"];
+            NSString* firSettingPath = [firSettingDir stringByAppendingPathComponent:@"settings.json"];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            if (![fileManager fileExistsAtPath:firSettingPath]) {
+                [fileManager createDirectoryAtPath:firSettingDir withIntermediateDirectories:YES attributes:nil error:nil];
+                [fileManager createFileAtPath:firSettingPath
+                                                contents:[NSData data]
+                                                attributes:nil];
+            }
+            
+        }
         
         [FIRApp configure];
         NSString *mixPanelTokenFromBundle = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"mixpanel_token"];

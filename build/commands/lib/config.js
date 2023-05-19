@@ -537,7 +537,10 @@ Config.prototype.buildArgs = function () {
     args.enable_pdf = false
     args.enable_plugins = false
     args.enable_remoting = false
-    args.enable_dsyms = false
+    if (this.isDebug()) {
+      args.enable_dsyms = false
+    }
+    
     args.enable_stripping = !this.isComponentBuild()
     // Component builds are not supported for iOS:
     // https://chromium.googlesource.com/chromium/src/+/master/docs/component_build.md
@@ -549,11 +552,11 @@ Config.prototype.buildArgs = function () {
     // https://github.com/mises/mises-browser/issues/10334
     args.dcheck_always_on = this.isComponentBuild()
 
-    args.ios_enable_content_widget_extension = false
-    args.ios_enable_search_widget_extension = false
-    args.ios_enable_share_extension = false
-    args.ios_enable_credential_provider_extension = false
-    args.ios_enable_widget_kit_extension = false
+    args.ios_enable_content_widget_extension = true
+    args.ios_enable_search_widget_extension = true
+    args.ios_enable_share_extension = true
+    args.ios_enable_credential_provider_extension = true
+    args.ios_enable_widget_kit_extension = true
 
     args.ios_provider_target = "//mises/ios/browser/providers:mises_providers"
     args.ios_application_icons_target = "//mises/ios/app/resources:mises_icons"
