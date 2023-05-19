@@ -89,15 +89,31 @@ bundle_data("mises_bundle_data") {
  ]
   outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
 }
+
+  action_foreach("sign_mises_frameworks") {
+    script = "//build/config/ios/codesign.py"
+    sources = [ 
+      "$env_prefix/Frameworks/Branch.framework",
+      "$env_prefix/Frameworks/Mixpanel.framework",
+      "$env_prefix/Frameworks/OpenSSL.framework",
+    ]
+    outputs = [ 
+      "$root_out_dir/{{source_file_part}}",
+     ]
+    args = [
+      "code-sign-file",
+      "--identity=" + ios_code_signing_identity,
+      "--output=" + rebase_path("$root_out_dir/{{source_file_part}}"),
+      "{{source}}",
+    ]
+  }
+  
+
 bundle_data("mises_frameworks") {
   visibility = [ ":mises" ]
-  sources = [
-    "$env_prefix/Frameworks/Branch.framework",
-    #"$env_prefix/Frameworks/Lottie.framework",
-    "$env_prefix/Frameworks/Mixpanel.framework",
-    "$env_prefix/Frameworks/OpenSSL.framework",
-  ]
+  sources = get_target_outputs(":sign_mises_frameworks")
   outputs = [ "{{bundle_resources_dir}}/Frameworks/{{source_file_part}}" ]
+  public_deps = [ ":sign_mises_frameworks" ]
 }
 
 bundle_data("mises_fonts") {

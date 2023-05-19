@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/app/BUILD.gn b/ios/chrome/app/BUILD.gn
-index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..79180dae0e61c561d44519af9eecba5fdba18f8f 100644
+index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..8a6d38318fa6a5e12ca1f1614de0dc06f5ec566a 100644
 --- a/ios/chrome/app/BUILD.gn
 +++ b/ios/chrome/app/BUILD.gn
 @@ -147,6 +147,7 @@ if (!is_fat_secondary_toolchain) {
@@ -10,7 +10,18 @@ index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..79180dae0e61c561d44519af9eecba5f
      ]
      if (ios_enable_background_mode) {
        info_plists += [ "resources/Background+Info.plist" ]
-@@ -686,7 +687,8 @@ ios_app_bundle("chrome") {
+@@ -171,6 +172,10 @@ if (!is_fat_secondary_toolchain) {
+     args = [
+       "--branding=$chromium_short_name",
+       "--add-gtm-metadata=1",
++      "--version-overrides=MAJOR=1",
++      "--version-overrides=MINOR=0",
++      "--version-overrides=BUILD=2",
++      "--version-overrides=PATCH=0",
+     ]
+   }
+ 
+@@ -686,7 +691,8 @@ ios_app_bundle("chrome") {
  
    deps = [
      ":main",
@@ -20,7 +31,7 @@ index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..79180dae0e61c561d44519af9eecba5f
      # Use the provider API controlled by args.gn.
      ios_provider_target,
    ]
-@@ -754,8 +756,7 @@ ios_app_bundle("chrome") {
+@@ -754,8 +760,7 @@ ios_app_bundle("chrome") {
    # (see https://crbug.com/1394553 for details of the build failure). This
    # is a stop-gap solution.
    if (target_environment == "catalyst" ||
