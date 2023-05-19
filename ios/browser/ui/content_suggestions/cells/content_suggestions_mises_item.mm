@@ -2,9 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#import "ios/chrome/browser/ui/content_suggestions/cells/content_suggestions_mises_item.h"
+#import "mises/ios/browser/ui/content_suggestions/cells/content_suggestions_mises_item.h"
 
-#import <MaterialComponents/MaterialTypography.h>
+//#import <MaterialComponents/MaterialTypography.h>
 
 #include "base/check_op.h"
 #import "ios/chrome/browser/ui/util/uikit_ui_util.h"
@@ -35,36 +35,36 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
 
 }  // namespace
 
-#pragma mark - ContentSuggestionsMisesItem
+// #pragma mark - ContentSuggestionsMisesItem
 
-@implementation ContentSuggestionsMisesItem
+// @implementation ContentSuggestionsMisesItem
 
-@synthesize suggestionIdentifier = _suggestionIdentifier;
-@synthesize metricsRecorded = _metricsRecorded;
+// @synthesize suggestionIdentifier = _suggestionIdentifier;
+// @synthesize metricsRecorded = _metricsRecorded;
 
 
-- (instancetype)initWithType:(NSInteger)type {
-  self = [super initWithType:type];
-  if (self) {
-    self.cellClass = [ContentSuggestionsMisesCell class];
-  }
-  return self;
-}
+// - (instancetype)initWithType:(NSInteger)type {
+//   self = [super initWithType:type];
+//   if (self) {
+//     self.cellClass = [ContentSuggestionsMisesCell class];
+//   }
+//   return self;
+// }
 
-- (void)configureCell:(ContentSuggestionsMisesCell*)cell {
-  [super configureCell:cell];
-  cell.accessibilityIdentifier = [[self class] accessibilityIdentifier];
-}
+// - (void)configureCell:(ContentSuggestionsMisesCell*)cell {
+//   [super configureCell:cell];
+//   cell.accessibilityIdentifier = [[self class] accessibilityIdentifier];
+// }
 
-- (CGFloat)cellHeightForWidth:(CGFloat)width {
-  return [self.cellClass heightForWidth:width];
-}
+// - (CGFloat)cellHeightForWidth:(CGFloat)width {
+//   return [self.cellClass heightForWidth:width];
+// }
 
-+ (NSString*)accessibilityIdentifier {
-  return @"ContentSuggestionsMisesIdentifier";
-}
+// + (NSString*)accessibilityIdentifier {
+//   return @"ContentSuggestionsMisesIdentifier";
+// }
 
-@end
+// @end
 
 #pragma mark - ContentSuggestionsMisesCell
 
@@ -89,7 +89,7 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
       
     _boxWebsiteLabel = [[UILabel alloc] init];
     _containerView = [[UIView alloc] init];
-    _enterButton = [[MDCButton alloc] init];
+    _enterButton = [[M3CButton alloc] init];
 
 
     _boxWebsiteLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -105,7 +105,7 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
       
 
 
-    [self.contentView addSubview:_containerView];
+    [self addSubview:_containerView];
     [_containerView addSubview:_boxWebsiteLabel];
     [_containerView addSubview:_enterButton];
 
@@ -131,7 +131,7 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
         });
     [NSLayoutConstraint activateConstraints:@[
       [_containerView.centerXAnchor
-          constraintEqualToAnchor:self.contentView.centerXAnchor]
+          constraintEqualToAnchor:self.centerXAnchor]
     ]];
   [NSLayoutConstraint activateConstraints:@[
     [_boxWebsiteLabel.heightAnchor
@@ -159,7 +159,7 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
 
   // Adjust the text label preferredMaxLayoutWidth when the parent's width
   // changes, for instance on screen rotation.
-  CGFloat parentWidth = CGRectGetWidth(self.contentView.bounds);
+  CGFloat parentWidth = CGRectGetWidth(self.bounds);
 
   self.boxWebsiteLabel.preferredMaxLayoutWidth = parentWidth;
 
@@ -172,8 +172,9 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
 
 // Configures the |promoLabel| with the |text|.
 + (void)configureBoxWebsiteLabel:(UILabel*)label withText:(NSString*)text {
-  label.font =
-      [[MDCTypography fontLoader] regularFontOfSize:kboxTitleFontSize];
+  // label.font =
+  //     [[MDCTypography fontLoader] regularFontOfSize:kboxTitleFontSize]
+  label.font = [UIFont systemFontOfSize:kboxTitleFontSize];
   label.textColor = [UIColor colorNamed:kTextSecondaryColor];
   label.numberOfLines = 0;
   label.textAlignment = NSTextAlignmentLeft;

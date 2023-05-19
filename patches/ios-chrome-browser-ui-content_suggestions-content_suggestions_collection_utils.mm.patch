@@ -1,0 +1,45 @@
+diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
+index f0d48297887596911da41d6bf1ea6c822cf4e4c9..90bb9089625721a703d632589582f96d0f765e0f 100644
+--- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
++++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
+@@ -37,31 +37,31 @@
+ const CGFloat kTopSpacingMaterial = 24;
+ 
+ // Top margin for the doodle.
+-const CGFloat kDoodleTopMarginRegularXRegular = 162;
+-const CGFloat kDoodleTopMarginOther = 48;
+-const CGFloat kShrunkDoodleTopMarginOther = 65;
++const CGFloat kDoodleTopMarginRegularXRegular = 0;//162;
++const CGFloat kDoodleTopMarginOther = 0;//48;
++const CGFloat kShrunkDoodleTopMarginOther = 0;//65;
+ // Size of the doodle top margin which is multiplied by the scaled font factor,
+ // and added to `kDoodleTopMarginOther` on non Regular x Regular form factors.
+-const CGFloat kDoodleScaledTopMarginOther = 10;
++const CGFloat kDoodleScaledTopMarginOther = 0;//10;
+ 
+ // Top margin for the search field
+-const CGFloat kSearchFieldTopMargin = 32;
+-const CGFloat kShrunkLogoSearchFieldTopMargin = 22;
++const CGFloat kSearchFieldTopMargin = 0;//32;
++const CGFloat kShrunkLogoSearchFieldTopMargin = 0;//22;
+ 
+ // Bottom margin for the search field.
+ const CGFloat kNTPSearchFieldBottomPadding = 18;
+ const CGFloat kNTPShrunkLogoSearchFieldBottomPadding = 20;
+ 
+ // Height for the logo and doodle frame.
+-const CGFloat kGoogleSearchDoodleHeight = 120;
++const CGFloat kGoogleSearchDoodleHeight = 0;//120;
+ 
+ // Height for the shrunk doodle frame.
+ // TODO(crbug.com/1170491): clean up post-launch.
+-const CGFloat kGoogleSearchDoodleShrunkHeight = 68;
++const CGFloat kGoogleSearchDoodleShrunkHeight = 0;//68;
+ 
+ // Height for the shrunk logo frame.
+ // TODO(crbug.com/1170491): clean up post-launch.
+-const CGFloat kGoogleSearchLogoShrunkHeight = 36;
++const CGFloat kGoogleSearchLogoShrunkHeight = 0;//36;
+ 
+ // The size of the symbol image.
+ const CGFloat kSymbolContentSuggestionsPointSize = 18;

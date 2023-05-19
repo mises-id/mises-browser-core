@@ -5,7 +5,7 @@
 #ifndef IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CELLS_CONTENT_SUGGESTIONS_MISES_WEB3SITE_CELL_H_
 #define IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CELLS_CONTENT_SUGGESTIONS_MISES_WEB3SITE_CELL_H_
 
-#import <MaterialComponents/MaterialCollectionCells.h>
+#import <MaterialComponents/MDCCollectionViewCell.h>
 
 @class FaviconView;
 

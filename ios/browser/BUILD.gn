@@ -16,6 +16,7 @@ source_set("browser") {
     "brave_web_main_parts.mm",
     "ui/popup_menu/cells/popup_menu_account_item.mm",
     "ui/toolbar/mises_toolbar_coordinator.mm",
+    "ui/content_suggestions/cells/content_suggestions_mises_item.mm"
   ]
 
   deps = [
@@ -67,6 +68,7 @@ source_set("browser") {
     "//ios/web/public",
     "//ios/web/public/init",
     "//ios/web/public/thread",
+    "//ios/third_party/material_components_ios",
     "//ui/base",
   ]
 }

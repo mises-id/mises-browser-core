@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb064757547224a91 100644
+index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..82113c699a70631e736b3c594b1c1eaf3c46b0cd 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -73,6 +73,9 @@
@@ -23,12 +23,14 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb0647575
  }  // namespace
  
  @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
-@@ -155,6 +158,14 @@ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
+@@ -155,6 +158,16 @@ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
  @property(nonatomic, strong)
      NSMutableArray<QuerySuggestionConfig*>* trendingQueries;
  
 +@property(nonatomic, strong)
 +    NSArray<ContentSuggestionsMostVisitedItem*>* misesWeb3siteItems;
++@property(nonatomic, strong)
++    NSMutableArray<ContentSuggestionsMostVisitedItem*>* freshMisesWeb3siteItems;
 +@property(nonatomic, strong)
 +    ContentSuggestionsSectionInformation* misesSectionInfo;
 +@property(nonatomic, strong)
@@ -38,7 +40,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb0647575
  @end
  
  @implementation ContentSuggestionsMediator
-@@ -203,6 +214,10 @@ @implementation ContentSuggestionsMediator
+@@ -203,6 +216,12 @@ @implementation ContentSuggestionsMediator
        _startSuggestServiceResponseBridge =
            std::make_unique<StartSuggestServiceResponseBridge>(self);
      }
@@ -46,10 +48,33 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb0647575
 +    _misesSectionInfo = MisesSectionInformation();
 +    _misesBoxMarginInfo = MisesBoxMarginInformation();
 +    _misesWeb3siteSectionInfo = MisesWeb3siteSectionInformation();
++    _misesWeb3siteItems = [NSArray array];
++    [self fetchWeb3site];
    }
    return self;
  }
-@@ -526,6 +541,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
+@@ -221,6 +240,7 @@ - (void)refreshMostVisitedTiles {
+   // Refresh in case there are new MVT to show.
+   _mostVisitedSites->RefreshTiles();
+   _mostVisitedSites->Refresh();
++  
+ }
+ 
+ - (void)reloadAllData {
+@@ -231,9 +251,10 @@ - (void)reloadAllData {
+     [self.consumer
+         showReturnToRecentTabTileWithConfig:self.returnToRecentTabItem];
+   }
+-  if ([self.mostVisitedItems count] && ![self shouldHideMVTForTileAblation]) {
+-    [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
++  if (([self.mostVisitedItems count] || [self.misesWeb3siteItems count]) && ![self shouldHideMVTForTileAblation]) {
++    [self.consumer setMostVisitedTilesWithConfigs:[self.misesWeb3siteItems arrayByAddingObjectsFromArray:self.mostVisitedItems]];
+   }
++    
+   if (!ShouldHideShortcutsForTrendingQueries() &&
+       ![self shouldHideShortcutsForTileAblation]) {
+     [self.consumer setShortcutTilesWithConfigs:self.actionButtonItems];
+@@ -526,6 +547,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
        return;
      }
    }
@@ -62,15 +87,29 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb0647575
  }
  
  #pragma mark - Private
-@@ -535,6 +556,7 @@ - (void)useFreshMostVisited {
+@@ -535,8 +562,10 @@ - (void)useFreshMostVisited {
    if ([self shouldHideMVTForTileAblation]) {
      return;
    }
-+  [self fetchWeb3site];
++  
    self.mostVisitedItems = self.freshMostVisitedItems;
-   [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
+-  [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
++  self.misesWeb3siteItems = self.freshMisesWeb3siteItems;
++  [self.consumer setMostVisitedTilesWithConfigs:[self.misesWeb3siteItems arrayByAddingObjectsFromArray:self.mostVisitedItems]];
    [self.feedDelegate contentSuggestionsWasUpdated];
-@@ -773,4 +795,94 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
+ }
+ 
+@@ -752,6 +781,9 @@ - (void)setCommandHandler:
+   for (ContentSuggestionsMostVisitedItem* item in self.freshMostVisitedItems) {
+     item.commandHandler = commandHandler;
+   }
++    for (ContentSuggestionsMostVisitedItem* item in self.freshMisesWeb3siteItems) {
++      item.commandHandler = commandHandler;
++    }
+ }
+ 
+ - (BOOL)contentSuggestionsEnabled {
+@@ -773,4 +805,95 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
    }
  }
  
@@ -120,7 +159,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb0647575
 +      tile.title = base::SysNSStringToUTF16(element[@"title"]);
 +      tile.favicon_url = GURL(base::SysNSStringToUTF8(element[@"logo"]));
 +      ContentSuggestionsMostVisitedItem* item =
-+        ConvertNTPTile(tile, self.mostVisitedSectionInfo);
++        ConvertNTPTile(tile, self.misesWeb3siteSectionInfo);
 +      item.commandHandler = self.commandHandler;
 +      item.incognitoAvailable = self.incognitoAvailable;
 +      [items addObject:item];
@@ -128,6 +167,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb0647575
 +    }
 +    [self updateMisesWeb3SiteItems:items];
 +    gWeb3SitesCache = data;
++    [self useFreshMostVisited];
 +}
 +
 +- (void) fetchIconForMisesWeb3SiteItems {
@@ -143,10 +183,10 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..ef076cf80dbb9842dbc9879fb0647575
 +- (void)updateMisesWeb3SiteItems:
 +    (NSArray<ContentSuggestionsMostVisitedItem*> *)items {
 +
-+    self.misesWeb3siteItems = items;
++    self.freshMisesWeb3siteItems =[NSMutableArray arrayWithArray:items];
 +
 +
-+    for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
++    for (ContentSuggestionsMostVisitedItem* item in self.freshMisesWeb3siteItems) {
 +      [self.faviconMediator fetchFaviconForMostVisited:item];
 +    }
 +
