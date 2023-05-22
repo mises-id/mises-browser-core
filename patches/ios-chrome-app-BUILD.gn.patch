@@ -17,7 +17,7 @@ index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..aef8314cd08781c5debadbbb279fb4e9
 +      "--version-overrides=MAJOR=1",
 +      "--version-overrides=MINOR=0",
 +      "--version-overrides=BUILD=2",
-+      "--version-overrides=PATCH=1",
++      "--version-overrides=PATCH=2",
      ]
    }
  
