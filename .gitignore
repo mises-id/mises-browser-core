@@ -96,3 +96,4 @@ linux-build-and-run.sh
 patches/err
 patches/fixed
 .boto
+yarn-error.log
