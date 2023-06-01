@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b9eb882dc3c303820c8ff5d3a2a69106c95f3444 100644
+index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..efdb2684203c9f9229f378c50ea9d9be1080e90d 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -73,6 +73,9 @@
@@ -125,7 +125,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b9eb882dc3c303820c8ff5d3a2a69106
 +        dispatch_async(dispatch_get_main_queue(), ^{
 +            [mediator handleWeb3SitesResponse:gWeb3SitesCache];
 +            [mediator reloadAllData];
-+            [self.feedDelegate contentSuggestionsWasUpdated];
++            //[self.feedDelegate contentSuggestionsWasUpdated];
 +        });
 +        return;
 +    }
@@ -142,7 +142,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b9eb882dc3c303820c8ff5d3a2a69106
 +        dispatch_async(dispatch_get_main_queue(), ^{
 +            [mediator handleWeb3SitesResponse:stringData];
 +            [mediator reloadAllData];
-+            [self.feedDelegate contentSuggestionsWasUpdated];
++            //[self.feedDelegate contentSuggestionsWasUpdated];
 +        });
 +
 +    }];

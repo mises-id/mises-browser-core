@@ -1,18 +1,42 @@
 diff --git a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.mm b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.mm
-index ee41edeca806f7aea9bd22b67a517a2d0318ec46..a5c7b4e54121c46f72e8dece1c979262ea9cecbe 100644
+index ee41edeca806f7aea9bd22b67a517a2d0318ec46..644d941b0bfc54979efe160c3c6beb844f2392d2 100644
 --- a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.mm
 +++ b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.mm
-@@ -127,4 +127,14 @@ - (ToolbarComponentVisibility)locationBarLeadingButtonVisibility {
+@@ -44,20 +44,18 @@ - (ToolbarComponentVisibility)forwardButtonVisibility {
+ - (ToolbarComponentVisibility)tabGridButtonVisibility {
+   switch (self.type) {
+     case PRIMARY:
+-      return ToolbarComponentVisibilityAlways &
+-             ~ToolbarComponentVisibilitySplit;
++      return ToolbarComponentVisibilityAlways;
+     case SECONDARY:
+-      return ToolbarComponentVisibilitySplit;
++      return ToolbarComponentVisibilityNone;
+   }
+ }
+ 
+ - (ToolbarComponentVisibility)toolsMenuButtonVisibility {
+   switch (self.type) {
+     case PRIMARY:
+-      return ToolbarComponentVisibilityAlways &
+-             ~ToolbarComponentVisibilitySplit;
++      return ToolbarComponentVisibilityAlways;
+     case SECONDARY:
+-      return ToolbarComponentVisibilitySplit;
++      return ToolbarComponentVisibilityNone;
+   }
+ }
+ 
+@@ -127,4 +125,13 @@ - (ToolbarComponentVisibility)locationBarLeadingButtonVisibility {
    }
  }
  
 +- (ToolbarComponentVisibility)misesButtonVisibility {
 +  switch (self.type) {
 +    case PRIMARY:
-+      return ToolbarComponentVisibilityAlways &
-+             ~ToolbarComponentVisibilitySplit;
++      return ToolbarComponentVisibilityAlways;
 +    case SECONDARY:
-+      return ToolbarComponentVisibilitySplit;
++      return ToolbarComponentVisibilityNone;
 +  }
 +}
 +

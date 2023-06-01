@@ -100,8 +100,8 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
     [[self class] configureBoxWebsiteLabel:self.boxWebsiteLabel withText:kboxWebsiteText];
     
     [_enterButton setTitle:kButtonTitle forState:UIControlStateNormal];
-    [_enterButton setTitleColor:[UIColor colorNamed:kTextSecondaryColor] forState:UIControlStateNormal];
-    [_enterButton setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+    [_enterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_enterButton setBackgroundColor:[UIColor clearColor]];
       
 
 
@@ -175,7 +175,7 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
   // label.font =
   //     [[MDCTypography fontLoader] regularFontOfSize:kboxTitleFontSize]
   label.font = [UIFont systemFontOfSize:kboxTitleFontSize];
-  label.textColor = [UIColor colorNamed:kTextSecondaryColor];
+  label.textColor = [UIColor whiteColor];
   label.numberOfLines = 0;
   label.textAlignment = NSTextAlignmentLeft;
   [label setText:[NSString stringWithString:text]];

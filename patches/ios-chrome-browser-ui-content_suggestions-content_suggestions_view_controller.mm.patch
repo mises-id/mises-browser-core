@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
-index 28733e6db09b8957bce6582e3cae68b4ade44c26..01698ecfb310e1e45c6ef01a0642cdacb436cc25 100644
+index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5004813eb 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
 @@ -41,6 +41,8 @@
@@ -20,7 +20,7 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..01698ecfb310e1e45c6ef01a0642cdac
  // Module Container for the Shortcuts.
  @property(nonatomic, strong)
      ContentSuggestionsModuleContainer* shortcutsModuleContainer;
-@@ -138,638 +142,701 @@ @interface ContentSuggestionsViewController () <
+@@ -138,638 +142,702 @@ @interface ContentSuggestionsViewController () <
  @implementation ContentSuggestionsViewController
  
  - (instancetype)init {
@@ -158,7 +158,8 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..01698ecfb310e1e45c6ef01a0642cdac
 -        [self.mostVisitedStackView.heightAnchor
 -            constraintGreaterThanOrEqualToConstant:height]
 -      ]];
-+        self.view.backgroundColor = ntp_home::NTPBackgroundColor();
++        self.view.backgroundColor = [UIColor clearColor];
++        //self.view.backgroundColor = ntp_home::NTPBackgroundColor();
      }
 -    [self populateMostVisitedModule];
 -  }

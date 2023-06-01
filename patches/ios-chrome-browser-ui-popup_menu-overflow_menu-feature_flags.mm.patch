@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/overflow_menu/feature_flags.mm b/ios/chrome/browser/ui/popup_menu/overflow_menu/feature_flags.mm
+index 88c223cdb2deea4ab12ef73f2e3eeb9dc7fdc242..6e28284e239fbe0a9f53c3e328c66e9ff47b3b1d 100644
+--- a/ios/chrome/browser/ui/popup_menu/overflow_menu/feature_flags.mm
++++ b/ios/chrome/browser/ui/popup_menu/overflow_menu/feature_flags.mm
+@@ -12,7 +12,7 @@
+ 
+ BASE_FEATURE(kNewOverflowMenu,
+              "NewOverflowMenu",
+-             base::FEATURE_ENABLED_BY_DEFAULT);
++             base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+ BASE_FEATURE(kSmartSortingNewOverflowMenu,
+              "kSmartSortingNewOverflowMenu",

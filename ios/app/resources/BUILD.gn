@@ -43,6 +43,13 @@ imageset("launchscreen_app_logo") {
     "mises/launchscreen_app_logo.imageset/launchscreen_app_logo@3x.png",
   ]
 }
+imageset("ntp_desktop") {
+  sources = [
+    "mises/ntp_desktop.imageset/Contents.json",
+    "mises/ntp_desktop.imageset/ntp_desktop@2x.jpg",
+    "mises/ntp_desktop.imageset/ntp_desktop@3x.jpg",
+  ]
+}
 
 imageset("launchscreen_brand_name") {
   sources = [
@@ -56,6 +63,7 @@ imageset("launchscreen_brand_name") {
 
 group("launchscreen_assets") {
   public_deps = [
+    ":ntp_desktop",
     ":launchscreen_app_logo",
     ":launchscreen_brand_name",
     "//ios/chrome/common/ui/colors/resources:background_color",

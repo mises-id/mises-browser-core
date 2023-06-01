@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/app/resources/LaunchScreen.xib b/ios/chrome/app/resources/LaunchScreen.xib
+index e7beae2309fca0a1df4d6435f17aa9489bb82ef9..e81fc78bb436321d8a2bf353cd039d234b3a811c 100644
+--- a/ios/chrome/app/resources/LaunchScreen.xib
++++ b/ios/chrome/app/resources/LaunchScreen.xib
+@@ -26,7 +26,7 @@
+                             <constraint firstAttribute="width" secondItem="K7H-Iv-QNk" secondAttribute="height" multiplier="1:1" id="ion-RZ-6NS"/>
+                         </constraints>
+                     </imageView>
+-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen_brand_name" translatesAutoresizingMaskIntoConstraints="NO" id="bAU-qs-X5w">
++                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen_brand_name" translatesAutoresizingMaskIntoConstraints="NO" id="bAU-qs-X5w">
+                         <rect key="frame" x="153.5" y="807" width="107" height="35"/>
+                         <constraints>
+                             <constraint firstAttribute="width" constant="107" id="0Mf-i7-mvo"/>
