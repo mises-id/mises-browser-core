@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..efdb2684203c9f9229f378c50ea9d9be1080e90d 100644
+index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3cea7a6038a 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -73,6 +73,9 @@
@@ -109,7 +109,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..efdb2684203c9f9229f378c50ea9d9be
  }
  
  - (BOOL)contentSuggestionsEnabled {
-@@ -773,4 +805,95 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
+@@ -773,4 +805,114 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
    }
  }
  
@@ -130,7 +130,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..efdb2684203c9f9229f378c50ea9d9be
 +        return;
 +    }
 +
-+    NSString * apiURLStr =[NSString stringWithFormat:@"https://web3.mises.site/website/recommend.json"];
++    NSString * apiURLStr =[NSString stringWithFormat:@"https://web3.mises.site/website/config.json"];
 +    NSMutableURLRequest *dataRqst = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:apiURLStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
 +
 +    NSURLSession *session=[NSURLSession sharedSession];
@@ -149,11 +149,9 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..efdb2684203c9f9229f378c50ea9d9be
 +    [dataTask resume];
 +
 +}
-+- (void) handleWeb3SitesResponse:(NSData*) data {
-+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-+
++- (NSArray<ContentSuggestionsMostVisitedItem*> *) convertWeb3Items: (id)jsonArray miseFeature:(BOOL)isMises {
 +    NSMutableArray<ContentSuggestionsMostVisitedItem*> *items = [NSMutableArray array];
-+    for (id element in json) {
++    for (id element in jsonArray) {
 +      ntp_tiles::NTPTile tile;
 +      tile.url = GURL(base::SysNSStringToUTF8(element[@"url"]));
 +      tile.title = base::SysNSStringToUTF16(element[@"title"]);
@@ -162,10 +160,31 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..efdb2684203c9f9229f378c50ea9d9be
 +        ConvertNTPTile(tile, self.misesWeb3siteSectionInfo);
 +      item.commandHandler = self.commandHandler;
 +      item.incognitoAvailable = self.incognitoAvailable;
++      item.isMisesFeature = isMises;
 +      [items addObject:item];
 +        NSLog(@"[fetchWeb3site]:item=%@", element);
 +    }
-+    [self updateMisesWeb3SiteItems:items];
++    return items;
++}
++- (void) handleWeb3SitesResponse:(NSData*) data {
++    NSError *error;
++    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
++    if (error || !json) {
++      return;
++    }
++    id recommended_sites = json[@"recommended_sites"];
++    if (![recommended_sites isKindOfClass:[NSArray class]]) {
++        return;
++    }
++    id feature_list = json[@"feature_list"];
++    if (![feature_list isKindOfClass:[NSArray class]]) {
++        return;
++    }
++    NSArray * features = [self convertWeb3Items:feature_list miseFeature:YES];
++    NSArray * recommendeds = [self convertWeb3Items:recommended_sites  miseFeature:NO]
++    
++    ;
++    [self updateMisesWeb3SiteItems: [features arrayByAddingObjectsFromArray:recommendeds]];
 +    gWeb3SitesCache = data;
 +    [self useFreshMostVisited];
 +}

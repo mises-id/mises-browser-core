@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
-index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5004813eb 100644
+index 28733e6db09b8957bce6582e3cae68b4ade44c26..dcc37c4d85b02bad3d92c241a8c6afd21ac58f23 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
 @@ -41,6 +41,8 @@
@@ -11,16 +11,21 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -107,6 +109,8 @@ @interface ContentSuggestionsViewController () <
+@@ -107,6 +109,13 @@ @interface ContentSuggestionsViewController () <
  // List of all of the Most Visited views.
  @property(nonatomic, strong)
      NSMutableArray<ContentSuggestionsMostVisitedTileView*>* mostVisitedViews;
 +@property(nonatomic, strong)
 +    NSMutableArray<UIStackView*>* mostVisitedHorizontalStackView;
++@property(nonatomic, strong)
++    NSMutableArray<UIStackView*>* misesFeatureHorizontalStackView;
++@property(nonatomic, strong)
++    ContentSuggestionsMisesCell* misesEnterWeb3Cell;
++
  // Module Container for the Shortcuts.
  @property(nonatomic, strong)
      ContentSuggestionsModuleContainer* shortcutsModuleContainer;
-@@ -138,638 +142,702 @@ @interface ContentSuggestionsViewController () <
+@@ -138,638 +147,735 @@ @interface ContentSuggestionsViewController () <
  @implementation ContentSuggestionsViewController
  
  - (instancetype)init {
@@ -100,7 +105,9 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 -      [self addUIElement:self.returnToRecentTabTile
 -          withCustomBottomSpacing:content_suggestions::
 -                                      kReturnToRecentTabSectionBottomMargin];
--    }
++        self.view.backgroundColor = [UIColor clearColor];
++        //self.view.backgroundColor = ntp_home::NTPBackgroundColor();
+     }
 -    CGFloat cardWidth = content_suggestions::SearchFieldWidth(
 -        self.view.bounds.size.width, self.traitCollection);
 -    [NSLayoutConstraint activateConstraints:@[
@@ -116,7 +123,11 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 -    self.mostVisitedStackView.distribution = UIStackViewDistributionFillEqually;
 -    self.mostVisitedStackView.spacing = horizontalSpacing;
 -
--    if (IsContentSuggestionsUIModuleRefreshEnabled()) {
++    self.view.accessibilityIdentifier = kContentSuggestionsCollectionIdentifier;
++    
++    self.verticalStackView = [[UIStackView alloc] init];
++    self.verticalStackView.translatesAutoresizingMaskIntoConstraints = NO;
+     if (IsContentSuggestionsUIModuleRefreshEnabled()) {
 -      self.mostVisitedStackView.backgroundColor =
 -          ntp_home::NTPBackgroundColor();
 -      self.mostVisitedStackView.alignment = UIStackViewAlignmentTop;
@@ -158,9 +169,7 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 -        [self.mostVisitedStackView.heightAnchor
 -            constraintGreaterThanOrEqualToConstant:height]
 -      ]];
-+        self.view.backgroundColor = [UIColor clearColor];
-+        //self.view.backgroundColor = ntp_home::NTPBackgroundColor();
-     }
+-    }
 -    [self populateMostVisitedModule];
 -  }
 -  BOOL noTrendingQueriesToShow =
@@ -181,11 +190,6 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 -        view.translatesAutoresizingMaskIntoConstraints = NO;
 -        [self.trendingQueryViews addObject:view];
 -      }
-+    self.view.accessibilityIdentifier = kContentSuggestionsCollectionIdentifier;
-+    
-+    self.verticalStackView = [[UIStackView alloc] init];
-+    self.verticalStackView.translatesAutoresizingMaskIntoConstraints = NO;
-+    if (IsContentSuggestionsUIModuleRefreshEnabled()) {
 +        self.verticalStackView.spacing = ModuleVerticalSpacing();
      }
 -    [self.verticalStackView
@@ -702,10 +706,20 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 +        }
 +        [self.mostVisitedHorizontalStackView removeAllObjects];
 +        
++        for (UIStackView* view in self.misesFeatureHorizontalStackView) {
++            [view removeFromSuperview];
++        }
++        [self.misesFeatureHorizontalStackView removeAllObjects];
++        if (self.misesEnterWeb3Cell) {
++            [self.misesEnterWeb3Cell removeFromSuperview];
++            self.misesEnterWeb3Cell = nil;
++        }
++        
 +        
 +    } else {
 +        self.mostVisitedViews = [NSMutableArray array];
 +        self.mostVisitedHorizontalStackView = [NSMutableArray array];
++        self.misesFeatureHorizontalStackView = [NSMutableArray array];
 +    }
 +    
 +    if ([configs count] == 0) {
@@ -1156,7 +1170,11 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 +            [self.mostVisitedStackView.heightAnchor
 +             constraintGreaterThanOrEqualToConstant:size.height]
 +        ]];
-+    }
+     }
+-    [self.verticalStackView insertArrangedSubview:self.mostVisitedStackView
+-                                          atIndex:insertionIndex];
+-    [self.verticalStackView setCustomSpacing:kMostVisitedBottomMargin
+-                                   afterView:self.mostVisitedStackView];
 +    for (ContentSuggestionsMostVisitedTileView* view in self.mostVisitedViews) {
 +        view.menuProvider = self.menuProvider;
 +        UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]
@@ -1166,15 +1184,12 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 +        tapRecognizer.enabled = YES;
 +        [self.mostVisitedTapRecognizers addObject:tapRecognizer];
 +        
-     }
--    [self.verticalStackView insertArrangedSubview:self.mostVisitedStackView
--                                          atIndex:insertionIndex];
--    [self.verticalStackView setCustomSpacing:kMostVisitedBottomMargin
--                                   afterView:self.mostVisitedStackView];
++    }
 +    [self buildHorizontalMostVisitedStackViews];
 +}
 +
-+- (void)buildHorizontalMostVisitedStackViews  {
++- (NSMutableArray *)buildHorizontalStackViews:(NSArray *)tileViews {
++    NSMutableArray *horizontalStackView = [NSMutableArray array];
 +    UIStackView* current = NULL;
 +    CGFloat horizontalSpacing =
 +    ContentSuggestionsTilesHorizontalSpacing(self.traitCollection);
@@ -1183,24 +1198,8 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 +    MostVisitedTilesContentHorizontalSpace(self.traitCollection);
      CGSize size =
 -        MostVisitedCellSize(self.traitCollection.preferredContentSizeCategory);
--    [NSLayoutConstraint activateConstraints:@[
--      [self.mostVisitedStackView.widthAnchor constraintEqualToConstant:width],
--      [self.mostVisitedStackView.heightAnchor
--          constraintEqualToConstant:size.height]
--    ]];
--  }
--  for (ContentSuggestionsMostVisitedTileView* view in self.mostVisitedViews) {
--    view.menuProvider = self.menuProvider;
--    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]
--        initWithTarget:self
--                action:@selector(contentSuggestionsElementTapped:)];
--    [view addGestureRecognizer:tapRecognizer];
--    tapRecognizer.enabled = YES;
--    [self.mostVisitedTapRecognizers addObject:tapRecognizer];
--    [self.mostVisitedStackView addArrangedSubview:view];
--  }
 +    MostVisitedCellSize(self.traitCollection.preferredContentSizeCategory);
-+    for (ContentSuggestionsMostVisitedTileView* view in self.mostVisitedViews) {
++    for (ContentSuggestionsMostVisitedTileView* view in tileViews) {
 +        if (!current) {
 +            current = [[UIStackView alloc] init];
 +            current.axis = UILayoutConstraintAxisHorizontal;
@@ -1215,26 +1214,62 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..41ea9ea28e765ef6b5b45dee0a4284e5
 +        }
 +        [current addArrangedSubview:view];
 +        if ([[current arrangedSubviews] count] == 4) {
-+            [self.mostVisitedHorizontalStackView addObject:current];
++            [horizontalStackView addObject:current];
 +            current = NULL;
 +        }
 +    }
 +    if (current) {
-+        [self.mostVisitedHorizontalStackView addObject:current];
++        [horizontalStackView addObject:current];
 +    }
 +    
-+    if ([[self.mostVisitedStackView arrangedSubviews] count] == 0) {
-+        ContentSuggestionsMisesCell *cell = [[ContentSuggestionsMisesCell alloc] init];
-+        [NSLayoutConstraint activateConstraints:@[
-+            [cell.widthAnchor constraintEqualToConstant:width],
-+            [cell.heightAnchor
-+             constraintEqualToConstant:[ContentSuggestionsMisesCell heightForWidth:width]]
-+        ]];
-+       [cell.enterButton addTarget:self
-+                                   action:@selector(enterWeb3Tapped)
-+                         forControlEvents:UIControlEventTouchUpInside];
-+        [self.mostVisitedStackView addArrangedSubview:cell];
++    return horizontalStackView;
++    
++}
++- (void)buildHorizontalMostVisitedStackViews  {
++    NSMutableArray *web3Tiles = [NSMutableArray array];
++    NSMutableArray *misesFeatureTiles = [NSMutableArray array];
++    for (ContentSuggestionsMostVisitedTileView* view in self.mostVisitedViews) {
++        if (view.config.isMisesFeature) {
++            [misesFeatureTiles addObject:view];
++        } else {
++            [web3Tiles addObject:view];
++        }
 +    }
++    
++    self.mostVisitedHorizontalStackView = [self buildHorizontalStackViews:web3Tiles];
++    self.misesFeatureHorizontalStackView = [self buildHorizontalStackViews:misesFeatureTiles];
++    
++    CGFloat width = MostVisitedTilesContentHorizontalSpace(self.traitCollection);
++    
++    for (UIStackView* view in self.misesFeatureHorizontalStackView) {
++        [self.mostVisitedStackView addArrangedSubview:view];
++    }
++    
++    ContentSuggestionsMisesCell *cell = [[ContentSuggestionsMisesCell alloc] init];
+     [NSLayoutConstraint activateConstraints:@[
+-      [self.mostVisitedStackView.widthAnchor constraintEqualToConstant:width],
+-      [self.mostVisitedStackView.heightAnchor
+-          constraintEqualToConstant:size.height]
++        [cell.widthAnchor constraintEqualToConstant:width],
++        [cell.heightAnchor
++         constraintEqualToConstant:[ContentSuggestionsMisesCell heightForWidth:width]]
+     ]];
+-  }
+-  for (ContentSuggestionsMostVisitedTileView* view in self.mostVisitedViews) {
+-    view.menuProvider = self.menuProvider;
+-    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]
+-        initWithTarget:self
+-                action:@selector(contentSuggestionsElementTapped:)];
+-    [view addGestureRecognizer:tapRecognizer];
+-    tapRecognizer.enabled = YES;
+-    [self.mostVisitedTapRecognizers addObject:tapRecognizer];
+-    [self.mostVisitedStackView addArrangedSubview:view];
+-  }
++   [cell.enterButton addTarget:self
++                               action:@selector(enterWeb3Tapped)
++                     forControlEvents:UIControlEventTouchUpInside];
++    [self.mostVisitedStackView addArrangedSubview:cell];
++    self.misesEnterWeb3Cell = cell;
 +    
 +    
 +    for (UIStackView* view in self.mostVisitedHorizontalStackView) {

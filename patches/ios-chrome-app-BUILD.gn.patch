@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/app/BUILD.gn b/ios/chrome/app/BUILD.gn
-index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..1870f08c906a55e987719692bb8e0dd917dfdd78 100644
+index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..c5e02def8f1841b27880c20976198a7a1e9d7645 100644
 --- a/ios/chrome/app/BUILD.gn
 +++ b/ios/chrome/app/BUILD.gn
 @@ -147,6 +147,7 @@ if (!is_fat_secondary_toolchain) {
@@ -17,7 +17,7 @@ index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..1870f08c906a55e987719692bb8e0dd9
 +      "--version-overrides=MAJOR=1",
 +      "--version-overrides=MINOR=0",
 +      "--version-overrides=BUILD=2",
-+      "--version-overrides=PATCH=4",
++      "--version-overrides=PATCH=5",
      ]
    }
  
