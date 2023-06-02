@@ -114,7 +114,10 @@ void ApplicationContextImpl::StartTearDown() {
 
   // Destroy the segmentation OTR observer before
   // `chrome_browser_state_manager_`.
-  segmentation_otr_web_state_observer_.reset();
+    if (segmentation_otr_web_state_observer_) {
+      segmentation_otr_web_state_observer_->TearDown();
+    }
+  //segmentation_otr_web_state_observer_.reset();
 
   // We need to destroy the MetricsServicesManager and NetworkTimeTracker before
   // the IO thread gets destroyed, since the destructor can call the URLFetcher

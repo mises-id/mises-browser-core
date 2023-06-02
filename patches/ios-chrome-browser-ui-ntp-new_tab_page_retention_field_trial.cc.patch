@@ -1,0 +1,17 @@
+diff --git a/ios/chrome/browser/ui/ntp/new_tab_page_retention_field_trial.cc b/ios/chrome/browser/ui/ntp/new_tab_page_retention_field_trial.cc
+index 218c0655d28adf08cc1a4ad3e5c74579dbde5d45..bfafbefbe7a2c48935bf892fcbae34bbb5aad356 100644
+--- a/ios/chrome/browser/ui/ntp/new_tab_page_retention_field_trial.cc
++++ b/ios/chrome/browser/ui/ntp/new_tab_page_retention_field_trial.cc
+@@ -246,9 +246,9 @@ void CreateNewTabPageFieldTrial(
+         ntp_tiles::kNewTabPageRetention.name,
+         base::FeatureList::OVERRIDE_DISABLE_FEATURE, trial.get());
+   } else {
+-    feature_list->RegisterFieldTrialOverride(
+-        ntp_tiles::kNewTabPageRetention.name,
+-        base::FeatureList::OVERRIDE_ENABLE_FEATURE, trial.get());
++//    feature_list->RegisterFieldTrialOverride(
++//        ntp_tiles::kNewTabPageRetention.name,
++//        base::FeatureList::OVERRIDE_ENABLE_FEATURE, trial.get());
+   }
+ }
+ 

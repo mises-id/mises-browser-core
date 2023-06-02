@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3cea7a6038a 100644
+index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a4bce77241b36ec10144ad9995acc2323eb3dfc2 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -73,6 +73,9 @@
@@ -40,7 +40,15 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3ce
  @end
  
  @implementation ContentSuggestionsMediator
-@@ -203,6 +216,12 @@ @implementation ContentSuggestionsMediator
+@@ -181,6 +194,7 @@ @implementation ContentSuggestionsMediator
+     _faviconMediator = [[ContentSuggestionsFaviconMediator alloc]
+         initWithLargeIconService:largeIconService
+                   largeIconCache:largeIconCache];
++    [_faviconMediator setImageFetcher:browser];
+ 
+     _logoSectionInfo = LogoSectionInformation();
+     _mostVisitedSectionInfo = MostVisitedSectionInformation();
+@@ -203,6 +217,12 @@ @implementation ContentSuggestionsMediator
        _startSuggestServiceResponseBridge =
            std::make_unique<StartSuggestServiceResponseBridge>(self);
      }
@@ -53,7 +61,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3ce
    }
    return self;
  }
-@@ -221,6 +240,7 @@ - (void)refreshMostVisitedTiles {
+@@ -221,6 +241,7 @@ - (void)refreshMostVisitedTiles {
    // Refresh in case there are new MVT to show.
    _mostVisitedSites->RefreshTiles();
    _mostVisitedSites->Refresh();
@@ -61,7 +69,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3ce
  }
  
  - (void)reloadAllData {
-@@ -231,9 +251,10 @@ - (void)reloadAllData {
+@@ -231,9 +252,10 @@ - (void)reloadAllData {
      [self.consumer
          showReturnToRecentTabTileWithConfig:self.returnToRecentTabItem];
    }
@@ -74,7 +82,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3ce
    if (!ShouldHideShortcutsForTrendingQueries() &&
        ![self shouldHideShortcutsForTileAblation]) {
      [self.consumer setShortcutTilesWithConfigs:self.actionButtonItems];
-@@ -526,6 +547,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
+@@ -526,6 +548,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
        return;
      }
    }
@@ -87,7 +95,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3ce
  }
  
  #pragma mark - Private
-@@ -535,8 +562,10 @@ - (void)useFreshMostVisited {
+@@ -535,8 +563,11 @@ - (void)useFreshMostVisited {
    if ([self shouldHideMVTForTileAblation]) {
      return;
    }
@@ -95,11 +103,12 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3ce
    self.mostVisitedItems = self.freshMostVisitedItems;
 -  [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
 +  self.misesWeb3siteItems = self.freshMisesWeb3siteItems;
++
 +  [self.consumer setMostVisitedTilesWithConfigs:[self.misesWeb3siteItems arrayByAddingObjectsFromArray:self.mostVisitedItems]];
    [self.feedDelegate contentSuggestionsWasUpdated];
  }
  
-@@ -752,6 +781,9 @@ - (void)setCommandHandler:
+@@ -752,6 +783,9 @@ - (void)setCommandHandler:
    for (ContentSuggestionsMostVisitedItem* item in self.freshMostVisitedItems) {
      item.commandHandler = commandHandler;
    }
@@ -109,7 +118,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3ce
  }
  
  - (BOOL)contentSuggestionsEnabled {
-@@ -773,4 +805,114 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
+@@ -773,4 +807,117 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
    }
  }
  
@@ -192,9 +201,12 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b6d1432b84b85984b0ffeb4e3282e3ce
 +- (void) fetchIconForMisesWeb3SiteItems {
 +    ntp_tiles::PopularSites::SitesVector sites;
 +    for (ContentSuggestionsMostVisitedItem* item in self.freshMisesWeb3siteItems) {
++        
 +        std::u16string title = base::SysNSStringToUTF16(item.title);
-+        sites.emplace_back(title, GURL(item.URL), GURL(),
++        sites.emplace_back(title, GURL(item.URL), GURL(item.iconURL),
 +                GURL(item.iconURL), item.titleSource);
++
++
 +    }
 +    _mostVisitedSites->FetchPopularSitesIcons(sites);
 +}
