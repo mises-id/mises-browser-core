@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a4bce77241b36ec10144ad9995acc2323eb3dfc2 100644
+index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca4961c3e303 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -73,6 +73,9 @@
@@ -118,7 +118,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a4bce77241b36ec10144ad9995acc232
  }
  
  - (BOOL)contentSuggestionsEnabled {
-@@ -773,4 +807,117 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
+@@ -773,4 +807,118 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
    }
  }
  
@@ -208,7 +208,8 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a4bce77241b36ec10144ad9995acc232
 +
 +
 +    }
-+    _mostVisitedSites->FetchPopularSitesIcons(sites);
++    if (_mostVisitedSites.get())
++        _mostVisitedSites->FetchPopularSitesIcons(sites);
 +}
 +
 +- (void)updateMisesWeb3SiteItems:
