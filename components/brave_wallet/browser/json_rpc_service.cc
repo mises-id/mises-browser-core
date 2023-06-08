@@ -1868,15 +1868,16 @@ void JsonRpcService::OnBitResolveDns(
     return;
   }
 
-  auto values = ParseResultDict(api_request_result.value_body());
-  if (!values) {
+  const base::Value& value_body = api_request_result.value_body();
+  if (!value_body.is_dict() || !value_body.GetDict().FindDict("data")) {
     mojom::ProviderError error;
     std::string error_message;
-    ParseErrorResult<mojom::ProviderError>(api_request_result.value_body(), &error,
+    ParseErrorResult<mojom::ProviderError>(value_body, &error,
                                            &error_message);
     bit_resolve_dns_calls_.SetError(domain, chain_id, error, error_message);
     return;
   }
+  const auto* values = value_body.GetDict().FindDict("data");
   GURL resolved_url;
   const auto* record_list = values->FindList("records");
   if (record_list) {
