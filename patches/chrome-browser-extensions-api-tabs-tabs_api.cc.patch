@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_api.cc b/chrome/browser/extensions/api/tabs/tabs_api.cc
-index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..124c77fa54db2dc2357f9d947a47b2106531af13 100644
+index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..c4545332c50a0a27fd64af8f6ce0040177f4cb72 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_api.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_api.cc
 @@ -171,6 +171,7 @@ class ApiParameterExtractor {
@@ -167,7 +167,7 @@ index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..124c77fa54db2dc2357f9d947a47b210
                                  : kUnknownErrorDoNotUse));
    }
 +#if BUILDFLAG(IS_ANDROID)
-+  CloseAllExtensionTabsAndroid();
++  CloseAllExtensionTabsAndroid(extension());
 +  if (BrowserList::GetInstance()->size() == 1) {
 +    return RespondNow(Error(tabs_constants::kTabStripNotEditableError));
 +  }

@@ -237,18 +237,17 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
 }
 
 void AppMenuBridge::CloseExtensionTabs(const std::string& extension_id) {
-   
     if (observed_tab_model_) {
-      int tab_count = observed_tab_model_->GetTabCount();
-      //this method is a bit strange, by using extra tab_index to track the tabs when CloseTabAt in loop
-      int tab_index = 0;
-      for (int i =  0; i < tab_count; ++i) {
-        TabAndroid* tab = observed_tab_model_->GetTabAt(tab_index);
-        if (tab && tab->ExtensionID() == extension_id) {
-          observed_tab_model_->CloseTabAt(tab_index);
-        } else {
-          tab_index ++;
-        }
+      for (int i =  0; i < observed_tab_model_->GetTabCount(); ++i) {
+        TabAndroid* tab = observed_tab_model_->GetTabAt(i);
+        if (!tab || !tab->GetURL().SchemeIs(extensions::kExtensionScheme)) {
+          continue;
+        } 
+        if (tab->ExtensionID() != extension_id || tab->ExtensionWindowID() <= 0) {
+          continue;
+        } 
+        observed_tab_model_->CloseTabAt(i);
+        break;
       }
 
     }

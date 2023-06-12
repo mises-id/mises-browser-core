@@ -56,7 +56,7 @@ public class RadioButtonGroupUnstoppableDomainsResolveMethodPreference
         mButtons.set(ResolveMethodTypes.DISABLED,
                 (RadioButtonWithDescription) holder.findViewById(
                         R.id.unstoppable_domains_resolve_method_disabled_radio_button));
-        mButtons.set(ResolveMethodTypes.ETHEREUM,
+        mButtons.set(ResolveMethodTypes.ENABLED,
                 (RadioButtonWithDescription) holder.findViewById(
                         R.id.unstoppable_domains_resolve_method_ethereum_radio_button));
 
