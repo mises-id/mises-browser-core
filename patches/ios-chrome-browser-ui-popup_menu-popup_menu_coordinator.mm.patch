@@ -11,7 +11,7 @@ index 8c2860d031a50a5724d6efffe3c2c9d89cb9661c..d192562cb287f46ce32c6aed67d38a7a
      return PopupMenuCommandTypeToolsMenu;
    return PopupMenuCommandTypeDefault;
  }
-@@ -650,4 +650,11 @@ - (void)trackToolsMenuNoHorizontalScrollOrAction {
+@@ -650,4 +650,11 @@ enum class IOSOverflowMenuActionType {
        feature_engagement::events::kOverflowMenuNoHorizontalScrollOrAction);
  }
  

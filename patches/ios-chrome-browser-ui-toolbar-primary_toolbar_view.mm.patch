@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm b/ios/chrome/
 index f52774216acaa8f5f1c83a86e3102b63f1deac1a..69e3094a5363307432ad44bd109403b2065d9f0e 100644
 --- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
 +++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
-@@ -88,6 +88,8 @@ @interface PrimaryToolbarView ()
+@@ -88,6 +88,8 @@
  @property(nonatomic, strong, readwrite)
      NSMutableArray<NSLayoutConstraint*>* contractedNoMarginConstraints;
  
@@ -11,7 +11,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..69e3094a5363307432ad44bd109403b2
  @end
  
  @implementation PrimaryToolbarView
-@@ -118,6 +120,8 @@ @implementation PrimaryToolbarView
+@@ -118,6 +120,8 @@
  @synthesize contractedNoMarginConstraints = _contractedNoMarginConstraints;
  @synthesize contentView = _contentView;
  
@@ -20,7 +20,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..69e3094a5363307432ad44bd109403b2
  #pragma mark - Public
  
  - (instancetype)initWithButtonFactory:(ToolbarButtonFactory*)factory {
-@@ -215,6 +219,7 @@ - (void)setUpLocationBar {
+@@ -215,6 +219,7 @@
  
  // Sets the leading stack view.
  - (void)setUpLeadingStackView {
@@ -28,7 +28,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..69e3094a5363307432ad44bd109403b2
    self.backButton = [self.buttonFactory backButton];
    self.forwardButton = [self.buttonFactory forwardButton];
    self.stopButton = [self.buttonFactory stopButton];
-@@ -222,7 +227,7 @@ - (void)setUpLeadingStackView {
+@@ -222,7 +227,7 @@
    self.reloadButton = [self.buttonFactory reloadButton];
  
    self.leadingStackViewButtons = @[
@@ -37,7 +37,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..69e3094a5363307432ad44bd109403b2
    ];
    self.leadingStackView = [[UIStackView alloc]
        initWithArrangedSubviews:self.leadingStackViewButtons];
-@@ -429,4 +434,23 @@ - (ToolbarButton*)openNewTabButton {
+@@ -429,4 +434,23 @@
    return nil;
  }
  

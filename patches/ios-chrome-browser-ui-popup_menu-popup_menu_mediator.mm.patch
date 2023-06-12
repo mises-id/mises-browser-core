@@ -13,7 +13,7 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..6b003ab993f8c9e1b79b4abaebbecab2
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -553,6 +557,9 @@ - (void)setBookmarkModel:(bookmarks::BookmarkModel*)bookmarkModel {
+@@ -553,6 +557,9 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
          DCHECK(!UseSymbols());
          [self createSearchMenuItems];
          break;
@@ -23,7 +23,7 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..6b003ab993f8c9e1b79b4abaebbecab2
      }
      NSMutableArray* specificItems = [NSMutableArray array];
      if (self.reloadStopItem)
-@@ -1203,6 +1210,11 @@ - (void)createToolsMenuItems {
+@@ -1203,6 +1210,11 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
        @"popup_menu_site_information", kToolsMenuSiteInformation);
    [actionsArray addObject:self.siteInformationItem];
  
@@ -35,7 +35,7 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..6b003ab993f8c9e1b79b4abaebbecab2
    // Report an Issue.
    if (ios::provider::IsUserFeedbackSupported()) {
      TableViewItem* reportIssue = CreateTableViewItem(
-@@ -1349,4 +1361,65 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
+@@ -1349,4 +1361,65 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
    }
  }
  
