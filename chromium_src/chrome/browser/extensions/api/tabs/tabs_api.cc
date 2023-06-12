@@ -1,5 +1,6 @@
 #include "chrome/browser/extensions/api/tabs/tabs_api.h"
 #include "base/values.h"
+#include "base/logging.h"
 #include "chrome/common/extensions/api/tabs.h"
 #if BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/ui/android/tab_model/tab_model.h"
@@ -138,6 +139,7 @@ int GetSelectedTabIdAndroid() {
   return tab_id;
 }
 void CloseAllExtensionTabsAndroid() {
+  LOG(INFO) << "extensions::CloseAllExtensionTabsAndroid";
    // simply close all extension tabs
   TabModel *tab_strip = nullptr;
   if (!TabModelList::models().empty())
