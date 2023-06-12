@@ -702,6 +702,28 @@ const util = {
       ]
     }
 
+    if (config.xcode_gen_target == '//mises/ios:*') {
+      let buildConfigDir = config.buildConfig
+      if (config.targetArch && config.targetArch != 'x64') {
+        buildConfigDir = buildConfigDir + '_' + config.targetArch
+      }
+      if (config.targetOS && (config.targetOS === 'android' || this.targetOS === 'ios')) {
+        buildConfigDir = config.targetOS + "_" + buildConfigDir
+      }
+      if (config.targetEnvironment) {
+        buildConfigDir = buildConfigDir + "_" + config.targetEnvironment
+      }
+
+      genArgs = [
+        'gen', config.outputDir,
+        '--args="' + args + '"',
+        '--ide=xcode', '--xcode-build-system=new',
+        '--xcode-configs=' + config.buildConfig,
+        //'--xcode-additional-files-roots=//ios;//ios_internal;//docs;//components',
+        '--xcode-config-build-dir=//out/ios_' + buildConfigDir
+      ]
+    }
+
     util.run('gn', genArgs, options)
   },
 

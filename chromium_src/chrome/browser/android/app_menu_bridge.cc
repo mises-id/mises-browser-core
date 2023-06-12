@@ -2,7 +2,7 @@
 #include <jni.h>
 #include <string>
 #include <stddef.h>
- 
+
 #include <memory>
 #include <set>
 #include <vector>
@@ -13,84 +13,84 @@
 #include "base/strings/string_util.h"
 
 
- #include "base/android/jni_android.h"
- #include "base/android/jni_array.h"
- #include "base/android/jni_string.h"
- #include "base/android/jni_weak_ref.h"
- #include "base/feature_list.h"
- #include "base/metrics/histogram_macros.h"
- #include "base/trace_event/trace_event.h"
- #include "base/memory/weak_ptr.h"
- #include "base/values.h"
+#include "base/android/jni_android.h"
+#include "base/android/jni_array.h"
+#include "base/android/jni_string.h"
+#include "base/android/jni_weak_ref.h"
+#include "base/feature_list.h"
+#include "base/metrics/histogram_macros.h"
+#include "base/trace_event/trace_event.h"
+#include "base/memory/weak_ptr.h"
+#include "base/values.h"
 #include "base/logging.h"
 #include "chrome/browser/browsing_data/browsing_data_important_sites_util.h"
- #include "chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h"
- #include "chrome/browser/engagement/important_sites_util.h"
- #include "chrome/browser/history/web_history_service_factory.h"
- #include "chrome/browser/profiles/profile_android.h"
- #include "chrome/common/channel_info.h"
- #include "chrome/common/chrome_features.h"
+#include "chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h"
+#include "chrome/browser/engagement/important_sites_util.h"
+#include "chrome/browser/history/web_history_service_factory.h"
+#include "chrome/browser/profiles/profile_android.h"
+#include "chrome/common/channel_info.h"
+#include "chrome/common/chrome_features.h"
 #include "components/sessions/content/session_tab_helper.h"
- #include "components/browsing_data/core/history_notice_utils.h"
- #include "components/browsing_data/core/pref_names.h"
- #include "components/prefs/pref_service.h"
- #include "content/public/browser/browser_context.h"
- #include "extensions/browser/extension_action_manager.h"
- #include "chrome/browser/extensions/extension_action_runner.h"
- #include "chrome/browser/extensions/extension_action_icon_factory.h"
- #include "chrome/browser/extensions/extension_context_menu_model.h"
- #include "chrome/browser/ui/toolbar/toolbar_action_view_controller.h"
- #include "extensions/browser/extension_host_observer.h"
- #include "ui/gfx/image/image.h"
- #include "base/functional/bind.h"
- #include "base/command_line.h"
- #include "base/strings/string_util.h"
- #include "base/strings/utf_string_conversions.h"
- #include "base/values.h"
- #include "base/android/jni_android.h"
- #include "base/android/jni_array.h"
- #include "base/android/jni_string.h"
- #include "chrome/browser/extensions/extension_tab_util.h"
- #include "chrome/browser/profiles/profile.h"
- #include "chrome/common/chrome_switches.h"
- #include "chrome/common/extensions/extension_constants.h"
- #include "chrome/common/url_constants.h"
- #include "components/favicon/core/favicon_service.h"
- #include "components/favicon_base/favicon_util.h"
- #include "components/pref_registry/pref_registry_syncable.h"
- #include "components/prefs/pref_service.h"
- #include "components/prefs/scoped_user_pref_update.h"
- #include "chrome/browser/extensions/tab_helper.h"
- #include "content/public/browser/navigation_controller.h"
- #include "content/public/browser/web_contents.h"
- #include "content/public/browser/web_ui.h"
- #include "content/public/common/bindings_policy.h"
- #include "extensions/browser/extension_icon_placeholder.h"
- #include "extensions/browser/extension_registry.h"
- #include "extensions/browser/extension_util.h"
- #include "extensions/browser/image_loader.h"
- #include "extensions/common/extension.h"
- #include "extensions/common/extension_icon_set.h"
- #include "extensions/common/extension_resource.h"
- #include "extensions/common/manifest_handlers/icons_handler.h"
- #include "extensions/common/manifest_handlers/incognito_info.h"
- #include "net/base/file_stream.h"
- #include "third_party/skia/include/core/SkBitmap.h"
- #include "ui/base/page_transition_types.h"
- #include "ui/gfx/codec/png_codec.h"
- #include "ui/gfx/favicon_size.h"
- #include "ui/gfx/image/image_skia.h"
- #include "chrome/browser/ui/extensions/icon_with_badge_image_source.h"
- #include "chrome/browser/ui/extensions/extension_action_view_controller.h"
- #include "ui/gfx/font_list.h"
- #include "ui/gfx/geometry/rect.h"
- #include "ui/gfx/geometry/rect_f.h"
- #include "ui/gfx/geometry/size.h"
- #include "ui/gfx/canvas.h"
- #include "ui/gfx/geometry/insets.h"
- #include "ui/gfx/image/canvas_image_source.h"
- #include "ui/gfx/skia_util.h"
- #include "ui/base/webui/web_ui_util.h"
+#include "components/browsing_data/core/history_notice_utils.h"
+#include "components/browsing_data/core/pref_names.h"
+#include "components/prefs/pref_service.h"
+#include "content/public/browser/browser_context.h"
+#include "extensions/browser/extension_action_manager.h"
+#include "chrome/browser/extensions/extension_action_runner.h"
+#include "chrome/browser/extensions/extension_action_icon_factory.h"
+#include "chrome/browser/extensions/extension_context_menu_model.h"
+#include "chrome/browser/ui/toolbar/toolbar_action_view_controller.h"
+#include "extensions/browser/extension_host_observer.h"
+#include "ui/gfx/image/image.h"
+#include "base/functional/bind.h"
+#include "base/command_line.h"
+#include "base/strings/string_util.h"
+#include "base/strings/utf_string_conversions.h"
+#include "base/values.h"
+#include "base/android/jni_android.h"
+#include "base/android/jni_array.h"
+#include "base/android/jni_string.h"
+#include "chrome/browser/extensions/extension_tab_util.h"
+#include "chrome/browser/profiles/profile.h"
+#include "chrome/common/chrome_switches.h"
+#include "chrome/common/extensions/extension_constants.h"
+#include "chrome/common/url_constants.h"
+#include "components/favicon/core/favicon_service.h"
+#include "components/favicon_base/favicon_util.h"
+#include "components/pref_registry/pref_registry_syncable.h"
+#include "components/prefs/pref_service.h"
+#include "components/prefs/scoped_user_pref_update.h"
+#include "chrome/browser/extensions/tab_helper.h"
+#include "content/public/browser/navigation_controller.h"
+#include "content/public/browser/web_contents.h"
+#include "content/public/browser/web_ui.h"
+#include "content/public/common/bindings_policy.h"
+#include "extensions/browser/extension_icon_placeholder.h"
+#include "extensions/browser/extension_registry.h"
+#include "extensions/browser/extension_util.h"
+#include "extensions/browser/image_loader.h"
+#include "extensions/common/extension.h"
+#include "extensions/common/extension_icon_set.h"
+#include "extensions/common/extension_resource.h"
+#include "extensions/common/manifest_handlers/icons_handler.h"
+#include "extensions/common/manifest_handlers/incognito_info.h"
+#include "net/base/file_stream.h"
+#include "third_party/skia/include/core/SkBitmap.h"
+#include "ui/base/page_transition_types.h"
+#include "ui/gfx/codec/png_codec.h"
+#include "ui/gfx/favicon_size.h"
+#include "ui/gfx/image/image_skia.h"
+#include "chrome/browser/ui/extensions/icon_with_badge_image_source.h"
+#include "chrome/browser/ui/extensions/extension_action_view_controller.h"
+#include "ui/gfx/font_list.h"
+#include "ui/gfx/geometry/rect.h"
+#include "ui/gfx/geometry/rect_f.h"
+#include "ui/gfx/geometry/size.h"
+#include "ui/gfx/canvas.h"
+#include "ui/gfx/geometry/insets.h"
+#include "ui/gfx/image/canvas_image_source.h"
+#include "ui/gfx/skia_util.h"
+#include "ui/base/webui/web_ui_util.h"
 #include "ui/color/color_provider_manager.h"
 #include "ui/native_theme/native_theme.h"
 #include "mises/build/android/jni_headers//AppMenuBridge_jni.h"
@@ -237,18 +237,17 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
 }
 
 void AppMenuBridge::CloseExtensionTabs(const std::string& extension_id) {
-   
     if (observed_tab_model_) {
-      int tab_count = observed_tab_model_->GetTabCount();
-      //this method is a bit strange, by using extra tab_index to track the tabs when CloseTabAt in loop
-      int tab_index = 0;
-      for (int i =  0; i < tab_count; ++i) {
-        TabAndroid* tab = observed_tab_model_->GetTabAt(tab_index);
-        if (tab->ExtensionID() == extension_id) {
-          observed_tab_model_->CloseTabAt(tab_index);
-        } else {
-          tab_index ++;
-        }
+      for (int i =  0; i < observed_tab_model_->GetTabCount(); ++i) {
+        TabAndroid* tab = observed_tab_model_->GetTabAt(i);
+        if (!tab || !tab->GetURL().SchemeIs(extensions::kExtensionScheme)) {
+          continue;
+        } 
+        if (tab->ExtensionID() != extension_id || tab->ExtensionWindowID() <= 0) {
+          continue;
+        } 
+        observed_tab_model_->CloseTabAt(i);
+        break;
       }
 
     }
@@ -256,6 +255,7 @@ void AppMenuBridge::CloseExtensionTabs(const std::string& extension_id) {
 
 
 void AppMenuBridge::CloseWalletTabs() {
+  LOG(INFO) << "AppMenuBridge::CloseWalletTabs";
   // close metamask/okx popup tab when user activate any normal tab
    CloseExtensionTabs(metamask_extension_id);
    CloseExtensionTabs(okx_extension_id);

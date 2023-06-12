@@ -44,3 +44,6 @@ const char kIPFSPublicGatewayAddress[] = "mises.ipfs.public_gateway_address";
 // Stores IPFS public gateway address to be used when translating IPFS NFT URLs.
 const char kIPFSPublicNFTGatewayAddress[] =
     "mises.ipfs.public_nft_gateway_address";
+
+// Stores list of CIDs that are pinned localy
+const char kIPFSPinnedCids[] = "mises.ipfs.local_pinned_cids";

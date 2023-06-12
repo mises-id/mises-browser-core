@@ -42,6 +42,7 @@ cargo_build("rust_lib") {
     "//mises/components/brave_wallet/rust:rust_lib",
     "//mises/components/challenge_bypass_ristretto:rust_lib",
     "//mises/components/json:rust_lib",
+    "//mises/components/filecoin:rust_lib",
   ]
 }
 

@@ -1,5 +1,6 @@
 #include "chrome/browser/extensions/api/tabs/tabs_api.h"
 #include "base/values.h"
+#include "base/logging.h"
 #include "chrome/common/extensions/api/tabs.h"
 #if BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/ui/android/tab_model/tab_model.h"
@@ -13,7 +14,7 @@ namespace extensions {
   void GetTabListValueAndroid(base::Value::List& result, const Extension* extension, Feature::Context context);
   int GetSelectedTabIndexAndroid(content::WebContents** contents);
   int GetSelectedTabIdAndroid();
-  void CloseAllExtensionTabsAndroid();
+  void CloseAllExtensionTabsAndroid(const Extension* extension);
 }
 #include "src/chrome/browser/extensions/api/tabs/tabs_api.cc"
 
@@ -137,33 +138,42 @@ int GetSelectedTabIdAndroid() {
 
   return tab_id;
 }
-void CloseAllExtensionTabsAndroid() {
+void CloseAllExtensionTabsAndroid(const Extension* extension) {
+  LOG(INFO) << "extensions::CloseAllExtensionTabsAndroid";
    // simply close all extension tabs
   TabModel *tab_strip = nullptr;
   if (!TabModelList::models().empty())
     tab_strip = *(TabModelList::models().begin());
   if (tab_strip) {
-    for (int i = 0; i < tab_strip->GetTabCount(); ++i) {
-      WebContents* web_contents = tab_strip->GetWebContentsAt(i);
-
-      int openingTab = (tab_strip->GetLastNonExtensionActiveIndex());
-      if (openingTab == -1)
-        openingTab = 0;
-
-      if (i == openingTab)
-        continue;
-
+    int tab_count = tab_strip->GetTabCount();
+    //this method is a bit strange, by using extra tab_index to track the tabs when CloseTabAt in loop
+    int tab_index = 0;
+    for (int i = 0; i < tab_count; ++i) {
+        
+      WebContents* web_contents = tab_strip->GetWebContentsAt(tab_index);
       if (!web_contents) {
+        tab_index++;
         continue;
       }
-      TabAndroid *tab_android = tab_strip->GetTabAt(i);
+      TabAndroid *tab_android = tab_strip->GetTabAt(tab_index);
       if (!tab_android) {
+        tab_index++;
         continue;
       }
       if (!tab_android->GetURL().SchemeIs(extensions::kExtensionScheme)) {
+        tab_index++;
         continue;
       }
-      tab_strip->CloseTabAt(i);
+      if (tab_android->ExtensionWindowID() <= 0) {
+        tab_index++;
+        continue;
+      }
+      if (!extension || extension->id() != tab_android->ExtensionID()) {
+        tab_index++;
+        continue;
+      }
+
+      tab_strip->CloseTabAt(tab_index);
     }
   }
 }

@@ -31,10 +31,6 @@ TEST(EthereumKeyringUnitTest, ConstructRootHDKey) {
       "8f9e36c31dc46e81472b6a5e40a4487e725ace445b8203f243fb8958",
       &seed));
   keyring.ConstructRootHDKey(seed, "m/44'/60'/0'/0");
-  EXPECT_EQ(
-      static_cast<HDKey*>(keyring.master_key_.get())->GetPrivateExtendedKey(),
-      "xprv9s21ZrQH143K3gWQTKSxNE9PXf6jyGYt2oTP7RNF47NemqwAwWF5nUkCjsYyB5"
-      "adUPLNuu2XQoPCy9P596CdE1Bf3oW7eApGB2DcX3nZUAj");
   EXPECT_EQ(static_cast<HDKey*>(keyring.root_.get())->GetPrivateExtendedKey(),
             "xprvA1YGbmYkUq9KMyPwADQehauc1vG7TSbNLc1dwYbvU7VzyAr7TPhj9VoJJoP2CV"
             "5kDmXXSZvbJ79ieLnD7Pt4rhbuaQjVr2JE3vcDBAvDoUg");
@@ -63,9 +59,7 @@ TEST(EthereumKeyringUnitTest, Accounts) {
             "0x02e77f0e2fa06F95BDEa79Fad158477723145838");
   for (size_t i = 0; i < accounts.size(); ++i) {
     EXPECT_EQ(accounts[i], keyring.GetAddress(i));
-    EXPECT_EQ(keyring.GetAccountIndex(accounts[i]), i);
   }
-  EXPECT_FALSE(keyring.GetAccountIndex("0x123"));
 
   // remove the last account
   keyring.RemoveAccount();
@@ -77,7 +71,6 @@ TEST(EthereumKeyringUnitTest, Accounts) {
             "0x2A22ad45446E8b34Da4da1f4ADd7B1571Ab4e4E7");
   for (size_t i = 0; i < accounts.size(); ++i) {
     EXPECT_EQ(accounts[i], keyring.GetAddress(i));
-    EXPECT_EQ(keyring.GetAccountIndex(accounts[i]), i);
   }
 
   keyring.AddAccounts(1);
@@ -94,10 +87,10 @@ TEST(EthereumKeyringUnitTest, Accounts) {
 TEST(EthereumKeyringUnitTest, SignTransaction) {
   // Specific signature check is in eth_transaction_unittest.cc
   EthereumKeyring keyring;
-  EthTransaction tx = *EthTransaction::FromTxData(
-      mojom::TxData::New("0x09", "0x4a817c800", "0x5208",
-                         "0x3535353535353535353535353535353535353535",
-                         "0x0de0b6b3a7640000", std::vector<uint8_t>()));
+  EthTransaction tx = *EthTransaction::FromTxData(mojom::TxData::New(
+      "0x09", "0x4a817c800", "0x5208",
+      "0x3535353535353535353535353535353535353535", "0x0de0b6b3a7640000",
+      std::vector<uint8_t>(), false, absl::nullopt));
   keyring.SignTransaction("0xDEADBEEFdeadbeefdeadbeefdeadbeefDEADBEEF", &tx, 0);
   EXPECT_FALSE(tx.IsSigned());
 
@@ -119,10 +112,7 @@ TEST(EthereumKeyringUnitTest, SignMessage) {
       &private_key));
 
   std::unique_ptr<HDKey> key = std::make_unique<HDKey>();
-  key->SetPrivateKey(
-      std::unique_ptr<std::vector<uint8_t>, SecureZeroVectorDeleter<uint8_t>>(
-          new std::vector<uint8_t>(private_key),
-          SecureZeroVectorDeleter<uint8_t>()));
+  key->SetPrivateKey(private_key);
 
   EthereumKeyring keyring;
   keyring.accounts_.push_back(std::move(key));
@@ -220,10 +210,10 @@ TEST(EthereumKeyringUnitTest, ImportedAccounts) {
                   .empty());
 
   // Sign Transaction
-  EthTransaction tx = *EthTransaction::FromTxData(
-      mojom::TxData::New("0x09", "0x4a817c800", "0x5208",
-                         "0x3535353535353535353535353535353535353535",
-                         "0x0de0b6b3a7640000", std::vector<uint8_t>()));
+  EthTransaction tx = *EthTransaction::FromTxData(mojom::TxData::New(
+      "0x09", "0x4a817c800", "0x5208",
+      "0x3535353535353535353535353535353535353535", "0x0de0b6b3a7640000",
+      std::vector<uint8_t>(), false, absl::nullopt));
   keyring.SignTransaction("0xbE93f9BacBcFFC8ee6663f2647917ed7A20a57BB", &tx, 0);
   EXPECT_FALSE(tx.IsSigned());
 

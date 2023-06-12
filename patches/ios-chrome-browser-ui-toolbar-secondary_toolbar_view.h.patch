@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.h b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.h
+index 88ebcfbe5970494070d9973faaf3db2e08cd748c..b3412f8002f59c3b5d63fb33d3c3cba99839a4b3 100644
+--- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.h
++++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.h
+@@ -23,6 +23,8 @@
+ - (instancetype)initWithCoder:(NSCoder*)aDecoder NS_UNAVAILABLE;
+ - (instancetype)init NS_UNAVAILABLE;
+ 
++- (void)updateMisesAvatar:(UIImage*)image;
++
+ @end
+ 
+ #endif  // IOS_CHROME_BROWSER_UI_TOOLBAR_SECONDARY_TOOLBAR_VIEW_H_

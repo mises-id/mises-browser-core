@@ -67,7 +67,7 @@ base::flat_map<std::string, std::string> MakeCommonJsonRpcHeaders(
   if (env->HasVar("MISES_SERVICES_KEY")) {
     env->GetVar("MISES_SERVICES_KEY", &brave_key);
   }
-  request_headers["x-mises-key"] = std::move(brave_key);
+  request_headers["x-brave-key"] = std::move(brave_key);
 
   return request_headers;
 }

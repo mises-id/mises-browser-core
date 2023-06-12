@@ -1,6 +1,12 @@
+# Copyright (c) 2019 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/.
+
 import("//mises/build/config.gni")
 import("//mises/components/ipfs/buildflags/buildflags.gni")
 import("//build/config/features.gni")
+import("//tools/json_schema_compiler/json_schema_api.gni")
 
 declare_args() {
   sardine_client_id = ""
@@ -14,6 +20,8 @@ if (is_official_build) {
 
 static_library("browser") {
   sources = [
+    "asset_discovery_manager.cc",
+    "asset_discovery_manager.h",
     "asset_ratio_response_parser.cc",
     "asset_ratio_response_parser.h",
     "asset_ratio_service.cc",
@@ -24,6 +32,21 @@ static_library("browser") {
     "blockchain_list_parser.h",
     "blockchain_registry.cc",
     "blockchain_registry.h",
+    "brave_wallet_ipfs_service.cc",
+    "brave_wallet_ipfs_service.h",
+    "brave_wallet_p3a.cc",
+    "brave_wallet_p3a.h",
+    "brave_wallet_p3a_private.cc",
+    "brave_wallet_p3a_private.h",
+    "brave_wallet_prefs.cc",
+    "brave_wallet_prefs.h",
+    "brave_wallet_provider_delegate.cc",
+    "brave_wallet_provider_delegate.h",
+    "brave_wallet_service.cc",
+    "brave_wallet_service.h",
+    "brave_wallet_service_delegate.cc",
+    "brave_wallet_service_delegate.h",
+    "brave_wallet_service_observer_base.h",
     "ens_resolver_task.cc",
     "ens_resolver_task.h",
     "eth_abi_decoder.cc",
@@ -36,6 +59,8 @@ static_library("browser") {
     "eth_data_parser.h",
     "eth_gas_utils.cc",
     "eth_gas_utils.h",
+    "eth_logs_tracker.cc",
+    "eth_logs_tracker.h",
     "eth_nonce_tracker.cc",
     "eth_nonce_tracker.h",
     "eth_pending_tx_tracker.cc",
@@ -54,6 +79,20 @@ static_library("browser") {
     "eth_tx_state_manager.h",
     "ethereum_provider_impl.cc",
     "ethereum_provider_impl.h",
+    "fil_block_tracker.cc",
+    "fil_block_tracker.h",
+    "fil_nonce_tracker.cc",
+    "fil_nonce_tracker.h",
+    "fil_requests.cc",
+    "fil_requests.h",
+    "fil_response_parser.cc",
+    "fil_response_parser.h",
+    "fil_tx_manager.cc",
+    "fil_tx_manager.h",
+    "fil_tx_meta.cc",
+    "fil_tx_meta.h",
+    "fil_tx_state_manager.cc",
+    "fil_tx_state_manager.h",
     "json_rpc_requests_helper.cc",
     "json_rpc_requests_helper.h",
     "json_rpc_response_parser.cc",
@@ -62,10 +101,49 @@ static_library("browser") {
     "json_rpc_service.h",
     "keyring_service.cc",
     "keyring_service.h",
+    "keyring_service_observer_base.h",
+    "nft_metadata_fetcher.cc",
+    "nft_metadata_fetcher.h",
     "nonce_tracker.cc",
     "nonce_tracker.h",
     "password_encryptor.cc",
     "password_encryptor.h",
+    "sns_resolver_task.cc",
+    "sns_resolver_task.h",
+    "solana_account_meta.cc",
+    "solana_account_meta.h",
+    "solana_block_tracker.cc",
+    "solana_block_tracker.h",
+    "solana_compiled_instruction.cc",
+    "solana_compiled_instruction.h",
+    "solana_instruction.cc",
+    "solana_instruction.h",
+    "solana_instruction_builder.cc",
+    "solana_instruction_builder.h",
+    "solana_instruction_data_decoder.cc",
+    "solana_instruction_data_decoder.h",
+    "solana_instruction_decoded_data.cc",
+    "solana_instruction_decoded_data.h",
+    "solana_message.cc",
+    "solana_message.h",
+    "solana_message_address_table_lookup.cc",
+    "solana_message_address_table_lookup.h",
+    "solana_message_header.cc",
+    "solana_message_header.h",
+    "solana_provider_impl.cc",
+    "solana_provider_impl.h",
+    "solana_requests.cc",
+    "solana_requests.h",
+    "solana_response_parser.cc",
+    "solana_response_parser.h",
+    "solana_transaction.cc",
+    "solana_transaction.h",
+    "solana_tx_manager.cc",
+    "solana_tx_manager.h",
+    "solana_tx_meta.cc",
+    "solana_tx_meta.h",
+    "solana_tx_state_manager.cc",
+    "solana_tx_state_manager.h",
     "swap_request_helper.cc",
     "swap_request_helper.h",
     "swap_response_parser.cc",
@@ -88,50 +166,40 @@ static_library("browser") {
     "bit_domains_resolve_calls.h",
     "wallet_data_files_installer.cc",
     "wallet_data_files_installer.h",
-    "brave_wallet_context_utils.cc",
-    "brave_wallet_context_utils.h",
-    "json_rpc_service_factory.cc",
-    "json_rpc_service_factory.h",
-    "brave_wallet_utils.cc",
-    "brave_wallet_utils.h",
-    "brave_wallet_service.cc",
-    "brave_wallet_service.h",
-    "brave_wallet_prefs.cc",
-    "brave_wallet_prefs.h",
-    #"fil_block_tracker.cc",
-    #"fil_block_tracker.h",
-    #"fil_nonce_tracker.cc",
-    #"fil_nonce_tracker.h",
-    #"fil_requests.cc",
-    #"fil_requests.h",
-    #"fil_response_parser.cc",
-    #"fil_response_parser.h",
-    #"fil_tx_manager.cc",
-    #"fil_tx_manager.h",
-    #"fil_tx_meta.cc",
-    #"fil_tx_meta.h",
-    #"fil_tx_state_manager.cc",
-    #"fil_tx_state_manager.h",
   ]
+  if (enable_ipfs_local_node) {
+    sources += [
+      "brave_wallet_auto_pin_service.cc",
+      "brave_wallet_auto_pin_service.h",
+      "brave_wallet_pin_service.cc",
+      "brave_wallet_pin_service.h",
+    ]
+  }
   deps = [
     ":constants",
+    ":generated_json_rpc_responses",
+    ":generated_swap_responses",
     ":hd_keyring",
     ":pref_names",
     ":transaction",
     ":utils",
     "//base",
     "//mises/components/api_request_helper",
+    "//mises/components/mises_component_updater/browser",
+    #"//mises/components/brave_stats/browser",
+    "//mises/components/brave_wallet/api",
     "//mises/components/brave_wallet/common",
     "//mises/components/brave_wallet/common:buildflags",
     "//mises/components/brave_wallet/common:common_constants",
     "//mises/components/brave_wallet/common:mojom",
     "//mises/components/brave_wallet/common:pref_names",
     "//mises/components/brave_wallet/common:solana_utils",
-    "//mises/components/brave_wallet/common:common_utils",
     "//mises/components/constants",
     "//mises/components/decentralized_dns/core",
+    "//mises/components/filecoin/rs:cxx",
     "//mises/components/ipfs/buildflags",
     "//mises/components/json/rs:cxx",
+    "//mises/components/p3a_utils",
     "//mises/components/resources:strings_grit",
     "//components/component_updater",
     "//components/content_settings/core/browser",
@@ -144,6 +212,7 @@ static_library("browser") {
     "//third_party/abseil-cpp:absl",
     "//third_party/boringssl",
     "//third_party/re2",
+    "//tools/json_schema_compiler:generated_api_util",
     "//ui/base:base",
     "//url",
   ]
@@ -199,6 +268,8 @@ source_set("pref_names") {
 
 source_set("utils") {
   sources = [
+    "brave_wallet_utils.cc",
+    "brave_wallet_utils.h",
   ]
 
   deps = [
@@ -207,6 +278,8 @@ source_set("utils") {
     "//base",
     "//mises/components/brave_wallet/common:buildflags",
     "//mises/components/brave_wallet/common:mojom",
+    "//mises/components/version_info",
+    #"//mises/vendor/bip39wally-core-native:bip39wally-core",
     "//components/content_settings/core/common",
     "//components/prefs",
     "//crypto",
@@ -221,10 +294,16 @@ source_set("utils") {
 
 source_set("hd_keyring") {
   sources = [
+    "bitcoin_keyring.cc",
+    "bitcoin_keyring.h",
     "ethereum_keyring.cc",
     "ethereum_keyring.h",
+    "filecoin_keyring.cc",
+    "filecoin_keyring.h",
     "hd_keyring.cc",
     "hd_keyring.h",
+    "solana_keyring.cc",
+    "solana_keyring.h",
   ]
 
   deps = [
@@ -235,6 +314,7 @@ source_set("hd_keyring") {
     "//mises/components/brave_wallet/common:common_constants",
     "//mises/components/brave_wallet/common:mojom",
     "//mises/components/brave_wallet/common:solana_utils",
+    "//mises/components/filecoin/rs:cxx",
     "//crypto",
   ]
 
@@ -249,8 +329,8 @@ source_set("transaction") {
     "eip2930_transaction.h",
     "eth_transaction.cc",
     "eth_transaction.h",
-    #"fil_transaction.cc",
-    #"fil_transaction.h",
+    "fil_transaction.cc",
+    "fil_transaction.h",
     "rlp_decode.cc",
     "rlp_decode.h",
     "rlp_encode.cc",
@@ -261,7 +341,28 @@ source_set("transaction") {
     "//base",
     "//mises/components/brave_wallet/common",
     "//mises/components/brave_wallet/common:mojom",
+    "//mises/components/filecoin/rs:cxx",
     "//mises/components/json/rs:cxx",
+  ]
+}
+
+generated_types("generated_json_rpc_responses") {
+  sources = [ "json_rpc_responses.idl" ]
+  root_namespace = "brave_wallet::%(namespace)s"
+  deps = [ "//base" ]
+  visibility = [
+    ":browser",
+    "test:brave_wallet_unit_tests",
+  ]
+}
+
+generated_types("generated_swap_responses") {
+  sources = [ "swap_responses.idl" ]
+  root_namespace = "brave_wallet::%(namespace)s"
+  deps = [ "//base" ]
+  visibility = [
+    ":browser",
+    "test:brave_wallet_unit_tests",
   ]
 }
 

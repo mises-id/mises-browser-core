@@ -101,6 +101,8 @@ class JSSolanaProvider final : public gin::Wrappable<JSSolanaProvider>,
   // (solanaWeb3.Transaction[]) => Promise<solanaWeb3.Transaction[]>
   v8::Local<v8::Promise> SignAllTransactions(gin::Arguments* arguments);
 
+  void WalletStandardInit(gin::Arguments* arguments);
+
   void FireEvent(const std::string& event,
                  std::vector<v8::Local<v8::Value>>&& event_args);
 
@@ -131,7 +133,8 @@ class JSSolanaProvider final : public gin::Wrappable<JSSolanaProvider>,
                          v8::Isolate* isolate,
                          mojom::SolanaProviderError error,
                          const std::string& error_message,
-                         const std::vector<uint8_t>& serialized_tx);
+                         const std::vector<uint8_t>& serialized_tx,
+                         mojom::SolanaMessageVersion version);
 
   void OnSignAllTransactions(
       v8::Global<v8::Context> global_context,
@@ -139,7 +142,8 @@ class JSSolanaProvider final : public gin::Wrappable<JSSolanaProvider>,
       v8::Isolate* isolate,
       mojom::SolanaProviderError error,
       const std::string& error_message,
-      const std::vector<std::vector<uint8_t>>& serialized_txs);
+      const std::vector<std::vector<uint8_t>>& serialized_txs,
+      const std::vector<mojom::SolanaMessageVersion>& versions);
 
   void OnRequest(v8::Global<v8::Context> global_context,
                  v8::Global<v8::Promise::Resolver> promise_resolver,
@@ -159,6 +163,14 @@ class JSSolanaProvider final : public gin::Wrappable<JSSolanaProvider>,
   absl::optional<std::string> GetSerializedMessage(
       v8::Local<v8::Value> transaction);
 
+  absl::optional<std::vector<uint8_t>> GetSignatureBlobFromV8Signature(
+      const v8::Local<v8::Value>& v8_signature,
+      const v8::Local<v8::Context>& context);
+
+  absl::optional<std::string> GetPubkeyStringFromV8Pubkey(
+      const v8::Local<v8::Value>& v8_pubkey_object,
+      const v8::Local<v8::Context>& context);
+
   absl::optional<std::vector<mojom::SignaturePubkeyPairPtr>> GetSignatures(
       v8::Local<v8::Value> transaction);
 
@@ -167,15 +179,18 @@ class JSSolanaProvider final : public gin::Wrappable<JSSolanaProvider>,
 
   bool LoadSolanaWeb3ModuleIfNeeded(v8::Isolate* isolate);
 
-  // use @solana/web3.js and create publicKey from base58 string
+  // Use @solana/web3.js and create publicKey from base58 string.
   v8::Local<v8::Value> CreatePublicKey(v8::Local<v8::Context> context,
                                        const std::string& base58_str);
 
-  // use @solana/web3.js and create Transaction from serialized tx
+  // Use @solana/web3.js and create Transaction or VersionedTransaction from
+  // serialized tx.
   v8::Local<v8::Value> CreateTransaction(
       v8::Local<v8::Context> context,
-      const std::vector<uint8_t> serialized_tx);
+      const std::vector<uint8_t> serialized_tx,
+      mojom::SolanaMessageVersion version);
 
+  bool wallet_standard_loaded_ = false;
   v8::Global<v8::Value> solana_web3_module_;
   std::unique_ptr<content::V8ValueConverter> v8_value_converter_;
   V8ConverterStrategy strategy_;

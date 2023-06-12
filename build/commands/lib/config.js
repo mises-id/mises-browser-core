@@ -117,6 +117,7 @@ const Config = function () {
   this.googleDefaultClientSecret = getNPMConfig(['google_default_client_secret']) || ''
   this.misesServicesKey = getNPMConfig(['mises_services_key']) || ''
   this.infuraProjectId = getNPMConfig(['mises_infura_project_id']) || ''
+  this.misesZeroExApiKey = getNPMConfig(['mises_zero_ex_api_key']) || ''
   this.binanceClientId = getNPMConfig(['binance_client_id']) || ''
   this.ftxClientId = getNPMConfig(['ftx_client_id']) || ''
   this.ftxClientSecret = getNPMConfig(['ftx_client_secret']) || ''
@@ -276,6 +277,7 @@ Config.prototype.buildArgs = function () {
     google_default_client_id: this.googleDefaultClientId,
     google_default_client_secret: this.googleDefaultClientSecret,
     mises_infura_project_id: this.infuraProjectId,
+    mises_zero_ex_api_key: this.misesZeroExApiKey,
     binance_client_id: this.binanceClientId,
     ftx_client_id: this.ftxClientId,
     ftx_client_secret: this.ftxClientSecret,
@@ -531,12 +533,19 @@ Config.prototype.buildArgs = function () {
     if (this.targetEnvironment) {
       args.target_environment = this.targetEnvironment
     }
-    args.enable_dsyms = true
+    args.enable_extensions = false
+    args.enable_pdf = false
+    args.enable_plugins = false
+    args.enable_remoting = false
+    if (this.isDebug()) {
+      args.enable_dsyms = false
+    }
+    
     args.enable_stripping = !this.isComponentBuild()
     // Component builds are not supported for iOS:
     // https://chromium.googlesource.com/chromium/src/+/master/docs/component_build.md
     args.is_component_build = false
-    args.ios_enable_code_signing = false
+    args.ios_enable_code_signing = true
     args.fatal_linker_warnings = !this.isComponentBuild()
     // DCHECK's crash on Static builds without allowing the debugger to continue
     // Can be removed when approprioate DCHECK's have been fixed:
@@ -550,6 +559,8 @@ Config.prototype.buildArgs = function () {
     args.ios_enable_widget_kit_extension = false
 
     args.ios_provider_target = "//mises/ios/browser/providers:mises_providers"
+    args.ios_application_icons_target = "//mises/ios/app/resources:mises_icons"
+    args.ios_launchscreen_assets_target = "//mises//ios/app/resources:launchscreen_assets"
 
     args.ios_locales_pack_extra_source_patterns = [
       "%root_gen_dir%/components/mises_components_strings_",
@@ -761,6 +772,10 @@ Config.prototype.update = function (options) {
 
   if (options.mises_infura_project_id) {
     this.infuraProjectId = options.mises_infura_project_id
+  }
+
+  if (options.mises_zero_ex_api_key) {
+    this.misesZeroExApiKey = options.mises_zero_ex_api_key
   }
 
   if (options.binance_client_id) {

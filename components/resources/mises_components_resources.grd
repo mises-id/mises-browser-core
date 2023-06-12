@@ -22,6 +22,7 @@
         <part file="web3sites_safe_resources.grdp" />
       </if>
       <part file="ipfs_resources.grdp" />
+      <part file="brave_wallet_resources.grdp" />
     </includes>
   </release>
 </grit>

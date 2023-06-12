@@ -1,0 +1,45 @@
+diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_coordinator.mm b/ios/chrome/browser/ui/toolbar/secondary_toolbar_coordinator.mm
+index 0857a53d9c35babf1e7fb8c4ef0896ffc4dce474..4e5e5ece19486c0934588df80127f7247ea0166c 100644
+--- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_coordinator.mm
++++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_coordinator.mm
+@@ -12,12 +12,15 @@
+ #import "ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator+subclassing.h"
+ #import "ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.h"
+ 
++#import "mises/ios/browser/ui/toolbar/mises_toolbar_coordinator.h"
++
+ #if !defined(__has_feature) || !__has_feature(objc_arc)
+ #error "This file requires ARC support."
+ #endif
+ 
+ @interface SecondaryToolbarCoordinator ()
+ @property(nonatomic, strong) SecondaryToolbarViewController* viewController;
++@property(nonatomic, strong) MisesToolbarCoordinator* misesToolbarCoordinator;
+ @end
+ 
+ @implementation SecondaryToolbarCoordinator
+@@ -36,6 +39,9 @@
+   self.viewController.layoutGuideCenter =
+       LayoutGuideCenterForBrowser(self.browser);
+ 
++  self.misesToolbarCoordinator = [[MisesToolbarCoordinator alloc] initWithBrowser:self.browser];
++  self.misesToolbarCoordinator.delegate = self.viewController;
++  [self.misesToolbarCoordinator start];
+   [super start];
+ }
+ 
+@@ -45,4 +51,14 @@
+   [self.viewController triggerToolbarSlideInAnimationFromBelow:YES];
+ }
+ 
++- (void)stop {
++  [super stop];
++  [self.misesToolbarCoordinator stop];
++}
++- (void) activate {
++
++  [self.misesToolbarCoordinator activate];
++
++}
++
+ @end

@@ -54,7 +54,7 @@ void ExtractAddresses(permissions::RequestType type,
   re2::StringPiece input(origin_string);
   std::string match;
   re2::RE2* regex;
-  if (type == permissions::RequestType::kBraveEthereum)
+  if (type == permissions::RequestType::kMisesEthereum)
     regex = kEthAddrRegex.get();
   else
     regex = kAddrRegex.get();
@@ -71,8 +71,8 @@ bool ParseRequestingOriginInternal(permissions::RequestType type,
                                    url::Origin* requesting_origin,
                                    std::string* account,
                                    std::queue<std::string>* address_queue) {
-  if (origin.opaque() || (type != permissions::RequestType::kBraveEthereum &&
-                          type != permissions::RequestType::kBraveSolana))
+  if (origin.opaque() || (type != permissions::RequestType::kMisesEthereum &&
+                          type != permissions::RequestType::kMisesSolana))
     return false;
 
   std::string scheme_host_group;
@@ -81,7 +81,7 @@ bool ParseRequestingOriginInternal(permissions::RequestType type,
 
   // Validate input format.
   std::string pattern;
-  if (type == permissions::RequestType::kBraveEthereum)
+  if (type == permissions::RequestType::kMisesEthereum)
     pattern = sub_req_format ? "(.*)(0x[[:xdigit:]]{40})(:[0-9]+)*"
                              : "(.*)%7Baddr%3D0x[[:xdigit:]]{40}(%"
                                "26addr%3D0x[[:xdigit:]]{40})*%7D(:[0-9]+)*";
@@ -159,11 +159,11 @@ bool GetSubRequestOrigin(permissions::RequestType type,
                          const url::Origin& old_origin,
                          const std::string& account,
                          url::Origin* new_origin) {
-  if (type != permissions::RequestType::kBraveEthereum &&
-      type != permissions::RequestType::kBraveSolana)
+  if (type != permissions::RequestType::kMisesEthereum &&
+      type != permissions::RequestType::kMisesSolana)
     return false;
   std::string account_with_separater;
-  if (type == permissions::RequestType::kBraveEthereum)
+  if (type == permissions::RequestType::kMisesEthereum)
     account_with_separater = account;
   else
     account_with_separater =
@@ -207,9 +207,9 @@ absl::optional<blink::PermissionType> CoinTypeToPermissionType(
     mojom::CoinType coin_type) {
   switch (coin_type) {
     case mojom::CoinType::ETH:
-      return blink::PermissionType::BRAVE_ETHEREUM;
+      return blink::PermissionType::MISES_ETHEREUM;
     case mojom::CoinType::SOL:
-      return blink::PermissionType::BRAVE_SOLANA;
+      return blink::PermissionType::MISES_SOLANA;
     default:
       return absl::nullopt;
   }

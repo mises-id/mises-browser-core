@@ -1,0 +1,63 @@
+diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
+index f52774216acaa8f5f1c83a86e3102b63f1deac1a..69e3094a5363307432ad44bd109403b2065d9f0e 100644
+--- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
++++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
+@@ -88,6 +88,8 @@
+ @property(nonatomic, strong, readwrite)
+     NSMutableArray<NSLayoutConstraint*>* contractedNoMarginConstraints;
+ 
++@property(nonatomic, strong, readwrite) ToolbarButton* misesButton;
++
+ @end
+ 
+ @implementation PrimaryToolbarView
+@@ -118,6 +120,8 @@
+ @synthesize contractedNoMarginConstraints = _contractedNoMarginConstraints;
+ @synthesize contentView = _contentView;
+ 
++@synthesize misesButton = _misesButton;
++
+ #pragma mark - Public
+ 
+ - (instancetype)initWithButtonFactory:(ToolbarButtonFactory*)factory {
+@@ -215,6 +219,7 @@
+ 
+ // Sets the leading stack view.
+ - (void)setUpLeadingStackView {
++  self.misesButton = [self.buttonFactory misesButton];
+   self.backButton = [self.buttonFactory backButton];
+   self.forwardButton = [self.buttonFactory forwardButton];
+   self.stopButton = [self.buttonFactory stopButton];
+@@ -222,7 +227,7 @@
+   self.reloadButton = [self.buttonFactory reloadButton];
+ 
+   self.leadingStackViewButtons = @[
+-    self.backButton, self.forwardButton, self.stopButton, self.reloadButton
++      self.misesButton, self.backButton, self.forwardButton, self.stopButton, self.reloadButton
+   ];
+   self.leadingStackView = [[UIStackView alloc]
+       initWithArrangedSubviews:self.leadingStackViewButtons];
+@@ -429,4 +434,23 @@
+   return nil;
+ }
+ 
++
++
++- (void)updateMisesAvatar:(UIImage*)image {
++
++    if (image == nil) {
++        UIImage* icon = [[UIImage imageNamed:@"mises_user_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
++        [self.misesButton setImage:icon forState:UIControlStateNormal];
++        return;
++    }
++
++    CGSize newSize = CGSizeMake(kAdaptiveToolbarIconSize, kAdaptiveToolbarIconSize);
++    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
++    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
++    UIImage *resized_image = UIGraphicsGetImageFromCurrentImageContext();
++    UIGraphicsEndImageContext();
++    UIImage *icon = [resized_image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
++    [self.misesButton setImage:icon forState:UIControlStateNormal];
++}
++
+ @end

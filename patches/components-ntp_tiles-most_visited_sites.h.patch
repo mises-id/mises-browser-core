@@ -1,0 +1,13 @@
+diff --git a/components/ntp_tiles/most_visited_sites.h b/components/ntp_tiles/most_visited_sites.h
+index c6f680540ed9118d6874071f589a3690dd44e19a..4b6bb5c18016fdab632b5dfac6c77aef005460c8 100644
+--- a/components/ntp_tiles/most_visited_sites.h
++++ b/components/ntp_tiles/most_visited_sites.h
+@@ -208,7 +208,7 @@ class MostVisitedSites : public history::TopSitesObserver,
+ 
+   // MostVisitedSitesSupervisor::Observer implementation.
+   void OnBlockedSitesChanged() override;
+-
++  void FetchPopularSitesIcons(const PopularSites::SitesVector& sites_vector);
+   static void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry);
+   static void ResetProfilePrefs(PrefService* prefs);
+ 

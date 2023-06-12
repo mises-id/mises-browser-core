@@ -33,6 +33,7 @@ base::Value::Dict EthTxMeta::ToValue() const {
   base::Value::Dict dict = TxMeta::ToValue();
   dict.Set("tx_receipt", TransactionReceiptToValue(tx_receipt_));
   dict.Set("tx", tx_->ToValue());
+  dict.Set("sign_only", sign_only_);
   return dict;
 }
 
@@ -72,6 +73,9 @@ mojom::TransactionInfoPtr EthTxMeta::ToTransactionInfo() const {
   } else {
     std::tie(tx_type, tx_params, tx_args) = *tx_info;
   }
+  absl::optional<std::string> signed_transaction;
+  if (tx_->IsSigned())
+    signed_transaction = tx_->GetSignedTransaction();
 
   return mojom::TransactionInfo::New(
       id_, from_, tx_hash_,
@@ -81,14 +85,15 @@ mojom::TransactionInfoPtr EthTxMeta::ToTransactionInfo() const {
               Uint256ValueToHex(tx_->gas_price()),
               Uint256ValueToHex(tx_->gas_limit()),
               tx_->to().ToChecksumAddress(), Uint256ValueToHex(tx_->value()),
-              tx_->data()),
+              tx_->data(), sign_only_, signed_transaction),
           chain_id, max_priority_fee_per_gas, max_fee_per_gas,
           std::move(gas_estimation_1559_ptr))),
       status_, tx_type, tx_params, tx_args,
       base::Milliseconds(created_time_.ToJavaTime()),
       base::Milliseconds(submitted_time_.ToJavaTime()),
       base::Milliseconds(confirmed_time_.ToJavaTime()),
-      origin_.has_value() ? MakeOriginInfo(*origin_) : nullptr, group_id_);
+      origin_.has_value() ? MakeOriginInfo(*origin_) : nullptr, group_id_,
+      chain_id_);
 }
 
 }  // namespace brave_wallet

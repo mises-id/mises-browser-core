@@ -10,8 +10,8 @@
 #include <string>
 #include <vector>
 
-#include "base/functional/callback.h"
 #include "base/containers/flat_map.h"
+#include "base/functional/callback.h"
 #include "base/memory/weak_ptr.h"
 #include "base/time/time.h"
 #include "mises/components/api_request_helper/api_request_helper.h"
@@ -53,6 +53,15 @@ class AssetRatioService : public KeyedService, public mojom::AssetRatioService {
                    const std::string& currency_code,
                    GetBuyUrlV1Callback callback) override;
 
+  // Get sell URL for off-ramps
+  void GetSellUrl(mojom::OffRampProvider provider,
+                  const std::string& chain_id,
+                  const std::string& address,
+                  const std::string& symbol,
+                  const std::string& amount,
+                  const std::string& currency_code,
+                  GetSellUrlCallback callback) override;
+
   // mojom::AssetRatioService
   void GetPrice(const std::vector<std::string>& from_assets,
                 const std::vector<std::string>& to_assets,
@@ -64,6 +73,8 @@ class AssetRatioService : public KeyedService, public mojom::AssetRatioService {
                        const std::string& vs_asset,
                        brave_wallet::mojom::AssetPriceTimeframe timeframe,
                        GetPriceHistoryCallback callback) override;
+  // Note: The is_nft value of the token is not reliable because
+  // it is determined only by whether the token is an ERC721 token.
   void GetTokenInfo(const std::string& contract_address,
                     GetTokenInfoCallback callback) override;
   void GetCoinMarkets(const std::string& vs_asset,

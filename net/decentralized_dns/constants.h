@@ -21,6 +21,8 @@ constexpr char kBitDomain[] = ".bit";
 constexpr char kEthDomain[] = ".eth";
 constexpr char kDNSForEthDomain[] = ".eth.link";
 
+constexpr char kSolDomain[] = ".sol";
+
 }  // namespace decentralized_dns
 
 #endif  // BRAVE_NET_DECENTRALIZED_DNS_CONSTANTS_H_

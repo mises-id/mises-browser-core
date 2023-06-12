@@ -35,6 +35,10 @@
 #include "third_party/abseil-cpp/absl/types/optional.h"
 #include "url/gurl.h"
 
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
+#include "mises/components/ipfs/pin/ipfs_pin_rpc_types.h"
+#endif
+
 namespace base {
 class CommandLine;
 class Process;
@@ -81,7 +85,15 @@ class IpfsService : public KeyedService,
       base::OnceCallback<void(bool, const ipfs::NodeInfo&)>;
   using GarbageCollectionCallback =
       base::OnceCallback<void(bool, const std::string&)>;
-
+  using NodeCallback = base::OnceCallback<void(absl::optional<std::string>)>;
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
+  // Local pins
+  using AddPinCallback = base::OnceCallback<void(absl::optional<AddPinResult>)>;
+  using RemovePinCallback =
+      base::OnceCallback<void(absl::optional<RemovePinResult>)>;
+  using GetPinsCallback =
+      base::OnceCallback<void(absl::optional<GetPinsResult>)>;
+#endif  // BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
   using BoolCallback = base::OnceCallback<void(bool)>;
   using GetConfigCallback = base::OnceCallback<void(bool, const std::string&)>;
 
@@ -112,6 +124,20 @@ class IpfsService : public KeyedService,
   virtual void PreWarmShareableLink(const GURL& url);
 
 #if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
+  // Local pins
+  virtual void AddPin(const std::vector<std::string>& cids,
+                      bool recursive,
+                      AddPinCallback callback);
+  virtual void RemovePin(const std::vector<std::string>& cid,
+                         RemovePinCallback callback);
+  virtual void GetPins(const absl::optional<std::vector<std::string>>& cid,
+                       const std::string& type,
+                       bool quiet,
+                       GetPinsCallback callback);
+  // Removes pins using client mode withoud launching the IPFS daemon
+  virtual void RemovePinCli(std::set<std::string> cid, BoolCallback callback);
+  virtual void LsPinCli(NodeCallback callback);
+
   virtual void ImportFileToIpfs(const base::FilePath& path,
                                 const std::string& key,
                                 ipfs::ImportCompletedCallback callback);
@@ -132,7 +158,7 @@ class IpfsService : public KeyedService,
                  BoolCallback callback);
 #endif
   void GetConnectedPeers(GetConnectedPeersCallback callback,
-                         int retries = kPeersDefaultRetries);
+                         absl::optional<int> retries);
   void GetAddressesConfig(GetAddressesConfigCallback callback);
   virtual void LaunchDaemon(BoolCallback callback);
   void ShutdownDaemon(BoolCallback callback);
@@ -183,10 +209,27 @@ class IpfsService : public KeyedService,
   // Launches the ipfs service in an utility process.
   void LaunchIfNotRunning(const base::FilePath& executable_path);
 #if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
-  static bool WaitUntilExecutionFinished(base::Process process);
+  static absl::optional<std::string> WaitUntilExecutionFinished(
+      base::FilePath data_path,
+      base::CommandLine cmd);
   void ExecuteNodeCommand(const base::CommandLine& command_line,
                           const base::FilePath& data,
-                          BoolCallback callback);
+                          NodeCallback callback);
+    // Local pins
+  void OnGetPinsResult(APIRequestList::iterator iter,
+                       GetPinsCallback callback,
+                       api_request_helper::APIRequestResult response);
+  void OnPinAddResult(size_t cids_count_in_request,
+                      bool recursive,
+                      APIRequestList::iterator iter,
+                      AddPinCallback callback,
+                      api_request_helper::APIRequestResult response);
+  void OnPinRemoveResult(APIRequestList::iterator iter,
+                         RemovePinCallback callback,
+                         api_request_helper::APIRequestResult response);
+  void OnRemovePinCli(BoolCallback callback,
+                      std::set<std::string> cids,
+                      absl::optional<std::string> result);
 #endif
   base::TimeDelta CalculatePeersRetryTime();
   void OnGatewayValidationComplete(SimpleURLLoaderList::iterator iter,

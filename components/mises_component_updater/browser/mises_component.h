@@ -87,6 +87,6 @@ class MisesComponent {
   base::WeakPtrFactory<MisesComponent> weak_factory_;
 };
 
-}  // namespace brave_component_updater
+}  // namespace mises_component_updater
 
 #endif  // BRAVE_COMPONENTS_BRAVE_COMPONENT_UPDATER_BROWSER_BRAVE_COMPONENT_H_

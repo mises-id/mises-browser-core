@@ -1,0 +1,19 @@
+diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm b/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm
+index 99ab637a0a10b4803e700c800e3e418fd9f4feec..307767d6d862fac95186a100f1e9c82e3dd706e2 100644
+--- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm
++++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm
+@@ -404,4 +404,14 @@
+   [self.delegate exitFullscreen];
+ }
+ 
++
++#pragma mark - MisesToolbarDelegate
++
++- (void)updateMisesAvatar:(UIImage*)image {
++    if ([self.view respondsToSelector:@selector(updateMisesAvatar:)]) {
++        [self.view performSelector:@selector(updateMisesAvatar:) withObject:image];
++    }
++  
++}
++
+ @end

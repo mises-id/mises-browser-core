@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/webui/management/management_ui.mm b/ios/chrome/browser/ui/webui/management/management_ui.mm
+index 591905475c511a2986f3e6821a74255687361a55..9ac42cc4c5e4bf701d07313f45f0a15453340721 100644
+--- a/ios/chrome/browser/ui/webui/management/management_ui.mm
++++ b/ios/chrome/browser/ui/webui/management/management_ui.mm
+@@ -33,6 +33,8 @@ namespace {
+ // if the domain cannot be retrieved (eg. because there are no machine level
+ // policies).
+ absl::optional<std::string> GetMachineLevelPolicyDomain() {
++  if (!GetApplicationContext()->GetBrowserPolicyConnector())
++      return absl::nullopt;
+   policy::MachineLevelUserCloudPolicyManager* manager =
+       GetApplicationContext()
+           ->GetBrowserPolicyConnector()

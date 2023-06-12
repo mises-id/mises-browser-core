@@ -1,0 +1,16 @@
+diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator_util.h b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator_util.h
+index 7db8f3f859669a249d0d24820ddce47459cfcd65..951e97b2517fbd48cb67823057734197844712e1 100644
+--- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator_util.h
++++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator_util.h
+@@ -46,4 +46,11 @@ ContentSuggestionsMostVisitedActionItem* HistoryActionItem();
+ // Creates and returns a Whats New action item.
+ ContentSuggestionsMostVisitedActionItem* WhatsNewActionItem();
+ 
++
++ContentSuggestionsSectionInformation* MisesSectionInformation();
++
++ContentSuggestionsSectionInformation* MisesBoxMarginInformation();
++
++ContentSuggestionsSectionInformation* MisesWeb3siteSectionInformation();
++
+ #endif  // IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_MEDIATOR_UTIL_H_

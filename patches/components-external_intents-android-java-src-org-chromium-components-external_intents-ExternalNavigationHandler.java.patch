@@ -1,5 +1,5 @@
 diff --git a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
-index aa8217e4135c853116ffa9961bd149ec78d41907..a31cacf050fb37350b7afd12b2a34898048f2264 100644
+index aa8217e4135c853116ffa9961bd149ec78d41907..92a5900dea065d9773d431cf1264a08de5fc2960 100644
 --- a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
 +++ b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
 @@ -1548,6 +1548,11 @@ public class ExternalNavigationHandler {
@@ -14,7 +14,7 @@ index aa8217e4135c853116ffa9961bd149ec78d41907..a31cacf050fb37350b7afd12b2a34898
          if (isYoutubePairingCode(params.getUrl())) return OverrideUrlLoadingResult.forNoOverride();
  
          if (shouldStayInIncognito(params, isExternalProtocol)) {
-@@ -1603,6 +1608,10 @@ public class ExternalNavigationHandler {
+@@ -1603,6 +1608,11 @@ public class ExternalNavigationHandler {
  
          ResolveActivitySupplier resolveActivity = new ResolveActivitySupplier(targetIntent);
          if (isNavigationToSelf(params, resolvingInfos, resolveActivity, isExternalProtocol)) {
@@ -22,6 +22,7 @@ index aa8217e4135c853116ffa9961bd149ec78d41907..a31cacf050fb37350b7afd12b2a34898
 +                return startActivity(targetIntent, false /*requiresIntentChooser*/, resolvingInfos, resolveActivity,
 +                    browserFallbackUrl, intentDataUrl, params);
 +            }
++
              return OverrideUrlLoadingResult.forNavigateTab(intentDataUrl, params);
          }
  

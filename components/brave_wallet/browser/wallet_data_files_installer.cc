@@ -11,12 +11,13 @@
 #include <vector>
 
 #include "base/base64.h"
-#include "base/functional/bind.h"
 #include "base/files/file_path.h"
 #include "base/files/file_util.h"
+#include "base/functional/bind.h"
 #include "base/logging.h"
 #include "base/task/thread_pool.h"
 #include "base/values.h"
+#include "mises/components/mises_component_updater/browser/mises_on_demand_updater.h"
 #include "mises/components/brave_wallet/browser/blockchain_list_parser.h"
 #include "mises/components/brave_wallet/browser/blockchain_registry.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
@@ -43,7 +44,7 @@ const uint8_t kWalletDataFilesSha2Hash[] = {
     0x49, 0xb8, 0x4c, 0x9d, 0x8e, 0xeb, 0xb3, 0xbd, 0x55, 0xdc, 0xf7,
     0xc0, 0x3e, 0x9b, 0x2a, 0xc2, 0xf5, 0x6a, 0x37, 0x71, 0x67};
 const char kWalletDataFilesDisplayName[] = "Brave Wallet data files";
-//const char kComponentId[] = "bbckkcdiepaecefgfnibemejliemjnio";
+const char kComponentId[] = "bbckkcdiepaecefgfnibemejliemjnio";
 
 static_assert(std::size(kWalletDataFilesSha2Hash) == crypto::kSHA256Length,
               "Wrong hash length");
@@ -252,16 +253,16 @@ WalletDataFilesInstallerPolicy::GetInstallerAttributes() const {
 
 void RegisterWalletDataFilesComponent(
     component_updater::ComponentUpdateService* cus) {
-  // if (brave_wallet::IsNativeWalletEnabled()) {
-  //   auto installer =
-  //       base::MakeRefCounted<component_updater::ComponentInstaller>(
-  //           std::make_unique<WalletDataFilesInstallerPolicy>());
-  //   installer->Register(
-  //       cus, base::BindOnce([]() {
-  //         brave_component_updater::BraveOnDemandUpdater::GetInstance()
-  //             ->OnDemandUpdate(kComponentId);
-  //       }));
-  // }
+  if (brave_wallet::IsNativeWalletEnabled()) {
+    auto installer =
+        base::MakeRefCounted<component_updater::ComponentInstaller>(
+            std::make_unique<WalletDataFilesInstallerPolicy>());
+    installer->Register(
+        cus, base::BindOnce([]() {
+          mises_component_updater::MisesOnDemandUpdater::GetInstance()
+              ->OnDemandUpdate(kComponentId);
+        }));
+  }
 }
 
 absl::optional<base::Version> GetLastInstalledWalletVersion() {

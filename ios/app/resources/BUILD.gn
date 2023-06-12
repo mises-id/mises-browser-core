@@ -1,0 +1,71 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//tools/grit/repack.gni")
+import("//build/config/ios/asset_catalog.gni")
+
+group("resources") {
+  public_deps = [ ":repack_unscaled_resources" ]
+}
+
+repack("repack_unscaled_resources") {
+  visibility = [ ":resources" ]
+  output = "$target_gen_dir/mises_resources.pak"
+  sources = [ "$root_gen_dir/components/mises_components_resources.pak" ]
+  deps = [ "//mises/components/resources",]
+  copy_data_to_bundle = true
+}
+
+
+
+appiconset("mises_icons") {
+  sources = [
+    "mises/AppIcon.appiconset/Contents.json",
+    "mises/AppIcon.appiconset/Icon-1024.png",
+    "mises/AppIcon.appiconset/Icon-120.png",
+    "mises/AppIcon.appiconset/Icon-152.png",
+    "mises/AppIcon.appiconset/Icon-167.png",
+    "mises/AppIcon.appiconset/Icon-180.png",
+    "mises/AppIcon.appiconset/Icon-29.png",
+    "mises/AppIcon.appiconset/Icon-40.png",
+    "mises/AppIcon.appiconset/Icon-58.png",
+    "mises/AppIcon.appiconset/Icon-80.png",
+    "mises/AppIcon.appiconset/Icon-87.png",
+  ]
+}
+
+imageset("launchscreen_app_logo") {
+  sources = [
+    "mises/launchscreen_app_logo.imageset/Contents.json",
+    "mises/launchscreen_app_logo.imageset/launchscreen_app_logo@2x.png",
+    "mises/launchscreen_app_logo.imageset/launchscreen_app_logo@3x.png",
+  ]
+}
+imageset("ntp_desktop") {
+  sources = [
+    "mises/ntp_desktop.imageset/Contents.json",
+    "mises/ntp_desktop.imageset/ntp_desktop@2x.jpg",
+    "mises/ntp_desktop.imageset/ntp_desktop@3x.jpg",
+  ]
+}
+
+imageset("launchscreen_brand_name") {
+  sources = [
+    "mises/launchscreen_brand_name.imageset/Contents.json",
+    "mises/launchscreen_brand_name.imageset/launchscreen_brand_name_dark@2x.png",
+    "mises/launchscreen_brand_name.imageset/launchscreen_brand_name_dark@3x.png",
+    "mises/launchscreen_brand_name.imageset/launchscreen_brand_name_light@2x.png",
+    "mises/launchscreen_brand_name.imageset/launchscreen_brand_name_light@3x.png",
+  ]
+}
+
+group("launchscreen_assets") {
+  public_deps = [
+    ":ntp_desktop",
+    ":launchscreen_app_logo",
+    ":launchscreen_brand_name",
+    "//ios/chrome/common/ui/colors/resources:background_color",
+  ]
+}

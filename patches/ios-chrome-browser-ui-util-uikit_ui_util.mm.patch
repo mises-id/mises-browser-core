@@ -1,0 +1,14 @@
+diff --git a/ios/chrome/browser/ui/util/uikit_ui_util.mm b/ios/chrome/browser/ui/util/uikit_ui_util.mm
+index f9c4e59c26fed78607df2068b55a29b614bc80d6..27fae65107b8c4d5bd91ef4e530f69959dbf8b61 100644
+--- a/ios/chrome/browser/ui/util/uikit_ui_util.mm
++++ b/ios/chrome/browser/ui/util/uikit_ui_util.mm
+@@ -265,7 +265,8 @@ bool IsSplitToolbarMode(id<UITraitEnvironment> environment) {
+ }
+ 
+ bool IsSplitToolbarMode(UITraitCollection* traitCollection) {
+-  return IsCompactWidth(traitCollection) && !IsCompactHeight(traitCollection);
++    return NO;
++  //return IsCompactWidth(traitCollection) && !IsCompactHeight(traitCollection);
+ }
+ 
+ UIView* GetFirstResponderSubview(UIView* view) {

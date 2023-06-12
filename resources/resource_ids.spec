@@ -40,4 +40,10 @@
     "META": {"sizes": {"includes": [500]}},
     "includes": [56500],
   },
+
+  # This file is generated during the build.
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_script/brave_wallet_script.grd": {
+    "META": {"sizes": {"includes": [250]}},
+    "includes": [57000]
+  },
 }

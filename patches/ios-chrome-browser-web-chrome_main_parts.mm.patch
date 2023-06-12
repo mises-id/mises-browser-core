@@ -1,0 +1,12 @@
+diff --git a/ios/chrome/browser/web/chrome_main_parts.mm b/ios/chrome/browser/web/chrome_main_parts.mm
+index c6bc2e9f773d3262343288706689f7eaf8bbf3ca..340d43ef3879bb0159b62268772cfb51583448f9 100644
+--- a/ios/chrome/browser/web/chrome_main_parts.mm
++++ b/ios/chrome/browser/web/chrome_main_parts.mm
+@@ -384,6 +384,7 @@ void IOSChromeMainParts::PreMainMessageLoopRun() {
+   safe_browsing::SafeBrowsingMetricsCollector* safe_browsing_metrics_collector =
+       SafeBrowsingMetricsCollectorFactory::GetForBrowserState(
+           last_used_browser_state);
++  if (safe_browsing_service)
+   safe_browsing_service->Initialize(last_used_browser_state->GetPrefs(),
+                                     user_data_path,
+                                     safe_browsing_metrics_collector);

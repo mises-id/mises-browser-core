@@ -1,5 +1,5 @@
 diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
-index 9afb4425840b92a5c16e5ce5e11086a778cf8451..7a206632a1918a4ad2de9a5a9e0c64fb1326c307 100644
+index 9afb4425840b92a5c16e5ce5e11086a778cf8451..412e67112810d71e447d66424c3140c137752323 100644
 --- a/build/config/compiler/BUILD.gn
 +++ b/build/config/compiler/BUILD.gn
 @@ -771,7 +771,7 @@ config("compiler") {
@@ -11,3 +11,26 @@ index 9afb4425840b92a5c16e5ce5e11086a778cf8451..7a206632a1918a4ad2de9a5a9e0c64fb
    }
  
    # TODO(crbug.com/1374347): Cleanup undefined symbol errors caught by
+@@ -986,8 +986,8 @@ config("compiler_cpu_abi") {
+ 
+   # TODO(https://crbug.com/1383873): Remove this once figured out.
+   if (is_apple && current_cpu == "arm64") {
+-    cflags += [ "-fno-global-isel" ]
+-    ldflags += [ "-fno-global-isel" ]
++    cflags += [ "-fno-global-isel" , "-fobjc-legacy-dispatch", "-fobjc-abi-version=2"]
++    ldflags += [ "-fno-global-isel", "-Wl,-ObjC", "-fobjc-legacy-dispatch", "-fobjc-abi-version=2"]
+   }
+ 
+   if ((is_posix && !is_apple) || is_fuchsia) {
+@@ -2655,6 +2655,11 @@ if (is_apple) {
+     cflags_objc = common_flags
+     cflags_objcc = common_flags
+   }
++  config("enable_legacy_dispatch") {
++    common_flags = [ "-fobjc-legacy-dispatch", "-fobjc-abi-version=2" ]
++    cflags_objc = common_flags
++    cflags_objcc = common_flags
++  }
+ }
+ 
+ if (is_chromeos_ash && is_chromeos_device) {

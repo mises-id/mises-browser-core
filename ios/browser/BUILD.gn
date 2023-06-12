@@ -1,0 +1,74 @@
+# Copyright (c) 2020 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//build/config/ios/rules.gni")
+import("//ios/build/config.gni")
+
+source_set("browser") {
+  configs += [ "//build/config/compiler:enable_arc" ]
+
+  sources = [
+    "brave_web_client.h",
+    "brave_web_client.mm",
+    "brave_web_main_parts.h",
+    "brave_web_main_parts.mm",
+    "ui/popup_menu/cells/popup_menu_account_item.mm",
+    "ui/toolbar/mises_toolbar_coordinator.mm",
+    "ui/content_suggestions/cells/content_suggestions_mises_item.mm"
+  ]
+
+  deps = [
+    "api/bookmarks",
+    "api/bookmarks/exporter",
+    "api/bookmarks/importer",
+    "api/brave_wallet:wallet_mojom_wrappers",
+    "api/certificate",
+    "api/favicon",
+    "api/history",
+    "api/ipfs",
+    "api/net",
+    "api/opentabs",
+    "api/password",
+    "api/session_restore",
+    "api/url",
+    "api/version_info",
+    "api/web",
+    "api/web_image",
+    "brave_wallet",
+    "ui/resources:mises_user_default",
+    "ui/resources:mises_welcome",
+    "ui/resources:activity_services_mises_share",
+    "ui/resources:popup_menu_mises_create",
+    "ui/resources:popup_menu_mises_discover",
+    "ui/resources:popup_menu_mises_invite",
+    "ui/resources:popup_menu_mises_mydata",
+    "ui/resources:popup_menu_mises_nft",
+    "ui/resources:popup_menu_mises_portal",
+    "ui/resources:popup_menu_mises_view_website",
+    "ui/resources:popup_menu_mises_wallet",
+    "ui/resources:popup_menu_copy",
+    "//base",
+    "//mises/chromium_src/ios/chrome/browser/prefs",
+    "//mises/ios/browser/browser_state",
+    "//components/flags_ui",
+    "//components/metrics",
+    "//components/metrics_services_manager",
+    "//components/variations",
+    "//components/variations/service",
+    "//ios/chrome/browser/application_context:application_context_impl",
+    "//ios/chrome/browser/browser_state",
+    "//ios/chrome/browser/browser_state:browser_state_impl",
+    "//ios/chrome/browser/flags",
+    "//ios/chrome/browser/flags:client_side",
+    "//ios/chrome/browser/paths",
+    "//ios/chrome/browser/url:constants",
+    "//ios/components/webui:url_constants",
+    "//ios/web/public",
+    "//ios/web/public/init",
+    "//ios/web/public/thread",
+    "//ios/third_party/material_components_ios",
+    "//ui/base",
+  ]
+}

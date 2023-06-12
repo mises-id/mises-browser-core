@@ -1,0 +1,20 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/public/cells/popup_menu_item.h b/ios/chrome/browser/ui/popup_menu/public/cells/popup_menu_item.h
+index 55372f94dd3485d28cfb1eba12e34e50c7ef66f5..deaee77f57b1b21219a11cd4c7419bd26e319d43 100644
+--- a/ios/chrome/browser/ui/popup_menu/public/cells/popup_menu_item.h
++++ b/ios/chrome/browser/ui/popup_menu/public/cells/popup_menu_item.h
+@@ -62,6 +62,15 @@ typedef NS_ENUM(NSInteger, PopupMenuAction) {
+   PopupMenuActionShowPermissionsOptions,
+   // Textual popup menu
+   PopupMenuActionEnterpriseInfoMessage,
++      PopupMenuActionMises,
++      PopupMenuActionMisesAccount,
++      PopupMenuActionMisesMyData,
++      PopupMenuActionMisesDiscover,
++      PopupMenuActionMisesWallet,
++      PopupMenuActionMisesStakingPortal,
++      PopupMenuActionMisesNft,
++      PopupMenuActionMisesInvite,
++      PopupMenuActionMisesOfficialSite,
+ };
+ 
+ // Protocol defining a popup item.

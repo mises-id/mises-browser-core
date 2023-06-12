@@ -6,20 +6,18 @@
 #include "mises/components/brave_wallet/browser/ethereum_provider_impl.h"
 
 #include <string>
+#include <tuple>
 #include <utility>
 
 #include "base/containers/contains.h"
 #include "base/json/json_reader.h"
 #include "base/json/json_writer.h"
-#include "base/metrics/histogram_macros.h"
 #include "base/strings/string_number_conversions.h"
 #include "base/strings/string_util.h"
-#include "base/strings/stringprintf.h"
 #include "base/strings/utf_string_conversions.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_provider_delegate.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_service.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
-#include "mises/components/brave_wallet/browser/eth_response_parser.h"
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 #include "mises/components/brave_wallet/browser/keyring_service.h"
 #include "mises/components/brave_wallet/browser/tx_service.h"
@@ -32,6 +30,7 @@
 #include "mises/components/brave_wallet/common/web3_provider_constants.h"
 #include "components/content_settings/core/browser/host_content_settings_map.h"
 #include "components/grit/mises_components_strings.h"
+#include "crypto/random.h"
 #include "ui/base/l10n/l10n_util.h"
 #include "url/origin.h"
 
@@ -88,8 +87,9 @@ EthereumProviderImpl::EthereumProviderImpl(
       tx_service_(tx_service),
       keyring_service_(keyring_service),
       brave_wallet_service_(brave_wallet_service),
-      prefs_(prefs),
-      weak_factory_(this) {
+      eth_block_tracker_(json_rpc_service),
+      eth_logs_tracker_(json_rpc_service),
+      prefs_(prefs) {
   DCHECK(json_rpc_service);
   json_rpc_service_->AddObserver(
       rpc_observer_receiver_.BindNewPipeAndPassRemote());
@@ -105,10 +105,15 @@ EthereumProviderImpl::EthereumProviderImpl(
   // Get the current so we can compare for changed events
   if (delegate_)
     UpdateKnownAccounts();
+
+  eth_block_tracker_.AddObserver(this);
+  eth_logs_tracker_.AddObserver(this);
 }
 
 EthereumProviderImpl::~EthereumProviderImpl() {
   host_content_settings_map_->RemoveObserver(this);
+  eth_block_tracker_.RemoveObserver(this);
+  eth_logs_tracker_.RemoveObserver(this);
 }
 
 void EthereumProviderImpl::AddEthereumChain(const std::string& json_payload,
@@ -259,13 +264,14 @@ void EthereumProviderImpl::ContinueGetDefaultKeyringInfo(
     base::Value id,
     const std::string& normalized_json_request,
     const url::Origin& origin,
+    bool sign_only,
     mojom::NetworkInfoPtr chain) {
   keyring_service_->GetKeyringInfo(
       mojom::kDefaultKeyringId,
       base::BindOnce(&EthereumProviderImpl::OnGetNetworkAndDefaultKeyringInfo,
                      weak_factory_.GetWeakPtr(), std::move(callback),
                      std::move(id), normalized_json_request, origin,
-                     std::move(chain)));
+                     std::move(chain), sign_only));
 }
 
 void EthereumProviderImpl::OnGetNetworkAndDefaultKeyringInfo(
@@ -274,6 +280,7 @@ void EthereumProviderImpl::OnGetNetworkAndDefaultKeyringInfo(
     const std::string& normalized_json_request,
     const url::Origin& origin,
     mojom::NetworkInfoPtr chain,
+    bool sign_only,
     mojom::KeyringInfoPtr keyring_info) {
   bool reject = false;
   if (!chain || !keyring_info) {
@@ -288,7 +295,7 @@ void EthereumProviderImpl::OnGetNetworkAndDefaultKeyringInfo(
 
   std::string from;
   mojom::TxData1559Ptr tx_data_1559 =
-      ParseEthSendTransaction1559Params(normalized_json_request, &from);
+      ParseEthTransaction1559Params(normalized_json_request, &from);
   if (!tx_data_1559) {
     mojom::ProviderError code = mojom::ProviderError::kInternalError;
     std::string message = "Internal JSON-RPC error";
@@ -298,6 +305,7 @@ void EthereumProviderImpl::OnGetNetworkAndDefaultKeyringInfo(
                             "", false);
     return;
   }
+  tx_data_1559->base_data->sign_only = sign_only;
 
   if (ShouldCreate1559Tx(tx_data_1559.Clone(), chain->is_eip1559,
                          keyring_info->account_infos, from)) {
@@ -503,12 +511,12 @@ void EthereumProviderImpl::SignMessage(const std::string& address,
   // Convert to checksum address
   auto checksum_address = EthAddress::FromHex(address);
   GetAllowedAccounts(
-      false, base::BindOnce(&EthereumProviderImpl::ContinueSignMessage,
-                            weak_factory_.GetWeakPtr(),
-                            checksum_address.ToChecksumAddress(), message_str,
-                            std::move(message_bytes), absl::nullopt,
-                            absl::nullopt, false, std::move(callback),
-                            std::move(id), delegate_->GetOrigin()));
+      false,
+      base::BindOnce(
+          &EthereumProviderImpl::ContinueSignMessage,
+          weak_factory_.GetWeakPtr(), checksum_address.ToChecksumAddress(), "",
+          message_str, std::move(message_bytes), absl::nullopt, absl::nullopt,
+          false, std::move(callback), std::move(id), delegate_->GetOrigin()));
 }
 
 void EthereumProviderImpl::RecoverAddress(const std::string& message,
@@ -564,6 +572,84 @@ void EthereumProviderImpl::RecoverAddress(const std::string& message,
   reject = false;
   std::move(callback).Run(std::move(id), base::Value(address), reject, "",
                           false);
+}
+
+void EthereumProviderImpl::EthSubscribe(
+    const std::string& event_type,
+    absl::optional<base::Value::Dict> filter,
+    RequestCallback callback,
+    base::Value id) {
+  const auto generateHexBytes = [](std::vector<std::string>& subscriptions) {
+    std::vector<uint8_t> bytes(16);
+    crypto::RandBytes(&bytes.front(), bytes.size());
+    std::string hex_bytes = ToHex(bytes);
+    subscriptions.push_back(hex_bytes);
+    return std::tuple<bool, std::string>{subscriptions.size() == 1, hex_bytes};
+  };
+
+  if (event_type == kEthSubscribeNewHeads) {
+    const auto gen_res = generateHexBytes(eth_subscriptions_);
+    if (std::get<0>(gen_res)) {
+      eth_block_tracker_.Start(
+          base::Seconds(kBlockTrackerDefaultTimeInSeconds));
+    }
+    std::move(callback).Run(std::move(id), base::Value(std::get<1>(gen_res)),
+                            false, "", false);
+  } else if (event_type == kEthSubscribeLogs && filter) {
+    const auto gen_res = generateHexBytes(eth_log_subscriptions_);
+
+    if (std::get<0>(gen_res)) {
+      eth_logs_tracker_.Start(base::Seconds(kLogTrackerDefaultTimeInSeconds));
+    }
+
+    eth_logs_tracker_.AddSubscriber(std::get<1>(gen_res), std::move(*filter));
+
+    std::move(callback).Run(std::move(id), base::Value(std::get<1>(gen_res)),
+                            false, "", false);
+  } else {
+    base::Value formed_response = GetProviderErrorDictionary(
+        mojom::ProviderError::kInternalError,
+        l10n_util::GetStringUTF8(IDS_WALLET_UNSUPPORTED_SUBSCRIPTION_TYPE));
+    bool reject = true;
+    std::move(callback).Run(std::move(id), std::move(formed_response), reject,
+                            "", false);
+    return;
+  }
+}
+
+void EthereumProviderImpl::EthUnsubscribe(const std::string& subscription_id,
+                                          RequestCallback callback,
+                                          base::Value id) {
+  bool found = UnsubscribeBlockObserver(subscription_id) ||
+               UnsubscribeLogObserver(subscription_id);
+
+  std::move(callback).Run(std::move(id), base::Value(found), false, "", false);
+}
+
+bool EthereumProviderImpl::UnsubscribeBlockObserver(
+    const std::string& subscription_id) {
+  auto it = std::find(eth_subscriptions_.begin(), eth_subscriptions_.end(),
+                      subscription_id);
+  bool found = it != eth_subscriptions_.end();
+  if (found) {
+    if (eth_subscriptions_.size() == 1) {
+      eth_block_tracker_.Stop();
+    }
+    eth_subscriptions_.erase(it);
+  }
+  return found;
+}
+
+bool EthereumProviderImpl::UnsubscribeLogObserver(
+    const std::string& subscription_id) {
+  if (base::Erase(eth_log_subscriptions_, subscription_id)) {
+    eth_logs_tracker_.RemoveSubscriber(subscription_id);
+    if (eth_log_subscriptions_.empty()) {
+      eth_logs_tracker_.Stop();
+    }
+    return true;
+  }
+  return false;
 }
 
 void EthereumProviderImpl::GetEncryptionPublicKey(const std::string& address,
@@ -724,7 +810,9 @@ void EthereumProviderImpl::SignTypedMessage(
     RequestCallback callback,
     base::Value id) {
   bool reject = false;
-  if (!EthAddress::IsValidAddress(address) || domain_hash.empty() ||
+  std::string domain_string;
+  if (!base::JSONWriter::Write(domain, &domain_string) ||
+      !EthAddress::IsValidAddress(address) || domain_hash.empty() ||
       primary_hash.empty()) {
     base::Value formed_response = GetProviderErrorDictionary(
         mojom::ProviderError::kInvalidParams,
@@ -778,16 +866,17 @@ void EthereumProviderImpl::SignTypedMessage(
   auto checksum_address = EthAddress::FromHex(address);
   GetAllowedAccounts(
       false,
-      base::BindOnce(&EthereumProviderImpl::ContinueSignMessage,
-                     weak_factory_.GetWeakPtr(),
-                     checksum_address.ToChecksumAddress(), message,
-                     std::move(*message_to_sign), base::HexEncode(domain_hash),
-                     base::HexEncode(primary_hash), true, std::move(callback),
-                     std::move(id), delegate_->GetOrigin()));
+      base::BindOnce(
+          &EthereumProviderImpl::ContinueSignMessage,
+          weak_factory_.GetWeakPtr(), checksum_address.ToChecksumAddress(),
+          domain_string, message, std::move(*message_to_sign),
+          base::HexEncode(domain_hash), base::HexEncode(primary_hash), true,
+          std::move(callback), std::move(id), delegate_->GetOrigin()));
 }
 
 void EthereumProviderImpl::ContinueSignMessage(
     const std::string& address,
+    const std::string& domain,
     const std::string& message,
     std::vector<uint8_t>&& message_to_sign,
     const absl::optional<std::string>& domain_hash,
@@ -821,8 +910,8 @@ void EthereumProviderImpl::ContinueSignMessage(
   }
 
   auto request = mojom::SignMessageRequest::New(
-      MakeOriginInfo(origin), -1, address, message, is_eip712, domain_hash,
-      primary_hash, absl::nullopt, mojom::CoinType::ETH);
+      MakeOriginInfo(origin), -1, address, domain, message, is_eip712,
+      domain_hash, primary_hash, absl::nullopt, mojom::CoinType::ETH);
 
   brave_wallet_service_->AddSignMessageRequest(
       std::move(request),
@@ -862,7 +951,7 @@ void EthereumProviderImpl::OnSignMessageRequestProcessed(
   }
 
   base::Value formed_response;
-  if (!keyring_service_->IsHardwareAccount(address)) {
+  if (!keyring_service_->IsHardwareAccount(mojom::kDefaultKeyringId, address)) {
     auto signature_with_err = keyring_service_->SignMessageByDefaultKeyring(
         address, message, is_eip712);
     if (!signature_with_err.signature) {
@@ -930,7 +1019,13 @@ void EthereumProviderImpl::OnAddEthereumChainRequestCompleted(
 
 void EthereumProviderImpl::Request(base::Value input,
                                    RequestCallback callback) {
-  CommonRequestOrSendAsync(input, std::move(callback));
+  CommonRequestOrSendAsync(input, std::move(callback), false);
+  delegate_->WalletInteractionDetected();
+}
+
+void EthereumProviderImpl::SendAsync(base::Value input,
+                                     SendAsyncCallback callback) {
+  CommonRequestOrSendAsync(input, std::move(callback), true);
   delegate_->WalletInteractionDetected();
 }
 
@@ -944,8 +1039,14 @@ void EthereumProviderImpl::SendErrorOnRequest(const mojom::ProviderError& error,
                           false);
 }
 
-void EthereumProviderImpl::CommonRequestOrSendAsync(base::ValueView input_value,
-                                                    RequestCallback callback) {
+void EthereumProviderImpl::CommonRequestOrSendAsync(
+    base::ValueView input_value,
+    RequestCallback request_callback,
+    bool format_json_rpc_response) {
+  auto callback = base::BindOnce(
+      &EthereumProviderImpl::OnResponse, weak_factory_.GetWeakPtr(),
+      format_json_rpc_response, std::move(request_callback));
+
   mojom::ProviderError error = mojom::ProviderError::kUnsupportedMethod;
   std::string error_message =
       l10n_util::GetStringUTF8(IDS_WALLET_REQUEST_PROCESSING_ERROR);
@@ -977,11 +1078,11 @@ void EthereumProviderImpl::CommonRequestOrSendAsync(base::ValueView input_value,
   // We need to add any method that requires a dialog to interact with.
   if ((method == kEthRequestAccounts || method == kAddEthereumChainMethod ||
        method == kSwitchEthereumChainMethod || method == kEthSendTransaction ||
-       method == kEthSign || method == kPersonalSign ||
-       method == kPersonalEcRecover || method == kEthSignTypedDataV3 ||
-       method == kEthSignTypedDataV4 || method == kEthGetEncryptionPublicKey ||
-       method == kEthDecrypt || method == kWalletWatchAsset ||
-       method == kRequestPermissionsMethod) &&
+       method == kEthSignTransaction || method == kEthSign ||
+       method == kPersonalSign || method == kPersonalEcRecover ||
+       method == kEthSignTypedDataV3 || method == kEthSignTypedDataV4 ||
+       method == kEthGetEncryptionPublicKey || method == kEthDecrypt ||
+       method == kWalletWatchAsset || method == kRequestPermissionsMethod) &&
       !delegate_->IsTabVisible()) {
     SendErrorOnRequest(
         mojom::ProviderError::kResourceUnavailable,
@@ -1016,7 +1117,27 @@ void EthereumProviderImpl::CommonRequestOrSendAsync(base::ValueView input_value,
         base::BindOnce(&EthereumProviderImpl::ContinueGetDefaultKeyringInfo,
                        weak_factory_.GetWeakPtr(), std::move(callback),
                        std::move(id), normalized_json_request,
-                       delegate_->GetOrigin()));
+                       delegate_->GetOrigin(), false));
+  } else if (method == kEthSignTransaction) {
+    json_rpc_service_->GetNetwork(
+        mojom::CoinType::ETH,
+        base::BindOnce(&EthereumProviderImpl::ContinueGetDefaultKeyringInfo,
+                       weak_factory_.GetWeakPtr(), std::move(callback),
+                       std::move(id), normalized_json_request,
+                       delegate_->GetOrigin(), true));
+  } else if (method == kEthSendRawTransaction) {
+    std::string signed_transaction;
+    if (!ParseEthSendRawTransactionParams(normalized_json_request,
+                                          &signed_transaction)) {
+      SendErrorOnRequest(error, error_message, std::move(callback),
+                         std::move(id));
+      return;
+    }
+    json_rpc_service_->SendRawTransaction(
+        signed_transaction,
+        base::BindOnce(&EthereumProviderImpl::OnSendRawTransaction,
+                       weak_factory_.GetWeakPtr(), std::move(callback),
+                       std::move(id)));
   } else if (method == kEthSign || method == kPersonalSign) {
     std::string address;
     std::string message;
@@ -1129,6 +1250,25 @@ void EthereumProviderImpl::CommonRequestOrSendAsync(base::ValueView input_value,
                        std::move(id), method, delegate_->GetOrigin()));
   } else if (method == kWeb3ClientVersion) {
     Web3ClientVersion(std::move(callback), std::move(id));
+  } else if (method == kEthSubscribe) {
+    std::string event_type;
+    base::Value::Dict filter;
+    if (!ParseEthSubscribeParams(normalized_json_request, &event_type,
+                                 &filter)) {
+      SendErrorOnRequest(error, error_message, std::move(callback),
+                         std::move(id));
+      return;
+    }
+    EthSubscribe(event_type, std::move(filter), std::move(callback),
+                 std::move(id));
+  } else if (method == kEthUnsubscribe) {
+    std::string subscription_id;
+    if (!ParseEthUnsubscribeParams(normalized_json_request, &subscription_id)) {
+      SendErrorOnRequest(error, error_message, std::move(callback),
+                         std::move(id));
+      return;
+    }
+    EthUnsubscribe(subscription_id, std::move(callback), std::move(id));
   } else {
     json_rpc_service_->Request(normalized_json_request, true, std::move(id),
                                mojom::CoinType::ETH, std::move(callback));
@@ -1139,7 +1279,7 @@ void EthereumProviderImpl::Send(const std::string& method,
                                 base::Value params,
                                 SendCallback callback) {
   CommonRequestOrSendAsync(GetJsonRpcRequest(method, std::move(params)),
-                           std::move(callback));
+                           std::move(callback), true);
   delegate_->WalletInteractionDetected();
 }
 
@@ -1404,13 +1544,13 @@ void EthereumProviderImpl::OnUpdateKnownAccounts(
   if (error != mojom::ProviderError::kSuccess) {
     return;
   }
-  bool accounts_changed = allowed_accounts != known_allowed_accounts;
-  known_allowed_accounts = allowed_accounts;
-  if (!first_known_accounts_check && events_listener_.is_bound() &&
+  bool accounts_changed = allowed_accounts != known_allowed_accounts_;
+  known_allowed_accounts_ = allowed_accounts;
+  if (!first_known_accounts_check_ && events_listener_.is_bound() &&
       accounts_changed) {
-    events_listener_->AccountsChangedEvent(known_allowed_accounts);
+    events_listener_->AccountsChangedEvent(known_allowed_accounts_);
   }
-  first_known_accounts_check = false;
+  first_known_accounts_check_ = false;
 }
 
 void EthereumProviderImpl::Web3ClientVersion(RequestCallback callback,
@@ -1444,6 +1584,7 @@ void EthereumProviderImpl::OnTransactionStatusChanged(
     mojom::TransactionInfoPtr tx_info) {
   auto tx_status = tx_info->tx_status;
   if (tx_status != mojom::TransactionStatus::Submitted &&
+      tx_status != mojom::TransactionStatus::Signed &&
       tx_status != mojom::TransactionStatus::Rejected &&
       tx_status != mojom::TransactionStatus::Error)
     return;
@@ -1458,6 +1599,20 @@ void EthereumProviderImpl::OnTransactionStatusChanged(
   bool reject = true;
   if (tx_status == mojom::TransactionStatus::Submitted) {
     formed_response = base::Value(tx_hash);
+    reject = false;
+  } else if (tx_status == mojom::TransactionStatus::Signed) {
+    std::string signed_transaction;
+    if (tx_info->tx_data_union->is_eth_tx_data()) {
+      DCHECK(tx_info->tx_data_union->get_eth_tx_data()->signed_transaction);
+      signed_transaction =
+          *tx_info->tx_data_union->get_eth_tx_data()->signed_transaction;
+    } else if (tx_info->tx_data_union->is_eth_tx_data_1559()) {
+      DCHECK(tx_info->tx_data_union->get_eth_tx_data_1559()
+                 ->base_data->signed_transaction);
+      signed_transaction = *tx_info->tx_data_union->get_eth_tx_data_1559()
+                                ->base_data->signed_transaction;
+    }
+    formed_response = base::Value(signed_transaction);
     reject = false;
   } else if (tx_status == mojom::TransactionStatus::Rejected) {
     formed_response = GetProviderErrorDictionary(
@@ -1504,9 +1659,9 @@ void EthereumProviderImpl::OnContentSettingChanged(
     const ContentSettingsPattern& primary_pattern,
     const ContentSettingsPattern& secondary_pattern,
     ContentSettingsType content_type) {
-  // if (content_type == ContentSettingsType::BRAVE_ETHEREUM) {
-  //   UpdateKnownAccounts();
-  // }
+  if (content_type == ContentSettingsType::MISES_ETHEREUM) {
+    UpdateKnownAccounts();
+  }
 }
 
 void EthereumProviderImpl::AddSuggestToken(mojom::BlockchainTokenPtr token,
@@ -1527,6 +1682,81 @@ void EthereumProviderImpl::AddSuggestToken(mojom::BlockchainTokenPtr token,
   brave_wallet_service_->AddSuggestTokenRequest(
       std::move(request), std::move(callback), std::move(id));
   delegate_->ShowPanel();
+}
+
+void EthereumProviderImpl::OnSendRawTransaction(
+    RequestCallback callback,
+    base::Value id,
+    const std::string& tx_hash,
+    mojom::ProviderError error,
+    const std::string& error_message) {
+  base::Value formed_response;
+  if (error != mojom::ProviderError::kSuccess) {
+    formed_response = GetProviderErrorDictionary(error, error_message);
+  } else {
+    formed_response = base::Value(tx_hash);
+  }
+  std::move(callback).Run(std::move(id), std::move(formed_response),
+                          error != mojom::ProviderError::kSuccess, "", false);
+}
+
+// EthBlockTracker::Observer:
+void EthereumProviderImpl::OnLatestBlock(uint256_t block_num) {
+  json_rpc_service_->GetBlockByNumber(
+      kEthereumBlockTagLatest,
+      base::BindOnce(&EthereumProviderImpl::OnGetBlockByNumber,
+                     weak_factory_.GetWeakPtr()));
+}
+
+void EthereumProviderImpl::OnGetBlockByNumber(
+    base::Value result,
+    mojom::ProviderError error,
+    const std::string& error_message) {
+  if (events_listener_.is_bound() && error == mojom::ProviderError::kSuccess) {
+    base::ranges::for_each(eth_subscriptions_,
+                           [this, &result](const std::string& subscription_id) {
+                             events_listener_->MessageEvent(subscription_id,
+                                                            result.Clone());
+                           });
+  }
+}
+
+void EthereumProviderImpl::OnNewBlock(uint256_t block_num) {}
+
+void EthereumProviderImpl::OnLogsReceived(const std::string& subscription,
+                                          base::Value rawlogs) {
+  if (!rawlogs.is_dict() || !events_listener_.is_bound()) {
+    return;
+  }
+
+  auto& dict = rawlogs.GetDict();
+  const base::Value::List* results = dict.FindList("result");
+
+  if (results == nullptr) {
+    return;
+  }
+
+  for (auto& results_item : *results) {
+    events_listener_->MessageEvent(subscription, results_item.Clone());
+  }
+}
+
+void EthereumProviderImpl::OnResponse(bool format_json_rpc_response,
+                                      RequestCallback callback,
+                                      base::Value id,
+                                      base::Value formed_response,
+                                      const bool reject,
+                                      const std::string& first_allowed_account,
+                                      const bool update_bind_js_properties) {
+  if (format_json_rpc_response) {
+    auto json_rpc_formed_response =
+        ToProviderResponse(id.Clone(), reject ? nullptr : &formed_response,
+                           reject ? &formed_response : nullptr);
+    formed_response = std::move(json_rpc_formed_response);
+  }
+
+  std::move(callback).Run(std::move(id), std::move(formed_response), reject,
+                          first_allowed_account, update_bind_js_properties);
 }
 
 }  // namespace brave_wallet

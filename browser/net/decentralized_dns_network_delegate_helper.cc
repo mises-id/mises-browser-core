@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-#include "mises/components/brave_wallet/browser/json_rpc_service_factory.h"
+#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 
@@ -22,12 +22,12 @@
 namespace decentralized_dns {
 
 bool ShouldHandleUrl(const GURL& url) {
-  bool should_handle_ud = IsUnstoppableDomainsTLD(url) &&
-      IsUnstoppableDomainsResolveMethodEthereum(
+  bool should_handle_ud = IsUnstoppableDomainsTLD(url.host_piece()) &&
+      IsUnstoppableDomainsResolveMethodEnabled(
           g_browser_process->local_state());
-  bool should_handle_bit = IsBitTLD(url);
-  bool should_handle_ens = IsENSTLD(url) &&
-      IsENSResolveMethodEthereum(g_browser_process->local_state());
+  bool should_handle_bit = IsBitTLD(url.host_piece());
+  bool should_handle_ens = IsENSTLD(url.host_piece()) &&
+      IsENSResolveMethodEnabled(g_browser_process->local_state());
   return should_handle_ud || should_handle_bit || should_handle_ens;
 }
 
@@ -47,8 +47,8 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
   if (!json_rpc_service)
     return net::OK;
 
-  if (IsUnstoppableDomainsTLD(ctx->request_url) &&
-      IsUnstoppableDomainsResolveMethodEthereum(
+  if (IsUnstoppableDomainsTLD(ctx->request_url.host_piece()) &&
+      IsUnstoppableDomainsResolveMethodEnabled(
           g_browser_process->local_state())) {
     json_rpc_service->UnstoppableDomainsResolveDns(
         ctx->request_url.host(),
@@ -58,7 +58,7 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
     return net::ERR_IO_PENDING;
   }
 
-  if (IsBitTLD(ctx->request_url)) {
+  if (IsBitTLD(ctx->request_url.host_piece())) {
     json_rpc_service->BitResolveDns(
         ctx->request_url.host(),
         base::BindOnce(&OnBeforeURLRequest_BitRedirectWork,
@@ -67,11 +67,21 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
     return net::ERR_IO_PENDING;
   }
 
-  if (IsENSTLD(ctx->request_url) &&
-      IsENSResolveMethodEthereum(g_browser_process->local_state())) {
+  if (IsENSTLD(ctx->request_url.host_piece()) &&
+      IsENSResolveMethodEnabled(g_browser_process->local_state())) {
     json_rpc_service->EnsGetContentHash(
         ctx->request_url.host(),
         base::BindOnce(&OnBeforeURLRequest_EnsRedirectWork, next_callback,
+                       ctx));
+
+    return net::ERR_IO_PENDING;
+  }
+
+    if (IsSnsTLD(ctx->request_url.host_piece()) &&
+      IsSnsResolveMethodEnabled(g_browser_process->local_state())) {
+    json_rpc_service->SnsResolveHost(
+        ctx->request_url.host(),
+        base::BindOnce(&OnBeforeURLRequest_SnsRedirectWork, next_callback,
                        ctx));
 
     return net::ERR_IO_PENDING;
@@ -112,14 +122,31 @@ void OnBeforeURLRequest_EnsRedirectWork(
   next_callback.Run();
 }
 
+void OnBeforeURLRequest_SnsRedirectWork(
+    const mises::ResponseCallback& next_callback,
+    std::shared_ptr<mises::MisesRequestInfo> ctx,
+    const absl::optional<GURL>& url,
+    brave_wallet::mojom::SolanaProviderError error,
+    const std::string& error_message) {
+  if (error == brave_wallet::mojom::SolanaProviderError::kSuccess && url &&
+      url->is_valid()) {
+    ctx->new_url_spec = url->spec();
+  }
+
+  if (!next_callback.is_null()) {
+    next_callback.Run();
+  }
+}
+
 void OnBeforeURLRequest_UnstoppableDomainsRedirectWork(
     const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx,
-    const GURL& url,
+    const absl::optional<GURL>& url,
     brave_wallet::mojom::ProviderError error,
     const std::string& error_message) {
-  if (error == brave_wallet::mojom::ProviderError::kSuccess && url.is_valid()) {
-    ctx->new_url_spec = url.spec() + ctx->request_url.PathForRequest();
+  if (error == brave_wallet::mojom::ProviderError::kSuccess && url &&
+      url->is_valid()) {
+    ctx->new_url_spec = url->spec() + ctx->request_url.PathForRequest();
   }
 
   if (!next_callback.is_null())

@@ -1,3 +1,4 @@
 declare_args() {
   mises_infura_project_id = ""
+  mises_zero_ex_api_key = ""
 }

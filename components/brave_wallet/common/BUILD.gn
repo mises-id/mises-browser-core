@@ -1,16 +1,29 @@
+# Copyright (c) 2022 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/.
+
 import("//mises/build/config.gni")
 import("//mises/components/brave_wallet/common/config.gni")
 import("//build/buildflag_header.gni")
 import("//mojo/public/tools/bindings/mojom.gni")
 import("//testing/test.gni")
 import("//tools/grit/preprocess_if_expr.gni")
+import("//tools/json_schema_compiler/json_schema_api.gni")
 
 preprocess_folder = "preprocessed"
 preprocess_mojo_manifest = "preprocessed_mojo_manifest.json"
 
+if (is_official_build) {
+  assert(mises_zero_ex_api_key != "")
+}
+
 buildflag_header("buildflags") {
   header = "buildflags.h"
-  flags = [ "MISES_INFURA_PROJECT_ID=\"$mises_infura_project_id\"" ]
+  flags = [
+    "MISES_INFURA_PROJECT_ID=\"$mises_infura_project_id\"",
+    "MISES_ZERO_EX_API_KEY=\"$mises_zero_ex_api_key\"",
+  ]
 }
 
 static_library("common") {
@@ -43,11 +56,14 @@ static_library("common") {
     "solana_address.h",
     "string_utils.cc",
     "string_utils.h",
+    "switches.cc",
+    "switches.h",
     "value_conversion_utils.cc",
     "value_conversion_utils.h",
   ]
   deps = [
     ":common_constants",
+    ":generated_json_rpc_requests",
     ":mojom__generator",
     ":solana_utils",
     "//mises/third_party/argon2",
@@ -98,6 +114,13 @@ source_set("common_utils") {
     "//base",
     "//components/prefs",
   ]
+}
+
+generated_types("generated_json_rpc_requests") {
+  sources = [ "json_rpc_requests.idl" ]
+  root_namespace = "brave_wallet::%(namespace)s"
+  deps = [ "//base" ]
+  visibility = [ ":common" ]
 }
 
 preprocess_if_expr("preprocess_mojo") {

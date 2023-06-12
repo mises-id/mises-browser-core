@@ -1,0 +1,23 @@
+{
+    "images": [
+        {
+            "idiom": "universal",
+            "scale": "1x",
+            "filename": "mises_welcome.png"
+        },
+        {
+            "idiom": "universal",
+            "scale": "2x",
+            "filename": "mises_welcome@2x.png"
+        },
+        {
+            "idiom": "universal",
+            "scale": "3x",
+            "filename": "mises_welcome@3x.png"
+        }
+    ],
+    "info": {
+        "version": 1,
+        "author": "xcode"
+    }
+}

@@ -17,7 +17,7 @@
 #include "base/path_service.h"
 #include "base/strings/stringprintf.h"
 #include "base/task/thread_pool.h"
-#include "mises/components/mises_component_updater/browser/brave_on_demand_updater.h"
+#include "mises/components/mises_component_updater/browser/mises_on_demand_updater.h"
 #include "mises/components/brave_referrals/browser/brave_referrals_service.h"
 #include "mises/components/brave_referrals/buildflags/buildflags.h"
 #include "mises/components/brave_referrals/common/pref_names.h"
@@ -34,7 +34,7 @@
 #include "components/prefs/pref_registry_simple.h"
 #include "components/prefs/pref_service.h"
 
-using mises_component_updater::BraveOnDemandUpdater;
+using mises_component_updater::MisesOnDemandUpdater;
 
 namespace ntp_background_images {
 
@@ -157,7 +157,7 @@ void NTPBackgroundImagesService::CheckImagesComponentUpdate(
   DVLOG(2) << __func__ << ": Check NTP Images component update";
 
   last_update_check_time_ = base::Time::Now();
-  BraveOnDemandUpdater::GetInstance()->OnDemandUpdate(component_id);
+  MisesOnDemandUpdater::GetInstance()->OnDemandUpdate(component_id);
 }
 
 void NTPBackgroundImagesService::RegisterBackgroundImagesComponent() {
