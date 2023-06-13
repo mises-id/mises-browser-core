@@ -24,14 +24,24 @@ android_resources("java_resources") {
 
 android_library("public_java") {
   sources = [
-   "java/org/chromium/chrome/browser/mises/MisesController.java",
-   "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
-   "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
-   "java/org/chromium/chrome/browser/mises/MisesLCDServiceImpl.java",
-   "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
-   "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
-   "java/org/chromium/chrome/browser/mises/MisesUtil.java",
-   "java/org/chromium/chrome/browser/mises/MyFirebaseMessagingService.java",
+    "java/org/chromium/chrome/browser/mises/MisesController.java",
+    "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
+    "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
+    "java/org/chromium/chrome/browser/mises/MisesLCDServiceImpl.java",
+    "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
+    "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
+    "java/org/chromium/chrome/browser/mises/MisesUtil.java",
+    "java/org/chromium/chrome/browser/mises/MyFirebaseMessagingService.java",
+    "java/org/chromium/chrome/browser/logcat/FileLogDumper.java",
+    "java/org/chromium/chrome/browser/logcat/RemoteLogDumper.java",
+    "java/org/chromium/chrome/browser/logcat/ILogDumper.java",
+    "java/org/chromium/chrome/browser/logcat/LogcatDump.java",
+    "java/org/chromium/chrome/browser/websocketclient/WebSocketClient.java",
+    "java/org/chromium/chrome/browser/websocketclient/common/Utils.java",
+    "java/org/chromium/chrome/browser/websocketclient/exceptions/IllegalSchemeException.java",
+    "java/org/chromium/chrome/browser/websocketclient/exceptions/InvalidReceivedFrameException.java",
+    "java/org/chromium/chrome/browser/websocketclient/exceptions/InvalidServerHandshakeException.java",
+    "java/org/chromium/chrome/browser/websocketclient/model/Payload.java",
  ]
 
   deps = [
@@ -72,6 +82,7 @@ android_library("public_java") {
     "//mises/third_party/android_deps:google_play_services_measurement_api_java",
     "//mises/third_party/mises:mises_light_node_java",
     "//chrome/android:base_module_java",
+    "//components/version_info/android:version_constants_java",
   ]
   annotation_processor_deps = [ "//base/android/jni_generator:jni_processor" ]
   resources_package = "org.chromium.chrome.mises"

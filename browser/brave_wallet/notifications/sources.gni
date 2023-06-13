@@ -1,0 +1,18 @@
+# Copyright (c) 2022 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+mises_browser_brave_wallet_deps =
+    [ "//mises/components/brave_wallet/browser:pref_names" ]
+
+mises_browser_brave_wallet_sources = []
+if (!is_android) {
+  mises_browser_brave_wallet_sources += [
+    "//mises/browser/brave_wallet/notifications/wallet_notification_helper_impl.cc",
+    "//mises/browser/brave_wallet/notifications/wallet_notification_service.cc",
+    "//mises/browser/brave_wallet/notifications/wallet_notification_service.h",
+    "//mises/browser/brave_wallet/notifications/wallet_notification_service_factory.cc",
+    "//mises/browser/brave_wallet/notifications/wallet_notification_service_factory.h",
+  ]
+}

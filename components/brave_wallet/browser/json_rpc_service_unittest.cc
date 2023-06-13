@@ -13,35 +13,27 @@
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 
 #include "base/base64.h"
-#include "base/bind.h"
-#include "base/callback.h"
-#include "base/containers/contains.h"
 #include "base/containers/span.h"
+#include "base/functional/bind.h"
+#include "base/functional/callback.h"
 #include "base/json/json_reader.h"
 #include "base/json/json_writer.h"
 #include "base/notreached.h"
 #include "base/ranges/algorithm.h"
 #include "base/strings/utf_string_conversions.h"
-#include "base/task/task_traits.h"
-#include "base/task/thread_pool.h"
 #include "base/test/bind.h"
 #include "base/test/mock_callback.h"
 #include "base/test/scoped_feature_list.h"
 #include "base/test/task_environment.h"
-#include "base/threading/scoped_blocking_call.h"
 #include "base/values.h"
-#include "mises/components/brave_wallet/browser/blockchain_registry.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_prefs.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
 #include "mises/components/brave_wallet/browser/ens_resolver_task.h"
-#include "mises/components/brave_wallet/browser/eth_data_builder.h"
 #include "mises/components/brave_wallet/browser/json_rpc_service_test_utils.h"
-#include "mises/components/brave_wallet/browser/keyring_service.h"
 #include "mises/components/brave_wallet/browser/pref_names.h"
 #include "mises/components/brave_wallet/browser/sns_resolver_task.h"
 #include "mises/components/brave_wallet/browser/unstoppable_domains_dns_resolve.h"
-#include "mises/components/brave_wallet/common/brave_wallet.mojom-forward.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/eth_abi_utils.h"
 #include "mises/components/brave_wallet/common/eth_address.h"
@@ -52,20 +44,15 @@
 #include "mises/components/brave_wallet/common/solana_utils.h"
 #include "mises/components/brave_wallet/common/test_utils.h"
 #include "mises/components/brave_wallet/common/value_conversion_utils.h"
-#include "mises/components/constants/mises_services_key.h"
+#include "mises/components/constants/brave_services_key.h"
 #include "mises/components/decentralized_dns/core/constants.h"
 #include "mises/components/decentralized_dns/core/utils.h"
 #include "mises/components/ipfs/ipfs_service.h"
 #include "mises/components/ipfs/ipfs_utils.h"
-#include "mises/components/ipfs/pref_names.h"
 #include "components/grit/mises_components_strings.h"
 #include "components/prefs/scoped_user_pref_update.h"
 #include "components/sync_preferences/testing_pref_service_syncable.h"
-#include "content/public/browser/storage_partition.h"
 #include "mojo/public/cpp/bindings/self_owned_receiver.h"
-#include "net/test/embedded_test_server/embedded_test_server.h"
-#include "net/test/embedded_test_server/http_request.h"
-#include "net/test/embedded_test_server/http_response.h"
 #include "services/data_decoder/public/cpp/test_support/in_process_data_decoder.h"
 #include "services/network/public/cpp/weak_wrapper_shared_url_loader_factory.h"
 #include "services/network/test/test_url_loader_factory.h"
@@ -85,6 +72,22 @@ MATCHER_P(MatchesCIDv1URL, ipfs_url, "") {
 namespace brave_wallet {
 
 namespace {
+
+// Compare two JSON strings, ignoring the order of the keys and other
+// insignificant whitespace differences.
+void CompareJSON(const std::string& response,
+                 const std::string& expected_response) {
+  auto response_val = base::JSONReader::Read(response);
+  auto expected_response_val = base::JSONReader::Read(expected_response);
+  EXPECT_EQ(response_val, expected_response_val);
+  if (response_val) {
+    // If the JSON is valid, compare the parsed values.
+    EXPECT_EQ(*response_val, *expected_response_val);
+  } else {
+    // If the JSON is invalid, compare the raw strings.
+    EXPECT_EQ(response, expected_response);
+  }
+}
 
 void GetErrorCodeMessage(base::Value formed_response,
                          mojom::ProviderError* error,
@@ -164,18 +167,11 @@ std::string GetFilStateSearchMsgLimitedResponse(int64_t value) {
 
 void UpdateCustomNetworks(PrefService* prefs,
                           std::vector<base::Value::Dict>* values) {
-  DictionaryPrefUpdate update(prefs, kBraveWalletCustomNetworks);
-  base::Value* dict = update.Get();
-  ASSERT_TRUE(dict);
-  base::Value* list = dict->FindKey(kEthereumPrefKey);
-  if (!list) {
-    list = dict->SetKey(kEthereumPrefKey, base::Value(base::Value::Type::LIST));
-  }
-  ASSERT_TRUE(list);
-  auto& list_value = list->GetList();
-  list_value.clear();
+  ScopedDictPrefUpdate update(prefs, kBraveWalletCustomNetworks);
+  base::Value::List* list = update->EnsureList(kEthereumPrefKey);
+  list->clear();
   for (auto& it : *values) {
-    list_value.Append(std::move(it));
+    list->Append(std::move(it));
   }
 }
 
@@ -356,15 +352,17 @@ class EthCallHandler {
   virtual ~EthCallHandler() = default;
 
   bool CallSupported(const EthAddress& to, eth_abi::Span call_data) {
-    if (to != to_)
+    if (to != to_) {
       return false;
+    }
 
     auto [selector, _] =
         eth_abi::ExtractFunctionSelectorAndArgsFromCall(call_data);
 
     for (const auto& s : selectors_) {
-      if (base::ranges::equal(s, selector))
+      if (base::ranges::equal(s, selector)) {
         return true;
+      }
     }
     return false;
   }
@@ -416,13 +414,16 @@ class GetAccountInfoHandler : public SolRpcCallHandler {
       : account_address_(account_address), owner_(owner), data_(data) {}
 
   bool CallSupported(const base::Value::Dict& dict) override {
-    if (disabled_)
+    if (disabled_) {
       return false;
+    }
     auto* method = dict.FindString("method");
-    if (!method || *method != "getAccountInfo")
+    if (!method || *method != "getAccountInfo") {
       return false;
-    if (!account_address_.IsValid())
+    }
+    if (!account_address_.IsValid()) {
       return true;
+    }
     return AddressFromParams(dict) == account_address_;
   }
 
@@ -471,10 +472,16 @@ class GetAccountInfoHandler : public SolRpcCallHandler {
     return result;
   }
 
+  static std::vector<uint8_t> MakeTextRecordPayloadData(
+      const std::string& text) {
+    return std::vector<uint8_t>(text.begin(), text.end());
+  }
+
   absl::optional<std::string> HandleCall(
       const base::Value::Dict& dict) override {
-    if (fail_with_timeout_)
+    if (fail_with_timeout_) {
       return "timeout";
+    }
 
     if (!account_address_.IsValid()) {
       return MakeJsonRpcValueResponse(base::Value());
@@ -512,12 +519,14 @@ class GetProgramAccountsHandler : public SolRpcCallHandler {
         token_account_data_(token_account_data) {}
 
   bool CallSupported(const base::Value::Dict& dict) override {
-    if (disabled_)
+    if (disabled_) {
       return false;
+    }
 
     auto* method = dict.FindString("method");
-    if (!method || *method != "getProgramAccounts")
+    if (!method || *method != "getProgramAccounts") {
       return false;
+    }
     return AddressFromParams(dict) == target_;
   }
 
@@ -540,8 +549,9 @@ class GetProgramAccountsHandler : public SolRpcCallHandler {
 
   absl::optional<std::string> HandleCall(
       const base::Value::Dict& dict) override {
-    if (fail_with_timeout_)
+    if (fail_with_timeout_) {
       return "timeout";
+    }
 
     auto* filters = (*dict.FindList("params"))[1].GetDict().FindList("filters");
     EXPECT_TRUE(filters);
@@ -597,8 +607,9 @@ class JsonRpcEnpointHandler {
 
   absl::optional<std::string> HandleRequest(
       const network::ResourceRequest& request) {
-    if (request.url != endpoint_)
+    if (request.url != endpoint_) {
       return absl::nullopt;
+    }
 
     auto value = ToValue(request);
     if (value && value->is_dict()) {
@@ -622,10 +633,12 @@ class JsonRpcEnpointHandler {
  protected:
   absl::optional<std::string> HandleCall(const base::Value::Dict& dict) {
     auto* method = dict.FindString("method");
-    if (!method)
+    if (!method) {
       return absl::nullopt;
-    if (*method == "eth_call")
+    }
+    if (*method == "eth_call") {
       return HandleEthCall(dict);
+    }
 
     return HandleSolRpcCall(dict);
   }
@@ -640,32 +653,38 @@ class JsonRpcEnpointHandler {
     auto& transaction_params = params_list->begin()->GetDict();
     auto* data_param = transaction_params.FindString("data");
     auto* to_param = transaction_params.FindString("to");
-    if (!data_param || !to_param || !EthAddress::FromHex(*to_param).IsValid())
+    if (!data_param || !to_param || !EthAddress::FromHex(*to_param).IsValid()) {
       return absl::nullopt;
+    }
 
     auto call_data = PrefixedHexStringToBytes(*data_param);
-    if (!call_data)
+    if (!call_data) {
       return absl::nullopt;
+    }
 
     for (auto* handler : eth_call_handlers_) {
-      if (!handler->CallSupported(EthAddress::FromHex(*to_param), *call_data))
+      if (!handler->CallSupported(EthAddress::FromHex(*to_param), *call_data)) {
         continue;
+      }
 
       auto response = handler->HandleEthCall(*call_data);
-      if (response)
+      if (response) {
         return response;
+      }
     }
     return absl::nullopt;
   }
 
   absl::optional<std::string> HandleSolRpcCall(const base::Value::Dict& dict) {
     for (auto* handler : sol_rpc_call_handlers_) {
-      if (!handler->CallSupported(dict))
+      if (!handler->CallSupported(dict)) {
         continue;
+      }
 
       auto response = handler->HandleCall(dict);
-      if (response)
+      if (response) {
         return response;
+      }
     }
     return absl::nullopt;
   }
@@ -727,20 +746,24 @@ class JsonRpcServiceUnitTest : public testing::Test {
   }
 
   bool GetIsEip1559FromPrefs(const std::string& chain_id) {
-    if (chain_id == mojom::kLocalhostChainId)
+    if (chain_id == mojom::kLocalhostChainId) {
       return prefs()->GetBoolean(kSupportEip1559OnLocalhostChain);
+    }
     const base::Value* custom_networks =
         prefs()->GetDict(kBraveWalletCustomNetworks).Find(kEthereumPrefKey);
-    if (!custom_networks)
+    if (!custom_networks) {
       return false;
+    }
 
     for (const auto& chain : custom_networks->GetList()) {
-      if (!chain.is_dict())
+      if (!chain.is_dict()) {
         continue;
+      }
 
       const std::string* id = chain.FindStringKey("chainId");
-      if (!id || *id != chain_id)
+      if (!id || *id != chain_id) {
         continue;
+      }
 
       return chain.FindBoolKey("is_eip1559").value_or(false);
     }
@@ -919,6 +942,53 @@ class JsonRpcServiceUnitTest : public testing::Test {
         }));
   }
 
+  void SetGetEthNftStandardInterceptor(
+      const GURL& expected_url,
+      const std::map<std::string, std::string>& interface_id_to_response) {
+    url_loader_factory_.SetInterceptor(base::BindLambdaForTesting(
+        [&, expected_url,
+         interface_id_to_response](const network::ResourceRequest& request) {
+          EXPECT_EQ(request.url, expected_url);
+          base::StringPiece request_string(request.request_body->elements()
+                                               ->at(0)
+                                               .As<network::DataElementBytes>()
+                                               .AsStringPiece());
+          // Check if any of the interface ids are in the request
+          // if so, return the response for that interface id
+          // if not, do nothing
+          for (const auto& [interface_id, response] :
+               interface_id_to_response) {
+            bool request_is_checking_interface =
+                request_string.find(interface_id.substr(2)) !=
+                std::string::npos;
+            if (request_is_checking_interface) {
+              url_loader_factory_.ClearResponses();
+              url_loader_factory_.AddResponse(expected_url.spec(), response);
+              return;
+            }
+          }
+        }));
+  }
+
+  void SetSolTokenMetadataInterceptor(
+      const GURL& expected_rpc_url,
+      const std::string& get_account_info_response,
+      const GURL& expected_metadata_url,
+      const std::string& metadata_response) {
+    auto network_url =
+        GetNetwork(mojom::kLocalhostChainId, mojom::CoinType::SOL);
+    ASSERT_TRUE(expected_rpc_url.is_valid());
+    ASSERT_TRUE(expected_metadata_url.is_valid());
+    url_loader_factory_.SetInterceptor(base::BindLambdaForTesting(
+        [&, expected_rpc_url, get_account_info_response, expected_metadata_url,
+         metadata_response](const network::ResourceRequest& request) {
+          url_loader_factory_.AddResponse(expected_rpc_url.spec(),
+                                          get_account_info_response);
+          url_loader_factory_.AddResponse(expected_metadata_url.spec(),
+                                          metadata_response);
+        }));
+  }
+
   void SetInterceptor(const GURL& expected_url,
                       const std::string& expected_method,
                       const std::string& expected_cache_header,
@@ -941,8 +1011,8 @@ class JsonRpcServiceUnitTest : public testing::Test {
                 !expected_cache_header.empty());
             EXPECT_EQ(expected_cache_header, header_value);
           }
-          EXPECT_TRUE(request.headers.GetHeader("x-mises-key", &header_value));
-          EXPECT_EQ(BUILDFLAG(MISES_SERVICES_KEY), header_value);
+          EXPECT_TRUE(request.headers.GetHeader("x-brave-key", &header_value));
+          EXPECT_EQ(BUILDFLAG(BRAVE_SERVICES_KEY), header_value);
           url_loader_factory_.ClearResponses();
           url_loader_factory_.AddResponse(request.url.spec(), content);
         }));
@@ -998,23 +1068,22 @@ class JsonRpcServiceUnitTest : public testing::Test {
   }
 
   void SetIsEip1559Interceptor(const GURL& expected_network, bool is_eip1559) {
-    if (is_eip1559)
+    if (is_eip1559) {
       SetInterceptor(
           expected_network, "eth_getBlockByNumber", "latest,false",
           "{\"jsonrpc\":\"2.0\",\"id\": \"0\",\"result\": "
           "{\"baseFeePerGas\":\"0x181f22e7a9\", \"gasLimit\":\"0x6691b8\"}}");
-    else
+    } else {
       SetInterceptor(expected_network, "eth_getBlockByNumber", "latest,false",
                      "{\"jsonrpc\":\"2.0\",\"id\": \"0\",\"result\": "
                      "{\"gasLimit\":\"0x6691b8\"}}");
+    }
   }
 
   void ValidateStartWithNetwork(const std::string& chain_id,
                                 const std::string& expected_id) {
-    DictionaryPrefUpdate update(prefs(), kBraveWalletSelectedNetworks);
-    base::Value* dict = update.Get();
-    DCHECK(dict);
-    dict->SetStringKey(kEthereumPrefKey, chain_id);
+    ScopedDictPrefUpdate update(prefs(), kBraveWalletSelectedNetworks);
+    update->Set(kEthereumPrefKey, chain_id);
     JsonRpcService service(shared_url_loader_factory(), prefs());
     bool callback_is_called = false;
     service.GetChainId(
@@ -1037,6 +1106,27 @@ class JsonRpcServiceUnitTest : public testing::Test {
                                   }));
     run_loop.Run();
     return result;
+  }
+
+  void TestGetCode(const std::string& address,
+                   mojom::CoinType coin,
+                   const std::string& chain_id,
+                   const std::string& expected_bytecode,
+                   mojom::ProviderError expected_error,
+                   const std::string& expected_error_message) {
+    absl::optional<std::string> result;
+    base::RunLoop run_loop;
+    json_rpc_service_->GetCode(
+        address, coin, chain_id,
+        base::BindLambdaForTesting([&](const std::string& bytecode,
+                                       mojom::ProviderError error,
+                                       const std::string& error_message) {
+          EXPECT_EQ(error, expected_error);
+          EXPECT_EQ(error_message, expected_error_message);
+          EXPECT_EQ(bytecode, expected_bytecode);
+          run_loop.Quit();
+        }));
+    run_loop.Run();
   }
 
   void TestGetERC1155TokenBalance(const std::string& contract,
@@ -1069,14 +1159,14 @@ class JsonRpcServiceUnitTest : public testing::Test {
     base::RunLoop run_loop;
     json_rpc_service_->GetERC721Metadata(
         contract, token_id, chain_id,
-        base::BindLambdaForTesting([&](const std::string& response,
-                                       mojom::ProviderError error,
-                                       const std::string& error_message) {
-          EXPECT_EQ(response, expected_response);
-          EXPECT_EQ(error, expected_error);
-          EXPECT_EQ(error_message, expected_error_message);
-          run_loop.Quit();
-        }));
+        base::BindLambdaForTesting(
+            [&](const std::string& token_url, const std::string& response,
+                mojom::ProviderError error, const std::string& error_message) {
+              EXPECT_EQ(response, expected_response);
+              EXPECT_EQ(error, expected_error);
+              EXPECT_EQ(error_message, expected_error_message);
+              run_loop.Quit();
+            }));
     run_loop.Run();
   }
 
@@ -1089,31 +1179,31 @@ class JsonRpcServiceUnitTest : public testing::Test {
     base::RunLoop run_loop;
     json_rpc_service_->GetERC1155Metadata(
         contract, token_id, chain_id,
-        base::BindLambdaForTesting([&](const std::string& response,
-                                       mojom::ProviderError error,
-                                       const std::string& error_message) {
-          EXPECT_EQ(response, expected_response);
-          EXPECT_EQ(error, expected_error);
-          EXPECT_EQ(error_message, expected_error_message);
-          run_loop.Quit();
-        }));
+        base::BindLambdaForTesting(
+            [&](const std::string& token_url, const std::string& response,
+                mojom::ProviderError error, const std::string& error_message) {
+              EXPECT_EQ(response, expected_response);
+              EXPECT_EQ(error, expected_error);
+              EXPECT_EQ(error_message, expected_error_message);
+              run_loop.Quit();
+            }));
     run_loop.Run();
   }
 
-  void TestGetTokenMetadata(const std::string& contract,
-                            const std::string& token_id,
-                            const std::string& chain_id,
-                            const std::string& interface_id,
-                            const std::string& expected_response,
-                            mojom::ProviderError expected_error,
-                            const std::string& expected_error_message) {
+  void TestGetEthTokenUri(const std::string& contract,
+                          const std::string& token_id,
+                          const std::string& chain_id,
+                          const std::string& interface_id,
+                          const GURL& expected_uri,
+                          mojom::ProviderError expected_error,
+                          const std::string& expected_error_message) {
     base::RunLoop run_loop;
-    json_rpc_service_->GetTokenMetadata(
-        contract, token_id, chain_id, interface_id,
-        base::BindLambdaForTesting([&](const std::string& response,
+    json_rpc_service_->GetEthTokenUri(
+        chain_id, contract, token_id, interface_id,
+        base::BindLambdaForTesting([&](const GURL& uri,
                                        mojom::ProviderError error,
                                        const std::string& error_message) {
-          EXPECT_EQ(response, expected_response);
+          EXPECT_EQ(uri, expected_uri);
           EXPECT_EQ(error, expected_error);
           EXPECT_EQ(error_message, expected_error_message);
           run_loop.Quit();
@@ -1121,27 +1211,73 @@ class JsonRpcServiceUnitTest : public testing::Test {
     run_loop.Run();
   }
 
-  void TestDiscoverAssetsInternal(
+  void TestEthGetLogs(const std::string& chain_id,
+                      const std::string& from_block,
+                      const std::string& to_block,
+                      base::Value::List contract_addresses,
+                      base::Value::List topics,
+                      const std::vector<Log>& expected_logs,
+                      mojom::ProviderError expected_error,
+                      const std::string& expected_error_message) {
+    base::RunLoop run_loop;
+    base::Value::Dict params;
+    params.Set("fromBlock", from_block);
+    params.Set("toBlock", to_block);
+    params.Set("address", std::move(contract_addresses));
+    params.Set("topics", std::move(topics));
+    json_rpc_service_->EthGetLogs(
+        chain_id, std::move(params),
+        base::BindLambdaForTesting(
+            [&](const std::vector<Log>& logs, base::Value rawlogs,
+                mojom::ProviderError error, const std::string& error_message) {
+              EXPECT_EQ(logs, expected_logs);
+              EXPECT_EQ(error, expected_error);
+              EXPECT_EQ(error_message, expected_error_message);
+              run_loop.Quit();
+            }));
+    run_loop.Run();
+  }
+
+  void TestGetERC20TokenBalances(
+      const std::vector<std::string>& token_contract_addresses,
+      const std::string& user_address,
       const std::string& chain_id,
-      mojom::CoinType coin,
-      const std::vector<std::string>& account_addresses,
-      const std::vector<std::string>& expected_token_contract_addresses,
+      std::vector<mojom::ERC20BalanceResultPtr> expected_results,
       mojom::ProviderError expected_error,
       const std::string& expected_error_message) {
     base::RunLoop run_loop;
-    std::vector<mojom::BlockchainTokenPtr> expected_tokens;
-    json_rpc_service_->DiscoverAssetsInternal(
-        chain_id, mojom::CoinType::ETH, account_addresses,
+    json_rpc_service_->GetERC20TokenBalances(
+        token_contract_addresses, user_address, chain_id,
         base::BindLambdaForTesting(
-            [&](const std::vector<mojom::BlockchainTokenPtr> tokens,
+            [&](std::vector<mojom::ERC20BalanceResultPtr> results,
                 mojom::ProviderError error, const std::string& error_message) {
-              ASSERT_EQ(tokens.size(),
-                        expected_token_contract_addresses.size());
-              for (size_t i = 0; i < expected_token_contract_addresses.size();
-                   i++) {
-                EXPECT_EQ(tokens[i]->contract_address,
-                          expected_token_contract_addresses[i]);
+              EXPECT_EQ(results.size(), expected_results.size());
+              for (size_t i = 0; i < results.size(); i++) {
+                EXPECT_EQ(results[i]->contract_address,
+                          expected_results[i]->contract_address);
+                EXPECT_EQ(results[i]->balance, expected_results[i]->balance);
               }
+              EXPECT_EQ(error, expected_error);
+              EXPECT_EQ(error_message, expected_error_message);
+              run_loop.Quit();
+            }));
+    run_loop.Run();
+  }
+
+  void TestGetEthNftStandard(
+      const std::string& contract_address,
+      const std::string& chain_id,
+      std::vector<std::string>& interfaces,
+      const absl::optional<std::string>& expected_standard,
+      mojom::ProviderError expected_error,
+      const std::string& expected_error_message) {
+    base::RunLoop run_loop;
+    json_rpc_service_->GetEthNftStandard(
+        contract_address, chain_id, interfaces,
+        base::BindLambdaForTesting(
+            [&](const absl::optional<std::string>& standard,
+                mojom::ProviderError error, const std::string& error_message) {
+              EXPECT_EQ(standard, expected_standard);
               EXPECT_EQ(error, expected_error);
               EXPECT_EQ(error_message, expected_error_message);
               run_loop.Quit();
@@ -1353,6 +1489,26 @@ class JsonRpcServiceUnitTest : public testing::Test {
     run_loop.Run();
   }
 
+  void TestGetSolanaTokenAccountsByOwner(
+      const SolanaAddress& solana_address,
+      const std::vector<SolanaAccountInfo>& expected_token_accounts,
+      mojom::SolanaProviderError expected_error,
+      const std::string& expected_error_message) {
+    base::RunLoop run_loop;
+    json_rpc_service_->GetSolanaTokenAccountsByOwner(
+        solana_address,
+        base::BindLambdaForTesting(
+            [&](const std::vector<SolanaAccountInfo>& token_accounts,
+                mojom::SolanaProviderError error,
+                const std::string& error_message) {
+              EXPECT_EQ(token_accounts, expected_token_accounts);
+              EXPECT_EQ(error, expected_error);
+              EXPECT_EQ(error_message, expected_error_message);
+              run_loop.Quit();
+            }));
+    run_loop.Run();
+  }
+
   void GetFilEstimateGas(const std::string& from,
                          const std::string& to,
                          const std::string& value,
@@ -1396,6 +1552,25 @@ class JsonRpcServiceUnitTest : public testing::Test {
           loop.Quit();
         }));
 
+    loop.Run();
+  }
+
+  void TestGetSolTokenMetadata(const std::string& token_mint_address,
+                               const std::string& expected_response,
+                               mojom::SolanaProviderError expected_error,
+                               const std::string& expected_error_message) {
+    base::RunLoop loop;
+    json_rpc_service_->GetSolTokenMetadata(
+        mojom::kSolanaMainnet, token_mint_address,
+        base::BindLambdaForTesting([&](const std::string& token_url,
+                                       const std::string& response,
+                                       mojom::SolanaProviderError error,
+                                       const std::string& error_message) {
+          CompareJSON(response, expected_response);
+          EXPECT_EQ(error, expected_error);
+          EXPECT_EQ(error_message, expected_error_message);
+          loop.Quit();
+        }));
     loop.Run();
   }
 
@@ -1569,10 +1744,10 @@ TEST_F(JsonRpcServiceUnitTest, GetKnownNetworks) {
   values.push_back(NetworkInfoToValue(chain1));
   UpdateCustomNetworks(prefs(), &values);
 
-  EXPECT_CALL(
-      callback,
-      Run(ElementsAreArray({"0x1", "0x89", "0x38", "0xa4ec", "0xa86a", "0xfa",
-                            "0xa", "0x4e454152", "0x5", "0xaa36a7", "0x539"})));
+  EXPECT_CALL(callback,
+              Run(ElementsAreArray({"0x1", "0x4e454152", "0x89", "0x38",
+                                    "0xa86a", "0xfa", "0xa", "0x5", "0xaa36a7",
+                                    "0x539", "0x13a", "0x4cb2f"})));
   json_rpc_service_->GetKnownNetworks(mojom::CoinType::ETH, callback.Get());
   testing::Mock::VerifyAndClearExpectations(&callback);
 }
@@ -1580,26 +1755,62 @@ TEST_F(JsonRpcServiceUnitTest, GetKnownNetworks) {
 TEST_F(JsonRpcServiceUnitTest, GetHiddenNetworks) {
   base::MockCallback<mojom::JsonRpcService::GetHiddenNetworksCallback> callback;
 
-  EXPECT_CALL(callback, Run(ElementsAreArray<std::string>({})));
+  // Test networks are hidden by default.
+  // kLocalhostChainId is active so not listed as hidden.
+  EXPECT_CALL(
+      callback,
+      Run(ElementsAreArray({mojom::kGoerliChainId, mojom::kSepoliaChainId,
+                            mojom::kFilecoinEthereumTestnetChainId})));
   json_rpc_service_->GetHiddenNetworks(mojom::CoinType::ETH, callback.Get());
   testing::Mock::VerifyAndClearExpectations(&callback);
 
+  // Remove network hidden by default.
+  RemoveHiddenNetwork(prefs(), mojom::CoinType::ETH, mojom::kGoerliChainId);
+  EXPECT_CALL(callback,
+              Run(ElementsAreArray({mojom::kSepoliaChainId,
+                                    mojom::kFilecoinEthereumTestnetChainId})));
+  json_rpc_service_->GetHiddenNetworks(mojom::CoinType::ETH, callback.Get());
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  // Making custom network hidden.
   AddHiddenNetwork(prefs(), mojom::CoinType::ETH, "0x123");
-  EXPECT_CALL(callback, Run(ElementsAreArray({"0x123"})));
+  EXPECT_CALL(
+      callback,
+      Run(ElementsAreArray({mojom::kSepoliaChainId,
+                            mojom::kFilecoinEthereumTestnetChainId, "0x123"})));
   json_rpc_service_->GetHiddenNetworks(mojom::CoinType::ETH, callback.Get());
   testing::Mock::VerifyAndClearExpectations(&callback);
 
+  // Making custom network visible.
   RemoveHiddenNetwork(prefs(), mojom::CoinType::ETH, "0x123");
+  EXPECT_CALL(callback,
+              Run(ElementsAreArray({mojom::kSepoliaChainId,
+                                    mojom::kFilecoinEthereumTestnetChainId})));
+  json_rpc_service_->GetHiddenNetworks(mojom::CoinType::ETH, callback.Get());
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  // Change active network so kLocalhostChainId becomes hidden.
+  SetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH);
+  EXPECT_CALL(
+      callback,
+      Run(ElementsAreArray({mojom::kSepoliaChainId, mojom::kLocalhostChainId,
+                            mojom::kFilecoinEthereumTestnetChainId})));
+  json_rpc_service_->GetHiddenNetworks(mojom::CoinType::ETH, callback.Get());
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  // Remove all hidden networks.
+  RemoveHiddenNetwork(prefs(), mojom::CoinType::ETH, mojom::kSepoliaChainId);
+  RemoveHiddenNetwork(prefs(), mojom::CoinType::ETH, mojom::kLocalhostChainId);
+  RemoveHiddenNetwork(prefs(), mojom::CoinType::ETH,
+                      mojom::kFilecoinEthereumTestnetChainId);
   EXPECT_CALL(callback, Run(ElementsAreArray<std::string>({})));
   json_rpc_service_->GetHiddenNetworks(mojom::CoinType::ETH, callback.Get());
   testing::Mock::VerifyAndClearExpectations(&callback);
 }
 
 TEST_F(JsonRpcServiceUnitTest, EnsGetContentHash) {
-#if !BUILDFLAG(IS_ANDROID)
   base::test::ScopedFeatureList feature_list;
   feature_list.InitAndDisableFeature(features::kBraveWalletENSL2Feature);
-#endif
 
   {
     base::MockCallback<JsonRpcService::EnsGetContentHashCallback> callback;
@@ -1649,10 +1860,8 @@ TEST_F(JsonRpcServiceUnitTest, EnsGetContentHash) {
 }
 
 TEST_F(JsonRpcServiceUnitTest, EnsGetEthAddr) {
-#if !BUILDFLAG(IS_ANDROID)
   base::test::ScopedFeatureList feature_list;
   feature_list.InitAndDisableFeature(features::kBraveWalletENSL2Feature);
-#endif
 
   SetUDENSInterceptor(mojom::kMainnetChainId);
   EXPECT_TRUE(SetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH));
@@ -1660,15 +1869,13 @@ TEST_F(JsonRpcServiceUnitTest, EnsGetEthAddr) {
   base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
   EXPECT_CALL(callback, Run("0x983110309620D911731Ac0932219af06091b6744", false,
                             mojom::ProviderError::kSuccess, ""));
-  json_rpc_service_->EnsGetEthAddr("brantly-test.eth", nullptr, callback.Get());
+  json_rpc_service_->EnsGetEthAddr("brantly-test.eth", callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
 TEST_F(JsonRpcServiceUnitTest, EnsGetEthAddr_ZeroAddress) {
-#if !BUILDFLAG(IS_ANDROID)
   base::test::ScopedFeatureList feature_list;
   feature_list.InitAndDisableFeature(features::kBraveWalletENSL2Feature);
-#endif
 
   SetENSZeroAddressInterceptor(mojom::kMainnetChainId);
   EXPECT_TRUE(SetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH));
@@ -1677,7 +1884,7 @@ TEST_F(JsonRpcServiceUnitTest, EnsGetEthAddr_ZeroAddress) {
   EXPECT_CALL(callback,
               Run("", false, mojom::ProviderError::kInvalidParams,
                   l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS)));
-  json_rpc_service_->EnsGetEthAddr("brantly-test.eth", nullptr, callback.Get());
+  json_rpc_service_->EnsGetEthAddr("brantly-test.eth", callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
@@ -2188,6 +2395,45 @@ TEST_F(JsonRpcServiceUnitTest, Request_BadHeaderValues) {
   EXPECT_TRUE(callback_called);
 }
 
+TEST_F(JsonRpcServiceUnitTest, GetCode) {
+  // Contract code response
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_getCode", "",
+                 // Result has code that was intentionally truncated
+                 "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0x6060604\"}");
+  TestGetCode("0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+              mojom::CoinType::ETH, mojom::kMainnetChainId, "0x6060604",
+              mojom::ProviderError::kSuccess, "");
+
+  // EOA response
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_getCode", "",
+                 "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0x\"}");
+  TestGetCode("0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+              mojom::CoinType::ETH, mojom::kMainnetChainId, "0x",
+              mojom::ProviderError::kSuccess, "");
+
+  // Processes error results OK
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_getCode", "",
+                 MakeJsonRpcErrorResponse(
+                     static_cast<int>(mojom::ProviderError::kInternalError),
+                     l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
+  TestGetCode("0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+              mojom::CoinType::ETH, mojom::kMainnetChainId, "",
+              mojom::ProviderError::kInternalError,
+              l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Processes invalid chain IDs OK
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::SOL),
+                 "eth_getCode", "",
+                 "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0x\"}");
+  TestGetCode("0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+              mojom::CoinType::SOL, mojom::kLocalhostChainId, "",
+              mojom::ProviderError::kInvalidParams,
+              l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+}
+
 TEST_F(JsonRpcServiceUnitTest, GetBalance) {
   bool callback_called = false;
   SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
@@ -2497,6 +2743,92 @@ TEST_F(JsonRpcServiceUnitTest, GetERC20TokenAllowance) {
   EXPECT_TRUE(callback_called);
 }
 
+TEST_F(JsonRpcServiceUnitTest, GetERC20TokenBalances) {
+  // Invalid token contract addresses yields invalid params
+  TestGetERC20TokenBalances(
+      std::vector<std::string>(), "0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961",
+      mojom::kMainnetChainId, {}, mojom::ProviderError::kInvalidParams,
+      l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Unsupported chain ID yields invalid params
+  TestGetERC20TokenBalances(
+      std::vector<std::string>({"0x0d8775f648430679a709e98d2b0cb6250d2887ef"}),
+      "0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961", mojom::kGoerliChainId, {},
+      mojom::ProviderError::kInvalidParams,
+      l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Invalid user address yields invalid calldata, which yields invalid params
+  TestGetERC20TokenBalances(
+      std::vector<std::string>({"0x0d8775f648430679a709e98d2b0cb6250d2887ef"}),
+      "", mojom::kMainnetChainId, {}, mojom::ProviderError::kInvalidParams,
+      l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Valid input should succeed.
+  // 1. Test with 1 token contract address that successfully fetches a balance
+  // (0x0d8775f648430679a709e98d2b0cb6250d2887ef BAT)
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_call", "", R"({
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":"0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000006e83695ab1f893c00"
+  })");
+  std::vector<mojom::ERC20BalanceResultPtr> expected_results;
+  mojom::ERC20BalanceResultPtr result = mojom::ERC20BalanceResult::New();
+  result->contract_address = "0x0d8775f648430679a709e98d2b0cb6250d2887ef";
+  result->balance =
+      "0x000000000000000000000000000000000000000000000006e83695ab1f893c00";
+  expected_results.push_back(std::move(result));
+  TestGetERC20TokenBalances(
+      std::vector<std::string>({"0x0d8775f648430679a709e98d2b0cb6250d2887ef"}),
+      "0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961", mojom::kMainnetChainId,
+      std::move(expected_results), mojom::ProviderError::kSuccess, "");
+
+  // Valid request leading to timeout yields internal error
+  SetHTTPRequestTimeoutInterceptor();
+  TestGetERC20TokenBalances(
+      std::vector<std::string>({"0x0d8775f648430679a709e98d2b0cb6250d2887ef"}),
+      "0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961", mojom::kMainnetChainId, {},
+      mojom::ProviderError::kInternalError,
+      l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Valid request yields invalid json response yields parsing error
+  SetInvalidJsonInterceptor();
+  TestGetERC20TokenBalances(
+      std::vector<std::string>({"0x0d8775f648430679a709e98d2b0cb6250d2887ef"}),
+      "0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961", mojom::kMainnetChainId, {},
+      mojom::ProviderError::kParsingError,
+      l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // Valid request, valid json response, but invalid RLP encoded data yields
+  // parsing error
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_call", "", R"({
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":"0xinvalid"
+  })");
+  TestGetERC20TokenBalances(
+      std::vector<std::string>({"0x0d8775f648430679a709e98d2b0cb6250d2887ef"}),
+      "0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961", mojom::kMainnetChainId, {},
+      mojom::ProviderError::kParsingError,
+      l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // Valid request, valid json response, but unexpected RLP encoded data
+  // (mismatch between provided contract addresses supplied (1) in params vs.
+  // returned balances (3)) yields internal error
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_call", "", R"({
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":"0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000140000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000006e83695ab1f893c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000"
+  })");
+  TestGetERC20TokenBalances(
+      std::vector<std::string>({"0x0d8775f648430679a709e98d2b0cb6250d2887ef"}),
+      "0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961", mojom::kMainnetChainId, {},
+      mojom::ProviderError::kInternalError,
+      l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+}
+
 class UDGetManyCallHandler : public EthCallHandler {
  public:
   explicit UDGetManyCallHandler(const EthAddress& contract_address)
@@ -2513,8 +2845,9 @@ class UDGetManyCallHandler : public EthCallHandler {
 
     calls_number_++;
 
-    if (!raw_response_.empty())
+    if (!raw_response_.empty()) {
       return raw_response_;
+    }
 
     std::vector<std::string> result_strings;
     for (auto& key : *keys_array) {
@@ -2870,7 +3203,7 @@ TEST_F(UnstoppableDomainsUnitTest, GetWalletAddr_MultipleKeys) {
 TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonNetworkError) {
   base::MockCallback<ResolveDnsCallback> callback;
   EXPECT_CALL(callback,
-              Run(GURL(), mojom::ProviderError::kInternalError,
+              Run(absl::optional<GURL>(), mojom::ProviderError::kInternalError,
                   l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
   SetEthTimeoutResponse();
   SetPolygonTimeoutResponse();
@@ -2880,7 +3213,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonNetworkError) {
   testing::Mock::VerifyAndClearExpectations(&callback);
 
   EXPECT_CALL(callback,
-              Run(GURL(), mojom::ProviderError::kInternalError,
+              Run(absl::optional<GURL>(), mojom::ProviderError::kInternalError,
                   l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
   SetEthRawResponse(DnsBraveResponse());
   SetPolygonTimeoutResponse();
@@ -2890,7 +3223,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonNetworkError) {
   testing::Mock::VerifyAndClearExpectations(&callback);
 
   EXPECT_CALL(callback,
-              Run(GURL(), mojom::ProviderError::kParsingError,
+              Run(absl::optional<GURL>(), mojom::ProviderError::kParsingError,
                   l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR)));
   SetEthRawResponse(DnsBraveResponse());
   SetPolygonRawResponse("Not a json");
@@ -2899,8 +3232,8 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonNetworkError) {
   base::RunLoop().RunUntilIdle();
   testing::Mock::VerifyAndClearExpectations(&callback);
 
-  EXPECT_CALL(callback,
-              Run(GURL(), mojom::ProviderError::kLimitExceeded, "Error!"));
+  EXPECT_CALL(callback, Run(absl::optional<GURL>(),
+                            mojom::ProviderError::kLimitExceeded, "Error!"));
   SetEthRawResponse(DnsBraveResponse());
   SetPolygonRawResponse(MakeJsonRpcErrorResponse(-32005, "Error!"));
   json_rpc_service_->UnstoppableDomainsResolveDns("brave.crypto",
@@ -2911,7 +3244,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonNetworkError) {
 
 TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonResult) {
   base::MockCallback<ResolveDnsCallback> callback;
-  EXPECT_CALL(callback, Run(GURL("https://brave.com"),
+  EXPECT_CALL(callback, Run(absl::optional<GURL>("https://brave.com"),
                             mojom::ProviderError::kSuccess, ""));
   SetEthTimeoutResponse();
   SetPolygonRawResponse(DnsBraveResponse());
@@ -2920,7 +3253,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonResult) {
   base::RunLoop().RunUntilIdle();
   testing::Mock::VerifyAndClearExpectations(&callback);
 
-  EXPECT_CALL(callback, Run(GURL("https://brave.com"),
+  EXPECT_CALL(callback, Run(absl::optional<GURL>("https://brave.com"),
                             mojom::ProviderError::kSuccess, ""));
   SetEthRawResponse(DnsIpfsResponse());
   SetPolygonRawResponse(DnsBraveResponse());
@@ -2929,7 +3262,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonResult) {
   base::RunLoop().RunUntilIdle();
   testing::Mock::VerifyAndClearExpectations(&callback);
 
-  EXPECT_CALL(callback, Run(GURL("https://brave.com"),
+  EXPECT_CALL(callback, Run(absl::optional<GURL>("https://brave.com"),
                             mojom::ProviderError::kSuccess, ""));
   SetEthRawResponse(DnsEmptyResponse());
   SetPolygonRawResponse(DnsBraveResponse());
@@ -2940,7 +3273,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_PolygonResult) {
 
 TEST_F(UnstoppableDomainsUnitTest, ResolveDns_FallbackToEthMainnet) {
   base::MockCallback<ResolveDnsCallback> callback;
-  EXPECT_CALL(callback, Run(GURL("ipfs://ipfs_hash"),
+  EXPECT_CALL(callback, Run(absl::optional<GURL>("ipfs://ipfs_hash"),
                             mojom::ProviderError::kSuccess, ""));
   SetEthRawResponse(DnsIpfsResponse());
   SetPolygonRawResponse(DnsEmptyResponse());
@@ -2949,7 +3282,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_FallbackToEthMainnet) {
   base::RunLoop().RunUntilIdle();
   testing::Mock::VerifyAndClearExpectations(&callback);
 
-  EXPECT_CALL(callback, Run(GURL("https://brave.com"),
+  EXPECT_CALL(callback, Run(absl::optional<GURL>("https://brave.com"),
                             mojom::ProviderError::kSuccess, ""));
   SetEthRawResponse(DnsBraveResponse());
   SetPolygonRawResponse(
@@ -2963,7 +3296,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_FallbackToEthMainnet) {
 TEST_F(UnstoppableDomainsUnitTest, ResolveDns_FallbackToEthMainnetError) {
   base::MockCallback<ResolveDnsCallback> callback;
   EXPECT_CALL(callback,
-              Run(GURL(), mojom::ProviderError::kInternalError,
+              Run(absl::optional<GURL>(), mojom::ProviderError::kInternalError,
                   l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
   SetEthTimeoutResponse();
   SetPolygonRawResponse(DnsEmptyResponse());
@@ -2972,7 +3305,8 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_FallbackToEthMainnetError) {
   base::RunLoop().RunUntilIdle();
   testing::Mock::VerifyAndClearExpectations(&callback);
 
-  EXPECT_CALL(callback, Run(GURL(), mojom::ProviderError::kSuccess, ""));
+  EXPECT_CALL(callback,
+              Run(absl::optional<GURL>(), mojom::ProviderError::kSuccess, ""));
   SetEthRawResponse(
       MakeJsonRpcStringArrayResponse({"", "", "", "", "", "invalid url"}));
   SetPolygonRawResponse(DnsEmptyResponse());
@@ -2985,7 +3319,7 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_FallbackToEthMainnetError) {
 TEST_F(UnstoppableDomainsUnitTest, ResolveDns_InvalidDomain) {
   base::MockCallback<ResolveDnsCallback> callback;
   EXPECT_CALL(callback,
-              Run(GURL(), mojom::ProviderError::kInvalidParams,
+              Run(absl::optional<GURL>(), mojom::ProviderError::kInvalidParams,
                   l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS)));
   json_rpc_service_->UnstoppableDomainsResolveDns("brave.test", callback.Get());
   EXPECT_EQ(0, url_loader_factory_.NumPending());
@@ -2994,13 +3328,13 @@ TEST_F(UnstoppableDomainsUnitTest, ResolveDns_InvalidDomain) {
 
 TEST_F(UnstoppableDomainsUnitTest, ResolveDns_ManyCalls) {
   base::MockCallback<ResolveDnsCallback> callback1;
-  EXPECT_CALL(callback1, Run(GURL("https://brave.com"),
+  EXPECT_CALL(callback1, Run(absl::optional<GURL>("https://brave.com"),
                              mojom::ProviderError::kSuccess, ""));
   base::MockCallback<ResolveDnsCallback> callback2;
-  EXPECT_CALL(callback2, Run(GURL("https://brave.com"),
+  EXPECT_CALL(callback2, Run(absl::optional<GURL>("https://brave.com"),
                              mojom::ProviderError::kSuccess, ""));
   base::MockCallback<ResolveDnsCallback> callback3;
-  EXPECT_CALL(callback3, Run(GURL("ipfs://ipfs_hash"),
+  EXPECT_CALL(callback3, Run(absl::optional<GURL>("ipfs://ipfs_hash"),
                              mojom::ProviderError::kSuccess, ""));
 
   auto& keys = unstoppable_domains::GetRecordKeys();
@@ -3199,7 +3533,7 @@ TEST_F(JsonRpcServiceUnitTest, GetWalletAddrInvalidDomain) {
                   Run("", false, mojom::ProviderError::kInvalidParams,
                       l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS)));
 
-      json_rpc_service_->EnsGetEthAddr(domain, nullptr, callback.Get());
+      json_rpc_service_->EnsGetEthAddr(domain, callback.Get());
       base::RunLoop().RunUntilIdle();
     }
 
@@ -3221,16 +3555,18 @@ TEST_F(JsonRpcServiceUnitTest, GetWalletAddrInvalidDomain) {
 TEST_F(JsonRpcServiceUnitTest, IsValidDomain) {
   std::vector<std::string> valid_domains = {"brave.eth", "test.brave.eth",
                                             "brave-test.test-dev.eth"};
-  for (const auto& domain : valid_domains)
+  for (const auto& domain : valid_domains) {
     EXPECT_TRUE(JsonRpcService::IsValidDomain(domain))
         << domain << " should be valid";
+  }
 
   std::vector<std::string> invalid_domains = {
       "",      ".eth",    "-brave.eth",      "brave-.eth",     "brave.e-th",
       "b.eth", "brave.e", "-brave.test.eth", "brave-.test.eth"};
-  for (const auto& domain : invalid_domains)
+  for (const auto& domain : invalid_domains) {
     EXPECT_FALSE(JsonRpcService::IsValidDomain(domain))
         << domain << " should be invalid";
+  }
 }
 
 TEST_F(JsonRpcServiceUnitTest, IsValidUnstoppableDomain) {
@@ -3238,7 +3574,6 @@ TEST_F(JsonRpcServiceUnitTest, IsValidUnstoppableDomain) {
   std::vector<std::string> valid_domains = {
       "test.crypto",
       "test.x",
-      "test.coin",
       "test.nft",
       "test.dao",
       "test.wallet",
@@ -3258,16 +3593,19 @@ TEST_F(JsonRpcServiceUnitTest, IsValidUnstoppableDomain) {
       "crypto.brave",
       "brave.crypto-",
       "brave.test.crypto",
+      "test.coin",
       "test.888",
   };
   // clang-format on
-  for (const auto& domain : valid_domains)
+  for (const auto& domain : valid_domains) {
     EXPECT_TRUE(JsonRpcService::IsValidUnstoppableDomain(domain))
         << domain << " should be valid";
+  }
 
-  for (const auto& domain : invalid_domains)
+  for (const auto& domain : invalid_domains) {
     EXPECT_FALSE(JsonRpcService::IsValidUnstoppableDomain(domain))
         << domain << " should be invalid";
+  }
 }
 
 TEST_F(JsonRpcServiceUnitTest, GetERC721OwnerOf) {
@@ -3350,246 +3688,9 @@ TEST_F(JsonRpcServiceUnitTest, GetERC721OwnerOf) {
   EXPECT_TRUE(callback_called);
 }
 
-TEST_F(JsonRpcServiceUnitTest, GetTokenMetadata) {
-  const std::string https_token_uri_response = R"({
-      "jsonrpc":"2.0",
-      "id":1,
-      "result":"0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002468747470733a2f2f696e76697369626c65667269656e64732e696f2f6170692f3138313700000000000000000000000000000000000000000000000000000000"
-  })";
-  const std::string http_token_uri_response = R"({
-      "jsonrpc":"2.0",
-      "id":1,
-      "result":"0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000020687474703a2f2f696e76697369626c65667269656e64732e696f2f6170692f31"
-  })";
-  const std::string data_token_uri_response = R"({
-      "jsonrpc":"2.0",
-      "id":1,
-      "result": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000135646174613a6170706c69636174696f6e2f6a736f6e3b6261736536342c65794a686448527961574a316447567a496a6f69496977695a47567a59334a7063485270623234694f694a4f623234675a6e56755a326c696247556762476c7662694973496d6c745957646c496a6f695a474630595470706257466e5a53397a646d6372654731734f324a68633255324e43785153453479576e6c434e474a586548566a656a4270595568534d474e4562335a4d4d32517a5a486b314d3031354e585a6a62574e3254577042643031444f58706b62574e7053556861634670595a454e694d326335535770425a3031445154464e5245466e546c524264306c714e44686a5230597759554e436131425453576c4d656a513454444e4f4d6c70364e4430694c434a755957316c496a6f69546b5a4d496e303d0000000000000000000000"
-  })";
-  const std::string data_token_uri_response_invalid_json = R"({
-    "jsonrpc":"2.0",
-    "id":1,
-    "result":"0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000085646174613a6170706c69636174696f6e2f6a736f6e3b6261736536342c65794a755957316c496a6f69546b5a4d49697767496d526c63324e796158423061573975496a6f69546d397549475a31626d6470596d786c49477870623234694c43416959585230636d6c696458526c637949364969497349434a706257466e5a5349364969493d000000000000000000000000000000000000000000000000000000"
-  })";
-  const std::string data_token_uri_response_empty_string = R"({
-    "jsonrpc":"2.0",
-    "id":1,
-    "result":"0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001d646174613a6170706c69636174696f6e2f6a736f6e3b6261736536342c000000"
-  })";
-  const std::string interface_supported_response = R"({
-      "jsonrpc":"2.0",
-      "id":1,
-      "result": "0x0000000000000000000000000000000000000000000000000000000000000001"
-  })";
-  const std::string exceeds_limit_json = R"({
-    "jsonrpc":"2.0",
-    "id":1,
-    "error": {
-      "code":-32005,
-      "message": "Request exceeds defined limit"
-    }
-  })";
-  const std::string interface_not_supported_response = R"({
-      "jsonrpc":"2.0",
-      "id":1,
-      "result":"0x0000000000000000000000000000000000000000000000000000000000000000"
-  })";
-  const std::string invalid_json =
-      "It might make sense just to get some in case it catches on";
-  const std::string ipfs_token_uri_response = R"({
-      "jsonrpc":"2.0",
-      "id":1,
-      "result":"0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000003a697066733a2f2f516d65536a53696e4870506e6d586d73704d6a776958794e367a533445397a63636172694752336a7863615774712f31383137000000000000"
-  })";
-  const std::string ipfs_metadata_response =
-      R"({"attributes":[{"trait_type":"Mouth","value":"Bored Cigarette"},{"trait_type":"Fur","value":"Gray"},{"trait_type":"Background","value":"Aquamarine"},{"trait_type":"Clothes","value":"Tuxedo Tee"},{"trait_type":"Hat","value":"Bayc Hat Black"},{"trait_type":"Eyes","value":"Coins"}],"image":"ipfs://QmQ82uDT3JyUMsoZuaFBYuEucF654CYE5ktPUrnA5d4VDH"})";
-
-  // Invalid inputs
-  // (1/3) Invalid contract address
-  TestGetTokenMetadata("", "0x1", mojom::kMainnetChainId,
-                       kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kInvalidParams,
-                       l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
-
-  // (2/3) Invalid token ID
-  TestGetTokenMetadata("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", "",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kInvalidParams,
-                       l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
-
-  // (3/3) Invalid chain ID
-  TestGetTokenMetadata("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", "0x1", "",
-                       kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kInvalidParams,
-                       l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
-
-  // Mismatched
-  // (4/4) Unknown interfaceID
-  TestGetTokenMetadata("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", "0x1", "",
-                       kERC721InterfaceId, "",
-                       mojom::ProviderError::kInvalidParams,
-                       l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
-
-  // Valid inputs
-  // (1/3) HTTP URI
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, https_token_uri_response,
-      https_metadata_response);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId,
-                       https_metadata_response, mojom::ProviderError::kSuccess,
-                       "");
-
-  // (2/3) IPFS URI
-  SetTokenMetadataInterceptor(kERC721MetadataInterfaceId,
-                              mojom::kLocalhostChainId,
-                              interface_supported_response,
-                              ipfs_token_uri_response, ipfs_metadata_response);
-  TestGetTokenMetadata("0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d", "0x719",
-                       mojom::kLocalhostChainId, kERC721MetadataInterfaceId,
-                       ipfs_metadata_response, mojom::ProviderError::kSuccess,
-                       "");
-
-  // (3/3) Data URI
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, data_token_uri_response);
-  TestGetTokenMetadata(
-      "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d", "0x719",
-      mojom::kMainnetChainId, kERC721MetadataInterfaceId,
-      R"({"attributes":"","description":"Non fungible lion","image":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgNTAwIj48cGF0aCBkPSIiLz48L3N2Zz4=","name":"NFL"})",
-      mojom::ProviderError::kSuccess, "");
-
-  // Invalid supportsInterface response
-  // (1/4) Timeout
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, https_token_uri_response, "",
-      net::HTTP_REQUEST_TIMEOUT);
-  TestGetTokenMetadata("0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kInternalError,
-                       l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
-
-  // (2/4) Invalid JSON
-  SetTokenMetadataInterceptor(kERC721MetadataInterfaceId,
-                              mojom::kMainnetChainId, invalid_json);
-  TestGetTokenMetadata("0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kParsingError,
-                       l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
-
-  // (3/4) Request exceeds provider limit
-  SetTokenMetadataInterceptor(kERC721MetadataInterfaceId,
-                              mojom::kMainnetChainId, exceeds_limit_json);
-  TestGetTokenMetadata("0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kLimitExceeded,
-                       "Request exceeds defined limit");
-
-  // (4/4) Interface not supported
-  SetTokenMetadataInterceptor(kERC721MetadataInterfaceId,
-                              mojom::kMainnetChainId,
-                              interface_not_supported_response);
-  TestGetTokenMetadata(
-      "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d", "0x719",
-      mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-      mojom::ProviderError::kMethodNotSupported,
-      l10n_util::GetStringUTF8(IDS_WALLET_METHOD_NOT_SUPPORTED_ERROR));
-
-  // Invalid tokenURI response (6 total)
-  // (1/6) Timeout
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, https_token_uri_response, "", net::HTTP_OK,
-      net::HTTP_REQUEST_TIMEOUT);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kInternalError,
-                       l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
-
-  // (2/6) Invalid Provider JSON
-  SetTokenMetadataInterceptor(kERC721MetadataInterfaceId,
-                              mojom::kMainnetChainId,
-                              interface_supported_response, invalid_json);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kParsingError,
-                       l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
-
-  // (3/6) Invalid JSON in data URI
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, data_token_uri_response_invalid_json);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kParsingError,
-                       l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
-
-  // (4/6) Empty string as JSON in data URI
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, data_token_uri_response_empty_string);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kParsingError,
-                       l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
-
-  // (5/6) Request exceeds limit
-  SetTokenMetadataInterceptor(kERC721MetadataInterfaceId,
-                              mojom::kMainnetChainId,
-                              interface_supported_response, exceeds_limit_json);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kLimitExceeded,
-                       "Request exceeds defined limit");
-
-  // (6/6) URI scheme is not suported (HTTP)
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, http_token_uri_response);
-  TestGetTokenMetadata(
-      "0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-      mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-      mojom::ProviderError::kMethodNotSupported,
-      l10n_util::GetStringUTF8(IDS_WALLET_METHOD_NOT_SUPPORTED_ERROR));
-
-  // Invalid metadata response (2 total)
-  // (1/2) Timeout
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, https_token_uri_response,
-      https_metadata_response, net::HTTP_OK, net::HTTP_OK,
-      net::HTTP_REQUEST_TIMEOUT);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kInternalError,
-                       l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
-
-  // (2/2) Invalid JSON
-  SetTokenMetadataInterceptor(
-      kERC721MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, ipfs_token_uri_response, invalid_json);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC721MetadataInterfaceId, "",
-                       mojom::ProviderError::kParsingError,
-                       l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
-
-  // ERC1155
-  SetTokenMetadataInterceptor(
-      kERC1155MetadataInterfaceId, mojom::kMainnetChainId,
-      interface_supported_response, https_token_uri_response,
-      https_metadata_response);
-  TestGetTokenMetadata("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
-                       mojom::kMainnetChainId, kERC1155MetadataInterfaceId,
-                       https_metadata_response, mojom::ProviderError::kSuccess,
-                       "");
-}
-
 TEST_F(JsonRpcServiceUnitTest, GetERC721Metadata) {
   // Ensure GetERC721Metadata passes the correct interface ID to
-  // GetTokenMetadata
+  // GetEthTokenMetadata
   SetTokenMetadataInterceptor(kERC721MetadataInterfaceId,
                               mojom::kMainnetChainId,
                               R"({
@@ -3610,7 +3711,7 @@ TEST_F(JsonRpcServiceUnitTest, GetERC721Metadata) {
 
 TEST_F(JsonRpcServiceUnitTest, GetERC1155Metadata) {
   // Ensure GetERC1155Metadata passes the correct interface ID to
-  // GetTokenMetadata
+  // GetEthTokenMetadata
   SetTokenMetadataInterceptor(kERC1155MetadataInterfaceId,
                               mojom::kMainnetChainId,
                               R"({
@@ -3878,204 +3979,6 @@ TEST_F(JsonRpcServiceUnitTest, GetSupportsInterface) {
   EXPECT_TRUE(callback_called);
 }
 
-TEST_F(JsonRpcServiceUnitTest, DiscoverAssets) {
-  auto* blockchain_registry = BlockchainRegistry::GetInstance();
-  TokenListMap token_list_map;
-
-  std::string response;
-
-  // Unsupported chainId is not supported
-  TestDiscoverAssetsInternal(
-      mojom::kPolygonMainnetChainId, mojom::CoinType::ETH,
-      {"0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961"}, {},
-      mojom::ProviderError::kMethodNotSupported,
-      l10n_util::GetStringUTF8(IDS_WALLET_METHOD_NOT_SUPPORTED_ERROR));
-
-  // Empty address is invalid
-  TestDiscoverAssetsInternal(
-      mojom::kMainnetChainId, mojom::CoinType::ETH, {}, {},
-      mojom::ProviderError::kInvalidParams,
-      l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
-
-  // Invalid address is invalid
-  TestDiscoverAssetsInternal(
-      mojom::kMainnetChainId, mojom::CoinType::ETH, {"0xinvalid"}, {},
-      mojom::ProviderError::kInvalidParams,
-      l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
-
-  // Invalid RPC response json response triggers parsing error
-  auto expected_network =
-      GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH);
-  std::string token_list_json = R"({
-     "0x0d8775f648430679a709e98d2b0cb6250d2887ef": {
-       "name": "Basic Attention Token",
-       "logo": "bat.svg",
-       "erc20": true,
-       "symbol": "BAT",
-       "decimals": 18
-     }
-    })";
-  ASSERT_TRUE(
-      ParseTokenList(token_list_json, &token_list_map, mojom::CoinType::ETH));
-  blockchain_registry->UpdateTokenList(std::move(token_list_map));
-  SetInterceptor(expected_network, "eth_getLogs", "",
-                 "invalid eth_getLogs response");
-  TestDiscoverAssetsInternal(
-      mojom::kMainnetChainId, mojom::CoinType::ETH,
-      {"0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961"}, {},
-      mojom::ProviderError::kParsingError,
-      l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
-
-  // Invalid limit exceeded response triggers parsing error
-  SetLimitExceededJsonErrorResponse();
-  TestDiscoverAssetsInternal(
-      mojom::kMainnetChainId, mojom::CoinType::ETH,
-      {"0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961"}, {},
-      mojom::ProviderError::kParsingError,
-      l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
-
-  // Invalid logs (missing addresses) triggers parsing error
-  response = R"({
-    "jsonrpc": "2.0",
-    "id": 1,
-    "result": [
-      {
-        "blockHash": "0xaefb023131aa58e533c09c0eae29c280460d3976f5235a1ff53159ef37f73073",
-        "blockNumber": "0xa72603",
-        "data": "0x000000000000000000000000000000000000000000000006e83695ab1f893c00",
-        "logIndex": "0x14",
-        "removed": false,
-        "topics": [
-          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-          "0x000000000000000000000000897bb1e945f5aa7ed7f81646e7991eaba63aa4b0",
-          "0x000000000000000000000000b4b2802129071b2b9ebb8cbb01ea1e4d14b34961"
-        ],
-        "transactionHash": "0x5c655301d386f45af116a4aef418491ee27b71ac30be70a593ccffa3754797d4",
-        "transactionIndex": "0xa"
-      },
-    ]
-  })";
-  SetInterceptor(expected_network, "eth_getLogs", "", response);
-  TestDiscoverAssetsInternal(
-      mojom::kMainnetChainId, mojom::CoinType::ETH,
-      {"0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961"}, {},
-      mojom::ProviderError::kParsingError,
-      l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
-
-  // Valid registry token DAI is discovered and added.
-  // Valid registry token WETH is discovered and added (tests insensitivity to
-  // lower case addresses in provider logs response).
-  // Valid BAT is not added because it is already a user asset.
-  // Invalid LilNoun is not added because it is an ERC721.
-  token_list_json = R"(
-     {
-      "0x0d8775f648430679a709e98d2b0cb6250d2887ef": {
-        "name": "Basic Attention Token",
-        "logo": "bat.svg",
-        "erc20": true,
-        "symbol": "BAT",
-        "decimals": 18
-      },
-      "0x6B175474E89094C44Da98b954EedeAC495271d0F": {
-        "name": "Dai Stablecoin",
-        "logo": "dai.svg",
-        "erc20": true,
-        "symbol": "DAI",
-        "decimals": 18
-      },
-      "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2": {
-        "name": "Wrapped Eth",
-        "logo": "weth.svg",
-        "erc20": true,
-        "symbol": "WETH",
-        "decimals": 18,
-        "chainId": "0x1"
-      },
-      "0x4b10701Bfd7BFEdc47d50562b76b436fbB5BdB3B": {
-        "name": "Lil Nouns",
-        "logo": "lilnouns.svg",
-        "erc20": false,
-        "erc721": true,
-        "symbol": "LilNouns",
-        "chainId": "0x1"
-      }
-     })";
-  ASSERT_TRUE(
-      ParseTokenList(token_list_json, &token_list_map, mojom::CoinType::ETH));
-  blockchain_registry->UpdateTokenList(std::move(token_list_map));
-
-  // Note: the matching transfer log for WETH uses an all lowercase address
-  // while the token registry uses checksum address (contains uppercase)
-  response = R"({
-    "jsonrpc":"2.0",
-    "id":1,
-    "result":[
-      {
-        "address":"0x6B175474E89094C44Da98b954EedeAC495271d0F",
-        "blockHash":"0x2961ceb6c16bab72a55f79e394a35f2bf1c62b30446e3537280f7c22c3115e6e",
-        "blockNumber":"0xd6464c",
-        "data":"0x00000000000000000000000000000000000000000000000555aff1f0fae8c000",
-        "logIndex":"0x159",
-        "removed":false,
-        "topics":[
-          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-          "0x000000000000000000000000503828976d22510aad0201ac7ec88293211d23da",
-          "0x000000000000000000000000b4b2802129071b2b9ebb8cbb01ea1e4d14b34961"
-        ],
-        "transactionHash":"0x2e652b70966c6a05f4b3e68f20d6540b7a5ab712385464a7ccf62774d39b7066",
-        "transactionIndex":"0x9f"
-      },
-      {
-        "address":"0x4b10701Bfd7BFEdc47d50562b76b436fbB5BdB3B",
-        "blockHash":"0x2961ceb6c16bab72a55f79e394a35f2bf1c62b30446e3537280f7c22c3115e6e",
-        "blockNumber":"0xd6464c",
-        "data":"0x00000000000000000000000000000000000000000000000555aff1f0fae8c000",
-        "logIndex":"0x159",
-        "removed":false,
-        "topics":[
-          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-          "0x000000000000000000000000503828976d22510aad0201ac7ec88293211d23da",
-          "0x000000000000000000000000b4b2802129071b2b9ebb8cbb01ea1e4d14b34961"
-        ],
-        "transactionHash":"0x2e652b70966c6a05f4b3e68f20d6540b7a5ab712385464a7ccf62774d39b7066",
-        "transactionIndex":"0x9f"
-      },
-      {
-        "address":"0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-        "blockHash":"0x2961ceb6c16bab72a55f79e394a35f2bf1c62b30446e3537280f7c22c3115e6e",
-        "blockNumber":"0xd6464c",
-        "data":"0x00000000000000000000000000000000000000000000000555aff1f0fae8c000",
-        "logIndex":"0x159",
-        "removed":false,
-        "topics":[
-          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-          "0x000000000000000000000000503828976d22510aad0201ac7ec88293211d23da",
-          "0x000000000000000000000000b4b2802129071b2b9ebb8cbb01ea1e4d14b34961"
-        ],
-        "transactionHash":"0x2e652b70966c6a05f4b3e68f20d6540b7a5ab712385464a7ccf62774d39b7066",
-        "transactionIndex":"0x9f"
-      }
-    ]
-  })";
-  SetInterceptor(expected_network, "eth_getLogs", "", response);
-  TestDiscoverAssetsInternal(mojom::kMainnetChainId, mojom::CoinType::ETH,
-                             {"0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961"},
-                             {"0x6B175474E89094C44Da98b954EedeAC495271d0F",
-                              "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"},
-                             mojom::ProviderError::kSuccess, "");
-
-  // Discover assets should not run unless using Infura proxy
-  std::vector<base::Value::Dict> values;
-  mojom::NetworkInfo chain = GetTestNetworkInfo1("0x1");
-  values.push_back(brave_wallet::NetworkInfoToValue(chain));
-  UpdateCustomNetworks(prefs(), &values);
-  TestDiscoverAssetsInternal(
-      mojom::kMainnetChainId, mojom::CoinType::ETH,
-      {"0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961"}, {},
-      mojom::ProviderError::kMethodNotSupported,
-      l10n_util::GetStringUTF8(IDS_WALLET_METHOD_NOT_SUPPORTED_ERROR));
-}
-
 TEST_F(JsonRpcServiceUnitTest, Reset) {
   std::vector<base::Value::Dict> values;
   mojom::NetworkInfo chain = GetTestNetworkInfo1("0x1");
@@ -4265,9 +4168,8 @@ TEST_F(JsonRpcServiceUnitTest, MigrateDeprecatedEthereumTestnets) {
         prefs()->GetBoolean(kBraveWalletDeprecateEthereumTestNetworksMigrated));
 
     // Set selected network to deprecated network and validate
-    DictionaryPrefUpdate update(prefs(), kBraveWalletSelectedNetworks);
-    auto& selected_networks_pref = update.Get()->GetDict();
-    selected_networks_pref.Set(kEthereumPrefKey, deprecated_chain_id);
+    ScopedDictPrefUpdate update(prefs(), kBraveWalletSelectedNetworks);
+    update->Set(kEthereumPrefKey, deprecated_chain_id);
     const auto& selected_networks =
         prefs()->GetDict(kBraveWalletSelectedNetworks);
     const std::string* selected_eth_network =
@@ -4294,9 +4196,8 @@ TEST_F(JsonRpcServiceUnitTest, MigrateDeprecatedEthereumTestnets) {
       prefs()->GetBoolean(kBraveWalletDeprecateEthereumTestNetworksMigrated));
 
   // Set selected network to deprecated network and validate
-  DictionaryPrefUpdate update(prefs(), kBraveWalletSelectedNetworks);
-  auto& selected_networks_pref = update.Get()->GetDict();
-  selected_networks_pref.Set(kEthereumPrefKey, mojom::kSepoliaChainId);
+  ScopedDictPrefUpdate update(prefs(), kBraveWalletSelectedNetworks);
+  update->Set(kEthereumPrefKey, mojom::kSepoliaChainId);
   const auto& selected_networks =
       prefs()->GetDict(kBraveWalletSelectedNetworks);
   const std::string* selected_eth_network =
@@ -4712,6 +4613,110 @@ TEST_F(JsonRpcServiceUnitTest, GetSolanaBlockHeight) {
                            l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
 }
 
+TEST_F(JsonRpcServiceUnitTest, GetSolanaTokenAccountsByOwner) {
+  EXPECT_TRUE(SetNetwork(mojom::kLocalhostChainId, mojom::CoinType::SOL));
+  auto expected_network_url =
+      GetNetwork(mojom::kLocalhostChainId, mojom::CoinType::SOL);
+
+  // Valid
+  SetInterceptor(expected_network_url, "getTokenAccountsByOwner", "", R"({
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "1.13.5",
+        "slot": 166895942
+      },
+      "value": [
+        {
+          "account": {
+            "data": [
+              "z6cxAUoRHIupvmezOL4EAsTLlwKTgwxzCg/xcNWSEu42kEWUG3BArj8SJRSnd1faFt2Tm0Ey/qtGnPdOOlQlugEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "base64"
+            ],
+            "executable": false,
+            "lamports": 2039280,
+            "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "rentEpoch": 361
+          },
+          "pubkey": "5gjGaTE41sPVS1Dzwg43ipdj9NTtApZLcK55ihRuVb6Y"
+        },
+        {
+          "account": {
+            "data": [
+              "afxiYbRCtH5HgLYFzytARQOXmFT6HhvNzk2Baxua+lM2kEWUG3BArj8SJRSnd1faFt2Tm0Ey/qtGnPdOOlQlugEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "base64"
+            ],
+            "executable": false,
+            "lamports": 2039280,
+            "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "rentEpoch": 361
+          },
+          "pubkey": "81ZdQjbr7FhEPmcyGJtG8BAUyWxAjb2iSiWFEQn8i8Da"
+        }
+      ]
+    },
+    "id": 1
+  })");
+  // Create expected account infos
+  std::vector<SolanaAccountInfo> expected_account_infos;
+  SolanaAccountInfo account_info;
+  account_info.data =
+      "z6cxAUoRHIupvmezOL4EAsTLlwKTgwxzCg/"
+      "xcNWSEu42kEWUG3BArj8SJRSnd1faFt2Tm0Ey/"
+      "qtGnPdOOlQlugEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "AAA";
+  account_info.executable = false;
+  account_info.lamports = 2039280;
+  account_info.owner = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
+  account_info.rent_epoch = 361;
+
+  expected_account_infos.push_back(std::move(account_info));
+  account_info.data =
+      "afxiYbRCtH5HgLYFzytARQOXmFT6HhvNzk2Baxua+"
+      "lM2kEWUG3BArj8SJRSnd1faFt2Tm0Ey/"
+      "qtGnPdOOlQlugEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "AAA";
+  account_info.executable = false;
+  account_info.lamports = 2039280;
+  account_info.owner = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
+  account_info.rent_epoch = 361;
+  expected_account_infos.push_back(std::move(account_info));
+
+  absl::optional solana_address =
+      SolanaAddress::FromBase58("4fzcQKyGFuk55uJaBZtvTHh42RBxbrZMuXzsGQvBJbwF");
+  ASSERT_TRUE(solana_address);
+
+  TestGetSolanaTokenAccountsByOwner(*solana_address, expected_account_infos,
+                                    mojom::SolanaProviderError::kSuccess, "");
+
+  // Response parsing error
+  SetInterceptor(expected_network_url, "getTokenAccountsByOwner", "",
+                 R"({"jsonrpc":"2.0","id":1})");
+  TestGetSolanaTokenAccountsByOwner(
+      *solana_address, {}, mojom::SolanaProviderError::kParsingError,
+      l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // JSON RPC error
+  SetInterceptor(expected_network_url, "getTokenAccountsByOwner", "",
+                 R"({"jsonrpc": "2.0", "id": 1,
+                     "error": {
+                       "code":-32601,
+                       "message":"method does not exist"
+                     }
+                    })");
+  TestGetSolanaTokenAccountsByOwner(*solana_address, {},
+                                    mojom::SolanaProviderError::kMethodNotFound,
+                                    "method does not exist");
+
+  // HTTP error
+  SetHTTPRequestTimeoutInterceptor();
+  TestGetSolanaTokenAccountsByOwner(
+      *solana_address, {}, mojom::SolanaProviderError::kInternalError,
+      l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+}
+
 TEST_F(JsonRpcServiceUnitTest, GetFilEstimateGas) {
   SetNetwork(mojom::kLocalhostChainId, mojom::CoinType::FIL);
   SetInterceptor(GetNetwork(mojom::kLocalhostChainId, mojom::CoinType::FIL),
@@ -4865,6 +4870,61 @@ TEST_F(JsonRpcServiceUnitTest, SendFilecoinTransaction) {
       l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
 }
 
+TEST_F(JsonRpcServiceUnitTest, ResolverPrefs) {
+  base::MockCallback<base::OnceCallback<void(mojom::ResolveMethod)>> callback;
+
+  auto methods = {mojom::ResolveMethod::kEnabled, mojom::ResolveMethod::kAsk,
+                  mojom::ResolveMethod::kDisabled};
+
+  // Unstoppable domains.
+  EXPECT_CALL(callback, Run(mojom::ResolveMethod::kAsk));
+  json_rpc_service_->GetUnstoppableDomainsResolveMethod(callback.Get());
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  for (auto m : methods) {
+    json_rpc_service_->SetUnstoppableDomainsResolveMethod(m);
+    EXPECT_CALL(callback, Run(m));
+    json_rpc_service_->GetUnstoppableDomainsResolveMethod(callback.Get());
+    testing::Mock::VerifyAndClearExpectations(&callback);
+  }
+
+  // ENS.
+  EXPECT_CALL(callback, Run(mojom::ResolveMethod::kAsk));
+  json_rpc_service_->GetEnsResolveMethod(callback.Get());
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  for (auto m : methods) {
+    json_rpc_service_->SetEnsResolveMethod(m);
+    EXPECT_CALL(callback, Run(m));
+    json_rpc_service_->GetEnsResolveMethod(callback.Get());
+    testing::Mock::VerifyAndClearExpectations(&callback);
+  }
+
+  // ENS Offchain.
+  EXPECT_CALL(callback, Run(mojom::ResolveMethod::kAsk));
+  json_rpc_service_->GetEnsOffchainLookupResolveMethod(callback.Get());
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  for (auto m : methods) {
+    json_rpc_service_->SetEnsOffchainLookupResolveMethod(m);
+    EXPECT_CALL(callback, Run(m));
+    json_rpc_service_->GetEnsOffchainLookupResolveMethod(callback.Get());
+    testing::Mock::VerifyAndClearExpectations(&callback);
+  }
+
+  // SNS.
+  EXPECT_CALL(callback, Run(mojom::ResolveMethod::kAsk));
+  json_rpc_service_->GetSnsResolveMethod(callback.Get());
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  for (auto m : methods) {
+    json_rpc_service_->SetSnsResolveMethod(m);
+    EXPECT_CALL(callback, Run(m));
+    json_rpc_service_->GetSnsResolveMethod(callback.Get());
+    testing::Mock::VerifyAndClearExpectations(&callback);
+  }
+}
+
 class EnsGetResolverHandler : public EthCallHandler {
  public:
   EnsGetResolverHandler(const std::string& host_name,
@@ -4964,16 +5024,18 @@ class EnsGetRecordHandler : public EthCallHandler {
 
     if (base::ranges::equal(selector, GetFunctionHashBytes4("addr(bytes32)"))) {
       auto eth_address = EthAddress::ZeroAddress();
-      if (host_matches)
+      if (host_matches) {
         eth_address = result_address_;
+      }
 
       return MakeJsonRpcTupleResponse(
           eth_abi::TupleEncoder().AddAddress(eth_address));
     } else if (base::ranges::equal(
                    selector, GetFunctionHashBytes4("contenthash(bytes32)"))) {
       std::vector<uint8_t> contenthash;
-      if (host_matches)
+      if (host_matches) {
         contenthash = result_contenthash_;
+      }
 
       return MakeJsonRpcTupleResponse(
           eth_abi::TupleEncoder().AddBytes(contenthash));
@@ -5046,8 +5108,9 @@ class OffchainCallbackHandler : public EthCallHandler {
               eth_abi::ExtractStringFromTuple(*extra_data_bytes, 0));
 
     auto bytes_result = eth_abi::ExtractBytesFromTuple(args, 0);
-    if (!bytes_result)
+    if (!bytes_result) {
       return absl::nullopt;
+    }
 
     // Just returning bytes result from gateway as is.
     return MakeJsonRpcRawBytesResponse(*bytes_result);
@@ -5069,15 +5132,18 @@ class OffchainGatewayHandler {
 
   absl::optional<std::string> HandleRequest(
       const network::ResourceRequest& request) {
-    if (request.url.host() != gateway_url_.host())
+    if (request.url.host() != gateway_url_.host()) {
       return absl::nullopt;
+    }
 
-    if (respond_with_500_)
+    if (respond_with_500_) {
       return "";
+    }
 
     auto payload = ToValue(request);
-    if (!payload || !payload->is_dict())
+    if (!payload || !payload->is_dict()) {
       return absl::nullopt;
+    }
     auto* sender = payload->GetDict().FindString("sender");
     EXPECT_EQ(EthAddress::FromHex(*sender), resolver_address_);
 
@@ -5215,7 +5281,7 @@ class ENSL2JsonRpcServiceUnitTest : public JsonRpcServiceUnitTest {
 
   std::string ens_host() { return "offchainexample.eth"; }
   std::string ens_subdomain_host() { return "test.offchainexample.eth"; }
-  GURL gateway_url() { return GURL("https://gateway.mises.site/"); }
+  GURL gateway_url() { return GURL("https://gateway.brave.com/"); }
   EthAddress resolver_address() {
     return EthAddress::FromHex("0xc1735677a60884abbcf72295e88d47764beda282");
   }
@@ -5256,10 +5322,6 @@ class ENSL2JsonRpcServiceUnitTest : public JsonRpcServiceUnitTest {
     return bytes;
   }
 
-  mojom::EnsOffchainLookupOptionsPtr AllowOffchain() {
-    return mojom::EnsOffchainLookupOptions::New(true, false);
-  }
-
  protected:
   void HandleRequest(const network::ResourceRequest& request) {
     url_loader_factory_.ClearResponses();
@@ -5293,23 +5355,31 @@ class ENSL2JsonRpcServiceUnitTest : public JsonRpcServiceUnitTest {
 };
 
 TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr) {
+  json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+      mojom::ResolveMethod::kEnabled);
+
   base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
   EXPECT_CALL(callback, Run(offchain_eth_addr().ToHex(), false,
                             mojom::ProviderError::kSuccess, ""));
-  json_rpc_service_->EnsGetEthAddr(ens_host(), AllowOffchain(), callback.Get());
+  json_rpc_service_->EnsGetEthAddr(ens_host(), callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
 TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_Subdomain) {
+  json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+      mojom::ResolveMethod::kEnabled);
+
   base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
   EXPECT_CALL(callback, Run(offchain_subdomain_eth_addr().ToHex(), false,
                             mojom::ProviderError::kSuccess, ""));
-  json_rpc_service_->EnsGetEthAddr(ens_subdomain_host(), AllowOffchain(),
-                                   callback.Get());
+  json_rpc_service_->EnsGetEthAddr(ens_subdomain_host(), callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
 TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_Subdomain_NoEnsip10Support) {
+  json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+      mojom::ResolveMethod::kEnabled);
+
   // Turning off Ensip-10 support for resolver so addr(bytes32) is called.
   ensip10_support_handler_->DisableSupport();
 
@@ -5317,33 +5387,40 @@ TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_Subdomain_NoEnsip10Support) {
   EXPECT_CALL(callback,
               Run("", false, mojom::ProviderError::kInvalidParams,
                   l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS)));
-  json_rpc_service_->EnsGetEthAddr(ens_subdomain_host(), AllowOffchain(),
-                                   callback.Get());
+  json_rpc_service_->EnsGetEthAddr(ens_subdomain_host(), callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
 TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_NoResolver) {
+  json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+      mojom::ResolveMethod::kEnabled);
+
   base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
   EXPECT_CALL(callback,
               Run("", false, mojom::ProviderError::kInternalError,
                   l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
-  json_rpc_service_->EnsGetEthAddr("unknown-host.eth", AllowOffchain(),
-                                   callback.Get());
+  json_rpc_service_->EnsGetEthAddr("unknown-host.eth", callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
 TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_NoEnsip10Support) {
+  json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+      mojom::ResolveMethod::kEnabled);
+
   // Turning off Ensip-10 support for resolver so addr(bytes32) is called.
   ensip10_support_handler_->DisableSupport();
 
   base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
   EXPECT_CALL(callback, Run(onchain_eth_addr().ToHex(), false,
                             mojom::ProviderError::kSuccess, ""));
-  json_rpc_service_->EnsGetEthAddr(ens_host(), AllowOffchain(), callback.Get());
+  json_rpc_service_->EnsGetEthAddr(ens_host(), callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
 TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_NoEnsip10Support_GoOffchain) {
+  json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+      mojom::ResolveMethod::kEnabled);
+
   // Turning off Ensip-10 support for resolver so addr(bytes32) is called.
   ensip10_support_handler_->DisableSupport();
   // addr(bytes32) will go offchain.
@@ -5352,11 +5429,14 @@ TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_NoEnsip10Support_GoOffchain) {
   base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
   EXPECT_CALL(callback, Run(offchain_eth_addr().ToHex(), false,
                             mojom::ProviderError::kSuccess, ""));
-  json_rpc_service_->EnsGetEthAddr(ens_host(), AllowOffchain(), callback.Get());
+  json_rpc_service_->EnsGetEthAddr(ens_host(), callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
 TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_Gateway500Error) {
+  json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+      mojom::ResolveMethod::kEnabled);
+
   // Gateway request fails.
   offchain_gateway_handler_->SetRespondWith500();
 
@@ -5364,11 +5444,14 @@ TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_Gateway500Error) {
   EXPECT_CALL(callback,
               Run("", false, mojom::ProviderError::kInternalError,
                   l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
-  json_rpc_service_->EnsGetEthAddr(ens_host(), AllowOffchain(), callback.Get());
+  json_rpc_service_->EnsGetEthAddr(ens_host(), callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
 TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_GatewayNoRecord) {
+  json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+      mojom::ResolveMethod::kEnabled);
+
   // No data record in gateway.
   offchain_gateway_handler_->SetRespondWithNoRecord();
 
@@ -5376,7 +5459,7 @@ TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_GatewayNoRecord) {
   EXPECT_CALL(callback,
               Run("", false, mojom::ProviderError::kInvalidParams,
                   l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS)));
-  json_rpc_service_->EnsGetEthAddr(ens_host(), AllowOffchain(), callback.Get());
+  json_rpc_service_->EnsGetEthAddr(ens_host(), callback.Get());
   base::RunLoop().RunUntilIdle();
 }
 
@@ -5390,21 +5473,7 @@ TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_Consent) {
     base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
     // Called with `require_offchain_consent` == true.
     EXPECT_CALL(callback, Run("", true, mojom::ProviderError::kSuccess, ""));
-    json_rpc_service_->EnsGetEthAddr(ens_host(), nullptr, callback.Get());
-    base::RunLoop().RunUntilIdle();
-    EXPECT_EQ(
-        decentralized_dns::EnsOffchainResolveMethod::kAsk,
-        decentralized_dns::GetEnsOffchainResolveMethod(local_state_prefs()));
-  }
-
-  // Allow once.
-  {
-    base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
-    EXPECT_CALL(callback, Run(offchain_eth_addr().ToHex(), false,
-                              mojom::ProviderError::kSuccess, ""));
-    json_rpc_service_->EnsGetEthAddr(
-        ens_host(), mojom::EnsOffchainLookupOptions::New(true, false),
-        callback.Get());
+    json_rpc_service_->EnsGetEthAddr(ens_host(), callback.Get());
     base::RunLoop().RunUntilIdle();
     EXPECT_EQ(
         decentralized_dns::EnsOffchainResolveMethod::kAsk,
@@ -5413,90 +5482,32 @@ TEST_F(ENSL2JsonRpcServiceUnitTest, GetWalletAddr_Consent) {
 
   // Allow and remember.
   {
-    base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
-    EXPECT_CALL(callback, Run(offchain_eth_addr().ToHex(), false,
-                              mojom::ProviderError::kSuccess, ""));
-    json_rpc_service_->EnsGetEthAddr(
-        ens_host(), mojom::EnsOffchainLookupOptions::New(true, true),
-        callback.Get());
-    base::RunLoop().RunUntilIdle();
+    json_rpc_service_->SetEnsOffchainLookupResolveMethod(
+        mojom::ResolveMethod::kEnabled);
     EXPECT_EQ(
         decentralized_dns::EnsOffchainResolveMethod::kEnabled,
         decentralized_dns::GetEnsOffchainResolveMethod(local_state_prefs()));
-  }
 
-  // Allowed without explicit consent.
-  {
     base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
     EXPECT_CALL(callback, Run(offchain_eth_addr().ToHex(), false,
                               mojom::ProviderError::kSuccess, ""));
-    json_rpc_service_->EnsGetEthAddr(ens_host(), nullptr, callback.Get());
+    json_rpc_service_->EnsGetEthAddr(ens_host(), callback.Get());
     base::RunLoop().RunUntilIdle();
-    EXPECT_EQ(
-        decentralized_dns::EnsOffchainResolveMethod::kEnabled,
-        decentralized_dns::GetEnsOffchainResolveMethod(local_state_prefs()));
   }
 
-  // Reset in prefs.
+  // Disable in prefs.
   decentralized_dns::SetEnsOffchainResolveMethod(
-      local_state_prefs(), decentralized_dns::EnsOffchainResolveMethod::kAsk);
+      local_state_prefs(),
+      decentralized_dns::EnsOffchainResolveMethod::kDisabled);
 
-  // Fails after no once.
+  // Fails.
   {
     base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
     EXPECT_CALL(callback,
                 Run("", false, mojom::ProviderError::kInternalError,
                     l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
-    json_rpc_service_->EnsGetEthAddr(
-        ens_host(), mojom::EnsOffchainLookupOptions::New(false, false),
-        callback.Get());
+    json_rpc_service_->EnsGetEthAddr(ens_host(), callback.Get());
     base::RunLoop().RunUntilIdle();
-    EXPECT_EQ(
-        decentralized_dns::EnsOffchainResolveMethod::kAsk,
-        decentralized_dns::GetEnsOffchainResolveMethod(local_state_prefs()));
-  }
-
-  // Fails after no and remember.
-  {
-    base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
-    EXPECT_CALL(callback,
-                Run("", false, mojom::ProviderError::kInternalError,
-                    l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
-    json_rpc_service_->EnsGetEthAddr(
-        ens_host(), mojom::EnsOffchainLookupOptions::New(false, true),
-        callback.Get());
-    base::RunLoop().RunUntilIdle();
-    EXPECT_EQ(
-        decentralized_dns::EnsOffchainResolveMethod::kDisabled,
-        decentralized_dns::GetEnsOffchainResolveMethod(local_state_prefs()));
-  }
-
-  // Fails after no explicit consent.
-  {
-    base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
-    EXPECT_CALL(callback,
-                Run("", false, mojom::ProviderError::kInternalError,
-                    l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
-    json_rpc_service_->EnsGetEthAddr(ens_host(), nullptr, callback.Get());
-    base::RunLoop().RunUntilIdle();
-    EXPECT_EQ(
-        decentralized_dns::EnsOffchainResolveMethod::kDisabled,
-        decentralized_dns::GetEnsOffchainResolveMethod(local_state_prefs()));
-  }
-
-  // Still ok with explicit consent. Should not happen with our ui, but still
-  // fixing that behavior.
-  {
-    base::MockCallback<JsonRpcService::EnsGetEthAddrCallback> callback;
-    EXPECT_CALL(callback, Run(offchain_eth_addr().ToHex(), false,
-                              mojom::ProviderError::kSuccess, ""));
-    json_rpc_service_->EnsGetEthAddr(
-        ens_host(), mojom::EnsOffchainLookupOptions::New(true, false),
-        callback.Get());
-    base::RunLoop().RunUntilIdle();
-    EXPECT_EQ(
-        decentralized_dns::EnsOffchainResolveMethod::kDisabled,
-        decentralized_dns::GetEnsOffchainResolveMethod(local_state_prefs()));
   }
 }
 
@@ -5705,6 +5716,20 @@ class SnsJsonRpcServiceUnitTest : public JsonRpcServiceUnitTest {
                 SolRecordAddress(), GetRecordKeyAddress("SOL"),
                 domain_owner_private_key_)));
 
+    url_record_address_handler_ = std::make_unique<GetAccountInfoHandler>(
+        GetRecordKeyAddress("url"), SolanaAddress::ZeroAddress(),
+        GetAccountInfoHandler::MakeNameRegistryStateData(
+            DomainOwnerAddress(),
+            GetAccountInfoHandler::MakeTextRecordPayloadData(
+                url_value().spec())));
+
+    ipfs_record_address_handler_ = std::make_unique<GetAccountInfoHandler>(
+        GetRecordKeyAddress("IPFS"), SolanaAddress::ZeroAddress(),
+        GetAccountInfoHandler::MakeNameRegistryStateData(
+            DomainOwnerAddress(),
+            GetAccountInfoHandler::MakeTextRecordPayloadData(
+                ipfs_value().spec())));
+
     default_handler_ = std::make_unique<GetAccountInfoHandler>();
 
     json_rpc_endpoint_handler_->AddSolRpcCallHandler(
@@ -5716,6 +5741,11 @@ class SnsJsonRpcServiceUnitTest : public JsonRpcServiceUnitTest {
         domain_address_handler_.get());
     json_rpc_endpoint_handler_->AddSolRpcCallHandler(
         sol_record_address_handler_.get());
+
+    json_rpc_endpoint_handler_->AddSolRpcCallHandler(
+        url_record_address_handler_.get());
+    json_rpc_endpoint_handler_->AddSolRpcCallHandler(
+        ipfs_record_address_handler_.get());
 
     json_rpc_endpoint_handler_->AddSolRpcCallHandler(default_handler_.get());
 
@@ -5754,6 +5784,12 @@ class SnsJsonRpcServiceUnitTest : public JsonRpcServiceUnitTest {
         "RecPwner11111111111111111111111111111111111");
   }
 
+  GURL url_value() const { return GURL("https://brave.com"); }
+  GURL ipfs_value() const {
+    return GURL(
+        "ipfs://bafybeibd4ala53bs26dvygofvr6ahpa7gbw4eyaibvrbivf4l5rr44yqu4");
+  }
+
   std::string sns_host() const { return "sub.test.sol"; }
 
  protected:
@@ -5777,6 +5813,8 @@ class SnsJsonRpcServiceUnitTest : public JsonRpcServiceUnitTest {
   std::unique_ptr<GetProgramAccountsHandler> get_program_accounts_handler_;
   std::unique_ptr<GetAccountInfoHandler> domain_address_handler_;
   std::unique_ptr<GetAccountInfoHandler> sol_record_address_handler_;
+  std::unique_ptr<GetAccountInfoHandler> url_record_address_handler_;
+  std::unique_ptr<GetAccountInfoHandler> ipfs_record_address_handler_;
   std::unique_ptr<GetAccountInfoHandler> default_handler_;
 
   std::unique_ptr<JsonRpcEnpointHandler> json_rpc_endpoint_handler_;
@@ -5894,6 +5932,512 @@ TEST_F(SnsJsonRpcServiceUnitTest, GetWalletAddr_SolRecordOwner) {
   json_rpc_service_->SnsGetSolAddr(sns_host(), callback.Get());
   base::RunLoop().RunUntilIdle();
   testing::Mock::VerifyAndClearExpectations(&callback);
+}
+
+TEST_F(SnsJsonRpcServiceUnitTest, ResolveHost_UrlValue) {
+  base::MockCallback<JsonRpcService::SnsResolveHostCallback> callback;
+  EXPECT_CALL(callback, Run(testing::Eq(url_value()),
+                            mojom::SolanaProviderError::kSuccess, ""));
+  json_rpc_service_->SnsResolveHost(sns_host(), callback.Get());
+  base::RunLoop().RunUntilIdle();
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  // HTTP error for url record account. Fail resolution.
+  url_record_address_handler_->FailWithTimeout();
+  EXPECT_CALL(
+      callback,
+      Run(testing::Eq(GURL()), mojom::SolanaProviderError::kInternalError,
+          l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
+  json_rpc_service_->SnsResolveHost(sns_host(), callback.Get());
+  base::RunLoop().RunUntilIdle();
+  testing::Mock::VerifyAndClearExpectations(&callback);
+  url_record_address_handler_->FailWithTimeout(false);
+}
+
+TEST_F(SnsJsonRpcServiceUnitTest, ResolveHost_IpfsValue) {
+  url_record_address_handler_->Disable();
+
+  // No url record. Will return ipfs record.
+  base::MockCallback<JsonRpcService::SnsResolveHostCallback> callback;
+  EXPECT_CALL(callback, Run(testing::Eq(ipfs_value()),
+                            mojom::SolanaProviderError::kSuccess, ""));
+  json_rpc_service_->SnsResolveHost(sns_host(), callback.Get());
+  base::RunLoop().RunUntilIdle();
+  testing::Mock::VerifyAndClearExpectations(&callback);
+
+  // HTTP error for ipfs record account. Fail resolution.
+  ipfs_record_address_handler_->FailWithTimeout();
+  EXPECT_CALL(
+      callback,
+      Run(testing::Eq(GURL()), mojom::SolanaProviderError::kInternalError,
+          l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
+  json_rpc_service_->SnsResolveHost(sns_host(), callback.Get());
+  base::RunLoop().RunUntilIdle();
+  testing::Mock::VerifyAndClearExpectations(&callback);
+  ipfs_record_address_handler_->FailWithTimeout(false);
+
+  // No ipfs record account. Fail resolution.
+  ipfs_record_address_handler_->Disable();
+  EXPECT_CALL(
+      callback,
+      Run(testing::Eq(GURL()), mojom::SolanaProviderError::kInternalError,
+          l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR)));
+  json_rpc_service_->SnsResolveHost(sns_host(), callback.Get());
+  base::RunLoop().RunUntilIdle();
+  testing::Mock::VerifyAndClearExpectations(&callback);
+}
+
+TEST_F(JsonRpcServiceUnitTest, EthGetLogs) {
+  base::Value::List contract_addresses;
+  base::Value::List topics;
+
+  // Invalid network ID yields internal error
+  TestEthGetLogs("0xinvalid", "earliest", "latest",
+                 std::move(contract_addresses), std::move(topics), {},
+                 mojom::ProviderError::kInternalError,
+                 l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Non 200 response yields internal error
+  SetHTTPRequestTimeoutInterceptor();
+  TestEthGetLogs(mojom::kMainnetChainId, "earliest", "latest",
+                 std::move(contract_addresses), std::move(topics), {},
+                 mojom::ProviderError::kInternalError,
+                 l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Invalid response body yields parsing error
+  SetInvalidJsonInterceptor();
+  TestEthGetLogs(mojom::kMainnetChainId, "earliest", "latest",
+                 std::move(contract_addresses), std::move(topics), {},
+                 mojom::ProviderError::kParsingError,
+                 l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // Valid request yields parsed Logs
+  const std::string response = R"({
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":[
+        {
+          "address":"0x6B175474E89094C44Da98b954EedeAC495271d0F",
+          "blockHash":"0x2961ceb6c16bab72a55f79e394a35f2bf1c62b30446e3537280f7c22c3115e6e",
+          "blockNumber":"0xd6464e",
+          "data":"0x00000000000000000000000000000000000000000000000555aff1f0fae8c000",
+          "logIndex":"0x159",
+          "removed":false,
+          "topics":[
+            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+            "0x000000000000000000000000503828976d22510aad0201ac7ec88293211d23da",
+            "0x000000000000000000000000b4b2802129071b2b9ebb8cbb01ea1e4d14b34961"
+          ],
+          "transactionHash":"0x2e652b70966c6a05f4b3e68f20d6540b7a5ab712385464a7ccf62774d39b7066",
+          "transactionIndex":"0x9f"
+        }
+      ]
+    })";
+
+  Log expected_log;
+  expected_log.address = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+  expected_log.block_hash =
+      "0x2961ceb6c16bab72a55f79e394a35f2bf1c62b30446e3537280f7c22c3115e6e";
+  uint256_t expected_block_number = 14042702;
+  expected_log.block_number = expected_block_number;
+  expected_log.data =
+      "0x00000000000000000000000000000000000000000000000555aff1f0fae8c000";
+  uint32_t expected_log_index = 345;
+  expected_log.log_index = expected_log_index;
+  expected_log.removed = false;
+  std::vector<std::string> expected_topics = {
+      "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "0x000000000000000000000000503828976d22510aad0201ac7ec88293211d23da",
+      "0x000000000000000000000000b4b2802129071b2b9ebb8cbb01ea1e4d14b34961"};
+  expected_log.topics = std::move(expected_topics);
+  expected_log.transaction_hash =
+      "0x2e652b70966c6a05f4b3e68f20d6540b7a5ab712385464a7ccf62774d39b7066";
+  uint32_t expected_transaction_index = 159;
+  expected_log.transaction_index = expected_transaction_index;
+  std::vector<Log> expected_logs;
+  expected_logs.push_back(std::move(expected_log));
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_getLogs", "", response);
+  TestEthGetLogs(mojom::kMainnetChainId, "earliest", "latest",
+                 std::move(contract_addresses), std::move(topics),
+                 std::move(expected_logs), mojom::ProviderError::kSuccess, "");
+}
+
+TEST_F(JsonRpcServiceUnitTest, GetSolTokenMetadata) {
+  // Valid inputs should yield metadata JSON (happy case)
+  std::string get_account_info_response = R"({
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "1.13.3",
+        "slot": 161038284
+      },
+      "value": {
+        "data": [
+          "BGUN5hJf2zSue3S0I/fCq16UREt5NxP6mQdaq4cdGPs3Q8PG/R6KFUSgce78Nwk9Frvkd9bMbvTIKCRSDy88nZQgAAAAU1BFQ0lBTCBTQVVDRQAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAMgAAABodHRwczovL2JhZmtyZWlmNHd4NTR3anI3cGdmdWczd2xhdHIzbmZudHNmd25ndjZldXNlYmJxdWV6cnhlbmo2Y2s0LmlwZnMuZHdlYi5saW5rP2V4dD0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOgDAQIAAABlDeYSX9s0rnt0tCP3wqtelERLeTcT+pkHWquHHRj7NwFiDUmu+U8sXOOZQXL36xmknL+Zzd/z3uw2G0ERMo8Eth4BAgABAf8BAAEBoivvbAzLh2kD2cSu6IQIqGQDGeoh/UEDizyp6mLT1tUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 5616720,
+        "owner": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s",
+        "rentEpoch": 361
+      }
+    },
+    "id": 1
+  })";
+  const std::string valid_metadata_response = R"({
+    "attributes": [
+      {
+        "trait_type": "hair",
+        "value": "green & blue"
+      },
+      {
+        "trait_type": "pontus",
+        "value": "no"
+      }
+    ],
+    "description": "",
+    "external_url": "",
+    "image": "https://bafkreiagsgqhjudpta6trhjuv5y2n2exsrhbkkprl64tvg2mftjsdm3vgi.ipfs.dweb.link?ext=png",
+    "name": "SPECIAL SAUCE",
+    "properties": {
+      "category": "image",
+      "creators": [
+        {
+          "address": "7oUUEdptZnZVhSet4qobU9PtpPfiNUEJ8ftPnrC6YEaa",
+          "share": 98
+        },
+        {
+          "address": "tsU33UT3K2JTfLgHUo7hdzRhRe4wth885cqVbM8WLiq",
+          "share": 2
+        }
+      ],
+      "files": [
+        {
+          "type": "image/png",
+          "uri": "https://bafkreiagsgqhjudpta6trhjuv5y2n2exsrhbkkprl64tvg2mftjsdm3vgi.ipfs.dweb.link?ext=png"
+        }
+      ],
+      "maxSupply": 0
+    },
+    "seller_fee_basis_points": 1000,
+    "symbol": ""
+  })";
+  auto network_url = GetNetwork(mojom::kSolanaMainnet, mojom::CoinType::SOL);
+  SetSolTokenMetadataInterceptor(
+      network_url, get_account_info_response,
+      GURL("https://"
+           "bafkreif4wx54wjr7pgfug3wlatr3nfntsfwngv6eusebbquezrxenj6ck4.ipfs."
+           "dweb.link/?ext="),
+      valid_metadata_response);
+  TestGetSolTokenMetadata("5ZXToo7froykjvjnpHtTLYr9u2tW3USMwPg3sNkiaQVh",
+                          valid_metadata_response,
+                          mojom::SolanaProviderError::kSuccess, "");
+
+  // Invalid token_mint_address yields internal error.
+  SetSolTokenMetadataInterceptor(
+      network_url, get_account_info_response,
+      GURL("https://"
+           "bafkreif4wx54wjr7pgfug3wlatr3nfntsfwngv6eusebbquezrxenj6ck4.ipfs."
+           "dweb.link/?ext="),
+      valid_metadata_response);
+  TestGetSolTokenMetadata("Invalid", "",
+                          mojom::SolanaProviderError::kInternalError,
+                          l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Non 200 getAccountInfo response of yields internal server error.
+  SetHTTPRequestTimeoutInterceptor();
+  TestGetSolTokenMetadata("5ZXToo7froykjvjnpHtTLYr9u2tW3USMwPg3sNkiaQVh", "",
+                          mojom::SolanaProviderError::kInternalError,
+                          l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Invalid getAccountInfo response JSON yields internal error
+  SetSolTokenMetadataInterceptor(
+      network_url, "Invalid json response",
+      GURL("https://"
+           "bafkreif4wx54wjr7pgfug3wlatr3nfntsfwngv6eusebbquezrxenj6ck4.ipfs."
+           "dweb.link/?ext="),
+      valid_metadata_response);
+  TestGetSolTokenMetadata("5ZXToo7froykjvjnpHtTLYr9u2tW3USMwPg3sNkiaQVh", "",
+                          mojom::SolanaProviderError::kInternalError,
+                          l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Valid response JSON, invalid account info (missing result.value.owner
+  // field) info yields parse error
+  get_account_info_response = R"({
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "1.13.3",
+        "slot": 161038284
+      },
+      "value": {
+        "data": [
+          "BGUN5hJf2zSue3S0I/fCq16UREt5NxP6mQdaq4cdGPs3Q8PG/R6KFUSgce78Nwk9Frvkd9bMbvTIKCRSDy88nZQgAAAAU1BFQ0lBTCBTQVVDRQAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAMgAAABodHRwczovL2JhZmtyZWlmNHd4NTR3anI3cGdmdWczd2xhdHIzbmZudHNmd25ndjZldXNlYmJxdWV6cnhlbmo2Y2s0LmlwZnMuZHdlYi5saW5rP2V4dD0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOgDAQIAAABlDeYSX9s0rnt0tCP3wqtelERLeTcT+pkHWquHHRj7NwFiDUmu+U8sXOOZQXL36xmknL+Zzd/z3uw2G0ERMo8Eth4BAgABAf8BAAEBoivvbAzLh2kD2cSu6IQIqGQDGeoh/UEDizyp6mLT1tUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 5616720,
+        "rentEpoch": 361
+      }
+    },
+    "id": 1
+  })";
+  SetSolTokenMetadataInterceptor(
+      network_url, get_account_info_response,
+      GURL("https://"
+           "bafkreif4wx54wjr7pgfug3wlatr3nfntsfwngv6eusebbquezrxenj6ck4.ipfs."
+           "dweb.link/?ext="),
+      valid_metadata_response);
+  TestGetSolTokenMetadata("5ZXToo7froykjvjnpHtTLYr9u2tW3USMwPg3sNkiaQVh", "",
+                          mojom::SolanaProviderError::kParsingError,
+                          l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // Valid response JSON, parsable account info, but invalid account info data
+  // (invalid base64) yields parse error
+  get_account_info_response = R"({
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "1.13.3",
+        "slot": 161038284
+      },
+      "value": {
+        "data": [
+          "*Invalid Base64*",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 5616720,
+        "owner": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s",
+        "rentEpoch": 361
+      }
+    },
+    "id": 1
+  })";
+  SetSolTokenMetadataInterceptor(
+      network_url, get_account_info_response,
+      GURL("https://"
+           "bafkreif4wx54wjr7pgfug3wlatr3nfntsfwngv6eusebbquezrxenj6ck4.ipfs."
+           "dweb.link/?ext="),
+      valid_metadata_response);
+  TestGetSolTokenMetadata("5ZXToo7froykjvjnpHtTLYr9u2tW3USMwPg3sNkiaQVh", "",
+                          mojom::SolanaProviderError::kParsingError,
+                          l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // Valid response JSON, parsable account info, invalid account info data
+  // (valid base64, but invalid borsh encoded metadata) yields parse error
+  get_account_info_response = R"({
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "1.13.3",
+        "slot": 161038284
+      },
+      "value": {
+        "data": [
+          "d2hvb3BzIQ==",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 5616720,
+        "owner": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s",
+        "rentEpoch": 361
+      }
+    },
+    "id": 1
+  })";
+  SetSolTokenMetadataInterceptor(
+      network_url, get_account_info_response,
+      GURL("https://"
+           "bafkreif4wx54wjr7pgfug3wlatr3nfntsfwngv6eusebbquezrxenj6ck4.ipfs."
+           "dweb.link/?ext="),
+      valid_metadata_response);
+  TestGetSolTokenMetadata("5ZXToo7froykjvjnpHtTLYr9u2tW3USMwPg3sNkiaQVh", "",
+                          mojom::SolanaProviderError::kParsingError,
+                          l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // Valid response JSON, parsable account info, invalid account info data
+  // (valid base64, valid borsh encoding, but when decoded the URI is not a
+  // valid URI)
+  get_account_info_response = R"({
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "1.13.3",
+        "slot": 161038284
+      },
+      "value": {
+        "data": [
+          "BGUN5hJf2zSue3S0I/fCq16UREt5NxP6mQdaq4cdGPs3Q8PG/R6KFUSgce78Nwk9Frvkd9bMbvTIKCRSDy88nZQgAAAAU1BFQ0lBTCBTQVVDRQAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAAAAsAAABpbnZhbGlkIHVybOgDAQIAAABlDeYSX9s0rnt0tCP3wqtelERLeTcT+pkHWquHHRj7NwFiDUmu+U8sXOOZQXL36xmknL+Zzd/z3uw2G0ERMo8Eth4BAgABAf8BAAEBoivvbAzLh2kD2cSu6IQIqGQDGeoh/UEDizyp6mLT1tUA",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 5616720,
+        "owner": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s",
+        "rentEpoch": 361
+      }
+    },
+    "id": 1
+  })";
+  SetSolTokenMetadataInterceptor(
+      network_url, get_account_info_response,
+      GURL("https://"
+           "bafkreif4wx54wjr7pgfug3wlatr3nfntsfwngv6eusebbquezrxenj6ck4.ipfs."
+           "dweb.link/?ext="),
+      valid_metadata_response);
+  TestGetSolTokenMetadata("5ZXToo7froykjvjnpHtTLYr9u2tW3USMwPg3sNkiaQVh", "",
+                          mojom::SolanaProviderError::kParsingError,
+                          l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+}
+
+TEST_F(JsonRpcServiceUnitTest, GetEthTokenUri) {
+  // Invalid contract address input
+  TestGetEthTokenUri("", "0x1", mojom::kMainnetChainId,
+                     kERC721MetadataInterfaceId, GURL(),
+                     mojom::ProviderError::kInvalidParams,
+                     l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Invalid token ID input
+  TestGetEthTokenUri("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", "",
+                     mojom::kMainnetChainId, kERC721MetadataInterfaceId, GURL(),
+                     mojom::ProviderError::kInvalidParams,
+                     l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Invalid chain ID input
+  TestGetEthTokenUri("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", "0x1", "",
+                     kERC721MetadataInterfaceId, GURL(),
+                     mojom::ProviderError::kInvalidParams,
+                     l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Unknown interfaceID input
+  TestGetEthTokenUri("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", "0x1",
+                     mojom::kMainnetChainId, "invalid interface", GURL(),
+                     mojom::ProviderError::kInvalidParams,
+                     l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Valid inputs but HTTP Timeout
+  SetHTTPRequestTimeoutInterceptor();
+  TestGetEthTokenUri("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
+                     mojom::kMainnetChainId, kERC721MetadataInterfaceId, GURL(),
+                     mojom::ProviderError::kInternalError,
+                     l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Valid inputs, request exceeds limit response
+  SetLimitExceededJsonErrorResponse();
+  TestGetEthTokenUri("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
+                     mojom::kMainnetChainId, kERC721MetadataInterfaceId, GURL(),
+                     mojom::ProviderError::kLimitExceeded,
+                     "Request exceeds defined limit");
+
+  // Valid inputs, invalid provider JSON
+  SetInvalidJsonInterceptor();
+  TestGetEthTokenUri("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
+                     mojom::kMainnetChainId, kERC721MetadataInterfaceId, GURL(),
+                     mojom::ProviderError::kParsingError,
+                     l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // Valid inputs, valid RPC response JSON, valid RLP encoding, invalid URI
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_call", "", R"({
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":"0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b696e76616c69642075726c000000000000000000000000000000000000000000"
+  })");
+  TestGetEthTokenUri("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
+                     mojom::kMainnetChainId, kERC721MetadataInterfaceId, GURL(),
+                     mojom::ProviderError::kParsingError,
+                     l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // All valid
+  SetInterceptor(GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH),
+                 "eth_call", "", R"({
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":"0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002468747470733a2f2f696e76697369626c65667269656e64732e696f2f6170692f3138313700000000000000000000000000000000000000000000000000000000"
+  })");
+  TestGetEthTokenUri("0x59468516a8259058bad1ca5f8f4bff190d30e066", "0x719",
+                     mojom::kMainnetChainId, kERC721MetadataInterfaceId,
+                     GURL("https://invisiblefriends.io/api/1817"),
+                     mojom::ProviderError::kSuccess, "");
+}
+
+TEST_F(JsonRpcServiceUnitTest, GetEthNftStandard) {
+  std::vector<std::string> interfaces;
+  // Empty interface IDs yields invalid params error
+  TestGetEthNftStandard(
+      "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", mojom::kMainnetChainId,
+      interfaces, absl::nullopt, mojom::ProviderError::kInvalidParams,
+      l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Empty contract address yields invalid params error
+  interfaces.push_back(kERC721InterfaceId);
+  TestGetEthNftStandard(
+      "", mojom::kMainnetChainId, interfaces, absl::nullopt,
+      mojom::ProviderError::kInvalidParams,
+      l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Empty chain ID yields invalid params error
+  TestGetEthNftStandard(
+      "0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", "", interfaces,
+      absl::nullopt, mojom::ProviderError::kInvalidParams,
+      l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
+
+  // Valid inputs but HTTP Timeout
+  SetHTTPRequestTimeoutInterceptor();
+  TestGetEthNftStandard("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+                        mojom::kMainnetChainId, interfaces, absl::nullopt,
+                        mojom::ProviderError::kInternalError,
+                        l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+
+  // Valid inputs, invalid provider JSON yields parsing error
+  SetInvalidJsonInterceptor();
+  TestGetEthNftStandard("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+                        mojom::kMainnetChainId, interfaces, absl::nullopt,
+                        mojom::ProviderError::kParsingError,
+                        l10n_util::GetStringUTF8(IDS_WALLET_PARSING_ERROR));
+
+  // Valid inputs, supported response returned for the first interface ID
+  auto network = GetNetwork(mojom::kMainnetChainId, mojom::CoinType::ETH);
+  std::map<std::string, std::string> responses;
+  const std::string interface_supported_response = R"({
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":"0x0000000000000000000000000000000000000000000000000000000000000001"
+  })";
+  responses[kERC721InterfaceId] = interface_supported_response;
+  SetGetEthNftStandardInterceptor(network, responses);
+  TestGetEthNftStandard("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+                        mojom::kMainnetChainId, interfaces, kERC721InterfaceId,
+                        mojom::ProviderError::kSuccess, "");
+
+  // Valid inputs, supported response returned for the second interface ID
+  // (ERC1155)
+  interfaces.clear();
+  interfaces.push_back(kERC721InterfaceId);
+  interfaces.push_back(kERC1155InterfaceId);
+  const std::string interface_not_supported_response = R"({
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":"0x0000000000000000000000000000000000000000000000000000000000000000"
+  })";
+  responses[kERC721InterfaceId] = interface_not_supported_response;
+  responses[kERC1155InterfaceId] = interface_supported_response;
+  SetGetEthNftStandardInterceptor(network, responses);
+  TestGetEthNftStandard("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+                        mojom::kMainnetChainId, interfaces, kERC1155InterfaceId,
+                        mojom::ProviderError::kSuccess, "");
+
+  // Valid inputs, but no interfaces are supported yields success / nullopt
+  interfaces.clear();
+  interfaces.push_back(kERC1155InterfaceId);
+  interfaces.push_back(kERC721InterfaceId);
+  responses[kERC721InterfaceId] = interface_not_supported_response;
+  responses[kERC1155InterfaceId] = interface_not_supported_response;
+  SetGetEthNftStandardInterceptor(network, responses);
+  TestGetEthNftStandard("0x06012c8cf97BEaD5deAe237070F9587f8E7A266d",
+                        mojom::kMainnetChainId, interfaces, absl::nullopt,
+                        mojom::ProviderError::kSuccess, "");
 }
 
 }  // namespace brave_wallet

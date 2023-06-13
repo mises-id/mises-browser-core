@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/snapshots/snapshot_browser_agent.h b/ios/chrome/browser/snapshots/snapshot_browser_agent.h
+index f7adfcb1c096c5cb11094110a4cd34bfd2f3d2df..79e2299996b4c4f164e2d43dcd22ae45714c7ac0 100644
+--- a/ios/chrome/browser/snapshots/snapshot_browser_agent.h
++++ b/ios/chrome/browser/snapshots/snapshot_browser_agent.h
+@@ -71,7 +71,7 @@ class SnapshotBrowserAgent : public BrowserObserver,
+   // Returns the Tab IDs of all the WebStates in the Browser.
+   NSSet<NSString*>* GetTabIDs();
+ 
+-  __strong SnapshotCache* snapshot_cache_;
++  __strong SnapshotCache* snapshot_cache_ = nullptr;
+ 
+   Browser* browser_ = nullptr;
+ };

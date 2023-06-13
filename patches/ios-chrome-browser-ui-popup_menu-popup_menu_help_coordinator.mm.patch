@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_help_coordinator.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_help_coordinator.mm
+index d3b9c982723d08b0dcb6b563f5a0030dc95f266c..34032695a5d159520ce9c221713e14dd27a8b08e 100644
+--- a/ios/chrome/browser/ui/popup_menu/popup_menu_help_coordinator.mm
++++ b/ios/chrome/browser/ui/popup_menu/popup_menu_help_coordinator.mm
+@@ -92,6 +92,8 @@ constexpr base::TimeDelta kMenuTipDelay = base::Seconds(1);
+       LayoutGuideCenterForBrowser(self.browser);
+   self.layoutGuide = [layoutGuideCenter makeLayoutGuideNamed:kToolsMenuGuide];
+   [self.baseViewController.view addLayoutGuide:self.layoutGuide];
++  //UILayoutGuide* misesLayoutGuide = [layoutGuideCenter makeLayoutGuideNamed:kMisesButtonGuide];
++  //[self.baseViewController.view addLayoutGuide:misesLayoutGuide];
+ }
+ 
+ - (void)stop {

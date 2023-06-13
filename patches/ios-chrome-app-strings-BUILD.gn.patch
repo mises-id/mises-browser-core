@@ -1,0 +1,9 @@
+diff --git a/ios/chrome/app/strings/BUILD.gn b/ios/chrome/app/strings/BUILD.gn
+index 8b21802429d22fdf36f5d60c2afe38d6c8d8c07d..f72aa8a764beb2480046ecc8d681853dc9348c43 100644
+--- a/ios/chrome/app/strings/BUILD.gn
++++ b/ios/chrome/app/strings/BUILD.gn
+@@ -39,3 +39,4 @@ grit("ios_google_chrome_strings") {
+     outputs += [ "ios_google_chrome_strings_$locale.pak" ]
+   }
+ }
++

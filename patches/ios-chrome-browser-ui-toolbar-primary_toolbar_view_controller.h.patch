@@ -1,0 +1,21 @@
+diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.h b/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.h
+index 054e2c78e6aef250a0dbb2be4892d8a53897c134..a03f58e803ee9a991e09085b406e15bfa6bf6540 100644
+--- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.h
++++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.h
+@@ -11,6 +11,7 @@
+ #import "ios/chrome/browser/ui/orchestrator/toolbar_animatee.h"
+ #import "ios/chrome/browser/ui/sharing/sharing_positioner.h"
+ #import "ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.h"
++#import "mises/ios/browser/ui/toolbar/mises_toolbar_delegate.h"
+ 
+ @protocol PrimaryToolbarViewControllerDelegate;
+ @class ViewRevealingVerticalPanHandler;
+@@ -22,7 +23,7 @@
+                                      FullscreenUIElement,
+                                      KeyCommandActions,
+                                      ToolbarAnimatee,
+-                                     ViewRevealingAnimatee>
++                                     ViewRevealingAnimatee, MisesToolbarDelegate>
+ 
+ @property(nonatomic, weak) id<PrimaryToolbarViewControllerDelegate> delegate;
+ 

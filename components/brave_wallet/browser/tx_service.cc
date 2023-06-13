@@ -29,6 +29,17 @@ mojom::CoinType GetCoinTypeFromTxDataUnion(
   return mojom::CoinType::ETH;
 }
 
+size_t CalculatePendingTxCount(
+    const std::vector<mojom::TransactionInfoPtr>& result) {
+  size_t counter = 0u;
+  for (const auto& tx : result) {
+    if (tx->tx_status == mojom::TransactionStatus::Unapproved) {
+      counter++;
+    }
+  }
+  return counter;
+}
+
 }  // namespace
 
 TxService::TxService(JsonRpcService* json_rpc_service,
@@ -37,10 +48,10 @@ TxService::TxService(JsonRpcService* json_rpc_service,
     : prefs_(prefs), weak_factory_(this) {
   tx_manager_map_[mojom::CoinType::ETH] = std::unique_ptr<TxManager>(
       new EthTxManager(this, json_rpc_service, keyring_service, prefs));
-  // tx_manager_map_[mojom::CoinType::SOL] = std::unique_ptr<TxManager>(
-  //     new SolanaTxManager(this, json_rpc_service, keyring_service, prefs));
-  // tx_manager_map_[mojom::CoinType::FIL] = std::unique_ptr<TxManager>(
-  //     new FilTxManager(this, json_rpc_service, keyring_service, prefs));
+  tx_manager_map_[mojom::CoinType::SOL] = std::unique_ptr<TxManager>(
+      new SolanaTxManager(this, json_rpc_service, keyring_service, prefs));
+  tx_manager_map_[mojom::CoinType::FIL] = std::unique_ptr<TxManager>(
+      new FilTxManager(this, json_rpc_service, keyring_service, prefs));
 }
 
 TxService::~TxService() = default;
@@ -55,7 +66,6 @@ EthTxManager* TxService::GetEthTxManager() {
   return static_cast<EthTxManager*>(GetTxManager(mojom::CoinType::ETH));
 }
 
-/*
 SolanaTxManager* TxService::GetSolanaTxManager() {
   return static_cast<SolanaTxManager*>(GetTxManager(mojom::CoinType::SOL));
 }
@@ -63,7 +73,6 @@ SolanaTxManager* TxService::GetSolanaTxManager() {
 FilTxManager* TxService::GetFilTxManager() {
   return static_cast<FilTxManager*>(GetTxManager(mojom::CoinType::FIL));
 }
-*/
 
 mojo::PendingRemote<mojom::TxService> TxService::MakeRemote() {
   mojo::PendingRemote<mojom::TxService> remote;
@@ -87,7 +96,6 @@ void TxService::BindEthTxManagerProxy(
   eth_tx_manager_receivers_.Add(this, std::move(receiver));
 }
 
-/*
 mojo::PendingRemote<mojom::SolanaTxManagerProxy>
 TxService::MakeSolanaTxManagerProxyRemote() {
   mojo::PendingRemote<mojom::SolanaTxManagerProxy> remote;
@@ -112,7 +120,7 @@ void TxService::BindFilTxManagerProxy(
     mojo::PendingReceiver<mojom::FilTxManagerProxy> receiver) {
   fil_tx_manager_receivers_.Add(this, std::move(receiver));
 }
-*/
+
 void TxService::AddUnapprovedTransaction(
     mojom::TxDataUnionPtr tx_data_union,
     const std::string& from,
@@ -147,6 +155,51 @@ void TxService::GetAllTransactionInfo(mojom::CoinType coin_type,
                                       const std::string& from,
                                       GetAllTransactionInfoCallback callback) {
   GetTxManager(coin_type)->GetAllTransactionInfo(from, std::move(callback));
+}
+
+void TxService::GetAllTransactionInfo(mojom::CoinType coin_type,
+                                      GetAllTransactionInfoCallback callback) {
+  GetTxManager(coin_type)->GetAllTransactionInfo(absl::nullopt,
+                                                 std::move(callback));
+}
+
+void TxService::GetPendingTransactionsCount(
+    GetPendingTransactionsCountCallback callback) {
+  if (tx_manager_map_.empty()) {
+    std::move(callback).Run(0u);
+    return;
+  }
+
+  auto it = tx_manager_map_.begin();
+
+  GetAllTransactionInfo(
+      it->first, base::BindOnce(&TxService::OnGetAllTransactionInfo,
+                                weak_factory_.GetWeakPtr(), std::move(callback),
+                                0u, it->first));
+}
+
+void TxService::OnGetAllTransactionInfo(
+    GetPendingTransactionsCountCallback callback,
+    size_t counter,
+    mojom::CoinType coin,
+    std::vector<mojom::TransactionInfoPtr> result) {
+  absl::optional<mojom::CoinType> next_coin_to_check;
+  counter += CalculatePendingTxCount(result);
+
+  auto it = ++tx_manager_map_.find(coin);
+  if (it != tx_manager_map_.end()) {
+    next_coin_to_check = (it)->first;
+  } else {
+    std::move(callback).Run(counter);
+    return;
+  }
+
+  DCHECK(next_coin_to_check);
+  GetAllTransactionInfo(
+      *next_coin_to_check,
+      base::BindOnce(&TxService::OnGetAllTransactionInfo,
+                     weak_factory_.GetWeakPtr(), std::move(callback), counter,
+                     *next_coin_to_check));
 }
 
 void TxService::SpeedupOrCancelTransaction(
@@ -196,6 +249,8 @@ void TxService::Reset() {
   ClearTxServiceProfilePrefs(prefs_);
   for (auto const& service : tx_manager_map_)
     service.second->Reset();
+  for (const auto& observer : observers_)
+    observer->OnTxServiceReset();
 }
 
 void TxService::MakeERC20TransferData(const std::string& to_address,
@@ -289,7 +344,7 @@ void TxService::ProcessHardwareSignature(
 void TxService::GetGasEstimation1559(GetGasEstimation1559Callback callback) {
   GetEthTxManager()->GetGasEstimation1559(std::move(callback));
 }
-/*
+
 void TxService::MakeSystemProgramTransferTxData(
     const std::string& from,
     const std::string& to,
@@ -340,6 +395,5 @@ void TxService::ProcessFilHardwareSignature(
   GetFilTxManager()->ProcessFilHardwareSignature(tx_meta_id, signed_message,
                                                  std::move(callback));
 }
-*/
 
 }  // namespace brave_wallet

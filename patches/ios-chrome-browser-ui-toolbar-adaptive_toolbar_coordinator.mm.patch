@@ -1,0 +1,14 @@
+diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.mm b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.mm
+index 46aca5db0adefb9b994e96c608efba6ec6d8ecaf..c3fc06b93e7fc0d8fd4bd89c7376f40ef55ba63c 100644
+--- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.mm
++++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.mm
+@@ -197,4 +197,9 @@
+   [self.viewController resetAfterSideSwipeSnapshot];
+ }
+ 
++- (void) activate {
++
++}
++
++
+ @end

@@ -12,13 +12,13 @@
 #include "base/base64.h"
 #include "base/functional/bind.h"
 #include "base/functional/callback.h"
-#include "mises/components/mises_component_updater/browser/brave_on_demand_updater.h"
+#include "mises/components/mises_component_updater/browser/mises_on_demand_updater.h"
 #include "mises/components/ntp_background_images/browser/sponsored_images_component_data.h"
 #include "components/component_updater/component_installer.h"
 #include "components/component_updater/component_updater_service.h"
 #include "crypto/sha2.h"
 
-using mises_component_updater::BraveOnDemandUpdater;
+using mises_component_updater::MisesOnDemandUpdater;
 
 namespace ntp_background_images {
 
@@ -144,7 +144,7 @@ NTPBackgroundImagesComponentInstallerPolicy::GetInstallerAttributes() const {
 }
 
 void OnRegistered(const std::string& component_id) {
-  BraveOnDemandUpdater::GetInstance()->OnDemandUpdate(component_id);
+  MisesOnDemandUpdater::GetInstance()->OnDemandUpdate(component_id);
 }
 
 }  // namespace

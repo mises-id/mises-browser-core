@@ -1,0 +1,21 @@
+diff --git a/third_party/blink/renderer/core/css/style_engine.h b/third_party/blink/renderer/core/css/style_engine.h
+index 2b3eaed7340ab59167d10701b88d2c2dbc32044a..09bff9bc6666f78f45d9523003faf3b2dc9f3d70 100644
+--- a/third_party/blink/renderer/core/css/style_engine.h
++++ b/third_party/blink/renderer/core/css/style_engine.h
+@@ -64,6 +64,7 @@
+ #include "third_party/blink/renderer/platform/wtf/allocator/allocator.h"
+ #include "third_party/blink/renderer/platform/wtf/text/wtf_string.h"
+ #include "third_party/blink/renderer/platform/wtf/vector.h"
++#include "third_party/blink/renderer/platform/theme/web_theme_engine_helper.h"
+ 
+ namespace WTF {
+ class TextPosition;
+@@ -622,7 +623,7 @@ class CORE_EXPORT StyleEngine final : public GarbageCollected<StyleEngine>,
+   mojom::PreferredColorScheme GetPreferredColorScheme() const {
+     return preferred_color_scheme_;
+   }
+-  bool GetForceDarkModeEnabled() const { return force_dark_mode_enabled_; }
++  bool GetForceDarkModeEnabled() const { return force_dark_mode_enabled_ || WebThemeEngineHelper::GlobalForceDarkModeEnabled(); }
+   ForcedColors GetForcedColors() const { return forced_colors_; }
+   void UpdateColorSchemeBackground(bool color_scheme_changed = false);
+   Color ForcedBackgroundColor() const { return forced_background_color_; }

@@ -6,6 +6,7 @@
 #ifndef BRAVE_COMPONENTS_DECENTRALIZED_DNS_CORE_UTILS_H_
 #define BRAVE_COMPONENTS_DECENTRALIZED_DNS_CORE_UTILS_H_
 
+#include "base/strings/string_piece.h"
 #include "mises/components/decentralized_dns/core/constants.h"
 
 class GURL;
@@ -17,19 +18,30 @@ namespace decentralized_dns {
 void RegisterLocalStatePrefs(PrefRegistrySimple* registry);
 void MigrateObsoleteLocalStatePrefs(PrefService* local_state);
 
-bool IsUnstoppableDomainsTLD(const GURL& url);
+bool IsUnstoppableDomainsTLD(const base::StringPiece& host);
+void SetUnstoppableDomainsResolveMethod(PrefService* local_state,
+                                        ResolveMethodTypes method);
+ResolveMethodTypes GetUnstoppableDomainsResolveMethod(PrefService* local_state);
 bool IsUnstoppableDomainsResolveMethodAsk(PrefService* local_state);
-bool IsUnstoppableDomainsResolveMethodEthereum(PrefService* local_state);
+bool IsUnstoppableDomainsResolveMethodEnabled(PrefService* local_state);
 
-bool IsBitTLD(const GURL& url);
+bool IsBitTLD(const base::StringPiece& host);
 
-bool IsENSTLD(const GURL& url);
+bool IsENSTLD(const base::StringPiece& host);
+void SetENSResolveMethod(PrefService* local_state, ResolveMethodTypes method);
+ResolveMethodTypes GetENSResolveMethod(PrefService* local_state);
 bool IsENSResolveMethodAsk(PrefService* local_state);
-bool IsENSResolveMethodEthereum(PrefService* local_state);
+bool IsENSResolveMethodEnabled(PrefService* local_state);
 
 void SetEnsOffchainResolveMethod(PrefService* local_state,
                                  EnsOffchainResolveMethod method);
 EnsOffchainResolveMethod GetEnsOffchainResolveMethod(PrefService* local_state);
+
+bool IsSnsTLD(const base::StringPiece& host);
+void SetSnsResolveMethod(PrefService* local_state, ResolveMethodTypes method);
+ResolveMethodTypes GetSnsResolveMethod(PrefService* local_state);
+bool IsSnsResolveMethodAsk(PrefService* local_state);
+bool IsSnsResolveMethodEnabled(PrefService* local_state);
 
 }  // namespace decentralized_dns
 

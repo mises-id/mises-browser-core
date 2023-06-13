@@ -1,0 +1,67 @@
+name: CI
+on:
+  push:
+    branches:
+      - staging
+      - trying
+
+jobs:
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust: [
+          1.31.0, # 2018!
+          1.34.0, # has_try_from
+          1.36.0, # alloc, rand
+          1.40.0, # arbitrary
+          1.46.0, # quickcheck
+          stable,
+          beta,
+          nightly
+        ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
+      - run: cargo build
+      - run: ./ci/test_full.sh
+
+  # try a target with `BigDigit = u32`
+  i686:
+    name: Test (i686)
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          sudo apt-get update
+          sudo apt-get install gcc-multilib
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable-i686-unknown-linux-gnu
+      - run: cargo build
+      - run: ./ci/test_full.sh
+
+  # try a target that doesn't have std at all, but does have alloc
+  no_std:
+    name: No Std
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          target: thumbv6m-none-eabi
+      - run: cargo build --target thumbv6m-none-eabi --no-default-features --features "serde rand"
+
+  fmt:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@1.62.0
+        with:
+          components: rustfmt
+      - run: cargo fmt --all --check

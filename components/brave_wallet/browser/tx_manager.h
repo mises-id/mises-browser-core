@@ -8,6 +8,7 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 #include "mises/components/brave_wallet/browser/tx_state_manager.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
@@ -60,7 +61,7 @@ class TxManager : public TxStateManager::Observer,
                                  RejectTransactionCallback);
   virtual void GetTransactionInfo(const std::string& tx_meta_id,
                                   GetTransactionInfoCallback);
-  virtual void GetAllTransactionInfo(const std::string& from,
+  virtual void GetAllTransactionInfo(const absl::optional<std::string>& from,
                                      GetAllTransactionInfoCallback);
 
   virtual void SpeedupOrCancelTransaction(
@@ -101,6 +102,8 @@ class TxManager : public TxStateManager::Observer,
   void Unlocked() override;
   void BackedUp() override {}
   void AccountsChanged() override {}
+  void AccountsAdded(mojom::CoinType coin,
+                     const std::vector<std::string>& addresses) override {}
   void AutoLockMinutesChanged() override {}
   void SelectedAccountChanged(mojom::CoinType coin) override {}
 

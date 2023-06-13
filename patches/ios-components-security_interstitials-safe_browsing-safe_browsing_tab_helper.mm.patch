@@ -1,0 +1,13 @@
+diff --git a/ios/components/security_interstitials/safe_browsing/safe_browsing_tab_helper.mm b/ios/components/security_interstitials/safe_browsing/safe_browsing_tab_helper.mm
+index 38c881756cfc562dd69d4c0de40b82648017423e..3ac3f8c1cfbe8efe0c1e36d68de2b4a4d8dac240 100644
+--- a/ios/components/security_interstitials/safe_browsing/safe_browsing_tab_helper.mm
++++ b/ios/components/security_interstitials/safe_browsing/safe_browsing_tab_helper.mm
+@@ -155,7 +155,7 @@ void SafeBrowsingTabHelper::PolicyDecider::ShouldAllowRequest(
+   GURL request_url = GetCanonicalizedUrl(net::GURLWithNSURL(request.URL));
+   SafeBrowsingService* safe_browsing_service =
+       client_->GetSafeBrowsingService();
+-  if (!safe_browsing_service->CanCheckUrl(request_url)) {
++  if (safe_browsing_service && !safe_browsing_service->CanCheckUrl(request_url)) {
+     return std::move(callback).Run(
+         web::WebStatePolicyDecider::PolicyDecision::Allow());
+   }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+This file contains definition of resources that will be translated for each
+locale.  The strings in this file are specific to iOS.
+-->
+
+<grit base_dir="." latest_public_release="0" current_release="1"
+      output_all_resource_defines="false" source_lang_id="en" enc_check="möl">
+  <outputs>
+    <output filename="grit/ios_mises_strings.h" type="rc_header">
+      <emit emit_type="prepend"></emit>
+    </output>
+   
+  </outputs>
+  <translations>
+   
+  </translations>
+  <release seq="1">
+    <messages fallback_to_english="true">
+      <message name="IDS_IOS_OPTIONS_MISES" desc="Title for the option on Settings page to open mises. [Length: 20em] [iOS only]">
+        MetaMask
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_CREATE_RESTORE" desc="Title for the option create or restore mises account. [Length: 20em] [iOS only]">
+        Create/Restore
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_MY_DATA" desc="Title for the option open mises account. [Length: 20em] [iOS only]">
+        My Data
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_DISCOVER" desc="Title for the option open mises discover. [Length: 20em] [iOS only]">
+        Mises Discover
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_WALLET" desc="Title for the option open mises wallet. [Length: 20em] [iOS only]">
+        Wallet
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_STAKING_PORTAL" desc="Title for the option open mises staking portal. [Length: 20em] [iOS only]">
+        Staking Portal
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_NFT" desc="Title for the option open mises nft. [Length: 20em] [iOS only]">
+        NFT
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_INVITE" desc="Title for the option open mises invite. [Length: 20em] [iOS only]">
+        Invite
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_VIEW_OFFICIAL_WEBSITE" desc="Title for the option open mises official web site. [Length: 20em] [iOS only]">
+        View Official Website
+       </message>
+
+      <message name="IDS_IOS_MISES_SHARE_ACCESSIBILITY_LABEL" desc="Text read by voice over to mises share. [Read by Text To Speech]">
+       Mises Share
+      </message>
+      <message name="IDS_IOS_MISES_SHARE_LEARN_MORE_MESSAGE" desc="Message explaining what users can do with mises share. [iOS only]">
+        To share with peoples in mises discover
+      </message>
+    </messages>
+  </release>
+</grit>

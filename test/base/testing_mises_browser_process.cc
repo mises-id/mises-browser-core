@@ -9,7 +9,7 @@
 #include "base/check.h"
 //#include "mises/components/brave_shields/browser/ad_block_service.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
-//#include "brave/components/tor/buildflags/buildflags.h"
+//#include "mises/components/tor/buildflags/buildflags.h"
 
 namespace ipfs {
 class MisesIpfsClientUpdater;

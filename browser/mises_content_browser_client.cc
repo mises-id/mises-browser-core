@@ -62,6 +62,7 @@
 #include "third_party/blink/public/mojom/webpreferences/web_preferences.mojom.h"
 #include "third_party/widevine/cdm/buildflags.h"
 #include "ui/base/l10n/l10n_util.h"
+#include "chrome/common/pref_names.h"
 
 using blink::web_pref::WebPreferences;
 using content::BrowserThread;
@@ -236,4 +237,20 @@ void MisesContentBrowserClient::CreateWebSocket(
   } else {
     proxy->Start();
   }
+}
+
+void MisesContentBrowserClient::OverrideWebkitPrefs(
+    content::WebContents* web_contents,
+    blink::web_pref::WebPreferences* web_prefs)  {
+  ChromeContentBrowserClient::OverrideWebkitPrefs(web_contents, web_prefs);
+  Profile* profile =
+      Profile::FromBrowserContext(web_contents->GetBrowserContext());
+  PrefService* prefs = profile->GetPrefs();
+  if (prefs->GetBoolean(prefs::kWebKitForceDarkModeEnabled)) {
+    web_prefs->force_night_mode = 1;
+  } else {
+    web_prefs->force_night_mode = 0;
+  }
+  LOG(INFO) << "MisesContentBrowserClient::OverrideWebkitPrefs " << web_contents << ", force_night_mode=" << web_prefs->force_night_mode;
+                       
 }

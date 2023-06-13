@@ -196,6 +196,10 @@
       </if>
       <part file="ipfs_strings.grdp" />
       <part file="wallet_strings.grdp" />
+
+      <if expr="is_ios">
+        <part file="ios_mises_strings.grdp" />
+      </if>
     </messages>
   </release>
 </grit>

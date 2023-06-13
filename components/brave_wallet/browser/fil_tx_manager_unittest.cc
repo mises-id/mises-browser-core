@@ -74,11 +74,12 @@ class FilTxManagerUnitTest : public testing::Test {
     feature_list_.InitAndEnableFeature(
         brave_wallet::features::kBraveWalletFilecoinFeature);
 
+    brave_wallet::RegisterLocalStatePrefs(local_state_.registry());
     brave_wallet::RegisterProfilePrefs(prefs_.registry());
     json_rpc_service_ =
         std::make_unique<JsonRpcService>(shared_url_loader_factory_, &prefs_);
-    keyring_service_ =
-        std::make_unique<KeyringService>(json_rpc_service_.get(), &prefs_);
+    keyring_service_ = std::make_unique<KeyringService>(json_rpc_service_.get(),
+                                                        &prefs_, &local_state_);
     tx_service_ = std::make_unique<TxService>(json_rpc_service_.get(),
                                               keyring_service_.get(), &prefs_);
 
@@ -234,6 +235,7 @@ class FilTxManagerUnitTest : public testing::Test {
   base::test::ScopedFeatureList feature_list_;
   base::test::TaskEnvironment task_environment_;
   sync_preferences::TestingPrefServiceSyncable prefs_;
+  sync_preferences::TestingPrefServiceSyncable local_state_;
   network::TestURLLoaderFactory url_loader_factory_;
   scoped_refptr<network::SharedURLLoaderFactory> shared_url_loader_factory_;
   std::unique_ptr<JsonRpcService> json_rpc_service_;
@@ -259,6 +261,8 @@ TEST_F(FilTxManagerUnitTest, SubmitTransactions) {
 
   auto tx_meta1 = fil_tx_manager()->GetTxForTesting(meta_id1);
   EXPECT_TRUE(tx_meta1);
+  EXPECT_EQ(tx_meta1->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
 
   EXPECT_EQ(tx_meta1->tx()->gas_fee_cap(), "100820");
   EXPECT_EQ(tx_meta1->tx()->gas_limit(), 598585);
@@ -271,6 +275,8 @@ TEST_F(FilTxManagerUnitTest, SubmitTransactions) {
                            &meta_id2);
   auto tx_meta2 = fil_tx_manager()->GetTxForTesting(meta_id2);
   ASSERT_TRUE(tx_meta2);
+  EXPECT_EQ(tx_meta2->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
   EXPECT_EQ(tx_meta2->from(), from_account);
   EXPECT_EQ(tx_meta2->status(), mojom::TransactionStatus::Unapproved);
 
@@ -378,6 +384,8 @@ TEST_F(FilTxManagerUnitTest, SubmitTransactionConfirmed) {
 
   auto tx_meta1 = fil_tx_manager()->GetTxForTesting(meta_id1);
   EXPECT_TRUE(tx_meta1);
+  EXPECT_EQ(tx_meta1->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
 
   EXPECT_EQ(tx_meta1->tx()->gas_fee_cap(), "100820");
   EXPECT_EQ(tx_meta1->tx()->gas_limit(), 598585);
@@ -434,6 +442,8 @@ TEST_F(FilTxManagerUnitTest, WalletOrigin) {
 
   auto tx_meta = fil_tx_manager()->GetTxForTesting(meta_id);
   ASSERT_TRUE(tx_meta);
+  EXPECT_EQ(tx_meta->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
 
   EXPECT_EQ(tx_meta->origin(), url::Origin::Create(GURL("chrome://wallet")));
 }
@@ -454,6 +464,8 @@ TEST_F(FilTxManagerUnitTest, SomeSiteOrigin) {
   ASSERT_TRUE(tx_meta);
   EXPECT_EQ(tx_meta->origin(),
             url::Origin::Create(GURL("https://some.site.com")));
+  EXPECT_EQ(tx_meta->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
 }
 
 TEST_F(FilTxManagerUnitTest, AddUnapprovedTransactionWithGroupId) {
@@ -471,6 +483,8 @@ TEST_F(FilTxManagerUnitTest, AddUnapprovedTransactionWithGroupId) {
   auto tx_meta = fil_tx_manager()->GetTxForTesting(meta_id);
   ASSERT_TRUE(tx_meta);
   EXPECT_EQ(tx_meta->group_id(), "mockGroupId");
+  EXPECT_EQ(tx_meta->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
 
   // Transaction with empty group_id
   AddUnapprovedTransaction(tx_data.Clone(), from_account, absl::nullopt,
@@ -478,6 +492,8 @@ TEST_F(FilTxManagerUnitTest, AddUnapprovedTransactionWithGroupId) {
   tx_meta = fil_tx_manager()->GetTxForTesting(meta_id);
   ASSERT_TRUE(tx_meta);
   EXPECT_EQ(tx_meta->group_id(), absl::nullopt);
+  EXPECT_EQ(tx_meta->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
 }
 
 TEST_F(FilTxManagerUnitTest, GetTransactionMessageToSign) {
@@ -493,6 +509,8 @@ TEST_F(FilTxManagerUnitTest, GetTransactionMessageToSign) {
                              &meta_id);
     auto tx_meta = fil_tx_manager()->GetTxForTesting(meta_id);
     ASSERT_TRUE(tx_meta);
+    EXPECT_EQ(tx_meta->chain_id(),
+              GetCurrentChainId(prefs(), mojom::CoinType::FIL));
     EXPECT_EQ(tx_meta->from(), from_account);
     EXPECT_EQ(tx_meta->status(), mojom::TransactionStatus::Unapproved);
     GetTransactionMessageToSign(meta_id, R"(
@@ -524,6 +542,8 @@ TEST_F(FilTxManagerUnitTest, GetTransactionMessageToSign) {
                              &meta_id);
     auto tx_meta = fil_tx_manager()->GetTxForTesting(meta_id);
     ASSERT_TRUE(tx_meta);
+    EXPECT_EQ(tx_meta->chain_id(),
+              GetCurrentChainId(prefs(), mojom::CoinType::FIL));
     EXPECT_EQ(tx_meta->from(), from_account);
     EXPECT_EQ(tx_meta->status(), mojom::TransactionStatus::Unapproved);
     GetTransactionMessageToSign(meta_id, R"(
@@ -558,6 +578,8 @@ TEST_F(FilTxManagerUnitTest, ProcessHardwareSignature) {
                            &meta_id);
   auto tx_meta = fil_tx_manager()->GetTxForTesting(meta_id);
   ASSERT_TRUE(tx_meta);
+  EXPECT_EQ(tx_meta->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
   EXPECT_EQ(tx_meta->from(), from_account);
   EXPECT_EQ(tx_meta->status(), mojom::TransactionStatus::Unapproved);
   auto signed_message =
@@ -622,6 +644,8 @@ TEST_F(FilTxManagerUnitTest, ProcessHardwareSignatureError) {
                            &meta_id);
   auto tx_meta = fil_tx_manager()->GetTxForTesting(meta_id);
   ASSERT_TRUE(tx_meta);
+  EXPECT_EQ(tx_meta->chain_id(),
+            GetCurrentChainId(prefs(), mojom::CoinType::FIL));
   EXPECT_EQ(tx_meta->from(), from_account);
   EXPECT_EQ(tx_meta->status(), mojom::TransactionStatus::Unapproved);
   auto signed_message =

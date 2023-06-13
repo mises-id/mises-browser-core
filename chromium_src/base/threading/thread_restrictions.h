@@ -10,10 +10,14 @@ class MisesBrowsingDataRemoverDelegate;
 namespace ipfs {
 class IpfsService;
 }
+namespace mises {
+class ProcessLauncher;
+}
 
 #define MISES_SCOPED_ALLOW_BASE_SYNC_PRIMITIVES_H  \
   friend class ::MisesBrowsingDataRemoverDelegate; \
-  friend class ipfs::IpfsService;
+  friend class ipfs::IpfsService;                  \
+  friend class mises::ProcessLauncher;
 
 #include "src/base/threading/thread_restrictions.h"
 #undef MISES_SCOPED_ALLOW_BASE_SYNC_PRIMITIVES_H

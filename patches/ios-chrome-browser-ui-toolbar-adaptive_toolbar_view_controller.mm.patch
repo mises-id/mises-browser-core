@@ -1,0 +1,77 @@
+diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
+index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d39e97c883 100644
+--- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
++++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
+@@ -115,7 +115,8 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+   self.view.openNewTabButton.guideName = kNewTabButtonGuide;
+   self.view.forwardButton.guideName = kForwardButtonGuide;
+   self.view.backButton.guideName = kBackButtonGuide;
+-
++  self.view.misesButton.guideName = kMisesButtonGuide;
++    
+   [self addLayoutGuideCenterToButtons];
+ 
+   // Add navigation popup menu triggers.
+@@ -298,6 +299,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+     case PopupMenuTypeTabStripTabGrid:
+       // ignore
+       break;
++     case PopupMenuTypeMisesMenu:
++        selectedButton = self.view.misesButton;
++        break;
+   }
+ 
+   selectedButton.spotlighted = YES;
+@@ -313,6 +317,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+   self.view.openNewTabButton.spotlighted = NO;
+   self.view.tabGridButton.spotlighted = NO;
+   self.view.toolsMenuButton.spotlighted = NO;
++  self.view.misesButton.spotlighted = NO;
+ 
+   for (ToolbarButton* button in self.view.allButtons) {
+     button.dimmed = NO;
+@@ -340,6 +345,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+     case PopupMenuTypeTabStripTabGrid:
+       // ignore
+       break;
++        case PopupMenuTypeMisesMenu:
++          selectedButton = self.view.misesButton;
++        break;
+   }
+ 
+   selectedButton.iphHighlighted = YES;
+@@ -351,6 +359,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+   self.view.openNewTabButton.iphHighlighted = NO;
+   self.view.tabGridButton.iphHighlighted = NO;
+   self.view.toolsMenuButton.iphHighlighted = NO;
++  self.view.misesButton.iphHighlighted = NO;
+ }
+ 
+ #pragma mark - Private
+@@ -419,6 +428,8 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+   } else if (sender == self.view.openNewTabButton) {
+     base::RecordAction(base::UserMetricsAction("MobileToolbarNewTabShortcut"));
+     base::RecordAction(base::UserMetricsAction("MobileTabNewTab"));
++  } else if (sender == self.view.misesButton) {
++    base::RecordAction(base::UserMetricsAction("MobileToolbarMises"));
+   } else {
+     NOTREACHED();
+   }
+@@ -448,6 +459,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+     } else if (gesture.view == self.view.toolsMenuButton) {
+       base::RecordAction(base::UserMetricsAction("MobileToolbarShowMenu"));
+       [self.popupMenuCommandsHandler showToolsMenuPopup];
++    }else if (gesture.view == self.view.misesButton) {
++      base::RecordAction(base::UserMetricsAction("MobileMisesShowMenu"));
++      [self.popupMenuCommandsHandler showMisesMenuPopup];
+     }
+     TriggerHapticFeedbackForImpact(UIImpactFeedbackStyleHeavy);
+   } else if (gesture.state == UIGestureRecognizerStateEnded) {
+@@ -502,6 +516,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+   self.view.openNewTabButton.layoutGuideCenter = self.layoutGuideCenter;
+   self.view.forwardButton.layoutGuideCenter = self.layoutGuideCenter;
+   self.view.backButton.layoutGuideCenter = self.layoutGuideCenter;
++  self.view.misesButton.layoutGuideCenter = self.layoutGuideCenter;
+ }
+ 
+ @end

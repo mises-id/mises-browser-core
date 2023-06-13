@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.h b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.h
+index 3e1decb0af2151f7a363ec079e849cacb28b4261..8654785ebd84518aa5ffbd3ae5f578d925e91b6b 100644
+--- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.h
++++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.h
+@@ -82,6 +82,8 @@
+ // Removes `fakeOmniboxTarget` from the view hierarchy.
+ - (void)removeFakeOmniboxTarget;
+ 
++- (void)updateMisesAvatar:(UIImage*)image;
++
+ @end
+ 
+ #endif  // IOS_CHROME_BROWSER_UI_TOOLBAR_PRIMARY_TOOLBAR_VIEW_H_

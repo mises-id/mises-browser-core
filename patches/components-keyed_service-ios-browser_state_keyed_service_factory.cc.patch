@@ -1,0 +1,29 @@
+diff --git a/components/keyed_service/ios/browser_state_keyed_service_factory.cc b/components/keyed_service/ios/browser_state_keyed_service_factory.cc
+index 8b06e8418d76253231f7dc44262701de3ae620af..df203f1d64207ebb2a89cdb9d7f437cc33de65a9 100644
+--- a/components/keyed_service/ios/browser_state_keyed_service_factory.cc
++++ b/components/keyed_service/ios/browser_state_keyed_service_factory.cc
+@@ -9,6 +9,7 @@
+ #include "components/keyed_service/core/keyed_service.h"
+ #include "components/keyed_service/ios/browser_state_dependency_manager.h"
+ #include "ios/web/public/browser_state.h"
++#include "base/logging.h"
+ 
+ void BrowserStateKeyedServiceFactory::SetTestingFactory(
+     web::BrowserState* context,
+@@ -27,7 +28,7 @@ void BrowserStateKeyedServiceFactory::SetTestingFactory(
+ BrowserStateKeyedServiceFactory::BrowserStateKeyedServiceFactory(
+     const char* name,
+     BrowserStateDependencyManager* manager)
+-    : KeyedServiceFactory(name, manager, BROWSER_STATE) {}
++    : KeyedServiceFactory(name, manager, BROWSER_STATE) { LOG(INFO) << "BrowserStateKeyedServiceFactory " << name;}
+ 
+ BrowserStateKeyedServiceFactory::~BrowserStateKeyedServiceFactory() {
+ }
+@@ -94,6 +95,7 @@ void BrowserStateKeyedServiceFactory::ContextDestroyed(void* context) {
+ 
+ void BrowserStateKeyedServiceFactory::RegisterPrefs(
+     user_prefs::PrefRegistrySyncable* registry) {
++  LOG(INFO) << "BrowserStateKeyedServiceFactory::RegisterPrefs " << name();
+   RegisterBrowserStatePrefs(registry);
+ }
+ 

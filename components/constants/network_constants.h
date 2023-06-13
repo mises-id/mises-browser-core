@@ -8,8 +8,8 @@
 
 extern const char kExtensionUpdaterDomain[];
 
-extern const char kBraveProxyPattern[];
-extern const char kBraveSoftwareProxyPattern[];
+extern const char kMisesProxyPattern[];
+extern const char kMisesSoftwareProxyPattern[];
 
 extern const char kBraveUsageStandardPath[];
 extern const char kBraveUsageThresholdPath[];
@@ -41,8 +41,8 @@ extern const char kWidevineGvt1Prefix[];
 extern const char kWidevineGoogleDlPrefix[];
 
 extern const char kUserAgentHeader[];
-extern const char kBravePartnerHeader[];
-extern const char kBraveServicesKeyHeader[];
+extern const char kMisesPartnerHeader[];
+extern const char kMisesServicesKeyHeader[];
 
 extern const char kBittorrentMimeType[];
 extern const char kOctetStreamMimeType[];

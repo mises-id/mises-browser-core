@@ -1,0 +1,270 @@
+import("//build/config/ios/ios_sdk.gni")
+
+declare_args() {
+  env_prefix = "Device"
+}
+
+
+if (target_environment == "simulator") {
+    env_prefix = "Sim"
+}
+if (!is_debug) {
+  env_prefix = "Distribution"
+}
+
+config("config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "//mises/ios/third_party/mises/forwarding_headers" ]
+  cflags = [
+    "-Wno-deprecated",
+    "-Wno-deprecated-declarations",
+    "-Wno-semicolon-before-method-body",
+  ]
+  framework_dir = rebase_path("//mises/ios/third_party/mises/$env_prefix/Frameworks")
+  ldflags = [ 
+    "-force_load", "$framework_dir/FBLPromises.framework/FBLPromises",
+    "-force_load", "$framework_dir/GoogleUtilities.framework/GoogleUtilities",
+  ]
+}
+source_set("mises") {
+  # From gn documentation:
+  #   https://chromium.googlesource.com/chromium/src/+/master/tools/gn/docs/reference.md#ldflags
+  # "ldflags are NOT pushed to dependents, so applying ldflags to source sets
+  # or static libraries will be a no-op. If you want to apply ldflags to
+  # dependent targets, put them in a config and set it in the
+  # all_dependent_configs or public_configs."
+  #
+  # This source_set must be specified as a direct deps of an ios_app_bundle
+  # target for ldflags specified in :mises_config to be applied.
+  
+  sources = [
+    "mises_web_client.mm",
+    "mises_java_script_feature.mm",
+    "mises_utils.mm",
+    "mises_lcd_service.mm",
+    "mises_share_service.mm",
+    "mises_account_service.mm",
+    "RCTAnalytics.mm",
+  ]
+  public_configs = [
+    ":config",
+    ":mises_config",
+      
+   "//build/config/compiler:enable_arc",
+   "//build/config/compiler:enable_legacy_dispatch",
+  ]
+   
+  remove_configs = [
+    "//build/config/compiler:no_exceptions",
+  ]
+
+
+  configs += public_configs
+  configs -= remove_configs
+  deps = [
+    ":mises_bundle_data",
+    ":mises_frameworks",
+    ":mises_fonts",
+    "//build/config:executable_deps",
+    "//ui/base",
+    "//ios/web",
+    "//ios/web/common",
+    "//ios/web/common:user_agent",
+    "//ios/web/public",
+    "//ios/web/js_messaging",
+    "//ios/web/public/js_messaging",
+    "//ios/chrome/browser/ui/commands",
+    "//base/third_party/double_conversion",
+  ]
+}
+bundle_data("mises_bundle_data") {
+  visibility = [ ":mises" ]
+  sources = [
+    "$env_prefix/Bundles/AccessibilityResources.bundle",
+    "Bundles/branch.json",
+    "Bundles/InpageBridgeWeb3.js",
+    "Bundles/main.jsbundle",
+    "Bundles/GoogleService-Info.plist",
+    "Bundles/assets",
+ ]
+  outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
+}
+
+  action_foreach("sign_mises_frameworks") {
+    script = "//build/config/ios/codesign.py"
+    sources = [ 
+      "$env_prefix/Frameworks/Branch.framework",
+      "$env_prefix/Frameworks/Mixpanel.framework",
+      "$env_prefix/Frameworks/OpenSSL.framework",
+    ]
+    outputs = [ 
+      "$root_out_dir/{{source_file_part}}",
+     ]
+    args = [
+      "code-sign-file",
+      "--identity=" + ios_code_signing_identity,
+      "--output=" + rebase_path("$root_out_dir/{{source_file_part}}"),
+      "{{source}}",
+    ]
+  }
+  
+
+bundle_data("mises_frameworks") {
+  visibility = [ ":mises" ]
+  sources = get_target_outputs(":sign_mises_frameworks")
+  outputs = [ "{{bundle_resources_dir}}/Frameworks/{{source_file_part}}" ]
+  public_deps = [ ":sign_mises_frameworks" ]
+}
+
+bundle_data("mises_fonts") {
+  visibility = [ ":mises" ]
+  sources = [
+        "Fonts/Entypo.ttf",
+        "Fonts/AntDesign.ttf",
+        "Fonts/EvilIcons.ttf",
+        "Fonts/Feather.ttf",
+        "Fonts/FontAwesome.ttf",
+        "Fonts/Foundation.ttf",
+        "Fonts/Ionicons.ttf",
+        "Fonts/MaterialCommunityIcons.ttf",
+        "Fonts/MaterialIcons.ttf",
+        "Fonts/Octicons.ttf",
+        "Fonts/SimpleLineIcons.ttf",
+        "Fonts/Zocial.ttf",
+        "Fonts/Metamask.ttf",
+        "Fonts/Roboto-Black.ttf",
+        "Fonts/Roboto-BlackItalic.ttf",
+        "Fonts/Roboto-Bold.ttf",
+        "Fonts/Roboto-BoldItalic.ttf",
+        "Fonts/Roboto-Italic.ttf",
+        "Fonts/Roboto-Light.ttf",
+        "Fonts/Roboto-LightItalic.ttf",
+        "Fonts/Roboto-Medium.ttf",
+        "Fonts/Roboto-MediumItalic.ttf",
+        "Fonts/Roboto-Regular.ttf",
+        "Fonts/Roboto-Thin.ttf",
+        "Fonts/Roboto-ThinItalic.ttf",
+        "Fonts/FontAwesome5_Brands.ttf",
+        "Fonts/FontAwesome5_Regular.ttf",
+        "Fonts/FontAwesome5_Solid.ttf",
+        "Fonts/EuclidCircularB-Bold.otf",
+        "Fonts/EuclidCircularB-BoldItalic.otf",
+        "Fonts/EuclidCircularB-Light.otf",
+        "Fonts/EuclidCircularB-LightItalic.otf",
+        "Fonts/EuclidCircularB-Medium.otf",
+        "Fonts/EuclidCircularB-MediumItalic.otf",
+        "Fonts/EuclidCircularB-Regular.otf",
+        "Fonts/EuclidCircularB-RegularItalic.otf",
+        "Fonts/EuclidCircularB-Semibold.otf",
+        "Fonts/EuclidCircularB-SemiboldItalic.otf",
+
+ ]
+  outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
+}
+
+config("mises_config") {
+  visibility = [ ":mises" ]
+  framework_dirs = [ "//mises/ios/third_party/mises/$env_prefix/Frameworks" ]
+  frameworks = [
+    #"Branch.framework",
+    "FirebaseDynamicLinks.framework",
+    "FirebaseCore.framework",
+    "FirebaseCoreInternal.framework",
+    "FirebaseAnalytics.framework",
+    "FirebaseInstallations.framework",
+    "FirebaseCrashlytics.framework",
+    "GoogleDataTransport.framework",
+    "nanopb.framework",
+    "Sdk.framework",
+    "Mixpanel.framework",
+    "OpenSSL.framework",
+    "JavaScriptCore.framework",
+    "LinkPresentation.framework",
+  ]
+
+  lib_dirs = [
+    "//mises/ios/third_party/mises/$env_prefix/Libs"
+  ]  
+  libs = [
+    "BVLinearGradient",
+    "Branch",
+    "CocoaAsyncSocket",
+    "FBReactNativeSpec",
+    "Flipper-Boost-iOSX",
+    "Flipper-Fmt",
+    "Flipper-Folly",
+    "Flipper-Glog",
+    "Flipper-PeerTalk",
+    "Flipper-RSocket",
+    "Flipper",
+    "FlipperKit",
+    "RCT-Folly",
+    "RCTAesForked",
+    "RCTSearchApi",
+    "RCTTypeSafety",
+    "RNCAsyncStorage",
+    "RNCCheckbox",
+    "RNCClipboard",
+    "RNCMaskedView",
+    "RNCPicker",
+    "RNDefaultPreference",
+    "RNDeviceInfo",
+    "RNFS",
+    "RNGestureHandler",
+    "RNI18n",
+    "RNKeychain",
+    "RNOS",
+    "RNReanimated",
+    "RNSVG",
+    "RNScreens",
+    "RNSensors",
+    "RNSentry",
+    "RNShare",
+    "RNVectorIcons",
+    "React-Core",
+    "React-CoreModules",
+    "React-RCTAnimation",
+    "React-RCTBlob",
+    "React-RCTImage",
+    "React-RCTLinking",
+    "React-RCTNetwork",
+    "React-RCTPushNotification",
+    "React-RCTSettings",
+    "React-RCTText",
+    "React-RCTVibration",
+    "React-cxxreact",
+    "React-jsi",
+    "React-jsiexecutor",
+    "React-jsinspector",
+    "React-logger",
+    "React-perflogger",
+    "ReactCommon",
+    "ReactNativePayments",
+    "Sentry",
+    "TcpSockets",
+    "Yoga",
+    "YogaKit",
+    "fmt",
+    "glog",
+    "libevent",
+    "lottie-ios",
+    "lottie-react-native",
+    "react-native-aes",
+    "react-native-background-timer",
+    "react-native-blur",
+    "react-native-branch",
+    "react-native-camera",
+    "react-native-cookies",
+    "react-native-in-app-review",
+    "react-native-minimizer",
+    "react-native-netinfo",
+    "react-native-randombytes",
+    "react-native-safe-area-context",
+    "react-native-splash-screen",
+    "react-native-video",
+    "react-native-view-shot",
+    "react-native-viewpager",
+    "react-native-webview",
+    "rn-fetch-blob",
+  ]
+}

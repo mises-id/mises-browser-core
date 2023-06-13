@@ -1,0 +1,20 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_constants.h b/ios/chrome/browser/ui/popup_menu/popup_menu_constants.h
+index d83b974f31dfaa5d707b57d35fe7de2f556b2093..56235675f45697ede1257db701e8088a7943c324 100644
+--- a/ios/chrome/browser/ui/popup_menu/popup_menu_constants.h
++++ b/ios/chrome/browser/ui/popup_menu/popup_menu_constants.h
+@@ -103,4 +103,15 @@ extern NSString* const kToolsMenuWhatsNewId;
+ // Open Price Notifications accessibility Identifier.
+ extern NSString* const kToolsMenuPriceNotifications;
+ 
++
++extern NSString* const kToolsMenuMisesId;
++extern NSString* const kToolsMenuMisesAccountId;
++extern NSString* const kToolsMenuMisesWalletId;
++extern NSString* const kToolsMenuMisesMyDataId;
++extern NSString* const kToolsMenuMisesDiscoverId;
++extern NSString* const kToolsMenuMisesStakingPortalId;
++extern NSString* const kToolsMenuMisesNftId;
++extern NSString* const kToolsMenuMisesInviteId;
++extern NSString* const kToolsMenuMisesOfficialSiteId;
++
+ #endif  // IOS_CHROME_BROWSER_UI_POPUP_MENU_POPUP_MENU_CONSTANTS_H_

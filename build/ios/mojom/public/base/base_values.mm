@@ -1,4 +1,4 @@
-/* Copyright (c) 2022 The Mises Authors. All rights reserved.
+/* Copyright (c) 2022 The Brave Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -214,10 +214,10 @@
         }();
         break;
       case base::Value::Type::DICT:
-        self.dictionaryValue = mises::NSDictionaryFromBaseValue(value.Clone());
+        self.dictionaryValue = brave::NSDictionaryFromBaseValue(value.Clone());
         break;
       case base::Value::Type::LIST:
-        self.listValue = mises::NSArrayFromBaseValue(value.Clone());
+        self.listValue = brave::NSArrayFromBaseValue(value.Clone());
         break;
       case base::Value::Type::NONE:
       default:
@@ -251,10 +251,10 @@
       return base::Value(blob);
     }
     case MojoBaseValueTagDictionaryValue: {
-      return mises::BaseValueFromNSDictionary(self.dictionaryValue);
+      return brave::BaseValueFromNSDictionary(self.dictionaryValue);
     }
     case MojoBaseValueTagListValue: {
-      return mises::BaseValueFromNSArray(self.listValue);
+      return brave::BaseValueFromNSArray(self.listValue);
     }
     case MojoBaseValueTagNull:
     default:
@@ -304,7 +304,7 @@
 
 @end
 
-namespace mises {
+namespace brave {
 
 NSArray<MojoBaseValue*>* NSArrayFromBaseValue(base::Value value) {
   auto result = [[NSMutableArray alloc] init];
@@ -325,11 +325,12 @@ NSDictionary<NSString*, MojoBaseValue*>* NSDictionaryFromBaseValue(
 }
 
 base::Value BaseValueFromNSArray(NSArray<MojoBaseValue*>* array) {
-  base::Value list(base::Value::Type::LIST);
+  base::Value value(base::Value::Type::LIST);
+  base::Value::List& list = *value.GetIfList();
   for (MojoBaseValue* obj in array) {
     list.Append(obj.cppObjPtr);
   }
-  return list;
+  return value;
 }
 
 base::Value BaseValueFromNSDictionary(
@@ -363,4 +364,4 @@ base::Value::Dict BaseValueDictFromNSDictionary(
   return dict;
 }
 
-}  // namespace mises
+}  // namespace brave

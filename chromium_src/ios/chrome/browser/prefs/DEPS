@@ -1,0 +1,8 @@
+include_rules = [
+  "+mises/components/brave_sync",
+  "+mises/components/brave_wallet/browser",
+  "+mises/components/decentralized_dns/core",
+  "+mises/components/ipfs",
+  "+mises/components/p3a",
+  //"+mises/ios/browser/brave_stats",
+]

@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/commands/browser_commands.h b/ios/chrome/browser/ui/commands/browser_commands.h
+index 7c98fcfe4d63088819272dbb650096e5a34985ba..0c6cd39dd6403d9719ef89e7566f2776a72c8236 100644
+--- a/ios/chrome/browser/ui/commands/browser_commands.h
++++ b/ios/chrome/browser/ui/commands/browser_commands.h
+@@ -26,6 +26,8 @@
+ // Prepares the browser to display a popup menu.
+ - (void)prepareForPopupMenuPresentation:(PopupMenuCommandType)type;
+ 
++- (void)openSinglePage:(NSString*)url;
++
+ @end
+ 
+ #endif  // IOS_CHROME_BROWSER_UI_COMMANDS_BROWSER_COMMANDS_H_

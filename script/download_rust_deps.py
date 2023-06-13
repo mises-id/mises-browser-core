@@ -21,9 +21,9 @@ try:
 except ImportError:  # For Py3 compatibility
     from urllib.error import URLError  # pylint: disable=no-name-in-module,import-error
 
-from lib.config import BRAVE_CORE_ROOT, CHROMIUM_ROOT
+from lib.config import MISES_CORE_ROOT, CHROMIUM_ROOT
 
-RUSTUP_PATH = os.path.join(BRAVE_CORE_ROOT, 'build', 'rustup')
+RUSTUP_PATH = os.path.join(MISES_CORE_ROOT, 'build', 'rustup')
 
 
 def get_url(platform, rust_version):
@@ -157,7 +157,7 @@ def main():
             rustup_home)
         # patch gcc.rs.patch
         # https://github.com/rust-lang/rust/issues/102754#issuecomment-1421438735
-        patched_file = os.path.join(BRAVE_CORE_ROOT, 'build', 'rust',
+        patched_file = os.path.join(MISES_CORE_ROOT, 'build', 'rust',
                                     'gcc.rs.patched')
         orig_file = os.path.join(rustup_home, 'toolchains',
                                  rust_version + '-x86_64-apple-darwin', 'lib',

@@ -1,0 +1,119 @@
+import("//build/config/ios/asset_catalog.gni")
+
+imageset("mises_welcome") {
+  sources = [
+    "mises_welcome.imageset/Contents.json",
+    "mises_welcome.imageset/mises_welcome.png",
+    "mises_welcome.imageset/mises_welcome@2x.png",
+    "mises_welcome.imageset/mises_welcome@3x.png",
+  ]
+}
+imageset("activity_services_mises_share") {
+  sources = [
+    "activity_services_mises_share.imageset/Contents.json",
+    "activity_services_mises_share.imageset/activity_services_mises_share-60@2x.png",
+    "activity_services_mises_share.imageset/activity_services_mises_share-60@3x.png",
+    "activity_services_mises_share.imageset/activity_services_mises_share-76@2x.png",
+  ]
+}
+
+
+imageset("popup_menu_mises_create") {
+  sources = [
+    "popup_menu_mises_create.imageset/Contents.json",
+    "popup_menu_mises_create.imageset/popup_menu_mises_create.png",
+    "popup_menu_mises_create.imageset/popup_menu_mises_create@2x.png",
+    "popup_menu_mises_create.imageset/popup_menu_mises_create@3x.png",
+  ]
+}
+
+
+
+imageset("popup_menu_mises_discover") {
+  sources = [
+    "popup_menu_mises_discover.imageset/Contents.json",
+    "popup_menu_mises_discover.imageset/popup_menu_mises_discover.png",
+    "popup_menu_mises_discover.imageset/popup_menu_mises_discover@2x.png",
+    "popup_menu_mises_discover.imageset/popup_menu_mises_discover@3x.png",
+  ]
+}
+
+
+
+imageset("popup_menu_mises_invite") {
+  sources = [
+    "popup_menu_mises_invite.imageset/Contents.json",
+    "popup_menu_mises_invite.imageset/popup_menu_mises_invite.png",
+    "popup_menu_mises_invite.imageset/popup_menu_mises_invite@2x.png",
+    "popup_menu_mises_invite.imageset/popup_menu_mises_invite@3x.png",
+  ]
+}
+
+
+imageset("popup_menu_mises_mydata") {
+  sources = [
+    "popup_menu_mises_mydata.imageset/Contents.json",
+    "popup_menu_mises_mydata.imageset/popup_menu_mises_mydata.png",
+    "popup_menu_mises_mydata.imageset/popup_menu_mises_mydata@2x.png",
+    "popup_menu_mises_mydata.imageset/popup_menu_mises_mydata@3x.png",
+  ]
+}
+
+
+imageset("popup_menu_mises_nft") {
+  sources = [
+    "popup_menu_mises_nft.imageset/Contents.json",
+    "popup_menu_mises_nft.imageset/popup_menu_mises_nft.png",
+    "popup_menu_mises_nft.imageset/popup_menu_mises_nft@2x.png",
+    "popup_menu_mises_nft.imageset/popup_menu_mises_nft@3x.png",
+  ]
+}
+
+
+imageset("popup_menu_mises_portal") {
+  sources = [
+    "popup_menu_mises_portal.imageset/Contents.json",
+    "popup_menu_mises_portal.imageset/popup_menu_mises_portal.png",
+    "popup_menu_mises_portal.imageset/popup_menu_mises_portal@2x.png",
+    "popup_menu_mises_portal.imageset/popup_menu_mises_portal@3x.png",
+  ]
+}
+
+
+imageset("popup_menu_mises_view_website") {
+  sources = [
+    "popup_menu_mises_view_website.imageset/Contents.json",
+    "popup_menu_mises_view_website.imageset/popup_menu_mises_view_website.png",
+    "popup_menu_mises_view_website.imageset/popup_menu_mises_view_website@2x.png",
+    "popup_menu_mises_view_website.imageset/popup_menu_mises_view_website@3x.png",
+  ]
+}
+
+
+imageset("popup_menu_mises_wallet") {
+  sources = [
+    "popup_menu_mises_wallet.imageset/Contents.json",
+    "popup_menu_mises_wallet.imageset/popup_menu_mises_wallet.png",
+    "popup_menu_mises_wallet.imageset/popup_menu_mises_wallet@2x.png",
+    "popup_menu_mises_wallet.imageset/popup_menu_mises_wallet@3x.png",
+  ]
+}
+
+
+imageset("popup_menu_copy") {
+  sources = [
+    "popup_menu_copy.imageset/Contents.json",
+    "popup_menu_copy.imageset/popup_menu_copy.png",
+    "popup_menu_copy.imageset/popup_menu_copy@2x.png",
+    "popup_menu_copy.imageset/popup_menu_copy@3x.png",
+  ]
+}
+
+imageset("mises_user_default") {
+  sources = [
+    "mises_user_default.imageset/Contents.json",
+    "mises_user_default.imageset/mises_user_default.png",
+    "mises_user_default.imageset/mises_user_default@2x.png",
+    "mises_user_default.imageset/mises_user_default@3x.png",
+  ]
+}

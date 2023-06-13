@@ -1,0 +1,18 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_constants.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_constants.mm
+index 8f047f0b8e30b1bfae7d326a25ca5a2a3d8cd39f..afcf021b2b6322bf760c872a9c63850752b3246e 100644
+--- a/ios/chrome/browser/ui/popup_menu/popup_menu_constants.mm
++++ b/ios/chrome/browser/ui/popup_menu/popup_menu_constants.mm
+@@ -62,3 +62,13 @@ NSString* const kToolsMenuClearBrowsingData = @"kToolsMenuClearBrowsingData";
+ NSString* const kToolsMenuShareChromeId = @"kToolsMenuShareChromeId";
+ NSString* const kToolsMenuWhatsNewId = @"kToolsMenuWhatsNewId";
+ NSString* const kToolsMenuPriceNotifications = @"kToolsMenuPriceNotifications";
++
++NSString* const kToolsMenuMisesId = @"kToolsMenuMisesId";
++NSString* const kToolsMenuMisesAccountId = @"kToolsMenuMisesAccountId";
++NSString* const kToolsMenuMisesWalletId = @"kToolsMenuMisesWalletId";
++NSString* const kToolsMenuMisesMyDataId = @"kToolsMenuMisesMyDataId";
++NSString* const kToolsMenuMisesDiscoverId = @"kToolsMenuMisesDiscoverId";
++NSString* const kToolsMenuMisesStakingPortalId = @"kToolsMenuMisesStakingPortalId";
++NSString* const kToolsMenuMisesNftId = @"kToolsMenuMisesNftId";
++NSString* const kToolsMenuMisesInviteId = @"kToolsMenuMisesInviteId";
++NSString* const kToolsMenuMisesOfficialSiteId = @"kToolsMenuMisesOfficialSiteId";

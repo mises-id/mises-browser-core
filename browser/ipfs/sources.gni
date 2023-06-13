@@ -57,6 +57,12 @@ if (enable_ipfs) {
     "//ui/shell_dialogs",
   ]
 
+  if (enable_ipfs_local_node) {
+    mises_browser_ipfs_sources += [
+      "//mises/browser/ipfs/ipfs_local_pin_service_factory.cc",
+      "//mises/browser/ipfs/ipfs_local_pin_service_factory.h",
+    ]
+  }
   if (enable_extensions) {
     mises_browser_ipfs_deps += [
       "//extensions/browser",

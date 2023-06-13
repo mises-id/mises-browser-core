@@ -185,19 +185,7 @@ void AssetRatioService::GetBuyUrlV1(mojom::OnRampProvider provider,
                                     const std::string& currency_code,
                                     GetBuyUrlV1Callback callback) {
   std::string url;
-  if (provider == mojom::OnRampProvider::kWyre) {
-    GURL wyre_url = GURL(kWyreBaseUrl);
-    wyre_url =
-        net::AppendQueryParameter(wyre_url, "dest", "ethereum:" + address);
-    wyre_url =
-        net::AppendQueryParameter(wyre_url, "sourceCurrency", currency_code);
-    wyre_url = net::AppendQueryParameter(wyre_url, "destCurrency", symbol);
-    wyre_url = net::AppendQueryParameter(wyre_url, "amount", amount);
-    wyre_url = net::AppendQueryParameter(wyre_url, "accountId", kWyreID);
-    wyre_url =
-        net::AppendQueryParameter(wyre_url, "paymentMethod", "debit-card");
-    std::move(callback).Run(std::move(wyre_url.spec()), absl::nullopt);
-  } else if (provider == mojom::OnRampProvider::kRamp) {
+  if (provider == mojom::OnRampProvider::kRamp) {
     GURL ramp_url = GURL(kRampBaseUrl);
     ramp_url = net::AppendQueryParameter(ramp_url, "userAddress", address);
     ramp_url = net::AppendQueryParameter(ramp_url, "swapAsset", symbol);
@@ -232,8 +220,57 @@ void AssetRatioService::GetBuyUrlV1(mojom::OnRampProvider provider,
     api_request_helper_->Request("POST", sardine_token_url, payload,
                                  "application/json", true,
                                  std::move(internal_callback), request_headers);
+  } else if (provider == mojom::OnRampProvider::kTransak) {
+    GURL transak_url = GURL(kTransakURL);
+    transak_url =
+        net::AppendQueryParameter(transak_url, "fiatCurrency", currency_code);
+    transak_url =
+        net::AppendQueryParameter(transak_url, "defaultCryptoCurrency", symbol);
+    transak_url =
+        net::AppendQueryParameter(transak_url, "defaultFiatAmount", amount);
+    transak_url =
+        net::AppendQueryParameter(transak_url, "walletAddress", address);
+    transak_url = net::AppendQueryParameter(
+        transak_url, "networks",
+        "ethereum,arbitrum,optimism,polygon,bsc,solana,avaxcchain,osmosis,"
+        "fantom,aurora,celo");
+    transak_url =
+        net::AppendQueryParameter(transak_url, "apiKey", kTransakApiKey);
+
+    std::move(callback).Run(std::move(transak_url.spec()), absl::nullopt);
   } else {
     std::move(callback).Run(url, "UNSUPPORTED_ONRAMP_PROVIDER");
+  }
+}
+
+void AssetRatioService::GetSellUrl(mojom::OffRampProvider provider,
+                                   const std::string& chain_id,
+                                   const std::string& address,
+                                   const std::string& symbol,
+                                   const std::string& amount,
+                                   const std::string& currency_code,
+                                   GetSellUrlCallback callback) {
+  std::string url;
+  if (provider == mojom::OffRampProvider::kRamp) {
+    GURL off_ramp_url = GURL(kRampBaseUrl);
+    off_ramp_url =
+        net::AppendQueryParameter(off_ramp_url, "userAddress", address);
+    off_ramp_url = net::AppendQueryParameter(off_ramp_url, "enabledFlows",
+                                             kOffRampEnabledFlows);
+    off_ramp_url = net::AppendQueryParameter(off_ramp_url, "defaultFlow",
+                                             kOffRampDefaultFlow);
+    off_ramp_url = net::AppendQueryParameter(off_ramp_url, "swapAsset", symbol);
+    off_ramp_url =
+        net::AppendQueryParameter(off_ramp_url, "offrampAsset", symbol);
+    off_ramp_url =
+        net::AppendQueryParameter(off_ramp_url, "swapAmount", amount);
+    off_ramp_url =
+        net::AppendQueryParameter(off_ramp_url, "fiatCurrency", currency_code);
+    off_ramp_url =
+        net::AppendQueryParameter(off_ramp_url, "hostApiKey", kRampID);
+    std::move(callback).Run(off_ramp_url.spec(), absl::nullopt);
+  } else {
+    std::move(callback).Run(url, "UNSUPPORTED_OFFRAMP_PROVIDER");
   }
 }
 
@@ -254,7 +291,7 @@ void AssetRatioService::GetPrice(
   if (env->HasVar("MISES_SERVICES_KEY")) {
     env->GetVar("MISES_SERVICES_KEY", &brave_key);
   }
-  request_headers["x-mises-key"] = std::move(brave_key);
+  request_headers["x-brave-key"] = std::move(brave_key);
 
   api_request_helper_->Request(
       "GET", GetPriceURL(from_assets_lower, to_assets_lower, timeframe), "", "",
@@ -274,7 +311,7 @@ void AssetRatioService::OnGetSardineAuthToken(
     return;
   }
 
-  auto auth_token = ParseSardineAuthToken(api_request_result.body());
+  auto auth_token = ParseSardineAuthToken(api_request_result.value_body());
   if (!auth_token) {
     std::move(callback).Run("", "INTERNAL_SERVICE_ERROR");
     return;
@@ -294,7 +331,7 @@ void AssetRatioService::OnGetPrice(std::vector<std::string> from_assets,
     std::move(callback).Run(false, std::move(prices));
     return;
   }
-  if (!ParseAssetPrice(api_request_result.body(), from_assets, to_assets,
+  if (!ParseAssetPrice(api_request_result.value_body(), from_assets, to_assets,
                        &prices)) {
     std::move(callback).Run(false, std::move(prices));
     return;
@@ -325,7 +362,7 @@ void AssetRatioService::OnGetPriceHistory(GetPriceHistoryCallback callback,
     std::move(callback).Run(false, std::move(values));
     return;
   }
-  if (!ParseAssetPriceHistory(api_request_result.body(), &values)) {
+  if (!ParseAssetPriceHistory(api_request_result.value_body(), &values)) {
     std::move(callback).Run(false, std::move(values));
     return;
   }
@@ -360,8 +397,9 @@ void AssetRatioService::OnGetTokenInfo(GetTokenInfoCallback callback,
     return;
   }
 
-  std::move(callback).Run(ParseTokenInfo(
-      api_request_result.body(), mojom::kMainnetChainId, mojom::CoinType::ETH));
+  std::move(callback).Run(ParseTokenInfo(api_request_result.value_body(),
+                                         mojom::kMainnetChainId,
+                                         mojom::CoinType::ETH));
 }
 
 // static
@@ -389,18 +427,18 @@ void AssetRatioService::GetCoinMarkets(const std::string& vs_asset,
 
 void AssetRatioService::OnGetCoinMarkets(GetCoinMarketsCallback callback,
                                          APIRequestResult api_request_result) {
-  std::vector<brave_wallet::mojom::CoinMarketPtr> values;
   if (!api_request_result.Is2XXResponseCode()) {
-    std::move(callback).Run(false, std::move(values));
+    std::move(callback).Run(false, {});
     return;
   }
 
-  if (!ParseCoinMarkets(api_request_result.body(), &values)) {
-    std::move(callback).Run(false, std::move(values));
+  auto values = ParseCoinMarkets(api_request_result.value_body());
+  if (!values) {
+    std::move(callback).Run(false, {});
     return;
   }
 
-  std::move(callback).Run(true, std::move(values));
+  std::move(callback).Run(true, std::move(*values));
 }
 
 }  // namespace brave_wallet

@@ -1,0 +1,12 @@
+diff --git a/ios/chrome/browser/browsing_data/browsing_data_remover_impl.mm b/ios/chrome/browser/browsing_data/browsing_data_remover_impl.mm
+index b8ba2b88cb7eed1955defd9ca5427be522cbcb51..42bc44339148c3e6495a963b0f6479c5dd93fee4 100644
+--- a/ios/chrome/browser/browsing_data/browsing_data_remover_impl.mm
++++ b/ios/chrome/browser/browsing_data/browsing_data_remover_impl.mm
+@@ -313,6 +313,7 @@ void BrowsingDataRemoverImpl::RemoveImpl(base::Time delete_begin,
+                            current_task_runner, FROM_HERE,
+                            CreatePendingTaskCompletionClosure())));
+     if (!browser_state_->IsOffTheRecord()) {
++     if (GetApplicationContext()->GetSafeBrowsingService())
+       GetApplicationContext()->GetSafeBrowsingService()->ClearCookies(
+           deletion_time_range,
+           base::BindOnce(base::IgnoreResult(&base::TaskRunner::PostTask),

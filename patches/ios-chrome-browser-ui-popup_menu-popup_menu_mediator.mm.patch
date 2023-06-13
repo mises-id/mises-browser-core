@@ -1,0 +1,103 @@
+diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
+index fdda63a7701be84fb3eba6703150294b58ad5170..6b003ab993f8c9e1b79b4abaebbecab203c95a51 100644
+--- a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
++++ b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
+@@ -88,6 +88,10 @@
+ #import "ui/base/l10n/l10n_util.h"
+ #import "ui/gfx/image/image.h"
+ 
++#import "mises/ios/browser/ui/popup_menu/cells/popup_menu_account_item.h"
++#include "mises/ios/third_party/mises/mises_utils.h"
++#import "components/grit/mises_components_strings.h"
++
+ #if !defined(__has_feature) || !__has_feature(objc_arc)
+ #error "This file requires ARC support."
+ #endif
+@@ -553,6 +557,9 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
+         DCHECK(!UseSymbols());
+         [self createSearchMenuItems];
+         break;
++      case PopupMenuTypeMisesMenu:
++        [self createMisesMenuItems];
++        break;
+     }
+     NSMutableArray* specificItems = [NSMutableArray array];
+     if (self.reloadStopItem)
+@@ -1203,6 +1210,11 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
+       @"popup_menu_site_information", kToolsMenuSiteInformation);
+   [actionsArray addObject:self.siteInformationItem];
+ 
++  TableViewItem* mises =
++      CreateTableViewItem(IDS_IOS_OPTIONS_MISES, PopupMenuActionMises,
++                          @"popup_menu_mises_wallet", kToolsMenuMisesId);
++  [actionsArray addObject:mises];
++    
+   // Report an Issue.
+   if (ios::provider::IsUserFeedbackSupported()) {
+     TableViewItem* reportIssue = CreateTableViewItem(
+@@ -1349,4 +1361,65 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
+   }
+ }
+ 
++
++
++PopupMenuAccountItem* CreateAccountInfoItem(PopupMenuAction action, NSString* accessibilityID) {
++  PopupMenuAccountItem* item =
++      [[PopupMenuAccountItem alloc] initWithType:kItemTypeEnumZero];
++  item.name = [[Mises account] misesNickname];
++  item.address = [[Mises account] misesId];
++  item.actionIdentifier = action;
++  item.accessibilityIdentifier = accessibilityID;
++  item.avatar = [Mises account].cachedMisesAvatar;
++
++  return item;
++}
++
++- (void)createMisesMenuItems {
++
++   if (![[Mises account] isLogin]) {
++
++    TableViewItem* misesCreateRestore =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_CREATE_RESTORE, PopupMenuActionMises,
++                            @"popup_menu_mises_create", kToolsMenuMisesId);
++    NSArray* signinActions = @[ misesCreateRestore ];
++    self.items = @[ signinActions ];
++   } else {
++       TableViewItem* misesAccount = CreateAccountInfoItem(PopupMenuActionMisesAccount, kToolsMenuMisesAccountId);
++
++    NSArray* accountActions = @[ misesAccount];
++
++    TableViewItem* misesMyData =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_MY_DATA, PopupMenuActionMisesMyData,
++                            @"popup_menu_mises_mydata", kToolsMenuMisesMyDataId);
++    TableViewItem* misesDiscover =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_DISCOVER, PopupMenuActionMisesDiscover,
++                            @"popup_menu_mises_discover", kToolsMenuMisesDiscoverId);
++    TableViewItem* misesWallet =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_WALLET, PopupMenuActionMisesWallet,
++                            @"popup_menu_mises_wallet", kToolsMenuMisesWalletId);
++    TableViewItem* misesStakingPortal =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_STAKING_PORTAL, PopupMenuActionMisesStakingPortal,
++                            @"popup_menu_mises_portal", kToolsMenuMisesStakingPortalId);
++    TableViewItem* misesNft =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_NFT, PopupMenuActionMisesNft,
++                            @"popup_menu_mises_nft", kToolsMenuMisesNftId);
++    NSArray* walletActions = @[ misesMyData, misesDiscover, misesWallet,misesStakingPortal,misesNft ];
++
++
++    PopupMenuToolsItem* misesInvite =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_INVITE, PopupMenuActionMisesInvite,
++                            @"popup_menu_mises_invite", kToolsMenuMisesInviteId);
++    [misesInvite setBadgeText:@"Reward"];
++    TableViewItem* misesOffical=
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_VIEW_OFFICIAL_WEBSITE, PopupMenuActionMisesOfficialSite,
++                            @"popup_menu_mises_view_website", kToolsMenuMisesOfficialSiteId);
++    NSArray* otherActions = @[ misesInvite, misesOffical ];
++    self.items = @[ accountActions, walletActions, otherActions ];
++
++   }
++
++
++
++}
+ @end

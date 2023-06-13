@@ -64,6 +64,8 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
 
  private:
   FRIEND_TEST_ALL_PREFIXES(SolanaProviderImplUnitTest, GetDeserializedMessage);
+  FRIEND_TEST_ALL_PREFIXES(SolanaProviderImplUnitTest,
+                           ConnectWithNoSolanaAccount);
 
   bool IsAccountConnected(const std::string& account);
   void ContinueConnect(bool is_eagerly_connect,
@@ -113,12 +115,14 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
   void OnRequestSignTransaction(RequestCallback callback,
                                 mojom::SolanaProviderError error,
                                 const std::string& error_message,
-                                const std::vector<uint8_t>& serialized_tx);
+                                const std::vector<uint8_t>& serialized_tx,
+                                mojom::SolanaMessageVersion version);
   void OnRequestSignAllTransactions(
       RequestCallback callback,
       mojom::SolanaProviderError error,
       const std::string& error_message,
-      const std::vector<std::vector<uint8_t>>& serialized_tx);
+      const std::vector<std::vector<uint8_t>>& serialized_tx,
+      const std::vector<mojom::SolanaMessageVersion>& versions);
 
   // mojom::KeyringServiceObserver
   void KeyringCreated(const std::string& keyring_id) override {}
@@ -128,6 +132,8 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
   void Unlocked() override;
   void BackedUp() override {}
   void AccountsChanged() override {}
+  void AccountsAdded(mojom::CoinType coin,
+                     const std::vector<std::string>& addresses) override {}
   void AutoLockMinutesChanged() override {}
   void SelectedAccountChanged(mojom::CoinType coin) override;
 
@@ -135,6 +141,7 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
   void OnNewUnapprovedTx(mojom::TransactionInfoPtr tx_info) override {}
   void OnUnapprovedTxUpdated(mojom::TransactionInfoPtr tx_info) override {}
   void OnTransactionStatusChanged(mojom::TransactionInfoPtr tx_info) override;
+  void OnTxServiceReset() override {}
 
   base::flat_map<std::string, SignAndSendTransactionCallback>
       sign_and_send_tx_callbacks_;
@@ -142,6 +149,7 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
   ConnectCallback pending_connect_callback_;
   absl::optional<base::Value::Dict> pending_connect_arg_;
 
+  bool account_creation_shown_ = false;
   mojo::Remote<mojom::SolanaEventsListener> events_listener_;
   raw_ptr<KeyringService> keyring_service_ = nullptr;
   raw_ptr<BraveWalletService> brave_wallet_service_ = nullptr;

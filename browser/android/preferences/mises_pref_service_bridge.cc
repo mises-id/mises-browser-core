@@ -123,5 +123,14 @@ jint JNI_MisesPrefServiceBridge_GetENSResolveMethod(JNIEnv* env) {
 }
 
 
+void JNI_MisesPrefServiceBridge_SetDarkModeEnabled(JNIEnv* env,
+                                                      jboolean enabled) {
+
+  GetOriginalProfile()->GetPrefs()->SetBoolean(prefs::kWebKitForceDarkModeEnabled,
+                                               static_cast<bool>(enabled));
+
+}
+
+
 }  // namespace android
 }  // namespace chrome

@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.h b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.h
+index 0b7836708b33f5c3b8294cab8fd16c16772e78e5..3ba584dd0ac3072206a1a94a5f51c7a996228a14 100644
+--- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.h
++++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.h
+@@ -33,6 +33,8 @@ class Browser;
+ // Delegate for the long press gesture recognizer triggering popup menu.
+ @property(nonatomic, weak) id<PopupMenuLongPressDelegate> longPressDelegate;
+ 
++- (void) activate;
++
+ @end
+ 
+ #endif  // IOS_CHROME_BROWSER_UI_TOOLBAR_ADAPTIVE_TOOLBAR_COORDINATOR_H_

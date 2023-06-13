@@ -10,10 +10,16 @@
 #include <unordered_map>
 #include <vector>
 
+#include "base/values.h"
 #include "mises/components/ipfs/addresses_config.h"
+#include "mises/components/ipfs/buildflags/buildflags.h"
 #include "mises/components/ipfs/import/imported_data.h"
 #include "mises/components/ipfs/node_info.h"
 #include "mises/components/ipfs/repo_stats.h"
+
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
+#include "mises/components/ipfs/pin/ipfs_pin_rpc_types.h"
+#endif  // BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
 
 class IPFSJSONParser {
  public:
@@ -42,6 +48,15 @@ class IPFSJSONParser {
   static std::string RemovePeerFromConfigJSON(const std::string& json,
                                               const std::string& peer_id,
                                               const std::string& address);
+#if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
+  // Local pins
+  static absl::optional<ipfs::AddPinResult> GetAddPinsResultFromJSON(
+      const base::Value& value);
+  static absl::optional<ipfs::GetPinsResult> GetGetPinsResultFromJSON(
+      const base::Value& value);
+  static absl::optional<ipfs::RemovePinResult> GetRemovePinsResultFromJSON(
+      const base::Value& value);
+#endif  // BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
 };
 
 #endif  // BRAVE_COMPONENTS_IPFS_IPFS_JSON_PARSER_H_

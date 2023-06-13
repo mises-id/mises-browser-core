@@ -1,0 +1,105 @@
+diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
+index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f22252f386 100644
+--- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
++++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
+@@ -16,6 +16,14 @@
+ #import "ios/chrome/browser/ui/ntp/metrics/metrics.h"
+ #import "ui/gfx/image/image.h"
+ 
++#include "components/image_fetcher/core/image_fetcher_impl.h"
++#include "components/image_fetcher/core/cached_image_fetcher.h"
++#include "components/image_fetcher/ios/ios_image_decoder_impl.h"
++#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
++#include "base/time/default_clock.h"
++#include "services/network/public/cpp/shared_url_loader_factory.h"
++#import "ios/chrome/browser/main/browser.h"
++
+ #if !defined(__has_feature) || !__has_feature(objc_arc)
+ #error "This file requires ARC support."
+ #endif
+@@ -27,6 +35,8 @@ const CGFloat kMostVisitedFaviconSize = 48;
+ // Size below which the provider returns a colored tile instead of an image.
+ const CGFloat kMostVisitedFaviconMinimalSize = 32;
+ 
++const char kImageFetcherUmaClient[] = "ContentSuggestionsFaviconMediator";
++
+ }  // namespace
+ 
+ @interface ContentSuggestionsFaviconMediator () {
+@@ -43,6 +53,9 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
+ @end
+ 
+ @implementation ContentSuggestionsFaviconMediator
++{
++    std::unique_ptr<image_fetcher::ImageFetcher> _imageFetcher;
++}
+ 
+ #pragma mark - Public.
+ 
+@@ -63,6 +76,10 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
+   return self;
+ }
+ 
++- (void)setImageFetcher:(Browser*) browser {
++    ChromeBrowserState* browser_state = browser->GetBrowserState();
++    _imageFetcher = std::make_unique<image_fetcher::ImageFetcherImpl>(image_fetcher::CreateIOSImageDecoder(),browser_state->GetSharedURLLoaderFactory());
++}
+ - (void)setMostVisitedDataForLogging:
+     (const ntp_tiles::NTPTilesVector&)mostVisitedData {
+   DCHECK(_mostVisitedDataForLogging.empty());
+@@ -78,14 +95,52 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
+     ContentSuggestionsMostVisitedItem* strongItem = weakItem;
+     if (!strongSelf || !strongItem)
+       return;
+-
+     strongItem.attributes = attributes;
+     [strongSelf logFaviconFetchedForItem:strongItem];
++
+     [strongSelf.consumer updateMostVisitedTileConfig:strongItem];
+   };
+-
++    if (item.isMisesFeature) {
++      auto callback =
++            base::BindOnce(^(const gfx::Image& gfximage,
++                             const image_fetcher::RequestMetadata& metadata) {
++            ContentSuggestionsFaviconMediator* strongSelf = weakSelf;
++            ContentSuggestionsMostVisitedItem* strongItem = weakItem;
++            if (!strongSelf || !strongItem || gfximage.IsEmpty()) {
++              return;
++            }
++            UIImage* image = [gfximage.ToUIImage() copy];
++            strongItem.attributes = [FaviconAttributesWithPayload attributesWithImage:image];
++            [strongSelf logFaviconFetchedForItem:strongItem];
++
++            [strongSelf.consumer updateMostVisitedTileConfig:strongItem];
++        });
++        net::NetworkTrafficAnnotationTag traffic_annotation =
++            net::DefineNetworkTrafficAnnotation("icon_cacher", R"(
++              semantics {
++                sender: "Popular Sites New Tab Fetch"
++                description:
++                  "Chrome may display a list of regionally-popular web sites on the "
++                  "New Tab Page. This service fetches icons from those sites."
++                trigger:
++                  "Whenever a popular site would be displayed, but its icon is not "
++                  "yet cached in the browser."
++                data: "The URL for which to retrieve an icon."
++                destination: WEBSITE
++              }
++              policy {
++                cookies_allowed: NO
++                setting: "This feature cannot be disabled in settings."
++                policy_exception_justification: "Not implemented."
++              })");
++      image_fetcher::ImageFetcherParams params(traffic_annotation,
++                                               kImageFetcherUmaClient);
++      _imageFetcher->FetchImage(item.iconURL, std::move(callback), params);
++      return;
++    }
+   [self.mostVisitedAttributesProvider fetchFaviconAttributesForURL:item.URL
+-                                                        completion:completion];
++                                                              completion:completion];
++
+ }
+ 
+ 

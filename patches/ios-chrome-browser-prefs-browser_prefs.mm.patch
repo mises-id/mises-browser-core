@@ -1,0 +1,62 @@
+diff --git a/ios/chrome/browser/prefs/browser_prefs.mm b/ios/chrome/browser/prefs/browser_prefs.mm
+index 5dd5f5d1dd8373387be046675520b283ab100735..a576f5c8911e93e2fac26d387cf6de731800ac29 100644
+--- a/ios/chrome/browser/prefs/browser_prefs.mm
++++ b/ios/chrome/browser/prefs/browser_prefs.mm
+@@ -80,6 +80,7 @@
+ #import "ios/chrome/browser/web/font_size/font_size_tab_helper.h"
+ #import "ios/web/common/features.h"
+ #import "ui/base/l10n/l10n_util.h"
++#import "components/image_fetcher/core/cache/image_cache.h"
+ 
+ #if !defined(__has_feature) || !__has_feature(objc_arc)
+ #error "This file requires ARC support."
+@@ -239,7 +240,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+   // Preferences related to Enterprise policies.
+   registry->RegisterListPref(prefs::kRestrictAccountsToPatterns);
+   registry->RegisterIntegerPref(prefs::kBrowserSigninPolicy,
+-                                static_cast<int>(BrowserSigninMode::kEnabled));
++                                static_cast<int>(BrowserSigninMode::kDisabled));
+   registry->RegisterBooleanPref(prefs::kAppStoreRatingPolicyEnabled, true);
+ 
+   registry->RegisterIntegerPref(kTrialGroupPrefName, 0);
+@@ -273,6 +274,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+ 
+   registry->RegisterBooleanPref(prefs::kIosCredentialProviderPromoPolicyEnabled,
+                                 true);
++  MISES_REGISTER_LOCAL_STATE_PREFS
+ }
+ 
+ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+@@ -310,7 +312,8 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+   unified_consent::UnifiedConsentService::RegisterPrefs(registry);
+   variations::VariationsService::RegisterProfilePrefs(registry);
+   ZeroSuggestProvider::RegisterProfilePrefs(registry);
+-
++  image_fetcher::ImageCache::RegisterProfilePrefs(registry);
++    
+   [BookmarkMediator registerBrowserStatePrefs:registry];
+   [BookmarkPathCache registerBrowserStatePrefs:registry];
+   [ContentSuggestionsMediator registerBrowserStatePrefs:registry];
+@@ -332,7 +335,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+       prefs::kNTPContentSuggestionsEnabled, true,
+       user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
+   registry->RegisterBooleanPref(
+-      prefs::kArticlesForYouEnabled, true,
++      prefs::kArticlesForYouEnabled, false,
+       user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
+   registry->RegisterBooleanPref(
+       prefs::kNTPContentSuggestionsForSupervisedUserEnabled, true,
+@@ -413,6 +416,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+ 
+   // Register pref used to determine if the Price Tracking UI has been shown.
+   registry->RegisterBooleanPref(prefs::kPriceNotificationsHasBeenShown, false);
++  MISES_REGISTER_BROWSER_STATE_PREFS
+ }
+ 
+ // This method should be periodically pruned of year+ old migrations.
+@@ -558,4 +562,5 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
+   if (prefs->FindPreference(kUserClassifierLastTimeToUseSuggestions)) {
+     prefs->ClearPref(kUserClassifierLastTimeToUseSuggestions);
+   }
++  MISES_MIGRATE_OBSOLETE_BROWSER_STATE_PREFS
+ }

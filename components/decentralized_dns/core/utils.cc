@@ -17,23 +17,37 @@ namespace decentralized_dns {
 
 void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   registry->RegisterIntegerPref(kUnstoppableDomainsResolveMethod,
-                                static_cast<int>(ResolveMethodTypes::ETHEREUM));
+                                static_cast<int>(ResolveMethodTypes::ENABLED));
   registry->RegisterIntegerPref(kENSResolveMethod,
-                                static_cast<int>(ResolveMethodTypes::ETHEREUM));
+                                static_cast<int>(ResolveMethodTypes::ENABLED));
   registry->RegisterIntegerPref(
       kEnsOffchainResolveMethod,
       static_cast<int>(EnsOffchainResolveMethod::kAsk));
+  registry->RegisterIntegerPref(kSnsResolveMethod,
+                                static_cast<int>(ResolveMethodTypes::ASK));
 }
 
 void MigrateObsoleteLocalStatePrefs(PrefService* local_state) {
 }
 
-bool IsUnstoppableDomainsTLD(const GURL& url) {
+bool IsUnstoppableDomainsTLD(const base::StringPiece& host) {
   for (auto* domain : kUnstoppableDomains) {
-    if (base::EndsWith(url.host_piece(), domain))
+    if (base::EndsWith(host, domain))
       return true;
   }
   return false;
+}
+
+void SetUnstoppableDomainsResolveMethod(PrefService* local_state,
+                                        ResolveMethodTypes method) {
+  local_state->SetInteger(kUnstoppableDomainsResolveMethod,
+                          static_cast<int>(method));
+}
+
+ResolveMethodTypes GetUnstoppableDomainsResolveMethod(
+    PrefService* local_state) {
+  return static_cast<ResolveMethodTypes>(
+      local_state->GetInteger(kUnstoppableDomainsResolveMethod));
 }
 
 bool IsUnstoppableDomainsResolveMethodAsk(PrefService* local_state) {
@@ -45,22 +59,32 @@ bool IsUnstoppableDomainsResolveMethodAsk(PrefService* local_state) {
          static_cast<int>(ResolveMethodTypes::ASK);
 }
 
-bool IsUnstoppableDomainsResolveMethodEthereum(PrefService* local_state) {
+bool IsUnstoppableDomainsResolveMethodEnabled(PrefService* local_state) {
   if (!local_state) {
     return false;  // Treat it as disabled.
   }
 
   return local_state->GetInteger(kUnstoppableDomainsResolveMethod) ==
-         static_cast<int>(ResolveMethodTypes::ETHEREUM);
+         static_cast<int>(ResolveMethodTypes::ENABLED);
 }
 
-bool IsBitTLD(const GURL& url) {
-  return base::EndsWith(url.host_piece(), kBitDomain);
+bool IsBitTLD(const base::StringPiece& host) {
+  return base::EndsWith(host, kBitDomain);
 }
 
-bool IsENSTLD(const GURL& url) {
-  return base::EndsWith(url.host_piece(), kEthDomain);
+bool IsENSTLD(const base::StringPiece& host) {
+  return base::EndsWith(host, kEthDomain);
 }
+
+void SetENSResolveMethod(PrefService* local_state, ResolveMethodTypes method) {
+  local_state->SetInteger(kENSResolveMethod, static_cast<int>(method));
+}
+
+ResolveMethodTypes GetENSResolveMethod(PrefService* local_state) {
+  return static_cast<ResolveMethodTypes>(
+      local_state->GetInteger(kENSResolveMethod));
+}
+
 
 bool IsENSResolveMethodAsk(PrefService* local_state) {
   if (!local_state) {
@@ -71,13 +95,13 @@ bool IsENSResolveMethodAsk(PrefService* local_state) {
          static_cast<int>(ResolveMethodTypes::ASK);
 }
 
-bool IsENSResolveMethodEthereum(PrefService* local_state) {
+bool IsENSResolveMethodEnabled(PrefService* local_state) {
   if (!local_state) {
     return false;  // Treat it as disabled.
   }
 
   return local_state->GetInteger(kENSResolveMethod) ==
-         static_cast<int>(ResolveMethodTypes::ETHEREUM);
+         static_cast<int>(ResolveMethodTypes::ENABLED);
 }
 
 void SetEnsOffchainResolveMethod(PrefService* local_state,
@@ -88,6 +112,36 @@ void SetEnsOffchainResolveMethod(PrefService* local_state,
 EnsOffchainResolveMethod GetEnsOffchainResolveMethod(PrefService* local_state) {
   return static_cast<EnsOffchainResolveMethod>(
       local_state->GetInteger(kEnsOffchainResolveMethod));
+}
+
+
+bool IsSnsTLD(const base::StringPiece& host) {
+  return base::EndsWith(host, kSolDomain);
+}
+
+void SetSnsResolveMethod(PrefService* local_state, ResolveMethodTypes method) {
+  local_state->SetInteger(kSnsResolveMethod, static_cast<int>(method));
+}
+
+ResolveMethodTypes GetSnsResolveMethod(PrefService* local_state) {
+  return static_cast<ResolveMethodTypes>(
+      local_state->GetInteger(kSnsResolveMethod));
+}
+
+bool IsSnsResolveMethodAsk(PrefService* local_state) {
+  if (!local_state) {
+    return false;  // Treat it as disabled.
+  }
+
+  return GetSnsResolveMethod(local_state) == ResolveMethodTypes::ASK;
+}
+
+bool IsSnsResolveMethodEnabled(PrefService* local_state) {
+  if (!local_state) {
+    return false;  // Treat it as disabled.
+  }
+
+  return GetSnsResolveMethod(local_state) == ResolveMethodTypes::ENABLED;
 }
 
 }  // namespace decentralized_dns

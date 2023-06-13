@@ -2,7 +2,7 @@
 
 #include "base/feature_list.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
-#include "mises/components/brave_wallet//browser/json_rpc_service_factory.h"
+#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
 
 #include "chrome/browser/profiles/chrome_browser_main_extra_parts_profiles.h"
 

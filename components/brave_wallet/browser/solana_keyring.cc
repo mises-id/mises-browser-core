@@ -27,19 +27,8 @@ constexpr size_t kMaxSeedLen = 32;
 void SolanaKeyring::ConstructRootHDKey(const std::vector<uint8_t>& seed,
                                        const std::string& hd_path) {
   if (!seed.empty()) {
-    std::unique_ptr<HDKeyEd25519> hd_key = HDKeyEd25519::GenerateFromSeed(seed);
-    master_key_ = std::unique_ptr<HDKeyBase>{hd_key.release()};
-    if (master_key_) {
-      root_ = master_key_->DeriveChildFromPath(hd_path);
-    }
-  }
-}
-
-void SolanaKeyring::AddAccounts(size_t number) {
-  size_t cur_accounts_number = accounts_.size();
-  for (size_t i = cur_accounts_number; i < cur_accounts_number + number; ++i) {
-    if (root_) {
-      accounts_.push_back(root_->DeriveChild(i)->DeriveChild(0));
+    if (auto master_key = HDKeyEd25519::GenerateFromSeed(seed)) {
+      root_ = master_key->DeriveChildFromPath(hd_path);
     }
   }
 }
@@ -163,6 +152,38 @@ absl::optional<std::string> SolanaKeyring::GetAssociatedTokenAccount(
 
   return FindProgramDerivedAddress(seeds,
                                    mojom::kSolanaAssociatedTokenProgramId);
+}
+
+// static
+// Derive metadata account using metadata seed constant, token metadata program
+// id, and the mint address as the seeds.
+// https://docs.metaplex.com/programs/token-metadata/accounts#metadata
+absl::optional<std::string> SolanaKeyring::GetAssociatedMetadataAccount(
+    const std::string& token_mint_address) {
+  std::vector<std::vector<uint8_t>> seeds;
+  const std::string metadata_seed_constant = "metadata";
+  std::vector<uint8_t> metaplex_seed_constant_bytes(
+      metadata_seed_constant.begin(), metadata_seed_constant.end());
+  std::vector<uint8_t> metadata_program_id_bytes;
+  std::vector<uint8_t> token_mint_address_bytes;
+
+  if (!Base58Decode(mojom::kSolanaMetadataProgramId, &metadata_program_id_bytes,
+                    kSolanaPubkeySize) ||
+      !Base58Decode(token_mint_address, &token_mint_address_bytes,
+                    kSolanaPubkeySize)) {
+    return absl::nullopt;
+  }
+
+  seeds.push_back(std::move(metaplex_seed_constant_bytes));
+  seeds.push_back(std::move(metadata_program_id_bytes));
+  seeds.push_back(std::move(token_mint_address_bytes));
+
+  return FindProgramDerivedAddress(seeds, mojom::kSolanaMetadataProgramId);
+}
+
+std::unique_ptr<HDKeyBase> SolanaKeyring::DeriveAccount(uint32_t index) const {
+  // m/44'/501/{index}'/0
+  return root_->DeriveHardenedChild(index)->DeriveHardenedChild(0);
 }
 
 }  // namespace brave_wallet

@@ -1,0 +1,17 @@
+diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.mm b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.mm
+index eea0b26a9cfb18f9ce58a920e75a22cfeac3af7f..c39ff205324839e68016717a21cdc924139360a1 100644
+--- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.mm
++++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.mm
+@@ -23,4 +23,12 @@
+                               underName:kSecondaryToolbarGuide];
+ }
+ 
++
++#pragma mark - MisesToolbarDelegate
++
++- (void)updateMisesAvatar:(UIImage*)image {
++    if ([self.view respondsToSelector:@selector(updateMisesAvatar:)]) {
++        [self.view performSelector:@selector(updateMisesAvatar:) withObject:image];
++    }
++}
+ @end

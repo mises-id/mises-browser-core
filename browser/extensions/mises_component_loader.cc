@@ -362,7 +362,7 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 
   if(extension && extension->location() != ManifestLocation::kComponent) {
 #if BUILDFLAG(IS_ANDROID)
-    base::android::MisesSysUtils::LogEventFromJni("install_extension", "id", extension->id(), "is_update", is_update?"1":"0");
+    base::android::MisesSysUtils::LogEventFromJni(is_update?"update_extension":"install_extension", "id", extension->id());
 #endif
     LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionInstalled";
   }
@@ -540,7 +540,6 @@ void MisesComponentLoader::PreInstallMetamaskFromWebStore() {
   if (!message_) {
     ShowPreInstallMessage(false);
   }
-  base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", metamask_extension_id);
 #endif
   metamask_preinstall_try_counter_ ++;
 
@@ -567,7 +566,9 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
   if (!metamask_extension) {
       if (!profile_prefs_->FindPreference(kPreinstallMetamaskEnabled) || 
         profile_prefs_->GetBoolean(kPreinstallMetamaskEnabled)) {
-
+#if BUILDFLAG(IS_ANDROID)
+        base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", metamask_extension_id);
+#endif
         base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
           FROM_HERE,
           base::BindOnce(
