@@ -1,0 +1,16 @@
+diff --git a/chrome/browser/ui/global_error/global_error.cc b/chrome/browser/ui/global_error/global_error.cc
+index a0ab5faa162236c869904a858afc0c2edda81cee..eb587b3d95b457e5593ee1993a2fa39f03f755ad 100644
+--- a/chrome/browser/ui/global_error/global_error.cc
++++ b/chrome/browser/ui/global_error/global_error.cc
+@@ -49,9 +49,11 @@ bool GlobalErrorWithStandardBubble::HasShownBubbleView() {
+ }
+ 
+ void GlobalErrorWithStandardBubble::ShowBubbleView(Browser* browser) {
++#if !BUILDFLAG(IS_ANDROID)
+   has_shown_bubble_view_ = true;
+   bubble_view_ =
+       GlobalErrorBubbleViewBase::ShowStandardBubbleView(browser, AsWeakPtr());
++#endif
+ }
+ 
+ GlobalErrorBubbleViewBase* GlobalErrorWithStandardBubble::GetBubbleView() {
