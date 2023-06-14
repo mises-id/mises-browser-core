@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_api.cc b/chrome/browser/extensions/api/tabs/tabs_api.cc
-index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..a4c3bb6f433b8074fd68d1f40fc87f72aa522366 100644
+index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..73209e2c1b7a0b7b9ef33deff3365a41378c5375 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_api.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_api.cc
 @@ -171,6 +171,7 @@ class ApiParameterExtractor {
@@ -279,7 +279,7 @@ index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..a4c3bb6f433b8074fd68d1f40fc87f72
 +      }
 +      api::tabs::WindowType android_window_type = api::tabs::WINDOW_TYPE_NORMAL;
 +      TabAndroid *tab_android = tab_strip_android->GetTabAt(i);
-+      if(tab_android && tab_android->ExtensionWindowID() >= 0) {
++      if(tab_android && tab_android->ExtensionWindowID() > 0) {
 +        android_window_type = api::tabs::WINDOW_TYPE_POPUP;
 +      }
 +      if (!window_type.empty() && window_type != tabs::ToString(android_window_type)) {
