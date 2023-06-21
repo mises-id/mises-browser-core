@@ -10,17 +10,29 @@ bool ItemIsExtension(InstantMostVisitedItemIDPair pair)
   return url.SchemeIs(extensions::kExtensionScheme) && url.GetWithEmptyPath() == url;
 }
 
-bool ItemIsSite(InstantMostVisitedItemIDPair pair)
+bool ItemIsNotEnabled(InstantMostVisitedItemIDPair pair) 
+{ 
+  const GURL&url = pair.second.favicon;
+  return !url.is_valid();
+}
+
+bool ItemIsNotExtension(InstantMostVisitedItemIDPair pair)
 { 
   return !ItemIsExtension(pair);
 } 
 
 }
 
+void SearchBox::GetInstalledExtensions(
+    std::vector<InstantMostVisitedItemIDPair>* items) const {
+  most_visited_items_cache_.GetCurrentItems(items);
+  items->erase(std::remove_if(items->begin(),items->end(),ItemIsNotExtension), items->end()); 
+}
 void SearchBox::GetMostVisitedExtensions(
     std::vector<InstantMostVisitedItemIDPair>* items) const {
   most_visited_items_cache_.GetCurrentItems(items);
-  items->erase(std::remove_if(items->begin(),items->end(),ItemIsSite), items->end()); 
+  items->erase(std::remove_if(items->begin(),items->end(),ItemIsNotExtension), items->end()); 
+  items->erase(std::remove_if(items->begin(),items->end(),ItemIsNotEnabled), items->end()); 
 }
 
 void SearchBox::GetMostVisitedSites(

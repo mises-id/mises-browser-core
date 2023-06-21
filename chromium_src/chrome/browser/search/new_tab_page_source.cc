@@ -18,8 +18,8 @@ namespace {
 // Multi-iframe version, used by third party remote NTPs.
 const char kTitleHTMLPath[] = "/local-ntp.html";
 const char kIncognitoHTMLPath[] = "/incognito-ntp.html";
-const char kTitleCSSPath[] = "/local-ntp.css";
-const char kTitleJSPath[] = "/local-ntp.js";
+const char kTitleCSSPath[] = "/local_ntp.css";
+const char kTitleJSPath[] = "/local_ntp.js";
 
 }  // namespace
 
@@ -50,42 +50,24 @@ void NewTabPageSource::StartDataRequest(
   } else if (path == kTitleJSPath) {
     SendJSWithOrigin(IDR_NEW_TAB_PAGE_INSTANT_LOCAL_NTP_JS, wc_getter,
                      std::move(callback));
-  } else if (path == "/loadingImage.js") {
-    SendJSWithOrigin(IDR_NEW_TAB_PAGE_INSTANT_LOADINGIMAGE_JS, wc_getter,
+  } else if (path == "/chunkFile.js") {
+    SendJSWithOrigin(IDR_NEW_TAB_PAGE_INSTANT_CHUNKFILE_JS, wc_getter,
                      std::move(callback));
   } else if (base::EndsWith(path, ".png", base::CompareCase::INSENSITIVE_ASCII)) {
     if (base::EndsWith(path, "Staking.png", base::CompareCase::INSENSITIVE_ASCII))
       SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_STAKING_PNG,
                  std::move(callback));
-    if (base::EndsWith(path, "Airdrop.png", base::CompareCase::INSENSITIVE_ASCII))
-      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_AIRDROP_PNG,
-                 std::move(callback));
     if (base::EndsWith(path, "Discover.png", base::CompareCase::INSENSITIVE_ASCII))
       SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_DISCOVER_PNG,
                  std::move(callback));
-    if (base::EndsWith(path, "Invite.png", base::CompareCase::INSENSITIVE_ASCII))
-      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_INVITE_PNG,
-                 std::move(callback));
-    if (base::EndsWith(path, "Staking-dark.png", base::CompareCase::INSENSITIVE_ASCII))
-      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_STAKING_DARK_PNG,
-                 std::move(callback));
-    if (base::EndsWith(path, "Airdrop-dark.png", base::CompareCase::INSENSITIVE_ASCII))
-      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_AIRDROP_DARK_PNG,
-                 std::move(callback));
-    if (base::EndsWith(path, "Discover-dark.png", base::CompareCase::INSENSITIVE_ASCII))
-      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_DISCOVER_DARK_PNG,
-                 std::move(callback));
-    if (base::EndsWith(path, "Invite-dark.png", base::CompareCase::INSENSITIVE_ASCII))
-      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_INVITE_DARK_PNG,
-                 std::move(callback));
-    if (base::EndsWith(path, "add@2x.png", base::CompareCase::INSENSITIVE_ASCII))
-      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_ADD_AT_2X_PNG,
-                 std::move(callback));
-    if (base::EndsWith(path, "more@2x.png", base::CompareCase::INSENSITIVE_ASCII))
-      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_MORE_AT_2X_PNG,
+    if (base::EndsWith(path, "close.png", base::CompareCase::INSENSITIVE_ASCII))
+      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_CLOSE_PNG,
                  std::move(callback));
     if (base::EndsWith(path, "down.png", base::CompareCase::INSENSITIVE_ASCII))
       SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_DOWN_PNG,
+                 std::move(callback));
+    if (base::EndsWith(path, "more@2x.png", base::CompareCase::INSENSITIVE_ASCII))
+      SendResource(IDR_NEW_TAB_PAGE_INSTANT_IMAGES_MORE_AT_2X_PNG,
                  std::move(callback));
   }else if (base::EndsWith(path, ".svg", base::CompareCase::INSENSITIVE_ASCII)) {
     if (base::EndsWith(path, "Private.svg", base::CompareCase::INSENSITIVE_ASCII))

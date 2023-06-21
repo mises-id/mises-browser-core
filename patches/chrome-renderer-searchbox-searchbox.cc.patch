@@ -1,0 +1,13 @@
+diff --git a/chrome/renderer/searchbox/searchbox.cc b/chrome/renderer/searchbox/searchbox.cc
+index 5dca4e943535142fbff2034fb5d1b5772ef1138f..76c24be9d005c45d250c7c0d7263d93033a6a5c4 100644
+--- a/chrome/renderer/searchbox/searchbox.cc
++++ b/chrome/renderer/searchbox/searchbox.cc
+@@ -33,7 +33,7 @@
+ namespace {
+ 
+ // The size of the InstantMostVisitedItem cache.
+-const size_t kMaxInstantMostVisitedItemCacheSize = 100;
++const size_t kMaxInstantMostVisitedItemCacheSize = 500;
+ 
+ // Returns true if items stored in |old_item_id_pairs| and |new_items| are
+ // equal.

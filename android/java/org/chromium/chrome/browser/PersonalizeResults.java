@@ -58,6 +58,9 @@ public class PersonalizeResults {
        if (tab != null && tab.getUrl().getSpec().startsWith("https://m.facebook.com/")) {
           tab.getWebContents().evaluateJavaScript("(function(){ if (!document.location.href.includes('https://m.facebook.com/')) { return; } document.querySelector('body.touch').style = \"cursor:default\";})();", null);
        }
+       if (tab != null && tab.getUrl().getSpec().contains("https://ramp.alchemypay.org/")) {
+          tab.getWebContents().evaluateJavaScript(RAMP_SCRIPT, null);
+       }
        if (tab != null && tab.getUrl().getSpec().startsWith("https://translate.google.com/translate_c")) {
           tab.getWebContents().evaluateJavaScript("(function(){ if (!document.location.href.includes('https://translate.google.com/translate_c')) { return; } var b=document.getElementById(\"gt-nvframe\");if(b){b.style.position='unset';document.body.style.top='0px'}else{var child=document.createElement('iframe');child.id='gt-nvframe';child.src=document.location.href.replace('/translate_c','/translate_nv');child.style.width='100%';child.style.height='93px';document.body.insertBefore(child,document.body.firstChild);var t=document.querySelector('meta[name=\"viewport\"]');if(!t){var metaTag=document.createElement('meta');metaTag.name='viewport';metaTag.content='width=device-width, initial-scale=1.0';document.body.appendChild(metaTag)}}})();", null);
        }
@@ -409,6 +412,15 @@ public class PersonalizeResults {
 +"document.body.appendChild(sheet);"
 +"})();";
 
+    private static final String RAMP_SCRIPT = ""
++"(function() {"
++"window.addEventListener('load', function() {"
++"const getStorage = sessionStorage.getItem('buyMerchantInfo');"
++"if(document.referrer === 'https://fiat.mises.site/' && (!getStorage || JSON.parse(getStorage).appId === '')){"
++"sessionStorage.setItem('buyMerchantInfo','{\"appId\":\"2f26SEACdsbRf91t\",\"merchantParam\":\"\"}')"
++"}"
++"})"
++"})();";
     private static final String AMP_SCRIPT = ""
 +"(function() {"
 +"function _cleanupAmp()"
