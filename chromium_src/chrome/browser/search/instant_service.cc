@@ -239,8 +239,8 @@ GURL InstantService::GetExtensionURL(const std::string& extension_id) {
 
 void InstantService::SearchComplete(history::QueryResults results) {
   std::vector<GURL> recent;
-  recent.push_back(GURL("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn"));
-  recent.push_back(GURL("chrome-extension://jkpbgdgopmifmokhejofbmgdabapoefl"));
+  //recent.push_back(GURL("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn"));
+  //recent.push_back(GURL("chrome-extension://jkpbgdgopmifmokhejofbmgdabapoefl"));
   if (!results.empty()) {
     for (const auto& item : results){
       if (item.url().SchemeIs(extensions::kExtensionScheme)) {
@@ -264,7 +264,7 @@ void InstantService::SearchComplete(history::QueryResults results) {
        InstantMostVisitedItem item;
        const int kDefaultTabId = extensions::ExtensionAction::kDefaultTabId;
        item.url = GetExtensionURL(extension->id());
-       item.title = base::UTF8ToUTF16(action->GetTitle(kDefaultTabId));
+       item.title = base::UTF8ToUTF16(extension->name());
         gfx::Image icon =
                 action->GetExplicitlySetIcon(kDefaultTabId);
         if (icon.IsEmpty())
