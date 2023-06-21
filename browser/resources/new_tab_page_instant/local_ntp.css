@@ -72,7 +72,9 @@ body{
   padding-top: 10px;
   display: flex;
 }
-
+.mises-extensions-container::-webkit-scrollbar {
+  display: none
+}
 .mises-extensions-container .mises-web3-item{
   flex: 0 0 25%;
 }
