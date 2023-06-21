@@ -92,6 +92,33 @@ v8::Local<v8::Value> NewTabPageBindings::GetMostVisitedExtensions(v8::Isolate* i
   return v8_mv_items;
 }
 
+v8::Local<v8::Value> NewTabPageBindings::GetInstalledExtensions(v8::Isolate* isolate) {
+  const SearchBox* search_box = GetSearchBoxForCurrentContext();
+  if (!search_box)
+    return v8::Null(isolate);
+
+  content::RenderFrame* render_frame = GetMainRenderFrameForCurrentContext();
+
+  // This corresponds to "window.devicePixelRatio" in JavaScript.
+  int render_frame_id = render_frame->GetRoutingID();
+
+  std::vector<InstantMostVisitedItemIDPair> instant_mv_items;
+  search_box->GetInstalledExtensions(&instant_mv_items);
+  v8::Local<v8::Context> context = isolate->GetCurrentContext();
+  v8::Local<v8::Object> v8_mv_items =
+      v8::Array::New(isolate, instant_mv_items.size());
+  for (size_t i = 0; i < instant_mv_items.size(); ++i) {
+    InstantRestrictedID rid = instant_mv_items[i].first;
+    v8_mv_items
+        ->CreateDataProperty(
+            context, i,
+            GenerateMostVisitedItemData(isolate, 
+                                    render_frame_id, rid, instant_mv_items[i].second))
+        .Check();
+  }
+  return v8_mv_items;
+}
+
 
 bool NewTabPageBindings::IsIncognito(v8::Isolate* isolate) {
   return ChromeRenderThreadObserver::is_incognito_process();

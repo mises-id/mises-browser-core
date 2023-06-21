@@ -252,19 +252,23 @@ void InstantService::SearchComplete(history::QueryResults results) {
   std::vector<InstantMostVisitedItem> items;
   extensions::ExtensionRegistry* registry = extensions::ExtensionRegistry::Get(profile_);
   const extensions::ExtensionSet& enabled_extensions = registry->enabled_extensions();
-  for (const auto& extension : enabled_extensions) {
+  const extensions::ExtensionSet& disabled_extensions = registry->disabled_extensions();
+  extensions::ExtensionSet all_extensions;
+  all_extensions.InsertAll(enabled_extensions);
+  all_extensions.InsertAll(disabled_extensions);
+  for (const auto& extension : all_extensions) {
     extensions::ExtensionAction* action = nullptr;
     extensions::ExtensionActionManager* manager =
              extensions::ExtensionActionManager::Get(profile_);
-    const extensions::Extension* extension_ptr = enabled_extensions.GetByID(extension->id());
+    const extensions::Extension* extension_ptr = all_extensions.GetByID(extension->id());
     if (extension_ptr) {
      action = manager->GetExtensionAction(*extension_ptr);
     }
-    if (action) {
-       InstantMostVisitedItem item;
+    InstantMostVisitedItem item;
+    item.url = GetExtensionURL(extension->id());
+    item.title = base::UTF8ToUTF16(extension->name());
+    if (action && enabled_extensions.GetByID(extension->id())) {
        const int kDefaultTabId = extensions::ExtensionAction::kDefaultTabId;
-       item.url = GetExtensionURL(extension->id());
-       item.title = base::UTF8ToUTF16(extension->name());
         gfx::Image icon =
                 action->GetExplicitlySetIcon(kDefaultTabId);
         if (icon.IsEmpty())
@@ -275,13 +279,12 @@ void InstantService::SearchComplete(history::QueryResults results) {
           std::vector<gfx::ImageSkiaRep> image_reps = icon.AsImageSkia().image_reps();
           for (const gfx::ImageSkiaRep& rep : image_reps) {
             std::string base64_image = webui::GetBitmapDataUrl(rep.GetBitmap());
-
             item.favicon = GURL(base64_image);
           }
         }
        //LOG(INFO) << "[Mises] InstantService::SearchComplete - found extension: " << item.url;
-       items.push_back(item);
     }
+    items.push_back(item);
   }
   std::sort(
       items.begin(), items.end(),
