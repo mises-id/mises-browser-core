@@ -164,7 +164,7 @@ void CloseAllExtensionTabsAndroid(const Extension* extension) {
         tab_index++;
         continue;
       }
-      if (tab_android->ExtensionWindowID() <= 0) {
+      if (tab_android->ExtensionWindowID() < 0) {
         tab_index++;
         continue;
       }
