@@ -63,13 +63,13 @@ body{
 .mises-web3-container{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 }
 
 .mises-extensions-container{
   /* display: none; */
   overflow-x: auto;
-  padding: 10px 0;
+  padding-top: 10px;
   display: flex;
 }
 
@@ -77,6 +77,9 @@ body{
   flex: 0 0 25%;
 }
 
+.mises-extensions-container .mises-web3-title{
+  margin-top: 7px
+}
 .mises-web3-item{
   display: block;
   text-align: center;
@@ -111,7 +114,7 @@ body{
 
 .mises-site-container{
   /* background: linear-gradient(to bottom, white, transparent); */
-  padding: 10px 0;
+  padding-top: 10px;
   display: grid
 }
 
