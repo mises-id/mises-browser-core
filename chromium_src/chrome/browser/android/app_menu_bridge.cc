@@ -547,7 +547,7 @@ std::string AppMenuBridge::GetRunningExtensionsInternal(content::WebContents* we
           result += "\x1E" + base64_image;
           bool incognito_enabled = extensions::util::IsIncognitoEnabled(extension->id(), profile_);
           if (incognito_enabled) {
-            result += "\x1E" + "active";
+            result += std::string() + "\x1E" + "active";
           }
 
           result += "\x1F";
