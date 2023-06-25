@@ -82,10 +82,7 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
         createNotificationChannel();
 
         // Start foreground service.
-        if (!IS_RUNNING) {
-	        startLCDService();
-	    }
-
+	    startLCDService();
     }
 
     @Override
