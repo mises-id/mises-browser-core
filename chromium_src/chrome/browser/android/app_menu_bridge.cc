@@ -539,11 +539,18 @@ std::string AppMenuBridge::GetRunningExtensionsInternal(content::WebContents* we
           if (extension_action_->HasPopup(sessions::SessionTabHelper::IdForTab(web_contents).id())) {
             GURL popup_url = extension_action_->GetPopupUrl(
                 sessions::SessionTabHelper::IdForTab(web_contents).id());
-            result += extension->name() + "\x1E" + extension->id() + "\x1E" + popup_url.spec() + "\x1E" + base64_image + "\x1F";
+            result += extension->name() + "\x1E" + extension->id() + "\x1E" + popup_url.spec();
           } else {
             // Record separator and Unit separator in ASCII table
-            result += extension->name() + "\x1E" + extension->id() + "\x1E" + "" + "\x1E" + base64_image + "\x1F";
+            result += extension->name() + "\x1E" + extension->id() + "\x1E" + "";
           }
+          result += "\x1E" + base64_image;
+          bool incognito_enabled = extensions::util::IsIncognitoEnabled(extension->id(), profile_);
+          if (incognito_enabled) {
+            result += "\x1E" + "active";
+          }
+
+          result += "\x1F";
         }
       }
    }
