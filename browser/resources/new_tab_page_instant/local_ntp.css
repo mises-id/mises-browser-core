@@ -274,10 +274,6 @@ body{
     margin: 0 calc((25% - 53px) / 2);
   }
 
-  .web3-site-title{
-    font-size: 16px;
-  }
-
   .mises-web3-item img,.grid-image-box img{
     width: 28px;
     height: 28px;
