@@ -1,0 +1,12 @@
+diff --git a/components/ntp_tiles/constants.cc b/components/ntp_tiles/constants.cc
+index 9b437d6cef8d77ccda3a54f47088bcc0aecac9bd..29ca7c7069521ed177644714edf316541b7c30bc 100644
+--- a/components/ntp_tiles/constants.cc
++++ b/components/ntp_tiles/constants.cc
+@@ -10,6 +10,6 @@ const size_t kMaxNumCustomLinks = 10;
+ 
+ // If custom links are enabled, an additional tile may be returned making up to
+ // kMaxNumCustomLinks custom links including the "Add shortcut" button.
+-const size_t kMaxNumMostVisited = 8;
++const size_t kMaxNumMostVisited = 20;
+ 
+ }  // namespace ntp_tiles
