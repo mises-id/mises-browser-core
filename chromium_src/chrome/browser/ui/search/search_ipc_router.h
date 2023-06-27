@@ -18,10 +18,12 @@
 
 
 #define OnUndoMostVisitedDeletion OnOpenExtension(const GURL& url) = 0; \
+      virtual void OnLogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) = 0; \
       virtual void OnUndoMostVisitedDeletion
 #define OnTabDeactivated OnMisesInfoChanged(); \
   void SendMostVisitedInfo_Chromium(const InstantMostVisitedInfo& most_visited_info); \
   void OpenExtension(const GURL& url) override; \
+  void LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) override; \
   void OnTabDeactivated
 
 

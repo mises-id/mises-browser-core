@@ -58,3 +58,8 @@ void SearchBox::OpenExtension(
   embedded_search_service_->OpenExtension(url);
 }
 
+
+void SearchBox::LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) {
+  embedded_search_service_->LogEvent(event_type, key, value);
+}
+

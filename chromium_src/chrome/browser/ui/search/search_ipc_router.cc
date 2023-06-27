@@ -36,3 +36,7 @@ void SearchIPCRouter::OpenExtension( const GURL& url) {
   delegate_->OnOpenExtension(url);
 }
 
+void SearchIPCRouter::LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) {
+  delegate_->OnLogEvent( event_type, key, value);
+}
+
