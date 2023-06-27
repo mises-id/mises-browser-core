@@ -138,6 +138,23 @@ void NewTabPageBindings::OpenExtension(v8::Isolate* isolate,
   search_box->OpenExtension(*rid);
 } 
 
+std::u16string CoerceToString(v8::Isolate* isolate, v8::Local<v8::Value> v8_value) {
+  v8::String::Value str(isolate, v8_value);
+  return std::u16string((const char16_t*)*str, str.length());
+}
+void NewTabPageBindings::LogEvent(v8::Isolate* isolate,
+                                  v8::Local<v8::Value> event_type,
+                                  v8::Local<v8::Value> key, v8::Local<v8::Value> value) {
+  std::u16string event_type_str = CoerceToString(isolate, event_type);
+  std::u16string key_str = CoerceToString(isolate, key);
+  std::u16string value_str = CoerceToString(isolate, value);
+
+  SearchBox* search_box = GetSearchBoxForCurrentContext();
+  if (!search_box)
+    return;
+  search_box->LogEvent(event_type_str, key_str, value_str);
+} 
+
 void SearchBoxExtension::DispatchMisesInfoChanged(blink::WebLocalFrame* frame, const std::u16string& info) {
   std::string escaped_info = base::GetQuotedJSONString(info);
   blink::WebString script(blink::WebString::FromUTF8(base::StringPrintf(

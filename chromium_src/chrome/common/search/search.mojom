@@ -6,6 +6,7 @@ import "mojo/public/mojom/base/string16.mojom";
 [MisesExtend]
 interface EmbeddedSearch {
   OpenExtension(url.mojom.Url url);
+  LogEvent(mojo_base.mojom.String16 event_type, mojo_base.mojom.String16 key, mojo_base.mojom.String16 value);
 };
  
 [MisesExtend]
