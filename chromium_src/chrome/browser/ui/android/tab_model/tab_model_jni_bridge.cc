@@ -99,7 +99,7 @@ void TabModelJniBridge::CreateTab(TabAndroid* parent,
   Java_TabModelJniBridge_createTabWithWebContents(
       env, java_object_.get(env), (parent ? parent->GetJavaObject() : nullptr),
       ProfileAndroid::FromProfile(profile)->GetJavaObject(),
-      web_contents->GetJavaWebContents());
+      web_contents->GetJavaWebContents(), (int)TabModel::TabLaunchType::FROM_RECENT_TABS);
 }
 
 void TabModelJniBridge::HandlePopupNavigation(TabAndroid* parent,
@@ -253,6 +253,19 @@ int TabModelJniBridge::GetLastNonExtensionActiveIndex() const {
   JNIEnv* env = AttachCurrentThread();
   return Java_TabModelJniBridge_getLastNonExtensionActiveIndex(env, java_object_.get(env));
 }
+
+void TabModelJniBridge::CreateForgroundTab(TabAndroid* parent,
+                                  WebContents* web_contents) {
+  JNIEnv* env = AttachCurrentThread();
+  Profile* profile =
+      Profile::FromBrowserContext(web_contents->GetBrowserContext());
+
+  Java_TabModelJniBridge_createTabWithWebContents(
+      env, java_object_.get(env), (parent ? parent->GetJavaObject() : nullptr),
+      ProfileAndroid::FromProfile(profile)->GetJavaObject(),
+      web_contents->GetJavaWebContents(), (int)TabModel::TabLaunchType::FROM_CHROME_UI);
+}
+
 content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
 		const std::string& extension_id, const GURL& url, const SessionID::id_type session_window_id){
   LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension";

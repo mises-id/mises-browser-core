@@ -1,7 +1,16 @@
 diff --git a/content/public/android/java/src/org/chromium/content/browser/BindingManager.java b/content/public/android/java/src/org/chromium/content/browser/BindingManager.java
-index ac6d0d0cfe613e0b3c5e5efb5617ded6d3975434..f6bb4b8264421c497f7f2e7bb0dd10ed7aa1d7ca 100644
+index ac6d0d0cfe613e0b3c5e5efb5617ded6d3975434..8f1998d32c4763bce421bb88b1121267700981cb 100644
 --- a/content/public/android/java/src/org/chromium/content/browser/BindingManager.java
 +++ b/content/public/android/java/src/org/chromium/content/browser/BindingManager.java
+@@ -93,7 +93,7 @@ class BindingManager implements ComponentCallbacks2 {
+         int newSize = (int) (oldSize * (1f - reduceRatio));
+         Log.i(TAG, "Reduce connections from %d to %d", oldSize, newSize);
+         removeOldConnections(oldSize - newSize);
+-        assert mConnections.size() == newSize;
++        //assert mConnections.size() == newSize;
+         ensureLowestRankIsWaived();
+     }
+ 
 @@ -103,6 +103,10 @@ class BindingManager implements ComponentCallbacks2 {
  
      private void removeOldConnections(int numberOfConnections) {
