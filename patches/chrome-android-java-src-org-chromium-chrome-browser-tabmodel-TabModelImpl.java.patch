@@ -1,7 +1,19 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
-index e77c2201b09efdbc1d84c9e6f5c67c73d0978227..dd1cc6a21381cfd48dd71cf5f49d40f84ac01a58 100644
+index e77c2201b09efdbc1d84c9e6f5c67c73d0978227..94f0d3f99b7724b9ee9489b8d517aea9eabd1954 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
+@@ -766,9 +766,9 @@ public class TabModelImpl extends TabModelJniBridge {
+      */
+     @Override
+     protected boolean createTabWithWebContents(
+-            Tab parent, Profile profile, WebContents webContents) {
++            Tab parent, Profile profile, WebContents webContents, @TabLaunchType int type) {
+         return getTabCreator(profile.isOffTheRecord())
+-                .createTabWithWebContents(parent, webContents, TabLaunchType.FROM_RECENT_TABS);
++                .createTabWithWebContents(parent, webContents, type);
+     }
+ 
+     @Override
 @@ -815,6 +815,24 @@ public class TabModelImpl extends TabModelJniBridge {
          return mIndex;
      }

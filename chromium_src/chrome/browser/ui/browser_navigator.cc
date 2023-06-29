@@ -25,13 +25,17 @@ base::WeakPtr<content::NavigationHandle> Navigate(NavigateParams* params) {
     if (TabModelList::models().size() == 0)
       return nullptr;
     TabModel* tab_model = TabModelList::models()[0];
+    content::WebContents* new_web_contents = NULL;
     if (params->url.is_valid() && !(params->url.is_empty())) {
       GURL url = params->url;
-      tab_model->CreateNewTabForDevTools(url.is_empty() ? GURL(chrome::kChromeUINewTabURL) : url);
+      new_web_contents = tab_model->CreateNewTabForDevTools(url.is_empty() ? GURL(chrome::kChromeUINewTabURL) : url);
     }
     else if (params->contents_to_insert) {
-      tab_model->CreateTab(nullptr, params->contents_to_insert.release());       
+      TabAndroid* parent = tab_model->GetTabAt(tab_model->GetActiveIndex());
+      new_web_contents = params->contents_to_insert.release();
+      tab_model->CreateForgroundTab(parent, new_web_contents);       
     }
+
     return nullptr;
 }
 

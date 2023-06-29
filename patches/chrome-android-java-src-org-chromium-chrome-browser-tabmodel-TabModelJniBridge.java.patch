@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..b7abf7c0e5f7008e649736227c085bbbe2bd4ab8 100644
+index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..e82bde763a37513352cb6f66a9f45a8472a67f51 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 @@ -22,6 +22,7 @@ import org.chromium.content_public.common.ResourceRequestBody;
@@ -10,6 +10,15 @@ index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..b7abf7c0e5f7008e649736227c085bbb
  
  /**
   * Bridges between the C++ and Java {@link TabModel} interfaces.
+@@ -133,7 +134,7 @@ public abstract class TabModelJniBridge implements TabModel {
+      */
+     @CalledByNative
+     protected abstract boolean createTabWithWebContents(
+-            Tab parent, Profile profile, WebContents webContents);
++            Tab parent, Profile profile, WebContents webContents, @TabLaunchType int type);
+ 
+     @CalledByNative
+     protected abstract void openNewTab(Tab parent, GURL url, @Nullable Origin initiatorOrigin,
 @@ -147,7 +148,14 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      protected Tab createNewTabForDevTools(GURL url) {

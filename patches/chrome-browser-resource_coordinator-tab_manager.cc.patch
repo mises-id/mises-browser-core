@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resource_coordinator/tab_manager.cc b/chrome/browser/resource_coordinator/tab_manager.cc
+index 4e7dbd32c0b7066cbfb041aa320d5c9ffd3859dd..c7a18c511baca885b66b47e3bdf73ba719c06061 100644
+--- a/chrome/browser/resource_coordinator/tab_manager.cc
++++ b/chrome/browser/resource_coordinator/tab_manager.cc
+@@ -182,7 +182,7 @@ WebContents* TabManager::DiscardTabByExtension(content::WebContents* contents) {
+     TabLifecycleUnitExternal* tab_lifecycle_unit_external =
+         TabLifecycleUnitExternal::FromWebContents(contents);
+     DCHECK(tab_lifecycle_unit_external);
+-    if (tab_lifecycle_unit_external->DiscardTab(
++    if (tab_lifecycle_unit_external && tab_lifecycle_unit_external->DiscardTab(
+             LifecycleUnitDiscardReason::EXTERNAL)) {
+       return tab_lifecycle_unit_external->GetWebContents();
+     }
