@@ -1,15 +1,15 @@
 diff --git a/content/public/android/java/src/org/chromium/content/browser/BindingManager.java b/content/public/android/java/src/org/chromium/content/browser/BindingManager.java
-index ac6d0d0cfe613e0b3c5e5efb5617ded6d3975434..dff85aafcf3ee9ef561f1cb79e9d58f3b6299ca8 100644
+index ac6d0d0cfe613e0b3c5e5efb5617ded6d3975434..f6bb4b8264421c497f7f2e7bb0dd10ed7aa1d7ca 100644
 --- a/content/public/android/java/src/org/chromium/content/browser/BindingManager.java
 +++ b/content/public/android/java/src/org/chromium/content/browser/BindingManager.java
-@@ -92,6 +92,10 @@ class BindingManager implements ComponentCallbacks2 {
-         int oldSize = mConnections.size();
-         int newSize = (int) (oldSize * (1f - reduceRatio));
-         Log.i(TAG, "Reduce connections from %d to %d", oldSize, newSize);
-+	if (oldSize == 1) {
-+	  Log.i(TAG, "Skip Reduce connections");
+@@ -103,6 +103,10 @@ class BindingManager implements ComponentCallbacks2 {
+ 
+     private void removeOldConnections(int numberOfConnections) {
+         assert numberOfConnections <= mConnections.size();
++	if (mConnections.size() == 1) {
++	  Log.i(TAG, "Skip removeOldConnections");
 +	  return;
-+	}
-         removeOldConnections(oldSize - newSize);
-         assert mConnections.size() == newSize;
-         ensureLowestRankIsWaived();
++	};
+         int numRemoved = 0;
+         for (ChildProcessConnection connection : mRanking) {
+             if (mConnections.contains(connection)) {
