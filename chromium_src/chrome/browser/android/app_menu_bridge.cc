@@ -223,10 +223,11 @@ void AppMenuBridge::OnTabModelAdded() {
 
 
 void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType type)  {
-  LOG(INFO) << "AppMenuBridge::DidSelectTab";
+  LOG(INFO) << "AppMenuBridge::DidSelectTab " << (int)type;
 
-  
-  if (sel_tab->ExtensionWindowID() == -1) {
+  if (sel_tab->web_contents() && (sel_tab->ExtensionWindowID() == -1) && (
+    type == TabModel::TabSelectionType::FROM_USER || 
+    type == TabModel::TabSelectionType::FROM_OMNIBOX)) {
      base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
       FROM_HERE,
       base::BindOnce(&AppMenuBridge::CloseWalletTabs,
