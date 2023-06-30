@@ -226,7 +226,7 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
   LOG(INFO) << "AppMenuBridge::DidSelectTab";
 
   
-  if (!sel_tab->web_contents() || sel_tab->ExtensionWindowID() == -1) {
+  if (sel_tab->ExtensionWindowID() == -1) {
      base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
       FROM_HERE,
       base::BindOnce(&AppMenuBridge::CloseWalletTabs,
