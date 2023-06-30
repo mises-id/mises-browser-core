@@ -92,9 +92,11 @@ public class MisesUserInfoMenu extends PopupWindow {
         view.findViewById(R.id.tv_create_mises).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_website).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_website1).setOnClickListener(itemsOnClick);
-	view.findViewById(R.id.tv_nft).setOnClickListener(itemsOnClick);
-	view.findViewById(R.id.tv_portal).setOnClickListener(itemsOnClick);
-	view.findViewById(R.id.tv_invite).setOnClickListener(itemsOnClick);
-	view.findViewById(R.id.tv_id).setOnClickListener(itemsOnClick);
+        view.findViewById(R.id.tv_twitter).setOnClickListener(itemsOnClick);
+        view.findViewById(R.id.tv_twitter1).setOnClickListener(itemsOnClick);
+	    view.findViewById(R.id.tv_nft).setOnClickListener(itemsOnClick);
+	    view.findViewById(R.id.tv_portal).setOnClickListener(itemsOnClick);
+	    view.findViewById(R.id.tv_invite).setOnClickListener(itemsOnClick);
+	    view.findViewById(R.id.tv_id).setOnClickListener(itemsOnClick);
     }
 } 

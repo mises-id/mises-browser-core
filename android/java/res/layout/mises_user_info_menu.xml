@@ -61,6 +61,19 @@
                     android:background="#ffeeeeee" />
 
                 <TextView
+                    android:id="@+id/tv_twitter"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/lbl_follow_on_twitter"
+                    android:textColor="#ff333333"
+                    android:textSize="18sp"
+                    android:drawableStart="@mipmap/ic_twitter"
+                    android:drawablePadding="18dp"
+                    android:paddingStart="25dp"
+                    android:background="?attr/selectableItemBackground"/>
+
+                <TextView
                     android:id="@+id/tv_website"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
@@ -201,10 +214,22 @@
                     android:textSize="18sp"
                     android:drawableStart="@mipmap/ic_invite"
                     android:drawablePadding="18dp"
-                android:paddingStart="25dp"
-                android:paddingEnd="125dp"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="125dp"
                     android:background="?attr/selectableItemBackground" 
                     android:drawableEnd="@mipmap/ic_reward" />
+                <TextView
+                    android:id="@+id/tv_twitter1"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/lbl_follow_on_twitter"
+                    android:textColor="#ff333333"
+                    android:textSize="18sp"
+                    android:drawableStart="@mipmap/ic_twitter"
+                    android:drawablePadding="18dp"
+                    android:paddingStart="25dp"
+                    android:background="?attr/selectableItemBackground"/>
                 <TextView
                     android:id="@+id/tv_website1"
                     android:layout_width="match_parent"

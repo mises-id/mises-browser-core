@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index f2a42285d5c5f2650030ce1e10c75160d991b4a2..95b8a9112ddfe850c794fe9d0adef4e8dbff26ec 100644
+index f2a42285d5c5f2650030ce1e10c75160d991b4a2..7f942e77d5c3d3b85b2c275c0845eb3360358817 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -97,12 +97,53 @@ import java.util.ArrayList;
@@ -313,7 +313,7 @@ index f2a42285d5c5f2650030ce1e10c75160d991b4a2..95b8a9112ddfe850c794fe9d0adef4e8
          int shadowVisibility = shouldDrawShadow ? View.VISIBLE : View.INVISIBLE;
  
          if (mToolbarShadow != null && mToolbarShadow.getVisibility() != shadowVisibility) {
-@@ -2744,4 +2863,288 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
+@@ -2744,4 +2863,292 @@ public class ToolbarPhone extends ToolbarLayout implements OnClickListener, TabC
      private int calculateOnFocusHeightIncrease() {
          return (int) (mBackgroundHeightIncreaseWhenFocus * mUrlFocusChangeFraction / 2);
      }
@@ -583,6 +583,10 @@ index f2a42285d5c5f2650030ce1e10c75160d991b4a2..95b8a9112ddfe850c794fe9d0adef4e8
 +                    } else if (v.getId() == R.id.tv_website || v.getId() == R.id.tv_website1) {
 +                        if (tabCreator != null) {
 +                            tabCreator.launchUrl("https://www.mises.site", TabLaunchType.FROM_CHROME_UI);
++                        }
++                    }  else if (v.getId() == R.id.tv_twitter || v.getId() == R.id.tv_twitter1) {
++                        if (tabCreator != null) {
++                            tabCreator.launchUrl("https://twitter.com/Mises001", TabLaunchType.FROM_CHROME_UI);
 +                        }
 +                    } else if (v.getId() == R.id.tv_id) {
 +                        Clipboard.getInstance().setText(id);
