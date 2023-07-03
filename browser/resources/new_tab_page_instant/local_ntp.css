@@ -383,6 +383,7 @@ a {
 
 #homepage,#incognito {
   display: none;
+  overflow: hidden;
 }
 
 .incognito-icon{
