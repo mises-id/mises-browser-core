@@ -1,0 +1,136 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
+index 471af534674d1366899f12828e960d0db68b1c4c..5290956349109408d4f205d28a1f2e66d174e5b5 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
+@@ -65,6 +65,24 @@ import org.chromium.url.GURL;
+ 
+ import java.util.function.BooleanSupplier;
+ 
++import org.chromium.chrome.browser.ui.appmenu.AppMenuDelegate;
++import org.chromium.ui.widget.ChromeImageButton;
++import org.chromium.chrome.browser.mises.MisesController;
++import org.chromium.chrome.browser.mises.MisesWeb3SafeAlert;
++import org.chromium.chrome.browser.mises.MisesUtil;
++import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
++import org.chromium.chrome.browser.tabmodel.TabCreator;
++import org.chromium.chrome.browser.tabmodel.TabModel;
++import org.chromium.base.Log;
++import android.graphics.drawable.BitmapDrawable;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++import android.graphics.PorterDuff.Mode;
++import android.text.TextUtils;
++import android.util.Base64;
++import androidx.fragment.app.FragmentActivity;
++import androidx.core.widget.ImageViewCompat;
++
+ /**
+  * Layout class that contains the base shared logic for manipulating the toolbar component. For
+  * interaction that are not from Views inside Toolbar hierarchy all interactions should be done
+@@ -72,7 +90,7 @@ import java.util.function.BooleanSupplier;
+  */
+ public abstract class ToolbarLayout
+         extends FrameLayout implements Destroyable, TintObserver, ThemeColorObserver,
+-                                       OmniboxSuggestionsDropdownScrollListener {
++                                       OmniboxSuggestionsDropdownScrollListener, MisesController.MisesControllerObserver {
+     private Callback<Runnable> mInvalidator;
+     private @Nullable ToolbarColorObserver mToolbarColorObserver;
+ 
+@@ -105,6 +123,11 @@ public abstract class ToolbarLayout
+ 
+     protected final DestroyChecker mDestroyChecker;
+ 
++    @Nullable
++    protected ChromeImageButton mMisesExtensionButton;
++    @Nullable
++    protected Drawable mExtensionButtonDrawableOveride;
++
+     /**
+      * Basic constructor for {@link ToolbarLayout}.
+      */
+@@ -188,6 +211,7 @@ public abstract class ToolbarLayout
+         if (mToolbarColorObserver != null) {
+             mToolbarColorObserver = null;
+         }
++        MisesController.getInstance().RemoveObserver(this);
+     }
+ 
+     /**
+@@ -326,6 +350,8 @@ public abstract class ToolbarLayout
+                 return false;
+             }
+         };
++
++        MisesController.getInstance().AddObserver(this);
+     }
+ 
+     @Override
+@@ -877,4 +903,68 @@ public abstract class ToolbarLayout
+             shadow.setVisibility(isHairlineVisible ? VISIBLE : GONE);
+         }
+     }
++
++    protected static Bitmap decodeBitmapFromString(String encodedString) {
++        if (TextUtils.isEmpty(encodedString)) {
++	        Log.e("Mises","decodeBitmapFromString null");
++	        return null;
++        }
++        try {
++            byte[] decoded = Base64.decode(encodedString, Base64.DEFAULT);
++            return BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
++            } catch (Exception e) {
++        Log.e("Mises","decodeBitmapFromString exception");
++        }
++        return null;
++    }
++
++
++    @Override
++    public void OnWeb3SafePhishingDetected(final String address) {
++        Context context = getContext();
++        if (!(context instanceof FragmentActivity) || !(context instanceof TabCreatorManager))
++            return;
++        FragmentActivity chromeTabbedActivity = (FragmentActivity) context;
++        MisesWeb3SafeAlert alertWin = MisesWeb3SafeAlert.newInstance((TabCreatorManager) context, "", address);
++        alertWin.show(chromeTabbedActivity.getSupportFragmentManager(), "MisesWeb3SafeAlert");
++    }
++
++    @Override
++    public void OnExtensionDNRActionCountChanged(final String base64Image) {
++      Log.e("Mises","OnExtensionDNRActionCountChanged");
++      if (base64Image == null || base64Image.isEmpty()) {
++        mExtensionButtonDrawableOveride = null;
++      } else {
++	    String cleanImage = base64Image.replace("data:image/png;base64,", "").replace("data:image/jpeg;base64,","").replace("data:image/gif;base64,", "");
++        Bitmap bitmap = decodeBitmapFromString(cleanImage);
++        mExtensionButtonDrawableOveride = new BitmapDrawable(getResources(), bitmap);
++	    Log.e("Mises","OnExtensionDNRActionCountChanged Overide");
++      }
++      ChromeImageButton imageButton = mMisesExtensionButton;
++      if (imageButton != null) {
++      	if (mExtensionButtonDrawableOveride != null) {
++            imageButton.setImageDrawable(mExtensionButtonDrawableOveride);
++            imageButton.setImageTintMode(Mode.DST_IN);
++            ImageViewCompat.setImageTintList(imageButton, null);
++         } else {
++            imageButton.setImageResource(R.drawable.btn_extension);
++            imageButton.setImageTintMode(Mode.SRC_IN);
++        }
++      } 
++      invalidate();
++    }
++
++    @Override
++    public void OnMisesUserInfoChanged() {
++    }
++
++    protected void onClickMisesButton(View v) {
++        if (mMisesExtensionButton != null && mMisesExtensionButton == v) {
++	        final AppMenuDelegate act = (AppMenuDelegate) getContext();
++	        act.setShowExtensionOnly();
++            if (getMenuButtonCoordinator() != null) {
++	            getMenuButtonCoordinator().getHelper().onEnterKeyPress(v);
++	        }
++        }
++    }
+ }

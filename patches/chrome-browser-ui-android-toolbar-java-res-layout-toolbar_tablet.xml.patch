@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
+index 915d32496fa249cee678e685f4e66712e2f9c2aa..d0235beb9bd53969f5a7faacd6c5bb2f60bd3e47 100644
+--- a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
++++ b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
+@@ -75,6 +75,15 @@ found in the LICENSE file.
+             android:paddingStart="8dp"
+             android:visibility="gone" />
+ 
++        <org.chromium.ui.widget.ChromeImageButton
++            android:id="@+id/mises_extension_button"
++            style="@style/ToolbarButton"
++            android:paddingStart="8dp"
++            android:layout_gravity="top"
++            android:src="@drawable/btn_extension"
++            app:tint="@color/default_icon_color_tint_list"
++            android:contentDescription="@null" />
++
+         <org.chromium.chrome.browser.toolbar.top.ToggleTabStackButton
+             android:id="@+id/tab_switcher_button"
+             style="@style/ToolbarButton"

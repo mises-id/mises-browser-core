@@ -1,0 +1,73 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
+index e9133168973746836d6d618cc06f73aa602e953f..aeecefb11abbc71c5504c237a5f232b69607b6b5 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
+@@ -63,6 +63,14 @@ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.function.BooleanSupplier;
+ 
++
++import org.chromium.ui.display.DisplayAndroid;
++import android.os.Bundle;
++import android.widget.ImageButton;
++import android.widget.PopupWindow;
++import org.chromium.base.Log;
++import org.chromium.ui.widget.ChromeImageButton;
++
+ /**
+  * The Toolbar object for Tablet screens.
+  */
+@@ -92,6 +100,7 @@ public class ToolbarTablet
+     private ImageButton mSaveOfflineButton;
+     private ToggleTabStackButton mSwitcherButton;
+ 
++
+     private OnClickListener mBookmarkListener;
+ 
+     private boolean mIsInTabSwitcherMode;
+@@ -171,6 +180,7 @@ public class ToolbarTablet
+         mShouldAnimateButtonVisibilityChange = false;
+         mToolbarButtonsVisible = true;
+         mToolbarButtons = new ImageButton[] {mBackButton, mForwardButton, mReloadButton};
++        setupMisesButton();
+     }
+ 
+     @Override
+@@ -312,6 +322,7 @@ public class ToolbarTablet
+ 
+         mSaveOfflineButton.setOnClickListener(this);
+         mSaveOfflineButton.setOnLongClickListener(this);
++        setupMisesButtonClickListener();
+     }
+ 
+     @Override
+@@ -369,6 +380,7 @@ public class ToolbarTablet
+             mOfflineDownloader.downloadPage(getContext(), getToolbarDataProvider().getTab());
+             RecordUserAction.record("MobileToolbarDownloadPage");
+         }
++        onClickMisesButton(v);
+     }
+ 
+     @Override
+@@ -467,6 +479,8 @@ public class ToolbarTablet
+         if (mOptionalButton != null && mOptionalButtonUsesTint) {
+             ImageViewCompat.setImageTintList(mOptionalButton, tint);
+         }
++        if (mMisesExtensionButton != null && mExtensionButtonDrawableOveride == null) 
++            ImageViewCompat.setImageTintList(mMisesExtensionButton, tint);
+     }
+ 
+     @Override
+@@ -838,4 +852,12 @@ public class ToolbarTablet
+     void setToolbarButtonsVisibleForTesting(boolean value) {
+         mToolbarButtonsVisible = value;
+     }
++
++    private void setupMisesButton() {
++        mMisesExtensionButton =  (ChromeImageButton) findViewById(R.id.mises_extension_button);
++    }
++    private void setupMisesButtonClickListener() {
++	    if (mMisesExtensionButton != null) mMisesExtensionButton.setOnClickListener(this);
++    }
++
+ }
