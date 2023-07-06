@@ -71,7 +71,7 @@ html,body  {
 .mises-extensions-container{
   /* display: none; */
   overflow-x: auto;
-  padding-top: 10px;
+  padding: 10px 0;
   display: flex;
 }
 .mises-extensions-container::-webkit-scrollbar {
