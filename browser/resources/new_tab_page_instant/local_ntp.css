@@ -253,14 +253,6 @@ html,body  {
   align-items: center;
 }
 
-.add-icon{
-  font-size: 20px;
-  position: absolute;
-  right: 10px;
-  top: 0;
-  color: #666666;
-}
-
 #mises-site-box .mises-web3-item img{
   width: 40px;
   height: 40px;
@@ -277,6 +269,10 @@ html,body  {
   }
 
   .mises-web3-item img,.grid-image-box img{
+    width: 28px;
+    height: 28px;
+  }
+  .add-icon-box{
     width: 28px;
     height: 28px;
   }
@@ -383,6 +379,7 @@ a {
 
 #homepage,#incognito {
   display: none;
+  overflow: hidden;
 }
 
 .incognito-icon{
@@ -402,4 +399,25 @@ a {
   font-size: 20px;
   font-family: arial, sans-serif;
   font-weight: bold;
+}
+.add-icon{
+  flex: 0 0 25%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  margin: 10px 0;
+}
+.add-icon-box{
+  width: 33px;
+  height: 33px;
+  object-fit: contain;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: #f8f8f8;
+}
+.add-icon-box .icon{
+  width: 25px
 }
