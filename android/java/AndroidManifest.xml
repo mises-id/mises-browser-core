@@ -23,3 +23,8 @@ firebase initialization
 <meta-data
     android:name="com.google.firebase.messaging.project_id"
     android:value="@string/project_id" />
+
+
+<meta-data 
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="ca-app-pub-3526707353288294~6999474883"/>

@@ -17,8 +17,8 @@ public class MisesAutocompleteCoordinatorClassAdapter extends MisesClassVisitor 
     public MisesAutocompleteCoordinatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // changeSuperName(sAutocompleteCoordinator, sMisesAutocompleteCoordinator);
-        // changeMethodOwner(
-        //         sAutocompleteCoordinator, "createViewProvider", sMisesAutocompleteCoordinator);
+        changeSuperName(sAutocompleteCoordinator, sMisesAutocompleteCoordinator);
+        changeMethodOwner(
+                sAutocompleteCoordinator, "createViewProvider", sMisesAutocompleteCoordinator);
     }
 }

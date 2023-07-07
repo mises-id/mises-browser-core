@@ -97,7 +97,7 @@ android_aar_prebuilt("google_firebase_firebase_analytics_java") {
 }
 
 android_aar_prebuilt("google_play_services_ads_identifier_java") {
-  aar_path = "libs/com_google_android_gms_play_services_ads_identifier/play-services-ads-identifier-17.0.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_ads_identifier/play-services-ads-identifier-18.0.0.aar"
   info_path = "libs/com_google_android_gms_play_services_ads_identifier/com_google_android_gms_play_services_ads_identifier.info"
 
   # To remove visibility constraint, add this dependency to
@@ -107,6 +107,54 @@ android_aar_prebuilt("google_play_services_ads_identifier_java") {
     "//third_party/androidx:*",
   ]
   deps = [ "$google_play_services_package:google_play_services_basement_java" ]
+}
+
+android_aar_prebuilt("google_play_services_ads_base_java") {
+  aar_path = "libs/com_google_android_gms_play_services_ads_base/play-services-ads-base-22.1.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_ads_base/com_google_android_gms_play_services_ads_base.info"
+
+}
+android_aar_prebuilt("google_play_services_ads_lite_java") {
+  aar_path = "libs/com_google_android_gms_play_services_ads_lite/play-services-ads-lite-22.1.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_ads_lite/com_google_android_gms_play_services_ads_lite.info"
+
+  deps = [ 
+    "//third_party/androidx:androidx_work_work_runtime_java",
+    "$google_play_services_package:google_play_services_basement_java",
+    ":google_play_services_ads_base_java",
+    ":google_play_services_measurement_api_java",
+  ]
+
+}
+android_aar_prebuilt("google_play_services_appset_java") {
+  aar_path = "libs/com_google_android_gms_play_services_appset/play-services-appset-16.0.1.aar"
+  info_path = "libs/com_google_android_gms_play_services_appset/com_google_android_gms_play_services_appset.info"
+  deps = [ 
+    "$google_play_services_package:google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_base_java",
+  ]
+
+}
+android_aar_prebuilt("google_play_services_ads_java") {
+  aar_path = "libs/com_google_android_gms_play_services_ads/play-services-ads-22.1.0.aar"
+  info_path = "libs/com_google_android_gms_play_services_ads/com_google_android_gms_play_services_ads.info"
+
+
+  # To remove visibility constraint, add this dependency to
+  # //third_party/android_deps/build.gradle.
+  visibility = [
+    "*",
+    "//third_party/androidx:*",
+  ]
+  deps = [ 
+    "//third_party/androidx:androidx_browser_browser_java",
+    "$google_play_services_package:google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_tasks_java",
+    ":google_play_services_ads_base_java",
+    ":google_play_services_ads_lite_java",
+    ":google_play_services_ads_identifier_java",
+    ":google_play_services_appset_java",
+  ]
 }
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
