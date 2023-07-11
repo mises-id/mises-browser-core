@@ -1,5 +1,5 @@
 diff --git a/ios/build/chrome_build.gni b/ios/build/chrome_build.gni
-index 35113412870bb445b93d30e691376b08d2603363..952769191e9f59beec7503e1a5492fa044666b66 100644
+index 35113412870bb445b93d30e691376b08d2603363..708e909130bb392731a679b7134b841888ca56c7 100644
 --- a/ios/build/chrome_build.gni
 +++ b/ios/build/chrome_build.gni
 @@ -95,9 +95,9 @@ if (is_official_build && is_chrome_branded) {
@@ -9,7 +9,7 @@ index 35113412870bb445b93d30e691376b08d2603363..952769191e9f59beec7503e1a5492fa0
 -chromium_bundle_id = "$ios_app_bundle_id_prefix.chrome.ios.dev"
 -chromium_handoff_id = "$ios_app_bundle_id_prefix.chrome.handoff"
 -ios_move_tab_activity_type = "$ios_app_bundle_id_prefix.chrome.move-tab"
-+chromium_bundle_id = "$ios_app_bundle_id_prefix.browser.ios"
++chromium_bundle_id = "$ios_app_bundle_id_prefix.browser"
 +chromium_handoff_id = "$ios_app_bundle_id_prefix.browser.handoff"
 +ios_move_tab_activity_type = "$ios_app_bundle_id_prefix.browser.move-tab"
  
