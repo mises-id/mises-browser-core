@@ -1,0 +1,12 @@
+diff --git a/extensions/browser/extension_function.cc b/extensions/browser/extension_function.cc
+index d1f0756bc610a8bdeab96d1336a26a81f69b2d11..349d3406eb198d85d91dd7ea38c897ed24b09409 100644
+--- a/extensions/browser/extension_function.cc
++++ b/extensions/browser/extension_function.cc
+@@ -469,6 +469,7 @@ ExtensionFunction::ResponseAction ExtensionFunction::RunWithValidation() {
+     DCHECK(!error.empty() || bad_message_);
+     return bad_message_ ? ValidationFailure(this) : RespondNow(Error(error));
+   }
++  LOG(INFO) << "ExtensionFunction::RunWithValidation " << name();
+   return Run();
+ }
+ 

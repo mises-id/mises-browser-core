@@ -6,6 +6,7 @@ package org.chromium.chrome.browser.omnibox.suggestions.ads;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import org.chromium.base.Log;
 
 import org.chromium.chrome.browser.omnibox.styles.OmniboxResourceProvider;
 import org.chromium.chrome.browser.omnibox.suggestions.DropdownCommonProperties;
@@ -19,6 +20,10 @@ import org.chromium.ui.modelutil.PropertyModelChangeProcessor.ViewBinder;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MediaContent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,6 +39,7 @@ import org.chromium.chrome.browser.omnibox.R;
 /** Binder proxy for EditURL Suggestions. */
 public class MisesAdsBannerViewBinder
         implements ViewBinder<PropertyModel, MisesAdsBannerView, PropertyKey> {
+    private static final String TAG = "MisesAdsBannerViewBinder";
     private final BaseSuggestionViewBinder<View> mBinder;
 
     public MisesAdsBannerViewBinder() {
@@ -111,7 +117,7 @@ public class MisesAdsBannerViewBinder
     @Override
     public void bind(PropertyModel model, MisesAdsBannerView view, PropertyKey propertyKey) {
 
-
+        Log.i(TAG, "bind");
 
         final NativeAdView adView = view.getAdsView();
         AdLoader.Builder builder = new AdLoader.Builder(view.getContext(), "ca-app-pub-3526707353288294/8739102663")
@@ -124,9 +130,23 @@ public class MisesAdsBannerViewBinder
                     // }
                     // This method sets the text, images and the native ad, etc into the ad
                     // view.
+                    Log.i(TAG, "onNativeAdLoaded");
                     populateNativeAdView(nativeAd, adView);
                 }
+        }).withAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Handle the failure by logging, altering the UI, and so on.
+                Log.i(TAG, "onAdFailedToLoad:" + adError);
+            }
+            @Override
+            public void onAdClicked() {
+                // Log the click event or other custom behavior.
+                Log.i(TAG, "onAdClicked");
+            }
         });
+        AdLoader adLoader = builder.build();
+        adLoader.loadAd(new AdRequest.Builder().build());
 
         if (propertyKey == MisesAdsBannerProperties.DELEGATE) {
             MisesAdsBannerProperties.Delegate delegate =

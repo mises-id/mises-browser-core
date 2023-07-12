@@ -110,12 +110,12 @@ android_aar_prebuilt("google_play_services_ads_identifier_java") {
 }
 
 android_aar_prebuilt("google_play_services_ads_base_java") {
-  aar_path = "libs/com_google_android_gms_play_services_ads_base/play-services-ads-base-22.1.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_ads_base/play-services-ads-base-22.2.0.aar"
   info_path = "libs/com_google_android_gms_play_services_ads_base/com_google_android_gms_play_services_ads_base.info"
 
 }
 android_aar_prebuilt("google_play_services_ads_lite_java") {
-  aar_path = "libs/com_google_android_gms_play_services_ads_lite/play-services-ads-lite-22.1.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_ads_lite/play-services-ads-lite-22.2.0.aar"
   info_path = "libs/com_google_android_gms_play_services_ads_lite/com_google_android_gms_play_services_ads_lite.info"
 
   deps = [ 
@@ -136,7 +136,7 @@ android_aar_prebuilt("google_play_services_appset_java") {
 
 }
 android_aar_prebuilt("google_play_services_ads_java") {
-  aar_path = "libs/com_google_android_gms_play_services_ads/play-services-ads-22.1.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_ads/play-services-ads-22.2.0.aar"
   info_path = "libs/com_google_android_gms_play_services_ads/com_google_android_gms_play_services_ads.info"
 
 
