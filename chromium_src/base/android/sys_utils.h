@@ -12,6 +12,7 @@ class BASE_EXPORT MisesSysUtils{
   static long FirstInstallDateFromJni();
   static std::string ReferrerStringFromJni();
   static std::string NightModeSettingsFromJni();
+  static void ShowRewardAdFromJni();
   static void LogEventFromJni(const std::string& name, const std::string& key, const std::string& value);
   static void LogEventFromJni(const std::string& name, const std::string& key, const std::string& value, const std::string& key1, const std::string& value1);
 };

@@ -42,6 +42,7 @@ public class MisesAdsBannerProcessor implements DropdownItemProcessor {
     }
 
     public void populateModel(final PropertyModel model) {
+        model.set(MisesAdsBannerProperties.SHOWADS, true); 
         model.set(MisesAdsBannerProperties.DELEGATE, new MisesAdsBannerProperties.Delegate() {
             @Override
             public void onPositiveClicked() {

@@ -23,8 +23,12 @@ public class MisesAdsBannerProperties {
 
     public static final WritableObjectPropertyKey<Delegate> DELEGATE =
             new WritableObjectPropertyKey<>();
+    
+    public static final WritableObjectPropertyKey<Boolean> SHOWADS =
+            new WritableObjectPropertyKey<>();
+            
 
-    public static final PropertyKey[] ALL_UNIQUE_KEYS = new PropertyKey[] {DELEGATE};
+    public static final PropertyKey[] ALL_UNIQUE_KEYS = new PropertyKey[] {DELEGATE, SHOWADS};
 
     public static final PropertyKey[] ALL_KEYS =
             PropertyModel.concatKeys(ALL_UNIQUE_KEYS, SuggestionCommonProperties.ALL_KEYS);

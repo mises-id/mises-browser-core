@@ -79,7 +79,7 @@ public class MisesAutocompleteCoordinator {
                                         MisesOmniboxSuggestionUiType.MISES_ADS_PROMO_BANNER,
                                         parent
                                         -> new MisesAdsBannerView(parent.getContext()),
-                                        new MisesAdsBannerViewBinder());
+                                        new MisesAdsBannerViewBinder(context));
 
                         mHolder = holder;
                         for (int i = 0; i < mCallbacks.size(); i++) {

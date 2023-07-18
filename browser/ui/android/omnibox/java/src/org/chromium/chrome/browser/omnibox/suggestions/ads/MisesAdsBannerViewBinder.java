@@ -17,9 +17,12 @@ import org.chromium.ui.modelutil.PropertyKey;
 import org.chromium.ui.modelutil.PropertyModel;
 import org.chromium.ui.modelutil.PropertyModelChangeProcessor.ViewBinder;
 
+
+import java.util.ArrayList;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
@@ -34,6 +37,7 @@ import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
 import org.chromium.chrome.browser.omnibox.R;
+import android.content.Context;
 
 
 /** Binder proxy for EditURL Suggestions. */
@@ -41,9 +45,54 @@ public class MisesAdsBannerViewBinder
         implements ViewBinder<PropertyModel, MisesAdsBannerView, PropertyKey> {
     private static final String TAG = "MisesAdsBannerViewBinder";
     private final BaseSuggestionViewBinder<View> mBinder;
+    private ArrayList<NativeAd> adsCache = new ArrayList<>();
+    private boolean adsLoading;
+    private int showAdCounter;
+    private AdLoader adLoader;
 
-    public MisesAdsBannerViewBinder() {
+    public MisesAdsBannerViewBinder(final Context context) {
         mBinder = new BaseSuggestionViewBinder<>(SuggestionViewViewBinder::bind);
+        initAdLoader(context);
+        maybeLoadAds();
+    }
+
+    private void initAdLoader(final Context context) {
+
+        //test unit ca-app-pub-3940256099942544/2247696110
+        //real unit ca-app-pub-3526707353288294/8739102663
+        adLoader = new AdLoader.Builder(context, "ca-app-pub-3940256099942544/2247696110")
+            .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                @Override
+                public void onNativeAdLoaded(NativeAd nativeAd) {
+                    // if (isDestroyed()) {
+                    //     nativeAd.destroy();
+                    //     return;
+                    // }
+                    // This method sets the text, images and the native ad, etc into the ad
+                    // view.
+                    Log.i(TAG, "onNativeAdLoaded");
+                    adsCache.add(nativeAd);
+                }
+            }).withAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(LoadAdError adError) {
+                    // Handle the failure by logging, altering the UI, and so on.
+                    Log.i(TAG, "onAdFailedToLoad:" + adError);
+                }
+                @Override
+                public void onAdClicked() {
+                    // Log the click event or other custom behavior.
+                    Log.i(TAG, "onAdClicked");
+                }
+            }).build();
+    }
+
+    private void maybeLoadAds() {
+        if (adLoader.isLoading()) {
+            return;
+        }
+        adLoader.loadAds(new AdRequest.Builder().build(), 5);
+        Log.i(TAG, "loadAds");
     }
 
     public static void populateNativeAdView(NativeAd nativeAd, NativeAdView adView) {
@@ -117,36 +166,24 @@ public class MisesAdsBannerViewBinder
     @Override
     public void bind(PropertyModel model, MisesAdsBannerView view, PropertyKey propertyKey) {
 
-        Log.i(TAG, "bind");
+        
 
-        final NativeAdView adView = view.getAdsView();
-        AdLoader.Builder builder = new AdLoader.Builder(view.getContext(), "ca-app-pub-3526707353288294/8739102663")
-            .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                @Override
-                public void onNativeAdLoaded(NativeAd nativeAd) {
-                    // if (isDestroyed()) {
-                    //     nativeAd.destroy();
-                    //     return;
-                    // }
-                    // This method sets the text, images and the native ad, etc into the ad
-                    // view.
-                    Log.i(TAG, "onNativeAdLoaded");
-                    populateNativeAdView(nativeAd, adView);
-                }
-        }).withAdListener(new AdListener() {
-            @Override
-            public void onAdFailedToLoad(LoadAdError adError) {
-                // Handle the failure by logging, altering the UI, and so on.
-                Log.i(TAG, "onAdFailedToLoad:" + adError);
+
+        if (propertyKey == MisesAdsBannerProperties.SHOWADS) {
+            Log.i(TAG, "bind showads");
+            final NativeAdView adView = view.getAdsView();
+            if (!adsCache.isEmpty()) {
+                adView.setVisibility(View.VISIBLE);
+                int nextAdIdx = (showAdCounter / 4) % adsCache.size();
+                final NativeAd ad = adsCache.get(nextAdIdx);
+                populateNativeAdView(ad, adView);
+                showAdCounter += 1;
+                return;
+            } else {
+                adView.setVisibility(View.GONE);
+                maybeLoadAds();
             }
-            @Override
-            public void onAdClicked() {
-                // Log the click event or other custom behavior.
-                Log.i(TAG, "onAdClicked");
-            }
-        });
-        AdLoader adLoader = builder.build();
-        adLoader.loadAd(new AdRequest.Builder().build());
+        }
 
         if (propertyKey == MisesAdsBannerProperties.DELEGATE) {
             MisesAdsBannerProperties.Delegate delegate =

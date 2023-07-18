@@ -15,29 +15,32 @@
         android:minHeight="50dp"
         android:orientation="vertical">
 
-        <TextView style="@style/AdAttribution"/>
-
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
             android:paddingTop="3dp">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/ad_app_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:adjustViewBounds="true"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"/>
+                <RelativeLayout 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="6dp"
+                    android:paddingRight="6dp">
+                    <ImageView
+                        android:id="@+id/ad_app_icon"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:adjustViewBounds="true"/>
+                    <TextView style="@style/AdAttribution"/>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -48,8 +51,8 @@
                         android:id="@+id/ad_headline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#0000FF"
-                        android:textSize="16sp"
+                        android:textColor="#191c1e"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -61,17 +64,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="bottom"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textStyle="bold"/>
 
-                        <RatingBar
+                        <Button
+                            android:id="@+id/ad_call_to_action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="0dp"
+                            android:textSize="6sp" />
+
+                        <!-- <RatingBar
                             android:id="@+id/ad_stars"
                             style="?android:attr/ratingBarStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:isIndicator="true"
                             android:numStars="5"
-                            android:stepSize="0.5" />
+                            android:stepSize="0.5" /> -->
                     </LinearLayout>
 
                 </LinearLayout>
@@ -96,7 +106,7 @@
                     android:layout_width="250dp"
                     android:layout_height="175dp"
                     android:layout_marginTop="5dp" />
-
+<!-- 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -131,8 +141,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="12sp" />
-                </LinearLayout>
-            </LinearLayout>
+                </LinearLayout> -->
+            </LinearLayout> 
         </LinearLayout>
     </LinearLayout>
 </com.google.android.gms.ads.nativead.NativeAdView>
