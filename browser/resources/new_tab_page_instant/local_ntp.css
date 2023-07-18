@@ -421,3 +421,17 @@ a {
 .add-icon-box .icon{
   width: 25px
 }
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  color: #5d61ff;
+  /* background-color: #FFFFFF; */
+}
+.App{
+  padding-bottom: 30px;
+}
