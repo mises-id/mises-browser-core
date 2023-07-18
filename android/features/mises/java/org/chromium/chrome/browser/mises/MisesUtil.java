@@ -34,9 +34,9 @@ public class MisesUtil {
     private static boolean isLoading; 
     private static Activity activityContext; 
     public static void initAds(final Activity act) {
-        RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(
-        Arrays.asList("7C6221C0BF81BF12ACAD4E9B5730EB05")).build();
-        MobileAds.setRequestConfiguration(configuration);
+        // RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(
+        // Arrays.asList("7C6221C0BF81BF12ACAD4E9B5730EB05")).build();
+        // MobileAds.setRequestConfiguration(configuration);
         MobileAds.initialize(act, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -85,6 +85,7 @@ public class MisesUtil {
                     Log.d("TAG", "The user earned the reward.");
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
+                    showAlertDialog(act, "Thank your for your support", null);
                 }
         });
     }
