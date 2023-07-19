@@ -430,8 +430,11 @@ a {
   text-align: center;
   line-height: 30px;
   font-size: 14px;
-  color: #5d61ff;
+  color: #1967d2;
   /* background-color: #FFFFFF; */
+  &:active{
+    opacity: 0.7;
+  }
 }
 .App{
   padding-bottom: 30px;
