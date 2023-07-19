@@ -12,7 +12,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -83,8 +86,8 @@ using CSCollectionViewItem = CollectionViewItem<SuggestedContent>;
+@@ -83,8 +86,8 @@
  using RequestSource = SearchTermsData::RequestSource;
  
  // Maximum number of most visited tiles fetched.
@@ -23,7 +23,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  }  // namespace
  
  @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
-@@ -155,6 +158,16 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -155,6 +158,16 @@ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
  @property(nonatomic, strong)
      NSMutableArray<QuerySuggestionConfig*>* trendingQueries;
  
@@ -40,7 +40,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  @end
  
  @implementation ContentSuggestionsMediator
-@@ -181,6 +194,7 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -181,6 +194,7 @@ @implementation ContentSuggestionsMediator
      _faviconMediator = [[ContentSuggestionsFaviconMediator alloc]
          initWithLargeIconService:largeIconService
                    largeIconCache:largeIconCache];
@@ -48,7 +48,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  
      _logoSectionInfo = LogoSectionInformation();
      _mostVisitedSectionInfo = MostVisitedSectionInformation();
-@@ -203,6 +217,12 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -203,6 +217,12 @@ @implementation ContentSuggestionsMediator
        _startSuggestServiceResponseBridge =
            std::make_unique<StartSuggestServiceResponseBridge>(self);
      }
@@ -61,7 +61,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
    }
    return self;
  }
-@@ -221,6 +241,7 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -221,6 +241,7 @@ - (void)refreshMostVisitedTiles {
    // Refresh in case there are new MVT to show.
    _mostVisitedSites->RefreshTiles();
    _mostVisitedSites->Refresh();
@@ -69,7 +69,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  }
  
  - (void)reloadAllData {
-@@ -231,9 +252,10 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -231,9 +252,10 @@ - (void)reloadAllData {
      [self.consumer
          showReturnToRecentTabTileWithConfig:self.returnToRecentTabItem];
    }
@@ -82,7 +82,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
    if (!ShouldHideShortcutsForTrendingQueries() &&
        ![self shouldHideShortcutsForTileAblation]) {
      [self.consumer setShortcutTilesWithConfigs:self.actionButtonItems];
-@@ -526,6 +548,12 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -526,6 +548,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
        return;
      }
    }
@@ -95,7 +95,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  }
  
  #pragma mark - Private
-@@ -535,8 +563,11 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -535,8 +563,11 @@ - (void)useFreshMostVisited {
    if ([self shouldHideMVTForTileAblation]) {
      return;
    }
@@ -108,7 +108,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
    [self.feedDelegate contentSuggestionsWasUpdated];
  }
  
-@@ -752,6 +783,9 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -752,6 +783,9 @@ - (void)setCommandHandler:
    for (ContentSuggestionsMostVisitedItem* item in self.freshMostVisitedItems) {
      item.commandHandler = commandHandler;
    }
@@ -118,7 +118,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  }
  
  - (BOOL)contentSuggestionsEnabled {
-@@ -773,4 +807,118 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -773,4 +807,118 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
    }
  }
  

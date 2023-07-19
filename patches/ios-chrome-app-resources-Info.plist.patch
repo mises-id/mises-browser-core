@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/app/resources/Info.plist b/ios/chrome/app/resources/Info.plist
+index 5e7db5472535693ef21573fe881095f5a0a16fbc..2358bc65f4338f4dbef59fee2f430479882d24fb 100644
+--- a/ios/chrome/app/resources/Info.plist
++++ b/ios/chrome/app/resources/Info.plist
+@@ -4,8 +4,6 @@
+ <dict>
+ 	<key>UIFileSharingEnabled</key>
+ 	<true/>
+-	<key>UIApplicationShortcutWidget</key>
+-	<string>${CONTENT_WIDGET_EXTENSION_BUNDLE_ID}</string>
+ 	<key>CFBundleDevelopmentRegion</key>
+ 	<string>English</string>
+ 	<key>CFBundleDisplayName</key>
