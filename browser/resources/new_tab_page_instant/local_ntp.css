@@ -1,6 +1,7 @@
 body{
   background-color:#f8f8f8;
-  margin: 0
+  margin: 0;
+  user-select: none;
 }
 html,body  {
   height: 100%;
