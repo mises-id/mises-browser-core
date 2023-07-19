@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/util/layout_guide_names.mm b/ios/chrome/brows
 index 950ac9ff7a658d0b8a3d871346908da36209a63d..664b4d1de503c376b68c1b7608f838fac64e0d36 100644
 --- a/ios/chrome/browser/ui/util/layout_guide_names.mm
 +++ b/ios/chrome/browser/ui/util/layout_guide_names.mm
-@@ -23,3 +23,5 @@ GuideName* const kToolsMenuGuide = @"kToolsMenuGuide";
+@@ -23,3 +23,5 @@
  GuideName* const kVoiceSearchButtonGuide = @"kVoiceSearchButtonGuide";
  GuideName* const kDiscoverFeedHeaderMenuGuide = @"kDiscoverFeedHeaderMenuGuide";
  GuideName* const kTabGridBottomToolbarGuide = @"kTabGridBottomToolbarGuide";

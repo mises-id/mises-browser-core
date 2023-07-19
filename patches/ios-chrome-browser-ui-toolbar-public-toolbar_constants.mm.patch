@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm b/ios/chr
 index 68cd9725baca3a164f572166cf9e9888706ec68f..ec799fb6bd61482cbc1bf23991d331f202be049e 100644
 --- a/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm
 +++ b/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm
-@@ -72,3 +72,6 @@ const NSInteger kTabGridButtonFontSize = 13;
+@@ -72,3 +72,6 @@
  
  const CGFloat kLocationBarTintBlue = 0x1A73E8;
  const CGFloat kLocationBarFontSize = 15.0f;

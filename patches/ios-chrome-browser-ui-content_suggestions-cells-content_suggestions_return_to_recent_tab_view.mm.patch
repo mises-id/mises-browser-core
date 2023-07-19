@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/content_suggestions/cells/content_suggestions
 index 9dcc63622a2ebf66cc722627bd54707bfabe185c..913806ac00defc102d87c7a202d0051897302793 100644
 --- a/ios/chrome/browser/ui/content_suggestions/cells/content_suggestions_return_to_recent_tab_view.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/cells/content_suggestions_return_to_recent_tab_view.mm
-@@ -42,7 +42,7 @@ const CGFloat kIconWidth = 32.0f;
+@@ -42,7 +42,7 @@ - (instancetype)initWithFrame:(CGRect)frame {
      _titleLabel.isAccessibilityElement = NO;
      _titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
      _titleLabel.adjustsFontForContentSizeCategory = YES;
@@ -11,7 +11,7 @@ index 9dcc63622a2ebf66cc722627bd54707bfabe185c..913806ac00defc102d87c7a202d00518
      _titleLabel.backgroundColor = UIColor.clearColor;
  
      _subtitleLabel = [[UILabel alloc] init];
-@@ -50,7 +50,7 @@ const CGFloat kIconWidth = 32.0f;
+@@ -50,7 +50,7 @@ - (instancetype)initWithFrame:(CGRect)frame {
          [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
      _subtitleLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
      _subtitleLabel.adjustsFontForContentSizeCategory = YES;

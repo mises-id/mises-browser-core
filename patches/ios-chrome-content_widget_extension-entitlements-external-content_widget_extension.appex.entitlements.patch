@@ -1,15 +1,13 @@
 diff --git a/ios/chrome/content_widget_extension/entitlements/external/content_widget_extension.appex.entitlements b/ios/chrome/content_widget_extension/entitlements/external/content_widget_extension.appex.entitlements
-index 96ad8751490c60a136bcdbc7aedc0ae6d3a48786..6c7577058a606b73790839a35c7e8ce08346fc8a 100644
+index 96ad8751490c60a136bcdbc7aedc0ae6d3a48786..14d9052b93f15fafeef6f22792c047425ef18ff6 100644
 --- a/ios/chrome/content_widget_extension/entitlements/external/content_widget_extension.appex.entitlements
 +++ b/ios/chrome/content_widget_extension/entitlements/external/content_widget_extension.appex.entitlements
-@@ -6,8 +6,8 @@
+@@ -6,7 +6,7 @@
  	<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>
  	<key>com.apple.security.application-groups</key>
  	<array>
 -		<string>group.${IOS_BUNDLE_ID_PREFIX}.chrome</string>
--		<string>group.${IOS_BUNDLE_ID_PREFIX}.common</string>
-+		<string>group.${IOS_BUNDLE_ID_PREFIX}.browser.ios</string>
-+		<string>group.${IOS_BUNDLE_ID_PREFIX}.common.ios</string>
++		<string>group.${IOS_BUNDLE_ID_PREFIX}.browser</string>
+ 		<string>group.${IOS_BUNDLE_ID_PREFIX}.common</string>
  	</array>
  </dict>
- </plist>
