@@ -12,7 +12,7 @@ index 0c6914c6f182ed7f6b927c7e35b6326f114b7004..7ec0cc3198546a9fde9b3b561f0dbfd2
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -251,6 +254,9 @@ OverflowMenuFooter* CreateOverflowMenuManagedFooter(int nameID,
+@@ -251,6 +254,9 @@ @interface OverflowMenuMediator () <BookmarkModelBridgeObserver,
  @property(nonatomic, strong) OverflowMenuAction* helpAction;
  @property(nonatomic, strong) OverflowMenuAction* shareChromeAction;
  
@@ -22,7 +22,7 @@ index 0c6914c6f182ed7f6b927c7e35b6326f114b7004..7ec0cc3198546a9fde9b3b561f0dbfd2
  @end
  
  @implementation OverflowMenuMediator
-@@ -965,10 +971,21 @@ OverflowMenuFooter* CreateOverflowMenuManagedFooter(int nameID,
+@@ -965,10 +971,21 @@ - (OverflowMenuModel*)createModel {
                                                   actions:@[]
                                                    footer:nil];
  
@@ -44,7 +44,7 @@ index 0c6914c6f182ed7f6b927c7e35b6326f114b7004..7ec0cc3198546a9fde9b3b561f0dbfd2
                                                self.appActionsGroup,
                                                self.pageActionsGroup,
                                                self.helpActionsGroup,
-@@ -1958,4 +1975,10 @@ OverflowMenuFooter* CreateOverflowMenuManagedFooter(int nameID,
+@@ -1958,4 +1975,10 @@ - (void)openSpotlightDebugger {
    [self.dispatcher showSpotlightDebugger];
  }
  

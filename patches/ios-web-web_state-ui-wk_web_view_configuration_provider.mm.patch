@@ -10,7 +10,7 @@ index 47ab2268507c5a01acc0a447cea8bb629c436107..e3d5f2a1dadf167f3b84fd9eb4d2d9a8
  
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
-@@ -204,6 +205,8 @@ void WKWebViewConfigurationProvider::UpdateScripts() {
+@@ -204,6 +205,8 @@
        ->ConfigureHandlers(userContentController);
    SessionRestoreJavaScriptFeature::FromBrowserState(browser_state_)
        ->ConfigureHandlers(userContentController);
