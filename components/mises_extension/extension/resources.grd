@@ -1052,6 +1052,7 @@
 <include name="IDR_MISES_WALLET_INJECTEDSCRIPT_BUNDLE_JS" file="mises_wallet/injectedScript.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_MANIFEST_JSON" file="mises_wallet/manifest.json" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_BUNDLE_JS" file="mises_wallet/popup.bundle.js" type="BINDATA" />
+<include name="IDR_MISES_WALLET_INPAGE_JS" file="mises_wallet/inpage.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_HTML" file="mises_wallet/popup.html" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_13C43F11_BUNDLE_JS" file="mises_wallet/popup~popup~13c43f11.bundle.js" type="BINDATA" />
 <include name="IDR_MISES_WALLET_POPUP_POPUP_14020A9E_BUNDLE_JS" file="mises_wallet/popup~popup~14020a9e.bundle.js" type="BINDATA" />

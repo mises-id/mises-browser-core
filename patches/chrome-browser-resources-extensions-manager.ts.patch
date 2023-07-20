@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/resources/extensions/manager.ts b/chrome/browser/resources/extensions/manager.ts
+index 81fe22a532ca53b3c344ac73659d8da6350afe75..b0d514b3f5d990bfed323d075b97871e84f78ea5 100644
+--- a/chrome/browser/resources/extensions/manager.ts
++++ b/chrome/browser/resources/extensions/manager.ts
+@@ -27,6 +27,7 @@ import './toolbar.js';
+ import './kiosk_dialog.js';
+ 
+ // </if>
++import './mises_open_web_store_footer.js'
+ 
+ import {CrViewManagerElement} from 'chrome://resources/cr_elements/cr_view_manager/cr_view_manager.js';
+ import {assert, assertNotReached} from 'chrome://resources/js/assert_ts.js';
