@@ -6,14 +6,16 @@
 #include "extensions/common/constants.h"
 
 namespace extensions {
-
+void UserScriptSetManager::set_default_evm_wallet(const std::string& extension_id) {
+  default_extension_id_evm_ = extension_id;
+}
 void UserScriptSetManager::GetAllInjections(
     std::vector<std::unique_ptr<ScriptInjection>>* injections,
     content::RenderFrame* render_frame,
     int tab_id,
     mojom::RunLocation run_location) {
   std::vector<std::string> order;
-  order.push_back(std::string("feejiigddaafeojfddjjlmfkabimkell"));
+  order.push_back(std::string(default_extension_id_evm_));
   order.push_back(std::string(mises_extension_id));
   std::vector<mojom::HostID> items;
   for (auto it = scripts_.begin(); it != scripts_.end(); ++it) {

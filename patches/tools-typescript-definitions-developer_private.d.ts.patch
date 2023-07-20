@@ -1,0 +1,22 @@
+diff --git a/tools/typescript/definitions/developer_private.d.ts b/tools/typescript/definitions/developer_private.d.ts
+index ceeec5db889f9791909f9c4fed48b0b0fb032549..8f63efd590114ba440ab4af4067a4a1435100c03 100644
+--- a/tools/typescript/definitions/developer_private.d.ts
++++ b/tools/typescript/definitions/developer_private.d.ts
+@@ -253,6 +253,7 @@ declare global {
+         isDeveloperModeControlledByPolicy: boolean;
+         isIncognitoAvailable: boolean;
+         isChildAccount: boolean;
++        defaultEVMWallet: string;
+       }
+ 
+       export interface ExtensionConfigurationUpdate {
+@@ -265,7 +266,8 @@ declare global {
+       }
+ 
+       export interface ProfileConfigurationUpdate {
+-        inDeveloperMode: boolean;
++        inDeveloperMode?: boolean;
++        defaultEVMWallet?: string;
+       }
+ 
+       export interface ExtensionCommandUpdate {

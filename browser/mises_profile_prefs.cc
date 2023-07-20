@@ -62,6 +62,9 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   registry->RegisterBooleanPref(kMisesDidMigrated, false);
   
 
+  registry->RegisterStringPref(
+      prefs::kExtensionsUIDefaultEVMWallet, std::string());
+
 }
 
 }  // namespace mises

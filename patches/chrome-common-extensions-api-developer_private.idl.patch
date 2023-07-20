@@ -1,0 +1,20 @@
+diff --git a/chrome/common/extensions/api/developer_private.idl b/chrome/common/extensions/api/developer_private.idl
+index cf2d7e81ec1c0ef742138b54853775cf66b4e80b..078b8797f4c26ba8ef8bc416e22fee5d33e6e178 100644
+--- a/chrome/common/extensions/api/developer_private.idl
++++ b/chrome/common/extensions/api/developer_private.idl
+@@ -266,6 +266,7 @@ namespace developerPrivate {
+     boolean isDeveloperModeControlledByPolicy;
+     boolean isIncognitoAvailable;
+     boolean isChildAccount;
++    DOMString defaultEVMWallet;
+   };
+ 
+   // DEPRECATED: Prefer ExtensionInfo.
+@@ -321,6 +322,7 @@ namespace developerPrivate {
+ 
+   dictionary ProfileConfigurationUpdate {
+     boolean? inDeveloperMode;
++    DOMString? defaultEVMWallet;
+   };
+ 
+   dictionary ExtensionCommandUpdate {
