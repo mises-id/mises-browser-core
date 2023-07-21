@@ -1,0 +1,10 @@
+diff --git a/chrome/browser/resources/extensions/BUILD.gn b/chrome/browser/resources/extensions/BUILD.gn
+index c8681afd2113639dc844f4189ee1a07457f7f459..7d55f1474cb1004807f2dd3052784e7dab0d11dc 100644
+--- a/chrome/browser/resources/extensions/BUILD.gn
++++ b/chrome/browser/resources/extensions/BUILD.gn
+@@ -104,4 +104,5 @@ build_webui("build") {
+     optimize_webui_host = "extensions"
+     optimize_webui_in_files = [ "extensions.js" ]
+   }
++  import("//mises/browser/resources/extensions/sources.gni") ts_definitions += mises_extensions_ts_definitions web_component_files += mises_extensions_web_component_files non_web_component_files += mises_extensions_non_web_component_files exclude_ts_preprocess_files = mises_extensions_local_ts_files exclude_html_css_preprocess_files = mises_extensions_local_html_files preprocess_deps = mises_extensions_preprocess_extra_deps
+ }

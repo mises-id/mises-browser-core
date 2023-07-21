@@ -149,6 +149,8 @@ extern const char kShouldShowSidePanelBookmarkTab[];
 #endif
 
 
+extern const char kExtensionsUIDefaultEVMWallet[];
+
 }  // namespace prefs
 
 #endif  // CHROME_COMMON_PREF_NAMES_H_

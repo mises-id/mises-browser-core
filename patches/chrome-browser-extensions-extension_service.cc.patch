@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/extensions/extension_service.cc b/chrome/browser/extensions/extension_service.cc
+index 06bfe9bae5390464eade704156fd79a6ba75f647..ca9c8fd2d80a12dc68b7dfccc2861d57704a62bf 100644
+--- a/chrome/browser/extensions/extension_service.cc
++++ b/chrome/browser/extensions/extension_service.cc
+@@ -437,6 +437,9 @@ ExtensionService::ExtensionService(
+   SetCurrentDeveloperMode(
+       util::GetBrowserContextId(profile),
+       profile->GetPrefs()->GetBoolean(prefs::kExtensionsUIDeveloperMode));
++  SetDefaultEVMWallet(
++      util::GetBrowserContextId(profile),
++      profile->GetPrefs()->GetString(prefs::kExtensionsUIDefaultEVMWallet));
+ }
+ 
+ PendingExtensionManager* ExtensionService::pending_extension_manager() {

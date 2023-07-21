@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/extensions/manager.html b/chrome/browser/resources/extensions/manager.html
-index 8945c4ae90a6c84ab1edbd01cb5db43e81f4e479..0f0473072642d8cb80361a851867bbd3db2dc606 100644
+index 8945c4ae90a6c84ab1edbd01cb5db43e81f4e479..0cbc87cb444402385b80a0a2fa135473ce84f728 100644
 --- a/chrome/browser/resources/extensions/manager.html
 +++ b/chrome/browser/resources/extensions/manager.html
 @@ -4,7 +4,6 @@
@@ -10,32 +10,22 @@ index 8945c4ae90a6c84ab1edbd01cb5db43e81f4e479..0f0473072642d8cb80361a851867bbd3
    }
  
    extensions-sidebar {
-@@ -19,6 +18,17 @@
-   extensions-item {
-     display: inline-block;
-   }
-+  
-+  #more-extensions {
-+    text-align: center;
-+    display: block;
-+    justify-content: space-between;
-+    color: var(--cr-link-color);
-+    text-decoration: none;
-+  }
-+  .footer {
-+    margin-bottom: 8px;
-+  }
- </style>
- <extensions-drop-overlay drag-enabled="[[inDevMode]]">
- </extensions-drop-overlay>
-@@ -125,3 +135,10 @@
+@@ -46,6 +45,13 @@
+     </div>
+   </cr-drawer>
+ </template>
++
++<mises-default-extension-setting 
++  extensions="[[extensions_]]" 
++  defaultEVMWallet="[[defaultEVMWallet]]"
++  delegate="[[delegate]]"
++></mises-default-extension-setting>
++
+ <cr-view-manager id="viewManager" role="main">
+   <extensions-item-list id="items-list" delegate="[[delegate]]"
+       in-dev-mode="[[inDevMode]]" filter="[[filter]]"
+@@ -125,3 +131,4 @@
    </extensions-install-warnings-dialog>
  </template>
  <cr-toast-manager></cr-toast-manager>
-+
-+<div class="footer">
-+  <a id="more-extensions" target="_blank"
-+      href="$i18n{getMoreExtensionsUrl}" on-click="onMoreExtensionsTap_">
-+    <span>Open Chrome Web Store</span>
-+  </a>
-+</div>
++<mises-open-web-store-footer />

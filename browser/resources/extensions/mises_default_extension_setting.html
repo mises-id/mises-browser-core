@@ -1,0 +1,163 @@
+<style>
+.default-extension-setting-tips{
+  padding: 0 12px;
+  text-align: center;
+  color: var(--cr-secondary-text-color);
+  margin: 0;
+}
+.default-extension-setting-chain-list-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 12px;
+}
+.setting-button{
+  height: 50px;
+}
+.network-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wallet-logo{
+  height: 30px;
+  width: 30px;
+}
+.network-name{
+  font-size: 14px;
+  color: var(--cr-secondary-text-color)
+}
+.wallet-name,.wallet-item-name{
+  color: var(--cr-primary-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 26vw;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.wallet-item-name{
+  width: 60vw;
+}
+.setting-dialog{
+  width: 90vw;
+  background-color: var(--cr-card-background-color);
+  border-radius: var(--cr-card-border-radius);
+  padding: 20px 0 10px 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--cr-primary-text-color);
+  box-sizing: border-box;
+}
+.setting-dialog-container{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+.radio {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid rgb(218, 220, 224)
+}
+.checked-icon{
+  width: 19px;
+  height: 19px;
+}
+.radio.active{
+  background-color: rgb(26, 115, 232);
+}
+.wallet-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.wallet-info{
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--cr-primary-text-color);
+}
+.wallet-icon{
+  width: 30px;
+}
+.wallet-item-button{
+  border: none;
+  min-width: 100%;
+  height: 48px;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+.wallet-list-container{
+  margin-top: 12px;
+  max-height: 80vw;
+  overflow-y: auto;
+}
+.close-button{
+  min-width: 40px;
+  padding: 0;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+}
+.close-icon{
+  width: 24px;
+  height: 24px;
+}
+</style>
+
+<div class="default-extension-setting-chain-list-container">
+  <cr-button class="setting-button" on-click="openSettingDialog_">
+    <div class="network-item">
+      <img src$="[[defaultEVMWalletItem.iconUrl]]" alt="" class="wallet-logo">
+      <div class="right-info">
+        <div class="wallet-name">[[defaultEVMWalletItem.name]]</div>
+        <div class="network-name">[[EVMConfig_.name]]</div>
+      </div>
+    </div>
+  </cr-button>
+</div>
+
+<p class="default-extension-setting-tips">
+  Refresh the Dapp page to take effect the changes
+</p>
+
+<template is="dom-if" if="[[settingDialogVisable]]" restamp>
+  <div class="setting-dialog-container">
+    <div class="setting-dialog">
+      <cr-button class="close-button" on-click="closeSettingDialog_">
+        <svg t="1689922632678" class="close-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5020" data-spm-anchor-id="a313x.7781069.0.i3" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64"><path d="M572.16 512l183.467-183.04a42.667 42.667 0 1 0-60.587-60.587L512 451.84 328.96 268.373a42.667 42.667 0 0 0-60.587 60.587L451.84 512 268.373 695.04a42.667 42.667 0 0 0 0 60.587 42.667 42.667 0 0 0 60.587 0L512 572.16l183.04 183.467a42.667 42.667 0 0 0 60.587 0 42.667 42.667 0 0 0 0-60.587z" fill="#5f6368" p-id="5021" data-spm-anchor-id="a313x.7781069.0.i4" class=""></path></svg>
+      </cr-button>
+      <div class="wallet-list-container">
+        <template is="dom-repeat" items="[[activeWalletList]]">
+          <div>
+            <cr-button class="wallet-item-button" data-id="[[item.id]]" on-click="setProfileDefaultEVMWallet">
+              <div class="wallet-item">
+                <div class="wallet-info">
+                  <img src="[[item.iconUrl]]" alt="" class="wallet-icon">
+                  <span class="wallet-item-name">[[item.name]]</span>
+                </div>
+                <template is="dom-if" if="[[isActive(item.id)]]" >
+                  <svg class="checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3888" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64"><path d="M528.544303 46.535873c-247.186775 0-447.601294 200.38996-447.601294 447.601294 0 247.211335 200.415542 447.601294 447.601294 447.601294 247.194962 0 447.601294-200.38996 447.601294-447.601294C976.146621 246.924809 775.740288 46.535873 528.544303 46.535873M789.830191 372.900965 483.425709 670.0302c-5.210675 5.053086-11.95938 7.569396-18.690688 7.569396-6.880711 0-13.752212-2.622734-18.99768-7.867178L326.355371 550.349423c-10.500145-10.490935-10.500145-29.53364 0-40.024575 10.489912-10.490935 27.476795-12.537548 37.96773-2.046612l100.691283 100.676957 287.437501-278.719956c10.629081-10.29753 27.607778-8.024767 37.97387 2.641153C800.734542 343.523891 800.489972 362.566596 789.830191 372.900965" fill="#1a73e8" p-id="3889" data-spm-anchor-id="a313x.7781069.0.i0" class="selected"></path></svg>
+                </template>
+                <template is="dom-if" if="[[!isActive(item.id)]]" >
+                  <div class="radio"></div>
+                </template>
+              </div>
+            </cr-button>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</template>

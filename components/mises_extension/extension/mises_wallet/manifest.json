@@ -37,6 +37,19 @@
       "js": ["browser-polyfill.js", "contentScripts.bundle.js"],
       "run_at": "document_start",
       "all_frames": true
+    },
+    {
+      "js": [
+        "inpage.js"
+      ],
+      "matches": [
+        "file://*/*",
+        "http://*/*",
+        "https://*/*"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start",
+      "all_frames": true
     }
   ],
   "web_accessible_resources": [

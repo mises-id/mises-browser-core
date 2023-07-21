@@ -311,4 +311,7 @@ const char kShouldShowSidePanelBookmarkTab[] =
 #endif
 
 
+
+const char kExtensionsUIDefaultEVMWallet[] = "extensions.ui.default_evm_wallet";
+
 }  // namespace prefs

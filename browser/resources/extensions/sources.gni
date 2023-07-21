@@ -3,7 +3,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
 # you can obtain one at http://mozilla.org/MPL/2.0/.
 
-mises_extensions_web_component_files = [ ]
+mises_extensions_ts_definitions = [
+    "//mises/browser/resources/extensions/mises_private.d.ts",
+]
+mises_extensions_web_component_files = [ 
+    "mises_open_web_store_footer.ts",
+    "mises_default_extension_setting.ts"
+]
 
 mises_extensions_non_web_component_files = [
 
@@ -12,9 +18,12 @@ mises_extensions_non_web_component_files = [
 mises_extensions_preprocess_extra_deps =
     [ "//mises/browser/resources/extensions:preprocess" ]
 
-mises_extensions_local_files = mises_extensions_web_component_files +
-                               mises_extensions_non_web_component_files
+mises_extensions_local_ts_files = mises_extensions_web_component_files +
+                                  mises_extensions_non_web_component_files
+
+mises_extensions_local_html_files = []
+
 foreach(component_file, mises_extensions_web_component_files) {
-  mises_extensions_local_files +=
+  mises_extensions_local_html_files +=
       [ string_replace(component_file, ".ts", ".html") ]
 }
