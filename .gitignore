@@ -97,3 +97,6 @@ patches/err
 patches/fixed
 .boto
 yarn-error.log
+/ios
+/src/build
+/src/chrome
