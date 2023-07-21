@@ -3,6 +3,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
 # you can obtain one at http://mozilla.org/MPL/2.0/.
 
+mises_extensions_ts_definitions = [
+    "//mises/browser/resources/extensions/mises_private.d.ts",
+]
 mises_extensions_web_component_files = [ 
     "mises_open_web_store_footer.ts",
     "mises_default_extension_setting.ts"
