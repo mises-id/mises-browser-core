@@ -47,7 +47,7 @@ public class MisesSysUtils {
         if (MisesUtil.getActivityContext() == null) {
             return;
         }
-        MisesUtil.loadRewardedAd(MisesUtil.getActivityContext());
+        MisesUtil.loadAndShowRewardedAd(MisesUtil.getActivityContext());
     }
 
     @CalledByNative

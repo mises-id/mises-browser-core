@@ -70,24 +70,24 @@ public class MisesAutocompleteCoordinator {
             private SuggestionListViewHolder mHolder;
             @Override
             public void inflate() {
-                provider.whenLoaded((holder) -> {
-                    OmniboxSuggestionsDropdown dropdown = holder.dropdown;
-                    if (dropdown != null && dropdown.getAdapter() != null
-                            && dropdown.getAdapter() instanceof OmniboxSuggestionsDropdownAdapter) {
-                        ((OmniboxSuggestionsDropdownAdapter) dropdown.getAdapter())
-                                .registerType(
-                                        MisesOmniboxSuggestionUiType.MISES_ADS_PROMO_BANNER,
-                                        parent
-                                        -> new MisesAdsBannerView(parent.getContext()),
-                                        new MisesAdsBannerViewBinder(context));
+                // provider.whenLoaded((holder) -> {
+                //     OmniboxSuggestionsDropdown dropdown = holder.dropdown;
+                //     if (dropdown != null && dropdown.getAdapter() != null
+                //             && dropdown.getAdapter() instanceof OmniboxSuggestionsDropdownAdapter) {
+                //         ((OmniboxSuggestionsDropdownAdapter) dropdown.getAdapter())
+                //                 .registerType(
+                //                         MisesOmniboxSuggestionUiType.MISES_ADS_PROMO_BANNER,
+                //                         parent
+                //                         -> new MisesAdsBannerView(parent.getContext()),
+                //                         new MisesAdsBannerViewBinder(context));
 
-                        mHolder = holder;
-                        for (int i = 0; i < mCallbacks.size(); i++) {
-                            mCallbacks.get(i).onResult(holder);
-                        }
-                        mCallbacks = null;
-                    }
-                });
+                //         mHolder = holder;
+                //         for (int i = 0; i < mCallbacks.size(); i++) {
+                //             mCallbacks.get(i).onResult(holder);
+                //         }
+                //         mCallbacks = null;
+                //     }
+                // });
                 provider.inflate();
             }
 

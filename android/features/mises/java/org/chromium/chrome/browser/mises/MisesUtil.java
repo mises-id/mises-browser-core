@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import org.chromium.chrome.mises.R;
 import androidx.annotation.NonNull;
@@ -31,8 +32,10 @@ public class MisesUtil {
 
     private static final String TAG = "MisesUtil";
     private static final String REWARDAD_UNIT_ID = "ca-app-pub-3526707353288294/9383547028";
-    private static boolean isLoading; 
+    private static boolean isLoading;
+    private static boolean isShowing; 
     private static Activity activityContext; 
+    private static RewardedAd rewardedAdCache;
     public static void initAds(final Activity act) {
         // RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(
         // Arrays.asList("7C6221C0BF81BF12ACAD4E9B5730EB05")).build();
@@ -49,7 +52,11 @@ public class MisesUtil {
         return activityContext;
     }
     private static void showRewardedAd(final Activity act, final RewardedAd rewardedAd) {
-
+        if (isShowing) {
+            return;
+        }
+        Log.i(TAG, "showRewardedAd");
+        isShowing = true;
 
         rewardedAd.setFullScreenContentCallback(
             new FullScreenContentCallback() {
@@ -65,6 +72,7 @@ public class MisesUtil {
                 Log.d(TAG, "onAdFailedToShowFullScreenContent");
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
+                isShowing = false;
                 
             }
 
@@ -74,6 +82,7 @@ public class MisesUtil {
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
                 Log.d(TAG, "onAdDismissedFullScreenContent");
+                isShowing = false;
             }
         });
         rewardedAd.show(
@@ -85,40 +94,61 @@ public class MisesUtil {
                     Log.d("TAG", "The user earned the reward.");
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
-                    showAlertDialog(act, "Thank your for your support", null);
+                    Toast.makeText(act, "Thank your for your support", Toast.LENGTH_SHORT).show();
                 }
         });
     }
-    public static void loadRewardedAd(final Activity act) {
-        if (!isLoading) {
-            isLoading = true;
-            AdRequest adRequest = new AdRequest.Builder().build();
-            RewardedAd.load(
-                act,
-                REWARDAD_UNIT_ID,
-                adRequest,
-                new RewardedAdLoadCallback() {
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error.
-                        Log.d(TAG, loadAdError.getMessage());
-                        isLoading = false;
-                    }
-
-                    @Override
-                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-                        Log.d(TAG, "onAdLoaded");
-                        isLoading = false;
-                        String misesid = MisesController.getInstance().getMisesId();
-                        ServerSideVerificationOptions options = new ServerSideVerificationOptions
-                            .Builder()
-                            .setUserId(misesid)
-                            .build();
-                        rewardedAd.setServerSideVerificationOptions(options);
-                        showRewardedAd(act, rewardedAd);
-                    }
-                });
+    public static void loadAndShowRewardedAd(final Activity act) {
+        if (rewardedAdCache == null) {
+            loadRewardedAd(act, true);
+        } else {
+            showRewardedAd(act, rewardedAdCache);
+            rewardedAdCache = null;
+            loadRewardedAd(act, false);
+        }   
+    }
+    private static void loadRewardedAd(final Activity act, final boolean show) {
+        if (isLoading) {
+            if (show) {
+                Toast.makeText(act, "Ads Loading ...", Toast.LENGTH_SHORT).show();
+            }
+            return;
         }
+        Log.i(TAG, "loadRewardedAd show " + show);
+        isLoading = true;
+        AdRequest adRequest = new AdRequest.Builder().build();
+        RewardedAd.load(
+            act,
+            REWARDAD_UNIT_ID,
+            adRequest,
+            new RewardedAdLoadCallback() {
+                @Override
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                    // Handle the error.
+                    Log.d(TAG, "onAdFailedToLoad:" + loadAdError.getMessage());
+                    isLoading = false;
+                }
+
+                @Override
+                public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                    Log.d(TAG, "onAdLoaded");
+                    isLoading = false;
+                    String misesid = MisesController.getInstance().getMisesId();
+                    ServerSideVerificationOptions options = new ServerSideVerificationOptions
+                        .Builder()
+                        .setUserId(misesid)
+                        .build();
+                    rewardedAd.setServerSideVerificationOptions(options);
+                    if (show) {
+                        showRewardedAd(act, rewardedAd);
+                        loadRewardedAd(act, false);
+                    } else {
+                        MisesUtil.rewardedAdCache = rewardedAd;
+                    }
+                    
+                }
+            }
+        );
     }
     public static void showAlertDialog(Context context, String message, View.OnClickListener okListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
