@@ -7,6 +7,11 @@
 #include <string>
 #include <vector>
 
+#include "base/barrier_callback.h"
+#include "base/memory/raw_ptr.h"
+#include "base/memory/weak_ptr.h"
+#include "mises/components/api_request_helper/api_request_helper.h"
+
 #include "base/functional/callback_forward.h"
 #include "base/memory/weak_ptr.h"
 #include "extensions/browser/extension_event_histogram_value.h"
@@ -22,7 +27,7 @@ public:
                              UNKNOWN)
 
 protected:
-  ~MisesPrivateSetMisesIdFunction() override;
+  ~MisesPrivateSetMisesIdFunction() override = default;
 
   ExtensionFunction::ResponseAction Run() override;
 };
@@ -35,9 +40,10 @@ public:
                              UNKNOWN)
 
 protected:
-  ~MisesPrivateGetInstallReferrerFunction() override;
+  ~MisesPrivateGetInstallReferrerFunction() override = default;
 
 };
+
 
 class MisesPrivateGetAppStateFunction : public ExtensionFunction
 {
@@ -47,7 +53,7 @@ public:
                              UNKNOWN)
 
 protected:
-  ~MisesPrivateGetAppStateFunction() override;
+  ~MisesPrivateGetAppStateFunction() override = default;
 
 };
 
@@ -60,7 +66,7 @@ public:
                              UNKNOWN)
 
 protected:
-  ~MisesPrivateNotifyPhishingDetectedFunction() override;
+  ~MisesPrivateNotifyPhishingDetectedFunction() override = default;
   void OnNotificationHandled(int action);
 
 };
@@ -73,7 +79,31 @@ public:
                              UNKNOWN)
 
 protected:
-  ~MisesPrivateRecordEventFunction() override;
+  ~MisesPrivateRecordEventFunction() override = default;
+
+};
+
+
+class MisesPrivateFetchJsonFunction : public ExtensionFunction
+{
+public:
+  ExtensionFunction::ResponseAction Run() override;
+  DECLARE_EXTENSION_FUNCTION("misesPrivate.fetchJson",
+                             UNKNOWN)
+  MisesPrivateFetchJsonFunction();
+   MisesPrivateFetchJsonFunction(
+      const MisesPrivateFetchJsonFunction&) =
+      delete;
+  MisesPrivateFetchJsonFunction& operator=(
+      const MisesPrivateFetchJsonFunction&) =
+      delete;
+protected:
+  ~MisesPrivateFetchJsonFunction() override;
+
+  void OnFetchJson(api_request_helper::APIRequestResult api_request_result);
+
+  std::unique_ptr<api_request_helper::APIRequestHelper> api_request_helper_;
+  base::WeakPtrFactory<MisesPrivateFetchJsonFunction> weak_ptr_factory_{this};
 
 };
 

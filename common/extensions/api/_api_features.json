@@ -88,8 +88,12 @@
     "contexts": ["blessed_extension"],
     "allowlist": ["3D9518A72EB02667A773B69DBA9E72E0F4A37423", "780BF954C0F7C586EA9662D4F967771F49CC2114", "FF32507DC3DB5DFFD1D6733187C84D4B74713D63"]
   },
-  "misesPrivate": {
+  "misesPrivate": [{
     "dependencies": ["permission:misesPrivate"],
     "contexts": ["blessed_extension"]
-   }
+   }, {
+    "channel": "stable",
+    "contexts": ["webui"],
+    "matches": ["chrome://extensions/*"]
+  }]
 }
