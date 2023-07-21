@@ -26,15 +26,18 @@ interface walletItem {
 type networkType = 'EVM' | 'Cosmos' | 'Aptos' | 'Solana'
 
 interface misesDefaultExtensionSettingDelegate {
-  setProfileDefaultEVMWallet: (id: string) => void
+  setProfileDefaultEVMWallet: (id: string) => void,
+  getProfileConfiguration: () => Promise<{
+    defaultEVMWallet: string
+  }>
 }
 
 export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMisesDefaultExtensionSettingElementBase {
   constructor() {
     super();
     this.fetchWalletList_()
-    console.log(this.extensions, this.EVMConfig_, this.defaultEVMWallet)
   }
+
   static get is() {
     return 'mises-default-extension-setting';
   }
@@ -45,8 +48,13 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
   
   static get properties() {
     return {
-      extensions: Array,
-      defaultEVMWallet: String,
+      extensions: {
+        type: String,
+        observer: 'findDefaultEVMWalletItem'
+      },
+      defaultEVMWallet: {
+        type: String
+      },
       settingDialogVisable: Boolean,
       delegate: Object,
       walletList: {
@@ -83,7 +91,10 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
       activeNetworkName: {
         type: String,
         default: 'EVM'
-      }
+      },
+      activeWalletList: Array,
+
+      defaultEVMWalletItem: Object
     };
   }
 
@@ -116,10 +127,34 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
 
   activeNetworkName: string;
 
-  private fetchWalletList_() {
-    return fetch('https://web3.mises.site/website/wallet.json')
-      .then(res=>res.json())
-      .then(({ wallet_list })=>{
+  activeWalletList: chrome.developerPrivate.ExtensionInfo[];
+
+  defaultEVMWalletItem: chrome.developerPrivate.ExtensionInfo | null
+
+  private async fetchWalletList_() {
+    try {
+      const stroage = localStorage.getItem('walletList');
+      let res = '';
+      if(stroage) {
+        const data = JSON.parse(stroage)
+        const hour = 60 * 60 * 1000;
+        // const hour = 10000;
+        const nowTime = new Date().getTime()
+
+        if(nowTime - Number(data.time) > hour) {
+          // const browser = chrome as any;
+          res = await chrome.misesPrivate.fetchJson('https://web3.mises.site/website/wallet.json')
+        }else {
+          res = JSON.stringify(data.data)
+        }
+      } else {
+        // const browser = chrome as any;
+        res = await chrome.misesPrivate.fetchJson('https://web3.mises.site/website/wallet.json')
+      }
+
+      if(res && res.indexOf("{") > -1) {
+        const data = JSON.parse(res);
+        const wallet_list = data.wallet_list
         if(Array.isArray(wallet_list)) {
           const groupedExtensions: {
             [key in networkType] : walletItem[]
@@ -129,50 +164,52 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
             'Cosmos': [],
             'Solana': []
           };
-  
+
           wallet_list.forEach(extension => {
             extension.platform.forEach((platform: networkType) => {
               if (!groupedExtensions[platform]) groupedExtensions[platform] = [];
-  
+
               groupedExtensions[platform].push(extension);
             });
           });
           this.walletList = groupedExtensions
-
-          const EVMWalletList = groupedExtensions['EVM']
-
-          if(this.defaultEVMWallet) {
-            const findDefaultWallet = EVMWalletList.find(val => val.extension_id === this.defaultEVMWallet)
-            if(findDefaultWallet) {
-              this.EVMConfig_.wallet = findDefaultWallet
-            }
-          }
+          
+          localStorage.setItem('walletList', JSON.stringify({
+            data: data,
+            time: new Date().getTime()
+          }));
         }
-      })
-      .catch(_ => {
-        if(this.currentRetryCount === this.retryCount) {
-          return 
-        }
-        
-        this.currentRetryCount++;
-        console.log(this.currentRetryCount, 'this.currentRetryCount')
-        setTimeout(()=>this.fetchWalletList_(), this.currentRetryCount * this.retryTime);
-      })
+      } else {
+      }
+    } catch (error) {
+      if(this.currentRetryCount === this.retryCount) {
+        return 
+      }
+      this.currentRetryCount++;
+      setTimeout(()=>this.fetchWalletList_(), this.currentRetryCount * this.retryTime);
+    }
   }
 
-  walletActiveList_(): walletItem[] {
-    if(this.activeNetworkName) {
-      const walleItemtList = this.walletList['EVM'] || [];
-      console.log(this.extensions)
-      return walleItemtList.map((val: walletItem) => {
-        val.active = val.extension_id === this.defaultEVMWallet
-        return val
-      })
+  walletList_(): chrome.developerPrivate.ExtensionInfo[] {
+    const EVMwalleList = this.walletList['EVM'] || [];
+    if(this.extensions.length) {
+      return this.extensions.filter(val => EVMwalleList.some(item => item.extension_id === val.id))
     }
     return []
   }
 
-  openSettingDialog_() {
+  fetchDefaultEVMWallet() {
+    return this.delegate.getProfileConfiguration().then(res => {
+      this.defaultEVMWallet = res.defaultEVMWallet
+      console.log(res.defaultEVMWallet)
+    })
+  }
+
+  async openSettingDialog_() {
+    if(!this.defaultEVMWallet) {
+      await this.fetchDefaultEVMWallet()
+    }
+    this.activeWalletList = this.walletList_()
     this.settingDialogVisable = true
   }
 
@@ -183,22 +220,41 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
   setProfileDefaultEVMWallet(event: any) {
     const id = event.model.item.id;
     const toastManager = getToastManager();
+    toastManager.duration = 1500;
     if(id) {
-      console.log(this.delegate, this.delegate.setProfileDefaultEVMWallet)
       this.delegate.setProfileDefaultEVMWallet(id)
       toastManager.show('Successful!!');
       this.closeSettingDialog_()
+      this.defaultEVMWallet = id;
+      this.findDefaultEVMWalletItem()
+      const params = {
+        key1: 'id',
+        value1: id
+      }
+      // const browser = chrome as any;
+      chrome.misesPrivate.recordEvent(JSON.stringify({
+        event_type: "setting_default_extension",
+        params: params
+      }))
     }
   }
+
   hasDefaultWallet_() {
     return !!(this.EVMConfig_ && this.EVMConfig_.wallet.extension_id)
   }
 
-  isActive(id: string, classList: string) {
-    if(id === this.defaultEVMWallet) {
-      return classList+ ' active'
+  isActive(id: string) {
+    return id === this.defaultEVMWallet
+  }
+
+  async findDefaultEVMWalletItem() {
+    await this.fetchDefaultEVMWallet()
+    if(this.defaultEVMWallet) {
+      const item = this.extensions.find(val => val.id === this.defaultEVMWallet)
+      this.defaultEVMWalletItem = item || null
+      return 
     }
-    return classList
+    this.defaultEVMWalletItem = null
   }
 }
 
