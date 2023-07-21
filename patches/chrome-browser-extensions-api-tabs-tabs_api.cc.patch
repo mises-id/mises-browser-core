@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_api.cc b/chrome/browser/extensions/api/tabs/tabs_api.cc
-index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..73209e2c1b7a0b7b9ef33deff3365a41378c5375 100644
+index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..3d335054e541b0e97a153191d7e191fb814da6bc 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_api.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_api.cc
 @@ -171,6 +171,7 @@ class ApiParameterExtractor {
@@ -156,7 +156,7 @@ index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..73209e2c1b7a0b7b9ef33deff3365a41
 +  if (!windows_util::GetBrowserFromWindowID(
 +          this, params->window_id, WindowController::kNoWindowFilter,
 +          &browser, &error)) {
-+    return RespondNow(NoArguments());
++    return RespondNow(Error(std::move(error)));
 +  }
 +#endif
    return RespondNow(
@@ -264,7 +264,7 @@ index fc55ae537f1e2cb53c0ef93e1c78baad1f96f5af..73209e2c1b7a0b7b9ef33deff3365a41
 +      }
 +
 +      int openingTab = tab_strip_android->GetLastNonExtensionActiveIndex();
-+      if (params->query_info.last_focused_window) {
++      if (!params->query_info.last_focused_window) {
 +        openingTab = tab_strip_android->GetActiveIndex();
 +      }
 +      if (openingTab == -1)

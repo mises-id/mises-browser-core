@@ -1,5 +1,5 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index 56949f4bb7496f40204bfc72f74123104f5ea1ff..a8c9a6e8f63e107ccf411efc4d32ddd71f6a97f3 100644
+index 56949f4bb7496f40204bfc72f74123104f5ea1ff..79e27f44f3dbdaafc3e6940a3e4849831370d89c 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
 @@ -326,6 +326,17 @@ template("chrome_public_common_apk_or_module_tmpl") {
@@ -20,7 +20,15 @@ index 56949f4bb7496f40204bfc72f74123104f5ea1ff..a8c9a6e8f63e107ccf411efc4d32ddd7
      if (!defined(aapt_locale_allowlist)) {
        # Include resource strings files only for supported locales.
        aapt_locale_allowlist = platform_pak_locales
-@@ -712,7 +723,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
+@@ -386,6 +397,7 @@ template("chrome_public_common_apk_or_module_tmpl") {
+         proguard_configs = []
+       }
+       proguard_configs += [ "//chrome/android/proguard/main.flags" ]
++      proguard_configs += [ "//mises/android/java/proguard.flags" ]
+     }
+ 
+     if (use_chromium_linker) {
+@@ -712,7 +724,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
        }
  
        # We only optimize resources in bundles.

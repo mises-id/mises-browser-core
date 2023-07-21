@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import org.chromium.chrome.browser.mises.MisesUtil;
 
 @JNINamespace("base::android")
 @MainDex
@@ -40,6 +41,14 @@ public class MisesSysUtils {
         return ContextUtils.getAppSharedPreferences().getString("night_mode_settings", "");
     }
 
+
+    @CalledByNative
+    public static void showRewardAd() {
+        if (MisesUtil.getActivityContext() == null) {
+            return;
+        }
+        MisesUtil.loadAndShowRewardedAd(MisesUtil.getActivityContext());
+    }
 
     @CalledByNative
     public static void logEvent(final String name, final String key, final String value) {

@@ -23,3 +23,14 @@ firebase initialization
 <meta-data
     android:name="com.google.firebase.messaging.project_id"
     android:value="@string/project_id" />
+
+
+<meta-data 
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="ca-app-pub-3526707353288294~6999474883"/>
+<meta-data
+    android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
+    android:value="true"/>
+<meta-data
+    android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
+    android:value="true"/>
