@@ -4,7 +4,8 @@
 # you can obtain one at http://mozilla.org/MPL/2.0/.
 
 mises_extensions_web_component_files = [ 
-    "mises_open_web_store_footer.ts"
+    "mises_open_web_store_footer.ts",
+    "mises_default_extension_setting.ts"
 ]
 
 mises_extensions_non_web_component_files = [

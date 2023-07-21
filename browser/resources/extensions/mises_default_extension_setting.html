@@ -1,0 +1,147 @@
+<style>
+.default-extension-setting-tips{
+  padding: 0 12px;
+  text-align: center;
+  color: var(--cr-secondary-text-color);
+  margin: 0;
+}
+.default-extension-setting-chain-list-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 12px;
+}
+.setting-button{
+  height: 55px;
+}
+.network-item{
+  background-color: var(--cr-card-background-color);
+  border-radius: var(--cr-card-border-radius);
+  box-shadow: var(--cr-card-shadow);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+.wallet-logo{
+  height: 36px;
+  width: 36px;
+}
+.right-info{
+  margin-left: 12px;
+}
+.network-name{
+  font-size: 14px;
+  color: var(--cr-secondary-text-color)
+}
+.wallet-name{
+  color: var(--cr-primary-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+}
+.setting-dialog{
+  width: 90vw;
+  background-color: var(--cr-card-background-color);
+  border-radius: var(--cr-card-border-radius);
+  padding: 20px 0 10px 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--cr-primary-text-color);
+  box-sizing: border-box;
+}
+.setting-dialog-container{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+.radio {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid rgb(218, 220, 224)
+}
+.radio.active{
+  background-color: var(--cr-toggle-checked-button-color);
+}
+.wallet-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.wallet-info{
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--cr-primary-text-color);
+}
+.wallet-icon{
+  width: 30px;
+}
+.wallet-item-button{
+  border: none;
+  min-width: 100%;
+  height: 48px;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+.wallet-list-container{
+  margin-top: 12px;
+}
+.close-button{
+  min-width: 70px;
+  padding: 0;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+}
+</style>
+
+<div class="default-extension-setting-chain-list-container">
+  <cr-button class="setting-button" on-click="openSettingDialog_">
+    <img slot="prefixIcon" src="[[EVMConfig_.wallet.logo]]"  hidden$="[[hasDefaultWallet_()]]" alt="" class="wallet-logo">
+    <div class="right-info">
+      <div class="wallet-name" hidden$="[[hasDefaultWallet_()]]">[[EVMConfig_.wallet.title]]</div>
+      <div class="network-name">[[EVMConfig_.name]]</div>
+    </div>
+  </cr-button>
+</div>
+
+<p class="default-extension-setting-tips">
+  Refresh the Dapp page to take effect the changes
+</p>
+
+<template is="dom-if" if="[[settingDialogVisable]]" restamp>
+  <div class="setting-dialog-container">
+    <div class="setting-dialog">
+      <cr-button class="close-button" on-click="closeSettingDialog_">
+        <div>close</div>
+      </cr-button>
+      <div class="wallet-list-container">
+        <template is="dom-repeat" items="[[extensions]]">
+          <div>
+            <cr-button class="wallet-item-button" data-id="[[item.id]]" on-click="setProfileDefaultEVMWallet">
+              <div class="wallet-item">
+                <div class="wallet-info">
+                  <img src="[[item.iconUrl]]" alt="" class="wallet-icon">
+                  <span>[[item.name]]</span>
+                </div>
+                <div class$="{{isActive(item.id, 'radio')}}"></div>
+              </div>
+            </cr-button>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</template>
