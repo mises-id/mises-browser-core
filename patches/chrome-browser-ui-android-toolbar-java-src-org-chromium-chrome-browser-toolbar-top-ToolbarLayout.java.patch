@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
-index 471af534674d1366899f12828e960d0db68b1c4c..5290956349109408d4f205d28a1f2e66d174e5b5 100644
+index 471af534674d1366899f12828e960d0db68b1c4c..3579d8bbf1065fa3e415253c0938f425da6592aa 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
-@@ -65,6 +65,24 @@ import org.chromium.url.GURL;
+@@ -65,6 +65,23 @@ import org.chromium.url.GURL;
  
  import java.util.function.BooleanSupplier;
  
@@ -10,7 +10,6 @@ index 471af534674d1366899f12828e960d0db68b1c4c..5290956349109408d4f205d28a1f2e66
 +import org.chromium.ui.widget.ChromeImageButton;
 +import org.chromium.chrome.browser.mises.MisesController;
 +import org.chromium.chrome.browser.mises.MisesWeb3SafeAlert;
-+import org.chromium.chrome.browser.mises.MisesUtil;
 +import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
 +import org.chromium.chrome.browser.tabmodel.TabCreator;
 +import org.chromium.chrome.browser.tabmodel.TabModel;
@@ -27,7 +26,7 @@ index 471af534674d1366899f12828e960d0db68b1c4c..5290956349109408d4f205d28a1f2e66
  /**
   * Layout class that contains the base shared logic for manipulating the toolbar component. For
   * interaction that are not from Views inside Toolbar hierarchy all interactions should be done
-@@ -72,7 +90,7 @@ import java.util.function.BooleanSupplier;
+@@ -72,7 +89,7 @@ import java.util.function.BooleanSupplier;
   */
  public abstract class ToolbarLayout
          extends FrameLayout implements Destroyable, TintObserver, ThemeColorObserver,
@@ -36,7 +35,7 @@ index 471af534674d1366899f12828e960d0db68b1c4c..5290956349109408d4f205d28a1f2e66
      private Callback<Runnable> mInvalidator;
      private @Nullable ToolbarColorObserver mToolbarColorObserver;
  
-@@ -105,6 +123,11 @@ public abstract class ToolbarLayout
+@@ -105,6 +122,11 @@ public abstract class ToolbarLayout
  
      protected final DestroyChecker mDestroyChecker;
  
@@ -48,7 +47,7 @@ index 471af534674d1366899f12828e960d0db68b1c4c..5290956349109408d4f205d28a1f2e66
      /**
       * Basic constructor for {@link ToolbarLayout}.
       */
-@@ -188,6 +211,7 @@ public abstract class ToolbarLayout
+@@ -188,6 +210,7 @@ public abstract class ToolbarLayout
          if (mToolbarColorObserver != null) {
              mToolbarColorObserver = null;
          }
@@ -56,7 +55,7 @@ index 471af534674d1366899f12828e960d0db68b1c4c..5290956349109408d4f205d28a1f2e66
      }
  
      /**
-@@ -326,6 +350,8 @@ public abstract class ToolbarLayout
+@@ -326,6 +349,8 @@ public abstract class ToolbarLayout
                  return false;
              }
          };
@@ -65,7 +64,7 @@ index 471af534674d1366899f12828e960d0db68b1c4c..5290956349109408d4f205d28a1f2e66
      }
  
      @Override
-@@ -877,4 +903,68 @@ public abstract class ToolbarLayout
+@@ -877,4 +902,68 @@ public abstract class ToolbarLayout
              shadow.setVisibility(isHairlineVisible ? VISIBLE : GONE);
          }
      }

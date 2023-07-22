@@ -18,7 +18,7 @@ import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.gms.tasks.Task;
 
-import org.chromium.chrome.browser.mises.MisesUtil;
+import org.chromium.chrome.browser.mises.UIUtil;
 
 import org.chromium.chrome.R;
 
@@ -170,7 +170,7 @@ public class InAppUpdater {
     // Displays the snackbar notification and call to action.
     private void popupCompleteUpdate(final Activity act) {
         Log.i(TAG,"popupCompleteUpdate");
-	MisesUtil.showAlertDialog(act, act.getString(R.string.lbl_update_download_complete_tip), v1 -> {
+	UIUtil.showAlertDialog(act, act.getString(R.string.lbl_update_download_complete_tip), v1 -> {
                 if (appUpdateManager != null) {
             		appUpdateManager.completeUpdate();
         	}

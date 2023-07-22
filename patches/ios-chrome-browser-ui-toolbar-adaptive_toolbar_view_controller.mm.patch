@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm b
 index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d39e97c883 100644
 --- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
 +++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
-@@ -115,7 +115,8 @@ - (void)viewDidLoad {
+@@ -115,7 +115,8 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
    self.view.openNewTabButton.guideName = kNewTabButtonGuide;
    self.view.forwardButton.guideName = kForwardButtonGuide;
    self.view.backButton.guideName = kBackButtonGuide;
@@ -12,7 +12,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d3
    [self addLayoutGuideCenterToButtons];
  
    // Add navigation popup menu triggers.
-@@ -298,6 +299,9 @@ - (void)updateUIForMenuDisplayed:(PopupMenuType)popupType {
+@@ -298,6 +299,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
      case PopupMenuTypeTabStripTabGrid:
        // ignore
        break;
@@ -22,7 +22,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d3
    }
  
    selectedButton.spotlighted = YES;
-@@ -313,6 +317,7 @@ - (void)updateUIForMenuDismissed {
+@@ -313,6 +317,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
    self.view.openNewTabButton.spotlighted = NO;
    self.view.tabGridButton.spotlighted = NO;
    self.view.toolsMenuButton.spotlighted = NO;
@@ -30,7 +30,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d3
  
    for (ToolbarButton* button in self.view.allButtons) {
      button.dimmed = NO;
-@@ -340,6 +345,9 @@ - (void)updateUIForIPHDisplayed:(PopupMenuType)popupType {
+@@ -340,6 +345,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
      case PopupMenuTypeTabStripTabGrid:
        // ignore
        break;
@@ -40,7 +40,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d3
    }
  
    selectedButton.iphHighlighted = YES;
-@@ -351,6 +359,7 @@ - (void)updateUIForIPHDismissed {
+@@ -351,6 +359,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
    self.view.openNewTabButton.iphHighlighted = NO;
    self.view.tabGridButton.iphHighlighted = NO;
    self.view.toolsMenuButton.iphHighlighted = NO;
@@ -48,7 +48,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d3
  }
  
  #pragma mark - Private
-@@ -419,6 +428,8 @@ - (IBAction)recordUserMetrics:(id)sender {
+@@ -419,6 +428,8 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
    } else if (sender == self.view.openNewTabButton) {
      base::RecordAction(base::UserMetricsAction("MobileToolbarNewTabShortcut"));
      base::RecordAction(base::UserMetricsAction("MobileTabNewTab"));
@@ -57,7 +57,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d3
    } else {
      NOTREACHED();
    }
-@@ -448,6 +459,9 @@ - (void)handleGestureRecognizer:(UILongPressGestureRecognizer*)gesture {
+@@ -448,6 +459,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
      } else if (gesture.view == self.view.toolsMenuButton) {
        base::RecordAction(base::UserMetricsAction("MobileToolbarShowMenu"));
        [self.popupMenuCommandsHandler showToolsMenuPopup];
@@ -67,7 +67,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d3
      }
      TriggerHapticFeedbackForImpact(UIImpactFeedbackStyleHeavy);
    } else if (gesture.state == UIGestureRecognizerStateEnded) {
-@@ -502,6 +516,7 @@ - (void)addLayoutGuideCenterToButtons {
+@@ -502,6 +516,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
    self.view.openNewTabButton.layoutGuideCenter = self.layoutGuideCenter;
    self.view.forwardButton.layoutGuideCenter = self.layoutGuideCenter;
    self.view.backButton.layoutGuideCenter = self.layoutGuideCenter;

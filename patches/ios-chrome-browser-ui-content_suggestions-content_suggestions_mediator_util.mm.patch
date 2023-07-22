@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_media
 index 0a415ae0478f1a89157f3065b94ff9db201fe5a8..f734c453bd18fe8a00826cada5ef3dd072927fdb 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator_util.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator_util.mm
-@@ -68,6 +68,8 @@
+@@ -68,6 +68,8 @@ ContentSuggestionsMostVisitedItem* ConvertNTPTile(
    suggestion.source = tile.source;
    suggestion.titleSource = tile.title_source;
    suggestion.accessibilityTraits = UIAccessibilityTraitButton;
@@ -11,7 +11,7 @@ index 0a415ae0478f1a89157f3065b94ff9db201fe5a8..f734c453bd18fe8a00826cada5ef3dd0
  
    return suggestion;
  }
-@@ -96,3 +98,18 @@
+@@ -96,3 +98,18 @@ ContentSuggestionsMostVisitedActionItem* WhatsNewActionItem() {
    return [[ContentSuggestionsMostVisitedActionItem alloc]
        initWithCollectionShortcutType:NTPCollectionShortcutTypeWhatsNew];
  }

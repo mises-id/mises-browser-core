@@ -10,8 +10,8 @@ android_library("java") {
   sources = [
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerProcessor.java",
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerProperties.java",
-    "java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerView.java",
-    "java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerViewBinder.java",
+    #"java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerView.java",
+    #"java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerViewBinder.java",
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/MisesAutocompleteMediator.java",
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/MisesAutocompleteCoordinator.java",
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/MisesDropdownItemViewInfoListBuilder.java",
@@ -39,8 +39,8 @@ android_library("java") {
     "//components/user_prefs/android:java",
     "//third_party/androidx:androidx_annotation_annotation_java",
     "//third_party/androidx:androidx_recyclerview_recyclerview_java",
-    "//mises/third_party/android_deps:google_play_services_ads_java",
-    "//mises/third_party/android_deps:google_play_services_ads_lite_java",
+    #"//mises/third_party/android_deps:google_play_services_ads_java",
+    #"//mises/third_party/android_deps:google_play_services_ads_lite_java",
     "//ui/android:ui_no_recycler_view_java",
   ]
 

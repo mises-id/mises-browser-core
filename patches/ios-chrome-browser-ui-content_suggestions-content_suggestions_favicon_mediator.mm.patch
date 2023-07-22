@@ -17,7 +17,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -27,6 +35,8 @@
+@@ -27,6 +35,8 @@ const CGFloat kMostVisitedFaviconSize = 48;
  // Size below which the provider returns a colored tile instead of an image.
  const CGFloat kMostVisitedFaviconMinimalSize = 32;
  
@@ -26,7 +26,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
  }  // namespace
  
  @interface ContentSuggestionsFaviconMediator () {
-@@ -43,6 +53,9 @@ @interface ContentSuggestionsFaviconMediator () {
+@@ -43,6 +53,9 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
  @end
  
  @implementation ContentSuggestionsFaviconMediator
@@ -36,7 +36,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
  
  #pragma mark - Public.
  
-@@ -63,6 +76,10 @@ - (instancetype)initWithLargeIconService:
+@@ -63,6 +76,10 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
    return self;
  }
  
@@ -47,7 +47,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
  - (void)setMostVisitedDataForLogging:
      (const ntp_tiles::NTPTilesVector&)mostVisitedData {
    DCHECK(_mostVisitedDataForLogging.empty());
-@@ -78,14 +95,52 @@ - (void)fetchFaviconForMostVisited:(ContentSuggestionsMostVisitedItem*)item {
+@@ -78,14 +95,52 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
      ContentSuggestionsMostVisitedItem* strongItem = weakItem;
      if (!strongSelf || !strongItem)
        return;

@@ -10,7 +10,7 @@ index d5bed6b579a20b34293996957ee5c696f4b28365..c3448c9cf5961a527aa1c4d76ee09814
  
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
-@@ -151,9 +152,16 @@ - (BOOL)application:(UIApplication*)application
+@@ -151,9 +152,16 @@ const int kMainIntentCheckDelay = 1;
               name:UIApplicationWillEnterForegroundNotification
             object:nil];
  

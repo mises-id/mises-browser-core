@@ -1,4 +1,4 @@
-package org.chromium.chrome.browser.mises;
+package org.chromium.base;
 
 import android.content.Context;
 import android.app.Activity;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
-import org.chromium.chrome.mises.R;
 import androidx.annotation.NonNull;
 
 import org.chromium.base.Log;
@@ -25,12 +24,11 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
-import org.chromium.chrome.browser.mises.MisesController;
 
 
-public class MisesUtil {
+public class MisesAdsUtil {
 
-    private static final String TAG = "MisesUtil";
+    private static final String TAG = "MisesAdsUtil";
     private static final String REWARDAD_UNIT_ID = "ca-app-pub-3526707353288294/9383547028";
     private static boolean isLoading;
     private static boolean isShowing; 
@@ -98,16 +96,16 @@ public class MisesUtil {
                 }
         });
     }
-    public static void loadAndShowRewardedAd(final Activity act) {
+    public static void loadAndShowRewardedAd(final Activity act, final String misesID) {
         if (rewardedAdCache == null) {
-            loadRewardedAd(act, true);
+            loadRewardedAd(act, true, misesID);
         } else {
             showRewardedAd(act, rewardedAdCache);
             rewardedAdCache = null;
-            loadRewardedAd(act, false);
+            loadRewardedAd(act, false, misesID);
         }   
     }
-    private static void loadRewardedAd(final Activity act, final boolean show) {
+    private static void loadRewardedAd(final Activity act, final boolean show, final String misesID) {
         if (isLoading) {
             if (show) {
                 Toast.makeText(act, "Ads Loading ...", Toast.LENGTH_SHORT).show();
@@ -133,46 +131,20 @@ public class MisesUtil {
                 public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
                     Log.d(TAG, "onAdLoaded");
                     isLoading = false;
-                    String misesid = MisesController.getInstance().getMisesId();
                     ServerSideVerificationOptions options = new ServerSideVerificationOptions
                         .Builder()
-                        .setUserId(misesid)
+                        .setUserId(misesID)
                         .build();
                     rewardedAd.setServerSideVerificationOptions(options);
                     if (show) {
                         showRewardedAd(act, rewardedAd);
-                        loadRewardedAd(act, false);
+                        loadRewardedAd(act, false, misesID);
                     } else {
-                        MisesUtil.rewardedAdCache = rewardedAd;
+                        MisesAdsUtil.rewardedAdCache = rewardedAd;
                     }
                     
                 }
             }
         );
-    }
-    public static void showAlertDialog(Context context, String message, View.OnClickListener okListener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        View view = LayoutInflater.from(context).inflate(R.layout.mises_alert_dialog, null);
-        builder.setView(view);
-        //builder.setCancelable(false);
-        TextView tvContent = (TextView) view.findViewById(R.id.tv_content);
-        tvContent.setText(message);
-        final AlertDialog dialog = builder.create();
-        dialog.show();
-        view.findViewById(R.id.btn_confirm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (okListener != null) {
-                    okListener.onClick(v);
-                }
-                dialog.dismiss();
-            }
-        });
-        view.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
     }
 } 
