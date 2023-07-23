@@ -75,10 +75,10 @@ class MisesDropdownItemViewInfoListBuilder extends DropdownItemViewInfoListBuild
         List<DropdownItemViewInfo> viewInfoList =
                 super.buildDropdownViewInfoList(autocompleteResult);
 
-            final PropertyModel model = mMisesAdsBannerProcessor.createModel();
-            mMisesAdsBannerProcessor.populateModel(model);
-            viewInfoList.add(new DropdownItemViewInfo(mMisesAdsBannerProcessor, model,
-                    MisesAdsBannerProcessor.MISES_ADS_PROMO_GROUP));
+            //final PropertyModel model = mMisesAdsBannerProcessor.createModel();
+            //mMisesAdsBannerProcessor.populateModel(model);
+            //viewInfoList.add(new DropdownItemViewInfo(mMisesAdsBannerProcessor, model,
+            //        MisesAdsBannerProcessor.MISES_ADS_PROMO_GROUP));
       
 
         return viewInfoList;
