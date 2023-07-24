@@ -6,10 +6,7 @@ import {I18nMixin, I18nMixinInterface} from 'chrome://resources/cr_elements/i18n
 
 import {PolymerElement} from 'chrome://resources/polymer/v3_0/polymer/polymer_bundled.min.js';
 
-import {getTemplate} from './mises_default_extension_setting.html.js'
-;
-import {getToastManager} from 'chrome://resources/cr_elements/cr_toast/cr_toast_manager.js';
-
+import {getTemplate} from './mises_default_extension_setting.html.js';
 
 const ExtensionsMisesDefaultExtensionSettingElementBase =
   I18nMixin(PolymerElement) as {
@@ -31,7 +28,7 @@ interface misesDefaultExtensionSettingDelegate {
     defaultEVMWallet: string
   }>
 }
-
+const metamask_extension_id = 'nkbihfbeogaeaoehlefnkodbefgpgknn'
 export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMisesDefaultExtensionSettingElementBase {
   constructor() {
     super();
@@ -56,11 +53,18 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
         type: String
       },
       settingDialogVisable: Boolean,
+      settingDialogTipsVisable: Boolean,
       delegate: Object,
       walletList: {
         type: Object,
         value() {
-          return {};
+          return {
+            EVM: [{
+              logo: '',
+              title: 'Metamask',
+              extension_id: metamask_extension_id
+            }]
+          };
         },
       },
       EVMConfig_: {
@@ -105,6 +109,8 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
   defaultEVMWallet: string
 
   settingDialogVisable: boolean = false;
+
+  settingDialogTipsVisable: boolean = false;
 
   retryCount: number;
 
@@ -216,14 +222,14 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
   closeSettingDialog_() {
     this.settingDialogVisable = false
   }
-  
+
+  toggleSettingTipsDialog_() {
+    this.settingDialogTipsVisable = !this.settingDialogTipsVisable
+  }
   setProfileDefaultEVMWallet(event: any) {
     const id = event.model.item.id;
-    const toastManager = getToastManager();
-    toastManager.duration = 1500;
     if(id) {
       this.delegate.setProfileDefaultEVMWallet(id)
-      toastManager.show('Successful!!');
       this.closeSettingDialog_()
       this.defaultEVMWallet = id;
       this.findDefaultEVMWalletItem()
@@ -249,11 +255,23 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
 
   async findDefaultEVMWalletItem() {
     await this.fetchDefaultEVMWallet()
+    const resetStatus = window.localStorage.getItem('resetStatus')
+    if(!this.defaultEVMWallet && !resetStatus) {
+      this.delegate.setProfileDefaultEVMWallet(metamask_extension_id)
+      this.defaultEVMWallet = metamask_extension_id
+    }
     if(this.defaultEVMWallet) {
       const item = this.extensions.find(val => val.id === this.defaultEVMWallet)
       this.defaultEVMWalletItem = item || null
       return 
     }
+    this.defaultEVMWalletItem = null
+  }
+  resetDefaultWallet_() {
+    window.localStorage.setItem('resetStatus', '1');
+    this.delegate.setProfileDefaultEVMWallet('')
+    this.closeSettingDialog_()
+    this.defaultEVMWallet = '';
     this.defaultEVMWalletItem = null
   }
 }
