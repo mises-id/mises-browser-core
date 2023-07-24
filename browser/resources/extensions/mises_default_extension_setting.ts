@@ -26,7 +26,10 @@ interface misesDefaultExtensionSettingDelegate {
   setProfileDefaultEVMWallet: (id: string) => void,
   getProfileConfiguration: () => Promise<{
     defaultEVMWallet: string
-  }>
+  }>,
+  getItemStateChangedTarget: () => ({
+    addListener: any,
+  })
 }
 const metamask_extension_id = 'nkbihfbeogaeaoehlefnkodbefgpgknn'
 export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMisesDefaultExtensionSettingElementBase {
@@ -47,7 +50,7 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
     return {
       extensions: {
         type: String,
-        observer: 'findDefaultEVMWalletItem'
+        observer: 'initSettingData'
       },
       defaultEVMWallet: {
         type: String
@@ -210,7 +213,6 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
   fetchDefaultEVMWallet() {
     return this.delegate.getProfileConfiguration().then(res => {
       this.defaultEVMWallet = res.defaultEVMWallet
-      console.log(res.defaultEVMWallet)
     })
   }
 
@@ -235,7 +237,7 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
       this.delegate.setProfileDefaultEVMWallet(id)
       this.closeSettingDialog_()
       this.defaultEVMWallet = id;
-      this.findDefaultEVMWalletItem()
+      this.setDefaultEVMWalletItem()
       const params = {
         key1: 'id',
         value1: id
@@ -257,7 +259,23 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
     return id === this.defaultEVMWallet
   }
 
-  async findDefaultEVMWalletItem() {
+  initSettingData() {
+    this.setDefaultEVMWalletItem()
+    this.delegate.getItemStateChangedTarget().addListener(this.onItemStateChanged_.bind(this));
+  }
+
+  private onItemStateChanged_(eventData: chrome.developerPrivate.EventData) {
+    const EventType = chrome.developerPrivate.EventType;
+    switch (eventData.event_type) {
+      case EventType.UNINSTALLED:
+        if(eventData.item_id === this.defaultEVMWallet) {
+          this.cleanDefaultWallet_()
+        }
+      break;
+    }
+  }
+
+  async setDefaultEVMWalletItem() {
     await this.fetchDefaultEVMWallet()
     // const resetStatus = window.localStorage.getItem('resetStatus')
     // if(!this.defaultEVMWallet && !resetStatus) {
@@ -267,16 +285,23 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
     if(this.defaultEVMWallet) {
       const item = this.extensions.find(val => val.id === this.defaultEVMWallet)
       this.defaultEVMWalletItem = item || null
+
+      if(!this.defaultEVMWalletItem) {
+        this.defaultEVMWallet = '';
+        this.delegate.setProfileDefaultEVMWallet('')
+      }
       return 
     }
     this.defaultEVMWalletItem = null
   }
-  resetDefaultWallet_() {
+
+  cleanDefaultWallet_() {
     // window.localStorage.setItem('resetStatus', '1');
     this.delegate.setProfileDefaultEVMWallet('')
-    this.closeSettingDialog_()
+    this.settingDialogVisable && this.closeSettingDialog_()
     this.defaultEVMWallet = '';
     this.defaultEVMWalletItem = null
+    console.log('clean wallet')
   }
 }
 
