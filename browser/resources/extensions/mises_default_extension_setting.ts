@@ -6,10 +6,7 @@ import {I18nMixin, I18nMixinInterface} from 'chrome://resources/cr_elements/i18n
 
 import {PolymerElement} from 'chrome://resources/polymer/v3_0/polymer/polymer_bundled.min.js';
 
-import {getTemplate} from './mises_default_extension_setting.html.js'
-;
-import {getToastManager} from 'chrome://resources/cr_elements/cr_toast/cr_toast_manager.js';
-
+import {getTemplate} from './mises_default_extension_setting.html.js';
 
 const ExtensionsMisesDefaultExtensionSettingElementBase =
   I18nMixin(PolymerElement) as {
@@ -231,11 +228,8 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
   }
   setProfileDefaultEVMWallet(event: any) {
     const id = event.model.item.id;
-    const toastManager = getToastManager();
-    toastManager.duration = 1500;
     if(id) {
       this.delegate.setProfileDefaultEVMWallet(id)
-      toastManager.show('Successful!!');
       this.closeSettingDialog_()
       this.defaultEVMWallet = id;
       this.findDefaultEVMWalletItem()
