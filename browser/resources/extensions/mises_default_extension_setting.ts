@@ -54,6 +54,7 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
       },
       settingDialogVisable: Boolean,
       settingDialogTipsVisable: Boolean,
+      showChangeWalletTips: Boolean,
       delegate: Object,
       walletList: {
         type: Object,
@@ -111,6 +112,8 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
   settingDialogVisable: boolean = false;
 
   settingDialogTipsVisable: boolean = false;
+
+  showChangeWalletTips: Boolean = false;
 
   retryCount: number;
 
@@ -242,6 +245,7 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
         event_type: "setting_default_extension",
         params: params
       }))
+      this.showChangeWalletTips = true;
     }
   }
 
@@ -255,11 +259,11 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
 
   async findDefaultEVMWalletItem() {
     await this.fetchDefaultEVMWallet()
-    const resetStatus = window.localStorage.getItem('resetStatus')
-    if(!this.defaultEVMWallet && !resetStatus) {
-      this.delegate.setProfileDefaultEVMWallet(metamask_extension_id)
-      this.defaultEVMWallet = metamask_extension_id
-    }
+    // const resetStatus = window.localStorage.getItem('resetStatus')
+    // if(!this.defaultEVMWallet && !resetStatus) {
+    //   this.delegate.setProfileDefaultEVMWallet(metamask_extension_id)
+    //   this.defaultEVMWallet = metamask_extension_id
+    // }
     if(this.defaultEVMWallet) {
       const item = this.extensions.find(val => val.id === this.defaultEVMWallet)
       this.defaultEVMWalletItem = item || null
@@ -268,7 +272,7 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
     this.defaultEVMWalletItem = null
   }
   resetDefaultWallet_() {
-    window.localStorage.setItem('resetStatus', '1');
+    // window.localStorage.setItem('resetStatus', '1');
     this.delegate.setProfileDefaultEVMWallet('')
     this.closeSettingDialog_()
     this.defaultEVMWallet = '';
