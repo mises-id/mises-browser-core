@@ -17,7 +17,7 @@ public class MisesDropdownItemViewInfoListBuilderClassAdapter extends MisesClass
     public MisesDropdownItemViewInfoListBuilderClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(
-        //         sDropdownItemViewInfoListBuilder, sMisesDropdownItemViewInfoListBuilder);
+        redirectConstructor(
+                sDropdownItemViewInfoListBuilder, sMisesDropdownItemViewInfoListBuilder);
     }
 }

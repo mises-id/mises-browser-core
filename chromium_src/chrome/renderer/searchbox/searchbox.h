@@ -11,6 +11,7 @@
   void MisesInfoChanged(const std::u16string &info) override;\
   const std::u16string &mises_info(){ return mises_info_;}\
   void OpenExtension(InstantRestrictedID most_visited_item_id);\
+  void ShowRewardAd();\
   void LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value);\
   std::u16string mises_info_;\
   void GetMostVisitedItems

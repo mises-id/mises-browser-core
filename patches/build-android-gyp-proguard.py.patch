@@ -1,5 +1,5 @@
 diff --git a/build/android/gyp/proguard.py b/build/android/gyp/proguard.py
-index 9ab674c6a83db13d9982bd5f2924d191df3b053e..de8c88739394266c6fd3ace59f481a7cd8e4009a 100755
+index 9ab674c6a83db13d9982bd5f2924d191df3b053e..8de677139f20d19a362a6de6e20c2628a6773fbe 100755
 --- a/build/android/gyp/proguard.py
 +++ b/build/android/gyp/proguard.py
 @@ -275,6 +275,7 @@ def _OptimizeWithR8(options,
@@ -10,3 +10,12 @@ index 9ab674c6a83db13d9982bd5f2924d191df3b053e..de8c88739394266c6fd3ace59f481a7c
  
      if options.disable_checks:
        cmd += ['--map-diagnostics:CheckDiscardDiagnostic', 'error', 'none']
+@@ -592,7 +593,7 @@ def _DoTraceReferencesChecks(options, split_contexts_by_name):
+ def main():
+   build_utils.InitLogging('PROGUARD_DEBUG')
+   options = _ParseOptions()
+-
++  options.warnings_as_errors = False
+   # ProGuard configs that are derived from flags.
+   logging.debug('Preparing configs')
+   dynamic_config_data = _CreateDynamicConfig(options)

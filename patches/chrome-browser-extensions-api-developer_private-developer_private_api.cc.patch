@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_api.cc b/chrome/browser/extensions/api/developer_private/developer_private_api.cc
-index efd7d3240044b94cba3e41aa9127834fdb76c60a..45830d10c6ec7e2219fd317d555630acfd5c89ef 100644
+index efd7d3240044b94cba3e41aa9127834fdb76c60a..3d48d2c8f398a777b495a60f80162dae0fb9b9de 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_api.cc
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_api.cc
 @@ -513,6 +513,7 @@ std::unique_ptr<developer::ProfileInfo> DeveloperPrivateAPI::CreateProfileInfo(
@@ -10,7 +10,7 @@ index efd7d3240044b94cba3e41aa9127834fdb76c60a..45830d10c6ec7e2219fd317d555630ac
    return info;
  }
  
-@@ -1097,6 +1098,12 @@ DeveloperPrivateUpdateProfileConfigurationFunction::Run() {
+@@ -1097,6 +1098,14 @@ DeveloperPrivateUpdateProfileConfigurationFunction::Run() {
      RendererStartupHelperFactory::GetForBrowserContext(browser_context())
          ->OnDeveloperModeChanged(*update.in_developer_mode);
    }
@@ -19,6 +19,8 @@ index efd7d3240044b94cba3e41aa9127834fdb76c60a..45830d10c6ec7e2219fd317d555630ac
 +                      *update.default_evm_wallet);
 +    SetDefaultEVMWallet(util::GetBrowserContextId(browser_context()),
 +                            *update.default_evm_wallet);
++    RendererStartupHelperFactory::GetForBrowserContext(browser_context())
++	            ->OnDefaultEVMWalletChanged(*update.default_evm_wallet);
 +  }
  
    return RespondNow(NoArguments());

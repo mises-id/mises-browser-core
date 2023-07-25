@@ -23,6 +23,11 @@ std::string MisesSysUtils::NightModeSettingsFromJni() {
   return ConvertJavaStringToUTF8(env, Java_MisesSysUtils_nightModeSettings(env));
 }
 
+void MisesSysUtils::ShowRewardAdFromJni() {
+  JNIEnv* env = AttachCurrentThread();
+  Java_MisesSysUtils_showRewardAd(env);
+}
+
 void MisesSysUtils::LogEventFromJni(const std::string& name, const std::string& key, const std::string& value) {
   JNIEnv* env = AttachCurrentThread();
   base::android::ScopedJavaLocalRef<jstring> j_name = base::android::ConvertUTF8ToJavaString(env, name);

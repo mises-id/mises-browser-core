@@ -57,6 +57,9 @@ void SearchBox::OpenExtension(
     return;
   embedded_search_service_->OpenExtension(url);
 }
+void SearchBox::ShowRewardAd() {
+  embedded_search_service_->ShowRewardAd();
+}
 
 
 void SearchBox::LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) {

@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_colle
 index f0d48297887596911da41d6bf1ea6c822cf4e4c9..90bb9089625721a703d632589582f96d0f765e0f 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
-@@ -37,31 +37,31 @@
+@@ -37,31 +37,31 @@ const CGFloat kSearchFieldMinMargin = 8;
  const CGFloat kTopSpacingMaterial = 24;
  
  // Top margin for the doodle.

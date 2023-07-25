@@ -296,7 +296,7 @@ public class MisesShareWin extends DialogFragment {
             } else if (res == 403) {
                 MisesController.getInstance().setLastShareInfo(mIcon, mTitle, mUrl);
                 dismiss();
-                MisesUtil.showAlertDialog(mContext, mContext.getString(R.string.lbl_auth_tip), new View.OnClickListener() {
+                UIUtil.showAlertDialog(mContext, mContext.getString(R.string.lbl_auth_tip), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         TabCreator tabCreator = mTabCreatorManager.getTabCreator(false);

@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_actions_handle
 index 2039097c0250191c6b796116958b99c21ee73013..0e819311a4452eeab82cf192d77642174cb26950 100644
 --- a/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_actions_handler.mm
 +++ b/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_actions_handler.mm
-@@ -69,4 +69,8 @@ - (void)cancelOmniboxFocusAction {
+@@ -69,4 +69,8 @@
    [self.omniboxHandler cancelOmniboxEdit];
  }
  

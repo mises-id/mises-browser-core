@@ -42,6 +42,14 @@ public class MisesSysUtils {
 
 
     @CalledByNative
+    public static void showRewardAd() {
+        if (MisesAdsUtil.getActivityContext() == null) {
+            return;
+        }
+        MisesAdsUtil.loadAndShowRewardedAd(MisesAdsUtil.getActivityContext(), "");
+    }
+
+    @CalledByNative
     public static void logEvent(final String name, final String key, final String value) {
         Context context = ContextUtils.getApplicationContext();
         if (context == null)

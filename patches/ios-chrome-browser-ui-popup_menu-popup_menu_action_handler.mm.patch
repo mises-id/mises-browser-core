@@ -12,7 +12,7 @@ index a2e470ed643c7bebeee13bea7745a28c48a6a162..5ba75757317e658e4a1246f79fd811f3
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -251,6 +254,46 @@ - (void)popupMenuTableViewController:(PopupMenuTableViewController*)sender
+@@ -251,6 +254,46 @@ using base::UserMetricsAction;
        RecordAction(UserMetricsAction("MobileMenuPriceNotifications"));
        [self.dispatcher showPriceNotifications];
        break;

@@ -138,6 +138,15 @@ void NewTabPageBindings::OpenExtension(v8::Isolate* isolate,
   search_box->OpenExtension(*rid);
 } 
 
+
+void NewTabPageBindings::ShowRewardAd(v8::Isolate* isolate) {
+
+  SearchBox* search_box = GetSearchBoxForCurrentContext();
+  if (!search_box)
+    return;
+  search_box->ShowRewardAd();
+} 
+
 std::u16string CoerceToString(v8::Isolate* isolate, v8::Local<v8::Value> v8_value) {
   v8::String::Value str(isolate, v8_value);
   return std::u16string((const char16_t*)*str, str.length());
