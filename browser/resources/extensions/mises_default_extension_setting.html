@@ -12,7 +12,9 @@
   padding: 12px;
 }
 .setting-button{
-  height: 50px;
+  height: 20px;
+  border: none;
+  padding: 0;
 }
 .network-item{
   display: flex;
@@ -20,23 +22,35 @@
   gap: 10px;
 }
 .wallet-logo{
-  height: 30px;
-  width: 30px;
+  height: 16px;
+  width: 16px;
 }
 .network-name{
   font-size: 14px;
-  color: var(--cr-secondary-text-color)
+  color: var(--cr-secondary-text-color);
+}
+.network-name-empty{
+  font-size: 14px;
+  color: var(--cr-secondary-text-color);
+  text-align: center;
 }
 .wallet-name,.wallet-item-name{
-  color: var(--cr-primary-text-color);
+  color: var(--cr-secondary-text-color);
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 26vw;
   font-size: 14px;
   white-space: nowrap;
 }
+.wallet-name{
+  margin-left: 4px;
+  max-width: 34vw;
+  
+}
+.no-set{
+  text-align: right;
+}
 .wallet-item-name{
-  width: 60vw;
+  width: 60%;
 }
 .setting-dialog{
   width: 90vw;
@@ -49,6 +63,9 @@
   transform: translate(-50%, -50%);
   color: var(--cr-primary-text-color);
   box-sizing: border-box;
+}
+.setting-tips-dialog {
+  padding-bottom: 0;
 }
 .setting-dialog-container{
   position: fixed;
@@ -100,6 +117,7 @@
   margin-top: 12px;
   max-height: 80vw;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .close-button{
   min-width: 40px;
@@ -114,31 +132,139 @@
   width: 24px;
   height: 24px;
 }
+.set-default-wallet-title{
+  font-size: 14px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.dialog-title{
+  color: var(--cr-primary-text-color);
+  font-size: 16px;
+  padding: 0 12px;
+  margin-top: 0;
+  font-weight: bold;
+}
+.reset-button{
+  color: white;
+}
+.reset-button-container{
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.reset-icon{
+  width: 30px;
+  height: 30px;
+}
+.tips-icon{
+  width: 15px;
+  height: 15px;
+}
+.tips-content{
+  position: relative;
+}
+.show-tips-dialog-button {
+  border: none;
+  padding: 0;
+  height: 15px;
+  min-width: 15px;
+  border: none;
+  margin-left: 5px;
+}
+.confirm-tips-button{
+  border: none;
+  border-top: 1px solid var(--border-color);
+  border-radius: 0;
+  min-width: 100%;
+  padding: 25px 0;
+}
+.dialog-tips-container{
+  padding: 20px;
+  text-align: center;
+  color: var(--cr-secondary-text-color);
+}
+.dialog-tips-title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0
+}
+.select-default-wallet-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+.arrow-right-icon{
+  width: 15px;
+  height: 15px;
+}
+.right-wallet-data{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
 
-<div class="default-extension-setting-chain-list-container">
+<div class="select-default-wallet-container">
+  <p class="set-default-wallet-title">
+    <span>Default EVM Wallet</span>
+    <cr-button on-click="toggleSettingTipsDialog_" class="show-tips-dialog-button">
+      <svg t="1690165893571" class="tips-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3397" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128"><path d="M512 957.44c-246.01088 0-445.44-199.42912-445.44-445.44s199.42912-445.44 445.44-445.44 445.44 199.42912 445.44 445.44-199.42912 445.44-445.44 445.44z m0-827.24352c-210.86208 0-381.80352 170.94144-381.80352 381.80352S301.13792 893.80864 512 893.80864s381.80864-170.95168 381.80864-381.80864c0-210.86208-170.94656-381.80352-381.80864-381.80352z m113.88416 372.6592c-9.40032 9.54368-26.28608 25.62048-50.6368 48.23552-6.72256 6.36416-12.12928 11.96032-16.18944 16.79872-4.04992 4.80768-7.08096 9.22624-9.05728 13.2352a65.11104 65.11104 0 0 0-4.59264 12.02688c-1.08032 4.00896-2.7136 11.04896-4.89984 21.13024-3.75808 21.36064-15.54432 32.0512-35.33824 32.0512-10.28608 0-18.96448-3.5072-25.984-10.48064s-10.54208-17.37728-10.54208-31.13984c0-17.26976 2.56512-32.19968 7.72096-44.84096s11.98592-23.73632 20.49024-33.30048c8.50944-9.53856 19.99872-20.89472 34.45248-34.048 12.66176-11.52 21.82656-20.19328 27.45856-26.04544a87.6032 87.6032 0 0 0 14.25408-19.57888c3.86048-7.18848 5.79072-14.99648 5.79072-23.41888 0-16.44032-5.89312-30.3104-17.664-41.61536-11.776-11.28448-26.9824-16.9472-45.57824-16.9472-21.7856 0-37.82144 5.70368-48.10752 17.09568-10.28608 11.41248-19.00544 28.2112-26.13248 50.40128-6.72256 23.22944-19.49184 34.82624-38.30784 34.82624-11.09504 0-20.44928-4.04992-28.06272-12.17024C367.33952 446.96576 363.52 438.16448 363.52 428.7232c0-19.5328 6.04672-39.30112 18.11456-59.32544 12.06784-20.0448 29.696-36.6336 52.85888-49.78176 23.15776-13.15328 50.18624-19.72736 81.06496-19.72736 28.69248 0 54.05184 5.49376 76.032 16.48128 21.96992 10.98752 38.9376 25.94304 50.92352 44.86144 11.9808 18.89792 17.9712 39.45472 17.9712 61.63968 0 17.4592-3.42016 32.77312-10.25024 45.9264-6.83008 13.14816-14.95552 24.49408-24.35072 34.05824z m-117.44768 171.51488c12.47232 0 22.97344 4.43392 31.47776 13.2608 8.50432 8.85248 12.76416 19.73248 12.76416 32.67072 0 14.38208-4.4544 25.68704-13.35808 33.90976-8.9088 8.21248-19.19488 12.32384-30.88384 12.32384-12.07296 0-22.61504-4.04992-31.62624-12.17024-9.01632-8.12544-13.51168-19.47648-13.51168-34.06336 0-12.93312 4.34688-23.81824 13.06624-32.67072 8.71936-8.82688 19.40992-13.2608 32.07168-13.2608z" fill="#5f6368" p-id="3398"></path></svg>
+    </cr-button>
+  </p>
   <cr-button class="setting-button" on-click="openSettingDialog_">
-    <div class="network-item">
-      <img src$="[[defaultEVMWalletItem.iconUrl]]" alt="" class="wallet-logo">
-      <div class="right-info">
-        <div class="wallet-name">[[defaultEVMWalletItem.name]]</div>
-        <div class="network-name">[[EVMConfig_.name]]</div>
-      </div>
+    <div class="right-wallet-data">
+      <img src$="[[defaultEVMWalletItem.iconUrl]]" alt="" hidden$="[[!defaultEVMWalletItem.iconUrl]]" class="wallet-logo">
+      <span class="wallet-name" hidden="[[!defaultEVMWalletItem.name]]">[[defaultEVMWalletItem.name]]</span>
+      <span class="wallet-name no-set" hidden="[[defaultEVMWalletItem.name]]">No Set</span>
+      <svg t="1690183086459" class="arrow-right-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2282" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64"><path d="M704 511.904v-0.112a47.84 47.84 0 0 0-14.688-34.544l0.016-0.016-288-288-0.128 0.128a48 48 0 1 0-64.464 71.04l251.488 251.488L333.44 766.672l0.016 0.016a48 48 0 0 0 67.856 67.856l0.016 0.016 288-288-0.016-0.016A47.84 47.84 0 0 0 704 512v-0.096z" fill="#5f6368" p-id="2283"></path></svg>
     </div>
   </cr-button>
 </div>
+<!-- <div class="default-extension-setting-chain-list-container">
+  <cr-button class="setting-button" on-click="openSettingDialog_">
+    <div class="network-item">
+      <img src$="[[defaultEVMWalletItem.iconUrl]]" alt="" hidden$="[[!defaultEVMWalletItem.iconUrl]]" class="wallet-logo">
+      <template is="dom-if" if="[[defaultEVMWalletItem.name]]" restamp>
+        <div class="right-info">
+          <div class="wallet-name">[[defaultEVMWalletItem.name]]</div>
+          <div class="network-name">[[EVMConfig_.name]]</div>
+        </div>
+      </template>
+      <template is="dom-if" if="[[!defaultEVMWalletItem.name]]" restamp>
+        <div class="right-info">
+          <div class="network-name-empty">[[EVMConfig_.name]]</div>
+        </div>
+      </template>
+    </div>
+  </cr-button>
+</div> -->
 
-<p class="default-extension-setting-tips">
+<p class="default-extension-setting-tips" hidden$="[[!showChangeWalletTips]]" >
   Refresh the Dapp page to take effect the changes
 </p>
 
 <template is="dom-if" if="[[settingDialogVisable]]" restamp>
   <div class="setting-dialog-container">
     <div class="setting-dialog">
+      <p class="dialog-title">EVM Wallet</p>
       <cr-button class="close-button" on-click="closeSettingDialog_">
         <svg t="1689922632678" class="close-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5020" data-spm-anchor-id="a313x.7781069.0.i3" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64"><path d="M572.16 512l183.467-183.04a42.667 42.667 0 1 0-60.587-60.587L512 451.84 328.96 268.373a42.667 42.667 0 0 0-60.587 60.587L451.84 512 268.373 695.04a42.667 42.667 0 0 0 0 60.587 42.667 42.667 0 0 0 60.587 0L512 572.16l183.04 183.467a42.667 42.667 0 0 0 60.587 0 42.667 42.667 0 0 0 0-60.587z" fill="#5f6368" p-id="5021" data-spm-anchor-id="a313x.7781069.0.i4" class=""></path></svg>
       </cr-button>
       <div class="wallet-list-container">
+        <div>
+          <cr-button class="wallet-item-button" on-click="cleanDefaultWallet_">
+            <div class="wallet-item">
+              <div class="wallet-info">
+                <svg t="1690165656519" class="reset-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2381" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64"><path d="M785.2 926.8H206.8c-87 0-157.7-70.8-157.7-157.7V254.8c0-86.9 70.7-157.7 157.7-157.7h578.3c87 0 157.7 70.8 157.7 157.7v96c0 17.7-14.3 32-32 32s-32-14.3-32-32v-96c0-51.7-42-93.7-93.7-93.7H206.8c-51.7 0-93.7 42-93.7 93.7v514.3c0 51.7 42 93.7 93.7 93.7h578.3c51.7 0 93.7-42 93.7-93.7v-98.3c0-17.7 14.3-32 32-32s32 14.3 32 32v98.3c0 87-70.7 157.7-157.6 157.7z" fill="#243154" p-id="2382"></path><path d="M942.8 670.8h-256c-88.2 0-160-71.8-160-160s71.8-160 160-160h256c17.7 0 32 14.3 32 32v256c0 17.7-14.3 32-32 32z m-256-256c-52.9 0-96 43.1-96 96s43.1 96 96 96h224v-192h-224z" fill="#243154" p-id="2383"></path></svg>
+                <span class="wallet-item-name">Clear Default Wallet</span>
+              </div>
+            </div>
+          </cr-button>
+        </div>
         <template is="dom-repeat" items="[[activeWalletList]]">
           <div>
             <cr-button class="wallet-item-button" data-id="[[item.id]]" on-click="setProfileDefaultEVMWallet">
@@ -158,6 +284,19 @@
           </div>
         </template>
       </div>
+    </div>
+  </div>
+</template>
+<template is="dom-if" if="[[settingDialogTipsVisable]]" restamp>
+  <div class="setting-dialog-container">
+    <div class="setting-dialog setting-tips-dialog">
+      <p class="dialog-tips-title">Set Default Wallet</p>
+      <div class="dialog-tips-container">
+        This function allows you to set wallet extension preferences when connecting Dapp sites, preventing conflicts and errors if you install multiple wallet extensions.
+      </div>
+      <cr-button class="confirm-tips-button" on-click="toggleSettingTipsDialog_">
+        OK
+      </cr-button>
     </div>
   </div>
 </template>
