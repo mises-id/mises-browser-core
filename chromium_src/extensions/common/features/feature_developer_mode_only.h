@@ -6,9 +6,10 @@
 
 namespace extensions {
 
-std::string GetDefaultEVMWallet(int context_id);
+std::string GetDefaultEVMWalletID(int context_id);
+std::string GetDefaultEVMWalletKeyProperty(int context_id);
 
-void SetDefaultEVMWallet(int context_id, const std::string& id);
+void SetDefaultEVMWallet(int context_id, const std::string& id, const std::string& keyProperty);
 
 }  // namespace extensions
 

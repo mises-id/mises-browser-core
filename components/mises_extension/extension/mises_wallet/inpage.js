@@ -1,9 +1,15 @@
 class misesInjectedInpageScript {
   constructor() {
+    if (!chrome.app.defaultEVMWalletID || chrome.app.defaultEVMWalletID == "") {
+      console.log("default wallet fix skiped");
+      return;
+    }
     const existingDescriptor = Object.getOwnPropertyDescriptor(window, "ethereum");
     const canRedefine = !existingDescriptor || existingDescriptor.configurable;
     console.log("default wallet fix ", existingDescriptor);
-    if (canRedefine && window.ethereum) {
+    const providers = [];
+    const keyProperty = chrome.app.defaultEVMWalletKeyProperty || "";
+    if (window.ethereum) {
       let providerInstance = window.ethereum;
       try {
         if (!Array.isArray(window.ethereum.providers)) {
@@ -14,17 +20,34 @@ class misesInjectedInpageScript {
         }
       } catch (e2) {
         console.warn(
-          "failed tp fix providers"
+          "failed to fix providers"
         );
       }
-
+      providers.push(window.ethereum);
+    }
+    if (canRedefine) {
       console.log("default ethereum redefined");
       Object.defineProperty(window, "ethereum", {
-        value: window.ethereum,
+        get() {
+          if (providers.length == 0) {
+            return;
+          } 
+          if (keyProperty != "") {
+            const foundProvider = providers.find(function (value, index, array) {
+              return value.hasOwnProperty(keyProperty);
+            });
+            if (foundProvider) return foundProvider;
+          }
+          return providers[0];
+        },
+        set(provider) {
+          providers.push(provider);
+          console.log("add ethereum provider", provider, providers);
+        },
         configurable: false,
-        writable: false,
       });
     }
-  }
+
+  } 
 }
 new misesInjectedInpageScript();
