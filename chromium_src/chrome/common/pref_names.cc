@@ -312,6 +312,6 @@ const char kShouldShowSidePanelBookmarkTab[] =
 
 
 
-const char kExtensionsUIDefaultEVMWallet[] = "extensions.ui.default_evm_wallet";
-
+const char kExtensionsUIDefaultEVMWalletID[] = "extensions.ui.default_evm_wallet_id";
+const char kExtensionsUIDefaultEVMWalletKeyProperty[] = "extensions.ui.default_evm_wallet_key_property";
 }  // namespace prefs

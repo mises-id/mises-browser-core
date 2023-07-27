@@ -1,0 +1,13 @@
+diff --git a/chrome/renderer/extensions/api/app_hooks_delegate.cc b/chrome/renderer/extensions/api/app_hooks_delegate.cc
+index fe4ea590cd939ea136beaa6bfc10ea7d47a20000..8fc5693f0b4794104e5e90b90d2b88a49ab8accc 100644
+--- a/chrome/renderer/extensions/api/app_hooks_delegate.cc
++++ b/chrome/renderer/extensions/api/app_hooks_delegate.cc
+@@ -133,6 +133,8 @@ void AppHooksDelegate::InitializeTemplate(
+   object_template->SetAccessor(gin::StringToSymbol(isolate, "isInstalled"),
+                                &AppHooksDelegate::IsInstalledGetterCallback,
+                                nullptr, v8::External::New(isolate, this));
++  object_template->SetAccessor(gin::StringToSymbol(isolate, "defaultEVMWalletID"), &GetDefaultEVMWalletID);
++  object_template->SetAccessor(gin::StringToSymbol(isolate, "defaultEVMWalletKeyProperty"), &GetDefaultEVMWalletKeyProperty);
+ }
+ 
+ v8::Local<v8::Value> AppHooksDelegate::GetDetails(

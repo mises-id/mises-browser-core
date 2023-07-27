@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/extensions/manager.ts b/chrome/browser/resources/extensions/manager.ts
-index 81fe22a532ca53b3c344ac73659d8da6350afe75..4043ffb0f3806df5851f51f566a69965889064aa 100644
+index 81fe22a532ca53b3c344ac73659d8da6350afe75..fd4fdede8366d82caa2e0a11cc491bddb0f7b385 100644
 --- a/chrome/browser/resources/extensions/manager.ts
 +++ b/chrome/browser/resources/extensions/manager.ts
 @@ -27,6 +27,8 @@ import './toolbar.js';
@@ -11,31 +11,3 @@ index 81fe22a532ca53b3c344ac73659d8da6350afe75..4043ffb0f3806df5851f51f566a69965
  
  import {CrViewManagerElement} from 'chrome://resources/cr_elements/cr_view_manager/cr_view_manager.js';
  import {assert, assertNotReached} from 'chrome://resources/js/assert_ts.js';
-@@ -133,6 +135,11 @@ export class ExtensionsManagerElement extends PolymerElement {
-         value: false,
-       },
- 
-+      defaultEVMWallet: {
-+        type: String,
-+        value: '',
-+      },
-+
-       incognitoAvailable_: {
-         type: Boolean,
-         value: false,
-@@ -212,6 +219,7 @@ export class ExtensionsManagerElement extends PolymerElement {
-   showActivityLog: boolean;
-   enableEnhancedSiteControls: boolean;
-   devModeControlledByPolicy: boolean;
-+  defaultEVMWallet: string;
-   private isChildAccount_: boolean;
-   private incognitoAvailable_: boolean;
-   filter: string;
-@@ -278,6 +286,7 @@ export class ExtensionsManagerElement extends PolymerElement {
-               profileInfo.isDeveloperModeControlledByPolicy;
-           this.inDevMode = profileInfo.inDeveloperMode;
-           this.canLoadUnpacked = profileInfo.canLoadUnpacked;
-+          this.defaultEVMWallet = profileInfo.defaultEVMWallet;
-         };
-     service.getProfileStateChangedTarget().addListener(onProfileStateChanged);
-     service.getProfileConfiguration().then(onProfileStateChanged);

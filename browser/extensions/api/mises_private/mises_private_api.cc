@@ -21,6 +21,20 @@
 #include "net/base/load_flags.h"
 #include "url/gurl.h"
 
+#include "extensions/common/features/feature_developer_mode_only.h"
+#include "extensions/browser/renderer_startup_helper.h"
+#include "chrome/browser/profiles/profile.h"
+#include "components/prefs/pref_service.h"
+#include "chrome/common/pref_names.h"
+#include "extensions/browser/extension_util.h"
+#include "extensions/browser/api/storage/storage_frontend.h"
+#include "extensions/browser/api/storage/settings_namespace.h"
+#include "extensions/browser/extension_registry.h"
+#include "extensions/common/constants.h"
+#include "content/public/browser/browser_context.h"
+#include "content/public/browser/browser_task_traits.h"
+#include "content/public/browser/browser_thread.h"
+
 
 namespace {
 
@@ -194,6 +208,47 @@ ExtensionFunction::ResponseAction MisesPrivateFetchJsonFunction::Run() {
   AddRef();
   return RespondLater();
 }
+
+
+
+//----------------------------------------------------------------
+//setDefaultEvmWallet
+ExtensionFunction::ResponseAction MisesPrivateSetDefaultEVMWalletFunction::Run() {
+  std::unique_ptr<api::mises_private::SetDefaultEVMWallet::Params> params(
+    api::mises_private::SetDefaultEVMWallet::Params::Create(args()));
+  EXTENSION_FUNCTION_VALIDATE(params.get());
+
+  Profile* profile = Profile::FromBrowserContext(browser_context());
+
+  PrefService* prefs = profile->GetPrefs();
+
+  prefs->SetString(prefs::kExtensionsUIDefaultEVMWalletID,
+                      params->id);
+  prefs->SetString(prefs::kExtensionsUIDefaultEVMWalletKeyProperty,
+                      params->key_property);
+  SetDefaultEVMWallet(util::GetBrowserContextId(browser_context()),
+                            params->id, params->key_property);
+  RendererStartupHelperFactory::GetForBrowserContext(browser_context())
+	            ->OnDefaultEVMWalletChanged(params->id, params->key_property);
+
+
+  return RespondNow(NoArguments());
+}
+
+
+ExtensionFunction::ResponseAction MisesPrivateGetDefaultEVMWalletFunction::Run() {
+  
+  Profile* profile = Profile::FromBrowserContext(browser_context());
+
+  PrefService* prefs = profile->GetPrefs();
+
+  std::string id = prefs->GetString(prefs::kExtensionsUIDefaultEVMWalletID);
+
+  return RespondNow(ArgumentList(
+    api::mises_private::GetDefaultEVMWallet::Results::Create(id)));
+}
+
+
 
 
 }  // namespace api

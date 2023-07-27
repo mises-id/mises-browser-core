@@ -3,8 +3,8 @@
 
 #include "extensions/common/mojom/renderer.mojom.h"
 
-#define CancelSuspendExtension SetDefaultEVMWallet(const std::string& extension_id) override;\
-  void CancelSuspendExtension
+#define SetSystemFont SetDefaultEVMWallet(const std::string& id, const std::string& keyProperty) override;\
+  void SetSystemFont
 #include "src/extensions/renderer/dispatcher.h"
-#undef CancelSuspendExtension
+#undef SetSystemFont
 #endif  // EXTENSIONS_RENDERER_DISPATCHER_H_
