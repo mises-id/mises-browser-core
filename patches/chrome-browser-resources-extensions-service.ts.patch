@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/extensions/service.ts b/chrome/browser/resources/extensions/service.ts
-index 1081d384b412d6ec6ea2c8c6f8d72031854b7e62..38ad75dc593759ba658977edf5d20e3be973fa60 100644
+index 1081d384b412d6ec6ea2c8c6f8d72031854b7e62..c983320da9bc9a23da7fb45462774dc4e8cdcb7d 100644
 --- a/chrome/browser/resources/extensions/service.ts
 +++ b/chrome/browser/resources/extensions/service.ts
-@@ -254,6 +254,11 @@ export class Service implements ServiceInterface {
+@@ -254,6 +254,15 @@ export class Service implements ServiceInterface {
          {inDeveloperMode: inDevMode});
    }
  
@@ -10,6 +10,10 @@ index 1081d384b412d6ec6ea2c8c6f8d72031854b7e62..38ad75dc593759ba658977edf5d20e3b
 +    chrome.misesPrivate.setDefaultEVMWallet(
 +        id, keyProperty);    
 +  }  
++  
++  getDefaultEVMWallet(): Promise<string>{
++    return chrome.misesPrivate.getDefaultEVMWallet();    
++  } 
 +
    loadUnpacked(): Promise<boolean> {
      return this.loadUnpackedHelper_();

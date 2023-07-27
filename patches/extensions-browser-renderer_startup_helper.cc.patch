@@ -1,13 +1,15 @@
 diff --git a/extensions/browser/renderer_startup_helper.cc b/extensions/browser/renderer_startup_helper.cc
-index cb86e72afc38cf949c2c04cbe9e5ccc1f2537220..b85cf29ca0e7cfae387506d7ce864eff75ca3ec3 100644
+index cb86e72afc38cf949c2c04cbe9e5ccc1f2537220..02d1de0fd25c915c7ba25fe5dad9a789fc3b4a71 100644
 --- a/extensions/browser/renderer_startup_helper.cc
 +++ b/extensions/browser/renderer_startup_helper.cc
-@@ -138,6 +138,9 @@ void RendererStartupHelper::InitializeProcess(
+@@ -138,6 +138,11 @@ void RendererStartupHelper::InitializeProcess(
    renderer->SetDeveloperMode(
        GetCurrentDeveloperMode(util::GetBrowserContextId(browser_context_)));
  
 +  renderer->SetDefaultEVMWallet(
-+      GetDefaultEVMWalletID(util::GetBrowserContextId(browser_context_)), GetDefaultEVMWalletKeyProperty(util::GetBrowserContextId(browser_context_));
++      GetDefaultEVMWalletID(util::GetBrowserContextId(browser_context_)), 
++      GetDefaultEVMWalletKeyProperty(util::GetBrowserContextId(browser_context_))
++  );
 +
    // Extensions need to know the channel and the session type for API
    // restrictions. The values are sent to all renderers, as the non-extension

@@ -27,6 +27,6 @@ namespace misesPrivate {
         DOMString jsonUrl,
         optional FetchJsonCallback callback);
     static void setDefaultEVMWallet(DOMString id, DOMString keyProperty);
-    static void getDefaultEVMWallet(optional GetDefaultEVMWalletCallback callback);
+    [supportsPromises] static void getDefaultEVMWallet(optional GetDefaultEVMWalletCallback callback);
   };
 };
