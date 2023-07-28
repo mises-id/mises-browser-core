@@ -1,12 +1,12 @@
 diff --git a/extensions/common/mojom/renderer.mojom b/extensions/common/mojom/renderer.mojom
-index 65e86110efa9366ea86533e9a94157e5df34904f..73136ae7c4f7036d8eb7164d18221e5615fdac61 100644
+index 65e86110efa9366ea86533e9a94157e5df34904f..4a82364724ed01b9818b13110073ed21cc8222a3 100644
 --- a/extensions/common/mojom/renderer.mojom
 +++ b/extensions/common/mojom/renderer.mojom
 @@ -85,6 +85,7 @@ interface Renderer {
  
    // Informs the renderer whether or not the developer mode is enabled.
    SetDeveloperMode(bool developer_mode_only);
-+  SetDefaultEVMWallet(string extension_id);
++  SetDefaultEVMWallet(string id, string key_property);
  
    // Informs the renderer what channel (dev, beta, stable, etc) and user session
    // type is running. |is_lock_screen_context| represents whether the browser

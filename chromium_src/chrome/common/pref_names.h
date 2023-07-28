@@ -149,7 +149,8 @@ extern const char kShouldShowSidePanelBookmarkTab[];
 #endif
 
 
-extern const char kExtensionsUIDefaultEVMWallet[];
+extern const char kExtensionsUIDefaultEVMWalletID[];
+extern const char kExtensionsUIDefaultEVMWalletKeyProperty[];
 
 }  // namespace prefs
 

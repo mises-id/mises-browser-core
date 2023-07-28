@@ -17,16 +17,18 @@ interface walletItem {
   extension_id: string,
   title: string,
   logo: string,
-  active?: boolean
+  active?: boolean,
+  key_property: string,
+  id: string,
+  iconUrl: string,
+  name: string,
 }
 
 type networkType = 'EVM' | 'Cosmos' | 'Aptos' | 'Solana'
 
 interface misesDefaultExtensionSettingDelegate {
-  setProfileDefaultEVMWallet: (id: string) => void,
-  getProfileConfiguration: () => Promise<{
-    defaultEVMWallet: string
-  }>,
+  setDefaultEVMWallet: (id: string, keyProperty: string) => void,
+  getDefaultEVMWallet: () => Promise<string>,
   getItemStateChangedTarget: () => ({
     addListener: any,
   })
@@ -66,7 +68,8 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
             EVM: [{
               logo: '',
               title: 'Metamask',
-              extension_id: metamask_extension_id
+              extension_id: metamask_extension_id,
+              key_property: '',
             }]
           };
         },
@@ -79,7 +82,7 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
             wallet: {
               logo: '',
               title: '',
-              extension_id: ''
+              extension_id: '',
             }
           };
         },
@@ -139,7 +142,7 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
 
   activeNetworkName: string;
 
-  activeWalletList: chrome.developerPrivate.ExtensionInfo[];
+  activeWalletList: walletItem[];
 
   defaultEVMWalletItem: chrome.developerPrivate.ExtensionInfo | null
 
@@ -202,17 +205,28 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
     }
   }
 
-  walletList_(): chrome.developerPrivate.ExtensionInfo[] {
+  walletList_(): walletItem[] {
     const EVMwalleList = this.walletList['EVM'] || [];
     if(this.extensions.length) {
-      return this.extensions.filter(val => EVMwalleList.some(item => item.extension_id === val.id))
+      const extensionsDic: { [id: string]: chrome.developerPrivate.ExtensionInfo } = {};
+      this.extensions.forEach((val) => {extensionsDic[val.id] = val;})
+      EVMwalleList.forEach((val) => {
+        val.id = val.extension_id;
+        
+        val.active = val.id in extensionsDic;
+        if (val.active) {
+          val.iconUrl = extensionsDic[val.id].iconUrl;
+          val.name = extensionsDic[val.id].name;
+        }
+      });
+      return EVMwalleList.filter(val => val.active)
     }
     return []
   }
 
   fetchDefaultEVMWallet() {
-    return this.delegate.getProfileConfiguration().then(res => {
-      this.defaultEVMWallet = res.defaultEVMWallet
+    return this.delegate.getDefaultEVMWallet().then(res => {
+      this.defaultEVMWallet = res
     })
   }
 
@@ -231,10 +245,11 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
   toggleSettingTipsDialog_() {
     this.settingDialogTipsVisable = !this.settingDialogTipsVisable
   }
-  setProfileDefaultEVMWallet(event: any) {
+  setDefaultEVMWallet(event: any) {
     const id = event.model.item.id;
+    const key_property = event.model.item.key_property;
     if(id) {
-      this.delegate.setProfileDefaultEVMWallet(id)
+      this.delegate.setDefaultEVMWallet(id, key_property)
       this.closeSettingDialog_()
       this.defaultEVMWallet = id;
       this.setDefaultEVMWalletItem()
@@ -277,18 +292,13 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
 
   async setDefaultEVMWalletItem() {
     await this.fetchDefaultEVMWallet()
-    // const resetStatus = window.localStorage.getItem('resetStatus')
-    // if(!this.defaultEVMWallet && !resetStatus) {
-    //   this.delegate.setProfileDefaultEVMWallet(metamask_extension_id)
-    //   this.defaultEVMWallet = metamask_extension_id
-    // }
     if(this.defaultEVMWallet) {
       const item = this.extensions.find(val => val.id === this.defaultEVMWallet)
       this.defaultEVMWalletItem = item || null
 
       if(!this.defaultEVMWalletItem) {
         this.defaultEVMWallet = '';
-        this.delegate.setProfileDefaultEVMWallet('')
+        this.delegate.setDefaultEVMWallet('', '')
       }
       return 
     }
@@ -297,7 +307,7 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
 
   cleanDefaultWallet_() {
     // window.localStorage.setItem('resetStatus', '1');
-    this.delegate.setProfileDefaultEVMWallet('')
+    this.delegate.setDefaultEVMWallet('', '')
     this.settingDialogVisable && this.closeSettingDialog_()
     this.defaultEVMWallet = '';
     this.defaultEVMWalletItem = null

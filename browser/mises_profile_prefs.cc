@@ -63,7 +63,9 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   
 
   registry->RegisterStringPref(
-      prefs::kExtensionsUIDefaultEVMWallet, std::string());
+      prefs::kExtensionsUIDefaultEVMWalletID, std::string());
+  registry->RegisterStringPref(
+      prefs::kExtensionsUIDefaultEVMWalletKeyProperty, std::string());
 
 }
 
