@@ -22,6 +22,7 @@ interface walletItem {
   id: string,
   iconUrl: string,
   name: string,
+  platform: networkType[]
 }
 
 type networkType = 'EVM' | 'Cosmos' | 'Aptos' | 'Solana'
@@ -34,6 +35,13 @@ interface misesDefaultExtensionSettingDelegate {
   })
 }
 const metamask_extension_id = 'nkbihfbeogaeaoehlefnkodbefgpgknn'
+const hour = 60 * 60 * 1000;
+
+// const hour = 10000;
+
+const maxRetryCount =  3;
+const retryInterval = 1000
+let retryCount = 0;
 export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMisesDefaultExtensionSettingElementBase {
   constructor() {
     super();
@@ -87,18 +95,6 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
           };
         },
       },
-      retryCount: {
-        type: Number,
-        default: 3
-      },
-      retryTime: {
-        type: Number,
-        default: 1000
-      },
-      currentRetryCount: {
-        type: Number,
-        default: 0
-      },
       activeNetworkName: {
         type: String,
         default: 'EVM'
@@ -121,12 +117,6 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
 
   showChangeWalletTips: Boolean = false;
 
-  retryCount: number;
-
-  retryTime: number;
-
-  currentRetryCount: number;
-
   walletList: {
     [key in networkType] : walletItem[]
   };
@@ -146,62 +136,76 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
 
   defaultEVMWalletItem: chrome.developerPrivate.ExtensionInfo | null
 
-  private async fetchWalletList_() {
+  private fetchWalletList_() {
+    const stroage = localStorage.getItem('walletList');
+
+    !stroage && this.fetchEVMWalletData()
+
+    if(stroage) {
+      const storageData = JSON.parse(stroage)
+      // Set cache data to list 
+      this.setEVMWalletListData(storageData.data.wallet_list)
+      console.log('getCache', storageData.data.wallet_list)
+
+      // when expired
+      const nowTime = new Date().getTime()
+      const expiredStatus = nowTime - Number(storageData.time) > hour;
+
+      expiredStatus && this.fetchEVMWalletData()
+    }
+  }
+
+  async fetchEVMWalletData(): Promise<void> {
     try {
-      const stroage = localStorage.getItem('walletList');
-      let res = '';
-      if(stroage) {
-        const data = JSON.parse(stroage)
-        const hour = 60 * 60 * 1000;
-        // const hour = 10000;
-        const nowTime = new Date().getTime()
+      const res = await chrome.misesPrivate.fetchJson('https://web3.mises.site/website/wallet.json')
 
-        if(nowTime - Number(data.time) > hour) {
-          // const browser = chrome as any;
-          res = await chrome.misesPrivate.fetchJson('https://web3.mises.site/website/wallet.json')
-        }else {
-          res = JSON.stringify(data.data)
-        }
-      } else {
-        // const browser = chrome as any;
-        res = await chrome.misesPrivate.fetchJson('https://web3.mises.site/website/wallet.json')
-      }
-
-      if(res && res.indexOf("{") > -1) {
+      if(res) {
         const data = JSON.parse(res);
-        const wallet_list = data.wallet_list
-        if(Array.isArray(wallet_list)) {
-          const groupedExtensions: {
-            [key in networkType] : walletItem[]
-          } = {
-            'EVM': [],
-            'Aptos': [],
-            'Cosmos': [],
-            'Solana': []
-          };
 
-          wallet_list.forEach(extension => {
-            extension.platform.forEach((platform: networkType) => {
-              if (!groupedExtensions[platform]) groupedExtensions[platform] = [];
+        localStorage.setItem('walletList', JSON.stringify({
+          data: data,
+          time: new Date().getTime()
+        }));
 
-              groupedExtensions[platform].push(extension);
-            });
-          });
-          this.walletList = groupedExtensions
-          
-          localStorage.setItem('walletList', JSON.stringify({
-            data: data,
-            time: new Date().getTime()
-          }));
-        }
-      } else {
+        const wallet_list: walletItem[] = data.wallet_list
+
+        this.setEVMWalletListData(wallet_list)
       }
+
     } catch (error) {
-      if(this.currentRetryCount === this.retryCount) {
-        return 
+      if(retryCount === maxRetryCount) {
+        retryCount = 0;
+        return
       }
-      this.currentRetryCount++;
-      setTimeout(()=>this.fetchWalletList_(), this.currentRetryCount * this.retryTime);
+
+      console.log(retryCount)
+
+      retryCount++;
+
+      setTimeout(()=>this.fetchEVMWalletData(), retryInterval * 2 ** retryCount); 
+    }
+  }
+
+  setEVMWalletListData(wallet_list?: walletItem[]) {
+    console.log('wallet_list', wallet_list)
+    if(wallet_list && wallet_list.length) {
+      const groupedExtensions: {
+        [key in networkType] : walletItem[]
+      } = {
+        'EVM': [],
+        'Aptos': [],
+        'Cosmos': [],
+        'Solana': []
+      };
+
+      wallet_list.forEach(extension => {
+        if(extension.platform.includes('EVM')) groupedExtensions['EVM'].push(extension)
+        if(extension.platform.includes('Aptos')) groupedExtensions['Aptos'].push(extension)
+        if(extension.platform.includes('Cosmos')) groupedExtensions['Cosmos'].push(extension)
+        if(extension.platform.includes('Solana')) groupedExtensions['Solana'].push(extension)
+      });
+
+      this.walletList = groupedExtensions
     }
   }
 
@@ -234,7 +238,9 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
     if(!this.defaultEVMWallet) {
       await this.fetchDefaultEVMWallet()
     }
+    
     this.activeWalletList = this.walletList_()
+    console.log(this.activeWalletList, this.walletList, 'walletList')
     this.settingDialogVisable = true
   }
 
