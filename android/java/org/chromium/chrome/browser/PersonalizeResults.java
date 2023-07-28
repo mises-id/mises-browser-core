@@ -179,10 +179,6 @@ public class PersonalizeResults {
        if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://feejiigddaafeojfddjjlmfkabimkell")) {
          tab.getWebContents().evaluateJavaScript(RenderStyleContent(BITSKI_STYLES), null);
        }
-       // xdifi
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://hmeobnfnfcmdkdcmlblgagmfpfboieaf")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(XDIFI_STYLES), null);
-       }
        // ever wallet
        if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://cgeeodpfagjceefieflmdfphplkenlfk")) {
          tab.getWebContents().evaluateJavaScript(RenderStyleContent(EVER_WALLET_STYLES), null);
@@ -267,9 +263,9 @@ public class PersonalizeResults {
    private static final String LILICO_EXTENSION_STYLES = "'body .h-full{width:100vw!important;height:100vh!important}body .css-8exq99 {display: block;padding-left: 20px;padding-right:20px} body .css-ukvzfb {width: 100vw;height: auto} body .css-ff30gh {padding: 24px 24px 32px} body .css-168mpgf,body .css-11ickte,body .css-qbxbh8,body .css-r0k0t6{width:95vw;height:auto;} body .css-18xmly0 {width: 100%} body .css-rgv6dd {width:95vw;height:auto;} body .css-105skla{width:95vw;height:auto;} body .css-1uez6az{width:auto;} body .css-1qjqn4b{width:95vw;height:auto;}body .css-qxmw80{font-size:0.8rem} .css-1aiq4ho,.css-19gyshh{width: 100vw} .css-tlszgr{width: 100%}'";
 
    // xdefi 
-   private static final String XDEFI_EXTENSION_STYLES = "'.gsrcgK,.index-module__wrapper___W2wCS .index-module__buttonWrapper___TqFk5  {flex-direction: column;align-items: center;} .index-module__onboarding___XQLfD .index-module__contentContainer___Iujo0 .index-module__body___grFff {width: 100vw;min-width:100vw;padding: 0 20px} .jeVaVP{min-width:100%} .izXqrv{width:90vw}'";
+   private static final String XDEFI_EXTENSION_STYLES = "'.gsrcgK,.index-module__wrapper___W2wCS .index-module__buttonWrapper___TqFk5  {flex-direction: column;align-items: center;} .index-module__onboarding___XQLfD .index-module__contentContainer___Iujo0 .index-module__body___grFff {width: 100vw;min-width:100vw;padding: 0 20px} .jeVaVP{min-width:100%} .izXqrv{width:90vw}; .eCVsxE,.bmgqC {flex-direction: column} .hOUSGf,.khrviK,{max-width: 100vw;} .bmgqC{align-items: center;} .iXKWaq{max-width: 50vw;}; body{height: 100% !important}'";
 
-   // xdefi 
+   // soda
    private static final String SODA_EXTENSION_STYLES = "'.options-container .navbar .logo {margin:11px 43px} .options-container .navbar {width:100vw;height:auto} .options-container .navbar>ul .link-item{width:auto;height:auto;padding:7px 12px;white-space:nowrap} .options-container .navbar>ul{overflow:auto;display:flex}'";
    
    // Traitsniper 
@@ -316,9 +312,6 @@ public class PersonalizeResults {
 
   // bitski extension wallet 
    private static final String BITSKI_STYLES = "'.h-screen {height: 94vh!important}'";
-
-   // xdifi extension wallet 
-  private static final String XDIFI_STYLES = "'.eCVsxE,.bmgqC {flex-direction: column} .hOUSGf,.khrviK,{max-width: 100vw;} .bmgqC{align-items: center;} .iXKWaq{max-width: 50vw;}'";
   
   // ever extension wallet 
     private static final String EVER_WALLET_STYLES = "'.slide--landing .slide__content{max-width: 100%;}'";
