@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/images/BUILD.gn b/ui/webui/resources/images/BUILD.gn
+index 7b8e28bb023e34bdedfd4d635ca27545a82ee9a8..56bbfa7222c4e49c8817f39726e5f0893b86603b 100644
+--- a/ui/webui/resources/images/BUILD.gn
++++ b/ui/webui/resources/images/BUILD.gn
+@@ -42,7 +42,7 @@ generate_grd("build_grdp") {
+     "2x/select.png",
+   ]
+ 
+-  if (!is_android && !is_ios) {
++  if (!is_ios) {
+     input_files += [
+       "arrow_down.svg",
+       "arrow_right.svg",
