@@ -159,12 +159,15 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
         if(nowTime - Number(data.time) > hour) {
           // const browser = chrome as any;
           res = await chrome.misesPrivate.fetchJson('https://web3.mises.site/website/wallet.json')
+          console.log('fetch Request')
         }else {
           res = JSON.stringify(data.data)
+          console.log('get cache')
         }
       } else {
         // const browser = chrome as any;
         res = await chrome.misesPrivate.fetchJson('https://web3.mises.site/website/wallet.json')
+        console.log('cache expires')
       }
 
       if(res && res.indexOf("{") > -1) {
@@ -234,7 +237,10 @@ export class ExtensionsMisesDefaultExtensionSettingElement extends ExtensionsMis
     if(!this.defaultEVMWallet) {
       await this.fetchDefaultEVMWallet()
     }
+    // Rerequest when the data expires, otherwise get local data
+    await this.fetchWalletList_()
     this.activeWalletList = this.walletList_()
+    console.log(this.activeWalletList, this.walletList, 'walletList')
     this.settingDialogVisable = true
   }
 
