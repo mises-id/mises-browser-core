@@ -30,6 +30,7 @@ public class MisesAdsUtil {
 
     private static final String TAG = "MisesAdsUtil";
     private static final String REWARDAD_UNIT_ID = "ca-app-pub-3526707353288294/9383547028";
+    private static boolean isInitialized;
     private static boolean isLoading;
     private static boolean isShowing; 
     private static Activity activityContext; 
@@ -38,12 +39,18 @@ public class MisesAdsUtil {
         // RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(
         // Arrays.asList("7C6221C0BF81BF12ACAD4E9B5730EB05")).build();
         // MobileAds.setRequestConfiguration(configuration);
-        MobileAds.initialize(act, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-                Log.i(TAG,"initAds onInitializationComplete:" + initializationStatus);
-            }
-        });
+        try {
+            MobileAds.initialize(act, new OnInitializationCompleteListener() {
+                @Override
+                public void onInitializationComplete(InitializationStatus initializationStatus) {
+                    Log.i(TAG,"initAds onInitializationComplete:" + initializationStatus);
+                    isInitialized = true;
+                }
+            });
+        } catch(Exception e) {
+          Log.w(TAG, "MobileAds.initialize failed: " + e.getMessage());
+        }
+
         activityContext = act;
     }
     public static Activity getActivityContext() {
@@ -97,6 +104,9 @@ public class MisesAdsUtil {
         });
     }
     public static void loadAndShowRewardedAd(final Activity act, final String misesID) {
+        if (!isInitialized) {
+            return;
+        }
         if (rewardedAdCache == null) {
             loadRewardedAd(act, true, misesID);
         } else {
