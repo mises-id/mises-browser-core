@@ -30,7 +30,7 @@ firebase initialization
     android:value="ca-app-pub-3526707353288294~6999474883"/>
 <meta-data
     android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
-    android:value="true"/>
+    android:value="false"/>
 <meta-data
     android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
     android:value="true"/>

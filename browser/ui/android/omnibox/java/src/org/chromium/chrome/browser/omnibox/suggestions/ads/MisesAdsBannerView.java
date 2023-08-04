@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 
 import android.view.LayoutInflater;
 import org.chromium.chrome.browser.omnibox.R;
-import com.google.android.gms.ads.nativead.NativeAdView;
+//import com.google.android.gms.ads.nativead.NativeAdView;
 
 /**
  * Container view for Search-Ready Omnibox suggestions.

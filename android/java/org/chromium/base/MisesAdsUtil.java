@@ -24,6 +24,7 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import org.chromium.base.PackageUtils;
 
 
 public class MisesAdsUtil {
@@ -40,6 +41,9 @@ public class MisesAdsUtil {
         // Arrays.asList("7C6221C0BF81BF12ACAD4E9B5730EB05")).build();
         // MobileAds.setRequestConfiguration(configuration);
         try {
+            if (!PackageUtils.isPackageInstalled("com.google.android.webview")) {
+                throw new RuntimeException("webview not exists!");
+            }
             MobileAds.initialize(act, new OnInitializationCompleteListener() {
                 @Override
                 public void onInitializationComplete(InitializationStatus initializationStatus) {
