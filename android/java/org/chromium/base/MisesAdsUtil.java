@@ -60,7 +60,7 @@ public class MisesAdsUtil {
     public static Activity getActivityContext() {
         return activityContext;
     }
-    private static void showRewardedAd(final Activity act, final RewardedAd rewardedAd) {
+    private static void showRewardedAd(final Activity act, final RewardedAd rewardedAd, final String misesID) {
         if (isShowing) {
             return;
         }
@@ -104,6 +104,7 @@ public class MisesAdsUtil {
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
                     Toast.makeText(act, "Thank your for your support", Toast.LENGTH_SHORT).show();
+                    loadRewardedAd(act, false, misesID);
                 }
         });
     }
@@ -114,7 +115,7 @@ public class MisesAdsUtil {
         if (rewardedAdCache == null) {
             loadRewardedAd(act, true, misesID);
         } else {
-            showRewardedAd(act, rewardedAdCache);
+            showRewardedAd(act, rewardedAdCache, misesID);
             rewardedAdCache = null;
             loadRewardedAd(act, false, misesID);
         }   
@@ -152,7 +153,6 @@ public class MisesAdsUtil {
                     rewardedAd.setServerSideVerificationOptions(options);
                     if (show) {
                         showRewardedAd(act, rewardedAd);
-                        loadRewardedAd(act, false, misesID);
                     } else {
                         MisesAdsUtil.rewardedAdCache = rewardedAd;
                     }
