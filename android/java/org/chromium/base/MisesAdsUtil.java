@@ -152,7 +152,7 @@ public class MisesAdsUtil {
                         .build();
                     rewardedAd.setServerSideVerificationOptions(options);
                     if (show) {
-                        showRewardedAd(act, rewardedAd);
+                        showRewardedAd(act, rewardedAd, misesID);
                     } else {
                         MisesAdsUtil.rewardedAdCache = rewardedAd;
                     }
