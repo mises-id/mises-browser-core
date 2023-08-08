@@ -31,41 +31,67 @@ public class MisesAdsUtil {
 
     private static final String TAG = "MisesAdsUtil";
     private static final String REWARDAD_UNIT_ID = "ca-app-pub-3526707353288294/9383547028";
-    private static boolean isInitialized;
-    private static boolean isLoading;
-    private static boolean isShowing; 
-    private static Activity activityContext; 
-    private static RewardedAd rewardedAdCache;
+    private enum AdsStatus {
+        NOT_INITIALIZED("NOT_INITIALIZED"),
+        INITIALIZING("INITIALIZING"),
+        INITIALIZED("INITIALIZED"),
+        LOADING("LOADING"),
+        READY("READY"),
+        SHOWING("SHOWING");
+        private String name;
+        private AdsStatus(String name) {
+            this.name = name;
+        }
+       
+        @Override
+        public String toString(){
+            return name;
+        }
+    }
+
+    private static AdsStatus status;
+    private static Activity activityContext;
     public static void initAds(final Activity act) {
-        // RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(
-        // Arrays.asList("7C6221C0BF81BF12ACAD4E9B5730EB05")).build();
-        // MobileAds.setRequestConfiguration(configuration);
+        activityContext = act;
+        setStatus(AdsStatus.NOT_INITIALIZED);
+    }
+
+    public static Activity getActivityContext() {
+        return activityContext;
+    }
+    private static void setStatus(AdsStatus newStatus) {
+        Log.i(TAG, "setStatus " + status + " -> "+ newStatus);
+        status = newStatus;
+        
+    }
+
+    private static void doInit(final Activity act, final String misesID) {
+        if (status != AdsStatus.NOT_INITIALIZED) {
+            return;
+        }
         try {
             if (!PackageUtils.isPackageInstalled("com.google.android.webview")) {
                 throw new RuntimeException("webview not exists!");
             }
+            setStatus(AdsStatus.INITIALIZING);
             MobileAds.initialize(act, new OnInitializationCompleteListener() {
                 @Override
                 public void onInitializationComplete(InitializationStatus initializationStatus) {
                     Log.i(TAG,"initAds onInitializationComplete:" + initializationStatus);
-                    isInitialized = true;
+                    setStatus(AdsStatus.INITIALIZED);
+                    loadRewardedAd(act, true, misesID);
                 }
             });
         } catch(Exception e) {
           Log.w(TAG, "MobileAds.initialize failed: " + e.getMessage());
         }
-
-        activityContext = act;
-    }
-    public static Activity getActivityContext() {
-        return activityContext;
     }
     private static void showRewardedAd(final Activity act, final RewardedAd rewardedAd, final String misesID) {
-        if (isShowing) {
+        if (status != AdsStatus.READY) {
             return;
         }
         Log.i(TAG, "showRewardedAd");
-        isShowing = true;
+        setStatus(AdsStatus.SHOWING);
 
         rewardedAd.setFullScreenContentCallback(
             new FullScreenContentCallback() {
@@ -81,7 +107,7 @@ public class MisesAdsUtil {
                 Log.d(TAG, "onAdFailedToShowFullScreenContent");
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
-                isShowing = false;
+                setStatus(AdsStatus.INITIALIZED);
                 
             }
 
@@ -91,7 +117,7 @@ public class MisesAdsUtil {
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
                 Log.d(TAG, "onAdDismissedFullScreenContent");
-                isShowing = false;
+                setStatus(AdsStatus.INITIALIZED);
             }
         });
         rewardedAd.show(
@@ -104,61 +130,61 @@ public class MisesAdsUtil {
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
                     Toast.makeText(act, "Thank your for your support", Toast.LENGTH_SHORT).show();
-                    loadRewardedAd(act, false, misesID);
                 }
         });
     }
     public static void loadAndShowRewardedAd(final Activity act, final String misesID) {
-        if (!isInitialized) {
+        if (status == AdsStatus.NOT_INITIALIZED) {
+            doInit(act, misesID);
             return;
         }
-        if (rewardedAdCache == null) {
-            loadRewardedAd(act, true, misesID);
-        } else {
-            showRewardedAd(act, rewardedAdCache, misesID);
-            rewardedAdCache = null;
-            loadRewardedAd(act, false, misesID);
-        }   
+        if (status == AdsStatus.INITIALIZING) {
+            return;
+        }
+        loadRewardedAd(act, true, misesID);  
     }
     private static void loadRewardedAd(final Activity act, final boolean show, final String misesID) {
-        if (isLoading) {
+        if (status == AdsStatus.LOADING) {
             if (show) {
                 Toast.makeText(act, "Ads Loading ...", Toast.LENGTH_SHORT).show();
             }
             return;
         }
         Log.i(TAG, "loadRewardedAd show " + show);
-        isLoading = true;
+        setStatus(AdsStatus.LOADING);
+        try {
         AdRequest adRequest = new AdRequest.Builder().build();
-        RewardedAd.load(
-            act,
-            REWARDAD_UNIT_ID,
-            adRequest,
-            new RewardedAdLoadCallback() {
-                @Override
-                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                    // Handle the error.
-                    Log.d(TAG, "onAdFailedToLoad:" + loadAdError.getMessage());
-                    isLoading = false;
-                }
-
-                @Override
-                public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-                    Log.d(TAG, "onAdLoaded");
-                    isLoading = false;
-                    ServerSideVerificationOptions options = new ServerSideVerificationOptions
-                        .Builder()
-                        .setUserId(misesID)
-                        .build();
-                    rewardedAd.setServerSideVerificationOptions(options);
-                    if (show) {
-                        showRewardedAd(act, rewardedAd, misesID);
-                    } else {
-                        MisesAdsUtil.rewardedAdCache = rewardedAd;
+            RewardedAd.load(
+                act,
+                REWARDAD_UNIT_ID,
+                adRequest,
+                new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        Log.d(TAG, "onAdFailedToLoad:" + loadAdError.getMessage());
+                        setStatus(AdsStatus.INITIALIZED);
                     }
-                    
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        Log.d(TAG, "onAdLoaded");
+                        setStatus(AdsStatus.READY);
+                        ServerSideVerificationOptions options = new ServerSideVerificationOptions
+                            .Builder()
+                            .setUserId(misesID)
+                            .build();
+                        rewardedAd.setServerSideVerificationOptions(options);
+                        if (show) {
+                            showRewardedAd(act, rewardedAd, misesID);
+                        }
+                        
+                    }
                 }
-            }
-        );
+            );
+        } catch(Exception e) {
+          Log.w(TAG, "RewardedAd.load fail: " + e.getMessage());
+          setStatus(AdsStatus.INITIALIZED);
+        }
     }
 } 
