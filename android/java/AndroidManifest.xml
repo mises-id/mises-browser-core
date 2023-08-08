@@ -33,4 +33,4 @@ firebase initialization
     android:value="false"/>
 <meta-data
     android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
-    android:value="true"/>
+    android:value="false"/>
