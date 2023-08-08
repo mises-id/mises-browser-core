@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
-index d66ed8aebc7313f5a3ebe5845d217cdf77290454..affd5a09ead0c07d96aecb34c6eee0a17ae46cc9 100644
+index d66ed8aebc7313f5a3ebe5845d217cdf77290454..9b883d8c59cf981c6138b1fe7844480ffbeb4596 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
 @@ -17,6 +17,9 @@ import org.chromium.content_public.browser.LoadUrlParams;
@@ -17,7 +17,7 @@ index d66ed8aebc7313f5a3ebe5845d217cdf77290454..affd5a09ead0c07d96aecb34c6eee0a1
          try {
              TraceEvent.begin("TabCreator.launchNTP");
 -            launchUrl(UrlConstants.NTP_URL, type);
-+            launchUrl(ContextUtils.getAppSharedPreferences().getString("active_homepage", UrlConstants.NTP_NON_NATIVE_URL), type);
++	    launchUrl(UrlConstants.NTP_URL, type);
          } finally {
              TraceEvent.end("TabCreator.launchNTP");
          }
