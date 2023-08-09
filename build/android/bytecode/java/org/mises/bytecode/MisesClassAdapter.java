@@ -39,7 +39,7 @@ public class MisesClassAdapter {
         chain = new MisesLocationBarCoordinatorClassAdapter(chain);
         chain = new MisesLocationBarLayoutClassAdapter(chain);
         chain = new MisesLocationBarMediatorClassAdapter(chain);
-        chain = new MisesLogoCoordinatorClassAdapter(chain);
+        chain = new MisesLogoMediatorClassAdapter(chain);
         chain = new MisesMainPreferenceBaseClassAdapter(chain);
         chain = new MisesManageAccountDevicesLinkViewClassAdapter(chain);
         chain = new MisesManageSyncSettingsClassAdapter(chain);

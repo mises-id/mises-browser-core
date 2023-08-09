@@ -14,28 +14,28 @@ public class MisesNewTabPageClassAdapter extends MisesClassVisitor {
     public MisesNewTabPageClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(sNewTabPageClassName, sMisesNewTabPageClassName);
+        redirectConstructor(sNewTabPageClassName, sMisesNewTabPageClassName);
 
-        // deleteField(sMisesNewTabPageClassName, "mBrowserControlsStateProvider");
-        // makeProtectedField(sNewTabPageClassName, "mBrowserControlsStateProvider");
+        deleteField(sMisesNewTabPageClassName, "mBrowserControlsStateProvider");
+        makeProtectedField(sNewTabPageClassName, "mBrowserControlsStateProvider");
 
-        // deleteField(sMisesNewTabPageClassName, "mNewTabPageLayout");
-        // makeProtectedField(sNewTabPageClassName, "mNewTabPageLayout");
+        deleteField(sMisesNewTabPageClassName, "mNewTabPageLayout");
+        makeProtectedField(sNewTabPageClassName, "mNewTabPageLayout");
 
-        // deleteField(sMisesNewTabPageClassName, "mFeedSurfaceProvider");
-        // makeProtectedField(sNewTabPageClassName, "mFeedSurfaceProvider");
+        deleteField(sMisesNewTabPageClassName, "mFeedSurfaceProvider");
+        makeProtectedField(sNewTabPageClassName, "mFeedSurfaceProvider");
 
-        // deleteField(sMisesNewTabPageClassName, "mToolbarSupplier");
-        // makeProtectedField(sNewTabPageClassName, "mToolbarSupplier");
+        deleteField(sMisesNewTabPageClassName, "mToolbarSupplier");
+        makeProtectedField(sNewTabPageClassName, "mToolbarSupplier");
 
-        // deleteField(sMisesNewTabPageClassName, "mTabModelSelector");
-        // makeProtectedField(sNewTabPageClassName, "mTabModelSelector");
+        deleteField(sMisesNewTabPageClassName, "mTabModelSelector");
+        makeProtectedField(sNewTabPageClassName, "mTabModelSelector");
 
-        // deleteField(sMisesNewTabPageClassName, "mBottomSheetController");
-        // makeProtectedField(sNewTabPageClassName, "mBottomSheetController");
+        deleteField(sMisesNewTabPageClassName, "mBottomSheetController");
+        makeProtectedField(sNewTabPageClassName, "mBottomSheetController");
 
-        // makePublicMethod(sNewTabPageClassName, "updateSearchProviderHasLogo");
-        // addMethodAnnotation(
-        //         sMisesNewTabPageClassName, "updateSearchProviderHasLogo", "Ljava/lang/Override;");
+        makePublicMethod(sNewTabPageClassName, "updateSearchProviderHasLogo");
+        addMethodAnnotation(
+                sMisesNewTabPageClassName, "updateSearchProviderHasLogo", "Ljava/lang/Override;");
     }
 }

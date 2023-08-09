@@ -9,7 +9,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import org.chromium.chrome.browser.flags.CachedFeatureFlags;
-import org.chromium.chrome.browser.preferences.BravePreferenceKeys;
 import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
 
 public class MisesTabUiFeatureUtilities {
@@ -22,13 +21,9 @@ public class MisesTabUiFeatureUtilities {
             // Override it to make "Open in new tab" menu option in the context menu available if
             // applicable.
             SharedPreferencesManager.getInstance().writeBoolean(
-                    TAB_GROUP_AUTO_CREATION_PREFERENCE, isBraveTabGroupsEnabled());
+                    TAB_GROUP_AUTO_CREATION_PREFERENCE, true);
             CachedFeatureFlags.resetFlagsForTesting();
         }
     }
 
-    public static boolean isBraveTabGroupsEnabled() {
-        return SharedPreferencesManager.getInstance().readBoolean(
-                BravePreferenceKeys.BRAVE_TAB_GROUPS_ENABLED, true);
-    }
 }
