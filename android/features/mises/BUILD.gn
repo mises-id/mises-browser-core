@@ -31,6 +31,7 @@ android_library("public_java") {
     "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
     "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
     "java/org/chromium/chrome/browser/mises/UIUtil.java",
+    "java/org/chromium/chrome/browser/mises/HttpUtil.java",
     "java/org/chromium/chrome/browser/mises/MyFirebaseMessagingService.java",
     "java/org/chromium/chrome/browser/logcat/FileLogDumper.java",
     "java/org/chromium/chrome/browser/logcat/RemoteLogDumper.java",

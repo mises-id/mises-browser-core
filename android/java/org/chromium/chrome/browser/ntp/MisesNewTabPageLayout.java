@@ -64,7 +64,6 @@ import org.chromium.chrome.browser.offlinepages.OfflinePageBridge;
 import org.chromium.chrome.browser.offlinepages.RequestCoordinatorBridge;
 import org.chromium.chrome.browser.preferences.MisesPref;
 import org.chromium.chrome.browser.preferences.MisesPrefServiceBridge;
-import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.settings.SettingsLauncherImpl;
 import org.chromium.chrome.browser.suggestions.tile.MostVisitedTilesCoordinator;
@@ -84,11 +83,7 @@ import org.chromium.ui.base.DeviceFormFactor;
 import org.chromium.ui.base.WindowAndroid;
 
 import org.chromium.chrome.browser.feed.FeedSurfaceScrollDelegate;
-import org.chromium.chrome.browser.suggestions.SiteSuggestion;
-import org.chromium.chrome.browser.suggestions.tile.Tile;
-import org.chromium.chrome.browser.suggestions.mostvisited.MostVisitedSites;
-import org.chromium.url.GURL;
-import org.chromium.base.Callback;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,9 +99,6 @@ public class MisesNewTabPageLayout
     private static final String TAG = "MisesNewTabPageLayout";
 
     private static final int MINIMUM_VISIBLE_HEIGHT_THRESHOLD = 50;
-    private static final String BRAVE_RECYCLERVIEW_POSITION = "recyclerview_visible_position_";
-    private static final String BRAVE_RECYCLERVIEW_OFFSET_POSITION =
-            "recyclerview_offset_position_";
 
     // To delete in bytecode, parent variable will be used instead.
     private ViewGroup mMvTilesContainerLayout;
@@ -133,7 +125,6 @@ public class MisesNewTabPageLayout
     private String mCreativeInstanceId;
     private String mUuid;
     //@TODO alex make an enum
-    private SharedPreferencesManager.Observer mPreferenceObserver;
     private boolean mComesFromNewTab;
     private boolean mIsTopSitesEnabled;
 
@@ -141,6 +132,13 @@ public class MisesNewTabPageLayout
 
     private ViewGroup mMisesServiceTilesContainerLayout;
     private MostVisitedTilesCoordinator mMisesServiceTilesCoordinator;
+
+    private ViewGroup mWeb3SiteTilesContainerLayout;
+    private MostVisitedTilesCoordinator mWeb3SiteTilesCoordinator;
+
+    private ViewGroup mWeb3ExtensionTilesContainerLayout;
+    private MostVisitedTilesCoordinator mWeb3ExtensionTilesCoordinator;
+
     private TileGroupDelegateWrapper mTileGroupDelegateWrapper;
 
 
@@ -204,6 +202,18 @@ public class MisesNewTabPageLayout
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
         mMisesServiceTilesContainerLayout.setVisibility(View.VISIBLE);
         mMisesServiceTilesContainerLayout.post(runable);
+
+        mWeb3SiteTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
+        mWeb3SiteTilesContainerLayout.setVisibility(View.VISIBLE);
+        mWeb3SiteTilesContainerLayout.post(runable);        
+        
+        mWeb3ExtensionTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
+        mWeb3ExtensionTilesContainerLayout.setVisibility(View.VISIBLE);
+        mWeb3ExtensionTilesContainerLayout.post(runable);
+
+        
 
         // The page contents are initially hidden; otherwise they'll be drawn centered on the
         // page before the tiles are available and then jump upwards to make space once the
@@ -275,8 +285,12 @@ public class MisesNewTabPageLayout
 
         if (mNtpAdapter == null) {
             if (mActivity != null && !mActivity.isDestroyed() && !mActivity.isFinishing()) {
-                mNtpAdapter = new MisesNtpAdapter(mActivity, this, Glide.with(mActivity),
-                         mMvTilesContainerLayout, mMisesServiceTilesContainerLayout, mRecyclerView.getHeight(), mIsTopSitesEnabled);
+                mNtpAdapter = new MisesNtpAdapter(
+                    mActivity, this, Glide.with(mActivity),
+                    mMvTilesContainerLayout, mMisesServiceTilesContainerLayout, 
+                    mWeb3SiteTilesContainerLayout, mWeb3ExtensionTilesContainerLayout,
+                    mRecyclerView.getHeight(), mIsTopSitesEnabled
+                );
 
                 mRecyclerView.setAdapter(mNtpAdapter);
 
@@ -311,11 +325,7 @@ public class MisesNewTabPageLayout
     }
 
 
-    private void initPreferenceObserver() {
-        mPreferenceObserver = (key) -> {
 
-        };
-    }
 
     @Override
     protected void onDetachedFromWindow() {
@@ -347,79 +357,6 @@ public class MisesNewTabPageLayout
     }
 
 
-    public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisitedSites.Observer {
-        private static final String TAG = "TileGroupDelegateWrapper";
-        private TileGroup.Delegate mWrapped;
-        private boolean mDestroyed;
-        private ArrayList<MostVisitedSites.Observer> mObservers = new ArrayList<>();
-        private List<SiteSuggestion> mSiteSuggestionsCache;
-        public TileGroupDelegateWrapper(TileGroup.Delegate wrapped) {
-            mWrapped = wrapped;
-            mWrapped.setMostVisitedSitesObserver(this, 12);
-        }
-        private boolean isValid() {
-            return mWrapped != null;
-        }
-        @Override
-        public void removeMostVisitedItem(Tile item, Callback<GURL> removalUndoneCallback) {
-            if (!isValid()) return;
-            mWrapped.removeMostVisitedItem(item, removalUndoneCallback);
-        }
-
-        @Override
-        public void openMostVisitedItem(int windowDisposition, Tile item) {
-            if (!isValid()) return;
-            mWrapped.openMostVisitedItem(windowDisposition, item);
-        }
-
-        @Override
-        public void openMostVisitedItemInGroup(int windowDisposition, Tile item) {
-            if (!isValid()) return;
-            mWrapped.openMostVisitedItemInGroup(windowDisposition, item);
-        }
-
-        @Override
-        public void setMostVisitedSitesObserver(MostVisitedSites.Observer observer, int maxResults) {
-            Log.d(TAG, "setMostVisitedSitesObserver");
-            mObservers.add(observer);
-            if (mSiteSuggestionsCache != null) {
-                observer.onSiteSuggestionsAvailable(mSiteSuggestionsCache);
-            }
-        }
-
-        @Override
-        public void onLoadingComplete(List<Tile> tiles) {
-            if (!isValid()) return;
-            mWrapped.onLoadingComplete(tiles);
-        }
-
-        @Override
-        public void destroy() {
-            if (!isValid()) return;
-            mWrapped.destroy();
-            mWrapped = null;
-        }
-
-        @Override
-        public void onSiteSuggestionsAvailable(List<SiteSuggestion> siteSuggestions) {
-            if (!isValid()) return;
-            Log.d(TAG, "onSiteSuggestionsAvailable");
-            for (MostVisitedSites.Observer observer : mObservers) {
-                observer.onSiteSuggestionsAvailable(siteSuggestions);
-            }
-            mSiteSuggestionsCache = siteSuggestions;
-        }
-
-        @Override
-        public void onIconMadeAvailable(GURL siteUrl) {
-            if (!isValid()) return;
-            Log.d(TAG, "onIconMadeAvailable");
-            for (MostVisitedSites.Observer observer : mObservers) {
-                observer.onIconMadeAvailable(siteUrl);
-            }
-
-        }
-    }
 
     @Override
     public void initialize(NewTabPageManager manager, Activity activity,
@@ -453,6 +390,10 @@ public class MisesNewTabPageLayout
 
         
         initializeMisesServiceTilesCoordinator(lifecycleDispatcher, mTileGroupDelegateWrapper,
+                touchEnabledDelegate, windowAndroid, manager);
+        initializeWeb3SiteTilesCoordinator(lifecycleDispatcher, mTileGroupDelegateWrapper,
+                touchEnabledDelegate, windowAndroid, manager);        
+        initializeWeb3ExtensionTilesCoordinator(lifecycleDispatcher, mTileGroupDelegateWrapper,
                 touchEnabledDelegate, windowAndroid, manager);
 
         
@@ -497,7 +438,7 @@ public class MisesNewTabPageLayout
     }
 
 
-     private void initializeMisesServiceTilesCoordinator(
+    private void initializeMisesServiceTilesCoordinator(
             ActivityLifecycleDispatcher activityLifecycleDispatcher,
             TileGroup.Delegate tileGroupDelegate, TouchEnabledDelegate touchEnabledDelegate, 
             WindowAndroid windowAndroid, NewTabPageManager manager) {
@@ -511,6 +452,41 @@ public class MisesNewTabPageLayout
                 () -> {}, () -> {});
 
         mMisesServiceTilesCoordinator.initWithNative(
+                manager, tileGroupDelegate, touchEnabledDelegate);
+    }
+
+
+    private void initializeWeb3SiteTilesCoordinator(
+            ActivityLifecycleDispatcher activityLifecycleDispatcher,
+            TileGroup.Delegate tileGroupDelegate, TouchEnabledDelegate touchEnabledDelegate, 
+            WindowAndroid windowAndroid, NewTabPageManager manager) {
+        assert mWeb3SiteTilesContainerLayout != null;
+
+        int maxRows = 3;
+
+        mWeb3SiteTilesCoordinator = new MostVisitedTilesCoordinator(mActivity,
+                activityLifecycleDispatcher, mWeb3SiteTilesContainerLayout, windowAndroid,
+                /*shouldShowSkeletonUIPreNative=*/false, /*isScrollableMvtEnabled*/false, maxRows,
+                () -> {}, () -> {});
+
+        mWeb3SiteTilesCoordinator.initWithNative(
+                manager, tileGroupDelegate, touchEnabledDelegate);
+    }
+
+    private void initializeWeb3ExtensionTilesCoordinator(
+            ActivityLifecycleDispatcher activityLifecycleDispatcher,
+            TileGroup.Delegate tileGroupDelegate, TouchEnabledDelegate touchEnabledDelegate, 
+            WindowAndroid windowAndroid, NewTabPageManager manager) {
+        assert mWeb3ExtensionTilesContainerLayout != null;
+
+        int maxRows = 1;
+
+        mWeb3ExtensionTilesCoordinator = new MostVisitedTilesCoordinator(mActivity,
+                activityLifecycleDispatcher, mWeb3ExtensionTilesContainerLayout, windowAndroid,
+                /*shouldShowSkeletonUIPreNative=*/false, /*isScrollableMvtEnabled*/true, maxRows,
+                () -> {}, () -> {});
+
+        mWeb3ExtensionTilesCoordinator.initWithNative(
                 manager, tileGroupDelegate, touchEnabledDelegate);
     }
 

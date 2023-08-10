@@ -8,14 +8,20 @@ package org.mises.bytecode;
 import org.objectweb.asm.ClassVisitor;
 
 public class MisesTileViewClassAdapter extends MisesClassVisitor {
-    static String sSuggestionsTileViewClassName =
-            "org/chromium/chrome/browser/suggestions/tile/SuggestionsTileView";
+    
+    static String sTileRenderClassName =
+            "org/chromium/chrome/browser/suggestions/tile/TileRenderer";
 
-    static String sMisesSuggestionsTileViewBaseClassName =
-            "org/chromium/chrome/browser/suggestions/tile/MisesTileView";
+    static String sMisesTileRenderClassName =
+            "org/chromium/chrome/browser/suggestions/tile/MisesTileRenderer";
 
     public MisesTileViewClassAdapter(ClassVisitor visitor) {
         super(visitor);
-        //changeSuperName(sSuggestionsTileViewClassName, sMisesSuggestionsTileViewBaseClassName);
+        redirectConstructor(sTileRenderClassName, sMisesTileRenderClassName);
+
+        makePublicMethod(sTileRenderClassName, "getLayout");
+        addMethodAnnotation(
+                sMisesTileRenderClassName, "getLayout", "Ljava/lang/Override;");
+
     }
 }

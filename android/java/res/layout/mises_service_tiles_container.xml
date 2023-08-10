@@ -6,8 +6,9 @@ found in the LICENSE file.
 -->
 
 <!-- A site suggestion tile. -->
-<FrameLayout android:layout_width="wrap_content"
+<FrameLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:chrome="http://schemas.android.com/apk/res-auto"	  
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,23 +18,85 @@ found in the LICENSE file.
     android:layout_gravity="center_horizontal"
     app:layout_scrollFlags="scroll">
 
-  <ViewStub
-      android:id="@+id/mv_tiles_carousel_stub"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout="@layout/mv_tiles_carousel" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-  <ViewStub
-      android:id="@+id/mv_tiles_grid_stub"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout="@layout/mv_tiles_grid" />
 
-  <!-- Site suggestion tile grid placeholder -->
-  <ViewStub
-      android:id="@+id/tile_grid_placeholder_stub"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:inflatedId="@+id/tile_grid_placeholder"
-      android:layout="@layout/new_tab_page_tile_grid_placeholder" />
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+           <LinearLayout
+              android:id="@+id/ll_toggle"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="start"
+              android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/iv_title"
+                    android:src="@drawable/down"
+                    android:layout_width="10sp"
+                    android:layout_height="10sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"/>
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:text=""
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12sp" />
+          </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginRight="5dp"
+                android:ellipsize="end"
+                android:text="More>"
+                android:singleLine="true"
+                android:textColor="#ff666666"
+                android:textSize="12sp" />
+      </LinearLayout>
+
+      <FrameLayout android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/fl_tiles">
+
+            <ViewStub
+                android:id="@+id/mv_tiles_carousel_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/mv_tiles_carousel" />
+
+            <ViewStub
+                android:id="@+id/mv_tiles_grid_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/mv_tiles_grid" />
+
+            <!-- Site suggestion tile grid placeholder -->
+            <ViewStub
+                android:id="@+id/tile_grid_placeholder_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/tile_grid_placeholder"
+                android:layout="@layout/new_tab_page_tile_grid_placeholder" />
+
+      </FrameLayout>
+
+    </LinearLayout>
 </FrameLayout>
