@@ -119,10 +119,12 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         int margin = dpToPx(mActivity, 10);
         layoutParams.setMargins(margin, margin, margin, 0);
+        int background = GlobalNightModeStateProviderHolder.getInstance().isInNightMode()?
+            R.drawable.rounded_dark_bg_alpha : R.drawable.rounded_light_bg_alpha;
         if (holder instanceof TopSitesViewHolder) {
 
             mMvTilesContainerLayout.setLayoutParams(layoutParams);
-            mMvTilesContainerLayout.setBackgroundResource(R.drawable.rounded_light_bg_alpha);
+            mMvTilesContainerLayout.setBackgroundResource(background);
 
             mTopSitesHeight = getViewHeight(holder.itemView) + margin;
 
@@ -132,7 +134,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.update(mIsWeb3SiteEnabled);
 
             misesServiceHolder.getView().setLayoutParams(layoutParams);
-            misesServiceHolder.getView().setBackgroundResource(R.drawable.rounded_light_bg_alpha);
+            misesServiceHolder.getView().setBackgroundResource(background);
 
 
         } else if (holder instanceof Web3ExtensionViewHolder) {
@@ -141,7 +143,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.update(mIsWeb3ExtensionEnabled);
 
             misesServiceHolder.getView().setLayoutParams(layoutParams);
-            misesServiceHolder.getView().setBackgroundResource(R.drawable.rounded_light_bg_alpha);
+            misesServiceHolder.getView().setBackgroundResource(background);
 
 
         } else if (holder instanceof MisesServiceViewHolder) {
@@ -150,7 +152,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.update(mIsMisesServiceEnabled);
 
             misesServiceHolder.getView().setLayoutParams(layoutParams);
-            misesServiceHolder.getView().setBackgroundResource(R.drawable.rounded_light_bg_alpha);
+            misesServiceHolder.getView().setBackgroundResource(background);
 
 
         }
