@@ -5,11 +5,15 @@ import java.io.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
+import java.util.Map;
+import java.util.HashMap;
 
+import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.mises.HttpUtil;
 import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
 
 import org.chromium.chrome.browser.suggestions.SiteSuggestion;
+import org.chromium.chrome.browser.suggestions.MisesSiteSuggestion;
 import org.chromium.chrome.browser.suggestions.tile.Tile;
 import org.chromium.chrome.browser.suggestions.mostvisited.MostVisitedSites;
 import org.chromium.chrome.browser.suggestions.tile.TileGroup;
@@ -17,6 +21,7 @@ import org.chromium.chrome.browser.suggestions.tile.TileGroup;
 import org.chromium.chrome.browser.suggestions.tile.TileSectionType;
 import org.chromium.chrome.browser.suggestions.tile.TileSource;
 import org.chromium.chrome.browser.suggestions.tile.TileTitleSource;
+import org.chromium.chrome.browser.AppMenuBridge;
 
 import org.chromium.url.GURL;
 import org.chromium.base.Log;
@@ -27,20 +32,29 @@ import org.chromium.base.Callback;
 public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisitedSites.Observer {
     private static final String TAG = "TileGroupDelegateWrapper";
     public static final String PREF_WEB3_SITES_CACHE_JSON = "web3_sites_cache";
-    public static final String PREF_WEB3_SITES_CACHE_TIMESTAMP = "web3_sites_cache_timestamp";
     public static final int WEB3_SITES_CACHE_EXPIRE_TIME = 3600;
+    private static long sWeb3SitesCacheTimestapm;
     private TileGroup.Delegate mWrapped;
     private boolean mDestroyed;
+    private boolean mReady;
     private ArrayList<MostVisitedSites.Observer> mObservers = new ArrayList<>();
     private List<SiteSuggestion> mSiteSuggestionsCache;
     private List<SiteSuggestion> mMisesServiceCache;
     private List<SiteSuggestion> mWeb3SiteCache;
     private List<SiteSuggestion> mWeb3ExtensionCache;
     public TileGroupDelegateWrapper(TileGroup.Delegate wrapped) {
+        Log.d(TAG, "New");
         mWrapped = wrapped;
         mWrapped.setMostVisitedSitesObserver(this, 12);
         loadWeb3SitesCache();
         updateWeb3SitesCache(false);
+    }
+    public void setReady() {
+        mReady = true;
+        handleCacheUpdate();
+    }
+    private boolean isReady() {
+        return mReady;
     }
     private boolean isValid() {
         return mWrapped != null;
@@ -67,7 +81,6 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
     public void setMostVisitedSitesObserver(MostVisitedSites.Observer observer, int maxResults) {
         Log.d(TAG, "setMostVisitedSitesObserver");
         mObservers.add(observer);
-        handleCacheUpdate();
     }
 
     @Override
@@ -101,7 +114,11 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
 
     }
 
-    void handleCacheUpdate() {
+    private void handleCacheUpdate() {
+        if (!isValid() || !isReady()) {
+            Log.v(TAG, "handleCacheUpdate skip");
+            return;
+        }
         Log.v(TAG, "handleCacheUpdate");
         if (mObservers.size() >= 1 && mSiteSuggestionsCache != null) {
             mObservers.get(0).onSiteSuggestionsAvailable(mSiteSuggestionsCache);
@@ -145,12 +162,15 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
                 ArrayList<SiteSuggestion> sites = new ArrayList<>();
                 for( int i = 0 ;i < feature_list.length(); i ++ ) {
                     final JSONObject feature = feature_list.getJSONObject(i);
-                    sites.add(new SiteSuggestion(
+                    final MisesSiteSuggestion suggestion = new MisesSiteSuggestion(
                         feature.getString("title"), 
                         new GURL(feature.getString("url")), 
                         TileTitleSource.TITLE_TAG,
-                        TileSource.TOP_SITES, TileSectionType.PERSONALIZED
-                    ));
+                        TileSource.TOP_SITES, 
+                        TileSectionType.PERSONALIZED
+                    );
+                    suggestion.setIconUrl(new GURL(feature.getString("logo")));
+                    sites.add(suggestion);
                     
                 }
                 mMisesServiceCache = sites;
@@ -160,12 +180,15 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
                 ArrayList<SiteSuggestion> sites = new ArrayList<>();
                 for( int i = 0 ;i < recommended_sites.length(); i ++ ) {
                     final JSONObject site = recommended_sites.getJSONObject(i);
-                    sites.add(new SiteSuggestion(
+                    final MisesSiteSuggestion suggestion = new MisesSiteSuggestion(
                         site.getString("title"), 
                         new GURL(site.getString("url")), 
                         TileTitleSource.TITLE_TAG,
-                        TileSource.TOP_SITES, TileSectionType.PERSONALIZED
-                    ));
+                        TileSource.TOP_SITES, 
+                        TileSectionType.PERSONALIZED
+                    );
+                    suggestion.setIconUrl(new GURL(site.getString("logo")));
+                    sites.add(suggestion);
                     
                 }
                 mWeb3SiteCache = sites;
@@ -173,14 +196,25 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
             {
                 final JSONArray recommended_extensions = jsonMessage.getJSONArray("recommended_extensions");
                 ArrayList<SiteSuggestion> extensions = new ArrayList<>();
+                Map<String, String> running_extensions = getRunningExtensions();
                 for( int i = 0 ;i < recommended_extensions.length(); i ++ ) {
                     final JSONObject extension = recommended_extensions.getJSONObject(i);
-                    extensions.add(new SiteSuggestion(
+                    final String extension_id = extension.getString("extension_id");
+                    String url = extension.getString("url");
+                    if (running_extensions.containsKey(extension_id)) {
+                        url = running_extensions.get(extension_id);
+                    }
+                    final MisesSiteSuggestion suggestion = new MisesSiteSuggestion(
                         extension.getString("title"), 
-                        new GURL(extension.getString("url")), 
+                        new GURL(url), 
                         TileTitleSource.TITLE_TAG,
-                        TileSource.TOP_SITES, TileSectionType.PERSONALIZED
-                    ));
+                        TileSource.TOP_SITES, 
+                        TileSectionType.PERSONALIZED
+                    );
+                    suggestion.setIconUrl(new GURL(extension.getString("logo")));
+                    suggestion.setExtensionID(extension_id);
+
+                    extensions.add(suggestion);
                     
                 }
                 mWeb3ExtensionCache = extensions;
@@ -196,12 +230,10 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
     }
     private void updateWeb3SitesCache(boolean force) {
         Log.v(TAG, "updateWeb3SitesCache force:" + force);
-        int nowInSeconds = (int)(System.currentTimeMillis() / 1000);
+        long nowInSeconds = System.currentTimeMillis() / 1000;
         if (!force) {
             // check cache expiration
-            final int cache_timestamp = ContextUtils.getAppSharedPreferences().getInt(
-                PREF_WEB3_SITES_CACHE_TIMESTAMP, 0);
-            if (cache_timestamp > 0 && (nowInSeconds - cache_timestamp < WEB3_SITES_CACHE_EXPIRE_TIME)) {
+            if (sWeb3SitesCacheTimestapm > 0 && (nowInSeconds - sWeb3SitesCacheTimestapm < WEB3_SITES_CACHE_EXPIRE_TIME)) {
                 Log.v(TAG, "updateWeb3SitesCache skip");
                 return;
             }
@@ -213,14 +245,29 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
                 if (result != null && loadWeb3SitesJson(result)) {
                     SharedPreferencesManager.getInstance().writeStringUnchecked(
                         PREF_WEB3_SITES_CACHE_JSON, result.toString());
-                    SharedPreferencesManager.getInstance().writeIntUnchecked(
-                        PREF_WEB3_SITES_CACHE_TIMESTAMP, nowInSeconds);
+                    sWeb3SitesCacheTimestapm = nowInSeconds;
 
                     handleCacheUpdate();
                 }
             }
         });
 
+    }
+
+    private Map<String, String> getRunningExtensions() {
+        Map<String, String> extensionInfos = new HashMap<String, String>();
+        Profile profile = Profile.getLastUsedRegularProfile();
+        String extensions = AppMenuBridge.getForProfile(profile).getRunningExtensions(null);
+        if (!extensions.isEmpty()) {
+            String[] extensionsArray = extensions.split("\u001f");
+            for (String extension: extensionsArray) {
+              String[] extensionsInfo = extension.split("\u001e");
+              if (extensionsInfo.length > 2 && !extensionsInfo[2].equals("")) {
+                extensionInfos.put( extensionsInfo[1],  extensionsInfo[2]);
+              }
+            }
+        }
+        return extensionInfos;
     }
       
 }

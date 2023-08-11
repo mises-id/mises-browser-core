@@ -1,4 +1,5 @@
 -keep class org.chromium.chrome.browser.ntp.NewTabPageLayout {
+    public <init>(...);
     *** mMvTilesContainerLayout;
     *** mLogoCoordinator;
     *** insertSiteSectionView(...);
@@ -19,6 +20,32 @@
 -keep class org.chromium.chrome.browser.ntp.MisesNewTabPage {
     public <init>(...);
 }
+-keep class org.chromium.chrome.browser.ntp.MisesNewTabPageLayout {
+    public <init>(...);
+}
+
+
+
+-keep class org.chromium.chrome.browser.suggestions.tile.SuggestionsTileView {
+    public <init>(...);
+    *** setIconViewLayoutParams(...);
+    
+}
+
+-keep class org.chromium.chrome.browser.suggestions.tile.MisesTileView {
+    public <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.suggestions.tile.TileRenderer {
+    public <init>(...);
+    *** getLayout(...);
+    *** updateIcon(...);
+}
+
+-keep class org.chromium.chrome.browser.suggestions.tile.MisesTileRenderer {
+    public <init>(...);
+}
+
 
 -keep class com.google.android.material.bottomsheet.BottomSheetBehavior { *; }
 

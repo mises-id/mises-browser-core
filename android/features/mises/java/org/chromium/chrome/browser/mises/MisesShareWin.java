@@ -316,7 +316,7 @@ public class MisesShareWin extends DialogFragment {
     }
 
     public MisesShareWin(TabCreatorManager tabMgr) {
-	mTabCreatorManager = tabMgr;
+	    mTabCreatorManager = tabMgr;
     }
 
     public static MisesShareWin newInstance(TabCreatorManager tabMgr, String icon, String title, String url) {

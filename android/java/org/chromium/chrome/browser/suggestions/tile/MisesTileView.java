@@ -29,13 +29,12 @@ public class MisesTileView extends SuggestionsTileView {
 
     @Override
     protected void setIconViewLayoutParams(Tile tile) {
-        Log.v(TAG, "setIconViewLayoutParams");
         MarginLayoutParams params = (MarginLayoutParams) getIconView().getLayoutParams();
         Resources resources = getResources();
         params.width = resources.getDimensionPixelSize(R.dimen.tile_view_icon_size_mises);
         params.height = resources.getDimensionPixelSize(R.dimen.tile_view_icon_size_mises);
         params.topMargin =
-                    resources.getDimensionPixelSize(R.dimen.tile_view_icon_margin_top_modern);
+                    resources.getDimensionPixelSize(R.dimen.tile_view_icon_margin_top_mises);
         getIconView().setLayoutParams(params);
     }
  

@@ -395,6 +395,8 @@ public class MisesNewTabPageLayout
                 touchEnabledDelegate, windowAndroid, manager);        
         initializeWeb3ExtensionTilesCoordinator(lifecycleDispatcher, mTileGroupDelegateWrapper,
                 touchEnabledDelegate, windowAndroid, manager);
+        
+        mTileGroupDelegateWrapper.setReady();
 
         
     }

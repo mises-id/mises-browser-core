@@ -9,6 +9,7 @@ import static org.chromium.ui.base.ViewUtils.dpToPx;
 
 import android.text.TextUtils;
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -42,6 +43,9 @@ import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.components.user_prefs.UserPrefs;
 import org.chromium.content_public.browser.UiThreadTaskTraits;
+import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
+import org.chromium.chrome.browser.tabmodel.TabCreator;
+import org.chromium.chrome.browser.tab.TabLaunchType;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -162,15 +166,15 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         if (viewType == TYPE_MISES_SERVICE) {
-            return new MisesServiceViewHolder(mMisesServiceTilesContainerLayout);
+            return new MisesServiceViewHolder(mMisesServiceTilesContainerLayout, mActivity);
 
         }
         else if (viewType == TYPE_WEB3_SITE) {
-            return new Web3SiteViewHolder(mWeb3SiteTilesContainerLayout);
+            return new Web3SiteViewHolder(mWeb3SiteTilesContainerLayout, mActivity);
 
         }
         else if (viewType == TYPE_WEB3_EXTENSION) {
-            return new Web3ExtensionViewHolder(mWeb3ExtensionTilesContainerLayout);
+            return new Web3ExtensionViewHolder(mWeb3ExtensionTilesContainerLayout, mActivity);
 
         }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
@@ -196,11 +200,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void setTopSitesEnabled(boolean isTopSitesEnabled) {
         if (mIsTopSitesEnabled != isTopSitesEnabled) {
             mIsTopSitesEnabled = isTopSitesEnabled;
-            if (mIsTopSitesEnabled) {
-                notifyItemInserted(0);
-            } else {
-                notifyItemRemoved(0);
-            }
             notifyItemRangeChanged(0, getTopSitesCount());
         }
     }
@@ -278,19 +277,26 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public static class MisesServiceViewHolder extends RecyclerView.ViewHolder {
         protected LinearLayout toggleLayout;
+        protected LinearLayout moreLayout;
         protected ImageView toggleImage;
         protected TextView titleView;
         protected TextView moreView;
         protected FrameLayout tilesLayout;
         protected View view;
-        MisesServiceViewHolder(View itemView) {
+        protected TabCreator mTabCreator;
+        MisesServiceViewHolder(View itemView, Context ctx) {
             super(itemView);
             toggleImage = (ImageView)itemView.findViewById(R.id.iv_title);
             toggleLayout = (LinearLayout)itemView.findViewById(R.id.ll_toggle);
+            moreLayout = (LinearLayout)itemView.findViewById(R.id.ll_more);
             titleView= (TextView)itemView.findViewById(R.id.tv_title);
             moreView = (TextView)itemView.findViewById(R.id.tv_more);
             tilesLayout = (FrameLayout)itemView.findViewById(R.id.fl_tiles);
             view = itemView;
+            if (ctx instanceof TabCreatorManager) {
+                TabCreatorManager tabCreatorManager = (TabCreatorManager)ctx;
+                mTabCreator = tabCreatorManager.getTabCreator(false);;
+            }
         }
         public View getView() {
             return view;
@@ -305,6 +311,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 toggleImage.setRotation(0);
                 tilesLayout.setVisibility(View.GONE);
             }
+            moreLayout.setVisibility(View.GONE);
             toggleLayout.setOnClickListener(view -> {
                 SharedPreferencesManager.getInstance().writeBooleanUnchecked(
                         PREF_SHOW_MISES_SERVICE, !enabled);
@@ -315,13 +322,13 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class Web3SiteViewHolder extends MisesServiceViewHolder {
-        Web3SiteViewHolder(View itemView) {
-            super(itemView);
+        Web3SiteViewHolder(View itemView, Context ctx) {
+            super(itemView, ctx);
         }
         @Override
         public void update(boolean enabled) {
             titleView.setText("Web3 Sites");
-            moreView.setText("View all >");
+            moreView.setText("View all");
             if (enabled) {
                 toggleImage.setRotation(180);
                 tilesLayout.setVisibility(View.VISIBLE);
@@ -329,8 +336,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 toggleImage.setRotation(0);
                 tilesLayout.setVisibility(View.GONE);
             }
-            moreView.setOnClickListener(view -> {
-                //TabUtils.openUrlInNewTab(false, "https://web3.mises.site/");
+            moreLayout.setVisibility(View.VISIBLE);
+            moreLayout.setOnClickListener(view -> {
+                if (mTabCreator != null) {
+                    mTabCreator.launchUrl("https://web3.mises.site/", TabLaunchType.FROM_LINK);
+                }
                 
             }); 
             toggleLayout.setOnClickListener(view -> {
@@ -340,14 +350,15 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+
     public static class Web3ExtensionViewHolder extends MisesServiceViewHolder {
-        Web3ExtensionViewHolder(View itemView) {
-            super(itemView);
+        Web3ExtensionViewHolder(View itemView, Context ctx) {
+            super(itemView, ctx);
         }
         @Override
         public void update(boolean enabled) {
             titleView.setText("Extensions");
-            moreView.setText("More >");
+            moreView.setText("More");
             if (enabled) {
                 toggleImage.setRotation(180);
                 tilesLayout.setVisibility(View.VISIBLE);
@@ -355,8 +366,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 toggleImage.setRotation(0);
                 tilesLayout.setVisibility(View.GONE);
             }
-            moreView.setOnClickListener(view -> {
-                //TabUtils.openUrlInNewTab(false, "https://web3.mises.site/extensions");
+            moreLayout.setVisibility(View.VISIBLE);
+            moreLayout.setOnClickListener(view -> {
+                if (mTabCreator != null) {
+                    mTabCreator.launchUrl("https://web3.mises.site/extensions", TabLaunchType.FROM_LINK);
+                }
             }); 
             toggleLayout.setOnClickListener(view -> {
                 SharedPreferencesManager.getInstance().writeBooleanUnchecked(

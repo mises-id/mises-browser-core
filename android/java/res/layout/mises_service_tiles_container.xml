@@ -27,20 +27,22 @@ found in the LICENSE file.
 
       <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:padding="6dp">
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:orientation="horizontal">
 
            <LinearLayout
               android:id="@+id/ll_toggle"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="start"
+              android:paddingTop="6dp"
+              android:paddingBottom="6dp"
               android:orientation="horizontal">
                 <ImageView
                     android:id="@+id/iv_title"
-                    android:src="@drawable/down"
+                    android:src="@drawable/ntp_down"
                     android:layout_width="10sp"
                     android:layout_height="10sp"
                     android:layout_gravity="center_vertical"
@@ -50,6 +52,7 @@ found in the LICENSE file.
                     android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:textSize="12sp" />
           </LinearLayout>
@@ -59,21 +62,39 @@ found in the LICENSE file.
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/tv_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginRight="5dp"
-                android:ellipsize="end"
-                android:text="More>"
-                android:singleLine="true"
-                android:textColor="#ff666666"
-                android:textSize="12sp" />
+           <LinearLayout
+              android:id="@+id/ll_more"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="end"
+              android:paddingTop="6dp"
+              android:paddingBottom="6dp"
+              android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:text=""
+                    android:singleLine="true"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp" />
+                <ImageView
+                    android:src="@drawable/ntp_more"
+                    android:layout_width="6sp"
+                    android:layout_height="6sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"/>
+          </LinearLayout>
+
+
       </LinearLayout>
 
       <FrameLayout android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:paddingBottom="6dp"
           android:id="@+id/fl_tiles">
 
             <ViewStub
