@@ -296,8 +296,12 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         AdmobBannerViewHolder(View itemView, Context ctx) {
             super(itemView);
             mAdView = itemView.findViewById(R.id.av_banner);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
+            try {
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            } catch(Exception e) {
+                Log.w(TAG, "AdView.load fail: " + e.getMessage());
+            }
         }
     }
 

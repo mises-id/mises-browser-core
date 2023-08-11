@@ -153,7 +153,7 @@ public class MisesAdsUtil {
         Log.i(TAG, "loadRewardedAd show " + show);
         setStatus(AdsStatus.LOADING);
         try {
-        AdRequest adRequest = new AdRequest.Builder().build();
+            AdRequest adRequest = new AdRequest.Builder().build();
             RewardedAd.load(
                 act,
                 REWARDAD_UNIT_ID,
