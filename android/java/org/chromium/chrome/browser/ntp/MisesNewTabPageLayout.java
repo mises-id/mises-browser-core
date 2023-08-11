@@ -139,6 +139,8 @@ public class MisesNewTabPageLayout
     private ViewGroup mWeb3ExtensionTilesContainerLayout;
     private MostVisitedTilesCoordinator mWeb3ExtensionTilesCoordinator;
 
+    private ViewGroup mAdmobBannerLayout;
+
     private TileGroupDelegateWrapper mTileGroupDelegateWrapper;
 
 
@@ -212,6 +214,10 @@ public class MisesNewTabPageLayout
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
         mWeb3ExtensionTilesContainerLayout.setVisibility(View.VISIBLE);
         mWeb3ExtensionTilesContainerLayout.post(runable);
+
+        mAdmobBannerLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.mises_admob_banner, mMainLayout, false);
+        mAdmobBannerLayout.setVisibility(View.VISIBLE);
 
         
 
@@ -289,6 +295,7 @@ public class MisesNewTabPageLayout
                     mActivity, this, Glide.with(mActivity),
                     mMvTilesContainerLayout, mMisesServiceTilesContainerLayout, 
                     mWeb3SiteTilesContainerLayout, mWeb3ExtensionTilesContainerLayout,
+                    mAdmobBannerLayout,
                     mRecyclerView.getHeight(), mIsTopSitesEnabled
                 );
 

@@ -35,6 +35,7 @@ mises_chrome_java_deps = [
   #"//mises/vendor/bat-native-ledger/include/bat/ledger/public/interfaces:ledger_types_java",
   "//third_party/android_deps:google_play_services_vision_common_java",
   "//third_party/android_deps:google_play_services_vision_java",
+  "//mises/third_party/android_deps:google_play_services_ads_lite_java",
   "//third_party/androidx:androidx_lifecycle_lifecycle_livedata_core_java",
   "//third_party/androidx:androidx_lifecycle_lifecycle_livedata_java",
   "//third_party/androidx:androidx_lifecycle_lifecycle_viewmodel_java",
