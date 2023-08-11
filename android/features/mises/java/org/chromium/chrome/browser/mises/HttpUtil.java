@@ -66,6 +66,7 @@ public class HttpUtil {
             URL url = new URL(urlStr);
             urlConnection = (HttpURLConnection) ChromiumNetworkAdapter.openConnection(url, NetworkTrafficAnnotationTag.MISSING_TRAFFIC_ANNOTATION);
             urlConnection.setConnectTimeout(20000);
+            urlConnection.setReadTimeout(60000);
             urlConnection.setDoOutput(false);
             urlConnection.setDoInput(true);
             urlConnection.setUseCaches(false);
@@ -77,7 +78,7 @@ public class HttpUtil {
 
             int resCode = urlConnection.getResponseCode();
             Log.d(TAG, "mises http get " + urlStr + ", ret " + resCode);
-            if (resCode == 200) {
+            if (resCode == HttpURLConnection.HTTP_OK) {
                 InputStream is = urlConnection.getInputStream();
                 ByteArrayOutputStream bo = new ByteArrayOutputStream();
                 int i = is.read();
@@ -98,14 +99,8 @@ public class HttpUtil {
                 String err = bo.toString();
                 Log.e(TAG, "fail " + err);
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Log.e(TAG, "mises api get error " + e.toString());
-        } catch (MalformedURLException e) {
-            Log.e(TAG, "mises api get  error " + e.toString());
-        } catch (IOException e) {
-            Log.e(TAG, "mises api get  error " + e.toString());
-        } catch (IllegalStateException e) {
-            Log.e(TAG, "mises api get  error " + e.toString());
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
         }

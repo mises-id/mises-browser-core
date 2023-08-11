@@ -47,6 +47,9 @@ import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
 import org.chromium.chrome.browser.tabmodel.TabCreator;
 import org.chromium.chrome.browser.tab.TabLaunchType;
 
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -57,6 +60,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View mMisesServiceTilesContainerLayout;
     private View mWeb3SiteTilesContainerLayout;
     private View mWeb3ExtensionTilesContainerLayout;
+
+    private View mAdmobBannerLayout;
     private OnMisesNtpListener mOnMisesNtpListener;
     private boolean mIsTopSitesEnabled;
     private boolean mIsMisesServiceEnabled;
@@ -76,6 +81,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static int TYPE_WEB3_SITE = 2;
     private static int TYPE_WEB3_EXTENSION = 3;
     private static int TYPE_TOP_SITES = 4;
+    private static int TYPE_ADMOB_BANNER = 5;
 
     private static final int ONE_ITEM_SPACE = 1;
     private static final int TWO_ITEMS_SPACE = 2;
@@ -91,6 +97,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View misesServiceTilesContainerLayout,
             View web3SiteTilesContainerLayout,
             View web3ExtensionTilesContainerLayout,
+            View admobBannerLayout,
             int recyclerViewHeight, boolean isTopSitesEnabled) {
         mActivity = activity;
         mOnMisesNtpListener = onMisesNtpListener;
@@ -99,6 +106,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mMisesServiceTilesContainerLayout = misesServiceTilesContainerLayout;
         mWeb3SiteTilesContainerLayout = web3SiteTilesContainerLayout;
         mWeb3ExtensionTilesContainerLayout = web3ExtensionTilesContainerLayout;
+        mAdmobBannerLayout = admobBannerLayout;
         mRecyclerViewHeight = recyclerViewHeight;
         mIsTopSitesEnabled = isTopSitesEnabled;
         mIsMisesServiceEnabled = shouldDisplayMisesService();
@@ -118,11 +126,13 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         int margin = dpToPx(mActivity, 10);
-        layoutParams.setMargins(margin, margin, margin, 0);
+        layoutParams.setMargins(0, margin, 0, 0);
+        int background = GlobalNightModeStateProviderHolder.getInstance().isInNightMode()?
+            R.drawable.rounded_dark_bg_alpha : R.drawable.rounded_light_bg_alpha;
         if (holder instanceof TopSitesViewHolder) {
 
             mMvTilesContainerLayout.setLayoutParams(layoutParams);
-            mMvTilesContainerLayout.setBackgroundResource(R.drawable.rounded_light_bg_alpha);
+            mMvTilesContainerLayout.setBackgroundResource(background);
 
             mTopSitesHeight = getViewHeight(holder.itemView) + margin;
 
@@ -132,7 +142,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.update(mIsWeb3SiteEnabled);
 
             misesServiceHolder.getView().setLayoutParams(layoutParams);
-            misesServiceHolder.getView().setBackgroundResource(R.drawable.rounded_light_bg_alpha);
+            misesServiceHolder.getView().setBackgroundResource(background);
 
 
         } else if (holder instanceof Web3ExtensionViewHolder) {
@@ -141,7 +151,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.update(mIsWeb3ExtensionEnabled);
 
             misesServiceHolder.getView().setLayoutParams(layoutParams);
-            misesServiceHolder.getView().setBackgroundResource(R.drawable.rounded_light_bg_alpha);
+            misesServiceHolder.getView().setBackgroundResource(background);
 
 
         } else if (holder instanceof MisesServiceViewHolder) {
@@ -150,7 +160,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.update(mIsMisesServiceEnabled);
 
             misesServiceHolder.getView().setLayoutParams(layoutParams);
-            misesServiceHolder.getView().setBackgroundResource(R.drawable.rounded_light_bg_alpha);
+            misesServiceHolder.getView().setBackgroundResource(background);
 
 
         }
@@ -158,7 +168,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return getTopSitesCount();
+        return getTopSitesCount() + ONE_ITEM_SPACE;
     }
 
     @NonNull
@@ -177,6 +187,10 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new Web3ExtensionViewHolder(mWeb3ExtensionTilesContainerLayout, mActivity);
 
         }
+        else if (viewType == TYPE_ADMOB_BANNER) {
+            return new AdmobBannerViewHolder(mAdmobBannerLayout, mActivity);
+
+        }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
     }
 
@@ -186,11 +200,13 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return TYPE_MISES_SERVICE;
         } else if (position == 1) {
             return TYPE_WEB3_SITE;
-        }else if (position == 2) {
+        } else if (position == 2) {
             return TYPE_WEB3_EXTENSION;
+        } else if (position == 3) {
+            return TYPE_TOP_SITES;
         }
 
-        return TYPE_TOP_SITES;
+        return TYPE_ADMOB_BANNER;
     }
 
     public int getTopSitesCount() {
@@ -272,6 +288,16 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static class TopSitesViewHolder extends RecyclerView.ViewHolder {
         TopSitesViewHolder(View itemView) {
             super(itemView);
+        }
+    }
+
+    public static class AdmobBannerViewHolder extends RecyclerView.ViewHolder {
+        protected AdView mAdView;
+        AdmobBannerViewHolder(View itemView, Context ctx) {
+            super(itemView);
+            mAdView = itemView.findViewById(R.id.av_banner);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
         }
     }
 
