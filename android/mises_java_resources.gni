@@ -380,6 +380,15 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/layout/radio_button_group_unstoppable_domains_resolve_method_preference.xml",
     "java/res/layout/radio_button_group_ipfs_gateway_preference.xml",
 
+    "java/res/drawable/rounded_light_bg_alpha.xml",
+    "java/res/drawable/rounded_dark_bg_alpha.xml",
+    "java/res/drawable/ntp_down.png",
+    "java/res/drawable/ntp_more.png",
+    "java/res/layout/new_tab_page_layout.xml",
+    "java/res/layout/mises_service_tiles_container.xml",
+    "java/res/layout/mises_suggestions_tile_view.xml",
+    
+
 
 ]
 mises_base_module_resources = [ 

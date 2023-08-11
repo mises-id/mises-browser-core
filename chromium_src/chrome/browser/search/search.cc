@@ -176,11 +176,7 @@ struct NewTabURLDetails {
     if (profile->IsOffTheRecord())
       return NewTabURLDetails(GURL(), NEW_TAB_URL_INCOGNITO);
 
-#if BUILDFLAG(IS_ANDROID)
-    const GURL local_url("chrome-search://local-ntp/local-ntp.html");
-#else
     const GURL local_url(chrome::kChromeUINewTabPageURL);
-#endif
 
     if (ShouldShowLocalNewTab(profile))
       return NewTabURLDetails(local_url, NEW_TAB_URL_VALID);
@@ -243,7 +239,7 @@ bool IsNTPOrRelatedURL(const GURL& url, Profile* profile) {
     return false;
 
   if (!IsInstantExtendedAPIEnabled())
-    return url == chrome::kChromeUINewTabURL || url == "chrome-search://local-ntp/local-ntp.html" || url == "chrome-search://local-ntp/new-ntp.html";
+    return url == chrome::kChromeUINewTabURL || url == "chrome-search://local-ntp/local-ntp.html";
 
   return profile && IsNTPOrRelatedURLHelper(url, profile);
 }
@@ -300,9 +296,6 @@ bool IsInstantNTPURL(const GURL& url, Profile* profile) {
     return true;
 
   if (MatchesOrigin(url, GURL("chrome-search://local-ntp/local-ntp.html")))
-    return true;
-
-  if (MatchesOrigin(url, GURL("chrome-search://local-ntp/new-ntp.html")))
     return true;
 
   std::string scheme = url.scheme();

@@ -7,4 +7,7 @@ found in the LICENSE file.
 
 <resources xmlns:tools="http://schemas.android.com/tools">
   <dimen name="separator_height">1dp</dimen>
+  <dimen name="tile_view_icon_size_mises">33dp</dimen>
+  <dimen name="tile_view_icon_margin_top_mises">15dp</dimen>
+  
 </resources>

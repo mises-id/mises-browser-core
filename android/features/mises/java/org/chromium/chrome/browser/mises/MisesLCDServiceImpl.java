@@ -35,7 +35,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -437,63 +436,7 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
 
 
     private JSONObject MisesApiGet(String path) {
-        JSONObject result = null;
-        HttpURLConnection urlConnection = null;
-        try {
-            URL url = new URL("https://api.alb.mises.site/api/v1/" + path);
-            urlConnection = (HttpURLConnection) ChromiumNetworkAdapter.openConnection(url, NetworkTrafficAnnotationTag.MISSING_TRAFFIC_ANNOTATION);
-            urlConnection.setConnectTimeout(20000);
-            urlConnection.setDoOutput(false);
-            urlConnection.setDoInput(true);
-            urlConnection.setUseCaches(false);
-            urlConnection.setRequestMethod("GET");
-//            String userAgent = ContentUtils.getBrowserUserAgent();
-//            urlConnection.setRequestProperty("User-Agent", userAgent);
-//            urlConnection.setRequestProperty("Authorization", "Bearer " + mToken);
-            urlConnection.setRequestProperty("Connection", "Keep-alive");
-            urlConnection.setRequestProperty("Charset", "UTF-8");
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-
-
-            int resCode = urlConnection.getResponseCode();
-            Log.d(TAG, "mises api get " + path + ", ret " + resCode);
-            if (resCode == 200) {
-                InputStream is = urlConnection.getInputStream();
-                ByteArrayOutputStream bo = new ByteArrayOutputStream();
-                int i = is.read();
-                while (i != -1) {
-                    bo.write(i);
-                    i = is.read();
-                }
-                String resJson = bo.toString();
-                result = new JSONObject(resJson);
-//                int code = -1;
-//                if (resJsonObject.has("code")) {
-//                    code = resJsonObject.getInt("code");
-//                }
-//                return code;
-            } else {
-                InputStream is = urlConnection.getErrorStream();
-                ByteArrayOutputStream bo = new ByteArrayOutputStream();
-                int i = is.read();
-                while (i != -1) {
-                    bo.write(i);
-                    i = is.read();
-                }
-                String err = bo.toString();
-                Log.e(TAG, "Share to mises " + err);
-            }
-        } catch (JSONException e) {
-            Log.e(TAG, "mises api get error " + e.toString());
-        } catch (MalformedURLException e) {
-            Log.e(TAG, "mises api get  error " + e.toString());
-        } catch (IOException e) {
-            Log.e(TAG, "mises api get  error " + e.toString());
-        } catch (IllegalStateException e) {
-            Log.e(TAG, "mises api get  error " + e.toString());
-        } finally {
-            if (urlConnection != null) urlConnection.disconnect();
-        }
+        JSONObject result = HttpUtil.JsonGetSync("https://api.alb.mises.site/api/v1/" + path);
         return result;
     }
 }

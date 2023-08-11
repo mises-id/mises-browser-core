@@ -1,14 +1,12 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
-index fcb24d2ecd26cdd2f097f5272607f4722c03b8df..170b6e29295c7087065e863c392664c28e22a62e 100644
+index fcb24d2ecd26cdd2f097f5272607f4722c03b8df..81a2c3c785b2eb06103c8b15c8f438f81a2d53ab 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
-@@ -46,8 +46,8 @@ public class UrlConstants {
-     public static final String ABOUT_URL = "chrome://about/";
+@@ -47,7 +47,7 @@ public class UrlConstants {
  
      public static final String NTP_HOST = "newtab";
--    public static final String NTP_URL = "chrome-native://newtab/";
+     public static final String NTP_URL = "chrome-native://newtab/";
 -    public static final String NTP_NON_NATIVE_URL = "chrome://newtab/";
-+    public static final String NTP_URL = "chrome-search://local-ntp/local-ntp.html";
 +    public static final String NTP_NON_NATIVE_URL = "chrome-search://local-ntp/local-ntp.html";
      public static final String NTP_ABOUT_URL = "about:newtab";
  

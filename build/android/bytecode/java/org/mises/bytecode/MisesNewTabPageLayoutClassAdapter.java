@@ -16,13 +16,20 @@ public class MisesNewTabPageLayoutClassAdapter extends MisesClassVisitor {
     public MisesNewTabPageLayoutClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // deleteField(sMisesNewTabPageLayoutClassName, "mMvTilesContainerLayout");
-        // makeProtectedField(sNewTabPageLayoutClassName, "mMvTilesContainerLayout");
+        deleteField(sMisesNewTabPageLayoutClassName, "mMvTilesContainerLayout");
+        makeProtectedField(sNewTabPageLayoutClassName, "mMvTilesContainerLayout");
 
-        // makePublicMethod(sNewTabPageLayoutClassName, "insertSiteSectionView");
-        // addMethodAnnotation(
-        //         sMisesNewTabPageLayoutClassName, "insertSiteSectionView", "Ljava/lang/Override;");
+        deleteField(sMisesNewTabPageLayoutClassName, "mLogoCoordinator");
+        makeProtectedField(sNewTabPageLayoutClassName, "mLogoCoordinator");
 
-        // changeSuperName(sNewTabPageLayoutClassName, sNewTabPageLayoutSuperClassName);
+        makePublicMethod(sNewTabPageLayoutClassName, "insertSiteSectionView");
+        addMethodAnnotation(
+                sMisesNewTabPageLayoutClassName, "insertSiteSectionView", "Ljava/lang/Override;");
+
+        makePublicMethod(sNewTabPageLayoutClassName, "isScrollableMvtEnabled");
+        addMethodAnnotation(
+                sMisesNewTabPageLayoutClassName, "isScrollableMvtEnabled", "Ljava/lang/Override;");
+
+        changeSuperName(sNewTabPageLayoutClassName, sNewTabPageLayoutSuperClassName);
     }
 }

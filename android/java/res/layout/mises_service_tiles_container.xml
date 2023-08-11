@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2022 The Chromium Authors
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<!-- A site suggestion tile. -->
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:chrome="http://schemas.android.com/apk/res-auto"	  
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mv_tiles_container"
+    android:visibility="gone"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    app:layout_scrollFlags="scroll">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:orientation="horizontal">
+
+           <LinearLayout
+              android:id="@+id/ll_toggle"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="start"
+              android:paddingTop="6dp"
+              android:paddingBottom="6dp"
+              android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/iv_title"
+                    android:src="@drawable/ntp_down"
+                    android:layout_width="10sp"
+                    android:layout_height="10sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"/>
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:text=""
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12sp" />
+          </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+           <LinearLayout
+              android:id="@+id/ll_more"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="end"
+              android:paddingTop="6dp"
+              android:paddingBottom="6dp"
+              android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:text=""
+                    android:singleLine="true"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp" />
+                <ImageView
+                    android:src="@drawable/ntp_more"
+                    android:layout_width="6sp"
+                    android:layout_height="6sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"/>
+          </LinearLayout>
+
+
+      </LinearLayout>
+
+      <FrameLayout android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:paddingBottom="6dp"
+          android:id="@+id/fl_tiles">
+
+            <ViewStub
+                android:id="@+id/mv_tiles_carousel_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/mv_tiles_carousel" />
+
+            <ViewStub
+                android:id="@+id/mv_tiles_grid_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/mv_tiles_grid" />
+
+            <!-- Site suggestion tile grid placeholder -->
+            <ViewStub
+                android:id="@+id/tile_grid_placeholder_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/tile_grid_placeholder"
+                android:layout="@layout/new_tab_page_tile_grid_placeholder" />
+
+      </FrameLayout>
+
+    </LinearLayout>
+</FrameLayout>

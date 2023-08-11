@@ -40,7 +40,7 @@ java_binary("java_bytecode_rewriter") {
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesLocationBarCoordinatorClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesLocationBarLayoutClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesLocationBarMediatorClassAdapter.java",
-    "//mises/build/android/bytecode/java/org/mises/bytecode/MisesLogoCoordinatorClassAdapter.java",
+    "//mises/build/android/bytecode/java/org/mises/bytecode/MisesLogoMediatorClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesMainPreferenceBaseClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesManageAccountDevicesLinkViewClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesManageSyncSettingsClassAdapter.java",
