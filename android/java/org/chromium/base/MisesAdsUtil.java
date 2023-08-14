@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
+import android.os.Build;
 
 import org.chromium.base.Log;
 import java.util.Arrays;
@@ -24,6 +25,7 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.AdView;
 import org.chromium.base.PackageUtils;
 
 
@@ -65,14 +67,23 @@ public class MisesAdsUtil {
         
     }
 
+    private static void runtimeCheck() throws RuntimeException{
+        if (!PackageUtils.isPackageInstalled("com.google.android.webview")) {
+            throw new RuntimeException("webview not exists!");
+        }
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P)  {
+            if (!PackageUtils.isPackageInstalled("com.android.chrome")) {
+                throw new RuntimeException("chrome not exists!");
+            }
+        };
+    }
+
     private static void doInit(final Activity act, final String misesID) {
         if (status != AdsStatus.NOT_INITIALIZED) {
             return;
         }
         try {
-            if (!PackageUtils.isPackageInstalled("com.google.android.webview")) {
-                throw new RuntimeException("webview not exists!");
-            }
+            runtimeCheck();
             setStatus(AdsStatus.INITIALIZING);
             MobileAds.initialize(act, new OnInitializationCompleteListener() {
                 @Override
@@ -132,6 +143,16 @@ public class MisesAdsUtil {
                     Toast.makeText(act, "Thank your for your support", Toast.LENGTH_SHORT).show();
                 }
         });
+    }
+    public static void maybeLoadBannerAd(final AdView view) {
+        try {
+            runtimeCheck();
+            AdRequest adRequest = new AdRequest.Builder().build();
+            view.loadAd(adRequest);
+        } catch(Exception e) {
+            Log.w(TAG, "AdView.load fail: " + e.getMessage());
+        }
+
     }
     public static void loadAndShowRewardedAd(final Activity act, final String misesID) {
         if (status == AdsStatus.NOT_INITIALIZED) {

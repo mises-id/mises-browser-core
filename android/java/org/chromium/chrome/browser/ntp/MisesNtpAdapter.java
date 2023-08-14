@@ -48,7 +48,7 @@ import org.chromium.chrome.browser.tabmodel.TabCreator;
 import org.chromium.chrome.browser.tab.TabLaunchType;
 
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.AdRequest;
+import org.chromium.base.MisesAdsUtil;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -296,12 +296,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         AdmobBannerViewHolder(View itemView, Context ctx) {
             super(itemView);
             mAdView = itemView.findViewById(R.id.av_banner);
-            try {
-                AdRequest adRequest = new AdRequest.Builder().build();
-                mAdView.loadAd(adRequest);
-            } catch(Exception e) {
-                Log.w(TAG, "AdView.load fail: " + e.getMessage());
-            }
+            MisesAdsUtil.maybeLoadBannerAd(mAdView);
         }
     }
 
