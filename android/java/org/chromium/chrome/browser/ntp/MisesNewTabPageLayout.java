@@ -216,7 +216,7 @@ public class MisesNewTabPageLayout
         mWeb3ExtensionTilesContainerLayout.post(runable);
 
         mAdmobBannerLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
-                                        .inflate(R.layout.mises_admob_banner, mMainLayout, false);
+                                        .inflate(R.layout.mises_admob_native, mMainLayout, false);
         mAdmobBannerLayout.setVisibility(View.VISIBLE);
 
         
@@ -405,7 +405,45 @@ public class MisesNewTabPageLayout
         
         mTileGroupDelegateWrapper.setReady();
 
+        manager.addDestructionObserver(MisesNewTabPageLayout.this::onDestroy);
+
         
+    }
+
+    @Override
+    public void onSwitchToForeground() {
+        Log.v(TAG, "onSwitchToForeground");
+        super.onSwitchToForeground();
+        
+        if (mMisesServiceTilesCoordinator != null) {
+            mMisesServiceTilesCoordinator.onSwitchToForeground();
+        }
+        if (mWeb3SiteTilesCoordinator != null) {
+            mWeb3SiteTilesCoordinator.onSwitchToForeground();
+        }
+        if (mWeb3ExtensionTilesCoordinator != null) {
+            mWeb3ExtensionTilesCoordinator.onSwitchToForeground();
+        }
+    }
+    private void onDestroy() {
+        Log.v(TAG, "onDestroy");
+        if (mTileGroupDelegateWrapper != null) {
+            mTileGroupDelegateWrapper.destroy();
+            mTileGroupDelegateWrapper = null;
+        }
+
+        if (mMisesServiceTilesCoordinator != null) {
+            mMisesServiceTilesCoordinator.destroyMvtiles();
+            mMisesServiceTilesCoordinator = null;
+        }
+        if (mWeb3SiteTilesCoordinator != null) {
+            mWeb3SiteTilesCoordinator.destroyMvtiles();
+            mWeb3SiteTilesCoordinator = null;
+        }
+        if (mWeb3ExtensionTilesCoordinator != null) {
+            mWeb3ExtensionTilesCoordinator.destroyMvtiles();
+            mWeb3ExtensionTilesCoordinator = null;
+        }
     }
 
     public void setTabProvider(Supplier<Tab> tabProvider) {

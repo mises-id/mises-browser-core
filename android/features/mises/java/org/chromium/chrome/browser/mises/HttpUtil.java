@@ -36,15 +36,17 @@ public class HttpUtil {
 
     private static class JsonGetTask extends AsyncTask<JSONObject> {
         private String mUrlStr;
+        private String mUserAgentStr;
         private Callback<JSONObject> mCallback;
-	    public JsonGetTask(String urlStr, Callback<JSONObject> callback) {
+	    public JsonGetTask(final String urlStr, final String userAgentStr, Callback<JSONObject> callback) {
             mUrlStr = urlStr;
+            mUserAgentStr = userAgentStr;
             mCallback = callback;
         }
 
         @Override
         protected JSONObject doInBackground() {
-            JSONObject res = JsonGetSync(mUrlStr);
+            JSONObject res = JsonGetSync(mUrlStr, mUserAgentStr);
             return res;
         }
 
@@ -54,12 +56,12 @@ public class HttpUtil {
         }
     }
 
-    public static void JsonGetAsync(String urlStr,Callback<JSONObject> callback) {
-        JsonGetTask task = new JsonGetTask(urlStr, callback);
+    public static void JsonGetAsync(final String urlStr, final String userAgentStr, Callback<JSONObject> callback) {
+        JsonGetTask task = new JsonGetTask(urlStr, userAgentStr, callback);
         task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public static JSONObject JsonGetSync(String urlStr) {
+    public static JSONObject JsonGetSync(final String urlStr, final String userAgentStr) {
         JSONObject result = null;
         HttpURLConnection urlConnection = null;
         try {
@@ -74,6 +76,7 @@ public class HttpUtil {
             urlConnection.setRequestProperty("Connection", "Keep-alive");
             urlConnection.setRequestProperty("Charset", "UTF-8");
             urlConnection.setRequestProperty("Content-Type", "application/json");
+            urlConnection.setRequestProperty("User-Agent", userAgentStr);
 
 
             int resCode = urlConnection.getResponseCode();

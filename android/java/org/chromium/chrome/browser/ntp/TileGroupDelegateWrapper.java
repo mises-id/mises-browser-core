@@ -22,6 +22,7 @@ import org.chromium.chrome.browser.suggestions.tile.TileSectionType;
 import org.chromium.chrome.browser.suggestions.tile.TileSource;
 import org.chromium.chrome.browser.suggestions.tile.TileTitleSource;
 import org.chromium.chrome.browser.AppMenuBridge;
+import org.chromium.chrome.browser.content.ContentUtils;
 
 import org.chromium.url.GURL;
 import org.chromium.base.Log;
@@ -36,7 +37,6 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
     public static final int WEB3_SITES_CACHE_EXPIRE_TIME = 3600;
     private static long sWeb3SitesCacheTimestapm;
     private TileGroup.Delegate mWrapped;
-    private boolean mDestroyed;
     private boolean mReady;
     private ArrayList<MostVisitedSites.Observer> mObservers = new ArrayList<>();
     private List<SiteSuggestion> mSiteSuggestionsCache;
@@ -113,7 +113,6 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
     @Override
     public void destroy() {
         if (!isValid()) return;
-        mWrapped.destroy();
         mWrapped = null;
     }
 
@@ -260,7 +259,7 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
             }
         }
 
-        HttpUtil.JsonGetAsync("https://web3.mises.site/website/config.json", new Callback<JSONObject>() {
+        HttpUtil.JsonGetAsync("https://web3.mises.site/website/config.json", ContentUtils.getBrowserUserAgent(), new Callback<JSONObject>() {
             @Override
             public final void onResult(JSONObject result) {
                 if (result != null && loadWeb3SitesJson(result)) {

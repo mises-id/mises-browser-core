@@ -22,10 +22,21 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.AdView;
+
+import com.google.android.gms.ads.AdLoader;
+
+
+import com.google.android.gms.ads.VideoController;
+import com.google.android.gms.ads.VideoController.VideoLifecycleCallbacks;
+import com.google.android.gms.ads.nativead.MediaView;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.nativead.NativeAdView;
+
 import org.chromium.base.PackageUtils;
 
 
@@ -208,4 +219,48 @@ public class MisesAdsUtil {
           setStatus(AdsStatus.INITIALIZED);
         }
     }
+
+
+
+    public static void maybeLoadNativeAd(final Activity activity, final NativeAdView view, Callback<NativeAd> callback) {
+        try {
+            runtimeCheck();
+            loadNativeAd(activity, view, callback);
+        } catch(Exception e) {
+            Log.w(TAG, "NativeAdView.loadNativeAd fail: " + e.getMessage());
+        }
+
+    }
+
+    private static void loadNativeAd(final Activity activity, final NativeAdView adView, Callback<NativeAd> callback) {
+
+        AdLoader adLoader = new AdLoader.Builder(activity, "ca-app-pub-3526707353288294/8739102663")
+            .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                @Override
+                public void onNativeAdLoaded(NativeAd nativeAd) {
+                    if (activity.isDestroyed()) {
+                        nativeAd.destroy();
+                        return;
+                    }
+                    // This method sets the text, images and the native ad, etc into the ad
+                    // view.
+                    Log.i(TAG, "onNativeAdLoaded");
+                    callback.onResult(nativeAd);
+                }
+            }).withAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(LoadAdError adError) {
+                    // Handle the failure by logging, altering the UI, and so on.
+                    Log.i(TAG, "onAdFailedToLoad:" + adError);
+                }
+                @Override
+                public void onAdClicked() {
+                    // Log the click event or other custom behavior.
+                    Log.i(TAG, "onAdClicked");
+                }
+            }).build();
+        
+        adLoader.loadAds(new AdRequest.Builder().build(), 1);
+    }   
+    
 } 

@@ -36,7 +36,7 @@
         android:orientation="horizontal">
 
         <Button
-	    chrome:backgroundTint="@null" 
+	        chrome:backgroundTint="@null" 
             android:id="@+id/btn_cancel"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
@@ -54,15 +54,15 @@
 
 	<Button
 	    chrome:backgroundTint="@null"
-            android:id="@+id/btn_confirm"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/mises_share_confirm_bg"
-            android:text="@string/ok"
-            android:textAllCaps="false"
-            android:textColor="#ffffffff"
-            android:textSize="17sp" />
+        android:id="@+id/btn_confirm"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/mises_share_confirm_bg"
+        android:text="@string/ok"
+        android:textAllCaps="false"
+        android:textColor="#ffffffff"
+        android:textSize="17sp" />
     </LinearLayout>
 </LinearLayout>
