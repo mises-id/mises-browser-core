@@ -27,6 +27,7 @@ import org.chromium.url.GURL;
 import org.chromium.base.Log;
 import org.chromium.base.ContextUtils;
 import org.chromium.base.Callback;
+import org.chromium.base.MisesSysUtils;
 
 
 public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisitedSites.Observer {
@@ -63,18 +64,38 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
     public void removeMostVisitedItem(Tile item, Callback<GURL> removalUndoneCallback) {
         if (!isValid()) return;
         mWrapped.removeMostVisitedItem(item, removalUndoneCallback);
+
+        if (item.getData() != null) {
+            final SiteSuggestion suggestion = (SiteSuggestion)item.getData();
+            MisesSysUtils.logEvent("ntp_delete_most_visited", "url", suggestion.url.getSpec());
+        }
     }
 
     @Override
     public void openMostVisitedItem(int windowDisposition, Tile item) {
         if (!isValid()) return;
         mWrapped.openMostVisitedItem(windowDisposition, item);
+        logItemOpened(item);
     }
 
     @Override
     public void openMostVisitedItemInGroup(int windowDisposition, Tile item) {
         if (!isValid()) return;
         mWrapped.openMostVisitedItemInGroup(windowDisposition, item);
+        logItemOpened(item);
+    }
+    private void logItemOpened(Tile item) {
+        if (item.getData() != null && item.getData() instanceof MisesSiteSuggestion) {
+            final MisesSiteSuggestion suggestion = (MisesSiteSuggestion)item.getData();
+            if (suggestion.extensionID != null) {
+                MisesSysUtils.logEvent("ntp_open_extension", "url", suggestion.url.getSpec());
+            } else {
+                MisesSysUtils.logEvent("ntp_open_web3_site", "url", suggestion.url.getSpec());
+            }
+        } else if (item.getData() != null) {
+            final SiteSuggestion suggestion = (SiteSuggestion)item.getData();
+            MisesSysUtils.logEvent("ntp_open_visited_site", "url", suggestion.url.getSpec());
+        }
     }
 
     @Override

@@ -49,6 +49,7 @@ import org.chromium.chrome.browser.tab.TabLaunchType;
 
 import com.google.android.gms.ads.AdView;
 import org.chromium.base.MisesAdsUtil;
+import org.chromium.base.MisesSysUtils;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -340,6 +341,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             toggleLayout.setOnClickListener(view -> {
                 SharedPreferencesManager.getInstance().writeBooleanUnchecked(
                         PREF_SHOW_MISES_SERVICE, !enabled);
+                MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "service_off" : "service_on");
             }); 
 
             
@@ -363,14 +365,17 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             moreLayout.setVisibility(View.VISIBLE);
             moreLayout.setOnClickListener(view -> {
+                final String url = "https://web3.mises.site/";
                 if (mTabCreator != null) {
-                    mTabCreator.launchUrl("https://web3.mises.site/", TabLaunchType.FROM_LINK);
+                    mTabCreator.launchUrl(url, TabLaunchType.FROM_LINK);
                 }
+                MisesSysUtils.logEvent("ntp_open_web3_site", "url", url);
                 
             }); 
             toggleLayout.setOnClickListener(view -> {
                 SharedPreferencesManager.getInstance().writeBooleanUnchecked(
                         PREF_SHOW_WEB3_SITE, !enabled);
+                MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "site_off" : "site_on");
             }); 
         }
     }
@@ -393,13 +398,18 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             moreLayout.setVisibility(View.VISIBLE);
             moreLayout.setOnClickListener(view -> {
+                final String url = "https://web3.mises.site/extensions";
                 if (mTabCreator != null) {
-                    mTabCreator.launchUrl("https://web3.mises.site/extensions", TabLaunchType.FROM_LINK);
+                    mTabCreator.launchUrl(url, TabLaunchType.FROM_LINK);
                 }
+                
+                MisesSysUtils.logEvent("ntp_open_web3_site", "url", url);
+
             }); 
             toggleLayout.setOnClickListener(view -> {
                 SharedPreferencesManager.getInstance().writeBooleanUnchecked(
                         PREF_SHOW_WEB3_EXTENSION, !enabled);
+                MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "extension_off" : "extension_on");
             }); 
         }
     }

@@ -38,6 +38,7 @@ import org.chromium.components.browser_ui.bottomsheet.BottomSheetController;
 import org.chromium.components.browser_ui.settings.SettingsLauncher;
 import org.chromium.components.search_engines.TemplateUrlService;
 import org.chromium.ui.base.WindowAndroid;
+import org.chromium.base.MisesSysUtils;
 
 public class MisesNewTabPage extends NewTabPage {
     private static final String TAG = "MisesNewTabPage";
@@ -69,6 +70,7 @@ public class MisesNewTabPage extends NewTabPage {
             ((MisesNewTabPageLayout) mNewTabPageLayout).setTab(tab);
             ((MisesNewTabPageLayout) mNewTabPageLayout).setTabProvider(activityTabProvider);
         }
+        MisesSysUtils.logEvent("ntp_open", "step", "open_native");
     }
 
     @Override
