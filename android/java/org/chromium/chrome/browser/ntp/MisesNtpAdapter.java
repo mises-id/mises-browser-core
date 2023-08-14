@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Button;
+import android.widget.RatingBar;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.ImageViewCompat;
@@ -36,6 +38,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.chromium.base.ContextUtils;
 import org.chromium.base.Log;
 import org.chromium.base.task.PostTask;
+import org.chromium.base.Callback;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.night_mode.GlobalNightModeStateProviderHolder;
 import org.chromium.chrome.browser.preferences.MisesPref;
@@ -48,7 +51,15 @@ import org.chromium.chrome.browser.tabmodel.TabCreator;
 import org.chromium.chrome.browser.tab.TabLaunchType;
 
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.nativead.NativeAdView;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.VideoController;
+import com.google.android.gms.ads.VideoController.VideoLifecycleCallbacks;
+import com.google.android.gms.ads.nativead.MediaView;
+
+
+import org.chromium.base.MisesAdsUtil;
+import org.chromium.base.MisesSysUtils;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -60,8 +71,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View mMisesServiceTilesContainerLayout;
     private View mWeb3SiteTilesContainerLayout;
     private View mWeb3ExtensionTilesContainerLayout;
-
     private View mAdmobBannerLayout;
+
     private OnMisesNtpListener mOnMisesNtpListener;
     private boolean mIsTopSitesEnabled;
     private boolean mIsMisesServiceEnabled;
@@ -163,7 +174,15 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.getView().setBackgroundResource(background);
 
 
+        } else if (holder instanceof AdmobNativeViewHolder) {
+
+            AdmobNativeViewHolder nativeViewHolder = (AdmobNativeViewHolder) holder;
+            mAdmobBannerLayout.setBackgroundResource(background);
+
+
         }
+
+        
     }
 
     @Override
@@ -188,10 +207,20 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         }
         else if (viewType == TYPE_ADMOB_BANNER) {
-            return new AdmobBannerViewHolder(mAdmobBannerLayout, mActivity);
+            return new AdmobNativeViewHolder(mAdmobBannerLayout, mActivity);
 
         }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
+        if (holder instanceof AdmobNativeViewHolder) {
+
+            AdmobNativeViewHolder nativeAdsHolder = (AdmobNativeViewHolder) holder;
+            nativeAdsHolder.destroy();
+
+        }
     }
 
     @Override
@@ -296,13 +325,115 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         AdmobBannerViewHolder(View itemView, Context ctx) {
             super(itemView);
             mAdView = itemView.findViewById(R.id.av_banner);
-            try {
-                AdRequest adRequest = new AdRequest.Builder().build();
-                mAdView.loadAd(adRequest);
-            } catch(Exception e) {
-                Log.w(TAG, "AdView.load fail: " + e.getMessage());
+            MisesAdsUtil.maybeLoadBannerAd(mAdView);
+        }
+    }
+    
+    public static class AdmobNativeViewHolder extends RecyclerView.ViewHolder implements Callback<NativeAd>  {
+        protected NativeAdView mNativeAdView;
+        private NativeAd mNativeAd;
+        AdmobNativeViewHolder(View itemView, Activity ctx) {
+            super(itemView);
+            mNativeAdView = itemView.findViewById(R.id.av_native);
+            MisesAdsUtil.maybeLoadNativeAd(ctx, mNativeAdView, this);
+        }
+        public void destroy() {
+            Log.v(TAG, "AdmobNativeViewHolder::destroy");
+            if (mNativeAd != null) {
+                mNativeAd.destroy();
+                mNativeAd = null;
             }
         }
+        @Override
+        public final void onResult(NativeAd nativeAd) {
+            mNativeAdView.setVisibility(View.VISIBLE);
+            mNativeAd = nativeAd;
+            final NativeAdView adView = mNativeAdView;
+            MediaView mediaView = adView.findViewById(R.id.ad_media);
+            // Set the media view.
+            adView.setMediaView(mediaView);
+
+            // Set other ad assets.
+            adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
+            adView.setBodyView(adView.findViewById(R.id.ad_body));
+            adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
+            adView.setAdvertiserView(adView.findViewById(R.id.ad_advertiser));
+            adView.setStarRatingView(adView.findViewById(R.id.ad_stars));
+
+            ImageView imageView = adView.findViewById(R.id.ad_app_icon);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                imageView.setClipToOutline(true);
+            }
+            adView.setIconView(imageView);
+
+            // The headline and mediaContent are guaranteed to be in every NativeAd.
+            ((TextView) adView.getHeadlineView()).setText(nativeAd.getHeadline());
+            mediaView.setMediaContent(nativeAd.getMediaContent());
+
+            // These assets aren't guaranteed to be in every NativeAd, so it's important to
+            // check before trying to display them.
+            if (nativeAd.getBody() == null) {
+                adView.getBodyView().setVisibility(View.INVISIBLE);
+            } else {
+                adView.getBodyView().setVisibility(View.VISIBLE);
+                ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
+            }
+
+            if (nativeAd.getCallToAction() == null) {
+                adView.getCallToActionView().setVisibility(View.INVISIBLE);
+            } else {
+                adView.getCallToActionView().setVisibility(View.VISIBLE);
+                ((Button) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
+            }
+
+            if (nativeAd.getIcon() == null) {
+                adView.getIconView().setVisibility(View.GONE);
+            } else {
+                ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
+                adView.getIconView().setVisibility(View.VISIBLE);
+            }
+
+            if (nativeAd.getStarRating() == null) {
+                adView.getStarRatingView().setVisibility(View.INVISIBLE);
+            } else {
+                ((RatingBar) adView.getStarRatingView())
+                        .setRating(nativeAd.getStarRating().floatValue());
+                adView.getStarRatingView().setVisibility(View.VISIBLE);
+            }
+
+            if (nativeAd.getAdvertiser() == null) {
+                adView.getAdvertiserView().setVisibility(View.INVISIBLE);
+            } else {
+                ((TextView) adView.getAdvertiserView()).setText(nativeAd.getAdvertiser());
+                adView.getAdvertiserView().setVisibility(View.VISIBLE);
+            }
+
+            // This method tells the Google Mobile Ads SDK that you have finished populating your
+            // native ad view with this native ad.
+            adView.setNativeAd(nativeAd);
+
+            // Get the video controller for the ad. One will always be provided,
+            // even if the ad doesn't have a video asset.
+            VideoController videoController = nativeAd.getMediaContent().getVideoController();
+
+            // Updates the UI to say whether or not this ad has a video asset.
+            if (videoController.hasVideoContent()) {
+
+                // Create a new VideoLifecycleCallbacks object and pass it to the VideoController.
+                // The VideoController will call methods on this object when events occur in the
+                // video lifecycle.
+                videoController.setVideoLifecycleCallbacks(
+                    new VideoLifecycleCallbacks() {
+                        @Override
+                        public void onVideoEnd() {
+                            // Publishers should allow native ads to complete video playback before
+                            // refreshing or replacing them with another ad in the same UI location.
+                            super.onVideoEnd();
+                        }
+                    });
+            }
+        }
+
     }
 
     public static class MisesServiceViewHolder extends RecyclerView.ViewHolder {
@@ -345,6 +476,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             toggleLayout.setOnClickListener(view -> {
                 SharedPreferencesManager.getInstance().writeBooleanUnchecked(
                         PREF_SHOW_MISES_SERVICE, !enabled);
+                MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "service_off" : "service_on");
             }); 
 
             
@@ -368,14 +500,17 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             moreLayout.setVisibility(View.VISIBLE);
             moreLayout.setOnClickListener(view -> {
+                final String url = "https://web3.mises.site/";
                 if (mTabCreator != null) {
-                    mTabCreator.launchUrl("https://web3.mises.site/", TabLaunchType.FROM_LINK);
+                    mTabCreator.launchUrl(url, TabLaunchType.FROM_LINK);
                 }
+                MisesSysUtils.logEvent("ntp_open_web3_site", "url", url);
                 
             }); 
             toggleLayout.setOnClickListener(view -> {
                 SharedPreferencesManager.getInstance().writeBooleanUnchecked(
                         PREF_SHOW_WEB3_SITE, !enabled);
+                MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "site_off" : "site_on");
             }); 
         }
     }
@@ -398,13 +533,18 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             moreLayout.setVisibility(View.VISIBLE);
             moreLayout.setOnClickListener(view -> {
+                final String url = "https://web3.mises.site/extensions";
                 if (mTabCreator != null) {
-                    mTabCreator.launchUrl("https://web3.mises.site/extensions", TabLaunchType.FROM_LINK);
+                    mTabCreator.launchUrl(url, TabLaunchType.FROM_LINK);
                 }
+                
+                MisesSysUtils.logEvent("ntp_open_web3_site", "url", url);
+
             }); 
             toggleLayout.setOnClickListener(view -> {
                 SharedPreferencesManager.getInstance().writeBooleanUnchecked(
                         PREF_SHOW_WEB3_EXTENSION, !enabled);
+                MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "extension_off" : "extension_on");
             }); 
         }
     }

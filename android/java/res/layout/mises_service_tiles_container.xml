@@ -53,8 +53,9 @@ found in the LICENSE file.
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:layout_marginLeft="5dp"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
           </LinearLayout>
 
             <TextView
@@ -92,9 +93,10 @@ found in the LICENSE file.
       </LinearLayout>
 
       <FrameLayout android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:paddingBottom="6dp"
-          android:id="@+id/fl_tiles">
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:id="@+id/fl_tiles"
+            android:background="@drawable/border_line">
 
             <ViewStub
                 android:id="@+id/mv_tiles_carousel_stub"

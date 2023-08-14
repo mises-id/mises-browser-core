@@ -67,6 +67,14 @@
                             android:textSize="12sp"
                             android:textStyle="bold"/>
 
+                         <RatingBar
+                            android:id="@+id/ad_stars"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:stepSize="0.5" /> 
                         <Button
                             android:id="@+id/ad_call_to_action"
                             android:layout_width="wrap_content"
@@ -74,14 +82,6 @@
                             android:minHeight="0dp"
                             android:textSize="6sp" />
 
-                        <!-- <RatingBar
-                            android:id="@+id/ad_stars"
-                            style="?android:attr/ratingBarStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:isIndicator="true"
-                            android:numStars="5"
-                            android:stepSize="0.5" /> -->
                     </LinearLayout>
 
                 </LinearLayout>
