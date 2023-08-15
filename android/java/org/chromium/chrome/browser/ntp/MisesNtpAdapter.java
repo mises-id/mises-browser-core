@@ -177,6 +177,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (holder instanceof AdmobNativeViewHolder) {
 
             AdmobNativeViewHolder nativeViewHolder = (AdmobNativeViewHolder) holder;
+            mAdmobBannerLayout.setLayoutParams(layoutParams);
             mAdmobBannerLayout.setBackgroundResource(background);
 
 

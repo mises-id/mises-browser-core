@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 import android.content.res.Resources;
+import android.view.View;
 
 import org.chromium.base.Log;
 import org.chromium.chrome.R;
@@ -36,6 +37,18 @@ public class MisesTileView extends SuggestionsTileView {
         params.topMargin =
                     resources.getDimensionPixelSize(R.dimen.tile_view_icon_margin_top_mises);
         getIconView().setLayoutParams(params);
+
+       
+    }
+    
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        View iconBackgroundView = findViewById(R.id.tile_view_icon_background);
+        if (iconBackgroundView != null) {
+            iconBackgroundView.setVisibility(View.GONE);
+        }
+         
     }
  
 }

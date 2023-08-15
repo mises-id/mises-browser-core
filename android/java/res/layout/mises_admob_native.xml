@@ -12,16 +12,8 @@
     android:id="@+id/mv_admob_container"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
-    android:paddingTop="16dp"
     app:layout_scrollFlags="scroll">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textColor="#ff333333"
-        android:textSize="20sp" />
 
     <com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
