@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
 import android.os.Build;
+import android.webkit.WebView;
 
 import org.chromium.base.Log;
 import java.util.Arrays;
@@ -78,7 +79,7 @@ public class MisesAdsUtil {
         
     }
 
-    private static void runtimeCheck() throws RuntimeException{
+    private static void runtimeCheck(Context ctx) throws RuntimeException{
         if (!PackageUtils.isPackageInstalled("com.google.android.webview")) {
             throw new RuntimeException("webview not exists!");
         }
@@ -87,6 +88,8 @@ public class MisesAdsUtil {
                 throw new RuntimeException("chrome not exists!");
             }
         };
+        final WebView dummyWebView = new WebView(ctx);
+        dummyWebView.destroy();
     }
 
     private static void doInit(final Activity act, final String misesID) {
@@ -94,7 +97,7 @@ public class MisesAdsUtil {
             return;
         }
         try {
-            runtimeCheck();
+            runtimeCheck(act);
             setStatus(AdsStatus.INITIALIZING);
             MobileAds.initialize(act, new OnInitializationCompleteListener() {
                 @Override
@@ -155,9 +158,9 @@ public class MisesAdsUtil {
                 }
         });
     }
-    public static void maybeLoadBannerAd(final AdView view) {
+    public static void maybeLoadBannerAd(final Context ctx, final AdView view) {
         try {
-            runtimeCheck();
+            runtimeCheck(ctx);
             AdRequest adRequest = new AdRequest.Builder().build();
             view.loadAd(adRequest);
         } catch(Exception e) {
@@ -222,10 +225,10 @@ public class MisesAdsUtil {
 
 
 
-    public static void maybeLoadNativeAd(final Activity activity, final NativeAdView view, Callback<NativeAd> callback) {
+    public static void maybeLoadNativeAd(final Activity act, final NativeAdView view, Callback<NativeAd> callback) {
         try {
-            runtimeCheck();
-            loadNativeAd(activity, view, callback);
+            runtimeCheck(act);
+            loadNativeAd(act, view, callback);
         } catch(Exception e) {
             Log.w(TAG, "NativeAdView.loadNativeAd fail: " + e.getMessage());
         }

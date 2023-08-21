@@ -152,6 +152,7 @@ public class MisesShareWin extends DialogFragment {
                         bo.write(i);
                         i = is.read();
                     }
+                    is.close();
                     String resJson = bo.toString();
                     Log.e(TAG, "upload image to mises " + resJson);
                     JSONObject resJsonObject = new JSONObject(resJson);
@@ -174,6 +175,7 @@ public class MisesShareWin extends DialogFragment {
                         bo.write(i);
                         i = is.read();
                     }
+                    is.close();
                     String err = bo.toString();
                     Log.e(TAG, "upload image to mises " + err);
                 }
@@ -238,6 +240,7 @@ public class MisesShareWin extends DialogFragment {
                         bo.write(i);
                         i = is.read();
                     }
+                    is.close();
                     String resJson = bo.toString();
                     JSONObject resJsonObject = new JSONObject(resJson);
                     int code = -1;
@@ -253,6 +256,7 @@ public class MisesShareWin extends DialogFragment {
                         bo.write(i);
                         i = is.read();
                     }
+                    is.close();
                     String err = bo.toString();
                     Log.e(TAG, "Share to mises " + err);
                 }

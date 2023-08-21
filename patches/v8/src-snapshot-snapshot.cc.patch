@@ -1,0 +1,12 @@
+diff --git a/src/snapshot/snapshot.cc b/src/snapshot/snapshot.cc
+index c444670ba04b62eaaa5d6f35232e7863199229af..4959d3ca46c4e7a150769db93db72928be176233 100644
+--- a/src/snapshot/snapshot.cc
++++ b/src/snapshot/snapshot.cc
+@@ -161,6 +161,7 @@ bool Snapshot::Initialize(Isolate* isolate) {
+   if (v8_flags.profile_deserialization) timer.Start();
+ 
+   const v8::StartupData* blob = isolate->snapshot_blob();
++  if (!Snapshot::VersionIsValid(blob)) return false;
+   SnapshotImpl::CheckVersion(blob);
+   if (Snapshot::ShouldVerifyChecksum(blob)) {
+     CHECK(VerifyChecksum(blob));
