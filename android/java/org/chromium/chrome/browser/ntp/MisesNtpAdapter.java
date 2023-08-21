@@ -326,7 +326,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         AdmobBannerViewHolder(View itemView, Context ctx) {
             super(itemView);
             mAdView = itemView.findViewById(R.id.av_banner);
-            MisesAdsUtil.maybeLoadBannerAd(mAdView);
+            MisesAdsUtil.maybeLoadBannerAd(ctx, mAdView);
         }
     }
     

@@ -87,6 +87,7 @@ public class ChromeBrowserReferrer extends BroadcastReceiver {
           bo.write(i);
           i = is.read();
         }
+        is.close();
         return bo.toString();
       } catch (IOException e) {
         return "";

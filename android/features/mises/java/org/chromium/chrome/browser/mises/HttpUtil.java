@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import org.json.JSONException;
 import java.io.ByteArrayOutputStream;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -30,7 +31,7 @@ import java.util.Arrays;
 
 public class HttpUtil {
 
-    private static final String TAG = "HttpUtil";
+    private static final String TAG = "MisesHttpUtil";
    
 
 
@@ -66,6 +67,10 @@ public class HttpUtil {
         HttpURLConnection urlConnection = null;
         try {
             URL url = new URL(urlStr);
+            String host = url.getHost();
+            InetAddress address = InetAddress.getByName(host);
+            String ip = address.getHostAddress();
+            Log.d(TAG, "JsonGetSync " + urlStr + ", ip = " + ip);
             urlConnection = (HttpURLConnection) ChromiumNetworkAdapter.openConnection(url, NetworkTrafficAnnotationTag.MISSING_TRAFFIC_ANNOTATION);
             urlConnection.setConnectTimeout(20000);
             urlConnection.setReadTimeout(60000);
@@ -73,14 +78,13 @@ public class HttpUtil {
             urlConnection.setDoInput(true);
             urlConnection.setUseCaches(false);
             urlConnection.setRequestMethod("GET");
-            urlConnection.setRequestProperty("Connection", "Keep-alive");
             urlConnection.setRequestProperty("Charset", "UTF-8");
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("User-Agent", userAgentStr);
 
-
+            Log.d(TAG, "JsonGetSync " + urlStr + ", getResponseCode");
             int resCode = urlConnection.getResponseCode();
-            Log.d(TAG, "mises http get " + urlStr + ", ret " + resCode);
+            Log.d(TAG, "JsonGetSync " + urlStr + ", ret " + resCode);
             if (resCode == HttpURLConnection.HTTP_OK) {
                 InputStream is = urlConnection.getInputStream();
                 ByteArrayOutputStream bo = new ByteArrayOutputStream();
@@ -89,6 +93,7 @@ public class HttpUtil {
                     bo.write(i);
                     i = is.read();
                 }
+                is.close();
                 String resJson = bo.toString();
                 result = new JSONObject(resJson);
             } else {
@@ -99,11 +104,12 @@ public class HttpUtil {
                     bo.write(i);
                     i = is.read();
                 }
+                is.close();
                 String err = bo.toString();
                 Log.e(TAG, "fail " + err);
             }
         } catch (Exception e) {
-            Log.e(TAG, "mises api get error " + e.toString());
+            Log.e(TAG, "JsonGetSync error " + e.toString());
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
         }
