@@ -7,7 +7,7 @@ import shutil
 from lib.util import execute_stdout, scoped_cwd
 
 
-NPM = 'npm'
+NPM = 'yarn'
 if sys.platform in ['win32', 'cygwin']:
     NPM += '.cmd'
 
@@ -90,7 +90,7 @@ def clean_target_dir(target_dir):
 def transpile_web_uis(options):
     env = os.environ.copy()
 
-    args = [NPM, 'run', 'web-ui', '--']
+    args = [NPM, 'web-ui', '--']
 
     if options['production']:
         args.append("--mode=production")
@@ -125,7 +125,7 @@ def generate_grd(target_include_dir, grd_name, resource_name, env=None):
     if env is None:
         env = os.environ.copy()
 
-    args = [NPM, 'run', 'web-ui-gen-grd']
+    args = [NPM, 'web-ui-gen-grd']
 
     env["RESOURCE_NAME"] = resource_name
     env["GRD_NAME"] = grd_name

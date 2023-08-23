@@ -6,7 +6,7 @@ import sys
 from lib.util import execute_stdout, scoped_cwd
 
 
-NPM = 'npm'
+NPM = 'yarn'
 if sys.platform in ['win32', 'cygwin']:
     NPM += '.cmd'
 
@@ -34,7 +34,7 @@ def generate_tsconfig(root_gen_dir, env=None):
     if env is None:
         env = os.environ.copy()
 
-    args = [NPM, 'run', 'web-ui-gen-tsconfig']
+    args = [NPM, 'web-ui-gen-tsconfig']
 
     env["ROOT_GEN_DIR"] = root_gen_dir
 

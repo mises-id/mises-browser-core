@@ -1,5 +1,16 @@
 #include "components/permissions/request_type.h"
 
+#include "components/permissions/permission_uma_util.h"
+
+#include "components/permissions/permissions_client.h"
+
+// Since we don't do UMA just reuse an existing UMA type instead of adding one.
+#define MISES_GET_UMA_VALUE_FOR_REQUEST_TYPE      \
+  case RequestType::kWidevine:                    \
+  case RequestType::kMisesEthereum:               \
+  case RequestType::kMisesSolana:                 \
+    return RequestTypeForUma::PERMISSION_VR;
+
 #if BUILDFLAG(IS_ANDROID)
 #define kAccessibilityEvents \
   kCameraPanTiltZoom:\
@@ -26,3 +37,4 @@
 
 #endif
 
+#undef MISES_GET_UMA_VALUE_FOR_REQUEST_TYPE

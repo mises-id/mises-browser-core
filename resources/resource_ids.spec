@@ -30,10 +30,20 @@
     "messages": [50900]
   },
   "mises/components/mises_extension/extension/resources.grd": {
-    "includes": [55000],
+    "includes": [52000],
   },
   # This file is generated during the build.
 
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_page/brave_wallet_page.grd": {
+    "META": {"sizes": {"includes": [200]}},
+    "includes": [54800],
+  },
+
+
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_panel/brave_wallet_panel.grd": {
+    "META": {"sizes": {"includes": [200]}},
+    "includes": [55000],
+  },
 
   # This file is generated during the build.
   "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-ipfs/ipfs.grd": {
@@ -45,5 +55,22 @@
   "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_script/brave_wallet_script.grd": {
     "META": {"sizes": {"includes": [250]}},
     "includes": [57000]
+  },
+  # This file is generated during the build.
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-trezor_bridge/trezor_bridge.grd": {
+    "META": {"sizes": {"includes": [250]}},
+    "includes": [58450]
+  },
+    "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-market_display/market_display.grd": {
+    "META": {"sizes": {"includes": [250]}},
+    "includes": [59200]
+  },
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-ledger_bridge/ledger_bridge.grd": {
+    "META": {"sizes": {"includes": [250]}},
+    "includes": [59720]
+  },
+    "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-nft_display/nft_display.grd": {
+    "META": {"sizes": {"includes": [250]}},
+    "includes": [59970]
   },
 }

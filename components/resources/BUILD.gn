@@ -51,6 +51,13 @@ repack("resources") {
     ]
   }
 
+  if (!is_ios) {
+    deps += [ "//mises/components/brave_wallet_ui:resources" ]
+    sources += [
+      "$root_gen_dir/mises/components/brave_wallet/resources/brave_wallet.pak",
+    ]
+  }
+
   output = "$root_gen_dir/components/mises_components_resources.pak"
 }
 

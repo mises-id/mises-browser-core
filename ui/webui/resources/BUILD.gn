@@ -1,0 +1,203 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/.
+
+import("//tools/grit/preprocess_if_expr.gni")
+import("//tools/polymer/css_to_wrapper.gni")
+import("//tools/polymer/html_to_wrapper.gni")
+import("//ui/webui/resources/include_polymer.gni")
+import("//ui/webui/resources/tools/build_cr_component.gni")
+import("//ui/webui/resources/tools/generate_grd.gni")
+import("//ui/webui/webui_features.gni")
+import("./fonts/fonts.gni")
+import("./sources.gni")
+
+# These targets add files to chrome://resources/brave
+# - Use build_cr_componesnrt or other methods to compile resources and generate GRDPs
+# - Use extensible patch to ui/webui/resources/build.gn to get the files in these GRDPs to typescript, grd, and c++ (via the main resources .grd)
+# - Files generates here are path mapped from chrome://resources/brave via:
+#    - Typescript compiler in //tools/typescript/ts_library.gni
+#    - Rollup bundler in //chrome/browser/resources/tools/optimize_webui.gni
+
+group("grdp") {
+  public_deps = [
+    ":fonts_grdp",
+    ":icons_grdp",
+    ":static_grdp",
+  ]
+  if (include_polymer) {
+    public_deps += [ ":build_grdp" ]
+  }
+}
+
+if (include_polymer) {
+  build_cr_component("build") {
+    grd_prefix = "brave"
+
+    # Ensure all the files are relative to this dir (with a brave/ prefix),
+    # and not //ui/webui/resources which is the default for build_cr_component.
+    resource_path_prefix = "brave"
+    if (include_polymer) {
+      web_component_files = [
+        "br_elements/br_toolbar/br_toolbar.ts",
+        "br_elements/br_toolbar/br_toolbar_search_field.ts",
+      ]
+
+      non_web_component_files = [ "polymer_overriding.ts" ]
+    }
+
+    if (include_polymer) {
+      css_files = [
+        "br_elements/br_shared_style.css",
+        "br_elements/br_shared_vars.css",
+        "overrides/cr_button_override.css",
+        "overrides/cr_toggle_override.css",
+        "page_specific/settings/br_settings_shared.css",
+      ]
+    }
+
+    html_to_wrapper_template = "detect"
+
+    tsc_dir = "$root_gen_dir/mises/ui/webui/resources/tsc"
+    ts_deps = [ "//ui/webui/resources/js:build_ts" ]
+    ts_use_local_config = false
+  }
+}
+
+static_files = [
+  "css/md_colors.css",
+  "css/text_defaults_md.css",
+  "css/reset.css",
+]
+
+if (include_polymer) {
+  static_files += [
+    "page_specific/history/history_loading_shim.css",
+    "page_specific/downloads/downloads_loading_shim.css",
+    "page_specific/settings/settings_loading_shim.css",
+    "page_specific/bookmarks/bookmarks_loading_shim.css",
+    "page_specific/extensions/extensions_loading_shim.css",
+    "br_elements/br_toolbar/br_toolbar_selection_overlay_overrides.css",
+  ]
+}
+
+# Create a grdp that //ui/webui/resources can include in its main resources GRD
+generate_grd("static_grdp") {
+  grd_prefix = "brave_webui"
+  resource_path_prefix = "brave"
+  out_grd = "$mises_resources_extra_grdps_path/brave_static_resources.grdp"
+  input_files = static_files + [
+                  # TODO(petemill): ethereum_remote_client_page.html does not need to be served from chrome://resources
+                  # and should be put in to it's own resource package.
+                  # "ethereum_remote_client_page.html",
+                ]
+  input_files_base_dir =
+      rebase_path("$mises_resources_extra_grdps_path", root_build_dir)
+  deps = [
+    #":ethereum_remote_client_html_copy",
+    ":static_copy",
+  ]
+}
+
+# Create a grdp that //ui/webui/resources can include in its main resources GRD
+generate_grd("fonts_grdp") {
+  grd_prefix = "brave_webui"
+  resource_path_prefix = "brave"
+  out_grd = "$mises_resources_extra_grdps_path/brave_fonts_resources.grdp"
+  input_files = brave_font_files
+  input_files_base_dir =
+      rebase_path("$mises_resources_extra_grdps_path", root_build_dir)
+  deps = [ ":fonts_copy" ]
+}
+
+leo_icons_base_path = "../../../node_modules/@brave/leo/icons"
+
+# These are icons included in Leo. Add them on an as-needed basis, because there
+# are a **LOT** of icons in Leo. You can check if there's an icon  which suits
+# your needs here: https://leo.bravesoftware.com/?path=/story/icon--all-icons
+leo_icons = [
+  "rocket.svg",
+  "history.svg",
+  "close.svg",
+  "news-default.svg",
+  #"product-brave-monochrome.svg",
+  "news-business.svg",
+  "news-car.svg",
+  "crypto-wallets.svg",
+  "news-culture.svg",
+  "news-entertainment.svg",
+  "news-fashion.svg",
+  "news-filmandtv.svg",
+  "news-food.svg",
+  "news-fun.svg",
+  "news-gaming.svg",
+  "news-health.svg",
+  "news-home.svg",
+  "news-music.svg",
+  "news-politics.svg",
+  "news-regional.svg",
+  "news-science.svg",
+  "news-sports.svg",
+  "news-travel.svg",
+  "news-technology.svg",
+  "news-topnews.svg",
+  "news-weather.svg",
+  "news-worldnews.svg",
+  "info-filled.svg",
+  "radio-checked.svg",
+  "radio-unchecked.svg",
+  "arrow-left.svg",
+  "arrow-right.svg",
+  "link-normal.svg",
+  "check-normal.svg",
+  "plus-add.svg",
+  "carat-down.svg",
+  "money-bag-coins.svg",
+  "send.svg",
+  "currency-exchange.svg",
+  "activity.svg",
+  "grid04.svg",
+  "discover.svg",
+  "user-accounts.svg",
+  "coins.svg",
+  "more-horizontal.svg",
+  "coins-alt1.svg",
+]
+
+generate_grd("icons_grdp") {
+  grd_prefix = "brave_icons"
+  resource_path_prefix = "brave-icons"
+  out_grd = "$mises_resources_extra_grdps_path/brave_icons_resources.grdp"
+
+  input_files = leo_icons
+  input_files_base_dir =
+      rebase_path("$mises_resources_extra_grdps_path/icons/", root_build_dir)
+
+  deps = [ ":icons_copy" ]
+}
+
+# Static files should be put relative to //ui/webui/resources main resources GRD
+copy("static_copy") {
+  sources = static_files
+  outputs = [ "$mises_resources_extra_grdps_path/{{source_target_relative}}" ]
+}
+
+# Static files should be put relative to //ui/webui/resources main resources GRD
+copy("fonts_copy") {
+  sources = brave_font_files
+  outputs = [ "$mises_resources_extra_grdps_path/{{source_target_relative}}" ]
+}
+
+copy("icons_copy") {
+  sources = rebase_path(leo_icons, ".", leo_icons_base_path)
+  outputs = [ "$mises_resources_extra_grdps_path/icons/{{source_file_part}}" ]
+}
+
+# Static files should be put relative to //ui/webui/resources main resources GRD.
+# This is separate to "static_copy" because the path is not relative.
+copy("ethereum_remote_client_html_copy") {
+  sources = [ "../../../browser/ui/webui/ethereum_remote_client/ethereum_remote_client_page.html" ]
+  outputs =
+      [ "$mises_resources_extra_grdps_path/ethereum_remote_client_page.html" ]
+}
