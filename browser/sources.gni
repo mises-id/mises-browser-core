@@ -55,6 +55,8 @@ mises_chrome_browser_sources = [
 mises_chrome_browser_deps = [
   "//base",
   "//mises/browser/brave_wallet",
+  "//mises/browser/brave_wallet:brave_wallet_delegate",
+  "//mises/browser/brave_wallet:tab_helper",
   "//mises/browser/profiles",
   "//mises/browser/net",
   "//mises/components/constants",

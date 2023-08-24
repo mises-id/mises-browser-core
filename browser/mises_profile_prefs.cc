@@ -49,6 +49,12 @@ using extensions::FeatureSwitch;
 namespace mises {
 
 
+void RegisterProfilePrefsForMigration(
+    user_prefs::PrefRegistrySyncable* registry) {
+      
+  brave_wallet::RegisterProfilePrefsForMigration(registry);
+    
+}
 void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   
 
@@ -66,6 +72,8 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
       prefs::kExtensionsUIDefaultEVMWalletID, std::string());
   registry->RegisterStringPref(
       prefs::kExtensionsUIDefaultEVMWalletKeyProperty, std::string());
+    
+  RegisterProfilePrefsForMigration(registry);
 
 }
 

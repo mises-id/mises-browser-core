@@ -90,19 +90,4 @@ content::BrowserContext* BraveWalletServiceFactory::GetBrowserContextToUse(
 }
 
 
-class BraveWalletServiceDelegateDummy : public BraveWalletServiceDelegate {
- public:
-  explicit BraveWalletServiceDelegateDummy(content::BrowserContext* context){}
-  BraveWalletServiceDelegateDummy(const BraveWalletServiceDelegateDummy&) =
-      delete;
-  BraveWalletServiceDelegateDummy& operator=(
-      const BraveWalletServiceDelegateDummy&) = delete;
-  ~BraveWalletServiceDelegateDummy() override {}
-};
-// static
-std::unique_ptr<BraveWalletServiceDelegate> BraveWalletServiceDelegate::Create(
-    content::BrowserContext* browser_context) {
-  return std::make_unique<BraveWalletServiceDelegateDummy>(browser_context);
-}
-
 }  // namespace brave_wallet

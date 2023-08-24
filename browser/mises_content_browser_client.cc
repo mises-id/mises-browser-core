@@ -18,6 +18,14 @@
 #include "mises/browser/profiles/profile_util.h"
 #include "mises/browser/net/mises_proxying_url_loader_factory.h"
 #include "mises/browser/net/mises_proxying_web_socket.h"
+
+#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
+#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl.h"
+#include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
+#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
+#include "mises/browser/brave_wallet/keyring_service_factory.h"
+#include "mises/browser/brave_wallet/tx_service_factory.h"
+
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/constants/webui_url_constants.h"
 #include "mises/components/decentralized_dns/content/decentralized_dns_navigation_throttle.h"
@@ -49,6 +57,7 @@
 #include "content/public/browser/storage_partition.h"
 #include "content/public/browser/weak_document_ptr.h"
 #include "content/public/browser/web_ui_browser_interface_broker_registry.h"
+#include "content/public/browser/web_ui_controller_interface_binder.h"
 #include "content/public/common/content_client.h"
 #include "content/public/common/content_switches.h"
 #include "content/public/common/url_constants.h"
@@ -86,6 +95,19 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 #endif
 
 
+#include "mises/components/brave_wallet/browser/brave_wallet_p3a_private.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_service.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/browser/ethereum_provider_impl.h"
+#include "mises/components/brave_wallet/browser/solana_provider_impl.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+
+#if !BUILDFLAG(IS_ANDROID)
+#include "mises/browser/ui/webui/brave_wallet/wallet_page_ui.h"
+#include "mises/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
+#endif
+
+
 namespace {
 
 bool HandleURLReverseOverrideRewrite(GURL* url,
@@ -102,6 +124,102 @@ bool HandleURLRewrite(GURL* url, content::BrowserContext* browser_context) {
 
   return false;
 }
+
+
+void MaybeBindWalletP3A(
+    content::RenderFrameHost* const frame_host,
+    mojo::PendingReceiver<brave_wallet::mojom::BraveWalletP3A> receiver) {
+  auto* context = frame_host->GetBrowserContext();
+  if (brave_wallet::IsAllowedForContext(frame_host->GetBrowserContext())) {
+    brave_wallet::BraveWalletService* wallet_service =
+        brave_wallet::BraveWalletServiceFactory::GetServiceForContext(context);
+    DCHECK(wallet_service);
+    wallet_service->GetBraveWalletP3A()->Bind(std::move(receiver));
+  } else {
+    // Dummy API to avoid reporting P3A for OTR contexts
+    mojo::MakeSelfOwnedReceiver(
+        std::make_unique<brave_wallet::BraveWalletP3APrivate>(),
+        std::move(receiver));
+  }
+}
+
+void MaybeBindEthereumProvider(
+    content::RenderFrameHost* const frame_host,
+    mojo::PendingReceiver<brave_wallet::mojom::EthereumProvider> receiver) {
+  auto* json_rpc_service =
+      brave_wallet::JsonRpcServiceFactory::GetServiceForContext(
+          frame_host->GetBrowserContext());
+
+  if (!json_rpc_service) {
+    return;
+  }
+
+  auto* tx_service = brave_wallet::TxServiceFactory::GetServiceForContext(
+      frame_host->GetBrowserContext());
+  if (!tx_service) {
+    return;
+  }
+
+  auto* keyring_service =
+      brave_wallet::KeyringServiceFactory::GetServiceForContext(
+          frame_host->GetBrowserContext());
+  if (!keyring_service) {
+    return;
+  }
+
+  auto* brave_wallet_service =
+      brave_wallet::BraveWalletServiceFactory::GetServiceForContext(
+          frame_host->GetBrowserContext());
+  if (!brave_wallet_service) {
+    return;
+  }
+
+  content::WebContents* web_contents =
+      content::WebContents::FromRenderFrameHost(frame_host);
+  mojo::MakeSelfOwnedReceiver(
+      std::make_unique<brave_wallet::EthereumProviderImpl>(
+          HostContentSettingsMapFactory::GetForProfile(
+              Profile::FromBrowserContext(frame_host->GetBrowserContext())),
+          json_rpc_service, tx_service, keyring_service, brave_wallet_service,
+          std::make_unique<brave_wallet::BraveWalletProviderDelegateImpl>(
+              web_contents, frame_host),
+          user_prefs::UserPrefs::Get(web_contents->GetBrowserContext())),
+      std::move(receiver));
+}
+
+void MaybeBindSolanaProvider(
+    content::RenderFrameHost* const frame_host,
+    mojo::PendingReceiver<brave_wallet::mojom::SolanaProvider> receiver) {
+  auto* keyring_service =
+      brave_wallet::KeyringServiceFactory::GetServiceForContext(
+          frame_host->GetBrowserContext());
+  if (!keyring_service) {
+    return;
+  }
+
+  auto* brave_wallet_service =
+      brave_wallet::BraveWalletServiceFactory::GetServiceForContext(
+          frame_host->GetBrowserContext());
+  if (!brave_wallet_service) {
+    return;
+  }
+
+  auto* tx_service = brave_wallet::TxServiceFactory::GetServiceForContext(
+      frame_host->GetBrowserContext());
+  if (!tx_service) {
+    return;
+  }
+
+  content::WebContents* web_contents =
+      content::WebContents::FromRenderFrameHost(frame_host);
+  mojo::MakeSelfOwnedReceiver(
+      std::make_unique<brave_wallet::SolanaProviderImpl>(
+          keyring_service, brave_wallet_service, tx_service,
+          std::make_unique<brave_wallet::BraveWalletProviderDelegateImpl>(
+              web_contents, frame_host)),
+      std::move(receiver));
+}
+
 
 }  // namespace
 
@@ -129,6 +247,38 @@ void MisesContentBrowserClient::BrowserURLHandlerCreated(
   ChromeContentBrowserClient::BrowserURLHandlerCreated(handler);
 }
 
+
+
+void MisesContentBrowserClient::RegisterBrowserInterfaceBindersForFrame(
+    content::RenderFrameHost* render_frame_host,
+    mojo::BinderMapWithContext<content::RenderFrameHost*>* map) {
+  ChromeContentBrowserClient::RegisterBrowserInterfaceBindersForFrame(
+      render_frame_host, map);
+
+  map->Add<brave_wallet::mojom::BraveWalletP3A>(
+      base::BindRepeating(&MaybeBindWalletP3A));
+  if (brave_wallet::IsAllowedForContext(
+          render_frame_host->GetBrowserContext())) {
+    if (brave_wallet::IsNativeWalletEnabled()) {
+      map->Add<brave_wallet::mojom::EthereumProvider>(
+          base::BindRepeating(&MaybeBindEthereumProvider));
+      map->Add<brave_wallet::mojom::SolanaProvider>(
+          base::BindRepeating(&MaybeBindSolanaProvider));
+    }
+  }
+#if BUILDFLAG(IS_ANDROID)
+  content::RegisterWebUIControllerInterfaceBinder<
+      brave_wallet::mojom::PageHandlerFactory, SwapPageUI>(map);
+#endif
+
+#if !BUILDFLAG(IS_ANDROID)
+  content::RegisterWebUIControllerInterfaceBinder<
+      brave_wallet::mojom::PageHandlerFactory, WalletPageUI>(map);
+  content::RegisterWebUIControllerInterfaceBinder<
+      brave_wallet::mojom::PanelHandlerFactory, WalletPanelUI>(map);
+#endif
+
+}
 
 
 std::vector<std::unique_ptr<content::NavigationThrottle>>

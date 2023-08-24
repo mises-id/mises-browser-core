@@ -8,6 +8,7 @@
 #include "base/values.h"
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/decentralized_dns/core/utils.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_prefs.h"
 #include "build/build_config.h"
 #include "chrome/common/pref_names.h"
 #include "components/metrics/metrics_pref_names.h"
@@ -17,10 +18,17 @@
 
 namespace mises {
 
+void RegisterLocalStatePrefsForMigration(PrefRegistrySimple* registry) {
+   brave_wallet::RegisterLocalStatePrefsForMigration(registry);
+}
 void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   
 
   decentralized_dns::RegisterLocalStatePrefs(registry);
+
+  RegisterLocalStatePrefsForMigration(registry);
+  
+  brave_wallet::RegisterLocalStatePrefs(registry);
 
 }
 
