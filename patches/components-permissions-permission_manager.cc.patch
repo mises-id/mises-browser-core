@@ -1,5 +1,5 @@
 diff --git a/components/permissions/permission_manager.cc b/components/permissions/permission_manager.cc
-index bab22400165cad36a49bd474ffd03203671ef182..96314ef052b06123105b3361e4f5115f7bf388d2 100644
+index bab22400165cad36a49bd474ffd03203671ef182..35b9b0c3ffa75eaa332fa9af03b7ea3f9001ef4c 100644
 --- a/components/permissions/permission_manager.cc
 +++ b/components/permissions/permission_manager.cc
 @@ -595,6 +595,10 @@ PermissionResult PermissionManager::GetPermissionStatusInternal(
@@ -8,7 +8,7 @@ index bab22400165cad36a49bd474ffd03203671ef182..96314ef052b06123105b3361e4f5115f
    PermissionContextBase* context = GetPermissionContext(permission);
 +  //DCHECK(context) << "for:" << (int)permission;
 +  if (!context) 
-+    return PermissionResult(CONTENT_SETTING_DEFAULT, PermissionStatusSource::UNSPECIFIED);
++    return PermissionResult(CONTENT_SETTING_ASK, PermissionStatusSource::UNSPECIFIED);
 +
    PermissionResult result = context->GetPermissionStatus(
        render_frame_host, canonical_requesting_origin.DeprecatedGetOriginAsURL(),
