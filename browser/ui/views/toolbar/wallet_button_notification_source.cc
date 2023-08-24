@@ -3,13 +3,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/ui/views/toolbar/wallet_button_notification_source.h"
+#include "mises/browser/ui/views/toolbar/wallet_button_notification_source.h"
 
 #include <utility>
 
-#include "brave/browser/brave_wallet/keyring_service_factory.h"
-#include "brave/browser/brave_wallet/tx_service_factory.h"
-#include "brave/components/brave_wallet/browser/pref_names.h"
+#include "mises/browser/brave_wallet/keyring_service_factory.h"
+#include "mises/browser/brave_wallet/tx_service_factory.h"
+#include "mises/components/brave_wallet/browser/pref_names.h"
 
 namespace brave {
 

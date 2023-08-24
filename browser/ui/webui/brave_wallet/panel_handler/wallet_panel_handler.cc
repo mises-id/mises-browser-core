@@ -9,7 +9,7 @@
 
 #include "base/functional/callback.h"
 #include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
-#include "mises/components/permissions/contexts/brave_wallet_permission_context.h"
+#include "mises/components/permissions/contexts/mises_wallet_permission_context.h"
 #include "content/public/browser/render_frame_host.h"
 #include "content/public/browser/web_contents.h"
 

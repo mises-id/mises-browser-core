@@ -23,7 +23,7 @@ void WalletPageHandler::ShowApprovePanelUI() {
 #if defined(TOOLKIT_VIEWS)
   Browser* browser = chrome::FindBrowserWithProfile(profile_);
   if (browser) {
-    brave::ShowApproveWalletBubble(browser);
+    mises::ShowApproveWalletBubble(browser);
   }
 #endif
 }

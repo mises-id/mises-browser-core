@@ -98,6 +98,7 @@ source_set("ui") {
     "//mises/chromium_src/chrome/browser/ui",
     "//mises/components/vector_icons",
     "//mises/components/decentralized_dns/content",
+    "//mises/app/vector_icons:vector_icons",
 
     "//base",
     "//chrome/app:command_ids",
@@ -210,6 +211,10 @@ source_set("ui") {
       "views/toolbar/wallet_button_notification_source.h",
       "views/wallet_bubble_focus_observer.cc",
       "views/wallet_bubble_focus_observer.h",
+      "browser_commands.cc",
+      "browser_commands.h",
+      "mises_icon_with_badge_image_source.cc",
+      "mises_icon_with_badge_image_source.h",
       "wallet_bubble_manager_delegate_impl.cc",
       "wallet_bubble_manager_delegate_impl.h",
       "webui/brave_wallet/ledger/ledger_ui.cc",
@@ -228,6 +233,8 @@ source_set("ui") {
       "webui/brave_wallet/wallet_page_ui.h",
       "webui/brave_wallet/wallet_panel_ui.cc",
       "webui/brave_wallet/wallet_panel_ui.h",
+      "webui/navigation_bar_data_provider.cc",
+      "webui/navigation_bar_data_provider.h",
     ]
     deps += [
       "//mises/browser/brave_wallet:tab_helper",

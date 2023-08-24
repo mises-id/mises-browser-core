@@ -4,6 +4,10 @@ namespace permissions {
 namespace features {
 
 
+BASE_FEATURE(kPermissionLifetime,
+             "PermissionLifetime",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+             
 #if BUILDFLAG(IS_ANDROID)
 
 BASE_FEATURE(kPermissionsPromptSurvey,

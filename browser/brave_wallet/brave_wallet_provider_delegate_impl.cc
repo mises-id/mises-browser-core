@@ -15,7 +15,7 @@
 #include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
 #include "mises/components/brave_wallet/browser/permission_utils.h"
-#include "mises/components/permissions/contexts/brave_wallet_permission_context.h"
+#include "mises/components/permissions/contexts/mises_wallet_permission_context.h"
 #include "components/content_settings/core/common/content_settings.h"
 #include "content/public/browser/render_frame_host.h"
 #include "content/public/browser/visibility.h"

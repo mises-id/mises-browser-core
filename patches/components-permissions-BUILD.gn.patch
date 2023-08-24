@@ -1,0 +1,12 @@
+diff --git a/components/permissions/BUILD.gn b/components/permissions/BUILD.gn
+index 7876cd432cc42629024af481e15c2ed5cbb1697b..5809c195c76001d9a3da4b9b543adb84c1ea42f6 100644
+--- a/components/permissions/BUILD.gn
++++ b/components/permissions/BUILD.gn
+@@ -144,6 +144,7 @@ source_set("permissions") {
+       "contexts/geolocation_permission_context_mac.h",
+     ]
+   }
++  import("//mises/components/permissions/sources.gni") sources += mises_components_permissions_sources deps += mises_components_permissions_deps
+   if (is_android) {
+     sources += [
+       "android/android_permission_util.cc",

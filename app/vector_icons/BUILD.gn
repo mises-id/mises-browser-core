@@ -1,0 +1,69 @@
+# Copyright (c) 2022 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/.
+
+import("//build/config/ui.gni")
+import("//components/vector_icons/vector_icons.gni")
+
+aggregate_vector_icons("mises_vector_icons") {
+  icon_directory = "."
+
+  # Note: Before adding another icon here, check if the icon is available in Leo
+  # https://leo.bravesoftware.com/?path=/story/icon--all-icons
+  sources = [
+    "open_in_ipfs.icon",
+    "sidebar_toolbar_button.icon",
+    "sidebar_toolbar_button_right.icon",
+    "wallet_toolbar_button.icon",
+    "web_discovery_infobar_close_button.icon",
+  ]
+
+  # The Skia icon names are transformed to make them easier to use in Brave Core
+  # `arrow-right.svg` becomes `leo_arrow_right.icon`
+  leo_icons = [
+    "leo_arrow_right.icon",
+    "leo_heart_filled.icon",
+    "leo_heart_outline.icon",
+    "leo_rss.icon",
+  ]
+
+  if (toolkit_views) {
+    leo_icons += [
+      "leo_plus_add.icon",
+      "leo_search.icon",
+    ]
+  }
+  sources +=
+      rebase_path(leo_icons, ".", "//mises/node_modules/@brave/leo/icons-skia")
+
+  if (toolkit_views) {
+    sources += [
+      "sidebar_add_item.icon",
+      "sidebar_bookmarks.icon",
+      "sidebar_brave_talk.icon",
+      "sidebar_crypto_wallet.icon",
+      "sidebar_edit.icon",
+      "sidebar_history.icon",
+      "sidebar_item_added_check.icon",
+      "sidebar_items_down_arrow.icon",
+      "sidebar_items_up_arrow.icon",
+      "sidebar_reading_list.icon",
+      "sidebar_settings.icon",
+      "sidebar_trash.icon",
+      "vertical_tab_strip_toggle_button.icon",
+    ]
+  }
+
+}
+
+source_set("vector_icons") {
+  sources = get_target_outputs(":mises_vector_icons")
+
+  deps = [
+    ":mises_vector_icons",
+    "//base",
+    "//skia",
+    "//ui/gfx",
+  ]
+}

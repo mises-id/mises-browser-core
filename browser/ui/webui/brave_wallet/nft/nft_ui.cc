@@ -14,7 +14,7 @@
 #include "chrome/browser/ui/webui/webui_util.h"
 #include "chrome/grit/browser_resources.h"
 #include "chrome/grit/generated_resources.h"
-#include "components/grit/brave_components_resources.h"
+#include "components/grit/mises_components_resources.h"
 #include "content/public/browser/web_contents.h"
 #include "content/public/browser/web_ui_data_source.h"
 #include "ui/resources/grit/webui_resources.h"

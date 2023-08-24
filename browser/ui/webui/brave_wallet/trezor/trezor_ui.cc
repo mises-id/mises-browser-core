@@ -9,7 +9,7 @@
 
 #include "mises/components/constants/webui_url_constants.h"
 #include "mises/components/trezor_bridge/resources/grit/trezor_bridge_generated_map.h"
-#include "components/grit/brave_components_resources.h"
+#include "components/grit/mises_components_resources.h"
 #include "content/public/browser/web_contents.h"
 #include "content/public/browser/web_ui_data_source.h"
 #include "ui/resources/grit/webui_resources.h"

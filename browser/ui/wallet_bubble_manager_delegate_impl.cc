@@ -3,21 +3,22 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/ui/wallet_bubble_manager_delegate_impl.h"
+#include "mises/browser/ui/wallet_bubble_manager_delegate_impl.h"
 
 #include <memory>
 #include <utility>
 #include <vector>
 
 #include "base/functional/callback.h"
-#include "brave/browser/ui/views/frame/brave_browser_view.h"
-#include "brave/browser/ui/views/wallet_bubble_focus_observer.h"
-#include "brave/browser/ui/webui/brave_wallet/wallet_common_ui.h"
+#include "mises/browser/ui/views/wallet_bubble_focus_observer.h"
+#include "mises/browser/ui/webui/brave_wallet/wallet_common_ui.h"
+#include "chrome/browser/ui/views/frame/browser_view.h"
+#include "chrome/browser/ui/views/bubble/webui_bubble_manager.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_finder.h"
 #include "chrome/browser/ui/views/frame/top_container_view.h"
-#include "components/grit/brave_components_strings.h"
+#include "components/grit/mises_components_strings.h"
 #include "content/public/browser/web_contents.h"
 #include "ui/views/widget/widget.h"
 #include "url/gurl.h"
@@ -25,10 +26,10 @@
 namespace brave_wallet {
 
 template <typename T>
-class BraveWebUIBubbleManagerT : public WebUIBubbleManagerT<T>,
+class MisesWebUIBubbleManagerT : public WebUIBubbleManagerT<T>,
                                  public views::ViewObserver {
  public:
-  BraveWebUIBubbleManagerT(views::View* anchor_view,
+  MisesWebUIBubbleManagerT(views::View* anchor_view,
                            Browser* browser,
                            const GURL& webui_url,
                            int task_manager_string_id)
@@ -72,7 +73,7 @@ class BraveWebUIBubbleManagerT : public WebUIBubbleManagerT<T>,
     // to modify panel deactivation flag from api calls in SetCloseOnDeactivate
     // inside wallet_panel_handler.cc when necessary.
     wallet_panel->SetDeactivationCallback(
-        base::BindRepeating(&BraveWebUIBubbleManagerT<T>::SetCloseOnDeactivate,
+        base::BindRepeating(&MisesWebUIBubbleManagerT<T>::SetCloseOnDeactivate,
                             weak_factory_.GetWeakPtr()));
 
     return std::move(bubble_view);
@@ -124,7 +125,7 @@ class BraveWebUIBubbleManagerT : public WebUIBubbleManagerT<T>,
   std::unique_ptr<WalletBubbleFocusObserver> brave_observer_;
   WebUIBubbleDialogView* bubble_view_ = nullptr;
   content::WebContents* web_ui_contents_for_testing_ = nullptr;
-  base::WeakPtrFactory<BraveWebUIBubbleManagerT<T>> weak_factory_{this};
+  base::WeakPtrFactory<MisesWebUIBubbleManagerT<T>> weak_factory_{this};
 };
 
 // static
@@ -143,16 +144,16 @@ WalletBubbleManagerDelegateImpl::WalletBubbleManagerDelegateImpl(
   DCHECK(browser);
 
   views::View* anchor_view;
-  if (browser->is_type_normal()) {
-    anchor_view = static_cast<BraveBrowserView*>(browser->window())
-                      ->GetWalletButtonAnchorView();
-  } else {
+  // if (browser->is_type_normal()) {
+  //   anchor_view = static_cast<BraveBrowserView*>(browser->window())
+  //                     ->GetWalletButtonAnchorView();
+  // } else {
     anchor_view = static_cast<BrowserView*>(browser->window())->top_container();
-  }
+  //}
 
   DCHECK(anchor_view);
   webui_bubble_manager_ =
-      std::make_unique<BraveWebUIBubbleManagerT<WalletPanelUI>>(
+      std::make_unique<MisesWebUIBubbleManagerT<WalletPanelUI>>(
           anchor_view, browser, webui_url_, IDS_ACCNAME_BRAVE_WALLET_BUTTON);
 }
 

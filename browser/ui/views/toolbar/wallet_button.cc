@@ -3,19 +3,19 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at http://mozilla.org/MPL/2.0/.
 
-#include "brave/browser/ui/views/toolbar/wallet_button.h"
+#include "mises/browser/ui/views/toolbar/wallet_button.h"
 
 #include <vector>
 
-#include "brave/app/vector_icons/vector_icons.h"
-#include "brave/browser/brave_wallet/brave_wallet_tab_helper.h"
-#include "brave/browser/ui/brave_icon_with_badge_image_source.h"
-#include "brave/components/brave_wallet/browser/brave_wallet_utils.h"
-#include "brave/components/brave_wallet/browser/pref_names.h"
-#include "brave/components/brave_wallet/common/features.h"
-#include "brave/components/constants/webui_url_constants.h"
-#include "brave/components/l10n/common/localization_util.h"
-#include "brave/grit/brave_generated_resources.h"
+#include "mises/app/vector_icons/vector_icons.h"
+#include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
+#include "mises/browser/ui/mises_icon_with_badge_image_source.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/browser/pref_names.h"
+#include "mises/components/brave_wallet/common/features.h"
+#include "mises/components/constants/webui_url_constants.h"
+#include "mises/components/l10n/common/localization_util.h"
+#include "mises/grit/mises_generated_resources.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_finder.h"
 #include "chrome/browser/ui/browser_list.h"
@@ -23,7 +23,7 @@
 #include "chrome/browser/ui/tabs/tab_strip_model.h"
 #include "chrome/browser/ui/views/chrome_layout_provider.h"
 #include "chrome/browser/ui/views/toolbar/toolbar_ink_drop_util.h"
-#include "components/grit/brave_components_strings.h"
+#include "components/grit/mises_components_strings.h"
 #include "components/prefs/pref_service.h"
 #include "content/public/browser/web_contents.h"
 #include "ui/base/metadata/metadata_impl_macros.h"
@@ -189,11 +189,11 @@ void WalletButton::UpdateImageAndText() {
   auto icon = gfx::CreateVectorIcon(kWalletToolbarButtonIcon, icon_color);
 
   size_t icon_size = std::max(icon.width(), icon.height());
-  auto badge_size = brave::BraveIconWithBadgeImageSource::GetMaxBadgeSize();
+  auto badge_size = mises::MisesIconWithBadgeImageSource::GetMaxBadgeSize();
   gfx::Size preferred_size(icon_size + badge_size.width(),
                            icon_size + badge_size.height() / 2);
 
-  auto image_source = std::make_unique<brave::BraveIconWithBadgeImageSource>(
+  auto image_source = std::make_unique<mises::MisesIconWithBadgeImageSource>(
       preferred_size,
       base::BindRepeating(&GetColorProviderForView,
                           weak_ptr_factory_.GetWeakPtr()),
@@ -203,7 +203,7 @@ void WalletButton::UpdateImageAndText() {
 
   auto text = GetBadgeText();
   image_source->SetBadge(std::make_unique<IconWithBadgeImageSource::Badge>(
-      text, brave::kBadgeTextColor, brave::kBadgeNotificationBG));
+      text, mises::kBadgeTextColor, mises::kBadgeNotificationBG));
   SetImage(views::Button::STATE_NORMAL,
            gfx::ImageSkia(std::move(image_source), preferred_size));
   SetTooltipText(

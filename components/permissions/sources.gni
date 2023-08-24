@@ -1,0 +1,45 @@
+mises_components_permissions_sources = [
+  "//mises/components/permissions/mises_permission_manager.cc",
+  "//mises/components/permissions/mises_permission_manager.h",
+  #"//mises/components/permissions/contexts/brave_google_sign_in_permission_context.cc",
+  #"//mises/components/permissions/contexts/brave_google_sign_in_permission_context.h",
+  "//mises/components/permissions/contexts/mises_wallet_permission_context.cc",
+  "//mises/components/permissions/contexts/mises_wallet_permission_context.h",
+  "//mises/components/permissions/permission_expiration_key.cc",
+  "//mises/components/permissions/permission_expiration_key.h",
+  "//mises/components/permissions/permission_expirations.cc",
+  "//mises/components/permissions/permission_expirations.h",
+  "//mises/components/permissions/permission_lifetime_manager.cc",
+  "//mises/components/permissions/permission_lifetime_manager.h",
+  "//mises/components/permissions/permission_lifetime_options.cc",
+  "//mises/components/permissions/permission_lifetime_options.h",
+  "//mises/components/permissions/permission_lifetime_pref_names.h",
+  "//mises/components/permissions/permission_lifetime_utils.cc",
+  "//mises/components/permissions/permission_lifetime_utils.h",
+  "//mises/components/permissions/permission_origin_lifetime_monitor.h",
+  "//mises/components/permissions/permission_origin_lifetime_monitor_impl.cc",
+  "//mises/components/permissions/permission_origin_lifetime_monitor_impl.h",
+  "//mises/components/permissions/permission_origins.cc",
+  "//mises/components/permissions/permission_origins.h",
+]
+
+mises_components_permissions_deps = [
+  "//base",
+  "//mises/components/brave_wallet/browser:permission_utils",
+  "//mises/components/brave_wallet/common:mojom",
+  "//mises/components/l10n/common",
+  "//mises/components/resources:strings_grit",
+  "//components/content_settings/core/browser",
+  "//components/content_settings/core/common",
+  "//components/keyed_service/core",
+  "//components/pref_registry",
+  "//services/preferences/public/cpp",
+  "//third_party/blink/public/common",
+  "//ui/base",
+  "//url",
+]
+
+if (is_android) {
+  mises_components_permissions_deps +=
+      [ "//mises/components/permissions/android:jni_headers" ]
+}

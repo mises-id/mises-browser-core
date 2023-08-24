@@ -24,7 +24,8 @@ setIconBasePath('chrome://resources/brave-icons')
 function App () {
   const [initialThemeType, setInitialThemeType] = React.useState<chrome.braveTheme.ThemeType>()
   React.useEffect(() => {
-    chrome.braveTheme.getBraveThemeType(setInitialThemeType)
+    setInitialThemeType("Light");
+    //chrome.braveTheme.getBraveThemeType(setInitialThemeType)
   }, [])
   return (
     <Provider store={store}>

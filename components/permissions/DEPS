@@ -1,0 +1,9 @@
+include_rules = [
+  "+components/content_settings/core",
+  "+components/keyed_service/core",
+  "+components/permissions",
+  "+components/pref_registry",
+  "+content/public/browser",
+  "+services/preferences/public/cpp",
+  "+third_party/blink/public",
+]

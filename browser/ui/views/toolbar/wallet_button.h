@@ -13,7 +13,7 @@
 
 #include "base/memory/raw_ptr.h"
 #include "base/time/time.h"
-#include "brave/browser/ui/views/toolbar/wallet_button_notification_source.h"
+#include "mises/browser/ui/views/toolbar/wallet_button_notification_source.h"
 #include "chrome/browser/ui/views/toolbar/toolbar_button.h"
 #include "components/prefs/pref_change_registrar.h"
 #include "content/public/browser/browser_context.h"

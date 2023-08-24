@@ -6,19 +6,19 @@
 #ifndef BRAVE_BROWSER_UI_WALLET_BUBBLE_MANAGER_DELEGATE_IMPL_H_
 #define BRAVE_BROWSER_UI_WALLET_BUBBLE_MANAGER_DELEGATE_IMPL_H_
 
-#include "brave/browser/ui/brave_wallet/wallet_bubble_manager_delegate.h"
+#include "mises/browser/ui/brave_wallet/wallet_bubble_manager_delegate.h"
 
 #include <memory>
 #include <vector>
 
 #include "base/memory/raw_ptr.h"
-#include "brave/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
+#include "mises/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
 #include "url/gurl.h"
 
 namespace brave_wallet {
 
 template <typename T>
-class BraveWebUIBubbleManagerT;
+class MisesWebUIBubbleManagerT;
 
 class WalletBubbleManagerDelegateImpl : public WalletBubbleManagerDelegate {
  public:
@@ -41,7 +41,7 @@ class WalletBubbleManagerDelegateImpl : public WalletBubbleManagerDelegate {
  private:
   raw_ptr<content::WebContents> web_contents_ = nullptr;
   GURL webui_url_;
-  std::unique_ptr<BraveWebUIBubbleManagerT<WalletPanelUI>>
+  std::unique_ptr<MisesWebUIBubbleManagerT<WalletPanelUI>>
       webui_bubble_manager_;
 };
 

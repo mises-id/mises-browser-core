@@ -12,6 +12,7 @@
 #include "base/strings/utf_string_conversions.h"
 #include "mises/components/constants/url_constants.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/browser/ui/webui/navigation_bar_data_provider.h"
 #include "chrome/browser/profiles/profile.h"
 #include "components/grit/mises_components_resources.h"
 #include "components/grit/mises_components_strings.h"
@@ -57,12 +58,13 @@ struct WebUISimpleItem {
 void CustomizeWebUIHTMLSource(content::WebUI* web_ui,
                               const std::string& name,
                               content::WebUIDataSource* source) {
-/*
+
 #if !BUILDFLAG(IS_ANDROID)
   if (name == "rewards" || name == "wallet") {
     NavigationBarDataProvider::Initialize(source, Profile::FromWebUI(web_ui));
   }
 #endif
+/*
 
   // clang-format off
   static std::map<std::string, std::vector<WebUISimpleItem> > resources = {
