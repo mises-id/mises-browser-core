@@ -34,4 +34,5 @@ module.exports = {
   // 'brave/components/web-common'
   '$web-common' : path.resolve(__dirname, '../common'),
   '@ledgerhq/devices/hid-framing': path.resolve(__dirname, '../../node_modules/@ledgerhq/devices/lib/hid-framing'),
+  'react-native$': 'react-native-web',
 }

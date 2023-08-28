@@ -8,7 +8,6 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { initLocale } from 'brave-ui'
 import { BrowserRouter } from 'react-router-dom'
-
 // assets
 import faveiconUrl from '../assets/svg-icons/brave-icon.svg'
 
@@ -25,7 +24,7 @@ import { ApiProxyContext } from '../common/context/api-proxy.context'
 
 // components
 import BraveCoreThemeProvider from '../../common/BraveCoreThemeProvider'
-import Container from './container'
+// import Container from './container'
 import { store, walletPageApiProxy } from './store'
 
 // style
@@ -35,6 +34,10 @@ import 'emptykit.css'
 
 import '@brave/leo/tokens/css/variables.css'
 import { setIconBasePath } from '@brave/leo/react/icon'
+import { TransitionPresets, createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import UnlockScreen1 from './screens/UnlockScreen1'
+// import { AppNavigation } from './navigation'
 setIconBasePath('chrome://resources/brave-icons')
 
 function App () {
@@ -54,6 +57,7 @@ function App () {
     }
     link.href = faveiconUrl
   }, [])
+  const Stack = createStackNavigator();
 
   return (
     <Provider store={store}>
@@ -66,7 +70,20 @@ function App () {
           >
             <ApiProxyContext.Provider value={walletPageApiProxy}>
               <LibContext.Provider value={Lib}>
-                <Container />
+                {/* <Container /> */}
+                <NavigationContainer>
+                  <Stack.Navigator
+                    initialRouteName={"Unlock"}
+                    screenOptions={{
+                      headerShown: false,
+                      ...TransitionPresets.SlideFromRightIOS,
+                    }}
+                    headerMode= "screen"
+                  >
+                    <Stack.Screen name="Unlock" component={UnlockScreen1} />
+                  </Stack.Navigator>
+                </NavigationContainer>
+                {/* <UnlockScreen1 /> */}
               </LibContext.Provider>
             </ApiProxyContext.Provider>
           </BraveCoreThemeProvider>
