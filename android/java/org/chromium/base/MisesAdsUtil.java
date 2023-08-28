@@ -10,6 +10,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
 import android.os.Build;
 import android.webkit.WebView;
+import android.util.SparseArray;
+import android.content.res.Resources;
+import android.content.res.AssetManager;
+import java.lang.reflect.Method;
 
 import org.chromium.base.Log;
 import java.util.Arrays;
@@ -79,14 +83,34 @@ public class MisesAdsUtil {
         
     }
 
+    private static int webViewDelegateGetPackageId(Resources resources, String packageName) {
+        // this code is from android source 
+        // https://android.googlesource.com/platform/frameworks/base/+/refs/heads/master/core/java/android/webkit/WebViewDelegate.java
+        try {
+            Method getAssignedPackageIdentifiers =
+                    AssetManager.class.getMethod("getAssignedPackageIdentifiers");
+            SparseArray<String> packageIdentifiers =
+                    (SparseArray) getAssignedPackageIdentifiers.invoke(
+                            resources.getAssets());
+            for (int i = 0; i < packageIdentifiers.size(); i++) {
+                final String name = packageIdentifiers.valueAt(i);
+                if (packageName.equals(name)) {
+                    return packageIdentifiers.keyAt(i);
+                }
+            }
+        } catch (ReflectiveOperationException e) {
+             throw new RuntimeException(e);
+        }
+        throw new RuntimeException("Package not found: " + packageName);
+    }
+
     private static void runtimeCheck(Context ctx) throws RuntimeException{
+
         if (!PackageUtils.isPackageInstalled("com.google.android.webview")) {
-            throw new RuntimeException("webview not exists!");
+            throw new RuntimeException("com.google.android.webview not exists!");
         }
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P)  {
-            if (!PackageUtils.isPackageInstalled("com.android.chrome")) {
-                throw new RuntimeException("chrome not exists!");
-            }
+            webViewDelegateGetPackageId(ctx.getResources(), "com.android.chrome");
         };
         final WebView dummyWebView = new WebView(ctx);
         dummyWebView.destroy();
