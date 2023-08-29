@@ -16,10 +16,12 @@
       /* Prevent layout shift when a vertical scrollbar is added  */
       overflow-y: auto;
     }
+    html, body, #root{
+      height: 100%;
+    }
 
-    #root {
-      display: flex;
-      min-height: calc(100vh - 56px);
+    * {
+      outline: none;
     }
 
     iframe {

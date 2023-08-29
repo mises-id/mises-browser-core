@@ -1,0 +1,52 @@
+diff --git a/node_modules/react-native-reanimated/lib/module/index.web.js b/node_modules/react-native-reanimated/lib/module/index.web.js
+index b32b01f..bad3f43 100644
+--- a/node_modules/react-native-reanimated/lib/module/index.web.js
++++ b/node_modules/react-native-reanimated/lib/module/index.web.js
+@@ -2,5 +2,6 @@
+ import './reanimated2/js-reanimated/global';
+ export * from './reanimated2';
+ import * as _default from './Animated';
+-export { _default as default }; // If this line fails, you probably forgot some installation steps. Check out the installation guide here: https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation/ 1) Make sure reanimated's babel plugin is installed in your babel.config.js (you should have 'react-native-reanimated/plugin' listed there - also see the above link for details) 2) Make sure you reset build cache after updating the config, run: yarn start --reset-cache
++// export { _default as default }; // If this line fails, you probably forgot some installation steps. Check out the installation guide here: https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation/ 1) Make sure reanimated's babel plugin is installed in your babel.config.js (you should have 'react-native-reanimated/plugin' listed there - also see the above link for details) 2) Make sure you reset build cache after updating the config, run: yarn start --reset-cache
++export default _default;
+ //# sourceMappingURL=index.web.js.map
+\ No newline at end of file
+diff --git a/node_modules/react-native-reanimated/lib/module/reanimated2/js-reanimated/index.js b/node_modules/react-native-reanimated/lib/module/reanimated2/js-reanimated/index.js
+index da91ad9..0d93d38 100644
+--- a/node_modules/react-native-reanimated/lib/module/reanimated2/js-reanimated/index.js
++++ b/node_modules/react-native-reanimated/lib/module/reanimated2/js-reanimated/index.js
+@@ -13,8 +13,8 @@ export const _updatePropsJS = (updates, viewRef) => {
+     }, [{}, {}]);
+     if (typeof component.setNativeProps === 'function') {
+       setNativeProps(component, rawStyles);
+-    } else if (Object.keys(component.props).length > 0) {
+-      Object.keys(component.props).forEach(key => {
++    } else if (Object.keys(viewRef.props).length > 0) {
++      Object.keys(viewRef.props).forEach(key => {
+         if (!rawStyles[key]) {
+           return;
+         }
+diff --git a/node_modules/react-native-reanimated/src/reanimated2/js-reanimated/index.ts b/node_modules/react-native-reanimated/src/reanimated2/js-reanimated/index.ts
+index 8c3320c..a24db26 100644
+--- a/node_modules/react-native-reanimated/src/reanimated2/js-reanimated/index.ts
++++ b/node_modules/react-native-reanimated/src/reanimated2/js-reanimated/index.ts
+@@ -17,7 +17,7 @@ interface JSReanimatedComponent {
+ 
+ export const _updatePropsJS = (
+   updates: StyleProps | AnimatedStyle,
+-  viewRef: { _component?: JSReanimatedComponent }
++  viewRef: { _component?: JSReanimatedComponent, props: StyleProps}
+ ): void => {
+   if (viewRef._component) {
+     const component = viewRef._component;
+@@ -33,8 +33,8 @@ export const _updatePropsJS = (
+ 
+     if (typeof component.setNativeProps === 'function') {
+       setNativeProps(component, rawStyles);
+-    } else if (Object.keys(component.props).length > 0) {
+-      Object.keys(component.props).forEach((key) => {
++    } else if (Object.keys(viewRef.props).length > 0) {
++      Object.keys(viewRef.props).forEach((key) => {
+         if (!rawStyles[key]) {
+           return;
+         }

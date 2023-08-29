@@ -24,7 +24,17 @@ module.exports = async function (env, argv) {
   const isDevMode = argv.mode === 'development'
   // Webpack config object
   const resolve = {
-    extensions: ['.js', '.tsx', '.ts', '.json', ".ios.js", '.android.js', '.web.js'],
+    extensions: [
+      ".web.tsx",
+      ".web.ts",
+      ".web.jsx",
+      ".jsx",
+      ".web.js",
+      ".js",
+      ".tsx",
+      ".ts",
+      ".json",
+    ],
     alias: pathMap,
     modules: [ 'node_modules' ]
   }
@@ -189,7 +199,6 @@ module.exports = async function (env, argv) {
             /node_modules(.*[/\\])+@react-navigation/,
             /node_modules(.*[/\\])+@react-native-async-storage/,
             /node_modules(.*[/\\])+react-native-keyboard-aware-scroll-view/,
-            /node_modules(.*[/\\])+react-native-safe-area-context/,
             /node_modules(.*[/\\])+react-native-reanimated/,
             /node_modules(.*[/\\])+react-native-animatable/,
             /node_modules(.*[/\\])+metro-runtime/,
@@ -205,6 +214,20 @@ module.exports = async function (env, argv) {
               "plugins": ["@babel/plugin-proposal-nullish-coalescing-operator", "@babel/plugin-proposal-export-namespace-from"]
             },
           }
+        },
+        {
+          test: /\.js?$/,
+          include: [
+            /node_modules(.*[/\\])+react-native/,
+          ],
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['module:metro-react-native-babel-preset']
+              ],
+            }
+          },
         },
       ]
     },

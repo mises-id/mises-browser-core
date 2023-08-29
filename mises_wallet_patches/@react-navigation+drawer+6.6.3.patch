@@ -1,0 +1,44 @@
+diff --git a/node_modules/@react-navigation/drawer/lib/module/views/modern/Drawer.js b/node_modules/@react-navigation/drawer/lib/module/views/modern/Drawer.js
+index 1fdb8a2..17564ef 100644
+--- a/node_modules/@react-navigation/drawer/lib/module/views/modern/Drawer.js
++++ b/node_modules/@react-navigation/drawer/lib/module/views/modern/Drawer.js
+@@ -220,7 +220,7 @@ export default function Drawer(_ref) {
+         (drawerType === 'back' ? 0 : translateX.value) + (drawerPosition === 'left' ? isRTL ? -distanceFromEdge : 0 : isRTL ? 0 : distanceFromEdge)
+       }]
+     };
+-  });
++  }, [drawerWidth, drawerType, translateX, drawerPosition, isRTL]);
+   const contentAnimatedStyle = useAnimatedStyle(() => {
+     return {
+       transform: drawerType === 'permanent' ?
+@@ -232,7 +232,7 @@ export default function Drawer(_ref) {
+         drawerType === 'front' ? 0 : translateX.value + drawerWidth * (drawerPosition === 'left' ? 1 : -1)
+       }]
+     };
+-  });
++  }, [drawerType, translateX, drawerWidth, drawerPosition]);
+   const progress = useDerivedValue(() => {
+     return drawerType === 'permanent' ? 1 : interpolate(translateX.value, [getDrawerTranslationX(false), getDrawerTranslationX(true)], [0, 1]);
+   });
+diff --git a/node_modules/@react-navigation/drawer/lib/module/views/modern/Overlay.js b/node_modules/@react-navigation/drawer/lib/module/views/modern/Overlay.js
+index c297df9..c9f22a3 100644
+--- a/node_modules/@react-navigation/drawer/lib/module/views/modern/Overlay.js
++++ b/node_modules/@react-navigation/drawer/lib/module/views/modern/Overlay.js
+@@ -18,7 +18,7 @@ const Overlay = /*#__PURE__*/React.forwardRef(function Overlay(_ref, ref) {
+       // We can send the overlay behind the screen to avoid it
+       zIndex: progress.value > PROGRESS_EPSILON ? 0 : -1
+     };
+-  });
++  }, [progress, PROGRESS_EPSILON]);
+   const animatedProps = useAnimatedProps(() => {
+     const active = progress.value > PROGRESS_EPSILON;
+     return {
+@@ -26,7 +26,7 @@ const Overlay = /*#__PURE__*/React.forwardRef(function Overlay(_ref, ref) {
+       accessibilityElementsHidden: !active,
+       importantForAccessibility: active ? 'auto' : 'no-hide-descendants'
+     };
+-  });
++  }, [progress, PROGRESS_EPSILON])
+   return /*#__PURE__*/React.createElement(Animated.View, _extends({}, props, {
+     ref: ref,
+     style: [styles.overlay, overlayStyle, animatedStyle, style],

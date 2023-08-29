@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { useHeaderHeight } from "@react-navigation/stack";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { PageWithScrollView } from "../../components/page";
 import { useStyle } from "../../styles";
 import { View, Dimensions, Image } from "react-native";

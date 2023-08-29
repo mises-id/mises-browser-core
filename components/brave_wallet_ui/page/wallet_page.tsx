@@ -34,9 +34,13 @@ import 'emptykit.css'
 
 import '@brave/leo/tokens/css/variables.css'
 import { setIconBasePath } from '@brave/leo/react/icon'
-import { TransitionPresets, createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
-import UnlockScreen1 from './screens/UnlockScreen1'
+import { AppNavigation } from './navigation'
+import { StyleProvider, useStyle } from './styles'
+import { StatusBar } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { ModalsProvider } from './modals/base'
+import { LoadingScreenProvider } from './providers/loading-screen'
+import { ConfirmModalProvider } from './providers/confirm-modal'
 // import { AppNavigation } from './navigation'
 setIconBasePath('chrome://resources/brave-icons')
 
@@ -57,7 +61,18 @@ function App () {
     }
     link.href = faveiconUrl
   }, [])
-  const Stack = createStackNavigator();
+
+  const ThemeStatusBar: React.FunctionComponent = () => {
+    const style = useStyle();
+
+    return (
+      <StatusBar
+        translucent={true}
+        backgroundColor="#FFFFFF00"
+        barStyle={style.get("status-bar-style")}
+      />
+    );
+  };
 
   return (
     <Provider store={store}>
@@ -71,7 +86,7 @@ function App () {
             <ApiProxyContext.Provider value={walletPageApiProxy}>
               <LibContext.Provider value={Lib}>
                 {/* <Container /> */}
-                <NavigationContainer>
+                {/* <NavigationContainer>
                   <Stack.Navigator
                     initialRouteName={"Unlock"}
                     screenOptions={{
@@ -82,7 +97,19 @@ function App () {
                   >
                     <Stack.Screen name="Unlock" component={UnlockScreen1} />
                   </Stack.Navigator>
-                </NavigationContainer>
+                </NavigationContainer> */}
+                <StyleProvider>
+                  <ThemeStatusBar />
+                  <SafeAreaProvider>
+                    <ModalsProvider>
+                      <LoadingScreenProvider>
+                        <ConfirmModalProvider>
+                          <AppNavigation />
+                        </ConfirmModalProvider>
+                      </LoadingScreenProvider>
+                    </ModalsProvider>
+                  </SafeAreaProvider>
+                </StyleProvider>
                 {/* <UnlockScreen1 /> */}
               </LibContext.Provider>
             </ApiProxyContext.Provider>
