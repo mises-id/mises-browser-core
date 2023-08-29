@@ -60,5 +60,10 @@
 	<string>a74e5a0042edcabcd9dfebaf3423d497</string>
 	<key>fox_code</key>
 	<string>EXAMPLE_FOX_CODE</string>
+	<key>bugsnag</key>
+	<dict>
+		<key>apiKey</key>
+		<string>f07be1dce2391227e818fbe3e4235bf4</string>
+	</dict>
 </dict>
 </plist>

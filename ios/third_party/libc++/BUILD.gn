@@ -1,0 +1,96 @@
+import("//build/config/c++/c++.gni")
+import("//build/config/sanitizers/sanitizers.gni")
+import("//build/toolchain/toolchain.gni")
+
+# Used by libc++ and libc++abi.
+config("config") {
+  cflags = [ "-fstrict-aliasing" ]
+  if (is_win) {
+    cflags += [
+      # libc++ wants to redefine the macros WIN32_LEAN_AND_MEAN and _CRT_RAND_S
+      # in its implementation.
+      "-Wno-macro-redefined",
+    ]
+
+    cflags_cc = [
+      # We want to use a uniform C++ version across all of chromium, but
+      # upstream libc++ requires C++20 so we have to make an exception here.
+      # No other target should override the default -std= flag.
+      "-std:c++20",
+    ]
+  } else {
+    cflags += [ "-fPIC" ]
+    cflags_cc = [ "-std=c++20" ]
+  }
+
+  defines = [ "_LIBCPP_BUILDING_LIBRARY" ]
+}
+
+static_library("libc++") {
+  inputs = [ "__config_site" ]
+  sources = [
+    "//buildtools/third_party/libc++/trunk/src/algorithm.cpp",
+    "//buildtools/third_party/libc++/trunk/src/any.cpp",
+    "//buildtools/third_party/libc++/trunk/src/atomic.cpp",
+    "//buildtools/third_party/libc++/trunk/src/barrier.cpp",
+    "//buildtools/third_party/libc++/trunk/src/bind.cpp",
+    "//buildtools/third_party/libc++/trunk/src/charconv.cpp",
+    "//buildtools/third_party/libc++/trunk/src/chrono.cpp",
+    "//buildtools/third_party/libc++/trunk/src/condition_variable.cpp",
+    "//buildtools/third_party/libc++/trunk/src/condition_variable_destructor.cpp",
+    "//buildtools/third_party/libc++/trunk/src/exception.cpp",
+    "//buildtools/third_party/libc++/trunk/src/format.cpp",
+    "//buildtools/third_party/libc++/trunk/src/functional.cpp",
+    "//buildtools/third_party/libc++/trunk/src/future.cpp",
+    "//buildtools/third_party/libc++/trunk/src/hash.cpp",
+    "//buildtools/third_party/libc++/trunk/src/ios.cpp",
+    "//buildtools/third_party/libc++/trunk/src/ios.instantiations.cpp",
+    "//buildtools/third_party/libc++/trunk/src/iostream.cpp",
+    "//buildtools/third_party/libc++/trunk/src/legacy_pointer_safety.cpp",
+    "//buildtools/third_party/libc++/trunk/src/locale.cpp",
+    "//buildtools/third_party/libc++/trunk/src/memory.cpp",
+    "//buildtools/third_party/libc++/trunk/src/mutex.cpp",
+    "//buildtools/third_party/libc++/trunk/src/mutex_destructor.cpp",
+    "//buildtools/third_party/libc++/trunk/src/new.cpp",
+    "//buildtools/third_party/libc++/trunk/src/optional.cpp",
+    "//buildtools/third_party/libc++/trunk/src/random.cpp",
+    "//buildtools/third_party/libc++/trunk/src/random_shuffle.cpp",
+    "//buildtools/third_party/libc++/trunk/src/regex.cpp",
+    "//buildtools/third_party/libc++/trunk/src/ryu/d2fixed.cpp",
+    "//buildtools/third_party/libc++/trunk/src/ryu/d2s.cpp",
+    "//buildtools/third_party/libc++/trunk/src/ryu/f2s.cpp",
+    "//buildtools/third_party/libc++/trunk/src/shared_mutex.cpp",
+    "//buildtools/third_party/libc++/trunk/src/stdexcept.cpp",
+    "//buildtools/third_party/libc++/trunk/src/string.cpp",
+    "//buildtools/third_party/libc++/trunk/src/strstream.cpp",
+    "//buildtools/third_party/libc++/trunk/src/system_error.cpp",
+    "//buildtools/third_party/libc++/trunk/src/thread.cpp",
+    "//buildtools/third_party/libc++/trunk/src/typeinfo.cpp",
+    "//buildtools/third_party/libc++/trunk/src/utility.cpp",
+    "//buildtools/third_party/libc++/trunk/src/valarray.cpp",
+    "//buildtools/third_party/libc++/trunk/src/variant.cpp",
+    "//buildtools/third_party/libc++/trunk/src/vector.cpp",
+    "//buildtools/third_party/libc++/trunk/src/verbose_abort.cpp",
+  ]
+
+  include_dirs = [ "//buildtools/third_party/libc++/trunk/src/" ]
+
+  configs -= [
+    "//build/config/compiler:chromium_code",
+    "//build/config/compiler:no_exceptions",
+    "//build/config/compiler:no_rtti",
+    "//build/config/coverage:default_coverage",
+  ]
+  configs += [
+    ":config",
+    "//build/config/compiler:no_chromium_code",
+    "//build/config/compiler:exceptions",
+    "//build/config/compiler:rtti",
+  ]
+  defines = []
+  if (!is_win) {
+    defines += [ "LIBCXX_BUILDING_LIBCXXABI" ]
+  }
+
+   output_name = "libc++_chrome"
+}

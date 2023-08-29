@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -81,6 +81,8 @@ typedef NS_ENUM(NSInteger, RCTTextEventType) {
  */
 @protocol RCTEventDispatcherProtocol <RCTBridgeModule, RCTJSDispatcherModule>
 
+- (void)sendViewEventWithName:(NSString *)name reactTag:(NSNumber *)reactTag;
+
 /**
  * Deprecated, do not use.
  */
@@ -99,6 +101,11 @@ typedef NS_ENUM(NSInteger, RCTTextEventType) {
                          text:(NSString *)text
                           key:(NSString *)key
                    eventCount:(NSInteger)eventCount;
+
+/**
+ * Notify Observers of event
+ */
+- (void)notifyObserversOfEvent:(id<RCTEvent>)event;
 
 /**
  * Send a pre-prepared event object.

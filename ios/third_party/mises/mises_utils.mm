@@ -21,6 +21,9 @@
 #import <React/RCTRootView.h>
 #import <React/RCTPushNotificationManager.h>
 
+#import <React/RCTLinkingManager.h>
+#import <Bugsnag/Bugsnag.h>
+
 #import <FirebaseCore/FirebaseCore.h>
 #import <FirebaseDynamicLinks/FirebaseDynamicLinks.h>
 #import <FirebaseAnalytics/FirebaseAnalytics.h>
@@ -134,6 +137,22 @@ enum MetamaskUIPendingStatus {
     
     return NULL;
 }
+
+- (BOOL)concurrentRootEnabled
+{
+  return true;
+}
+
+
+/// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
+///
+/// @see: https://reactjs.org/blog/2022/03/29/react-v18.html
+/// @note: This requires to be rendering on Fabric (i.e. on the New Architecture).
+/// @return: `true` if the `concurrentRoot` feature is enabled. Otherwise, it returns `false`.
+
+
+
+
 - (instancetype)init
 {
     DLOG(WARNING) << "Mises init";
@@ -141,7 +160,7 @@ enum MetamaskUIPendingStatus {
     if (self) {
         self.bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:NULL];
         RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.bridge
-                                                   moduleName:@"MetaMask"
+                                                   moduleName:@"RepackMises"
                                             initialProperties:@{@"foxCode": @"debug"}];
        //rootView.backgroundColor = [UIColor colorNamed:@"ThemeColors"];
        self.rootViewController = [MetamaskUIViewController new];
@@ -190,10 +209,10 @@ enum MetamaskUIPendingStatus {
       command_line->GetSwitchValueASCII("mises-dev-ip");
   if (mises_dev_ip.size()) {
     [[RCTBundleURLProvider sharedSettings] setJsLocation:base::SysUTF8ToNSString(mises_dev_ip.c_str())];
-    return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+    return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
   }
-    
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+
+return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 }
 
 - (BOOL)activate:(WKWebView *) wv
@@ -272,6 +291,7 @@ enum MetamaskUIPendingStatus {
 //    [FBLPromise onQueue:queue do: id  _Nullable (^)(){
 //        
 //    }];
+
     dispatch_async(dispatch_get_main_queue(), ^{
         NSArray *paths = NSSearchPathForDirectoriesInDomains( NSCachesDirectory,
                                                                  NSUserDomainMask, YES);

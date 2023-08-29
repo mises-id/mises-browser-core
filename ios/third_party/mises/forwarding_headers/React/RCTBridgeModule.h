@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 
 #import <React/RCTDefines.h>
+#import <React/RCTJSThread.h>
+
+#import "RCTBundleManager.h"
 
 @class RCTBridge;
 @protocol RCTBridgeMethod;
+@protocol RCTTurboModule;
+@protocol RCTTurboModuleRegistry;
 @class RCTModuleRegistry;
 @class RCTViewRegistry;
-@class RCTBundleManager;
 @class RCTCallableJSModules;
 
 /**
@@ -41,16 +45,6 @@ typedef void (^RCTPromiseResolveBlock)(id result);
  * precise error messages.
  */
 typedef void (^RCTPromiseRejectBlock)(NSString *code, NSString *message, NSError *error);
-
-/**
- * This constant can be returned from +methodQueue to force module
- * methods to be called on the JavaScript thread. This can have serious
- * implications for performance, so only use this if you're sure it's what
- * you need.
- *
- * NOTE: RCTJSThread is not a real libdispatch queue
- */
-RCT_EXTERN dispatch_queue_t RCTJSThread;
 
 RCT_EXTERN_C_BEGIN
 
@@ -124,7 +118,7 @@ RCT_EXTERN_C_END
  * moduleRegistry = _moduleRegistry;`. If using Swift, add
  * `@objc var moduleRegistry: RCTModuleRegistry!` to your module.
  */
-@property (nonatomic, weak, readonly) RCTModuleRegistry *moduleRegistry;
+@property (nonatomic, weak, readwrite) RCTModuleRegistry *moduleRegistry;
 
 /**
  * A reference to the RCTViewRegistry. Useful for modules that query UIViews,
@@ -388,37 +382,6 @@ RCT_EXTERN_C_END
 @end
 
 /**
- * A protocol that allows TurboModules to do lookup on other TurboModules.
- * Calling these methods may cause a module to be synchronously instantiated.
- */
-@protocol RCTTurboModuleRegistry <NSObject>
-- (id)moduleForName:(const char *)moduleName;
-
-/**
- * Rationale:
- * When TurboModules lookup other modules by name, we first check the TurboModule
- * registry to see if a TurboModule exists with the respective name. In this case,
- * we don't want a RedBox to be raised if the TurboModule isn't found.
- *
- * This method is deprecated and will be deleted after the migration from
- * TurboModules to TurboModules is complete.
- */
-- (id)moduleForName:(const char *)moduleName warnOnLookupFailure:(BOOL)warnOnLookupFailure;
-- (BOOL)moduleIsInitialized:(const char *)moduleName;
-
-- (NSArray<NSString *> *)eagerInitModuleNames;
-- (NSArray<NSString *> *)eagerInitMainQueueModuleNames;
-@end
-
-/**
- * Experimental.
- * A protocol to declare that a class supports TurboModule.
- * This may be removed in the future.
- * See RCTTurboModule.h for actual signature.
- */
-@protocol RCTTurboModule;
-
-/**
  * A class that allows NativeModules and TurboModules to look up one another.
  */
 @interface RCTModuleRegistry : NSObject
@@ -429,22 +392,9 @@ RCT_EXTERN_C_END
 - (id)moduleForName:(const char *)moduleName lazilyLoadIfNecessary:(BOOL)lazilyLoad;
 @end
 
-typedef void (^RCTBridgelessBundleURLSetter)(NSURL *bundleURL);
-typedef NSURL * (^RCTBridgelessBundleURLGetter)(void);
-
-/**
- * A class that allows NativeModules/TurboModules to read/write the bundleURL, with or without the bridge.
- */
-@interface RCTBundleManager : NSObject
-- (void)setBridge:(RCTBridge *)bridge;
-- (void)setBridgelessBundleURLGetter:(RCTBridgelessBundleURLGetter)getter
-                           andSetter:(RCTBridgelessBundleURLSetter)setter
-                    andDefaultGetter:(RCTBridgelessBundleURLGetter)defaultGetter;
-- (void)resetBundleURL;
-@property NSURL *bundleURL;
-@end
-
 typedef UIView * (^RCTBridgelessComponentViewProvider)(NSNumber *);
+
+typedef void (^RCTViewRegistryUIBlock)(RCTViewRegistry *viewRegistry);
 
 /**
  * A class that allows NativeModules to query for views, given React Tags.
@@ -454,6 +404,7 @@ typedef UIView * (^RCTBridgelessComponentViewProvider)(NSNumber *);
 - (void)setBridgelessComponentViewProvider:(RCTBridgelessComponentViewProvider)bridgelessComponentViewProvider;
 
 - (UIView *)viewForReactTag:(NSNumber *)reactTag;
+- (void)addUIBlock:(RCTViewRegistryUIBlock)block;
 @end
 
 typedef void (^RCTBridgelessJSModuleMethodInvoker)(
