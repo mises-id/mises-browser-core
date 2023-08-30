@@ -65,5 +65,11 @@
 		<key>apiKey</key>
 		<string>f07be1dce2391227e818fbe3e4235bf4</string>
 	</dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>twitter</string>
+		<string>itms-apps</string>
+		<string>about</string>
+	</array>
 </dict>
 </plist>

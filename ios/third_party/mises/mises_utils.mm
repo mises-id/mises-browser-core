@@ -43,25 +43,46 @@
 @interface RCTMisesModule : NSObject <RCTBridgeModule>
 @end
 
-@interface MetamaskUIViewController : UIViewController
-
-@end
 
 
-enum MetamaskUIPendingStatus {
+
+enum MisesUIViewWalletType {
   // No action should be done
-  NONE = 0,
+  METAMASK,
+  MISESWALLET
+};
+
+enum MisesUIViewPendingStatus {
+  // No action should be done
+  PENDING_NONE = 0,
   POPUP,
   DISMISS
 };
 
-@interface ReactAppDelegate : UIResponder <RCTBridgeDelegate>
-+ (instancetype)wrapper;
+
+@protocol MisesUIViewDelegate
+- (void)show:(UIViewController*)basevc;
+- (void)dismiss;
+- (RCTBridge *)bridge;
+- (MisesUIViewPendingStatus) pendingStatus;
+
+@end
+
+@interface MisesUIViewController : UIViewController
+
+@property(nonatomic, weak) id<MisesUIViewDelegate> delegate;
+
+@end
+
+
+
+@interface ReactAppDelegate : UIResponder <RCTBridgeDelegate, MisesUIViewDelegate>
++ (instancetype)getOrCreate: (MisesUIViewWalletType) walletType;
 + (UIViewController *)baseViewController;
 - (void)show:(UIViewController*)basevc;
 - (void)dismiss;
 
-@property (nonatomic, strong) MetamaskUIViewController *rootViewController;
+@property (nonatomic, strong) MisesUIViewController *rootViewController;
 
 @property (nonatomic, strong) RCTBridge *bridge;
 
@@ -69,7 +90,8 @@ enum MetamaskUIPendingStatus {
 
 @property(nonatomic, weak) id<BrowserCommands> browserHandler;
 
-@property (atomic) MetamaskUIPendingStatus metamaskPendingStatus;
+@property (atomic) MisesUIViewPendingStatus pendingStatus;
+@property (atomic) MisesUIViewWalletType walletType;
 
 @end
 
@@ -78,7 +100,7 @@ enum MetamaskUIPendingStatus {
 @end
 
 
-@implementation MetamaskUIViewController
+@implementation MisesUIViewController
 
 - (BOOL)isModal {
      if([self presentingViewController])
@@ -91,40 +113,54 @@ enum MetamaskUIPendingStatus {
   dispatch_async(dispatch_get_main_queue(), ^{
       
       DLOG(WARNING) << "Popup Metamask complete";
-      ReactAppDelegate* delegate = [ReactAppDelegate wrapper];
-      if (delegate.metamaskPendingStatus == DISMISS) {
-          [delegate dismiss];
+      if (self.delegate) {
+        if ([self.delegate pendingStatus] == DISMISS) {
+          [self.delegate dismiss];
+        }
+
+        [[self.delegate bridge] enqueueJSCall:@"NativeBridge.windowStatusChanged" args:@[@"show"]];
+          
       }
 
-    [[Mises bridge] enqueueJSCall:@"NativeBridge.windowStatusChanged" args:@[@"show"]];
+    
   });
 }
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   dispatch_async(dispatch_get_main_queue(), ^{
       DLOG(WARNING) << "Dismiss Metamask complete";
-      ReactAppDelegate* delegate = [ReactAppDelegate wrapper];
-      if (delegate.metamaskPendingStatus == POPUP) {
+      if (self.delegate) {
+        if ([self.delegate pendingStatus] == POPUP) {
           UIViewController* bvc = [ReactAppDelegate baseViewController];
-          [delegate show:bvc];
+          [self.delegate show:bvc];
+        }
+        [[self.delegate bridge] enqueueJSCall:@"NativeBridge.windowStatusChanged" args:@[@"hide"]];
       }
+
       
 
-    [[Mises bridge] enqueueJSCall:@"NativeBridge.windowStatusChanged" args:@[@"hide"]];
+    
   });
 }
 @end
 
 @implementation ReactAppDelegate
-+ (instancetype)wrapper
++ (instancetype)getOrCreate: (MisesUIViewWalletType) walletType;
 {  
-    static ReactAppDelegate *sharedInstance = nil;
+    static NSArray<ReactAppDelegate*> *sharedInstance = nil;
     @synchronized (self) {
         if (!sharedInstance) {
-            sharedInstance = [[ReactAppDelegate alloc] init];
+          ReactAppDelegate* metamask = [[ReactAppDelegate alloc] init:METAMASK];
+          ReactAppDelegate* miseswallet = [[ReactAppDelegate alloc] init:MISESWALLET];
+          sharedInstance = @[metamask, miseswallet];
         }
-    return sharedInstance;
     }
+    for (ReactAppDelegate* object in sharedInstance) {
+      if (object.walletType == walletType) {
+        return object;
+      }
+    }
+    return nil;
 }
 
 + (UIViewController *)baseViewController {
@@ -153,7 +189,7 @@ enum MetamaskUIPendingStatus {
 
 
 
-- (instancetype)init
+- (instancetype)init: (MisesUIViewWalletType) walletType
 {
     DLOG(WARNING) << "Mises init";
     self = [super init];
@@ -163,19 +199,20 @@ enum MetamaskUIPendingStatus {
                                                    moduleName:@"RepackMises"
                                             initialProperties:@{@"foxCode": @"debug"}];
        //rootView.backgroundColor = [UIColor colorNamed:@"ThemeColors"];
-       self.rootViewController = [MetamaskUIViewController new];
+       self.rootViewController = [MisesUIViewController new];
        self.rootViewController.view = rootView;
        self.webViewArray = [NSPointerArray weakObjectsPointerArray];
       DLOG(WARNING) << "Mises init step 4";
     }
+    self.rootViewController.delegate = self;
     return self;
 }
 - (void)show:(UIViewController*)basevc {
   if ([self.rootViewController isModal] || !basevc) {
-      self.metamaskPendingStatus = POPUP;
+      self.pendingStatus = POPUP;
       return;
   };
-  self.metamaskPendingStatus = NONE;
+  self.pendingStatus = PENDING_NONE;
   if ([basevc
         respondsToSelector:NSSelectorFromString(@"openSinglePage:")]) {
       self.browserHandler = static_cast<UIViewController<BrowserCommands>*>(basevc);
@@ -193,10 +230,10 @@ enum MetamaskUIPendingStatus {
 
 - (void)dismiss {
   if (![self.rootViewController isModal]) {
-      self.metamaskPendingStatus = DISMISS;
+      self.pendingStatus = DISMISS;
       return;
   };
-  self.metamaskPendingStatus = NONE;
+  self.pendingStatus = PENDING_NONE;
   self.browserHandler = nil;
   [self.rootViewController dismissViewControllerAnimated:YES  completion: ^{
    
@@ -240,7 +277,6 @@ return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 + (void) Init{
     DLOG(WARNING) << "Init Metamask";
     dispatch_async(dispatch_get_main_queue(), ^{
-      [ReactAppDelegate wrapper]; 
       [MisesLCDService wrapper];
       [MisesShareService wrapper];
       [MisesAccountService wrapper];
@@ -251,33 +287,32 @@ return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 }
 + (void) dismissMetamask {
   DLOG(WARNING) << "Dismiss Metamask";
-    ReactAppDelegate *delegate = [ReactAppDelegate wrapper];
+    ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
     [NSObject cancelPreviousPerformRequestsWithTarget:delegate];
     [delegate performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
 }
 + (void) popupMetamask {
     DLOG(WARNING) << "Popup Metamask";
     
-    ReactAppDelegate *delegate = [ReactAppDelegate wrapper];
+    ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
     [NSObject cancelPreviousPerformRequestsWithTarget:delegate];
     [delegate performSelector:@selector(popup) withObject:nil afterDelay:0.1];
     
 
      
 }
-
-+ (RCTBridge *) bridge {
-  return [[ReactAppDelegate wrapper] bridge]; 
++ (RCTBridge *) bridgeMetamask {
+   ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
+  return [delegate bridge]; 
 }
 
 
-+ (NSUInteger) onWebViewActivated:(WKWebView *) wv {
-    if ([[ReactAppDelegate wrapper] activate:wv]) {
-       
-    };
-    NSUInteger wvid = [wv hash];
-    //[[Mises bridge] enqueueJSCall:@"NativeBridge.activate" args:@[wv.URL.absoluteString, wvid];
-    return wvid;
++ (NSUInteger) onWebViewActivatedMetamask:(WKWebView *) wv {
+  ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
+  if ([delegate activate:wv]) {
+  };
+  NSUInteger wvid = [wv hash];
+  return wvid;
 }
 
 
@@ -369,30 +404,34 @@ static NSString* urlEscapeString(NSString *unencodedString)
 // To export a module named RCTMisesModule
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(dismiss)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(dismiss:(NSString*)walletTypeName)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+      if ([walletTypeName isEqualToString:@"metamask"]) {
         [Mises dismissMetamask];
-        
+      } 
     });
     return nil;
 }
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(popup)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(popup:(NSString*)walletTypeName)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-       [Mises popupMetamask];
+      if ([walletTypeName isEqualToString:@"metamask"]) {
+        [Mises popupMetamask];
+      }
+       
         
     });
     return nil;
 }
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromRN:(NSString *) msg orgin:(NSString*)origin webviewID:(NSUInteger)webviewID)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromMetamask:(NSString *) msg orgin:(NSString*)origin webviewID:(NSUInteger)webviewID)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
 
-        DLOG(WARNING) << "postMessageFromRN " << msg;
-        NSArray * allObjects = [[ReactAppDelegate wrapper].webViewArray allObjects];
+        DLOG(WARNING) << "postMessageFromMetamask " << msg;
+        ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
+        NSArray * allObjects = [delegate.webViewArray allObjects];
         NSUInteger count = [allObjects count];
         for (NSUInteger i = 0; i < count; i++) {
             __weak WKWebView* weakwv = [allObjects objectAtIndex: i];
@@ -438,16 +477,17 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(setMisesUserInfo:(NSString *)jsonString)
 
 
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(openUrl:(NSString *)url)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(openUrlFromMetamsk:(NSString *)url)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        DLOG(WARNING) << "openUrl " << url;
-        id handelr = [[ReactAppDelegate wrapper] browserHandler];
+        DLOG(WARNING) << "openUrlFromMetamsk " << url;
+        ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
+        id handelr = [delegate browserHandler];
         if (handelr && [handelr respondsToSelector:@selector(openSinglePage:)]) {
             [handelr performSelector:@selector(openSinglePage:) withObject:url];
         }
-        [[ReactAppDelegate wrapper] dismiss];
+        [delegate dismiss];
         
       
     });

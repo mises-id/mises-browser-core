@@ -46,6 +46,8 @@ source_set("mises") {
     "mises_account_service.mm",
     "mises_application_delegate.mm",
     "RCTAnalytics.mm",
+    "RCTScreenshotDetect.mm",
+    "RCTMinimizer.mm",
     "SSZipArchive/SSZipArchive.m"
   ]
   public_configs = [

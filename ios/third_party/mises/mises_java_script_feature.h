@@ -32,7 +32,8 @@ class MisesJavaScriptFeature : public base::SupportsUserData::Data,
       const MisesJavaScriptFeature&) = delete;
 
   // Handles a message from JavaScript to complete session restoration.
-  void MisesMessageReceived(WKScriptMessage* script_message);
+  void MetaMaskMessageReceived(WKScriptMessage* script_message);
+  void MisesWalletMessageReceived(WKScriptMessage* script_message);
 
   // The browser state associated with this instance of the feature.
   BrowserState* browser_state_;
@@ -42,7 +43,8 @@ class MisesJavaScriptFeature : public base::SupportsUserData::Data,
   // to message the WKWebView directly since windowID is not yet setup during
   // session restoration. (The WKWebView is intentionally hidden from
   // JavaScriptFeature::ScriptMessageReceived).
-  std::unique_ptr<ScopedWKScriptMessageHandler> mises_handler_;
+  std::unique_ptr<ScopedWKScriptMessageHandler> mises_wallet_handler_;
+  std::unique_ptr<ScopedWKScriptMessageHandler> metamask_handler_;
 
   base::WeakPtrFactory<MisesJavaScriptFeature> weak_factory_;
 };

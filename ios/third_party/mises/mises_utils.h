@@ -14,10 +14,10 @@
 + (void) popupMetamask;
 + (void) dismissMetamask;
 
-+ (RCTBridge *) bridge;
++ (RCTBridge *) bridgeMetamask;
 
 
-+ (NSUInteger) onWebViewActivated:(WKWebView *) wv;
++ (NSUInteger) onWebViewActivatedMetamask:(WKWebView *) wv;
 
 + (MisesAccountService*) account;
 
