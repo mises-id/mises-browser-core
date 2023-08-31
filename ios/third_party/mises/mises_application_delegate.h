@@ -3,13 +3,18 @@
 
 #import <UIKit/UIKit.h>
 #import "ios/chrome/app/main_application_delegate.h"
-
+#import <React/RCTBridge.h>
+#import <React/RCTBridgeDelegate.h>
+#import <UIKit/UIKit.h>
 
 // The main delegate of the application.
 @interface MisesApplicationDelegate : MainApplicationDelegate
 
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) RCTBridge *bridge;
 @property (nonatomic, strong) NSString *moduleName;
 @property (nonatomic, strong) NSDictionary *initialProps;
+
 
 @end
 

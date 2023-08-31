@@ -11,7 +11,7 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..dcc37c4d85b02bad3d92c241a8c6afd2
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -107,6 +109,13 @@ CGFloat ModuleVerticalSpacing() {
+@@ -107,6 +109,13 @@ @interface ContentSuggestionsViewController () <
  // List of all of the Most Visited views.
  @property(nonatomic, strong)
      NSMutableArray<ContentSuggestionsMostVisitedTileView*>* mostVisitedViews;
@@ -25,7 +25,7 @@ index 28733e6db09b8957bce6582e3cae68b4ade44c26..dcc37c4d85b02bad3d92c241a8c6afd2
  // Module Container for the Shortcuts.
  @property(nonatomic, strong)
      ContentSuggestionsModuleContainer* shortcutsModuleContainer;
-@@ -138,638 +147,735 @@ CGFloat ModuleVerticalSpacing() {
+@@ -138,638 +147,735 @@ @interface ContentSuggestionsViewController () <
  @implementation ContentSuggestionsViewController
  
  - (instancetype)init {

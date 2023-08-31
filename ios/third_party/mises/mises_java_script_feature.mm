@@ -26,7 +26,7 @@ const char kMisesJavaScriptFeatureKeyName[] =
     "mises_java_script_feature";
 
 // Script message name for session restore.
-NSString* const kMetamaskScriptHandlerName = @"ReactNativeWebView";
+NSString* const kMetamaskScriptHandlerName = @"RNMetaMaskWebView";
 NSString* const kMisesWalletScriptHandlerName = @"RNMisesWalletWebView";
 
 }  // namespace
@@ -88,7 +88,10 @@ void MisesJavaScriptFeature::MetaMaskMessageReceived(
     return;
   }
   NSUInteger wvid = [Mises onWebViewActivatedMetamask:message.webView];
-  [[Mises bridgeMetamask] enqueueJSCall:@"NativeBridge.postMessage" args:@[message.body, [NSNumber numberWithUnsignedInteger:wvid]]];
+  if ([Mises bridgeMetamask]) {
+    [[Mises bridgeMetamask] enqueueJSCall:@"NativeBridge.postMessage" args:@[message.body, [NSNumber numberWithUnsignedInteger:wvid]]];
+  }
+ 
 
 //   NSString* method =
 //       [NSString stringWithFormat:@"console.log(\"mises received: %@\", %@)",
@@ -110,7 +113,9 @@ void MisesJavaScriptFeature::MisesWalletMessageReceived(
     return;
   }
   NSUInteger wvid = [Mises onWebViewActivatedMetamask:message.webView];
-  [[Mises bridgeMetamask] enqueueJSCall:@"NativeBridge.postMessage" args:@[message.body, [NSNumber numberWithUnsignedInteger:wvid]]];
+  if ([Mises bridgeMisesWallet]) {
+    [[Mises bridgeMisesWallet] enqueueJSCall:@"NativeBridge.postMessage" args:@[message.body, [NSNumber numberWithUnsignedInteger:wvid]]];
+  }
 
 //   NSString* method =
 //       [NSString stringWithFormat:@"console.log(\"mises received: %@\", %@)",

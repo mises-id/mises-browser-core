@@ -1,12 +1,13 @@
 diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view.h b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view.h
-index ff2cf5b72c887e9d1cee8efc7fa8e86f50b8c1e5..e8f5a16bb2ba05bfa5bb9eec88c7c9cddef4c4a5 100644
+index ff2cf5b72c887e9d1cee8efc7fa8e86f50b8c1e5..5865b90fa40451febd7b84ac660feddb7c73acaa 100644
 --- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view.h
 +++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view.h
-@@ -40,6 +40,8 @@
+@@ -40,6 +40,9 @@
  // Separator between the toolbar and the content.
  @property(nonatomic, strong, readonly) UIView* separator;
  
 +@property(nonatomic, strong, readonly) ToolbarButton* misesButton;
++@property(nonatomic, strong, readonly) ToolbarButton* walletButton;
 +
  @end
  

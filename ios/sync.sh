@@ -37,7 +37,7 @@ cp /Users/baoge/Documents/work/mises-bundle/RepackMises/ios/bundle/main.jsbundle
 cp -R $SOURCE_DIR/Build/Products/Debug-iphonesimulator/**/*.a third_party/mises/Sim/Libs
 
 cp -R $SOURCE_DIR/Build/Products/Debug-iphonesimulator/*.framework third_party/mises/Sim/Frameworks
-
+cp -R $SOURCE_DIR/Build/Products/Debug-iphonesimulator/**/*.framework third_party/mises/Sim/Frameworks
 
 cp -R $SOURCE_DIR/Build/Products/Debug-iphoneos/**/*.a third_party/mises/Device/Libs
 

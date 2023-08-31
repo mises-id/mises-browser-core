@@ -15,12 +15,18 @@
 
 namespace web {
 
+NSString* GetInpageScript(NSString* resourceName) {
+  NSString *filePath = [[NSBundle mainBundle] pathForResource:resourceName ofType:@"js"];  
+  NSData *myData = [NSData dataWithContentsOfFile:filePath];  
+  return[ [ NSString alloc] initWithData:myData encoding: NSUTF8StringEncoding ];
+
+}
 
 MisesWebClient::MisesWebClient() {
-
-  NSString *filePath = [[NSBundle mainBundle] pathForResource:@"InpageBridgeWeb3" ofType:@"js"];  
-  NSData *myData = [NSData dataWithContentsOfFile:filePath];  
-  inpageScript = [ [ NSString alloc] initWithData:myData encoding: NSUTF8StringEncoding ];
+  inpageScripts = @[
+    GetInpageScript(@"InpageBridgeWeb3"), 
+    GetInpageScript(@"injected-provider.bundle")
+  ];
 
   [Mises Init];
 }
@@ -34,12 +40,27 @@ NSString* MisesWebClient::GetDocumentStartScriptForAllFrames(
   NSString* parent = ChromeWebClient::GetDocumentStartScriptForAllFrames(browser_state);
   NSMutableArray* scripts = [NSMutableArray array];
   [scripts addObject:parent];
-  [scripts addObject:inpageScript];
-  
+
+  NSUInteger count = [inpageScripts count];
+  for (NSUInteger i = 0; i < count; i++) {
+    [scripts addObject:inpageScripts[i]];
+  }
 
   return [scripts componentsJoinedByString:@";"];
 }
 
+NSString* GenMessageHandlerScript(NSString* handlerName) {
+  NSString * messageHandlerScriptTemplate = @"window.%@ = {"
+      "  postMessage: function (data) {"
+      "    window.webkit.messageHandlers.%@.postMessage(String(data));"
+      "  }"
+      "};";
+  return [
+      NSString
+      stringWithFormat: messageHandlerScriptTemplate
+        , handlerName, handlerName
+    ];
+}
 
 NSString* MisesWebClient::GetDocumentStartScriptForMainFrame(
     BrowserState* browser_state) const {
@@ -47,18 +68,9 @@ NSString* MisesWebClient::GetDocumentStartScriptForMainFrame(
   NSMutableArray* scripts = [NSMutableArray array];
   [scripts addObject:parent];
 
-  NSString * MessageHandlerName = @"ReactNativeWebView";
-  NSString * messageHandlerScript = [
-      NSString
-      stringWithFormat:
-        @"window.%@ = {"
-      "  postMessage: function (data) {"
-      "    window.webkit.messageHandlers.%@.postMessage(String(data));"
-      "  }"
-      "};", MessageHandlerName, MessageHandlerName
-    ];
-  [scripts addObject:messageHandlerScript];
+  [scripts addObject:GenMessageHandlerScript(@"RNMetaMaskWebView")];
   
+  [scripts addObject:GenMessageHandlerScript(@"RNMisesWalletWebView")];
 
   return [scripts componentsJoinedByString:@";"];
 }

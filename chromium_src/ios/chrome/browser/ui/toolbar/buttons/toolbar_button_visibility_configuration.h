@@ -1,0 +1,18 @@
+#ifndef MISES_IOS_CHROME_BROWSER_UI_TOOLBAR_BUTTONS_TOOLBAR_BUTTON_VISIBILITY_CONFIGURATION_H_
+#define MISES_IOS_CHROME_BROWSER_UI_TOOLBAR_BUTTONS_TOOLBAR_BUTTON_VISIBILITY_CONFIGURATION_H_
+
+#define ToolbarButtonVisibilityConfiguration ToolbarButtonVisibilityConfigurationChromium
+#include "src/ios/chrome/browser/ui/toolbar/buttons/toolbar_button_visibility_configuration.h"
+#undef ToolbarButtonVisibilityConfiguration
+
+
+@interface ToolbarButtonVisibilityConfiguration : ToolbarButtonVisibilityConfigurationChromium
+
+@property(nonatomic, readonly)
+    ToolbarComponentVisibility misesButtonVisibility;
+
+@property(nonatomic, readonly)
+    ToolbarComponentVisibility walletButtonVisibility;
+
+@end
+#endif

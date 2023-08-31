@@ -28,8 +28,13 @@
       </message>
       <message name="IDS_IOS_OPTIONS_MISES_VIEW_OFFICIAL_WEBSITE" desc="Title for the option open mises official web site. [Length: 20em] [iOS only]">
         View Official Website
-       </message>
-
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_OPEN_METAMASK" desc="Title for the option open metamask. [Length: 20em] [iOS only]">
+        MetaMask
+      </message>
+      <message name="IDS_IOS_OPTIONS_MISES_OPEN_MISESWALLET" desc="Title for the option open mises wallet. [Length: 20em] [iOS only]">
+        MisesWallet
+      </message>
       <message name="IDS_IOS_MISES_SHARE_ACCESSIBILITY_LABEL" desc="Text read by voice over to mises share. [Read by Text To Speech]">
        Mises Share
       </message>

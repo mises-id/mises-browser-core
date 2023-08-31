@@ -1,77 +1,92 @@
 diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
-index aee019bdd202e0fb480761e82bd2416ff017e260..98fd851b480bbc25add37938b9c486d39e97c883 100644
+index aee019bdd202e0fb480761e82bd2416ff017e260..9238aa474f5a5a6cb1fa59067a7f449a6a911526 100644
 --- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
 +++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
-@@ -115,7 +115,8 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+@@ -115,7 +115,9 @@ - (void)viewDidLoad {
    self.view.openNewTabButton.guideName = kNewTabButtonGuide;
    self.view.forwardButton.guideName = kForwardButtonGuide;
    self.view.backButton.guideName = kBackButtonGuide;
 -
 +  self.view.misesButton.guideName = kMisesButtonGuide;
++  self.view.walletButton.guideName = kWalletButtonGuide;
 +    
    [self addLayoutGuideCenterToButtons];
  
    // Add navigation popup menu triggers.
-@@ -298,6 +299,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+@@ -298,6 +300,12 @@ - (void)updateUIForMenuDisplayed:(PopupMenuType)popupType {
      case PopupMenuTypeTabStripTabGrid:
        // ignore
        break;
-+     case PopupMenuTypeMisesMenu:
-+        selectedButton = self.view.misesButton;
-+        break;
++    case PopupMenuTypeMisesMenu:
++      selectedButton = self.view.misesButton;
++      break;
++    case PopupMenuTypeWalletMenu:
++      selectedButton = self.view.walletButton;
++      break;
    }
  
    selectedButton.spotlighted = YES;
-@@ -313,6 +317,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+@@ -313,6 +321,8 @@ - (void)updateUIForMenuDismissed {
    self.view.openNewTabButton.spotlighted = NO;
    self.view.tabGridButton.spotlighted = NO;
    self.view.toolsMenuButton.spotlighted = NO;
 +  self.view.misesButton.spotlighted = NO;
++  self.view.walletButton.spotlighted = NO;
  
    for (ToolbarButton* button in self.view.allButtons) {
      button.dimmed = NO;
-@@ -340,6 +345,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+@@ -340,6 +350,12 @@ - (void)updateUIForIPHDisplayed:(PopupMenuType)popupType {
      case PopupMenuTypeTabStripTabGrid:
        // ignore
        break;
-+        case PopupMenuTypeMisesMenu:
-+          selectedButton = self.view.misesButton;
-+        break;
++    case PopupMenuTypeMisesMenu:
++      selectedButton = self.view.misesButton;
++    break;
++    case PopupMenuTypeWalletMenu:
++      selectedButton = self.view.walletButton;
++    break;
    }
  
    selectedButton.iphHighlighted = YES;
-@@ -351,6 +359,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+@@ -351,6 +367,8 @@ - (void)updateUIForIPHDismissed {
    self.view.openNewTabButton.iphHighlighted = NO;
    self.view.tabGridButton.iphHighlighted = NO;
    self.view.toolsMenuButton.iphHighlighted = NO;
 +  self.view.misesButton.iphHighlighted = NO;
++  self.view.walletButton.iphHighlighted = NO;
  }
  
  #pragma mark - Private
-@@ -419,6 +428,8 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+@@ -419,6 +437,10 @@ - (IBAction)recordUserMetrics:(id)sender {
    } else if (sender == self.view.openNewTabButton) {
      base::RecordAction(base::UserMetricsAction("MobileToolbarNewTabShortcut"));
      base::RecordAction(base::UserMetricsAction("MobileTabNewTab"));
 +  } else if (sender == self.view.misesButton) {
 +    base::RecordAction(base::UserMetricsAction("MobileToolbarMises"));
++  } else if (sender == self.view.walletButton) {
++    base::RecordAction(base::UserMetricsAction("MobileToolbarWallet"));
    } else {
      NOTREACHED();
    }
-@@ -448,6 +459,9 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+@@ -448,6 +470,12 @@ - (void)handleGestureRecognizer:(UILongPressGestureRecognizer*)gesture {
      } else if (gesture.view == self.view.toolsMenuButton) {
        base::RecordAction(base::UserMetricsAction("MobileToolbarShowMenu"));
        [self.popupMenuCommandsHandler showToolsMenuPopup];
-+    }else if (gesture.view == self.view.misesButton) {
++    } else if (gesture.view == self.view.misesButton) {
 +      base::RecordAction(base::UserMetricsAction("MobileMisesShowMenu"));
 +      [self.popupMenuCommandsHandler showMisesMenuPopup];
++    } else if (gesture.view == self.view.walletButton) {
++      base::RecordAction(base::UserMetricsAction("MobileWalletShowMenu"));
++      [self.popupMenuCommandsHandler showWalletMenuPopup];
      }
      TriggerHapticFeedbackForImpact(UIImpactFeedbackStyleHeavy);
    } else if (gesture.state == UIGestureRecognizerStateEnded) {
-@@ -502,6 +516,7 @@ const base::TimeDelta kToobarSlideInAnimationDuration = base::Milliseconds(500);
+@@ -502,6 +530,8 @@ - (void)addLayoutGuideCenterToButtons {
    self.view.openNewTabButton.layoutGuideCenter = self.layoutGuideCenter;
    self.view.forwardButton.layoutGuideCenter = self.layoutGuideCenter;
    self.view.backButton.layoutGuideCenter = self.layoutGuideCenter;
 +  self.view.misesButton.layoutGuideCenter = self.layoutGuideCenter;
++  self.view.walletButton.layoutGuideCenter = self.layoutGuideCenter;
  }
  
  @end

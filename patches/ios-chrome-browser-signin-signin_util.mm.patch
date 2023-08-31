@@ -10,7 +10,7 @@ index 0a6152007a65193338750061360e52e9bb746a97..2f1da4af3b0fee5a5c555dfb40269aa1
  
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
-@@ -101,6 +102,7 @@ signin::Tribool IsFirstSessionAfterDeviceRestore() {
+@@ -101,6 +102,7 @@ CGSize GetSizeForIdentityAvatarSize(IdentityAvatarSize avatar_size) {
        signin::Tribool::kUnknown;
    static dispatch_once_t once;
    dispatch_once(&once, ^{

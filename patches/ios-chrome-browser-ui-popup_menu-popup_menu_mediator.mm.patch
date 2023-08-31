@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
-index fdda63a7701be84fb3eba6703150294b58ad5170..6b003ab993f8c9e1b79b4abaebbecab203c95a51 100644
+index fdda63a7701be84fb3eba6703150294b58ad5170..4f36e6595c25c2d1bbd7ef4fbb06340ad1c4038b 100644
 --- a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 +++ b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 @@ -88,6 +88,10 @@
@@ -13,17 +13,20 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..6b003ab993f8c9e1b79b4abaebbecab2
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -553,6 +557,9 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
+@@ -553,6 +557,12 @@ - (void)setBookmarkModel:(bookmarks::BookmarkModel*)bookmarkModel {
          DCHECK(!UseSymbols());
          [self createSearchMenuItems];
          break;
 +      case PopupMenuTypeMisesMenu:
 +        [self createMisesMenuItems];
 +        break;
++      case PopupMenuTypeWalletMenu:
++        [self createWalletMenuItems];
++      break;
      }
      NSMutableArray* specificItems = [NSMutableArray array];
      if (self.reloadStopItem)
-@@ -1203,6 +1210,11 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
+@@ -1203,6 +1213,11 @@ - (void)createToolsMenuItems {
        @"popup_menu_site_information", kToolsMenuSiteInformation);
    [actionsArray addObject:self.siteInformationItem];
  
@@ -35,7 +38,7 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..6b003ab993f8c9e1b79b4abaebbecab2
    // Report an Issue.
    if (ios::provider::IsUserFeedbackSupported()) {
      TableViewItem* reportIssue = CreateTableViewItem(
-@@ -1349,4 +1361,65 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
+@@ -1349,4 +1364,81 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
    }
  }
  
@@ -97,6 +100,22 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..6b003ab993f8c9e1b79b4abaebbecab2
 +
 +   }
 +
++
++
++}
++
++
++- (void)createWalletMenuItems {
++
++    TableViewItem* openMetamask =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_OPEN_METAMASK, PopupMenuActionMisesOpenMetamask,
++                            @"popup_menu_mises_open_metamask", kToolsMenuMisesOpenMetamaskId);
++    TableViewItem* openMisesWallet =
++        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_OPEN_MISESWALLET, PopupMenuActionMisesOpenMisesWallet,
++                            @"popup_menu_mises_open_miseswallet", kToolsMenuMisesOpenMisesWalletId);
++    NSArray* signinActions = @[ openMetamask, openMisesWallet ];
++    self.items = @[ signinActions ];
++   
 +
 +
 +}

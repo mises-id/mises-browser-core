@@ -1,44 +1,49 @@
 diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
-index 1908561664e074c35cf74710ce577230d016aabc..0f2a2bbe6d93ca38cb9a6c9dc00d29db88d20d56 100644
+index 1908561664e074c35cf74710ce577230d016aabc..877459039fa93e1dfdc4f20d69449e8767b09409 100644
 --- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
 +++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
-@@ -48,6 +48,8 @@ const CGFloat kToolsMenuOffset = -7;
+@@ -48,6 +48,9 @@ @interface SecondaryToolbarView ()<ToolbarCollapsing>
  // Button to create a new tab, redefined as readwrite.
  @property(nonatomic, strong, readwrite) ToolbarButton* openNewTabButton;
  
 +@property(nonatomic, strong, readwrite) ToolbarButton* misesButton;
++@property(nonatomic, strong, readwrite) ToolbarButton* walletButton;
 +
  @end
  
  @implementation SecondaryToolbarView
-@@ -61,6 +63,8 @@ const CGFloat kToolsMenuOffset = -7;
+@@ -61,6 +64,9 @@ @implementation SecondaryToolbarView
  @synthesize openNewTabButton = _openNewTabButton;
  @synthesize tabGridButton = _tabGridButton;
  
 +@synthesize misesButton = _misesButton;
++@synthesize walletButton = _walletButton;
 +
  #pragma mark - Public
  
  - (instancetype)initWithButtonFactory:(ToolbarButtonFactory*)factory {
-@@ -100,6 +104,8 @@ const CGFloat kToolsMenuOffset = -7;
+@@ -100,6 +106,9 @@ - (void)setUp {
    self.openNewTabButton = [self.buttonFactory openNewTabButton];
    self.tabGridButton = [self.buttonFactory tabGridButton];
    self.toolsMenuButton = [self.buttonFactory toolsMenuButton];
 +    
 +  self.misesButton = [self.buttonFactory misesButton];
++  self.walletButton = [self.buttonFactory walletButton];
  
    // Move the tools menu button such as it looks visually balanced with the
    // button on the other side of the toolbar.
-@@ -108,7 +114,7 @@ const CGFloat kToolsMenuOffset = -7;
+@@ -108,8 +117,8 @@ - (void)setUp {
        CGAffineTransformMakeTranslation(textDirection * kToolsMenuOffset, 0);
  
    self.allButtons = @[
 -    self.backButton, self.forwardButton, self.openNewTabButton,
+-    self.tabGridButton, self.toolsMenuButton
 +    self.misesButton, self.backButton, self.forwardButton, //self.openNewTabButton,
-     self.tabGridButton, self.toolsMenuButton
++    self.tabGridButton, self.walletButton, self.toolsMenuButton
    ];
  
-@@ -173,4 +179,22 @@ const CGFloat kToolsMenuOffset = -7;
+   self.separator = [[UIView alloc] init];
+@@ -173,4 +182,22 @@ - (CGFloat)collapsedToolbarHeight {
    return 0.0;
  }
  
