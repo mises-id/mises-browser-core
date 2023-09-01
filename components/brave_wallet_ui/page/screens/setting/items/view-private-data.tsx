@@ -3,15 +3,16 @@ import { FunctionComponent, useState } from "react";
 import { SettingItem } from "../components";
 import { PasswordInputModal } from "../../../modals/password-input/modal";
 import { getPrivateDataTitle } from "../screens/view-private-data";
-// import { useSmartNavigation } from "../../../navigation";
+import { useSmartNavigation } from "../../../navigation";
+import { useApiProxy } from "../../../../common/hooks/use-api-proxy";
 
 export const SettingViewPrivateDataItem: FunctionComponent<{
   topBorder?: boolean;
 }> = ({ topBorder }) => {
-  // const smartNavigation = useSmartNavigation();
+  const smartNavigation = useSmartNavigation();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-
+  const { keyringService } = useApiProxy()
   return (
     <React.Fragment>
       <SettingItem
@@ -26,6 +27,13 @@ export const SettingViewPrivateDataItem: FunctionComponent<{
         close={() => setIsOpenModal(false)}
         title={getPrivateDataTitle("mnemonic", true)}
         onEnterPassword={async (password) => {
+          const { mnemonic } = await keyringService.getMnemonicForDefaultKeyring(password)
+          if (mnemonic) {
+            smartNavigation.navigateSmart("Setting.ViewPrivateData", {
+              privateData: mnemonic,
+              privateDataType: 'mnemonic',
+            });
+          }
           // const index = keyRingStore.multiKeyStoreInfo.findIndex(
           //   (keyStore) => keyStore.selected
           // );

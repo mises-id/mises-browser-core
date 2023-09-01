@@ -1,6 +1,5 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { registerModal } from "../base";
 import { CardModal } from "../card";
 import { RectButton } from "../../components/rect-button";
 import { Text } from "react-native";
@@ -16,34 +15,25 @@ const AccontSettingModal: FunctionComponent<{
   close: () => void;
   options: option[];
   itemClick: (key: string) => void;
-}> = registerModal(
-  ({ options, itemClick }: {
-    options: option[];
-    itemClick: (key: string) => void;
-  }) => {
-    const style = useStyle();
+}> = ({ options, itemClick, isOpen, close }) => {
+  const style = useStyle();
 
-    return (
-      <CardModal title="Account">
-        {options?.map((val, index) => {
-          return (
-            <RectButton
-              key={index}
-              onPress={() => itemClick(val.key)}
-              style={style.flatten(["padding-x-10", "padding-y-14"])}
-            >
-              <Text style={style.flatten(["h6", "color-text-high"])}>
-                {val.label}
-              </Text>
-            </RectButton>
-          );
-        })}
-      </CardModal>
-    );
-  },
-  {
-    disableSafeArea: true,
-    backdropMaxOpacity: 0.5,
-  }
-);
+  return (
+    <CardModal title="Account" isOpen={isOpen} close={close}>
+      {options?.map((val, index) => {
+        return (
+          <RectButton
+            key={index}
+            onPress={() => itemClick(val.key)}
+            style={style.flatten(["padding-x-10", "padding-y-14"])}
+          >
+            <Text style={style.flatten(["h6", "color-text-high"])}>
+              {val.label}
+            </Text>
+          </RectButton>
+        );
+      })}
+    </CardModal>
+  );
+}
 export { AccontSettingModal };

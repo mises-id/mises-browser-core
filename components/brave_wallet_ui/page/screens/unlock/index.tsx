@@ -4,10 +4,14 @@ import { Image, StyleSheet, View } from "react-native";
 import { useStyle } from "../../styles";
 import { TextInput } from "../../components/input";
 import { Button } from "../../components/button";
-import delay from "delay";
+import { useDispatch } from "react-redux";
 // import { useStore } from "../../stores";
-// import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SimpleGradient } from "../../components/svg";
+import { WalletActions } from "../../../common/actions";
+import { StackActions, useNavigation } from "@react-navigation/native";
+import { WalletSelectors } from '../../../common/selectors'
+import { useSafeWalletSelector } from '../../../common/hooks/use-safe-selector'
 /**
  * UnlockScreen is expected to be opened when the keyring store's state is "not loaded (yet)" or "locked" at launch.
  * And, this screen has continuity with the splash screen
@@ -18,7 +22,8 @@ export const UnlockScreen: FunctionComponent = () => {
 
   const style = useStyle();
 
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
+
 
   // const [isSplashEnd, setIsSplashEnd] = useState(true);
 
@@ -30,7 +35,8 @@ export const UnlockScreen: FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   // const [isBiometricLoading, setIsBiometricLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
-
+  const hasIncorrectPassword = useSafeWalletSelector(WalletSelectors.hasIncorrectPassword)
+  const dispatch = useDispatch();
   // const tryBiometric = useCallback(async () => {
   //   try {
   //     setIsBiometricLoading(true);
@@ -44,6 +50,15 @@ export const UnlockScreen: FunctionComponent = () => {
   //   }
   // }, [keychainStore]);
 
+  const navigateToHomeOnce = React.useRef(false);
+  const navigateToHome = React.useCallback(async () => {
+    if (!navigateToHomeOnce.current && !hasIncorrectPassword) {
+      // Wait the account of selected chain is loaded.
+      navigation.dispatch(StackActions.replace("MainTabDrawer"));
+    }
+    navigateToHomeOnce.current = true;
+  }, [hasIncorrectPassword, navigation]);
+
   const tryUnlock = async () => {
     try {
       setIsLoading(true);
@@ -51,7 +66,7 @@ export const UnlockScreen: FunctionComponent = () => {
       // Because javascript is synchronous language, the loadnig state change would not delivered to the UI thread
       // before the actually decryption is complete.
       // So to make sure that the loading state changes, just wait very short time.
-      await delay(10);
+      dispatch(WalletActions.unlockWallet({ password }))
       // await keyRingStore.unlock(password);
     } catch (e) {
       console.log(e);
@@ -60,14 +75,30 @@ export const UnlockScreen: FunctionComponent = () => {
     }
   };
 
+  const isWalletLocked = useSafeWalletSelector(WalletSelectors.isWalletLocked)
+  console.log(hasIncorrectPassword, 'hasIncorrectPassword', isWalletLocked, 'isWalletLocked')
+  React.useEffect(() => {
+    if (!isWalletLocked) {
+      navigateToHome();
+    }
+  }, [isWalletLocked, navigateToHome]);
+  // Invalid password 
+  React.useEffect(() => {
+    if (hasIncorrectPassword) {
+      setIsLoading(false);
+      setIsFailed(true);
+      dispatch(WalletActions.hasIncorrectPassword(false))
+    }
+  }, [hasIncorrectPassword]);
+
   return (
     <React.Fragment>
       <UnlockScreenGradientBackground />
       <View style={style.flatten(["flex-1"])}>
-        {/* <KeyboardAwareScrollView
+        <KeyboardAwareScrollView
           contentContainerStyle={style.flatten(["flex-grow-1"])}
           indicatorStyle={style.theme === "dark" ? "white" : "black"}
-        > */}
+        >
           <View style={style.get("flex-5")} />
           <Image
             style={StyleSheet.flatten([
@@ -110,7 +141,7 @@ export const UnlockScreen: FunctionComponent = () => {
             ) : null} */}
           </View>
           <View style={style.get("flex-7")} />
-        {/* </KeyboardAwareScrollView> */}
+        </KeyboardAwareScrollView>
       </View>
     </React.Fragment>
   );

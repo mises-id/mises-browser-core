@@ -7,8 +7,9 @@ import { Controller, useForm } from "react-hook-form";
 import { TextInput } from "../../../components/input";
 import { View } from "react-native";
 import { Button } from "../../../components/button";
-// import { useStore } from "../../../stores";
-// import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { WalletPageActions } from "../../../../page/actions";
 // import { MultiKeyStoreInfoElem } from "@keplr-wallet/background";
 
 interface FormData {
@@ -25,17 +26,17 @@ export const RenameAccountScreen: FunctionComponent = () => {
 
   const smartNavigation = useSmartNavigation();
 
-  // const route = useRoute<
-  //   RouteProp<
-  //     Record<
-  //       string,
-  //       {
-  //         keyRingStore: any;
-  //       }
-  //     >,
-  //     string
-  //   >
-  // >();
+  const route = useRoute<
+    RouteProp<
+      Record<
+        string,
+        {
+          keyRingStore: any;
+        }
+      >,
+      string
+    >
+  >();
   // const bip44Option = useBIP44Option();
 
   const {
@@ -46,20 +47,15 @@ export const RenameAccountScreen: FunctionComponent = () => {
   } = useForm<FormData>();
 
   const [isCreating, setIsCreating] = useState(false);
+  const selectedAccount = React.useMemo(() => {
+    return route.params.keyRingStore
+  }, [route.params.keyRingStore])
 
-  const submit = handleSubmit(async () => {
-    setIsCreating(true);
-    console.log(getValues('name'))
-    // const index = keyRingStore.multiKeyStoreInfo.findIndex(
-    //   (keyStore) =>
-    //     JSON.stringify(keyStore) === JSON.stringify(route.params.keyRingStore)
-    // );
-    // await keyRingStore.updateNameKeyRing(index, getValues("name"));
-    // analyticsStore.setUserProperties({
-    //   registerType: "seed",
-    //   accountType: "mnemonic",
-    // });
+  const dispatch = useDispatch();
+  // const [updateError, setUpdateError] = React.useState<boolean>(false)
 
+
+  const onClose = handleSubmit(async () => {
     smartNavigation.reset({
       index: 0,
       routes: [
@@ -74,6 +70,21 @@ export const RenameAccountScreen: FunctionComponent = () => {
       routeNames: ["MainTabDrawer"],
     });
   });
+
+  const onSubmitUpdateName = React.useCallback(() => {
+    if (selectedAccount) {
+      setIsCreating(true);
+      const isDerived = selectedAccount.accountType === 'Primary'
+      const payload = {
+        address: selectedAccount.address,
+        name: getValues('name'),
+        isDerived: isDerived
+      }
+      const result = dispatch(WalletPageActions.updateAccountName(payload))
+      return result ? onClose() : null
+    }
+    return null
+  }, [selectedAccount, dispatch, onClose])
 
   return (
     <PageWithScrollView
@@ -92,7 +103,7 @@ export const RenameAccountScreen: FunctionComponent = () => {
               label="Wallet nickname"
               containerStyle={style.flatten(["padding-bottom-6"])}
               returnKeyType="done"
-              onSubmitEditing={submit}
+              onSubmitEditing={onSubmitUpdateName}
               error={errors.name?.message}
               onBlur={onBlur}
               onChangeText={onChange}
@@ -105,7 +116,7 @@ export const RenameAccountScreen: FunctionComponent = () => {
         defaultValue=""
       />
       <View style={style.flatten(["flex-1"])} />
-      <Button text="Next" size="large" loading={isCreating} onPress={submit} />
+      <Button text="Next" size="large" loading={isCreating} onPress={onSubmitUpdateName} />
       {/* Mock element for bottom padding */}
       <View style={style.flatten(["height-page-pad"])} />
     </PageWithScrollView>

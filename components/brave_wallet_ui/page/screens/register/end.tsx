@@ -2,17 +2,18 @@ import * as React from "react";
 import { FunctionComponent, useState } from "react";
 import { PageWithView } from "../../components/page";
 import { useStyle } from "../../styles";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Button } from "../../components/button";
 import { useSmartNavigation } from "../../navigation";
 // import { Toggle } from "../../components/toggle";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import WelcomeRocket from "../../assets/svg/welcome-rocket.svg";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import WelcomeRocketDarkMode from "../../assets/svg/welcome-rocket-dark-mode.svg";
+// import WelcomeRocket from "../../assets/svg/welcome-rocket.svg";
+// // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// // @ts-ignore
+// import WelcomeRocketDarkMode from "../../assets/svg/welcome-rocket-dark-mode.svg";
 import delay from "delay";
+import FastImage from "react-native-fast-image";
 
 export const RegisterEndScreen: FunctionComponent = () => {
   // const { keychainStore, keyRingStore } = useStore();
@@ -52,7 +53,17 @@ export const RegisterEndScreen: FunctionComponent = () => {
     >
       <View style={style.get("flex-8")} />
       <View style={style.flatten(["items-center"])}>
-        {style.theme === "dark" ? <WelcomeRocketDarkMode /> : <WelcomeRocket />}
+        {/* {style.theme === "dark" ? <WelcomeRocketDarkMode /> : <WelcomeRocket />} */}
+        <Image
+          style={{
+            width: 30,
+            height: 30,
+          }}
+          resizeMode={FastImage.resizeMode.contain}
+          source={{
+            uri: style.theme === "dark" ? '../../assets/svg/welcome-rocket-dark-mode.png' : '../../assets/svg/welcome-rocket.png' ,
+          }}
+        />
 
         <Text
           style={style.flatten(["h2", "color-text-middle", "margin-top-8"])}

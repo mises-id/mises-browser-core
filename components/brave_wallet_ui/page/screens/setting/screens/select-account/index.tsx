@@ -8,153 +8,77 @@ import { Button } from "../../../../components/button";
 import { AccontSettingModal } from "../../../../modals/account";
 import { PasswordInputModal } from "../../../../modals/password-input/modal";
 import { getPrivateDataTitle } from "../view-private-data";
-
-export const getKeyStoreParagraph = (keyStore: any) => {
-  const bip44HDPath = keyStore.bip44HDPath
-    ? keyStore.bip44HDPath
-    : {
-        account: 0,
-        change: 0,
-        addressIndex: 0,
-      };
-
-  switch (keyStore.type) {
-    case "ledger":
-      return `Ledger - m/44'/118'/${bip44HDPath.account}'${
-        bip44HDPath.change !== 0 || bip44HDPath.addressIndex !== 0
-          ? `/${bip44HDPath.change}/${bip44HDPath.addressIndex}`
-          : ""
-      }`;
-    case "mnemonic":
-      if (
-        bip44HDPath.account !== 0 ||
-        bip44HDPath.change !== 0 ||
-        bip44HDPath.addressIndex !== 0
-      ) {
-        return `Mnemonic - m/44'/-/${bip44HDPath.account}'${
-          bip44HDPath.change !== 0 || bip44HDPath.addressIndex !== 0
-            ? `/${bip44HDPath.change}/${bip44HDPath.addressIndex}`
-            : ""
-        }`;
-      }
-      return;
-    case "privateKey":
-      // Torus key
-      if (keyStore.meta?.email) {
-        return keyStore.meta.email;
-      }
-      return;
-  }
-};
+import { useUnsafeWalletSelector } from "../../../../../common/hooks/use-safe-selector";
+import { WalletSelectors } from "../../../../../common/selectors";
+import { KeyStoreItem, KeyStoreSectionTitle } from "../../components";
+import { RectButton } from "../../../../components/rect-button";
+import { MoreIcon } from "../../../../components/icon";
+import { shortenAddress } from "../../../../common";
+import { useDispatch } from "react-redux";
+import { AccountsTabActions } from "../../../../reducers/accounts-tab-reducer";
+import { WalletAccountType, BraveWallet } from "../../../../../constants/types";
+import { useApiProxy } from "../../../../../common/hooks/use-api-proxy";
+import { WalletPageActions } from "../../../../../page/actions";
 
 export const SettingSelectAccountScreen: FunctionComponent = () => {
   const style = useStyle();
 
   const smartNavigation = useSmartNavigation();
 
-  // const googleTorusKeyStores = useMemo(() => {
-  //   return keyRingStore.multiKeyStoreInfo.filter(
-  //     (keyStore) =>
-  //       keyStore.type === "privateKey" &&
-  //       keyStore.meta &&
-  //       keyStore.meta.email &&
-  //       // In prior version, only the google sign in option exists.
-  //       // But, now, there are two types of sign in (google, apple).
-  //       // `socialType` in meta is introduced to determine which social sign in was used.
-  //       // If there is no `socialType` field in meta, just assume that it was google sign in.
-  //       (!keyStore.meta.socialType || keyStore.meta.socialType === "google")
-  //   );
-  // }, [keyRingStore.multiKeyStoreInfo]);
+  const accounts = useUnsafeWalletSelector(WalletSelectors.accounts)
+  const mnemonicSeedAccounts = accounts.filter(val => val.accountType === 'Primary');
+  const privateKeyAccounts = accounts.filter(val => val.accountType === 'Secondary');
+  const selectedAccount = useUnsafeWalletSelector(WalletSelectors.selectedAccount)
+  const dispatch = useDispatch()
 
-  // const appleTorusKeyStores = useMemo(() => {
-  //   return keyRingStore.multiKeyStoreInfo.filter(
-  //     (keyStore) =>
-  //       keyStore.type === "privateKey" &&
-  //       keyStore.meta &&
-  //       keyStore.meta.email &&
-  //       keyStore.meta.socialType === "apple"
-  //   );
-  // }, [keyRingStore.multiKeyStoreInfo]);
-
-  // const mnemonicKeyStores = useMemo(() => {
-  //   return keyRingStore.multiKeyStoreInfo.filter(
-  //     (keyStore) => !keyStore.type || keyStore.type === "mnemonic"
-  //   );
-  // }, [keyRingStore.multiKeyStoreInfo]);
-
-  // const ledgerKeyStores = useMemo(() => {
-  //   return keyRingStore.multiKeyStoreInfo.filter(
-  //     (keyStore) => keyStore.type === "ledger"
-  //   );
-  // }, [keyRingStore.multiKeyStoreInfo]);
-
-  // const privateKeyStores = useMemo(() => {
-  //   return keyRingStore.multiKeyStoreInfo.filter(
-  //     (keyStore) => keyStore.type === "privateKey" && !keyStore.meta?.email
-  //   );
-  // }, [keyRingStore.multiKeyStoreInfo]);
-
-  // const loadingScreen = useLoadingScreen();
-
-  // const selectKeyStore = async (
-  //   keyStore: MultiKeyStoreInfoWithSelectedElem
-  // ) => {
-  //   const index = keyRingStore.multiKeyStoreInfo.indexOf(keyStore);
-  //   if (index >= 0) {
-  //     await loadingScreen.openAsync();
-  //     await keyRingStore.changeKeyRing(index);
-  //     loadingScreen.setIsLoading(false);
-
-  //     smartNavigation.navigateSmart("Home", {});
-  //   }
-  // };
-
-  // const renderKeyStores = (title: string, keyStores: any[]) => {
-  //   return (
-  //     <React.Fragment>
-  //       {keyStores.length > 0 ? (
-  //         <React.Fragment>
-  //           <KeyStoreSectionTitle title={title} />
-  //           {keyStores.map((keyStore, i) => {
-  //             return (
-  //               <KeyStoreItem
-  //                 key={i.toString()}
-  //                 label={keyStore.meta?.name || "Mises Account"}
-  //                 secondLabel={keyStore.selected ? "(selected)" : ""}
-  //                 paragraph={getKeyStoreParagraph(keyStore)}
-  //                 topBorder={i === 0}
-  //                 bottomBorder={keyStores.length - 1 !== i}
-  //                 right={
-  //                   <RectButton
-  //                     style={style.flatten([
-  //                       "height-full",
-  //                       "width-40",
-  //                       "items-center",
-  //                       "justify-center",
-  //                     ])}
-  //                     hitSlop={{ top: 50, bottom: 50 }}
-  //                     onPress={() => {
-  //                       setselectKeyRingStore(keyStore);
-  //                       setIsOpenModal(true);
-  //                     }}
-  //                   >
-  //                     <MoreIcon
-  //                       color={style.get("color-text-low").color}
-  //                       size={24}
-  //                     />
-  //                   </RectButton>
-  //                 }
-  //                 onPress={async () => {
-  //                   // await selectKeyStore(keyStore);
-  //                 }}
-  //               />
-  //             );
-  //           })}
-  //         </React.Fragment>
-  //       ) : null}
-  //     </React.Fragment>
-  //   );
-  // };
+  const renderKeyStores = (title: string, accountList: WalletAccountType[]) => {
+    return (
+      <React.Fragment>
+        {accountList.length > 0 ? (
+          <React.Fragment>
+            <KeyStoreSectionTitle title={title} />
+            {accountList.map((account, i) => {
+              return (
+                <KeyStoreItem
+                  key={i.toString()}
+                  label={account.name || "Mises Account"}
+                  secondLabel={selectedAccount?.address.toLowerCase() === account.address.toLowerCase() ? "(selected)" : ""}
+                  paragraph={shortenAddress(account.address)}
+                  topBorder={i === 0}
+                  bottomBorder={accountList.length - 1 !== i}
+                  right={
+                    <RectButton
+                      style={style.flatten([
+                        "height-full",
+                        "width-40",
+                        "items-center",
+                        "justify-center",
+                      ])}
+                      hitSlop={{ top: 50, bottom: 50 }}
+                      onPress={() => {
+                        setselectKeyRingStore(account);
+                        setIsOpenModal(true);
+                      }}
+                    >
+                      <MoreIcon
+                        color={style.get("color-text-low").color}
+                        size={24}
+                      />
+                    </RectButton>
+                  }
+                  onPress={async () => {
+                    console.log(account, "accountaccountaccount")
+                    dispatch(AccountsTabActions.setSelectedAccount(account))
+                    // await selectKeyStore(keyStore);
+                  }}
+                />
+              );
+            })}
+          </React.Fragment>
+        ) : null}
+      </React.Fragment>
+    );
+  };
 
   const addAccount = () => {
     smartNavigation.navigateSmart("Register.AddAccount", {});
@@ -172,7 +96,7 @@ export const SettingSelectAccountScreen: FunctionComponent = () => {
   };
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [selectKeyRingStore, setselectKeyRingStore] = useState<any>();
+  const [selectKeyRingStore, setselectKeyRingStore] = useState<WalletAccountType>();
 
   const selectOptions = useMemo(() => {
     const options = [
@@ -185,7 +109,7 @@ export const SettingSelectAccountScreen: FunctionComponent = () => {
         label: "Change account name",
       },
     ];
-    if (selectKeyRingStore?.type === "privateKey") {
+    if (selectKeyRingStore?.accountType === "Secondary") {
       options.push({
         key: "delete",
         label: "Delete account",
@@ -214,6 +138,22 @@ export const SettingSelectAccountScreen: FunctionComponent = () => {
       }, 500);
     }
   };
+
+  const { keyringService } = useApiProxy()
+
+  const onViewPrivateKey = React.useCallback(async (
+    address: string,
+    password: string,
+    coin: BraveWallet.CoinType
+  ) => {
+    const { privateKey } = await keyringService.encodePrivateKeyForExport(
+      address,
+      password,
+      coin
+    )
+    return privateKey
+  }, [keyringService])
+
   return (
     <PageWithScrollViewInBottomTabView backgroundMode="secondary">
       <View
@@ -230,7 +170,8 @@ export const SettingSelectAccountScreen: FunctionComponent = () => {
         </View>
         <Button text="Import" size="small" onPress={importAccount} />
       </View>
-      {/* {renderKeyStores("private key", privateKeyStores)} */}
+      {renderKeyStores("mnemonic seed", mnemonicSeedAccounts)}
+      {renderKeyStores("private key", privateKeyAccounts)}
       {/* {renderKeyStores("mnemonic seed", mnemonicKeyStores)} */}
       {/* Margin bottom for last */}
       <View style={style.get("height-16")} />
@@ -251,18 +192,15 @@ export const SettingSelectAccountScreen: FunctionComponent = () => {
         }}
         title={getPrivateDataTitle("privateKey", true)}
         onEnterPassword={async (password) => {
-          // const index = keyRingStore.multiKeyStoreInfo.findIndex(
-          //   (keyStore) =>
-          //     JSON.stringify(keyStore) === JSON.stringify(selectKeyRingStore)
-          // );
-          // if (index >= 0) {
-          //   const privateData = await keyRingStore.showKeyRing(index, password);
-          //   smartNavigation.navigateSmart("Setting.ViewPrivateData", {
-          //     privateData: privateData,
-          //     privateDataType: keyRingStore.keyRingType,
-          //   });
-          //   setselectKeyRingStore(undefined);
-          // }
+          if(selectKeyRingStore) {
+            onViewPrivateKey(selectKeyRingStore.address, password, selectKeyRingStore.coin).then(privateData => {
+              smartNavigation.navigateSmart("Setting.ViewPrivateData", {
+                privateData,
+                privateDataType: 'privateKey',
+              });
+              setselectKeyRingStore(undefined);
+            })
+          }
         }}
       />
       <PasswordInputModal
@@ -273,14 +211,9 @@ export const SettingSelectAccountScreen: FunctionComponent = () => {
         }}
         title={getPrivateDataTitle("privateKey", true)}
         onEnterPassword={async (password) => {
-          // const index = keyRingStore.multiKeyStoreInfo.findIndex(
-          //   (keyStore) =>
-          //     JSON.stringify(keyStore) === JSON.stringify(selectKeyRingStore)
-          // );
-          // if (index >= 0) {
-          //   await keyRingStore.deleteKeyRing(index, password);
-          //   setselectKeyRingStore(undefined);
-          // }
+          if(selectKeyRingStore) {
+            dispatch(WalletPageActions.removeImportedAccount({ address: selectKeyRingStore.address, coin: selectKeyRingStore.coin, password }))
+          }
         }}
       />
     </PageWithScrollViewInBottomTabView>

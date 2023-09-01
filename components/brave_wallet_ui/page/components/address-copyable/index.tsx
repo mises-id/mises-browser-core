@@ -12,7 +12,8 @@ import { shortenAddress } from "../../common";
 export const AddressCopyable: FunctionComponent<{
   style?: ViewStyle;
   address: string;
-}> = ({ style: propStyle, address }) => {
+  showAll?: boolean;
+}> = ({ style: propStyle, address, showAll }) => {
   const style = useStyle();
   const { isTimedOut, setTimer } = useSimpleTimer();
 
@@ -50,7 +51,7 @@ export const AddressCopyable: FunctionComponent<{
           "dark:color-platinum-200",
         ])}
       >
-        {shortenAddress(address)}
+        {showAll ? address :  shortenAddress(address)}
       </Text>
       <View style={style.flatten(["margin-left-4", "width-20"])}>
         {isTimedOut ? (

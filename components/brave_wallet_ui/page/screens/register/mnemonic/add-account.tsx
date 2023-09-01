@@ -7,12 +7,12 @@ import { Controller, useForm } from "react-hook-form";
 import { TextInput } from "../../../components/input";
 import { View } from "react-native";
 import { Button } from "../../../components/button";
+import { useDispatch } from "react-redux";
+import { WalletActions } from "../../../../common/actions";
+import { BraveWallet } from "../../../../constants/types";
 
 interface FormData {
-  mnemonic: string;
   name: string;
-  password: string;
-  confirmPassword: string;
 }
 
 export const AddAccountScreen: FunctionComponent = () => {
@@ -29,29 +29,12 @@ export const AddAccountScreen: FunctionComponent = () => {
     formState: { errors },
   } = useForm<FormData>();
 
+  const dispatch = useDispatch();
   const [isCreating, setIsCreating] = useState(false);
 
   const submit = handleSubmit(async () => {
     setIsCreating(true);
-    console.log(getValues("name"))
-    // const mnemonicKeyringInfo = keyRingStore.multiKeyStoreInfo.filter(
-    //   (val) => val.type === "mnemonic"
-    // );
-
-    // bip44Option.setIndex(mnemonicKeyringInfo.length);
-    // // const privateKey = Buffer.from(mnemonic.trim().replace("0x", ""), "hex");
-    // console.log(
-    //   bip44Option.bip44HDPath,
-    //   getValues("name"),
-    //   mnemonicKeyringInfo
-    // );
-    // await keyRingStore.addAccount(getValues("name"), bip44Option.bip44HDPath);
-    // analyticsStore.setUserProperties({
-    //   registerType: "seed",
-    //   accountType: "mnemonic",
-    // });
-    // }
-
+    dispatch(WalletActions.addAccount({ accountName: getValues("name"), coin: BraveWallet.CoinType.ETH }))
     smartNavigation.reset({
       index: 0,
       routes: [

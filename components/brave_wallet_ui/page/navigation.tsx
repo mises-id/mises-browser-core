@@ -14,6 +14,7 @@ import {
   useNavigation,
   ParamListBase,
   DrawerActions,
+  StackActions,
 } from "@react-navigation/native";
 import {
   createStackNavigator,
@@ -74,6 +75,10 @@ import {
   SettingManageTokensScreen,
 } from "./screens/setting/screens/token";
 import { RenameAccountScreen } from "./screens/register/mnemonic/rename-account";
+// import { useDispatch } from "react-redux";
+import { useSafePageSelector, useSafeWalletSelector } from "../common/hooks/use-safe-selector";
+import { WalletSelectors } from "../common/selectors";
+import { PageSelectors } from "./selectors";
 // import { any } from "./hooks/register";
 // import { NewMnemonicConfig } from "./screens/register/mnemonic";
 // import {
@@ -217,15 +222,8 @@ const { SmartNavigatorProvider, useSmartNavigation } =
         upperScreenName: "Web",
       },
     }).withParams<{
-      "Register.NewMnemonic": {
-        registerConfig: any;
-      };
       "Register.VerifyMnemonic": {
-        registerConfig: any;
-        newMnemonicConfig: any;
-      };
-      "Register.RecoverMnemonic": {
-        registerConfig: any;
+        newMnemonicConfig: Record<'password' | 'mnemonic', string>;
       };
       "Register.RecoverPrivateKey": {
         registerConfig: any;
@@ -265,7 +263,7 @@ const { SmartNavigatorProvider, useSmartNavigation } =
       };
       "Setting.ViewPrivateData": {
         privateData: string;
-        privateDataType: string;
+        privateDataType: 'mnemonic' | 'privateKey';
       };
       "Setting.RenameAccount": {
         keyRingStore: any | undefined;
@@ -621,7 +619,6 @@ export const RegisterNavigation: FunctionComponent = () => {
         ...TransitionPresets.SlideFromRightIOS,
         headerTitleStyle: style.flatten(["h5", "color-text-high"]),
         headerMode: "screen",
-        headerShown: false,
       }}
       initialRouteName="Register.Intro"
     >
@@ -629,6 +626,7 @@ export const RegisterNavigation: FunctionComponent = () => {
         options={{
           ...TransparentHeaderOptionsPreset,
           title: "",
+          headerShown: false,
         }}
         name="Register.Intro"
         component={RegisterIntroScreen}
@@ -788,6 +786,28 @@ export const AppNavigation: FunctionComponent = () => {
   const routeNameRef = useRef<string | null>(null);
 
   const style = useStyle();
+  
+  const isWalletCreated = useSafeWalletSelector(WalletSelectors.isWalletCreated)
+  const isWalletLocked = useSafeWalletSelector(WalletSelectors.isWalletLocked)
+
+  // page selectors (safe)
+  const setupStillInProgress = useSafePageSelector(PageSelectors.setupStillInProgress)
+  // computed
+  const walletNotYetCreated = (!isWalletCreated || setupStillInProgress) // false || false 
+
+  useEffect(() => {
+    
+    if(walletNotYetCreated) {
+      navigationRef.current?.dispatch(StackActions.replace("Register"))
+      return
+    }
+    if(!isWalletLocked && isWalletCreated) {
+      navigationRef.current?.dispatch(StackActions.replace("MainTabDrawer"));
+    }
+    if(isWalletLocked && isWalletCreated) {
+      navigationRef.current?.dispatch(StackActions.replace("Unlock"));
+    }
+  }, [walletNotYetCreated, isWalletLocked, isWalletCreated])
 
   return (
     <PageScrollPositionProvider>
@@ -819,7 +839,7 @@ export const AppNavigation: FunctionComponent = () => {
             }}
           >
             <Stack.Navigator
-              initialRouteName={"MainTabDrawer"}
+              initialRouteName={'Unlock'}
               screenOptions={{
                 headerShown: false,
                 headerMode: "screen",

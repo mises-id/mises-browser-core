@@ -4,23 +4,70 @@ import { Text, View } from "react-native";
 import { useStyle } from "../../styles";
 import { ReceiveSymbol } from "../../components/transaction/receive-icon";
 import { SendSymbol } from "../../components/transaction/send-icon";
+import { generateQRCode } from "../../../utils/qr-code-utils";
+import { useUnsafeWalletSelector } from "../../../common/hooks/use-safe-selector";
+import { WalletSelectors } from "../../../common/selectors";
+import ReactNativeModal from "react-native-modal";
+import { Image } from "react-native";
+import { RectButton } from "../../components/rect-button";
+import { AddressCopyable } from "../../components/address-copyable";
 
 export const FunctionModules: FunctionComponent = () => {
   const style = useStyle();
+  const [qrCode, setQRCode] = React.useState('')
+
+  const [isOpen, setisOpen] = React.useState(false)
+  const selectedAccount = useUnsafeWalletSelector(WalletSelectors.selectedAccount)
+
+  React.useEffect(() => {
+    let subscribed = true
+
+    // fetch selected Account QR Code
+    selectedAccount?.address && generateQRCode(selectedAccount.address).then(qr => {
+      if (subscribed) {
+        setQRCode(qr)
+      }
+    })
+    // cleanup
+    return () => {
+      subscribed = false
+    }
+  }, [selectedAccount?.address])
+
   return (
     <View style={style.flatten(["flex", "flex-row", "justify-center"])}>
-      <View style={style.flatten(["flex", "items-center", "margin-10"])}>
+      <RectButton style={style.flatten(["flex", "items-center", "margin-10"])}>
         <SendSymbol size={35} color={style.get("color-blue-400").color} />
         <Text style={style.flatten(["h6", "color-text-high", "margin-top-4"])}>
           Send
         </Text>
-      </View>
-      <View style={style.flatten(["flex", "items-center", "margin-10"])}>
+      </RectButton>
+      <RectButton style={style.flatten(["flex", "items-center", "margin-10"])} onPress={() => {
+        setisOpen(true)
+      }}>
         <ReceiveSymbol size={35} color={style.get("color-blue-400").color} />
         <Text style={style.flatten(["h6", "color-text-high", "margin-top-4"])}>
           Receive
         </Text>
-      </View>
+      </RectButton>
+      <ReactNativeModal
+        onBackdropPress={()=>setisOpen(false)}
+        style={style.flatten(['width-320', 'height-350'])}
+        isVisible={isOpen}
+      >
+        <View style={style.flatten(['padding-10', 'flex', 'justify-center', 'items-center', "dark:background-color-white"])}>
+          <Image
+            style={{
+              width: 300,
+              height: 300,
+            }}
+            source={{
+              uri: qrCode,
+            }}
+          />
+          {selectedAccount?.address && <AddressCopyable address={selectedAccount?.address} />}
+        </View>
+      </ReactNativeModal>
     </View>
   );
 };

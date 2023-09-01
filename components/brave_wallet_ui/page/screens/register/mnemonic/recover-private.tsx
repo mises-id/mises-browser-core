@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FunctionComponent, useState } from "react";
 import { PageWithScrollView } from "../../../components/page";
-import { RouteProp, useRoute } from "@react-navigation/native";
 import { useStyle } from "../../../styles";
 import { useSmartNavigation } from "../../../navigation";
 import { Controller, useForm } from "react-hook-form";
@@ -11,36 +10,16 @@ import { Button } from "../../../components/button";
 import Clipboard from "@react-native-clipboard/clipboard";
 // import { useBIP44Option } from "../bip44";
 import { Buffer } from "buffer/";
-
-function trimWordsStr(str: string): string {
-  str = str.trim();
-  // Split on the whitespace or new line.
-  const splited = str.split(/\s+/);
-  const words = splited
-    .map((word) => word.trim())
-    .filter((word) => word.trim().length > 0);
-  return words.join(" ");
-}
+import { useDispatch } from "react-redux";
+import { WalletPageActions } from "../../../actions";
+import { BraveWallet } from '../../../../constants/types'
 
 interface FormData {
-  mnemonic: string;
+  privateKey: string;
   name: string;
-  password: string;
-  confirmPassword: string;
 }
 
 export const RecoverPrivateScreen: FunctionComponent = () => {
-  const route = useRoute<
-    RouteProp<
-      Record<
-        string,
-        {
-          registerConfig: any;
-        }
-      >,
-      string
-    >
-  >();
 
   const style = useStyle();
 
@@ -48,9 +27,7 @@ export const RecoverPrivateScreen: FunctionComponent = () => {
 
   const smartNavigation = useSmartNavigation();
 
-  const registerConfig: any = route.params.registerConfig;
   // const bip44Option = useBIP44Option();
-  const [mode] = useState(registerConfig.mode);
 
   const {
     control,
@@ -62,52 +39,29 @@ export const RecoverPrivateScreen: FunctionComponent = () => {
   } = useForm<FormData>();
 
   const [isCreating, setIsCreating] = useState(false);
+  const dispatch = useDispatch();
+  const importAccount = React.useCallback((accountName: string, privateKey: string, coin: BraveWallet.CoinType) => {
+    dispatch(WalletPageActions.importAccount({ accountName, privateKey, coin }))
+  }, [])
 
   const submit = handleSubmit(async () => {
     setIsCreating(true);
 
-    const mnemonic = trimWordsStr(getValues("mnemonic"));
+    const privateKey = getValues("privateKey");
 
-    // if (!isPrivateKey(mnemonic)) {
-    //   await registerConfig.createMnemonic(
-    //     getValues("name"),
-    //     mnemonic,
-    //     getValues("password"),
-    //     bip44Option.bip44HDPath
-    //   );
-    //   analyticsStore.setUserProperties({
-    //     registerType: "seed",
-    //     accountType: "mnemonic",
-    //   });
-    // } else {
-    const privateKey = Buffer.from(mnemonic.trim().replace("0x", ""), "hex");
-    console.log(privateKey)
-    // await registerConfig.createPrivateKey(
-    //   getValues("name"),
-    //   privateKey,
-    //   getValues("password")
-    // );
-    // analyticsStore.setUserProperties({
-    //   registerType: "seed",
-    //   accountType: "privateKey",
-    // });
-    // }
-
+    importAccount(getValues("name"), privateKey.trim(), BraveWallet.CoinType.ETH)
     smartNavigation.reset({
       index: 0,
       routes: [
         {
-          name: "Register.End",
-          params: {
-            password: getValues("password"),
-          },
-          key: "Register.End",
+          name: "MainTabDrawer",
+          key: "MainTabDrawer",
         },
       ],
-      key: "Register.End",
+      key: "MainTabDrawer",
       type: "reset",
       stale: false,
-      routeNames: ["Register.End"],
+      routeNames: ["MainTabDrawer"],
     });
   });
 
@@ -122,16 +76,6 @@ export const RecoverPrivateScreen: FunctionComponent = () => {
         rules={{
           required: "PrivateKey is required",
           validate: (value: string) => {
-            value = trimWordsStr(value);
-            // if (!isPrivateKey(value)) {
-            //   if (value.split(" ").length < 8) {
-            //     return "Too short mnemonic";
-            //   }
-
-            //   if (!bip39.validateMnemonic(value)) {
-            //     return "Invalid mnemonic";
-            //   }
-            // } else {
             value = value.replace("0x", "");
             if (value.length !== 64) {
               return "Invalid length of private key";
@@ -173,7 +117,7 @@ export const RecoverPrivateScreen: FunctionComponent = () => {
                     onPress={async () => {
                       const text = await Clipboard.getString();
                       if (text) {
-                        setValue("mnemonic", text, {
+                        setValue("privateKey", text, {
                           shouldValidate: true,
                         });
 
@@ -193,7 +137,7 @@ export const RecoverPrivateScreen: FunctionComponent = () => {
               onSubmitEditing={() => {
                 setFocus("name");
               }}
-              error={errors.mnemonic?.message}
+              error={errors.privateKey?.message}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -201,7 +145,7 @@ export const RecoverPrivateScreen: FunctionComponent = () => {
             />
           );
         }}
-        name="mnemonic"
+        name="privateKey"
         defaultValue=""
       />
       <Controller
@@ -214,14 +158,9 @@ export const RecoverPrivateScreen: FunctionComponent = () => {
             <TextInput
               label="Wallet nickname"
               containerStyle={style.flatten(["padding-bottom-6"])}
-              returnKeyType={mode === "add" ? "done" : "next"}
+              returnKeyType={"next"}
               onSubmitEditing={() => {
-                if (mode === "add") {
-                  submit();
-                }
-                if (mode === "create") {
-                  setFocus("password");
-                }
+                submit();
               }}
               error={errors.name?.message}
               onBlur={onBlur}
@@ -234,77 +173,6 @@ export const RecoverPrivateScreen: FunctionComponent = () => {
         name="name"
         defaultValue=""
       />
-      {/* <BIP44AdvancedButton bip44Option={bip44Option} /> */}
-      {mode === "create" ? (
-        <React.Fragment>
-          <Controller
-            control={control}
-            rules={{
-              required: "Password is required",
-              validate: (value: string) => {
-                if (value.length < 8) {
-                  return "Password must be longer than 8 characters";
-                }
-                return true;
-              },
-            }}
-            render={({ field: { onChange, onBlur, value, ref } }) => {
-              return (
-                <TextInput
-                  label="Password"
-                  returnKeyType="next"
-                  secureTextEntry={true}
-                  onSubmitEditing={() => {
-                    setFocus("confirmPassword");
-                  }}
-                  error={errors.password?.message}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  ref={ref}
-                />
-              );
-            }}
-            name="password"
-            defaultValue=""
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: "Confirm password is required",
-              validate: (value: string) => {
-                if (value.length < 8) {
-                  return "Password must be longer than 8 characters";
-                }
-
-                if (getValues("password") !== value) {
-                  return "Password doesn't match";
-                }
-                return true;
-              },
-            }}
-            render={({ field: { onChange, onBlur, value, ref } }) => {
-              return (
-                <TextInput
-                  label="Confirm password"
-                  returnKeyType="done"
-                  secureTextEntry={true}
-                  onSubmitEditing={() => {
-                    submit();
-                  }}
-                  error={errors.confirmPassword?.message}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  ref={ref}
-                />
-              );
-            }}
-            name="confirmPassword"
-            defaultValue=""
-          />
-        </React.Fragment>
-      ) : null}
       <View style={style.flatten(["flex-1"])} />
       <Button text="Next" size="large" loading={isCreating} onPress={submit} />
       {/* Mock element for bottom padding */}

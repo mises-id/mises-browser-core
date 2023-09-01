@@ -54,9 +54,7 @@ export const RegisterIntroScreen: FunctionComponent = () => {
           // analyticsStore.logEvent("Create account started", {
           //   registerType: "seed",
           // });
-          smartNavigation.navigateSmart("Register.NewMnemonic", {
-            registerConfig: undefined,
-          });
+          smartNavigation.navigateSmart("Register.NewMnemonic");
         }}
       />
       <Button
@@ -68,9 +66,7 @@ export const RegisterIntroScreen: FunctionComponent = () => {
           // analyticsStore.logEvent("Import account started", {
           //   registerType: "seed",
           // });
-          smartNavigation.navigateSmart("Register.RecoverMnemonic", {
-            registerConfig: undefined,
-          });
+          smartNavigation.navigateSmart("Register.RecoverMnemonic");
         }}
       />
       {/* <Button

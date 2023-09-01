@@ -9,6 +9,8 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { useSmartNavigation } from "../../../navigation";
 import { NewMnemonicConfig } from "./hook";
 import { RectButton } from "../../../components/rect-button";
+import { WalletPageActions } from "../../../../page/actions";
+import { useDispatch } from "react-redux";
 
 export const VerifyMnemonicScreen: FunctionComponent = () => {
   const route = useRoute<
@@ -16,9 +18,7 @@ export const VerifyMnemonicScreen: FunctionComponent = () => {
       Record<
         string,
         {
-          registerConfig: any;
           newMnemonicConfig: NewMnemonicConfig;
-          bip44HDPath: any;
         }
       >,
       string
@@ -31,7 +31,8 @@ export const VerifyMnemonicScreen: FunctionComponent = () => {
 
   const smartNavigation = useSmartNavigation();
 
-  const registerConfig = route.params.registerConfig;
+  const dispatch = useDispatch()
+
   const newMnemonicConfig = route.params.newMnemonicConfig;
 
   const [candidateWords, setCandidateWords] = useState<
@@ -144,32 +145,11 @@ export const VerifyMnemonicScreen: FunctionComponent = () => {
         disabled={wordSet.join(" ") !== newMnemonicConfig.mnemonic}
         onPress={async () => {
           setIsCreating(true);
-          await registerConfig.createMnemonic(
-            newMnemonicConfig.name,
-            newMnemonicConfig.mnemonic,
-            newMnemonicConfig.password,
-            route.params.bip44HDPath
-          );
-          // analyticsStore.setUserProperties({
-          //   registerType: "seed",
-          //   accountType: "mnemonic",
-          // });
+          dispatch(WalletPageActions.walletSetupComplete(true))
+          dispatch(WalletPageActions.walletBackupComplete())
 
-          smartNavigation.reset({
-            index: 0,
-            routes: [
-              {
-                name: "Register.End",
-                params: {
-                  password: newMnemonicConfig.password,
-                },
-                key: "Register.End",
-              },
-            ],
-            key: "Register.End",
-            type: "reset",
-            stale: false,
-            routeNames: ["Register.End"],
+          smartNavigation.navigateSmart("Register.End", {
+            password: newMnemonicConfig.password,
           });
         }}
       />

@@ -9,8 +9,8 @@ import {
   ViewStyle,
 } from "react-native";
 import { useStyle } from "../../styles";
-import { registerModal } from "../../modals/base";
 import { RectButton } from "../rect-button";
+import ReactNativeModal from "react-native-modal";
 
 export const SelectorModal: FunctionComponent<{
   isOpen: boolean;
@@ -23,8 +23,8 @@ export const SelectorModal: FunctionComponent<{
   selectedKey: string | undefined;
   setSelectedKey: (key: string | undefined) => void;
   modalPersistent?: boolean;
-}> = registerModal(
-  ({
+}> = ({
+    isOpen,
     close,
     items,
     selectedKey,
@@ -32,79 +32,82 @@ export const SelectorModal: FunctionComponent<{
     maxItemsToShow,
     modalPersistent,
   }) => {
-    const style = useStyle();
+  const style = useStyle();
 
-    const renderBall = (selected: boolean) => {
-      if (selected) {
-        return (
+  const renderBall = (selected: boolean) => {
+    if (selected) {
+      return (
+        <View
+          style={style.flatten([
+            "width-24",
+            "height-24",
+            "border-radius-32",
+            "background-color-blue-400",
+            "dark:background-color-blue-300",
+            "items-center",
+            "justify-center",
+          ])}
+        >
           <View
             style={style.flatten([
-              "width-24",
-              "height-24",
-              "border-radius-32",
-              "background-color-blue-400",
-              "dark:background-color-blue-300",
-              "items-center",
-              "justify-center",
-            ])}
-          >
-            <View
-              style={style.flatten([
-                "width-12",
-                "height-12",
-                "border-radius-32",
-                "background-color-white",
-              ])}
-            />
-          </View>
-        );
-      } else {
-        return (
-          <View
-            style={style.flatten([
-              "width-24",
-              "height-24",
+              "width-12",
+              "height-12",
               "border-radius-32",
               "background-color-white",
-              "dark:background-color-platinum-600",
-              "border-width-1",
-              "border-color-gray-100",
-              "dark:border-color-platinum-300",
             ])}
           />
-        );
-      }
-    };
+        </View>
+      );
+    } else {
+      return (
+        <View
+          style={style.flatten([
+            "width-24",
+            "height-24",
+            "border-radius-32",
+            "background-color-white",
+            "dark:background-color-platinum-600",
+            "border-width-1",
+            "border-color-gray-100",
+            "dark:border-color-platinum-300",
+          ])}
+        />
+      );
+    }
+  };
 
-    const scrollViewRef = useRef<ScrollView | null>(null);
-    const initOnce = useRef<boolean>(false);
+  const scrollViewRef = useRef<ScrollView | null>(null);
+  const initOnce = useRef<boolean>(false);
 
-    const onInit = () => {
-      if (!initOnce.current) {
-        if (scrollViewRef.current) {
-          scrollViewRef.current.flashScrollIndicators();
+  const onInit = () => {
+    if (!initOnce.current) {
+      if (scrollViewRef.current) {
+        scrollViewRef.current.flashScrollIndicators();
 
-          if (maxItemsToShow) {
-            const selectedIndex = items.findIndex(
-              (item) => item.key === selectedKey
-            );
+        if (maxItemsToShow) {
+          const selectedIndex = items.findIndex(
+            (item) => item.key === selectedKey
+          );
 
-            if (selectedIndex) {
-              const scrollViewHeight = maxItemsToShow * 64;
+          if (selectedIndex) {
+            const scrollViewHeight = maxItemsToShow * 64;
 
-              scrollViewRef.current.scrollTo({
-                y: selectedIndex * 64 - scrollViewHeight / 2 + 32,
-                animated: false,
-              });
-            }
+            scrollViewRef.current.scrollTo({
+              y: selectedIndex * 64 - scrollViewHeight / 2 + 32,
+              animated: false,
+            });
           }
-
-          initOnce.current = true;
         }
-      }
-    };
 
-    return (
+        initOnce.current = true;
+      }
+    }
+  };
+
+  return (
+    <ReactNativeModal isVisible={isOpen} style={{
+      justifyContent: "flex-end",
+    }} onBackdropPress={close}>
       <View style={style.flatten(["padding-page"])}>
         <View
           style={style.flatten([
@@ -165,9 +168,9 @@ export const SelectorModal: FunctionComponent<{
           </ScrollView>
         </View>
       </View>
-    );
-  }
-);
+    </ReactNativeModal>
+  );
+}
 
 export const Selector: FunctionComponent<{
   labelStyle?: TextStyle;

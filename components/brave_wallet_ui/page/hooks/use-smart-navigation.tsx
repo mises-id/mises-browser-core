@@ -45,15 +45,17 @@ export class SmartNavigator<
     const targetScreen = this.config[screenName];
 
     if (currentScreen.upperScreenName === targetScreen.upperScreenName) {
-      // eslint-disable-next-line @typescript-eslint/ban-types
-      navigation.navigate(screenName as never, params as never);
+      // @ts-ignore
+      navigation.navigate(screenName, params);
     } else {
+      
       navigation.navigate(
-        targetScreen.upperScreenName as never,
+        // @ts-ignore
+        targetScreen.upperScreenName,
         {
           screen: screenName,
           params,
-        } as never
+        }
       );
     }
   }
@@ -168,7 +170,7 @@ export const createSmartNavigatorProvider = <
     goBack: () => void;
     navigateSmart: <ScreenName extends keyof Config>(
       screenName: ScreenName,
-      params: Params[ScreenName] extends void ? undefined : Params[ScreenName]
+      params?: Params[ScreenName] extends void ? undefined : Params[ScreenName]
     ) => void;
     pushSmart: <ScreenName extends keyof Config>(
       screenName: ScreenName,
