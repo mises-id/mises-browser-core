@@ -155,19 +155,21 @@ enum MisesUIViewPendingStatus {
 @implementation ReactAppDelegate
 + (instancetype)getOrCreate: (MisesUIViewWalletType) walletType;
 {  
-    static NSArray<ReactAppDelegate*> *sharedInstance = nil;
+    static NSMutableArray<ReactAppDelegate*> *sharedInstance = nil;
     @synchronized (self) {
-        if (!sharedInstance) {
-          ReactAppDelegate* metamask = [[ReactAppDelegate alloc] init:METAMASK];
-          ReactAppDelegate* miseswallet = [[ReactAppDelegate alloc] init:MISESWALLET];
-          sharedInstance = @[metamask, miseswallet];
-        }
-    }
-    for (ReactAppDelegate* object in sharedInstance) {
-      if (object.walletType == walletType) {
-        return object;
+      if (!sharedInstance) {
+        sharedInstance = [NSMutableArray array];
       }
+      for (ReactAppDelegate* object in sharedInstance) {
+        if (object.walletType == walletType) {
+          return object;
+        }
+      }
+      ReactAppDelegate* walletDelegate = [[ReactAppDelegate alloc] init:walletType];
+      [sharedInstance addObject:walletDelegate];
+      return walletDelegate;
     }
+
     return nil;
 }
 
@@ -380,6 +382,15 @@ return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
   return wvid;
 }
 
++ (NSUInteger) onWebViewActivatedMisesWallet:(WKWebView *) wv {
+  ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
+  if ([delegate activate:wv]) {
+  };
+  NSUInteger wvid = [wv hash];
+  return wvid;
+}
+
+
 
 + (MisesAccountService*) account {
   return [MisesAccountService wrapper];
@@ -509,9 +520,38 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromMetamask:(NSString *) msg 
             __weak WKWebView* weakwv = [allObjects objectAtIndex: i];
             if (weakwv) {
                 __strong WKWebView* wv = weakwv;
-//                NSURL *nsurl = wv.URL;
-//                NSString* wv_origin = [NSString stringWithFormat:
-//                                       @"%@://%@",nsurl.scheme, nsurl.host];
+                if (webviewID != 0 && webviewID != [wv hash] ) {
+                    continue;
+                }
+                NSString* method = [NSString stringWithFormat:@"(function(){try{window.postMessage( %@ , '%@');} catch (e) {}})()", msg, origin];
+                web::ExecuteJavaScript(wv, method, ^(id value, NSError* error) {
+                    if (error) {
+                      DLOG(WARNING) << "Script execution failed with error: "
+                                    << base::SysNSStringToUTF16(
+                                          error.userInfo[NSLocalizedDescriptionKey]);
+                    }
+                });
+            }
+        }
+      
+    });
+
+    return nil;
+}
+
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromMisesWallet:(NSString *) msg orgin:(NSString*)origin webviewID:(NSUInteger)webviewID)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        DLOG(WARNING) << "postMessageFromMisesWallet " << base::SysNSStringToUTF16(msg);
+        ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
+        NSArray * allObjects = [delegate.webViewArray allObjects];
+        NSUInteger count = [allObjects count];
+        for (NSUInteger i = 0; i < count; i++) {
+            __weak WKWebView* weakwv = [allObjects objectAtIndex: i];
+            if (weakwv) {
+                __strong WKWebView* wv = weakwv;
                 if (webviewID != 0 && webviewID != [wv hash] ) {
                     continue;
                 }

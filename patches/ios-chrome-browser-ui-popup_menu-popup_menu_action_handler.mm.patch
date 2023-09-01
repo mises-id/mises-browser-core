@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
-index a2e470ed643c7bebeee13bea7745a28c48a6a162..dec26816d19e9dce1c1691f833b34d4ab8423c1c 100644
+index a2e470ed643c7bebeee13bea7745a28c48a6a162..3958f50f1e6bc480a1af3a4ee5069f7fde6b283e 100644
 --- a/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
 +++ b/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
 @@ -34,6 +34,9 @@
@@ -18,7 +18,7 @@ index a2e470ed643c7bebeee13bea7745a28c48a6a162..dec26816d19e9dce1c1691f833b34d4a
        break;
 +      case PopupMenuActionMises:
 +        RecordAction(UserMetricsAction("MobileMenuOpenMises"));
-+          [Mises popupMetamask];
++          [Mises popupMisesWallet];
 +        break;
 +      case PopupMenuActionMisesAccount:
 +        StoreTextInPasteboard([[Mises account] misesId]);
@@ -35,7 +35,7 @@ index a2e470ed643c7bebeee13bea7745a28c48a6a162..dec26816d19e9dce1c1691f833b34d4a
 +        break;
 +      case PopupMenuActionMisesWallet:
 +        RecordAction(UserMetricsAction("MobileMenuOpenMisesWallet"));
-+        [Mises popupMetamask];
++        [Mises popupMisesWallet];
 +        break;
 +      case PopupMenuActionMisesStakingPortal:
 +        RecordAction(UserMetricsAction("MobileMenuOpenMisesStakingPortal"));

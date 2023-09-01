@@ -112,7 +112,7 @@ void MisesJavaScriptFeature::MisesWalletMessageReceived(
   if (!web_state ) {
     return;
   }
-  NSUInteger wvid = [Mises onWebViewActivatedMetamask:message.webView];
+  NSUInteger wvid = [Mises onWebViewActivatedMisesWallet:message.webView];
   if ([Mises bridgeMisesWallet]) {
     [[Mises bridgeMisesWallet] enqueueJSCall:@"NativeBridge.postMessage" args:@[message.body, [NSNumber numberWithUnsignedInteger:wvid]]];
   }

@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
-index fdda63a7701be84fb3eba6703150294b58ad5170..4f36e6595c25c2d1bbd7ef4fbb06340ad1c4038b 100644
+index fdda63a7701be84fb3eba6703150294b58ad5170..53dc09f921b1616c2209c050b106466670bdb575 100644
 --- a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 +++ b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 @@ -88,6 +88,10 @@
@@ -13,7 +13,29 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..4f36e6595c25c2d1bbd7ef4fbb06340a
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -553,6 +557,12 @@ - (void)setBookmarkModel:(bookmarks::BookmarkModel*)bookmarkModel {
+@@ -96,6 +100,21 @@
+ using base::UserMetricsAction;
+ 
+ namespace {
++PopupMenuToolsItem* CreateTableViewItem(int titleID,
++                                        PopupMenuAction action,
++                                        UIImage* image,
++                                        NSString* accessibilityID) {
++  PopupMenuToolsItem* item =
++      [[PopupMenuToolsItem alloc] initWithType:kItemTypeEnumZero];
++  item.title = l10n_util::GetNSString(titleID);
++  item.actionIdentifier = action;
++  item.accessibilityIdentifier = accessibilityID;
++  if (image) {
++    item.image = image;
++  }
++  return item;
++}
++
+ PopupMenuToolsItem* CreateTableViewItem(int titleID,
+                                         PopupMenuAction action,
+                                         NSString* imageName,
+@@ -553,6 +572,12 @@ - (void)setBookmarkModel:(bookmarks::BookmarkModel*)bookmarkModel {
          DCHECK(!UseSymbols());
          [self createSearchMenuItems];
          break;
@@ -26,19 +48,19 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..4f36e6595c25c2d1bbd7ef4fbb06340a
      }
      NSMutableArray* specificItems = [NSMutableArray array];
      if (self.reloadStopItem)
-@@ -1203,6 +1213,11 @@ - (void)createToolsMenuItems {
+@@ -1203,6 +1228,11 @@ - (void)createToolsMenuItems {
        @"popup_menu_site_information", kToolsMenuSiteInformation);
    [actionsArray addObject:self.siteInformationItem];
  
-+  TableViewItem* mises =
-+      CreateTableViewItem(IDS_IOS_OPTIONS_MISES, PopupMenuActionMises,
-+                          @"popup_menu_mises_wallet", kToolsMenuMisesId);
-+  [actionsArray addObject:mises];
++//  TableViewItem* mises =
++//      CreateTableViewItem(IDS_IOS_OPTIONS_MISES, PopupMenuActionMises,
++//                          @"popup_menu_mises_wallet", kToolsMenuMisesId);
++//  [actionsArray addObject:mises];
 +    
    // Report an Issue.
    if (ios::provider::IsUserFeedbackSupported()) {
      TableViewItem* reportIssue = CreateTableViewItem(
-@@ -1349,4 +1364,81 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
+@@ -1349,4 +1379,81 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
    }
  }
  
@@ -109,10 +131,10 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..4f36e6595c25c2d1bbd7ef4fbb06340a
 +
 +    TableViewItem* openMetamask =
 +        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_OPEN_METAMASK, PopupMenuActionMisesOpenMetamask,
-+                            @"popup_menu_mises_open_metamask", kToolsMenuMisesOpenMetamaskId);
++                            [UIImage imageNamed:@"popup_menu_mises_open_metamask"], kToolsMenuMisesOpenMetamaskId);
 +    TableViewItem* openMisesWallet =
 +        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_OPEN_MISESWALLET, PopupMenuActionMisesOpenMisesWallet,
-+                            @"popup_menu_mises_open_miseswallet", kToolsMenuMisesOpenMisesWalletId);
++                            [UIImage imageNamed:@"popup_menu_mises_open_miseswallet"], kToolsMenuMisesOpenMisesWalletId);
 +    NSArray* signinActions = @[ openMetamask, openMisesWallet ];
 +    self.items = @[ signinActions ];
 +   

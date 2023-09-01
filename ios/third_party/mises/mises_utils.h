@@ -22,6 +22,7 @@
 
 
 + (NSUInteger) onWebViewActivatedMetamask:(WKWebView *) wv;
++ (NSUInteger) onWebViewActivatedMisesWallet:(WKWebView *) wv;
 
 + (MisesAccountService*) account;
 

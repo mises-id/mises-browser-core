@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm b/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm
+index 68cd9725baca3a164f572166cf9e9888706ec68f..480d8721c6ec7d47cc75d515ba10ba47e323001a 100644
+--- a/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm
++++ b/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm
+@@ -17,7 +17,7 @@
+ const CGFloat kTopButtonsBottomMargin = 3.0f;
+ const CGFloat kBottomButtonsBottomMargin = 0.0f;
+ const CGFloat kAdaptiveToolbarMargin = 10.0f;
+-const CGFloat kAdaptiveToolbarStackViewSpacing = 11.0f;
++const CGFloat kAdaptiveToolbarStackViewSpacing = 1.0f;
+ 
+ const CGFloat kProgressBarHeight = 2.0f;
+ 
