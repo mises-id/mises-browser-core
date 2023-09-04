@@ -11,6 +11,8 @@ import ReactNativeModal from "react-native-modal";
 import { Image } from "react-native";
 import { RectButton } from "../../components/rect-button";
 import { AddressCopyable } from "../../components/address-copyable";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 export const FunctionModules: FunctionComponent = () => {
   const style = useStyle();
@@ -34,9 +36,14 @@ export const FunctionModules: FunctionComponent = () => {
     }
   }, [selectedAccount?.address])
 
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   return (
     <View style={style.flatten(["flex", "flex-row", "justify-center"])}>
-      <RectButton style={style.flatten(["flex", "items-center", "margin-10"])}>
+      <RectButton style={style.flatten(["flex", "items-center", "margin-10"])} onPress={() => {
+        navigation.navigate("Others", {
+          screen: "Send",
+        });
+      }}>
         <SendSymbol size={35} color={style.get("color-blue-400").color} />
         <Text style={style.flatten(["h6", "color-text-high", "margin-top-4"])}>
           Send
@@ -52,10 +59,9 @@ export const FunctionModules: FunctionComponent = () => {
       </RectButton>
       <ReactNativeModal
         onBackdropPress={()=>setisOpen(false)}
-        style={style.flatten(['width-320', 'height-350'])}
         isVisible={isOpen}
       >
-        <View style={style.flatten(['padding-10', 'flex', 'justify-center', 'items-center', "dark:background-color-white"])}>
+        <View style={style.flatten(['padding-10', 'flex', 'justify-center', 'items-center', "background-color-white"])}>
           <Image
             style={{
               width: 300,

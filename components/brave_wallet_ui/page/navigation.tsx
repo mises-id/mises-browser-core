@@ -796,7 +796,7 @@ export const AppNavigation: FunctionComponent = () => {
   const walletNotYetCreated = (!isWalletCreated || setupStillInProgress) // false || false 
 
   useEffect(() => {
-    
+    console.log(walletNotYetCreated, "walletNotYetCreated", !isWalletLocked && isWalletCreated, "!isWalletLocked && isWalletCreated", isWalletLocked && isWalletCreated, "isWalletLocked && isWalletCreated")
     if(walletNotYetCreated) {
       navigationRef.current?.dispatch(StackActions.replace("Register"))
       return
@@ -804,6 +804,7 @@ export const AppNavigation: FunctionComponent = () => {
     if(!isWalletLocked && isWalletCreated) {
       navigationRef.current?.dispatch(StackActions.replace("MainTabDrawer"));
     }
+    
     if(isWalletLocked && isWalletCreated) {
       navigationRef.current?.dispatch(StackActions.replace("Unlock"));
     }

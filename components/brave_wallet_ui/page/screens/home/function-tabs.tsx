@@ -4,6 +4,7 @@ import { Text, View } from "react-native";
 import { RectButton } from "../../components/rect-button";
 import { useStyle } from "../../styles";
 import AssetsList from "./assets-list";
+import Activity from "./activity";
 
 export const FunctionTabs: FunctionComponent = () => {
   const style = useStyle();
@@ -51,7 +52,7 @@ export const FunctionTabs: FunctionComponent = () => {
         </RectButton>
       </View>
       {activeTab === 0 ? <AssetsList /> : null }
-      {activeTab === 1 ? <View><Text>1</Text></View> : null }
+      {activeTab === 1 ? <Activity /> : null }
     </View>
   );
 };

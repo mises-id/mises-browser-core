@@ -29,20 +29,20 @@ export const SettingScreen: FunctionComponent = () => {
     <PageWithScrollViewInBottomTabView backgroundMode="secondary">
       <SettingSelectAccountItem />
       <SettingSectionTitle title="General" />
-      <SettingItem
+      {/* <SettingItem
         label="Address book"
         right={<RightArrow />}
         onPress={() => {
           smartNavigation.navigateSmart("AddressBook", {});
         }}
-      />
-      <SettingItem
+      /> */}
+      {/* <SettingItem
         label="Manage tokens"
         right={<RightArrow />}
         onPress={() => {
           smartNavigation.navigateSmart("Setting.ManageTokens", {});
         }}
-      />
+      /> */}
       <SettingThemeItem />
       <SettingSectionTitle title="Security" />
       <SettingViewPrivateDataItem topBorder={true} />

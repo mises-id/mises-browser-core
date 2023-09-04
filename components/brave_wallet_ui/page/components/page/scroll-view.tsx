@@ -82,7 +82,9 @@ export const PageWithScrollView = forwardRef<
             }
           }}
           style={StyleSheet.flatten([
-            style.flatten(["flex-1", "padding-0", "overflow-visible"]),
+            style.flatten(["padding-0"],
+            [["ios", "android"].includes(Platform.OS) && "flex-1", !["ios", "android"].includes(Platform.OS) && "height-1", ["ios", "android"].includes(Platform.OS) && "overflow-visible", !["ios", "android"].includes(Platform.OS) && "overflow-scroll",],
+          ),
             propStyle,
           ])}
           keyboardOpeningTime={0}

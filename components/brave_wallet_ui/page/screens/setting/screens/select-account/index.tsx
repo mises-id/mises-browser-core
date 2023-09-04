@@ -15,10 +15,10 @@ import { RectButton } from "../../../../components/rect-button";
 import { MoreIcon } from "../../../../components/icon";
 import { shortenAddress } from "../../../../common";
 import { useDispatch } from "react-redux";
-import { AccountsTabActions } from "../../../../reducers/accounts-tab-reducer";
 import { WalletAccountType, BraveWallet } from "../../../../../constants/types";
 import { useApiProxy } from "../../../../../common/hooks/use-api-proxy";
 import { WalletPageActions } from "../../../../../page/actions";
+import { WalletActions } from "../../../../../common/actions";
 
 export const SettingSelectAccountScreen: FunctionComponent = () => {
   const style = useStyle();
@@ -68,7 +68,8 @@ export const SettingSelectAccountScreen: FunctionComponent = () => {
                   }
                   onPress={async () => {
                     console.log(account, "accountaccountaccount")
-                    dispatch(AccountsTabActions.setSelectedAccount(account))
+                    dispatch(WalletActions.selectAccount(account))
+                    // keyringService.SetSelectedAccount(account.address, account.coin)
                     // await selectKeyStore(keyStore);
                   }}
                 />

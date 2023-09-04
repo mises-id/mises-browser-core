@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View } from 'react-native'
 import { BraveWallet, WalletState } from '../../../constants/types'
-import { useGetNetworkQuery } from '../../../common/slices/api.slice'
+// import { useGetNetworkQuery } from '../../../common/slices/api.slice'
 import Amount from '../../../utils/amount'
 import { computeFiatAmount } from '../../../utils/pricing-utils'
 // import { getLocale } from '$web-common/locale'
@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 import { useStyle } from '../../styles'
 import { Image } from 'react-native'
 import { Text } from 'react-native'
-import { getLocale } from '$web-common/locale'
+// import { getLocale } from '$web-common/locale'
 
 interface Props {
   assetBalance: string
@@ -30,7 +30,7 @@ const PortfolioAssetItem: React.FunctionComponent<Props> = ({
   const defaultCurrencies = useSelector(({ wallet }: { wallet: WalletState }) => wallet.defaultCurrencies)
   const spotPrices = useSelector(({ wallet }: { wallet: WalletState }) => wallet.transactionSpotPrices)
    // queries
-   const { data: tokensNetwork } = useGetNetworkQuery(token, { skip: !token })
+  //  const { data: tokensNetwork } = useGetNetworkQuery(token, { skip: !token })
 
    // state
   //  const [assetNameSkeletonWidth, setAssetNameSkeletonWidth] = React.useState(0)
@@ -65,17 +65,17 @@ const PortfolioAssetItem: React.FunctionComponent<Props> = ({
   //    return formattedAssetBalance === '' && !isNonFungibleToken
   //  }, [formattedAssetBalance, token])
  
-   const NetworkDescription = React.useMemo(() => {
+  //  const NetworkDescription = React.useMemo(() => {
  
-     if (tokensNetwork && !isPanel) {
-       return token.symbol !== ''
-       ? getLocale('braveWalletPortfolioAssetNetworkDescription')
-         .replace('$1', token.symbol)
-         .replace('$2', tokensNetwork.chainName ?? '')
-       : tokensNetwork.chainName
-     }
-     return token.symbol
-   }, [tokensNetwork, token])
+  //    if (tokensNetwork && !isPanel) {
+  //      return token.symbol !== ''
+  //      ? getLocale('braveWalletPortfolioAssetNetworkDescription')
+  //        .replace('$1', token.symbol)
+  //        .replace('$2', tokensNetwork.chainName ?? '')
+  //      : tokensNetwork.chainName
+  //    }
+  //    return token.symbol
+  //  }, [tokensNetwork, token])
  
   //  const isAssetsBalanceZero = React.useMemo(() => {
   //    return new Amount(assetBalance).isZero()
@@ -95,9 +95,9 @@ const PortfolioAssetItem: React.FunctionComponent<Props> = ({
   //    }
   //  }, [])
 
-   const style = useStyle();
+  const style = useStyle();
   return (
-    <View style={style.flatten(["flex", "flex-row", "justify-between", "items-center", "margin-y-10"])}>
+    <View style={style.flatten(["flex", "flex-row", "justify-between", "margin-y-10"])}>
       <View style={style.flatten(["flex", "flex-row", "flex-1", "items-center"])}>
         <View style={style.flatten(["width-40", "height-40", "border-radius-64", "background-color-background-secondary@25%"])}>
           {
@@ -113,13 +113,12 @@ const PortfolioAssetItem: React.FunctionComponent<Props> = ({
           }
         </View>
         <View style={style.flatten(["margin-left-10"])}>
-          <Text style={style.flatten(["color-text-high"])}>{token.name}</Text>
-          <Text style={style.flatten(["margin-top-6", "color-text-low"])}>{NetworkDescription}</Text>
+          <Text style={style.flatten(["color-text-high"])}>{token.symbol}</Text>
+          <Text style={style.flatten(["margin-top-6", "color-text-low"])}>{hideBalances ? '***' : formattedAssetBalance}</Text>
         </View>
       </View>
       <View>
         <Text style={style.flatten(["color-text-high", "text-right"])}>{hideBalances ? '***' : formattedFiatBalance}</Text>
-        <Text style={style.flatten(["margin-top-6", "color-text-low", "text-right"])}>{hideBalances ? '***' : formattedAssetBalance}</Text>
       </View>
     </View>
   )

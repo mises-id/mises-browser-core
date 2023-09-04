@@ -272,9 +272,12 @@ export const Button: FunctionComponent<{
             "justify-center",
             "items-center",
             "height-full",
-            "padding-x-8",
+            "padding-x-8"
           ]),
           buttonStyle,
+          {
+            'flex': 1
+          }
         ])}
         onPress={onPress}
         enabled={!loading && !disabled}

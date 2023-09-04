@@ -62,7 +62,7 @@ export const AccountCard: FunctionComponent<{
           <View style={style.flatten(["margin-top-18", "margin-bottom-16"])}>
             <View style={style.flatten(["items-center", "justify-center"])}>
               <Text style={style.flatten(["h3", "color-text-high"])}>
-                {balance}
+                {balance || "0 ETH"}
               </Text>
             </View>
           </View>

@@ -67,6 +67,7 @@ export const RectButton: FunctionComponent<
     <View
       style={{
         overflow: "hidden",
+        flex: flex,
         borderRadius,
         borderTopLeftRadius,
         borderTopRightRadius,
@@ -89,7 +90,6 @@ export const RectButton: FunctionComponent<
         marginLeft,
         marginRight,
         flexGrow,
-        flex,
         flexBasis,
         flexShrink,
         flexWrap,

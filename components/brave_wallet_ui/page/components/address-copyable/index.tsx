@@ -6,8 +6,8 @@ import Clipboard from "@react-native-clipboard/clipboard";
 import { RectButton } from "../rect-button";
 import { CopyIcon } from "../icon";
 import { useSimpleTimer } from "../../hooks";
-import LottieView from "lottie-react-native";
 import { shortenAddress } from "../../common";
+import { CheckIcon } from "../../components/icon";
 
 export const AddressCopyable: FunctionComponent<{
   style?: ViewStyle;
@@ -55,50 +55,7 @@ export const AddressCopyable: FunctionComponent<{
       </Text>
       <View style={style.flatten(["margin-left-4", "width-20"])}>
         {isTimedOut ? (
-          <View style={style.flatten(["margin-left-2"])}>
-            <View style={style.flatten(["width-20", "height-20"])}>
-              <View
-                style={StyleSheet.flatten([
-                  style.flatten(["absolute", "justify-center", "items-center"]),
-                  {
-                    left: 0,
-                    right: 4,
-                    top: 0,
-                    bottom: 0,
-                  },
-                ])}
-              >
-                <LottieView
-                  // TODO: Change color of animated check button according to theme.
-                  source={require("../../assets/lottie/check.json")}
-                  colorFilters={[
-                    {
-                      keypath: "Shape Layer 2",
-                      color: style.flatten([
-                        "color-gray-300",
-                        "dark:color-platinum-200",
-                      ]).color,
-                    },
-                    {
-                      keypath: "Shape Layer 1",
-                      color: style.flatten([
-                        "color-gray-300",
-                        "dark:color-platinum-200",
-                      ]).color,
-                    },
-                    {
-                      keypath: "Layer 1 Outlines",
-                      color: style.flatten(["color-white"]).color,
-                    },
-                  ]}
-                  autoPlay
-                  speed={2}
-                  loop={false}
-                  style={style.flatten(["width-58", "height-58"])}
-                />
-              </View>
-            </View>
-          </View>
+          <CheckIcon />
         ) : (
           <CopyIcon
             color={

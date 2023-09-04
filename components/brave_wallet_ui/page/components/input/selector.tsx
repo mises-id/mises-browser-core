@@ -18,6 +18,7 @@ export const SelectorModal: FunctionComponent<{
   items: {
     label: string;
     key: string;
+    paragraph?: string;
   }[];
   maxItemsToShow?: number;
   selectedKey: string | undefined;
@@ -152,15 +153,23 @@ export const SelectorModal: FunctionComponent<{
                     }
                   }}
                 >
-                  <Text
-                    style={style.flatten([
-                      "subtitle1",
-                      "color-platinum-400",
-                      "dark:color-platinum-10",
-                    ])}
-                  >
-                    {item.label}
-                  </Text>
+                  <View>
+                    <Text
+                      style={style.flatten([
+                        "subtitle1",
+                        "color-platinum-400",
+                        "dark:color-platinum-10",
+                      ])}
+                    >
+                      {item.label}
+                    </Text>
+                    
+                    {item.paragraph && <Text
+                      style={style.flatten(["subtitle3", "color-text-low", "margin-top-4"])}
+                    >
+                      {item.paragraph}
+                    </Text>}
+                  </View>
                   {renderBall(item.key === selectedKey)}
                 </RectButton>
               );
