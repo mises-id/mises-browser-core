@@ -4,12 +4,20 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-msies_chrome_renderer_sources = [
+mises_chrome_renderer_sources = [
+  "//mises/renderer/mises_content_renderer_client.cc",
+  "//mises/renderer/mises_content_renderer_client.h",
 ]
 
-mises_chrome_renderer_public_deps = [
+mises_chrome_renderer_deps = [
   "//mojo/public/cpp/bindings",
   "//third_party/blink/public:blink",
   "//third_party/blink/public/common",
+  "//mises/components/brave_wallet/common",
+  "//mises/components/brave_wallet/renderer",
+  "//mises/components/safe_builtins/renderer",
+  "//mises/renderer/brave_wallet",
 ]
+
+mises_chrome_renderer_public_deps = []
 

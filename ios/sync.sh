@@ -42,12 +42,14 @@ cp -R $SOURCE_DIR/Build/Products/Debug-iphonesimulator/**/*.framework third_part
 cp -R $SOURCE_DIR/Build/Products/Debug-iphoneos/**/*.a third_party/mises/Device/Libs
 
 cp -R $SOURCE_DIR/Build/Products/Debug-iphoneos/*.framework third_party/mises/Device/Frameworks
+cp -R $SOURCE_DIR/Build/Products/Debug-iphoneos/**/*.framework third_party/mises/Device/Frameworks
 
 
 
 cp -R $SOURCE_DIR/Build/Products/Release-iphoneos/**/*.a third_party/mises/Distribution/Libs
 
 cp -R $SOURCE_DIR/Build/Products/Release-iphoneos/*.framework third_party/mises/Distribution/Frameworks
+cp -R $SOURCE_DIR/Build/Products/Release-iphoneos/**/*.framework third_party/mises/Distribution/Frameworks
 
 
 # cp -R /Users/baoge/Documents/work/sdk/sdk.xcframework/ios-arm64_x86_64-simulator/*.framework ios/third_party/mises/Sim/Frameworks

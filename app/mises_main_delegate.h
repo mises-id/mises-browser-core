@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_APP_BRAVE_MAIN_DELEGATE_H_
-#define BRAVE_APP_BRAVE_MAIN_DELEGATE_H_
+#ifndef MISES_APP_BRAVE_MAIN_DELEGATE_H_
+#define MISES_APP_BRAVE_MAIN_DELEGATE_H_
 
 #include <string>
 
@@ -26,6 +26,7 @@ class MisesMainDelegate : public ChromeMainDelegate {
  protected:
   // content::ContentMainDelegate implementation:
   content::ContentBrowserClient* CreateContentBrowserClient() override;
+  content::ContentRendererClient* CreateContentRendererClient() override;
   void PreSandboxStartup() override;
 };
 

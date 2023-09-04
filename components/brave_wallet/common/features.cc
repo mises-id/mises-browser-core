@@ -28,7 +28,7 @@ BASE_FEATURE(kBraveWalletFilecoinFeature,
 
 BASE_FEATURE(kBraveWalletSolanaFeature,
              "BraveWalletSolana",
-             base::FEATURE_ENABLED_BY_DEFAULT);
+             base::FEATURE_DISABLED_BY_DEFAULT);
 const base::FeatureParam<bool> kCreateDefaultSolanaAccount{
     &kBraveWalletSolanaFeature, "create_default_solana_account", true};
 

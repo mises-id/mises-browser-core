@@ -15,6 +15,7 @@
 #include "base/time/time.h"
 #include "mises/browser/mises_content_browser_client.h"
 #include "mises/common/resource_bundle_helper.h"
+#include "mises/renderer/mises_content_renderer_client.h"
 #include "build/build_config.h"
 #include "chrome/common/chrome_features.h"
 #include "chrome/common/chrome_paths.h"
@@ -28,15 +29,21 @@
 #include "content/public/common/content_switches.h"
 #include "google_apis/gaia/gaia_switches.h"
 
+
 namespace {
 
 
 
 }  // namespace
 
+#if !defined(CHROME_MULTIPLE_DLL_BROWSER)
+base::LazyInstance<MisesContentRendererClient>::DestructorAtExit
+    g_mises_content_renderer_client = LAZY_INSTANCE_INITIALIZER;
+#endif
+
 #if !defined(CHROME_MULTIPLE_DLL_CHILD)
 base::LazyInstance<MisesContentBrowserClient>::DestructorAtExit
-    g_brave_content_browser_client = LAZY_INSTANCE_INITIALIZER;
+    g_mises_content_browser_client = LAZY_INSTANCE_INITIALIZER;
 #endif
 
 MisesMainDelegate::MisesMainDelegate() : ChromeMainDelegate() {}
@@ -58,6 +65,14 @@ content::ContentBrowserClient* MisesMainDelegate::CreateContentBrowserClient() {
 #endif
 }
 
+content::ContentRendererClient*
+MisesMainDelegate::CreateContentRendererClient() {
+#if defined(CHROME_MULTIPLE_DLL_BROWSER)
+  return NULL;
+#else
+  return g_mises_content_renderer_client.Pointer();
+#endif
+}
 
 
 void MisesMainDelegate::PreSandboxStartup() {
