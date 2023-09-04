@@ -1,8 +1,16 @@
 diff --git a/chrome/renderer/BUILD.gn b/chrome/renderer/BUILD.gn
-index 53733390bf73dee58d08a58d049c21ac5af0448e..33c8b0a9162a730dcde5bd63b5e62cbacff8a157 100644
+index 53733390bf73dee58d08a58d049c21ac5af0448e..3b3aba2cfcbd6ed258b49b755b3b7ca5a0bbff23 100644
 --- a/chrome/renderer/BUILD.gn
 +++ b/chrome/renderer/BUILD.gn
-@@ -396,7 +396,7 @@ static_library("renderer") {
+@@ -216,6 +216,7 @@ static_library("renderer") {
+     "//v8",
+   ]
+ 
++  import("//mises/renderer/sources.gni") sources += mises_chrome_renderer_sources deps += mises_chrome_renderer_deps public_deps += mises_chrome_renderer_public_deps
+   data_deps = [ "//tools/v8_context_snapshot" ]
+ 
+   configs += [ "//build/config/compiler:wexit_time_destructors" ]
+@@ -396,7 +397,7 @@ static_library("renderer") {
      ]
    }
  
@@ -11,7 +19,7 @@ index 53733390bf73dee58d08a58d049c21ac5af0448e..33c8b0a9162a730dcde5bd63b5e62cba
      sources += [
        "accessibility/ax_tree_distiller.cc",
        "accessibility/ax_tree_distiller.h",
-@@ -411,6 +411,12 @@ static_library("renderer") {
+@@ -411,6 +412,12 @@ static_library("renderer") {
        "searchbox/searchbox_extension.cc",
        "searchbox/searchbox_extension.h",
      ]
