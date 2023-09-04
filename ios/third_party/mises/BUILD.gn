@@ -45,6 +45,7 @@ swift_source_set("mises_swift") {
       "//build/config/compiler:enable_arc",
       "//build/config/compiler:enable_legacy_dispatch",
     ]
+    configs += [ ":mises_swift_config" ]
     bridge_header = "mises_swift_bridge.h"
 }
 source_set("mises") {
@@ -120,11 +121,11 @@ bundle_data("mises_bundle_data") {
   action_foreach("sign_mises_frameworks") {
     script = "//build/config/ios/codesign.py"
     sources = [ 
-      "$env_prefix/Frameworks/Branch.framework",
       "$env_prefix/Frameworks/Mixpanel.framework",
       "$env_prefix/Frameworks/OpenSSL.framework",
       "$env_prefix/Frameworks/WebRTC.framework",
-      "$env_prefix/Frameworks/glog.framework",
+      #"$env_prefix/Frameworks/glog.framework",
+      #"$env_prefix/Frameworks/Lottie.framework",
     ]
     outputs = [ 
       "$root_out_dir/{{source_file_part}}",
@@ -191,6 +192,9 @@ bundle_data("mises_fonts") {
   outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
 }
 
+config("mises_swift_config") {
+  swiftflags = ["-I../../mises", "-F../../mises/ios/third_party/mises/$env_prefix/Frameworks"]
+}
 config("mises_config") {
   visibility = [ ":mises", ":mises_swift" ]
   cflags = [ "-Wno-nullability-completeness", "-Wno-extra-semi" ,"-Wno-header-hygiene"]
@@ -279,12 +283,12 @@ config("mises_config") {
     "Sdk.framework",
     "Sentry.framework",
     "SentryPrivate.framework",
-    "SocketRocket.framework",
+    #"SocketRocket.framework",
     "SwiftyRSA.framework",
     "TcpSockets.framework",
     "WebRTC.framework",
-    "YogaKit.framework",
-    "boost.framework",
+    #"YogaKit.framework",
+    #"boost.framework",
     "callstack_repack.framework",
     "cxxreact.framework",
     "fmt.framework",
@@ -293,12 +297,12 @@ config("mises_config") {
     "jsi.framework",
     "jsinspector.framework",
     "jsireact.framework",
-    "libevent.framework",
+    #"libevent.framework",
     "libwebp.framework",
     "logger.framework",
     "lottie_react_native.framework",
     "nanopb.framework",
-    "peertalk.framework",
+    #"peertalk.framework",
     "react_native_aes.framework",
     "react_native_background_timer.framework",
     "react_native_blur.framework",
