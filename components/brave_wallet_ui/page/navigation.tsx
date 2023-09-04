@@ -30,7 +30,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createSmartNavigatorProvider, SmartNavigator } from "./hooks/index";
 import { UnlockScreen } from "./screens/unlock";
 import Svg, { Path, Rect } from "react-native-svg";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { BlurredBottomTabBar } from "./components/bottom-tabbar";
 import {
@@ -42,7 +42,7 @@ import {
   HeaderRightButton,
   TransparentHeaderOptionsPreset,
 } from "./components/header";
-import { OpenDrawerIcon, ScanIcon } from "./components/icon";
+// import { ScanIcon } from "./components/icon";
 import { HomeScreen } from "./screens/home";
 
 import { SettingScreen } from "./screens/setting";
@@ -80,15 +80,10 @@ import { useSafePageSelector, useSafeWalletSelector } from "../common/hooks/use-
 import { WalletSelectors } from "../common/selectors";
 import { PageSelectors } from "./selectors";
 import ConfirmSendScreen from "./screens/send/confirmSend";
-// import { any } from "./hooks/register";
-// import { NewMnemonicConfig } from "./screens/register/mnemonic";
-// import {
-//   AddressBookData,
-//   BIP44HDPath,
-//   ExportKeyRingData,
-//   IRecipientConfig,
-//   MultiKeyStoreInfoElem,
-// } from "./types";
+import { useGetSelectedChainQuery, useGetVisibleNetworksQuery, useSetNetworkMutation } from "../common/slices/api.slice";
+import { useDispatch } from "react-redux";
+import { WalletActions } from "../common/actions";
+import ReactNativeModal from "react-native-modal";
 
 const { SmartNavigatorProvider, useSmartNavigation } =
   createSmartNavigatorProvider(
@@ -298,57 +293,69 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
+
 const HomeScreenHeaderLeft: FunctionComponent = () => {
   const style = useStyle();
 
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-
+  // const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  const { data: selectedNetwork } = useGetSelectedChainQuery()
+  const dispatch = useDispatch()
   return (
     <HeaderLeftButton
       onPress={() => {
-        navigation.dispatch(DrawerActions.toggleDrawer());
+        dispatch(WalletActions.setChainPop(true))
       }}
     >
-      <View style={style.flatten(["flex-row", "items-center"])}>
-        <OpenDrawerIcon
-          size={28}
-          color={
-            style.flatten(["color-blue-400", "dark:color-platinum-300"]).color
-          }
-        />
-        <Text style={style.flatten(["h4", "color-text-high", "margin-left-4"])}>
-          {/* {chainStore.current.chainName} */}
-          Mises
+      <View style={
+        style.flatten([
+          "padding-left-6",
+          "padding-right-8",
+          "padding-y-6",
+          "border-radius-12",
+          "background-color-gray-50",
+          "dark:background-color-platinum-500",
+          "flex-row",
+          "items-center",
+        ])
+      }>
+        <Text
+          style={style.flatten([
+            "subtitle3",
+            'margin-right-4'
+          ])}
+        >
+          {selectedNetwork?.chainName}
         </Text>
+          <Svg fill="none" viewBox="0 0 1024 1024" width="14" height="8"><Path d="M517.688889 796.444444c-45.511111 0-85.333333-17.066667-119.466667-51.2L73.955556 381.155556c-22.755556-22.755556-17.066667-56.888889 5.688888-79.644445 22.755556-22.755556 56.888889-17.066667 79.644445 5.688889l329.955555 364.088889c5.688889 5.688889 17.066667 11.377778 28.444445 11.377778s22.755556-5.688889 34.133333-17.066667l312.888889-364.088889c22.755556-22.755556 56.888889-28.444444 79.644445-5.688889 22.755556 22.755556 28.444444 56.888889 5.688888 79.644445L637.155556 739.555556c-28.444444 39.822222-68.266667 56.888889-119.466667 56.888888 5.688889 0 0 0 0 0z" fill="#9A9AA2"></Path></Svg>
       </View>
     </HeaderLeftButton>
   );
 };
 
-const HomeScreenHeaderRight: FunctionComponent = () => {
-  const style = useStyle();
+// const HomeScreenHeaderRight: FunctionComponent = () => {
+//   const style = useStyle();
 
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+//   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
-  return (
-    <React.Fragment>
-      <HeaderRightButton
-        onPress={() => {
-          navigation.navigate("Others", {
-            screen: "Camera",
-          });
-        }}
-      >
-        <ScanIcon
-          size={28}
-          color={
-            style.flatten(["color-blue-400", "dark:color-platinum-50"]).color
-          }
-        />
-      </HeaderRightButton>
-    </React.Fragment>
-  );
-};
+//   return (
+//     <React.Fragment>
+//       <HeaderRightButton
+//         onPress={() => {
+//           navigation.navigate("Others", {
+//             screen: "Camera",
+//           });
+//         }}
+//       >
+//         <ScanIcon
+//           size={28}
+//           color={
+//             style.flatten(["color-blue-400", "dark:color-platinum-50"]).color
+//           }
+//         />
+//       </HeaderRightButton>
+//     </React.Fragment>
+//   );
+// };
 
 export const MainNavigation: FunctionComponent = () => {
   return (
@@ -365,7 +372,7 @@ export const MainNavigation: FunctionComponent = () => {
 
           headerTitle: "",
           headerLeft: () => <HomeScreenHeaderLeft />,
-          headerRight: () => <HomeScreenHeaderRight />,
+          // headerRight: () => <HomeScreenHeaderRight />,
         }}
         name="Home"
         component={HomeScreen}
@@ -819,6 +826,14 @@ export const AppNavigation: FunctionComponent = () => {
     }
   }, [walletNotYetCreated, isWalletLocked, isWalletCreated])
 
+  const [setNetwork] = useSetNetworkMutation()
+
+  const { data: networks = [] } = useGetVisibleNetworksQuery()
+
+  const showChainPop = useSafeWalletSelector(WalletSelectors.showChainPop)
+
+  const dispatch = useDispatch()
+
   return (
     <PageScrollPositionProvider>
       <FocusedScreenProvider>
@@ -872,6 +887,17 @@ export const AppNavigation: FunctionComponent = () => {
           {/* <ModalsRenderer /> */}
         </SmartNavigatorProvider>
       </FocusedScreenProvider>
+      <ReactNativeModal isVisible={showChainPop}>
+        
+        {networks.map(network => {
+          return <TouchableOpacity onPress={() => {
+            setNetwork(network);
+            dispatch(WalletActions.setChainPop(false))
+          }}>
+            <Text>{network.chainName}</Text>
+          </TouchableOpacity>
+        })}
+      </ReactNativeModal>
     </PageScrollPositionProvider>
   );
 };

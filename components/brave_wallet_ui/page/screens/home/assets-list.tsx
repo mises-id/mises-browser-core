@@ -77,7 +77,7 @@ const AssetsList: React.FunctionComponent = () => {
         <TouchableOpacity onPress={() => {
 
         }}>
-          <Text style={style.flatten(["color-blue-200", 'subtitle3'])}>Import Token</Text>
+          <Text style={style.flatten(["color-blue-200", 'subtitle3'])}> Import Token</Text>
         </TouchableOpacity>
       </View>
     </View>
