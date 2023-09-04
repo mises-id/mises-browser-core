@@ -12,12 +12,17 @@
 @interface Mises: NSObject
 + (void) Init;
 + (void) popupMetamask;
-+ (void) dismissMetamask;
 
-+ (RCTBridge *) bridge;
++ (void) popupMisesWallet;
+
++ (void) popupWallet: (NSString *)name;
+
++ (RCTBridge *) bridgeMetamask;
++ (RCTBridge *) bridgeMisesWallet;
 
 
-+ (NSUInteger) onWebViewActivated:(WKWebView *) wv;
++ (NSUInteger) onWebViewActivatedMetamask:(WKWebView *) wv;
++ (NSUInteger) onWebViewActivatedMisesWallet:(WKWebView *) wv;
 
 + (MisesAccountService*) account;
 

@@ -1,0 +1,12 @@
+diff --git a/extensions/renderer/script_injection_manager.cc b/extensions/renderer/script_injection_manager.cc
+index 3d26c2d6ffe87c9c1985a884982955596b4b2fb5..d15215d30b6c2b54b8cac99b31cdbfb19fd32fc3 100644
+--- a/extensions/renderer/script_injection_manager.cc
++++ b/extensions/renderer/script_injection_manager.cc
+@@ -415,6 +415,7 @@ void ScriptInjectionManager::TryToInject(
+   // has blocked, add it to the list of running injections.
+   // The Unretained below is safe because this object owns all the
+   // ScriptInjections, so is guaranteed to outlive them.
++    LOG(INFO) << "ScriptInjectionManager::TryToInject " << injection->host_id().id;
+   switch (injection->TryToInject(
+       run_location, scripts_run_info,
+       base::BindOnce(&ScriptInjectionManager::OnInjectionStatusUpdated,

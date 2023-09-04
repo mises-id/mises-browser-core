@@ -21,6 +21,9 @@
 #import <React/RCTRootView.h>
 #import <React/RCTPushNotificationManager.h>
 
+#import <React/RCTLinkingManager.h>
+#import <Bugsnag/Bugsnag.h>
+
 #import <FirebaseCore/FirebaseCore.h>
 #import <FirebaseDynamicLinks/FirebaseDynamicLinks.h>
 #import <FirebaseAnalytics/FirebaseAnalytics.h>
@@ -37,28 +40,51 @@
 #error "This file requires ARC support."
 #endif
 
+
+#define WALLET_METAMASK  @"metamask"
+#define WALLET_MISES  @"mises-wallet"
+
 @interface RCTMisesModule : NSObject <RCTBridgeModule>
 @end
 
-@interface MetamaskUIViewController : UIViewController
 
-@end
-
-
-enum MetamaskUIPendingStatus {
+enum MisesUIViewWalletType {
   // No action should be done
-  NONE = 0,
+  METAMASK,
+  MISESWALLET
+};
+
+enum MisesUIViewPendingStatus {
+  // No action should be done
+  PENDING_NONE = 0,
   POPUP,
   DISMISS
 };
 
-@interface ReactAppDelegate : UIResponder <RCTBridgeDelegate>
-+ (instancetype)wrapper;
+
+@protocol MisesUIViewDelegate
+- (void)show:(UIViewController*)basevc;
+- (void)dismiss;
+- (RCTBridge *)bridge;
+- (MisesUIViewPendingStatus) pendingStatus;
+- (BOOL) walletReady;
+@end
+
+@interface MisesUIViewController : UIViewController
+
+@property(nonatomic, weak) id<MisesUIViewDelegate> delegate;
+
+@end
+
+
+
+@interface ReactAppDelegate : UIResponder <RCTBridgeDelegate, MisesUIViewDelegate>
++ (instancetype)getOrCreate: (MisesUIViewWalletType) walletType;
 + (UIViewController *)baseViewController;
 - (void)show:(UIViewController*)basevc;
 - (void)dismiss;
 
-@property (nonatomic, strong) MetamaskUIViewController *rootViewController;
+@property (nonatomic, strong) MisesUIViewController *rootViewController;
 
 @property (nonatomic, strong) RCTBridge *bridge;
 
@@ -66,7 +92,10 @@ enum MetamaskUIPendingStatus {
 
 @property(nonatomic, weak) id<BrowserCommands> browserHandler;
 
-@property (atomic) MetamaskUIPendingStatus metamaskPendingStatus;
+@property (atomic) MisesUIViewPendingStatus pendingStatus;
+@property (atomic) MisesUIViewWalletType walletType;
+
+@property (atomic) BOOL walletReady;
 
 @end
 
@@ -75,7 +104,7 @@ enum MetamaskUIPendingStatus {
 @end
 
 
-@implementation MetamaskUIViewController
+@implementation MisesUIViewController
 
 - (BOOL)isModal {
      if([self presentingViewController])
@@ -88,40 +117,60 @@ enum MetamaskUIPendingStatus {
   dispatch_async(dispatch_get_main_queue(), ^{
       
       DLOG(WARNING) << "Popup Metamask complete";
-      ReactAppDelegate* delegate = [ReactAppDelegate wrapper];
-      if (delegate.metamaskPendingStatus == DISMISS) {
-          [delegate dismiss];
+      if (self.delegate) {
+        if ([self.delegate pendingStatus] == DISMISS) {
+          [self.delegate dismiss];
+        }
+        if ([self.delegate walletReady]) {
+          [[self.delegate bridge] enqueueJSCall:@"NativeBridge.windowStatusChanged" args:@[@"show"]];
+        }
+        
+          
       }
 
-    [[Mises bridge] enqueueJSCall:@"NativeBridge.windowStatusChanged" args:@[@"show"]];
+    
   });
 }
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   dispatch_async(dispatch_get_main_queue(), ^{
       DLOG(WARNING) << "Dismiss Metamask complete";
-      ReactAppDelegate* delegate = [ReactAppDelegate wrapper];
-      if (delegate.metamaskPendingStatus == POPUP) {
+      if (self.delegate) {
+        if ([self.delegate pendingStatus] == POPUP) {
           UIViewController* bvc = [ReactAppDelegate baseViewController];
-          [delegate show:bvc];
+          [self.delegate show:bvc];
+        }
+        if ([self.delegate walletReady]) {
+          [[self.delegate bridge] enqueueJSCall:@"NativeBridge.windowStatusChanged" args:@[@"hide"]];
+        }
       }
+
       
 
-    [[Mises bridge] enqueueJSCall:@"NativeBridge.windowStatusChanged" args:@[@"hide"]];
+    
   });
 }
 @end
 
 @implementation ReactAppDelegate
-+ (instancetype)wrapper
++ (instancetype)getOrCreate: (MisesUIViewWalletType) walletType;
 {  
-    static ReactAppDelegate *sharedInstance = nil;
+    static NSMutableArray<ReactAppDelegate*> *sharedInstance = nil;
     @synchronized (self) {
-        if (!sharedInstance) {
-            sharedInstance = [[ReactAppDelegate alloc] init];
+      if (!sharedInstance) {
+        sharedInstance = [NSMutableArray array];
+      }
+      for (ReactAppDelegate* object in sharedInstance) {
+        if (object.walletType == walletType) {
+          return object;
         }
-    return sharedInstance;
+      }
+      ReactAppDelegate* walletDelegate = [[ReactAppDelegate alloc] init:walletType];
+      [sharedInstance addObject:walletDelegate];
+      return walletDelegate;
     }
+
+    return nil;
 }
 
 + (UIViewController *)baseViewController {
@@ -134,29 +183,54 @@ enum MetamaskUIPendingStatus {
     
     return NULL;
 }
-- (instancetype)init
+
+- (BOOL)concurrentRootEnabled
+{
+  return true;
+}
+
+
+/// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
+///
+/// @see: https://reactjs.org/blog/2022/03/29/react-v18.html
+/// @note: This requires to be rendering on Fabric (i.e. on the New Architecture).
+/// @return: `true` if the `concurrentRoot` feature is enabled. Otherwise, it returns `false`.
+
+
+- (NSString *)walletTypeName: (MisesUIViewWalletType) walletType {
+  if (walletType == METAMASK) {
+    return WALLET_METAMASK;
+  } else {
+    return WALLET_MISES;
+  }
+}
+
+
+- (instancetype)init: (MisesUIViewWalletType) walletType
 {
     DLOG(WARNING) << "Mises init";
     self = [super init];
     if (self) {
         self.bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:NULL];
         RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.bridge
-                                                   moduleName:@"MetaMask"
+                                                   moduleName:[self walletTypeName:walletType]
                                             initialProperties:@{@"foxCode": @"debug"}];
        //rootView.backgroundColor = [UIColor colorNamed:@"ThemeColors"];
-       self.rootViewController = [MetamaskUIViewController new];
+       self.rootViewController = [MisesUIViewController new];
        self.rootViewController.view = rootView;
        self.webViewArray = [NSPointerArray weakObjectsPointerArray];
+       self.walletType = walletType;
       DLOG(WARNING) << "Mises init step 4";
     }
+    self.rootViewController.delegate = self;
     return self;
 }
 - (void)show:(UIViewController*)basevc {
   if ([self.rootViewController isModal] || !basevc) {
-      self.metamaskPendingStatus = POPUP;
+      self.pendingStatus = POPUP;
       return;
   };
-  self.metamaskPendingStatus = NONE;
+  self.pendingStatus = PENDING_NONE;
   if ([basevc
         respondsToSelector:NSSelectorFromString(@"openSinglePage:")]) {
       self.browserHandler = static_cast<UIViewController<BrowserCommands>*>(basevc);
@@ -174,10 +248,10 @@ enum MetamaskUIPendingStatus {
 
 - (void)dismiss {
   if (![self.rootViewController isModal]) {
-      self.metamaskPendingStatus = DISMISS;
+      self.pendingStatus = DISMISS;
       return;
   };
-  self.metamaskPendingStatus = NONE;
+  self.pendingStatus = PENDING_NONE;
   self.browserHandler = nil;
   [self.rootViewController dismissViewControllerAnimated:YES  completion: ^{
    
@@ -190,10 +264,10 @@ enum MetamaskUIPendingStatus {
       command_line->GetSwitchValueASCII("mises-dev-ip");
   if (mises_dev_ip.size()) {
     [[RCTBundleURLProvider sharedSettings] setJsLocation:base::SysUTF8ToNSString(mises_dev_ip.c_str())];
-    return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+    return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
   }
-    
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+
+return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 }
 
 - (BOOL)activate:(WKWebView *) wv
@@ -221,45 +295,101 @@ enum MetamaskUIPendingStatus {
 + (void) Init{
     DLOG(WARNING) << "Init Metamask";
     dispatch_async(dispatch_get_main_queue(), ^{
-      [ReactAppDelegate wrapper]; 
       [MisesLCDService wrapper];
       [MisesShareService wrapper];
       [MisesAccountService wrapper];
         
         
     });
-     //
 }
-+ (void) dismissMetamask {
-  DLOG(WARNING) << "Dismiss Metamask";
-    ReactAppDelegate *delegate = [ReactAppDelegate wrapper];
-    [NSObject cancelPreviousPerformRequestsWithTarget:delegate];
-    [delegate performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
-}
-+ (void) popupMetamask {
-    DLOG(WARNING) << "Popup Metamask";
-    
-    ReactAppDelegate *delegate = [ReactAppDelegate wrapper];
+
++ (void) popupWallet: (NSString *)name {
+  DLOG(WARNING) << "popupWallet " << base::SysNSStringToUTF16(name);
+  ReactAppDelegate *delegate = NULL;
+  if ([name isEqualToString:WALLET_METAMASK]) {
+    delegate = [ReactAppDelegate getOrCreate:METAMASK];
+  }
+  if ([name isEqualToString:WALLET_MISES]) {
+    delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
+  }
+  if (delegate) {
     [NSObject cancelPreviousPerformRequestsWithTarget:delegate];
     [delegate performSelector:@selector(popup) withObject:nil afterDelay:0.1];
-    
-
-     
+  }
 }
 
-+ (RCTBridge *) bridge {
-  return [[ReactAppDelegate wrapper] bridge]; 
++ (void) readyWallet: (NSString *)name {
+  DLOG(WARNING) << "readyWallet " << base::SysNSStringToUTF16(name);
+  ReactAppDelegate *delegate = NULL;
+  if ([name isEqualToString:WALLET_METAMASK]) {
+    delegate = [ReactAppDelegate getOrCreate:METAMASK];
+  }
+  if ([name isEqualToString:WALLET_MISES]) {
+    delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
+  }
+  if (delegate) {
+    delegate.walletReady = true;
+  }
+}
+
++ (void) dismissWallet: (NSString *)name {
+  DLOG(WARNING) << "dismissWallet " << base::SysNSStringToUTF16(name);
+  ReactAppDelegate *delegate = NULL;
+  if ([name isEqualToString:WALLET_METAMASK]) {
+    delegate = [ReactAppDelegate getOrCreate:METAMASK];
+  }
+  if ([name isEqualToString:WALLET_MISES]) {
+    delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
+  }
+  if (delegate) {
+    [NSObject cancelPreviousPerformRequestsWithTarget:delegate];
+    [delegate performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
+  }
+}
+
++ (void) popupMetamask {
+  DLOG(WARNING) << "Popup Metamask";
+  [self popupWallet:WALLET_METAMASK];   
+}
+
++ (void) popupMisesWallet {
+  DLOG(WARNING) << "Popup MisesWallet";
+  [self popupWallet:WALLET_MISES];
 }
 
 
-+ (NSUInteger) onWebViewActivated:(WKWebView *) wv {
-    if ([[ReactAppDelegate wrapper] activate:wv]) {
-       
-    };
-    NSUInteger wvid = [wv hash];
-    //[[Mises bridge] enqueueJSCall:@"NativeBridge.activate" args:@[wv.URL.absoluteString, wvid];
-    return wvid;
++ (RCTBridge *) bridgeMetamask {
+   ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
+   if (!delegate.walletReady) {
+    return nil;
+   }
+  return [delegate bridge]; 
 }
+
++ (RCTBridge *) bridgeMisesWallet {
+   ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
+   if (!delegate.walletReady) {
+    return nil;
+   }
+  return [delegate bridge]; 
+}
+
++ (NSUInteger) onWebViewActivatedMetamask:(WKWebView *) wv {
+  ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
+  if ([delegate activate:wv]) {
+  };
+  NSUInteger wvid = [wv hash];
+  return wvid;
+}
+
++ (NSUInteger) onWebViewActivatedMisesWallet:(WKWebView *) wv {
+  ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
+  if ([delegate activate:wv]) {
+  };
+  NSUInteger wvid = [wv hash];
+  return wvid;
+}
+
 
 
 + (MisesAccountService*) account {
@@ -272,6 +402,7 @@ enum MetamaskUIPendingStatus {
 //    [FBLPromise onQueue:queue do: id  _Nullable (^)(){
 //        
 //    }];
+
     dispatch_async(dispatch_get_main_queue(), ^{
         NSArray *paths = NSSearchPathForDirectoriesInDomains( NSCachesDirectory,
                                                                  NSUserDomainMask, YES);
@@ -349,38 +480,78 @@ static NSString* urlEscapeString(NSString *unencodedString)
 // To export a module named RCTMisesModule
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(dismiss)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(dismiss:(NSString*)walletTypeName)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        [Mises dismissMetamask];
+      [Mises dismissWallet:walletTypeName];
+    });
+    return nil;
+}
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(popup:(NSString*)walletTypeName)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [Mises popupWallet:walletTypeName];
+
         
     });
     return nil;
 }
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(popup)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(ready:(NSString*)walletTypeName)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-       [Mises popupMetamask];
+      [Mises readyWallet:walletTypeName];
+
         
     });
     return nil;
 }
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromRN:(NSString *) msg orgin:(NSString*)origin webviewID:(NSUInteger)webviewID)
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromMetamask:(NSString *) msg orgin:(NSString*)origin webviewID:(NSUInteger)webviewID)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
 
-        DLOG(WARNING) << "postMessageFromRN " << msg;
-        NSArray * allObjects = [[ReactAppDelegate wrapper].webViewArray allObjects];
+        DLOG(WARNING) << "postMessageFromMetamask " << base::SysNSStringToUTF16(msg);
+        ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
+        NSArray * allObjects = [delegate.webViewArray allObjects];
         NSUInteger count = [allObjects count];
         for (NSUInteger i = 0; i < count; i++) {
             __weak WKWebView* weakwv = [allObjects objectAtIndex: i];
             if (weakwv) {
                 __strong WKWebView* wv = weakwv;
-//                NSURL *nsurl = wv.URL;
-//                NSString* wv_origin = [NSString stringWithFormat:
-//                                       @"%@://%@",nsurl.scheme, nsurl.host];
+                if (webviewID != 0 && webviewID != [wv hash] ) {
+                    continue;
+                }
+                NSString* method = [NSString stringWithFormat:@"(function(){try{window.postMessage( %@ , '%@');} catch (e) {}})()", msg, origin];
+                web::ExecuteJavaScript(wv, method, ^(id value, NSError* error) {
+                    if (error) {
+                      DLOG(WARNING) << "Script execution failed with error: "
+                                    << base::SysNSStringToUTF16(
+                                          error.userInfo[NSLocalizedDescriptionKey]);
+                    }
+                });
+            }
+        }
+      
+    });
+
+    return nil;
+}
+
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromMisesWallet:(NSString *) msg orgin:(NSString*)origin webviewID:(NSUInteger)webviewID)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        DLOG(WARNING) << "postMessageFromMisesWallet " << base::SysNSStringToUTF16(msg);
+        ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
+        NSArray * allObjects = [delegate.webViewArray allObjects];
+        NSUInteger count = [allObjects count];
+        for (NSUInteger i = 0; i < count; i++) {
+            __weak WKWebView* weakwv = [allObjects objectAtIndex: i];
+            if (weakwv) {
+                __strong WKWebView* wv = weakwv;
                 if (webviewID != 0 && webviewID != [wv hash] ) {
                     continue;
                 }
@@ -404,7 +575,7 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(setMisesUserInfo:(NSString *)jsonString)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         
-      DLOG(WARNING) << "setMisesUserInfo " << jsonString;
+      DLOG(WARNING) << "setMisesUserInfo " << base::SysNSStringToUTF16(jsonString);
       NSData *stringData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
       id json = [NSJSONSerialization JSONObjectWithData:stringData options:0 error:nil];
 
@@ -418,16 +589,17 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(setMisesUserInfo:(NSString *)jsonString)
 
 
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(openUrl:(NSString *)url)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(openUrlFromMetamsk:(NSString *)url)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        DLOG(WARNING) << "openUrl " << url;
-        id handelr = [[ReactAppDelegate wrapper] browserHandler];
+        DLOG(WARNING) << "openUrlFromMetamsk " << base::SysNSStringToUTF16(url);
+        ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
+        id handelr = [delegate browserHandler];
         if (handelr && [handelr respondsToSelector:@selector(openSinglePage:)]) {
             [handelr performSelector:@selector(openSinglePage:) withObject:url];
         }
-        [[ReactAppDelegate wrapper] dismiss];
+        [delegate dismiss];
         
       
     });

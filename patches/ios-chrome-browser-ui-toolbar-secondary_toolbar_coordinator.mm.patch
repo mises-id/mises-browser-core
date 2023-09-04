@@ -18,7 +18,7 @@ index 0857a53d9c35babf1e7fb8c4ef0896ffc4dce474..4e5e5ece19486c0934588df80127f724
  @end
  
  @implementation SecondaryToolbarCoordinator
-@@ -36,6 +39,9 @@
+@@ -36,6 +39,9 @@ - (void)start {
    self.viewController.layoutGuideCenter =
        LayoutGuideCenterForBrowser(self.browser);
  
@@ -28,7 +28,7 @@ index 0857a53d9c35babf1e7fb8c4ef0896ffc4dce474..4e5e5ece19486c0934588df80127f724
    [super start];
  }
  
-@@ -45,4 +51,14 @@
+@@ -45,4 +51,14 @@ - (void)triggerToolbarSlideInAnimation {
    [self.viewController triggerToolbarSlideInAnimationFromBelow:YES];
  }
  
