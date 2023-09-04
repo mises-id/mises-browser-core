@@ -17,11 +17,14 @@ import { BraveWallet, CoinTypesMap, WalletAccountType } from '../../../constants
 import { getBalance } from "../../../utils/balance-utils";
 import { AllNetworksOption } from "../../../options/network-filter-options";
 import { Button } from "../../components/button";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 // import { RouteProp, useRoute } from "@react-navigation/native";
 
 export const SendScreen: FunctionComponent = () => {
 
   const style = useStyle();
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   // Wallet Selectors
   // Selectors
   const accounts = useUnsafeWalletSelector(WalletSelectors.accounts)
@@ -217,6 +220,9 @@ export const SendScreen: FunctionComponent = () => {
       return
     }
     submitSend()
+    navigation.navigate("Others", {
+      screen: "ConfirmSend",
+    });
   }, [
     showEnsOffchainWarning,
     setShowEnsOffchainWarning,
@@ -249,12 +255,6 @@ export const SendScreen: FunctionComponent = () => {
       showEnsOffchainWarning
     ]
   )
-
-  const selectedPendingTransaction = useUnsafeWalletSelector(WalletSelectors.selectedPendingTransaction)
-  
-  React.useEffect(() => {
-    console.log(selectedPendingTransaction)
-  }, [selectedPendingTransaction])
   
 
   return (

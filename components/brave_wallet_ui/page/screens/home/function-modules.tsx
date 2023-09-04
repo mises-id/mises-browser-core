@@ -9,10 +9,10 @@ import { useUnsafeWalletSelector } from "../../../common/hooks/use-safe-selector
 import { WalletSelectors } from "../../../common/selectors";
 import ReactNativeModal from "react-native-modal";
 import { Image } from "react-native";
-import { RectButton } from "../../components/rect-button";
 import { AddressCopyable } from "../../components/address-copyable";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { TouchableOpacity } from "react-native";
 
 export const FunctionModules: FunctionComponent = () => {
   const style = useStyle();
@@ -39,7 +39,7 @@ export const FunctionModules: FunctionComponent = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   return (
     <View style={style.flatten(["flex", "flex-row", "justify-center"])}>
-      <RectButton style={style.flatten(["flex", "items-center", "margin-10"])} onPress={() => {
+      <TouchableOpacity style={style.flatten(["flex", "items-center", "margin-10"])} onPress={() => {
         navigation.navigate("Others", {
           screen: "Send",
         });
@@ -48,15 +48,15 @@ export const FunctionModules: FunctionComponent = () => {
         <Text style={style.flatten(["h6", "color-text-high", "margin-top-4"])}>
           Send
         </Text>
-      </RectButton>
-      <RectButton style={style.flatten(["flex", "items-center", "margin-10"])} onPress={() => {
+      </TouchableOpacity>
+      <TouchableOpacity style={style.flatten(["flex", "items-center", "margin-10"])} onPress={() => {
         setisOpen(true)
       }}>
         <ReceiveSymbol size={35} color={style.get("color-blue-400").color} />
         <Text style={style.flatten(["h6", "color-text-high", "margin-top-4"])}>
           Receive
         </Text>
-      </RectButton>
+      </TouchableOpacity>
       <ReactNativeModal
         onBackdropPress={()=>setisOpen(false)}
         isVisible={isOpen}

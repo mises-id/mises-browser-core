@@ -1,9 +1,9 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import { PageWithScrollViewInBottomTabView } from "../../components/page";
-import { RightArrow, SettingItem, SettingSectionTitle } from "./components";
+import { SettingSectionTitle } from "./components";
 import { SettingSelectAccountItem } from "./items/select-account";
-import { useSmartNavigation } from "../../navigation";
+// import { useSmartNavigation } from "../../navigation";
 import { SettingRemoveAccountItem } from "./items/remove-account";
 import { SettingViewPrivateDataItem } from "./items/view-private-data";
 import { useStyle } from "../../styles";
@@ -13,7 +13,7 @@ import { SettingThemeItem } from "./items/theme";
 export const SettingScreen: FunctionComponent = () => {
   const style = useStyle();
 
-  const smartNavigation = useSmartNavigation();
+  // const smartNavigation = useSmartNavigation();
 
   // const showManageTokenButton = (() => {
   //   if (!chainStore.current.features) {

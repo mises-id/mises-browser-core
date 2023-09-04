@@ -79,6 +79,7 @@ import { RenameAccountScreen } from "./screens/register/mnemonic/rename-account"
 import { useSafePageSelector, useSafeWalletSelector } from "../common/hooks/use-safe-selector";
 import { WalletSelectors } from "../common/selectors";
 import { PageSelectors } from "./selectors";
+import ConfirmSendScreen from "./screens/send/confirmSend";
 // import { any } from "./hooks/register";
 // import { NewMnemonicConfig } from "./screens/register/mnemonic";
 // import {
@@ -702,6 +703,14 @@ export const OtherNavigation: FunctionComponent = () => {
         }}
         name="Send"
         component={SendScreen}
+      />
+      <Stack.Screen
+        options={{
+          ...HeaderOnTertiaryScreenOptionsPreset,
+          title: "Confirm",
+        }}
+        name="ConfirmSend"
+        component={ConfirmSendScreen}
       />
       <Stack.Screen
         options={{

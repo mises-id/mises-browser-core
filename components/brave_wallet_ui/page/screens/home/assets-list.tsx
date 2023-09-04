@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { getBalance as getBalanceUtil } from '../../../utils/balance-utils'
 import { BraveWallet, SupportedTestNetworks, UserAssetInfoType, WalletState } from '../../../constants/types'
 // import { AllAccountsOption } from '../../../options/account-filter-options'
@@ -10,6 +10,8 @@ import PortfolioAssetItem from './portfolio-asset-item';
 import { useUnsafeWalletSelector } from '../../../common/hooks/use-safe-selector';
 import { WalletSelectors } from '../../../common/selectors';
 import { useGetSelectedChainQuery } from '../../../common/slices/api.slice'
+import { Text } from 'react-native'
+import { useStyle } from '../../styles'
 
 const AssetsList: React.FunctionComponent = () => {
   const selectedAccount = useUnsafeWalletSelector(WalletSelectors.selectedAccount)
@@ -59,6 +61,7 @@ const AssetsList: React.FunctionComponent = () => {
   console.log(userAssetList, "getBalanceUtilgetBalanceUtilgetBalanceUtil")
   const [hideBalances] = React.useState(false);
 
+  const style = useStyle()
   return (
     <View>
       {userAssetList.map((item, index) =>{
@@ -69,6 +72,14 @@ const AssetsList: React.FunctionComponent = () => {
           hideBalances={hideBalances}
         />
       })}
+      <View style={style.flatten(['flex', 'items-center', 'justify-center', 'margin-y-10', 'flex-row'])}>
+        <Text style={style.flatten(['subtitle3'])}>Don't see you tokens?</Text>
+        <TouchableOpacity onPress={() => {
+
+        }}>
+          <Text style={style.flatten(["color-blue-200", 'subtitle3'])}>Import Token</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
