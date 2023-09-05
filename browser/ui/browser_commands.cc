@@ -20,16 +20,28 @@
 #include "chrome/browser/ui/tabs/tab_enums.h"
 #include "chrome/browser/ui/tabs/tab_strip_model.h"
 #include "chrome/browser/ui/tabs/tab_utils.h"
+#include "chrome/browser/ui/browser_list.h"
 #include "chrome/common/pref_names.h"
 #include "content/public/browser/browser_thread.h"
 #include "content/public/browser/web_contents.h"
 #include "ui/base/clipboard/clipboard_buffer.h"
 #include "ui/base/clipboard/scoped_clipboard_writer.h"
 
+#include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/browser/pref_names.h"
+#include "mises/components/brave_wallet/common/features.h"
+
 
 using content::WebContents;
 
 namespace {
+  content::WebContents* GetActiveWebContents() {
+  return BrowserList::GetInstance()
+      ->GetLastActive()
+      ->tab_strip_model()
+      ->GetActiveWebContents();
+}
 }  // namespace
 
 namespace mises {
@@ -39,6 +51,8 @@ void ShowWalletBubble(Browser* browser) {
 // #if defined(TOOLKIT_VIEWS)
 //   static_cast<BraveBrowserView*>(browser->window())->CreateWalletBubble();
 // #endif
+  brave_wallet::BraveWalletTabHelper::FromWebContents(GetActiveWebContents())
+      ->ShowBubble();
 }
 
 void ShowApproveWalletBubble(Browser* browser) {
@@ -46,12 +60,16 @@ void ShowApproveWalletBubble(Browser* browser) {
 //   static_cast<BraveBrowserView*>(browser->window())
 //       ->CreateApproveWalletBubble();
 // #endif
+  brave_wallet::BraveWalletTabHelper::FromWebContents(GetActiveWebContents())
+      ->ShowApproveWalletBubble();
 }
 
 void CloseWalletBubble(Browser* browser) {
 // #if defined(TOOLKIT_VIEWS)
 //   static_cast<BraveBrowserView*>(browser->window())->CloseWalletBubble();
 // #endif
+ brave_wallet::BraveWalletTabHelper::FromWebContents(GetActiveWebContents())
+      ->CloseBubble();
 }
 
 }  // namespace brave

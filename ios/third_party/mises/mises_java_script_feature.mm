@@ -87,10 +87,7 @@ void MisesJavaScriptFeature::MetaMaskMessageReceived(
   if (!web_state ) {
     return;
   }
-  NSUInteger wvid = [Mises onWebViewActivatedMetamask:message.webView];
-  if ([Mises bridgeMetamask]) {
-    [[Mises bridgeMetamask] enqueueJSCall:@"NativeBridge.postMessage" args:@[message.body, [NSNumber numberWithUnsignedInteger:wvid]]];
-  }
+  [Mises onWebViewActivatedMetamask:message.webView withMessage:message.body];
  
 
 //   NSString* method =
@@ -112,11 +109,7 @@ void MisesJavaScriptFeature::MisesWalletMessageReceived(
   if (!web_state ) {
     return;
   }
-  NSUInteger wvid = [Mises onWebViewActivatedMisesWallet:message.webView];
-  if ([Mises bridgeMisesWallet]) {
-    [[Mises bridgeMisesWallet] enqueueJSCall:@"NativeBridge.postMessage" args:@[message.body, [NSNumber numberWithUnsignedInteger:wvid]]];
-  }
-
+  [Mises onWebViewActivatedMisesWallet:message.webView withMessage:message.body];
 //   NSString* method =
 //       [NSString stringWithFormat:@"console.log(\"mises received: %@\", %@)",
 //         message.name, message.body];

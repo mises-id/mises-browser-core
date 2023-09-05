@@ -14,10 +14,8 @@
 
 //#error "test"
 
-#import <React/RCTBridgeDelegate.h>
+
 #import <UIKit/UIKit.h>
-#import <React/RCTBridge.h>
-#import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <React/RCTPushNotificationManager.h>
 
@@ -31,73 +29,27 @@
 
 #import <React/RCTBridgeModule.h>
 
-#import "ios/chrome/browser/ui/commands/browser_commands.h"
 #import "mises_lcd_service.h"
 #import "mises_share_service.h"
 #import "mises_account_service.h"
+#import "ReactAppDelegate.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
 #endif
 
 
-#define WALLET_METAMASK  @"metamask"
-#define WALLET_MISES  @"mises-wallet"
+
 
 @interface RCTMisesModule : NSObject <RCTBridgeModule>
 @end
 
 
-enum MisesUIViewWalletType {
-  // No action should be done
-  METAMASK,
-  MISESWALLET
-};
-
-enum MisesUIViewPendingStatus {
-  // No action should be done
-  PENDING_NONE = 0,
-  POPUP,
-  DISMISS
-};
-
-
-@protocol MisesUIViewDelegate
-- (void)show:(UIViewController*)basevc;
-- (void)dismiss;
-- (RCTBridge *)bridge;
-- (MisesUIViewPendingStatus) pendingStatus;
-- (BOOL) walletReady;
-@end
-
-@interface MisesUIViewController : UIViewController
-
-@property(nonatomic, weak) id<MisesUIViewDelegate> delegate;
-
-@end
 
 
 
-@interface ReactAppDelegate : UIResponder <RCTBridgeDelegate, MisesUIViewDelegate>
-+ (instancetype)getOrCreate: (MisesUIViewWalletType) walletType;
-+ (UIViewController *)baseViewController;
-- (void)show:(UIViewController*)basevc;
-- (void)dismiss;
 
-@property (nonatomic, strong) MisesUIViewController *rootViewController;
 
-@property (nonatomic, strong) RCTBridge *bridge;
-
-@property (nonatomic, strong) NSPointerArray *webViewArray;
-
-@property(nonatomic, weak) id<BrowserCommands> browserHandler;
-
-@property (atomic) MisesUIViewPendingStatus pendingStatus;
-@property (atomic) MisesUIViewWalletType walletType;
-
-@property (atomic) BOOL walletReady;
-
-@end
 
 @interface NSObject (PrivateMethods)
 - (void)openSinglePage:(NSString*)url;
@@ -152,141 +104,6 @@ enum MisesUIViewPendingStatus {
 }
 @end
 
-@implementation ReactAppDelegate
-+ (instancetype)getOrCreate: (MisesUIViewWalletType) walletType;
-{  
-    static NSMutableArray<ReactAppDelegate*> *sharedInstance = nil;
-    @synchronized (self) {
-      if (!sharedInstance) {
-        sharedInstance = [NSMutableArray array];
-      }
-      for (ReactAppDelegate* object in sharedInstance) {
-        if (object.walletType == walletType) {
-          return object;
-        }
-      }
-      ReactAppDelegate* walletDelegate = [[ReactAppDelegate alloc] init:walletType];
-      [sharedInstance addObject:walletDelegate];
-      return walletDelegate;
-    }
-
-    return nil;
-}
-
-+ (UIViewController *)baseViewController {
-   UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    UIViewController *basevc = keyWindow.rootViewController;
-    if ([basevc respondsToSelector:@selector(childViewControllerForStatusBarStyle)]) {
-        UIViewController* bvc = [basevc childViewControllerForStatusBarStyle];
-        return bvc;
-    }
-    
-    return NULL;
-}
-
-- (BOOL)concurrentRootEnabled
-{
-  return true;
-}
-
-
-/// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
-///
-/// @see: https://reactjs.org/blog/2022/03/29/react-v18.html
-/// @note: This requires to be rendering on Fabric (i.e. on the New Architecture).
-/// @return: `true` if the `concurrentRoot` feature is enabled. Otherwise, it returns `false`.
-
-
-- (NSString *)walletTypeName: (MisesUIViewWalletType) walletType {
-  if (walletType == METAMASK) {
-    return WALLET_METAMASK;
-  } else {
-    return WALLET_MISES;
-  }
-}
-
-
-- (instancetype)init: (MisesUIViewWalletType) walletType
-{
-    DLOG(WARNING) << "Mises init";
-    self = [super init];
-    if (self) {
-        self.bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:NULL];
-        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.bridge
-                                                   moduleName:[self walletTypeName:walletType]
-                                            initialProperties:@{@"foxCode": @"debug"}];
-       //rootView.backgroundColor = [UIColor colorNamed:@"ThemeColors"];
-       self.rootViewController = [MisesUIViewController new];
-       self.rootViewController.view = rootView;
-       self.webViewArray = [NSPointerArray weakObjectsPointerArray];
-       self.walletType = walletType;
-      DLOG(WARNING) << "Mises init step 4";
-    }
-    self.rootViewController.delegate = self;
-    return self;
-}
-- (void)show:(UIViewController*)basevc {
-  if ([self.rootViewController isModal] || !basevc) {
-      self.pendingStatus = POPUP;
-      return;
-  };
-  self.pendingStatus = PENDING_NONE;
-  if ([basevc
-        respondsToSelector:NSSelectorFromString(@"openSinglePage:")]) {
-      self.browserHandler = static_cast<UIViewController<BrowserCommands>*>(basevc);
-  }
-  [basevc presentViewController:self.rootViewController  animated:YES completion:^{
-    
-    
-  }];
-}
--(void) popup {
-    UIViewController* bvc = [ReactAppDelegate baseViewController];
-    [self show:bvc];
-}
-
-
-- (void)dismiss {
-  if (![self.rootViewController isModal]) {
-      self.pendingStatus = DISMISS;
-      return;
-  };
-  self.pendingStatus = PENDING_NONE;
-  self.browserHandler = nil;
-  [self.rootViewController dismissViewControllerAnimated:YES  completion: ^{
-   
-  }];
-}
-- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
-{
-  base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
-  const std::string mises_dev_ip =
-      command_line->GetSwitchValueASCII("mises-dev-ip");
-  if (mises_dev_ip.size()) {
-    [[RCTBundleURLProvider sharedSettings] setJsLocation:base::SysUTF8ToNSString(mises_dev_ip.c_str())];
-    return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
-  }
-
-return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-}
-
-- (BOOL)activate:(WKWebView *) wv
-{
-  [self.webViewArray compact];
-    
-  NSArray * allObjects = [self.webViewArray allObjects];
-  NSUInteger count = [allObjects count];
-  for (NSUInteger i = 0; i < count; i++) {
-    __weak WKWebView *weakwv = [allObjects objectAtIndex: i];
-    if (weakwv == wv) {
-        return NO;
-    }
-  }
-
-  [self.webViewArray  addPointer:(__bridge void *)wv];
-    return YES;
-}
-@end
 
 
 
@@ -328,7 +145,7 @@ return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
     delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
   }
   if (delegate) {
-    delegate.walletReady = true;
+    [delegate onReady];
   }
 }
 
@@ -358,36 +175,30 @@ return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 }
 
 
-+ (RCTBridge *) bridgeMetamask {
-   ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
-   if (!delegate.walletReady) {
-    return nil;
-   }
-  return [delegate bridge]; 
-}
-
-+ (RCTBridge *) bridgeMisesWallet {
-   ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
-   if (!delegate.walletReady) {
-    return nil;
-   }
-  return [delegate bridge]; 
-}
-
-+ (NSUInteger) onWebViewActivatedMetamask:(WKWebView *) wv {
++ (void) onWebViewActivatedMetamask:(WKWebView *) wv withMessage:(NSString *)message{
   ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:METAMASK];
   if ([delegate activate:wv]) {
   };
   NSUInteger wvid = [wv hash];
-  return wvid;
+  RCTBridge *bridge = [delegate bridge];
+  if (!delegate.walletReady || !bridge) {
+    [delegate addPendingMessage:message withWebViewID: wvid];
+    return;
+  }
+  [bridge  enqueueJSCall:@"NativeBridge.postMessage" args:@[message, [NSNumber numberWithUnsignedInteger:wvid]]];
 }
 
-+ (NSUInteger) onWebViewActivatedMisesWallet:(WKWebView *) wv {
++ (void) onWebViewActivatedMisesWallet:(WKWebView *) wv withMessage:(NSString *)message {
   ReactAppDelegate *delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
   if ([delegate activate:wv]) {
   };
   NSUInteger wvid = [wv hash];
-  return wvid;
+  RCTBridge *bridge = [delegate bridge];
+  if (!delegate.walletReady || !bridge) {
+    [delegate addPendingMessage:message withWebViewID: wvid];
+    return;
+  }
+  [bridge  enqueueJSCall:@"NativeBridge.postMessage" args:@[message, [NSNumber numberWithUnsignedInteger:wvid]]];
 }
 
 
