@@ -30,7 +30,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createSmartNavigatorProvider, SmartNavigator } from "./hooks/index";
 import { UnlockScreen } from "./screens/unlock";
 import Svg, { Path, Rect } from "react-native-svg";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text,  View } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { BlurredBottomTabBar } from "./components/bottom-tabbar";
 import {
@@ -83,7 +83,7 @@ import ConfirmSendScreen from "./screens/send/confirmSend";
 import { useGetSelectedChainQuery, useGetVisibleNetworksQuery, useSetNetworkMutation } from "../common/slices/api.slice";
 import { useDispatch } from "react-redux";
 import { WalletActions } from "../common/actions";
-import ReactNativeModal from "react-native-modal";
+import { SelectorModal } from "./components/input";
 
 const { SmartNavigatorProvider, useSmartNavigation } =
   createSmartNavigatorProvider(
@@ -833,6 +833,16 @@ export const AppNavigation: FunctionComponent = () => {
   const showChainPop = useSafeWalletSelector(WalletSelectors.showChainPop)
 
   const dispatch = useDispatch()
+  const { data: selectedNetwork } = useGetSelectedChainQuery()
+  const [selectedNetworkKey, setselectedNetworkKey] = React.useState<string | undefined>(selectedNetwork?.chainId)
+
+  const selectNetworks = useMemo(() => {
+    return networks.map(val => ({
+      label: val.chainName,
+      key: val.chainId
+    }))
+
+  }, [networks])
 
   return (
     <PageScrollPositionProvider>
@@ -887,17 +897,24 @@ export const AppNavigation: FunctionComponent = () => {
           {/* <ModalsRenderer /> */}
         </SmartNavigatorProvider>
       </FocusedScreenProvider>
-      <ReactNativeModal isVisible={showChainPop}>
-        
-        {networks.map(network => {
-          return <TouchableOpacity onPress={() => {
+      <SelectorModal
+        isOpen={showChainPop}
+        close={() => {
+          dispatch(WalletActions.setChainPop(false))
+        }}
+        items={selectNetworks}
+        selectedKey={selectedNetworkKey}
+        maxItemsToShow={4}
+        setSelectedKey={(key)=>{
+          const network = networks.find(val => val.chainId === key);
+          if(network) {
             setNetwork(network);
-            dispatch(WalletActions.setChainPop(false))
-          }}>
-            <Text>{network.chainName}</Text>
-          </TouchableOpacity>
-        })}
-      </ReactNativeModal>
+          }
+          dispatch(WalletActions.setChainPop(false))
+          setselectedNetworkKey(key)
+        }}
+        modalPersistent={false}
+      />
     </PageScrollPositionProvider>
   );
 };
