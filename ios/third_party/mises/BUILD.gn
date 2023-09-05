@@ -70,6 +70,7 @@ source_set("mises") {
     "RCTAnalytics.mm",
     "RCTScreenshotDetect.mm",
     "RCTMinimizer.mm",
+    "ReactAppDelegate.mm",
     "SSZipArchive/SSZipArchive.m",
   ]
   public_configs = [

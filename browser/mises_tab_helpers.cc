@@ -10,6 +10,7 @@
 #include "net/base/features.h"
 #include "third_party/widevine/cdm/buildflags.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
 
 #if BUILDFLAG(ENABLE_IPFS)
 #include "mises/browser/ipfs/ipfs_service_factory.h"
@@ -27,5 +28,7 @@ namespace mises {
   #if BUILDFLAG(IS_ANDROID)
     zoom::ZoomController::CreateForWebContents(web_contents);
   #endif
+
+    brave_wallet::BraveWalletTabHelper::CreateForWebContents(web_contents);
   }
 }

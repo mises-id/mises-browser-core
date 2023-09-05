@@ -17,12 +17,9 @@
 
 + (void) popupWallet: (NSString *)name;
 
-+ (RCTBridge *) bridgeMetamask;
-+ (RCTBridge *) bridgeMisesWallet;
 
-
-+ (NSUInteger) onWebViewActivatedMetamask:(WKWebView *) wv;
-+ (NSUInteger) onWebViewActivatedMisesWallet:(WKWebView *) wv;
++ (void) onWebViewActivatedMetamask:(WKWebView *) wv withMessage:(NSString *)message;
++ (void) onWebViewActivatedMisesWallet:(WKWebView *) wv withMessage:(NSString *)message;
 
 + (MisesAccountService*) account;
 

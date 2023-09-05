@@ -1,8 +1,24 @@
 diff --git a/components/permissions/permission_manager.cc b/components/permissions/permission_manager.cc
-index bab22400165cad36a49bd474ffd03203671ef182..35b9b0c3ffa75eaa332fa9af03b7ea3f9001ef4c 100644
+index bab22400165cad36a49bd474ffd03203671ef182..90fbe7feefa53c2262c8c41ef863af633f96351f 100644
 --- a/components/permissions/permission_manager.cc
 +++ b/components/permissions/permission_manager.cc
-@@ -595,6 +595,10 @@ PermissionResult PermissionManager::GetPermissionStatusInternal(
+@@ -325,6 +325,7 @@ void PermissionManager::RequestPermissionsFromCurrentDocument(
+         permission_status_callback) {
+   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
+   const GURL requesting_origin =
++      MISES_FORCED_REQUESTING_ORIGIN
+       PermissionUtil::GetLastCommittedOriginAsURL(render_frame_host);
+   RequestPermissionsInternal(permissions_types, render_frame_host,
+                              requesting_origin, user_gesture,
+@@ -375,6 +376,7 @@ PermissionManager::GetPermissionResultForCurrentDocument(
+       PermissionUtil::PermissionTypeToContentSettingType(permission);
+ 
+   const GURL requesting_origin =
++      MISES_FORCED_REQUESTING_ORIGIN
+       PermissionUtil::GetLastCommittedOriginAsURL(render_frame_host);
+   const GURL embedding_origin =
+       GetEmbeddingOrigin(render_frame_host, requesting_origin);
+@@ -595,6 +597,10 @@ PermissionResult PermissionManager::GetPermissionStatusInternal(
    GURL canonical_requesting_origin = PermissionUtil::GetCanonicalOrigin(
        permission, requesting_origin, embedding_origin);
    PermissionContextBase* context = GetPermissionContext(permission);

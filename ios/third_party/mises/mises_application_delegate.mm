@@ -10,7 +10,7 @@
 #import <React/RCTLinkingManager.h>
 #import <Bugsnag/Bugsnag.h>
 #import <React/RCTAppSetupUtils.h>
-#import <React/RCTRootView.h>
+
 
 @interface MisesApplicationDelegate ()
 
