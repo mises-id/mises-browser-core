@@ -5,6 +5,7 @@
 
 import { FC } from 'react'
 import styled, { css, CSSProperties } from 'styled-components'
+import styledRN from 'styled-components/native'
 import { Link } from 'react-router-dom'
 import * as leo from '@brave/leo/tokens/css'
 
@@ -185,6 +186,9 @@ export const StatusBubble = styled.div<{ status: BraveWallet.TransactionStatus }
 
 // Buttons
 export const WalletButton = styled.button`
+  ${walletButtonFocusMixin}
+`
+export const WalletButtonRN = styledRN.Button`
   ${walletButtonFocusMixin}
 `
 

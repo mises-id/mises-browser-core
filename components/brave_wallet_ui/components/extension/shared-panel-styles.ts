@@ -105,6 +105,14 @@ export const TabRow = styled.div`
   width: 255px;
   margin-bottom: 10px;
 `
+export const TabRowRN = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: row;
+  width: 255px;
+  margin-bottom: 10px;
+`
 
 export const DetailTextDarkBold = styled.span`
   font-family: Poppins;
