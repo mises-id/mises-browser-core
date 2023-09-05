@@ -43,9 +43,9 @@ import {
   SectionLabel,
   SectionPoint,
   BulletContainer,
-  BulletIcon,
+  // BulletIcon,
   AddAccountText,
-  AddAcountIcon,
+  // AddAcountIcon,
   IconCircle,
   WhiteSpace,
   NavButton
@@ -164,13 +164,13 @@ export const ConnectWithSite = (props: Props) => {
                 <Row padding="8px 0px" justifyContent="space-between">
                   <Row justifyContent="flex-start">
                     <IconCircle>
-                      <AddAcountIcon name="plus-add" />
+                      {/* <AddAcountIcon name="plus-add" /> */}
                     </IconCircle>
                     <AddAccountText>
                       {getLocale('braveWalletAddAccount')}
                     </AddAccountText>
                   </Row>
-                  <AddAcountIcon name="arrow-right" />
+                  {/* <AddAcountIcon name="arrow-right" /> */}
                 </Row>
               </ConnectPanelButton>
               <Row padding="8px 0px" justifyContent="flex-start">
@@ -230,7 +230,7 @@ export const ConnectWithSite = (props: Props) => {
                     justifyContent="flex-start"
                   >
                     <BulletContainer status="success">
-                      <BulletIcon status="success" name="check-normal" />
+                      {/* <BulletIcon status="success" name="check-normal" /> */}
                     </BulletContainer>
                     <SectionPoint>{getLocale(option.name)}</SectionPoint>
                   </Row>
@@ -253,7 +253,7 @@ export const ConnectWithSite = (props: Props) => {
                     justifyContent="flex-start"
                   >
                     <BulletContainer status="error">
-                      <BulletIcon status="error" name="close" />
+                      {/* <BulletIcon status="error" name="close" /> */}
                     </BulletContainer>
                     <SectionPoint>{getLocale(option.name)}</SectionPoint>
                   </Row>
@@ -264,14 +264,11 @@ export const ConnectWithSite = (props: Props) => {
         )}
       </ScrollContainer>
       <ButtonRow padding={16} isReadyToConnect={isReadyToConnect}>
-        <NavButton size="large" kind="outline" onClick={onCancel}>
+        <NavButton onClick={onCancel}>
           {getLocale('braveWalletButtonCancel')}
         </NavButton>
         <HorizontalSpace space="16px" />
         <NavButton
-          size="large"
-          kind="filled"
-          isDisabled={!addressToConnect}
           onClick={onNext}
         >
           {isReadyToConnect

@@ -21,7 +21,6 @@ import { getLocale } from '../../../../../common/locale'
 import {
   StyledWrapper,
   DropDownButton,
-  DropDownIcon,
   DropDown,
   PermissionButton
 } from './permission-duration-dropdown.style'
@@ -59,7 +58,7 @@ export const PermissionDurationDropdown = (props: Props) => {
     <StyledWrapper>
       <DropDownButton onClick={() => setShowDropdown((prev) => !prev)}>
         {getLocale(selectedDurationInfo.name)}
-        <DropDownIcon name="carat-down" isOpen={showDropdown} />
+        {/* <DropDownIcon name="carat-down" isOpen={showDropdown} /> */}
       </DropDownButton>
       {showDropdown && (
         <DropDown>

@@ -5,8 +5,7 @@ import { RectButton } from "../../components/rect-button";
 import { useStyle } from "../../styles";
 import AssetsList from "./assets-list";
 import Activity from "./activity";
-import { TabRowRN } from "../../../components/extension/shared-panel-styles";
-import PanelTab from "../../../components/extension/panel-tab-rn";
+// import { TabRowRN } from "../../../components/extension/shared-panel-styles";
 
 export const FunctionTabs: FunctionComponent = () => {
   const style = useStyle();
@@ -16,7 +15,7 @@ export const FunctionTabs: FunctionComponent = () => {
   return (
     <View>
       <View style={style.flatten(["flex", "flex-row"])}>
-        <TabRowRN>
+        {/* <TabRowRN>
           <PanelTab
             isSelected={activeTab === 0}
             onSubmit={() => setactiveTab(0)}
@@ -27,7 +26,7 @@ export const FunctionTabs: FunctionComponent = () => {
             onSubmit={() => setactiveTab(1)}
             text={'Activity'}
           />
-        </TabRowRN>
+        </TabRowRN> */}
         <RectButton
           rippleColor={
             style.flatten(["color-gray-200", "dark:color-platinum-300"]).color

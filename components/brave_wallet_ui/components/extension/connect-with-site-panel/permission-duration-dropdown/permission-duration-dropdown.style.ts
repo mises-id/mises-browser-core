@@ -4,7 +4,7 @@
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as leo from '@brave/leo/tokens/css'
-import Icon from '@brave/leo/react/icon'
+// import Icon from '@brave/leo/react/icon'
 import styled from 'styled-components'
 import { WalletButton } from '../../../shared/style'
 
@@ -39,7 +39,7 @@ export const DropDownButton = styled(WalletButton)`
   border: none;
 `
 
-export const DropDownIcon = styled(Icon)<{ isOpen: boolean }>`
+export const DropDownIcon = styled.div<{ isOpen: boolean }>`
   --leo-icon-size: 20px;
   color: ${leo.color.icon.default};
   transition-duration: 0.3s;

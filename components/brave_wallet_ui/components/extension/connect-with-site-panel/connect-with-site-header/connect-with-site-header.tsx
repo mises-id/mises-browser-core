@@ -24,12 +24,12 @@ import {
   SiteName,
   SiteURL,
   MessageBox,
-  InfoIcon,
+  // InfoIcon,
   BackButton,
-  BackIcon,
+  // BackIcon,
   GradientLine,
   LinkIconCircle,
-  LinkIcon
+  // LinkIcon
 } from './connect-with-site-header.style'
 import { AccountCircle } from '../select-account-item/select-account-item.style'
 import { HorizontalSpace, Column, Row } from '../../../shared/style'
@@ -64,7 +64,7 @@ export const ConnectWithSiteHeader = (props: Props) => {
       >
         {isReadyToConnect ? (
           <BackButton onClick={onBack}>
-            <BackIcon name="arrow-left" />
+            {/* <BackIcon name="arrow-left" /> */}
           </BackButton>
         ) : (
           <HorizontalSpace space="24px" />
@@ -91,7 +91,7 @@ export const ConnectWithSiteHeader = (props: Props) => {
               </Tooltip>
               <GradientLine>
                 <LinkIconCircle>
-                  <LinkIcon name="link-normal" />
+                  {/* <LinkIcon name="link-normal" /> */}
                 </LinkIconCircle>
               </GradientLine>
               <Tooltip
@@ -124,7 +124,7 @@ export const ConnectWithSiteHeader = (props: Props) => {
           )}
 
           <MessageBox padding="8px 16px" justifyContent="flex-start">
-            <InfoIcon name="info-filled" />
+            {/* <InfoIcon name="info-filled" /> */}
             {getLocale('braveWalletConnectTrustWarning')}
           </MessageBox>
         </Column>

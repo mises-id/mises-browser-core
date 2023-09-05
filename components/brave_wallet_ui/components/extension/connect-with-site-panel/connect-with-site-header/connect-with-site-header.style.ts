@@ -4,7 +4,7 @@
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as leo from '@brave/leo/tokens/css'
-import Icon from '@brave/leo/react/icon'
+// import Icon from '@brave/leo/react/icon'
 import styled from 'styled-components'
 import { Row, WalletButton } from '../../../shared/style'
 
@@ -92,7 +92,7 @@ export const MessageBox = styled(Row)`
   color: ${leo.color.text.primary};
 `
 
-export const InfoIcon = styled(Icon)`
+export const InfoIcon = styled.div`
   --leo-icon-size: 20px;
   color: ${leo.color.systemfeedback.infoIcon};
   margin-right: 16px;
@@ -107,7 +107,7 @@ export const BackButton = styled(WalletButton)`
   padding: 0px;
 `
 
-export const BackIcon = styled(Icon)`
+export const BackIcon = styled.div`
   --leo-icon-size: 24px;
   color: ${leo.color.icon.default};
 `
@@ -139,7 +139,7 @@ export const LinkIconCircle = styled.div`
   border-radius: 24px;
 `
 
-export const LinkIcon = styled(Icon)`
+export const LinkIcon = styled.div`
   --leo-icon-size: 16px;
   color: ${leo.color.white};
 `

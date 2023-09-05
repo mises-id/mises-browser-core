@@ -15,7 +15,7 @@ import { getLocale } from '../../../../../common/locale'
 import { NavTooltip } from '../../../shared/nav-tooltip/nav-tooltip'
 
 // Styled Components
-import { Button, ButtonIcon } from './panel-bottom-nav-button.style'
+import { Button } from './panel-bottom-nav-button.style'
 
 interface Props {
   onClick: () => void
@@ -39,7 +39,7 @@ export const PanelBottomNavButton = (props: Props) => {
 
   return (
     <Button onMouseEnter={showTip} onMouseLeave={hideTip} onClick={onClick}>
-      <ButtonIcon name={option.icon} />
+      {/* <ButtonIcon name={option.icon} /> */}
 
       <NavTooltip
         orientation='top'

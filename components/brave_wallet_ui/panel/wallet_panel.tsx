@@ -13,14 +13,14 @@ import walletLightTheme from '../theme/wallet-light'
 import BraveCoreThemeProvider from '../../common/BraveCoreThemeProvider'
 import store, { walletPanelApiProxy } from './store'
 import * as WalletActions from '../common/actions/wallet_actions'
-// import Container from './container'
+import Container from './container'
 import { LibContext } from '../common/context/lib.context'
 import * as Lib from '../common/async/lib'
 import { ApiProxyContext } from '../common/context/api-proxy.context'
 import '@brave/leo/tokens/css/variables.css'
 import { setIconBasePath } from '@brave/leo/react/icon'
-import RootRPCMethodsUI from './RootRPCMethodsUI'
-import { StyleProvider } from '../page/styles'
+// import RootRPCMethodsUI from './RootRPCMethodsUI'
+// import { StyleProvider } from '../page/styles'
 setIconBasePath('chrome://resources/brave-icons')
 
 function App () {
@@ -39,10 +39,10 @@ function App () {
         >
           <ApiProxyContext.Provider value={walletPanelApiProxy}>
             <LibContext.Provider value={Lib}>
-              {/* <Container /> */}
-              <StyleProvider>
+              <Container />
+              {/* <StyleProvider>
                 <RootRPCMethodsUI />
-              </StyleProvider>
+              </StyleProvider> */}
             </LibContext.Provider>
           </ApiProxyContext.Provider>
         </BraveCoreThemeProvider>

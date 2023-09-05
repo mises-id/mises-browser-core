@@ -4,8 +4,8 @@
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as leo from '@brave/leo/tokens/css'
-import Icon from '@brave/leo/react/icon'
-import Button from '@brave/leo/react/button'
+// import Icon from '@brave/leo/react/icon'
+// import Button from '@brave/leo/react/button'
 import styled from 'styled-components'
 
 // Shared Styles
@@ -144,7 +144,7 @@ export const BulletContainer = styled.div<{ status: 'success' | 'error' }>`
   border-radius: 20px;
 `
 
-export const BulletIcon = styled(Icon)<{ status: 'success' | 'error' }>`
+export const BulletIcon = styled.div<{ status: 'success' | 'error' }>`
   --leo-icon-size: 16px;
   color: ${(p) =>
     p.status === 'success'
@@ -161,7 +161,7 @@ export const AddAccountText = styled.span`
   color: ${leo.color.text.interactive};
 `
 
-export const AddAcountIcon = styled(Icon)`
+export const AddAcountIcon = styled.div`
   --leo-icon-size: 24px;
   color: ${leo.color.text.interactive};
 `
@@ -191,6 +191,6 @@ export const IconCircle = styled.div`
   margin-right: 8px;
 `
 
-export const NavButton = styled(Button)`
+export const NavButton = styled.button`
   width: 100%;
 `

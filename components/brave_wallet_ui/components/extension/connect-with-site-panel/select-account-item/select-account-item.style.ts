@@ -4,7 +4,7 @@
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as leo from '@brave/leo/tokens/css'
-import Icon from '@brave/leo/react/icon'
+// import Icon from '@brave/leo/react/icon'
 import styled from 'styled-components'
 import { WalletButton } from '../../../shared/style'
 
@@ -79,7 +79,7 @@ export const BalanceText = styled.span`
   color: ${leo.color.text.secondary};
 `
 
-export const SelectedIcon = styled(Icon)<{ isSelected: boolean }>`
+export const SelectedIcon = styled.div<{ isSelected: boolean }>`
   --leo-icon-size: 20px;
   color: ${(p) =>
     p.isSelected ? leo.color.primary[40] : leo.color.icon.default};

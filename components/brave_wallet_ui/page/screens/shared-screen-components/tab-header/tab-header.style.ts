@@ -5,7 +5,7 @@
 
 import styled from 'styled-components'
 import * as leo from '@brave/leo/tokens/css'
-import Icon from '@brave/leo/react/icon'
+// import Icon from '@brave/leo/react/icon'
 
 // Assets
 import BraveLogoLight from '../../send/assets/brave-logo-light.svg'
@@ -60,7 +60,7 @@ export const SettingsButton = styled(StyledButton)`
   }
 `
 
-export const SettingsIcon = styled(Icon)`
+export const SettingsIcon = styled.div`
   --leo-icon-size: 20px;
   color: ${leo.color.icon.default};
 `

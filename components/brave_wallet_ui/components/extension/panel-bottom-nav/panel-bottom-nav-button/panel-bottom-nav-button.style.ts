@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 import styled from 'styled-components'
-import Icon from '@brave/leo/react/icon'
+// import Icon from '@brave/leo/react/icon'
 
 // Shared Styles
 import { WalletButton } from '../../../shared/style'
@@ -29,7 +29,7 @@ export const Button = styled(WalletButton)`
   }
 `
 
-export const ButtonIcon = styled(Icon)`
+export const ButtonIcon = styled.div`
   --leo-icon-size: 18px;
   color: ${(p) => p.theme.palette.white};
 `

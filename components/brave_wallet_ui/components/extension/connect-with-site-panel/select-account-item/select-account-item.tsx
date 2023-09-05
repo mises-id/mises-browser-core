@@ -24,8 +24,7 @@ import {
   BalanceText,
   NameAndAddressColumn,
   AccountCircle,
-  LeftSide,
-  SelectedIcon
+  LeftSide
 } from './select-account-item.style'
 import { LoadingSkeleton, Tooltip } from '../../../shared'
 
@@ -46,7 +45,7 @@ interface Props {
   onSelectAccount: () => void
 }
 export const SelectAccountItem = (props: Props) => {
-  const { account, isSelected, onSelectAccount } = props
+  const { account, onSelectAccount } = props
 
   // Wallet Selectors
   const userVisibleTokensInfo = useUnsafeWalletSelector(
@@ -151,10 +150,10 @@ export const SelectAccountItem = (props: Props) => {
           )}
         </NameAndAddressColumn>
       </LeftSide>
-      <SelectedIcon
+      {/* <SelectedIcon
         name={isSelected ? 'radio-checked' : 'radio-unchecked'}
         isSelected={isSelected}
-      />
+      /> */}
     </ConnectPanelButton>
   )
 }
