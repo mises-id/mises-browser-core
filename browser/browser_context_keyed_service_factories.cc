@@ -21,7 +21,7 @@
 namespace mises {
 
 void EnsureMisesBrowserContextKeyedServiceFactoriesBuilt() {
-  #if BUILDFLAG(ENABLE_IPFS)
+#if BUILDFLAG(ENABLE_IPFS)
   ipfs::IpfsServiceFactory::GetInstance();
 #endif
   brave_wallet::AssetRatioServiceFactory::GetInstance();
@@ -35,10 +35,7 @@ void EnsureMisesBrowserContextKeyedServiceFactoriesBuilt() {
 
 }
 void EnsureBrowserContextKeyedServiceFactoriesBuiltExtra() {
-
-#if BUILDFLAG(IS_ANDROID)
   EnsureMisesBrowserContextKeyedServiceFactoriesBuilt();
-#endif
 }
 
 void EnsureBrowserContextKeyedServiceFactoriesBuilt() {

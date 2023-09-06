@@ -71,5 +71,7 @@
 		<string>itms-apps</string>
 		<string>about</string>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs to authenticate with face id</string>
 </dict>
 </plist>
