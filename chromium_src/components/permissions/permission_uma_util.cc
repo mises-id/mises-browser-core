@@ -11,6 +11,15 @@
   case RequestType::kMisesSolana:                 \
     return RequestTypeForUma::PERMISSION_VR;
 
+// We do not record permissions UKM and this can save us from patching
+// in RecordPermissionAction for unhandling switch cases for Brave's content
+// settings type.
+#define GetUkmSourceId             \
+  GetSettingsMap(browser_context); \
+  if (true)                        \
+    return;                        \
+  PermissionsClient::Get()->GetUkmSourceId
+  
 #if BUILDFLAG(IS_ANDROID)
 #define kAccessibilityEvents \
   kCameraPanTiltZoom:\
@@ -27,6 +36,7 @@
     return RequestTypeForUma::PERMISSION_WINDOW_MANAGEMENT; \
   case RequestType::kAccessibilityEvents
   
+
 #include "src/components/permissions/permission_uma_util.cc"
 
 #undef kAccessibilityEvents
