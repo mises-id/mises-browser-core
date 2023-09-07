@@ -54,7 +54,7 @@ export const NftContent = (props: Props) => {
       {url && displayMode === 'icon' &&
         <ImageWrapper>
           <Image
-            src={url}
+            source={{uri: url}}
           />
         </ImageWrapper>
       }

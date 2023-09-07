@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../../../../shared/style'
 import Ipfs from '../../../../../../assets/svg-icons/nft-ipfs/ipfs-color.svg'
 import MoreVertical from '../../../../../../assets/svg-icons/more-vertical.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 25px;
@@ -26,7 +26,7 @@ export const StyledWrapper = styled.div`
   }
 `
 
-export const NFTWrapper = styled.div`
+export const NFTWrapper = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -35,7 +35,8 @@ export const NFTWrapper = styled.div`
   flex-direction: column;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   margin: 0px;
   padding: 2px;
@@ -46,7 +47,7 @@ export const NFTWrapper = styled.div`
   z-index: 1;
 `
 
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.View`
   position: relative;
   overflow: visible;
   width: 100%;
@@ -54,7 +55,7 @@ export const IconWrapper = styled.div`
   z-index: 0;
 `
 
-export const DIVForClickableArea = styled.div`
+export const DIVForClickableArea = styled.TouchableOpacity`
   display: block;
   position: absolute;
   z-index: 4;
@@ -67,7 +68,7 @@ export const DIVForClickableArea = styled.div`
   z-index: 2;
 `
 
-export const NFTText = styled.span`
+export const NFTText = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 20px;
@@ -80,7 +81,7 @@ export const NFTText = styled.span`
   overflow: hidden;
 `
 
-export const NFTSymbol = styled.span`
+export const NFTSymbol = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -90,7 +91,7 @@ export const NFTSymbol = styled.span`
   margin-top: 4px;
 `
 
-export const PinnedIcon = styled.div`
+export const PinnedIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +120,7 @@ export const VerticalMenu = styled(WalletButton)`
   cursor: pointer;
 `
 
-export const VerticalMenuIcon = styled.div`
+export const VerticalMenuIcon = styled.View`
   width: 4px;
   height: 14px;
   filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.1));

@@ -57,12 +57,12 @@ export function SelectAccountItem ({
   showSwitchAccountsIcon: showSwitchAccountsLink
 }: Props) {
   // methods
-  const onKeyPress = React.useCallback(({ key }: React.KeyboardEvent) => {
-    // Invoke for space or enter, just like a regular input or button
-    if (onSelectAccount && [' ', 'Enter'].includes(key)) {
-      onSelectAccount()
-    }
-  }, [onSelectAccount])
+  // const onKeyPress = React.useCallback(() => {
+  //   // Invoke for space or enter, just like a regular input or button
+  //   if (onSelectAccount) {
+  //     onSelectAccount()
+  //   }
+  // }, [onSelectAccount])
 
   // memos / computed
   const accountAddress = account?.address || ''
@@ -81,7 +81,7 @@ export function SelectAccountItem ({
 
   // render
   return (
-    <StyledWrapper onKeyPress={onKeyPress} onClick={onSelectAccount}>
+    <StyledWrapper onPress={onSelectAccount}>
       <LeftSide>
         {!selectedNetwork && <AccountCircle orb={orb} />}
         {selectedNetwork &&

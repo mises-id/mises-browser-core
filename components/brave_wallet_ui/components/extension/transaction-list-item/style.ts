@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { ArrowRightIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { ArrowRightIcon } from 'brave-ui/components/icons'
 import { WalletButton } from '../../shared/style'
 
 interface StyleProps {
@@ -19,7 +19,8 @@ export const StyledWrapper = styled(WalletButton)`
   margin: 8px 0px;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   border-radius: 8px;
   padding: 5px;
@@ -28,7 +29,7 @@ export const StyledWrapper = styled(WalletButton)`
   }
 `
 
-export const AddressText = styled.span`
+export const AddressText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -38,7 +39,7 @@ export const AddressText = styled.span`
   margin: 0px 5px;
 `
 
-export const DetailText = styled.span`
+export const DetailText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -52,7 +53,7 @@ export const DetailWrappedText = styled(DetailText)`
   white-space: pre-line;
 `
 
-export const FromCircle = styled.div<Partial<StyleProps>>`
+export const FromCircle = styled.View<Partial<StyleProps>>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -61,7 +62,7 @@ export const FromCircle = styled.div<Partial<StyleProps>>`
   margin-right: 20px;
 `
 
-export const ToCircle = styled.div<Partial<StyleProps>>`
+export const ToCircle = styled.View<Partial<StyleProps>>`
   width: 24px;
   height: 24px;
   border-radius: 100%;
@@ -71,20 +72,20 @@ export const ToCircle = styled.div<Partial<StyleProps>>`
   left: 42px;
 `
 
-export const DetailColumn = styled.div`
+export const DetailColumn = styled.View`
   display: flex;
   flex-direction: column;
   text-align: left;
 `
 
-export const BalanceColumn = styled.div`
+export const BalanceColumn = styled.View`
   display: flex;
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
 `
 
-export const ArrowIcon = styled(ArrowRightIcon)`
+export const ArrowIcon = styled.View`
   width: auto;
   height: 16px;
   margin-right: 6px;
@@ -92,14 +93,14 @@ export const ArrowIcon = styled(ArrowRightIcon)`
   vertical-align: middle;
 `
 
-export const TransactionDetailRow = styled.div`
+export const TransactionDetailRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
 `
 
-export const StatusRow = styled.div`
+export const StatusRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -107,7 +108,7 @@ export const StatusRow = styled.div`
   align-self: flex-end;
 `
 
-export const StatusAndTimeRow = styled.div`
+export const StatusAndTimeRow = styled.View`
   display: flex;
   flex: 1;
   align-items: stretch;

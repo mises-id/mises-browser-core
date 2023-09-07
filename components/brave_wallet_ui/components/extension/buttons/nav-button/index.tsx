@@ -14,6 +14,7 @@ import {
   ConfirmIcon,
   StyledLink
 } from './style'
+import { TouchableOpacity } from 'react-native'
 
 export type PanelButtonTypes =
   | 'primary'
@@ -87,17 +88,18 @@ export const NavButton: React.FC<Props> = ({
       {buttonContent}
     </StyledLink>
   ) : (
-    <StyledButton
-      disabled={disabled}
-      buttonType={buttonType}
-      onClick={onSubmit}
-      addTopMargin={needsTopMargin && text ? text.length > 20 : false}
-      maxHeight={maxHeight}
-      minWidth={minWidth}
-      minHeight={minHeight}
-    >
-      {buttonContent}
-    </StyledButton>
+    <TouchableOpacity onPress={onSubmit}>
+      <StyledButton
+        disabled={disabled}
+        buttonType={buttonType}
+        addTopMargin={needsTopMargin && text ? text.length > 20 : false}
+        maxHeight={maxHeight}
+        minWidth={minWidth}
+        minHeight={minHeight}
+      >
+        {buttonContent}
+      </StyledButton>
+    </TouchableOpacity>
   )
 }
 

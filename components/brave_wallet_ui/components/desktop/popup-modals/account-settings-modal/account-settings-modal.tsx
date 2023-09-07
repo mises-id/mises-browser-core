@@ -47,9 +47,8 @@ import { useApiProxy } from '../../../../common/hooks/use-api-proxy'
 
 // style
 import {
-  Input,
   StyledWrapper,
-  QRCodeWrapper,
+  // QRCodeWrapper,
   AddressButton,
   ButtonRow,
   CopyIcon,
@@ -78,12 +77,12 @@ export const AccountSettingsModal = () => {
   const accountModalType = useSelector(({ accountsTab }: { accountsTab: AccountsTabState }) => accountsTab.accountModalType)
 
   // state
-  const [accountName, setAccountName] = React.useState<string>(selectedAccount?.name ?? '')
+  const [accountName] = React.useState<string>(selectedAccount?.name ?? '')
   const [updateError, setUpdateError] = React.useState<boolean>(false)
   const [password, setPassword] = React.useState<string>('')
   const [privateKey, setPrivateKey] = React.useState<string>('')
   const [isCorrectPassword, setIsCorrectPassword] = React.useState<boolean>(true)
-  const [qrCode, setQRCode] = React.useState<string>('')
+  // const [qrCode, setQRCode] = React.useState<string>('')
 
   // custom hooks
   const { attemptPasswordEntry } = usePasswordAttempts()
@@ -107,10 +106,10 @@ export const AccountSettingsModal = () => {
     setPrivateKey('')
   }, [])
 
-  const handleAccountNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAccountName(event.target.value)
-    setUpdateError(false)
-  }
+  // const handleAccountNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setAccountName(event.target.value)
+  //   setUpdateError(false)
+  // }
 
   const onClose = () => {
     dispatch(AccountsTabActions.setShowAccountModal(false))
@@ -134,7 +133,7 @@ export const AccountSettingsModal = () => {
     if (selectedAccount) {
       generateQRCode(selectedAccount.address).then(qr => {
         if (isMounted) {
-          setQRCode(qr)
+          // setQRCode(qr)
         }
       })
     }
@@ -174,11 +173,11 @@ export const AccountSettingsModal = () => {
     onClose()
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && accountName) {
-      onSubmitUpdateName()
-    }
-  }
+  // const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (event.key === 'Enter' && accountName) {
+  //     onSubmitUpdateName()
+  //   }
+  // }
 
   const onPasswordChange = (value: string): void => {
     setIsCorrectPassword(true) // clear error
@@ -225,7 +224,7 @@ export const AccountSettingsModal = () => {
               <AccountCircle orb={orb} />
               <AccountName>{selectedAccount?.name ?? ''}</AccountName>
             </NameAndIcon>
-            <QRCodeWrapper src={qrCode} />
+            {/* <QRCodeWrapper src={qrCode} /> */}
             <CopyTooltip text={selectedAccount?.address ?? ''}>
               <AddressButton>{selectedAccount?.address ?? ''}<CopyIcon /></AddressButton>
             </CopyTooltip>
@@ -234,12 +233,12 @@ export const AccountSettingsModal = () => {
         }
         {accountModalType === 'edit' &&
           <>
-            <Input
+            {/* <Input
               value={accountName}
               placeholder={getLocale('braveWalletAddAccountPlaceholder')}
               onChange={handleAccountNameChanged}
               onKeyDown={handleKeyDown}
-            />
+            /> */}
             {updateError &&
               <ErrorText>{getLocale('braveWalletAccountSettingsUpdateError')}</ErrorText>
             }

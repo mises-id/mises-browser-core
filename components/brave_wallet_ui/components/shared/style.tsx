@@ -3,8 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import { FC } from 'react'
-import styled, { css, CSSProperties } from 'styled-components'
+// import { FC } from 'react'
+import { CSSProperties } from 'styled-components'
+import styled, { css } from 'styled-components/native'
 import { Link } from 'react-router-dom'
 import * as leo from '@brave/leo/tokens/css'
 
@@ -19,7 +20,7 @@ import { LeoColors } from '../leo/alert-inline/leo-colors'
 import { stripERC20TokenImageURL } from '../../utils/string-utils'
 
 // components
-import { LoaderIcon } from 'brave-ui/components/icons'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 
 // images & icons
 import transparent40x40Image from '../../assets/png-icons/transparent40x40.png'
@@ -44,13 +45,13 @@ import { makePaddingMixin } from '../../utils/style.utils'
 export { Text } from '../../page/screens/send/shared.styles'
 
 // Spacers
-export const VerticalSpacer = styled.div<{ space: number | string }>`
+export const VerticalSpacer = styled.View<{ space: number | string }>`
   display: flex;
   height: ${p => typeof p.space === 'number' ? `${p.space}px` : p.space};
 `
 
 // Text
-export const LinkText = styled.a`
+export const LinkText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -66,7 +67,7 @@ export const LinkText = styled.a`
   text-decoration: none;
 `
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -99,7 +100,7 @@ export const backgroundColorMixin = css<{
 `
 
 // Containers
-export const Row = styled.div<FlexProps & {
+export const Row = styled.View<FlexProps & {
   maxWidth?: CSSProperties['maxWidth']
   margin?: number | string
   padding?: number | string
@@ -109,7 +110,7 @@ export const Row = styled.div<FlexProps & {
   font-family: 'Poppins';
   display: flex;
   flex-direction: row;
-  flex: ${(p) => p.flex ?? 'unset'};
+  flex: ${(p) => p.flex ?? 'none'};
   align-items: ${(p) => p.alignItems ?? 'center'};
   justify-content: ${(p) => p.justifyContent ?? 'center'};
   gap: ${(p) => p.gap ?? 'unset'};
@@ -122,7 +123,7 @@ export const Row = styled.div<FlexProps & {
   box-sizing: border-box;
 `
 
-export const Column = styled.div<FlexProps & {
+export const Column = styled.View<FlexProps & {
   fullWidth?: boolean
   fullHeight?: boolean
   color?: ThemeColor
@@ -132,7 +133,7 @@ export const Column = styled.div<FlexProps & {
   font-family: 'Poppins';
   height: ${(p) => p.fullHeight ? '100%' : 'unset'};
   width: ${(p) => p.fullWidth ? '100%' : 'unset'};
-  flex: ${(p) => p.flex ?? 'unset'};
+  flex: ${(p) => p.flex ?? 'none'};
   display: flex;
   flex-direction: column;
   align-items: ${(p) => p.alignItems ?? 'center'};
@@ -157,11 +158,11 @@ export const ScrollableColumn = styled(Column) <{
   width: 100%;
 `
 
-export const Flex = styled.div`
+export const Flex = styled.View`
   flex: 1;
 `
 
-export const StatusBubble = styled.div<{ status: BraveWallet.TransactionStatus }>`
+export const StatusBubble = styled.View<{ status: BraveWallet.TransactionStatus }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,10 +185,12 @@ export const StatusBubble = styled.div<{ status: BraveWallet.TransactionStatus }
 `
 
 // Buttons
-export const WalletButton = styled.button`
+export const WalletButton = styled.TouchableOpacity`
+  font-style: normal;
+`
+export const WalletButtonRN = styled.TouchableOpacity`
   ${walletButtonFocusMixin}
 `
-
 export const WalletLink = styled(Link)`
   font-family: 'Poppins';
   font-style: normal;
@@ -196,7 +199,8 @@ export const WalletLink = styled(Link)`
   line-height: 20px;
   text-align: center;
   color: ${(p) => p.theme.color.interactive05};
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
 
   text-decoration: none;
@@ -214,7 +218,7 @@ export const WalletButtonLink = styled(Link)`
   ${walletButtonFocusMixin}
 `
 
-export const ToggleVisibilityButton = styled.button<{
+export const ToggleVisibilityButton = styled.TouchableOpacity<{
   isVisible: boolean
 }>`
   display: flex;
@@ -223,7 +227,8 @@ export const ToggleVisibilityButton = styled.button<{
   flex-direction: row;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   padding: 0px;
   width: 18px;
@@ -270,7 +275,7 @@ export const DownloadButton = styled(WalletButton)`
   width: 14px;
 `
 
-export const SellButtonRow = styled.div`
+export const SellButtonRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -302,7 +307,7 @@ export interface AssetIconProps {
   icon?: string
 }
 
-export const AssetIconFactory = styled.img.attrs<AssetIconProps>(props => ({
+export const AssetIconFactory = styled.Image.attrs<AssetIconProps>(props => ({
   src: stripERC20TokenImageURL(props.icon)
     ? props.icon
 
@@ -334,7 +339,7 @@ export const LargeAssetIcon = AssetIconFactory<AssetIconProps>({
   height: 'auto'
 })
 
-export const GreenCheckmark = styled.div`
+export const GreenCheckmark = styled.Text`
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -345,7 +350,7 @@ export const GreenCheckmark = styled.div`
   vertical-align: middle;
 `
 
-export const WarningTriangleFilledIcon = styled.div<{
+export const WarningTriangleFilledIcon = styled.View<{
   color?: keyof IThemeProps['color']
 }>`
   mask-size: 100%;
@@ -365,7 +370,7 @@ export const WarningTriangleFilledIcon = styled.div<{
   }
 `
 
-export const WarningCircleFilledIcon = styled.div<{
+export const WarningCircleFilledIcon = styled.View<{
   color?: keyof IThemeProps['color']
 }>`
   opacity: 50%;
@@ -386,7 +391,7 @@ export const WarningCircleFilledIcon = styled.div<{
   }
 `
 
-export const CloseIcon = styled.div`
+export const CloseIcon = styled.View`
   width: 20px;
   height: 20px;
   background-color: ${(p) => p.theme.color.text02};
@@ -397,7 +402,7 @@ export const CloseIcon = styled.div`
   display: inline-block;
 `
 
-export const ErrorXIcon = styled.div`
+export const ErrorXIcon = styled.View`
   width: 12px;
   height: 12px;
   background-color: ${(p) => p.theme.color.errorIcon};
@@ -410,7 +415,7 @@ export const ErrorXIcon = styled.div`
   display: inline-block;
 `
 
-export const LoadingIcon = styled(LoaderIcon as FC<{}>) <{
+export const LoadingIcon = styled.View <{
   size: string
   color: keyof IThemeProps['color']
   opacity: number
@@ -421,7 +426,7 @@ export const LoadingIcon = styled(LoaderIcon as FC<{}>) <{
   opacity: ${(p) => p.opacity};
 `
 
-export const CheckIcon = styled.div<{
+export const CheckIcon = styled.View<{
   color?: IThemeProps['color']
 }>`
   width: 100%;
@@ -435,18 +440,18 @@ export const CheckIcon = styled.div<{
   display: inline-block;
 `
 
-export const SwitchAccountIcon = styled.div`
+export const SwitchAccountIcon = styled.View`
   cursor: pointer;
   display: block;
   width: 14px;
   height: 14px;
-  background: url(${SwitchDown});
+  background-color: url(${SwitchDown});
   margin-left: 6px;
   margin-right: 6px;
 `
 
 // Asset Icon containers
-export const IconsWrapper = styled.div<{
+export const IconsWrapper = styled.View<{
   marginRight?: string
 }>`
   display: flex;
@@ -457,7 +462,7 @@ export const IconsWrapper = styled.div<{
   margin-right: ${(p) => p.marginRight || '6px'};
 `
 
-export const CircleIconWrapper = styled.div<{
+export const CircleIconWrapper = styled.View<{
   padding?: number | string
 }>`
   position: relative;
@@ -468,7 +473,6 @@ export const CircleIconWrapper = styled.div<{
   flex-direction: row;
   position: relative;
   ${makePaddingMixin('12px')}
-  box-shadow: 0px 0px 1px rgba(66, 69, 82, 0.08), 0px 0.5px 1.5px rgba(66, 69, 82, 0.1);
   
   background-color: ${p => p.theme.color.background01};
   @media (prefers-color-scheme: dark) {
@@ -476,7 +480,7 @@ export const CircleIconWrapper = styled.div<{
   }
 `
 
-export const NetworkIconWrapper = styled.div`
+export const NetworkIconWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -490,28 +494,28 @@ export const NetworkIconWrapper = styled.div`
 `
 
 // Graphics
-export const WalletWelcomeGraphic = styled.div<{ scale?: CSSProperties['scale'] }>`
+export const WalletWelcomeGraphic = styled.View<{ scale?: CSSProperties['scale'] }>`
   width: 350px;
   height: 264px;
-  background: url(${BraveWalletWithCoins});
+  background-color: url(${BraveWalletWithCoins});
   background-repeat: no-repeat;
   transform: scale(${(p) => p.scale ?? 1});
 `
 
 // spacers
-export const VerticalSpace = styled.div<{ space: string }>`
+export const VerticalSpace = styled.View<{ space: string }>`
   display: block;
   height: ${(p) => p.space};
   width: 100%;
 `
 
-export const HorizontalSpace = styled.div<{ space: string }>`
+export const HorizontalSpace = styled.View<{ space: string }>`
   min-height: 1px;
   width: ${(p) => p.space};
 `
 
 // Forms
-export const InputLabelText = styled.label`
+export const InputLabelText = styled.Text`
   font-family: Poppins;
   font-style: normal;
   display: block;
@@ -521,14 +525,14 @@ export const InputLabelText = styled.label`
   width: 100%;
 `
 
-export const BannerWrapper = styled.div`
+export const BannerWrapper = styled.View`
   display: flex;
   flex-direction: row;
   margin-bottom: 24px;
   width: 100%;
 `
 
-export const VerticalDivider = styled.div`
+export const VerticalDivider = styled.View`
   height: 1px;
   width: 100%;
   background-color: ${leo.color.divider.subtle};

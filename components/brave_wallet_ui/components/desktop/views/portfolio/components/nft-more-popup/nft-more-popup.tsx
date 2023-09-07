@@ -24,7 +24,7 @@ export const NftMorePopup = (props: Props) => {
 
   return (
     <StyledWrapper>
-      <PopupButton onClick={onEditNft}>
+      <PopupButton onPress={onEditNft}>
         <EditIcon />
         <PopupButtonText>Edit</PopupButtonText>
       </PopupButton>

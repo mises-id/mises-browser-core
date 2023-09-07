@@ -84,7 +84,6 @@ export const RecoveryPhraseInput = styled.input`
   outline: none;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
-  box-shadow: none;
   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
   border-radius: 4px;
   font-family: Poppins;

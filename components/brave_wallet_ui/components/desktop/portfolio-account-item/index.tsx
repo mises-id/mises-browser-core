@@ -117,13 +117,13 @@ export const PortfolioAccountItem = (props: Props) => {
   }, [address])
 
   return (
-    <StyledWrapper onClick={onHideAccountPopup}>
+    <StyledWrapper onPress={onHideAccountPopup}>
       <NameAndIcon>
         <AccountCircle orb={orb} />
         <AccountAndAddress>
-          <AccountNameButton onClick={onSelectAccount}>{name}</AccountNameButton>
+          <AccountNameButton onPress={onSelectAccount}>{name}</AccountNameButton>
           <AddressAndButtonRow>
-            <AccountAddressButton onClick={onSelectAccount}>{reduceAddress(address)}</AccountAddressButton>
+            <AccountAddressButton onPress={onSelectAccount}>{reduceAddress(address)}</AccountAddressButton>
             <CopyTooltip text={address}>
               <CopyIcon />
             </CopyTooltip>
@@ -147,10 +147,10 @@ export const PortfolioAccountItem = (props: Props) => {
         </BalanceColumn>
         <SellButtonRow>
           {isSellSupported && !isAssetsBalanceZero &&
-            <SellButton onClick={showSellModal}>{getLocale('braveWalletSell')}</SellButton>
+            <SellButton onPress={showSellModal}>{getLocale('braveWalletSell')}</SellButton>
           }
         </SellButtonRow>
-        <MoreButton onClick={() => setShowAccountPopup(true)}>
+        <MoreButton onPress={() => setShowAccountPopup(true)}>
           <MoreIcon />
         </MoreButton>
         {showAccountPopup &&

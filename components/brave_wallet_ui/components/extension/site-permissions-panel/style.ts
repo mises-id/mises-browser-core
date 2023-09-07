@@ -2,10 +2,10 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
@@ -14,7 +14,7 @@ export const StyledWrapper = styled.div`
   justify-content: flex-start;
 `
 
-export const HeaderRow = styled.div`
+export const HeaderRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,14 +23,14 @@ export const HeaderRow = styled.div`
   padding: 4px 12px 12px ;
 `
 
-export const HeaderColumn = styled.div`
+export const HeaderColumn = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 `
 
-export const AddressContainer = styled.div`
+export const AddressContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -39,7 +39,7 @@ export const AddressContainer = styled.div`
   height: 100%;
 `
 
-export const AddressScrollContainer = styled.div`
+export const AddressScrollContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +55,7 @@ export const AddressScrollContainer = styled.div`
   box-sizing: border-box;
 `
 
-export const SiteOriginTitle = styled.span`
+export const SiteOriginTitle = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-size: 12px;
@@ -67,7 +67,7 @@ export const SiteOriginTitle = styled.span`
   word-break: break-word;
 `
 
-export const AccountsTitle = styled.span`
+export const AccountsTitle = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-size: 12px;
@@ -77,7 +77,7 @@ export const AccountsTitle = styled.span`
   margin-top: 4px;
 `
 
-export const FavIcon = styled.img`
+export const FavIcon = styled.Image`
   width: 48px;
   height: 48px;
   border-radius: 5px;
@@ -91,7 +91,8 @@ export const NewAccountButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 0px;
   margin: 0px;
   font-family: Poppins;

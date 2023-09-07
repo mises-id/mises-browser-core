@@ -8,7 +8,7 @@ import ErrorSvg from '../../../../assets/svg-icons/error-circle-icon.svg'
 import { TransactionStatusIcon, TransactionStatusText } from '../common/common.style'
 
 export const ErrorIcon = styled(TransactionStatusIcon)`
-  background: url(${ErrorSvg});
+  background-image: url(${ErrorSvg});
 `
 
 export const Title = styled(TransactionStatusText)`
@@ -26,7 +26,7 @@ export const ErrorDetailTitle = styled.div`
 `
 
 export const ErrorDetailContentContainer = styled.div`
-  background: ${p => p.theme.color.errorBackground};
+background-color: ${p => p.theme.color.errorBackground};
   border-radius: 8px;
   margin: 16px;
 `

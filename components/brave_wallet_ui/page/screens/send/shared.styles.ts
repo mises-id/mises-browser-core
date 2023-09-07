@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const Text = styled.span<{
+export const Text = styled.Text<{
   textSize?: '22px' | '20px' | '18px' | '16px' | '14px' | '12px'
   isBold?: boolean
   textColor?: 'text01' | 'text02' | 'text03' | 'success' | 'error'
@@ -29,7 +29,7 @@ export const Text = styled.span<{
   word-wrap: wrap;
 `
 
-export const StyledDiv = styled.div`
+export const StyledDiv = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,13 +164,14 @@ export const Loader = styled(StyledDiv)`
   }
 `
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.TouchableOpacity`
   display: flex;
   font-family: 'Poppins';
   cursor: pointer;
   border: none;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
@@ -203,38 +204,35 @@ export const HiddenResponsiveRow = styled(Row) <{ dontHide?: boolean }>`
   }
 `
 
-export const StyledInput = styled.input`
-  font-family: 'Poppins';
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  outline: none;
-  background-image: none;
-  box-shadow: none;
-  border: none;
-  color: ${(p) => p.theme.color.text01};
-  padding: 0px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  background-color: transparent;
-  letter-spacing: 0.02em;
-  ::placeholder {
-    color: ${(p) => p.theme.color.text01};
-  }
-  :focus {
-    outline: none;
-  }
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  ::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`
+// export const StyledInput = styled.input`
+//   font-family: 'Poppins';
+//   font-weight: 400;
+//   font-size: 14px;
+//   line-height: 20px;
+//   outline: none;
+//   background-image: none;
+//   border: none;
+//   color: ${(p) => p.theme.color.text01};
+//   padding: 0px;
+//   background-color: transparent;
+//   letter-spacing: 0.02em;
+//   ::placeholder {
+//     color: ${(p) => p.theme.color.text01};
+//   }
+//   :focus {
+//     outline: none;
+//   }
+//   ::-webkit-inner-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+//   ::-webkit-outer-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+// `
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;

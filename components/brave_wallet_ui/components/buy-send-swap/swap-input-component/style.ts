@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { CaratStrongDownIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { CaratStrongDownIcon } from 'brave-ui/components/icons'
 import Refresh from '../../../assets/svg-icons/refresh-icon.svg'
 import ClipboardIcon from '../../../assets/svg-icons/clipboard-icon.svg'
 import { BuySendSwapInputType } from './index'
@@ -19,7 +19,7 @@ interface StyleProps {
   isWarning: boolean
 }
 
-export const Row = styled.div<Partial<StyleProps>>`
+export const Row = styled.View<Partial<StyleProps>>`
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -27,7 +27,7 @@ export const Row = styled.div<Partial<StyleProps>>`
   justify-content: ${(p) => p.componentType === 'exchange' ? 'flex-start' : 'space-between'};
 `
 
-export const FromBalanceText = styled.span<Partial<StyleProps>>`
+export const FromBalanceText = styled.Text<Partial<StyleProps>>`
   font-family: Poppins;
   font-size: 12px;
   margin-top: 4px;
@@ -44,13 +44,14 @@ export const AssetButton = styled(WalletButton) <Partial<StyleProps>>`
   width: ${(p) => p.isERC721 ? '100%' : 'auto'};
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   padding: 0px;
   margin: 0px;
 `
 
-export const ButtonLeftSide = styled.div<Partial<StyleProps>>`
+export const ButtonLeftSide = styled.View<Partial<StyleProps>>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -66,7 +67,7 @@ export const AssetIcon = AssetIconFactory<AssetIconProps>({
   height: 'auto'
 })
 
-export const AssetTicker = styled.span`
+export const AssetTicker = styled.Text`
   font-family: Poppins;
   font-size: 20px;
   line-height: 30px;
@@ -77,13 +78,13 @@ export const AssetTicker = styled.span`
   cursor: pointer;
 `
 
-export const CaratDownIcon = styled(CaratStrongDownIcon)`
+export const CaratDownIcon = styled.View`
   width: 12px;
   height: auto;
   color: ${(p) => p.theme.color.text02};
 `
 
-export const PresetRow = styled.div`
+export const PresetRow = styled.View`
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -99,7 +100,8 @@ export const PresetButton = styled(WalletButton) <Partial<StyleProps>>`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   font-weight: 600;
   font-family: Poppins;
@@ -116,41 +118,38 @@ export const PresetButton = styled(WalletButton) <Partial<StyleProps>>`
   }
 `
 
-export const SlippageInput = styled.input<Partial<StyleProps>>`
-  --main-bg-color: ${(p) => p.theme.color.interactive05};
-  width: 48px;
-  outline: none;
-  background-image: none;
-  background: ${(p) => p.isSelected ? 'var(--main-bg-color)' : 'none'};
-  box-shadow: none;
-  font-family: Poppins;
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: 0.01em;
-  font-weight: 600;
-  text-align: center;
-  padding: 1px;
-  border-radius: 4px;
-  border: none;
-  border: 1px solid ${(p) => p.isSelected ? p.theme.color.interactive05 : p.theme.color.interactive08};
-  color: ${(p) => p.isSelected ? p.theme.palette.white : p.theme.color.text03};
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  ::placeholder {
-    color: ${(p) => p.theme.color.text03};
-  }
-  :focus {
-      outline: none;
-  }
-  ::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-  }
-  ::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-  }
-`
+// export const SlippageInput = styled(Input)<Partial<StyleProps>>`
+//   --main-bg-color: ${(p) => p.theme.color.interactive05};
+//   width: 48px;
+//   outline: none;
+//   background-image: none;
+//   background: ${(p) => p.isSelected ? 'var(--main-bg-color)' : 'none'};
+//   font-family: Poppins;
+//   font-size: 12px;
+//   line-height: 18px;
+//   letter-spacing: 0.01em;
+//   font-weight: 600;
+//   text-align: center;
+//   padding: 1px;
+//   border-radius: 4px;
+//   border: none;
+//   border: 1px solid ${(p) => p.isSelected ? p.theme.color.interactive05 : p.theme.color.interactive08};
+//   color: ${(p) => p.isSelected ? p.theme.palette.white : p.theme.color.text03};
+//   ::placeholder {
+//     color: ${(p) => p.theme.color.text03};
+//   }
+//   :focus {
+//       outline: none;
+//   }
+//   ::-webkit-inner-spin-button {
+//       -webkit-appearance: none;
+//       margin: 0;
+//   }
+//   ::-webkit-outer-spin-button {
+//       -webkit-appearance: none;
+//       margin: 0;
+//   }
+// `
 
 export const MarketLimitButton = styled(WalletButton)`
   display: flex;
@@ -159,7 +158,8 @@ export const MarketLimitButton = styled(WalletButton)`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   font-family: Poppins;
   font-size: 13px;
@@ -176,7 +176,8 @@ export const RefreshButton = styled(WalletButton)`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   width: 18px;
   height: 18px;
@@ -185,7 +186,7 @@ export const RefreshButton = styled(WalletButton)`
   border-radius: 100%;
 `
 
-export const RefreshIcon = styled.div<Partial<StyleProps>>`
+export const RefreshIcon = styled.View<Partial<StyleProps>>`
   width: 12px;
   height: 12px;
   background-color: ${(p) => p.theme.color.interactive07};
@@ -202,40 +203,37 @@ export const RefreshIcon = styled.div<Partial<StyleProps>>`
   }
 `
 
-export const Input = styled.input<Partial<StyleProps>>`
-  width: 100%;
-  outline: none;
-  background-image: none;
-  background-color: ${(p) => p.theme.color.background02};
-  box-shadow: none;
-  border: none;
-  font-family: Poppins;
-  font-size: ${(p) => p.componentType === 'toAddress' ? '14px' : '20px'};
-  line-height: ${(p) => p.componentType === 'exchange' ? '0px' : '30px'};
-  letter-spacing: 0.02em;
-  font-weight: ${(p) => p.componentType === 'toAddress' ? '400' : '600'};
-  padding: 0px;
-  margin: ${(p) => p.componentType === 'exchange' ? '0px' : '4px 0px'};
-  color: ${(p) => p.hasError ? p.theme.color.errorText : p.componentType === 'toAddress' ? p.theme.color.text02 : p.theme.color.text01};
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  ::placeholder {
-    color: ${(p) => p.theme.color.text02};
-  }
-  :focus {
-      outline: none;
-  }
-  ::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-  }
-  ::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-  }
-`
+// export const Input = styled.input<Partial<StyleProps>>`
+//   width: 100%;
+//   outline: none;
+//   background-image: none;
+//   background-color: ${(p) => p.theme.color.background02};
+//   border: none;
+//   font-family: Poppins;
+//   font-size: ${(p) => p.componentType === 'toAddress' ? '14px' : '20px'};
+//   line-height: ${(p) => p.componentType === 'exchange' ? '0px' : '30px'};
+//   letter-spacing: 0.02em;
+//   font-weight: ${(p) => p.componentType === 'toAddress' ? '400' : '600'};
+//   padding: 0px;
+//   margin: ${(p) => p.componentType === 'exchange' ? '0px' : '4px 0px'};
+//   color: ${(p) => p.hasError ? p.theme.color.errorText : p.componentType === 'toAddress' ? p.theme.color.text02 : p.theme.color.text01};
+//   ::placeholder {
+//     color: ${(p) => p.theme.color.text02};
+//   }
+//   :focus {
+//       outline: none;
+//   }
+//   ::-webkit-inner-spin-button {
+//       -webkit-appearance: none;
+//       margin: 0;
+//   }
+//   ::-webkit-outer-spin-button {
+//       -webkit-appearance: none;
+//       margin: 0;
+//   }
+// `
 
-export const SelectText = styled.span`
+export const SelectText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   margin: 2px 0px;
@@ -244,7 +242,7 @@ export const SelectText = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const SelectValueText = styled.span`
+export const SelectValueText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   margin: 2px 0px;
@@ -264,7 +262,8 @@ export const PasteButton = styled(WalletButton)`
   height: 18px;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   margin: 0px;
   padding: 0px;
@@ -272,7 +271,7 @@ export const PasteButton = styled(WalletButton)`
   background-color: ${(p) => p.theme.color.divider01};
 `
 
-export const PasteIcon = styled.div`
+export const PasteIcon = styled.View`
   width: 12px;
   height: 12px;
   background-color: ${(p) => p.theme.color.interactive07};
@@ -281,7 +280,7 @@ export const PasteIcon = styled.div`
   mask-size: 100%;
 `
 
-export const WarningText = styled.span<Partial<StyleProps>>`
+export const WarningText = styled.Text<Partial<StyleProps>>`
   font-family: Poppins;
   letter-spacing: 0.01em;
   font-size: 12px;
@@ -289,7 +288,7 @@ export const WarningText = styled.span<Partial<StyleProps>>`
   word-break: break-word;
 `
 
-export const AddressConfirmationText = styled.span`
+export const AddressConfirmationText = styled.Text`
   cursor: default;
   font-family: Poppins;
   letter-spacing: 0.01em;
@@ -300,7 +299,8 @@ export const AddressConfirmationText = styled.span`
 export const LearnMoreButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   font-family: Poppins;
   font-size: 12px;
@@ -311,7 +311,7 @@ export const LearnMoreButton = styled(WalletButton)`
   padding: 0px;
 `
 
-export const WarningRow = styled.div<Partial<StyleProps>>`
+export const WarningRow = styled.View<Partial<StyleProps>>`
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -320,6 +320,6 @@ export const WarningRow = styled.div<Partial<StyleProps>>`
   flex-wrap: wrap;
 `
 
-export const Spacer = styled.div`
+export const Spacer = styled.View`
   padding-right: 8px;
 `

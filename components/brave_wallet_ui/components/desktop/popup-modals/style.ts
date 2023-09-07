@@ -2,11 +2,11 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import CloseIcon from '../../../assets/svg-icons/close.svg'
 import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,11 +17,11 @@ export const StyledWrapper = styled.div`
   bottom: 0;
   position: fixed;
   z-index: 100;
-  background: rgba(33, 37, 41, 0.32);
+  background-color: rgba(33, 37, 41, 0.32);
   backdrop-filter: blur(16px);
 `
 
-export const Modal = styled.div<{ width?: string, borderRadius?: number }>`
+export const Modal = styled.View<{ width?: string, borderRadius?: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,14 +30,13 @@ export const Modal = styled.div<{ width?: string, borderRadius?: number }>`
   max-width: ${p => p.width ? p.width : '580px'};
   background-color: ${(p) => p.theme.color.background02};
   border-radius: ${(p) => p.borderRadius ? p.borderRadius : 8}px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
   @media screen and (max-width: 600px) {
     min-width: 480px;
     max-width: 480px;
   }
 `
 
-export const Header = styled.div<{
+export const Header = styled.View<{
   headerPaddingVertical?: number
   headerPaddingHorizontal?: number
 }>`
@@ -51,7 +50,7 @@ export const Header = styled.div<{
   width: 100%;
 `
 
-export const Title = styled.span`
+export const Title = styled.Text`
   font-family: Poppins;
   font-size: 18px;
   font-weight: 600;
@@ -74,7 +73,7 @@ export const CloseButton = styled(WalletButton)`
   border: none;
 `
 
-export const Divider = styled.div`
+export const Divider = styled.View`
   display: flex;
   width: 100%;
   border-bottom: 2px solid ${p => p.theme.color.divider01};

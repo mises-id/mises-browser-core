@@ -73,6 +73,7 @@ import { TransactionQueueStep } from './common/queue'
 import { Origin } from './common/origin'
 import { EditPendingTransactionGas } from './common/gas'
 import { useGetAddressByteCodeQuery } from '../../../common/slices/api.slice'
+import { Text } from 'react-native'
 
 type confirmPanelTabs = 'transaction' | 'details'
 
@@ -226,7 +227,7 @@ export const ConfirmTransactionPanel = ({
             </WarningBox>
           }
 
-          <EditButton onClick={onToggleEditAllowance}>{getLocale('braveWalletEditPermissionsButton')}</EditButton>
+          <EditButton onPress={onToggleEditAllowance}><Text>{getLocale('braveWalletEditPermissionsButton')}</Text></EditButton>
         </>
       ) : (
         <>
@@ -256,8 +257,9 @@ export const ConfirmTransactionPanel = ({
                 <NetworkText>
                   {getLocale('braveWalletNFTDetailContractAddress')}
                 </NetworkText>
-                <ContractButton onClick={onClickViewOnBlockExplorer('contract', `${transactionDetails.recipient}`)}>
-                  {reduceAddress(transactionDetails.recipient)} <ExplorerIcon />
+                <ContractButton onPress={onClickViewOnBlockExplorer('contract', `${transactionDetails.recipient}`)}>
+                  <Text>{reduceAddress(transactionDetails.recipient)}</Text> 
+                  <ExplorerIcon />
                 </ContractButton>
               </Column>
             ) : (
@@ -301,7 +303,7 @@ export const ConfirmTransactionPanel = ({
                 <WarningTitle warningType='warning'>
                   {getLocale('braveWalletConfirmTransactionAccountCreationFee')}
                   <LearnMoreButton
-                    onClick={onClickLearnMore}
+                    onPress={onClickLearnMore}
                   >
                     {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
                   </LearnMoreButton>

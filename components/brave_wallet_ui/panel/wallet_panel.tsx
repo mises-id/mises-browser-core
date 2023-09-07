@@ -19,6 +19,7 @@ import * as Lib from '../common/async/lib'
 import { ApiProxyContext } from '../common/context/api-proxy.context'
 import '@brave/leo/tokens/css/variables.css'
 import { setIconBasePath } from '@brave/leo/react/icon'
+import { StyleProvider } from '../page/styles'
 // import RootRPCMethodsUI from './RootRPCMethodsUI'
 // import { StyleProvider } from '../page/styles'
 setIconBasePath('chrome://resources/brave-icons')
@@ -29,6 +30,7 @@ function App () {
     setInitialThemeType("Light");
     //chrome.braveTheme.getBraveThemeType(setInitialThemeType)
   }, [])
+  // console.log(walletDarkTheme, walletLightTheme, "walletLightThemewalletLightTheme======")
   return (
     <Provider store={store}>
       {initialThemeType &&
@@ -39,7 +41,9 @@ function App () {
         >
           <ApiProxyContext.Provider value={walletPanelApiProxy}>
             <LibContext.Provider value={Lib}>
+             <StyleProvider>
               <Container />
+             </StyleProvider>
               {/* <StyleProvider>
                 <RootRPCMethodsUI />
               </StyleProvider> */}

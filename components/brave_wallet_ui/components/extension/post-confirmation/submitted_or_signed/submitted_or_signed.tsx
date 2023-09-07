@@ -59,7 +59,7 @@ export const TransactionSubmittedOrSigned = (props: Props) => {
         {description}
       </TransactionStatusDescription>
       <ButtonRow>
-        <DetailButton onClick={onClickViewOnBlockExplorer('tx', transaction.txHash)}>
+        <DetailButton onPress={onClickViewOnBlockExplorer('tx', transaction.txHash)}>
           {getLocale('braveWalletTransactionExplorer')}
         </DetailButton>
         <LinkIcon />

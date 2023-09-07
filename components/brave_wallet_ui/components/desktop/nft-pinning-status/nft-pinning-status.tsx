@@ -7,7 +7,7 @@ import * as React from 'react'
 import { getLocale } from '../../../../common/locale'
 import { BraveWallet } from '../../../constants/types'
 
-import { ErrorTooltip } from './components/error-tooltip/error-tooltip'
+// import { ErrorTooltip } from './components/error-tooltip/error-tooltip'
 
 import {
   StyledWrapper,
@@ -27,14 +27,14 @@ export const NftPinningStatus = (props: Props) => {
   // state
   const [icon, setIcon] = React.useState<React.ReactNode>()
   const [message, setmessage] = React.useState<string>('')
-  const [showTooltip, setShowTooltip] = React.useState<boolean>(false)
+  // const [showTooltip, setShowTooltip] = React.useState<boolean>(false)
 
   // methods
-  const onToggleErrorTooltip = React.useCallback(() => {
-    if (pinningStatusCode === BraveWallet.TokenPinStatusCode.STATUS_PINNING_FAILED) {
-      setShowTooltip(showTooltip => !showTooltip)
-    }
-  }, [pinningStatusCode])
+  // const onToggleErrorTooltip = React.useCallback(() => {
+  //   if (pinningStatusCode === BraveWallet.TokenPinStatusCode.STATUS_PINNING_FAILED) {
+  //     setShowTooltip(showTooltip => !showTooltip)
+  //   }
+  // }, [pinningStatusCode])
 
 
   // effects
@@ -62,15 +62,15 @@ export const NftPinningStatus = (props: Props) => {
     <StyledWrapper>
       <ContentWrapper
         pinningStatus={pinningStatusCode}
-        onMouseEnter={onToggleErrorTooltip}
-        onMouseLeave={onToggleErrorTooltip}
+        // onMouseEnter={onToggleErrorTooltip}
+        // onMouseLeave={onToggleErrorTooltip}
       >
         {icon}
         <Text>{message}</Text>
       </ContentWrapper>
-      {showTooltip &&
+      {/* {showTooltip &&
         <ErrorTooltip />
-      }
+      } */}
     </StyledWrapper>
   )
 }

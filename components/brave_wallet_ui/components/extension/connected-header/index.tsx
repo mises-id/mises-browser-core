@@ -37,9 +37,9 @@ export const ConnectedHeader = (props: Props) => {
   // render
   return (
     <HeaderWrapper>
-      <ExpandIcon onClick={onExpand} />
+      <ExpandIcon onPress={onExpand} />
       <HeaderTitle>{getLocale('braveWalletPanelTitle')}</HeaderTitle>
-      <ActionIcon onClick={onClickMore} />
+      <ActionIcon onPress={onClickMore} />
       {showMore &&
         <WalletMorePopup
           onClickViewOnBlockExplorer={onClickViewOnBlockExplorer}

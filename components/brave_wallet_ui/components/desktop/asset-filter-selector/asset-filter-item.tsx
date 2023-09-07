@@ -35,7 +35,7 @@ export const AssetFilterItem = (props: Props) => {
 
   return (
     <NetworkItemWrapper>
-      <NetworkItemButton onClick={onClickSelectAssetFilterItem}>
+      <NetworkItemButton onPress={onClickSelectAssetFilterItem}>
         <NetworkName>{assetFilterItem.name}</NetworkName>
         {assetFilterItem.id === selectedAssetFilterItem.id &&
           <BigCheckMark />

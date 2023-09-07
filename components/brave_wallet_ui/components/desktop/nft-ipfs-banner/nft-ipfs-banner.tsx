@@ -82,13 +82,13 @@ export const NftIpfsBanner = ({ onDismiss }: Props) => {
           )}
         </Text>
         {bannerStatus === 'start' &&
-          <LearnMore onClick={onLearnMore}>
+          <LearnMore onPress={onLearnMore}>
             {getLocale('braveWalletNftPinningBannerLearnMore')}
           </LearnMore>
         }
       </Row>
       {(bannerStatus === 'success') && (
-        <CloseButton onClick={onDismiss} />
+        <CloseButton onPress={onDismiss} />
       )}
     </StyledWrapper>
   )

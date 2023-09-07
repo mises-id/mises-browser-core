@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // components
 import { WalletPageStory } from '../../../stories/wrappers/wallet-page-story-wrapper'
@@ -15,7 +15,7 @@ import { PortfolioTransactionItem } from './index'
 // mocks
 import { mockParsedTransactionInfo } from '../../../stories/mock-data/mock-parsed-transaction-info'
 
-export const CryptoViewWrapper = styled.div`
+export const CryptoViewWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@ export const CryptoViewWrapper = styled.div`
   position: relative;
 `
 
-const PortfolioWrapper = styled.div`
+const PortfolioWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

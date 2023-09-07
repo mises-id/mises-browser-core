@@ -6,8 +6,8 @@
 import { AssetFilter } from '../../../constants/types'
 import * as React from 'react'
 
-import { StyledWrapper, Button, CaratDown, Dropdown } from './style'
-import { AssetsFilterOption } from '../assets-filter-option'
+import { StyledWrapper, Button, CaratDown } from './style'
+// import { AssetsFilterOption } from '../assets-filter-option'
 
 export interface Props {
   options: AssetFilter[]
@@ -17,8 +17,8 @@ export interface Props {
 }
 
 const AssetsFilterDropdown = (props: Props) => {
-  const { options, value, closeOnSelect, onSelectFilter } = props
-  const [isOpen, setIsOpen] = React.useState(false)
+  const { options, value} = props
+  // const [isOpen, setIsOpen] = React.useState(false)
 
   const buttonLabel = React.useMemo(() => {
     const selected = options.find(option => option.value === value)
@@ -27,24 +27,24 @@ const AssetsFilterDropdown = (props: Props) => {
   }, [value, options])
 
   const onClick = () => {
-    setIsOpen(prevIsOpen => !prevIsOpen)
+    // setIsOpen(prevIsOpen => !prevIsOpen)
   }
 
-  const onOptionSelect = React.useCallback((value: string) => {
-    if (closeOnSelect) {
-      setIsOpen(false)
-    }
+  // const onOptionSelect = React.useCallback((value: string) => {
+  //   if (closeOnSelect) {
+  //     setIsOpen(false)
+  //   }
 
-    onSelectFilter(value)
-  }, [closeOnSelect, onSelectFilter])
+  //   onSelectFilter(value)
+  // }, [closeOnSelect, onSelectFilter])
 
   return (
     <StyledWrapper>
-      <Button onClick={onClick}>
+      <Button onPress={onClick}>
         {buttonLabel}
         <CaratDown />
       </Button>
-      {isOpen &&
+      {/* {isOpen &&
         <Dropdown>
           {options.map(option =>
             <AssetsFilterOption
@@ -56,7 +56,7 @@ const AssetsFilterDropdown = (props: Props) => {
             />
           )}
         </Dropdown>
-      }
+      } */}
     </StyledWrapper>
   )
 }

@@ -2,7 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled, { keyframes } from 'styled-components'
+// import { keyframes } from 'styled-components'
+import styled, { css } from 'styled-components/native'
 
 export interface LoadingSkeletonStyleProps {
   width?: string | number
@@ -16,7 +17,7 @@ export interface LoadingSkeletonStyleProps {
   useLightTheme?: boolean // This is used to override darktheme in the main panel.
 }
 
-const loadingAnimation = keyframes`
+const loadingAnimation = css`
   0% {
     transform: translateX(-100%);
   }
@@ -28,13 +29,12 @@ const loadingAnimation = keyframes`
   }
 `
 
-export const Skeleton = styled.span<Partial<LoadingSkeletonStyleProps>>`
+export const Skeleton = styled.Text<Partial<LoadingSkeletonStyleProps>>`
   background-color: ${p => p.theme.color.panelBackgroundSecondary};
   width: ${(p) => typeof (p.width) === 'number' ? `${p.width}px` : p.width};
   height: ${(p) => typeof (p.height) === 'number' ? `${p.height}px` : p.height};
   border-radius: ${p => p.circle ? '50%' : '0.25rem'};
   display: inline-flex;
-  line-height: 1;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -69,7 +69,7 @@ export const Skeleton = styled.span<Partial<LoadingSkeletonStyleProps>>`
   }
 `
 
-export const LineBreak = styled.br`
+export const LineBreak = styled.Text`
   content: ''
 `
 

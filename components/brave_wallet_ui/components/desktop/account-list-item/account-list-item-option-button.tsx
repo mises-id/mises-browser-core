@@ -31,7 +31,7 @@ export const AccountListItemOptionButton = (props: Props) => {
     option
   } = props
   return (
-    <OvalButton onClick={onClick}>
+    <OvalButton onPress={onClick}>
       {!hideIcon &&
         <Icon icon={option.icon} />
       }

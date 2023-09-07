@@ -3,18 +3,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Assets
-import { LoaderIcon } from 'brave-ui/components/icons'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 
 // Shared Styles
-import { StyledDiv, StyledInput, Row } from '../shared.styles'
+import { StyledDiv, Row } from '../shared.styles'
 
 export const SendContainer = styled(StyledDiv)`
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 24px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   justify-content: flex-start;
   padding: 16px;
@@ -46,38 +45,38 @@ export const SectionBox = styled(StyledDiv) <{
   min-height: ${(p) => (p.minHeight ? `${p.minHeight}px` : 'unset')};
 `
 
-export const AmountInput = styled(StyledInput) <{
-  hasError: boolean
-}>`
-  color: ${(p) => (p.hasError ? p.theme.color.errorBorder : 'inherit')};
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 42px;
-  text-align: right;
-  width: 100%;
-  ::placeholder {
-    color: ${(p) => p.theme.color.text03};
-  }
-`
+// export const AmountInput = styled(StyledInput) <{
+//   hasError: boolean
+// }>`
+//   color: ${(p) => (p.hasError ? p.theme.color.errorBorder : 'inherit')};
+//   font-weight: 500;
+//   font-size: 28px;
+//   line-height: 42px;
+//   text-align: right;
+//   width: 100%;
+//   ::placeholder {
+//     color: ${(p) => p.theme.color.text03};
+//   }
+// `
 
-export const AddressInput = styled(StyledInput) <{
-  hasError: boolean
-}>`
-  color: ${(p) => (p.hasError ? p.theme.color.errorBorder : 'inherit')};
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  width: 100%;
-  z-index: 9;
-  position: relative;
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-  ::placeholder {
-    color: ${(p) => p.theme.color.text03};
-  }
-`
+// export const AddressInput = styled(StyledInput) <{
+//   hasError: boolean
+// }>`
+//   color: ${(p) => (p.hasError ? p.theme.color.errorBorder : 'inherit')};
+//   font-weight: 400;
+//   font-size: 16px;
+//   line-height: 24px;
+//   width: 100%;
+//   z-index: 9;
+//   position: relative;
+//   &:disabled {
+//     opacity: 0.4;
+//     cursor: not-allowed;
+//   }
+//   ::placeholder {
+//     color: ${(p) => p.theme.color.text03};
+//   }
+// `
 
 export const Background = styled(StyledDiv) <{
   height: number
@@ -169,7 +168,7 @@ export const Background = styled(StyledDiv) <{
   background-image: var(--${p => p.network});
 `
 
-export const DIVForWidth = styled.div`
+export const DIVForWidth = styled.View`
   width: auto;
   display: inline-block;
   visibility: hidden;
@@ -186,7 +185,7 @@ export const InputRow = styled(Row)`
   position: relative;
 `
 
-export const DomainLoadIcon = styled(LoaderIcon) <{ position: number }>`
+export const DomainLoadIcon = styled.View <{ position: number }>`
   color: ${p => p.theme.palette.blurple500};
   height: 16px;
   width: 16px;

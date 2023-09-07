@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { AssetIconProps, AssetIconFactory, WalletButton } from '../../shared/style'
 
 export const StyledWrapper = styled(WalletButton)`
@@ -14,20 +14,21 @@ export const StyledWrapper = styled(WalletButton)`
   justify-content: flex-start;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;
   border: none;
   margin-bottom: 10px;
   padding: 0px;
 `
 
-export const CurrencyNameAndCode = styled.div`
+export const CurrencyNameAndCode = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 `
 
-export const CurrencyName = styled.span`
+export const CurrencyName = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -37,7 +38,7 @@ export const CurrencyName = styled.span`
   text-align: left;
 `
 
-export const CurrencySymbol = styled.span`
+export const CurrencySymbol = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;

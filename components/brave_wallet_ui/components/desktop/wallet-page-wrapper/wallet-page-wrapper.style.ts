@@ -47,7 +47,6 @@ export const ContainerCard = styled.div<
   flex-direction: column;
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 24px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   justify-content: flex-start;
   align-items: center;
@@ -91,14 +90,14 @@ export const BackgroundGradientTopLayer = styled.div`
   right: 35%;
   top: 15%;
   bottom: 25%;
-  background: #DFDEFC;
+  background-color: #DFDEFC;
   border-radius: 100%;
   filter: blur(36.2567px);
   transform: matrix(1, -0.06, -0.32, -0.95, 0, 0);
   z-index: 5;
   @media (prefers-color-scheme: dark) {
     /* #013F4B does not exist in design system */
-    background: #013F4B;
+    background-color: #013F4B;
     filter: blur(47px);
     left: 35%;
     right: -100%;
@@ -114,14 +113,14 @@ export const BackgroundGradientMiddleLayer = styled.div`
   right: 10%;
   top: 10%;
   bottom: 25%;
-  background: #D6E7FF;
+  background-color: #D6E7FF;
   border-radius: 100%;
   filter: blur(47.5869px);
   transform: matrix(-1, 0.06, -0.32, -0.95, 0, 0);
   z-index: 4;
   @media (prefers-color-scheme: dark) {
     /* #030A49 does not exist in design system */
-    background: #030A49;
+    background-color: #030A49;
     filter: blur(70px);
     left: -40%;
     right: 17%;
@@ -137,14 +136,14 @@ export const BackgroundGradientBottomLayer = styled.div`
   right: 20%;
   top: 45%;
   bottom: -25%;
-  background: #C8EDFD;
+  background-color: #C8EDFD;
   border-radius: 100%;
   filter: blur(47.5869px);
   transform: matrix(-1, 0.06, -0.32, -0.95, 0, 0);
   z-index: 3;
   @media (prefers-color-scheme: dark) {
     /* #014B3A does not exist in design system */
-    background: #014B3A;
+    background-color: #014B3A;
     filter: blur(70px);
     left: 25%;
     right: -80%;

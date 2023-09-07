@@ -31,11 +31,11 @@ import {
   SelectContainer,
   LongWrapper,
   ConnectWithSiteWrapper
-} from '../stories/style'
+} from '../stories/style-rn'
 import {
   PanelWrapper,
   WelcomePanelWrapper
-} from './style'
+} from './style-rn'
 
 import * as WalletPanelActions from './actions/wallet_panel_actions'
 import * as WalletActions from '../common/actions/wallet_actions'
@@ -44,7 +44,7 @@ import {
   BraveWallet,
   PanelTypes,
   WalletAccountType,
-  SerializableTransactionInfo
+  SerializableTransactionInfo,
 } from '../constants/types'
 
 import { AppsList } from '../options/apps-list-options'
@@ -619,6 +619,9 @@ function Container () {
     const accountsToConnect = accounts.filter(
       (account) => connectingAccounts.includes(account.address.toLowerCase())
     )
+    // const aaa = {"origin":{"scheme":"https","host":"metamask.github.io","port":443},"originSpec":"https://metamask.github.io","eTldPlusOne":"metamask.github.io"} as any
+    console.log(connectToSiteOrigin, connectingAccounts)
+    // connectToSiteOrigin
     return (
       <PanelWrapper width={390} height={600}>
         <ConnectWithSiteWrapper>

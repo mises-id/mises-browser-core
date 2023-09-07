@@ -11,11 +11,12 @@ import {
   InputWrapper,
   ToggleVisibilityButton,
   ToggleVisibilityIcon,
-  Input,
   ErrorText,
   ErrorRow,
-  WarningIcon
+  // WarningIcon
 } from './style'
+import { TouchableOpacity } from 'react-native'
+import Input from '../../rn/Input'
 
 interface PasswordInputState {
   hasError: boolean
@@ -78,7 +79,7 @@ export function PasswordInput ({
   return (
     <StyledWrapper>
 
-      {label && name && <label htmlFor={name}>{label}</label>}
+      {label && name && <TouchableOpacity>{label}</TouchableOpacity>}
 
       <InputWrapper>
         <Input
@@ -95,14 +96,14 @@ export function PasswordInput ({
           onFocus={onFocus}
         />
         {showToggleButton &&
-          <ToggleVisibilityButton onClick={onTogglePasswordVisibility}>
+          <ToggleVisibilityButton onPress={onTogglePasswordVisibility}>
             <ToggleVisibilityIcon showPassword={showPassword} />
           </ToggleVisibilityButton>
         }
       </InputWrapper>
       {hasError && error &&
         <ErrorRow>
-          <WarningIcon />
+          {/* <WarningIcon /> */}
           <ErrorText>{error}</ErrorText>
         </ErrorRow>
       }

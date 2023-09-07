@@ -22,9 +22,6 @@ export const Button = styled(StyledButton)`
   &:disabled {
     opacity: 0.4;
   }
-  &:hover:not([disabled]) {
-    box-shadow: var(--button-shadow-hover);
-  }
 `
 
 export const AccountCircle = styled.div<{

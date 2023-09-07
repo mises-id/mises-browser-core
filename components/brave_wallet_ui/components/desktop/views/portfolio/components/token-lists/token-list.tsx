@@ -28,7 +28,7 @@ import { getLocale } from '../../../../../../../common/locale'
 import SearchBar from '../../../../../shared/search-bar/index'
 import AddButton from '../../../../add-button/index'
 import NetworkFilterSelector from '../../../../network-filter-selector/index'
-import { AccountFilterSelector } from '../../../../account-filter-selector/account-filter-selector'
+// import { AccountFilterSelector } from '../../../../account-filter-selector/account-filter-selector'
 import { AssetFilterSelector } from '../../../../asset-filter-selector/asset-filter-selector'
 import { PortfolioAssetItemLoadingSkeleton } from '../../../../portfolio-asset-item/portfolio-asset-item-loading-skeleton'
 
@@ -226,9 +226,9 @@ export const TokenLists = ({
           <AssetFilterSelector />
         }
 
-        {!hideAccountFilter &&
+        {/* {!hideAccountFilter &&
           <AccountFilterSelector />
-        }
+        } */}
 
       </FilterTokenRow>
 

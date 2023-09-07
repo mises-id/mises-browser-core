@@ -94,7 +94,7 @@ export const TransactionInfo = ({
           </TransactionTitle>
 
           {!isSolanaTransaction && onToggleEditGas && (
-            <EditButton onClick={onToggleEditGas}>
+            <EditButton onPress={onToggleEditGas}>
               {getLocale('braveWalletAllowSpendEditButton')}
             </EditButton>
           )}

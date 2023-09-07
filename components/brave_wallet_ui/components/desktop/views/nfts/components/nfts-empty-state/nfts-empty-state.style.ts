@@ -2,11 +2,11 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import { WalletButton } from '../../../../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,13 +15,13 @@ export const StyledWrapper = styled.div`
   margin-top: 36px;
 `
 
-export const EmptyStateImage = styled.img`
+export const EmptyStateImage = styled.Image`
   width: 241px;
   height: auto;
   margin-bottom: 16px;
 `
 
-export const Heading = styled.h2`
+export const Heading = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -32,7 +32,7 @@ export const Heading = styled.h2`
   margin: 0 0 8px 0;
 `
 
-export const SubHeading = styled.p`
+export const SubHeading = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -65,7 +65,7 @@ export const ImportButton = styled(WalletButton)`
   cursor: pointer;
 `
 
-export const DisclaimerText = styled.p`
+export const DisclaimerText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;

@@ -59,16 +59,16 @@ export const AddressMessage = (props: Props) => {
               isBold={false}
               textAlign='left'
             >
-              {getLocale(addressMessageInfo.description)} {addressMessageInfo.url &&
+              {/* {getLocale(addressMessageInfo.description)} {addressMessageInfo.url &&
                 <LearnMoreLink
                   href={addressMessageInfo.url}
                   target='_blank'
                   rel='noopener noreferrer'>
                   {getLocale('braveWalletLearnMore')}
                 </LearnMoreLink>
-              }
+              } */}
               {onClickHowToSolve &&
-                <HowToSolveButton onClick={onClickHowToSolve}>
+                <HowToSolveButton onPress={onClickHowToSolve}>
                   {getLocale('braveWalletHowToSolve')}
                 </HowToSolveButton>
               }

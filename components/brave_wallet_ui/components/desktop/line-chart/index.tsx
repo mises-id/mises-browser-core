@@ -89,7 +89,7 @@ function LineChart ({
 
   // render
   return (
-    <StyledWrapper style={customStyle}>
+    <StyledWrapper style={customStyle as any}>
       <LoadingOverlay isLoading={isLoading}>
         <LoadIcon />
       </LoadingOverlay>

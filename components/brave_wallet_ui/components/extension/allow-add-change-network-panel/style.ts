@@ -2,10 +2,10 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
 
-export const MessageBox = styled.div`
+export const MessageBox = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -22,7 +22,7 @@ export const MessageBox = styled.div`
   position: relative;
 `
 
-export const NetworkTitle = styled.span`
+export const NetworkTitle = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -31,7 +31,7 @@ export const NetworkTitle = styled.span`
   font-weight: 600;
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@ export const ButtonRow = styled.div`
   margin-bottom: 14px;
 `
 
-export const FavIcon = styled.img`
+export const FavIcon = styled.Image`
   width: 48px;
   height: 48px;
   border-radius: 5px;
@@ -49,7 +49,7 @@ export const FavIcon = styled.img`
   margin-top: 38px;
 `
 
-export const MessageBoxColumn = styled.div`
+export const MessageBoxColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -65,7 +65,8 @@ export const DetailsButton = styled(WalletButton)`
   line-height: 18px;
   letter-spacing: 0.01em;
   color: ${(p) => p.theme.color.interactive05};
-  background: none;
+  background-image: none;
+  background-color: none;;
   cursor: pointer;
   outline: none;
   border: none;
@@ -73,7 +74,7 @@ export const DetailsButton = styled(WalletButton)`
   padding: 0px;
 `
 
-export const NetworkDetail = styled.span`
+export const NetworkDetail = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -81,7 +82,7 @@ export const NetworkDetail = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const TabRow = styled.div`
+export const TabRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -32,7 +32,7 @@ function NetworkFilterItem (props: Props) {
 
   return (
     <NetworkItemWrapper>
-      <NetworkItemButton onClick={onClickSelectNetwork}>
+      <NetworkItemButton onPress={onClickSelectNetwork}>
         <LeftSide>
           {network.chainId !== AllNetworksOption.chainId && (
             <CreateNetworkIcon network={network} marginRight={14} size='big' />

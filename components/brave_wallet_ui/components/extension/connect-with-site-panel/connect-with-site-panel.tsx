@@ -35,7 +35,7 @@ import { PermissionDurationDropdown } from './permission-duration-dropdown/permi
 import {
   StyledWrapper,
   ScrollContainer,
-  BackgroundContainer,
+  // BackgroundContainer,
   SelectAddressContainer,
   ButtonRow,
   PermissionsWrapper,
@@ -63,6 +63,8 @@ import {
 
 // Utils
 import { getLocale } from '../../../../common/locale'
+import { Text, TouchableOpacity } from 'react-native'
+import { useStyle } from '../../../page/styles'
 
 const onClickAddAccount = () => {
   chrome.tabs.create(
@@ -83,7 +85,7 @@ interface Props {
 
 export const ConnectWithSite = (props: Props) => {
   const { originInfo, accountsToConnect } = props
-
+  const style = useStyle()
   // Redux
   const dispatch = useDispatch()
 
@@ -97,7 +99,7 @@ export const ConnectWithSite = (props: Props) => {
   const [isScrolled, setIsScrolled] = React.useState<boolean>(false)
 
   // Refs
-  let scrollRef = React.useRef<HTMLDivElement | null>(null)
+  // let scrollRef = React.useRef<HTMLDivElement | null>(null)
 
   // Methods
   const onNext = React.useCallback(() => {
@@ -106,6 +108,7 @@ export const ConnectWithSite = (props: Props) => {
       return
     }
     if (addressToConnect) {
+      console.log("addressToConnect", originInfo)
       dispatch(
         PanelActions.connectToSite({
           addressToConnect: addressToConnect,
@@ -130,23 +133,17 @@ export const ConnectWithSite = (props: Props) => {
     [addressToConnect]
   )
 
-  const onScroll = () => {
-    const scrollPosition = scrollRef.current
-    if (scrollPosition !== null) {
-      const { scrollTop } = scrollPosition
-      if (scrollTop > 40) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
+  const onScroll = (scrollTop: number) => {
+    if (scrollTop !== null) {
+        setIsScrolled(scrollTop > 40);
     }
   }
 
   return (
     <StyledWrapper>
-      <BackgroundContainer
+      {/* <BackgroundContainer
         backgroundImage={`chrome://favicon/size/64@1x/${originInfo.originSpec}`}
-      />
+      /> */}
 
       <ConnectWithSiteHeader
         isScrolled={isScrolled}
@@ -156,23 +153,27 @@ export const ConnectWithSite = (props: Props) => {
         originInfo={originInfo}
       />
 
-      <ScrollContainer ref={scrollRef} onScroll={onScroll}>
+      <ScrollContainer onScroll={({ nativeEvent }) => {
+        onScroll(nativeEvent.contentOffset.y);
+      }}>
         {!isReadyToConnect && (
           <>
             <SelectAddressContainer>
-              <ConnectPanelButton border="bottom" onClick={onClickAddAccount}>
-                <Row padding="8px 0px" justifyContent="space-between">
-                  <Row justifyContent="flex-start">
-                    <IconCircle>
-                      {/* <AddAcountIcon name="plus-add" /> */}
-                    </IconCircle>
-                    <AddAccountText>
-                      {getLocale('braveWalletAddAccount')}
-                    </AddAccountText>
+              <TouchableOpacity onPress={onClickAddAccount} style={{width: '100%'}}>
+                <ConnectPanelButton border="bottom">
+                  <Row padding="8px 0px" justifyContent="space-between">
+                    <Row justifyContent="flex-start">
+                      <IconCircle>
+                        {/* <AddAcountIcon name="plus-add" /> */}
+                      </IconCircle>
+                      <AddAccountText>
+                        {getLocale('braveWalletAddAccount')}
+                      </AddAccountText>
+                    </Row>
+                    {/* <AddAcountIcon name="arrow-right" /> */}
                   </Row>
-                  {/* <AddAcountIcon name="arrow-right" /> */}
-                </Row>
-              </ConnectPanelButton>
+                </ConnectPanelButton>
+              </TouchableOpacity>
               <Row padding="8px 0px" justifyContent="flex-start">
                 <AccountNameText>
                   {getLocale('braveWalletConnectWithSite')}
@@ -264,16 +265,20 @@ export const ConnectWithSite = (props: Props) => {
         )}
       </ScrollContainer>
       <ButtonRow padding={16} isReadyToConnect={isReadyToConnect}>
-        <NavButton onClick={onCancel}>
-          {getLocale('braveWalletButtonCancel')}
+        <NavButton onPress={onCancel} style={style.flatten(['border-color-blue-600', 'border-width-1', 'border-solid'])}>
+          <Text style={style.flatten(['color-black'])}>{getLocale('braveWalletButtonCancel')}</Text>
         </NavButton>
         <HorizontalSpace space="16px" />
         <NavButton
-          onClick={onNext}
+          disabled={!addressToConnect}
+          onPress={onNext}
+          style={style.flatten([`${!addressToConnect ? 'background-color-blue-600@10%' : 'background-color-blue-600'}`, 'border-width-1', 'border-solid', `${!addressToConnect ? 'background-color-blue-600@10%' : 'background-color-blue-600'}`])}
         >
-          {isReadyToConnect
+          <Text style={style.flatten(['color-white'])}>
+            {isReadyToConnect
             ? getLocale('braveWalletAddAccountConnect')
             : getLocale('braveWalletConnectWithSiteNext')}
+          </Text>
         </NavButton>
       </ButtonRow>
     </StyledWrapper>

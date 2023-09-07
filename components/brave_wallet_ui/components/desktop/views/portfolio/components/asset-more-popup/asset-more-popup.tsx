@@ -34,15 +34,15 @@ export const AssetMorePopup = (props: Props) => {
 
   return (
     <StyledWrapper>
-      <PopupButton onClick={onClickTokenDetails}>
+      <PopupButton onPress={onClickTokenDetails}>
         <HelpCenterIcon />
         <PopupButtonText>{getLocale('braveWalletPortfolioTokenDetailsMenuLabel')}</PopupButtonText>
       </PopupButton>
-      <PopupButton onClick={onClickViewOnExplorer}>
+      <PopupButton onPress={onClickViewOnExplorer}>
         <ExplorerIcon />
         <PopupButtonText>{getLocale('braveWalletPortfolioViewOnExplorerMenuLabel')}</PopupButtonText>
       </PopupButton>
-      <PopupButton onClick={onClickHideToken}>
+      <PopupButton onPress={onClickHideToken}>
         <DeleteIcon />
         <PopupButtonText>{getLocale('braveWalletPortfolioHideTokenMenuLabel').replace('$1', assetSymbol)}</PopupButtonText>
       </PopupButton>

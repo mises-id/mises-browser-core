@@ -3,10 +3,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Assets
-import { LoaderIcon } from 'brave-ui/components/icons'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 
 // Shared Styles
 import { StyledButton, Icon } from '../../shared.styles'
@@ -82,8 +82,8 @@ export const ErrorIcon = styled(Icon)`
   margin-right: 12px;
 `
 
-export const LoadIcon = styled(LoaderIcon)`
-  color: ${p => p.theme.color.white};
+export const LoadIcon = styled.View`
+  color: white;
   height: 25px;
   width: 25px;
   opacity: .4;

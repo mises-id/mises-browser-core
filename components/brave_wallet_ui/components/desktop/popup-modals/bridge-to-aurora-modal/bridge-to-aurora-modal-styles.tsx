@@ -78,7 +78,7 @@ export const ButtonText = styled.span`
 export const GlobeIcon = styled.div`
   width: 24px;
   height: 24px;
-  background: url(${GlobeConnectIcon});
+  background-image: url(${GlobeConnectIcon});
   margin-right: 8px;
 `
 

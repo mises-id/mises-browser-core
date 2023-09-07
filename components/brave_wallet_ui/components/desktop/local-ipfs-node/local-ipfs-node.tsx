@@ -39,7 +39,6 @@ import {
   BenefitHeading,
   LeftWrapper,
   RightWrapper,
-  BenefitsList,
   NftIllustration
 } from './local-ipfs-node.styles'
 import { getLocale } from '../../../../common/locale'
@@ -73,7 +72,7 @@ export const LocalIpfsNodeScreen = (props: Props) => {
   return (
     <RunNodeWrapper>
       <TopRow>
-        <CloseButton onClick={onClose}>
+        <CloseButton onPress={onClose}>
           {getLocale('braveWalletNftPinningCloseButton')}
           <CloseIcon />
         </CloseButton>
@@ -96,20 +95,20 @@ export const LocalIpfsNodeScreen = (props: Props) => {
         <Section>
           <LeftWrapper>
             <Row gap='16px' alignItems='center' justifyContent='flex-start' margin='0 0 0 8px'>
-              <ActionButton onClick={onClickRunNode}>{getLocale('braveWalletNftPinningPinNftsButton')}</ActionButton>
+              <ActionButton onPress={onClickRunNode}>{getLocale('braveWalletNftPinningPinNftsButton')}</ActionButton>
             </Row>
-            <CheckNftsButton onClick={onClickCheckNfts}>{getLocale('braveWalletNftPinningCheckNftsButton')}</CheckNftsButton>
+            <CheckNftsButton onPress={onClickCheckNfts}>{getLocale('braveWalletNftPinningCheckNftsButton')}</CheckNftsButton>
           </LeftWrapper>
           <RightWrapper>
             <BenefitHeading>{getLocale('braveWalletNftPinningBenefitsHeading')}</BenefitHeading>
-            <BenefitsList>
+            {/* <BenefitsList>
               <li>{getLocale('braveWalletNftPinningBenefitOne')}</li>
               <li>{getLocale('braveWalletNftPinningBenefitTwo')}</li>
-            </BenefitsList>
+            </BenefitsList> */}
           </RightWrapper>
         </Section>
       </MainContent>
-      <NftIllustration src={Illustration} />
+      <NftIllustration source={{uri: Illustration}} />
     </RunNodeWrapper>
   )
 }

@@ -40,7 +40,6 @@ export const MainWrapper = styled.div<{ isTabView?: boolean }>`
   padding: 30px;
   border-radius: ${(p) => p.isTabView ? 24 : 8}px;
   margin-top: ${(p) => p.isTabView ? '100px' : '10vh'};
-  box-shadow: ${(p) => p.isTabView ? '0px 4px 20px rgba(0, 0, 0, 0.1)' : 'none'};
 `
 
 export const StyledWrapper = styled.div`

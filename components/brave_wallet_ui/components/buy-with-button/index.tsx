@@ -9,11 +9,9 @@ import {
   StyledWrapper,
   Button,
   CaratDown,
-  Dropdown,
-  Option
 } from './style'
 import { BraveWallet, BuyOption } from '../../constants/types'
-import { RampLogo } from '../buy-send-swap/buy/style'
+// import { RampLogo } from '../buy-send-swap/buy/style'
 
 export interface Props {
   children?: React.ReactNode
@@ -25,28 +23,28 @@ export interface Props {
 }
 
 const SelectBuy = (props: Props) => {
-  const { children, options, value, closeOnSelect, disabled, onSelect } = props
-  const [isOpen, setIsOpen] = React.useState(false)
+  const { children, disabled } = props
+  // const [isOpen, setIsOpen] = React.useState(false)
 
   const onClick = () => {
-    setIsOpen(prevIsOpen => !prevIsOpen)
+    // setIsOpen(prevIsOpen => !prevIsOpen)
   }
 
-  const onOptionSelect = (value: BraveWallet.OnRampProvider) => {
-    if (closeOnSelect) {
-      setIsOpen(false)
-    }
+  // const onOptionSelect = (value: BraveWallet.OnRampProvider) => {
+  //   if (closeOnSelect) {
+  //     setIsOpen(false)
+  //   }
 
-    onSelect(value)
-  }
+  //   onSelect(value)
+  // }
 
   return (
     <StyledWrapper>
-      <Button onClick={onClick} disabled={disabled}>
+      <Button onPress={onClick} disabled={disabled}>
         {children}
         {!disabled && <CaratDown/>}
       </Button>
-      {!disabled && isOpen &&
+      {/* {!disabled && isOpen &&
           <Dropdown>
             {options.map(option =>
               <Option
@@ -60,7 +58,7 @@ const SelectBuy = (props: Props) => {
               </Option>
             )}
           </Dropdown>
-      }
+      } */}
     </StyledWrapper>
   )
 }

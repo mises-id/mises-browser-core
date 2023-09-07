@@ -2,12 +2,12 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
-import { CaratStrongLeftIcon } from 'brave-ui/components/icons'
+// import { CaratStrongLeftIcon } from 'brave-ui/components/icons'
 import Plus from '../../../assets/svg-icons/plus-icon.svg'
 
-export const Header = styled.div`
+export const Header = styled.View`
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -16,7 +16,7 @@ export const Header = styled.div`
   margin-bottom: 14px;
 `
 
-export const HeaderText = styled.span`
+export const HeaderText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -32,27 +32,28 @@ export const Button = styled(WalletButton)`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   width: 16px;
   height: 16px;
   padding: 0px;
 `
 
-export const BackIcon = styled(CaratStrongLeftIcon)`
+export const BackIcon = styled.View`
   width: 16px;
   height: 16px;
   color: ${(p) => p.theme.color.text02};
 `
 
-export const HeaderSpacing = styled.div`
+export const HeaderSpacing = styled.View`
   width: 16px;
   height: 16px;
 `
 
-export const PlusIcon = styled.div`
+export const PlusIcon = styled.View`
   width: 15px;
   height: 15px;
-  background: url(${Plus});
+  background-image: url(${Plus});
   color: ${(p) => p.theme.color.text02};
 `

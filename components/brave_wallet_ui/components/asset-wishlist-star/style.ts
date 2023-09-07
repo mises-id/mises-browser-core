@@ -28,6 +28,5 @@ export const Star = styled.button<StyleProps>`
   background-image: url(${p => p.active ? StarActiveIcon : StarIcon});
   background-color: transparent;
   border: none;
-  box-shadow: none;
   cursor: pointer;
 `

@@ -18,7 +18,7 @@ export const StyledButton = styled.button<Partial<StyleProps>>`
   width: 100%;
   outline: none;
   padding: 13px;
-  background: ${(p) =>
+  background-image: ${(p) =>
     p.isSelected ? 'linear-gradient(128.18deg, #A43CE4 13.94%, #A72B6D 84.49%)' : 'none'};
   border: none;
 `
@@ -35,6 +35,6 @@ export const ButtonText = styled.span<Partial<StyleProps>>`
 export const ButtonIcon = styled.div<Partial<StyleProps>>`
   width: 18px;
   height: 18px;
-  background: ${(p) => `url(${p.icon})`};
+  background-image: ${(p) => `url(${p.icon})`};
   margin-right: 10px;
 `

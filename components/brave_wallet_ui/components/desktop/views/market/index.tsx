@@ -18,7 +18,7 @@ import { BraveWallet, WalletRoutes, WalletState } from '../../../../constants/ty
 import { WalletActions } from '../../../../common/actions'
 
 // Styled Components
-import { LoadIcon, LoadIconWrapper, MarketDataIframe } from './style'
+import { LoadIcon, LoadIconWrapper } from './style'
 
 // Utils
 import { WalletPageActions } from '../../../../page/actions'
@@ -42,7 +42,7 @@ const assetsRequestLimit = 250
 export const MarketView = () => {
   // State
   const [buyAssets, setBuyAssets] = React.useState<BraveWallet.BlockchainToken[]>([])
-  const [iframeLoaded, setIframeLoaded] = React.useState<boolean>(false)
+  const [iframeLoaded] = React.useState<boolean>(false)
   const marketDataIframeRef = React.useRef<HTMLIFrameElement>(null)
 
   // Redux
@@ -97,7 +97,7 @@ export const MarketView = () => {
     }
   }, [onSelectCoinMarket, onSelectBuy, onSelectDeposit])
 
-  const onMarketDataFrameLoad = React.useCallback(() => setIframeLoaded(true), [])
+  // const onMarketDataFrameLoad = React.useCallback(() => setIframeLoaded(true), [])
 
   // Effects
   React.useEffect(() => {
@@ -160,12 +160,7 @@ export const MarketView = () => {
         ? <LoadIconWrapper>
           <LoadIcon />
         </LoadIconWrapper>
-        : <MarketDataIframe
-          ref={marketDataIframeRef}
-          onLoad={onMarketDataFrameLoad}
-          src="chrome-untrusted://market-display"
-          sandbox="allow-scripts allow-same-origin"
-        />
+        : null
       }
     </>
   )

@@ -5,10 +5,10 @@
 
 import * as leo from '@brave/leo/tokens/css'
 // import Icon from '@brave/leo/react/icon'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,14 +39,14 @@ export const DropDownButton = styled(WalletButton)`
   border: none;
 `
 
-export const DropDownIcon = styled.div<{ isOpen: boolean }>`
+export const DropDownIcon = styled.View<{ isOpen: boolean }>`
   --leo-icon-size: 20px;
   color: ${leo.color.icon.default};
   transition-duration: 0.3s;
   transform: ${(p) => (p.isOpen ? 'rotate(180deg)' : 'unset')};
 `
 
-export const DropDown = styled.div`
+export const DropDown = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -57,10 +57,6 @@ export const DropDown = styled.div`
   background-color: ${leo.color.container.background};
   border: 1px solid ${leo.color.divider.subtle};
   border-radius: 8px;
-  box-shadow: 0px 4px 13px -2px rgba(0, 0, 0, 0.08);
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0px 4px 13px -2px rgba(0, 0, 0, 0.35);
-  }
   position: absolute;
   top: 48px;
   z-index: 9;
@@ -78,7 +74,8 @@ export const PermissionButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 8px 8px;
   font-family: Poppins;
   font-style: normal;

@@ -14,7 +14,7 @@ export interface Props {
 const AdvancedTransactionSettingsButton = (props: Props) => {
   const { onSubmit } = props
   return (
-    <StyledButton onClick={onSubmit}>
+    <StyledButton onPress={onSubmit}>
       <SettingsIcon />
       <TabLine />
     </StyledButton>

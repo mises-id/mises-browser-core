@@ -54,7 +54,7 @@ function LockScreen (props: Props) {
         onSubmit={onSubmit}
         disabled={disabled}
       />
-      <RestoreButton onClick={onShowRestore}>{getLocale('braveWalletWelcomeRestoreButton')}</RestoreButton>
+      <RestoreButton onPress={onShowRestore}>{getLocale('braveWalletWelcomeRestoreButton')}</RestoreButton>
     </StyledWrapper>
   )
 }

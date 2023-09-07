@@ -147,7 +147,7 @@ export const TransactionsListItem = ({
 
   // render
   return (
-    <StyledWrapper onClick={onClickTransaction}>
+    <StyledWrapper onPress={onClickTransaction}>
       <DetailColumn>
         <TransactionDetailRow>
           <DetailColumn>

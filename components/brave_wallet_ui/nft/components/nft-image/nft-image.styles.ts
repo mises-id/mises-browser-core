@@ -4,8 +4,8 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import styled from 'styled-components'
 
-import { WalletButton } from '../../../components/shared/style'
-import MagnifyIcon from '../../../assets/svg-icons/magnify-icon.svg'
+// import { WalletButton } from '../../../components/shared/style'
+// import MagnifyIcon from '../../../assets/svg-icons/magnify-icon.svg'
 
 export const Image = styled.img`
   display: block;
@@ -18,22 +18,22 @@ export const Image = styled.img`
   height: 500px;
 `
 
-export const MagnifyButton = styled(WalletButton)`
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  right: 17px;
-  bottom: 17px;
-  width: 36px;
-  height: 36px;
-  background-image: url(${MagnifyIcon});
-  background-size: contain;
-  background-color: transparent;
-  cursor: pointer;
-  border-radius: 50%;
-  border-width: 0;
-`
+// export const MagnifyButton = styled(WalletButton)`
+//   position: absolute;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   right: 17px;
+//   bottom: 17px;
+//   width: 36px;
+//   height: 36px;
+//   background-image: url(${MagnifyIcon});
+//   background-size: contain;
+//   background-color: transparent;
+//   cursor: pointer;
+//   border-radius: 50%;
+//   border-width: 0;
+// `
 
 export const ImageWrapper = styled.div<{ isLoading: boolean }>`
   position: relative;

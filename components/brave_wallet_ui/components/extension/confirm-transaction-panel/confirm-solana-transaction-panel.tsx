@@ -181,7 +181,7 @@ export const ConfirmSolanaTransactionPanel = ({
             <WarningTitle warningType='warning'>
               {getLocale('braveWalletConfirmTransactionAccountCreationFee')}
               <LearnMoreButton
-                onClick={onClickLearnMore}
+                onPress={onClickLearnMore}
               >
                 {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
               </LearnMoreButton>

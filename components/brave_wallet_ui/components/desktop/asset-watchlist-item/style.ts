@@ -2,13 +2,13 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import TrashIcon from '../../../assets/svg-icons/trash-icon.svg'
 import { AssetIconProps, AssetIconFactory, WalletButton } from '../../shared/style'
 
 export const assetWatchListItemHeight = 58
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,11 +25,12 @@ export const NameAndIcon = styled(WalletButton)`
   max-width: 80%;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
 `
 
-export const NameAndSymbol = styled.div`
+export const NameAndSymbol = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -39,7 +40,7 @@ export const NameAndSymbol = styled.div`
   white-space: pre-line;
 `
 
-export const AssetName = styled.span`
+export const AssetName = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 20px;
@@ -49,7 +50,7 @@ export const AssetName = styled.span`
   text-align: left;
 `
 
-export const AssetSymbol = styled.span`
+export const AssetSymbol = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -58,7 +59,7 @@ export const AssetSymbol = styled.span`
   text-align: left;
 `
 
-export const Balance = styled.div`
+export const Balance = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -71,7 +72,7 @@ export const Balance = styled.div`
   width: 48%;
 `
 
-export const BalanceColumn = styled.div`
+export const BalanceColumn = styled.View`
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -87,7 +88,7 @@ export const AssetIcon = AssetIconFactory<AssetIconProps>({
   height: 'auto'
 })
 
-export const CheckboxRow = styled.div`
+export const CheckboxRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -101,11 +102,12 @@ export const DeleteButton = styled(WalletButton)`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
 `
 
-export const DeleteIcon = styled.div`
+export const DeleteIcon = styled.View`
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.theme.color.text02};
@@ -113,7 +115,7 @@ export const DeleteIcon = styled.div`
   mask-image: url(${TrashIcon});
 `
 
-export const RightSide = styled.div`
+export const RightSide = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;

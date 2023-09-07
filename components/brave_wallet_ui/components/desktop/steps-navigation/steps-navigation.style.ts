@@ -37,16 +37,13 @@ export const BackButton = styled(WalletButton)<{
   color: ${(p) => p.theme.color.text01};
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 3px 0px;
   line-height: 20px;
   letter-spacing: 0.01em;
   border: none;
   text-decoration: ${(p) => p.to ? 'none' : 'unset'};
-
-  & > span {
-    margin-left: 8px;
-  }
 `
 
 export const DotsWrapper = styled.div`

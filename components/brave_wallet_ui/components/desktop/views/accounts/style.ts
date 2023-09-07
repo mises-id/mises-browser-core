@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { WalletAddIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { WalletAddIcon } from 'brave-ui/components/icons'
 import FlashdriveIcon from '../../../../assets/svg-icons/flashdrive-icon.svg'
 import { WalletButton } from '../../../shared/style'
 
@@ -12,7 +12,7 @@ interface StyleProps {
   orb: string
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -21,7 +21,7 @@ export const StyledWrapper = styled.div`
   height: 100%;
 `
 
-export const PrimaryListContainer = styled.div`
+export const PrimaryListContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -34,7 +34,7 @@ export const PrimaryListContainer = styled.div`
   padding: 8px;
 `
 
-export const SecondaryListContainer = styled.div<Partial<StyleProps>>`
+export const SecondaryListContainer = styled.View<Partial<StyleProps>>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -46,7 +46,7 @@ export const SecondaryListContainer = styled.div<Partial<StyleProps>>`
   margin-bottom: ${(p) => p.isHardwareWallet ? '15px' : '0px'};
 `
 
-export const SectionTitle = styled.span`
+export const SectionTitle = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   line-height: 20px;
@@ -56,7 +56,7 @@ export const SectionTitle = styled.span`
   margin-top: 10px;
 `
 
-export const DisclaimerText = styled.span`
+export const DisclaimerText = styled.Text`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -72,13 +72,13 @@ export const DisclaimerText = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const SubDivider = styled.div`
+export const SubDivider = styled.View`
   width: 100%;
   height: 2px;
   background-color: ${(p) => p.theme.color.divider01};
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -86,7 +86,7 @@ export const TopRow = styled.div`
   width: 100%;
 `
 
-export const WalletInfoRow = styled.div`
+export const WalletInfoRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -95,14 +95,14 @@ export const WalletInfoRow = styled.div`
   margin-top: 30px;
 `
 
-export const WalletInfoLeftSide = styled.div`
+export const WalletInfoLeftSide = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `
 
-export const AccountCircle = styled.div<Partial<StyleProps>>`
+export const AccountCircle = styled.View<Partial<StyleProps>>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -111,7 +111,7 @@ export const AccountCircle = styled.div<Partial<StyleProps>>`
   margin-right: 14px;
 `
 
-export const WalletName = styled.span`
+export const WalletName = styled.Text`
   font-family: Poppins;
   font-size: 20px;
   line-height: 30px;
@@ -131,11 +131,12 @@ export const WalletAddress = styled(WalletButton)`
   margin-right: 15px;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
 `
 
-export const SubviewSectionTitle = styled.span`
+export const SubviewSectionTitle = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   line-height: 20px;
@@ -145,7 +146,7 @@ export const SubviewSectionTitle = styled.span`
   margin-bottom: 10px;
 `
 
-export const TransactionPlaceholderContainer = styled.div`
+export const TransactionPlaceholderContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -155,7 +156,7 @@ export const TransactionPlaceholderContainer = styled.div`
   padding-top: 10px;
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -177,20 +178,20 @@ export const StyledButton = styled(WalletButton)`
   margin-right: 8px;
 `
 
-export const ButtonText = styled.span`
+export const ButtonText = styled.Text`
   font-size: 13px;
   font-weight: 600;
   color: ${(p) => p.theme.color.interactive07};
 `
 
-export const WalletIcon = styled(WalletAddIcon)`
+export const WalletIcon = styled.View`
   width: 15px;
   height: 15px;
   color: ${(p) => p.theme.color.text02};
   margin-right: 8px;
 `
 
-export const HardwareIcon = styled.div`
+export const HardwareIcon = styled.View`
   width: 15px;
   height: 15px;
   background-color: ${(p) => p.theme.color.text02};
@@ -200,7 +201,7 @@ export const HardwareIcon = styled.div`
   margin-right: 8px;
 `
 
-export const AccountButtonsRow = styled.div`
+export const AccountButtonsRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;

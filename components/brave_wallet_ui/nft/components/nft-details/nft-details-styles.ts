@@ -3,15 +3,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../../components/shared/style'
 import WebsiteIcon from '../../../assets/svg-icons/website-icon.svg'
 import TwitterIcon from '../../../assets/svg-icons/twitter-icon.svg'
 import FacebookIcon from '../../../assets/svg-icons/facebook-icon.svg'
-import { OpenNewIcon } from 'brave-ui/components/icons'
+// import { OpenNewIcon } from 'brave-ui/components/icons'
 import Copy from '../../../assets/svg-icons/nft-ipfs/copy.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -19,7 +19,7 @@ export const StyledWrapper = styled.div`
   width: 100%;
 `
 
-export const DetailColumn = styled.div`
+export const DetailColumn = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -27,7 +27,7 @@ export const DetailColumn = styled.div`
   width: 100%;
 `
 
-export const TokenName = styled.span`
+export const TokenName = styled.Text`
   font-family: Poppins;
   font-size: 20px;
   line-height: 30px;
@@ -37,7 +37,7 @@ export const TokenName = styled.span`
   margin-bottom: 15px;
 `
 
-export const TokenFiatValue = styled.span`
+export const TokenFiatValue = styled.Text`
   font-family: Poppins;
   font-size: 24px;
   line-height: 36px;
@@ -46,7 +46,7 @@ export const TokenFiatValue = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const TokenCryptoValue = styled.span`
+export const TokenCryptoValue = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 20px;
@@ -55,7 +55,7 @@ export const TokenCryptoValue = styled.span`
   margin-bottom: 20px;
 `
 
-export const DetailSectionRow = styled.div`
+export const DetailSectionRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -64,14 +64,14 @@ export const DetailSectionRow = styled.div`
   margin-bottom: 16px;
 `
 
-export const DetailSectionColumn = styled.div`
+export const DetailSectionColumn = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 `
 
-export const DetailSectionTitle = styled.span`
+export const DetailSectionTitle = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -80,7 +80,7 @@ export const DetailSectionTitle = styled.span`
   margin-bottom: 10px;
 `
 
-export const DetailSectionValue = styled.span`
+export const DetailSectionValue = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   line-height: 20px;
@@ -90,21 +90,21 @@ export const DetailSectionValue = styled.span`
   margin-right: 8px;
 `
 
-export const ProjectDetailIDRow = styled.div`
+export const ProjectDetailIDRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `
 
-export const ProjectDetailRow = styled.div`
+export const ProjectDetailRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 `
 
-export const ProjectDetailName = styled.span`
+export const ProjectDetailName = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 24px;
@@ -113,7 +113,7 @@ export const ProjectDetailName = styled.span`
   margin-right: 12px;
 `
 
-export const ProjectDetailDescription = styled.span`
+export const ProjectDetailDescription = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 20px;
@@ -123,14 +123,14 @@ export const ProjectDetailDescription = styled.span`
   max-width: 80%;
 `
 
-export const ProjectDetailImage = styled.img`
+export const ProjectDetailImage = styled.Image`
   width: 24px;
   height: 24px;
   margin-right: 5px;
   border-radius: 100%;
 `
 
-export const ProjectDetailButtonRow = styled.div`
+export const ProjectDetailButtonRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -140,7 +140,7 @@ export const ProjectDetailButtonRow = styled.div`
   margin-bottom: 20px;
 `
 
-export const ProjectDetailButtonSeperator = styled.div`
+export const ProjectDetailButtonSeperator = styled.View`
   display: flex;
   width: 1px;
   height: 32px;
@@ -156,12 +156,13 @@ export const ProjectDetailButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 0;
   margin: 0;
 `
 
-export const ProjectWebsiteIcon = styled.div`
+export const ProjectWebsiteIcon = styled.View`
   width: 14px;
   height: 14px;
   background-color: #8A939B;
@@ -170,7 +171,7 @@ export const ProjectWebsiteIcon = styled.div`
   mask-size: contain;
 `
 
-export const ProjectTwitterIcon = styled.div`
+export const ProjectTwitterIcon = styled.View`
   width: 14px;
   height: 14px;
   background-color: #8A939B;
@@ -179,7 +180,7 @@ export const ProjectTwitterIcon = styled.div`
   mask-size: contain;
 `
 
-export const ProjectFacebookIcon = styled.div`
+export const ProjectFacebookIcon = styled.View`
   width: 14px;
   height: 14px;
   background-color: #8A939B;
@@ -195,18 +196,19 @@ export const ExplorerButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 0;
   margin: 0;
 `
 
-export const ExplorerIcon = styled(OpenNewIcon)`
+export const ExplorerIcon = styled.View`
   width: 14px;
   height: 14px;
   color: ${(p) => p.theme.color.interactive05};
 `
 
-export const ErrorMessage = styled.p`
+export const ErrorMessage = styled.Text`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -219,7 +221,7 @@ export const ErrorMessage = styled.p`
   margin: 24px 0;
 `
 
-export const NftStandard = styled.div`
+export const NftStandard = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -236,7 +238,7 @@ export const NftStandard = styled.div`
   margin-bottom: 6px;
 `
 
-export const HighlightedDetailSectionValue = styled.a`
+export const HighlightedDetailSectionValue = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -252,7 +254,7 @@ export const HighlightedDetailSectionValue = styled.a`
   text-decoration: none;
 `
 
-export const CopyIcon = styled.button`
+export const CopyIcon = styled.TouchableOpacity`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -270,7 +272,7 @@ export const CopyIcon = styled.button`
   }
 `
 
-export const Subdivider = styled.div`
+export const Subdivider = styled.View`
   width: 100%;
   height: 1px;
   background-color: ${p => p.theme.color.divider01};

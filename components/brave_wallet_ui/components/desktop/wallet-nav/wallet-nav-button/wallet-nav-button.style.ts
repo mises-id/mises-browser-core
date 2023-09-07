@@ -16,7 +16,8 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   padding: 16px;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   background-color: ${(p) => p.isSelected
     ? 'var(--nav-button-background-hover)'
     : 'none'};

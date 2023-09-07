@@ -3,26 +3,26 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-import { LoaderIcon } from 'brave-ui/components/icons'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 import { WalletButton } from '../../../shared/style'
 
-export const FooterContainer = styled.div`
+export const FooterContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 12px;
 `
 
-export const QueueStepRow = styled.div`
+export const QueueStepRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-end;
   flex-direction: row;
 `
 
-export const QueueStepText = styled.span`
+export const QueueStepText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   color: ${p => p.theme.color.text02};
@@ -36,7 +36,8 @@ export const QueueStepButton = styled(WalletButton)<{ needsMargin?: boolean }>`
   font-weight: 600;
   font-size: 13px;
   color: ${p => p.theme.color.interactive05};
-  background: none;
+  background-image: none;
+  background-color: none;;
   cursor: pointer;
   outline: none;
   border: none;
@@ -45,7 +46,7 @@ export const QueueStepButton = styled(WalletButton)<{ needsMargin?: boolean }>`
   margin-bottom: ${p => (p.needsMargin ? '12px' : '0px')};
 `
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -67,7 +68,7 @@ export const ConfirmingButton = styled(WalletButton)`
   border: none;
 `
 
-export const ConfirmingButtonText = styled.span`
+export const ConfirmingButtonText = styled.Text`
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -80,14 +81,14 @@ export const ConfirmingButtonText = styled.span`
   margin: 0px 8px;
 `
 
-export const LoadIcon = styled(LoaderIcon)`
+export const LoadIcon = styled.View`
   color: ${p => p.theme.color.interactive08};
   height: 25px;
   width: 24px;
   opacity: 0.4;
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,7 +98,7 @@ export const ButtonRow = styled.div`
   margin-top: 12px;
 `
 
-export const FavIcon = styled.img`
+export const FavIcon = styled.Image`
   width: auto;
   height: 40px;
   border-radius: 5px;

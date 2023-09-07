@@ -70,7 +70,7 @@ export const AppDesctription = styled.span`
 export const SelectedIcon = styled.div`
   width: 18px;
   height: 18px;
-  background: url(${CheckStar});
+  background-image: url(${CheckStar});
   margin-left: 10px;
   cursor: pointer;
 `
@@ -78,7 +78,7 @@ export const SelectedIcon = styled.div`
 export const UnSelectedIcon = styled.div`
   width: 18px;
   height: 18px;
-  background: url(${UnCheckStar});
+  background-image: url(${UnCheckStar});
   margin-left: 10px;
   cursor: pointer;
 `

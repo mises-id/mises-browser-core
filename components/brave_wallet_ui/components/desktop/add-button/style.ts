@@ -2,10 +2,10 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
 import icon from '../../../assets/svg-icons/plus-icon.svg'
-import { EditOIcon } from 'brave-ui/components/icons'
+// import { EditOIcon } from 'brave-ui/components/icons'
 interface StyleProps {
   buttonType: 'primary' | 'secondary'
 }
@@ -28,21 +28,21 @@ export const StyledButton = styled(WalletButton) <StyleProps>`
       : `1px solid ${p.theme.color.interactive08}`};
 `
 
-export const ButtonText = styled.span<StyleProps>`
+export const ButtonText = styled.Text<StyleProps>`
   font-size: 13px;
   font-weight: 600;
   color: ${(p) =>
     p.buttonType === 'primary' ? '#ffffff' : `${p.theme.color.interactive07}`};
 `
 
-export const PlusIcon = styled.div`
+export const PlusIcon = styled.View`
   width: 15px;
   height: 15px;
-  background: url(${icon});
+  background-image: url(${icon});
   margin-right: 10px;
 `
 
-export const EditIcon = styled(EditOIcon)`
+export const EditIcon = styled.View`
   width: 15px;
   height: 15px;
   color: ${(p) => p.theme.color.interactive07};

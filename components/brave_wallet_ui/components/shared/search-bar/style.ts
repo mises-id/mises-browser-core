@@ -3,10 +3,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import Icon from '../../../assets/svg-icons/search-icon.svg'
 
-export const StyledWrapper = styled.div<{ useWithFilter?: boolean }>`
+export const StyledWrapper = styled.View<{ useWithFilter?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,21 +21,18 @@ export const StyledWrapper = styled.div<{ useWithFilter?: boolean }>`
   overflow: hidden;
 `
 
-export const SearchInput = styled.input<{ useWithFilter?: boolean }>`
+export const SearchInput = styled.TextInput<{ useWithFilter?: boolean }>`
   flex: 1;
   height: 100%;
   outline: none;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
-  box-shadow: none;
   border: none;
   font-family: Poppins;
   font-style: normal;
   font-size: ${(p) => p.useWithFilter ? '14px' : '12px'};
   letter-spacing: 0.01em;
   color: ${(p) => p.theme.color.text01};
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
   ::placeholder {
     font-family: Poppins;
     font-style: normal;
@@ -57,10 +54,10 @@ export const SearchInput = styled.input<{ useWithFilter?: boolean }>`
   }
 `
 
-export const SearchIcon = styled.div`
+export const SearchIcon = styled.View`
   width: 15px;
   height: 15px;
-  background: url(${Icon});
+  background-image: url(${Icon});
   margin-left: 10px;
   margin-right: 5px;
 `

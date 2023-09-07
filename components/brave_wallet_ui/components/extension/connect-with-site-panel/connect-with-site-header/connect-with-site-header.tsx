@@ -63,7 +63,7 @@ export const ConnectWithSiteHeader = (props: Props) => {
         justifyContent="space-between"
       >
         {isReadyToConnect ? (
-          <BackButton onClick={onBack}>
+          <BackButton onPress={onBack}>
             {/* <BackIcon name="arrow-left" /> */}
           </BackButton>
         ) : (
@@ -98,7 +98,7 @@ export const ConnectWithSiteHeader = (props: Props) => {
                 text={originInfo.eTldPlusOne}
               >
                 <FavIcon
-                  src={`chrome://favicon/size/64@1x/${originInfo.originSpec}`}
+                  source={{ uri: `chrome://favicon/size/64@1x/${originInfo.originSpec}`}}
                   isReadyToConnect={isReadyToConnect}
                 />
               </Tooltip>
@@ -108,7 +108,7 @@ export const ConnectWithSiteHeader = (props: Props) => {
           {!isReadyToConnect && (
             <Row justifyContent="flex-start" marginBottom={16}>
               <FavIcon
-                src={`chrome://favicon/size/64@1x/${originInfo.originSpec}`}
+                source={{ uri: `chrome://favicon/size/64@1x/${originInfo.originSpec}`}}
                 isReadyToConnect={isReadyToConnect}
               />
               <Column alignItems="flex-start">

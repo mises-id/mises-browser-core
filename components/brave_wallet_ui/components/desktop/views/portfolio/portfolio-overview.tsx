@@ -256,7 +256,7 @@ export const PortfolioOverview = () => {
               <HorizontalSpace space='16px' />
               <ToggleVisibilityButton
                 isVisible={!hideBalances}
-                onClick={onToggleHideBalances}
+                onPress={onToggleHideBalances}
               />
             </BalanceRow>
           </Column>

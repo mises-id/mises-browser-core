@@ -35,10 +35,10 @@ import { Select } from 'brave-ui/components'
 
 // style
 import {
-  Input,
   StyledWrapper,
   SelectWrapper
 } from './style'
+import Input from '../../../../components/rn/Input'
 
 interface Params {
   accountTypeName: string

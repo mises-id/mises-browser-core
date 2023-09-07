@@ -58,14 +58,14 @@ const PopupModal = React.forwardRef<HTMLDivElement, Props>(
 
     return (
       <StyledWrapper>
-        <Modal width={width} borderRadius={borderRadius} ref={forwardedRef}>
+        <Modal width={width} borderRadius={borderRadius}>
           {!hideHeader &&
             <Header
               headerPaddingHorizontal={headerPaddingHorizontal}
               headerPaddingVertical={headerPaddingVertical}
             >
               <Title>{title}</Title>
-              <CloseButton onClick={onClose} />
+              <CloseButton onPress={onClose} />
             </Header>
           }
           {showDivider && <Divider />}

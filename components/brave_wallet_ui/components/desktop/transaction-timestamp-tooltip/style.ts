@@ -21,7 +21,7 @@ export const Tip = styled.div`
   line-height: 18px;
   min-width: 168px;
   color: ${(p) => p.theme.palette.white};
-  background: ${(p) => p.theme.palette.black};
+  background-color: ${(p) => p.theme.palette.black};
   z-index: 120;
   white-space: nowrap;
   font-family: Poppins;

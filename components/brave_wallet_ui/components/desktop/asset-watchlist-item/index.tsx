@@ -39,7 +39,7 @@ export interface Props {
   token: BraveWallet.BlockchainToken
 }
 
-const AssetWatchlistItem = React.forwardRef<HTMLDivElement, Props>(
+const AssetWatchlistItem = React.forwardRef<any, Props>(
   (props: Props, forwardedRef) => {
     const {
       onSelectAsset,
@@ -77,7 +77,7 @@ const AssetWatchlistItem = React.forwardRef<HTMLDivElement, Props>(
 
     return (
       <StyledWrapper ref={forwardedRef}>
-        <NameAndIcon onClick={onClickAsset}>
+        <NameAndIcon onPress={onClickAsset}>
           <AssetIconWithPlaceholder asset={token} network={tokensNetwork} />
           <NameAndSymbol>
             <AssetName>
@@ -92,7 +92,7 @@ const AssetWatchlistItem = React.forwardRef<HTMLDivElement, Props>(
         </NameAndIcon>
         <RightSide>
           {isCustom &&
-            <DeleteButton onClick={onClickRemoveAsset}>
+            <DeleteButton onPress={onClickRemoveAsset}>
               <DeleteIcon />
             </DeleteButton>
           }

@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import styled, { css } from 'styled-components'
-import { LoaderIcon } from 'brave-ui/components/icons'
+import styled, { css } from 'styled-components/native'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 
 import { WalletButton } from '../style'
 
@@ -12,7 +12,7 @@ interface LayoutProps {
   layoutType?: 'loose' | 'tight'
 }
 
-export const StyledWrapper = styled.div<LayoutProps>`
+export const StyledWrapper = styled.View<LayoutProps>`
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -31,20 +31,20 @@ export const StyledWrapper = styled.div<LayoutProps>`
   }
 `
 
-export const Logo = styled.img`
+export const Logo = styled.Image`
   width: 46px;
   height: auto;
   margin-right: 16px;
   margin-top: 16px;
 `
 
-export const Content = styled.div`
+export const Content = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 `
 
-export const Name = styled.span`
+export const Name = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 18px;
@@ -54,7 +54,7 @@ export const Name = styled.span`
   color: ${p => p.theme.color.text01};
 `
 
-export const Description = styled.span`
+export const Description = styled.Text`
   font-family: 'Poppins';
   font-weight: 400;
   font-size: 12px;
@@ -76,7 +76,7 @@ export const StyledButton = styled(WalletButton)`
   
 `
 
-export const ButtonText = styled.span`
+export const ButtonText = styled.Text`
   font-family: 'Poppins';
   font-size: 13px;
   font-weight: 600;
@@ -84,7 +84,7 @@ export const ButtonText = styled.span`
   text-align: center;
 `
 
-export const LoadIcon = styled(LoaderIcon)`
+export const LoadIcon = styled.View`
   color: ${p => p.theme.color.interactive08};
   height: 13px;
   width: 13px;

@@ -164,7 +164,7 @@ export const AccountsAndTransactionsList = ({
                 <HorizontalSpace space='16px' />
                 <ToggleVisibilityButton
                   isVisible={!hideBalances}
-                  onClick={() => setHideBalances(prev => !prev)}
+                  onPress={() => setHideBalances(prev => !prev)}
                 />
               </Row>
             </DividerRow>

@@ -40,7 +40,7 @@ export const CopyTooltip = ({
   }, [text, copyToClipboard])
 
   return (
-    <StyledWrapper onClick={handleClick}>
+    <StyledWrapper onPress={handleClick}>
       <Tooltip
         text={tooltipText || getLocale('braveWalletToolTipCopyToClipboard')}
         actionText={

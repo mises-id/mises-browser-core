@@ -80,7 +80,7 @@ export const TokenDetailsModal = (props: Props) => {
             <TokenDetailLabel>{getLocale('braveWalletTransactionDetailNetwork')}</TokenDetailLabel>
             <TokenDetailValue>{selectedAssetNetwork.chainName}</TokenDetailValue>
           </DetailColumn>
-          <HideTokenButton onClick={onShowHideTokenModal}>{getLocale('braveWalletHideTokenModalTitle')}</HideTokenButton>
+          <HideTokenButton onPress={onShowHideTokenModal}>{getLocale('braveWalletHideTokenModalTitle')}</HideTokenButton>
         </StyledWrapper>
       </PopupModal>
     </>

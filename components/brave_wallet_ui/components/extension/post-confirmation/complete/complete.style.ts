@@ -8,7 +8,7 @@ import SuccessSvg from '../../../../assets/svg-icons/success-circle-icon.svg'
 import { TransactionStatusIcon, TransactionStatusText } from '../common/common.style'
 
 export const SuccessIcon = styled(TransactionStatusIcon)`
-  background: url(${SuccessSvg});
+  background-image: url(${SuccessSvg});
 `
 
 export const Title = styled(TransactionStatusText)`

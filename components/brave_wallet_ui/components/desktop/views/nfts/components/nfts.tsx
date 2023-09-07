@@ -139,11 +139,11 @@ export const Nfts = (props: Props) => {
         />
         <NetworkFilterSelector networkListSubset={networks} />
         {isNftPinningFeatureEnabled && nonFungibleTokens.length > 0 &&
-          <IpfsButton onClick={onClickIpfsButton}>
+          <IpfsButton onPress={onClickIpfsButton}>
             <IpfsIcon />
           </IpfsButton>
         }
-        <AddButton onClick={toggleShowAddNftModal}>
+        <AddButton onPress={toggleShowAddNftModal}>
           <AddIcon />
         </AddButton>
       </FilterTokenRow>

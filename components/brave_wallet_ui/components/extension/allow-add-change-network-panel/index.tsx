@@ -67,7 +67,7 @@ function AllowAddChangeNetworkPanel (props: Props) {
   return (
     <StyledWrapper>
       <CenterColumn>
-        <FavIcon src={`chrome://favicon/size/64@1x/${originInfo.originSpec}`} />
+        <FavIcon source={{uri: `chrome://favicon/size/64@1x/${originInfo.originSpec}`}} />
         <URLText>
           <CreateSiteOrigin
             originSpec={originInfo.originSpec}
@@ -86,7 +86,7 @@ function AllowAddChangeNetworkPanel (props: Props) {
             : getLocale('braveWalletAllowAddNetworkDescription')}{' '}
           {panelType === 'add' &&
             <DetailsButton
-              onClick={onLearnMore}
+              onPress={onLearnMore}
             >
               {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
             </DetailsButton>

@@ -261,7 +261,7 @@ const TransactionDetailPanel = (props: Props) => {
           <DetailTitle>
             {getLocale('braveWalletTransactionDetailHash')}
           </DetailTitle>
-          <DetailButton onClick={onClickViewOnBlockExplorer('tx', liveTransaction?.txHash)}>
+          <DetailButton onPress={onClickViewOnBlockExplorer('tx', liveTransaction?.txHash)}>
             {reduceAddress(liveTransaction.txHash)}
           </DetailButton>
         </DetailRow>
@@ -281,9 +281,9 @@ const TransactionDetailPanel = (props: Props) => {
         <DetailRow>
           <DetailTitle />
           <StatusRow>
-            <DetailButton onClick={onClickSpeedupTransaction}>{getLocale('braveWalletTransactionDetailSpeedUp')}</DetailButton>
+            <DetailButton onPress={onClickSpeedupTransaction}>{getLocale('braveWalletTransactionDetailSpeedUp')}</DetailButton>
             <SpacerText>|</SpacerText>
-            <DetailButton onClick={onClickCancelTransaction}>{getLocale('braveWalletButtonCancel')}</DetailButton>
+            <DetailButton onPress={onClickCancelTransaction}>{getLocale('braveWalletButtonCancel')}</DetailButton>
           </StatusRow>
         </DetailRow>
       }
@@ -293,7 +293,7 @@ const TransactionDetailPanel = (props: Props) => {
         <DetailRow>
           <DetailTitle />
           <StatusRow>
-            <DetailButton onClick={onClickRetryTransaction}>{getLocale('braveWalletTransactionRetry')}</DetailButton>
+            <DetailButton onPress={onClickRetryTransaction}>{getLocale('braveWalletTransactionRetry')}</DetailButton>
           </StatusRow>
         </DetailRow>
       }

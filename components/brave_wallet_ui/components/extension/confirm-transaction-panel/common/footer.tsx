@@ -65,7 +65,7 @@ export function Footer (props: Props) {
   return (
     <FooterContainer>
       {transactionsQueueLength > 1 && (
-        <QueueStepButton needsMargin={false} onClick={rejectAllTransactions}>
+        <QueueStepButton needsMargin={false} onPress={rejectAllTransactions}>
           {getLocale('braveWalletQueueRejectAll').replace('$1', transactionsQueueLength.toString())}
         </QueueStepButton>
       )}

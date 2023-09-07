@@ -3,13 +3,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
-import { LoaderIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 import { WalletButton } from '../../../shared/style'
 
 export const tokenListHeight = 225
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@ export const StyledWrapper = styled.div`
   min-height: 320px;
 `
 
-export const WatchlistScrollContainer = styled.div`
+export const WatchlistScrollContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@ export const WatchlistScrollContainer = styled.div`
   padding-right: 12px;
 `
 
-export const LoadingWrapper = styled.div`
+export const LoadingWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,20 +44,20 @@ export const LoadingWrapper = styled.div`
   height: 100%;
 `
 
-export const LoadIcon = styled(LoaderIcon)`
+export const LoadIcon = styled.View`
   color: ${p => p.theme.color.interactive08};
   height: 70px;
   width: 70px;
   opacity: .4;
 `
 
-export const Divider = styled.div`
+export const Divider = styled.View`
   width: 100%;
   height: 2px;
   background-color: ${(p) => p.theme.color.divider01};
 `
 
-export const NoAssetRow = styled.div`
+export const NoAssetRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -66,7 +66,7 @@ export const NoAssetRow = styled.div`
   margin-top: 15px;
 `
 
-export const NoAssetText = styled.span`
+export const NoAssetText = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   letter-spacing: 0.01em;
@@ -78,7 +78,8 @@ export const NoAssetButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 0px;
   margin: 10px 0px;
   font-family: Poppins;
@@ -91,7 +92,7 @@ export const NoAssetButton = styled(WalletButton)`
   }
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;

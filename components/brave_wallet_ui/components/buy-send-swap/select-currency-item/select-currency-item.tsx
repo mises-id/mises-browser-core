@@ -43,7 +43,7 @@ export const SelectCurrencyItem = (props: Props) => {
   }, [currency.currencyCode])
 
   return (
-    <StyledWrapper onClick={onClick}>
+    <StyledWrapper onPress={onClick}>
       <IconWrapper
         panelBackground={bg}
         isPlaceholder={true}

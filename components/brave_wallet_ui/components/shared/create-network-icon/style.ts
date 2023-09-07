@@ -3,10 +3,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { AssetIconFactory, AssetIconProps } from '../style'
 
-export const IconWrapper = styled.div<{
+export const IconWrapper = styled.View<{
   marginRight: number
   isTestnet: boolean
 }>`
@@ -20,7 +20,7 @@ export const IconWrapper = styled.div<{
   filter: ${(p) => p.isTestnet ? 'grayscale(100%)' : 'none'};
 `
 
-export const Placeholder = styled.div<{ orb: string }>`
+export const Placeholder = styled.View<{ orb: string }>`
   width: 10px;
   height: 10px;
   border-radius: 100%;

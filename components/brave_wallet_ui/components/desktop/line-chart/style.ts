@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled, { css } from 'styled-components'
-import { LoaderIcon } from 'brave-ui/components/icons'
+import styled, { css } from 'styled-components/native'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 
 interface StyleProps {
   labelPosition: 'start' | 'middle' | 'end'
@@ -12,7 +12,7 @@ interface StyleProps {
   customStyle?: { [key: string]: string }
 }
 
-export const StyledWrapper = styled.div<Partial<StyleProps>>`
+export const StyledWrapper = styled.View<Partial<StyleProps>>`
   width: 100%;
   height: 200px;
   min-height: 200px;
@@ -28,7 +28,7 @@ export const StyledWrapper = styled.div<Partial<StyleProps>>`
   };
 `
 
-export const LabelWrapper = styled.div<Partial<StyleProps>>`
+export const LabelWrapper = styled.View<Partial<StyleProps>>`
   --label-start-translate: translateX(calc(-${(p) => p.labelTranslate}px + 4px));
   --label-end-translate: translateX(calc(-100% + ${(p) => p.labelTranslate}px));
   --label-middle-end-condition: ${(p) => p.labelPosition === 'end' ? 'var(--label-end-translate)' : 'translateX(-50%)'};
@@ -41,14 +41,14 @@ export const LabelWrapper = styled.div<Partial<StyleProps>>`
   white-space: nowrap
 `
 
-export const ChartLabel = styled.span`
+export const ChartLabel = styled.View`
   font-family: Poppins;
   font-size: 13px;
   letter-spacing: 0.01em;
   color: ${(p) => p.theme.color.text01};
 `
 
-export const LoadingOverlay = styled.div<Partial<StyleProps>>`
+export const LoadingOverlay = styled.View<Partial<StyleProps>>`
   display: ${(p) => p.isLoading ? 'flex' : 'none'};
   flex-direction: column;
   align-items: center;
@@ -60,7 +60,7 @@ export const LoadingOverlay = styled.div<Partial<StyleProps>>`
   backdrop-filter: blur(5px);
 `
 
-export const LoadIcon = styled(LoaderIcon)`
+export const LoadIcon = styled.View`
   color: ${p => p.theme.color.interactive08};
   height: 70px;
   width: 70px;

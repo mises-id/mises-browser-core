@@ -160,7 +160,7 @@ export const NetworkFilterSelector = ({
   return (
     <StyledWrapper>
       <DropDownButton
-        onClick={toggleShowNetworkFilter}>
+        onPress={toggleShowNetworkFilter}>
         <SelectorLeftSide>
           {selectedNetwork.chainId !== AllNetworksOption.chainId &&
             <CreateNetworkIcon network={selectedNetwork} marginRight={14} size='big' />
@@ -212,7 +212,7 @@ export const NetworkFilterSelector = ({
         </DropDown>
       }
       {showNetworkFilter &&
-        <ClickAwayArea onClick={hideNetworkFilter} />
+        <ClickAwayArea onPress={hideNetworkFilter} />
       }
     </StyledWrapper >
   )

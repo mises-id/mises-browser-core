@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { SettingsAdvancedIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { SettingsAdvancedIcon } from 'brave-ui/components/icons'
 
 import { WalletButton } from '../../../shared/style'
 
@@ -17,17 +17,18 @@ export const StyledButton = styled(WalletButton)`
   outline: none;
   padding: 10px 0px 0px 0px;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
 `
 
-export const SettingsIcon = styled(SettingsAdvancedIcon)`
+export const SettingsIcon = styled.View`
   padding-bottom: 12px;
   color: ${(p) => p.theme.color.text03};
 `
 
-export const TabLine = styled.div`
+export const TabLine = styled.View`
   display: flex;
   width: 100%;
   height: 2px;
-  background: ${(p) => p.theme.color.divider01};
+  background-color: ${(p) => p.theme.color.divider01};
 `

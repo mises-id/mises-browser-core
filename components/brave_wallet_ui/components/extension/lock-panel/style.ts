@@ -2,12 +2,11 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import SecureIcon from '../../../assets/svg-icons/onboarding/secure-your-crypto.svg'
-import SecureIconDark from '../../../assets/svg-icons/onboarding/secure-your-crypto-dark.svg'
-import { WalletButton } from '../../shared/style'
+import styled from 'styled-components/native'
+// import SecureIcon from '../../../assets/svg-icons/onboarding/secure-your-crypto.svg'
+// import SecureIconDark from '../../../assets/svg-icons/onboarding/secure-your-crypto-dark.svg'
 
-export const StyledWrapper = styled.div<{ hideBackground?: boolean }>`
+export const StyledWrapper = styled.View<{ hideBackground?: boolean }>`
   display: flex;
   height: 100%;
   width: 320px;
@@ -17,7 +16,7 @@ export const StyledWrapper = styled.div<{ hideBackground?: boolean }>`
   background-color: ${(p) => p.hideBackground ? 'transparent' : p.theme.color.background01};
 `
 
-export const Title = styled.span`
+export const Title = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   font-weight: 600;
@@ -28,19 +27,7 @@ export const Title = styled.span`
   text-align: center;
 `
 
-export const PanelIcon = styled.div`
-  width: 111px;
-  height: 100px;
-  background: url(${SecureIcon});
-  background-repeat: no-repeat;
-  background-size: 100%;
-  margin-bottom: 10px;
-  @media (prefers-color-scheme: dark) {
-    background: url(${SecureIconDark});
-  }
-`
-
-export const Column = styled.div`
+export const Column = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,14 +36,12 @@ export const Column = styled.div`
   margin-bottom: 8px;
 `
 
-export const RestoreButton = styled(WalletButton)`
+export const RestoreButton = styled.Text`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   cursor: pointer;
-  outline: none;
-  background: none;
   border: none;
   font-family: Poppins;
   font-style: normal;

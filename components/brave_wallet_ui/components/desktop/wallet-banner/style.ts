@@ -2,14 +2,14 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
 interface StyleProps {
   buttonType: 'primary' | 'secondary'
   bannerType: 'warning' | 'danger'
 }
 
-export const StyledWrapper = styled.div<Partial<StyleProps>>`
+export const StyledWrapper = styled.View<Partial<StyleProps>>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -26,7 +26,7 @@ export const StyledWrapper = styled.div<Partial<StyleProps>>`
   }
  `
 
-export const WarningText = styled.span`
+export const WarningText = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
@@ -37,7 +37,7 @@ export const WarningText = styled.span`
   }
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -49,7 +49,8 @@ export const BannerButton = styled(WalletButton) <Partial<StyleProps>>`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 0px;
   margin: 0px;
   font-family: Poppins;

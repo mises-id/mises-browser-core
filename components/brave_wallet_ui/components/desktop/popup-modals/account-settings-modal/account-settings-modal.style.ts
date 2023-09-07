@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import ClipboardIcon from '../../../../assets/svg-icons/copy-to-clipboard-icon.svg'
 import { WalletButton } from '../../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,54 +18,53 @@ export const StyledWrapper = styled.div`
   min-height: 320px;
 `
 
-export const Input = styled.input`
-  outline: none;
-  width: 250px;
-  background-image: none;
-  background-color: ${(p) => p.theme.color.background02};
-  box-shadow: none;
-  border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
-  border-radius: 4px;
-  font-family: Poppins;
-  font-style: normal;
-  font-size: 13px;
-  line-height: 20px;
-  letter-spacing: 0.01em;
-  padding: 10px;
-  margin-bottom: 16px;
-  color: ${(p) => p.theme.color.text01};
-  ::placeholder {
-    font-family: Poppins;
-    font-style: normal;
-    font-size: 12px;
-    letter-spacing: 0.01em;
-    color: ${(p) => p.theme.color.text03};
-    font-weight: normal;
-  }
-  :focus {
-    outline: none;
-  }
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  ::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`
+// export const Input = styled.input`
+//   outline: none;
+//   width: 250px;
+//   background-image: none;
+//   background-color: ${(p) => p.theme.color.background02};
+//   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
+//   border-radius: 4px;
+//   font-family: Poppins;
+//   font-style: normal;
+//   font-size: 13px;
+//   line-height: 20px;
+//   letter-spacing: 0.01em;
+//   padding: 10px;
+//   margin-bottom: 16px;
+//   color: ${(p) => p.theme.color.text01};
+//   ::placeholder {
+//     font-family: Poppins;
+//     font-style: normal;
+//     font-size: 12px;
+//     letter-spacing: 0.01em;
+//     color: ${(p) => p.theme.color.text03};
+//     font-weight: normal;
+//   }
+//   :focus {
+//     outline: none;
+//   }
+//   ::-webkit-inner-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+//   ::-webkit-outer-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+// `
 
-export const QRCodeWrapper = styled.img`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 210px;
-  height: 210px;
-  border-radius: 8px;
-  border: 2px solid ${(p) => p.theme.color.disabled};
-  margin-bottom: 16px;
-`
+// export const QRCodeWrapper = styled.img`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   width: 210px;
+//   height: 210px;
+//   border-radius: 8px;
+//   border: 2px solid ${(p) => p.theme.color.disabled};
+//   margin-bottom: 16px;
+// `
 
 export const AddressButton = styled(WalletButton)`
   display: flex;
@@ -79,18 +78,19 @@ export const AddressButton = styled(WalletButton)`
   color: ${(p) => p.theme.color.text03};
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `
 
-export const CopyIcon = styled.div`
+export const CopyIcon = styled.View`
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.theme.color.interactive07};
@@ -100,7 +100,7 @@ export const CopyIcon = styled.div`
   margin-left: 10px;
 `
 
-export const PrivateKeyWrapper = styled.div`
+export const PrivateKeyWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,7 +109,7 @@ export const PrivateKeyWrapper = styled.div`
   height: 100%;
 `
 
-export const WarningWrapper = styled.div`
+export const WarningWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,7 +121,7 @@ export const WarningWrapper = styled.div`
   margin-bottom: 40px;
 `
 
-export const WarningText = styled.span`
+export const WarningText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -156,7 +156,7 @@ export const PrivateKeyBubble = styled(WalletButton)`
   border: none;
 `
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,7 +164,7 @@ export const ButtonWrapper = styled.div`
   margin-top: 40px;
 `
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -172,14 +172,14 @@ export const ErrorText = styled.span`
   margin-bottom: 16px;
 `
 
-export const Line = styled.div`
+export const Line = styled.View`
   display: flex;
   width: 100%;
   height: 2px;
-  background: ${(p) => p.theme.color.divider01};
+  background-color: ${(p) => p.theme.color.divider01};
 `
 
-export const AccountCircle = styled.div<{
+export const AccountCircle = styled.View<{
   orb: string
 }>`
   width: 40px;
@@ -190,7 +190,7 @@ export const AccountCircle = styled.div<{
   margin-right: 12px;
 `
 
-export const NameAndIcon = styled.div`
+export const NameAndIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,7 +198,7 @@ export const NameAndIcon = styled.div`
   margin-bottom: 20px;
 `
 
-export const AccountName = styled.span`
+export const AccountName = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;

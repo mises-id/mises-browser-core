@@ -86,7 +86,7 @@ import {
   DetailText,
   InfoColumn,
   NetworkDescription,
-  NftMultimedia,
+  // NftMultimedia,
   PercentBubble,
   PercentText,
   PriceRow,
@@ -134,7 +134,7 @@ export const PortfolioAsset = (props: Props) => {
   const history = useHistory()
   const { chainIdOrMarketSymbol, contractOrSymbol, tokenId } = useParams<{ chainIdOrMarketSymbol?: string, contractOrSymbol?: string, tokenId?: string }>()
   const nftDetailsRef = React.useRef<HTMLIFrameElement>(null)
-  const [nftIframeLoaded, setNftIframeLoaded] = React.useState(false)
+  const [nftIframeLoaded] = React.useState(false)
   // redux
   const dispatch = useDispatch()
 
@@ -465,9 +465,9 @@ export const PortfolioAsset = (props: Props) => {
     setHoverPrice(value ? new Amount(value).formatAsFiat(defaultCurrencies.fiat) : undefined)
   }, [defaultCurrencies.fiat])
 
-  const onNftDetailsLoad = React.useCallback(() => {
-    setNftIframeLoaded(true)
-  }, [])
+  // const onNftDetailsLoad = React.useCallback(() => {
+  //   setNftIframeLoaded(true)
+  // }, [])
 
   const onOpenRainbowAppClick = React.useCallback(() => {
     chrome.tabs.create({ url: rainbowbridgeLink }, () => {
@@ -495,13 +495,13 @@ export const PortfolioAsset = (props: Props) => {
     setShowBridgeToAuroraModal(false)
   }, [])
 
-  const onShowMore = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation()
+  const onShowMore = React.useCallback(() => {
+    // e.stopPropagation()
     setShowMore(true)
   }, [])
 
-  const onHideMore = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
+  const onHideMore = React.useCallback(() => {
+    // e.stopPropagation()
     setShowMore(false)
   }, [])
 
@@ -695,7 +695,7 @@ export const PortfolioAsset = (props: Props) => {
 
   // render
   return (
-    <StyledWrapper onClick={onHideMore}>
+    <StyledWrapper onPress={onHideMore}>
       <TopRow>
         <BalanceRow gap='16px'>
           <BackButton onSubmit={goBack} />
@@ -710,7 +710,7 @@ export const PortfolioAsset = (props: Props) => {
             />
           }
           {selectedAsset?.contractAddress && !selectedAsset?.isErc721 && !selectedAsset.isNft &&
-            <MoreButton onClick={onShowMore} />
+            <MoreButton onPress={onShowMore} />
           }
           {showMore && selectedAsset &&
             <AssetMorePopup
@@ -809,21 +809,21 @@ export const PortfolioAsset = (props: Props) => {
           <ButtonRow noMargin={true}>
             {isReduxSelectedAssetBuySupported &&
               <BridgeToAuroraButton
-                onClick={onSelectBuy}
+              onPress={onSelectBuy}
               >
                 {getLocale('braveWalletBuy')}
               </BridgeToAuroraButton>
             }
             {isSelectedAssetDepositSupported &&
               <BridgeToAuroraButton
-                onClick={onSelectDeposit}
+              onPress={onSelectDeposit}
               >
                 {getLocale('braveWalletAccountsDeposit')}
               </BridgeToAuroraButton>
             }
             {isSelectedAssetBridgeSupported &&
               <BridgeToAuroraButton
-                onClick={onBridgeToAuroraButton}
+                onPress={onBridgeToAuroraButton}
               >
                 {getLocale('braveWalletBridgeToAuroraButton')}
               </BridgeToAuroraButton>
@@ -862,7 +862,7 @@ export const PortfolioAsset = (props: Props) => {
           />
         }
 
-        {!nftMetadataError &&
+        {/* {!nftMetadataError &&
           <NftMultimedia
             onLoad={onNftDetailsLoad}
             visible={selectedAsset?.isErc721 || selectedAsset?.isNft}
@@ -872,7 +872,7 @@ export const PortfolioAsset = (props: Props) => {
             src='chrome-untrusted://nft-display'
             allowFullScreen
           />
-        }
+        } */}
 
         {isNftAsset && selectedAsset &&
           <NftDetails

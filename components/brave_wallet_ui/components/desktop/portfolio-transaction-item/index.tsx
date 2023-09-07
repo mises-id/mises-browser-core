@@ -331,10 +331,10 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
                   ? getLocale('braveWalletTransactionApproveUnlimited')
                   : transaction.value
               }{' '}
-              <AddressOrAsset onClick={onAssetClick(transaction.symbol)}>
+              <AddressOrAsset onPress={onAssetClick(transaction.symbol)}>
                 {transaction.symbol}
               </AddressOrAsset> -{' '}
-              <AddressOrAsset onClick={onAddressClick(transaction.approvalTarget)}>
+              <AddressOrAsset onPress={onAddressClick(transaction.approvalTarget)}>
                 {transaction.approvalTargetLabel}
               </AddressOrAsset>
             </DetailTextDark>
@@ -348,7 +348,7 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
             <DetailTextDark>
               {transaction.sellAmount?.format(6)}{' '}
               <AddressOrAsset
-                onClick={onAssetClick(transaction.sellToken?.symbol)}
+                onPress={onAssetClick(transaction.sellToken?.symbol)}
               >
                 {transaction.sellToken?.symbol}
               </AddressOrAsset>
@@ -356,7 +356,7 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
             <ArrowIcon />
             <DetailTextDark>
               {transaction.minBuyAmount?.format(6)}{' '}
-              <AddressOrAsset onClick={onAddressClick(transaction.buyToken?.symbol)}>
+              <AddressOrAsset onPress={onAddressClick(transaction.buyToken?.symbol)}>
                 {transaction.buyToken?.symbol}
               </AddressOrAsset>
             </DetailTextDark>
@@ -369,13 +369,13 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
           <DetailRow>
             <DetailTextDark>
               {transaction.value}{' '}
-              <AddressOrAsset onClick={onAssetClick(transaction.symbol)}>
+              <AddressOrAsset onPress={onAssetClick(transaction.symbol)}>
                 {transaction.symbol}
               </AddressOrAsset>
             </DetailTextDark>
             <ArrowIcon />
             <DetailTextDark>
-              <AddressOrAsset onClick={onAddressClick(transaction.recipient)}>
+              <AddressOrAsset onPress={onAddressClick(transaction.recipient)}>
                 {transaction.recipientLabel}
               </AddressOrAsset>
             </DetailTextDark>
@@ -391,13 +391,13 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
         return (
           <DetailRow>
             <DetailTextDark>
-              <AddressOrAsset onClick={onAddressClick(transaction.sender)}>
+              <AddressOrAsset onPress={onAddressClick(transaction.sender)}>
                 {transaction.senderLabel}
               </AddressOrAsset>
             </DetailTextDark>
             <ArrowIcon />
             <DetailTextDark>
-              <AddressOrAsset onClick={onAddressClick(transaction.recipient)}>
+              <AddressOrAsset onPress={onAddressClick(transaction.recipient)}>
                 {transaction.recipientLabel}
               </AddressOrAsset>
             </DetailTextDark>
@@ -418,7 +418,7 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
       return (
         <>
           {displayAccountName ? text : toProperCase(text)}{' '}
-          <AddressOrAsset onClick={onAssetClick(transaction.symbol)}>
+          <AddressOrAsset onPress={onAssetClick(transaction.symbol)}>
             {transaction.symbol}
           </AddressOrAsset>
         </>
@@ -434,7 +434,7 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
             transaction.txType === BraveWallet.TransactionType.ERC721TransferFrom ||
             transaction.txType === BraveWallet.TransactionType.ERC721SafeTransferFrom
           }
-          onClick={onAssetClick(transaction.symbol)}
+          onPress={onAssetClick(transaction.symbol)}
         >
           {transaction.symbol}
           {
@@ -463,9 +463,8 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
   // render
   return (
     <PortfolioTransactionItemWrapper
-      ref={forwardedRef}
       isFocused={isFocused}
-      onClick={onHideTransactionPopup}
+      onPress={onHideTransactionPopup}
     >
       <OrbAndTxDescriptionContainer>
         <OrbWrapper>
@@ -577,7 +576,7 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
           }
 
           {wasTxRejected ? (
-            <MoreButton onClick={onShowTransactionPopup}>
+            <MoreButton onPress={onShowTransactionPopup}>
               <MoreIcon />
             </MoreButton>
           ) : (

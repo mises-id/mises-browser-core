@@ -3,10 +3,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
-import { LoaderIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@ export const ImageWrapper = styled.div`
   height: 100%;
 `
 
-export const MultimediaWrapper = styled.div`
+export const MultimediaWrapper = styled.View`
   position: relative;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ export const MultimediaWrapper = styled.div`
   overflow: hidden;
 `
 
-export const Image = styled.img<{
+export const Image = styled.Image<{
   customWidth?: string
   customHeight?: string
 }>`
@@ -36,7 +36,7 @@ export const Image = styled.img<{
   object-fit: contain;
 `
 
-export const LoadingOverlay = styled.div<{ isLoading: boolean }>`
+export const LoadingOverlay = styled.View<{ isLoading: boolean }>`
   display: ${(p) => p.isLoading ? 'flex' : 'none'};
   flex-direction: column;
   align-items: center;
@@ -48,7 +48,7 @@ export const LoadingOverlay = styled.div<{ isLoading: boolean }>`
   backdrop-filter: blur(5px);
 `
 
-export const LoadIcon = styled(LoaderIcon)`
+export const LoadIcon = styled.View`
   color: ${p => p.theme.color.interactive08};
   height: 70px;
   width: 70px;

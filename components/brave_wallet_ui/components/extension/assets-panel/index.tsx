@@ -61,7 +61,7 @@ const AssetsPanel = (props: Props) => {
   return (
     <StyledWrapper>
       <AddAssetButton
-        onClick={onAddAsset}
+        onPress={onAddAsset}
       >
         {getLocale('braveWalletAddAsset')}
       </AddAssetButton>

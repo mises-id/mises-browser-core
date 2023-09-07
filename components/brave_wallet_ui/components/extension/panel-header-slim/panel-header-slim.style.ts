@@ -2,12 +2,12 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import CloseIcon from '../../../assets/svg-icons/close.svg'
 import { WalletButton } from '../../shared/style'
 
-export const HeaderTitle = styled.span`
+export const HeaderTitle = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -17,7 +17,7 @@ export const HeaderTitle = styled.span`
   position: absolute;
 `
 
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.View`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -27,7 +27,7 @@ export const HeaderWrapper = styled.div`
   margin-bottom: 8px;
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   height: 47px;
   width: 100%;
@@ -41,7 +41,7 @@ export const CloseButton = styled(WalletButton)`
   cursor: pointer;
   width: 16px;
   height: 16px;
-  background: url(${CloseIcon}) no-repeat;
+  background-image: url(${CloseIcon}) no-repeat;
   outline: none;
   border: none;
   margin-right: 12px;

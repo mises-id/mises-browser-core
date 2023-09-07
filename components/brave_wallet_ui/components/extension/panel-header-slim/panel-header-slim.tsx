@@ -33,7 +33,7 @@ export const PanelHeaderSlim = React.memo(function (props: Props) {
         <HeaderTitle>
           {title}
         </HeaderTitle>
-        <CloseButton onClick={navigate('main')} />
+        <CloseButton onPress={navigate('main')} />
       </TopRow>
     </HeaderWrapper>
   )

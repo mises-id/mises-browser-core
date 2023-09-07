@@ -3,23 +3,23 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../../../../shared/style'
 export const modalWidth = '500px'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 0 20px 20px 20px;
 `
 
-export const TokenBalanceRow = styled.div`
+export const TokenBalanceRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
 `
-export const CryptoBalance = styled.p`
+export const CryptoBalance = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -30,7 +30,7 @@ export const CryptoBalance = styled.p`
   color: ${p => p.theme.color.text01};
 `
 
-export const FiatBalance = styled.h6`
+export const FiatBalance = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 18px;
@@ -41,14 +41,14 @@ export const FiatBalance = styled.h6`
   color: ${p => p.theme.color.text02};
 `
 
-export const DetailColumn = styled.div`
+export const DetailColumn = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   margin-top: 18px;
 `
 
-export const TokenDetailLabel = styled.h6`
+export const TokenDetailLabel = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 14px;
@@ -58,7 +58,7 @@ export const TokenDetailLabel = styled.h6`
   color: ${p => p.theme.color.text01};
 `
 
-export const TokenDetailValue = styled.h6`
+export const TokenDetailValue = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 14px;
@@ -73,7 +73,8 @@ export const ContractAddress = styled(TokenDetailValue)`
 `
 
 export const HideTokenButton = styled(WalletButton)`
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: 1px solid ${p => p.theme.palette.blurple500};
   height: 40px;
   margin-top: 70px;

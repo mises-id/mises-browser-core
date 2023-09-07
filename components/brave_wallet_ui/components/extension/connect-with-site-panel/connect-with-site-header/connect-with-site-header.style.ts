@@ -5,10 +5,10 @@
 
 import * as leo from '@brave/leo/tokens/css'
 // import Icon from '@brave/leo/react/icon'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { Row, WalletButton } from '../../../shared/style'
 
-export const StyledWrapper = styled.div<{ isScrolled: boolean }>`
+export const StyledWrapper = styled.View<{ isScrolled: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,8 +32,6 @@ export const TitleWrapper = styled(Row)<{
   position: relative;
   z-index: 20;
   background-color: ${leo.color.container.background};
-  box-shadow: ${(p) =>
-    p.isScrolled ? '0px 3px 10px 1px rgba(0, 0, 0, 0.08)' : 'none'};
   transition-duration: 0.4s;
   transition-timing-function: ease-out;
   transition-delay: 0s;
@@ -45,7 +43,7 @@ export const TitleWrapper = styled(Row)<{
   }
 `
 
-export const Title = styled.span`
+export const Title = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
@@ -55,7 +53,7 @@ export const Title = styled.span`
   color: ${leo.color.text.primary};
 `
 
-export const SiteName = styled.span`
+export const SiteName = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
@@ -65,7 +63,7 @@ export const SiteName = styled.span`
   color: ${leo.color.text.primary};
 `
 
-export const SiteURL = styled.span`
+export const SiteURL = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: 400;
@@ -76,7 +74,7 @@ export const SiteURL = styled.span`
   word-break: break-word;
 `
 
-export const FavIcon = styled.img<{ isReadyToConnect: boolean }>`
+export const FavIcon = styled.Image<{ isReadyToConnect: boolean }>`
   width: ${(p) => (p.isReadyToConnect ? 40 : 48)}px;
   height: ${(p) => (p.isReadyToConnect ? 40 : 48)}px;
   margin-right: ${(p) => (p.isReadyToConnect ? 0 : 16)}px;
@@ -92,7 +90,7 @@ export const MessageBox = styled(Row)`
   color: ${leo.color.text.primary};
 `
 
-export const InfoIcon = styled.div`
+export const InfoIcon = styled.View`
   --leo-icon-size: 20px;
   color: ${leo.color.systemfeedback.infoIcon};
   margin-right: 16px;
@@ -102,24 +100,25 @@ export const BackButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   margin: 0px;
   padding: 0px;
 `
 
-export const BackIcon = styled.div`
+export const BackIcon = styled.View`
   --leo-icon-size: 24px;
   color: ${leo.color.icon.default};
 `
 
-export const GradientLine = styled.div`
+export const GradientLine = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   width: 80px;
   height: 2px;
-  background: linear-gradient(
+  background-color: linear-gradient(
     90deg,
     rgba(0, 0, 0, 0) 0%,
     ${leo.color.systemfeedback.successIcon} 50%,
@@ -128,18 +127,18 @@ export const GradientLine = styled.div`
   margin: 0px 4px;
 `
 
-export const LinkIconCircle = styled.div`
+export const LinkIconCircle = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   width: 24px;
   height: 24px;
-  background: ${leo.color.systemfeedback.successIcon};
+  background-color: ${leo.color.systemfeedback.successIcon};
   border-radius: 24px;
 `
 
-export const LinkIcon = styled.div`
+export const LinkIcon = styled.View`
   --leo-icon-size: 16px;
   color: ${leo.color.white};
 `

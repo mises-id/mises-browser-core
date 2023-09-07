@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/native'
 
 // types
 import { PanelButtonTypes } from './index'
@@ -77,20 +77,15 @@ const StyledButtonCssMixin = (p: StyledButtonProps) => {
   `
 }
 
-export const StyledButton = styled.button<StyledButtonProps>`
+export const StyledButton = styled.View<StyledButtonProps>`
   ${(p) => StyledButtonCssMixin(p)}
 `
 
-export const StyledLink = styled(Link).withConfig<StyledButtonProps>({
-  shouldForwardProp: (prop) => {
-    // prevents reactDOM errors (Link does not support these props)
-    return prop !== 'minWidth' && prop !== 'maxHeight' && prop !== 'buttonType'
-  }
-})`
+export const StyledLink = styled(Link)<StyledButtonProps>`
   ${(p) => StyledButtonCssMixin(p)}
 `
 
-export const ButtonText = styled.span<{
+export const ButtonText = styled.Text<{
   buttonType: PanelButtonTypes
 }>`
   font-size: 13px;
@@ -105,7 +100,7 @@ export const ButtonText = styled.span<{
   };
 `
 
-export const RejectIcon = styled.div`
+export const RejectIcon = styled.View`
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.theme.color.text02};
@@ -115,7 +110,7 @@ export const RejectIcon = styled.div`
   margin-right: 10px;
 `
 
-export const SignIcon = styled.div`
+export const SignIcon = styled.View`
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.theme.palette.white};
@@ -125,7 +120,7 @@ export const SignIcon = styled.div`
   margin-right: 10px;
 `
 
-export const ConfirmIcon = styled.div`
+export const ConfirmIcon = styled.View`
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.theme.palette.white};

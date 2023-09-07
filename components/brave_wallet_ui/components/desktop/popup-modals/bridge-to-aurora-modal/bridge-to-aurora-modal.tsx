@@ -46,7 +46,7 @@ export const BridgeToAuroraModal = ({ dontShowWarningAgain, onClose, onOpenRainb
           </Checkbox>
         </CheckboxWrapper>
         <OpenRainbowAppButton
-          onClick={onOpenRainbowAppClick}
+          onPress={onOpenRainbowAppClick}
         >
           <GlobeIcon />
           <ButtonText>{getLocale('braveWalletAuroraModalOPenButtonText')}</ButtonText>

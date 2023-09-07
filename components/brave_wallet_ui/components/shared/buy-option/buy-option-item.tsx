@@ -35,11 +35,11 @@ export const BuyOptionItem = (props: Props) => {
 
   return (
     <StyledWrapper layoutType={layoutType}>
-      <Logo src={icon} />
+      <Logo source={{uri: icon}} />
       <Content>
         <Name>{name}</Name>
         <Description>{description}</Description>
-        <StyledButton onClick={onClick}>
+        <StyledButton onPress={onClick}>
           {selectedOption === id &&
             <>
               <LoadIcon />

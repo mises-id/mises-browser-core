@@ -3,10 +3,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import InfoLogo from '../../../../assets/svg-icons/info-icon.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,44 +16,43 @@ export const StyledWrapper = styled.div`
   min-height: 320px;
 `
 
-export const Input = styled.input`
-  outline: none;
-  width: 250px;
-  background-image: none;
-  background-color: ${(p) => p.theme.color.background02};
-  box-shadow: none;
-  border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
-  border-radius: 4px;
-  font-family: Poppins;
-  font-style: normal;
-  font-size: 13px;
-  line-height: 20px;
-  letter-spacing: 0.01em;
-  padding: 10px;
-  margin-bottom: 15px;
-  color: ${(p) => p.theme.color.text01};
-  ::placeholder {
-    font-family: Poppins;
-    font-style: normal;
-    font-size: 12px;
-    letter-spacing: 0.01em;
-    color: ${(p) => p.theme.color.text03};
-    font-weight: normal;
-  }
-  :focus {
-    outline: none;
-  }
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  ::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`
+// export const Input = styled.input`
+//   outline: none;
+//   width: 250px;
+//   background-image: none;
+//   background-color: ${(p) => p.theme.color.background02};
+//   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
+//   border-radius: 4px;
+//   font-family: Poppins;
+//   font-style: normal;
+//   font-size: 13px;
+//   line-height: 20px;
+//   letter-spacing: 0.01em;
+//   padding: 10px;
+//   margin-bottom: 15px;
+//   color: ${(p) => p.theme.color.text01};
+//   ::placeholder {
+//     font-family: Poppins;
+//     font-style: normal;
+//     font-size: 12px;
+//     letter-spacing: 0.01em;
+//     color: ${(p) => p.theme.color.text03};
+//     font-weight: normal;
+//   }
+//   :focus {
+//     outline: none;
+//   }
+//   ::-webkit-inner-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+//   ::-webkit-outer-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+// `
 
-export const SelectWrapper = styled.div`
+export const SelectWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,7 +61,7 @@ export const SelectWrapper = styled.div`
   margin-bottom: 15px;
 `
 
-export const DisclaimerWrapper = styled.div`
+export const DisclaimerWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +72,7 @@ export const DisclaimerWrapper = styled.div`
   padding: 10px;
 `
 
-export const DisclaimerText = styled.span`
+export const DisclaimerText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -82,7 +81,7 @@ export const DisclaimerText = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const InfoIcon = styled.div`
+export const InfoIcon = styled.View`
   width: 12px;
   height: 12px;
   margin-top: 4px;
@@ -91,7 +90,7 @@ export const InfoIcon = styled.div`
   mask-image: url(${InfoLogo});
 `
 
-export const ImportRow = styled.div`
+export const ImportRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -100,7 +99,7 @@ export const ImportRow = styled.div`
   width: 250px;
 `
 
-export const ImportButton = styled.label`
+export const ImportButton = styled.Text`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,7 +116,7 @@ export const ImportButton = styled.label`
   color: ${(p) => p.theme.color.interactive07};
 `
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -125,7 +124,7 @@ export const ErrorText = styled.span`
   margin-bottom: 10px;
 `
 
-export const ImportDisclaimer = styled.div`
+export const ImportDisclaimer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;

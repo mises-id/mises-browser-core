@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -14,7 +14,7 @@ export const StyledWrapper = styled.div`
   padding: 0px 12px;
 `
 
-export const NavOutline = styled.div`
+export const NavOutline = styled.View`
   display: flex;
   height: 36px;
   width: 100%;
