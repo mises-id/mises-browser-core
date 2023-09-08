@@ -1,0 +1,14 @@
+diff --git a/ios/chrome/browser/ui/omnibox/omnibox_view_controller.mm b/ios/chrome/browser/ui/omnibox/omnibox_view_controller.mm
+index bbbd3e8f5212a3d03dd4911aa76a5306c69541a4..f2f940a05848387e3cdc9a8858e52173df536eea 100644
+--- a/ios/chrome/browser/ui/omnibox/omnibox_view_controller.mm
++++ b/ios/chrome/browser/ui/omnibox/omnibox_view_controller.mm
+@@ -523,6 +523,9 @@ - (void)updateCachedClipboardState {
+   if (self.isUpdatingCachedClipboardState) {
+     return;
+   }
++  if (!base::SequencedTaskRunner::HasCurrentDefault()) {
++      return;
++  }
+   self.isUpdatingCachedClipboardState = YES;
+   self.hasCopiedContent = NO;
+   ClipboardRecentContent* clipboardRecentContent =

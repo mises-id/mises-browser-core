@@ -99,3 +99,11 @@ patches/fixed
 yarn-error.log
 /src/build
 /src/chrome
+
+ios/third_party/mises/Frameworks
+ios/third_party/mises/Libs
+ios/third_party/mises/Sim
+ios/third_party/mises/Device
+sdk.xcframework
+ios/third_party/mises/Distribution
+ios/third_party/mises/Bundles/GoogleService-Info.plist

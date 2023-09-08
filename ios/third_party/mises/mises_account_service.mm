@@ -138,7 +138,7 @@ NSString* const kMisesReferrerKey = @"NSDefaultsReferrer";
 
 
 - (NSDictionary*) referrer {
-  id ref = [[NSUserDefaults standardUserDefaults] objectForKey:kMisesReferrerKey];
+  id ref = [[NSUserDefaults standardUserDefaults] boolForKey:kMisesReferrerKey];
   if ([ref isKindOfClass:[NSDictionary class]]) {
       return ref;
   }

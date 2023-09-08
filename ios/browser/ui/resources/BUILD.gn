@@ -118,6 +118,14 @@ imageset("mises_user_default") {
   ]
 }
 
+imageset("ntp_down") {
+  sources = [
+    "ntp_down.imageset/Contents.json",
+    "ntp_down.imageset/ntp_down.png",
+    "ntp_down.imageset/ntp_down@2x.png",
+  ]
+}
+
 
 imageset("popup_menu_mises_open_metamask") {
   sources = [
