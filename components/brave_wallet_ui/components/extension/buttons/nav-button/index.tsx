@@ -15,6 +15,7 @@ import {
   StyledLink
 } from './style'
 import { TouchableOpacity } from 'react-native'
+import { Row } from '../../../../components/shared/style'
 
 export type PanelButtonTypes =
   | 'primary'
@@ -61,7 +62,7 @@ export const NavButton: React.FC<Props> = ({
 }) => {
   // memos
   const buttonContent = React.useMemo(() => {
-    return <>
+    return <Row>
       {buttonType === 'reject' &&
         <RejectIcon />
       }
@@ -72,7 +73,7 @@ export const NavButton: React.FC<Props> = ({
         <ConfirmIcon />
       }
       <ButtonText buttonType={buttonType}>{text}</ButtonText>
-    </>
+    </Row>
   }, [buttonType, text])
 
   // render

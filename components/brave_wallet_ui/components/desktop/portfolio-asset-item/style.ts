@@ -94,7 +94,7 @@ export const Spacer = styled.View`
   height: 4px;
 `
 
-export const NetworkDescriptionText = styled.View`
+export const NetworkDescriptionText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;

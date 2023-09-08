@@ -11,7 +11,8 @@ interface StyleProps {
 
 export const StyledButton = styled(WalletButton) <Partial<StyleProps>>`
   display: flex;
-  width: 240px;
+  // width: 240px;
+  flex: 1;
   align-items: center;
   justify-content: center;
   flex-direction: column;

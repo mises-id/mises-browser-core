@@ -108,7 +108,7 @@ export const ConnectWithSite = (props: Props) => {
       return
     }
     if (addressToConnect) {
-      console.log("addressToConnect", originInfo)
+      console.log("addressToConnect", originInfo, addressToConnect)
       dispatch(
         PanelActions.connectToSite({
           addressToConnect: addressToConnect,
