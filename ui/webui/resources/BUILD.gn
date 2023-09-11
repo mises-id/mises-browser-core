@@ -33,11 +33,11 @@ group("grdp") {
 
 if (include_polymer) {
   build_cr_component("build") {
-    grd_prefix = "brave"
+    grd_prefix = "mises"
 
     # Ensure all the files are relative to this dir (with a brave/ prefix),
     # and not //ui/webui/resources which is the default for build_cr_component.
-    resource_path_prefix = "brave"
+    resource_path_prefix = "mises"
     if (include_polymer) {
       web_component_files = [
         "br_elements/br_toolbar/br_toolbar.ts",
@@ -84,9 +84,9 @@ if (include_polymer) {
 
 # Create a grdp that //ui/webui/resources can include in its main resources GRD
 generate_grd("static_grdp") {
-  grd_prefix = "brave_webui"
-  resource_path_prefix = "brave"
-  out_grd = "$mises_resources_extra_grdps_path/brave_static_resources.grdp"
+  grd_prefix = "mises_webui"
+  resource_path_prefix = "mises"
+  out_grd = "$mises_resources_extra_grdps_path/mises_static_resources.grdp"
   input_files = static_files + [
                   # TODO(petemill): ethereum_remote_client_page.html does not need to be served from chrome://resources
                   # and should be put in to it's own resource package.
@@ -102,10 +102,10 @@ generate_grd("static_grdp") {
 
 # Create a grdp that //ui/webui/resources can include in its main resources GRD
 generate_grd("fonts_grdp") {
-  grd_prefix = "brave_webui"
-  resource_path_prefix = "brave"
-  out_grd = "$mises_resources_extra_grdps_path/brave_fonts_resources.grdp"
-  input_files = brave_font_files
+  grd_prefix = "mises_webui"
+  resource_path_prefix = "mises"
+  out_grd = "$mises_resources_extra_grdps_path/mises_fonts_resources.grdp"
+  input_files = mises_font_files
   input_files_base_dir =
       rebase_path("$mises_resources_extra_grdps_path", root_build_dir)
   deps = [ ":fonts_copy" ]
@@ -166,9 +166,9 @@ leo_icons = [
 ]
 
 generate_grd("icons_grdp") {
-  grd_prefix = "brave_icons"
-  resource_path_prefix = "brave-icons"
-  out_grd = "$mises_resources_extra_grdps_path/brave_icons_resources.grdp"
+  grd_prefix = "mises_icons"
+  resource_path_prefix = "mises-icons"
+  out_grd = "$mises_resources_extra_grdps_path/mises_icons_resources.grdp"
 
   input_files = leo_icons
   input_files_base_dir =
@@ -185,7 +185,7 @@ copy("static_copy") {
 
 # Static files should be put relative to //ui/webui/resources main resources GRD
 copy("fonts_copy") {
-  sources = brave_font_files
+  sources = mises_font_files
   outputs = [ "$mises_resources_extra_grdps_path/{{source_target_relative}}" ]
 }
 

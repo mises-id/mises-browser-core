@@ -1,5 +1,5 @@
 include_rules = [
-  "+brave/components/content_settings/core/browser",
-  "+brave/components/brave_shields/common",
-  "+brave/components/constants",
+  "+mises/components/content_settings/core/browser",
+  "+mises/components/brave_shields/common",
+  "+mises/components/constants",
 ]

@@ -3,13 +3,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/permissions/brave_wallet_permission_prompt_android.h"
+#include "mises/browser/permissions/brave_wallet_permission_prompt_android.h"
 
 #include <utility>
 
-#include "brave/browser/permissions/brave_dapp_permission_prompt_dialog_controller_android.h"
-#include "brave/components/brave_wallet/browser/permission_utils.h"
-#include "brave/components/permissions/contexts/mises_wallet_permission_context.h"
+#include "mises/browser/permissions/brave_dapp_permission_prompt_dialog_controller_android.h"
+#include "mises/components/brave_wallet/browser/permission_utils.h"
+#include "mises/components/permissions/contexts/mises_wallet_permission_context.h"
 #include "components/permissions/android/permission_prompt/permission_prompt_android.h"
 #include "content/public/browser/web_contents.h"
 
