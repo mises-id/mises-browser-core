@@ -879,6 +879,7 @@ export const AppNavigation: FunctionComponent = () => {
                 headerShown: false,
                 headerMode: "screen",
                 ...TransitionPresets.SlideFromRightIOS,
+                animationEnabled: false
               }}
             >
               <Stack.Screen name="Unlock" component={UnlockScreen} />
