@@ -27,7 +27,7 @@ export function TransactionQueueStep () {
       <QueueStepText>
         {transactionQueueNumber} {getLocale('braveWalletQueueOf')} {transactionsQueueLength}
       </QueueStepText>
-      <QueueStepButton onClick={queueNextTransaction}>
+      <QueueStepButton onPress={queueNextTransaction}>
         {transactionQueueNumber === transactionsQueueLength
           ? getLocale('braveWalletQueueFirst')
           : getLocale('braveWalletQueueNext')}

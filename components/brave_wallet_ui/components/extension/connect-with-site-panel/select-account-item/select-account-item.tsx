@@ -24,8 +24,7 @@ import {
   BalanceText,
   NameAndAddressColumn,
   AccountCircle,
-  LeftSide,
-  SelectedIcon
+  LeftSide
 } from './select-account-item.style'
 import { LoadingSkeleton, Tooltip } from '../../../shared'
 
@@ -39,6 +38,8 @@ import {
   useGetNetworksQuery,
   useGetSelectedChainQuery
 } from '../../../../common/slices/api.slice'
+import { TouchableOpacity, View } from 'react-native'
+import { useStyle } from '../../../../page/styles'
 
 interface Props {
   account: WalletAccountType
@@ -46,7 +47,7 @@ interface Props {
   onSelectAccount: () => void
 }
 export const SelectAccountItem = (props: Props) => {
-  const { account, isSelected, onSelectAccount } = props
+  const { account, onSelectAccount, isSelected } = props
 
   // Wallet Selectors
   const userVisibleTokensInfo = useUnsafeWalletSelector(
@@ -126,36 +127,83 @@ export const SelectAccountItem = (props: Props) => {
     return new Amount(reducedAmounts).formatAsFiat(defaultFiatCurrency)
   }, [tokenListByAccount, spotPrices, defaultFiatCurrency])
 
+  const renderBall = (selected: boolean) => {
+    const style = useStyle()
+    if (selected) {
+      return (
+        <View
+          style={style.flatten([
+            "width-24",
+            "height-24",
+            "border-radius-32",
+            "background-color-blue-400",
+            "dark:background-color-blue-300",
+            "items-center",
+            "justify-center",
+          ])}
+        >
+          <View
+            style={style.flatten([
+              "width-12",
+              "height-12",
+              "border-radius-32",
+              "background-color-white",
+            ])}
+          />
+        </View>
+      );
+    } else {
+      return (
+        <View
+          style={style.flatten([
+            "width-24",
+            "height-24",
+            "border-radius-32",
+            "background-color-white",
+            "dark:background-color-platinum-600",
+            "border-width-1",
+            "border-color-gray-100",
+            "dark:border-color-platinum-300",
+          ])}
+        />
+      );
+    }
+  };
+
   return (
-    <ConnectPanelButton border="top" onClick={onSelectAccount}>
-      <LeftSide>
-        <AccountCircle orb={orb} />
-        <NameAndAddressColumn>
-          <AccountNameText>
-            {reduceAccountDisplayName(account.name, 22)}
-          </AccountNameText>
-          <Tooltip
-            isAddress={true}
-            minWidth={120}
-            maxWidth={120}
-            text={account.address}
-          >
-            <AccountAddressText>
-              {reduceAddress(account.address)}
-            </AccountAddressText>
-          </Tooltip>
-          {accountFiatValue === '' ? (
-            <LoadingSkeleton width={60} height={18} />
-          ) : (
-            <BalanceText>{accountFiatValue}</BalanceText>
-          )}
-        </NameAndAddressColumn>
-      </LeftSide>
-      <SelectedIcon
-        name={isSelected ? 'radio-checked' : 'radio-unchecked'}
-        isSelected={isSelected}
-      />
-    </ConnectPanelButton>
+    <TouchableOpacity onPress={onSelectAccount} style={{width: '100%'}}>
+      <ConnectPanelButton border="top">
+        <LeftSide>
+          <AccountCircle orb={orb} />
+          <NameAndAddressColumn>
+            <AccountNameText>
+              {reduceAccountDisplayName(account.name, 22)}
+            </AccountNameText>
+            <Tooltip
+              isAddress={true}
+              minWidth={120}
+              maxWidth={120}
+              text={account.address}
+            >
+              <AccountAddressText>
+                {reduceAddress(account.address)}
+              </AccountAddressText>
+            </Tooltip>
+            {accountFiatValue === '' ? (
+              <LoadingSkeleton width={60} height={18} />
+            ) : (
+              <BalanceText>{accountFiatValue}</BalanceText>
+            )}
+          </NameAndAddressColumn>
+        </LeftSide>
+        {/* {isSelected ? 'radio-checked' : 'radio-unchecked'} */}
+        {renderBall(isSelected)}
+        {/* <SelectedIcon
+          name={isSelected ? 'radio-checked' : 'radio-unchecked'}
+          isSelected={isSelected}
+        /> */}
+      </ConnectPanelButton>
+    </TouchableOpacity>
   )
 }
 

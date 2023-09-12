@@ -2,12 +2,11 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { OpenNewIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { OpenNewIcon } from 'brave-ui/components/icons'
 import { LockIconD, SafeIcon, InternetIcon, InfoIcon, SettingsAdvancedIcon } from '../../../assets/svg-icons/nav-button-icons'
-import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div<{ yPosition?: number }>`
+export const StyledWrapper = styled.View<{ yPosition?: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,14 +14,13 @@ export const StyledWrapper = styled.div<{ yPosition?: number }>`
   padding: 7px;
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 8px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
   top: ${(p) => p.yPosition !== undefined ? p.yPosition : 35}px;
   right: 15px;
   z-index: 20;
  `
 
-export const PopupButton = styled(WalletButton)`
+export const PopupButton = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -32,16 +30,17 @@ export const PopupButton = styled(WalletButton)`
   border-radius: 8px;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
   padding: 10px 0px;
   margin: 0px;
   background-color: transparent;
+  flex-direction: row;
   &:hover {
     background-color: ${(p) => p.theme.color.divider01};
   }
 `
 
-export const PopupButtonText = styled.span`
+export const PopupButtonText = styled.Text`
   flex: 1;
   font-family: Poppins;
   font-size: 13px;
@@ -51,7 +50,7 @@ export const PopupButtonText = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const SettingsIcon = styled.div`
+export const SettingsIcon = styled.View`
  width: 20px;
  height: 20px;
  margin-right: 18px;
@@ -62,7 +61,7 @@ export const SettingsIcon = styled.div`
  mask-size: contain;
 `
 
-export const ExplorerIcon = styled(OpenNewIcon)`
+export const ExplorerIcon = styled.View`
   width: 20px;
   height: 20px;
   color: ${(p) => p.theme.color.interactive07};
@@ -70,7 +69,7 @@ export const ExplorerIcon = styled(OpenNewIcon)`
   margin-left: 14px;
 `
 
-export const LockIcon = styled.div`
+export const LockIcon = styled.View`
   width: 20px;
   height: 20px;
   margin-right: 18px;
@@ -80,7 +79,7 @@ export const LockIcon = styled.div`
   mask-image: url(${LockIconD});
 `
 
-export const BackupIcon = styled.div`
+export const BackupIcon = styled.View`
   width: 20px;
   height: 20px;
   margin-right: 18px;
@@ -90,7 +89,7 @@ export const BackupIcon = styled.div`
   mask-image: url(${SafeIcon});
 `
 
-export const ConnectedSitesIcon = styled.div`
+export const ConnectedSitesIcon = styled.View`
   width: 20px;
   height: 20px;
   margin-right: 18px;
@@ -101,7 +100,7 @@ export const ConnectedSitesIcon = styled.div`
   mask-size: contain;
 `
 
-export const HelpCenterIcon = styled.div`
+export const HelpCenterIcon = styled.View`
   width: 20px;
   height: 20px;
   margin-right: 18px;

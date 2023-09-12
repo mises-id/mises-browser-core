@@ -111,7 +111,7 @@ export const WalletMorePopup = (props: Props) => {
   return (
     <StyledWrapper yPosition={yPosition}>
 
-      <PopupButton onClick={lockWallet}>
+      <PopupButton onPress={lockWallet}>
         <LockIcon />
         <PopupButtonText>
           {getLocale('braveWalletWalletPopupLock')}
@@ -119,7 +119,7 @@ export const WalletMorePopup = (props: Props) => {
       </PopupButton>
 
       {onClickBackup &&
-        <PopupButton onClick={onClickBackup}>
+        <PopupButton onPress={onClickBackup}>
           <BackupIcon />
           <PopupButtonText>
             {getLocale('braveWalletBackupButton')}
@@ -130,7 +130,7 @@ export const WalletMorePopup = (props: Props) => {
       {
         selectedNetwork &&
         selectedNetwork.coin !== BraveWallet.CoinType.FIL &&
-        <PopupButton onClick={onClickConnectedSites}>
+        <PopupButton onPress={onClickConnectedSites}>
           <ConnectedSitesIcon />
           <PopupButtonText>
             {getLocale('braveWalletWalletPopupConnectedSites')}
@@ -138,7 +138,7 @@ export const WalletMorePopup = (props: Props) => {
         </PopupButton>
       }
 
-      <PopupButton onClick={onClickSettings}>
+      <PopupButton onPress={onClickSettings}>
         <SettingsIcon />
         <PopupButtonText>
           {getLocale('braveWalletWalletPopupSettings')}
@@ -146,7 +146,7 @@ export const WalletMorePopup = (props: Props) => {
       </PopupButton>
 
       {onClickViewOnBlockExplorer &&
-        <PopupButton onClick={onClickViewOnBlockExplorer}>
+        <PopupButton onPress={onClickViewOnBlockExplorer}>
           <ExplorerIcon />
           <PopupButtonText>
             {getLocale('braveWalletTransactionExplorer')}
@@ -154,7 +154,7 @@ export const WalletMorePopup = (props: Props) => {
         </PopupButton>
       }
 
-      <PopupButton onClick={onClickHelpCenter}>
+      <PopupButton onPress={onClickHelpCenter}>
         <HelpCenterIcon />
         <PopupButtonText>
           {getLocale('braveWalletHelpCenter')}

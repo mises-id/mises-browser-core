@@ -128,7 +128,8 @@ const defaultState: WalletState = {
   passwordAttempts: 0,
   assetAutoDiscoveryCompleted: false,
   isNftPinningFeatureEnabled: false,
-  isPanelV2FeatureEnabled: false
+  isPanelV2FeatureEnabled: false,
+  showChainPop: false,
 }
 
 // async actions
@@ -517,7 +518,11 @@ export const createWalletSlice = (initialState: WalletState = defaultState) => {
             account.name = info.name
           }
         })
-      }
+      },
+
+      setChainPop (state: WalletState, { payload }: PayloadAction<boolean>) {
+        state.showChainPop = payload
+      },
     },
     extraReducers (builder) {
       builder.addCase(WalletAsyncActions.locked.type, (state) => {

@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import CaratDownIcon from '../../../assets/svg-icons/carat-down.svg'
 import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   position: relative;
@@ -34,11 +34,10 @@ export const Button = styled(WalletButton)`
   cursor: pointer;
 `
 
-export const Dropdown = styled.ul`
+export const Dropdown = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  box-shadow: 0px 0px 16px rgba(99, 105, 110, 0.18);
   border-radius: 4px;
   width: 100%;
   background-color: ${(p) => p.theme.color.background02};
@@ -49,7 +48,7 @@ export const Dropdown = styled.ul`
   z-index: 3;
 `
 
-export const CaratDown = styled.div`
+export const CaratDown = styled.View`
   width: 16px;
   height: 16px;
   background-color: ${(p) => p.theme.color.text02};

@@ -2,13 +2,13 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
 interface StyleProps {
   orb: string
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,7 +17,7 @@ export const StyledWrapper = styled.div`
   padding-bottom: 8px;
 `
 
-export const NameAndAddressColumn = styled.div`
+export const NameAndAddressColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -25,14 +25,14 @@ export const NameAndAddressColumn = styled.div`
   margin-left: 12px;
 `
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
 `
 
-export const RightSide = styled.div`
+export const RightSide = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -40,7 +40,7 @@ export const RightSide = styled.div`
   margin-right: 10px;
 `
 
-export const AccountCircle = styled.div<StyleProps>`
+export const AccountCircle = styled.View<StyleProps>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -48,7 +48,7 @@ export const AccountCircle = styled.div<StyleProps>`
   background-size: cover;
 `
 
-export const AccountNameText = styled.span`
+export const AccountNameText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -56,7 +56,7 @@ export const AccountNameText = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const AccountAddressText = styled.span`
+export const AccountAddressText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -69,7 +69,8 @@ export const PrimaryButton = styled(WalletButton) <Partial<StyleProps>>`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 0px;
   margin: 0px;
   font-family: Poppins;

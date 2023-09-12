@@ -27,7 +27,6 @@ export const Tip = styled(StyledDiv)`
   width: 220px;
   background-color: ${(p) => p.theme.color.background01};
   border: 1px solid ${(p) => p.theme.color.divider01};
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   white-space: normal; 
 `
 

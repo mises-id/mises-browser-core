@@ -23,6 +23,7 @@ import {
 
 import { PortfolioAssetItem } from '../../desktop'
 import { getAssetIdKey } from '../../../utils/asset-utils'
+import { Text } from 'react-native'
 export interface Props {
   userAssetList: BraveWallet.BlockchainToken[]
   selectedAccount?: WalletAccountType
@@ -61,9 +62,9 @@ const AssetsPanel = (props: Props) => {
   return (
     <StyledWrapper>
       <AddAssetButton
-        onClick={onAddAsset}
+        onPress={onAddAsset}
       >
-        {getLocale('braveWalletAddAsset')}
+        <Text>{getLocale('braveWalletAddAsset')}</Text>
       </AddAssetButton>
       {userAssetList?.map((asset) =>
         <PortfolioAssetItem

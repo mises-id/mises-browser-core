@@ -23,11 +23,11 @@ export function Origin (props: Props) {
   return (
     <>
       <FavIcon
-        src={
-          originInfo.originSpec.startsWith('chrome://wallet')
+        source={{
+          uri: originInfo.originSpec.startsWith('chrome://wallet')
             ? BraveIcon
             : `chrome://favicon/size/64@1x/${originInfo.originSpec}`
-        }
+        }}
       />
       <URLText>
         <CreateSiteOrigin originSpec={originInfo.originSpec} eTldPlusOne={originInfo.eTldPlusOne} />

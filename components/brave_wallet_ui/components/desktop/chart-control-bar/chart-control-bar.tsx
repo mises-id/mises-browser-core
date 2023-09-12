@@ -45,7 +45,7 @@ export const ChartControlBar = React.memo(({
         {timelineOptions.map((t) =>
           <StyledButton
             key={t.id}
-            onClick={() => onSelectTimeframe(t.id)}
+            onPress={() => onSelectTimeframe(t.id)}
             isSelected={selectedTimeline === t.id}
             disabled={disabled}
           >
@@ -61,7 +61,7 @@ export const ChartControlBar = React.memo(({
 
       {onDisabledChanged &&
         <ToggleVisibilityButton
-          onClick={toggleIsDisabled}
+          onPress={toggleIsDisabled}
         >
           <ToggleVisibilityIcon
             isVisible={!disabled}

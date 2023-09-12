@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // icons
 import EyeOnIcon from '../../../assets/svg-icons/eye-on-icon.svg'
@@ -12,7 +12,7 @@ import EyeOffIcon from '../../../assets/svg-icons/eye-off-icon.svg'
 // styles
 import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,7 +21,8 @@ export const StyledWrapper = styled.div`
   box-sizing: border-box;
   border-radius: 12px;
   padding: 8px;
-  background: none;
+  background-image: none;
+  background-color: none;;
   --selected-color: ${p => p.theme.palette.white};
   @media (prefers-color-scheme: dark) {
     --selected-color: ${p => p.theme.color.background02};
@@ -36,13 +37,13 @@ export const StyledButton = styled(WalletButton)<{ isSelected?: boolean }>`
   border-radius: 4px;
   outline: none;
   padding: 4px 6px;
-  background: ${(p) =>
+  background-image: ${(p) =>
     p.isSelected && !p.disabled ? p.theme.color.text02 : 'none'};
   border: none;
   margin: 0px 2px;
 `
 
-export const ButtonText = styled.span<{ isSelected?: boolean, disabled?: boolean }>`
+export const ButtonText = styled.Text<{ isSelected?: boolean, disabled?: boolean }>`
   font-family: Poppins;
   font-size: 14px;
   font-weight: 600;
@@ -58,7 +59,8 @@ export const ButtonText = styled.span<{ isSelected?: boolean, disabled?: boolean
 export const ToggleVisibilityButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   padding-left: 4px;
   padding-right: 4px;
@@ -67,7 +69,7 @@ export const ToggleVisibilityButton = styled(WalletButton)`
   justify-content: center;
 `
 
-export const ToggleVisibilityIcon = styled.div<{
+export const ToggleVisibilityIcon = styled.View<{
   isVisible: boolean
 }>`
   width: 18px;

@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import * as React from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components/native'
 import DefaultTheme from 'brave-ui/theme/brave-default'
 import DefaultDarkTheme from 'brave-ui/theme/brave-dark'
 import IBraveTheme from 'brave-ui/theme/theme-interface'

@@ -25,7 +25,7 @@ export default class AddButton extends React.PureComponent<Props, {}> {
       editIcon
     } = this.props
     return (
-      <StyledButton disabled={disabled} buttonType={buttonType} onClick={onSubmit}>
+      <StyledButton disabled={disabled} buttonType={buttonType} onPress={onSubmit}>
         {!editIcon ? (
           <PlusIcon />
         ) : (

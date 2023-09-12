@@ -227,6 +227,7 @@ export interface AssetPriceWithContractAndChainId extends BraveWallet.AssetPrice
 }
 
 export interface WalletState {
+  showChainPop: boolean
   hasInitialized: boolean
   isFilecoinEnabled: boolean
   isSolanaEnabled: boolean
@@ -269,7 +270,7 @@ export interface WalletState {
   passwordAttempts: number
   assetAutoDiscoveryCompleted: boolean
   isNftPinningFeatureEnabled: boolean
-  isPanelV2FeatureEnabled: boolean
+  isPanelV2FeatureEnabled: boolean,
 }
 
 export interface PanelState {

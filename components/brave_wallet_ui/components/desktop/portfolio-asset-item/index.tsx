@@ -140,7 +140,7 @@ export const PortfolioAssetItem = ({
     <>
       {token.visible &&
         <StyledWrapper isPanel={isPanel}>
-          <ButtonArea disabled={isLoading} rightMargin={isAccountDetails ? 10 : 0} onClick={action}>
+          <ButtonArea disabled={isLoading} rightMargin={isAccountDetails ? 10 : 0} onPress={action}>
             <NameAndIcon>
               <IconsWrapper>
                 {!token.logo
@@ -211,7 +211,7 @@ export const PortfolioAssetItem = ({
           {isAccountDetails &&
             <SellButtonRow>
               {isSellSupported && !isAssetsBalanceZero &&
-                <SellButton onClick={showSellModal}>{getLocale('braveWalletSell')}</SellButton>
+                <SellButton onPress={showSellModal}>{getLocale('braveWalletSell')}</SellButton>
               }
             </SellButtonRow>
           }

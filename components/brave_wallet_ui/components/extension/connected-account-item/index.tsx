@@ -126,7 +126,7 @@ const SitePermissionAccountItem = (props: Props) => {
       </LeftSide>
       <RightSide>
         <PrimaryButton
-          onClick={onClickConnectDisconnectOrSwitch}
+          onPress={onClickConnectDisconnectOrSwitch}
         >
           {buttonText}
         </PrimaryButton>

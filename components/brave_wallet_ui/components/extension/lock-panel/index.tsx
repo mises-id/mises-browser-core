@@ -24,9 +24,12 @@ import {
   StyledWrapper,
   Title,
   Column,
-  PanelIcon,
   RestoreButton
 } from './style'
+import { TouchableOpacity } from 'react-native'
+import { Image } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { useStyle } from '../../../page/styles'
 
 export interface Props {
   onSubmit: (password: string) => void
@@ -69,10 +72,19 @@ export function LockPanel ({
     setInputValue('')
   }, [onSubmit, inputValue])
 
+  const style = useStyle()
+
   // render
   return (
     <StyledWrapper hideBackground={hideBackground}>
-      <PanelIcon />
+      <Image
+        style={StyleSheet.flatten([
+          style.flatten(["width-full", "height-90"]),
+        ])}
+        fadeDuration={0}
+        resizeMode="contain"
+        source={require("./assets/logo/splash-image.png")}
+      />
       <Title>{getLocale('braveWalletLockScreenTitle')}</Title>
       <Column>
         <PasswordInput
@@ -91,9 +103,9 @@ export function LockPanel ({
         onSubmit={onClickUnlockButton}
         disabled={disabled || inputValue === ''}
       />
-      {onClickRestore && <RestoreButton onClick={onClickRestore}>
+      {onClickRestore && <TouchableOpacity onPress={onClickRestore}><RestoreButton>
         {getLocale('braveWalletWelcomeRestoreButton')}
-      </RestoreButton>}
+      </RestoreButton></TouchableOpacity>}
     </StyledWrapper>
   )
 }

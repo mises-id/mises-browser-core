@@ -114,10 +114,10 @@ export const AccountListItem = ({
         <AccountAndAddress>
           <AccountNameRow>
             {isHardwareWallet && <HardwareIcon />}
-            <AccountNameButton onClick={onSelectAccount}>{account.name}</AccountNameButton>
+            <AccountNameButton onPress={onSelectAccount}>{account.name}</AccountNameButton>
           </AccountNameRow>
           <AddressAndButtonRow>
-            <AccountAddressButton onClick={onSelectAccount}>{reduceAddress(account.address)}</AccountAddressButton>
+            <AccountAddressButton onPress={onSelectAccount}>{reduceAddress(account.address)}</AccountAddressButton>
             <CopyTooltip text={account.address}>
               <CopyIcon />
             </CopyTooltip>

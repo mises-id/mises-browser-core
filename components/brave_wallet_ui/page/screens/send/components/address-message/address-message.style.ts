@@ -3,13 +3,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Shared Styles
 import { Icon } from '../../shared.styles'
 import { WalletButton } from '../../../../../components/shared/style'
 
-export const LearnMoreLink = styled.a`
+export const LearnMoreLink = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -28,7 +28,8 @@ export const LearnMoreLink = styled.a`
 export const HowToSolveButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   font-family: 'Poppins';
   font-style: normal;

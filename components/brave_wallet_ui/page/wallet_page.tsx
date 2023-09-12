@@ -8,7 +8,6 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { initLocale } from 'brave-ui'
 import { BrowserRouter } from 'react-router-dom'
-
 // assets
 import faveiconUrl from '../assets/svg-icons/brave-icon.svg'
 
@@ -25,7 +24,7 @@ import { ApiProxyContext } from '../common/context/api-proxy.context'
 
 // components
 import BraveCoreThemeProvider from '../../common/BraveCoreThemeProvider'
-import Container from './container'
+// import Container from './container'
 import { store, walletPageApiProxy } from './store'
 
 // style
@@ -35,7 +34,15 @@ import 'emptykit.css'
 
 import '@brave/leo/tokens/css/variables.css'
 import { setIconBasePath } from '@brave/leo/react/icon'
-setIconBasePath('chrome://resources/mises-icons')
+import { AppNavigation } from './navigation'
+import { StyleProvider, useStyle } from './styles'
+import { StatusBar } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { ModalsProvider } from './modals/base'
+import { LoadingScreenProvider } from './providers/loading-screen'
+import { ConfirmModalProvider } from './providers/confirm-modal'
+// import { AppNavigation } from './navigation'
+setIconBasePath('chrome://resources/brave-icons')
 
 function App () {
   const [initialThemeType, setInitialThemeType] = React.useState<chrome.braveTheme.ThemeType>()
@@ -55,6 +62,18 @@ function App () {
     link.href = faveiconUrl
   }, [])
 
+  const ThemeStatusBar: React.FunctionComponent = () => {
+    const style = useStyle();
+
+    return (
+      <StatusBar
+        translucent={true}
+        backgroundColor="#FFFFFF00"
+        barStyle={style.get("status-bar-style")}
+      />
+    );
+  };
+
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -66,7 +85,32 @@ function App () {
           >
             <ApiProxyContext.Provider value={walletPageApiProxy}>
               <LibContext.Provider value={Lib}>
-                <Container />
+                {/* <Container /> */}
+                {/* <NavigationContainer>
+                  <Stack.Navigator
+                    initialRouteName={"Unlock"}
+                    screenOptions={{
+                      headerShown: false,
+                      ...TransitionPresets.SlideFromRightIOS,
+                    }}
+                    headerMode= "screen"
+                  >
+                    <Stack.Screen name="Unlock" component={UnlockScreen1} />
+                  </Stack.Navigator>
+                </NavigationContainer> */}
+                <StyleProvider>
+                  <ThemeStatusBar />
+                  <SafeAreaProvider>
+                    <ModalsProvider>
+                      <LoadingScreenProvider>
+                        <ConfirmModalProvider>
+                          <AppNavigation />
+                        </ConfirmModalProvider>
+                      </LoadingScreenProvider>
+                    </ModalsProvider>
+                  </SafeAreaProvider>
+                </StyleProvider>
+                {/* <UnlockScreen1 /> */}
               </LibContext.Provider>
             </ApiProxyContext.Provider>
           </BraveCoreThemeProvider>

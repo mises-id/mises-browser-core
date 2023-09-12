@@ -58,7 +58,7 @@ function SelectNetworkItem (props: Props) {
 
   // render
   return (
-    <StyledWrapper onClick={onSelectNetwork} data-test-chain-id={'chain-' + network.chainId}>
+    <StyledWrapper onPress={onSelectNetwork} data-test-chain-id={'chain-' + network.chainId}>
       <LeftSide>
         {network.chainId !== AllNetworksOption.chainId &&
           <CreateNetworkIcon network={network} marginRight={14} />

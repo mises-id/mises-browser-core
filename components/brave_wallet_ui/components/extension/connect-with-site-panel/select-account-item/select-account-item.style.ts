@@ -4,11 +4,10 @@
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as leo from '@brave/leo/tokens/css'
-import Icon from '@brave/leo/react/icon'
-import styled from 'styled-components'
-import { WalletButton } from '../../../shared/style'
+// import Icon from '@brave/leo/react/icon'
+import styled from 'styled-components/native'
 
-export const ConnectPanelButton = styled(WalletButton)<{
+export const ConnectPanelButton = styled.View<{
   border?: 'top' | 'bottom'
 }>`
   display: flex;
@@ -19,7 +18,6 @@ export const ConnectPanelButton = styled(WalletButton)<{
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
   padding: 8px 0px;
   border-top: ${(p) =>
     p.border === 'top' ? `1px solid ${leo.color.divider.subtle}` : 'none'};
@@ -27,7 +25,7 @@ export const ConnectPanelButton = styled(WalletButton)<{
     p.border === 'bottom' ? `1px solid ${leo.color.divider.subtle}` : 'none'};
 `
 
-export const NameAndAddressColumn = styled.div`
+export const NameAndAddressColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -35,14 +33,14 @@ export const NameAndAddressColumn = styled.div`
   margin-left: 12px;
 `
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
 `
 
-export const AccountCircle = styled.div<{
+export const AccountCircle = styled.View<{
   orb: string
 }>`
   width: 40px;
@@ -52,7 +50,7 @@ export const AccountCircle = styled.div<{
   background-size: cover;
 `
 
-export const AccountNameText = styled.span`
+export const AccountNameText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 14px;
@@ -61,7 +59,7 @@ export const AccountNameText = styled.span`
   color: ${leo.color.text.primary};
 `
 
-export const AccountAddressText = styled.span`
+export const AccountAddressText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 12px;
@@ -70,7 +68,7 @@ export const AccountAddressText = styled.span`
   color: ${leo.color.text.primary};
 `
 
-export const BalanceText = styled.span`
+export const BalanceText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 12px;
@@ -79,7 +77,7 @@ export const BalanceText = styled.span`
   color: ${leo.color.text.secondary};
 `
 
-export const SelectedIcon = styled(Icon)<{ isSelected: boolean }>`
+export const SelectedIcon = styled.View<{ isSelected: boolean }>`
   --leo-icon-size: 20px;
   color: ${(p) =>
     p.isSelected ? leo.color.primary[40] : leo.color.icon.default};

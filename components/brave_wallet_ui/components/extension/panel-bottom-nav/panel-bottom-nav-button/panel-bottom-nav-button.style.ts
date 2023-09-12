@@ -3,8 +3,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
-import Icon from '@brave/leo/react/icon'
+import styled from 'styled-components/native'
+// import Icon from '@brave/leo/react/icon'
 
 // Shared Styles
 import { WalletButton } from '../../../shared/style'
@@ -17,9 +17,12 @@ export const Button = styled(WalletButton)`
   flex-direction: row;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   pointer-events: auto;
-  border-right: 1px solid rgba(255,255,255,0.5);
+  border-right-width: 1px;
+  border-right-color: rgba(255,255,255,0.5);
+  border-right-style: solid;
   height: 100%;
   box-sizing: border-box;
   cursor: pointer;
@@ -29,7 +32,7 @@ export const Button = styled(WalletButton)`
   }
 `
 
-export const ButtonIcon = styled(Icon)`
+export const ButtonIcon = styled.View`
   --leo-icon-size: 18px;
   color: ${(p) => p.theme.palette.white};
 `

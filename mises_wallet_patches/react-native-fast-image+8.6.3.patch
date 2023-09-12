@@ -1,0 +1,42 @@
+diff --git a/node_modules/react-native-fast-image/dist/index.js b/node_modules/react-native-fast-image/dist/index.js
+index 58e0308..93f17c9 100644
+--- a/node_modules/react-native-fast-image/dist/index.js
++++ b/node_modules/react-native-fast-image/dist/index.js
+@@ -1,6 +1,6 @@
+ import _extends from '@babel/runtime/helpers/extends';
+ import React, { forwardRef, memo } from 'react';
+-import { NativeModules, StyleSheet, requireNativeComponent, Image, View, Platform } from 'react-native';
++import { NativeModules, StyleSheet, Image, View, Platform } from 'react-native';
+ 
+ const resizeMode = {
+   contain: 'contain',
+@@ -124,14 +124,20 @@ const styles = StyleSheet.create({
+   }
+ }); // Types of requireNativeComponent are not correct.
+ 
+-const FastImageView = requireNativeComponent('FastImageView', FastImage, {
+-  nativeOnly: {
+-    onFastImageLoadStart: true,
+-    onFastImageProgress: true,
+-    onFastImageLoad: true,
+-    onFastImageError: true,
+-    onFastImageLoadEnd: true
+-  }
+-});
++let FastImageView;
++if (Platform.OS === 'web') {
++  FastImageView = Image
++} else {
++  const { requireNativeComponent } = require('react-native')
++  FastImageView = requireNativeComponent('FastImageView', FastImage, {
++    nativeOnly: {
++      onFastImageLoadStart: true,
++      onFastImageProgress: true,
++      onFastImageLoad: true,
++      onFastImageError: true,
++      onFastImageLoadEnd: true
++    }
++  });
++}
+ 
+ export default FastImage;

@@ -22,7 +22,7 @@ export const IconWrapper = styled.div<StyleProps>`
   border-radius: ${(p) => p.isPlaceholder ? '100%' : '0px'};
   margin-right: ${(p) => `${p.marginRight}px`};
   margin-left: ${(p) => `${p.marginLeft}px`};
-  background: ${(p) => p.panelBackground ? p.panelBackground : 'none'};
+  background-color: ${(p) => p.panelBackground ? p.panelBackground : 'none'};
 `
 
 export const PlaceholderText = styled.span<Partial<StyleProps>>`

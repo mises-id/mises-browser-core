@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../style'
 import CheckMark from '../../../assets/svg-icons/big-checkmark.svg'
 
@@ -18,20 +18,21 @@ export const StyledWrapper = styled(WalletButton)`
   justify-content: space-between;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   margin-bottom: 10px;
   padding: 0px;
 `
 
-export const AccountAndAddress = styled.div`
+export const AccountAndAddress = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 `
 
-export const AccountName = styled.span`
+export const AccountName = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -40,7 +41,7 @@ export const AccountName = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const AccountAddress = styled.span`
+export const AccountAddress = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -48,7 +49,7 @@ export const AccountAddress = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const AccountCircle = styled.div<StyleProps>`
+export const AccountCircle = styled.View<StyleProps>`
   width: 24px;
   height: 24px;
   border-radius: 100%;
@@ -57,7 +58,7 @@ export const AccountCircle = styled.div<StyleProps>`
   margin-right: 8px;
 `
 
-export const BigCheckMark = styled.div`
+export const BigCheckMark = styled.View`
   width: 14px;
   height: 14px;
   background-color: ${(p) => p.theme.color.text01};
@@ -66,7 +67,7 @@ export const BigCheckMark = styled.div`
   margin-right: 8px;
 `
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -74,7 +75,7 @@ export const LeftSide = styled.div`
   margin-right: 6px;
 `
 
-export const SwitchAccountIconContainer = styled.div`
+export const SwitchAccountIconContainer = styled.View`
   padding-left: 8;
   padding-right: 8;
 `

@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Assets
 import IdeaIcon from '../../../assets/svg-icons/idea.svg'
@@ -28,7 +28,7 @@ export const Button = styled(WalletButton)`
   z-index: 10;
 `
 
-export const ButtonText = styled.span`
+export const ButtonText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -37,7 +37,7 @@ export const ButtonText = styled.span`
   color: ${p => p.theme.palette.white};
 `
 
-export const IdeaButtonIcon = styled.span`
+export const IdeaButtonIcon = styled.Text`
  width: 24px;
  height: 24px;
  background-color: ${(p) => p.theme.palette.white};

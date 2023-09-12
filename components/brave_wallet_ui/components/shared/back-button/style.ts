@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { CaratStrongLeftIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { CaratStrongLeftIcon } from 'brave-ui/components/icons'
 import { WalletButton } from '../style'
 
 // Will use brave-ui button comp in the future!
@@ -14,7 +14,8 @@ export const StyledWrapper = styled(WalletButton)`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 3px 14px;
   font-family: Poppins;
   font-weight: 600;
@@ -26,7 +27,7 @@ export const StyledWrapper = styled(WalletButton)`
   border-radius: 48px;
 `
 
-export const BackIcon = styled(CaratStrongLeftIcon)`
+export const BackIcon = styled.View`
   width: auto;
   height: 14px;
   margin-right: 8px;

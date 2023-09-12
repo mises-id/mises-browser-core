@@ -103,7 +103,7 @@ export const ConnectHardwareWalletPanel = ({
         </Description>
       </ConnectionRow>
       <Title>{title}</Title>
-      <InstructionsButton onClick={onClickInstructions}>{getLocale('braveWalletConnectHardwarePanelInstructions')}</InstructionsButton>
+      <InstructionsButton onPress={onClickInstructions}>{getLocale('braveWalletConnectHardwarePanelInstructions')}</InstructionsButton>
       <PageIcon />
       {
         hardwareWalletCode !== 'deviceBusy' && (hardwareWalletCode === 'unauthorized'

@@ -49,7 +49,7 @@ export const SelectNetworkDropdown = (props: Props) => {
       useWithSearch={useWithSearch}
     >
       <NetworkButton
-        onClick={onClick}
+        onPress={onClick}
         useWithSearch={useWithSearch}
       >
         <LeftSide>

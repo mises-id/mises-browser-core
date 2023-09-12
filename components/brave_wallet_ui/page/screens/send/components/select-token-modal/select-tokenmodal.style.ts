@@ -22,7 +22,6 @@ export const Wrapper = styled(StyledDiv)`
 export const Modal = styled(StyledDiv)`
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 22px;
-  box-shadow: 0px 0px 24px rgba(99, 105, 110, 0.36);
   box-sizing: border-box;
   flex-direction: column;
   height: 85%;
@@ -33,9 +32,6 @@ export const Modal = styled(StyledDiv)`
   z-index: 20;
   @media screen and (max-width: 570px) {
     width: 90%;
-  }
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.36);
   }
 `
 

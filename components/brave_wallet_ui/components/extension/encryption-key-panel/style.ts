@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
 
 interface StyleProps {
@@ -10,7 +10,7 @@ interface StyleProps {
   needsCenterAlignment: boolean
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
@@ -20,7 +20,7 @@ export const StyledWrapper = styled.div`
   background-color: ${(p) => p.theme.color.background01};
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@ export const TopRow = styled.div`
   padding: 15px 15px 0px 15px;
 `
 
-export const AccountCircle = styled.div<Partial<StyleProps>>`
+export const AccountCircle = styled.View<Partial<StyleProps>>`
   width: 54px;
   height: 54px;
   border-radius: 100%;
@@ -38,7 +38,7 @@ export const AccountCircle = styled.div<Partial<StyleProps>>`
   margin-bottom: 13px;
 `
 
-export const AccountNameText = styled.span`
+export const AccountNameText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -49,7 +49,7 @@ export const AccountNameText = styled.span`
   margin-bottom: 2px;
 `
 
-export const NetworkText = styled.span`
+export const NetworkText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -57,7 +57,7 @@ export const NetworkText = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const PanelTitle = styled.span`
+export const PanelTitle = styled.Text`
   width: 80%;
   font-family: Poppins;
   font-size: 18px;
@@ -69,7 +69,7 @@ export const PanelTitle = styled.span`
   margin-bottom: 6px;
 `
 
-export const MessageBox = styled.div<Partial<StyleProps>>`
+export const MessageBox = styled.View<Partial<StyleProps>>`
   display: flex;
   align-items: ${(p) => p.needsCenterAlignment ? 'center' : 'flex-start'};
   justify-content: ${(p) => p.needsCenterAlignment ? 'center' : 'flex-start'};
@@ -85,7 +85,7 @@ export const MessageBox = styled.div<Partial<StyleProps>>`
   overflow-y: scroll;
 `
 
-export const MessageText = styled.span`
+export const MessageText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -95,7 +95,7 @@ export const MessageText = styled.span`
   word-break: break-word;
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,7 +113,8 @@ export const DecryptButton = styled(WalletButton)`
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.01em;
-  background: none;
+  background-image: none;
+  background-color: none;;
   color: ${(p) => p.theme.color.interactive05};
   @media (prefers-color-scheme: dark) {
     color: ${(p) => p.theme.palette.blurple300};

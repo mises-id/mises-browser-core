@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-export const BubbleContainer = styled.div`
+import styled from 'styled-components/native'
+export const BubbleContainer = styled.View`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -17,7 +17,7 @@ export const BubbleContainer = styled.div`
   box-sizing: border-box;
 `
 
-export const SelectWrapper = styled.div`
+export const SelectWrapper = styled.View`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -26,7 +26,7 @@ export const SelectWrapper = styled.div`
   max-height: 100%;
 `
 
-export const SelectScrollSearchContainer = styled.div`
+export const SelectScrollSearchContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,7 +37,7 @@ export const SelectScrollSearchContainer = styled.div`
   max-height: 100%;
 `
 
-export const SelectScrollContainer = styled.div`
+export const SelectScrollContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,6 +45,7 @@ export const SelectScrollContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   position: absolute;
+  height: 335px;
   top: 50px;
   bottom: 18px;
   left: 18px;

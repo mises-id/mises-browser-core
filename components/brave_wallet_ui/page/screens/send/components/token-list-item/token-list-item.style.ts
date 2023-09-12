@@ -48,7 +48,6 @@ export const ButtonWrapper = styled(StyledDiv)`
   margin-bottom: 8px;
   &:hover {
     background-color: var(--background-hover);
-    box-shadow: var(--shadow-hover);
   }
 `
 

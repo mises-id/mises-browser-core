@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import * as leo from '@brave/leo/tokens/css'
 
 // types
@@ -17,7 +17,7 @@ import Upload from '../../../assets/svg-icons/nft-ipfs/upload.svg'
 import Check from '../../../assets/svg-icons/nft-ipfs/check.svg'
 import Close from '../../../assets/svg-icons/close.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -26,7 +26,7 @@ export const StyledWrapper = styled.div`
   position: relative;
 `
 
-export const ContentWrapper = styled.div<{
+export const ContentWrapper = styled.View<{
   pinningStatus: BraveWallet.TokenPinStatusCode
 }>`
   --success-background: ${leo.color.systemfeedback.successBackground};
@@ -59,7 +59,7 @@ export const ContentWrapper = styled.div<{
       : 'var(--failed-background)'};
 `
 
-export const StatusIcon = styled.div`
+export const StatusIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,10 +101,10 @@ export const ReportButton = styled(WalletButton)`
   color: #4c54d2;
   outline: none;
   border: none;
-  background: transparent;
+  background-color: transparent;
 `
 
-export const Text = styled.span`
+export const Text = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -113,7 +113,7 @@ export const Text = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const ReasonsTooltipWrapper = styled.div`
+export const ReasonsTooltipWrapper = styled.View`
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -121,21 +121,20 @@ export const ReasonsTooltipWrapper = styled.div`
   justify-content: flex-start;
   z-index: 3;
   background-color: ${(p) => p.theme.color.background01};
-  box-shadow: 0px 0px 24px rgba(99, 105, 110, 0.36);
   width: 246px;
   border-radius: 6px;
   bottom: 36px;
   left: 0;
 `
 
-export const TooltipContent = styled.div`
+export const TooltipContent = styled.View`
   position: relative;
   padding: 8px 16px 12px;
   width: 100%;
   height: 100%;
 `
 
-export const TooltipHeading = styled.div`
+export const TooltipHeading = styled.View`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -145,7 +144,7 @@ export const TooltipHeading = styled.div`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const TooltipList = styled.ul`
+export const TooltipList = styled.View`
   list-style-position: inside;
   margin: 8px 0 0 0;
   padding: 0;
@@ -162,7 +161,7 @@ export const TooltipList = styled.ul`
   }
 `
 
-export const ArrowDown = styled.div`
+export const ArrowDown = styled.View`
   width: 0;
   height: 0;
   border-left: 8px solid transparent;

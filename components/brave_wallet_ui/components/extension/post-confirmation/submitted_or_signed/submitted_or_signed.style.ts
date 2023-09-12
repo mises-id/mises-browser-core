@@ -10,7 +10,7 @@ import { WalletButton } from '../../../shared/style'
 import { TransactionStatusIcon, TransactionStatusText } from '../common/common.style'
 
 export const SubmittedOrSignedIcon = styled(TransactionStatusIcon)`
-  background: url(${SubmittedOrSignedSvg});
+  background-image: url(${SubmittedOrSignedSvg});
   background-size: contain;
 `
 
@@ -26,7 +26,8 @@ export const DetailButton = styled(WalletButton)`
   line-height: 20px;
   text-align: center;
   color: ${p => p.theme.color.interactive05};
-  background: none;
+  background-image: none;
+  background-color: none;;
   cursor: pointer;
   outline: none;
   border: none;

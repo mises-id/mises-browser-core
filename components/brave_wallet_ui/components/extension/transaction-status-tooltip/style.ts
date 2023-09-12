@@ -18,7 +18,7 @@ export const Tip = styled.div`
   transform: translateX(calc(-50% - 30px)) translateY(25%);
   padding: 6px;
   color: ${(p) => p.theme.palette.white};
-  background: ${(p) => p.theme.palette.black};
+  background-color: ${(p) => p.theme.palette.black};
   z-index: 120;
   font-family: Poppins;
   font-size: 12px;

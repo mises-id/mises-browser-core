@@ -24,12 +24,12 @@ import {
   SiteName,
   SiteURL,
   MessageBox,
-  InfoIcon,
+  // InfoIcon,
   BackButton,
-  BackIcon,
+  // BackIcon,
   GradientLine,
   LinkIconCircle,
-  LinkIcon
+  // LinkIcon
 } from './connect-with-site-header.style'
 import { AccountCircle } from '../select-account-item/select-account-item.style'
 import { HorizontalSpace, Column, Row } from '../../../shared/style'
@@ -63,8 +63,8 @@ export const ConnectWithSiteHeader = (props: Props) => {
         justifyContent="space-between"
       >
         {isReadyToConnect ? (
-          <BackButton onClick={onBack}>
-            <BackIcon name="arrow-left" />
+          <BackButton onPress={onBack}>
+            {/* <BackIcon name="arrow-left" /> */}
           </BackButton>
         ) : (
           <HorizontalSpace space="24px" />
@@ -91,14 +91,14 @@ export const ConnectWithSiteHeader = (props: Props) => {
               </Tooltip>
               <GradientLine>
                 <LinkIconCircle>
-                  <LinkIcon name="link-normal" />
+                  {/* <LinkIcon name="link-normal" /> */}
                 </LinkIconCircle>
               </GradientLine>
               <Tooltip
                 text={originInfo.eTldPlusOne}
               >
                 <FavIcon
-                  src={`chrome://favicon/size/64@1x/${originInfo.originSpec}`}
+                  source={{ uri: `chrome://favicon/size/64@1x/${originInfo.originSpec}`}}
                   isReadyToConnect={isReadyToConnect}
                 />
               </Tooltip>
@@ -108,7 +108,7 @@ export const ConnectWithSiteHeader = (props: Props) => {
           {!isReadyToConnect && (
             <Row justifyContent="flex-start" marginBottom={16}>
               <FavIcon
-                src={`chrome://favicon/size/64@1x/${originInfo.originSpec}`}
+                source={{ uri: `chrome://favicon/size/64@1x/${originInfo.originSpec}`}}
                 isReadyToConnect={isReadyToConnect}
               />
               <Column alignItems="flex-start">
@@ -124,7 +124,7 @@ export const ConnectWithSiteHeader = (props: Props) => {
           )}
 
           <MessageBox padding="8px 16px" justifyContent="flex-start">
-            <InfoIcon name="info-filled" />
+            {/* <InfoIcon name="info-filled" /> */}
             {getLocale('braveWalletConnectTrustWarning')}
           </MessageBox>
         </Column>

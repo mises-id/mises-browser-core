@@ -15,7 +15,6 @@ import { StyledButton, StyledDiv } from '../../../send/shared.styles'
 export const Button = styled(StyledButton)`
   background-color: ${(p) => p.theme.color.background01};
   border-radius: 100%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
   height: 40px;
   width: 40px;
   margin-right: 16px;
@@ -24,7 +23,6 @@ export const Button = styled(StyledButton)`
     background-color: #f0f1fc;
   }
   @media (prefers-color-scheme: dark) {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.36);
     &:hover {
       /* #484b67 does not exist in the design system */
       background-color: #484b67;

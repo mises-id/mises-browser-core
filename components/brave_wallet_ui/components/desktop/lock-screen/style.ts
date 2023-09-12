@@ -2,12 +2,12 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import SecureIcon from '../../../assets/svg-icons/onboarding/secure-your-crypto.svg'
 import SecureIconDark from '../../../assets/svg-icons/onboarding/secure-your-crypto-dark.svg'
 import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@ export const StyledWrapper = styled.div`
   padding-top: 32px;
 `
 
-export const Title = styled.span`
+export const Title = styled.Text`
   font-family: Poppins;
   font-size: 20px;
   font-weight: 600;
@@ -27,19 +27,19 @@ export const Title = styled.span`
   text-align: center;
 `
 
-export const PageIcon = styled.div`
+export const PageIcon = styled.View`
   width: 144px;
   height: 130px;
-  background: url(${SecureIcon});
+  background-image: url(${SecureIcon});
   background-repeat: no-repeat;
   background-size: 100%;
   margin-bottom: 10px;
   @media (prefers-color-scheme: dark) {
-    background: url(${SecureIconDark});
+    background-image: url(${SecureIconDark});
   }
 `
 
-export const InputColumn = styled.div`
+export const InputColumn = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +55,8 @@ export const RestoreButton = styled(WalletButton)`
   flex-direction: row;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   font-family: Poppins;
   font-style: normal;

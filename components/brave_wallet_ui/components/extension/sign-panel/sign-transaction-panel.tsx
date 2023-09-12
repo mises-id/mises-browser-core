@@ -205,7 +205,7 @@ export const SignTransactionPanel = ({ signMode }: Props) => {
           <QueueStepRow>
             <QueueStepText>{signTransactionQueueInfo.queueNumber} {getLocale('braveWalletQueueOf')} {signTransactionQueueInfo.queueLength}</QueueStepText>
             <QueueStepButton
-              onClick={onQueueNextSignTransaction}
+              onPress={onQueueNextSignTransaction}
             >
               {signTransactionQueueInfo.queueNumber === signTransactionQueueInfo.queueLength
                 ? getLocale('braveWalletQueueFirst')
@@ -245,7 +245,7 @@ export const SignTransactionPanel = ({ signMode }: Props) => {
             <WarningTitle warningType='danger'>{getLocale('braveWalletSignWarningTitle')}</WarningTitle>
           </WarningTitleRow>
           <WarningText>{getLocale('braveWalletSignWarning')}</WarningText>
-          <LearnMoreButton onClick={onClickLearnMore}>{getLocale('braveWalletAllowAddNetworkLearnMoreButton')}</LearnMoreButton>
+          <LearnMoreButton onPress={onClickLearnMore}>{getLocale('braveWalletAllowAddNetworkLearnMoreButton')}</LearnMoreButton>
         </WarningBox>
       }
 

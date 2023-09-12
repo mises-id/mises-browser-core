@@ -1,0 +1,76 @@
+diff --git a/node_modules/react-native-gesture-handler/lib/module/components/GestureComponents.web.js b/node_modules/react-native-gesture-handler/lib/module/components/GestureComponents.web.js
+index 1d1b06a..562b69e 100644
+--- a/node_modules/react-native-gesture-handler/lib/module/components/GestureComponents.web.js
++++ b/node_modules/react-native-gesture-handler/lib/module/components/GestureComponents.web.js
+@@ -1,7 +1,7 @@
+ function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+ 
+ import * as React from 'react';
+-import { DrawerLayoutAndroid as RNDrawerLayoutAndroid, FlatList as RNFlatList, Switch as RNSwitch, TextInput as RNTextInput, ScrollView as RNScrollView } from 'react-native';
++import { FlatList as RNFlatList, Switch as RNSwitch, TextInput as RNTextInput, ScrollView as RNScrollView, View } from 'react-native';
+ import createNativeWrapper from '../handlers/createNativeWrapper';
+ export const ScrollView = createNativeWrapper(RNScrollView, {
+   disallowInterruption: true
+@@ -11,6 +11,31 @@ export const Switch = createNativeWrapper(RNSwitch, {
+   shouldActivateOnStart: true,
+   disallowInterruption: true
+ });
++/**
++ * Common implementation for a simple stubbed view.
++ */
++/* eslint-disable react/prop-types */
++class UnimplementedView {
++  setNativeProps() {
++    // Do nothing.
++    // This method is required in order to use this view as a Touchable* child.
++    // See ensureComponentIsNative.js for more info
++  }
++
++  render() {
++    return <View style={[unimplementedViewStyles, this.props.style]}>{this.props.children}</View>;
++  }
++}
++
++const unimplementedViewStyles =
++  process.env.NODE_ENV !== 'production'
++    ? {
++        alignSelf: 'flex-start',
++        borderColor: 'red',
++        borderWidth: 1
++      }
++    : {};
++const RNDrawerLayoutAndroid = UnimplementedView;
+ export const TextInput = createNativeWrapper(RNTextInput);
+ export const DrawerLayoutAndroid = createNativeWrapper(RNDrawerLayoutAndroid, {
+   disallowInterruption: true
+diff --git a/node_modules/react-native-gesture-handler/lib/typescript/components/GestureButtons.d.ts b/node_modules/react-native-gesture-handler/lib/typescript/components/GestureButtons.d.ts
+index 0c10368..009eaf6 100644
+--- a/node_modules/react-native-gesture-handler/lib/typescript/components/GestureButtons.d.ts
++++ b/node_modules/react-native-gesture-handler/lib/typescript/components/GestureButtons.d.ts
+@@ -4,12 +4,14 @@ import { NativeViewGestureHandlerProps } from '../handlers/NativeViewGestureHand
+ export interface RawButtonProps extends NativeViewGestureHandlerProps {
+     exclusive?: boolean;
+     rippleColor?: any;
++    children?: any;
+ }
+ export interface BaseButtonProps extends RawButtonProps {
+     onPress?: (pointerInside: boolean) => void;
+     onActiveStateChange?: (active: boolean) => void;
+     style?: StyleProp<ViewStyle>;
+     testID?: string;
++    children?: any;
+ }
+ export interface RectButtonProps extends BaseButtonProps {
+     underlayColor?: string;
+diff --git a/node_modules/react-native-gesture-handler/lib/typescript/handlers/gestureHandlers.d.ts b/node_modules/react-native-gesture-handler/lib/typescript/handlers/gestureHandlers.d.ts
+index 0ad6d92..0bafb85 100644
+--- a/node_modules/react-native-gesture-handler/lib/typescript/handlers/gestureHandlers.d.ts
++++ b/node_modules/react-native-gesture-handler/lib/typescript/handlers/gestureHandlers.d.ts
+@@ -132,6 +132,7 @@ export interface PanGestureHandlerProps extends BaseGestureHandlerProps<PanGestu
+     maxPointers?: number;
+     avgTouches?: boolean;
+     enableTrackpadTwoFingerGesture?: boolean;
++    children?: any;
+ }
+ export declare type PanGestureHandler = typeof PanGestureHandler;
+ export declare const PanGestureHandler: React.ComponentType<PanGestureHandlerProps & React.RefAttributes<any>>;

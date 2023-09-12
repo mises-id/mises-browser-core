@@ -95,8 +95,8 @@ export const Tooltip: React.FC<ToolTipProps> = ({
   // render
   return (
     <TipAndChildrenWrapper
-      onMouseEnter={showTip}
-      onMouseLeave={hideTip}
+      onTouchMove={showTip}
+      onTouchEnd={hideTip}
     >
       {verticalPosition === 'above' && toolTip}
       {children}

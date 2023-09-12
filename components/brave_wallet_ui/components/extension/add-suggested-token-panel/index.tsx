@@ -75,7 +75,7 @@ function AddSuggestedTokenPanel (props: Props) {
           text={getLocale('braveWalletTransactionExplorer')}
         >
           <ContractAddress
-            onClick={onClickViewOnBlockExplorer('token', token?.contractAddress)}
+            onPress={onClickViewOnBlockExplorer('token', token?.contractAddress)}
           >
             {reduceAddress(token?.contractAddress ?? '')}
           </ContractAddress>

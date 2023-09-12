@@ -50,7 +50,7 @@ export const Erc20ApproveTransactionInfo = ({ onToggleEditGas }: Erc20Transactio
         <TransactionTitle>
           {getLocale('braveWalletAllowSpendTransactionFee')}
         </TransactionTitle>
-        <EditButton onClick={onToggleEditGas}>
+        <EditButton onPress={onToggleEditGas}>
           {getLocale('braveWalletAllowSpendEditButton')}
         </EditButton>
       </SectionRow>

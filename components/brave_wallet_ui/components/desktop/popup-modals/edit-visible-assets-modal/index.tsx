@@ -298,7 +298,7 @@ const EditVisibleAssetsModal = ({ onClose }: Props) => {
                 />
                 {!searchValue.toLowerCase().startsWith('0x') &&
                   <TopRow>
-                    <NoAssetButton onClick={toggleShowAddCustomToken}>
+                    <NoAssetButton onPress={toggleShowAddCustomToken}>
                       {getLocale('braveWalletWatchlistAddCustomAsset')}
                     </NoAssetButton>
                   </TopRow>
@@ -307,7 +307,7 @@ const EditVisibleAssetsModal = ({ onClose }: Props) => {
                   ? <NoAssetRow>
                     {searchValue.toLowerCase().startsWith('0x') ? (
                       <NoAssetButton
-                        onClick={onClickSuggestAdd}>{getLocale('braveWalletWatchListSuggestion').replace('$1', searchValue)}</NoAssetButton>
+                        onPress={onClickSuggestAdd}>{getLocale('braveWalletWatchListSuggestion').replace('$1', searchValue)}</NoAssetButton>
                     ) : (
                       <NoAssetText>{getLocale('braveWalletWatchListNoAsset')} {searchValue}</NoAssetText>
                     )}

@@ -77,7 +77,6 @@ export const Bubble = styled.a`
   height: 40px;
   margin-bottom: 12px;
   background-color: ${(p) => p.theme.color.background02};
-  box-shadow: 0px 2px 8px rgba(104, 105, 120, 0.16);
   border-radius: 8px;
 `
 

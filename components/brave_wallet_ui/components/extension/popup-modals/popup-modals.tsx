@@ -43,7 +43,7 @@ export const PopupModal = (props: Props) => {
       <Modal>
         <Header>
           <Title>{title}</Title>
-          <CloseButton onClick={onClose} />
+          <CloseButton onPress={onClose} />
         </Header>
         {children}
       </Modal>

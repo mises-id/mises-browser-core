@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // styles
 import { WalletButton } from '../../shared/style'
@@ -11,7 +11,7 @@ import { WalletButton } from '../../shared/style'
 // icons
 import HistoryIcon from '../../../assets/svg-icons/history-icon.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -20,7 +20,7 @@ export const StyledWrapper = styled.div`
   padding: 0px 12px;
 `
 
-export const NavOutline = styled.div`
+export const NavOutline = styled.View`
   display: flex;
   height: 36px;
   width: 100%;
@@ -33,7 +33,7 @@ export const NavOutline = styled.div`
   max-width: 300px;
 `
 
-export const NavDivider = styled.div`
+export const NavDivider = styled.View`
   display: flex;
   width: 1px;
   height: 100%;
@@ -52,11 +52,12 @@ export const NavButton = styled(WalletButton)<{
   cursor: ${(p) => p.disabled ? 'default' : 'pointer'};
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   pointer-events: ${(p) => p.disabled ? 'none' : 'auto'};
 `
 
-export const NavButtonText = styled.span<{
+export const NavButtonText = styled.Text<{
   disabled?: boolean
 }>`
   font-family: Poppins;
@@ -77,10 +78,11 @@ export const TransactionsButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
 `
 
-export const TransactionsIcon = styled.div`
+export const TransactionsIcon = styled.View`
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.theme.palette.white};

@@ -24,7 +24,17 @@ module.exports = async function (env, argv) {
   const isDevMode = argv.mode === 'development'
   // Webpack config object
   const resolve = {
-    extensions: ['.js', '.tsx', '.ts', '.json'],
+    extensions: [
+      ".web.tsx",
+      ".web.ts",
+      ".web.jsx",
+      ".jsx",
+      ".web.js",
+      ".js",
+      ".tsx",
+      ".ts",
+      ".json",
+    ],
     alias: pathMap,
     modules: [ 'node_modules' ]
   }
@@ -59,8 +69,15 @@ module.exports = async function (env, argv) {
       new GenerateDepfilePlugin({
         depfilePath: process.env.DEPFILE_PATH,
         depfileSourceName: process.env.DEPFILE_SOURCE_NAME
+      }),
+      new webpack.DefinePlugin({
+        __DEV__: process.env.NODE_ENV !== "production",
+      }),
+    ] : [
+      new webpack.DefinePlugin({
+        __DEV__: process.env.NODE_ENV !== "production",
       })
-    ] : [],
+    ],
     module: {
       rules: [
         {
@@ -173,6 +190,44 @@ module.exports = async function (env, argv) {
               },
             },
           ],
+        },
+        {
+          test: /\.(js|jsx)$/,
+          include: [
+            /node_modules(.*[/\\])+react-native/,
+            /node_modules(.*[/\\])+@react-native/,
+            /node_modules(.*[/\\])+@react-navigation/,
+            /node_modules(.*[/\\])+@react-native-async-storage/,
+            /node_modules(.*[/\\])+react-native-keyboard-aware-scroll-view/,
+            /node_modules(.*[/\\])+react-native-reanimated/,
+            /node_modules(.*[/\\])+react-native-animatable/,
+            /node_modules(.*[/\\])+metro-runtime/,
+          ],
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                "@babel/preset-react",
+                "@babel/preset-flow"
+              ],
+              "plugins": ["@babel/plugin-proposal-nullish-coalescing-operator", "@babel/plugin-proposal-export-namespace-from"]
+            },
+          }
+        },
+        {
+          test: /\.js?$/,
+          include: [
+            /node_modules(.*[/\\])+react-native/,
+          ],
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['module:metro-react-native-babel-preset']
+              ],
+            }
+          },
         },
       ]
     },

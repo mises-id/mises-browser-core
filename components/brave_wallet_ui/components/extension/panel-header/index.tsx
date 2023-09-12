@@ -34,7 +34,7 @@ export default class PanelHeader extends React.PureComponent<Props> {
       <HeaderWrapper hasSearch={useSearch || false}>
         <TopRow>
           <HeaderTitle>{title}</HeaderTitle>
-          <CloseButton onClick={this.navigate('main')} />
+          <CloseButton onPress={this.navigate('main')} />
         </TopRow>
         {useSearch &&
           <SearchBar

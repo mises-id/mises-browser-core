@@ -43,8 +43,8 @@ export const NFTGridViewItem = (props: Props) => {
   const [showEditModal, setShowEditModal] = React.useState<boolean>(false)
 
   // methods
-  const onToggleShowMore = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    event?.stopPropagation()
+  const onToggleShowMore = React.useCallback(() => {
+    // event?.stopPropagation()
     setShowMore((currentValue) => !currentValue)
   }, [])
 
@@ -71,7 +71,7 @@ export const NFTGridViewItem = (props: Props) => {
   return (
     <>
       <NFTWrapper>
-        <VerticalMenu onClick={onToggleShowMore}>
+        <VerticalMenu onPress={onToggleShowMore}>
           <VerticalMenuIcon />
         </VerticalMenu>
         {showMore &&
@@ -79,7 +79,7 @@ export const NFTGridViewItem = (props: Props) => {
             onEditNft={onEditNft}
           />
         }
-        <DIVForClickableArea onClick={onSelectAsset}/>
+        <DIVForClickableArea onPress={onSelectAsset}/>
         <IconWrapper>
           <NftIconWithNetworkIcon
             icon={remoteImage}

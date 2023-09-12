@@ -96,7 +96,7 @@ export const AccountFilterSelector = ({
 
   return (
     <StyledWrapper>
-      <DropDownButton onClick={onClick}>
+      <DropDownButton onPress={onClick}>
         <SelectorLeftSide>
           {selectedAccount.address !== AllAccountsOption.address &&
             <AccountCircle orb={orb} />
@@ -118,7 +118,7 @@ export const AccountFilterSelector = ({
         </DropDown>
       }
       {isOpen &&
-        <ClickAwayArea onClick={() => setIsOpen(false)} />
+        <ClickAwayArea onPress={() => setIsOpen(false)} />
       }
     </StyledWrapper>
   )

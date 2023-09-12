@@ -18,7 +18,7 @@ export const StyledWrapper = styled.div`
   bottom: 0;
   position: fixed;
   z-index: 10;
-  background: rgba(33, 37, 41, 0.32);
+  background-color: rgba(33, 37, 41, 0.32);
   backdrop-filter: blur(8px);
 `
 
@@ -30,10 +30,6 @@ export const Modal = styled.div`
   width: 512px;
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 16px;
-  box-shadow: 0px 4px 13px -2px rgba(0, 0, 0, 0.1);
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.36);
-  }
   @media screen and (max-width: 600px) {
     width: 96%;
   }

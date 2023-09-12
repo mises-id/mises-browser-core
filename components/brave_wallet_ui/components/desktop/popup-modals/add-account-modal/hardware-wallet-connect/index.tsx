@@ -283,7 +283,7 @@ export const HardwareWalletConnect = ({ onSuccess, selectedAccountType }: Props)
           <HardwareTitle>{getLocale('braveWalletConnectHardwareTitle')}</HardwareTitle>
           <HardwareButtonRow>
             <HardwareButton
-              onClick={onSelectLedger}
+              onPress={onSelectLedger}
               isSelected={selectedHardwareWallet === BraveWallet.LEDGER_HARDWARE_VENDOR}
               disabled={isConnecting && selectedHardwareWallet !== BraveWallet.LEDGER_HARDWARE_VENDOR}
             >
@@ -291,7 +291,7 @@ export const HardwareWalletConnect = ({ onSuccess, selectedAccountType }: Props)
             </HardwareButton>
 
             <HardwareButton
-              onClick={onSelectTrezor}
+              onPress={onSelectTrezor}
               isSelected={selectedHardwareWallet === BraveWallet.TREZOR_HARDWARE_VENDOR}
               disabled={isConnecting && selectedHardwareWallet !== BraveWallet.TREZOR_HARDWARE_VENDOR}
             >

@@ -3,13 +3,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { InfoIcon } from '../../../../../../assets/svg-icons/nav-button-icons'
 import LinkIcon from '../../../../../../assets/svg-icons/link-icon.svg'
 import TrashIcon from '../../../../../../assets/svg-icons/trash-icon.svg'
 import { WalletButton } from '../../../../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,6 @@ export const StyledWrapper = styled.div`
   padding: 7px;
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 8px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
   top: 35px;
   right: 15px;
@@ -34,16 +33,17 @@ export const PopupButton = styled(WalletButton)`
   border-radius: 8px;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;
   padding: 10px 0px;
   margin: 0px;
-  background-color: transparent;
+  flex-direction: row;
   &:hover {
     background-color: ${(p) => p.theme.color.divider01};
   }
 `
 
-export const PopupButtonText = styled.span`
+export const PopupButtonText = styled.Text`
   flex: 1;
   font-family: Poppins;
   font-size: 13px;
@@ -52,7 +52,7 @@ export const PopupButtonText = styled.span`
   line-height: 20px;
   color: ${(p) => p.theme.color.text01};
 `
-const PopupButtonIcon = styled.div`
+const PopupButtonIcon = styled.View`
  width: 20px;
  height: 20px;
  margin-right: 18px;

@@ -62,6 +62,8 @@ import {
 } from './style'
 
 import { VerticalSpacer } from '../../shared/style'
+import { Text } from 'react-native'
+import { useStyle } from '../../../page/styles'
 
 export interface Props {
   navAction: (path: PanelTypes) => void
@@ -234,10 +236,10 @@ export const ConnectedPanel = (props: Props) => {
       .divideByDecimals(selectedNetwork.decimals)
       .formatAsAsset(6, selectedNetwork.symbol)
     : ''
-
+  const style = useStyle()
   // render
   return (
-    <StyledWrapper onClick={onHideMore} panelBackground={bg}>
+    <StyledWrapper onPress={onHideMore} panelBackground={bg}>
       <ConnectedHeader
         onExpand={onExpand}
         onClickMore={onShowMore}
@@ -257,7 +259,7 @@ export const ConnectedPanel = (props: Props) => {
 
         {showConnectButton ? (
           <StatusRow>
-            <OvalButton onClick={onShowSitePermissions}>
+            <OvalButton onPress={onShowSitePermissions}>
               {selectedCoin === BraveWallet.CoinType.SOL ? (
                 <ConnectedStatusBubble isConnected={isConnected} />
               ) : (
@@ -275,7 +277,7 @@ export const ConnectedPanel = (props: Props) => {
         <VerticalSpacer space='8px' />
 
         <BalanceColumn>
-          <AccountCircle orb={orb} onClick={navigate('accounts')}>
+          <AccountCircle orb={orb} onPress={navigate('accounts')}>
             <SwitchIcon />
           </AccountCircle>
           <AccountNameText>{reduceAccountDisplayName(selectedAccountName, 24)}</AccountNameText>
@@ -301,7 +303,11 @@ export const ConnectedPanel = (props: Props) => {
             <LoadingSkeleton useLightTheme={true} width={80} height={20} />
           )}
         </BalanceColumn>
-        <MoreAssetsButton onClick={navigate('assets')}>{getLocale('braveWalletPanelViewAccountAssets')}</MoreAssetsButton>
+        <MoreAssetsButton onPress={navigate('assets')}>
+          <Text style={style.flatten(['color-white'])}>
+            {getLocale('braveWalletPanelViewAccountAssets')}
+          </Text>
+        </MoreAssetsButton>
       </CenterColumn>
       <PanelBottomNav
         onNavigate={navAction}

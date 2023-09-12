@@ -2015,9 +2015,7 @@ export function createWalletApi (
               }
             }
           } catch (error) {
-            const msg = `SPL Transfer failed:
-                to: ${payload.to}
-                value: ${payload.value}`
+            const msg = `SPL Transfer failed: to: ${payload.to} value: ${payload.value}`
             console.error(msg)
             return { error: msg }
           }
@@ -2711,12 +2709,10 @@ export function createWalletApi (
               data: fee.toString()
             }
           } catch (error) {
-            const msg = `Unable to fetch Solana fees - txId: ${txIdArg}`
+            const msg = "Unable to fetch Solana fees - txId:"+txIdArg
             console.error(msg)
             console.error(error)
-            return {
-              error: msg
-            }
+            return { error: msg}
           }
         },
         providesTags: (res, er, txIdArg) => [

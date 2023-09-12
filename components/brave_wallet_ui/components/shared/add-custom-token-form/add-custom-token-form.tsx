@@ -47,10 +47,10 @@ import {
   FormColumn,
   FormRow,
   FormWrapper,
-  Input,
   InputLabel,
   SubDivider
 } from './add-custom-token-form-styles'
+import Input from '../../rn/Input'
 
 
 interface Props {
@@ -201,7 +201,7 @@ export const AddCustomTokenForm = (props: Props) => {
   }, [resetInputFields, onHideForm])
 
   // computed
-  const isDecimalDisabled = foundTokenInfoByContractAddress?.isErc721 || false
+  // const isDecimalDisabled = foundTokenInfoByContractAddress?.isErc721 || false
   const tokenNameError = tokenName === ''
   const tokenSymbolError = tokenSymbol === ''
   const tokenDecimalsError = tokenDecimals === ''
@@ -277,7 +277,7 @@ export const AddCustomTokenForm = (props: Props) => {
 
   // render
   return (
-    <FormWrapper onClick={onHideNetworkDropDown}>
+    <FormWrapper onPress={onHideNetworkDropDown}>
       <InputLabel>{getLocale('braveWalletSelectNetwork')}</InputLabel>
       <SelectNetworkDropdown
         selectedNetwork={customAssetsNetwork}
@@ -288,7 +288,7 @@ export const AddCustomTokenForm = (props: Props) => {
       <FormRow>
         <FormColumn>
           <InputLabel>{getLocale('braveWalletWatchListTokenName')}</InputLabel>
-          <Input value={tokenName} onChange={handleTokenNameChanged} />
+          <Input hasError={false} value={tokenName} onChange={handleTokenNameChanged} />
         </FormColumn>
         <FormColumn>
           <InputLabel>
@@ -297,6 +297,7 @@ export const AddCustomTokenForm = (props: Props) => {
               : getLocale('braveWalletWatchListTokenAddress')}
           </InputLabel>
           <Input
+            hasError={false}
             value={tokenContractAddress}
             onChange={handleTokenAddressChanged}
           />
@@ -307,25 +308,26 @@ export const AddCustomTokenForm = (props: Props) => {
           <InputLabel>
             {getLocale('braveWalletWatchListTokenSymbol')}
           </InputLabel>
-          <Input value={tokenSymbol} onChange={handleTokenSymbolChanged} />
+          <Input hasError={false} value={tokenSymbol} onChange={handleTokenSymbolChanged} />
         </FormColumn>
         <FormColumn>
           <InputLabel>
             {getLocale('braveWalletWatchListTokenDecimals')}
           </InputLabel>
           <Input
+            hasError={false}
             value={tokenDecimals}
             onChange={handleTokenDecimalsChanged}
-            disabled={isDecimalDisabled}
-            type='number'
+            // disabled={isDecimalDisabled}
+            type='text'
           />
         </FormColumn>
       </FormRow>
       <DividerRow>
-        <AdvancedButton onClick={onToggleShowAdvancedFields}>
+        <AdvancedButton onPress={onToggleShowAdvancedFields}>
           <DividerText>{getLocale('braveWalletWatchListAdvanced')}</DividerText>
         </AdvancedButton>
-        <AdvancedButton onClick={onToggleShowAdvancedFields}>
+        <AdvancedButton onPress={onToggleShowAdvancedFields}>
           <AdvancedIcon rotated={showAdvancedFields} />
         </AdvancedButton>
       </DividerRow>
@@ -333,11 +335,11 @@ export const AddCustomTokenForm = (props: Props) => {
       {showAdvancedFields && (
         <>
           <InputLabel>{getLocale('braveWalletIconURL')}</InputLabel>
-          <Input value={iconURL} onChange={handleIconURLChanged} />
+          <Input hasError={false} value={iconURL} onChange={handleIconURLChanged} />
           <InputLabel>
             {getLocale('braveWalletWatchListCoingeckoId')}
           </InputLabel>
-          <Input value={coingeckoID} onChange={handleCoingeckoIDChanged} />
+          <Input hasError={false} value={coingeckoID} onChange={handleCoingeckoIDChanged} />
         </>
       )}
       {hasError && (

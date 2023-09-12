@@ -4,14 +4,14 @@
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as leo from '@brave/leo/tokens/css'
-import Icon from '@brave/leo/react/icon'
-import Button from '@brave/leo/react/button'
-import styled from 'styled-components'
+// import Icon from '@brave/leo/react/icon'
+// import Button from '@brave/leo/react/button'
+import styled from 'styled-components/native'
 
 // Shared Styles
 import { Row, Column } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   width: 100%;
   height: 100%;
@@ -23,13 +23,11 @@ export const StyledWrapper = styled.div`
   box-sizing: border-box;
 `
 
-export const ScrollContainer = styled.div`
+export const ScrollContainer = styled.ScrollView`
   display: flex;
   width: 100%;
   height: 100%;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   background-color: ${leo.color.container.highlight};
   position: relative;
   box-sizing: border-box;
@@ -37,7 +35,7 @@ export const ScrollContainer = styled.div`
   overflow-x: hidden;
 `
 
-export const BackgroundContainer = styled.div<{ backgroundImage: string }>`
+export const BackgroundContainer = styled.View<{ backgroundImage: string }>`
   display: flex;
   top: 0px;
   right: -75px;
@@ -57,13 +55,13 @@ export const BackgroundContainer = styled.div<{ backgroundImage: string }>`
       rgba(0, 0, 0, 0.8)
     );
   }
-  background: var(--background-gradient), url(${(p) => p.backgroundImage});
+  background-color: var(--background-gradient);
   background-position: center;
   background-size: cover;
   filter: blur(22px);
 `
 
-export const SelectAddressContainer = styled.div`
+export const SelectAddressContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,12 +72,10 @@ export const SelectAddressContainer = styled.div`
   position: relative;
   z-index: 9;
   box-sizing: border-box;
-  border-radius: 8px 8px 0px 0px;
   background-color: ${leo.color.container.background};
-  box-shadow: 0px -6px 6px -1px rgba(0, 0, 0, 0.08);
 `
 
-export const WhiteSpace = styled.div`
+export const WhiteSpace = styled.View`
   display: block;
   height: 50%;
   width: 100%;
@@ -100,10 +96,9 @@ export const PermissionsContainer = styled(Column)`
   border-radius: 8px;
   position: relative;
   z-index: 9;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07);
 `
 
-export const SectionLabel = styled.span`
+export const SectionLabel = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
@@ -114,7 +109,7 @@ export const SectionLabel = styled.span`
   margin-bottom: 8px;
 `
 
-export const SectionPoint = styled.span`
+export const SectionPoint = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: 400;
@@ -126,7 +121,7 @@ export const SectionPoint = styled.span`
   white-space: pre-line;
 `
 
-export const BulletContainer = styled.div<{ status: 'success' | 'error' }>`
+export const BulletContainer = styled.View<{ status: 'success' | 'error' }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,7 +139,7 @@ export const BulletContainer = styled.div<{ status: 'success' | 'error' }>`
   border-radius: 20px;
 `
 
-export const BulletIcon = styled(Icon)<{ status: 'success' | 'error' }>`
+export const BulletIcon = styled.View<{ status: 'success' | 'error' }>`
   --leo-icon-size: 16px;
   color: ${(p) =>
     p.status === 'success'
@@ -152,7 +147,7 @@ export const BulletIcon = styled(Icon)<{ status: 'success' | 'error' }>`
       : leo.color.systemfeedback.errorIcon};
 `
 
-export const AddAccountText = styled.span`
+export const AddAccountText = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
@@ -161,7 +156,7 @@ export const AddAccountText = styled.span`
   color: ${leo.color.text.interactive};
 `
 
-export const AddAcountIcon = styled(Icon)`
+export const AddAcountIcon = styled.View`
   --leo-icon-size: 24px;
   color: ${leo.color.text.interactive};
 `
@@ -177,10 +172,9 @@ export const ButtonRow = styled(Row)<{ isReadyToConnect: boolean }>`
   }
   position: relative;
   z-index: 10;
-  box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.08);
 `
 
-export const IconCircle = styled.div`
+export const IconCircle = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -191,6 +185,11 @@ export const IconCircle = styled.div`
   margin-right: 8px;
 `
 
-export const NavButton = styled(Button)`
-  width: 100%;
+export const NavButton = styled.TouchableOpacity`
+  flex: 1;
+  border-radius: 40px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

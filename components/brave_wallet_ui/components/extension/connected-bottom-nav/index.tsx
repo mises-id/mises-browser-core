@@ -53,14 +53,14 @@ function ConnectedBottomNav (props: Props) {
               : ''
           }
         >
-          <NavButton disabled={isBuyDisabled} onClick={navigate('buy')}>
+          <NavButton disabled={isBuyDisabled} onPress={navigate('buy')}>
             <NavButtonText disabled={isBuyDisabled}>{getLocale('braveWalletBuy')}</NavButtonText>
           </NavButton>
         </Tooltip>
 
         <NavDivider />
 
-        <NavButton onClick={navigate('send')}>
+        <NavButton onPress={navigate('send')}>
 
           <NavButtonText>{getLocale('braveWalletSend')}</NavButtonText>
         </NavButton>
@@ -78,14 +78,14 @@ function ConnectedBottomNav (props: Props) {
           }
           maxWidth='150px'
         >
-          <NavButton disabled={isSwapDisabled} onClick={navigate('swap')}>
+          <NavButton disabled={isSwapDisabled} onPress={navigate('swap')}>
             <NavButtonText disabled={isSwapDisabled}>{getLocale('braveWalletSwap')}</NavButtonText>
           </NavButton>
         </Tooltip>
 
         <NavDivider />
 
-        <TransactionsButton onClick={navigate('activity')}>
+        <TransactionsButton onPress={navigate('activity')}>
           <TransactionsIcon />
         </TransactionsButton>
 

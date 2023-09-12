@@ -5,7 +5,7 @@
 
 import styled from 'styled-components'
 import * as leo from '@brave/leo/tokens/css'
-import Icon from '@brave/leo/react/icon'
+// import Icon from '@brave/leo/react/icon'
 
 // Assets
 import BraveLogoLight from '../../send/assets/brave-logo-light.svg'
@@ -48,19 +48,15 @@ export const SettingsWrapper = styled(StyledDiv)`
 export const SettingsButton = styled(StyledButton)`
   background-color: ${leo.color.container.background};
   border-radius: 100%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
   height: 40px;
   width: 40px;
   margin-right: 16px;
   &:hover {
     background-color: ${leo.color.container.background};
   }
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.36);
-  }
 `
 
-export const SettingsIcon = styled(Icon)`
+export const SettingsIcon = styled.div`
   --leo-icon-size: 20px;
   color: ${leo.color.icon.default};
 `

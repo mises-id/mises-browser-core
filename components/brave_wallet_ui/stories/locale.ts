@@ -519,7 +519,7 @@ provideStrings({
   braveWalletTransactionGasFeeCap: 'Gas Fee Cap',
 
   // Wallet Main Panel
-  braveWalletPanelTitle: 'Brave Wallet',
+  braveWalletPanelTitle: 'Mises Wallet',
   braveWalletPanelConnected: 'Connected',
   braveWalletPanelNotConnected: 'Connect',
   braveWalletPanelViewAccountAssets: 'View account assets',

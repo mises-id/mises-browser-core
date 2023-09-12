@@ -18,7 +18,7 @@ interface TransactionPopupItemProps {
 }
 
 export const TransactionPopupItem = (props: TransactionPopupItemProps) => (
-  <PopupButton onClick={props.onClick}>
+  <PopupButton onPress={props.onClick}>
     <PopupButtonText>{props.text}</PopupButtonText>
   </PopupButton>
 )

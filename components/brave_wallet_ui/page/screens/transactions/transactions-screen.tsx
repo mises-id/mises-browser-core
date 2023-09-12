@@ -9,7 +9,7 @@ import { useHistory } from 'react-router'
 // types
 import {
   BraveWallet,
-  WalletAccountType,
+  // WalletAccountType,
   WalletRoutes
 } from '../../../constants/types'
 
@@ -41,7 +41,7 @@ import {
 } from '../../../common/slices/api.slice'
 
 // components
-import { AccountFilterSelector } from '../../../components/desktop/account-filter-selector/account-filter-selector'
+// import { AccountFilterSelector } from '../../../components/desktop/account-filter-selector/account-filter-selector'
 import { NetworkFilterSelector } from '../../../components/desktop/network-filter-selector/index'
 import { PortfolioTransactionItem } from '../../../components/desktop'
 import { SearchBar } from '../../../components/shared'
@@ -220,20 +220,20 @@ export const TransactionsScreen: React.FC = () => {
   }, [searchValue, txsForSelectedChain])
 
   // methods
-  const onSelectAccount = React.useCallback(
-    ({ address, coin }: WalletAccountType): void => {
-      history.push(
-        updatePageParams({
-          address: address || undefined,
-          // reset chains filter on account select
-          chainId: AllNetworksOption.chainId,
-          chainCoinType: coin,
-          transactionId
-        })
-      )
-    },
-    [history, transactionId]
-  )
+  // const onSelectAccount = React.useCallback(
+  //   ({ address, coin }: WalletAccountType): void => {
+  //     history.push(
+  //       updatePageParams({
+  //         address: address || undefined,
+  //         // reset chains filter on account select
+  //         chainId: AllNetworksOption.chainId,
+  //         chainCoinType: coin,
+  //         transactionId
+  //       })
+  //     )
+  //   },
+  //   [history, transactionId]
+  // )
 
   const onSelectNetwork = React.useCallback(
     ({ chainId, coin }: BraveWallet.NetworkInfo) => {
@@ -266,11 +266,11 @@ export const TransactionsScreen: React.FC = () => {
             value={searchValue}
           />
         </Column>
-        <AccountFilterSelector
+        {/* <AccountFilterSelector
           selectedAccount={foundAccountFromParam || AllAccountsOption}
           onSelectAccount={onSelectAccount}
           selectedNetwork={foundNetworkFromParam || AllNetworksOption}
-        />
+        /> */}
         <NetworkFilterSelector
           selectedAccount={foundAccountFromParam || AllAccountsOption}
           selectedNetwork={foundNetworkFromParam || AllNetworksOption}

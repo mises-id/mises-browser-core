@@ -164,11 +164,11 @@ export const Accounts = () => {
         )}
 
         <ButtonRow>
-          <StyledButton onClick={onClickAddAccount('import')}>
+          <StyledButton onPress={onClickAddAccount('import')}>
             <WalletIcon />
             <ButtonText>{getLocale('braveWalletAddAccountImport')}</ButtonText>
           </StyledButton>
-          <StyledButton onClick={onClickAddAccount('hardware')}>
+          <StyledButton onPress={onClickAddAccount('hardware')}>
             <HardwareIcon />
             <ButtonText>
               {getLocale('braveWalletAddAccountImportHardware')}

@@ -27,12 +27,8 @@ export const DropDown = styled(StyledDiv)`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  box-shadow: 0px 0px 16px rgba(99, 105, 110, 0.18);
   max-height: 190px;
   border: 1px solid ${(p) => p.theme.color.divider01};
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.18);
-  }
   z-index: 10;
   left: 0px;
   top: 56px;

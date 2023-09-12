@@ -19,7 +19,7 @@ import Amount from '../../../utils/amount'
 import { getLocale } from '$web-common/locale'
 import {
   isValidateUrl,
-  stripERC20TokenImageURL
+  // stripERC20TokenImageURL
 } from '../../../utils/string-utils'
 
 // Styled Components
@@ -133,7 +133,7 @@ export const NftDetails = ({
                     </Row>
                   </DetailSectionColumn>
                 </DetailSectionRow>
-                <DetailSectionRow style={{ gap: '10px' }}>
+                <DetailSectionRow>
                   <DetailSectionColumn>
                     <DetailSectionTitle>
                       {getLocale('braveWalletNFTDetailBlockchain')}
@@ -161,7 +161,7 @@ export const NftDetails = ({
                           : ''}
                       </DetailSectionValue>
                       <ExplorerButton
-                        onClick={onClickViewOnBlockExplorer(
+                        onPress={onClickViewOnBlockExplorer(
                           selectedAsset.coin === BraveWallet.CoinType.ETH
                             ? 'nft'
                             : 'token',
@@ -184,15 +184,15 @@ export const NftDetails = ({
                     nftMetadata.contractInformation.twitter &&
                     nftMetadata.contractInformation.facebook && (
                       <ProjectDetailButtonRow>
-                        <ProjectDetailButton onClick={onClickWebsite}>
+                        <ProjectDetailButton onPress={onClickWebsite}>
                           <ProjectWebsiteIcon />
                         </ProjectDetailButton>
                         <ProjectDetailButtonSeperator />
-                        <ProjectDetailButton onClick={onClickTwitter}>
+                        <ProjectDetailButton onPress={onClickTwitter}>
                           <ProjectTwitterIcon />
                         </ProjectDetailButton>
                         <ProjectDetailButtonSeperator />
-                        <ProjectDetailButton onClick={onClickFacebook}>
+                        <ProjectDetailButton onPress={onClickFacebook}>
                           <ProjectFacebookIcon />
                         </ProjectDetailButton>
                       </ProjectDetailButtonRow>
@@ -208,11 +208,11 @@ export const NftDetails = ({
                     <DetailSectionRow>
                       <DetailSectionColumn>
                         <DetailSectionTitle>{getLocale('braveWalletNFTDetailImageAddress')}</DetailSectionTitle>
-                        <HighlightedDetailSectionValue
+                        {/* <HighlightedDetailSectionValue
                           href={stripERC20TokenImageURL(imageIpfsUrl)}
                           target='_blank'>
                             {stripERC20TokenImageURL(imageIpfsUrl)}
-                        </HighlightedDetailSectionValue>
+                        </HighlightedDetailSectionValue> */}
                       </DetailSectionColumn>
                     </DetailSectionRow>
                   </>

@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { MoreVertRIcon, ArrowRightIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { MoreVertRIcon, ArrowRightIcon } from 'brave-ui/components/icons'
 import CoinsIconSVG from '../../../assets/svg-icons/coins-icon.svg'
 import { WalletButton } from '../../shared/style'
 import { OrbContainer } from '../../extension/transaction-detail-panel/style'
@@ -12,7 +12,7 @@ interface StyleProps {
   orb: string
 }
 
-export const PortfolioTransactionItemWrapper = styled.div<{ isFocused?: boolean }>`
+export const PortfolioTransactionItemWrapper = styled.TouchableOpacity<{ isFocused?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,7 +26,7 @@ export const PortfolioTransactionItemWrapper = styled.div<{ isFocused?: boolean 
   gap: 16px;
 `
 
-export const DetailRow = styled.div`
+export const DetailRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@ export const BalanceAndMoreRow = styled(DetailRow)`
   width: 70%;
 `
 
-export const AddressText = styled.span`
+export const AddressText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -48,7 +48,7 @@ export const AddressText = styled.span`
   margin: 0px 5px;
 `
 
-export const DetailText = styled.span`
+export const DetailText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -57,7 +57,7 @@ export const DetailText = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const FromCircle = styled.div<Partial<StyleProps>>`
+export const FromCircle = styled.View<Partial<StyleProps>>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -69,7 +69,7 @@ export const FromCircle = styled.div<Partial<StyleProps>>`
   }
 `
 
-export const ToCircle = styled.div<Partial<StyleProps>>`
+export const ToCircle = styled.View<Partial<StyleProps>>`
   width: 24px;
   height: 24px;
   border-radius: 100%;
@@ -88,29 +88,30 @@ export const MoreButton = styled(WalletButton)`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
 `
 
-export const RejectedTransactionSpacer = styled.div`
+export const RejectedTransactionSpacer = styled.View`
   width: 38px;
 `
 
-export const MoreIcon = styled(MoreVertRIcon)`
+export const MoreIcon = styled.View`
   width: auto;
   height: 26px;
   transform: rotate(90deg);
   color: ${(p) => p.theme.color.interactive08};
 `
 
-export const DetailColumn = styled.div`
+export const DetailColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 `
 
-export const DetailTextLight = styled.span`
+export const DetailTextLight = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -119,7 +120,7 @@ export const DetailTextLight = styled.span`
   margin-right: 6px;
 `
 
-export const DetailTextDark = styled.span`
+export const DetailTextDark = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -128,7 +129,7 @@ export const DetailTextDark = styled.span`
   margin-right: 6px;
 `
 
-export const DetailTextDarkBold = styled.span`
+export const DetailTextDarkBold = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -137,32 +138,22 @@ export const DetailTextDarkBold = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const BalanceColumn = styled.div`
+export const BalanceColumn = styled.View`
   display: flex;
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
-
-  & > * {
-    overflow-wrap: break-word;
-    word-break: break-all;
-  }
-
-  /**
-    Using a fixed width,
-    so that columns remain aligned across tx-item rows
-  */
   width: 70%;
 `
 
-export const ArrowIcon = styled(ArrowRightIcon)`
+export const ArrowIcon = styled.View`
   width: auto;
   height: 16px;
   margin-right: 6px;
   color: ${(p) => p.theme.color.text03};
 `
 
-export const OrbAndTxDescriptionContainer = styled.div`
+export const OrbAndTxDescriptionContainer = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -171,7 +162,7 @@ export const OrbAndTxDescriptionContainer = styled.div`
   width: 50%;
 `
 
-export const StatusRow = styled.div`
+export const StatusRow = styled.View`
   flex: 1;
   display: flex;
   align-items: center;
@@ -186,7 +177,8 @@ export const CoinsButton = styled(WalletButton)`
   justify-content: center;
   cursor: default;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   width: 24px;
   height: 24px;
@@ -199,7 +191,7 @@ export const CoinsButtonSpacer = styled(WalletButton)`
   padding: 4px;
 `
 
-export const CoinsIcon = styled.div`
+export const CoinsIcon = styled.View`
   position: absolute;
   width: 16px;
   height: 16px;
@@ -211,23 +203,24 @@ export const AddressOrAsset = styled(WalletButton)`
   display: inline;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   color: #4D54D2;
   padding: 0;
 `
 
-export const TransactionFeeTooltipTitle = styled.div`
+export const TransactionFeeTooltipTitle = styled.View`
   font-weight: 600;
   letter-spacing: 0.01em;
 `
 
-export const TransactionFeeTooltipBody = styled.div`
+export const TransactionFeeTooltipBody = styled.View`
   font-weight: 400;
   letter-spacing: 0.01em;
 `
 
-export const StatusBalanceAndMoreContainer = styled.div`
+export const StatusBalanceAndMoreContainer = styled.View`
   display: flex;
   align-self: flex-end;
   flex-direction: row;

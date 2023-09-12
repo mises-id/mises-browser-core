@@ -20,7 +20,7 @@ export const Tip = styled.div<{
   transform: translateY(var(--y-tip-translation)) translateX(var(--x-tip-translation));
   padding: 8px 16px;
   color: ${(p) => p.theme.palette.white};
-  background: ${(p) => p.isSwap ? 'var(--nav-tool-tip-background)' : p.theme.palette.black};
+  background-color: ${(p) => p.isSwap ? 'var(--nav-tool-tip-background)' : p.theme.palette.black};
   z-index: 10;
   font-family: Poppins;
   font-size: 14px;

@@ -2,10 +2,10 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { AssetIconProps, AssetIconFactory, WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
@@ -15,7 +15,7 @@ export const StyledWrapper = styled.div`
   background-color: ${(p) => p.theme.color.background01};
 `
 
-export const TopWrapper = styled.div`
+export const TopWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@ export const TopWrapper = styled.div`
   width: 100%;
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,7 +34,7 @@ export const TopRow = styled.div`
   margin-bottom: 40px;
 `
 
-export const Title = styled.span`
+export const Title = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   font-weight: 600;
@@ -45,7 +45,7 @@ export const Title = styled.span`
   text-align: center;
 `
 
-export const Description = styled.span`
+export const Description = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -55,7 +55,7 @@ export const Description = styled.span`
   margin-bottom: 40px;
 `
 
-export const TokenName = styled.span`
+export const TokenName = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   font-weight: 600;
@@ -70,7 +70,8 @@ export const TokenName = styled.span`
 export const ContractAddress = styled(WalletButton)`
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   font-family: Poppins;
   font-size: 12px;
@@ -86,7 +87,7 @@ export const AssetIcon = AssetIconFactory<AssetIconProps>({
   height: 'auto'
 })
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,7 +95,7 @@ export const ButtonWrapper = styled.div`
   margin-bottom: 14px;
 `
 
-export const NetworkText = styled.span`
+export const NetworkText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;

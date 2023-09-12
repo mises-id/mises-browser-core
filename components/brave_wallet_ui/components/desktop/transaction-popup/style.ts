@@ -2,10 +2,10 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +13,6 @@ export const StyledWrapper = styled.div`
   padding: 7px;
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 8px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
   top: 15px;
   right: 15px;
@@ -29,7 +28,8 @@ export const PopupButton = styled(WalletButton)`
   border-radius: 8px;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   padding: 10px;
   margin: 0px;
   background-color: transparent;
@@ -38,7 +38,7 @@ export const PopupButton = styled(WalletButton)`
   }
 `
 
-export const PopupButtonText = styled.span`
+export const PopupButtonText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   font-weight: 600;
@@ -47,7 +47,7 @@ export const PopupButtonText = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const ClickAwayContainer = styled.div`
+export const ClickAwayContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;

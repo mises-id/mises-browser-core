@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import CloseIcon from '../../../assets/svg-icons/close.svg'
 import { WalletButton } from '../../shared/style'
 
@@ -10,7 +10,7 @@ interface StyleProps {
   hasSearch: boolean
 }
 
-export const HeaderTitle = styled.span`
+export const HeaderTitle = styled.Text`
   font-family: Poppins;
   font-size: 18px;
   line-height: 26px;
@@ -19,7 +19,7 @@ export const HeaderTitle = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const HeaderWrapper = styled.div<StyleProps>`
+export const HeaderWrapper = styled.View<StyleProps>`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -31,7 +31,7 @@ export const HeaderWrapper = styled.div<StyleProps>`
   margin-bottom: ${(p) => p.hasSearch ? '0px' : '8px'};
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   height: 54px;
   width: 100%;
@@ -47,7 +47,7 @@ export const CloseButton = styled(WalletButton)`
   cursor: pointer;
   width: 20px;
   height: 20px;
-  background: url(${CloseIcon});
+  background-image: url(${CloseIcon});
   outline: none;
   border: none;
 `

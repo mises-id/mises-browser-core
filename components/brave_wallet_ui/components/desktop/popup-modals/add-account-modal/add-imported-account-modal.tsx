@@ -10,7 +10,7 @@ import { useHistory, useParams } from 'react-router'
 // utils
 import { FILECOIN_FORMAT_DESCRIPTION_URL } from '../../../../common/constants/urls'
 import { getLocale, getLocaleWithTag } from '$web-common/locale'
-import { copyToClipboard } from '../../../../utils/copy-to-clipboard'
+// import { copyToClipboard } from '../../../../utils/copy-to-clipboard'
 
 // options
 import { CreateAccountOptions } from '../../../../options/create-account-options'
@@ -42,7 +42,6 @@ import {
   ImportButton,
   ImportDisclaimer,
   ImportRow,
-  Input,
   SelectWrapper,
   StyledWrapper
 } from './style'
@@ -51,6 +50,7 @@ import {
   WarningText,
   WarningWrapper
 } from '../account-settings-modal/account-settings-modal.style'
+import Input from '../../../../components/rn/Input'
 
 interface Params {
   accountTypeName: string
@@ -134,9 +134,9 @@ export const ImportAccountModal = () => {
     setImportError(undefined)
   }, [setImportError])
 
-  const onClearClipboard = React.useCallback(() => {
-    copyToClipboard('')
-  }, [])
+  // const onClearClipboard = React.useCallback(() => {
+  //   copyToClipboard('')
+  // }, [])
 
   const onFileUpload = React.useCallback((file: React.ChangeEvent<HTMLInputElement>) => {
     if (file.target.files) {
@@ -280,14 +280,13 @@ export const ImportAccountModal = () => {
               type='password'
               autoFocus={true}
               autoComplete='off'
-              onPaste={onClearClipboard}
             />
           )}
 
           {importOption !== 'key' && (
             <>
               <ImportRow>
-                <ImportButton htmlFor='recoverFile'>{getLocale('braveWalletImportAccountUploadButton')}</ImportButton>
+                <ImportButton >{getLocale('braveWalletImportAccountUploadButton')}</ImportButton>
                 <DisclaimerText>{file ? reduceFileName(file[0].name) : getLocale('braveWalletImportAccountUploadPlaceholder')}</DisclaimerText>
               </ImportRow>
               <input
@@ -301,7 +300,6 @@ export const ImportAccountModal = () => {
                 placeholder={`Origin ${getLocale('braveWalletCreatePasswordInput')}`}
                 onChange={handlePasswordChanged}
                 type='password'
-                ref={passwordInputRef}
               />
             </>
           )}

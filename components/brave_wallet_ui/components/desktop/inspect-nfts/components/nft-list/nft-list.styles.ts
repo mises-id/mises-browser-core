@@ -38,7 +38,7 @@ export const NftItemOverlay = styled.div`
   justify-content: center;
   align-items: center;
   color: ${p => p.theme.palette.white};
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   z-index: 3;
 `
 

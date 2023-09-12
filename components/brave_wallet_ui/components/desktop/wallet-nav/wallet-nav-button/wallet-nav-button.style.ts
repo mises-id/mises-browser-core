@@ -4,7 +4,7 @@
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import styled from 'styled-components'
-import Icon from '@brave/leo/react/icon'
+// import Icon from '@brave/leo/react/icon'
 import { WalletButton, Text } from '../../../shared/style'
 
 export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
@@ -16,7 +16,8 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   padding: 16px;
   outline: none;
   border: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   background-color: ${(p) => p.isSelected
     ? 'var(--nav-button-background-hover)'
     : 'none'};
@@ -35,7 +36,7 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   transition-duration: inherit;
 `
 
-export const ButtonIcon = styled(Icon)`
+export const ButtonIcon = styled.div`
   --leo-icon-size: 24px;
   color: var(--nav-button-color);
   margin-right: var(--icon-margin-right);

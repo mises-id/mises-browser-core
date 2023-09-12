@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ export const StyledWrapper = styled.div`
   padding: 24px;
 `
 
-export const Title = styled.span`
+export const Title = styled.Text`
   font-family: Poppins;
   font-size: 20px;
   font-weight: 600;
@@ -24,7 +24,7 @@ export const Title = styled.span`
   margin-bottom: 12px;
 `
 
-export const Description = styled.span`
+export const Description = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 20px;

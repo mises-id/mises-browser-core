@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { AlertCircleIcon, ArrowRightIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { AlertCircleIcon, ArrowRightIcon } from 'brave-ui/components/icons'
 
 import { WalletButton } from '../../shared/style'
 
@@ -11,7 +11,7 @@ interface StyleProps {
   orb: string
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -19,7 +19,7 @@ export const StyledWrapper = styled.div`
   justify-content: flex-start;
 `
 
-export const TransactionValue = styled.span`
+export const TransactionValue = styled.Text`
   font-family: Poppins;
   font-size: 18px;
   line-height: 22px;
@@ -28,7 +28,7 @@ export const TransactionValue = styled.span`
   font-weight: 600;
 `
 
-export const PanelDescription = styled.span`
+export const PanelDescription = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   letter-spacing: 0.01em;
@@ -36,7 +36,7 @@ export const PanelDescription = styled.span`
   height: 18px;
 `
 
-export const FromCircle = styled.div<Partial<StyleProps>>`
+export const FromCircle = styled.View<Partial<StyleProps>>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -44,7 +44,7 @@ export const FromCircle = styled.div<Partial<StyleProps>>`
   background-size: cover;
 `
 
-export const ToCircle = styled.div<Partial<StyleProps>>`
+export const ToCircle = styled.View<Partial<StyleProps>>`
   width: 24px;
   height: 24px;
   border-radius: 100%;
@@ -54,7 +54,7 @@ export const ToCircle = styled.div<Partial<StyleProps>>`
   left: 24px;
 `
 
-export const OrbContainer = styled.div`
+export const OrbContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,7 +64,7 @@ export const OrbContainer = styled.div`
   margin-bottom: 10px;
 `
 
-export const DetailRow = styled.div`
+export const DetailRow = styled.View`
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -73,7 +73,7 @@ export const DetailRow = styled.div`
   padding: 6px;
 `
 
-export const DetailTitle = styled.span`
+export const DetailTitle = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -82,7 +82,7 @@ export const DetailTitle = styled.span`
   font-weight: 600;
 `
 
-export const SpacerText = styled.span`
+export const SpacerText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -98,7 +98,8 @@ export const DetailButton = styled(WalletButton)`
   line-height: 18px;
   letter-spacing: 0.01em;
   color: ${(p) => p.theme.color.interactive05};
-  background: none;
+  background-image: none;
+  background-color: none;;
   cursor: pointer;
   outline: none;
   border: none;
@@ -106,21 +107,21 @@ export const DetailButton = styled(WalletButton)`
   padding: 0px;
 `
 
-export const StatusRow = styled.div`
+export const StatusRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `
 
-export const BalanceColumn = styled.div`
+export const BalanceColumn = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
 `
 
-export const FromToRow = styled.div`
+export const FromToRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,7 +130,7 @@ export const FromToRow = styled.div`
   margin-bottom: 8px;
 `
 
-export const ArrowIcon = styled(ArrowRightIcon)`
+export const ArrowIcon = styled.View`
   width: auto;
   height: 16px;
   margin-right: 6px;
@@ -137,7 +138,7 @@ export const ArrowIcon = styled(ArrowRightIcon)`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const AccountNameText = styled.span`
+export const AccountNameText = styled.Text`
   cursor: default;
   font-family: Poppins;
   font-size: 13px;
@@ -147,7 +148,7 @@ export const AccountNameText = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const AlertIcon = styled(AlertCircleIcon)`
+export const AlertIcon = styled.View`
   width: 14px;
   height: 14px;
   color: ${(p) => p.theme.color.interactive05};

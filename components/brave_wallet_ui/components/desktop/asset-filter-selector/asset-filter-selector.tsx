@@ -58,7 +58,7 @@ export const AssetFilterSelector = () => {
     <StyledWrapper>
 
       <DropDownButton
-        onClick={toggleShowAssetFilter}>
+        onPress={toggleShowAssetFilter}>
         <SelectorLeftSide>
           {selectedAssetFilterInfo.name}
         </SelectorLeftSide>
@@ -78,7 +78,7 @@ export const AssetFilterSelector = () => {
         </DropDown>
       }
       {showAssetFilter &&
-        <ClickAwayArea onClick={hideAssetFilter} />
+        <ClickAwayArea onPress={hideAssetFilter} />
       }
     </StyledWrapper >
   )

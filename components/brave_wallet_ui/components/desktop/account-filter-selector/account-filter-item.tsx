@@ -46,7 +46,7 @@ export const AccountFilterItem = (props: Props) => {
 
   return (
     <NetworkItemWrapper>
-      <NetworkItemButton onClick={onClickSelectAccount}>
+      <NetworkItemButton onPress={onClickSelectAccount}>
         <LeftSide>
           {account.address !== AllAccountsOption.address && (
             <AccountCircle orb={orb} />

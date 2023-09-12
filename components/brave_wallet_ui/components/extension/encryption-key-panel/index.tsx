@@ -104,7 +104,7 @@ function EncryptionKeyPanel (props: Props) {
       >
         {panelType === 'read' && !isDecrypted ? (
           <DecryptButton
-            onClick={onDecryptMessage}
+            onPress={onDecryptMessage}
           >
             {getLocale('braveWalletReadEncryptedMessageDecryptButton')}
           </DecryptButton>

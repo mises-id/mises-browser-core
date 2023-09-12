@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { MoreVertRIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { MoreVertRIcon } from 'brave-ui/components/icons'
 import { WalletButton } from '../../shared/style'
 import ClipboardIcon from '../../../assets/svg-icons/copy-to-clipboard-icon.svg'
 
@@ -11,7 +11,7 @@ interface StyleProps {
   orb: string
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,14 +21,14 @@ export const StyledWrapper = styled.div`
   position: relative;
 `
 
-export const NameAndIcon = styled.div`
+export const NameAndIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 `
 
-export const AccountAndAddress = styled.div`
+export const AccountAndAddress = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -38,7 +38,8 @@ export const AccountAndAddress = styled.div`
 export const AccountNameButton = styled(WalletButton)`
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   font-family: Poppins;
   font-size: 13px;
@@ -55,14 +56,14 @@ export const AccountAddressButton = styled(AccountNameButton)`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const AddressAndButtonRow = styled.div`
+export const AddressAndButtonRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
 `
 
-export const BalanceColumn = styled.div`
+export const BalanceColumn = styled.View`
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -70,14 +71,14 @@ export const BalanceColumn = styled.div`
   margin-right: 20px;
 `
 
-export const RightSide = styled.div`
+export const RightSide = styled.View`
   display: flex;
   align-items: flex-end;
   justify-content: center;
   flex-direction: row;
 `
 
-export const FiatBalanceText = styled.span`
+export const FiatBalanceText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -85,7 +86,7 @@ export const FiatBalanceText = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const AssetBalanceText = styled.span`
+export const AssetBalanceText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -93,7 +94,7 @@ export const AssetBalanceText = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const AccountCircle = styled.div<StyleProps>`
+export const AccountCircle = styled.View<StyleProps>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -108,18 +109,19 @@ export const MoreButton = styled(WalletButton)`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
 `
 
-export const MoreIcon = styled(MoreVertRIcon)`
+export const MoreIcon = styled.View`
   width: auto;
   height: 26px;
   transform: rotate(90deg);
   color: ${(p) => p.theme.color.interactive08};
 `
 
-export const CopyIcon = styled.div`
+export const CopyIcon = styled.View`
   cursor: pointer;
   width: 14px;
   height: 14px;

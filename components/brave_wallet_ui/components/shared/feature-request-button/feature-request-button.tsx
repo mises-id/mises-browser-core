@@ -23,7 +23,7 @@ export const FeatureRequestButton = () => {
   }, [])
 
   return (
-    <Button onClick={onClickFeatureRequestButton}>
+    <Button onPress={onClickFeatureRequestButton}>
       <IdeaButtonIcon />
       <ButtonText>{getLocale('braveWalletRequestFeatureButtonText')}</ButtonText>
     </Button>

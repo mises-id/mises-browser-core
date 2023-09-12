@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../shared/style'
 import WarningTriangle from '../../assets/svg-icons/warning-triangle.svg'
 import IThemeProps from 'brave-ui/src/theme/theme-interface'
@@ -12,7 +12,7 @@ interface StyleProps {
   warningType: 'warning' | 'danger'
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
@@ -22,7 +22,7 @@ export const StyledWrapper = styled.div`
   background-color: ${(p) => p.theme.color.background01};
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,7 +31,7 @@ export const TopRow = styled.div`
   padding: 15px 15px 0px 15px;
 `
 
-export const CenterColumn = styled.div`
+export const CenterColumn = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,14 +39,14 @@ export const CenterColumn = styled.div`
   width: 100%;
 `
 
-export const AddressAndOrb = styled.div`
+export const AddressAndOrb = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 `
 
-export const AccountCircle = styled.div<Partial<StyleProps>>`
+export const AccountCircle = styled.View<Partial<StyleProps>>`
   width: 32px;
   height: 32px;
   border-radius: 100%;
@@ -54,7 +54,7 @@ export const AccountCircle = styled.div<Partial<StyleProps>>`
   background-size: cover;
 `
 
-export const AddressText = styled.span`
+export const AddressText = styled.Text`
   cursor: default;
   font-family: Poppins;
   font-size: 12px;
@@ -65,7 +65,7 @@ export const AddressText = styled.span`
   margin-right: 12px;
 `
 
-export const NetworkText = styled.span`
+export const NetworkText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -73,7 +73,7 @@ export const NetworkText = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const PanelTitle = styled.span`
+export const PanelTitle = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   line-height: 20px;
@@ -85,7 +85,7 @@ export const PanelTitle = styled.span`
   margin-bottom: 6px;
 `
 
-export const Description = styled.span`
+export const Description = styled.Text`
   width: 275px;
   font-family: Poppins;
   font-size: 12px;
@@ -97,7 +97,15 @@ export const Description = styled.span`
   width: 60%;
 `
 
-export const TabRow = styled.div`
+export const TabRow = styled.View`
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: row;
+  width: 255px;
+  margin-bottom: 10px;
+`
+export const TabRowRN = styled.View`
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -106,7 +114,7 @@ export const TabRow = styled.div`
   margin-bottom: 10px;
 `
 
-export const DetailTextDarkBold = styled.span`
+export const DetailTextDarkBold = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -115,7 +123,7 @@ export const DetailTextDarkBold = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const DetailTextLight = styled.span`
+export const DetailTextLight = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -123,7 +131,7 @@ export const DetailTextLight = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const DetailTextDark = styled.span`
+export const DetailTextDark = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -131,7 +139,7 @@ export const DetailTextDark = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const URLText = styled.span`
+export const URLText = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
@@ -145,7 +153,7 @@ export const URLText = styled.span`
   word-break: break-word;
 `
 
-export const WarningBox = styled.div<Partial<StyleProps>>`
+export const WarningBox = styled.View<Partial<StyleProps>>`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -162,7 +170,7 @@ export const WarningBox = styled.div<Partial<StyleProps>>`
   };
 `
 
-export const WarningTitle = styled.span<Partial<StyleProps>>`
+export const WarningTitle = styled.Text<Partial<StyleProps>>`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -175,7 +183,7 @@ export const WarningTitle = styled.span<Partial<StyleProps>>`
   };
 `
 
-export const WarningBoxTitleRow = styled.div`
+export const WarningBoxTitleRow = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -183,7 +191,7 @@ export const WarningBoxTitleRow = styled.div`
   flex-wrap: wrap;
 `
 
-export const WarningText = styled.span`
+export const WarningText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -192,7 +200,7 @@ export const WarningText = styled.span`
   color: ${(p) => p.theme.color.errorText};
 `
 
-export const WarningBoxIcon = styled.div<{
+export const WarningBoxIcon = styled.View<{
   color?: keyof IThemeProps['color']
 }>`
   mask-size: 100%;
@@ -217,7 +225,8 @@ export const LearnMoreButton = styled(WalletButton)`
   line-height: 18px;
   letter-spacing: 0.01em;
   color: ${(p) => p.theme.color.interactive05};
-  background: none;
+  background-image: none;
+  background-color: none;;
   cursor: pointer;
   outline: none;
   border: none;

@@ -43,7 +43,6 @@ export const Input = styled.input<{
   width: 100%;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
-  box-shadow: none;
   border-style: solid;
   border-width: 1px;
   border-color: ${(p) =>
@@ -158,18 +157,9 @@ export const SliderValue = styled.span`
   margin-bottom: 16px;
 `
 
-const makeLongShadow = (color: string, size: string) => {
-  let i = 4
-  let shadow = `${i}px 0 0 ${size} ${color}`
-
-  for (; i < 300; i++) {
-    shadow = `${shadow}, ${i}px 0 0 ${size} ${color}`
-  }
-  return shadow
-}
-
 export const GasSlider = styled.input`
-  background: none;
+  background-image: none;
+  background-color: none;;
   overflow: hidden;
   display: block;
   appearance: none;
@@ -184,7 +174,7 @@ export const GasSlider = styled.input`
   &::-webkit-slider-runnable-track {
     width: 100%;
     height: 5px;
-    background: ${(p) => p.theme.color.interactive05};
+    background-color: ${(p) => p.theme.color.interactive05};
     border-radius: 10px;
   }
   &::-webkit-slider-thumb {
@@ -192,22 +182,21 @@ export const GasSlider = styled.input`
     appearance: none;
     height: 24px;
     width: 24px;
-    background: ${(p) => p.theme.color.background01};
+    background-color: ${(p) => p.theme.color.background01};
     border-radius: 100%;
     border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
     top: 50%;
     transform: translateY(-50%);
-    box-shadow: ${(p) => makeLongShadow(p.theme.color.divider01, '-9px')};
   }
   &::-webkit-progress-value {
-    background: orange;
+    background-color: orange;
     width: 100%;
     height: 5px;
   }
   &:hover,
   &:focus {
     &::-webkit-slider-thumb {
-      background: ${(p) => p.theme.color.background01};
+      background-color: ${(p) => p.theme.color.background01};
     }
   }
 `

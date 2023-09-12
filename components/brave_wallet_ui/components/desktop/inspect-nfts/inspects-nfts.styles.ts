@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // styles
 import { WalletButton } from '../../shared/style'
@@ -15,7 +15,7 @@ import Close from '../../../assets/svg-icons/close.svg'
 import Back from '../../../assets/svg-icons/nft-ipfs/back.svg'
 import Info from '../../../assets/svg-icons/nft-ipfs/info.svg'
 
-export const InspectNftsWrapper = styled.div`
+export const InspectNftsWrapper = styled.View`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -31,7 +31,7 @@ export const InspectNftsWrapper = styled.div`
   margin-top: -32px;
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -55,7 +55,7 @@ export const TopRowButton = styled(WalletButton)`
   border: none;
 `
 
-const TopRowIcon = styled.div`
+const TopRowIcon = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +78,7 @@ export const BackIcon = styled(TopRowIcon)`
   margin-right: 10px;
 `
 
-export const MainContent = styled.section`
+export const MainContent = styled.View`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -86,7 +86,7 @@ export const MainContent = styled.section`
   width: 547px;
 `
 
-export const NftCountHeading = styled.h1`
+export const NftCountHeading = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -101,7 +101,7 @@ export const PinNftsButton = styled(ActionButton)`
   margin: 32px;
 `
 
-export const InfoSubHeading = styled.h6`
+export const InfoSubHeading = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -121,14 +121,14 @@ export const InfoIcon = styled(TopRowIcon)`
   cursor: pointer;
 `
 
-export const SubDivider = styled.div`
+export const SubDivider = styled.View`
   width: 100%;
   height: 1px;
   background-color: rgba(233, 233, 244, 0.3);
   margin-top: 13px;
 `
 
-export const PinnedNftIllustration = styled.img`
+export const PinnedNftIllustration = styled.Image`
   width: 100%;
   height: auto;
   margin-bottom: 80px;

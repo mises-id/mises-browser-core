@@ -26,12 +26,12 @@ function SelectHeader (props: Props) {
   return (
     <Header>
       {onBack
-        ? <Button onClick={onBack}><BackIcon /></Button>
+        ? <Button onPress={onBack}><BackIcon /></Button>
         : <HeaderSpacing />
       }
       <HeaderText>{title}</HeaderText>
       {hasAddButton ? (
-        <Button onClick={onClickAdd}>
+        <Button onPress={onClickAdd}>
           <PlusIcon />
         </Button>
       ) : (

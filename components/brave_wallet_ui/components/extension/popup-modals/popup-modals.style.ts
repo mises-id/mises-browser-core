@@ -2,12 +2,12 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import CloseIcon from '../../../assets/svg-icons/close.svg'
 import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,10 +18,10 @@ export const StyledWrapper = styled.div`
   bottom: 0;
   position: fixed;
   z-index: 10;
-  background: rgba(10, 10, 10, 0.2);
+  background-color: rgba(10, 10, 10, 0.2);
 `
 
-export const Modal = styled.div`
+export const Modal = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,10 +29,9 @@ export const Modal = styled.div`
   max-width: 280px;
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 4px;
-  box-shadow: 0 2px 28px rgba(0, 0, 0, 0.5);
 `
 
-export const Header = styled.div`
+export const Header = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,7 +40,7 @@ export const Header = styled.div`
   width: 100%;
 `
 
-export const Title = styled.span`
+export const Title = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;

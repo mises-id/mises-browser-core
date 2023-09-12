@@ -3,38 +3,37 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // icons
-import { CaratCircleODownIcon } from 'brave-ui/components/icons'
-
-// style
-import { WalletButton } from '../style'
+// import { CaratCircleODownIcon } from 'brave-ui/components/icons'
 
 interface IsPanelProps {
   isPanel?: boolean
 }
 
-export const CaratDownIcon = styled(CaratCircleODownIcon)<IsPanelProps>`
+export const CaratDownIcon = styled.View<IsPanelProps>`
   width: 14px;
   height: 14px;
   margin-left: 4px;
   color: ${(p) => p.isPanel ? p.theme.palette.white : p.theme.color.interactive07};
 `
 
-export const OvalButton = styled(WalletButton)<IsPanelProps>`
+export const OvalButton = styled.TouchableOpacity<IsPanelProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: ${(p) => p.onClick ? 'pointer' : 'text'};
+  flex-direction: row;
+  cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border-radius: 48px;
   padding: 3px 10px;
   border: 1px solid ${(p) => p.isPanel ? 'rgba(255,255,255,0.5)' : p.theme.color.interactive08};
 `
 
-export const OvalButtonText = styled.span<IsPanelProps>`
+export const OvalButtonText = styled.Text<IsPanelProps>`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;

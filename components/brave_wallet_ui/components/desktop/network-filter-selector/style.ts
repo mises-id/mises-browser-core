@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
-import { CaratStrongDownIcon } from 'brave-ui/components/icons'
+// import { CaratStrongDownIcon } from 'brave-ui/components/icons'
 import CheckMark from '../../../assets/svg-icons/big-checkmark.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -24,7 +24,8 @@ export const DropDownButton = styled(WalletButton)`
   background-color: ${(p) => p.theme.color.background02};
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
   border-radius: 4px;
   font-family: Poppins;
@@ -37,13 +38,13 @@ export const DropDownButton = styled(WalletButton)`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const DropDownIcon = styled(CaratStrongDownIcon)`
+export const DropDownIcon = styled.View`
   width: 18px;
   height: 18px;
   color: ${(p) => p.theme.color.interactive07};
 `
 
-export const DropDown = styled.div`
+export const DropDown = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -53,10 +54,6 @@ export const DropDown = styled.div`
   background-color: ${(p) => p.theme.color.background02};
   border: 1px solid ${(p) => p.theme.color.divider01};
   border-radius: 8px;
-  box-shadow: 0px 0px 16px rgba(99, 105, 110, 0.18);
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.36);
-  }
   position: absolute;
   top: 38px;
   z-index: 9;
@@ -65,7 +62,7 @@ export const DropDown = styled.div`
   }
 `
 
-export const NetworkItemWrapper = styled.div`
+export const NetworkItemWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -82,7 +79,8 @@ export const NetworkItemButton = styled(WalletButton)`
   justify-content: space-between;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   margin: 0px;
   padding: 8px 8px 8px 12px;
@@ -94,7 +92,7 @@ export const NetworkItemButton = styled(WalletButton)`
   }
 `
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -107,7 +105,7 @@ export const SelectorLeftSide = styled(LeftSide)`
   margin-right: 4px;
 `
 
-export const NetworkName = styled.span`
+export const NetworkName = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   letter-spacing: 0.01em;
@@ -116,7 +114,7 @@ export const NetworkName = styled.span`
   text-align: left;
 `
 
-export const BigCheckMark = styled.div`
+export const BigCheckMark = styled.View`
   width: 14px;
   height: 14px;
   background-color: ${(p) => p.theme.color.text01};
@@ -125,7 +123,7 @@ export const BigCheckMark = styled.div`
   margin-right: 8px;
 `
 
-export const SecondaryNetworkText = styled.span`
+export const SecondaryNetworkText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   letter-spacing: 0.01em;
@@ -135,7 +133,7 @@ export const SecondaryNetworkText = styled.span`
   margin: 10px 0px 10px 10px;
 `
 
-export const ClickAwayArea = styled.div`
+export const ClickAwayArea = styled.TouchableOpacity`
   left: 0;
   right: 0;
   top: 0;

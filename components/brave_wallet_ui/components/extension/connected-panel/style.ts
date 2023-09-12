@@ -3,22 +3,23 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.s
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import CheckMark from '../../../assets/svg-icons/big-checkmark.svg'
 import SwitchDown from '../../../assets/svg-icons/switch-icon.svg'
-import { WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div<{ panelBackground: string }>`
+export const StyledWrapper = styled.TouchableOpacity<{ panelBackground: string }>`
   display: flex;
   height: 100%;
   width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: ${(p) => p.panelBackground};
+  background-size: 100% 100%;
+  background-image: linear-gradient(to bottom, #FC798F 0%, #67D4B4 100%);
+  background-repeat: no-repeat;
 `
 
-export const CenterColumn = styled.div`
+export const CenterColumn = styled.View`
   display: flex;
   width: 100%;
   flex: 1;
@@ -29,7 +30,7 @@ export const CenterColumn = styled.div`
   max-width: 300px;
 `
 
-export const AccountCircle = styled(WalletButton) <{ orb: string }>`
+export const AccountCircle = styled.TouchableOpacity<{ orb: string }>`
   display: flex;
   cursor: pointer;
   width: 54px;
@@ -43,7 +44,7 @@ export const AccountCircle = styled(WalletButton) <{ orb: string }>`
   margin-bottom: 6px;
 `
 
-export const AccountNameText = styled.span`
+export const AccountNameText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -52,7 +53,7 @@ export const AccountNameText = styled.span`
   color: ${(p) => p.theme.palette.white};
 `
 
-export const AccountAddressText = styled(WalletButton)`
+export const AccountAddressText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -61,11 +62,12 @@ export const AccountAddressText = styled(WalletButton)`
   font-weight: 300;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
 `
 
-export const BalanceColumn = styled.div`
+export const BalanceColumn = styled.View`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -73,7 +75,7 @@ export const BalanceColumn = styled.div`
   justify-content: center;
 `
 
-export const AssetBalanceText = styled.span`
+export const AssetBalanceText = styled.Text`
   font-family: Poppins;
   font-size: 24px;
   line-height: 36px;
@@ -83,7 +85,7 @@ export const AssetBalanceText = styled.span`
   height: 36px;
 `
 
-export const FiatBalanceText = styled.span`
+export const FiatBalanceText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -93,7 +95,7 @@ export const FiatBalanceText = styled.span`
   height: 20px;
 `
 
-export const NotConnectedIcon = styled.div`
+export const NotConnectedIcon = styled.View`
   width: 14px;
   height: 14px;
   margin-right: 8px;
@@ -101,13 +103,12 @@ export const NotConnectedIcon = styled.div`
   border: 1px solid rgba(255,255,255,0.5);
 `
 
-export const OvalButton = styled(WalletButton)`
+export const OvalButton = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
   border-radius: 48px;
   padding: 3px 10px;
   border: 1px solid rgba(255,255,255,0.5);
@@ -117,7 +118,7 @@ export const OvalButton = styled(WalletButton)`
   }
 `
 
-export const OvalButtonText = styled.span`
+export const OvalButtonText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -126,7 +127,7 @@ export const OvalButtonText = styled.span`
   font-weight: 600;
 `
 
-export const StatusRow = styled.div`
+export const StatusRow = styled.View`
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -135,7 +136,7 @@ export const StatusRow = styled.div`
   padding: 0px 12px;
 `
 
-export const BigCheckMark = styled.div`
+export const BigCheckMark = styled.View`
   width: 14px;
   height: 14px;
   background-color: ${(p) => p.theme.palette.white};
@@ -144,20 +145,21 @@ export const BigCheckMark = styled.div`
   margin-right: 8px;
 `
 
-export const SwitchIcon = styled.div`
+export const SwitchIcon = styled.View`
   width: 14px;
   height: 14px;
-  background: url(${SwitchDown});
+  background-image: url(${SwitchDown});
   position: absolute;
   left: 0px;
   bottom: 0px;
   z-index: 10;
 `
 
-export const MoreAssetsButton = styled(WalletButton)`
+export const MoreAssetsButton = styled.TouchableOpacity`
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   font-family: Poppins;
   font-size: 12px;
@@ -166,7 +168,7 @@ export const MoreAssetsButton = styled(WalletButton)`
   color: ${(p) => p.theme.palette.white};
 `
 
-export const ConnectedStatusBubble = styled.div<{ isConnected: boolean }>`
+export const ConnectedStatusBubble = styled.View<{ isConnected: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;

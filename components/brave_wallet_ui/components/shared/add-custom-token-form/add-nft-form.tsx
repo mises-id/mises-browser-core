@@ -46,9 +46,10 @@ import {
   ErrorText,
   FormWrapper,
   FullWidthFormColumn,
-  Input,
+  // Input,
   InputLabel
 } from './add-custom-token-form-styles'
+import Input from '../../rn/Input'
 
 interface Props {
   contractAddress: string
@@ -285,13 +286,12 @@ export const AddNftForm = (props: Props) => {
   ])
 
   return (
-    <FormWrapper onClick={onHideNetworkDropDown}>
+    <FormWrapper onPress={onHideNetworkDropDown}>
       <FullWidthFormColumn>
         <InputLabel>{getLocale('braveWalletWatchListTokenAddress')}</InputLabel>
         <Input
           value={tokenContractAddress}
           onChange={handleTokenAddressChanged}
-          width='100%'
         />
       </FullWidthFormColumn>
       <FullWidthFormColumn>
@@ -309,7 +309,6 @@ export const AddNftForm = (props: Props) => {
         <Input
           value={tokenName}
           onChange={handleTokenNameChanged}
-          width='100%'
         />
       </FullWidthFormColumn>
       <FullWidthFormColumn>
@@ -317,7 +316,6 @@ export const AddNftForm = (props: Props) => {
         <Input
           value={tokenSymbol}
           onChange={handleTokenSymbolChanged}
-          width='100%'
         />
       </FullWidthFormColumn>
       <FullWidthFormColumn>
@@ -328,7 +326,6 @@ export const AddNftForm = (props: Props) => {
               value={tokenID}
               onChange={handleTokenIDChanged}
               type='number'
-              width='100%'
             />
           </>
         }

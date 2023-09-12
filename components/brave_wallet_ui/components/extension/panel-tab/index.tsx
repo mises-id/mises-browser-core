@@ -16,7 +16,7 @@ export interface Props {
 const PanelTab = (props: Props) => {
   const { onSubmit, text, isSelected } = props
   return (
-    <StyledButton isSelected={isSelected} onClick={onSubmit}>
+    <StyledButton isSelected={isSelected} onPress={onSubmit}>
       <ButtonText isSelected={isSelected}>{text}</ButtonText>
       <TabLine isSelected={isSelected} />
     </StyledButton>

@@ -3,8 +3,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
-import { ArrowRightIcon, LoaderIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { ArrowRightIcon, LoaderIcon } from 'brave-ui/components/icons'
 import LinkIcon from '../../../assets/svg-icons/link-icon.svg'
 import { WarningBoxIcon } from '../shared-panel-styles'
 
@@ -14,7 +14,7 @@ import {
   WalletButton
 } from '../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
@@ -24,7 +24,7 @@ export const StyledWrapper = styled.div`
   background-color: ${(p) => p.theme.color.background01};
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,7 +33,7 @@ export const TopRow = styled.div`
   padding: 15px 15px 0px 15px;
 `
 
-export const AccountCircleWrapper = styled.div`
+export const AccountCircleWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +43,7 @@ export const AccountCircleWrapper = styled.div`
   margin-bottom: 10px;
 `
 
-export const FromCircle = styled.div<{ orb: string }>`
+export const FromCircle = styled.View<{ orb: string }>`
   width: 54px;
   height: 54px;
   border-radius: 100%;
@@ -51,7 +51,7 @@ export const FromCircle = styled.div<{ orb: string }>`
   background-size: cover;
 `
 
-export const ToCircle = styled.div<{ orb: string }>`
+export const ToCircle = styled.View<{ orb: string }>`
   width: 32px;
   height: 32px;
   border-radius: 100%;
@@ -61,7 +61,7 @@ export const ToCircle = styled.div<{ orb: string }>`
   left: 34px;
 `
 
-export const AccountNameText = styled.span`
+export const AccountNameText = styled.Text`
   cursor: default;
   font-family: Poppins;
   font-size: 13px;
@@ -71,7 +71,7 @@ export const AccountNameText = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const NetworkText = styled.span`
+export const NetworkText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -79,7 +79,7 @@ export const NetworkText = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const TransactionAmountBig = styled.span`
+export const TransactionAmountBig = styled.Text`
   font-family: Poppins;
   font-size: 18px;
   line-height: 22px;
@@ -88,7 +88,7 @@ export const TransactionAmountBig = styled.span`
   font-weight: 600;
 `
 
-export const TransactionFiatAmountBig = styled.span`
+export const TransactionFiatAmountBig = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -97,7 +97,7 @@ export const TransactionFiatAmountBig = styled.span`
   margin-bottom: 10px;
 `
 
-export const MessageBox = styled.div<{ isApprove: boolean, isDetails: boolean }>`
+export const MessageBox = styled.View<{ isApprove: boolean, isDetails: boolean }>`
   display: flex;
   align-items: flex-start;
   justify-content: 'flex-start';
@@ -114,7 +114,7 @@ export const MessageBox = styled.div<{ isApprove: boolean, isDetails: boolean }>
   position: relative;
 `
 
-export const TransactionTitle = styled.span`
+export const TransactionTitle = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -123,7 +123,7 @@ export const TransactionTitle = styled.span`
   font-weight: 600;
 `
 
-export const TransactionTypeText = styled.span`
+export const TransactionTypeText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -132,7 +132,7 @@ export const TransactionTypeText = styled.span`
   font-weight: 600;
 `
 
-export const FromToRow = styled.div`
+export const FromToRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,7 +141,7 @@ export const FromToRow = styled.div`
   margin-bottom: 8px;
 `
 
-export const ArrowIcon = styled(ArrowRightIcon)`
+export const ArrowIcon = styled.View`
   width: auto;
   height: 16px;
   margin-right: 6px;
@@ -149,7 +149,7 @@ export const ArrowIcon = styled(ArrowRightIcon)`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const Divider = styled.div`
+export const Divider = styled.View`
   width: 100%;
   height: 1px;
   background-color: ${(p) => p.theme.color.divider01};
@@ -158,7 +158,7 @@ export const Divider = styled.div`
   margin-bottom: 6px;
 `
 
-export const SectionRow = styled.div`
+export const SectionRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -167,7 +167,7 @@ export const SectionRow = styled.div`
   height: inherit;
 `
 
-export const SectionColumn = styled.div`
+export const SectionColumn = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -185,7 +185,8 @@ export const EditButton = styled(WalletButton)`
   line-height: 18px;
   letter-spacing: 0.01em;
   color: ${(p) => p.theme.color.interactive05};
-  background: none;
+  background-image: none;
+  background-color: none;;
   cursor: pointer;
   outline: none;
   border: none;
@@ -193,7 +194,7 @@ export const EditButton = styled(WalletButton)`
   padding: 0px;
 `
 
-export const TransactionText = styled.span<{ hasError?: boolean }>`
+export const TransactionText = styled.Text<{ hasError?: boolean }>`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -213,14 +214,14 @@ export const WarningIcon = styled(WarningBoxIcon)`
   margin-right: 6px;
 `
 
-export const LoadIcon = styled(LoaderIcon)`
+export const LoadIcon = styled.View`
   color: ${p => p.theme.color.interactive08};
   height: 25px;
   width: 24px;
   opacity: .4;
 `
 
-export const GroupBox = styled.div`
+export const GroupBox = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: 'flex-start';
@@ -235,10 +236,10 @@ export const GroupBox = styled.div`
   overflow-x: hidden;
   position: relative;
   margin-top: 10px;
-  background: ${p => p.theme.color.infoBackground};
+  background-color: ${p => p.theme.color.infoBackground};
 `
 
-export const GroupBoxColumn = styled.div`
+export const GroupBoxColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -246,7 +247,7 @@ export const GroupBoxColumn = styled.div`
   flex-direction: column;
 `
 
-export const GroupBoxTitle = styled.span`
+export const GroupBoxTitle = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   font-weight: 600;
@@ -256,7 +257,7 @@ export const GroupBoxTitle = styled.span`
   word-break: break-all;
 `
 
-export const GroupBoxText = styled.div<{ dark: boolean }>`
+export const GroupBoxText = styled.View<{ dark: boolean }>`
   font-family: Poppins;
   font-size: 11px;
   font-weight: ${(p) => p.dark ? 600 : 400};
@@ -270,11 +271,11 @@ export const GroupBoxText = styled.div<{ dark: boolean }>`
   flex-direction: row;
 `
 
-export const GroupEnumeration = styled.code`
+export const GroupEnumeration = styled.Text`
   padding-right: 5px;
 `
 
-export const SmallLoadIcon = styled(LoaderIcon)`
+export const SmallLoadIcon = styled.View`
   color: ${p => p.theme.color.interactive08};
   height: 16px;
   width: 16px;
@@ -293,7 +294,8 @@ export const ContractButton = styled(WalletButton)`
   line-height: 20px;
   letter-spacing: 0.01em;
   color: ${(p) => p.theme.color.interactive05};
-  background: none;
+  background-image: none;
+  background-color: none;;
   cursor: pointer;
   outline: none;
   border: none;
@@ -301,7 +303,7 @@ export const ContractButton = styled(WalletButton)`
   padding: 0px;
 `
 
-export const ExplorerIcon = styled.div`
+export const ExplorerIcon = styled.View`
  -webkit-mask-image: url(${LinkIcon});
  mask-image: url(${LinkIcon});
  width: 12px;

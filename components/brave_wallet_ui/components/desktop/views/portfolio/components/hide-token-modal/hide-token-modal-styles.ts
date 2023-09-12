@@ -3,19 +3,19 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../../../../shared/style'
 
 export const hideTokenModalWidth = '400px'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 0 20px 20px 20px;
 `
 
-export const TokenSymbol = styled.h6`
+export const TokenSymbol = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 16px;
@@ -29,7 +29,7 @@ export const TokenSymbol = styled.h6`
   align-self: center;
 `
 
-export const Instructions = styled.p`
+export const Instructions = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 16px;
@@ -42,7 +42,7 @@ export const Instructions = styled.p`
   text-align: center;
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,7 +51,7 @@ export const ButtonRow = styled.div`
 `
 
 export const OkButton = styled(WalletButton)`
-  background: ${p => p.theme.palette.blurple500};
+  background-color: ${p => p.theme.palette.blurple500};
   border: 1px solid ${p => p.theme.palette.blurple500};
   height: 40px;
   width: 125px;
@@ -70,7 +70,8 @@ export const OkButton = styled(WalletButton)`
 `
 
 export const CancelButton = styled(WalletButton)`
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: 1px solid ${p => p.theme.palette.blurple500};
   height: 40px;
   width: 125px;
@@ -88,7 +89,7 @@ export const CancelButton = styled(WalletButton)`
   cursor: pointer;
 `
 
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;

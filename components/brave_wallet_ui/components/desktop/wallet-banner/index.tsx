@@ -26,8 +26,8 @@ const WalletBanner = (props: Props) => {
     <StyledWrapper bannerType={bannerType}>
       <WarningText>{description}</WarningText>
       <ButtonRow>
-        <BannerButton onClick={onClick} buttonType='primary'>{buttonText}</BannerButton>
-        <BannerButton onClick={onDismiss} buttonType='secondary'>{getLocale('braveWalletDismissButton')}</BannerButton>
+        <BannerButton onPress={onClick} buttonType='primary'>{buttonText}</BannerButton>
+        <BannerButton onPress={onDismiss} buttonType='secondary'>{getLocale('braveWalletDismissButton')}</BannerButton>
       </ButtonRow>
     </StyledWrapper>
   )

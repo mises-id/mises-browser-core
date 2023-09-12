@@ -3,14 +3,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled, { css, CSSProperties } from 'styled-components'
+import { CSSProperties } from 'styled-components'
+import styled, { css } from 'styled-components/native'
 
 interface PositionProps {
   position: 'left' | 'right' | 'center'
   verticalPosition: 'above' | 'below'
 }
 
-export const TipAndChildrenWrapper = styled.div`
+export const TipAndChildrenWrapper = styled.View`
   position: relative;
   cursor: default;
   display: inline-block flex;
@@ -19,7 +20,7 @@ export const TipAndChildrenWrapper = styled.div`
   text-align: center;
 `
 
-export const TipWrapper = styled.div<PositionProps>`
+export const TipWrapper = styled.View<PositionProps>`
   position: absolute;
 
   left: ${(p) => p.position === 'left' ? 0 : 'unset'};
@@ -43,7 +44,7 @@ export const TipWrapper = styled.div<PositionProps>`
     z-index: 100;
 `
 
-export const Tip = styled.div<{
+export const Tip = styled.View<{
   isAddress?: boolean,
   maxWidth?: CSSProperties['maxWidth']
   minWidth?: CSSProperties['minWidth']
@@ -71,7 +72,7 @@ export const Tip = styled.div<{
   }
 `
 
-export const Pointer = styled.div<PositionProps>`
+export const Pointer = styled.View<PositionProps>`
   width: 0;
   height: 0;
   border-style: solid;
@@ -106,5 +107,5 @@ export const Pointer = styled.div<PositionProps>`
 `
 
 export const ActionNotification = styled(Tip)`
-  background: ${p => p.theme.palette.blurple500};
+background-color: ${p => p.theme.palette.blurple500};
 `

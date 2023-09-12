@@ -2,8 +2,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
-import { LoaderIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 import LedgerLogo from '../../../../../assets/svg-icons/ledger-logo.svg'
 import TrezorLogo from '../../../../../assets/svg-icons/trezor-logo.svg'
 import { DisclaimerWrapper as DisclaimerWrapperBase } from '../style'
@@ -14,7 +14,7 @@ interface StyleProps {
   size: 'big' | 'small'
 }
 
-export const HardwareTitle = styled.span`
+export const HardwareTitle = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 20px;
@@ -24,7 +24,7 @@ export const HardwareTitle = styled.span`
   margin-bottom: 25px;
 `
 
-export const HardwareButtonRow = styled.div`
+export const HardwareButtonRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -40,7 +40,8 @@ export const HardwareButton = styled(WalletButton) <Partial<StyleProps>>`
   flex-direction: row;
   cursor: ${(p) => p.disabled ? 'not-allowed' : 'pointer'};
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: ${(p) => (p.isSelected ? `2px solid ${p.theme.color.infoBorder}` : `1px solid ${p.theme.color.disabled}`)};
   background-color: ${(p) => (p.isSelected ? p.theme.color.infoBackground : p.theme.color.background02)};
   border-radius: 10px;
@@ -48,7 +49,7 @@ export const HardwareButton = styled(WalletButton) <Partial<StyleProps>>`
   height: 55px;
 `
 
-export const LedgerIcon = styled.div`
+export const LedgerIcon = styled.View`
   width: 93px;
   height: 23px;
   background-color: ${(p) => p.theme.color.interactive07};
@@ -56,7 +57,7 @@ export const LedgerIcon = styled.div`
   mask-image: url(${LedgerLogo});
 `
 
-export const TrezorIcon = styled.div`
+export const TrezorIcon = styled.View`
   width: 105px;
   height: 33px;
   background-color: ${(p) => p.theme.color.interactive07};
@@ -64,7 +65,7 @@ export const TrezorIcon = styled.div`
   mask-image: url(${TrezorLogo});
 `
 
-export const HardwareInfoRow = styled.div`
+export const HardwareInfoRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -72,7 +73,7 @@ export const HardwareInfoRow = styled.div`
   margin-bottom: 35px;
 `
 
-export const HardwareInfoColumn = styled.div`
+export const HardwareInfoColumn = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -92,7 +93,7 @@ export const ConnectingButton = styled(WalletButton)`
   background-color: transparent;
 `
 
-export const ConnectingButtonText = styled.span`
+export const ConnectingButtonText = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
@@ -114,7 +115,7 @@ interface AccountCircleStyleProps {
   orb: string
 }
 
-export const HardwareWalletAccountCircle = styled.div<AccountCircleStyleProps>`
+export const HardwareWalletAccountCircle = styled.View<AccountCircleStyleProps>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -122,7 +123,7 @@ export const HardwareWalletAccountCircle = styled.div<AccountCircleStyleProps>`
   background-size: cover;
 `
 
-export const HardwareWalletAccountsList = styled.div`
+export const HardwareWalletAccountsList = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -131,20 +132,16 @@ export const HardwareWalletAccountsList = styled.div`
   height: 300px;
   overflow-y: auto;
   margin-bottom: 15px;
-  ::-webkit-scrollbar {
-    //width: 0;  /* Remove scrollbar space */
-    //background: transparent;  /* Optional: just make scrollbar invisible */
-  }
 `
 
-export const HardwareWalletAccountListItem = styled.div`
+export const HardwareWalletAccountListItem = styled.View`
   display: flex;
   flex-direction: row;
   margin: 16px 0px;
   width: 100%;
 `
 
-export const HardwareWalletAccountListItemRow = styled.div`
+export const HardwareWalletAccountListItemRow = styled.View`
   flex: 1;
   flex-direction: row;
   /* Body Light Theme/14pt Poppins Regular 400 */
@@ -165,7 +162,7 @@ export const HardwareWalletAccountListItemRow = styled.div`
   padding-right: 10px;
 `
 
-export const AddressBalanceWrapper = styled.div`
+export const AddressBalanceWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -174,7 +171,7 @@ export const AddressBalanceWrapper = styled.div`
   height: 100%;
 `
 
-export const ButtonsContainer = styled.div`
+export const ButtonsContainer = styled.View`
   display: flex;
   flex-direction: row;
   button:first-child {
@@ -186,7 +183,7 @@ export const DisclaimerWrapper = styled(DisclaimerWrapperBase)`
   margin-bottom: 10px;
 `
 
-export const SelectRow = styled.div`
+export const SelectRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -196,11 +193,11 @@ export const SelectRow = styled.div`
   margin-bottom: 10px;
 `
 
-export const SelectWrapper = styled.div`
+export const SelectWrapper = styled.View`
   width: 300px;
 `
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -208,7 +205,7 @@ export const ErrorText = styled.span`
   margin-bottom: 10px;
 `
 
-export const LoadingWrapper = styled.div`
+export const LoadingWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -217,14 +214,14 @@ export const LoadingWrapper = styled.div`
   height: 100%;
 `
 
-export const LoadIcon = styled(LoaderIcon) <Partial<StyleProps>>`
+export const LoadIcon = styled.View <Partial<StyleProps>>`
   color: ${p => p.theme.color.interactive08};
   height: ${(p) => p.size === 'small' ? '25px' : '70px'};
   width: ${(p) => p.size === 'small' ? '25px' : '70px'};
   opacity: .4;
 `
 
-export const NoSearchResultText = styled.div`
+export const NoSearchResultText = styled.View`
   font-family: Poppins;
   font-size: 12px;
   text-align: center;

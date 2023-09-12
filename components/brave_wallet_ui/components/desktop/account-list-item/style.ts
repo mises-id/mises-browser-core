@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import FlashdriveIcon from '../../../assets/svg-icons/flashdrive-icon.svg'
 import { WalletButton } from '../../shared/style'
 
@@ -10,7 +10,7 @@ interface StyleProps {
   orb: string
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,28 +26,28 @@ export const StyledWrapper = styled.div`
   }
 `
 
-export const NameAndIcon = styled.div`
+export const NameAndIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 `
 
-export const AccountNameRow = styled.div`
+export const AccountNameRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
 `
 
-export const RightSide = styled.div`
+export const RightSide = styled.View`
   display: var(--show-buttons);
   align-items: flex-end;
   justify-content: center;
   flex-direction: row;
 `
 
-export const AccountCircle = styled.div<StyleProps>`
+export const AccountCircle = styled.View<StyleProps>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -56,7 +56,7 @@ export const AccountCircle = styled.div<StyleProps>`
   margin-right: 12px;
 `
 
-export const Icon = styled.div<{
+export const Icon = styled.View<{
   icon: string
 }>`
   width: 14px;
@@ -75,7 +75,8 @@ export const OvalButton = styled(WalletButton)`
   justify-content: center;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border-radius: 48px;
   padding: 3px 10px;
   border: 1px solid ${(p) => p.theme.color.interactive08};
@@ -83,7 +84,7 @@ export const OvalButton = styled(WalletButton)`
   pointer-events: auto;
 `
 
-export const OvalButtonText = styled.span`
+export const OvalButtonText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -92,7 +93,7 @@ export const OvalButtonText = styled.span`
   font-weight: 600;
 `
 
-export const HardwareIcon = styled.div`
+export const HardwareIcon = styled.View`
   width: 13px;
   height: 13px;
   background-color: ${(p) => p.theme.color.text02};

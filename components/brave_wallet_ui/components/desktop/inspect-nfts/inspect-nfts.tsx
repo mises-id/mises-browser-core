@@ -10,12 +10,12 @@ import { useHistory } from 'react-router'
 // components
 import { NftList } from './components/nft-list/nft-list'
 import Illustration from '../../../assets/png-icons/nft-ipfs/pinned-nft-illustration.png'
-import { InfoTooltip } from './components/info-tooltip/info-tooltip'
+// import { InfoTooltip } from './components/info-tooltip/info-tooltip'
 
 // styled components
 import {
   BenefitHeading,
-  BenefitsList
+  // BenefitsList
 } from '../local-ipfs-node/local-ipfs-node.styles'
 import { Column, Row } from '../../shared/style'
 
@@ -39,8 +39,8 @@ import {
   BackIcon,
   MainContent,
   PinNftsButton,
-  InfoSubHeading,
-  InfoIcon,
+  // InfoSubHeading,
+  // InfoIcon,
   SubDivider,
   PinnedNftIllustration
 } from './inspects-nfts.styles'
@@ -51,7 +51,7 @@ interface Props {
 }
 
 export const InspectNftsScreen = ({ onClose }: Props) => {
-  const [showTooltip, setShowTooltip] = React.useState<boolean>(false)
+  // const [showTooltip, setShowTooltip] = React.useState<boolean>(false)
 
   // routing
   const history = useHistory()
@@ -68,17 +68,17 @@ export const InspectNftsScreen = ({ onClose }: Props) => {
     history.push(WalletRoutes.Nfts)
   }, [isAutoPinEnabled])
 
-  const onShowTooltip = React.useCallback(() => setShowTooltip(true), [])
-  const onHideTooltip = React.useCallback(() => setShowTooltip(false), [])
+  // const onShowTooltip = React.useCallback(() => setShowTooltip(true), [])
+  // const onHideTooltip = React.useCallback(() => setShowTooltip(false), [])
 
   return (
     <InspectNftsWrapper>
       <TopRow>
-        <TopRowButton onClick={onClose}>
+        <TopRowButton onPress={onClose}>
           <BackIcon />
           {getLocale('braveWalletNftPinningBackButton')}
         </TopRowButton>
-        <TopRowButton onClick={onClose}>
+        <TopRowButton onPress={onClose}>
           {getLocale('braveWalletNftPinningCloseButton')}
           <CloseIcon />
         </TopRowButton>
@@ -87,7 +87,7 @@ export const InspectNftsScreen = ({ onClose }: Props) => {
         <Row maxWidth='100%' alignItems='center' justifyContent='center'>
           <NftList />
         </Row>
-        <Row
+        {/* <Row
           margin='35px 0 11px 0'
           gap='8px'
           alignItems='center'
@@ -100,21 +100,21 @@ export const InspectNftsScreen = ({ onClose }: Props) => {
           {showTooltip && (
             <InfoTooltip text={getLocale('braveWalletNftPinningTooltip')} />
           )}
-        </Row>
+        </Row> */}
         <Row>
           <SubDivider />
         </Row>
         <Column margin='32px 0 0'>
           <BenefitHeading>{getLocale('braveWalletNftPinningBenefitsHeading')}</BenefitHeading>
-          <BenefitsList>
+          {/* <BenefitsList>
             <li>{getLocale('braveWalletNftPinningBenefitOne')}</li>
             <li>{getLocale('braveWalletNftPinningBenefitTwo')}</li>
-          </BenefitsList>
+          </BenefitsList> */}
         </Column>
         <Row gap='16px' alignItems='center' justifyContent='center'>
-          <PinNftsButton onClick={onClickRunNode}>{getLocale('braveWalletNftPinningPinNftsButton')}</PinNftsButton>
+          <PinNftsButton onPress={onClickRunNode}>{getLocale('braveWalletNftPinningPinNftsButton')}</PinNftsButton>
         </Row>
-        <PinnedNftIllustration src={Illustration} />
+        <PinnedNftIllustration source={{ uri: Illustration}} />
       </MainContent>
     </InspectNftsWrapper>
   )

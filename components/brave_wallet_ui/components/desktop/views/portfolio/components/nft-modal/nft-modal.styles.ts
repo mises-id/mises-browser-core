@@ -17,7 +17,7 @@ export const StyledWrapper = styled.div`
   bottom: 0;
   position: fixed;
   z-index: 10;
-  background: rgba(33, 37, 41, 0.8);
+  background-color: rgba(33, 37, 41, 0.8);
 `
 
 export const Modal = styled.div<{ width?: string, height?: string }>`

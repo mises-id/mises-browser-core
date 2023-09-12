@@ -34,10 +34,10 @@ import { useGetNetworkQuery } from '../../../../common/slices/api.slice'
 import {
   SendContainer,
   SectionBox,
-  AddressInput,
-  AmountInput,
+  // AddressInput,
+  // AmountInput,
   Background,
-  DIVForWidth,
+  // DIVForWidth,
   InputRow,
   DomainLoadIcon
 } from './send.style'
@@ -113,7 +113,7 @@ export const Send = (props: Props) => {
   // State
   const [backgroundHeight, setBackgroundHeight] = React.useState<number>(0)
   const [backgroundOpacity, setBackgroundOpacity] = React.useState<number>(0.3)
-  const [domainPosition, setDomainPosition] = React.useState<number>(0)
+  const [domainPosition] = React.useState<number>(0)
   const [showChecksumInfoModal, setShowChecksumInfoModal] = React.useState<boolean>(false)
 
 
@@ -131,19 +131,19 @@ export const Send = (props: Props) => {
   )
 
   // Methods
-  const handleInputAmountChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSendAmount(event.target.value)
-    },
-    []
-  )
+  // const handleInputAmountChange = React.useCallback(
+  //   (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     setSendAmount(event.target.value)
+  //   },
+  //   []
+  // )
 
-  const handleInputAddressChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      updateToAddressOrUrl(event.target.value)
-    },
-    [updateToAddressOrUrl]
-  )
+  // const handleInputAddressChange = React.useCallback(
+  //   (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     updateToAddressOrUrl(event.target.value)
+  //   },
+  //   [updateToAddressOrUrl]
+  // )
 
   const setPresetAmountValue = React.useCallback((percent: number) => {
     onSelectPresetAmount(percent)
@@ -171,10 +171,10 @@ export const Send = (props: Props) => {
     toAddressOrUrl
   ])
 
-  const updateLoadingIconPosition = React.useCallback((ref: HTMLDivElement | null) => {
-    const position = ref?.clientWidth
-    setDomainPosition(position ? position + 22 : 0)
-  }, [])
+  // const updateLoadingIconPosition = React.useCallback((ref: HTMLDivElement | null) => {
+  //   const position = ref?.clientWidth
+  //   setDomainPosition(position ? position + 22 : 0)
+  // }, [])
 
   // Memos
   const sendAssetBalance = React.useMemo(() => {
@@ -347,7 +347,7 @@ export const Send = (props: Props) => {
   // render
   return (
     <>
-      <SendContainer ref={ref}>
+      <SendContainer>
         <Row rowWidth='full' marginBottom={16}>
           <SelectSendOptionButton
             selectedSendOption={selectedSendOption}
@@ -393,14 +393,14 @@ export const Send = (props: Props) => {
                     </>
                   }
                 </Row>
-                {selectedSendOption === 'token' &&
+                {/* {selectedSendOption === 'token' &&
                   <AmountInput
                     placeholder='0.0'
                     hasError={insufficientFundsError}
                     value={sendAmount}
                     onChange={handleInputAmountChange}
                   />
-                }
+                } */}
               </Row>
               <Row
                 rowWidth='full'
@@ -452,15 +452,15 @@ export const Send = (props: Props) => {
             {showSearchingForDomainIcon &&
               <DomainLoadIcon position={domainPosition} />
             }
-            <DIVForWidth ref={(ref) => updateLoadingIconPosition(ref)}>{toAddressOrUrl}</DIVForWidth>
-            <AddressInput
+            {/* <DIVForWidth ref={(ref) => updateLoadingIconPosition(ref)}>{toAddressOrUrl}</DIVForWidth> */}
+            {/* <AddressInput
               placeholder={getLocale('braveWalletEnterRecipientAddress')}
               hasError={hasAddressError}
               value={toAddressOrUrl}
               onChange={handleInputAddressChange}
               spellCheck={false}
               disabled={!selectedSendAsset}
-            />
+            /> */}
             <AccountSelector disabled={!selectedSendAsset} onSelectAddress={updateToAddressOrUrl} />
           </InputRow>
           {showResolvedDomain &&

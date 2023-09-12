@@ -2,13 +2,13 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../../../shared/style'
 
 import Ipfs from '../../../../../assets/svg-icons/nft-ipfs/ipfs.svg'
 import PlusIcon from '../../../../../assets/svg-icons/plus-icon.svg'
 
-export const FilterTokenRow = styled.div`
+export const FilterTokenRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +18,7 @@ export const FilterTokenRow = styled.div`
   position: relative;
 `
 
-export const NftGrid = styled.div`
+export const NftGrid = styled.View`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 25px;
@@ -33,7 +33,7 @@ export const NftGrid = styled.div`
   }
 `
 
-export const EmptyStateText = styled.div`
+export const EmptyStateText = styled.View`
   text-align: center;
   padding: 30px 0;
   color: ${(p) => p.theme.color.text03};
@@ -52,7 +52,7 @@ export const IpfsButton = styled(WalletButton)`
   align-self: flex-start;
 `
 
-export const IpfsIcon = styled.div`
+export const IpfsIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,7 +84,7 @@ export const AddButton = styled(WalletButton)`
   cursor: pointer;
 `
 
-export const AddIcon = styled.div`
+export const AddIcon = styled.View`
   width: 20px;
   height: 20px;
   background-color: ${(p) => p.theme.color.interactive07};

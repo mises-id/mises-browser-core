@@ -3,14 +3,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
-import { LoaderIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { LoaderIcon } from 'brave-ui/components/icons'
 
 export interface StyleProps {
   alignment: 'right' | 'left'
 }
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -20,20 +20,20 @@ export const TopRow = styled.div`
   gap: 10px;
 `
 
-export const AssetsColumnWrapper = styled.div`
+export const AssetsColumnWrapper = styled.View`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: left;
 `
 
-export const AssetsColumnItemSpacer = styled.div`
+export const AssetsColumnItemSpacer = styled.View`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-right: 19px;
 `
-export const TextWrapper = styled.div<StyleProps>`
+export const TextWrapper = styled.View<StyleProps>`
   display: flex;
   justify-content: ${p => p.alignment === 'right' ? 'flex-end' : 'flex-start'};
   width: 100%;
@@ -42,7 +42,7 @@ export const TextWrapper = styled.div<StyleProps>`
   letter-spacing: 0.01em;
 `
 
-export const LineChartWrapper = styled.div`
+export const LineChartWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -51,14 +51,14 @@ export const LineChartWrapper = styled.div`
   margin: 0 auto;
 `
 
-export const LoadIcon = styled(LoaderIcon)`
+export const LoadIcon = styled.View`
   color: ${p => p.theme.color.interactive08};
   height: 70px;
   width: 70px;
   opacity: .4;
 `
 
-export const LoadIconWrapper = styled.div`
+export const LoadIconWrapper = styled.View`
   display: flex;
   width: 100%;
   height: 100%;
@@ -66,9 +66,9 @@ export const LoadIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `
-export const MarketDataIframe = styled.iframe`
-  width: 100%;
-  height: 100%;
-  min-height: calc(100vh - 172px);
-  border: none;
-`
+// export const MarketDataIframe = styled.iframe`
+//   width: 100%;
+//   height: 100%;
+//   min-height: calc(100vh - 172px);
+//   border: none;
+// `

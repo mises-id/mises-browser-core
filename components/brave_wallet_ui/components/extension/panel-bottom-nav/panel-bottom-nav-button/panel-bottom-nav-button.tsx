@@ -15,7 +15,7 @@ import { getLocale } from '../../../../../common/locale'
 import { NavTooltip } from '../../../shared/nav-tooltip/nav-tooltip'
 
 // Styled Components
-import { Button, ButtonIcon } from './panel-bottom-nav-button.style'
+import { Button } from './panel-bottom-nav-button.style'
 
 interface Props {
   onClick: () => void
@@ -26,25 +26,25 @@ export const PanelBottomNavButton = (props: Props) => {
   const { onClick, option } = props
 
   // State
-  const [active, setActive] = React.useState(false)
+  // const [active, setActive] = React.useState(false)
 
   // Methods
-  const showTip = React.useCallback(() => {
-    setActive(true)
-  }, [])
+  // const showTip = React.useCallback(() => {
+  //   setActive(true)
+  // }, [])
 
-  const hideTip = React.useCallback(() => {
-    setActive(false)
-  }, [])
+  // const hideTip = React.useCallback(() => {
+  //   setActive(false)
+  // }, [])
 
   return (
-    <Button onMouseEnter={showTip} onMouseLeave={hideTip} onClick={onClick}>
-      <ButtonIcon name={option.icon} />
+    <Button onPress={onClick}>
+      {/* <ButtonIcon name={option.icon} /> */}
 
       <NavTooltip
         orientation='top'
         distance={30}
-        showTip={active}
+        showTip={false}
         text={getLocale(option.name)}
         horizontalAlign={
           option.id === 'buy'

@@ -3,11 +3,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
-import { CaratStrongDownIcon } from 'brave-ui/components/icons'
+// import { CaratStrongDownIcon } from 'brave-ui/components/icons'
 
-export const StyledWrapper = styled.div<{ useWithSearch?: boolean }>`
+export const StyledWrapper = styled.View<{ useWithSearch?: boolean }>`
   display: flex;
   width: ${(p) => p.useWithSearch ? 'unset' : '100%'};
   min-width: fit-content;
@@ -28,7 +28,8 @@ export const NetworkButton = styled(WalletButton) <{ useWithSearch?: boolean }>`
   height: 40px;
   cursor: pointer;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: ${(p) => p.useWithSearch ? 'none' : `1px solid ${p.theme.color.interactive08}`};
   border-radius: 4px;
   padding: 10px;
@@ -36,7 +37,7 @@ export const NetworkButton = styled(WalletButton) <{ useWithSearch?: boolean }>`
   margin-bottom: ${(p) => p.useWithSearch ? '0px' : '8px'};
 `
 
-export const DropDownIcon = styled(CaratStrongDownIcon) <{ isOpen: boolean }>`
+export const DropDownIcon = styled.View <{ isOpen: boolean }>`
   width: 18px;
   height: 18px;
   color: ${(p) => p.theme.color.interactive07};
@@ -44,7 +45,7 @@ export const DropDownIcon = styled(CaratStrongDownIcon) <{ isOpen: boolean }>`
   transform: ${(p) => p.isOpen ? 'rotate(180deg)' : 'unset'};
 `
 
-export const DropDown = styled.div <{ useWithSearch?: boolean }>`
+export const DropDown = styled.View <{ useWithSearch?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,10 +55,6 @@ export const DropDown = styled.div <{ useWithSearch?: boolean }>`
   background-color: ${(p) => p.theme.color.background02};
   border: 1px solid ${(p) => p.theme.color.divider01};
   border-radius: 8px;
-  box-shadow: 0px 0px 16px rgba(99, 105, 110, 0.18);
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.36);
-  }
   position: absolute;
   top: 44px;
   left: ${(p) => p.useWithSearch ? 'unset' : '0px'};
@@ -67,7 +64,7 @@ export const DropDown = styled.div <{ useWithSearch?: boolean }>`
   overflow-x: hidden;
  `
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -75,7 +72,7 @@ export const LeftSide = styled.div`
   margin-right: 4px;
 `
 
-export const NetworkText = styled.span`
+export const NetworkText = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-size: 13px;

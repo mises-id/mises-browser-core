@@ -152,7 +152,7 @@ export const SignPanel = (props: Props) => {
           <QueueStepRow>
             <QueueStepText>{signMessageQueueInfo.queueNumber} {getLocale('braveWalletQueueOf')} {signMessageQueueInfo.queueLength}</QueueStepText>
             <QueueStepButton
-              onClick={onQueueNextSignMessage}
+              onPress={onQueueNextSignMessage}
             >
               {signMessageQueueInfo.queueNumber === signMessageQueueInfo.queueLength
                 ? getLocale('braveWalletQueueFirst')
@@ -178,7 +178,7 @@ export const SignPanel = (props: Props) => {
             <WarningTitle warningType='danger'>{getLocale('braveWalletSignWarningTitle')}</WarningTitle>
           </WarningTitleRow>
           <WarningText>{getLocale('braveWalletSignWarning')}</WarningText>
-          <LearnMoreButton onClick={onClickLearnMore}>{getLocale('braveWalletAllowAddNetworkLearnMoreButton')}</LearnMoreButton>
+          <LearnMoreButton onPress={onClickLearnMore}>{getLocale('braveWalletAllowAddNetworkLearnMoreButton')}</LearnMoreButton>
         </WarningBox>
       }
       {signStep === SignDataSteps.SignData &&
@@ -206,7 +206,7 @@ export const SignPanel = (props: Props) => {
                 </WarningTitle>
               </WarningTitleRow>
               <LearnMoreButton
-                onClick={() => setRenderUnicode(prev => !prev)}
+                onPress={() => setRenderUnicode(prev => !prev)}
               >
                 {
                  renderUnicode

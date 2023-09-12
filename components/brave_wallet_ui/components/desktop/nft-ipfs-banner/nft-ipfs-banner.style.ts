@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
 
 import CloseIcon from '../../../assets/svg-icons/close.svg'
@@ -10,7 +10,7 @@ import BannerBackground from '../../../assets/svg-icons/nft-ipfs/banner-backgrou
 
 import { BannerStatus } from './nft-ipfs-banner'
 
-export const StyledWrapper = styled.div<{ status: BannerStatus }>`
+export const StyledWrapper = styled.View<{ status: BannerStatus }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,7 +22,7 @@ export const StyledWrapper = styled.div<{ status: BannerStatus }>`
       --success-background: #15371B;
       --uploading-background: #063256;
   }
-  background: ${(p) =>
+  background-image: ${(p) =>
     p.status === 'start'
       ? `url(${BannerBackground}) right 80px center/contain no-repeat, #1A1C3B`
       : p.status === 'uploading'
@@ -35,7 +35,7 @@ export const StyledWrapper = styled.div<{ status: BannerStatus }>`
   padding-right: 18px;
 `
 
-export const Text = styled.p<{ status: BannerStatus }>`
+export const Text = styled.Text<{ status: BannerStatus }>`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 300;
@@ -69,7 +69,7 @@ export const LearnMore = styled(WalletButton)`
   color: #AAA8F7; /* Leo theme value: Dark/Text/Interactive */
   outline: none;
   border: none;
-  background: transparent;
+  background-color: transparent;
   margin-left: auto;
 `
 

@@ -2,9 +2,9 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,7 @@ export const StyledWrapper = styled.div`
   width: 100%;
 `
 
-export const CategoryRow = styled.div`
+export const CategoryRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -22,7 +22,7 @@ export const CategoryRow = styled.div`
   border-bottom: ${(p) => `1px solid ${p.theme.color.divider01}`};
 `
 
-export const CategoryTitle = styled.span`
+export const CategoryTitle = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -31,7 +31,7 @@ export const CategoryTitle = styled.span`
   word-wrap: wrap;
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;

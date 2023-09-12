@@ -2,10 +2,10 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { AssetIconProps, AssetIconFactory, WalletButton } from '../../shared/style'
 
-export const StyledWrapper = styled.div<{isPanel?: boolean}>`
+export const StyledWrapper = styled.View<{isPanel?: boolean}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,12 +26,13 @@ export const ButtonArea = styled(WalletButton) <{ disabled: boolean, rightMargin
   width: 100%;
   cursor: ${(p) => p.disabled ? 'default' : 'pointer'};
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   border: none;
   margin-right: ${(p) => p.rightMargin ? p.rightMargin : 0}px;
 `
 
-export const NameAndIcon = styled.div`
+export const NameAndIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +40,7 @@ export const NameAndIcon = styled.div`
   text-align: left;
 `
 
-export const AssetName = styled.span`
+export const AssetName = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -47,7 +48,7 @@ export const AssetName = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const BalanceColumn = styled.div`
+export const BalanceColumn = styled.View`
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -55,7 +56,7 @@ export const BalanceColumn = styled.div`
   text-align: right;
 `
 
-export const FiatBalanceText = styled.span`
+export const FiatBalanceText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -63,7 +64,7 @@ export const FiatBalanceText = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const AssetBalanceText = styled.span`
+export const AssetBalanceText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -81,19 +82,19 @@ const assetIconProps = {
 }
 export const AssetIcon = AssetIconFactory<AssetIconProps>(assetIconProps)
 
-export const NameColumn = styled.div`
+export const NameColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 `
 
-export const Spacer = styled.div`
+export const Spacer = styled.View`
   display: flex;
   height: 4px;
 `
 
-export const NetworkDescriptionText = styled.span`
+export const NetworkDescriptionText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;

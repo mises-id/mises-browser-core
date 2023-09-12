@@ -2,18 +2,18 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import WarningCircle from '../../../assets/svg-icons/warning-circle-icon.svg'
 import EyeOnIcon from '../../../assets/svg-icons/eye-on-icon.svg'
 import EyeOffIcon from '../../../assets/svg-icons/eye-off-icon.svg'
-import { WalletButton } from '../../shared/style'
+// import { WalletButton } from '../../shared/style'
 
 interface StyleProps {
   hasError: boolean
   showPassword?: boolean
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   font-family: 'Poppins';
   font-style: normal;
   display: flex;
@@ -28,7 +28,7 @@ export const StyledWrapper = styled.div`
     color: ${(p) => p.theme.color.text03};
   }
 `
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.View`
   display: flex;
   position: relative;
   width: 100%;
@@ -37,12 +37,11 @@ export const InputWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 10px;
 `
-export const Input = styled.input<{ hasError: boolean }>`
+export const Input = styled.TextInput<{ hasError: boolean }>`
   box-sizing: border-box;
   width: 100%;
 
   background-image: none;
-  box-shadow: none;
   
   background-color: ${(p) => p.hasError
     ? p.theme.color.errorBackground
@@ -92,7 +91,7 @@ export const Input = styled.input<{ hasError: boolean }>`
   }
 `
 
-export const ErrorRow = styled.div`
+export const ErrorRow = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -101,7 +100,7 @@ export const ErrorRow = styled.div`
   margin-bottom: 10px;
 `
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.Text`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -114,13 +113,13 @@ export const ErrorText = styled.span`
   padding-left: 4px;
 `
 
-export const WarningIcon = styled.div`
+export const WarningIcon = styled.View`
   width: 14px;
   height: 15px;
-  background: url(${WarningCircle});
+  background-image: url(${WarningCircle});
 `
 
-export const ToggleVisibilityButton = styled(WalletButton)`
+export const ToggleVisibilityButton = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,14 +128,13 @@ export const ToggleVisibilityButton = styled(WalletButton)`
   right: 10px;
   cursor: pointer;
   outline: none;
-  background: none;
   border: none;
   padding: 0px;
   width: 18px;
   height: 18px;
 `
 
-export const ToggleVisibilityIcon = styled.div<Partial<StyleProps>>`
+export const ToggleVisibilityIcon = styled.View<Partial<StyleProps>>`
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.theme.color.text02};

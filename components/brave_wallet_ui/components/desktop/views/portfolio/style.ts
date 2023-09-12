@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
-import { ArrowUpIcon } from 'brave-ui/components/icons'
+import styled from 'styled-components/native'
+// import { ArrowUpIcon } from 'brave-ui/components/icons'
 import { AssetIconProps, AssetIconFactory, WalletButton } from '../../../shared/style'
 import More from '../../../extension/assets/actions.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.TouchableOpacity`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -17,7 +17,7 @@ export const StyledWrapper = styled.div`
   height: 100%;
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -25,14 +25,14 @@ export const TopRow = styled.div`
   width: 100%;
 `
 
-export const BalanceTitle = styled.span`
+export const BalanceTitle = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   font-weight: normal;
   color: ${(p) => p.theme.color.text03};
 `
 
-export const BalanceText = styled.span`
+export const BalanceText = styled.Text`
   font-family: Poppins;
   font-size: 32px;
   font-weight: 600;
@@ -40,7 +40,7 @@ export const BalanceText = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const PriceText = styled.span`
+export const PriceText = styled.Text`
   font-family: Poppins;
   font-size: 24px;
   font-weight: 600;
@@ -50,7 +50,7 @@ export const PriceText = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const ButtonRow = styled.div<{ noMargin?: boolean }>`
+export const ButtonRow = styled.View<{ noMargin?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -59,7 +59,7 @@ export const ButtonRow = styled.div<{ noMargin?: boolean }>`
   margin: ${(p) => p.noMargin ? '0px' : '20px 0px'};
 `
 
-export const BalanceRow = styled.div<{ gap?: string }>`
+export const BalanceRow = styled.View<{ gap?: string }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -69,7 +69,7 @@ export const BalanceRow = styled.div<{ gap?: string }>`
   gap: ${p => p.gap || 0};
 `
 
-export const InfoColumn = styled.div`
+export const InfoColumn = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -77,7 +77,7 @@ export const InfoColumn = styled.div`
   margin: 10px 0px 20px 10px;
 `
 
-export const AssetRow = styled.div`
+export const AssetRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -85,21 +85,21 @@ export const AssetRow = styled.div`
   margin-bottom: 20px;
 `
 
-export const AssetColumn = styled.div`
+export const AssetColumn = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 `
 
-export const PriceRow = styled.div`
+export const PriceRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `
 
-export const AssetNameText = styled.span`
+export const AssetNameText = styled.Text`
   font-family: Poppins;
   font-size: 20px;
   line-height: 30px;
@@ -108,7 +108,7 @@ export const AssetNameText = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const NetworkDescription = styled.span`
+export const NetworkDescription = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 16px;
@@ -116,7 +116,7 @@ export const NetworkDescription = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const DetailText = styled.span`
+export const DetailText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -134,14 +134,14 @@ export const AssetIcon = AssetIconFactory<AssetIconProps>({
   height: 'auto'
 })
 
-export const SubDivider = styled.div`
+export const SubDivider = styled.View`
   width: 100%;
   height: 2px;
   background-color: ${(p) => p.theme.color.divider01};
   margin-bottom: 12px;
 `
 
-export const DividerText = styled.span`
+export const DividerText = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   line-height: 20px;
@@ -151,7 +151,7 @@ export const DividerText = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const PercentBubble = styled.div<{ isDown?: boolean }>`
+export const PercentBubble = styled.View<{ isDown?: boolean }>`
   display: flex;
   align-items: center;
   justify-conent: center;
@@ -161,7 +161,7 @@ export const PercentBubble = styled.div<{ isDown?: boolean }>`
   background-color: ${(p) => p.isDown ? '#EE6374' : '#2AC194'};
 `
 
-export const PercentText = styled.span`
+export const PercentText = styled.Text`
   font-family: Poppins;
   font-size: 11px;
   line-height: 17px;
@@ -169,7 +169,7 @@ export const PercentText = styled.span`
   color: ${(p) => p.theme.palette.white};
 `
 
-export const ArrowIcon = styled(ArrowUpIcon) <{ isDown?: boolean }>`
+export const ArrowIcon = styled.View <{ isDown?: boolean }>`
   width: 12px;
   height: 12px;
   margin-right: 2px;
@@ -177,7 +177,7 @@ export const ArrowIcon = styled(ArrowUpIcon) <{ isDown?: boolean }>`
   color: ${(p) => p.theme.palette.white};
 `
 
-export const EmptyTransactionContainer = styled.div`
+export const EmptyTransactionContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -186,7 +186,7 @@ export const EmptyTransactionContainer = styled.div`
   height: 100px;
 `
 
-export const TransactionPlaceholderText = styled.span`
+export const TransactionPlaceholderText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -196,7 +196,7 @@ export const TransactionPlaceholderText = styled.span`
   margin-left: 10px;
 `
 
-export const AssetBalanceDisplay = styled.span`
+export const AssetBalanceDisplay = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 20px;
@@ -205,7 +205,7 @@ export const AssetBalanceDisplay = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const DividerRow = styled.div`
+export const DividerRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -213,14 +213,14 @@ export const DividerRow = styled.div`
   width: 100%;
 `
 
-export const Spacer = styled.div`
+export const Spacer = styled.View`
   display: flex;
   height: 2px;
   width: 100%;
   margin-top: 10px;
 `
 
-export const CoinGeckoText = styled.span`
+export const CoinGeckoText = styled.Text`
   font-family: Arial;
   font-size: 10px;
   font-weight: normal;
@@ -228,7 +228,7 @@ export const CoinGeckoText = styled.span`
   margin: 15px 0px;
 `
 
-export const FilterTokenRow = styled.div`
+export const FilterTokenRow = styled.View`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -236,14 +236,14 @@ export const FilterTokenRow = styled.div`
   gap: 14px;
 `
 
-export const NftMultimedia = styled.iframe<{ visible?: boolean }>`
-  width: 100%;
-  min-height: ${p => p.visible ? '500px' : '0px'};
-  border: none;
-  visibility: ${p => p.visible ? 'visible' : 'hidden'};
-  margin-bottom: 30px;
-  margin-top: 16px;
-`
+// export const NftMultimedia = styled.iframe<{ visible?: boolean }>`
+//   width: 100%;
+//   min-height: ${p => p.visible ? '500px' : '0px'};
+//   border: none;
+//   visibility: ${p => p.visible ? 'visible' : 'hidden'};
+//   margin-bottom: 30px;
+//   margin-top: 16px;
+// `
 
 export const BridgeToAuroraButton = styled(WalletButton)`
   display: flex;

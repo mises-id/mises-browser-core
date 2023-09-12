@@ -3,14 +3,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import { WalletButton } from '../../shared/style'
 import Background from '../../../assets/svg-icons/nft-ipfs/local-node-background.svg'
 import Ipfs from '../../../assets/svg-icons/nft-ipfs/ipfs.svg'
 import Close from '../../../assets/svg-icons/close.svg'
 
-export const RunNodeWrapper = styled.div`
+export const RunNodeWrapper = styled.View`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -26,7 +26,7 @@ export const RunNodeWrapper = styled.div`
   margin-top: -32px;
 `
 
-export const TopRow = styled.div`
+export const TopRow = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +34,7 @@ export const TopRow = styled.div`
   padding-right: 122px;
 `
 
-export const MainContent = styled.div`
+export const MainContent = styled.View`
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -69,7 +69,7 @@ export const CloseButton = styled(WalletButton)`
   margin-left: auto;
 `
 
-export const CloseIcon = styled.div`
+export const CloseIcon = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,7 +81,7 @@ export const CloseIcon = styled.div`
   margin-left: 10px;
 `
 
-export const HeadingWrapper = styled.div`
+export const HeadingWrapper = styled.View`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -98,7 +98,7 @@ export const HeadingWrapper = styled.div`
   }
 `
 
-export const Heading = styled.h1`
+export const Heading = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -109,7 +109,7 @@ export const Heading = styled.h1`
   padding: 0;
 `
 
-export const IpfsIcon = styled.div`
+export const IpfsIcon = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,7 +123,7 @@ export const IpfsIcon = styled.div`
   margin-right: 16px;
 `
 
-export const Section = styled.section`
+export const Section = styled.View`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -136,7 +136,7 @@ export const Section = styled.section`
   }
 `
 
-export const LeftWrapper = styled.div`
+export const LeftWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -149,7 +149,7 @@ export const LeftWrapper = styled.div`
   }
 `
 
-export const RightWrapper = styled.div`
+export const RightWrapper = styled.View`
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -159,7 +159,7 @@ export const RightWrapper = styled.div`
   }
 `
 
-export const SectionText = styled.h2`
+export const SectionText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -170,7 +170,7 @@ export const SectionText = styled.h2`
   padding: 0;
 `
 
-export const Description = styled.span`
+export const Description = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -219,7 +219,7 @@ export const CheckNftsButton = styled(WalletButton)`
   margin-top: 37px;
 `
 
-export const BenefitHeading = styled.p`
+export const BenefitHeading = styled.Text`
   display: flex;
   align-self: flex-start;
   font-family: 'Poppins';
@@ -232,7 +232,7 @@ export const BenefitHeading = styled.p`
   margin: 0 0 15px 0;
 `
 
-export const BenefitsList = styled.ul`
+export const BenefitsList = styled.View`
   margin: 0%;
 
   li {
@@ -246,7 +246,7 @@ export const BenefitsList = styled.ul`
   }
 `
 
-export const NftIllustration = styled.img`
+export const NftIllustration = styled.Image`
   width: 100%;
   height: auto;
   margin-top: 60px;

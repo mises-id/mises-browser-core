@@ -14,6 +14,8 @@ import {
   ConfirmIcon,
   StyledLink
 } from './style'
+import { TouchableOpacity } from 'react-native'
+import { Row } from '../../../../components/shared/style'
 
 export type PanelButtonTypes =
   | 'primary'
@@ -60,7 +62,7 @@ export const NavButton: React.FC<Props> = ({
 }) => {
   // memos
   const buttonContent = React.useMemo(() => {
-    return <>
+    return <Row>
       {buttonType === 'reject' &&
         <RejectIcon />
       }
@@ -71,7 +73,7 @@ export const NavButton: React.FC<Props> = ({
         <ConfirmIcon />
       }
       <ButtonText buttonType={buttonType}>{text}</ButtonText>
-    </>
+    </Row>
   }, [buttonType, text])
 
   // render
@@ -87,17 +89,18 @@ export const NavButton: React.FC<Props> = ({
       {buttonContent}
     </StyledLink>
   ) : (
-    <StyledButton
-      disabled={disabled}
-      buttonType={buttonType}
-      onClick={onSubmit}
-      addTopMargin={needsTopMargin && text ? text.length > 20 : false}
-      maxHeight={maxHeight}
-      minWidth={minWidth}
-      minHeight={minHeight}
-    >
-      {buttonContent}
-    </StyledButton>
+    <TouchableOpacity onPress={onSubmit}>
+      <StyledButton
+        disabled={disabled}
+        buttonType={buttonType}
+        addTopMargin={needsTopMargin && text ? text.length > 20 : false}
+        maxHeight={maxHeight}
+        minWidth={minWidth}
+        minHeight={minHeight}
+      >
+        {buttonContent}
+      </StyledButton>
+    </TouchableOpacity>
   )
 }
 

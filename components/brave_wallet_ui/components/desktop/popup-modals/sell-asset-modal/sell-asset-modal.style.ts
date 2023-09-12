@@ -69,10 +69,8 @@ export const AmountInput = styled.input`
   width: 100%;
   outline: none;
   background-image: none;
-  box-shadow: none;
   border: none;
-  background: none;
-  background-color: none;
+  background-color: none;;
   ::placeholder {
     color: ${(p) => p.theme.color.text03};
   }
@@ -93,7 +91,8 @@ export const PresetButton = styled.button<{ marginRight?: number }>`
   cursor: pointer;
   border: none;
   outline: none;
-  background: none;
+  background-image: none;
+  background-color: none;;
   background-color: var(--button-background);
   border-radius: 4px;
   font-size: 11px;
@@ -114,7 +113,7 @@ export const ErrorBox = styled.div`
   justify-content: flex-start;
   padding: 16px;
   border-radius: 8px;
-  background: ${(p) => p.theme.color.errorBackground};
+  background-color: ${(p) => p.theme.color.errorBackground};
   margin-bottom: 16px;
 `
 
@@ -125,5 +124,5 @@ export const ErrorIcon = styled.div`
   mask-image: url(${WarningCircleFilled});
   mask-size: contain;
   margin-right: 18px;
-  background: ${(p) => p.theme.color.errorIcon}
+  background-color: ${(p) => p.theme.color.errorIcon}
 `

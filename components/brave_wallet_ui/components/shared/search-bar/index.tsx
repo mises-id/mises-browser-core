@@ -8,9 +8,9 @@ import * as React from 'react'
 // Styled Components
 import {
   StyledWrapper,
-  SearchInput,
   SearchIcon
 } from './style'
+import SearchInput from './SearchInput'
 
 interface Props {
   placeholder: string
@@ -22,7 +22,7 @@ interface Props {
 }
 
 export const SearchBar = (props: Props) => {
-  const { autoFocus, placeholder, action, value, useWithFilter, disabled } = props
+  const { autoFocus, placeholder, action, value, useWithFilter } = props
   return (
     <StyledWrapper
       useWithFilter={useWithFilter}
@@ -33,7 +33,6 @@ export const SearchBar = (props: Props) => {
         value={value}
         placeholder={placeholder}
         onChange={action}
-        disabled={disabled}
       />
     </StyledWrapper>
   )

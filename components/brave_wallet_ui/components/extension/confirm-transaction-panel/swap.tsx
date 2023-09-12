@@ -193,13 +193,13 @@ export function ConfirmSwapTransaction (props: Props) {
             ) : (
               <LoadingSkeleton width={38} />
             )}
-            <EditButton onClick={onToggleEditGas}>
+            <EditButton onPress={onToggleEditGas}>
               {getLocale('braveWalletAllowSpendEditButton')}
             </EditButton>
           </NetworkFeeValue>
         </NetworkFeeContainer>
 
-        <Settings onClick={onToggleAdvancedTransactionSettings}>
+        <Settings onPress={onToggleAdvancedTransactionSettings}>
           <SettingsIcon />
         </Settings>
       </NetworkFeeAndSettingsContainer>
