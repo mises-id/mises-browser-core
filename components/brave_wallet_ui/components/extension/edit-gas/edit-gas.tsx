@@ -28,7 +28,7 @@ import {
   CurrentBaseText,
   MaximumFeeRow,
   MaximumFeeText,
-  GasSlider,
+  // GasSlider,
   SliderLabelRow,
   SliderLabel,
   SliderWrapper,
@@ -74,7 +74,7 @@ export const EditGas = ({
   const { isEIP1559Transaction } = transactionFees
 
   // state
-  const [suggestedMaxPriorityFee, setSuggestedMaxPriorityFee] = React.useState<string>(suggestedMaxPriorityFeeChoices[1])
+  const [suggestedMaxPriorityFee] = React.useState<string>(suggestedMaxPriorityFeeChoices[1])
   const [gasLimit, setGasLimit] = React.useState<string>(transactionFees.gasLimit)
   const [gasPrice, setGasPrice] = React.useState<string>(
     new Amount(transactionFees.gasPrice)
@@ -93,24 +93,16 @@ export const EditGas = ({
   )
 
   // methods
-  const handleGasPriceInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGasPrice(event.target.value)
+  const handleGasPriceInputChanged = (value: string) => {
+    setGasPrice(value)
   }
 
-  const handleGasLimitInputChanged = ({
-    target: {
-      value,
-      validity: { valid }
-    }
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    if (valid) {
-      const val = new Amount(value).toNumber().toString()
-      setGasLimit(val)
-    }
+  const handleGasLimitInputChanged = (value: string) => {
+    const val = new Amount(value).toNumber().toString()
+    setGasLimit(val)
   }
 
-  const handleMaxPriorityFeePerGasInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
+  const handleMaxPriorityFeePerGasInputChanged = (value: string) => {
     setMaxPriorityFeePerGas(value)
 
     const maxPriorityFeePerGasWei = new Amount(value)
@@ -126,9 +118,9 @@ export const EditGas = ({
     setMaxFeePerGas(computedMaxFeePerGasGWei)
   }
 
-  const handleMaxFeePerGasInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMaxFeePerGas(event.target.value)
-  }
+  // const handleMaxFeePerGasInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMaxFeePerGas(event.target.value)
+  // }
 
   const onSetPanelToCustom = () => {
     setMaxPriorityPanel(MaxPriorityPanels.setCustom)
@@ -138,21 +130,21 @@ export const EditGas = ({
     setMaxPriorityPanel(MaxPriorityPanels.setSuggested)
   }
 
-  const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const suggestedSliderStep = event.target.value
-    setSuggestedSliderStep(suggestedSliderStep)
-    const hexString = suggestedMaxPriorityFeeChoices[Number(suggestedSliderStep)]
-    setSuggestedMaxPriorityFee(hexString)
-    setMaxPriorityFeePerGas(new Amount(hexString)
-      .divideByDecimals(9)
-      .format())
-    const computedMaxFeePerGasWei = new Amount(baseFeePerGas)
-      .plus(hexString)
-    const computedMaxFeePerGasGWei = computedMaxFeePerGasWei
-      .divideByDecimals(9)
-      .format()
-    setMaxFeePerGas(computedMaxFeePerGasGWei)
-  }
+  // const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const suggestedSliderStep = event.target.value
+  //   setSuggestedSliderStep(suggestedSliderStep)
+  //   const hexString = suggestedMaxPriorityFeeChoices[Number(suggestedSliderStep)]
+  //   setSuggestedMaxPriorityFee(hexString)
+  //   setMaxPriorityFeePerGas(new Amount(hexString)
+  //     .divideByDecimals(9)
+  //     .format())
+  //   const computedMaxFeePerGasWei = new Amount(baseFeePerGas)
+  //     .plus(hexString)
+  //   const computedMaxFeePerGasGWei = computedMaxFeePerGasWei
+  //     .divideByDecimals(9)
+  //     .format()
+  //   setMaxFeePerGas(computedMaxFeePerGasGWei)
+  // }
 
   const onSave = () => {
     if (!isEIP1559Transaction) {
@@ -228,10 +220,8 @@ export const EditGas = ({
         <InputLabel>{getLocale('braveWalletEditGasLimit')}</InputLabel>
         <Input
           placeholder='0'
-          type='text'
-          pattern='[0-9]*' // allow number characters only
           value={gasLimit}
-          onChange={handleGasLimitInputChanged}
+          onChangeText={handleGasLimitInputChanged}
           hasError={gasLimit === '0'}
         />
         {gasLimit === '0' && (
@@ -348,10 +338,8 @@ export const EditGas = ({
             </InputLabel>
             <Input
               placeholder='0'
-              type='number'
-              min={0}
               value={maxPriorityFeePerGas}
-              onChange={handleMaxPriorityFeePerGasInputChanged}
+              onChangeText={handleMaxPriorityFeePerGasInputChanged}
               hasError={isCustomGasBelowBaseFee}
             />
 
@@ -361,10 +349,7 @@ export const EditGas = ({
             </InputLabel>
             <Input
               placeholder='0'
-              min={0}
-              type='number'
               value={maxFeePerGas}
-              onChange={handleMaxFeePerGasInputChanged}
               hasError={isCustomGasBelowBaseFee}
             />
 
@@ -397,13 +382,13 @@ export const EditGas = ({
               ~${suggestedEIP1559FiatGasFee} USD ({suggestedEIP1559GasFee}{' '}
               {selectedNetwork.symbol})
             </SliderValue>
-            <GasSlider
+            {/* <GasSlider
               type='range'
               min='0'
               max={suggestedMaxPriorityFeeChoices.length - 1}
               value={suggestedSliderStep}
               onChange={handleSliderChange}
-            />
+            /> */}
             <SliderLabelRow>
               <SliderLabel>{getLocale('braveWalletEditGasLow')}</SliderLabel>
               <SliderLabel>
@@ -423,9 +408,8 @@ export const EditGas = ({
             </InputLabel>
             <Input
               placeholder='0'
-              type='number'
               value={gasPrice}
-              onChange={handleGasPriceInputChanged}
+              onChangeText={handleGasPriceInputChanged}
             />
 
             {isZeroGasPrice && (

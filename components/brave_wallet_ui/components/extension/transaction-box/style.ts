@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const CodeSnippet = styled.pre`
+export const CodeSnippet = styled.View`
   display: block;
   align-items: flex-start;
   justify-content: flex-start;
@@ -27,7 +27,7 @@ export const CodeSnippet = styled.pre`
   word-break: break-all;
 `
 
-export const HexBlock = styled.div`
+export const HexBlock = styled.View`
   display: flex;
   width: 100%;
   background-color: ${(p) => p.theme.color.divider01};
@@ -43,7 +43,7 @@ export const HexBlock = styled.div`
   box-sizing: border-box;
 `
 
-export const DetailRow = styled.div`
+export const DetailRow = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -57,7 +57,7 @@ export const DetailColumn = styled(DetailRow)`
   gap: 8px;
 `
 
-export const DetailText = styled.span`
+export const DetailText = styled.Text`
   font-family: Poppins;
   font-size: 11px;
   line-height: 18px;
@@ -66,12 +66,12 @@ export const DetailText = styled.span`
   word-break: break-all;
 `
 
-export const CodeSnippetText = styled.p`
+export const CodeSnippetText = styled.Text`
   margin: 0px;
   padding: 0px;
 `
 
-export const TransactionText = styled.span`
+export const TransactionText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;

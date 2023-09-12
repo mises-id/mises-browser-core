@@ -74,8 +74,10 @@ export const ContractAddress = styled(TokenDetailValue)`
 
 export const HideTokenButton = styled(WalletButton)`
   background-image: none;
-  background-color: none;;
-  border: 1px solid ${p => p.theme.palette.blurple500};
+  background-color: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.palette.blurple500};
   height: 40px;
   margin-top: 70px;
   border-radius: 100px;

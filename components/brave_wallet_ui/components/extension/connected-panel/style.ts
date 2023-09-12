@@ -100,7 +100,9 @@ export const NotConnectedIcon = styled.View`
   height: 14px;
   margin-right: 8px;
   border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.5);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255,255,255,0.5);
 `
 
 export const OvalButton = styled.TouchableOpacity`
@@ -111,7 +113,9 @@ export const OvalButton = styled.TouchableOpacity`
   outline: none;
   border-radius: 48px;
   padding: 3px 10px;
-  border: 1px solid rgba(255,255,255,0.5);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255,255,255,0.5);
   color: ${(p) => p.theme.palette.white};
   &:disabled {
     cursor: default;
@@ -177,5 +181,7 @@ export const ConnectedStatusBubble = styled.View<{ isConnected: boolean }>`
   border-radius: 100%;
   background-color: ${(p) => p.isConnected ? p.theme.color.successBorder : p.theme.color.errorBorder};
   margin-right: 6px;
-  border: 1px solid rgba(255,255,255, 1);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255,255,255,1);
 `

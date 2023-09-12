@@ -24,7 +24,9 @@ export const CardButton = styled(WalletLink)`
   width: 376px;
   min-height: 88px;
   background-color: ${(p) => p.theme.color.background02};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color:  ${p => p.theme.color.divider01};
   border-radius: 8px;
 
   display: flex;

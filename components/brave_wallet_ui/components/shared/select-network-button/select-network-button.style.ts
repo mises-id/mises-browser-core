@@ -30,7 +30,9 @@ export const OvalButton = styled.TouchableOpacity<IsPanelProps>`
   background-color: none;;
   border-radius: 48px;
   padding: 3px 10px;
-  border: 1px solid ${(p) => p.isPanel ? 'rgba(255,255,255,0.5)' : p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.isPanel ? 'rgba(255,255,255,0.5)' : p.theme.color.interactive08};
 `
 
 export const OvalButtonText = styled.Text<IsPanelProps>`

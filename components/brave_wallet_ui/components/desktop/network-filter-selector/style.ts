@@ -52,7 +52,9 @@ export const DropDown = styled.View`
   width: 250px;
   padding: 5px;
   background-color: ${(p) => p.theme.color.background02};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   border-radius: 8px;
   position: absolute;
   top: 38px;

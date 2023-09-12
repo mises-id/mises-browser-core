@@ -23,7 +23,9 @@ export const StyledWrapper = styled.View<LayoutProps>`
       width: 100%;
       margin-top: 16px;
       margin-bottom: 4px;
-      border: 1px solid ${(p) => p.theme.color.divider01};
+      border-width: 1px;
+      border-style: solid;
+      border-color: ${(p) => p.theme.color.divider01};
       border-radius: 4px;
       padding: 12px;
     `

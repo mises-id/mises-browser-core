@@ -19,7 +19,7 @@
 
 namespace {
 
-const CGFloat kLabelMargin = 14;
+const CGFloat kLabelMargin = 20;
 //const CGFloat kLabelLineSpacing = 4;
 const CGFloat kLabelIconMargin = 8;
 const CGFloat kboxTitleFontSize = 20;
@@ -27,10 +27,6 @@ const CGFloat kIconHeight = 55;
 const CGFloat kIconWidth = 89;
 const CGFloat kIconTopMargin = 10;
 //const CGFloat kButtonHeight = 24;
-
-NSString * const kboxWebsiteText = @"Web3 Sites";
-NSString * const kButtonTitle = @"View all >";
-NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
 
 
 }  // namespace
@@ -66,20 +62,19 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
 
 // @end
 
-#pragma mark - ContentSuggestionsMisesCell
+#pragma mark - ContentSuggestionsMisesToggleCell
 
-@interface ContentSuggestionsMisesCell ()
+@interface ContentSuggestionsMisesToggleCell ()
 
-@property(nonatomic, strong) UILabel* boxWebsiteLabel;
 @property(nonatomic, strong) UIView* containerView;
 
 // Most visited items from the MostVisitedSites service currently displayed.
 
 @end
 
-@implementation ContentSuggestionsMisesCell
+@implementation ContentSuggestionsMisesToggleCell
 
-@synthesize boxWebsiteLabel = _boxWebsiteLabel;
+@synthesize toggleButton = _toggleButton;
 @synthesize containerView = _containerView;
 @synthesize enterButton = _enterButton;
 
@@ -87,99 +82,111 @@ NSURL * const kLink = [NSURL URLWithString:@"https://web3.mises.site/"];
   self = [super initWithFrame:frame];
   if (self) {
       
-    _boxWebsiteLabel = [[UILabel alloc] init];
+    _toggleButton = [[M3CButton alloc] init];
     _containerView = [[UIView alloc] init];
     _enterButton = [[M3CButton alloc] init];
 
 
-    _boxWebsiteLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _toggleButton.translatesAutoresizingMaskIntoConstraints = NO;
     _containerView.translatesAutoresizingMaskIntoConstraints = NO;
     _enterButton.translatesAutoresizingMaskIntoConstraints = NO;
 
       
-    [[self class] configureBoxWebsiteLabel:self.boxWebsiteLabel withText:kboxWebsiteText];
     
-    [_enterButton setTitle:kButtonTitle forState:UIControlStateNormal];
-    [_enterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_enterButton setBackgroundColor:[UIColor clearColor]];
+    [_toggleButton setImage:[UIImage imageNamed:@"ntp_down"] forState:UIControlStateNormal];
       
+      
+    [_toggleButton setTitleColor:[UIColor colorNamed:kTextPrimaryColor] forState:UIControlStateNormal];
+    [_toggleButton setBackgroundColor:[UIColor clearColor]];
+
+    [_enterButton setTitleColor:[UIColor colorNamed:kTextPrimaryColor] forState:UIControlStateNormal];
+    [_enterButton setBackgroundColor:[UIColor clearColor]];
+        
 
 
     [self addSubview:_containerView];
-    [_containerView addSubview:_boxWebsiteLabel];
+    [_containerView addSubview:_toggleButton];
     [_containerView addSubview:_enterButton];
 
 
     ApplyVisualConstraintsWithMetrics(
-        @[
-          @"V:|[boxWebsiteTitle]|",
-          @"V:|[container]|",
-          @"H:|[boxWebsiteTitle]->=0-[enter]|",
-          @"H:|[container]|"
-        ],
-        @{
-          @"boxWebsiteTitle" : _boxWebsiteLabel,
-          @"container" : _containerView,
-          @"enter" : _enterButton,
-        },
-        @{
-          @"margin" : @(kLabelMargin),
-          @"iconMargin" : @(kIconTopMargin),
-          @"iconHeight" : @(kIconHeight),
-          @"iconWidth" : @(kIconWidth),
-          @"spacing" : @(kLabelIconMargin)
-        });
+      @[
+        @"V:|[toggleButton]|",
+        @"V:|[container]|",
+        @"H:|[toggleButton]->=0-[enter]|",
+        @"H:|[container]|"
+      ],
+      @{
+        @"toggleButton" : _toggleButton,
+        @"container" : _containerView,
+        @"enter" : _enterButton,
+      },
+      @{
+        @"margin" : @(kLabelMargin),
+        @"iconMargin" : @(kIconTopMargin),
+        @"iconHeight" : @(kIconHeight),
+        @"iconWidth" : @(kIconWidth),
+        @"spacing" : @(kLabelIconMargin)
+      });
     [NSLayoutConstraint activateConstraints:@[
       [_containerView.centerXAnchor
           constraintEqualToAnchor:self.centerXAnchor]
     ]];
-  [NSLayoutConstraint activateConstraints:@[
-    [_boxWebsiteLabel.heightAnchor
-        constraintEqualToAnchor:_enterButton.heightAnchor]
-  ]];
+    [NSLayoutConstraint activateConstraints:@[
+      [_toggleButton.heightAnchor
+          constraintEqualToAnchor:_enterButton.heightAnchor]
+    ]];
   }
   return self;
 }
 
+- (void) configureWith:(nonnull NSString*)title enter:(nonnull NSString*)enter {
+  [_toggleButton setTitle:title forState:UIControlStateNormal];
+  [_enterButton setTitle:enter forState:UIControlStateNormal];
+}
 + (CGFloat)heightForWidth:(CGFloat)width {
-    UILabel* label1 = [[UILabel alloc] init];
-    [self configureBoxWebsiteLabel:label1 withText:kboxWebsiteText];
-    CGSize sizeForLabel = CGSizeMake(width, 500);
+  UILabel* label = [[UILabel alloc] init];
+  label.font = [UIFont systemFontOfSize:kboxTitleFontSize];
+  label.numberOfLines = 1;
+  label.textAlignment = NSTextAlignmentLeft;
+  CGSize sizeForLabel = CGSizeMake(width, 500);
 
-  return 2 * kLabelMargin + [label1 sizeThatFits:sizeForLabel].height;
+  return 2 * kLabelMargin + [label sizeThatFits:sizeForLabel].height;
 }
 
+- (UIImage*)rotateUIImage:(UIImage*)sourceImage
+{
+    CGSize size = sourceImage.size;
+    UIGraphicsBeginImageContext(CGSizeMake(size.height, size.width));
+    [[UIImage imageWithCGImage:[sourceImage CGImage] scale:1.0 orientation:UIImageOrientationDown] drawInRect:CGRectMake(0,0,size.height ,size.width)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return newImage;
+}
+
+- (void) toggle:(BOOL)on {
+  if (on) {
+    [_toggleButton setImage:[UIImage imageNamed:@"ntp_down"] forState:UIControlStateNormal];
+  } else {
+    [_toggleButton setImage:[self rotateUIImage:[UIImage imageNamed:@"ntp_down"]] forState:UIControlStateNormal];
+  }
+
+}
 
 #pragma mark UIView
 
-// Implements -layoutSubviews as per instructions in documentation for
-// +[MDCCollectionViewCell cr_preferredHeightForWidth:forItem:].
-- (void)layoutSubviews {
-  [super layoutSubviews];
-
-  // Adjust the text label preferredMaxLayoutWidth when the parent's width
-  // changes, for instance on screen rotation.
-  CGFloat parentWidth = CGRectGetWidth(self.bounds);
-
-  self.boxWebsiteLabel.preferredMaxLayoutWidth = parentWidth;
-
-  // Re-layout with the new preferred width to allow the label to adjust its
-  // height.
-  [super layoutSubviews];
-}
 
 #pragma mark Private
 
-// Configures the |promoLabel| with the |text|.
-+ (void)configureBoxWebsiteLabel:(UILabel*)label withText:(NSString*)text {
-  // label.font =
-  //     [[MDCTypography fontLoader] regularFontOfSize:kboxTitleFontSize]
-  label.font = [UIFont systemFontOfSize:kboxTitleFontSize];
-  label.textColor = [UIColor whiteColor];
-  label.numberOfLines = 0;
-  label.textAlignment = NSTextAlignmentLeft;
-  [label setText:[NSString stringWithString:text]];
 
+@end
+
+
+@implementation ContentSuggestionsMisesEmptyCell
+
++ (CGFloat)heightForWidth:(CGFloat)width {
+
+  return kLabelMargin;
 }
-
 @end

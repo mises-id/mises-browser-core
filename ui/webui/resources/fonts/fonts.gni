@@ -3,7 +3,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
 # you can obtain one at http://mozilla.org/MPL/2.0/.
 
-brave_font_files = [
+mises_font_files = [
   "fonts/third_party/poppins/Poppins_100_italic_devanagari_v20.woff2",
   "fonts/third_party/poppins/Poppins_100_italic_latin-ext_v20.woff2",
   "fonts/third_party/poppins/Poppins_100_italic_latin_v20.woff2",

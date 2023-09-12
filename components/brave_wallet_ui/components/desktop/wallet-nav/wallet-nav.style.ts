@@ -14,7 +14,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   background-color: var(--nav-background);
   border-radius: 12px;
-  border: 1px solid var(--nav-border);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--nav-border);
   position: absolute;
   top: 100px;
   left: 32px;

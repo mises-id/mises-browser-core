@@ -17,9 +17,9 @@ mises_resources_extra_grdps_deps = []
 # ios does not need any static resources
 if (!is_ios) {
   mises_resources_extra_grdps += [
-    "$mises_resources_extra_grdps_path/brave_fonts_resources.grdp",
-    "$mises_resources_extra_grdps_path/brave_static_resources.grdp",
-    "$mises_resources_extra_grdps_path/brave_icons_resources.grdp",
+    "$mises_resources_extra_grdps_path/mises_fonts_resources.grdp",
+    "$mises_resources_extra_grdps_path/mises_static_resources.grdp",
+    "$mises_resources_extra_grdps_path/mises_icons_resources.grdp",
   ]
   mises_resources_extra_grdps_deps += [ "//mises/ui/webui/resources:grdp" ]
 }

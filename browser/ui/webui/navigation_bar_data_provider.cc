@@ -21,14 +21,12 @@ void NavigationBarDataProvider::Initialize(content::WebUIDataSource* source,
                              IDS_BOOKMARK_MANAGER_TITLE);
   source->AddLocalizedString("brToolbarDownloadsTitle", IDS_DOWNLOAD_TITLE);
   source->AddLocalizedString("brToolbarHistoryTitle", IDS_HISTORY_TITLE);
-//   source->AddLocalizedString("brToolbarRewardsTitle",
-//                              IDS_BRAVE_UI_BRAVE_REWARDS);
+  source->AddLocalizedString("brToolbarRewardsTitle",
+                             IDS_BOOKMARK_MANAGER_TITLE);
   source->AddLocalizedString("brToolbarWalletsTitle", IDS_WALLETS_TITLE);
 
-//   source->AddBoolean(
-//       "brToolbarShowRewardsButton",
-//       brave_rewards::IsSupportedForProfile(
-//           profile, brave_rewards::IsSupportedOptions::kSkipRegionCheck));
+  source->AddBoolean(
+      "brToolbarShowRewardsButton", false);
   source->AddBoolean("isBraveWalletAllowed",
                      brave_wallet::IsAllowedForContext(profile));
 }

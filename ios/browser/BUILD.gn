@@ -40,6 +40,7 @@ source_set("browser") {
     "ui/resources:mises_user_default",
     "ui/resources:mises_welcome",
     "ui/resources:activity_services_mises_share",
+    "ui/resources:ntp_down",
     "ui/resources:popup_menu_mises_create",
     "ui/resources:popup_menu_mises_discover",
     "ui/resources:popup_menu_mises_invite",

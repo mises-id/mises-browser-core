@@ -23,7 +23,7 @@ config("config") {
     "-Wno-semicolon-before-method-body",
   ]
   ldflags = [
-    "-force_load", "$framework_dir/Lottie.framework/Lottie",
+   "-force_load", "$framework_dir/Lottie.framework/Lottie",
    # "-force_load", "$framework_dir/FBLPromises.framework/FBLPromises",
    # "-force_load", "$framework_dir/GoogleUtilities.framework/GoogleUtilities",
   ]
@@ -114,7 +114,6 @@ bundle_data("mises_bundle_data") {
     "Bundles/InpageBridgeWeb3.js",
     "Bundles/main.jsbundle",
     "Bundles/GoogleService-Info.plist",
-    "Bundles/assets",
  ]
   outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
 }

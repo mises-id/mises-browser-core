@@ -87,7 +87,9 @@ export const ConnectingButton = styled(WalletButton)`
   justify-content: center;
   align-items: center;
   padding: 10px 22px;
-  border: 1px solid ${(p) => p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.interactive08};
   box-sizing: border-box;
   border-radius: 48px;
   background-color: transparent;

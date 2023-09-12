@@ -37,7 +37,9 @@ export const ExchangeRate = styled.View`
 
 export const SwapDetails = styled.View`
   position: relative;
-  border: 1px solid ${p => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   border-radius: 8px;
   height: 220px;
   width: calc(100% - 8px);
@@ -55,7 +57,9 @@ export const SwapDetailsArrowContainer = styled.View`
   top: calc(50% - 16px); // 16px = half of 32px (height)
   left: calc(50% - 16px); // 16px = half of 32px (width)
   position: absolute;
-  border: 1px solid ${p => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   background-color: ${p => p.theme.color.background01};
   border-radius: 50%;
   width: 32px;
@@ -96,7 +100,9 @@ export const SwapAssetTitle = styled.View`
 `
 
 export const SwapAssetAddress = styled.View`
-  border: 1px solid ${p => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   border-radius: 4px;
   display: flex;
   align-items: center;

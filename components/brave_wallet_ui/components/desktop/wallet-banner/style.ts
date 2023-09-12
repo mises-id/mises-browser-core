@@ -17,7 +17,9 @@ export const StyledWrapper = styled.View<Partial<StyleProps>>`
   width: 100%;
   background-color: ${(p) => p.bannerType === 'warning' ? p.theme.color.warningBackground : p.theme.color.errorBackground};
   border-radius: 4px;
-  border: 1px solid ${(p) => p.bannerType === 'warning' ? p.theme.color.warningBorder : p.theme.color.errorBorder};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.bannerType === 'warning' ? p.theme.color.warningBorder : p.theme.color.errorBorder};
   padding: 20px;
   margin-bottom: 14px;
   @media screen and (max-width: 1080px) {

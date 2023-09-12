@@ -93,7 +93,7 @@ export const ConnectWithSite = (props: Props) => {
   const [addressToConnect, setAddressToConnect] = React.useState<string>()
   const [selectedDuration, setSelectedDuration] =
     React.useState<BraveWallet.PermissionLifetimeOption>(
-      BraveWallet.PermissionLifetimeOption.kPageClosed
+      BraveWallet.PermissionLifetimeOption.k24Hours
     )
   const [isReadyToConnect, setIsReadyToConnect] = React.useState<boolean>(false)
   const [isScrolled, setIsScrolled] = React.useState<boolean>(false)

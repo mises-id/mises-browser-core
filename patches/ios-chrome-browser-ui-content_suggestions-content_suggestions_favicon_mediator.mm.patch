@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
-index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f22252f386 100644
+index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..5ccf3ef67da0ab958f2ba215bb90a274826c13f9 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
 @@ -16,6 +16,14 @@
@@ -58,7 +58,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
      [strongSelf.consumer updateMostVisitedTileConfig:strongItem];
    };
 -
-+    if (item.isMisesFeature) {
++    if (item.itemType == ITEM_TYPE_MISES_FEATURE) {
 +      auto callback =
 +            base::BindOnce(^(const gfx::Image& gfximage,
 +                             const image_fetcher::RequestMetadata& metadata) {

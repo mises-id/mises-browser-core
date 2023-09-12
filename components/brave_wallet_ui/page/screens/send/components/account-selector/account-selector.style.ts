@@ -28,7 +28,9 @@ export const DropDown = styled(StyledDiv)`
   align-items: center;
   width: 100%;
   max-height: 190px;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color:  ${p => p.theme.color.divider01};
   z-index: 10;
   left: 0px;
   top: 56px;

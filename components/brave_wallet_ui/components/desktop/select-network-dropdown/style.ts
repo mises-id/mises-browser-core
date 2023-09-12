@@ -53,7 +53,9 @@ export const DropDown = styled.View <{ useWithSearch?: boolean }>`
   max-height: 262px;
   padding: 10px 10px 10px 20px;
   background-color: ${(p) => p.theme.color.background02};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   border-radius: 8px;
   position: absolute;
   top: 44px;

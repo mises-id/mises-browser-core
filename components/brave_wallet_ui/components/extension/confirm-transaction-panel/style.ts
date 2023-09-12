@@ -102,7 +102,9 @@ export const MessageBox = styled.View<{ isApprove: boolean, isDetails: boolean }
   align-items: flex-start;
   justify-content: 'flex-start';
   flex-direction: column;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   box-sizing: border-box;
   border-radius: 4px;
   width: 255px;
@@ -153,7 +155,9 @@ export const Divider = styled.View`
   width: 100%;
   height: 1px;
   background-color: ${(p) => p.theme.color.divider01};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   margin-top: 6px;
   margin-bottom: 6px;
 `
@@ -226,7 +230,9 @@ export const GroupBox = styled.View`
   align-items: flex-start;
   justify-content: 'flex-start';
   flex-direction: column;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   box-sizing: border-box;
   border-radius: 4px;
   width: 255px;

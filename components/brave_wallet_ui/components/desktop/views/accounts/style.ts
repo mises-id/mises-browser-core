@@ -174,7 +174,9 @@ export const StyledButton = styled(WalletButton)`
   padding: 12px 22px;
   outline: none;
   background-color: transparent;
-  border: 1px solid ${(p) => p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.interactive08};
   margin-right: 8px;
 `
 

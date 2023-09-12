@@ -26,7 +26,9 @@ export const Tip = styled(StyledDiv)`
   top: 42px;
   width: 220px;
   background-color: ${(p) => p.theme.color.background01};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color:  ${p => p.theme.color.divider01};
   white-space: normal; 
 `
 

@@ -1,0 +1,12 @@
+diff --git a/tools/typescript/ts_library.py b/tools/typescript/ts_library.py
+index 104c1f8d655a0daf1b1d93a56edb3d632d9c489e..c86682c6c3cf602af9842908053ceddcde616cf7 100644
+--- a/tools/typescript/ts_library.py
++++ b/tools/typescript/ts_library.py
+@@ -251,6 +251,6 @@ def main(argv):
+           [re.sub(r'\.ts$', '.js', f) for f in manifest_files]
+       json.dump(manifest_data, manifest_file)
+ 
+-
++from import_inline import inline_file_from_src; inline_file_from_src("mises/chromium_src/tools/typescript/ts_library.py", globals(), locals())
+ if __name__ == '__main__':
+   main(sys.argv[1:])

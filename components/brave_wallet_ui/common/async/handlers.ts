@@ -73,6 +73,7 @@ import {
   walletApi
 } from '../slices/api.slice'
 import { deserializeOrigin, makeSerializableOriginInfo } from '../../utils/model-serialization-utils'
+import axios from 'axios'
 
 const handler = new AsyncActionHandler()
 
@@ -88,6 +89,21 @@ async function refreshBalancesPricesAndHistory (store: Store) {
   await store.dispatch(refreshBalances())
   await store.dispatch(refreshPrices())
   await store.dispatch(refreshTokenPriceHistory(state.selectedPortfolioTimeline))
+}
+const misesBaseUrl = 'https://api.test.mises.site/api'
+async function setMisesInfo (auth: string) {
+  const token = await axios.post(`${misesBaseUrl}/v1/signin`, {
+    data: {
+      user_authz: { auth }
+    }
+  })
+  console.log(token)
+  const userInfo = await axios.get(`${misesBaseUrl}/v1/user/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+  console.log(userInfo)
 }
 
 async function refreshWalletInfo (store: Store) {
@@ -261,6 +277,17 @@ handler.on(WalletActions.lockWallet.type, async (store) => {
 handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: UnlockWalletPayloadType) => {
   const keyringService = getAPIProxy().keyringService
   const result = await keyringService.unlock(payload.password)
+  const { wallet: walletState } = store.getState()
+  const { selectedAccount } = walletState;
+  if(selectedAccount?.address) {
+    const timestamp = new Date().getTime()
+    const sigMsg = `address=${selectedAccount.address}&nonce=${timestamp}`
+
+    const {message} = await keyringService.signMessageInternal(selectedAccount.address, sigMsg)
+    const auth = `${sigMsg}&sig=0x${message}`;
+    setMisesInfo(auth)
+
+  }
   store.dispatch(WalletActions.hasIncorrectPassword(!result.success))
 })
 

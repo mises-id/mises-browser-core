@@ -55,7 +55,9 @@ export const DropDown = styled.View`
   padding: 8px;
   box-sizing: border-box;
   background-color: ${leo.color.container.background};
-  border: 1px solid ${leo.color.divider.subtle};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${leo.color.divider.subtle};
   border-radius: 8px;
   position: absolute;
   top: 48px;

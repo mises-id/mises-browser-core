@@ -7,7 +7,9 @@ import styled from 'styled-components'
 
 export const InstructionBox = styled.div`
   width: 100%;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   border-radius: 4px;
   padding: 10px 10px 0px 10px;
   box-sizing: border-box;
