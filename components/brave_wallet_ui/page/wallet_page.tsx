@@ -42,7 +42,7 @@ import { ModalsProvider } from './modals/base'
 import { LoadingScreenProvider } from './providers/loading-screen'
 import { ConfirmModalProvider } from './providers/confirm-modal'
 // import { AppNavigation } from './navigation'
-setIconBasePath('chrome://resources/brave-icons')
+setIconBasePath('chrome://resources/mises-icons')
 
 function App () {
   const [initialThemeType, setInitialThemeType] = React.useState<chrome.braveTheme.ThemeType>()
