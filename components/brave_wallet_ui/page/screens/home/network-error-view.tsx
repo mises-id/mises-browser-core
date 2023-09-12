@@ -10,7 +10,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { AlertIcon, RefreshIcon } from "../../components/icon";
 import { useStyle } from "../../styles";
-import { useNetInfo } from "@react-native-community/netinfo";
+// import { useNetInfo } from "@react-native-community/netinfo";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useSpinAnimated } from "../../components/spinner";
 
@@ -19,9 +19,8 @@ export const NetworkErrorView: FunctionComponent = () => {
 
   const extraHeight = 32;
 
-  const netInfo = useNetInfo();
-  const networkIsConnected =
-    typeof netInfo.isConnected !== "boolean" || netInfo.isConnected;
+  // const netInfo = useNetInfo();
+  const networkIsConnected = true
 
   const [isOpen, setIsOpen] = useState(false);
   const [isRefreshable, setIsRefreshable] = useState(true);

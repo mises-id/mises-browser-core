@@ -9,6 +9,7 @@ import { SettingViewPrivateDataItem } from "./items/view-private-data";
 import { useStyle } from "../../styles";
 import { View } from "react-native";
 import { SettingThemeItem } from "./items/theme";
+import { SettingViewSetLockTime } from "./items/view-set-lock-time";
 
 export const SettingScreen: FunctionComponent = () => {
   const style = useStyle();
@@ -43,6 +44,7 @@ export const SettingScreen: FunctionComponent = () => {
           smartNavigation.navigateSmart("Setting.ManageTokens", {});
         }}
       /> */}
+      <SettingViewSetLockTime />
       <SettingThemeItem />
       <SettingSectionTitle title="Security" />
       <SettingViewPrivateDataItem topBorder={true} />

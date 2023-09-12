@@ -30,7 +30,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createSmartNavigatorProvider, SmartNavigator } from "./hooks/index";
 import { UnlockScreen } from "./screens/unlock";
 import Svg, { Path, Rect } from "react-native-svg";
-import { Text,  View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { BlurredBottomTabBar } from "./components/bottom-tabbar";
 import {
@@ -319,14 +319,18 @@ const HomeScreenHeaderLeft: FunctionComponent = () => {
         ])
       }>
         <Text
-          style={style.flatten([
-            "subtitle3",
-            'margin-right-4'
-          ])}
+          numberOfLines={1}
+          style={
+            StyleSheet.flatten([
+              style.flatten([
+                "subtitle3",
+                'margin-right-4',
+                'dark:color-white',
+              ])])}
         >
           {selectedNetwork?.chainName}
         </Text>
-          <Svg fill="none" viewBox="0 0 1024 1024" width="14" height="8"><Path d="M517.688889 796.444444c-45.511111 0-85.333333-17.066667-119.466667-51.2L73.955556 381.155556c-22.755556-22.755556-17.066667-56.888889 5.688888-79.644445 22.755556-22.755556 56.888889-17.066667 79.644445 5.688889l329.955555 364.088889c5.688889 5.688889 17.066667 11.377778 28.444445 11.377778s22.755556-5.688889 34.133333-17.066667l312.888889-364.088889c22.755556-22.755556 56.888889-28.444444 79.644445-5.688889 22.755556 22.755556 28.444444 56.888889 5.688888 79.644445L637.155556 739.555556c-28.444444 39.822222-68.266667 56.888889-119.466667 56.888888 5.688889 0 0 0 0 0z" fill="#9A9AA2"></Path></Svg>
+        <Svg fill="none" viewBox="0 0 1024 1024" width="14" height="8"><Path d="M517.688889 796.444444c-45.511111 0-85.333333-17.066667-119.466667-51.2L73.955556 381.155556c-22.755556-22.755556-17.066667-56.888889 5.688888-79.644445 22.755556-22.755556 56.888889-17.066667 79.644445 5.688889l329.955555 364.088889c5.688889 5.688889 17.066667 11.377778 28.444445 11.377778s22.755556-5.688889 34.133333-17.066667l312.888889-364.088889c22.755556-22.755556 56.888889-28.444444 79.644445-5.688889 22.755556 22.755556 28.444444 56.888889 5.688888 79.644445L637.155556 739.555556c-28.444444 39.822222-68.266667 56.888889-119.466667 56.888888 5.688889 0 0 0 0 0z" fill="#9A9AA2"></Path></Svg>
       </View>
     </HeaderLeftButton>
   );
@@ -522,7 +526,7 @@ export const MainTabNavigation: FunctionComponent = () => {
                 </Svg>
               );
 
-            default: 
+            default:
               return <Svg width={size} height={size} fill="none" viewBox="0 0 24 24">
                 <Path
                   fill={color}
@@ -802,9 +806,10 @@ export const AppNavigation: FunctionComponent = () => {
   const routeNameRef = useRef<string | null>(null);
 
   const style = useStyle();
-  
+
   const isWalletCreated = useSafeWalletSelector(WalletSelectors.isWalletCreated)
   const isWalletLocked = useSafeWalletSelector(WalletSelectors.isWalletLocked)
+  const hasInitialized = useSafeWalletSelector(WalletSelectors.hasInitialized)
 
   // page selectors (safe)
   const setupStillInProgress = useSafePageSelector(PageSelectors.setupStillInProgress)
@@ -813,15 +818,15 @@ export const AppNavigation: FunctionComponent = () => {
 
   useEffect(() => {
     console.log(walletNotYetCreated, "walletNotYetCreated", !isWalletLocked && isWalletCreated, "!isWalletLocked && isWalletCreated", isWalletLocked && isWalletCreated, "isWalletLocked && isWalletCreated")
-    if(walletNotYetCreated) {
+    if (walletNotYetCreated) {
       navigationRef.current?.dispatch(StackActions.replace("Register"))
       return
     }
-    if(!isWalletLocked && isWalletCreated) {
+    if (!isWalletLocked && isWalletCreated) {
       navigationRef.current?.dispatch(StackActions.replace("MainTabDrawer"));
     }
-    
-    if(isWalletLocked && isWalletCreated) {
+
+    if (isWalletLocked && isWalletCreated) {
       navigationRef.current?.dispatch(StackActions.replace("Unlock"));
     }
   }, [walletNotYetCreated, isWalletLocked, isWalletCreated])
@@ -843,7 +848,9 @@ export const AppNavigation: FunctionComponent = () => {
     }))
 
   }, [networks])
-
+  if(!hasInitialized) {
+    return <></>
+  }
   return (
     <PageScrollPositionProvider>
       <FocusedScreenProvider>
@@ -906,9 +913,9 @@ export const AppNavigation: FunctionComponent = () => {
         items={selectNetworks}
         selectedKey={selectedNetworkKey}
         maxItemsToShow={4}
-        setSelectedKey={(key)=>{
+        setSelectedKey={(key) => {
           const network = networks.find(val => val.chainId === key);
-          if(network) {
+          if (network) {
             setNetwork(network);
           }
           dispatch(WalletActions.setChainPop(false))
