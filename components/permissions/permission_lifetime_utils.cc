@@ -51,12 +51,12 @@ std::vector<PermissionLifetimeOption> CreatePermissionLifetimeOptions() {
   const size_t kOptionsCount = 4;
   options.reserve(kOptionsCount);
 
-  //if (base::FeatureList::IsEnabled(net::features::kBraveEphemeralStorage)) {
+  if (base::FeatureList::IsEnabled(net::features::kMisesEphemeralStorage)) {
     options.emplace_back(
         brave_l10n::GetLocalizedResourceUTF16String(
             IDS_PERMISSIONS_BUBBLE_UNTIL_PAGE_CLOSE_LIFETIME_OPTION),
         base::TimeDelta());
- // }
+  }
   options.emplace_back(brave_l10n::GetLocalizedResourceUTF16String(
                            IDS_PERMISSIONS_BUBBLE_24_HOURS_LIFETIME_OPTION),
                        base::Hours(24));

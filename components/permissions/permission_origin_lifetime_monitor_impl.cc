@@ -19,7 +19,7 @@ PermissionOriginLifetimeMonitorImpl::PermissionOriginLifetimeMonitorImpl(
     content::BrowserContext* browser_context)
     : browser_context_(browser_context) {
   DCHECK(browser_context_);
-  //DCHECK(base::FeatureList::IsEnabled(net::features::kBraveEphemeralStorage));
+  DCHECK(base::FeatureList::IsEnabled(net::features::kMisesEphemeralStorage));
 }
 
 PermissionOriginLifetimeMonitorImpl::~PermissionOriginLifetimeMonitorImpl() =

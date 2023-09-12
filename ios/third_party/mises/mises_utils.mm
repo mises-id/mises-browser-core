@@ -334,7 +334,7 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromMetamask:(NSString *) msg 
                 if (webviewID != 0 && webviewID != [wv hash] ) {
                     continue;
                 }
-                NSString* method = [NSString stringWithFormat:@"(function(){try{window.postMessage( %@ , '%@');} catch (e) {}})()", msg, origin];
+                NSString* method = [NSString stringWithFormat:@"(function(){try{window.postMessage( %@ , '%@');} catch (e) {}})();true;", msg, origin];
                 web::ExecuteJavaScript(wv, method, ^(id value, NSError* error) {
                     if (error) {
                       DLOG(WARNING) << "Script execution failed with error: "
@@ -366,7 +366,7 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromMisesWallet:(NSString *) m
                 if (webviewID != 0 && webviewID != [wv hash] ) {
                     continue;
                 }
-                NSString* method = [NSString stringWithFormat:@"(function(){try{window.postMessage( %@ , '%@');} catch (e) {}})()", msg, origin];
+                NSString* method = [NSString stringWithFormat:@"(function(){try{window.postMessage( %@ , '%@');} catch (e) {}})();true;", msg, origin];
                 web::ExecuteJavaScript(wv, method, ^(id value, NSError* error) {
                     if (error) {
                       DLOG(WARNING) << "Script execution failed with error: "
