@@ -17,7 +17,7 @@
 #include "content/public/browser/global_routing_id.h"
 #include "content/public/browser/web_contents.h"
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 #include "mises/browser/ui/brave_wallet/wallet_bubble_manager_delegate.h"
 #endif
 
@@ -67,7 +67,7 @@ void BraveWalletTabHelper::ClearSolanaConnectedAccounts(
   solana_connected_accounts_.erase(id);
 }
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
 void BraveWalletTabHelper::SetCloseOnDeactivate(bool close) {
   if (wallet_bubble_manager_delegate_)
     wallet_bubble_manager_delegate_->CloseOnDeactivate(close);

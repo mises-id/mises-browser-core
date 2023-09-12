@@ -4,12 +4,7 @@
 
 #include "components/permissions/permissions_client.h"
 
-// Since we don't do UMA just reuse an existing UMA type instead of adding one.
-#define MISES_GET_UMA_VALUE_FOR_REQUEST_TYPE      \
-  case RequestType::kWidevine:                    \
-  case RequestType::kMisesEthereum:               \
-  case RequestType::kMisesSolana:                 \
-    return RequestTypeForUma::PERMISSION_VR;
+
 
 // We do not record permissions UKM and this can save us from patching
 // in RecordPermissionAction for unhandling switch cases for Brave's content
@@ -21,8 +16,8 @@
   PermissionsClient::Get()->GetUkmSourceId
   
 #if BUILDFLAG(IS_ANDROID)
-#define kAccessibilityEvents \
-  kCameraPanTiltZoom:\
+#define MISES_GET_UMA_VALUE_FOR_REQUEST_TYPE      \
+  case RequestType::kCameraPanTiltZoom:\
       return RequestTypeForUma::PERMISSION_CAMERA_PAN_TILT_ZOOM;\
   case RequestType::kLocalFonts: \
       return RequestTypeForUma::PERMISSION_LOCAL_FONTS; \
@@ -34,14 +29,23 @@
     return RequestTypeForUma::PERMISSION_U2F_API_REQUEST; \
   case RequestType::kWindowManagement: \
     return RequestTypeForUma::PERMISSION_WINDOW_MANAGEMENT; \
-  case RequestType::kAccessibilityEvents
+  case RequestType::kWidevine:                    \
+  case RequestType::kMisesEthereum:               \
+  case RequestType::kMisesSolana:                 \
+    return RequestTypeForUma::PERMISSION_VR;
   
 
 #include "src/components/permissions/permission_uma_util.cc"
 
-#undef kAccessibilityEvents
 
 #else
+
+// Since we don't do UMA just reuse an existing UMA type instead of adding one.
+#define MISES_GET_UMA_VALUE_FOR_REQUEST_TYPE      \
+  case RequestType::kWidevine:                    \
+  case RequestType::kMisesEthereum:               \
+  case RequestType::kMisesSolana:                 \
+    return RequestTypeForUma::PERMISSION_VR;
 
 #include "src/components/permissions/permission_uma_util.cc"
 

@@ -11,7 +11,7 @@
 #include "mises/components/l10n/common/localization_util.h"
 
 #include "mises/browser/ui/webui/brave_wallet/wallet_common_ui.h"
-#include "mises/browser/ui/webui/brave_webui_source.h"
+#include "mises/browser/ui/webui/mises_webui_source.h"
 
 #include "mises/browser/brave_wallet/asset_ratio_service_factory.h"
 #include "mises/browser/brave_wallet/brave_wallet_ipfs_service_factory.h"

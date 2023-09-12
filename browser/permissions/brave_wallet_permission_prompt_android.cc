@@ -18,10 +18,10 @@ BraveWalletPermissionPrompt::BraveWalletPermissionPrompt(
     std::unique_ptr<Delegate> delegate,
     brave_wallet::mojom::CoinType coin_type)
     : web_contents_(web_contents), delegate_(std::move(delegate)) {
-  dialog_controller_ =
-      std::make_unique<BraveDappPermissionPromptDialogController>(
-          this, web_contents_, coin_type);
-  dialog_controller_->ShowDialog();
+  // dialog_controller_ =
+  //     std::make_unique<BraveDappPermissionPromptDialogController>(
+  //         this, web_contents_, coin_type);
+  // dialog_controller_->ShowDialog();
 }
 
 BraveWalletPermissionPrompt::~BraveWalletPermissionPrompt() {}
@@ -29,7 +29,7 @@ BraveWalletPermissionPrompt::~BraveWalletPermissionPrompt() {}
 void BraveWalletPermissionPrompt::ConnectToSite(
     const std::vector<std::string>& accounts) {
   has_interacted_with_dialog_ = true;
-  dialog_controller_.reset();
+  //dialog_controller_.reset();
   // TODO(SergeyZhukovsky): Use the real option that the user chooses, using
   // `kForever` here is for landing new API changes separately.
   permissions::BraveWalletPermissionContext::AcceptOrCancel(
@@ -39,16 +39,16 @@ void BraveWalletPermissionPrompt::ConnectToSite(
 
 void BraveWalletPermissionPrompt::CancelConnectToSite() {
   has_interacted_with_dialog_ = true;
-  dialog_controller_.reset();
+  //dialog_controller_.reset();
   permissions::BraveWalletPermissionContext::Cancel(web_contents_);
 }
 
 void BraveWalletPermissionPrompt::OnDialogDismissed() {
-  if (!dialog_controller_) {
+  //if (!dialog_controller_) {
     // Dismissed by clicking on dialog buttons.
-    return;
-  }
-  dialog_controller_.reset();
+  //  return;
+  //}
+  //dialog_controller_.reset();
   // If |has_interacted_with_dialog_| is true, |ConnectToSite| or
   // |CancelConnectToSite| should be recorded instead.
   if (!has_interacted_with_dialog_) {

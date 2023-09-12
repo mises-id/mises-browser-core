@@ -102,10 +102,13 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 #include "mises/components/brave_wallet/browser/solana_provider_impl.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 
-#if !BUILDFLAG(IS_ANDROID)
+#if BUILDFLAG(IS_ANDROID)
+#include "mises/browser/ui/webui/brave_wallet/android/swap_page_ui.h"
+#endif  // BUILDFLAG(IS_ANDROID)
+
 #include "mises/browser/ui/webui/brave_wallet/wallet_page_ui.h"
 #include "mises/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
-#endif
+
 
 
 namespace {
@@ -267,16 +270,14 @@ void MisesContentBrowserClient::RegisterBrowserInterfaceBindersForFrame(
     }
   }
 #if BUILDFLAG(IS_ANDROID)
-  content::RegisterWebUIControllerInterfaceBinder<
-      brave_wallet::mojom::PageHandlerFactory, SwapPageUI>(map);
+  // content::RegisterWebUIControllerInterfaceBinder<
+  //     brave_wallet::mojom::PageHandlerFactory, SwapPageUI>(map);
 #endif
 
-#if !BUILDFLAG(IS_ANDROID)
   content::RegisterWebUIControllerInterfaceBinder<
       brave_wallet::mojom::PageHandlerFactory, WalletPageUI>(map);
   content::RegisterWebUIControllerInterfaceBinder<
       brave_wallet::mojom::PanelHandlerFactory, WalletPanelUI>(map);
-#endif
 
 }
 
