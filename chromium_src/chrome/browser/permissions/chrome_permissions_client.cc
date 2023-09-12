@@ -17,7 +17,7 @@
 #include "url/origin.h"
 
 #if BUILDFLAG(IS_ANDROID)
-#include "mises/browser/permissions/mises_wallet_permission_prompt_android.h"
+#include "mises/browser/permissions/brave_wallet_permission_prompt_android.h"
 #include "components/permissions/android/permission_prompt/permission_prompt_android.h"
 #endif
 

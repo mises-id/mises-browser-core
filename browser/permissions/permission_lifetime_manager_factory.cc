@@ -46,11 +46,11 @@ KeyedService* PermissionLifetimeManagerFactory::BuildServiceInstanceFor(
   }
   std::unique_ptr<permissions::PermissionOriginLifetimeMonitor>
       permission_origin_lifetime_monitor;
-  //if (base::FeatureList::IsEnabled(net::features::kBraveEphemeralStorage)) {
+  if (base::FeatureList::IsEnabled(net::features::kMisesEphemeralStorage)) {
     permission_origin_lifetime_monitor =
         std::make_unique<permissions::PermissionOriginLifetimeMonitorImpl>(
             context);
-  //}
+  }
   auto* profile = Profile::FromBrowserContext(context);
   return new permissions::PermissionLifetimeManager(
       HostContentSettingsMapFactory::GetForProfile(context),

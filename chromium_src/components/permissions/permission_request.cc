@@ -33,11 +33,26 @@
   BRAVE_ENUM_ITEMS_FOR_SWITCH                            
 
 #define BRAVE_ENUM_ITEMS_FOR_SWITCH_ANDROID       \
-  BRAVE_ENUM_ITEMS_FOR_SWITCH                     
+  BRAVE_ENUM_ITEMS_FOR_SWITCH   \
+  case RequestType::kCameraPanTiltZoom:\
+  case RequestType::kLocalFonts: \
+  case RequestType::kRegisterProtocolHandler: \
+  case RequestType::kSecurityAttestation: \
+  case RequestType::kU2fApiRequest: \
+  case RequestType::kWindowManagement: \
+    return std::u16string(); 
+
+#define BRAVE_ENUM_ITEMS_FOR_SWITCH_ANDROID_MESSAGE       \
+  BRAVE_ENUM_ITEMS_FOR_SWITCH       \
+  case RequestType::kNfcDevice:\
+  case RequestType::kProtectedMediaIdentifier:\
+  return std::u16string();         
 
 namespace {
 #if BUILDFLAG(IS_ANDROID)
 const unsigned int IDS_VR_INFOBAR_TEXT_OVERRIDE = IDS_VR_INFOBAR_TEXT;
+const unsigned int IDS_VR_PERMISSION_FRAGMENT_OVERRIDE =
+    IDS_VR_PERMISSION_FRAGMENT;
 #else
 const unsigned int IDS_VR_PERMISSION_FRAGMENT_OVERRIDE =
     IDS_VR_PERMISSION_FRAGMENT;
@@ -51,6 +66,14 @@ const unsigned int IDS_VR_PERMISSION_FRAGMENT_OVERRIDE =
   IDS_VR_INFOBAR_TEXT_OVERRIDE; \
   break;                        \
   BRAVE_ENUM_ITEMS_FOR_SWITCH_ANDROID
+
+// For PermissionRequest::GetMessageTextFragment
+#undef IDS_VR_PERMISSION_FRAGMENT
+#define IDS_VR_PERMISSION_FRAGMENT     \
+  IDS_VR_PERMISSION_FRAGMENT_OVERRIDE; \
+  break;                               \
+  BRAVE_ENUM_ITEMS_FOR_SWITCH_ANDROID_MESSAGE
+
 #else
 // For PermissionRequest::GetMessageTextFragment
 #undef IDS_VR_PERMISSION_FRAGMENT

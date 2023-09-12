@@ -19,7 +19,7 @@ import org.chromium.ui.modaldialog.ModalDialogProperties;
 import org.chromium.ui.modelutil.PropertyModel;
 
 /* Adds additional items to Permission Dialog. */
-class BravePermissionDialogModel {
+class MisesPermissionDialogModel {
     public static PropertyModel getModel(ModalDialogProperties.Controller controller,
             PermissionDialogDelegate delegate, Runnable touchFilteredCallback) {
         PropertyModel model =
@@ -32,8 +32,8 @@ class BravePermissionDialogModel {
     /* Adds a permission lifetime options to a dialog view if lifetime options are available. */
     private static void addLifetimeOptions(View customView, PermissionDialogDelegate delegate) {
         Context context = delegate.getWindow().getContext().get();
-        BravePermissionDialogDelegate braveDelegate =
-                (BravePermissionDialogDelegate) (Object) delegate;
+        MisesPermissionDialogDelegate braveDelegate =
+                (MisesPermissionDialogDelegate) (Object) delegate;
 
         String[] lifetimeOptions = braveDelegate.getLifetimeOptions();
         if (lifetimeOptions == null) {

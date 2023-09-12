@@ -150,7 +150,7 @@ source_set("tab_helper") {
     "//content/public/browser",
   ]
 
-  if (!is_android) {
+  if (true || !is_android) {
     #deps += [ "//mises/browser/ui/brave_wallet" ]
   }
 }

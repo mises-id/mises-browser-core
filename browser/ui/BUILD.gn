@@ -133,7 +133,7 @@ source_set("ui") {
   # This is no longer compiled into Chromium on Android, but we still
   # need it
   if (is_android) {
-    deps += [ ":favicon_source" ]
+    # deps += [ ":favicon_source" ]
   }
 
   if (enable_ipfs) {
@@ -201,7 +201,7 @@ source_set("ui") {
   }
 
 
-  if (!is_android) {
+  if (is_android || !is_android) {
     sources += [
       "views/permission_bubble/brave_wallet_permission_prompt_impl.cc",
       "views/permission_bubble/brave_wallet_permission_prompt_impl.h",
@@ -256,6 +256,30 @@ source_set("ui") {
     ]
   }
   
+  if (is_android) {
+    sources += [
+      "webui/brave_wallet/android/swap_page_handler.cc",
+      "webui/brave_wallet/android/swap_page_handler.h",
+      "webui/brave_wallet/android/swap_page_ui.cc",
+      "webui/brave_wallet/android/swap_page_ui.h",
+      #"webui/brave_wallet/common_handler/wallet_handler.cc",
+      #"webui/brave_wallet/common_handler/wallet_handler.h",
+      #"webui/brave_wallet/page_handler/wallet_page_handler.cc",
+      #"webui/brave_wallet/page_handler/wallet_page_handler.h",
+      #"webui/brave_wallet/wallet_common_ui.cc",
+      #"webui/brave_wallet/wallet_common_ui.h",
+    ]
+    deps += [
+      "//mises/browser/brave_wallet",
+      "//mises/browser/ui/webui/brave_wallet/common_handler",
+      "//mises/components/brave_wallet/browser:hd_keyring",
+      "//mises/components/brave_wallet/common",
+      "//mises/components/brave_wallet/common:common_utils",
+      "//mises/components/brave_wallet/common:mojom",
+      "//mises/components/brave_wallet_ui:resources",
+      "//mises/components/brave_wallet_ui/page/screens/swap/android:brave_wallet_swap_page_generated",
+    ]
+  }
 
 
   if (toolkit_views) {

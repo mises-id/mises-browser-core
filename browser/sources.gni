@@ -6,11 +6,13 @@
 import("//mises/browser/autocomplete/sources.gni")
 import("//mises/browser/ipfs/sources.gni")
 import("//mises/browser/web3sites_safe/sources.gni")
+import("//mises/browser/brave_wallet/android/sources.gni")
 import("//extensions/buildflags/buildflags.gni")
 import("//mises/chromium_src/chrome/browser/sources.gni")
 import("//mises/browser/brave_wallet/notifications/sources.gni")
 import("//mises/browser/permissions/sources.gni")
 import("//mises/build/rust/config.gni")
+
 
 mises_chrome_browser_visibility = [
   "//mises/browser/*",
@@ -65,6 +67,7 @@ mises_chrome_browser_deps = [
   "//mises/components/brave_wallet/common",
   "//mises/components/brave_wallet/common:mojom",
   "//mises/components/version_info",
+  "//mises/browser/ui",
   "//chrome/browser:browser_process",
   "//chrome/browser/profiles:profile",
   "//chrome/browser/ui",
@@ -152,6 +155,8 @@ if (is_android) {
     "//components/sync_device_info",
     "//chrome/utility:utility",
   ]
+  mises_chrome_browser_sources += mises_browser_brave_wallet_android_sources
+  mises_chrome_browser_deps += mises_browser_brave_wallet_android_deps
 } else {
   mises_chrome_browser_sources += [
   ]

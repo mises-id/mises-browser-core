@@ -264,7 +264,7 @@
 -FileSystemAccessBrowserTest.SafeBrowsing
 
 # These tests fail because of the Ephemeral Storage (they pass with
-# kBraveEphemeralStorage feature disabled).
+# kMisesEphemeralStorage feature disabled).
 -RequestStorageAccessForOriginBrowserTest.*
 -RequestStorageAccessForOriginEnabledBrowserTest.*
 -RequestStorageAccessForOriginWithCHIPSBrowserTest.*

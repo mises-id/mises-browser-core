@@ -9,7 +9,7 @@ import org.chromium.base.annotations.CalledByNative;
 import org.chromium.base.annotations.JNINamespace;
 
 @JNINamespace("permissions")
-public class BravePermissionDialogDelegate {
+public class MisesPermissionDialogDelegate {
     /** Text to show before lifetime options. */
     private String mLifetimeOptionsText;
 
@@ -19,7 +19,7 @@ public class BravePermissionDialogDelegate {
     /** Lifetime option index selected by the user. */
     private int mSelectedLifetimeOption;
 
-    public BravePermissionDialogDelegate() {
+    public MisesPermissionDialogDelegate() {
         mSelectedLifetimeOption = -1;
     }
 

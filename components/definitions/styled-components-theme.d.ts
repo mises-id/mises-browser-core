@@ -8,3 +8,7 @@ import IBraveTheme from 'brave-ui/theme/theme-interface'
 declare module 'styled-components' {
   export interface DefaultTheme extends IBraveTheme {}
 }
+
+declare module 'styled-components/native' {
+  export interface DefaultTheme extends IBraveTheme {}
+}

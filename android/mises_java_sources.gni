@@ -1,3 +1,5 @@
+import("//mises/components/permissions/android/java_sources.gni")
+
 kiwi_java_sources = [
   "//mises/android/java/org/chromium/chrome/browser/AppMenuBridge.java",
   "//mises/android/java/org/chromium/chrome/browser/PersonalizeResults.java",

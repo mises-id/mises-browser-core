@@ -9,12 +9,15 @@ import("//mojo/public/tools/bindings/mojom.gni")
 import("//tools/grit/repack.gni")
 
 repack("resources") {
+  deps = []
+  sources = []
   if (is_android) {
-    deps = [ "//mises/components/brave_wallet_ui/page/screens/swap/android:brave_wallet_swap_page_generated" ]
+    deps += [ "//mises/components/brave_wallet_ui/page/screens/swap/android:brave_wallet_swap_page_generated" ]
 
-    sources = [ "$root_gen_dir/mises/components/brave_wallet_page/resources/brave_wallet_swap_page_generated.pak" ]
-  } else {
-    deps = [
+    sources += [ "$root_gen_dir/mises/components/brave_wallet_page/resources/brave_wallet_swap_page_generated.pak" ]
+  }
+  if (true) {
+    deps += [
       "//mises/components/brave_wallet_ui/ledger:ledger_bridge_generated",
       "//mises/components/brave_wallet_ui/market:market_display_generated",
       "//mises/components/brave_wallet_ui/nft:nft_display_generated",
@@ -23,7 +26,7 @@ repack("resources") {
       "//mises/components/brave_wallet_ui/trezor:trezor_bridge_generated",
     ]
 
-    sources = [
+    sources += [
       "$root_gen_dir/mises/components/brave_wallet_page/resources/brave_wallet_page_generated.pak",
       "$root_gen_dir/mises/components/brave_wallet_panel/resources/brave_wallet_panel_generated.pak",
       "$root_gen_dir/mises/components/ledger_bridge/resources/ledger_bridge_generated.pak",
