@@ -51,8 +51,8 @@ const EditAllowance = (props: Props) => {
     setAllowanceType(key)
   }
 
-  const onChangeCustomAllowance = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCustomAllowance(event.target.value)
+  const onChangeCustomAllowance = (value: string) => {
+    setCustomAllowance(value)
   }
 
   const onClickSave = () => {
@@ -104,9 +104,9 @@ const EditAllowance = (props: Props) => {
                 </AllowanceTitle>
                 <Input
                   placeholder={`0 ${symbol}`}
-                  type='number'
+                  // type='number'
                   value={customAllowance}
-                  onChange={onChangeCustomAllowance}
+                  onChangeText={onChangeCustomAllowance}
                 />
               </AllowanceOption>
             </div>

@@ -18,7 +18,7 @@ export default class SideNavButton extends React.PureComponent<Props, {}> {
   render () {
     const { onSubmit, text, isSelected, icon } = this.props
     return (
-      <StyledButton isSelected={isSelected} onClick={onSubmit}>
+      <StyledButton isSelected={isSelected} onPress={onSubmit}>
         <ButtonIcon icon={icon} />
         <ButtonText isSelected={isSelected}>{text}</ButtonText>
       </StyledButton>

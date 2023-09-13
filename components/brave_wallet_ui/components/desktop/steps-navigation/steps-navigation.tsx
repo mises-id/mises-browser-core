@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as React from 'react'
-import { useHistory, Link, NavLink } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 
 // utils
 import { getLocale } from '$web-common/locale'
@@ -16,6 +16,7 @@ import { WalletRoutes } from '../../../constants/types'
 import { LinkText } from '../../../components/shared/style'
 import { BackIcon } from '../../buy-send-swap/select-header/style'
 import { BackButton, DotsWrapper, FlexBox, Wrapper } from './steps-navigation.style'
+import { Text } from 'react-native'
 
 export interface StepsNavigationProps<T extends string> {
   currentStep: T
@@ -47,23 +48,25 @@ export const StepsNavigation: <T extends string>(
   const currentStepIndex = steps.findIndex(s => s === currentStep)
 
   // memos
-  const buttonProps = React.useMemo(() => {
-    return goBackUrl
-      ? { as: Link, to: goBackUrl } as const
-      : { onClick: goBack || history.goBack, as: 'button' } as const
-  }, [goBackUrl, goBack, history])
+  // const buttonProps = React.useMemo(() => {
+  //   return goBackUrl
+  //     ? { as: Link, to: goBackUrl } as const
+  //     : { onClick: goBack || history.goBack, as: 'Button' } as const
+  // }, [goBackUrl, goBack, history])
 
   return (
     <Wrapper>
       {preventGoBack
         ? <FlexBox />
         : <BackButton
-            as={buttonProps.as}
-            to={buttonProps.to}
-            onClick={buttonProps.onClick}
+            // as={buttonProps.as}
+            // to={buttonProps.to}
+            onPress={() => {
+              goBack?.() || history.goBack()
+            }}
           >
             <BackIcon />
-            <span>{getLocale('braveWalletBack')}</span>
+            <Text>{getLocale('braveWalletBack')}</Text>
           </BackButton>
       }
 

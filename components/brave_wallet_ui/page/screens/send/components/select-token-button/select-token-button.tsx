@@ -67,7 +67,7 @@ export const SelectTokenButton = (props: Props) => {
   }, [selectedSendOption, token])
 
   return (
-    <Button onClick={onClick} morePadding={token !== undefined} isNFT={selectedSendOption === 'nft'}>
+    <Button onPress={onClick} morePadding={token !== undefined} isNFT={selectedSendOption === 'nft'}>
       <Row>
         {token && (
           <IconsWrapper marginRight={selectedSendOption === 'nft' ? 12 : undefined}>

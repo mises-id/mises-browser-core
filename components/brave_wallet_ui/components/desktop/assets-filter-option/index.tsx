@@ -24,7 +24,7 @@ export const AssetsFilterOption = (props: Props) => {
   return (
     <Option
       selected={selected}
-      onClick={onClick}
+      onPress={onClick}
     >
     {label}
     </Option>

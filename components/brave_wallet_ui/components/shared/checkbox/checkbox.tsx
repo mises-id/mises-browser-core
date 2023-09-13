@@ -43,22 +43,20 @@ export const Checkbox: React.FC<Props> = ({
     }
   }, [onChange, !isChecked])
 
-  const onKeyPress = React.useCallback((event: React.KeyboardEvent) => {
-    // Invoke for space or enter, just like a regular input or button
-    if ([' ', 'Enter'].includes(event.key)) {
-      onClick()
-    }
-  }, [onClick])
+  // const onKeyPress = React.useCallback((event: React.KeyboardEvent) => {
+  //   // Invoke for space or enter, just like a regular input or button
+  //   if ([' ', 'Enter'].includes(event.key)) {
+  //     onClick()
+  //   }
+  // }, [onClick])
 
   // render
   return (
     <StyledLabel
       data-testid={`checkbox-label-${testId}`}
-      role='checkbox'
+      // role='checkbox'
       aria-checked={isChecked ? 'true' : 'false'}
-      tabIndex={disabled ? undefined : 0}
-      onClick={!disabled ? onClick : undefined}
-      onKeyPress={!disabled ? onKeyPress : undefined}
+      onPress={!disabled ? onClick : undefined}
       size={size}
       disabled={disabled}
       selected={isChecked}

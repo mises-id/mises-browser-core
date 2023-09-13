@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // icons
 import CryptoWalletsIcon from '../../../../../../assets/svg-icons/crypto-wallets-icon.svg'
@@ -44,7 +44,7 @@ const getIcon = (iconName: ArticleLinkIcons) => {
   } as Record<ArticleLinkIcons, string>)[iconName] || ''
 }
 
-export const BubbleIconBackground = styled.div<{
+export const BubbleIconBackground = styled.View<{
   backgroundColor: IconBubbleColors
 }>`
   background-color: ${(p) => p.theme.palette[p.backgroundColor]};
@@ -53,7 +53,7 @@ export const BubbleIconBackground = styled.div<{
   height: 30px;
 `
 
-export const BubbleIcon = styled.div<{
+export const BubbleIcon = styled.View<{
   icon: ArticleLinkIcons
 }>`
   display: inline-block;
@@ -66,7 +66,7 @@ export const BubbleIcon = styled.div<{
   mask-repeat: no-repeat;
 `
 
-export const Bubble = styled.a`
+export const Bubble = styled.Text`
   text-decoration: none;
   display: flex;
   flex-direction: row;
@@ -80,7 +80,7 @@ export const Bubble = styled.a`
   border-radius: 8px;
 `
 
-export const BubbleText = styled.span`
+export const BubbleText = styled.Text`
   height: 20px;
   font-family: 'Poppins';
   font-style: normal;

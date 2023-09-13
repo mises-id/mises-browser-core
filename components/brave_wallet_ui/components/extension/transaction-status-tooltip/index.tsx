@@ -19,18 +19,19 @@ function TransactionStatusTooltip (props: Props) {
   const { children, text } = props
   const [active, setActive] = React.useState(false)
 
-  const showTip = () => {
-    setActive(true)
-  }
+  // const showTip = () => {
+  //   setActive(true)
+  // }
 
-  const hideTip = () => {
-    setActive(false)
-  }
+  // const hideTip = () => {
+  //   setActive(false)
+  // }
 
   return (
     <StyledWrapper
-      onMouseEnter={showTip}
-      onMouseLeave={hideTip}
+      // onMouseEnter={showTip}
+      // onMouseLeave={hideTip}
+      onPress={() => setActive(!active)}
     >
       {children}
       {active &&

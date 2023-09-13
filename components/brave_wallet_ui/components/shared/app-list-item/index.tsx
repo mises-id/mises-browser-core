@@ -39,14 +39,14 @@ export default class AppListItem extends React.PureComponent<Props> {
       <StyledWrapper>
         <IconAndInfo>
           <AppIconWrapper>
-            <AppIcon src={this.getSrc(appInfo.icon)} />
+            <AppIcon source={{uri: this.getSrc(appInfo.icon)}} />
           </AppIconWrapper>
           <AppDescColumn>
-            <AppName onClick={this.openApp}>{appInfo.name}</AppName>
+            <AppName onPress={this.openApp}>{appInfo.name}</AppName>
             <AppDesctription>{appInfo.description}</AppDesctription>
           </AppDescColumn>
         </IconAndInfo>
-        {isStared ? <SelectedIcon onClick={toggleFavorite} /> : <UnSelectedIcon onClick={toggleFavorite} />}
+        {isStared ? <SelectedIcon onPress={toggleFavorite} /> : <UnSelectedIcon onPress={toggleFavorite} />}
       </StyledWrapper>
     )
   }

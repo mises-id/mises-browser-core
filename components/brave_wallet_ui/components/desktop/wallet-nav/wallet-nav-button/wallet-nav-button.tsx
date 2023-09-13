@@ -33,7 +33,7 @@ export const WalletNavButton = (props: Props) => {
 
   return (
     <StyledButton
-      onClick={onClick}
+      onPress={onClick}
       isSelected={walletLocation.includes(option.route)}
     >
       {/* <ButtonIcon name={option.icon} /> */}

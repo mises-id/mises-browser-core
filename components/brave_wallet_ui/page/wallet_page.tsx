@@ -24,7 +24,7 @@ import { ApiProxyContext } from '../common/context/api-proxy.context'
 
 // components
 import BraveCoreThemeProvider from '../../common/BraveCoreThemeProvider'
-// import Container from './container'
+import Container from './container'
 import { store, walletPageApiProxy } from './store'
 
 // style
@@ -34,13 +34,13 @@ import 'emptykit.css'
 
 import '@brave/leo/tokens/css/variables.css'
 import { setIconBasePath } from '@brave/leo/react/icon'
-import { AppNavigation } from './navigation'
-import { StyleProvider, useStyle } from './styles'
-import { StatusBar } from 'react-native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { ModalsProvider } from './modals/base'
-import { LoadingScreenProvider } from './providers/loading-screen'
-import { ConfirmModalProvider } from './providers/confirm-modal'
+// import { AppNavigation } from './navigation'
+import { StyleProvider } from './styles'
+// import { StatusBar } from 'react-native'
+// import { SafeAreaProvider } from 'react-native-safe-area-context'
+// import { ModalsProvider } from './modals/base'
+// import { LoadingScreenProvider } from './providers/loading-screen'
+// import { ConfirmModalProvider } from './providers/confirm-modal'
 // import { AppNavigation } from './navigation'
 setIconBasePath('chrome://resources/brave-icons')
 
@@ -62,17 +62,17 @@ function App () {
     link.href = faveiconUrl
   }, [])
 
-  const ThemeStatusBar: React.FunctionComponent = () => {
-    const style = useStyle();
+  // const ThemeStatusBar: React.FunctionComponent = () => {
+  //   const style = useStyle();
 
-    return (
-      <StatusBar
-        translucent={true}
-        backgroundColor="#FFFFFF00"
-        barStyle={style.get("status-bar-style")}
-      />
-    );
-  };
+  //   return (
+  //     <StatusBar
+  //       translucent={true}
+  //       backgroundColor="#FFFFFF00"
+  //       barStyle={style.get("status-bar-style")}
+  //     />
+  //   );
+  // };
 
   return (
     <Provider store={store}>
@@ -87,7 +87,8 @@ function App () {
               <LibContext.Provider value={Lib}>
                 {/* <Container /> */}
                 <StyleProvider>
-                  <ThemeStatusBar />
+                  <Container />
+                  {/* <ThemeStatusBar />
                   <SafeAreaProvider>
                     <ModalsProvider>
                       <LoadingScreenProvider>
@@ -96,7 +97,7 @@ function App () {
                         </ConfirmModalProvider>
                       </LoadingScreenProvider>
                     </ModalsProvider>
-                  </SafeAreaProvider>
+                  </SafeAreaProvider> */}
                 </StyleProvider>
                 {/* <UnlockScreen1 /> */}
               </LibContext.Provider>

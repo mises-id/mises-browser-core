@@ -30,7 +30,7 @@ export const SelectNetworkButton = ({
   isPanel
 }: Props) => {
   return (
-    <OvalButton isPanel={isPanel} onPress={onClick} data-test-id='select-network-button'>
+    <OvalButton isPanel={isPanel} onPress={onClick}>
       <CreateNetworkIcon network={selectedNetwork} marginRight={4} />
       <OvalButtonText isPanel={isPanel}>{selectedNetwork?.chainName ?? ''}</OvalButtonText>
       {onClick && <CaratDownIcon isPanel={isPanel} />}

@@ -21,7 +21,7 @@ import { useSafePageSelector } from '../../../../common/hooks/use-safe-selector'
 // styles
 import {
   ToggleVisibilityButton,
-  LinkText,
+  // LinkText,
   CopyButton,
   HorizontalSpace
 } from '../../../../components/shared/style'
@@ -105,14 +105,14 @@ export const BackupRecoveryPhrase = () => {
             <Title>{getLocale('braveWalletRecoveryPhraseBackupTitle')}</Title>
             <Description>
               {getLocale('braveWalletRecoveryPhraseBackupWarning')}
-              <LinkText
+              {/* <LinkText
                 href='https://brave.com/learn/wallet-recovery-phrase/#how-should-i-store-my-recovery-phrase'
                 target='_blank'
                 rel='noreferrer'
                 referrerPolicy='no-referrer'
               >
                 {getLocale('braveWalletLearnMore')}
-              </LinkText>
+              </LinkText> */}
             </Description>
           </TitleAndDescriptionContainer>
 
@@ -120,7 +120,7 @@ export const BackupRecoveryPhrase = () => {
             <PhraseCardTopRow>
               <ToggleVisibilityButton
                 isVisible={isPhraseShown}
-                onClick={toggleShowPhrase}
+                onPress={toggleShowPhrase}
               />
             </PhraseCardTopRow>
 
@@ -134,7 +134,7 @@ export const BackupRecoveryPhrase = () => {
 
             <PhraseCardBottomRow>
 
-              <CopyButton onClick={onCopyPhrase} />
+              <CopyButton onPress={onCopyPhrase} />
 
               {isCopied &&
                 <>

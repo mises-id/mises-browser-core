@@ -2,16 +2,16 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.span`
+export const StyledWrapper = styled.TouchableOpacity`
   flex: 1;
   display: flex;
   position: relative;
   height: 100%;
 `
 
-export const Tip = styled.div`
+export const Tip = styled.View`
   position: absolute;
   border-radius: 4px;
   left: -65px;
@@ -29,7 +29,7 @@ export const Tip = styled.div`
   width: 240px;
 `
 
-export const Pointer = styled.div`
+export const Pointer = styled.View`
   width: 0;
   height: 0;
   border-style: solid;

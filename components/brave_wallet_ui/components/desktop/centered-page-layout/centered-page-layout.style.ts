@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled('div')`
+export const StyledWrapper = styled.View`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -18,8 +18,8 @@ export const StyledWrapper = styled('div')`
   overflow-y: auto;
  `
 
-export const StyledContent = styled('div') <{ isTabView?: boolean }>`
-  width: 456px;
+export const StyledContent = styled.View <{ isTabView?: boolean }>`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

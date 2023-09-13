@@ -6,7 +6,6 @@
 // import { FC } from 'react'
 import { CSSProperties } from 'styled-components'
 import styled, { css } from 'styled-components/native'
-import { Link } from 'react-router-dom'
 import * as leo from '@brave/leo/tokens/css'
 
 // types
@@ -188,10 +187,8 @@ export const StatusBubble = styled.View<{ status: BraveWallet.TransactionStatus 
 export const WalletButton = styled.TouchableOpacity`
   font-style: normal;
 `
-export const WalletButtonRN = styled.TouchableOpacity`
-  ${walletButtonFocusMixin}
-`
-export const WalletLink = styled(Link)`
+
+export const WalletLink = styled.TouchableOpacity<{to?: string}>`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -214,7 +211,7 @@ export const WalletLink = styled(Link)`
   }
 `
 
-export const WalletButtonLink = styled(Link)`
+export const WalletButtonLink = styled.Text<{to: string}>`
   ${walletButtonFocusMixin}
 `
 

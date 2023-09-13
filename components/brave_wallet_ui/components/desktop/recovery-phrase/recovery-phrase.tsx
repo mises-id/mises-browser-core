@@ -121,7 +121,7 @@ export const RecoveryPhrase: React.FC<Props> = ({
 
   // render
   if (hidden) {
-    return <HiddenPhraseContainer onClick={onClickReveal}>
+    return <HiddenPhraseContainer onPress={onClickReveal}>
       <FrostedGlass>
         <EyeOffIcon />
         <p>{getLocale('braveWalletClickToSeeRecoveryPhrase')}</p>
@@ -151,7 +151,7 @@ export const RecoveryPhrase: React.FC<Props> = ({
           <RecoveryBubble
             key={`${word.index}-${word.value}`}
             verificationModeEnabled={verificationModeEnabled}
-            onClick={makeOnClickWord(word)}
+            onPress={makeOnClickWord(word)}
             selected={isWordSelected}
           >
 

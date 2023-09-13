@@ -26,14 +26,14 @@ export const SelectSendOptionButton = (props: Props) => {
     <ButtonsContainer>
       <Button
         isSelected={selectedSendOption === 'token'}
-        onClick={() => onClick('token')}
+        onPress={() => onClick('token')}
         buttonAlign='left'
       >
         {getLocale('braveWalletSendToken')}
       </Button>
       <Button
         isSelected={selectedSendOption === 'nft'}
-        onClick={() => onClick('nft')}
+        onPress={() => onClick('nft')}
         buttonAlign='right'
       >
         {getLocale('braveWalletSendNFT')}

@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import * as leo from '@brave/leo/tokens/css'
 
 const minCardHeight = 595
 
-export const Wrapper = styled.div<{ noPadding?: boolean }>`
+export const Wrapper = styled.View<{ noPadding?: boolean }>`
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div<{ noPadding?: boolean }>`
   padding: ${(p) => p.noPadding ? '0px' : '100px 0px'};
 `
 
-export const LayoutCardWrapper = styled.div<{
+export const LayoutCardWrapper = styled.View<{
   maxWidth?: number,
 }>`
   display: flex;
@@ -39,7 +39,7 @@ export const LayoutCardWrapper = styled.div<{
   max-width: ${(p) => p.maxWidth ? p.maxWidth : 700}px;
 `
 
-export const ContainerCard = styled.div<
+export const ContainerCard = styled.View<
   {
     cardOverflow?: 'auto' | 'hidden' | 'visible'
   }>`
@@ -61,7 +61,7 @@ export const ContainerCard = styled.div<
   }
 `
 
-export const StaticBackground = styled.div`
+export const StaticBackground = styled.View`
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -74,7 +74,7 @@ export const StaticBackground = styled.div`
   }
 `
 
-export const BackgroundGradientWrapper = styled.div`
+export const BackgroundGradientWrapper = styled.View`
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -84,7 +84,7 @@ export const BackgroundGradientWrapper = styled.div`
   background-color: ${leo.color.container.highlight};
 `
 
-export const BackgroundGradientTopLayer = styled.div`
+export const BackgroundGradientTopLayer = styled.View`
   position: absolute;
   left: -42%;
   right: 35%;
@@ -93,7 +93,7 @@ export const BackgroundGradientTopLayer = styled.div`
   background-color: #DFDEFC;
   border-radius: 100%;
   filter: blur(36.2567px);
-  transform: matrix(1, -0.06, -0.32, -0.95, 0, 0);
+  // transform: matrix(1, -0.06, -0.32, -0.95, 0, 0);
   z-index: 5;
   @media (prefers-color-scheme: dark) {
     /* #013F4B does not exist in design system */
@@ -103,11 +103,11 @@ export const BackgroundGradientTopLayer = styled.div`
     right: -100%;
     top: 2%;
     bottom: 25%;
-    transform: matrix(-0.98, 0.19, -0.73, -0.68, 0, 0);
+    // transform: matrix(-0.98, 0.19, -0.73, -0.68, 0, 0);
   }
 `
 
-export const BackgroundGradientMiddleLayer = styled.div`
+export const BackgroundGradientMiddleLayer = styled.View`
   position: absolute;
   left: 25%;
   right: 10%;
@@ -116,7 +116,7 @@ export const BackgroundGradientMiddleLayer = styled.div`
   background-color: #D6E7FF;
   border-radius: 100%;
   filter: blur(47.5869px);
-  transform: matrix(-1, 0.06, -0.32, -0.95, 0, 0);
+  // transform: matrix(-1, 0.06, -0.32, -0.95, 0, 0);
   z-index: 4;
   @media (prefers-color-scheme: dark) {
     /* #030A49 does not exist in design system */
@@ -126,11 +126,11 @@ export const BackgroundGradientMiddleLayer = styled.div`
     right: 17%;
     top: 50%;
     bottom: -80%;
-    transform: matrix(-0.98, 0.19, -0.73, -0.68, 0, 0);
+    // transform: matrix(-0.98, 0.19, -0.73, -0.68, 0, 0);
   }
 `
 
-export const BackgroundGradientBottomLayer = styled.div`
+export const BackgroundGradientBottomLayer = styled.View`
   position: absolute;
   left: -30%;
   right: 20%;
@@ -139,7 +139,7 @@ export const BackgroundGradientBottomLayer = styled.div`
   background-color: #C8EDFD;
   border-radius: 100%;
   filter: blur(47.5869px);
-  transform: matrix(-1, 0.06, -0.32, -0.95, 0, 0);
+  // transform: matrix(-1, 0.06, -0.32, -0.95, 0, 0);
   z-index: 3;
   @media (prefers-color-scheme: dark) {
     /* #014B3A does not exist in design system */
@@ -149,11 +149,11 @@ export const BackgroundGradientBottomLayer = styled.div`
     right: -80%;
     top: 15%;
     bottom: -40%;
-    transform: matrix(-0.79, 0.61, -0.98, -0.22, 0, 0);
+    // transform: matrix(-0.79, 0.61, -0.98, -0.22, 0, 0);
   }
 `
 
-export const BlockForHeight = styled.div`
+export const BlockForHeight = styled.View`
   top: 100px;
   width: 1px;
   height: calc(${minCardHeight}px + 30px);

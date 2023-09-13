@@ -35,7 +35,7 @@ const STORAGE_KEY_SWAP_SWEEPSTAKES_CLOSED = 'BRAVE_WALLET_SWAP_SWEEPSTAKES_BANNE
 const START_DATE = new Date('2022-03-07T00:01:00-0800') // 12:01am PST on March 7, 2022 (1 day before event)
 const END_DATE = new Date('2022-03-15T00:00:00-0800') // 12:00am PST March 8, 2022
 
-const LEARN_MORE_LINK = 'https://brave.com/sweepstakes/'
+// const LEARN_MORE_LINK = 'https://brave.com/sweepstakes/'
 
 export const SweepstakesBanner = ({
     endDate = END_DATE,
@@ -61,7 +61,7 @@ export const SweepstakesBanner = ({
                             {getLocale('braveWalletSweepstakesTitle')}
                         </Title>
 
-                        <CloseButton onClick={() => {
+                        <CloseButton onPress={() => {
                             onCloseBanner()
                             setIsVisible(false)
                         }} />
@@ -72,13 +72,13 @@ export const SweepstakesBanner = ({
                             <BodyText>
                                 {getLocale('braveWalletSweepstakesDescription')}
                             </BodyText>
-                            <LearnMoreLink href={LEARN_MORE_LINK}>
+                            <LearnMoreLink>
                                 {getLocale('braveWalletSweepstakesCallToAction')}
                             </LearnMoreLink>
                         </FooterLeftColumn>
 
                         <FooterRightColumn>
-                            <SweepStakesBannerIllustration src={SwapStakesBAYC} />
+                            <SweepStakesBannerIllustration source={{uri: SwapStakesBAYC}} />
                         </FooterRightColumn>
                     </Footer>
 

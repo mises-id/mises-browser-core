@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // svgs
 import CheckmarkSvg from '../../../assets/svg-icons/big-checkmark.svg'
 
-export const PasswordMatchRow = styled.div`
+export const PasswordMatchRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,7 +17,7 @@ export const PasswordMatchRow = styled.div`
   padding: 0px 12px;
 `
 
-export const PasswordMatchText = styled.p`
+export const PasswordMatchText = styled.Text`
   color: ${(p) => p.theme.color.interactive05};
   font-family: 'Poppins';
   font-style: normal;
@@ -28,7 +28,7 @@ export const PasswordMatchText = styled.p`
   letter-spacing: 0.01em;
 `
 
-export const PasswordMatchCheckmark = styled.div`
+export const PasswordMatchCheckmark = styled.View`
   display: inline-block;
   width: 10px;
   height: 10px;

@@ -22,7 +22,7 @@ export const AssetNameAndIcon = (props: Props) => {
 
   return (
     <StyledWrapper>
-      <AssetIcon src={assetLogo} loading="lazy" />
+      <AssetIcon source={{uri: assetLogo}} />
       <NameAndSymbolWrapper>
         <AssetName>{assetName}</AssetName>
         <AssetSymbol>{symbol}</AssetSymbol>

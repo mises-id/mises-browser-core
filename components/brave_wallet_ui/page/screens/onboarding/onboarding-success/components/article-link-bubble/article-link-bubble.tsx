@@ -25,13 +25,13 @@ export const ArticleLinkBubble: React.FC<ArticleLinkBubbleProps> = ({
   icon,
   iconBackgroundColor,
   text,
-  url
+  // url
 }) => {
   return (
     <Bubble
-      href={url}
-      target='_blank'
-      rel='noreferrer'
+      // href={url}
+      // target='_blank'
+      // rel='noreferrer'
     >
       <BubbleIconBackground
         backgroundColor={iconBackgroundColor}

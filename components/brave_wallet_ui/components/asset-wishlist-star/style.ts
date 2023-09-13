@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import StarActiveIcon from '../../assets/svg-icons/star-active-icon.svg'
 import StarIcon from '../../assets/svg-icons/star-icon.svg'
@@ -12,14 +12,14 @@ export interface StyleProps {
   active: boolean
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   width: 17px;
   height: 17px;
 `
 
-export const Star = styled.button<StyleProps>`
+export const Star = styled.Button<StyleProps>`
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;

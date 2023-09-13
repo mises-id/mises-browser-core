@@ -211,12 +211,10 @@ export const DepositFundsScreen = () => {
     copyToClipboard(selectedAccount?.address || '')
   }, [copyToClipboard, selectedAccount?.address])
 
-  const onCopyKeyPress = React.useCallback(({ key }: React.KeyboardEvent) => {
-    // Invoke for space or enter, just like a regular input or button
-    if ([' ', 'Enter'].includes(key)) {
-      copyAddressToClipboard()
-    }
-  }, [copyAddressToClipboard])
+  // const onCopyKeyPress = React.useCallback(() => {
+  //   // Invoke for space or enter, just like a regular input or button
+  //   copyAddressToClipboard()
+  // }, [copyAddressToClipboard])
 
   const checkIsDepositAssetSelected = React.useCallback((asset: BraveWallet.BlockchainToken) => {
     if (selectedAsset) {
@@ -389,7 +387,7 @@ export const DepositFundsScreen = () => {
               </Row>
 
               <Row>
-                <QRCodeImage src={qrCode} />
+                <QRCodeImage source={{uri: qrCode}} />
               </Row>
 
               <Column gap={'4px'}>
@@ -400,8 +398,7 @@ export const DepositFundsScreen = () => {
                   <AddressText>{selectedAccount?.address}</AddressText>
                   <CopyButton
                     iconColor={'interactive05'}
-                    onKeyPress={onCopyKeyPress}
-                    onClick={copyAddressToClipboard}
+                    onPress={copyAddressToClipboard}
                   />
                 </Row>
 

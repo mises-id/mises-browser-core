@@ -69,7 +69,7 @@ export const OnboardingSuccess = () => {
     <MainWrapper>
       <StyledWrapper>
         <CloseButtonContainer>
-          <LinkText onClick={onComplete}>
+          <LinkText onPress={onComplete}>
             {getLocale('braveWalletButtonDone')}
           </LinkText>
         </CloseButtonContainer>
@@ -84,18 +84,18 @@ export const OnboardingSuccess = () => {
           getLocale('braveWalletOnboardingSuccessDescription')
         }</Description>
 
-        <IntroImg src={WalletAccessSvg} height={138} />
+        <IntroImg source={{uri: WalletAccessSvg}} style={{height: 138}}/>
 
       </IntroContainer>
 
       <ArticleLinksContainer>
-        <LinkText
+        {/* <LinkText
           rel="noreferrer"
           target='_blank'
           href='https://brave.com/learn/what-is-crypto-wallet/#how-to-use-a-crypto-wallet'
         >
           {getLocale('braveWalletLearnAboutMyWallet')}
-        </LinkText>
+        </LinkText> */}
       </ArticleLinksContainer>
 
       <ButtonContainer>
@@ -105,7 +105,7 @@ export const OnboardingSuccess = () => {
           onSubmit={onClickBuyCrypto}
         />
 
-        <LinkText onClick={onClickDepositCrypto}>
+        <LinkText onPress={onClickDepositCrypto}>
           <DepositIcon />
           {getLocale('braveWalletDepositCryptoButton')}
         </LinkText>

@@ -106,7 +106,7 @@ export const TokenListItem = (props: Props) => {
 
   return (
     <ButtonWrapper>
-      <Button onClick={onClick}>
+      <Button onPress={onClick}>
         <IconAndName horizontalAlign='flex-start'>
           <IconsWrapper>
             <AssetIconWithPlaceholder asset={token} network={tokensNetwork} />

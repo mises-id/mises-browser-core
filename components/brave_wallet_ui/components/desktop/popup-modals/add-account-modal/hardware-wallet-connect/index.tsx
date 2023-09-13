@@ -12,7 +12,7 @@ import { getBalance } from '../../../../../common/async/lib'
 
 // components
 import HardwareWalletAccountsList from './accounts-list'
-import { AuthorizeHardwareDeviceIFrame } from '../../../../shared/authorize-hardware-device/authorize-hardware-device'
+// import { AuthorizeHardwareDeviceIFrame } from '../../../../shared/authorize-hardware-device/authorize-hardware-device'
 import { NavButton } from '../../../../extension'
 
 // Styled Components
@@ -45,6 +45,7 @@ import {
   useGetDefaultNetworksQuery,
   useGetSelectedChainQuery
 } from '../../../../../common/slices/api.slice'
+import { Text } from 'react-native'
 
 export interface Props {
   selectedAccountType: CreateAccountOptionsType
@@ -250,7 +251,8 @@ export const HardwareWalletConnect = ({ onSuccess, selectedAccountType }: Props)
             </DisclaimerText>
           </HardwareInfoColumn>
         </HardwareInfoRow>
-        <AuthorizeHardwareDeviceIFrame coinType={selectedAccountType.coin} />
+        <Text>AuthorizeHardwareDeviceIFrame</Text>
+        {/* <AuthorizeHardwareDeviceIFrame coinType={selectedAccountType.coin} /> */}
       </>
     )
   }

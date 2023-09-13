@@ -3,8 +3,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled, { css } from 'styled-components'
-import { WalletButton } from '../../shared/style'
+import styled, { css } from 'styled-components/native'
+// import { WalletButton } from '../../shared/style'
 
 const Font = css`
   font-family: Poppins;
@@ -15,7 +15,7 @@ const Font = css`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   margin-bottom: 40px;
 `
 
-export const BackButton = styled(WalletButton)<{
+export const BackButton = styled.TouchableOpacity<{
   to?: string // used for links
 }>`
   ${Font}
@@ -43,10 +43,10 @@ export const BackButton = styled(WalletButton)<{
   line-height: 20px;
   letter-spacing: 0.01em;
   border: none;
-  text-decoration: ${(p) => p.to ? 'none' : 'unset'};
+  text-decoration: none;
 `
 
-export const DotsWrapper = styled.div`
+export const DotsWrapper = styled.View`
   display: flex;
   flex: 7;
   flex-direction: row;
@@ -68,6 +68,6 @@ export const DotsWrapper = styled.div`
   }
 `
 
-export const FlexBox = styled.div`
+export const FlexBox = styled.View`
   flex: 1;
 `

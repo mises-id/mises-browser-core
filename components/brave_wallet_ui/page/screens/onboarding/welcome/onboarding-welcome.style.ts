@@ -75,13 +75,13 @@ export const SubDivider = styled.View`
   margin-top: 33px;
 `
 
-export const SubDividerText = styled.View`
+export const SubDividerText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
   color: ${(p) => p.theme.color.text02};
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 `

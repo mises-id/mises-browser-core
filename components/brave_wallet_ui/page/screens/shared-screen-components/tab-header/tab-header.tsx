@@ -71,10 +71,9 @@ export const TabHeader = (props: Props) => {
         </Text>
       </Row>
       <SettingsWrapper
-        ref={settingsModalRef}
       >
-        <SettingsButton onClick={() => setShowSettings(prev => !prev)}>
-          {/* <SettingsIcon name='more-horizontal' /> */}
+        <SettingsButton onPress={() => setShowSettings(prev => !prev)}>
+          <SettingsIcon  />
         </SettingsButton>
         {showSettings &&
           <WalletMorePopup

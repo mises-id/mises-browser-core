@@ -2,9 +2,9 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -13,7 +13,7 @@ export const StyledWrapper = styled.div`
   margin-bottom: 24px;
 `
 
-export const Line = styled.div`
+export const Line = styled.View`
   display: flex;
   width: 100%;
   height: 100%;

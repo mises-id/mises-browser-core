@@ -112,7 +112,7 @@ export const BuyAssetOptionItem = React.forwardRef<HTMLButtonElement, Props>(({
   }
 
   return (
-    <BuyAssetOptionWrapper ref={forwardedRef} isSelected={isSelected} onClick={handleOnClick}>
+    <BuyAssetOptionWrapper isSelected={isSelected} onPress={handleOnClick}>
       <NameAndIcon>
         <IconsWrapper marginRight='14px'>
           <AssetIconWithPlaceholder asset={token} network={tokenNetwork} />

@@ -3,21 +3,18 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { Column } from '../../../components/shared/style'
 
 // Layout
 export const OnboardingWrapper = styled(Column)`
   width: 100%;
   height: 100%;
-  padding-top: 40px;
-  padding-left: 80px;
-  padding-right: 80px;
   display: flex;
   overflow-x: hidden;
 `
 
-export const NextButtonRow = styled.div`
+export const NextButtonRow = styled.View`
   display: flex;
   flex-direction: row;
   align-self: center;
@@ -28,7 +25,7 @@ export const NextButtonRow = styled.div`
   margin-bottom: 28px;
 `
 
-export const MainWrapper = styled.div<{ isTabView?: boolean }>`
+export const MainWrapper = styled.View<{ isTabView?: boolean }>`
   align-self: center;
   width: 100%;
   max-width: 456px;
@@ -42,7 +39,7 @@ export const MainWrapper = styled.div<{ isTabView?: boolean }>`
   margin-top: ${(p) => p.isTabView ? '100px' : '10vh'};
 `
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   width: 376px;
   display: flex;
   flex-direction: column;
@@ -50,7 +47,7 @@ export const StyledWrapper = styled.div`
   justify-content: center;
 `
 
-export const TitleAndDescriptionContainer = styled.div`
+export const TitleAndDescriptionContainer = styled.View`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -60,7 +57,7 @@ export const TitleAndDescriptionContainer = styled.div`
 `
 
 // Text
-export const Title = styled.p<{
+export const Title = styled.Text<{
   maxWidth?: string
   textAlign?: 'right' | 'center'
 }>`
@@ -74,7 +71,7 @@ export const Title = styled.p<{
   text-align: ${(p) => p?.textAlign || 'left'};
 `
 
-export const Description = styled.p<{ textAlign?: 'right' | 'center' }>`
+export const Description = styled.Text<{ textAlign?: 'right' | 'center' }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -96,7 +93,7 @@ export const Description = styled.p<{ textAlign?: 'right' | 'center' }>`
 `
 
 // Phrase card
-export const PhraseCard = styled.div`
+export const PhraseCard = styled.View`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -104,7 +101,7 @@ export const PhraseCard = styled.div`
   align-items: center;
 `
 
-export const PhraseCardTopRow = styled.div`
+export const PhraseCardTopRow = styled.View`
   display: flex;
   flex-direction: row;
   width: 375px;
@@ -114,7 +111,7 @@ export const PhraseCardTopRow = styled.div`
   padding: 14px 8px;
 `
 
-export const PhraseCardBody = styled.div`
+export const PhraseCardBody = styled.View`
   flex: 1;
   width: 100%;
   border-style: solid;

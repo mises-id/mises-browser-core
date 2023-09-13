@@ -9,7 +9,7 @@ import { useHistory, useLocation } from 'react-router'
 
 // Utils
 import { getLocale } from '../../../../common/locale'
-import { copyToClipboard } from '../../../utils/copy-to-clipboard'
+// import { copyToClipboard } from '../../../utils/copy-to-clipboard'
 
 // Components
 import { BackButton } from '../../../components/shared/back-button'
@@ -111,8 +111,8 @@ export const RestoreWallet = () => {
     history.push(WalletRoutes.Portfolio)
   }, [recoveryPhrase, password, isLegacyWallet])
 
-  const handleRecoveryPhraseChanged = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
+  const handleRecoveryPhraseChanged = React.useCallback((value: string) => {
+    // const value = event.target.value
 
     // This prevents there from being a space at the begining of the phrase.
     const removeBegginingWhiteSpace = value.trimStart()
@@ -150,9 +150,9 @@ export const RestoreWallet = () => {
     }
   }, [])
 
-  const onClearClipboard = React.useCallback(() => {
-    copyToClipboard('')
-  }, [])
+  // const onClearClipboard = React.useCallback(() => {
+  //   copyToClipboard('')
+  // }, [])
 
   // effects
   React.useEffect(() => {
@@ -180,11 +180,11 @@ export const RestoreWallet = () => {
           <RecoveryPhraseInput
             autoFocus={true}
             placeholder={getLocale('braveWalletRestorePlaceholder')}
-            onChange={handleRecoveryPhraseChanged}
+            onChangeText={handleRecoveryPhraseChanged}
             value={recoveryPhrase}
-            type={showRecoveryPhrase ? 'text' : 'password'}
+            // type={showRecoveryPhrase ? 'text' : 'password'}
             autoComplete='off'
-            onPaste={onClearClipboard}
+            // onPaste={onClearClipboard}
           />
 
           {invalidMnemonic && <ErrorText>{getLocale('braveWalletRestoreError')}</ErrorText>}

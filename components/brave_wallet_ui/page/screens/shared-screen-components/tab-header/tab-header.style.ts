@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import * as leo from '@brave/leo/tokens/css'
 // import Icon from '@brave/leo/react/icon'
 
@@ -14,7 +14,7 @@ import BraveLogoDark from '../../send/assets/brave-logo-dark.svg'
 // Shared Styles
 import { StyledDiv, StyledButton } from '../../send/shared.styles'
 
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -56,7 +56,7 @@ export const SettingsButton = styled(StyledButton)`
   }
 `
 
-export const SettingsIcon = styled.div`
+export const SettingsIcon = styled.View`
   --leo-icon-size: 20px;
   color: ${leo.color.icon.default};
 `

@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const InstructionBox = styled.div`
+export const InstructionBox = styled.View`
   width: 100%;
   border-width: 1px;
   border-style: solid;
@@ -16,7 +16,7 @@ export const InstructionBox = styled.div`
   margin-top: 6px;
 `
 
-export const InstructionParamBox = styled.div`
+export const InstructionParamBox = styled.View`
   font-family: Poppins;
   width: 100%;
   box-sizing: border-box;
@@ -53,7 +53,7 @@ export const InstructionParamBox = styled.div`
   }
 `
 
-export const AddressText = styled.span<
+export const AddressText = styled.Text<
   { isBold?: true }
 >`
   font-family: Poppins;
@@ -65,7 +65,7 @@ export const AddressText = styled.span<
   display: block;
 `
 
-export const CodeSectionTitle = styled.span`
+export const CodeSectionTitle = styled.Text`
   font-family: Poppins;
   font-weight: 400;
   color: ${(p) => p.theme.color.text02};

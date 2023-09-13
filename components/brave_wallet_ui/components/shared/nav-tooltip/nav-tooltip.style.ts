@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const Tip = styled.div<{
+export const Tip = styled.View<{
   horizontalAlign?: 'left' | 'right' | 'center'
   isSwap?: boolean
   orientation: 'top' | 'bottom' | 'right'
@@ -29,7 +29,7 @@ export const Tip = styled.div<{
   font-weight: 500;
 `
 
-export const Pointer = styled.div<{
+export const Pointer = styled.View<{
   orientation: 'top' | 'bottom' | 'right'
   distance: number
   isSwap?: boolean

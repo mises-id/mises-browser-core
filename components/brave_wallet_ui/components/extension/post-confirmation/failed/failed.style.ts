@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import ErrorSvg from '../../../../assets/svg-icons/error-circle-icon.svg'
 import { TransactionStatusIcon, TransactionStatusText } from '../common/common.style'
@@ -15,7 +15,7 @@ export const Title = styled(TransactionStatusText)`
   color: ${p => p.theme.color.errorBorder};
 `
 
-export const ErrorDetailTitle = styled.div`
+export const ErrorDetailTitle = styled.View`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -25,13 +25,13 @@ export const ErrorDetailTitle = styled.div`
   margin: 0 16px;
 `
 
-export const ErrorDetailContentContainer = styled.div`
+export const ErrorDetailContentContainer = styled.View`
 background-color: ${p => p.theme.color.errorBackground};
   border-radius: 8px;
   margin: 16px;
 `
 
-export const ErrorDetailContent = styled.div`
+export const ErrorDetailContent = styled.View`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;

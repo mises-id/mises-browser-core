@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Shared Styles
 import { StyledButton, StyledDiv, Row } from '../../shared.styles'
@@ -18,7 +18,7 @@ export const AssetIcon = AssetIconFactory<AssetIconProps>({
   height: 'auto'
 })
 
-export const NetworkIconWrapper = styled.div`
+export const NetworkIconWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +59,7 @@ export const Button = styled(StyledButton)`
   width: 100%;
 `
 
-export const IconsWrapper = styled.div`
+export const IconsWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;

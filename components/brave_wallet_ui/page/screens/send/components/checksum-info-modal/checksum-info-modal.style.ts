@@ -3,11 +3,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import { Column } from '../../shared.styles'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +22,7 @@ export const StyledWrapper = styled.div`
   backdrop-filter: blur(8px);
 `
 
-export const Modal = styled.div`
+export const Modal = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,12 +45,12 @@ export const InfoColumn = styled(Column)`
   }
 `
 
-export const InfoGraphic = styled.img`
+export const InfoGraphic = styled.Image`
   width: 100%;
   height: auto;
 `
 
-export const Link = styled.a`
+export const Link = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;

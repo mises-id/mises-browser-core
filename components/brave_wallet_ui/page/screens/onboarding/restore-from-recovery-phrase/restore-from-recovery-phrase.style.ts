@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/native'
 
 export const RecoveryBaseCss = css`
   box-sizing: border-box;
@@ -29,18 +29,7 @@ export const RecoveryBaseCss = css`
   background-color: ${(p) => p.theme.color.background02};
 `
 
-export const RecoveryTextArea = styled.textarea`
-  ${RecoveryBaseCss}
-  padding: 16px;
-  height: 166px;
-`
-
-export const RecoveryTextInput = styled.input`
-  ${RecoveryBaseCss}
-  font-weight: 800;
-`
-
-export const CheckboxText = styled.div`
+export const CheckboxText = styled.View`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;

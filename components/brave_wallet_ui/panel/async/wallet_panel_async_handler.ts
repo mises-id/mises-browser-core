@@ -49,7 +49,7 @@ import { Store } from '../../common/async/types'
 import { getLocale } from '../../../common/locale'
 import getWalletPanelApiProxy from '../wallet_panel_api_proxy'
 import { isRemoteImageURL } from '../../utils/string-utils'
-import { HardwareVendor } from 'components/brave_wallet_ui/common/api/hardware_keyrings'
+import { HardwareVendor } from '../../common/api/hardware_keyrings'
 import {
   deserializeOrigin,
   makeSerializableDecryptRequest,

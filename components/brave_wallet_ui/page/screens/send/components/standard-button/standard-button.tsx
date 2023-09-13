@@ -34,7 +34,7 @@ export const StandardButton = (props: Props) => {
       buttonType={buttonType}
       buttonWidth={buttonWidth}
       disabled={disabled}
-      onClick={onClick}
+      onPress={onClick}
       marginRight={marginRight}
       hasError={hasError}
     >

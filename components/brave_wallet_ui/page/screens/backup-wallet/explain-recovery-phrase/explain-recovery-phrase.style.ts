@@ -3,11 +3,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import WarningCircleOutlineIcon from '../../../../assets/svg-icons/warning-circle-outline-icon.svg'
 
-export const BannerCard = styled.div`
+export const BannerCard = styled.View`
   margin-top: 24px;
   margin-bottom: 40px;
   background-color: ${(p) => p.theme.color.background02};
@@ -20,7 +20,7 @@ export const BannerCard = styled.div`
   padding: 16px;
 `
 
-export const ImportantText = styled.span`
+export const ImportantText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -29,7 +29,7 @@ export const ImportantText = styled.span`
   color: ${(p) => p.theme.color.errorBorder};
 `
 
-export const BannerText = styled.span`
+export const BannerText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -38,7 +38,7 @@ export const BannerText = styled.span`
   color: ${(p) => p.theme.color.text};
 `
 
-export const CenteredRow = styled.div`
+export const CenteredRow = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -48,7 +48,7 @@ export const CenteredRow = styled.div`
   margin-bottom: 6px;
 `
 
-export const WarningCircle = styled.div`
+export const WarningCircle = styled.View`
   width: 50px;
   height: 50px;
   mask-image: url(${WarningCircleOutlineIcon});

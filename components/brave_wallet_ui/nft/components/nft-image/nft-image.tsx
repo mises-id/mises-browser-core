@@ -29,7 +29,7 @@ export const NftImage = (props: Props) => {
   return (
     <>
       <ImageWrapper isLoading={!isImageLoaded}>
-        <Image src={imageUrl} onLoad={() => setIsImageLoaded(true)} />
+        <Image source={{uri: imageUrl}} onLoad={() => setIsImageLoaded(true)} />
         {/* <MagnifyButton onClick={onMagnify} /> */}
       </ImageWrapper>
       {!isImageLoaded &&

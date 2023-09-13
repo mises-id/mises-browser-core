@@ -15,7 +15,6 @@ import CheckIcon from '../../assets/filled-checkmark.svg'
 
 // styles
 import { walletButtonFocusMixin } from '../../../shared/style'
-import { Link } from 'react-router-dom'
 
 interface StyledButtonProps {
   buttonType: PanelButtonTypes
@@ -81,7 +80,7 @@ export const StyledButton = styled.View<StyledButtonProps>`
   ${(p) => StyledButtonCssMixin(p)}
 `
 
-export const StyledLink = styled(Link)<StyledButtonProps>`
+export const StyledLink = styled.Text<StyledButtonProps>`
   ${(p) => StyledButtonCssMixin(p)}
 `
 

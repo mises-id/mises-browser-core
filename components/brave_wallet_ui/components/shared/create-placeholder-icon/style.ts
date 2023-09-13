@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 interface StyleProps {
   isPlaceholder: boolean
@@ -12,7 +12,7 @@ interface StyleProps {
   marginRight: number
 }
 
-export const IconWrapper = styled.div<StyleProps>`
+export const IconWrapper = styled.View<StyleProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +25,7 @@ export const IconWrapper = styled.div<StyleProps>`
   background-color: ${(p) => p.panelBackground ? p.panelBackground : 'none'};
 `
 
-export const PlaceholderText = styled.span<Partial<StyleProps>>`
+export const PlaceholderText = styled.Text<Partial<StyleProps>>`
   font-family: Poppins;
   font-size: ${(p) => p.size === 'big' ? '16px' : '12px'};
   font-weight: 600;

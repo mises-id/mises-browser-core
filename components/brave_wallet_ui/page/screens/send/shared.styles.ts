@@ -55,16 +55,15 @@ export const Row = styled(StyledDiv) <{
   horizontalAlign?: 'flex-start' | 'center' | 'flex-end'
   verticalAlign?: 'flex-start' | 'center' | 'flex-end'
 }>`
-  --padding-top: ${(p) => p.paddingTop ?? p.verticalPadding ?? 0}px;
-  --padding-bottom: ${(p) => p.paddingBottom ?? p.verticalPadding ?? 0}px;
-  --padding-left: ${(p) => p.paddingLeft ?? p.horizontalPadding ?? 0}px;
-  --padding-right: ${(p) => p.paddingRight ?? p.horizontalPadding ?? 0}px;
+  padding-top: ${(p) => p.paddingTop ?? p.verticalPadding ?? 0}px;
+  padding-bottom: ${(p) => p.paddingBottom ?? p.verticalPadding ?? 0}px;
+  padding-left: ${(p) => p.paddingLeft ?? p.horizontalPadding ?? 0}px;
+  padding-right: ${(p) => p.paddingRight ?? p.horizontalPadding ?? 0}px;
   box-sizing: border-box;
   flex-direction: row;
   align-items: ${(p) => p.verticalAlign ?? 'center'};
   justify-content: ${(p) => p.horizontalAlign ?? 'space-between'};
   margin-bottom: ${(p) => p.marginBottom ?? 0}px;
-  padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);
   width: ${(p) => (p.rowWidth === 'full' ? '100%' : 'unset')};
   height: ${(p) => (p.rowHeight === 'full' ? '100%' : 'unset')};
 `
@@ -85,7 +84,10 @@ export const Column = styled(StyledDiv) <{
   height: ${(p) => (p.columnHeight === 'full' ? '100%' : 'unset')};
   justify-content: ${(p) => p.verticalAlign ?? 'center'};
   margin-bottom: ${(p) => p.marginBottom ?? 0}px;
-  padding: var(--vertical-padding) var(--horizontal-padding);
+  padding-top: var(--vertical-padding);
+  padding-bottom: var(--vertical-padding);
+  padding-left: var(--horizontal-padding);
+  padding-right: var(--horizontal-padding);
   width: ${(p) => (p.columnWidth === 'full' ? '100%' : 'unset')};
 `
 
@@ -232,11 +234,11 @@ export const HiddenResponsiveRow = styled(Row) <{ dontHide?: boolean }>`
 //   }
 // `
 
-export const StyledLabel = styled.Text`
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  color: ${(p) => p.theme.color.text01};
-`
+// export const StyledLabel = styled.Text`
+//   font-family: 'Poppins';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 14px;
+//   line-height: 18px;
+//   color: ${(p) => p.theme.color.text01};
+// `

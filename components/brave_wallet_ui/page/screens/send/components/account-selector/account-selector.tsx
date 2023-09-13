@@ -73,12 +73,12 @@ export const AccountSelector = (props: Props) => {
 
   return (
     <>
-      <SelectorButton disabled={disabled} id={ACCOUNT_SELECTOR_BUTTON_ID} onClick={toggleShowAccountSelector}>
-        <ButtonIcon id={ACCOUNT_SELECTOR_BUTTON_ID} icon={PersonIcon} size={16} />
-        <ArrowIcon id={ACCOUNT_SELECTOR_BUTTON_ID} icon={CaratDownIcon} size={12} isOpen={showAccountSelector} />
+      <SelectorButton disabled={disabled} onPress={toggleShowAccountSelector}>
+        <ButtonIcon icon={PersonIcon} size={16} />
+        <ArrowIcon icon={CaratDownIcon} size={12} isOpen={showAccountSelector} />
       </SelectorButton>
       {showAccountSelector &&
-        <DropDown ref={accountSelectorRef}>
+        <DropDown>
           {accountsByNetwork.map((account) =>
             <AccountListItem
               key={account.address}

@@ -76,7 +76,7 @@ class MisesWebUIBubbleManagerT : public WebUIBubbleManagerT<T>,
         base::BindRepeating(&MisesWebUIBubbleManagerT<T>::SetCloseOnDeactivate,
                             weak_factory_.GetWeakPtr()));
                             
-    // bubble_view_->set_close_on_deactivate(false);
+    bubble_view_->set_close_on_deactivate(false);
 
     return std::move(bubble_view);
   }

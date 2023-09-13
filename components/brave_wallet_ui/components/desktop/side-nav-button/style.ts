@@ -2,14 +2,14 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 interface StyleProps {
   isSelected: boolean
   icon: string
 }
 
-export const StyledButton = styled.button<Partial<StyleProps>>`
+export const StyledButton = styled.TouchableOpacity<Partial<StyleProps>>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -23,7 +23,7 @@ export const StyledButton = styled.button<Partial<StyleProps>>`
   border: none;
 `
 
-export const ButtonText = styled.span<Partial<StyleProps>>`
+export const ButtonText = styled.Text<Partial<StyleProps>>`
   font-family: Poppins;
   font-size: 13px;
   font-weight: 600;
@@ -32,7 +32,7 @@ export const ButtonText = styled.span<Partial<StyleProps>>`
     p.isSelected ? p.theme.palette.white : p.theme.color.text02};
 `
 
-export const ButtonIcon = styled.div<Partial<StyleProps>>`
+export const ButtonIcon = styled.View<Partial<StyleProps>>`
   width: 18px;
   height: 18px;
   background-image: ${(p) => `url(${p.icon})`};

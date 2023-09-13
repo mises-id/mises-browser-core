@@ -12,9 +12,9 @@ import { removeDoubleSpaces } from '../../../../utils/string-utils'
 import { cleanupRecoveryPhraseInput, isPhraseLengthValid } from '../../../../utils/recovery-phrase-utils'
 
 // style
-import { RecoveryTextArea, RecoveryTextInput } from './restore-from-recovery-phrase.style'
 import { PhraseCardBody, PhraseCardBottomRow, PhraseCardTopRow } from '../onboarding.style'
 import { ToggleVisibilityButton, WalletLink } from '../../../../components/shared/style'
+import Input from '../../../../components/rn/Input'
 
 interface Props {
   onChange: (results: { value: string, isValid: boolean, phraseLength: number }) => void
@@ -63,15 +63,15 @@ export const RecoveryInput = ({
     } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)
   }, [handleChange])
 
-  const onPasteFromClipboard = React.useCallback<React.ClipboardEventHandler<HTMLTextAreaElement | HTMLInputElement>>(async (event) => {
-    const value = event.clipboardData.getData('Text')
-    await clearClipboard()
-    const removedDoubleSpaces = removeDoubleSpaces(value)
+  // const onPasteFromClipboard = React.useCallback<React.ClipboardEventHandler<HTMLTextAreaElement | HTMLInputElement>>(async (event) => {
+  //   const value = event.clipboardData.getData('Text')
+  //   await clearClipboard()
+  //   const removedDoubleSpaces = removeDoubleSpaces(value)
 
-    handleChange({
-      target: { value: removedDoubleSpaces }
-    } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)
-  }, [handleChange])
+  //   handleChange({
+  //     target: { value: removedDoubleSpaces }
+  //   } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)
+  // }, [handleChange])
 
   const onInputBlur = React.useCallback<React.FocusEventHandler<HTMLTextAreaElement | HTMLInputElement>>((event) => {
     const removedDoubleSpaces = removeDoubleSpaces(event.target.value)
@@ -87,26 +87,24 @@ export const RecoveryInput = ({
     <PhraseCardTopRow>
       <ToggleVisibilityButton
         isVisible={isPhraseShown}
-        onClick={toggleShowPhrase}
+        onPress={toggleShowPhrase}
       />
     </PhraseCardTopRow>
 
     <PhraseCardBody>
       {isPhraseShown
-        ? <RecoveryTextArea
+        ? <Input
             onChange={handleChange}
-            onPaste={onPasteFromClipboard}
             onKeyDown={onKeyDown}
             onBlur={onInputBlur}
             value={inputValue}
             autoComplete='off'
           />
-        : <RecoveryTextInput
+        : <Input
             type='password'
             value={inputValue}
             onChange={handleChange}
             onBlur={onInputBlur}
-            onPaste={onPasteFromClipboard}
             onKeyDown={onKeyDown}
             autoComplete='off'
           />
@@ -115,8 +113,8 @@ export const RecoveryInput = ({
 
     <PhraseCardBottomRow centered>
       <WalletLink
-        as='button'
-        onClick={onClickPasteFromClipboard}
+        // as='button'
+        onPress={onClickPasteFromClipboard}
       >
         {getLocale('braveWalletPasteFromClipboard')}
       </WalletLink>

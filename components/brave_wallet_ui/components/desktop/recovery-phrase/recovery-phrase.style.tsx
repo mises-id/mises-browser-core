@@ -3,13 +3,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // images
 import EyeOffSvg from '../../../assets/svg-icons/eye-off-icon.svg'
 import FrostedGlassRecoveryPhrase from './images/frosted-glass-recovery-phrase.png'
 
-export const RecoveryPhraseContainer = styled.div`
+export const RecoveryPhraseContainer = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -20,7 +20,7 @@ export const RecoveryPhraseContainer = styled.div`
   padding-top: 16px;
 `
 
-export const RecoveryBubble = styled.div<{
+export const RecoveryBubble = styled.TouchableHighlight<{
   verificationModeEnabled?: boolean
   selected?: boolean
 }>`
@@ -66,7 +66,7 @@ export const RecoveryBubble = styled.div<{
 
 `
 
-export const RecoveryBubbleBadge = styled.p`
+export const RecoveryBubbleBadge = styled.Text`
   position: absolute;
   top: -15px;
   left: -8px;
@@ -85,7 +85,7 @@ export const RecoveryBubbleBadge = styled.p`
   text-align: center;
 `
 
-export const FrostedGlass = styled.div`
+export const FrostedGlass = styled.View`
   position: absolute;
   top: 0;
   bottom: 0; 
@@ -100,7 +100,7 @@ export const FrostedGlass = styled.div`
   flex: 1;
 `
 
-export const HiddenPhraseContainer = styled.div`
+export const HiddenPhraseContainer = styled.TouchableOpacity`
   position: relative;
   top: 0;
   bottom: 0;
@@ -123,7 +123,7 @@ export const HiddenPhraseContainer = styled.div`
   }
 `
 
-export const EyeOffIcon = styled.div`
+export const EyeOffIcon = styled.View`
   height: 24px;
   width: 24px;
   mask-image: url(${EyeOffSvg});

@@ -2,13 +2,13 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import * as leo from '@brave/leo/tokens/css'
 
 import { WalletButton } from '../../../shared/style'
 
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,7 @@ export const StyledWrapper = styled.div`
   z-index: 2;
 `
 
-export const Header = styled.h1`
+export const Header = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -30,7 +30,7 @@ export const Header = styled.h1`
   width: 100%;
 `
 
-export const Description = styled.p`
+export const Description = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -41,17 +41,17 @@ export const Description = styled.p`
   padding: 0;
 `
 
-export const Link = styled.a`
+export const Link = styled.Text`
   color: ${leo.color.button.background};
   text-decoration: none;
   font-weight: 600;
 `
 
-export const Underline = styled.span`
+export const Underline = styled.Text`
   text-decoration: underline;
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   justify-content: space-between;
   align-items: center;

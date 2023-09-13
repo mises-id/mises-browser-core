@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const NftListWrapper = styled.div`
+export const NftListWrapper = styled.View`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -13,14 +13,14 @@ export const NftListWrapper = styled.div`
   justify-content: center;
 `
 
-export const List = styled.div`
+export const List = styled.View`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap:16px;
   box-sizing: border-box;
   width: 100%;
 `
-export const NftItem = styled.div`
+export const NftItem = styled.View`
   position: relative;
   display: flex;
   justify-content: center;
@@ -28,7 +28,7 @@ export const NftItem = styled.div`
   height: 120px;
 `
 
-export const NftItemOverlay = styled.div`
+export const NftItemOverlay = styled.View`
   position: absolute;
   top: 0;
   left: 0;
@@ -42,7 +42,7 @@ export const NftItemOverlay = styled.div`
   z-index: 3;
 `
 
-export const PiningMessage = styled.p`
+export const PiningMessage = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
