@@ -23,9 +23,9 @@ const char kBraveUIAdblockURL[] = "chrome://adblock/";
 const char kBraveUIWebcompatReporterURL[] = "chrome://webcompat/";
 const char kBraveUITipURL[] = "chrome://tip/";
 const char kBraveUIWalletURL[] = "chrome://wallet/";
-const char kBraveUIWalletOnboardingURL[] = "mises://wallet/crypto/onboarding";
+const char kBraveUIWalletOnboardingURL[] = "chrome://wallet/crypto/onboarding";
 const char kBraveUIWalletAccountCreationURL[] =
-    "mises://wallet/crypto/accounts/add-account/create/";
+    "chrome://wallet/crypto/accounts/add-account/create/";
 const char kBraveUIWalletPanelURL[] = "chrome://wallet-panel.top-chrome/";
 const char kWalletPanelHost[] = "wallet-panel.top-chrome";
 const char kVPNPanelURL[] = "chrome-untrusted://vpn-panel.top-chrome/";
@@ -35,8 +35,8 @@ const char kWalletPageHost[] = "wallet";
 #if BUILDFLAG(IS_ANDROID)
 const char kWalletSwapPagePath[] = "wallet/swap";
 #endif  // BUILDFLAG(IS_ANDROID)
-const char kExtensionSettingsURL[] = "mises://settings/extensions";
-const char kWalletSettingsURL[] = "mises://settings/wallet";
+const char kExtensionSettingsURL[] = "chrome://settings/extensions";
+const char kWalletSettingsURL[] = "chrome://settings/wallet";
 const char kBraveSyncPath[] = "braveSync";
 const char kBraveSyncSetupPath[] = "braveSync/setup";
 const char kTorInternalsHost[] = "tor-internals";
@@ -52,7 +52,7 @@ const char kShieldsPanelURL[] = "chrome://brave-shields.top-chrome";
 const char kShieldsPanelHost[] = "brave-shields.top-chrome";
 const char kCookieListOptInHost[] = "cookie-list-opt-in.top-chrome";
 const char kCookieListOptInURL[] = "chrome://cookie-list-opt-in.top-chrome";
-const char kFederatedInternalsURL[] = "mises://federated-internals";
+const char kFederatedInternalsURL[] = "chrome://federated-internals";
 const char kFederatedInternalsHost[] = "federated-internals";
 const char kContentFiltersPath[] = "shields/filters";
 const char kPlaylistHost[] = "playlist";

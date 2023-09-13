@@ -18,7 +18,7 @@ namespace {
 
 const char kEthereumProviderObjectKey[] = "ethereum";
 const char kSolanaProviderObjectKey[] = "solana";
-const char kIsBraveWalletPropertyName[] = "isBraveWallet";
+const char kIsMisesWalletPropertyName[] = "isMisesWallet";
 
 }  // namespace
 
@@ -72,7 +72,7 @@ void BraveWalletRenderFrameObserverP3AUtil::ReportJSProvider(
 
     bool strict_native_wallet_enabled =
         use_native_wallet_enabled && !allow_provider_overwrite;
-    if ((GetProperty(context, provider_obj, kIsBraveWalletPropertyName)
+    if ((GetProperty(context, provider_obj, kIsMisesWalletPropertyName)
              .ToLocal(&is_brave_wallet) &&
          is_brave_wallet->BooleanValue(isolate)) ||
         strict_native_wallet_enabled) {

@@ -146,6 +146,8 @@ interface EthereumProvider {
 
   // Determines if the keyring is locked.
   IsLocked() => (bool isLocked);
+
+  ShowAds() => (mojo_base.mojom.Value id, mojo_base.mojom.Value formed_response,bool reject, string first_allowed_account, bool update_bind_js_properties);
 };
 
 // https://github.com/solana-labs/solana-web3.js/blob/6482d0d/src/transaction.ts#L126

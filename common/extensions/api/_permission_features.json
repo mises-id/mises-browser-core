@@ -55,7 +55,7 @@
     "extension_types": ["extension"]
   },
   "misesPrivate": {
-        "channel": "stable",
-        "extension_types": ["extension"]
+    "channel": "stable",
+    "extension_types": ["extension"]
   }
 }
