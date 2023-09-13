@@ -64,15 +64,11 @@ public class MisesAdsUtil {
     }
 
     private static AdsStatus status;
-    private static Activity activityContext;
+    
     public static void initAds(final Activity act) {
-        activityContext = act;
         setStatus(AdsStatus.NOT_INITIALIZED);
     }
 
-    public static Activity getActivityContext() {
-        return activityContext;
-    }
     private static void setStatus(AdsStatus newStatus) {
         Log.i(TAG, "setStatus " + status + " -> "+ newStatus);
         status = newStatus;

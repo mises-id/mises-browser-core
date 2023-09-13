@@ -1,6 +1,7 @@
 package org.chromium.base;
 
 import android.app.ActivityManager;
+import android.app.Activity;
 import android.content.Context;
 import org.chromium.base.annotations.CalledByNative;
 import org.chromium.base.annotations.JNINamespace;
@@ -15,6 +16,16 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 @MainDex
 public class MisesSysUtils {
 
+    private static Activity activityContext;
+
+    public static void init(final Activity act) {
+        activityContext = act;
+        MisesAdsUtil.initAds(act);
+    }
+
+    public static Activity getActivityContext() {
+        return activityContext;
+    }
 
     @CalledByNative
     public static long firstInstallDate() {
@@ -43,10 +54,10 @@ public class MisesSysUtils {
 
     @CalledByNative
     public static void showRewardAd() {
-        if (MisesAdsUtil.getActivityContext() == null) {
+        if (activityContext == null) {
             return;
         }
-        MisesAdsUtil.loadAndShowRewardedAd(MisesAdsUtil.getActivityContext(), "");
+        MisesAdsUtil.loadAndShowRewardedAd(activityContext, "");
     }
 
     @CalledByNative

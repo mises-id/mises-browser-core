@@ -51,7 +51,7 @@ class BraveWalletPermissionPrompt
   void CancelConnectToSite() override;
 
  private:
-  //std::unique_ptr<BraveDappPermissionPromptDialogController> dialog_controller_;
+  std::unique_ptr<BraveDappPermissionPromptDialogController> dialog_controller_;
   raw_ptr<content::WebContents> web_contents_ = nullptr;
   std::unique_ptr<Delegate> delegate_;
 

@@ -42,7 +42,6 @@ void PermissionRequestManager::AcceptDenyCancel(
   if (ignore_callbacks_from_prompt_)
     return;
 
-  DCHECK(view_);
   DCHECK((accepted_requests.size() + denied_requests.size() +
           cancelled_requests.size()) == requests_.size());
 

@@ -59,6 +59,8 @@ class BraveWalletTabHelper
   void SetSkipDelegateForTesting(bool skip) {
     skip_delegate_for_testing_ = skip;
   }
+  GURL GetBubbleURL();
+  GURL GetApproveBubbleURL();
 #endif
 
  private:
@@ -79,12 +81,10 @@ class BraveWalletTabHelper
   base::flat_map<content::GlobalRenderFrameHostId, base::flat_set<std::string>>
       solana_connected_accounts_;
 #if true || !BUILDFLAG(IS_ANDROID)
-  GURL GetBubbleURL();
   base::OnceClosure show_bubble_callback_for_testing_;
   bool close_on_deactivate_for_testing_ = true;
   bool is_showing_bubble_for_testing_ = false;
   bool skip_delegate_for_testing_ = false;
-  GURL GetApproveBubbleURL();
   std::unique_ptr<WalletBubbleManagerDelegate> wallet_bubble_manager_delegate_;
 #endif
 
