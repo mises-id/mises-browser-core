@@ -7,8 +7,10 @@
 
 #include <utility>
 
+#include "base/logging.h"
 #include "base/functional/callback.h"
 #include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
+#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl_helper.h"
 #include "mises/components/permissions/contexts/mises_wallet_permission_context.h"
 #include "content/public/browser/render_frame_host.h"
 #include "content/public/browser/web_contents.h"
@@ -31,6 +33,7 @@ WalletPanelHandler::~WalletPanelHandler() = default;
 
 void WalletPanelHandler::ShowUI() {
   auto embedder = webui_controller_->embedder();
+  LOG(INFO) << "WalletPanelHandler::ShowUI :" << embedder.get();
   if (embedder) {
     embedder->ShowUI();
   }
@@ -38,9 +41,14 @@ void WalletPanelHandler::ShowUI() {
 
 void WalletPanelHandler::CloseUI() {
   auto embedder = webui_controller_->embedder();
+  LOG(INFO) << "WalletPanelHandler::CloseUI :" << embedder.get();
   if (embedder) {
     embedder->CloseUI();
   }
+  #if BUILDFLAG(IS_ANDROID)
+    brave_wallet::ClosePanel();
+  #endif
+  
 }
 
 void WalletPanelHandler::ConnectToSite(

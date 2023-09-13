@@ -40,6 +40,8 @@ void SetCallbackForNewSetupNeededForTesting(base::OnceCallback<void()>);
 
 void SetCallbackForAccountCreationForTesting(base::OnceCallback<void()>);
 
+void ClosePanel();
+
 }  // namespace brave_wallet
 
 #endif  // BRAVE_BROWSER_BRAVE_WALLET_BRAVE_WALLET_PROVIDER_DELEGATE_IMPL_HELPER_H_

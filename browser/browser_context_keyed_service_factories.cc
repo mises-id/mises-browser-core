@@ -47,6 +47,7 @@ void EnsureBrowserContextKeyedServiceFactoriesBuilt() {
 #else
   ChromeBrowserMainExtraPartsProfiles::
     EnsureBrowserContextKeyedServiceFactoriesBuiltAndroid();
+  PermissionLifetimeManagerFactory::GetInstance();
 
 #endif
 }

@@ -4,10 +4,11 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 #include "mises/browser/permissions/brave_dapp_permission_prompt_dialog_controller_android.h"
 
+#include "base/logging.h"
 #include "base/android/jni_android.h"
 #include "base/android/jni_array.h"
 #include "base/android/jni_string.h"
-#include "mises/build/android/jni_headers/BraveDappPermissionPromptDialog_jni.h"
+//#include "mises/build/android/jni_headers/BraveDappPermissionPromptDialog_jni.h"
 #include "content/public/browser/web_contents.h"
 #include "third_party/blink/public/mojom/favicon/favicon_url.mojom.h"
 #include "ui/android/view_android.h"
@@ -16,17 +17,17 @@
 
 namespace {
 
-GURL GetFavIconURL(const std::vector<blink::mojom::FaviconURLPtr>& candidates) {
-  for (const auto& candidate : candidates) {
-    if (!candidate->icon_url.is_valid() ||
-        candidate->icon_type != blink::mojom::FaviconIconType::kFavicon)
-      continue;
+// GURL GetFavIconURL(const std::vector<blink::mojom::FaviconURLPtr>& candidates) {
+//   for (const auto& candidate : candidates) {
+//     if (!candidate->icon_url.is_valid() ||
+//         candidate->icon_type != blink::mojom::FaviconIconType::kFavicon)
+//       continue;
 
-    return candidate->icon_url;
-  }
+//     return candidate->icon_url;
+//   }
 
-  return GURL();
-}
+//   return GURL();
+// }
 
 }  // namespace
 
@@ -43,11 +44,11 @@ BraveDappPermissionPromptDialogController::
 }
 
 void BraveDappPermissionPromptDialogController::ShowDialog() {
-  if (!GetOrCreateJavaObject())
-    return;
+  // if (!GetOrCreateJavaObject())
+  //   return;
 
-  JNIEnv* env = base::android::AttachCurrentThread();
-  Java_BraveDappPermissionPromptDialog_show(env, GetOrCreateJavaObject());
+  //JNIEnv* env = base::android::AttachCurrentThread();
+  //Java_BraveDappPermissionPromptDialog_show(env, GetOrCreateJavaObject());
 }
 
 void BraveDappPermissionPromptDialogController::OnPrimaryButtonClicked(
@@ -70,10 +71,10 @@ void BraveDappPermissionPromptDialogController::OnDialogDismissed(JNIEnv* env) {
 }
 
 void BraveDappPermissionPromptDialogController::DismissDialog() {
-  if (java_object_) {
-    Java_BraveDappPermissionPromptDialog_dismissDialog(
-        base::android::AttachCurrentThread(), java_object_);
-  }
+  // if (java_object_) {
+  //   Java_BraveDappPermissionPromptDialog_dismissDialog(
+  //       base::android::AttachCurrentThread(), java_object_);
+  // }
 }
 
 base::android::ScopedJavaGlobalRef<jobject>
@@ -84,15 +85,17 @@ BraveDappPermissionPromptDialogController::GetOrCreateJavaObject() {
   if (web_contents_->GetNativeView() == nullptr ||
       web_contents_->GetNativeView()->GetWindowAndroid() == nullptr)
     return nullptr;  // No window attached (yet or anymore).
-
-  GURL fav_icon_url = GetFavIconURL(web_contents_->GetFaviconURLs());
-  JNIEnv* env = base::android::AttachCurrentThread();
-  ui::ViewAndroid* view_android = web_contents_->GetNativeView();
-  return java_object_ = Java_BraveDappPermissionPromptDialog_create(
-             env, reinterpret_cast<intptr_t>(this),
-             view_android->GetWindowAndroid()->GetJavaObject(),
-             web_contents_->GetJavaWebContents(),
-             base::android::ConvertUTF8ToJavaString(
-                 env, fav_icon_url.is_valid() ? fav_icon_url.spec() : ""),
-             static_cast<int32_t>(coin_type_));
+  LOG(INFO) << "BraveDappPermissionPromptDialogController" <<  coin_type_;
+  return nullptr;
+  // GURL fav_icon_url = GetFavIconURL(web_contents_->GetFaviconURLs());
+  // JNIEnv* env = base::android::AttachCurrentThread();
+  // ui::ViewAndroid* view_android = web_contents_->GetNativeView();
+  
+  // return java_object_ = Java_BraveDappPermissionPromptDialog_create(
+  //            env, reinterpret_cast<intptr_t>(this),
+  //            view_android->GetWindowAndroid()->GetJavaObject(),
+  //            web_contents_->GetJavaWebContents(),
+  //            base::android::ConvertUTF8ToJavaString(
+  //                env, fav_icon_url.is_valid() ? fav_icon_url.spec() : ""),
+  //            static_cast<int32_t>(coin_type_));
 }

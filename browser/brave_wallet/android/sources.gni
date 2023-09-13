@@ -7,8 +7,8 @@ mises_browser_brave_wallet_android_sources = [
   #"//mises/browser/brave_wallet/android/swap_service_factory_android.cc",
   #"//mises/browser/brave_wallet/android/tx_service_factory_android.cc",
   #"//mises/browser/brave_wallet/android/wallet_native_utils_android.cc",
-  #"//mises/browser/permissions/brave_dapp_permission_prompt_dialog_controller_android.cc",
-  #"//mises/browser/permissions/brave_dapp_permission_prompt_dialog_controller_android.h",
+  "//mises/browser/permissions/brave_dapp_permission_prompt_dialog_controller_android.cc",
+  "//mises/browser/permissions/brave_dapp_permission_prompt_dialog_controller_android.h",
   "//mises/browser/permissions/brave_wallet_permission_prompt_android.cc",
   "//mises/browser/permissions/brave_wallet_permission_prompt_android.h",
 ]

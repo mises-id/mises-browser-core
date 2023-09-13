@@ -19,6 +19,13 @@
 #include "chrome/browser/ui/tabs/tab_strip_model.h"
 #include "chrome/browser/ui/webui/favicon_source.h"
 #endif
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/ui/android/tab_model/tab_model.h"
+#include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#include "content/public/browser/web_contents.h"
+#include "chrome/browser/android/tab_android.h"
+#endif
+
 #include "components/favicon_base/favicon_url_parser.h"
 #include "components/sessions/content/session_tab_helper.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
@@ -62,6 +69,27 @@ content::WebContents* GetWebContentsFromTabId(Browser** browser,
   return nullptr;
 }
 
+
+content::WebContents* GetActiveWebContentsAndroid() {
+  content::WebContents* contents = NULL;
+  TabModel *tab_strip = nullptr;
+  if (!TabModelList::models().empty())
+    tab_strip = *(TabModelList::models().begin());
+  if (tab_strip) {
+    for (int i = 0; i < tab_strip->GetTabCount(); ++i) {
+        int openingTab = (tab_strip->GetLastNonExtensionActiveIndex());
+        if (openingTab == -1)
+          openingTab = 0;
+
+        if (i != openingTab)
+          continue;
+
+        contents = tab_strip->GetWebContentsAt(i);
+    }
+  }
+  return contents;
+}
+
 content::WebContents* GetActiveWebContents() {
 #if !BUILDFLAG(IS_ANDROID)
   return BrowserList::GetInstance()
@@ -69,7 +97,7 @@ content::WebContents* GetActiveWebContents() {
       ->tab_strip_model()
       ->GetActiveWebContents();
 #else
-  return nullptr;
+  return GetActiveWebContentsAndroid();
 #endif
 }
 

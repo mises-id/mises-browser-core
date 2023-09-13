@@ -113,6 +113,7 @@ generate_jni("jni_headers") {
      "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
      "//mises/android/java/org/chromium/chrome/browser/AppMenuBridge.java",
      "//mises/android/java/org/chromium/base/MisesSysUtils.java",
+     "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/BraveWalletProviderDelegateImplHelper.java",
   ]
 
   deps = [ 

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index 6d1275819c9c4171b8beaf8306ecf047712e4337..5a5775b1acf1a272b6c29a176f2c3dafd3f29cfa 100644
+index 6d1275819c9c4171b8beaf8306ecf047712e4337..3fb86b9772f00e901f097655d5e1ea9ef09bd890 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
@@ -38,7 +38,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..5a5775b1acf1a272b6c29a176f2c3daf
 +import org.chromium.ui.widget.Toast;
 +import android.content.ComponentName;
 +import android.provider.Settings;
-+import org.chromium.base.MisesAdsUtil;
++import org.chromium.base.MisesSysUtils;
 +import org.chromium.chrome.browser.mises.UIUtil;
 +import org.chromium.chrome.browser.mises.MisesController;
 +
@@ -166,7 +166,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..5a5775b1acf1a272b6c29a176f2c3daf
 +        if (!FirstRunStatus.getFirstRunFlowComplete()) {
 +            FirstRunFlowSequencer.markFlowAsCompleted();
 +        }
-+	MisesAdsUtil.initAds(ChromeActivity.this);
++	MisesSysUtils.init(ChromeActivity.this);
      }
  
      private boolean maybeOnScreenSizeChange() {
