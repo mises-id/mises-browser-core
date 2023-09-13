@@ -8,7 +8,7 @@ import { useHistory } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 
 // utils
-import { getLocale, getLocaleWithTag } from '../../../../../common/locale'
+import { getLocale } from '../../../../../common/locale'
 
 // routes
 import { PageState, WalletRoutes } from '../../../../constants/types'
@@ -23,7 +23,7 @@ import { CenteredPageLayout } from '../../../../components/desktop/centered-page
 import { OnboardingNewWalletStepsNavigation } from '../components/onboarding-steps-navigation/onboarding-steps-navigation'
 
 // styles
-import { LinkText, VerticalSpace } from '../../../../components/shared/style'
+import { VerticalSpace } from '../../../../components/shared/style'
 import {
   StyledWrapper,
   Title,
@@ -46,24 +46,21 @@ interface Props {
   isHardwareOnboarding?: boolean
 }
 
-const TermsOfUseText: React.FC<{}> = () => {
-  const text = getLocaleWithTag('braveWalletTermsOfServiceCheckboxText')
-  return <p key={text.duringTag}>
-    {text.beforeTag}
-    <LinkText
-      href='https://brave.com/terms-of-use/'
-      target='_blank'
-      rel='noopener noreferrer'
-      onClick={
-        // prevent checkbox toggle when clicking this link
-        (e) => e.stopPropagation()
-      }
-    >
-      {text.duringTag}
-    </LinkText>
-    {text.afterTag}
-  </p>
-}
+// const TermsOfUseText: React.FC<{}> = () => {
+//   const text = getLocaleWithTag('braveWalletTermsOfServiceCheckboxText')
+//   return <p key={text.duringTag}>
+//     {text.beforeTag}
+//     <LinkText
+//       onPress={() => {
+        
+//       }}
+//       href='https://brave.com/terms-of-use/'
+//     >
+//       {text.duringTag}
+//     </LinkText>
+//     {text.afterTag}
+//   </p>
+// }
 
 export const OnboardingDisclosures = ({ nextStep, onBack }: Props) => {
   // routing
@@ -77,14 +74,14 @@ export const OnboardingDisclosures = ({ nextStep, onBack }: Props) => {
   const [isResponsibilityCheckboxChecked, setIsResponsibilityCheckboxChecked] = React.useState(
     walletTermsAcknowledged
   )
-  const [isTermsCheckboxChecked, setIsTermsCheckboxChecked] = React.useState(
-    walletTermsAcknowledged
-  )
+  // const [isTermsCheckboxChecked, setIsTermsCheckboxChecked] = React.useState(
+  //   walletTermsAcknowledged
+  // )
 
   // memos
   const isNextStepEnabled = React.useMemo(() => {
-    return isResponsibilityCheckboxChecked && isTermsCheckboxChecked
-  }, [isResponsibilityCheckboxChecked, isTermsCheckboxChecked])
+    return isResponsibilityCheckboxChecked
+  }, [isResponsibilityCheckboxChecked])
 
   // methods
   const onNext = React.useCallback(() => {
@@ -129,7 +126,7 @@ export const OnboardingDisclosures = ({ nextStep, onBack }: Props) => {
               </CheckboxText>
             </Checkbox>
 
-            <Checkbox
+            {/* <Checkbox
               isChecked={isTermsCheckboxChecked}
               onChange={setIsTermsCheckboxChecked}
               alignItems='flex-start'
@@ -137,7 +134,7 @@ export const OnboardingDisclosures = ({ nextStep, onBack }: Props) => {
               <CheckboxText>
                 <TermsOfUseText />
               </CheckboxText>
-            </Checkbox>
+            </Checkbox> */}
 
             <VerticalSpace space='44px' />
           </div>

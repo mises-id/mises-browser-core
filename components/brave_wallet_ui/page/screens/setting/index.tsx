@@ -1,9 +1,9 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import { PageWithScrollViewInBottomTabView } from "../../components/page";
-import { SettingSectionTitle } from "./components";
+import { RightArrow, SettingItem, SettingSectionTitle } from "./components";
 import { SettingSelectAccountItem } from "./items/select-account";
-// import { useSmartNavigation } from "../../navigation";
+import { useSmartNavigation } from "../../navigation";
 import { SettingRemoveAccountItem } from "./items/remove-account";
 import { SettingViewPrivateDataItem } from "./items/view-private-data";
 import { useStyle } from "../../styles";
@@ -14,7 +14,7 @@ import { SettingViewSetLockTime } from "./items/view-set-lock-time";
 export const SettingScreen: FunctionComponent = () => {
   const style = useStyle();
 
-  // const smartNavigation = useSmartNavigation();
+  const smartNavigation = useSmartNavigation();
 
   // const showManageTokenButton = (() => {
   //   if (!chainStore.current.features) {
@@ -30,13 +30,13 @@ export const SettingScreen: FunctionComponent = () => {
     <PageWithScrollViewInBottomTabView backgroundMode="secondary">
       <SettingSelectAccountItem />
       <SettingSectionTitle title="General" />
-      {/* <SettingItem
-        label="Address book"
+      <SettingItem
+        label="Connected Sites"
         right={<RightArrow />}
         onPress={() => {
-          smartNavigation.navigateSmart("AddressBook", {});
+          smartNavigation.navigateSmart("ManageWalletConnect", {});
         }}
-      /> */}
+      />
       {/* <SettingItem
         label="Manage tokens"
         right={<RightArrow />}

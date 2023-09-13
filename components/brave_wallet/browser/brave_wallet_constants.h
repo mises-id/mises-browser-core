@@ -263,6 +263,7 @@ constexpr webui::LocalizedString kLocalizedStrings[] = {
     {"braveWalletLockScreenButton", IDS_BRAVE_WALLET_LOCK_SCREEN_BUTTON},
     {"braveWalletLockScreenError", IDS_BRAVE_WALLET_LOCK_SCREEN_ERROR},
     {"braveWalletWalletPopupSettings", IDS_BRAVE_WALLET_WALLET_POPUP_SETTINGS},
+    {"braveWalletWalletPopupActivity", IDS_BRAVE_WALLET_WALLET_POPUP_ACTIVITY},
     {"braveWalletWalletPopupLock", IDS_BRAVE_WALLET_WALLET_POPUP_LOCK},
     {"braveWalletWalletPopupBackup", IDS_BRAVE_WALLET_WALLET_POPUP_BACKUP},
     {"braveWalletWalletPopupConnectedSites",

@@ -862,7 +862,6 @@ export const AppNavigation: FunctionComponent = () => {
               const routerName = navigationRef.current?.getCurrentRoute();
               if (routerName) {
                 routeNameRef.current = routerName.name;
-
                 // analyticsStore.logPageView(routerName.name);
               }
             }}
@@ -885,8 +884,7 @@ export const AppNavigation: FunctionComponent = () => {
               screenOptions={{
                 headerShown: false,
                 headerMode: "screen",
-                ...TransitionPresets.SlideFromRightIOS,
-                animationEnabled: false
+                ...TransitionPresets.SlideFromRightIOS
               }}
             >
               <Stack.Screen name="Unlock" component={UnlockScreen} />

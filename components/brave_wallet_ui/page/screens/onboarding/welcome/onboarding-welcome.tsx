@@ -30,7 +30,7 @@ import { OnboardingWrapper } from '../onboarding.style'
 import {
   Title,
   ButtonContainer,
-  LearnMoreLink,
+  // LearnMoreLink,
   BlockQuote,
   BlockQuoteTextContainer,
   VerticalRule,
@@ -140,13 +140,13 @@ export const OnboardingWelcome = () => {
 
       <VerticalSpace space='20px' />
 
-      <LearnMoreLink
+      {/* <LearnMoreLink
         href='https://support.brave.com/hc/en-us/categories/360001059151-Brave-Wallet'
         target='_blank'
         rel='noreferrer'
       >
         {getLocale('braveWalletLearnMoreAboutBraveWallet')}
-      </LearnMoreLink>
+      </LearnMoreLink> */}
 
     </OnboardingWrapper>
 
