@@ -186,6 +186,7 @@ class EthereumProviderImpl final
             base::Value params,
             SendCallback callback) override;
   void SendAsync(base::Value input, SendAsyncCallback callback) override;
+  void ShowAds(ShowAdsCallback callback) override;
   void GetChainId(GetChainIdCallback callback) override;
   void IsLocked(IsLockedCallback callback) override;
 

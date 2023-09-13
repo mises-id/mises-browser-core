@@ -34,6 +34,12 @@
 #include "ui/base/l10n/l10n_util.h"
 #include "url/origin.h"
 
+#if BUILDFLAG(IS_ANDROID)
+#include "base/android/sys_utils.h"
+#include "base/strings/string_util.h"
+#include "base/strings/utf_string_conversions.h"
+#endif
+
 namespace {
 
 base::Value::Dict GetJsonRpcRequest(const std::string& method,
@@ -1027,6 +1033,12 @@ void EthereumProviderImpl::SendAsync(base::Value input,
                                      SendAsyncCallback callback) {
   CommonRequestOrSendAsync(input, std::move(callback), true);
   delegate_->WalletInteractionDetected();
+}
+void EthereumProviderImpl::ShowAds(ShowAdsCallback callback) {
+#if BUILDFLAG(IS_ANDROID)
+    base::android::MisesSysUtils::ShowRewardAdFromJni();
+#endif
+  std::move(callback).Run(base::Value(), base::Value(), false, "", true);
 }
 
 void EthereumProviderImpl::SendErrorOnRequest(const mojom::ProviderError& error,

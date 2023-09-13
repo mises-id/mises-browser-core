@@ -69,7 +69,7 @@ content::WebContents* GetWebContentsFromTabId(Browser** browser,
   return nullptr;
 }
 
-
+#if BUILDFLAG(IS_ANDROID)
 content::WebContents* GetActiveWebContentsAndroid() {
   content::WebContents* contents = NULL;
   TabModel *tab_strip = nullptr;
@@ -89,6 +89,7 @@ content::WebContents* GetActiveWebContentsAndroid() {
   }
   return contents;
 }
+#endif
 
 content::WebContents* GetActiveWebContents() {
 #if !BUILDFLAG(IS_ANDROID)
