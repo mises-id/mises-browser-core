@@ -4,8 +4,8 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import styled from 'styled-components/native'
 import { WalletButton } from '../../shared/style'
-// import { CaratStrongLeftIcon } from 'brave-ui/components/icons'
 import Plus from '../../../assets/svg-icons/plus-icon.svg'
+import { CaratStrongLeftIcon } from '../../../assets/svg-icons/nav-button-icons'
 
 export const Header = styled.View`
   display: flex;
@@ -44,6 +44,9 @@ export const BackIcon = styled.View`
   width: 16px;
   height: 16px;
   color: ${(p) => p.theme.color.text02};
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${CaratStrongLeftIcon});
+  mask-image: url(${CaratStrongLeftIcon});
 `
 
 export const HeaderSpacing = styled.View`

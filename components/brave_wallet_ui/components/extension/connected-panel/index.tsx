@@ -239,7 +239,7 @@ export const ConnectedPanel = (props: Props) => {
   const style = useStyle()
   // render
   return (
-    <StyledWrapper onPress={onHideMore} panelBackground={bg}>
+    <StyledWrapper onPress={onHideMore} panelBackground={bg} activeOpacity={1}>
       <ConnectedHeader
         onExpand={onExpand}
         onClickMore={onShowMore}

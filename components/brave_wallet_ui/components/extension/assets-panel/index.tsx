@@ -24,6 +24,7 @@ import {
 import { PortfolioAssetItem } from '../../desktop'
 import { getAssetIdKey } from '../../../utils/asset-utils'
 import { Text } from 'react-native'
+import { useStyle } from '../../../page/styles'
 export interface Props {
   userAssetList: BraveWallet.BlockchainToken[]
   selectedAccount?: WalletAccountType
@@ -59,12 +60,14 @@ const AssetsPanel = (props: Props) => {
       routeToAssetDetails(`brave://wallet${WalletRoutes.Portfolio}/${chainId}/${contractAddress}/${tokenId}`)
     }, [routeToAssetDetails])
 
+  const style = useStyle()
+
   return (
     <StyledWrapper>
       <AddAssetButton
         onPress={onAddAsset}
       >
-        <Text>{getLocale('braveWalletAddAsset')}</Text>
+        <Text style={style.flatten(['dark:color-white'])}>{getLocale('braveWalletAddAsset')}</Text>
       </AddAssetButton>
       {userAssetList?.map((asset) =>
         <PortfolioAssetItem

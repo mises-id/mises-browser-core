@@ -10,7 +10,7 @@ export const StyledWrapper = styled.div`
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 87%;
   padding: 5px 15px 15px 15px;
 `
 

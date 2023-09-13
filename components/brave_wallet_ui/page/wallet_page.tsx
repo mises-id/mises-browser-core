@@ -86,18 +86,6 @@ function App () {
             <ApiProxyContext.Provider value={walletPageApiProxy}>
               <LibContext.Provider value={Lib}>
                 {/* <Container /> */}
-                {/* <NavigationContainer>
-                  <Stack.Navigator
-                    initialRouteName={"Unlock"}
-                    screenOptions={{
-                      headerShown: false,
-                      ...TransitionPresets.SlideFromRightIOS,
-                    }}
-                    headerMode= "screen"
-                  >
-                    <Stack.Screen name="Unlock" component={UnlockScreen1} />
-                  </Stack.Navigator>
-                </NavigationContainer> */}
                 <StyleProvider>
                   <ThemeStatusBar />
                   <SafeAreaProvider>

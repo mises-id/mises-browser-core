@@ -3,8 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import styled from 'styled-components/native'
-// import { OpenNewIcon } from 'brave-ui/components/icons'
-import { LockIconD, SafeIcon, InternetIcon, InfoIcon, SettingsAdvancedIcon } from '../../../assets/svg-icons/nav-button-icons'
+import { LockIconD, SafeIcon, InternetIcon, InfoIcon, SettingsAdvancedIcon, OpenNewIcon } from '../../../assets/svg-icons/nav-button-icons'
 
 export const StyledWrapper = styled.View<{ yPosition?: number }>`
   display: flex;
@@ -64,9 +63,11 @@ export const SettingsIcon = styled.View`
 export const ExplorerIcon = styled.View`
   width: 20px;
   height: 20px;
-  color: ${(p) => p.theme.color.interactive07};
   margin-right: 18px;
   margin-left: 14px;
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${OpenNewIcon});
+  mask-image: url(${OpenNewIcon});
 `
 
 export const LockIcon = styled.View`

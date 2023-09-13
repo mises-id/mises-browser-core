@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FunctionComponent, useState } from "react";
 import { SettingItem } from "../components";
-import { getPrivateDataTitle } from "../screens/view-private-data";
 import { useApiProxy } from "../../../../common/hooks/use-api-proxy";
 import { LockTimeInputModal } from "../../../../page/modals/lock-time-input/modal";
 

@@ -168,7 +168,6 @@ export const SectionRow = styled.View`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: inherit;
 `
 
 export const SectionColumn = styled.View`
@@ -177,7 +176,6 @@ export const SectionColumn = styled.View`
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  height: inherit;
   margin-bottom: 5px;
 `
 
@@ -307,6 +305,10 @@ export const ContractButton = styled(WalletButton)`
   border: none;
   margin: 0px;
   padding: 0px;
+  flex-direction: row;
+`
+export const ContractButtonText = styled.Text`
+  color: ${(p) => p.theme.color.interactive05};
 `
 
 export const ExplorerIcon = styled.View`

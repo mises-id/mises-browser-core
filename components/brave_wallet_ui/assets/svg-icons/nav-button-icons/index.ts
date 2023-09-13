@@ -17,6 +17,9 @@ import SafeIcon from './safe-icon.svg'
 import InternetIcon from './internet.svg'
 import InfoIcon from './info.svg'
 import SettingsAdvancedIcon from './settings.svg'
+import OpenNewIcon from './open-new.svg'
+import CaratCircleODownIcon from './down-icon.svg'
+import CaratStrongLeftIcon from './back.svg'
 
 export {
   WalletIconL,
@@ -33,5 +36,8 @@ export {
   SafeIcon,
   InternetIcon,
   InfoIcon,
-  SettingsAdvancedIcon
+  OpenNewIcon,
+  CaratCircleODownIcon,
+  CaratStrongLeftIcon,
+  SettingsAdvancedIcon,
 }

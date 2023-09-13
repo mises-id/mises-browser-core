@@ -2,9 +2,9 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledExtensionWrapper = styled.div`
+export const StyledExtensionWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@ export const StyledExtensionWrapper = styled.div`
   height: 400px;
 `
 
-export const StyledExtensionWrapperLonger = styled.div`
+export const StyledExtensionWrapperLonger = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +26,7 @@ export const StyledExtensionWrapperLonger = styled.div`
   height: 500px;
 `
 
-export const StyledWelcomPanel = styled.div`
+export const StyledWelcomPanel = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@ export const StyledWelcomPanel = styled.div`
   height: 250px;
 `
 
-export const ChildComponentWrapper = styled.div`
+export const ChildComponentWrapper = styled.View`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@ export const ChildComponentWrapper = styled.div`
   justify-content: center;
 `
 
-export const SelectContainer = styled.div`
+export const SelectContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +56,7 @@ export const SelectContainer = styled.div`
   background-color: ${(p) => p.theme.color.background01};
 `
 
-export const LongWrapper = styled.div`
+export const LongWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,7 +69,7 @@ export const LongWrapper = styled.div`
   background-color: ${(p) => p.theme.color.background01};
 `
 
-export const ConnectWithSiteWrapper = styled.div`
+export const ConnectWithSiteWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +79,7 @@ export const ConnectWithSiteWrapper = styled.div`
   height: 100%;
 `
 
-export const ScrollContainer = styled.div`
+export const ScrollContainer = styled.ScrollView`
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -92,7 +92,7 @@ export const ScrollContainer = styled.div`
   box-sizing: border-box;
 `
 
-export const DesktopComponentWrapper = styled.div`
+export const DesktopComponentWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +101,7 @@ export const DesktopComponentWrapper = styled.div`
   padding: 20px;
 `
 
-export const LineChartWrapper = styled.div`
+export const LineChartWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,7 +111,7 @@ export const LineChartWrapper = styled.div`
   width: 80vw;
 `
 
-export const DesktopComponentWrapperRow = styled.div`
+export const DesktopComponentWrapperRow = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -121,7 +121,7 @@ export const DesktopComponentWrapperRow = styled.div`
   padding: 20px;
 `
 
-export const StyledCreateAccountPanel = styled.div`
+export const StyledCreateAccountPanel = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;

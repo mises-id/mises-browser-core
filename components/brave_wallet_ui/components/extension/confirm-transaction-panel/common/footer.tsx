@@ -16,7 +16,8 @@ import {
   ErrorText,
   FooterContainer,
   LoadIcon,
-  QueueStepButton
+  QueueStepButton,
+  QueueStepButtonText
 } from './style'
 import { NavButton } from '../../buttons'
 
@@ -66,7 +67,7 @@ export function Footer (props: Props) {
     <FooterContainer>
       {transactionsQueueLength > 1 && (
         <QueueStepButton needsMargin={false} onPress={rejectAllTransactions}>
-          {getLocale('braveWalletQueueRejectAll').replace('$1', transactionsQueueLength.toString())}
+          <QueueStepButtonText>{getLocale('braveWalletQueueRejectAll').replace('$1', transactionsQueueLength.toString())}</QueueStepButtonText>
         </QueueStepButton>
       )}
 

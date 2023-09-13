@@ -6,6 +6,7 @@ import styled from 'styled-components/native'
 // import { SettingsAdvancedIcon } from 'brave-ui/components/icons'
 
 import { WalletButton } from '../../../shared/style'
+import { SettingsAdvancedIcon } from '../../../../assets/svg-icons/nav-button-icons'
 
 export const StyledButton = styled(WalletButton)`
   display: flex;
@@ -24,6 +25,9 @@ export const StyledButton = styled(WalletButton)`
 export const SettingsIcon = styled.View`
   padding-bottom: 12px;
   color: ${(p) => p.theme.color.text03};
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${SettingsAdvancedIcon});
+  mask-image: url(${SettingsAdvancedIcon});
 `
 
 export const TabLine = styled.View`

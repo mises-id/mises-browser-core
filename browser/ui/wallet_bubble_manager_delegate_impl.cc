@@ -75,6 +75,8 @@ class MisesWebUIBubbleManagerT : public WebUIBubbleManagerT<T>,
     wallet_panel->SetDeactivationCallback(
         base::BindRepeating(&MisesWebUIBubbleManagerT<T>::SetCloseOnDeactivate,
                             weak_factory_.GetWeakPtr()));
+                            
+    bubble_view_->set_close_on_deactivate(false);
 
     return std::move(bubble_view);
   }

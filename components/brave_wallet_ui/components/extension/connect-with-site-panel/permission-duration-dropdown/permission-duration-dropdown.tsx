@@ -25,6 +25,7 @@ import {
   PermissionButton
 } from './permission-duration-dropdown.style'
 import { Text } from 'react-native'
+import { useStyle } from '../../../../page/styles'
 
 interface Props {
   selectedDuration: BraveWallet.PermissionLifetimeOption
@@ -55,10 +56,12 @@ export const PermissionDurationDropdown = (props: Props) => {
     )
   }, [selectedDuration])
 
+  const style = useStyle()
+
   return (
     <StyledWrapper>
       <DropDownButton onPress={() => setShowDropdown((prev) => !prev)}>
-        <Text>{getLocale(selectedDurationInfo.name)}</Text>
+        <Text style={style.flatten(['color-black', 'dark:color-white'])}>{getLocale(selectedDurationInfo.name)}</Text>
         {/* <DropDownIcon name="carat-down" isOpen={showDropdown} /> */}
       </DropDownButton>
       {showDropdown && (
@@ -69,7 +72,7 @@ export const PermissionDurationDropdown = (props: Props) => {
                 key={duration.id}
                 onPress={() => onSelectAndHide(duration.id)}
               >
-                <Text>{getLocale(duration.name)}</Text>
+                <Text style={style.flatten(['dark:color-white'])}>{getLocale(duration.name)}</Text>
               </PermissionButton>
             )
           )}

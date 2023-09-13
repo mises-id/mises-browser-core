@@ -45,6 +45,13 @@ export const QueueStepButton = styled(WalletButton)<{ needsMargin?: boolean }>`
   padding: 0;
   margin-bottom: ${p => (p.needsMargin ? '12px' : '0px')};
 `
+export const QueueStepButtonText = styled.Text`
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  color: ${p => p.theme.color.interactive05};
+`
 
 export const ErrorText = styled.Text`
   font-family: Poppins;

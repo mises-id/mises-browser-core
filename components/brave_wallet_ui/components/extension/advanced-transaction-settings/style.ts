@@ -2,19 +2,19 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 87%;
   padding: 5px 15px 15px 15px;
 `
 
-export const FormColumn = styled.div`
+export const FormColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -23,7 +23,7 @@ export const FormColumn = styled.div`
   align-self: center;
 `
 
-export const InputLabel = styled.span`
+export const InputLabel = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 20px;
@@ -32,7 +32,7 @@ export const InputLabel = styled.span`
   margin-bottom: 6px;
 `
 
-export const Input = styled.input`
+export const Input = styled.TextInput`
   box-sizing: border-box;
   outline: none;
   width: 100%;
@@ -69,7 +69,7 @@ export const Input = styled.input`
   }
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +78,7 @@ export const ButtonRow = styled.div`
   flex-wrap: wrap-reverse;
 `
 
-export const InfoText = styled.span`
+export const InfoText = styled.Text`
   font-family: Poppins;
   letter-spacing: 0.01em;
   font-size: 12px;
