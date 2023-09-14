@@ -3,9 +3,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled, { DefaultTheme, ThemedStyledProps } from 'styled-components'
+import styled, { DefaultTheme } from 'styled-components/native'
+import { ThemedStyledProps } from 'styled-components'
 
-export const BarAndMessageContainer = styled.div`
+export const BarAndMessageContainer = styled.View`
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -16,7 +17,7 @@ export const BarAndMessageContainer = styled.div`
 `
 
 // outer
-export const Bar = styled.div`
+export const Bar = styled.View`
   position: relative;
   flex: 1;
   box-sizing: border-box;
@@ -25,7 +26,7 @@ export const Bar = styled.div`
   margin-right: 40px;
 `
 
-export const BarBackground = styled.div`
+export const BarBackground = styled.View`
   position: absolute;
   box-sizing: border-box;
   height: 8px;
@@ -37,7 +38,7 @@ export const BarBackground = styled.div`
 `
 
 // inner
-export const BarProgress = styled.div<{ criteria: boolean[] }>`
+export const BarProgress = styled.View<{ criteria: boolean[] }>`
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -51,15 +52,15 @@ export const BarProgress = styled.div<{ criteria: boolean[] }>`
 `
 
 // floating tooltip positioner
-export const BarProgressTooltipContainer = styled.div<{
+export const BarProgressTooltipContainer = styled.View<{
   criteria: boolean[]
 }>`
   width: 100%;
   z-index: 200;
-  transform: translateX(50%);
+  // transform: translateX(50%);
 `
 
-export const BarMessage = styled.p<{ criteria: boolean[] }>`
+export const BarMessage = styled.Text<{ criteria: boolean[] }>`
   color: ${(p) => getCriteriaPercentColor(p)};
   font-family: 'Poppins';
   font-style: normal;

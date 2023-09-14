@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.View`
   --display-text: none;
   --icon-margin-right: 0px;
   display: flex;
@@ -13,14 +13,15 @@ export const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: var(--nav-background);
-  border-radius: 12px;
-  border: 1px solid var(--nav-border);
-  position: absolute;
-  top: 100px;
-  left: 32px;
+  border-top-width: 1px;
+  border-style: solid;
+  border-color: var(--nav-border);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   overflow: visible;
   z-index: 10;
-  padding: 0px 8px;
   transition-duration: 0.1s;
   &:hover {
     --display-text: flex;
@@ -28,15 +29,11 @@ export const Wrapper = styled.div`
   }
 `
 
-export const Section = styled.div<{ showBorder?: boolean }>`
+export const Section = styled.View<{ showBorder?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   padding: 8px 0px;
-  transition-duration: inherit;
-  border-bottom: ${(p) => p.showBorder
-    ? `1px solid var(--nav-border)`
-    : 'none'};
 `

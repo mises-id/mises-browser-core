@@ -2,13 +2,13 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 interface StyleProps {
   textAlign?: 'left' | 'right' | 'center' | 'justify'
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -17,7 +17,7 @@ export const StyledWrapper = styled.div`
   padding-top: 50px;
 `
 
-export const Title = styled.span`
+export const Title = styled.Text`
   font-family: Poppins;
   font-size: 20px;
   font-weight: 600;
@@ -26,7 +26,7 @@ export const Title = styled.span`
   margin-bottom: 8px;
 `
 
-export const Description = styled.span<StyleProps>`
+export const Description = styled.Text<StyleProps>`
   display: flex;
   align-items: center;
   font-family: Poppins;
@@ -38,7 +38,7 @@ export const Description = styled.span<StyleProps>`
   margin-bottom: 25px;
 `
 
-export const FormText = styled.span`
+export const FormText = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   font-weight: 600;
@@ -47,7 +47,7 @@ export const FormText = styled.span`
   margin-bottom: 8px;
 `
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -56,7 +56,7 @@ export const FormWrapper = styled.div`
   max-width: 550px;
 `
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -64,14 +64,14 @@ export const ErrorText = styled.span`
   margin-bottom: 10px;
 `
 
-export const LegacyCheckboxRow = styled.div`
+export const LegacyCheckboxRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 `
 
-export const CheckboxRow = styled.div`
+export const CheckboxRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,9 +79,8 @@ export const CheckboxRow = styled.div`
   margin-bottom: 50px;
 `
 
-export const RecoveryPhraseInput = styled.input`
+export const RecoveryPhraseInput = styled.TextInput`
   width: 100%;
-  outline: none;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
@@ -102,9 +101,6 @@ export const RecoveryPhraseInput = styled.input`
     color: ${(p) => p.theme.color.text03};
     font-weight: normal;
   }
-  :focus {
-    outline: none;
-  }
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -115,7 +111,7 @@ export const RecoveryPhraseInput = styled.input`
   }
 `
 
-export const InputColumn = styled.div`
+export const InputColumn = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;

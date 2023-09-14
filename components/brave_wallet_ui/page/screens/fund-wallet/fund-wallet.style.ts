@@ -3,16 +3,16 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const ScrollContainer = styled.div`
+export const ScrollContainer = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
 `
 
-export const SelectAssetWrapper = styled.div`
+export const SelectAssetWrapper = styled.View`
   display: flex;
   width: 100%;
   align-items: stretch;
@@ -20,7 +20,7 @@ export const SelectAssetWrapper = styled.div`
   flex-direction: column;
 `
 
-export const SearchWrapper = styled.div`
+export const SearchWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -29,7 +29,7 @@ export const SearchWrapper = styled.div`
   position: relative;
 `
 
-export const QRCodeImage = styled.img`
+export const QRCodeImage = styled.Image`
   width: 260px;
   height: 260px;
   border-radius: 4px;
@@ -37,7 +37,7 @@ export const QRCodeImage = styled.img`
   margin-bottom: 16px;
 `
 
-export const AddressText = styled.div`
+export const AddressText = styled.View`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;

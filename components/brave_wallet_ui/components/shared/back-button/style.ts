@@ -3,8 +3,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import styled from 'styled-components/native'
-// import { CaratStrongLeftIcon } from 'brave-ui/components/icons'
 import { WalletButton } from '../style'
+import { CaratStrongLeftIcon } from '../../../assets/svg-icons/nav-button-icons'
 
 // Will use brave-ui button comp in the future!
 // Currently is missing "tiny" variant
@@ -13,7 +13,6 @@ export const StyledWrapper = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   padding: 3px 14px;
@@ -32,4 +31,7 @@ export const BackIcon = styled.View`
   height: 14px;
   margin-right: 8px;
   color: ${(p) => p.theme.color.text03};
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${CaratStrongLeftIcon});
+  mask-image: url(${CaratStrongLeftIcon});
 `

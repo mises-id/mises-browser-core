@@ -3,11 +3,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import NodeStatus from '../../../../../../assets/svg-icons/nft-ipfs/node-status.svg'
 
-export const IpfsNodeStatusWrapper = styled.div`
+export const IpfsNodeStatusWrapper = styled.View`
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -15,7 +15,7 @@ export const IpfsNodeStatusWrapper = styled.div`
   justify-content: center;
 `
 
-export const StatusIcon = styled.div<{ running: boolean }>`
+export const StatusIcon = styled.View<{ running: boolean }>`
   width: 8px;
   height: 8px;
   mask-image: url(${NodeStatus});
@@ -23,7 +23,7 @@ export const StatusIcon = styled.div<{ running: boolean }>`
   background-color: ${p => p.running ? p.theme.color.successBorder : p.theme.color.errorBorder} ;
 `
 
-export const Text = styled.p`
+export const Text = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;

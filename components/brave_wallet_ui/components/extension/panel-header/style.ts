@@ -48,6 +48,5 @@ export const CloseButton = styled(WalletButton)`
   width: 20px;
   height: 20px;
   background-image: url(${CloseIcon});
-  outline: none;
   border: none;
 `

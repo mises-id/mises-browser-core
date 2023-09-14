@@ -7,7 +7,7 @@ import * as React from 'react'
 import { useDispatch } from 'react-redux'
 
 // Types
-import { BraveWallet } from '../../../constants/types'
+import { BraveWallet, PanelTypes } from '../../../constants/types'
 
 // actions
 import { WalletActions } from '../../../common/actions'
@@ -31,6 +31,7 @@ import {
 
 export interface Props {
   onClickViewOnBlockExplorer?: () => void
+  onClickViewOnActivity?: (path: PanelTypes) => void
   onClickBackup?: () => void
   onClosePopup?: () => void
   yPosition?: number
@@ -39,6 +40,7 @@ export interface Props {
 export const WalletMorePopup = (props: Props) => {
   const {
     onClickViewOnBlockExplorer,
+    onClickViewOnActivity,
     onClickBackup,
     onClosePopup,
     yPosition
@@ -64,6 +66,10 @@ export const WalletMorePopup = (props: Props) => {
       ? 'ethereum'
       : 'solana'
 
+    // if(route === 'ethereum') {
+    //   onClickViewOnActivity?.('sitePermissions')
+    //   return
+    // }
     chrome.tabs.create({ url: `brave://settings/content/${route}` }, () => {
       if (chrome.runtime.lastError) {
         console.error(
@@ -142,6 +148,12 @@ export const WalletMorePopup = (props: Props) => {
         <SettingsIcon />
         <PopupButtonText>
           {getLocale('braveWalletWalletPopupSettings')}
+        </PopupButtonText>
+      </PopupButton>
+      <PopupButton onPress={() => onClickViewOnActivity?.('activity')}>
+        <SettingsIcon />
+        <PopupButtonText>
+          {getLocale('braveWalletWalletPopupActivity')}
         </PopupButtonText>
       </PopupButton>
 

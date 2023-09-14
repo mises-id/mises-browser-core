@@ -27,7 +27,6 @@ export const NetworkButton = styled(WalletButton) <{ useWithSearch?: boolean }>`
   width: ${(p) => p.useWithSearch ? 'unset' : '100%'};
   height: 40px;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: ${(p) => p.useWithSearch ? 'none' : `1px solid ${p.theme.color.interactive08}`};
@@ -42,7 +41,7 @@ export const DropDownIcon = styled.View <{ isOpen: boolean }>`
   height: 18px;
   color: ${(p) => p.theme.color.interactive07};
   transition-duration: 0.3s;
-  transform: ${(p) => p.isOpen ? 'rotate(180deg)' : 'unset'};
+  transform: ${(p) => p.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
 `
 
 export const DropDown = styled.View <{ useWithSearch?: boolean }>`
@@ -53,7 +52,9 @@ export const DropDown = styled.View <{ useWithSearch?: boolean }>`
   max-height: 262px;
   padding: 10px 10px 10px 20px;
   background-color: ${(p) => p.theme.color.background02};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   border-radius: 8px;
   position: absolute;
   top: 44px;

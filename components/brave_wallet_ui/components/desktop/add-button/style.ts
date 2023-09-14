@@ -19,7 +19,6 @@ export const StyledButton = styled(WalletButton) <StyleProps>`
   cursor: pointer;
   border-radius: 40px;
   padding: 12px 22px;
-  outline: none;
   background-color: ${(p) =>
     p.buttonType === 'primary' ? `${p.theme.palette.blurple500}` : 'transparent'};
   border: ${(p) =>

@@ -135,7 +135,9 @@ export const ProjectDetailButtonRow = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 1px solid #E5E8EB;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E5E8EB;
   border-radius: 6.5px;
   margin-bottom: 20px;
 `
@@ -154,7 +156,6 @@ export const ProjectDetailButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;
@@ -194,7 +195,6 @@ export const ExplorerButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;
@@ -227,7 +227,9 @@ export const NftStandard = styled.View`
   align-items: center;
   padding: 2px 4px;
   gap: 4px;
-  border: 1px solid ${p => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color:  ${p => p.theme.color.divider01};
   border-radius: 4px;
   font-family: 'Poppins';
   font-style: normal;

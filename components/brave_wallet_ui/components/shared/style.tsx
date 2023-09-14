@@ -6,7 +6,6 @@
 // import { FC } from 'react'
 import { CSSProperties } from 'styled-components'
 import styled, { css } from 'styled-components/native'
-import { Link } from 'react-router-dom'
 import * as leo from '@brave/leo/tokens/css'
 
 // types
@@ -188,17 +187,14 @@ export const StatusBubble = styled.View<{ status: BraveWallet.TransactionStatus 
 export const WalletButton = styled.TouchableOpacity`
   font-style: normal;
 `
-export const WalletButtonRN = styled.TouchableOpacity`
-  ${walletButtonFocusMixin}
-`
-export const WalletLink = styled(Link)`
+
+export const WalletLink = styled.TouchableOpacity<{to?: string}>`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
   line-height: 20px;
   text-align: center;
-  color: ${(p) => p.theme.color.interactive05};
   background-image: none;
   background-color: none;;
   border: none;
@@ -213,8 +209,11 @@ export const WalletLink = styled(Link)`
     opacity: 0.5;
   }
 `
+export const WalletLinkText = styled.Text`
+  color: ${(p) => p.theme.color.interactive05};
+` 
 
-export const WalletButtonLink = styled(Link)`
+export const WalletButtonLink = styled.Text<{to: string}>`
   ${walletButtonFocusMixin}
 `
 
@@ -226,7 +225,6 @@ export const ToggleVisibilityButton = styled.TouchableOpacity<{
   justify-content: center;
   flex-direction: row;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -240,7 +238,6 @@ export const ToggleVisibilityButton = styled.TouchableOpacity<{
   mask-position: center;
   mask-repeat: no-repeat;
   &:focus-visible {
-    outline: auto;
     outline-style: solid;
     outline-color: ${p => p.theme.palette.blurple300};
     outline-width: 2px;
@@ -251,7 +248,6 @@ export const CopyButton = styled(WalletButton) <{
   iconColor?: keyof IThemeProps['color']
 }>`
   cursor: pointer;
-  outline: none;
   border: none;
   mask-image: url(${ClipboardSvg});
   mask-position: center;
@@ -264,7 +260,6 @@ export const CopyButton = styled(WalletButton) <{
 
 export const DownloadButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   border: none;
   mask-image: url(${DownloadSvg});
   mask-position: center;
@@ -291,7 +286,6 @@ export const SellButton = styled(WalletButton)`
   align-items: center;
   padding: 6px 12px;
   cursor: pointer;
-  outline: none;
   border-radius: 40px;
   font-family: 'Poppins';
   font-style: normal;

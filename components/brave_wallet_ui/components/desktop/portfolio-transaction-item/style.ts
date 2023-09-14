@@ -87,7 +87,6 @@ export const MoreButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -176,7 +175,6 @@ export const CoinsButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: default;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -202,7 +200,6 @@ export const CoinsIcon = styled.View`
 export const AddressOrAsset = styled(WalletButton)`
   display: inline;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

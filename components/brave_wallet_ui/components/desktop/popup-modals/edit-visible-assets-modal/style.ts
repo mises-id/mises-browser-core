@@ -76,7 +76,6 @@ export const NoAssetText = styled.Text`
 
 export const NoAssetButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;
@@ -86,12 +85,13 @@ export const NoAssetButton = styled(WalletButton)`
   font-size: 14px;
   letter-spacing: 0.01em;
   line-height: 20px;
+`
+export const NoAssetButtonText = styled.Text`
   color: ${(p) => p.theme.palette.blurple500};
   @media (prefers-color-scheme: dark) {
     color: ${(p) => p.theme.color.interactive06};
   }
 `
-
 export const TopRow = styled.View`
   display: flex;
   flex-direction: row;

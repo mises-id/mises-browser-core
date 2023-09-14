@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Shared Styles
 import { StyledDiv, Column, Row } from '../../shared.styles'
@@ -28,11 +28,8 @@ export const Modal = styled(StyledDiv)`
   justify-content: flex-start;
   overflow: hidden;
   position: absolute;
-  width: 440px;
+  width: 90%;
   z-index: 20;
-  @media screen and (max-width: 570px) {
-    width: 90%;
-  }
 `
 
 export const AccountSection = styled(Row)`

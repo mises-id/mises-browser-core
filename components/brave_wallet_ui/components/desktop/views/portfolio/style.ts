@@ -253,7 +253,6 @@ export const BridgeToAuroraButton = styled(WalletButton)`
   padding: 8px 14px;
   height: 40px;
   cursor: pointer;
-  outline: none;
   border-radius: 40px;
   font-family: 'Poppins';
   font-style: normal;
@@ -275,7 +274,6 @@ export const MoreButton = styled(WalletButton)`
   width: 18px;
   height: 18px;
   margin-left: 16px;
-  outline: none;
   border: none;
   padding: 0;
   background-color: ${(p) => p.theme.color.interactive07};

@@ -26,8 +26,8 @@ interface Props {
   onDontShowAgain: (selected: boolean) => void
 }
 
-const learnMoreLink = 'https://doc.aurora.dev/bridge/bridge-overview/'
-const learnMoreRiskMitigation = 'https://rainbowbridge.app/approvals'
+// const learnMoreLink = 'https://doc.aurora.dev/bridge/bridge-overview/'
+// const learnMoreRiskMitigation = 'https://rainbowbridge.app/approvals'
 
 export const BridgeToAuroraModal = ({ dontShowWarningAgain, onClose, onOpenRainbowAppClick, onDontShowAgain }: Props) => {
   return (
@@ -52,16 +52,16 @@ export const BridgeToAuroraModal = ({ dontShowWarningAgain, onClose, onOpenRainb
           <ButtonText>{getLocale('braveWalletAuroraModalOPenButtonText')}</ButtonText>
         </OpenRainbowAppButton>
         <LearnMoreLink
-          rel='noopener noreferrer'
-          target='_blank'
-          href={learnMoreLink}
+          // rel='noopener noreferrer'
+          // target='_blank'
+          // href={learnMoreLink}
         >
           {getLocale('braveWalletAuroraModalLearnMore')}
         </LearnMoreLink>
         <LearnMoreLink
-          rel='noopener noreferrer'
-          target='_blank'
-          href={learnMoreRiskMitigation}
+          // rel='noopener noreferrer'
+          // target='_blank'
+          // href={learnMoreRiskMitigation}
         >
           {getLocale('braveWalletAuroraModalLearnMoreAboutRisk')}
         </LearnMoreLink>

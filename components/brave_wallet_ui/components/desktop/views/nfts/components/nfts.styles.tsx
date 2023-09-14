@@ -47,7 +47,9 @@ export const IpfsButton = styled(WalletButton)`
   justify-content: center;
   background-color: transparent;
   border-radius: 6px;
-  border: 1px solid ${(p) => p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.interactive08};
   padding: 6px;
   align-self: flex-start;
 `
@@ -77,7 +79,9 @@ export const AddButton = styled(WalletButton)`
   padding: 10px;
   width: 38px;
   height:38px;
-  border: 1px solid ${p => p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.interactive08};
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 6px;
   align-self: flex-start;

@@ -22,7 +22,7 @@ import { setIconBasePath } from '@brave/leo/react/icon'
 import { StyleProvider } from '../page/styles'
 // import RootRPCMethodsUI from './RootRPCMethodsUI'
 // import { StyleProvider } from '../page/styles'
-setIconBasePath('chrome://resources/mises-icons')
+setIconBasePath('chrome://resources/brave-icons')
 
 function App () {
   const [initialThemeType, setInitialThemeType] = React.useState<chrome.braveTheme.ThemeType>()

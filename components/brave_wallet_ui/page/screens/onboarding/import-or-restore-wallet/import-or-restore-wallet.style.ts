@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // assets
 import BraveWalletSvg from '../../../../assets/svg-icons/onboarding/brave-wallet.svg'
@@ -24,7 +24,9 @@ export const CardButton = styled(WalletLink)`
   width: 376px;
   min-height: 88px;
   background-color: ${(p) => p.theme.color.background02};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color:  ${p => p.theme.color.divider01};
   border-radius: 8px;
 
   display: flex;
@@ -44,7 +46,7 @@ export const CardButton = styled(WalletLink)`
   }
 `
 
-export const CardButtonTextContainer = styled.div`
+export const CardButtonTextContainer = styled.View`
 
   max-width: 70%;
 
@@ -68,7 +70,7 @@ export const CardButtonTextContainer = styled.div`
   }
 `
 
-export const LinkRow = styled.div`
+export const LinkRow = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -77,7 +79,7 @@ export const LinkRow = styled.div`
   margin-top: 20px;
 `
 
-export const MetaMaskIcon = styled.div`
+export const MetaMaskIcon = styled.View`
   width: 80px;
   height: 80px;
   background-image: url(${MMSvg});
@@ -89,7 +91,7 @@ export const MetaMaskIcon = styled.div`
   }
 `
 
-export const LegacyWalletIcon = styled.div`
+export const LegacyWalletIcon = styled.View`
   width: 80px;
   height: 80px;
   background-image: url(${LegacyWalletSvg});
@@ -101,7 +103,7 @@ export const LegacyWalletIcon = styled.div`
   }
 `
 
-export const BraveWalletIcon = styled.div`
+export const BraveWalletIcon = styled.View`
   width: 80px;
   height: 80px;
   background-image: url(${BraveWalletSvg});

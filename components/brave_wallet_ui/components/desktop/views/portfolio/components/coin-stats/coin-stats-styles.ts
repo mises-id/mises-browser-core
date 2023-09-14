@@ -3,21 +3,21 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   width: 100%;
 `
 
-export const StatWrapper = styled.div`
+export const StatWrapper = styled.View`
   display: flex;
   flex-direction: column;
   margin-right: 95px;
  `
 
-export const StatValue = styled.div`
+export const StatValue = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,7 +32,7 @@ export const StatValue = styled.div`
   justify-content: center;
 `
 
-export const StatLabel = styled.div`
+export const StatLabel = styled.View`
  display: flex;
  align-items: center;
  text-align: center;
@@ -46,13 +46,13 @@ export const StatLabel = styled.div`
  justify-content: center;
 `
 
-export const Row = styled.div`
+export const Row = styled.View`
   display: flex;
   flex-direction: row;
   margin: 16px 0 16px 0;
 `
 
-export const Currency = styled.sup`
+export const Currency = styled.Text`
  display: flex;
  font-family: 'Poppins';
  font-style: normal;

@@ -15,7 +15,6 @@ import { useGetNetworkQuery } from '../../../common/slices/api.slice'
 
 // Components
 import { withPlaceholderIcon } from '../../shared'
-import { Checkbox } from 'brave-ui'
 import { NftIcon } from '../../shared/nft-icon/nft-icon'
 
 // Styled Components
@@ -30,6 +29,8 @@ import {
   NameAndSymbol,
   AssetSymbol
 } from './style'
+import { Checkbox } from '../../shared/checkbox/checkbox'
+import { View } from 'react-native'
 
 export interface Props {
   onSelectAsset: (key: string, selected: boolean, token: BraveWallet.BlockchainToken, isCustom: boolean) => void
@@ -96,8 +97,8 @@ const AssetWatchlistItem = React.forwardRef<any, Props>(
               <DeleteIcon />
             </DeleteButton>
           }
-          <Checkbox value={{ [`${token.contractAddress}-${token.symbol}-${token.chainId}-${token.tokenId}`]: isSelected }} onChange={onCheck}>
-            <div data-key={`${token.contractAddress}-${token.symbol}-${token.chainId}-${token.tokenId}`} />
+          <Checkbox isChecked={isSelected} onChange={(selected: boolean) => onCheck(`${token.contractAddress}-${token.symbol}-${token.chainId}-${token.tokenId}`, selected)}>
+            <View data-key={`${token.contractAddress}-${token.symbol}-${token.chainId}-${token.tokenId}`} />
           </Checkbox>
         </RightSide>
       </StyledWrapper>

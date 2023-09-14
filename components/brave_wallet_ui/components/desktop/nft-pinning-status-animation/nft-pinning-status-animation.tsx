@@ -36,10 +36,12 @@ export const NftPinningStatusAnimation = ({ size, status, isAutopinEnabled }: Pr
       ) : status === OverallPinningStatus.PINNING_IN_PROGRESS ? (
         <GifWrapper>
           <StatusGif
-            src={
-              window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? UploadingDarkGif
-                : UploadingLightGif
+            source={
+             {
+              uri: window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? UploadingDarkGif
+              : UploadingLightGif
+             }
             }
           />
           <IpfsUploading />
@@ -48,10 +50,12 @@ export const NftPinningStatusAnimation = ({ size, status, isAutopinEnabled }: Pr
         status === OverallPinningStatus.PINNING_FINISHED && (
           <GifWrapper>
             <StatusGif
-              src={
-                window.matchMedia('(prefers-color-scheme: dark)').matches
-                  ? SuccessDarkGif
-                  : SuccessLightGif
+              source={
+                {
+                uri: window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? SuccessDarkGif
+                : SuccessLightGif
+                }
               }
             />
           </GifWrapper>

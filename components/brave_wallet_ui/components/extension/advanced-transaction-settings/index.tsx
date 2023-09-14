@@ -38,8 +38,8 @@ const AdvancedTransactionSettings = (props: Props) => {
     nonce && parseInt(nonce).toString()
   )
 
-  const handleNonceInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCustomNonce(event.target.value)
+  const handleNonceInputChanged = (value: string) => {
+    setCustomNonce(value)
   }
 
   const onSave = () => {
@@ -60,9 +60,8 @@ const AdvancedTransactionSettings = (props: Props) => {
           <InputLabel>{getLocale('braveWalletEditNonce')}</InputLabel>
           <Input
             placeholder={getLocale('braveWalletAdvancedTransactionSettingsPlaceholder')}
-            type='number'
             value={customNonce}
-            onChange={handleNonceInputChanged}
+            onChangeText={handleNonceInputChanged}
           />
           <InfoText>{getLocale('braveWalletEditGasZeroGasPriceWarning')}</InfoText>
         </FormColumn>

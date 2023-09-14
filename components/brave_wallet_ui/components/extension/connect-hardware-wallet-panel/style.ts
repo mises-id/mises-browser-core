@@ -52,7 +52,6 @@ export const PageIcon = styled.View`
 
 export const InstructionsButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

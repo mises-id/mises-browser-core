@@ -39,11 +39,17 @@ export const QueueStepButton = styled(WalletButton)<{ needsMargin?: boolean }>`
   background-image: none;
   background-color: none;;
   cursor: pointer;
-  outline: none;
   border: none;
   margin: 0;
   padding: 0;
   margin-bottom: ${p => (p.needsMargin ? '12px' : '0px')};
+`
+export const QueueStepButtonText = styled.Text`
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  color: ${p => p.theme.color.interactive05};
 `
 
 export const ErrorText = styled.Text`
@@ -62,7 +68,6 @@ export const ConfirmingButton = styled(WalletButton)`
   cursor: default;
   border-radius: 40px;
   padding: 8px 16px;
-  outline: none;
   margin: 0px;
   background-color: ${p => p.theme.color.disabled};
   border: none;

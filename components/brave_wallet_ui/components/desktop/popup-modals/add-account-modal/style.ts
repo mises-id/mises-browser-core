@@ -17,7 +17,6 @@ export const StyledWrapper = styled.View`
 `
 
 // export const Input = styled.input`
-//   outline: none;
 //   width: 250px;
 //   background-image: none;
 //   background-color: ${(p) => p.theme.color.background02};
@@ -38,9 +37,6 @@ export const StyledWrapper = styled.View`
 //     letter-spacing: 0.01em;
 //     color: ${(p) => p.theme.color.text03};
 //     font-weight: normal;
-//   }
-//   :focus {
-//     outline: none;
 //   }
 //   ::-webkit-inner-spin-button {
 //     -webkit-appearance: none;
@@ -106,7 +102,6 @@ export const ImportButton = styled.Text`
   cursor: pointer;
   border-radius: 4px;
   padding: 4px 6px;
-  outline: none;
   background-color: transparent;
   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
   font-size: 13px;

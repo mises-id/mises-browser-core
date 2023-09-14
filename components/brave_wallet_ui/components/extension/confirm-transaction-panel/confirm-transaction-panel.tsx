@@ -49,7 +49,8 @@ import {
   WarningIcon,
   AssetIcon,
   ContractButton,
-  ExplorerIcon
+  ExplorerIcon,
+  ContractButtonText
 } from './style'
 import { Skeleton } from '../../shared/loading-skeleton/styles'
 
@@ -258,7 +259,7 @@ export const ConfirmTransactionPanel = ({
                   {getLocale('braveWalletNFTDetailContractAddress')}
                 </NetworkText>
                 <ContractButton onPress={onClickViewOnBlockExplorer('contract', `${transactionDetails.recipient}`)}>
-                  <Text>{reduceAddress(transactionDetails.recipient)}</Text> 
+                  <ContractButtonText>{reduceAddress(transactionDetails.recipient)}</ContractButtonText> 
                   <ExplorerIcon />
                 </ContractButton>
               </Column>

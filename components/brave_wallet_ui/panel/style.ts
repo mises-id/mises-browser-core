@@ -2,9 +2,9 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const PanelWrapper = styled.div<{
+export const PanelWrapper = styled.View<{
   isLonger?: boolean
   width?: number
   height?: number
@@ -16,7 +16,7 @@ export const PanelWrapper = styled.div<{
   height: ${(p) => p.height ? p.height : p.isLonger ? 540 : 400}px;
 `
 
-export const WelcomePanelWrapper = styled.div`
+export const WelcomePanelWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@ export const WelcomePanelWrapper = styled.div`
   height: 250px;
 `
 
-export const SendWrapper = styled.div`
+export const SendWrapper = styled.View`
   flex: 1;
   flex-direction: column;
   align-items: center;

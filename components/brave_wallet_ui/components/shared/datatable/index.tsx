@@ -4,7 +4,7 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import * as React from 'react'
-import { CSSProperties } from 'styled-components'
+// import { CSSProperties } from 'styled-components'
 
 import {
   StyledWrapper,
@@ -21,22 +21,23 @@ import {
 } from './style'
 
 import { SortOrder } from '../../../constants/types'
+import { ViewStyle } from 'react-native'
 
 export interface Header {
   id: string
-  customStyle?: CSSProperties
+  customStyle?: ViewStyle
   content: React.ReactNode
   sortable?: boolean
   sortOrder?: SortOrder
 }
 export interface Cell {
-  customStyle?: CSSProperties
+  customStyle?: ViewStyle
   content: React.ReactNode
 }
 
 export interface Row {
   id: string
-  customStyle?: CSSProperties
+  customStyle?: ViewStyle
   content: Cell[]
   data: any
   onClick?: (data: any) => void
@@ -72,7 +73,7 @@ export const Table = (props: Props) => {
   }, [])
 
   return (
-    <StyledWrapper id={id}>
+    <StyledWrapper>
       {headers && headers.length > 0 &&
         <StyledTable>
           {headers &&
@@ -81,12 +82,11 @@ export const Table = (props: Props) => {
                 {
                   headers.map((header) =>
                     <StyledTH
-                      id={`${header.id}-th`}
                       key={`${header.id}-th`}
                       style={header.customStyle}
                       sortable={header.sortable}
                       sortOrder={header.sortOrder}
-                      onClick={onHeaderClick(header)}
+                      onPress={onHeaderClick(header)}
                       stickyHeaders={stickyHeaders}
                     >
                       {header.sortable &&
@@ -107,7 +107,6 @@ export const Table = (props: Props) => {
               {
                 rows.map((row: Row, i: number) =>
                   <StyledTR
-                    id={row.id}
                     key={`tr-${row.id}-${i}`}
                     style={row.customStyle}
                   >
@@ -116,7 +115,7 @@ export const Table = (props: Props) => {
                         <StyledTD
                           key={`${id}-td-${i}-${j}`}
                           style={cell.customStyle}
-                          onClick={onRowClick(row)}
+                          onPress={onRowClick(row)}
                         >
                           {cell.content}
                         </StyledTD>

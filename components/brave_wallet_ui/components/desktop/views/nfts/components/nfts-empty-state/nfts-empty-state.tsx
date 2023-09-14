@@ -14,7 +14,8 @@ import {
   Heading,
   StyledWrapper,
   SubHeading,
-  ImportButton
+  ImportButton,
+  ImportButtonText
 } from './nfts-empty-state.style'
 import EmptyStateGraphicLight from '../../../../../../assets/png-icons/nft-empty-state-light.png'
 import EmptyStateGraphicDark from '../../../../../../assets/png-icons/nft-empty-state-dark.png'
@@ -28,7 +29,7 @@ export const NftsEmptyState = ({ onImportNft }: Props) => (
     <EmptyStateImage source={{uri: window.matchMedia('(prefers-color-scheme: dark)').matches ? EmptyStateGraphicDark : EmptyStateGraphicLight}} />
     <Heading>{getLocale('braveNftsTabEmptyStateHeading')}</Heading>
     <SubHeading>{getLocale('braveNftsTabEmptyStateSubHeading')}</SubHeading>
-    <ImportButton onPress={onImportNft}>{getLocale('braveNftsTabImportNft')}</ImportButton>
+    <ImportButton onPress={onImportNft}><ImportButtonText>{getLocale('braveNftsTabImportNft')}</ImportButtonText></ImportButton>
     <DisclaimerText>{getLocale('braveNftsTabEmptyStateDisclaimer')}</DisclaimerText>
   </StyledWrapper>
 )

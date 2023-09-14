@@ -2,12 +2,12 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-// import { WalletButton } from '../../../components/shared/style'
-// import MagnifyIcon from '../../../assets/svg-icons/magnify-icon.svg'
+import { WalletButton } from '../../../components/shared/style'
+import MagnifyIcon from '../../../assets/svg-icons/magnify-icon.svg'
 
-export const Image = styled.img`
+export const Image = styled.Image`
   display: block;
   width: 100%;
   height: auto;
@@ -18,24 +18,24 @@ export const Image = styled.img`
   height: 500px;
 `
 
-// export const MagnifyButton = styled(WalletButton)`
-//   position: absolute;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   right: 17px;
-//   bottom: 17px;
-//   width: 36px;
-//   height: 36px;
-//   background-image: url(${MagnifyIcon});
-//   background-size: contain;
-//   background-color: transparent;
-//   cursor: pointer;
-//   border-radius: 50%;
-//   border-width: 0;
-// `
+export const MagnifyButton = styled(WalletButton)`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 17px;
+  bottom: 17px;
+  width: 36px;
+  height: 36px;
+  background-image: url(${MagnifyIcon});
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  border-width: 0;
+`
 
-export const ImageWrapper = styled.div<{ isLoading: boolean }>`
+export const ImageWrapper = styled.View<{ isLoading: boolean }>`
   position: relative;
   display: flex;
   justify-items: center;

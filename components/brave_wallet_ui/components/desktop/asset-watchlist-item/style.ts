@@ -24,7 +24,6 @@ export const NameAndIcon = styled(WalletButton)`
   flex-direction: row;
   max-width: 80%;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -101,7 +100,6 @@ export const DeleteButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

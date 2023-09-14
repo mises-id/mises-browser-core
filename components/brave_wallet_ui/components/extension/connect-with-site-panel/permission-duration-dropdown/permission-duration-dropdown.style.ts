@@ -26,7 +26,6 @@ export const DropDownButton = styled(WalletButton)`
   flex-direction: row;
   background-color: ${leo.color.container.highlight};
   cursor: pointer;
-  outline: none;
   border-radius: 8px;
   font-family: Poppins;
   font-style: normal;
@@ -43,7 +42,7 @@ export const DropDownIcon = styled.View<{ isOpen: boolean }>`
   --leo-icon-size: 20px;
   color: ${leo.color.icon.default};
   transition-duration: 0.3s;
-  transform: ${(p) => (p.isOpen ? 'rotate(180deg)' : 'unset')};
+  transform: ${(p) => (p.isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
 `
 
 export const DropDown = styled.View`
@@ -55,7 +54,9 @@ export const DropDown = styled.View`
   padding: 8px;
   box-sizing: border-box;
   background-color: ${leo.color.container.background};
-  border: 1px solid ${leo.color.divider.subtle};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${leo.color.divider.subtle};
   border-radius: 8px;
   position: absolute;
   top: 48px;
@@ -72,7 +73,6 @@ export const PermissionButton = styled(WalletButton)`
   flex-direction: row;
   width: 100%;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -18,14 +18,14 @@ export const StyledWrapper = styled.div`
   right: -76px;
 `
 
-export const TooltipContent = styled.div`
+export const TooltipContent = styled.View`
   position: relative;
   padding: 24px;
   width: 100%;
   height: 100%;
 `
 
-export const TooltipText = styled.p`
+export const TooltipText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -37,7 +37,7 @@ export const TooltipText = styled.p`
   color: #f6f6fa;
 `
 
-export const ArrowUp = styled.div`
+export const ArrowUp = styled.View`
   width: 0;
   height: 0;
   border-left: 8px solid transparent;

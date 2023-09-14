@@ -3,15 +3,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const PasswordStrengthTextWrapper = styled.div`
+export const PasswordStrengthTextWrapper = styled.View`
   padding-left: 12px;
   padding-right: 12px;
   margin-bottom: 20px;
 `
 
-export const CriteriaCheckContainer = styled.div`
+export const CriteriaCheckContainer = styled.View`
   width: 100%;
   display: flex;
   flex: 1;
@@ -21,7 +21,7 @@ export const CriteriaCheckContainer = styled.div`
   gap: 4px;
 `
 
-export const PasswordStrengthText = styled.p<{ isStrong?: boolean }>`
+export const PasswordStrengthText = styled.Text<{ isStrong?: boolean }>`
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;

@@ -11,8 +11,7 @@ import {
   ButtonText,
   RejectIcon,
   SignIcon,
-  ConfirmIcon,
-  StyledLink
+  ConfirmIcon
 } from './style'
 import { TouchableOpacity } from 'react-native'
 import { Row } from '../../../../components/shared/style'
@@ -78,16 +77,16 @@ export const NavButton: React.FC<Props> = ({
 
   // render
   return url ? (
-    <StyledLink
+    <TouchableOpacity
       disabled={disabled}
-      buttonType={buttonType}
-      onClick={onSubmit}
-      to={url || ''}
-      maxHeight={maxHeight}
-      minWidth={minWidth}
+      // buttonType={buttonType}
+      onPress={onSubmit}
+      // to={url || ''}
+      // maxHeight={maxHeight}
+      // minWidth={minWidth}
     >
       {buttonContent}
-    </StyledLink>
+    </TouchableOpacity>
   ) : (
     <TouchableOpacity onPress={onSubmit}>
       <StyledButton

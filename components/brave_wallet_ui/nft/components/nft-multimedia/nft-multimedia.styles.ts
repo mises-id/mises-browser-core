@@ -3,25 +3,25 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const MultiMediaWrapper = styled.div`
+export const MultiMediaWrapper = styled.View`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 `
 
-export const NftMediaIframe = styled.iframe<{ visible: boolean }>`
-  width: ${p => p.visible ? '100%' : '0'};
-  min-width: ${p => p.visible ? '100%' : '0'};
-  min-height: 100vh;
-  border: none;
-  visibility: ${p => p.visible ? 'visible' : 'hidden'};
-  border-radius: 12px;
-`
+// export const NftMediaIframe = styled.iframe<{ visible: boolean }>`
+//   width: ${p => p.visible ? '100%' : '0'};
+//   min-width: ${p => p.visible ? '100%' : '0'};
+//   min-height: 100vh;
+//   border: none;
+//   visibility: ${p => p.visible ? 'visible' : 'hidden'};
+//   border-radius: 12px;
+// `
 
-export const MediaSkeletonWrapper = styled.div`
+export const MediaSkeletonWrapper = styled.View`
   width: 75%;
   height: 500px;
   border-radius: 12px;

@@ -87,8 +87,8 @@ export const SellAssetModal = (props: Props) => {
 
   // Methods
   const handleInputAmountChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSellAmount(event.target.value)
+    (value: string) => {
+      setSellAmount(value)
     },
     [setSellAmount]
   )
@@ -113,7 +113,7 @@ export const SellAssetModal = (props: Props) => {
     <PopupModal
       title={`${getLocale('braveWalletSell')} ${selectedAsset.name}`}
       onClose={onCloseSellModal}
-      width='512px'
+      width='320px'
       borderRadius={16}
       ref={sellAssetModalRef}
       headerPaddingVertical={24}
@@ -149,16 +149,14 @@ export const SellAssetModal = (props: Props) => {
               width='unset'
             >
               <PresetButton
-                onClick={() => setPresetAmountValue(0.5)}
+                onPress={() => setPresetAmountValue(0.5)}
                 marginRight={4}
-              >
-                {getLocale('braveWalletSendHalf')}
-              </PresetButton>
+                title={getLocale('braveWalletSendHalf')}
+              />
+                
               <PresetButton
-                onClick={() => setPresetAmountValue(1)}
-              >
-                {getLocale('braveWalletSendMax')}
-              </PresetButton>
+                onPress={() => setPresetAmountValue(1)}
+                title={getLocale('braveWalletSendMax')} />
             </Row>
           </Row>
           <Row
@@ -172,7 +170,7 @@ export const SellAssetModal = (props: Props) => {
               <AmountInput
                 placeholder='0.00'
                 value={sellAmount}
-                onChange={handleInputAmountChange}
+                onChangeText={handleInputAmountChange}
               />
             </Row>
             <Row

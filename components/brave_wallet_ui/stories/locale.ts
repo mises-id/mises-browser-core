@@ -250,6 +250,7 @@ provideStrings({
   braveWalletWalletPopupLock: 'Lock wallet',
   braveWalletWalletPopupBackup: 'Backup Wallet',
   braveWalletWalletPopupConnectedSites: 'Connected sites',
+  braveWalletWalletPopupActivity: 'Activity',
 
   // Backup Warning
   braveWalletBackupWarningText: 'Back up your wallet now to protect your assets and ensure you never lose access.',

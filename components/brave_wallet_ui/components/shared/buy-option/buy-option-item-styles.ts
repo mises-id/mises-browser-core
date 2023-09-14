@@ -23,7 +23,9 @@ export const StyledWrapper = styled.View<LayoutProps>`
       width: 100%;
       margin-top: 16px;
       margin-bottom: 4px;
-      border: 1px solid ${(p) => p.theme.color.divider01};
+      border-width: 1px;
+      border-style: solid;
+      border-color: ${(p) => p.theme.color.divider01};
       border-radius: 4px;
       padding: 12px;
     `
@@ -70,7 +72,6 @@ export const StyledButton = styled(WalletButton)`
   cursor: pointer;
   border-radius: 44px;
   padding: 6px 18px;
-  outline: none;
   background-color: transparent;
   border: ${p => `1px solid ${p.theme.color.interactive08}`};
   

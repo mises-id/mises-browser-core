@@ -7,8 +7,7 @@ import * as React from 'react'
 
 // Options
 import {
-  NavOptions,
-  BuySendSwapDepositOptions
+  HomePageNavOptions
 } from '../../../options/nav-options'
 
 // Components
@@ -47,15 +46,15 @@ export const WalletNav = (props: Props) => {
   return (
     <Wrapper>
       <Section showBorder={true}>
-        {NavOptions.map((option) =>
+        {HomePageNavOptions.map((option) =>
           <WalletNavButton option={option} key={option.id} />
         )}
       </Section>
-      <Section>
+      {/* <Section>
         {BuySendSwapDepositOptions.map((option) =>
           <WalletNavButton option={option} key={option.id} />
         )}
-      </Section>
+      </Section> */}
     </Wrapper>
   )
 }

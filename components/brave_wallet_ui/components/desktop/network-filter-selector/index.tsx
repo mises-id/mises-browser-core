@@ -40,6 +40,7 @@ import {
   useGetNetworkQuery,
   useGetVisibleNetworksQuery
 } from '../../../common/slices/api.slice'
+import { Text } from 'react-native'
 
 interface Props {
   networkListSubset?: BraveWallet.NetworkInfo[]
@@ -165,7 +166,7 @@ export const NetworkFilterSelector = ({
           {selectedNetwork.chainId !== AllNetworksOption.chainId &&
             <CreateNetworkIcon network={selectedNetwork} marginRight={14} size='big' />
           }
-          {selectedNetwork.chainName}
+          <Text>{selectedNetwork.chainName}</Text>
         </SelectorLeftSide>
         <DropDownIcon />
       </DropDownButton>

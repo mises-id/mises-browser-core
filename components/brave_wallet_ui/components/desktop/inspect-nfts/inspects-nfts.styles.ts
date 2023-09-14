@@ -51,7 +51,6 @@ export const TopRowButton = styled(WalletButton)`
   line-height: 20px;
   background-color: transparent;
   color: ${p => p.theme.palette.white};
-  outline: none;
   border: none;
 `
 

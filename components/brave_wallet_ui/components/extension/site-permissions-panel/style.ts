@@ -89,7 +89,6 @@ export const FavIcon = styled.Image`
 export const NewAccountButton = styled(WalletButton)`
   display: flex;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

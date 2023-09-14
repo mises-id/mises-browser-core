@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const RevealableContentContainer = styled.div<{ hideContent?: boolean }>`
+export const RevealableContentContainer = styled.View<{ hideContent?: boolean }>`
   --scroll-offset: ${(p) => p?.hideContent ? '-400px' : '0px'};
   width: 100%;
   overflow: hidden;
@@ -14,7 +14,7 @@ export const RevealableContentContainer = styled.div<{ hideContent?: boolean }>`
   height: auto;
 `
 
-export const RevealableContentColumn = styled.div`
+export const RevealableContentColumn = styled.View`
   display: flex;
   flex-direction: column;
   margin-top: var(--scroll-offset);

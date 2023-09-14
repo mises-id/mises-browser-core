@@ -2,12 +2,12 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import IpfsIcon from '../../../assets/svg-icons/nft-ipfs/ipfs-small.svg'
 import IpfsUploadingIcon from '../../../assets/svg-icons/nft-ipfs/ipfs-uploading.svg'
 
-export const StyledWrapper = styled.div<{ size: string }>`
+export const StyledWrapper = styled.View<{ size: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,7 @@ export const StyledWrapper = styled.div<{ size: string }>`
   height: ${p => p.size};
 `
 
-export const GifWrapper = styled.div`
+export const GifWrapper = styled.View`
   display: flex;
   position: relative;
   align-items: center;
@@ -24,13 +24,13 @@ export const GifWrapper = styled.div`
   height: 30px;
 `
 
-export const StatusGif = styled.img`
+export const StatusGif = styled.Image`
   width: 100%;
   height: 100%;
   z-index: 1;
 `
 
-const BannerLeftIcon = styled.div`
+const BannerLeftIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -2,11 +2,11 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import CheckStar from '../../../assets/svg-icons/star-checked.svg'
 import UnCheckStar from '../../../assets/svg-icons/star-unchecked.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,7 +15,7 @@ export const StyledWrapper = styled.div`
   border-bottom: ${(p) => `1px solid ${p.theme.color.divider01}`};
 `
 
-export const IconAndInfo = styled.div`
+export const IconAndInfo = styled.View`
   flex: 1;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ export const IconAndInfo = styled.div`
   flex-direction: row;
 `
 
-export const AppIconWrapper = styled.div`
+export const AppIconWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,12 +35,12 @@ export const AppIconWrapper = styled.div`
   overflow: hidden;
 `
 
-export const AppIcon = styled.img`
+export const AppIcon = styled.Image`
   width: 65px;
   height: 65px;
 `
 
-export const AppDescColumn = styled.div`
+export const AppDescColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -48,7 +48,7 @@ export const AppDescColumn = styled.div`
   width: 60%;
 `
 
-export const AppName = styled.span`
+export const AppName = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -58,7 +58,7 @@ export const AppName = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const AppDesctription = styled.span`
+export const AppDesctription = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
@@ -67,7 +67,7 @@ export const AppDesctription = styled.span`
   word-wrap: wrap;
 `
 
-export const SelectedIcon = styled.div`
+export const SelectedIcon = styled.TouchableOpacity`
   width: 18px;
   height: 18px;
   background-image: url(${CheckStar});
@@ -75,7 +75,7 @@ export const SelectedIcon = styled.div`
   cursor: pointer;
 `
 
-export const UnSelectedIcon = styled.div`
+export const UnSelectedIcon = styled.TouchableOpacity`
   width: 18px;
   height: 18px;
   background-image: url(${UnCheckStar});

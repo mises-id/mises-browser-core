@@ -3,18 +3,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import Button, { Props as ButtonProps } from './components/buttonsIndicators/button'
 
-export const Section = styled('div')<{}>`
+export const Section = styled.View<{}>`
   margin: 0 20px 10px;
 `
 
-export const Title = styled('h4')<{}>`
+export const Title = styled.Text<{}>`
   margin: 15px 0 5px;
 `
 
-export const SideBySideButtons = styled('div')<{}>`
+export const SideBySideButtons = styled.View<{}>`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;

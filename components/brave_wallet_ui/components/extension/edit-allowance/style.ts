@@ -2,19 +2,19 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 87%;
   padding: 5px 15px 15px 15px;
 `
 
-export const FormColumn = styled.div`
+export const FormColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -23,9 +23,8 @@ export const FormColumn = styled.div`
   align-self: center;
 `
 
-export const Input = styled.input`
+export const Input = styled.TextInput`
   box-sizing: border-box;
-  outline: none;
   width: 100%;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
@@ -47,9 +46,6 @@ export const Input = styled.input`
     color: ${(p) => p.theme.color.text03};
     font-weight: normal;
   }
-  :focus {
-    outline: none;
-  }
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -60,7 +56,7 @@ export const Input = styled.input`
   }
 `
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,7 +64,7 @@ export const ButtonRow = styled.div`
   width: 100%;
 `
 
-export const Description = styled.span`
+export const Description = styled.Text`
   width: 275px;
   font-family: Poppins;
   font-size: 12px;
@@ -78,12 +74,12 @@ export const Description = styled.span`
   color: ${(p) => p.theme.color.text02};
 `
 
-export const AllowanceOption = styled.div`
+export const AllowanceOption = styled.View`
   display: block;
   width: 239px;
 `
 
-export const AllowanceTitle = styled.div`
+export const AllowanceTitle = styled.View`
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
@@ -93,7 +89,7 @@ export const AllowanceTitle = styled.div`
   padding-bottom: 6px;
 `
 
-export const AllowanceContent = styled.div`
+export const AllowanceContent = styled.View`
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;

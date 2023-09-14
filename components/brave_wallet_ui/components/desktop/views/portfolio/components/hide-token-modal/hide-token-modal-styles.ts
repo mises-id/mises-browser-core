@@ -52,7 +52,9 @@ export const ButtonRow = styled.View`
 
 export const OkButton = styled(WalletButton)`
   background-color: ${p => p.theme.palette.blurple500};
-  border: 1px solid ${p => p.theme.palette.blurple500};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.palette.blurple500};
   height: 40px;
   width: 125px;
   margin-top: 70px;
@@ -72,7 +74,9 @@ export const OkButton = styled(WalletButton)`
 export const CancelButton = styled(WalletButton)`
   background-image: none;
   background-color: none;;
-  border: 1px solid ${p => p.theme.palette.blurple500};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.palette.blurple500};
   height: 40px;
   width: 125px;
   margin-top: 70px;

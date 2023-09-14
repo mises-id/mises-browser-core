@@ -3,6 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
+import { CaratCircleODownIcon } from '../../../assets/svg-icons/nav-button-icons'
 import styled from 'styled-components/native'
 
 // icons
@@ -17,6 +18,9 @@ export const CaratDownIcon = styled.View<IsPanelProps>`
   height: 14px;
   margin-left: 4px;
   color: ${(p) => p.isPanel ? p.theme.palette.white : p.theme.color.interactive07};
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${CaratCircleODownIcon});
+  mask-image: url(${CaratCircleODownIcon});
 `
 
 export const OvalButton = styled.TouchableOpacity<IsPanelProps>`
@@ -25,12 +29,13 @@ export const OvalButton = styled.TouchableOpacity<IsPanelProps>`
   justify-content: center;
   flex-direction: row;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border-radius: 48px;
   padding: 3px 10px;
-  border: 1px solid ${(p) => p.isPanel ? 'rgba(255,255,255,0.5)' : p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.isPanel ? 'rgba(255,255,255,0.5)' : p.theme.color.interactive08};
 `
 
 export const OvalButtonText = styled.Text<IsPanelProps>`

@@ -3,17 +3,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // icons
 import DownloadIcon from '../../../../assets/svg-icons/download-icon.svg'
 
-export const IntroImg = styled.img`
+export const IntroImg = styled.Image`
   margin-top: 16px;
   margin-bottom: 40px;
 `
 
-export const CloseButtonContainer = styled.div`
+export const CloseButtonContainer = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -22,7 +22,7 @@ export const CloseButtonContainer = styled.div`
   margin-bottom: 44px;
 `
 
-export const IntroContainer = styled.div`
+export const IntroContainer = styled.View`
   width: 365px;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ export const IntroContainer = styled.div`
   justify-content: center;
 `
 
-export const ArticleLinksContainer = styled.div`
+export const ArticleLinksContainer = styled.View`
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -41,7 +41,7 @@ export const ArticleLinksContainer = styled.div`
   margin-bottom: 60px;
 `
 
-export const ButtonContainer = styled.div`
+export const ButtonContainer = styled.View`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -56,9 +56,8 @@ export const ButtonContainer = styled.div`
   margin-bottom: 80px;
 `
 
-export const DepositIcon = styled.div`
+export const DepositIcon = styled.View`
   cursor: pointer;
-  outline: none;
   border: none;
   mask-image: url(${DownloadIcon});
   mask-position: center;

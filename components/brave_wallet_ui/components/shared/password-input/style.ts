@@ -75,11 +75,6 @@ export const Input = styled.TextInput<{ hasError: boolean }>`
     color: ${(p) => p.theme.color.text03};
     font-weight: normal;
   }
-
-  :focus {
-    outline: none;
-  }
-
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -127,7 +122,6 @@ export const ToggleVisibilityButton = styled.TouchableOpacity`
   position: absolute;
   right: 10px;
   cursor: pointer;
-  outline: none;
   border: none;
   padding: 0px;
   width: 18px;

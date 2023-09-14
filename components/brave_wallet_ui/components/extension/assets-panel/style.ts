@@ -17,7 +17,6 @@ export const StyledWrapper = styled.View`
 
 export const AddAssetButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

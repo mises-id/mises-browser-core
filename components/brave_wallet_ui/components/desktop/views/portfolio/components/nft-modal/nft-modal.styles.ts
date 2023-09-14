@@ -2,11 +2,11 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 export const modalSize = '640px'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.TouchableOpacity`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,14 +20,14 @@ export const StyledWrapper = styled.div`
   background-color: rgba(33, 37, 41, 0.8);
 `
 
-export const Modal = styled.div<{ width?: string, height?: string }>`
+export const Modal = styled.TouchableOpacity<{ width?: string, height?: string }>`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-conent: center;
-  min-width: ${p => p.width ? p.width : '580px'};
-  max-width: ${p => p.width ? p.width : '580px'};
+  min-width: ${p => p.width ? p.width : '320px'};
+  max-width: ${p => p.width ? p.width : '320px'};
   min-height: ${p => p.height ? p.height : '580px'};
   max-height: ${p => p.height ? p.height : '580px'};
   background-color: transparent;

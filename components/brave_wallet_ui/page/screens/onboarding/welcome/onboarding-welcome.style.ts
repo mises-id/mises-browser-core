@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // styles
 import { Column, Row } from '../../../../components/shared/style'
 
-export const Title = styled.p<{ maxWidth?: string }>`
+export const Title = styled.Text<{ maxWidth?: string }>`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -21,7 +21,7 @@ export const Title = styled.p<{ maxWidth?: string }>`
   max-width: ${(p) => p?.maxWidth || 'unset'};
 `
 
-export const LearnMoreLink = styled.a`
+export const LearnMoreLink = styled.Text`
   font-family: Poppins;
   font-style: normal;
   font-weight: 400;
@@ -42,12 +42,12 @@ export const ButtonContainer = styled(Row)`
   gap: 20px;
 `
 
-export const BlockQuote = styled.blockquote`
+export const BlockQuote = styled.View`
   display: flex;
   flex-direction: row;
 `
 
-export const VerticalRule = styled.div`
+export const VerticalRule = styled.View`
   width: 1px;
   min-height: 90%;
   background-color: ${(p) => p.theme.color.divider01};
@@ -67,7 +67,7 @@ export const BlockQuoteTextContainer = styled(Column)`
   gap: 12px;
 `
 
-export const SubDivider = styled.div`
+export const SubDivider = styled.View`
   width: 234px;
   height: 1px;
   background-color: ${(p) => p.theme.color.divider01};
@@ -75,13 +75,13 @@ export const SubDivider = styled.div`
   margin-top: 33px;
 `
 
-export const SubDividerText = styled.div`
+export const SubDividerText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
   color: ${(p) => p.theme.color.text02};
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 `

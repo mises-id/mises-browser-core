@@ -20,9 +20,9 @@ import { AllNavOptions } from '../../../options/nav-options'
 
 // Components
 import { WalletNav } from '../wallet-nav/wallet-nav'
-import {
-  FeatureRequestButton
-} from '../../shared/feature-request-button/feature-request-button'
+// import {
+//   FeatureRequestButton
+// } from '../../shared/feature-request-button/feature-request-button'
 import {
   TabHeader
 } from '../../../page/screens/shared-screen-components/tab-header/tab-header'
@@ -101,9 +101,9 @@ export const WalletPageWrapper = (props: Props) => {
         {showNavigationAndHeader &&
           <WalletNav isSwap={walletLocation === WalletRoutes.Swap} />
         }
-        {!isWalletLocked &&
+        {/* {!isWalletLocked &&
           <FeatureRequestButton />
-        }
+        } */}
         <BlockForHeight />
         {wrapContentInBox ? (
           <LayoutCardWrapper

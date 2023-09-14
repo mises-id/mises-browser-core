@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // icon images
 import HistoryIcon from '../../../assets/svg-icons/history-icon.svg'
@@ -13,7 +13,7 @@ import WarningCircle from '../../../assets/svg-icons/warning-circle-icon.svg'
 import { makeSizeMixin, sizeCssValue } from '../../../utils/style.utils'
 import { ThemeColor } from '../../shared/style'
 
-export const StyledWrapper = styled.div<{ hideScrollbar?: boolean }>`
+export const StyledWrapper = styled.View<{ hideScrollbar?: boolean }>`
   display: flex;
   height: 100%;
   width: 100%;
@@ -26,13 +26,13 @@ export const StyledWrapper = styled.div<{ hideScrollbar?: boolean }>`
   };
 `
 
-export const FloatAboveBottomRightCorner = styled.div`
+export const FloatAboveBottomRightCorner = styled.View`
   position: absolute;
   bottom: -8%;
   right: -8%;
 `
 
-export const FillerTitleText = styled.p`
+export const FillerTitleText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -43,7 +43,7 @@ export const FillerTitleText = styled.p`
   margin: 0px;
 `
 
-export const FillerDescriptionText = styled.p`
+export const FillerDescriptionText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -54,7 +54,7 @@ export const FillerDescriptionText = styled.p`
   margin: 0px;
 `
 
-export const TransactionsIcon = styled.div<{
+export const TransactionsIcon = styled.View<{
   color?: ThemeColor
   size?: number | string
 }>`
@@ -70,7 +70,7 @@ export const TransactionsIcon = styled.div<{
   }
 `
 
-export const InfoCircleIcon = styled.div<{
+export const InfoCircleIcon = styled.View<{
   size?: number | string
 }>`
   ${makeSizeMixin(18)}

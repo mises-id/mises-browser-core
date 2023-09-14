@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../style'
 
 export const BuyAssetOptionWrapper = styled(WalletButton)<{ isSelected?: boolean }>`
@@ -25,14 +25,14 @@ export const BuyAssetOptionWrapper = styled(WalletButton)<{ isSelected?: boolean
   padding: ${(p) => p.isSelected ? '11px' : '13px'};
 `
 
-export const NameAndIcon = styled.div`
+export const NameAndIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 `
 
-export const AssetName = styled.span`
+export const AssetName = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -40,14 +40,14 @@ export const AssetName = styled.span`
   color: ${(p) => p.theme.color.text01};
 `
 
-export const NameColumn = styled.div`
+export const NameColumn = styled.View`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 `
 
-export const NetworkDescriptionText = styled.span`
+export const NetworkDescriptionText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;
@@ -55,12 +55,12 @@ export const NetworkDescriptionText = styled.span`
   color: ${(p) => p.theme.color.text03};
 `
 
-export const PriceContainer = styled.div`
+export const PriceContainer = styled.View`
   align-self: center;
   justify-self: flex-end;
 `
 
-export const PriceText = styled.span`
+export const PriceText = styled.Text`
   font-family: Poppins;
   font-size: 13px;
   line-height: 20px;

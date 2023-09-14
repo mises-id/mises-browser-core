@@ -24,7 +24,7 @@ export const marketDataTableHeaders: MarketDataHeader[] = [
     sortable: true,
     customStyle: {
       width: 150,
-      textAlign: 'right'
+      // textAlign: 'right'
     }
   },
   {
@@ -32,7 +32,7 @@ export const marketDataTableHeaders: MarketDataHeader[] = [
     content: getLocale('braveWalletMarketData24HrColumn'),
     sortable: true,
     customStyle: {
-      textAlign: 'right'
+      // textAlign: 'right'
     }
   },
   {
@@ -41,7 +41,7 @@ export const marketDataTableHeaders: MarketDataHeader[] = [
     sortable: true,
     sortOrder: 'desc',
     customStyle: {
-      textAlign: 'right'
+      // textAlign: 'right'
     }
   },
   {
@@ -49,7 +49,7 @@ export const marketDataTableHeaders: MarketDataHeader[] = [
     content: getLocale('braveWalletMarketDataVolumeColumn'),
     sortable: true,
     customStyle: {
-      textAlign: 'right'
+      // textAlign: 'right'
     }
   },
   {
@@ -57,7 +57,7 @@ export const marketDataTableHeaders: MarketDataHeader[] = [
     content: 'Buy/Deposit',
     sortable: false,
     customStyle: {
-      textAlign: 'right'
+      // textAlign: 'right'
     }
   }
   // Hiden because price History data is not available

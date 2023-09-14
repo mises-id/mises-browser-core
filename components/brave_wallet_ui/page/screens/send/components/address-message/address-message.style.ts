@@ -27,7 +27,6 @@ export const LearnMoreLink = styled.Text`
 
 export const HowToSolveButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

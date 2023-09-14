@@ -74,7 +74,9 @@ export const MessageBox = styled.View<Partial<StyleProps>>`
   align-items: ${(p) => p.needsCenterAlignment ? 'center' : 'flex-start'};
   justify-content: ${(p) => p.needsCenterAlignment ? 'center' : 'flex-start'};
   flex-direction: column;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   box-sizing: border-box;
   border-radius: 4px;
   width: 255px;
@@ -106,7 +108,6 @@ export const ButtonRow = styled.View`
 
 export const DecryptButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   border: none;
   font-weight: 600;
   font-family: Poppins;

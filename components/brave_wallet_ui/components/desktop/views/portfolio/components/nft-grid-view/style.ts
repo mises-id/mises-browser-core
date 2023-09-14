@@ -34,7 +34,6 @@ export const NFTWrapper = styled.View`
   box-sizing: border-box;
   flex-direction: column;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

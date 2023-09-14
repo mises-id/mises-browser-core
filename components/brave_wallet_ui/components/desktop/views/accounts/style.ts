@@ -130,7 +130,6 @@ export const WalletAddress = styled(WalletButton)`
   color: ${(p) => p.theme.color.text03};
   margin-right: 15px;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -172,9 +171,10 @@ export const StyledButton = styled(WalletButton)`
   cursor: pointer;
   border-radius: 40px;
   padding: 12px 22px;
-  outline: none;
   background-color: transparent;
-  border: 1px solid ${(p) => p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.interactive08};
   margin-right: 8px;
 `
 

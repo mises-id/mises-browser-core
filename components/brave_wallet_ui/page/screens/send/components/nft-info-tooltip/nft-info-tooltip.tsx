@@ -44,18 +44,19 @@ export const NFTInfoTooltip = (props: Props) => {
   const [active, setActive] = React.useState(false)
 
   // Methods
-  const showTip = () => {
-    setActive(true)
-  }
+  // const showTip = () => {
+  //   setActive(true)
+  // }
 
-  const hideTip = () => {
-    setActive(false)
-  }
+  // const hideTip = () => {
+  //   setActive(false)
+  // }
 
   return (
     <Wrapper
-      onMouseEnter={showTip}
-      onMouseLeave={hideTip}
+      onPress={() => setActive(!active)}
+      // onMouseEnter={showTip}
+      // onMouseLeave={hideTip}
     >
       <TipIcon icon={InfoIcon} size={14} />
       {active &&
@@ -71,7 +72,7 @@ export const NFTInfoTooltip = (props: Props) => {
             </Text>
             <VerticalSpacer size={8} />
             <AddressLink
-              onClick={onClickViewOnBlockExplorer('address', token.contractAddress)}
+              onPress={onClickViewOnBlockExplorer('address', token.contractAddress)}
             >
               {reduceAddress(token.contractAddress)}
             </AddressLink>
@@ -88,7 +89,7 @@ export const NFTInfoTooltip = (props: Props) => {
               </Text>
               <VerticalSpacer size={8} />
               <AddressLink
-                onClick={onClickViewOnBlockExplorer('nft', token.contractAddress, token.tokenId)}
+                onPress={onClickViewOnBlockExplorer('nft', token.contractAddress, token.tokenId)}
               >
                 {'#' + new Amount(token.tokenId).toNumber()}
               </AddressLink>

@@ -7,10 +7,10 @@
 import { BraveWallet, DAppPermissionDurationOption } from '../constants/types'
 
 export const DAppPermissionDurationOptions: DAppPermissionDurationOption[] = [
-  {
-    name: 'braveWalletPermissionUntilClose',
-    id: BraveWallet.PermissionLifetimeOption.kPageClosed
-  },
+  // {
+  //   name: 'braveWalletPermissionUntilClose',
+  //   id: BraveWallet.PermissionLifetimeOption.kPageClosed
+  // },
   {
     name: 'braveWalletPermissionOneDay',
     id: BraveWallet.PermissionLifetimeOption.k24Hours

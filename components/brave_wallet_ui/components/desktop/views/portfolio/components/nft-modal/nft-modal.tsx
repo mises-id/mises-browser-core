@@ -22,9 +22,9 @@ const ESC_KEY = 'Escape'
 export const NftModal = (props: Props) => {
   const { nftImageUrl, onClose } = props
 
-  const onClickModal = React.useCallback((event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault()
-  }, [])
+  // const onClickModal = React.useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+  //   event.preventDefault()
+  // }, [])
 
   const handleKeyDown = React.useCallback((event: KeyboardEvent) => {
     if (event.key === ESC_KEY) {
@@ -43,12 +43,11 @@ export const NftModal = (props: Props) => {
 
   return (
     <StyledWrapper
-      onClick={onClose}
+      onPress={onClose}
     >
       <Modal
         width={modalSize}
         height={modalSize}
-        onClick={onClickModal}
       >
         <NftIcon
           iconStyles={{ borderRadius: '10px' }}

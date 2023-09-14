@@ -15,7 +15,7 @@ import { AddressMessageInfo } from '../../../../../constants/types'
 import { getLocale } from '../../../../../../common/locale'
 
 // Styled Components
-import { LearnMoreLink, HowToSolveButton, ErrorIcon } from './address-message.style'
+import { HowToSolveButton, ErrorIcon } from './address-message.style'
 import { Column, Row, Text, VerticalDivider, VerticalSpacer } from '../../shared.styles'
 
 interface Props {

@@ -15,7 +15,6 @@ export const Button = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

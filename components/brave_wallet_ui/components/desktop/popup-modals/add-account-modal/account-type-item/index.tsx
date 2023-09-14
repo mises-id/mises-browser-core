@@ -36,7 +36,7 @@ const AccountTypeItem = (props: Props) => {
   return (
     <StyledWrapper>
       <LeftSide>
-        <NetworkIcon src={icon} />
+        <NetworkIcon source={{uri: icon}} />
         <InfoColumn>
           <Title>{title}</Title>
           <Description>{description}</Description>

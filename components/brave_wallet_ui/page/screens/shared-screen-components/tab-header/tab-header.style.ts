@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import * as leo from '@brave/leo/tokens/css'
 // import Icon from '@brave/leo/react/icon'
 
@@ -13,13 +13,14 @@ import BraveLogoDark from '../../send/assets/brave-logo-dark.svg'
 
 // Shared Styles
 import { StyledDiv, StyledButton } from '../../send/shared.styles'
+import { SettingsAdvancedIcon } from '../../../../assets/svg-icons/nav-button-icons'
 
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 16px 32px 0px 32px;
+  padding: 16px 16px 0px 16px;
   margin-bottom: 45px;
   top: 0;
   left: 0;
@@ -50,13 +51,16 @@ export const SettingsButton = styled(StyledButton)`
   border-radius: 100%;
   height: 40px;
   width: 40px;
-  margin-right: 16px;
   &:hover {
     background-color: ${leo.color.container.background};
   }
 `
 
-export const SettingsIcon = styled.div`
-  --leo-icon-size: 20px;
+export const SettingsIcon = styled.View`
   color: ${leo.color.icon.default};
+  width: 20px;
+  height: 20px;
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${SettingsAdvancedIcon});
+  mask-image: url(${SettingsAdvancedIcon});
 `

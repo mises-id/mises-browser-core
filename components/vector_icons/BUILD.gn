@@ -10,6 +10,7 @@ aggregate_vector_icons("mises_components_vector_icons") {
 
   sources = [ 
     "autoplay_status.icon",
+    "open_in_ipfs.icon",
   ]
 }
 

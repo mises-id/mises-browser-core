@@ -3,26 +3,22 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 // import Icon from '@brave/leo/react/icon'
 import { WalletButton, Text } from '../../../shared/style'
 
 export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: flex-start;
-  width: 100%;
+  flex: 1;
   cursor: pointer;
-  padding: 16px;
-  outline: none;
   border: none;
   background-image: none;
-  background-color: none;;
   background-color: ${(p) => p.isSelected
     ? 'var(--nav-button-background-hover)'
     : 'none'};
-  border-radius: 6px;
-  margin-bottom: 8px;
   color: var(--nav-button-color);
   font-weight: 600;
   font-size: 16px;
@@ -36,7 +32,7 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   transition-duration: inherit;
 `
 
-export const ButtonIcon = styled.div`
+export const ButtonIcon = styled.View`
   --leo-icon-size: 24px;
   color: var(--nav-button-color);
   margin-right: var(--icon-margin-right);
@@ -45,6 +41,5 @@ export const ButtonIcon = styled.div`
 
 export const ButtonText = styled(Text)`
   color: var(--nav-button-color);
-  display: var(--display-text);
   transition-duration: inherit;
 `

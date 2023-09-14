@@ -256,12 +256,12 @@ export const SelectTokenModal = React.forwardRef<HTMLDivElement, Props>(
     // render
     return (
       <Wrapper>
-        <Modal ref={forwardedRef}>
+        <Modal>
           <Row rowWidth='full' horizontalPadding={24} verticalPadding={20}>
             <Text textSize='18px' isBold={true}>
               {modalTitle}
             </Text>
-            <IconButton icon={CloseIcon} onClick={onClose} size={20} />
+            <IconButton icon={CloseIcon} onPress={onClose} size={20} />
           </Row>
           <Row rowWidth='full' horizontalPadding={16} marginBottom={16}>
             <NetworkFilterWithSearch

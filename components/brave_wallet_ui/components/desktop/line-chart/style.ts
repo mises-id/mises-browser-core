@@ -29,15 +29,15 @@ export const StyledWrapper = styled.View<Partial<StyleProps>>`
 `
 
 export const LabelWrapper = styled.View<Partial<StyleProps>>`
-  --label-start-translate: translateX(calc(-${(p) => p.labelTranslate}px + 4px));
-  --label-end-translate: translateX(calc(-100% + ${(p) => p.labelTranslate}px));
+  // --label-start-translate: translateX(calc(-${(p) => p.labelTranslate}px + 4px));
+  // --label-end-translate: translateX(calc(-100% + ${(p) => p.labelTranslate}px));
   --label-middle-end-condition: ${(p) => p.labelPosition === 'end' ? 'var(--label-end-translate)' : 'translateX(-50%)'};
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   top: -16px;
-  transform: ${(p) => p.labelPosition === 'start' ? 'var(--label-start-translate)' : 'var(--label-middle-end-condition)'};
+  // transform: ${(p) => p.labelPosition === 'start' ? 'var(--label-start-translate)' : 'var(--label-middle-end-condition)'};
   white-space: nowrap
 `
 

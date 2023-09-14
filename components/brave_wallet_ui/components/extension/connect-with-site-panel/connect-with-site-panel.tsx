@@ -93,7 +93,7 @@ export const ConnectWithSite = (props: Props) => {
   const [addressToConnect, setAddressToConnect] = React.useState<string>()
   const [selectedDuration, setSelectedDuration] =
     React.useState<BraveWallet.PermissionLifetimeOption>(
-      BraveWallet.PermissionLifetimeOption.kPageClosed
+      BraveWallet.PermissionLifetimeOption.k24Hours
     )
   const [isReadyToConnect, setIsReadyToConnect] = React.useState<boolean>(false)
   const [isScrolled, setIsScrolled] = React.useState<boolean>(false)
@@ -205,7 +205,7 @@ export const ConnectWithSite = (props: Props) => {
               alignItems="flex-start"
               padding="8px 16px 16px 16px"
             >
-              <SectionLabel>
+              <SectionLabel style={style.flatten(['dark:color-white'])}>
                 {getLocale('braveWalletPermissionDuration')}
               </SectionLabel>
               <PermissionDurationDropdown
@@ -214,7 +214,7 @@ export const ConnectWithSite = (props: Props) => {
               />
               <VerticalDivider />
               <VerticalSpace space="8px" />
-              <SectionLabel>
+              <SectionLabel style={style.flatten(['dark:color-white'])}>
                 {getLocale('braveWalletConnectPermittedLabel')}
               </SectionLabel>
               {DAppPermittedOptions.map(
@@ -237,7 +237,7 @@ export const ConnectWithSite = (props: Props) => {
                   </Row>
                 )
               )}
-              <SectionLabel>
+              <SectionLabel style={style.flatten(['dark:color-white'])}>
                 {getLocale('braveWalletConnectNotPermittedLabel')}
               </SectionLabel>
               {DAppNotPermittedOptions.map(
@@ -266,7 +266,7 @@ export const ConnectWithSite = (props: Props) => {
       </ScrollContainer>
       <ButtonRow padding={16} isReadyToConnect={isReadyToConnect}>
         <NavButton onPress={onCancel} style={style.flatten(['border-color-blue-600', 'border-width-1', 'border-solid'])}>
-          <Text style={style.flatten(['color-black'])}>{getLocale('braveWalletButtonCancel')}</Text>
+          <Text style={style.flatten(['color-black', 'dark:color-white'])}>{getLocale('braveWalletButtonCancel')}</Text>
         </NavButton>
         <HorizontalSpace space="16px" />
         <NavButton

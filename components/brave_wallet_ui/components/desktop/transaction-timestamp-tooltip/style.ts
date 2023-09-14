@@ -3,16 +3,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.TouchableOpacity`
   flex: 1;
   display: flex;
   position: relative;
   height: 100%;
 `
 
-export const Tip = styled.div`
+export const Tip = styled.View`
   position: absolute;
   border-radius: 4px;
   left: 50%;
@@ -30,7 +30,7 @@ export const Tip = styled.div`
   top: 9px;
 `
 
-export const Pointer = styled.div`
+export const Pointer = styled.View`
   width: 0;
   height: 0;
   border-style: solid;

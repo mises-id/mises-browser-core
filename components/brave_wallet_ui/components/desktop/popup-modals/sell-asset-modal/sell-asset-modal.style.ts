@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Assets
 import WarningCircleFilled from '../../../../assets/svg-icons/warning-circle-filled.svg'
@@ -11,14 +11,14 @@ import WarningCircleFilled from '../../../../assets/svg-icons/warning-circle-fil
 // Shared Styles
 import { AssetIconProps, AssetIconFactory } from '../../../shared/style'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 0 24px 24px 24px;
 `
 
-export const InputSection = styled.div`
+export const InputSection = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +29,7 @@ export const InputSection = styled.div`
   margin-bottom: 16px;
 `
 
-export const Text = styled.span<{
+export const Text = styled.Text<{
   textSize?: '32px' | '22px' | '20px' | '18px' | '16px' | '14px' | '12px'
   isBold?: boolean
   textColor?: 'text01' | 'text02' | 'text03'
@@ -59,7 +59,7 @@ export const AssetIcon = AssetIconFactory<AssetIconProps>({
   height: 'auto'
 })
 
-export const AmountInput = styled.input`
+export const AmountInput = styled.TextInput`
   font-family: 'Poppins';
   color: ${(p) => p.theme.color.text01};
   font-weight: 500;
@@ -67,7 +67,6 @@ export const AmountInput = styled.input`
   line-height: 48px;
   text-align: left;
   width: 100%;
-  outline: none;
   background-image: none;
   border: none;
   background-color: none;;
@@ -76,7 +75,7 @@ export const AmountInput = styled.input`
   }
 `
 
-export const PresetButton = styled.button<{ marginRight?: number }>`
+export const PresetButton = styled.Button<{ marginRight?: number }>`
   /* #F4F6F8 does not exist in the design system */
   --button-background: #F4F6F8;
   /* rgba(218, 220, 232, 0.4) does not exist in the design system */
@@ -90,7 +89,6 @@ export const PresetButton = styled.button<{ marginRight?: number }>`
   font-family: 'Poppins';
   cursor: pointer;
   border: none;
-  outline: none;
   background-image: none;
   background-color: none;;
   background-color: var(--button-background);
@@ -106,7 +104,7 @@ export const PresetButton = styled.button<{ marginRight?: number }>`
   }
 `
 
-export const ErrorBox = styled.div`
+export const ErrorBox = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -117,7 +115,7 @@ export const ErrorBox = styled.div`
   margin-bottom: 16px;
 `
 
-export const ErrorIcon = styled.div`
+export const ErrorIcon = styled.View`
   -webkit-mask-image: url(${WarningCircleFilled});
   height: 20px;
   width: 20px;

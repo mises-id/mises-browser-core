@@ -40,7 +40,7 @@ import {
   ConnectedHeader
 } from '../'
 import { SelectNetworkButton, LoadingSkeleton } from '../../shared'
-import { PanelBottomNav } from '../panel-bottom-nav/panel-bottom-nav'
+// import { PanelBottomNav } from '../panel-bottom-nav/panel-bottom-nav'
 
 // Styled Components
 import {
@@ -239,11 +239,12 @@ export const ConnectedPanel = (props: Props) => {
   const style = useStyle()
   // render
   return (
-    <StyledWrapper onPress={onHideMore} panelBackground={bg}>
+    <StyledWrapper onPress={onHideMore} panelBackground={bg} activeOpacity={1}>
       <ConnectedHeader
         onExpand={onExpand}
         onClickMore={onShowMore}
         onClickViewOnBlockExplorer={selectedAccount ? onClickViewOnBlockExplorer('address', selectedAccountAddress) : undefined}
+        onClickViewOnActivity={navAction}
         showMore={showMore}
       />
 
@@ -309,9 +310,9 @@ export const ConnectedPanel = (props: Props) => {
           </Text>
         </MoreAssetsButton>
       </CenterColumn>
-      <PanelBottomNav
+      {/* <PanelBottomNav
         onNavigate={navAction}
-      />
+      /> */}
     </StyledWrapper>
   )
 }

@@ -20,10 +20,11 @@ import {
 import { stripERC20TokenImageURL } from '../../../utils/string-utils'
 
 // styles
-import {
-  NftImageIframe,
-  NftImageResponsiveIframe
-} from './nft-icon-styles'
+// import {
+//   NftImageIframe,
+//   NftImageResponsiveIframe
+// } from './nft-icon-styles'
+import { Text } from 'react-native'
 
 export interface NftIconProps {
   icon?: string
@@ -33,8 +34,8 @@ export interface NftIconProps {
 }
 
 export const NftIcon = (props: NftIconProps) => {
-  const { icon, responsive, iconStyles, onLoad } = props
-  const [loaded, setLoaded] = React.useState<boolean>()
+  const { icon} = props
+  const [loaded] = React.useState<boolean>()
   const nftImageIframeRef = React.useRef<HTMLIFrameElement>(null)
 
   const tokenImageURL = stripERC20TokenImageURL(icon)
@@ -75,28 +76,28 @@ export const NftIcon = (props: NftIconProps) => {
     }
   }, [loaded, remoteImage, nftImageIframeRef, remoteCid])
 
-  const onIframeLoaded = React.useCallback(() => {
-    setLoaded(true)
-    if (onLoad) {
-      onLoad()
-    }
-  }, [])
-
-  return (
-    responsive
-      ? <NftImageResponsiveIframe
-        style={iconStyles}
-        onLoad={onIframeLoaded}
-        ref={nftImageIframeRef}
-        src="chrome-untrusted://nft-display"
-        sandbox="allow-scripts allow-same-origin"
-      />
-      : <NftImageIframe
-        style={iconStyles}
-        onLoad={onIframeLoaded}
-        ref={nftImageIframeRef}
-        src="chrome-untrusted://nft-display"
-        sandbox="allow-scripts allow-same-origin"
-      />
-  )
+  // const onIframeLoaded = React.useCallback(() => {
+  //   setLoaded(true)
+  //   if (onLoad) {
+  //     onLoad()
+  //   }
+  // }, [])
+  return <Text>NftImageResponsiveIframe</Text>
+  // return ( 
+  //   responsive
+  //     ? <NftImageResponsiveIframe
+  //       style={iconStyles}
+  //       onLoad={onIframeLoaded}
+  //       ref={nftImageIframeRef}
+  //       src="chrome-untrusted://nft-display"
+  //       sandbox="allow-scripts allow-same-origin"
+  //     />
+  //     : <NftImageIframe
+  //       style={iconStyles}
+  //       onLoad={onIframeLoaded}
+  //       ref={nftImageIframeRef}
+  //       src="chrome-untrusted://nft-display"
+  //       sandbox="allow-scripts allow-same-origin"
+  //     />
+  // )
 }

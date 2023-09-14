@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const SelectAccountTypeWrapper = styled.div`
+export const SelectAccountTypeWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -15,7 +15,7 @@ export const SelectAccountTypeWrapper = styled.div`
   min-height: 320px;
 `
 
-export const SelectAccountItemWrapper = styled.div`
+export const SelectAccountItemWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@ export const SelectAccountItemWrapper = styled.div`
   width: 100%;
 `
 
-export const SelectAccountTitle = styled.span`
+export const SelectAccountTitle = styled.Text`
   font-family: Poppins;
   font-size: 12px;
   line-height: 18px;

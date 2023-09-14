@@ -3,9 +3,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/native'
 
-export const StyledWrapper = styled.div<{
+export const StyledWrapper = styled.View<{
   layoutType?: 'loose' | 'tight'
 }>`
   display: flex;
@@ -21,7 +21,7 @@ export const StyledWrapper = styled.div<{
   }
 `
 
-export const SubDivider = styled.div`
+export const SubDivider = styled.View`
   width: 100%;
   height: 1px;
   background-color: ${(p) => p.theme.color.divider01};

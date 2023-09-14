@@ -3,11 +3,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { WalletButton } from '../../../shared/style'
 import GlobeConnectIcon from '../../../../assets/svg-icons/globe-connect-icon.svg'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -15,7 +15,7 @@ export const StyledWrapper = styled.div`
   margin: 32px 78px 39px;
 `
 
-export const Title = styled.h4`
+export const Title = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -27,7 +27,7 @@ export const Title = styled.h4`
   align-self: center;
 `
 
-export const Description = styled.p`
+export const Description = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -37,7 +37,7 @@ export const Description = styled.p`
   margin: 0;
 `
 
-export const LearnMoreLink = styled.a`
+export const LearnMoreLink = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -57,7 +57,6 @@ export const OpenRainbowAppButton = styled(WalletButton)`
   padding: 8px 14px;
   height: 40px;
   cursor: pointer;
-  outline: none;
   border-radius: 40px;
   background-color: ${(p) => p.theme.palette.blurple500};
   border: none;
@@ -66,7 +65,7 @@ export const OpenRainbowAppButton = styled(WalletButton)`
   margin-bottom: 12px;
 `
 
-export const ButtonText = styled.span`
+export const ButtonText = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -75,14 +74,14 @@ export const ButtonText = styled.span`
   color: ${(p) => p.theme.palette.white};
 `
 
-export const GlobeIcon = styled.div`
+export const GlobeIcon = styled.View`
   width: 24px;
   height: 24px;
   background-image: url(${GlobeConnectIcon});
   margin-right: 8px;
 `
 
-export const CheckboxWrapper = styled.div`
+export const CheckboxWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-start;

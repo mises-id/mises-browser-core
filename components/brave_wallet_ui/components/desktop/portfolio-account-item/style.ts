@@ -37,7 +37,6 @@ export const AccountAndAddress = styled.View`
 
 export const AccountNameButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -108,7 +107,6 @@ export const MoreButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

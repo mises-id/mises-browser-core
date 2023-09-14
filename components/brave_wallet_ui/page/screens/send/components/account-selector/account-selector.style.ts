@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Shared Styles
 import { Icon, StyledDiv, StyledButton } from '../../shared.styles'
@@ -16,7 +16,7 @@ export const ButtonIcon = styled(Icon)`
 export const ArrowIcon = styled(Icon) <{ isOpen: boolean }>`
   background-color: ${(p) => p.theme.color.text02};
   transition-duration: 0.3s;
-  transform: ${(p) => p.isOpen ? 'rotate(180deg)' : 'unset'};
+  transform: ${(p) => p.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
 `
 
 export const DropDown = styled(StyledDiv)`
@@ -28,7 +28,9 @@ export const DropDown = styled(StyledDiv)`
   align-items: center;
   width: 100%;
   max-height: 190px;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color:  ${p => p.theme.color.divider01};
   z-index: 10;
   left: 0px;
   top: 56px;

@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { AlertType } from '../../../constants/types'
 
 import { LeoColors } from './leo-colors'
 
-export const InlineAlertContainer = styled.div<{
+export const InlineAlertContainer = styled.View<{
   alertType: AlertType
 }>`
   display: flex;

@@ -3,30 +3,31 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex-direction: row;
   height: 40px;
 
 `
 
-export const AssetIcon = styled.img`
+export const AssetIcon = styled.Image`
   width: 40px;
   height: auto;
   margin-right: 12px;
 `
 
-export const NameAndSymbolWrapper = styled.div`
+export const NameAndSymbolWrapper = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding: 1px 0;
+  padding-top: 1px
+  padding-bottom: 1px
 `
 
-export const AssetName = styled.span`
+export const AssetName = styled.Text`
   font-family: Poppins;
   font-size: 14px;
   line-height: 20px;

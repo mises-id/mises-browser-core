@@ -26,14 +26,14 @@ export const ChecksumInfoModal = React.forwardRef<HTMLDivElement, Props>(
 
     return (
       <StyledWrapper>
-        <Modal ref={forwardedRef}>
+        <Modal>
           <VerticalSpacer size={38} />
           <Row
             rowWidth='full'
             horizontalAlign='flex-end'
             horizontalPadding={32}
           >
-            <IconButton icon={CloseIcon} onClick={onClose} size={18} />
+            <IconButton icon={CloseIcon} onPress={onClose} size={18} />
           </Row>
           <VerticalSpacer size={8} />
           <Column
@@ -73,9 +73,9 @@ export const ChecksumInfoModal = React.forwardRef<HTMLDivElement, Props>(
             >
               {getLocale('braveWalletChecksumModalStepOneTitle')}{' '}
               <Link
-                href='https://etherscan.io'
-                target='_blank'
-                rel='noopener noreferrer'
+                // href='https://etherscan.io'
+                // target='_blank'
+                // rel='noopener noreferrer'
               >
                 https://etherscan.io
               </Link>
@@ -107,7 +107,7 @@ export const ChecksumInfoModal = React.forwardRef<HTMLDivElement, Props>(
               {getLocale('braveWalletChecksumModalStepTwoDescription')}
             </Text>
             <VerticalSpacer size={8} />
-            <InfoGraphic src={ChecksumInfoGraphic} />
+            <InfoGraphic source={{uri: ChecksumInfoGraphic}} />
           </InfoColumn>
           <Column
             columnWidth='full'
@@ -122,9 +122,9 @@ export const ChecksumInfoModal = React.forwardRef<HTMLDivElement, Props>(
             >
               {getLocale('braveWalletChecksumModalNeedHelp')}{' '}
               <Link
-                href='https://support.brave.com/hc/en-us/articles/4415497656461-Brave-Wallet-FAQ'
-                target='_blank'
-                rel='noopener noreferrer'
+                // href='https://support.brave.com/hc/en-us/articles/4415497656461-Brave-Wallet-FAQ'
+                // target='_blank'
+                // rel='noopener noreferrer'
               >
                 {getLocale('braveWalletHelpCenter')}
               </Link>

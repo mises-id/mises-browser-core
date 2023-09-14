@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -16,24 +16,24 @@ export const StyledWrapper = styled.div`
   }
 `
 
-export const TableWrapper = styled.div`
+export const TableWrapper = styled.View`
   width: 100%;
 `
 
-export const AssetsColumnWrapper = styled.div`
+export const AssetsColumnWrapper = styled.View`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: left;
 `
 
-export const AssetsColumnItemSpacer = styled.div`
+export const AssetsColumnItemSpacer = styled.View`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-right: 19px;
 `
-export const TextWrapper = styled.div<{ alignment: 'right' | 'left' | 'center' }>`
+export const TextWrapper = styled.View<{ alignment: 'right' | 'left' | 'center' }>`
   display: flex;
   justify-content: ${p => {
     switch (p.alignment) {
@@ -54,7 +54,7 @@ export const TextWrapper = styled.div<{ alignment: 'right' | 'left' | 'center' }
   letter-spacing: 0.01em;
 `
 
-export const LineChartWrapper = styled.div`
+export const LineChartWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -62,11 +62,11 @@ export const LineChartWrapper = styled.div`
   max-width: 120px;
   margin: 0 auto;
 `
-export const LoadIconWrapper = styled.div`
+export const LoadIconWrapper = styled.View`
   display: flex;
   justify-content: center;
 `
-export const CoinGeckoText = styled.span`
+export const CoinGeckoText = styled.Text`
   font-family: Arial;
   font-size: 10px;
   font-weight: normal;
@@ -74,7 +74,7 @@ export const CoinGeckoText = styled.span`
   margin: 15px 0px;
 `
 
-export const ButtonsRow = styled.div`
+export const ButtonsRow = styled.View`
   display: flex;
   align-items: center;
   justify-content: flex-end;

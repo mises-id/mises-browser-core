@@ -99,7 +99,6 @@ export const ReportButton = styled(WalletButton)`
   line-height: 18px;
   border: none;
   color: #4c54d2;
-  outline: none;
   border: none;
   background-color: transparent;
 `

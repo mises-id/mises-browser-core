@@ -3,12 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Shared Styles
 import { StyledDiv, Icon, StyledButton } from '../../shared.styles'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.TouchableOpacity`
   display: flex;
   position: relative;
   height: 100%;
@@ -26,7 +26,9 @@ export const Tip = styled(StyledDiv)`
   top: 42px;
   width: 220px;
   background-color: ${(p) => p.theme.color.background01};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color:  ${p => p.theme.color.divider01};
   white-space: normal; 
 `
 

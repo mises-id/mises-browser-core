@@ -16,5 +16,5 @@ interface Props {
 export const PresetButton = (props: Props) => {
   const { buttonText, onClick } = props
 
-  return <Button onClick={onClick}>{buttonText}</Button>
+  return <Button onPress={onClick}>{buttonText}</Button>
 }

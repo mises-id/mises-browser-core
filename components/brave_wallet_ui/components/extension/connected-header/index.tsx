@@ -18,11 +18,13 @@ import {
 
 // components
 import { WalletMorePopup } from '../../desktop'
+import { PanelTypes } from '../../../constants/types'
 
 export interface Props {
   onExpand: () => void
   onClickMore: () => void
   onClickViewOnBlockExplorer?: () => void
+  onClickViewOnActivity?: (path: PanelTypes) => void
   showMore: boolean
 }
 
@@ -31,6 +33,7 @@ export const ConnectedHeader = (props: Props) => {
     onClickMore,
     onExpand,
     onClickViewOnBlockExplorer,
+    onClickViewOnActivity,
     showMore
   } = props
 
@@ -42,6 +45,7 @@ export const ConnectedHeader = (props: Props) => {
       <ActionIcon onPress={onClickMore} />
       {showMore &&
         <WalletMorePopup
+          onClickViewOnActivity={onClickViewOnActivity}
           onClickViewOnBlockExplorer={onClickViewOnBlockExplorer}
         />
       }

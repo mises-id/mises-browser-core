@@ -102,7 +102,9 @@ export const MessageBox = styled.View<{ isApprove: boolean, isDetails: boolean }
   align-items: flex-start;
   justify-content: 'flex-start';
   flex-direction: column;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   box-sizing: border-box;
   border-radius: 4px;
   width: 255px;
@@ -153,7 +155,9 @@ export const Divider = styled.View`
   width: 100%;
   height: 1px;
   background-color: ${(p) => p.theme.color.divider01};
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   margin-top: 6px;
   margin-bottom: 6px;
 `
@@ -164,7 +168,6 @@ export const SectionRow = styled.View`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: inherit;
 `
 
 export const SectionColumn = styled.View`
@@ -173,7 +176,6 @@ export const SectionColumn = styled.View`
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  height: inherit;
   margin-bottom: 5px;
 `
 
@@ -188,7 +190,6 @@ export const EditButton = styled(WalletButton)`
   background-image: none;
   background-color: none;;
   cursor: pointer;
-  outline: none;
   border: none;
   margin: 0px;
   padding: 0px;
@@ -226,7 +227,9 @@ export const GroupBox = styled.View`
   align-items: flex-start;
   justify-content: 'flex-start';
   flex-direction: column;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   box-sizing: border-box;
   border-radius: 4px;
   width: 255px;
@@ -297,10 +300,13 @@ export const ContractButton = styled(WalletButton)`
   background-image: none;
   background-color: none;;
   cursor: pointer;
-  outline: none;
   border: none;
   margin: 0px;
   padding: 0px;
+  flex-direction: row;
+`
+export const ContractButtonText = styled.Text`
+  color: ${(p) => p.theme.color.interactive05};
 `
 
 export const ExplorerIcon = styled.View`

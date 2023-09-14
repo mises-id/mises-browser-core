@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as React from 'react'
-import { useLocation } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 
 // utils
 import { getLocale } from '../../../../../common/locale'
@@ -21,7 +21,7 @@ import { useSafePageSelector } from '../../../../common/hooks/use-safe-selector'
 // styles
 import {
   ToggleVisibilityButton,
-  LinkText,
+  // LinkText,
   CopyButton,
   HorizontalSpace
 } from '../../../../components/shared/style'
@@ -50,6 +50,7 @@ export const BackupRecoveryPhrase = () => {
   // routing
   const { pathname } = useLocation()
   const isOnboarding = pathname.includes(WalletRoutes.Onboarding)
+  const history = useHistory()
 
   // redux
   const mnemonic = useSafePageSelector(PageSelectors.mnemonic)
@@ -105,14 +106,14 @@ export const BackupRecoveryPhrase = () => {
             <Title>{getLocale('braveWalletRecoveryPhraseBackupTitle')}</Title>
             <Description>
               {getLocale('braveWalletRecoveryPhraseBackupWarning')}
-              <LinkText
+              {/* <LinkText
                 href='https://brave.com/learn/wallet-recovery-phrase/#how-should-i-store-my-recovery-phrase'
                 target='_blank'
                 rel='noreferrer'
                 referrerPolicy='no-referrer'
               >
                 {getLocale('braveWalletLearnMore')}
-              </LinkText>
+              </LinkText> */}
             </Description>
           </TitleAndDescriptionContainer>
 
@@ -120,7 +121,7 @@ export const BackupRecoveryPhrase = () => {
             <PhraseCardTopRow>
               <ToggleVisibilityButton
                 isVisible={isPhraseShown}
-                onClick={toggleShowPhrase}
+                onPress={toggleShowPhrase}
               />
             </PhraseCardTopRow>
 
@@ -134,7 +135,7 @@ export const BackupRecoveryPhrase = () => {
 
             <PhraseCardBottomRow>
 
-              <CopyButton onClick={onCopyPhrase} />
+              <CopyButton onPress={onCopyPhrase} />
 
               {isCopied &&
                 <>
@@ -150,10 +151,12 @@ export const BackupRecoveryPhrase = () => {
             <NavButton
               buttonType='primary'
               text={getLocale('braveWalletButtonNext')}
-              url={isOnboarding
+              onSubmit={() => {
+                const url = isOnboarding
                 ? WalletRoutes.OnboardingVerifyRecoveryPhrase
-                : WalletRoutes.BackupVerifyRecoveryPhrase
-              }
+                : WalletRoutes.BackupVerifyRecoveryPhrase;
+                history.push(url)
+              }}
             />
           </NextButtonRow>
 

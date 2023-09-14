@@ -17,7 +17,7 @@ import useInterval from '../../../common/hooks/interval'
 
 // components
 import { NavButton } from '../buttons/nav-button/index'
-import { AuthorizeHardwareDeviceIFrame } from '../../shared/authorize-hardware-device/authorize-hardware-device'
+// import { AuthorizeHardwareDeviceIFrame } from '../../shared/authorize-hardware-device/authorize-hardware-device'
 
 // style
 import {
@@ -30,6 +30,7 @@ import {
   Indicator,
   ConnectionRow
 } from './style'
+import { Text } from 'react-native'
 export interface Props {
   onCancel: (accountAddress: string, coinType: BraveWallet.CoinType) => void
   walletName: string
@@ -107,7 +108,7 @@ export const ConnectHardwareWalletPanel = ({
       <PageIcon />
       {
         hardwareWalletCode !== 'deviceBusy' && (hardwareWalletCode === 'unauthorized'
-          ? <AuthorizeHardwareDeviceIFrame coinType={coinType}/>
+          ? <Text>AuthorizeHardwareDeviceIFrame</Text>
           : <ButtonWrapper>
               <NavButton
                 buttonType='secondary'

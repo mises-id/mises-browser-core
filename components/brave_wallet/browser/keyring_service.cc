@@ -2474,4 +2474,29 @@ void KeyringService::MaybeUnlockWithCommandLine() {
 #endif  // !defined(OFFICIAL_BUILD)
 }
 
+void KeyringService::SignMessageInternal(
+    const std::string& address,
+    const std::string& message,
+    SignMessageInternalCallback callback) {
+  
+  std::string signMessageString;
+
+  std::vector<uint8_t> signMessage =
+      std::vector<uint8_t>(message.begin(), message.end());
+
+  auto* keyring = GetHDKeyringById(mojom::kDefaultKeyringId);
+  if (!keyring) {
+    std::move(callback).Run(signMessageString);
+  }
+
+  // MM currently doesn't provide chain_id when signing message
+  std::vector<uint8_t> signature =
+      static_cast<EthereumKeyring*>(keyring)->SignMessage(address, signMessage, 0, false);
+  if (signature.empty()) {
+    std::move(callback).Run(signMessageString);
+  }
+  signMessageString = base::ToLowerASCII(base::HexEncode(signature));
+
+  std::move(callback).Run(signMessageString);
+}
 }  // namespace brave_wallet

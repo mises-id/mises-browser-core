@@ -2,7 +2,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { CloseButton as OriginalCloseButton } from '../popup-modals/style'
 
 export const CloseButton = styled(OriginalCloseButton)`
@@ -10,7 +10,7 @@ export const CloseButton = styled(OriginalCloseButton)`
     background-color: #212529;
 `
 
-export const Card = styled.div`
+export const Card = styled.View`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -22,7 +22,7 @@ export const Card = styled.div`
     margin-top: 16px;
 `
 
-const Row = styled.div`
+const Row = styled.View`
     display: flex;
     flex: 1;
     flex-direction: row;
@@ -34,7 +34,7 @@ export const TitleAndCloseRow = styled(Row)`
     padding-top: 8px;
 `
 
-export const Title = styled.h2`
+export const Title = styled.Text`
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
@@ -48,12 +48,12 @@ export const Title = styled.h2`
 
 export const Footer = Row
 
-const Column = styled.div`
+const Column = styled.View`
     display: flex;
     flex-direction: column;
 `
 
-export const BodyText = styled.span`
+export const BodyText = styled.Text`
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
@@ -73,7 +73,7 @@ export const FooterRightColumn = styled(Column)`
     padding-bottom: 8px;
 `
 
-export const LearnMoreLink = styled.a`
+export const LearnMoreLink = styled.Text`
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
@@ -87,7 +87,7 @@ export const LearnMoreLink = styled.a`
     height: 40px;
 `
 
-export const SweepStakesBannerIllustration = styled.img`
+export const SweepStakesBannerIllustration = styled.Image`
     width: 81px;
     height: 74px;
     margin-top: -8px;

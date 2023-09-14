@@ -39,7 +39,6 @@ export const HardwareButton = styled(WalletButton) <Partial<StyleProps>>`
   justify-content: center;
   flex-direction: row;
   cursor: ${(p) => p.disabled ? 'not-allowed' : 'pointer'};
-  outline: none;
   background-image: none;
   background-color: none;;
   border: ${(p) => (p.isSelected ? `2px solid ${p.theme.color.infoBorder}` : `1px solid ${p.theme.color.disabled}`)};
@@ -87,7 +86,9 @@ export const ConnectingButton = styled(WalletButton)`
   justify-content: center;
   align-items: center;
   padding: 10px 22px;
-  border: 1px solid ${(p) => p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.interactive08};
   box-sizing: border-box;
   border-radius: 48px;
   background-color: transparent;

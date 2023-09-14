@@ -13,7 +13,6 @@ export const AdvancedButton = styled(WalletButton)`
   justify-content: center;
   flex-direction: row;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -110,7 +109,6 @@ export const InputLabel = styled.Text`
 `
 
 // export const Input = styled.input`
-//   outline: none;
 //   width: ${p => p.width ? p.width : '265px'};
 //   background-image: none;
 //   background-color: ${(p) => p.theme.color.background02};
@@ -131,9 +129,6 @@ export const InputLabel = styled.Text`
 //     letter-spacing: 0.01em;
 //     color: ${(p) => p.theme.color.text03};
 //     font-weight: normal;
-//   }
-//   :focus {
-//     outline: none;
 //   }
 //   ::-webkit-inner-spin-button {
 //     -webkit-appearance: none;

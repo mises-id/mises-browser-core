@@ -54,7 +54,6 @@ export const RestoreButton = styled(WalletButton)`
   justify-content: center;
   flex-direction: row;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -64,6 +63,9 @@ export const RestoreButton = styled(WalletButton)`
   font-size: 13px;
   line-height: 19px;
   letter-spacing: 0.01em;
-  color: ${(p) => p.theme.color.text03};
+  
   margin-top: 12px;
+`
+export const RestoreButtonText = styled.Text`
+  color: ${(p) => p.theme.color.text03};
 `

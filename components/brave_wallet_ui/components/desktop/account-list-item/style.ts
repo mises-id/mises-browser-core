@@ -74,12 +74,13 @@ export const OvalButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border-radius: 48px;
   padding: 3px 10px;
-  border: 1px solid ${(p) => p.theme.color.interactive08};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.interactive08};
   margin-right: 6px;
   pointer-events: auto;
 `

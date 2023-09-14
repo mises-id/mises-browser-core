@@ -4,7 +4,7 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import { SortOrder } from '../../../constants/types'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import ArrowDownIcon from '../../../assets/svg-icons/arrow-down-fill.svg'
 import ArrowUpIcon from '../../../assets/svg-icons/arrow-up-fill.svg'
@@ -15,11 +15,11 @@ export interface StyleProps {
   stickyHeaders?: boolean
 }
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.View`
   width: 100%;
 `
 
-export const StyledTBody = styled.tbody`
+export const StyledTBody = styled.View`
   ::before {
     content: '';
     display: block;
@@ -27,7 +27,7 @@ export const StyledTBody = styled.tbody`
   }
 `
 
-export const StyledNoContent = styled('div') <{}>`
+export const StyledNoContent = styled.View`
   text-align: center;
   padding: 30px 0;
   color: ${p => p.theme.color.text03};
@@ -35,7 +35,7 @@ export const StyledNoContent = styled('div') <{}>`
   font-family: Poppins;
 `
 
-export const StyledTable = styled('table')`
+export const StyledTable = styled.View`
   position: relative;
   min-width: 100%;
   border-collapse: separate;
@@ -46,10 +46,10 @@ export const StyledTable = styled('table')`
   }
 `
 
-export const StyledTHead = styled('thead')`
+export const StyledTHead = styled.View`
 `
 
-export const StyledTH = styled('th') <Partial<StyleProps>>`
+export const StyledTH = styled.TouchableOpacity <Partial<StyleProps>>`
   text-align: left;
   font-family: Poppins;
   font-size: 12px;
@@ -74,11 +74,11 @@ export const StyledTH = styled('th') <Partial<StyleProps>>`
   }
 `
 
-export const StyledTR = styled('tr')`
+export const StyledTR = styled.Text`
   pointer-events: none;
 `
 
-export const StyledTD = styled('td')`
+export const StyledTD = styled.TouchableOpacity`
   vertical-align: middle;
   letter-spacing: 0.01em;
   font-family:Poppins;
@@ -95,7 +95,7 @@ export const StyledTD = styled('td')`
     pointer-events: none;
   }
 `
-export const ArrowWrapper = styled.div`
+export const ArrowWrapper = styled.View`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -104,7 +104,7 @@ export const ArrowWrapper = styled.div`
   margin-right: 3px;
 `
 
-export const ArrowBase = styled.div`
+export const ArrowBase = styled.View`
   display: inline-flex;
   width: 100%;
   height: 100%;
@@ -117,7 +117,7 @@ export const ArrowDown = styled(ArrowBase)`
 export const ArrowUp = styled(ArrowBase)`
   background-image: url(${ArrowUpIcon});
 `
-export const CellContentWrapper = styled.div`
+export const CellContentWrapper = styled.View`
   display: flex;
   align-items: center;
 `

@@ -72,7 +72,33 @@ export const NavOptions: NavOption[] = [
     route: WalletRoutes.Market
   }
 ]
-
+export const HomePageNavOptions: NavOption[] = [
+  {
+    id: 'portfolio',
+    name: 'braveWalletTopNavPortfolio',
+    icon: 'coins',
+    route: WalletRoutes.Portfolio
+  },
+  {
+    id: 'nfts',
+    name: 'braveWalletTopNavNFTS',
+    icon: 'grid04',
+    route: WalletRoutes.Nfts
+  },
+  ActivityNavOption,
+  {
+    id: 'accounts',
+    name: 'braveWalletTopNavAccounts',
+    icon: 'user-accounts',
+    route: WalletRoutes.Accounts
+  },
+  {
+    id: 'send',
+    name: 'braveWalletSend',
+    icon: 'send',
+    route: WalletRoutes.Send
+  },
+]
 export const AllNavOptions: NavOption[] = [
   ...NavOptions,
   ...BuySendSwapDepositOptions,

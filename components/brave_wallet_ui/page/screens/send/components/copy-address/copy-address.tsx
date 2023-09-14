@@ -37,7 +37,7 @@ export const CopyAddress = (props: Props) => {
       horizontalPadding={16}
       horizontalAlign='flex-start'
     >
-      <AddressButton onClick={handleClick}>
+      <AddressButton onPress={handleClick}>
         <Text
           textSize='12px'
           textColor='text03'

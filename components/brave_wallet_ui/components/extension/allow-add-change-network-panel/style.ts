@@ -10,7 +10,9 @@ export const MessageBox = styled.View`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  border: 1px solid ${(p) => p.theme.color.divider01};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
   box-sizing: border-box;
   border-radius: 4px;
   width: 255px;
@@ -68,7 +70,6 @@ export const DetailsButton = styled(WalletButton)`
   background-image: none;
   background-color: none;;
   cursor: pointer;
-  outline: none;
   border: none;
   margin: 0px;
   padding: 0px;

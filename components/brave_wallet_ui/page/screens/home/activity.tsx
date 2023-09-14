@@ -9,6 +9,7 @@ import { selectAllBlockchainTokensFromQueryResult, selectAllUserAssetsFromQueryR
 import { getLocale } from '$web-common/locale';
 import { Text } from 'react-native';
 import PortfolioTransactionItem from './portfolioTransactionItem';
+import { useStyle } from '../../styles';
 
 const Activity = ()=> {
   const selectedAccount = useUnsafeWalletSelector(WalletSelectors.selectedAccount)
@@ -61,6 +62,8 @@ const Activity = ()=> {
   React.useEffect(() => {
     console.log(transactionList)
   }, [transactionList])
+
+  const style = useStyle()
   return (
     transactionList.length !== 0 ? (
       <>
@@ -72,7 +75,7 @@ const Activity = ()=> {
         )}
       </>
     ) : (
-      <Text>{getLocale('braveWalletTransactionPlaceholder')}</Text>
+      <Text style={style.flatten(["text-center", 'subtitle3', 'dark:color-white', 'padding-20'])}>{getLocale('braveWalletTransactionPlaceholder')}</Text>
     )
   )
 }

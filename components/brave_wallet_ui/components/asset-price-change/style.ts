@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import ArrowDownIcon from '../../assets/svg-icons/arrow-down-white-icon.svg'
 import ArrowUpIcon from '../../assets/svg-icons/arrow-up-white-icon.svg'
@@ -12,7 +12,7 @@ export interface StyleProps {
   isDown: boolean
 }
 
-export const StyledWrapper = styled.span<StyleProps>`
+export const StyledWrapper = styled.Text<StyleProps>`
   display: flex;
   align-items: center;
   padding: 4px 9px;
@@ -21,7 +21,7 @@ export const StyledWrapper = styled.span<StyleProps>`
   width: 62px;
   height: 24px;
 `
-export const PriceChange = styled.span`
+export const PriceChange = styled.Text`
   display: flex;
   align-items: center;
   font-family: Poppins;
@@ -35,7 +35,7 @@ export const PriceChange = styled.span`
   }
 `
 
-export const ArrowBase = styled.span`
+export const ArrowBase = styled.Text`
   width: 12px;
   height: 11px;
   background-repeat: no-repeat;

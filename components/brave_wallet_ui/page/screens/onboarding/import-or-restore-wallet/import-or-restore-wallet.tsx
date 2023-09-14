@@ -20,7 +20,7 @@ import { CenteredPageLayout } from '../../../../components/desktop/centered-page
 import { StepsNavigation } from '../../../../components/desktop/steps-navigation/steps-navigation'
 
 // styles
-import { WalletLink } from '../../../../components/shared/style'
+import { WalletLink, WalletLinkText } from '../../../../components/shared/style'
 
 import {
   StyledWrapper,
@@ -37,6 +37,7 @@ import {
  LinkRow,
  MetaMaskIcon
 } from './import-or-restore-wallet.style'
+import { useHistory } from 'react-router'
 
 export const OnboardingImportOrRestoreWallet = () => {
   // redux
@@ -63,6 +64,7 @@ export const OnboardingImportOrRestoreWallet = () => {
     }
   }, [isImportWalletsCheckComplete])
 
+  const history = useHistory()
   // render
   return (
     <CenteredPageLayout>
@@ -85,7 +87,9 @@ export const OnboardingImportOrRestoreWallet = () => {
           </div>
 
           <CardButton
-            to={WalletRoutes.OnboardingRestoreWallet}
+            onPress={() => {
+              history.push(WalletRoutes.OnboardingRestoreWallet)
+            }}
           >
             <CardButtonTextContainer>
               <p>
@@ -127,9 +131,11 @@ export const OnboardingImportOrRestoreWallet = () => {
 
           <LinkRow>
             <WalletLink
-              to={WalletRoutes.OnboardingCreatePassword}
+              onPress={() => {
+                history.push(WalletRoutes.OnboardingCreatePassword)
+              }}
             >
-              {getLocale('braveWalletCreateWalletInsteadLink')}
+              <WalletLinkText>{getLocale('braveWalletCreateWalletInsteadLink')}</WalletLinkText>
             </WalletLink>
           </LinkRow>
 

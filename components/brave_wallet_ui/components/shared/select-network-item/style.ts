@@ -13,7 +13,6 @@ export const StyledWrapper = styled(WalletButton)`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

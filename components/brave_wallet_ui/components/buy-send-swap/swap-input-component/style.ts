@@ -43,7 +43,6 @@ export const AssetButton = styled(WalletButton) <Partial<StyleProps>>`
   justify-content: space-between;
   width: ${(p) => p.isERC721 ? '100%' : 'auto'};
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -99,7 +98,6 @@ export const PresetButton = styled(WalletButton) <Partial<StyleProps>>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -121,7 +119,6 @@ export const PresetButton = styled(WalletButton) <Partial<StyleProps>>`
 // export const SlippageInput = styled(Input)<Partial<StyleProps>>`
 //   --main-bg-color: ${(p) => p.theme.color.interactive05};
 //   width: 48px;
-//   outline: none;
 //   background-image: none;
 //   background: ${(p) => p.isSelected ? 'var(--main-bg-color)' : 'none'};
 //   font-family: Poppins;
@@ -137,9 +134,6 @@ export const PresetButton = styled(WalletButton) <Partial<StyleProps>>`
 //   color: ${(p) => p.isSelected ? p.theme.palette.white : p.theme.color.text03};
 //   ::placeholder {
 //     color: ${(p) => p.theme.color.text03};
-//   }
-//   :focus {
-//       outline: none;
 //   }
 //   ::-webkit-inner-spin-button {
 //       -webkit-appearance: none;
@@ -157,7 +151,6 @@ export const MarketLimitButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -175,7 +168,6 @@ export const RefreshButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -205,7 +197,6 @@ export const RefreshIcon = styled.View<Partial<StyleProps>>`
 
 // export const Input = styled.input<Partial<StyleProps>>`
 //   width: 100%;
-//   outline: none;
 //   background-image: none;
 //   background-color: ${(p) => p.theme.color.background02};
 //   border: none;
@@ -219,9 +210,6 @@ export const RefreshIcon = styled.View<Partial<StyleProps>>`
 //   color: ${(p) => p.hasError ? p.theme.color.errorText : p.componentType === 'toAddress' ? p.theme.color.text02 : p.theme.color.text01};
 //   ::placeholder {
 //     color: ${(p) => p.theme.color.text02};
-//   }
-//   :focus {
-//       outline: none;
 //   }
 //   ::-webkit-inner-spin-button {
 //       -webkit-appearance: none;
@@ -261,7 +249,6 @@ export const PasteButton = styled(WalletButton)`
   width: 18px;
   height: 18px;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -298,7 +285,6 @@ export const AddressConfirmationText = styled.Text`
 
 export const LearnMoreButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

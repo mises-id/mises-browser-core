@@ -36,7 +36,7 @@ export const AccountListItem = (props: Props) => {
   }, [address])
 
   return (
-    <Button disabled={isAccountDisabled} onClick={() => onClick(address)}>
+    <Button disabled={isAccountDisabled} onPress={() => onClick(address)}>
       <AccountCircle orb={orb} />
       <Column horizontalAlign='flex-start' verticalAlign='center'>
         <Text textColor='text03' textSize='12px' isBold={false}>{name}</Text>

@@ -16,7 +16,6 @@ export const ConnectPanelButton = styled.View<{
   flex-direction: row;
   width: 100%;
   cursor: pointer;
-  outline: none;
   border: none;
   padding: 8px 0px;
   border-top: ${(p) =>

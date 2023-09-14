@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { getBalance as getBalanceUtil } from '../../../utils/balance-utils'
 import { BraveWallet, SupportedTestNetworks, UserAssetInfoType, WalletState } from '../../../constants/types'
 // import { AllAccountsOption } from '../../../options/account-filter-options'
@@ -10,7 +10,6 @@ import PortfolioAssetItem from './portfolio-asset-item';
 import { useUnsafeWalletSelector } from '../../../common/hooks/use-safe-selector';
 import { WalletSelectors } from '../../../common/selectors';
 import { useGetSelectedChainQuery } from '../../../common/slices/api.slice'
-import { Text } from 'react-native'
 import { useStyle } from '../../styles'
 
 const AssetsList: React.FunctionComponent = () => {
@@ -73,7 +72,7 @@ const AssetsList: React.FunctionComponent = () => {
         />
       })}
       <View style={style.flatten(['flex', 'items-center', 'justify-center', 'margin-y-10', 'flex-row'])}>
-        <Text style={style.flatten(['subtitle3'])}>Don't see you tokens?</Text>
+        <Text style={style.flatten(['subtitle3', 'dark:color-white'])}>Don't see you tokens?</Text>
         <TouchableOpacity onPress={() => {
 
         }}>

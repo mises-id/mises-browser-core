@@ -9,20 +9,18 @@ import { useHistory, useLocation } from 'react-router'
 
 // Utils
 import { getLocale } from '../../../../common/locale'
-import { copyToClipboard } from '../../../utils/copy-to-clipboard'
+// import { copyToClipboard } from '../../../utils/copy-to-clipboard'
 
 // Components
 import { BackButton } from '../../../components/shared/back-button'
 import { PasswordInput } from '../../../components/shared/password-input'
 import { NavButton } from '../../../components/extension/buttons/nav-button/index'
-import { Checkbox } from 'brave-ui'
 
 // Styles
 import {
   StyledWrapper,
   Title,
   Description,
-  RecoveryPhraseInput,
   ErrorText,
   CheckboxRow,
   LegacyCheckboxRow,
@@ -36,6 +34,8 @@ import { usePasswordStrength } from '../../../common/hooks/use-password-strength
 
 import * as WalletPageActions from '../../../page/actions/wallet_page_actions'
 import { PageState, WalletRoutes, WalletState } from '../../../constants/types'
+import { Checkbox } from '../../../components/shared/checkbox/checkbox'
+import Input from '../../../components/rn/Input'
 
 export const RestoreWallet = () => {
   // routing
@@ -112,10 +112,10 @@ export const RestoreWallet = () => {
   }, [recoveryPhrase, password, isLegacyWallet])
 
   const handleRecoveryPhraseChanged = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
+    // const value = event.target.value
 
     // This prevents there from being a space at the begining of the phrase.
-    const removeBegginingWhiteSpace = value.trimStart()
+    const removeBegginingWhiteSpace = event.target.value.trimStart()
 
     // This Prevents there from being more than one space between words.
     const removedDoubleSpaces = removeBegginingWhiteSpace.replace(/ +(?= )/g, '')
@@ -150,9 +150,9 @@ export const RestoreWallet = () => {
     }
   }, [])
 
-  const onClearClipboard = React.useCallback(() => {
-    copyToClipboard('')
-  }, [])
+  // const onClearClipboard = React.useCallback(() => {
+  //   copyToClipboard('')
+  // }, [])
 
   // effects
   React.useEffect(() => {
@@ -177,28 +177,28 @@ export const RestoreWallet = () => {
         <Description>{getLocale('braveWalletRestoreDescription')}</Description>
 
         <FormWrapper>
-          <RecoveryPhraseInput
+          <Input
             autoFocus={true}
             placeholder={getLocale('braveWalletRestorePlaceholder')}
             onChange={handleRecoveryPhraseChanged}
             value={recoveryPhrase}
             type={showRecoveryPhrase ? 'text' : 'password'}
             autoComplete='off'
-            onPaste={onClearClipboard}
+            // onPaste={onClearClipboard}
           />
 
           {invalidMnemonic && <ErrorText>{getLocale('braveWalletRestoreError')}</ErrorText>}
 
           {recoveryPhrase.split(' ').length === 24 &&
             <LegacyCheckboxRow>
-              <Checkbox value={{ isLegacy: isLegacyWallet }} onChange={onSetIsLegacyWallet}>
+              <Checkbox isChecked={isLegacyWallet} onChange={(select)=> onSetIsLegacyWallet('isLegacy', select)}>
                 <div data-key='isLegacy'>{getLocale('braveWalletRestoreLegacyCheckBox')}</div>
               </Checkbox>
             </LegacyCheckboxRow>
           }
 
           <CheckboxRow>
-            <Checkbox value={{ showPhrase: showRecoveryPhrase }} onChange={onShowRecoveryPhrase}>
+            <Checkbox isChecked={showRecoveryPhrase} onChange={(select)=> onShowRecoveryPhrase('showPhrase', select)}>
               <div data-key='showPhrase'>{getLocale('braveWalletRestoreShowPhrase')}</div>
             </Checkbox>
           </CheckboxRow>
