@@ -59,10 +59,12 @@ export const ImportButton = styled(WalletButton)`
   font-size: 13px;
   line-height: 20px;
   text-align: center;
-  color: ${p => p.theme.color.background01};
   margin-bottom: 64px;
   border: none;
   cursor: pointer;
+`
+export const ImportButtonText = styled.Text`
+  color: ${p => p.theme.color.background01};
 `
 
 export const DisclaimerText = styled.Text`

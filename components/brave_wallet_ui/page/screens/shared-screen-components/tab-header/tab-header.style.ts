@@ -13,13 +13,14 @@ import BraveLogoDark from '../../send/assets/brave-logo-dark.svg'
 
 // Shared Styles
 import { StyledDiv, StyledButton } from '../../send/shared.styles'
+import { SettingsAdvancedIcon } from '../../../../assets/svg-icons/nav-button-icons'
 
 export const HeaderWrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 16px 32px 0px 32px;
+  padding: 16px 16px 0px 16px;
   margin-bottom: 45px;
   top: 0;
   left: 0;
@@ -50,13 +51,16 @@ export const SettingsButton = styled(StyledButton)`
   border-radius: 100%;
   height: 40px;
   width: 40px;
-  margin-right: 16px;
   &:hover {
     background-color: ${leo.color.container.background};
   }
 `
 
 export const SettingsIcon = styled.View`
-  --leo-icon-size: 20px;
   color: ${leo.color.icon.default};
+  width: 20px;
+  height: 20px;
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${SettingsAdvancedIcon});
+  mask-image: url(${SettingsAdvancedIcon});
 `

@@ -28,11 +28,8 @@ export const Modal = styled(StyledDiv)`
   justify-content: flex-start;
   overflow: hidden;
   position: absolute;
-  width: 440px;
+  width: 90%;
   z-index: 20;
-  @media screen and (max-width: 570px) {
-    width: 90%;
-  }
 `
 
 export const AccountSection = styled(Row)`

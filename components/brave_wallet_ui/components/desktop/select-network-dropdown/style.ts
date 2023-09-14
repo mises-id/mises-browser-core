@@ -41,7 +41,7 @@ export const DropDownIcon = styled.View <{ isOpen: boolean }>`
   height: 18px;
   color: ${(p) => p.theme.color.interactive07};
   transition-duration: 0.3s;
-  transform: ${(p) => p.isOpen ? 'rotate(180deg)' : 'unset'};
+  transform: ${(p) => p.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
 `
 
 export const DropDown = styled.View <{ useWithSearch?: boolean }>`

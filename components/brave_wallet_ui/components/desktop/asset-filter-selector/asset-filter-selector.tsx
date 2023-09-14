@@ -27,6 +27,7 @@ import {
   SelectorLeftSide,
   ClickAwayArea
 } from '../network-filter-selector/style'
+import { Text } from 'react-native'
 
 export const AssetFilterSelector = () => {
   const [showAssetFilter, setShowAssetFilter] = React.useState<boolean>(false)
@@ -60,7 +61,7 @@ export const AssetFilterSelector = () => {
       <DropDownButton
         onPress={toggleShowAssetFilter}>
         <SelectorLeftSide>
-          {selectedAssetFilterInfo.name}
+          <Text>{selectedAssetFilterInfo.name}</Text>
         </SelectorLeftSide>
         <DropDownIcon />
       </DropDownButton>

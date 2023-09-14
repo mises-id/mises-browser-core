@@ -30,6 +30,7 @@ import {
   LoadIcon,
   LoadingWrapper,
   NoAssetButton,
+  NoAssetButtonText,
   NoAssetRow,
   NoAssetText,
   StyledWrapper,
@@ -45,7 +46,7 @@ export interface Props {
   onClose: () => void
 }
 
-const EditVisibleAssetsModal = ({ onClose }: Props) => {
+const   EditVisibleAssetsModal = ({ onClose }: Props) => {
   // redux
   const userVisibleTokensInfo = useSelector(({ wallet }: { wallet: WalletState }) => wallet.userVisibleTokensInfo)
 
@@ -299,7 +300,7 @@ const EditVisibleAssetsModal = ({ onClose }: Props) => {
                 {!searchValue.toLowerCase().startsWith('0x') &&
                   <TopRow>
                     <NoAssetButton onPress={toggleShowAddCustomToken}>
-                      {getLocale('braveWalletWatchlistAddCustomAsset')}
+                      <NoAssetButtonText>{getLocale('braveWalletWatchlistAddCustomAsset')}</NoAssetButtonText>
                     </NoAssetButton>
                   </TopRow>
                 }

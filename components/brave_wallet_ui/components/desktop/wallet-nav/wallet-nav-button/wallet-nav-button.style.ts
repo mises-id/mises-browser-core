@@ -10,18 +10,15 @@ import { WalletButton, Text } from '../../../shared/style'
 export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: flex-start;
-  width: 100%;
+  flex: 1;
   cursor: pointer;
-  padding: 16px;
   border: none;
   background-image: none;
-  background-color: none;;
   background-color: ${(p) => p.isSelected
     ? 'var(--nav-button-background-hover)'
     : 'none'};
-  border-radius: 6px;
-  margin-bottom: 8px;
   color: var(--nav-button-color);
   font-weight: 600;
   font-size: 16px;
@@ -44,6 +41,5 @@ export const ButtonIcon = styled.View`
 
 export const ButtonText = styled(Text)`
   color: var(--nav-button-color);
-  display: var(--display-text);
   transition-duration: inherit;
 `

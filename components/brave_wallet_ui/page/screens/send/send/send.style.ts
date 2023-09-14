@@ -17,12 +17,9 @@ export const SendContainer = styled(StyledDiv)`
   box-sizing: border-box;
   justify-content: flex-start;
   padding: 16px;
-  width: 512px;
+  width: 90%;
   position: relative;
   z-index: 9;
-  @media screen and (max-width: 570px) {
-    width: 90%;
-  }
 `
 
 export const SectionBox = styled(StyledDiv) <{
@@ -157,7 +154,7 @@ export const Background = styled(StyledDiv) <{
   --t: var(--f);
   --0x539461: var(--f);
   filter: blur(150px);
-  width: 512px;
+  width: 100%;
   height: ${p => p.height}px;
   opacity: ${p => p.backgroundOpacity};
   transition-delay: 0s;

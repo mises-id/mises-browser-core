@@ -42,7 +42,7 @@ export const DropDownIcon = styled.View<{ isOpen: boolean }>`
   --leo-icon-size: 20px;
   color: ${leo.color.icon.default};
   transition-duration: 0.3s;
-  transform: ${(p) => (p.isOpen ? 'rotate(180deg)' : 'unset')};
+  transform: ${(p) => (p.isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
 `
 
 export const DropDown = styled.View`

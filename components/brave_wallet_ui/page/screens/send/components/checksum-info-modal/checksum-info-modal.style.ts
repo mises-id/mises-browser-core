@@ -27,7 +27,7 @@ export const Modal = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 512px;
+  width: 320px;
   background-color: ${(p) => p.theme.color.background02};
   border-radius: 16px;
   @media screen and (max-width: 600px) {

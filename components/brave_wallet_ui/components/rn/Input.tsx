@@ -13,6 +13,8 @@ interface IProps {
   autoComplete?: 'off' | 'on'
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  multiline?: boolean;
+  numberOfLines?: number;
 }
 const Input:React.FC<IProps> = (props) => {
   return (

@@ -21,7 +21,6 @@ import {
   StyledWrapper,
   Title,
   Description,
-  RecoveryPhraseInput,
   ErrorText,
   CheckboxRow,
   LegacyCheckboxRow,
@@ -36,6 +35,7 @@ import { usePasswordStrength } from '../../../common/hooks/use-password-strength
 import * as WalletPageActions from '../../../page/actions/wallet_page_actions'
 import { PageState, WalletRoutes, WalletState } from '../../../constants/types'
 import { Checkbox } from '../../../components/shared/checkbox/checkbox'
+import Input from '../../../components/rn/Input'
 
 export const RestoreWallet = () => {
   // routing
@@ -111,11 +111,11 @@ export const RestoreWallet = () => {
     history.push(WalletRoutes.Portfolio)
   }, [recoveryPhrase, password, isLegacyWallet])
 
-  const handleRecoveryPhraseChanged = React.useCallback((value: string) => {
+  const handleRecoveryPhraseChanged = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     // const value = event.target.value
 
     // This prevents there from being a space at the begining of the phrase.
-    const removeBegginingWhiteSpace = value.trimStart()
+    const removeBegginingWhiteSpace = event.target.value.trimStart()
 
     // This Prevents there from being more than one space between words.
     const removedDoubleSpaces = removeBegginingWhiteSpace.replace(/ +(?= )/g, '')
@@ -177,12 +177,12 @@ export const RestoreWallet = () => {
         <Description>{getLocale('braveWalletRestoreDescription')}</Description>
 
         <FormWrapper>
-          <RecoveryPhraseInput
+          <Input
             autoFocus={true}
             placeholder={getLocale('braveWalletRestorePlaceholder')}
-            onChangeText={handleRecoveryPhraseChanged}
+            onChange={handleRecoveryPhraseChanged}
             value={recoveryPhrase}
-            // type={showRecoveryPhrase ? 'text' : 'password'}
+            type={showRecoveryPhrase ? 'text' : 'password'}
             autoComplete='off'
             // onPaste={onClearClipboard}
           />

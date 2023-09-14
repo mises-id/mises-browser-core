@@ -5,7 +5,7 @@
 
 import styled from 'styled-components/native'
 
-export const PlaceholderText = styled.View<{
+export const PlaceholderText = styled.Text<{
   isBig: boolean
 }>`
   font-family: Poppins;

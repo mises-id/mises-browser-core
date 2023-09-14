@@ -26,8 +26,8 @@ export const Modal = styled.View<{ width?: string, borderRadius?: number }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: ${p => p.width ? p.width : '580px'};
-  max-width: ${p => p.width ? p.width : '580px'};
+  min-width: ${p => p.width ? p.width : '320px'};
+  max-width: ${p => p.width ? p.width : '320px'};
   background-color: ${(p) => p.theme.color.background02};
   border-radius: ${(p) => p.borderRadius ? p.borderRadius : 8}px;
   @media screen and (max-width: 600px) {

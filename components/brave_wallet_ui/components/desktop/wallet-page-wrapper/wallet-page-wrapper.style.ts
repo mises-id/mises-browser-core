@@ -53,7 +53,6 @@ export const ContainerCard = styled.View<
   padding: 20px;
   width: 100%;
   min-height: ${minCardHeight}px;
-  max-height: calc(100vh - 132px);
   overflow-y: ${(p) => p.cardOverflow ?? 'hidden'};
   position: relative;
   @media screen and (max-width: 700px) {

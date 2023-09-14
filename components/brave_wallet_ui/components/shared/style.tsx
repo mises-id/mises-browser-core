@@ -195,7 +195,6 @@ export const WalletLink = styled.TouchableOpacity<{to?: string}>`
   font-size: 13px;
   line-height: 20px;
   text-align: center;
-  color: ${(p) => p.theme.color.interactive05};
   background-image: none;
   background-color: none;;
   border: none;
@@ -210,6 +209,9 @@ export const WalletLink = styled.TouchableOpacity<{to?: string}>`
     opacity: 0.5;
   }
 `
+export const WalletLinkText = styled.Text`
+  color: ${(p) => p.theme.color.interactive05};
+` 
 
 export const WalletButtonLink = styled.Text<{to: string}>`
   ${walletButtonFocusMixin}

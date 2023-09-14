@@ -112,7 +112,6 @@ export const PhraseCardTopRow = styled.View`
 `
 
 export const PhraseCardBody = styled.View`
-  flex: 1;
   width: 100%;
   border-style: solid;
   border-width: 1px;

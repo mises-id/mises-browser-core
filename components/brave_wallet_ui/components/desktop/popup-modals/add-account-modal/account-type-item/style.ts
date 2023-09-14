@@ -10,7 +10,7 @@ export const StyledWrapper = styled.View`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 100px;
+  height: 140px;
 `
 
 export const InfoColumn = styled.View`
@@ -36,7 +36,7 @@ export const Description = styled.Text`
   line-height: 18px;
   letter-spacing: 0.01em;
   color: ${(p) => p.theme.color.text02};
-  max-width: 355px;
+  max-width: 125px;
 `
 
 export const NetworkIcon = styled.Image`

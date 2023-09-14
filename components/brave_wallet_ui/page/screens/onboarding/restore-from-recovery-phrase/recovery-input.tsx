@@ -96,6 +96,8 @@ export const RecoveryInput = ({
         ? <Input
             onChange={handleChange}
             onKeyDown={onKeyDown}
+            multiline = {true}
+            numberOfLines = {4}
             onBlur={onInputBlur}
             value={inputValue}
             autoComplete='off'
@@ -103,6 +105,8 @@ export const RecoveryInput = ({
         : <Input
             type='password'
             value={inputValue}
+            multiline = {true}
+            numberOfLines = {4}
             onChange={handleChange}
             onBlur={onInputBlur}
             onKeyDown={onKeyDown}

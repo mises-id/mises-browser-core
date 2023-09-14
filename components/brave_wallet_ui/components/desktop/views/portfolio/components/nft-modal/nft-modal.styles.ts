@@ -26,8 +26,8 @@ export const Modal = styled.TouchableOpacity<{ width?: string, height?: string }
   flex-direction: column;
   align-items: center;
   justify-conent: center;
-  min-width: ${p => p.width ? p.width : '580px'};
-  max-width: ${p => p.width ? p.width : '580px'};
+  min-width: ${p => p.width ? p.width : '320px'};
+  max-width: ${p => p.width ? p.width : '320px'};
   min-height: ${p => p.height ? p.height : '580px'};
   max-height: ${p => p.height ? p.height : '580px'};
   background-color: transparent;

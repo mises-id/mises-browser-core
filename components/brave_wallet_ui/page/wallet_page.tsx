@@ -35,8 +35,7 @@ import 'emptykit.css'
 import '@brave/leo/tokens/css/variables.css'
 import { setIconBasePath } from '@brave/leo/react/icon'
 // import { AppNavigation } from './navigation'
-import { StyleProvider, useStyle } from './styles'
-import { StatusBar } from 'react-native'
+import { StyleProvider } from './styles'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ModalsProvider } from './modals/base'
 import { LoadingScreenProvider } from './providers/loading-screen'
@@ -62,17 +61,17 @@ function App () {
     link.href = faveiconUrl
   }, [])
 
-  const ThemeStatusBar: React.FunctionComponent = () => {
-    const style = useStyle();
+  // const ThemeStatusBar: React.FunctionComponent = () => {
+  //   const style = useStyle();
 
-    return (
-      <StatusBar
-        translucent={true}
-        backgroundColor="#FFFFFF00"
-        barStyle={style.get("status-bar-style")}
-      />
-    );
-  };
+  //   return (
+  //     <StatusBar
+  //       translucent={true}
+  //       backgroundColor="#FFFFFF00"
+  //       barStyle={style.get("status-bar-style")}
+  //     />
+  //   );
+  // };
 
   return (
     <Provider store={store}>
@@ -85,10 +84,8 @@ function App () {
           >
             <ApiProxyContext.Provider value={walletPageApiProxy}>
               <LibContext.Provider value={Lib}>
-                {/* <Container /> */}
                 <StyleProvider>
                   {/* <Container /> */}
-                  <ThemeStatusBar />
                   <SafeAreaProvider>
                     <ModalsProvider>
                       <LoadingScreenProvider>
@@ -99,7 +96,6 @@ function App () {
                     </ModalsProvider>
                   </SafeAreaProvider>
                 </StyleProvider>
-                {/* <UnlockScreen1 /> */}
               </LibContext.Provider>
             </ApiProxyContext.Provider>
           </BraveCoreThemeProvider>

@@ -37,6 +37,7 @@ import {
   SelectorLeftSide,
   ClickAwayArea
 } from '../network-filter-selector/style'
+import { Text } from 'react-native'
 
 interface Props {
   onSelectAccount?: (account: Pick<WalletAccountType, 'address' | 'name'>) => void
@@ -101,7 +102,7 @@ export const AccountFilterSelector = ({
           {selectedAccount.address !== AllAccountsOption.address &&
             <AccountCircle orb={orb} />
           }
-          {selectedAccount.name}
+          <Text>{selectedAccount.name}</Text>
         </SelectorLeftSide>
         <DropDownIcon />
       </DropDownButton>
