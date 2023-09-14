@@ -223,7 +223,6 @@ export const ToggleVisibilityButton = styled.TouchableOpacity<{
   justify-content: center;
   flex-direction: row;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -237,7 +236,6 @@ export const ToggleVisibilityButton = styled.TouchableOpacity<{
   mask-position: center;
   mask-repeat: no-repeat;
   &:focus-visible {
-    outline: auto;
     outline-style: solid;
     outline-color: ${p => p.theme.palette.blurple300};
     outline-width: 2px;
@@ -248,7 +246,6 @@ export const CopyButton = styled(WalletButton) <{
   iconColor?: keyof IThemeProps['color']
 }>`
   cursor: pointer;
-  outline: none;
   border: none;
   mask-image: url(${ClipboardSvg});
   mask-position: center;
@@ -261,7 +258,6 @@ export const CopyButton = styled(WalletButton) <{
 
 export const DownloadButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   border: none;
   mask-image: url(${DownloadSvg});
   mask-position: center;
@@ -288,7 +284,6 @@ export const SellButton = styled(WalletButton)`
   align-items: center;
   padding: 6px 12px;
   cursor: pointer;
-  outline: none;
   border-radius: 40px;
   font-family: 'Poppins';
   font-style: normal;

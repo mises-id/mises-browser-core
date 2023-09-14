@@ -72,7 +72,6 @@ export const StyledButton = styled(WalletButton)`
   cursor: pointer;
   border-radius: 44px;
   padding: 6px 18px;
-  outline: none;
   background-color: transparent;
   border: ${p => `1px solid ${p.theme.color.interactive08}`};
   

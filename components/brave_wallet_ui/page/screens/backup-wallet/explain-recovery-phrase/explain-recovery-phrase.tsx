@@ -11,7 +11,7 @@ import { getLocale, splitStringForTag } from '../../../../../common/locale'
 
 // routes
 import { WalletRoutes } from '../../../../constants/types'
-import { WALLET_BACKUP_STEPS } from '../backup-wallet.routes'
+// import { WALLET_BACKUP_STEPS } from '../backup-wallet.routes'
 
 // images
 import ExamplePhrase from './images/example-recovery-phrase.svg'
@@ -21,7 +21,7 @@ import { NavButton } from '../../../../components/extension'
 import { CenteredPageLayout } from '../../../../components/desktop/centered-page-layout/centered-page-layout'
 import { OnboardingNewWalletStepsNavigation } from '../../onboarding/components/onboarding-steps-navigation/onboarding-steps-navigation'
 import { ArticleLinkBubble } from '../../onboarding/onboarding-success/components/article-link-bubble/article-link-bubble'
-import { StepsNavigation } from '../../../../components/desktop/steps-navigation/steps-navigation'
+// import { StepsNavigation } from '../../../../components/desktop/steps-navigation/steps-navigation'
 
 // style
 import {
@@ -60,9 +60,9 @@ export const RecoveryPhraseExplainer = () => {
     history.push(WalletRoutes.OnboardingComplete)
   }
 
-  const skipBackup = () => {
-    history.push(WalletRoutes.Portfolio)
-  }
+  // const skipBackup = () => {
+  //   history.push(WalletRoutes.Portfolio)
+  // }
 
   // render
   return (
@@ -77,7 +77,7 @@ export const RecoveryPhraseExplainer = () => {
               onSkip={skipToOnboardingSuccess}
             />
           }
-          {!isOnboarding &&
+          {/* {!isOnboarding &&
             <StepsNavigation
               steps={WALLET_BACKUP_STEPS}
               preventGoBack
@@ -85,7 +85,7 @@ export const RecoveryPhraseExplainer = () => {
               preventSkipAhead
               onSkip={skipBackup}
             />
-          }
+          } */}
 
           <div>
             <Title>{getLocale('braveWalletOnboardingRecoveryPhraseBackupIntroTitle')}</Title>
@@ -110,11 +110,13 @@ export const RecoveryPhraseExplainer = () => {
           <NextButtonRow>
             <NavButton
               buttonType='primary'
-              text={getLocale('braveWalletButtonGotIt')}
-              url={isOnboarding
+              onSubmit={() => {
+                const url = isOnboarding
                 ? WalletRoutes.OnboardingBackupRecoveryPhrase
-                : WalletRoutes.BackupRecoveryPhrase
-              }
+                : WalletRoutes.BackupRecoveryPhrase;
+                history.push(url)
+              }}
+              text={getLocale('braveWalletButtonGotIt')}
             />
           </NextButtonRow>
 

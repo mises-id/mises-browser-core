@@ -108,7 +108,6 @@ export const ButtonRow = styled.View`
 
 export const DecryptButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   border: none;
   font-weight: 600;
   font-family: Poppins;

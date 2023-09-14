@@ -15,7 +15,6 @@ import { getLocale } from '../../../../common/locale'
 import { BackButton } from '../../../components/shared/back-button'
 import { PasswordInput } from '../../../components/shared/password-input'
 import { NavButton } from '../../../components/extension/buttons/nav-button/index'
-import { Checkbox } from 'brave-ui'
 
 // Styles
 import {
@@ -36,6 +35,7 @@ import { usePasswordStrength } from '../../../common/hooks/use-password-strength
 
 import * as WalletPageActions from '../../../page/actions/wallet_page_actions'
 import { PageState, WalletRoutes, WalletState } from '../../../constants/types'
+import { Checkbox } from '../../../components/shared/checkbox/checkbox'
 
 export const RestoreWallet = () => {
   // routing
@@ -191,14 +191,14 @@ export const RestoreWallet = () => {
 
           {recoveryPhrase.split(' ').length === 24 &&
             <LegacyCheckboxRow>
-              <Checkbox value={{ isLegacy: isLegacyWallet }} onChange={onSetIsLegacyWallet}>
+              <Checkbox isChecked={isLegacyWallet} onChange={(select)=> onSetIsLegacyWallet('isLegacy', select)}>
                 <div data-key='isLegacy'>{getLocale('braveWalletRestoreLegacyCheckBox')}</div>
               </Checkbox>
             </LegacyCheckboxRow>
           }
 
           <CheckboxRow>
-            <Checkbox value={{ showPhrase: showRecoveryPhrase }} onChange={onShowRecoveryPhrase}>
+            <Checkbox isChecked={showRecoveryPhrase} onChange={(select)=> onShowRecoveryPhrase('showPhrase', select)}>
               <div data-key='showPhrase'>{getLocale('braveWalletRestoreShowPhrase')}</div>
             </Checkbox>
           </CheckboxRow>

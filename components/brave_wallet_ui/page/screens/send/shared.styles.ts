@@ -171,7 +171,6 @@ export const StyledButton = styled.TouchableOpacity`
   font-family: 'Poppins';
   cursor: pointer;
   border: none;
-  outline: none;
   background-image: none;
   background-color: none;;
   font-size: 16px;
@@ -211,7 +210,6 @@ export const HiddenResponsiveRow = styled(Row) <{ dontHide?: boolean }>`
 //   font-weight: 400;
 //   font-size: 14px;
 //   line-height: 20px;
-//   outline: none;
 //   background-image: none;
 //   border: none;
 //   color: ${(p) => p.theme.color.text01};
@@ -220,9 +218,6 @@ export const HiddenResponsiveRow = styled(Row) <{ dontHide?: boolean }>`
 //   letter-spacing: 0.02em;
 //   ::placeholder {
 //     color: ${(p) => p.theme.color.text01};
-//   }
-//   :focus {
-//     outline: none;
 //   }
 //   ::-webkit-inner-spin-button {
 //     -webkit-appearance: none;

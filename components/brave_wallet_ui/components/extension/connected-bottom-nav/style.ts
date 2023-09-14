@@ -52,7 +52,6 @@ export const NavButton = styled(WalletButton)<{
   align-items: center;
   justify-content: center;
   cursor: ${(p) => p.disabled ? 'default' : 'pointer'};
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;
@@ -78,7 +77,6 @@ export const TransactionsButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

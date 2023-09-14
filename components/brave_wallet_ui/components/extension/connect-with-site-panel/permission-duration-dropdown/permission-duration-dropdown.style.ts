@@ -26,7 +26,6 @@ export const DropDownButton = styled(WalletButton)`
   flex-direction: row;
   background-color: ${leo.color.container.highlight};
   cursor: pointer;
-  outline: none;
   border-radius: 8px;
   font-family: Poppins;
   font-style: normal;
@@ -74,7 +73,6 @@ export const PermissionButton = styled(WalletButton)`
   flex-direction: row;
   width: 100%;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

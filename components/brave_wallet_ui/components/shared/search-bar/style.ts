@@ -24,7 +24,6 @@ export const StyledWrapper = styled.View<{ useWithFilter?: boolean }>`
 export const SearchInput = styled.TextInput<{ useWithFilter?: boolean }>`
   flex: 1;
   height: 100%;
-  outline: none;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
   border: none;
@@ -40,9 +39,6 @@ export const SearchInput = styled.TextInput<{ useWithFilter?: boolean }>`
     letter-spacing: 0.01em;
     color: ${(p) => p.theme.color.text02};
     font-weight: normal;
-  }
-  :focus {
-      outline: none;
   }
   ::-webkit-inner-spin-button {
       -webkit-appearance: none;

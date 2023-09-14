@@ -36,7 +36,6 @@ export const BackButton = styled.TouchableOpacity<{
   align-self: flex-start;
   color: ${(p) => p.theme.color.text01};
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   padding: 3px 0px;

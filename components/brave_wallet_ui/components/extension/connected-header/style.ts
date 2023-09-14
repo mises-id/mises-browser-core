@@ -37,7 +37,6 @@ export const ExpandIcon = styled.TouchableOpacity`
   width: 20px;
   height: 20px;
   background-image: url(${Exand});
-  outline: none;
   border: none;
 `
 
@@ -49,6 +48,5 @@ export const ActionIcon = styled.TouchableOpacity`
   width: 20px;
   height: 20px;
   background-image: url(${Action});
-  outline: none;
   border: none;
 `

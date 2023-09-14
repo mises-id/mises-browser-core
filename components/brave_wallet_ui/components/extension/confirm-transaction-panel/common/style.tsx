@@ -39,7 +39,6 @@ export const QueueStepButton = styled(WalletButton)<{ needsMargin?: boolean }>`
   background-image: none;
   background-color: none;;
   cursor: pointer;
-  outline: none;
   border: none;
   margin: 0;
   padding: 0;
@@ -69,7 +68,6 @@ export const ConfirmingButton = styled(WalletButton)`
   cursor: default;
   border-radius: 40px;
   padding: 8px 16px;
-  outline: none;
   margin: 0px;
   background-color: ${p => p.theme.color.disabled};
   border: none;

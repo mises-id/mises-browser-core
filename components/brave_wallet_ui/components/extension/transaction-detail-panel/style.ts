@@ -101,7 +101,6 @@ export const DetailButton = styled(WalletButton)`
   background-image: none;
   background-color: none;;
   cursor: pointer;
-  outline: none;
   border: none;
   margin: 0px;
   padding: 0px;

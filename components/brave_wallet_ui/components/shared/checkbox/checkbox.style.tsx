@@ -41,7 +41,6 @@ const getLabelProps = (p: StyleProps) => {
     }
 
     &:focus, &:hover:not([disabled]) {
-      outline: none;
       --checkbox-border-color: #A0A5EB;
       --checkbox-border-size: 3px;
     }
@@ -60,10 +59,7 @@ export const StyledLabel = styled.TouchableOpacity<StyleProps & {
   color: var(--checkbox-label-color);
   font-size: var(--checkbox-label-size);
   cursor: pointer;
-  &:focus {
-    /* Focus style is on child 'box' */
-    outline: none;
-  }
+  flex-direction: row;
 `
 
 export const StyledBox = styled.Text`
@@ -79,6 +75,9 @@ export const StyledBox = styled.Text`
   height: var(--checkbox-box-size);
   color: var(--checkbox-box-color);
   margin: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--checkbox-box-color);
   :after {
     /* Border provided by :after element so that transition of size is smooth without
       svg-resizing 'jumping' effect from resizing padding + border space at the same time */

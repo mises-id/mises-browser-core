@@ -49,7 +49,6 @@ export const ButtonRow = styled.View`
 export const BannerButton = styled(WalletButton) <Partial<StyleProps>>`
   display: flex;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

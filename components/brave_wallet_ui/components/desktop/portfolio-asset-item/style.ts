@@ -25,7 +25,6 @@ export const ButtonArea = styled(WalletButton) <{ disabled: boolean, rightMargin
   flex-direction: row;
   width: 100%;
   cursor: ${(p) => p.disabled ? 'default' : 'pointer'};
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

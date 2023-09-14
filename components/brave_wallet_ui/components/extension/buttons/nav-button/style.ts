@@ -40,7 +40,6 @@ const StyledButtonCssMixin = (p: StyledButtonProps) => {
     cursor: ${(p) => p.disabled ? 'default' : 'pointer'};
     border-radius: 40px;
     padding: 10px 22px;
-    outline: none;
     margin-top: ${(p) => p?.addTopMargin ? '8px' : '0px'};
 
     background-color: ${(p) =>

@@ -23,7 +23,6 @@ export const DropDownButton = styled(WalletButton)`
   flex-direction: row;
   background-color: ${(p) => p.theme.color.background02};
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
@@ -80,7 +79,6 @@ export const NetworkItemButton = styled(WalletButton)`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

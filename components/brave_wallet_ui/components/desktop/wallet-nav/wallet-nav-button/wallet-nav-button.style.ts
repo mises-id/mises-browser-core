@@ -14,7 +14,6 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   width: 100%;
   cursor: pointer;
   padding: 16px;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

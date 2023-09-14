@@ -57,7 +57,6 @@ export const OpenRainbowAppButton = styled(WalletButton)`
   padding: 8px 14px;
   height: 40px;
   cursor: pointer;
-  outline: none;
   border-radius: 40px;
   background-color: ${(p) => p.theme.palette.blurple500};
   border: none;

@@ -61,7 +61,6 @@ export const AccountAddressText = styled.Text`
   color: ${(p) => p.theme.palette.white};
   font-weight: 300;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -110,7 +109,6 @@ export const OvalButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   border-radius: 48px;
   padding: 3px 10px;
   border-width: 1px;
@@ -161,7 +159,6 @@ export const SwitchIcon = styled.View`
 
 export const MoreAssetsButton = styled.TouchableOpacity`
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

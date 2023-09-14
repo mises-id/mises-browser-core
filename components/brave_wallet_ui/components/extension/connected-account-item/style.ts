@@ -67,7 +67,6 @@ export const AccountAddressText = styled.Text`
 export const PrimaryButton = styled(WalletButton) <Partial<StyleProps>>`
   display: flex;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

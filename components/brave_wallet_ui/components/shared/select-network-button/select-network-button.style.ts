@@ -29,7 +29,6 @@ export const OvalButton = styled.TouchableOpacity<IsPanelProps>`
   justify-content: center;
   flex-direction: row;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border-radius: 48px;

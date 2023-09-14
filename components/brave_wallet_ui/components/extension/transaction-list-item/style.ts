@@ -18,7 +18,6 @@ export const StyledWrapper = styled(WalletButton)`
   width: 100%;
   margin: 8px 0px;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

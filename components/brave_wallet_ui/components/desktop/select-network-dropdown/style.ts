@@ -27,7 +27,6 @@ export const NetworkButton = styled(WalletButton) <{ useWithSearch?: boolean }>`
   width: ${(p) => p.useWithSearch ? 'unset' : '100%'};
   height: 40px;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: ${(p) => p.useWithSearch ? 'none' : `1px solid ${p.theme.color.interactive08}`};

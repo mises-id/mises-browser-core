@@ -25,7 +25,6 @@ export const FormColumn = styled.View`
 
 export const Input = styled.TextInput`
   box-sizing: border-box;
-  outline: none;
   width: 100%;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
@@ -46,9 +45,6 @@ export const Input = styled.TextInput`
     letter-spacing: 0.01em;
     color: ${(p) => p.theme.color.text03};
     font-weight: normal;
-  }
-  :focus {
-    outline: none;
   }
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;

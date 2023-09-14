@@ -19,7 +19,6 @@ export const StyledWrapper = styled.View`
 `
 
 // export const Input = styled.input`
-//   outline: none;
 //   width: 250px;
 //   background-image: none;
 //   background-color: ${(p) => p.theme.color.background02};
@@ -40,9 +39,6 @@ export const StyledWrapper = styled.View`
 //     letter-spacing: 0.01em;
 //     color: ${(p) => p.theme.color.text03};
 //     font-weight: normal;
-//   }
-//   :focus {
-//     outline: none;
 //   }
 //   ::-webkit-inner-spin-button {
 //     -webkit-appearance: none;
@@ -77,7 +73,6 @@ export const AddressButton = styled(WalletButton)`
   letter-spacing: 0.02em;
   color: ${(p) => p.theme.color.text03};
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;
@@ -152,7 +147,6 @@ export const PrivateKeyBubble = styled(WalletButton)`
   line-height: 22px;
   font-weight: 600;
   color: ${(p) => p.theme.color.text01};
-  outline: none;
   border: none;
 `
 

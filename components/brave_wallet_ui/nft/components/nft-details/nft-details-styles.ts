@@ -156,7 +156,6 @@ export const ProjectDetailButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;
@@ -196,7 +195,6 @@ export const ExplorerButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

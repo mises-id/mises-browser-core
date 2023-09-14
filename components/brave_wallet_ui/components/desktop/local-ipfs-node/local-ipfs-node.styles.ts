@@ -64,7 +64,6 @@ export const CloseButton = styled(WalletButton)`
   line-height: 20px;
   background-color: transparent;
   color: ${(p) => p.theme.palette.white};
-  outline: none;
   border: none;
   margin-left: auto;
 `
@@ -197,7 +196,6 @@ export const ActionButton = styled(WalletButton)`
   color: ${(p) => p.theme.palette.blurple500};
   padding: 13px 24px;
   border-radius: 48px;
-  outline: none;
   border: none;
 `
 
@@ -214,7 +212,6 @@ export const CheckNftsButton = styled(WalletButton)`
   text-align: center;
   background-color: transparent;
   color: ${(p) => p.theme.palette.blurple300};
-  outline: none;
   border: none;
   margin-top: 37px;
 `

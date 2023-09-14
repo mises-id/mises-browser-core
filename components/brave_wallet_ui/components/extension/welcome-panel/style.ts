@@ -11,7 +11,6 @@ export const StyledWrapper = styled.View`
   align-items: center;
   justify-content: center;
   background-color: ${(p) => p.theme.color.background01};
-  padding: 24px;
 `
 
 export const Title = styled.Text`

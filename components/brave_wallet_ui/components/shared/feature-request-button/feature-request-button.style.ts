@@ -22,7 +22,6 @@ export const Button = styled(WalletButton)`
   right: 32px;
   background-color: ${p => p.theme.palette.blurple500};
   border: none;
-  outline: none;
   border-radius: 40px;
   cursor: pointer;
   z-index: 10;

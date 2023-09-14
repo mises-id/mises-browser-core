@@ -81,7 +81,6 @@ export const CheckboxRow = styled.View`
 
 export const RecoveryPhraseInput = styled.TextInput`
   width: 100%;
-  outline: none;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
@@ -101,9 +100,6 @@ export const RecoveryPhraseInput = styled.TextInput`
     letter-spacing: 0.01em;
     color: ${(p) => p.theme.color.text03};
     font-weight: normal;
-  }
-  :focus {
-    outline: none;
   }
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;

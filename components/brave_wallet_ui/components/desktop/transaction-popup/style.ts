@@ -26,7 +26,6 @@ export const PopupButton = styled(WalletButton)`
   justify-content: flex-start;
   cursor: pointer;
   border-radius: 8px;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

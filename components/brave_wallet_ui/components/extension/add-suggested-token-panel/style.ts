@@ -69,7 +69,6 @@ export const TokenName = styled.Text`
 
 export const ContractAddress = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

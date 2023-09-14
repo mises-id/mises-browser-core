@@ -213,7 +213,6 @@ export const Settings = styled(WalletButton)`
   display: flex;
   align-self: flex-start;
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

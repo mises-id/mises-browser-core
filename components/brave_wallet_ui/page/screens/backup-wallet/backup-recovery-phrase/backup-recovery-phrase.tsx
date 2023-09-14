@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as React from 'react'
-import { useLocation } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 
 // utils
 import { getLocale } from '../../../../../common/locale'
@@ -50,6 +50,7 @@ export const BackupRecoveryPhrase = () => {
   // routing
   const { pathname } = useLocation()
   const isOnboarding = pathname.includes(WalletRoutes.Onboarding)
+  const history = useHistory()
 
   // redux
   const mnemonic = useSafePageSelector(PageSelectors.mnemonic)
@@ -150,10 +151,12 @@ export const BackupRecoveryPhrase = () => {
             <NavButton
               buttonType='primary'
               text={getLocale('braveWalletButtonNext')}
-              url={isOnboarding
+              onSubmit={() => {
+                const url = isOnboarding
                 ? WalletRoutes.OnboardingVerifyRecoveryPhrase
-                : WalletRoutes.BackupVerifyRecoveryPhrase
-              }
+                : WalletRoutes.BackupVerifyRecoveryPhrase;
+                history.push(url)
+              }}
             />
           </NextButtonRow>
 

@@ -36,7 +36,7 @@ export const MainWrapper = styled.View<{ isTabView?: boolean }>`
   background-color: ${(p) => p.theme.color.background02};
   padding: 30px;
   border-radius: ${(p) => p.isTabView ? 24 : 8}px;
-  margin-top: ${(p) => p.isTabView ? '100px' : '10vh'};
+  margin-top: 50px;
 `
 
 export const StyledWrapper = styled.View`
@@ -95,7 +95,7 @@ export const Description = styled.Text<{ textAlign?: 'right' | 'center' }>`
 // Phrase card
 export const PhraseCard = styled.View`
   display: flex;
-  flex: 1;
+  // flex: 1;
   flex-direction: column;
   width: 376px;
   align-items: center;

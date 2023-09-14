@@ -98,7 +98,6 @@ export const InfoIcon = styled.View`
 
 export const BackButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

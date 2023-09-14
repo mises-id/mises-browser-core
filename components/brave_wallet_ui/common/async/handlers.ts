@@ -92,18 +92,21 @@ async function refreshBalancesPricesAndHistory (store: Store) {
 }
 // const misesBaseUrl = 'https://api.test.mises.site/api'
 // async function setMisesInfo (auth: string) {
-//   const token = await axios.post(`${misesBaseUrl}/v1/signin`, {
+//   const res = await chrome.misesPrivate.fetchJson(`${misesBaseUrl}/v1/signin`, {
+//     method: 'POST',
 //     data: {
 //       user_authz: { auth }
 //     }
 //   })
-//   console.log(token)
-//   const userInfo = await axios.get(`${misesBaseUrl}/v1/user/me`, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     }
-//   })
-//   console.log(userInfo)
+//   if(res) {
+//     const token = JSON.parse(res);
+//     const userInfo = await chrome.misesPrivate.fetchJson(`${misesBaseUrl}/v1/user/me`, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       }
+//     })
+//     chrome.misesPrivate.setMisesId(userInfo);
+//   }
 // }
 
 async function refreshWalletInfo (store: Store) {

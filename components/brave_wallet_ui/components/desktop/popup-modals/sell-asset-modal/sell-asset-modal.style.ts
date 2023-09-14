@@ -67,7 +67,6 @@ export const AmountInput = styled.TextInput`
   line-height: 48px;
   text-align: left;
   width: 100%;
-  outline: none;
   background-image: none;
   border: none;
   background-color: none;;
@@ -90,7 +89,6 @@ export const PresetButton = styled.Button<{ marginRight?: number }>`
   font-family: 'Poppins';
   cursor: pointer;
   border: none;
-  outline: none;
   background-image: none;
   background-color: none;;
   background-color: var(--button-background);

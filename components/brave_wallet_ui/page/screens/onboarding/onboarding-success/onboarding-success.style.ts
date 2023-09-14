@@ -58,7 +58,6 @@ export const ButtonContainer = styled.View`
 
 export const DepositIcon = styled.View`
   cursor: pointer;
-  outline: none;
   border: none;
   mask-image: url(${DownloadIcon});
   mask-position: center;

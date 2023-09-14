@@ -39,7 +39,6 @@ export const Input = styled.TextInput<{
   hasError?: boolean
 }>`
   box-sizing: border-box;
-  outline: none;
   width: 100%;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};
@@ -65,9 +64,6 @@ export const Input = styled.TextInput<{
     letter-spacing: 0.01em;
     color: ${(p) => p.theme.color.text03};
     font-weight: normal;
-  }
-  :focus {
-    outline: none;
   }
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -168,9 +164,6 @@ export const SliderValue = styled.Text`
 //   margin-bottom: 10px;
 //   height: 24px;
 //   cursor: pointer;
-//   &:focus {
-//     outline: none;
-//   }
 //   &::-webkit-slider-runnable-track {
 //     width: 100%;
 //     height: 5px;

@@ -27,7 +27,6 @@ export const PopupButton = styled.TouchableOpacity`
   cursor: pointer;
   width: 220px;
   border-radius: 8px;
-  outline: none;
   border: none;
   background-image: none;
   padding: 10px 0px;

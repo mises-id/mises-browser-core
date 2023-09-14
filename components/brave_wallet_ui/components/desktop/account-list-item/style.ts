@@ -74,7 +74,6 @@ export const OvalButton = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border-radius: 48px;

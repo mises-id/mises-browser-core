@@ -20,7 +20,7 @@ export const RecoveryPhraseContainer = styled.View`
   padding-top: 16px;
 `
 
-export const RecoveryBubble = styled.TouchableHighlight<{
+export const RecoveryBubble = styled.TouchableOpacity<{
   verificationModeEnabled?: boolean
   selected?: boolean
 }>`

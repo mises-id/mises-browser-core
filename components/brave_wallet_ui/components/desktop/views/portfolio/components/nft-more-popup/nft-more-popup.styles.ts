@@ -32,7 +32,6 @@ export const PopupButton = styled(WalletButton)`
   cursor: pointer;
   width: 100%;
   border-radius: 8px;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

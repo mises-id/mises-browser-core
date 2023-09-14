@@ -35,7 +35,6 @@ export const StyledButton = styled(WalletButton)<{ isSelected?: boolean }>`
   justify-content: center;
   cursor: ${(p) => p.disabled ? 'not-allowed' : 'pointer'};
   border-radius: 4px;
-  outline: none;
   padding: 4px 6px;
   background-image: ${(p) =>
     p.isSelected && !p.disabled ? p.theme.color.text02 : 'none'};
@@ -58,7 +57,6 @@ export const ButtonText = styled.Text<{ isSelected?: boolean, disabled?: boolean
 
 export const ToggleVisibilityButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   background-image: none;
   background-color: none;;
   border: none;

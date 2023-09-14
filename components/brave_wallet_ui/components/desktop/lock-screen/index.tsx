@@ -9,7 +9,8 @@ import {
   Title,
   PageIcon,
   InputColumn,
-  RestoreButton
+  RestoreButton,
+  RestoreButtonText
 } from './style'
 import { PasswordInput } from '../../shared'
 import { NavButton } from '../../extension'
@@ -54,7 +55,7 @@ function LockScreen (props: Props) {
         onSubmit={onSubmit}
         disabled={disabled}
       />
-      <RestoreButton onPress={onShowRestore}>{getLocale('braveWalletWelcomeRestoreButton')}</RestoreButton>
+      <RestoreButton onPress={onShowRestore}><RestoreButtonText>{getLocale('braveWalletWelcomeRestoreButton')}</RestoreButtonText></RestoreButton>
     </StyledWrapper>
   )
 }

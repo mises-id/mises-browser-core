@@ -76,7 +76,6 @@ export const NoAssetText = styled.Text`
 
 export const NoAssetButton = styled(WalletButton)`
   cursor: pointer;
-  outline: none;
   border: none;
   background-image: none;
   background-color: none;;

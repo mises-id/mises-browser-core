@@ -46,7 +46,10 @@ export const Header = styled.View<{
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  padding: var(--vertical-padding) var(--horizontal-padding);
+  padding-top: var(--vertical-padding);
+  padding-bottom: var(--vertical-padding);
+  padding-left: var(--horizontal-padding);
+  padding-right: var(--horizontal-padding);
   width: 100%;
 `
 
@@ -69,7 +72,6 @@ export const CloseButton = styled(WalletButton)`
   background-color: ${(p) => p.theme.color.interactive07};
   -webkit-mask-image: url(${CloseIcon});
   mask-image: url(${CloseIcon});
-  outline: none;
   border: none;
 `
 
