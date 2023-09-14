@@ -49,6 +49,7 @@ public class MisesUserInfoMenu extends PopupWindow {
             view_user_info.setVisibility(View.GONE);
             view_login.setVisibility(View.VISIBLE);
         }
+        view.findViewById(R.id.tv_nft).setVisibility(View.GONE);
 
         // 设置外部可点击
         this.setOutsideTouchable(true);
@@ -86,6 +87,7 @@ public class MisesUserInfoMenu extends PopupWindow {
 
     public void setOnClickListener(View.OnClickListener itemsOnClick) {
         view.findViewById(R.id.tv_my_data).setOnClickListener(itemsOnClick);
+        view.findViewById(R.id.tv_my_rewards).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_mises_discover).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_wallet).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_login).setOnClickListener(itemsOnClick);
