@@ -285,12 +285,12 @@ handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: Unlock
   if(selectedAccount?.address) {
     const timestamp = new Date().getTime()
     const sigMsg = `address=${selectedAccount.address}&nonce=${timestamp}`
+    const nonce = `${timestamp}`
 
-    const {message} = await keyringService.signMessageInternal(selectedAccount.address, sigMsg)
-    const auth = `${sigMsg}&sig=${message}`;
+    const {sig} = await keyringService.signMessageForAuth(selectedAccount.address, nonce)
+    const auth = `${sigMsg}&sig=${sig}`;
     console.log(auth);
-    // setMisesInfo(auth)
-    (chrome as any).misesPrivate.setMisesId({auth});
+    (chrome as any).misesPrivate.setMisesId({misesId:selectedAccount.address, auth});
   }
   store.dispatch(WalletActions.hasIncorrectPassword(!result.success))
 })

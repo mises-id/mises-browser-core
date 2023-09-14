@@ -843,7 +843,7 @@ interface KeyringService {
   // because the KeyringServiceObserver Unlocked event can be used for that.
   HasPendingUnlockRequest() => (bool pending);
 
-  SignMessageInternal(string address, string msssage) => (string message);
+  SignMessageForAuth(string address, string nonce) => (string sig);
 };
 
 // Used for cryptocurrency prices over time.

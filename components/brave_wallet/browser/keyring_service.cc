@@ -2474,12 +2474,13 @@ void KeyringService::MaybeUnlockWithCommandLine() {
 #endif  // !defined(OFFICIAL_BUILD)
 }
 
-void KeyringService::SignMessageInternal(
+void KeyringService::SignMessageForAuth(
     const std::string& address,
-    const std::string& message,
-    SignMessageInternalCallback callback) {
+    const std::string& nonce,
+    SignMessageForAuthCallback callback) {
   
   std::string signMessageString;
+  std::string message = "address=" + address + "&nonce=" + nonce;
 
   std::vector<uint8_t> signMessage =
       std::vector<uint8_t>(message.begin(), message.end());

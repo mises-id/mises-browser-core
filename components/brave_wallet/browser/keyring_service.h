@@ -227,9 +227,9 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   void HasPendingUnlockRequest(
       HasPendingUnlockRequestCallback callback) override;
 
-  void SignMessageInternal(const std::string& address,
-                           const std::string& message,
-                           SignMessageInternalCallback callback) override;
+  void SignMessageForAuth(const std::string& address,
+                          const std::string& nonce,
+                          SignMessageForAuthCallback callback) override;
 
   absl::optional<std::string> GetBitcoinReceivingAddress(
       const std::string& keyring_id,

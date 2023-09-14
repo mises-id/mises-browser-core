@@ -115,7 +115,7 @@ public class MisesShareWin extends DialogFragment {
                 urlConnection.setDoInput(true);
                 urlConnection.setUseCaches(false);
                 urlConnection.setRequestMethod("POST");
-                String userAgent = "mises";
+                String userAgent = "Mises Browser";
                 urlConnection.setRequestProperty("User-Agent", userAgent);
                 urlConnection.setRequestProperty("Connection", "Keep-alive");
                 urlConnection.setRequestProperty("Charset", "UTF-8");
