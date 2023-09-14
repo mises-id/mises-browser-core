@@ -436,7 +436,7 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
 
 
     private JSONObject MisesApiGet(String path) {
-        JSONObject result = HttpUtil.JsonGetSync("https://api.alb.mises.site/api/v1/" + path, "");
-        return result;
+        HttpUtil.HttpResp result = HttpUtil.JsonGetSync("https://api.alb.mises.site/api/v1/" + path, "", "");
+        return result.resp;
     }
 }

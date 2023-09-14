@@ -348,6 +348,12 @@ mises_extra_java_resources = [
   "java/res/mipmap-xxhdpi/ic_menu_mises_forward.png",
   "java/res/mipmap-xxxhdpi/ic_menu_mises_forward.png",
 
+  "java/res/mipmap-hdpi/ic_rewards.png",
+  "java/res/mipmap-mdpi/ic_rewards.png",
+  "java/res/mipmap-xhdpi/ic_rewards.png",
+  "java/res/mipmap-xxhdpi/ic_rewards.png",
+  "java/res/mipmap-xxxhdpi/ic_rewards.png",
+
 ]
 
 mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
