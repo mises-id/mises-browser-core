@@ -17,12 +17,14 @@ import org.chromium.chrome.browser.mises.HttpUtil;
 
 public class MisesController {
     private static final String TAG = "MisesController";
+    public static final int MISES_BONUS_CACHE_EXPIRE_TIME = 60;
     private String mMisesId = "";
     private String mMisesAuth = "";
     private String mMisesToken = "";
     private String mMisesNickname = "";
     private String mMisesAvatar = "";
     private double mMisesBonus;
+    private long mMisesBonusTimestamp;
     private String mLastShareIcon = "";
     private String mLastShareTitle = "";
     private String mLastShareUrl = "";
@@ -135,8 +137,18 @@ public class MisesController {
     private String getUserAgent() {
         return "Mises Browser";
     }
-    public void updateUserBonusFromServer() {
-         HttpUtil.JsonGetAsync("https://api.test.mises.site/api/v1/mining/bonus", mMisesToken, getUserAgent(), new Callback<HttpUtil.HttpResp>() {
+    public void updateUserBonusFromServer(boolean force) {
+        Log.v(TAG, "updateUserBonusFromServer");
+        long nowInSeconds = System.currentTimeMillis() / 1000;
+        if (!force) {
+            // check cache expiration
+            if (mMisesBonusTimestamp > 0 && (nowInSeconds - mMisesBonusTimestamp < MISES_BONUS_CACHE_EXPIRE_TIME)) {
+                Log.v(TAG, "updateUserBonusFromServer skip");
+                return;
+            }
+        }
+        mMisesBonusTimestamp =  nowInSeconds;
+        HttpUtil.JsonGetAsync("https://api.test.mises.site/api/v1/mining/bonus", mMisesToken, getUserAgent(), new Callback<HttpUtil.HttpResp>() {
             @Override
             public final void onResult(HttpUtil.HttpResp result) {
                 if (result.resp != null ) {
@@ -152,6 +164,7 @@ public class MisesController {
                     } catch (JSONException e) {
                         Log.d(TAG, "Unable to read JSONObject." + e.toString());
                     }
+                    
                     
                     handleUserInfoUpdate();
                     
@@ -213,7 +226,7 @@ public class MisesController {
                     }
                     
                     updateUserInfoFromServer();
-                    updateUserBonusFromServer();
+                    updateUserBonusFromServer(true);
                 }
             }
         });

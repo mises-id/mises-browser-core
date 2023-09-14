@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import org.chromium.chrome.mises.R;
 
-public class MisesUserInfoMenu extends PopupWindow {
+public class MisesUserInfoMenu extends PopupWindow implements  MisesController.MisesControllerObserver  {
 
     private Context mContext;
 
@@ -26,6 +26,7 @@ public class MisesUserInfoMenu extends PopupWindow {
     private View view_login;
     private TextView tvUsername;
     private TextView tvId;
+    private TextView tvRewards;
     private ImageView ivAvatar;
 
     public MisesUserInfoMenu(Context context, String id, String name, String avatar) {
@@ -37,6 +38,7 @@ public class MisesUserInfoMenu extends PopupWindow {
         tvUsername = (TextView) view.findViewById(R.id.tv_username);
         tvId = (TextView) view.findViewById(R.id.tv_id);
         ivAvatar = (ImageView) view.findViewById(R.id.iv_avatar);
+        tvRewards = (TextView) view.findViewById(R.id.tv_my_rewards);
         boolean isLogin = MisesController.getInstance().isLogin();
         if (isLogin) {
             view_user_info.setVisibility(View.VISIBLE);
@@ -83,8 +85,38 @@ public class MisesUserInfoMenu extends PopupWindow {
         this.setFocusable(true);
 
         this.setAnimationStyle(R.style.LeftMenuStyle);
+
+        updateRewards();
+        MisesController.getInstance().updateUserBonusFromServer(false);
+        MisesController.getInstance().AddObserver(this);
+        this.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                // TODO Auto-generated method stub
+                MisesController.getInstance().RemoveObserver(MisesUserInfoMenu.this);
+
+            }
+        });
     }
 
+    private void updateRewards() {
+        final String points = MisesController.getInstance().getMisesBonusString();
+        final String text = String.format(mContext.getResources().getString(R.string.lbl_my_rewards_format), points);
+        tvRewards.setText(text);
+    }
+    @Override
+    public void OnMisesUserInfoChanged() {
+        updateRewards();
+    }
+    @Override
+    public void OnExtensionDNRActionCountChanged(final String base64Image) {
+
+    }
+    @Override    
+    public void OnWeb3SafePhishingDetected(final String address) {
+
+    }
     public void setOnClickListener(View.OnClickListener itemsOnClick) {
         view.findViewById(R.id.tv_my_data).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_my_rewards).setOnClickListener(itemsOnClick);

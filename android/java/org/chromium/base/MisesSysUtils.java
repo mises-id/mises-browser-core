@@ -11,6 +11,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import org.chromium.chrome.browser.mises.MisesController;
 
 @JNINamespace("base::android")
 @MainDex
@@ -57,7 +58,7 @@ public class MisesSysUtils {
         if (activityContext == null) {
             return;
         }
-        MisesAdsUtil.loadAndShowRewardedAd(activityContext, "");
+        MisesAdsUtil.loadAndShowRewardedAd(activityContext, MisesController.getInstance().getMisesId());
     }
 
     @CalledByNative
