@@ -133,18 +133,6 @@ protected:
 
 };
 
-class MisesPrivateResetWalletFunction : public ExtensionFunction
-{
-public:
-  ExtensionFunction::ResponseAction Run() override;
-  DECLARE_EXTENSION_FUNCTION("misesPrivate.resetWallet",
-                             UNKNOWN)
-protected:
-  ~MisesPrivateResetWalletFunction() override = default;
-
-};
-
-
 
 }  // namespace api
 }  // namespace extensions

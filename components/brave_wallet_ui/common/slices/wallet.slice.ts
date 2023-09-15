@@ -154,6 +154,7 @@ export const WalletAsyncActions = {
   keyringReset: createAction('keyringReset'),
   locked: createAction('locked'),
   unlocked: createAction('unlocked'),
+  resetWallet: createAction('resetWallet'),
   backedUp: createAction('backedUp'),
   accountsChanged: createAction('accountsChanged'),
   selectedAccountChanged: createAction<SelectedAccountChangedPayloadType>(

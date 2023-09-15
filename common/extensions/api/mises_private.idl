@@ -23,7 +23,6 @@ namespace misesPrivate {
     static void getAppState(GetAppStateCallback callback);
     static void notifyPhishingDetected(DOMString address, NotifyPhishingDetectedCallback callback);
     static void recordEvent(DOMString data);
-    static void resetWallet();
     [supportsPromises] static void fetchJson(
         DOMString jsonUrl,
         optional FetchJsonCallback callback);
