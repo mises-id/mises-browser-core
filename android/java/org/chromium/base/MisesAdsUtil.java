@@ -62,20 +62,38 @@ public class MisesAdsUtil {
             return name;
         }
     }
+    private static MisesAdsUtil sInstance;
+    public static MisesAdsUtil getInstance() {
+        ThreadUtils.assertOnUiThread();
+        if (sInstance == null) {
+            sInstance = new MisesAdsUtil();
+        }
+        return sInstance;
+    }
 
-    private static AdsStatus status;
+    private AdsStatus status;
+
+
+    public interface MisesAdsUtilObserver {
+        void onRewardAdsResult(int code, final String message);
+    }
+
+    private  MisesAdsUtilObserver observer_;
     
-    public static void initAds(final Activity act) {
+    public  void initAds(final Activity act) {
         setStatus(AdsStatus.NOT_INITIALIZED);
     }
 
-    private static void setStatus(AdsStatus newStatus) {
+    public void setObserver(final MisesAdsUtilObserver observer) {
+        observer_ = observer;
+    }
+
+    private void setStatus(AdsStatus newStatus) {
         Log.i(TAG, "setStatus " + status + " -> "+ newStatus);
         status = newStatus;
         
     }
-
-    private static void runtimeCheck(Context ctx) throws RuntimeException{
+    private void runtimeCheck(Context ctx) throws RuntimeException{
         if (!PackageUtils.isPackageInstalled("com.google.android.webview")) {
             throw new RuntimeException("webview not exists!");
         }
@@ -88,7 +106,7 @@ public class MisesAdsUtil {
         dummyWebView.destroy();
     }
 
-    private static void doInit(final Activity act, final String misesID) {
+    private void doInit(final Activity act, final String misesID) {
         if (status != AdsStatus.NOT_INITIALIZED) {
             return;
         }
@@ -107,7 +125,7 @@ public class MisesAdsUtil {
           Log.w(TAG, "MobileAds.initialize failed: " + e.getMessage());
         }
     }
-    private static void showRewardedAd(final Activity act, final RewardedAd rewardedAd, final String misesID) {
+    private void showRewardedAd(final Activity act, final RewardedAd rewardedAd, final String misesID) {
         if (status != AdsStatus.READY) {
             return;
         }
@@ -129,6 +147,9 @@ public class MisesAdsUtil {
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
                 setStatus(AdsStatus.INITIALIZED);
+                if (observer_ != null) {
+                    observer_.onRewardAdsResult(1, adError.getMessage());
+                }
                 
             }
 
@@ -138,7 +159,11 @@ public class MisesAdsUtil {
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
                 Log.i(TAG, "onAdDismissedFullScreenContent");
+
                 setStatus(AdsStatus.INITIALIZED);
+                if (observer_ != null) {
+                    observer_.onRewardAdsResult(0, "");
+                }
             }
         });
         rewardedAd.show(
@@ -151,10 +176,12 @@ public class MisesAdsUtil {
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
                     Toast.makeText(act, "Thank your for your support", Toast.LENGTH_SHORT).show();
+                    
+
                 }
         });
     }
-    public static void maybeLoadBannerAd(final Context ctx, final AdView view) {
+    public void maybeLoadBannerAd(final Context ctx, final AdView view) {
         try {
             runtimeCheck(ctx);
             AdRequest adRequest = new AdRequest.Builder().build();
@@ -164,7 +191,7 @@ public class MisesAdsUtil {
         }
 
     }
-    public static void loadAndShowRewardedAd(final Activity act, final String misesID) {
+    public void loadAndShowRewardedAd(final Activity act, final String misesID) {
         if (status == AdsStatus.NOT_INITIALIZED) {
             doInit(act, misesID);
             return;
@@ -174,7 +201,7 @@ public class MisesAdsUtil {
         }
         loadRewardedAd(act, true, misesID);  
     }
-    private static void loadRewardedAd(final Activity act, final boolean show, final String misesID) {
+    private void loadRewardedAd(final Activity act, final boolean show, final String misesID) {
         if (status == AdsStatus.LOADING) {
             if (show) {
                 Toast.makeText(act, "Ads Loading ...", Toast.LENGTH_SHORT).show();
@@ -195,6 +222,9 @@ public class MisesAdsUtil {
                         // Handle the error.
                         Log.i(TAG, "onAdFailedToLoad:" + loadAdError.getMessage());
                         setStatus(AdsStatus.INITIALIZED);
+                        if (observer_ != null) {
+                            observer_.onRewardAdsResult(2, loadAdError.getMessage());
+                        }
                     }
 
                     @Override
@@ -216,12 +246,15 @@ public class MisesAdsUtil {
         } catch(Exception e) {
           Log.w(TAG, "RewardedAd.load fail: " + e.getMessage());
           setStatus(AdsStatus.INITIALIZED);
+          if (observer_ != null) {
+            observer_.onRewardAdsResult(3, e.getMessage());
+          }
         }
     }
 
 
 
-    public static void maybeLoadNativeAd(final Activity act, final NativeAdView view, Callback<NativeAd> callback) {
+    public void maybeLoadNativeAd(final Activity act, final NativeAdView view, Callback<NativeAd> callback) {
         try {
             runtimeCheck(act);
             loadNativeAd(act, view, callback);
@@ -231,7 +264,7 @@ public class MisesAdsUtil {
 
     }
 
-    private static void loadNativeAd(final Activity activity, final NativeAdView adView, Callback<NativeAd> callback) {
+    private void loadNativeAd(final Activity activity, final NativeAdView adView, Callback<NativeAd> callback) {
 
         AdLoader adLoader = new AdLoader.Builder(activity, "ca-app-pub-3526707353288294/8739102663")
             .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {

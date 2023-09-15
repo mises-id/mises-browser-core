@@ -18,7 +18,7 @@ void SearchTabHelper::OnOpenExtension(const GURL& url) {
 
 void SearchTabHelper::OnShowRewardAd() {
 #if BUILDFLAG(IS_ANDROID)
-    base::android::MisesSysUtils::ShowRewardAdFromJni();
+    //base::android::MisesSysUtils::ShowRewardAdFromJni();
 #endif
 }
 

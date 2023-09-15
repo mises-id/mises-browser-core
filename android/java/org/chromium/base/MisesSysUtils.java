@@ -21,7 +21,7 @@ public class MisesSysUtils {
 
     public static void init(final Activity act) {
         activityContext = act;
-        MisesAdsUtil.initAds(act);
+        MisesAdsUtil.getInstance().initAds(act);
     }
 
     public static Activity getActivityContext() {
@@ -58,7 +58,15 @@ public class MisesSysUtils {
         if (activityContext == null) {
             return;
         }
-        MisesAdsUtil.loadAndShowRewardedAd(activityContext, MisesController.getInstance().getMisesId());
+        MisesAdsUtil.getInstance().setObserver(new MisesAdsUtil.MisesAdsUtilObserver() {
+            @Override
+            public void onRewardAdsResult(int code, final String message) {
+                nativeOnRewardAdsResult(code, message);
+            }
+
+        });
+        MisesAdsUtil.getInstance().loadAndShowRewardedAd(
+            activityContext, MisesController.getInstance().getMisesId());
     }
 
     @CalledByNative
@@ -82,5 +90,14 @@ public class MisesSysUtils {
         params.putString(key1, value1);
         FirebaseAnalytics.getInstance(context).logEvent(name, params);
         return ;
+    }
+
+    public static void nativeOnRewardAdsResult(int code, String j_message) {
+        MisesSysUtilsJni.get().onRewardAdsResult(code, j_message);
+    };
+
+    @NativeMethods
+    interface Natives {
+        void onRewardAdsResult(int code, String j_message);
     }
 }

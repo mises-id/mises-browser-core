@@ -326,7 +326,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         AdmobBannerViewHolder(View itemView, Context ctx) {
             super(itemView);
             mAdView = itemView.findViewById(R.id.av_banner);
-            MisesAdsUtil.maybeLoadBannerAd(ctx, mAdView);
+            MisesAdsUtil.getInstance().maybeLoadBannerAd(ctx, mAdView);
         }
     }
     
@@ -336,7 +336,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         AdmobNativeViewHolder(View itemView, Activity ctx) {
             super(itemView);
             mNativeAdView = itemView.findViewById(R.id.av_native);
-            MisesAdsUtil.maybeLoadNativeAd(ctx, mNativeAdView, this);
+            MisesAdsUtil.getInstance().maybeLoadNativeAd(ctx, mNativeAdView, this);
         }
         public void destroy() {
             Log.v(TAG, "AdmobNativeViewHolder::destroy");

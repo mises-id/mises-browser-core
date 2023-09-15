@@ -395,6 +395,8 @@ class EthereumProviderImpl final
                       base::Value rawlogs) override;
   bool UnsubscribeLogObserver(const std::string& subscription_id);
 
+  void OnShowAdsResult(ShowAdsCallback callback, int code, const std::string &message);
+
   raw_ptr<HostContentSettingsMap> host_content_settings_map_ = nullptr;
   std::unique_ptr<BraveWalletProviderDelegate> delegate_;
   mojo::Remote<mojom::EventsListener> events_listener_;

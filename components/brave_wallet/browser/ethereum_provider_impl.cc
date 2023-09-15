@@ -1036,9 +1036,24 @@ void EthereumProviderImpl::SendAsync(base::Value input,
 }
 void EthereumProviderImpl::ShowAds(ShowAdsCallback callback) {
 #if BUILDFLAG(IS_ANDROID)
-    base::android::MisesSysUtils::ShowRewardAdFromJni();
-#endif
+    base::android::MisesSysUtils::ShowRewardAdFromJni(
+      base::BindOnce(&EthereumProviderImpl::OnShowAdsResult,
+                     weak_factory_.GetWeakPtr(), std::move(callback)));
+    
+#else
   std::move(callback).Run(base::Value(), base::Value(), false, "", true);
+#endif
+  
+}
+void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, const std::string &message) {
+  if (code == 0) {
+    std::move(callback).Run(base::Value(), base::Value(), false, "", true);
+  } else {
+    base::Value::Dict result;
+    result.Set("code", code);
+    result.Set("message", message);
+    std::move(callback).Run(base::Value(), base::Value(std::move(result)), true, "", true);
+  }
 }
 
 void EthereumProviderImpl::SendErrorOnRequest(const mojom::ProviderError& error,
