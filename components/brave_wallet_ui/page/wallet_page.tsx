@@ -24,7 +24,7 @@ import { ApiProxyContext } from '../common/context/api-proxy.context'
 
 // components
 import BraveCoreThemeProvider from '../../common/BraveCoreThemeProvider'
-// import Container from './container'
+import Container from './container'
 import { store, walletPageApiProxy } from './store'
 
 // style
@@ -36,11 +36,11 @@ import '@brave/leo/tokens/css/variables.css'
 import { setIconBasePath } from '@brave/leo/react/icon'
 // import { AppNavigation } from './navigation'
 import { StyleProvider } from './styles'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { ModalsProvider } from './modals/base'
-import { LoadingScreenProvider } from './providers/loading-screen'
-import { ConfirmModalProvider } from './providers/confirm-modal'
-import { AppNavigation } from './navigation'
+// import { SafeAreaProvider } from 'react-native-safe-area-context'
+// import { ModalsProvider } from './modals/base'
+// import { LoadingScreenProvider } from './providers/loading-screen'
+// import { ConfirmModalProvider } from './providers/confirm-modal'
+// import { AppNavigation } from './navigation'
 setIconBasePath('chrome://resources/brave-icons')
 
 function App () {
@@ -85,8 +85,8 @@ function App () {
             <ApiProxyContext.Provider value={walletPageApiProxy}>
               <LibContext.Provider value={Lib}>
                 <StyleProvider>
-                  {/* <Container /> */}
-                  <SafeAreaProvider>
+                  <Container />
+                  {/* <SafeAreaProvider>
                     <ModalsProvider>
                       <LoadingScreenProvider>
                         <ConfirmModalProvider>
@@ -94,7 +94,7 @@ function App () {
                         </ConfirmModalProvider>
                       </LoadingScreenProvider>
                     </ModalsProvider>
-                  </SafeAreaProvider>
+                  </SafeAreaProvider> */}
                 </StyleProvider>
               </LibContext.Provider>
             </ApiProxyContext.Provider>

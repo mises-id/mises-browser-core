@@ -28,7 +28,7 @@ import {
   SubDivider,
   ButtonRow,
   StyledButton,
-  HardwareIcon,
+  // HardwareIcon,
   ButtonText,
   WalletIcon
 } from './style'
@@ -168,12 +168,12 @@ export const Accounts = () => {
             <WalletIcon />
             <ButtonText>{getLocale('braveWalletAddAccountImport')}</ButtonText>
           </StyledButton>
-          <StyledButton onPress={onClickAddAccount('hardware')}>
+          {/* <StyledButton onPress={onClickAddAccount('hardware')}>
             <HardwareIcon />
             <ButtonText>
               {getLocale('braveWalletAddAccountImportHardware')}
             </ButtonText>
-          </StyledButton>
+          </StyledButton> */}
         </ButtonRow>
       </ScrollableColumn>
     </StyledWrapper>

@@ -46,6 +46,7 @@ import {
   AddressAndButtonRow,
   CopyIcon
 } from '../portfolio-account-item/style'
+import { Text } from 'react-native'
 
 export interface Props {
   onDelete?: () => void
@@ -114,10 +115,10 @@ export const AccountListItem = ({
         <AccountAndAddress>
           <AccountNameRow>
             {isHardwareWallet && <HardwareIcon />}
-            <AccountNameButton onPress={onSelectAccount}>{account.name}</AccountNameButton>
+            <AccountNameButton onPress={onSelectAccount}><Text>{account.name}</Text></AccountNameButton>
           </AccountNameRow>
           <AddressAndButtonRow>
-            <AccountAddressButton onPress={onSelectAccount}>{reduceAddress(account.address)}</AccountAddressButton>
+            <AccountAddressButton onPress={onSelectAccount}><Text>{reduceAddress(account.address)}</Text></AccountAddressButton>
             <CopyTooltip text={account.address}>
               <CopyIcon />
             </CopyTooltip>

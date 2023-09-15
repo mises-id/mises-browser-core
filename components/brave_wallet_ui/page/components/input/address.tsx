@@ -18,6 +18,7 @@ export const AddressInput: FunctionComponent<
     containerStyle?: ViewStyle;
     inputContainerStyle?: ViewStyle;
     errorLabelStyle?: TextStyle;
+    placeholder?: string;
 
     label: string;
 
@@ -41,6 +42,7 @@ export const AddressInput: FunctionComponent<
   recipientConfig,
   memoConfig,
   disableAddressBook,
+  placeholder
 }) => {
   const smartNavigation = useSmartNavigation();
 
@@ -74,6 +76,7 @@ export const AddressInput: FunctionComponent<
   return (
     <TextInput
       label={label}
+      placeholder={placeholder}
       labelStyle={labelStyle}
       containerStyle={containerStyle}
       inputContainerStyle={inputContainerStyle}

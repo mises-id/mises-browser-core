@@ -34,17 +34,18 @@ import { useGetNetworkQuery } from '../../../../common/slices/api.slice'
 import {
   SendContainer,
   SectionBox,
-  // AddressInput,
+  AddressInput,
   // AmountInput,
   Background,
   // DIVForWidth,
   InputRow,
-  DomainLoadIcon
+  DomainLoadIcon,
+  AmountInput
 } from './send.style'
 import { Column, Text, Row, HorizontalDivider } from '../shared.styles'
 
 // Component
-import { SelectSendOptionButton } from '../components/select-send-option-button/select-send-option-button'
+// import { SelectSendOptionButton } from '../components/select-send-option-button/select-send-option-button'
 import { StandardButton } from '../components/standard-button/standard-button'
 import { SelectTokenButton } from '../components/select-token-button/select-token-button'
 import { PresetButton } from '../components/preset-button/preset-button'
@@ -53,6 +54,7 @@ import { AddressMessage } from '../components/address-message/address-message'
 import { SelectTokenModal } from '../components/select-token-modal/select-token-modal'
 import { CopyAddress } from '../components/copy-address/copy-address'
 import { ChecksumInfoModal } from '../components/checksum-info-modal/checksum-info-modal'
+// import { AddressInput } from 'components/brave_wallet_ui/page/components/input'
 
 interface Props {
   onShowSelectTokenModal: () => void
@@ -66,7 +68,7 @@ interface Props {
 export const Send = (props: Props) => {
   const {
     onShowSelectTokenModal,
-    setSelectedSendOption,
+    // setSelectedSendOption,
     selectedSendOption,
     onHideSelectTokenModal,
     selectTokenModalRef,
@@ -131,28 +133,28 @@ export const Send = (props: Props) => {
   )
 
   // Methods
-  // const handleInputAmountChange = React.useCallback(
-  //   (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setSendAmount(event.target.value)
-  //   },
-  //   []
-  // )
+  const handleInputAmountChange = React.useCallback(
+    (value: string) => {
+      setSendAmount(value)
+    },
+    []
+  )
 
-  // const handleInputAddressChange = React.useCallback(
-  //   (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     updateToAddressOrUrl(event.target.value)
-  //   },
-  //   [updateToAddressOrUrl]
-  // )
+  const handleInputAddressChange = React.useCallback(
+    (value: string) => {
+      updateToAddressOrUrl(value)
+    },
+    [updateToAddressOrUrl]
+  )
 
   const setPresetAmountValue = React.useCallback((percent: number) => {
     onSelectPresetAmount(percent)
   }, [onSelectPresetAmount])
 
-  const onSelectSendOption = React.useCallback((option: SendOptionTypes) => {
-    selectSendAsset(undefined)
-    setSelectedSendOption(option)
-  }, [selectedSendAsset])
+  // const onSelectSendOption = React.useCallback((option: SendOptionTypes) => {
+  //   selectSendAsset(undefined)
+  //   setSelectedSendOption(option)
+  // }, [selectedSendAsset])
 
   const onClickReviewOrENSConsent = React.useCallback(() => {
     if (showEnsOffchainWarning) {
@@ -348,12 +350,12 @@ export const Send = (props: Props) => {
   return (
     <>
       <SendContainer>
-        <Row rowWidth='full' marginBottom={16}>
+        {/* <Row rowWidth='full' marginBottom={16}>
           <SelectSendOptionButton
             selectedSendOption={selectedSendOption}
             onClick={onSelectSendOption}
           />
-        </Row>
+        </Row> */}
         <SectionBox
           minHeight={150}
           hasError={insufficientFundsError}
@@ -372,8 +374,9 @@ export const Send = (props: Props) => {
                   {accountNameAndBalance}
                 </Text>
               </Row>
-              <Row
-                rowWidth='full'
+              <Column
+                 columnHeight='full'
+                 columnWidth='full'
               >
                 <Row>
                   <SelectTokenButton
@@ -393,15 +396,15 @@ export const Send = (props: Props) => {
                     </>
                   }
                 </Row>
-                {/* {selectedSendOption === 'token' &&
+                {selectedSendOption === 'token' &&
                   <AmountInput
                     placeholder='0.0'
                     hasError={insufficientFundsError}
                     value={sendAmount}
-                    onChange={handleInputAmountChange}
+                    onChangeText={handleInputAmountChange}
                   />
-                } */}
-              </Row>
+                }
+              </Column>
               <Row
                 rowWidth='full'
                 horizontalAlign='flex-end'>
@@ -453,14 +456,15 @@ export const Send = (props: Props) => {
               <DomainLoadIcon position={domainPosition} />
             }
             {/* <DIVForWidth ref={(ref) => updateLoadingIconPosition(ref)}>{toAddressOrUrl}</DIVForWidth> */}
-            {/* <AddressInput
+            <AddressInput
               placeholder={getLocale('braveWalletEnterRecipientAddress')}
               hasError={hasAddressError}
               value={toAddressOrUrl}
-              onChange={handleInputAddressChange}
+              onChangeText={handleInputAddressChange}
               spellCheck={false}
-              disabled={!selectedSendAsset}
-            /> */}
+              showSoftInputOnFocus={!selectedSendAsset}
+              editable={!selectedSendAsset}
+            />
             <AccountSelector disabled={!selectedSendAsset} onSelectAddress={updateToAddressOrUrl} />
           </InputRow>
           {showResolvedDomain &&
