@@ -833,13 +833,12 @@ export const AppNavigation: FunctionComponent = () => {
     }))
 
   }, [networks])
-  
-  if(!hasInitialized) {
-    return <></>
-  }
 
   useEffect(() => {
     console.log(walletNotYetCreated, "walletNotYetCreated", !isWalletLocked && isWalletCreated, "!isWalletLocked && isWalletCreated", isWalletLocked && isWalletCreated, "isWalletLocked && isWalletCreated")
+    if(!navigationRef.current) {
+      return;
+    }
     if (walletNotYetCreated) {
       console.log('walletNotYetCreated')
       navigationRef.current?.dispatch(StackActions.replace("Register"))
@@ -854,7 +853,11 @@ export const AppNavigation: FunctionComponent = () => {
       console.log('Unlock')
       navigationRef.current?.dispatch(StackActions.replace("Unlock"));
     }
-  }, [walletNotYetCreated, isWalletLocked, isWalletCreated])
+  }, [walletNotYetCreated, isWalletLocked, isWalletCreated, navigationRef.current])
+  
+  if(!hasInitialized) {
+    return <></>
+  }
 
   return (
     <PageScrollPositionProvider>

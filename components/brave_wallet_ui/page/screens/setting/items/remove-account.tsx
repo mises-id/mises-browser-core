@@ -3,8 +3,8 @@ import { FunctionComponent, useState } from "react";
 import { SettingItem } from "../components";
 import { useStyle } from "../../../styles";
 import { PasswordInputModal } from "../../../modals/password-input/modal";
-// import { useDispatch } from "react-redux";
-// import { WalletActions } from "../../../../common/actions";
+import { useDispatch } from "react-redux";
+import { WalletActions } from "../../../../common/actions";
 // import { useNavigation } from "@react-navigation/native";
 
 export const SettingRemoveAccountItem: FunctionComponent<{
@@ -13,7 +13,7 @@ export const SettingRemoveAccountItem: FunctionComponent<{
   const style = useStyle();
 
   // const navigation = useNavigation();
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
@@ -39,8 +39,8 @@ export const SettingRemoveAccountItem: FunctionComponent<{
         close={() => setIsOpenModal(false)}
         title="Remove Account"
         onEnterPassword={async (password) => {
-          // dispatch(WalletActions.lockWallet())
-          (chrome as any).misesPrivate.resetWallet()
+          // dispatch(WalletActions.unlockWallet({ password }))
+          dispatch(WalletActions.resetWallet());
           // const index = keyRingStore.multiKeyStoreInfo.findIndex(
           //   (keyStore) => keyStore.selected
           // );

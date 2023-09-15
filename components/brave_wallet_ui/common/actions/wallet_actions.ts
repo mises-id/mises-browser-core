@@ -96,5 +96,6 @@
   updateUnapprovedTransactionNonce,
   updateUnapprovedTransactionSpendAllowance,
   updateUserAsset,
-  setChainPop
+  setChainPop,
+  resetWallet
  } = WalletActions

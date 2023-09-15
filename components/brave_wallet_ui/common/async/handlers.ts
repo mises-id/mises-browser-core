@@ -279,6 +279,11 @@ handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: Unlock
   store.dispatch(WalletActions.hasIncorrectPassword(!result.success))
 })
 
+handler.on(WalletActions.resetWallet.type, async (store: Store) => {
+  const braveWalletService = getAPIProxy().braveWalletService
+  await braveWalletService.reset()
+})
+
 handler.on(WalletActions.addFavoriteApp.type, async (store: Store, appItem: BraveWallet.AppItem) => {
   const walletHandler = getAPIProxy().walletHandler
   walletHandler.addFavoriteApp(appItem)
