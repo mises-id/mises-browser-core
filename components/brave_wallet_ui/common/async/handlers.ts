@@ -296,8 +296,8 @@ handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: Unlock
 })
 
 handler.on(WalletActions.resetWallet.type, async (store: Store) => {
-  const keyringService = getAPIProxy().keyringService
-  await keyringService.resetWallet()
+  const braveWalletService = getAPIProxy().braveWalletService
+  await braveWalletService.reset()
 })
 
 handler.on(WalletActions.addFavoriteApp.type, async (store: Store, appItem: BraveWallet.AppItem) => {
