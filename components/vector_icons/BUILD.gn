@@ -10,8 +10,10 @@ aggregate_vector_icons("mises_components_vector_icons") {
 
   sources = [ 
     "autoplay_status.icon",
-    "open_in_ipfs.icon",
   ]
+  if (!is_android) {
+    sources += ["open_in_ipfs.icon",]
+  }
 }
 
 static_library("vector_icons") {

@@ -90,24 +90,6 @@ async function refreshBalancesPricesAndHistory (store: Store) {
   await store.dispatch(refreshPrices())
   await store.dispatch(refreshTokenPriceHistory(state.selectedPortfolioTimeline))
 }
-// const misesBaseUrl = 'https://api.test.mises.site/api'
-// async function setMisesInfo (auth: string) {
-//   const res = await chrome.misesPrivate.fetchJson(`${misesBaseUrl}/v1/signin`, {
-//     method: 'POST',
-//     data: {
-//       user_authz: { auth }
-//     }
-//   })
-//   if(res) {
-//     const token = JSON.parse(res);
-//     const userInfo = await chrome.misesPrivate.fetchJson(`${misesBaseUrl}/v1/user/me`, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       }
-//     })
-//     chrome.misesPrivate.setMisesId(userInfo);
-//   }
-// }
 
 async function refreshWalletInfo (store: Store) {
   const apiProxy = getAPIProxy()
@@ -284,13 +266,15 @@ handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: Unlock
   const { selectedAccount } = walletState;
   if(selectedAccount?.address) {
     const timestamp = new Date().getTime()
-    const sigMsg = `address=${selectedAccount.address}&nonce=${timestamp}`
+    const misesId = selectedAccount.address;
+    const sigMsg = `address=${misesId}&nonce=${timestamp}`
     const nonce = `${timestamp}`
 
-    const {sig} = await keyringService.signMessageForAuth(selectedAccount.address, nonce)
+    const {sig} = await keyringService.signMessageForAuth(misesId, nonce)
     const auth = `${sigMsg}&sig=${sig}`;
-    console.log(auth);
-    (chrome as any).misesPrivate.setMisesId({misesId:selectedAccount.address, auth});
+    const data = JSON.stringify({misesId, auth})
+    console.log('setMisesId', data);
+    (chrome as any).misesPrivate.setMisesId(data);
   }
   store.dispatch(WalletActions.hasIncorrectPassword(!result.success))
 })

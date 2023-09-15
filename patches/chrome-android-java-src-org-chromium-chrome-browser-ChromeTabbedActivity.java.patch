@@ -244,7 +244,7 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..299f5e33de193b943471127031e1fc8e
 +                            UIUtil.showAlertDialog(context, context.getString(R.string.lbl_login_tip), v1 -> {
 +                                ChromeTabCreator tabCreator = ChromeTabbedActivity.this.getTabCreator(false);
 +                                if (tabCreator != null) {
-+                                    tabCreator.openSinglePage("https://home.mises.site/home/me");
++                                    tabCreator.openSinglePage(MisesController.MISES_HOME_BASE_URL + "/home/me");
 +                                }
 +                            });
 +                            return;

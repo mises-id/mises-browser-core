@@ -160,7 +160,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..3fb86b9772f00e901f097655d5e1ea9e
 +                }
 +            }
 +	    SharedPreferencesManager.getInstance().setMisesFirstRun(false);
-+            WebsitePreferenceBridge.setPopupSettingForOrigin(profile, "https://home.mises.site", 1, false);
++            WebsitePreferenceBridge.setPopupSettingForOrigin(profile, MisesController.MISES_HOME_BASE_URL, 1, false);
 +	    PersonalizeResults.SetupDefaultUserAgent(profile);
 +        }
 +        if (!FirstRunStatus.getFirstRunFlowComplete()) {

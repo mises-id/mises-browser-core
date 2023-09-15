@@ -258,8 +258,8 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
                 return;
             }
         }
-
-        HttpUtil.JsonGetAsync("https://web3.mises.site/website/config.json", "", ContentUtils.getBrowserUserAgent(), new Callback<HttpUtil.HttpResp>() {
+        // "https://web3.test.mises.site/website/test_config.json"
+        HttpUtil.JsonGetAsync("https://web3.mises.site/website/test_config.json", "", ContentUtils.getBrowserUserAgent(), new Callback<HttpUtil.HttpResp>() {
             @Override
             public final void onResult(HttpUtil.HttpResp result) {
                 if (result.resp != null && loadWeb3SitesJson(result.resp)) {

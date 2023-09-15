@@ -18,6 +18,12 @@ import org.chromium.chrome.browser.mises.HttpUtil;
 public class MisesController {
     private static final String TAG = "MisesController";
     public static final int MISES_BONUS_CACHE_EXPIRE_TIME = 60;
+
+    public static final String MISES_HOME_BASE_URL = "https://home.test.mises.site";
+    public static final String MISES_MINING_BASE_URL = "https://mining.test.mises.site";
+    public static final String MISES_API_BASE_URL = "https://api.test.mises.site";
+    public static final String MISES_WALLET_BASE_URL = "chrome://wallet";
+    
     private String mMisesId = "";
     private String mMisesAuth = "";
     private String mMisesToken = "";
@@ -143,12 +149,16 @@ public class MisesController {
         if (!force) {
             // check cache expiration
             if (mMisesBonusTimestamp > 0 && (nowInSeconds - mMisesBonusTimestamp < MISES_BONUS_CACHE_EXPIRE_TIME)) {
-                Log.v(TAG, "updateUserBonusFromServer skip");
+                Log.v(TAG, "updateUserBonusFromServer skip: rate");
                 return;
             }
         }
+        if (mMisesToken.isEmpty()) {
+            Log.v(TAG, "updateUserBonusFromServer skip: not signin");
+            return;
+        }
         mMisesBonusTimestamp =  nowInSeconds;
-        HttpUtil.JsonGetAsync("https://api.test.mises.site/api/v1/mining/bonus", mMisesToken, getUserAgent(), new Callback<HttpUtil.HttpResp>() {
+        HttpUtil.JsonGetAsync(MISES_API_BASE_URL + "/api/v1/mining/bonus", mMisesToken, getUserAgent(), new Callback<HttpUtil.HttpResp>() {
             @Override
             public final void onResult(HttpUtil.HttpResp result) {
                 if (result.resp != null ) {
@@ -173,7 +183,11 @@ public class MisesController {
         });
     }
     private void updateUserInfoFromServer() {
-        HttpUtil.JsonGetAsync("https://api.test.mises.site/api/v1/user/me", mMisesToken, getUserAgent(), new Callback<HttpUtil.HttpResp>() {
+        if (mMisesToken.isEmpty()) {
+            Log.v(TAG, "updateUserInfoFromServer skip: not signin");
+            return;
+        }
+        HttpUtil.JsonGetAsync(MISES_API_BASE_URL + "/api/v1/user/me", mMisesToken, getUserAgent(), new Callback<HttpUtil.HttpResp>() {
             @Override
             public final void onResult(HttpUtil.HttpResp result) {
                 if (result.resp != null ) {
@@ -201,15 +215,16 @@ public class MisesController {
         });
     }
     private void updateFromServer() {
+        Log.v(TAG, "updateFromServer");
         JSONObject root = new JSONObject();
         try {
-            JSONObject data = new JSONObject();
-            data.put("user_authz", mMisesAuth);
-            root.put("data", data);
+            JSONObject user_authz = new JSONObject();
+            user_authz.put("auth", mMisesAuth);
+            root.put("user_authz", user_authz);
         } catch (JSONException e) {
             Log.d(TAG, "Unable to write to a JSONObject.");
         }
-        HttpUtil.JsonPostAsync("https://api.test.mises.site/api/v1/signin", root, "", getUserAgent(), new Callback<HttpUtil.HttpResp>() {
+        HttpUtil.JsonPostAsync(MISES_API_BASE_URL + "/api/v1/signin", root, "", getUserAgent(), new Callback<HttpUtil.HttpResp>() {
             @Override
             public final void onResult(HttpUtil.HttpResp result) {
                 if (result.resp != null ) {
@@ -248,21 +263,22 @@ public class MisesController {
                     instance.mMisesAuth = jsonMessage.getString("auth");
                     instance.updateFromServer();
                 } else {
-                    if (jsonMessage.has("misesId")) {
-                        instance.mMisesId = jsonMessage.getString("misesId");
-                    }
-                    if (jsonMessage.has("token")) {
-                        instance.mMisesToken = jsonMessage.getString("token");
-                    }
-                    if (jsonMessage.has("nickname")) {
-                        instance.mMisesNickname = jsonMessage.getString("nickname");
-                    }
-                    if (jsonMessage.has("avatar")) {
-                        instance.mMisesAvatar = jsonMessage.getString("avatar");
-                    } else {
-                        instance.mMisesAvatar = "";
-                    }
-                    instance.handleUserInfoUpdate();
+                    // old wallet signin not supported any more
+                    // if (jsonMessage.has("misesId")) {
+                    //     instance.mMisesId = jsonMessage.getString("misesId");
+                    // }
+                    // if (jsonMessage.has("token")) {
+                    //     instance.mMisesToken = jsonMessage.getString("token");
+                    // }
+                    // if (jsonMessage.has("nickname")) {
+                    //     instance.mMisesNickname = jsonMessage.getString("nickname");
+                    // }
+                    // if (jsonMessage.has("avatar")) {
+                    //     instance.mMisesAvatar = jsonMessage.getString("avatar");
+                    // } else {
+                    //     instance.mMisesAvatar = "";
+                    // }
+                    // instance.handleUserInfoUpdate();
 
                 }
 
