@@ -262,6 +262,12 @@ handler.on(WalletActions.lockWallet.type, async (store) => {
 handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: UnlockWalletPayloadType) => {
   const keyringService = getAPIProxy().keyringService
   const result = await keyringService.unlock(payload.password)
+  store.dispatch(WalletActions.setMisesInfo())
+  store.dispatch(WalletActions.hasIncorrectPassword(!result.success))
+})
+
+handler.on(WalletActions.setMisesInfo.type, async (store: Store) => {
+  const keyringService = getAPIProxy().keyringService
   const { wallet: walletState } = store.getState()
   const { selectedAccount } = walletState;
   if(selectedAccount?.address) {
@@ -276,7 +282,6 @@ handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: Unlock
     console.log('setMisesId', data);
     (chrome as any).misesPrivate.setMisesId(data);
   }
-  store.dispatch(WalletActions.hasIncorrectPassword(!result.success))
 })
 
 handler.on(WalletActions.resetWallet.type, async (store: Store) => {

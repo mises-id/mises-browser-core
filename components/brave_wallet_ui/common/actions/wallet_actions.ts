@@ -97,5 +97,6 @@
   updateUnapprovedTransactionSpendAllowance,
   updateUserAsset,
   setChainPop,
-  resetWallet
+  resetWallet,
+  setMisesInfo
  } = WalletActions
