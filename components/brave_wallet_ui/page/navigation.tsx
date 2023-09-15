@@ -816,21 +816,6 @@ export const AppNavigation: FunctionComponent = () => {
   // computed
   const walletNotYetCreated = (!isWalletCreated || setupStillInProgress) // false || false 
 
-  useEffect(() => {
-    console.log(walletNotYetCreated, "walletNotYetCreated", !isWalletLocked && isWalletCreated, "!isWalletLocked && isWalletCreated", isWalletLocked && isWalletCreated, "isWalletLocked && isWalletCreated")
-    if (walletNotYetCreated) {
-      navigationRef.current?.dispatch(StackActions.replace("Register"))
-      return
-    }
-    if (!isWalletLocked && isWalletCreated) {
-      navigationRef.current?.dispatch(StackActions.replace("MainTabDrawer"));
-    }
-
-    if (isWalletLocked && isWalletCreated) {
-      navigationRef.current?.dispatch(StackActions.replace("Unlock"));
-    }
-  }, [walletNotYetCreated, isWalletLocked, isWalletCreated])
-
   const [setNetwork] = useSetNetworkMutation()
 
   const { data: networks = [] } = useGetVisibleNetworksQuery()
@@ -848,9 +833,29 @@ export const AppNavigation: FunctionComponent = () => {
     }))
 
   }, [networks])
+  
   if(!hasInitialized) {
     return <></>
   }
+
+  useEffect(() => {
+    console.log(walletNotYetCreated, "walletNotYetCreated", !isWalletLocked && isWalletCreated, "!isWalletLocked && isWalletCreated", isWalletLocked && isWalletCreated, "isWalletLocked && isWalletCreated")
+    if (walletNotYetCreated) {
+      console.log('walletNotYetCreated')
+      navigationRef.current?.dispatch(StackActions.replace("Register"))
+      return
+    }
+    if (!isWalletLocked && isWalletCreated) {
+      console.log('MainTabDrawer')
+      navigationRef.current?.dispatch(StackActions.replace("MainTabDrawer"));
+    }
+
+    if (isWalletLocked && isWalletCreated) {
+      console.log('Unlock')
+      navigationRef.current?.dispatch(StackActions.replace("Unlock"));
+    }
+  }, [walletNotYetCreated, isWalletLocked, isWalletCreated])
+
   return (
     <PageScrollPositionProvider>
       <FocusedScreenProvider>
@@ -884,7 +889,8 @@ export const AppNavigation: FunctionComponent = () => {
               screenOptions={{
                 headerShown: false,
                 headerMode: "screen",
-                ...TransitionPresets.SlideFromRightIOS
+                ...TransitionPresets.SlideFromRightIOS,
+                animationEnabled: false
               }}
             >
               <Stack.Screen name="Unlock" component={UnlockScreen} />
