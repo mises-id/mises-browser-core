@@ -119,13 +119,13 @@ public class MisesAdsUtil {
             @Override
             public void onAdShowedFullScreenContent() {
                 // Called when ad is shown.
-                Log.d(TAG, "onAdShowedFullScreenContent");
+                Log.i(TAG, "onAdShowedFullScreenContent");
             }
 
             @Override
             public void onAdFailedToShowFullScreenContent(AdError adError) {
                 // Called when ad fails to show.
-                Log.d(TAG, "onAdFailedToShowFullScreenContent");
+                Log.i(TAG, "onAdFailedToShowFullScreenContent");
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
                 setStatus(AdsStatus.INITIALIZED);
@@ -137,7 +137,7 @@ public class MisesAdsUtil {
                 // Called when ad is dismissed.
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
-                Log.d(TAG, "onAdDismissedFullScreenContent");
+                Log.i(TAG, "onAdDismissedFullScreenContent");
                 setStatus(AdsStatus.INITIALIZED);
             }
         });
@@ -147,7 +147,7 @@ public class MisesAdsUtil {
                 @Override
                 public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
                     // Handle the reward.
-                    Log.d("TAG", "The user earned the reward.");
+                    Log.i("TAG", "The user earned the reward.");
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
                     Toast.makeText(act, "Thank your for your support", Toast.LENGTH_SHORT).show();
@@ -193,13 +193,13 @@ public class MisesAdsUtil {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         // Handle the error.
-                        Log.d(TAG, "onAdFailedToLoad:" + loadAdError.getMessage());
+                        Log.i(TAG, "onAdFailedToLoad:" + loadAdError.getMessage());
                         setStatus(AdsStatus.INITIALIZED);
                     }
 
                     @Override
                     public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-                        Log.d(TAG, "onAdLoaded");
+                        Log.i(TAG, "onAdLoaded");
                         setStatus(AdsStatus.READY);
                         ServerSideVerificationOptions options = new ServerSideVerificationOptions
                             .Builder()

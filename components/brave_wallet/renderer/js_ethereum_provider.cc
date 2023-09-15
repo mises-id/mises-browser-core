@@ -34,7 +34,7 @@
 
 namespace {
 
-constexpr char kEthereum[] = "ethereum";
+constexpr char kEthereum[] = "misesEthereum";
 constexpr char kEmit[] = "emit";
 constexpr char kIsMisesWallet[] = "isMisesWallet";
 constexpr char kEthereumProviderScript[] = "ethereum_provider.js";

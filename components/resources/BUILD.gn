@@ -58,6 +58,10 @@ repack("resources") {
     ]
   }
 
+  deps += [ "//mises/components/brave_wallet/resources:ethereum_provider_generated_resources" ]
+  sources += [ "$root_gen_dir/mises/components/brave_wallet/resources/brave_wallet_script_generated.pak" ]
+
+
   output = "$root_gen_dir/components/mises_components_resources.pak"
 }
 
