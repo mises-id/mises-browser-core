@@ -12,7 +12,7 @@ export const StyledWrapper = styled.View<{ useWithFilter?: boolean }>`
   justify-content: space-between;
   flex-direction: row;
   min-height: 36px;
-  width: 100%;
+  width: auto;
   border: ${(p) => p.useWithFilter ? 'none' : `1px solid ${p.theme.color.interactive08}`};
   box-sizing: border-box;
   border-radius: 4px;

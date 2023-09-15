@@ -35,6 +35,9 @@
 #include "content/public/browser/browser_task_traits.h"
 #include "content/public/browser/browser_thread.h"
 
+#include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_service.h"
+
 
 namespace {
 
@@ -248,7 +251,17 @@ ExtensionFunction::ResponseAction MisesPrivateGetDefaultEVMWalletFunction::Run()
     api::mises_private::GetDefaultEVMWallet::Results::Create(id)));
 }
 
+ExtensionFunction::ResponseAction MisesPrivateResetWalletFunction::Run() {
+  
+  Profile* profile = Profile::FromBrowserContext(browser_context());
 
+  auto* brave_wallet_service =
+      brave_wallet::BraveWalletServiceFactory::GetServiceForContext(profile);
+  if (brave_wallet_service)
+    brave_wallet_service->Reset();
+
+  return RespondNow(NoArguments());
+}
 
 
 }  // namespace api

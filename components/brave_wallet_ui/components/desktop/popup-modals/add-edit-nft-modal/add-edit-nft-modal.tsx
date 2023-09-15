@@ -30,7 +30,7 @@ export const AddOrEditNftModal = ({ nftToken, onClose, onHideForm, onTokenFound 
     <PopupModal
       title={nftToken ? getLocale('braveWalletEditNftModalTitle') : getLocale('braveWalletImportNftModalTitle')}
       onClose={onClose}
-      width='584px'
+      width='320px'
       showDivider={true}
     >
       <StyledWrapper>
