@@ -38,42 +38,43 @@ export const SectionBox = styled(StyledDiv) <{
   padding: ${(p) => p.noPadding ? '0px' : '16px 16px 16px 8px'};
   width: 100%;
   position: relative;
+  z-index: 9;
   margin-bottom: 16px;
   min-height: ${(p) => (p.minHeight ? `${p.minHeight}px` : 'unset')};
 `
 
-// export const AmountInput = styled(StyledInput) <{
-//   hasError: boolean
-// }>`
-//   color: ${(p) => (p.hasError ? p.theme.color.errorBorder : 'inherit')};
-//   font-weight: 500;
-//   font-size: 28px;
-//   line-height: 42px;
-//   text-align: right;
-//   width: 100%;
-//   ::placeholder {
-//     color: ${(p) => p.theme.color.text03};
-//   }
-// `
+export const AmountInput = styled.TextInput <{
+  hasError: boolean
+}>`
+  color: ${(p) => (p.hasError ? p.theme.color.errorBorder : 'inherit')};
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 42px;
+  text-align: right;
+  width: 100%;
+  ::placeholder {
+    color: ${(p) => p.theme.color.text03};
+  }
+`
 
-// export const AddressInput = styled(StyledInput) <{
-//   hasError: boolean
-// }>`
-//   color: ${(p) => (p.hasError ? p.theme.color.errorBorder : 'inherit')};
-//   font-weight: 400;
-//   font-size: 16px;
-//   line-height: 24px;
-//   width: 100%;
-//   z-index: 9;
-//   position: relative;
-//   &:disabled {
-//     opacity: 0.4;
-//     cursor: not-allowed;
-//   }
-//   ::placeholder {
-//     color: ${(p) => p.theme.color.text03};
-//   }
-// `
+export const AddressInput = styled.TextInput <{
+  hasError: boolean
+}>`
+  color: ${(p) => (p.hasError ? p.theme.color.errorBorder : 'inherit')};
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  z-index: 9;
+  position: relative;
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  ::placeholder {
+    color: ${(p) => p.theme.color.text03};
+  }
+`
 
 export const Background = styled(StyledDiv) <{
   height: number

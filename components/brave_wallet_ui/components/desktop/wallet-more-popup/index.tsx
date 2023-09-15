@@ -40,7 +40,7 @@ export interface Props {
 export const WalletMorePopup = (props: Props) => {
   const {
     onClickViewOnBlockExplorer,
-    onClickViewOnActivity,
+    // onClickViewOnActivity,
     onClickBackup,
     onClosePopup,
     yPosition
@@ -150,12 +150,12 @@ export const WalletMorePopup = (props: Props) => {
           {getLocale('braveWalletWalletPopupSettings')}
         </PopupButtonText>
       </PopupButton>
-      <PopupButton onPress={() => onClickViewOnActivity?.('activity')}>
+      {/* <PopupButton onPress={() => onClickViewOnActivity?.('activity')}>
         <SettingsIcon />
         <PopupButtonText>
           {getLocale('braveWalletWalletPopupActivity')}
         </PopupButtonText>
-      </PopupButton>
+      </PopupButton> */}
 
       {onClickViewOnBlockExplorer &&
         <PopupButton onPress={onClickViewOnBlockExplorer}>

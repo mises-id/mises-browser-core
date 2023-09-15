@@ -79,12 +79,12 @@ export const HomePageNavOptions: NavOption[] = [
     icon: 'coins',
     route: WalletRoutes.Portfolio
   },
-  {
-    id: 'nfts',
-    name: 'braveWalletTopNavNFTS',
-    icon: 'grid04',
-    route: WalletRoutes.Nfts
-  },
+  // {
+  //   id: 'nfts',
+  //   name: 'braveWalletTopNavNFTS',
+  //   icon: 'grid04',
+  //   route: WalletRoutes.Nfts
+  // },
   ActivityNavOption,
   {
     id: 'accounts',

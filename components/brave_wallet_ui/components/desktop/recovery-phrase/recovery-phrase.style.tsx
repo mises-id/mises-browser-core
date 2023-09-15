@@ -97,7 +97,7 @@ export const FrostedGlass = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  z-index: 9;
 `
 
 export const HiddenPhraseContainer = styled.TouchableOpacity`

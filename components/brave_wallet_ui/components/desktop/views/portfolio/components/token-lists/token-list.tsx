@@ -25,7 +25,7 @@ import { AssetFilterOptions, HighToLowAssetsFilterOption } from '../../../../../
 import { getLocale } from '../../../../../../../common/locale'
 
 // Components
-import SearchBar from '../../../../../shared/search-bar/index'
+// import SearchBar from '../../../../../shared/search-bar/index'
 import AddButton from '../../../../add-button/index'
 import NetworkFilterSelector from '../../../../network-filter-selector/index'
 import { AccountFilterSelector } from '../../../../account-filter-selector/account-filter-selector'
@@ -89,9 +89,9 @@ export const TokenLists = ({
   // methods
 
   // This filters a list of assets when the user types in search bar
-  const onSearchValueChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value)
-  }, [])
+  // const onSearchValueChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchValue(event.target.value)
+  // }, [])
 
   const showAddAssetsModal = React.useCallback(() => {
     history.push(WalletRoutes.AddAssetModal)
@@ -212,13 +212,13 @@ export const TokenLists = ({
     <>
       <FilterTokenRow>
 
-        <Column flex={1} style={{ minWidth: '25%' }} alignItems='flex-start'>
+        {/* <Column flex={1} style={{ minWidth: '25%' }} alignItems='flex-start'>
           <SearchBar
             placeholder={getLocale('braveWalletSearchText')}
             action={onSearchValueChange}
             value={searchValue}
           />
-        </Column>
+        </Column> */}
 
         <NetworkFilterSelector networkListSubset={networks} />
 

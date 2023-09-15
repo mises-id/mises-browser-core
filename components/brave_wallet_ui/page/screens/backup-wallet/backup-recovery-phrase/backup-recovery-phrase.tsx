@@ -45,6 +45,7 @@ import { CopiedToClipboardConfirmation } from '../../../../components/desktop/co
 import { OnboardingNewWalletStepsNavigation } from '../../onboarding/components/onboarding-steps-navigation/onboarding-steps-navigation'
 import { NavButton } from '../../../../components/extension'
 import { StepsNavigation } from '../../../../components/desktop/steps-navigation/steps-navigation'
+import { Row } from '../../send/shared.styles'
 
 export const BackupRecoveryPhrase = () => {
   // routing
@@ -54,6 +55,8 @@ export const BackupRecoveryPhrase = () => {
 
   // redux
   const mnemonic = useSafePageSelector(PageSelectors.mnemonic)
+
+  console.log(mnemonic, "mnemonicmnemonicmnemonic")
 
   // state
   const [isPhraseShown, setIsPhraseShown] = React.useState(false)
@@ -138,10 +141,10 @@ export const BackupRecoveryPhrase = () => {
               <CopyButton onPress={onCopyPhrase} />
 
               {isCopied &&
-                <>
+                <Row>
                   <CopiedToClipboardConfirmation />
                   <HorizontalSpace space='52px' />
-                </>
+                </Row>
               }
 
             </PhraseCardBottomRow>

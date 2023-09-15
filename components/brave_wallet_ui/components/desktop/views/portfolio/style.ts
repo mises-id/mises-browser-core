@@ -234,6 +234,8 @@ export const FilterTokenRow = styled.View`
   flex-wrap: wrap;
   width: 100%;
   gap: 14px;
+  position: relative;
+  z-index: 9;
 `
 
 // export const NftMultimedia = styled.iframe<{ visible?: boolean }>`

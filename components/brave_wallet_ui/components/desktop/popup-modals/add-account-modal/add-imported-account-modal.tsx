@@ -24,13 +24,13 @@ import {
   WalletState,
   ImportAccountErrorType
 } from '../../../../constants/types'
-import { FilecoinNetworkTypes, FilecoinNetworkLocaleMapping, FilecoinNetwork } from '../../../../common/hardware/types'
+import { FilecoinNetwork } from '../../../../common/hardware/types'
 
 // actions
 import { WalletPageActions } from '../../../../page/actions'
 
 // components
-import { Select } from 'brave-ui/components'
+// import { Select } from 'brave-ui/components'
 import { DividerLine, NavButton } from '../../../extension'
 import PopupModal from '..'
 import { SelectAccountType } from './select-account-type/select-account-type'
@@ -42,7 +42,7 @@ import {
   ImportButton,
   ImportDisclaimer,
   ImportRow,
-  SelectWrapper,
+  // SelectWrapper,
   StyledWrapper
 } from './style'
 
@@ -88,8 +88,8 @@ export const ImportAccountModal = () => {
 
   // state
   const [accountName, setAccountName] = React.useState<string>('')
-  const [filecoinNetwork, setFilecoinNetwork] = React.useState<FilecoinNetwork>('f')
-  const [importOption, setImportOption] = React.useState<string>('key')
+  const [filecoinNetwork] = React.useState<FilecoinNetwork>('f')
+  const [importOption] = React.useState<string>('key')
   const [privateKey, setPrivateKey] = React.useState<string>('')
   const [file, setFile] = React.useState<HTMLInputElement['files']>()
   const [password, setPassword] = React.useState<string>('')
@@ -125,9 +125,9 @@ export const ImportAccountModal = () => {
     setImportError(undefined)
   }, [setImportError])
 
-  const onChangeFilecoinNetwork = React.useCallback((network: FilecoinNetwork) => {
-    setFilecoinNetwork(network)
-  }, [])
+  // const onChangeFilecoinNetwork = React.useCallback((network: FilecoinNetwork) => {
+  //   setFilecoinNetwork(network)
+  // }, [])
 
   const handlePrivateKeyChanged = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setPrivateKey(event.target.value)
@@ -238,7 +238,7 @@ export const ImportAccountModal = () => {
                   {filPrivateKeyFormatDescriptionTextParts.afterTag}</WarningText>
               </WarningWrapper>
 
-              <SelectWrapper>
+              {/* <SelectWrapper>
                 <Select value={filecoinNetwork} onChange={onChangeFilecoinNetwork}>
                   {FilecoinNetworkTypes.map((network, index) => {
                     const networkLocale = FilecoinNetworkLocaleMapping[network]
@@ -249,11 +249,11 @@ export const ImportAccountModal = () => {
                     )
                   })}
                 </Select>
-              </SelectWrapper>
+              </SelectWrapper> */}
             </>
           }
 
-          {selectedAccountType?.coin === BraveWallet.CoinType.ETH &&
+          {/* {selectedAccountType?.coin === BraveWallet.CoinType.ETH &&
             <SelectWrapper>
               <Select
                 value={importOption}
@@ -267,7 +267,7 @@ export const ImportAccountModal = () => {
                 </div>
               </Select>
             </SelectWrapper>
-          }
+          } */}
 
           {hasImportError &&
             <ErrorText>{getLocale('braveWalletImportAccountError')}</ErrorText>

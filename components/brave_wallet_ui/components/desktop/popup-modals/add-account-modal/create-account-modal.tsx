@@ -21,7 +21,7 @@ import {
   WalletState,
   ImportAccountErrorType
 } from '../../../../constants/types'
-import { FilecoinNetworkTypes, FilecoinNetworkLocaleMapping, FilecoinNetwork } from '../../../../common/hardware/types'
+import { FilecoinNetwork } from '../../../../common/hardware/types'
 
 // actions
 import { WalletPageActions } from '../../../../page/actions'
@@ -31,12 +31,12 @@ import { WalletActions } from '../../../../common/actions'
 import { DividerLine, NavButton } from '../../../../components/extension'
 import PopupModal from '..'
 import { SelectAccountType } from './select-account-type'
-import { Select } from 'brave-ui/components'
+// import { Select } from 'brave-ui/components'
 
 // style
 import {
   StyledWrapper,
-  SelectWrapper
+  // SelectWrapper
 } from './style'
 import Input from '../../../../components/rn/Input'
 
@@ -58,7 +58,7 @@ export const CreateAccountModal = () => {
 
   // state
   const [accountName, setAccountName] = React.useState<string>('')
-  const [filecoinNetwork, setFilecoinNetwork] = React.useState<FilecoinNetwork>('f')
+  const [filecoinNetwork] = React.useState<FilecoinNetwork>('f')
 
   // memos
   const selectedAccountType: CreateAccountOptionsType | undefined = React.useMemo(() => {
@@ -90,9 +90,9 @@ export const CreateAccountModal = () => {
     setImportAccountError(undefined)
   }, [setImportAccountError])
 
-  const onChangeFilecoinNetwork = React.useCallback((network: FilecoinNetwork) => {
-    setFilecoinNetwork(network)
-  }, [])
+  // const onChangeFilecoinNetwork = React.useCallback((network: FilecoinNetwork) => {
+  //   setFilecoinNetwork(network)
+  // }, [])
 
   const onClickCreateAccount = React.useCallback(() => {
     const created =
@@ -135,7 +135,7 @@ export const CreateAccountModal = () => {
       <DividerLine />
       {selectedAccountType &&
         <StyledWrapper>
-          {selectedAccountType?.coin === BraveWallet.CoinType.FIL &&
+          {/* {selectedAccountType?.coin === BraveWallet.CoinType.FIL &&
             <>
             <SelectWrapper>
               <Select value={filecoinNetwork} onChange={onChangeFilecoinNetwork}>
@@ -150,7 +150,7 @@ export const CreateAccountModal = () => {
               </Select>
             </SelectWrapper>
           </>
-          }
+          } */}
 
           <Input
             value={accountName}

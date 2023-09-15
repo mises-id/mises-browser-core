@@ -7,6 +7,7 @@ import * as React from 'react'
 
 // Styled Components
 import { Button } from './preset-button.style'
+import { Text } from 'react-native'
 
 interface Props {
   buttonText: string
@@ -16,5 +17,5 @@ interface Props {
 export const PresetButton = (props: Props) => {
   const { buttonText, onClick } = props
 
-  return <Button onPress={onClick}>{buttonText}</Button>
+  return <Button onPress={onClick}><Text>{buttonText}</Text></Button>
 }

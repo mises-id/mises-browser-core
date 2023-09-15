@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import * as React from 'react'
 import { create } from 'ethereum-blockies'
-import { Checkbox, Select } from 'brave-ui/components'
+// import { Checkbox, Select } from 'brave-ui/components'
 import {
   ButtonsContainer,
   DisclaimerWrapper,
@@ -12,22 +12,22 @@ import {
   HardwareWalletAccountListItem,
   HardwareWalletAccountListItemRow,
   HardwareWalletAccountsList,
-  SelectRow,
-  SelectWrapper,
+  // SelectRow,
+  // SelectWrapper,
   LoadingWrapper,
   LoadIcon,
   AddressBalanceWrapper,
   NoSearchResultText
 } from './style'
-import {
-  HardwareWalletDerivationPathLocaleMapping,
-  HardwareWalletDerivationPathsMapping,
-  SolHardwareWalletDerivationPathLocaleMapping
-} from './types'
+// import {
+  // HardwareWalletDerivationPathLocaleMapping,
+//   HardwareWalletDerivationPathsMapping,
+//   SolHardwareWalletDerivationPathLocaleMapping
+// } from './types'
 import {
   FilecoinNetwork,
-  FilecoinNetworkTypes,
-  FilecoinNetworkLocaleMapping
+  // FilecoinNetworkTypes,
+  // FilecoinNetworkLocaleMapping
 } from '../../../../../common/hardware/types'
 import { BraveWallet, WalletAccountType, CreateAccountOptionsType } from '../../../../../constants/types'
 import { getLocale } from '../../../../../../common/locale'
@@ -38,6 +38,7 @@ import { DisclaimerText } from '../style'
 // Utils
 import { reduceAddress } from '../../../../../utils/reduce-address'
 import Amount from '../../../../../utils/amount'
+import { Checkbox } from '../../../../../components/shared/checkbox/checkbox'
 
 interface Props {
   hardwareWallet: string
@@ -61,17 +62,17 @@ export default function (props: Props) {
     accounts,
     selectedNetwork,
     preAddedHardwareWalletAccounts,
-    hardwareWallet,
-    selectedDerivationScheme,
-    setSelectedDerivationScheme,
+    // hardwareWallet,
+    // selectedDerivationScheme,
+    // setSelectedDerivationScheme,
     setSelectedDerivationPaths,
     selectedDerivationPaths,
     onLoadMore,
     onAddAccounts,
     getBalance,
-    filecoinNetwork,
-    onChangeFilecoinNetwork,
-    selectedAccountType
+    // filecoinNetwork,
+    // onChangeFilecoinNetwork,
+    // selectedAccountType
   } = props
   const [filteredAccountList, setFilteredAccountList] = React.useState<BraveWallet.HardwareWalletAccount[]>([])
   const [isLoadingMore, setIsLoadingMore] = React.useState<boolean>(false)
@@ -81,8 +82,8 @@ export default function (props: Props) {
     setIsLoadingMore(false)
   }, [accounts])
 
-  const ethDerivationPathsEnum = HardwareWalletDerivationPathsMapping[hardwareWallet]
-  const solDerivationPathsEnum = SolHardwareWalletDerivationPathLocaleMapping
+  // const ethDerivationPathsEnum = HardwareWalletDerivationPathsMapping[hardwareWallet]
+  // const solDerivationPathsEnum = SolHardwareWalletDerivationPathLocaleMapping
 
   const onSelectAccountCheckbox = (account: BraveWallet.HardwareWalletAccount) => () => {
     const { derivationPath } = account
@@ -119,7 +120,7 @@ export default function (props: Props) {
 
   return (
     <>
-      <SelectRow>
+      {/* <SelectRow>
         <SelectWrapper>
           {selectedAccountType.coin === BraveWallet.CoinType.ETH ? (
             <Select value={selectedDerivationScheme} onChange={setSelectedDerivationScheme}>
@@ -159,7 +160,7 @@ export default function (props: Props) {
             </Select>
           ) : null}
         </SelectWrapper>
-      </SelectRow>
+      </SelectRow> */}
       <DisclaimerWrapper>
         <DisclaimerText>{getLocale('braveWalletSwitchHDPathTextHardwareWallet')}</DisclaimerText>
       </DisclaimerWrapper>
@@ -261,7 +262,7 @@ function AccountListItem (props: AccountListItemProps) {
         </AddressBalanceWrapper>
         <AddressBalanceWrapper>{balance}</AddressBalanceWrapper>
         <Checkbox
-          value={{ selected }}
+          isChecked={selected}
           onChange={onSelect}
           disabled={disabled}
         >
