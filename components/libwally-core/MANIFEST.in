@@ -1,0 +1,13 @@
+graft .
+prune src/test
+prune contrib
+prune docs
+prune .git
+exclude .git*
+prune tools/android_helper.sh
+prune tools/build_android_libraries.sh
+prune tools/build_python_wheels.sh
+prune tools/coverage.sh
+prune tools/uncrustify*
+prune tools/swigjavapost.sh
+prune wally_dist
