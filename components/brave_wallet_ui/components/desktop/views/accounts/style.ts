@@ -3,9 +3,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import styled from 'styled-components/native'
-// import { WalletAddIcon } from 'brave-ui/components/icons'
 import FlashdriveIcon from '../../../../assets/svg-icons/flashdrive-icon.svg'
 import { WalletButton } from '../../../shared/style'
+import { WalletAddIcon } from '../../../../assets/svg-icons/nav-button-icons'
 
 interface StyleProps {
   isHardwareWallet: boolean
@@ -189,6 +189,9 @@ export const WalletIcon = styled.View`
   height: 15px;
   color: ${(p) => p.theme.color.text02};
   margin-right: 8px;
+  background-color: ${(p) => p.theme.color.text02};
+  -webkit-mask-image: url(${WalletAddIcon});
+  mask-image: url(${WalletAddIcon});
 `
 
 export const HardwareIcon = styled.View`

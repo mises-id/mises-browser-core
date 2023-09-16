@@ -20,6 +20,7 @@ import SettingsAdvancedIcon from './settings.svg'
 import OpenNewIcon from './open-new.svg'
 import CaratCircleODownIcon from './down-icon.svg'
 import CaratStrongLeftIcon from './back.svg'
+import WalletAddIcon from './wallet-add.svg'
 
 export {
   WalletIconL,
@@ -40,4 +41,5 @@ export {
   CaratCircleODownIcon,
   CaratStrongLeftIcon,
   SettingsAdvancedIcon,
+  WalletAddIcon,
 }

@@ -57,9 +57,9 @@ export const Accounts = () => {
 
   const onClickAddAccount = React.useCallback((tabId: AddAccountNavTypes) => () => {
     switch (tabId) {
-      case 'create': return history.push(WalletRoutes.CreateAccountModalStart)
+      case 'create': return history.push(WalletRoutes.CreateAccountModal.replace(':accountTypeName?', 'ethereum'))
       case 'hardware': return history.push(WalletRoutes.AddHardwareAccountModalStart)
-      case 'import': return history.push(WalletRoutes.ImportAccountModalStart)
+      case 'import': return history.push(WalletRoutes.ImportAccountModal.replace(':accountTypeName?', 'ethereum'))
       default: return history.push(WalletRoutes.AddAccountModal)
     }
   }, [])

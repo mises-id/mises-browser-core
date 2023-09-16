@@ -373,38 +373,26 @@ export const Send = (props: Props) => {
                 <Text textSize='14px' textColor='text03' maintainHeight={true} isBold={true}>
                   {accountNameAndBalance}
                 </Text>
+                {selectedSendAsset &&<PresetButton buttonText={getLocale('braveWalletSendMax')} onClick={() => setPresetAmountValue(1)} />}
               </Row>
-              <Column
-                 columnHeight='full'
-                 columnWidth='full'
-              >
-                <Row>
-                  <SelectTokenButton
-                    onClick={onShowSelectTokenModal}
-                    token={selectedSendAsset}
-                    selectedSendOption={selectedSendOption} />
-                  {selectedSendOption === 'token' && selectedSendAsset &&
-                    <>
-                      <HorizontalDivider
-                        height={28}
-                        marginLeft={8}
-                        marginRight={8}
-                        dividerTheme='lighter'
-                      />
-                      <PresetButton buttonText={getLocale('braveWalletSendHalf')} onClick={() => setPresetAmountValue(0.5)} />
-                      <PresetButton buttonText={getLocale('braveWalletSendMax')} onClick={() => setPresetAmountValue(1)} />
-                    </>
-                  }
-                </Row>
-                {selectedSendOption === 'token' &&
+              <Row>
+                <SelectTokenButton
+                  onClick={onShowSelectTokenModal}
+                  token={selectedSendAsset}
+                  selectedSendOption={selectedSendOption} />
+                  <HorizontalDivider
+                    height={28}
+                    marginLeft={8}
+                    marginRight={8}
+                    dividerTheme='lighter'
+                  />
                   <AmountInput
                     placeholder='0.0'
                     hasError={insufficientFundsError}
                     value={sendAmount}
                     onChangeText={handleInputAmountChange}
                   />
-                }
-              </Column>
+              </Row>
               <Row
                 rowWidth='full'
                 horizontalAlign='flex-end'>
@@ -462,8 +450,8 @@ export const Send = (props: Props) => {
               value={toAddressOrUrl}
               onChangeText={handleInputAddressChange}
               spellCheck={false}
-              showSoftInputOnFocus={!selectedSendAsset}
-              editable={!selectedSendAsset}
+              showSoftInputOnFocus={!!selectedSendAsset}
+              editable={!!selectedSendAsset}
             />
             <AccountSelector disabled={!selectedSendAsset} onSelectAddress={updateToAddressOrUrl} />
           </InputRow>

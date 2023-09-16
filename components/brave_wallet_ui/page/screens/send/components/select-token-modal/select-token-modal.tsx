@@ -42,6 +42,8 @@ import { NetworkFilterWithSearch } from '../../../../../components/desktop/netwo
 // Styled Components
 import { Row, Column, Text, VerticalDivider, IconButton, VerticalSpacer } from '../../shared.styles'
 import { Wrapper, Modal, ScrollContainer, AccountSection } from './select-tokenmodal.style'
+import { StyleSheet, View } from 'react-native'
+import { useStyle } from '../../../../../page/styles'
 
 interface Props {
   onClose: () => void
@@ -253,6 +255,7 @@ export const SelectTokenModal = React.forwardRef<HTMLDivElement, Props>(
       selectedSendOption
     ])
 
+    const style = useStyle()
     // render
     return (
       <Wrapper>
@@ -263,22 +266,27 @@ export const SelectTokenModal = React.forwardRef<HTMLDivElement, Props>(
             </Text>
             <IconButton icon={CloseIcon} onPress={onClose} size={20} />
           </Row>
-          <Row rowWidth='full' horizontalPadding={16} marginBottom={16}>
-            <NetworkFilterWithSearch
-              searchValue={searchValue}
-              searchPlaceholder={
-                selectedSendOption === 'token'
-                  ? getLocale('braveWalletSearchTokens')
-                  : getLocale('braveWalletSearchNFTs')
-              }
-              searchAction={onSearch}
-              searchAutoFocus={true}
-              selectedNetwork={selectedNetworkFilter}
-              onClick={onToggleShowNetworkDropdown}
-              showNetworkDropDown={showNetworkDropDown}
-              onSelectNetwork={onSelectAssetsNetwork}
-            />
-          </Row>
+          <View style={StyleSheet.flatten([style.flatten(['relative']), {
+            zIndex: 9,
+            width: '100%',
+          }])}>
+            <Row rowWidth='full' horizontalPadding={16} marginBottom={16}>
+              <NetworkFilterWithSearch
+                searchValue={searchValue}
+                searchPlaceholder={
+                  selectedSendOption === 'token'
+                    ? getLocale('braveWalletSearchTokens')
+                    : getLocale('braveWalletSearchNFTs')
+                }
+                searchAction={onSearch}
+                searchAutoFocus={true}
+                selectedNetwork={selectedNetworkFilter}
+                onClick={onToggleShowNetworkDropdown}
+                showNetworkDropDown={showNetworkDropDown}
+                onSelectNetwork={onSelectAssetsNetwork}
+              />
+            </Row>
+          </View>
           <VerticalDivider />
           <ScrollContainer
             columnWidth='full'
