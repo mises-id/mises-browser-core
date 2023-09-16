@@ -13,6 +13,8 @@ export const StyledWrapper = styled.View`
   width: 100%;
   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
   border-radius: 4px;
+  position: relative;
+  z-index: 9;
 `
 
 export const HorizontalDivider = styled.View`

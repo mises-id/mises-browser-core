@@ -50,7 +50,7 @@ export const ButtonText = styled.Text<{ isSelected?: boolean, disabled?: boolean
   color: ${p => p.disabled
     ? p.theme.color.disabled
     : p.isSelected
-      ? 'var(--selected-color)'
+      ? p.theme.palette.blurple500
       : p.theme.color.text02
   };
 `

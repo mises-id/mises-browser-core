@@ -38,7 +38,7 @@ import {
   braveNftDisplayOrigin,
   UpdateNftPinningStatus
 } from '../../../../nft/nft-ui-messages'
-import { auroraSupportedContractAddresses } from '../../../../utils/asset-utils'
+// import { auroraSupportedContractAddresses } from '../../../../utils/asset-utils'
 import { getLocale } from '../../../../../common/locale'
 import { stripERC20TokenImageURL } from '../../../../utils/string-utils'
 
@@ -50,7 +50,7 @@ import { WalletSelectors } from '../../../../common/selectors'
 import { PageSelectors } from '../../../../page/selectors'
 
 // Options
-import { ChartTimelineOptions } from '../../../../options/chart-timeline-options'
+// import { ChartTimelineOptions } from '../../../../options/chart-timeline-options'
 import { AllNetworksOption } from '../../../../options/network-filter-options'
 
 // Components
@@ -82,7 +82,7 @@ import {
   AssetNameText,
   AssetRow,
   BalanceRow,
-  BridgeToAuroraButton,
+  // BridgeToAuroraButton,
   DetailText,
   InfoColumn,
   NetworkDescription,
@@ -94,7 +94,7 @@ import {
   StyledWrapper,
   TopRow,
   MoreButton,
-  ButtonRow
+  // ButtonRow
 } from './style'
 import { Skeleton } from '../../../shared/loading-skeleton/styles'
 import { CoinStats } from './components/coin-stats/coin-stats'
@@ -103,7 +103,7 @@ import { TokenDetailsModal } from './components/token-details-modal/token-detail
 import { WalletActions } from '../../../../common/actions'
 import { HideTokenModal } from './components/hide-token-modal/hide-token-modal'
 import { NftModal } from './components/nft-modal/nft-modal'
-import { ChartControlBar } from '../../chart-control-bar/chart-control-bar'
+// import { ChartControlBar } from '../../chart-control-bar/chart-control-bar'
 import { IpfsNodeStatus } from './components/ipfs-node-status/ipfs-node-status'
 import {
   areSupportedForPinning,
@@ -141,7 +141,7 @@ export const PortfolioAsset = (props: Props) => {
   const defaultCurrencies = useUnsafeWalletSelector(WalletSelectors.defaultCurrencies)
   const userVisibleTokensInfo = useUnsafeWalletSelector(WalletSelectors.userVisibleTokensInfo)
   const portfolioPriceHistory = useUnsafeWalletSelector(WalletSelectors.portfolioPriceHistory)
-  const selectedPortfolioTimeline = useSafeWalletSelector(WalletSelectors.selectedPortfolioTimeline)
+  // const selectedPortfolioTimeline = useSafeWalletSelector(WalletSelectors.selectedPortfolioTimeline)
   const accounts = useUnsafeWalletSelector(WalletSelectors.accounts)
   const transactions = useUnsafeWalletSelector(WalletSelectors.transactions)
   const isFetchingPortfolioPriceHistory = useSafeWalletSelector(WalletSelectors.isFetchingPortfolioPriceHistory)
@@ -173,7 +173,7 @@ export const PortfolioAsset = (props: Props) => {
   const selectedAssetsNetwork = assetsNetwork || selectedNetwork
 
   // custom hooks
-  const { allAssetOptions, isReduxSelectedAssetBuySupported, getAllBuyOptionsAllChains } = useMultiChainBuyAssets()
+  const { allAssetOptions, getAllBuyOptionsAllChains } = useMultiChainBuyAssets()
   const { getNftPinningStatus } = useNftPin()
 
   // memos
@@ -269,13 +269,13 @@ export const PortfolioAsset = (props: Props) => {
     return userToken
   }, [userVisibleTokensInfo, selectedTimeline, chainIdOrMarketSymbol, contractOrSymbol, tokenId, isShowingMarketData])
 
-  const isSelectedAssetBridgeSupported = React.useMemo(() => {
-    if (!selectedAssetFromParams) return false
-    const isBridgeAddress = auroraSupportedContractAddresses.includes(selectedAssetFromParams.contractAddress.toLowerCase())
-    const isNativeAsset = selectedAssetFromParams.contractAddress === ''
+  // const isSelectedAssetBridgeSupported = React.useMemo(() => {
+  //   if (!selectedAssetFromParams) return false
+  //   const isBridgeAddress = auroraSupportedContractAddresses.includes(selectedAssetFromParams.contractAddress.toLowerCase())
+  //   const isNativeAsset = selectedAssetFromParams.contractAddress === ''
 
-    return (isBridgeAddress || isNativeAsset) && selectedAssetFromParams.chainId === BraveWallet.MAINNET_CHAIN_ID
-  }, [selectedAssetFromParams])
+  //   return (isBridgeAddress || isNativeAsset) && selectedAssetFromParams.chainId === BraveWallet.MAINNET_CHAIN_ID
+  // }, [selectedAssetFromParams])
 
   // This will scrape all of the user's accounts and combine the fiat value for every asset
   const fullPortfolioFiatBalance = React.useMemo(() => {
@@ -392,9 +392,9 @@ export const PortfolioAsset = (props: Props) => {
 
   const isNftAsset = selectedAssetFromParams?.isErc721 || selectedAssetFromParams?.isNft
 
-  const isSelectedAssetDepositSupported = React.useMemo(() => {
-    return fullTokenList.some((asset) => asset.symbol.toLowerCase() === selectedAsset?.symbol.toLowerCase())
-  }, [fullTokenList, selectedAsset?.symbol])
+  // const isSelectedAssetDepositSupported = React.useMemo(() => {
+  //   return fullTokenList.some((asset) => asset.symbol.toLowerCase() === selectedAsset?.symbol.toLowerCase())
+  // }, [fullTokenList, selectedAsset?.symbol])
 
 
   const isSelectedAssetPriceDown =
@@ -442,12 +442,12 @@ export const PortfolioAsset = (props: Props) => {
     history.push(WalletRoutes.AddAccountModal)
   }, [])
 
-  const onChangeTimeline = React.useCallback((timeline: BraveWallet.AssetPriceTimeframe) => {
-    dispatch(WalletPageActions.selectAsset({
-      asset: selectedAsset,
-      timeFrame: timeline
-    }))
-  }, [selectedAsset])
+  // const onChangeTimeline = React.useCallback((timeline: BraveWallet.AssetPriceTimeframe) => {
+  //   dispatch(WalletPageActions.selectAsset({
+  //     asset: selectedAsset,
+  //     timeFrame: timeline
+  //   }))
+  // }, [selectedAsset])
 
   const goBack = React.useCallback(() => {
     dispatch(WalletPageActions.selectAsset({ asset: undefined, timeFrame: selectedTimeline }))
@@ -478,13 +478,13 @@ export const PortfolioAsset = (props: Props) => {
     setShowBridgeToAuroraModal(false)
   }, [])
 
-  const onBridgeToAuroraButton = React.useCallback(() => {
-    if (dontShowAuroraWarning) {
-      onOpenRainbowAppClick()
-    } else {
-      setShowBridgeToAuroraModal(true)
-    }
-  }, [dontShowAuroraWarning, onOpenRainbowAppClick])
+  // const onBridgeToAuroraButton = React.useCallback(() => {
+  //   if (dontShowAuroraWarning) {
+  //     onOpenRainbowAppClick()
+  //   } else {
+  //     setShowBridgeToAuroraModal(true)
+  //   }
+  // }, [dontShowAuroraWarning, onOpenRainbowAppClick])
 
   const onDontShowAgain = React.useCallback((selected: boolean) => {
     setDontShowAuroraWarning(selected)
@@ -556,13 +556,13 @@ export const PortfolioAsset = (props: Props) => {
     }
   }, [])
 
-  const onSelectBuy = React.useCallback(() => {
-    history.push(`${WalletRoutes.FundWalletPageStart}/${selectedAsset?.symbol}`)
-  }, [selectedAsset?.symbol])
+  // const onSelectBuy = React.useCallback(() => {
+  //   history.push(`${WalletRoutes.FundWalletPageStart}/${selectedAsset?.symbol}`)
+  // }, [selectedAsset?.symbol])
 
-  const onSelectDeposit = React.useCallback(() => {
-    history.push(`${WalletRoutes.DepositFundsPageStart}/${selectedAsset?.symbol}`)
-  }, [selectedAsset?.symbol])
+  // const onSelectDeposit = React.useCallback(() => {
+  //   history.push(`${WalletRoutes.DepositFundsPageStart}/${selectedAsset?.symbol}`)
+  // }, [selectedAsset?.symbol])
 
   // effects
   React.useEffect(() => {
@@ -702,13 +702,13 @@ export const PortfolioAsset = (props: Props) => {
           {isNftAsset && currentNftPinningStatus?.code === BraveWallet.TokenPinStatusCode.STATUS_PINNED && <IpfsNodeStatus />}
         </BalanceRow>
         <BalanceRow>
-          {!isNftAsset &&
+          {/* {!isNftAsset &&
             <ChartControlBar
               onSelectTimeframe={onChangeTimeline}
               selectedTimeline={selectedAsset ? selectedTimeline : selectedPortfolioTimeline}
               timelineOptions={ChartTimelineOptions}
             />
-          }
+          } */}
           {selectedAsset?.contractAddress && !selectedAsset?.isErc721 && !selectedAsset.isNft &&
             <MoreButton onPress={onShowMore} />
           }
@@ -805,7 +805,7 @@ export const PortfolioAsset = (props: Props) => {
             }
           />
         }
-        {!isNftAsset &&
+        {/* {!isNftAsset &&
           <ButtonRow noMargin={true}>
             {isReduxSelectedAssetBuySupported &&
               <BridgeToAuroraButton
@@ -829,7 +829,7 @@ export const PortfolioAsset = (props: Props) => {
               </BridgeToAuroraButton>
             }
           </ButtonRow>
-        }
+        } */}
 
         {showBridgeToAuroraModal &&
           <BridgeToAuroraModal

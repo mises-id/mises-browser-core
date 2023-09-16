@@ -8,10 +8,10 @@ import * as React from 'react'
 import { TabNavTypes } from '../../../constants/types'
 
 // options
-import { CUSTOM_ASSET_NAV_OPTIONS } from '../../../options/add-custom-asset-nav-options'
+// import { CUSTOM_ASSET_NAV_OPTIONS } from '../../../options/add-custom-asset-nav-options'
 
 // components
-import { TopTabNav } from '../index'
+// import { TopTabNav } from '../index'
 import { AddCustomTokenForm } from '../../shared/add-custom-token-form/add-custom-token-form'
 import { AddNftForm } from '../../shared/add-custom-token-form/add-nft-form'
 
@@ -31,13 +31,13 @@ export const AddAsset = (props: Props) => {
   const [tokenContractAddress, setTokenContractAddress] = React.useState<string>(contractAddress || '')
   const [selectedTab, setSelectedTab] = React.useState<TabNavTypes>('token')
 
-  const onSelectTab = React.useCallback((id: TabNavTypes) => {
-    // Reset contractAddress when a user switches tabs
-    // This will reset the form to avoid the tabs being auto selected based
-    // on found token type
-    if (tokenContractAddress !== '') setTokenContractAddress('')
-    setSelectedTab(id)
-  }, [tokenContractAddress])
+  // const onSelectTab = React.useCallback((id: TabNavTypes) => {
+  //   // Reset contractAddress when a user switches tabs
+  //   // This will reset the form to avoid the tabs being auto selected based
+  //   // on found token type
+  //   if (tokenContractAddress !== '') setTokenContractAddress('')
+  //   setSelectedTab(id)
+  // }, [tokenContractAddress])
 
   const onNftAssetFound = React.useCallback((contractAddress: string) => {
     setTokenContractAddress(contractAddress)
@@ -55,11 +55,11 @@ export const AddAsset = (props: Props) => {
 
   return (
     <AddAssetWrapper>
-      <TopTabNav
+      {/* <TopTabNav
         tabList={CUSTOM_ASSET_NAV_OPTIONS}
         selectedTab={selectedTab}
         onSelectTab={onSelectTab}
-      />
+      /> */}
 
       {selectedTab === 'token'
         ? <AddCustomTokenForm

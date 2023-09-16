@@ -11,4 +11,6 @@ export const SearchAndFiltersRow = styled.View`
   flex-wrap: wrap;
   width: 100%;
   gap: 14px;
+  position: relative;
+  z-index: 9;
 `

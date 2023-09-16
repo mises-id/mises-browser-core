@@ -58,9 +58,7 @@ export const DropDown = styled.View`
   position: absolute;
   top: 38px;
   z-index: 9;
-  @media screen and (max-width: 800px) {
-    right: 0px;
-  }
+  right: 0px;
 `
 
 export const NetworkItemWrapper = styled.View`

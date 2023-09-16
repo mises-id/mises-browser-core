@@ -13,8 +13,9 @@ export const StyledWrapper = styled(WalletButton)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  flex-direction: row;
   background-image: none;
-  background-color: none;;
+  background-color: none;
   padding: 3px 14px;
   font-family: Poppins;
   font-weight: 600;
@@ -27,9 +28,10 @@ export const StyledWrapper = styled(WalletButton)`
 `
 
 export const BackIcon = styled.View`
-  width: auto;
+  width: 12px;
   height: 14px;
   margin-right: 8px;
+  transform: rotate(90deg);
   color: ${(p) => p.theme.color.text03};
   background-color: ${(p) => p.theme.color.interactive07};
   -webkit-mask-image: url(${CaratStrongLeftIcon});

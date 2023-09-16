@@ -53,6 +53,8 @@ import {
   Row,
   ToggleVisibilityButton
 } from '../../../../../shared/style'
+import { useStyle } from '../../../../../../page/styles'
+import { View } from 'react-native'
 
 export interface Props {
   selectedAsset: BraveWallet.BlockchainToken | undefined
@@ -134,6 +136,8 @@ export const AccountsAndTransactionsList = ({
     }
   }, [allSellAssetOptions.length, getAllSellAssetOptions])
 
+  const style = useStyle()
+
   return (
     <>
       {selectedAsset &&
@@ -147,26 +151,28 @@ export const AccountsAndTransactionsList = ({
                     : getLocale('braveWalletAccounts')
                 }
               </DividerText>
-              <Row justifyContent='flex-end'>
-                {!isNonFungibleToken &&
-                  <WithHideBalancePlaceholder
-                    size='small'
-                    hideBalances={hideBalances}
-                  >
-                    <AssetBalanceDisplay>
-                      {
-                        fullAssetFiatBalance
-                          .formatAsFiat(defaultCurrencies.fiat)
-                      } {formattedFullAssetBalance}
-                    </AssetBalanceDisplay>
-                  </WithHideBalancePlaceholder>
-                }
-                <HorizontalSpace space='16px' />
-                <ToggleVisibilityButton
-                  isVisible={!hideBalances}
-                  onPress={() => setHideBalances(prev => !prev)}
-                />
-              </Row>
+              <View style={style.flatten(['flex-1'])}>
+                <Row justifyContent='flex-end'>
+                  {!isNonFungibleToken &&
+                    <WithHideBalancePlaceholder
+                      size='small'
+                      hideBalances={hideBalances}
+                    >
+                      <AssetBalanceDisplay>
+                        {
+                          fullAssetFiatBalance
+                            .formatAsFiat(defaultCurrencies.fiat)
+                        } {formattedFullAssetBalance}
+                      </AssetBalanceDisplay>
+                    </WithHideBalancePlaceholder>
+                  }
+                  <HorizontalSpace space='16px' />
+                  <ToggleVisibilityButton
+                    isVisible={!hideBalances}
+                    onPress={() => setHideBalances(prev => !prev)}
+                  />
+                </Row>
+              </View>
             </DividerRow>
             <SubDivider />
           </Column>
