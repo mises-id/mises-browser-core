@@ -49,7 +49,6 @@ coverage.*.html
 *.gcno
 *.gcov
 
-src/libsecp256k1-config.h
 src/libsecp256k1-config.h.in
 build-aux/ar-lib
 build-aux/config.guess
