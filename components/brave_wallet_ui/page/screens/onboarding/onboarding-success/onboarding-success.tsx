@@ -24,11 +24,9 @@ import { NavButton } from '../../../../components/extension/buttons/nav-button/i
 import { CenteredPageLayout } from '../../../../components/desktop/centered-page-layout/centered-page-layout'
 
 // styles
-import { LinkText } from '../../../../components/shared/style'
 import {
   Description,
   Title,
-  StyledWrapper,
   MainWrapper
 } from '../onboarding.style'
 import {
@@ -36,8 +34,6 @@ import {
   ButtonContainer,
   IntroContainer,
   IntroImg,
-  CloseButtonContainer,
-  DepositIcon
 } from './onboarding-success.style'
 
 export const OnboardingSuccess = () => {
@@ -53,27 +49,27 @@ export const OnboardingSuccess = () => {
     history.push(WalletRoutes.Portfolio)
   }, [])
 
-  const onClickBuyCrypto = React.useCallback(() => {
-    dispatch(WalletPageActions.walletSetupComplete(true))
-    history.push(WalletRoutes.FundWalletPageStart)
-  }, [])
+  // const onClickBuyCrypto = React.useCallback(() => {
+  //   dispatch(WalletPageActions.walletSetupComplete(true))
+  //   history.push(WalletRoutes.FundWalletPageStart)
+  // }, [])
 
-  const onClickDepositCrypto = React.useCallback(() => {
-    dispatch(WalletPageActions.walletSetupComplete(true))
-    history.push(WalletRoutes.DepositFundsPageStart)
-  }, [])
+  // const onClickDepositCrypto = React.useCallback(() => {
+  //   dispatch(WalletPageActions.walletSetupComplete(true))
+  //   history.push(WalletRoutes.DepositFundsPageStart)
+  // }, [])
 
   // render
   return <CenteredPageLayout>
 
     <MainWrapper>
-      <StyledWrapper>
+      {/* <StyledWrapper>
         <CloseButtonContainer>
           <LinkText onPress={onComplete}>
             {getLocale('braveWalletButtonDone')}
           </LinkText>
         </CloseButtonContainer>
-      </StyledWrapper>
+      </StyledWrapper> */}
 
       <IntroContainer>
         <Title>{
@@ -101,14 +97,14 @@ export const OnboardingSuccess = () => {
       <ButtonContainer>
         <NavButton
           buttonType='primary'
-          text={getLocale('braveWalletBuyCryptoButton')}
-          onSubmit={onClickBuyCrypto}
+          text={getLocale('braveWalletButtonDone')}
+          onSubmit={onComplete}
         />
 
-        <LinkText onPress={onClickDepositCrypto}>
+        {/* <LinkText onPress={onClickDepositCrypto}>
           <DepositIcon />
           {getLocale('braveWalletDepositCryptoButton')}
-        </LinkText>
+        </LinkText> */}
 
       </ButtonContainer>
 
