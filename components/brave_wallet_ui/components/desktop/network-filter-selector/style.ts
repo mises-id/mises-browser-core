@@ -43,7 +43,7 @@ export const DropDownIcon = styled.View`
   color: ${(p) => p.theme.color.interactive07};
 `
 
-export const DropDown = styled.View`
+export const DropDown = styled.View<{isLeft?: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -58,7 +58,8 @@ export const DropDown = styled.View`
   position: absolute;
   top: 38px;
   z-index: 9;
-  right: 0px;
+  right: ${(p) => !p.isLeft ? '0px' : 'unset'};
+  left: ${(p) => p.isLeft ? '0px' : 'unset'};
 `
 
 export const NetworkItemWrapper = styled.View`

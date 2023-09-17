@@ -102,5 +102,17 @@ export const HomePageNavOptions: NavOption[] = [
 export const AllNavOptions: NavOption[] = [
   ...NavOptions,
   ...BuySendSwapDepositOptions,
-  ActivityNavOption
+  ActivityNavOption,
+  {
+    id: 'settings',
+    name: 'braveWalletSettings',
+    icon: 'settings',
+    route: WalletRoutes.Settings
+  },
+  {
+    id: 'connectedSites',
+    name: 'braveWalletWalletPopupConnectedSites',
+    icon: 'connectedSites',
+    route: WalletRoutes.ConnectedSites
+  }
 ]

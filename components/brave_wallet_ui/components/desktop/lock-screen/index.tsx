@@ -7,7 +7,7 @@ import * as React from 'react'
 import {
   StyledWrapper,
   Title,
-  PageIcon,
+  // PageIcon,
   InputColumn,
   RestoreButton,
   RestoreButtonText
@@ -15,6 +15,9 @@ import {
 import { PasswordInput } from '../../shared'
 import { NavButton } from '../../extension'
 import { getLocale } from '../../../../common/locale'
+import { Image } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { useStyle } from '../../../page/styles'
 
 export interface Props {
   value?: string
@@ -34,9 +37,22 @@ function LockScreen (props: Props) {
     }
   }
 
+  const style = useStyle()
   return (
     <StyledWrapper>
-      <PageIcon />
+      {/* <PageIcon /> */}
+
+      <Image
+        style={StyleSheet.flatten([
+          style.flatten(["height-90"]),
+          {
+            width: '80%'
+          }
+        ])}
+        fadeDuration={0}
+        resizeMode="contain"
+        source={require("../../../page/assets/logo/splash-image.png")}
+      />
       <Title>{getLocale('braveWalletLockScreenTitle')}</Title>
       <InputColumn>
         <PasswordInput

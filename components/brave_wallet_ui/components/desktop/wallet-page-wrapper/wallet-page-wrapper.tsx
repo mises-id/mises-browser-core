@@ -78,7 +78,9 @@ export const WalletPageWrapper = (props: Props) => {
       walletLocation.includes(WalletRoutes.Send) ||
       walletLocation.includes(WalletRoutes.Swap) ||
       walletLocation.includes(WalletRoutes.FundWalletPageStart) ||
-      walletLocation.includes(WalletRoutes.DepositFundsPageStart)
+      walletLocation.includes(WalletRoutes.DepositFundsPageStart) ||
+      walletLocation.includes(WalletRoutes.ConnectedSites) ||
+      walletLocation.includes(WalletRoutes.Settings)
     )
 
   const headerTitle = AllNavOptions.find((option) =>

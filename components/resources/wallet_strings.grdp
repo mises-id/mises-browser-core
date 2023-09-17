@@ -85,6 +85,8 @@
   <message name="IDS_BRAVE_WALLET_POWERED_BY_COIN_GECKO" desc="Disclaimer on assets details page for GoinGecko contract agreement">Price data powered by CoinGecko</message>
   <message name="IDS_BRAVE_WALLET_BUY" desc="Buy tab button">Buy</message>
   <message name="IDS_BRAVE_WALLET_SEND" desc="Send tab button">Send</message>
+  <message name="IDS_BRAVE_WALLET_SETTINGS" desc="Settings">Settings</message>
+  <message name="IDS_BRAVE_WALLET_CONNECTED_SITES" desc="Settings">Connected Sites</message>
   <message name="IDS_BRAVE_WALLET_SWAP" desc="Swap tab button">Swap</message>
   <message name="IDS_BRAVE_WALLET_RESET" desc="Reset button text">Reset</message>
   <message name="IDS_BRAVE_WALLET_SELL" desc="Sell button text">Sell</message>
@@ -890,4 +892,16 @@
   <message name="IDS_BRAVE_WALLET_ENABLE_NFT_AUTODISCOVERY_MODAL_DESCRIPTION" desc="Enable NFT auto-discovery modal description">Brave Wallet can uses a third-party service to automatically display your NFTs. Brave will share your public addresses with <ph name="BEFORE_UNDERLINE">$1</ph>SimpleHash<ph name="AFTER_UNDERLINE">$2</ph> to provide this service. <ph name="BEFORE_URL">$3</ph>Learn more.<ph name="AFTER_URL">$4</ph></message>
   <message name="IDS_BRAVE_WALLET_ENABLE_NFT_AUTODISCOVERY_MODAL_CONFIRM" desc="Enable NFT auto-discovery modal confirm button text">Yes, proceed</message>
   <message name="IDS_BRAVE_WALLET_ENABLE_NFT_AUTODISCOVERY_MODAL_CANCEL" desc="Enable NFT auto-discovery modal cancel button text">No thanks, I’ll do it manually</message>
+  <message name="IDS_SETTINGS_AUTO_LOCK_MINUTES" desc="The title for the amount of minutes it takes for the Brave Wallet to automatically lock">
+    Automatically lock Mises Wallet
+  </message>
+  <message name="IDS_SETTINGS_AUTO_LOCK_MINUTES_DESC" desc="The description for the amount of minutes it takes for the Brave Wallet to automatically lock">
+    The number of minutes to wait until the Mises Wallet is automatically locked
+  </message>
+  <message name="IDS_SETTINGS_WALLET_RESET" desc="Reset wallet settings item text">
+    Reset and clear wallet data
+  </message>
+  <message name="IDS_BRAVE_WALLET_AUTO_LOCK_MINUTES_MODAL_HEADER" desc="Auto-lock timer (minutes)">
+    Auto-lock timer (minutes)
+  </message>
 </grit-part>

@@ -172,7 +172,7 @@ export const NetworkFilterSelector = ({
       </DropDownButton>
 
       {showNetworkFilter &&
-        <DropDown>
+        <DropDown isLeft>
           {primaryNetworks.map((network: BraveWallet.NetworkInfo) =>
             <NetworkFilterItem
               key={`${network.chainId + network.chainName}`}

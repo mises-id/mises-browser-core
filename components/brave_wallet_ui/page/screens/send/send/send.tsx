@@ -54,7 +54,7 @@ import { AddressMessage } from '../components/address-message/address-message'
 import { SelectTokenModal } from '../components/select-token-modal/select-token-modal'
 import { CopyAddress } from '../components/copy-address/copy-address'
 import { ChecksumInfoModal } from '../components/checksum-info-modal/checksum-info-modal'
-// import { AddressInput } from 'components/brave_wallet_ui/page/components/input'
+// import { AddressInput } from '../../../../page/components/input'
 
 interface Props {
   onShowSelectTokenModal: () => void

@@ -20,7 +20,7 @@ import { getLocale } from '../../../../../common/locale'
 // Styled Components
 import {
   HeaderWrapper,
-  BraveLogo,
+  // BraveLogo,
   SettingsButton,
   SettingsIcon,
   SettingsWrapper
@@ -31,6 +31,9 @@ import { HorizontalDivider, Row, Text } from '../../send/shared.styles'
 import {
   WalletMorePopup
 } from '../../../../components/desktop/wallet-more-popup/index'
+import { Image } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { useStyle } from '../../../../page/styles'
 
 interface Props {
   title: string
@@ -53,6 +56,14 @@ export const TabHeader = (props: Props) => {
     history.push(WalletRoutes.Backup)
   }
 
+  const onShowConnectedSites = () => {
+    history.push(WalletRoutes.ConnectedSites)
+  }
+
+  const onShowSetting = () => {
+    history.push(WalletRoutes.Settings)
+  }
+
   // Hooks
   useOnClickOutside(
     settingsModalRef,
@@ -60,11 +71,22 @@ export const TabHeader = (props: Props) => {
     showSettings
   )
 
+  const style = useStyle()
+
+
   // render
   return (
     <HeaderWrapper>
       <Row rowHeight='full' verticalAlign='center'>
-        <BraveLogo />
+        {/* <BraveLogo /> */}
+        <Image
+          style={StyleSheet.flatten([
+            style.flatten(["width-80", "height-30"]),
+          ])}
+          fadeDuration={0}
+          resizeMode="contain"
+          source={require("../../../../page/assets/logo/splash-image.png")}
+        />
         <HorizontalDivider height={22} marginRight={12} />
         <Text textSize='18px' textColor='text02' isBold={true}>
           {getLocale(title)}
@@ -78,6 +100,8 @@ export const TabHeader = (props: Props) => {
         {showSettings &&
           <WalletMorePopup
             onClickBackup={onShowBackup}
+            onClickSetting={onShowSetting}
+            onClickConnectedSites={onShowConnectedSites}
             onClosePopup={() => setShowSettings(false)}
             yPosition={50}
           />

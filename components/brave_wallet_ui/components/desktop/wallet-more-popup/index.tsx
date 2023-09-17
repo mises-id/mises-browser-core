@@ -33,6 +33,8 @@ export interface Props {
   onClickViewOnBlockExplorer?: () => void
   onClickViewOnActivity?: (path: PanelTypes) => void
   onClickBackup?: () => void
+  onClickSetting?: () => void
+  onClickConnectedSites?: () => void
   onClosePopup?: () => void
   yPosition?: number
 }
@@ -43,6 +45,8 @@ export const WalletMorePopup = (props: Props) => {
     // onClickViewOnActivity,
     onClickBackup,
     onClosePopup,
+    onClickSetting,
+    onClickConnectedSites,
     yPosition
   } = props
 
@@ -57,31 +61,27 @@ export const WalletMorePopup = (props: Props) => {
     dispatch(WalletActions.lockWallet())
   }, [])
 
-  const onClickConnectedSites = React.useCallback(() => {
-    if (!selectedNetwork) {
-      return
-    }
+  // const onClickConnectedSites = React.useCallback(() => {
+  //   if (!selectedNetwork) {
+  //     return
+  //   }
 
-    const route = selectedNetwork.coin === BraveWallet.CoinType.ETH
-      ? 'ethereum'
-      : 'solana'
+  //   const route = selectedNetwork.coin === BraveWallet.CoinType.ETH
+  //     ? 'ethereum'
+  //     : 'solana'
 
-    // if(route === 'ethereum') {
-    //   onClickViewOnActivity?.('sitePermissions')
-    //   return
-    // }
-    chrome.tabs.create({ url: `brave://settings/content/${route}` }, () => {
-      if (chrome.runtime.lastError) {
-        console.error(
-          'tabs.create failed: ' +
-          chrome.runtime.lastError.message
-        )
-      }
-    })
-    if (onClosePopup) {
-      onClosePopup()
-    }
-  }, [selectedNetwork, onClosePopup])
+  //   chrome.tabs.create({ url: `brave://settings/content/${route}` }, () => {
+  //     if (chrome.runtime.lastError) {
+  //       console.error(
+  //         'tabs.create failed: ' +
+  //         chrome.runtime.lastError.message
+  //       )
+  //     }
+  //   })
+  //   if (onClosePopup) {
+  //     onClosePopup()
+  //   }
+  // }, [selectedNetwork, onClosePopup])
 
   const onClickHelpCenter = React.useCallback(() => {
     chrome.tabs.create(
@@ -100,19 +100,19 @@ export const WalletMorePopup = (props: Props) => {
     }
   }, [onClosePopup])
 
-  const onClickSettings = React.useCallback(() => {
-    chrome.tabs.create({ url: 'chrome://settings/wallet' }, () => {
-      if (chrome.runtime.lastError) {
-        console.error(
-          'tabs.create failed: ' +
-          chrome.runtime.lastError.message
-        )
-      }
-    })
-    if (onClosePopup) {
-      onClosePopup()
-    }
-  }, [onClosePopup])
+  // const onClickSettings = React.useCallback(() => {
+  //   // chrome.tabs.create({ url: 'chrome://settings/wallet' }, () => {
+  //   //   if (chrome.runtime.lastError) {
+  //   //     console.error(
+  //   //       'tabs.create failed: ' +
+  //   //       chrome.runtime.lastError.message
+  //   //     )
+  //   //   }
+  //   // })
+  //   if (onClosePopup) {
+  //     onClosePopup()
+  //   }
+  // }, [onClosePopup])
 
   return (
     <StyledWrapper yPosition={yPosition}>
@@ -136,7 +136,12 @@ export const WalletMorePopup = (props: Props) => {
       {
         selectedNetwork &&
         selectedNetwork.coin !== BraveWallet.CoinType.FIL &&
-        <PopupButton onPress={onClickConnectedSites}>
+        <PopupButton onPress={() => {
+          onClickConnectedSites?.()
+          if (onClosePopup) {
+            onClosePopup()
+          }
+        }}>
           <ConnectedSitesIcon />
           <PopupButtonText>
             {getLocale('braveWalletWalletPopupConnectedSites')}
@@ -144,7 +149,12 @@ export const WalletMorePopup = (props: Props) => {
         </PopupButton>
       }
 
-      <PopupButton onPress={onClickSettings}>
+      <PopupButton onPress={() => {
+          onClickSetting?.()
+          if (onClosePopup) {
+            onClosePopup()
+          }
+        }}>
         <SettingsIcon />
         <PopupButtonText>
           {getLocale('braveWalletWalletPopupSettings')}

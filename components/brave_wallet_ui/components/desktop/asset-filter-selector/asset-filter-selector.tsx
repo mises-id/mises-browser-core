@@ -67,7 +67,7 @@ export const AssetFilterSelector = () => {
       </DropDownButton>
 
       {showAssetFilter &&
-        <DropDown>
+        <DropDown isLeft>
           {AssetFilterOptions.map((assetFilterItem: AssetFilterOption) =>
             <AssetFilterItem
               key={assetFilterItem.id}

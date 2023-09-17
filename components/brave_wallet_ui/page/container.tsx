@@ -46,6 +46,8 @@ import { SendScreen } from './screens/send/send-page/send-screen'
 import {
   WalletPageWrapper
 } from '../components/desktop/wallet-page-wrapper/wallet-page-wrapper'
+import ConnectedSites from './screens/onboarding/connectedSites'
+import Setting from './screens/onboarding/setting'
 
 export const Container = () => {
   // routing
@@ -323,6 +325,19 @@ export const Container = () => {
                 </WalletPageWrapper>
               </Route>
             }
+            
+
+            {!isWalletLocked &&<Route path={WalletRoutes.ConnectedSites} exact>
+              <WalletPageWrapper hideBackground={true}>
+                <ConnectedSites />
+              </WalletPageWrapper>
+            </Route>}
+
+            {!isWalletLocked &&<Route path={WalletRoutes.Settings} exact>
+              <WalletPageWrapper hideBackground={true}>
+                <Setting />
+              </WalletPageWrapper>
+            </Route>}
 
             {isWalletLocked && <Redirect to={WalletRoutes.Unlock} />}
             {!isWalletLocked && <Redirect to={WalletRoutes.Portfolio} />}

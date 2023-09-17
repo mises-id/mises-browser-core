@@ -796,9 +796,15 @@ export enum WalletRoutes {
   // send
   Send = '/send',
 
+  // Connected sites
+  ConnectedSites = '/connected-sites',
+
+  // Settings
+  Settings = '/settings',
+
   // NFT Pining
   LocalIpfsNode = '/crypto/local-ipfs-node',
-  InspectNfts = '/crypto/inspect-nfts'
+  InspectNfts = '/crypto/inspect-nfts',
 }
 
 export const WalletOrigin = 'chrome://wallet'
@@ -993,6 +999,9 @@ export type NavIDTypes =
   | 'nfts'
   | 'market'
   | 'accounts'
+  | 'settings'
+  | 'connectedSites'
+
 
 export interface NavOption {
   id: NavIDTypes

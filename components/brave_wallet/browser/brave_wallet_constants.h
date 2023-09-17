@@ -168,6 +168,8 @@ constexpr webui::LocalizedString kLocalizedStrings[] = {
     {"braveWalletSend", IDS_BRAVE_WALLET_SEND},
     {"braveWalletSwap", IDS_BRAVE_WALLET_SWAP},
     {"braveWalletReset", IDS_BRAVE_WALLET_RESET},
+    {"braveWalletSettings", IDS_BRAVE_WALLET_SETTINGS},
+    {"braveWalletConnectedSites", IDS_BRAVE_WALLET_CONNECTED_SITES},
     {"braveWalletSell", IDS_BRAVE_WALLET_SELL},
     {"braveWalletNotEnoughBalance", IDS_BRAVE_WALLET_NOT_ENOUGH_BALANCE},
     {"braveWalletSendToken", IDS_BRAVE_WALLET_SEND_TOKEN},
@@ -1193,12 +1195,19 @@ constexpr webui::LocalizedString kLocalizedStrings[] = {
     {"braveWalletEditNftModalTitle", IDS_BRAVE_WALLET_EDIT_NFT_MODAL_TITLE},
     {"braveWalletEnableNftAutoDiscoveryModalHeader",
      IDS_BRAVE_WALLET_ENABLE_NFT_AUTODISCOVERY_MODAL_HEADER},
+    {"autoLockMinutesModalHeader",
+     IDS_BRAVE_WALLET_AUTO_LOCK_MINUTES_MODAL_HEADER},
     {"braveWalletEnableNftAutoDiscoveryModalDescription",
      IDS_BRAVE_WALLET_ENABLE_NFT_AUTODISCOVERY_MODAL_DESCRIPTION},
     {"braveWalletEnableNftAutoDiscoveryModalConfirm",
      IDS_BRAVE_WALLET_ENABLE_NFT_AUTODISCOVERY_MODAL_CONFIRM},
     {"braveWalletEnableNftAutoDiscoveryModalCancel",
-     IDS_BRAVE_WALLET_ENABLE_NFT_AUTODISCOVERY_MODAL_CANCEL}};
+     IDS_BRAVE_WALLET_ENABLE_NFT_AUTODISCOVERY_MODAL_CANCEL},
+    // Settings
+    {"autoLockMinutes", IDS_SETTINGS_AUTO_LOCK_MINUTES},
+    {"autoLockMinutesDesc", IDS_SETTINGS_AUTO_LOCK_MINUTES_DESC},
+    {"walletReset", IDS_SETTINGS_WALLET_RESET},
+};
 
 // 0x swap constants
 constexpr char kGoerliSwapBaseAPIURL[] = "https://goerli.api.0x.org/";

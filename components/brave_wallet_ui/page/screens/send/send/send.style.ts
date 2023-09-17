@@ -17,7 +17,7 @@ export const SendContainer = styled(StyledDiv)`
   box-sizing: border-box;
   justify-content: flex-start;
   padding: 16px;
-  width: 90%;
+  width: 100%;
   position: relative;
   z-index: 9;
 `

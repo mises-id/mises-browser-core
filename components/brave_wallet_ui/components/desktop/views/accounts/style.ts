@@ -173,6 +173,7 @@ export const StyledButton = styled(WalletButton)`
   padding: 12px 22px;
   background-color: transparent;
   border-width: 1px;
+  flex-direction: row;
   border-style: solid;
   border-color: ${(p) => p.theme.color.interactive08};
   margin-right: 8px;

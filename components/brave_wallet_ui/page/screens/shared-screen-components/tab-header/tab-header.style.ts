@@ -58,8 +58,8 @@ export const SettingsButton = styled(StyledButton)`
 
 export const SettingsIcon = styled.View`
   color: ${leo.color.icon.default};
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   background-color: ${(p) => p.theme.color.interactive07};
   -webkit-mask-image: url(${SettingsAdvancedIcon});
   mask-image: url(${SettingsAdvancedIcon});
