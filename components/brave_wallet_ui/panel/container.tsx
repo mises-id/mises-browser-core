@@ -380,8 +380,6 @@ function Container () {
     )
   }
 
-  console.log(selectedPanel, "selectedPanelselectedPanelselectedPanel========")
-
   if (selectedPanel === 'transactionStatus' && selectedTransaction) {
     return (
       <PanelWrapper isLonger={false}>

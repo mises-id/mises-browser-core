@@ -21,6 +21,10 @@ import OpenNewIcon from './open-new.svg'
 import CaratCircleODownIcon from './down-icon.svg'
 import CaratStrongLeftIcon from './back.svg'
 import WalletAddIcon from './wallet-add.svg'
+import coinsIcon from './coins.svg'
+import activityIcon from './activity.svg'
+import sendIcon from './send.svg'
+import userAccountsIcon from './user-accounts.svg'
 
 export {
   WalletIconL,
@@ -42,4 +46,8 @@ export {
   CaratStrongLeftIcon,
   SettingsAdvancedIcon,
   WalletAddIcon,
+  coinsIcon,
+  activityIcon,
+  sendIcon,
+  userAccountsIcon,
 }

@@ -57,14 +57,16 @@ export const BannerButton = styled(WalletButton) <Partial<StyleProps>>`
   font-family: Poppins;
   font-size: 12px;
   font-weight: 600;
-  color: ${(p) => p.buttonType === 'primary' ? p.theme.color.interactive05 : p.theme.color.text02};
-  @media (prefers-color-scheme: dark) {
-    color: ${(p) => p.buttonType === 'primary' ? p.theme.palette.white : p.theme.color.text02};
-  }
   letter-spacing: 0.01em;
   margin-left: 20px;
   @media screen and (max-width: 1080px) {
     margin-left: 0px;
     margin-right: 20px;
+  }
+`
+export const BannerButtonText = styled.Text <Partial<StyleProps>>`
+  color: ${(p) => p.buttonType === 'primary' ? p.theme.color.interactive05 : p.theme.color.text02};
+  @media (prefers-color-scheme: dark) {
+    color: ${(p) => p.buttonType === 'primary' ? p.theme.palette.white : p.theme.color.text02};
   }
 `

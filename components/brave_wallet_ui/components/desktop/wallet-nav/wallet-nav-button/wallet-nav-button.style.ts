@@ -17,14 +17,16 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   border: none;
   background-image: none;
   background-color: ${(p) => p.isSelected
-    ? 'var(--nav-button-background-hover)'
+    ? 'rgb(240, 241, 244)'
     : 'none'};
   color: var(--nav-button-color);
   font-weight: 600;
   font-size: 16px;
   font-family: 'Poppins';
+  border-radius: 6px;
+  padding: 5px 0;
   &:hover {
-    background-color: var(--nav-button-background-hover);
+    background-color: rgb(240, 241, 244);
   }
   &:last-child {
     margin-bottom: 0px;
@@ -32,11 +34,16 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   transition-duration: inherit;
 `
 
-export const ButtonIcon = styled.View`
-  --leo-icon-size: 24px;
+export const ButtonIcon = styled.View<{icon: any}>`
   color: var(--nav-button-color);
   margin-right: var(--icon-margin-right);
   transition-duration: inherit;
+  color: ${(p) => p.theme.color.text02};
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${(p) => p.icon});
+  mask-image: url(${(p) => p.icon});
+  width: 18px;
+  height: 18px;
 `
 
 export const ButtonText = styled(Text)`

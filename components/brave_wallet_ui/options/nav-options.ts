@@ -4,6 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 // Types
+import { activityIcon, coinsIcon, sendIcon, userAccountsIcon } from '../assets/svg-icons/nav-button-icons'
 import { NavOption, WalletRoutes } from '../constants/types'
 
 export const BuySendSwapDepositOptions: NavOption[] = [
@@ -36,7 +37,7 @@ export const BuySendSwapDepositOptions: NavOption[] = [
 const ActivityNavOption: NavOption = {
   id: 'activity',
   name: 'braveWalletActivity',
-  icon: 'activity',
+  icon: activityIcon,
   route: WalletRoutes.Activity
 }
 
@@ -76,7 +77,7 @@ export const HomePageNavOptions: NavOption[] = [
   {
     id: 'portfolio',
     name: 'braveWalletTopNavPortfolio',
-    icon: 'coins',
+    icon: coinsIcon,
     route: WalletRoutes.Portfolio
   },
   // {
@@ -89,13 +90,13 @@ export const HomePageNavOptions: NavOption[] = [
   {
     id: 'accounts',
     name: 'braveWalletTopNavAccounts',
-    icon: 'user-accounts',
+    icon: userAccountsIcon,
     route: WalletRoutes.Accounts
   },
   {
     id: 'send',
     name: 'braveWalletSend',
-    icon: 'send',
+    icon: sendIcon,
     route: WalletRoutes.Send
   },
 ]

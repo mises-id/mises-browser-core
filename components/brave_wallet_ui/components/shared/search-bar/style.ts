@@ -12,7 +12,7 @@ export const StyledWrapper = styled.View<{ useWithFilter?: boolean }>`
   justify-content: space-between;
   flex-direction: row;
   min-height: 36px;
-  width: auto;
+  width: 100%;
   border: ${(p) => p.useWithFilter ? 'none' : `1px solid ${p.theme.color.interactive08}`};
   box-sizing: border-box;
   border-radius: 4px;
@@ -22,7 +22,6 @@ export const StyledWrapper = styled.View<{ useWithFilter?: boolean }>`
 `
 
 export const SearchInput = styled.TextInput<{ useWithFilter?: boolean }>`
-  flex: 1;
   height: 100%;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};

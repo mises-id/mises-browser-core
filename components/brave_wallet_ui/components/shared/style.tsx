@@ -302,18 +302,13 @@ export interface AssetIconProps {
 }
 
 export const AssetIconFactory = styled.Image.attrs<AssetIconProps>(props => ({
-  src: stripERC20TokenImageURL(props.icon)
-    ? props.icon
+  source: {
+    uri: stripERC20TokenImageURL(props.icon) ? props.icon
 
     // Display theme background (using a transparent image) if no icon to
     // render.
     : transparent40x40Image,
-
-  // Defer loading the image until it reaches a calculated distance from the
-  // viewport, as defined by the browser.
-  //
-  // Ref: https://web.dev/browser-level-image-lazy-loading
-  loading: 'lazy'
+  }
 }))
 
 // Construct styled-component using JS object instead of string, for editor

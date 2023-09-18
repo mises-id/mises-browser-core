@@ -13,7 +13,7 @@ import { getLocale } from '../../../../../common/locale'
 import { NavOption } from '../../../../constants/types'
 
 // Styled Components
-import { StyledButton, ButtonText } from './wallet-nav-button.style'
+import { StyledButton, ButtonText, ButtonIcon } from './wallet-nav-button.style'
 
 export interface Props {
   option: NavOption
@@ -36,7 +36,7 @@ export const WalletNavButton = (props: Props) => {
       onPress={onClick}
       isSelected={walletLocation.includes(option.route)}
     >
-      {/* <ButtonIcon name={option.icon} /> */}
+      <ButtonIcon icon={option.icon} />
       <ButtonText
         textSize='14px'
         isBold={true}
