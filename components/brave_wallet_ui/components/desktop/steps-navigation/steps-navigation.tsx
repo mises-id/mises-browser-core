@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as React from 'react'
-import { useHistory, NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 // utils
 import { getLocale } from '$web-common/locale'
@@ -13,9 +13,9 @@ import { getLocale } from '$web-common/locale'
 import { WalletRoutes } from '../../../constants/types'
 
 // style
-import { LinkText } from '../../../components/shared/style'
+// import { LinkText } from '../../../components/shared/style'
 import { BackIcon } from '../../buy-send-swap/select-header/style'
-import { BackButton, DotsWrapper, FlexBox, Wrapper } from './steps-navigation.style'
+import { BackButton, FlexBox, Wrapper } from './steps-navigation.style'
 import { Text } from 'react-native'
 
 export interface StepsNavigationProps<T extends string> {
@@ -45,7 +45,7 @@ export const StepsNavigation: <T extends string>(
   const history = useHistory()
 
   // computed
-  const currentStepIndex = steps.findIndex(s => s === currentStep)
+  // const currentStepIndex = steps.findIndex(s => s === currentStep)
 
   // memos
   // const buttonProps = React.useMemo(() => {
@@ -70,7 +70,7 @@ export const StepsNavigation: <T extends string>(
           </BackButton>
       }
 
-      <DotsWrapper>
+      {/* <DotsWrapper>
         {steps.map((stepName, stepIndex) => {
           const isCurrentStep = currentStep === stepName
 
@@ -103,7 +103,7 @@ export const StepsNavigation: <T extends string>(
             {skipButtonText || getLocale('braveWalletButtonSkip')}
           </LinkText>
         : <FlexBox />
-      }
+      } */}
 
     </Wrapper>
   )

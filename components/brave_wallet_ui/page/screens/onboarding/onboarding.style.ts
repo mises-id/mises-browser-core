@@ -40,7 +40,7 @@ export const MainWrapper = styled.View<{ isTabView?: boolean }>`
 `
 
 export const StyledWrapper = styled.View`
-  width: 376px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,14 +97,14 @@ export const PhraseCard = styled.View`
   display: flex;
   // flex: 1;
   flex-direction: column;
-  width: 376px;
+  width: 100%;
   align-items: center;
 `
 
 export const PhraseCardTopRow = styled.View`
   display: flex;
   flex-direction: row;
-  width: 375px;
+  width: 100%;
   height: 40px;
   align-items: center;
   justify-content: flex-end;

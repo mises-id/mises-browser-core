@@ -83,6 +83,7 @@ export const OvalButton = styled(WalletButton)`
   border-color: ${(p) => p.theme.color.interactive08};
   margin-right: 6px;
   pointer-events: auto;
+  flex-direction: row;
 `
 
 export const OvalButtonText = styled.Text`
