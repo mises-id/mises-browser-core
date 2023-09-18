@@ -16,6 +16,8 @@ export const StyledWrapper = styled.View`
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  z-index: 9;
 `
 
 export const DropDownButton = styled(WalletButton)`

@@ -68,7 +68,7 @@ export const WalletMorePopup = (props: Props) => {
     //   ? 'ethereum'
     //   : 'solana'
 
-    chrome.tabs.create({ url: `brave://wallet/connected-sites` }, () => {
+    chrome.tabs.create({ url: `chrome://wallet/connected-sites` }, () => {
       if (chrome.runtime.lastError) {
         console.error(
           'tabs.create failed: ' +
