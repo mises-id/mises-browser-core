@@ -30,7 +30,7 @@ export const OvalButton = styled.TouchableOpacity<IsPanelProps>`
   flex-direction: row;
   cursor: pointer;
   background-image: none;
-  background-color: none;;
+  background-color: none;
   border-radius: 48px;
   padding: 3px 10px;
   border-width: 1px;

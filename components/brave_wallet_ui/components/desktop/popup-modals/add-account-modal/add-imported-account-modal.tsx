@@ -51,6 +51,7 @@ import {
   WarningWrapper
 } from '../account-settings-modal/account-settings-modal.style'
 import Input from '../../../../components/rn/Input'
+import { View } from 'react-native'
 
 interface Params {
   accountTypeName: string
@@ -303,6 +304,7 @@ export const ImportAccountModal = () => {
               />
             </>
           )}
+          <View style={{marginTop: 20}}></View>
 
           <Input
             value={accountName}
@@ -311,6 +313,8 @@ export const ImportAccountModal = () => {
             onChange={handleAccountNameChanged}
             autoFocus={true}
           />
+
+          <View style={{marginTop: 20}}></View>
 
           <NavButton
             onSubmit={onClickCreateAccount}

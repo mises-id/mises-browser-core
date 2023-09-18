@@ -39,6 +39,7 @@ import {
   // SelectWrapper
 } from './style'
 import Input from '../../../../components/rn/Input'
+import { View } from 'react-native'
 
 interface Params {
   accountTypeName: string
@@ -159,6 +160,7 @@ export const CreateAccountModal = () => {
             onChange={handleAccountNameChanged}
             autoFocus={true}
           />
+          <View style={{marginTop: 20}}></View>
 
           <NavButton
             onSubmit={onClickCreateAccount}
