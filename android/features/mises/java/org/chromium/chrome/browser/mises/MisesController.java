@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
+import java.math.RoundingMode;
 
 import org.chromium.base.Log;
 import org.chromium.base.ThreadUtils;
@@ -311,6 +312,7 @@ public class MisesController {
 
     public String getMisesBonusString() {
         DecimalFormat df = new DecimalFormat();
+        df.setRoundingMode(RoundingMode.FLOOR);
         df.setMaximumFractionDigits(2);
         return df.format(mMisesBonus);
     }
