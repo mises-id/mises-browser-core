@@ -62,6 +62,11 @@ int LookupSuffixInReversedSet(const unsigned char* graph,
     return kDafsaFound;
   }
 
+  if (base::EndsWith(host, ".metaverse")) {
+    *suffix_length = strlen(".metaverse") - 1;
+    return kDafsaFound;
+  }
+
   if (base::EndsWith(host, decentralized_dns::kSolDomain)) {
     *suffix_length = strlen(decentralized_dns::kSolDomain) - 1;
     return kDafsaFound;

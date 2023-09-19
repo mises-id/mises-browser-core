@@ -26,6 +26,7 @@ bool IsUnstoppableDomainsResolveMethodAsk(PrefService* local_state);
 bool IsUnstoppableDomainsResolveMethodEnabled(PrefService* local_state);
 
 bool IsBitTLD(const base::StringPiece& host);
+bool IsFreeNameTLD(const base::StringPiece& host);
 
 bool IsENSTLD(const base::StringPiece& host);
 void SetENSResolveMethod(PrefService* local_state, ResolveMethodTypes method);

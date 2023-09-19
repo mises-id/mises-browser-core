@@ -1910,6 +1910,92 @@ void JsonRpcService::OnBitResolveDns(
   bit_resolve_dns_calls_.SetResult(domain, chain_id, std::move(resolved_url));
 }
 
+
+void JsonRpcService::FreeNameResolveDns(
+    const std::string& domain,
+    FreeNameResolveDnsCallback callback) {
+  if (fn_resolve_dns_calls_.HasCall(domain)) {
+    fn_resolve_dns_calls_.AddCallback(domain, std::move(callback));
+    return;
+  }
+
+  fn_resolve_dns_calls_.AddCallback(domain, std::move(callback));
+  std::string chain_id = mojom::kMainnetChainId;
+  auto internal_callback =
+      base::BindOnce(&JsonRpcService::OnFreeNameResolveDns,
+                      weak_ptr_factory_.GetWeakPtr(), domain, chain_id);
+  api_request_helper_->Request("GET",
+                  GetFreeNameRpcUrl(chain_id, domain),
+                  "",  "", true,
+                  std::move(internal_callback));
+}
+
+void JsonRpcService::OnFreeNameResolveDns(
+    const std::string& domain,
+    const std::string& chain_id,
+    APIRequestResult api_request_result) {
+  if (!api_request_result.Is2XXResponseCode()) {
+    fn_resolve_dns_calls_.SetError(
+        domain, chain_id, mojom::ProviderError::kInternalError,
+        l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+    return;
+  }
+
+  const base::Value& value_body = api_request_result.value_body();
+  if (!value_body.is_dict()) {
+    mojom::ProviderError error;
+    std::string error_message;
+    ParseErrorResult<mojom::ProviderError>(value_body, &error,
+                                           &error_message);
+    fn_resolve_dns_calls_.SetError(domain, chain_id, error, error_message);
+    return;
+  }
+  GURL resolved_url;
+  const auto* record_list = value_body.GetDict().FindList("records");
+  if (record_list) {
+    for (const base::Value& entry : *record_list) {
+      auto* entry_dic = entry.GetIfDict();
+      if (!entry_dic) {
+        continue;
+      }
+      auto* key = entry_dic->FindString("key");
+      if (key && (*key == "dweb.ipfs.hash" || *key == "dweb.ipns.hash" )) {
+        auto* value = entry_dic->FindString("value");
+        if (value) {
+          std::string url_scheme = "ipfs://";
+          if (*key == "dweb.ipns.hash") {
+            url_scheme = "ipns://";
+            
+          }
+          resolved_url = GURL(url_scheme + *value );
+        }
+      }
+
+      if (key && (*key == "redirect.WEBSITE.0" )) {
+        auto* value = entry_dic->FindString("value");
+        if (value) {
+          resolved_url = GURL(*value);
+        }
+      }
+      if (key && (*key == "record.A.0" )) {
+        auto* value = entry_dic->FindString("value");
+        if (value) {
+          std::string url_scheme = "https://";
+          resolved_url = GURL(url_scheme + *value );
+        }
+      }
+    }
+
+  }
+
+  if (!resolved_url.is_valid()) {
+    fn_resolve_dns_calls_.SetNoResult(domain, chain_id);
+    return;
+  }
+
+  fn_resolve_dns_calls_.SetResult(domain, chain_id, std::move(resolved_url));
+}
+
 void JsonRpcService::UnstoppableDomainsResolveDns(
     const std::string& domain,
     UnstoppableDomainsResolveDnsCallback callback) {

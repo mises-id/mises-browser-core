@@ -187,6 +187,15 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
       const std::string& domain,
       BitResolveDnsCallback callback);
 
+  using FreeNameResolveDnsCallback =
+      base::OnceCallback<void(const GURL& url,
+                              mojom::ProviderError error,
+                              const std::string& error_message)>;
+  void FreeNameResolveDns(
+      const std::string& domain,
+      FreeNameResolveDnsCallback callback);
+
+
   void UnstoppableDomainsResolveDns(
       const std::string& domain,
       UnstoppableDomainsResolveDnsCallback callback) override;
@@ -515,6 +524,9 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
   void OnBitResolveDns(const std::string& domain,
                                       const std::string& chain_id,
                                       APIRequestResult api_request_result);
+  void OnFreeNameResolveDns(const std::string& domain,
+                                      const std::string& chain_id,
+                                      APIRequestResult api_request_result);                                    
   void OnUnstoppableDomainsGetWalletAddr(
       const unstoppable_domains::WalletAddressKey& key,
       const std::string& chain_id,
@@ -650,6 +662,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
   unstoppable_domains::MultichainCalls<std::string, absl::optional<GURL>>
       ud_resolve_dns_calls_;
   bit::ResolveCalls<std::string, GURL> bit_resolve_dns_calls_;
+  bit::ResolveCalls<std::string, GURL> fn_resolve_dns_calls_;
 
   mojo::RemoteSet<mojom::JsonRpcServiceObserver> observers_;
 

@@ -72,6 +72,10 @@ bool IsBitTLD(const base::StringPiece& host) {
   return base::EndsWith(host, kBitDomain);
 }
 
+bool IsFreeNameTLD(const base::StringPiece& host) {
+  return base::EndsWith(host, ".metaverse");
+}
+
 bool IsENSTLD(const base::StringPiece& host) {
   return base::EndsWith(host, kEthDomain);
 }
