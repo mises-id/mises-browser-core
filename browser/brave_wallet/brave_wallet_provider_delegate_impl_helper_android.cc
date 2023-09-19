@@ -34,7 +34,24 @@ void ShowPanel(content::WebContents* web_contents) {
 
 }
 
-void ClosePanel() {
+void ShowApprovePanel(content::WebContents* web_contents) {
+  LOG(INFO) << "ShowApprovePanel";
+  if (!web_contents)
+    return;
+
+  auto* tab_helper =
+      brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
+  if (tab_helper) {
+    GURL url  = tab_helper->GetApproveBubbleURL();
+    LOG(INFO) << "ShowApprovePanel show" << url.spec();
+    JNIEnv* env = base::android::AttachCurrentThread();
+    Java_BraveWalletProviderDelegateImplHelper_showPanel(env, 
+      base::android::ConvertUTF8ToJavaString(env, url.spec()));
+  }
+}
+
+
+void ClosePanel(content::WebContents* web_contents) {
   JNIEnv* env = base::android::AttachCurrentThread();
   Java_BraveWalletProviderDelegateImplHelper_closePanel(env);
 }

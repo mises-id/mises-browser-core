@@ -38,7 +38,7 @@
 /* #undef HAVE_MBEDTLS_SHA512_H */
 
 /* Define to 1 if you have the `memset_s' function. */
-#define HAVE_MEMSET_S 1
+// #define HAVE_MEMSET_S 1
 
 /* Define if we have mmap */
 #define HAVE_MMAP 1

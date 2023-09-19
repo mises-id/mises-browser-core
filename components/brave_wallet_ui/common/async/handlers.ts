@@ -262,7 +262,9 @@ handler.on(WalletActions.lockWallet.type, async (store) => {
 handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: UnlockWalletPayloadType) => {
   const keyringService = getAPIProxy().keyringService
   const result = await keyringService.unlock(payload.password)
-  store.dispatch(WalletActions.setMisesInfo())
+  if (result.success) {
+    store.dispatch(WalletActions.setMisesInfo())
+  }
   store.dispatch(WalletActions.hasIncorrectPassword(!result.success))
 })
 

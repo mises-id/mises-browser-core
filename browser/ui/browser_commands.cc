@@ -29,20 +29,14 @@
 
 #include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/browser/ui/webui/brave_wallet/wallet_common_ui.h"
 #include "mises/components/brave_wallet/browser/pref_names.h"
 #include "mises/components/brave_wallet/common/features.h"
+#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl_helper.h"
 
 
 using content::WebContents;
 
-namespace {
-  content::WebContents* GetActiveWebContents() {
-  return BrowserList::GetInstance()
-      ->GetLastActive()
-      ->tab_strip_model()
-      ->GetActiveWebContents();
-}
-}  // namespace
 
 namespace mises {
 
@@ -51,8 +45,7 @@ void ShowWalletBubble(Browser* browser) {
 // #if defined(TOOLKIT_VIEWS)
 //   static_cast<BraveBrowserView*>(browser->window())->CreateWalletBubble();
 // #endif
-  brave_wallet::BraveWalletTabHelper::FromWebContents(GetActiveWebContents())
-      ->ShowBubble();
+  brave_wallet::ShowPanel(brave_wallet::GetActiveWebContents());
 }
 
 void ShowApproveWalletBubble(Browser* browser) {
@@ -60,16 +53,14 @@ void ShowApproveWalletBubble(Browser* browser) {
 //   static_cast<BraveBrowserView*>(browser->window())
 //       ->CreateApproveWalletBubble();
 // #endif
-  brave_wallet::BraveWalletTabHelper::FromWebContents(GetActiveWebContents())
-      ->ShowApproveWalletBubble();
+  brave_wallet::ShowApprovePanel(brave_wallet::GetActiveWebContents());
 }
 
 void CloseWalletBubble(Browser* browser) {
 // #if defined(TOOLKIT_VIEWS)
 //   static_cast<BraveBrowserView*>(browser->window())->CloseWalletBubble();
 // #endif
- brave_wallet::BraveWalletTabHelper::FromWebContents(GetActiveWebContents())
-      ->CloseBubble();
+ brave_wallet::ClosePanel(brave_wallet::GetActiveWebContents());
 }
 
 }  // namespace brave
