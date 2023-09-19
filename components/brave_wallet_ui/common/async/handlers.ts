@@ -231,6 +231,9 @@ handler.on(
     await store.dispatch(
       walletApi.endpoints.setSelectedAccount.initiate({ address, coin })
     )
+    store.dispatch(
+      WalletActions.setMisesInfo()
+    )
   }
 )
 
