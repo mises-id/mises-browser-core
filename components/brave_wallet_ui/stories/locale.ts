@@ -79,7 +79,7 @@ provideStrings({
   braveWalletClickToSwitch: 'Click to switch',
   braveWalletEnterYourPassword: 'Enter your password',
   braveWalletEnterAPassswordToContinue: 'Enter a password to continue',
-  braveWalletEnterYourPasswordToStartBackup: 'Enter your Brave Wallet password to start backing up wallet.',
+  braveWalletEnterYourPasswordToStartBackup: 'Enter your Mises Wallet password to start backing up wallet.',
 
   // BuySendSwap
   braveWalletBuy: 'Buy',
@@ -144,9 +144,9 @@ provideStrings({
   braveWalletLearnMore: 'Learn more',
 
   // Onboarding - Welcome
-  braveWalletWelcomeTitle: 'Secure. Multi-chain. And oh-so-easy to use. Your Brave Wallet is just a few clicks away',
+  braveWalletWelcomeTitle: 'Secure. Multi-chain. And oh-so-easy to use. Your Mises Wallet is just a few clicks away',
   braveWalletWelcomeButton: 'Create new wallet',
-  braveWalletLearnMoreAboutBraveWallet: 'Learn more about Brave Wallet',
+  braveWalletLearnMoreAboutBraveWallet: 'Learn more about Mises Wallet',
   braveWalletImportExistingWallet: 'Import existing wallet',
   braveWalletWelcomeRestoreButton: 'Restore',
   braveWalletConnectHardwareWallet: 'Connect hardware wallet',
@@ -174,10 +174,10 @@ provideStrings({
   braveWalletMetaMaskPasswordInputPlaceholder: 'Type MetaMask password',
   braveWalletImportFromMetaMaskSeedInstructions: 'Type your MetaMask 12-24 word recovery phrase.',
   braveWalletMetaMaskExtensionDetected: 'We detected the MetaMask extension in your browser',
-  braveWalletMetaMaskExtensionImportDescription: 'Enter your MetaMask wallet password to easily import to Brave Wallet.',
-  braveWalletRestoreMyBraveWalletInstructions: 'Type your Brave Wallet 12-24 word recovery phrase.',
+  braveWalletMetaMaskExtensionImportDescription: 'Enter your MetaMask wallet password to easily import to Mises Wallet.',
+  braveWalletRestoreMyBraveWalletInstructions: 'Type your Mises Wallet 12-24 word recovery phrase.',
   braveWalletRecoveryPhraseLengthError: 'Recovery phrase must be 12, 15, 18, 21, or 24 words long',
-  braveWalletInvalidMnemonicError: 'The mnemonic being imported is not valid for Brave Wallet',
+  braveWalletInvalidMnemonicError: 'The mnemonic being imported is not valid for Mises Wallet',
 
   // Onboarding - Backup Wallet - Intro
   braveWalletOnboardingRecoveryPhraseBackupIntroTitle: 'Before you start backing up wallet',
@@ -230,7 +230,7 @@ provideStrings({
   braveWalletPasswordStrengthTooltipIsLongEnough: '8 characters',
 
   // Onboarding Success
-  braveWalletOnboardingSuccessTitle: 'Congratulations! Your Brave Wallet is ready to go!',
+  braveWalletOnboardingSuccessTitle: 'Congratulations! Your Mises Wallet is ready to go!',
   braveWalletOnboardingSuccessDescription: 'To access your wallet, just click the wallet icon at the top right of any Brave browser window.',
   braveWalletBuyCryptoButton: 'Buy crypto',
   braveWalletDepositCryptoButton: 'Deposit',
@@ -240,7 +240,7 @@ provideStrings({
   braveWalletArticleLinkWhatsARecoveryPhrase: 'What’s a recovery phrase?',
 
   // Lock Screen
-  braveWalletEnterYourBraveWalletPassword: 'Enter your Brave Wallet password',
+  braveWalletEnterYourBraveWalletPassword: 'Enter your Mises Wallet password',
   braveWalletLockScreenTitle: 'Enter password to unlock wallet',
   braveWalletLockScreenButton: 'Unlock',
   braveWalletLockScreenError: 'Incorrect password',
@@ -258,11 +258,11 @@ provideStrings({
   braveWalletDismissButton: 'Dismiss',
 
   // Default Wallet Banner
-  braveWalletDefaultWalletBanner: 'Brave Wallet is not set as your default wallet and will not respond to Web3 DApps. Visit settings to change your default wallet.',
+  braveWalletDefaultWalletBanner: 'Mises Wallet is not set as your default wallet and will not respond to Web3 DApps. Visit settings to change your default wallet.',
 
   // Restore Screen
   braveWalletRestoreTite: 'Restore primary crypto accounts',
-  braveWalletRestoreDescription: 'Enter your recovery phrase to restore your Brave wallet crypto account.',
+  braveWalletRestoreDescription: 'Enter your recovery phrase to restore your Mises wallet crypto account.',
   braveWalletRestoreError: 'The recovery phrase entered is invalid.',
   braveWalletRestorePlaceholder: 'Paste recovery phrase from clipboard',
   braveWalletRestoreShowPhrase: 'Show recovery phrase',
@@ -276,7 +276,7 @@ provideStrings({
 
   // Accounts Tab
   braveWalletAccountsPrimary: 'Primary crypto accounts',
-  braveWalletAccountsPrimaryDisclaimer: 'You can create primary accounts in Brave Wallet that may be backed up or restored from your recovery phrase. To learn more about account types visit account help',
+  braveWalletAccountsPrimaryDisclaimer: 'You can create primary accounts in Mises Wallet that may be backed up or restored from your recovery phrase. To learn more about account types visit account help',
   braveWalletAccountsSecondary: 'Imported accounts',
   braveWalletAccountsSecondaryDisclaimer: 'These accounts can be used with Web3 DApps, and can be shown in your portfolio. However, note that secondary accounts cannot be restored via recovery phrase from your primary account backup.',
   braveWalletAccountsAssets: 'Assets',
@@ -446,7 +446,7 @@ provideStrings({
 
   // Fund Wallet Screen
   braveWalletFundWalletTitle: 'To finish your $1 purchase, select one of our partners',
-  braveWalletFundWalletDescription: 'On completion, your funds will be transfered to your Brave Wallet',
+  braveWalletFundWalletDescription: 'On completion, your funds will be transfered to your Mises Wallet',
 
   // Deposit Funds Screen
   braveWalletDepositFundsTitle: 'Deposit crypto',
@@ -486,7 +486,7 @@ provideStrings({
 
   // Allow Add or Change Network Panel
   braveWalletAllowAddNetworkTitle: 'Allow this site to add a network?',
-  braveWalletAllowAddNetworkDescription: 'This will allow this network to be used within Brave Wallet.',
+  braveWalletAllowAddNetworkDescription: 'This will allow this network to be used within Mises Wallet.',
   braveWalletAllowAddNetworkLearnMoreButton: 'Learn more.',
   braveWalletAllowAddNetworkName: 'Network name',
   braveWalletAllowAddNetworkUrl: 'Network URL',
@@ -567,8 +567,8 @@ provideStrings({
 
   // Import from Legacy Wallet
   braveWalletCryptoWalletsDetected: 'Existing crypto wallets detected',
-  braveWalletCryptoWalletsDescriptionTwo: 'If youd rather skip the import and keep the old Crypto Wallets experience, just navigate to the Brave Browser $1Settings$2 and change the default back to Crypto Wallets. You can also import, try the new Brave Wallet, and change back at any time.',
-  braveWalletImportBraveLegacyDescription: 'Enter your existing crypto wallets password to import to Brave Wallet. Enjoy a faster and more secure way to manage crypto assets and interact with Web3 DApps.',
+  braveWalletCryptoWalletsDescriptionTwo: 'If youd rather skip the import and keep the old Crypto Wallets experience, just navigate to the Brave Browser $1Settings$2 and change the default back to Crypto Wallets. You can also import, try the new Mises Wallet, and change back at any time.',
+  braveWalletImportBraveLegacyDescription: 'Enter your existing crypto wallets password to import to Mises Wallet. Enjoy a faster and more secure way to manage crypto assets and interact with Web3 DApps.',
   braveWalletImportBraveLegacyInput: 'Type Crypto wallets password',
 
   // Connect Hardware Wallet Panel
@@ -889,12 +889,12 @@ provideStrings({
   
   // NFT auto discovery modal
   braveWalletEnableNftAutoDiscoveryModalHeader: 'Want your NFTs displayed automatically?',
-  braveWalletEnableNftAutoDiscoveryModalDescription: 'Brave Wallet can uses a third-party service to automatically display your NFTs. Brave will share your public addresses with $1SimpleHash$2 to provide this service. $3Learn more.$4',
+  braveWalletEnableNftAutoDiscoveryModalDescription: 'Mises Wallet can uses a third-party service to automatically display your NFTs. Mises will share your public addresses with $1SimpleHash$2 to provide this service. $3Learn more.$4',
   braveWalletEnableNftAutoDiscoveryModalConfirm: 'Yes, proceed',
   braveWalletEnableNftAutoDiscoveryModalCancel: 'No thanks, I\'ll do it manually',
 
   // Settings
-  walletReset: 'Reset Brave Rewards',
-  autoLockMinutes: 'Automatically lock Brave Wallet',
+  walletReset: 'Reset Mises Rewards',
+  autoLockMinutes: 'Automatically lock Mises Wallet',
   autoLockMinutesModalHeader: 'Auto-lock timer (minutes)'
 })
