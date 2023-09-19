@@ -26,10 +26,11 @@ bool ShouldHandleUrl(const GURL& url) {
       IsUnstoppableDomainsResolveMethodEnabled(
           g_browser_process->local_state());
   bool should_handle_bit = IsBitTLD(url.host_piece());
-  bool should_handle_fn = IsFreeNameTLD(url.host_piece());
   bool should_handle_ens = IsENSTLD(url.host_piece()) &&
       IsENSResolveMethodEnabled(g_browser_process->local_state());
-  return should_handle_ud || should_handle_bit || should_handle_ens || should_handle_fn;
+  bool should_handle_sns = IsSnsTLD(url.host_piece());
+  bool should_handle_fn = IsFreeNameTLD(url.host_piece());
+  return should_handle_ud || should_handle_bit || should_handle_ens || should_handle_sns || should_handle_fn;
 }
 
 int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
@@ -68,15 +69,6 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
     return net::ERR_IO_PENDING;
   }
 
-  if (IsFreeNameTLD(ctx->request_url.host_piece())) {
-    json_rpc_service->FreeNameResolveDns(
-        ctx->request_url.host(),
-        base::BindOnce(&OnBeforeURLRequest_FreeNameRedirectWork,
-                       next_callback, ctx));
-
-    return net::ERR_IO_PENDING;
-  }
-
   if (IsENSTLD(ctx->request_url.host_piece()) &&
       IsENSResolveMethodEnabled(g_browser_process->local_state())) {
     json_rpc_service->EnsGetContentHash(
@@ -93,6 +85,15 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
         ctx->request_url.host(),
         base::BindOnce(&OnBeforeURLRequest_SnsRedirectWork, next_callback,
                        ctx));
+
+    return net::ERR_IO_PENDING;
+  }
+
+  if (IsFreeNameTLD(ctx->request_url.host_piece())) {
+    json_rpc_service->FreeNameResolveDns(
+        ctx->request_url.host(),
+        base::BindOnce(&OnBeforeURLRequest_FreeNameRedirectWork,
+                       next_callback, ctx));
 
     return net::ERR_IO_PENDING;
   }

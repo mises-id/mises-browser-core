@@ -30,13 +30,6 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
 void MigrateObsoleteLocalStatePrefs(PrefService* local_state) {
 }
 
-bool IsUnstoppableDomainsTLD(const base::StringPiece& host) {
-  for (auto* domain : kUnstoppableDomains) {
-    if (base::EndsWith(host, domain))
-      return true;
-  }
-  return false;
-}
 
 void SetUnstoppableDomainsResolveMethod(PrefService* local_state,
                                         ResolveMethodTypes method) {
@@ -68,17 +61,7 @@ bool IsUnstoppableDomainsResolveMethodEnabled(PrefService* local_state) {
          static_cast<int>(ResolveMethodTypes::ENABLED);
 }
 
-bool IsBitTLD(const base::StringPiece& host) {
-  return base::EndsWith(host, kBitDomain);
-}
 
-bool IsFreeNameTLD(const base::StringPiece& host) {
-  return base::EndsWith(host, ".metaverse");
-}
-
-bool IsENSTLD(const base::StringPiece& host) {
-  return base::EndsWith(host, kEthDomain);
-}
 
 void SetENSResolveMethod(PrefService* local_state, ResolveMethodTypes method) {
   local_state->SetInteger(kENSResolveMethod, static_cast<int>(method));
@@ -118,10 +101,6 @@ EnsOffchainResolveMethod GetEnsOffchainResolveMethod(PrefService* local_state) {
       local_state->GetInteger(kEnsOffchainResolveMethod));
 }
 
-
-bool IsSnsTLD(const base::StringPiece& host) {
-  return base::EndsWith(host, kSolDomain);
-}
 
 void SetSnsResolveMethod(PrefService* local_state, ResolveMethodTypes method) {
   local_state->SetInteger(kSnsResolveMethod, static_cast<int>(method));

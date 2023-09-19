@@ -11,6 +11,7 @@
 
 #include "base/strings/string_util.h"
 #include "mises/net/decentralized_dns/constants.h"
+#include "mises/net/decentralized_dns/utils.h"
 
 namespace net {
 
@@ -26,18 +27,10 @@ int LookupSuffixInReversedSet(const unsigned char* graph,
                               bool include_private,
                               base::StringPiece host,
                               size_t* suffix_length) {
-  constexpr char kIpfsLocalhost[] = ".ipfs.localhost";
-  constexpr char kIpnsLocalhost[] = ".ipns.localhost";
-
-  static_assert(sizeof(kIpfsLocalhost) == sizeof(kIpnsLocalhost),
-                "size should be equal");
 
   // Special cases to be treated as public suffixes for security concern.
   // With this, {CID}.ipfs.localhost with different CIDs cannot share cookies.
-  if (base::EndsWith(host, kIpfsLocalhost) ||
-      base::EndsWith(host, kIpnsLocalhost)) {
-    //  Don't count the leading dot.
-    *suffix_length = strlen(kIpfsLocalhost) - 1;
+  if (decentralized_dns::IsIpfsLocalTLD(host, suffix_length)) {
     return kDafsaFound;
   }
 
@@ -46,35 +39,27 @@ int LookupSuffixInReversedSet(const unsigned char* graph,
   // omnibox, it will be parsed as OmniboxInputType::URL input type instead of
   // OmniboxInputType::UNKNOWN, The first entry in the autocomplete list will be
   // URL instead of search.
-  for (auto* unstoppable_domain : decentralized_dns::kUnstoppableDomains) {
-    if (base::EndsWith(host, unstoppable_domain)) {
-      *suffix_length = strlen(unstoppable_domain) - 1;
-      return kDafsaFound;
-    }
+  if (decentralized_dns::IsUnstoppableDomainsTLD(host, suffix_length)) {
+    return kDafsaFound;
   }
-  if (base::EndsWith(host, decentralized_dns::kEthDomain)) {
-    *suffix_length = strlen(decentralized_dns::kEthDomain) - 1;
+  if (decentralized_dns::IsENSTLD(host, suffix_length)) {
     return kDafsaFound;
   }
 
-  if (base::EndsWith(host, decentralized_dns::kBitDomain)) {
-    *suffix_length = strlen(decentralized_dns::kBitDomain) - 1;
+  if (decentralized_dns::IsBitTLD(host, suffix_length)) {
     return kDafsaFound;
   }
 
-  if (base::EndsWith(host, ".metaverse")) {
-    *suffix_length = strlen(".metaverse") - 1;
-    return kDafsaFound;
-  }
-
-  if (base::EndsWith(host, decentralized_dns::kSolDomain)) {
-    *suffix_length = strlen(decentralized_dns::kSolDomain) - 1;
+  if (decentralized_dns::IsSnsTLD(host, suffix_length)) {
     return kDafsaFound;
   }
   
   if (include_private &&
-      base::EndsWith(host, decentralized_dns::kDNSForEthDomain)) {
-    *suffix_length = strlen(decentralized_dns::kDNSForEthDomain) - 1;
+      decentralized_dns::IsDNSForEthDomain(host, suffix_length)) {
+    return kDafsaFound;
+  }
+
+  if (decentralized_dns::IsFreeNameTLD(host, suffix_length)) {
     return kDafsaFound;
   }
 
@@ -83,3 +68,4 @@ int LookupSuffixInReversedSet(const unsigned char* graph,
 }
 
 }  // namespace net
+

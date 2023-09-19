@@ -1980,7 +1980,7 @@ void JsonRpcService::OnFreeNameResolveDns(
       if (key && (*key == "record.A.0" )) {
         auto* value = entry_dic->FindString("value");
         if (value) {
-          std::string url_scheme = "https://";
+          std::string url_scheme = "http://";
           resolved_url = GURL(url_scheme + *value );
         }
       }
