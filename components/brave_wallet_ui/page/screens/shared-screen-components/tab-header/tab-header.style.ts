@@ -13,7 +13,7 @@ import BraveLogoDark from '../../send/assets/brave-logo-dark.svg'
 
 // Shared Styles
 import { StyledDiv, StyledButton } from '../../send/shared.styles'
-import { SettingsAdvancedIcon } from '../../../../assets/svg-icons/nav-button-icons'
+import { moreHorizontal } from '../../../../assets/svg-icons/nav-button-icons'
 
 export const HeaderWrapper = styled.View`
   display: flex;
@@ -61,6 +61,6 @@ export const SettingsIcon = styled.View`
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.theme.color.interactive07};
-  -webkit-mask-image: url(${SettingsAdvancedIcon});
-  mask-image: url(${SettingsAdvancedIcon});
+  -webkit-mask-image: url(${moreHorizontal});
+  mask-image: url(${moreHorizontal});
 `

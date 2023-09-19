@@ -63,7 +63,7 @@ export const AssetFilterSelector = () => {
         <SelectorLeftSide>
           <Text>{selectedAssetFilterInfo.name}</Text>
         </SelectorLeftSide>
-        <DropDownIcon />
+        <DropDownIcon isOpen={showAssetFilter}/>
       </DropDownButton>
 
       {showAssetFilter &&

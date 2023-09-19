@@ -23,7 +23,6 @@ import {
 import { WalletPageActions } from '../../../../page/actions'
 
 // Utils
-import { getLocale } from '../../../../../common/locale'
 import Amount from '../../../../utils/amount'
 import { getBalance } from '../../../../utils/balance-utils'
 import { computeFiatAmount } from '../../../../utils/pricing-utils'
@@ -48,9 +47,9 @@ import { TokenLists } from './components/token-lists/token-list'
 
 // Styled Components
 import {
-  BalanceTitle,
   BalanceText,
-  BalanceRow
+  BalanceRow,
+  BalanceTitle
 } from './style'
 import {
   Column,
@@ -60,6 +59,9 @@ import {
 } from '../../../shared/style'
 import { PlaceholderText } from '../../with-hide-balance-placeholder/style'
 import { useGetVisibleNetworksQuery } from '../../../../common/slices/api.slice'
+import AccountFilterSelector from '../../account-filter-selector/account-filter-selector'
+import { View } from 'react-native'
+import { getLocale } from '$web-common/locale'
 
 export const PortfolioOverview = () => {
   // routing
@@ -233,55 +235,59 @@ export const PortfolioOverview = () => {
   // render
   return (
     <>
-      <Column fullWidth={true} justifyContent='flex-start'>
-        <Row alignItems='flex-start' justifyContent='flex-start'>
-          <BalanceTitle>{getLocale('braveWalletBalance')}</BalanceTitle>
-        </Row>
+      <View style={{marginBottom: 10, width: '100%', position: 'relative', zIndex: 9}}>
+        <Column fullWidth={true} justifyContent='flex-start'>
+          <Row alignItems='flex-start' justifyContent='flex-start'>
+            <BalanceTitle>{getLocale('braveWalletBalance')}</BalanceTitle>
+          </Row>
 
-        <Row justifyContent='space-between'>
-          <Column>
-            <BalanceRow>
-              {hideBalances
-                ? <PlaceholderText isBig>******</PlaceholderText>
-                : <div>
-                  <BalanceText>
-                    {fullPortfolioFiatBalance !== ''
-                      ? `${hoverBalance || fullPortfolioFiatBalance}`
-                      : <LoadingSkeleton width={150} height={32} />
-                    }
-                  </BalanceText>
-                </div>
-              }
-              <HorizontalSpace space='16px' />
-              <ToggleVisibilityButton
-                isVisible={!hideBalances}
-                onPress={onToggleHideBalances}
-              />
-            </BalanceRow>
-          </Column>
+          <View style={{height: 15}}></View>
 
-          {/* <Column>
-            <BalanceRow>
-              <ChartControlBar
-                disabled={!showChart}
-                onSelectTimeframe={onChangeTimeline}
-                onDisabledChanged={onToggleShowChart}
-                selectedTimeline={selectedPortfolioTimeline}
-                timelineOptions={ChartTimelineOptions}
-              />
-            </BalanceRow>
-          </Column> */}
-        </Row>
+          <Row justifyContent='space-between'>
+            <Column>
+              <BalanceRow>
+                {hideBalances
+                  ? <PlaceholderText isBig>******</PlaceholderText>
+                  : <div>
+                    <BalanceText>
+                      {fullPortfolioFiatBalance !== ''
+                        ? `${hoverBalance || fullPortfolioFiatBalance}`
+                        : <LoadingSkeleton width={150} height={32} />
+                      }
+                    </BalanceText>
+                  </div>
+                }
+                <HorizontalSpace space='16px' />
+                <ToggleVisibilityButton
+                  isVisible={!hideBalances}
+                  onPress={onToggleHideBalances}
+                />
+              </BalanceRow>
+            </Column>
+            <AccountFilterSelector />
+            {/* <Column>
+              <BalanceRow>
+                <ChartControlBar
+                  disabled={!showChart}
+                  onSelectTimeframe={onChangeTimeline}
+                  onDisabledChanged={onToggleShowChart}
+                  selectedTimeline={selectedPortfolioTimeline}
+                  timelineOptions={ChartTimelineOptions}
+                />
+              </BalanceRow>
+            </Column> */}
+          </Row>
 
-        {/* <VerticalSpace space='20px' /> */}
+          {/* <VerticalSpace space='20px' /> */}
 
-        {/* <ColumnReveal hideContent={!showChart}>
-          <PortfolioOverviewChart
-            hasZeroBalance={isZeroBalance}
-            onHover={setHoverBalance}
-          />
-        </ColumnReveal> */}
-      </Column>
+          {/* <ColumnReveal hideContent={!showChart}>
+            <PortfolioOverviewChart
+              hasZeroBalance={isZeroBalance}
+              onHover={setHoverBalance}
+            />
+          </ColumnReveal> */}
+        </Column>
+      </View>
       <TokenLists
         userAssetList={userAssetList}
         networks={networks || []}

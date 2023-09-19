@@ -38,6 +38,7 @@ import {
   IconAndName
 } from './token-list-item.style'
 import { Column, Text } from '../../shared.styles'
+import { View } from 'react-native'
 
 interface Props {
   onClick: () => void
@@ -118,14 +119,16 @@ export const TokenListItem = (props: Props) => {
               </NetworkIconWrapper>
             }
           </IconsWrapper>
-          <Column horizontalAlign='flex-start'>
-            <Text textColor='text01' textSize='14px' isBold={true} textAlign='left'>
-              {tokenDisplayName}
-            </Text>
-            <Text textColor='text03' textSize='12px' isBold={false} textAlign='left'>
-              {networkDescription}
-            </Text>
-          </Column>
+          <View style={{flex: 1}}>
+            <Column horizontalAlign='flex-start'>
+              <Text textColor='text01' textSize='14px' isBold={true} textAlign='left'>
+                {tokenDisplayName}
+              </Text>
+              <Text textColor='text03' textSize='12px' isBold={false} textAlign='left'>
+                {networkDescription}
+              </Text>
+            </Column>
+          </View>
         </IconAndName>
         {!token.isErc721 && !token.isNft &&
           <Column horizontalAlign='flex-end'>

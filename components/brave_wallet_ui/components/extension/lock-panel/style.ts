@@ -9,11 +9,12 @@ import styled from 'styled-components/native'
 export const StyledWrapper = styled.View<{ hideBackground?: boolean }>`
   display: flex;
   height: 100%;
-  width: 320px;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: ${(p) => p.hideBackground ? 'transparent' : p.theme.color.background01};
+  padding: 80px 0;
 `
 
 export const Title = styled.Text`

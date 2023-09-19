@@ -11,6 +11,7 @@ import {
   SearchIcon
 } from './style'
 import SearchInput from './SearchInput'
+import { View } from 'react-native'
 
 interface Props {
   placeholder: string
@@ -28,12 +29,14 @@ export const SearchBar = (props: Props) => {
       useWithFilter={useWithFilter}
     >
       <SearchIcon />
-      <SearchInput
-        autoFocus={autoFocus}
-        value={value}
-        placeholder={placeholder}
-        onChange={action}
-      />
+      <View style={{width: '100%'}}>
+        <SearchInput
+          autoFocus={autoFocus}
+          value={value}
+          placeholder={placeholder}
+          onChange={action}
+        />
+      </View>
     </StyledWrapper>
   )
 }

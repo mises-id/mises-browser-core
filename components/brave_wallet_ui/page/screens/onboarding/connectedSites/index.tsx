@@ -5,18 +5,40 @@ import { useStyle } from '../../../../page/styles';
 import { Row } from '../../../../components/shared/style';
 import { DeleteIcon } from '../../../../components/desktop/asset-watchlist-item/style';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useApiProxy } from '../../../../common/hooks/use-api-proxy';
+import { BraveWallet } from '../../../../constants/types';
 
 const ConnectedSites = () => {
   const style = useStyle()
-  const list = new Array(50).fill({});
+  const { braveWalletService } = useApiProxy()
+  const [list, setList] = React.useState<string[]>([])
+  const coinType = BraveWallet.CoinType.ETH;
+  const fetchList = () => {
+    braveWalletService.getWebSitesWithPermission(coinType).then((res: {webSites: string[]}) => {
+      console.log(res, 'getWebSitesWithPermission')
+      setList(res.webSites)
+    })
+  }
+  React.useEffect(() => {
+    fetchList()
+  }, [])
+
+  const deleteConnectedSite = (site: string) => {
+    braveWalletService.resetWebSitePermission(coinType, site).then((res: {success: boolean}) => {
+      if(res.success) {
+        fetchList()
+      }
+     })
+  }
+  
   return (
     <Container>
-      {list.map((_, index) => {
+      {list.map((val, index) => {
         return <Row key={index} justifyContent='space-between' style={style.flatten(['padding-10'])}>
         <Text style={StyleSheet.flatten([style.flatten(['dark:color-white', 'subtitle3']), {
           maxWidth: '80%'
-        }])} numberOfLines={1}>https://mises-id.github.io0xc2632bc9441c32cbb94164875dee037a6eb07881:443</Text>
-        <TouchableOpacity>
+        }])} numberOfLines={1}>{val}</Text>
+        <TouchableOpacity onPress={() => deleteConnectedSite(val)}>
           <DeleteIcon />
         </TouchableOpacity>
       </Row>

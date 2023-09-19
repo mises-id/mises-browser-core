@@ -27,11 +27,13 @@ export const PrimaryListContainer = styled.View`
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  background-color: ${(p) => p.theme.color.divider01};
-  border-radius: 16px;
+  // background-color: ${(p) => p.theme.color.divider01};
+  // border-radius: 16px;
   margin-top: 14px;
   margin-bottom: 14px;
-  padding: 8px;
+  // padding: 8px;
+  position: relative;
+  z-index: 9;
 `
 
 export const SecondaryListContainer = styled.View<Partial<StyleProps>>`
@@ -40,10 +42,10 @@ export const SecondaryListContainer = styled.View<Partial<StyleProps>>`
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  background-color: ${(p) => p.isHardwareWallet ? p.theme.color.divider01 : 'transparent'};
-  border-radius: 16px;
-  padding: 8px;
+  padding: 8px 0;
   margin-bottom: ${(p) => p.isHardwareWallet ? '15px' : '0px'};
+  position: relative;
+  z-index: 9;
 `
 
 export const SectionTitle = styled.Text`

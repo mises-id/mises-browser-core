@@ -7,6 +7,7 @@ import styled from 'styled-components/native'
 import CoinsIconSVG from '../../../assets/svg-icons/coins-icon.svg'
 import { WalletButton } from '../../shared/style'
 import { OrbContainer } from '../../extension/transaction-detail-panel/style'
+import { moreHorizontal } from '../../../assets/svg-icons/nav-button-icons'
 
 interface StyleProps {
   orb: string
@@ -24,6 +25,8 @@ export const PortfolioTransactionItemWrapper = styled.TouchableOpacity<{ isFocus
   padding: 10px;
   border-radius: 10px;
   gap: 16px;
+  position: relative;
+  z-index: 9;
 `
 
 export const DetailRow = styled.View`
@@ -97,10 +100,13 @@ export const RejectedTransactionSpacer = styled.View`
 `
 
 export const MoreIcon = styled.View`
-  width: auto;
-  height: 26px;
-  transform: rotate(90deg);
   color: ${(p) => p.theme.color.interactive08};
+  width: 16px;
+  height: 16px;
+  color: ${(p) => p.theme.color.text02};
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${moreHorizontal});
+  mask-image: url(${moreHorizontal});
 `
 
 export const DetailColumn = styled.View`

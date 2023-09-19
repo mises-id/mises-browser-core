@@ -6,7 +6,6 @@
 import * as React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import * as EthereumBlockies from 'ethereum-blockies'
 
 // Types
 import {
@@ -22,7 +21,6 @@ import { copyToClipboard } from '../../../utils/copy-to-clipboard'
 import { getLocale } from '../../../../common/locale'
 import { WalletActions } from '../../../common/actions'
 import {
-  getGasFeeFiatValue,
   getTransactionStatusString,
   ParsedTransactionWithoutFiatValues
 } from '../../../utils/tx-utils'
@@ -32,7 +30,6 @@ import {
   accountInfoEntityAdaptorInitialState
 } from '../../../common/slices/entities/account-info.entity'
 import { selectAllUserAssetsFromQueryResult } from '../../../common/slices/entities/blockchain-token.entity'
-import { makeNetworkAsset } from '../../../options/asset-options'
 
 // Hooks
 import { useExplorer } from '../../../common/hooks'
@@ -49,30 +46,21 @@ import {
   AddressOrAsset,
   ArrowIcon,
   BalanceColumn,
-  CoinsButton,
-  CoinsIcon,
   DetailColumn,
   DetailRow,
   DetailTextDark,
   DetailTextDarkBold,
   DetailTextLight,
   RejectedTransactionSpacer,
-  FromCircle,
   MoreButton,
   MoreIcon,
   StatusRow,
   PortfolioTransactionItemWrapper,
-  ToCircle,
   OrbAndTxDescriptionContainer,
   TransactionFeeTooltipBody,
-  TransactionFeeTooltipTitle,
   StatusBalanceAndMoreContainer,
-  OrbWrapper,
-  BalanceAndMoreRow,
-  CoinsButtonSpacer
-} from './style'
+  BalanceAndMoreRow} from './style'
 import { StatusBubble } from '../../shared/style'
-import TransactionFeesTooltip from '../transaction-fees-tooltip'
 import TransactionPopup, { TransactionPopupItem } from '../transaction-popup'
 import TransactionTimestampTooltip from '../transaction-timestamp-tooltip'
 import { Skeleton, LoadingSkeletonStyleProps } from '../../shared/loading-skeleton/styles'
@@ -96,7 +84,6 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
 }: Props, forwardedRef) => {
   const {
     formattedSendCurrencyTotal,
-    gasFee,
     isFilecoinTransaction,
     isSolanaTransaction
   } = transaction
@@ -114,15 +101,14 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
   } = useGetDefaultFiatCurrencyQuery(undefined)
 
   const {
-    data: txNetwork,
-    isLoading: isLoadingTxNetwork //
+    data: txNetwork
   } = useGetNetworkQuery({
     chainId: transaction.chainId,
     coin: transaction.coinType
   })
-  const networkAsset = React.useMemo(() => {
-    return makeNetworkAsset(txNetwork)
-  }, [txNetwork])
+  // const networkAsset = React.useMemo(() => {
+  //   return makeNetworkAsset(txNetwork)
+  // }, [txNetwork])
 
   const {
     userVisibleTokensInfo,
@@ -169,32 +155,32 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
     }
   })
 
-  const {
-    gasFeeFiat,
-    isLoading: isLoadingGasAssetPrice
-  } = useGetTokenSpotPriceQuery({
-    chainId: networkAsset?.chainId || '',
-    contractAddress: networkAsset?.contractAddress || '',
-    isErc721: networkAsset?.isErc721 || false,
-    symbol: networkAsset?.symbol || '',
-    tokenId: networkAsset?.tokenId || ''
-  },
-  {
-    skip: !networkAsset || !gasFee || !txNetwork,
-    // TODO: selector
-    selectFromResult: (res) => {
-      const price = res.data?.price ?? '0'
-      const gasFeeFiat = getGasFeeFiatValue({
-        gasFee,
-        networkSpotPrice: price,
-        txNetwork
-      })
-      return ({
-        ...res,
-        gasFeeFiat
-      })
-    }
-  })
+  // const {
+  //   gasFeeFiat,
+  //   isLoading: isLoadingGasAssetPrice
+  // } = useGetTokenSpotPriceQuery({
+  //   chainId: networkAsset?.chainId || '',
+  //   contractAddress: networkAsset?.contractAddress || '',
+  //   isErc721: networkAsset?.isErc721 || false,
+  //   symbol: networkAsset?.symbol || '',
+  //   tokenId: networkAsset?.tokenId || ''
+  // },
+  // {
+  //   skip: !networkAsset || !gasFee || !txNetwork,
+  //   // TODO: selector
+  //   selectFromResult: (res) => {
+  //     const price = res.data?.price ?? '0'
+  //     const gasFeeFiat = getGasFeeFiatValue({
+  //       gasFee,
+  //       networkSpotPrice: price,
+  //       txNetwork
+  //     })
+  //     return ({
+  //       ...res,
+  //       gasFeeFiat
+  //     })
+  //   }
+  // })
 
   // state
   const [showTransactionPopup, setShowTransactionPopup] = React.useState<boolean>(false)
@@ -311,13 +297,13 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
   )
 
   // memos
-  const fromOrb = React.useMemo(() => {
-    return EthereumBlockies.create({ seed: transaction.sender.toLowerCase(), size: 8, scale: 16 }).toDataURL()
-  }, [transaction.sender])
+  // const fromOrb = React.useMemo(() => {
+  //   return EthereumBlockies.create({ seed: transaction.sender.toLowerCase(), size: 8, scale: 16 }).toDataURL()
+  // }, [transaction.sender])
 
-  const toOrb = React.useMemo(() => {
-    return EthereumBlockies.create({ seed: transaction.recipient.toLowerCase(), size: 8, scale: 16 }).toDataURL()
-  }, [transaction.recipient])
+  // const toOrb = React.useMemo(() => {
+  //   return EthereumBlockies.create({ seed: transaction.recipient.toLowerCase(), size: 8, scale: 16 }).toDataURL()
+  // }, [transaction.recipient])
 
   const transactionIntentDescription = React.useMemo(() => {
     switch (true) {
@@ -452,9 +438,9 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
     transaction.status !== BraveWallet.TransactionStatus.Rejected &&
     transaction.status !== BraveWallet.TransactionStatus.Unapproved
 
-  const formattedGasFeeFiatValue = React.useMemo(() => {
-    return new Amount(gasFeeFiat).formatAsFiat(defaultFiatCurrency)
-  }, [gasFeeFiat, defaultFiatCurrency])
+  // const formattedGasFeeFiatValue = React.useMemo(() => {
+  //   return new Amount(gasFeeFiat).formatAsFiat(defaultFiatCurrency)
+  // }, [gasFeeFiat, defaultFiatCurrency])
 
   const formattedTransactionFiatValue = React.useMemo(() => {
     return new Amount(fiatValue).formatAsFiat(defaultFiatCurrency)
@@ -467,10 +453,10 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
       onPress={onHideTransactionPopup}
     >
       <OrbAndTxDescriptionContainer>
-        <OrbWrapper>
+        {/* <OrbWrapper>
           <FromCircle orb={fromOrb} />
           <ToCircle orb={toOrb} />
-        </OrbWrapper>
+        </OrbWrapper> */}
 
         <DetailColumn>
           <DetailRow>
@@ -540,7 +526,7 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
           </BalanceColumn>
 
           {/* Will remove this conditional for solana once https://github.com/brave/brave-browser/issues/22040 is implemented. */}
-          {(!isSolanaTransaction && !!txNetwork) ? (
+          {/* {(!isSolanaTransaction && !!txNetwork) ? (
             <TransactionFeesTooltip
               text={
                 <>
@@ -573,7 +559,7 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
             </TransactionFeesTooltip>
           ):
             <CoinsButtonSpacer />
-          }
+          } */}
 
           {wasTxRejected ? (
             <MoreButton onPress={onShowTransactionPopup}>

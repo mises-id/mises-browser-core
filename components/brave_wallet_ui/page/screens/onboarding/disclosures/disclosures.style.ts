@@ -11,21 +11,18 @@ export const CheckboxText = styled.View`
   width: 100%;
   height: 100%;
   padding: 0;
+  margin-top: 6px;
+  padding-top: 0px;
+  padding-left: 14px;
+  text-align: left;
+  vertical-align: top;
   
-  & > p {
-    margin-top: 6px;
-    padding-top: 0px;
-    padding-left: 14px;
-    text-align: left;
-    vertical-align: top;
-    
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.01em;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
 
-    color: ${(p) => p.theme.color.text01};
-  }
+  color: ${(p) => p.theme.color.text01};
 `

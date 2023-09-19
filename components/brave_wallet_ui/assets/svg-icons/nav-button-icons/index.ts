@@ -25,6 +25,7 @@ import coinsIcon from './coins.svg'
 import activityIcon from './activity.svg'
 import sendIcon from './send.svg'
 import userAccountsIcon from './user-accounts.svg'
+import moreHorizontal from './more-horizontal.svg'
 
 export {
   WalletIconL,
@@ -50,4 +51,5 @@ export {
   activityIcon,
   sendIcon,
   userAccountsIcon,
+  moreHorizontal
 }

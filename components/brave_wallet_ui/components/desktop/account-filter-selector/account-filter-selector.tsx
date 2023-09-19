@@ -32,12 +32,11 @@ import {
 import {
   StyledWrapper,
   DropDown,
-  DropDownButton,
   DropDownIcon,
   SelectorLeftSide,
   ClickAwayArea
 } from '../network-filter-selector/style'
-import { Text } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 
 interface Props {
   onSelectAccount?: (account: Pick<WalletAccountType, 'address' | 'name'>) => void
@@ -97,15 +96,15 @@ export const AccountFilterSelector = ({
 
   return (
     <StyledWrapper>
-      <DropDownButton onPress={onClick}>
+      <TouchableOpacity onPress={onClick} style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <SelectorLeftSide>
           {selectedAccount.address !== AllAccountsOption.address &&
             <AccountCircle orb={orb} />
           }
           <Text>{selectedAccount.name}</Text>
         </SelectorLeftSide>
-        <DropDownIcon />
-      </DropDownButton>
+        <DropDownIcon isOpen={isOpen} />
+      </TouchableOpacity>
       {isOpen &&
         <DropDown>
           {accountsList.map(account =>

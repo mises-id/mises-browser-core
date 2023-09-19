@@ -11,8 +11,8 @@ export const StyledExtensionWrapper = styled.View`
   justify-content: center;
   background-color: #F8F9FA;
   border-radius: 4px;
-  width: 320px;
-  height: 400px;
+  width: 100%;
+  min-height: 400px;
 `
 
 export const StyledExtensionWrapperLonger = styled.View`
@@ -22,7 +22,7 @@ export const StyledExtensionWrapperLonger = styled.View`
   justify-content: center;
   background-color: #F8F9FA;
   border-radius: 4px;
-  width: 320px;
+  width: 100%;
   height: 500px;
 `
 
@@ -31,7 +31,7 @@ export const StyledWelcomPanel = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 320px;
+  width: 100%;
   height: 250px;
 `
 
@@ -75,7 +75,7 @@ export const ConnectWithSiteWrapper = styled.View`
   align-items: center;
   justify-content: center;
   background-color: white;
-  width: 390px;
+  width: 100%;
   height: 100%;
 `
 
@@ -126,7 +126,7 @@ export const StyledCreateAccountPanel = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 320px;
+  width: 100%;
   height: 200px;
   background-color: ${(p) => p.theme.color.background01};
 `

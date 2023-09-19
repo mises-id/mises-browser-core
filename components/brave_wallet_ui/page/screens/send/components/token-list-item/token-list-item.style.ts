@@ -69,6 +69,6 @@ export const IconsWrapper = styled.View`
 `
 
 export const IconAndName = styled(Row)`
-  width: 70%;
+  width: 60%;
   white-space: pre-line;
 `

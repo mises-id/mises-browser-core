@@ -14,6 +14,7 @@ export const BarAndMessageContainer = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 0px 12px;
+  height: 44px;
 `
 
 // outer
