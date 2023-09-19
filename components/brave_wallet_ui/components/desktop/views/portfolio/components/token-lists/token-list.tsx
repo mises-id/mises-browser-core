@@ -29,7 +29,7 @@ import { getLocale } from '../../../../../../../common/locale'
 import AddButton from '../../../../add-button/index'
 import NetworkFilterSelector from '../../../../network-filter-selector/index'
 import { AccountFilterSelector } from '../../../../account-filter-selector/account-filter-selector'
-import { AssetFilterSelector } from '../../../../asset-filter-selector/asset-filter-selector'
+// import { AssetFilterSelector } from '../../../../asset-filter-selector/asset-filter-selector'
 import { PortfolioAssetItemLoadingSkeleton } from '../../../../portfolio-asset-item/portfolio-asset-item-loading-skeleton'
 
 // Hooks
@@ -222,9 +222,9 @@ export const TokenLists = ({
 
         <NetworkFilterSelector networkListSubset={networks} />
 
-        {!hideAssetFilter &&
+        {/* {!hideAssetFilter &&
           <AssetFilterSelector />
-        }
+        } */}
 
         {!hideAccountFilter &&
           <AccountFilterSelector />

@@ -22,7 +22,6 @@ export const StyledWrapper = styled.View<{ useWithFilter?: boolean }>`
 `
 
 export const SearchInput = styled.TextInput<{ useWithFilter?: boolean }>`
-  flex: 1;
   height: 100%;
   background-image: none;
   background-color: ${(p) => p.theme.color.background02};

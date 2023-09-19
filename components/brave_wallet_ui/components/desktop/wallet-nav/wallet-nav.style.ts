@@ -35,5 +35,5 @@ export const Section = styled.View<{ showBorder?: boolean }>`
   justify-content: center;
   flex-direction: row;
   width: 100%;
-  padding: 8px 0px;
+  padding: 8px;
 `

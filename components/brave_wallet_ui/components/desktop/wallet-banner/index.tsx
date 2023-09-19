@@ -8,7 +8,8 @@ import {
   StyledWrapper,
   WarningText,
   BannerButton,
-  ButtonRow
+  ButtonRow,
+  BannerButtonText
 } from './style'
 import { getLocale } from '../../../../common/locale'
 export interface Props {
@@ -26,8 +27,8 @@ const WalletBanner = (props: Props) => {
     <StyledWrapper bannerType={bannerType}>
       <WarningText>{description}</WarningText>
       <ButtonRow>
-        <BannerButton onPress={onClick} buttonType='primary'>{buttonText}</BannerButton>
-        <BannerButton onPress={onDismiss} buttonType='secondary'>{getLocale('braveWalletDismissButton')}</BannerButton>
+        <BannerButton onPress={onClick} buttonType='primary'><BannerButtonText buttonType='primary'>{buttonText}</BannerButtonText></BannerButton>
+        <BannerButton onPress={onDismiss} buttonType='secondary'><BannerButtonText buttonType='secondary'>{getLocale('braveWalletDismissButton')}</BannerButtonText></BannerButton>
       </ButtonRow>
     </StyledWrapper>
   )

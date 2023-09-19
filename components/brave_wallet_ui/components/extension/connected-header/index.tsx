@@ -25,7 +25,8 @@ export interface Props {
   onClickMore: () => void
   onClickViewOnBlockExplorer?: () => void
   onClickViewOnActivity?: (path: PanelTypes) => void
-  showMore: boolean
+  showMore: boolean,
+  isPanel?: boolean
 }
 
 export const ConnectedHeader = (props: Props) => {
@@ -34,7 +35,8 @@ export const ConnectedHeader = (props: Props) => {
     onExpand,
     onClickViewOnBlockExplorer,
     onClickViewOnActivity,
-    showMore
+    showMore,
+    isPanel
   } = props
 
   // render
@@ -45,6 +47,7 @@ export const ConnectedHeader = (props: Props) => {
       <ActionIcon onPress={onClickMore} />
       {showMore &&
         <WalletMorePopup
+          isPanel={isPanel}
           onClickViewOnActivity={onClickViewOnActivity}
           onClickViewOnBlockExplorer={onClickViewOnBlockExplorer}
         />

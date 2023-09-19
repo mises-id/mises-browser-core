@@ -23,7 +23,7 @@ export const CloseButtonContainer = styled.View`
 `
 
 export const IntroContainer = styled.View`
-  width: 365px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

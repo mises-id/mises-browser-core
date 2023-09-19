@@ -243,6 +243,7 @@ export const ConnectedPanel = (props: Props) => {
       <ConnectedHeader
         onExpand={onExpand}
         onClickMore={onShowMore}
+        isPanel
         onClickViewOnBlockExplorer={selectedAccount ? onClickViewOnBlockExplorer('address', selectedAccountAddress) : undefined}
         onClickViewOnActivity={navAction}
         showMore={showMore}

@@ -104,7 +104,6 @@ handler.on(WalletPageActions.restoreWallet.type, async (store: Store, payload: R
   await refreshWalletInfo(store)
   store.dispatch(WalletPageActions.setShowIsRestoring(false))
 
-  store.dispatch(WalletActions.setMisesInfo())
   if (payload?.completeWalletSetup) {
     store.dispatch(WalletPageActions.walletSetupComplete(payload.completeWalletSetup))
   } else {
@@ -130,7 +129,6 @@ handler.on(WalletPageActions.showRecoveryPhrase.type, async (store: Store, {
 handler.on(WalletPageActions.walletBackupComplete.type, async (store) => {
   const keyringService = getWalletPageApiProxy().keyringService
   keyringService.notifyWalletBackupComplete()
-  store.dispatch(WalletActions.setMisesInfo())
 })
 
 handler.on(WalletPageActions.selectAsset.type, async (store: Store, payload: UpdateSelectedAssetType) => {

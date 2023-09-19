@@ -231,6 +231,9 @@ handler.on(
     await store.dispatch(
       walletApi.endpoints.setSelectedAccount.initiate({ address, coin })
     )
+    store.dispatch(
+      WalletActions.setMisesInfo()
+    )
   }
 )
 
@@ -262,9 +265,6 @@ handler.on(WalletActions.lockWallet.type, async (store) => {
 handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: UnlockWalletPayloadType) => {
   const keyringService = getAPIProxy().keyringService
   const result = await keyringService.unlock(payload.password)
-  if (result.success) {
-    store.dispatch(WalletActions.setMisesInfo())
-  }
   store.dispatch(WalletActions.hasIncorrectPassword(!result.success))
 })
 
@@ -283,6 +283,8 @@ handler.on(WalletActions.setMisesInfo.type, async (store: Store) => {
     const data = JSON.stringify({misesId, auth})
     console.log('setMisesId', data);
     (chrome as any).misesPrivate.setMisesId(data);
+  }else {
+    console.log('setMisesId', 'error-================================================================');
   }
 })
 
@@ -323,6 +325,7 @@ handler.on(WalletActions.initialized.type, async (store: Store, payload: WalletI
   // Fetch Balances and Prices
   if (!state.isWalletLocked && state.isWalletCreated) {
     // refresh networks registry & selected network
+    await store.dispatch(WalletActions.setMisesInfo())
     await store.dispatch(
       walletApi.endpoints.refreshNetworkInfo.initiate()
     ).unwrap()

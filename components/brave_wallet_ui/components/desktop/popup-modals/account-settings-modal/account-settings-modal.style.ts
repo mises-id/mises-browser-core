@@ -50,17 +50,17 @@ export const StyledWrapper = styled.View`
 //   }
 // `
 
-// export const QRCodeWrapper = styled.img`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   width: 210px;
-//   height: 210px;
-//   border-radius: 8px;
-//   border: 2px solid ${(p) => p.theme.color.disabled};
-//   margin-bottom: 16px;
-// `
+export const QRCodeWrapper = styled.Image`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 210px;
+  height: 210px;
+  border-radius: 8px;
+  border: 2px solid ${(p) => p.theme.color.disabled};
+  margin-bottom: 16px;
+`
 
 export const AddressButton = styled(WalletButton)`
   display: flex;

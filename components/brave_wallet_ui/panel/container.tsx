@@ -35,7 +35,7 @@ import {
 import {
   PanelWrapper,
   WelcomePanelWrapper
-} from './style-rn'
+} from './style'
 
 import * as WalletPanelActions from './actions/wallet_panel_actions'
 import * as WalletActions from '../common/actions/wallet_actions'
@@ -379,8 +379,6 @@ function Container () {
       </PanelWrapper>
     )
   }
-
-  console.log(selectedPanel, "selectedPanelselectedPanelselectedPanel========")
 
   if (selectedPanel === 'transactionStatus' && selectedTransaction) {
     return (

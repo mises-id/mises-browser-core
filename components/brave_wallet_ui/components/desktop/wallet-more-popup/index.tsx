@@ -37,6 +37,7 @@ export interface Props {
   onClickConnectedSites?: () => void
   onClosePopup?: () => void
   yPosition?: number
+  isPanel?: boolean
 }
 
 export const WalletMorePopup = (props: Props) => {
@@ -67,15 +68,19 @@ export const WalletMorePopup = (props: Props) => {
     // const route = selectedNetwork.coin === BraveWallet.CoinType.ETH
     //   ? 'ethereum'
     //   : 'solana'
+    if(!props.isPanel) {
+      props.onClickConnectedSites?.()
+    }else {
+      chrome.tabs.create({ url: `chrome://wallet/connected-sites` }, () => {
+        if (chrome.runtime.lastError) {
+          console.error(
+            'tabs.create failed: ' +
+            chrome.runtime.lastError.message
+          )
+        }
+      })
+    }
 
-    chrome.tabs.create({ url: `brave://wallet/connected-sites` }, () => {
-      if (chrome.runtime.lastError) {
-        console.error(
-          'tabs.create failed: ' +
-          chrome.runtime.lastError.message
-        )
-      }
-    })
     if (onClosePopup) {
       onClosePopup()
     }
@@ -99,14 +104,18 @@ export const WalletMorePopup = (props: Props) => {
   }, [onClosePopup])
 
   const onClickSettings = React.useCallback(() => {
-    chrome.tabs.create({ url: 'chrome://wallet/settings' }, () => {
-      if (chrome.runtime.lastError) {
-        console.error(
-          'tabs.create failed: ' +
-          chrome.runtime.lastError.message
-        )
-      }
-    })
+    if(!props.isPanel) {
+      props.onClickSetting?.()
+    }else {
+      chrome.tabs.create({ url: 'chrome://wallet/settings' }, () => {
+        if (chrome.runtime.lastError) {
+          console.error(
+            'tabs.create failed: ' +
+            chrome.runtime.lastError.message
+          )
+        }
+      })
+    }
     if (onClosePopup) {
       onClosePopup()
     }

@@ -51,13 +51,12 @@ export const ContainerCard = styled.View<
   justify-content: flex-start;
   align-items: center;
   padding: 20px;
+  padding-bottom: 120px;
   width: 100%;
   min-height: ${minCardHeight}px;
   overflow-y: ${(p) => p.cardOverflow ?? 'hidden'};
   position: relative;
-  @media screen and (max-width: 700px) {
-    width: 100%;
-  }
+
 `
 
 export const StaticBackground = styled.View`

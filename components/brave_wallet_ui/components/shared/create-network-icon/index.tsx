@@ -94,6 +94,11 @@ export const CreateNetworkIcon = ({
       </IconWrapper>
     )
   }
+  console.log(isStorybook
+    ? network?.iconUrls[0]
+    : networkLogo !== ''
+      ? networkLogo
+      : isRemoteURL ? remoteImage : network?.iconUrls[0], "needsPlaceholder====")
 
   return (
     <IconWrapper

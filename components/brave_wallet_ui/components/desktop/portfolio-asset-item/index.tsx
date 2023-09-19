@@ -134,6 +134,7 @@ export const PortfolioAssetItem = ({
       setAssetNetworkSkeletonWidth(unbiasedRandom(100, 250))
     }
   }, [])
+  
 
   // render
   return (
