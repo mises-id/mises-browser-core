@@ -15,6 +15,7 @@ export const StyledWrapper = styled.View`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  z-index: 8;
 `
 
 export const DropDownButton = styled(WalletButton)`

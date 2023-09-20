@@ -7,13 +7,13 @@ import * as React from 'react'
 import { create } from 'ethereum-blockies'
 
 // Constants
-import { BraveWallet, SupportedTestNetworks } from '../../../constants/types'
+import { BraveWallet } from '../../../constants/types'
 
 // Utils
 import { stripERC20TokenImageURL, isRemoteImageURL, isValidIconExtension } from '../../../utils/string-utils'
 
 // Styled components
-import { IconWrapper, Placeholder, NetworkIcon } from './style'
+import { IconWrapper, Placeholder } from './style'
 
 // Options
 import { getNetworkLogo } from '../../../options/asset-options'
@@ -76,12 +76,12 @@ export const CreateNetworkIcon = ({
     }
   }, [network, needsPlaceholder])
 
-  const remoteImage = React.useMemo(() => {
-    if (isRemoteURL) {
-      return `chrome://image?${networkImageURL}`
-    }
-    return ''
-  }, [networkImageURL])
+  // const remoteImage = React.useMemo(() => {
+  //   if (isRemoteURL) {
+  //     return `chrome://image?${networkImageURL}`
+  //   }
+  //   return ''
+  // }, [networkImageURL])
 
   // render
   if (needsPlaceholder) {
@@ -94,29 +94,30 @@ export const CreateNetworkIcon = ({
       </IconWrapper>
     )
   }
-  console.log(isStorybook
-    ? network?.iconUrls[0]
-    : networkLogo !== ''
-      ? networkLogo
-      : isRemoteURL ? remoteImage : network?.iconUrls[0], "needsPlaceholder====")
-
-  return (
-    <IconWrapper
-      marginRight={marginRight ?? 0}
-      isTestnet={network ? SupportedTestNetworks.includes(network.chainId) : false}
-    >
-      <NetworkIcon
-        size={size}
-        icon={
-          isStorybook
-            ? network?.iconUrls[0]
-            : networkLogo !== ''
-              ? networkLogo
-              : isRemoteURL ? remoteImage : network?.iconUrls[0]
-        }
-      />
-    </IconWrapper>
-  )
+  // console.log(isStorybook
+  //   ? network?.iconUrls[0]
+  //   : networkLogo !== ''
+  //     ? networkLogo
+  //     : isRemoteURL ? remoteImage : network?.iconUrls[0], "needsPlaceholder====")
+  return null;
+  
+  // return (
+  //   <IconWrapper
+  //     marginRight={marginRight ?? 0}
+  //     isTestnet={network ? SupportedTestNetworks.includes(network.chainId) : false}
+  //   >
+  //     <NetworkIcon
+  //       size={size}
+  //       icon={
+  //         isStorybook
+  //           ? network?.iconUrls[0]
+  //           : networkLogo !== ''
+  //             ? networkLogo
+  //             : isRemoteURL ? remoteImage : network?.iconUrls[0]
+  //       }
+  //     />
+  //   </IconWrapper>
+  // )
 }
 
 export default CreateNetworkIcon

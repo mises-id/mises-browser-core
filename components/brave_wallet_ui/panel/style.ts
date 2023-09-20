@@ -12,7 +12,7 @@ export const PanelWrapper = styled.View<{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${(p) => p.width ? p.width : 320}px;
+  width: ${(p) => p.width ? p.width+'px' : '100vw'};
   height: ${(p) => p.height ? p.height : p.isLonger ? 540 : 400}px;
 `
 

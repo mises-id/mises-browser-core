@@ -30,7 +30,7 @@ export const StyledWrapper = styled.View<{isSelected?: boolean, isOpen?: boolean
   background-color: ${p => p.isSelected ? 'rgb(232, 233, 238)' : 'white'};
 `
 
-export const NameAndIcon = styled.View`
+export const NameAndIcon = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
