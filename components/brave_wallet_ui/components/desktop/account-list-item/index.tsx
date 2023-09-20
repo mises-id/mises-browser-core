@@ -128,9 +128,12 @@ export const AccountListItem = ({
   const setSelectAccount = () => {
     dispatch(WalletActions.selectAccount(account))
   }
+  const currentSelectedStatus = React.useMemo(() => {
+    return selectedAccount?.address.toLowerCase() === account.address.toLowerCase()
+  }, [selectedAccount, account])
   // render
   return (
-    <StyledWrapper isSelected={selectedAccount?.address.toLowerCase() === account.address.toLowerCase()}>
+    <StyledWrapper isSelected={currentSelectedStatus} isOpen={isOpen}>
       <NameAndIcon>
         <AccountCircle orb={orb} />
         <AccountAndAddress>

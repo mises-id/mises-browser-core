@@ -15,7 +15,6 @@ export const Tip = styled.View`
   position: absolute;
   border-radius: 4px;
   left: -65px;
-  transform: translateX(calc(-50% - 30px)) translateY(25%);
   padding: 6px;
   color: ${(p) => p.theme.palette.white};
   background: ${(p) => p.theme.palette.black};
@@ -36,7 +35,6 @@ export const Pointer = styled.View`
   position: absolute;
   left: 50%;
   top: -12px;
-  transform: translateX(-50%) translateY(25%) rotate(180deg);
   border-width: 0 7px 8px 7px;
   z-index: 120;
   border-color: transparent transparent ${(p) => p.theme.palette.black} transparent;

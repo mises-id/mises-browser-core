@@ -10,7 +10,7 @@ interface StyleProps {
   orb: string
 }
 
-export const StyledWrapper = styled.View<{isSelected?: boolean}>`
+export const StyledWrapper = styled.View<{isSelected?: boolean, isOpen?: boolean}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,11 +21,13 @@ export const StyledWrapper = styled.View<{isSelected?: boolean}>`
   border-radius: 10px;
   padding: 8px;
   margin-bottom: 5px;
-  border: 1px solid rgb(232, 233, 238);
   border-radius: 12px;
-  border-left: ${p => p.isSelected ? '3px solid #5324w2' : '1px solid rgb(232, 233, 238)'};
   position: relative;
-  z-index: 9;
+  z-index: ${p => p.isOpen ? '9' : '1'};
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(232, 233, 238);
+  background-color: ${p => p.isSelected ? 'rgb(232, 233, 238)' : 'white'};
 `
 
 export const NameAndIcon = styled.View`

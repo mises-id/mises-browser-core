@@ -18,7 +18,9 @@ export const StyledWrapper = styled.View`
   right: 15px;
   z-index: 15;
   min-width: 180px;
-  border: 1px soild rgb(174, 177, 194);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(174, 177, 194);
  `
 
 export const PopupButton = styled(WalletButton)`
