@@ -10,7 +10,7 @@ interface StyleProps {
   orb: string
 }
 
-export const StyledWrapper = styled.View`
+export const StyledWrapper = styled.View<{isSelected?: boolean, isOpen?: boolean}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,11 +19,15 @@ export const StyledWrapper = styled.View`
   padding: 7px;
   background-color: none;
   border-radius: 10px;
-  --show-buttons: none;
-  &:hover {
-    --show-buttons: flex;
-    background-color: ${(p) => p.theme.color.interactive08}15;
-  }
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 12px;
+  position: relative;
+  z-index: ${p => p.isOpen ? '9' : '1'};
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(232, 233, 238);
+  background-color: ${p => p.isSelected ? 'rgb(232, 233, 238)' : 'white'};
 `
 
 export const NameAndIcon = styled.View`
@@ -41,10 +45,11 @@ export const AccountNameRow = styled.View`
 `
 
 export const RightSide = styled.View`
-  display: var(--show-buttons);
   align-items: flex-end;
   justify-content: center;
   flex-direction: row;
+  position: relative;
+  z-index: 9;
 `
 
 export const AccountCircle = styled.View<StyleProps>`
@@ -102,3 +107,40 @@ export const HardwareIcon = styled.View`
   -webkit-mask-image: url(${FlashdriveIcon});
   mask-image: url(${FlashdriveIcon});
 `
+
+export const DropDownButton = styled(WalletButton)`
+  color: ${(p) => p.theme.color.text01};
+`
+
+export const DropDown = styled.View<{isLeft?: boolean}>`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 250px;
+  padding: 5px;
+  background-color: ${(p) => p.theme.color.background02};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.color.divider01};
+  border-radius: 8px;
+  position: absolute;
+  top: 38px;
+  z-index: 9;
+  right: ${(p) => !p.isLeft ? '0px' : 'unset'};
+  left: ${(p) => p.isLeft ? '0px' : 'unset'};
+`
+export const PopupStyledWrapper = styled.View<{ yPosition?: number }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-conent: center;
+  padding: 7px;
+  background-color: ${(p) => p.theme.color.background02};
+  border-radius: 8px;
+  position: absolute;
+  top: ${(p) => p.yPosition !== undefined ? p.yPosition : 35}px;
+  right: 15px;
+  z-index: 20;
+  border: 1px solid rgb(233, 233, 244);
+ `

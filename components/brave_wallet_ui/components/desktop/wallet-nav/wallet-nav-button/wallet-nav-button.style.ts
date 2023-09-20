@@ -42,8 +42,8 @@ export const ButtonIcon = styled.View<{icon: any}>`
   background-color: ${(p) => p.theme.color.interactive07};
   -webkit-mask-image: url(${(p) => p.icon});
   mask-image: url(${(p) => p.icon});
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 `
 
 export const ButtonText = styled(Text)`

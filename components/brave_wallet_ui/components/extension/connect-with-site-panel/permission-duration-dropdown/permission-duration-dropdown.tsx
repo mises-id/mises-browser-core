@@ -22,7 +22,8 @@ import {
   StyledWrapper,
   DropDownButton,
   DropDown,
-  PermissionButton
+  PermissionButton,
+  DropDownIcon
 } from './permission-duration-dropdown.style'
 import { Text } from 'react-native'
 import { useStyle } from '../../../../page/styles'
@@ -62,7 +63,7 @@ export const PermissionDurationDropdown = (props: Props) => {
     <StyledWrapper>
       <DropDownButton onPress={() => setShowDropdown((prev) => !prev)}>
         <Text style={style.flatten(['color-black', 'dark:color-white'])}>{getLocale(selectedDurationInfo.name)}</Text>
-        {/* <DropDownIcon name="carat-down" isOpen={showDropdown} /> */}
+        <DropDownIcon isOpen={showDropdown} />
       </DropDownButton>
       {showDropdown && (
         <DropDown>

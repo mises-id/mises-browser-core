@@ -21,7 +21,7 @@ export const Wrapper = styled.View<{ noPadding?: boolean }>`
   overflow: hidden;
   overflow-y: auto;
   z-index: 10;
-  padding: ${(p) => p.noPadding ? '0px' : '100px 0px'};
+  padding: ${(p) => p.noPadding ? '0px' : '68px 0px'};
 `
 
 export const LayoutCardWrapper = styled.View<{
@@ -32,11 +32,10 @@ export const LayoutCardWrapper = styled.View<{
   box-sizing: border-box;
   justify-content: flex-start;
   align-items: center;
-  top: 100px;
-  bottom: 32px;
+  top: 68px;
+  bottom: 68px;
   position: absolute;
   width: 100%;
-  max-width: ${(p) => p.maxWidth ? p.maxWidth : 700}px;
 `
 
 export const ContainerCard = styled.View<
@@ -152,7 +151,7 @@ export const BackgroundGradientBottomLayer = styled.View`
 `
 
 export const BlockForHeight = styled.View`
-  top: 100px;
+  top: 68px;
   width: 1px;
   height: calc(${minCardHeight}px + 30px);
   display: flex;

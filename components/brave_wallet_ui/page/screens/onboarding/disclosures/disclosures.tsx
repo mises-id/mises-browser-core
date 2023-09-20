@@ -120,9 +120,7 @@ export const OnboardingDisclosures = ({ nextStep, onBack }: Props) => {
               alignItems='flex-start'
             >
               <CheckboxText>
-                <p>
-                  {getLocale('braveWalletSelfCustodyDisclosureCheckboxText')}
-                </p>
+                {getLocale('braveWalletSelfCustodyDisclosureCheckboxText')}
               </CheckboxText>
             </Checkbox>
 

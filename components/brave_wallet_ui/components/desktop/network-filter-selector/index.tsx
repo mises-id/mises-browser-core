@@ -168,7 +168,7 @@ export const NetworkFilterSelector = ({
           }
           <Text>{selectedNetwork.chainName}</Text>
         </SelectorLeftSide>
-        <DropDownIcon />
+        <DropDownIcon isOpen={showNetworkFilter}/>
       </DropDownButton>
 
       {showNetworkFilter &&

@@ -15,7 +15,7 @@ import {
   ErrorRow,
   // WarningIcon
 } from './style'
-import { Text, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native'
 import Input from '../../rn/Input'
 
 interface PasswordInputState {
@@ -79,7 +79,7 @@ export function PasswordInput ({
   return (
     <StyledWrapper>
 
-      {label && name && <TouchableOpacity><Text>{label}</Text></TouchableOpacity>}
+      {label && name && <Text style={{marginBottom: 5}}>{label}</Text>}
 
       <InputWrapper>
         <Input

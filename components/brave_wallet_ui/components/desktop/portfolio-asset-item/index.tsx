@@ -39,7 +39,8 @@ import {
   NetworkDescriptionText,
   ButtonArea
 } from './style'
-import { IconsWrapper, NetworkIconWrapper, SellButton, SellButtonRow } from '../../shared/style'
+import { IconsWrapper, NetworkIconWrapper } from '../../shared/style'
+import { View } from 'react-native'
 
 interface Props {
   action?: () => void
@@ -118,9 +119,9 @@ export const PortfolioAssetItem = ({
     return token.symbol
   }, [tokensNetwork, token])
 
-  const isAssetsBalanceZero = React.useMemo(() => {
-    return new Amount(assetBalance).isZero()
-  }, [assetBalance])
+  // const isAssetsBalanceZero = React.useMemo(() => {
+  //   return new Amount(assetBalance).isZero()
+  // }, [assetBalance])
 
   // effects
   React.useEffect(() => {
@@ -142,47 +143,51 @@ export const PortfolioAssetItem = ({
       {token.visible &&
         <StyledWrapper isPanel={isPanel}>
           <ButtonArea disabled={isLoading} rightMargin={isAccountDetails ? 10 : 0} onPress={action}>
-            <NameAndIcon>
-              <IconsWrapper>
-                {!token.logo
-                  ? <LoadingSkeleton
-                    circle={true}
-                    width={40}
-                    height={40}
-                  />
-                  : <>
-                    <AssetIconWithPlaceholder asset={token} network={tokensNetwork} />
-                    {
-                      !isPanel &&
-                      tokensNetwork &&
-                      checkIfTokenNeedsNetworkIcon(tokensNetwork, token.contractAddress) &&
-                      <NetworkIconWrapper>
-                        <CreateNetworkIcon network={tokensNetwork} marginRight={0} />
-                      </NetworkIconWrapper>
-                    }
-                  </>
-                }
-              </IconsWrapper>
-              <NameColumn>
-                {!token.name && !token.symbol
-                  ? <>
-                    <LoadingSkeleton width={assetNameSkeletonWidth} height={18} />
-                    <Spacer />
-                    <LoadingSkeleton width={assetNetworkSkeletonWidth} height={18} />
-                  </>
-                  : <>
-                    <AssetName>
-                      {token.name} {
-                        token.isErc721 && token.tokenId
-                          ? '#' + new Amount(token.tokenId).toNumber()
-                          : ''
+            <View style={{flex: 1}}>
+              <NameAndIcon>
+                <IconsWrapper>
+                  {!token.logo
+                    ? <LoadingSkeleton
+                      circle={true}
+                      width={40}
+                      height={40}
+                    />
+                    : <>
+                      <AssetIconWithPlaceholder asset={token} network={tokensNetwork} />
+                      {
+                        !isPanel &&
+                        tokensNetwork &&
+                        checkIfTokenNeedsNetworkIcon(tokensNetwork, token.contractAddress) &&
+                        <NetworkIconWrapper>
+                          <CreateNetworkIcon network={tokensNetwork} marginRight={0} />
+                        </NetworkIconWrapper>
                       }
-                    </AssetName>
-                    <NetworkDescriptionText>{NetworkDescription}</NetworkDescriptionText>
-                  </>
-                }
-              </NameColumn>
-            </NameAndIcon>
+                    </>
+                  }
+                </IconsWrapper>
+                <View style={{flex: 1}}>
+                  <NameColumn>
+                    {!token.name && !token.symbol
+                      ? <>
+                        <LoadingSkeleton width={assetNameSkeletonWidth} height={18} />
+                        <Spacer />
+                        <LoadingSkeleton width={assetNetworkSkeletonWidth} height={18} />
+                      </>
+                      : <>
+                        <AssetName>
+                          {token.name} {
+                            token.isErc721 && token.tokenId
+                              ? '#' + new Amount(token.tokenId).toNumber()
+                              : ''
+                          }
+                        </AssetName>
+                        <NetworkDescriptionText>{NetworkDescription}</NetworkDescriptionText>
+                      </>
+                    }
+                  </NameColumn>
+                </View>
+              </NameAndIcon>
+            </View>
             <BalanceColumn>
               <WithHideBalancePlaceholder
                 size='small'
@@ -209,13 +214,13 @@ export const PortfolioAssetItem = ({
               </WithHideBalancePlaceholder>
             </BalanceColumn>
           </ButtonArea>
-          {isAccountDetails &&
+          {/* {isAccountDetails &&
             <SellButtonRow>
               {isSellSupported && !isAssetsBalanceZero &&
                 <SellButton onPress={showSellModal}>{getLocale('braveWalletSell')}</SellButton>
               }
             </SellButtonRow>
-          }
+          } */}
         </StyledWrapper>
       }
     </>

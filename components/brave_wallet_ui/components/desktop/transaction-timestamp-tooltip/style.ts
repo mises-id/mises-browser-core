@@ -10,13 +10,13 @@ export const StyledWrapper = styled.TouchableOpacity`
   display: flex;
   position: relative;
   height: 100%;
+  z-index: 9;
 `
 
 export const Tip = styled.View`
   position: absolute;
   border-radius: 4px;
   left: 50%;
-  transform: translateX(calc(-20% + 15px)) translateY(35%);
   padding: 10px;
   line-height: 18px;
   min-width: 168px;
@@ -37,7 +37,6 @@ export const Pointer = styled.View`
   position: absolute;
   left: 50%;
   top: 19px;
-  transform: translateX(-50%) translateY(-40%);
   border-width: 0 7px 8px 7px;
   z-index: 120;
   border-color: transparent transparent ${(p) => p.theme.palette.black} transparent;

@@ -29,7 +29,7 @@ export function EditPendingTransactionGas (props: Props) {
 
   const [suggestedSliderStep, setSuggestedSliderStep] = React.useState<string>('1')
   const [maxPriorityPanel, setMaxPriorityPanel] = React.useState<MaxPriorityPanels>(
-    MaxPriorityPanels.setSuggested
+    MaxPriorityPanels.setCustom
   )
 
   const {

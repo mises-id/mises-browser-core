@@ -27,7 +27,9 @@ import { AccountButtonOptions } from '../../../options/account-list-button-optio
 
 // components
 import { CopyTooltip } from '../../shared/copy-tooltip/copy-tooltip'
-import { AccountListItemOptionButton } from './account-list-item-option-button'
+
+import MoreVertical from '../../../assets/svg-icons/more-vertical.svg'
+// import { AccountListItemOptionButton } from './account-list-item-option-button'
 
 // style
 import {
@@ -36,7 +38,10 @@ import {
   AccountCircle,
   RightSide,
   HardwareIcon,
-  AccountNameRow
+  AccountNameRow,
+  Icon,
+  DropDownButton,
+  PopupStyledWrapper,
 } from './style'
 
 import {
@@ -47,6 +52,11 @@ import {
   CopyIcon
 } from '../portfolio-account-item/style'
 import { Text } from 'react-native'
+import { useUnsafeWalletSelector } from '../../../common/hooks/use-safe-selector'
+import { WalletSelectors } from '../../../common/selectors'
+import { PopupButton, PopupButtonText } from '../wallet-more-popup/style'
+import { getLocale } from '$web-common/locale'
+import { WalletActions } from '../../../common/actions'
 
 export interface Props {
   onDelete?: () => void
@@ -107,18 +117,32 @@ export const AccountListItem = ({
     return AccountButtonOptions
   }, [account, isHardwareWallet])
 
+  const selectedAccount = useUnsafeWalletSelector(WalletSelectors.selectedAccount)
+
+  const [isOpen, setisOpen] = React.useState(false)
+
+  const dropDownPress = () => {
+    setisOpen(!isOpen)
+  }
+
+  const setSelectAccount = () => {
+    dispatch(WalletActions.selectAccount(account))
+  }
+  const currentSelectedStatus = React.useMemo(() => {
+    return selectedAccount?.address.toLowerCase() === account.address.toLowerCase()
+  }, [selectedAccount, account])
   // render
   return (
-    <StyledWrapper>
+    <StyledWrapper isSelected={currentSelectedStatus} isOpen={isOpen}>
       <NameAndIcon>
         <AccountCircle orb={orb} />
         <AccountAndAddress>
           <AccountNameRow>
             {isHardwareWallet && <HardwareIcon />}
-            <AccountNameButton onPress={onSelectAccount}><Text>{account.name}</Text></AccountNameButton>
+            <AccountNameButton onPress={setSelectAccount}><Text>{account.name}</Text></AccountNameButton>
           </AccountNameRow>
           <AddressAndButtonRow>
-            <AccountAddressButton onPress={onSelectAccount}><Text>{reduceAddress(account.address)}</Text></AccountAddressButton>
+            <AccountAddressButton onPress={setSelectAccount}><Text style={{fontSize: 12}}>{reduceAddress(account.address)}</Text></AccountAddressButton>
             <CopyTooltip text={account.address}>
               <CopyIcon />
             </CopyTooltip>
@@ -126,13 +150,29 @@ export const AccountListItem = ({
         </AccountAndAddress>
       </NameAndIcon>
       <RightSide>
-        {buttonOptions.map((option: AccountButtonOptionsObjectType) =>
+        <DropDownButton onPress={dropDownPress}>
+          <Icon icon={MoreVertical} />
+        </DropDownButton>
+        {isOpen &&
+          <PopupStyledWrapper>
+            {buttonOptions.map((option: AccountButtonOptionsObjectType) =>
+              <PopupButton onPress={onClickButtonOption(option)}>
+                <Icon icon={option.icon} />
+                <PopupButtonText>
+                  {getLocale(option.name)}
+                </PopupButtonText>
+              </PopupButton>
+            )}
+          </PopupStyledWrapper>
+        }
+
+        {/* {buttonOptions.map((option: AccountButtonOptionsObjectType) =>
           <AccountListItemOptionButton
             key={option.id}
             option={option}
             onClick={onClickButtonOption(option)}
           />
-        )}
+        )} */}
       </RightSide>
     </StyledWrapper>
   )

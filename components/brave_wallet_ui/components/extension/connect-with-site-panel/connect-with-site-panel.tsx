@@ -65,6 +65,7 @@ import {
 import { getLocale } from '../../../../common/locale'
 import { Text, TouchableOpacity } from 'react-native'
 import { useStyle } from '../../../page/styles'
+import { WalletActions } from '../../../common/actions'
 
 const onClickAddAccount = () => {
   chrome.tabs.create(
@@ -91,6 +92,7 @@ export const ConnectWithSite = (props: Props) => {
 
   // State
   const [addressToConnect, setAddressToConnect] = React.useState<string>()
+  const [addressInfoToConnect, setAddressInfoToConnect] = React.useState<WalletAccountType>()
   const [selectedDuration, setSelectedDuration] =
     React.useState<BraveWallet.PermissionLifetimeOption>(
       BraveWallet.PermissionLifetimeOption.k24Hours
@@ -115,6 +117,10 @@ export const ConnectWithSite = (props: Props) => {
           duration: selectedDuration
         })
       )
+      if(addressInfoToConnect) {
+        dispatch(WalletActions.selectAccount(addressInfoToConnect))
+        console.log(addressInfoToConnect, "addressInfoToConnect")
+      }
     }
   }, [isReadyToConnect, addressToConnect, selectedDuration])
 
@@ -129,6 +135,7 @@ export const ConnectWithSite = (props: Props) => {
         return
       }
       setAddressToConnect(account.address)
+      setAddressInfoToConnect(account)
     },
     [addressToConnect]
   )

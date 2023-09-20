@@ -3,11 +3,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
-import { CaratCircleODownIcon } from '../../../assets/svg-icons/nav-button-icons'
 import styled from 'styled-components/native'
 
 // icons
 // import { CaratCircleODownIcon } from 'brave-ui/components/icons'
+import SwitchDown from '../../../assets/svg-icons/switch-icon.svg'
 
 interface IsPanelProps {
   isPanel?: boolean
@@ -19,8 +19,8 @@ export const CaratDownIcon = styled.View<IsPanelProps>`
   margin-left: 4px;
   color: ${(p) => p.isPanel ? p.theme.palette.white : p.theme.color.interactive07};
   background-color: ${(p) => p.theme.color.interactive07};
-  -webkit-mask-image: url(${CaratCircleODownIcon});
-  mask-image: url(${CaratCircleODownIcon});
+  -webkit-mask-image: url(${SwitchDown});
+  mask-image: url(${SwitchDown});
 `
 
 export const OvalButton = styled.TouchableOpacity<IsPanelProps>`

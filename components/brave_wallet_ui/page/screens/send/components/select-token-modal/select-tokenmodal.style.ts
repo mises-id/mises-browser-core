@@ -28,7 +28,7 @@ export const Modal = styled(StyledDiv)`
   justify-content: flex-start;
   overflow: hidden;
   position: absolute;
-  width: 100%;
+  width: 95%;
   z-index: 20;
 `
 

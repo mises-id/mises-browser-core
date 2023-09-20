@@ -12,6 +12,7 @@ import {
   SelectWrapper,
   SelectScrollSearchContainer
 } from '../shared-styles'
+import { View } from 'react-native'
 
 export interface Props {
   accounts: WalletAccountType[]
@@ -56,7 +57,9 @@ export function SelectAccountWithHeader (props: Props) {
         onClickAdd={onAddAccount}
         hasAddButton={hasAddButton}
       />
-      <SearchBar placeholder={getLocale('braveWalletSearchAccount')} action={filterAccountList} />
+      <View style={{width: '100%'}}>
+        <SearchBar placeholder={getLocale('braveWalletSearchAccount')} action={filterAccountList} />
+      </View>
       <SelectScrollSearchContainer>
         <SelectAccount
           accounts={filteredAccountList}

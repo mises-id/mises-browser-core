@@ -11,7 +11,7 @@ export const StyledExtensionWrapper = styled.View`
   justify-content: center;
   background-color: #F8F9FA;
   border-radius: 4px;
-  width: 320px;
+  width: 100%;
   height: 400px;
 `
 

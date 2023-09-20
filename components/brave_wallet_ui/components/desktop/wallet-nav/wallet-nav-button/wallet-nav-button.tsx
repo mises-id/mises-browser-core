@@ -38,7 +38,7 @@ export const WalletNavButton = (props: Props) => {
     >
       <ButtonIcon icon={option.icon} />
       <ButtonText
-        textSize='14px'
+        textSize='12px'
         isBold={true}
       >
         {getLocale(option.name)}

@@ -25,18 +25,21 @@ import {
 import { OnboardingAction, PageState, WalletRoutes } from '../../../../constants/types'
 
 // styles
-import { VerticalSpace, WalletWelcomeGraphic } from '../../../../components/shared/style'
+import { VerticalSpace } from '../../../../components/shared/style'
 import { OnboardingWrapper } from '../onboarding.style'
 import {
-  Title,
+  // Title,
   // ButtonContainer,
   // LearnMoreLink,
-  BlockQuote,
-  BlockQuoteTextContainer,
-  VerticalRule,
+  // BlockQuote,
+  // BlockQuoteTextContainer,
+  // VerticalRule,
   // SubDivider,
   SubDividerText
 } from './onboarding-welcome.style'
+import { Image } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { useStyle } from '../../../../page/styles'
 
 export const OnboardingWelcome = () => {
   // redux
@@ -75,6 +78,8 @@ export const OnboardingWelcome = () => {
     braveWalletP3A.reportOnboardingAction(OnboardingAction.SHOWN)
   }, [setupStillInProgress])
 
+  const style = useStyle()
+
   // render
   if (nextStep !== undefined) {
     return <OnboardingDisclosures nextStep={nextStep} onBack={hideDisclosures} />
@@ -82,12 +87,13 @@ export const OnboardingWelcome = () => {
 
   return <WalletPageLayout>
     <OnboardingWrapper>
-      <WalletWelcomeGraphic />
+      {/* <WalletWelcomeGraphic />
 
       <Title maxWidth='467px'>
         {getLocale('braveWalletWelcomeTitle')}
       </Title>
 
+      <VerticalSpace space='34px' />
       <BlockQuote>
         <VerticalRule />
         <BlockQuoteTextContainer>
@@ -101,7 +107,18 @@ export const OnboardingWelcome = () => {
             {getLocale('braveWalletPerksBrowserNative')}
           </span>
         </BlockQuoteTextContainer>
-      </BlockQuote>
+      </BlockQuote> */}
+      <Image
+        style={StyleSheet.flatten([
+          style.flatten(["height-90"]),
+          {
+            width: '80%'
+          }
+        ])}
+        fadeDuration={0}
+        resizeMode="contain"
+        source={require("../../../assets/logo/splash-image.png")}
+      />
 
       <VerticalSpace space='34px' />
 
@@ -121,6 +138,8 @@ export const OnboardingWelcome = () => {
         maxHeight={'48px'}
         minWidth={'267px'}
       />
+
+      <VerticalSpace space='34px' />
 
       {/* <NavButton
         buttonType='primary'

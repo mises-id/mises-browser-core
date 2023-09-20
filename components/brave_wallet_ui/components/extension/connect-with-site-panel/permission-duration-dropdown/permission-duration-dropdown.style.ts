@@ -7,6 +7,7 @@ import * as leo from '@brave/leo/tokens/css'
 // import Icon from '@brave/leo/react/icon'
 import styled from 'styled-components/native'
 import { WalletButton } from '../../../shared/style'
+import { CaratStrongLeftIcon } from '../../../../assets/svg-icons/nav-button-icons'
 
 export const StyledWrapper = styled.View`
   display: flex;
@@ -41,10 +42,14 @@ export const DropDownButton = styled(WalletButton)`
 `
 
 export const DropDownIcon = styled.View<{ isOpen: boolean }>`
-  --leo-icon-size: 20px;
-  color: ${leo.color.icon.default};
+  width: 18px;
+  height: 18px;
+  color: ${(p) => p.theme.color.interactive07};
   transition-duration: 0.3s;
-  transform: ${(p) => (p.isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  transform: ${(p) => p.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${CaratStrongLeftIcon});
+  mask-image: url(${CaratStrongLeftIcon});
 `
 
 export const DropDown = styled.View`

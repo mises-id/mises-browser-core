@@ -46,6 +46,7 @@ export const BackIcon = styled.View`
   background-color: ${(p) => p.theme.color.interactive07};
   -webkit-mask-image: url(${CaratStrongLeftIcon});
   mask-image: url(${CaratStrongLeftIcon});
+  transform: rotate(90deg);
 `
 
 export const HeaderSpacing = styled.View`

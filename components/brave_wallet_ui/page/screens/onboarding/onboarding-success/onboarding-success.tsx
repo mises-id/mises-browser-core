@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 import { getLocale } from '../../../../../common/locale'
 
 // images
-import WalletAccessSvg from './images/wallet-access.svg'
+// import WalletAccessSvg from './images/wallet-access.svg'
 
 // routes
 import { WalletRoutes } from '../../../../constants/types'
@@ -25,7 +25,7 @@ import { CenteredPageLayout } from '../../../../components/desktop/centered-page
 
 // styles
 import {
-  Description,
+  // Description,
   Title,
   MainWrapper
 } from '../onboarding.style'
@@ -33,7 +33,7 @@ import {
   ArticleLinksContainer,
   ButtonContainer,
   IntroContainer,
-  IntroImg,
+  // IntroImg,
 } from './onboarding-success.style'
 
 export const OnboardingSuccess = () => {
@@ -76,11 +76,11 @@ export const OnboardingSuccess = () => {
           getLocale('braveWalletOnboardingSuccessTitle')
         }</Title>
 
-        <Description>{
+        {/* <Description>{
           getLocale('braveWalletOnboardingSuccessDescription')
-        }</Description>
+        }</Description> */}
 
-        <IntroImg source={{uri: WalletAccessSvg}} style={{height: 138}}/>
+        {/* <IntroImg source={{uri: WalletAccessSvg}} style={{height: 138}}/> */}
 
       </IntroContainer>
 

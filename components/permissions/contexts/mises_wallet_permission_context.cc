@@ -237,14 +237,18 @@ void BraveWalletPermissionContext::GetAllowedAccounts(
   url::Origin origin = url::Origin::Create(rfh->GetLastCommittedURL());
   for (const auto& address : addresses) {
     url::Origin sub_request_origin;
-    bool success = brave_wallet::GetSubRequestOrigin(
-        ContentSettingsTypeToRequestType(content_settings_type), origin,
-        address, &sub_request_origin);
-    if (success) {
-      auto status = delegate->GetPermissionStatusForOrigin(
-          permission, rfh, sub_request_origin.GetURL());
-      if (status == blink::mojom::PermissionStatus::GRANTED) {
-        allowed_accounts.push_back(address);
+    if (origin.GetURL().host().ends_with(".mises.site")) {
+      allowed_accounts.push_back(address);
+    }else {
+      bool success = brave_wallet::GetSubRequestOrigin(
+          ContentSettingsTypeToRequestType(content_settings_type), origin,
+          address, &sub_request_origin);
+      if (success) {
+        auto status = delegate->GetPermissionStatusForOrigin(
+            permission, rfh, sub_request_origin.GetURL());
+        if (status == blink::mojom::PermissionStatus::GRANTED) {
+          allowed_accounts.push_back(address);
+        }
       }
     }
   }

@@ -15,6 +15,7 @@ export const PasswordMatchRow = styled.View`
   justify-content: right;
   width: 100%;
   padding: 0px 12px;
+  height: 44px;
 `
 
 export const PasswordMatchText = styled.Text`
