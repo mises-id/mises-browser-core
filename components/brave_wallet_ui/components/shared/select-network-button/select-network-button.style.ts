@@ -17,10 +17,7 @@ export const CaratDownIcon = styled.View<IsPanelProps>`
   width: 14px;
   height: 14px;
   margin-left: 4px;
-  color: ${(p) => p.isPanel ? p.theme.palette.white : p.theme.color.interactive07};
-  background-color: ${(p) => p.theme.color.interactive07};
-  -webkit-mask-image: url(${SwitchDown});
-  mask-image: url(${SwitchDown});
+  background-image: url(${SwitchDown});
 `
 
 export const OvalButton = styled.TouchableOpacity<IsPanelProps>`

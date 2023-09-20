@@ -106,11 +106,7 @@ export const UnlockScreen: FunctionComponent = () => {
             ])}
             fadeDuration={0}
             resizeMode="contain"
-            source={
-              style.theme === "dark"
-                ? require("../../assets/logo/splash-image-dark-mode.png")
-                : require("../../assets/logo/splash-image.png")
-            }
+            source={require("../../assets/logo/splash-image.png")}
           />
           <View style={style.get("flex-3")} />
           <View style={style.flatten(["padding-x-page"])}>

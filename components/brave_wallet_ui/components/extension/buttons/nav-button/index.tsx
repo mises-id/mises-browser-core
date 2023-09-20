@@ -88,7 +88,7 @@ export const NavButton: React.FC<Props> = ({
       {buttonContent}
     </TouchableOpacity>
   ) : (
-    <TouchableOpacity onPress={onSubmit}>
+    <TouchableOpacity disabled={disabled} onPress={onSubmit}>
       <StyledButton
         disabled={disabled}
         buttonType={buttonType}

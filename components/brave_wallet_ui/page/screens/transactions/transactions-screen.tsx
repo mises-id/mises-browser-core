@@ -261,6 +261,7 @@ export const TransactionsScreen: React.FC = () => {
       <SearchAndFiltersRow>
         <Column flex={1} style={{ minWidth: '25%' }} alignItems='flex-start'>
           <SearchBar
+            width="100%"
             placeholder={getLocale('braveWalletSearchText')}
             action={(e) => setSearchValue(e.target.value)}
             value={searchValue}

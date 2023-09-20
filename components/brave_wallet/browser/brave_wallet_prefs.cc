@@ -109,7 +109,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
                                    GetDefaultSelectedNetworks());
   registry->RegisterDictionaryPref(kBraveWalletUserAssets,
                                    GetDefaultUserAssets());
-  registry->RegisterIntegerPref(kBraveWalletAutoLockMinutes, 5);
+  registry->RegisterIntegerPref(kBraveWalletAutoLockMinutes, 15);
   registry->RegisterStringPref(kBraveWalletSelectedAccount, "");
   registry->RegisterBooleanPref(kSupportEip1559OnLocalhostChain, false);
   registry->RegisterDictionaryPref(kBraveWalletLastTransactionSentTimeDict);

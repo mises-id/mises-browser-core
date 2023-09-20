@@ -293,8 +293,8 @@ handler.on(WalletActions.setMisesInfo.type, async (store: Store) => {
 })
 
 handler.on(WalletActions.resetWallet.type, async (store: Store) => {
-  const braveWalletService = getAPIProxy().braveWalletService
-  await braveWalletService.reset()
+  const braveWalletService = getAPIProxy().braveWalletService;
+  await braveWalletService.reset();
   (chrome as any).misesPrivate.setMisesId('{}');
 })
 

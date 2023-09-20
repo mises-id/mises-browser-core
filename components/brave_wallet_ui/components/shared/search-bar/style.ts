@@ -6,13 +6,13 @@
 import styled from 'styled-components/native'
 import Icon from '../../../assets/svg-icons/search-icon.svg'
 
-export const StyledWrapper = styled.View<{ useWithFilter?: boolean }>`
+export const StyledWrapper = styled.View<{ useWithFilter?: boolean, width?: string }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   min-height: 36px;
-  width: auto;
+  width: ${(p) => p.width || 'auto'};
   border: ${(p) => p.useWithFilter ? 'none' : `1px solid ${p.theme.color.interactive08}`};
   box-sizing: border-box;
   border-radius: 4px;

@@ -20,7 +20,7 @@ export const WelcomePanelWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 320px;
+  width: 100%;
   height: 250px;
 `
 

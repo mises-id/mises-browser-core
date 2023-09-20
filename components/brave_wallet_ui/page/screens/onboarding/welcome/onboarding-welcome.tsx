@@ -117,7 +117,7 @@ export const OnboardingWelcome = () => {
         ])}
         fadeDuration={0}
         resizeMode="contain"
-        source={require("../../../assets/logo/splash-image.png")}
+        source={require("../../../assets/logo/logo.png")}
       />
 
       <VerticalSpace space='34px' />

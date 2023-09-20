@@ -20,12 +20,14 @@ interface Props {
   value?: string
   useWithFilter?: boolean
   disabled?: boolean
+  width?: string
 }
 
 export const SearchBar = (props: Props) => {
-  const { autoFocus, placeholder, action, value, useWithFilter } = props
+  const { autoFocus, placeholder, action, value, useWithFilter, width } = props
   return (
     <StyledWrapper
+      width={width}
       useWithFilter={useWithFilter}
     >
       <SearchIcon />
