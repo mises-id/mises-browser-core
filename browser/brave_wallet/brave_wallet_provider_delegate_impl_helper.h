@@ -23,6 +23,7 @@ namespace brave_wallet {
 void ShowPanel(content::WebContents* web_contents);
 void ShowApprovePanel(content::WebContents* web_contents);
 void ClosePanel(content::WebContents* web_contents);
+bool IsPanelShowing(content::WebContents* web_contents);
 
 // Show wallet onboarding page.
 void ShowWalletOnboarding(content::WebContents* web_contents);
