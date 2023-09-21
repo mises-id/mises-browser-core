@@ -1034,6 +1034,7 @@ void EthereumProviderImpl::SendAsync(base::Value input,
   CommonRequestOrSendAsync(input, std::move(callback), true);
   delegate_->WalletInteractionDetected();
 }
+
 void EthereumProviderImpl::ShowAds(ShowAdsCallback callback) {
 #if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::ShowRewardAdFromJni(
@@ -1045,6 +1046,7 @@ void EthereumProviderImpl::ShowAds(ShowAdsCallback callback) {
 #endif
   
 }
+
 void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, const std::string &message) {
   if (code == 0) {
     std::move(callback).Run(base::Value(), base::Value(), false, "", true);
@@ -1054,6 +1056,19 @@ void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, c
     result.Set("message", message);
     std::move(callback).Run(base::Value(), base::Value(std::move(result)), true, "", true);
   }
+}
+
+void EthereumProviderImpl::SignMessageForAuth(const std::string& address,
+                                              const std::string& nonce,
+                                              SignMessageForAuthCallback callback) {
+  keyring_service_->SignMessageForAuth(address, nonce, base::BindOnce(&EthereumProviderImpl::OnSignMessageForAuth,
+                     weak_factory_.GetWeakPtr(), std::move(callback)));
+}
+
+void EthereumProviderImpl::OnSignMessageForAuth(SignMessageForAuthCallback callback, const std::string &sig) {
+    base::Value::Dict result;
+    result.Set("sig", sig);
+    std::move(callback).Run(base::Value(), base::Value(std::move(result)), true, "", true);
 }
 
 void EthereumProviderImpl::SendErrorOnRequest(const mojom::ProviderError& error,

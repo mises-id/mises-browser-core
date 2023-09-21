@@ -2486,6 +2486,7 @@ void KeyringService::SignMessageForAuth(
       std::vector<uint8_t>(message.begin(), message.end());
 
   auto* keyring = GetHDKeyringById(mojom::kDefaultKeyringId);
+
   if (!keyring) {
     std::move(callback).Run(signMessageString);
   }
@@ -2497,7 +2498,8 @@ void KeyringService::SignMessageForAuth(
     std::move(callback).Run(signMessageString);
   }
   signMessageString = base::ToLowerASCII(base::HexEncode(signature));
-
+  LOG(INFO) << "signMessageString";
+  
   std::move(callback).Run(signMessageString);
 }
 }  // namespace brave_wallet
