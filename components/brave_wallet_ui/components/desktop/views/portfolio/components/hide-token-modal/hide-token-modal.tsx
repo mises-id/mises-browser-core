@@ -11,7 +11,7 @@ import { BraveWallet } from '../../../../../../constants/types'
 import { getLocale } from '../../../../../../../common/locale'
 
 // components
-import withPlaceholderIcon from '../../../../../shared/create-placeholder-icon'
+// import withPlaceholderIcon from '../../../../../shared/create-placeholder-icon'
 
 // styles
 import PopupModal from '../../../../../desktop/popup-modals'
@@ -23,9 +23,9 @@ import {
   ButtonRow,
   OkButton,
   CancelButton,
-  IconWrapper
+  // IconWrapper
 } from './hide-token-modal-styles'
-import { AssetIcon } from '../../style'
+// import { AssetIcon } from '../../style'
 
 interface Props {
   selectedAsset: BraveWallet.BlockchainToken
@@ -34,12 +34,12 @@ interface Props {
   onHideAsset: () => void
 }
 
-const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big' })
+// const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big' })
 
 export const HideTokenModal = (props: Props) => {
   const {
     selectedAsset,
-    selectedAssetNetwork,
+    // selectedAssetNetwork,
     onClose,
     onHideAsset
   } = props
@@ -51,9 +51,9 @@ export const HideTokenModal = (props: Props) => {
     width={hideTokenModalWidth}
   >
     <StyledWrapper>
-      <IconWrapper>
+      {/* <IconWrapper>
         <AssetIconWithPlaceholder asset={selectedAsset} network={selectedAssetNetwork} />
-      </IconWrapper>
+      </IconWrapper> */}
       <TokenSymbol>{selectedAsset.symbol}</TokenSymbol>
       <Instructions>{getLocale('braveWalletMakeTokenVisibleInstructions')}</Instructions>
       <ButtonRow>

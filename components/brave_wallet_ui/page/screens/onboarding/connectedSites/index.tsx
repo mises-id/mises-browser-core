@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Container } from './index.style';
 import { StyleSheet, Text } from 'react-native';
 import { useStyle } from '../../../../page/styles';
-import { Row } from '../../../../components/shared/style';
+import { Column, Row, Text as SharedText } from '../../../../components/shared/style';
 import { DeleteIcon } from '../../../../components/desktop/asset-watchlist-item/style';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useApiProxy } from '../../../../common/hooks/use-api-proxy';
@@ -43,6 +43,13 @@ const ConnectedSites = () => {
         </TouchableOpacity>
       </Row>
       })}
+      {list.length === 0 &&
+        <Column fullHeight>
+          <SharedText textSize='14px'>
+            No results found.
+          </SharedText>
+        </Column>
+      }
     </Container>
   )
 }

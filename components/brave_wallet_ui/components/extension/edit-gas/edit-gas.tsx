@@ -63,11 +63,11 @@ export const EditGas = ({
   transactionInfo,
   baseFeePerGas,
   suggestedMaxPriorityFeeChoices,
-  suggestedSliderStep,
+  // suggestedSliderStep,
   maxPriorityPanel,
   updateUnapprovedTransactionGasFields,
-  setSuggestedSliderStep,
-  setMaxPriorityPanel
+  // setSuggestedSliderStep,
+  // setMaxPriorityPanel
 }: Props) => {
   const parseTransactionFees = useTransactionFeesParser(selectedNetwork, networkSpotPrice)
   const transactionFees = parseTransactionFees(transactionInfo)
@@ -122,13 +122,13 @@ export const EditGas = ({
   //   setMaxFeePerGas(event.target.value)
   // }
 
-  const onSetPanelToCustom = () => {
-    setMaxPriorityPanel(MaxPriorityPanels.setCustom)
-  }
+  // const onSetPanelToCustom = () => {
+  //   setMaxPriorityPanel(MaxPriorityPanels.setCustom)
+  // }
 
-  const onSetPanelToSuggested = () => {
-    setMaxPriorityPanel(MaxPriorityPanels.setSuggested)
-  }
+  // const onSetPanelToSuggested = () => {
+  //   setMaxPriorityPanel(MaxPriorityPanels.setSuggested)
+  // }
 
   // const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   const suggestedSliderStep = event.target.value
@@ -424,20 +424,8 @@ export const EditGas = ({
           <NavButton
             buttonType='secondary'
             needsTopMargin={true}
-            text={
-              !isEIP1559Transaction
-                ? getLocale('braveWalletButtonCancel')
-                : maxPriorityPanel === MaxPriorityPanels.setCustom
-                ? getLocale('braveWalletEditGasSetSuggested')
-                : getLocale('braveWalletEditGasSetCustom')
-            }
-            onSubmit={
-              !isEIP1559Transaction
-                ? onCancel
-                : maxPriorityPanel === MaxPriorityPanels.setCustom
-                ? onSetPanelToSuggested
-                : onSetPanelToCustom
-            }
+            text={getLocale('braveWalletButtonCancel')}
+            onSubmit={onCancel}
           />
 
           <NavButton

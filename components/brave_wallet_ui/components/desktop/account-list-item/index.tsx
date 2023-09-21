@@ -134,7 +134,7 @@ export const AccountListItem = ({
   // render
   return (
     <StyledWrapper isSelected={currentSelectedStatus} isOpen={isOpen}>
-      <NameAndIcon>
+      <NameAndIcon onPress={setSelectAccount}>
         <AccountCircle orb={orb} />
         <AccountAndAddress>
           <AccountNameRow>

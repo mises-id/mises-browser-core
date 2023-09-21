@@ -220,7 +220,7 @@ export const TokenLists = ({
           />
         </Column> */}
 
-        <NetworkFilterSelector networkListSubset={networks} />
+        <NetworkFilterSelector isLeft networkListSubset={networks} />
 
         {/* {!hideAssetFilter &&
           <AssetFilterSelector />

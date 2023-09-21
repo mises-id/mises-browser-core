@@ -231,9 +231,13 @@ handler.on(
     await store.dispatch(
       walletApi.endpoints.setSelectedAccount.initiate({ address, coin })
     )
-    store.dispatch(
-      WalletActions.setMisesInfo()
-    )
+
+    setTimeout(() => {
+      console.log(address, 'setMisesInfo>>>>>>')
+      store.dispatch(
+        WalletActions.setMisesInfo()
+      )
+    }, 200);
   }
 )
 
@@ -289,8 +293,9 @@ handler.on(WalletActions.setMisesInfo.type, async (store: Store) => {
 })
 
 handler.on(WalletActions.resetWallet.type, async (store: Store) => {
-  const braveWalletService = getAPIProxy().braveWalletService
-  await braveWalletService.reset()
+  const braveWalletService = getAPIProxy().braveWalletService;
+  await braveWalletService.reset();
+  (chrome as any).misesPrivate.setMisesId('{}');
 })
 
 handler.on(WalletActions.addFavoriteApp.type, async (store: Store, appItem: BraveWallet.AppItem) => {

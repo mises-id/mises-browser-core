@@ -55,7 +55,7 @@ import { AllNetworksOption } from '../../../../options/network-filter-options'
 
 // Components
 import { BackButton } from '../../../shared'
-import withPlaceholderIcon from '../../../shared/create-placeholder-icon'
+// import withPlaceholderIcon from '../../../shared/create-placeholder-icon'
 import { LineChart } from '../../'
 import AccountsAndTransactionsList from './components/accounts-and-transctions-list'
 import { BridgeToAuroraModal } from '../../popup-modals/bridge-to-aurora-modal/bridge-to-aurora-modal'
@@ -78,7 +78,7 @@ import {
 import {
   ArrowIcon,
   AssetColumn,
-  AssetIcon,
+  // AssetIcon,
   AssetNameText,
   AssetRow,
   BalanceRow,
@@ -112,7 +112,7 @@ import {
 import { ScrollableColumn } from '../../../shared/style'
 import { NftDetails } from '../../../../nft/components/nft-details/nft-details'
 
-const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big', marginLeft: 0, marginRight: 12 })
+// const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big', marginLeft: 0, marginRight: 12 })
 const rainbowbridgeLink = 'https://rainbowbridge.app'
 const bridgeToAuroraDontShowAgainKey = 'bridgeToAuroraDontShowAgain'
 
@@ -728,10 +728,10 @@ export const PortfolioAsset = (props: Props) => {
           <InfoColumn>
 
             <AssetRow>
-              <AssetIconWithPlaceholder
+              {/* <AssetIconWithPlaceholder
                 asset={selectedAsset}
                 network={selectedAssetsNetwork}
-              />
+              /> */}
               <AssetColumn>
                 <AssetNameText>{selectedAssetFromParams.name}</AssetNameText>
                 <NetworkDescription>

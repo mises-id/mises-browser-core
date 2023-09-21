@@ -65,6 +65,9 @@ class JSEthereumProvider final : public gin::Wrappable<JSEthereumProvider>,
   void DisconnectEvent(const std::string& message);
 
   v8::Local<v8::Promise> ShowAds(v8::Isolate* isolate);
+  v8::Local<v8::Promise> SignMessageForAuth(v8::Isolate* isolate, 
+                                            const std::string& address, 
+                                            const std::string& nonce);
   bool GetIsMisesWallet();
   bool GetIsMetaMask();
   std::string GetChainId();
