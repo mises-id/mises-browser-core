@@ -10,7 +10,7 @@
 
 namespace decentralized_dns {
 namespace{
-#include "mises/net/decentralized_dns/freename_tld.cc"
+#include "mises/third_party/freename/freename_tld_names-reversed-inc.cc"
 struct DafsaParams {
   const unsigned char* dafsa;
   size_t length;

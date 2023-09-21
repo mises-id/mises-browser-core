@@ -1,0 +1,12 @@
+ executable("tld_cleanup") {
+    sources = [ 
+      "tld_cleanup.cc", "tld_cleanup_util.cc",]
+    output_name = "freename_tld_cleanup"
+
+    deps = [
+      "//base",
+      "//url",
+      "//base:i18n",
+      "//build/win:default_exe_manifest"
+    ]
+  }
