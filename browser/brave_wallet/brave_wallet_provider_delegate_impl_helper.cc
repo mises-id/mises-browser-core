@@ -50,12 +50,13 @@ void ClosePanel(content::WebContents* web_contents) {
 }
 bool IsPanelShowing(content::WebContents* web_contents) {
   if (!web_contents)
-    return;
+    return false;
 
   auto* tab_helper =
       brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
-  if (tab_helper)
-    tab_helper->IsShowingBubble();
+  if (!tab_helper)
+    return false;
+  return tab_helper->IsShowingBubble();
 }
 
 void ShowWalletOnboarding(content::WebContents* web_contents) {
