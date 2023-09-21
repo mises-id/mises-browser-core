@@ -21,19 +21,19 @@ import { formatTokenBalanceWithSymbol } from '../../../../../utils/balance-utils
 import { useGetNetworkQuery } from '../../../../../common/slices/api.slice'
 
 // Components
-// import {
-  // withPlaceholderIcon,
+import {
+  withPlaceholderIcon,
   // CreateNetworkIcon
-// } from '../../../../../components/shared'
-// import { NftIcon } from '../../../../../components/shared/nft-icon/nft-icon'
+} from '../../../../../components/shared'
+import { NftIcon } from '../../../../../components/shared/nft-icon/nft-icon'
 import { NFTInfoTooltip } from '../nft-info-tooltip/nft-info-tooltip'
 
 // Styled Components
 import {
-  // AssetIcon,
+  AssetIcon,
   // NetworkIconWrapper,
   Button,
-  // IconsWrapper,
+  IconsWrapper,
   ButtonWrapper,
   IconAndName
 } from './token-list-item.style'
@@ -57,13 +57,13 @@ export const TokenListItem = (props: Props) => {
   const { data: tokensNetwork } = useGetNetworkQuery(token, { skip: !token })
 
   // Memos
-  // const AssetIconWithPlaceholder = React.useMemo(() => {
-  //   return withPlaceholderIcon(token?.isErc721 ? NftIcon : AssetIcon, {
-  //     size: 'big',
-  //     marginLeft: 0,
-  //     marginRight: 0
-  //   })
-  // }, [token?.isErc721])
+  const AssetIconWithPlaceholder = React.useMemo(() => {
+    return withPlaceholderIcon(token?.isErc721 ? NftIcon : AssetIcon, {
+      size: 'big',
+      marginLeft: 0,
+      marginRight: 0
+    })
+  }, [token?.isErc721])
 
   const fiatBalance = React.useMemo(() => {
     return computeFiatAmount(spotPrices, {

@@ -21,7 +21,7 @@ import { useExplorer } from '../../../common/hooks'
 // Components
 import CreateSiteOrigin from '../../shared/create-site-origin/index'
 import Tooltip from '../../shared/tooltip/index'
-// import withPlaceholderIcon from '../../shared/create-placeholder-icon'
+import withPlaceholderIcon from '../../shared/create-placeholder-icon'
 
 // Components
 import { PanelTab, TransactionDetailBox } from '..'
@@ -47,7 +47,7 @@ import {
   ArrowIcon,
   EditButton,
   WarningIcon,
-  // AssetIcon,
+  AssetIcon,
   ContractButton,
   ExplorerIcon,
   ContractButtonText
@@ -83,7 +83,7 @@ export interface Props {
   onReject: () => void
 }
 
-// const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big', marginLeft: 0, marginRight: 0 })
+const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big', marginLeft: 0, marginRight: 0 })
 
 const onClickLearnMore = () => {
   chrome.tabs.create({ url: 'https://support.brave.com/hc/en-us/articles/5546517853325' }, () => {
@@ -276,12 +276,12 @@ export const ConfirmTransactionPanel = ({
 
           <TransactionTypeText>{transactionTitle}</TransactionTypeText>
 
-          {/* {(isERC721TransferFrom || isERC721SafeTransferFrom) &&
+          {(isERC721TransferFrom || isERC721SafeTransferFrom) &&
             <AssetIconWithPlaceholder
               asset={transactionDetails.erc721BlockchainToken}
               network={transactionsNetwork}
             />
-          } */}
+          }
 
           <TransactionAmountBig>
             {(isERC721TransferFrom || isERC721SafeTransferFrom)

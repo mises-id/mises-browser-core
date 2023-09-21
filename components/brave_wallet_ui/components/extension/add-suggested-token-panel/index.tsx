@@ -14,7 +14,7 @@ import {
   ButtonWrapper,
   TokenName,
   ContractAddress,
-  // AssetIcon,
+  AssetIcon,
   TopWrapper,
   NetworkText,
   TopRow
@@ -22,7 +22,7 @@ import {
 import { URLText } from '../shared-panel-styles'
 
 // Components
-import { Tooltip, CreateSiteOrigin } from '../../shared'
+import { withPlaceholderIcon, Tooltip, CreateSiteOrigin } from '../../shared'
 import { NavButton } from '..'
 
 // Utils
@@ -49,9 +49,9 @@ function AddSuggestedTokenPanel (props: Props) {
     originInfo
   } = props
 
-  // const AssetIconWithPlaceholder = React.useMemo(() => {
-  //   return withPlaceholderIcon(AssetIcon, { size: 'big', marginLeft: 0, marginRight: 0 })
-  // }, [])
+  const AssetIconWithPlaceholder = React.useMemo(() => {
+    return withPlaceholderIcon(AssetIcon, { size: 'big', marginLeft: 0, marginRight: 0 })
+  }, [])
 
   const onClickViewOnBlockExplorer = useExplorer(selectedNetwork)
 
