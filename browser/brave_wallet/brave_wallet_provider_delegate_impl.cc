@@ -109,9 +109,18 @@ url::Origin BraveWalletProviderDelegateImpl::GetOrigin() const {
 }
 
 bool BraveWalletProviderDelegateImpl::IsTabVisible() {
+#if !BUILDFLAG(IS_ANDROID)
   return web_contents_
              ? web_contents_->GetVisibility() == content::Visibility::VISIBLE
              : false;
+#else
+  if (web_contents_) {
+    bool visible = web_contents_->GetVisibility() == content::Visibility::VISIBLE;
+    return visible || brave_wallet::IsPanelShowing(web_contents_);
+  } else {
+    return false;
+  }
+#endif
 }
 
 void BraveWalletProviderDelegateImpl::ShowPanel() {

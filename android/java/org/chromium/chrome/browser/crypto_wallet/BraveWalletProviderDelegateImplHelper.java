@@ -60,6 +60,28 @@ public class BraveWalletProviderDelegateImplHelper {
     }
 
     @CalledByNative
+    public static boolean isPanelShowing() {
+      if (MisesSysUtils.getActivityContext() == null) {
+        return false;
+      }
+      boolean showing = false;
+      try {
+        for (Activity activity : ApplicationStatus.getRunningActivities()) {
+            if (!(activity instanceof CustomTabActivity)) continue;
+            CustomTabActivity customTabActivity = (CustomTabActivity) activity;
+            Tab tab = customTabActivity.getActivityTab();
+            if (tab != null && tab.getUrl().getSpec().startsWith("chrome://wallet-panel")) {
+                showing = true;
+            }
+        }
+      } catch (Exception e) {
+          Log.e(TAG, "isPanelShowing " + e);
+      }
+
+      return showing;
+    }
+
+    @CalledByNative
     public static void showWalletOnboarding() {
         // try {
         //     BraveActivity activity = BraveActivity.getBraveActivity();

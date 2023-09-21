@@ -55,7 +55,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
 
  private:
   void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
-  void ContinueMiseswalletMigration(const std::string& key_store);
+  void ContinueMiseswalletMigration(const base::Value key_store);
   void ReinstallAsNonComponent(std::string extension_id);
     // ExtensionRegistryObserver:
   void OnExtensionLoaded(content::BrowserContext* browser_context,

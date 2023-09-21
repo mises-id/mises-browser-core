@@ -12,6 +12,7 @@
 
 #include "base/containers/span.h"
 #include "base/gtest_prod_util.h"
+#include "base/values.h"
 #include "base/memory/raw_ptr.h"
 #include "mises/components/brave_wallet/browser/internal/hd_key_base.h"
 #include "mises/components/brave_wallet/common/mem_utils.h"
@@ -49,6 +50,10 @@ class HDKey : public HDKeyBase {
   // https://github.com/ethereum/wiki/wiki/Web3-Secret-Storage-Definition
   static std::unique_ptr<HDKey> GenerateFromV3UTC(const std::string& password,
                                                   const std::string& json);
+  static bool DecodeRawBytesFromV3UTC(const std::string& password,
+                                      const base::Value& value, 
+                                      std::vector<uint8_t>*raw_bytes,
+                                      bool usingKeccak);
 
   std::string GetPath() const override;
 

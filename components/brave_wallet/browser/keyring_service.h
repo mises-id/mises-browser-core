@@ -63,7 +63,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   // For testing only.
   static void SetPrefForKeyring(PrefService* profile_prefs,
                                 const std::string& key,
-                                base::Value value,
+                                const base::Value& value,
                                 const std::string& id);
   static absl::optional<std::vector<uint8_t>> GetPrefInBytesForKeyring(
       const PrefService& profile_prefs,
@@ -240,6 +240,10 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
       uint32_t account_index,
       uint32_t change_index);
 
+  void SetLegacyKeystore(const base::Value& key_store,
+                    const std::string &account_path,
+                    const std::string & account_name,
+                    const std::string & account_address);
  private:
   FRIEND_TEST_ALL_PREFIXES(KeyringServiceUnitTest, GetOrCreateNonceForKeyring);
   FRIEND_TEST_ALL_PREFIXES(KeyringServiceUnitTest, GetOrCreateSaltForKeyring);
@@ -360,7 +364,8 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   HDKeyring* ResumeKeyring(const std::string& keyring_id,
                            const std::string& password);
 
-  void MaybeMigratePBKDF2Iterations(const std::string& password);
+  void MaybeMigrateLegacyKeystore(const std::string& password);
+  void MaybeMigrateLegacyAccount();
 
   void NotifyAccountsChanged();
   void NotifyAccountsAdded(mojom::CoinType coin,

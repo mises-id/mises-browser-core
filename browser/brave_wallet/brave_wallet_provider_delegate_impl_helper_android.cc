@@ -20,7 +20,7 @@ using base::android::JavaParamRef;
 namespace brave_wallet {
 
 void ShowPanel(content::WebContents* web_contents) {
-    if (!web_contents)
+  if (!web_contents)
     return;
 
   auto* tab_helper =
@@ -54,6 +54,10 @@ void ShowApprovePanel(content::WebContents* web_contents) {
 void ClosePanel(content::WebContents* web_contents) {
   JNIEnv* env = base::android::AttachCurrentThread();
   Java_BraveWalletProviderDelegateImplHelper_closePanel(env);
+}
+bool IsPanelShowing(content::WebContents* web_contents) {
+  JNIEnv* env = base::android::AttachCurrentThread();
+  return Java_BraveWalletProviderDelegateImplHelper_isPanelShowing(env);
 }
 
 void ShowWalletOnboarding(content::WebContents* web_contents) {
