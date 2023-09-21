@@ -1068,7 +1068,7 @@ void EthereumProviderImpl::SignMessageForAuth(const std::string& address,
 void EthereumProviderImpl::OnSignMessageForAuth(SignMessageForAuthCallback callback, const std::string &sig) {
     base::Value::Dict result;
     result.Set("sig", sig);
-    std::move(callback).Run(base::Value(), base::Value(std::move(result)), true, "", true);
+    std::move(callback).Run(base::Value(), base::Value(std::move(result)), false, "", true);
 }
 
 void EthereumProviderImpl::SendErrorOnRequest(const mojom::ProviderError& error,

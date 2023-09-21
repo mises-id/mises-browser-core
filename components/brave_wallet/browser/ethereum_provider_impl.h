@@ -400,7 +400,7 @@ class EthereumProviderImpl final
 
   void OnShowAdsResult(ShowAdsCallback callback, int code, const std::string &message);
 
-  void OnSignMessageForAuth(ShowAdsCallback callback, const std::string &message);
+  void OnSignMessageForAuth(SignMessageForAuthCallback callback, const std::string &message);
 
   raw_ptr<HostContentSettingsMap> host_content_settings_map_ = nullptr;
   std::unique_ptr<BraveWalletProviderDelegate> delegate_;
