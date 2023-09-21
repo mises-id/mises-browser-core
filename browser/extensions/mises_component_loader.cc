@@ -66,6 +66,7 @@
 #include "ui/message_center/public/cpp/notification_types.h"
 #include "ui/message_center/public/cpp/notifier_id.h"
 #include "components/grit/mises_components_strings.h"
+#include "mises/browser/brave_wallet/keyring_service_factory.h"
 
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
@@ -275,11 +276,6 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
                                      const Extension* extension) {
   if (extension->id() == metamask_extension_id && !metamask_ready_) {
     metamask_ready_ = true;
-    StorageFrontend* frontend = StorageFrontend::Get(profile_);
-    frontend->RunWithStorage(
-      extension, settings_namespace::LOCAL,
-      base::BindOnce(&MisesComponentLoader::AsyncRunWithMetamaskStorage, base::Unretained(this))
-    );
 #if BUILDFLAG(IS_ANDROID)
     if (extension->location() != ManifestLocation::kComponent) {
       DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
@@ -289,10 +285,8 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
   }
   if (extension->id() == mises_extension_id) {
     mises_ready_ = true;
-  }
-  if (mises_ready_ && metamask_ready_) {
-    if (profile_prefs_->FindPreference(kMisesDidMigrated) && !profile_prefs_->GetBoolean(kMisesDidMigrated)) {
-      profile_prefs_->SetBoolean(kMisesDidMigrated, true);
+    if (profile_prefs_->FindPreference(kMisesWalletDidMigrated) && !profile_prefs_->GetBoolean(kMisesWalletDidMigrated)) {
+      profile_prefs_->SetBoolean(kMisesWalletDidMigrated, true);
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
       frontend->RunWithStorage(
         extension, settings_namespace::LOCAL,
@@ -311,49 +305,34 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
 #endif
 
 }
-void MisesComponentLoader::AsyncRunWithMetamaskStorage(value_store::ValueStore* storage) {
-  LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithMetamaskStorage";
-  metamaskValue = base::Value(storage->Get().PassSettings());
-  LOG(INFO) << "[Mises] Got Metamask Storage";
-  base::Value::Dict *data = metamaskValue.GetDict().FindDict("data");
-  if (data) {
-    base::Value::Dict *NetworkController = data->FindDict("NetworkController");
-    if (NetworkController) {
-      base::Value::Dict *provider = NetworkController->FindDict("provider");
-      if (provider) {
-        LOG(INFO) << "[Mises] Got Metamask Storage provider" << *provider;
-        std::string *provider_type = provider->FindString("type");
-        if (provider_type && *provider_type == "MisesTestNet") {
-          provider->Set("chainId", "0x1");
-          provider->Set("nickname", "");
-          provider->Set("rpcUrl", "");
-          provider->Set("ticker", "ETH");
-          provider->Set("type", "mainnet");
-          storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, metamaskValue.GetDict());
-        }
 
-      }
-    }
-  }
-
-  content::GetUIThreadTaskRunner({})->PostTask(
-    FROM_HERE,
-    base::BindOnce(&MisesComponentLoader::MetamaskMigrationDone, base::Unretained(this)));
-
-
-}
-void MisesComponentLoader::MetamaskMigrationDone() {
-
-}
 void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
   LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithMiseswalletStorage";
-  if (storage->GetBytesInUse("migrated") == 0){
-    LOG(INFO) << "[Mises] DoMigrate";
-    storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "migrated", metamaskValue);
+  
+  base::Value misesWalletValue = base::Value(storage->Get().PassSettings());
+  base::Value::Dict *data = misesWalletValue.GetDict().FindDict("keyring/key-store");
+  std::string json;
+  if (data) {
+    LOG(INFO) << "[Mises] Got MisesWallet Storage";
   }
+  if (!json.empty()) {
+    content::GetUIThreadTaskRunner({})->PostTask(
+      FROM_HERE,
+      base::BindOnce(
+        &MisesComponentLoader::ContinueMiseswalletMigration, 
+        base::Unretained(this), json)
+    );
+  }
+  
 
-
-
+}
+void MisesComponentLoader::ContinueMiseswalletMigration(const std::string& key_store) {
+  auto* keyring_service =
+      brave_wallet::KeyringServiceFactory::GetServiceForContext(
+          profile_);
+  if (!keyring_service) {
+    return;
+  }
 }
 
 void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser_context,

@@ -7,9 +7,9 @@ if (is_android) {
 }
 
 config("external_config") {
-  defines = [ "HAVE_CONFIG_H", "USE_NUM_NONE", "USE_FIELD_10X26", "USE_FIELD_INV_BUILTIN", "USE_SCALAR_8X32", "USE_SCALAR_INV_BUILTIN", "ENABLE_MODULE_GENERATOR", "ENABLE_MODULE_RANGEPROOF", "ENABLE_MODULE_ECDH", "ENABLE_MODULE_SURJECTIONPROOF" ]
+  defines = [ "BUILD_STANDARD_SECP", "HAVE_CONFIG_H", "USE_NUM_NONE", "USE_FIELD_10X26", "USE_FIELD_INV_BUILTIN", "USE_SCALAR_8X32", "USE_SCALAR_INV_BUILTIN", "ENABLE_MODULE_GENERATOR", "ENABLE_MODULE_RANGEPROOF", "ENABLE_MODULE_ECDH", "ENABLE_MODULE_SURJECTIONPROOF" ]
   include_dirs = [
-    "include", "src", ".", "src/ccan"
+    "include", "src", ".", "src/ccan", "//mises/third_party/bitcoin-core/src/src"
   ]
 }
 
@@ -34,8 +34,15 @@ source_set("bip39wally-core") {
     "src/ccan/ccan/crypto/sha256/sha256.c",
     "src/ccan/ccan/crypto/sha512/sha512.c",
     "src/ccan/ccan/crypto/ripemd160/ripemd160.c",
-    "src/secp256k1/src/secp256k1.c",
-    "src/secp256k1/src/precomputed_ecmult_gen.c",
-    "src/secp256k1/src/precomputed_ecmult.c"
   ]
+  deps = [
+    "//mises/third_party/bitcoin-core:secp256k1",
+  ]
+  if (!is_android) {
+    sources += [
+      "src/secp256k1/src/secp256k1.c",
+      "src/secp256k1/src/precomputed_ecmult_gen.c",
+      "src/secp256k1/src/precomputed_ecmult.c"
+    ]
+  }
 }

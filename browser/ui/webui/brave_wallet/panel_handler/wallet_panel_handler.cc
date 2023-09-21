@@ -46,7 +46,7 @@ void WalletPanelHandler::CloseUI() {
     embedder->CloseUI();
   }
   #if BUILDFLAG(IS_ANDROID)
-    brave_wallet::ClosePanel();
+    brave_wallet::ClosePanel(NULL);
   #endif
   
 }

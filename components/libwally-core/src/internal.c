@@ -97,6 +97,20 @@ int keypair_xonly_pub(secp256k1_xonly_pubkey *xpubkey, const secp256k1_keypair *
     return secp256k1_keypair_xonly_pub(secp256k1_context_no_precomp, xpubkey, NULL, keypair);
 }
 
+int secp256k1_keypair_sec(const secp256k1_context* ctx, unsigned char *seckey, const secp256k1_keypair *keypair) {
+    //VERIFY_CHECK(ctx != NULL);
+    if(seckey == NULL) {
+        return 0;
+    }
+    memset(seckey, 0, 32);
+    if(keypair == NULL) {
+        return 0;
+    }
+
+    memcpy(seckey, &keypair->data[0], 32);
+    return 1;
+}
+
 int keypair_sec(unsigned char *output, const secp256k1_keypair *keypair)
 {
     return secp256k1_keypair_sec(secp256k1_context_no_precomp, output, keypair);
@@ -617,5 +631,5 @@ int array_grow(void **src, size_t num_items, size_t *allocation_len,
 #ifdef __ANDROID__
 #define malloc(size) wally_malloc(size)
 #define free(ptr) wally_free(ptr)
-#include "cpufeatures/cpu-features.c"
+//#include "cpufeatures/cpu-features.c"
 #endif

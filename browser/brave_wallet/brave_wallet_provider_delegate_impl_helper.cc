@@ -29,6 +29,25 @@ void ShowPanel(content::WebContents* web_contents) {
   if (tab_helper)
     tab_helper->ShowBubble();
 }
+void ShowApprovePanel(content::WebContents* web_contents) {
+  if (!web_contents)
+    return;
+
+  auto* tab_helper =
+      brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
+  if (tab_helper)
+    tab_helper->ShowApproveWalletBubble();
+}
+void ClosePanel(content::WebContents* web_contents) {
+  
+  if (!web_contents)
+    return;
+
+  auto* tab_helper =
+      brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
+  if (tab_helper)
+    tab_helper->CloseBubble();
+}
 
 void ShowWalletOnboarding(content::WebContents* web_contents) {
   Browser* browser =
