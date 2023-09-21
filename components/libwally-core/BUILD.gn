@@ -38,11 +38,4 @@ source_set("bip39wally-core") {
   deps = [
     "//mises/third_party/bitcoin-core:secp256k1",
   ]
-  if (!is_android) {
-    sources += [
-      "src/secp256k1/src/secp256k1.c",
-      "src/secp256k1/src/precomputed_ecmult_gen.c",
-      "src/secp256k1/src/precomputed_ecmult.c"
-    ]
-  }
 }

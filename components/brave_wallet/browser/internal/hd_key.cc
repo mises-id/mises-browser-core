@@ -10,6 +10,7 @@
 #include "base/check.h"
 #include "base/containers/span.h"
 #include "base/json/json_reader.h"
+#include "base/values.h"
 #include "base/logging.h"
 #include "base/strings/strcat.h"
 #include "base/strings/string_number_conversions.h"
@@ -27,6 +28,10 @@
 #include "crypto/symmetric_key.h"
 #include "third_party/boringssl/src/include/openssl/hmac.h"
 
+
+// #undef VLOG
+// #define VLOG(level) LOG(INFO)
+
 using crypto::Encryptor;
 using crypto::SymmetricKey;
 
@@ -41,13 +46,20 @@ constexpr size_t kSerializationLength = 78;
 bool UTCPasswordVerification(const std::string& derived_key,
                              const std::vector<uint8_t>& ciphertext,
                              const std::string& mac,
-                             size_t dklen) {
-  std::vector<uint8_t> mac_verification_input(derived_key.end() - dklen / 2,
-                                              derived_key.end());
+                             size_t dklen, bool usingKeccak) {
+  std::string hash_key = derived_key.substr(dklen / 2, dklen);                          
+  std::vector<uint8_t> mac_verification_input(hash_key.begin(), hash_key.end());
   mac_verification_input.insert(mac_verification_input.end(),
                                 ciphertext.begin(), ciphertext.end());
   // verify password
-  std::vector<uint8_t> mac_verification(KeccakHash(mac_verification_input));
+  std::vector<uint8_t> mac_verification;
+  if (usingKeccak) {
+    mac_verification = KeccakHash(mac_verification_input);
+  } else {
+    auto hash_array = crypto::SHA256Hash(mac_verification_input);
+    mac_verification = std::vector<uint8_t>(hash_array.begin(), hash_array.end());
+  }
+
   if (base::ToLowerASCII(base::HexEncode(mac_verification)) != mac) {
     VLOG(0) << __func__ << ": password does not match";
     return false;
@@ -55,15 +67,21 @@ bool UTCPasswordVerification(const std::string& derived_key,
   return true;
 }
 
-bool UTCDecryptPrivateKey(const std::string& derived_key,
+bool UTCDecryptRawBytes(const std::string& derived_key,
                           const std::vector<uint8_t>& ciphertext,
                           const std::vector<uint8_t>& iv,
-                          std::vector<uint8_t>* private_key,
-                          size_t dklen) {
-  if (!private_key)
+                          std::vector<uint8_t>* raw_bytes,
+                          size_t dklen, bool usingKeccak) {
+  if (!raw_bytes)
     return false;
+  std::string dkey;
+  if (usingKeccak) {
+    dkey = derived_key.substr(0, dklen / 2);
+  } else {
+    dkey = derived_key.substr(0, dklen);
+  }
   std::unique_ptr<SymmetricKey> decryption_key =
-      SymmetricKey::Import(SymmetricKey::AES, derived_key.substr(0, dklen / 2));
+      SymmetricKey::Import(SymmetricKey::AES, dkey);
   if (!decryption_key) {
     VLOG(1) << __func__ << ": raw key has to be 16 or 32 bytes for AES import";
     return false;
@@ -79,7 +97,7 @@ bool UTCDecryptPrivateKey(const std::string& derived_key,
     return false;
   }
 
-  if (!encryptor.Decrypt(ciphertext, private_key)) {
+  if (!encryptor.Decrypt(base::as_bytes(base::make_span(ciphertext)), raw_bytes)) {
     VLOG(0) << __func__ << ": encryptor decrypt failed";
     return false;
   }
@@ -203,6 +221,155 @@ std::unique_ptr<HDKey> HDKey::GenerateFromPrivateKey(
   return hd_key;
 }
 
+
+bool HDKey::DecodeRawBytesFromV3UTC(const std::string& password,
+                             const base::Value& parsed_json,
+                             std::vector<uint8_t> *raw_bytes,
+                             bool usingKeccak) 
+{
+  if (password.empty()) {
+    VLOG(0) << __func__ << "empty password";
+    return false;
+  }
+  if (!parsed_json.is_dict()) {
+    VLOG(0) << __func__ << "not a dict";
+    return false;
+  }   
+  const auto* crypto = &parsed_json.GetDict();
+  const auto* kdf = crypto->FindString("kdf");
+  if (!kdf) {
+    VLOG(0) << __func__ << ": missing kdf";
+    return false;
+  }
+
+  std::unique_ptr<SymmetricKey> derived_key = nullptr;
+  const auto* kdfparams = crypto->FindDict("kdfparams");
+  if (!kdfparams) {
+    VLOG(0) << __func__ << ": missing kdfparams";
+    return false;
+  }
+  auto dklen = kdfparams->FindInt("dklen");
+  if (!dklen) {
+    VLOG(0) << __func__ << ": missing dklen";
+    return false;
+  }
+  if (*dklen < 32) {
+    VLOG(0) << __func__ << ": dklen must be >=32";
+    return false;
+  }
+  const auto* salt = kdfparams->FindString("salt");
+  if (!salt) {
+    VLOG(0) << __func__ << ": missing salt";
+    return false;
+  }
+  std::vector<uint8_t> salt_bytes;
+  if (!base::HexStringToBytes(*salt, &salt_bytes)) {
+    VLOG(1) << __func__ << ": invalid salt";
+    return false;
+  }
+  if (*kdf == "pbkdf2") {
+    auto c = kdfparams->FindInt("c");
+    if (!c) {
+      VLOG(0) << __func__ << ": missing c";
+      return false;
+    }
+    const auto* prf = kdfparams->FindString("prf");
+    if (!prf) {
+      VLOG(0) << __func__ << ": missing prf";
+      return false;
+    }
+    if (*prf != "hmac-sha256") {
+      VLOG(0) << __func__ << ": prf must be hmac-sha256 when using pbkdf2";
+      return false;
+    }
+    derived_key = SymmetricKey::DeriveKeyFromPasswordUsingPbkdf2Sha256(
+        SymmetricKey::AES, password,
+        std::string(salt_bytes.begin(), salt_bytes.end()), (size_t)*c,
+        (size_t)*dklen * 8);
+    if (!derived_key) {
+      VLOG(1) << __func__ << ": pbkdf2 derivation failed";
+      return false;
+    }
+  } else if (*kdf == "scrypt") {
+    auto n = kdfparams->FindInt("n");
+    if (!n) {
+      VLOG(0) << __func__ << ": missing n";
+      return false;
+    }
+    auto r = kdfparams->FindInt("r");
+    if (!r) {
+      VLOG(0) << __func__ << ": missing r";
+      return false;
+    }
+    auto p = kdfparams->FindInt("p");
+    if (!p) {
+      VLOG(0) << __func__ << ": missing p";
+      return false;
+    }
+    derived_key = SymmetricKey::DeriveKeyFromPasswordUsingScrypt(
+        SymmetricKey::AES, password,
+        std::string(salt_bytes.begin(), salt_bytes.end()), (size_t)*n,
+        (size_t)*r, (size_t)*p, 512 * 1024 * 1024, (size_t)*dklen * 8);
+    if (!derived_key) {
+      VLOG(1) << __func__ << ": scrypt derivation failed";
+      return false;
+    }
+  } else {
+    VLOG(0) << __func__
+            << ": kdf is not supported. (Only support pbkdf2 and scrypt)";
+    return false;
+  }
+
+  const auto* mac = crypto->FindString("mac");
+  if (!mac) {
+    VLOG(0) << __func__ << ": missing mac";
+    return false;
+  }
+  const auto* ciphertext = crypto->FindString("ciphertext");
+  if (!ciphertext) {
+    VLOG(0) << __func__ << ": missing ciphertext";
+    return false;
+  }
+  std::vector<uint8_t> ciphertext_bytes;
+  if (!base::HexStringToBytes(*ciphertext, &ciphertext_bytes)) {
+    VLOG(1) << __func__ << ": invalid ciphertext";
+    return false;
+  }
+
+  if (!UTCPasswordVerification(derived_key->key(), ciphertext_bytes, *mac,
+                               *dklen, usingKeccak))
+    return false;
+
+  const auto* cipher = crypto->FindString("cipher");
+  if (!cipher) {
+    VLOG(0) << __func__ << ": missing cipher";
+    return false;
+  }
+  if (*cipher != "aes-128-ctr") {
+    VLOG(0) << __func__
+            << ": AES-128-CTR is the minimal requirement of version 3";
+    return false;
+  }
+
+  std::vector<uint8_t> iv_bytes;
+  const auto* iv = crypto->FindStringByDottedPath("cipherparams.iv");
+  if (!iv) {
+    VLOG(0) << __func__ << ": missing cipherparams.iv";
+    return false;
+  }
+  if (!base::HexStringToBytes(*iv, &iv_bytes)) {
+    VLOG(1) << __func__ << ": invalid iv";
+    return false;
+  }
+
+  if (!UTCDecryptRawBytes(derived_key->key(), ciphertext_bytes, iv_bytes,
+                            raw_bytes, *dklen, usingKeccak)) {
+    VLOG(1) << __func__ << ": UTCDecryptRawBytes fail";
+    return false;
+  } 
+  return true;                                        
+}
+
 // static
 std::unique_ptr<HDKey> HDKey::GenerateFromV3UTC(const std::string& password,
                                                 const std::string& json) {
@@ -216,8 +383,8 @@ std::unique_ptr<HDKey> HDKey::GenerateFromV3UTC(const std::string& password,
             << parsed_json.error().message;
     return nullptr;
   }
-
   auto& dict = parsed_json->GetDict();
+  
   // check version
   auto version = dict.FindInt("version");
   if (!version || *version != 3) {
@@ -225,143 +392,18 @@ std::unique_ptr<HDKey> HDKey::GenerateFromV3UTC(const std::string& password,
     return nullptr;
   }
 
-  const auto* crypto = dict.FindDict("crypto");
+  const auto* crypto = dict.Find("crypto");
   if (!crypto) {
     VLOG(0) << __func__ << ": missing crypto";
     return nullptr;
   }
-  const auto* kdf = crypto->FindString("kdf");
-  if (!kdf) {
-    VLOG(0) << __func__ << ": missing kdf";
-    return nullptr;
-  }
 
-  std::unique_ptr<SymmetricKey> derived_key = nullptr;
-  const auto* kdfparams = crypto->FindDict("kdfparams");
-  if (!kdfparams) {
-    VLOG(0) << __func__ << ": missing kdfparams";
-    return nullptr;
-  }
-  auto dklen = kdfparams->FindInt("dklen");
-  if (!dklen) {
-    VLOG(0) << __func__ << ": missing dklen";
-    return nullptr;
-  }
-  if (*dklen < 32) {
-    VLOG(0) << __func__ << ": dklen must be >=32";
-    return nullptr;
-  }
-  const auto* salt = kdfparams->FindString("salt");
-  if (!salt) {
-    VLOG(0) << __func__ << ": missing salt";
-    return nullptr;
-  }
-  std::vector<uint8_t> salt_bytes;
-  if (!base::HexStringToBytes(*salt, &salt_bytes)) {
-    VLOG(1) << __func__ << ": invalid salt";
-    return nullptr;
-  }
-  if (*kdf == "pbkdf2") {
-    auto c = kdfparams->FindInt("c");
-    if (!c) {
-      VLOG(0) << __func__ << ": missing c";
-      return nullptr;
-    }
-    const auto* prf = kdfparams->FindString("prf");
-    if (!prf) {
-      VLOG(0) << __func__ << ": missing prf";
-      return nullptr;
-    }
-    if (*prf != "hmac-sha256") {
-      VLOG(0) << __func__ << ": prf must be hmac-sha256 when using pbkdf2";
-      return nullptr;
-    }
-    derived_key = SymmetricKey::DeriveKeyFromPasswordUsingPbkdf2Sha256(
-        SymmetricKey::AES, password,
-        std::string(salt_bytes.begin(), salt_bytes.end()), (size_t)*c,
-        (size_t)*dklen * 8);
-    if (!derived_key) {
-      VLOG(1) << __func__ << ": pbkdf2 derivation failed";
-      return nullptr;
-    }
-  } else if (*kdf == "scrypt") {
-    auto n = kdfparams->FindInt("n");
-    if (!n) {
-      VLOG(0) << __func__ << ": missing n";
-      return nullptr;
-    }
-    auto r = kdfparams->FindInt("r");
-    if (!r) {
-      VLOG(0) << __func__ << ": missing r";
-      return nullptr;
-    }
-    auto p = kdfparams->FindInt("p");
-    if (!p) {
-      VLOG(0) << __func__ << ": missing p";
-      return nullptr;
-    }
-    derived_key = SymmetricKey::DeriveKeyFromPasswordUsingScrypt(
-        SymmetricKey::AES, password,
-        std::string(salt_bytes.begin(), salt_bytes.end()), (size_t)*n,
-        (size_t)*r, (size_t)*p, 512 * 1024 * 1024, (size_t)*dklen * 8);
-    if (!derived_key) {
-      VLOG(1) << __func__ << ": scrypt derivation failed";
-      return nullptr;
-    }
-  } else {
-    VLOG(0) << __func__
-            << ": kdf is not supported. (Only support pbkdf2 and scrypt)";
-    return nullptr;
-  }
-
-  const auto* mac = crypto->FindString("mac");
-  if (!mac) {
-    VLOG(0) << __func__ << ": missing mac";
-    return nullptr;
-  }
-  const auto* ciphertext = crypto->FindString("ciphertext");
-  if (!ciphertext) {
-    VLOG(0) << __func__ << ": missing ciphertext";
-    return nullptr;
-  }
-  std::vector<uint8_t> ciphertext_bytes;
-  if (!base::HexStringToBytes(*ciphertext, &ciphertext_bytes)) {
-    VLOG(1) << __func__ << ": invalid ciphertext";
-    return nullptr;
-  }
-
-  if (!UTCPasswordVerification(derived_key->key(), ciphertext_bytes, *mac,
-                               *dklen))
-    return nullptr;
-
-  const auto* cipher = crypto->FindString("cipher");
-  if (!cipher) {
-    VLOG(0) << __func__ << ": missing cipher";
-    return nullptr;
-  }
-  if (*cipher != "aes-128-ctr") {
-    VLOG(0) << __func__
-            << ": AES-128-CTR is the minimal requirement of version 3";
-    return nullptr;
-  }
-
-  std::vector<uint8_t> iv_bytes;
-  const auto* iv = crypto->FindStringByDottedPath("cipherparams.iv");
-  if (!iv) {
-    VLOG(0) << __func__ << ": missing cipherparams.iv";
-    return nullptr;
-  }
-  if (!base::HexStringToBytes(*iv, &iv_bytes)) {
-    VLOG(1) << __func__ << ": invalid iv";
-    return nullptr;
-  }
 
   std::vector<uint8_t> private_key;
-  if (!UTCDecryptPrivateKey(derived_key->key(), ciphertext_bytes, iv_bytes,
-                            &private_key, *dklen)) {
+
+  if (!DecodeRawBytesFromV3UTC(password, *crypto, &private_key, true)) {
     return nullptr;
   }
-
   return GenerateFromPrivateKey(private_key);
 }
 

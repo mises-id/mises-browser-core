@@ -67,7 +67,7 @@
 #include "ui/message_center/public/cpp/notifier_id.h"
 #include "components/grit/mises_components_strings.h"
 #include "mises/browser/brave_wallet/keyring_service_factory.h"
-
+#include "mises/components/brave_wallet/browser/keyring_service.h"
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
 namespace extensions {
@@ -309,29 +309,41 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
 void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
   LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithMiseswalletStorage";
   
-  base::Value misesWalletValue = base::Value(storage->Get().PassSettings());
-  base::Value::Dict *data = misesWalletValue.GetDict().FindDict("keyring/key-store");
-  std::string json;
-  if (data) {
-    LOG(INFO) << "[Mises] Got MisesWallet Storage";
-  }
-  if (!json.empty()) {
+  base::Value wallet_store = base::Value(storage->Get().PassSettings());  
+  if (wallet_store.is_dict()) {
     content::GetUIThreadTaskRunner({})->PostTask(
       FROM_HERE,
       base::BindOnce(
         &MisesComponentLoader::ContinueMiseswalletMigration, 
-        base::Unretained(this), json)
+        base::Unretained(this), std::move(wallet_store))
     );
   }
   
 
 }
-void MisesComponentLoader::ContinueMiseswalletMigration(const std::string& key_store) {
+void MisesComponentLoader::ContinueMiseswalletMigration(const base::Value wallet_store) {
   auto* keyring_service =
       brave_wallet::KeyringServiceFactory::GetServiceForContext(
           profile_);
   if (!keyring_service) {
     return;
+  }
+  const base::Value::List *multi = wallet_store.GetDict().FindList("keyring/key-multi-store");
+  const base::Value* cypto = nullptr;
+  std::string account_name;
+  std::string account_path = "m/44'/60'/0'/0/0";
+  std::string account_address = "0x0000000000000000000000000000000000000000";
+  if (multi && multi->size() > 0 && (*multi)[0].is_dict()) {
+    LOG(INFO) << "[Mises] Got MisesWallet Storage";
+    const base::Value::Dict& data = (*multi)[0].GetDict();
+    cypto = data.Find("crypto");
+    const base::Value::Dict* meta = data.FindDict("meta");
+    if (meta && meta->FindString("name")) {
+      account_name = *meta->FindString("name");
+    }
+  }
+  if (cypto) {
+    keyring_service->SetLegacyKeystore(*cypto, account_path, account_name, account_address);
   }
 }
 
