@@ -102,6 +102,7 @@ group("mises") {
     deps += [
       "//mises/components/version_info:generate_version",
       "//chrome",
+      "//mises/third_party/freename:tld_cleanup"
     ]
   }
   if (is_apple) { 
