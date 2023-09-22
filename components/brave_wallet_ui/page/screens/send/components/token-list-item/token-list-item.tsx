@@ -17,23 +17,23 @@ import { getLocale } from '../../../../../../common/locale'
 import Amount from '../../../../../utils/amount'
 import { computeFiatAmount } from '../../../../../utils/pricing-utils'
 import { formatTokenBalanceWithSymbol } from '../../../../../utils/balance-utils'
-// import { checkIfTokenNeedsNetworkIcon } from '../../../../../utils/asset-utils'
+import { checkIfTokenNeedsNetworkIcon } from '../../../../../utils/asset-utils'
 import { useGetNetworkQuery } from '../../../../../common/slices/api.slice'
 
 // Components
-// import {
-  // withPlaceholderIcon,
-  // CreateNetworkIcon
-// } from '../../../../../components/shared'
-// import { NftIcon } from '../../../../../components/shared/nft-icon/nft-icon'
+import {
+  withPlaceholderIcon,
+  CreateNetworkIcon
+} from '../../../../../components/shared'
+import { NftIcon } from '../../../../../components/shared/nft-icon/nft-icon'
 import { NFTInfoTooltip } from '../nft-info-tooltip/nft-info-tooltip'
 
 // Styled Components
 import {
-  // AssetIcon,
-  // NetworkIconWrapper,
+  AssetIcon,
+  NetworkIconWrapper,
   Button,
-  // IconsWrapper,
+  IconsWrapper,
   ButtonWrapper,
   IconAndName
 } from './token-list-item.style'
@@ -57,13 +57,13 @@ export const TokenListItem = (props: Props) => {
   const { data: tokensNetwork } = useGetNetworkQuery(token, { skip: !token })
 
   // Memos
-  // const AssetIconWithPlaceholder = React.useMemo(() => {
-  //   return withPlaceholderIcon(token?.isErc721 ? NftIcon : AssetIcon, {
-  //     size: 'big',
-  //     marginLeft: 0,
-  //     marginRight: 0
-  //   })
-  // }, [token?.isErc721])
+  const AssetIconWithPlaceholder = React.useMemo(() => {
+    return withPlaceholderIcon(token?.isErc721 ? NftIcon : AssetIcon, {
+      size: 'big',
+      marginLeft: 0,
+      marginRight: 0
+    })
+  }, [token?.isErc721])
 
   const fiatBalance = React.useMemo(() => {
     return computeFiatAmount(spotPrices, {
@@ -109,7 +109,7 @@ export const TokenListItem = (props: Props) => {
     <ButtonWrapper>
       <Button onPress={onClick}>
         <IconAndName horizontalAlign='flex-start'>
-          {/* <IconsWrapper>
+          <IconsWrapper>
             <AssetIconWithPlaceholder asset={token} network={tokensNetwork} />
             {
               tokensNetwork &&
@@ -118,7 +118,7 @@ export const TokenListItem = (props: Props) => {
                 <CreateNetworkIcon network={tokensNetwork} marginRight={0} />
               </NetworkIconWrapper>
             }
-          </IconsWrapper> */}
+          </IconsWrapper>
           <View style={{flex: 1}}>
             <Column horizontalAlign='flex-start'>
               <Text textColor='text01' textSize='14px' isBold={true} textAlign='left'>

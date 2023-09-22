@@ -8,21 +8,21 @@ import * as React from 'react'
 import { BraveWallet } from '../../../constants/types'
 
 // Utils
-// import { isDataURL } from '../../../utils/string-utils'
+import { isDataURL } from '../../../utils/string-utils'
 import { getLocale } from '../../../../common/locale'
 import Amount from '../../../utils/amount'
 import { useGetNetworkQuery } from '../../../common/slices/api.slice'
 
-// // Components
-// import { withPlaceholderIcon } from '../../shared'
-// import { NftIcon } from '../../shared/nft-icon/nft-icon'
+// Components
+import { withPlaceholderIcon } from '../../shared'
+import { NftIcon } from '../../shared/nft-icon/nft-icon'
 
 // Styled Components
 import {
   StyledWrapper,
   AssetName,
   NameAndIcon,
-  // AssetIcon,
+  AssetIcon,
   DeleteButton,
   DeleteIcon,
   RightSide,
@@ -66,9 +66,9 @@ const AssetWatchlistItem = React.forwardRef<any, Props>(
       onRemoveAsset(token)
     }, [token, onRemoveAsset])
 
-    // const AssetIconWithPlaceholder = React.useMemo(() => {
-    //   return withPlaceholderIcon(token.isErc721 && !isDataURL(token.logo) ? NftIcon : AssetIcon, { size: 'big', marginLeft: 0, marginRight: 8 })
-    // }, [token])
+    const AssetIconWithPlaceholder = React.useMemo(() => {
+      return withPlaceholderIcon(token.isErc721 && !isDataURL(token.logo) ? NftIcon : AssetIcon, { size: 'big', marginLeft: 0, marginRight: 8 })
+    }, [token])
 
     const networkDescription = React.useMemo(() => {
       return getLocale('braveWalletPortfolioAssetNetworkDescription')
@@ -79,7 +79,7 @@ const AssetWatchlistItem = React.forwardRef<any, Props>(
     return (
       <StyledWrapper ref={forwardedRef}>
         <NameAndIcon onPress={onClickAsset}>
-          {/* <AssetIconWithPlaceholder asset={token} network={tokensNetwork} /> */}
+          <AssetIconWithPlaceholder asset={token} network={tokensNetwork} />
           <NameAndSymbol>
             <AssetName>
               {token.name} {

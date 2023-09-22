@@ -13,7 +13,7 @@ import { getLocale } from '../../../../../../../common/locale'
 
 // components
 import CopyTooltip from '../../../../../shared/copy-tooltip/copy-tooltip'
-// import withPlaceholderIcon from '../../../../../shared/create-placeholder-icon'
+import withPlaceholderIcon from '../../../../../shared/create-placeholder-icon'
 import { Skeleton } from '../../../../../shared/loading-skeleton/styles'
 
 // styles
@@ -30,7 +30,7 @@ import {
   HideTokenButton,
   modalWidth
 } from './token-details-modal-styles'
-// import { AssetIcon } from '../../style'
+import { AssetIcon } from '../../style'
 
 interface Props {
   selectedAsset: BraveWallet.BlockchainToken
@@ -41,7 +41,7 @@ interface Props {
   onShowHideTokenModal: () => void
 }
 
-// const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big' })
+const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big' })
 
 export const TokenDetailsModal = (props: Props) => {
   const {
@@ -63,7 +63,7 @@ export const TokenDetailsModal = (props: Props) => {
         <StyledWrapper>
           <TokenBalanceRow>
             <CryptoBalance>{assetBalance}</CryptoBalance>
-            {/* <AssetIconWithPlaceholder asset={selectedAsset} network={selectedAssetNetwork} /> */}
+            <AssetIconWithPlaceholder asset={selectedAsset} network={selectedAssetNetwork} />
           </TokenBalanceRow>
           <FiatBalance>{formattedFiatBalance || <Skeleton width='20%' />}</FiatBalance>
           <DetailColumn>

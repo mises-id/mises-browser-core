@@ -14,16 +14,16 @@ import Amount from '../../../utils/amount'
 import { getLocale } from '../../../../common/locale'
 import { computeFiatAmount } from '../../../utils/pricing-utils'
 import { unbiasedRandom } from '../../../utils/random-utils'
-// import { isDataURL } from '../../../utils/string-utils'
-// import { checkIfTokenNeedsNetworkIcon } from '../../../utils/asset-utils'
+import { isDataURL } from '../../../utils/string-utils'
+import { checkIfTokenNeedsNetworkIcon } from '../../../utils/asset-utils'
 
 // Hooks
 import { useGetNetworkQuery } from '../../../common/slices/api.slice'
 
 // Components
-import { LoadingSkeleton } from '../../shared'
+import { withPlaceholderIcon, CreateNetworkIcon, LoadingSkeleton } from '../../shared'
 import { WithHideBalancePlaceholder } from '../'
-// import { NftIcon } from '../../shared/nft-icon/nft-icon'
+import { NftIcon } from '../../shared/nft-icon/nft-icon'
 
 // Styled Components
 import {
@@ -33,13 +33,13 @@ import {
   BalanceColumn,
   FiatBalanceText,
   NameAndIcon,
-  // AssetIcon,
+  AssetIcon,
   NameColumn,
   Spacer,
   NetworkDescriptionText,
   ButtonArea
 } from './style'
-// import { IconsWrapper, NetworkIconWrapper } from '../../shared/style'
+import { IconsWrapper, NetworkIconWrapper } from '../../shared/style'
 import { View } from 'react-native'
 
 interface Props {
@@ -77,9 +77,9 @@ export const PortfolioAssetItem = ({
   // memos & computed
   const isNonFungibleToken = React.useMemo(() => token.isNft || token.isErc721, [token.isNft, token.isErc721])
 
-  // const AssetIconWithPlaceholder = React.useMemo(() => {
-  //   return withPlaceholderIcon(isNonFungibleToken && !isDataURL(token.logo) ? NftIcon : AssetIcon, { size: 'big', marginLeft: 0, marginRight: 8 })
-  // }, [isNonFungibleToken, token.logo])
+  const AssetIconWithPlaceholder = React.useMemo(() => {
+    return withPlaceholderIcon(isNonFungibleToken && !isDataURL(token.logo) ? NftIcon : AssetIcon, { size: 'big', marginLeft: 0, marginRight: 8 })
+  }, [isNonFungibleToken, token.logo])
 
   const formattedAssetBalance = isNonFungibleToken
     ? new Amount(assetBalance)
@@ -145,7 +145,7 @@ export const PortfolioAssetItem = ({
           <ButtonArea disabled={isLoading} rightMargin={isAccountDetails ? 10 : 0} onPress={action}>
             <View style={{flex: 1}}>
               <NameAndIcon>
-                {/* <IconsWrapper>
+                <IconsWrapper>
                   {!token.logo
                     ? <LoadingSkeleton
                       circle={true}
@@ -164,7 +164,7 @@ export const PortfolioAssetItem = ({
                       }
                     </>
                   }
-                </IconsWrapper> */}
+                </IconsWrapper>
                 <View style={{flex: 1}}>
                   <NameColumn>
                     {!token.name && !token.symbol

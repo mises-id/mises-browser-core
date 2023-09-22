@@ -21,14 +21,14 @@ import { useGetNetworkQuery } from '../../../../../common/slices/api.slice'
 
 // Components
 import {
-  // withPlaceholderIcon,
+  withPlaceholderIcon,
   CreateNetworkIcon
 } from '../../../../../components/shared'
-// import { NftIcon } from '../../../../../components/shared/nft-icon/nft-icon'
+import { NftIcon } from '../../../../../components/shared/nft-icon/nft-icon'
 
 // Styled Components
 import {
-  // AssetIcon,
+  AssetIcon,
   NetworkIconWrapper,
   Button,
   ButtonIcon,
@@ -50,13 +50,13 @@ export const SelectTokenButton = (props: Props) => {
   const { data: tokensNetwork } = useGetNetworkQuery(token, { skip: !token })
 
   // Memos
-  // const AssetIconWithPlaceholder = React.useMemo(() => {
-  //   return withPlaceholderIcon(token?.isErc721 ? NftIcon : AssetIcon, {
-  //     size: 'big',
-  //     marginLeft: 0,
-  //     marginRight: 0
-  //   })
-  // }, [token?.isErc721])
+  const AssetIconWithPlaceholder = React.useMemo(() => {
+    return withPlaceholderIcon(token?.isErc721 ? NftIcon : AssetIcon, {
+      size: 'big',
+      marginLeft: 0,
+      marginRight: 0
+    })
+  }, [token?.isErc721])
 
   const buttonText = React.useMemo(() => {
     if (selectedSendOption === 'nft') {
@@ -71,7 +71,7 @@ export const SelectTokenButton = (props: Props) => {
       <Row>
         {token && (
           <IconsWrapper marginRight={selectedSendOption === 'nft' ? 12 : undefined}>
-            {/* <AssetIconWithPlaceholder asset={token} network={tokensNetwork} /> */}
+            <AssetIconWithPlaceholder asset={token} network={tokensNetwork} />
             {
               tokensNetwork &&
               checkIfTokenNeedsNetworkIcon(tokensNetwork, token.contractAddress) &&
