@@ -13,7 +13,7 @@ export const PanelWrapper = styled.View<{
   align-items: center;
   justify-content: center;
   width: ${(p) => p.width ? p.width+'px' : '100vw'};
-  height: ${(p) => p.height ? p.height : p.isLonger ? 540 : 400}px;
+  height: ${(p) => p.height ? p.height+'px' : p.isLonger ? '540px' : '100vh'};
 `
 
 export const WelcomePanelWrapper = styled.View`

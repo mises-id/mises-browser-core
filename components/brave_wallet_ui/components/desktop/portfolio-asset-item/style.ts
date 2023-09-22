@@ -77,7 +77,7 @@ export const AssetBalanceText = styled.Text`
 // Ref: https://styled-components.com/docs/advanced#style-objects
 const assetIconProps = {
   width: '40px',
-  height: 'auto'
+  height: '40px'
 }
 export const AssetIcon = AssetIconFactory<AssetIconProps>(assetIconProps)
 

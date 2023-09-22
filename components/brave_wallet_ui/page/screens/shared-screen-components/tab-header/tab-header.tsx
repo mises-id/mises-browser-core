@@ -78,11 +78,14 @@ export const TabHeader = (props: Props) => {
         {/* <BraveLogo /> */}
         <Image
           style={StyleSheet.flatten([
-            style.flatten(["width-80", "height-30"]),
+            style.flatten(["height-40"]),
+            {
+              width: '100px'
+            }
           ])}
           fadeDuration={0}
           resizeMode="contain"
-          source={require("../../../../page/assets/logo/splash-image.png")}
+          source={require("../../../../page/assets/logo/logo.png")}
         />
         {/* <HorizontalDivider height={22} marginRight={12} />
         <Text textSize='18px' textColor='text02' isBold={true}>

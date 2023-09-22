@@ -13,7 +13,6 @@ export const StyledWrapper = styled.TouchableOpacity<{ panelBackground: string }
   width: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   background-size: 100% 100%;
   background-image: linear-gradient(to bottom, #FC798F 0%, #67D4B4 100%);
   background-repeat: no-repeat;
@@ -22,12 +21,13 @@ export const StyledWrapper = styled.TouchableOpacity<{ panelBackground: string }
 export const CenterColumn = styled.View`
   display: flex;
   width: 100%;
-  flex: 1;
+  // flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 12px 0px 20px;
   max-width: 300px;
+  height: 400px;
 `
 
 export const AccountCircle = styled.TouchableOpacity<{ orb: string }>`
