@@ -83,7 +83,7 @@ export const ContractAddress = styled(WalletButton)`
 
 export const AssetIcon = AssetIconFactory<AssetIconProps>({
   width: '60px',
-  height: 'auto'
+  height: '60px'
 })
 
 export const ButtonWrapper = styled.View`

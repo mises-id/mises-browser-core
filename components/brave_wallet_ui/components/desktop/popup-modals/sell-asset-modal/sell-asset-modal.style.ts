@@ -56,7 +56,7 @@ export const Text = styled.Text<{
 
 export const AssetIcon = AssetIconFactory<AssetIconProps>({
   width: '32px',
-  height: 'auto'
+  height: '32px'
 })
 
 export const AmountInput = styled.TextInput`

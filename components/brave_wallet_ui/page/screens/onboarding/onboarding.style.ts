@@ -34,7 +34,7 @@ export const MainWrapper = styled.View<{ isTabView?: boolean }>`
   align-items: center;
   justify-content: center;
   background-color: ${(p) => p.theme.color.background02};
-  padding: 30px;
+  padding: 10px;
   border-radius: ${(p) => p.isTabView ? 24 : 8}px;
   margin-top: 50px;
 `

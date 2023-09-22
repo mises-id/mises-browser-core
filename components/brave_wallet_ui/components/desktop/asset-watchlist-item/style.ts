@@ -84,7 +84,7 @@ export const BalanceColumn = styled.View`
 // Ref: https://styled-components.com/docs/advanced#style-objects
 export const AssetIcon = AssetIconFactory<AssetIconProps>({
   width: '40px',
-  height: 'auto'
+  height: '40px'
 })
 
 export const CheckboxRow = styled.View`

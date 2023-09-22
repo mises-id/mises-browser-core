@@ -131,7 +131,7 @@ export const DetailText = styled.Text`
 // Ref: https://styled-components.com/docs/advanced#style-objects
 export const AssetIcon = AssetIconFactory<AssetIconProps>({
   width: '40px',
-  height: 'auto'
+  height: '40px'
 })
 
 export const SubDivider = styled.View`

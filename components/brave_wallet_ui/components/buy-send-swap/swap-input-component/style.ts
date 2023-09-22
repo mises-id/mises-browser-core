@@ -63,7 +63,7 @@ export const ButtonLeftSide = styled.View<Partial<StyleProps>>`
 // Ref: https://styled-components.com/docs/advanced#style-objects
 export const AssetIcon = AssetIconFactory<AssetIconProps>({
   width: '24px',
-  height: 'auto'
+  height: '24px'
 })
 
 export const AssetTicker = styled.Text`
