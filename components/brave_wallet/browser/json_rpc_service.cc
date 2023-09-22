@@ -362,6 +362,9 @@ void JsonRpcService::RequestInternal(
         base::NullCallback()) {
   DCHECK(network_url.is_valid());
 
+
+  LOG(INFO) << "RequestInternal:" << network_url << " " << json_payload;
+
   api_request_helper_->Request("POST", network_url, json_payload,
                                "application/json", auto_retry_on_network_change,
                                std::move(callback),

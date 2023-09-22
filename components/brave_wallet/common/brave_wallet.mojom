@@ -44,6 +44,7 @@ enum JsonRpcError {
 // https://eips.ethereum.org/EIPS/eip-1474#error-codes
 enum ProviderError {
   kSuccess = 0,  // No error
+  kNoKeyring = 1, // Keyring not created
 
   kUserRejectedRequest = 4001,   // User rejected the request
   kUnauthorized = 4100,          // The requested account and/or method has not
@@ -1794,7 +1795,8 @@ struct SolanaTxData {
 enum RequestPermissionsError {
   kNone = 0,
   kRequestInProgress = 1,
-  kInternal = 2
+  kInternal = 2,
+  kNoKeyring = 3,
 };
 
 struct OnRampCurrency {

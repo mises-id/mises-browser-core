@@ -1364,7 +1364,7 @@ void EthereumProviderImpl::ContinueRequestEthereumPermissionsKeyringInfo(
       wallet_onboarding_shown_ = true;
     }
     OnRequestEthereumPermissions(std::move(callback), std::move(id), method,
-                                 origin, RequestPermissionsError::kInternal,
+                                 origin, RequestPermissionsError::kNoKeyring,
                                  absl::nullopt);
     return;
   }
@@ -1475,6 +1475,11 @@ void EthereumProviderImpl::OnRequestEthereumPermissions(
         formed_response = GetProviderErrorDictionary(
             mojom::ProviderError::kInternalError,
             l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+        break;
+      case RequestPermissionsError::kNoKeyring:
+        formed_response = GetProviderErrorDictionary(
+            mojom::ProviderError::kNoKeyring,
+            l10n_util::GetStringUTF8(IDS_WALLET_NO_KEYRING_ERROR));
         break;
       default:
         NOTREACHED();

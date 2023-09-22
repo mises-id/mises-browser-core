@@ -256,7 +256,7 @@ public class MisesController {
     	    instance.mMisesToken = "";
     	    instance.mMisesNickname = "";
     	    instance.mMisesAvatar = "";
-    	    SharedPreferencesManager.getInstance().setMisesUserInfo("");
+    	    instance.handleUserInfoUpdate();
         } else {
             try {
                 JSONObject jsonMessage = new JSONObject(json);
