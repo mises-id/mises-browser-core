@@ -15,7 +15,7 @@ import {
 
 export const AssetIcon = AssetIconFactory<AssetIconProps>({
   width: '40px',
-  height: 'auto'
+  height: '40px'
 })
 
 export const NetworkIconWrapper = styled.View`

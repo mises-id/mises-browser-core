@@ -15,8 +15,8 @@ export const RecoveryPhraseContainer = styled.View`
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 16px;
 `
 

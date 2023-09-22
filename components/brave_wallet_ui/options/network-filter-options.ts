@@ -21,8 +21,8 @@ export const AllNetworksOption: BraveWallet.NetworkInfo = {
 }
 
 export const AllNetworksOptionDefault: NetworkFilterType = {
-  chainId: 'all',
-  coin: 0
+  chainId: "0x1",
+  coin: 60
 }
 
 export const SupportedTopLevelChainIds = [

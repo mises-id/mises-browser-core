@@ -206,7 +206,7 @@ export const TransactionText = styled.Text<{ hasError?: boolean }>`
 
 export const AssetIcon = AssetIconFactory<AssetIconProps>({
   width: '40px',
-  height: 'auto'
+  height: '40px'
 })
 
 export const WarningIcon = styled(WarningBoxIcon)`

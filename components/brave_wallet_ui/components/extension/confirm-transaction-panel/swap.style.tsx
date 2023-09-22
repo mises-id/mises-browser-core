@@ -144,7 +144,7 @@ export const SwapAssetDetailsContainer = styled.View`
 
 export const AssetIcon = AssetIconFactory<AssetIconProps>({
   width: '40px',
-  height: 'auto'
+  height: '40px'
 })
 
 export const SwapAmountColumn = styled.View`
