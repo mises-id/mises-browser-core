@@ -3,7 +3,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import * as React from 'react'
-import Radio from 'brave-ui/components/formControls/radio'
 
 // Utils
 import { getLocale } from '$web-common/locale'
@@ -20,6 +19,7 @@ import {
   AllowanceContent,
   AllowanceOption
 } from './style'
+import { Checkbox } from '../../shared/checkbox/checkbox'
 
 type AllowanceTypes =
   | 'proposed'
@@ -80,15 +80,8 @@ const EditAllowance = (props: Props) => {
           {getLocale('braveWalletEditPermissionsDescription').replace('$1', approvalTarget)}
         </Description>
         <FormColumn>
-          <Radio
-            value={{
-              proposed: allowanceType === 'proposed',
-              custom: allowanceType === 'custom'
-            }}
-            onChange={toggleAllowanceRadio}
-          >
-            <div data-value='proposed'>
-              <AllowanceOption>
+          <Checkbox isChecked={allowanceType === 'proposed'} onChange={(selected: boolean) => toggleAllowanceRadio('proposed')}>
+            <AllowanceOption>
                 <AllowanceTitle>
                   {getLocale('braveWalletEditPermissionsProposedAllowance')}
                 </AllowanceTitle>
@@ -96,21 +89,20 @@ const EditAllowance = (props: Props) => {
                   {formattedProposedAllowance} {symbol}
                 </AllowanceContent>
               </AllowanceOption>
-            </div>
-            <div data-value='custom'>
-              <AllowanceOption>
-                <AllowanceTitle>
-                  {getLocale('braveWalletEditPermissionsCustomAllowance')}
-                </AllowanceTitle>
-                <Input
-                  placeholder={`0 ${symbol}`}
-                  // type='number'
-                  value={customAllowance}
-                  onChangeText={onChangeCustomAllowance}
-                />
-              </AllowanceOption>
-            </div>
-          </Radio>
+          </Checkbox>
+          <Checkbox isChecked={allowanceType === 'custom'} onChange={(selected: boolean) => toggleAllowanceRadio('custom')}>
+            <AllowanceOption>
+              <AllowanceTitle>
+                {getLocale('braveWalletEditPermissionsCustomAllowance')}
+              </AllowanceTitle>
+              <Input
+                placeholder={`0 ${symbol}`}
+                // type='number'
+                value={customAllowance}
+                onChangeText={onChangeCustomAllowance}
+              />
+            </AllowanceOption>
+          </Checkbox>
         </FormColumn>
 
         <ButtonRow>

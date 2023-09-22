@@ -15,7 +15,7 @@ import {
   MessageBox,
   NetworkTitle,
   MessageBoxColumn,
-  DetailsButton,
+  // DetailsButton,
   ButtonRow,
   FavIcon,
   NetworkDetail,
@@ -58,11 +58,11 @@ function AllowAddChangeNetworkPanel (props: Props) {
     setSelectedTab(tab)
   }
 
-  const onLearnMore = () => {
-    chrome.tabs.create({
-      url: 'https://support.brave.com/hc/en-us/articles/4415497656461-Brave-Wallet-FAQ'
-    }).catch((e) => { console.error(e) })
-  }
+  // const onLearnMore = () => {
+  //   chrome.tabs.create({
+  //     url: 'https://support.brave.com/hc/en-us/articles/4415497656461-Brave-Wallet-FAQ'
+  //   }).catch((e) => { console.error(e) })
+  // }
 
   return (
     <StyledWrapper>
@@ -84,13 +84,13 @@ function AllowAddChangeNetworkPanel (props: Props) {
           {panelType === 'change'
             ? getLocale('braveWalletAllowChangeNetworkDescription')
             : getLocale('braveWalletAllowAddNetworkDescription')}{' '}
-          {panelType === 'add' &&
+          {/* {panelType === 'add' &&
             <DetailsButton
               onPress={onLearnMore}
             >
               {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
             </DetailsButton>
-          }
+          } */}
         </Description>
         <TabRow>
           <PanelTab

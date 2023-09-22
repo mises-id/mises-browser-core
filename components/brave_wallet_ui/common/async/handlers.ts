@@ -274,8 +274,9 @@ handler.on(WalletActions.unlockWallet.type, async (store: Store, payload: Unlock
 
 handler.on(WalletActions.setMisesInfo.type, async (store: Store) => {
   const keyringService = getAPIProxy().keyringService
-  const { wallet: walletState } = store.getState()
-  const { selectedAccount } = walletState;
+  const selectedAccount = await keyringService.getSelectedAccount(BraveWallet.CoinType.ETH)
+  // const { wallet: walletState } = store.getState()
+  // const { selectedAccount } = walletState;
   if(selectedAccount?.address) {
     const timestamp = new Date().getTime()
     const misesId = selectedAccount.address;
@@ -288,14 +289,14 @@ handler.on(WalletActions.setMisesInfo.type, async (store: Store) => {
     console.log('setMisesId', data);
     (chrome as any).misesPrivate.setMisesId(data);
   }else {
-    console.log('setMisesId', 'error-================================================================');
+    console.log('setMisesId', 'error');
   }
 })
 
 handler.on(WalletActions.resetWallet.type, async (store: Store) => {
   const braveWalletService = getAPIProxy().braveWalletService;
   await braveWalletService.reset();
-  (chrome as any).misesPrivate.setMisesId('{}');
+  (chrome as any).misesPrivate.setMisesId('');
 })
 
 handler.on(WalletActions.addFavoriteApp.type, async (store: Store, appItem: BraveWallet.AppItem) => {
