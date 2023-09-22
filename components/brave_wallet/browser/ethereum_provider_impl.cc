@@ -28,6 +28,7 @@
 #include "mises/components/brave_wallet/common/hex_utils.h"
 #include "mises/components/brave_wallet/common/value_conversion_utils.h"
 #include "mises/components/brave_wallet/common/web3_provider_constants.h"
+#include "mises/components/constants/url_constants.h"
 #include "components/content_settings/core/browser/host_content_settings_map.h"
 #include "components/grit/mises_components_strings.h"
 #include "crypto/random.h"
@@ -1061,6 +1062,11 @@ void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, c
 void EthereumProviderImpl::SignMessageForAuth(const std::string& address,
                                               const std::string& nonce,
                                               SignMessageForAuthCallback callback) {
+  if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
+    std::move(callback).Run(base::Value(), base::Value(), true, "", true);
+    return;
+  }
+  
   keyring_service_->SignMessageForAuth(address, nonce, base::BindOnce(&EthereumProviderImpl::OnSignMessageForAuth,
                      weak_factory_.GetWeakPtr(), std::move(callback)));
 }

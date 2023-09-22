@@ -9,6 +9,7 @@
 
 #include "mises/components/brave_wallet/browser/permission_utils.h"
 #include "mises/components/permissions/permission_lifetime_utils.h"
+#include "mises/components/constants/url_constants.h"
 #include "components/content_settings/core/browser/host_content_settings_map.h"
 #include "components/content_settings/core/common/content_settings.h"
 #include "components/content_settings/core/common/content_settings_types.h"
@@ -237,7 +238,7 @@ void BraveWalletPermissionContext::GetAllowedAccounts(
   url::Origin origin = url::Origin::Create(rfh->GetLastCommittedURL());
   for (const auto& address : addresses) {
     url::Origin sub_request_origin;
-    if (origin.GetURL().host().ends_with(".mises.site")) {
+    if (origin.GetURL().host().ends_with(kMisesHost)) {
       allowed_accounts.push_back(address);
     }else {
       bool success = brave_wallet::GetSubRequestOrigin(

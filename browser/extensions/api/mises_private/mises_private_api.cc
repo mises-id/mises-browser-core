@@ -1,5 +1,6 @@
 #include "mises/browser/extensions/api/mises_private/mises_private_api.h"
 #include "mises/common/extensions/api/mises_private.h"
+#include "mises/components/constants/url_constants.h"
 #include "extensions/browser/extension_function_registry.h"
 #include "extensions/common/extension.h"
 #include "base/logging.h"
@@ -191,7 +192,7 @@ ExtensionFunction::ResponseAction MisesPrivateFetchJsonFunction::Run() {
   if (!json_url.is_valid() || json_url.is_empty()) {
     return RespondNow(Error("Invalid json url"));
   }
-  if (!json_url.host().ends_with(".mises.site")) {
+  if (!json_url.host().ends_with(kMisesHost)) {
     return RespondNow(Error("Only supports json from mises.site"));
   }
   auto loader_factory = browser_context()

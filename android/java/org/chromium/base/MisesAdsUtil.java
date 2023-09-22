@@ -106,7 +106,7 @@ public class MisesAdsUtil {
         dummyWebView.destroy();
     }
 
-    private void doInit(final Activity act, final String misesID) {
+    private void doInitForRewardedAd(final Activity act, final String misesID) {
         if (status != AdsStatus.NOT_INITIALIZED) {
             return;
         }
@@ -123,6 +123,9 @@ public class MisesAdsUtil {
             });
         } catch(Exception e) {
           Log.w(TAG, "MobileAds.initialize failed: " + e.getMessage());
+          if (observer_ != null) {
+            observer_.onRewardAdsResult(4, e.getMessage());
+          }
         }
     }
     private void showRewardedAd(final Activity act, final RewardedAd rewardedAd, final String misesID) {
@@ -193,11 +196,14 @@ public class MisesAdsUtil {
     }
     public void loadAndShowRewardedAd(final Activity act, final String misesID) {
         if (status == AdsStatus.NOT_INITIALIZED) {
-            doInit(act, misesID);
+            doInitForRewardedAd(act, misesID);
             return;
         }
         if (status == AdsStatus.INITIALIZING) {
-            return;
+          if (observer_ != null) {
+            observer_.onRewardAdsResult(5, "initializing");
+          }
+          return;
         }
         loadRewardedAd(act, true, misesID);  
     }

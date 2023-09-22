@@ -359,6 +359,9 @@ ScopedJavaLocalRef<jobject> JNI_AppMenuBridge_GetForProfile(
    // If the extension doesn't want to run on the active web contents, we
    // grayscale it to indicate that.
    image_source->set_grayscale(!IsEnabled(web_contents, extension, extension_action_));
+   if (extension->id() == mises_extension_id)  {
+     image_source->set_grayscale(true);
+   };
  
    // If the action *does* want to run on the active web contents and is also
    // overflowed, we add a decoration so that the user can see which overflowed

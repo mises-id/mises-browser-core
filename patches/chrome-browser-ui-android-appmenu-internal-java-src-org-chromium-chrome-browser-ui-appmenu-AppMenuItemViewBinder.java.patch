@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
-index 4ea61c86b97ad19432c1642d5a130a479b396331..0dc784fb7585758faadef01665b7743855963d85 100644
+index 4ea61c86b97ad19432c1642d5a130a479b396331..6b854025af26633e844c75abebe3986d97cf4780 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
 @@ -27,6 +27,10 @@ import org.chromium.ui.modelutil.PropertyModel;
@@ -13,7 +13,7 @@ index 4ea61c86b97ad19432c1642d5a130a479b396331..0dc784fb7585758faadef01665b77438
  /**
   * The binder to bind the app menu  {@link PropertyModel} with the view.
   */
-@@ -62,6 +66,14 @@ class AppMenuItemViewBinder {
+@@ -62,15 +66,33 @@ class AppMenuItemViewBinder {
              imageView.setImageDrawable(icon);
              imageView.setVisibility(icon == null ? View.GONE : View.VISIBLE);
  
@@ -28,7 +28,12 @@ index 4ea61c86b97ad19432c1642d5a130a479b396331..0dc784fb7585758faadef01665b77438
              // tint the icon
              @ColorRes
              int colorResId = model.get(AppMenuItemProperties.ICON_COLOR_RES);
-@@ -69,6 +81,11 @@ class AppMenuItemViewBinder {
+-            if (colorResId == 0) {
++	    if (colorResId < 0) {
++              ImageViewCompat.setImageTintList(imageView, null);
++	    }
++	    else {
++	    if (colorResId == 0) {
                  // If there is no color assigned to the icon, use the default color.
                  colorResId = R.color.default_icon_color_secondary_tint_list;
              }
@@ -39,4 +44,7 @@ index 4ea61c86b97ad19432c1642d5a130a479b396331..0dc784fb7585758faadef01665b77438
 +
              ImageViewCompat.setImageTintList(imageView,
                      AppCompatResources.getColorStateList(imageView.getContext(), colorResId));
++	    }
          } else if (key == AppMenuItemProperties.CLICK_HANDLER) {
+             view.setOnClickListener(
+                     v -> model.get(AppMenuItemProperties.CLICK_HANDLER).onItemClick(model));

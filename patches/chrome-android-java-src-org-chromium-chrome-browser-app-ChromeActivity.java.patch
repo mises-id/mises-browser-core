@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index 6d1275819c9c4171b8beaf8306ecf047712e4337..3fb86b9772f00e901f097655d5e1ea9ef09bd890 100644
+index 6d1275819c9c4171b8beaf8306ecf047712e4337..796adf097d00c8f5a65c202364eaadcb812aa23d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
@@ -384,7 +384,7 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..3fb86b9772f00e901f097655d5e1ea9e
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2592,6 +2853,54 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2592,6 +2853,60 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -418,11 +418,17 @@ index 6d1275819c9c4171b8beaf8306ecf047712e4337..3fb86b9772f00e901f097655d5e1ea9e
 +            RecordUserAction.record("MobileMenuExtensions");
 +            TabCreator tabCreator = getTabCreator(currentTab.isIncognito());
 +            if (currentTab != null && tabCreator != null) {
-+              tabCreator.createNewTab(
-+                      new LoadUrlParams("chrome://extensions", PageTransition.LINK),
-+                      TabLaunchType.FROM_CHROME_UI, getActivityTab());
++              tabCreator.openSinglePage(MisesController.EXTENSIONS_BASE_URL);
 +            }
 +        }
++        if (id == R.id.mises_wallet_id) {
++            RecordUserAction.record("MobileMenuMisesWallet");
++            TabCreator tabCreator = getTabCreator(currentTab.isIncognito());
++            if (currentTab != null && tabCreator != null) {
++              tabCreator.openSinglePage(MisesController.MISES_WALLET_BASE_URL);
++            }
++        }
++
 +
 +        if (id == R.id.clear_data_menu_id) {
 +            RecordUserAction.record("ClearBrowsingDataFromMainMenu");

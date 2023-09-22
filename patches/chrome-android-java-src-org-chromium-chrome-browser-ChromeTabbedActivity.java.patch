@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index 098dcda489758c6deddf36cc03d686840b2d4c01..299f5e33de193b943471127031e1fc8e761aced6 100644
+index 098dcda489758c6deddf36cc03d686840b2d4c01..083674942eb2d50f8bfe125b5702def890c903eb 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 @@ -225,6 +225,20 @@ import java.util.List;

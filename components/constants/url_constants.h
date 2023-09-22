@@ -24,6 +24,8 @@ extern const char kWebDiscoveryLearnMoreUrl[];
 extern const char kMisesSearchUrl[];
 extern const char kWidevineLearnMoreUrl[];
 
+extern const char kMisesHost[];
+
 // This is introduced to replace |kDownloadChromeUrl| in
 // outdated_upgrade_bubble_view.cc"
 // |kDownloadChromeUrl| couldn't be replaced with char array because array
