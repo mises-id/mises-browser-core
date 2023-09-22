@@ -34,5 +34,5 @@ interface IconProps extends AssetIconProps {
 
 export const NetworkIcon = AssetIconFactory<IconProps>(props => ({
   width: props.size === 'big' ? '24px' : '15px',
-  height: 'auto'
+  height: props.size === 'big' ? '24px' : '15px'
 }))

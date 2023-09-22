@@ -14,7 +14,7 @@ export const StyledWrapper = styled.View`
 
 export const AssetIcon = styled.Image`
   width: 40px;
-  height: auto;
+  height: 40px;
   margin-right: 12px;
 `
 
