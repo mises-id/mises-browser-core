@@ -115,18 +115,18 @@ export const NetworkFilterSelector = ({
     const removedMainnets = filteredNetworks.filter(
       (network) => !SupportedTopLevelChainIds.includes(network.chainId)
     )
-    return [AllNetworksOption, ...onlyMainnets, ...removedMainnets]
+    return [...onlyMainnets, ...removedMainnets]
   }, [filteredNetworks])
 
   const primaryNetworks = React.useMemo(() => {
     const onlyMainnets = filteredNetworks.filter((network) =>
       SupportedTopLevelChainIds.includes(network.chainId)
     )
-    return [AllNetworksOption, ...onlyMainnets]
+    return [...onlyMainnets]
   }, [sortedNetworks])
 
   const secondaryNetworks = React.useMemo(() => {
-    const primaryList = [AllNetworksOption.chainId, ...SupportedTopLevelChainIds, ...SupportedTestNetworks]
+    const primaryList = [...SupportedTopLevelChainIds, ...SupportedTestNetworks]
     return sortedNetworks.filter((network) => !primaryList.includes(network.chainId))
   }, [sortedNetworks])
 
