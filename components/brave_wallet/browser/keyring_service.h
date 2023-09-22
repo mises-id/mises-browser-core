@@ -401,6 +401,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   raw_ptr<PrefService> profile_prefs_ = nullptr;
   raw_ptr<PrefService> local_state_ = nullptr;
   bool request_unlock_pending_ = false;
+  bool need_migrate_legacy_account = false;
 
   mojo::RemoteSet<mojom::KeyringServiceObserver> observers_;
   mojo::ReceiverSet<mojom::KeyringService> receivers_;

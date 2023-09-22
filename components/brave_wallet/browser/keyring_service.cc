@@ -1904,9 +1904,14 @@ void KeyringService::SetLegacyKeystore(const base::Value& key_store,
     DerivedAccountInfo(account_path, account_name,
                         account_address),
     mojom::kDefaultKeyringId);
+  need_migrate_legacy_account = true;
 }
 
 void KeyringService::MaybeMigrateLegacyAccount() {
+    if (!need_migrate_legacy_account) {
+      return;
+    }
+
     LOG(INFO) << "MaybeMigrateLegacyAccount";
     //update account info
     auto accounts = GetDerivedAccountsForKeyring(profile_prefs_, mojom::kDefaultKeyringId);
@@ -1934,6 +1939,8 @@ void KeyringService::MaybeMigrateLegacyAccount() {
         DerivedAccountInfo(account_path, account_name,
                           current_accounts[0]),
         mojom::kDefaultKeyringId);
+    
+    SetSelectedAccountForCoin(mojom::CoinType::ETH, current_accounts[0]);
 }
 void KeyringService::MaybeMigrateLegacyKeystore(const std::string& password) {
   LOG(INFO) << "MaybeMigrateLegacyKeystore";

@@ -40,10 +40,10 @@ void AddBlockchainTokenImageSource(Profile* profile) {
       profile, std::make_unique<FaviconSource>(
                    profile, chrome::FaviconUrlFormat::kFavicon2));
 #endif
-  base::FilePath path = profile->GetPath().DirName();
-  path = path.AppendASCII(brave_wallet::kWalletBaseDirectory);
+  // base::FilePath path = profile->GetPath().DirName();
+  // path = path.AppendASCII(brave_wallet::kWalletBaseDirectory);
   content::URLDataSource::Add(
-      profile, std::make_unique<brave_wallet::BlockchainImagesSource>(path));
+      profile, std::make_unique<brave_wallet::BlockchainImagesSource>(profile->GetProfileKey()));
 }
 
 bool IsBraveWalletOrigin(const url::Origin& origin) {
