@@ -23,7 +23,7 @@ import {
   Description,
   ErrorText,
   CheckboxRow,
-  LegacyCheckboxRow,
+  // LegacyCheckboxRow,
   FormWrapper,
   InputColumn,
   FormText
@@ -60,7 +60,7 @@ export const RestoreWallet = () => {
 
   // state
   const [showRecoveryPhrase, setShowRecoveryPhrase] = React.useState<boolean>(false)
-  const [isLegacyWallet, setIsLegacyWallet] = React.useState<boolean>(false)
+  // const [isLegacyWallet, setIsLegacyWallet] = React.useState<boolean>(false)
   const [recoveryPhrase, setRecoveryPhrase] = React.useState<string>('')
 
   // memos
@@ -105,11 +105,11 @@ export const RestoreWallet = () => {
       // 12, 15, 18 or 21 long and has a space at the end.
       mnemonic: recoveryPhrase.trimEnd(),
       password,
-      isLegacy: isLegacyWallet,
+      isLegacy: false,
       completeWalletSetup: true
     }))
     history.push(WalletRoutes.Portfolio)
-  }, [recoveryPhrase, password, isLegacyWallet])
+  }, [recoveryPhrase, password])
 
   const handleRecoveryPhraseChanged = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     // const value = event.target.value
@@ -144,11 +144,11 @@ export const RestoreWallet = () => {
     }
   }, [])
 
-  const onSetIsLegacyWallet = React.useCallback((key: string, selected: boolean) => {
-    if (key === 'isLegacy') {
-      setIsLegacyWallet(selected)
-    }
-  }, [])
+  // const onSetIsLegacyWallet = React.useCallback((key: string, selected: boolean) => {
+  //   if (key === 'isLegacy') {
+  //     setIsLegacyWallet(selected)
+  //   }
+  // }, [])
 
   // const onClearClipboard = React.useCallback(() => {
   //   copyToClipboard('')
@@ -189,17 +189,17 @@ export const RestoreWallet = () => {
 
           {invalidMnemonic && <ErrorText>{getLocale('braveWalletRestoreError')}</ErrorText>}
 
-          {recoveryPhrase.split(' ').length === 24 &&
+          {/* {recoveryPhrase.split(' ').length === 24 &&
             <LegacyCheckboxRow>
               <Checkbox isChecked={isLegacyWallet} onChange={(select)=> onSetIsLegacyWallet('isLegacy', select)}>
-                <div data-key='isLegacy'>{getLocale('braveWalletRestoreLegacyCheckBox')}</div>
+                {getLocale('braveWalletRestoreLegacyCheckBox')}
               </Checkbox>
             </LegacyCheckboxRow>
-          }
+          } */}
 
           <CheckboxRow>
             <Checkbox isChecked={showRecoveryPhrase} onChange={(select)=> onShowRecoveryPhrase('showPhrase', select)}>
-              <div data-key='showPhrase'>{getLocale('braveWalletRestoreShowPhrase')}</div>
+            {getLocale('braveWalletRestoreShowPhrase')}
             </Checkbox>
           </CheckboxRow>
 

@@ -11,5 +11,5 @@ export const SimplePageWrapper = styled.View`
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 `

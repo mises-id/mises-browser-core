@@ -38,10 +38,6 @@ export const Button = styled(StyledButton) <StandardButtonStyleProps>`
     p.buttonType === 'secondary'
       ? `1px solid ${p.theme.color.interactive08}`
       : 'none'};
-  color: ${(p) =>
-    p.buttonType === 'secondary'
-      ? p.theme.color.text03
-      : p.theme.palette.white};
   font-size: 16px;
   margin-right: ${(p) => p.marginRight ?? 0}px;
   padding: 18px;
@@ -75,6 +71,13 @@ export const Button = styled(StyledButton) <StandardButtonStyleProps>`
       ? p.theme.color.errorBorder
       : 'var(--disabled-text-color)'};
   }
+`
+
+export const ButtonText = styled.Text<StandardButtonStyleProps>`
+  color: ${(p) =>
+  p.buttonType === 'secondary'
+    ? p.theme.color.text03
+    : p.theme.palette.white};
 `
 
 export const ErrorIcon = styled(Icon)`

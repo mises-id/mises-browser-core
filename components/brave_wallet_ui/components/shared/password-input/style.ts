@@ -23,10 +23,13 @@ export const StyledWrapper = styled.View`
   width: 100%;
 
   & > label {
-    display: block;
-    margin-bottom: 8px;
-    color: ${(p) => p.theme.color.text03};
+    
   }
+`
+export const InputLabel = styled.Text`
+  display: block;
+  margin-bottom: 8px;
+  color: ${(p) => p.theme.color.text03};
 `
 export const InputWrapper = styled.View`
   display: flex;

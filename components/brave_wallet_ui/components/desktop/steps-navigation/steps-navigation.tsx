@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 
 import * as React from 'react'
-import { useHistory, NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 // utils
 import { getLocale } from '$web-common/locale'
@@ -15,8 +15,7 @@ import { WalletRoutes } from '../../../constants/types'
 // style
 import { LinkText } from '../../../components/shared/style'
 import { BackIcon } from '../../buy-send-swap/select-header/style'
-import { BackButton, DotsWrapper, FlexBox, Wrapper } from './steps-navigation.style'
-import { Text } from 'react-native'
+import { BackButton, BackButtonText, FlexBox, Wrapper } from './steps-navigation.style'
 
 export interface StepsNavigationProps<T extends string> {
   currentStep: T
@@ -45,7 +44,7 @@ export const StepsNavigation: <T extends string>(
   const history = useHistory()
 
   // computed
-  const currentStepIndex = steps.findIndex(s => s === currentStep)
+  // const currentStepIndex = steps.findIndex(s => s === currentStep)
 
   // memos
   // const buttonProps = React.useMemo(() => {
@@ -66,11 +65,11 @@ export const StepsNavigation: <T extends string>(
             }}
           >
             <BackIcon />
-            <Text>{getLocale('braveWalletBack')}</Text>
+            <BackButtonText>{getLocale('braveWalletBack')}</BackButtonText>
           </BackButton>
       }
 
-      <DotsWrapper>
+      {/* <DotsWrapper>
         {steps.map((stepName, stepIndex) => {
           const isCurrentStep = currentStep === stepName
 
@@ -96,7 +95,7 @@ export const StepsNavigation: <T extends string>(
               />
             : <div key={stepName} />
         })}
-      </DotsWrapper>
+      </DotsWrapper> */}
 
       {onSkip
         ? <LinkText onPress={onSkip}>

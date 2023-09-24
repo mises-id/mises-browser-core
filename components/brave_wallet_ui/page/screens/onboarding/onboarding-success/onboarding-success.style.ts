@@ -67,3 +67,15 @@ export const DepositIcon = styled.View`
   height: 14px;
   width: 14px;
 `
+export const MainWrapper = styled.View<{ isTabView?: boolean }>`
+  align-self: center;
+  width: 100%;
+  max-width: 456px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: ${(p) => p.theme.color.background02};
+  padding: 10px;
+  height: 100vh;
+`

@@ -17,7 +17,7 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   border: none;
   background-image: none;
   background-color: ${(p) => p.isSelected
-    ? 'rgb(240, 241, 244)'
+    ? 'var(--leo-color-gray-10)'
     : 'none'};
   color: var(--nav-button-color);
   font-weight: 600;
@@ -25,9 +25,6 @@ export const StyledButton = styled(WalletButton) <{ isSelected?: boolean }>`
   font-family: 'Poppins';
   border-radius: 6px;
   padding: 5px 0;
-  &:hover {
-    background-color: rgb(240, 241, 244);
-  }
   &:last-child {
     margin-bottom: 0px;
   }
