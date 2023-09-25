@@ -135,6 +135,10 @@ void BraveWalletProviderDelegateImpl::ShowWalletOnboarding() {
   ::brave_wallet::ShowWalletOnboarding(web_contents_);
 }
 
+bool BraveWalletProviderDelegateImpl::IsPanelShowing() {
+  return ::brave_wallet::IsPanelShowing(web_contents_);
+}
+
 void BraveWalletProviderDelegateImpl::ShowAccountCreation(
     mojom::CoinType type) {
   auto keyring_id = CoinTypeToKeyringId(type);

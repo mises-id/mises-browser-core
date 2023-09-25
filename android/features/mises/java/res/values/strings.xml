@@ -12,8 +12,9 @@
     <string name="lbl_btn_sticky_notification_open_app">Open Mises Browser</string>
     <string name="lbl_btn_sticky_notification_restart_lcd">Restart LCD service</string>
     <string name="lbl_create_mises_id">Create/Restore</string>
-    <string name="lbl_my_rewards">Rewards</string>
-    <string name="lbl_my_rewards_format">Rewards (%1$spts)</string>
+    <string name="lbl_my_rewards">Reward Points</string>
+    <string name="lbl_my_rewards_format">My Reward: %1$s pts</string>
+    <string name="lbl_my_rewards_actions"><a href='mine_more'>Mine more</a> | <a href='redeem_for_mb'>Redeem for MB</a></string>
     <string name="lbl_my_data">My Data</string>
     <string name="lbl_mises_discover">Mises Discover</string>
     <string name="lbl_wallet">Wallet</string>

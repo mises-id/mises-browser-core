@@ -339,6 +339,8 @@ mises_extra_java_resources = [
   "java/res/layout/mises_web3_safe_alert.xml",
   "java/res/layout/mises_user_info_menu.xml",
 
+  "java/res/drawable/reward_border.xml",
+
   "java/res/drawable/mises_share_cancel_bg.xml",
   "java/res/drawable/mises_share_confirm_bg.xml",
   "java/res/drawable/mises_share_bg.xml",

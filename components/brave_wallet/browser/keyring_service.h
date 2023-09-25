@@ -240,10 +240,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
       uint32_t account_index,
       uint32_t change_index);
 
-  void SetLegacyKeystore(const base::Value& key_store,
-                    const std::string &account_path,
-                    const std::string & account_name,
-                    const std::string & account_address);
+  void SetLegacyKeystore(const base::Value::List& key_multi_store);
  private:
   FRIEND_TEST_ALL_PREFIXES(KeyringServiceUnitTest, GetOrCreateNonceForKeyring);
   FRIEND_TEST_ALL_PREFIXES(KeyringServiceUnitTest, GetOrCreateSaltForKeyring);
