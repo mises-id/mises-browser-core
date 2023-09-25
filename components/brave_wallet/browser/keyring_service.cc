@@ -2029,15 +2029,19 @@ void KeyringService::MaybeMigrateLegacyKeystore(const std::string& password) {
               encryptor->Encrypt(base::make_span(*mnemonic), nonce), keyring_id);
         } else {
           //for private keys
-          absl::optional<std::vector<uint8_t>> private_key = raw_bytes;
-          std::vector<uint8_t> encrypted_private_key = encryptor->Encrypt(
-              *private_key, GetOrCreateNonceForKeyring(keyring_id));
-          std::string account_address = EthereumKeyring::GetAddress(*private_key);
-          std::string account_name = "Imported " + std::to_string(idx);
-          AddImportedAccountForKeyring(
-              profile_prefs_,
-              ImportedAccountInfo(account_name, account_address, encrypted_private_key),
-              keyring_id);
+          std::vector<uint8_t> private_key_bytes;
+          std::string private_key_trimmed = std::string(raw_bytes.begin(), raw_bytes.end());
+          if (base::HexStringToBytes(private_key_trimmed, &private_key_bytes)) {
+            std::vector<uint8_t> encrypted_private_key = encryptor->Encrypt(
+                private_key_bytes, GetOrCreateNonceForKeyring(keyring_id));
+            std::string account_address = EthereumKeyring::GetAddress(private_key_bytes);
+            std::string account_name = "Imported " + std::to_string(idx);
+            AddImportedAccountForKeyring(
+                profile_prefs_,
+                ImportedAccountInfo(account_name, account_address, encrypted_private_key),
+                keyring_id);
+          }
+
         }
       }
     }
