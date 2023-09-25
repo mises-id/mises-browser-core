@@ -119,6 +119,9 @@ export const NetworkName = styled.Text`
   color: ${(p) => p.theme.color.text01};
   text-align: left;
 `
+export const DropDownText = styled.Text`
+  color: ${(p) => p.theme.color.text01};
+`
 
 export const BigCheckMark = styled.View`
   width: 14px;

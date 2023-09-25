@@ -21,20 +21,20 @@ import { WalletPageActions } from '../../../actions'
 
 // components
 import { NavButton } from '../../../../components/extension/buttons/nav-button/index'
-import { CenteredPageLayout } from '../../../../components/desktop/centered-page-layout/centered-page-layout'
 
 // styles
 import {
   // Description,
-  Title,
-  MainWrapper
+  Title
 } from '../onboarding.style'
 import {
-  ArticleLinksContainer,
   ButtonContainer,
   IntroContainer,
   // IntroImg,
+  MainWrapper
 } from './onboarding-success.style'
+import { Image } from 'react-native'
+import { View } from 'react-native'
 
 export const OnboardingSuccess = () => {
   // routing
@@ -60,19 +60,27 @@ export const OnboardingSuccess = () => {
   // }, [])
 
   // render
-  return <CenteredPageLayout>
-
-    <MainWrapper>
-      {/* <StyledWrapper>
-        <CloseButtonContainer>
-          <LinkText onPress={onComplete}>
-            {getLocale('braveWalletButtonDone')}
-          </LinkText>
-        </CloseButtonContainer>
-      </StyledWrapper> */}
-
+  return <MainWrapper>
+    {/* <StyledWrapper>
+      <CloseButtonContainer>
+        <LinkText onPress={onComplete}>
+          {getLocale('braveWalletButtonDone')}
+        </LinkText>
+      </CloseButtonContainer>
+    </StyledWrapper> */}
+    <View>
+      <Image
+        style={{
+          width: '80%',
+          height: '90px',
+          marginLeft: '10%'
+        }}
+        fadeDuration={0}
+        resizeMode="contain"
+        source={require("../../../assets/logo/splash-image.png")}
+      />
       <IntroContainer>
-        <Title>{
+        <Title textAlign='center'>{
           getLocale('braveWalletOnboardingSuccessTitle')
         }</Title>
 
@@ -84,7 +92,7 @@ export const OnboardingSuccess = () => {
 
       </IntroContainer>
 
-      <ArticleLinksContainer>
+      {/* <ArticleLinksContainer> */}
         {/* <LinkText
           rel="noreferrer"
           target='_blank'
@@ -92,7 +100,7 @@ export const OnboardingSuccess = () => {
         >
           {getLocale('braveWalletLearnAboutMyWallet')}
         </LinkText> */}
-      </ArticleLinksContainer>
+      {/* </ArticleLinksContainer> */}
 
       <ButtonContainer>
         <NavButton
@@ -107,7 +115,7 @@ export const OnboardingSuccess = () => {
         </LinkText> */}
 
       </ButtonContainer>
+    </View>
 
-    </MainWrapper>
-  </CenteredPageLayout>
+  </MainWrapper>
 }

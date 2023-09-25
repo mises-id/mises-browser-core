@@ -16,6 +16,7 @@ import {
   ConfirmButton,
   Description,
   StyledWrapper,
+  CancelButtonText
 } from './modal.style'
 import { PopupModal } from '../../../../components/extension/popup-modals'
 import { Text } from 'react-native'
@@ -41,8 +42,9 @@ export const ConfirmModal = ({ onConfirm, onCancel }: Props) => {
           Are you sure you want to reset your wallet? If your wallet is not backed up, resetting will cause you to lose all account data (including any associated funds).
         </Description>
         <ButtonRow>
+          <CancelButton onPress={onCancel}><CancelButtonText>{getLocale('braveWalletCancelHidingToken')}</CancelButtonText>
+          </CancelButton>
           <ConfirmButton onPress={onConfirm}><Text style={style.flatten(['color-white'])}>{getLocale('braveWalletAllowSpendConfirmButton')}</Text></ConfirmButton>
-          <CancelButton onPress={onCancel}><Text>{getLocale('braveWalletCancelHidingToken')}</Text></CancelButton>
         </ButtonRow>
       </StyledWrapper>
     </PopupModal>

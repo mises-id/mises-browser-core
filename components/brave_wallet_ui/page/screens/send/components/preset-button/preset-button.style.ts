@@ -26,3 +26,6 @@ export const Button = styled(StyledButton)`
     background-color: var(--button-background-hover);
   }
 `
+export const ButtonText = styled.Text`
+color: ${(p) => p.theme.color.text01};  
+`

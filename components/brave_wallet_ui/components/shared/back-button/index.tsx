@@ -11,9 +11,9 @@ import { getLocale } from '../../../../common/locale'
 // style
 import {
   StyledWrapper,
-  BackIcon
+  BackIcon,
+  BackText
 } from './style'
-import { Text } from 'react-native'
 
 export interface Props {
   onSubmit: () => void
@@ -23,7 +23,7 @@ export const BackButton = ({ onSubmit }: Props) => {
   return (
     <StyledWrapper onPress={onSubmit}>
       <BackIcon />
-      <Text>{getLocale('braveWalletBack')}</Text>
+      <BackText>{getLocale('braveWalletBack')}</BackText>
     </StyledWrapper>
   )
 }

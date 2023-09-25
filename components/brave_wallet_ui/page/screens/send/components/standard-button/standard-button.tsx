@@ -9,7 +9,7 @@ import * as React from 'react'
 import WarningIcon from '../../assets/warning-icon.svg'
 
 // Styled Components
-import { Button, ErrorIcon, StandardButtonStyleProps, LoadIcon } from './standard-button.style'
+import { Button, ErrorIcon, StandardButtonStyleProps, LoadIcon, ButtonText } from './standard-button.style'
 
 interface Props extends StandardButtonStyleProps {
   buttonText: string
@@ -44,7 +44,7 @@ export const StandardButton = (props: Props) => {
       {isLoading &&
         <LoadIcon />
       }
-      {buttonText}
+      <ButtonText>{buttonText}</ButtonText>
     </Button>
   )
 }

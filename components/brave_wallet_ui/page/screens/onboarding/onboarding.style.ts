@@ -36,7 +36,7 @@ export const MainWrapper = styled.View<{ isTabView?: boolean }>`
   background-color: ${(p) => p.theme.color.background02};
   padding: 10px;
   border-radius: ${(p) => p.isTabView ? 24 : 8}px;
-  margin-top: 50px;
+  // margin-top: 50px;
 `
 
 export const StyledWrapper = styled.View`

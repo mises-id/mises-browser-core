@@ -33,9 +33,9 @@ import {
   BraveWalletIcon,
  CardButton,
  CardButtonTextContainer,
- LegacyWalletIcon,
+//  LegacyWalletIcon,
  LinkRow,
- MetaMaskIcon
+//  MetaMaskIcon
 } from './import-or-restore-wallet.style'
 import { useHistory } from 'react-router'
 
@@ -44,8 +44,8 @@ export const OnboardingImportOrRestoreWallet = () => {
   const dispatch = useDispatch()
   const importWalletError = useSelector(({ page }: { page: PageState }) => page.importWalletError)
   const isImportWalletsCheckComplete = useSelector(({ page }: { page: PageState }) => page.isImportWalletsCheckComplete)
-  const isMetaMaskInitialized = useSelector(({ page }: { page: PageState }) => page.isMetaMaskInitialized)
-  const isLegacyCryptoWalletsInitialized = useSelector(({ page }: { page: PageState }) => page.isCryptoWalletsInitialized)
+  // const isMetaMaskInitialized = useSelector(({ page }: { page: PageState }) => page.isMetaMaskInitialized)
+  // const isLegacyCryptoWalletsInitialized = useSelector(({ page }: { page: PageState }) => page.isCryptoWalletsInitialized)
 
   // effects
   React.useEffect(() => {
@@ -102,7 +102,7 @@ export const OnboardingImportOrRestoreWallet = () => {
             <BraveWalletIcon />
           </CardButton>
 
-          {isMetaMaskInitialized && <CardButton
+          {/* {isMetaMaskInitialized && <CardButton
             to={WalletRoutes.OnboardingImportMetaMask}
           >
             <CardButtonTextContainer>
@@ -114,9 +114,9 @@ export const OnboardingImportOrRestoreWallet = () => {
               </p>
             </CardButtonTextContainer>
             <MetaMaskIcon />
-          </CardButton>}
+          </CardButton>} */}
 
-          {isLegacyCryptoWalletsInitialized &&
+          {/* {isLegacyCryptoWalletsInitialized &&
             <CardButton
               to={WalletRoutes.OnboardingImportCryptoWallets}
             >
@@ -127,7 +127,7 @@ export const OnboardingImportOrRestoreWallet = () => {
               </CardButtonTextContainer>
               <LegacyWalletIcon />
             </CardButton>
-          }
+          } */}
 
           <LinkRow>
             <WalletLink

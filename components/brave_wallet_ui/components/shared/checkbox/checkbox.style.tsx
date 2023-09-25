@@ -99,4 +99,5 @@ export const StyledText = styled.Text<{ size?: 'big' | 'small' }>`
   padding-top: ${(p) => p?.size === 'big' ? '2px' : '1px'};
   letter-spacing: 0;
   display: flex;
+  color: ${(p) => p.theme.color.text01};
 `

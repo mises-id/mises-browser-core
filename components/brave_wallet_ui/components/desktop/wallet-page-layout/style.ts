@@ -19,11 +19,6 @@ export const StyledContent = styled.View <{ maintainWidth?: boolean }>`
   justify-content: flex-start;
   flex-direction: row;
   width: 100%;
-  max-width: ${(p) => p.maintainWidth ? 'unset' : '1600px'};
-  // padding: ${(p) => p.maintainWidth ? '0px' : '32px 32px 0px 32px'};
-  @media screen and (max-width: 800px) {
-    flex-direction: column;
-    align-items: center;
-    // padding: ${(p) => p.maintainWidth ? '0px' : '32px 0px 0px 0px'};
-  }
+  min-height: 100vh;
+  max-width: ${(p) => p.maintainWidth ? 'unset' : '800px'};
  `

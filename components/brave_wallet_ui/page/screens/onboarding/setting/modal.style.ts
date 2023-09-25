@@ -96,8 +96,10 @@ export const CancelButton = styled(WalletButton)`
   font-size: 13px;
   line-height: 20px;
   letter-spacing: 0.03em;
-  color: ${leo.color.text.secondary};
   border: none;
   cursor: pointer;
   flex: 1;
+`
+export const CancelButtonText = styled.Text`
+  color: ${leo.color.text.secondary};
 `

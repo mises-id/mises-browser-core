@@ -34,7 +34,7 @@ export const BackButton = styled.TouchableOpacity<{
   align-items: center;
   text-align: center;
   align-self: flex-start;
-  color: ${(p) => p.theme.color.text01};
+  
   cursor: pointer;
   background-image: none;
   background-color: none;;
@@ -43,6 +43,9 @@ export const BackButton = styled.TouchableOpacity<{
   letter-spacing: 0.01em;
   border: none;
   text-decoration: none;
+`
+export const BackButtonText = styled.Text`
+  color: ${(p) => p.theme.color.text01};
 `
 
 export const DotsWrapper = styled.View`

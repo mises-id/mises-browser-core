@@ -50,7 +50,7 @@ export const ContainerCard = styled.View<
   justify-content: flex-start;
   align-items: center;
   padding: 20px;
-  padding-bottom: 120px;
+  padding-bottom: 220px;
   width: 100%;
   min-height: ${minCardHeight}px;
   overflow-y: ${(p) => p.cardOverflow ?? 'hidden'};
