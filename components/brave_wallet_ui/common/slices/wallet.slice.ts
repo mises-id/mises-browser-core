@@ -308,11 +308,13 @@ export const createWalletSlice = (initialState: WalletState = defaultState) => {
 
       nativeAssetBalancesUpdated (state: WalletState, { payload }: PayloadAction<GetNativeAssetBalancesPayload>) {
         state.accounts.forEach((account, accountIndex) => {
-          payload.balances[accountIndex].forEach((info, tokenIndex) => {
-            if (info.error === BraveWallet.ProviderError.kSuccess) {
-              state.accounts[accountIndex].nativeBalanceRegistry[info.chainId] = Amount.normalize(info.balance)
-            }
-          })
+          if(payload.balances[accountIndex]) {
+            payload.balances[accountIndex].forEach((info, tokenIndex) => {
+              if (info.error === BraveWallet.ProviderError.kSuccess) {
+                state.accounts[accountIndex].nativeBalanceRegistry[info.chainId] = Amount.normalize(info.balance)
+              }
+            })
+          }
         })
 
         // Refresh selectedAccount object

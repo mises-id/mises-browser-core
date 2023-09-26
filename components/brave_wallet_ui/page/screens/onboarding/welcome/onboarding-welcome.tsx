@@ -112,7 +112,7 @@ export const OnboardingWelcome = () => {
         style={StyleSheet.flatten([
           style.flatten(["height-90"]),
           {
-            width: '80%'
+            width: '50%'
           }
         ])}
         fadeDuration={0}

@@ -1581,6 +1581,7 @@ export function createWalletApi (
                   (tx) => tx.txStatus !== BraveWallet.TransactionStatus.Rejected
                 )
                 .map(async (tx: BraveWallet.TransactionInfo) => {
+                  console.log(tx, "txtxtxtxtxtx")
                   const parsedTx = await parseTransactionWithoutPricesAsync({
                     tx,
                     accountsRegistry,
@@ -3145,9 +3146,11 @@ export const parseTransactionWithoutPricesAsync = async ({
   dispatch: ThunkDispatch<any, any, any>
 }): Promise<ParsedTransactionWithoutFiatValues> => {
   const networks = getEntitiesListFromEntityState(networksRegistry)
+  const currentTxNetwork = networks.find(networks => networks.chainId === tx.chainId)
   const transactionNetwork = getNetworkFromTXDataUnion(
     tx.txDataUnion,
-    networks
+    networks,
+    currentTxNetwork
   )
 
   // Tokens lists
