@@ -1,0 +1,22 @@
+diff --git a/content/public/android/generate_child_service.py b/content/public/android/generate_child_service.py
+index be46f2be8bc1d5df56ea90cdd89cb7428f81e66f..c4602fb5d1f20effe9eb46e197263ac284c96644 100755
+--- a/content/public/android/generate_child_service.py
++++ b/content/public/android/generate_child_service.py
+@@ -24,7 +24,7 @@ package org.chromium.content.app;
+  * This is needed to register multiple SandboxedProcess services so that we
+  * can have more than one sandboxed process.
+  */
+-public class SandboxedProcessService{0} extends SandboxedProcessService {{
++public class MisesSandboxedProcessService{0} extends SandboxedProcessService {{
+ }}"""
+   return template.format(str(i))
+ 
+@@ -40,7 +40,7 @@ def DoMain(argv):
+   number, output = args
+   number = int(number)
+ 
+-  path_template = "org/chromium/content/app/SandboxedProcessService{0}.java"
++  path_template = "org/chromium/content/app/MisesSandboxedProcessService{0}.java"
+   with build_utils.AtomicOutput(output) as f:
+     with zipfile.ZipFile(f, 'w', zipfile.ZIP_STORED) as srcjar:
+       for i in range(number):

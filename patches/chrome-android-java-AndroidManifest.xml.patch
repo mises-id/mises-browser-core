@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/AndroidManifest.xml b/chrome/android/java/AndroidManifest.xml
-index 6124a0bc18edf26648bfcdcf257160dca8ac1e77..2fc38fd8113ecbd7073d0fa55ca4b2f71e648378 100644
+index 6124a0bc18edf26648bfcdcf257160dca8ac1e77..4380df4f8a7968e141f8b7f78442dea48bb60209 100644
 --- a/chrome/android/java/AndroidManifest.xml
 +++ b/chrome/android/java/AndroidManifest.xml
 @@ -28,7 +28,7 @@ by a child template that "extends" this file.
@@ -28,3 +28,12 @@ index 6124a0bc18edf26648bfcdcf257160dca8ac1e77..2fc38fd8113ecbd7073d0fa55ca4b2f7
          {% block extra_application_definitions %}
          {% endblock %}
        {% endmacro %}
+@@ -1211,7 +1212,7 @@ by a child template that "extends" this file.
+           android:value="{{ num_sandboxed_services }}"/>
+ 
+       {% for i in range(num_sandboxed_services) %}
+-      <service android:name="org.chromium.content.app.SandboxedProcessService{{ i }}"
++      <service android:name="org.chromium.content.app.MisesSandboxedProcessService{{ i }}"
+           android:process=":sandboxed_process{{ i }}"
+           android:permission="{{ manifest_package }}.permission.CHILD_SERVICE"
+           android:isolatedProcess="true"
