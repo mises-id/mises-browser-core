@@ -20,6 +20,7 @@ import {
   StyledWrapper,
   HorizontalDivider
 } from './style'
+import { View } from 'react-native'
 
 interface Props {
   selectedNetwork: BraveWallet.NetworkInfo
@@ -46,13 +47,16 @@ export const NetworkFilterWithSearch = (props: Props) => {
 
   return (
     <StyledWrapper>
-      <SearchBar
-        placeholder={searchPlaceholder}
-        action={searchAction}
-        autoFocus={searchAutoFocus}
-        value={searchValue}
-        useWithFilter={true}
-      />
+      <View style={{flex: 1, width: '1px'}}>
+        <SearchBar
+          width='100%'
+          placeholder={searchPlaceholder}
+          action={searchAction}
+          autoFocus={searchAutoFocus}
+          value={searchValue}
+          useWithFilter={true}
+        />
+      </View>
       <HorizontalDivider />
       <SelectNetworkDropdown
         onSelectCustomNetwork={onSelectNetwork}

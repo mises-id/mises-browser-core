@@ -543,7 +543,7 @@ export function refreshBalances () {
     const api = getAPIProxy()
     const { jsonRpcService } = api
     const {
-      wallet: { accounts, userVisibleTokensInfo }
+      wallet: { accounts, userVisibleTokensInfo, selectedNetworkFilter }
     } = getState()
 
     const networkList = await getVisibleNetworksList(api)
@@ -555,7 +555,8 @@ export function refreshBalances () {
     }
 
     const getNativeAssetsBalanceReturnInfos = await Promise.all(accounts.map(async (account) => {
-      const networks = getNetworksByCoinType(networkList, account.coin)
+      const networks = [selectedNetworkFilter];
+      // const networks = getNetworksByCoinType(networkList, account.coin)
 
       return Promise.all(networks.map(async (network) => {
         // Get CoinType SOL balances

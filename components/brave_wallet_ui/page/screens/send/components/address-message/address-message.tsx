@@ -15,7 +15,7 @@ import { AddressMessageInfo } from '../../../../../constants/types'
 import { getLocale } from '../../../../../../common/locale'
 
 // Styled Components
-import { HowToSolveButton, ErrorIcon } from './address-message.style'
+import { HowToSolveButton, ErrorIcon, HowToSolveButtonText } from './address-message.style'
 import { Column, Row, Text, VerticalDivider, VerticalSpacer } from '../../shared.styles'
 
 interface Props {
@@ -69,7 +69,7 @@ export const AddressMessage = (props: Props) => {
               } */}
               {onClickHowToSolve &&
                 <HowToSolveButton onPress={onClickHowToSolve}>
-                  {getLocale('braveWalletHowToSolve')}
+                  <HowToSolveButtonText>{getLocale('braveWalletHowToSolve')}</HowToSolveButtonText>
                 </HowToSolveButton>
               }
             </Text>

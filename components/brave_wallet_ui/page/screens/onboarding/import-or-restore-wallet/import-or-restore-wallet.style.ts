@@ -6,8 +6,8 @@
 import styled from 'styled-components/native'
 
 // assets
-import BraveWalletSvg from '../../../../assets/svg-icons/onboarding/brave-wallet.svg'
-import BraveWalletSvgDark from '../../../../assets/svg-icons/onboarding/brave-wallet-dark.svg'
+import misesWallet from '../../../../assets/svg-icons/onboarding/mises-wallet.jpg'
+// import BraveWalletSvgDark from '../../../../assets/svg-icons/onboarding/brave-wallet-dark.svg'
 import MMSvg from '../../../../assets/svg-icons/onboarding/import-from-metamask.svg'
 import MMSvgDark from '../../../../assets/svg-icons/onboarding/import-from-metamask-dark.svg'
 import LegacyWalletSvg from '../../../../assets/svg-icons/onboarding/reset-to-brave-wallet.svg'
@@ -104,13 +104,13 @@ export const LegacyWalletIcon = styled.View`
 `
 
 export const BraveWalletIcon = styled.View`
-  width: 80px;
+  width: 78px;
   height: 80px;
-  background-image: url(${BraveWalletSvg});
+  background-image: url(${misesWallet});
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
   @media (prefers-color-scheme: dark) {
-    background-image: url(${BraveWalletSvgDark});
+    background-image: url(${misesWallet});
   }
 `

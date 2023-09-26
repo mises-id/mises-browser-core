@@ -171,7 +171,7 @@ export default function useSend (isSendTab?: boolean) {
 
       getChecksumEthAddress(addressOrUrl).then((value: GetChecksumEthAddressReturnInfo) => {
         const { checksumAddress } = value
-        if (checksumAddress === addressOrUrl) {
+        if (checksumAddress.toLowerCase() === addressOrUrl.toLowerCase()) {
           setAddressWarning('')
           setAddressError('')
           return

@@ -41,6 +41,12 @@ export const HowToSolveButton = styled(WalletButton)`
     color: ${(p) => p.theme.color.interactive06};
   }
 `
+export const HowToSolveButtonText = styled.Text`
+  color: ${(p) => p.theme.color.interactive05};
+  @media (prefers-color-scheme: dark) {
+    color: ${(p) => p.theme.color.interactive06};
+  }
+`
 
 export const ErrorIcon = styled(Icon) <{ type: 'error' | 'warning' }>`
   background-color: ${(p) => p.type === 'error' ? p.theme.color.errorBorder : p.theme.color.warningBorder};

@@ -20,25 +20,46 @@ export function useBalanceUpdater () {
   const hasInitialized = useSafeWalletSelector(WalletSelectors.hasInitialized)
   const dispatch = useDispatch()
 
+  const isActive = () => {
+    return new Promise((resolve) => {
+      const provider = (chrome as any).misesPrivate
+      if(!provider){
+        resolve(false);
+      }
+      provider && provider.getAppState((res: any) => {
+        console.log(res, 'getAppState');
+        resolve(res === provider.AppState.RUNNING);
+      })
+    });
+  }
+  
   React.useEffect(() => {
     if (isWalletLocked || !isWalletCreated || !hasInitialized) {
       return
     }
 
     let subscribed = true
-    const id = setInterval(() => {
+    const id = setInterval(async () => {
       if (!subscribed) {
         return
       }
+
+      const isActiveStatus = await isActive();
+      if(!isActiveStatus) {
+        console.log('return isUnActiveStatus')
+        return
+      }
+
       dispatch(refreshBalances())
-    }, 15000)
+      console.log("useBalanceUpdater")
+    }, 30000)
 
     // cleanup
     return () => {
       clearInterval(id)
       subscribed = false
     }
-  }, [refreshBalances, isWalletLocked, isWalletCreated, hasInitialized])
+  }, [refreshBalances, isWalletLocked, isWalletCreated, hasInitialized,])
 }
 
 export default useBalanceUpdater

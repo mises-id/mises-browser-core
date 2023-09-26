@@ -23,6 +23,8 @@ export const TopRow = styled.View`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  position: relative;
+  z-index: 9;
 `
 
 export const BalanceTitle = styled.Text`

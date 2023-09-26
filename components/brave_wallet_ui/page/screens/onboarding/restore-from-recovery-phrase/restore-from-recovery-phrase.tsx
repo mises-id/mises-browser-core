@@ -21,7 +21,7 @@ import {
   LoadingIcon,
   VerticalSpace,
   CloseIcon,
-  Row,
+  // Row,
   ErrorText
 } from '../../../../components/shared/style'
 import {
@@ -45,7 +45,7 @@ import { NavButton } from '../../../../components/extension'
 import { CenteredPageLayout } from '../../../../components/desktop/centered-page-layout/centered-page-layout'
 import { StepsNavigation } from '../../../../components/desktop/steps-navigation/steps-navigation'
 import { RecoveryInput } from './recovery-input'
-import { Checkbox } from '../../../../components/shared/checkbox/checkbox'
+// import { Checkbox } from '../../../../components/shared/checkbox/checkbox'
 
 enum RestoreFromOtherWalletSteps {
   phrase = 'phrase',
@@ -103,7 +103,7 @@ export const OnboardingRestoreFromRecoveryPhrase = ({
   const [extensionPassword, setExtensionPassword] = React.useState('')
   const [phraseInput, setPhraseInput] = React.useState('')
   const [phraseWordsLength, setPhraseWordsLength] = React.useState(0)
-  const [isImportingFromLegacySeed, setIsImportingFromLegacySeed] = React.useState(false)
+  // const [isImportingFromLegacySeed, setIsImportingFromLegacySeed] = React.useState(false)
   const [currentStep, setCurrentStep] = React.useState<RestoreFromOtherWalletSteps>(
     isImportingFromExtension
       ? RestoreFromOtherWalletSteps.currentPassword
@@ -174,7 +174,7 @@ export const OnboardingRestoreFromRecoveryPhrase = ({
       // 12, 15, 18 or 21 long and has a space at the end.
       mnemonic: phraseInput.trimEnd(),
       password,
-      isLegacy: isImportingFromLegacySeed,
+      isLegacy: false,
       completeWalletSetup: false // postpone until wallet onboarding success screen
     }))
   }, [
@@ -184,8 +184,7 @@ export const OnboardingRestoreFromRecoveryPhrase = ({
     password,
     isImportingFromLegacyExtension,
     phraseInput,
-    invalidMnemonic,
-    isImportingFromLegacySeed
+    invalidMnemonic
   ])
 
   const handlePasswordChange = React.useCallback(({ isValid, password }: NewPasswordValues) => {
@@ -388,7 +387,7 @@ export const OnboardingRestoreFromRecoveryPhrase = ({
 
               <VerticalSpace space={isPhraseShown ? '20px' : '130px'} />
 
-              <Row alignItems='center' style={{ minHeight: 53 }}>
+              {/* <Row alignItems='center' style={{ minHeight: 53 }}>
                 {phraseWordsLength === 24 &&
                   <Checkbox isChecked={isImportingFromLegacySeed} onChange={setIsImportingFromLegacySeed} disabled={false}>
                     <Description>
@@ -402,7 +401,7 @@ export const OnboardingRestoreFromRecoveryPhrase = ({
                     {getLocale('braveWalletRecoveryPhraseLengthError')}
                   </ErrorText>
                 }
-              </Row>
+              </Row> */}
             </>
           }
 

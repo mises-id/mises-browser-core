@@ -19,6 +19,6 @@ export const StyledContent = styled.View <{ maintainWidth?: boolean }>`
   justify-content: flex-start;
   flex-direction: row;
   width: 100%;
-  min-height: 100vh;
+  min-height: 95vh;
   max-width: ${(p) => p.maintainWidth ? 'unset' : '800px'};
  `
