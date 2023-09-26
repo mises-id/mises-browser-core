@@ -1317,7 +1317,20 @@ void EthereumProviderImpl::CommonRequestOrSendAsync(
       return;
     }
     EthUnsubscribe(subscription_id, std::move(callback), std::move(id));
-  } else {
+  } else if (method == kEthChainId) {
+    std::string chain_id;
+    if (json_rpc_service_) {
+      chain_id = json_rpc_service_->GetChainId(mojom::CoinType::ETH);
+    }
+    if (!chain_id.empty()) {
+      base::Value formed_response =  base::Value(chain_id);
+      std::move(callback).Run(std::move(id), std::move(formed_response), false, "", true);
+    } else if (json_rpc_service_) {
+      json_rpc_service_->Request(normalized_json_request, true, std::move(id),
+                               mojom::CoinType::ETH, std::move(callback));
+    }
+                          
+  }else {
     json_rpc_service_->Request(normalized_json_request, true, std::move(id),
                                mojom::CoinType::ETH, std::move(callback));
   }

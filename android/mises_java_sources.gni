@@ -43,6 +43,7 @@ mises_java_sources = kiwi_java_sources + [
   "//mises/android/java/org/chromium/chrome/browser/suggestions/MisesSiteSuggestion.java",
   "//mises/android/java/org/chromium/base/MisesSysUtils.java",
   "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/BraveWalletProviderDelegateImplHelper.java",
+  "//mises/android/java/org/chromium/chrome/browser/tasks/MisesReturnToChromeUtil.java",
   #"//mises/android/java/org/chromium/chrome/browser/crypto_wallet/permission/BraveDappPermissionPromptDialog.java",
   #"//mises/android/java/org/chromium/chrome/browser/crypto_wallet/permission/BravePermissionAccountsListAdapter.java",
   #"//misesandroid/java/org/chromium/chrome/browser/crypto_wallet/util/AccountsPermissionsHelper.java",

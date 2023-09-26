@@ -108,7 +108,7 @@ public class MisesShareWin extends DialogFragment {
             String boundary = "MyBoundary" + System.currentTimeMillis();
             HttpURLConnection urlConnection = null;
             try {
-                URL url = new URL("https://api.alb.mises.site/api/v1/upload");
+                URL url = new URL(MisesController.MISES_API_BASE_URL + "/api/v1/upload");
                 urlConnection = (HttpURLConnection) ChromiumNetworkAdapter.openConnection(url, NetworkTrafficAnnotationTag.MISSING_TRAFFIC_ANNOTATION);
                 urlConnection.setConnectTimeout(20000);
                 urlConnection.setDoOutput(true);
@@ -212,7 +212,7 @@ public class MisesShareWin extends DialogFragment {
                 Log.e(TAG, "Unable to write to a JSONObject." + e.toString());
             } 
 
-            HttpUtil.HttpResp result = HttpUtil.JsonPostSync("https://api.alb.mises.site/api/v1/status",root, mToken, "");
+            HttpUtil.HttpResp result = HttpUtil.JsonPostSync(MisesController.MISES_API_BASE_URL + "/api/v1/status",root, mToken, "");
             return result.code;
         }
 
