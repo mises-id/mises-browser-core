@@ -407,15 +407,15 @@ void MisesComponentLoader::OnWebstoreInstallResult(
     } else {
 #if BUILDFLAG(IS_ANDROID)
       base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "fail", "id", extension_id);
-      DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
+      //DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
 #endif
       
-    // base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
-    //     FROM_HERE,
-    //     base::BindOnce(
-    //       &MisesComponentLoader::ShowPreInstallMessage,
-    //       weak_ptr_factory_.GetWeakPtr(), true), 
-    //     base::Seconds(1));
+    base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+        FROM_HERE,
+        base::BindOnce(
+          &MisesComponentLoader::ShowPreInstallMessage,
+          weak_ptr_factory_.GetWeakPtr(), true), 
+        base::Seconds(1));
     }
   }
 
@@ -515,9 +515,9 @@ void MisesComponentLoader::DismissMessageInternal(
 void MisesComponentLoader::PreInstallMetamaskFromWebStore() {
   LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallMetamaskFromWebStore";
 #if BUILDFLAG(IS_ANDROID)
-  if (!message_ && (metamask_preinstall_try_counter_ == 1)) {
-    ShowPreInstallMessage(false);
-  }
+  // if (!message_) {
+  //   ShowPreInstallMessage(false);
+  // }
 #endif
   metamask_preinstall_try_counter_ ++;
 
