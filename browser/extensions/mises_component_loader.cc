@@ -416,7 +416,7 @@ void MisesComponentLoader::OnWebstoreInstallResult(
     //       &MisesComponentLoader::ShowPreInstallMessage,
     //       weak_ptr_factory_.GetWeakPtr(), true), 
     //     base::Seconds(1));
-    // }
+    }
   }
 
  if (result == extensions::webstore_install::Result::SUCCESS) {
