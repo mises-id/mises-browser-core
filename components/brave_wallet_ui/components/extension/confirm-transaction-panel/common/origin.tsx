@@ -7,7 +7,7 @@ import * as React from 'react'
 
 // Styled Components
 import { FavIcon } from './style'
-import BraveIcon from '../../../../assets/svg-icons/brave-icon.svg'
+import BraveIcon from '../../../../assets/svg-icons/mises-logo.png'
 import { URLText } from '../../shared-panel-styles'
 import CreateSiteOrigin from '../../../shared/create-site-origin'
 

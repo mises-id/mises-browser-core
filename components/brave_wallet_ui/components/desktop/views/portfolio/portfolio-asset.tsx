@@ -497,7 +497,7 @@ export const PortfolioAsset = (props: Props) => {
 
   const onShowMore = React.useCallback(() => {
     // e.stopPropagation()
-    setShowMore(true)
+    setShowMore(!showMore)
   }, [])
 
   const onHideMore = React.useCallback(() => {
@@ -505,11 +505,17 @@ export const PortfolioAsset = (props: Props) => {
     setShowMore(false)
   }, [])
 
-  const onShowTokenDetailsModal = React.useCallback(() => setShowTokenDetailsModal(true), [])
+  const onShowTokenDetailsModal = React.useCallback(() => {
+    setShowTokenDetailsModal(true)
+    setShowMore(false)
+  }, [])
 
   const onCloseTokenDetailsModal = React.useCallback(() => setShowTokenDetailsModal(false), [])
 
-  const onShowHideTokenModal = React.useCallback(() => setShowHideTokenModal(true), [])
+  const onShowHideTokenModal = React.useCallback(() => {
+    setShowHideTokenModal(true)
+    setShowMore(false)
+  }, [])
 
   const onCloseHideTokenModal = React.useCallback(() => setShowHideTokenModal(false), [])
 
@@ -538,6 +544,7 @@ export const PortfolioAsset = (props: Props) => {
   const onViewOnExplorer = React.useCallback(() => {
     if (selectedAsset) {
       openExplorer('token', selectedAsset.contractAddress)()
+      setShowMore(false)
     }
   }, [selectedAsset])
 
@@ -760,7 +767,7 @@ export const PortfolioAsset = (props: Props) => {
                 />
                 <PercentText>
                   {
-                    selectedAssetFiatPrice
+                    selectedAssetFiatPrice && selectedAssetFiatPrice.assetTimeframeChange
                       ? Number(selectedAssetFiatPrice.assetTimeframeChange)
                         .toFixed(2)
                       : 0.00

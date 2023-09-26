@@ -67,6 +67,8 @@ export const DropDown = styled.View<{isLeft?: boolean}>`
   z-index: 9;
   right: ${(p) => !p.isLeft ? '0px' : 'unset'};
   left: ${(p) => p.isLeft ? '0px' : 'unset'};
+  max-height: 30vh;
+  overflow: auto;
 `
 
 export const NetworkItemWrapper = styled.View`

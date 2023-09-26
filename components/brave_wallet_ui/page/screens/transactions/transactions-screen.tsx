@@ -10,12 +10,12 @@ import { useHistory } from 'react-router'
 import {
   BraveWallet,
   // WalletAccountType,
-  WalletRoutes
+  // WalletRoutes
 } from '../../../constants/types'
 
 // options
 import { AllNetworksOption } from '../../../options/network-filter-options'
-import { AllAccountsOption } from '../../../options/account-filter-options'
+// import { AllAccountsOption } from '../../../options/account-filter-options'
 
 // utils
 import { getLocale } from 'brave-ui'
@@ -36,13 +36,13 @@ import { getEntitiesListFromEntityState } from '../../../utils/entities.utils'
 // hooks
 import {
   useGetAccountInfosRegistryQuery,
-  useGetNetworkQuery,
+  // useGetNetworkQuery,
   useLazyGetAllTransactionsForAddressCoinTypeQuery
 } from '../../../common/slices/api.slice'
 
 // components
 // import { AccountFilterSelector } from '../../../components/desktop/account-filter-selector/account-filter-selector'
-import { NetworkFilterSelector } from '../../../components/desktop/network-filter-selector/index'
+// import { NetworkFilterSelector } from '../../../components/desktop/network-filter-selector/index'
 import { PortfolioTransactionItem } from '../../../components/desktop'
 import { SearchBar } from '../../../components/shared'
 
@@ -60,12 +60,12 @@ import {
 } from '../../../components/shared/loading-skeleton/styles'
 import { SearchAndFiltersRow } from './transaction-screen.styles'
 
-interface Params {
-  address?: string | null
-  chainId?: string | null
-  chainCoinType?: BraveWallet.CoinType | null
-  transactionId?: string | null
-}
+// interface Params {
+//   address?: string | null
+//   chainId?: string | null
+//   chainCoinType?: BraveWallet.CoinType | null
+//   transactionId?: string | null
+// }
 
 const txListItemSkeletonProps: LoadingSkeletonStyleProps = {
   width: '100%',
@@ -89,8 +89,8 @@ export const TransactionsScreen: React.FC = () => {
   const {
     address,
     chainId,
-    transactionId,
-    chainCoinType
+    // transactionId,
+    // chainCoinType
   } = React.useMemo(() => {
     const searchParams = new URLSearchParams(history.location.search)
     return {
@@ -116,25 +116,25 @@ export const TransactionsScreen: React.FC = () => {
 
   const [fetchAllTransactionsForAddressCoinType] = useLazyGetAllTransactionsForAddressCoinTypeQuery()
 
-  const { data: specificNetworkFromParam } = useGetNetworkQuery(
-    {
-      chainId: chainId!,
-      coin: chainCoinType
-    },
-    {
-      skip:
-        !chainId ||
-        chainId === AllNetworksOption.chainId ||
-        chainCoinType === undefined
-    }
-  )
+  // const { data: specificNetworkFromParam } = useGetNetworkQuery(
+  //   {
+  //     chainId: chainId!,
+  //     coin: chainCoinType
+  //   },
+  //   {
+  //     skip:
+  //       !chainId ||
+  //       chainId === AllNetworksOption.chainId ||
+  //       chainCoinType === undefined
+  //   }
+  // )
 
   // computed / memos
-  const foundNetworkFromParam = chainId
-    ? chainId === AllNetworksOption.chainId
-      ? AllNetworksOption
-      : specificNetworkFromParam
-    : undefined
+  // const foundNetworkFromParam = chainId
+  //   ? chainId === AllNetworksOption.chainId
+  //     ? AllNetworksOption
+  //     : specificNetworkFromParam
+  //   : undefined
 
   const isLoadingDeps = isLoadingAccounts
 
@@ -207,7 +207,6 @@ export const TransactionsScreen: React.FC = () => {
       ? combinedTxEntityState.idsByChainId[chainId] ?? []
       : combinedTxEntityState.ids ?? []
   }, [combinedTxEntityState.idsByChainId, combinedTxEntityState.ids, chainId])
-
   const txsForSelectedChain = React.useMemo(() => {
     return getEntitiesListFromEntityState(
       combinedTxEntityState,
@@ -235,19 +234,19 @@ export const TransactionsScreen: React.FC = () => {
   //   [history, transactionId]
   // )
 
-  const onSelectNetwork = React.useCallback(
-    ({ chainId, coin }: BraveWallet.NetworkInfo) => {
-      history.push(
-        updatePageParams({
-          address: foundAccountFromParam?.address || AllAccountsOption.id,
-          chainId,
-          chainCoinType: coin,
-          transactionId
-        })
-      )
-    },
-    [history, foundAccountFromParam?.address, transactionId]
-  )
+  // const onSelectNetwork = React.useCallback(
+  //   ({ chainId, coin }: BraveWallet.NetworkInfo) => {
+  //     history.push(
+  //       updatePageParams({
+  //         address: foundAccountFromParam?.address || AllAccountsOption.id,
+  //         chainId,
+  //         chainCoinType: coin,
+  //         transactionId
+  //       })
+  //     )
+  //   },
+  //   [history, foundAccountFromParam?.address, transactionId]
+  // )
 
   // render
   if (isLoadingDeps) {
@@ -272,11 +271,11 @@ export const TransactionsScreen: React.FC = () => {
           onSelectAccount={onSelectAccount}
           selectedNetwork={foundNetworkFromParam || AllNetworksOption}
         /> */}
-        <NetworkFilterSelector
+        {/* <NetworkFilterSelector
           selectedAccount={foundAccountFromParam || AllAccountsOption}
           selectedNetwork={foundNetworkFromParam || AllNetworksOption}
           onSelectNetwork={onSelectNetwork}
-        />
+        /> */}
       </SearchAndFiltersRow>
 
       {isLoadingTxsList
@@ -329,29 +328,29 @@ export const TransactionsScreen: React.FC = () => {
 
 export default TransactionsScreen
 
-const updatePageParams = ({
-  address,
-  chainId,
-  transactionId,
-  chainCoinType
-}: Params) => {
-  const params = new URLSearchParams()
-  if (address) {
-    params.append('address', address)
-  }
-  if (chainId) {
-    params.append('chainId', chainId)
-  }
-  if (transactionId) {
-    params.append('transactionId', transactionId)
-  }
-  if (chainCoinType) {
-    params.append('chainCoinType', chainCoinType.toString())
-  }
-  const paramsString = params.toString()
+// const updatePageParams = ({
+//   address,
+//   chainId,
+//   transactionId,
+//   chainCoinType
+// }: Params) => {
+//   const params = new URLSearchParams()
+//   if (address) {
+//     params.append('address', address)
+//   }
+//   if (chainId) {
+//     params.append('chainId', chainId)
+//   }
+//   if (transactionId) {
+//     params.append('transactionId', transactionId)
+//   }
+//   if (chainCoinType) {
+//     params.append('chainCoinType', chainCoinType.toString())
+//   }
+//   const paramsString = params.toString()
 
-  return `${WalletRoutes.Activity}${paramsString ? `?${paramsString}` : ''}`
-}
+//   return `${WalletRoutes.Activity}${paramsString ? `?${paramsString}` : ''}`
+// }
 
 const findTokenBySearchValue = (
   searchValue: string,

@@ -26,6 +26,6 @@ export const StyledContent = styled.View <{ isTabView?: boolean }>`
   justify-content: flex-start;
   padding-top: 0px;
   padding-bottom: 0px;
-  min-height: 100vh;
+  min-height: 95vh;
   background-color: ${(p) => p.theme.color.background02};
  `

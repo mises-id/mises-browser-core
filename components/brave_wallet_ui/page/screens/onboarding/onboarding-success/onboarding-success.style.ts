@@ -77,5 +77,5 @@ export const MainWrapper = styled.View<{ isTabView?: boolean }>`
   justify-content: center;
   background-color: ${(p) => p.theme.color.background02};
   padding: 10px;
-  height: 100vh;
+  height: 95vh;
 `

@@ -112,6 +112,7 @@ ExtensionFunction::ResponseAction MisesPrivateGetAppStateFunction::Run() {
     }
   }
 #endif
+  state = api::mises_private::AppState::APP_STATE_RUNNING;
   return RespondNow(ArgumentList(
     api::mises_private::GetAppState::Results::Create(state)));
 }

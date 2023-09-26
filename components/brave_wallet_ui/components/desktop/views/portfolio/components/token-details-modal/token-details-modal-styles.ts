@@ -5,7 +5,7 @@
 
 import styled from 'styled-components/native'
 import { WalletButton } from '../../../../../shared/style'
-export const modalWidth = '500px'
+export const modalWidth = '95vw'
 
 export const StyledWrapper = styled.View`
   display: flex;

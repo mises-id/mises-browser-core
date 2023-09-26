@@ -7,7 +7,7 @@ import * as React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // Types
-import { BraveWallet, SupportedTestNetworks, WalletAccountType, WalletState } from '../../../constants/types'
+import { BraveWallet, NetworkFilterType, SupportedTestNetworks, WalletAccountType, WalletState } from '../../../constants/types'
 import { LOCAL_STORAGE_KEYS } from '../../../common/constants/local-storage-keys'
 
 // Components
@@ -39,7 +39,9 @@ import {
 } from './style'
 import {
   useGetNetworkQuery,
-  useGetVisibleNetworksQuery
+  useGetSelectedChainQuery,
+  useGetVisibleNetworksQuery,
+  useSetNetworkMutation
 } from '../../../common/slices/api.slice'
 
 interface Props {
@@ -59,13 +61,29 @@ export const NetworkFilterSelector = ({
 }: Props) => {
   // state
   const [showNetworkFilter, setShowNetworkFilter] = React.useState<boolean>(false)
-
+  const [setNetwork] = useSetNetworkMutation()
   // redux
   const dispatch = useDispatch()
   const accounts = useSelector(({ wallet }: { wallet: WalletState }) => wallet.accounts)
-  const selectedNetworkFilter = useSelector(({ wallet }: { wallet: WalletState }) => wallet.selectedNetworkFilter)
+  const { currentData: selectedNetworkGlobal } = useGetSelectedChainQuery(undefined)
+  const selectedNetworkFilterData = useSelector(({ wallet }: { wallet: WalletState }) => wallet.selectedNetworkFilter)
   const selectedAccountFilter = useSelector(({ wallet }: { wallet: WalletState }) => wallet.selectedAccountFilter)
 
+  const selectedNetworkFilter = React.useMemo(() => {
+    return selectedNetworkGlobal || selectedNetworkFilterData
+  }, [selectedNetworkGlobal, selectedNetworkFilterData])
+
+  const [oldSelectedNetwork, setoldSelectedNetwork] = React.useState<NetworkFilterType>()
+
+  React.useEffect(() => {
+    if(oldSelectedNetwork?.chainId !== selectedNetworkFilter.chainId) {
+      console.log(selectedNetworkFilter, "selectedNetworkFilter")
+      console.log(oldSelectedNetwork, "oldSelectedNetwork")
+      setoldSelectedNetwork(selectedNetworkFilter)
+      onSelectAndClose(selectedNetworkFilter as BraveWallet.NetworkInfo)
+    }
+  }, [selectedNetworkFilter])
+  
   // queries
   const { data: reduxNetworkList } = useGetVisibleNetworksQuery(undefined, {
     skip: !!networkListSubset
@@ -154,6 +172,7 @@ export const NetworkFilterSelector = ({
       }
       window.localStorage.setItem(LOCAL_STORAGE_KEYS.PORTFOLIO_NETWORK_FILTER_OPTION, JSON.stringify(networkFilter))
       dispatch(WalletActions.setSelectedNetworkFilter(networkFilter))
+      setNetwork(networkFilter)
     }
 
     hideNetworkFilter()
