@@ -15,6 +15,8 @@ import {
 } from './style'
 import { getLocale } from '../../../../common/locale'
 import { PanelTypes } from '../../../constants/types'
+import { WalletActions } from '../../../common/actions'
+import { useDispatch } from 'react-redux'
 
 export interface Props {
   title: string
@@ -23,26 +25,30 @@ export interface Props {
   searchAction?: (event: any) => void | undefined
 }
 
-export default class PanelHeader extends React.PureComponent<Props> {
-  navigate = (path: PanelTypes) => () => {
-    this.props.action(path)
+const PanelHeader: React.FC<Props> = (props) => {
+  const { title, searchAction, useSearch } = props;
+
+  const dispatch = useDispatch();
+
+  const closeUI = () => {
+    dispatch(WalletActions.closeUI())
   }
 
-  render () {
-    const { title, searchAction, useSearch } = this.props
-    return (
-      <HeaderWrapper hasSearch={useSearch || false}>
-        <TopRow>
-          <HeaderTitle>{title}</HeaderTitle>
-          <CloseButton onPress={this.navigate('main')} />
-        </TopRow>
-        {useSearch &&
-          <SearchBar
-            placeholder={getLocale('braveWalletSearchText')}
-            action={searchAction}
-          />
-        }
-      </HeaderWrapper>
-    )
-  }
+
+  return (
+    <HeaderWrapper hasSearch={useSearch || false}>
+      <TopRow>
+        <HeaderTitle>{title}</HeaderTitle>
+        <CloseButton onPress={closeUI} />
+      </TopRow>
+      {useSearch &&
+        <SearchBar
+          placeholder={getLocale('braveWalletSearchText')}
+          action={searchAction}
+        />
+      }
+    </HeaderWrapper>
+  )
 }
+
+export default PanelHeader

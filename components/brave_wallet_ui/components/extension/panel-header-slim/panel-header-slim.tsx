@@ -14,6 +14,8 @@ import {
 
 // Constants
 import { PanelTypes } from '../../../constants/types'
+import { useDispatch } from 'react-redux'
+import { WalletActions } from '../../../common/actions'
 
 interface Props {
   title: string
@@ -21,11 +23,16 @@ interface Props {
 }
 
 export const PanelHeaderSlim = React.memo(function (props: Props) {
-  const { title, action } = props
+  const { title } = props
+  // const navigate = React.useCallback((path: PanelTypes) => () => {
+  //   action(path)
+  // }, [action])
 
-  const navigate = React.useCallback((path: PanelTypes) => () => {
-    action(path)
-  }, [action])
+  const dispatch = useDispatch();
+
+  const closeUI = () => {
+    dispatch(WalletActions.closeUI())
+  }
 
   return (
     <HeaderWrapper>
@@ -33,7 +40,7 @@ export const PanelHeaderSlim = React.memo(function (props: Props) {
         <HeaderTitle>
           {title}
         </HeaderTitle>
-        <CloseButton onPress={navigate('main')} />
+        <CloseButton onPress={closeUI} />
       </TopRow>
     </HeaderWrapper>
   )

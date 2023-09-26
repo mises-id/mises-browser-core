@@ -6,7 +6,7 @@
 import * as React from 'react'
 import {
   ConnectWithSite,
-  ConnectedPanel,
+  // ConnectedPanel,
   Panel,
   WelcomePanel,
   SignPanel,
@@ -746,13 +746,7 @@ function Container () {
     )
   }
 
-  return (
-    <PanelWrapper isLonger={false}>
-      <ConnectedPanel
-        navAction={navigateTo}
-      />
-    </PanelWrapper>
-  )
+  return null;
 }
 
 export default Container
