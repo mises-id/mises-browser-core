@@ -1391,11 +1391,12 @@ void KeyringService::AddDiscoveryAccountsForKeyring(
   if (!keyring) {
     return;
   }
-  json_rpc_service_->GetEthTransactionCount(
-      keyring->GetDiscoveryAddress(discovery_account_index),
-      base::BindOnce(&KeyringService::OnGetTransactionCount,
-                     discovery_weak_factory_.GetWeakPtr(),
-                     discovery_account_index, attempts_left));
+  // disable auto discovery of keyring
+  // json_rpc_service_->GetEthTransactionCount(
+  //     keyring->GetDiscoveryAddress(discovery_account_index),
+  //     base::BindOnce(&KeyringService::OnGetTransactionCount,
+  //                    discovery_weak_factory_.GetWeakPtr(),
+  //                    discovery_account_index, attempts_left));
 }
 
 void KeyringService::OnGetTransactionCount(size_t discovery_account_index,

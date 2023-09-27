@@ -237,6 +237,27 @@ void AppMenuBridge::DidSelectTab(TabAndroid* sel_tab, TabModel::TabSelectionType
 
 }
 
+void AppMenuBridge::ReloadTabs() {
+  if (observed_tab_model_) {
+    int tab_count = observed_tab_model_->GetTabCount();
+    int active_idx = observed_tab_model_->GetActiveIndex();
+    for (int idx =  0; idx < tab_count; ++idx) {
+      TabAndroid* tab_android = observed_tab_model_->GetTabAt(idx);
+      if(tab_android && tab_android->web_contents() 
+        && !tab_android->IsNativePage() 
+        && tab_android->GetURL().SchemeIsHTTPOrHTTPS()) {
+        if (idx == active_idx) {
+          tab_android->web_contents()->GetController().Reload(
+            content::ReloadType::NORMAL, true);
+        } else {
+          tab_android->web_contents()->GetController().SetNeedsReload();
+        }
+        
+      }
+    }
+  }
+}
+
 void AppMenuBridge::CloseExtensionTabs(const std::string& extension_id) {
     if (observed_tab_model_) {
       int tab_count = observed_tab_model_->GetTabCount();

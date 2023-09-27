@@ -397,9 +397,10 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if (nativeAd.getStarRating() == null) {
                 adView.getStarRatingView().setVisibility(View.INVISIBLE);
             } else {
-                ((RatingBar) adView.getStarRatingView())
-                        .setRating(nativeAd.getStarRating().floatValue());
-                adView.getStarRatingView().setVisibility(View.VISIBLE);
+                adView.getStarRatingView().setVisibility(View.INVISIBLE);
+                // ((RatingBar) adView.getStarRatingView())
+                //         .setRating(nativeAd.getStarRating().floatValue());
+                // adView.getStarRatingView().setVisibility(View.VISIBLE);
             }
 
             if (nativeAd.getAdvertiser() == null) {
