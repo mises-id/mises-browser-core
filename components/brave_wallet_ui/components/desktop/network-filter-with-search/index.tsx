@@ -30,7 +30,8 @@ interface Props {
   searchPlaceholder: string
   searchAction?: (event: any) => void | undefined
   searchAutoFocus?: boolean
-  searchValue?: string
+  searchValue?: string,
+  hiddenSearchDropDown?: boolean
 }
 
 export const NetworkFilterWithSearch = (props: Props) => {
@@ -42,7 +43,8 @@ export const NetworkFilterWithSearch = (props: Props) => {
     searchPlaceholder,
     searchAction,
     searchAutoFocus,
-    searchValue
+    searchValue,
+    hiddenSearchDropDown
   } = props
 
   return (
@@ -57,15 +59,17 @@ export const NetworkFilterWithSearch = (props: Props) => {
           useWithFilter={true}
         />
       </View>
-      <HorizontalDivider />
-      <SelectNetworkDropdown
-        onSelectCustomNetwork={onSelectNetwork}
-        selectedNetwork={selectedNetwork}
-        onClick={onClick}
-        showNetworkDropDown={showNetworkDropDown}
-        useWithSearch={true}
-        customNetwork={AllNetworksOption}
-      />
+      {!hiddenSearchDropDown && <>
+        <HorizontalDivider />
+        <SelectNetworkDropdown
+          onSelectCustomNetwork={onSelectNetwork}
+          selectedNetwork={selectedNetwork}
+          onClick={onClick}
+          showNetworkDropDown={showNetworkDropDown}
+          useWithSearch={true}
+          customNetwork={AllNetworksOption}
+        />
+      </>}
     </StyledWrapper>
   )
 }
