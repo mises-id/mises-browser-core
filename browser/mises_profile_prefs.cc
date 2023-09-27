@@ -66,7 +66,8 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 
   registry->RegisterBooleanPref(kPreinstallMetamaskEnabled, true);
   registry->RegisterBooleanPref(kMisesWalletDidMigrated, false);
-  
+  registry->RegisterStringPref(
+      kMisesWalletAuthCache, std::string());
 
   registry->RegisterStringPref(
       prefs::kExtensionsUIDefaultEVMWalletID, std::string());

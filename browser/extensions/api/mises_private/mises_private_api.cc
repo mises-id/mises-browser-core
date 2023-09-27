@@ -1,6 +1,7 @@
 #include "mises/browser/extensions/api/mises_private/mises_private_api.h"
 #include "mises/common/extensions/api/mises_private.h"
 #include "mises/components/constants/url_constants.h"
+#include "mises/components/constants/pref_names.h"
 #include "extensions/browser/extension_function_registry.h"
 #include "extensions/common/extension.h"
 #include "base/logging.h"
@@ -74,6 +75,11 @@ ExtensionFunction::ResponseAction MisesPrivateSetMisesIdFunction::Run() {
 #if BUILDFLAG(IS_ANDROID)
   android::MisesController::GetInstance()->setMisesUserInfo(params->id);
 #endif
+  Profile* profile = Profile::FromBrowserContext(browser_context());
+  PrefService* prefs = profile->GetPrefs();
+  if (prefs->FindPreference(kMisesWalletAuthCache)) {
+    prefs->SetString(kMisesWalletAuthCache, params->id);
+  }
   return RespondNow(NoArguments());
 }
 
