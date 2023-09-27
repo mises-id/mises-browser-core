@@ -32,6 +32,8 @@ import {
 import { Image } from 'react-native'
 import { StyleSheet } from 'react-native'
 import { useStyle } from '../../../../page/styles'
+import { NetworkFilterSelector } from '../../../../components/desktop'
+import { useGetVisibleNetworksQuery } from '../../../../common/slices/api.slice'
 
 interface Props {
   title: string
@@ -70,6 +72,8 @@ export const TabHeader = (props: Props) => {
 
   const style = useStyle()
 
+  const { data: networks } = useGetVisibleNetworksQuery()
+
 
   // render
   return (
@@ -78,14 +82,21 @@ export const TabHeader = (props: Props) => {
         {/* <BraveLogo /> */}
         <Image
           style={StyleSheet.flatten([
-            style.flatten(["height-40"]),
+            style.flatten(["height-30"]),
             {
-              width: '100px'
+              width: '40px',
+              marginRight: '10px'
             }
           ])}
           fadeDuration={0}
           resizeMode="contain"
-          source={require("../../../../page/assets/logo/logo.png")}
+          source={require("../../../../page/assets/logo/mises-symbol.png")}
+        />
+        <NetworkFilterSelector 
+          isLeft 
+          networkListSubset={networks || []} 
+          hiddenText
+          shape="rounded"
         />
         {/* <HorizontalDivider height={22} marginRight={12} />
         <Text textSize='18px' textColor='text02' isBold={true}>

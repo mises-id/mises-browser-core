@@ -25,6 +25,7 @@ import { getBalance } from '../../../../../utils/balance-utils'
 import { computeFiatAmount } from '../../../../../utils/pricing-utils'
 import Amount from '../../../../../utils/amount'
 import {
+  useGetSelectedChainQuery,
   useGetVisibleNetworksQuery,
   useSetNetworkMutation
 } from '../../../../../common/slices/api.slice'
@@ -67,7 +68,8 @@ export const SelectTokenModal = React.forwardRef<HTMLDivElement, Props>(
     // State
     const [searchValue, setSearchValue] = React.useState<string>('')
     const [showNetworkDropDown, setShowNetworkDropDown] = React.useState<boolean>(false)
-    const [selectedNetworkFilter, setSelectedNetworkFilter] = React.useState<BraveWallet.NetworkInfo>(AllNetworksOption)
+    const { currentData: selectedNetworkGlobal } = useGetSelectedChainQuery(undefined)
+    const [selectedNetworkFilter, setSelectedNetworkFilter] = React.useState<BraveWallet.NetworkInfo>(selectedNetworkGlobal || AllNetworksOption)
 
     // Queries & Mutations
     const [setNetwork] = useSetNetworkMutation()
@@ -278,6 +280,7 @@ export const SelectTokenModal = React.forwardRef<HTMLDivElement, Props>(
                     ? getLocale('braveWalletSearchTokens')
                     : getLocale('braveWalletSearchNFTs')
                 }
+                hiddenSearchDropDown
                 searchAction={onSearch}
                 searchAutoFocus={true}
                 selectedNetwork={selectedNetworkFilter}

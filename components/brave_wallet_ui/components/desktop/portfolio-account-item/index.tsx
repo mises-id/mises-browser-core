@@ -37,7 +37,9 @@ import {
   MoreIcon,
   RightSide,
   CopyIcon,
-  AddressAndButtonRow
+  AddressAndButtonRow,
+  AccountNameButtonText,
+  AccountAddressButtonText
 } from './style'
 // import { SellButtonRow, SellButton } from '../../shared/style'
 
@@ -121,9 +123,9 @@ export const PortfolioAccountItem = (props: Props) => {
       <NameAndIcon>
         <AccountCircle orb={orb} />
         <AccountAndAddress>
-          <AccountNameButton onPress={onSelectAccount}>{name}</AccountNameButton>
+          <AccountNameButton onPress={onSelectAccount}><AccountNameButtonText>{name}</AccountNameButtonText></AccountNameButton>
           <AddressAndButtonRow>
-            <AccountAddressButton onPress={onSelectAccount}>{reduceAddress(address)}</AccountAddressButton>
+            <AccountAddressButton onPress={onSelectAccount}><AccountAddressButtonText>{reduceAddress(address)}</AccountAddressButtonText></AccountAddressButton>
             <CopyTooltip text={address}>
               <CopyIcon />
             </CopyTooltip>

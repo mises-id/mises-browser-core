@@ -808,6 +808,7 @@ handler.on(WalletActions.getCoinMarkets.type, async (store: Store, payload: GetC
 handler.on(WalletActions.setSelectedNetworkFilter.type, async (store: Store, payload: NetworkFilterType) => {
   const state = getWalletState(store)
   const { selectedPortfolioTimeline } = state
+  store.dispatch(refreshBalances())
   await store.dispatch(refreshTokenPriceHistory(selectedPortfolioTimeline))
 })
 

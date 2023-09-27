@@ -95,14 +95,14 @@ provideStrings({
   braveWalletExpiresInTitle: 'Expires in',
   braveWalletSendPlaceholder: 'Wallet address or URL',
   braveWalletSendNoURLPlaceholder: 'Wallet address',
-  braveWalletSwapDisclaimer: 'Brave uses $1$3$2 as a DEX aggregator.',
+  braveWalletSwapDisclaimer: 'Mises uses $1$3$2 as a DEX aggregator.',
   braveWalletSwapDisclaimerDescription: '0x will process the Ethereum address and IP address to fulfill a transaction (including getting quotes). 0x will ONLY use this data for the purposes of processing transactions.',
   braveWalletJupiterSwapDisclaimerDescription: 'Jupiter will process the Solana address and IP address to fulfill a transaction (including getting quotes). Jupiter will ONLY use this data for the purposes of processing transactions.',
-  braveWalletSwapFeesNotice: 'Quote includes a $1 Brave fee.',
+  braveWalletSwapFeesNotice: 'Quote includes a $1 Mises fee.',
   braveWalletDecimalPlacesError: 'Too many decimal places',
   braveWalletBuyTapBuyNotSupportedMessage: 'Buy not supported for selected network',
   braveWalletSearchingForDomain: 'Searching for domain...',
-  braveWalletEnsOffChainLookupTitle: 'Brave supports using off-chain gateways to resolve .eth domains.',
+  braveWalletEnsOffChainLookupTitle: 'Mises supports using off-chain gateways to resolve .eth domains.',
   braveWalletEnsOffChainLookupDescription: 'It looks like you\'ve entered an ENS address. We\'ll need to use a third-party resolver to resolve this request, which may be able to see your IP address and domain.',
   braveWalletEnsOffChainButton: 'Use ENS domain',
 
@@ -155,7 +155,7 @@ provideStrings({
   // Onboarding - Disclosures
   braveWalletDisclosuresTitle: 'Legal stuff',
   braveWalletDisclosuresDescription: 'Please acknowledge the following:',
-  braveWalletSelfCustodyDisclosureCheckboxText: 'I understand this is a self-custody wallet, and that I alone am responsible for any associated funds, assets, or accounts, and for taking appropriate action to secure, protect and backup my wallet. I understand that Brave can NOT access my wallet or reverse transactions on my behalf, and that my recovery phrase is the ONLY way to regain access in the event of a lost password, stolen device, or similar circumstance.',
+  braveWalletSelfCustodyDisclosureCheckboxText: 'I understand this is a self-custody wallet, and that I alone am responsible for any associated funds, assets, or accounts, and for taking appropriate action to secure, protect and backup my wallet. I understand that Mises can NOT access my wallet or reverse transactions on my behalf, and that my recovery phrase is the ONLY way to regain access in the event of a lost password, stolen device, or similar circumstance.',
   braveWalletTermsOfServiceCheckboxText: 'I have read and agree to the $1Terms of use$2',
 
   // Onboarding import or restore wallet page
@@ -166,7 +166,7 @@ provideStrings({
   braveWalletRestoreMyBraveWalletDescription: '12-24 words',
   braveWalletImportFromMetaMask: 'Import from MetaMask',
   braveWalletImportFromMetaMaskDescription: 'Use your MetaMask password to import your seed phrase',
-  braveWalletImportFromLegacy: 'Import from legacy Brave crypto wallets',
+  braveWalletImportFromLegacy: 'Import from legacy Mises crypto wallets',
   braveWalletCreateWalletInsteadLink: 'Never mind, I’ll create a new wallet',
 
   // onboarding import wallet screen
@@ -186,7 +186,7 @@ provideStrings({
 
   // Onboarding - Backup Wallet - Recovery Phrase Backup
   braveWalletRecoveryPhraseBackupTitle: 'Back up your wallet recovery phrase',
-  braveWalletRecoveryPhraseBackupWarning: 'Brave cannot access your secret recovery phrase. Keep it safe, and never share it with anyone else.',
+  braveWalletRecoveryPhraseBackupWarning: 'Mises cannot access your secret recovery phrase. Keep it safe, and never share it with anyone else.',
   braveWalletCopiedToClipboard: 'Copied to clipboard',
   braveWalletClickToSeeRecoveryPhrase: 'Click to see your phrase',
 
@@ -231,7 +231,7 @@ provideStrings({
 
   // Onboarding Success
   braveWalletOnboardingSuccessTitle: 'Congratulations! Your Mises Wallet is ready to go!',
-  braveWalletOnboardingSuccessDescription: 'To access your wallet, just click the wallet icon at the top right of any Brave browser window.',
+  braveWalletOnboardingSuccessDescription: 'To access your wallet, just click the wallet icon at the top right of any Mises browser window.',
   braveWalletBuyCryptoButton: 'Buy crypto',
   braveWalletDepositCryptoButton: 'Deposit',
   braveWalletLearnAboutMyWallet: 'Learn more about my new wallet',
@@ -266,7 +266,7 @@ provideStrings({
   braveWalletRestoreError: 'The recovery phrase entered is invalid.',
   braveWalletRestorePlaceholder: 'Paste recovery phrase from clipboard',
   braveWalletRestoreShowPhrase: 'Show recovery phrase',
-  braveWalletRestoreLegacyCheckBox: 'Import from legacy Brave crypto wallets?',
+  braveWalletRestoreLegacyCheckBox: 'Import from legacy Mises crypto wallets?',
   braveWalletRestoreFormText: 'New Password',
 
   // Clipboard
@@ -313,7 +313,7 @@ provideStrings({
   braveWalletConnectHardwareInfo2: 'Unlock your device and select the $1 app.',
   braveWalletConnectHardwareTrezor: 'Trezor',
   braveWalletConnectHardwareLedger: 'Ledger',
-  braveWalletConnectHardwareAuthorizationNeeded: 'Grant Brave access to your Ledger device.',
+  braveWalletConnectHardwareAuthorizationNeeded: 'Grant Mises access to your Ledger device.',
   braveWalletConnectingHardwareWallet: 'Connecting...',
   braveWalletAddCheckedAccountsHardwareWallet: 'Add checked accounts',
   braveWalletLoadMoreAccountsHardwareWallet: 'Load more',
@@ -457,7 +457,7 @@ provideStrings({
 
   // Sign Transaction Panel
   braveWalletSignTransactionTitle: 'Your signature is being requested',
-  braveWalletSignWarning: 'Note that Brave can’t verify what will happen if you sign. A signature could authorize nearly any operation in your account or on your behalf, including (but not limited to) giving total control of your account and crypto assets to the site making the request. Only sign if you’re sure you want to take this action, and trust the requesting site.',
+  braveWalletSignWarning: 'Note that Mises can’t verify what will happen if you sign. A signature could authorize nearly any operation in your account or on your behalf, including (but not limited to) giving total control of your account and crypto assets to the site making the request. Only sign if you’re sure you want to take this action, and trust the requesting site.',
   braveWalletSignWarningTitle: 'Sign at your own risk',
   braveWalletSignTransactionMessageTitle: 'Message',
   braveWalletSignTransactionEIP712MessageTitle: 'Details',
@@ -650,7 +650,7 @@ provideStrings({
   braveWalletAddressRequiredError: 'To address is required',
   braveWalletInvalidRecipientAddress: 'Invalid recipient address',
   braveWalletChecksumModalTitle: 'How can I find the right address?',
-  braveWalletChecksumModalDescription: 'Brave validates and prevents users from sending funds to the wrong address due to incorrect capitalization. This is a "checksum" process to verify that it is a valid Ethereum address.',
+  braveWalletChecksumModalDescription: 'Mises validates and prevents users from sending funds to the wrong address due to incorrect capitalization. This is a "checksum" process to verify that it is a valid Ethereum address.',
   braveWalletChecksumModalStepOneTitle: '1. Visit',
   braveWalletChecksumModalStepOneDescription: 'Visit etherscan and paste the wallet address you want to send tokens. Then enter.',
   braveWalletChecksumModalStepTwoTitle: '2. Copy and enter ETH address',

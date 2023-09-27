@@ -41,7 +41,9 @@ export const CloseButton = styled(WalletButton)`
   cursor: pointer;
   width: 16px;
   height: 16px;
-  background-image: url(${CloseIcon}) no-repeat;
+  background-color: ${(p) => p.theme.color.interactive07};
+  -webkit-mask-image: url(${CloseIcon});
+  mask-image: url(${CloseIcon});
   border: none;
   margin-right: 12px;
 `

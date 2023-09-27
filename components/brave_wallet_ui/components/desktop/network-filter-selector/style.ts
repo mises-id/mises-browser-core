@@ -18,7 +18,7 @@ export const StyledWrapper = styled.View`
   z-index: 8;
 `
 
-export const DropDownButton = styled(WalletButton)`
+export const DropDownButton = styled(WalletButton)<{shape?: 'rounded' | undefined}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,14 +28,13 @@ export const DropDownButton = styled(WalletButton)`
   background-image: none;
   background-color: none;;
   border: ${(p) => `1px solid ${p.theme.color.interactive08}`};
-  border-radius: 4px;
+  border-radius: ${(p) => p.shape === 'rounded' ? '30px' : '4px'};
   font-family: Poppins;
   font-style: normal;
   font-size: 13px;
   line-height: 20px;
   letter-spacing: 0.01em;
   padding: 8px 12px;
-  margin-bottom: 8px;
   color: ${(p) => p.theme.color.text01};
 `
 

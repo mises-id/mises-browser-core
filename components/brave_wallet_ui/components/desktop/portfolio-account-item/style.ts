@@ -45,6 +45,8 @@ export const AccountNameButton = styled(WalletButton)`
   line-height: 20px;
   letter-spacing: 0.01em;
   font-weight: 600;
+`
+export const AccountNameButtonText = styled.Text`
   color: ${(p) => p.theme.color.text01};
 `
 
@@ -52,6 +54,9 @@ export const AccountAddressButton = styled(AccountNameButton)`
   font-size: 12px;
   line-height: 18px;
   font-weight: 400;
+  color: ${(p) => p.theme.color.text02};
+`
+export const AccountAddressButtonText = styled.Text`
   color: ${(p) => p.theme.color.text02};
 `
 

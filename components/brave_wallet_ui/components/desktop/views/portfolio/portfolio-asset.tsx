@@ -439,7 +439,7 @@ export const PortfolioAsset = (props: Props) => {
 
   // methods
   const onClickAddAccount = React.useCallback((tabId: AddAccountNavTypes) => () => {
-    history.push(WalletRoutes.AddAccountModal)
+    history.push(WalletRoutes.CreateAccountModal.replace(':accountTypeName?', 'ethereum'))
   }, [])
 
   // const onChangeTimeline = React.useCallback((timeline: BraveWallet.AssetPriceTimeframe) => {

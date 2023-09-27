@@ -822,4 +822,9 @@ handler.on(WalletActions.unlocked.type, async (store: Store) => {
   }
 })
 
+handler.on(WalletActions.closeUI.type, async (store: Store) => {
+  const apiProxy = getWalletPanelApiProxy()
+  apiProxy.panelHandler.closeUI()
+})
+
 export default handler.middleware

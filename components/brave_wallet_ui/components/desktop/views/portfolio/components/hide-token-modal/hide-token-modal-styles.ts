@@ -6,7 +6,7 @@
 import styled from 'styled-components/native'
 import { WalletButton } from '../../../../../shared/style'
 
-export const hideTokenModalWidth = '400px'
+export const hideTokenModalWidth = '95vw'
 
 export const StyledWrapper = styled.View`
   display: flex;
@@ -19,7 +19,7 @@ export const TokenSymbol = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 30px;
   font-weight: 400;
   margin: 0;
   padding-top: 20px;
@@ -33,7 +33,7 @@ export const Instructions = styled.Text`
   font-family: 'Poppins';
   font-style: normal;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 30px;
   font-weight: 400;
   margin: 0;
   padding-top: 20px;

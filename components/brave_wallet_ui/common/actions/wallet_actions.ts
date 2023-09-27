@@ -90,6 +90,7 @@
   transactionStatusChanged,
   unapprovedTxUpdated,
   unlocked,
+  closeUI,
   unlockWallet,
   updateTokenPinStatus,
   updateUnapprovedTransactionGasFields,

@@ -25,6 +25,7 @@ import { TransactionSubmittedOrSigned } from './submitted_or_signed'
 import { TransactionComplete } from './complete'
 import { TransactionFailed } from './failed'
 import { Loader } from './common/common.style'
+import { WalletActions } from '../../../common/actions'
 
 interface Props {
   transaction: SerializableTransactionInfo
@@ -55,7 +56,10 @@ export function TransactionStatus (props: Props) {
   )
 
   const viewTransactionDetail = () => dispatch(WalletPanelActions.navigateTo('transactionDetails'))
-  const onClose = () => dispatch(WalletPanelActions.setSelectedTransaction(undefined))
+  const onClose = () => {
+    dispatch(WalletPanelActions.setSelectedTransaction(undefined))
+    dispatch(WalletActions.closeUI())
+  }
   const completePrimaryCTAText =
     transactionsQueueLength === 0
       ? getLocale('braveWalletButtonClose')

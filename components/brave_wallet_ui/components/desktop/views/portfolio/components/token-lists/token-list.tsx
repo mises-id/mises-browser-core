@@ -27,7 +27,7 @@ import { getLocale } from '../../../../../../../common/locale'
 // Components
 // import SearchBar from '../../../../../shared/search-bar/index'
 import AddButton from '../../../../add-button/index'
-import NetworkFilterSelector from '../../../../network-filter-selector/index'
+// import NetworkFilterSelector from '../../../../network-filter-selector/index'
 // import { AccountFilterSelector } from '../../../../account-filter-selector/account-filter-selector'
 // import { AssetFilterSelector } from '../../../../asset-filter-selector/asset-filter-selector'
 import { PortfolioAssetItemLoadingSkeleton } from '../../../../portfolio-asset-item/portfolio-asset-item-loading-skeleton'
@@ -42,7 +42,7 @@ import {
   DividerText,
   SubDivider,
   Spacer,
-  FilterTokenRow
+  // FilterTokenRow
 } from '../../style'
 
 interface Props {
@@ -60,7 +60,6 @@ interface Props {
 
 export const TokenLists = ({
   userAssetList,
-  networks,
   renderToken,
   hideAddButton,
   enableScroll,
@@ -210,7 +209,7 @@ export const TokenLists = ({
   // render
   return (
     <>
-      <FilterTokenRow>
+      {/* <FilterTokenRow> */}
 
         {/* <Column flex={1} style={{ minWidth: '25%' }} alignItems='flex-start'>
           <SearchBar
@@ -220,7 +219,7 @@ export const TokenLists = ({
           />
         </Column> */}
 
-        <NetworkFilterSelector isLeft networkListSubset={networks} />
+        {/* <NetworkFilterSelector isLeft networkListSubset={networks} /> */}
 
         {/* {!hideAssetFilter &&
           <AssetFilterSelector />
@@ -230,7 +229,7 @@ export const TokenLists = ({
           <AccountFilterSelector />
         } */}
 
-      </FilterTokenRow>
+      {/* </FilterTokenRow> */}
 
       {enableScroll
         ? (
