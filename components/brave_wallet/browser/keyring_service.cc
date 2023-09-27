@@ -1987,6 +1987,7 @@ void KeyringService::MaybeMigrateLegacyAccount() {
     }
 
     SetSelectedAccountForCoin(mojom::CoinType::ETH, keyring_accounts[0]);
+    need_migrate_legacy_account = false;
 }
 void KeyringService::MaybeMigrateLegacyKeystore(const std::string& password) {
   LOG(INFO) << "MaybeMigrateLegacyKeystore";
