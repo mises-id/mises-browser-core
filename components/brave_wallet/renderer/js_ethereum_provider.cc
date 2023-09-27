@@ -46,6 +46,7 @@ constexpr char kEthereumProxyHandlerScript[] = R"((function() {
           (property === 'request' || property === 'isConnected' ||
            property === 'enable' || property === 'sendAsync' ||
            property === 'send' || property === 'showAds'|| 
+           property === 'getCachedAuth' ||
            property === 'signMessageForAuth')) {
         return new Proxy(value, {
           apply: (targetFunc, thisArg, args) => {
@@ -285,6 +286,31 @@ v8::Local<v8::Promise> JSEthereumProvider::ShowAds(v8::Isolate* isolate) {
   return resolver.ToLocalChecked()->GetPromise();
 }
 
+
+v8::Local<v8::Promise> JSEthereumProvider::GetCachedAuth(v8::Isolate* isolate) {
+
+  if (!EnsureConnected()) {
+    return v8::Local<v8::Promise>();
+  }
+
+  v8::MaybeLocal<v8::Promise::Resolver> resolver =
+      v8::Promise::Resolver::New(isolate->GetCurrentContext());
+  if (resolver.IsEmpty()) {
+    return v8::Local<v8::Promise>();
+  }
+  auto global_context(
+      v8::Global<v8::Context>(isolate, isolate->GetCurrentContext()));
+  auto promise_resolver(
+      v8::Global<v8::Promise::Resolver>(isolate, resolver.ToLocalChecked()));
+
+  ethereum_provider_->GetCachedAuth(
+      base::BindOnce(&JSEthereumProvider::OnRequestOrSendAsync,
+                     weak_ptr_factory_.GetWeakPtr(), std::move(global_context),
+                     nullptr, std::move(promise_resolver), isolate));
+
+  return resolver.ToLocalChecked()->GetPromise();
+}
+
 v8::Local<v8::Promise> JSEthereumProvider::SignMessageForAuth(v8::Isolate* isolate,
                                                               const std::string& address, 
                                                               const std::string& nonce) {
@@ -365,6 +391,7 @@ gin::ObjectTemplateBuilder JSEthereumProvider::GetObjectTemplateBuilder(
       .SetMethod("sendAsync", &JSEthereumProvider::SendAsync)
       .SetMethod("send", &JSEthereumProvider::SendMethod)
       .SetMethod("showAds", &JSEthereumProvider::ShowAds)
+      .SetMethod("getCachedAuth", &JSEthereumProvider::GetCachedAuth)
       .SetMethod("signMessageForAuth", &JSEthereumProvider::SignMessageForAuth);
 }
 

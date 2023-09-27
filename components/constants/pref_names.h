@@ -98,5 +98,5 @@ extern const char kEnableMediaRouterOnRestart[];
 
 extern const char kPreinstallMetamaskEnabled[];
 extern const char kMisesWalletDidMigrated[];
-
+extern const char kMisesWalletAuthCache[];
 #endif  // BRAVE_COMPONENTS_CONSTANTS_PREF_NAMES_H_

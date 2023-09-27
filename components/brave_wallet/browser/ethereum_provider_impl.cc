@@ -5,6 +5,8 @@
 
 #include "mises/components/brave_wallet/browser/ethereum_provider_impl.h"
 
+#include "mises/components/constants/pref_names.h"
+
 #include <string>
 #include <tuple>
 #include <utility>
@@ -31,6 +33,7 @@
 #include "mises/components/constants/url_constants.h"
 #include "components/content_settings/core/browser/host_content_settings_map.h"
 #include "components/grit/mises_components_strings.h"
+#include "components/prefs/pref_service.h"
 #include "crypto/random.h"
 #include "ui/base/l10n/l10n_util.h"
 #include "url/origin.h"
@@ -1058,6 +1061,26 @@ void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, c
     std::move(callback).Run(base::Value(), base::Value(std::move(result)), true, "", true);
   }
 }
+
+ void EthereumProviderImpl::GetCachedAuth(GetCachedAuthCallback callback) {
+  if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
+    std::move(callback).Run(base::Value(), base::Value(), true, "", true);
+    return;
+  }
+  std::string auth_cache;
+  if (prefs_->FindPreference(kMisesWalletAuthCache)) {
+    auth_cache = prefs_->GetString(kMisesWalletAuthCache);
+  }
+  auto json_value = base::JSONReader::Read(
+      auth_cache,
+      base::JSON_PARSE_CHROMIUM_EXTENSIONS | base::JSON_ALLOW_TRAILING_COMMAS);
+  if (!json_value || !json_value->is_dict())  {
+    std::move(callback).Run(base::Value(), base::Value(), true, "", true);
+    return;
+  }
+  base::Value::Dict result = json_value->GetDict().Clone();
+  std::move(callback).Run(base::Value(), base::Value(std::move(result)), false, "", true);
+ }
 
 void EthereumProviderImpl::SignMessageForAuth(const std::string& address,
                                               const std::string& nonce,
