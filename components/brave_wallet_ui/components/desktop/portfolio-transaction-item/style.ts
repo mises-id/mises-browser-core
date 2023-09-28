@@ -38,7 +38,7 @@ export const DetailRow = styled.View`
 `
 
 export const BalanceAndMoreRow = styled(DetailRow)`
-  width: 70%;
+  width: 88%;
 `
 
 export const AddressText = styled.Text`
@@ -141,6 +141,7 @@ export const DetailTextDarkBold = styled.Text`
   letter-spacing: 0.01em;
   font-weight: 600;
   color: ${(p) => p.theme.color.text02};
+  margin-right: 6px;
 `
 
 export const BalanceColumn = styled.View`
@@ -148,7 +149,9 @@ export const BalanceColumn = styled.View`
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
-  width: 70%;
+  // width: 70%;
+  flex: 1;
+  width: 1px;
 `
 
 export const ArrowIcon = styled.View`

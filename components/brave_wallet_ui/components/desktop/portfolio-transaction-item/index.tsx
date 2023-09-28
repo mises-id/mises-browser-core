@@ -54,13 +54,13 @@ import {
   RejectedTransactionSpacer,
   MoreButton,
   MoreIcon,
-  StatusRow,
+  // StatusRow,
   PortfolioTransactionItemWrapper,
   OrbAndTxDescriptionContainer,
   TransactionFeeTooltipBody,
   StatusBalanceAndMoreContainer,
   BalanceAndMoreRow} from './style'
-import { StatusBubble } from '../../shared/style'
+// import { StatusBubble } from '../../shared/style'
 import TransactionPopup, { TransactionPopupItem } from '../transaction-popup'
 import TransactionTimestampTooltip from '../transaction-timestamp-tooltip'
 import { Skeleton, LoadingSkeletonStyleProps } from '../../shared/loading-skeleton/styles'
@@ -376,12 +376,15 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
       default: {
         return (
           <DetailRow>
-            <DetailTextDark>
+            {/* <DetailTextDark>
               <AddressOrAsset onPress={onAddressClick(transaction.sender)}>
                 {transaction.senderLabel}
               </AddressOrAsset>
             </DetailTextDark>
-            <ArrowIcon />
+            <ArrowIcon /> */}
+            <DetailTextDarkBold>
+              {getTransactionStatusString(transaction.status)}
+            </DetailTextDarkBold>
             <DetailTextDark>
               <AddressOrAsset onPress={onAddressClick(transaction.recipient)}>
                 {transaction.recipientLabel}
@@ -496,12 +499,10 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
       </OrbAndTxDescriptionContainer>
 
       <StatusBalanceAndMoreContainer>
-        <StatusRow>
+        {/* <StatusRow>
           <StatusBubble status={transaction.status} />
-          <DetailTextDarkBold>
-            {getTransactionStatusString(transaction.status)}
-          </DetailTextDarkBold>
-        </StatusRow>
+          
+        </StatusRow> */}
 
         {/* Balance & more */}
         <BalanceAndMoreRow>
