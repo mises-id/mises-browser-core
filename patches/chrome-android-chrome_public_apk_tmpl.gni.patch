@@ -1,5 +1,5 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index 56949f4bb7496f40204bfc72f74123104f5ea1ff..79e27f44f3dbdaafc3e6940a3e4849831370d89c 100644
+index 56949f4bb7496f40204bfc72f74123104f5ea1ff..d2cd4ca2295fd188f36705ba1631aa8aa4a4592f 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
 @@ -326,6 +326,17 @@ template("chrome_public_common_apk_or_module_tmpl") {
@@ -37,3 +37,11 @@ index 56949f4bb7496f40204bfc72f74123104f5ea1ff..79e27f44f3dbdaafc3e6940a3e484983
          # Resources config for blocklisting resource names from obfuscation
          resources_config_paths = [
            "//android_webview/aapt2.config",
+@@ -751,6 +763,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
+         if (defined(invoker.proguard_configs)) {
+           proguard_configs += invoker.proguard_configs
+         }
++        proguard_configs += [ "//mises/android/java/proguard.flags" ]
+         if (is_monochrome) {
+           proguard_configs +=
+               [ "//android_webview/nonembedded/java/proguard.flags" ]
