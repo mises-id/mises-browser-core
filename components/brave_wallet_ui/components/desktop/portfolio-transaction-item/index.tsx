@@ -453,6 +453,7 @@ export const PortfolioTransactionItem = React.forwardRef<HTMLDivElement, Props>(
   return (
     <PortfolioTransactionItemWrapper
       isFocused={isFocused}
+      showTransactionPopup={showTransactionPopup}
       onPress={onHideTransactionPopup}
     >
       <OrbAndTxDescriptionContainer>

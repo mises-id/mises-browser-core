@@ -122,6 +122,7 @@ export type PanelTypes =
   | 'activity' // Transactions
   | 'currencies'
   | 'transactionStatus'
+  | 'loading'
 
 export type NavTypes =
   | 'crypto'

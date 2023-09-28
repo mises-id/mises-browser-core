@@ -13,7 +13,7 @@ interface StyleProps {
   orb: string
 }
 
-export const PortfolioTransactionItemWrapper = styled.TouchableOpacity<{ isFocused?: boolean }>`
+export const PortfolioTransactionItemWrapper = styled.TouchableOpacity<{ isFocused?: boolean, showTransactionPopup?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,7 +26,7 @@ export const PortfolioTransactionItemWrapper = styled.TouchableOpacity<{ isFocus
   border-radius: 10px;
   gap: 16px;
   position: relative;
-  z-index: 9;
+  z-index: ${(p) => p.showTransactionPopup ? '10' : '2'};;
 `
 
 export const DetailRow = styled.View`
