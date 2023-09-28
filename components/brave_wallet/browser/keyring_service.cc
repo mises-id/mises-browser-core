@@ -996,7 +996,8 @@ void KeyringService::AddAccount(const std::string& account_name,
   SetSelectedAccountForCoinSilently(coin, address.value());
   SetSelectedCoin(profile_prefs_, coin);
   NotifyAccountsAdded(coin, {address.value()});
-
+  NotifySelectedAccountChanged(coin);
+  
   NotifyAccountsChanged();
   std::move(callback).Run(true);
 }
