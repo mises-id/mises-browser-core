@@ -11,7 +11,8 @@ is_manifest_empty = false
 manifest_package = "com.google.android.gms.ads"
 resources = [
   "res/layout/admob_empty_layout.xml",
-  "res/values/values.xml"
+  "res/values/values.xml",
+  "res/xml/gma_ad_services_config.xml"
 ]
 subjar_tuples = []
 subjars = []
