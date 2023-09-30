@@ -497,7 +497,7 @@ export const PortfolioAsset = (props: Props) => {
 
   const onShowMore = React.useCallback(() => {
     // e.stopPropagation()
-    setShowMore(!showMore)
+    setShowMore(true)
   }, [])
 
   const onHideMore = React.useCallback(() => {
@@ -717,7 +717,7 @@ export const PortfolioAsset = (props: Props) => {
             />
           } */}
           {selectedAsset?.contractAddress && !selectedAsset?.isErc721 && !selectedAsset.isNft &&
-            <MoreButton onPress={onShowMore} />
+            <MoreButton onPress={() => showMore ? onHideMore() : onShowMore()} />
           }
           {showMore && selectedAsset &&
             <AssetMorePopup

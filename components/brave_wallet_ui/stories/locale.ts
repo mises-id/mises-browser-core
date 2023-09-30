@@ -567,7 +567,7 @@ provideStrings({
 
   // Import from Legacy Wallet
   braveWalletCryptoWalletsDetected: 'Existing crypto wallets detected',
-  braveWalletCryptoWalletsDescriptionTwo: 'If youd rather skip the import and keep the old Crypto Wallets experience, just navigate to the Brave Browser $1Settings$2 and change the default back to Crypto Wallets. You can also import, try the new Mises Wallet, and change back at any time.',
+  braveWalletCryptoWalletsDescriptionTwo: 'If youd rather skip the import and keep the old Crypto Wallets experience, just navigate to the Mises Browser $1Settings$2 and change the default back to Crypto Wallets. You can also import, try the new Mises Wallet, and change back at any time.',
   braveWalletImportBraveLegacyDescription: 'Enter your existing crypto wallets password to import to Mises Wallet. Enjoy a faster and more secure way to manage crypto assets and interact with Web3 DApps.',
   braveWalletImportBraveLegacyInput: 'Type Crypto wallets password',
 
@@ -695,7 +695,7 @@ provideStrings({
   braveWalletNFTDetailImageAddress: 'Image location or address',
 
   // Sweepstakes
-  braveWalletSweepstakesTitle: 'Brave Swap-stakes',
+  braveWalletSweepstakesTitle: 'Mises Swap-stakes',
   braveWalletSweepstakesDescription: '7 days of crypto giveaways, ~$500k in prizes.',
   braveWalletSweepstakesCallToAction: 'Enter now!',
 

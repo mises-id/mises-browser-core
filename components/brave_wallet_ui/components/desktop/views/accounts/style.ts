@@ -123,7 +123,7 @@ export const WalletName = styled.Text`
   margin-right: 15px;
 `
 
-export const WalletAddress = styled(WalletButton)`
+export const WalletAddress = styled.Text`
   font-family: Poppins;
   font-size: 15px;
   line-height: 20px;

@@ -23,7 +23,7 @@ import { ParsedTransaction } from '../../../../../../utils/tx-utils'
 import {
   PortfolioTransactionItem,
   PortfolioAccountItem,
-  AddButton,
+  // AddButton,
   WithHideBalancePlaceholder
 } from '../../../../'
 
@@ -39,7 +39,7 @@ import {
 
 // Styled Components
 import {
-  ButtonRow,
+  // ButtonRow,
   DividerText,
   SubDivider,
   EmptyTransactionContainer,
@@ -195,13 +195,13 @@ export const AccountsAndTransactionsList = ({
               isSellSupported={checkIsAssetSellSupported(selectedAsset)}
             />
           )}
-          <ButtonRow>
+          {/* <ButtonRow>
             <AddButton
               buttonType='secondary'
               onSubmit={onClickAddAccount('create')}
               text={getLocale('braveWalletAddAccount')}
             />
-          </ButtonRow>
+          </ButtonRow> */}
 
           <Column fullWidth={true} alignItems='flex-start'>
             <DividerText>{getLocale('braveWalletTransactions')}</DividerText>

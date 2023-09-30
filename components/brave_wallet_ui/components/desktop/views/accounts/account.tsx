@@ -92,9 +92,13 @@ export const Account = ({
   const transactions = useUnsafeWalletSelector(WalletSelectors.transactions)
   const solFeeEstimates = useUnsafeWalletSelector(WalletSelectors.solFeeEstimates)
   const spotPrices = useUnsafeWalletSelector(WalletSelectors.transactionSpotPrices)
+  const selectedNetworkFilter = useUnsafeWalletSelector(WalletSelectors.selectedNetworkFilter)
 
   // queries
-  const { data: networkList = [] } = useGetNetworksQuery()
+  const { data: networkListQuery = [] } = useGetNetworksQuery()
+  const networkList = React.useMemo(() => {
+    return networkListQuery.filter((val: BraveWallet.NetworkInfo) => val.chainId === selectedNetworkFilter.chainId)
+  }, [selectedNetworkFilter])
   const { fullTokenList } = useGetTokensRegistryQuery(undefined, {
     selectFromResult: (result) => ({
       fullTokenList: selectAllBlockchainTokensFromQueryResult(result)

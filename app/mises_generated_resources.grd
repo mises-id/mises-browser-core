@@ -311,13 +311,13 @@
 
       <!-- Brave Wallet Extension -->
       <if expr="use_titlecase">
-        <message name="IDS_HIDE_BRAVE_WALLET_ICON_ON_TOOLBAR" desc="The description for hiding the Brave Wallet icon on the toolbar">
-          Hide Brave Wallet Icon
+        <message name="IDS_HIDE_BRAVE_WALLET_ICON_ON_TOOLBAR" desc="The description for hiding the Mises Wallet icon on the toolbar">
+          Hide Mises Wallet Icon
         </message>
       </if>
       <if expr="not use_titlecase">
-        <message name="IDS_HIDE_BRAVE_WALLET_ICON_ON_TOOLBAR" desc="The description for hiding the Brave Wallet icon on the toolbar">
-          Hide Brave Wallet icon
+        <message name="IDS_HIDE_BRAVE_WALLET_ICON_ON_TOOLBAR" desc="The description for hiding the Mises Wallet icon on the toolbar">
+          Hide Mises Wallet icon
         </message>
       </if>
 

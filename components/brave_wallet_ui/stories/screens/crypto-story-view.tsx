@@ -19,6 +19,8 @@ import { AppsList } from '../../options/apps-list-options'
 import { filterAppList } from '../../utils/filter-app-list'
 import { Accounts, PortfolioOverview } from '../../components/desktop/views'
 import WalletPageStory from '../wrappers/wallet-page-story-wrapper'
+import { useDispatch } from 'react-redux'
+import { WalletPageActions } from '../../page/actions'
 
 export interface Props {
   showAddModal: boolean
@@ -41,6 +43,8 @@ const CryptoStoryView = (props: Props) => {
   ])
   const [selectedTab, setSelectedTab] = React.useState<TopTabNavTypes>('portfolio')
   const [showMore, setShowMore] = React.useState<boolean>(false)
+
+  const dispatch = useDispatch()
 
   const browseMore = () => {
     alert('Will expand to view more!')
@@ -67,6 +71,7 @@ const CryptoStoryView = (props: Props) => {
 
   const onDismissBackupWarning = () => {
     setShowBackupWarning(false)
+    dispatch(WalletPageActions.walletBackupComplete())
   }
 
   const onDismissDefaultWalletBanner = () => {
@@ -78,9 +83,9 @@ const CryptoStoryView = (props: Props) => {
     alert('Will Nav to brave://settings/wallet')
   }
 
-  const onClickMore = () => {
-    setShowMore(true)
-  }
+  // const onClickMore = () => {
+  //   setShowMore(true)
+  // }
 
   const onHideMore = () => {
     if (showMore) {
@@ -90,18 +95,13 @@ const CryptoStoryView = (props: Props) => {
 
   return (
     <WalletPageStory>
-      <StyledWrapper onClick={onHideMore}>
+      <StyledWrapper onPress={onHideMore}>
         {!hideNav &&
           <>
             <TopTabNav
               tabList={TopNavOptions()}
               selectedTab={selectedTab}
               onSelectTab={onSelectTab}
-              hasMoreButtons={true}
-              showMore={showMore}
-              onClickBackup={onShowBackup}
-              onClickMore={onClickMore}
-              onClickSettings={onClickSettings}
             />
             {showDefaultWalletBanner &&
               <WalletBanner
