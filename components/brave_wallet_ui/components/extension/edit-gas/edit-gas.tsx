@@ -118,9 +118,9 @@ export const EditGas = ({
     setMaxFeePerGas(computedMaxFeePerGasGWei)
   }
 
-  // const handleMaxFeePerGasInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setMaxFeePerGas(event.target.value)
-  // }
+  const handleMaxFeePerGasInputChanged = (value: string) => {
+    setMaxFeePerGas(value)
+  }
 
   // const onSetPanelToCustom = () => {
   //   setMaxPriorityPanel(MaxPriorityPanels.setCustom)
@@ -351,6 +351,7 @@ export const EditGas = ({
               placeholder='0'
               value={maxFeePerGas}
               hasError={isCustomGasBelowBaseFee}
+              onChangeText={handleMaxFeePerGasInputChanged}
             />
 
             <MaximumFeeRow>
