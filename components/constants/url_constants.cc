@@ -32,3 +32,5 @@ const char kWidevineLearnMoreUrl[] =
     "360023851591-How-do-I-view-DRM-protected-content-";
 
 const char kMisesHost[] = ".mises.site";
+
+const char kMisesSwapHost[] = "swap.mises.site";

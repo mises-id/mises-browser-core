@@ -15,8 +15,8 @@ import {
 } from './style'
 import { getLocale } from '../../../../common/locale'
 import { PanelTypes } from '../../../constants/types'
-import { WalletActions } from '../../../common/actions'
-import { useDispatch } from 'react-redux'
+// import { WalletActions } from '../../../common/actions'
+// import { useDispatch } from 'react-redux'
 
 export interface Props {
   title: string
@@ -26,12 +26,12 @@ export interface Props {
 }
 
 const PanelHeader: React.FC<Props> = (props) => {
-  const { title, searchAction, useSearch } = props;
+  const { title, searchAction, useSearch, action } = props;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const closeUI = () => {
-    dispatch(WalletActions.closeUI())
+  const navigate = (path: PanelTypes) => {
+    action(path)
   }
 
 
@@ -39,7 +39,7 @@ const PanelHeader: React.FC<Props> = (props) => {
     <HeaderWrapper hasSearch={useSearch || false}>
       <TopRow>
         <HeaderTitle>{title}</HeaderTitle>
-        <CloseButton onPress={closeUI} />
+        <CloseButton onPress={() => navigate('main')} />
       </TopRow>
       {useSearch &&
         <SearchBar
