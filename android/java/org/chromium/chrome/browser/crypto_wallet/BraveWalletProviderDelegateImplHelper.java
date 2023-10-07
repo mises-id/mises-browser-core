@@ -17,6 +17,7 @@ import org.chromium.chrome.browser.customtabs.CustomTabActivity;
 import org.chromium.base.MisesSysUtils;
 import org.chromium.base.ApplicationStatus;
 import org.chromium.chrome.browser.tab.Tab;
+import org.chromium.chrome.browser.ChromeTabbedActivity;
 
 
 @JNINamespace("brave_wallet")
@@ -30,7 +31,7 @@ public class BraveWalletProviderDelegateImplHelper {
       }
       
       try {
-          CustomTabActivity.showInfoPage(MisesSysUtils.getActivityContext(),url);
+          BraveWalletCustomTabActivity.showWalletPage(MisesSysUtils.getActivityContext(),url);
       } catch (Exception e) {
           Log.e(TAG, "showPanel " + e);
       }
@@ -44,13 +45,10 @@ public class BraveWalletProviderDelegateImplHelper {
       
       try {
         for (Activity activity : ApplicationStatus.getRunningActivities()) {
-            if (!(activity instanceof CustomTabActivity)) continue;
+            if (!(activity instanceof BraveWalletCustomTabActivity)) continue;
 
-            CustomTabActivity customTabActivity = (CustomTabActivity) activity;
-            Tab tab = customTabActivity.getActivityTab();
-            if (tab != null && tab.getUrl().getSpec().startsWith("chrome://wallet-panel")) {
-                customTabActivity.finishAndRemoveTask();
-            }
+            BraveWalletCustomTabActivity customTabActivity = (BraveWalletCustomTabActivity) activity;
+            customTabActivity.finishAndRemoveTask();
 
             
         }
@@ -67,11 +65,10 @@ public class BraveWalletProviderDelegateImplHelper {
       boolean showing = false;
       try {
         for (Activity activity : ApplicationStatus.getRunningActivities()) {
-            if (!(activity instanceof CustomTabActivity)) continue;
-            CustomTabActivity customTabActivity = (CustomTabActivity) activity;
-            Tab tab = customTabActivity.getActivityTab();
-            if (tab != null && tab.getUrl().getSpec().startsWith("chrome://wallet-panel")) {
-                showing = true;
+            if (!(activity instanceof BraveWalletCustomTabActivity)) continue;
+            if (!activity.isFinishing()) {
+              showing = true;
+              break;
             }
         }
       } catch (Exception e) {
@@ -127,8 +124,26 @@ public class BraveWalletProviderDelegateImplHelper {
                 webContents, account, callbackWrapper);
     }
 
+    public static void OnWalletPanelClosed() {
+      Log.i(TAG, "OnWalletPanelClosed");
+      Activity context = MisesSysUtils.getActivityContext();
+      if (context == null || !(context instanceof ChromeTabbedActivity)) {
+        return;
+      }
+      Tab tab = ((ChromeTabbedActivity)context).getActivityTab();
+      WebContents webContents = tab == null ? null : tab.getWebContents();
+      if (webContents == null) {
+        return;
+      }
+      if (!isPanelShowing()) {
+        BraveWalletProviderDelegateImplHelperJni.get().OnWalletPanelClosed(webContents);
+      }
+      
+    }
+
     @NativeMethods
     interface Natives {
         void IsSolanaConnected(WebContents webContents, String account, Callback<Boolean> callback);
+        void OnWalletPanelClosed(WebContents webContents);
     }
 }

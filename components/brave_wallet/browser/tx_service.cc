@@ -253,6 +253,27 @@ void TxService::Reset() {
     observer->OnTxServiceReset();
 }
 
+void TxService::RejectAllTransactions(mojom::CoinType coin_type) {
+  GetTxManager(coin_type)->GetAllTransactionInfo(
+    absl::nullopt,
+    base::BindOnce(&TxService::ContinueRejectAllTransactions,
+                     weak_factory_.GetWeakPtr(), coin_type));
+}
+void TxService::ContinueRejectAllTransactions(
+    mojom::CoinType coin_type,
+    std::vector<mojom::TransactionInfoPtr> result) {
+  for (const auto& tx : result) {
+    if (tx->tx_status == mojom::TransactionStatus::Unapproved) {
+      GetTxManager(coin_type)->RejectTransaction(tx->id,
+      base::BindOnce(&TxService::OnRejectTransaction,
+                     weak_factory_.GetWeakPtr(), coin_type, tx->id));
+    }
+  }
+}
+void TxService::OnRejectTransaction(mojom::CoinType coin_type, const std::string& tx_meta_id, bool result) {
+
+}
+
 void TxService::MakeERC20TransferData(const std::string& to_address,
                                       const std::string& amount,
                                       MakeERC20TransferDataCallback callback) {

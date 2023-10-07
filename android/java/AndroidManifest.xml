@@ -3,6 +3,16 @@
     android:theme="@style/Theme.Chromium.SearchActivity"
 	android:exported="true"/>
 
+<!-- Wallet Custom Tabs -->
+<activity android:name="org.chromium.chrome.browser.crypto_wallet.BraveWalletCustomTabActivity"
+    android:theme="@style/Theme.Chromium.Activity"
+    android:exported="false"
+    android:windowSoftInputMode="adjustResize"
+    android:configChanges="orientation|keyboardHidden|keyboard|screenSize|mcc|mnc|screenLayout|smallestScreenSize|uiMode|navigation"
+    android:hardwareAccelerated="false"
+>
+</activity>
+
 <service android:name="org.chromium.chrome.browser.mises.MisesLCDService"
             android:enabled="true"
 	android:exported="false" />
