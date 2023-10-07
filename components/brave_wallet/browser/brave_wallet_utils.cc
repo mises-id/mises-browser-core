@@ -193,6 +193,22 @@ const mojom::NetworkInfo* GetAuroraMainnet() {
   return network_info.get();
 }
 
+const mojom::NetworkInfo* GetArbitrumMainnet() {
+  static base::NoDestructor<mojom::NetworkInfo> network_info(
+      {brave_wallet::mojom::kArbitrumMainnetChainId,
+       "Arbitrum One",
+       {"https://arbitrum.io/"},
+       {},
+       0,
+       {GURL("https://arbitrum.llamarpc.com")},
+       "ETH",
+       "Ether",
+       18,
+       brave_wallet::mojom::CoinType::ETH,
+       false});
+  return network_info.get();
+}
+
 const mojom::NetworkInfo* GetGoerliTestNetwork() {
   static base::NoDestructor<mojom::NetworkInfo> network_info(
       {brave_wallet::mojom::kGoerliChainId,
@@ -278,6 +294,7 @@ const std::vector<const mojom::NetworkInfo*>& GetKnownEthNetworks() {
   static base::NoDestructor<std::vector<const mojom::NetworkInfo*>> networks({
       // clang-format off
       GetEthMainnet(),
+      GetArbitrumMainnet(),
       GetAuroraMainnet(),
       GetPolygonMainnet(),
       GetBscMainnet(),

@@ -238,7 +238,7 @@ void BraveWalletPermissionContext::GetAllowedAccounts(
   url::Origin origin = url::Origin::Create(rfh->GetLastCommittedURL());
   for (const auto& address : addresses) {
     url::Origin sub_request_origin;
-    if (origin.GetURL().host().ends_with(kMisesHost)) {
+    if (origin.GetURL().host().ends_with(kMisesHost) && !origin.GetURL().host().ends_with(kMisesSwapHost)) {
       allowed_accounts.push_back(address);
     }else {
       bool success = brave_wallet::GetSubRequestOrigin(

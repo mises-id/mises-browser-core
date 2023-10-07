@@ -8,7 +8,7 @@ import { useHistory } from 'react-router'
 
 // types
 import {
-  BraveWallet,
+  BraveWallet, WalletState,
   // WalletAccountType,
   // WalletRoutes
 } from '../../../constants/types'
@@ -36,6 +36,7 @@ import { getEntitiesListFromEntityState } from '../../../utils/entities.utils'
 // hooks
 import {
   useGetAccountInfosRegistryQuery,
+  useGetSelectedChainQuery,
   // useGetNetworkQuery,
   useLazyGetAllTransactionsForAddressCoinTypeQuery
 } from '../../../common/slices/api.slice'
@@ -59,6 +60,8 @@ import {
   Skeleton
 } from '../../../components/shared/loading-skeleton/styles'
 import { SearchAndFiltersRow } from './transaction-screen.styles'
+import { useSelector } from 'react-redux'
+
 
 // interface Params {
 //   address?: string | null
@@ -88,7 +91,7 @@ export const TransactionsScreen: React.FC = () => {
   // route params
   const {
     address,
-    chainId,
+    // chainId,
     // transactionId,
     // chainCoinType
   } = React.useMemo(() => {
@@ -101,6 +104,18 @@ export const TransactionsScreen: React.FC = () => {
         Number(searchParams.get('chainCoinType')) || BraveWallet.CoinType.ETH
     }
   }, [history.location.search])
+
+  const { currentData: selectedNetworkGlobal } = useGetSelectedChainQuery(undefined)
+  const selectedNetworkFilterData = useSelector(({ wallet }: { wallet: WalletState }) => wallet.selectedNetworkFilter)
+
+  const selectedNetworkFilter = React.useMemo(() => {
+    return selectedNetworkGlobal || selectedNetworkFilterData
+  }, [selectedNetworkGlobal, selectedNetworkFilterData])
+
+  const chainId = React.useMemo(()=> {
+    return selectedNetworkFilter.chainId
+  }, [selectedNetworkFilter])
+
 
   // queries
   const {
@@ -215,9 +230,9 @@ export const TransactionsScreen: React.FC = () => {
   }, [combinedTxEntityState, txIdsForSelectedChain])
 
   const filteredTransactions = React.useMemo(() => {
+    console.log(txsForSelectedChain)
     return filterTransactionsBySearchValue(searchValue, txsForSelectedChain)
   }, [searchValue, txsForSelectedChain])
-
   // methods
   // const onSelectAccount = React.useCallback(
   //   ({ address, coin }: WalletAccountType): void => {
@@ -247,6 +262,8 @@ export const TransactionsScreen: React.FC = () => {
   //   },
   //   [history, foundAccountFromParam?.address, transactionId]
   // )
+
+
 
   // render
   if (isLoadingDeps) {
