@@ -5833,9 +5833,9 @@ class MisesService {
     }
     // set mises browser userinfo
     setToMisesPrivate(params) {
-        if (browser.misesPrivate) {
-            browser.misesPrivate.setMisesId(JSON.stringify(params));
-        }
+        // if (browser.misesPrivate) {
+        //     browser.misesPrivate.setMisesId(JSON.stringify(params));
+        // }
         return Promise.resolve();
     }
     setUnFollow(toUid) {

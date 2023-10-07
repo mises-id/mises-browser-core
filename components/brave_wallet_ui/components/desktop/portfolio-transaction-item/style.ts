@@ -13,7 +13,7 @@ interface StyleProps {
   orb: string
 }
 
-export const PortfolioTransactionItemWrapper = styled.TouchableOpacity<{ isFocused?: boolean }>`
+export const PortfolioTransactionItemWrapper = styled.TouchableOpacity<{ isFocused?: boolean, showTransactionPopup?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,7 +26,7 @@ export const PortfolioTransactionItemWrapper = styled.TouchableOpacity<{ isFocus
   border-radius: 10px;
   gap: 16px;
   position: relative;
-  z-index: 9;
+  z-index: ${(p) => p.showTransactionPopup ? '10' : '2'};;
 `
 
 export const DetailRow = styled.View`
@@ -38,7 +38,7 @@ export const DetailRow = styled.View`
 `
 
 export const BalanceAndMoreRow = styled(DetailRow)`
-  width: 70%;
+  width: 88%;
 `
 
 export const AddressText = styled.Text`
@@ -141,6 +141,7 @@ export const DetailTextDarkBold = styled.Text`
   letter-spacing: 0.01em;
   font-weight: 600;
   color: ${(p) => p.theme.color.text02};
+  margin-right: 6px;
 `
 
 export const BalanceColumn = styled.View`
@@ -148,7 +149,9 @@ export const BalanceColumn = styled.View`
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
-  width: 70%;
+  // width: 70%;
+  flex: 1;
+  width: 1px;
 `
 
 export const ArrowIcon = styled.View`

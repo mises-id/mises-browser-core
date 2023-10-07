@@ -45,7 +45,7 @@ export function useBalanceUpdater () {
       }
 
       const isActiveStatus = await isActive();
-      if(!isActiveStatus) {
+      if(!isActiveStatus || document.visibilityState !== 'visible') {
         console.log('return isUnActiveStatus')
         return
       }

@@ -22,7 +22,9 @@ import {
 export interface Props {
   tabList: TopTabNavObjectType[]
   selectedTab?: TabNavTypes
-  onSelectTab: (id: TabNavTypes) => void
+  onSelectTab: (id: TabNavTypes) => void,
+  hasMoreButtons?: boolean,
+  showMore?: boolean
 }
 
 function TopTabNav (props: Props) {

@@ -4,7 +4,7 @@
 // you can obtain one at https://mozilla.org/MPL/2.0/.
 import styled from 'styled-components/native'
 
-export const StyledWrapper = styled.View`
+export const StyledWrapper = styled.TouchableOpacity`
   display: flex;
   flex-direction: column;
   align-items: center;

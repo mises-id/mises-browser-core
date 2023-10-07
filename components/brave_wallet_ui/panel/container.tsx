@@ -6,7 +6,8 @@
 import * as React from 'react'
 import {
   ConnectWithSite,
-  // ConnectedPanel,
+  ConnectedPanel,
+  LoadingScreen,
   Panel,
   WelcomePanel,
   SignPanel,
@@ -746,7 +747,21 @@ function Container () {
     )
   }
 
-  return null;
+  if (selectedPanel === 'main') {
+    return (
+      <PanelWrapper isLonger={false}>
+        <ConnectedPanel
+          navAction={navigateTo}
+        />
+      </PanelWrapper>
+    )
+  }
+
+  return (
+    <PanelWrapper isLonger={false}>
+      <LoadingScreen />
+    </PanelWrapper>
+  )
 }
 
 export default Container
