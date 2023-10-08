@@ -106,6 +106,8 @@ class TxService : public KeyedService,
   // To be used when the Wallet is reset / erased
   void Reset() override;
 
+  void RejectAllTransactions(mojom::CoinType coin_type) override;
+
   // mojom::EthTxManagerProxy
   void MakeERC20TransferData(const std::string& to_address,
                              const std::string& amount,
@@ -197,6 +199,9 @@ class TxService : public KeyedService,
                                size_t counter,
                                mojom::CoinType coin,
                                std::vector<mojom::TransactionInfoPtr> result);
+  void ContinueRejectAllTransactions(mojom::CoinType coin_type, 
+                                     std::vector<mojom::TransactionInfoPtr> result);
+  void OnRejectTransaction(mojom::CoinType coin_type, const std::string& tx_meta_id, bool result);
 
   TxManager* GetTxManager(mojom::CoinType coin_type);
   EthTxManager* GetEthTxManager();

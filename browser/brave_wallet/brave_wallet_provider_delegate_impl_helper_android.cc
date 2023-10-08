@@ -13,13 +13,15 @@
 #include "content/public/browser/render_frame_host.h"
 #include "content/public/browser/web_contents.h"
 #include "mises/components/constants/webui_url_constants.h"
-
+#include "mises/browser/brave_wallet/tx_service_factory.h"
+#include "mises/components/brave_wallet/browser/tx_service.h"
 
 using base::android::JavaParamRef;
 
 namespace brave_wallet {
 
 void ShowPanel(content::WebContents* web_contents) {
+  LOG(INFO) << "ShowPanel";
   if (!web_contents)
     return;
 
@@ -27,6 +29,7 @@ void ShowPanel(content::WebContents* web_contents) {
       brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
   if (tab_helper) {
     GURL url  = tab_helper->GetBubbleURL();
+    LOG(INFO) << "ShowPanel show " << url.spec();
     JNIEnv* env = base::android::AttachCurrentThread();
     Java_BraveWalletProviderDelegateImplHelper_showPanel(env, 
       base::android::ConvertUTF8ToJavaString(env, url.spec()));
@@ -43,7 +46,7 @@ void ShowApprovePanel(content::WebContents* web_contents) {
       brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
   if (tab_helper) {
     GURL url  = tab_helper->GetApproveBubbleURL();
-    LOG(INFO) << "ShowApprovePanel show" << url.spec();
+    LOG(INFO) << "ShowApprovePanel show " << url.spec();
     JNIEnv* env = base::android::AttachCurrentThread();
     Java_BraveWalletProviderDelegateImplHelper_showPanel(env, 
       base::android::ConvertUTF8ToJavaString(env, url.spec()));
@@ -122,4 +125,22 @@ static void JNI_BraveWalletProviderDelegateImplHelper_IsSolanaConnected(
       tab_helper->IsSolanaAccountConnected(rfh->GetGlobalId(), account));
 }
 
+
+static void JNI_BraveWalletProviderDelegateImplHelper_OnWalletPanelClosed(
+    JNIEnv* env,
+    const JavaParamRef<jobject>& jweb_contents) {
+  content::RenderFrameHost* rfh = nullptr;
+  content::WebContents* web_contents =
+      content::WebContents::FromJavaWebContents(jweb_contents);
+  if (!(rfh = web_contents->GetPrimaryMainFrame())) {
+    return;
+  }
+  auto* tx_service = brave_wallet::TxServiceFactory::GetServiceForContext(
+      rfh->GetBrowserContext());
+  if (!tx_service) {
+    return;
+  }
+
+  tx_service->RejectAllTransactions(mojom::CoinType::ETH);
+}
 }  // namespace brave_wallet
