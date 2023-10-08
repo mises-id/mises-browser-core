@@ -62,15 +62,15 @@ enum SignDataSteps {
   SignData = 1
 }
 
-const onClickLearnMore = () => {
-  chrome.tabs.create({
-    url: 'https://support.brave.com/hc/en-us/articles/4409513799693'
-  }, () => {
-    if (chrome.runtime.lastError) {
-      console.error('tabs.create failed: ' + chrome.runtime.lastError.message)
-    }
-  })
-}
+// const onClickLearnMore = () => {
+//   chrome.tabs.create({
+//     url: 'https://support.brave.com/hc/en-us/articles/4409513799693'
+//   }, () => {
+//     if (chrome.runtime.lastError) {
+//       console.error('tabs.create failed: ' + chrome.runtime.lastError.message)
+//     }
+//   })
+// }
 
 export const SignPanel = (props: Props) => {
   const {
@@ -178,7 +178,7 @@ export const SignPanel = (props: Props) => {
             <WarningTitle warningType='danger'>{getLocale('braveWalletSignWarningTitle')}</WarningTitle>
           </WarningTitleRow>
           <WarningText>{getLocale('braveWalletSignWarning')}</WarningText>
-          <LearnMoreButton onPress={onClickLearnMore}>{getLocale('braveWalletAllowAddNetworkLearnMoreButton')}</LearnMoreButton>
+          {/* <LearnMoreButton onPress={onClickLearnMore}>{getLocale('braveWalletAllowAddNetworkLearnMoreButton')}</LearnMoreButton> */}
         </WarningBox>
       }
       {signStep === SignDataSteps.SignData &&

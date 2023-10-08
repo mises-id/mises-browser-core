@@ -25,7 +25,7 @@ import {
   Title,
   Description,
   PageIcon,
-  InstructionsButton,
+  // InstructionsButton,
   ButtonWrapper,
   Indicator,
   ConnectionRow
@@ -38,7 +38,7 @@ export interface Props {
   coinType: BraveWallet.CoinType
   hardwareWalletCode: HardwareWalletResponseCodeType | undefined
   retryCallable: () => void
-  onClickInstructions: () => void
+  // onClickInstructions: () => void
 }
 
 function getAppName (coinType: BraveWallet.CoinType): string {
@@ -59,7 +59,7 @@ export const ConnectHardwareWalletPanel = ({
   coinType,
   hardwareWalletCode,
   retryCallable,
-  onClickInstructions
+  // onClickInstructions
 }: Props) => {
   // memos
   const isConnected = React.useMemo((): boolean => {
@@ -104,7 +104,7 @@ export const ConnectHardwareWalletPanel = ({
         </Description>
       </ConnectionRow>
       <Title>{title}</Title>
-      <InstructionsButton onPress={onClickInstructions}>{getLocale('braveWalletConnectHardwarePanelInstructions')}</InstructionsButton>
+      {/* <InstructionsButton onPress={onClickInstructions}>{getLocale('braveWalletConnectHardwarePanelInstructions')}</InstructionsButton> */}
       <PageIcon />
       {
         hardwareWalletCode !== 'deviceBusy' && (hardwareWalletCode === 'unauthorized'

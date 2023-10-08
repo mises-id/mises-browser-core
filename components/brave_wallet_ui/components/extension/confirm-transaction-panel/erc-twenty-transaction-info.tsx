@@ -18,7 +18,8 @@ import {
   TransactionTypeText,
   TransactionText, Divider,
   SectionRow,
-  EditButton
+  EditButton,
+  EditButtonText
 } from './style'
 
 interface Erc20TransactionInfoProps {
@@ -51,7 +52,7 @@ export const Erc20ApproveTransactionInfo = ({ onToggleEditGas }: Erc20Transactio
           {getLocale('braveWalletAllowSpendTransactionFee')}
         </TransactionTitle>
         <EditButton onPress={onToggleEditGas}>
-          {getLocale('braveWalletAllowSpendEditButton')}
+          <EditButtonText>{getLocale('braveWalletAllowSpendEditButton')}</EditButtonText>
         </EditButton>
       </SectionRow>
 

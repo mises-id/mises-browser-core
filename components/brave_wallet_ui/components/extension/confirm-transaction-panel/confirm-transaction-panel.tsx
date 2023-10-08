@@ -64,7 +64,7 @@ import {
   URLText,
   WarningBox,
   WarningTitle,
-  LearnMoreButton,
+  // LearnMoreButton,
   WarningBoxTitleRow
 } from '../shared-panel-styles'
 import { Column, Row } from '../../shared/style'
@@ -85,13 +85,13 @@ export interface Props {
 
 const AssetIconWithPlaceholder = withPlaceholderIcon(AssetIcon, { size: 'big', marginLeft: 0, marginRight: 0 })
 
-const onClickLearnMore = () => {
-  chrome.tabs.create({ url: 'https://support.brave.com/hc/en-us/articles/5546517853325' }, () => {
-    if (chrome.runtime.lastError) {
-      console.error('tabs.create failed: ' + chrome.runtime.lastError.message)
-    }
-  })
-}
+// const onClickLearnMore = () => {
+//   chrome.tabs.create({ url: 'https://support.brave.com/hc/en-us/articles/5546517853325' }, () => {
+//     if (chrome.runtime.lastError) {
+//       console.error('tabs.create failed: ' + chrome.runtime.lastError.message)
+//     }
+//   })
+// }
 
 export const ConfirmTransactionPanel = ({
   onConfirm,
@@ -303,11 +303,11 @@ export const ConfirmTransactionPanel = ({
               <WarningBoxTitleRow>
                 <WarningTitle warningType='warning'>
                   {getLocale('braveWalletConfirmTransactionAccountCreationFee')}
-                  <LearnMoreButton
+                  {/* <LearnMoreButton
                     onPress={onClickLearnMore}
                   >
                     {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
-                  </LearnMoreButton>
+                  </LearnMoreButton> */}
                 </WarningTitle>
               </WarningBoxTitleRow>
             </WarningBox>

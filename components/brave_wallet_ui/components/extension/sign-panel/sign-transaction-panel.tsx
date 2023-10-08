@@ -52,7 +52,7 @@ import {
   WarningBox,
   WarningTitle,
   WarningText,
-  LearnMoreButton,
+  // LearnMoreButton,
   URLText,
   WarningIcon
 } from '../shared-panel-styles'
@@ -70,9 +70,9 @@ enum SignDataSteps {
   SignData = 1
 }
 
-const onClickLearnMore = () => {
-  window.open('https://support.brave.com/hc/en-us/articles/4409513799693', '_blank', 'noreferrer')
-}
+// const onClickLearnMore = () => {
+//   window.open('https://support.brave.com/hc/en-us/articles/4409513799693', '_blank', 'noreferrer')
+// }
 
 export const SignTransactionPanel = ({ signMode }: Props) => {
   // redux
@@ -245,7 +245,7 @@ export const SignTransactionPanel = ({ signMode }: Props) => {
             <WarningTitle warningType='danger'>{getLocale('braveWalletSignWarningTitle')}</WarningTitle>
           </WarningTitleRow>
           <WarningText>{getLocale('braveWalletSignWarning')}</WarningText>
-          <LearnMoreButton onPress={onClickLearnMore}>{getLocale('braveWalletAllowAddNetworkLearnMoreButton')}</LearnMoreButton>
+          {/* <LearnMoreButton onPress={onClickLearnMore}>{getLocale('braveWalletAllowAddNetworkLearnMoreButton')}</LearnMoreButton> */}
         </WarningBox>
       }
 

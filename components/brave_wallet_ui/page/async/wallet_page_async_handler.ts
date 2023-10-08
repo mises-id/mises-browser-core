@@ -280,8 +280,10 @@ handler.on(WalletPageActions.importFromMetaMask.type, async (store: Store, paylo
 })
 
 handler.on(WalletActions.newUnapprovedTxAdded.type, async (store: Store, payload: NewUnapprovedTxAdded) => {
-  const pageHandler = getWalletPageApiProxy().pageHandler
-  pageHandler.showApprovePanelUI()
+  if(document.visibilityState === 'visible') {
+    const pageHandler = getWalletPageApiProxy().pageHandler
+    pageHandler.showApprovePanelUI()
+  }
 })
 
 handler.on(WalletPageActions.openWalletSettings.type, async (store) => {

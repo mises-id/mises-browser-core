@@ -43,7 +43,8 @@ import {
   WalletInfoLeftSide,
   SubviewSectionTitle,
   TransactionPlaceholderContainer,
-  AccountButtonsRow
+  AccountButtonsRow,
+  WalletInfo
 } from './style'
 import { TransactionPlaceholderText, Spacer } from '../portfolio/style'
 import { ScrollableColumn, Column } from '../../../shared/style'
@@ -53,7 +54,6 @@ import { BackButton } from '../../../shared'
 import { PortfolioTransactionItem } from '../../portfolio-transaction-item/index'
 import { PortfolioAssetItemLoadingSkeleton } from '../../portfolio-asset-item/portfolio-asset-item-loading-skeleton'
 import { PortfolioAssetItem } from '../../portfolio-asset-item/index'
-import { CopyTooltip } from '../../../shared/copy-tooltip/copy-tooltip'
 import { AccountListItemOptionButton } from '../../account-list-item/account-list-item-option-button'
 import { SellAssetModal } from '../../popup-modals/sell-asset-modal/sell-asset-modal'
 
@@ -286,10 +286,10 @@ export const Account = ({
       <WalletInfoRow>
         <WalletInfoLeftSide>
           <AccountCircle orb={orb} />
-          <WalletName>{selectedAccount.name}</WalletName>
-          <CopyTooltip text={selectedAccount.address}>
+          <WalletInfo>
+            <WalletName>{selectedAccount.name}</WalletName>
             <WalletAddress>{reduceAddress(selectedAccount.address)}</WalletAddress>
-          </CopyTooltip>
+          </WalletInfo>
         </WalletInfoLeftSide>
       </WalletInfoRow>
 

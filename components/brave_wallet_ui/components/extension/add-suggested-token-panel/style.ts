@@ -11,7 +11,7 @@ export const StyledWrapper = styled.View`
   width: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  gap: 30px;
   background-color: ${(p) => p.theme.color.background01};
 `
 

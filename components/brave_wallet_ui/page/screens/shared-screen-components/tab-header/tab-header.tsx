@@ -34,6 +34,7 @@ import { StyleSheet } from 'react-native'
 import { useStyle } from '../../../../page/styles'
 import { NetworkFilterSelector } from '../../../../components/desktop'
 import { useGetVisibleNetworksQuery } from '../../../../common/slices/api.slice'
+import { ClickAwayArea } from '../../../../components/desktop/network-filter-selector/style'
 
 interface Props {
   title: string
@@ -118,6 +119,9 @@ export const TabHeader = (props: Props) => {
           />
         }
       </SettingsWrapper>
+      {showSettings &&
+        <ClickAwayArea onPress={() => setShowSettings(false)} />
+      }
     </HeaderWrapper>
   )
 }

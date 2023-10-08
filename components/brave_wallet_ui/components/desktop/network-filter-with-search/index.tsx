@@ -21,6 +21,7 @@ import {
   HorizontalDivider
 } from './style'
 import { View } from 'react-native'
+import { ClickAwayArea } from '../network-filter-selector/style'
 
 interface Props {
   selectedNetwork: BraveWallet.NetworkInfo
@@ -70,6 +71,9 @@ export const NetworkFilterWithSearch = (props: Props) => {
           customNetwork={AllNetworksOption}
         />
       </>}
+      {showNetworkDropDown &&
+        <ClickAwayArea onPress={onClick} />
+      }
     </StyledWrapper>
   )
 }

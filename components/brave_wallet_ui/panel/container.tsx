@@ -7,7 +7,7 @@ import * as React from 'react'
 import {
   ConnectWithSite,
   ConnectedPanel,
-  LoadingScreen,
+  // LoadingScreen,
   Panel,
   WelcomePanel,
   SignPanel,
@@ -286,15 +286,15 @@ function Container () {
     dispatch(WalletActions.expandWalletNetworks())
   }
 
-  const onClickInstructions = () => {
-    const url = 'https://support.brave.com/hc/en-us/articles/4409309138701'
+  // const onClickInstructions = () => {
+  //   const url = 'https://support.brave.com/hc/en-us/articles/4409309138701'
 
-    chrome.tabs.create({ url }, () => {
-      if (chrome.runtime.lastError) {
-        console.error('tabs.create failed: ' + chrome.runtime.lastError.message)
-      }
-    })
-  }
+  //   chrome.tabs.create({ url }, () => {
+  //     if (chrome.runtime.lastError) {
+  //       console.error('tabs.create failed: ' + chrome.runtime.lastError.message)
+  //     }
+  //   })
+  // }
 
   const onRetryTransaction = (transaction: SerializableTransactionInfo) => {
     dispatch(WalletActions.retryTransaction({
@@ -405,7 +405,7 @@ function Container () {
             coinType={selectedAccount.coin}
             hardwareWalletCode={hardwareWalletCode}
             retryCallable={retryHardwareOperation}
-            onClickInstructions={onClickInstructions}
+            // onClickInstructions={onClickInstructions}
           />
         </StyledExtensionWrapper>
       </PanelWrapper>
@@ -747,19 +747,11 @@ function Container () {
     )
   }
 
-  if (selectedPanel === 'main') {
-    return (
-      <PanelWrapper isLonger={false}>
-        <ConnectedPanel
-          navAction={navigateTo}
-        />
-      </PanelWrapper>
-    )
-  }
-
   return (
     <PanelWrapper isLonger={false}>
-      <LoadingScreen />
+      <ConnectedPanel
+        navAction={navigateTo}
+      />
     </PanelWrapper>
   )
 }

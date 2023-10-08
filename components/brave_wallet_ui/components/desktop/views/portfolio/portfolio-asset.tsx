@@ -702,7 +702,7 @@ export const PortfolioAsset = (props: Props) => {
 
   // render
   return (
-    <StyledWrapper onPress={onHideMore}>
+    <StyledWrapper onPress={onHideMore} activeOpacity={1}>
       <TopRow>
         <BalanceRow gap='16px'>
           <BackButton onSubmit={goBack} />
