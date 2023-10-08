@@ -37,7 +37,6 @@ void SearchIPCRouter::OpenExtension( const GURL& url) {
 }
 
 void SearchIPCRouter::ShowRewardAd() {
-  delegate_->OnShowRewardAd();
 }
 
 void SearchIPCRouter::LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) {

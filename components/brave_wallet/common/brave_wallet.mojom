@@ -153,6 +153,8 @@ interface EthereumProvider {
   GetCachedAuth() => (mojo_base.mojom.Value id, mojo_base.mojom.Value formed_response,bool reject, string first_allowed_account, bool update_bind_js_properties);
 
   SignMessageForAuth(string address, string nonce) => (mojo_base.mojom.Value id, mojo_base.mojom.Value formed_response,bool reject, string first_allowed_account, bool update_bind_js_properties);
+
+  CancelAds();
 };
 
 // https://github.com/solana-labs/solana-web3.js/blob/6482d0d/src/transaction.ts#L126

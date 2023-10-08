@@ -1039,6 +1039,14 @@ void EthereumProviderImpl::SendAsync(base::Value input,
   delegate_->WalletInteractionDetected();
 }
 
+void EthereumProviderImpl::CancelAds() {
+#if BUILDFLAG(IS_ANDROID)
+    base::android::MisesSysUtils::CancelRewardAdFromJni();
+#else
+#endif
+  
+}
+
 void EthereumProviderImpl::ShowAds(ShowAdsCallback callback) {
 #if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::ShowRewardAdFromJni(

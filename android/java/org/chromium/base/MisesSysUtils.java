@@ -59,14 +59,30 @@ public class MisesSysUtils {
             return;
         }
         MisesAdsUtil.getInstance().setObserver(new MisesAdsUtil.MisesAdsUtilObserver() {
+            private boolean mShouldShowAds;
             @Override
             public void onRewardAdsResult(int code, final String message) {
                 nativeOnRewardAdsResult(code, message);
+            }
+            @Override
+            public boolean shouldShowAds() {
+                return mShouldShowAds;
+
+            }
+            @Override
+            public void setShouldShowAds(boolean show) {
+                mShouldShowAds = show;
             }
 
         });
         MisesAdsUtil.getInstance().loadAndShowRewardedAd(
             activityContext, MisesController.getInstance().getMisesId());
+    }
+    @CalledByNative
+    public static void cancelRewardAd() {
+        if (MisesAdsUtil.getInstance().getObserver() != null) {
+            MisesAdsUtil.getInstance().getObserver().setShouldShowAds(false);
+        }
     }
 
     @CalledByNative

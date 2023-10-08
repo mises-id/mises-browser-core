@@ -76,6 +76,8 @@ public class MisesAdsUtil {
 
     public interface MisesAdsUtilObserver {
         void onRewardAdsResult(int code, final String message);
+        boolean shouldShowAds();
+        void setShouldShowAds(boolean show);
     }
 
     private  MisesAdsUtilObserver observer_;
@@ -86,6 +88,23 @@ public class MisesAdsUtil {
 
     public void setObserver(final MisesAdsUtilObserver observer) {
         observer_ = observer;
+        observer_.setShouldShowAds(true);
+    }
+    public MisesAdsUtilObserver getObserver() {
+        return observer_;
+    }
+    private void handleRewardAdsResult(int code, final String message) {
+        if (observer_ != null) {
+            observer_.onRewardAdsResult(code, message);
+        }
+    }
+
+    private boolean shouldShowRewardAds() {
+        if (observer_ != null) {
+            return observer_.shouldShowAds();
+        }
+        return true;
+
     }
 
     private void setStatus(AdsStatus newStatus) {
@@ -118,14 +137,12 @@ public class MisesAdsUtil {
                 public void onInitializationComplete(InitializationStatus initializationStatus) {
                     Log.i(TAG,"initAds onInitializationComplete:" + initializationStatus);
                     setStatus(AdsStatus.INITIALIZED);
-                    loadRewardedAd(act, true, misesID);
+                    loadRewardedAd(act, misesID);
                 }
             });
         } catch(Exception e) {
           Log.w(TAG, "MobileAds.initialize failed: " + e.getMessage());
-          if (observer_ != null) {
-            observer_.onRewardAdsResult(4, e.getMessage());
-          }
+          handleRewardAdsResult(4, "initialize fail: " + e.getMessage());
         }
     }
     private void showRewardedAd(final Activity act, final RewardedAd rewardedAd, final String misesID) {
@@ -150,10 +167,7 @@ public class MisesAdsUtil {
                 // Don't forget to set the ad reference to null so you
                 // don't show the ad a second time.
                 setStatus(AdsStatus.INITIALIZED);
-                if (observer_ != null) {
-                    observer_.onRewardAdsResult(1, adError.getMessage());
-                }
-                
+                handleRewardAdsResult(1, "show fail: " + adError.getMessage());
             }
 
             @Override
@@ -164,9 +178,7 @@ public class MisesAdsUtil {
                 Log.i(TAG, "onAdDismissedFullScreenContent");
 
                 setStatus(AdsStatus.INITIALIZED);
-                if (observer_ != null) {
-                    observer_.onRewardAdsResult(0, "");
-                }
+                handleRewardAdsResult(0, "");
             }
         });
         rewardedAd.show(
@@ -200,21 +212,19 @@ public class MisesAdsUtil {
             return;
         }
         if (status == AdsStatus.INITIALIZING) {
-          if (observer_ != null) {
-            observer_.onRewardAdsResult(5, "initializing");
-          }
+          handleRewardAdsResult(5, "sdk initializing");
           return;
         }
-        loadRewardedAd(act, true, misesID);  
+        loadRewardedAd(act, misesID);  
     }
-    private void loadRewardedAd(final Activity act, final boolean show, final String misesID) {
+    private void loadRewardedAd(final Activity act, final String misesID) {
         if (status == AdsStatus.LOADING) {
-            if (show) {
+            if (shouldShowRewardAds()) {
                 Toast.makeText(act, "Ads Loading ...", Toast.LENGTH_SHORT).show();
             }
             return;
         }
-        Log.i(TAG, "loadRewardedAd show " + show);
+        Log.i(TAG, "loadRewardedAd");
         setStatus(AdsStatus.LOADING);
         try {
             AdRequest adRequest = new AdRequest.Builder().build();
@@ -228,9 +238,7 @@ public class MisesAdsUtil {
                         // Handle the error.
                         Log.i(TAG, "onAdFailedToLoad:" + loadAdError.getMessage());
                         setStatus(AdsStatus.INITIALIZED);
-                        if (observer_ != null) {
-                            observer_.onRewardAdsResult(2, loadAdError.getMessage());
-                        }
+                        handleRewardAdsResult(2, "load fail: " + loadAdError.getMessage());
                     }
 
                     @Override
@@ -242,8 +250,10 @@ public class MisesAdsUtil {
                             .setUserId(misesID)
                             .build();
                         rewardedAd.setServerSideVerificationOptions(options);
-                        if (show) {
+                        if (shouldShowRewardAds()) {
                             showRewardedAd(act, rewardedAd, misesID);
+                        } else {
+                            handleRewardAdsResult(101, "user canceled");
                         }
                         
                     }
@@ -252,9 +262,7 @@ public class MisesAdsUtil {
         } catch(Exception e) {
           Log.w(TAG, "RewardedAd.load fail: " + e.getMessage());
           setStatus(AdsStatus.INITIALIZED);
-          if (observer_ != null) {
-            observer_.onRewardAdsResult(3, e.getMessage());
-          }
+          handleRewardAdsResult(3, "load fail: " + e.getMessage());
         }
     }
 

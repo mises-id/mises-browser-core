@@ -25,7 +25,6 @@
 #define  NavigationEntryCommitted NavigationEntryCommitted_Chromium( \
       const content::LoadCommittedDetails& load_details); \
       void OnOpenExtension(const GURL& url) override; \
-      void OnShowRewardAd() override; \
       void OnLogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) override; \
       void NavigationEntryCommitted
 

@@ -19,6 +19,7 @@ class BASE_EXPORT MisesSysUtils{
   using ShowRewardAdCallback =
     base::OnceCallback<void(int code, const std::string& error_message)>;
   static void ShowRewardAdFromJni(ShowRewardAdCallback callback);
+  static void CancelRewardAdFromJni();
   static void LogEventFromJni(const std::string& name, const std::string& key, const std::string& value);
   static void LogEventFromJni(const std::string& name, const std::string& key, const std::string& value, const std::string& key1, const std::string& value1);
 };

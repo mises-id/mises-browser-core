@@ -45,7 +45,7 @@ constexpr char kEthereumProxyHandlerScript[] = R"((function() {
       if (typeof value === 'function' &&
           (property === 'request' || property === 'isConnected' ||
            property === 'enable' || property === 'sendAsync' ||
-           property === 'send' || property === 'showAds'|| 
+           property === 'send' || property === 'showAds'|| property === 'cancelAds'|| 
            property === 'getCachedAuth' ||
            property === 'signMessageForAuth')) {
         return new Proxy(value, {
@@ -286,6 +286,10 @@ v8::Local<v8::Promise> JSEthereumProvider::ShowAds(v8::Isolate* isolate) {
   return resolver.ToLocalChecked()->GetPromise();
 }
 
+void JSEthereumProvider::CancelAds(v8::Isolate* isolate) {
+  ethereum_provider_->CancelAds();
+  return;
+}
 
 v8::Local<v8::Promise> JSEthereumProvider::GetCachedAuth(v8::Isolate* isolate) {
 
@@ -391,6 +395,7 @@ gin::ObjectTemplateBuilder JSEthereumProvider::GetObjectTemplateBuilder(
       .SetMethod("sendAsync", &JSEthereumProvider::SendAsync)
       .SetMethod("send", &JSEthereumProvider::SendMethod)
       .SetMethod("showAds", &JSEthereumProvider::ShowAds)
+      .SetMethod("cancelAds", &JSEthereumProvider::CancelAds)
       .SetMethod("getCachedAuth", &JSEthereumProvider::GetCachedAuth)
       .SetMethod("signMessageForAuth", &JSEthereumProvider::SignMessageForAuth);
 }

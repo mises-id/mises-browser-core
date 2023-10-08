@@ -37,11 +37,19 @@ std::string MisesSysUtils::NightModeSettingsFromJni() {
 void MisesSysUtils::ShowRewardAdFromJni(ShowRewardAdCallback callback) {
   JNIEnv* env = AttachCurrentThread();
   if (GetPendingShowAdsCallback()) {
-    std::move(callback).Run(1, "pending ads request");
+    std::move(callback).Run(100, "pending ads request");
     return;
   }
   GetPendingShowAdsCallback() = std::move(callback);
   Java_MisesSysUtils_showRewardAd(env);
+}
+
+void MisesSysUtils::CancelRewardAdFromJni() {
+  JNIEnv* env = AttachCurrentThread();
+  if (!GetPendingShowAdsCallback()) {
+    return;
+  }
+  Java_MisesSysUtils_cancelRewardAd(env);
 }
 
 void MisesSysUtils::LogEventFromJni(const std::string& name, const std::string& key, const std::string& value) {

@@ -65,6 +65,7 @@ class JSEthereumProvider final : public gin::Wrappable<JSEthereumProvider>,
   void DisconnectEvent(const std::string& message);
 
   v8::Local<v8::Promise> ShowAds(v8::Isolate* isolate);
+  void CancelAds(v8::Isolate* isolate);
 
   v8::Local<v8::Promise> GetCachedAuth(v8::Isolate* isolate);
   v8::Local<v8::Promise> SignMessageForAuth(v8::Isolate* isolate, 

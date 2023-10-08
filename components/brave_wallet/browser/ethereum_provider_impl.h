@@ -187,6 +187,7 @@ class EthereumProviderImpl final
             SendCallback callback) override;
   void SendAsync(base::Value input, SendAsyncCallback callback) override;
   void ShowAds(ShowAdsCallback callback) override;
+  void CancelAds() override;
   void GetCachedAuth(GetCachedAuthCallback callback) override;
   void SignMessageForAuth(const std::string& address,
                const std::string& nonce,
