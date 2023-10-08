@@ -26,7 +26,8 @@ const char kMisesJavaScriptFeatureKeyName[] =
     "mises_java_script_feature";
 
 // Script message name for session restore.
-NSString* const kMisesScriptHandlerName = @"ReactNativeWebView";
+NSString* const kMetamaskScriptHandlerName = @"RNMetaMaskWebView";
+NSString* const kMisesWalletScriptHandlerName = @"RNMisesWalletWebView";
 
 }  // namespace
 
@@ -60,25 +61,55 @@ void MisesJavaScriptFeature::ConfigureHandlers(
     WKUserContentController* user_content_controller) {
   // Reset the old handler first as handlers with the same name can not be
   // added simultaneously.
-  mises_handler_.reset();
+  metamask_handler_.reset();
 
-  mises_handler_ = std::make_unique<ScopedWKScriptMessageHandler>(
-      user_content_controller, kMisesScriptHandlerName,
+  metamask_handler_ = std::make_unique<ScopedWKScriptMessageHandler>(
+      user_content_controller, kMetamaskScriptHandlerName,
       base::BindRepeating(
-          &MisesJavaScriptFeature::MisesMessageReceived,
+          &MisesJavaScriptFeature::MetaMaskMessageReceived,
           weak_factory_.GetWeakPtr()));
+    
+  mises_wallet_handler_.reset();
+
+  mises_wallet_handler_ = std::make_unique<ScopedWKScriptMessageHandler>(
+      user_content_controller, kMisesWalletScriptHandlerName,
+      base::BindRepeating(
+          &MisesJavaScriptFeature::MisesWalletMessageReceived,
+          weak_factory_.GetWeakPtr()));
+
 }
 
-void MisesJavaScriptFeature::MisesMessageReceived(
+
+void MisesJavaScriptFeature::MetaMaskMessageReceived(
     WKScriptMessage* message) {
   WebState* web_state = WebViewWebStateMap::FromBrowserState(browser_state_)
                             ->GetWebStateForWebView(message.webView);
   if (!web_state ) {
     return;
   }
-  NSUInteger wvid = [Mises onWebViewActivated:message.webView];
-  [[Mises bridge] enqueueJSCall:@"NativeBridge.postMessage" args:@[message.body, [NSNumber numberWithUnsignedInteger:wvid]]];
+  [Mises onWebViewActivatedMetamask:message.webView withMessage:message.body];
+ 
 
+//   NSString* method =
+//       [NSString stringWithFormat:@"console.log(\"mises received: %@\", %@)",
+//         message.name, message.body];
+//     web::ExecuteJavaScript(message.webView, method, ^(id value, NSError* error) {
+//       if (error) {
+//         DLOG(WARNING) << "Script execution failed with error: "
+//                       << base::SysNSStringToUTF16(
+//                              error.userInfo[NSLocalizedDescriptionKey]);
+//       }
+//     });
+}
+
+void MisesJavaScriptFeature::MisesWalletMessageReceived(
+    WKScriptMessage* message) {
+  WebState* web_state = WebViewWebStateMap::FromBrowserState(browser_state_)
+                            ->GetWebStateForWebView(message.webView);
+  if (!web_state ) {
+    return;
+  }
+  [Mises onWebViewActivatedMisesWallet:message.webView withMessage:message.body];
 //   NSString* method =
 //       [NSString stringWithFormat:@"console.log(\"mises received: %@\", %@)",
 //         message.name, message.body];

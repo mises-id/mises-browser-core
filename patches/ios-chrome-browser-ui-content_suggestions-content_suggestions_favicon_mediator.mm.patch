@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
-index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f22252f386 100644
+index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..5ccf3ef67da0ab958f2ba215bb90a274826c13f9 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
 @@ -16,6 +16,14 @@
@@ -17,7 +17,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -27,6 +35,8 @@ const CGFloat kMostVisitedFaviconSize = 48;
+@@ -27,6 +35,8 @@
  // Size below which the provider returns a colored tile instead of an image.
  const CGFloat kMostVisitedFaviconMinimalSize = 32;
  
@@ -26,7 +26,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
  }  // namespace
  
  @interface ContentSuggestionsFaviconMediator () {
-@@ -43,6 +53,9 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
+@@ -43,6 +53,9 @@ @interface ContentSuggestionsFaviconMediator () {
  @end
  
  @implementation ContentSuggestionsFaviconMediator
@@ -36,7 +36,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
  
  #pragma mark - Public.
  
-@@ -63,6 +76,10 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
+@@ -63,6 +76,10 @@ - (instancetype)initWithLargeIconService:
    return self;
  }
  
@@ -47,7 +47,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
  - (void)setMostVisitedDataForLogging:
      (const ntp_tiles::NTPTilesVector&)mostVisitedData {
    DCHECK(_mostVisitedDataForLogging.empty());
-@@ -78,14 +95,52 @@ const CGFloat kMostVisitedFaviconMinimalSize = 32;
+@@ -78,14 +95,52 @@ - (void)fetchFaviconForMostVisited:(ContentSuggestionsMostVisitedItem*)item {
      ContentSuggestionsMostVisitedItem* strongItem = weakItem;
      if (!strongSelf || !strongItem)
        return;
@@ -58,7 +58,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..ee79f2a4be3fd0f14209462be61477f2
      [strongSelf.consumer updateMostVisitedTileConfig:strongItem];
    };
 -
-+    if (item.isMisesFeature) {
++    if (item.itemType == ITEM_TYPE_MISES_FEATURE) {
 +      auto callback =
 +            base::BindOnce(^(const gfx::Image& gfximage,
 +                             const image_fetcher::RequestMetadata& metadata) {

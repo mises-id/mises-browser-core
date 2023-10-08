@@ -10,7 +10,7 @@
 #include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
 #include "mises/components/brave_wallet/browser/permission_utils.h"
 #include "mises/components/constants/webui_url_constants.h"
-#include "mises/components/permissions/contexts/brave_wallet_permission_context.h"
+#include "mises/components/permissions/contexts/mises_wallet_permission_context.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_finder.h"

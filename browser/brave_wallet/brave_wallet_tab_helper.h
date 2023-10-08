@@ -41,7 +41,7 @@ class BraveWalletTabHelper
                                 const std::string& account);
   void ClearSolanaConnectedAccounts(const content::GlobalRenderFrameHostId& id);
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
   void ShowBubble();
   void ShowApproveWalletBubble();
   void CloseBubble();
@@ -59,6 +59,8 @@ class BraveWalletTabHelper
   void SetSkipDelegateForTesting(bool skip) {
     skip_delegate_for_testing_ = skip;
   }
+  GURL GetBubbleURL();
+  GURL GetApproveBubbleURL();
 #endif
 
  private:
@@ -78,13 +80,11 @@ class BraveWalletTabHelper
   // Each RenderFrameHost has its own connection set.
   base::flat_map<content::GlobalRenderFrameHostId, base::flat_set<std::string>>
       solana_connected_accounts_;
-#if !BUILDFLAG(IS_ANDROID)
-  GURL GetBubbleURL();
+#if true || !BUILDFLAG(IS_ANDROID)
   base::OnceClosure show_bubble_callback_for_testing_;
   bool close_on_deactivate_for_testing_ = true;
   bool is_showing_bubble_for_testing_ = false;
   bool skip_delegate_for_testing_ = false;
-  GURL GetApproveBubbleURL();
   std::unique_ptr<WalletBubbleManagerDelegate> wallet_bubble_manager_delegate_;
 #endif
 

@@ -31,11 +31,12 @@
 #include "third_party/blink/public/web/web_local_frame.h"
 #include "url/origin.h"
 
+
 namespace {
 
-constexpr char kEthereum[] = "ethereum";
+constexpr char kEthereum[] = "misesEthereum";
 constexpr char kEmit[] = "emit";
-constexpr char kIsBraveWallet[] = "isBraveWallet";
+constexpr char kIsMisesWallet[] = "isMisesWallet";
 constexpr char kEthereumProviderScript[] = "ethereum_provider.js";
 constexpr char kEthereumProxyHandlerScript[] = R"((function() {
   const handler = {
@@ -44,7 +45,9 @@ constexpr char kEthereumProxyHandlerScript[] = R"((function() {
       if (typeof value === 'function' &&
           (property === 'request' || property === 'isConnected' ||
            property === 'enable' || property === 'sendAsync' ||
-           property === 'send')) {
+           property === 'send' || property === 'showAds'|| property === 'cancelAds'|| 
+           property === 'getCachedAuth' ||
+           property === 'signMessageForAuth')) {
         return new Proxy(value, {
           apply: (targetFunc, thisArg, args) => {
             return targetFunc.call(target, ...args);
@@ -261,7 +264,85 @@ void JSEthereumProvider::Install(bool allow_overwrite_window_ethereum_provider,
                 kEthereumProviderScript);
 }
 
-bool JSEthereumProvider::GetIsBraveWallet() {
+v8::Local<v8::Promise> JSEthereumProvider::ShowAds(v8::Isolate* isolate) {
+
+  v8::MaybeLocal<v8::Promise::Resolver> resolver =
+      v8::Promise::Resolver::New(isolate->GetCurrentContext());
+  if (resolver.IsEmpty()) {
+    return v8::Local<v8::Promise>();
+  }
+
+  auto global_context(
+      v8::Global<v8::Context>(isolate, isolate->GetCurrentContext()));
+  auto promise_resolver(
+      v8::Global<v8::Promise::Resolver>(isolate, resolver.ToLocalChecked()));
+  auto context(v8::Global<v8::Context>(isolate, isolate->GetCurrentContext()));
+
+  ethereum_provider_->ShowAds(
+      base::BindOnce(&JSEthereumProvider::OnRequestOrSendAsync,
+                     weak_ptr_factory_.GetWeakPtr(), std::move(global_context),
+                     nullptr, std::move(promise_resolver), isolate));
+
+  return resolver.ToLocalChecked()->GetPromise();
+}
+
+void JSEthereumProvider::CancelAds(v8::Isolate* isolate) {
+  ethereum_provider_->CancelAds();
+  return;
+}
+
+v8::Local<v8::Promise> JSEthereumProvider::GetCachedAuth(v8::Isolate* isolate) {
+
+  if (!EnsureConnected()) {
+    return v8::Local<v8::Promise>();
+  }
+
+  v8::MaybeLocal<v8::Promise::Resolver> resolver =
+      v8::Promise::Resolver::New(isolate->GetCurrentContext());
+  if (resolver.IsEmpty()) {
+    return v8::Local<v8::Promise>();
+  }
+  auto global_context(
+      v8::Global<v8::Context>(isolate, isolate->GetCurrentContext()));
+  auto promise_resolver(
+      v8::Global<v8::Promise::Resolver>(isolate, resolver.ToLocalChecked()));
+
+  ethereum_provider_->GetCachedAuth(
+      base::BindOnce(&JSEthereumProvider::OnRequestOrSendAsync,
+                     weak_ptr_factory_.GetWeakPtr(), std::move(global_context),
+                     nullptr, std::move(promise_resolver), isolate));
+
+  return resolver.ToLocalChecked()->GetPromise();
+}
+
+v8::Local<v8::Promise> JSEthereumProvider::SignMessageForAuth(v8::Isolate* isolate,
+                                                              const std::string& address, 
+                                                              const std::string& nonce) {
+
+  if (!EnsureConnected()) {
+    return v8::Local<v8::Promise>();
+  }
+
+  v8::MaybeLocal<v8::Promise::Resolver> resolver =
+      v8::Promise::Resolver::New(isolate->GetCurrentContext());
+  if (resolver.IsEmpty()) {
+    return v8::Local<v8::Promise>();
+  }
+  auto global_context(
+      v8::Global<v8::Context>(isolate, isolate->GetCurrentContext()));
+  auto promise_resolver(
+      v8::Global<v8::Promise::Resolver>(isolate, resolver.ToLocalChecked()));
+
+  ethereum_provider_->SignMessageForAuth(
+      address, nonce,
+      base::BindOnce(&JSEthereumProvider::OnRequestOrSendAsync,
+                     weak_ptr_factory_.GetWeakPtr(), std::move(global_context),
+                     nullptr, std::move(promise_resolver), isolate));
+
+  return resolver.ToLocalChecked()->GetPromise();
+}
+
+bool JSEthereumProvider::GetIsMisesWallet() {
   return true;
 }
 
@@ -303,7 +384,7 @@ gin::ObjectTemplateBuilder JSEthereumProvider::GetObjectTemplateBuilder(
   // Note: When adding a new method, you would need to update the list in
   // kEthereumProxyHandlerScript too otherwise the function call would fail.
   return gin::Wrappable<JSEthereumProvider>::GetObjectTemplateBuilder(isolate)
-      .SetProperty(kIsBraveWallet, &JSEthereumProvider::GetIsBraveWallet)
+      .SetProperty(kIsMisesWallet, &JSEthereumProvider::GetIsMisesWallet)
       .SetProperty(kIsMetaMask, &JSEthereumProvider::GetIsMetaMask)
       .SetProperty("chainId", &JSEthereumProvider::GetChainId)
       .SetProperty("networkVersion", &JSEthereumProvider::GetNetworkVersion)
@@ -312,7 +393,11 @@ gin::ObjectTemplateBuilder JSEthereumProvider::GetObjectTemplateBuilder(
       .SetMethod("isConnected", &JSEthereumProvider::IsConnected)
       .SetMethod("enable", &JSEthereumProvider::Enable)
       .SetMethod("sendAsync", &JSEthereumProvider::SendAsync)
-      .SetMethod("send", &JSEthereumProvider::SendMethod);
+      .SetMethod("send", &JSEthereumProvider::SendMethod)
+      .SetMethod("showAds", &JSEthereumProvider::ShowAds)
+      .SetMethod("cancelAds", &JSEthereumProvider::CancelAds)
+      .SetMethod("getCachedAuth", &JSEthereumProvider::GetCachedAuth)
+      .SetMethod("signMessageForAuth", &JSEthereumProvider::SignMessageForAuth);
 }
 
 const char* JSEthereumProvider::GetTypeName() {

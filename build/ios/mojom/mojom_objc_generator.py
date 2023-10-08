@@ -685,7 +685,7 @@ class Generator(generator.Generator):
         # We handle imports from mojo base types with custom typemaps, so only
         # other Brave imports should only be included
         brave_imports = [i for i in self.module.imports if
-                         i.path.startswith('brave/')]
+                         i.path.startswith('mises/')]
 
         for interface in self.module.interfaces:
             all_enums.extend(interface.enums)

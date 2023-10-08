@@ -16,12 +16,6 @@ void SearchTabHelper::OnOpenExtension(const GURL& url) {
     instant_service_->OpenExtension(&GetWebContents(), url);
 }
 
-void SearchTabHelper::OnShowRewardAd() {
-#if BUILDFLAG(IS_ANDROID)
-    base::android::MisesSysUtils::ShowRewardAdFromJni();
-#endif
-}
-
 void SearchTabHelper::OnLogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value)  {
 #if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::LogEventFromJni(

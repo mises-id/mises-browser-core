@@ -117,3 +117,32 @@ imageset("mises_user_default") {
     "mises_user_default.imageset/mises_user_default@3x.png",
   ]
 }
+
+imageset("ntp_down") {
+  sources = [
+    "ntp_down.imageset/Contents.json",
+    "ntp_down.imageset/ntp_down.png",
+    "ntp_down.imageset/ntp_down@2x.png",
+  ]
+}
+
+
+imageset("popup_menu_mises_open_metamask") {
+  sources = [
+    "popup_menu_mises_open_metamask.imageset/Contents.json",
+    "popup_menu_mises_open_metamask.imageset/popup_menu_mises_open_metamask.png",
+    "popup_menu_mises_open_metamask.imageset/popup_menu_mises_open_metamask@2x.png",
+    "popup_menu_mises_open_metamask.imageset/popup_menu_mises_open_metamask@3x.png",
+  ]
+}
+
+imageset("popup_menu_mises_open_miseswallet") {
+  sources = [
+    "popup_menu_mises_open_miseswallet.imageset/Contents.json",
+    "popup_menu_mises_open_miseswallet.imageset/popup_menu_mises_open_miseswallet.png",
+    "popup_menu_mises_open_miseswallet.imageset/popup_menu_mises_open_miseswallet@2x.png",
+    "popup_menu_mises_open_miseswallet.imageset/popup_menu_mises_open_miseswallet@3x.png",
+  ]
+}
+
+

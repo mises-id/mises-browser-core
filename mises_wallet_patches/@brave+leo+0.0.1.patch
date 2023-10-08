@@ -1,0 +1,12 @@
+diff --git a/node_modules/@brave/leo/tsconfig-tokens.json b/node_modules/@brave/leo/tsconfig-tokens.json
+index 2cd6f32..c67409f 100644
+--- a/node_modules/@brave/leo/tsconfig-tokens.json
++++ b/node_modules/@brave/leo/tsconfig-tokens.json
+@@ -1,6 +1,7 @@
+ {
+   "include": ["tokens/**/*"],
+   "compilerOptions": {
++    "skipLibCheck": true,
+     "module": "ESNext",
+     "moduleResolution": "node16"
+   }

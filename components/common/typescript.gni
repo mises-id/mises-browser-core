@@ -11,6 +11,10 @@ mises_common_web_compile_inputs = [
   # see ../definitions/README.md.
   rebase_path("../definitions/ipfs.d.ts"),
   rebase_path("../definitions/chromel.d.ts"),
+  rebase_path("../definitions/global.d.ts"),
+  rebase_path("../definitions/non-js-loaders.d.ts"),
+  rebase_path("../definitions/prettier-bytes.d.ts"),
+  rebase_path("../definitions/ethereum-blockies.d.ts"),
 
   # webpack config changes warrant a re-build of all webpack builds
   rebase_path("../webpack/webpack.config.js"),
@@ -25,6 +29,7 @@ mises_common_web_compile_inputs = [
   # modifying npm dependencies warrants a re-build of all webpack
   # and typescript builds
   "//mises/package.json",
+  "//mises/node_modules/brave-ui/package.json",
 
 ]
 

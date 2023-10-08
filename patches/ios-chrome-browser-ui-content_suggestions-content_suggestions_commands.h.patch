@@ -1,12 +1,14 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h b/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
-index 9362f01064b56db6169b2f342ad2cb3769fd8b75..59d3efa6ac6ee19d15a8f59b5d4759b013c1400f 100644
+index 9362f01064b56db6169b2f342ad2cb3769fd8b75..e4f4be1f5a9837c7a399cab091faf9fe162712ad 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
-@@ -20,6 +20,8 @@
+@@ -20,6 +20,10 @@
  // Handles the actions following a tap on a trending query.
  - (void)loadSuggestedQuery:(QuerySuggestionConfig*)config;
  
 +- (void)openMisesWeb3Home;
++- (void)toogleWeb3Site;
++- (void)toogleMisesFeature;
 +
  @end
  

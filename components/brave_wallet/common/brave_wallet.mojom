@@ -44,6 +44,7 @@ enum JsonRpcError {
 // https://eips.ethereum.org/EIPS/eip-1474#error-codes
 enum ProviderError {
   kSuccess = 0,  // No error
+  kNoKeyring = 1, // Keyring not created
 
   kUserRejectedRequest = 4001,   // User rejected the request
   kUnauthorized = 4100,          // The requested account and/or method has not
@@ -146,6 +147,14 @@ interface EthereumProvider {
 
   // Determines if the keyring is locked.
   IsLocked() => (bool isLocked);
+
+  ShowAds() => (mojo_base.mojom.Value id, mojo_base.mojom.Value formed_response,bool reject, string first_allowed_account, bool update_bind_js_properties);
+
+  GetCachedAuth() => (mojo_base.mojom.Value id, mojo_base.mojom.Value formed_response,bool reject, string first_allowed_account, bool update_bind_js_properties);
+
+  SignMessageForAuth(string address, string nonce) => (mojo_base.mojom.Value id, mojo_base.mojom.Value formed_response,bool reject, string first_allowed_account, bool update_bind_js_properties);
+
+  CancelAds();
 };
 
 // https://github.com/solana-labs/solana-web3.js/blob/6482d0d/src/transaction.ts#L126
@@ -840,6 +849,8 @@ interface KeyringService {
   // Note that there is no need for an API to notify unlocked
   // because the KeyringServiceObserver Unlocked event can be used for that.
   HasPendingUnlockRequest() => (bool pending);
+
+  SignMessageForAuth(string address, string nonce) => (string sig);
 };
 
 // Used for cryptocurrency prices over time.
@@ -1297,6 +1308,8 @@ interface TxService {
 
   // Resets the keyring and the related preferences
   Reset();
+
+  RejectAllTransactions(CoinType coin_type);
 };
 
 union MessageToSignUnion {
@@ -1788,7 +1801,8 @@ struct SolanaTxData {
 enum RequestPermissionsError {
   kNone = 0,
   kRequestInProgress = 1,
-  kInternal = 2
+  kInternal = 2,
+  kNoKeyring = 3,
 };
 
 struct OnRampCurrency {

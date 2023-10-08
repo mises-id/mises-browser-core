@@ -279,7 +279,7 @@ source_set("utils") {
     "//mises/components/brave_wallet/common:buildflags",
     "//mises/components/brave_wallet/common:mojom",
     "//mises/components/version_info",
-    #"//mises/vendor/bip39wally-core-native:bip39wally-core",
+    "//mises/components/libwally-core:bip39wally-core",
     "//components/content_settings/core/common",
     "//components/prefs",
     "//crypto",

@@ -16,7 +16,7 @@ public class MisesPermissionDialogModelClassAdapter extends MisesClassVisitor {
 
     public MisesPermissionDialogModelClassAdapter(ClassVisitor visitor) {
         super(visitor);
-        // changeMethodOwner(
-        //         sPermissionDialogModelClassName, "getModel", sMisesPermissionDialogModelClassName);
+         changeMethodOwner(
+                 sPermissionDialogModelClassName, "getModel", sMisesPermissionDialogModelClassName);
     }
 }

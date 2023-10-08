@@ -119,6 +119,7 @@ class AppMenuBridge :
   raw_ptr<TabModel> observed_tab_model_ = nullptr;
 
   void CloseExtensionTabs(const std::string& extension_id);
+  void ReloadTabs();
 private:
     // ExtensionActionAPI::Observer:
     void OnExtensionActionUpdated(

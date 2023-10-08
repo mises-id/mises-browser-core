@@ -8,7 +8,7 @@ def _ProcessXML(root):
 
   wallet_node_str = '<item xmlns:android="http://schemas.android.com/apk/res/android" '\
     'android:id="@+id/mises_wallet_id" ' \
-    'android:title="@string/menu_brave_wallet" ' \
+    'android:title="@string/menu_mises_wallet" ' \
     'android:visibility="gone" />'
   wallet_node = ET.fromstring(wallet_node_str, parser=ET.XMLParser(encoding="utf-8"))
 

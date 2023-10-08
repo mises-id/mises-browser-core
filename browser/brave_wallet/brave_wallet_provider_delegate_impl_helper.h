@@ -21,6 +21,9 @@ namespace brave_wallet {
 // Show wallet panel, which handles permission UI, sign message confirmation,
 // ...etc.
 void ShowPanel(content::WebContents* web_contents);
+void ShowApprovePanel(content::WebContents* web_contents);
+void ClosePanel(content::WebContents* web_contents);
+bool IsPanelShowing(content::WebContents* web_contents);
 
 // Show wallet onboarding page.
 void ShowWalletOnboarding(content::WebContents* web_contents);

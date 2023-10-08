@@ -8,7 +8,7 @@
 // #include "mises/components/brave_page_graph/common/buildflags.h"
 
 // #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
-// #include "brave/third_party/blink/renderer/core/brave_page_graph/page_graph.h"
+// #include "mises/third_party/blink/renderer/core/brave_page_graph/page_graph.h"
 // #endif  // BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 
 namespace blink {

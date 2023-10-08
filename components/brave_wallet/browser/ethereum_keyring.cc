@@ -130,6 +130,20 @@ std::string EthereumKeyring::GetAddressInternal(HDKeyBase* hd_key_base) const {
   return addr.ToChecksumAddress();
 }
 
+std::string EthereumKeyring::GetAddress(const std::vector<uint8_t>& private_key) {
+  std::unique_ptr<HDKey> hd_key = HDKey::GenerateFromPrivateKey(private_key);
+  if (!hd_key)
+    return std::string();
+  const std::vector<uint8_t> public_key = hd_key->GetUncompressedPublicKey();
+  // trim the header byte 0x04
+  const std::vector<uint8_t> pubkey_no_header(public_key.begin() + 1,
+                                              public_key.end());
+  EthAddress addr = EthAddress::FromPublicKey(pubkey_no_header);
+
+  // TODO(darkdh): chain id op code
+  return addr.ToChecksumAddress();
+}
+
 bool EthereumKeyring::GetPublicKeyFromX25519_XSalsa20_Poly1305(
     const std::string& address,
     std::string* key) {

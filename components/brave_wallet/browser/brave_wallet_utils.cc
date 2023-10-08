@@ -34,7 +34,7 @@
 #include "mises/components/brave_wallet/common/hex_utils.h"
 #include "mises/components/brave_wallet/common/value_conversion_utils.h"
 #include "mises/components/version_info/version_info.h"
-//#include "mises/vendor/bip39wally-core-native/include/wally_bip39.h"
+#include "mises/components/libwally-core/include/wally_bip39.h"
 #include "components/prefs/pref_service.h"
 #include "components/prefs/scoped_user_pref_update.h"
 #include "crypto/random.h"
@@ -48,14 +48,14 @@ namespace brave_wallet {
 namespace {
 
 std::string GenerateMnemonicInternal(uint8_t* entropy, size_t size) {
-  //char* words = nullptr;
+  char* words = nullptr;
   std::string result;
-  // if (bip39_mnemonic_from_bytes(nullptr, entropy, size, &words) != WALLY_OK) {
-  //   LOG(ERROR) << __func__ << ": bip39_mnemonic_from_bytes failed";
-  //   return result;
-  // }
-  // result = words;
-  // wally_free_string(words);
+  if (bip39_mnemonic_from_bytes(nullptr, entropy, size, &words) != WALLY_OK) {
+    LOG(ERROR) << __func__ << ": bip39_mnemonic_from_bytes failed";
+    return result;
+  }
+  result = words;
+  wally_free_string(words);
   return result;
 }
 
@@ -136,7 +136,7 @@ const mojom::NetworkInfo* GetAvalancheMainnet() {
        {"https://snowtrace.io"},
        {},
        0,
-       {},
+       {GURL("https://api.avax.network/ext/bc/C/rpc")},
        "AVAX",
        "Avalanche",
        18,
@@ -168,7 +168,7 @@ const mojom::NetworkInfo* GetOptimismMainnet() {
        {"https://optimistic.etherscan.io"},
        {},
        0,
-       {},
+       {GURL("https://mainnet.optimism.io")},
        "ETH",
        "Ether",
        18,
@@ -184,7 +184,23 @@ const mojom::NetworkInfo* GetAuroraMainnet() {
        {"https://aurorascan.dev"},
        {},
        0,
+       {GURL("https://mainnet.aurora.dev")},
+       "ETH",
+       "Ether",
+       18,
+       brave_wallet::mojom::CoinType::ETH,
+       false});
+  return network_info.get();
+}
+
+const mojom::NetworkInfo* GetArbitrumMainnet() {
+  static base::NoDestructor<mojom::NetworkInfo> network_info(
+      {brave_wallet::mojom::kArbitrumMainnetChainId,
+       "Arbitrum One",
+       {"https://arbiscan.io/"},
        {},
+       0,
+       {GURL("https://arb1.arbitrum.io/rpc")},
        "ETH",
        "Ether",
        18,
@@ -216,7 +232,7 @@ const mojom::NetworkInfo* GetSepoliaTestNetwork() {
        {"https://sepolia.etherscan.io"},
        {},
        0,
-       {},
+       {GURL("https://rpc.sepolia.org")},
        "ETH",
        "Ethereum",
        18,
@@ -278,6 +294,7 @@ const std::vector<const mojom::NetworkInfo*>& GetKnownEthNetworks() {
   static base::NoDestructor<std::vector<const mojom::NetworkInfo*>> networks({
       // clang-format off
       GetEthMainnet(),
+      GetArbitrumMainnet(),
       GetAuroraMainnet(),
       GetPolygonMainnet(),
       GetBscMainnet(),
@@ -494,10 +511,10 @@ GURL MaybeAddInfuraProjectId(const GURL& url) {
   static const base::flat_set<std::string>& kInfuraChains = {
     brave_wallet::mojom::kMainnetChainId,
     brave_wallet::mojom::kPolygonMainnetChainId,
-    brave_wallet::mojom::kOptimismMainnetChainId,
-    brave_wallet::mojom::kAuroraMainnetChainId,
-    brave_wallet::mojom::kAvalancheMainnetChainId,
-    brave_wallet::mojom::kSepoliaChainId,
+    //brave_wallet::mojom::kOptimismMainnetChainId,
+    //brave_wallet::mojom::kAuroraMainnetChainId,
+    //brave_wallet::mojom::kAvalancheMainnetChainId,
+    //brave_wallet::mojom::kSepoliaChainId,
     brave_wallet::mojom::kGoerliChainId};
   if (!url.is_valid())
     return GURL();
@@ -800,20 +817,20 @@ std::unique_ptr<std::vector<uint8_t>> MnemonicToEntropy(
   std::unique_ptr<std::vector<uint8_t>> entropy =
       std::make_unique<std::vector<uint8_t>>(entropy_size);
 
-  // size_t written;
-  // if (bip39_mnemonic_to_bytes(nullptr, mnemonic.c_str(), entropy->data(),
-  //                             entropy->size(), &written) != WALLY_OK) {
-  //   LOG(ERROR) << "bip39_mnemonic_to_bytes failed";
-  //   return nullptr;
-  // }
+  size_t written;
+  if (bip39_mnemonic_to_bytes(nullptr, mnemonic.c_str(), entropy->data(),
+                              entropy->size(), &written) != WALLY_OK) {
+    LOG(ERROR) << "bip39_mnemonic_to_bytes failed";
+    return nullptr;
+  }
   return entropy;
 }
 
 bool IsValidMnemonic(const std::string& mnemonic) {
-  // if (bip39_mnemonic_validate(nullptr, mnemonic.c_str()) != WALLY_OK) {
-  //   LOG(ERROR) << __func__ << ": Invalid mnemonic: " << mnemonic;
-  //   return false;
-  // }
+  if (bip39_mnemonic_validate(nullptr, mnemonic.c_str()) != WALLY_OK) {
+    LOG(ERROR) << __func__ << ": Invalid mnemonic: " << mnemonic;
+    return false;
+  }
   return true;
 }
 

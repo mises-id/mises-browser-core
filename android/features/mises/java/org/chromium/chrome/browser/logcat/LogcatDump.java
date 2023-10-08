@@ -187,8 +187,8 @@ public class LogcatDump {
     public static void MaybeStartLog(final Context context, WindowAndroid windowAndroid) {
         if (VersionConstants.CHANNEL != Channel.DEV) return;
 
-        LogcatDump.DoStartLog(context);
-        maybeInstallHandler();
+        // LogcatDump.DoStartLog(context);
+        // maybeInstallHandler();
         // FileAccessPermissionHelper.requestFileAccessPermissionHelper(windowAndroid, result -> {
         //     if (result.first) {
         //         LogcatDump.DoStartLog(context);

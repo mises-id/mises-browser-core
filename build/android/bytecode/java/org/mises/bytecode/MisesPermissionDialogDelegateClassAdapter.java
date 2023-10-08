@@ -16,7 +16,7 @@ public class MisesPermissionDialogDelegateClassAdapter extends MisesClassVisitor
 
     public MisesPermissionDialogDelegateClassAdapter(ClassVisitor visitor) {
         super(visitor);
-        // changeSuperName(
-        //         sPermissionDialogDelegateClassName, sMisesPermissionDialogDelegateClassName);
+        changeSuperName(
+                 sPermissionDialogDelegateClassName, sMisesPermissionDialogDelegateClassName);
     }
 }

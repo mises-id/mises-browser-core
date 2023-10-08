@@ -12,7 +12,7 @@ from lib.util import execute_stdout, scoped_cwd
 VENDOR_DIR = os.path.join(SOURCE_ROOT, 'vendor')
 PYTHON_26_URL = 'https://chromium.googlesource.com/chromium/deps/python_26'
 
-NPM = 'npm'
+NPM = 'yarn'
 if sys.platform in ['win32', 'cygwin']:
     NPM += '.cmd'
 

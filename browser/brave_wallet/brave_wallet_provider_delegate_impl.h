@@ -40,6 +40,7 @@ class BraveWalletProviderDelegateImpl : public BraveWalletProviderDelegate,
   void ShowPanel() override;
   void WalletInteractionDetected() override;
   void ShowWalletOnboarding() override;
+  bool IsPanelShowing()override;
   void ShowAccountCreation(mojom::CoinType type) override;
   url::Origin GetOrigin() const override;
   void GetAllowedAccounts(mojom::CoinType type,

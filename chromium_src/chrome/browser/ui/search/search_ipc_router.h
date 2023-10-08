@@ -18,7 +18,6 @@
 
 
 #define OnUndoMostVisitedDeletion OnOpenExtension(const GURL& url) = 0; \
-      virtual void OnShowRewardAd() = 0; \
       virtual void OnLogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) = 0; \
       virtual void OnUndoMostVisitedDeletion
 

@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
-index f0d48297887596911da41d6bf1ea6c822cf4e4c9..90bb9089625721a703d632589582f96d0f765e0f 100644
+index f0d48297887596911da41d6bf1ea6c822cf4e4c9..c5f6b32ddff995ccaecd8386416666ec1d36d42e 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
-@@ -37,31 +37,31 @@ const CGFloat kSearchFieldMinMargin = 8;
+@@ -37,31 +37,31 @@
  const CGFloat kTopSpacingMaterial = 24;
  
  // Top margin for the doodle.
@@ -43,3 +43,19 @@ index f0d48297887596911da41d6bf1ea6c822cf4e4c9..90bb9089625721a703d632589582f96d
  
  // The size of the symbol image.
  const CGFloat kSymbolContentSuggestionsPointSize = 18;
+@@ -136,6 +136,7 @@ CGFloat HeightForLogoHeader(BOOL logo_is_showing,
+       ToolbarExpandedHeight(
+           [UIApplication sharedApplication].preferredContentSizeCategory) +
+       HeaderBottomPadding();
++  header_height = 0;
+   if (!IsRegularXRegularSizeClass(trait_collection)) {
+     return header_height;
+   }
+@@ -148,6 +149,7 @@ CGFloat HeightForLogoHeader(BOOL logo_is_showing,
+ 
+   header_height += kTopSpacingMaterial;
+ 
++
+   return header_height;
+ }
+ 

@@ -21,7 +21,7 @@
 #include "mises/third_party/argon2/src/include/argon2.h"
 #include "components/value_store/value_store.h"
 #include "extensions/browser/api/storage/backend_task_runner.h"
-#include "extnsions/browser/api/storage/storage_frontend.h"
+#include "extensions/browser/api/storage/storage_frontend.h"
 #include "extensions/browser/extension_prefs.h"
 #include "extensions/browser/extension_registry.h"
 #include "extensions/browser/extension_system.h"
@@ -31,11 +31,11 @@
 #include "third_party/boringssl/src/include/openssl/hkdf.h"
 
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
-#if BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED)
-#include "mises/browser/ethereum_remote_client/ethereum_remote_client_constants.h"
-#include "mises/browser/ethereum_remote_client/ethereum_remote_client_service.h"
-#include "mises/browser/ethereum_remote_client/ethereum_remote_client_service_factory.h"
-#endif
+// #if BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED)
+// #include "mises/browser/ethereum_remote_client/ethereum_remote_client_constants.h"
+// #include "mises/browser/ethereum_remote_client/ethereum_remote_client_service.h"
+// #include "mises/browser/ethereum_remote_client/ethereum_remote_client_service_factory.h"
+// #endif
 
 using extensions::Extension;
 using extensions::ExtensionRegistry;
@@ -147,39 +147,8 @@ ExternalWalletsImporter::ExternalWalletsImporter(
 ExternalWalletsImporter::~ExternalWalletsImporter() = default;
 
 void ExternalWalletsImporter::Initialize(InitCallback callback) {
-  const Extension* extension = nullptr;
-  if (type_ == mojom::ExternalWalletType::CryptoWallets) {
-#if !BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED)
-    std::move(callback).Run(false);
+  std::move(callback).Run(false);
     return;
-#endif
-    extension = GetCryptoWallets();
-    // Crypto Wallets is not loaded
-    if (!extension) {
-      EthereumRemoteClientService* service =
-          EthereumRemoteClientServiceFactory::GetInstance()->GetForContext(
-              context_);
-      DCHECK(service);
-      service->MaybeLoadCryptoWalletsExtension(
-          base::BindOnce(&ExternalWalletsImporter::OnCryptoWalletsLoaded,
-                         weak_ptr_factory_.GetWeakPtr(), std::move(callback)));
-      return;
-    }
-  } else if (type_ == mojom::ExternalWalletType::MetaMask) {
-    extension = GetMetaMask();
-    if (!extension) {
-      VLOG(1) << "Failed to load MetaMask extension";
-      std::move(callback).Run(false);
-      return;
-    }
-  } else {
-    NOTREACHED() << "Unsupported ExternalWalletType type. value="
-                 << base::to_underlying(type_);
-    std::move(callback).Run(false);
-    return;
-  }
-
-  GetLocalStorage(*extension, std::move(callback));
 }
 
 bool ExternalWalletsImporter::IsInitialized() const {
@@ -196,28 +165,24 @@ void ExternalWalletsImporter::OnCryptoWalletsLoaded(InitCallback callback) {
 
   GetLocalStorage(*extension, std::move(callback));
 
-  EthereumRemoteClientService* service =
-      EthereumRemoteClientServiceFactory::GetInstance()->GetForContext(
-          context_);
-  DCHECK(service);
-  service->UnloadCryptoWalletsExtension();
+  // EthereumRemoteClientService* service =
+  //     EthereumRemoteClientServiceFactory::GetInstance()->GetForContext(
+  //         context_);
+  // DCHECK(service);
+  // service->UnloadCryptoWalletsExtension();
 }
 
 bool ExternalWalletsImporter::IsCryptoWalletsInstalledInternal() const {
-  if (!extensions::ExtensionPrefs::Get(context_)->HasPrefForExtension(
-          ethereum_remote_client_extension_id))
-    return false;
-  return true;
+  return false;
 }
 
 bool ExternalWalletsImporter::IsExternalWalletInstalled() const {
   if (is_external_wallet_installed_for_testing_)
     return true;
   if (type_ == mojom::ExternalWalletType::CryptoWallets) {
-#if !BUILDFLAG(ETHEREUM_REMOTE_CLIENT_ENABLED)
     return false;
-#endif
-    if (!IsCryptoWalletsInstalledInternal())
+  }
+  if (!IsCryptoWalletsInstalledInternal()){
       return false;
   } else if (type_ == mojom::ExternalWalletType::MetaMask) {
     if (!GetMetaMask())
@@ -265,7 +230,7 @@ const Extension* ExternalWalletsImporter::GetCryptoWallets() const {
   ExtensionRegistry* registry = ExtensionRegistry::Get(context_);
   if (!registry)
     return nullptr;
-  return registry->GetInstalledExtension(ethereum_remote_client_extension_id);
+  return nullptr;
 }
 
 const Extension* ExternalWalletsImporter::GetMetaMask() const {

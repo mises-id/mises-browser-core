@@ -98,6 +98,7 @@ source_set("ui") {
     "//mises/chromium_src/chrome/browser/ui",
     "//mises/components/vector_icons",
     "//mises/components/decentralized_dns/content",
+    "//mises/app/vector_icons:vector_icons",
 
     "//base",
     "//chrome/app:command_ids",
@@ -132,7 +133,7 @@ source_set("ui") {
   # This is no longer compiled into Chromium on Android, but we still
   # need it
   if (is_android) {
-    deps += [ ":favicon_source" ]
+    # deps += [ ":favicon_source" ]
   }
 
   if (enable_ipfs) {
@@ -200,12 +201,83 @@ source_set("ui") {
   }
 
 
-  if (!is_android) {
+  if (is_android || !is_android) {
     sources += [
-     
+      "views/permission_bubble/brave_wallet_permission_prompt_impl.cc",
+      "views/permission_bubble/brave_wallet_permission_prompt_impl.h",
+      "views/toolbar/wallet_button.cc",
+      "views/toolbar/wallet_button.h",
+      "views/toolbar/wallet_button_notification_source.cc",
+      "views/toolbar/wallet_button_notification_source.h",
+      "views/wallet_bubble_focus_observer.cc",
+      "views/wallet_bubble_focus_observer.h",
+      "browser_commands.cc",
+      "browser_commands.h",
+      "mises_icon_with_badge_image_source.cc",
+      "mises_icon_with_badge_image_source.h",
+      "wallet_bubble_manager_delegate_impl.cc",
+      "wallet_bubble_manager_delegate_impl.h",
+      "webui/brave_wallet/ledger/ledger_ui.cc",
+      "webui/brave_wallet/ledger/ledger_ui.h",
+      "webui/brave_wallet/market/market_ui.cc",
+      "webui/brave_wallet/market/market_ui.h",
+      "webui/brave_wallet/nft/nft_ui.cc",
+      "webui/brave_wallet/nft/nft_ui.h",
+      "webui/brave_wallet/page_handler/wallet_page_handler.cc",
+      "webui/brave_wallet/page_handler/wallet_page_handler.h",
+      "webui/brave_wallet/trezor/trezor_ui.cc",
+      "webui/brave_wallet/trezor/trezor_ui.h",
+      "webui/brave_wallet/wallet_common_ui.cc",
+      "webui/brave_wallet/wallet_common_ui.h",
+      "webui/brave_wallet/wallet_page_ui.cc",
+      "webui/brave_wallet/wallet_page_ui.h",
+      "webui/brave_wallet/wallet_panel_ui.cc",
+      "webui/brave_wallet/wallet_panel_ui.h",
+      "webui/navigation_bar_data_provider.cc",
+      "webui/navigation_bar_data_provider.h",
     ]
     deps += [
+      "//mises/browser/brave_wallet:tab_helper",
+      "//mises/browser/ui/brave_wallet",
+      "//mises/browser/ui/webui/brave_wallet/common_handler",
+      "//mises/browser/ui/webui/brave_wallet/panel_handler",
+      "//mises/components/brave_wallet/common",
+      "//mises/components/brave_wallet/common:mojom",
+      "//mises/components/brave_wallet_ui:resources",
+      "//mises/components/brave_wallet_ui/ledger:ledger_bridge_generated",
+      "//mises/components/brave_wallet_ui/market:market_display_generated",
+      "//mises/components/brave_wallet_ui/nft:nft_display_generated",
+      "//mises/components/brave_wallet_ui/page:brave_wallet_page_generated",
+      "//mises/components/brave_wallet_ui/panel:brave_wallet_panel_generated",
+      "//mises/components/brave_wallet_ui/trezor:trezor_bridge_generated",
+      "//mises/components/resources:strings_grit",
       "//components/permissions",
+      "//components/pref_registry",
+    ]
+  }
+  
+  if (is_android) {
+    sources += [
+      "webui/brave_wallet/android/swap_page_handler.cc",
+      "webui/brave_wallet/android/swap_page_handler.h",
+      "webui/brave_wallet/android/swap_page_ui.cc",
+      "webui/brave_wallet/android/swap_page_ui.h",
+      #"webui/brave_wallet/common_handler/wallet_handler.cc",
+      #"webui/brave_wallet/common_handler/wallet_handler.h",
+      #"webui/brave_wallet/page_handler/wallet_page_handler.cc",
+      #"webui/brave_wallet/page_handler/wallet_page_handler.h",
+      #"webui/brave_wallet/wallet_common_ui.cc",
+      #"webui/brave_wallet/wallet_common_ui.h",
+    ]
+    deps += [
+      "//mises/browser/brave_wallet",
+      "//mises/browser/ui/webui/brave_wallet/common_handler",
+      "//mises/components/brave_wallet/browser:hd_keyring",
+      "//mises/components/brave_wallet/common",
+      "//mises/components/brave_wallet/common:common_utils",
+      "//mises/components/brave_wallet/common:mojom",
+      "//mises/components/brave_wallet_ui:resources",
+      "//mises/components/brave_wallet_ui/page/screens/swap/android:brave_wallet_swap_page_generated",
     ]
   }
 

@@ -31,25 +31,25 @@
 # rm -R /Users/baoge/Documents/work/mises-browser-core/src/out/Debug-iphonesimulator/ios_clang_arm64_13_0/*.appex
 
 
-cp /Users/baoge/Documents/work/metamask-mobile/ios/main.jsbundle third_party/mises/Bundles
+SOURCE_DIR=/Users/baoge/Library/Developer/Xcode/DerivedData/RepackMises-bwucaiybespifydntezdvpwrypho
+cp /Users/baoge/Documents/work/mises-bundle/RepackMises/ios/bundle/main.jsbundle third_party/mises/Bundles
 
-cp -R /Users/baoge/Library/Developer/Xcode/DerivedData/MetaMask-ajaxbftsamxqvrabyxosvqvsgjuq/Build/Products/Debug-iphonesimulator/**/*.a third_party/mises/Sim/Libs
+cp -R $SOURCE_DIR/Build/Products/Debug-iphonesimulator/**/*.a third_party/mises/Sim/Libs
 
-cp -R /Users/baoge/Library/Developer/Xcode/DerivedData/MetaMask-ajaxbftsamxqvrabyxosvqvsgjuq/Build/Products/Debug-iphonesimulator/*.framework third_party/mises/Sim/Frameworks
+cp -R $SOURCE_DIR/Build/Products/Debug-iphonesimulator/*.framework third_party/mises/Sim/Frameworks
+cp -R $SOURCE_DIR/Build/Products/Debug-iphonesimulator/**/*.framework third_party/mises/Sim/Frameworks
 
+cp -R $SOURCE_DIR/Build/Products/Debug-iphoneos/**/*.a third_party/mises/Device/Libs
 
-
-cp -R /Users/baoge/Library/Developer/Xcode/DerivedData/MetaMask-ajaxbftsamxqvrabyxosvqvsgjuq/Build/Products/Debug-iphoneos/**/*.a third_party/mises/Device/Libs
-
-cp -R /Users/baoge/Library/Developer/Xcode/DerivedData/MetaMask-ajaxbftsamxqvrabyxosvqvsgjuq/Build/Products/Debug-iphoneos/*.framework third_party/mises/Device/Frameworks
-
-
-
+cp -R $SOURCE_DIR/Build/Products/Debug-iphoneos/*.framework third_party/mises/Device/Frameworks
+cp -R $SOURCE_DIR/Build/Products/Debug-iphoneos/**/*.framework third_party/mises/Device/Frameworks
 
 
-cp -R /Users/baoge/Library/Developer/Xcode/DerivedData/MetaMask-ajaxbftsamxqvrabyxosvqvsgjuq/Build/Products/Release-iphoneos/**/*.a third_party/mises/Distribution/Libs
 
-cp -R /Users/baoge/Library/Developer/Xcode/DerivedData/MetaMask-ajaxbftsamxqvrabyxosvqvsgjuq/Build/Products/Release-iphoneos/*.framework third_party/mises/Distribution/Frameworks
+cp -R $SOURCE_DIR/Build/Products/Release-iphoneos/**/*.a third_party/mises/Distribution/Libs
+
+cp -R $SOURCE_DIR/Build/Products/Release-iphoneos/*.framework third_party/mises/Distribution/Frameworks
+cp -R $SOURCE_DIR/Build/Products/Release-iphoneos/**/*.framework third_party/mises/Distribution/Frameworks
 
 
 # cp -R /Users/baoge/Documents/work/sdk/sdk.xcframework/ios-arm64_x86_64-simulator/*.framework ios/third_party/mises/Sim/Frameworks

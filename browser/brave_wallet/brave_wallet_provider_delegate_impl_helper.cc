@@ -8,7 +8,6 @@
 #include <utility>
 
 #include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
-#include "mises/browser/ui/brave_pages.h"
 #include "chrome/browser/ui/browser_finder.h"
 #include "content/public/browser/web_contents.h"
 
@@ -30,13 +29,42 @@ void ShowPanel(content::WebContents* web_contents) {
   if (tab_helper)
     tab_helper->ShowBubble();
 }
+void ShowApprovePanel(content::WebContents* web_contents) {
+  if (!web_contents)
+    return;
+
+  auto* tab_helper =
+      brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
+  if (tab_helper)
+    tab_helper->ShowApproveWalletBubble();
+}
+void ClosePanel(content::WebContents* web_contents) {
+  
+  if (!web_contents)
+    return;
+
+  auto* tab_helper =
+      brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
+  if (tab_helper)
+    tab_helper->CloseBubble();
+}
+bool IsPanelShowing(content::WebContents* web_contents) {
+  if (!web_contents)
+    return false;
+
+  auto* tab_helper =
+      brave_wallet::BraveWalletTabHelper::FromWebContents(web_contents);
+  if (!tab_helper)
+    return false;
+  return tab_helper->IsShowingBubble();
+}
 
 void ShowWalletOnboarding(content::WebContents* web_contents) {
   Browser* browser =
       web_contents ? chrome::FindBrowserWithWebContents(web_contents) : nullptr;
 
   if (browser) {
-    brave::ShowBraveWalletOnboarding(browser);
+    //brave::ShowBraveWalletOnboarding(browser);
   } else if (g_new_setup_needed_callback_for_testing) {
     std::move(g_new_setup_needed_callback_for_testing).Run();
   }
@@ -48,7 +76,7 @@ void ShowAccountCreation(content::WebContents* web_contents,
       web_contents ? chrome::FindBrowserWithWebContents(web_contents) : nullptr;
 
   if (browser) {
-    brave::ShowBraveWalletAccountCreation(browser, keyring_id);
+    //brave::ShowBraveWalletAccountCreation(browser, keyring_id);
   } else if (g_account_creation_callback_for_testing) {
     std::move(g_account_creation_callback_for_testing).Run();
   }

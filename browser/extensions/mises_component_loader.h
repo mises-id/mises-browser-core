@@ -54,9 +54,8 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   void AddMetamaskExtensionOnStartup();
 
  private:
-  void AsyncRunWithMetamaskStorage(value_store::ValueStore* storage);
   void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
-  void MetamaskMigrationDone();
+  void ContinueMiseswalletMigration(const base::Value key_store);
   void ReinstallAsNonComponent(std::string extension_id);
     // ExtensionRegistryObserver:
   void OnExtensionLoaded(content::BrowserContext* browser_context,

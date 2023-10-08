@@ -16,7 +16,7 @@ public class MisesReturnToChromeUtilClassAdapter extends MisesClassVisitor {
     public MisesReturnToChromeUtilClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // changeMethodOwner(sReturnToChromeUtilClassName, "shouldShowTabSwitcher",
-        //         sMisesReturnToChromeUtilClassName);
+        changeMethodOwner(sReturnToChromeUtilClassName, "shouldShowTabSwitcher",
+                sMisesReturnToChromeUtilClassName);
     }
 }

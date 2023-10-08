@@ -48,6 +48,10 @@ class MisesContentBrowserClient : public ChromeContentBrowserClient {
   std::vector<std::unique_ptr<content::NavigationThrottle>>
   CreateThrottlesForNavigation(content::NavigationHandle* handle) override;
 
+  void RegisterBrowserInterfaceBindersForFrame(
+      content::RenderFrameHost* render_frame_host,
+      mojo::BinderMapWithContext<content::RenderFrameHost*>* map) override;
+
 
   bool WillCreateURLLoaderFactory(
       content::BrowserContext* browser_context,

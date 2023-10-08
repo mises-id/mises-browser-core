@@ -25,7 +25,7 @@ class MisesWebClient : public ChromeWebClient {
       BrowserState* browser_state) const override;
 
  private:
-  NSString* inpageScript;
+  NSArray* inpageScripts;
 };
 
 }  // namespace web

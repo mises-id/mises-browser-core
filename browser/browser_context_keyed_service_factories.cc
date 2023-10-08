@@ -2,7 +2,14 @@
 
 #include "base/feature_list.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/browser/brave_wallet/asset_ratio_service_factory.h"
+#include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
 #include "mises/browser/brave_wallet/json_rpc_service_factory.h"
+#include "mises/browser/brave_wallet/keyring_service_factory.h"
+#include "mises/browser/brave_wallet/swap_service_factory.h"
+#include "mises/browser/brave_wallet/tx_service_factory.h"
+#include "mises/browser/permissions/permission_lifetime_manager_factory.h"
+
 
 #include "chrome/browser/profiles/chrome_browser_main_extra_parts_profiles.h"
 
@@ -14,17 +21,21 @@
 namespace mises {
 
 void EnsureMisesBrowserContextKeyedServiceFactoriesBuilt() {
-  #if BUILDFLAG(ENABLE_IPFS)
+#if BUILDFLAG(ENABLE_IPFS)
   ipfs::IpfsServiceFactory::GetInstance();
 #endif
+  brave_wallet::AssetRatioServiceFactory::GetInstance();
+  brave_wallet::KeyringServiceFactory::GetInstance();
   brave_wallet::JsonRpcServiceFactory::GetInstance();
+  brave_wallet::SwapServiceFactory::GetInstance();
+  brave_wallet::TxServiceFactory::GetInstance();
+  brave_wallet::BraveWalletServiceFactory::GetInstance();
+
+  PermissionLifetimeManagerFactory::GetInstance();
 
 }
 void EnsureBrowserContextKeyedServiceFactoriesBuiltExtra() {
-
-#if BUILDFLAG(IS_ANDROID)
   EnsureMisesBrowserContextKeyedServiceFactoriesBuilt();
-#endif
 }
 
 void EnsureBrowserContextKeyedServiceFactoriesBuilt() {
@@ -36,6 +47,7 @@ void EnsureBrowserContextKeyedServiceFactoriesBuilt() {
 #else
   ChromeBrowserMainExtraPartsProfiles::
     EnsureBrowserContextKeyedServiceFactoriesBuiltAndroid();
+  PermissionLifetimeManagerFactory::GetInstance();
 
 #endif
 }

@@ -63,7 +63,7 @@ class JSSolanaProvider final : public gin::Wrappable<JSSolanaProvider>,
   bool EnsureConnected();
 
   bool GetIsPhantom(gin::Arguments* arguments);
-  bool GetIsBraveWallet(gin::Arguments* arguments);
+  bool GetIsMisesWallet(gin::Arguments* arguments);
   bool GetIsConnected(gin::Arguments* arguments);
   // returns solanaWeb3.PublicKey
   v8::Local<v8::Value> GetPublicKey(gin::Arguments* arguments);

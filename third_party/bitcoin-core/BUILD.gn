@@ -76,9 +76,13 @@ static_library("secp256k1") {
     "ECMULT_WINDOW_SIZE=15",
     "ECMULT_GEN_PREC_BITS=4",
     "ENABLE_MODULE_RECOVERY",
+    "ENABLE_MODULE_EXTRAKEYS"
   ]
 
-  visibility = [ "//mises/components/brave_wallet/browser/internal:hd_key" ]
+  visibility = [ 
+    "//mises/components/brave_wallet/browser/internal:hd_key",
+    "//mises/components/libwally-core:bip39wally-core"
+  ]
 
   # Do NOT add any files here without security review
   sources = [

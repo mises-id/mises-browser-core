@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/BUILD.gn b/ui/webui/resources/BUILD.gn
-index b9bac52390e72642c485fc9e82d82a02b5b97894..ef6443c87457582ae554de0c6ebd38ca1ff36d0e 100644
+index b9bac52390e72642c485fc9e82d82a02b5b97894..ac678edcc00d9cf74a3453d8aaffe5d8a40b994a 100644
 --- a/ui/webui/resources/BUILD.gn
 +++ b/ui/webui/resources/BUILD.gn
 @@ -14,7 +14,7 @@ generate_grd("build_grd") {
@@ -29,3 +29,11 @@ index b9bac52390e72642c485fc9e82d82a02b5b97894..ef6443c87457582ae554de0c6ebd38ca
      public_deps += [
        "cr_components/color_change_listener:build_grdp",
        "cr_components/image_service:build_grdp",
+@@ -121,6 +121,7 @@ generate_grd("build_grd") {
+       "$root_gen_dir/ui/webui/resources/cr_components/image_service/resources.grdp",
+     ]
+   }
++  import("//mises/ui/webui/resources/sources.gni") grdp_files += mises_resources_extra_grdps public_deps += mises_resources_extra_grdps_deps
+ }
+ 
+ if (is_chromeos_ash) {

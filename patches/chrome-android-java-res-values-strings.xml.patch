@@ -1,10 +1,10 @@
 diff --git a/chrome/android/java/res/values/strings.xml b/chrome/android/java/res/values/strings.xml
 old mode 100644
 new mode 100755
-index b842fe7e295e7f4fafa99f5879a1604afe4e44c1..385720d4efc7765b4cdb8fa80bcaacc40840538a
+index b842fe7e295e7f4fafa99f5879a1604afe4e44c1..4e4139b9cda62d2d3cee1298d6aa9ac335f29c55
 --- a/chrome/android/java/res/values/strings.xml
 +++ b/chrome/android/java/res/values/strings.xml
-@@ -1,16 +1,119 @@
+@@ -1,16 +1,121 @@
  <?xml version="1.0" encoding="utf-8"?>
 -<!--
 -Copyright 2012 The Chromium Authors
@@ -38,6 +38,8 @@ index b842fe7e295e7f4fafa99f5879a1604afe4e44c1..385720d4efc7765b4cdb8fa80bcaacc4
 +
 +    <string name="main_menu_exit">Exit</string>
 +    <string name="main_menu_extensions">Extensions</string>
++    <string name="main_menu_mises_wallet">Mises Wallet</string>
++    
 +
 +    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
 +

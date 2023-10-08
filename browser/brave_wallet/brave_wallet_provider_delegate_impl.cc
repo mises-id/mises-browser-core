@@ -15,7 +15,7 @@
 #include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
 #include "mises/components/brave_wallet/browser/permission_utils.h"
-#include "mises/components/permissions/contexts/brave_wallet_permission_context.h"
+#include "mises/components/permissions/contexts/mises_wallet_permission_context.h"
 #include "components/content_settings/core/common/content_settings.h"
 #include "content/public/browser/render_frame_host.h"
 #include "content/public/browser/visibility.h"
@@ -109,9 +109,18 @@ url::Origin BraveWalletProviderDelegateImpl::GetOrigin() const {
 }
 
 bool BraveWalletProviderDelegateImpl::IsTabVisible() {
+#if !BUILDFLAG(IS_ANDROID)
   return web_contents_
              ? web_contents_->GetVisibility() == content::Visibility::VISIBLE
              : false;
+#else
+  if (web_contents_) {
+    bool visible = web_contents_->GetVisibility() == content::Visibility::VISIBLE;
+    return visible || brave_wallet::IsPanelShowing(web_contents_);
+  } else {
+    return false;
+  }
+#endif
 }
 
 void BraveWalletProviderDelegateImpl::ShowPanel() {
@@ -124,6 +133,10 @@ void BraveWalletProviderDelegateImpl::WalletInteractionDetected() {
 
 void BraveWalletProviderDelegateImpl::ShowWalletOnboarding() {
   ::brave_wallet::ShowWalletOnboarding(web_contents_);
+}
+
+bool BraveWalletProviderDelegateImpl::IsPanelShowing() {
+  return ::brave_wallet::IsPanelShowing(web_contents_);
 }
 
 void BraveWalletProviderDelegateImpl::ShowAccountCreation(

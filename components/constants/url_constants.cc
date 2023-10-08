@@ -30,3 +30,7 @@ const char kMisesSearchUrl[] = "https://search.mises.site/";
 const char kWidevineLearnMoreUrl[] =
     "https://support.mises.site/hc/en-us/articles/"
     "360023851591-How-do-I-view-DRM-protected-content-";
+
+const char kMisesHost[] = ".mises.site";
+
+const char kMisesSwapHost[] = "swap.mises.site";

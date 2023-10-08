@@ -90,7 +90,7 @@ v8::MaybeLocal<v8::Value> ExecuteScript(blink::WebLocalFrame* web_frame,
   if (web_frame->IsProvisional())
     return v8::MaybeLocal<v8::Value>();
 
-  return brave::LoadScriptWithSafeBuiltins(web_frame, script, name);
+  return mises::LoadScriptWithSafeBuiltins(web_frame, script, name);
 }
 
 void SetProviderNonWritable(v8::Local<v8::Context> context,

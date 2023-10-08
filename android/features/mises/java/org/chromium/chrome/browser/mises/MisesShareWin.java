@@ -108,14 +108,14 @@ public class MisesShareWin extends DialogFragment {
             String boundary = "MyBoundary" + System.currentTimeMillis();
             HttpURLConnection urlConnection = null;
             try {
-                URL url = new URL("https://api.alb.mises.site/api/v1/upload");
+                URL url = new URL(MisesController.MISES_API_BASE_URL + "/api/v1/upload");
                 urlConnection = (HttpURLConnection) ChromiumNetworkAdapter.openConnection(url, NetworkTrafficAnnotationTag.MISSING_TRAFFIC_ANNOTATION);
                 urlConnection.setConnectTimeout(20000);
                 urlConnection.setDoOutput(true);
                 urlConnection.setDoInput(true);
                 urlConnection.setUseCaches(false);
                 urlConnection.setRequestMethod("POST");
-                String userAgent = "mises";
+                String userAgent = "Mises Browser";
                 urlConnection.setRequestProperty("User-Agent", userAgent);
                 urlConnection.setRequestProperty("Connection", "Keep-alive");
                 urlConnection.setRequestProperty("Charset", "UTF-8");
@@ -193,28 +193,9 @@ public class MisesShareWin extends DialogFragment {
             return resCode;
         }
 
-        private int PostToMises(String attachUrl) {
-            int resCode = -1;
-            // if (attachUrl == null || attachUrl.isEmpty())
-            //     return resCode;
-            HttpURLConnection urlConnection = null;
+        private Integer PostToMises(String attachUrl) {
+            JSONObject root = new JSONObject();
             try {
-                URL url = new URL("https://api.alb.mises.site/api/v1/status");
-                urlConnection = (HttpURLConnection) ChromiumNetworkAdapter.openConnection(url, NetworkTrafficAnnotationTag.MISSING_TRAFFIC_ANNOTATION);
-                urlConnection.setConnectTimeout(20000);
-                urlConnection.setDoOutput(true);
-                urlConnection.setDoInput(true);
-                urlConnection.setUseCaches(false);
-                urlConnection.setRequestMethod("POST");
-                String userAgent = "mises";
-                urlConnection.setRequestProperty("User-Agent", userAgent);
-                urlConnection.setRequestProperty("Authorization", "Bearer " + mToken);
-                urlConnection.setRequestProperty("Connection", "Keep-alive");
-                urlConnection.setRequestProperty("Charset", "UTF-8");
-                urlConnection.setRequestProperty("Content-Type", "application/json;charset = utf-8");
-
-                OutputStream outputStream = urlConnection.getOutputStream();
-                JSONObject root = new JSONObject();
                 root.put("status_type", "link");
                 root.put("from_type","forward");
                 root.put("content", mText);
@@ -225,64 +206,26 @@ public class MisesShareWin extends DialogFragment {
                 linkObject.put("link", mUrl);
                 linkObject.put("attachment_path", attachUrl);
                 root.put("link_meta", linkObject);
-                String param = root.toString();
-                Log.e("mises", "share post to mises : " + param);
-                // param = param.replace("\\", "");
-                outputStream.write(param.getBytes("UTF-8"));
-
-                resCode = urlConnection.getResponseCode();
-                Log.e(TAG, "Share to mises " + resCode);
-                if (resCode == 200) {
-                    InputStream is = urlConnection.getInputStream();
-                    ByteArrayOutputStream bo = new ByteArrayOutputStream();
-                    int i = is.read();
-                    while (i != -1) {
-                        bo.write(i);
-                        i = is.read();
-                    }
-                    is.close();
-                    String resJson = bo.toString();
-                    JSONObject resJsonObject = new JSONObject(resJson);
-                    int code = -1;
-                    if (resJsonObject.has("code")) {
-                        code = resJsonObject.getInt("code");
-                    }
-                    return code;
-                } else {
-                    InputStream is = urlConnection.getErrorStream();
-                    ByteArrayOutputStream bo = new ByteArrayOutputStream();
-                    int i = is.read();
-                    while (i != -1) {
-                        bo.write(i);
-                        i = is.read();
-                    }
-                    is.close();
-                    String err = bo.toString();
-                    Log.e(TAG, "Share to mises " + err);
-                }
             } catch (JSONException e) {
-                Log.e(TAG, "Share to mises error " + e.toString());
+                Log.d(TAG, "Unable to write to a JSONObject.");
             } catch (MalformedURLException e) {
-                Log.e(TAG, "Share to mises error " + e.toString());
-            } catch (IOException e) {
-                Log.e(TAG, "Share to mises error " + e.toString());
-            } catch (IllegalStateException e) {
-                Log.e(TAG, "Share to mises error " + e.toString());
-            } finally {
-                if (urlConnection != null) urlConnection.disconnect();
-            }
-            return resCode;
+                Log.e(TAG, "Unable to write to a JSONObject." + e.toString());
+            } 
+
+            HttpUtil.HttpResp result = HttpUtil.JsonPostSync(MisesController.MISES_API_BASE_URL + "/api/v1/status",root, mToken, "");
+            return result.code;
         }
+
 
         @Override
         protected Integer doInBackground() {
             int res = -1;
-	    final ImageResult ir = mImageResult;
+            final ImageResult ir = mImageResult;
             if (ir != null && ir.mImageData != null) {
                 res = uploadImageToMises(ir);
                 if (res == 200 && !mMisesImageUrl.isEmpty()) {
                     res =  PostToMises(mMisesImageUrl);
-		}
+            }
             } else {
                 Log.e("mises", "share image is null");
                 res =  PostToMises("");   
@@ -292,7 +235,7 @@ public class MisesShareWin extends DialogFragment {
 
         @Override
         protected void onPostExecute(Integer res) {
-            Log.e(TAG, "mises share action " + res.toString());
+            Log.e(TAG, "mises share action " + res);
             mLoadingView.hideLoadingUI();
             if (res == 0) {
                 dismiss();
@@ -305,7 +248,7 @@ public class MisesShareWin extends DialogFragment {
                     public void onClick(View v) {
                         TabCreator tabCreator = mTabCreatorManager.getTabCreator(false);
                         if (tabCreator != null) {
-                            tabCreator.openSinglePage("chrome-extension://jkpbgdgopmifmokhejofbmgdabapoefl/popup.html");
+                            tabCreator.openSinglePage(MisesController.MISES_WALLET_BASE_URL);
                         }
                     }
                 });

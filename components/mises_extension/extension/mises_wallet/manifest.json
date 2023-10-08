@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Mises",
+  "name": "Mises(Deprecated)",
   "description": "Mises is a browser extension wallet",
   "version": "0.2.9",
   "icons": {
@@ -10,7 +10,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Mises",
+    "default_title": "Mises(Deprecated)",
     "default_icon": {
       "16": "assets/icon-16.png",
       "48": "assets/icon-48.png",

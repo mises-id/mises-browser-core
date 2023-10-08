@@ -186,6 +186,12 @@ class EthereumProviderImpl final
             base::Value params,
             SendCallback callback) override;
   void SendAsync(base::Value input, SendAsyncCallback callback) override;
+  void ShowAds(ShowAdsCallback callback) override;
+  void CancelAds() override;
+  void GetCachedAuth(GetCachedAuthCallback callback) override;
+  void SignMessageForAuth(const std::string& address,
+               const std::string& nonce,
+               SignMessageForAuthCallback callback) override;
   void GetChainId(GetChainIdCallback callback) override;
   void IsLocked(IsLockedCallback callback) override;
 
@@ -393,6 +399,10 @@ class EthereumProviderImpl final
   void OnLogsReceived(const std::string& subscription,
                       base::Value rawlogs) override;
   bool UnsubscribeLogObserver(const std::string& subscription_id);
+
+  void OnShowAdsResult(ShowAdsCallback callback, int code, const std::string &message);
+
+  void OnSignMessageForAuth(SignMessageForAuthCallback callback, const std::string &message);
 
   raw_ptr<HostContentSettingsMap> host_content_settings_map_ = nullptr;
   std::unique_ptr<BraveWalletProviderDelegate> delegate_;

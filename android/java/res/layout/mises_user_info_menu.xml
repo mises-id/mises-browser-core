@@ -130,11 +130,52 @@
                     android:drawableEnd="@mipmap/ic_copy"
                     android:drawablePadding="10dp"/>
 
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@drawable/reward_border">
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_my_rewards"
+                            android:text="@string/lbl_my_rewards"
+                            android:gravity="start|center_vertical"
+                            android:textColor="#ff666666"
+                            android:textSize="14dp" />
+                        
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/tv_my_rewards_actions"
+                            android:text=""
+                            android:gravity="start|center_vertical"
+                            android:textColor="#ff666666"
+                            android:textSize="14dp" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_my_rewards_action_mine"
+                            android:visibility="gone" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_my_rewards_action_redeem"
+                            android:visibility="gone" />
+                </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/separator_height"
                     android:layout_marginTop="30dp"
                     android:background="#ffeeeeee" />
+
 
                 <TextView
                     android:id="@+id/tv_my_data"

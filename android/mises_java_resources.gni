@@ -207,6 +207,11 @@ kiwi_java_resources = [
     "java/res/drawable-xhdpi/ics_search_engine.png",
     "java/res/drawable-xxhdpi/ics_search_engine.png",
     "java/res/drawable-xxxhdpi/ics_search_engine.png",
+    "java/res/drawable-hdpi/ic_mises_wallet.png",
+    "java/res/drawable-mdpi/ic_mises_wallet.png",
+    "java/res/drawable-xhdpi/ic_mises_wallet.png",
+    "java/res/drawable-xxhdpi/ic_mises_wallet.png",
+    "java/res/drawable-xxxhdpi/ic_mises_wallet.png",
     "java/res/values-bn/strings.xml",
     "java/res/values-sk/strings.xml",
     "java/res/values-kmr/strings.xml",
@@ -334,6 +339,8 @@ mises_extra_java_resources = [
   "java/res/layout/mises_web3_safe_alert.xml",
   "java/res/layout/mises_user_info_menu.xml",
 
+  "java/res/drawable/reward_border.xml",
+
   "java/res/drawable/mises_share_cancel_bg.xml",
   "java/res/drawable/mises_share_confirm_bg.xml",
   "java/res/drawable/mises_share_bg.xml",
@@ -347,6 +354,12 @@ mises_extra_java_resources = [
   "java/res/mipmap-xhdpi/ic_menu_mises_forward.png",
   "java/res/mipmap-xxhdpi/ic_menu_mises_forward.png",
   "java/res/mipmap-xxxhdpi/ic_menu_mises_forward.png",
+
+  "java/res/mipmap-hdpi/ic_rewards.png",
+  "java/res/mipmap-mdpi/ic_rewards.png",
+  "java/res/mipmap-xhdpi/ic_rewards.png",
+  "java/res/mipmap-xxhdpi/ic_rewards.png",
+  "java/res/mipmap-xxxhdpi/ic_rewards.png",
 
 ]
 

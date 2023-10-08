@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Mises Wallet</title>
+  <link rel="stylesheet" href="chrome://resources/css/md_colors.css">
+  <link rel="stylesheet" href="chrome://resources/mises/fonts/poppins.css">
+  <script src="chrome://resources/js/load_time_data_deprecated.js"></script>
+  <script src="/strings.js"></script>
+  <script src="/brave_wallet_page.bundle.js"></script>
+  <!-- <script type="module" src="chrome://resources/mises/br_elements/br_toolbar/br_toolbar.js"></script> -->
+  <style>
+    html {
+      /* Prevent layout shift when a vertical scrollbar is added  */
+      overflow-y: auto;
+    }
+    html, body, #root{
+      height: 100%;
+    }
+
+    #root{
+      display: flex;
+    }
+    
+    * {
+      outline: none;
+    }
+
+    iframe {
+      color-scheme: none;
+    }
+  </style>
+  </head>
+  <body>
+    <!-- <cr-toolbar id="toolbar" no-search></cr-toolbar> -->
+    <div id="root"></div>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca4961c3e303 100644
+index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4fad32b785 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -73,6 +73,9 @@
@@ -12,18 +12,28 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -83,8 +86,8 @@ using CSCollectionViewItem = CollectionViewItem<SuggestedContent>;
- using RequestSource = SearchTermsData::RequestSource;
+@@ -84,7 +87,9 @@
  
  // Maximum number of most visited tiles fetched.
--const NSInteger kMaxNumMostVisitedTiles = 4;
+ const NSInteger kMaxNumMostVisitedTiles = 4;
 -
-+const NSInteger kMaxNumMostVisitedTiles = 8;
 +static NSData* gWeb3SitesCache = nil;
++NSString * const kHideMisesService = @"hide_mises_service";
++NSString * const kHideWeb3Site = @"hide_web3_site";
  }  // namespace
  
  @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
-@@ -155,6 +158,16 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -95,6 +100,9 @@ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
+   std::unique_ptr<StartSuggestServiceResponseBridge>
+       _startSuggestServiceResponseBridge;
+   StartSuggestService* _startSuggestService;
++
++  BOOL _misesWeb3Visible;
++  BOOL _misesFeatureVisible;
+ }
+ 
+ // Whether the contents section should be hidden completely.
+@@ -155,6 +163,16 @@ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
  @property(nonatomic, strong)
      NSMutableArray<QuerySuggestionConfig*>* trendingQueries;
  
@@ -40,7 +50,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  @end
  
  @implementation ContentSuggestionsMediator
-@@ -181,6 +194,7 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -181,6 +199,7 @@ @implementation ContentSuggestionsMediator
      _faviconMediator = [[ContentSuggestionsFaviconMediator alloc]
          initWithLargeIconService:largeIconService
                    largeIconCache:largeIconCache];
@@ -48,7 +58,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  
      _logoSectionInfo = LogoSectionInformation();
      _mostVisitedSectionInfo = MostVisitedSectionInformation();
-@@ -203,6 +217,12 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -203,6 +222,14 @@ @implementation ContentSuggestionsMediator
        _startSuggestServiceResponseBridge =
            std::make_unique<StartSuggestServiceResponseBridge>(self);
      }
@@ -57,11 +67,13 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
 +    _misesBoxMarginInfo = MisesBoxMarginInformation();
 +    _misesWeb3siteSectionInfo = MisesWeb3siteSectionInformation();
 +    _misesWeb3siteItems = [NSArray array];
++    _misesWeb3Visible = ![[NSUserDefaults standardUserDefaults] boolForKey:kHideWeb3Site];
++    _misesFeatureVisible = ![[NSUserDefaults standardUserDefaults] boolForKey:kHideMisesService];
 +    [self fetchWeb3site];
    }
    return self;
  }
-@@ -221,6 +241,7 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -221,6 +248,7 @@ - (void)refreshMostVisitedTiles {
    // Refresh in case there are new MVT to show.
    _mostVisitedSites->RefreshTiles();
    _mostVisitedSites->Refresh();
@@ -69,20 +81,20 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  }
  
  - (void)reloadAllData {
-@@ -231,9 +252,10 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -231,9 +259,10 @@ - (void)reloadAllData {
      [self.consumer
          showReturnToRecentTabTileWithConfig:self.returnToRecentTabItem];
    }
 -  if ([self.mostVisitedItems count] && ![self shouldHideMVTForTileAblation]) {
 -    [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
 +  if (([self.mostVisitedItems count] || [self.misesWeb3siteItems count]) && ![self shouldHideMVTForTileAblation]) {
-+    [self.consumer setMostVisitedTilesWithConfigs:[self.misesWeb3siteItems arrayByAddingObjectsFromArray:self.mostVisitedItems]];
++      [self setTiles];
    }
 +    
    if (!ShouldHideShortcutsForTrendingQueries() &&
        ![self shouldHideShortcutsForTileAblation]) {
      [self.consumer setShortcutTilesWithConfigs:self.actionButtonItems];
-@@ -526,6 +548,12 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -526,6 +555,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
        return;
      }
    }
@@ -95,7 +107,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  }
  
  #pragma mark - Private
-@@ -535,8 +563,11 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -535,10 +570,25 @@ - (void)useFreshMostVisited {
    if ([self shouldHideMVTForTileAblation]) {
      return;
    }
@@ -104,11 +116,25 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
 -  [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
 +  self.misesWeb3siteItems = self.freshMisesWeb3siteItems;
 +
-+  [self.consumer setMostVisitedTilesWithConfigs:[self.misesWeb3siteItems arrayByAddingObjectsFromArray:self.mostVisitedItems]];
++  [self setTiles];
    [self.feedDelegate contentSuggestionsWasUpdated];
  }
++- (void) setTiles {
++    NSMutableArray * array = [[NSMutableArray alloc] init];
++    for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
++        if (_misesFeatureVisible && (item.itemType == ITEM_TYPE_MISES_FEATURE)) {
++            [array addObject:item];
++        }
++        if (_misesWeb3Visible && (item.itemType == ITEM_TYPE_WEB3_SITE)) {
++            [array addObject:item];
++        }
++    }
++  [self.consumer setMostVisitedTilesWithConfigs:[array arrayByAddingObjectsFromArray:self.mostVisitedItems]];
++}
  
-@@ -752,6 +783,9 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+ // Opens the `URL` in a new tab `incognito` or not. `originPoint` is the origin
+ // of the new tab animation if the tab is opened in background, in window
+@@ -752,6 +802,9 @@ - (void)setCommandHandler:
    for (ContentSuggestionsMostVisitedItem* item in self.freshMostVisitedItems) {
      item.commandHandler = commandHandler;
    }
@@ -118,7 +144,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
  }
  
  - (BOOL)contentSuggestionsEnabled {
-@@ -773,4 +807,118 @@ const NSInteger kMaxNumMostVisitedTiles = 4;
+@@ -773,4 +826,130 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
    }
  }
  
@@ -158,7 +184,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
 +    [dataTask resume];
 +
 +}
-+- (NSArray<ContentSuggestionsMostVisitedItem*> *) convertWeb3Items: (id)jsonArray miseFeature:(BOOL)isMises {
++- (NSArray<ContentSuggestionsMostVisitedItem*> *) convertWeb3Items: (id)jsonArray miseFeature:(int)itemType {
 +    NSMutableArray<ContentSuggestionsMostVisitedItem*> *items = [NSMutableArray array];
 +    for (id element in jsonArray) {
 +      ntp_tiles::NTPTile tile;
@@ -169,7 +195,7 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
 +        ConvertNTPTile(tile, self.misesWeb3siteSectionInfo);
 +      item.commandHandler = self.commandHandler;
 +      item.incognitoAvailable = self.incognitoAvailable;
-+      item.isMisesFeature = isMises;
++      item.itemType = itemType;
 +      [items addObject:item];
 +        NSLog(@"[fetchWeb3site]:item=%@", element);
 +    }
@@ -189,8 +215,8 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
 +    if (![feature_list isKindOfClass:[NSArray class]]) {
 +        return;
 +    }
-+    NSArray * features = [self convertWeb3Items:feature_list miseFeature:YES];
-+    NSArray * recommendeds = [self convertWeb3Items:recommended_sites  miseFeature:NO]
++    NSArray * features = [self convertWeb3Items:feature_list miseFeature:ITEM_TYPE_MISES_FEATURE];
++    NSArray * recommendeds = [self convertWeb3Items:recommended_sites  miseFeature:ITEM_TYPE_WEB3_SITE]
 +    
 +    ;
 +    [self updateMisesWeb3SiteItems: [features arrayByAddingObjectsFromArray:recommendeds]];
@@ -233,6 +259,18 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..b5b2d98f7714b38be0ba094632f6ca49
 +  UrlLoadParams params = UrlLoadParams::InCurrentTab(GURL("https://web3.mises.site/"));
 +  params.web_params.transition_type = ui::PAGE_TRANSITION_LINK;
 +  UrlLoadingBrowserAgent::FromBrowser(self.browser)->Load(params);
++
++}
++
++- (void)toogleWeb3Site {
++    _misesWeb3Visible = !_misesWeb3Visible;
++    [[NSUserDefaults standardUserDefaults] setBool:!_misesWeb3Visible forKey:kHideWeb3Site];
++    [self reloadAllData];
++}
++- (void)toogleMisesFeature {
++    _misesFeatureVisible = !_misesFeatureVisible;
++    [[NSUserDefaults standardUserDefaults] setBool:!_misesFeatureVisible forKey:kHideMisesService];
++    [self reloadAllData];
 +
 +}
 +

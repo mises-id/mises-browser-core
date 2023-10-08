@@ -5,6 +5,8 @@
 
 #include "mises/components/brave_wallet/browser/ethereum_provider_impl.h"
 
+#include "mises/components/constants/pref_names.h"
+
 #include <string>
 #include <tuple>
 #include <utility>
@@ -28,11 +30,19 @@
 #include "mises/components/brave_wallet/common/hex_utils.h"
 #include "mises/components/brave_wallet/common/value_conversion_utils.h"
 #include "mises/components/brave_wallet/common/web3_provider_constants.h"
+#include "mises/components/constants/url_constants.h"
 #include "components/content_settings/core/browser/host_content_settings_map.h"
 #include "components/grit/mises_components_strings.h"
+#include "components/prefs/pref_service.h"
 #include "crypto/random.h"
 #include "ui/base/l10n/l10n_util.h"
 #include "url/origin.h"
+
+#if BUILDFLAG(IS_ANDROID)
+#include "base/android/sys_utils.h"
+#include "base/strings/string_util.h"
+#include "base/strings/utf_string_conversions.h"
+#endif
 
 namespace {
 
@@ -1029,6 +1039,75 @@ void EthereumProviderImpl::SendAsync(base::Value input,
   delegate_->WalletInteractionDetected();
 }
 
+void EthereumProviderImpl::CancelAds() {
+#if BUILDFLAG(IS_ANDROID)
+    base::android::MisesSysUtils::CancelRewardAdFromJni();
+#else
+#endif
+  
+}
+
+void EthereumProviderImpl::ShowAds(ShowAdsCallback callback) {
+#if BUILDFLAG(IS_ANDROID)
+    base::android::MisesSysUtils::ShowRewardAdFromJni(
+      base::BindOnce(&EthereumProviderImpl::OnShowAdsResult,
+                     weak_factory_.GetWeakPtr(), std::move(callback)));
+    
+#else
+  std::move(callback).Run(base::Value(), base::Value(), false, "", true);
+#endif
+  
+}
+
+void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, const std::string &message) {
+  if (code == 0) {
+    std::move(callback).Run(base::Value(), base::Value(), false, "", true);
+  } else {
+    base::Value::Dict result;
+    result.Set("code", code);
+    result.Set("message", message);
+    std::move(callback).Run(base::Value(), base::Value(std::move(result)), true, "", true);
+  }
+}
+
+ void EthereumProviderImpl::GetCachedAuth(GetCachedAuthCallback callback) {
+  if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
+    std::move(callback).Run(base::Value(), base::Value(), true, "", true);
+    return;
+  }
+  std::string auth_cache;
+  if (prefs_->FindPreference(kMisesWalletAuthCache)) {
+    auth_cache = prefs_->GetString(kMisesWalletAuthCache);
+  }
+  auto json_value = base::JSONReader::Read(
+      auth_cache,
+      base::JSON_PARSE_CHROMIUM_EXTENSIONS | base::JSON_ALLOW_TRAILING_COMMAS);
+  if (!json_value || !json_value->is_dict())  {
+    std::move(callback).Run(base::Value(), base::Value(), true, "", true);
+    return;
+  }
+  base::Value::Dict result = json_value->GetDict().Clone();
+  std::move(callback).Run(base::Value(), base::Value(std::move(result)), false, "", true);
+ }
+
+void EthereumProviderImpl::SignMessageForAuth(const std::string& address,
+                                              const std::string& nonce,
+                                              SignMessageForAuthCallback callback) {
+  if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
+    std::move(callback).Run(base::Value(), base::Value(), true, "", true);
+    return;
+  }
+  
+  keyring_service_->SignMessageForAuth(address, nonce, base::BindOnce(&EthereumProviderImpl::OnSignMessageForAuth,
+                     weak_factory_.GetWeakPtr(), std::move(callback)));
+}
+
+void EthereumProviderImpl::OnSignMessageForAuth(SignMessageForAuthCallback callback, const std::string &sig) {
+    base::Value::Dict result;
+    result.Set("sig", sig);
+    std::move(callback).Run(base::Value(), base::Value(std::move(result)), false, "", true);
+}
+
 void EthereumProviderImpl::SendErrorOnRequest(const mojom::ProviderError& error,
                                               const std::string& error_message,
                                               RequestCallback callback,
@@ -1269,7 +1348,20 @@ void EthereumProviderImpl::CommonRequestOrSendAsync(
       return;
     }
     EthUnsubscribe(subscription_id, std::move(callback), std::move(id));
-  } else {
+  } else if (method == kEthChainId) {
+    std::string chain_id;
+    if (json_rpc_service_) {
+      chain_id = json_rpc_service_->GetChainId(mojom::CoinType::ETH);
+    }
+    if (!chain_id.empty()) {
+      base::Value formed_response =  base::Value(chain_id);
+      std::move(callback).Run(std::move(id), std::move(formed_response), false, "", true);
+    } else if (json_rpc_service_) {
+      json_rpc_service_->Request(normalized_json_request, true, std::move(id),
+                               mojom::CoinType::ETH, std::move(callback));
+    }
+                          
+  }else {
     json_rpc_service_->Request(normalized_json_request, true, std::move(id),
                                mojom::CoinType::ETH, std::move(callback));
   }
@@ -1311,12 +1403,18 @@ void EthereumProviderImpl::ContinueRequestEthereumPermissionsKeyringInfo(
     brave_wallet::mojom::KeyringInfoPtr keyring_info) {
   DCHECK_EQ(keyring_info->id, brave_wallet::mojom::kDefaultKeyringId);
   if (!keyring_info->is_keyring_created) {
+#if !BUILDFLAG(IS_ANDROID)
     if (!wallet_onboarding_shown_) {
       delegate_->ShowWalletOnboarding();
       wallet_onboarding_shown_ = true;
     }
+#else
+    if (!delegate_->IsPanelShowing()) {
+      delegate_->ShowWalletOnboarding();
+    }
+#endif
     OnRequestEthereumPermissions(std::move(callback), std::move(id), method,
-                                 origin, RequestPermissionsError::kInternal,
+                                 origin, RequestPermissionsError::kNoKeyring,
                                  absl::nullopt);
     return;
   }
@@ -1427,6 +1525,11 @@ void EthereumProviderImpl::OnRequestEthereumPermissions(
         formed_response = GetProviderErrorDictionary(
             mojom::ProviderError::kInternalError,
             l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
+        break;
+      case RequestPermissionsError::kNoKeyring:
+        formed_response = GetProviderErrorDictionary(
+            mojom::ProviderError::kNoKeyring,
+            l10n_util::GetStringUTF8(IDS_WALLET_NO_KEYRING_ERROR));
         break;
       default:
         NOTREACHED();

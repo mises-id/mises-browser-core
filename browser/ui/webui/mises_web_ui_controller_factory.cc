@@ -20,10 +20,20 @@
 #include "url/gurl.h"
 
 
-#if !BUILDFLAG(IS_ANDROID)
+#if true || !BUILDFLAG(IS_ANDROID)
+#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
 #include "mises/browser/ui/webui/mises_settings_ui.h"
+#include "mises/browser/ui/webui/brave_wallet/wallet_page_ui.h"
+#include "mises/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
+#include "mises/components/brave_wallet/browser/brave_wallet_utils.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/brave_wallet/common/common_util.h"
 #endif
 
+
+#if BUILDFLAG(IS_ANDROID)
+#include "mises/browser/ui/webui/brave_wallet/android/swap_page_ui.h"
+#endif
 
 
 #if BUILDFLAG(ENABLE_IPFS)
@@ -53,10 +63,40 @@ WebUIController* NewWebUI(WebUI* web_ui, const GURL& url) {
     return new IPFSUI(web_ui, url.host());
   }
 #endif
+#if true || !BUILDFLAG(IS_ANDROID)
+  if (host == kWalletPageHost &&
+             // We don't want to check for supported profile type here because
+             // we want private windows to redirect to the regular profile.
+             // Guest session will just show an error page.
+             brave_wallet::IsAllowed(profile->GetPrefs())) {
+    if (brave_wallet::IsNativeWalletEnabled()) {
+      // auto default_wallet =
+      //     brave_wallet::GetDefaultEthereumWallet(profile->GetPrefs());
+      // if (default_wallet == brave_wallet::mojom::DefaultWallet::CryptoWallets)
+      //   return new EthereumRemoteClientUI(web_ui, url.host());
+      return new WalletPageUI(web_ui);
+    }
+  }
+  if (host == kWalletPanelHost &&
+             brave_wallet::IsAllowedForContext(profile)) {
+    return new WalletPanelUI(web_ui);
+  }
+#endif  // BUILDFLAG(OS_ANDROID)
 #if !BUILDFLAG(IS_ANDROID)
   if (host == chrome::kChromeUISettingsHost) {
     return new MisesSettingsUI(web_ui, url.host());
   } 
+#endif
+#if BUILDFLAG(IS_ANDROID)
+  if (url.is_valid() &&
+             (url.spec() == base::StringPrintf("%s://%s",
+                                               content::kChromeUIScheme,
+                                               kWalletSwapPagePath) ||
+              url.spec() == base::StringPrintf("%s://%s",
+                                               content::kMisesUIScheme,
+                                               kWalletSwapPagePath))) {
+    return new SwapPageUI(web_ui, url.host());
+  }
 #endif
 
   return nullptr;
@@ -71,6 +111,17 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* web_ui, const GURL& url) {
       (url.host_piece() == kIPFSWebUIHost &&
        base::FeatureList::IsEnabled(ipfs::features::kIpfsFeature)) ||
 #endif  // BUILDFLAG(ENABLE_IPFS)
+#if true || !BUILDFLAG(IS_ANDROID)
+      url.host_piece() == kWalletPanelHost ||
+      url.host_piece() == kWalletPageHost ||
+#endif
+#if BUILDFLAG(IS_ANDROID)
+      (url.is_valid() &&
+       (url.spec() == base::StringPrintf("%s://%s", content::kChromeUIScheme,
+                                         kWalletSwapPagePath) ||
+        url.spec() == base::StringPrintf("%s://%s", content::kMisesUIScheme,
+                                         kWalletSwapPagePath))) ||
+#endif  // BUILDFLAG(IS_ANDROID)
       url.host_piece() == kWelcomeHost ||
       url.host_piece() == chrome::kChromeUIWelcomeURL ||
 #if !BUILDFLAG(IS_ANDROID)

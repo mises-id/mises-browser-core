@@ -20,6 +20,8 @@
 
     <string name="main_menu_exit">Exit</string>
     <string name="main_menu_extensions">Extensions</string>
+    <string name="main_menu_mises_wallet">Mises Wallet</string>
+    
 
     <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
 

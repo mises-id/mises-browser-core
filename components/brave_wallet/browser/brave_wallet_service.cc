@@ -1017,27 +1017,27 @@ void BraveWalletService::MigrateUserAssetsAddIsERC1155(PrefService* prefs) {
 base::Value::Dict BraveWalletService::GetDefaultEthereumAssets() {
   base::Value::Dict user_assets;
 
-  base::Value::Dict bat;
-  bat.Set("address", "0x0D8775F648430679A709E98d2b0Cb6250d2887EF");
-  bat.Set("name", "Basic Attention Token");
-  bat.Set("symbol", "BAT");
-  bat.Set("is_erc20", true);
-  bat.Set("is_erc721", false);
-  bat.Set("is_erc1155", false);
-  bat.Set("is_nft", false);
-  bat.Set("decimals", 18);
-  bat.Set("visible", true);
-  bat.Set("logo", "bat.png");
+  base::Value::Dict mb;
+  mb.Set("address", "0x9AcfD327448C44E01FeA5D526b61DEf3a9D86217");
+  mb.Set("name", "MB");
+  mb.Set("symbol", "MB");
+  mb.Set("is_erc20", true);
+  mb.Set("is_erc721", false);
+  mb.Set("is_erc1155", false);
+  mb.Set("is_nft", false);
+  mb.Set("decimals", 18);
+  mb.Set("visible", true);
+  mb.Set("logo", "mb.png");
 
-  // Show ETH and BAT by default for mainnet, and the native token for other
+  // Show ETH and mb by default for mainnet, and the native token for other
   // known networks.
   for (const auto& chain : GetAllKnownChains(nullptr, mojom::CoinType::ETH)) {
     const std::string network_id = GetKnownEthNetworkId(chain->chain_id);
     DCHECK(!network_id.empty());
     base::Value::List user_assets_list;
     user_assets_list.Append(GetEthNativeAssetFromChain(chain));
-    if (chain->chain_id == mojom::kMainnetChainId)
-      user_assets_list.Append(bat.Clone());
+    if (chain->chain_id == mojom::kArbitrumMainnetChainId)
+      user_assets_list.Append(mb.Clone());
 
     user_assets.Set(network_id, std::move(user_assets_list));
   }

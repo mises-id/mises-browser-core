@@ -22,15 +22,21 @@
 // @end
 
 // Associated cell, displaying what is new.
-@interface ContentSuggestionsMisesCell : UIView
+@interface ContentSuggestionsMisesToggleCell : UIView
 
+@property(nonatomic, strong, nonnull) M3CButton* toggleButton;
 @property(nonatomic, strong, nonnull) M3CButton* enterButton;
 
+- (void) configureWith:(nonnull NSString*)title enter:(nonnull NSString*)enter;
+- (void) toggle:(BOOL)on;
 // Returns the height needed by a cell contained in |width| containing |text|.
 + (CGFloat)heightForWidth:(CGFloat)width;
 
 @end
 
+@interface ContentSuggestionsMisesEmptyCell : UIView
++ (CGFloat)heightForWidth:(CGFloat)width;
+@end
 
 
 #endif  // IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CELLS_CONTENT_SUGGESTIONS_WHATS_NEW_ITEM_H_

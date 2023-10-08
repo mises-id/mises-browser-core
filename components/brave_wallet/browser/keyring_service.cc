@@ -117,6 +117,10 @@
 
 namespace brave_wallet {
 namespace {
+const char kEncryptedMnemonic[] = "encrypted_mnemonic";
+const char kMisesLegacyKeystore[] = "legacy_keystore";
+
+// Pbkdf algorithm
 const size_t kSaltSize = 32;
 const size_t kNonceSize = 12;
 const int kPbkdf2IterationsLegacy = 100000;
@@ -124,7 +128,10 @@ const int kPbkdf2Iterations = 310000;
 const int kPbkdf2KeySize = 256;
 const char kPasswordEncryptorSalt[] = "password_encryptor_salt";
 const char kPasswordEncryptorNonce[] = "password_encryptor_nonce";
-const char kEncryptedMnemonic[] = "encrypted_mnemonic";
+
+
+
+
 const char kBackupComplete[] = "backup_complete";
 const char kAccountMetas[] = "account_metas";
 const char kAccountName[] = "account_name";
@@ -558,11 +565,11 @@ const base::Value* KeyringService::GetPrefForKeyring(
 // static
 void KeyringService::SetPrefForKeyring(PrefService* profile_prefs,
                                        const std::string& key,
-                                       base::Value value,
+                                       const base::Value& value,
                                        const std::string& id) {
   DCHECK(profile_prefs);
   ScopedDictPrefUpdate update(profile_prefs, kBraveWalletKeyrings);
-  update->EnsureDict(id)->Set(key, std::move(value));
+  update->EnsureDict(id)->Set(key, value.Clone());
 }
 
 HDKeyring* KeyringService::CreateKeyring(const std::string& keyring_id,
@@ -625,6 +632,8 @@ HDKeyring* KeyringService::ResumeKeyring(const std::string& keyring_id,
   if (account_no) {
     keyring->AddAccounts(account_no);
   }
+
+  MaybeMigrateLegacyAccount();
 
   for (const auto& imported_account_info :
        GetImportedAccountsForKeyring(profile_prefs_, keyring_id)) {
@@ -987,7 +996,8 @@ void KeyringService::AddAccount(const std::string& account_name,
   SetSelectedAccountForCoinSilently(coin, address.value());
   SetSelectedCoin(profile_prefs_, coin);
   NotifyAccountsAdded(coin, {address.value()});
-
+  NotifySelectedAccountChanged(coin);
+  
   NotifyAccountsChanged();
   std::move(callback).Run(true);
 }
@@ -1382,11 +1392,12 @@ void KeyringService::AddDiscoveryAccountsForKeyring(
   if (!keyring) {
     return;
   }
-  json_rpc_service_->GetEthTransactionCount(
-      keyring->GetDiscoveryAddress(discovery_account_index),
-      base::BindOnce(&KeyringService::OnGetTransactionCount,
-                     discovery_weak_factory_.GetWeakPtr(),
-                     discovery_account_index, attempts_left));
+  // disable auto discovery of keyring
+  // json_rpc_service_->GetEthTransactionCount(
+  //     keyring->GetDiscoveryAddress(discovery_account_index),
+  //     base::BindOnce(&KeyringService::OnGetTransactionCount,
+  //                    discovery_weak_factory_.GetWeakPtr(),
+  //                    discovery_account_index, attempts_left));
 }
 
 void KeyringService::OnGetTransactionCount(size_t discovery_account_index,
@@ -1881,7 +1892,106 @@ void KeyringService::Reset(bool notify_observer) {
   }
 }
 
-void KeyringService::MaybeMigratePBKDF2Iterations(const std::string& password) {
+void KeyringService::SetLegacyKeystore(const base::Value::List& key_multi_store) {
+  if (HasPrefForKeyring(*profile_prefs_, kEncryptedMnemonic, mojom::kDefaultKeyringId) || need_migrate_legacy_account) {
+    return;
+  }
+  base::Value::List crypto_list_value;
+  
+  std::string account_address = "0x0000000000000000000000000000000000000000";
+  std::vector<std::string> hd_account_names;
+  if (key_multi_store.size() > 0) {
+    for (unsigned int idx = 0; idx < key_multi_store.size(); idx++) {
+      LOG(INFO) << "[Mises] Got MisesWallet Storage";
+      if (!key_multi_store[idx].is_dict()) {
+        break;
+      }
+      const base::Value::Dict& data = key_multi_store[idx].GetDict();
+      const base::Value::Dict* meta = data.FindDict("meta");
+      std::string account_name;
+      if (meta && meta->FindString("name")) {
+        account_name = *meta->FindString("name");
+      }
+      std::string account_type;
+      if (data.FindString("type")) {
+        account_type = *data.FindString("type");
+      }
+      if (account_type == "mnemonic") {
+        std::string account_path = "m/44'/60'/0'/0/" + std::to_string(hd_account_names.size());
+        hd_account_names.push_back(account_name);
+        if (idx == 0) {
+          
+          auto* key_store = data.Find("crypto");
+          
+          if (key_store) {
+            crypto_list_value.Append(key_store->Clone());
+          } else {
+            break;
+          }
+        } 
+        SetDerivedAccountInfoForKeyring(
+            profile_prefs_,
+            DerivedAccountInfo(account_path, account_name,
+                                account_address),
+            mojom::kDefaultKeyringId);
+      }
+      if (account_type == "privateKey") {
+        auto* key_store = data.Find("crypto");
+        if (key_store) {
+          crypto_list_value.Append(key_store->Clone());
+        } else {
+          break;
+        }
+      }
+    }
+
+  }
+  if (crypto_list_value.size() > 0) {
+    SetPrefForKeyring(profile_prefs_, kMisesLegacyKeystore,
+                            base::Value(std::move(crypto_list_value)), mojom::kDefaultKeyringId);
+  }
+
+
+
+
+  need_migrate_legacy_account = true;
+}
+
+void KeyringService::MaybeMigrateLegacyAccount() {
+    if (!need_migrate_legacy_account) {
+      return;
+    }
+
+    LOG(INFO) << "MaybeMigrateLegacyAccount";
+    //update account info
+    auto accounts = GetDerivedAccountsForKeyring(profile_prefs_, mojom::kDefaultKeyringId);
+    auto* keyring = GetHDKeyringById(mojom::kDefaultKeyringId);
+    if (!keyring) {
+      LOG(INFO) << "MaybeMigrateLegacyAccount fail no keyring";
+      return;
+    }
+    auto keyring_accounts = keyring->GetAccounts();
+    if (accounts.size() == 0 || accounts.size() != keyring_accounts.size()) {
+      LOG(INFO) << "MaybeMigrateLegacyAccount fail  derived accounts != keyring_accounts";
+      return;
+    }
+
+    for (unsigned int idx = 0; idx < accounts.size(); idx++) {
+      std::string account_name = accounts[idx].account_name;
+      std::string account_path = accounts[idx].account_path;
+
+      SetDerivedAccountInfoForKeyring(
+          profile_prefs_,
+          DerivedAccountInfo(account_path, account_name,
+                            keyring_accounts[idx]),
+          mojom::kDefaultKeyringId);
+    }
+
+    SetSelectedAccountForCoin(mojom::CoinType::ETH, keyring_accounts[0]);
+    need_migrate_legacy_account = false;
+}
+void KeyringService::MaybeMigrateLegacyKeystore(const std::string& password) {
+  LOG(INFO) << "MaybeMigrateLegacyKeystore";
   if (profile_prefs_->GetBoolean(kBraveWalletKeyringEncryptionKeysMigrated)) {
     return;
   }
@@ -1891,86 +2001,60 @@ void KeyringService::MaybeMigratePBKDF2Iterations(const std::string& password) {
       !profile_prefs_->HasPrefPath(kBraveWalletKeyringEncryptionKeysMigrated));
 
   for (auto* keyring_id :
-       {mojom::kDefaultKeyringId, mojom::kFilecoinKeyringId,
-        mojom::kFilecoinTestnetKeyringId, mojom::kSolanaKeyringId}) {
-    auto legacy_encrypted_mnemonic = GetPrefInBytesForKeyring(
-        *profile_prefs_, kEncryptedMnemonic, keyring_id);
-    auto legacy_nonce = GetPrefInBytesForKeyring(
-        *profile_prefs_, kPasswordEncryptorNonce, keyring_id);
-    auto legacy_salt = GetPrefInBytesForKeyring(
-        *profile_prefs_, kPasswordEncryptorSalt, keyring_id);
+       {mojom::kDefaultKeyringId /**, mojom::kFilecoinKeyringId,
+        mojom::kFilecoinTestnetKeyringId, mojom::kSolanaKeyringId*/}) {
 
-    if (!legacy_encrypted_mnemonic || !legacy_nonce || !legacy_salt) {
-      continue;
+    auto* legacy_key_store_value = GetPrefForKeyring(
+        *profile_prefs_, kMisesLegacyKeystore, keyring_id);
+
+    if (legacy_key_store_value && legacy_key_store_value->is_list()) {
+
+      auto salt = GetOrCreateSaltForKeyring(keyring_id, /*force_create =*/  true);
+      auto encryptor = PasswordEncryptor::DeriveKeyFromPasswordUsingPbkdf2(
+          password, salt, GetPbkdf2Iterations(), kPbkdf2KeySize);
+      if (!encryptor) {
+        continue;
+      }
+      const base::Value::List& key_stores = legacy_key_store_value->GetList();
+      for(unsigned int idx = 0; idx < key_stores.size(); idx++) {
+
+        std::vector<uint8_t> raw_bytes;
+        if (!HDKey::DecodeRawBytesFromV3UTC(password, key_stores[idx], &raw_bytes, false)) {
+          continue;
+        }
+        if (idx == 0) {
+          //for mnemonic
+          absl::optional<std::vector<uint8_t>> mnemonic = raw_bytes;
+          auto nonce =
+              GetOrCreateNonceForKeyring(keyring_id, /*force_create =*/  true);
+          SetPrefInBytesForKeyring(
+              profile_prefs_, kEncryptedMnemonic,
+              encryptor->Encrypt(base::make_span(*mnemonic), nonce), keyring_id);
+        } else {
+          //for private keys
+          std::vector<uint8_t> private_key_bytes;
+          std::string private_key_trimmed = std::string(raw_bytes.begin(), raw_bytes.end());
+          if (base::HexStringToBytes(private_key_trimmed, &private_key_bytes)) {
+            std::vector<uint8_t> encrypted_private_key = encryptor->Encrypt(
+                private_key_bytes, GetOrCreateNonceForKeyring(keyring_id));
+            std::string account_address = EthereumKeyring::GetAddress(private_key_bytes);
+            std::string account_name = "Imported " + std::to_string(idx);
+            AddImportedAccountForKeyring(
+                profile_prefs_,
+                ImportedAccountInfo(account_name, account_address, encrypted_private_key),
+                keyring_id);
+          }
+
+        }
+      }
     }
-
-    auto legacy_encryptor = PasswordEncryptor::DeriveKeyFromPasswordUsingPbkdf2(
-        password, *legacy_salt, kPbkdf2IterationsLegacy, kPbkdf2KeySize);
-    if (!legacy_encryptor) {
-      continue;
-    }
-
-    auto mnemonic =
-        legacy_encryptor->Decrypt(*legacy_encrypted_mnemonic, *legacy_nonce);
-    if (!mnemonic) {
-      continue;
-    }
-
-    auto salt = GetOrCreateSaltForKeyring(keyring_id, /*force_create = */ true);
-
-    auto encryptor = PasswordEncryptor::DeriveKeyFromPasswordUsingPbkdf2(
-        password, salt, GetPbkdf2Iterations(), kPbkdf2KeySize);
-    if (!encryptor) {
-      continue;
-    }
-
-    auto nonce =
-        GetOrCreateNonceForKeyring(keyring_id, /*force_create = */ true);
-
-    SetPrefInBytesForKeyring(
-        profile_prefs_, kEncryptedMnemonic,
-        encryptor->Encrypt(base::make_span(*mnemonic), nonce), keyring_id);
 
     if (keyring_id == mojom::kDefaultKeyringId) {
       profile_prefs_->SetBoolean(kBraveWalletKeyringEncryptionKeysMigrated,
                                  true);
     }
 
-    const base::Value::List* imported_accounts_legacy =
-        GetPrefForKeyringList(*profile_prefs_, kImportedAccounts, keyring_id);
-    if (!imported_accounts_legacy) {
-      continue;
-    }
-    base::Value::List imported_accounts = imported_accounts_legacy->Clone();
-    for (auto& imported_account : imported_accounts) {
-      if (!imported_account.is_dict()) {
-        continue;
-      }
 
-      const std::string* legacy_encrypted_private_key =
-          imported_account.GetDict().FindString(kEncryptedPrivateKey);
-      if (!legacy_encrypted_private_key) {
-        continue;
-      }
-
-      auto legacy_private_key_decoded =
-          base::Base64Decode(*legacy_encrypted_private_key);
-      if (!legacy_private_key_decoded) {
-        continue;
-      }
-
-      auto private_key = legacy_encryptor->Decrypt(
-          base::make_span(*legacy_private_key_decoded), *legacy_nonce);
-      if (!private_key) {
-        continue;
-      }
-
-      imported_account.GetDict().Set(
-          kEncryptedPrivateKey,
-          base::Base64Encode(encryptor->Encrypt(*private_key, nonce)));
-    }
-    SetPrefForKeyring(profile_prefs_, kImportedAccounts,
-                      base::Value(std::move(imported_accounts)), keyring_id);
   }
 }
 
@@ -2054,8 +2138,7 @@ bool KeyringService::CreateEncryptorForKeyring(const std::string& password,
     return false;
   }
 
-  // Added 08.08.2022
-  MaybeMigratePBKDF2Iterations(password);
+  MaybeMigrateLegacyKeystore(password);
 
   encryptors_[id] = PasswordEncryptor::DeriveKeyFromPasswordUsingPbkdf2(
       password, GetOrCreateSaltForKeyring(id), GetPbkdf2Iterations(),
@@ -2114,6 +2197,9 @@ HDKeyring* KeyringService::CreateKeyringInternal(const std::string& keyring_id,
 }
 
 bool KeyringService::IsKeyringCreated(const std::string& keyring_id) const {
+  if (keyring_id == mojom::kDefaultKeyringId && HasPrefForKeyring(*profile_prefs_, kMisesLegacyKeystore, keyring_id)) {
+    return true;
+  }
   return HasPrefForKeyring(*profile_prefs_, kEncryptedMnemonic, keyring_id);
 }
 
@@ -2474,4 +2560,35 @@ void KeyringService::MaybeUnlockWithCommandLine() {
 #endif  // !defined(OFFICIAL_BUILD)
 }
 
+void KeyringService::SignMessageForAuth(
+    const std::string& address,
+    const std::string& nonce,
+    SignMessageForAuthCallback callback) {
+  
+  std::string signMessageString;
+  std::string message = "address=" + address + "&nonce=" + nonce;
+
+  std::vector<uint8_t> signMessage =
+      std::vector<uint8_t>(message.begin(), message.end());
+
+  auto* keyring = GetHDKeyringById(mojom::kDefaultKeyringId);
+  
+  if (!keyring) {
+    std::move(callback).Run(signMessageString);
+    return;
+  }
+
+  // MM currently doesn't provide chain_id when signing message
+  std::vector<uint8_t> signature =
+      static_cast<EthereumKeyring*>(keyring)->SignMessage(address, signMessage, 0, false);
+  if (signature.empty()) {
+    std::move(callback).Run(signMessageString);
+    return;
+  }
+
+  signMessageString = base::ToLowerASCII(base::HexEncode(signature));
+  LOG(INFO) << "signMessageString";
+  
+  std::move(callback).Run(signMessageString);
+}
 }  // namespace brave_wallet

@@ -11,17 +11,28 @@
 #include "base/memory/weak_ptr.h"
 #include "content/public/browser/url_data_source.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
+#include "base/memory/weak_ptr.h"
+#include "base/time/time.h"
+#include "third_party/abseil-cpp/absl/types/optional.h"
 
-namespace base {
-class FilePath;
-}  // namespace base
+class ProfileKey;
+class GURL;
+
+namespace gfx {
+class Image;
+}  // namespace gfx
+
+namespace image_fetcher {
+class ImageFetcher;
+struct RequestMetadata;
+}  // namespace image_fetcher
 
 namespace brave_wallet {
 
 // This serves background image data.
 class BlockchainImagesSource : public content::URLDataSource {
  public:
-  explicit BlockchainImagesSource(const base::FilePath& base_path);
+  explicit BlockchainImagesSource(ProfileKey* key);
 
   ~BlockchainImagesSource() override;
 
@@ -40,11 +51,15 @@ class BlockchainImagesSource : public content::URLDataSource {
                         GotDataCallback callback) override;
   std::string GetMimeType(const GURL& url) override;
   bool AllowCaching() override;
+  void OnTokenImageFetched(
+    GotDataCallback callback,
+    const gfx::Image& token_image,
+    const image_fetcher::RequestMetadata& metadata);
 
-  void OnGotImageFile(GotDataCallback callback,
-                      absl::optional<std::string> input);
-
-  base::FilePath base_path_;
+  image_fetcher::ImageFetcher* GetImageFetcher();
+  void InitializeImageFetcher();
+  raw_ptr<image_fetcher::ImageFetcher> image_fetcher_ = nullptr;
+  raw_ptr<ProfileKey> key_;
   base::WeakPtrFactory<BlockchainImagesSource> weak_factory_;
 };
 

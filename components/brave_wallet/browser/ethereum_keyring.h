@@ -30,6 +30,8 @@ class EthereumKeyring : public HDKeyring {
                              const std::vector<uint8_t>& signature,
                              std::string* address);
 
+  static std::string GetAddress(const std::vector<uint8_t>& private_key);
+
   std::vector<uint8_t> SignMessage(const std::string& address,
                                    const std::vector<uint8_t>& message,
                                    uint256_t chain_id,

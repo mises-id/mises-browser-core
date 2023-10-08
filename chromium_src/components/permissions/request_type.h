@@ -6,8 +6,9 @@
 #ifndef BRAVE_CHROMIUM_SRC_COMPONENTS_PERMISSIONS_REQUEST_TYPE_H_
 #define BRAVE_CHROMIUM_SRC_COMPONENTS_PERMISSIONS_REQUEST_TYPE_H_
 
-// #define kStorageAccess                                     \
-//   kStorageAccess, kMisesEthereum, kMisesSolana
+#define kStorageAccess                                     \
+  kStorageAccess, kWidevine, kMisesEthereum, kMisesSolana
+  //    kMisesGoogleSignInPermission
 
 #define ContentSettingsTypeToRequestType \
   ContentSettingsTypeToRequestType_ChromiumImpl
@@ -19,7 +20,7 @@
 
 #include "src/components/permissions/request_type.h"  // IWYU pragma: export
 
-//#undef kStorageAccess
+#undef kStorageAccess
 #undef ContentSettingsTypeToRequestType
 #undef RequestTypeToContentSettingsType
 #undef IsRequestablePermissionType

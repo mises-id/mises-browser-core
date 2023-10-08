@@ -1,6 +1,7 @@
 package org.chromium.base;
 
 import android.app.ActivityManager;
+import android.app.Activity;
 import android.content.Context;
 import org.chromium.base.annotations.CalledByNative;
 import org.chromium.base.annotations.JNINamespace;
@@ -10,11 +11,22 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import org.chromium.chrome.browser.mises.MisesController;
 
 @JNINamespace("base::android")
 @MainDex
 public class MisesSysUtils {
 
+    private static Activity activityContext;
+
+    public static void init(final Activity act) {
+        activityContext = act;
+        MisesAdsUtil.getInstance().initAds(act);
+    }
+
+    public static Activity getActivityContext() {
+        return activityContext;
+    }
 
     @CalledByNative
     public static long firstInstallDate() {
@@ -43,10 +55,34 @@ public class MisesSysUtils {
 
     @CalledByNative
     public static void showRewardAd() {
-        if (MisesAdsUtil.getActivityContext() == null) {
+        if (activityContext == null) {
             return;
         }
-        MisesAdsUtil.loadAndShowRewardedAd(MisesAdsUtil.getActivityContext(), "");
+        MisesAdsUtil.getInstance().setObserver(new MisesAdsUtil.MisesAdsUtilObserver() {
+            private boolean mShouldShowAds;
+            @Override
+            public void onRewardAdsResult(int code, final String message) {
+                nativeOnRewardAdsResult(code, message);
+            }
+            @Override
+            public boolean shouldShowAds() {
+                return mShouldShowAds;
+
+            }
+            @Override
+            public void setShouldShowAds(boolean show) {
+                mShouldShowAds = show;
+            }
+
+        });
+        MisesAdsUtil.getInstance().loadAndShowRewardedAd(
+            activityContext, MisesController.getInstance().getMisesId());
+    }
+    @CalledByNative
+    public static void cancelRewardAd() {
+        if (MisesAdsUtil.getInstance().getObserver() != null) {
+            MisesAdsUtil.getInstance().getObserver().setShouldShowAds(false);
+        }
     }
 
     @CalledByNative
@@ -70,5 +106,14 @@ public class MisesSysUtils {
         params.putString(key1, value1);
         FirebaseAnalytics.getInstance(context).logEvent(name, params);
         return ;
+    }
+
+    public static void nativeOnRewardAdsResult(int code, String j_message) {
+        MisesSysUtilsJni.get().onRewardAdsResult(code, j_message);
+    };
+
+    @NativeMethods
+    interface Natives {
+        void onRewardAdsResult(int code, String j_message);
     }
 }
