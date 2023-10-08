@@ -26,9 +26,10 @@ export const ErrorDetailTitle = styled.View`
 `
 
 export const ErrorDetailContentContainer = styled.View`
-background-color: ${p => p.theme.color.errorBackground};
+  background-color: ${p => p.theme.color.errorBackground};
   border-radius: 8px;
   margin: 16px;
+  max-width: 95%
 `
 
 export const ErrorDetailContent = styled.View`
@@ -40,4 +41,5 @@ export const ErrorDetailContent = styled.View`
   color: ${p => p.theme.color.text01};
   opacity: 0.9;
   margin: 8px;
+  word-break: break-word;
 `

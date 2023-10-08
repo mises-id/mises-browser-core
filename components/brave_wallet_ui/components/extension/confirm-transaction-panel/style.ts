@@ -186,7 +186,6 @@ export const EditButton = styled(WalletButton)`
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.01em;
-  color: ${(p) => p.theme.color.interactive05};
   background-image: none;
   background-color: none;;
   cursor: pointer;
@@ -194,7 +193,9 @@ export const EditButton = styled(WalletButton)`
   margin: 0px;
   padding: 0px;
 `
-
+export const EditButtonText = styled.Text`
+  color: ${(p) => p.theme.color.interactive05};
+`
 export const TransactionText = styled.Text<{ hasError?: boolean }>`
   font-family: Poppins;
   font-size: 12px;

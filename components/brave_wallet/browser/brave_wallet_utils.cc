@@ -197,7 +197,7 @@ const mojom::NetworkInfo* GetArbitrumMainnet() {
   static base::NoDestructor<mojom::NetworkInfo> network_info(
       {brave_wallet::mojom::kArbitrumMainnetChainId,
        "Arbitrum One",
-       {"https://arbitrum.io/"},
+       {"https://arbiscan.io/"},
        {},
        0,
        {GURL("https://arbitrum.llamarpc.com")},

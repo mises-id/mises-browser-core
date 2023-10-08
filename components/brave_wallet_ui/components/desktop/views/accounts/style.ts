@@ -112,6 +112,11 @@ export const AccountCircle = styled.View<Partial<StyleProps>>`
   background-size: cover;
   margin-right: 14px;
 `
+export const WalletInfo = styled.View`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
 
 export const WalletName = styled.Text`
   font-family: Poppins;

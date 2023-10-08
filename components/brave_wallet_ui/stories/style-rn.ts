@@ -12,7 +12,7 @@ export const StyledExtensionWrapper = styled.View`
   background-color: #F8F9FA;
   border-radius: 4px;
   width: 100%;
-  min-height: 400px;
+  height: 100%;
 `
 
 export const StyledExtensionWrapperLonger = styled.View`

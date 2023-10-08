@@ -57,6 +57,7 @@ import { WalletSelectors } from '../../../common/selectors'
 import { PopupButton, PopupButtonText } from '../wallet-more-popup/style'
 import { getLocale } from '$web-common/locale'
 import { WalletActions } from '../../../common/actions'
+import { ClickAwayArea } from '../network-filter-selector/style'
 
 export interface Props {
   onDelete?: () => void
@@ -174,6 +175,9 @@ export const AccountListItem = ({
           />
         )} */}
       </RightSide>
+      {isOpen &&
+        <ClickAwayArea onPress={dropDownPress} />
+      }
     </StyledWrapper>
   )
 }

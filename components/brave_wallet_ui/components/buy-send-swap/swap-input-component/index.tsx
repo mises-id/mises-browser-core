@@ -46,7 +46,6 @@ import {
   WarningText,
   AddressConfirmationText,
   ButtonLeftSide,
-  LearnMoreButton,
   WarningRow,
   Spacer
 } from './style'
@@ -260,13 +259,13 @@ function SwapInputComponent (props: Props) {
       .format(6, true)
     : ''
 
-  const onClickLearnMore = () => {
-    chrome.tabs.create({ url: 'https://support.brave.com/hc/en-us/articles/4441999049101' }, () => {
-      if (chrome.runtime.lastError) {
-        console.error('tabs.create failed: ' + chrome.runtime.lastError.message)
-      }
-    })
-  }
+  // const onClickLearnMore = () => {
+  //   chrome.tabs.create({ url: 'https://support.brave.com/hc/en-us/articles/4441999049101' }, () => {
+  //     if (chrome.runtime.lastError) {
+  //       console.error('tabs.create failed: ' + chrome.runtime.lastError.message)
+  //     }
+  //   })
+  // }
 
   // const placeholderText = React.useMemo((): string => {
   //   return componentType === 'toAddress'
@@ -428,19 +427,19 @@ function SwapInputComponent (props: Props) {
       {componentType === 'toAddress' && addressError &&
         <WarningRow>
           <WarningText>{addressError}</WarningText>
-          {addressError === getLocale('braveWalletNotValidChecksumAddressError') &&
+          {/* {addressError === getLocale('braveWalletNotValidChecksumAddressError') &&
             <LearnMoreButton onPress={onClickLearnMore}>
               {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
             </LearnMoreButton>
-          }
+          } */}
         </WarningRow>
       }
       {componentType === 'toAddress' && addressWarning &&
         <WarningRow>
           <WarningText isWarning={true}>{addressWarning}</WarningText>
-          <LearnMoreButton onPress={onClickLearnMore}>
+          {/* <LearnMoreButton onPress={onClickLearnMore}>
             {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
-          </LearnMoreButton>
+          </LearnMoreButton> */}
         </WarningRow>
       }
       {componentType === 'toAddress' && toAddress !== toAddressOrUrl && !addressError &&

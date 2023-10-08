@@ -35,7 +35,6 @@ export const TransactionStatusDescription = styled.View`
   color: ${p => p.theme.color.text02};
 
   padding: 8px 16px;
-  flex-grow: 1;
 `
 
 export const PendingTransactionsRow = styled.View`
@@ -47,7 +46,6 @@ export const PendingTransactionsRow = styled.View`
   text-align: center;
   color: ${p => p.theme.color.text03};
   padding: 8px 16px;
-  flex-grow: 1;
 `
 
 export const ButtonRow = styled.View`
