@@ -4,7 +4,13 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
 mises_net_sources = [
-  "//mises/net/decentralized_dns/constants.h",
+  "//mises/net/decentralized_dns/utils.cc",
   "//mises/net/http/partitioned_host_state_map.cc",
   "//mises/net/http/partitioned_host_state_map.h",
+  
+]
+mises_net_allow_circular_includes_from = [
+]
+
+mises_net_deps = [
 ]

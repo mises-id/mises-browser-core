@@ -1290,6 +1290,13 @@ std::string GetDefaultBaseCryptocurrency(PrefService* prefs) {
 GURL GetBitRpcUrl(const std::string& chain_id) {
   return GURL("https://indexer-v1.did.id/v2/account/records");
 }
+
+GURL GetFreeNameRpcUrl(const std::string& chain_id, const std::string& domain) {
+  std::string resolver_url = "https://rslvr.freename.io/domain/resolve";
+  resolver_url += "?q=" + domain;
+  return GURL(resolver_url);
+}
+
 GURL GetUnstoppableDomainsRpcUrl(const std::string& chain_id) {
   if (base::CompareCaseInsensitiveASCII(chain_id, mojom::kMainnetChainId) ==
           0 ||

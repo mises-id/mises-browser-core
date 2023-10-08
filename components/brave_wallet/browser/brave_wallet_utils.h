@@ -123,6 +123,7 @@ std::vector<std::string> GetAllKnownFilNetworkIds();
 std::string GetKnownEthNetworkId(const std::string& chain_id);
 
 GURL GetBitRpcUrl(const std::string& chain_id);
+GURL GetFreeNameRpcUrl(const std::string& chain_id, const std::string& domain);
 
 GURL GetUnstoppableDomainsRpcUrl(const std::string& chain_id);
 std::string GetUnstoppableDomainsProxyReaderContractAddress(

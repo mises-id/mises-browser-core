@@ -1,0 +1,13 @@
+diff --git a/chrome/android/java/AndroidManifest_split.xml b/chrome/android/java/AndroidManifest_split.xml
+index 4830a35a695a9fc83964aea4466ba153018e37b7..7fbac6e263e71d623a2f7424b65530ee4047defd 100644
+--- a/chrome/android/java/AndroidManifest_split.xml
++++ b/chrome/android/java/AndroidManifest_split.xml
+@@ -15,7 +15,7 @@ found in the LICENSE file.
+     <dist:module dist:onDemand="false">
+         <dist:fusing dist:include="true" />
+     </dist:module>
+-
++    {% include "//mises/android/java/AndroidManifest_user_permissions.xml" %}
+     <application>
+       {{ application_definitions() }}
+     </application>
