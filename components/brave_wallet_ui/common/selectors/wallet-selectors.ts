@@ -39,6 +39,7 @@ export const defaultAccounts = ({ wallet }: State) => wallet.defaultAccounts
 export const defaultCurrencies = ({ wallet }: State) => wallet.defaultCurrencies
 export const favoriteApps = ({ wallet }: State) => wallet.favoriteApps
 export const fullTokenList = ({ wallet }: State) => wallet.fullTokenList
+export const misesFullChainTokenList = ({ wallet }: State) => wallet.misesFullChainTokenList
 export const gasEstimates = ({ wallet }: State) => wallet.gasEstimates
 export const knownTransactions = ({ wallet }: State) => wallet.knownTransactions
 export const onRampCurrencies = ({ wallet }: State) => wallet.onRampCurrencies

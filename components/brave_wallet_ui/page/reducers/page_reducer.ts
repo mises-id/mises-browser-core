@@ -50,6 +50,7 @@ const defaultState: PageState = {
   selectedAssetCryptoPrice: undefined,
   selectedAssetPriceHistory: [],
   portfolioPriceHistory: [],
+  misesFullChainTokenList: [],
   isFetchingPriceHistory: false,
   showIsRestoring: false,
   setupStillInProgress: false,

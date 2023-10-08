@@ -50,7 +50,7 @@ export const usePendingTransactions = () => {
     WalletSelectors.selectedPendingTransaction
   )
   const visibleTokens = useUnsafeWalletSelector(
-    WalletSelectors.userVisibleTokensInfo
+    WalletSelectors.misesFullChainTokenList
   )
   const transactionSpotPrices = useUnsafeWalletSelector(
     WalletSelectors.transactionSpotPrices
