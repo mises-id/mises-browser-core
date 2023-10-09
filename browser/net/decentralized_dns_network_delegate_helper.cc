@@ -28,7 +28,9 @@ bool ShouldHandleUrl(const GURL& url) {
   bool should_handle_bit = IsBitTLD(url.host_piece());
   bool should_handle_ens = IsENSTLD(url.host_piece()) &&
       IsENSResolveMethodEnabled(g_browser_process->local_state());
-  return should_handle_ud || should_handle_bit || should_handle_ens;
+  bool should_handle_sns = IsSnsTLD(url.host_piece());
+  bool should_handle_fn = IsFreeNameTLD(url.host_piece());
+  return should_handle_ud || should_handle_bit || should_handle_ens || should_handle_sns || should_handle_fn;
 }
 
 int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
@@ -83,6 +85,15 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
         ctx->request_url.host(),
         base::BindOnce(&OnBeforeURLRequest_SnsRedirectWork, next_callback,
                        ctx));
+
+    return net::ERR_IO_PENDING;
+  }
+
+  if (IsFreeNameTLD(ctx->request_url.host_piece())) {
+    json_rpc_service->FreeNameResolveDns(
+        ctx->request_url.host(),
+        base::BindOnce(&OnBeforeURLRequest_FreeNameRedirectWork,
+                       next_callback, ctx));
 
     return net::ERR_IO_PENDING;
   }
@@ -165,6 +176,29 @@ void OnBeforeURLRequest_BitRedirectWork(
   } else {
     ctx->provider_error = (int)error;
     ctx->failover_url_spec = "https://" + ctx->request_url.host() + ".cc";
+  }
+
+  if (!next_callback.is_null())
+    next_callback.Run();
+}
+
+
+void OnBeforeURLRequest_FreeNameRedirectWork(
+    const mises::ResponseCallback& next_callback,
+    std::shared_ptr<mises::MisesRequestInfo> ctx,
+    const GURL& url,
+    brave_wallet::mojom::ProviderError error,
+    const std::string& error_message) {
+  if (error == brave_wallet::mojom::ProviderError::kSuccess && url.is_valid()) {
+    if (base::StartsWith(url.spec(), "http")) {
+      ctx->failover_url_spec = url.spec() + ctx->request_url.PathForRequest();
+    } else {
+      ctx->new_url_spec = url.spec() + ctx->request_url.PathForRequest();
+    }
+    
+  } else {
+    ctx->provider_error = (int)error;
+    ctx->failover_url_spec = "https://www.freename.io/results?search=\"" + ctx->request_url.host() + "\"";
   }
 
   if (!next_callback.is_null())

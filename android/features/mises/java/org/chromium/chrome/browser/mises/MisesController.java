@@ -20,9 +20,9 @@ public class MisesController {
     private static final String TAG = "MisesController";
     public static final int MISES_BONUS_CACHE_EXPIRE_TIME = 60;
 
-    public static final String MISES_HOME_BASE_URL = "https://home.test.mises.site";
-    public static final String MISES_MINING_BASE_URL = "https://mining.test.mises.site";
-    public static final String MISES_API_BASE_URL = "https://api.test.mises.site";
+    public static final String MISES_HOME_BASE_URL = "https://home.mises.site";
+    public static final String MISES_MINING_BASE_URL = "https://mining.mises.site";
+    public static final String MISES_API_BASE_URL = "https://api.mises.site";
     public static final String MISES_WALLET_BASE_URL = "chrome://wallet";
     public static final String EXTENSIONS_BASE_URL = "chrome://extensions";
     

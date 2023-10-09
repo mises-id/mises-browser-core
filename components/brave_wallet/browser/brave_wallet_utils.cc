@@ -136,7 +136,7 @@ const mojom::NetworkInfo* GetAvalancheMainnet() {
        {"https://snowtrace.io"},
        {},
        0,
-       {},
+       {GURL("https://api.avax.network/ext/bc/C/rpc")},
        "AVAX",
        "Avalanche",
        18,
@@ -168,7 +168,7 @@ const mojom::NetworkInfo* GetOptimismMainnet() {
        {"https://optimistic.etherscan.io"},
        {},
        0,
-       {},
+       {GURL("https://mainnet.optimism.io")},
        "ETH",
        "Ether",
        18,
@@ -184,7 +184,7 @@ const mojom::NetworkInfo* GetAuroraMainnet() {
        {"https://aurorascan.dev"},
        {},
        0,
-       {},
+       {GURL("https://mainnet.aurora.dev")},
        "ETH",
        "Ether",
        18,
@@ -200,7 +200,7 @@ const mojom::NetworkInfo* GetArbitrumMainnet() {
        {"https://arbiscan.io/"},
        {},
        0,
-       {GURL("https://arbitrum.llamarpc.com")},
+       {GURL("https://arb1.arbitrum.io/rpc")},
        "ETH",
        "Ether",
        18,
@@ -232,7 +232,7 @@ const mojom::NetworkInfo* GetSepoliaTestNetwork() {
        {"https://sepolia.etherscan.io"},
        {},
        0,
-       {},
+       {GURL("https://rpc.sepolia.org")},
        "ETH",
        "Ethereum",
        18,
@@ -511,10 +511,10 @@ GURL MaybeAddInfuraProjectId(const GURL& url) {
   static const base::flat_set<std::string>& kInfuraChains = {
     brave_wallet::mojom::kMainnetChainId,
     brave_wallet::mojom::kPolygonMainnetChainId,
-    brave_wallet::mojom::kOptimismMainnetChainId,
-    brave_wallet::mojom::kAuroraMainnetChainId,
-    brave_wallet::mojom::kAvalancheMainnetChainId,
-    brave_wallet::mojom::kSepoliaChainId,
+    //brave_wallet::mojom::kOptimismMainnetChainId,
+    //brave_wallet::mojom::kAuroraMainnetChainId,
+    //brave_wallet::mojom::kAvalancheMainnetChainId,
+    //brave_wallet::mojom::kSepoliaChainId,
     brave_wallet::mojom::kGoerliChainId};
   if (!url.is_valid())
     return GURL();
@@ -1290,6 +1290,13 @@ std::string GetDefaultBaseCryptocurrency(PrefService* prefs) {
 GURL GetBitRpcUrl(const std::string& chain_id) {
   return GURL("https://indexer-v1.did.id/v2/account/records");
 }
+
+GURL GetFreeNameRpcUrl(const std::string& chain_id, const std::string& domain) {
+  std::string resolver_url = "https://rslvr.freename.io/domain/resolve";
+  resolver_url += "?q=" + domain;
+  return GURL(resolver_url);
+}
+
 GURL GetUnstoppableDomainsRpcUrl(const std::string& chain_id) {
   if (base::CompareCaseInsensitiveASCII(chain_id, mojom::kMainnetChainId) ==
           0 ||
