@@ -90,6 +90,7 @@ const defaultState: WalletState = {
   pendingTransactions: [],
   knownTransactions: [],
   fullTokenList: [],
+  misesFullChainTokenList: [],
   portfolioPriceHistory: [],
   selectedPendingTransaction: undefined,
   isFetchingPortfolioPriceHistory: true,
@@ -157,6 +158,7 @@ export const WalletAsyncActions = {
   closeUI: createAction('closeUI'),
   resetWallet: createAction('resetWallet'),
   setMisesInfo: createAction('setMisesInfo'),
+  fetchMisesFullChainTokenList: createAction('fetchMisesFullChainTokenList'),
   backedUp: createAction('backedUp'),
   accountsChanged: createAction('accountsChanged'),
   selectedAccountChanged: createAction<SelectedAccountChangedPayloadType>(
@@ -527,6 +529,9 @@ export const createWalletSlice = (initialState: WalletState = defaultState) => {
 
       setChainPop (state: WalletState, { payload }: PayloadAction<boolean>) {
         state.showChainPop = payload
+      },
+      setMisesFullChainTokenList (state: WalletState, { payload }: PayloadAction<BraveWallet.BlockchainToken[]>) {
+        state.misesFullChainTokenList = payload
       },
     },
     extraReducers (builder) {

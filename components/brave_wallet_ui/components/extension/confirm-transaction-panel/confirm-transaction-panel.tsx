@@ -45,7 +45,7 @@ import {
   TransactionTypeText,
   AccountCircleWrapper,
   ArrowIcon,
-  EditButton,
+  // EditButton,
   WarningIcon,
   AssetIcon,
   ContractButton,
@@ -74,7 +74,7 @@ import { TransactionQueueStep } from './common/queue'
 import { Origin } from './common/origin'
 import { EditPendingTransactionGas } from './common/gas'
 import { useGetAddressByteCodeQuery } from '../../../common/slices/api.slice'
-import { Text } from 'react-native'
+// import { Text } from 'react-native'
 
 type confirmPanelTabs = 'transaction' | 'details'
 
@@ -227,8 +227,6 @@ export const ConfirmTransactionPanel = ({
               </WarningBoxTitleRow>
             </WarningBox>
           }
-
-          <EditButton onPress={onToggleEditAllowance}><Text>{getLocale('braveWalletEditPermissionsButton')}</Text></EditButton>
         </>
       ) : (
         <>
@@ -303,11 +301,6 @@ export const ConfirmTransactionPanel = ({
               <WarningBoxTitleRow>
                 <WarningTitle warningType='warning'>
                   {getLocale('braveWalletConfirmTransactionAccountCreationFee')}
-                  {/* <LearnMoreButton
-                    onPress={onClickLearnMore}
-                  >
-                    {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
-                  </LearnMoreButton> */}
                 </WarningTitle>
               </WarningBoxTitleRow>
             </WarningBox>

@@ -44,6 +44,7 @@ export const BraveLogo = styled(StyledDiv)`
 
 export const SettingsWrapper = styled(StyledDiv)`
   position: relative;
+  z-index: 9;
 `
 
 export const SettingsButton = styled(StyledButton)`

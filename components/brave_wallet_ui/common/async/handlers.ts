@@ -293,6 +293,37 @@ handler.on(WalletActions.setMisesInfo.type, async (store: Store) => {
   }
 })
 
+handler.on(WalletActions.fetchMisesFullChainTokenList.type, async (store: Store) => {
+  const state = getWalletState(store);
+  if(state.misesFullChainTokenList.length) {
+    return
+  }
+  (chrome as any).misesPrivate.fetchJson('https://swap.test.mises.site/token_list.json').then((res: string) => {
+    if(res) {
+      const data: any = JSON.parse(res);
+      const misesFullChainTokenList = data.data.map((val: any) => {
+        return {
+          chainId: val.chainId,
+          coin: 60,
+          coingeckoId: '',
+          contractAddress: val.address,
+          decimals: val.decimals,
+          isErc20: '',
+          isErc721: false,
+          isErc1155: false,
+          isNft: false,
+          logo: `chrome://erc-token-images/${val.symbol}.png`,
+          name: val.name,
+          symbol: val.symbol,
+          tokenId: '',
+          visible: true,
+        }
+      })
+      store.dispatch(WalletActions.setMisesFullChainTokenList(misesFullChainTokenList))
+    }
+  })
+})
+
 handler.on(WalletActions.resetWallet.type, async (store: Store) => {
   const braveWalletService = getAPIProxy().braveWalletService;
   await braveWalletService.reset();
