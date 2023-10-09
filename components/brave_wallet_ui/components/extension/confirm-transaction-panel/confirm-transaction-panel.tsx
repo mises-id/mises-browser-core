@@ -227,8 +227,6 @@ export const ConfirmTransactionPanel = ({
               </WarningBoxTitleRow>
             </WarningBox>
           }
-
-          {/* <EditButton onPress={onToggleEditAllowance}><Text>{getLocale('braveWalletEditPermissionsButton')}</Text></EditButton> */}
         </>
       ) : (
         <>
@@ -303,11 +301,6 @@ export const ConfirmTransactionPanel = ({
               <WarningBoxTitleRow>
                 <WarningTitle warningType='warning'>
                   {getLocale('braveWalletConfirmTransactionAccountCreationFee')}
-                  {/* <LearnMoreButton
-                    onPress={onClickLearnMore}
-                  >
-                    {getLocale('braveWalletAllowAddNetworkLearnMoreButton')}
-                  </LearnMoreButton> */}
                 </WarningTitle>
               </WarningBoxTitleRow>
             </WarningBox>
