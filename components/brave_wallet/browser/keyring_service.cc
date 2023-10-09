@@ -1893,7 +1893,7 @@ void KeyringService::Reset(bool notify_observer) {
 }
 
 void KeyringService::SetLegacyKeystore(const base::Value::List& key_multi_store) {
-  if (HasPrefForKeyring(*profile_prefs_, kEncryptedMnemonic, mojom::kDefaultKeyringId) || need_migrate_legacy_account) {
+  if (HasPrefForKeyring(*profile_prefs_, kEncryptedMnemonic, mojom::kDefaultKeyringId)) {
     return;
   }
   base::Value::List crypto_list_value;
@@ -1950,11 +1950,6 @@ void KeyringService::SetLegacyKeystore(const base::Value::List& key_multi_store)
     SetPrefForKeyring(profile_prefs_, kMisesLegacyKeystore,
                             base::Value(std::move(crypto_list_value)), mojom::kDefaultKeyringId);
   }
-
-
-
-
-  need_migrate_legacy_account = true;
 }
 
 void KeyringService::MaybeMigrateLegacyAccount() {
@@ -2016,12 +2011,13 @@ void KeyringService::MaybeMigrateLegacyKeystore(const std::string& password) {
         continue;
       }
       const base::Value::List& key_stores = legacy_key_store_value->GetList();
-      for(unsigned int idx = 0; idx < key_stores.size(); idx++) {
+      for (unsigned int idx = 0; idx < key_stores.size(); idx++) {
 
         std::vector<uint8_t> raw_bytes;
         if (!HDKey::DecodeRawBytesFromV3UTC(password, key_stores[idx], &raw_bytes, false)) {
           continue;
         }
+        
         if (idx == 0) {
           //for mnemonic
           absl::optional<std::vector<uint8_t>> mnemonic = raw_bytes;
@@ -2030,6 +2026,12 @@ void KeyringService::MaybeMigrateLegacyKeystore(const std::string& password) {
           SetPrefInBytesForKeyring(
               profile_prefs_, kEncryptedMnemonic,
               encryptor->Encrypt(base::make_span(*mnemonic), nonce), keyring_id);
+          
+          if (keyring_id == mojom::kDefaultKeyringId) {
+            need_migrate_legacy_account = true;
+            profile_prefs_->SetBoolean(kBraveWalletKeyringEncryptionKeysMigrated,
+                                      true);
+          }
         } else {
           //for private keys
           std::vector<uint8_t> private_key_bytes;
@@ -2049,10 +2051,6 @@ void KeyringService::MaybeMigrateLegacyKeystore(const std::string& password) {
       }
     }
 
-    if (keyring_id == mojom::kDefaultKeyringId) {
-      profile_prefs_->SetBoolean(kBraveWalletKeyringEncryptionKeysMigrated,
-                                 true);
-    }
 
 
   }
