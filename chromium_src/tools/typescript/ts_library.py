@@ -27,8 +27,8 @@ def main(original_function, argv):
             #
             # "error TS5055: Cannot write file '...' because it would overwrite
             # input file."
-            if args.root_dir != args.out_dir and args.out_dir.startswith(
-                    'gen/mises'):
+            if args.root_dir != args.out_dir and args.out_dir.find(
+                    'gen/mises') >= 0:
                 to_check = os.path.join(args.out_dir, pathname + '.d.ts')
                 if os.path.exists(to_check):
                     os.remove(to_check)
