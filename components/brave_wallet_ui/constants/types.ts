@@ -228,6 +228,7 @@ export interface AssetPriceWithContractAndChainId extends BraveWallet.AssetPrice
 }
 
 export interface WalletState {
+  misesFullChainTokenList: BraveWallet.BlockchainToken[]
   showChainPop: boolean
   hasInitialized: boolean
   isFilecoinEnabled: boolean
@@ -324,6 +325,7 @@ export interface PageState {
   selectedCoinMarket: BraveWallet.CoinMarket | undefined
   nftsPinningStatus: NftsPinningStatusType
   isLocalIpfsNodeRunning: boolean
+  misesFullChainTokenList: BraveWallet.BlockchainToken[]
 }
 
 export interface WalletPageState {

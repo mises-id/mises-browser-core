@@ -22,7 +22,7 @@ public class MisesController {
 
     public static final String MISES_HOME_BASE_URL = "https://home.mises.site";
     public static final String MISES_MINING_BASE_URL = "https://mining.mises.site";
-    public static final String MISES_API_BASE_URL = "https://api.mises.site";
+    public static final String MISES_API_BASE_URL = "https://api.alb.mises.site";
     public static final String MISES_WALLET_BASE_URL = "chrome://wallet";
     public static final String EXTENSIONS_BASE_URL = "chrome://extensions";
     

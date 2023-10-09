@@ -86,7 +86,7 @@ const CryptoView = (props: Props) => {
 
   // state
   // const [hideNav, setHideNav] = React.useState<boolean>(false)
-  const [showBackupWarning, setShowBackupWarning] = React.useState<boolean>(needsBackup)
+  // const [showBackupWarning, setShowBackupWarning] = React.useState<boolean>(needsBackup)
   const [showDefaultWalletBanner, setShowDefaultWalletBanner] = React.useState<boolean>(needsBackup)
 
   // routing
@@ -107,7 +107,8 @@ const CryptoView = (props: Props) => {
   }, [])
 
   const onDismissBackupWarning = React.useCallback(() => {
-    setShowBackupWarning(false)
+    // setShowBackupWarning(false)
+    dispatch(WalletPageActions.walletBackupComplete())
   }, [])
 
   const onDismissDefaultWalletBanner = React.useCallback(() => {
@@ -158,7 +159,7 @@ const CryptoView = (props: Props) => {
           description={getLocale('braveWalletDefaultWalletBanner')}
         />
       }
-      {needsBackup && showBackupWarning &&
+      {needsBackup &&
         <WalletBanner
           onDismiss={onDismissBackupWarning}
           onClick={onShowBackup}
@@ -174,8 +175,7 @@ const CryptoView = (props: Props) => {
     onDismissBackupWarning,
     onDismissDefaultWalletBanner,
     onOpenWalletSettings,
-    onShowBackup,
-    showBackupWarning
+    onShowBackup
   ])
 
   const ipfsBanner = React.useMemo(() => (

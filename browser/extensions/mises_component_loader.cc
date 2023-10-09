@@ -286,11 +286,11 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
   if (extension->id() == mises_extension_id) {
     mises_ready_ = true;
     if (profile_prefs_->FindPreference(kMisesWalletDidMigrated) && !profile_prefs_->GetBoolean(kMisesWalletDidMigrated)) {
-      profile_prefs_->SetBoolean(kMisesWalletDidMigrated, true);
+      
       StorageFrontend* frontend = StorageFrontend::Get(profile_);
       frontend->RunWithStorage(
         extension, settings_namespace::LOCAL,
-      base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
+        base::BindOnce(&MisesComponentLoader::AsyncRunWithMiseswalletStorage, base::Unretained(this))
       );
     }
   }
@@ -317,6 +317,8 @@ void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStor
         &MisesComponentLoader::ContinueMiseswalletMigration, 
         base::Unretained(this), std::move(wallet_store))
     );
+  } else {
+     profile_prefs_->SetBoolean(kMisesWalletDidMigrated, true);
   }
   
 
@@ -331,7 +333,9 @@ void MisesComponentLoader::ContinueMiseswalletMigration(const base::Value wallet
   const base::Value::List *multi = wallet_store.GetDict().FindList("keyring/key-multi-store");
   if (multi) {
     keyring_service->SetLegacyKeystore(*multi);
+    profile_prefs_->SetBoolean(kMisesWalletDidMigrated, true);
   }
+  
 }
 
 void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser_context,

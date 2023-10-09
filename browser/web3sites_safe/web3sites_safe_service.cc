@@ -276,7 +276,7 @@ void Web3sitesSafeService::StartURLCheck() {
           setting: "This feature cannot be disabled by settings."
           policy_exception_justification: "Not implemented."
         })");
-    GURL phishingCheckApi("https://api.mises.site/api/v1/phishing_site/check?domain_name=" + check_url_.spec());
+    GURL phishingCheckApi("https://api.alb.mises.site/api/v1/phishing_site/check?domain_name=" + check_url_.spec());
     auto resource_request = std::make_unique<network::ResourceRequest>();
     resource_request->url = phishingCheckApi;
     resource_request->method = "GET";
