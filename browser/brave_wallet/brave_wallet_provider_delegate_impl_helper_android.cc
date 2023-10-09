@@ -14,7 +14,9 @@
 #include "content/public/browser/web_contents.h"
 #include "mises/components/constants/webui_url_constants.h"
 #include "mises/browser/brave_wallet/tx_service_factory.h"
+#include "mises/browser/brave_wallet/json_rpc_service_factory.h"
 #include "mises/components/brave_wallet/browser/tx_service.h"
+#include "mises/components/brave_wallet/browser/json_rpc_service.h"
 
 using base::android::JavaParamRef;
 
@@ -137,10 +139,16 @@ static void JNI_BraveWalletProviderDelegateImplHelper_OnWalletPanelClosed(
   }
   auto* tx_service = brave_wallet::TxServiceFactory::GetServiceForContext(
       rfh->GetBrowserContext());
-  if (!tx_service) {
-    return;
+  if (tx_service) {
+    tx_service->RejectAllTransactions(mojom::CoinType::ETH);
+  }
+  auto* json_rpc_service =
+      brave_wallet::JsonRpcServiceFactory::GetServiceForContext(
+          rfh->GetBrowserContext());
+  if (json_rpc_service) {
+    json_rpc_service->ResetPendingRequests();
   }
 
-  tx_service->RejectAllTransactions(mojom::CoinType::ETH);
+  
 }
 }  // namespace brave_wallet

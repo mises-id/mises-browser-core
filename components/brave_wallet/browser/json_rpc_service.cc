@@ -2837,7 +2837,10 @@ void JsonRpcService::Reset() {
   ClearJsonRpcServiceProfilePrefs(prefs_);
   SetNetwork(GetCurrentChainId(prefs_, mojom::CoinType::ETH),
              mojom::CoinType::ETH);
+  ResetPendingRequests();
+}
 
+void JsonRpcService::ResetPendingRequests() {
   add_chain_pending_requests_.clear();
   switch_chain_requests_.clear();
   // Reject pending suggest token requests when network changed.
