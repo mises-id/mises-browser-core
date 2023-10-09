@@ -258,6 +258,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
       GetPendingSwitchChainRequestsCallback callback) override;
   void NotifySwitchChainRequestProcessed(bool approved,
                                          const url::Origin& origin) override;
+  void ResetPendingRequests()override;
   void GetAllNetworks(mojom::CoinType coin,
                       GetAllNetworksCallback callback) override;
   void GetCustomNetworks(mojom::CoinType coin,

@@ -1076,6 +1076,7 @@ interface JsonRpcService {
   AddEthereumChainRequestCompleted(string chain_id, bool approved);
   RemoveChain(string chain_id, CoinType coin) => (bool success);
   GetPendingAddChainRequests() => (array<AddChainRequest> requests);
+  ResetPendingRequests();
 
   // This is used for UI notifying native when the user approves or
   // rejects SwitchChainRequest
