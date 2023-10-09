@@ -276,6 +276,8 @@ export const usePendingTransactions = () => {
     [gasEstimates]
   )
 
+  const [ERC20AllowanceLoading, setERC20AllowanceLoading] = React.useState(false)
+
   React.useEffect(() => {
     let subscribed = true
     if (transactionInfo?.txType !== BraveWallet.TransactionType.ERC20Approve) {
@@ -286,14 +288,26 @@ export const usePendingTransactions = () => {
       return
     }
 
-    getERC20Allowance(
-      transactionDetails.recipient,
-      transactionDetails.sender,
-      transactionDetails.approvalTarget
-    ).then(result => {
-      subscribed && setERC20AllowanceResult(result)
-    }).catch(e => console.error(e))
+    if(ERC20AllowanceLoading) {
+      return 
+    }
 
+    if(!erc20AllowanceResult) {
+      setERC20AllowanceLoading(true)
+      console.log("fetch getERC20Allowance>>>>> ")
+      getERC20Allowance(
+        transactionDetails.recipient,
+        transactionDetails.sender,
+        transactionDetails.approvalTarget
+      ).then(result => {
+        subscribed && setERC20AllowanceResult(result)
+      }).catch(e => {
+        console.error(e)
+        setERC20AllowanceLoading(false)
+      })
+    } else {
+      console.log("return getERC20Allowance>>>>>")
+    }
     // cleanup
     return () => {
       subscribed = false

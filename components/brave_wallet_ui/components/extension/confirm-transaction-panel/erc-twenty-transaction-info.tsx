@@ -28,8 +28,8 @@ interface Erc20TransactionInfoProps {
 
 export const Erc20ApproveTransactionInfo = ({ onToggleEditGas }: Erc20TransactionInfoProps) => {
   const {
-    // isCurrentAllowanceUnlimited,
-    // currentTokenAllowance,
+    isCurrentAllowanceUnlimited,
+    currentTokenAllowance,
     transactionDetails,
     transactionsNetwork
   } = usePendingTransactions()
@@ -84,7 +84,7 @@ export const Erc20ApproveTransactionInfo = ({ onToggleEditGas }: Erc20Transactio
 
       <Divider />
 
-      {/* <TransactionTitle>
+      <TransactionTitle>
         {getLocale('braveWalletAllowSpendCurrentAllowance')}
       </TransactionTitle>
       <TransactionTypeText>
@@ -106,7 +106,7 @@ export const Erc20ApproveTransactionInfo = ({ onToggleEditGas }: Erc20Transactio
               undefined,
               transactionDetails.symbol
             )}
-      </TransactionTypeText> */}
+      </TransactionTypeText>
     </>
   )
 }
