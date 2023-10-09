@@ -75,7 +75,6 @@ import { TransactionQueueStep } from './common/queue'
 import { Origin } from './common/origin'
 import { EditPendingTransactionGas } from './common/gas'
 import { useGetAddressByteCodeQuery } from '../../../common/slices/api.slice'
-import { Text } from 'react-native'
 
 type confirmPanelTabs = 'transaction' | 'details'
 
