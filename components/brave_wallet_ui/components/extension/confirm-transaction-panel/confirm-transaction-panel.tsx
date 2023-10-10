@@ -121,7 +121,21 @@ export const ConfirmTransactionPanel = ({
     transactionDetails,
     transactionsNetwork,
     transactionTitle,
-    updateUnapprovedTransactionNonce
+    updateUnapprovedTransactionNonce,
+    transactionsQueueLength,
+    transactionQueueNumber,
+    queueNextTransaction,
+    isCurrentAllowanceUnlimited,
+    currentTokenAllowance,
+    sendOptions,
+    hasFeeEstimatesError,
+    isLoadingGasFee,
+    isConfirmButtonDisabled,
+    rejectAllTransactions,
+    suggestedMaxPriorityFeeChoices,
+    updateUnapprovedTransactionGasFields,
+    baseFeePerGas,
+    findAssetPrice
   } = usePendingTransactions()
 
   // queries
@@ -163,7 +177,13 @@ export const ConfirmTransactionPanel = ({
 
   if (isEditing) {
     return (
-      <EditPendingTransactionGas onCancel={onToggleEditGas} />
+      <EditPendingTransactionGas 
+        onCancel={onToggleEditGas} 
+        suggestedMaxPriorityFeeChoices={suggestedMaxPriorityFeeChoices}
+        updateUnapprovedTransactionGasFields={updateUnapprovedTransactionGasFields}
+        baseFeePerGas={baseFeePerGas}
+        findAssetPrice={findAssetPrice}
+        transactionsNetwork={transactionsNetwork}/>
     )
   }
 
@@ -208,7 +228,11 @@ export const ConfirmTransactionPanel = ({
           </AddressAndOrb>
         }
 
-        <TransactionQueueStep />
+        <TransactionQueueStep
+          transactionsQueueLength={transactionsQueueLength}
+          transactionQueueNumber={transactionQueueNumber}
+          queueNextTransaction={queueNextTransaction}
+        />
       </TopRow>
 
       {isERC20Approve ? (
@@ -258,7 +282,7 @@ export const ConfirmTransactionPanel = ({
                   {getLocale('braveWalletNFTDetailContractAddress')}
                 </NetworkText>
                 <ContractButton onPress={onClickViewOnBlockExplorer('contract', `${transactionDetails.recipient}`)}>
-                  <ContractButtonText>{reduceAddress(transactionDetails.recipient)}</ContractButtonText> 
+                  <ContractButtonText>{reduceAddress(transactionDetails.recipient)}</ContractButtonText>
                   <ExplorerIcon />
                 </ContractButton>
               </Column>
@@ -333,13 +357,36 @@ export const ConfirmTransactionPanel = ({
       >
         {selectedTab === 'transaction' ? (
           <>
-            {isERC20Approve && <Erc20ApproveTransactionInfo onToggleEditGas={onToggleEditGas} />}
-            {!isERC20Approve && <TransactionInfo onToggleEditGas={onToggleEditGas} />}
+            {isERC20Approve && <Erc20ApproveTransactionInfo
+              onToggleEditGas={onToggleEditGas}
+              isCurrentAllowanceUnlimited={isCurrentAllowanceUnlimited}
+              currentTokenAllowance={currentTokenAllowance}
+              transactionDetails={transactionDetails}
+              transactionsNetwork={transactionsNetwork}
+            />}
+            {!isERC20Approve && <TransactionInfo
+              onToggleEditGas={onToggleEditGas}
+              transactionDetails={transactionDetails}
+              isERC721SafeTransferFrom={isERC721SafeTransferFrom}
+              isERC721TransferFrom={isERC721TransferFrom}
+              isSolanaTransaction={isSolanaTransaction}
+              isFilecoinTransaction={isFilecoinTransaction}
+              transactionsNetwork={transactionsNetwork}
+              sendOptions={sendOptions}
+              hasFeeEstimatesError={hasFeeEstimatesError}
+              isLoadingGasFee={isLoadingGasFee}
+            />}
           </>
         ) : <TransactionDetailBox transactionInfo={transactionInfo} />}
       </MessageBox>
 
-      <Footer onConfirm={onConfirm} onReject={onReject} />
+      <Footer 
+        onConfirm={onConfirm} 
+        onReject={onReject}
+        transactionDetails={transactionDetails}
+        transactionsQueueLength={transactionsQueueLength}
+        isConfirmButtonDisabled={isConfirmButtonDisabled}
+        rejectAllTransactions={rejectAllTransactions} />
     </StyledWrapper>
   )
 }

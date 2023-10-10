@@ -9,15 +9,13 @@ import * as React from 'react'
 import { getLocale } from '../../../../../common/locale'
 
 // Styled components
-import { QueueStepButton, QueueStepRow, QueueStepText } from './style'
+import { QueueStepButton, QueueStepRow, QueueStepText, QueueStepButtonText } from './style'
 
 // Hooks
-import { usePendingTransactions } from '../../../../common/hooks/use-pending-transaction'
 
-export function TransactionQueueStep () {
-  const { transactionsQueueLength, transactionQueueNumber, queueNextTransaction } =
-    usePendingTransactions()
-
+interface IProps { transactionsQueueLength: any, transactionQueueNumber: any, queueNextTransaction: any }
+export function TransactionQueueStep (props: IProps) {
+  const { transactionsQueueLength, transactionQueueNumber, queueNextTransaction } = props
   if (transactionsQueueLength <= 1) {
     return null
   }
@@ -28,9 +26,11 @@ export function TransactionQueueStep () {
         {transactionQueueNumber} {getLocale('braveWalletQueueOf')} {transactionsQueueLength}
       </QueueStepText>
       <QueueStepButton onPress={queueNextTransaction}>
-        {transactionQueueNumber === transactionsQueueLength
-          ? getLocale('braveWalletQueueFirst')
-          : getLocale('braveWalletQueueNext')}
+        <QueueStepButtonText>
+          {transactionQueueNumber === transactionsQueueLength
+            ? getLocale('braveWalletQueueFirst')
+            : getLocale('braveWalletQueueNext')}
+        </QueueStepButtonText>
       </QueueStepButton>
     </QueueStepRow>
   )

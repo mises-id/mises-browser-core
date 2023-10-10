@@ -7,7 +7,6 @@ import * as React from 'react'
 import { useSelector } from 'react-redux'
 
 // hooks
-import { usePendingTransactions } from '../../../../common/hooks/use-pending-transaction'
 
 // components
 import EditGas, { MaxPriorityPanels } from '../../edit-gas/edit-gas'
@@ -16,11 +15,23 @@ import EditGas, { MaxPriorityPanels } from '../../edit-gas/edit-gas'
 import { WalletSelectors } from '../../../../common/selectors'
 
 interface Props {
-  onCancel: () => void
+  onCancel: () => void,
+  suggestedMaxPriorityFeeChoices: any,
+  updateUnapprovedTransactionGasFields: any,
+  baseFeePerGas: any,
+  findAssetPrice: any,
+  transactionsNetwork: any
 }
 
 export function EditPendingTransactionGas (props: Props) {
-  const { onCancel } = props
+  const { 
+    onCancel,
+    suggestedMaxPriorityFeeChoices,
+    updateUnapprovedTransactionGasFields,
+    baseFeePerGas,
+    findAssetPrice,
+    transactionsNetwork
+  } = props
 
   // redux
   const transactionInfo = useSelector(
@@ -31,14 +42,6 @@ export function EditPendingTransactionGas (props: Props) {
   const [maxPriorityPanel, setMaxPriorityPanel] = React.useState<MaxPriorityPanels>(
     MaxPriorityPanels.setCustom
   )
-
-  const {
-    suggestedMaxPriorityFeeChoices,
-    updateUnapprovedTransactionGasFields,
-    baseFeePerGas,
-    findAssetPrice,
-    transactionsNetwork
-  } = usePendingTransactions()
 
   if (!transactionInfo || !transactionsNetwork) {
     return null

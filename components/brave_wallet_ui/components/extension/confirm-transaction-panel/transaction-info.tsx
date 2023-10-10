@@ -10,7 +10,6 @@ import Amount from '../../../utils/amount'
 import { getLocale } from '../../../../common/locale'
 
 // hooks
-import { usePendingTransactions } from '../../../common/hooks/use-pending-transaction'
 import {
   useGetDefaultFiatCurrencyQuery //
 } from '../../../common/slices/api.slice'
@@ -22,7 +21,8 @@ import {
   TransactionText, Divider,
   SectionRow,
   SectionColumn,
-  EditButton
+  EditButton,
+  EditButtonText
 } from './style'
 import { WarningBoxTitleRow } from '../shared-panel-styles'
 import { Skeleton } from '../../shared/loading-skeleton/styles'
@@ -30,10 +30,17 @@ import { Column } from '../../shared/style'
 
 interface TransactionInfoProps {
   onToggleEditGas?: () => void
+  transactionDetails: any,
+  isERC721SafeTransferFrom: any,
+  isERC721TransferFrom: any,
+  isSolanaTransaction: any,
+  isFilecoinTransaction: any,
+  transactionsNetwork: any,
+  sendOptions: any,
+  hasFeeEstimatesError: any,
+  isLoadingGasFee: any,
 }
-export const TransactionInfo = ({
-  onToggleEditGas
-}: TransactionInfoProps) => {
+export const TransactionInfo = (props: TransactionInfoProps) => {
   const {
     transactionDetails,
     isERC721SafeTransferFrom,
@@ -43,8 +50,9 @@ export const TransactionInfo = ({
     transactionsNetwork,
     sendOptions,
     hasFeeEstimatesError,
-    isLoadingGasFee
-  } = usePendingTransactions()
+    isLoadingGasFee,
+    onToggleEditGas
+  } = props
 
   // queries
   const {
@@ -63,7 +71,7 @@ export const TransactionInfo = ({
    * This will need updating if we ever switch to using per-locale formatting,
    * since `.` isn't always the decimal separator
   */
-  const transactionValueParts = (
+  const transactionValueParts: any[] = (
     (!isERC721SafeTransferFrom && !isERC721TransferFrom)
       ? new Amount(transactionDetails.valueExact)
         .format(undefined, true)
@@ -95,7 +103,7 @@ export const TransactionInfo = ({
 
           {!isSolanaTransaction && onToggleEditGas && (
             <EditButton onPress={onToggleEditGas}>
-              {getLocale('braveWalletAllowSpendEditButton')}
+              <EditButtonText>{getLocale('braveWalletAllowSpendEditButton')}</EditButtonText>
             </EditButton>
           )}
         </SectionRow>
