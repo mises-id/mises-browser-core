@@ -41,7 +41,12 @@ import {
 import { isSolanaTransaction, sortTransactionByDate } from '../../utils/tx-utils'
 import { MAX_UINT256 } from '../constants/magics'
 
-export const usePendingTransactions = () => {
+export const usePendingTransactions = (
+  args?: {
+    EnableERC20AllowanceLoading?: boolean,
+    EnableRefreshGasEstimates?: boolean,
+  }
+) => {
   // redux
   const dispatch = useDispatch()
   const accounts = useUnsafeWalletSelector(WalletSelectors.accounts)
@@ -250,6 +255,10 @@ export const usePendingTransactions = () => {
 
   // effects
   React.useEffect(() => {
+    if (args?.EnableRefreshGasEstimates !== true) {
+      //console.log("skip refreshGasEstimates>>>>>")
+      return;
+    }
     const interval = setInterval(() => {
       if (transactionInfo) {
         dispatch(WalletActions.refreshGasEstimates(transactionInfo))
@@ -257,6 +266,7 @@ export const usePendingTransactions = () => {
     }, 15000)
 
     if (transactionInfo) {
+      console.log("start refreshGasEstimates>>>>>")
       dispatch(WalletActions.refreshGasEstimates(transactionInfo))
     }
 
@@ -275,11 +285,10 @@ export const usePendingTransactions = () => {
     },
     [gasEstimates]
   )
-
-  const [ERC20AllowanceLoading, setERC20AllowanceLoading] = React.useState(false)
+  const isERC20AllowanceLoaded = React.useRef(false);
 
   React.useEffect(() => {
-    let subscribed = true
+   // let subscribed = true
     if (transactionInfo?.txType !== BraveWallet.TransactionType.ERC20Approve) {
       return
     }
@@ -288,29 +297,30 @@ export const usePendingTransactions = () => {
       return
     }
 
-    if(ERC20AllowanceLoading) {
+    if(args?.EnableERC20AllowanceLoading !== true || isERC20AllowanceLoaded.current) {
+      // console.log("skip getERC20Allowance>>>>>")
       return 
     }
+    isERC20AllowanceLoaded.current = true;
 
     if(!erc20AllowanceResult) {
-      setERC20AllowanceLoading(true)
       console.log("fetch getERC20Allowance>>>>> ")
       getERC20Allowance(
         transactionDetails.recipient,
         transactionDetails.sender,
         transactionDetails.approvalTarget
       ).then(result => {
-        subscribed && setERC20AllowanceResult(result)
+        setERC20AllowanceResult(result)
+        isERC20AllowanceLoaded.current = false;
       }).catch(e => {
         console.error(e)
-        setERC20AllowanceLoading(false)
+        isERC20AllowanceLoaded.current = false;
       })
-    } else {
-      console.log("return getERC20Allowance>>>>>")
     }
+
     // cleanup
     return () => {
-      subscribed = false
+      //subscribed = false
     }
   }, [transactionInfo?.txType, transactionDetails, getERC20Allowance])
 
@@ -357,6 +367,6 @@ export const usePendingTransactions = () => {
     selectedPendingTransactionGroupIndex,
     hasFeeEstimatesError,
     selectedPendingTransaction: transactionInfo,
-    isLoadingGasFee
+    isLoadingGasFee,
   }
 }

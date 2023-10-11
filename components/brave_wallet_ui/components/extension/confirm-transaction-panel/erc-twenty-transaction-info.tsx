@@ -32,7 +32,7 @@ export const Erc20ApproveTransactionInfo = ({ onToggleEditGas }: Erc20Transactio
     currentTokenAllowance,
     transactionDetails,
     transactionsNetwork
-  } = usePendingTransactions()
+  } = usePendingTransactions({EnableERC20AllowanceLoading: true})
 
   // redux
   const defaultFiatCurrency = useSafeWalletSelector(
