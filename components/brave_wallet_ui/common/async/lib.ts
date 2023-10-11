@@ -29,7 +29,7 @@ import * as WalletActions from '../actions/wallet_actions'
 // Utils
 import {
   getFilecoinKeyringIdFromNetwork,
-  getNetworksByCoinType
+  //getNetworksByCoinType
 } from '../../utils/network-utils'
 import { getTokenParam, getFlattenedAccountBalances } from '../../utils/api-utils'
 import Amount from '../../utils/amount'
@@ -619,7 +619,8 @@ export function refreshBalances () {
     const visibleTokens = userVisibleTokensInfo.filter(asset => asset.contractAddress !== '')
 
     const getBlockchainTokensBalanceReturnInfos = await Promise.all(accounts.map(async (account) => {
-      const networks = getNetworksByCoinType(networkList, account.coin)
+      const networks = [selectedNetworkFilter];
+      //const networks = getNetworksByCoinType(networkList, account.coin)
       if (account.coin === BraveWallet.CoinType.ETH) {
         return Promise.all(visibleTokens.map(async (token) => {
           let balanceInfo = emptyBalance
