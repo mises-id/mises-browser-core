@@ -88,16 +88,7 @@ export function ConfirmSwapTransaction (props: Props) {
     transactionsNetwork,
     fromOrb,
     toOrb,
-    updateUnapprovedTransactionNonce,
-    transactionsQueueLength,
-    transactionQueueNumber,
-    queueNextTransaction,
-    isConfirmButtonDisabled,
-    rejectAllTransactions,
-    suggestedMaxPriorityFeeChoices,
-    updateUnapprovedTransactionGasFields,
-    baseFeePerGas,
-    findAssetPrice
+    updateUnapprovedTransactionNonce
   } = usePendingTransactions()
 
   // queries
@@ -137,24 +128,14 @@ export function ConfirmSwapTransaction (props: Props) {
   }
 
   if (isEditingGas) {
-    return <EditPendingTransactionGas 
-      onCancel={onToggleEditGas} 
-      suggestedMaxPriorityFeeChoices={suggestedMaxPriorityFeeChoices}
-      updateUnapprovedTransactionGasFields={updateUnapprovedTransactionGasFields}
-      baseFeePerGas={baseFeePerGas}
-      findAssetPrice={findAssetPrice}
-      transactionsNetwork={transactionsNetwork}/>
+    return <EditPendingTransactionGas onCancel={onToggleEditGas} />
   }
 
   return (
     <StyledWrapper>
       <TopRow>
         <NetworkText />
-        <TransactionQueueStep 
-          transactionsQueueLength={transactionsQueueLength} 
-          transactionQueueNumber={transactionQueueNumber} 
-          queueNextTransaction={queueNextTransaction} 
-        />
+        <TransactionQueueStep />
       </TopRow>
 
       <HeaderTitle>{getLocale('braveWalletSwapReviewHeader')}</HeaderTitle>
@@ -227,10 +208,6 @@ export function ConfirmSwapTransaction (props: Props) {
         onConfirm={onConfirm}
         onReject={onReject}
         rejectButtonType={'cancel'}
-        transactionDetails={transactionDetails}
-        transactionsQueueLength={transactionsQueueLength}
-        isConfirmButtonDisabled={isConfirmButtonDisabled}
-        rejectAllTransactions={rejectAllTransactions}
       />
     </StyledWrapper>
   )

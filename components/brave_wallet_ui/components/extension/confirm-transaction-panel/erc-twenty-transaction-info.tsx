@@ -8,6 +8,7 @@ import * as React from 'react'
 // utils
 import Amount from '../../../utils/amount'
 import { getLocale } from '../../../../common/locale'
+import { usePendingTransactions } from '../../../common/hooks/use-pending-transaction'
 import { useSafeWalletSelector } from '../../../common/hooks/use-safe-selector'
 import { WalletSelectors } from '../../../common/selectors'
 
@@ -22,21 +23,16 @@ import {
 } from './style'
 
 interface Erc20TransactionInfoProps {
-  onToggleEditGas: () => void,
-  isCurrentAllowanceUnlimited: any,
-  currentTokenAllowance: any,
-  transactionDetails: any,
-  transactionsNetwork: any,
+  onToggleEditGas: () => void
 }
 
-export const Erc20ApproveTransactionInfo = (props: Erc20TransactionInfoProps) => {
+export const Erc20ApproveTransactionInfo = ({ onToggleEditGas }: Erc20TransactionInfoProps) => {
   const {
     isCurrentAllowanceUnlimited,
     currentTokenAllowance,
     transactionDetails,
-    transactionsNetwork,
-    onToggleEditGas
-  } = props
+    transactionsNetwork
+  } = usePendingTransactions()
 
   // redux
   const defaultFiatCurrency = useSafeWalletSelector(

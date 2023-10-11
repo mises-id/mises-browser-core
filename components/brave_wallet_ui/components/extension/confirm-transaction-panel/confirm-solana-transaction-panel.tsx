@@ -98,19 +98,7 @@ export const ConfirmSolanaTransactionPanel = ({
     isSolanaDappTransaction,
     fromAccountName,
     groupTransactions,
-    selectedPendingTransactionGroupIndex,
-    transactionsQueueLength,
-    transactionQueueNumber,
-    queueNextTransaction,
-    isERC721SafeTransferFrom,
-    isERC721TransferFrom,
-    isSolanaTransaction,
-    isFilecoinTransaction,
-    sendOptions,
-    hasFeeEstimatesError,
-    isLoadingGasFee,
-    isConfirmButtonDisabled,
-    rejectAllTransactions
+    selectedPendingTransactionGroupIndex
   } = pendingTxInfo
 
   // state
@@ -133,10 +121,7 @@ export const ConfirmSolanaTransactionPanel = ({
 
       <TopRow>
         <NetworkText>{transactionsNetwork.chainName}</NetworkText>
-        <TransactionQueueStep 
-          transactionsQueueLength={transactionsQueueLength} 
-          transactionQueueNumber={transactionQueueNumber} 
-          queueNextTransaction={queueNextTransaction}  />
+        <TransactionQueueStep />
       </TopRow>
 
       <AccountCircleWrapper>
@@ -256,17 +241,7 @@ export const ConfirmSolanaTransactionPanel = ({
       >
 
         {selectedTab === 'transaction'
-          ? <TransactionInfo 
-              transactionDetails={transactionDetails} 
-              isERC721SafeTransferFrom={isERC721SafeTransferFrom} 
-              isERC721TransferFrom={isERC721TransferFrom} 
-              isSolanaTransaction={isSolanaTransaction} 
-              isFilecoinTransaction={isFilecoinTransaction} 
-              transactionsNetwork={transactionsNetwork} 
-              sendOptions={sendOptions} 
-              hasFeeEstimatesError={hasFeeEstimatesError} 
-              isLoadingGasFee={isLoadingGasFee}
-            />
+          ? <TransactionInfo />
           : <SolanaTransactionDetailBox
               data={transactionInfo?.txDataUnion?.solanaTxData}
               instructions={transactionDetails.instructions}
@@ -274,13 +249,7 @@ export const ConfirmSolanaTransactionPanel = ({
             />
         }
       </MessageBox>
-      <Footer 
-        onConfirm={onConfirm} 
-        onReject={onReject}
-        transactionDetails={transactionDetails}
-        transactionsQueueLength={transactionsQueueLength}
-        isConfirmButtonDisabled={isConfirmButtonDisabled}
-        rejectAllTransactions={rejectAllTransactions} />
+      <Footer onConfirm={onConfirm} onReject={onReject} />
     </StyledWrapper>
   )
 }

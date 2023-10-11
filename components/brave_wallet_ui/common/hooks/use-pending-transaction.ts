@@ -41,7 +41,6 @@ import {
 import { isSolanaTransaction, sortTransactionByDate } from '../../utils/tx-utils'
 import { MAX_UINT256 } from '../constants/magics'
 
-let ERC20AllowanceLoading = false;
 export const usePendingTransactions = () => {
   // redux
   const dispatch = useDispatch()
@@ -230,10 +229,9 @@ export const usePendingTransactions = () => {
     currentTokenAllowance,
     isCurrentAllowanceUnlimited
   } = React.useMemo(() => {
-    console.log(erc20AllowanceResult, "erc20AllowanceResult", ERC20AllowanceLoading, 'ERC20AllowanceLoading')
     if (!transactionDetails || erc20AllowanceResult === undefined) {
       return {
-        currentTokenAllowance: 0,
+        currentTokenAllowance: undefined,
         isCurrentAllowanceUnlimited: false
       }
     }
@@ -278,7 +276,7 @@ export const usePendingTransactions = () => {
     [gasEstimates]
   )
 
-  // const [ERC20AllowanceLoading, setERC20AllowanceLoading] = React.useState(false)
+  const [ERC20AllowanceLoading, setERC20AllowanceLoading] = React.useState(false)
 
   React.useEffect(() => {
     let subscribed = true
@@ -295,18 +293,17 @@ export const usePendingTransactions = () => {
     }
 
     if(!erc20AllowanceResult) {
-      ERC20AllowanceLoading = true
-      console.log("fetch getERC20Allowance>>>>> ", erc20AllowanceResult)
+      setERC20AllowanceLoading(true)
+      console.log("fetch getERC20Allowance>>>>> ")
       getERC20Allowance(
         transactionDetails.recipient,
         transactionDetails.sender,
         transactionDetails.approvalTarget
       ).then(result => {
-        console.log(result, 'getERC20Allowance:result')
         subscribed && setERC20AllowanceResult(result)
       }).catch(e => {
         console.error(e)
-        ERC20AllowanceLoading = false
+        setERC20AllowanceLoading(false)
       })
     } else {
       console.log("return getERC20Allowance>>>>>")

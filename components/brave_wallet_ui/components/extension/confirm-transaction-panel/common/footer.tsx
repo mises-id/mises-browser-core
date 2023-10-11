@@ -22,22 +22,23 @@ import {
 import { NavButton } from '../../buttons'
 
 // Hooks
+import { usePendingTransactions } from '../../../../common/hooks/use-pending-transaction'
 
 interface Props {
   onConfirm: () => void
   onReject: () => void
-  rejectButtonType?: 'reject' | 'cancel',
-  isConfirmButtonDisabled: any,
-  rejectAllTransactions: any,
-  transactionDetails: any,
-  transactionsQueueLength: any
+  rejectButtonType?: 'reject' | 'cancel'
 }
 
 export function Footer (props: Props) {
-  const { onReject, onConfirm, rejectButtonType,isConfirmButtonDisabled,
+  const { onReject, onConfirm, rejectButtonType } = props
+
+  const {
+    isConfirmButtonDisabled,
     rejectAllTransactions,
     transactionDetails,
-    transactionsQueueLength } = props
+    transactionsQueueLength
+  } = usePendingTransactions()
 
   const [transactionConfirmed, setTranactionConfirmed] = React.useState<boolean>(false)
   const [queueLength, setQueueLength] = React.useState<number | undefined>(undefined)
