@@ -38,7 +38,7 @@ export function EditPendingTransactionGas (props: Props) {
     baseFeePerGas,
     findAssetPrice,
     transactionsNetwork
-  } = usePendingTransactions()
+  } = usePendingTransactions({EnableRefreshGasEstimates: true})
 
   if (!transactionInfo || !transactionsNetwork) {
     return null

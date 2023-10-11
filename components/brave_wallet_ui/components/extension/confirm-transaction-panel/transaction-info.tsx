@@ -44,7 +44,7 @@ export const TransactionInfo = ({
     sendOptions,
     hasFeeEstimatesError,
     isLoadingGasFee
-  } = usePendingTransactions()
+  } = usePendingTransactions({EnableRefreshGasEstimates: true})
 
   // queries
   const {
