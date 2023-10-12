@@ -298,7 +298,7 @@ handler.on(WalletActions.fetchMisesFullChainTokenList.type, async (store: Store)
   if(state.misesFullChainTokenList.length) {
     return
   }
-  (chrome as any).misesPrivate.fetchJson('https://swap.test.mises.site/token_list.json').then((res: string) => {
+  (chrome as any).misesPrivate.fetchJson('https://swap.mises.site/token_list.json').then((res: string) => {
     if(res) {
       const data: any = JSON.parse(res);
       const misesFullChainTokenList = data.data.map((val: any) => {
