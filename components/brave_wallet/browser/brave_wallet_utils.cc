@@ -318,7 +318,7 @@ const mojom::NetworkInfo* GetSolMainnet() {
        {"https://explorer.solana.com/"},
        {},
        0,
-       {GURL("https://mainnet-beta-solana.brave.com/rpc")},
+       {GURL("https://api.mainnet-beta.solana.com")},
        "SOL",
        "Solana",
        9,

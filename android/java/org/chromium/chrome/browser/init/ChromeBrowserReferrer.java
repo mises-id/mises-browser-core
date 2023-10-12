@@ -72,6 +72,8 @@ import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
 import org.chromium.net.ChromiumNetworkAdapter;
 import org.chromium.net.NetworkTrafficAnnotationTag;
+import org.chromium.base.Callback;
+import org.chromium.chrome.browser.mises.HttpUtil;
 
 /**
  * Application level delegate that handles start up tasks.
@@ -79,6 +81,7 @@ import org.chromium.net.NetworkTrafficAnnotationTag;
  * interface for any additional initialization tasks for the initialization to work as intended.
  */
 public class ChromeBrowserReferrer extends BroadcastReceiver {
+  private static final String TAG = "ChromeBrowserReferrer";
   private String readStream(InputStream is) {
       try {
         ByteArrayOutputStream bo = new ByteArrayOutputStream();
@@ -102,76 +105,71 @@ public class ChromeBrowserReferrer extends BroadcastReceiver {
         return;
       }
 
-      Log.i("Mises", "Received ChromeBrowserReferrer: [" + referrer + "]");
+      Log.i(TAG, "Received: [" + referrer + "]");
 
       SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
       sharedPreferencesEditor.putString("install_referrer", (String)referrer);
       sharedPreferencesEditor.apply();
-
-      Thread thread = new Thread(new Runnable() {
+      
+      try {
+        HttpUtil.JsonGetAsync("https://update.browser.mises.site/a/install.php?ping=" + URLEncoder.encode(referrer, "UTF-8"), "", "", new Callback<HttpUtil.HttpResp>() {
             @Override
-            public void run() {
-              try {
-                URL url = new URL("https://update.browser.mises.site/a/install.php?ping=" + URLEncoder.encode(referrer, "UTF-8"));
-                HttpURLConnection urlConnection = (HttpURLConnection) ChromiumNetworkAdapter.openConnection(
-				                            url, NetworkTrafficAnnotationTag.MISSING_TRAFFIC_ANNOTATION);
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                readStream(in);
-                urlConnection.disconnect();
-              } catch (MalformedURLException e) {
-                Log.e("Mises", "Received ChromeBrowserReferrer with malformed URL");
-              } catch (UnsupportedEncodingException e) {
-                Log.e("Mises", "Received ChromeBrowserReferrer with unsupported encoding");
-              } catch (IOException e){
-                Log.e("Mises", "Received ChromeBrowserReferrer but IOException");
-              }
+            public final void onResult(HttpUtil.HttpResp result) {
+                
             }
-      });
-
-      thread.start();
+        });
+      } catch (UnsupportedEncodingException e) {
+        Log.e(TAG, "Received  with unsupported encoding");
+      }
   }
   public static void handleInstallReferrer(final Context context){
-    final InstallReferrerClient referrerClient = InstallReferrerClient.newBuilder(context).build();
-    referrerClient.startConnection(new InstallReferrerStateListener() {
-      @Override
-      public void onInstallReferrerSetupFinished(int responseCode) {
-        switch (responseCode) {
-            case InstallReferrerResponse.OK:
+    try {
+        final InstallReferrerClient referrerClient = InstallReferrerClient.newBuilder(context).build();
+        referrerClient.startConnection(new InstallReferrerStateListener() {
+          @Override
+          public void onInstallReferrerSetupFinished(int responseCode) {
+            switch (responseCode) {
+              case InstallReferrerResponse.OK:
                 // Connection established.
                 try {
-			ReferrerDetails response = referrerClient.getInstallReferrer();
-                    	String referrer = response.getInstallReferrer();
-			if (referrer == null || referrer.length() == 0 || referrer.equals("")) {
-			  Log.i("Mises", "Received ChromeBrowserReferrer: []");
-        		  break;
-      			}
+                  ReferrerDetails response = referrerClient.getInstallReferrer();
+                  String referrer = response.getInstallReferrer();
+                  if (referrer == null || referrer.length() == 0 || referrer.equals("")) {
+                    Log.i(TAG, "Received : []");
+                    break;
+                  }
+                  Log.i(TAG, "Received : [" + referrer + "]");
 
-      			Log.i("Mises", "Received ChromeBrowserReferrer: [" + referrer + "]");
-
-      			SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
-      			sharedPreferencesEditor.putString("install_referrer", (String)referrer);
-      			sharedPreferencesEditor.apply();
-		        referrerClient.endConnection();
- 		} catch (RemoteException e) {
-                    Log.e("Mises", "Could not get ChromeBrowserReferrer: " + e.getMessage());
+                  SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
+                  sharedPreferencesEditor.putString("install_referrer", (String)referrer);
+                  sharedPreferencesEditor.apply();
+                  referrerClient.endConnection();
+                } catch (RemoteException e) {
+                  Log.e(TAG, "Could not get: " + e.getMessage());
+                } catch (Exception e) {
+                  Log.e(TAG, e.toString());
                 }
-		break;
-            case InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
+                break;
+              case InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
                 // API not available on the current Play Store app.
-		Log.e("Mises", "Could not get ChromeBrowserReferrer: FEATURE_NOT_SUPPORTED" );
+                Log.e(TAG, "Could not get: FEATURE_NOT_SUPPORTED" );
                 break;
-            case InstallReferrerResponse.SERVICE_UNAVAILABLE:
+              case InstallReferrerResponse.SERVICE_UNAVAILABLE:
                 // Connection couldn't be established.
-		Log.e("Mises", "Could not get ChromeBrowserReferrer: SERVICE_UNAVAILABLE" );
+                Log.e(TAG, "Could not get: SERVICE_UNAVAILABLE" );
                 break;
-        }
-     }
+            }
+          }
 
-     @Override
-     public void onInstallReferrerServiceDisconnected() {
-        // Try to restart the connection on the next request to
-        // Google Play by calling the startConnection() method.
-     }
-   });
+          @Override
+          public void onInstallReferrerServiceDisconnected() {
+              // Try to restart the connection on the next request to
+              // Google Play by calling the startConnection() method.
+          }
+        });
+    } catch (Exception e) {
+      Log.e(TAG, e.toString());
+    }
+   
   }
 }
