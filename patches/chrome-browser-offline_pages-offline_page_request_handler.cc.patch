@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/offline_pages/offline_page_request_handler.cc b/chrome/browser/offline_pages/offline_page_request_handler.cc
+index 3da6a6d7624338ee13f1c8511452abfa8a72f131..e116a9a6d951cd4b4dd55f9ff08133dd37d0ac3a 100644
+--- a/chrome/browser/offline_pages/offline_page_request_handler.cc
++++ b/chrome/browser/offline_pages/offline_page_request_handler.cc
+@@ -724,6 +724,9 @@ void OfflinePageRequestHandler::OpenFile(
+ 
+   int flags = base::File::FLAG_OPEN | base::File::FLAG_READ |
+               base::File::FLAG_ASYNC | base::File::FLAG_WIN_EXCLUSIVE_READ;
++#if BUILDFLAG(IS_ANDROID)
++  flags &= ~base::File::FLAG_WIN_EXCLUSIVE_READ;
++#endif
+   int result = stream_->Open(file_path, flags, callback);
+   if (result != net::ERR_IO_PENDING)
+     callback.Run(result);
