@@ -58,7 +58,6 @@ function App () {
 function initialize () {
   initLocale(loadTimeData.data_)
   store.dispatch(WalletActions.initialize())
-  store.dispatch(WalletActions.fetchMisesFullChainTokenList())
   render(<App />, document.getElementById('mountPoint'))
 }
 
