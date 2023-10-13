@@ -2775,7 +2775,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 const MISES_SITE_API = "https://api.alb.mises.site/api/v1";
 //export const MISES_SITE_API = "http://localhost:8080/api/v1";
 // export const MISES_POINT = 'http://192.168.1.8:26657';
-const MISES_POINT = "http://127.0.0.1:26657";
+const MISES_POINT = "https://e2.mises.site";
 
 
 class Request {
@@ -4247,7 +4247,7 @@ exports.shortenAddress = exports.MISES_TRUNCATED_ADDRESS_START_CHARS = exports.T
 exports.MISES_SITE_API = "https://api.alb.mises.site/api/v1";
 //export const MISES_SITE_API = "http://localhost:8080/api/v1";
 // export const MISES_POINT = 'http://192.168.1.8:26657';
-exports.MISES_POINT = "http://127.0.0.1:26657";
+exports.MISES_POINT = "https://e2.mises.site";
 const axios_1 = __importDefault(__webpack_require__(60));
 const axios_fetch_adapter_1 = __importDefault(__webpack_require__(595));
 class Request {

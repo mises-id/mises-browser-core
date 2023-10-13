@@ -19,12 +19,12 @@ _lib_dir1 = get_label_info(
 
 mises_public_apk_or_module_tmpl_loadable_modules = [ 
     "$_lib_dir/$android_app_abi/libwg-go.so",
-    "$_lib_dir1/$android_app_abi/libgojni.so"
+   # "$_lib_dir1/$android_app_abi/libgojni.so"
 ]
 
 mises_monochrome_public_apk_or_module_tmpl_loadable_modules = [ 
     "$_lib_dir/$android_app_abi/libwg-go.so",
-    "$_lib_dir1/$android_app_abi/libgojni.so" 
+   # "$_lib_dir1/$android_app_abi/libgojni.so" 
 ]
 mises_monochrome_public_apk_or_module_tmpl_secondary_abi_loadable_modules = []
 

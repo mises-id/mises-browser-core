@@ -17596,7 +17596,7 @@ module.exports = "assets/logo-256.png";
 
 const EmbedChainInfos = [
     {
-        rpc: "http://127.0.0.1:26657",
+        rpc: "https://e2.mises.site",
         rest: "https://rest.gw.mises.site",
         chainId: "mainnet",
         chainName: "Mises Network",
