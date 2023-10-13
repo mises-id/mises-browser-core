@@ -64,7 +64,7 @@ mises_java_base_module_sources = [
 ]
 
 mises_java_base_module_deps = [
-  "//mises/third_party/mises:mises_light_node_java",
+  #"//mises/third_party/mises:mises_light_node_java",
   "//mises/third_party/android_deps:com_wireguard_android_java",
   "//mises/third_party/android_deps:google_firebase_firebase_analytics_java",
   "//mises/third_party/android_deps:google_play_services_ads_java",

@@ -18,9 +18,9 @@ import androidx.core.app.NotificationCompat;
 
 import android.app.ForegroundServiceStartNotAllowedException;
 
-import lcd.MLightNode;
-import lcd.MLightNodeDelegator;
-import lcd.Lcd;
+// import lcd.MLightNode;
+// import lcd.MLightNodeDelegator;
+// import lcd.Lcd;
 
 import org.chromium.base.Log;
 import org.chromium.chrome.mises.R;
@@ -43,7 +43,7 @@ import java.lang.SecurityException;
 
 
 
-public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightNodeDelegator {
+public class MisesLCDServiceImpl extends MisesLCDService.Impl  {
     private static final String CHANNEL_ID = "1001";
     private static final String CHANNEL_NAME = "Event Tracker";
     private static final int SERVICE_ID = 1;
@@ -54,7 +54,7 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
     public static final String KEY_DATA = "KEY_DATA";
     private Handler uiThreadHandler = new Handler();
     private int retryCounter;
-    private static MLightNode nodeLCD;
+    //private static MLightNode nodeLCD;
     private Thread nodeThread;
     private Thread nodeRestartThread;
     private String homePath; 
@@ -151,24 +151,24 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
     }
 
     private void resetNode() {
-        if (nodeRestartThread != null) {
-          return;
-        }
-        nodeRestartThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(TAG, "mises light node restarting");
-                try {
-                    nodeLCD.restart();
-                } catch (Exception e) {
+        // if (nodeRestartThread != null) {
+        //   return;
+        // }
+        // nodeRestartThread = new Thread(new Runnable() {
+        //     @Override
+        //     public void run() {
+        //         Log.i(TAG, "mises light node restarting");
+        //         try {
+        //             nodeLCD.restart();
+        //         } catch (Exception e) {
                 
-                    Log.i(TAG, "mises light node restart fail");
-                }
-                nodeRestartThread = null;
+        //             Log.i(TAG, "mises light node restart fail");
+        //         }
+        //         nodeRestartThread = null;
 
-            }
-        });
-        nodeRestartThread.start();
+        //     }
+        // });
+        // nodeRestartThread.start();
     }
     
     private void deleteTrustStore() {
@@ -237,7 +237,7 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
                             //if no old light data, restart later
                             Log.e(TAG, "no trust block");
 			                nodeThread = null;
-			                MisesLCDServiceImpl.this.onError("");
+			                //MisesLCDServiceImpl.this.onError("");
 			                return;
                         } else {
                             //leave block_hash and block_height empty so that trust the existing block
@@ -267,23 +267,23 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
                     witness_nodes = str.toString();
 
                 }
-                try {
-		            nodeLCD = Lcd.newMLightNode();
-                    nodeLCD.setChainID(chain_id);
-                    nodeLCD.setEndpoints(primary_node, witness_nodes);
-                    nodeLCD.setTrust(block_height, block_hash);
-		            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1) {
-			            // these android version dont support isrg_root_x1 CA, so simply make Ssl skip checking CA
-		                nodeLCD.setInsecureSsl(true);
-		            }
-                    nodeLCD.serve("tcp://127.0.0.1:26657", MisesLCDServiceImpl.this);
-                    Log.i(TAG, "mises light node started");
-                } catch (Exception e) {
-                    Log.e(TAG, "mises light node start error");
-		            nodeLCD = null;
-                    //we delete  the trust store here for it could be corupted
-                    MisesLCDServiceImpl.this.onError("");
-                }
+                // try {
+		        //     nodeLCD = Lcd.newMLightNode();
+                //     nodeLCD.setChainID(chain_id);
+                //     nodeLCD.setEndpoints(primary_node, witness_nodes);
+                //     nodeLCD.setTrust(block_height, block_hash);
+		        //     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1) {
+			    //         // these android version dont support isrg_root_x1 CA, so simply make Ssl skip checking CA
+		        //         nodeLCD.setInsecureSsl(true);
+		        //     }
+                //     nodeLCD.serve("tcp://127.0.0.1:26657", MisesLCDServiceImpl.this);
+                //     Log.i(TAG, "mises light node started");
+                // } catch (Exception e) {
+                //     Log.e(TAG, "mises light node start error");
+		        //     nodeLCD = null;
+                //     //we delete  the trust store here for it could be corupted
+                //     MisesLCDServiceImpl.this.onError("");
+                // }
 		        nodeThread = null;
 
             }
@@ -296,7 +296,7 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
         Log.e(TAG, "onError " + reason + ", retry:"+ retryCounter);
         if (!reason.isEmpty()) {
             deleteTrustStore();
-            nodeLCD = null;
+            //nodeLCD = null;
         }
 	  try {
             getService().startForeground(SERVICE_ID, getStickyNotification(
@@ -321,24 +321,24 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
         }, retryDelay); 
     }
 
-    @Override
-    public void onError(String reason) {
-        final String error_reason = reason;
-	    uiThreadHandler.post( () -> {onErrorUIThread(error_reason);});
-    }
+    // @Override
+    // public void onError(String reason) {
+    //     final String error_reason = reason;
+	//     uiThreadHandler.post( () -> {onErrorUIThread(error_reason);});
+    // }
     private void restartNode() {
-        try {
-            if (nodeLCD == null) {
-                homePath = mContext.getFilesDir().getAbsolutePath() + File.separator;
-                Lcd.setHomePath(homePath);
-                initNode();
-            } else {
-                resetNode();
-            }
-        } catch (Exception e) {
-           Log.e(TAG, "mises light node restart error");
-           onError("");
-        }
+        // try {
+        //     if (nodeLCD == null) {
+        //         homePath = mContext.getFilesDir().getAbsolutePath() + File.separator;
+        //         Lcd.setHomePath(homePath);
+        //         initNode();
+        //     } else {
+        //         resetNode();
+        //     }
+        // } catch (Exception e) {
+        //    Log.e(TAG, "mises light node restart error");
+        //    onError("");
+        // }
     }
 
     private Notification getStickyNotification(String title, String message, boolean running) {
@@ -418,20 +418,20 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl implements MLightN
 
     static public void maybeStartService(final Application application) {
         Log.i(TAG, "maybeStartService");
-        if (!MisesLCDServiceImpl.IS_RUNNING) {
-            try {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    Log.i(TAG, "start MisesLCDService1");
-                    application.startForegroundService(new Intent(application, MisesLCDService.class));
-                } else {
-                    Log.i(TAG, "start MisesLCDService2");
-                    application.startService(new Intent(application, MisesLCDService.class));
-                }
-            }
-            catch (ForegroundServiceStartNotAllowedException e) {
-                   Log.i(TAG, "fail to start MisesLCDService with ForegroundServiceStartNotAllowedException");
-            }
-        }
+        // if (!MisesLCDServiceImpl.IS_RUNNING) {
+        //     try {
+        //         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        //             Log.i(TAG, "start MisesLCDService1");
+        //             application.startForegroundService(new Intent(application, MisesLCDService.class));
+        //         } else {
+        //             Log.i(TAG, "start MisesLCDService2");
+        //             application.startService(new Intent(application, MisesLCDService.class));
+        //         }
+        //     }
+        //     catch (ForegroundServiceStartNotAllowedException e) {
+        //            Log.i(TAG, "fail to start MisesLCDService with ForegroundServiceStartNotAllowedException");
+        //     }
+        // }
     }
 
 

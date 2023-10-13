@@ -100,6 +100,5 @@
   setChainPop,
   resetWallet,
   setMisesInfo,
-  fetchMisesFullChainTokenList,
   setMisesFullChainTokenList
  } = WalletActions

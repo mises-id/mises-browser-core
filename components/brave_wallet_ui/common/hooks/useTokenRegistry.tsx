@@ -13,10 +13,16 @@ import { useGetNetworksQuery } from '../slices/api.slice'
 
 // Utils
 import { addLogoToToken } from '../async/lib'
+import { WalletSelectors } from '../selectors'
+import { useUnsafeWalletSelector } from './use-safe-selector'
 
 export function useTokenRegistry () {
   // Hooks
   const { getTokenList } = useLib()
+
+  const visibleTokens = useUnsafeWalletSelector(
+    WalletSelectors.misesFullChainTokenList
+  )
 
   // Redux
   const { data: networkList = [] } = useGetNetworksQuery()
@@ -35,6 +41,12 @@ export function useTokenRegistry () {
               await Promise.all(result.tokens.map(async (token) => {
             return await addLogoToToken(token)
           }))
+          const mappedTokens = formattedListWithIcons.reduce((a,v)=>{a[v.contractAddress]=v;return a},{})
+          visibleTokens.map(async (token) => {
+            if (token.chainId === network.chainId && !mappedTokens[token.contractAddress]) {
+              formattedListWithIcons.push(token);
+            }
+          });
           registry[network.chainId] = formattedListWithIcons
         }
       ).catch((error) => {
@@ -55,7 +67,7 @@ export function useTokenRegistry () {
     return () => {
       subscribed = false
     }
-  }, [tokenRegistry, networkList, getTokenList])
+  }, [tokenRegistry, networkList, getTokenList, visibleTokens])
 
   // Creates a flat list of all tokens in the tokenRegistry
   const fullTokenListAllChains: BraveWallet.BlockchainToken[] = React.useMemo(() => {

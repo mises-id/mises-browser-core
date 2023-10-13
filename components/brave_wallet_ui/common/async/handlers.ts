@@ -91,6 +91,38 @@ async function refreshBalancesPricesAndHistory (store: Store) {
   await store.dispatch(refreshTokenPriceHistory(state.selectedPortfolioTimeline))
 }
 
+
+async function fetchMisesFullChainTokenList (store: Store) {
+  const state = getWalletState(store);
+  if(state.misesFullChainTokenList.length) {
+    return
+  }
+  function convertTokenInfo(infos:string ) {
+    const data: {[address: string]: any} = JSON.parse(infos);
+    return Object.entries(data).map(([address, val]) => {
+      return {
+        ...val,
+        coin: 60,
+        contractAddress: address,
+        isErc20: val.erc20,
+        isErc721: false,
+        isErc1155: false,
+        isNft: false,
+        logo: `chrome://erc-token-images/${val.logo}`,
+      }
+    })
+  }
+  Promise.all([
+    (chrome as any).misesPrivate.fetchJson('https://cdn.mises.site/s3://mises-storage/resources/contract-map.json'),
+    (chrome as any).misesPrivate.fetchJson('https://cdn.mises.site/s3://mises-storage/resources/evm-contract-map.json'),
+  ]).then((res) => {
+    if(res[0] && res[1]) {
+      const misesFullChainTokenList = [...convertTokenInfo(res[0]), ...convertTokenInfo(res[1])];
+      store.dispatch(WalletActions.setMisesFullChainTokenList(misesFullChainTokenList))
+    }
+  })
+}
+
 async function refreshWalletInfo (store: Store) {
   const apiProxy = getAPIProxy()
 
@@ -186,6 +218,9 @@ handler.on(WalletActions.initialize.type, async (store) => {
   store.dispatch(WalletActions.activeOriginChanged(
     makeSerializableOriginInfo(originInfo)
   ))
+
+  fetchMisesFullChainTokenList(store);
+
   await refreshWalletInfo(store)
 })
 
@@ -291,37 +326,6 @@ handler.on(WalletActions.setMisesInfo.type, async (store: Store) => {
   }else {
     console.log('setMisesId', 'error');
   }
-})
-
-handler.on(WalletActions.fetchMisesFullChainTokenList.type, async (store: Store) => {
-  const state = getWalletState(store);
-  if(state.misesFullChainTokenList.length) {
-    return
-  }
-  (chrome as any).misesPrivate.fetchJson('https://swap.mises.site/token_list.json').then((res: string) => {
-    if(res) {
-      const data: any = JSON.parse(res);
-      const misesFullChainTokenList = data.data.map((val: any) => {
-        return {
-          chainId: val.chainId,
-          coin: 60,
-          coingeckoId: '',
-          contractAddress: val.address,
-          decimals: val.decimals,
-          isErc20: '',
-          isErc721: false,
-          isErc1155: false,
-          isNft: false,
-          logo: `chrome://erc-token-images/${val.symbol}.png`,
-          name: val.name,
-          symbol: val.symbol,
-          tokenId: '',
-          visible: true,
-        }
-      })
-      store.dispatch(WalletActions.setMisesFullChainTokenList(misesFullChainTokenList))
-    }
-  })
 })
 
 handler.on(WalletActions.resetWallet.type, async (store: Store) => {
