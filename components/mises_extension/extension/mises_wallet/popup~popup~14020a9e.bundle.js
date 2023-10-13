@@ -103140,7 +103140,7 @@ function precisionRound(n, p) {
 }
 class MisesConfig {
     constructor() {
-        this._lcdEndpoint = 'http://127.0.0.1:26657';
+        this._lcdEndpoint = 'https://e2.mises.site';
         this._logLevel = 0;
         this._gasPrice = 0.01; // umis
         this._gasLimit = 200000;
