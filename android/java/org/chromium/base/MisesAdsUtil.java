@@ -211,9 +211,9 @@ public class MisesAdsUtil {
                 public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
                     // Handle the reward.
                     Log.i("TAG", "The user earned the reward.");
-                    int rewardAmount = rewardItem.getAmount();
-                    String rewardType = rewardItem.getType();
-                    Toast.makeText(act, "Thank your for your support", Toast.LENGTH_SHORT).show();
+                    // int rewardAmount = rewardItem.getAmount();
+                    // String rewardType = rewardItem.getType();
+                    // Toast.makeText(act, "Reward granted", Toast.LENGTH_SHORT).show();
                     
 
                 }
