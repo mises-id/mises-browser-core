@@ -154,7 +154,6 @@ public class MisesAdsUtil {
             return;
         }
         try {
-            runtimeCheck(act);
             setStatus(AdsStatus.INITIALIZING);
             MobileAds.initialize(act, new OnInitializationCompleteListener() {
                 @Override
