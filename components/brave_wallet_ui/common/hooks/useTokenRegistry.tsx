@@ -8,19 +8,19 @@ import * as React from 'react'
 import { TokenRegistry, BraveWallet } from '../../constants/types'
 
 // Hooks
-import { useLib } from './'
+//import { useLib } from './'
 import { useGetNetworksQuery } from '../slices/api.slice'
 
 // Utils
-import { addLogoToToken } from '../async/lib'
+//import { addLogoToToken } from '../async/lib'
 import { WalletSelectors } from '../selectors'
 import { useUnsafeWalletSelector } from './use-safe-selector'
 
 export function useTokenRegistry () {
   // Hooks
-  const { getTokenList } = useLib()
+  //const { getTokenList } = useLib()
 
-  const visibleTokens = useUnsafeWalletSelector(
+  const misesTokens = useUnsafeWalletSelector(
     WalletSelectors.misesFullChainTokenList
   )
 
@@ -34,32 +34,49 @@ export function useTokenRegistry () {
   React.useEffect(() => {
     let subscribed = true
     let registry = tokenRegistry
+    let misesRegistry: TokenRegistry = {}
+    misesTokens.forEach(function (token) {
+      if (token.contractAddress !== undefined) {
+        if (misesRegistry[token.chainId] !== undefined) {
+          misesRegistry[token.chainId].push(token);
+        } else {
+          misesRegistry[token.chainId] = [token];
+        }
+      } else {
+        console.log('token', token)
+      }
+    });
     Promise.all(networkList.map(async (network) => {
-      getTokenList(network).then(
-        async (result) => {
-            const formattedListWithIcons =
-              await Promise.all(result.tokens.map(async (token) => {
-            return await addLogoToToken(token)
-          }))
-          const mappedTokens = formattedListWithIcons.reduce((a,v)=>{a[v.contractAddress]=v;return a},{})
-          visibleTokens.map(async (token) => {
-            if (token.chainId === network.chainId && !mappedTokens[token.contractAddress]) {
-              formattedListWithIcons.push(token);
-            }
-          });
-          registry[network.chainId] = formattedListWithIcons
-        }
-      ).catch((error) => {
-        if (!subscribed) {
-          return
-        }
-        console.log(error)
-        setIsLoading(false)
-      })
+      if (misesRegistry[network.chainId] !== undefined) {
+        registry[network.chainId] = misesRegistry[network.chainId]
+      } else {
+        registry[network.chainId] = []
+      }
+      // getTokenList(network).then(
+      //   async (result) => {
+      //     let formattedListWithIcons:BraveWallet.BlockchainToken[] =
+      //       await Promise.all(result.tokens.map(async (token) => {
+      //         return await addLogoToToken(token)
+      //       }))
+      //     if (misesRegistry[network.chainId] !== undefined) {
+      //       formattedListWithIcons = formattedListWithIcons.concat(misesRegistry[network.chainId])
+      //     }
+      //     console.log('network', network, formattedListWithIcons)
+      //     registry[network.chainId] = formattedListWithIcons
+          
+      //   }
+      // ).catch((error) => {
+      //   if (!subscribed) {
+      //     return
+      //   }
+      //   console.log(error)
+      //   setIsLoading(false)
+      // })
     })).then(() => {
       if (!subscribed) {
         return
       }
+      console.log('registry', registry)
       setTokenRegistry(registry)
       setIsLoading(false)
     })
@@ -67,7 +84,7 @@ export function useTokenRegistry () {
     return () => {
       subscribed = false
     }
-  }, [tokenRegistry, networkList, getTokenList, visibleTokens])
+  }, [tokenRegistry, networkList, /*getTokenList,*/ misesTokens])
 
   // Creates a flat list of all tokens in the tokenRegistry
   const fullTokenListAllChains: BraveWallet.BlockchainToken[] = React.useMemo(() => {
