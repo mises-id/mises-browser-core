@@ -414,12 +414,12 @@ void MisesComponentLoader::OnWebstoreInstallResult(
       //DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
 #endif
       
-    base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
-        FROM_HERE,
-        base::BindOnce(
-          &MisesComponentLoader::ShowPreInstallMessage,
-          weak_ptr_factory_.GetWeakPtr(), true), 
-        base::Seconds(1));
+    // base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+    //     FROM_HERE,
+    //     base::BindOnce(
+    //       &MisesComponentLoader::ShowPreInstallMessage,
+    //       weak_ptr_factory_.GetWeakPtr(), true), 
+    //     base::Seconds(1));
     }
   }
 

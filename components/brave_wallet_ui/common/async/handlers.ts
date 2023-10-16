@@ -95,6 +95,7 @@ async function refreshBalancesPricesAndHistory (store: Store) {
 async function fetchMisesFullChainTokenList (store: Store) {
   const state = getWalletState(store);
   if(state.misesFullChainTokenList.length) {
+    console.log('fetchMisesFullChainTokenList', 'skip')
     return
   }
   function convertTokenInfo(infos:string ) {
@@ -112,6 +113,7 @@ async function fetchMisesFullChainTokenList (store: Store) {
       }
     })
   }
+  console.log('fetchMisesFullChainTokenList', 'start')
   Promise.all([
     (chrome as any).misesPrivate.fetchJson('https://cdn.mises.site/s3://mises-storage/resources/contract-map.json'),
     (chrome as any).misesPrivate.fetchJson('https://cdn.mises.site/s3://mises-storage/resources/evm-contract-map.json'),
@@ -119,6 +121,7 @@ async function fetchMisesFullChainTokenList (store: Store) {
     if(res[0] && res[1]) {
       const misesFullChainTokenList = [...convertTokenInfo(res[0]), ...convertTokenInfo(res[1])];
       store.dispatch(WalletActions.setMisesFullChainTokenList(misesFullChainTokenList))
+      console.log('fetchMisesFullChainTokenList', 'end')
     }
   })
 }
@@ -390,7 +393,7 @@ handler.on(WalletActions.getAllTokensList.type, async (store) => {
   const { blockchainRegistry } = api
   const getAllTokensList = await Promise.all(networkList.map(async (network) => {
     const list = await blockchainRegistry.getAllTokens(network.chainId, network.coin)
-    return list.tokens.map((token) => {
+    return list.tokens.map((token: any) => {
       return {
         ...token,
         chainId: network.chainId,

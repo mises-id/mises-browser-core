@@ -158,7 +158,6 @@ export const WalletAsyncActions = {
   closeUI: createAction('closeUI'),
   resetWallet: createAction('resetWallet'),
   setMisesInfo: createAction('setMisesInfo'),
-  fetchMisesFullChainTokenList: createAction('fetchMisesFullChainTokenList'),
   backedUp: createAction('backedUp'),
   accountsChanged: createAction('accountsChanged'),
   selectedAccountChanged: createAction<SelectedAccountChangedPayloadType>(
