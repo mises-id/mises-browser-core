@@ -34,20 +34,31 @@ export function useTokenRegistry () {
   React.useEffect(() => {
     let subscribed = true
     let registry = tokenRegistry
+    let misesRegistry: TokenRegistry = {}
+    visibleTokens.forEach(function (token) {
+      if (token.contractAddress !== undefined) {
+        if (misesRegistry[token.chainId] !== undefined) {
+          misesRegistry[token.chainId].push(token);
+        } else {
+          misesRegistry[token.chainId] = [token];
+        }
+      } else {
+        console.log('token', token)
+      }
+    });
     Promise.all(networkList.map(async (network) => {
       getTokenList(network).then(
         async (result) => {
-            const formattedListWithIcons =
-              await Promise.all(result.tokens.map(async (token) => {
-            return await addLogoToToken(token)
-          }))
-          const mappedTokens = formattedListWithIcons.reduce((a,v)=>{a[v.contractAddress]=v;return a},{})
-          visibleTokens.map(async (token) => {
-            if (token.chainId === network.chainId && !mappedTokens[token.contractAddress]) {
-              formattedListWithIcons.push(token);
-            }
-          });
+          let formattedListWithIcons:BraveWallet.BlockchainToken[] =
+            await Promise.all(result.tokens.map(async (token) => {
+              return await addLogoToToken(token)
+            }))
+          if (misesRegistry[network.chainId] !== undefined) {
+            formattedListWithIcons = formattedListWithIcons.concat(misesRegistry[network.chainId])
+          }
+          console.log('network', network, formattedListWithIcons)
           registry[network.chainId] = formattedListWithIcons
+          
         }
       ).catch((error) => {
         if (!subscribed) {
@@ -60,6 +71,7 @@ export function useTokenRegistry () {
       if (!subscribed) {
         return
       }
+      console.log('registry', registry)
       setTokenRegistry(registry)
       setIsLoading(false)
     })
