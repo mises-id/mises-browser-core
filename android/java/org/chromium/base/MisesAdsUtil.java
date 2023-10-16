@@ -250,7 +250,7 @@ public class MisesAdsUtil {
         Log.i(TAG, "loadRewardedAd");
         setStatus(AdsStatus.LOADING);
         try {
-            AdRequest adRequest = new AdRequest.Builder().build();
+            AdRequest adRequest = new AdRequest.Builder().setHttpTimeoutMillis(15000).build();
             RewardedAd.load(
                 act,
                 REWARDAD_UNIT_ID,
