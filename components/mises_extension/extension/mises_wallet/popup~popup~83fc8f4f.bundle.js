@@ -6203,7 +6203,7 @@ class MisesService {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const activeUser = this.activeUser;
-                const data = yield activeUser.postTx(params.msgs, "", params.gasFee, params.gasLimit);
+                const data = yield activeUser.postTx(params.msgs, params.memo || "", params.gasFee, params.gasLimit);
                 if (data.code !== 0) {
                     return Promise.reject(data.rawLog);
                 }
