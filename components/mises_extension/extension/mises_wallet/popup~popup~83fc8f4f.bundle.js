@@ -1776,6 +1776,16 @@ exports.init = init;
 
 "use strict";
 
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHandler = void 0;
 const messages_1 = __webpack_require__(346);
@@ -1887,8 +1897,12 @@ const handlerUserUnFollow = (service) => (_, msg) => {
 const handlerSetUserInfo = (service) => (_, msg) => {
     return service.setUserInfo(msg.params);
 };
-const handlerStaking = (service) => (_, msg) => {
-    return service.staking(msg.params);
+const handlerStaking = (service) => {
+    return (env, msg) => __awaiter(void 0, void 0, void 0, function* () {
+        yield service.permissionService.checkOrGrantBasicAccessPermission(env, "mainnet", msg.origin);
+        const ret = yield service.staking(msg.params);
+        return ret;
+    });
 };
 const handlerActiveUser = (service) => () => {
     return service.userInfo;
@@ -5715,8 +5729,9 @@ class MisesService {
         this.queryClientTryCount = 1;
         this.data = {};
     }
-    init() {
+    init(permissionService) {
         this.mises = new mises_1.Mises();
+        this.permissionService = permissionService;
     }
     initQueryClient() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -6203,7 +6218,8 @@ class MisesService {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const activeUser = this.activeUser;
-                const data = yield activeUser.postTx(params.msgs, "", params.gasFee, params.gasLimit);
+                const memo = params.memo === undefined ? "" : params.memo;
+                const data = yield activeUser.postTx(params.msgs, memo, params.gasFee, params.gasLimit);
                 if (data.code !== 0) {
                     return Promise.reject(data.rawLog);
                 }
