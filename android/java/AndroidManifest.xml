@@ -17,6 +17,18 @@
             android:enabled="true"
 	android:exported="false" /> -->
 
+<activity
+    android:name="com.crosspromotion.sdk.AdsActivity"
+    android:configChanges="keyboardHidden|screenSize|orientation"
+    android:launchMode="singleTask"
+    android:screenOrientation="user"
+    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+<activity
+    android:name="com.crosspromotion.sdk.ActionActivity"
+    android:configChanges="keyboardHidden|screenSize"
+    android:launchMode="singleTask"
+    android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
 <meta-data
         android:name="com.google.android.play.billingclient.version"
         android:value="5.2.1" />

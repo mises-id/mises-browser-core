@@ -5,5 +5,5 @@
     android:layout_height="260dp"
     android:gravity="center"
     android:orientation="horizontal"
-    android:paddingRight="10dp"
-    android:paddingLeft="10dp" />
+    android:paddingRight="2dp"
+    android:paddingLeft="2dp" />

@@ -140,12 +140,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         NativeAd.addAdListener(MisesAdsUtil.P_NATIVE, mNativeAdListener);
         loadNativeAd();
-        // mHandler.postDelayed(new Runnable() {
-        //     @Override
-        //     public void run() {
-        //        loadNativeAd();
-        //     }
-        // }, 500);
+       
     }
 
 
@@ -286,6 +281,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             NativeAd.destroy(MisesAdsUtil.P_NATIVE, mNativeAdInfo);
             mNativeAdInfo = null;
         }
+        mHandler.removeCallbacksAndMessages(null);
     }
 
     @Override
