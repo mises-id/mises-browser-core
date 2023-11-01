@@ -64,11 +64,9 @@ mises_java_base_module_sources = [
 ]
 
 mises_java_base_module_deps = [
-  #"//mises/third_party/mises:mises_light_node_java",
   "//mises/third_party/android_deps:com_wireguard_android_java",
-  "//mises/third_party/android_deps:google_firebase_firebase_analytics_java",
-  "//mises/third_party/android_deps:google_play_services_ads_java",
-  "//mises/third_party/android_deps:google_play_services_ads_lite_java",
+  "//mises/third_party/open_mediation:open_mediation_sdk_java",
+  "//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
   "//third_party/android_deps:playcore_java",
   "//third_party/androidx:androidx_core_core_java",
   "//third_party/androidx:androidx_lifecycle_lifecycle_viewmodel_java",

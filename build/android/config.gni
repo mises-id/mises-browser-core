@@ -43,7 +43,9 @@ mises_chrome_java_deps = [
 
   "//mises/android/features/mises:public_java",
   "//mises/android/features/mises:java_resources",
-  #"//mises/third_party/mises:mises_light_node_java",
+
+  "//mises/third_party/open_mediation:open_mediation_sdk_java",
+  "//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
   "//mises/third_party/android_deps:com_kirich1409_svgimageloaderplugins_java",
   "//third_party/android_deps:google_firebase_firebase_messaging_java",
   "//mises/third_party/android_deps:google_firebase_firebase_analytics_java",

@@ -10,8 +10,6 @@ android_library("java") {
   sources = [
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerProcessor.java",
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerProperties.java",
-    #"java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerView.java",
-    #"java/src/org/chromium/chrome/browser/omnibox/suggestions/ads/MisesAdsBannerViewBinder.java",
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/MisesAutocompleteMediator.java",
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/MisesAutocompleteCoordinator.java",
     "java/src/org/chromium/chrome/browser/omnibox/suggestions/MisesDropdownItemViewInfoListBuilder.java",

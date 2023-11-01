@@ -361,48 +361,63 @@ mises_extra_java_resources = [
   "java/res/mipmap-xxhdpi/ic_rewards.png",
   "java/res/mipmap-xxxhdpi/ic_rewards.png",
 
+  
+
 ]
 
 mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
-    "java/res/drawable/ic_vpn.xml",
-    "java/res/drawable/mises_new_group_tab.xml",
+
+    "java/res/values/channel_constants.xml",
     "java/res/values/mises_colors.xml",
     "java/res/values-v21/mises_styles.xml",
-    "java/res/layout/web_notification_icon_frame_brave.xml",
-    
-    "java/res/layout/radio_button_group_translate_preference.xml",
-    "java/res/layout/radio_button_group_tabswitcher_preference.xml",
     "java/res/values-xxhdpi/dimens.xml",
     "java/res/values-xhdpi/dimens.xml",
+    "java/res/values/google-services.xml",
+
+
+
     "java/res/xml/simple_accessibility_preferences.xml",
     "java/res/xml/data_reduction_preferences_off_lite_mode.xml",
     "java/res/xml/translate_preferences.xml",
     "java/res/xml/tabswitcher_preferences.xml",
-    "java/res/values/google-services.xml",
-    "java/res/drawable-hdpi/ic_menu_mises_forward.png",
-    "java/res/drawable-xhdpi/ic_menu_mises_forward.png",
-    "java/res/drawable-xxxhdpi/ic_menu_mises_forward.png",
-    "java/res/values/channel_constants.xml",
-    "java/res/drawable-mdpi/ic_menu_mises_forward.png",
-    "java/res/drawable-xxhdpi/ic_menu_mises_forward.png",
     "java/res/xml/web3_preferences.xml",
     "java/res/xml/unstoppable_domains_preferences.xml",
     "java/res/xml/ens_preferences.xml",
     "java/res/xml/ipfs_preferences.xml",
+
+
+    "java/res/layout/web_notification_icon_frame_brave.xml",
+    
+    "java/res/layout/radio_button_group_translate_preference.xml",
+    "java/res/layout/radio_button_group_tabswitcher_preference.xml",
     "java/res/layout/radio_button_group_ens_resolve_method_preference.xml",
     "java/res/layout/radio_button_group_unstoppable_domains_resolve_method_preference.xml",
     "java/res/layout/radio_button_group_ipfs_gateway_preference.xml",
+
+    "java/res/layout/new_tab_page_layout.xml",
+    "java/res/layout/mises_service_tiles_container.xml",
+    "java/res/layout/mises_admob_banner.xml",
+    "java/res/layout/mises_native_ad_container.xml",
+    "java/res/layout/native_ad_layout.xml",
+    "java/res/layout/mises_suggestions_tile_view.xml",
+
+
+    "java/res/drawable-hdpi/ic_menu_mises_forward.png",
+    "java/res/drawable-xhdpi/ic_menu_mises_forward.png",
+    "java/res/drawable-xxxhdpi/ic_menu_mises_forward.png",
+    "java/res/drawable-mdpi/ic_menu_mises_forward.png",
+    "java/res/drawable-xxhdpi/ic_menu_mises_forward.png",
 
     "java/res/drawable/rounded_light_bg_alpha.xml",
     "java/res/drawable/rounded_dark_bg_alpha.xml",
     "java/res/drawable/ntp_down.png",
     "java/res/drawable/ntp_more.png",
     "java/res/drawable/border_line.xml",
-    "java/res/layout/new_tab_page_layout.xml",
-    "java/res/layout/mises_service_tiles_container.xml",
-    "java/res/layout/mises_admob_banner.xml",
-    "java/res/layout/mises_admob_native.xml",
-    "java/res/layout/mises_suggestions_tile_view.xml",
+
+    "java/res/drawable/ic_vpn.xml",
+    "java/res/drawable/mises_new_group_tab.xml",
+
+    "java/res/drawable-xhdpi/ad_badge.png",
     
 
 
