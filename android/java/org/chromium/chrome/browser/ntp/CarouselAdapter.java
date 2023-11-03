@@ -138,6 +138,9 @@ public class CarouselAdapter extends CardSliderAdapter<CarouselAdapter.NativeAdV
 
                 badgeView.setVisibility(View.GONE);
                 btn.setVisibility(View.GONE);
+                if (info.getTitle() == null || info.getTitle().isEmpty()) {
+                    title.setVisibility(View.INVISIBLE);
+                }
 
                 nativeAdView.addView(adView);
                 nativeAdView.setTitleView(title);

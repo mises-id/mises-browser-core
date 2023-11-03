@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="HardcodedText"
-    android:background="#FFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -13,10 +12,10 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:auto_slide_time="10"
+        app:auto_slide_time="6"
         app:cardSlider_indicator="@id/indicator"
-        app:cardSlider_otherPagesWidth="24dp"
-        app:cardSlider_pageMargin="12dp"
+        app:cardSlider_otherPagesWidth="12dp"
+        app:cardSlider_pageMargin="6dp"
         app:cardSlider_smallAlphaFactor="0.5"
         app:cardSlider_smallScaleFactor="0.9" />
 

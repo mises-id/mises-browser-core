@@ -190,8 +190,7 @@ public class MisesNewTabPageLayout
                             if (oldHeight != newHeight && mIsTopSitesEnabled
                                     && mNtpAdapter != null) {
                                 new Handler(Looper.getMainLooper()).post(() -> {
-                                    mNtpAdapter.notifyItemRangeChanged(0,
-                                            mNtpAdapter.getTopSitesCount());
+                                    mNtpAdapter.notifySiteChanged();
                                 });
                             }
                         });
@@ -230,8 +229,10 @@ public class MisesNewTabPageLayout
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        setNtpViews();
-
+        if (mRecyclerView == null) {
+            setNtpViews();
+        }
+        
         if (mNtpAdapter != null) {
             mNtpAdapter.onAttached();
         }
@@ -326,6 +327,11 @@ public class MisesNewTabPageLayout
 
     private void keepPosition() {
         //keep recycle view scroll position
+        RecyclerView.LayoutManager manager = mRecyclerView.getLayoutManager();
+        if (manager instanceof LinearLayoutManager) {
+            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) manager;
+            linearLayoutManager.scrollToPositionWithOffset(0, 0);
+        }
     }
 
 
