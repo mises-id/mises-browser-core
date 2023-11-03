@@ -7,6 +7,7 @@ package org.chromium.chrome.browser.ntp;
 
 import static org.chromium.ui.base.ViewUtils.dpToPx;
 
+
 import android.text.TextUtils;
 import android.app.Activity;
 import android.content.Context;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+
 
 
 import androidx.annotation.NonNull;
@@ -64,11 +66,15 @@ import com.openmediation.sdk.nativead.NativeAdListener;
 import com.openmediation.sdk.nativead.NativeAdView;
 import com.openmediation.sdk.utils.error.Error;
 
+import com.github.islamkhsh.CardSliderViewPager;
 
 import org.chromium.base.MisesAdsUtil;
 import org.chromium.base.MisesSysUtils;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -78,7 +84,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View mMisesServiceTilesContainerLayout;
     private View mWeb3SiteTilesContainerLayout;
     private View mWeb3ExtensionTilesContainerLayout;
-    private View mNativeAdLayout;
+    private View mCarouselAdContainerLayout;
 
     private OnMisesNtpListener mOnMisesNtpListener;
     private boolean mIsTopSitesEnabled;
@@ -92,7 +98,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private int mNewContentHeight;
     private int mTopMarginImageCredit;
     private float mImageCreditAlpha = 1f;
-    private AdInfo mNativeAdInfo;
+
+    private List<CarouselAdapter.CarouselAdInfo> mData;
 
     private SharedPreferencesManager.Observer mPreferenceObserver;
 
@@ -100,7 +107,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static int TYPE_WEB3_SITE = 2;
     private static int TYPE_WEB3_EXTENSION = 3;
     private static int TYPE_TOP_SITES = 4;
-    private static int TYPE_NATIVE_AD = 5;
+    private static int TYPE_CAROUSEL_AD = 5;
 
     private static final int ONE_ITEM_SPACE = 1;
     private static final int TWO_ITEMS_SPACE = 2;
@@ -118,7 +125,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View misesServiceTilesContainerLayout,
             View web3SiteTilesContainerLayout,
             View web3ExtensionTilesContainerLayout,
-            View nativeAdLayout,
+            View carouselAdContainerLayout,
             int recyclerViewHeight, boolean isTopSitesEnabled) {
         
         Log.d(TAG, "MisesNtpAdapter()");
@@ -129,7 +136,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mMisesServiceTilesContainerLayout = misesServiceTilesContainerLayout;
         mWeb3SiteTilesContainerLayout = web3SiteTilesContainerLayout;
         mWeb3ExtensionTilesContainerLayout = web3ExtensionTilesContainerLayout;
-        mNativeAdLayout = nativeAdLayout;
+        mCarouselAdContainerLayout = carouselAdContainerLayout;
         mRecyclerViewHeight = recyclerViewHeight;
         mIsTopSitesEnabled = isTopSitesEnabled;
         mIsMisesServiceEnabled = shouldDisplayMisesService();
@@ -138,8 +145,9 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         initPreferenceObserver();
 
-        NativeAd.addAdListener(MisesAdsUtil.P_NATIVE, mNativeAdListener);
+        mData = new ArrayList<>();
         loadNativeAd();
+        
        
     }
 
@@ -148,7 +156,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @Override
         public void onNativeAdLoaded(String placementId, AdInfo info) {
             Log.d(TAG, "onNativeAdLoaded, placementId: " + placementId + ", AdInfo : " + info);
-            loadSuccess(info);
+            loadSuccess(new CarouselAdapter.CarouselAdInfo(placementId, info));
         }
 
         @Override
@@ -168,10 +176,31 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     };
 
 
-    private void loadSuccess(AdInfo info) {
+    private void loadSuccess(CarouselAdapter.CarouselAdInfo info) {
         Log.d(TAG, "loadSuccess");
-        mNativeAdInfo = info;
-        notifyDataSetChanged();
+        if (info != null) {
+            mData.add(info);
+            Collections.sort(mData, new Comparator<CarouselAdapter.CarouselAdInfo>() {
+
+                private int strToInt(final String myString) {
+                    int ret = 0;
+                    try {
+                        ret = Integer.parseInt(myString);
+                    }
+                    catch (NumberFormatException e) {
+
+                    }
+                    return ret;
+                }
+                @Override
+                public int compare(CarouselAdapter.CarouselAdInfo o1, CarouselAdapter.CarouselAdInfo o2) {
+                    // TODO Auto-generated method stub
+                    return Integer.compare(strToInt(o1.mPlacementId) , strToInt(o1.mPlacementId));
+                }
+            });
+            notifyItemChanged(0);
+        }
+        
     }
 
     public static int getViewHeight(View view) {
@@ -222,16 +251,14 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.getView().setBackgroundResource(background);
 
 
-        } else if (holder instanceof NativeAdViewHolder) {
-            Log.v(TAG, "updating NativeAdViewHolder");
+        } else if (holder instanceof CarouselAdViewHolder) {
+            Log.v(TAG, "updating CarouselAdViewHolder");
             LinearLayout.LayoutParams adsLayoutParams = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            NativeAdViewHolder nativeViewHolder = (NativeAdViewHolder) holder;
-            mNativeAdLayout.setLayoutParams(adsLayoutParams);
-            mNativeAdLayout.setBackgroundResource(background);
-            if (mNativeAdInfo != null) {
-                nativeViewHolder.setData(MisesAdsUtil.P_NATIVE, mNativeAdInfo);
-            }
+            CarouselAdViewHolder carouselAdViewHolder = (CarouselAdViewHolder) holder;
+            mCarouselAdContainerLayout.setLayoutParams(adsLayoutParams);
+            mCarouselAdContainerLayout.setBackgroundResource(background);
+            carouselAdViewHolder.update(mData.size());
 
 
         }
@@ -260,8 +287,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new Web3ExtensionViewHolder(mWeb3ExtensionTilesContainerLayout, mActivity);
 
         }
-        else if (viewType == TYPE_NATIVE_AD) {
-            return new NativeAdViewHolder(mNativeAdLayout, mActivity);
+        else if (viewType == TYPE_CAROUSEL_AD) {
+            return new CarouselAdViewHolder(mCarouselAdContainerLayout, mActivity, mData);
 
         }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
@@ -269,19 +296,49 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private void loadNativeAd() {
         Log.d(TAG, "loadNativeAd");
+
+        addNativeAdListener();
+
         // for TikTok and TencentAd in China traffic
-        NativeAd.setDisplayParams(MisesAdsUtil.P_NATIVE, 320, 0);
-        NativeAd.loadAd(MisesAdsUtil.P_NATIVE);
+        NativeAd.setDisplayParams(MisesAdsUtil.P_NATIVE_CAROUSEL_0, 320, 0);
+        NativeAd.loadAd(MisesAdsUtil.P_NATIVE_CAROUSEL_0);
+        NativeAd.setDisplayParams(MisesAdsUtil.P_NATIVE_CAROUSEL_1, 320, 0);
+        NativeAd.loadAd(MisesAdsUtil.P_NATIVE_CAROUSEL_1);
+        NativeAd.setDisplayParams(MisesAdsUtil.P_NATIVE_CAROUSEL_2, 320, 0);
+        NativeAd.loadAd(MisesAdsUtil.P_NATIVE_CAROUSEL_2);
+    }
+    private void addNativeAdListener() {
+        NativeAd.addAdListener(MisesAdsUtil.P_NATIVE_CAROUSEL_0, mNativeAdListener);
+        NativeAd.addAdListener(MisesAdsUtil.P_NATIVE_CAROUSEL_1, mNativeAdListener);
+        NativeAd.addAdListener(MisesAdsUtil.P_NATIVE_CAROUSEL_2, mNativeAdListener);
+    }
+    private void removeNativeAdListener() {
+        NativeAd.removeAdListener(MisesAdsUtil.P_NATIVE_CAROUSEL_0, mNativeAdListener);
+        NativeAd.removeAdListener(MisesAdsUtil.P_NATIVE_CAROUSEL_1, mNativeAdListener);
+        NativeAd.removeAdListener(MisesAdsUtil.P_NATIVE_CAROUSEL_2, mNativeAdListener);
     }
 
+    public void onAttached() {
+        Log.d(TAG, "onAttached");
+        addNativeAdListener();
+    }
     public void onDetached() {
         Log.d(TAG, "onDetached");
-        NativeAd.removeAdListener(MisesAdsUtil.P_NATIVE, mNativeAdListener);
-        if (mNativeAdInfo != null) {
-            NativeAd.destroy(MisesAdsUtil.P_NATIVE, mNativeAdInfo);
-            mNativeAdInfo = null;
+        removeNativeAdListener();
+    }
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy");
+        removeNativeAdListener();
+
+        boolean need_notify = false;
+        for (CarouselAdapter.CarouselAdInfo info : mData) {
+            if (info != null) {
+                NativeAd.destroy(info.mPlacementId, info.mAdInfo);
+            }
         }
         mHandler.removeCallbacksAndMessages(null);
+        mData.clear();
+        
     }
 
     @Override
@@ -296,7 +353,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return TYPE_TOP_SITES;
         }
 
-        return TYPE_NATIVE_AD;
+        return TYPE_CAROUSEL_AD;
     }
 
     public int getTopSitesCount() {
@@ -381,51 +438,47 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
     
-    public static class NativeAdViewHolder extends RecyclerView.ViewHolder {
+    public static class CarouselAdViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout itemContainView;
         private Context mContext;
 
-        public NativeAdViewHolder(View itemView, Context ctx) {
+        private CarouselAdapter mAdapter;
+        
+        private boolean mEnabled;
+        
+
+
+        public CarouselAdViewHolder(View itemView, Context ctx, List<CarouselAdapter.CarouselAdInfo> data) {
             super(itemView);
             mContext = itemView.getContext();
-            itemContainView = itemView.findViewById(R.id.native_ad_container);
+            itemContainView = itemView.findViewById(R.id.carousel_container);
+            
+            
+            mAdapter = new CarouselAdapter(ctx, data);
+            mEnabled = false;
+
         }
 
-        public void setData(String placementId, AdInfo info) {
-            Log.v(TAG, "NativeAdViewHolder setData");
-            if (info == null) {
-                return;
-            }
-            itemContainView.removeAllViews();
-            if (info.isTemplateRender()) {
+        public void update(int adCount) {
+            Log.v(TAG, "CarouselAdViewHolder update " + adCount);
+            if (adCount > 0 && !mEnabled) {
+                View adView  = LayoutInflater.from(mContext).inflate(R.layout.carousel_ad_view, null);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.addRule(Gravity.CENTER);
-                itemContainView.addView(info.getView(), layoutParams);
-            } else {
-                View adView = LayoutInflater.from(mContext).inflate(R.layout.native_ad_layout, null);
-                TextView title = adView.findViewById(R.id.ad_title);
-                title.setText(info.getTitle());
-                TextView desc = adView.findViewById(R.id.ad_desc);
-                desc.setText(info.getDesc());
-                Button btn = adView.findViewById(R.id.ad_btn);
-                btn.setText(info.getCallToActionText());
-                MediaView mediaView = adView.findViewById(R.id.ad_media);
-                NativeAdView nativeAdView = new NativeAdView(mContext);
-                AdIconView adIconView = adView.findViewById(R.id.ad_icon_media);
-                nativeAdView.addView(adView);
-                nativeAdView.setTitleView(title);
-                nativeAdView.setDescView(desc);
-                nativeAdView.setAdIconView(adIconView);
-                nativeAdView.setCallToActionView(btn);
-                nativeAdView.setMediaView(mediaView);
+                            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                itemContainView.addView(adView, layoutParams);
 
-                NativeAd.registerNativeAdView(placementId, nativeAdView, info);
-
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                itemContainView.addView(nativeAdView, layoutParams);
+                CardSliderViewPager viewPager = (CardSliderViewPager) adView.findViewById(R.id.viewPager);
+                viewPager.setAutoSlideTime(10);
+                viewPager.setSliderPageMargin(12);
+                viewPager.setOtherPagesWidth(24);
+                viewPager.setSmallScaleFactor(0.9f);
+                viewPager.setSmallAlphaFactor(0.5f);
+                viewPager.setAdapter(mAdapter);
+                mEnabled = true;
             }
+
+            mAdapter.notifyDataSetChanged();
+            
         }
     }
 

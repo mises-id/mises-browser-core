@@ -46,7 +46,9 @@ public class MisesAdsUtil {
     
     private static final String APPKEY = "yHtyiIvylOW0RjcuWvIO9mrL63X9vtcH";
 
-    public static final String P_NATIVE = "229";
+    public static final String P_NATIVE_CAROUSEL_0 = "229";
+    public static final String P_NATIVE_CAROUSEL_1 = "232";
+    public static final String P_NATIVE_CAROUSEL_2 = "233";
     public static final String P_SPLASH = "231";
     public static final String P_REWARD = "230";
 

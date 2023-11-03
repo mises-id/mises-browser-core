@@ -216,7 +216,7 @@ public class MisesNewTabPageLayout
         mWeb3ExtensionTilesContainerLayout.post(runable);
 
         mNativeAdLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
-                                        .inflate(R.layout.mises_native_ad_container, mMainLayout, false);
+                                        .inflate(R.layout.mises_carousel_container, mMainLayout, false);
         mNativeAdLayout.setVisibility(View.VISIBLE);
 
         
@@ -231,6 +231,10 @@ public class MisesNewTabPageLayout
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         setNtpViews();
+
+        if (mNtpAdapter != null) {
+            mNtpAdapter.onAttached();
+        }
        
     }
 
@@ -447,6 +451,10 @@ public class MisesNewTabPageLayout
         if (mWeb3ExtensionTilesCoordinator != null) {
             mWeb3ExtensionTilesCoordinator.destroyMvtiles();
             mWeb3ExtensionTilesCoordinator = null;
+        }
+
+        if (mNtpAdapter != null) {
+            mNtpAdapter.onDestroy();
         }
     }
 
