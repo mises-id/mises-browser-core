@@ -142,7 +142,7 @@ public class MisesAdsUtil {
         OmAds.setGDPRConsent(true);
         Log.i(TAG, "om start init sdk " + VersionConstants.CHANNEL);
         String initHost = "https://ads.mises.site/init";
-        if (VersionConstants.CHANNEL == Channel.DEV || VersionConstants.CHANNEL == Channel.DEFAULT) {
+        if (VersionConstants.CHANNEL == Channel.DEV) {
             initHost = "https://ads.test.mises.site/init";
         };
         InitConfiguration configuration = new InitConfiguration.Builder()
