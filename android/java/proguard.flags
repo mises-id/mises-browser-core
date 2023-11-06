@@ -102,3 +102,9 @@
 -dontwarn com.google.android.gms.internal.ads.**
 -dontwarn android.adservices.**
 
+
+
+# SDK API
+-keep class com.openmediation.sdk.**{*;}
+-keep class com.crosspromotion.sdk.**{*;}
+

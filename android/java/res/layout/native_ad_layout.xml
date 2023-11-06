@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <com.openmediation.sdk.nativead.MediaView
+        android:id="@+id/ad_media"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true" />
+
+    <com.openmediation.sdk.nativead.AdIconView
+        android:id="@+id/ad_icon_media"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/ad_media"
+        android:layout_margin="2dp"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/ad_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ad_media"
+        android:background="#33000000"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:text="title" />
+
+    <TextView
+        android:id="@+id/ad_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ad_title"
+        android:layout_margin="4dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/ad_icon_media"
+        android:text="desc" />
+
+    <Button
+        android:id="@+id/ad_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ad_media"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
+        android:text="calltoaction"
+        android:textAllCaps="false" />
+    <ImageView
+        android:id="@+id/ad_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ad_badge" />
+</RelativeLayout>
+

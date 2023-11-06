@@ -139,7 +139,7 @@ public class MisesNewTabPageLayout
     private ViewGroup mWeb3ExtensionTilesContainerLayout;
     private MostVisitedTilesCoordinator mWeb3ExtensionTilesCoordinator;
 
-    private ViewGroup mAdmobBannerLayout;
+    private ViewGroup mNativeAdLayout;
 
     private TileGroupDelegateWrapper mTileGroupDelegateWrapper;
 
@@ -190,8 +190,7 @@ public class MisesNewTabPageLayout
                             if (oldHeight != newHeight && mIsTopSitesEnabled
                                     && mNtpAdapter != null) {
                                 new Handler(Looper.getMainLooper()).post(() -> {
-                                    mNtpAdapter.notifyItemRangeChanged(0,
-                                            mNtpAdapter.getTopSitesCount());
+                                    mNtpAdapter.notifySiteChanged();
                                 });
                             }
                         });
@@ -215,9 +214,9 @@ public class MisesNewTabPageLayout
         mWeb3ExtensionTilesContainerLayout.setVisibility(View.VISIBLE);
         mWeb3ExtensionTilesContainerLayout.post(runable);
 
-        mAdmobBannerLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
-                                        .inflate(R.layout.mises_admob_native, mMainLayout, false);
-        mAdmobBannerLayout.setVisibility(View.VISIBLE);
+        mNativeAdLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.mises_carousel_container, mMainLayout, false);
+        mNativeAdLayout.setVisibility(View.VISIBLE);
 
         
 
@@ -230,7 +229,13 @@ public class MisesNewTabPageLayout
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        setNtpViews();
+        if (mRecyclerView == null) {
+            setNtpViews();
+        }
+        
+        if (mNtpAdapter != null) {
+            mNtpAdapter.onAttached();
+        }
        
     }
 
@@ -295,7 +300,7 @@ public class MisesNewTabPageLayout
                     mActivity, this, Glide.with(mActivity),
                     mMvTilesContainerLayout, mMisesServiceTilesContainerLayout, 
                     mWeb3SiteTilesContainerLayout, mWeb3ExtensionTilesContainerLayout,
-                    mAdmobBannerLayout,
+                    mNativeAdLayout,
                     mRecyclerView.getHeight(), mIsTopSitesEnabled
                 );
 
@@ -322,6 +327,11 @@ public class MisesNewTabPageLayout
 
     private void keepPosition() {
         //keep recycle view scroll position
+        RecyclerView.LayoutManager manager = mRecyclerView.getLayoutManager();
+        if (manager instanceof LinearLayoutManager) {
+            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) manager;
+            linearLayoutManager.scrollToPositionWithOffset(0, 0);
+        }
     }
 
 
@@ -346,6 +356,10 @@ public class MisesNewTabPageLayout
         }
 
         mRecyclerView.clearOnScrollListeners();
+
+        if (mNtpAdapter != null) {
+            mNtpAdapter.onDetached();
+        }
         super.onDetachedFromWindow();
     }
 
@@ -443,6 +457,10 @@ public class MisesNewTabPageLayout
         if (mWeb3ExtensionTilesCoordinator != null) {
             mWeb3ExtensionTilesCoordinator.destroyMvtiles();
             mWeb3ExtensionTilesCoordinator = null;
+        }
+
+        if (mNtpAdapter != null) {
+            mNtpAdapter.onDestroy();
         }
     }
 
