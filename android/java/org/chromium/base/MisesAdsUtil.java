@@ -21,6 +21,10 @@ import java.util.Arrays;
 import org.chromium.base.PackageUtils;
 
 
+import org.chromium.components.version_info.Channel;
+import org.chromium.components.version_info.VersionConstants;
+import org.chromium.components.version_info.VersionInfo;
+
 import com.openmediation.sdk.ImpressionData;
 import com.openmediation.sdk.ImpressionDataListener;
 import com.openmediation.sdk.InitCallback;
@@ -136,10 +140,16 @@ public class MisesAdsUtil {
     private void initSDK(final Activity act) {
         setStatus(AdsStatus.INITIALIZING);
         OmAds.setGDPRConsent(true);
-        Log.i(TAG, "om start init sdk");
+        Log.i(TAG, "om start init sdk " + VersionConstants.CHANNEL);
+        String initHost = "https://ads.mises.site/init";
+        if (VersionConstants.CHANNEL == Channel.DEV || VersionConstants.CHANNEL == Channel.DEFAULT) {
+            initHost = "https://ads.test.mises.site/init";
+        };
         InitConfiguration configuration = new InitConfiguration.Builder()
                 .appKey(APPKEY)
                 .logEnable(true)
+                .initHost(initHost)
+                .preloadAdTypes(OmAds.AD_TYPE.NONE)
                 .build();
         OmAds.init(act, configuration, new InitCallback() {
             @Override
