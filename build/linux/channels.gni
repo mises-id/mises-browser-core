@@ -2,7 +2,7 @@ import("//mises/build/config.gni")
 
 assert(is_linux)
 
-mises_linux_channel_stable = "stable"
+mises_linux_channel_stable = ""
 mises_linux_channel_dev = "dev"
 mises_linux_channel_nightly = "nightly"
 linux_channel_stable = "stable"
