@@ -59,29 +59,34 @@ public class MisesSysUtils {
             return;
         }
         MisesAdsUtil.getInstance().setObserver(new MisesAdsUtil.MisesAdsUtilObserver() {
-            private boolean mShouldShowAds;
+            
+            private boolean mCanceled;
+            {
+                mCanceled = false;
+            }
             @Override
             public void onRewardAdsResult(int code, final String message) {
                 nativeOnRewardAdsResult(code, message);
             }
             @Override
-            public boolean shouldShowAds() {
-                return mShouldShowAds;
+            public boolean isCanceled() {
+                return mCanceled;
 
             }
             @Override
-            public void setShouldShowAds(boolean show) {
-                mShouldShowAds = show;
+            public void cancelShowAds() {
+                mCanceled = true;
             }
 
         });
         MisesAdsUtil.getInstance().loadAndShowRewardedAd(
-            activityContext, MisesController.getInstance().getMisesId());
+            MisesController.getInstance().getMisesId()
+        );
     }
     @CalledByNative
     public static void cancelRewardAd() {
         if (MisesAdsUtil.getInstance().getObserver() != null) {
-            MisesAdsUtil.getInstance().getObserver().setShouldShowAds(false);
+            MisesAdsUtil.getInstance().getObserver().cancelShowAds();
         }
     }
 

@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.util.SparseArray;
 import android.content.res.Resources;
 import android.content.res.AssetManager;
+import android.os.Handler;
 import java.lang.reflect.Method;
 
 import org.chromium.base.Log;
@@ -56,6 +57,9 @@ public class MisesAdsUtil {
     public static final String P_SPLASH = "231";
     public static final String P_REWARD = "230";
 
+    private static final int RETRY_DELAY_BASE_MS = 10000; // 10 seconds
+    private static final int RETRY_DELAY_MAX_MS = 960000; // 960 seconds
+
     private enum AdsStatus {
         NOT_INITIALIZED("NOT_INITIALIZED"),
         INITIALIZING("INITIALIZING"),
@@ -87,14 +91,73 @@ public class MisesAdsUtil {
 
     public interface MisesAdsUtilObserver {
         void onRewardAdsResult(int code, final String message);
-        boolean shouldShowAds();
-        void setShouldShowAds(boolean show);
+        boolean isCanceled();
+        void cancelShowAds();
     }
 
     private  MisesAdsUtilObserver observer_;
+
+    private Activity mActivity;
+
+    private Handler uiThreadHandler = new Handler();
+    private int retryCounter;
+
+    private  RewardedVideoListener mRewardedVideoListener = new RewardedVideoListener() {
+        @Override
+        public void onRewardedVideoAvailabilityChanged(boolean available) {
+            Log.i(TAG, "----onRewardedVideoAvailabilityChanged----" + available);
+            if (available) {
+                setStatus(AdsStatus.READY);
+                handleRewardedAdReady();
+                
+            }
+        }
+
+        @Override
+        public void onRewardedVideoAdShowed(Scene scene) {
+            Log.i(TAG, "onRewardedVideoAdShowed " + scene);
+        }
+
+        @Override
+        public void onRewardedVideoAdShowFailed(Scene scene, Error error) {
+            Log.i(TAG, "onRewardedVideoAdShowFailed " + scene);
+            setStatus(AdsStatus.INITIALIZED);
+            handleRewardAdsResult(2, "load fail: " + error);
+        }
+
+        @Override
+        public void onRewardedVideoAdClicked(Scene scene) {
+            Log.i(TAG, "onRewardedVideoAdClicked " + scene);
+        }
+
+        @Override
+        public void onRewardedVideoAdClosed(Scene scene) {
+            Log.i(TAG, "onRewardedVideoAdClosed " + scene);
+            setStatus(AdsStatus.INITIALIZED);
+            handleRewardAdsResult(0, "");
+        }
+
+        @Override
+        public void onRewardedVideoAdStarted(Scene scene) {
+            Log.i(TAG, "onRewardedVideoAdStarted " + scene);
+        }
+
+        @Override
+        public void onRewardedVideoAdEnded(Scene scene) {
+            Log.i(TAG, "onRewardedVideoAdEnded " + scene);
+
+            
+        }
+
+        @Override
+        public void onRewardedVideoAdRewarded(Scene scene) {
+            Log.i(TAG, "onRewardedVideoAdRewarded " + scene);
+        }
+    };
     
-    public  void initAds(final Activity act) {
+    public void initAds(final Activity act) {
         setStatus(AdsStatus.NOT_INITIALIZED);
+        retryCounter = 0;
         initSDK(act);
     }
 
@@ -103,24 +166,19 @@ public class MisesAdsUtil {
     }
     public void setObserver(final MisesAdsUtilObserver observer) {
         observer_ = observer;
-        observer_.setShouldShowAds(true);
     }
     public MisesAdsUtilObserver getObserver() {
         return observer_;
     }
     private void handleRewardAdsResult(int code, final String message) {
+        Log.i(TAG, "handleRewardAdsResult " + code);
         if (observer_ != null) {
             observer_.onRewardAdsResult(code, message);
+            observer_ = null;
         }
+        RewardedVideoAd.removeAdListener(mRewardedVideoListener);
     }
 
-    private boolean shouldShowRewardAds() {
-        if (observer_ != null) {
-            return observer_.shouldShowAds();
-        }
-        return true;
-
-    }
 
     private void setStatus(AdsStatus newStatus) {
         Log.i(TAG, "setStatus " + status + " -> "+ newStatus);
@@ -140,7 +198,25 @@ public class MisesAdsUtil {
     }
 
 
+    private void retryInitSDK(final Activity act) {
+
+        int retryDelay = RETRY_DELAY_BASE_MS;
+        if (retryCounter < 0) {
+            retryDelay = RETRY_DELAY_BASE_MS;
+        } else {
+            retryDelay = (int)Math.round(Math.pow(2, retryCounter) * RETRY_DELAY_BASE_MS);
+        } 
+        if (retryDelay > RETRY_DELAY_MAX_MS) {
+            retryDelay = RETRY_DELAY_MAX_MS;
+        }
+        retryCounter += 1;
+	    uiThreadHandler.removeCallbacksAndMessages(null);
+        uiThreadHandler.postDelayed( () -> {
+            initSDK(act);
+        }, retryDelay); 
+    }
     private void initSDK(final Activity act) {
+        mActivity = act;
         setStatus(AdsStatus.INITIALIZING);
         OmAds.setGDPRConsent(true);
         Log.i(TAG, "om start init sdk " + VersionConstants.CHANNEL);
@@ -164,11 +240,12 @@ public class MisesAdsUtil {
             @Override
             public void onError(Error result) {
                 Log.i(TAG, "init failed " + result.toString());
+                retryInitSDK(act);
             }
         });
     }
 
-    private void showRewardedAd(final Activity act, final String misesID) {
+    private void showRewardedAd() {
         if (status != AdsStatus.READY) {
             return;
         }
@@ -177,82 +254,38 @@ public class MisesAdsUtil {
         RewardedVideoAd.showAd();
     }
 
-    public void loadAndShowRewardedAd(final Activity act, final String misesID) {
-
-        if (status == AdsStatus.NOT_INITIALIZED || status == AdsStatus.INITIALIZING) {
+    public void loadAndShowRewardedAd(final String misesID) {
+        if (!isInitSucess()) {
           handleRewardAdsResult(5, "sdk initializing");
           return;
         }
+        OmAds.setUserId(misesID);
 
+        RewardedVideoAd.addAdListener(mRewardedVideoListener);
 
-        RewardedVideoAd.setAdListener(new RewardedVideoListener() {
-            @Override
-            public void onRewardedVideoAvailabilityChanged(boolean available) {
-                Log.i(TAG, "----onRewardedVideoAvailabilityChanged----" + available);
-                if (available) {
-                    setStatus(AdsStatus.READY);
-                    if (shouldShowRewardAds()) {
-                        showRewardedAd(act, misesID);
-                    } else {
-                        handleRewardAdsResult(101, "user canceled");
-                    }
-                }
-            }
-
-            @Override
-            public void onRewardedVideoAdShowed(Scene scene) {
-                Log.i(TAG, "onRewardedVideoAdShowed " + scene);
-            }
-
-            @Override
-            public void onRewardedVideoAdShowFailed(Scene scene, Error error) {
-                Log.i(TAG, "onRewardedVideoAdShowFailed " + scene);
-                setStatus(AdsStatus.INITIALIZED);
-                handleRewardAdsResult(2, "load fail: " + error);
-            }
-
-            @Override
-            public void onRewardedVideoAdClicked(Scene scene) {
-                Log.i(TAG, "onRewardedVideoAdClicked " + scene);
-            }
-
-            @Override
-            public void onRewardedVideoAdClosed(Scene scene) {
-                Log.i(TAG, "onRewardedVideoAdClosed " + scene);
-                setStatus(AdsStatus.INITIALIZED);
-                handleRewardAdsResult(0, "");
-            }
-
-            @Override
-            public void onRewardedVideoAdStarted(Scene scene) {
-                Log.i(TAG, "onRewardedVideoAdStarted " + scene);
-            }
-
-            @Override
-            public void onRewardedVideoAdEnded(Scene scene) {
-                Log.i(TAG, "onRewardedVideoAdEnded " + scene);
-
-               
-            }
-
-            @Override
-            public void onRewardedVideoAdRewarded(Scene scene) {
-                Log.i(TAG, "onRewardedVideoAdRewarded " + scene);
-            }
-        });
-
-        if (RewardedVideoAd.isReady()) {
-            showRewardedAd(act, misesID);
+        if (status == AdsStatus.READY) {
+            handleRewardedAdReady();
         } else {
-            loadRewardedAd(act, misesID); 
+            loadRewardedAd(); 
         }
         
          
     }
-    private void loadRewardedAd(final Activity act, final String misesID) {
+    private void handleRewardedAdReady() {
+        Log.i(TAG, "handleRewardedAdReady");
+        if (observer_ != null) {
+            if (observer_.isCanceled()) {
+                handleRewardAdsResult(101, "user canceled");
+            } else {
+                showRewardedAd();
+            }
+            
+        }
+    }
+    private void loadRewardedAd() {
         if (status == AdsStatus.LOADING) {
-            if (shouldShowRewardAds()) {
-                Toast.makeText(act, "Ads Loading ...", Toast.LENGTH_SHORT).show();
+            if (mActivity != null) {
+                Toast.makeText(mActivity, "Ads Loading ...", Toast.LENGTH_SHORT).show();
             }
             return;
         }

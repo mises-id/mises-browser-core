@@ -148,6 +148,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         initPreferenceObserver();
 
         mData = new ArrayList<>();
+        mCarouselPlacmentIds = new ArrayList<>();
 
         maybeInitCarouselAd();
 
