@@ -91,8 +91,6 @@ public class MisesAdsUtil {
 
     public interface MisesAdsUtilObserver {
         void onRewardAdsResult(int code, final String message);
-        boolean isCanceled();
-        void cancelShowAds();
     }
 
     private  MisesAdsUtilObserver observer_;
@@ -167,8 +165,11 @@ public class MisesAdsUtil {
     public void setObserver(final MisesAdsUtilObserver observer) {
         observer_ = observer;
     }
-    public MisesAdsUtilObserver getObserver() {
-        return observer_;
+
+
+    public void cancelShowAds() {
+        handleRewardAdsResult(101, "user canceled");
+        
     }
     private void handleRewardAdsResult(int code, final String message) {
         Log.i(TAG, "handleRewardAdsResult " + code);
@@ -176,7 +177,6 @@ public class MisesAdsUtil {
             observer_.onRewardAdsResult(code, message);
             observer_ = null;
         }
-        RewardedVideoAd.removeAdListener(mRewardedVideoListener);
     }
 
 
@@ -235,6 +235,7 @@ public class MisesAdsUtil {
             public void onSuccess() {
                 Log.i(TAG, "init success");
                 setStatus(AdsStatus.INITIALIZED);
+                RewardedVideoAd.addAdListener(mRewardedVideoListener);
             }
 
             @Override
@@ -255,13 +256,13 @@ public class MisesAdsUtil {
     }
 
     public void loadAndShowRewardedAd(final String misesID) {
+        Log.i(TAG, "loadAndShowRewardedAd");
         if (!isInitSucess()) {
           handleRewardAdsResult(5, "sdk initializing");
           return;
         }
         OmAds.setUserId(misesID);
 
-        RewardedVideoAd.addAdListener(mRewardedVideoListener);
 
         if (status == AdsStatus.READY) {
             handleRewardedAdReady();
@@ -274,22 +275,17 @@ public class MisesAdsUtil {
     private void handleRewardedAdReady() {
         Log.i(TAG, "handleRewardedAdReady");
         if (observer_ != null) {
-            if (observer_.isCanceled()) {
-                handleRewardAdsResult(101, "user canceled");
-            } else {
-                showRewardedAd();
-            }
-            
+           showRewardedAd();
         }
     }
     private void loadRewardedAd() {
+        Log.i(TAG, "loadRewardedAd");
         if (status == AdsStatus.LOADING) {
             if (mActivity != null) {
                 Toast.makeText(mActivity, "Ads Loading ...", Toast.LENGTH_SHORT).show();
             }
-            return;
         }
-        Log.i(TAG, "loadRewardedAd");
+        
         setStatus(AdsStatus.LOADING);
 
         RewardedVideoAd.loadAd();

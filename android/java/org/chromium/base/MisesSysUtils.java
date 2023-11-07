@@ -60,22 +60,9 @@ public class MisesSysUtils {
         }
         MisesAdsUtil.getInstance().setObserver(new MisesAdsUtil.MisesAdsUtilObserver() {
             
-            private boolean mCanceled;
-            {
-                mCanceled = false;
-            }
             @Override
             public void onRewardAdsResult(int code, final String message) {
                 nativeOnRewardAdsResult(code, message);
-            }
-            @Override
-            public boolean isCanceled() {
-                return mCanceled;
-
-            }
-            @Override
-            public void cancelShowAds() {
-                mCanceled = true;
             }
 
         });
@@ -85,9 +72,7 @@ public class MisesSysUtils {
     }
     @CalledByNative
     public static void cancelRewardAd() {
-        if (MisesAdsUtil.getInstance().getObserver() != null) {
-            MisesAdsUtil.getInstance().getObserver().cancelShowAds();
-        }
+        MisesAdsUtil.getInstance().cancelShowAds();
     }
 
     @CalledByNative
