@@ -149,15 +149,24 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         mData = new ArrayList<>();
 
-        mCarouselPlacmentIds = NativeAd.getCachedPlacementIds("carousel");
-        if (mCarouselPlacmentIds.isEmpty()) {
-            mCarouselPlacmentIds.add(MisesAdsUtil.P_NATIVE_CAROUSEL_0);
-            mCarouselPlacmentIds.add(MisesAdsUtil.P_NATIVE_CAROUSEL_1);
-            mCarouselPlacmentIds.add(MisesAdsUtil.P_NATIVE_CAROUSEL_2);
-        }
-        loadNativeAd();
+        maybeInitCarouselAd();
+
+        
         
        
+    }
+    private void maybeInitCarouselAd() {
+        if (MisesAdsUtil.getInstance().isInitSucess()) {
+            mCarouselPlacmentIds = NativeAd.getCachedPlacementIds("carousel");
+            if (!mCarouselPlacmentIds.isEmpty()) {
+                loadNativeAd();
+            }
+        } else {
+            mHandler.postDelayed( () -> {
+                maybeInitCarouselAd();
+            }, 500);
+        }
+
     }
 
 
