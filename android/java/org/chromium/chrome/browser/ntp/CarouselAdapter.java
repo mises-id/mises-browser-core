@@ -141,6 +141,10 @@ public class CarouselAdapter extends CardSliderAdapter<CarouselAdapter.NativeAdV
                 if (info.getTitle() == null || info.getTitle().isEmpty()) {
                     title.setVisibility(View.INVISIBLE);
                 }
+                if (info.getDesc() == null || info.getDesc().isEmpty()) {
+                    desc.setVisibility(View.GONE);
+                    adIconView.setVisibility(View.GONE);
+                }
 
                 nativeAdView.addView(adView);
                 nativeAdView.setTitleView(title);
