@@ -2,7 +2,6 @@ import("//build/config/android/abi.gni")
 
 _mises_public_apk_or_module_tmpl_deps = [ 
     "//mises/third_party/android_deps:com_wireguard_android_J__unpack_aar",
-    "//mises/third_party/open_mediation:open_mediation_oaid_sdk_J__unpack_aar",
     "//chrome/browser:browser",
 ]
 

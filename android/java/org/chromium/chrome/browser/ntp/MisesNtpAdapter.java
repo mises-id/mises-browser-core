@@ -457,6 +457,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static class CarouselAdViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout itemContainView;
         private Context mContext;
+        private CardSliderIndicator mIndicator;
 
         private CarouselAdapter mAdapter;
         private boolean mEnabled;
@@ -491,9 +492,18 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 viewPager.setSmallScaleFactor(0.9f);
                 viewPager.setSmallAlphaFactor(0.5f);
                 viewPager.setAdapter(mAdapter);
-                CardSliderIndicator indicator = (CardSliderIndicator) adView.findViewById(R.id.indicator);
-                indicator.setViewPager(viewPager);
+                mIndicator = (CardSliderIndicator) adView.findViewById(R.id.indicator);
+                mIndicator.setViewPager(viewPager);
+                
                 mEnabled = true;
+            }
+
+            if (mIndicator != null) {
+                if (adCount > 1) {
+                    mIndicator.setVisibility(View.VISIBLE);
+                } else {
+                    mIndicator.setVisibility(View.INVISIBLE);
+                }
             }
             
 
