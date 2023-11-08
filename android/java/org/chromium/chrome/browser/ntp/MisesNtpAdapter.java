@@ -185,7 +185,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @Override
         public void onNativeAdLoadFailed(String placementId, Error error) {
             Log.d(TAG, "onNativeAdLoadFailed, placementId: " + placementId + ", error : " + error);
-            mLoadedPlacmentIds.add(placementId);
         }
 
         @Override
