@@ -72,6 +72,8 @@ import com.github.islamkhsh.CardSliderIndicator;
 import org.chromium.base.MisesAdsUtil;
 import org.chromium.base.MisesSysUtils;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,6 +122,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private List<String> mCarouselPlacmentIds;
+    private Set<String> mLoadedPlacmentIds;
 
     public MisesNtpAdapter(Activity activity, OnMisesNtpListener onMisesNtpListener,
             RequestManager glide, 
@@ -149,7 +152,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         mData = new ArrayList<>();
         mCarouselPlacmentIds = new ArrayList<>();
-
+        mLoadedPlacmentIds = new HashSet<>();
         maybeInitCarouselAd();
 
         
@@ -159,13 +162,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void maybeInitCarouselAd() {
         if (MisesAdsUtil.getInstance().isInitSucess()) {
             mCarouselPlacmentIds = NativeAd.getCachedPlacementIds("carousel");
-            if (!mCarouselPlacmentIds.isEmpty()) {
-                loadNativeAd();
-            }
+            loadNativeAd();
         } else {
             mHandler.postDelayed( () -> {
                 maybeInitCarouselAd();
-            }, 500);
+            }, 200);
         }
 
     }
@@ -175,12 +176,16 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @Override
         public void onNativeAdLoaded(String placementId, AdInfo info) {
             Log.d(TAG, "onNativeAdLoaded, placementId: " + placementId + ", AdInfo : " + info);
-            loadSuccess(new CarouselAdapter.CarouselAdInfo(placementId, info));
+            if (!mLoadedPlacmentIds.contains(placementId)) {
+                loadSuccess(new CarouselAdapter.CarouselAdInfo(placementId, info));
+            }
+            mLoadedPlacmentIds.add(placementId);
         }
 
         @Override
         public void onNativeAdLoadFailed(String placementId, Error error) {
             Log.d(TAG, "onNativeAdLoadFailed, placementId: " + placementId + ", error : " + error);
+            mLoadedPlacmentIds.add(placementId);
         }
 
         @Override
@@ -319,6 +324,9 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         addNativeAdListener();
 
         for (final String placementId : mCarouselPlacmentIds) {
+            if (mLoadedPlacmentIds.contains(placementId)) {
+                continue;
+            }
             // for TikTok and TencentAd in China traffic
             NativeAd.setDisplayParams(placementId, 320, 0);
             NativeAd.loadAd(placementId);
@@ -337,7 +345,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void onAttached() {
         Log.d(TAG, "onAttached");
-        addNativeAdListener();
+        loadNativeAd();
     }
     public void onDetached() {
         Log.d(TAG, "onDetached");
