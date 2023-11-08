@@ -13,20 +13,13 @@ mises_monochrome_public_apk_or_module_tmpl_deps =
 _lib_dir = get_label_info(
                "//mises/third_party/android_deps:com_wireguard_android($default_toolchain)",
                "target_out_dir") + "/com_wireguard_android_java/jni"
-_lib_dir1 = get_label_info(
-               "//mises/third_party/open_mediation:open_mediation_oaid_sdk($default_toolchain)",
-               "target_out_dir") + "/open_mediation_oaid_sdk_java/jni"
 
 mises_public_apk_or_module_tmpl_loadable_modules = [ 
     "$_lib_dir/$android_app_abi/libwg-go.so",
-    "$_lib_dir1/$android_app_abi/libmsaoaidauth.so",
-    "$_lib_dir1/$android_app_abi/libmsaoaidsec.so",
 ]
 
 mises_monochrome_public_apk_or_module_tmpl_loadable_modules = [ 
     "$_lib_dir/$android_app_abi/libwg-go.so",
-    "$_lib_dir1/$android_app_abi/libmsaoaidauth.so",
-    "$_lib_dir1/$android_app_abi/libmsaoaidsec.so",
 ]
 mises_monochrome_public_apk_or_module_tmpl_secondary_abi_loadable_modules = []
 
@@ -35,8 +28,6 @@ if (android_64bit_target_cpu) {
       [  ]
   mises_monochrome_public_apk_or_module_tmpl_secondary_abi_loadable_modules +=
       [ 
-#        "$_lib_dir/$android_app_secondary_abi/libwg-go.so",
-#        "$_lib_dir1/$android_app_secondary_abi/libgojni.so",
       ]
 }
 
