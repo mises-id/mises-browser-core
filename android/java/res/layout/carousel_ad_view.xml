@@ -24,7 +24,8 @@
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="16dp"
         android:layout_alignBottom="@id/viewPager"
         android:layout_alignRight="@id/viewPager"
         app:indicatorsToShow="5" />
