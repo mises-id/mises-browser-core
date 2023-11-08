@@ -8,7 +8,6 @@ android_aar_prebuilt("open_mediation_sdk_java") {
   ignore_manifest = true
   info_path = "open_mediation_sdk.info"
   deps = [
-    "//mises/third_party/open_mediation:open_mediation_oaid_sdk_java",
     "//mises/third_party/android_deps:google_firebase_firebase_analytics_java", 
   ]
 }
@@ -27,12 +26,6 @@ android_aar_prebuilt("open_mediation_admob_adaptor_java") {
   ]
 }
 
-android_aar_prebuilt("open_mediation_oaid_sdk_java") {
-  aar_path = "oaid_sdk_2.2.0.aar"
-  extract_native_libraries = true
-  ignore_manifest = true
-  info_path = "open_mediation_oaid_sdk.info"
-}
 
 android_aar_prebuilt("open_mediation_cardslider_java") {
   aar_path = "cardslider.aar"
