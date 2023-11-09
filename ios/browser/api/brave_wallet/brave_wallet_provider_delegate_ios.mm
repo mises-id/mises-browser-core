@@ -33,6 +33,9 @@ url::Origin BraveWalletProviderDelegateBridge::GetOrigin() const {
 void BraveWalletProviderDelegateBridge::ShowWalletOnboarding() {
   [bridge_ showWalletOnboarding];
 }
+bool BraveWalletProviderDelegateBridge::IsPanelShowing() {
+  return [bridge_ IsPanelShowing];
+}
 
 void BraveWalletProviderDelegateBridge::ShowAccountCreation(
     mojom::CoinType type) {
