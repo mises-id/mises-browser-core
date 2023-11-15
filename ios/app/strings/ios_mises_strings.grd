@@ -51,6 +51,9 @@ locale.  The strings in this file are specific to iOS.
       <message name="IDS_IOS_OPTIONS_MISES_OPEN_MISESWALLET" desc="Title for the option open mises wallet. [Length: 20em] [iOS only]">
         MisesWallet
       </message>
+      <message name="IDS_IOS_OPTIONS_MISES_OPEN_KEPLR" desc="Title for the option open keplr wallet. [Length: 20em] [iOS only]">
+        Keplr
+      </message>
       <message name="IDS_IOS_MISES_SHARE_ACCESSIBILITY_LABEL" desc="Text read by voice over to mises share. [Read by Text To Speech]">
        Mises Share
       </message>

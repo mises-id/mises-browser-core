@@ -146,3 +146,13 @@ imageset("popup_menu_mises_open_miseswallet") {
 }
 
 
+imageset("popup_menu_mises_open_keplr") {
+  sources = [
+    "popup_menu_mises_open_keplr.imageset/Contents.json",
+    "popup_menu_mises_open_keplr.imageset/popup_menu_mises_open_keplr.png",
+    "popup_menu_mises_open_keplr.imageset/popup_menu_mises_open_keplr@2x.png",
+    "popup_menu_mises_open_keplr.imageset/popup_menu_mises_open_keplr@3x.png",
+  ]
+}
+
+

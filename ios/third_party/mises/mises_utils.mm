@@ -171,6 +171,10 @@
 
 + (void) popupMisesWallet {
   DLOG(WARNING) << "Popup MisesWallet";
+}
+
++ (void) popupKeplr {
+  DLOG(WARNING) << "Popup Keplr";
   [self popupWallet:WALLET_MISES];
 }
 

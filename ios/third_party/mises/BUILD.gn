@@ -15,7 +15,7 @@ if (!is_debug) {
 
 config("config") {
   visibility = [ ":*" ]
-  framework_dir = rebase_path("//mises/ios/third_party/mises/$env_prefix/Frameworks")
+  #framework_dir = rebase_path("//mises/ios/third_party/mises/$env_prefix/Frameworks")
   include_dirs = [ "//mises/ios/third_party/mises/forwarding_headers" ]
   cflags = [
     "-Wno-deprecated",
@@ -23,9 +23,7 @@ config("config") {
     "-Wno-semicolon-before-method-body",
   ]
   ldflags = [
-   "-force_load", "$framework_dir/Lottie.framework/Lottie",
-   # "-force_load", "$framework_dir/FBLPromises.framework/FBLPromises",
-   # "-force_load", "$framework_dir/GoogleUtilities.framework/GoogleUtilities",
+   #"-force_load", "$framework_dir/Lottie3.framework/Lottie",
   ]
 }
 
@@ -113,6 +111,12 @@ bundle_data("mises_bundle_data") {
     "Bundles/injected-provider.bundle.js",
     "Bundles/InpageBridgeWeb3.js",
     "Bundles/main.jsbundle",
+    "Bundles/MetaMaskModule.chunk.bundle",
+    "Bundles/MisesWalletModule.chunk.bundle",
+    "Bundles/vendor-default.chunk.bundle",
+    "Bundles/vendor-metamask.chunk.bundle",
+    "Bundles/vendor-mises-wallet.chunk.bundle",
+    
     "Bundles/GoogleService-Info.plist",
  ]
   outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
@@ -124,8 +128,6 @@ bundle_data("mises_bundle_data") {
       "$env_prefix/Frameworks/Mixpanel.framework",
       "$env_prefix/Frameworks/OpenSSL.framework",
       "$env_prefix/Frameworks/WebRTC.framework",
-      #"$env_prefix/Frameworks/glog.framework",
-      #"$env_prefix/Frameworks/Lottie.framework",
     ]
     outputs = [ 
       "$root_out_dir/{{source_file_part}}",
@@ -233,7 +235,7 @@ config("mises_config") {
     "GoogleUtilities.framework",
     "JWT.framework",
     "JWTDecode.framework",
-    "Lottie.framework",
+    "Lottie3.framework",
     "Mixpanel.framework",
     "OpenSSL.framework",
     "Pods_RepackMises.framework",

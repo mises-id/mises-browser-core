@@ -14,6 +14,7 @@
 + (void) popupMetamask;
 
 + (void) popupMisesWallet;
++ (void) popupKeplr;
 
 + (void) popupWallet: (NSString *)name;
 

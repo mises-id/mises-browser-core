@@ -13,4 +13,5 @@ NSString* const kToolsMenuMisesOfficialSiteId = @"kToolsMenuMisesOfficialSiteId"
 
 NSString* const kToolsMenuMisesOpenMetamaskId = @"kToolsMenuMisesOpenMetamaskId";
 NSString* const kToolsMenuMisesOpenMisesWalletId = @"kToolsMenuMisesOpenMisesWalletId";
+NSString* const kToolsMenuMisesOpenKeplrId = @"kToolsMenuMisesOpenKeplrId";
 
