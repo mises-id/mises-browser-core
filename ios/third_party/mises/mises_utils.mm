@@ -29,7 +29,7 @@
 
 #import <React/RCTBridgeModule.h>
 
-#import "mises_lcd_service.h"
+//#import "mises_lcd_service.h"
 #import "mises_share_service.h"
 #import "mises_account_service.h"
 #import "ReactAppDelegate.h"
@@ -112,7 +112,7 @@
 + (void) Init{
     DLOG(WARNING) << "Init Metamask";
     dispatch_async(dispatch_get_main_queue(), ^{
-      [MisesLCDService wrapper];
+      //[MisesLCDService wrapper];
       [MisesShareService wrapper];
       [MisesAccountService wrapper];
         
