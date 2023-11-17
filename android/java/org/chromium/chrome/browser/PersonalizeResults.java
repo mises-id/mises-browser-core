@@ -45,6 +45,9 @@ public class PersonalizeResults {
        if (tab != null && tab.getUrl().getSpec().startsWith("https://chrome.google.com/webstore") && ContextUtils.getAppSharedPreferences().getBoolean("cws_mobile_friendly", false)) {
           tab.getWebContents().evaluateJavaScript(CWS_MOBILE_SCRIPT, null);
        }
+       if (tab != null && tab.getUrl().getSpec().startsWith("https://chromewebstore.google.com")) {
+          tab.getWebContents().evaluateJavaScript("(function() { if (!document.location.href.includes('https://chromewebstore.google.com')) { return; } window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=1200\") }); })();", null);
+       }
        if (tab != null && tab.getUrl().getSpec().startsWith("https://microsoftedge.microsoft.com/addons")) {
           tab.getWebContents().evaluateJavaScript(EDGE_SCRIPT, null);
        }
