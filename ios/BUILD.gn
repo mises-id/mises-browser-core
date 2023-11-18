@@ -21,9 +21,11 @@ assert(is_debug || current_cpu != "arm64" || use_lld,
        "Optimized arm64 iOS builds require lld")
 
 config("internal_config") {
-  visibility = [ ":*" ]
+  visibility = [ 
+    ":*",
+  ]
   ldflags =
-      [ "-Wl,-rpath,/usr/lib/swift,-rpath,@executable_path/../Frameworks" ]
+      [ "-Wl,-rpath,/usr/lib/swift,-rpath,@executable_path/Frameworks,-rpath,@executable_path/../Frameworks" ]
 }
 
 group("mises_ios") {

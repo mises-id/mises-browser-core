@@ -7,6 +7,7 @@
 
 #define WALLET_METAMASK  @"metamask"
 #define WALLET_MISES  @"mises-wallet"
+#define WALLET_KEPLR  @"keplr"
 enum MisesUIViewWalletType {
   // No action should be done
   METAMASK,

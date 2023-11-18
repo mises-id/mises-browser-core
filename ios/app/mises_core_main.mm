@@ -64,6 +64,7 @@
 #include "ios/web/public/init/web_main.h"
 #include "services/network/public/cpp/shared_url_loader_factory.h"
 #define BUILDFLAG_INTERNAL_MISES_P3A_ENABLED() (0)
+#define BUILDFLAG_INTERNAL_MISES_CORE_FRAMEWORK() (0)
 
 // Chromium logging is global, therefore we cannot link this to the instance in
 // question
@@ -133,7 +134,9 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
              object:nil];
 
     @autoreleasepool {
+#if BUILDFLAG(MISES_CORE_FRAMEWORK)
       ios::RegisterPathProvider();
+#endif
 
       // // Bundled components are not supported on ios, so DIR_USER_DATA is passed
       // // for all three arguments.
@@ -182,11 +185,13 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
       _raw_args[i] = _argv_store[i].c_str();
     }
     params.argv = _raw_args.get();
-    //params.register_exit_manager = false;
-
+  #if !BUILDFLAG(MISES_CORE_FRAMEWORK)
+    params.register_exit_manager = false;
+  #endif
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
     // Setup WebMain
     _webMain = std::make_unique<web::WebMain>(std::move(params));
-
+  #endif
     // Remove the extra browser states as Chrome iOS is single profile in M48+.
     ChromeBrowserStateRemovalController::GetInstance()
         ->RemoveBrowserStatesIfNecessary();

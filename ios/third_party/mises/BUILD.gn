@@ -30,12 +30,14 @@ config("config") {
 swift_source_set("mises_swift") {
     sources = [
       "ExpoModulesProvider.swift",
+      "MisesWalletProvider.swift",
     ]
     framework_dirs = [ "//mises/ios/third_party/mises/$env_prefix/Frameworks" ]
 
     frameworks = [
       "Foundation.framework",
       "ExpoModulesCore.framework",
+      "mises_wallet_framwork.framework",
     ]
     public_configs = [
       ":config",
@@ -107,6 +109,14 @@ bundle_data("mises_bundle_data") {
   visibility = [ ":mises" ]
   sources = [
     "$env_prefix/Bundles/AccessibilityResources.bundle",
+    "$env_prefix/Bundles/Mises_Data.bundle",
+    "$env_prefix/Bundles/Mises_DesignSystem.bundle",
+    "$env_prefix/Bundles/Mises_Favicon.bundle",
+    "$env_prefix/Bundles/Mises_FaviconModels.bundle",
+    "$env_prefix/Bundles/Mises_MisesStrings.bundle",
+    "$env_prefix/Bundles/Mises_MisesUI.bundle",
+    "$env_prefix/Bundles/Mises_MisesWallet.bundle",
+    "$env_prefix/Bundles/Mises_Shared.bundle",
     "Bundles/branch.json",
     "Bundles/injected-provider.bundle.js",
     "Bundles/InpageBridgeWeb3.js",
@@ -195,13 +205,19 @@ bundle_data("mises_fonts") {
 }
 
 config("mises_swift_config") {
-  swiftflags = ["-I../../mises", "-F../../mises/ios/third_party/mises/$env_prefix/Frameworks"]
+  swiftflags = [
+    "-I../../mises", 
+    "-F../../mises/ios/third_party/mises/$env_prefix/Frameworks",
+    "-Xcc",
+    "-fmodule-map-file=../../mises/ios/third_party/mises/$env_prefix/Frameworks/MisesCore.framework/Modules/module.modulemap"
+  ]
 }
 config("mises_config") {
   visibility = [ ":mises", ":mises_swift" ]
   cflags = [ "-Wno-nullability-completeness", "-Wno-extra-semi" ,"-Wno-header-hygiene"]
   framework_dirs = [ "//mises/ios/third_party/mises/$env_prefix/Frameworks" ]
   frameworks = [
+    "mises_wallet_framwork.framework",
     "BEMCheckBox.framework",
     "BVLinearGradient.framework",
     "Base64.framework",

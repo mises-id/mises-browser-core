@@ -29,6 +29,7 @@
 
 #import <React/RCTBridgeModule.h>
 
+#import "mises_wallet-Swift.h"
 //#import "mises_lcd_service.h"
 #import "mises_share_service.h"
 #import "mises_account_service.h"
@@ -105,8 +106,6 @@
 @end
 
 
-
-
 @implementation Mises
 
 + (void) Init{
@@ -116,19 +115,28 @@
       [MisesShareService wrapper];
       [MisesAccountService wrapper];
         
-        
     });
 }
 
 + (void) popupWallet: (NSString *)name {
   DLOG(WARNING) << "popupWallet " << base::SysNSStringToUTF16(name);
+
+  if ([name isEqualToString:WALLET_MISES]) {
+    UIViewController* bvc = [ReactAppDelegate baseViewController];
+    [bvc popupWallet];
+      
+    return;
+  }
+
   ReactAppDelegate *delegate = NULL;
   if ([name isEqualToString:WALLET_METAMASK]) {
     delegate = [ReactAppDelegate getOrCreate:METAMASK];
   }
-  if ([name isEqualToString:WALLET_MISES]) {
+  if ([name isEqualToString:WALLET_KEPLR]) {
     delegate = [ReactAppDelegate getOrCreate:MISESWALLET];
   }
+  
+  
   if (delegate) {
     [NSObject cancelPreviousPerformRequestsWithTarget:delegate];
     [delegate performSelector:@selector(popup) withObject:nil afterDelay:0.1];
@@ -171,11 +179,12 @@
 
 + (void) popupMisesWallet {
   DLOG(WARNING) << "Popup MisesWallet";
+  [self popupWallet:WALLET_MISES];   
 }
 
 + (void) popupKeplr {
   DLOG(WARNING) << "Popup Keplr";
-  [self popupWallet:WALLET_MISES];
+  [self popupWallet:WALLET_KEPLR];
 }
 
 
