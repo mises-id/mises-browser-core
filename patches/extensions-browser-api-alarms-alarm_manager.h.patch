@@ -1,0 +1,24 @@
+diff --git a/extensions/browser/api/alarms/alarm_manager.h b/extensions/browser/api/alarms/alarm_manager.h
+index 79ff03c572bbccb1a1ebf0a20992d7fc72a5e039..37889b12d1490f76ff4f577d9c150dcb8027a00f 100644
+--- a/extensions/browser/api/alarms/alarm_manager.h
++++ b/extensions/browser/api/alarms/alarm_manager.h
+@@ -68,6 +68,9 @@ class AlarmManager : public BrowserContextKeyedAPI,
+  public:
+   using AlarmList = std::vector<Alarm>;
+ 
++  // An extension can have at most this many active alarms.
++  static constexpr int kMaxAlarmsPerExtension = 500;
++
+   class Delegate {
+    public:
+     virtual ~Delegate() {}
+@@ -86,6 +89,9 @@ class AlarmManager : public BrowserContextKeyedAPI,
+   // Override the default delegate. Callee assumes onwership. Used for testing.
+   void set_delegate(Delegate* delegate) { delegate_.reset(delegate); }
+ 
++  // Returns the number of alarms currently associated with the extension.
++  int GetCountForExtension(const ExtensionId& extension_id) const;
++
+   using AddAlarmCallback = base::OnceClosure;
+   // Adds |alarm| for the given extension, and starts the timer. Invokes
+   // |callback| when done.
