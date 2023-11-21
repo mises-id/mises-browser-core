@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
-index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..73db6ac881471141daa6a1f75d660215e14fc29a 100644
+index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..b468a90954f8e6e6e84039c8d320eb3d5ee54dde 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
 @@ -36,6 +36,8 @@ import java.util.HashMap;
@@ -28,7 +28,7 @@ index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..73db6ac881471141daa6a1f75d660215
  
          ContextThemeWrapper wrapper =
                  new ContextThemeWrapper(mContext, R.style.OverflowMenuThemeOverlay);
-@@ -294,7 +299,22 @@ class AppMenuHandlerImpl
+@@ -294,7 +299,24 @@ class AppMenuHandlerImpl
              mTestOptionsItemSelectedListener.onResult(itemId);
              return;
          }
@@ -40,10 +40,12 @@ index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..73db6ac881471141daa6a1f75d660215
 +            if (mModelList.get(i).model.get(AppMenuItemProperties.MENU_ITEM_ID) == itemId) {
 +                Log.d("Mises", "Comparing Menu Size of Size: " + menuSize + " and ID: " + mModelList.get(i).model.get(AppMenuItemProperties.MENU_ITEM_ID) + " and itemId: " + itemId);
 +                CharSequence titleCondensed = mModelList.get(i).model.get(AppMenuItemProperties.TITLE_CONDENSED);
-+                Log.d("Mises", "Got titleCondensed: " + titleCondensed);
-+		lastItemTitle = titleCondensed.toString();
-+                CharSequence title = mModelList.get(i).model.get(AppMenuItemProperties.TITLE);
-+                lastVisibleItemTitle = title.toString();
++                if (titleCondensed != null) {
++                    Log.d("Mises", "Got titleCondensed: " + titleCondensed);
++                    lastItemTitle = titleCondensed.toString();
++                    CharSequence title = mModelList.get(i).model.get(AppMenuItemProperties.TITLE);
++                    lastVisibleItemTitle = title.toString();
++                }
 +                break;
 +            }
 +        }
