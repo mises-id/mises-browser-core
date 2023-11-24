@@ -3,13 +3,13 @@ import UIKit
 
 import mises_wallet_framwork
 
-var wpm: WalletPanelManager?
+var mwapi: MisesWalletApi?
 
 extension UIViewController {
     @objc public func popupWallet() {
-        if wpm == nil {
-            wpm = WalletPanelManager()
+        if mwapi == nil {
+            mwapi = MisesWalletApi()
         }
-        wpm?.presentWallet(from: self)
+        mwapi?.presentWallet(from: self)
     }
 }

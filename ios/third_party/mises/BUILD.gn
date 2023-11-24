@@ -30,14 +30,12 @@ config("config") {
 swift_source_set("mises_swift") {
     sources = [
       "ExpoModulesProvider.swift",
-      "MisesWalletProvider.swift",
     ]
     framework_dirs = [ "//mises/ios/third_party/mises/$env_prefix/Frameworks" ]
 
     frameworks = [
       "Foundation.framework",
       "ExpoModulesCore.framework",
-      "mises_wallet_framwork.framework",
     ]
     public_configs = [
       ":config",
@@ -117,8 +115,10 @@ bundle_data("mises_bundle_data") {
     "$env_prefix/Bundles/Mises_MisesUI.bundle",
     "$env_prefix/Bundles/Mises_MisesWallet.bundle",
     "$env_prefix/Bundles/Mises_Shared.bundle",
+    "$env_prefix/Bundles/Mises_Mises.bundle",
     "Bundles/branch.json",
     "Bundles/injected-provider.bundle.js",
+    "Bundles/__firefox__.js",
     "Bundles/InpageBridgeWeb3.js",
     "Bundles/main.jsbundle",
     "Bundles/MetaMaskModule.chunk.bundle",

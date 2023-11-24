@@ -1,8 +1,20 @@
 diff --git a/ios/chrome/browser/web/chrome_main_parts.mm b/ios/chrome/browser/web/chrome_main_parts.mm
-index c6bc2e9f773d3262343288706689f7eaf8bbf3ca..340d43ef3879bb0159b62268772cfb51583448f9 100644
+index c6bc2e9f773d3262343288706689f7eaf8bbf3ca..7b8d8dc44b1d27c615fdb12be5f7a13c1686c404 100644
 --- a/ios/chrome/browser/web/chrome_main_parts.mm
 +++ b/ios/chrome/browser/web/chrome_main_parts.mm
-@@ -384,6 +384,7 @@ bool ShouldInstallAllocatorShim() {
+@@ -161,6 +161,11 @@ bool ShouldInstallAllocatorShim() {
+   base::PathService::Get(ios::FILE_RESOURCES_PACK, &resources_pack_path);
+   ui::ResourceBundle::GetSharedInstance().AddDataPackFromPath(
+       resources_pack_path, ui::k100Percent);
++
++    base::FilePath mises_pack_path;
++    base::PathService::Get(base::DIR_MODULE, &mises_pack_path);
++    mises_pack_path = mises_pack_path.AppendASCII("mises_resources.pak");
++    ui::ResourceBundle::GetSharedInstance().AddDataPackFromPath( mises_pack_path, ui::kScaleFactorNone);
+ }
+ 
+ void IOSChromeMainParts::PreCreateThreads() {
+@@ -384,6 +389,7 @@ bool ShouldInstallAllocatorShim() {
    safe_browsing::SafeBrowsingMetricsCollector* safe_browsing_metrics_collector =
        SafeBrowsingMetricsCollectorFactory::GetForBrowserState(
            last_used_browser_state);

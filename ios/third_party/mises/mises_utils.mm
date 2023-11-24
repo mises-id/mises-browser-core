@@ -5,6 +5,19 @@
 #include "base/strings/sys_string_conversions.h"
 
 #import "ios/web/js_messaging/web_view_js_utils.h"
+#import "ios/web/public/web_client.h"
+#import "ios/web/web_state/ui/wk_web_view_configuration_provider.h"
+#import "ios/web/web_state/web_state_impl.h"
+#include "ios/web/web_state/ui/crw_web_controller.h"
+
+#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/browser_state/chrome_browser_state_manager.h"
+#include "ios/chrome/browser/application_context/application_context.h"
+
+#include "ios/chrome/browser/main/browser.h"
+#include "ios/chrome/browser/main/browser_list.h"
+#include "ios/chrome/browser/main/browser_list_factory.h"
+#import "ios/chrome/browser/web_state_list/web_state_list.h"
 
 #import <Foundation/NSPathUtilities.h>
 #import <WebKit/WKWebView.h>
@@ -29,7 +42,7 @@
 
 #import <React/RCTBridgeModule.h>
 
-#import "mises_wallet-Swift.h"
+#import <mises_wallet_framwork/mises_wallet_framwork-Swift.h>
 //#import "mises_lcd_service.h"
 #import "mises_share_service.h"
 #import "mises_account_service.h"
@@ -44,13 +57,6 @@
 
 @interface RCTMisesModule : NSObject <RCTBridgeModule>
 @end
-
-
-
-
-
-
-
 
 @interface NSObject (PrivateMethods)
 - (void)openSinglePage:(NSString*)url;
@@ -114,7 +120,8 @@
       //[MisesLCDService wrapper];
       [MisesShareService wrapper];
       [MisesAccountService wrapper];
-        
+      MisesWalletApi * api = MisesWalletApi.shared;
+      (void)api;
     });
 }
 
@@ -123,7 +130,7 @@
 
   if ([name isEqualToString:WALLET_MISES]) {
     UIViewController* bvc = [ReactAppDelegate baseViewController];
-    [bvc popupWallet];
+    [MisesWalletApi.shared presentWalletFrom:bvc];
       
     return;
   }
@@ -288,16 +295,48 @@
 @end
 
 
-
-
-
-static NSString* urlEscapeString(NSString *unencodedString)
-{
-    CFStringRef originalStringRef = (__bridge_retained CFStringRef)unencodedString;
-    NSString *s = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,originalStringRef, NULL, (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ", kCFStringEncodingUTF8);
-    CFRelease(originalStringRef);
-    return s;
+namespace {
+  NSString* urlEscapeString(NSString *unencodedString)
+  {
+      CFStringRef originalStringRef = (__bridge_retained CFStringRef)unencodedString;
+      NSString *s = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,originalStringRef, NULL, (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ", kCFStringEncodingUTF8);
+      CFRelease(originalStringRef);
+      return s;
+  }
 }
+namespace mises {
+
+
+
+  uint64_t activeWebviewId() 
+  {
+      ios::ChromeBrowserStateManager* browserStateManager =
+          GetApplicationContext()->GetChromeBrowserStateManager();
+      ChromeBrowserState* chromeBrowserState =
+          browserStateManager->GetLastUsedBrowserState();
+      BrowserList *browserList = BrowserListFactory::GetForBrowserState(chromeBrowserState);
+      Browser* browser = NULL;
+      std::set<Browser*> browsers = browserList->AllRegularBrowsers();
+      if (browsers.size() > 0) {
+        browser = *browsers.begin();
+      }
+      if (browser) {
+        web::WebState* web_state = browser->GetWebStateList()->GetActiveWebState();
+        if (web_state && !web_state->GetBrowserState()->IsOffTheRecord()) {
+            CRWWebController* web_controller =
+            web::WebStateImpl::FromWebState(web_state)->GetWebController();
+            if (web_controller) {
+              return [web_controller webviewId];
+            }
+
+        }
+      }
+
+      return 0;
+  }
+
+}
+
 
 
 @implementation RCTMisesModule
@@ -455,6 +494,17 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getInstallReferrer)
     return query;
 }
 
+
+RCT_EXPORT_METHOD(isTabActive: (NSUInteger)webviewID
+              isTabActive_resolver:(RCTPromiseResolveBlock)resolve
+              isTabActive_rejecter:(RCTPromiseRejectBlock)reject) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        DLOG(WARNING) << "isTabActive " << webviewID;
+        resolve([NSNumber numberWithBool:mises::activeWebviewId() == webviewID]);
+      
+    });
+}
 
 
 @end

@@ -86,6 +86,8 @@ OBJC_EXPORT
 
 @property(readonly) id<IpfsAPI> ipfsAPI;
 
+@property(readonly) NSUInteger activeWebviewId;
+
 - (void)initializeP3AServiceForChannel:(NSString*)channel
                          weekOfInstall:(NSString*)weekOfInstall;
 

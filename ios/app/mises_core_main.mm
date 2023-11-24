@@ -63,6 +63,7 @@
 #include "ios/public/provider/chrome/browser/ui_utils/ui_utils_api.h"
 #include "ios/web/public/init/web_main.h"
 #include "services/network/public/cpp/shared_url_loader_factory.h"
+#include "ios/third_party/mises/mises_utils.h"
 #define BUILDFLAG_INTERNAL_MISES_P3A_ENABLED() (0)
 #define BUILDFLAG_INTERNAL_MISES_CORE_FRAMEWORK() (0)
 
@@ -84,8 +85,10 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   std::vector<std::string> _argv_store;
   std::unique_ptr<const char*[]> _raw_args;
   std::unique_ptr<web::WebMain> _webMain;
+#if BUILDFLAG(MISES_CORE_FRAMEWORK)
   std::unique_ptr<Browser> _browser;
   std::unique_ptr<Browser> _otr_browser;
+#endif
   BrowserList* _browserList;
   BrowserList* _otr_browserList;
   ChromeBrowserState* _mainBrowserState;
@@ -205,16 +208,21 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
 
     // Setup main browser
     _browserList = BrowserListFactory::GetForBrowserState(_mainBrowserState);
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
     _browser = Browser::Create(_mainBrowserState);
     _browserList->AddBrowser(_browser.get());
+  #endif
 
     // Setup otr browser
     ChromeBrowserState* otrChromeBrowserState =
         chromeBrowserState->GetOffTheRecordChromeBrowserState();
     _otr_browserList =
         BrowserListFactory::GetForBrowserState(otrChromeBrowserState);
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
     _otr_browser = Browser::Create(otrChromeBrowserState);
     _otr_browserList->AddIncognitoBrowser(_otr_browser.get());
+    
+  #endif
 
     // Initialize the provider UI global state.
     ios::provider::InitializeUI();
@@ -244,7 +252,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   //_syncAPI = nil;
   _tabGeneratorAPI = nil;
   _webImageDownloader = nil;
-
+ #if BUILDFLAG(MISES_CORE_FRAMEWORK)
   _otr_browserList =
       BrowserListFactory::GetForBrowserState(_otr_browser->GetBrowserState());
   [_otr_browser->GetCommandDispatcher() prepareForShutdown];
@@ -259,6 +267,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   _browserList->RemoveBrowser(_browser.get());
   _browser->GetWebStateList()->CloseAllWebStates(WebStateList::CLOSE_NO_FLAGS);
   _browser.reset();
+  #endif
 
   _mainBrowserState = nullptr;
   _webMain.reset();
@@ -422,17 +431,36 @@ static bool CustomLogHandler(int severity,
 // }
 
 - (BraveTabGeneratorAPI*)tabGeneratorAPI {
-  if (!_tabGeneratorAPI) {
+   Browser *browser;
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
+    browser = _browser.get();
+  #else
+    std::set<Browser*> browsers = _browserList->AllRegularBrowsers();
+    if (browsers.size() > 0) {
+      browser = *browsers.begin();
+    }
+  #endif
+  if (!_tabGeneratorAPI && browser) {
     _tabGeneratorAPI =
-        [[BraveTabGeneratorAPI alloc] initWithBrowser:_browser.get()];
+        [[BraveTabGeneratorAPI alloc] initWithBrowser:browser];
   }
   return _tabGeneratorAPI;
 }
 
 - (WebImageDownloader*)webImageDownloader {
-  if (!_webImageDownloader) {
+  Browser *browser;
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
+    browser = _otr_browser.get();
+  #else
+    std::set<Browser*> otr_browsers = _otr_browserList->AllRegularBrowsers();
+    if (otr_browsers.size() > 0) {
+      browser = *otr_browsers.begin();
+    }
+    
+  #endif
+  if (!_webImageDownloader && browser) {
     _webImageDownloader = [[WebImageDownloader alloc]
-        initWithBrowserState:_otr_browser->GetBrowserState()];
+        initWithBrowserState:browser->GetBrowserState()];
   }
   return _webImageDownloader;
 }
@@ -467,6 +495,10 @@ static bool CustomLogHandler(int severity,
   _p3a_service->Init(GetApplicationContext()->GetSharedURLLoaderFactory());
   _histogram_braveizer = p3a::HistogramsBraveizer::Create();
 #endif  // BUILDFLAG(MISES_P3A_ENABLED)
+}
+
+-(NSUInteger) activeWebviewId {
+  return mises::activeWebviewId();
 }
 
 // - (BraveP3AUtils*)p3aUtils {

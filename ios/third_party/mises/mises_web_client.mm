@@ -8,6 +8,7 @@
 #import "ui/base/resource/resource_bundle.h"
 
 #import "mises_utils.h"
+#import <mises_wallet_framwork/mises_wallet_framwork-Swift.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
@@ -25,7 +26,8 @@ NSString* GetInpageScript(NSString* resourceName) {
 MisesWebClient::MisesWebClient() {
   inpageScripts = @[
     GetInpageScript(@"InpageBridgeWeb3"), 
-    GetInpageScript(@"injected-provider.bundle")
+    GetInpageScript(@"injected-provider.bundle"),
+    GetInpageScript(@"__firefox__")
   ];
 
   [Mises Init];
@@ -45,7 +47,6 @@ NSString* MisesWebClient::GetDocumentStartScriptForAllFrames(
   for (NSUInteger i = 0; i < count; i++) {
     [scripts addObject:inpageScripts[i]];
   }
-
   return [scripts componentsJoinedByString:@";"];
 }
 
@@ -70,7 +71,9 @@ NSString* MisesWebClient::GetDocumentStartScriptForMainFrame(
 
   [scripts addObject:GenMessageHandlerScript(@"RNMetaMaskWebView")];
   
-  [scripts addObject:GenMessageHandlerScript(@"RNMisesWalletWebView")];
+  [scripts addObject:GenMessageHandlerScript(@"RNKeplrWebView")];
+
+  [scripts addObject:[MisesWalletApi.shared ethereumProviderScript]];
 
   return [scripts componentsJoinedByString:@";"];
 }

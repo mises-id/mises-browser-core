@@ -1,0 +1,13 @@
+diff --git a/ios/web/js_messaging/web_view_js_utils.h b/ios/web/js_messaging/web_view_js_utils.h
+index 0f7d195c2a2cc771ca76b75e058278913b4ca571..d1ce8a085b0ba4474c3a1b111a64fd667b0f596f 100644
+--- a/ios/web/js_messaging/web_view_js_utils.h
++++ b/ios/web/js_messaging/web_view_js_utils.h
+@@ -35,6 +35,8 @@ enum JSEvaluationErrorCode {
+ // Converts result of WKWebView script evaluation to base::Value.
+ std::unique_ptr<base::Value> ValueResultFromWKResult(id result);
+ 
++id NSObjectFromValueResult(const base::Value* value_result);
++
+ // Executes JavaScript on WKWebView. If the web view cannot execute JS at the
+ // moment, `completion_handler` is called with an NSError.
+ void ExecuteJavaScript(WKWebView* web_view,

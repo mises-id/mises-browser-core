@@ -10,8 +10,11 @@
 #import "ios/web/public/navigation/navigation_manager.h"
 #include "ios/web/public/web_state.h"
 
+
 #include "mises_utils.h"
+#import "ReactAppDelegate.h"
 #import <React/RCTBridge.h>
+#import <mises_wallet_framwork/mises_wallet_framwork-Swift.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
@@ -27,7 +30,7 @@ const char kMisesJavaScriptFeatureKeyName[] =
 
 // Script message name for session restore.
 NSString* const kMetamaskScriptHandlerName = @"RNMetaMaskWebView";
-NSString* const kMisesWalletScriptHandlerName = @"RNMisesWalletWebView";
+NSString* const kKeplrScriptHandlerName = @"RNKeplrWebView";
 
 }  // namespace
 
@@ -72,9 +75,18 @@ void MisesJavaScriptFeature::ConfigureHandlers(
   mises_wallet_handler_.reset();
 
   mises_wallet_handler_ = std::make_unique<ScopedWKScriptMessageHandler>(
-      user_content_controller, kMisesWalletScriptHandlerName,
+      user_content_controller, [MisesWalletApi.shared ethereumProviderScriptHandlerName],
+      WKContentWorld.pageWorld,
       base::BindRepeating(
           &MisesJavaScriptFeature::MisesWalletMessageReceived,
+          weak_factory_.GetWeakPtr()));
+
+  keplr_handler_.reset();
+
+  keplr_handler_ = std::make_unique<ScopedWKScriptMessageHandler>(
+      user_content_controller, kKeplrScriptHandlerName,
+      base::BindRepeating(
+          &MisesJavaScriptFeature::KeplrMessageReceived,
           weak_factory_.GetWeakPtr()));
 
 }
@@ -103,6 +115,33 @@ void MisesJavaScriptFeature::MetaMaskMessageReceived(
 }
 
 void MisesJavaScriptFeature::MisesWalletMessageReceived(
+    WKScriptMessage* message, ScriptMessageReplyHandler reply_handler) {
+       NSString* received =
+           [NSString stringWithFormat:@"mises received: %@, %@",
+             message.name, message.body];
+    DLOG(WARNING) << base::SysNSStringToUTF16(received);
+    UIViewController* bvc = [ReactAppDelegate baseViewController];
+    [MisesWalletApi.shared activateBrowserViewController:bvc];
+    [MisesWalletApi.shared activateWith:message replyHandler:^(id reply, NSString* error_message) {
+        // Per the API documentation, specify the result as nil if an error
+        // occurred.
+        NSString* respond =
+            [NSString stringWithFormat:@"mises respond: %@, %@",
+             reply, error_message];
+        DLOG(WARNING) << base::SysNSStringToUTF16(respond);
+        if (error_message != nil) {
+            
+            reply_handler(nil, error_message);
+        } else {
+            auto value = web::ValueResultFromWKResult(reply);
+            reply_handler(value.get(), nil);
+        }
+      }];
+}
+
+
+
+void MisesJavaScriptFeature::KeplrMessageReceived(
     WKScriptMessage* message) {
   WebState* web_state = WebViewWebStateMap::FromBrowserState(browser_state_)
                             ->GetWebStateForWebView(message.webView);
