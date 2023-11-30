@@ -25,8 +25,8 @@
 
 #include "src/chrome/browser/ui/webui/settings/site_settings_helper.cc"
 
-#undef MISESCONTENT_SETTINGS_TYPE_GROUP_NAMES_LIST
 #undef MISES_SITE_SETTINGS_HELPER_CONTENT_SETTINGS_TYPE_FROM_GROUP_NAME
+#undef MISES_CONTENT_SETTINGS_TYPE_GROUP_NAMES_LIST
 #undef GetVisiblePermissionCategories
 #undef ContentSettingsTypeToGroupName
 #undef HasRegisteredGroupName
