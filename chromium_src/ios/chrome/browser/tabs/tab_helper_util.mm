@@ -112,6 +112,7 @@
 #import "ios/web/common/annotations_utils.h"
 #import "ios/web/common/features.h"
 #import "ios/web/public/web_state.h"
+#import "mises/ios/third_party/mises/mises_webstate_tracker.h"
 
 void AttachTabHelpers(web::WebState* web_state, bool for_prerender) {
   ChromeBrowserState* const browser_state =
@@ -195,6 +196,8 @@ void AttachTabHelpers(web::WebState* web_state, bool for_prerender) {
       web_state,
       ios::FaviconServiceFactory::GetForBrowserState(
           original_browser_state, ServiceAccessType::IMPLICIT_ACCESS));
+
+  mises::MisesWebStateTracker::CreateForWebState(web_state);
   history::WebStateTopSitesObserver::CreateForWebState(
       web_state,
       ios::TopSitesFactory::GetForBrowserState(original_browser_state).get());

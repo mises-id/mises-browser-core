@@ -14,6 +14,7 @@
 #include "mises_utils.h"
 #import "ReactAppDelegate.h"
 #import <React/RCTBridge.h>
+#include "mises/ios/buildflags.h"
 #import <mises_wallet_framwork/mises_wallet_framwork-Swift.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
@@ -73,14 +74,14 @@ void MisesJavaScriptFeature::ConfigureHandlers(
           weak_factory_.GetWeakPtr()));
     
   mises_wallet_handler_.reset();
-
+#if !BUILDFLAG(MISES_CORE_FRAMEWORK)
   mises_wallet_handler_ = std::make_unique<ScopedWKScriptMessageHandler>(
       user_content_controller, [MisesWalletApi.shared ethereumProviderScriptHandlerName],
       WKContentWorld.pageWorld,
       base::BindRepeating(
           &MisesJavaScriptFeature::MisesWalletMessageReceived,
           weak_factory_.GetWeakPtr()));
-
+#endif
   keplr_handler_.reset();
 
   keplr_handler_ = std::make_unique<ScopedWKScriptMessageHandler>(
@@ -120,6 +121,7 @@ void MisesJavaScriptFeature::MisesWalletMessageReceived(
            [NSString stringWithFormat:@"mises received: %@, %@",
              message.name, message.body];
     DLOG(WARNING) << base::SysNSStringToUTF16(received);
+#if !BUILDFLAG(MISES_CORE_FRAMEWORK)
     UIViewController* bvc = [ReactAppDelegate baseViewController];
     [MisesWalletApi.shared activateBrowserViewController:bvc];
     [MisesWalletApi.shared activateWith:message replyHandler:^(id reply, NSString* error_message) {
@@ -130,13 +132,13 @@ void MisesJavaScriptFeature::MisesWalletMessageReceived(
              reply, error_message];
         DLOG(WARNING) << base::SysNSStringToUTF16(respond);
         if (error_message != nil) {
-            
             reply_handler(nil, error_message);
         } else {
             auto value = web::ValueResultFromWKResult(reply);
             reply_handler(value.get(), nil);
         }
       }];
+#endif
 }
 
 

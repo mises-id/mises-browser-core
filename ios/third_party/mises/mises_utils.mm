@@ -19,6 +19,7 @@
 #include "ios/chrome/browser/main/browser_list_factory.h"
 #import "ios/chrome/browser/web_state_list/web_state_list.h"
 
+#include "mises/ios/buildflags.h"
 #import <Foundation/NSPathUtilities.h>
 #import <WebKit/WKWebView.h>
 
@@ -52,6 +53,51 @@
 #error "This file requires ARC support."
 #endif
 
+
+
+namespace mises {
+
+
+
+WKWebView* activeWebview()
+  {
+      ios::ChromeBrowserStateManager* browserStateManager =
+          GetApplicationContext()->GetChromeBrowserStateManager();
+      ChromeBrowserState* chromeBrowserState =
+          browserStateManager->GetLastUsedBrowserState();
+      BrowserList *browserList = BrowserListFactory::GetForBrowserState(chromeBrowserState);
+      Browser* active_browser = NULL;
+      std::set<Browser*> browsers = browserList->AllRegularBrowsers();
+      for (Browser* browser : browsers) {
+          if (!browser->IsInactive()) {
+              active_browser = browser;
+              break;
+          }
+      }
+      if (active_browser) {
+        web::WebState* web_state = active_browser->GetWebStateList()->GetActiveWebState();
+        if (web_state && !web_state->GetBrowserState()->IsOffTheRecord()) {
+            CRWWebController* web_controller =
+            web::WebStateImpl::FromWebState(web_state)->GetWebController();
+            if (web_controller) {
+              return [web_controller wkWebView];
+            }
+
+        }
+      }
+
+      return NULL;
+  }
+
+uint64_t activeWebviewId() {
+    WKWebView* webview = activeWebview();
+    if (webview) {
+        return [webview hash];
+    }
+    return 0;
+}
+
+}
 
 
 
@@ -120,20 +166,29 @@
       //[MisesLCDService wrapper];
       [MisesShareService wrapper];
       [MisesAccountService wrapper];
+#if !BUILDFLAG(MISES_CORE_FRAMEWORK)
       MisesWalletApi * api = MisesWalletApi.shared;
       (void)api;
+#endif
     });
 }
 
 + (void) popupWallet: (NSString *)name {
   DLOG(WARNING) << "popupWallet " << base::SysNSStringToUTF16(name);
-
+#if !BUILDFLAG(MISES_CORE_FRAMEWORK)
   if ([name isEqualToString:WALLET_MISES]) {
     UIViewController* bvc = [ReactAppDelegate baseViewController];
-    [MisesWalletApi.shared presentWalletFrom:bvc];
+      WKWebView* webview = mises::activeWebview();
+      if (webview) {
+          [MisesWalletApi.shared presentWalletPanelFrom:bvc with:webview];
+      } else {
+          [MisesWalletApi.shared presentWalletFrom:bvc];
+      }
+    
       
     return;
   }
+#endif
 
   ReactAppDelegate *delegate = NULL;
   if ([name isEqualToString:WALLET_METAMASK]) {
@@ -304,38 +359,7 @@ namespace {
       return s;
   }
 }
-namespace mises {
 
-
-
-  uint64_t activeWebviewId() 
-  {
-      ios::ChromeBrowserStateManager* browserStateManager =
-          GetApplicationContext()->GetChromeBrowserStateManager();
-      ChromeBrowserState* chromeBrowserState =
-          browserStateManager->GetLastUsedBrowserState();
-      BrowserList *browserList = BrowserListFactory::GetForBrowserState(chromeBrowserState);
-      Browser* browser = NULL;
-      std::set<Browser*> browsers = browserList->AllRegularBrowsers();
-      if (browsers.size() > 0) {
-        browser = *browsers.begin();
-      }
-      if (browser) {
-        web::WebState* web_state = browser->GetWebStateList()->GetActiveWebState();
-        if (web_state && !web_state->GetBrowserState()->IsOffTheRecord()) {
-            CRWWebController* web_controller =
-            web::WebStateImpl::FromWebState(web_state)->GetWebController();
-            if (web_controller) {
-              return [web_controller webviewId];
-            }
-
-        }
-      }
-
-      return 0;
-  }
-
-}
 
 
 
@@ -436,16 +460,17 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(postMessageFromMisesWallet:(NSString *) m
 
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(setMisesUserInfo:(NSString *)jsonString)
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    //not handling old wallet
+    // dispatch_async(dispatch_get_main_queue(), ^{
         
-      DLOG(WARNING) << "setMisesUserInfo " << base::SysNSStringToUTF16(jsonString);
-      NSData *stringData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-      id json = [NSJSONSerialization JSONObjectWithData:stringData options:0 error:nil];
+    //   DLOG(WARNING) << "setMisesUserInfo " << base::SysNSStringToUTF16(jsonString);
+    //   NSData *stringData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    //   id json = [NSJSONSerialization JSONObjectWithData:stringData options:0 error:nil];
 
-      if ([json isKindOfClass:[NSDictionary class]]) {
-          [[Mises account] loadFrom:json save:YES];
-      }
-    });
+    //   if ([json isKindOfClass:[NSDictionary class]]) {
+    //       [[Mises account] loadFrom:json save:YES];
+    //   }
+    // });
 
     return nil;
 }

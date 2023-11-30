@@ -1,5 +1,6 @@
 import("//build/config/ios/ios_sdk.gni")
 import("//build/config/ios/swift_source_set.gni")
+import("mises.gni")
 
 declare_args() {
   env_prefix = "Device"
@@ -70,6 +71,7 @@ source_set("mises") {
     "RCTMinimizer.mm",
     "ReactAppDelegate.mm",
     "SSZipArchive/SSZipArchive.m",
+    "mises_webstate_tracker.mm"
   ]
   public_configs = [
     ":config",
@@ -213,11 +215,10 @@ config("mises_swift_config") {
   ]
 }
 config("mises_config") {
-  visibility = [ ":mises", ":mises_swift" ]
+  visibility = [ ":mises", ":mises_swift"]
   cflags = [ "-Wno-nullability-completeness", "-Wno-extra-semi" ,"-Wno-header-hygiene"]
   framework_dirs = [ "//mises/ios/third_party/mises/$env_prefix/Frameworks" ]
   frameworks = [
-    "mises_wallet_framwork.framework",
     "BEMCheckBox.framework",
     "BVLinearGradient.framework",
     "Base64.framework",
@@ -342,6 +343,10 @@ config("mises_config") {
     "sovran_react_native.framework",
     "yoga.framework",
   ]
+
+  if (build_core_framework ==  0) {
+    frameworks += ["mises_wallet_framwork.framework",]
+  }
 
   lib_dirs = [
     "//mises/ios/third_party/mises/$env_prefix/Libs"

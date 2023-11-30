@@ -88,6 +88,8 @@ OBJC_EXPORT
 
 @property(readonly) NSUInteger activeWebviewId;
 
+- (void)setMisesId:(NSString*)misesId withAuth:(NSString*) auth;
+
 - (void)initializeP3AServiceForChannel:(NSString*)channel
                          weekOfInstall:(NSString*)weekOfInstall;
 

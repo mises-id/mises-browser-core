@@ -18,6 +18,7 @@ NSString* const kMisesReferrerKey = @"NSDefaultsReferrer";
 
 @implementation MisesAccountService
 {
+    NSThread *_thread;
     int _retryCounter;
     __weak id<MisesAccountServiceDelegate> _delegate;
 
@@ -53,6 +54,8 @@ NSString* const kMisesReferrerKey = @"NSDefaultsReferrer";
         if ([json isKindOfClass:[NSDictionary class]]) {
             [self loadFrom:json save:NO];
         }
+        _thread = [[NSThread alloc] initWithTarget:self selector:@selector(threadEntryPoint:) object:nil];
+        [_thread start];
     }
     return self;
 }
@@ -81,7 +84,6 @@ NSString* const kMisesReferrerKey = @"NSDefaultsReferrer";
 - (void) setDelegate:(id<MisesAccountServiceDelegate>)delegate {
   _delegate = delegate;
 }
-
 
 - (void) loadFrom:(NSDictionary *) json save:(BOOL)save{
     if (!json) {
@@ -113,6 +115,188 @@ NSString* const kMisesReferrerKey = @"NSDefaultsReferrer";
         }
         [[NSUserDefaults standardUserDefaults] setObject:json forKey:kMisesInfoKey];
     }
+}
+- (void)setMisesId:(NSString*)misesId withAuth:(NSString*) auth {
+  if (misesId == NULL || misesId.length == 0) {
+      _misesId = @"";
+      _misesToken = @"";
+      _misesNickname = @"";
+      _misesAvatar = @"";
+      [self onMisesIdUpdated];
+      return;
+  }
+  _misesId = [misesId copy];
+  [self updateFromServer:auth];
+}
+- (void) updateFromServer:(NSString*) auth {
+  [self performSelector:@selector(runService:) onThread:_thread withObject:auth waitUntilDone:NO];
+}
+
+
+- (void)threadEntryPoint:(id)__unused object {
+
+    @autoreleasepool {
+
+        [[NSThread currentThread] setName:@"MisesShareService"];
+
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+
+        [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+
+        [runLoop run];
+
+    }
+}
+
+- (void) onMisesIdUpdated {
+    NSDictionary* json = @{
+      @"misesId" : _misesId,
+      @"token" : _misesToken,
+      @"nickname" : _misesNickname,
+      @"avatar" : _misesAvatar,
+    };
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self->_delegate) {
+            [self->_delegate accountChanged];
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:json forKey:kMisesInfoKey];
+    });
+}
+
+- (void) runService: (id) object{
+    BOOL ret = [self doUpdateFromServer:(NSString*)object];
+    if (!ret) {
+      return;
+    }
+
+    [self onMisesIdUpdated];
+}
+
+
+- (BOOL) doUpdateFromServer:(NSString*) auth{
+    NSString * apiURLStr =[NSString stringWithFormat:@"https://api.alb.mises.site/api/v1/signin"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:apiURLStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    [request setValue:@"Keep-alive" forHTTPHeaderField:@"Connection"];
+    [request setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+
+    NSDictionary *authDict = @{
+       @"auth" : auth
+    };
+    NSDictionary *jsonDict = @{
+         @"user_authz" : authDict
+    };
+
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:&error];
+
+    if (!jsonData) {
+        NSLog(@"Got an error: %@", error);
+        return NO;
+    }
+//    NSString *requestData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [request setValue:[NSString stringWithFormat:@"%d", (int)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: jsonData];
+
+    NSHTTPURLResponse *response =[[NSHTTPURLResponse alloc] init];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *responseString = [[NSString alloc] initWithBytes:[responseData bytes] length:[responseData length] encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",responseString);
+    NSData *stringData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:stringData options:0 error:nil];
+
+    if (![json isKindOfClass:[NSDictionary class]]) {
+
+        return NO;
+    }
+
+    id code = json [@"code"];
+
+    if (![code isKindOfClass:[NSNumber class]]) {
+
+        return NO;
+    }
+    if ([code intValue] != 0) {
+        return NO;
+    }
+
+    id data = json [@"data"];
+    if (![data isKindOfClass:[NSDictionary class]]) {
+
+        return NO;
+    }
+    
+    id token = data[@"token"];
+    if (![token isKindOfClass:[NSString class]]) {
+
+        return NO;
+    }
+    _misesToken = [token copy];
+    
+    if (![self updateUserInfoFromServer]) {
+      return NO;
+    }
+    return YES;
+}
+- (BOOL) updateUserInfoFromServer{
+    NSString * apiURLStr =[NSString stringWithFormat:@"https://api.alb.mises.site/api/v1/user/me"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:apiURLStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    NSString *authValueToken = [@"Bearer " stringByAppendingString: _misesToken];
+    [request setValue:authValueToken forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"Keep-alive" forHTTPHeaderField:@"Connection"];
+    [request setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    NSError *error;
+    NSHTTPURLResponse *response =[[NSHTTPURLResponse alloc] init];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *responseString = [[NSString alloc] initWithBytes:[responseData bytes] length:[responseData length] encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",responseString);
+    NSData *stringData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:stringData options:0 error:nil];
+
+    if (![json isKindOfClass:[NSDictionary class]]) {
+
+        return NO;
+    }
+
+    id code = json [@"code"];
+
+    if (![code isKindOfClass:[NSNumber class]]) {
+
+        return NO;
+    }
+    if ([code intValue] != 0) {
+        return NO;
+    }
+
+    id data = json [@"data"];
+    if (![data isKindOfClass:[NSDictionary class]]) {
+
+        return NO;
+    }
+    
+    id username = data[@"username"];
+    if (![username isKindOfClass:[NSString class]]) {
+
+        return NO;
+    }
+    _misesNickname = [username copy];
+
+    id avatar = data[@"avatar"];
+    if (![avatar isKindOfClass:[NSDictionary class]]) {
+
+        return NO;
+    }
+    id avatar_medium = avatar[@"medium"];
+    _misesAvatar = [avatar_medium copy];
+  
+    return YES;
 }
 
 - (NSString*) toJson{

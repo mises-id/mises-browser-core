@@ -18,6 +18,7 @@
 #include "base/memory/scoped_refptr.h"
 #include "base/path_service.h"
 #include "base/strings/sys_string_conversions.h"
+#include "mises/ios/buildflags.h"
 #include "mises/components/mises_component_updater/browser/mises_on_demand_updater.h"
 #include "mises/components/brave_wallet/browser/wallet_data_files_installer.h"
 #include "mises/ios/app/mises_main_delegate.h"
@@ -64,8 +65,8 @@
 #include "ios/web/public/init/web_main.h"
 #include "services/network/public/cpp/shared_url_loader_factory.h"
 #include "ios/third_party/mises/mises_utils.h"
+
 #define BUILDFLAG_INTERNAL_MISES_P3A_ENABLED() (0)
-#define BUILDFLAG_INTERNAL_MISES_CORE_FRAMEWORK() (0)
 
 // Chromium logging is global, therefore we cannot link this to the instance in
 // question
@@ -499,6 +500,10 @@ static bool CustomLogHandler(int severity,
 
 -(NSUInteger) activeWebviewId {
   return mises::activeWebviewId();
+}
+
+- (void)setMisesId:(NSString*)misesId withAuth:(NSString*) auth {
+  [[Mises account] setMisesId:misesId withAuth:auth];
 }
 
 // - (BraveP3AUtils*)p3aUtils {

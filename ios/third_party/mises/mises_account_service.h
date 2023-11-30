@@ -28,6 +28,9 @@
 - (void) setReferrer:(NSDictionary*) ref;
 
 - (void) loadFrom:(NSDictionary *) json save:(BOOL)save;
+
+- (void) setMisesId:(NSString*)misesId withAuth:(NSString*) auth;
+
 - (NSString*) toJson;
 + (instancetype)wrapper;
 

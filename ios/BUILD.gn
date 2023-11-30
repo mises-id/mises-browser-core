@@ -14,11 +14,14 @@ import("//mises/ios/browser/api/url/headers.gni")
 import("//mises/ios/browser/api/web/web_state/headers.gni")
 import("//build/config/compiler/compiler.gni")
 import("//build/config/ios/rules.gni")
+import("//build/buildflag_header.gni")
+import("//mises/ios/third_party/mises/mises.gni")
 
 # lld is required when building arm64 with optimization in order to avoid
 # runtime crashes
 assert(is_debug || current_cpu != "arm64" || use_lld,
        "Optimized arm64 iOS builds require lld")
+
 
 config("internal_config") {
   visibility = [ 
@@ -28,7 +31,19 @@ config("internal_config") {
       [ "-Wl,-rpath,/usr/lib/swift,-rpath,@executable_path/Frameworks,-rpath,@executable_path/../Frameworks" ]
 }
 
+
+buildflag_header("buildflags") {
+  header = "buildflags.h"
+  flags = [
+    "MISES_CORE_FRAMEWORK=$build_core_framework",
+  ]
+}
+
+
 group("mises_ios") {
+  deps = [
+    ":buildflags",
+  ]
   public_deps = [ ":mises_core_ios_framework" ]
 }
 
@@ -80,6 +95,8 @@ action("mises_core_umbrella_header") {
   args += rebase_path(mises_core_public_headers, root_build_dir)
 }
 
+
+
 ios_framework_bundle("mises_core_ios_framework") {
   output_name = "MisesCore"
   output_dir = root_out_dir
@@ -94,6 +111,7 @@ ios_framework_bundle("mises_core_ios_framework") {
   ]
 
   deps = [
+    ":buildflags",
     ":mises_core_umbrella_header",
     "//mises/ios/app",
   ]

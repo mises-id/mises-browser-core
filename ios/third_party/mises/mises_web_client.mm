@@ -10,6 +10,8 @@
 #import "mises_utils.h"
 #import <mises_wallet_framwork/mises_wallet_framwork-Swift.h>
 
+#include "mises/ios/buildflags.h"
+
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
 #endif
@@ -72,9 +74,9 @@ NSString* MisesWebClient::GetDocumentStartScriptForMainFrame(
   [scripts addObject:GenMessageHandlerScript(@"RNMetaMaskWebView")];
   
   [scripts addObject:GenMessageHandlerScript(@"RNKeplrWebView")];
-
+#if !BUILDFLAG(MISES_CORE_FRAMEWORK)
   [scripts addObject:[MisesWalletApi.shared ethereumProviderScript]];
-
+#endif
   return [scripts componentsJoinedByString:@";"];
 }
 
