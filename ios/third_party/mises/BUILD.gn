@@ -71,7 +71,9 @@ source_set("mises") {
     "RCTMinimizer.mm",
     "ReactAppDelegate.mm",
     "SSZipArchive/SSZipArchive.m",
-    "mises_webstate_tracker.mm"
+    "mises_webstate_tracker.mm",
+    "RCTAsyncLocalStorage.m",
+    "RCTPersistStore.m"
   ]
   public_configs = [
     ":config",
@@ -140,6 +142,7 @@ bundle_data("mises_bundle_data") {
       "$env_prefix/Frameworks/Mixpanel.framework",
       "$env_prefix/Frameworks/OpenSSL.framework",
       "$env_prefix/Frameworks/WebRTC.framework",
+      "$env_prefix/Frameworks/libswift_Concurrency.dylib",
     ]
     outputs = [ 
       "$root_out_dir/{{source_file_part}}",
@@ -210,8 +213,6 @@ config("mises_swift_config") {
   swiftflags = [
     "-I../../mises", 
     "-F../../mises/ios/third_party/mises/$env_prefix/Frameworks",
-    "-Xcc",
-    "-fmodule-map-file=../../mises/ios/third_party/mises/$env_prefix/Frameworks/MisesCore.framework/Modules/module.modulemap"
   ]
 }
 config("mises_config") {

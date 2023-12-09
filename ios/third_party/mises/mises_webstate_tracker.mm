@@ -12,12 +12,15 @@
 #include "ios/web/public/browser_state.h"
 #include "ios/web/public/navigation/navigation_item.h"
 #include "ios/web/public/thread/web_thread.h"
-#import <mises_wallet_framwork/mises_wallet_framwork-Swift.h>
 #import "ios/web/web_state/web_state_impl.h"
 #include "ios/web/web_state/ui/crw_web_controller.h"
 #include "ios/chrome/browser/url/chrome_url_constants.h"
 
 #include "mises/ios/buildflags.h"
+#if !BUILDFLAG(MISES_CORE_FRAMEWORK)
+#import <mises_wallet_framwork/mises_wallet_framwork-Swift.h>
+#endif
+
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."

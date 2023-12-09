@@ -154,11 +154,12 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
 
     // Register all providers before calling any Chromium code.
     [ProviderRegistration registerProviders];
-
+#if BUILDFLAG(MISES_CORE_FRAMEWORK)
     // Setup WebClient ([ClientRegistration registerClients])
     _webClient.reset(new BraveWebClient());
     _webClient->SetUserAgent(base::SysNSStringToUTF8(userAgent));
     web::SetWebClient(_webClient.get());
+#endif
 
     _delegate.reset(new BraveMainDelegate());
 
@@ -299,7 +300,11 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
 - (void)onAppWillTerminate:(NSNotification*)notification {
   // ApplicationContextImpl doesn't get teardown call at the moment because we
   // cannot dealloc this class yet without crashing.
-  GetApplicationContext()->GetLocalState()->CommitPendingWrite();
+  auto* context = GetApplicationContext();
+  if (context && context->GetLocalState()) {
+    context->GetLocalState()->CommitPendingWrite();
+  }
+  
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

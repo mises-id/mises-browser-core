@@ -18,14 +18,15 @@
 #include "ios/chrome/browser/main/browser_list.h"
 #include "ios/chrome/browser/main/browser_list_factory.h"
 #import "ios/chrome/browser/web_state_list/web_state_list.h"
+#include "mises/ios/browser/brave_wallet/keyring_service_factory.h"
+#include "mises/components/brave_wallet/browser/keyring_service.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 
-#include "mises/ios/buildflags.h"
 #import <Foundation/NSPathUtilities.h>
 #import <WebKit/WKWebView.h>
-
-
 #import <Mixpanel/Mixpanel.h>
-
+#import <CoreFoundation/CoreFoundation.h>
+#import "base/mac/foundation_util.h"
 //#error "test"
 
 
@@ -43,11 +44,18 @@
 
 #import <React/RCTBridgeModule.h>
 
+#include "mises/ios/buildflags.h"
+#if !BUILDFLAG(MISES_CORE_FRAMEWORK)
 #import <mises_wallet_framwork/mises_wallet_framwork-Swift.h>
+#endif
 //#import "mises_lcd_service.h"
 #import "mises_share_service.h"
 #import "mises_account_service.h"
 #import "ReactAppDelegate.h"
+
+#import <RNCAsyncStorage/RNCAsyncStorage.h>
+#import <React/RCTBridgeModule.h>
+#import "RCTPersistStore.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
@@ -95,6 +103,204 @@ uint64_t activeWebviewId() {
         return [webview hash];
     }
     return 0;
+}
+
+NSString* strToHex(NSString* str) {
+    const char * bytes = [str cStringUsingEncoding:NSASCIIStringEncoding];
+    if (bytes) {
+      NSMutableString *hex = [NSMutableString new];
+      for (NSUInteger i = 0; i < (NSUInteger)str.length; i++) {
+          [hex appendFormat:@"%02x", bytes[i]];
+      }
+      return [hex copy];
+    }
+    return @"";
+}
+
+
+NSString* base64ToHex(NSString* base64_str) {
+    NSData* data = [[NSData alloc]
+        initWithBase64EncodedString:base64_str
+                            options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    if (data) {
+      const unsigned char *bytes = (const unsigned char *)data.bytes;
+      NSMutableString *hex = [NSMutableString new];
+      for (NSUInteger i = 0; i < (NSUInteger)data.length; i++) {
+          [hex appendFormat:@"%02x", bytes[i]];
+      }
+      return [hex copy];
+    }
+    return @"";
+}
+
+
+namespace {
+
+// Converts result of WKWebView script evaluation to base::Value, parsing
+// `wk_result` up to a depth of `max_depth`.
+std::unique_ptr<base::Value> ValueResultFromDic(id wk_result,
+                                                     int max_depth) {
+    if (!wk_result)
+        return nullptr;
+    
+    std::unique_ptr<base::Value> result;
+    
+    if (max_depth < 0) {
+        DLOG(WARNING) << "JS maximum recursion depth exceeded.";
+        return result;
+    }
+    
+    CFTypeID result_type = CFGetTypeID((__bridge CFTypeRef)wk_result);
+    if (result_type == CFStringGetTypeID()) {
+        result.reset(new base::Value(base::SysNSStringToUTF16(wk_result)));
+        DCHECK(result->is_string());
+    } else if (result_type == CFNumberGetTypeID()) {
+        result.reset(new base::Value([wk_result intValue]));
+        DCHECK(result->is_int());
+    } else if (result_type == CFBooleanGetTypeID()) {
+        result.reset(new base::Value(static_cast<bool>([wk_result boolValue])));
+        DCHECK(result->is_bool());
+    } else if (result_type == CFNullGetTypeID()) {
+        result = std::make_unique<base::Value>();
+        DCHECK(result->is_none());
+    } else if (result_type == CFDictionaryGetTypeID()) {
+        base::Value::Dict dictionary;
+        for (id key in wk_result) {
+            NSString* obj_c_string = base::mac::ObjCCast<NSString>(key);
+            const std::string path = base::SysNSStringToUTF8(obj_c_string);
+            std::unique_ptr<base::Value> value =
+            ValueResultFromDic(wk_result[obj_c_string], max_depth - 1);
+            if (value) {
+                dictionary.SetByDottedPath(
+                                           path, base::Value::FromUniquePtrValue(std::move(value)));
+            }
+        }
+        result = std::make_unique<base::Value>(std::move(dictionary));
+    } else if (result_type == CFArrayGetTypeID()) {
+        base::Value::List list;
+        for (id list_item in wk_result) {
+            std::unique_ptr<base::Value> value =
+            ValueResultFromDic(list_item, max_depth - 1);
+            if (value) {
+                list.Append(base::Value::FromUniquePtrValue(std::move(value)));
+            }
+        }
+        result = std::make_unique<base::Value>(std::move(list));
+    } else {
+        NOTREACHED();  // Convert other types as needed.
+    }
+    return result;
+}
+}
+void handleLegacyKeystore(NSString* jsonAsString) {
+
+    ios::ChromeBrowserStateManager* browserStateManager =
+        GetApplicationContext()->GetChromeBrowserStateManager();
+    ChromeBrowserState* chromeBrowserState =
+        browserStateManager->GetLastUsedBrowserState();
+    auto* keyring_service =
+        brave_wallet::KeyringServiceFactory::GetServiceForState(chromeBrowserState);
+    if (!keyring_service) {
+      return;
+    }
+    if (keyring_service->IsKeyringCreated(brave_wallet::mojom::kDefaultKeyringId)) {
+      return;
+    }
+    
+    NSData *jsonAsData = [jsonAsString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *json = [NSJSONSerialization
+                          JSONObjectWithData:jsonAsData
+                          options:NSJSONReadingMutableContainers
+                          error:&error];
+    if (error != NULL) {
+        return;
+    }
+    NSString* iv = json[@"iv"];
+    NSString* salt = strToHex(json[@"salt"]);
+    NSString* ciphertext = base64ToHex(json[@"cipher"]);
+    auto crypto_store = @[@{
+        @"meta": @{
+            @"name" : @"imported"
+        },
+        @"type": @"mnemonic",
+        @"crypto": @ {
+            @"cipher" : @"aes-128-cbc",
+            @"cipherparams" : @{
+                @"iv": iv
+            },
+            @"ciphertext": ciphertext,
+            @"kdf": @"pbkdf2",
+            @"kdfparams" : @{
+                @"c": @5000,
+                @"dklen": @32,
+                @"prf": @"hmac-sha512",
+                @"salt": salt,
+            },
+            @"mac": @""
+        }
+    }];
+
+    auto value = ValueResultFromDic(crypto_store, 6);
+    if (value && value->GetIfList()) {
+        base::Value::List& list = *value->GetIfList();
+        keyring_service->SetLegacyKeystore(list);
+    }
+}
+
+void handleLegacyEngineStore(RCTPersistStore *storage, NSString* enginString) {
+    if (![enginString containsString:@"\"mises\""]) {
+        return;
+    }
+    RCTResponseSenderBlock rnCompletion = ^(NSArray *response) {
+    };
+    NSString *newEngineString = [enginString stringByReplacingOccurrencesOfString: @"\"mises\"" withString:@"\"mainnet\""];
+    newEngineString = [newEngineString stringByReplacingOccurrencesOfString: @"\"46\"" withString:@"\"0x1\""];
+    NSArray * dataToSave = @[@[@"engine", newEngineString]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [storage performSelector:@selector(multiSet:callback:) withObject:dataToSave withObject:rnCompletion];
+    });
+}
+
+void MaybeMigrateLegacyMisesWalletKeyring() {
+
+  RCTPersistStore *storage = [[RCTPersistStore alloc] init];
+
+  RCTResponseSenderBlock rnCompletion = ^(NSArray *response) {
+      NSString *jsonAsString = @"";
+      if (response.count > 1) {
+        NSArray *response1 = response[1];
+        if (response1.count > 0) {
+          NSArray *response2 = response1[0];
+          if (response2.count > 1) {
+            jsonAsString = response2[1];
+          }
+        }
+      }
+      if (![jsonAsString isEqual: [NSNull null]] && [jsonAsString length] > 0) {
+        NSData *jsonAsData = [jsonAsString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSDictionary *json = [NSJSONSerialization
+                              JSONObjectWithData:jsonAsData
+                              options:NSJSONReadingMutableContainers
+                              error:&error];
+          if (error == NULL) {
+              handleLegacyEngineStore(storage, jsonAsString);
+              if (json[@"backgroundState"] &&
+                  json[@"backgroundState"][@"KeyringController"] &&
+                  json[@"backgroundState"][@"KeyringController"][@"vault"]) {
+                  handleLegacyKeystore(json[@"backgroundState"][@"KeyringController"][@"vault"]);
+              }
+              
+          }
+        
+      }
+  };
+
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [storage performSelector:@selector(multiGet:callback:) withObject:@[@"engine"] withObject:rnCompletion];
+  });
 }
 
 }
@@ -169,6 +375,7 @@ uint64_t activeWebviewId() {
 #if !BUILDFLAG(MISES_CORE_FRAMEWORK)
       MisesWalletApi * api = MisesWalletApi.shared;
       (void)api;
+      mises::MaybeMigrateLegacyMisesWalletKeyring();
 #endif
     });
 }
@@ -184,8 +391,6 @@ uint64_t activeWebviewId() {
       } else {
           [MisesWalletApi.shared presentWalletFrom:bvc];
       }
-    
-      
     return;
   }
 #endif

@@ -137,7 +137,7 @@ NSString* const kMisesReferrerKey = @"NSDefaultsReferrer";
 
     @autoreleasepool {
 
-        [[NSThread currentThread] setName:@"MisesShareService"];
+        [[NSThread currentThread] setName:@"MisesAccountService"];
 
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
 
@@ -156,10 +156,11 @@ NSString* const kMisesReferrerKey = @"NSDefaultsReferrer";
       @"avatar" : _misesAvatar,
     };
     dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [[NSUserDefaults standardUserDefaults] setObject:json forKey:kMisesInfoKey];
         if (self->_delegate) {
             [self->_delegate accountChanged];
         }
-        [[NSUserDefaults standardUserDefaults] setObject:json forKey:kMisesInfoKey];
     });
 }
 

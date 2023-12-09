@@ -37,4 +37,30 @@ SymmetricKey::DeriveKeyFromPasswordUsingPbkdf2Sha256(
   return rv == 1 ? std::move(key) : nullptr;
 }
 
+
+// static
+std::unique_ptr<SymmetricKey>
+SymmetricKey::DeriveKeyFromPasswordUsingPbkdf2Sha512(
+    Algorithm algorithm,
+    const std::string& password,
+    const std::string& salt,
+    size_t iterations,
+    size_t key_size_in_bits) {
+  if (!CheckDerivationParameters(algorithm, key_size_in_bits))
+    return nullptr;
+
+  size_t key_size_in_bytes = key_size_in_bits / 8;
+
+  OpenSSLErrStackTracer err_tracer(FROM_HERE);
+  std::unique_ptr<SymmetricKey> key(new SymmetricKey);
+  uint8_t* key_data = reinterpret_cast<uint8_t*>(
+      base::WriteInto(&key->key_, key_size_in_bytes + 1));
+
+  int rv = PKCS5_PBKDF2_HMAC(password.data(), password.length(),
+                             reinterpret_cast<const uint8_t*>(salt.data()),
+                             salt.length(), static_cast<unsigned>(iterations),
+                             EVP_sha512(), key_size_in_bytes, key_data);
+  return rv == 1 ? std::move(key) : nullptr;
+}
+
 }  // namespace crypto
