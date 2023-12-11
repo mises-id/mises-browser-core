@@ -1071,10 +1071,11 @@ void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, c
 }
 
  void EthereumProviderImpl::GetCachedAuth(GetCachedAuthCallback callback) {
-  if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
-    std::move(callback).Run(base::Value(), base::Value(), true, "", true);
-    return;
-  }
+  // mises wallet secure inject
+  // if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
+  //   std::move(callback).Run(base::Value(), base::Value(), true, "", true);
+  //   return;
+  // }
   std::string auth_cache;
   if (prefs_->FindPreference(kMisesWalletAuthCache)) {
     auth_cache = prefs_->GetString(kMisesWalletAuthCache);
@@ -1093,6 +1094,7 @@ void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, c
 void EthereumProviderImpl::SignMessageForAuth(const std::string& address,
                                               const std::string& nonce,
                                               SignMessageForAuthCallback callback) {
+  // mises wallet secure inject
   if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
     std::move(callback).Run(base::Value(), base::Value(), true, "", true);
     return;

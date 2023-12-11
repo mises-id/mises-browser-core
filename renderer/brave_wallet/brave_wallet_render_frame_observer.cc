@@ -47,6 +47,7 @@ bool BraveWalletRenderFrameObserver::CanCreateProvider() {
   }
 
   // Wallet provider objects should only be created in secure contexts
+  // mises wallet secure inject
   if (!render_frame()->GetWebFrame()->GetDocument().IsSecureContext()) {
     return false;
   }
