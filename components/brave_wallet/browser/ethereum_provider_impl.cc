@@ -1362,9 +1362,8 @@ void EthereumProviderImpl::CommonRequestOrSendAsync(
       json_rpc_service_->Request(normalized_json_request, true, std::move(id),
                                mojom::CoinType::ETH, std::move(callback));
     }
-                          
-  }else {
-    json_rpc_service_->Request(normalized_json_request, true, std::move(id),
+  } else {
+        json_rpc_service_->Request(normalized_json_request, true, std::move(id),
                                mojom::CoinType::ETH, std::move(callback));
   }
 }

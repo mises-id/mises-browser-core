@@ -1,0 +1,15 @@
+diff --git a/ios/web/web_state/web_view_internal_creation_util.mm b/ios/web/web_state/web_view_internal_creation_util.mm
+index 8a44350bcd19cdb941b5a18838a6a86e83e8130c..7556a70f5e16d4d2669965af05a9edfc97d9ef5e 100644
+--- a/ios/web/web_state/web_view_internal_creation_util.mm
++++ b/ios/web/web_state/web_view_internal_creation_util.mm
+@@ -64,6 +64,10 @@ void VerifyWKWebViewCreationPreConditions(
+   // reasonable value.
+   web_view.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+ 
++  if (@available(macOS 13.3, iOS 16.4, tvOS 16.4, *)) {
++    web_view.inspectable = YES;
++  }
++
+   return web_view;
+ }
+ 

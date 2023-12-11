@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/features.gni b/ios/chrome/features.gni
+index 053078f6b3b1c9d833f776485cbde019071e8c43..99728af85cf405b154fe4e9a7987d1ae7f8e1b36 100644
+--- a/ios/chrome/features.gni
++++ b/ios/chrome/features.gni
+@@ -11,7 +11,7 @@ declare_args() {
+   # Controls whether Chrome links with Lottie.framework or gets the
+   # implementation from its downstream provider. Ignored if Lottie is
+   # not build as a framework.
+-  ios_chrome_links_with_lottie_framework = true
++  ios_chrome_links_with_lottie_framework = false
+ 
+   # Enable an experimental option to dump sandbox.
+   ios_enable_sandbox_dump = false

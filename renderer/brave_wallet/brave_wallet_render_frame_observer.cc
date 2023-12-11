@@ -8,6 +8,7 @@
 #include <memory>
 #include <utility>
 
+#include "chrome/common/channel_info.h"
 #include "base/feature_list.h"
 #include "mises/components/brave_wallet/common/features.h"
 #include "mises/components/brave_wallet/renderer/v8_helper.h"
@@ -44,6 +45,10 @@ bool BraveWalletRenderFrameObserver::IsPageValid() {
 bool BraveWalletRenderFrameObserver::CanCreateProvider() {
   if (!IsPageValid()) {
     return false;
+  }
+
+  if (chrome::GetChannel() == version_info::Channel::DEV) {
+    return true;
   }
 
   // Wallet provider objects should only be created in secure contexts

@@ -15,6 +15,7 @@ extern NSString* const kToolsMenuMisesOfficialSiteId;
 
 extern NSString* const kToolsMenuMisesOpenMetamaskId;
 extern NSString* const kToolsMenuMisesOpenMisesWalletId;
+extern NSString* const kToolsMenuMisesOpenKeplrId;
 
 #endif
 

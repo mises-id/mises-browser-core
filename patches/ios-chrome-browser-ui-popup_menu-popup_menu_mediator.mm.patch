@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
-index fdda63a7701be84fb3eba6703150294b58ad5170..53dc09f921b1616c2209c050b106466670bdb575 100644
+index fdda63a7701be84fb3eba6703150294b58ad5170..5f6edca61de4ffee998ec3e88abc7ac14d80780b 100644
 --- a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 +++ b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 @@ -88,6 +88,10 @@
@@ -60,7 +60,7 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..53dc09f921b1616c2209c050b1064666
    // Report an Issue.
    if (ios::provider::IsUserFeedbackSupported()) {
      TableViewItem* reportIssue = CreateTableViewItem(
-@@ -1349,4 +1379,81 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
+@@ -1349,4 +1379,82 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
    }
  }
  
@@ -135,7 +135,8 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..53dc09f921b1616c2209c050b1064666
 +    TableViewItem* openMisesWallet =
 +        CreateTableViewItem(IDS_IOS_OPTIONS_MISES_OPEN_MISESWALLET, PopupMenuActionMisesOpenMisesWallet,
 +                            [UIImage imageNamed:@"popup_menu_mises_open_miseswallet"], kToolsMenuMisesOpenMisesWalletId);
-+    NSArray* signinActions = @[ openMetamask, openMisesWallet ];
++    TableViewItem* openKeplr = CreateTableViewItem(IDS_IOS_OPTIONS_MISES_OPEN_KEPLR,PopupMenuActionMisesOpenKeplr,[UIImage imageNamed:@"popup_menu_mises_open_keplr"],kToolsMenuMisesOpenKeplrId);
++    NSArray* signinActions = @[ openMisesWallet, openMetamask, openKeplr ];
 +    self.items = @[ signinActions ];
 +   
 +

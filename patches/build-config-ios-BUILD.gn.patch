@@ -1,0 +1,13 @@
+diff --git a/build/config/ios/BUILD.gn b/build/config/ios/BUILD.gn
+index f0b85cc659282da969c8e33eec0d69d8d6c73fde..1a8cb06201016f27eeffe37ca85015f192f68ba8 100644
+--- a/build/config/ios/BUILD.gn
++++ b/build/config/ios/BUILD.gn
+@@ -135,7 +135,7 @@ config("ios_executable_flags") {
+     ldflags += [ "-Wl,-rpath,@loader_path/../Frameworks" ]
+   }
+ 
+-  ldflags += [ "-Wl,-rpath,@executable_path/Frameworks" ]
++  ldflags += [ "-Wl,-rpath,/usr/lib/swift,-rpath,@executable_path/Frameworks" ]
+ }
+ 
+ config("ios_extension_executable_flags") {

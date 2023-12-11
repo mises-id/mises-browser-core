@@ -18,6 +18,7 @@
 #include "base/memory/scoped_refptr.h"
 #include "base/path_service.h"
 #include "base/strings/sys_string_conversions.h"
+#include "mises/ios/buildflags.h"
 #include "mises/components/mises_component_updater/browser/mises_on_demand_updater.h"
 #include "mises/components/brave_wallet/browser/wallet_data_files_installer.h"
 #include "mises/ios/app/mises_main_delegate.h"
@@ -63,6 +64,8 @@
 #include "ios/public/provider/chrome/browser/ui_utils/ui_utils_api.h"
 #include "ios/web/public/init/web_main.h"
 #include "services/network/public/cpp/shared_url_loader_factory.h"
+#include "ios/third_party/mises/mises_utils.h"
+
 #define BUILDFLAG_INTERNAL_MISES_P3A_ENABLED() (0)
 
 // Chromium logging is global, therefore we cannot link this to the instance in
@@ -83,8 +86,10 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   std::vector<std::string> _argv_store;
   std::unique_ptr<const char*[]> _raw_args;
   std::unique_ptr<web::WebMain> _webMain;
+#if BUILDFLAG(MISES_CORE_FRAMEWORK)
   std::unique_ptr<Browser> _browser;
   std::unique_ptr<Browser> _otr_browser;
+#endif
   BrowserList* _browserList;
   BrowserList* _otr_browserList;
   ChromeBrowserState* _mainBrowserState;
@@ -132,14 +137,16 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
                name:UIApplicationWillTerminateNotification
              object:nil];
 
-    // @autoreleasepool {
-    //   ios::RegisterPathProvider();
+    @autoreleasepool {
+#if BUILDFLAG(MISES_CORE_FRAMEWORK)
+      ios::RegisterPathProvider();
+#endif
 
-    //   // Bundled components are not supported on ios, so DIR_USER_DATA is passed
-    //   // for all three arguments.
-    //   component_updater::RegisterPathProvider(
-    //       ios::DIR_USER_DATA, ios::DIR_USER_DATA, ios::DIR_USER_DATA);
-    // }
+      // // Bundled components are not supported on ios, so DIR_USER_DATA is passed
+      // // for all three arguments.
+      // component_updater::RegisterPathProvider(
+      //     ios::DIR_USER_DATA, ios::DIR_USER_DATA, ios::DIR_USER_DATA);
+    }
 
     NSBundle* baseBundle = base::mac::OuterBundle();
     base::mac::SetBaseBundleID(
@@ -147,11 +154,12 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
 
     // Register all providers before calling any Chromium code.
     [ProviderRegistration registerProviders];
-
+#if BUILDFLAG(MISES_CORE_FRAMEWORK)
     // Setup WebClient ([ClientRegistration registerClients])
     _webClient.reset(new BraveWebClient());
     _webClient->SetUserAgent(base::SysNSStringToUTF8(userAgent));
     web::SetWebClient(_webClient.get());
+#endif
 
     _delegate.reset(new BraveMainDelegate());
 
@@ -182,11 +190,13 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
       _raw_args[i] = _argv_store[i].c_str();
     }
     params.argv = _raw_args.get();
+  #if !BUILDFLAG(MISES_CORE_FRAMEWORK)
     params.register_exit_manager = false;
-
+  #endif
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
     // Setup WebMain
     _webMain = std::make_unique<web::WebMain>(std::move(params));
-
+  #endif
     // Remove the extra browser states as Chrome iOS is single profile in M48+.
     ChromeBrowserStateRemovalController::GetInstance()
         ->RemoveBrowserStatesIfNecessary();
@@ -200,16 +210,21 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
 
     // Setup main browser
     _browserList = BrowserListFactory::GetForBrowserState(_mainBrowserState);
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
     _browser = Browser::Create(_mainBrowserState);
     _browserList->AddBrowser(_browser.get());
+  #endif
 
     // Setup otr browser
     ChromeBrowserState* otrChromeBrowserState =
         chromeBrowserState->GetOffTheRecordChromeBrowserState();
     _otr_browserList =
         BrowserListFactory::GetForBrowserState(otrChromeBrowserState);
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
     _otr_browser = Browser::Create(otrChromeBrowserState);
     _otr_browserList->AddIncognitoBrowser(_otr_browser.get());
+    
+  #endif
 
     // Initialize the provider UI global state.
     ios::provider::InitializeUI();
@@ -239,7 +254,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   //_syncAPI = nil;
   _tabGeneratorAPI = nil;
   _webImageDownloader = nil;
-
+ #if BUILDFLAG(MISES_CORE_FRAMEWORK)
   _otr_browserList =
       BrowserListFactory::GetForBrowserState(_otr_browser->GetBrowserState());
   [_otr_browser->GetCommandDispatcher() prepareForShutdown];
@@ -254,6 +269,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
   _browserList->RemoveBrowser(_browser.get());
   _browser->GetWebStateList()->CloseAllWebStates(WebStateList::CLOSE_NO_FLAGS);
   _browser.reset();
+  #endif
 
   _mainBrowserState = nullptr;
   _webMain.reset();
@@ -284,7 +300,11 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
 - (void)onAppWillTerminate:(NSNotification*)notification {
   // ApplicationContextImpl doesn't get teardown call at the moment because we
   // cannot dealloc this class yet without crashing.
-  GetApplicationContext()->GetLocalState()->CommitPendingWrite();
+  auto* context = GetApplicationContext();
+  if (context && context->GetLocalState()) {
+    context->GetLocalState()->CommitPendingWrite();
+  }
+  
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -417,17 +437,36 @@ static bool CustomLogHandler(int severity,
 // }
 
 - (BraveTabGeneratorAPI*)tabGeneratorAPI {
-  if (!_tabGeneratorAPI) {
+   Browser *browser;
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
+    browser = _browser.get();
+  #else
+    std::set<Browser*> browsers = _browserList->AllRegularBrowsers();
+    if (browsers.size() > 0) {
+      browser = *browsers.begin();
+    }
+  #endif
+  if (!_tabGeneratorAPI && browser) {
     _tabGeneratorAPI =
-        [[BraveTabGeneratorAPI alloc] initWithBrowser:_browser.get()];
+        [[BraveTabGeneratorAPI alloc] initWithBrowser:browser];
   }
   return _tabGeneratorAPI;
 }
 
 - (WebImageDownloader*)webImageDownloader {
-  if (!_webImageDownloader) {
+  Browser *browser;
+  #if BUILDFLAG(MISES_CORE_FRAMEWORK)
+    browser = _otr_browser.get();
+  #else
+    std::set<Browser*> otr_browsers = _otr_browserList->AllRegularBrowsers();
+    if (otr_browsers.size() > 0) {
+      browser = *otr_browsers.begin();
+    }
+    
+  #endif
+  if (!_webImageDownloader && browser) {
     _webImageDownloader = [[WebImageDownloader alloc]
-        initWithBrowserState:_otr_browser->GetBrowserState()];
+        initWithBrowserState:browser->GetBrowserState()];
   }
   return _webImageDownloader;
 }
@@ -462,6 +501,14 @@ static bool CustomLogHandler(int severity,
   _p3a_service->Init(GetApplicationContext()->GetSharedURLLoaderFactory());
   _histogram_braveizer = p3a::HistogramsBraveizer::Create();
 #endif  // BUILDFLAG(MISES_P3A_ENABLED)
+}
+
+-(NSUInteger) activeWebviewId {
+  return mises::activeWebviewId();
+}
+
+- (void)setMisesId:(NSString*)misesId withAuth:(NSString*) auth {
+  [[Mises account] setMisesId:misesId withAuth:auth];
 }
 
 // - (BraveP3AUtils*)p3aUtils {
