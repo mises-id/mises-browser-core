@@ -1,15 +1,12 @@
 diff --git a/ios/web/web_state/ui/crw_web_controller.mm b/ios/web/web_state/ui/crw_web_controller.mm
-index 09d35b85c67f4cf268d9f78fc65bfc434d767978..5cc66b07c5822d1a0e1d79cd921aaa3bd0304e8b 100644
+index 09d35b85c67f4cf268d9f78fc65bfc434d767978..b00c39b13be73e3192442c990accbcc2e45d3b18 100644
 --- a/ios/web/web_state/ui/crw_web_controller.mm
 +++ b/ios/web/web_state/ui/crw_web_controller.mm
-@@ -2265,4 +2265,10 @@ - (void)resetInjectedWebViewContentView {
+@@ -2265,4 +2265,7 @@ - (void)resetInjectedWebViewContentView {
    return self.navigationHandler.navigationState;
  }
  
-+- (NSUInteger)webviewId {
-+  if (self.webView) {
-+    return [self.webView hash];
-+  }
-+  return 0;
++- (WKWebView *)wkWebView {
++  return self.webView;
 +}
  @end

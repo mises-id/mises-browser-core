@@ -1,12 +1,12 @@
 diff --git a/ios/web/web_state/ui/crw_web_controller.h b/ios/web/web_state/ui/crw_web_controller.h
-index 344a775930c72d4aee962d7cb423a2e2fd0b456a..ff59f68a81d1c846ec75ec2710144cbe76323ea3 100644
+index 344a775930c72d4aee962d7cb423a2e2fd0b456a..0cfca1044ad9d0c886cdba0eef6fbcd758151fe1 100644
 --- a/ios/web/web_state/ui/crw_web_controller.h
 +++ b/ios/web/web_state/ui/crw_web_controller.h
 @@ -285,6 +285,7 @@ class WebStateImpl;
  - (void)executeUserJavaScript:(NSString*)javascript
              completionHandler:(void (^)(id result, NSError* error))completion;
  
-+- (NSUInteger)webviewId;
++- (WKWebView *)wkWebView;
  @end
  
  #pragma mark Testing
