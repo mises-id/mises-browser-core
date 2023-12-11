@@ -56,7 +56,7 @@ void BraveWebMainParts::PreCreateMainMessageLoop() {
 
   base::FilePath brave_pack_path;
   base::PathService::Get(base::DIR_MODULE, &brave_pack_path);
-  brave_pack_path = brave_pack_path.AppendASCII("brave_resources.pak");
+  brave_pack_path = brave_pack_path.AppendASCII("mises_resources.pak");
   ui::ResourceBundle::GetSharedInstance().AddDataPackFromPath(
       brave_pack_path, ui::kScaleFactorNone);
 }

@@ -8,12 +8,17 @@
 @class RCTBridge;
 @class WKWebView;
 
+namespace mises {
+  uint64_t activeWebviewId();
+}
+
 
 @interface Mises: NSObject
 + (void) Init;
 + (void) popupMetamask;
 
 + (void) popupMisesWallet;
++ (void) popupKeplr;
 
 + (void) popupWallet: (NSString *)name;
 

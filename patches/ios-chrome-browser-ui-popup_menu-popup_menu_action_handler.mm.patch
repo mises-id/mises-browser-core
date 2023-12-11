@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
-index a2e470ed643c7bebeee13bea7745a28c48a6a162..3958f50f1e6bc480a1af3a4ee5069f7fde6b283e 100644
+index a2e470ed643c7bebeee13bea7745a28c48a6a162..01abb614c72255a54c2df04bd2236e0d8f4f01f1 100644
 --- a/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
 +++ b/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
 @@ -34,6 +34,9 @@
@@ -12,7 +12,7 @@ index a2e470ed643c7bebeee13bea7745a28c48a6a162..3958f50f1e6bc480a1af3a4ee5069f7f
  #if !defined(__has_feature) || !__has_feature(objc_arc)
  #error "This file requires ARC support."
  #endif
-@@ -251,6 +254,56 @@ - (void)popupMenuTableViewController:(PopupMenuTableViewController*)sender
+@@ -251,6 +254,61 @@ - (void)popupMenuTableViewController:(PopupMenuTableViewController*)sender
        RecordAction(UserMetricsAction("MobileMenuPriceNotifications"));
        [self.dispatcher showPriceNotifications];
        break;
@@ -64,6 +64,11 @@ index a2e470ed643c7bebeee13bea7745a28c48a6a162..3958f50f1e6bc480a1af3a4ee5069f7f
 +      case PopupMenuActionMisesOpenMisesWallet:{
 +        RecordAction(UserMetricsAction("MobileMenuOpenMisesWallet"));
 +        [Mises popupMisesWallet];
++        break;
++      }
++      case PopupMenuActionMisesOpenKeplr:{
++        RecordAction(UserMetricsAction("MobileMenuOpenKeplr"));
++        [Mises popupKeplr];
 +        break;
 +      }
      default:

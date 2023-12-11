@@ -10,6 +10,9 @@
   DeriveKeyFromPasswordUsingPbkdf2Sha256(                                   \
       Algorithm algorithm, const std::string& password,                     \
       const std::string& salt, size_t iterations, size_t key_size_in_bits); \
+  static std::unique_ptr<SymmetricKey>  DeriveKeyFromPasswordUsingPbkdf2Sha512(       \
+      Algorithm algorithm, const std::string& password,                     \
+      const std::string& salt, size_t iterations, size_t key_size_in_bits); \
   static std::unique_ptr<SymmetricKey> DeriveKeyFromPasswordUsingPbkdf2
 #include "src/crypto/symmetric_key.h"
 #undef DeriveKeyFromPasswordUsingPbkdf2

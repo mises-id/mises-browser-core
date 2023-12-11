@@ -52,6 +52,7 @@ source_set("browser") {
     "ui/resources:popup_menu_copy",
     "ui/resources:popup_menu_mises_open_metamask",
     "ui/resources:popup_menu_mises_open_miseswallet",
+    "ui/resources:popup_menu_mises_open_keplr",
     "//base",
     "//mises/chromium_src/ios/chrome/browser/prefs",
     "//mises/ios/browser/browser_state",

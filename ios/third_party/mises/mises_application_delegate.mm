@@ -40,6 +40,9 @@
   
   BOOL ret =  [super application:application didFinishLaunchingWithOptions:launchOptions];
 
+  if (ret) {
+    [Mises didFinishLaunching];
+  }
 
   return ret;
 }

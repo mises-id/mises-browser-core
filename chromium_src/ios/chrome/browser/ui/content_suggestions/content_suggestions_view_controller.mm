@@ -793,15 +793,8 @@ CGFloat ModuleVerticalSpacing() {
         //self.mostVisitedStackView.distribution = UIStackViewDistributionFillEqually;
         self.mostVisitedStackView.spacing =
         ContentSuggestionsTilesHorizontalSpacing(self.traitCollection);
-        // Find correct insertion position in the stack.
-        int insertionIndex = 0;
-        if (self.returnToRecentTabTile) {
-            insertionIndex++;
-        }
-        [self.verticalStackView insertArrangedSubview:self.mostVisitedStackView
-                                              atIndex:insertionIndex];
-        [self.verticalStackView setCustomSpacing:kMostVisitedBottomMargin
-                                       afterView:self.mostVisitedStackView];
+
+
         CGFloat width =
         MostVisitedTilesContentHorizontalSpace(self.traitCollection);
         CGSize size =
@@ -823,6 +816,18 @@ CGFloat ModuleVerticalSpacing() {
         
     }
     [self buildHorizontalMostVisitedStackViews];
+    
+    // Find correct insertion position in the stack.
+    if (self.isViewLoaded && self.mostVisitedStackView) {
+        int insertionIndex = 0;
+        if (self.returnToRecentTabTile && [[self.verticalStackView subviews] count] > 0) {
+            insertionIndex++;
+        }
+        [self.verticalStackView insertArrangedSubview:self.mostVisitedStackView
+                                              atIndex:insertionIndex];
+        [self.verticalStackView setCustomSpacing:kMostVisitedBottomMargin
+                                       afterView:self.mostVisitedStackView];
+    }
 }
 
 - (NSMutableArray *)buildHorizontalStackViews:(NSArray *)tileViews {

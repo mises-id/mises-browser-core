@@ -67,11 +67,39 @@ bool UTCPasswordVerification(const std::string& derived_key,
   return true;
 }
 
+bool UTCDecodeMetamaskMnemonic(std::vector<uint8_t>* raw_bytes) {
+    //handle metamask mnemonic
+    std::string json(raw_bytes->begin(), raw_bytes->end());
+    auto parsed_json = base::JSONReader::ReadAndReturnValueWithError(json);
+    if (!parsed_json.has_value() || !parsed_json->is_list()) {
+      VLOG(0) << __func__ << ": UTC v3 json parsed failed because "
+              << parsed_json.error().message;
+      return false;
+    }
+    auto& array = parsed_json->GetList();
+    if (array.size() == 0 || !array[0].is_dict()) {
+        return false;
+    }
+    auto& dic = array[0].GetDict();
+    auto* data = dic.FindDict("data");
+    if (!data) {
+        return false;
+    }
+    auto* mnemonic = data->FindList("mnemonic");
+    if (!mnemonic) {
+        return false;
+    }
+    raw_bytes->resize(mnemonic->size());
+    for (size_t idx = 0; idx< mnemonic->size(); idx++) {
+        (*raw_bytes)[idx] = (*mnemonic)[idx].GetInt();
+    }
+    return true;
+}
 bool UTCDecryptRawBytes(const std::string& derived_key,
                           const std::vector<uint8_t>& ciphertext,
                           const std::vector<uint8_t>& iv,
                           std::vector<uint8_t>* raw_bytes,
-                          size_t dklen, bool usingKeccak) {
+                          size_t dklen, bool usingKeccak, bool isCtr) {
   if (!raw_bytes)
     return false;
   std::string dkey;
@@ -87,12 +115,13 @@ bool UTCDecryptRawBytes(const std::string& derived_key,
     return false;
   }
   Encryptor encryptor;
-  if (!encryptor.Init(decryption_key.get(), Encryptor::Mode::CTR,
-                      std::vector<uint8_t>())) {
+  if (!encryptor.Init(decryption_key.get(), isCtr? Encryptor::Mode::CTR : Encryptor::Mode::CBC,
+                      isCtr ? std::vector<uint8_t>() : iv)) {
     VLOG(0) << __func__ << ": encryptor init failed";
     return false;
   }
-  if (!encryptor.SetCounter(iv)) {
+    
+  if (isCtr && !encryptor.SetCounter(iv)) {
     VLOG(0) << __func__ << ": encryptor set counter failed";
     return false;
   }
@@ -278,14 +307,21 @@ bool HDKey::DecodeRawBytesFromV3UTC(const std::string& password,
       VLOG(0) << __func__ << ": missing prf";
       return false;
     }
-    if (*prf != "hmac-sha256") {
+    if (*prf != "hmac-sha256" && *prf != "hmac-sha512") {
       VLOG(0) << __func__ << ": prf must be hmac-sha256 when using pbkdf2";
       return false;
     }
-    derived_key = SymmetricKey::DeriveKeyFromPasswordUsingPbkdf2Sha256(
-        SymmetricKey::AES, password,
-        std::string(salt_bytes.begin(), salt_bytes.end()), (size_t)*c,
-        (size_t)*dklen * 8);
+    if (*prf == "hmac-sha256") {
+      derived_key = SymmetricKey::DeriveKeyFromPasswordUsingPbkdf2Sha256(
+          SymmetricKey::AES, password,
+          std::string(salt_bytes.begin(), salt_bytes.end()), (size_t)*c,
+          (size_t)*dklen * 8);
+    } else {
+       derived_key = SymmetricKey::DeriveKeyFromPasswordUsingPbkdf2Sha512(
+          SymmetricKey::AES, password,
+          std::string(salt_bytes.begin(), salt_bytes.end()), (size_t)*c,
+          (size_t)*dklen * 8);
+    }
     if (!derived_key) {
       VLOG(1) << __func__ << ": pbkdf2 derivation failed";
       return false;
@@ -335,17 +371,20 @@ bool HDKey::DecodeRawBytesFromV3UTC(const std::string& password,
     VLOG(1) << __func__ << ": invalid ciphertext";
     return false;
   }
+    
+    if (*mac != "") {
+        if (!UTCPasswordVerification(derived_key->key(), ciphertext_bytes, *mac,
+                                     *dklen, usingKeccak))
+          return false;
+    }
 
-  if (!UTCPasswordVerification(derived_key->key(), ciphertext_bytes, *mac,
-                               *dklen, usingKeccak))
-    return false;
 
   const auto* cipher = crypto->FindString("cipher");
   if (!cipher) {
     VLOG(0) << __func__ << ": missing cipher";
     return false;
   }
-  if (*cipher != "aes-128-ctr") {
+  if (*cipher != "aes-128-ctr" && *cipher != "aes-128-cbc") {
     VLOG(0) << __func__
             << ": AES-128-CTR is the minimal requirement of version 3";
     return false;
@@ -363,10 +402,15 @@ bool HDKey::DecodeRawBytesFromV3UTC(const std::string& password,
   }
 
   if (!UTCDecryptRawBytes(derived_key->key(), ciphertext_bytes, iv_bytes,
-                            raw_bytes, *dklen, usingKeccak)) {
+                            raw_bytes, *dklen, usingKeccak, *cipher == "aes-128-ctr")) {
     VLOG(1) << __func__ << ": UTCDecryptRawBytes fail";
     return false;
-  } 
+  }
+    if (*mac == "" && raw_bytes) {
+        if (!UTCDecodeMetamaskMnemonic(raw_bytes)) {
+            return false;
+        }
+    }
   return true;                                        
 }
 
