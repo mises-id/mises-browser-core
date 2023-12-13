@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/webui/side_panel/reading_list/BUILD.gn b/chrome/browser/ui/webui/side_panel/reading_list/BUILD.gn
-index 48d06d40ab74a68b5cd7283d2c891dc4ca23b3ad..6923cb7e9bcd3d9bdf4375494020baf7c13bee84 100644
+index 23d480332b082daded175dd706306725e7131f5c..ab419b7dd2ab657c5e4620abb1967618bdb1c647 100644
 --- a/chrome/browser/ui/webui/side_panel/reading_list/BUILD.gn
 +++ b/chrome/browser/ui/webui/side_panel/reading_list/BUILD.gn
 @@ -4,7 +4,7 @@

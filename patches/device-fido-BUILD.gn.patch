@@ -1,9 +1,9 @@
 diff --git a/device/fido/BUILD.gn b/device/fido/BUILD.gn
-index 760da1eb71e5648fe2fb35343f8fb2c58cb6e811..283100e231e3badca4930229d0ad3458db4766c7 100644
+index a24a8a300dcffdd09478f3ec63e2c31ebf288a0a..60b4db7aa6d04340e36a2fe01e8521b806b7b099 100644
 --- a/device/fido/BUILD.gn
 +++ b/device/fido/BUILD.gn
-@@ -82,7 +82,7 @@ component("fido") {
-   ]
+@@ -88,7 +88,7 @@ component("fido") {
+   configs += [ "//build/config/compiler:wexit_time_destructors" ]
  
    # Android implementation of FIDO is delegated to GMSCore.
 -  if (!is_android) {
@@ -11,7 +11,7 @@ index 760da1eb71e5648fe2fb35343f8fb2c58cb6e811..283100e231e3badca4930229d0ad3458
      sources += [
        "aoa/android_accessory_device.cc",
        "aoa/android_accessory_device.h",
-@@ -214,7 +214,29 @@ component("fido") {
+@@ -233,7 +233,29 @@ component("fido") {
        "//services/network/public/mojom",
      ]
    }

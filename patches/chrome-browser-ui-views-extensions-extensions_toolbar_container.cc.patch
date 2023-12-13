@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/views/extensions/extensions_toolbar_container.cc b/chrome/browser/ui/views/extensions/extensions_toolbar_container.cc
-index 8dd4464a47b6d96f4620846ded0f5b1957e7bf63..4e0351b68f4b524bdfd0e87ba902a694ade3c2fe 100644
+index b23cfc336a2ee6cdd952018bf1eccd72481c3cbe..2aad49ed05133366c907fc1126748fe8ccf6c804 100644
 --- a/chrome/browser/ui/views/extensions/extensions_toolbar_container.cc
 +++ b/chrome/browser/ui/views/extensions/extensions_toolbar_container.cc
-@@ -57,6 +57,9 @@ base::OnceClosure& GetOnVisibleCallbackForTesting() {
+@@ -61,6 +61,9 @@ base::OnceClosure& GetOnVisibleCallbackForTesting() {
  // overlapping with the extension popup. The media picker dialog has been
  // identified to be susceptible. See crbug.com/1300006.
  bool HasPossiblyOverlappingSecurityUI(Browser* browser) {
@@ -12,7 +12,7 @@ index 8dd4464a47b6d96f4620846ded0f5b1957e7bf63..4e0351b68f4b524bdfd0e87ba902a694
    views::ElementTrackerViews::ViewList media_picker_dialogs =
        views::ElementTrackerViews::GetInstance()->GetAllMatchingViews(
            DesktopMediaPickerDialogView::kDesktopMediaPickerDialogViewIdentifier,
-@@ -67,6 +70,7 @@ bool HasPossiblyOverlappingSecurityUI(Browser* browser) {
+@@ -71,6 +74,7 @@ bool HasPossiblyOverlappingSecurityUI(Browser* browser) {
                         views::Widget* dialog_widget = dialog_view->GetWidget();
                         return dialog_widget && dialog_widget->IsVisible();
                       });

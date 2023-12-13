@@ -1,11 +1,11 @@
 diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
-index aee019bdd202e0fb480761e82bd2416ff017e260..9238aa474f5a5a6cb1fa59067a7f449a6a911526 100644
+index b9ae37cfd99ff54ed632d79b6a73d02606c6b9d0..74a30b8280c78675ae94b43656f362128a66faa4 100644
 --- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
 +++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
-@@ -115,7 +115,9 @@ - (void)viewDidLoad {
-   self.view.openNewTabButton.guideName = kNewTabButtonGuide;
+@@ -155,7 +155,9 @@ const CGFloat kFullscreenProgressFullyExpanded = 1.0;
    self.view.forwardButton.guideName = kForwardButtonGuide;
    self.view.backButton.guideName = kBackButtonGuide;
+   self.view.shareButton.guideName = kShareButtonGuide;
 -
 +  self.view.misesButton.guideName = kMisesButtonGuide;
 +  self.view.walletButton.guideName = kWalletButtonGuide;
@@ -13,42 +13,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..9238aa474f5a5a6cb1fa59067a7f449a
    [self addLayoutGuideCenterToButtons];
  
    // Add navigation popup menu triggers.
-@@ -298,6 +300,12 @@ - (void)updateUIForMenuDisplayed:(PopupMenuType)popupType {
-     case PopupMenuTypeTabStripTabGrid:
-       // ignore
-       break;
-+    case PopupMenuTypeMisesMenu:
-+      selectedButton = self.view.misesButton;
-+      break;
-+    case PopupMenuTypeWalletMenu:
-+      selectedButton = self.view.walletButton;
-+      break;
-   }
- 
-   selectedButton.spotlighted = YES;
-@@ -313,6 +321,8 @@ - (void)updateUIForMenuDismissed {
-   self.view.openNewTabButton.spotlighted = NO;
-   self.view.tabGridButton.spotlighted = NO;
-   self.view.toolsMenuButton.spotlighted = NO;
-+  self.view.misesButton.spotlighted = NO;
-+  self.view.walletButton.spotlighted = NO;
- 
-   for (ToolbarButton* button in self.view.allButtons) {
-     button.dimmed = NO;
-@@ -340,6 +350,12 @@ - (void)updateUIForIPHDisplayed:(PopupMenuType)popupType {
-     case PopupMenuTypeTabStripTabGrid:
-       // ignore
-       break;
-+    case PopupMenuTypeMisesMenu:
-+      selectedButton = self.view.misesButton;
-+    break;
-+    case PopupMenuTypeWalletMenu:
-+      selectedButton = self.view.walletButton;
-+    break;
-   }
- 
-   selectedButton.iphHighlighted = YES;
-@@ -351,6 +367,8 @@ - (void)updateUIForIPHDismissed {
+@@ -459,6 +461,8 @@ const CGFloat kFullscreenProgressFullyExpanded = 1.0;
    self.view.openNewTabButton.iphHighlighted = NO;
    self.view.tabGridButton.iphHighlighted = NO;
    self.view.toolsMenuButton.iphHighlighted = NO;
@@ -57,7 +22,7 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..9238aa474f5a5a6cb1fa59067a7f449a
  }
  
  #pragma mark - Private
-@@ -419,6 +437,10 @@ - (IBAction)recordUserMetrics:(id)sender {
+@@ -550,6 +554,10 @@ const CGFloat kFullscreenProgressFullyExpanded = 1.0;
    } else if (sender == self.view.openNewTabButton) {
      base::RecordAction(base::UserMetricsAction("MobileToolbarNewTabShortcut"));
      base::RecordAction(base::UserMetricsAction("MobileTabNewTab"));
@@ -68,25 +33,12 @@ index aee019bdd202e0fb480761e82bd2416ff017e260..9238aa474f5a5a6cb1fa59067a7f449a
    } else {
      NOTREACHED();
    }
-@@ -448,6 +470,12 @@ - (void)handleGestureRecognizer:(UILongPressGestureRecognizer*)gesture {
-     } else if (gesture.view == self.view.toolsMenuButton) {
-       base::RecordAction(base::UserMetricsAction("MobileToolbarShowMenu"));
-       [self.popupMenuCommandsHandler showToolsMenuPopup];
-+    } else if (gesture.view == self.view.misesButton) {
-+      base::RecordAction(base::UserMetricsAction("MobileMisesShowMenu"));
-+      [self.popupMenuCommandsHandler showMisesMenuPopup];
-+    } else if (gesture.view == self.view.walletButton) {
-+      base::RecordAction(base::UserMetricsAction("MobileWalletShowMenu"));
-+      [self.popupMenuCommandsHandler showWalletMenuPopup];
-     }
-     TriggerHapticFeedbackForImpact(UIImpactFeedbackStyleHeavy);
-   } else if (gesture.state == UIGestureRecognizerStateEnded) {
-@@ -502,6 +530,8 @@ - (void)addLayoutGuideCenterToButtons {
-   self.view.openNewTabButton.layoutGuideCenter = self.layoutGuideCenter;
+@@ -590,6 +598,8 @@ const CGFloat kFullscreenProgressFullyExpanded = 1.0;
    self.view.forwardButton.layoutGuideCenter = self.layoutGuideCenter;
    self.view.backButton.layoutGuideCenter = self.layoutGuideCenter;
+   self.view.shareButton.layoutGuideCenter = self.layoutGuideCenter;
 +  self.view.misesButton.layoutGuideCenter = self.layoutGuideCenter;
 +  self.view.walletButton.layoutGuideCenter = self.layoutGuideCenter;
  }
  
- @end
+ // Exits fullscreen.

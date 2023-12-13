@@ -1,8 +1,8 @@
 diff --git a/components/ntp_tiles/most_visited_sites.cc b/components/ntp_tiles/most_visited_sites.cc
-index 762e82011effb46b574b38739eaf986f75f0228f..6fd9756c85d7437003063476bce6dd84ac332907 100644
+index d563f826e473b702cb6e7fa79d8575fee2c02f4d..2f400043c98c2724c6efc0ed05a2cb612b9d12b8 100644
 --- a/components/ntp_tiles/most_visited_sites.cc
 +++ b/components/ntp_tiles/most_visited_sites.cc
-@@ -821,4 +821,16 @@ void MostVisitedSites::AddToHostsAndTotalCount(const NTPTilesVector& new_tiles,
+@@ -817,4 +817,16 @@ void MostVisitedSites::AddToHostsAndTotalCount(const NTPTilesVector& new_tiles,
    DCHECK_LE(*total_tile_count, GetMaxNumSites());
  }
  

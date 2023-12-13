@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
-index e9133168973746836d6d618cc06f73aa602e953f..aeecefb11abbc71c5504c237a5f232b69607b6b5 100644
+index 13fd6a6109749d18c5691f040950954c5b6c5879..c583502fd37b404713a44eaa692fae9589059cdb 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
-@@ -63,6 +63,14 @@ import java.util.ArrayList;
+@@ -62,6 +62,14 @@ import java.util.ArrayList;
  import java.util.Collection;
  import java.util.function.BooleanSupplier;
  
@@ -17,7 +17,7 @@ index e9133168973746836d6d618cc06f73aa602e953f..aeecefb11abbc71c5504c237a5f232b6
  /**
   * The Toolbar object for Tablet screens.
   */
-@@ -92,6 +100,7 @@ public class ToolbarTablet
+@@ -91,6 +99,7 @@ public class ToolbarTablet
      private ImageButton mSaveOfflineButton;
      private ToggleTabStackButton mSwitcherButton;
  
@@ -25,15 +25,15 @@ index e9133168973746836d6d618cc06f73aa602e953f..aeecefb11abbc71c5504c237a5f232b6
      private OnClickListener mBookmarkListener;
  
      private boolean mIsInTabSwitcherMode;
-@@ -171,6 +180,7 @@ public class ToolbarTablet
+@@ -175,6 +184,7 @@ public class ToolbarTablet
          mShouldAnimateButtonVisibilityChange = false;
          mToolbarButtonsVisible = true;
          mToolbarButtons = new ImageButton[] {mBackButton, mForwardButton, mReloadButton};
 +        setupMisesButton();
-     }
  
-     @Override
-@@ -312,6 +322,7 @@ public class ToolbarTablet
+         setTooltipTextForToolbarButtons();
+     }
+@@ -335,6 +345,7 @@ public class ToolbarTablet
  
          mSaveOfflineButton.setOnClickListener(this);
          mSaveOfflineButton.setOnLongClickListener(this);
@@ -41,7 +41,7 @@ index e9133168973746836d6d618cc06f73aa602e953f..aeecefb11abbc71c5504c237a5f232b6
      }
  
      @Override
-@@ -369,6 +380,7 @@ public class ToolbarTablet
+@@ -402,6 +413,7 @@ public class ToolbarTablet
              mOfflineDownloader.downloadPage(getContext(), getToolbarDataProvider().getTab());
              RecordUserAction.record("MobileToolbarDownloadPage");
          }
@@ -49,7 +49,7 @@ index e9133168973746836d6d618cc06f73aa602e953f..aeecefb11abbc71c5504c237a5f232b6
      }
  
      @Override
-@@ -467,6 +479,8 @@ public class ToolbarTablet
+@@ -500,6 +512,8 @@ public class ToolbarTablet
          if (mOptionalButton != null && mOptionalButtonUsesTint) {
              ImageViewCompat.setImageTintList(mOptionalButton, tint);
          }
@@ -58,7 +58,7 @@ index e9133168973746836d6d618cc06f73aa602e953f..aeecefb11abbc71c5504c237a5f232b6
      }
  
      @Override
-@@ -838,4 +852,12 @@ public class ToolbarTablet
+@@ -882,4 +896,12 @@ public class ToolbarTablet
      void setToolbarButtonsVisibleForTesting(boolean value) {
          mToolbarButtonsVisible = value;
      }

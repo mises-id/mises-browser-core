@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/resources/settings/BUILD.gn b/chrome/browser/resources/settings/BUILD.gn
-index ec72da2b743fc5d279fd6d3a548a233dd4fd1e1f..0ab2aa91ad23ce44bda85c2016090fd394d4c808 100644
+index 22fdc428177889b68d4a5ccb15ba1cdd39d4302f..c42bfb0a809e32cebdb481ce651ee13960f17661 100644
 --- a/chrome/browser/resources/settings/BUILD.gn
 +++ b/chrome/browser/resources/settings/BUILD.gn
-@@ -9,7 +9,7 @@ import("//ui/webui/resources/tools/build_webui.gni")
- import("//ui/webui/webui_features.gni")
+@@ -8,7 +8,7 @@ import("//crypto/features.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  import("./settings.gni")
  
 -assert(!is_android, "Android does not use these settings")

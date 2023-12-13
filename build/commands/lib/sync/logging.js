@@ -88,7 +88,9 @@ function logPatchStatus ({ reason, path, patchPath, error, warning }) {
     console.log(chalk.red(`  - Error - ${error.message}`))
     const patchFileName = patchPath.replace(
       "/Users/baoge/Documents/work/mises-browser-core/src/mises/patches/",
-      "")
+      "").replace(
+        "/media/ubuntu/store/code/mises-browser-core/src/mises/patches/",
+        "")
     if (!fs.existsSync('patches/err/'+patchFileName)) {
       fs.copySync('patches/' + patchFileName, 'patches/err/'+patchFileName)
     }

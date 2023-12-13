@@ -1,13 +1,13 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/feedback/HelpAndFeedbackLauncherImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/feedback/HelpAndFeedbackLauncherImpl.java
-index 223815ed97a000ff44b83802036ae10cbbc0e00f..f2b345c3feea3356caec0e7ae6fa26d0f9efd03c 100644
+index cf2e3ae9ed8f2e554d0a7862a94786f5471f8915..533b5fcea220075ee58290263f4384fb10eea5c9 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/feedback/HelpAndFeedbackLauncherImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/feedback/HelpAndFeedbackLauncherImpl.java
-@@ -33,7 +33,7 @@ import javax.annotation.Nonnull;
+@@ -30,7 +30,7 @@ import java.util.Map;
   */
  public class HelpAndFeedbackLauncherImpl implements HelpAndFeedbackLauncher {
      protected static final String FALLBACK_SUPPORT_URL =
 -            "https://support.google.com/chrome/topic/6069782";
 +            "https://www.mises.site/guide";
-     private static final String TAG = "HelpAndFeedback";
  
-     private static HelpAndFeedbackLauncher sInstance;
+     private static ProfileKeyedMap<HelpAndFeedbackLauncher> sProfileToLauncherMap;
+     private final HelpAndFeedbackLauncherDelegate mDelegate;

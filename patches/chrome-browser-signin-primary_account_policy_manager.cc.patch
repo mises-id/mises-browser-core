@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/signin/primary_account_policy_manager.cc b/chrome/browser/signin/primary_account_policy_manager.cc
-index e8d44221bf132ac305dc020a3d80d5c58f86715e..bdd744a5504b9bc2fa7e70b0c26a8ab55ba7a77b 100644
+index 64370293de9d246d6edd81d2437e1d160775eece..8c435d3ad0e6652260bd6bc52607537176384a6b 100644
 --- a/chrome/browser/signin/primary_account_policy_manager.cc
 +++ b/chrome/browser/signin/primary_account_policy_manager.cc
 @@ -304,7 +304,7 @@ void PrimaryAccountPolicyManager::OnUserConfirmedProfileDeletion(

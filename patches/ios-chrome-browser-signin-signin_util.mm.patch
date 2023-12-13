@@ -1,16 +1,16 @@
 diff --git a/ios/chrome/browser/signin/signin_util.mm b/ios/chrome/browser/signin/signin_util.mm
-index 0a6152007a65193338750061360e52e9bb746a97..2f1da4af3b0fee5a5c555dfb40269aa18e9f0e77 100644
+index 3cfab9037943f2ab6cedb3bc8e5c2baa5e84d6e8..871b3be202586efcb444c7a38b8463c9db509e39 100644
 --- a/ios/chrome/browser/signin/signin_util.mm
 +++ b/ios/chrome/browser/signin/signin_util.mm
-@@ -17,6 +17,7 @@
+@@ -18,6 +18,7 @@
  #import "ios/chrome/browser/signin/signin_util_internal.h"
  #import "ios/chrome/browser/signin/system_identity.h"
  #import "ios/public/provider/chrome/browser/signin/signin_error_api.h"
 +#include "base/threading/thread_restrictions.h"
  
- #if !defined(__has_feature) || !__has_feature(objc_arc)
- #error "This file requires ARC support."
-@@ -101,6 +102,7 @@ CGSize GetSizeForIdentityAvatarSize(IdentityAvatarSize avatar_size) {
+ namespace {
+ 
+@@ -97,6 +98,7 @@ signin::Tribool IsFirstSessionAfterDeviceRestore() {
        signin::Tribool::kUnknown;
    static dispatch_once_t once;
    dispatch_once(&once, ^{

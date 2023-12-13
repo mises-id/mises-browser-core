@@ -1,10 +1,10 @@
 diff --git a/components/media_router/common/BUILD.gn b/components/media_router/common/BUILD.gn
-index aab022aefc38005bc314017d6c0eeabdae90f5ae..ab13a7d8cc1f1eafd2095331fdb8a315650baedd 100644
+index 2241640103bab3568415e976413313b28014a51b..c16af7946f54f98855eea9f82aac30b4abf12fdd 100644
 --- a/components/media_router/common/BUILD.gn
 +++ b/components/media_router/common/BUILD.gn
-@@ -38,7 +38,7 @@ static_library("common") {
-     "//third_party/blink/public:blink_headers",
-   ]
+@@ -40,7 +40,7 @@ static_library("common") {
+ 
+   configs += [ "//build/config/compiler:wexit_time_destructors" ]
  
 -  if (!is_android) {
 +  if (true || !is_android) {

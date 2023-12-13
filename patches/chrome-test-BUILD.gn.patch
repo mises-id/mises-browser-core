@@ -1,25 +1,25 @@
 diff --git a/chrome/test/BUILD.gn b/chrome/test/BUILD.gn
-index 9bd4a7f817389a1e6256b0570864ab5de5f541fb..5bb49e5c71816298ef7977c79a25f7995589397d 100644
+index d1fc184a7d8cffec6b247cab7933d54d38ac59dc..e5ca3cc0e4033dc4d4b19f9fdf2c453c4ac5ca7d 100644
 --- a/chrome/test/BUILD.gn
 +++ b/chrome/test/BUILD.gn
-@@ -392,6 +392,7 @@ static_library("test_support") {
-     "//ui/gl",
+@@ -478,6 +478,7 @@ static_library("test_support") {
    ]
  
+   data = []
 +  import("//mises/chromium_src/chrome/test/sources.gni") deps += mises_chromium_src_chrome_test_test_support_deps sources += mises_chromium_src_chrome_test_test_support_sources
    data_deps = []
  
    if (enable_pdf) {
-@@ -7252,7 +7253,7 @@ test("unit_tests") {
-       "//chrome/browser/resource_coordinator:intervention_policy_database_proto",
+@@ -8073,7 +8074,7 @@ test("unit_tests") {
+       "//chrome/browser/new_tab_page/modules/history_clusters/discount:mojo_bindings",
        "//chrome/browser/resource_coordinator:tab_manager_features",
        "//chrome/browser/resources:component_extension_resources_grit",
 -      "//chrome/browser/resources/new_tab_page_instant:resources_grit",
 +      "//mises/browser/resources/new_tab_page_instant:resources_grit",
        "//chrome/browser/share/core/crow:crow_configuration_unittest",
        "//chrome/browser/support_tool:support_tool_proto",
-       "//chrome/browser/ui/color:color_headers",
-@@ -8202,6 +8203,10 @@ test("unit_tests") {
+       "//chrome/browser/ui/actions:unit_tests",
+@@ -9065,6 +9066,10 @@ test("unit_tests") {
        "//tools/json_schema_compiler/test:unit_tests",
      ]
  

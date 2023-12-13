@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/cells/popup_menu_tools_item.mm b/ios/chrome/browser/ui/popup_menu/cells/popup_menu_tools_item.mm
-index 82cc22ea25089a9b054fb009660d4b2980897cd6..fbd92e7e598b215262a24a4370f673321de91900 100644
+index 052c5b38e9e2a67ecf9f07e839849a6655ab8066..f1dc893f90f1bfe088ba8a3f4e9c06c0ce04972c 100644
 --- a/ios/chrome/browser/ui/popup_menu/cells/popup_menu_tools_item.mm
 +++ b/ios/chrome/browser/ui/popup_menu/cells/popup_menu_tools_item.mm
-@@ -252,7 +252,7 @@ - (void)setDestructiveAction:(BOOL)destructiveAction {
+@@ -248,7 +248,7 @@ NSString* const kToolsMenuTextBadgeAccessibilityIdentifier =
  - (UIColor*)contentColor {
    if (self.destructiveAction)
      return [UIColor colorNamed:kRedColor];

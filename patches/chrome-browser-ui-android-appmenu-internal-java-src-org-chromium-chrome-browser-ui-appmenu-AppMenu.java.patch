@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
-index fbbc57577be59a8bc7cd4045b622331214237600..85f351c455297974de6580a9413e1263bf1b70bb 100644
+index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..ca3b81e2f08d4025411ceb4d05ae70304b44cbf8 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
 @@ -32,6 +32,14 @@ import android.widget.ListView;
@@ -47,7 +47,7 @@ index fbbc57577be59a8bc7cd4045b622331214237600..85f351c455297974de6580a9413e1263
  /**
   * Shows a popup of menuitems anchored to a host view. When a item is selected we call
   * AppMenuHandlerImpl.AppMenuDelegate.onOptionsItemSelected with the appropriate MenuItem.
-@@ -221,6 +252,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -220,6 +251,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
                      isMenuIconAtStart ? R.style.StartIconMenuAnim : R.style.EndIconMenuAnim);
          }
  
@@ -56,14 +56,9 @@ index fbbc57577be59a8bc7cd4045b622331214237600..85f351c455297974de6580a9413e1263
          // Turn off window animations for low end devices.
          if (SysUtils.isLowEndDevice()) mPopup.setAnimationStyle(0);
  
-@@ -293,13 +326,13 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
-                 popupHeight, anchorView.getRootView().getLayoutDirection());
+@@ -311,8 +344,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          mPopup.setContentView(contentView);
  
--        if (popupHeight + popupPosition[1] > visibleDisplayFrame.bottom) {
--            mPopup.setHeight(visibleDisplayFrame.height());
--        }
--
          try {
 +        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) && Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
 +            mPopup.showAsDropDown(anchorView.getRootView(), popupPosition[0], popupPosition[1]);
@@ -74,7 +69,7 @@ index fbbc57577be59a8bc7cd4045b622331214237600..85f351c455297974de6580a9413e1263
          } catch (WindowManager.BadTokenException e) {
              // Intentionally ignore BadTokenException. This can happen in a real edge case where
              // parent.getWindowToken is not valid. See http://crbug.com/826052 &
-@@ -322,7 +355,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -335,7 +372,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          }
  
          // Don't animate the menu items for low end devices.
@@ -84,17 +79,7 @@ index fbbc57577be59a8bc7cd4045b622331214237600..85f351c455297974de6580a9413e1263
              mListView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                  @Override
                  public void onLayoutChange(View v, int left, int top, int right, int bottom,
-@@ -528,7 +562,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
-         int anchorViewImpactHeight = mIsByPermanentButton ? anchorView.getHeight() : 0;
- 
-         // Set appDimensions.height() for abnormal anchorViewLocation.
--        if (anchorViewY > screenHeight) {
-+        boolean mises_enforce = true;
-+	if (anchorViewY > screenHeight || mises_enforce) {
-             anchorViewY = appDimensions.height();
-         }
-         int availableScreenSpace = Math.max(
-@@ -551,6 +586,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -569,6 +607,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          int menuHeight = calculateHeightForItems(
                  menuItemIds, heightList, groupDividerResourceId, availableScreenSpace);
          menuHeight += footerHeight + headerHeight + padding.top + padding.bottom;
@@ -105,5 +90,5 @@ index fbbc57577be59a8bc7cd4045b622331214237600..85f351c455297974de6580a9413e1263
 +              menuHeight = (int) (menuHeight / 1.45);
 +        }
          mPopup.setHeight(menuHeight);
-         return menuHeight;
      }
+ 

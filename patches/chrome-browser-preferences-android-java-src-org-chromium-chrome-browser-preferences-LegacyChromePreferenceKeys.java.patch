@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
-index 90c2c91f5f03cafa37bf066b82f2b4c0b3358967..d68b9f3c0811137e8e7501db916200822dd25418 100644
+index 63920eb18ed7cfadbd4d59e85b2d6350050eef81..20582cc3e7202885dc305e034c42f5c8684d4c4f 100644
 --- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
 +++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/LegacyChromePreferenceKeys.java
-@@ -141,6 +141,9 @@ public class LegacyChromePreferenceKeys {
+@@ -135,6 +135,9 @@ public class LegacyChromePreferenceKeys {
                  ChromePreferenceKeys.UI_THEME_SETTING,
                  ChromePreferenceKeys.VERIFIED_DIGITAL_ASSET_LINKS,
                  ChromePreferenceKeys.WEBAPK_UNINSTALLED_PACKAGES,
@@ -11,4 +11,4 @@ index 90c2c91f5f03cafa37bf066b82f2b4c0b3358967..d68b9f3c0811137e8e7501db91620082
 +                ChromePreferenceKeys.MISES_FIRST_RUN,
                  ChromePreferenceKeys.KEY_ZERO_SUGGEST_LIST_SIZE
          );
-         // clang-format on
+     }

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/web_applications/diagnostics/BUILD.gn b/chrome/browser/ui/web_applications/diagnostics/BUILD.gn
-index 34f39f2d9670a237407a171d465cb4725ddd2b93..7dc50e6d9a72c8db3422856f761f4a9ceedf5377 100644
+index bcf19eb320b8d4e7d8f08190558fb40cc4a6650a..8aba3dd6df77f31249b1538d41686bcc3c280934 100644
 --- a/chrome/browser/ui/web_applications/diagnostics/BUILD.gn
 +++ b/chrome/browser/ui/web_applications/diagnostics/BUILD.gn
-@@ -28,4 +28,7 @@ source_set("app_service_browser_tests") {
+@@ -30,4 +30,7 @@ source_set("app_service_browser_tests") {
        "//chromeos/lacros:test_support",
      ]
    }

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/extensions/toggle_row.ts b/chrome/browser/resources/extensions/toggle_row.ts
-index fb5d34ec07a2a9843a9b461d4bdb3adf1de6fc74..d66a5e644c955d2d77d2441551f3e9c3a5969b9f 100644
+index 5276e6bc387d1c35ed45b09094375dfbd25c2c19..fdb863da848b37c11cfe9968c68bb2c84fc348ce 100644
 --- a/chrome/browser/resources/extensions/toggle_row.ts
 +++ b/chrome/browser/resources/extensions/toggle_row.ts
 @@ -30,6 +30,23 @@ export class ExtensionsToggleRowElement extends PolymerElement {

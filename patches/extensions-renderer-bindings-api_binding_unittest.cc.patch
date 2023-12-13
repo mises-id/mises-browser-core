@@ -1,5 +1,5 @@
 diff --git a/extensions/renderer/bindings/api_binding_unittest.cc b/extensions/renderer/bindings/api_binding_unittest.cc
-index 6360b35727306d4e976ea198684af6a7e2d8b351..b67ca561a52ce93846adca03cb01812441fc7534 100644
+index 3dc5a8919c0112eac616bc833def1b7fdb11f9f4..afe66481c1e3e7cc3c843003d21308781d446350 100644
 --- a/extensions/renderer/bindings/api_binding_unittest.cc
 +++ b/extensions/renderer/bindings/api_binding_unittest.cc
 @@ -777,9 +777,11 @@ TEST_F(APIBindingUnittest, TestProperties) {

@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/profiles/profile_window.h b/chrome/browser/profiles/profile_window.h
-index c5e30665b1571c0c5d848dc7838485112ffe28ba..8f3a9e7f1deffe8a35e9f3ea87232f5dc9d04be2 100644
+index 27d26281f00ec789394a6e9b66dfa252bdac8a05..9152be41443411e941d196cbf48f07e6beb804ad 100644
 --- a/chrome/browser/profiles/profile_window.h
 +++ b/chrome/browser/profiles/profile_window.h
 @@ -13,7 +13,7 @@
- #include "chrome/browser/ui/profile_chooser_constants.h"
+ #include "chrome/browser/ui/browser_window.h"
  #include "chrome/browser/ui/startup/startup_types.h"
  
 -#if BUILDFLAG(IS_ANDROID)

@@ -1,5 +1,5 @@
 diff --git a/chrome/renderer/extensions/api/app_hooks_delegate.cc b/chrome/renderer/extensions/api/app_hooks_delegate.cc
-index fe4ea590cd939ea136beaa6bfc10ea7d47a20000..8fc5693f0b4794104e5e90b90d2b88a49ab8accc 100644
+index 994ad46258121b92a7c9305b9f41bf625b36b266..d75f38645e07544e204ac5d1d589dfc7453cc1bf 100644
 --- a/chrome/renderer/extensions/api/app_hooks_delegate.cc
 +++ b/chrome/renderer/extensions/api/app_hooks_delegate.cc
 @@ -133,6 +133,8 @@ void AppHooksDelegate::InitializeTemplate(

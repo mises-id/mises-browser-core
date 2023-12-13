@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
-index 84356e537d84b4d0e598f71ca49acd634d591d9b..254b6f3c604fbd1fe011d8ac9b1bcbdb70a3e39d 100644
+index 66e47ed1f5b880aaffd3901ba036ea2264b9dc88..820c944a6649e1e2dd589371e39b5d2d33ac66ed 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
-@@ -35,6 +35,11 @@ import org.chromium.components.browser_ui.styles.SemanticColorUtils;
+@@ -33,6 +33,11 @@ import org.chromium.components.browser_ui.styles.SemanticColorUtils;
  import org.chromium.ui.UiUtils;
  import org.chromium.ui.util.ColorUtils;
  
@@ -14,19 +14,7 @@ index 84356e537d84b4d0e598f71ca49acd634d591d9b..254b6f3c604fbd1fe011d8ac9b1bcbdb
  /**
   * Controls the bottom system navigation bar color for the provided {@link Window}.
   */
-@@ -166,8 +171,9 @@ class TabbedNavigationBarColorController {
-     @SuppressLint("NewApi")
-     private void updateNavigationBarColor() {
-         boolean forceDarkNavigation;
--        if (DeviceClassManager.enableAccessibilityLayout(mRootView.getContext())
--                || TabUiFeatureUtilities.isGridTabSwitcherEnabled(mRootView.getContext())) {
-+        boolean mises_enforce = true;
-+	if (DeviceClassManager.enableAccessibilityLayout(mRootView.getContext())
-+                || TabUiFeatureUtilities.isGridTabSwitcherEnabled(mRootView.getContext()) || mises_enforce) {
-             forceDarkNavigation = mTabModelSelector.isIncognitoSelected();
-         } else {
-             boolean overviewVisible = mLayoutManager != null
-@@ -179,6 +185,11 @@ class TabbedNavigationBarColorController {
+@@ -167,6 +172,11 @@ class TabbedNavigationBarColorController {
          forceDarkNavigation &= !UiUtils.isSystemUiThemingDisabled();
          forceDarkNavigation |= mIsInFullscreen;
  
@@ -38,7 +26,7 @@ index 84356e537d84b4d0e598f71ca49acd634d591d9b..254b6f3c604fbd1fe011d8ac9b1bcbdb
          mForceDarkNavigationBarColor = forceDarkNavigation;
          final @ColorInt int navigationBarColor =
                  getNavigationBarColor(mForceDarkNavigationBarColor);
-@@ -199,6 +210,8 @@ class TabbedNavigationBarColorController {
+@@ -187,6 +197,8 @@ class TabbedNavigationBarColorController {
              mWindow.setNavigationBarDividerColor(
                      getNavigationBarDividerColor(mForceDarkNavigationBarColor));
          }
@@ -47,7 +35,7 @@ index 84356e537d84b4d0e598f71ca49acd634d591d9b..254b6f3c604fbd1fe011d8ac9b1bcbdb
      }
  
      /**
-@@ -207,12 +220,19 @@ class TabbedNavigationBarColorController {
+@@ -195,12 +207,19 @@ class TabbedNavigationBarColorController {
       */
      public void setNavigationBarScrimFraction(float fraction) {
          mNavigationBarScrimFraction = fraction;
@@ -67,7 +55,7 @@ index 84356e537d84b4d0e598f71ca49acd634d591d9b..254b6f3c604fbd1fe011d8ac9b1bcbdb
  
          // Adjust the color of navigation bar icons based on color state of the navigation bar.
          if (MathUtils.areFloatsEqual(1f, fraction)) {
-@@ -223,12 +243,16 @@ class TabbedNavigationBarColorController {
+@@ -211,12 +230,16 @@ class TabbedNavigationBarColorController {
      }
  
      private @ColorInt int getNavigationBarColor(boolean forceDarkNavigationBar) {

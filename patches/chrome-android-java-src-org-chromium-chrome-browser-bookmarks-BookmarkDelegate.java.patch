@@ -1,14 +1,14 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkDelegate.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkDelegate.java
-index e9af53ce50300f9d34ddccaf226c73a3aa59f360..f1c4530056018c5d85870ea5d565d6bd9efaeccb 100644
+index cf198756074615ecafaf234b7c3bda8f28b0d8dd..6fe2cc5ea9e86374f74bbb0867ec73d001b1ec8c 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkDelegate.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkDelegate.java
-@@ -80,6 +80,9 @@ public interface BookmarkDelegate {
+@@ -77,6 +77,9 @@ public interface BookmarkDelegate {
       */
-     void closeSearchUI();
+     BookmarkModel getModel();
  
 +    void importBookmarks();
 +    void exportBookmarks();
 +
      /**
-      * Add an observer to bookmark UI changes.
-      */
+      * Returns current mode of bookmark main UI. If no mode is stored, {@link
+      * BookmarkUiMode.LOADING} is returned.

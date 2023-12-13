@@ -1,21 +1,8 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
-index abaa76033029bc100248a9bce5fe91515e3a9f5e..cf09121f0d0a9884b2b5733b060275ca8024ded9 100644
+index e36a37b6b16e9a46f2421a680264d4964be46a81..b3ddaa3f4848d6b84e383baf4a581430c9094aac 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
-@@ -47,10 +47,12 @@ public class ThemeSettingsFragment
-                 (RadioButtonGroupThemePreference) findPreference(PREF_UI_THEME_PREF);
-         mWebContentsDarkModeEnabled =
-                 WebContentsDarkModeController.isGlobalUserSettingsEnabled(mProfile);
-+        mWebContentsDarkModeEnabled = false;
-         radioButtonGroupThemePreference.initialize(
-                 NightModeUtils.getThemeSetting(), mWebContentsDarkModeEnabled);
- 
-         radioButtonGroupThemePreference.setOnPreferenceChangeListener((preference, newValue) -> {
-+            if (false)
-             if (ChromeFeatureList.isEnabled(
-                         ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
-                 if (radioButtonGroupThemePreference.isDarkenWebsitesEnabled()
-@@ -63,6 +65,7 @@ public class ThemeSettingsFragment
+@@ -61,6 +61,7 @@ public class ThemeSettingsFragment
              }
              int theme = (int) newValue;
              sharedPreferencesManager.writeInt(UI_THEME_SETTING, theme);
@@ -23,11 +10,3 @@ index abaa76033029bc100248a9bce5fe91515e3a9f5e..cf09121f0d0a9884b2b5733b060275ca
              return true;
          });
  
-@@ -76,6 +79,7 @@ public class ThemeSettingsFragment
-                     getArguments().getInt(KEY_THEME_SETTINGS_ENTRY));
-         }
- 
-+        if (false)
-         if (ChromeFeatureList.isEnabled(
-                     ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
-             WebContentsDarkModeMessageController.notifyEventSettingsOpened(mProfile);

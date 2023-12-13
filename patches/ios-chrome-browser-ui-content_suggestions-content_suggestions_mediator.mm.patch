@@ -1,18 +1,18 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4fad32b785 100644
+index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee0e58c82e 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-@@ -73,6 +73,9 @@
+@@ -121,6 +121,9 @@
  #import "third_party/abseil-cpp/absl/types/optional.h"
  #import "ui/base/l10n/l10n_util_mac.h"
  
 +#import "mises/ios/browser/ui/content_suggestions/cells/content_suggestions_mises_item.h"
 +#import "mises/ios/browser/ui/content_suggestions/cells/content_suggestions_mises_box_item.h"
 +
- #if !defined(__has_feature) || !__has_feature(objc_arc)
- #error "This file requires ARC support."
- #endif
-@@ -84,7 +87,9 @@
+ namespace {
+ 
+ using credential_provider_promo::IOSCredentialProviderPromoAction;
+@@ -132,7 +135,9 @@ constexpr base::TimeDelta kSafetyCheckRunThreshold = base::Hours(24);
  
  // Maximum number of most visited tiles fetched.
  const NSInteger kMaxNumMostVisitedTiles = 4;
@@ -20,22 +20,22 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4f
 +static NSData* gWeb3SitesCache = nil;
 +NSString * const kHideMisesService = @"hide_mises_service";
 +NSString * const kHideWeb3Site = @"hide_web3_site";
- }  // namespace
- 
- @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
-@@ -95,6 +100,9 @@ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
-   std::unique_ptr<StartSuggestServiceResponseBridge>
-       _startSuggestServiceResponseBridge;
-   StartSuggestService* _startSuggestService;
+ // Checks the last action the user took on the Credential Provider Promo to
+ // determine if it was dismissed.
+ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -160,6 +165,9 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+   std::unique_ptr<ReadingListModelBridge> _readingListModelBridge;
+   std::unique_ptr<synced_sessions::SyncedSessionsObserverBridge>
+       _syncedSessionsObserver;
 +
 +  BOOL _misesWeb3Visible;
 +  BOOL _misesFeatureVisible;
  }
  
  // Whether the contents section should be hidden completely.
-@@ -155,6 +163,16 @@ @interface ContentSuggestionsMediator () <MostVisitedSitesObserving,
- @property(nonatomic, strong)
-     NSMutableArray<QuerySuggestionConfig*>* trendingQueries;
+@@ -223,6 +231,16 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+ // For testing-only
+ @property(nonatomic, assign) BOOL hasReceivedMagicStackResponse;
  
 +@property(nonatomic, strong)
 +    NSArray<ContentSuggestionsMostVisitedItem*>* misesWeb3siteItems;
@@ -49,8 +49,8 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4f
 +    ContentSuggestionsSectionInformation* misesWeb3siteSectionInfo;
  @end
  
- @implementation ContentSuggestionsMediator
-@@ -181,6 +199,7 @@ @implementation ContentSuggestionsMediator
+ @implementation ContentSuggestionsMediator {
+@@ -293,6 +311,7 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
      _faviconMediator = [[ContentSuggestionsFaviconMediator alloc]
          initWithLargeIconService:largeIconService
                    largeIconCache:largeIconCache];
@@ -58,9 +58,9 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4f
  
      _logoSectionInfo = LogoSectionInformation();
      _mostVisitedSectionInfo = MostVisitedSectionInformation();
-@@ -203,6 +222,14 @@ @implementation ContentSuggestionsMediator
-       _startSuggestServiceResponseBridge =
-           std::make_unique<StartSuggestServiceResponseBridge>(self);
+@@ -400,6 +419,14 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+         safetyCheckManager->StartSafetyCheck();
+       }
      }
 +      
 +    _misesSectionInfo = MisesSectionInformation();
@@ -71,31 +71,33 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4f
 +    _misesFeatureVisible = ![[NSUserDefaults standardUserDefaults] boolForKey:kHideMisesService];
 +    [self fetchWeb3site];
    }
-   return self;
- }
-@@ -221,6 +248,7 @@ - (void)refreshMostVisitedTiles {
-   // Refresh in case there are new MVT to show.
-   _mostVisitedSites->RefreshTiles();
-   _mostVisitedSites->Refresh();
-+  
- }
  
- - (void)reloadAllData {
-@@ -231,9 +259,10 @@ - (void)reloadAllData {
+   return self;
+@@ -1017,9 +1044,10 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
      [self.consumer
          showReturnToRecentTabTileWithConfig:self.returnToRecentTabItem];
    }
--  if ([self.mostVisitedItems count] && ![self shouldHideMVTForTileAblation]) {
+-  if ([self.mostVisitedItems count]) {
 -    [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
-+  if (([self.mostVisitedItems count] || [self.misesWeb3siteItems count]) && ![self shouldHideMVTForTileAblation]) {
++  if (([self.mostVisitedItems count] || [self.misesWeb3siteItems count])) {
 +      [self setTiles];
    }
 +    
-   if (!ShouldHideShortcutsForTrendingQueries() &&
-       ![self shouldHideShortcutsForTileAblation]) {
-     [self.consumer setShortcutTilesWithConfigs:self.actionButtonItems];
-@@ -526,6 +555,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
-       return;
+   if ([self shouldShowSetUpList]) {
+     self.setUpList.delegate = self;
+     NSArray<SetUpListItemViewData*>* items = [self setUpListItems];
+@@ -1100,7 +1128,8 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+   }
+ 
+   self.mostVisitedItems = self.freshMostVisitedItems;
+-  [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
++  self.misesWeb3siteItems = self.freshMisesWeb3siteItems;
++  [self setTiles];
+   [self.delegate contentSuggestionsWasUpdated];
+ }
+ 
+@@ -1409,6 +1438,12 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+       }
      }
    }
 +  for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
@@ -106,35 +108,8 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4f
 +  }
  }
  
- #pragma mark - Private
-@@ -535,10 +570,25 @@ - (void)useFreshMostVisited {
-   if ([self shouldHideMVTForTileAblation]) {
-     return;
-   }
-+  
-   self.mostVisitedItems = self.freshMostVisitedItems;
--  [self.consumer setMostVisitedTilesWithConfigs:self.mostVisitedItems];
-+  self.misesWeb3siteItems = self.freshMisesWeb3siteItems;
-+
-+  [self setTiles];
-   [self.feedDelegate contentSuggestionsWasUpdated];
- }
-+- (void) setTiles {
-+    NSMutableArray * array = [[NSMutableArray alloc] init];
-+    for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
-+        if (_misesFeatureVisible && (item.itemType == ITEM_TYPE_MISES_FEATURE)) {
-+            [array addObject:item];
-+        }
-+        if (_misesWeb3Visible && (item.itemType == ITEM_TYPE_WEB3_SITE)) {
-+            [array addObject:item];
-+        }
-+    }
-+  [self.consumer setMostVisitedTilesWithConfigs:[array arrayByAddingObjectsFromArray:self.mostVisitedItems]];
-+}
- 
- // Opens the `URL` in a new tab `incognito` or not. `originPoint` is the origin
- // of the new tab animation if the tab is opened in background, in window
-@@ -752,6 +802,9 @@ - (void)setCommandHandler:
+ // Adds the Safety Check module to `order` based on the current Safety Check
+@@ -1726,6 +1761,9 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
    for (ContentSuggestionsMostVisitedItem* item in self.freshMostVisitedItems) {
      item.commandHandler = commandHandler;
    }
@@ -143,8 +118,8 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4f
 +    }
  }
  
- - (BOOL)contentSuggestionsEnabled {
-@@ -773,4 +826,130 @@ - (void)readingListModelDidApplyChanges:(const ReadingListModel*)model {
+ - (void)setContentSuggestionsMetricsRecorder:
+@@ -1881,4 +1919,143 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
    }
  }
  
@@ -272,6 +247,19 @@ index d15bb3edeca99cb36dcdd6bc941383ba1ea67f9f..a7b539aaacc99b5349623b139ba60d4f
 +    [[NSUserDefaults standardUserDefaults] setBool:!_misesFeatureVisible forKey:kHideMisesService];
 +    [self reloadAllData];
 +
++}
++
++- (void) setTiles {
++    NSMutableArray * array = [[NSMutableArray alloc] init];
++    for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
++        if (_misesFeatureVisible && (item.itemType == ITEM_TYPE_MISES_FEATURE)) {
++            [array addObject:item];
++        }
++        if (_misesWeb3Visible && (item.itemType == ITEM_TYPE_WEB3_SITE)) {
++            [array addObject:item];
++        }
++    }
++  [self.consumer setMostVisitedTilesWithConfigs:[array arrayByAddingObjectsFromArray:self.mostVisitedItems]];
 +}
 +
  @end

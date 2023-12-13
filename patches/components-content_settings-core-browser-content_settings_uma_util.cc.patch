@@ -1,0 +1,12 @@
+diff --git a/components/content_settings/core/browser/content_settings_uma_util.cc b/components/content_settings/core/browser/content_settings_uma_util.cc
+index a625c71f0ee7676bbad7021f6a408ce71ea8d8f8..df0f69f2bd772117aa501154d99746db55a6363b 100644
+--- a/components/content_settings/core/browser/content_settings_uma_util.cc
++++ b/components/content_settings/core/browser/content_settings_uma_util.cc
+@@ -124,6 +124,7 @@ constexpr auto kHistogramValue = base::MakeFixedFlatMap<ContentSettingsType,
+ 
+     // As mentioned at the top, please don't forget to update ContentType in
+     // enums.xml when you add entries here!
++    MISES_HISTOGRAM_VALUE_LIST
+ });
+ 
+ constexpr int kkHistogramValueMax =

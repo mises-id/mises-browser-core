@@ -1,20 +1,20 @@
 diff --git a/chrome/browser/ui/webui/settings/site_settings_helper.cc b/chrome/browser/ui/webui/settings/site_settings_helper.cc
-index a51f51e4914fd2b5bb47b65d9c0bcdd76f89537c..83e5983a4e59bfe8cda588b77eb4037962720f4f 100644
+index c0cc4dbb11a40639c7ad700672ae195d573aafae..41baded8960b7365066f89c68904f4e268e0a862 100644
 --- a/chrome/browser/ui/webui/settings/site_settings_helper.cc
 +++ b/chrome/browser/ui/webui/settings/site_settings_helper.cc
-@@ -184,6 +184,7 @@ const ContentSettingsTypeNameEntry kContentSettingsTypeGroupNames[] = {
-     {ContentSettingsType::FEDERATED_IDENTITY_AUTO_REAUTHN_PERMISSION, nullptr},
-     {ContentSettingsType::FEDERATED_IDENTITY_IDENTITY_PROVIDER_REGISTRATION,
-      nullptr},
+@@ -204,6 +204,7 @@ const ContentSettingsTypeNameEntry kContentSettingsTypeGroupNames[] = {
+     // for the integration with Safety Hub.
+     {ContentSettingsType::FILE_SYSTEM_ACCESS_EXTENDED_PERMISSION, nullptr},
+     {ContentSettingsType::TPCD_HEURISTICS_GRANTS, nullptr},
 +    MISES_CONTENT_SETTINGS_TYPE_GROUP_NAMES_LIST
  };
  
  static_assert(std::size(kContentSettingsTypeGroupNames) ==
-@@ -372,6 +373,7 @@ bool HasRegisteredGroupName(ContentSettingsType type) {
+@@ -469,6 +470,7 @@ bool HasRegisteredGroupName(ContentSettingsType type) {
  }
  
  ContentSettingsType ContentSettingsTypeFromGroupName(base::StringPiece name) {
 +  MISES_SITE_SETTINGS_HELPER_CONTENT_SETTINGS_TYPE_FROM_GROUP_NAME
-   for (size_t i = 0; i < std::size(kContentSettingsTypeGroupNames); ++i) {
-     if (name == kContentSettingsTypeGroupNames[i].name)
-       return kContentSettingsTypeGroupNames[i].type;
+   for (const auto& entry : kContentSettingsTypeGroupNames) {
+     // Content setting types that aren't represented in the settings UI
+     // will have `nullptr` as their `name`. However, converting `nullptr`

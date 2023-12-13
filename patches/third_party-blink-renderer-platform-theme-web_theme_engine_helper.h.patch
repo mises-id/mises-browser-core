@@ -1,11 +1,11 @@
 diff --git a/third_party/blink/renderer/platform/theme/web_theme_engine_helper.h b/third_party/blink/renderer/platform/theme/web_theme_engine_helper.h
-index 39936541a1c79cea6c90e77d6a126df05323dc2c..a497bdc5b2587772c5dcba2a73c2fec2b7d53d45 100644
+index e097028ec6f098ab2cb068e53d4f95485ea6e51f..a2d9bbdf0e0ce58ad96ae5916ea0aee69df26401 100644
 --- a/third_party/blink/renderer/platform/theme/web_theme_engine_helper.h
 +++ b/third_party/blink/renderer/platform/theme/web_theme_engine_helper.h
-@@ -20,6 +20,8 @@ class WebThemeEngineHelper {
-   // Swaps the current theme engine out returning the old one.
-   PLATFORM_EXPORT static std::unique_ptr<WebThemeEngine>
-   SwapNativeThemeEngineForTesting(std::unique_ptr<WebThemeEngine> new_theme);
+@@ -24,6 +24,8 @@ class PLATFORM_EXPORT WebThemeEngineHelper {
+   // This is here instead of WebThemeEngineAndroid because we also need it for
+   // DevTools device emulation.
+   static const WebThemeEngine::ScrollbarStyle& AndroidScrollbarStyle();
 +  PLATFORM_EXPORT static bool GlobalForceDarkModeEnabled();
 +  PLATFORM_EXPORT static void SetGlobalForceDarkModeEnabled(bool enable);
  };

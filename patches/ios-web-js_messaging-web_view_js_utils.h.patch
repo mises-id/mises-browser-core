@@ -1,10 +1,10 @@
 diff --git a/ios/web/js_messaging/web_view_js_utils.h b/ios/web/js_messaging/web_view_js_utils.h
-index 0f7d195c2a2cc771ca76b75e058278913b4ca571..d1ce8a085b0ba4474c3a1b111a64fd667b0f596f 100644
+index 23c821851e219740b4dfeffb5d2836844c9f96c1..bfad221af44d7778baf254cab672315c3d0de976 100644
 --- a/ios/web/js_messaging/web_view_js_utils.h
 +++ b/ios/web/js_messaging/web_view_js_utils.h
-@@ -35,6 +35,8 @@ enum JSEvaluationErrorCode {
- // Converts result of WKWebView script evaluation to base::Value.
- std::unique_ptr<base::Value> ValueResultFromWKResult(id result);
+@@ -38,6 +38,8 @@ std::unique_ptr<base::Value> ValueResultFromWKResult(id result);
+ // Converts base::Value to an equivalent Foundation object.
+ id NSObjectFromValueResult(const base::Value* value_result);
  
 +id NSObjectFromValueResult(const base::Value* value_result);
 +

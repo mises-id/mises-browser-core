@@ -1,8 +1,8 @@
 diff --git a/chrome/installer/util/BUILD.gn b/chrome/installer/util/BUILD.gn
-index 681a7c062e80679f3114fc84bc4ccf95b6f21f42..54f2d7db3845f981d790fec6a7b225dd157ecf24 100644
+index 0a814271e98c39e75704026e091e1e8b9e66ae41..c267668a7b2b662b602524bbd8939143d2aa5494 100644
 --- a/chrome/installer/util/BUILD.gn
 +++ b/chrome/installer/util/BUILD.gn
-@@ -206,6 +206,7 @@ static_library("with_no_strings") {
+@@ -197,6 +197,7 @@ static_library("with_no_strings") {
        "initial_preferences.h",
      ]
    }

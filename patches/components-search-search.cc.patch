@@ -1,5 +1,5 @@
 diff --git a/components/search/search.cc b/components/search/search.cc
-index fec11508c12e07dca3af9969ab2e57d1f83410c3..8482a1ef25fd3a069c87791e659136dc31ec993f 100644
+index a7167fae92de59a58aa4770073c8b06e87ae8c76..8d8432e3c5376c774f22d1e7efbc1bf2e022c611 100644
 --- a/components/search/search.cc
 +++ b/components/search/search.cc
 @@ -13,7 +13,7 @@

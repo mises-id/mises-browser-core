@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/webauthn/chrome_authenticator_request_delegate.h b/chrome/browser/webauthn/chrome_authenticator_request_delegate.h
-index 42419f2fe8e2f86a4c32d24470b45ecac1e1c1b4..6ef72c60f09f4c815bf7fe8c626bfc281e67921a 100644
+index 66ad83acd785c8b96f2b6963633f7540ff188437..99391cd93fab4f0b7e073dc438e6abc34f8ba826 100644
 --- a/chrome/browser/webauthn/chrome_authenticator_request_delegate.h
 +++ b/chrome/browser/webauthn/chrome_authenticator_request_delegate.h
 @@ -58,7 +58,7 @@ class ChromeWebAuthenticationDelegate

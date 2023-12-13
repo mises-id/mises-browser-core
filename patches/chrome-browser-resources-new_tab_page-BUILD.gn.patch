@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/new_tab_page/BUILD.gn b/chrome/browser/resources/new_tab_page/BUILD.gn
-index 445a8a6e7a95798709cc7563da237dee56efd34a..2741bf1b4e1e0c0c0087eda9c2b90eab81bf56fb 100644
+index db4708a51c522cffe34634ddc1f7c1a6a96cbc89..08d5dbe396f2b7f3e45af0b1035b05bf42792488 100644
 --- a/chrome/browser/resources/new_tab_page/BUILD.gn
 +++ b/chrome/browser/resources/new_tab_page/BUILD.gn
-@@ -8,7 +8,7 @@ import("./new_tab_page.gni")
+@@ -7,7 +7,7 @@ import("./new_tab_page.gni")
  
  import("//ui/webui/resources/tools/build_webui.gni")
  

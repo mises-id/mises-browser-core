@@ -1,8 +1,8 @@
 diff --git a/extensions/common/mojom/renderer.mojom b/extensions/common/mojom/renderer.mojom
-index 65e86110efa9366ea86533e9a94157e5df34904f..4a82364724ed01b9818b13110073ed21cc8222a3 100644
+index 41a387edb72e28debe34abc69df9c9c26da19ce1..08290c51ecb4df640c167a8b291518a76850fa3b 100644
 --- a/extensions/common/mojom/renderer.mojom
 +++ b/extensions/common/mojom/renderer.mojom
-@@ -85,6 +85,7 @@ interface Renderer {
+@@ -97,6 +97,7 @@ interface Renderer {
  
    // Informs the renderer whether or not the developer mode is enabled.
    SetDeveloperMode(bool developer_mode_only);

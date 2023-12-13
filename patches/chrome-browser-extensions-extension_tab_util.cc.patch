@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/extension_tab_util.cc b/chrome/browser/extensions/extension_tab_util.cc
-index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123caad3d9225 100644
+index f54eb8da49ef2142f26b43b109527daed158f2d0..51004cad401b88b2238587419213f1d349b885d4 100644
 --- a/chrome/browser/extensions/extension_tab_util.cc
 +++ b/chrome/browser/extensions/extension_tab_util.cc
-@@ -167,8 +167,10 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
+@@ -215,8 +215,10 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
    std::string error;
    Browser* browser = GetBrowserFromWindowID(chrome_details, window_id, &error);
    if (!browser) {
@@ -13,7 +13,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
  
      browser = CreateAndShowBrowser(profile, user_gesture, &error);
      if (!browser)
-@@ -261,18 +263,32 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
+@@ -304,18 +306,32 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
    navigate_params.tabstrip_index = index;
    navigate_params.user_gesture = false;
    navigate_params.tabstrip_add_types = add_types;
@@ -46,7 +46,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
    // The tab may have been created in a different window, so make sure we look
    // at the right tab strip.
    TabStripModel* tab_strip = navigate_params.browser->tab_strip_model();
-@@ -284,6 +300,7 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
+@@ -327,6 +343,7 @@ base::expected<base::Value::Dict, std::string> ExtensionTabUtil::OpenTab(
      if (tab_strip->GetIndexOfWebContents(opener) != TabStripModel::kNoTab)
        tab_strip->SetOpenerOfWebContentsAt(new_index, opener);
    }
@@ -54,7 +54,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
  
    if (active)
      navigate_params.navigated_or_inserted_contents->SetInitialFocus();
-@@ -388,8 +405,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
+@@ -441,8 +458,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
      const Extension* extension,
      TabStripModel* tab_strip,
      int tab_index) {
@@ -65,7 +65,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
    api::tabs::Tab tab_object;
    tab_object.id = GetTabIdForExtensions(contents);
    tab_object.index = tab_index;
-@@ -459,6 +478,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
+@@ -513,6 +532,10 @@ api::tabs::Tab ExtensionTabUtil::CreateTabObject(
      }
    }
  
@@ -76,7 +76,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
    ScrubTabForExtension(extension, contents, &tab_object, scrub_tab_behavior);
    return tab_object;
  }
-@@ -467,6 +490,7 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
+@@ -521,6 +544,7 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
                                                    const Extension* extension,
                                                    Feature::Context context) {
    base::Value::List tab_list;
@@ -84,7 +84,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
    TabStripModel* tab_strip = browser->tab_strip_model();
    for (int i = 0; i < tab_strip->count(); ++i) {
      WebContents* web_contents = tab_strip->GetWebContentsAt(i);
-@@ -476,6 +500,9 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
+@@ -530,6 +554,9 @@ base::Value::List ExtensionTabUtil::CreateTabList(const Browser* browser,
                                      tab_strip, i)
                          .ToValue());
    }
@@ -94,7 +94,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
  
    return tab_list;
  }
-@@ -690,6 +717,12 @@ bool ExtensionTabUtil::GetTabById(int tab_id,
+@@ -753,6 +780,12 @@ bool ExtensionTabUtil::GetTabById(int tab_id,
        }
      }
    }
@@ -107,7 +107,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
    return false;
  }
  
-@@ -900,6 +933,7 @@ bool ExtensionTabUtil::OpenOptionsPage(const Extension* extension,
+@@ -1000,6 +1033,7 @@ bool ExtensionTabUtil::OpenOptionsPage(const Extension* extension,
    // running in split mode, because it won't be able to save settings from OTR.
    // This version of OpenOptionsPage() can be called from an OTR window via e.g.
    // the action menu, since that's not initiated by the extension.
@@ -115,7 +115,7 @@ index c8c47f57ebed6498beeb93c89ee2eeaade2659d0..26402b0978f01e9dd1da3d49321123ca
    std::unique_ptr<chrome::ScopedTabbedBrowserDisplayer> displayer;
    if (browser->profile()->IsOffTheRecord() &&
        !IncognitoInfo::IsSplitMode(extension)) {
-@@ -907,6 +941,7 @@ bool ExtensionTabUtil::OpenOptionsPage(const Extension* extension,
+@@ -1007,6 +1041,7 @@ bool ExtensionTabUtil::OpenOptionsPage(const Extension* extension,
          browser->profile()->GetOriginalProfile());
      browser = displayer->browser();
    }

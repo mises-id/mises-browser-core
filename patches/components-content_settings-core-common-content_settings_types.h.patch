@@ -1,10 +1,10 @@
 diff --git a/components/content_settings/core/common/content_settings_types.h b/components/content_settings/core/common/content_settings_types.h
-index 17c5e6aafb7047867306b8a9e9e715effdbb7c5b..03f6e203d8126b5fd43c1542b90ac64af37a7dd2 100644
+index 0a38dcddaf2b0bf50c3c2926b2e5dc29d5bae451..1a4742fefedbdb0a8a8d6b02f0c7b62692d2eaa0 100644
 --- a/components/content_settings/core/common/content_settings_types.h
 +++ b/components/content_settings/core/common/content_settings_types.h
-@@ -323,6 +323,8 @@ enum class ContentSettingsType : int32_t {
-   // should be enabled.
-   ANTI_ABUSE,
+@@ -369,6 +369,8 @@ enum class ContentSettingsType : int32_t {
+   // heuristics.
+   TPCD_HEURISTICS_GRANTS,
  
 +  MISES_ETHEREUM,
 +  MISES_SOLANA,

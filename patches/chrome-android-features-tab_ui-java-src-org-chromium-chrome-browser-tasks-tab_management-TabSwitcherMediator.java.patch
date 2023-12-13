@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherMediator.java
-index df98be4d6d26200815cf5612c85ad6c2020ead8f..317ff056efae1da2028721b908178e51e1fcd81a 100644
+index 7ea24aa1bd7b8245136af864432fb0927fa0bac3..3725b37a364aae7e51240f343415454ad40423a7 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherMediator.java
-@@ -72,6 +72,7 @@ import org.chromium.components.browser_ui.widget.gesture.BackPressHandler;
+@@ -74,6 +74,7 @@ import org.chromium.components.browser_ui.widget.gesture.BackPressHandler;
  import org.chromium.ui.base.DeviceFormFactor;
  import org.chromium.ui.modelutil.PropertyModel;
  
@@ -10,7 +10,7 @@ index df98be4d6d26200815cf5612c85ad6c2020ead8f..317ff056efae1da2028721b908178e51
  import java.util.List;
  
  /**
-@@ -299,6 +300,11 @@ class TabSwitcherMediator implements TabSwitcher.Controller, TabListRecyclerView
+@@ -311,6 +312,11 @@ class TabSwitcherMediator implements TabSwitcher.Controller, TabListRecyclerView
          mTabModelSelector = tabModelSelector;
          mBrowserControlsStateProvider = browserControlsStateProvider;
          mMultiWindowModeStateDispatcher = multiWindowModeStateDispatcher;

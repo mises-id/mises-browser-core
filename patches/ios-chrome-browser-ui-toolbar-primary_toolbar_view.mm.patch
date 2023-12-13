@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
-index f52774216acaa8f5f1c83a86e3102b63f1deac1a..c7f9f1adb80635414ec8814b1224eb632693cfbe 100644
+index 104f17725edc5842819fc7b897173bdde761306b..805feec6e8776f930591e4786a42a88269c0ec7c 100644
 --- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
 +++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
-@@ -88,6 +88,9 @@ @interface PrimaryToolbarView ()
+@@ -87,6 +87,9 @@
  @property(nonatomic, strong, readwrite)
      NSMutableArray<NSLayoutConstraint*>* contractedNoMarginConstraints;
  
@@ -12,7 +12,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..c7f9f1adb80635414ec8814b1224eb63
  @end
  
  @implementation PrimaryToolbarView
-@@ -118,6 +121,9 @@ @implementation PrimaryToolbarView
+@@ -116,6 +119,9 @@
  @synthesize contractedNoMarginConstraints = _contractedNoMarginConstraints;
  @synthesize contentView = _contentView;
  
@@ -22,7 +22,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..c7f9f1adb80635414ec8814b1224eb63
  #pragma mark - Public
  
  - (instancetype)initWithButtonFactory:(ToolbarButtonFactory*)factory {
-@@ -215,6 +221,7 @@ - (void)setUpLocationBar {
+@@ -218,6 +224,7 @@
  
  // Sets the leading stack view.
  - (void)setUpLeadingStackView {
@@ -30,7 +30,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..c7f9f1adb80635414ec8814b1224eb63
    self.backButton = [self.buttonFactory backButton];
    self.forwardButton = [self.buttonFactory forwardButton];
    self.stopButton = [self.buttonFactory stopButton];
-@@ -222,7 +229,7 @@ - (void)setUpLeadingStackView {
+@@ -225,7 +232,7 @@
    self.reloadButton = [self.buttonFactory reloadButton];
  
    self.leadingStackViewButtons = @[
@@ -39,7 +39,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..c7f9f1adb80635414ec8814b1224eb63
    ];
    self.leadingStackView = [[UIStackView alloc]
        initWithArrangedSubviews:self.leadingStackViewButtons];
-@@ -238,11 +245,12 @@ - (void)setUpLeadingStackView {
+@@ -241,11 +248,12 @@
  // Sets the trailing stack view.
  - (void)setUpTrailingStackView {
    self.shareButton = [self.buttonFactory shareButton];
@@ -53,7 +53,7 @@ index f52774216acaa8f5f1c83a86e3102b63f1deac1a..c7f9f1adb80635414ec8814b1224eb63
  
    self.trailingStackView = [[UIStackView alloc]
        initWithArrangedSubviews:self.trailingStackViewButtons];
-@@ -429,4 +437,23 @@ - (ToolbarButton*)openNewTabButton {
+@@ -431,4 +439,23 @@
    return nil;
  }
  

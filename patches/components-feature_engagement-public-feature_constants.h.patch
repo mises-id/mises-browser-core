@@ -1,8 +1,8 @@
 diff --git a/components/feature_engagement/public/feature_constants.h b/components/feature_engagement/public/feature_constants.h
-index 3ef6833a916b10eaa096778126183d119e910b81..fcc0adb2b7219c502e0212e11f9530bc828716c3 100644
+index f1b77563ce93e82ad13dfd67fa2bb660201d237d..2a8f4e857f61ad5d22114199391c2554f8b85c43 100644
 --- a/components/feature_engagement/public/feature_constants.h
 +++ b/components/feature_engagement/public/feature_constants.h
-@@ -21,7 +21,7 @@ BASE_DECLARE_FEATURE(kUseClientConfigIPH);
+@@ -23,7 +23,7 @@ BASE_DECLARE_FEATURE(kUseClientConfigIPH);
  // A feature to ensure all arrays can contain at least one feature.
  BASE_DECLARE_FEATURE(kIPHDummyFeature);
  
@@ -10,4 +10,4 @@ index 3ef6833a916b10eaa096778126183d119e910b81..fcc0adb2b7219c502e0212e11f9530bc
 +#if true || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
      BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
  BASE_DECLARE_FEATURE(kIPHBatterySaverModeFeature);
- BASE_DECLARE_FEATURE(kIPHDesktopSharedHighlightingFeature);
+ BASE_DECLARE_FEATURE(kIPHCompanionSidePanelFeature);

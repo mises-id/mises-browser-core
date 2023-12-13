@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/extensions/toolbar.ts b/chrome/browser/resources/extensions/toolbar.ts
-index 69bbef643fd349b841537b6b8771e1a40f6ebdee..8b326d2781794751f49245dc19a9657d5be1ba31 100644
+index 5aeeef76f868bf6c849e10fc50de5d06b44cbc9c..420ee55c50bea554f27799b2263383c9f8de7b43 100644
 --- a/chrome/browser/resources/extensions/toolbar.ts
 +++ b/chrome/browser/resources/extensions/toolbar.ts
-@@ -65,7 +65,7 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+@@ -67,7 +67,7 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
  
        inDevMode: {
          type: Boolean,
@@ -11,7 +11,7 @@ index 69bbef643fd349b841537b6b8771e1a40f6ebdee..8b326d2781794751f49245dc19a9657d
          observer: 'onInDevModeChanged_',
          reflectToAttribute: true,
        },
-@@ -174,6 +174,10 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+@@ -190,6 +190,10 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
      chrome.metricsPrivate.recordUserAction('Options_LoadUnpackedExtension');
    }
  
@@ -19,6 +19,6 @@ index 69bbef643fd349b841537b6b8771e1a40f6ebdee..8b326d2781794751f49245dc19a9657d
 +    window.open("https://chrome.google.com/webstore/category/extensions");
 +  }
 +
-   private onPackTap_() {
+   private onPackClick_() {
      chrome.metricsPrivate.recordUserAction('Options_PackExtension');
      this.showPackDialog_ = true;

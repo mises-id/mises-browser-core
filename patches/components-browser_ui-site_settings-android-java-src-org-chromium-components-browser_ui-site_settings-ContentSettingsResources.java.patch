@@ -1,5 +1,5 @@
 diff --git a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/ContentSettingsResources.java b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/ContentSettingsResources.java
-index c7c0f24116fa1697b96c71df8b89effc366f7a1c..9a8a5baa96403b135380048b22252558645df1a3 100644
+index a5b338430e3d9aa868203a8a58ba76f8ecc78b53..d579c00d26a5516adc74173f14490157481f48ab 100644
 --- a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/ContentSettingsResources.java
 +++ b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/ContentSettingsResources.java
 @@ -363,7 +363,7 @@ public class ContentSettingsResources {

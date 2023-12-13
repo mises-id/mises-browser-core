@@ -1,13 +1,12 @@
 diff --git a/components/policy/resources/templates/policy_definitions/Extensions/ChromeAppsWebViewPermissiveBehaviorAllowed.yaml b/components/policy/resources/templates/policy_definitions/Extensions/ChromeAppsWebViewPermissiveBehaviorAllowed.yaml
-index fcc339978c9e8d919096cbe04731f07c939f8e3e..25bcee1a6ffd64f56d045bbd8beb9e72a37cc1ca 100644
+index 7b4b2068318b96baac7427f7e5ff55d959b75ae4..2ca263f8f3b9fa7cd52b211731ab8e027d2c3645 100644
 --- a/components/policy/resources/templates/policy_definitions/Extensions/ChromeAppsWebViewPermissiveBehaviorAllowed.yaml
 +++ b/components/policy/resources/templates/policy_definitions/Extensions/ChromeAppsWebViewPermissiveBehaviorAllowed.yaml
-@@ -39,6 +39,8 @@ desc: |-
- # is enabled by default, launch this policy, and specify the timeline in the
- # description.
- # On ChromeOS, this policy should reach an LTS release before being removed.
-+supported_on:
+@@ -34,6 +34,7 @@ desc: |-
+ # but until_version doesn't allow future versions. In M122, set the
+ # until_version and remove the supporting code.
+ supported_on:
 +- android:111-
- future_on:
- - chrome.*
- - chrome_os
+ - chrome.*:113-
+ - chrome_os:113-
+ - fuchsia:113-

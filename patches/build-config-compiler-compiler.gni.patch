@@ -1,5 +1,5 @@
 diff --git a/build/config/compiler/compiler.gni b/build/config/compiler/compiler.gni
-index 4738ee80d307cc9eee52b03912e388ee13c1552a..20f8d41867cfd12fd77ee8b720bd0b434ec7ab63 100644
+index b1d92979ce77b08594bd995fc751ba2cd09f4496..79053257c8440f7ea75e016155bb22efd311db4b 100644
 --- a/build/config/compiler/compiler.gni
 +++ b/build/config/compiler/compiler.gni
 @@ -238,7 +238,7 @@ can_unwind_with_cfi_table = is_android && !is_component_build &&

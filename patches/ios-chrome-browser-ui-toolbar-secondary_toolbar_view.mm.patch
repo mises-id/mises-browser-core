@@ -1,19 +1,19 @@
 diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
-index 1908561664e074c35cf74710ce577230d016aabc..877459039fa93e1dfdc4f20d69449e8767b09409 100644
+index 6fbb2621b96a7a4943c662501a1120e28704bf93..3a47789752575a57f95ee16d34ca7894ce20aaaa 100644
 --- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
 +++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
-@@ -48,6 +48,9 @@ @interface SecondaryToolbarView ()<ToolbarCollapsing>
- // Button to create a new tab, redefined as readwrite.
- @property(nonatomic, strong, readwrite) ToolbarButton* openNewTabButton;
+@@ -85,6 +85,9 @@ UIView* SecondaryToolbarLocationBarContainerView(
+ // redefined as readwrite.
+ @property(nonatomic, strong, readwrite) UIButton* collapsedToolbarButton;
  
 +@property(nonatomic, strong, readwrite) ToolbarButton* misesButton;
 +@property(nonatomic, strong, readwrite) ToolbarButton* walletButton;
 +
  @end
  
- @implementation SecondaryToolbarView
-@@ -61,6 +64,9 @@ @implementation SecondaryToolbarView
- @synthesize openNewTabButton = _openNewTabButton;
+ @implementation SecondaryToolbarView {
+@@ -110,6 +113,9 @@ UIView* SecondaryToolbarLocationBarContainerView(
+ @synthesize toolsMenuButton = _toolsMenuButton;
  @synthesize tabGridButton = _tabGridButton;
  
 +@synthesize misesButton = _misesButton;
@@ -22,7 +22,7 @@ index 1908561664e074c35cf74710ce577230d016aabc..877459039fa93e1dfdc4f20d69449e87
  #pragma mark - Public
  
  - (instancetype)initWithButtonFactory:(ToolbarButtonFactory*)factory {
-@@ -100,6 +106,9 @@ - (void)setUp {
+@@ -166,6 +172,9 @@ UIView* SecondaryToolbarLocationBarContainerView(
    self.openNewTabButton = [self.buttonFactory openNewTabButton];
    self.tabGridButton = [self.buttonFactory tabGridButton];
    self.toolsMenuButton = [self.buttonFactory toolsMenuButton];
@@ -32,7 +32,7 @@ index 1908561664e074c35cf74710ce577230d016aabc..877459039fa93e1dfdc4f20d69449e87
  
    // Move the tools menu button such as it looks visually balanced with the
    // button on the other side of the toolbar.
-@@ -108,8 +117,8 @@ - (void)setUp {
+@@ -174,8 +183,8 @@ UIView* SecondaryToolbarLocationBarContainerView(
        CGAffineTransformMakeTranslation(textDirection * kToolsMenuOffset, 0);
  
    self.allButtons = @[
@@ -42,9 +42,9 @@ index 1908561664e074c35cf74710ce577230d016aabc..877459039fa93e1dfdc4f20d69449e87
 +    self.tabGridButton, self.walletButton, self.toolsMenuButton
    ];
  
-   self.separator = [[UIView alloc] init];
-@@ -173,4 +182,22 @@ - (CGFloat)collapsedToolbarHeight {
-   return 0.0;
+   // Separator.
+@@ -348,4 +357,22 @@ UIView* SecondaryToolbarLocationBarContainerView(
+   }
  }
  
 +

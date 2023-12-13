@@ -6,7 +6,7 @@ gclient_gn_args = [
 ]
 
 vars = {
-  'mises_rust_version': '"1.67.0"',
+  'mises_rust_version': '"1.74.0"',
   'download_prebuilt_sparkle': True,
 }
 
@@ -46,36 +46,36 @@ hooks = [
     'condition': 'checkout_mac and download_prebuilt_sparkle',
     'action': ['vpython3', 'build/mac/download_sparkle.py', '1.24.2'],
   },
-  {
-    'name': 'download_rust_deps',
-    'pattern': '.',
-    'condition': 'checkout_android',
-    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'android'],
-  },
-  {
-    'name': 'download_rust_deps',
-    'pattern': '.',
-    'condition': 'checkout_ios',
-    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'ios'],
-  },
-  {
-    'name': 'download_rust_deps',
-    'pattern': '.',
-    'condition': 'checkout_win',
-    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'win32'],
-  },
-  {
-    'name': 'download_rust_deps',
-    'pattern': '.',
-    'condition': 'checkout_mac',
-    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'darwin'],
-  },
-  {
-    'name': 'download_rust_deps',
-    'pattern': '.',
-    'condition': 'checkout_linux',
-    'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'linux'],
-  },
+  # {
+  #   'name': 'download_rust_deps',
+  #   'pattern': '.',
+  #   'condition': 'checkout_android',
+  #   'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'android'],
+  # },
+  # {
+  #   'name': 'download_rust_deps',
+  #   'pattern': '.',
+  #   'condition': 'checkout_ios',
+  #   'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'ios'],
+  # },
+  # {
+  #   'name': 'download_rust_deps',
+  #   'pattern': '.',
+  #   'condition': 'checkout_win',
+  #   'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'win32'],
+  # },
+  # {
+  #   'name': 'download_rust_deps',
+  #   'pattern': '.',
+  #   'condition': 'checkout_mac',
+  #   'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'darwin'],
+  # },
+  # {
+  #   'name': 'download_rust_deps',
+  #   'pattern': '.',
+  #   'condition': 'checkout_linux',
+  #   'action': ['vpython3', 'script/download_rust_deps.py', Var('mises_rust_version'), 'linux'],
+  # },
   # {
   #   # Install Web Discovery Project dependencies for Windows, Linux, and macOS
   #   'name': 'web_discovery_project_npm_deps',

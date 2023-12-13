@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/access_code_cast/BUILD.gn b/chrome/browser/resources/access_code_cast/BUILD.gn
-index 479a3a70d3abe16b0de5f62864107b3137fe6574..b00f13a90c4e33033a576da80c6ad45653982a21 100644
+index d2ca20a2b0a479edd6813ce8b88fc30ec0a507e7..77af20d2170ddaeeaa82ea502f50caf25aaf68eb 100644
 --- a/chrome/browser/resources/access_code_cast/BUILD.gn
 +++ b/chrome/browser/resources/access_code_cast/BUILD.gn
 @@ -4,7 +4,7 @@

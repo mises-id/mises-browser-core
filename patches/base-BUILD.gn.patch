@@ -1,12 +1,12 @@
 diff --git a/base/BUILD.gn b/base/BUILD.gn
-index 422702cb196c5fa05d089af2789e90360fe5b006..2cf4a7a60d24bc93ec70fe8f2c01482d0acbaf91 100644
+index 24f2397278ccb400a47e065a676be5ae783fa2e6..b92f563c49f91b61ca79032e0a5401c27aa92112 100644
 --- a/base/BUILD.gn
 +++ b/base/BUILD.gn
-@@ -4253,6 +4253,7 @@ if (is_android) {
-       "android/java/src/org/chromium/base/task/TaskTraits.java",
-       "android/java/src/org/chromium/base/task/TaskTraitsExtensionDescriptor.java",
+@@ -4229,6 +4229,7 @@ if (is_android || is_robolectric) {
+       "android/java/src/org/chromium/base/task/PostTask.java",
+       "android/java/src/org/chromium/base/task/TaskRunnerImpl.java",
      ]
 +    sources += mises_java_base_sources
  
-     if (!is_cronet_build) {
-       sources += [ "android/java/src/org/chromium/base/IntentUtils.java" ]
+     if (use_clang_profiling) {
+       sources += [

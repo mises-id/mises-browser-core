@@ -1,17 +1,17 @@
 diff --git a/chrome/test/base/testing_browser_process.cc b/chrome/test/base/testing_browser_process.cc
-index 721a50361c9214acd3a71cce820f2eae144e006b..7418de74168026da04975eca5fa9f6b232086ea1 100644
+index 697c77782cf46c7da6c7c3fab2287c632043ba1b..94472d4cfcc6e65a826d3da58722c8dce55fb45a 100644
 --- a/chrome/test/base/testing_browser_process.cc
 +++ b/chrome/test/base/testing_browser_process.cc
-@@ -62,7 +62,7 @@
+@@ -70,7 +70,7 @@
  #include "chrome/browser/printing/print_preview_dialog_controller.h"
  #endif
  
 -#if !BUILDFLAG(IS_ANDROID)
 +#if !BUILDFLAG(IS_ANDROID) || true
- #include "chrome/browser/hid/hid_policy_allowed_devices.h"
  #if BUILDFLAG(IS_CHROMEOS)
  #include "chrome/browser/hid/hid_pinned_notification.h"
-@@ -329,7 +329,7 @@ TestingBrowserProcess::notification_platform_bridge() {
+ #include "chrome/browser/usb/usb_pinned_notification.h"
+@@ -379,7 +379,7 @@ TestingBrowserProcess::notification_platform_bridge() {
    return notification_platform_bridge_.get();
  }
  
@@ -20,7 +20,7 @@ index 721a50361c9214acd3a71cce820f2eae144e006b..7418de74168026da04975eca5fa9f6b2
  IntranetRedirectDetector* TestingBrowserProcess::intranet_redirect_detector() {
    return nullptr;
  }
-@@ -435,7 +435,7 @@ TestingBrowserProcess::network_time_tracker() {
+@@ -485,7 +485,7 @@ TestingBrowserProcess::network_time_tracker() {
    return network_time_tracker_.get();
  }
  
@@ -29,7 +29,7 @@ index 721a50361c9214acd3a71cce820f2eae144e006b..7418de74168026da04975eca5fa9f6b2
  gcm::GCMDriver* TestingBrowserProcess::gcm_driver() {
    return nullptr;
  }
-@@ -450,7 +450,7 @@ TestingBrowserProcess::resource_coordinator_parts() {
+@@ -500,7 +500,7 @@ TestingBrowserProcess::resource_coordinator_parts() {
    return resource_coordinator_parts_.get();
  }
  

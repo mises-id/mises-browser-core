@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
-index 16abb3d669cc7c447c6a2b9b1a30b6143de318b2..ac863106bbfa6c467e7c55578ce874297336a56c 100644
+index f224a9925990f9529b0463a87c6370ff3232d90b..d5ece0e62129df9c43beeb242bbeaea315a4004d 100644
 --- a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
 +++ b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
-@@ -40,6 +40,9 @@ public class ThemeUtils {
+@@ -39,6 +39,9 @@ public class ThemeUtils {
       */
      public static int getBackgroundColor(Tab tab) {
          if (tab.isNativePage()) return tab.getNativePage().getBackgroundColor();

@@ -1,51 +1,19 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/overflow_menu/overflow_menu_mediator.mm b/ios/chrome/browser/ui/popup_menu/overflow_menu/overflow_menu_mediator.mm
-index 0c6914c6f182ed7f6b927c7e35b6326f114b7004..4ceee50e3120772ba7b9efee04ecd84b3643149a 100644
+index 11a2a1fc95c707180965bfc4adeb9ae845426fd7..6012bf2fef233eb320783ab6625b26cc1cef08ac 100644
 --- a/ios/chrome/browser/ui/popup_menu/overflow_menu/overflow_menu_mediator.mm
 +++ b/ios/chrome/browser/ui/popup_menu/overflow_menu/overflow_menu_mediator.mm
-@@ -83,6 +83,9 @@
+@@ -96,6 +96,9 @@
  #import "ui/base/l10n/l10n_util.h"
  #import "ui/base/l10n/l10n_util_mac.h"
  
 +#import "mises/ios/third_party/mises/mises_utils.h"
 +#import "components/grit/mises_components_strings.h"
 +
- #if !defined(__has_feature) || !__has_feature(objc_arc)
- #error "This file requires ARC support."
- #endif
-@@ -251,6 +254,9 @@ @interface OverflowMenuMediator () <BookmarkModelBridgeObserver,
- @property(nonatomic, strong) OverflowMenuAction* helpAction;
- @property(nonatomic, strong) OverflowMenuAction* shareChromeAction;
- 
-+//@property(nonatomic, strong) OverflowMenuActionGroup* extensionActionsGroup;
-+//@property(nonatomic, strong) OverflowMenuAction* misesAction;
-+
- @end
- 
- @implementation OverflowMenuMediator
-@@ -965,10 +971,21 @@ - (OverflowMenuModel*)createModel {
-                                                  actions:@[]
-                                                   footer:nil];
- 
-+//  self.misesAction = CreateOverflowMenuAction(
-+//      IDS_IOS_OPTIONS_MISES, @"popup_menu_mises_wallet", kToolsMenuMisesId, ^{
-+//        [weakSelf openMises];
-+//      });
-+//    self.extensionActionsGroup =
-+//        [[OverflowMenuActionGroup alloc] initWithGroupName:@"extension_actions"
-+//                                                   actions:@[
-+//                                                    self.misesAction,
-+//                                                   ]
-+//                                                    footer:nil];
-   // Destinations and footer vary based on state, so they're set in
-   // -updateModel.
-   return [[OverflowMenuModel alloc] initWithDestinations:@[]
-                                             actionGroups:@[
-+                                              //self.extensionActionsGroup,
-                                               self.appActionsGroup,
-                                               self.pageActionsGroup,
-                                               self.helpActionsGroup,
-@@ -1958,4 +1975,10 @@ - (void)openSpotlightDebugger {
-   [self.dispatcher showSpotlightDebugger];
+ using base::RecordAction;
+ using base::UmaHistogramEnumeration;
+ using base::UserMetricsAction;
+@@ -2225,4 +2228,10 @@ OverflowMenuFooter* CreateOverflowMenuManagedFooter(
+                                      actionSubtitle:subtitle];
  }
  
 +- (void)openMises {

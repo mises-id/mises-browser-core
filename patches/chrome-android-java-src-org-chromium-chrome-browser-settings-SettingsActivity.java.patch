@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/settings/SettingsActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/settings/SettingsActivity.java
-index 1154b5fe61c814baa6b26173c6abb42e92825363..d6f94e6eee9bea5293ecf7e9f6b5b51517f227cd 100644
+index eda23c4e91e9d5a685d47f3036bdca4e05919c4a..2924a85eb33ca94d6e2c428f34227dd20360d7cc 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/settings/SettingsActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/settings/SettingsActivity.java
-@@ -367,6 +367,9 @@ public class SettingsActivity extends ChromeBaseAppCompatActivity
+@@ -408,6 +408,9 @@ public class SettingsActivity extends ChromeBaseAppCompatActivity
  
      @Override
      public boolean onCreateOptionsMenu(Menu menu) {

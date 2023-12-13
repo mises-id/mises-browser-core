@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/menu_button/MenuButtonCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/menu_button/MenuButtonCoordinator.java
-index ba0d02ba3dbb645cb67f93c35d77ba901ffa57d4..a0a9ad1af697b77233341ef92091e0f30846159c 100644
+index 1aae770439750337618ac014f2ea91bedf2cc48d..9615246ce42b9a0167f151a65715312c0c3b6568 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/menu_button/MenuButtonCoordinator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/menu_button/MenuButtonCoordinator.java
-@@ -247,4 +247,7 @@ public class MenuButtonCoordinator {
+@@ -258,4 +258,7 @@ public class MenuButtonCoordinator {
      public boolean isShowingUpdateBadge() {
          return mPropertyModel.get(MenuButtonProperties.SHOW_UPDATE_BADGE).mShowUpdateBadge;
      }

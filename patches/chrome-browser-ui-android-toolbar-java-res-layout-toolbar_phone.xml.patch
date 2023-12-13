@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
-index 5206cf656362017f258b7843c4522eb8a302fbdd..74b2b977d8ef80e3a0ebbcc4b046aa4cb9a9d291 100644
+index 10becbd14aa99ec5f67e97e07cb591d5eb823cb1..1378ca97517b909746a8ac27f17f107ca07d4afe 100644
 --- a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
 +++ b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
 @@ -26,6 +26,16 @@ found in the LICENSE file.
@@ -19,11 +19,10 @@ index 5206cf656362017f258b7843c4522eb8a302fbdd..74b2b977d8ef80e3a0ebbcc4b046aa4c
      <org.chromium.chrome.browser.omnibox.LocationBarPhone
          android:id="@+id/location_bar"
          android:layout_width="match_parent"
-@@ -49,10 +59,25 @@ found in the LICENSE file.
-             android:visibility="gone"
+@@ -50,11 +60,26 @@ found in the LICENSE file.
              android:layout_width="52dp"
-             style="@style/ToolbarButton" />
-+
+             style="@style/ToolbarHoverableButton" />
+ 
 +        <org.chromium.chrome.browser.toolbar.top.HandButton
 +            android:id="@+id/hand_button"
 +            style="@style/ToolbarButton"
@@ -38,10 +37,12 @@ index 5206cf656362017f258b7843c4522eb8a302fbdd..74b2b977d8ef80e3a0ebbcc4b046aa4c
 +            app:tint="@color/default_icon_color_tint_list"
 +            android:contentDescription="@null" />
 +
++
          <org.chromium.chrome.browser.toolbar.top.ToggleTabStackButton
              android:id="@+id/tab_switcher_button"
              style="@style/ToolbarButton"
--            android:paddingStart="8dp"
+             android:background="@drawable/toolbar_tab_switcher_button_ripple"
+-            android:paddingStart="@dimen/toolbar_tab_switcher_button_padding"
 +            android:paddingStart="0dp"
              android:layout_gravity="top"
              android:contentDescription="@string/accessibility_toolbar_btn_tabswitcher_toggle_default"

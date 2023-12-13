@@ -1,9 +1,9 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
-index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..5ccf3ef67da0ab958f2ba215bb90a274826c13f9 100644
+index a7e9dce8b910c5d579e6cdeefd9d4f31aeddf099..9f0cbe47192f01f617e6ffbdb6be465a6d726d7d 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_favicon_mediator.mm
-@@ -16,6 +16,14 @@
- #import "ios/chrome/browser/ui/ntp/metrics/metrics.h"
+@@ -17,6 +17,14 @@
+ #import "ios/chrome/browser/ui/favicon/favicon_attributes_with_payload.h"
  #import "ui/gfx/image/image.h"
  
 +#include "components/image_fetcher/core/image_fetcher_impl.h"
@@ -14,19 +14,19 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..5ccf3ef67da0ab958f2ba215bb90a274
 +#include "services/network/public/cpp/shared_url_loader_factory.h"
 +#import "ios/chrome/browser/main/browser.h"
 +
- #if !defined(__has_feature) || !__has_feature(objc_arc)
- #error "This file requires ARC support."
- #endif
-@@ -27,6 +35,8 @@
- // Size below which the provider returns a colored tile instead of an image.
+ namespace {
+ 
+ // Size of the favicon returned by the provider for the most visited items.
+@@ -25,6 +33,8 @@ const CGFloat kMostVisitedFaviconSize = 48;
  const CGFloat kMostVisitedFaviconMinimalSize = 32;
+ const CGFloat kMagicStackMostVisitedFaviconMinimalSize = 18;
  
 +const char kImageFetcherUmaClient[] = "ContentSuggestionsFaviconMediator";
 +
  }  // namespace
  
  @interface ContentSuggestionsFaviconMediator () {
-@@ -43,6 +53,9 @@ @interface ContentSuggestionsFaviconMediator () {
+@@ -41,6 +51,9 @@ const CGFloat kMagicStackMostVisitedFaviconMinimalSize = 18;
  @end
  
  @implementation ContentSuggestionsFaviconMediator
@@ -36,7 +36,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..5ccf3ef67da0ab958f2ba215bb90a274
  
  #pragma mark - Public.
  
-@@ -63,6 +76,10 @@ - (instancetype)initWithLargeIconService:
+@@ -64,6 +77,10 @@ const CGFloat kMagicStackMostVisitedFaviconMinimalSize = 18;
    return self;
  }
  
@@ -47,7 +47,7 @@ index dd249ab959d0dcf4eb3f7349e5b4b14fc05d8f0c..5ccf3ef67da0ab958f2ba215bb90a274
  - (void)setMostVisitedDataForLogging:
      (const ntp_tiles::NTPTilesVector&)mostVisitedData {
    DCHECK(_mostVisitedDataForLogging.empty());
-@@ -78,14 +95,52 @@ - (void)fetchFaviconForMostVisited:(ContentSuggestionsMostVisitedItem*)item {
+@@ -79,14 +96,52 @@ const CGFloat kMagicStackMostVisitedFaviconMinimalSize = 18;
      ContentSuggestionsMostVisitedItem* strongItem = weakItem;
      if (!strongSelf || !strongItem)
        return;

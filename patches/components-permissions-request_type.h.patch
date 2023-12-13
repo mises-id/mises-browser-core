@@ -1,8 +1,8 @@
 diff --git a/components/permissions/request_type.h b/components/permissions/request_type.h
-index 1a5bd7e8239decc49b4eb355b994aa604962b932..539ff2fa2ecca23c1e172a6f29eb578274025474 100644
+index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3942870ee 100644
 --- a/components/permissions/request_type.h
 +++ b/components/permissions/request_type.h
-@@ -22,14 +22,14 @@ namespace permissions {
+@@ -22,19 +22,19 @@ namespace permissions {
  enum class RequestType {
    kAccessibilityEvents,
    kArSession,
@@ -16,30 +16,31 @@ index 1a5bd7e8239decc49b4eb355b994aa604962b932..539ff2fa2ecca23c1e172a6f29eb5782
    kDiskQuota,
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)
-   kLocalFonts,
+   kFileSystemAccess,
  #endif
    kGeolocation,
-@@ -44,16 +44,16 @@ enum class RequestType {
+   kIdleDetection,
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   kLocalFonts,
+ #endif
+   kMicStream,
+@@ -48,12 +48,12 @@ enum class RequestType {
  #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN)
    kProtectedMediaIdentifier,
  #endif
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)
    kRegisterProtocolHandler,
-   kSecurityAttestation,
  #endif
    kStorageAccess,
--#if !BUILDFLAG(IS_ANDROID)
-+#if true || !BUILDFLAG(IS_ANDROID)
-   kU2fApiRequest,
- #endif
    kVrSession,
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)
    kWindowManagement,
    kMaxValue = kWindowManagement
  #else
-@@ -83,7 +83,7 @@ bool IsConfirmationChipSupported(RequestType for_request_type);
+@@ -86,7 +86,7 @@ bool IsConfirmationChipSupported(RequestType for_request_type);
  // Returns the icon to display.
  IconId GetIconId(RequestType type);
  

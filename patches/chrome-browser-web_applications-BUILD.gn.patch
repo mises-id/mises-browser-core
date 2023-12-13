@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/web_applications/BUILD.gn b/chrome/browser/web_applications/BUILD.gn
-index 2c76cb353adcb9ef07f5a1d4cc4e2933a36f721e..4aa423118697988bcb055b85837f55fa15699791 100644
+index c85587554c0abd50889d59616a24de9479bf24e6..e95ee606195df3f4d15770e850c9613ba7aadff6 100644
 --- a/chrome/browser/web_applications/BUILD.gn
 +++ b/chrome/browser/web_applications/BUILD.gn
-@@ -295,6 +295,8 @@ source_set("web_applications") {
+@@ -369,6 +369,8 @@ source_set("web_applications") {
      ]
    }
  
@@ -11,7 +11,7 @@ index 2c76cb353adcb9ef07f5a1d4cc4e2933a36f721e..4aa423118697988bcb055b85837f55fa
    if (is_mac) {
      sources += [
        "app_shim_registry_mac.cc",
-@@ -832,6 +834,9 @@ source_set("web_applications_browser_tests") {
+@@ -973,6 +975,9 @@ source_set("web_applications_browser_tests") {
        "//chromeos/startup",
      ]
    }
@@ -21,9 +21,9 @@ index 2c76cb353adcb9ef07f5a1d4cc4e2933a36f721e..4aa423118697988bcb055b85837f55fa
  }
  
  group("browser_tests") {
-@@ -867,6 +872,9 @@ source_set("app_service_browser_tests") {
-   if (is_chromeos_lacros) {
-     deps += [ "//chromeos/lacros:lacros" ]
+@@ -1019,6 +1024,9 @@ source_set("app_service_browser_tests") {
+       "//chromeos/startup",
+     ]
    }
 +  if (is_android) {
 +    deps -= ["//chrome/test:test_support_ui"]
@@ -31,11 +31,13 @@ index 2c76cb353adcb9ef07f5a1d4cc4e2933a36f721e..4aa423118697988bcb055b85837f55fa
  }
  
  source_set("interactive_ui_tests") {
-@@ -888,4 +896,7 @@ source_set("interactive_ui_tests") {
+@@ -1044,6 +1052,9 @@ source_set("interactive_ui_tests") {
      "//ui/base/idle:test_support",
      "//ui/events/devices:test_support",
    ]
 +  if (is_android) {
 +    deps -= ["//chrome/test:test_support_ui"]
 +  }
- }
+ 
+   if (is_chromeos) {
+     sources += [ "preinstalled_web_app_window_experiment_browsertest.cc" ]

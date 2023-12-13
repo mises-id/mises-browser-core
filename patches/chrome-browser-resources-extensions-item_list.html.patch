@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/extensions/item_list.html b/chrome/browser/resources/extensions/item_list.html
-index 8b74a37c48b2db308b0963c942431de51462e0dd..39964459b704b32550c819ab3eda6544cff862f9 100644
+index fb27d6f9b685ff137088bfba9333a42a1e3b0d6f..5cfdf461df47143eb9baaf36727142a11fd30d2b 100644
 --- a/chrome/browser/resources/extensions/item_list.html
 +++ b/chrome/browser/resources/extensions/item_list.html
-@@ -11,7 +11,7 @@
+@@ -10,7 +10,7 @@
    }
  
    #content-wrapper {
@@ -11,7 +11,7 @@ index 8b74a37c48b2db308b0963c942431de51462e0dd..39964459b704b32550c819ab3eda6544
      padding: 24px 60px 64px;
    }
  
-@@ -34,7 +34,7 @@
+@@ -43,7 +43,7 @@
      display: grid;
      grid-column-gap: var(--grid-gutter);
      grid-row-gap: var(--grid-gutter);
@@ -20,10 +20,10 @@ index 8b74a37c48b2db308b0963c942431de51462e0dd..39964459b704b32550c819ab3eda6544
      justify-content: center;
      margin: auto;
      max-width: calc(var(--extensions-card-width) * var(--max-columns) +
-@@ -84,7 +84,8 @@
+@@ -110,7 +110,8 @@
          hidden$="[[!shouldShowEmptyItemsMessage_(
              apps.length, extensions.length)]]">
-       <span on-click="onNoExtensionsTap_">
+       <span on-click="onNoExtensionsClick_">
 -        $i18nRaw{noExtensionsOrApps}
 +            You can find extensions on <a href="https://www.google.com/search?q=Chrome+Extensions">Google</a>
 +            <br />You can also load a .crx, .zip or .user.js file

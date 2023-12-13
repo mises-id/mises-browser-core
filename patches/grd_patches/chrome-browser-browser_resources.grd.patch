@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/browser_resources.grd b/chrome/browser/browser_resources.grd
-index c989a9ea6a2c7..87f8c31212ebd 100644
+index 5d67549e29422c35f79a636a3476fe90ac3e3b87..d942396ad56779768bf46edcdc4105c1200d2349 100644
 --- a/chrome/browser/browser_resources.grd
 +++ b/chrome/browser/browser_resources.grd
 @@ -8,7 +8,7 @@
@@ -8,42 +8,15 @@ index c989a9ea6a2c7..87f8c31212ebd 100644
      <structures>
 -      <if expr="not is_android">
 +      <if expr="not is_android or is_android">
-         <!-- New Tab Page WebUI. -->
-         <structure name="IDR_INCOGNITO_TAB_HTML" file="resources\ntp4\incognito_tab.html" flattenhtml="true" type="chrome_html" />
-         <structure name="IDR_REVAMPED_INCOGNITO_TAB_HTML" file="resources\ntp4\revamped_incognito_tab.html" flattenhtml="true" type="chrome_html" />
-@@ -29,7 +29,7 @@
-         <include name="IDR_ABOUT_NACL_CSS" file="resources\about_nacl\about_nacl.css" type="chrome_html" />
-         <include name="IDR_ABOUT_NACL_JS" file="${root_gen_dir}\chrome\browser\resources\about_nacl\tsc\about_nacl.js" use_base_dir="false" type="BINDATA" />
+         <!-- Incognito and Guest mode, new tab page WebUI. -->
+         <structure name="IDR_INCOGNITO_TAB_HTML" file="resources\new_tab_page_incognito_guest\incognito_tab.html" flattenhtml="true" type="chrome_html" />
+         <structure name="IDR_REVAMPED_INCOGNITO_TAB_HTML" file="resources\new_tab_page_incognito_guest\revamped_incognito_tab.html" flattenhtml="true" type="chrome_html" />
+@@ -240,7 +240,7 @@
+         <include name="IDR_PREF_HASH_SEED_BIN" file="resources\settings_internal\pref_hash_seed.bin" type="BINDATA" />
+         <include name="IDR_ADDITIONAL_MODULE_IDS" file="${additional_modules_list_file}" use_base_dir="false" type="BINDATA" />
        </if>
--      <if expr="not is_android">
-+      <if expr="not is_android or is_android">
-         <include name="IDR_ABOUT_SYS_HTML" file="resources\about_sys\about_sys.html" type="BINDATA" />
-         <include name="IDR_ABOUT_SYS_CSS" file="resources\about_sys\about_sys.css" type="BINDATA" />
-         <include name="IDR_ABOUT_SYS_JS" file="resources\about_sys\about_sys.js" preprocess="true" type="BINDATA" />
-@@ -69,7 +69,7 @@
-         <include name="IDR_DESK_API_MANIFEST" file="resources\chromeos\desk_api\manifest.json" type="BINDATA" />
-       </if>
- 
 -      <if expr="not is_android">
 +      <if expr="not is_android or is_android">
          <!-- Page not available for guest. -->
          <include name="IDR_PAGE_NOT_AVAILABLE_FOR_GUEST_APP_HTML" file="resources\page_not_available_for_guest\app.html" type="BINDATA" />
-       </if>
-@@ -259,7 +259,7 @@
-         </if>
-         <include name="IDR_BRAILLE_MANIFEST" file="resources\chromeos\accessibility\braille_ime\manifest.json" type="BINDATA" />
-       </if>
--      <if expr="not is_android">
-+      <if expr="not is_android or is_android">
-         <include name="IDR_MEDIA_ROUTER_INTERNALS_HTML" file="resources\media_router\internals\media_router_internals.html" type="BINDATA" />
-         <include name="IDR_MEDIA_ROUTER_INTERNALS_CSS" file="resources\media_router\internals\media_router_internals.css" type="BINDATA" />
-         <include name="IDR_MEDIA_ROUTER_INTERNALS_JS" file="${root_gen_dir}\chrome\browser\resources\media_router\internals\tsc\media_router_internals.js" use_base_dir="false" type="BINDATA" />
-@@ -335,7 +335,7 @@
-         <include name="IDR_ARC_POWER_CONTROL_JS" file="resources\chromeos\arc_power_control\arc_power_control.js" type="BINDATA" />
-         <include name="IDR_ARC_POWER_CONTROL_CSS" file="resources\chromeos\arc_power_control\arc_power_control.css" type="BINDATA" />
-       </if>
--      <if expr="not is_android">
-+      <if expr="not is_android or is_android">
-         <!-- Chrome Cart -->
-         <part file="cart/resources/cart_resources.grdp" />
-       </if>
+         <include name="IDR_IME_WINDOW_CLOSE" file="resources\input_ime\ime_window_close.png" type="BINDATA" />

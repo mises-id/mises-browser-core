@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/app/resources/Info.plist b/ios/chrome/app/resources/Info.plist
-index 5e7db5472535693ef21573fe881095f5a0a16fbc..2358bc65f4338f4dbef59fee2f430479882d24fb 100644
+index d4d33dd4f3e6100fbeae6c32c8454bb9732c01ac..652381564dd5dddd7f46b8da97f1e6128e79600d 100644
 --- a/ios/chrome/app/resources/Info.plist
 +++ b/ios/chrome/app/resources/Info.plist
 @@ -4,8 +4,6 @@

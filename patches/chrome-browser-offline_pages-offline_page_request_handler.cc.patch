@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/offline_pages/offline_page_request_handler.cc b/chrome/browser/offline_pages/offline_page_request_handler.cc
-index 3da6a6d7624338ee13f1c8511452abfa8a72f131..e116a9a6d951cd4b4dd55f9ff08133dd37d0ac3a 100644
+index effa889e1a0088ace4056542061589322b9fa3d1..f174f25f1004a82103b36750c2dd59e69493e23d 100644
 --- a/chrome/browser/offline_pages/offline_page_request_handler.cc
 +++ b/chrome/browser/offline_pages/offline_page_request_handler.cc
-@@ -724,6 +724,9 @@ void OfflinePageRequestHandler::OpenFile(
+@@ -507,6 +507,9 @@ void OfflinePageRequestHandler::OpenFile(
  
    int flags = base::File::FLAG_OPEN | base::File::FLAG_READ |
                base::File::FLAG_ASYNC | base::File::FLAG_WIN_EXCLUSIVE_READ;

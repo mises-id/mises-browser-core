@@ -1,10 +1,10 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index 098dcda489758c6deddf36cc03d686840b2d4c01..93c93ebd1a7b62bce569deffb885967fe1b666aa 100644
+index a9fff1726ba833b66537bb0988c51debee4a44d8..0841aca880685908ae1bae58bbb4c64c25991244 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-@@ -225,6 +225,21 @@ import java.util.List;
- import java.util.Locale;
+@@ -242,6 +242,21 @@ import java.util.Locale;
  import java.util.Set;
+ import java.util.concurrent.atomic.AtomicBoolean;
  
 +import org.chromium.base.ContextUtils;
 +import android.net.Uri;
@@ -24,7 +24,7 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..93c93ebd1a7b62bce569deffb885967f
  /**
   * This is the main activity for ChromeMobile when not running in document mode.  All the tabs
   * are accessible via a chrome specific tab switching UI.
-@@ -246,7 +261,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -260,7 +275,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
      // Maximum delay for initial tab creation. This is for homepage and NTP, not previous tabs
      // restore. This is needed because we do not know when reading PartnerBrowserCustomizations
      // provider will be finished.
@@ -33,15 +33,16 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..93c93ebd1a7b62bce569deffb885967f
  
      /**
       * Sending an intent with this action to Chrome will cause it to close all tabs
-@@ -342,6 +357,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -412,6 +427,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
  
-     // Time at which an intent was received and handled.
-     private long mIntentHandlingTimeMs;
+     private ExperimentalStartupMetricsTracker mExperimentalStartupMetricsTracker;
+ 
 +    private InAppUpdater mInAppUpdater = new InAppUpdater();
- 
-     /**
-      * Whether the StartSurface is shown when Chrome is launched.
-@@ -834,7 +850,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
++
+     private final IncognitoTabHost mIncognitoTabHost = new IncognitoTabHost() {
+         @Override
+         public boolean hasIncognitoTabs() {
+@@ -827,7 +844,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
                          (getLayoutManager().getActiveLayoutType() == LayoutType.TAB_SWITCHER)
                          ? TabLaunchType.FROM_TAB_SWITCHER_UI
                          : TabLaunchType.FROM_CHROME_UI;
@@ -50,8 +51,8 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..93c93ebd1a7b62bce569deffb885967f
                  mLocaleManager.showSearchEnginePromoIfNeeded(ChromeTabbedActivity.this, null);
                  if (getTabModelSelector().isIncognitoSelected()) {
                      RecordUserAction.record("MobileToolbarStackViewNewIncognitoTab");
-@@ -905,6 +921,12 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                         getWindow(), mLayoutManager, mTabModelSelector, getLifecycleDispatcher());
+@@ -894,6 +911,12 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+                         this, mLayoutManager, mTabModelSelector, getLifecycleDispatcher());
              }
  
 +            try {
@@ -61,13 +62,39 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..93c93ebd1a7b62bce569deffb885967f
 +            }
 +
              mUIWithNativeInitialized = true;
-             onAccessibilityTabSwitcherModeChanged();
  
-@@ -945,6 +967,19 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-     @Override
-     public void onNewIntent(Intent intent) {
-         try (TraceEvent e = TraceEvent.scoped("ChromeTabbedActivity.onNewIntent")) {
+             // The dataset has already been created, we need to initialize our state.
+@@ -942,6 +965,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+                 // TODO(crbug.com/1344639): Enable split compositor task on tablets.
+                 initializeCompositorContent();
+             }
++            ChromeBrowserReferrer.handleInstallReferrer(this);
++            mInAppUpdater.startCheck(this);
+ 
+             // All this initialization can be expensive so it's split into multiple tasks.
+             PostTask.postTask(
+@@ -985,6 +1010,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+             }
+ 
+             mInactivityTracker.setLastVisibleTimeMsAndRecord(System.currentTimeMillis());
 +
++            MisesSysUtils.init(this);
+         }
+     }
+ 
+@@ -1026,6 +1053,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+         }
+ 
+         FeatureNotificationUtils.handleIntentIfApplicable(getIntent());
++
++        mInAppUpdater.onResume(this);
+     }
+ 
+     @Override
+@@ -1090,6 +1119,18 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+                 return;
+             }
+ 
 +            if (intent != null) {
 +                if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_MAIN)) {
 +                    String url = intent.getStringExtra("mises_url");
@@ -83,112 +110,25 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..93c93ebd1a7b62bce569deffb885967f
              // The intent to use in maybeDispatchExplicitMainViewIntent(). We're explicitly
              // adding NEW_TASK flag to make sure backing from CCT brings up the caller activity,
              // and not Chrome
-@@ -1000,6 +1035,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-             } else {
-                 initializeCompositorContent();
-             }
-+            ChromeBrowserReferrer.handleInstallReferrer(this);
-+	        mInAppUpdater.startCheck(this);
- 
-             // All this initialization can be expensive so it's split into multiple tasks.
-             PostTask.postTask(UiThreadTaskTraits.DEFAULT,
-@@ -1041,6 +1078,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
- 
-             mInactivityTracker.setLastVisibleTimeMsAndRecord(System.currentTimeMillis());
-         }
-+	MisesSysUtils.init(this);
-     }
- 
-     @Override
-@@ -1074,13 +1112,14 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-         SearchEngineChoiceNotification.handleSearchEngineChoice(
-                 this, getSnackbarManager(), SETTINGS_LAUNCHER);
- 
--        if (!isWarmOnResume()) {
-+        if (!isWarmOnResume() && FeedFeatures.isFeedEnabled()) {
-             SuggestionsMetrics.recordArticlesListVisible();
-         } else {
-             mInactivityTracker.setLastVisibleTimeMsAndRecord(System.currentTimeMillis());
-         }
- 
-         FeatureNotificationUtils.handleIntentIfApplicable(getIntent());
-+        mInAppUpdater.onResume(this);
-     }
- 
-     @Override
-@@ -1301,6 +1340,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -1324,6 +1365,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
  
              boolean noRestoreState =
                      CommandLine.getInstance().hasSwitch(ChromeSwitches.NO_RESTORE_STATE);
 +            noRestoreState = noRestoreState || ContextUtils.getAppSharedPreferences().getBoolean("close_tabs_on_exit", false);
+             boolean shouldShowNtpAsHomeSurfaceAtStartup = false;
+             final AtomicBoolean isActiveUrlNTP = new AtomicBoolean(false);
              if (noRestoreState) {
-                 // Clear the state files because they are inconsistent and useless from now on.
-                 mTabModelOrchestrator.clearState();
-@@ -1369,15 +1409,16 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                     }
-                 }, INITIAL_TAB_CREATION_TIMEOUT_MS);
-             }
--
-             // If initial tab creation is pending, this will instead be handled when we create the
-             // initial tab in #createInitialTab.
+@@ -1442,7 +1484,8 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
              if (!mPendingInitialTabCreation) {
                  Tab currentTab = getActivityTab();
                  boolean isTabNtp = isTabRegularNtp(currentTab);
 -                if (isTabNtp && !currentTab.isNativePage()) {
 +                boolean isTabNativeUrl = currentTab != null && currentTab.getUrl().getScheme().equals(UrlConstants.CHROME_NATIVE_SCHEME);
-+                if (isTabNtp && isTabNativeUrl && !currentTab.isNativePage()) {
++                if (isTabNativeUrl && isTabNtp && !currentTab.isNativePage()) {
                      // This will be a NTP, but the native page hasn't been created yet. Need to wait
                      // for this to be created before allowing the toolbar to draw.
-+                    Log.i(TAG, "#initializeState begin content change");
                      currentTab.addObserver(new EmptyTabObserver() {
-                         @Override
-                         public void onContentChanged(Tab tab) {
-@@ -1464,7 +1505,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                             this, getCurrentTabModel().isIncognito(), isTablet())) {
-                 mLayoutManager.showLayout(LayoutType.BROWSING, true);
-                 if (getTabModelSelector().getCurrentModel().getCount() == 0) {
--                    getCurrentTabCreator().launchNTP();
-+                    launchNTP();
-                 }
-             }
-         }
-@@ -1621,15 +1662,15 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                     if (url == null || url.equals(UrlConstants.NTP_URL)) {
-                         if (fromLauncherShortcut) {
-                             getTabCreator(true).launchUrl(
--                                    UrlConstants.NTP_URL, TabLaunchType.FROM_LAUNCHER_SHORTCUT);
-+                                     "chrome-search://local-ntp/incognito-ntp.html", TabLaunchType.FROM_LAUNCHER_SHORTCUT);
-                             recordLauncherShortcutAction(true);
-                             reportNewTabShortcutUsed(true);
-                         } else if (fromAppWidget) {
-                             RecordUserAction.record("QuickActionSearchWidget.StartIncognito");
-                             getTabCreator(true).launchUrl(
--                                    UrlConstants.NTP_URL, TabLaunchType.FROM_APP_WIDGET);
-+                                     "chrome-search://local-ntp/incognito-ntp.html", TabLaunchType.FROM_APP_WIDGET);
-                         } else if (IncognitoTabLauncher.didCreateIntent(intent)) {
--                            Tab tab = getTabCreator(true).launchUrl(UrlConstants.NTP_URL,
-+                            Tab tab = getTabCreator(true).launchUrl( "chrome-search://local-ntp/incognito-ntp.html",
-                                     TabLaunchType.FROM_LAUNCH_NEW_INCOGNITO_TAB);
-                             if (IncognitoTabLauncher.shouldFocusOmnibox(intent)) {
-                                 // Since the Tab is created in the foreground, its View will gain
-@@ -1645,7 +1686,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                         } else {
-                             // Used by the Account management screen to open a new incognito tab.
-                             // Account management screen collects its metrics separately.
--                            getTabCreator(true).launchUrl(UrlConstants.NTP_URL,
-+                            getTabCreator(true).launchUrl( "chrome-search://local-ntp/incognito-ntp.html",
-                                     TabLaunchType.FROM_CHROME_UI, intent, mIntentHandlingTimeMs);
-                         }
-                     } else {
-@@ -2142,7 +2183,6 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-             if (fromMenu) RecordUserAction.record("MobileMenuNewTab.AppMenu");
- 
-             getTabCreator(false).launchNTP();
--
-             mLocaleManager.showSearchEnginePromoIfNeeded(this, null);
-         } else if (id == R.id.new_incognito_tab_menu_id) {
-             if (IncognitoUtils.isIncognitoModeEnabled()) {
-@@ -2242,6 +2282,19 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -2371,6 +2414,19 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
              TabModel currentModel = mTabModelSelector.getCurrentModel();
              if (!currentModel.isIncognito()) currentModel.openMostRecentlyClosedEntry();
              RecordUserAction.record("MobileTabClosedUndoShortCut");
@@ -208,17 +148,26 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..93c93ebd1a7b62bce569deffb885967f
          } else if (id == R.id.quick_delete_menu_id
                  && QuickDeleteController.isQuickDeleteEnabled()) {
              assert !mTabModelSelector.getCurrentModel().isIncognito()
-@@ -2925,6 +2978,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -2789,7 +2845,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+             // See crbug.com/1473947.
+             if (mStartSurfaceSupplier.get() == null) {
+                 if (getTabModelSelector().getCurrentModel().getCount() == 0) {
+-                    getCurrentTabCreator().launchNTP();
++                    launchNTP();
+                 } else {
+                     mLayoutManager.showLayout(LayoutType.BROWSING, true);
+                 }
+@@ -3137,6 +3193,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
      public void onActivityResult(int requestCode, int resultCode, Intent data) {
          try (TraceEvent e = TraceEvent.scoped("ChromeTabbedActivity.onActivityResult")) {
              super.onActivityResult(requestCode, resultCode, data);
-+            mInAppUpdater.onActivityResult(requestCode,resultCode,data);
++            mInAppUpdater.onActivityResult(requestCode, resultCode, data);
          }
      }
  
-@@ -3061,4 +3115,55 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-         }
-         return mIsStartSurfaceRefactorEnabled;
+@@ -3294,4 +3351,55 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+     private boolean skipSavingNonActiveNtps() {
+         return StartSurfaceConfiguration.isNtpAsHomeSurfaceEnabled(isTablet());
      }
 +
 +    private void launchNTP() {
@@ -229,46 +178,46 @@ index 098dcda489758c6deddf36cc03d686840b2d4c01..93c93ebd1a7b62bce569deffb885967f
 +        }
 +    }
 +    private void handleForward(final Tab currentTab) {
-+         String SCRIPT = "if(window.misesModule && window.misesModule.getWindowInformation){window.misesModule.getWindowInformation()} else {console.log('window.misesModule or window.misesModule.getWindowInformation is null')}";
-+            final Context context = ChromeTabbedActivity.this;
-+            if (currentTab == null || currentTab.getWebContents() == null)
-+                return;
-+            if (currentTab.isNativePage() || currentTab.isClosing()
-+                    || currentTab.isShowingErrorPage() ) {
-+                Log.e("mises","share currentTab.isNativePage() || currentTab.isClosing() || currentTab.isShowingErrorPage() || currentTab.isShowingSadTab()");
-+                Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
-+                return;
-+            }
-+            currentTab.getWebContents().evaluateJavaScript(SCRIPT, jsonResult -> {
-+                Log.e("mises share msg : ", jsonResult);
-+                if (jsonResult != null && !jsonResult.isEmpty()) {
-+                    try {
-+                        JSONObject ob = new JSONObject(jsonResult);
-+                        String icon = "";
-+                        if (ob.has("icon"))
-+                            icon = ob.getString("icon");
-+                        String title = ob.getString("title");
-+                        String url = ob.getString("url");
-+                        if (MisesController.getInstance().getMisesToken().isEmpty()) {
-+                            UIUtil.showAlertDialog(context, context.getString(R.string.lbl_login_tip), v1 -> {
-+                                ChromeTabCreator tabCreator = ChromeTabbedActivity.this.getTabCreator(false);
-+                                if (tabCreator != null) {
-+                                    tabCreator.openSinglePage(MisesController.MISES_HOME_BASE_URL + "/home/me");
-+                                }
-+                            });
-+                            return;
-+                        }
-+                        MisesShareWin shareWin = MisesShareWin.newInstance(ChromeTabbedActivity.this, icon, title, url);
-+                        shareWin.show((ChromeTabbedActivity.this).getSupportFragmentManager(), "MisesShareWin");
-+                    } catch (JSONException e) {
-+                        Log.e("mises", "share is not json" + e.toString());
-+                        Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
-+                        e.printStackTrace();
++        String SCRIPT = "if(window.misesModule && window.misesModule.getWindowInformation){window.misesModule.getWindowInformation()} else {console.log('window.misesModule or window.misesModule.getWindowInformation is null')}";
++        final Context context = ChromeTabbedActivity.this;
++        if (currentTab == null || currentTab.getWebContents() == null)
++            return;
++        if (currentTab.isNativePage() || currentTab.isClosing()
++                || currentTab.isShowingErrorPage() ) {
++            Log.e("mises","share currentTab.isNativePage() || currentTab.isClosing() || currentTab.isShowingErrorPage() || currentTab.isShowingSadTab()");
++            Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
++            return;
++        }
++        currentTab.getWebContents().evaluateJavaScript(SCRIPT, jsonResult -> {
++            Log.e("mises share msg : ", jsonResult);
++            if (jsonResult != null && !jsonResult.isEmpty()) {
++                try {
++                    JSONObject ob = new JSONObject(jsonResult);
++                    String icon = "";
++                    if (ob.has("icon"))
++                        icon = ob.getString("icon");
++                    String title = ob.getString("title");
++                    String url = ob.getString("url");
++                    if (MisesController.getInstance().getMisesToken().isEmpty()) {
++                        UIUtil.showAlertDialog(context, context.getString(R.string.lbl_login_tip), v1 -> {
++                            ChromeTabCreator tabCreator = ChromeTabbedActivity.this.getTabCreator(false);
++                            if (tabCreator != null) {
++                                tabCreator.openSinglePage(MisesController.MISES_HOME_BASE_URL + "/home/me");
++                            }
++                        });
++                        return;
 +                    }
-+                } else {
-+                    Log.e("mises", "share json is null");
++                    MisesShareWin shareWin = MisesShareWin.newInstance(ChromeTabbedActivity.this, icon, title, url);
++                    shareWin.show((ChromeTabbedActivity.this).getSupportFragmentManager(), "MisesShareWin");
++                } catch (JSONException e) {
++                    Log.e("mises", "share is not json" + e.toString());
 +                    Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
++                    e.printStackTrace();
 +                }
-+            });
++            } else {
++                Log.e("mises", "share json is null");
++                Toast.makeText(context, context.getString(R.string.lbl_can_not_share_tip), Toast.LENGTH_SHORT).show();
++            }
++        });
 +    }
  }

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/webui/side_panel/user_notes/BUILD.gn b/chrome/browser/ui/webui/side_panel/user_notes/BUILD.gn
-index 4c7293ab0c00b57752d79e12c4841b8f447f8829..954a70fa59c1edd41ee05efca9bb6c0c1ab7651a 100644
+index f7c09c2fb7dc09074d2f8ec74ecc0b509a3337b1..3789a1b3936a8034ade4b777b0b25447e6e7a7e5 100644
 --- a/chrome/browser/ui/webui/side_panel/user_notes/BUILD.gn
 +++ b/chrome/browser/ui/webui/side_panel/user_notes/BUILD.gn
 @@ -4,7 +4,7 @@

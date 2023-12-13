@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/NavigationHandler.java b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/NavigationHandler.java
-index 56676300b9c54675be8fd7a436191427b93d8996..3ac6e82a1c222894c51ffb4315e61335b07fc70c 100644
+index 7d9efda292348f336ceb524599a14645b89c82f7..974c832aaf71f325f6f9102b5e12436609498ffa 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/NavigationHandler.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/NavigationHandler.java
-@@ -43,7 +43,7 @@ class NavigationHandler implements TouchEventObserver {
+@@ -50,7 +50,7 @@ class NavigationHandler implements TouchEventObserver {
  
      // Weighted value to determine when to trigger an edge swipe. Initial scroll
      // vector should form 30 deg or below to initiate swipe action.

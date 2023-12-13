@@ -1,17 +1,17 @@
 diff --git a/ios/chrome/app/application_delegate/user_activity_handler.mm b/ios/chrome/app/application_delegate/user_activity_handler.mm
-index 44f557f34433cd9a26d4576afa2f3805c494442a..1309e43223ea7d228f5c8f91bdc28f5e5cc8993f 100644
+index 3ab6f5750412d42c04ed32e341d3738008098f7e..8d348c0a30cb0c7db3e33f90d3f8376ce2ad3e93 100644
 --- a/ios/chrome/app/application_delegate/user_activity_handler.mm
 +++ b/ios/chrome/app/application_delegate/user_activity_handler.mm
-@@ -41,6 +41,7 @@
+@@ -46,6 +46,7 @@
  #import "net/base/mac/url_conversions.h"
  #import "ui/base/page_transition_types.h"
  #import "url/gurl.h"
 +#import "mises/ios/third_party/mises/mises_utils.h"
  
- #if !defined(__has_feature) || !__has_feature(objc_arc)
- #error "This file requires ARC support."
-@@ -346,6 +347,9 @@ + (BOOL)continueUserActivityURL:(NSURL*)webpageURL
-             applicationMode:ApplicationModeForTabOpening::NORMAL];
+ using base::UserMetricsAction;
+ 
+@@ -840,6 +841,9 @@ NSArray* CompatibleModeForActivityType(NSString* activityType) {
+     startupParams.openExistingTab = openExistingTab;
      [connectionInformation setStartupParameters:startupParams];
    }
 +  if ([Mises handleUniversalLink:webpageURL]) {

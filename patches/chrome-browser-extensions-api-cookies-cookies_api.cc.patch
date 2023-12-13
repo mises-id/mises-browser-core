@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/cookies/cookies_api.cc b/chrome/browser/extensions/api/cookies/cookies_api.cc
-index d97c8fd1ecbd58d3ea57366f1db52d010da21718..9c55e6ffaa3d587e8d1846a962b27fd90282f307 100644
+index b01486e73061ace312de9944dbb95848198c3375..b5aea052933799b28b9b234c8941d500c8fc96a1 100644
 --- a/chrome/browser/extensions/api/cookies/cookies_api.cc
 +++ b/chrome/browser/extensions/api/cookies/cookies_api.cc
-@@ -40,6 +40,7 @@
+@@ -38,6 +38,7 @@
  #include "net/cookies/canonical_cookie.h"
  #include "net/cookies/cookie_constants.h"
  #include "services/network/public/mojom/network_service.mojom.h"
@@ -10,7 +10,7 @@ index d97c8fd1ecbd58d3ea57366f1db52d010da21718..9c55e6ffaa3d587e8d1846a962b27fd9
  
  using content::BrowserThread;
  
-@@ -295,11 +296,13 @@ void CookiesGetFunction::NotifyExtensionTelemetry() {
+@@ -309,11 +310,13 @@ void CookiesGetFunction::NotifyExtensionTelemetry() {
      return;
    }
  
@@ -24,8 +24,8 @@ index d97c8fd1ecbd58d3ea57366f1db52d010da21718..9c55e6ffaa3d587e8d1846a962b27fd9
  }
  
  CookiesGetAllFunction::CookiesGetAllFunction() {
-@@ -386,7 +389,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
-           safe_browsing::kExtensionTelemetryCookiesGetAllSignal)) {
+@@ -413,7 +416,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
+   if (!telemetry_service || !telemetry_service->enabled()) {
      return;
    }
 -
@@ -33,9 +33,9 @@ index d97c8fd1ecbd58d3ea57366f1db52d010da21718..9c55e6ffaa3d587e8d1846a962b27fd9
    auto cookies_get_all_signal =
        std::make_unique<safe_browsing::CookiesGetAllSignal>(
            extension_id(), parsed_args_->details.domain.value_or(std::string()),
-@@ -397,6 +400,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
+@@ -424,6 +427,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
            parsed_args_->details.url.value_or(std::string()),
-           parsed_args_->details.session.value_or(false));
+           parsed_args_->details.session);
    telemetry_service->AddSignal(std::move(cookies_get_all_signal));
 +#endif
  }

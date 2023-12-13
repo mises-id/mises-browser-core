@@ -1,11 +1,11 @@
 diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm b/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm
-index 99ab637a0a10b4803e700c800e3e418fd9f4feec..307767d6d862fac95186a100f1e9c82e3dd706e2 100644
+index 95abf5b7f6e7b85c49fede3438b162eef9b325a1..b611e9078228c23b56a7928b6e203648ec6f6efa 100644
 --- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm
 +++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm
-@@ -404,4 +404,14 @@ - (void)exitFullscreen {
-   [self.delegate exitFullscreen];
+@@ -328,4 +328,14 @@
+   view.locationBarContainerHeight.constant = height;
+   view.locationBarContainer.layer.cornerRadius = height / 2;
  }
- 
 +
 +#pragma mark - MisesToolbarDelegate
 +

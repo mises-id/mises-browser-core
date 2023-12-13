@@ -1,8 +1,8 @@
 diff --git a/components/cdm/renderer/key_system_support_update.cc b/components/cdm/renderer/key_system_support_update.cc
-index f37b9dab2ffbf1b5dfaf5c3e3b31f658b274931e..cc98e8ba44ab9be9225b710e541c8b736fda0f9d 100644
+index d949bb47e1289df14474d84376e42dcd15b78f4d..9bfe57faaac818d2ce5aeccebcf430331bc8ebc9 100644
 --- a/components/cdm/renderer/key_system_support_update.cc
 +++ b/components/cdm/renderer/key_system_support_update.cc
-@@ -496,7 +496,9 @@ void AddAndroidPlatformKeySystem(
+@@ -512,7 +512,9 @@ void AddAndroidPlatformKeySystem(
      const media::mojom::KeySystemCapabilityPtr& capability,
      bool can_persist_data,
      KeySystemInfos* key_systems) {

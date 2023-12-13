@@ -1,8 +1,8 @@
 diff --git a/build/android/gyp/proguard.py b/build/android/gyp/proguard.py
-index 9ab674c6a83db13d9982bd5f2924d191df3b053e..0453c56e85aa1edd9cc7a31441274ef3de0075c9 100755
+index f89f7c5fb97bf2bb9e5a141a8d4a88ac1c7014f0..bc4a6930e6589c41ec3d3978371eee15883cd06a 100755
 --- a/build/android/gyp/proguard.py
 +++ b/build/android/gyp/proguard.py
-@@ -275,6 +275,7 @@ def _OptimizeWithR8(options,
+@@ -331,6 +331,7 @@ def _OptimizeWithR8(options, config_paths, libraries, dynamic_config_data):
          '--pg-map-output',
          tmp_mapping_path,
      ]
@@ -10,21 +10,21 @@ index 9ab674c6a83db13d9982bd5f2924d191df3b053e..0453c56e85aa1edd9cc7a31441274ef3
  
      if options.disable_checks:
        cmd += ['--map-diagnostics:CheckDiscardDiagnostic', 'error', 'none']
-@@ -388,6 +389,8 @@ def _CheckForMissingSymbols(r8_path, dex_files, classpath, warnings_as_errors,
+@@ -467,6 +468,8 @@ def _CheckForMissingSymbols(r8_path, dex_files, classpath, warnings_as_errors,
  
          # Found in: com/facebook/fbui/textlayoutbuilder/StaticLayoutHelper
          'android.text.StaticLayout.<init>',
 +        'android.adservices.measurement',
 +        'android.adservices.topics',
+         # TODO(crbug/1426964): Remove once chrome builds with Android U SDK.
+         ' android.',
  
-         # Explicictly guarded by try (NoClassDefFoundError) in Flogger's
-         # PlatformProvider.
-@@ -592,7 +595,7 @@ def _DoTraceReferencesChecks(options, split_contexts_by_name):
+@@ -719,7 +722,7 @@ def _Run(options):
  def main():
    build_utils.InitLogging('PROGUARD_DEBUG')
    options = _ParseOptions()
 -
 +  options.warnings_as_errors = False
-   # ProGuard configs that are derived from flags.
-   logging.debug('Preparing configs')
-   dynamic_config_data = _CreateDynamicConfig(options)
+   if options.dump_inputs:
+     # Dumping inputs causes output to be emitted, avoid failing due to stdout.
+     options.warnings_as_errors = False

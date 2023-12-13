@@ -1,8 +1,8 @@
 diff --git a/build/config/android/rules.gni b/build/config/android/rules.gni
-index 753228613cf43a857621d934ba6f8bcca34e2eed..2762ac5b1c63b68672bae68eed65e8b0d7036dce 100644
+index 9bc8939ee101caa4eb14cf79d142c5936c22cc99..a18e8ba389e38d0d7c8e53c9a90f3e8025778b89 100644
 --- a/build/config/android/rules.gni
 +++ b/build/config/android/rules.gni
-@@ -577,6 +577,7 @@ if (enable_java_templates && is_android) {
+@@ -213,6 +213,7 @@ if (enable_java_templates && is_android) {
    #     ]
    #   }
    template("java_cpp_enum") {
@@ -10,7 +10,7 @@ index 753228613cf43a857621d934ba6f8bcca34e2eed..2762ac5b1c63b68672bae68eed65e8b0
      action_with_pydeps(target_name) {
        forward_variables_from(invoker, TESTONLY_AND_VISIBILITY + [ "sources" ])
  
-@@ -752,6 +753,7 @@ if (enable_java_templates && is_android) {
+@@ -388,6 +389,7 @@ if (enable_java_templates && is_android) {
    #     output = "$target_gen_dir/AndroidManifest.xml"
    #   }
    template("jinja_template") {
@@ -18,7 +18,7 @@ index 753228613cf43a857621d934ba6f8bcca34e2eed..2762ac5b1c63b68672bae68eed65e8b0
      action_with_pydeps(target_name) {
        forward_variables_from(invoker, TESTONLY_AND_VISIBILITY + [ "deps" ])
        inputs = [ invoker.input ]
-@@ -1295,7 +1297,7 @@ if (enable_java_templates && is_android) {
+@@ -939,7 +941,7 @@ if (enable_java_templates && is_android) {
        action(target_name) {
          forward_variables_from(invoker, [ "deps" ])
          public_deps = [ ":$_build_config_target_name" ]

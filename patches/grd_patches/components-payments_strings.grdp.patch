@@ -1,8 +1,8 @@
 diff --git a/components/payments_strings.grdp b/components/payments_strings.grdp
-index ea76e9735619e78bd75ff38bc781d4a99ace7918..00f5962c2f6df26ac89db20a6a7eb1e5a246d33c 100644
+index 66a3dfcc722b79724bb870da5584d1143fa285b6..3ca84eb84ccf43bf8272b24ec73581c6cc046bc5 100644
 --- a/components/payments_strings.grdp
 +++ b/components/payments_strings.grdp
-@@ -540,7 +540,7 @@
+@@ -400,7 +400,7 @@
    </if>
  
    <!-- Payment Request section preview strings. They are slightly different on desktop and android because the pluralization and formatting code behaves differently. -->

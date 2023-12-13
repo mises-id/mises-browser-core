@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
-index fdda63a7701be84fb3eba6703150294b58ad5170..5f6edca61de4ffee998ec3e88abc7ac14d80780b 100644
+index a21dd22a2fc8adf5b0d443c30cca7208d9a2a50a..d16418dff3e15cc2d3f644f4f812b674104c4923 100644
 --- a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 +++ b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
-@@ -88,6 +88,10 @@
+@@ -87,10 +87,29 @@
  #import "ui/base/l10n/l10n_util.h"
  #import "ui/gfx/image/image.h"
  
@@ -10,10 +10,7 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..5f6edca61de4ffee998ec3e88abc7ac1
 +#include "mises/ios/third_party/mises/mises_utils.h"
 +#import "components/grit/mises_components_strings.h"
 +
- #if !defined(__has_feature) || !__has_feature(objc_arc)
- #error "This file requires ARC support."
- #endif
-@@ -96,6 +100,21 @@
+ using base::RecordAction;
  using base::UserMetricsAction;
  
  namespace {
@@ -35,32 +32,7 @@ index fdda63a7701be84fb3eba6703150294b58ad5170..5f6edca61de4ffee998ec3e88abc7ac1
  PopupMenuToolsItem* CreateTableViewItem(int titleID,
                                          PopupMenuAction action,
                                          NSString* imageName,
-@@ -553,6 +572,12 @@ - (void)setBookmarkModel:(bookmarks::BookmarkModel*)bookmarkModel {
-         DCHECK(!UseSymbols());
-         [self createSearchMenuItems];
-         break;
-+      case PopupMenuTypeMisesMenu:
-+        [self createMisesMenuItems];
-+        break;
-+      case PopupMenuTypeWalletMenu:
-+        [self createWalletMenuItems];
-+      break;
-     }
-     NSMutableArray* specificItems = [NSMutableArray array];
-     if (self.reloadStopItem)
-@@ -1203,6 +1228,11 @@ - (void)createToolsMenuItems {
-       @"popup_menu_site_information", kToolsMenuSiteInformation);
-   [actionsArray addObject:self.siteInformationItem];
- 
-+//  TableViewItem* mises =
-+//      CreateTableViewItem(IDS_IOS_OPTIONS_MISES, PopupMenuActionMises,
-+//                          @"popup_menu_mises_wallet", kToolsMenuMisesId);
-+//  [actionsArray addObject:mises];
-+    
-   // Report an Issue.
-   if (ios::provider::IsUserFeedbackSupported()) {
-     TableViewItem* reportIssue = CreateTableViewItem(
-@@ -1349,4 +1379,82 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
+@@ -1171,4 +1190,82 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
    }
  }
  

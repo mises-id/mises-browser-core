@@ -1,10 +1,10 @@
 diff --git a/ui/webui/resources/cr_components/color_change_listener/BUILD.gn b/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
-index 6a2b0ec7ed6a8e17fce9931ed2ea99f0b3d4c7f0..987d8c7031c76cc5847f2ee9ba606afd75cd23d4 100644
+index 5ff8c3e1f67380c270acce9b6f8b44a79ab41ec0..ffce833cbd696a6a60628909fefdbaf20a674e3b 100644
 --- a/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
 +++ b/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
 @@ -5,7 +5,7 @@
  import("//mojo/public/tools/bindings/mojom.gni")
- import("../../tools/build_cr_component.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android && !is_ios)
 +# assert(!is_android && !is_ios)

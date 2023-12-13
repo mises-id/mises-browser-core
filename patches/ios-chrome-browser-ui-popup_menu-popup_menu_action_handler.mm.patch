@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
-index a2e470ed643c7bebeee13bea7745a28c48a6a162..01abb614c72255a54c2df04bd2236e0d8f4f01f1 100644
+index 01b1bbfbe42ea95a2dfa2599398c810ac9146eb4..81f0b58fbfe9704cc661cb5d8b313c8dbb9224dd 100644
 --- a/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
 +++ b/ios/chrome/browser/ui/popup_menu/popup_menu_action_handler.mm
 @@ -34,6 +34,9 @@
@@ -9,10 +9,10 @@ index a2e470ed643c7bebeee13bea7745a28c48a6a162..01abb614c72255a54c2df04bd2236e0d
 +#import "mises/ios/third_party/mises/mises_utils.h"
 +#import "ios/chrome/browser/ui/util/pasteboard_util.h"
 +
- #if !defined(__has_feature) || !__has_feature(objc_arc)
- #error "This file requires ARC support."
- #endif
-@@ -251,6 +254,61 @@ - (void)popupMenuTableViewController:(PopupMenuTableViewController*)sender
+ using base::RecordAction;
+ using base::UserMetricsAction;
+ 
+@@ -174,6 +177,61 @@ using base::UserMetricsAction;
        RecordAction(UserMetricsAction("MobileMenuPriceNotifications"));
        [self.dispatcher showPriceNotifications];
        break;

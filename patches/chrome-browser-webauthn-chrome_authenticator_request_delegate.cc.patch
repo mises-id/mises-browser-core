@@ -1,26 +1,8 @@
 diff --git a/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc b/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
-index c0f3385709c0ac527c389a5f96ac9fc7a269c2da..5f6100e980671d97f25cb8d7de42369a2cb21200 100644
+index 13073996d6d124c581757cefa59403857a17450a..3337dee5cd3010af6b77a63c4dae709b7eb76000 100644
 --- a/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
 +++ b/chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
-@@ -96,7 +96,7 @@ bool IsWebAuthnRPIDListedInSecurityKeyPermitAttestationPolicy(
-       &base::Value::GetString;
-   return base::Contains(permit_attestation, relying_party_id, get_string);
- }
--
-+#if true || !BUILDFLAG(IS_ANDROID)
- bool IsOriginListedInEnterpriseAttestationSwitch(
-     const url::Origin& caller_origin) {
-   std::string cmdline_origins =
-@@ -109,7 +109,7 @@ bool IsOriginListedInEnterpriseAttestationSwitch(
-         return url::Origin::Create(GURL(origin_string)) == caller_origin;
-       });
- }
--
-+#endif
- #if BUILDFLAG(IS_WIN)
- // kWebAuthnLastOperationWasNativeAPI is a boolean preference that records
- // whether the last successful operation used the Windows native API. If so
-@@ -180,7 +180,7 @@ class CableLinkingEventHandler : public ProfileObserver {
+@@ -223,7 +223,7 @@ class CableLinkingEventHandler : public ProfileObserver {
  
  ChromeWebAuthenticationDelegate::~ChromeWebAuthenticationDelegate() = default;
  

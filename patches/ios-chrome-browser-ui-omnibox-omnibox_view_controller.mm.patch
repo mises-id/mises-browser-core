@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/ui/omnibox/omnibox_view_controller.mm b/ios/chrome/browser/ui/omnibox/omnibox_view_controller.mm
-index bbbd3e8f5212a3d03dd4911aa76a5306c69541a4..f2f940a05848387e3cdc9a8858e52173df536eea 100644
+index 6a6e66990cd5814fb2fe9fb2106947f911393592..1cb3adc31dab6fd4e3ca182a6b12c363c9fdd820 100644
 --- a/ios/chrome/browser/ui/omnibox/omnibox_view_controller.mm
 +++ b/ios/chrome/browser/ui/omnibox/omnibox_view_controller.mm
-@@ -523,6 +523,9 @@ - (void)updateCachedClipboardState {
+@@ -513,6 +513,9 @@ const CGFloat kClearButtonImageSize = 17.0f;
    if (self.isUpdatingCachedClipboardState) {
      return;
    }

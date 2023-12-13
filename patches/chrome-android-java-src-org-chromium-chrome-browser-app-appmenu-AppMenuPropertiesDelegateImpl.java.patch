@@ -1,10 +1,10 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
-index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef949c040588 100644
+index 5c74436790092e29b5d2247017e9381e4e9708f6..03e24d8306b93f5849079166df42162b80be3c83 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
-@@ -97,6 +97,33 @@ import java.util.ArrayList;
+@@ -102,6 +102,33 @@ import java.lang.annotation.RetentionPolicy;
+ import java.util.ArrayList;
  import java.util.List;
- import java.util.Map;
  
 +import java.util.Hashtable;
 +
@@ -36,15 +36,15 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
  /**
   * Base implementation of {@link AppMenuPropertiesDelegate} that handles hiding and showing menu
   * items based on activity state.
-@@ -122,6 +149,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
-     private int mAddAppTitleShown;
-     private Map<CustomViewBinder, Integer> mCustomViewTypeOffsetMap;
+@@ -128,6 +155,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+     @Nullable
+     private final Supplier<ReadAloudController> mReadAloudControllerSupplier;
  
 +    private boolean mShowExtensionOnly;
      /**
       * This is non null for the case of ChromeTabbedActivity when the corresponding {@link
       * CallbackController} has been fired.
-@@ -338,12 +366,67 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -346,12 +374,67 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
  
          prepareMenu(menu, handler);
  
@@ -112,7 +112,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
              PropertyModel propertyModel = AppMenuUtil.menuItemToPropertyModel(item);
              propertyModel.set(AppMenuItemProperties.ICON_COLOR_RES, getMenuItemIconColorRes(item));
              propertyModel.set(AppMenuItemProperties.SUPPORT_ENTER_ANIMATION, true);
-@@ -362,7 +445,6 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -370,7 +453,6 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
                      subList.add(new MVCListAdapter.ListItem(0, subModel));
                      if (subitem.getItemId() == R.id.reload_menu_id) {
                          mReloadPropertyModel = subModel;
@@ -120,7 +120,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
                          loadingStateChanged(currentTab == null ? false : currentTab.isLoading());
                      }
                  }
-@@ -371,7 +453,8 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -379,7 +461,8 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
              int menutype = AppMenuItemType.STANDARD;
              if (item.getItemId() == R.id.request_desktop_site_row_menu_id
                      || item.getItemId() == R.id.share_row_menu_id
@@ -130,7 +130,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
                  menutype = AppMenuItemType.TITLE_BUTTON;
              } else if (item.getItemId() == R.id.icon_row_menu_id) {
                  int viewCount = item.getSubMenu().size();
-@@ -390,6 +473,25 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -398,6 +481,25 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
                  }
              }
              modelList.add(new MVCListAdapter.ListItem(menutype, propertyModel));
@@ -156,7 +156,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          }
  
          return modelList;
-@@ -410,6 +512,61 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -418,6 +520,61 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          prepareCommonMenuItems(menu, menuGroup, isIncognito);
      }
  
@@ -218,7 +218,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
      /**
       * Prepare the menu items. Note: it is possible that currentTab is null.
       */
-@@ -428,6 +585,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -435,6 +592,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
  
          // Update the icon row items (shown in narrow form factors).
          boolean shouldShowIconRow = shouldShowIconRow();
@@ -226,7 +226,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          menu.findItem(R.id.icon_row_menu_id).setVisible(shouldShowIconRow);
          if (shouldShowIconRow) {
              SubMenu actionBar = menu.findItem(R.id.icon_row_menu_id).getSubMenu();
-@@ -457,18 +615,23 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -464,18 +622,23 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          }
  
          mUpdateMenuItemVisible = shouldShowUpdateMenuItem();
@@ -250,7 +250,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
              menu_all_windows.setTitle(
                      mContext.getString(R.string.menu_manage_all_windows, getInstanceCount()));
          }
-@@ -480,6 +643,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -487,6 +650,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
  
          // Don't allow either "chrome://" pages or interstitial pages to be shared, or when the
          // current tab is null.
@@ -258,7 +258,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          menu.findItem(R.id.share_row_menu_id)
                  .setVisible(isCurrentTabNotNull && mShareUtils.shouldEnableShare(currentTab));
  
-@@ -487,6 +651,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -494,6 +658,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
              updateDirectShareMenuItem(menu.findItem(R.id.direct_share_menu_id));
          }
  
@@ -266,7 +266,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          menu.findItem(R.id.paint_preview_show_id)
                  .setVisible(isCurrentTabNotNull
                          && shouldShowPaintPreview(isChromeScheme, currentTab, isIncognito));
-@@ -496,6 +661,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -503,6 +668,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          if (isCurrentTabNotNull && shouldShowWebContentsDependentMenuItem(currentTab)
                  && ImageDescriptionsController.getInstance()
                             .shouldShowImageDescriptionsMenuItem()) {
@@ -274,7 +274,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
              menu.findItem(R.id.get_image_descriptions_id).setVisible(true);
  
              int titleId = R.string.menu_stop_image_descriptions;
-@@ -511,18 +677,22 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -518,18 +684,22 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
                  titleId = R.string.menu_get_image_descriptions;
              }
  
@@ -297,7 +297,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          menu.findItem(R.id.find_in_page_id)
                  .setVisible(
                          isCurrentTabNotNull && shouldShowWebContentsDependentMenuItem(currentTab));
-@@ -538,7 +708,33 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -548,7 +718,33 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
  
          updateAutoDarkMenuItem(menu, currentTab, isChromeScheme);
  
@@ -331,7 +331,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          menu.findItem(R.id.reader_mode_prefs_id)
                  .setVisible(isCurrentTabNotNull && shouldShowReaderModePrefs(currentTab));
  
-@@ -609,6 +805,12 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -605,6 +801,12 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
                  }
              }
  
@@ -344,8 +344,8 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
              if (item.getItemId() == R.id.new_incognito_tab_menu_id && item.isVisible()) {
                  // Disable new incognito tab when it is blocked (e.g. by a policy).
                  // findItem(...).setEnabled(...)" is not enough here, because of the inflated
-@@ -674,6 +876,45 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
-         }
+@@ -672,6 +874,45 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+         return !isIncognito && QuickDeleteController.isQuickDeleteEnabled();
      }
  
 +    protected void updateAdblockMenuItem(
@@ -390,7 +390,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
      /**
       * @param currentTab The currentTab for which the app menu is showing.
       * @return Whether the reader mode preferences menu item should be displayed.
-@@ -941,7 +1182,62 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -930,7 +1171,62 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
       */
      protected void prepareTranslateMenuItem(Menu menu, @Nullable Tab currentTab) {
          boolean isTranslateVisible = currentTab != null && shouldShowTranslateMenuItem(currentTab);
@@ -452,7 +452,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
 +            }
      }
  
-     @Override
+     /** Sets visibility of the "Listen to this page" menu item. */
 @@ -962,6 +1258,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
  
      @Override
@@ -461,7 +461,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          mReloadPropertyModel = null;
          if (mUpdateMenuItemVisible) {
              UpdateMenuItemHelper.getInstance().onMenuDismissed();
-@@ -1052,6 +1349,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1031,6 +1328,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
       */
      protected void updateBookmarkMenuItemShortcut(
              MenuItem bookmarkMenuItemShortcut, @Nullable Tab currentTab, boolean fromCCT) {
@@ -469,7 +469,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          if (!mBookmarkModelSupplier.hasValue() || currentTab == null) {
              // If the BookmarkModel still isn't available, assume the bookmark menu item is not
              // editable.
-@@ -1081,6 +1379,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1060,6 +1358,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
       */
      protected void updateBookmarkMenuItemRow(
              MenuItem bookmarkMenuItemAdd, MenuItem bookmarkMenuItemEdit, @Nullable Tab currentTab) {
@@ -477,7 +477,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          // If the bookmark menu item row is disabled, then hide both item.
          if (!BookmarkFeatures.isBookmarkMenuItemAsDedicatedRowEnabled()
                  || !mBookmarkModelSupplier.hasValue() || currentTab == null) {
-@@ -1200,7 +1499,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1185,7 +1484,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          // Hide app menu item if on non-NTP chrome:// page or auto dark not enabled.
          boolean isAutoDarkEnabled = isAutoDarkWebContentsEnabled();
          boolean itemVisible = currentTab != null && !isChromeScheme && isAutoDarkEnabled;
@@ -488,7 +488,7 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          if (!itemVisible) return;
  
          // Set text based on if site is blocked or not.
-@@ -1248,6 +1549,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1232,6 +1533,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          if (itemId == R.id.edit_bookmark_menu_id || itemId == R.id.disable_price_tracking_menu_id) {
              return R.color.default_icon_color_accent1_tint_list;
          }
@@ -498,8 +498,8 @@ index afa0faf6bc8c02f9773ce75bfcb631ab0f2d9b89..eb3d2d083233fdd515bf6e8ecd2aef94
          return R.color.default_icon_color_secondary_tint_list;
      }
  
-@@ -1267,4 +1571,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
-                     mContext.getString(R.string.accessibility_menu_share_via, directShareTitle));
+@@ -1266,4 +1570,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+                     HostSurface.NEW_TAB_PAGE, ModuleTypeOnStartAndNTP.MENU_BUTTON);
          }
      }
 + 

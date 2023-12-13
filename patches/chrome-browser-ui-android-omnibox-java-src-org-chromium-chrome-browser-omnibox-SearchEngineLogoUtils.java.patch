@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/SearchEngineLogoUtils.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/SearchEngineLogoUtils.java
-index 2a59615e17c504f0c115e07878d9b5f91662681e..6de80c1463330401dd3d97c3573f97b4df8d2a37 100644
+index 6815e3cb04a26bfa252936cc620ac5eb966e1038..7956ee3f3e7949afbbd697380e2d59d5c596ff83 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/SearchEngineLogoUtils.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/SearchEngineLogoUtils.java
 @@ -156,7 +156,8 @@ public class SearchEngineLogoUtils {

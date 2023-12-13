@@ -1,9 +1,9 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
-index bab4cb91f75cc8a8f3b238d6e658df93b8980af8..994cfec04cbc596ea9a08dd90cfe7ab082ebff97 100644
+index db04a12181981e6c0ea772bb2a710a45cf9b1620..39aed84aebd9a525275f0d0ae6917a455ec5fd55 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
-@@ -45,11 +45,22 @@ import java.util.ArrayList;
- import java.util.HashSet;
+@@ -38,11 +38,22 @@ import org.chromium.url.GURL;
+ import java.util.ArrayList;
  import java.util.List;
  
 +import android.content.Intent;
@@ -18,15 +18,15 @@ index bab4cb91f75cc8a8f3b238d6e658df93b8980af8..994cfec04cbc596ea9a08dd90cfe7ab0
 +import org.chromium.ui.base.WindowAndroid;
 +
  /**
-  * Provides the communication channel for Android to fetch and manipulate the
-  * bookmark model stored in native.
+  * Provides the communication channel for Android to fetch and manipulate the bookmark model stored
+  * in native.
   */
 -class BookmarkBridge {
 +public class BookmarkBridge {
+     private final ObserverList<BookmarkModelObserver> mObservers = new ObserverList<>();
+ 
      private long mNativeBookmarkBridge;
-     private boolean mIsDestroyed;
-     private boolean mIsDoingExtensiveChanges;
-@@ -188,6 +199,48 @@ class BookmarkBridge {
+@@ -171,6 +182,48 @@ class BookmarkBridge {
          return mIsNativeBookmarkModelLoaded;
      }
  
@@ -73,14 +73,14 @@ index bab4cb91f75cc8a8f3b238d6e658df93b8980af8..994cfec04cbc596ea9a08dd90cfe7ab0
 +    }
 +
      /**
-      * Schedules a runnable to run after the bookmark model is loaded. If the
-      * model is already loaded, executes the runnable immediately. If not, also
-@@ -1082,5 +1135,8 @@ class BookmarkBridge {
-         void reorderChildren(long nativeBookmarkBridge, BookmarkBridge caller, BookmarkId parent,
-                 long[] orderedNodes);
+      * Schedules a runnable to run after the bookmark model is loaded. If the model is already
+      * loaded, executes the runnable immediately. If not, also kick off partner bookmark reading.
+@@ -1098,5 +1151,8 @@ class BookmarkBridge {
          boolean isBookmarked(long nativeBookmarkBridge, GURL url);
+ 
+         int getUnreadCount(long nativeBookmarkBridge);
 +
-+	void importBookmarks(long nativeBookmarkBridge, WindowAndroid window);
-+	void exportBookmarks(long nativeBookmarkBridge, WindowAndroid window);
++	    void importBookmarks(long nativeBookmarkBridge, WindowAndroid window);
++	    void exportBookmarks(long nativeBookmarkBridge, WindowAndroid window);
      }
  }

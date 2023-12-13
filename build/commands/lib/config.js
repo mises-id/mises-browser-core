@@ -558,6 +558,8 @@ Config.prototype.buildArgs = function () {
     args.ios_enable_credential_provider_extension = false
     args.ios_enable_widget_kit_extension = false
 
+    args.ios_partition_alloc_enabled = false
+    
     args.ios_provider_target = "//mises/ios/browser/providers:mises_providers"
     args.ios_application_icons_target = "//mises/ios/app/resources:mises_icons"
     args.ios_launchscreen_assets_target = "//mises//ios/app/resources:launchscreen_assets"
@@ -1016,6 +1018,7 @@ Object.defineProperty(Config.prototype, 'defaultOptions', {
     if (this.channel != "") {
       env.MISES_CHANNEL = this.channel
     }
+    env.RUSTUP_HOME = path.join(this.srcDir, 'third_party', 'rust-toolchain')
 
     if (this.getCachePath()) {
       console.log("using git cache path " + this.getCachePath())

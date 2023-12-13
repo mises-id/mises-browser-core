@@ -1,8 +1,8 @@
 diff --git a/extensions/renderer/native_extension_bindings_system_unittest.cc b/extensions/renderer/native_extension_bindings_system_unittest.cc
-index 99bad4ae5cefe4dfa0b630869c660b37a1c7ac3a..42bee09123f62abd44ab96d2a248f972cabc07bc 100644
+index c5de3564518050682ec6e86003f0e1769711599b..560df1bcc2bebd4972914ae706486ad2f8870eab 100644
 --- a/extensions/renderer/native_extension_bindings_system_unittest.cc
 +++ b/extensions/renderer/native_extension_bindings_system_unittest.cc
-@@ -918,6 +918,7 @@ TEST_F(NativeExtensionBindingsSystemUnittest, UnmanagedEvents) {
+@@ -917,6 +917,7 @@ TEST_F(NativeExtensionBindingsSystemUnittest, UnmanagedEvents) {
    ::testing::Mock::VerifyAndClearExpectations(ipc_message_sender());
  }
  
@@ -10,7 +10,7 @@ index 99bad4ae5cefe4dfa0b630869c660b37a1c7ac3a..42bee09123f62abd44ab96d2a248f972
  // Tests that a context having access to an aliased API (like networking.onc)
  // does not allow for accessing the source API (networkingPrivate) directly.
  TEST_F(NativeExtensionBindingsSystemUnittest,
-@@ -1018,6 +1019,7 @@ TEST_F(NativeExtensionBindingsSystemUnittest, AliasedAPIsAreDifferentObjects) {
+@@ -1017,6 +1018,7 @@ TEST_F(NativeExtensionBindingsSystemUnittest, AliasedAPIsAreDifferentObjects) {
        &equal));
    EXPECT_FALSE(equal);
  }

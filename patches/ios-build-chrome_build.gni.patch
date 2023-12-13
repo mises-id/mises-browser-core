@@ -1,8 +1,8 @@
 diff --git a/ios/build/chrome_build.gni b/ios/build/chrome_build.gni
-index 35113412870bb445b93d30e691376b08d2603363..708e909130bb392731a679b7134b841888ca56c7 100644
+index 6598ef5ec3dd5078e5235914b420c07173e9cfaf..26d1b2e48622c0f4c3fdd2ce6accadb2a2039ec4 100644
 --- a/ios/build/chrome_build.gni
 +++ b/ios/build/chrome_build.gni
-@@ -95,9 +95,9 @@ if (is_official_build && is_chrome_branded) {
+@@ -105,9 +105,9 @@ if (is_official_build && is_chrome_branded) {
    is_official_release = false
  }
  
@@ -15,7 +15,7 @@ index 35113412870bb445b93d30e691376b08d2603363..708e909130bb392731a679b7134b8418
  
  if (is_chrome_branded) {
    chromium_short_name = "Chrome"
-@@ -107,10 +107,10 @@ if (is_chrome_branded) {
+@@ -117,10 +117,10 @@ if (is_chrome_branded) {
    url_unsecure_scheme = "googlechrome"
    url_x_callback_scheme = "googlechrome-x-callback"
  } else {

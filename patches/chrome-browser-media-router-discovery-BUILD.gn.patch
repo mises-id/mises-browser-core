@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/media/router/discovery/BUILD.gn b/chrome/browser/media/router/discovery/BUILD.gn
-index 2363eff0fca3b12f2e1e36dc87c3d6cf4d818f8b..7dcd6548a5ef49b3989e20a42a06eeda3c698f3e 100644
+index e2440c0473984be4db2fe7c2dde3ccaac4f7974b..cf6ea1e47c2ae2ed4134cdfb89ddfd9e999f86bb 100644
 --- a/chrome/browser/media/router/discovery/BUILD.gn
 +++ b/chrome/browser/media/router/discovery/BUILD.gn
 @@ -4,7 +4,7 @@

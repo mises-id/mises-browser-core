@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java b/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
-index e9756de205eba95e4e8139620dc1c7a67627162b..42ef41373a1bf20cd26042b17e90963dbaf10cbe 100644
+index 7c5e4e417483d71a18c76408047b5b2dfbb9499a..b119532c1ce5dac16693d4e13808b31031554ca4 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
-@@ -237,7 +237,8 @@ public abstract class FirstRunFlowSequencer  {
+@@ -231,7 +231,8 @@ public abstract class FirstRunFlowSequencer  {
       */
      public static boolean checkIfFirstRunIsNecessary(boolean preferLightweightFre, boolean isCct) {
          // If FRE is disabled (e.g. in tests), proceed directly to the intent handling.

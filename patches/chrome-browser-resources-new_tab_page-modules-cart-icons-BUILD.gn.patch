@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/new_tab_page/modules/cart/icons/BUILD.gn b/chrome/browser/resources/new_tab_page/modules/cart/icons/BUILD.gn
-index 78c9b0d25d3414ccabdbeab882b64c83ae7f61ed..8cb1fcbefd4fc93243584c22be72e5ca588d0602 100644
+index fdf8deaab02c832e99f4176b26d5705915d8f6b6..fe1d6cc11d5c03941e778cfcdf226e25befeee06 100644
 --- a/chrome/browser/resources/new_tab_page/modules/cart/icons/BUILD.gn
 +++ b/chrome/browser/resources/new_tab_page/modules/cart/icons/BUILD.gn
 @@ -4,7 +4,7 @@

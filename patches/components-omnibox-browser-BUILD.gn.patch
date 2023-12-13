@@ -1,15 +1,15 @@
 diff --git a/components/omnibox/browser/BUILD.gn b/components/omnibox/browser/BUILD.gn
-index 4a6febc44e44f31c19f783680029d066a701579e..b3d393338262b213f5f7951e1ab865aab612b521 100644
+index b229a37f84859e793f482818b14c49392ec3fa7a..fb83e222586c406496a1f2280affae1d88b8b8a6 100644
 --- a/components/omnibox/browser/BUILD.gn
 +++ b/components/omnibox/browser/BUILD.gn
-@@ -334,7 +334,9 @@ static_library("browser") {
-     "//ui/base",
-     "//ui/gfx",
+@@ -871,7 +871,9 @@ source_set("unit_tests") {
+     "//ui/gfx:test_support",
+     "//url",
    ]
 -
 +  
 +  sources += mises_components_omnibox_browser_sources deps += mises_components_omnibox_browser_deps
 + 
    if ((!is_android || enable_vr) && !is_ios) {
-     deps += [ ":vector_icons" ]
-   }
+     deps += [
+       ":buildflags",

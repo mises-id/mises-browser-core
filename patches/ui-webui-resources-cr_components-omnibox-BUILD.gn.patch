@@ -1,13 +1,13 @@
 diff --git a/ui/webui/resources/cr_components/omnibox/BUILD.gn b/ui/webui/resources/cr_components/omnibox/BUILD.gn
-index a546b1c3db7c24a7af9db801f727cd4833ba11e3..ad329810edb4dadeab627c45ca70e02f0d6a1c36 100644
+index abddcef3e2199680bcb2c07d4b9ee16302eb6b8c..4852dd764da94b118908c0b58cb267dbc42afcae 100644
 --- a/ui/webui/resources/cr_components/omnibox/BUILD.gn
 +++ b/ui/webui/resources/cr_components/omnibox/BUILD.gn
 @@ -4,7 +4,7 @@
  
- import("../../tools/build_cr_component.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android && !is_ios)
 +#assert(!is_android && !is_ios)
  
- build_cr_component("build") {
+ build_webui("build") {
    grd_prefix = "cr_components_omnibox"

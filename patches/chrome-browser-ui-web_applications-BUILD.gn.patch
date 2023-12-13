@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/ui/web_applications/BUILD.gn b/chrome/browser/ui/web_applications/BUILD.gn
-index a4d302480ed486cb045f2ba1beeda8b12afe68fd..4bb4981850f1577842b11b831863bb3f68b47d6c 100644
+index 016835c9b612f05317c6199a652e03abf24ede84..a1efb41c8da7aac5c46da31c9ea3b54ab0874731 100644
 --- a/chrome/browser/ui/web_applications/BUILD.gn
 +++ b/chrome/browser/ui/web_applications/BUILD.gn
-@@ -87,6 +87,10 @@ source_set("browser_tests") {
-       "//chrome/browser/ui/ash/system_web_apps",
+@@ -114,6 +114,10 @@ source_set("browser_tests") {
+       "//components/metrics/structured:structured_events",
      ]
    }
 +
@@ -13,7 +13,7 @@ index a4d302480ed486cb045f2ba1beeda8b12afe68fd..4bb4981850f1577842b11b831863bb3f
  }
  
  # On Lacros, these browser tests require Ash to be running, as they rely on
-@@ -143,4 +147,7 @@ source_set("app_service_browser_tests") {
+@@ -175,4 +179,7 @@ source_set("app_service_browser_tests") {
        "//chromeos/lacros:test_support",
      ]
    }

@@ -1,5 +1,5 @@
 diff --git a/chrome/app/google_chrome_strings.grd b/chrome/app/google_chrome_strings.grd
-index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c3ec39fc7 100644
+index 5d0074b06a5664a720a1b472fae409e462cbd6ab..b6dff0affd8c0d6e252fd0630d5bd2c1ea302e55 100644
 --- a/chrome/app/google_chrome_strings.grd
 +++ b/chrome/app/google_chrome_strings.grd
 @@ -274,7 +274,7 @@ chromium_strings.grd. -->
@@ -11,7 +11,7 @@ index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c
          <part file="settings_google_chrome_strings.grdp" />
        </if>
  
-@@ -890,7 +890,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -927,7 +927,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- Enterprise sign-in dialog -->
@@ -20,7 +20,7 @@ index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c
          <message name="IDS_ENTERPRISE_SIGNIN_TITLE" desc="The title of the dialog to confirm linking the browser profile with the signed-in enterprise account">
            Link your Chrome data to this account?
          </message>
-@@ -922,7 +922,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -959,7 +959,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- about:browser-switch strings -->
@@ -29,7 +29,7 @@ index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c
          <message name="IDS_ABOUT_BROWSER_SWITCH_DESCRIPTION_UNKNOWN_BROWSER" desc="Description shown while waiting for an alternative browser to open, when the browser name is not auto-detected">
            Your system administrator has configured Google Chrome to open an alternative browser to access <ph name="TARGET_URL_HOSTNAME">$1<ex>example.com</ex></ph>.
          </message>
-@@ -1089,7 +1089,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1137,7 +1137,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- Material Design User Manager -->
@@ -38,7 +38,7 @@ index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c
          <!-- User pod remove sync warning text -->
          <message name="IDS_LOGIN_POD_USER_REMOVE_WARNING_SYNC" desc="Main text shown as a warning when attempting to remove an user.">
            This person's browsing data will be deleted from this device. To recover the data, sign in to Chrome as <ph name="USER_EMAIL">$2<ex>foo@example.com</ex></ph>.
-@@ -1173,7 +1173,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1237,7 +1237,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- content area context menus. Android does not use it -->
@@ -47,7 +47,7 @@ index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c
          <message name="IDS_CONTENT_CONTEXT_ACCESSIBILITY_LABELS_BUBBLE_TEXT" desc="The text of a bubble that confirms users allows integrating the accessibility labels service of Google to Chromium.">
            If an image doesn’t have a useful description, Chrome will try to provide one for you. To create descriptions, images are sent to Google. You can turn this off in settings at any time.
          </message>
-@@ -1265,7 +1265,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1341,7 +1341,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </message>
  
        <!-- Sync errors. Android uses native UI to handle Sync settings -->
@@ -56,7 +56,7 @@ index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c
          <message name="IDS_SYNC_UPGRADE_CLIENT" desc="Message indicating client needs to be upgraded to the latest version.">
            Update Chrome to start sync
          </message>
-@@ -1388,7 +1388,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1462,7 +1462,7 @@ Permissions you've already given to websites and apps may apply to this account.
          </message>
        </if>
        <!-- Relaunch notification bubble and dialog. -->
@@ -65,7 +65,7 @@ index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c
          <if expr="not chromeos_ash">
            <message name="IDS_RELAUNCH_RECOMMENDED_TITLE" desc="The title of a dialog that tells users that a browser relaunch is recommended for an update available for some number of days.">
              {0, plural,
-@@ -1433,7 +1433,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1507,7 +1507,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- Chrome launch blocking dialog. -->
@@ -74,7 +74,7 @@ index 8f52d27b918e05be0b96e650680396d949fe1f37..fe0e8f7ae23c20c2ee5d001df2b9671c
          <message name="IDS_ENTERPRISE_STARTUP_CLOUD_POLICY_ENROLLMENT_TOOLTIP" desc="The information message of Chrome launch blocking dialog for machine level user cloud policy enrollment.">
            Launching Chrome...
          </message>
-@@ -1472,7 +1472,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1570,7 +1570,7 @@ Permissions you've already given to websites and apps may apply to this account.
      </if>
  
        <!-- User happiness tracking survey UI -->

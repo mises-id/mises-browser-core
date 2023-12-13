@@ -1,5 +1,5 @@
 diff --git a/net/base/mime_util.cc b/net/base/mime_util.cc
-index fbf739f1bfcaf1d09b0725c10b5c5d0a574c8f3f..8ddf56edae6eab3d7a203872f7c747636216b800 100644
+index d4ac4b84f8f033be4fb09ab5df3fc55a0728d0bf..8bf4f3fd1621c18e4d6ddf99f30cfa424327d263 100644
 --- a/net/base/mime_util.cc
 +++ b/net/base/mime_util.cc
 @@ -317,6 +317,10 @@ bool MimeUtil::GetMimeTypeFromFile(const base::FilePath& file_path,

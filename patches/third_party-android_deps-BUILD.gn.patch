@@ -1,16 +1,16 @@
 diff --git a/third_party/android_deps/BUILD.gn b/third_party/android_deps/BUILD.gn
-index b5f37b4e932599ce2b1cfb29a4d9f1260f27f308..90c00989fc979516f720593e77efabd5d985a6ed 100644
+index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..0f8335d133a26b29751079819e7e3a7e6bc5d3a7 100644
 --- a/third_party/android_deps/BUILD.gn
 +++ b/third_party/android_deps/BUILD.gn
-@@ -1922,6 +1922,7 @@ if (!limit_android_deps) {
+@@ -1895,6 +1895,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
 +      "//mises/third_party/android_deps:*",
      ]
      deps = [
-       ":google_play_services_basement_java",
-@@ -1988,6 +1989,7 @@ if (!limit_android_deps) {
+       ":com_android_support_customview_java",
+@@ -2302,6 +2303,7 @@ if (!limit_android_deps) {
      # //third_party/android_deps/build.gradle.
      visibility = [
        ":*",
@@ -18,43 +18,43 @@ index b5f37b4e932599ce2b1cfb29a4d9f1260f27f308..90c00989fc979516f720593e77efabd5
        "//third_party/androidx:*",
      ]
      deps = [
-@@ -2034,6 +2036,7 @@ if (!limit_android_deps) {
+@@ -2345,6 +2347,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
 +      "//mises/third_party/android_deps:*",
      ]
-     deps = [
-       ":google_firebase_firebase_components_java",
-@@ -2056,6 +2059,7 @@ if (!limit_android_deps) {
-     visibility = [
-       ":*",
-       "//third_party/androidx:*",
-+      "//mises/third_party/android_deps:*",
-     ]
-     deps = [
-       ":google_firebase_firebase_annotations_java",
-@@ -2128,6 +2132,7 @@ if (!limit_android_deps) {
-     visibility = [
-       ":*",
-       "//third_party/androidx:*",
-+      "//mises/third_party/android_deps:*",
-     ]
-     deps = [
-       ":google_firebase_firebase_common_java",
-@@ -2150,6 +2155,7 @@ if (!limit_android_deps) {
-     visibility = [
-       ":*",
-       "//third_party/androidx:*",
-+      "//mises/third_party/android_deps:*",
-     ]
-     deps = [
-       ":google_firebase_firebase_annotations_java",
-@@ -2170,6 +2176,7 @@ if (!limit_android_deps) {
-     visibility = [
-       ":*",
-       "//third_party/androidx:*",
-+      "//mises/third_party/android_deps:*",
-     ]
-     deps = [ ":google_play_services_basement_java" ]
+     testonly = true
    }
+@@ -2361,6 +2364,7 @@ if (!limit_android_deps) {
+     visibility = [
+       ":*",
+       "//third_party/androidx:*",
++      "//mises/third_party/android_deps:*",
+     ]
+     testonly = true
+   }
+@@ -2438,6 +2442,7 @@ if (!limit_android_deps) {
+     visibility = [
+       ":*",
+       "//third_party/androidx:*",
++      "//mises/third_party/android_deps:*",
+     ]
+     testonly = true
+     is_robolectric = true
+@@ -2454,6 +2459,7 @@ if (!limit_android_deps) {
+     visibility = [
+       ":*",
+       "//third_party/androidx:*",
++      "//mises/third_party/android_deps:*",
+     ]
+     testonly = true
+     deps = [
+@@ -2477,6 +2483,7 @@ if (!limit_android_deps) {
+     visibility = [
+       ":*",
+       "//third_party/androidx:*",
++      "//mises/third_party/android_deps:*",
+     ]
+     testonly = true
+     deps = [

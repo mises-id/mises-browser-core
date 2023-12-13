@@ -1,8 +1,8 @@
 diff --git a/chrome/chrome_paks.gni b/chrome/chrome_paks.gni
-index b3f457a9ce65635b0dfe909432648b727b8e853f..0a8aa223a093cc7c04c9bd21db8ee33f5e291de2 100644
+index 54efa2d231a3bb9218a4cd57b8cab1c88dbc30b6..799c6b2c77a3b23063aa3be22e7ecc22c87401b8 100644
 --- a/chrome/chrome_paks.gni
 +++ b/chrome/chrome_paks.gni
-@@ -148,7 +148,7 @@ template("chrome_extra_paks") {
+@@ -147,7 +147,7 @@ template("chrome_extra_paks") {
        sources += invoker.additional_paks
      }
  
@@ -10,17 +10,8 @@ index b3f457a9ce65635b0dfe909432648b727b8e853f..0a8aa223a093cc7c04c9bd21db8ee33f
 +    if (!is_android || is_android) {
        # New paks should be added here by default.
        sources += [
-         "$root_gen_dir/chrome/access_code_cast_resources.pak",
-@@ -207,7 +207,7 @@ template("chrome_extra_paks") {
-         "//chrome/browser/resources/inline_login:resources",
-         "//chrome/browser/resources/management:resources",
-         "//chrome/browser/resources/new_tab_page:resources",
--        "//chrome/browser/resources/new_tab_page_instant:resources",
-+        "//mises/browser/resources/new_tab_page_instant:resources",
-         "//chrome/browser/resources/new_tab_page_third_party:resources",
-         "//chrome/browser/resources/omnibox_popup:resources",
-         "//chrome/browser/resources/password_manager:resources",
-@@ -416,7 +416,7 @@ template("chrome_extra_paks") {
+         "$root_gen_dir/chrome/about_sys_resources.pak",
+@@ -379,7 +379,7 @@ template("chrome_extra_paks") {
        sources += [ "$root_gen_dir/chrome/webui_js_error_resources.pak" ]
        deps += [ "//chrome/browser/resources/webui_js_error:resources" ]
      }
@@ -29,8 +20,8 @@ index b3f457a9ce65635b0dfe909432648b727b8e853f..0a8aa223a093cc7c04c9bd21db8ee33f
        sources += [
          "$root_gen_dir/chrome/intro_resources.pak",
          "$root_gen_dir/chrome/profile_picker_resources.pak",
-@@ -450,12 +450,12 @@ template("chrome_extra_paks") {
-       deps += [ "//chrome/browser/resources/connectors_internals:resources" ]
+@@ -417,12 +417,12 @@ template("chrome_extra_paks") {
+       deps += [ "//chrome/browser/resources/dlp_internals:resources" ]
      }
  
 -    if (is_win || is_mac || is_linux || is_chromeos_lacros || is_fuchsia) {
