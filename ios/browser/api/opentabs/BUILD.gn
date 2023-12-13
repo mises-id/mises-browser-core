@@ -32,7 +32,6 @@ source_set("opentabs") {
     "//mises/ios/browser/api/web/web_state",
     "//components/keyed_service/ios:ios",
     "//components/send_tab_to_self",
-    "//components/sync/driver",
     "//components/sync_sessions",
     "//ios/chrome/browser/browser_state",
     "//ios/chrome/browser/main:public",

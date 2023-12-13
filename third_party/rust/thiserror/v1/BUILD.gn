@@ -1,0 +1,69 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "thiserror"
+  epoch = "1"
+  crate_type = "rlib"
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/thiserror/v1/crate/build.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/src/aserror.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/src/display.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/src/lib.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/src/provide.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/compiletest.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_backtrace.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_deprecated.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_display.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_error.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_expr.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_from.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_generics.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_lints.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_option.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_path.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_source.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/test_transparent.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/bad-field-attr.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/concat-display.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/duplicate-enum-source.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/duplicate-fmt.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/duplicate-struct-source.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/duplicate-transparent.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/from-backtrace-backtrace.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/from-not-source.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/lifetime.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/missing-fmt.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/no-display.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/source-enum-not-error.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/source-struct-not-error.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/transparent-display.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/transparent-enum-many.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/transparent-enum-source.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/transparent-struct-many.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/transparent-struct-source.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/unexpected-field-fmt.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/unexpected-struct-source.rs",
+    "//mises/third_party/rust/thiserror/v1/crate/tests/ui/union.rs",
+  ]
+  inputs = [ "//mises/third_party/rust/thiserror/v1/crate/README.md" ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "1.0.38"
+  cargo_pkg_authors = "David Tolnay <dtolnay@gmail.com>"
+  cargo_pkg_name = "thiserror"
+  cargo_pkg_description = "derive(Error)"
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [ "//mises/third_party/rust/thiserror_impl/v1:lib" ]
+  build_root = "crate/build.rs"
+  build_sources = [ "crate/build.rs" ]
+}

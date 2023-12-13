@@ -1,5 +1,5 @@
 diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
-index 4c66836806fcda70c76aa026549cdc9aa4cb675f..951ddc4c3a63ccbb310a850a2b9ee35f82699a9c 100644
+index 4c66836806fcda70c76aa026549cdc9aa4cb675f..bec74bcbf5921b42be237ca2dd1a0452a28e8c92 100644
 --- a/content/browser/BUILD.gn
 +++ b/content/browser/BUILD.gn
 @@ -3275,6 +3275,8 @@ source_set("browser") {
@@ -16,7 +16,7 @@ index 4c66836806fcda70c76aa026549cdc9aa4cb675f..951ddc4c3a63ccbb310a850a2b9ee35f
      ]
  
 +    if (is_android) {
-+      sources -= ["media/session/audio_focus_delegate_default.cc", "media/capture/crop_id_web_contents_helper.cc","network_sandbox.cc",]
++      sources -= ["media/session/audio_focus_delegate_default.cc", "network_sandbox.cc",]
 +    }
 +
      deps += [

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/side_panel/commerce/BUILD.gn b/chrome/browser/resources/side_panel/commerce/BUILD.gn
+index 518ec4d30e7599ca06d92abbbcce0d0d4e0035bb..aa839b5a9ccbccf3ea90e0438ef3bc4d2dcc6cce 100644
+--- a/chrome/browser/resources/side_panel/commerce/BUILD.gn
++++ b/chrome/browser/resources/side_panel/commerce/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "side_panel_commerce"

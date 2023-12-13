@@ -1,5 +1,5 @@
 diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
-index e61d70856282ffbef8abc4398c8c98cab4122688..846b01250ffb8b9bd95027bb63a2ce1179a39e25 100644
+index e61d70856282ffbef8abc4398c8c98cab4122688..cca71ef089b197ffb123757611b3377852eb9205 100644
 --- a/chrome/android/BUILD.gn
 +++ b/chrome/android/BUILD.gn
 @@ -170,6 +170,7 @@ if (current_toolchain == default_toolchain) {
@@ -75,11 +75,3 @@ index e61d70856282ffbef8abc4398c8c98cab4122688..846b01250ffb8b9bd95027bb63a2ce11
  
      # More deps for DFMs.
      if (dfmify_dev_ui) {
-@@ -2774,6 +2782,7 @@ if (current_toolchain == default_toolchain) {
-               "expectations/$target_name.$target_cpu.libs_and_assets.expected"
-         }
-       }
-+      deps += mises_monochrome_public_apk_or_module_tmpl_deps loadable_modules = mises_monochrome_public_apk_or_module_tmpl_loadable_modules secondary_abi_loadable_modules = mises_monochrome_public_apk_or_module_tmpl_secondary_abi_loadable_modules
-     }
-   }
- 

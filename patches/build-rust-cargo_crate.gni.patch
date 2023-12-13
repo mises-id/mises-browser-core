@@ -1,0 +1,13 @@
+diff --git a/build/rust/cargo_crate.gni b/build/rust/cargo_crate.gni
+index 61ecfe28695cb09c5fa8944f3e8edb3fe561808a..7bf3c968c5c44eda323d49efe261d480bb5792c8 100644
+--- a/build/rust/cargo_crate.gni
++++ b/build/rust/cargo_crate.gni
+@@ -214,7 +214,7 @@ template("cargo_crate") {
+                                  "rustenv",
+                                  "dev_deps",
+                                ])
+-    forward_variables_from(invoker, TESTONLY_AND_VISIBILITY)
++    forward_variables_from(invoker, [ "testonly" ])
+     if (defined(crate_type) && crate_type == "cdylib") {
+       # See comments above about cdylib.
+       crate_type = "rlib"

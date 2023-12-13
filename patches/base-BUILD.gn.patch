@@ -1,12 +1,13 @@
 diff --git a/base/BUILD.gn b/base/BUILD.gn
-index 24f2397278ccb400a47e065a676be5ae783fa2e6..b92f563c49f91b61ca79032e0a5401c27aa92112 100644
+index 24f2397278ccb400a47e065a676be5ae783fa2e6..2bf31394bafdb7592325ca37b9514169e1873d4c 100644
 --- a/base/BUILD.gn
 +++ b/base/BUILD.gn
-@@ -4229,6 +4229,7 @@ if (is_android || is_robolectric) {
-       "android/java/src/org/chromium/base/task/PostTask.java",
-       "android/java/src/org/chromium/base/task/TaskRunnerImpl.java",
+@@ -4480,7 +4480,7 @@ if (is_android) {
+       "android/java/src/org/chromium/base/task/ThreadPoolTaskExecutor.java",
+       "android/java/src/org/chromium/base/task/UiThreadTaskExecutor.java",
      ]
+-
 +    sources += mises_java_base_sources
- 
      if (use_clang_profiling) {
        sources += [
+         "test/android/javatests/src/org/chromium/base/test/ClangProfiler.java",

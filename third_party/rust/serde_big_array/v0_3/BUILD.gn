@@ -1,0 +1,42 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "serde_big_array"
+  epoch = "0.3"
+  crate_type = "rlib"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/serde_big_array/v0_3/crate/src/const_generics.rs",
+    "//mises/third_party/rust/serde_big_array/v0_3/crate/src/lib.rs",
+    "//mises/third_party/rust/serde_big_array/v0_3/crate/tests/basic.rs",
+    "//mises/third_party/rust/serde_big_array/v0_3/crate/tests/const.rs",
+    "//mises/third_party/rust/serde_big_array/v0_3/crate/tests/const_expr.rs",
+    "//mises/third_party/rust/serde_big_array/v0_3/crate/tests/const_generics.rs",
+    "//mises/third_party/rust/serde_big_array/v0_3/crate/tests/const_path.rs",
+    "//mises/third_party/rust/serde_big_array/v0_3/crate/tests/plus.rs",
+  ]
+  inputs = [ "//mises/third_party/rust/serde_big_array/v0_3/crate/README.md" ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "0.3.3"
+  cargo_pkg_authors =
+      "est31 <MTest31@outlook.com>, David Tolnay <dtolnay@gmail.com>"
+  cargo_pkg_name = "serde-big-array"
+  cargo_pkg_description = "Big array helper for serde."
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [ "//third_party/rust/serde/v1:lib" ]
+  features = [ "const-generics" ]
+}

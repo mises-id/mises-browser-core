@@ -8,6 +8,7 @@ import("//build/config/locales.gni")
 import("//chrome/browser/buildflags.gni")
 import("//chrome/common/features.gni")
 import("//components/feed/features.gni")
+import("//third_party/jni_zero/jni_zero.gni")
 
 
 android_resources("java_resources") {
@@ -84,7 +85,7 @@ android_library("public_java") {
     "//chrome/android:base_module_java",
     "//components/version_info/android:version_constants_java",
   ]
-  annotation_processor_deps = [ "//base/android/jni_generator:jni_processor" ]
+  annotation_processor_deps = [ "//components/module_installer/android:module_interface_processor" ]
   resources_package = "org.chromium.chrome.mises"
 
 }

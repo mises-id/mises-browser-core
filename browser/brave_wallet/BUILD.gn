@@ -182,7 +182,7 @@ source_set("unit_tests") {
     "//mises/components/brave_wallet/common",
     "//mises/components/brave_wallet/common:mojom",
     "//mises/components/brave_wallet/common:test_support",
-    "//mises/components/filecoin/rs:cxx",
+    "//mises/components/filecoin/rs:rust_lib",
     "//mises/components/l10n/common",
     "//mises/components/resources:strings_grit",
     "//mises/components/version_info",

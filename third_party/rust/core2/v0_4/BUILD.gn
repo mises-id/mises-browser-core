@@ -1,0 +1,43 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "core2"
+  epoch = "0.4"
+  crate_type = "rlib"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/core2/v0_4/crate/src/error.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/src/io/buffered.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/src/io/cursor.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/src/io/error.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/src/io/impls.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/src/io/mod.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/src/io/traits.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/src/io/util.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/src/lib.rs",
+    "//mises/third_party/rust/core2/v0_4/crate/tests/tests.rs",
+  ]
+  inputs = [ "//mises/third_party/rust/core2/v0_4/crate/README.md" ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "0.4.0"
+  cargo_pkg_authors = "Brendan Molloy <brendan@bbqsrc.net>"
+  cargo_pkg_name = "core2"
+  cargo_pkg_description = "The bare essentials of std::io for use in no_std. Alloc support is optional."
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [ "//third_party/rust/memchr/v2:lib" ]
+  features = [ "alloc" ]
+}

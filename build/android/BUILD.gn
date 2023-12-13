@@ -1,6 +1,7 @@
 import("//mises/android/mises_xml_preprocessor.gni")
 import("//mises/build/config.gni")
 import("//build/config/android/rules.gni")
+import("//third_party/jni_zero/jni_zero.gni")
 import("//tools/grit/grit_rule.gni")
 
 action("sign_app") {

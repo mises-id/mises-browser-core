@@ -1,0 +1,48 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("buildrs_support") {
+  crate_name = "platforms"
+  epoch = "3"
+  crate_type = "rlib"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/platforms/v3/crate/src/error.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/lib.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/platform.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/platform/platforms.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/platform/req.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/platform/tier.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/target.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/target/arch.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/target/endian.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/target/env.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/target/os.rs",
+    "//mises/third_party/rust/platforms/v3/crate/src/target/pointerwidth.rs",
+  ]
+  inputs = [
+    "//mises/third_party/rust/platforms/v3/crate/CHANGELOG.md",
+    "//mises/third_party/rust/platforms/v3/crate/README.md",
+  ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "3.2.0"
+  cargo_pkg_authors =
+      "Tony Arcieri <bascule@gmail.com>, Sergey Davidoff <shnatsel@gmail.com>"
+  cargo_pkg_name = "platforms"
+  cargo_pkg_description = "Rust platform registry with information about valid Rust platforms (target triple, target_arch, target_os) sourced from the Rust compiler."
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  features = [ "std" ]
+}

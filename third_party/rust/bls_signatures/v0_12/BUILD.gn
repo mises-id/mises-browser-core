@@ -1,0 +1,55 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "bls_signatures"
+  epoch = "0.12"
+  crate_type = "rlib"
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/bls_signatures/v0_12/crate/benches/serialize.rs",
+    "//mises/third_party/rust/bls_signatures/v0_12/crate/benches/sign.rs",
+    "//mises/third_party/rust/bls_signatures/v0_12/crate/benches/verify.rs",
+    "//mises/third_party/rust/bls_signatures/v0_12/crate/examples/verify.rs",
+    "//mises/third_party/rust/bls_signatures/v0_12/crate/src/error.rs",
+    "//mises/third_party/rust/bls_signatures/v0_12/crate/src/key.rs",
+    "//mises/third_party/rust/bls_signatures/v0_12/crate/src/lib.rs",
+    "//mises/third_party/rust/bls_signatures/v0_12/crate/src/signature.rs",
+  ]
+  inputs = [ "//mises/third_party/rust/bls_signatures/v0_12/crate/README.md" ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "0.12.0"
+  cargo_pkg_authors = "dignifiedquire <dignifiedquire@gmail.com>"
+  cargo_pkg_name = "bls-signatures"
+  cargo_pkg_description = "Aggregate BLS Signatures"
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [
+    "//mises/third_party/rust/bls12_381/v0_7:lib",
+    "//mises/third_party/rust/ff/v0_12:lib",
+    "//mises/third_party/rust/group/v0_12:lib",
+    "//mises/third_party/rust/hkdf/v0_11:lib",
+    "//mises/third_party/rust/pairing/v0_22:lib",
+    "//mises/third_party/rust/sha2/v0_9:lib",
+    "//mises/third_party/rust/subtle/v2:lib",
+    "//mises/third_party/rust/thiserror/v1:lib",
+    "//third_party/rust/rand_core/v0_6:lib",
+  ]
+  aliased_deps = {
+    pairing_lib = "//mises/third_party/rust/pairing/v0_22:lib__rlib"
+  }
+  features = [
+    "bls12_381",
+    "hkdf",
+    "pairing",
+    "sha2",
+  ]
+}

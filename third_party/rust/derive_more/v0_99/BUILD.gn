@@ -1,0 +1,131 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "derive_more"
+  epoch = "0.99"
+  crate_type = "proc-macro"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/add_assign_like.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/add_helpers.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/add_like.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/as_mut.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/as_ref.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/constructor.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/deref.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/deref_mut.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/display.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/error.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/from.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/from_str.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/index.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/index_mut.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/into.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/into_iterator.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/is_variant.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/lib.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/mul_assign_like.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/mul_helpers.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/mul_like.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/not_like.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/parsing.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/sum_like.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/try_into.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/unwrap.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/src/utils.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/add.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/add_assign.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/as_mut.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/as_ref.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/boats_display_derive.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/constructor.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/deref.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/deref_mut.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/display.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/derives_for_enums_with_source.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/derives_for_generic_enums_with_source.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/derives_for_generic_structs_with_source.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/derives_for_structs_with_source.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/mod.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/nightly/derives_for_enums_with_backtrace.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/nightly/derives_for_generic_enums_with_backtrace.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/nightly/derives_for_generic_structs_with_backtrace.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/nightly/derives_for_structs_with_backtrace.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error/nightly/mod.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/error_tests.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/from.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/from_str.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/generics.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/index.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/index_mut.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/into.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/into_iterator.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/is_variant.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/lib.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/mul.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/mul_assign.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/no_std.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/not.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/sum.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/try_into.rs",
+    "//mises/third_party/rust/derive_more/v0_99/crate/tests/unwrap.rs",
+  ]
+  inputs = [
+    "//mises/third_party/rust/derive_more/v0_99/crate/CHANGELOG.md",
+    "//mises/third_party/rust/derive_more/v0_99/crate/README.md",
+  ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "0.99.17"
+  cargo_pkg_authors = "Jelte Fennema <github-tech@jeltef.nl>"
+  cargo_pkg_name = "derive_more"
+  cargo_pkg_description = "Adds #[derive(x)] macros for more traits"
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [
+    "//mises/third_party/rust/convert_case/v0_4:lib",
+    "//third_party/rust/proc_macro2/v1:lib",
+    "//third_party/rust/quote/v1:lib",
+    "//third_party/rust/syn/v1:lib",
+  ]
+  build_deps = [ "//third_party/rust/rustc_version/v0_4:buildrs_support" ]
+  features = [
+    "add",
+    "add_assign",
+    "as_mut",
+    "as_ref",
+    "constructor",
+    "convert_case",
+    "deref",
+    "deref_mut",
+    "display",
+    "error",
+    "from",
+    "from_str",
+    "index",
+    "index_mut",
+    "into",
+    "into_iterator",
+    "is_variant",
+    "iterator",
+    "mul",
+    "mul_assign",
+    "not",
+    "rustc_version",
+    "sum",
+    "try_into",
+    "unwrap",
+  ]
+}

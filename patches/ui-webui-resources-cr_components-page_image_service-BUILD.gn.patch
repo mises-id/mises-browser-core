@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/page_image_service/BUILD.gn b/ui/webui/resources/cr_components/page_image_service/BUILD.gn
+index 4f56c29210f71e68ead84bf3453fed97ace12841..b98e9b3a983cffc4781597fa68392edd9af11081 100644
+--- a/ui/webui/resources/cr_components/page_image_service/BUILD.gn
++++ b/ui/webui/resources/cr_components/page_image_service/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android && !is_ios)
++#assert(!is_android && !is_ios)
+ 
+ build_webui("build") {
+   grd_prefix = "cr_components_page_image_service"

@@ -106,7 +106,7 @@ source_set("brave_wallet_unit_tests") {
     "//mises/components/brave_wallet/common:test_support",
     "//mises/components/constants",
     "//mises/components/decentralized_dns/core",
-    "//mises/components/filecoin/rs:cxx",
+    "//mises/components/filecoin/rs:rust_lib",
     "//mises/components/ipfs",
     "//mises/components/resources:strings_grit",
     "//components/permissions",

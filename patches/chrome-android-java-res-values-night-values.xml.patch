@@ -1,0 +1,19 @@
+diff --git a/chrome/android/java/res/values-night/values.xml b/chrome/android/java/res/values-night/values.xml
+old mode 100644
+new mode 100755
+index 53bf2ddc687140e94d31d1f0365a332cefdbe055..d5e8c0be7273526cca031a55267c28adba22d228
+--- a/chrome/android/java/res/values-night/values.xml
++++ b/chrome/android/java/res/values-night/values.xml
+@@ -1,9 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-Copyright 2021 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
+--->
++<!-- Copyright 2021 The Chromium Authors. All rights reserved.
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file. -->
+ 
+ <resources>
+     <!-- Tablet tab strip -->

@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/theme_color_picker/BUILD.gn b/ui/webui/resources/cr_components/theme_color_picker/BUILD.gn
+index 293be77f6dd6646e829393f248e6eb34316c5f94..8ea1d4cd4d9a1719a00b03f028491a58601f8d5f 100644
+--- a/ui/webui/resources/cr_components/theme_color_picker/BUILD.gn
++++ b/ui/webui/resources/cr_components/theme_color_picker/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android && !is_ios)
++#assert(!is_android && !is_ios)
+ 
+ mojom("mojom") {
+   sources = [ "theme_color_picker.mojom" ]

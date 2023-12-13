@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/apps/link_capturing/BUILD.gn b/chrome/browser/apps/link_capturing/BUILD.gn
+index 6bec19e15f59a875c510c0e8cba2198b30160fae..047851c768f1f5fe6f6448460ba6ebc296bff14d 100644
+--- a/chrome/browser/apps/link_capturing/BUILD.gn
++++ b/chrome/browser/apps/link_capturing/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//build/config/chromeos/ui_mode.gni")
+ import("//chrome/browser/buildflags.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ source_set("link_capturing") {
+   sources = [

@@ -1,0 +1,44 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "slab"
+  epoch = "0.4"
+  crate_type = "rlib"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/slab/v0_4/crate/build.rs",
+    "//mises/third_party/rust/slab/v0_4/crate/src/builder.rs",
+    "//mises/third_party/rust/slab/v0_4/crate/src/lib.rs",
+    "//mises/third_party/rust/slab/v0_4/crate/src/serde.rs",
+    "//mises/third_party/rust/slab/v0_4/crate/tests/serde.rs",
+    "//mises/third_party/rust/slab/v0_4/crate/tests/slab.rs",
+  ]
+  inputs = [
+    "//mises/third_party/rust/slab/v0_4/crate/CHANGELOG.md",
+    "//mises/third_party/rust/slab/v0_4/crate/README.md",
+  ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "0.4.8"
+  cargo_pkg_authors = "Carl Lerche <me@carllerche.com>"
+  cargo_pkg_name = "slab"
+  cargo_pkg_description = "Pre-allocated storage for a uniform data type"
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  build_deps = [ "//third_party/rust/autocfg/v1:buildrs_support" ]
+  features = [ "std" ]
+  build_root = "crate/build.rs"
+  build_sources = [ "crate/build.rs" ]
+}

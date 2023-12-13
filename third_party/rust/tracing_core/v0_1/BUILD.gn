@@ -1,0 +1,58 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "tracing_core"
+  epoch = "0.1"
+  crate_type = "rlib"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/callsite.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/dispatcher.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/event.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/field.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/lazy.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/lib.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/metadata.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/parent.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/span.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/spin/mod.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/spin/mutex.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/spin/once.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/stdlib.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/src/subscriber.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/tests/common/mod.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/tests/dispatch.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/tests/global_dispatch.rs",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/tests/macros.rs",
+  ]
+  inputs = [
+    "//mises/third_party/rust/tracing_core/v0_1/crate/CHANGELOG.md",
+    "//mises/third_party/rust/tracing_core/v0_1/crate/README.md",
+  ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "0.1.30"
+  cargo_pkg_authors = "Tokio Contributors <team@tokio.rs>"
+  cargo_pkg_name = "tracing-core"
+  cargo_pkg_description = "Core primitives for application-level tracing."
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [ "//mises/third_party/rust/once_cell/v1:lib" ]
+  features = [
+    "once_cell",
+    "std",
+    "valuable",
+  ]
+}

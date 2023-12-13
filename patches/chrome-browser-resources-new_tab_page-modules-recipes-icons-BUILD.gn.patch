@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/new_tab_page/modules/recipes/icons/BUILD.gn b/chrome/browser/resources/new_tab_page/modules/recipes/icons/BUILD.gn
+index 1dd97186829f5fa51f0e8a1251a4f8da8b334b19..7be1fc6f829c1bf6eb05f7ba16cdc8e0de370ee8 100644
+--- a/chrome/browser/resources/new_tab_page/modules/recipes/icons/BUILD.gn
++++ b/chrome/browser/resources/new_tab_page/modules/recipes/icons/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ generate_grd("build_grdp") {
+   grd_prefix = "recipes"

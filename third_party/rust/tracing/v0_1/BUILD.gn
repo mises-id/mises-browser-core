@@ -1,0 +1,79 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "tracing"
+  epoch = "0.1"
+  crate_type = "rlib"
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/baseline.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/dispatch_get_clone.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/dispatch_get_ref.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/empty_span.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/enter_span.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/event.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/shared.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/span_fields.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/span_no_fields.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/benches/span_repeated.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/dispatcher.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/field.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/instrument.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/level_filters.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/lib.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/macros.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/span.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/stdlib.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/src/subscriber.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/enabled.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/event.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/filter_caching_is_lexically_scoped.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/filters_are_not_reevaluated_for_the_same_span.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/filters_are_reevaluated_for_different_call_sites.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/filters_dont_leak.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/future_send.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/macro_imports.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/macros.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/macros_incompatible_concat.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/macros_redefined_core.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/max_level_hint.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/multiple_max_level_hints.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/no_subscriber.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/register_callsite_deadlock.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/scoped_clobbers_default.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/span.rs",
+    "//mises/third_party/rust/tracing/v0_1/crate/tests/subscriber.rs",
+  ]
+  inputs = [
+    "//mises/third_party/rust/tracing/v0_1/crate/CHANGELOG.md",
+    "//mises/third_party/rust/tracing/v0_1/crate/README.md",
+  ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "0.1.37"
+  cargo_pkg_authors =
+      "Eliza Weisman <eliza@buoyant.io>, Tokio Contributors <team@tokio.rs>"
+  cargo_pkg_name = "tracing"
+  cargo_pkg_description = "Application-level tracing for Rust."
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [
+    "//mises/third_party/rust/pin_project_lite/v0_2:lib",
+    "//mises/third_party/rust/tracing_attributes/v0_1:lib",
+    "//mises/third_party/rust/tracing_core/v0_1:lib",
+    "//third_party/rust/cfg_if/v1:lib",
+  ]
+  features = [
+    "attributes",
+    "std",
+    "tracing-attributes",
+  ]
+}
