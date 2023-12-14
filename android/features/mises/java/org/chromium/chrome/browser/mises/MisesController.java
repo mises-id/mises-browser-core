@@ -8,10 +8,10 @@ import java.math.RoundingMode;
 
 import org.chromium.base.Log;
 import org.chromium.base.ThreadUtils;
-import org.chromium.base.annotations.CalledByNative;
+import org.jni_zero.CalledByNative;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
-import org.chromium.base.annotations.NativeMethods;
+import org.jni_zero.NativeMethods;
 import org.chromium.base.Callback;
 import org.chromium.chrome.browser.mises.HttpUtil;
 

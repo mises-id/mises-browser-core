@@ -302,12 +302,12 @@
   </message>
 
   <!-- Mises Root Store -->
-  <if expr="chrome_root_store_supported">
+
     <message name="IDS_SETTINGS_CHROME_CERTIFICATES" desc="Text for manage certificates button in Privacy options">
       Certificates managed by Mises
     </message>
     <message name="IDS_SETTINGS_CHROME_CERTIFICATES_DESCRIPTION" desc="Secondary, continued explanation of how to manage SSL certificates and settings in Privacy options">
       Information about how Mises manages its root certificates
     </message>
-  </if>
+
 </grit-part>

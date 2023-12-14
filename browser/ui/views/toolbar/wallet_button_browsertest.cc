@@ -9,7 +9,7 @@
 #include "base/run_loop.h"
 #include "base/test/scoped_feature_list.h"
 #include "brave/browser/ui/views/frame/brave_browser_view.h"
-#include "brave/components/brave_wallet/common/features.h"
+#include "mises/components/brave_wallet/common/features.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/test/test_browser_dialog.h"
 #include "chrome/browser/ui/views/bubble/webui_bubble_manager.h"

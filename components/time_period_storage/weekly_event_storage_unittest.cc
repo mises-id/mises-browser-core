@@ -6,8 +6,10 @@
 #include "mises/components/time_period_storage/weekly_event_storage.h"
 
 #include <memory>
+#include <optional>
 #include <utility>
 
+#include "base/memory/raw_ptr.h"
 #include "base/test/simple_test_clock.h"
 #include "base/time/time.h"
 #include "components/prefs/pref_registry_simple.h"
@@ -41,30 +43,29 @@ class WeeklyEventStorageTest : public ::testing::Test {
   }
 
  protected:
-  base::SimpleTestClock* clock_ = nullptr;
   TestingPrefServiceSimple pref_service_;
   std::unique_ptr<WeeklyEventStorage> state_;
+  raw_ptr<base::SimpleTestClock> clock_ = nullptr;
 };
 
 TEST_F(WeeklyEventStorageTest, StartsEmpty) {
   EXPECT_FALSE(state_->HasEvent());
-  EXPECT_EQ(state_->GetLatest(), absl::nullopt);
+  EXPECT_EQ(state_->GetLatest(), std::nullopt);
 }
 
 TEST_F(WeeklyEventStorageTest, AddEvents) {
   state_->Add(TestValues::kNull);
   EXPECT_TRUE(state_->HasEvent());
-  EXPECT_EQ(state_->GetLatest(), absl::optional<TestValues>(TestValues::kNull));
+  EXPECT_EQ(state_->GetLatest(), std::optional<TestValues>(TestValues::kNull));
 
   state_->Add(TestValues::kBrave);
-  EXPECT_EQ(state_->GetLatest(),
-            absl::optional<TestValues>(TestValues::kBrave));
+  EXPECT_EQ(state_->GetLatest(), std::optional<TestValues>(TestValues::kBrave));
 }
 
 TEST_F(WeeklyEventStorageTest, ForgetsOldEvents) {
   // Add an initial event.
   state_->Add(TestValues::kFoo);
-  EXPECT_EQ(state_->GetLatest(), absl::optional<TestValues>(TestValues::kFoo));
+  EXPECT_EQ(state_->GetLatest(), std::optional<TestValues>(TestValues::kFoo));
 
   // Jump to the next week.
   clock_->Advance(base::Days(8));
@@ -74,7 +75,7 @@ TEST_F(WeeklyEventStorageTest, ForgetsOldEvents) {
   // Newer events should still accumulate.
   state_->Add(TestValues::kNull);
   state_->Add(TestValues::kBar);
-  EXPECT_EQ(state_->GetLatest(), absl::optional<TestValues>(TestValues::kBar));
+  EXPECT_EQ(state_->GetLatest(), std::optional<TestValues>(TestValues::kBar));
 }
 
 TEST_F(WeeklyEventStorageTest, IntermittentUsage) {
@@ -83,16 +84,16 @@ TEST_F(WeeklyEventStorageTest, IntermittentUsage) {
     clock_->Advance(base::Days(day % 3));
     state_->Add(value);
   }
-  EXPECT_EQ(state_->GetLatest(), absl::optional<TestValues>(value));
+  EXPECT_EQ(state_->GetLatest(), std::optional<TestValues>(value));
 }
 
 TEST_F(WeeklyEventStorageTest, InfrequentUsage) {
   state_->Add(TestValues::kFoo);
   clock_->Advance(base::Days(6));
   state_->Add(TestValues::kBar);
-  EXPECT_EQ(state_->GetLatest(), absl::optional<TestValues>(TestValues::kBar));
+  EXPECT_EQ(state_->GetLatest(), std::optional<TestValues>(TestValues::kBar));
   clock_->Advance(base::Days(10));
-  EXPECT_EQ(state_->GetLatest(), absl::nullopt);
+  EXPECT_EQ(state_->GetLatest(), std::nullopt);
 }
 
 // Verify serialization order across reloads, since GetLatest
@@ -105,16 +106,11 @@ TEST_F(WeeklyEventStorageTest, SerializationOrder) {
   state_->Add(TestValues::kFoo);
   state_->Add(TestValues::kBrave);
   clock_->Advance(base::Days(1));
-  EXPECT_EQ(state_->GetLatest(),
-            absl::optional<TestValues>(TestValues::kBrave));
+  EXPECT_EQ(state_->GetLatest(), std::optional<TestValues>(TestValues::kBrave));
 
-  // Drop the WeeklyEventStorage object.
-  state_.reset();
-
-  // Create a new one.
+  // Create a new WeeklyEventStorage object.
   CreateWeeklyEventStorage();
 
   // Most recently added event should still be the latest.
-  EXPECT_EQ(state_->GetLatest(),
-            absl::optional<TestValues>(TestValues::kBrave));
+  EXPECT_EQ(state_->GetLatest(), std::optional<TestValues>(TestValues::kBrave));
 }

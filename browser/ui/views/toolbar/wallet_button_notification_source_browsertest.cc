@@ -10,7 +10,7 @@
 #include "base/test/bind.h"
 #include "brave/browser/brave_wallet/keyring_service_factory.h"
 #include "brave/browser/brave_wallet/tx_service_factory.h"
-#include "brave/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/test/base/in_process_browser_test.h"

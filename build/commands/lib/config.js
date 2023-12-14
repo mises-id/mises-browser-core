@@ -331,9 +331,9 @@ Config.prototype.buildArgs = function () {
     ...this.extraGnArgs,
   }
 
-  if (!this.isOfficialBuild()) {
-    args.branding_path_product += "-development"
-  }
+  // if (!this.isOfficialBuild()) {
+  //   args.branding_path_product += "-development"
+  // }
 
   if (!this.isMisesReleaseBuild()) {
     args.chrome_pgo_phase = 0
