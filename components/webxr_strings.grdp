@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- WebXR specific strings (included from components_strings.grd). -->
-<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <if expr="enable_arcore">
     <!-- ARCore check message -->
@@ -12,6 +11,17 @@
     </message>
     <message name="IDS_AR_CORE_CHECK_MESSAGE_DESCRIPTION" desc="Description for the ARCore check message that will be prompted when a WebXR page requires Google Play Services for AR to display AR content.">
       View augmented reality content
+    </message>
+  </if>
+  <if expr="enable_vr">
+    <message name="IDS_CARDBOARD_PRODUCT_SAFETY" desc="Short text shown on the settings menu to let the user open the Cardboard product safety page.[CHAR_LIMIT=30]" formatter_data="android_java">
+      Product safety
+    </message>
+    <message name="IDS_USE_ANOTHER_DEVICE" desc="Short text shown on the settings menu to let the user switch viewer.[CHAR_LIMIT=30]" formatter_data="android_java">
+      Use another device
+    </message>
+    <message name="IDS_VR_MENU" desc="The accessible name for the VR Menu. This is used as the aria-roledescription for context menus." formatter_data="android_java">
+        VR Menu
     </message>
   </if>
 </grit-part>

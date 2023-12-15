@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!--This file is created by l10nUtil.js. Do not edit manually.-->
+<?xml version="1.0" encoding="utf-8"?>
 <grit-part>
 
   <!-- Dialog titles, sentence-cased -->
@@ -26,28 +25,13 @@
     <message name="IDS_PAYMENTS_EDIT_CONTACT_DETAILS_LABEL" desc="The title of the dialog for user to edit their contact information, such as the user's full name, an email address or a phone number. Sentence-cased." formatter_data="android_java">
       Edit contact info
     </message>
-    <message name="IDS_PAYMENTS_ADD_CARD_LABEL" desc="The title of the dialog for user to add new payment card. Sentence-cased.">
-      Add card
-    </message>
-    <message name="IDS_PAYMENTS_ADD_BILLING_ADDRESS" desc="The title of the dialog for user to add billing address to payment card. Sentence-cased." formatter_data="android_java">
-      Add billing address
-    </message>
-    <message name="IDS_PAYMENTS_ADD_NAME_ON_CARD" desc="The title of the dialog for user to add name on card to payment card. Sentence-cased." formatter_data="android_java">
-      Add name on card
-    </message>
-    <message name="IDS_PAYMENTS_ADD_VALID_CARD_NUMBER" desc="The title of the dialog for user to add valid payment card number. Sentence-cased." formatter_data="android_java">
-      Add valid card number
-    </message>
     <message name="IDS_PAYMENTS_ADD_MORE_INFORMATION" desc="The title in the Android app title bar for user to add more information to payment card or shipping address or contact info. Sentence-cased." formatter_data="android_java">
       Add more information
-    </message>
-    <message name="IDS_PAYMENTS_EDIT_CARD" desc="The title of the dialog for user to edit payment card. Sentence-cased." formatter_data="android_java">
-      Edit card
     </message>
     <message name="IDS_PAYMENTS_ADD_PHONE_NUMBER" desc="The title of the dialog for user to add phone number to the shipping address or contact info. This phone number can be used, for example, if there's a problem with shipping a package to its destination. Sentence-cased." formatter_data="android_java">
       Add phone number
     </message>
-    <message name="IDS_PAYMENTS_ADD_RECIPIENT" desc="The title of the dialog for user to add the name in the shipping address. This name identifies the profile that will receive the shipped package. Sentence-cased." formatter_data="android_java">
+    <message name="IDS_PAYMENTS_ADD_RECIPIENT" desc="The title of the dialog for user to add the name in the shipping address. This name identifies the person that will receive the shipped package. Sentence-cased." formatter_data="android_java">
       Add name
     </message>
     <message name="IDS_PAYMENTS_ADD_VALID_ADDRESS" desc="The title of the dialog for user to add valid shipping address. For example, missing state or city name. Sentence-cased." formatter_data="android_java">
@@ -56,7 +40,7 @@
     <message name="IDS_PAYMENTS_ADD_EMAIL" desc="The title of the dialog for user to add email to the contact details. This email can be used to contact the payer. Sentence-cased." formatter_data="android_java">
       Add email
     </message>
-    <message name="IDS_PAYMENTS_ADD_NAME" desc="The title of the dialog for user to add name to the contact details. This name could be a profile or institute name of the payer. Sentence-cased." formatter_data="android_java">
+    <message name="IDS_PAYMENTS_ADD_NAME" desc="The title of the dialog for user to add name to the contact details. This name could be a person or institute name of the payer. Sentence-cased." formatter_data="android_java">
       Add name
     </message>
     <message name="IDS_PAYMENTS_ORDER_SUMMARY_LABEL" desc="The title of the section that shows the summary of the order, including names and prices of individual line items, i.e. the bill. Sentence-cased." formatter_data="android_java">
@@ -92,28 +76,13 @@
     <message name="IDS_PAYMENTS_EDIT_CONTACT_DETAILS_LABEL" desc="The title of the dialog for user to edit their contact information, such as the user's full name, an email address or a phone number. Title-Cased.">
       Edit Contact Info
     </message>
-    <message name="IDS_PAYMENTS_ADD_CARD_LABEL" desc="The title of the dialog for user to add new payment card. Title-Cased.">
-      Add Card
-    </message>
-    <message name="IDS_PAYMENTS_ADD_BILLING_ADDRESS" desc="The title of the dialog for user to add billing address to payment card. Title-Cased.">
-      Add Billing Address
-    </message>
-    <message name="IDS_PAYMENTS_ADD_NAME_ON_CARD" desc="The title of the dialog for user to add name on card to payment card. Title-Cased.">
-      Add Name on Card
-    </message>
-    <message name="IDS_PAYMENTS_ADD_VALID_CARD_NUMBER" desc="The title of the dialog for user to add valid payment card number. Title-Cased.">
-      Add Valid Card Number
-    </message>
     <message name="IDS_PAYMENTS_ADD_MORE_INFORMATION" desc="The title in the Android app title bar for user to add more information to payment card or shipping address or contact info. Title-Cased.">
       Add More Information
-    </message>
-    <message name="IDS_PAYMENTS_EDIT_CARD" desc="The title of the dialog for user to edit payment card. Title-Cased.">
-      Edit Card
     </message>
     <message name="IDS_PAYMENTS_ADD_PHONE_NUMBER" desc="The title of the dialog for user to add phone number to the shipping address or contact info. This phone number can be used, for example, if there's a problem with shipping a package to its destination. Title-Cased.">
       Add Phone Number
     </message>
-    <message name="IDS_PAYMENTS_ADD_RECIPIENT" desc="The title of the dialog for user to add the name in the shipping address. This name identifies the profile that will receive the shipped package. Title-Cased.">
+    <message name="IDS_PAYMENTS_ADD_RECIPIENT" desc="The title of the dialog for user to add the name in the shipping address. This name identifies the person that will receive the shipped package. Title-Cased.">
       Add Name
     </message>
     <message name="IDS_PAYMENTS_ADD_VALID_ADDRESS" desc="The title of the dialog for user to add valid shipping address. For example, missing state or city name. Title-Cased.">
@@ -122,7 +91,7 @@
     <message name="IDS_PAYMENTS_ADD_EMAIL" desc="The title of the dialog for user to add email to the contact details. This email can be used to contact the payer. Title-Cased.">
       Add Email
     </message>
-    <message name="IDS_PAYMENTS_ADD_NAME" desc="The title of the dialog for user to add name to the contact details. This name could be a profile or institute name of the payer. Title-Cased.">
+    <message name="IDS_PAYMENTS_ADD_NAME" desc="The title of the dialog for user to add name to the contact details. This name could be a person or institute name of the payer. Title-Cased.">
       Add Name
     </message>
     <message name="IDS_PAYMENTS_ORDER_SUMMARY_LABEL" desc="The title of the section that shows the summary of the order, including names and prices of individual line items, i.e. the bill. Title-Cased.">
@@ -252,7 +221,7 @@
 
   <!-- Fields & Editors, sentence-cased -->
   <if expr="not use_titlecase">
-    <message name="IDS_PAYMENTS_NAME_FIELD_IN_CONTACT_DETAILS" desc="The label for text input field containing the full name of a profile. Sentence-cased. [CHAR_LIMIT=32]" meaning="Name of a person" formatter_data="android_java">
+    <message name="IDS_PAYMENTS_NAME_FIELD_IN_CONTACT_DETAILS" desc="The label for text input field containing the full name of a person. Sentence-cased. [CHAR_LIMIT=32]" meaning="Name of a person" formatter_data="android_java">
       Name
     </message>
     <message name="IDS_PAYMENTS_PHONE_FIELD_IN_CONTACT_DETAILS" desc="The label for text input field containing a phone number. Sentence-cased. [CHAR_LIMIT=32]">
@@ -276,7 +245,7 @@
   </if>  <!-- not use_titlecase -->
   <!-- Fields & Editors, Title-cased -->
   <if expr="use_titlecase">
-    <message name="IDS_PAYMENTS_NAME_FIELD_IN_CONTACT_DETAILS" desc="The label for text input field containing the full name of a profile. Title-Cased. [CHAR_LIMIT=32]" meaning="Name of a person" formatter_data="android_java">
+    <message name="IDS_PAYMENTS_NAME_FIELD_IN_CONTACT_DETAILS" desc="The label for text input field containing the full name of a person. Title-Cased. [CHAR_LIMIT=32]" meaning="Name of a person" formatter_data="android_java">
       Name
     </message>
     <message name="IDS_PAYMENTS_PHONE_FIELD_IN_CONTACT_DETAILS" desc="The label for text input field containing a phone number. Title-Cased. [CHAR_LIMIT=32]">
@@ -284,9 +253,6 @@
     </message>
     <message name="IDS_PAYMENTS_EMAIL_FIELD_IN_CONTACT_DETAILS" desc="The label for text input field containing an email address. Title-Cased. [CHAR_LIMIT=32]">
       Email
-    </message>
-    <message name="IDS_PAYMENTS_ACCEPTED_CREDIT_CARDS_LABEL" desc="The title for the section that displays the credit card networks that the merchant accepts. Below the title, we show a row of icons indicating the accepted credit card networks (Visa icon, Mastercard icon, etc.). Title-Cased.">
-      Accepted Credit Cards
     </message>
     <message name="IDS_PAYMENTS_LOADING_MESSAGE" desc="The text that informs the user that payment information is being loaded up. Title-Cased.">
       Loading
@@ -311,95 +277,24 @@
   </message>
   <if expr="is_android">
     <message name="IDS_PAYMENTS_CARD_AND_ADDRESS_SETTINGS_SIGNED_IN" desc="Label of the section containing the origin description and the link to go to the settings page for card and address options. This label is used when the user is signed in." formatter_data="android_java">
-      Cards and addresses are from Mises and your Mises sync chain (<ph name="ACCOUNT_EMAIL">%1$s<ex>johndoe@gmail.com</ex></ph>). You can manage them in <ph name="BEGIN_LINK">BEGIN_LINK</ph>Settings<ph name="END_LINK">END_LINK</ph>.
+      Cards and addresses are from Chrome and your Google Account (<ph name="ACCOUNT_EMAIL">%1$s<ex>johndoe@gmail.com</ex></ph>). You can manage them in <ph name="BEGIN_LINK">BEGIN_LINK</ph>Settings<ph name="END_LINK">END_LINK</ph>.
     </message>
   </if>
   <if expr="not is_android">
     <message name="IDS_PAYMENTS_CARD_AND_ADDRESS_SETTINGS_SIGNED_IN" desc="Label of the section containing the origin description and the link to go to the settings page for card and address options. This label is used when the user is signed in.">
-      Cards and addresses are from Mises and your Mises sync chain (<ph name="ACCOUNT_EMAIL">$1<ex>johndoe@gmail.com</ex></ph>). You can manage them in <ph name="BEGIN_LINK">BEGIN_LINK</ph>Settings<ph name="END_LINK">END_LINK</ph>.
+      Cards and addresses are from Chrome and your Google Account (<ph name="ACCOUNT_EMAIL">$1<ex>johndoe@gmail.com</ex></ph>). You can manage them in <ph name="BEGIN_LINK">BEGIN_LINK</ph>Settings<ph name="END_LINK">END_LINK</ph>.
     </message>
   </if>
   <message name="IDS_PAYMENTS_CARD_AND_ADDRESS_SETTINGS_SIGNED_OUT" desc="Label of the section containing the origin description and the link to go to the settings page for card and address options. This label is used when the user is not signed in." formatter_data="android_java">
-    Cards and addresses are from Mises. You can manage them in <ph name="BEGIN_LINK">BEGIN_LINK</ph>Settings<ph name="END_LINK">END_LINK</ph>.
+    Cards and addresses are from Chrome. You can manage them in <ph name="BEGIN_LINK">BEGIN_LINK</ph>Settings<ph name="END_LINK">END_LINK</ph>.
   </message>
   <message name="IDS_SETTINGS_CAN_MAKE_PAYMENT_TOGGLE_LABEL" desc="Label of the toggle which disables canMakePayment and hasEnrolledInstrument" formatter_data="android_java">
     Allow sites to check if you have payment methods saved
   </message>
 
-  <!-- iOS Credit Card form -->
-  <if expr="is_ios">
-    <message name="IDS_PAYMENTS_CARD_NUMBER" desc="Title of the field representing the number (PAN) on a credit card.">
-      Card Number
-    </message>
-    <message name="IDS_PAYMENTS_NAME_ON_CARD" desc="Title of the field representing the full name of a credit card holder.">
-      Cardholder Name
-    </message>
-      <message name="IDS_PAYMENTS_EXP_DATE" desc="Title of the field representing the expiration date of a credit card.">
-      Expiration Date
-    </message>
-    <message name="IDS_PAYMENTS_BILLING_ADDRESS" desc="Title of the field representing the billing address of a credit card.">
-      Billing Address
-    </message>
-  </if>
-
-  <!-- iOS call-to-action button labels -->
-  <if expr="is_ios">
-    <message name="IDS_CHOOSE_PAYMENT_METHOD" desc="The title for the button that lets the user select the method of payment. Title-Cased.">
-      Choose Payment Method
-    </message>
-    <message name="IDS_ADD_PAYMENT_METHOD" desc="The title for the button that lets the user add a payment card. Title-Cased.">
-      Add Card
-    </message>
-    <message name="IDS_PAYMENT_REQUEST_CHOOSE_CONTACT_INFO" desc="The name of the Choose Contact Info button in the Payment Sheet of the Payment Request dialog. Title-Cased.">
-      Choose Contact Info
-    </message>
-    <message name="IDS_PAYMENT_REQUEST_ADD_CONTACT_INFO" desc="The name of the Add Contact Info button in the Payment Sheet of the Payment Request dialog. Title-Cased.">
-      Add Contact Info
-    </message>
-    <message name="IDS_PAYMENTS_ADD_BILLING_ADDRESS_LABEL" desc="The title for the button that lets the user add a billing address. Title-Cased.">
-      Add Billing Address
-    </message>
-    <message name="IDS_PAYMENTS_CHOOSE_SHIPPING_ADDRESS_LABEL" desc="The title for the button that lets the user select the address where the product should be shipped. Shipping is typically used for packages. Title-Cased.">
-      Choose Shipping Address
-    </message>
-    <message name="IDS_PAYMENTS_ADD_SHIPPING_ADDRESS_LABEL" desc="The title for the button that lets the user add the address where the product should be shipped. Shipping is typically used for packages. Title-Cased.">
-      Add Shipping Address
-    </message>
-    <message name="IDS_PAYMENTS_CHOOSE_SHIPPING_OPTION_LABEL" desc="The title for the button that lets the user select how the product should be shipped. Shipping is typically used for packages. Title-Cased.">
-      Choose Shipping Method
-    </message>
-    <message name="IDS_PAYMENTS_CHOOSE_DELIVERY_ADDRESS_LABEL" desc="The title for the button that lets the user select the address where the product should be delivered. In English, 'delivery' is differentiated from 'shipping.'  For example, 'delivery' might be used for meals or meal items or items that need to be immediately sent to a recipient. Title-Cased.">
-      Choose Delivery Address
-    </message>
-    <message name="IDS_PAYMENTS_ADD_DELIVERY_ADDRESS_LABEL" desc="The title for the button that lets the user add the address where the product should be delivered. In English, 'delivery' is differentiated from 'shipping.'  For example, 'delivery' might be used for meals or meal items or items that need to be immediately sent to a recipient. Title-Cased.">
-      Add Delivery Address
-    </message>
-    <message name="IDS_PAYMENTS_CHOOSE_DELIVERY_OPTION_LABEL" desc="The title for the button that lets the user select how the product should be delivered. Delivery is commonly faster than shipping. For example, it might be used for food delivery. Title-Cased.">
-      Choose Delivery Method
-    </message>
-    <message name="IDS_PAYMENTS_CHOOSE_PICKUP_ADDRESS_LABEL" desc="The title for the button that lets the user select the address where a service item should be picked up. For example, the pickup address is where a laundry service picks up a customer’s items to be laundered. 'Pickup' functions as an adjective. Title-Cased.">
-      Choose Pickup Address
-    </message>
-    <message name="IDS_PAYMENTS_ADD_PICKUP_ADDRESS_LABEL" desc="The title for the button that lets the user add the address where a service item should be picked up. For example, the pickup address is where a laundry service picks up a customer’s items to be laundered. 'Pickup' functions as an adjective. Title-Cased.">
-      Add Pickup Address
-    </message>
-    <message name="IDS_PAYMENTS_CHOOSE_PICKUP_OPTION_LABEL" desc="The title for the button that lets the user select how their service item should be picked up. This item can be laundry to be cleaned, for example. 'Pickup' functions as an adjective. Title-Cased.">
-      Choose Pickup Method
-    </message>
-  </if>
-
   <!-- Validation strings which are never title-cased. -->
   <message name="IDS_PAYMENTS_REQUIRED_FIELD_MESSAGE" desc="The text that informs the user that '*' character indicates an input field that is required. The '*' character should not be changed." formatter_data="android_java">
      * Field is required
-  </message>
-  <message name="IDS_PAYMENTS_VALIDATION_INVALID_NAME" desc="Message displayed to user when name validation fails.">
-    Enter a name
-  </message>
-  <message name="IDS_PAYMENTS_VALIDATION_INVALID_CREDIT_CARD_EXPIRATION_YEAR" desc="Message displayed to user when the credit card expiration year is in an invalid format.">
-    Enter a valid expiration year
-  </message>
-  <message name="IDS_PAYMENTS_VALIDATION_INVALID_CREDIT_CARD_EXPIRATION_MONTH" desc="Message displayed to user when the credit card expiration month is in an invalid format.">
-    Enter a valid expiration month
   </message>
   <message name="IDS_PAYMENTS_VALIDATION_INVALID_CREDIT_CARD_EXPIRED" desc="Message displayed to user when the credit card is expired.">
     This card is expired
@@ -416,20 +311,11 @@
   <message name="IDS_PAYMENTS_CARD_NUMBER_INVALID_VALIDATION_MESSAGE" desc="The text that informs the user that the credit card number they have entered is not valid." formatter_data="android_java">
     Enter a valid card number
   </message>
-  <message name="IDS_PAYMENTS_CARD_EXPIRATION_INVALID_VALIDATION_MESSAGE" desc="The text that informs the user that the credit card expiration date they have entered is not valid.">
-    Enter a valid expiration date
-  </message>
   <message name="IDS_PAYMENTS_INVALID_ADDRESS" desc="The label to indicate the shipping address is invalid. For example, missing state or city name." formatter_data="android_java">
     Enter a valid address
   </message>
-  <message name="IDS_PAYMENTS_BILLING_ADDRESS_REQUIRED" desc="The label to indicate billing address is required for payment card." formatter_data="android_java">
+  <message name="IDS_PAYMENTS_BILLING_ADDRESS_REQUIRED" desc="The label to indicate billing address is required for payment card.">
     Billing address required
-  </message>
-  <message name="IDS_PAYMENTS_NAME_ON_CARD_REQUIRED" desc="The label to indicate the cardholder name (the name of the owner or 'holder' of the credit card)  must be entered." formatter_data="android_java">
-    Cardholder name required
-  </message>
-  <message name="IDS_PAYMENTS_CARD_BILLING_ADDRESS_REQUIRED" desc="The label to indicate the billing address of the credit card  must be entered.">
-    Card billing address required
   </message>
   <message name="IDS_PAYMENTS_MORE_INFORMATION_REQUIRED" desc="The label to indicate more information is required for payment card or shipping address or contact info." formatter_data="android_java">
     More information required
@@ -437,13 +323,13 @@
   <message name="IDS_PAYMENTS_PHONE_NUMBER_REQUIRED" desc="The label to indicate phone number is required in the shipping address or contact info. This phone number can be used, for example, if there's a problem with shipping a package to its destination." formatter_data="android_java">
     Phone number required
   </message>
-  <message name="IDS_PAYMENTS_RECIPIENT_REQUIRED" desc="The label to indicate recipient name is required in the shipping address. This name identifies the profile that will receive the shipped package." formatter_data="android_java">
+  <message name="IDS_PAYMENTS_RECIPIENT_REQUIRED" desc="The label to indicate recipient name is required in the shipping address. This name identifies the person that will receive the shipped package." formatter_data="android_java">
     Name required
   </message>
   <message name="IDS_PAYMENTS_EMAIL_REQUIRED" desc="The label to indicate email is required for the contact details. This email can be used to contact the payer." formatter_data="android_java">
     Email required
   </message>
-  <message name="IDS_PAYMENTS_NAME_REQUIRED" desc="The label to indicate name is required for the contact details. This name could be a profile or institute name of the payer." formatter_data="android_java">
+  <message name="IDS_PAYMENTS_NAME_REQUIRED" desc="The label to indicate name is required for the contact details. This name could be a person or institute name of the payer." formatter_data="android_java">
     Name required
   </message>
 
@@ -494,9 +380,6 @@
   <message name="IDS_PAYMENTS_UNSUPPORTED_DELIVERY_ADDRESS" desc="Text implying that a user needs to pick a different delivery address, because the currently selected address is not supported. Delivery is commonly faster than shipping. For example, it might be used for food delivery." formatter_data="android_java">
     Can’t deliver to this address. Select a different address.
   </message>
-  <message name="IDS_PAYMENTS_UNSUPPORTED_DELIVERY_OPTION" desc="Text implying that a user needs to pick a different delivery option, because the currently selected option is not supported. Delivery is commonly faster than shipping. For example, it might be used for food delivery.">
-    This delivery method isn’t available. Try a different method.
-  </message>
 
   <!-- Pickup address descriptive strings-->
   <message name="IDS_PAYMENTS_SELECT_PICKUP_ADDRESS_FOR_PICKUP_METHODS" desc="Text implying that a user needs to choose a pickup address to see the pickup methods. For example, this could be the address for laundry pickup. 'Pickup' functions as an adjective." formatter_data="android_java">
@@ -505,32 +388,26 @@
   <message name="IDS_PAYMENTS_UNSUPPORTED_PICKUP_ADDRESS" desc="Text implying that a user needs to choose a different pickup address, because the service can’t pick up items from that address. This address can be used, for example, for laundry pickup. Note that here, 'pick up' is a verb." formatter_data="android_java">
     Can’t pick up from this address. Select a different address.
   </message>
-  <message name="IDS_PAYMENTS_UNSUPPORTED_PICKUP_OPTION" desc="Text implying that a user needs to choose a different pickup option, because the currently selected option is not supported. This option can be used, for example, for laundry pickup.">
-    This pickup method isn’t available. Try a different method.
-  </message>
 
   <!-- Payment Apps -->
   <message name="IDS_PAYMENTS_ANDROID_APP_ERROR" desc="Error message that is shown when an Android payment application fails to start." formatter_data="android_java">
     Can’t open payment app
   </message>
-  <message name="IDS_UTILITY_PROCESS_PAYMENT_MANIFEST_PARSER_NAME" desc="The name of the utility process used for parsing payment manifest files.">
-    Payment Manifest Parser
-  </message>
   <if expr="is_android">
-    <message name="IDS_EXTERNAL_PAYMENT_APP_LEAVE_INCOGNITO_WARNING" desc="Alert dialog text warning the user that Private mode does not continue into external payment apps." formatter_data="android_java">
-      Leaving Private mode to pay via an external application. Continue?
+    <message name="IDS_EXTERNAL_PAYMENT_APP_LEAVE_INCOGNITO_WARNING" desc="Alert dialog text warning the user that Incognito mode does not continue into external payment apps." formatter_data="android_java">
+      Leaving Incognito mode to pay via an external application. Continue?
     </message>
   </if>
 
   <!-- Payment Request section preview strings. They are slightly different on desktop and android because the pluralization and formatting code behaves differently. -->
   <if expr="not is_android or is_android">
-    <message name="IDS_PAYMENT_REQUEST_PAYMENT_METHODS_PREVIEW" desc="This is a snippet of a payment method a user has saved to Mises, plus an indication of the number of additional payment methods the user has saved. Its function is to show the user has payment methods that can be used to complete a payment, and thus doesn't have to type the entire payment method. [ICU Syntax]">
+    <message name="IDS_PAYMENT_REQUEST_PAYMENT_METHODS_PREVIEW" desc="This is a snippet of a payment method a user has saved to Chrome, plus an indication of the number of additional payment methods the user has saved. Its function is to show the user has payment methods that can be used to complete a payment, and thus doesn't have to type the entire payment method. [ICU Syntax]">
     {PAYMENT_METHOD, plural,
        =0 {<ph name="PAYMENT_METHOD_PREVIEW">{1}<ex>VISA ....1234</ex></ph>}
        =1 {<ph name="PAYMENT_METHOD_PREVIEW">{1}<ex>VISA ....1234</ex></ph> and <ph name="NUMBER_OF_ADDITIONAL_PAYMENT_METHODS">{2}<ex>1</ex></ph> more}
        other {<ph name="PAYMENT_METHOD_PREVIEW">{1}<ex>VISA ....1234</ex></ph> and <ph name="NUMBER_OF_ADDITIONAL_PAYMENT_METHODS">{2}<ex>2</ex></ph> more}}
     </message>
-    <message name="IDS_PAYMENT_REQUEST_SHIPPING_ADDRESSES_PREVIEW" desc="This is a snippet of a shipping address a user has saved to Mises, plus an indication of the number of additional shipping addresses the user has saved. Its function is to show the user has shipping addresses that can be used to complete a purchase, and thus doesn't have to type the entire address. [ICU Syntax]">
+    <message name="IDS_PAYMENT_REQUEST_SHIPPING_ADDRESSES_PREVIEW" desc="This is a snippet of a shipping address a user has saved to Chrome, plus an indication of the number of additional shipping addresses the user has saved. Its function is to show the user has shipping addresses that can be used to complete a purchase, and thus doesn't have to type the entire address. [ICU Syntax]">
     {SHIPPING_ADDRESS, plural,
       =0 {<ph name="SHIPPING_ADDRESS_PREVIEW">{1}<ex>Jerry, 1253 Mcgill college</ex></ph>}
       =1 {<ph name="SHIPPING_ADDRESS_PREVIEW">{1}<ex>Jerry, 1253 Mcgill college</ex></ph> and <ph name="NUMBER_OF_ADDITIONAL_ADDRESSES">{2}<ex>1</ex></ph> more}
@@ -542,7 +419,7 @@
        =1 {<ph name="SHIPPING_OPTION_PREVIEW">{1}<ex>standard shipping</ex></ph> and <ph name="NUMBER_OF_ADDITIONAL_SHIPPING_OPTIONS">{2}<ex>1</ex></ph> more}
        other {<ph name="SHIPPING_OPTION_PREVIEW">{1}<ex>standard shipping</ex></ph> and <ph name="NUMBER_OF_ADDITIONAL_SHIPPING_OPTIONS">{2}<ex>2</ex></ph> more}}
     </message>
-    <message name="IDS_PAYMENT_REQUEST_CONTACTS_PREVIEW" desc="This is a snippet of a contact a user has saved to Mises, plus an indication of the number of additional contacts the user has saved. Its function is to show the user has contacts that can be used to complete a purchase, and thus doesn't have to type the entire contact info. [ICU Syntax]">
+    <message name="IDS_PAYMENT_REQUEST_CONTACTS_PREVIEW" desc="This is a snippet of a contact a user has saved to Chrome, plus an indication of the number of additional contacts the user has saved. Its function is to show the user has contacts that can be used to complete a purchase, and thus doesn't have to type the entire contact info. [ICU Syntax]">
      {CONTACT, plural,
        =0 {<ph name="CONTACT_PREVIEW">{1}<ex>Jerry, 438-123-1922</ex></ph>}
        =1 {<ph name="CONTACT_PREVIEW">{1}<ex>Jerry, 438-123-1922</ex></ph> and <ph name="NUMBER_OF_ADDITIONAL_CONTACTS">{2}<ex>1</ex></ph> more}

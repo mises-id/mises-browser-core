@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Printing specific strings (included from generated_resources.grd). -->
-<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <if expr="enable_print_preview or is_win">
     <message name="IDS_UTILITY_PROCESS_PRINTING_SERVICE_NAME" desc="The name of the utility process used for printing conversions.">
@@ -87,6 +86,9 @@
     <message name="IDS_PRINT_PREVIEW_OPTION_SHORT_EDGE" desc="Option to do two-sided (duplex) printing with the page flipped on the short edge of the paper.">
       Flip on short edge
     </message>
+    <message name="IDS_PRINT_PREVIEW_BORDERLESS_LABEL" desc="Label for checkbox to enable borderless (zero margins) printing.">
+      No border
+    </message>
     <message name="IDS_PRINT_PREVIEW_PAGES_LABEL" desc="Page range option label.">
       Pages
     </message>
@@ -111,7 +113,8 @@
     <message name="IDS_PRINT_PREVIEW_EXAMPLE_PAGE_RANGE_TEXT" desc="Example page range text.">
       e.g. 1-5, 8, 11-13
     </message>
-    <message name="IDS_PRINT_PREVIEW_PRINT_TO_PDF" desc="Option shown on printer drop-down list for saving previewed document as a PDF.">
+    <message name="IDS_PRINT_PREVIEW_PRINT_TO_PDF"
+             desc="Option shown on printer drop-down list for saving previewed document as a PDF.">
       Save as PDF
     </message>
     <message name="IDS_PRINT_PREVIEW_SHEET_SUMMARY_LABEL" desc="Print summary, explaining to the user how many pages will be printed.">
@@ -190,6 +193,9 @@
     <message name="IDS_PRINT_PREVIEW_MEDIA_SIZE_LABEL" desc="Media size option label. Provides user the option to change the size of the printed page.">
       Paper size
     </message>
+    <message name="IDS_PRINT_PREVIEW_MEDIA_TYPE_LABEL" desc="Media type option label. Provides user the option to select the type of paper to printed on (plain paper, photo paper, etc.)">
+      Paper type
+    </message>
     <message name="IDS_PRINT_PREVIEW_DPI_LABEL" desc="Print quality option label. Provides user the option to select one of the print quality options defined for the printer.">
       Quality
     </message>
@@ -221,7 +227,7 @@
       See more destinations
     </message>
     <message name="IDS_PRINT_PREVIEW_EXTENSION_DESTINATION_ICON_TOOLTIP" desc="Tooltip for the icon shown in print destination list next to print destination provided by an extension.">
-      Documents you send to print via <ph name="APP_NAME">$1<ex>A Mises app</ex></ph> can be read by <ph name="APP_NAME">$1<ex>A Mises app</ex></ph>.
+      Documents you send to print via <ph name="APP_NAME">$1<ex>A Chrome app</ex></ph> can be read by <ph name="APP_NAME">$1<ex>A Chrome app</ex></ph>.
     </message>
     <message name="IDS_MORE_OPTIONS_LABEL" desc="Label of the toggle element to switch between showing more or less printing options in the Print Preview.">
       More settings
@@ -263,7 +269,23 @@
       These settings are enforced by your administrator
     </message>
     <if expr="is_chromeos">
-      <message name="IDS_PRINT_PREVIEW_PRINT_TO_GOOGLE_DRIVE" desc="Option shown on printer drop-down list for saving previewed document to Google Drive.">
+      <message name="IDS_PRINT_PREVIEW_MANAGE_PRINTERS_LABEL" desc="Text of button to open Printer settings when setup assistance is showing.">
+        Manage printers
+      </message>
+      <message name="IDS_PRINT_PREVIEW_PRINTER_SETUP_INFO_MESSAGE_DETAIL_NO_PRINTERS_TEXT" desc="In CrOS destination dialog, message shown to users when destination list has no printers.">
+        Manage your printers in printer settings
+      </message>
+      <message name="IDS_PRINT_PREVIEW_PRINTER_SETUP_INFO_MESSAGE_DETAIL_PRINTER_OFFLINE_TEXT" desc="In preview-area, message shown to users when printer is offline.">
+        Make sure your printer is turned on and connected to the same network as your Chromebook or use a USB cable
+      </message>
+      <message name="IDS_PRINT_PREVIEW_PRINTER_SETUP_INFO_MESSAGE_HEADING_NO_PRINTERS_TEXT" desc="In CrOS destination dialog, heading shown to users when destination list has no printers.">
+        No printer available
+      </message>
+      <message name="IDS_PRINT_PREVIEW_PRINTER_SETUP_INFO_MESSAGE_HEADING_PRINTER_OFFLINE_TEXT" desc="In preview-area, heading shown to users when printer is offline.">
+        Not connected to printer
+      </message>
+      <message name="IDS_PRINT_PREVIEW_PRINT_TO_GOOGLE_DRIVE"
+               desc="Option shown on printer drop-down list for saving previewed document to Google Drive.">
         Save to Google Drive
       </message>
       <message name="IDS_PRINT_PREVIEW_SERVER_SEARCH_BOX_PLACEHOLDER" desc="Text to put in a print server search box when user has not entered a search query.">
@@ -287,6 +309,10 @@
       <message name="IDS_PRINT_PREVIEW_EULA_URL" desc="Message shown to user when their printer has a EULA associated with its PPD. This message is hyperlinked to the EULA.">
         End User License Agreement
       </message>
+      <!-- TODO(b/278895546): Keep printer status messages in sync with
+           os-settings printer status messages in
+           `chrome/app/os_settings_strings.grdp` until a shared resource is
+          established. -->
       <message name="IDS_PRINT_PREVIEW_PRINTER_STATUS_DEVICE_ERROR" desc="Error label to show under the destination dropdown when there is a mechanical error inside the printer.">
          Mechanical issue. Check printer
       </message>
@@ -321,7 +347,7 @@
          Printer queue is full
       </message>
       <message name="IDS_PRINT_PREVIEW_PRINTER_STATUS_PRINTER_UNREACHABLE" desc="Error label to show under the destination dropdown when the device is attempting to schedule a print job on the printer but can't get a connection to the printer">
-         Can’t connect to printer
+         Not connected to printer
       </message>
       <message name="IDS_PRINT_PREVIEW_PRINTER_STATUS_STOPPED" desc="Error label to show under the destination dropdown when the printer is in the process of stopping or the printer is powered down.">
          Printer has stopped
