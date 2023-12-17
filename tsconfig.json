@@ -46,6 +46,7 @@
         "../out/Release_arm64/gen/*",
         "../out/Debug_arm64/gen/*",
         "../out/android_Release_arm64/gen/*",
+        "../out/android_Debug_arm64/gen/*",
       ],
       "chrome://resources/*": [
         "../out/Component/gen/ui/webui/resources/preprocessed/*",
@@ -57,6 +58,7 @@
         "../out/Release_arm64/gen/ui/webui/resources/preprocessed/*",
         "../out/Debug_arm64/gen/ui/webui/resources/preprocessed/*",
         "../out/android_Release_arm64/gen/ui/webui/resources/preprocessed/*",
+        "../out/android_Debug_arm64/gen/ui/webui/resources/preprocessed/*",
       ],
       "chrome://resources/mises/*": [
         "../out/Component/gen/mises/ui/webui/resources/tsc/*",
@@ -68,6 +70,7 @@
         "../out/Release_arm64/gen/mises/ui/webui/resources/tsc/*",
         "../out/Debug_arm64/gen/mises/ui/webui/resources/tsc/*",
         "../out/android_Release_arm64/gen/mises/ui/webui/resources/tsc/*",
+        "../out/android_Debug_arm64/gen/mises/ui/webui/resources/tsc/*",
       ],
       "$web-common/*": ["components/common/*"],
       "$web-components/*": ["components/web-components/*"],
