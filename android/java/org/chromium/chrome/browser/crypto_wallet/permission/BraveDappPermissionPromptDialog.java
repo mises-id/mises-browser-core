@@ -255,7 +255,8 @@ public class BraveDappPermissionPromptDialog
     public void onClick(PropertyModel model, @ButtonType int buttonType) {
         if (buttonType == ButtonType.POSITIVE) {
             BraveDappPermissionPromptDialogJni.get().onPrimaryButtonClicked(
-                    mNativeDialogController, getSelectedAccounts());
+                    mNativeDialogController, getSelectedAccounts(),
+                    0);
             mModalDialogManager.dismissDialog(
                     mPropertyModel, DialogDismissalCause.POSITIVE_BUTTON_CLICKED);
         } else if (buttonType == ButtonType.NEGATIVE) {
@@ -311,7 +312,8 @@ public class BraveDappPermissionPromptDialog
     @NativeMethods
     interface Natives {
         void onPrimaryButtonClicked(
-                long nativeBraveDappPermissionPromptDialogController, String[] accounts);
+                long nativeBraveDappPermissionPromptDialogController, String[] accounts
+                , int permissionLifetimeOption);
         void onNegativeButtonClicked(long nativeBraveDappPermissionPromptDialogController);
         void onDialogDismissed(long nativeBraveDappPermissionPromptDialogController);
     }

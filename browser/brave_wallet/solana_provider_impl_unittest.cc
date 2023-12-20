@@ -527,7 +527,7 @@ TEST_F(SolanaProviderImplUnitTest, Connect) {
       HostContentSettingsMapFactory::GetForProfile(browser_context());
   ASSERT_TRUE(map);
   map->SetContentSettingDefaultScope(
-      url, url, ContentSettingsType::BRAVE_SOLANA, CONTENT_SETTING_BLOCK);
+      url, url, ContentSettingsType::MISES_SOLANA, CONTENT_SETTING_BLOCK);
   account = Connect(absl::nullopt, &error, &error_message);
   EXPECT_TRUE(account.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kUserRejectedRequest);
@@ -536,7 +536,7 @@ TEST_F(SolanaProviderImplUnitTest, Connect) {
   // When CONTENT_SETTING_BLOCK is removed, previously granted permission works
   // again.
   map->SetContentSettingDefaultScope(
-      url, url, ContentSettingsType::BRAVE_SOLANA, CONTENT_SETTING_DEFAULT);
+      url, url, ContentSettingsType::MISES_SOLANA, CONTENT_SETTING_DEFAULT);
   account = Connect(absl::nullopt, &error, &error_message);
   EXPECT_EQ(account, address);
   EXPECT_EQ(error, mojom::SolanaProviderError::kSuccess);

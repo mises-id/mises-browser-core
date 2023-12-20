@@ -54,14 +54,6 @@ void TabModelJniBridge::Destroy(JNIEnv* env, const JavaParamRef<jobject>& obj) {
   delete this;
 }
 
-ScopedJavaLocalRef<jobject> TabModelJniBridge::GetProfileAndroid(
-    JNIEnv* env,
-    const JavaParamRef<jobject>& obj) {
-  ProfileAndroid* profile_android = ProfileAndroid::FromProfile(GetProfile());
-  if (!profile_android)
-    return ScopedJavaLocalRef<jobject>();
-  return profile_android->GetJavaObject();
-}
 
 void TabModelJniBridge::TabAddedToModel(JNIEnv* env,
                                         const JavaParamRef<jobject>& obj,
@@ -126,7 +118,7 @@ void TabModelJniBridge::HandlePopupNavigation(TabAndroid* parent,
   ScopedJavaLocalRef<jstring> jheaders(
       ConvertUTF8ToJavaString(env, params->extra_headers));
   ScopedJavaLocalRef<jobject> jinitiator_origin =
-      params->initiator_origin ? params->initiator_origin->CreateJavaObject()
+      params->initiator_origin ? params->initiator_origin->ToJavaObject()
                                : nullptr;
   ScopedJavaLocalRef<jobject> jpost_data =
       content::ConvertResourceRequestBodyToJavaObject(env, params->post_data);

@@ -1,5 +1,5 @@
 diff --git a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
-index b4de59ac7c4c9e754aa0a738f32a332d83f490ca..fc7d6ba45b51fee9e2c32eaab1278f08ac90d22a 100644
+index b4de59ac7c4c9e754aa0a738f32a332d83f490ca..705190097ce150072a508c377d36cfbd1f28e7d7 100644
 --- a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
 +++ b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
 @@ -1639,6 +1639,11 @@ public class ExternalNavigationHandler {
@@ -20,7 +20,7 @@ index b4de59ac7c4c9e754aa0a738f32a332d83f490ca..fc7d6ba45b51fee9e2c32eaab1278f08
          if (isNavigationToSelf(params, resolvingInfos, resolveActivity, isExternalProtocol)) {
 +            if (IntentUtils.safeHasExtra(targetIntent, "org.chromium.chrome.browser.customtabs.EXTRA_UI_TYPE")) {
 +                return startActivity(targetIntent, false /*requiresIntentChooser*/, resolvingInfos, resolveActivity,
-+                    browserFallbackUrl, intentDataUrl, params);
++                    browserFallbackUrl, intentTargetUrl, params);
 +            }
 +
              return OverrideUrlLoadingResult.forNavigateTab(intentTargetUrl, params);

@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/css/BUILD.gn b/ui/webui/resources/css/BUILD.gn
+index 816f808edea9e67fee7404a6e905da979d1aff01..8161ce0904e914659115db88276e6b51ef2387ac 100644
+--- a/ui/webui/resources/css/BUILD.gn
++++ b/ui/webui/resources/css/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//tools/grit/preprocess_if_expr.gni")
+ import("//ui/webui/resources/tools/generate_grd.gni")
+ 
+-include_polymer = !is_android && !is_ios
++include_polymer = is_android || !is_android && !is_ios
+ 
+ preprocess_manifest = "preprocessed_manifest.json"
+ 

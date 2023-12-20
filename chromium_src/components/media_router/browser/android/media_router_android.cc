@@ -2,6 +2,20 @@
 
 namespace media_router {
 
+MediaRouterDebuggerDummy::MediaRouterDebuggerDummy() = default;
+MediaRouterDebuggerDummy::~MediaRouterDebuggerDummy() = default;
+base::Value::Dict MediaRouterDebuggerDummy::GetMirroringStats() {
+  return base::Value::Dict();
+}
+
+bool MediaRouterDebuggerDummy::ShouldFetchMirroringStats() const {
+  return false;
+}
+
+MirroringMediaControllerHost* GetMirroringMediaControllerHost(
+    const MediaRoute::Id& route_id) {
+  return nullptr;
+}
 IssueManager* MediaRouterAndroid::GetIssueManager() {
   return &issue_manange_;
 }

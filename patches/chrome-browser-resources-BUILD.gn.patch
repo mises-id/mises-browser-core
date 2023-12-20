@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/BUILD.gn b/chrome/browser/resources/BUILD.gn
-index 93a738e26e5ed5cd3699f0a3531948589a632997..853805656427804998af3fd41698d06c1573d5dd 100644
+index 93a738e26e5ed5cd3699f0a3531948589a632997..cf02fe99bf5db8d5513147a9e52d04bcf42e75bc 100644
 --- a/chrome/browser/resources/BUILD.gn
 +++ b/chrome/browser/resources/BUILD.gn
 @@ -19,7 +19,7 @@ assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
@@ -11,15 +11,6 @@ index 93a738e26e5ed5cd3699f0a3531948589a632997..853805656427804998af3fd41698d06c
      public_deps += [
        ":app_icon_resources",
        ":component_extension_resources",
-@@ -39,7 +39,7 @@ group("resources") {
-       "inline_login:resources",
-       "management:resources",
-       "new_tab_page:resources",
--      "new_tab_page_instant:resources",
-+      "//mises/browser/resources/new_tab_page_instant:resources",
-       "new_tab_page_third_party:resources",
-       "omnibox_popup:resources",
-       "password_manager:resources",
 @@ -109,6 +109,11 @@ group("resources") {
        "app_settings:resources",
      ]
@@ -41,3 +32,23 @@ index 93a738e26e5ed5cd3699f0a3531948589a632997..853805656427804998af3fd41698d06c
    grit("component_extension_resources") {
      source = "component_extension_resources.grd"
  
+@@ -265,7 +270,8 @@ group("dev_ui_resources") {
+       "//chrome/browser/resources/feed_internals:resources",
+       "//chrome/browser/resources/webapks:resources",
+     ]
+-  } else {
++  }
++  if (true) {
+     public_deps += [
+       "media_router/internals:resources",
+       "on_device_internals:resources",
+@@ -320,7 +326,8 @@ repack("dev_ui_paks") {
+       "$root_gen_dir/chrome/feed_internals_resources.pak",
+       "$root_gen_dir/chrome/webapks_resources.pak",
+     ]
+-  } else {
++  } 
++  if (true) {
+     sources += [
+       "$root_gen_dir/chrome/media_router_internals_resources.pak",
+       "$root_gen_dir/chrome/on_device_internals_resources.pak",

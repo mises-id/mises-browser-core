@@ -116,6 +116,32 @@ protected:
     return false; 
   }
 
+  void OnExtensionInstallSuccess(
+      const std::string& id) {
+    CompleteInstall(webstore_install::SUCCESS, std::string());
+  }
+
+  void OnExtensionInstallFailure(
+      const std::string& id,
+      const std::string& error,
+      WebstoreInstaller::FailureReason reason) {
+
+    webstore_install::Result install_result = webstore_install::OTHER_ERROR;
+    switch (reason) {
+      case WebstoreInstaller::FAILURE_REASON_CANCELLED:
+        install_result = webstore_install::USER_CANCELLED;
+        break;
+      case WebstoreInstaller::FAILURE_REASON_DEPENDENCY_NOT_FOUND:
+      case WebstoreInstaller::FAILURE_REASON_DEPENDENCY_NOT_SHARED_MODULE:
+        install_result = webstore_install::MISSING_DEPENDENCIES;
+        break;
+      default:
+        break;
+    }
+
+    CompleteInstall(install_result, error);
+  }
+
   void OnInstallPromptDone(ExtensionInstallPrompt::DoneCallbackPayload payload) override {
     if (payload.result == ExtensionInstallPrompt::Result::USER_CANCELED) {
         CompleteInstall(webstore_install::USER_CANCELLED,
@@ -134,13 +160,19 @@ protected:
       std::unique_ptr<WebstoreInstaller::Approval> approval = CreateApproval();
 
       auto installer = base::MakeRefCounted<WebstoreInstaller>(
-          profile(), this, GetWebContents(), id(), std::move(approval),
+          profile(), 
+          base::BindOnce(&WebstoreInstallerForImporting::OnExtensionInstallSuccess,
+                     weak_ptr_factory_.GetWeakPtr()),
+          base::BindOnce(&WebstoreInstallerForImporting::OnExtensionInstallFailure,
+                     weak_ptr_factory_.GetWeakPtr()),
+          GetWebContents(), id(), std::move(approval),
           install_source());
       installer->Start();
   }
 private:
   std::unique_ptr<content::WebContents> dummy_web_contents_;
   gfx::NativeWindow parent_window_;
+  base::WeakPtrFactory<WebstoreInstallerForImporting> weak_ptr_factory_{this};
 };
 
 
@@ -444,7 +476,7 @@ void MisesComponentLoader::ShowPreInstallMessage(bool is_fail) {
   }
   GURL link =  GURL(base::StrCat(
         {"https://chrome.google.com/webstore/detail/", metamask_extension_id}));
-  std::string guid = base::GenerateGUID();
+  std::string guid = base::Uuid::GenerateRandomV4().AsLowercaseString();
 #if !BUILDFLAG(IS_ANDROID)
   auto notification = CreateMessageCenterNotification(
     title, description, guid,link

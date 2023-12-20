@@ -59,14 +59,16 @@ class MisesContentBrowserClient : public ChromeContentBrowserClient {
       int render_process_id,
       URLLoaderFactoryType type,
       const url::Origin& request_initiator,
-      absl::optional<int64_t> navigation_id,
+      std::optional<int64_t> navigation_id,
       ukm::SourceIdObj ukm_source_id,
       mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
       mojo::PendingRemote<network::mojom::TrustedURLLoaderHeaderClient>*
           header_client,
       bool* bypass_redirect_checks,
       bool* disable_secure_dns,
-      network::mojom::URLLoaderFactoryOverridePtr* factory_override) override;
+      network::mojom::URLLoaderFactoryOverridePtr* factory_override,
+      scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner)
+      override;
 
   bool WillInterceptWebSocket(content::RenderFrameHost* frame) override;
   void CreateWebSocket(

@@ -306,17 +306,6 @@ const base::FeatureParam<base::TimeDelta>
 #endif
 
 
-#if BUILDFLAG(IS_ANDROID)
-BASE_FEATURE(kWebAppManifestIconUpdating,
-             "WebAppManifestIconUpdating",
-             base::FEATURE_DISABLED_BY_DEFAULT);
-
-
-BASE_FEATURE(kWebAppManifestImmediateUpdating,
-             "WebAppManifestImmediateUpdating",
-             base::FEATURE_ENABLED_BY_DEFAULT);
-#endif  // BUILDFLAG(IS_ANDROID)
-
 
 #if BUILDFLAG(IS_ANDROID)
 // Enables the second version of the sentiment survey for users of Trust &
@@ -426,5 +415,32 @@ const base::FeatureParam<base::TimeDelta>
         &kTrustSafetySentimentSurveyV2, "trusted-surface-time",
         base::Seconds(5)};
 #endif
+
+
+#if BUILDFLAG(IS_ANDROID)
+BASE_FEATURE(kWebAppDedupeInstallUrls,
+             "WebAppDedupeInstallUrls",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+
+BASE_FEATURE(kWebAppManifestIconUpdating,
+             "WebAppManifestIconUpdating",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+BASE_FEATURE(kWebAppManifestImmediateUpdating,
+             "WebAppManifestImmediateUpdating",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+
+BASE_FEATURE(kWebAppSyncGeneratedIconBackgroundFix,
+             "WebAppSyncGeneratedIconBackgroundFix",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+
+BASE_FEATURE(kWebAppSyncGeneratedIconRetroactiveFix,
+             "WebAppSyncGeneratedIconRetroactiveFix",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+
+BASE_FEATURE(kWebAppSyncGeneratedIconUpdateFix,
+             "WebAppSyncGeneratedIconUpdateFix",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+#endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace features

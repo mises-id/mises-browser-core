@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "base/containers/contains.h"
-#include "base/guid.h"
+#include "base/uuid.h"
 #include "base/values.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/value_conversion_utils.h"
@@ -321,7 +321,7 @@ base::Value::List PermissionRequestResponseToValue(
     const std::vector<std::string> accounts) {
   base::Value::List container_list;
   base::Value::Dict dict;
-  dict.Set("id", base::GenerateGUID());
+  dict.Set("id", base::Uuid::GenerateRandomV4().AsLowercaseString());
 
   base::Value::List context_list;
   context_list.Append(base::Value("https://github.com/MetaMask/rpc-cap"));
@@ -344,7 +344,7 @@ base::Value::List PermissionRequestResponseToValue(
   caveats_list.Append(std::move(caveats_obj2));
   dict.Set("caveats", std::move(caveats_list));
 
-  dict.Set("date", base::Time::Now().ToJsTime());
+  dict.Set("date", base::Time::Now().InMillisecondsFSinceUnixEpoch());
   dict.Set("invoker", origin.Serialize());
   dict.Set("parentCapability", "eth_accounts");
   container_list.Append(std::move(dict));

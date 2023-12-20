@@ -10,21 +10,6 @@
 #include "base/strings/utf_string_conversions.h"
 #endif
 
-void SearchTabHelper::OnOpenExtension(const GURL& url) {
-  DCHECK(!url.is_empty());
-  if (instant_service_)
-    instant_service_->OpenExtension(&GetWebContents(), url);
-}
-
-void SearchTabHelper::OnLogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value)  {
-#if BUILDFLAG(IS_ANDROID)
-    base::android::MisesSysUtils::LogEventFromJni(
-      base::UTF16ToUTF8(event_type.c_str()), 
-      base::UTF16ToUTF8(key.c_str()), 
-      base::UTF16ToUTF8(value.c_str())
-    );
-#endif
-}
 
 void SearchTabHelper::NavigationEntryCommitted(
     const content::LoadCommittedDetails& load_details) {

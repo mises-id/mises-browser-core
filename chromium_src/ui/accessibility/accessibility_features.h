@@ -6,50 +6,70 @@
 namespace features {
 
 #if BUILDFLAG(IS_ANDROID)
-AX_BASE_EXPORT extern const base::Feature kReadAnything;
+// Use the experimental Accessibility Service.
+// TODO(katydek): Provide a more descriptive name here.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kAccessibilityService);
+AX_BASE_EXPORT bool IsAccessibilityServiceEnabled();
 
-// Returns true if read anything is enabled. This feature shows users websites,
-// such as articles, in a comfortable reading experience in a side panel.
-AX_BASE_EXPORT bool IsReadAnythingEnabled();
+// Open Read Anything side panel when the browser is opened, and
+// call distill after the navigation's load-complete event. (Note: The browser
+// is only being opened to render one webpage, for the sake of generating
+// training data for Screen2x data collection. The browser is intended to be
+// closed by the user who launches Chrome once the first distill call finishes
+// executing.)
+//
+// Note: This feature should be used along with 'ScreenAIDebugModeEnabled=true'
+// and --no-sandbox.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kDataCollectionModeForScreen2x);
+AX_BASE_EXPORT bool IsDataCollectionModeForScreen2xEnabled();
 
-AX_BASE_EXPORT extern const base::Feature kReadAnythingWithScreen2x;
+// Use local MI service to make inaccessibile surfaces (e.g.
+// canvases) accessible.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kLayoutExtraction);
+AX_BASE_EXPORT bool IsLayoutExtractionEnabled();
 
-// Returns true if read anything is enabled with screen2x integration, which
-// distills web pages using an ML model.
-AX_BASE_EXPORT bool IsReadAnythingWithScreen2xEnabled();
-
-// Enables using Screen AI library to add metadata for accessibility tools.
-AX_BASE_EXPORT extern const base::Feature kScreenAI;
-
-// Returns true if Screen AI Visual Annotations feature is enabled. This feature
-// uses a local machine intelligence library to process browser screenshots and
-// add metadata to the accessibility tree.
-AX_BASE_EXPORT bool IsScreenAIVisualAnnotationsEnabled();
-
-// Returns true if Screen AI Service is needed as either
-// ScreenAIVisualAnnotations or ReadAnythingWithScreen2x are enabled.
-AX_BASE_EXPORT bool IsScreenAIServiceNeeded();
-
-// If enabled, ScreenAI library writes some debug data in /tmp.
-AX_BASE_EXPORT bool IsScreenAIDebugModeEnabled();
-
-// Enables a feature whereby inaccessible (i.e. untagged) PDFs are made
-// accessible using an optical character recognition service. Due to the size of
-// the OCR component, this feature targets desktop versions of Chrome for now.
-AX_BASE_EXPORT extern const base::Feature kPdfOcr;
-
-// Returns true if OCR will be performed on inaccessible (i.e. untagged) PDFs
-// and the resulting text, together with its layout information, will be added
-// to the accessibility tree.
+// Use OCR to make inaccessible (i.e. untagged) PDFs
+// accessibility. (Note: Due to the size of the OCR component, this feature
+// targets only desktop versions of Chrome for now.)
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kPdfOcr);
 AX_BASE_EXPORT bool IsPdfOcrEnabled();
 
-// Enables a setting that can turn on/off browser vocalization of 'descriptions'
-// tracks.
-AX_BASE_EXPORT extern const base::Feature kTextBasedAudioDescription;
+// Include the Read Anything feature. (Note: This feature shows
+// users websites, such as articles, in a comfortable reading experience in a
+// side panel)
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnything);
+AX_BASE_EXPORT bool IsReadAnythingEnabled();
 
-// Returns true if the setting to turn on text based audio descriptions is
-// enabled.
-AX_BASE_EXPORT bool IsTextBasedAudioDescriptionEnabled();
+// Make the Read Anything Side Panel local (don't persist when opening a new
+// tab)
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingLocalSidePanel);
+AX_BASE_EXPORT bool IsReadAnythingLocalSidePanelEnabled();
+
+// Show a reading mode icon in the omnibox.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingOmniboxIcon);
+AX_BASE_EXPORT bool IsReadAnythingOmniboxIconEnabled();
+
+// Show the Read Aloud feature in Read Anything.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingReadAloud);
+AX_BASE_EXPORT bool IsReadAnythingReadAloudEnabled();
+
+// Use the WebUI toolbar in Read Anything.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingWebUIToolbar);
+AX_BASE_EXPORT bool IsReadAnythingWebUIToolbarEnabled();
+
+// Use screen2x integration for Read Anything to distill web pages
+// using an ML model.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingWithScreen2x);
+AX_BASE_EXPORT bool IsReadAnythingWithScreen2xEnabled();
+
+// Enable rules based algorithm for distilling content. Should be enabled by
+// default.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingWithAlgorithm);
+AX_BASE_EXPORT bool IsReadAnythingWithAlgorithmEnabled();
+
+// Write some ScreenAI library debug data in /tmp.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kScreenAIDebugMode);
+AX_BASE_EXPORT bool IsScreenAIDebugModeEnabled();
 #endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace features

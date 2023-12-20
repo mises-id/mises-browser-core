@@ -1,9 +1,11 @@
-/* Copyright (c) 2022 The Brave Authors. All rights reserved.
+/* Copyright (c) 2022 The mises Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "mises/build/ios/mojom/public/base/base_values.h"
+
+#include <optional>
 
 #include "base/json/json_reader.h"
 #include "base/json/json_writer.h"
@@ -214,10 +216,10 @@
         }();
         break;
       case base::Value::Type::DICT:
-        self.dictionaryValue = brave::NSDictionaryFromBaseValue(value.Clone());
+        self.dictionaryValue = mises::NSDictionaryFromBaseValue(value.Clone());
         break;
       case base::Value::Type::LIST:
-        self.listValue = brave::NSArrayFromBaseValue(value.Clone());
+        self.listValue = mises::NSArrayFromBaseValue(value.Clone());
         break;
       case base::Value::Type::NONE:
       default:
@@ -251,10 +253,10 @@
       return base::Value(blob);
     }
     case MojoBaseValueTagDictionaryValue: {
-      return brave::BaseValueFromNSDictionary(self.dictionaryValue);
+      return mises::BaseValueFromNSDictionary(self.dictionaryValue);
     }
     case MojoBaseValueTagListValue: {
-      return brave::BaseValueFromNSArray(self.listValue);
+      return mises::BaseValueFromNSArray(self.listValue);
     }
     case MojoBaseValueTagNull:
     default:
@@ -268,7 +270,7 @@
 
 - (nullable instancetype)initWithJSONString:(NSString*)json {
   auto string = base::SysNSStringToUTF8(json);
-  absl::optional<base::Value> response = base::JSONReader::Read(
+  std::optional<base::Value> response = base::JSONReader::Read(
       string, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                   base::JSONParserOptions::JSON_PARSE_RFC);
   if (response) {
@@ -304,7 +306,7 @@
 
 @end
 
-namespace brave {
+namespace mises {
 
 NSArray<MojoBaseValue*>* NSArrayFromBaseValue(base::Value value) {
   auto result = [[NSMutableArray alloc] init];
@@ -317,7 +319,7 @@ NSArray<MojoBaseValue*>* NSArrayFromBaseValue(base::Value value) {
 NSDictionary<NSString*, MojoBaseValue*>* NSDictionaryFromBaseValue(
     base::Value value) {
   auto result = [[NSMutableDictionary alloc] init];
-  for (auto kv : value.DictItems()) {
+  for (auto kv : value.GetDict()) {
     result[base::SysUTF8ToNSString(kv.first)] =
         [[MojoBaseValue alloc] initWithValue:kv.second.Clone()];
   }
@@ -364,4 +366,4 @@ base::Value::Dict BaseValueDictFromNSDictionary(
   return dict;
 }
 
-}  // namespace brave
+}  // namespace mises

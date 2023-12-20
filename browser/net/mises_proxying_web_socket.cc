@@ -30,7 +30,7 @@ MisesProxyingWebSocket::MisesProxyingWebSocket(
     int frame_tree_node_id,
     content::BrowserContext* browser_context,
     scoped_refptr<RequestIDGenerator> request_id_generator,
-    MisesRequestHandler* handler,
+    MisesRequestHandler& handler,
     DisconnectCallback on_disconnect)
     : request_handler_(handler),
       process_id_(process_id),

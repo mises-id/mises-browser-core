@@ -14,14 +14,15 @@
 // #define GeolocationPermissionContextDelegate \
 //   BraveGeolocationPermissionContextDelegate
 
-#define BuildServiceInstanceFor BuildServiceInstanceFor_ChromiumImpl
+#define BuildServiceInstanceForBrowserContext BuildServiceInstanceForBrowserContext_ChromiumImpl
 
 #include "src/chrome/browser/permissions/permission_manager_factory.cc"
 
 //#undef GeolocationPermissionContextDelegate
-#undef BuildServiceInstanceFor
+#undef BuildServiceInstanceForBrowserContext
 
-KeyedService* PermissionManagerFactory::BuildServiceInstanceFor(
+std::unique_ptr<KeyedService>
+PermissionManagerFactory::BuildServiceInstanceForBrowserContext(
     content::BrowserContext* context) const {
   Profile* profile = Profile::FromBrowserContext(context);
   auto permission_contexts = CreatePermissionContexts(profile);
@@ -45,6 +46,6 @@ KeyedService* PermissionManagerFactory::BuildServiceInstanceFor(
     }
   }
 
-  return new permissions::MisesPermissionManager(
+  return std::make_unique<permissions::MisesPermissionManager>(
       profile, std::move(permission_contexts));
 }

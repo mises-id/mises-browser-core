@@ -19,6 +19,12 @@ public class MisesPermissionDialogDelegate {
     /** Lifetime option index selected by the user. */
     private int mSelectedLifetimeOption;
 
+    /** Whether the request is for Widevine. We need a special layout for it. */
+    private boolean mIsWidevinePermissionRequest;
+
+    /** Don't ask again checkbox fors reqeusts. */
+    private boolean mDontAskAgain;
+    
     public MisesPermissionDialogDelegate() {
         mSelectedLifetimeOption = -1;
     }
@@ -48,5 +54,24 @@ public class MisesPermissionDialogDelegate {
     @CalledByNative
     public int getSelectedLifetimeOption() {
         return mSelectedLifetimeOption;
+    }
+
+
+    @CalledByNative
+    public void setIsWidevinePermissionRequest(boolean isWidevineRequest) {
+        mIsWidevinePermissionRequest = isWidevineRequest;
+    }
+
+    public boolean getIsWidevinePermissionRequest() {
+        return mIsWidevinePermissionRequest;
+    }
+
+    public void setDontAskAgain(boolean checked) {
+        mDontAskAgain = checked;
+    }
+
+    @CalledByNative
+    public boolean getDontAskAgain() {
+        return mDontAskAgain;
     }
 }

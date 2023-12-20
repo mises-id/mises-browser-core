@@ -810,7 +810,7 @@ TEST_F(BraveWalletPinServiceTest, RemoveSolPin) {
               *(GetPrefs()
                     ->GetDict(kPinnedNFTAssets)
                     .FindByDottedPath(kSolMonkey1Path)
-                    ->FindStringKey("status")));
+                    ->FindString("status")));
   }
 
   {
@@ -877,7 +877,7 @@ TEST_F(BraveWalletPinServiceTest, RemovePin) {
               *(GetPrefs()
                     ->GetDict(kPinnedNFTAssets)
                     .FindByDottedPath(kMonkey1Path)
-                    ->FindStringKey("status")));
+                    ->FindString("status")));
   }
 
   {

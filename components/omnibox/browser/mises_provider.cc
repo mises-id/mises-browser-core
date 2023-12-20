@@ -221,12 +221,12 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
     LOG(INFO) << "Cg MisesProvider::DoAutocomplete set_new_top_sites";
 
     for (const auto& data : json_value->GetList()) {
-        //const std::string* title = data.FindStringKey("title");
-        const std::string* url = data.FindStringKey("url");
-        const std::string* logo = data.FindStringKey("logo");
-        const std::string* content = data.FindStringKey("title");
-        const std::string* domain_name = data.FindStringKey("domain_name");
-        absl::optional<int> search_score = data.FindIntKey("search_score").value_or(0);
+        //const std::string* title = data.FindString("title");
+        const std::string* url = data.FindString("url");
+        const std::string* logo = data.FindString("logo");
+        const std::string* content = data.FindString("title");
+        const std::string* domain_name = data.FindString("domain_name");
+        absl::optional<int> search_score = data.FindInt("search_score").value_or(0);
         AutocompleteMatch match;
         match.type = AutocompleteMatchType::SEARCH_SUGGEST_ENTITY;
         match.relevance = *search_score;

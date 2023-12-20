@@ -38,9 +38,9 @@ mojom::TransactionInfoPtr SolanaTxMeta::ToTransactionInfo() const {
       mojom::TxDataUnion::NewSolanaTxData(tx_->ToSolanaTxData()), status_,
       tx_->tx_type(), std::vector<std::string>() /* tx_params */,
       std::vector<std::string>() /* tx_args */,
-      base::Milliseconds(created_time_.ToJavaTime()),
-      base::Milliseconds(submitted_time_.ToJavaTime()),
-      base::Milliseconds(confirmed_time_.ToJavaTime()),
+      base::Milliseconds(created_time_.InMillisecondsSinceUnixEpoch()),
+      base::Milliseconds(submitted_time_.InMillisecondsSinceUnixEpoch()),
+      base::Milliseconds(confirmed_time_.InMillisecondsSinceUnixEpoch()),
       origin_.has_value() ? MakeOriginInfo(*origin_) : nullptr, group_id_,
       chain_id_);
 }

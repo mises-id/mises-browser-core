@@ -341,25 +341,27 @@ bool MisesContentBrowserClient::WillCreateURLLoaderFactory(
     int render_process_id,
     URLLoaderFactoryType type,
     const url::Origin& request_initiator,
-    absl::optional<int64_t> navigation_id,
+    std::optional<int64_t> navigation_id,
     ukm::SourceIdObj ukm_source_id,
     mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
     mojo::PendingRemote<network::mojom::TrustedURLLoaderHeaderClient>*
         header_client,
     bool* bypass_redirect_checks,
     bool* disable_secure_dns,
-    network::mojom::URLLoaderFactoryOverridePtr* factory_override) {
+    network::mojom::URLLoaderFactoryOverridePtr* factory_override,
+    scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner) {
   bool use_proxy = false;
   // TODO(iefremov): Skip proxying for certain requests?
   use_proxy = MisesProxyingURLLoaderFactory::MaybeProxyRequest(
       browser_context, frame,
       type == URLLoaderFactoryType::kNavigation ? -1 : render_process_id,
-      factory_receiver);
+      factory_receiver, navigation_response_task_runner);
 
   use_proxy |= ChromeContentBrowserClient::WillCreateURLLoaderFactory(
       browser_context, frame, render_process_id, type, request_initiator,
       std::move(navigation_id), ukm_source_id, factory_receiver, header_client,
-      bypass_redirect_checks, disable_secure_dns, factory_override);
+      bypass_redirect_checks, disable_secure_dns, factory_override,
+      navigation_response_task_runner);
 
   return use_proxy;
 }

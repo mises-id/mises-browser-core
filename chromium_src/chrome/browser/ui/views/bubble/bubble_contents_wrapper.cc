@@ -6,10 +6,12 @@
 #include <utility>
 
 #include "chrome/browser/ui/views/bubble/bubble_contents_wrapper.h"
+#include "chrome/browser/translate/chrome_translate_client.h"
 #include "components/sessions/content/session_tab_helper.h"
 #include "content/public/browser/web_contents.h"
 #include "content/public/browser/web_contents_delegate.h"
 #include "content/public/browser/web_contents_observer.h"
+
 
 // The buble delegate doesnt allow to open popups and we use
 // the Browser window delegate to redirect opening new popup content

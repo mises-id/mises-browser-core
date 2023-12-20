@@ -237,6 +237,8 @@ if (is_android) {
       "autofill/payments/mandatory_reauth_bubble_controller_impl.cc",
       "autofill/payments/mandatory_reauth_bubble_controller_impl.h",
 
+      "views/frame/picture_in_picture_browser_frame_view.cc"
+
   ]
   mises_browser_ui_deps += [
     "//mises/components/vector_icons",

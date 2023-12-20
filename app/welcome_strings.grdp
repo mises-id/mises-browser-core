@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- Shared strings -->
   <message name="IDS_WELCOME_NEXT" desc="Label for a button to confirm and continue from the current welcome step.">
@@ -22,17 +23,17 @@
   <message name="IDS_WELCOME_BOOKMARKS_REMOVED" desc="String read for accessibility to inform the user that several bookmarks were removed.">
     Bookmarks removed
   </message>
-  <message name="IDS_DEFAULT_BROWSER_CHANGED" desc="text notifying users that their default browser is successfully changed to Chrome">
-    Chrome is your default browser
+  <message name="IDS_DEFAULT_BROWSER_CHANGED" desc="text notifying users that their default browser is successfully changed to Mises">
+    Mises is your default browser
   </message>
 
-  <!-- Google apps selection module -->
-  <message name="IDS_WELCOME_GOOGLE_APPS_DESCRIPTION" desc="Description of what this section does in the welcome workflow. This section lets a user bookmark popular Google apps.">
-    Add bookmarks to your favorite Google Apps
+  <!-- Mises apps selection module -->
+  <message name="IDS_WELCOME_GOOGLE_APPS_DESCRIPTION" desc="Description of what this section does in the welcome workflow. This section lets a user bookmark popular Mises apps.">
+    Add bookmarks to your favorite Mises Apps
   </message>
   <if expr="_google_chrome">
     <message name="IDS_WELCOME_GOOGLE_SEARCH" desc="Label for a button that creates a bookmark to google.com, this should be the name of the brand.">
-      Google
+      Mises
     </message>
   </if>
   <message name="IDS_WELCOME_GOOGLE_GMAIL" desc="Label for a button that creates a bookmark to gmail.com, this should be the name of the brand.">
@@ -84,28 +85,28 @@
   </message>
 
   <!-- set default module -->
-  <message name="IDS_WELCOME_SET_AS_DEFAULT_HEADER" desc="Header for the page that prompts user to set Chrome as their default browser.">
-    Set Chrome as your default browser
+  <message name="IDS_WELCOME_SET_AS_DEFAULT_HEADER" desc="Header for the page that prompts user to set Mises as their default browser.">
+    Set Mises as your default browser
   </message>
-  <message name="IDS_WELCOME_SET_AS_DEFAULT_SUB_HEADER" desc="Sub-header for the page that prompts user to set Chrome as their default browser.">
-    Get Google Search and Google smarts everytime you browse
+  <message name="IDS_WELCOME_SET_AS_DEFAULT_SUB_HEADER" desc="Sub-header for the page that prompts user to set Mises as their default browser.">
+    Get Mises Search and Mises smarts everytime you browse
   </message>
-  <message name="IDS_WELCOME_SET_AS_DEFAULT_SET_AS_DEFAULT" desc="The label for a button to confirm setting Chrome as their default browser.">
+  <message name="IDS_WELCOME_SET_AS_DEFAULT_SET_AS_DEFAULT" desc="The label for a button to confirm setting Mises as their default browser.">
     Set as default
   </message>
 
   <!-- Landing view -->
-  <message name="IDS_WELCOME_LANDING_TITLE" desc="Title for the page that prompts user to start setting up their new Chrome.">
-    Make Chrome your own
+  <message name="IDS_WELCOME_LANDING_TITLE" desc="Title for the page that prompts user to start setting up their new Mises.">
+    Make Mises your own
   </message>
-  <message name="IDS_WELCOME_LANDING_DESCRIPTION" desc="Description for the page that prompts user to start setting up their new Chrome.">
+  <message name="IDS_WELCOME_LANDING_DESCRIPTION" desc="Description for the page that prompts user to start setting up their new Mises.">
     Set up your browser in a few simple steps
   </message>
-  <message name="IDS_WELCOME_LANDING_NEW_USER" desc="Label for a button that prompts new users to start setting up their new Chrome.">
+  <message name="IDS_WELCOME_LANDING_NEW_USER" desc="Label for a button that prompts new users to start setting up their new Mises.">
     Get Started
   </message>
   <message name="IDS_WELCOME_LANDING_EXISTING_USER" desc="Label for a button that prompts existing users to sign in.">
-    Already a Chrome user? Sign in
+    Already a Mises user? Sign in
   </message>
   <message name="IDS_WELCOME_LANDING_PAUSE_ANIMATIONS" desc="Label for a button that pauses all animations on the page.">
     Pause animations
@@ -116,7 +117,7 @@
 
   <!-- Sign-in view -->
   <message name="IDS_WELCOME_SIGNIN_VIEW_HEADER" desc="Header for the page that prompts user to sign in to chrome.">
-    Your Chrome, Everywhere
+    Your Mises, Everywhere
   </message>
   <message name="IDS_WELCOME_SIGNIN_VIEW_SUB_HEADER" desc="Sub-header for the page that prompts user to sign in to chrome.">
     Sign in and turn on sync to get your bookmarks, passwords and more on all devices

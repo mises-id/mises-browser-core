@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
 
   <message name="IDS_ERRORPAGE_NET_BUTTON_DETAILS" desc="Label for the button that expands the details on a net error page">
@@ -42,7 +43,7 @@
       Load page later
     </message>
     <message name="IDS_ERRORPAGES_CANCEL_SAVE_PAGE_BUTTON" desc="Label for the button that will cancel the request to save the page for later. 'Cancel' is colored blue with the 'a' tag.">
-      Chrome will let you know when this page is ready. &lt;a&gt;Cancel&lt;/a&gt;
+      Mises will let you know when this page is ready. &lt;a&gt;Cancel&lt;/a&gt;
     </message>
   </if>
 
@@ -60,8 +61,7 @@
     <message name="IDS_ERRORPAGES_SUGGESTION_SECURE_DNS_CONFIG_HEADER" desc="When a page fails to load, sometimes we suggest checking the secure DNS configuration.  This is a header above above some details.">
       Check your Secure DNS settings
     </message>
-    <message name="IDS_ERRORPAGES_SUGGESTION_SECURE_DNS_CONFIG_BODY" desc="When a page fails to load, sometimes we suggest checking the secure DNS configuration.  This contains details below the
-    suggestion.">
+    <message name="IDS_ERRORPAGES_SUGGESTION_SECURE_DNS_CONFIG_BODY" desc="When a page fails to load, sometimes we suggest checking the secure DNS configuration.  This contains details below the     suggestion.">
       Check your secure DNS settings. You may have configured a secure DNS server to which connections are failing.
     </message>
   </if>

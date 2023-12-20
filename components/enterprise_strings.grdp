@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <message name="IDS_ENTERPRISE_COPY_PREVENTION_MISSING_LIST_ERROR" desc="Message indicating that the supplied value for the CopyPreventionSettings policy is missing one of the list fields">
       Ignored because either the "enable" or "disable" list is missing.

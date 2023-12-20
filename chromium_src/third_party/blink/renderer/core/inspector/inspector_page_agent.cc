@@ -13,7 +13,7 @@
 
 namespace blink {
 
-Response InspectorPageAgent::generatePageGraph(String* data) {
+protocol::Response InspectorPageAgent::generatePageGraph(String* data) {
 // #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 //   LocalFrame* main_frame = inspected_frames_->Root();
 //   if (!main_frame) {
@@ -28,11 +28,11 @@ Response InspectorPageAgent::generatePageGraph(String* data) {
 //   *data = page_graph->ToGraphML();
 //   return Response::Success();
 // #else
-  return Response::ServerError("Page Graph buildflag is disabled");
+  return protocol::Response::ServerError("Page Graph buildflag is disabled");
 //#endif  // BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 }
 
-Response InspectorPageAgent::generatePageGraphNodeReport(
+protocol::Response InspectorPageAgent::generatePageGraphNodeReport(
     int node_id,
     std::unique_ptr<protocol::Array<String>>* report) {
 // #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
@@ -50,7 +50,7 @@ Response InspectorPageAgent::generatePageGraphNodeReport(
 //   page_graph->GenerateReportForNode(node_id, **report);
 //   return Response::Success();
 // #else
-  return Response::ServerError("Page Graph buildflag is disabled");
+  return protocol::Response::ServerError("Page Graph buildflag is disabled");
 //#endif  // BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 }
 

@@ -12,6 +12,11 @@
 #include "components/safe_browsing/core/common/features.h"
 namespace safe_browsing {
 
+base::TimeDelta kUploadIntervalSeconds = base::Seconds(3600);
+constexpr int kNumChecksPerUploadInterval = 1;
+base::TimeDelta kOffstoreFileDataCollectionDurationLimitSeconds =
+    base::Seconds(60);
+
 ExtensionTelemetryFileProcessor::~ExtensionTelemetryFileProcessor() = default;
 
 ExtensionTelemetryFileProcessor::ExtensionTelemetryFileProcessor()
@@ -23,16 +28,16 @@ ExtensionTelemetryService::~ExtensionTelemetryService() = default;
 
 ExtensionTelemetryService::ExtensionTelemetryService(
     Profile* profile,
-    scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
-    extensions::ExtensionRegistry* extension_registry,
-    extensions::ExtensionPrefs* extension_prefs)
+    scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory)
     : profile_(profile),
       url_loader_factory_(url_loader_factory),
-      extension_registry_(extension_registry),
-      extension_prefs_(extension_prefs),
+      extension_registry_(extensions::ExtensionRegistry::Get(profile)),
+      extension_prefs_(extensions::ExtensionPrefs::Get(profile)),
       enabled_(false),
-      current_reporting_interval_(
-          base::Seconds(kExtensionTelemetryUploadIntervalSeconds.Get())) {
+      current_reporting_interval_(kUploadIntervalSeconds),
+      num_checks_per_upload_interval_(kNumChecksPerUploadInterval),
+      offstore_file_data_collection_duration_limit_(
+          kOffstoreFileDataCollectionDurationLimitSeconds) {
   // Register for SB preference change notifications.
   
 }

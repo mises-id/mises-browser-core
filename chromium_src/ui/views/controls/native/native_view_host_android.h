@@ -68,7 +68,7 @@ class NativeViewHostAndroid : public NativeViewHostWrapper {
   void UpdateInsets();
 
   // Our associated NativeViewHost.
-  NativeViewHost* host_;
+  raw_ptr<NativeViewHost> host_;
 
   // Window that exists between the native view and the parent that allows for
   // clipping to occur. This is positioned in the coordinate space of

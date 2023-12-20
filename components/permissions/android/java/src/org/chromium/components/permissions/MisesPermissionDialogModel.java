@@ -5,27 +5,118 @@
 
 package org.chromium.components.permissions;
 
+
+import static androidx.browser.customtabs.CustomTabsIntent.COLOR_SCHEME_DARK;
+import static androidx.browser.customtabs.CustomTabsIntent.COLOR_SCHEME_LIGHT;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.Browser;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.browser.customtabs.CustomTabsIntent;
+
 import org.chromium.base.ApiCompatibilityUtils;
+import org.chromium.base.IntentUtils;
+import org.chromium.ui.LayoutInflaterUtils;
+import org.chromium.ui.UiUtils;
 import org.chromium.ui.base.ViewUtils;
 import org.chromium.ui.modaldialog.ModalDialogProperties;
 import org.chromium.ui.modelutil.PropertyModel;
+import org.chromium.ui.text.NoUnderlineClickableSpan;
+import org.chromium.ui.text.SpanApplier;
+import org.chromium.ui.util.ColorUtils;
 
 /* Adds additional items to Permission Dialog. */
 class MisesPermissionDialogModel {
-    public static PropertyModel getModel(ModalDialogProperties.Controller controller,
-            PermissionDialogDelegate delegate, Runnable touchFilteredCallback) {
+        // Link for Widevine
+    private static final String URL_WIDEVINE_LEARN_MORE =
+            "https://source.android.com/docs/core/media/drm";
+
+    public static PropertyModel getModel(
+            ModalDialogProperties.Controller controller,
+            PermissionDialogDelegate delegate,
+            View customView,
+            Runnable touchFilteredCallback) {
+        MisesPermissionDialogDelegate misesDelegate =
+                (MisesPermissionDialogDelegate) (Object) delegate;
+        PropertyModel model = null;
+        if (misesDelegate.getIsWidevinePermissionRequest()) {
+            model = createModelForWidevineRequest(controller, delegate, touchFilteredCallback);
+        } else {
+            model =
+                    PermissionDialogModelFactory.getModel(
+                            controller, delegate, customView, touchFilteredCallback);
+            addLifetimeOptions(customView, delegate);
+        }
+        assert model != null;
+
+        return model;
+    }
+
+
+    private static PropertyModel createModelForWidevineRequest(
+            ModalDialogProperties.Controller controller, PermissionDialogDelegate delegate,
+            Runnable touchFilteredCallback) {
+        MisesPermissionDialogDelegate braveDelegate =
+                (MisesPermissionDialogDelegate) (Object) delegate;
+        Context context = delegate.getWindow().getContext().get();
+        assert context != null;
+        View customView = LayoutInflaterUtils.inflate(
+                context, R.layout.widevine_permission_request_custom_view, null);
+
+        String messageText = delegate.getMessageText();
+        // Override Allow button text
+        String primaryButtonText = context.getResources().getString(
+                R.string.widevine_permission_request_primary_button_text);
+        assert !TextUtils.isEmpty(messageText) && !TextUtils.isEmpty(primaryButtonText);
+        SpannableString learnMoreLink = SpanApplier.applySpans(
+                context.getResources().getString(R.string.widevine_permission_request_link),
+                new SpanApplier.SpanInfo("<LINK>", "</LINK>",
+                        new NoUnderlineClickableSpan(context, R.color.brave_link, result -> {
+                            openUrlInCustomTab(context, URL_WIDEVINE_LEARN_MORE);
+                        })));
+
+        TextView messageTextView = customView.findViewById(R.id.message);
+        messageTextView.setText(messageText);
+
+        TextView linkTextView = customView.findViewById(R.id.link);
+        linkTextView.setText(learnMoreLink);
+        linkTextView.setClickable(true);
+        linkTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        CheckBox checkbox = customView.findViewById(R.id.checkbox);
+        checkbox.setOnCheckedChangeListener(
+                (buttonView, isChecked) -> { braveDelegate.setDontAskAgain(isChecked); });
+
         PropertyModel model =
-                PermissionDialogModel.getModel(controller, delegate, touchFilteredCallback);
-        View customView = (View) model.get(ModalDialogProperties.CUSTOM_VIEW);
-        addLifetimeOptions(customView, delegate);
+                new PropertyModel.Builder(ModalDialogProperties.ALL_KEYS)
+                        .with(ModalDialogProperties.CONTROLLER, controller)
+                        .with(ModalDialogProperties.TITLE,
+                                context.getResources().getString(
+                                        R.string.widevine_permission_request_title))
+                        .with(ModalDialogProperties.CUSTOM_VIEW, customView)
+                        .with(ModalDialogProperties.POSITIVE_BUTTON_TEXT, primaryButtonText)
+                        .with(ModalDialogProperties.NEGATIVE_BUTTON_TEXT,
+                                delegate.getSecondaryButtonText())
+                        .with(ModalDialogProperties.CONTENT_DESCRIPTION, messageText)
+                        .with(ModalDialogProperties.FILTER_TOUCH_FOR_SECURITY, true)
+                        .with(ModalDialogProperties.TOUCH_FILTERED_CALLBACK, touchFilteredCallback)
+                        .with(ModalDialogProperties.BUTTON_TAP_PROTECTION_PERIOD_MS,
+                                UiUtils.PROMPT_INPUT_PROTECTION_SHORT_DELAY_MS)
+                        .build();
+
         return model;
     }
 

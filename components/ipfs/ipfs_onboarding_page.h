@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "base/memory/weak_ptr.h"
+#include "base/memory/raw_ptr.h"
 #include "base/scoped_observation.h"
 #include "base/values.h"
 #include "mises/components/ipfs/ipfs_service.h"
@@ -109,7 +110,7 @@ class IPFSOnboardingPage
   void ReportDaemonStopped();
   bool IsLocalNodeMode();
 
-  IpfsService* ipfs_service_ = nullptr;
+  raw_ptr<IpfsService> ipfs_service_ = nullptr;
   base::TimeTicks start_time_ticks_;
   base::ScopedObservation<ipfs::IpfsService, ipfs::IpfsServiceObserver>
       service_observer_{this};

@@ -3,12 +3,6 @@
 #include "src/chrome/browser/ui/singleton_tabs.cc"
 #else
 #include "chrome/browser/ui/singleton_tabs.h"
-#define ShowSingletonTabOverwritingNTP ShowSingletonTabOverwritingNTP_Chromium
 #include "src/chrome/browser/ui/singleton_tabs.cc"
-#undef ShowSingletonTabOverwritingNTP
-
-void ShowSingletonTabOverwritingNTP(Browser* browser, NavigateParams* params) {
-  Navigate(params);
-}
 
 #endif

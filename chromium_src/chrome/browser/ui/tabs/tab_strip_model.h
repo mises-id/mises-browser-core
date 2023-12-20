@@ -16,10 +16,9 @@
 #include "base/observer_list.h"
 #include "base/scoped_multi_source_observation.h"
 #include "base/scoped_observation.h"
-#include "base/time/time.h"
-#include "base/timer/timer.h"
 #include "build/build_config.h"
 #include "chrome/browser/ui/tabs/tab_group_controller.h"
+#include "chrome/browser/ui/tabs/tab_model.h"
 #include "chrome/browser/ui/tabs/tab_strip_scrubbing_metrics.h"
 #include "chrome/browser/ui/tabs/tab_strip_user_gesture_details.h"
 #include "components/sessions/core/session_id.h"
@@ -32,6 +31,9 @@
 
 
 #if BUILDFLAG(IS_ANDROID)
+
+#define TabModel TabModelDesktop
+
 
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
@@ -50,6 +52,9 @@
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
 #undef active_index
+
+
+#undef TabModel
 
 #else
 

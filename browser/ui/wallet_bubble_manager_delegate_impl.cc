@@ -9,6 +9,7 @@
 #include <utility>
 #include <vector>
 
+#include "base/memory/raw_ptr.h"
 #include "base/functional/callback.h"
 #include "mises/browser/ui/views/wallet_bubble_focus_observer.h"
 #include "mises/browser/ui/webui/brave_wallet/wallet_common_ui.h"
@@ -40,8 +41,9 @@ class MisesWebUIBubbleManagerT : public WebUIBubbleManagerT<T>,
         browser_(browser) {}
 
   base::WeakPtr<WebUIBubbleDialogView> CreateWebUIBubbleDialog(
-      const absl::optional<gfx::Rect>& anchor) override {
-    auto bubble_view = WebUIBubbleManagerT<T>::CreateWebUIBubbleDialog(anchor);
+      const std::optional<gfx::Rect>& anchor,
+      views::BubbleBorder::Arrow arrow) override {
+    auto bubble_view = WebUIBubbleManagerT<T>::CreateWebUIBubbleDialog(anchor, arrow);
     bubble_view_ = bubble_view.get();
     brave_observer_ =
         WalletBubbleFocusObserver::CreateForView(bubble_view_, browser_);
@@ -123,10 +125,10 @@ class MisesWebUIBubbleManagerT : public WebUIBubbleManagerT<T>,
   }
 
  private:
-  Browser* browser_ = nullptr;
+  raw_ptr<Browser> browser_ = nullptr;
   std::unique_ptr<WalletBubbleFocusObserver> brave_observer_;
-  WebUIBubbleDialogView* bubble_view_ = nullptr;
-  content::WebContents* web_ui_contents_for_testing_ = nullptr;
+  raw_ptr<WebUIBubbleDialogView> bubble_view_ = nullptr;
+  raw_ptr<content::WebContents> web_ui_contents_for_testing_ = nullptr;
   base::WeakPtrFactory<MisesWebUIBubbleManagerT<T>> weak_factory_{this};
 };
 
@@ -142,7 +144,7 @@ WalletBubbleManagerDelegateImpl::WalletBubbleManagerDelegateImpl(
     content::WebContents* web_contents,
     const GURL& webui_url)
     : web_contents_(web_contents), webui_url_(webui_url) {
-  Browser* browser = chrome::FindBrowserWithWebContents(web_contents_);
+  Browser* browser = chrome::FindBrowserWithTab(web_contents_);
   DCHECK(browser);
 
   views::View* anchor_view;

@@ -1,30 +1,29 @@
 diff --git a/components/permissions/permission_manager.cc b/components/permissions/permission_manager.cc
-index 357c6ed0613de77411b9aea8b3c954e7d6cc0146..d8d1a68e78b13657e4f6652dcae372517445c678 100644
+index 357c6ed0613de77411b9aea8b3c954e7d6cc0146..9357a61a0afe966d0cd136ba7d817ca8a28d142a 100644
 --- a/components/permissions/permission_manager.cc
 +++ b/components/permissions/permission_manager.cc
-@@ -66,7 +66,7 @@ GURL GetEmbeddingOrigin(content::RenderFrameHost* const render_frame_host,
-           web_contents->GetLastCommittedURL().DeprecatedGetOriginAsURL())) {
-     return web_contents->GetLastCommittedURL().DeprecatedGetOriginAsURL();
-   } else {
--    return PermissionUtil::GetLastCommittedOriginAsURL(
-+    return MISES_FORCED_REQUESTING_ORIGIN PermissionUtil::GetLastCommittedOriginAsURL(
-         render_frame_host->GetMainFrame());
-   }
+@@ -308,6 +308,7 @@ void PermissionManager::RequestPermissionsFromCurrentDocument(
+     base::OnceCallback<void(const std::vector<PermissionStatus>&)>
+         permission_status_callback) {
+   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
++  MISES_REQUEST_PERMISSION_FROM_CURRENT_DOCUMENT
+   RequestPermissionsInternal(render_frame_host, request_description,
+                              std::move(permission_status_callback));
  }
-@@ -355,6 +355,7 @@ PermissionManager::GetPermissionResultForCurrentDocument(
+@@ -355,6 +356,7 @@ PermissionManager::GetPermissionResultForCurrentDocument(
        PermissionUtil::PermissionTypeToContentSettingType(permission);
  
    const GURL requesting_origin =
-+      MISES_FORCED_REQUESTING_ORIGIN
++      MISES_GET_PERMISSION_RESULT_FOR_CURRENT_DOCUMENT
        PermissionUtil::GetLastCommittedOriginAsURL(render_frame_host);
    const GURL embedding_origin =
        GetEmbeddingOrigin(render_frame_host, requesting_origin);
-@@ -598,6 +599,9 @@ content::PermissionResult PermissionManager::GetPermissionStatusInternal(
+@@ -598,6 +600,9 @@ content::PermissionResult PermissionManager::GetPermissionStatusInternal(
    GURL canonical_requesting_origin = PermissionUtil::GetCanonicalOrigin(
        permission, requesting_origin, embedding_origin);
    PermissionContextBase* context = GetPermissionContext(permission);
 +  if (!context) 
-+    return PermissionResult(CONTENT_SETTING_ASK, PermissionStatusSource::UNSPECIFIED);
++    return content::PermissionResult(PermissionStatus::ASK, content::PermissionStatusSource::UNSPECIFIED);
 +
    content::PermissionResult result = context->GetPermissionStatus(
        render_frame_host, canonical_requesting_origin.DeprecatedGetOriginAsURL(),

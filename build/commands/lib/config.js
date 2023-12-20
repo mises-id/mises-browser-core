@@ -1001,16 +1001,22 @@ Object.defineProperty(Config.prototype, 'defaultOptions', {
     let env = Object.assign({}, process.env)
     env = this.addPathToEnv(env, path.join(this.depotToolsDir, 'python-bin'), true)
     env = this.addPathToEnv(env, path.join(this.depotToolsDir, 'python2-bin'), true)
+    env = this.addPathToEnv(env, path.join(this.srcDir, 'third_party',
+    'rust-toolchain', 'bin'), true)
     env = this.addPathToEnv(env, this.depotToolsDir, true)
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'chromium_src', 'python_modules'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'script'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'tools', 'grit', 'grit', 'extern'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'requests'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'lxml', 'src'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'transifex'))
-    
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'build'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'third_party', 'depot_tools'))
+    const pythonPaths = [
+      ['mises', 'chromium_src', 'python_modules'],
+      ['mises', 'script'],
+      ['tools', 'grit', 'grit', 'extern'],
+      ['mises', 'vendor', 'requests'],
+      ['mises', 'third_party', 'cryptography'],
+      ['mises', 'third_party', 'macholib'],
+      ['build'],
+      ['third_party', 'depot_tools'],
+    ]
+    pythonPaths.forEach(p => {
+      env = this.addPythonPathToEnv(env, path.join(this.srcDir, ...p))
+    })
     env.DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
     env.PYTHONUNBUFFERED = '1'
     env.TARGET_ARCH = this.gypTargetArch // for mises scripts

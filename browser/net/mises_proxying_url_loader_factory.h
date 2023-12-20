@@ -64,7 +64,9 @@ class MisesProxyingURLLoaderFactory
         content::BrowserContext* browser_context,
         const net::MutableNetworkTrafficAnnotationTag& traffic_annotation,
         mojo::PendingReceiver<network::mojom::URLLoader> loader_receiver,
-        mojo::PendingRemote<network::mojom::URLLoaderClient> client);
+        mojo::PendingRemote<network::mojom::URLLoaderClient> client,
+        scoped_refptr<base::SequencedTaskRunner>
+            navigation_response_task_runner);
     InProgressRequest(const InProgressRequest&) = delete;
     InProgressRequest& operator=(const InProgressRequest&) = delete;
     ~InProgressRequest() override;
@@ -117,7 +119,7 @@ class MisesProxyingURLLoaderFactory
 
     // TODO(iefremov): Get rid of shared_ptr, we should clearly own the pointer.
     std::shared_ptr<mises::MisesRequestInfo> ctx_;
-    MisesProxyingURLLoaderFactory* const factory_;
+    const raw_ptr<MisesProxyingURLLoaderFactory> factory_;
     network::ResourceRequest request_;
     const uint64_t request_id_;
     const int32_t network_service_request_id_;
@@ -170,20 +172,25 @@ class MisesProxyingURLLoaderFactory
     };
     std::unique_ptr<FollowRedirectParams> pending_follow_redirect_params_;
 
+    // A task runner that should be used for the request when non-null. Non-null
+    // when this was created for a navigation request.
+    scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner_;
+
     base::WeakPtrFactory<InProgressRequest> weak_factory_;
   };
 
   // Constructor public for testing purposes. New instances should be created
   // by calling MaybeProxyRequest().
   MisesProxyingURLLoaderFactory(
-      MisesRequestHandler* request_handler,
+      MisesRequestHandler& request_handler,
       content::BrowserContext* browser_context,
       int render_process_id,
       int frame_tree_node_id,
       mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver,
       mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory,
       scoped_refptr<RequestIDGenerator> request_id_generator,
-      DisconnectCallback on_disconnect);
+      DisconnectCallback on_disconnect,
+      scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner);
 
   MisesProxyingURLLoaderFactory(const MisesProxyingURLLoaderFactory&) = delete;
   MisesProxyingURLLoaderFactory& operator=(
@@ -195,8 +202,8 @@ class MisesProxyingURLLoaderFactory
       content::BrowserContext* browser_context,
       content::RenderFrameHost* render_frame_host,
       int render_process_id,
-      mojo::PendingReceiver<network::mojom::URLLoaderFactory>*
-          factory_receiver);
+      mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
+      scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner);
 
   // network::mojom::URLLoaderFactory:
   void CreateLoaderAndStart(
@@ -220,7 +227,7 @@ class MisesProxyingURLLoaderFactory
 
   void MaybeRemoveProxy();
 
-  MisesRequestHandler* const request_handler_;
+  const raw_ref<MisesRequestHandler> request_handler_;
   raw_ptr<content::BrowserContext> browser_context_ = nullptr;
   const int render_process_id_;
   const int frame_tree_node_id_;
@@ -234,6 +241,10 @@ class MisesProxyingURLLoaderFactory
   scoped_refptr<RequestIDGenerator> request_id_generator_;
 
   DisconnectCallback disconnect_callback_;
+
+// A task runner that should be used for requests when non-null. Non-null when
+  // this was created for a navigation request.
+  scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner_;
 
   base::WeakPtrFactory<MisesProxyingURLLoaderFactory> weak_factory_;
 };

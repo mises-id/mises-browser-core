@@ -14,7 +14,7 @@
 #include "base/files/file_path.h"
 #include "base/functional/bind.h"
 #include "base/functional/callback_helpers.h"
-#include "base/guid.h"
+#include "base/uuid.h"
 #include "base/mac/foundation_util.h"
 #include "base/path_service.h"
 #include "base/strings/sys_string_conversions.h"

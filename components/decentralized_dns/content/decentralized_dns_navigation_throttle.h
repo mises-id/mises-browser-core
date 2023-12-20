@@ -10,6 +10,7 @@
 #include <string>
 
 #include "base/memory/weak_ptr.h"
+#include "base/memory/raw_ptr.h"
 #include "content/public/browser/navigation_throttle.h"
 
 namespace content {
@@ -47,8 +48,8 @@ class DecentralizedDnsNavigationThrottle : public content::NavigationThrottle {
   void ShowInterstitial();
   void ShowEnsOffchainLookupInterstitial();
 
-  PrefService* user_prefs_ = nullptr;
-  PrefService* local_state_ = nullptr;
+  raw_ptr<PrefService> user_prefs_ = nullptr;
+  raw_ptr<PrefService> local_state_ = nullptr;
   std::string locale_;
   base::WeakPtrFactory<DecentralizedDnsNavigationThrottle> weak_ptr_factory_{
       this};

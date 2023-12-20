@@ -214,7 +214,7 @@ absl::optional<std::string> FilTransaction::GetSignedTransaction(
   base::Value::Dict signature;
   {
     std::string data(filecoin::transaction_sign(
-        *message,
+        from().network() == mojom::kFilecoinMainnet, *message,
         rust::Slice<const uint8_t>{private_key.data(), private_key.size()}));
     if (data.empty())
       return absl::nullopt;

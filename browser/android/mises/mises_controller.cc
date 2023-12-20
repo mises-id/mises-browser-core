@@ -69,25 +69,25 @@ void  MisesController::recordEvent(const std::string& json_string){
       return;
     }
     //event_type
-     const std::string* event_type = json_value->FindStringKey("event_type");
+     const std::string* event_type = json_value->GetDict().FindString("event_type");
      if (event_type == nullptr || (*event_type).empty()){
        LOG(WARNING) << "MisesController::recordEvent event_type is null.";
        return;
      }
      //event_params
-     auto* event_params = json_value->FindDictKey("params");
+     auto* event_params = json_value->GetDict().FindDict("params");
      if (event_params == nullptr) {
       LOG(WARNING) << "MisesController::recordEvent event_params is null.";
        return;
      }
-     const std::string* key1 = event_params->FindStringKey("key1");
-     const std::string* value1 = event_params->FindStringKey("value1");
+     const std::string* key1 = event_params->FindString("key1");
+     const std::string* value1 = event_params->FindString("value1");
      if (key1 == nullptr || (*key1).empty() || value1 == nullptr || (*value1).empty()) {
        LOG(WARNING) << "MisesController::recordEvent key1 or empty is empty.";
        return;
      }
-     /* const std::string* key2 = event_params->FindStringKey("key2");
-     const std::string* value2 = event_params->FindStringKey("value2"); */
+     /* const std::string* key2 = event_params->FindString("key2");
+     const std::string* value2 = event_params->FindString("value2"); */
       LOG(INFO) << "MisesController::recordEvent event_type=" << *event_type
       << " key1=" << *key1 << " value1=" << *value1
       ;

@@ -6,7 +6,7 @@
 #include "chrome/renderer/accessibility/read_anything_app_controller.h"
 #include "chrome/renderer/searchbox/searchbox_extension.h"
 #include "ui/accessibility/accessibility_features.h"
-
+#include "components/safe_browsing/content/renderer/phishing_classifier/phishing_image_embedder_delegate.h"
 
 #define DidCommitProvisionalLoad DidCommitProvisionalLoad_Chromium
 #define DidClearWindowObject DidClearWindowObject_Chromium

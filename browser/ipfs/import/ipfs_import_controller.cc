@@ -11,7 +11,7 @@
 #include <vector>
 
 #include "base/files/file_util.h"
-#include "base/guid.h"
+#include "base/uuid.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/task/thread_pool.h"
 #include "mises/browser/ipfs/import/save_package_observer.h"
@@ -313,7 +313,7 @@ void IpfsImportController::PushNotification(const std::u16string& title,
                                             const std::u16string& body,
                                             const GURL& link) {
   auto notification =
-      CreateMessageCenterNotification(title, body, base::GenerateGUID(), link);
+      CreateMessageCenterNotification(title, body, base::Uuid::GenerateRandomV4().AsLowercaseString(), link);
   Profile* profile =
       Profile::FromBrowserContext(web_contents_->GetBrowserContext());
   auto* display_service = NotificationDisplayService::GetForProfile(profile);

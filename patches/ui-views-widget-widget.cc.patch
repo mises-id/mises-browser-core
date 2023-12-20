@@ -1,8 +1,8 @@
 diff --git a/ui/views/widget/widget.cc b/ui/views/widget/widget.cc
-index 968eebaf6719c1da9a796588f487a6ebf0aab876..2caddbe68ea2a5173afda355d647fe2f529941f6 100644
+index 968eebaf6719c1da9a796588f487a6ebf0aab876..a12cda2b2b3a319e232f44ffcc30e433b5ec801c 100644
 --- a/ui/views/widget/widget.cc
 +++ b/ui/views/widget/widget.cc
-@@ -438,9 +438,11 @@ void Widget::Init(InitParams params) {
+@@ -438,11 +438,13 @@ void Widget::Init(InitParams params) {
    root_view_.reset(CreateRootView());
  
    // Copy the elements of params that will be used after it is moved.
@@ -10,10 +10,13 @@ index 968eebaf6719c1da9a796588f487a6ebf0aab876..2caddbe68ea2a5173afda355d647fe2f
    const InitParams::Type type = params.type;
    const gfx::Rect bounds = params.bounds;
    const ui::WindowShowState show_state = params.show_state;
-+#endif
-   WidgetDelegate* delegate = params.delegate;
+-  WidgetDelegate* delegate = params.delegate;
    bool should_set_initial_bounds = true;
++#endif
++  WidgetDelegate* delegate = params.delegate;
  #if BUILDFLAG(IS_CHROMEOS)
+   // If the target display is specified on ChromeOS, the initial bounds will be
+   // set based on the display.
 @@ -450,6 +452,7 @@ void Widget::Init(InitParams params) {
  #endif
  

@@ -221,7 +221,7 @@ IN_PROC_BROWSER_TEST_F(BraveWalletEventEmitterTest,
       address, &sub_request_origin));
   host_content_settings_map()->SetContentSettingDefaultScope(
       sub_request_origin.GetURL(), GetLastCommitedOrigin().GetURL(),
-      ContentSettingsType::BRAVE_ETHEREUM,
+      ContentSettingsType::MISES_ETHEREUM,
       ContentSetting::CONTENT_SETTING_ALLOW);
   SetSelectedAccount(address);
 

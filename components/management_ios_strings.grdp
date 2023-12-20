@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version='1.0' encoding='UTF-8'?>
 <!-- Strings for the chrome://management page on mobile platform.-->
-
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <message name="IDS_IOS_MANAGEMENT_UI_DESC" desc="The descriptive text on chrome://management page when the browser is managed.">
-    Your administrator can change your browser setup remotely. Activity on this device may also be managed outside of Chrome.
+    Your administrator can change your browser setup remotely. Activity on this device may also be managed outside of Mises.
   </message>
   <message name="IDS_IOS_MANAGEMENT_UI_LEARN_MORE_LINK" desc="The clickable text on chrome://management.">
     Learn More

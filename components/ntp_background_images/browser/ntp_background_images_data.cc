@@ -61,7 +61,7 @@ NTPBackgroundImagesData::NTPBackgroundImagesData(
   }
 
   absl::optional<int> incomingSchemaVersion =
-      json_value->FindIntKey(kSchemaVersionKey);
+      json_value->FindInt(kSchemaVersionKey);
   const bool schemaVersionIsValid = incomingSchemaVersion &&
       *incomingSchemaVersion == kExpectedSchemaVersion;
   if (!schemaVersionIsValid) {
@@ -79,9 +79,9 @@ NTPBackgroundImagesData::NTPBackgroundImagesData(
       const auto& image = images->GetList()[i];
       Background background;
       background.image_file =
-          installed_dir.AppendASCII(*image.FindStringKey(kImageSourceKey));
-      background.author = *image.FindStringKey(kImageAuthorKey);
-      background.link = *image.FindStringKey(kImageLinkKey);
+          installed_dir.AppendASCII(*image.FindString(kImageSourceKey));
+      background.author = *image.FindString(kImageAuthorKey);
+      background.link = *image.FindString(kImageLinkKey);
 
       backgrounds.push_back(background);
     }

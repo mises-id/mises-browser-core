@@ -69,7 +69,7 @@ test("mises_unit_tests") {
     "//chrome/test:disable_thinlto_cache_flags",
   ]
   sources = [
-  
+    "//mises/browser/ui/views/wallet_bubble_focus_observer_unittest.cc",
   ]
 
   deps = [
@@ -115,7 +115,7 @@ test("mises_unit_tests") {
    
   ]
 
-  if (toolkit_views) {
+  if (true || toolkit_views) {
     deps += [ "//chrome/browser/ui/views" ]
   }
 

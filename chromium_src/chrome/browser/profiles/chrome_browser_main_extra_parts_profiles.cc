@@ -12,7 +12,6 @@
 #include "chrome/browser/storage/storage_notification_service_factory.h"
 #include "chrome/browser/ui/global_error/global_error_service_factory.h"
 #include "chrome/browser/ui/media_router/media_router_ui_service_factory.h"
-#include "chrome/browser/ui/user_education/user_education_service_factory.h"
 #include "chrome/browser/usb/usb_chooser_context_factory.h"
 #include "components/commerce/core/proto/cart_db_content.pb.h"
 #include "components/commerce/core/proto/coupon_db_content.pb.h"
@@ -74,7 +73,7 @@ void ChromeBrowserMainExtraPartsProfiles::
   ExitTypeServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
-  explore_sites::ExploreSitesServiceFactory::GetInstance();
+  FastCheckoutCapabilitiesFetcherFactory::GetInstance();
 #endif
   FaviconServiceFactory::GetInstance();
   feature_engagement::TrackerFactory::GetInstance();
@@ -84,7 +83,6 @@ void ChromeBrowserMainExtraPartsProfiles::
   GAIAInfoUpdateServiceFactory::GetInstance();
 #endif
 
-  GoogleSearchDomainMixingMetricsEmitterFactory::GetInstance();
   HistoryServiceFactory::GetInstance();
 
   HostContentSettingsMapFactory::GetInstance();
@@ -93,10 +91,6 @@ void ChromeBrowserMainExtraPartsProfiles::
   InMemoryURLIndexFactory::GetInstance();
 
   LanguageModelManagerFactory::GetInstance();
-  if (base::FeatureList::IsEnabled(
-          permissions::features::kOneTimeGeolocationPermission)) {
-    LastTabStandingTrackerFactory::GetInstance();
-  }
   login_detection::LoginDetectionKeyedServiceFactory::GetInstance();
 
 #if BUILDFLAG(IS_ANDROID)
@@ -119,7 +113,7 @@ void ChromeBrowserMainExtraPartsProfiles::
   if (optimization_guide::switches::ShouldValidateModel())
     optimization_guide::ModelValidatorKeyedServiceFactory::GetInstance();
   page_load_metrics::PageLoadMetricsMemoryTrackerFactory::GetInstance();
-  PasswordStoreFactory::GetInstance();
+  ProfilePasswordStoreFactory::GetInstance();
   PermissionAuditingServiceFactory::GetInstance();
   SessionProtoDBFactory<
       persisted_state_db::PersistedStateContentProto>::GetInstance();
@@ -166,10 +160,6 @@ void ChromeBrowserMainExtraPartsProfiles::
 
   ReadingListModelFactory::GetInstance();
 
-#if BUILDFLAG(IS_ANDROID)
-  ReadingListManagerFactory::GetInstance();
-  ReadingListNotificationServiceFactory::GetInstance();
-#endif
 
   RendererUpdaterFactory::GetInstance();
 

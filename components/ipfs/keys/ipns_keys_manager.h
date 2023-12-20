@@ -99,7 +99,7 @@ class IpnsKeysManager : public IpfsServiceObserver {
                   std::unique_ptr<network::ResourceRequest> request);
 
   int last_load_retry_value_for_test_ = -1;
-  BlobContextGetterFactory* blob_context_getter_factory_ = nullptr;
+  raw_ptr<BlobContextGetterFactory> blob_context_getter_factory_ = nullptr;
   scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory_;
   APIRequestList requests_list_;
   SimpleURLLoaderList url_loaders_;

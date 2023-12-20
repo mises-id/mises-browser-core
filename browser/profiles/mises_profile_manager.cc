@@ -14,7 +14,6 @@
 #include "mises/components/ipfs/buildflags/buildflags.h"
 
 #include "chrome/browser/browser_process.h"
-#include "chrome/browser/chrome_notification_types.h"
 #include "chrome/browser/profiles/profile_attributes_entry.h"
 #include "chrome/browser/profiles/profile_attributes_storage.h"
 #include "chrome/browser/profiles/profiles_state.h"

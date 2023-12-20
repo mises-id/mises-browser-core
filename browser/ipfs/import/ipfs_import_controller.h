@@ -11,6 +11,7 @@
 #include <utility>
 #include <vector>
 
+#include "base/memory/raw_ptr.h"
 #include "mises/components/ipfs/ipfs_service.h"
 #include "ui/shell_dialogs/select_file_dialog.h"
 
@@ -86,8 +87,8 @@ class IpfsImportController : public ui::SelectFileDialog::Listener {
   ui::SelectFileDialog::Type dialog_type_ = ui::SelectFileDialog::SELECT_NONE;
   std::string dialog_key_;
 
-  content::WebContents* web_contents_ = nullptr;
-  ipfs::IpfsService* ipfs_service_ = nullptr;
+  raw_ptr<content::WebContents> web_contents_ = nullptr;
+  raw_ptr<ipfs::IpfsService> ipfs_service_ = nullptr;
   bool skip_save_page_for_testing_ = false;
 
   scoped_refptr<base::SequencedTaskRunner> file_task_runner_;

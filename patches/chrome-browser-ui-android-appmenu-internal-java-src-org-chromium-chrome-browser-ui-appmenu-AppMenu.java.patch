@@ -32,14 +32,14 @@ index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..ca3b81e2f08d4025411ceb4d05ae7030
 +
 +import org.chromium.chrome.browser.app.ChromeActivity;
 +
-+import org.jni_zero.NativeMethods;
++import org.chromium.base.annotations.NativeMethods;
 +
 +import org.chromium.chrome.browser.tab.Tab;
 +import org.chromium.ui.mojom.WindowOpenDisposition;
 +import org.chromium.base.ContextUtils;
 +import org.chromium.chrome.browser.profiles.Profile;
 +import org.chromium.base.ThreadUtils;
-+import org.jni_zero.CalledByNative;
++import org.chromium.base.annotations.CalledByNative;
 +import org.chromium.chrome.browser.profiles.Profile;
 +import org.chromium.content_public.browser.WebContents;
 +import android.os.Build;

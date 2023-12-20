@@ -1,5 +1,5 @@
 diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
-index 4c66836806fcda70c76aa026549cdc9aa4cb675f..bec74bcbf5921b42be237ca2dd1a0452a28e8c92 100644
+index 4c66836806fcda70c76aa026549cdc9aa4cb675f..51dbe1cbebfc7eca0f4d968a983c2aa88c3b5bc8 100644
 --- a/content/browser/BUILD.gn
 +++ b/content/browser/BUILD.gn
 @@ -3275,6 +3275,8 @@ source_set("browser") {
@@ -11,12 +11,16 @@ index 4c66836806fcda70c76aa026549cdc9aa4cb675f..bec74bcbf5921b42be237ca2dd1a0452
      # Not Android.
      sources += [
        # The WebAuthn devtools protocol API is not supported in Android yet.
-@@ -3357,6 +3359,10 @@ source_set("browser") {
+@@ -3357,6 +3359,14 @@ source_set("browser") {
        "picture_in_picture/document_picture_in_picture_window_controller_impl.h",
      ]
  
 +    if (is_android) {
-+      sources -= ["media/session/audio_focus_delegate_default.cc", "network_sandbox.cc",]
++      sources -= [
++        "media/session/audio_focus_delegate_default.cc", 
++        "network_sandbox.cc",
++        "media/capture/sub_capture_target_id_web_contents_helper.cc",
++      ]
 +    }
 +
      deps += [

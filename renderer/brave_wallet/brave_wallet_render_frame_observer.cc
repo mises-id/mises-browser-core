@@ -9,6 +9,9 @@
 #include <utility>
 
 #include "chrome/common/channel_info.h"
+#include "components/version_info/channel.h"
+#include "components/version_info/version_info.h"
+
 #include "base/feature_list.h"
 #include "mises/components/brave_wallet/common/features.h"
 #include "mises/components/brave_wallet/renderer/v8_helper.h"

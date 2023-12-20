@@ -23,11 +23,11 @@ TEST_F(PermissionsClientUnitTest, BraveCanBypassEmbeddingOriginCheck) {
   } cases[] = {
       {GURL("https://test.com0xaf5Ad1E10926C0Ee4af4eDAC61DD60E853753f8A"),
        GURL("https://test.com0xaf5Ad1E10926C0Ee4af4eDAC61DD60E853753f8A:123"),
-       ContentSettingsType::BRAVE_ETHEREUM},
+       ContentSettingsType::MISES_ETHEREUM},
       {GURL("https://test.com__BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8"),
        GURL("https://"
             "test.com__BrG44HdsEhzapvs8bEqzvkq4egwevS3fRE6ze2ENo6S8:123"),
-       ContentSettingsType::BRAVE_SOLANA}};
+       ContentSettingsType::MISES_SOLANA}};
 
   for (size_t i = 0; i < sizeof(cases) / sizeof(cases[0]); ++i) {
     GURL embedding_origin("https://test.com");

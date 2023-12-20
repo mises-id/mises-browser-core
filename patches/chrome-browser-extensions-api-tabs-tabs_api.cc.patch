@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_api.cc b/chrome/browser/extensions/api/tabs/tabs_api.cc
-index e1baaaaf0bf08ed3899baf9fd4aa5fa2dc1c40b5..3e8870f012fe69197acb59669be94f419a71a333 100644
+index e1baaaaf0bf08ed3899baf9fd4aa5fa2dc1c40b5..acb549ad52f2cc29bc3c0efb9815e957380bdf4a 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_api.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_api.cc
 @@ -176,6 +176,7 @@ class ApiParameterExtractor {
@@ -72,7 +72,7 @@ index e1baaaaf0bf08ed3899baf9fd4aa5fa2dc1c40b5..3e8870f012fe69197acb59669be94f41
        extractor.populate_tabs() ? ExtensionTabUtil::kPopulateTabs
                                  : ExtensionTabUtil::kDontPopulateTabs;
 +#if BUILDFLAG(IS_ANDROID)  
-+  if (!browser) {
++  if (!last_focused_browser) {
 +    base::Value::Dict windows = 
 +       CreateDummyWindowValueForExtension(populate_tab_behavior);
 +    return RespondNow(WithArguments(std::move(windows)));
@@ -223,7 +223,7 @@ index e1baaaaf0bf08ed3899baf9fd4aa5fa2dc1c40b5..3e8870f012fe69197acb59669be94f41
 +#else
 +  base::Value::List result;
 +  GetTabListValueAndroid(result, extension(), source_context_type());
-+  return RespondNow(OneArgument(base::Value(std::move(result))));
++  return RespondNow(WithArguments(std::move(result)));
 +#endif
  }
  

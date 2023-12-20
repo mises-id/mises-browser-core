@@ -23,13 +23,17 @@
     </if>
   <if expr="not chromeos_ash">
     </if>
-  <if expr="not chromeos_ash">
-    </if>
   <if expr="chromeos_ash">
     </if>
   <if expr="not chromeos_ash">
     </if>
   <if expr="chromeos_lacros">
+    </if>
+  <if expr="is_win or is_linux or is_macosx">
+    </if>
+  <if expr="is_win or is_linux">
+    </if>
+  <if expr="is_macosx">
     </if>
 
   <if expr="is_chromeos">
@@ -73,6 +77,10 @@
       </if>
   </if>
 
+  <if expr="not is_macosx">
+    </if>
+  <if expr="is_macosx">
+    </if>
   <if expr="not chromeos_ash">
     </if>
   <if expr="not chromeos_ash">
@@ -93,6 +101,15 @@
       </if>
   </if>
 
+  <message name="IDS_SETTINGS_ANTI_ABUSE_DESCRIPTION" desc="The label used for the anti-abuse site settings description.">
+    Sites you visit can verify that you're a real profile and not a bot
+  </message>
+  <message name="IDS_SETTINGS_ANTI_ABUSE_WHEN_ON_SECTION_TWO" desc="A description that informs users how the anti-abuse features work.">
+    As you keep browsing, sites can check with Mises and verify with a previous site you've visited that you're likely a real profile
+  </message>
+  <message name="IDS_SETTINGS_ANTI_ABUSE_WHEN_ON_SECTION_THREE" desc="A description that informs users how their browsing could be helped by the anti-abuse features.">
+    Browsing is faster because a site is less likely to ask you to verify you're a real profile
+  </message>
   <message name="IDS_SETTINGS_PRIVACY_SANDBOX_SPAM_AND_FRAUD_SUMMARY" desc="The description of card 3 of 3. * “help”: This API is one way that sites can fight fraud. Don’t suggest that sites must use this API to fight fraud. * “distinguish bots from profiles”: This touches on just one aspect of fraud but we hope it helps the user understand the purpose of this API, and that is to distinguish real users from malicious players.">
     Help sites fight fraud and distinguish bots from profiles
   </message>
@@ -113,6 +130,22 @@
   </message>
   <message name="IDS_SETTINGS_PRIVACY_GUIDE_COOKIES_CARD_BLOCK_TPC_INCOGNITO_PRIVACY_DESCRIPTION2" desc="A part of the privacy description of the third party cookie blocking in private section of the cookies card in the 'Privacy guide'.">
     When you’re in Private mode, sites can only use cookies to see your browsing activity on their own site. Cookies are deleted at the end of the Private session.
+  </message>
+  <if expr="_google_chrome">
+    </if>
+  <message name="IDS_SETTINGS_PRIVACY_GUIDE_SEARCH_SUGGESTIONS_FEATURE_DESCRIPTION1" desc="A part of the feature description of 'search suggestions' in the 'Privacy Guide'.">
+    When you click or type in the address bar or search box, you'll see suggestions from your default search engine. This is off in Private.
+  </message>
+
+  <message name="IDS_SETTINGS_SAFETY_CHECK_REVIEW_EXTENSIONS" desc="This text describes that potentially harmful extensions need to be reviewed by the user. The placeholder will be a numeral.">
+    {NUM_EXTENSIONS, plural,
+     =1 {Review 1 extension that was taken down from the Web Store}
+     other {Review {NUM_EXTENSIONS} extensions that were taken down from the Web Store}}
+  </message>
+  <if expr="_google_chrome">
+    </if>
+  <message name="IDS_SETTINGS_ADVANCED_PROTECTION_PROGRAM_DESC" desc="Description of the Mises     Advanced Protection Program">
+    Provides Mises’s strongest account security for profiles at risk of targeted attacks
   </message>
   <if expr="chromeos_ash">
     </if>
@@ -152,6 +185,9 @@
   </message>
   <if expr="chromeos_lacros">
     </if>
+  <message name="IDS_SETTINGS_TRACKING_PROTECTION_BULLET_ONE_DESCRIPTION" desc="Description of the first bullet for tracking protection settings. Explains what limiting third-party cookies means.">
+    Most sites can’t use third-party cookies to track you as you browse and sites can’t use third-party cookies in Private mode.
+  </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_COOKIES_BLOCK_THIRD_PARTY_INCOGNITO" desc="The sub-label for links to manage cookies when the current cookie setting is to block third party cookies in Private.">
     Third-party cookies are blocked in Private mode
   </message>
@@ -161,9 +197,6 @@
   <message name="IDS_SETTINGS_SITE_SETTINGS_INCOGNITO_SITE_EXCEPTION_DESC" desc="The text displayed in order to explain to a user that a content setting only applies to the current Private session.">
     This custom setting will be removed when you close all your Private windows
   </message>
-  <if expr="chromeos_ash">
-    </if>
-
   <if expr="not chromeos_ash">
     </if>
 
@@ -180,7 +213,11 @@
   <if expr="is_win and _google_chrome">
     </if>
 
-  <if expr="is_win and _google_chrome">
+  <message name="IDS_SETTINGS_SAFETY_HUB_USER_EDU_INCOGNITO_SUBHEADER" desc="The subheader of the second item in the 'User Education Module' in the Safety Hub page. This item explains Private mode.">
+    Private mode keeps <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>your browsing private from others<ph name="END_LINK">&lt;/a&gt;</ph> who use your device
+  </message>
+  <if expr="not is_chromeos">
     </if>
-
+  <if expr="is_chromeos">
+    </if>
   </grit-part>

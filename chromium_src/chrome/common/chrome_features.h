@@ -35,11 +35,15 @@ extern const base::Feature kBlockMigratedDefaultChromeAppSync;
 
 
 #if BUILDFLAG(IS_ANDROID)
-COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kPreinstalledWebAppInstallation;
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kPreinstalledWebAppDuplicationFixer;
+BASE_DECLARE_FEATURE(kMigrateErrorLoadedPolicyApps);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kPreinstalledWebAppInstallation);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kPreinstalledWebAppDuplicationFixer);
 #endif
 
 #if BUILDFLAG(IS_ANDROID) 
@@ -126,12 +130,23 @@ COMPONENT_EXPORT(CHROME_FEATURES) extern const base::Feature kOnConnectNative;
 
 #if BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kWebAppManifestIconUpdating);
+BASE_DECLARE_FEATURE(kSafetyCheckExtensions);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kWebAppManifestImmediateUpdating);
-#endif  // !BUILDFLAG(IS_ANDROID)
+BASE_DECLARE_FEATURE(kSafetyCheckNotificationPermissions);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<int>
+    kSafetyCheckNotificationPermissionsMinEnagementLimit;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<int>
+    kSafetyCheckNotificationPermissionsLowEnagementLimit;
 
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kSafetyHub);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<base::TimeDelta>
+    kBackgroundPasswordCheckInterval;
+#endif
 
 
 // TrustSafetySentimentSurvey
@@ -340,6 +355,29 @@ COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<base::TimeDelta>
     kTrustSafetySentimentSurveyV2TrustedSurfaceTime;
 #endif
+
+
+
+#if BUILDFLAG(IS_ANDROID)
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppDedupeInstallUrls);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppManifestIconUpdating);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppManifestImmediateUpdating);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconBackgroundFix);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconRetroactiveFix);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconUpdateFix);
+#endif  // !BUILDFLAG(IS_ANDROID)
+
 
 }  // namespace features
 

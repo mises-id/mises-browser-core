@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <if expr="enable_pdf">
     <message name="IDS_PDF_DOWNLOAD_ORIGINAL" desc="The label for the menu option to download the original, unedited PDF document (without user's changes).">
@@ -362,20 +363,20 @@
     <if expr="is_chromeos">
       <then>
         <message name="IDS_PDF_OCR_FEATURE_ALERT" is_accessibility_with_no_ui="true" desc="Notification of the PDF OCR feature when the user encounters an inaccessible PDF.">
-          This PDF is inaccessible. Press search plus m to open context menu and turn on &quot;extract text from PDF&quot;
+          This PDF is inaccessible. Press search plus m to open context menu and turn on "extract text from PDF"
         </message>
       </then>
       <else>
         <message name="IDS_PDF_OCR_FEATURE_ALERT" is_accessibility_with_no_ui="true" desc="Notification of the PDF OCR feature when the user encounters an inaccessible PDF.">
-          This PDF is inaccessible. Open context menu and turn on &quot;extract text from PDF&quot;
+          This PDF is inaccessible. Open context menu and turn on "extract text from PDF"
         </message>
       </else>
     </if>
     <message name="IDS_PDF_OCR_IN_PROGRESS" is_accessibility_with_no_ui="true" desc="Notification to inform the user that OCR is in progress.">
-      This PDF is inaccessible. Extracting text, powered by Google AI
+      This PDF is inaccessible. Extracting text, powered by Mises AI
     </message>
     <message name="IDS_PDF_OCR_COMPLETED" is_accessibility_with_no_ui="true" desc="Notification to inform the user that OCR is completed.">
-      This PDF is inaccessible. Text extracted, powered by Google AI
+      This PDF is inaccessible. Text extracted, powered by Mises AI
     </message>
     <message name="IDS_PDF_OCR_NO_RESULT" is_accessibility_with_no_ui="true" desc="Notification to inform the user that no text was converted by OCR from images.">
       This PDF is inaccessible. No text extracted

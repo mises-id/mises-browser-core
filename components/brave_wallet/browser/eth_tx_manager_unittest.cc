@@ -198,7 +198,7 @@ class EthTxManagerUnitTest : public testing::Test {
                                                .AsStringPiece());
           absl::optional<base::Value> request_value =
               base::JSONReader::Read(request_string);
-          std::string* method = request_value->FindStringKey("method");
+          std::string* method = request_value->FindString("method");
           ASSERT_TRUE(method);
 
           if (*method == "eth_estimateGas") {

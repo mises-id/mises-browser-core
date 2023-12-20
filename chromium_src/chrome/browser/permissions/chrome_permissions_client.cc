@@ -27,7 +27,7 @@ bool ChromePermissionsClient::MisesCanBypassEmbeddingOriginCheck(
     ContentSettingsType type) {
   // Note that requesting_origin has an address in it at this point.
   // But even if we get the original origin without the address, we can't
-  // check it against the embedding origin for BRAVE_ETHEREUM and BRAVE_SOLANA
+  // check it against the embedding origin for MISES_ETHEREUM and MISES_SOLANA
   // here because it can be allowed across origins via the iframe `allow`
   // attribute with the `ethereum` and `solana` feature policy.
   // Without this check we'd fail Chromium's origin check.

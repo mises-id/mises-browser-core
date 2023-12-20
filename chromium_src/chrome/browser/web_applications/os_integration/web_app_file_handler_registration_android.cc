@@ -86,7 +86,7 @@ void OnShortcutInfoReceived(ResultCallback callback,
       base::BindOnce(OnCreateShortcut, std::move(callback)));
 }
 
-void UpdateFileHandlerRegistrationInOs(const AppId& app_id,
+void UpdateFileHandlerRegistrationInOs(const webapps::AppId& app_id,
                                        Profile* profile,
                                        ResultCallback callback) {
   // On Linux, file associations are managed through shortcuts in the app menu,
@@ -147,7 +147,7 @@ UpdateMimeInfoDatabaseOnLinuxCallback GetUpdateMimeInfoDatabaseCallback(
   return base::BindOnce(&UpdateMimeInfoDatabase, install);
 }
 
-void UninstallMimeInfoOnLinux(const AppId& app_id, Profile* profile) {
+void UninstallMimeInfoOnLinux(const webapps::AppId& app_id, Profile* profile) {
   std::string file_contents;
   base::FilePath filename;
   internals::GetShortcutIOTaskRunner()->PostTaskAndReplyWithResult(
@@ -168,11 +168,11 @@ bool FileHandlingIconsSupportedByOs() {
   return false;
 }
 
-void InstallMimeInfoOnLinux(const AppId& app_id,
+void InstallMimeInfoOnLinux(const webapps::AppId& app_id,
 		                            Profile* profile,
 					                                const apps::FileHandlers& file_handlers,base::OnceClosure on_done);
 
-void RegisterFileHandlersWithOs(const AppId& app_id,
+void RegisterFileHandlersWithOs(const webapps::AppId& app_id,
                                 const std::string& app_name,
                                 Profile* profile,
                                 const apps::FileHandlers& file_handlers,
@@ -183,7 +183,7 @@ void RegisterFileHandlersWithOs(const AppId& app_id,
                                         app_id, profile, std::move(callback)));
 }
 
-void UnregisterFileHandlersWithOs(const AppId& app_id,
+void UnregisterFileHandlersWithOs(const webapps::AppId& app_id,
                                   Profile* profile,
                                   ResultCallback callback) {
   UninstallMimeInfoOnLinux(app_id, profile);
@@ -202,7 +202,7 @@ void UnregisterFileHandlersWithOs(const AppId& app_id,
   UpdateFileHandlerRegistrationInOs(app_id, profile, std::move(callback));
 }
 
-void InstallMimeInfoOnLinux(const AppId& app_id,
+void InstallMimeInfoOnLinux(const webapps::AppId& app_id,
                             Profile* profile,
                             const apps::FileHandlers& file_handlers, base::OnceClosure on_done) {
   DCHECK(!app_id.empty() && !file_handlers.empty());

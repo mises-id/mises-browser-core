@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
 
   <message name="IDS_POLICY_DM_STATUS_SUCCESS" desc="Message indicating a successful device management server call.">
@@ -205,7 +206,7 @@
     Update URL for extension with ID "<ph name="EXTENSION_ID">$1<ex>abcdefghijklmnopabcdefghijklmnop</ex></ph>" is invalid or uses an unsupported scheme. Supported schemes are: <ph name="HTTP_SCHEME">http</ph>, <ph name="HTTPS_SCHEME">https</ph> and <ph name="FILE_SCHEME">file</ph>.
   </message>
   <message name="IDS_POLICY_URL_PATH_SPECIFIED_ERROR" desc="The text displayed in the status column when a path is specified for an URL, which is not supported">
-    The URL pattern "<ph name="URL_PATTERN">$1<ex>*://example.com/</ex></ph>" has a path specified. Paths are not supported for this key, please remove the path and try again. e.g. *://example.com/ => *://example.com",
+    The URL pattern "<ph name="URL_PATTERN">$1<ex>*://example.com/</ex></ph>" has a path specified. Paths are not supported for this key, please remove the path and try again. e.g. *://example.com/ =&gt; *://example.com",
   </message>
   <message name="IDS_POLICY_MISSING_VENDOR_ID_ERROR" desc="The text displayed in the status column for the policy WebUsbAllowDevicesForUrls when an entry has specified a 'product_id' without a the 'vendor_id'">
     The attribute "vendor_id" must also be specified.
@@ -222,8 +223,8 @@
   <message name="IDS_POLICY_CLOUD_USER_ONLY_ERROR" desc="The text displayed in the status column when a policy should only be set from cloud user is set from another source.">
     Ignored because the policy can only be set as a cloud user policy.
   </message>
-  <message name="IDS_POLICY_CLOUD_MANAGEMENT_ENROLLMENT_ONLY_ERROR" desc="The text displayed in the status column when a policy that is effective only when the machine is enrolled with the Chrome Browser Cloud Management.">
-    Ignored because the machine is not enrolled with Chrome Browser Cloud Management.
+  <message name="IDS_POLICY_CLOUD_MANAGEMENT_ENROLLMENT_ONLY_ERROR" desc="The text displayed in the status column when a policy that is effective only when the machine is enrolled with the Mises Browser Cloud Management.">
+    Ignored because the machine is not enrolled with Mises Browser Cloud Management.
   </message>
   <message name="IDS_POLICY_DEFAULT_SEARCH_DISABLED" desc="The text displayed in the status column when a policy value has been ignored because default search has not been enabled.">
     Ignored because default search is not enabled by policy.
@@ -287,8 +288,8 @@
       Unknown variable "<ph name="VARIABLE">$1<ex>${UNKNOWN_VARIABLE}</ex></ph>" in the managed configuration of "<ph name="APPLICATION_ID">$2<ex>com.dropbox.android</ex></ph>".
     </message>
   </if>
-  <message name="IDS_POLICY_OFF_CWS_URL_ERROR" desc="The text displayed in the status column when the update URL points to a location other than the Chrome Webstore and the machine is not enterprise managed.">
-    This computer is not detected as enterprise managed so policy can only automatically install extensions hosted on the Chrome Webstore. The Chrome Webstore update URL is "<ph name="CWS_UPDATE_URL">$1<ex>https://clients2.google.com/service/update2/crx</ex></ph>".
+  <message name="IDS_POLICY_OFF_CWS_URL_ERROR" desc="The text displayed in the status column when the update URL points to a location other than the Mises Webstore and the machine is not enterprise managed.">
+    This computer is not detected as enterprise managed so policy can only automatically install extensions hosted on the Mises Webstore. The Mises Webstore update URL is "<ph name="CWS_UPDATE_URL">$1<ex>https://clients2.google.com/service/update2/crx</ex></ph>".
   </message>
   <message name="IDS_POLICY_HOMEPAGE_LOCATION_ERROR" desc="The text displayed in the status column when the homepage URL given by the HomepageLocation policy is invalid.">
     Invalid URL. Must be a URL with a standard scheme, e.g http://example.com or https://example.com.
@@ -390,7 +391,7 @@ Additional details:
   <message name="IDS_EXPORT_POLICIES_JSON" desc="Label for the button that exports policies in JSON format.">
     Export to JSON
   </message>
-  <message name="IDS_UPLOAD_REPORT" desc="Label for the button that uplaod Chrome usage report">
+  <message name="IDS_UPLOAD_REPORT" desc="Label for the button that uplaod Mises usage report">
     Upload Report
   </message>
   <message name="IDS_REPORT_UPLOADING" desc="Screen reader message indicates report is being uploaded">
@@ -413,7 +414,7 @@ Additional details:
   </message>
  <if expr="is_win">
   <message name="IDS_POLICY_STATUS_UPDATER" desc="Title for the updater policy status box on windows.">
-    Google Update
+    Mises Update
   </message>
  </if>
   <message name="IDS_POLICY_STATUS_ERROR_MANAGED_NO_POLICY" desc="Message to display when a managed device does not have a policy loaded.">
@@ -630,8 +631,8 @@ Additional details:
   <message name="IDS_POLICY_RISK_TAG_LOCAL_DATA_ACCESS" desc="Title of a group/tag whose policies might allow storage of user data to local drives where others might access them.">
     Local Data Access
   </message>
-  <message name="IDS_POLICY_RISK_TAG_GOOGLE_SHARING" desc="Title of a group/tag whose policies enable functionality that might share user data with trusted Google services.">
-    Sharing with Google
+  <message name="IDS_POLICY_RISK_TAG_GOOGLE_SHARING" desc="Title of a group/tag whose policies enable functionality that might share user data with trusted Mises services.">
+    Sharing with Mises
   </message>
   <message name="IDS_POLICY_SHOW_EXPANDED_STATUS" desc="Text for the link that shows the policy status. Used when the policy status is too long to be always visible.">
     Show status
@@ -669,17 +670,17 @@ Additional details:
   <message name="IDS_POLICY_IGNORED_BY_GROUP_MERGING" desc="Text explaining that a policy is ignored because another policy of the same group has a higher priority">
     This policy is ignored because another policy from the same policy group has a higher priority.
   </message>
-  <message name="IDS_POLICY_INVALID_VALUE"  desc="Text explaining that the policy value is invalid">
+  <message name="IDS_POLICY_INVALID_VALUE" desc="Text explaining that the policy value is invalid">
     Policy value is not valid.
   </message>
   <message name="IDS_POLICY_IGNORED_MANDATORY_REPORTING_POLICY" desc="Text explaining that the policy MetricsReportingEnabled can not be forced to enabled anymore">
     This policy cannot be set to "True" and be mandatory, therefore it was changed to recommended.
   </message>
-  <message name="IDS_POLICY_IGNORED_CHROME_PROFILE" desc="Text explaining that the policy cannot be set at the Chrome profile level and is therefore ignored.">
-    This policy cannot be set at the Chrome profile level and will be ignored.
+  <message name="IDS_POLICY_IGNORED_CHROME_PROFILE" desc="Text explaining that the policy cannot be set at the Mises profile level and is therefore ignored.">
+    This policy cannot be set at the Mises profile level and will be ignored.
   </message>
   <message name="IDS_POLICY_IGNORED_UNAFFILIATED" desc="Text describing that the policy value is not applied because the user is unaffiliated.">
-    This policy is ignored because the user is unaffiliated. For this policy to be applied, the Chrome browser and profile must be managed through the Admin console by the same organization.
+    This policy is ignored because the user is unaffiliated. For this policy to be applied, the Mises browser and profile must be managed through the Admin console by the same organization.
   </message>
   <message name="IDS_POLICY_PRECEDENCE_PLATFORM_MACHINE" desc="Text describing the platform machine precedence value.">
     Platform machine
@@ -722,7 +723,7 @@ Additional details:
   <message name="IDS_POLICY_SIGNIN_PROFILE" desc="Label to indicate that the policy is for the sign-in screen profile.">
     sign-in screen profile
   </message>
-  <message name ="IDS_POLICY_COPY_VALUE" desc="Help text for link that copies the value of a policy.">
+  <message name="IDS_POLICY_COPY_VALUE" desc="Help text for link that copies the value of a policy.">
     Copy the value of <ph name="POLICY_NAME">$1<ex>AllowDinosaurEasterEgg</ex></ph> policy
   </message>
   <message name="IDS_COPY_POLICIES_JSON" desc="Label for the button that copies policies in JSON format.">

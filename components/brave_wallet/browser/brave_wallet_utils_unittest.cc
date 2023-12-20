@@ -935,14 +935,14 @@ TEST(BraveWalletUtilsUnitTest, AddCustomNetwork) {
   const base::Value::List& asset_list1 = list1->GetList();
   ASSERT_EQ(asset_list1.size(), 1u);
 
-  EXPECT_EQ(*asset_list1[0].FindStringKey("address"), "");
-  EXPECT_EQ(*asset_list1[0].FindStringKey("name"), "symbol_name");
-  EXPECT_EQ(*asset_list1[0].FindStringKey("symbol"), "symbol");
+  EXPECT_EQ(*asset_list1[0].FindString("address"), "");
+  EXPECT_EQ(*asset_list1[0].FindString("name"), "symbol_name");
+  EXPECT_EQ(*asset_list1[0].FindString("symbol"), "symbol");
   EXPECT_EQ(*asset_list1[0].FindBoolKey("is_erc20"), false);
   EXPECT_EQ(*asset_list1[0].FindBoolKey("is_erc721"), false);
   EXPECT_EQ(*asset_list1[0].FindBoolKey("is_erc1155"), false);
-  EXPECT_EQ(*asset_list1[0].FindIntKey("decimals"), 11);
-  EXPECT_EQ(*asset_list1[0].FindStringKey("logo"), "https://url1.com");
+  EXPECT_EQ(*asset_list1[0].FindInt("decimals"), 11);
+  EXPECT_EQ(*asset_list1[0].FindString("logo"), "https://url1.com");
   EXPECT_EQ(*asset_list1[0].FindBoolKey("visible"), true);
 
   const base::Value* list2 = assets_pref.FindByDottedPath("ethereum.chain_id2");
@@ -950,14 +950,14 @@ TEST(BraveWalletUtilsUnitTest, AddCustomNetwork) {
   const base::Value::List& asset_list2 = list2->GetList();
   ASSERT_EQ(asset_list2.size(), 1u);
 
-  EXPECT_EQ(*asset_list2[0].FindStringKey("address"), "");
-  EXPECT_EQ(*asset_list2[0].FindStringKey("name"), "symbol_name2");
-  EXPECT_EQ(*asset_list2[0].FindStringKey("symbol"), "symbol2");
+  EXPECT_EQ(*asset_list2[0].FindString("address"), "");
+  EXPECT_EQ(*asset_list2[0].FindString("name"), "symbol_name2");
+  EXPECT_EQ(*asset_list2[0].FindString("symbol"), "symbol2");
   EXPECT_EQ(*asset_list2[0].FindBoolKey("is_erc20"), false);
   EXPECT_EQ(*asset_list2[0].FindBoolKey("is_erc721"), false);
   EXPECT_EQ(*asset_list2[0].FindBoolKey("is_erc1155"), false);
-  EXPECT_EQ(*asset_list2[0].FindIntKey("decimals"), 22);
-  EXPECT_EQ(*asset_list2[0].FindStringKey("logo"), "");
+  EXPECT_EQ(*asset_list2[0].FindInt("decimals"), 22);
+  EXPECT_EQ(*asset_list2[0].FindString("logo"), "");
   EXPECT_EQ(*asset_list2[0].FindBoolKey("visible"), true);
 
   {

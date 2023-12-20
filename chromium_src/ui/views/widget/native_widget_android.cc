@@ -310,7 +310,7 @@ void NativeWidgetAndroid::SetCanAppearInExistingFullscreenSpaces(
 void NativeWidgetAndroid::SetOpacity(float opacity) {
 }
 
-void NativeWidgetAndroid::SetAspectRatio(const gfx::SizeF& aspect_ratio) {
+void NativeWidgetAndroid::SetAspectRatio(const gfx::SizeF& aspect_ratio, const gfx::Size& excluded_margin) {
 }
 
 void NativeWidgetAndroid::FlashFrame(bool flash) {

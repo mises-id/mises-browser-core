@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
   <!-- Live caption. -->
   <message name="IDS_LIVE_CAPTION_BUBBLE_TITLE" desc="Title of the Live Caption bubble">

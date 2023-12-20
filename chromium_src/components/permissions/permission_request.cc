@@ -37,9 +37,8 @@
   case RequestType::kCameraPanTiltZoom:\
   case RequestType::kLocalFonts: \
   case RequestType::kRegisterProtocolHandler: \
-  case RequestType::kSecurityAttestation: \
-  case RequestType::kU2fApiRequest: \
   case RequestType::kWindowManagement: \
+  case RequestType::kFileSystemAccess: \
     return std::u16string(); 
 
 #define BRAVE_ENUM_ITEMS_FOR_SWITCH_ANDROID_MESSAGE       \
@@ -103,6 +102,14 @@ PermissionRequest::PermissionRequest(
                                      std::move(permission_decided_callback),
                                      std::move(delete_callback)) {}
 
+PermissionRequest::PermissionRequest(
+    PermissionRequestData request_data,
+    PermissionDecidedCallback permission_decided_callback,
+    base::OnceClosure delete_callback)
+    : PermissionRequest_ChromiumImpl(std::move(request_data),
+                                     std::move(permission_decided_callback),
+                                     std::move(delete_callback)) {}
+
 PermissionRequest::~PermissionRequest() = default;
 
 bool PermissionRequest::SupportsLifetime() const {
@@ -113,8 +120,6 @@ bool PermissionRequest::SupportsLifetime() const {
     RequestType::kProtectedMediaIdentifier,
 #else
     RequestType::kRegisterProtocolHandler,
-    RequestType::kSecurityAttestation,
-    RequestType::kU2fApiRequest,
 #endif  // BUILDFLAG(IS_ANDROID)
 #if BUILDFLAG(ENABLE_WIDEVINE)
     RequestType::kWidevine
@@ -123,12 +128,12 @@ bool PermissionRequest::SupportsLifetime() const {
   return !base::Contains(kExcludedTypes, request_type());
 }
 
-void PermissionRequest::SetLifetime(absl::optional<base::TimeDelta> lifetime) {
+void PermissionRequest::SetLifetime(std::optional<base::TimeDelta> lifetime) {
   DCHECK(SupportsLifetime());
   lifetime_ = std::move(lifetime);
 }
 
-const absl::optional<base::TimeDelta>& PermissionRequest::GetLifetime() const {
+const std::optional<base::TimeDelta>& PermissionRequest::GetLifetime() const {
   DCHECK(SupportsLifetime());
   return lifetime_;
 }
@@ -136,6 +141,10 @@ const absl::optional<base::TimeDelta>& PermissionRequest::GetLifetime() const {
 bool PermissionRequest::IsDuplicateOf(PermissionRequest* other_request) const {
   return PermissionRequest_ChromiumImpl::IsDuplicateOf_ChromiumImpl(
       other_request);
+}
+
+base::WeakPtr<PermissionRequest> PermissionRequest::GetWeakPtr() {
+  return weak_factory_.GetWeakPtr();
 }
 
 }  // namespace permissions

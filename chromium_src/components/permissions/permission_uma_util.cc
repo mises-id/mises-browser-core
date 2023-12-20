@@ -23,12 +23,10 @@
       return RequestTypeForUma::PERMISSION_LOCAL_FONTS; \
   case RequestType::kRegisterProtocolHandler: \
     return RequestTypeForUma::REGISTER_PROTOCOL_HANDLER; \
-  case RequestType::kSecurityAttestation: \
-    return RequestTypeForUma::PERMISSION_SECURITY_KEY_ATTESTATION; \
-  case RequestType::kU2fApiRequest: \
-    return RequestTypeForUma::PERMISSION_U2F_API_REQUEST; \
   case RequestType::kWindowManagement: \
     return RequestTypeForUma::PERMISSION_WINDOW_MANAGEMENT; \
+  case RequestType::kFileSystemAccess: \
+      return RequestTypeForUma::PERMISSION_FILE_SYSTEM_ACCESS; \
   case RequestType::kWidevine:                    \
   case RequestType::kMisesEthereum:               \
   case RequestType::kMisesSolana:                 \

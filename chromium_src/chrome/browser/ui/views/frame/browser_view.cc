@@ -46,9 +46,6 @@ public:
       content::WebContents* contents,
       OfferNotificationBubbleController* controller,
       bool is_user_gesture) override {return nullptr;}
-  SaveUPIBubble* ShowSaveUPIBubble(
-      content::WebContents* web_contents,
-      SaveUPIBubbleController* controller) override {return nullptr;}
   AutofillBubbleBase* ShowSaveAddressProfileBubble(
       content::WebContents* web_contents,
       SaveUpdateAddressProfileBubbleController* controller,
@@ -57,9 +54,6 @@ public:
       content::WebContents* web_contents,
       SaveUpdateAddressProfileBubbleController* controller,
       bool is_user_gesture) override {return nullptr;}
-  AutofillBubbleBase* ShowEditAddressProfileDialog(
-      content::WebContents* web_contents,
-      EditAddressProfileDialogController* controller) override {return nullptr;}
   AutofillBubbleBase* ShowVirtualCardManualFallbackBubble(
       content::WebContents* web_contents,
       VirtualCardManualFallbackBubbleController* controller,
@@ -68,7 +62,11 @@ public:
       content::WebContents* web_contents,
       VirtualCardEnrollBubbleController* controller,
       bool is_user_gesture) override {return nullptr;}
-  void OnPasswordSaved() override {}
+  AutofillBubbleBase* ShowMandatoryReauthBubble(
+      content::WebContents* web_contents,
+      MandatoryReauthBubbleController* controller,
+      bool is_user_gesture,
+      MandatoryReauthBubbleType bubble_type) override {return nullptr;}
 };
 
 
@@ -95,18 +93,19 @@ static ProfileMenuCoordinator_Mises* GetOrCreateForBrowser(Browser* browser) {
  }
 };
 
-class HighEfficiencyIPHController_Mises {
+class HighEfficiencyOptInIPHController_Mises {
   public:
-   HighEfficiencyIPHController_Mises(Browser* browser) {}
+   HighEfficiencyOptInIPHController_Mises(Browser* browser) {}
 };
 
 
 #define AutofillBubbleHandlerImpl AutofillBubbleHandlerImpl_Mises
 #define HatsNextWebDialog HatsNextWebDialog_Mises
 #define ProfileMenuCoordinator ProfileMenuCoordinator_Mises
-#define HighEfficiencyIPHController HighEfficiencyIPHController_Mises
+#define HighEfficiencyOptInIPHController HighEfficiencyOptInIPHController_Mises
 #define GetDownloadBubbleUIController GetDownloadBubbleUIController_Chromium
 #define ShouldHideUIForFullscreen ShouldHideUIForFullscreen_Chromium
+#define NotifyUsedEvent ShouldTriggerHelpUIWithSnooze
 #endif
 
 
@@ -115,6 +114,7 @@ class HighEfficiencyIPHController_Mises {
 #if BUILDFLAG(IS_ANDROID)
 #undef GetDownloadBubbleUIController
 #undef ShouldHideUIForFullscreen
+#undef NotifyUsedEvent
 
 DownloadBubbleUIController* BrowserView::GetDownloadBubbleUIController() {
   if (!toolbar_button_provider_)

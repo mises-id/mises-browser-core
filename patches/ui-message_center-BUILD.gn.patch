@@ -1,5 +1,5 @@
 diff --git a/ui/message_center/BUILD.gn b/ui/message_center/BUILD.gn
-index 1dc4309115b530b90930c8f53b4bc13412e42608..cb44d78b1be6c5ca8aab927da2917e4173be2e71 100644
+index 1dc4309115b530b90930c8f53b4bc13412e42608..a8204171a5b87b54cbce998e777dba6da2bdc8cf 100644
 --- a/ui/message_center/BUILD.gn
 +++ b/ui/message_center/BUILD.gn
 @@ -36,7 +36,7 @@ component("message_center") {
@@ -11,6 +11,15 @@ index 1dc4309115b530b90930c8f53b4bc13412e42608..cb44d78b1be6c5ca8aab927da2917e41
      deps += [
        ":message_center_vector_icons",
        "//base:i18n",
+@@ -89,7 +89,7 @@ component("message_center") {
+       ]
+     }
+ 
+-    if (toolkit_views) {
++    if (is_android || toolkit_views) {
+       # TODO(b/257291597): Skip the sources that are unused on is_chromeos_ash
+       # (e.g. notification_view.cc). This will require refactoring to break
+       # dependencies (e.g. MessagePopupCollection must become an interface).
 @@ -223,7 +223,7 @@ if (enable_message_center) {
        deps += [ "//ash/constants" ]
      }

@@ -7,6 +7,7 @@
 
 #include "build/build_config.h"
 #include "chrome/common/pref_names.h"
+#include "components/signin/public/base/signin_pref_names.h"
 #include "components/spellcheck/browser/pref_names.h"
 #include "ui/color/system_theme.h"
 

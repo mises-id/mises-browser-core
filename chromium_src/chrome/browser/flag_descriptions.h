@@ -131,6 +131,12 @@ extern const char kSharingDesktopSharePreviewDescription[];
 extern const char kWebAuthenticationPermitEnterpriseAttestationName[];
 extern const char kWebAuthenticationPermitEnterpriseAttestationDescription[];
 
+extern const char kDevToolsTabTargetLiteralName[];
+extern const char kDevToolsTabTargetLiteralDescription[];
+
+extern const char kNewConfirmationBubbleForGeneratedPasswordsName[];
+extern const char kNewConfirmationBubbleForGeneratedPasswordsDescription[];
+
 #endif  // BUILDFLAG(IS_ANDROID)
 
 

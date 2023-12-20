@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
     <message name="IDS_SMS_INFOBAR_TITLE" desc="Title shown when the browser is waiting for an SMS on the user's behalf">
       Verify your phone number

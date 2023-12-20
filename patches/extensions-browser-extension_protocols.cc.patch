@@ -1,5 +1,5 @@
 diff --git a/extensions/browser/extension_protocols.cc b/extensions/browser/extension_protocols.cc
-index 8c5f54fc67dd188ac1fcf2feac6bd35490b482da..e890228ad2fc2de99cb289c8cf3a76bf9d35ff73 100644
+index 8c5f54fc67dd188ac1fcf2feac6bd35490b482da..3b6b458e9b3510a4478629288510310d037d76b9 100644
 --- a/extensions/browser/extension_protocols.cc
 +++ b/extensions/browser/extension_protocols.cc
 @@ -226,6 +226,7 @@ std::pair<base::FilePath, base::Time> ReadResourceFilePathAndLastModifiedTime(
@@ -60,6 +60,15 @@ index 8c5f54fc67dd188ac1fcf2feac6bd35490b482da..e890228ad2fc2de99cb289c8cf3a76bf
        ExtensionsBrowserClient::Get()->LoadResourceFromResourceBundle(
            request_, loader_.Unbind(), bundle_resource_path, resource_id,
            std::move(headers), client_.Unbind());
+@@ -881,7 +891,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+   // We store the ID and get RenderProcessHost each time it's needed. This is to
+   // avoid holding on to stale pointers if we get requests past the lifetime of
+   // the objects.
+-  const int render_process_id_;
++  [[maybe_unused]] const int render_process_id_;
+ 
+   // Tracker for favicon callback.
+   std::unique_ptr<base::CancelableTaskTracker> tracker_;
 @@ -1020,7 +1030,7 @@ class ExtensionURLLoaderFactory : public network::SelfDeletingURLLoaderFactory {
    // We store the ID and get RenderProcessHost each time it's needed. This is to
    // avoid holding on to stale pointers if we get requests past the lifetime of

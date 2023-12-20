@@ -23,8 +23,7 @@ bool WebAuthenticationDelegate::SupportsResidentKeys(
   // doesn't by default.
   FrameTreeNode* frame_tree_node =
       static_cast<RenderFrameHostImpl*>(render_frame_host)->frame_tree_node();
-  if (AuthenticatorEnvironmentImpl::GetInstance()
-          ->IsVirtualAuthenticatorEnabledFor(frame_tree_node)) {
+  if (AuthenticatorEnvironment::GetInstance()->IsVirtualAuthenticatorEnabledFor(frame_tree_node)) {
     return true;
   }
   return false;
@@ -39,9 +38,9 @@ absl::optional<bool> WebAuthenticationDelegate::
         RenderFrameHost* render_frame_host) {
   FrameTreeNode* frame_tree_node =
       static_cast<RenderFrameHostImpl*>(render_frame_host)->frame_tree_node();
-  if (AuthenticatorEnvironmentImpl::GetInstance()
+  if (AuthenticatorEnvironment::GetInstance()
           ->IsVirtualAuthenticatorEnabledFor(frame_tree_node)) {
-    return AuthenticatorEnvironmentImpl::GetInstance()
+    return AuthenticatorEnvironment::GetInstance()
         ->HasVirtualUserVerifyingPlatformAuthenticator(frame_tree_node);
   }
   return absl::nullopt;
@@ -83,9 +82,11 @@ void AuthenticatorRequestClientDelegate::ShouldReturnAttestation(
   std::move(callback).Run(!is_enterprise_attestation);
 }
 
-void AuthenticatorRequestClientDelegate::ConfigureCable(
+void AuthenticatorRequestClientDelegate::ConfigureDiscoveries(
     const url::Origin& origin,
-    device::CableRequestType request_type,
+    const std::string& rp_id,
+    RequestSource request_source,
+    device::FidoRequestType request_type,
     absl::optional<device::ResidentKeyRequirement> resident_key_requirement,
     base::span<const device::CableDiscoveryData> pairings_from_extension,
     device::FidoDiscoveryFactory* fido_discovery_factory) {}

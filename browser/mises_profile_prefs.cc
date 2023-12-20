@@ -13,12 +13,11 @@
 
 #include "build/build_config.h"
 #include "chrome/browser/prefetch/pref_names.h"
-#include "chrome/browser/prefetch/prefetch_prefs.h"
 #include "chrome/browser/prefs/session_startup_pref.h"
+#include "chrome/browser/preloading/preloading_prefs.h"
 #include "chrome/browser/ui/webui/new_tab_page/ntp_pref_names.h"
 #include "chrome/common/channel_info.h"
 #include "chrome/common/pref_names.h"
-#include "components/autofill/core/common/autofill_prefs.h"
 #include "components/content_settings/core/common/pref_names.h"
 #include "components/embedder_support/pref_names.h"
 #include "components/gcm_driver/gcm_buildflags.h"
@@ -31,7 +30,6 @@
 #include "components/search_engines/search_engines_pref_names.h"
 #include "components/signin/public/base/signin_pref_names.h"
 #include "components/sync/base/pref_names.h"
-
 #include "extensions/buildflags/buildflags.h"
 #include "third_party/widevine/cdm/buildflags.h"
 

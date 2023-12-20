@@ -1,7 +1,7 @@
 /* Copyright (c) 2022 The Brave Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 #include "mises/browser/permissions/brave_wallet_permission_prompt_android.h"
 
@@ -11,8 +11,9 @@
 #include "mises/components/brave_wallet/browser/permission_utils.h"
 #include "mises/components/permissions/contexts/mises_wallet_permission_context.h"
 #include "components/permissions/android/permission_prompt/permission_prompt_android.h"
-#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl_helper.h"
 #include "content/public/browser/web_contents.h"
+
+#include "mises/browser/brave_wallet/brave_wallet_provider_delegate_impl_helper.h"
 
 BraveWalletPermissionPrompt::BraveWalletPermissionPrompt(
     content::WebContents* web_contents,
@@ -23,13 +24,14 @@ BraveWalletPermissionPrompt::BraveWalletPermissionPrompt(
       std::make_unique<BraveDappPermissionPromptDialogController>(
           this, web_contents_, coin_type);
   dialog_controller_->ShowDialog();
-  brave_wallet::ShowPanel(web_contents);
+brave_wallet::ShowPanel(web_contents);
 }
 
 BraveWalletPermissionPrompt::~BraveWalletPermissionPrompt() {}
 
 void BraveWalletPermissionPrompt::ConnectToSite(
-    const std::vector<std::string>& accounts) {
+    const std::vector<std::string>& accounts,
+    int permission_lifetime_option) {
   has_interacted_with_dialog_ = true;
   dialog_controller_.reset();
   // TODO(SergeyZhukovsky): Use the real option that the user chooses, using
@@ -47,8 +49,8 @@ void BraveWalletPermissionPrompt::CancelConnectToSite() {
 
 void BraveWalletPermissionPrompt::OnDialogDismissed() {
   if (!dialog_controller_) {
-   //Dismissed by clicking on dialog buttons.
-   return;
+    // Dismissed by clicking on dialog buttons.
+    return;
   }
   dialog_controller_.reset();
   // If |has_interacted_with_dialog_| is true, |ConnectToSite| or

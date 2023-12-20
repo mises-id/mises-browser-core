@@ -1,17 +1,9 @@
 #ifndef MISES_COMPONENTS_PERMISSIONS_PERMISSION_REQUEST_H_
 #define MISES_COMPONENTS_PERMISSIONS_PERMISSION_REQUEST_H_
 
-#include <string>
+#include <optional>
 
-#include "base/functional/callback.h"
-#include "build/build_config.h"
-#include "components/content_settings/core/common/content_settings.h"
-#include "components/content_settings/core/common/content_settings_types.h"
-#include "components/permissions/permission_request_enums.h"
-#include "components/permissions/request_type.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
-#include "url/gurl.h"
-
+#include "base/memory/weak_ptr.h"
 #include "base/time/time.h"
 
 #define PermissionRequest PermissionRequest_ChromiumImpl
@@ -49,22 +41,38 @@ class PermissionRequest : public PermissionRequest_ChromiumImpl {
                     PermissionDecidedCallback permission_decided_callback,
                     base::OnceClosure delete_callback);
 
+  PermissionRequest(PermissionRequestData request_data,
+                    PermissionDecidedCallback permission_decided_callback,
+                    base::OnceClosure delete_callback);
+
   PermissionRequest(const PermissionRequest&) = delete;
   PermissionRequest& operator=(const PermissionRequest&) = delete;
 
   ~PermissionRequest() override;
 
   bool SupportsLifetime() const;
-  void SetLifetime(absl::optional<base::TimeDelta> lifetime);
-  const absl::optional<base::TimeDelta>& GetLifetime() const;
+  void SetLifetime(std::optional<base::TimeDelta> lifetime);
+  const std::optional<base::TimeDelta>& GetLifetime() const;
+
+  void set_dont_ask_again(bool dont_ask_again) {
+    dont_ask_again_ = dont_ask_again;
+  }
+  bool get_dont_ask_again() const { return dont_ask_again_; }
 
   // We rename upstream's IsDuplicateOf() via a define above and re-declare it
   // here to workaround the fact that the PermissionRequest_ChromiumImpl rename
   // will affect this method's only parameter too, which will break subclasses.
   virtual bool IsDuplicateOf(PermissionRequest* other_request) const;
 
+  // Returns a weak pointer to this instance.
+  base::WeakPtr<PermissionRequest> GetWeakPtr();
+
  private:
-  absl::optional<base::TimeDelta> lifetime_;
+  std::optional<base::TimeDelta> lifetime_;
+
+  bool dont_ask_again_ = false;
+
+  base::WeakPtrFactory<PermissionRequest> weak_factory_{this};
 };
 
 }  // namespace permissions

@@ -72,7 +72,7 @@ bool ChromePageInfoUiDelegate::IsMultipleTabsOpen() {
 }
 
 void ChromePageInfoUiDelegate::ShowPrivacySandboxAdPersonalization() {
-  Browser* browser = chrome::FindBrowserWithWebContents(web_contents_);
+  Browser* browser = chrome::FindBrowserWithTab(web_contents_);
   chrome::ShowPrivacySandboxAdPersonalization(browser);
 }
 
@@ -94,12 +94,20 @@ bool ChromePageInfoUiDelegate::IsBlockAutoPlayEnabled() {
 
 absl::optional<page_info::proto::SiteInfo>
 ChromePageInfoUiDelegate::GetAboutThisSiteInfo() {
+  Browser* browser = chrome::FindBrowserWithTab(web_contents_);
+  if (!browser || !browser->is_type_normal()) {
+    // TODO(crbug.com/1435450): SidePanel is not available. Evaluate if we can
+    //                          show ATP in a different way.
+    return std::nullopt;
+  }
   if (auto* service =
           AboutThisSiteServiceFactory::GetForProfile(GetProfile())) {
     return service->GetAboutThisSiteInfo(
-        site_url_, web_contents_->GetPrimaryMainFrame()->GetPageUkmSourceId());
+        site_url_, web_contents_->GetPrimaryMainFrame()->GetPageUkmSourceId(),
+        AboutThisSiteTabHelper::FromWebContents(web_contents_));
   }
-  return absl::nullopt;
+
+  return std::nullopt;
 }
 
 void ChromePageInfoUiDelegate::AboutThisSiteSourceClicked(
@@ -115,14 +123,14 @@ void ChromePageInfoUiDelegate::AboutThisSiteSourceClicked(
 }
 
 void ChromePageInfoUiDelegate::ShowPrivacySandboxSettings() {
-  Browser* browser = chrome::FindBrowserWithWebContents(web_contents_);
+  Browser* browser = chrome::FindBrowserWithTab(web_contents_);
   chrome::ShowPrivacySandboxSettings(browser);
 }
 
 void ChromePageInfoUiDelegate::OpenMoreAboutThisPageUrl(
     const GURL& url,
     const ui::Event& event) {
-  DCHECK(page_info::IsMoreAboutThisSiteFeatureEnabled());
+  DCHECK(page_info::IsAboutThisSiteFeatureEnabled());
   //ShowAboutThisSiteSidePanel(web_contents_, url);
 }
 

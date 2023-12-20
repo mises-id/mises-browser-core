@@ -159,9 +159,9 @@ bool ParseAssetPriceHistory(const base::Value& json_value,
       return false;
     double price = price_value.GetDouble();
 
-    base::Time date = base::Time::FromJsTime(date_dbl);
+    base::Time date = base::Time::FromMillisecondsSinceUnixEpoch(date_dbl);
     auto asset_time_price = mojom::AssetTimePrice::New();
-    asset_time_price->date = base::Milliseconds(date.ToJavaTime());
+    asset_time_price->date = base::Milliseconds(date.InMillisecondsSinceUnixEpoch());
     asset_time_price->price = base::NumberToString(price);
     values->push_back(std::move(asset_time_price));
   }

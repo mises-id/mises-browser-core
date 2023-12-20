@@ -17,9 +17,6 @@
 #include "mojo/public/cpp/bindings/associated_receiver.h"
 
 
-#define OnUndoMostVisitedDeletion OnOpenExtension(const GURL& url) = 0; \
-      virtual void OnLogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) = 0; \
-      virtual void OnUndoMostVisitedDeletion
 
 #define OnTabDeactivated OnMisesInfoChanged(); \
   void SendMostVisitedInfo_Chromium(const InstantMostVisitedInfo& most_visited_info); \
@@ -48,8 +45,6 @@
 
 #endif
 
-
-#undef OnUndoMostVisitedDeletion
 #undef OnTabDeactivated
 
 
