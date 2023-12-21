@@ -12,7 +12,7 @@ bool MediaRouterDebuggerDummy::ShouldFetchMirroringStats() const {
   return false;
 }
 
-MirroringMediaControllerHost* GetMirroringMediaControllerHost(
+MirroringMediaControllerHost* MediaRouterAndroid::GetMirroringMediaControllerHost(
     const MediaRoute::Id& route_id) {
   return nullptr;
 }

@@ -28,6 +28,7 @@ PermissionPromptChipModel::PermissionPromptChipModel(
       allowed_icon_(gfx::kNoneIcon),
       blocked_icon_(gfx::kNoneIcon) {
 }
+PermissionPromptChipModel::~PermissionPromptChipModel() = default;
 
 void PermissionPromptChipModel::UpdateAutoCollapsePromptChipState(
     bool is_collapsed) {

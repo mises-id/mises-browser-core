@@ -1,15 +1,21 @@
 diff --git a/components/omnibox/browser/BUILD.gn b/components/omnibox/browser/BUILD.gn
-index b229a37f84859e793f482818b14c49392ec3fa7a..fb83e222586c406496a1f2280affae1d88b8b8a6 100644
+index b229a37f84859e793f482818b14c49392ec3fa7a..3809ac88c0af9b392d3c63f7084db69a7f6eaa36 100644
 --- a/components/omnibox/browser/BUILD.gn
 +++ b/components/omnibox/browser/BUILD.gn
-@@ -871,7 +871,9 @@ source_set("unit_tests") {
+@@ -364,6 +364,8 @@ static_library("browser") {
+     "//ui/gfx",
+   ]
+ 
++  sources += mises_components_omnibox_browser_sources deps += mises_components_omnibox_browser_deps
++
+   configs += [ "//build/config/compiler:wexit_time_destructors" ]
+ 
+   if (is_android) {
+@@ -871,6 +873,7 @@ source_set("unit_tests") {
      "//ui/gfx:test_support",
      "//url",
    ]
--
 +  
-+  sources += mises_components_omnibox_browser_sources deps += mises_components_omnibox_browser_deps
-+ 
+ 
    if ((!is_android || enable_vr) && !is_ios) {
      deps += [
-       ":buildflags",

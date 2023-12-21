@@ -222,11 +222,15 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
 
     for (const auto& data : json_value->GetList()) {
         //const std::string* title = data.FindString("title");
-        const std::string* url = data.FindString("url");
-        const std::string* logo = data.FindString("logo");
-        const std::string* content = data.FindString("title");
-        const std::string* domain_name = data.FindString("domain_name");
-        absl::optional<int> search_score = data.FindInt("search_score").value_or(0);
+        if (!data.is_dict()) {
+          continue;
+        }
+        const auto& dict = data.GetDict();
+        const std::string* url = dict.FindString("url");
+        const std::string* logo = dict.FindString("logo");
+        const std::string* content = dict.FindString("title");
+        const std::string* domain_name = dict.FindString("domain_name");
+        absl::optional<int> search_score = dict.FindInt("search_score").value_or(0);
         AutocompleteMatch match;
         match.type = AutocompleteMatchType::SEARCH_SUGGEST_ENTITY;
         match.relevance = *search_score;

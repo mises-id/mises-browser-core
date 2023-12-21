@@ -42,13 +42,16 @@ const base::Feature kBlockMigratedDefaultChromeAppSync{
 
 
 #if BUILDFLAG(IS_ANDROID)
-// Whether to allow installed-by-default web apps to be installed or not.
-const base::Feature kPreinstalledWebAppInstallation{
-    "DefaultWebAppInstallation", base::FEATURE_ENABLED_BY_DEFAULT};
+// Enables migration of apps that are loaded erroneously but installed
+// correctly by policy in the web app system.
+BASE_FEATURE(kMigrateErrorLoadedPolicyApps,
+             "MigrateErrorLoadedPolicyApps",
+             base::FEATURE_ENABLED_BY_DEFAULT);
 
-// Whether to run the PreinstalledWebAppDuplicationFixer code during start up.
-const base::Feature kPreinstalledWebAppDuplicationFixer{
-    "PreinstalledWebAppDuplicationFixer", base::FEATURE_ENABLED_BY_DEFAULT};
+// Whether to allow installed-by-default web apps to be installed or not.
+BASE_FEATURE(kPreinstalledWebAppInstallation,
+             "DefaultWebAppInstallation",
+             base::FEATURE_ENABLED_BY_DEFAULT);
 #endif
 
 
@@ -59,44 +62,57 @@ const base::Feature kExtensionDeferredIndividualSettings{
     "ExtensionDeferredIndividualSettings", base::FEATURE_ENABLED_BY_DEFAULT};
 #endif
 
+
 #if BUILDFLAG(IS_ANDROID)
 // Enables or disables the Happiness Tracking System demo mode for Desktop
 // Chrome.
-const base::Feature kHappinessTrackingSurveysForDesktopDemo{
-    "HappinessTrackingSurveysForDesktopDemo",
-    base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopDemo,
+             "HappinessTrackingSurveysForDesktopDemo",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 
 // Enables or disables the Happiness Tracking System for COEP issues in Chrome
 // DevTools on Desktop.
-const base::Feature kHaTSDesktopDevToolsIssuesCOEP{
-    "HaTSDesktopDevToolsIssuesCOEP", base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHaTSDesktopDevToolsIssuesCOEP,
+             "HaTSDesktopDevToolsIssuesCOEP",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 
 // Enables or disables the Happiness Tracking System for Mixed Content issues in
 // Chrome DevTools on Desktop.
-const base::Feature kHaTSDesktopDevToolsIssuesMixedContent{
-    "HaTSDesktopDevToolsIssuesMixedContent", base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHaTSDesktopDevToolsIssuesMixedContent,
+             "HaTSDesktopDevToolsIssuesMixedContent",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 
 // Enables or disables the Happiness Tracking System for same-site cookies
 // issues in Chrome DevTools on Desktop.
-const base::Feature
-    kHappinessTrackingSurveysForDesktopDevToolsIssuesCookiesSameSite{
-        "HappinessTrackingSurveysForDesktopDevToolsIssuesCookiesSameSite",
-        base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopDevToolsIssuesCookiesSameSite,
+             "HappinessTrackingSurveysForDesktopDevToolsIssuesCookiesSameSite",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 
 // Enables or disables the Happiness Tracking System for Heavy Ad issues in
 // Chrome DevTools on Desktop.
-const base::Feature kHaTSDesktopDevToolsIssuesHeavyAd{
-    "HaTSDesktopDevToolsIssuesHeavyAd", base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHaTSDesktopDevToolsIssuesHeavyAd,
+             "HaTSDesktopDevToolsIssuesHeavyAd",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 
 // Enables or disables the Happiness Tracking System for CSP issues in Chrome
 // DevTools on Desktop.
-const base::Feature kHaTSDesktopDevToolsIssuesCSP{
-    "HaTSDesktopDevToolsIssuesCSP", base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHaTSDesktopDevToolsIssuesCSP,
+             "HaTSDesktopDevToolsIssuesCSP",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+// Enables or disables the Happiness Tracking System for Chrome extensions page.
+BASE_FEATURE(kHappinessTrackingSurveysExtensionsSafetyHub,
+             "HappinessTrackingSurveysExtensionsSafetyHub",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysExtensionsSafetyHubTime{
+        &kHappinessTrackingSurveysExtensionsSafetyHub, "settings-time",
+        base::Seconds(10)};
 
 // Enables or disables the Happiness Tracking System for Desktop Privacy Guide.
-const base::Feature kHappinessTrackingSurveysForDesktopPrivacyGuide{
-    "HappinessTrackingSurveysForDesktopPrivacyGuide",
-    base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopPrivacyGuide,
+             "HappinessTrackingSurveysForDesktopPrivacyGuide",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 const base::FeatureParam<base::TimeDelta>
     kHappinessTrackingSurveysForDesktopPrivacyGuideTime{
         &kHappinessTrackingSurveysForDesktopPrivacyGuide, "settings-time",
@@ -104,9 +120,9 @@ const base::FeatureParam<base::TimeDelta>
 
 // Enables or disables the Happiness Tracking System for Desktop Privacy
 // Sandbox.
-const base::Feature kHappinessTrackingSurveysForDesktopPrivacySandbox{
-    "HappinessTrackingSurveysForDesktopPrivacySandbox",
-    base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopPrivacySandbox,
+             "HappinessTrackingSurveysForDesktopPrivacySandbox",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 const base::FeatureParam<base::TimeDelta>
     kHappinessTrackingSurveysForDesktopPrivacySandboxTime{
         &kHappinessTrackingSurveysForDesktopPrivacySandbox, "settings-time",
@@ -114,15 +130,15 @@ const base::FeatureParam<base::TimeDelta>
 
 // Enables or disables the Happiness Tracking System for Desktop Chrome
 // Settings.
-const base::Feature kHappinessTrackingSurveysForDesktopSettings{
-    "HappinessTrackingSurveysForDesktopSettings",
-    base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopSettings,
+             "HappinessTrackingSurveysForDesktopSettings",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 
 // Enables or disables the Happiness Tracking System for Desktop Chrome
 // Privacy Settings.
-const base::Feature kHappinessTrackingSurveysForDesktopSettingsPrivacy{
-    "HappinessTrackingSurveysForDesktopSettingsPrivacy",
-    base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopSettingsPrivacy,
+             "HappinessTrackingSurveysForDesktopSettingsPrivacy",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 const base::FeatureParam<bool>
     kHappinessTrackingSurveysForDesktopSettingsPrivacyNoSandbox{
         &kHappinessTrackingSurveysForDesktopSettingsPrivacy, "no-sandbox",
@@ -137,22 +153,70 @@ const base::FeatureParam<base::TimeDelta>
 
 // Enables or disables the Happiness Tracking System for Desktop Chrome
 // NTP Modules.
-const base::Feature kHappinessTrackingSurveysForDesktopNtpModules{
-    "HappinessTrackingSurveysForDesktopNtpModules",
-    base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopNtpModules,
+             "HappinessTrackingSurveysForDesktopNtpModules",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 
-const base::Feature kHappinessTrackingSurveysForNtpPhotosOptOut{
-    "HappinessTrackingSurveysForrNtpPhotosOptOut",
-    base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForNtpPhotosOptOut,
+             "HappinessTrackingSurveysForrNtpPhotosOptOut",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+// Enables or disables the Happiness Tracking System for Wallpaper Search.
+BASE_FEATURE(kHappinessTrackingSurveysForWallpaperSearch,
+             "HappinessTrackingSurveysForWallpaperSearch",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 
 // Enables or disables the Happiness Tracking System for Chrome What's New.
-const base::Feature kHappinessTrackingSurveysForDesktopWhatsNew{
-    "HappinessTrackingSurveysForDesktopWhatsNew",
-    base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopWhatsNew,
+             "HappinessTrackingSurveysForDesktopWhatsNew",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 const base::FeatureParam<base::TimeDelta>
     kHappinessTrackingSurveysForDesktopWhatsNewTime{
         &kHappinessTrackingSurveysForDesktopWhatsNew, "whats-new-time",
         base::Seconds(20)};
+
+// Happiness tracking surveys for the M1 Privacy Sandbox settings.
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopM1AdPrivacyPage,
+             "HappinessTrackingSurveysForDesktopM1AdPrivacyPage",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForDesktopM1AdPrivacyPageTime{
+        &kHappinessTrackingSurveysForDesktopM1AdPrivacyPage, "settings-time",
+        base::Seconds(20)};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopM1TopicsSubpage,
+             "HappinessTrackingSurveysForDesktopM1TopicsSubpage",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForDesktopM1TopicsSubpageTime{
+        &kHappinessTrackingSurveysForDesktopM1TopicsSubpage, "settings-time",
+        base::Seconds(20)};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopM1FledgeSubpage,
+             "HappinessTrackingSurveysForDesktopM1FledgeSubpage",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForDesktopM1FledgeSubpageTime{
+        &kHappinessTrackingSurveysForDesktopM1FledgeSubpage, "settings-time",
+        base::Seconds(20)};
+BASE_FEATURE(kHappinessTrackingSurveysForDesktopM1AdMeasurementSubpage,
+             "HappinessTrackingSurveysForDesktopM1AdMeasurementSubpage",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForDesktopM1AdMeasurementSubpageTime{
+        &kHappinessTrackingSurveysForDesktopM1AdMeasurementSubpage,
+        "settings-time", base::Seconds(20)};
+
+// Enables or disables the Happiness Tracking System for Chrome security page.
+BASE_FEATURE(kHappinessTrackingSurveysForSecurityPage,
+             "HappinessTrackingSurveysForSecurityPage",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForSecurityPageTime{
+        &kHappinessTrackingSurveysForSecurityPage, "security-page-time",
+        base::Seconds(15)};
+extern const base::FeatureParam<std::string>
+    kHappinessTrackingSurveysForSecurityPageTriggerId{
+        &kHappinessTrackingSurveysForSecurityPage, "security-page-trigger-id",
+        ""};
 
 #endif  // !BUILDFLAG(IS_ANDROID)
 
@@ -307,6 +371,8 @@ const base::FeatureParam<base::TimeDelta>
 
 
 
+
+// TrustSafetySentimentSurveyV2
 #if BUILDFLAG(IS_ANDROID)
 // Enables the second version of the sentiment survey for users of Trust &
 // Safety features, using HaTS.
@@ -344,8 +410,15 @@ const base::FeatureParam<double>
     kTrustSafetySentimentSurveyV2ControlGroupProbability{
         &kTrustSafetySentimentSurveyV2, "control-group-probability", 0.0};
 const base::FeatureParam<double>
+    kTrustSafetySentimentSurveyV2DownloadWarningUIProbability{
+        &kTrustSafetySentimentSurveyV2, "download-warning-ui-probability", 0.0};
+const base::FeatureParam<double>
     kTrustSafetySentimentSurveyV2PasswordCheckProbability{
         &kTrustSafetySentimentSurveyV2, "password-check-probability", 0.0};
+const base::FeatureParam<double>
+    kTrustSafetySentimentSurveyV2PasswordProtectionUIProbability{
+        &kTrustSafetySentimentSurveyV2, "password-protection-ui-probability",
+        0.0};
 const base::FeatureParam<double>
     kTrustSafetySentimentSurveyV2SafetyCheckProbability{
         &kTrustSafetySentimentSurveyV2, "safety-check-probability", 0.0};
@@ -371,6 +444,10 @@ const base::FeatureParam<double>
     kTrustSafetySentimentSurveyV2PrivacySandbox4NoticeSettingsProbability{
         &kTrustSafetySentimentSurveyV2,
         "privacy-sandbox-4-notice-settings-probability", 0.0};
+const base::FeatureParam<double>
+    kTrustSafetySentimentSurveyV2SafeBrowsingInterstitialProbability{
+        &kTrustSafetySentimentSurveyV2,
+        "safe-browsing-interstitial-probability", 0.0};
 // The HaTS trigger IDs, which determine which survey is delivered from the HaTS
 // backend.
 const base::FeatureParam<std::string>
@@ -379,9 +456,16 @@ const base::FeatureParam<std::string>
 const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2ControlGroupTriggerId{
         &kTrustSafetySentimentSurveyV2, "control-group-trigger-id", ""};
+extern const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2DownloadWarningUITriggerId{
+        &kTrustSafetySentimentSurveyV2, "download-warning-ui-trigger-id", ""};
 const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2PasswordCheckTriggerId{
         &kTrustSafetySentimentSurveyV2, "password-check-trigger-id", ""};
+extern const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2PasswordProtectionUITriggerId{
+        &kTrustSafetySentimentSurveyV2, "password-protection-ui-trigger-id",
+        ""};
 const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2SafetyCheckTriggerId{
         &kTrustSafetySentimentSurveyV2, "safety-check-trigger-id", ""};
@@ -407,6 +491,10 @@ extern const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2PrivacySandbox4NoticeSettingsTriggerId{
         &kTrustSafetySentimentSurveyV2,
         "privacy-sandbox-4-notice-settings-trigger-id", ""};
+extern const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2SafeBrowsingInterstitialTriggerId{
+        &kTrustSafetySentimentSurveyV2, "safe-browsing-interstitial-trigger-id",
+        ""};
 // The time the user must have the Trusted Surface bubble open to be considered.
 // Alternatively the user can interact with the bubble, in which case this time
 // is irrelevant.
@@ -442,5 +530,86 @@ BASE_FEATURE(kWebAppSyncGeneratedIconUpdateFix,
              "WebAppSyncGeneratedIconUpdateFix",
              base::FEATURE_ENABLED_BY_DEFAULT);
 #endif  // !BUILDFLAG(IS_ANDROID)
+
+
+#if BUILDFLAG(IS_ANDROID)
+// Enables extensions module in Safety Check.
+BASE_FEATURE(kSafetyCheckExtensions,
+             "SafetyCheckExtensions",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+// Enables notification permission module in Safety Check.
+BASE_FEATURE(kSafetyCheckNotificationPermissions,
+             "SafetyCheckNotificationPermissions",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+
+const base::FeatureParam<int>
+    kSafetyCheckNotificationPermissionsMinEnagementLimit{
+        &kSafetyCheckNotificationPermissions,
+        "min-engagement-notification-count", 0};
+const base::FeatureParam<int>
+    kSafetyCheckNotificationPermissionsLowEnagementLimit{
+        &kSafetyCheckNotificationPermissions,
+        "low-engagement-notification-count", 4};
+
+// Enables Safety Hub feature.
+BASE_FEATURE(kSafetyHub, "SafetyHub", base::FEATURE_DISABLED_BY_DEFAULT);
+
+// Time between automated runs of the password check.
+const base::FeatureParam<base::TimeDelta> kBackgroundPasswordCheckInterval{
+    &kSafetyHub, "background-password-check-interval", base::Days(10)};
+#endif  // !BUILDFLAG(IS_ANDROID)
+
+
+
+// TrackingProtectionSentimentSurvey
+#if BUILDFLAG(IS_ANDROID)
+
+BASE_FEATURE(kTrackingProtectionSentimentSurvey,
+             "TrackingProtectionSentimentSurvey",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyImmediateOverDelayedProbability{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-immediate-over-delayed-probability", 0.5};
+
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyControlImmediateProbability{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-control-immediate-probability", 0.0};
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyTreatmentImmediateProbability{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-treatment-immediate-probability", 0.0};
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyControlDelayedProbability{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-control-delayed-probability", 0.0};
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyTreatmentDelayedProbability{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-treatment-delayed-probability", 0.0};
+
+extern const base::FeatureParam<std::string>
+    kTrackingProtectionSentimentSurveyControlImmediateTriggerId{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-control-immediate-trigger-id", ""};
+extern const base::FeatureParam<std::string>
+    kTrackingProtectionSentimentSurveyTreatmentImmediateTriggerId{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-treatment-immediate-trigger-id", ""};
+extern const base::FeatureParam<std::string>
+    kTrackingProtectionSentimentSurveyControlDelayedTriggerId{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-control-delayed-trigger-id", ""};
+extern const base::FeatureParam<std::string>
+    kTrackingProtectionSentimentSurveyTreatmentDelayedTriggerId{
+        &kTrackingProtectionSentimentSurvey,
+        "tracking-protection-treatment-delayed-trigger-id", ""};
+#endif
+
+
+
 
 }  // namespace features

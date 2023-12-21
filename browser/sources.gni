@@ -135,10 +135,17 @@ if (is_android) {
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
     "policy/policy_path_parser_linux.cc",
-    "//components/payments/content/payment_request_web_contents_manager.cc",
     "safe_browsing/extension_telemetry/extension_telemetry_service_factory.cc",
     "safe_browsing/extension_telemetry/tabs_execute_script_signal.cc",
     "safe_browsing/extension_telemetry/remote_host_contacted_signal.cc",
+    "user_education/user_education_service.cc",
+    "user_education/user_education_service.h",
+    "user_education/user_education_service_factory.cc",
+    "user_education/user_education_service_factory.h",
+    "user_education/browser_tutorial_service.cc",
+    "user_education/browser_tutorial_service.h",
+    "user_education/browser_feature_promo_storage_service.cc",
+    "user_education/browser_feature_promo_storage_service.h"
 
   ]
 
@@ -258,8 +265,8 @@ if (is_android) {
     "performance_manager/policies/background_tab_loading_policy.cc",
     "profiles/avatar_menu.cc",
     "profiles/avatar_menu.h",
-    "profiles/profile_window.cc",
-    "profiles/profile_window.h",
+    #"profiles/profile_window.cc",
+    #"profiles/profile_window.h",
     "profiles/profile_list_desktop.cc",
     "profiles/profile_list_desktop.h",
     "renderer_context_menu/spelling_menu_observer.cc",

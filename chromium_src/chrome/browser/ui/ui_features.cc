@@ -35,5 +35,10 @@ int GetSidePanelMinimumWidth() {
 
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
+// Enables or disables the Happiness Tracking Surveys being delivered via chrome
+// webui, rather than a separate static website.
+BASE_FEATURE(kHaTSWebUI, "HaTSWebUI", base::FEATURE_DISABLED_BY_DEFAULT);
+#endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace features

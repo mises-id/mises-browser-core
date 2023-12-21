@@ -209,7 +209,10 @@ if (is_android) {
       "views/desktop_capture/desktop_media_source_view.h",
       "views/desktop_capture/desktop_media_tab_list.cc",
       "views/desktop_capture/desktop_media_tab_list.h",
-
+      "views/desktop_capture/share_this_tab_dialog_views.cc",
+      "views/desktop_capture/share_audio_view.cc",
+      "views/desktop_capture/share_this_tab_source_view.cc",
+      "views/desktop_capture/desktop_media_pane_view.cc",
 
       "performance_controls/performance_controls_hats_service.cc",
       "performance_controls/performance_controls_hats_service_factory.cc",
@@ -234,10 +237,10 @@ if (is_android) {
 
       "tabs/tab_model.cc",
       "tabs/tab_model.h",
-      "autofill/payments/mandatory_reauth_bubble_controller_impl.cc",
-      "autofill/payments/mandatory_reauth_bubble_controller_impl.h",
 
-      "views/frame/picture_in_picture_browser_frame_view.cc"
+      "views/frame/picture_in_picture_browser_frame_view.cc",
+      "plus_addresses/plus_address_creation_controller_desktop.cc",
+      "views/login_handler_views.cc",
 
   ]
   mises_browser_ui_deps += [

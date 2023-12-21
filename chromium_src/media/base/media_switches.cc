@@ -14,7 +14,10 @@ BASE_FEATURE(kMediaRemotingWithoutFullscreen,
 }  // namespace media
 
 namespace switches {
-  MEDIA_EXPORT extern const char kCastMirroringTargetPlayoutDelay[];
+
+const char kCastMirroringTargetPlayoutDelay[] =
+    "cast-mirroring-target-playout-delay";
+
 }
 
 

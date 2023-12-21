@@ -19,14 +19,14 @@ extern const base::FeatureParam<OsIntegrationSubManagersStage>
     kOsIntegrationSubManagersStageParam;
 #endif
 
-#if BUILDFLAG(IS_ANDROID) 
+//#if BUILDFLAG(IS_ANDROID) 
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::Feature kAutofillAddressSurvey;
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::Feature kAutofillCardSurvey;
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::Feature kAutofillPasswordSurvey;
-#endif
+//#endif
 
 #if BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(CHROME_FEATURES)
@@ -63,21 +63,22 @@ COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::Feature kExtensionDeferredIndividualSettings;
 #endif
 
+
 #if BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHappinessTrackingSurveysForDesktopDemo;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopDemo);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHappinessTrackingSurveysForDesktopPrivacySandbox;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopPrivacySandbox);
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<base::TimeDelta>
     kHappinessTrackingSurveysForDesktopPrivacySandboxTime;
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHappinessTrackingSurveysForDesktopSettings;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopSettings);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHappinessTrackingSurveysForDesktopSettingsPrivacy;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopSettingsPrivacy);
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<bool>
     kHappinessTrackingSurveysForDesktopSettingsPrivacyNoSandbox;
@@ -89,37 +90,76 @@ extern const base::FeatureParam<base::TimeDelta>
     kHappinessTrackingSurveysForDesktopSettingsPrivacyTime;
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHappinessTrackingSurveysForDesktopPrivacyGuide;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopPrivacyGuide);
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<base::TimeDelta>
     kHappinessTrackingSurveysForDesktopPrivacyGuideTime;
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHappinessTrackingSurveysForDesktopNtpModules;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopNtpModules);
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHappinessTrackingSurveysForNtpPhotosOptOut;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForNtpPhotosOptOut);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHappinessTrackingSurveysForDesktopWhatsNew;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForWallpaperSearch);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopWhatsNew);
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<base::TimeDelta>
     kHappinessTrackingSurveysForDesktopWhatsNewTime;
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHaTSDesktopDevToolsIssuesCOEP;
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopM1AdPrivacyPage);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForDesktopM1AdPrivacyPageTime;
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopM1TopicsSubpage);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForDesktopM1TopicsSubpageTime;
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopM1FledgeSubpage);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForDesktopM1FledgeSubpageTime;
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopM1AdMeasurementSubpage);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForDesktopM1AdMeasurementSubpageTime;
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHaTSDesktopDevToolsIssuesMixedContent;
+BASE_DECLARE_FEATURE(kHaTSDesktopDevToolsIssuesCOEP);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature
-    kHappinessTrackingSurveysForDesktopDevToolsIssuesCookiesSameSite;
+BASE_DECLARE_FEATURE(kHaTSDesktopDevToolsIssuesMixedContent);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHaTSDesktopDevToolsIssuesHeavyAd;
+BASE_DECLARE_FEATURE(
+    kHappinessTrackingSurveysForDesktopDevToolsIssuesCookiesSameSite);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kHaTSDesktopDevToolsIssuesCSP;
+BASE_DECLARE_FEATURE(kHaTSDesktopDevToolsIssuesHeavyAd);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kHaTSDesktopDevToolsIssuesCSP);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForSecurityPage);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysForSecurityPageTime;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kHappinessTrackingSurveysForSecurityPageTriggerId;
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysExtensionsSafetyHub);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<base::TimeDelta>
+    kHappinessTrackingSurveysExtensionsSafetyHubTime;
 #endif
 
 
@@ -377,6 +417,47 @@ BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconRetroactiveFix);
 COMPONENT_EXPORT(CHROME_FEATURES)
 BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconUpdateFix);
 #endif  // !BUILDFLAG(IS_ANDROID)
+
+
+
+// TrackingProtectionSentimentSurvey
+#if BUILDFLAG(IS_ANDROID)
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kTrackingProtectionSentimentSurvey);
+
+// Probability to pick "IMMEDIATE" over "DELAYED" surveying.
+// A value of 0.0 means Always choose "DELAYED"
+// A value of 1.0 means Always choose "IMMEDIATE"
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyImmediateOverDelayedProbability;
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyControlImmediateProbability;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyTreatmentImmediateProbability;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyControlDelayedProbability;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<double>
+    kTrackingProtectionSentimentSurveyTreatmentDelayedProbability;
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kTrackingProtectionSentimentSurveyControlImmediateTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kTrackingProtectionSentimentSurveyTreatmentImmediateTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kTrackingProtectionSentimentSurveyControlDelayedTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kTrackingProtectionSentimentSurveyTreatmentDelayedTriggerId;
+#endif
 
 
 }  // namespace features

@@ -29,6 +29,11 @@ bool WebAuthenticationDelegate::SupportsResidentKeys(
   return false;
 }
 
+
+bool WebAuthenticationDelegate::SupportsPasskeyMetadataSyncing() {
+  return false;
+}
+
 bool WebAuthenticationDelegate::IsFocused(WebContents* web_contents) {
   return true;
 }
@@ -66,6 +71,12 @@ bool AuthenticatorRequestClientDelegate::DoesBlockRequestOnFailure(
     InterestingFailureReason reason) {
   return false;
 }
+
+void AuthenticatorRequestClientDelegate::OnTransactionSuccessful(
+    RequestSource request_source,
+    device::FidoRequestType request_type,
+    device::AuthenticatorType authenticator_type) {}
+
 
 void AuthenticatorRequestClientDelegate::RegisterActionCallbacks(
     base::OnceClosure cancel_callback,

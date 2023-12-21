@@ -55,7 +55,7 @@
 #include "build/build_config.h"
 #if BUILDFLAG(IS_ANDROID)
 namespace permissions {
-  const gfx::VectorIcon& GetIconId_Mises(RequestType type) {
+  static const gfx::VectorIcon& GetIconId_Mises(RequestType type) {
     return gfx::kNoneIcon; 
   }
 }

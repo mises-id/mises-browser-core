@@ -22,6 +22,14 @@ const char kChromeUIHistoryClustersSidePanelURL[] =
     "chrome://history-clusters-side-panel.top-chrome/";
 const char kChromeUIReadLaterHost[] = "read-later.top-chrome";
 const char kChromeUIReadLaterURL[] = "chrome://read-later.top-chrome/";
+const char kChromeUIUntrustedCompanionSidePanelHost[] =
+    "companion-side-panel.top-chrome";
+const char kChromeUIUntrustedCompanionSidePanelURL[] =
+    "chrome-untrusted://companion-side-panel.top-chrome/";
+const char kChromeUIUntrustedReadAnythingSidePanelHost[] =
+    "read-anything-side-panel.top-chrome";
+const char kChromeUIUntrustedReadAnythingSidePanelURL[] =
+    "chrome-untrusted://read-anything-side-panel.top-chrome/";
 const char kChromeUIUntrustedFeedURL[] = "chrome-untrusted://feed/";
 const char kChromeUIUserNotesSidePanelHost[] =
     "user-notes-side-panel.top-chrome";
@@ -45,5 +53,16 @@ const char kChromeUITabSearchHost[] = "tab-search.top-chrome";
 const char kChromeUITabSearchURL[] = "chrome://tab-search.top-chrome/";
 #endif
 
+
+#if BUILDFLAG(IS_ANDROID)
+const char kChromeUIUntrustedHatsHost[] = "hats";
+const char kChromeUIUntrustedHatsURL[] = "chrome-untrusted://hats/";
+#endif  // !BUILDFLAG(IS_ANDROID)
+
+#if BUILDFLAG(IS_ANDROID)
+const char kChromeUIOnDeviceInternalsHost[] = "on-device-internals";
+const char kChromeUISearchEngineChoiceHost[] = "search-engine-choice";
+const char kChromeUISearchEngineChoiceURL[] = "chrome://search-engine-choice";
+#endif
 
 }  // namespace chrome

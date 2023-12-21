@@ -1,13 +1,21 @@
 diff --git a/chrome/browser/safe_browsing/BUILD.gn b/chrome/browser/safe_browsing/BUILD.gn
-index 023d643451c168a07c4a4efd4a3c0b617d0d9d35..7703f4c1c5477a21aff48cb2423d07a4503a55f9 100644
+index 023d643451c168a07c4a4efd4a3c0b617d0d9d35..51959adec2b22dec2d3015fd9325eaf1c97d6e78 100644
 --- a/chrome/browser/safe_browsing/BUILD.gn
 +++ b/chrome/browser/safe_browsing/BUILD.gn
-@@ -432,6 +432,8 @@ static_library("safe_browsing") {
+@@ -432,6 +432,16 @@ static_library("safe_browsing") {
            "tailored_security/unconsented_message_android.h",
            "telemetry/android/android_telemetry_service.cc",
            "telemetry/android/android_telemetry_service.h",
 +          "cloud_content_scanning/deep_scanning_utils.cc",
 +          "cloud_content_scanning/deep_scanning_utils.h",
++          "extension_telemetry/declarative_net_request_signal.cc",
++          "extension_telemetry/declarative_net_request_signal.h",
++          "extension_telemetry/tabs_api_signal.cc",
++          "extension_telemetry/tabs_api_signal.h",
++          "extension_telemetry/extension_web_request_reporter_impl.cc",
++          "extension_telemetry/extension_web_request_reporter_impl.h",
++          "extension_telemetry/extension_signal_util.h",
++          "extension_telemetry/extension_signal_util.cc",
          ]
          deps += [
            "//chrome/app/vector_icons:vector_icons",

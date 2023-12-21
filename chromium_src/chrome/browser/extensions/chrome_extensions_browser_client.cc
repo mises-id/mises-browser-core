@@ -9,8 +9,19 @@
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_uploader.h"
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_config_manager.h"
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_file_processor.h"
+#include "chrome/browser/safe_browsing/download_protection/download_protection_service.h"
 #include "components/safe_browsing/core/common/features.h"
 namespace safe_browsing {
+
+void DownloadProtectionService::UploadForConsumerDeepScanning(
+    download::DownloadItem* item,
+    base::optional_ref<const std::string> password) {}
+
+ClientDownloadResponse::TailoredVerdict
+DownloadProtectionService::GetDownloadProtectionTailoredVerdict(
+    const download::DownloadItem* item) {
+    return ClientDownloadResponse::TailoredVerdict();
+}
 
 base::TimeDelta kUploadIntervalSeconds = base::Seconds(3600);
 constexpr int kNumChecksPerUploadInterval = 1;
@@ -25,6 +36,13 @@ ExtensionTelemetryFileProcessor::ExtensionTelemetryFileProcessor()
       max_files_to_read_(1000) {}
 
 ExtensionTelemetryService::~ExtensionTelemetryService() = default;
+
+// static
+ExtensionTelemetryService* ExtensionTelemetryService::Get(Profile* profile) {
+  return ExtensionTelemetryServiceFactory::GetInstance()->GetForProfile(
+      profile);
+}
+
 
 ExtensionTelemetryService::ExtensionTelemetryService(
     Profile* profile,

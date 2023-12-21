@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/BUILD.gn b/chrome/browser/BUILD.gn
-index 44d3b5e543101ce7ff5fed778fc430532e7ae9fb..7fc9efa2595adc4dfee2df8a2a0497891f83fffe 100644
+index 44d3b5e543101ce7ff5fed778fc430532e7ae9fb..74925e8bef9c422e95719b792c6acb2649fc78a5 100644
 --- a/chrome/browser/BUILD.gn
 +++ b/chrome/browser/BUILD.gn
 @@ -2730,6 +2730,7 @@ static_library("browser") {
@@ -66,3 +66,12 @@ index 44d3b5e543101ce7ff5fed778fc430532e7ae9fb..7fc9efa2595adc4dfee2df8a2a049789
      sources += [
        "sessions/app_session_service.cc",
        "sessions/app_session_service.h",
+@@ -7973,7 +7978,7 @@ static_library("browser") {
+       "permissions/prediction_model_handler_provider_factory.cc",
+       "permissions/prediction_model_handler_provider_factory.h",
+     ]
+-    if (!is_android) {
++    if (is_android || !is_android) {
+       sources += [
+         "new_tab_page/modules/history_clusters/ranking/history_clusters_module_ranking_model_executor.cc",
+         "new_tab_page/modules/history_clusters/ranking/history_clusters_module_ranking_model_executor.h",
