@@ -12,8 +12,6 @@ import org.chromium.chrome.browser.flags.ChromeFeatureList;
 
 @JNINamespace("chrome::android")
 public abstract class MisesFeatureUtil {
-    public static final CachedFlag sTabSwitcherOnReturn =
-            new CachedFlag(ChromeFeatureList.TAB_SWITCHER_ON_RETURN, false);
 
     public static void enableFeature(
             String featureName, boolean enabled, boolean fallbackToDefault) {

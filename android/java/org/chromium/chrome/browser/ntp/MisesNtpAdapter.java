@@ -48,15 +48,16 @@ import org.chromium.base.Callback;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.night_mode.GlobalNightModeStateProviderHolder;
 import org.chromium.chrome.browser.preferences.MisesPref;
-import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
+import org.chromium.base.shared_preferences.SharedPreferencesManager;
+import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.components.user_prefs.UserPrefs;
-import org.chromium.content_public.browser.UiThreadTaskTraits;
 import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
 import org.chromium.chrome.browser.tabmodel.TabCreator;
 import org.chromium.chrome.browser.tab.TabLaunchType;
 
-
+import org.chromium.chrome.browser.preferences.PrefChangeRegistrar;
+import org.chromium.chrome.browser.preferences.PrefChangeRegistrar.PrefObserver;
 
 import com.openmediation.sdk.nativead.AdIconView;
 import com.openmediation.sdk.nativead.AdInfo;
@@ -80,7 +81,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements PrefObserver{
     private Activity mActivity;
     private RequestManager mGlide;
     private View mMvTilesContainerLayout;
@@ -104,8 +105,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<CarouselAdapter.CarouselAdInfo> mData;
 
-    private SharedPreferencesManager.Observer mPreferenceObserver;
-
     private static int TYPE_MISES_SERVICE = 1;
     private static int TYPE_WEB3_SITE = 2;
     private static int TYPE_WEB3_EXTENSION = 3;
@@ -123,6 +122,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private List<String> mCarouselPlacmentIds;
     private Set<String> mLoadedPlacmentIds;
+
+    PrefChangeRegistrar mPrefChangeRegistrar = new PrefChangeRegistrar();
 
     public MisesNtpAdapter(Activity activity, OnMisesNtpListener onMisesNtpListener,
             RequestManager glide, 
@@ -437,22 +438,17 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 PREF_SHOW_WEB3_EXTENSION, true);
     }
 
-    private void initPreferenceObserver() {
-        mPreferenceObserver = (key) -> {
-            if (TextUtils.equals(key, PREF_SHOW_MISES_SERVICE)) {
-                setMisesServiceEnabled(shouldDisplayMisesService());
-            }
-            if (TextUtils.equals(key, PREF_SHOW_WEB3_SITE)) {
-                setWeb3SiteEnabled(shouldDisplayWeb3Site());
-            }
+    @Override
+    public void onPreferenceChange() {
+        setMisesServiceEnabled(shouldDisplayMisesService());
+        setWeb3SiteEnabled(shouldDisplayWeb3Site());
+        setWeb3ExtensionEnabled(shouldDisplayWeb3Extension());
+    }
 
-            if (TextUtils.equals(key, PREF_SHOW_WEB3_EXTENSION)) {
-                setWeb3ExtensionEnabled(shouldDisplayWeb3Extension());
-            }
-        };
-         if (mPreferenceObserver != null) {
-            SharedPreferencesManager.getInstance().addObserver(mPreferenceObserver);
-        }
+    private void initPreferenceObserver() {
+        mPrefChangeRegistrar.addObserver(PREF_SHOW_MISES_SERVICE, this);
+        mPrefChangeRegistrar.addObserver(PREF_SHOW_WEB3_SITE, this);
+        mPrefChangeRegistrar.addObserver(PREF_SHOW_WEB3_EXTENSION, this);
     }
 
     public static class TopSitesViewHolder extends RecyclerView.ViewHolder {
@@ -557,7 +553,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             moreLayout.setVisibility(View.GONE);
             toggleLayout.setOnClickListener(view -> {
-                SharedPreferencesManager.getInstance().writeBooleanUnchecked(
+                SharedPreferencesManager sharedPreferencesManager = ChromeSharedPreferences.getInstance();
+                sharedPreferencesManager.writeBooleanUnchecked(
                         PREF_SHOW_MISES_SERVICE, !enabled);
                 MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "service_off" : "service_on");
             }); 
@@ -591,7 +588,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 
             }); 
             toggleLayout.setOnClickListener(view -> {
-                SharedPreferencesManager.getInstance().writeBooleanUnchecked(
+                SharedPreferencesManager sharedPreferencesManager = ChromeSharedPreferences.getInstance();
+                sharedPreferencesManager.writeBooleanUnchecked(
                         PREF_SHOW_WEB3_SITE, !enabled);
                 MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "site_off" : "site_on");
             }); 
@@ -625,7 +623,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             }); 
             toggleLayout.setOnClickListener(view -> {
-                SharedPreferencesManager.getInstance().writeBooleanUnchecked(
+                SharedPreferencesManager sharedPreferencesManager = ChromeSharedPreferences.getInstance();
+                sharedPreferencesManager.writeBooleanUnchecked(
                         PREF_SHOW_WEB3_EXTENSION, !enabled);
                 MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "extension_off" : "extension_on");
             }); 

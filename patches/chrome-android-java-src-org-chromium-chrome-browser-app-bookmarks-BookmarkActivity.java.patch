@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/bookmarks/BookmarkActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/bookmarks/BookmarkActivity.java
-index 856649cbe3d004663574a7969a1479e813eb0f84..188b211b772fdddca04e8db7e30a98361d4c6555 100644
+index 856649cbe3d004663574a7969a1479e813eb0f84..c90cc43880d70139d36dfd743ec6e61af8313bab 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/bookmarks/BookmarkActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/bookmarks/BookmarkActivity.java
 @@ -22,6 +22,8 @@ import org.chromium.chrome.browser.profiles.Profile;
@@ -17,7 +17,7 @@ index 856649cbe3d004663574a7969a1479e813eb0f84..188b211b772fdddca04e8db7e30a9836
              mBookmarkManagerCoordinator.openBookmark(bookmarkId);
 -        }
 +        } else {
-+	  mBookmarkManager.intentTracker().onActivityResult(requestCode, resultCode, data);
++	  mBookmarkManagerCoordinator.intentTracker().onActivityResult(requestCode, resultCode, data);
 +	}
      }
  

@@ -18,7 +18,6 @@ import org.chromium.base.TraceEvent;
 import org.chromium.base.metrics.RecordHistogram;
 import org.chromium.base.task.PostTask;
 import org.chromium.base.task.TaskTraits;
-import org.chromium.content_public.browser.UiThreadTaskTraits;
 import org.chromium.base.Callback;
 import org.chromium.base.Log;
 import org.chromium.chrome.R;
@@ -88,10 +87,7 @@ public class MisesTileRenderer extends TileRenderer {
                     tile.setIconType(IconType.TOUCH_ICON);
                     setTileIconFromBitmap(tile, icon);
                 }
-                //callback should be run in a Task, so that the tile will be added in the layout first
-                PostTask.postTask(UiThreadTaskTraits.DEFAULT, () -> {
-                    if (mLoadCompleteCallback != null) mLoadCompleteCallback.run();
-                });
+               if (mLoadCompleteCallback != null) mLoadCompleteCallback.run();;
             }
 
             mTile.clear();

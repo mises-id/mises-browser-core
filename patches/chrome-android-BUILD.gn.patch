@@ -1,5 +1,5 @@
 diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
-index e61d70856282ffbef8abc4398c8c98cab4122688..cca71ef089b197ffb123757611b3377852eb9205 100644
+index e61d70856282ffbef8abc4398c8c98cab4122688..7cc120d77fe60206b60fa521281a2e7f3a17b89c 100644
 --- a/chrome/android/BUILD.gn
 +++ b/chrome/android/BUILD.gn
 @@ -170,6 +170,7 @@ if (current_toolchain == default_toolchain) {
@@ -75,3 +75,12 @@ index e61d70856282ffbef8abc4398c8c98cab4122688..cca71ef089b197ffb123757611b33778
  
      # More deps for DFMs.
      if (dfmify_dev_ui) {
+@@ -3684,6 +3692,8 @@ generate_jni("chrome_jni_headers") {
+     "java/src/org/chromium/chrome/browser/webapps/WebappRegistry.java",
+   ]
+ 
++  sources += mises_jni_headers_sources
++
+   if (enable_vr) {
+     sources += [ "features/vr/java/src/org/chromium/chrome/browser/vr/VrModuleProvider.java" ]
+   }

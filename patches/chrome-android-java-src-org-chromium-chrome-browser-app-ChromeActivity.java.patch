@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a247568d5 100644
+index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..a56778e6d1a82632ebcd20767a69db14a06e6738 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -35,6 +35,7 @@ import androidx.annotation.Nullable;
@@ -19,7 +19,15 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
  import org.chromium.chrome.browser.dom_distiller.DomDistillerUIUtils;
  import org.chromium.chrome.browser.download.DownloadManagerService;
  import org.chromium.chrome.browser.download.DownloadUtils;
-@@ -249,6 +252,35 @@ import java.util.ArrayList;
+@@ -139,7 +142,6 @@ import org.chromium.chrome.browser.page_info.ChromePageInfo;
+ import org.chromium.chrome.browser.page_info.ChromePageInfoHighlight;
+ import org.chromium.chrome.browser.partnercustomizations.PartnerBrowserCustomizations;
+ import org.chromium.chrome.browser.preferences.ChromePreferenceKeys;
+-import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
+ import org.chromium.chrome.browser.preferences.Pref;
+ import org.chromium.chrome.browser.printing.TabPrinter;
+ import org.chromium.chrome.browser.profiles.Profile;
+@@ -249,6 +251,35 @@ import java.util.ArrayList;
  import java.util.List;
  import java.util.function.Consumer;
  
@@ -27,7 +35,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
 +import org.chromium.chrome.browser.ApplicationLifetime;
 +import org.chromium.chrome.browser.browsing_data.ClearBrowsingDataTabsFragment;
 +import org.chromium.chrome.browser.night_mode.WebContentsDarkModeController;
-+import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
++import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 +import org.chromium.chrome.browser.night_mode.ThemeType;
 +import org.chromium.chrome.browser.settings.SettingsLauncherImpl;
 +import org.chromium.components.browser_ui.settings.SettingsLauncher;
@@ -40,7 +48,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
 +import android.provider.Settings;
 +import org.chromium.base.MisesSysUtils;
 +import org.chromium.chrome.browser.mises.UIUtil;
-+import org.chromium.chrome.browser.mises.MisesController;
++import org.chromium.base.MisesController;
 +
 +import org.chromium.chrome.browser.AppMenuBridge;
 +import org.chromium.chrome.browser.mises.MisesLCDServiceImpl;
@@ -55,7 +63,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
  /**
   * A {@link AsyncInitializationActivity} that builds and manages a {@link CompositorViewHolder}
   * and associated classes.
-@@ -347,6 +379,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -347,6 +378,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
      @Nullable
      private Bundle mMenuItemData;
  
@@ -64,7 +72,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
      /**
       * The current configuration, used to for diffing when the configuration is changed.
       */
-@@ -428,6 +462,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -428,6 +461,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          }
          super.onPreCreate();
          initializeBackPressHandling();
@@ -72,7 +80,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
      }
  
      private boolean earlyInitializeStartupMetrics() {
-@@ -506,6 +541,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -506,6 +540,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          // not go through ChromeLauncherActivity that would have normally triggered this.
          mPartnerBrowserRefreshNeeded = !PartnerBrowserCustomizations.getInstance().isInitialized();
  
@@ -81,11 +89,12 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
          CommandLine commandLine = CommandLine.getInstance();
          if (!commandLine.hasSwitch(ChromeSwitches.DISABLE_FULLSCREEN)) {
              TypedValue threshold = new TypedValue();
-@@ -762,14 +799,25 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -762,14 +798,26 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              // of our control, so we have to disable StrictMode to work. See
              // https://crbug.com/639352.
              try (StrictModeContext ignored = StrictModeContext.allowDiskWrites()) {
-+                SharedPreferencesManager.getInstance().writeBooleanUnchecked("is_tablet", DeviceFormFactor.isTablet());
++                SharedPreferencesManager prefs = ChromeSharedPreferences.getInstance();
++                prefs.writeBooleanUnchecked("is_tablet", DeviceFormFactor.isTablet());
                  TraceEvent.begin("setContentView(R.layout.main)");
 +		if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false)) {
 +                    ContextUtils.getAppSharedPreferences().edit().putBoolean("enable_bottom_toolbar", false).commit();//disable bottom_toolbar
@@ -147,8 +156,8 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
 +
 +
 +        MisesController.getInstance().load();
-+
-+        if (SharedPreferencesManager.getInstance().isMisesFirstRun()) {
++        SharedPreferencesManager prefs = ChromeSharedPreferences.getInstance();
++        if (prefs.isMisesFirstRun()) {
 +            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 +                Intent intent = new Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS);
 +                ComponentName componentName = intent.resolveActivity(getPackageManager());
@@ -158,10 +167,10 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
 +                    });
 +                }
 +            }
-+	    SharedPreferencesManager.getInstance().setMisesFirstRun(false);
++            prefs.setMisesFirstRun(false);
 +            Profile profile = getCurrentTabModel().getProfile();
-+	    WebsitePreferenceBridge.setPopupSettingForOrigin(profile, MisesController.MISES_HOME_BASE_URL, 1, false);
-+	    PersonalizeResults.SetupDefaultUserAgent(profile);
++            WebsitePreferenceBridge.setPopupSettingForOrigin(profile, MisesController.MISES_HOME_BASE_URL, 1, false);
++            PersonalizeResults.SetupDefaultUserAgent(profile);
 +        }
 +        if (!FirstRunStatus.getFirstRunFlowComplete()) {
 +            FirstRunFlowSequencer.markFlowAsCompleted();
@@ -382,7 +391,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2591,6 +2851,60 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2591,6 +2851,61 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -390,21 +399,22 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..0d13b8271d4c8a6e3b489d5e94171d3a
 +            Log.d("Mises", "Initializing night mode with mode: " + ContextUtils.getAppSharedPreferences().getString("active_nightmode", "default"));
 +            WebContentsDarkModeController.updateDarkModeStringSettings();
 +            boolean isDarkModeEnabled = ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false);
++            SharedPreferencesManager prefs = ChromeSharedPreferences.getInstance();
 +            if (!isDarkModeEnabled) {
 +              getWindow().setBackgroundDrawable(new ColorDrawable(
 +                          ApiCompatibilityUtils.getColor(getResources(),
 +                          R.color.media_viewer_bg)));
 +              int currentTheme = ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0);
-+              SharedPreferencesManager.getInstance().writeIntUnchecked("previous_ui_theme_setting", currentTheme);
-+              SharedPreferencesManager.getInstance().writeInt("ui_theme_setting", ThemeType.DARK);
++              prefs.writeIntUnchecked("previous_ui_theme_setting", currentTheme);
++              prefs.writeInt("ui_theme_setting", ThemeType.DARK);
 +            } else {
 +              getWindow().setBackgroundDrawable(new ColorDrawable(
 +                          ApiCompatibilityUtils.getColor(getResources(),
 +                          R.color.resizing_background_color)));
 +              int previousTheme = ContextUtils.getAppSharedPreferences().getInt("previous_ui_theme_setting", 0);
-+              SharedPreferencesManager.getInstance().writeInt("ui_theme_setting", previousTheme);
++              prefs.writeInt("ui_theme_setting", previousTheme);
 +            }
-+            SharedPreferencesManager.getInstance().writeBooleanSync("darken_websites_enabled", !isDarkModeEnabled);
++            prefs.writeBooleanSync("darken_websites_enabled", !isDarkModeEnabled);
 +            MisesPrefServiceBridge.getInstance().setDarkModeEnabled(!isDarkModeEnabled);
 +
 +            WebsitePreferenceBridge.setContentSettingEnabled(

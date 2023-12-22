@@ -84,7 +84,7 @@ class MisesPermissionDialogModel {
         SpannableString learnMoreLink = SpanApplier.applySpans(
                 context.getResources().getString(R.string.widevine_permission_request_link),
                 new SpanApplier.SpanInfo("<LINK>", "</LINK>",
-                        new NoUnderlineClickableSpan(context, R.color.brave_link, result -> {
+                        new NoUnderlineClickableSpan(context, R.color.mises_link, result -> {
                             openUrlInCustomTab(context, URL_WIDEVINE_LEARN_MORE);
                         })));
 
@@ -163,5 +163,27 @@ class MisesPermissionDialogModel {
         });
         radioGroup.check(0);
         layout.addView(radioGroup);
+    }
+        
+    /* Cannot use TabUtils because no chrome packages access from here */
+    private static void openUrlInCustomTab(Context context, String url) {
+        CustomTabsIntent customTabIntent =
+                new CustomTabsIntent.Builder()
+                        .setShowTitle(true)
+                        .setColorScheme(ColorUtils.inNightMode(context) ? COLOR_SCHEME_DARK
+                                                                        : COLOR_SCHEME_LIGHT)
+                        .build();
+        Uri uri = Uri.parse(url);
+        // customTabIntent.launchUrl(context, uri);
+        Intent newIntent = new Intent(customTabIntent.intent);
+        newIntent.setAction(Intent.ACTION_VIEW);
+        newIntent.setData(uri);
+
+        newIntent.setPackage(context.getPackageName());
+        newIntent.putExtra(Browser.EXTRA_APPLICATION_ID, context.getPackageName());
+        if (!(context instanceof Activity)) newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        IntentUtils.addTrustedIntentExtras(newIntent);
+
+        context.startActivity(newIntent);
     }
 }

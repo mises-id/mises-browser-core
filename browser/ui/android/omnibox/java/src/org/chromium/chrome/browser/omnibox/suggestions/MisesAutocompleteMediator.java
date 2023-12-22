@@ -10,13 +10,17 @@ import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import java.net.URLEncoder;
 
 import org.chromium.base.Callback;
 import org.chromium.base.jank_tracker.JankTracker;
 import org.chromium.base.supplier.Supplier;
+import org.chromium.base.MisesReflectionUtil;
+import org.chromium.url.GURL;
 import org.chromium.chrome.browser.omnibox.LocationBarDataProvider;
 import org.chromium.chrome.browser.omnibox.UrlBarEditingTextStateProvider;
 import org.chromium.chrome.browser.omnibox.suggestions.basic.BasicSuggestionProcessor.BookmarkState;
+import org.chromium.chrome.browser.omnibox.suggestions.history_clusters.HistoryClustersProcessor.OpenHistoryClustersDelegate;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.profiles.ProfileManager;
 import org.chromium.chrome.browser.share.ShareDelegate;
@@ -25,12 +29,11 @@ import org.chromium.chrome.browser.tabmodel.TabWindowManager;
 import org.chromium.components.user_prefs.UserPrefs;
 import org.chromium.ui.modaldialog.ModalDialogManager;
 import org.chromium.ui.modelutil.PropertyModel;
-import java.net.URLEncoder;
+
 import org.chromium.chrome.browser.omnibox.UrlBarData;
-import org.chromium.url.GURL;
 import org.chromium.components.omnibox.AutocompleteMatch;
-import org.chromium.base.MisesReflectionUtil;
-import org.chromium.chrome.browser.omnibox.OmniboxSuggestionType;
+import org.chromium.components.omnibox.action.OmniboxActionDelegate;
+import org.chromium.components.omnibox.OmniboxSuggestionType;
 
 class MisesAutocompleteMediator extends AutocompleteMediator {
     private static final int SUGGESTION_NOT_FOUND = -1;
@@ -38,6 +41,9 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
     private boolean mNativeInitialized;
     private AutocompleteController mAutocomplete;
     private @Nullable Runnable mDeferredLoadAction;
+
+    private Context mContext;
+    private AutocompleteDelegate mDelegate;
 
     public MisesAutocompleteMediator(@NonNull Context context,
             @NonNull AutocompleteControllerProvider controllerProvider,
@@ -50,18 +56,21 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
             @NonNull LocationBarDataProvider locationBarDataProvider,
             @NonNull Callback<Tab> bringTabToFrontCallback,
             @NonNull Supplier<TabWindowManager> tabWindowManagerSupplier,
-            @NonNull BookmarkState bookmarkState, @NonNull JankTracker jankTracker,
-            @NonNull OmniboxPedalDelegate omniboxPedalDelegate) {
+            @NonNull BookmarkState bookmarkState,
+            @NonNull OmniboxActionDelegate omniboxActionDelegate,
+            @NonNull OpenHistoryClustersDelegate openHistoryClustersDelegate) {
         super(context, controllerProvider, delegate, textProvider, listPropertyModel, handler,
                 modalDialogManagerSupplier, activityTabSupplier, shareDelegateSupplier,
                 locationBarDataProvider, bringTabToFrontCallback, tabWindowManagerSupplier,
-                bookmarkState, jankTracker, omniboxPedalDelegate);
+                bookmarkState, omniboxActionDelegate, openHistoryClustersDelegate);
+        mContext = context;
+        mDelegate = delegate;
     }
 
     private void cancelAutocompleteRequests() {
       assert (false);
     }
-    private void findMatchAndLoadUrl(String urlText, long inputStart) {
+    private void findMatchAndLoadUrl(String urlText, long inputStart, boolean openInNewTab) {
       assert (false);
     }
     private int findSuggestionInAutocompleteResult(AutocompleteMatch suggestion, int matchIndex) {
@@ -73,7 +82,7 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
       return -1;
     }
 
-    @Override void loadTypedOmniboxText(long eventTime) {
+    @Override void loadTypedOmniboxText(long eventTime, boolean openInNewTab) {
         String urlText = mUrlBarEditingTextProvider.getTextWithAutocomplete();
         if (urlText.startsWith("chrome://")) {
           urlText = UrlBarData.replaceOnce(urlText, "chrome://", "mises://");
@@ -84,33 +93,23 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
         final String urlTextToLoad = urlText;
         cancelAutocompleteRequests();
         if (mNativeInitialized && mAutocomplete != null) {
-            findMatchAndLoadUrl(urlTextToLoad, eventTime);
+            findMatchAndLoadUrl(urlTextToLoad, eventTime, openInNewTab);
         } else {
-            mDeferredLoadAction = () -> findMatchAndLoadUrl(urlTextToLoad, eventTime);
+            mDeferredLoadAction = () -> findMatchAndLoadUrl(urlTextToLoad, eventTime, openInNewTab);
         }
     }
 
     GURL updateSuggestionUrlIfNeeded(@NonNull AutocompleteMatch suggestion, int matchIndex,
         @NonNull GURL url, boolean skipCheck) {
         if (!mNativeInitialized || mAutocomplete == null) return url;
-        if (suggestion.getType() == OmniboxSuggestionType.VOICE_SUGGEST
-                || suggestion.getType() == OmniboxSuggestionType.TILE_SUGGESTION
-                || suggestion.getType() == OmniboxSuggestionType.TILE_NAVSUGGEST) {
+        if (suggestion.getType() == OmniboxSuggestionType.TILE_NAVSUGGEST) {
             return url;
         }
-
-        int verifiedIndex = SUGGESTION_NOT_FOUND;
-        if (!skipCheck) {
-            verifiedIndex = findSuggestionInAutocompleteResult(suggestion, matchIndex);
-        }
-
-        // If we do not have the suggestion as part of our results, skip the URL update.
-        if (verifiedIndex == SUGGESTION_NOT_FOUND) return url;
 
         // TODO(mariakhomenko): Ideally we want to update match destination URL with new aqs
         // for query in the omnibox and voice suggestions, but it's currently difficult to do.
         GURL updatedUrl = mAutocomplete.updateMatchDestinationUrlWithQueryFormulationTime(
-                verifiedIndex, getElapsedTimeSinceInputChange());
+                suggestion, getElapsedTimeSinceInputChange());
 
         GURL superRet =  updatedUrl == null ? url : updatedUrl;
 

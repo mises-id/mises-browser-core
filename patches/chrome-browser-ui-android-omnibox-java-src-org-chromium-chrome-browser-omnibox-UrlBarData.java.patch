@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
-index 55048aaaf39bd0cf2b5236a261600d3280d1e9d0..3a88a897bb1b4a395eef17ae178f885172557243 100644
+index 55048aaaf39bd0cf2b5236a261600d3280d1e9d0..7631302116198ed3a470a483229b1705f5f73eec 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
 @@ -42,7 +42,7 @@ public class UrlBarData {
@@ -11,23 +11,21 @@ index 55048aaaf39bd0cf2b5236a261600d3280d1e9d0..3a88a897bb1b4a395eef17ae178f8851
  
      /** Represents an empty URL bar. */
      public static final UrlBarData EMPTY = forNonUrlText("");
-@@ -75,6 +75,15 @@ public class UrlBarData {
+@@ -75,6 +75,13 @@ public class UrlBarData {
              return forNonUrlText(displayTextStr, editingText);
          }
  
 +        String originalScheme = Uri.parse(displayTextStr).getScheme();
 +	    if (!TextUtils.isEmpty(originalScheme) && (originalScheme.equals("chrome") || originalScheme.equals("chrome-extension"))){
 +            displayTextStr = displayTextStr.replace("chrome://", "mises://");
-+            url = url.replace("chrome://", "mises://");
-+            displayTextStr = displayTextStr.replace("chrome-extension://", "mises-extension://");                                                                 
-+            url = url.replace("chrome-extension://", "mises-extension://");    
++            displayTextStr = displayTextStr.replace("chrome-extension://", "mises-extension://");  
 +            displayText = displayTextStr;
 +        }
 +
          // The displayText may come with scheme stripped. In these cases, attempting to extract
          // scheme (e.g. via Uri.parse()) may return
          // - hostname, if the address includes port number
-@@ -188,4 +197,9 @@ public class UrlBarData {
+@@ -188,4 +195,9 @@ public class UrlBarData {
          this.originEndIndex = originEndIndex;
          this.editingText = editingText;
      }

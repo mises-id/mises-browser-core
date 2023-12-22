@@ -26,7 +26,7 @@ void SearchIPCRouter::OnMisesInfoChanged() {
   if (!embedded_search_client())
     return;
 #if BUILDFLAG(IS_ANDROID)
-  std::string info = android::MisesController::GetInstance()->getMisesUserInfo();
+  std::string info = chrome::android::MisesController::GetInstance()->getMisesUserInfo();
   std::u16string result =  base::UTF8ToUTF16(info.c_str());
   embedded_search_client()->MisesInfoChanged(result);
 #endif

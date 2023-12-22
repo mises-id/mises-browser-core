@@ -1,0 +1,47 @@
+diff --git a/base/android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java b/base/android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java
+index d5bd240706bd6c02d278557b3145a0f90eb70896..43a943a912860f30cd5d71831664b4376e68fd07 100644
+--- a/base/android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java
++++ b/base/android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java
+@@ -158,7 +158,7 @@ public class SharedPreferencesManager {
+         writeIntUnchecked(key, value);
+     }
+ 
+-    private void writeIntUnchecked(String key, int value) {
++    public void writeIntUnchecked(String key, int value) {
+         SharedPreferences.Editor ed = ContextUtils.getAppSharedPreferences().edit();
+         ed.putInt(key, value);
+         ed.apply();
+@@ -538,4 +538,33 @@ public class SharedPreferencesManager {
+         }
+         return allPrefsWithPrefix;
+     }
++
++    public static final String MISES_USER_INFO = "mises_user_info";
++    public static final String MISES_FIRST_RUN = "mises_first_run";
++    public String getMisesUserInfo() {
++        // Convention to keep all the key in preference lower case.
++        return readString(MISES_USER_INFO, "");
++    }
++
++    public void setMisesUserInfo(String userinfo) {
++        writeString(MISES_USER_INFO, userinfo);
++    }
++
++    public boolean isMisesFirstRun() {
++        return readBoolean(MISES_FIRST_RUN, true);
++    }
++
++    public void setMisesFirstRun(boolean isFirst) {
++        writeBoolean(MISES_FIRST_RUN, isFirst);
++    }
++    public void writeStringUnchecked(String key, String value) {
++        SharedPreferences.Editor ed = ContextUtils.getAppSharedPreferences().edit();
++        ed.putString(key, value);
++        ed.apply();
++    }
++    public void writeBooleanUnchecked(String key, boolean value) {
++        SharedPreferences.Editor ed = ContextUtils.getAppSharedPreferences().edit();
++        ed.putBoolean(key, value);
++        ed.apply();
++    }
+ }

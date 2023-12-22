@@ -1,5 +1,5 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
-index 53e09ea6b313736ecbffa45eaa0451b04365b2bf..8fe000ad4d1720d731a855ff07cbca00b116eb1d 100644
+index 53e09ea6b313736ecbffa45eaa0451b04365b2bf..8db5be3785e8a336539c7799a488ecbaa545039a 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
 @@ -49,6 +49,8 @@ import java.util.ArrayList;
@@ -22,7 +22,7 @@ index 53e09ea6b313736ecbffa45eaa0451b04365b2bf..8fe000ad4d1720d731a855ff07cbca00
 +                            .launchNTP();
 +                else
 +                    mTabCreatorManager.getTabCreator(mTabModelSelector.isIncognitoSelected())
-+                            .launchUrl(HomepageManager.getInstance().getHomepageUriIgnoringEnabledState(), TabLaunchType.FROM_CHROME_UI);
++                            .launchUrl(HomepageManager.getInstance().getHomepageGurlIgnoringEnabledState().getSpec(), TabLaunchType.FROM_CHROME_UI);
                  return;
              }
              List<Tab> relatedTabs = getRelatedTabs(currentTab.getId());

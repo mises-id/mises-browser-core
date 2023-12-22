@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
-index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..ca3b81e2f08d4025411ceb4d05ae70304b44cbf8 100644
+index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..48c1f4ab224679dde656a3ff6c5c0f01ea101ff5 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
 @@ -32,6 +32,14 @@ import android.widget.ListView;
@@ -17,7 +17,7 @@ index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..ca3b81e2f08d4025411ceb4d05ae7030
  import androidx.annotation.IdRes;
  import androidx.annotation.Nullable;
  import androidx.annotation.VisibleForTesting;
-@@ -55,6 +63,29 @@ import org.chromium.ui.widget.Toast;
+@@ -55,6 +63,27 @@ import org.chromium.ui.widget.Toast;
  import java.util.ArrayList;
  import java.util.List;
  
@@ -32,22 +32,20 @@ index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..ca3b81e2f08d4025411ceb4d05ae7030
 +
 +import org.chromium.chrome.browser.app.ChromeActivity;
 +
-+import org.chromium.base.annotations.NativeMethods;
-+
 +import org.chromium.chrome.browser.tab.Tab;
 +import org.chromium.ui.mojom.WindowOpenDisposition;
 +import org.chromium.base.ContextUtils;
 +import org.chromium.chrome.browser.profiles.Profile;
 +import org.chromium.base.ThreadUtils;
-+import org.chromium.base.annotations.CalledByNative;
-+import org.chromium.chrome.browser.profiles.Profile;
 +import org.chromium.content_public.browser.WebContents;
 +import android.os.Build;
++import org.jni_zero.CalledByNative;
++import org.jni_zero.NativeMethods;
 +
  /**
   * Shows a popup of menuitems anchored to a host view. When a item is selected we call
   * AppMenuHandlerImpl.AppMenuDelegate.onOptionsItemSelected with the appropriate MenuItem.
-@@ -220,6 +251,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -220,6 +249,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
                      isMenuIconAtStart ? R.style.StartIconMenuAnim : R.style.EndIconMenuAnim);
          }
  
@@ -56,7 +54,7 @@ index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..ca3b81e2f08d4025411ceb4d05ae7030
          // Turn off window animations for low end devices.
          if (SysUtils.isLowEndDevice()) mPopup.setAnimationStyle(0);
  
-@@ -311,8 +344,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -311,8 +342,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          mPopup.setContentView(contentView);
  
          try {
@@ -69,7 +67,7 @@ index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..ca3b81e2f08d4025411ceb4d05ae7030
          } catch (WindowManager.BadTokenException e) {
              // Intentionally ignore BadTokenException. This can happen in a real edge case where
              // parent.getWindowToken is not valid. See http://crbug.com/826052 &
-@@ -335,7 +372,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -335,7 +370,8 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          }
  
          // Don't animate the menu items for low end devices.
@@ -79,7 +77,7 @@ index 0d1a6f26b0bdc1007048051c91682f4fdbde670b..ca3b81e2f08d4025411ceb4d05ae7030
              mListView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                  @Override
                  public void onLayoutChange(View v, int left, int top, int right, int bottom,
-@@ -569,6 +607,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+@@ -569,6 +605,12 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
          int menuHeight = calculateHeightForItems(
                  menuItemIds, heightList, groupDividerResourceId, availableScreenSpace);
          menuHeight += footerHeight + headerHeight + padding.top + padding.bottom;

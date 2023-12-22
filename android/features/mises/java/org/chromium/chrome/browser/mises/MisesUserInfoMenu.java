@@ -24,6 +24,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import org.chromium.base.Log;
 import org.chromium.chrome.mises.R;
+import org.chromium.base.MisesController;
 
 public class MisesUserInfoMenu extends PopupWindow implements  MisesController.MisesControllerObserver  {
 

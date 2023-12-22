@@ -46,9 +46,9 @@ def  _UnderJavaRes(source):
     return None
 
 
-def _AddBravePrefix(relpath):
+def _AddMisesPrefix(relpath):
     dirname, filename = os.path.split(relpath)
-    return os.path.join(dirname, 'brave_' + filename)
+    return os.path.join(dirname, 'mises_' + filename)
 
 
 def _ImportModuleByPath(module_path):
@@ -100,7 +100,7 @@ def _XMLTransform(source_pairs, outputs_zip):
 
             # resource_overlay doesn't seem to work from
             # android_generated_resources
-            relpath = _AddBravePrefix(relpath)
+            relpath = _AddMisesPrefix(relpath)
             output_filename = os.path.join(temp_dir, relpath)
             parent_dir = os.path.dirname(output_filename)
             build_utils.MakeDirectory(parent_dir)

@@ -65,6 +65,49 @@ This file contains all "about" strings.  It is set to NOT be translated, in tran
       <message name="IDS_RESOLVE_METHOD_ETHEREUM" desc="Text for resolve method Ethereum.">
         Ethereum
       </message>
+      <message name="IDS_WIDEVINE_PERMISSION_REQUEST_PRIMARY_BUTTON_TEXT" desc="Primary button text for Widevine permission request.">
+          Allow (Relaunch Now)
+      </message>
+      <message name="IDS_WIDEVINE_PERMISSION_REQUEST_TITLE" desc="Title for Widevine permission request.">
+        Allow protected content
+      </message>
+      <message name="IDS_WIDEVINE_PERMISSION_REQUEST_LINK" desc="Text fragment for link used in Widevine permission request. 'Widevine' is the name of a plugin and should not be translated.">
+          <ph name="BEGIN_LINK">&lt;LINK&gt;</ph>Learn more about Widevine<ph name="END_LINK">&lt;/LINK&gt;</ph>
+      </message>
+      <message name="IDS_RESET_NEEDED_ERROR_TITLE" desc="Title for reset error dialog.">
+        Reset Error
+      </message>
+      <message name="IDS_RESET_NEEDED_ERROR_DESCRIPTION" desc="Description for reset error dialog.">
+        There was an error. Please relaunch Mises and try again.
+      </message>
+      <message name="IDS_SETTINGS_REQUIRE_RELAUNCH_NOTICE" desc="Text for message asked about browser relaunch to apply new settings">
+        Your changes will take effect the next time you relaunch Mises
+      </message>
+      <message name="IDS_SETTINGS_REQUIRE_RELAUNCH_NOW" desc="Text on the button causes relaunch browser now">
+        RELAUNCH NOW
+      </message>
+      <message name="IDS_SETTINGS_REQUIRE_RELAUNCH_LATER" desc="Text on the button allows to relaunch browser later">
+        LATER
+      </message>
+      <message name="IDS_MISES_DONT_ASK_AGAIN" desc="Set default browser modal text">
+        Don't ask again
+      </message>
+      <message name="IDS_MENU_NEW_HOME_TAB" desc="Menu item for for opening a new home tab. [CHAR_LIMIT=27]">
+        New Home tab
+      </message>
+      <message name="IDS_MENU_GROUP_TABS" desc="Menu item for grouping tabs. [CHAR_LIMIT=27]">
+        Group tabs
+      </message>
+      <message name="IDS_PASSWORD_SETTINGS_TITLE" desc="Title for the settings screen with saved passwords and the header for the list of saved passwords in that screen. [CHAR_LIMIT=32]">
+        Passwords
+      </message>
+
+      <message name="IDS_ACCESSIBILITY_TAB_SWITCHER_TITLE" desc="Title of preference that allows the user to use a simplified tab switcher that is accessibility friendly. The words 'Open tabs' should match translation in TC ID 3108541343994525384, provided that 'open' is correctly used as an adjective and not a verb.">
+        Simplified view for open tabs
+      </message>
+      <message name="IDS_ACCESSIBILITY_TAB_SWITCHER_SUMMARY" desc="Summary of the preference that allows the user to use a simplified tab switcher. The simplified tab switcher is recommended for use with TalkBack and Switch Access which are accessibility services provided by Android. TalkBack does not need to be translated. 'Switch Access' translation should match TC ID 382005103867249841.">
+       Recommended when TalkBack or Switch Access are on
+      </message>
   </messages>
   </release>
 </grit>

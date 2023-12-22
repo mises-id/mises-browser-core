@@ -8,6 +8,7 @@
 #if BUILDFLAG(IS_ANDROID)
 #include "base/android/sys_utils.h"
 #endif
+namespace chrome {
 namespace android {
 
 // static
@@ -22,12 +23,12 @@ MisesController::~MisesController() {}
 void MisesController::setMisesUserInfo(const std::string& info) {
   JNIEnv* env = base::android::AttachCurrentThread();
   base::android::ScopedJavaLocalRef<jstring> j_mises_json = base::android::ConvertUTF8ToJavaString(env, info);
-  Java_MisesController_setMisesUserInfo(env, j_mises_json);
+  base::android::Java_MisesController_setMisesUserInfo(env, j_mises_json);
 }
 
 std::string MisesController::getMisesUserInfo() {
   JNIEnv* env = base::android::AttachCurrentThread();
-  base::android::ScopedJavaLocalRef<jstring> j_mises_json = Java_MisesController_getMisesUserInfo(env);
+  base::android::ScopedJavaLocalRef<jstring> j_mises_json = base::android::Java_MisesController_getMisesUserInfo(env);
   return base::android::ConvertJavaStringToUTF8(env, j_mises_json);
 }
 
@@ -36,7 +37,7 @@ void MisesController::notifyPhishingDetected(const std::string& address, NotifyP
   NotifyPhishingDetectedCallbackVector& callbacks = callback_map_[address];
   callbacks.push_back(std::move(callback));
   base::android::ScopedJavaLocalRef<jstring> j_address = base::android::ConvertUTF8ToJavaString(env, address);
-  Java_MisesController_NotifyPhishingDetected(env, j_address);
+  base::android::Java_MisesController_NotifyPhishingDetected(env, j_address);
 
 }
 
@@ -95,14 +96,27 @@ void  MisesController::recordEvent(const std::string& json_string){
 }
 
 
+
+
+
 } // namespace android
 
 
 
-void JNI_MisesController_CallbackPhishingDetected(JNIEnv* env,
+
+}
+
+namespace base {
+
+namespace android {
+
+  void JNI_MisesController_CallbackPhishingDetected(JNIEnv* env,
      const base::android::JavaParamRef<jstring>& address, jint action) {
 
-  android::MisesController::GetInstance()->callbackPhishingDetected(
+    chrome::android::MisesController::GetInstance()->callbackPhishingDetected(
       ConvertJavaStringToUTF8(env, address), action);
 
+}
+
+}
 }

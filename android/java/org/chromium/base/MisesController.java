@@ -1,4 +1,4 @@
-package org.chromium.chrome.browser.mises;
+package org.chromium.base;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -6,16 +6,19 @@ import java.util.ArrayList;
 import java.text.DecimalFormat;
 import java.math.RoundingMode;
 
+import org.jni_zero.CalledByNative;
+import org.jni_zero.JNINamespace;
+import org.jni_zero.NativeMethods;
+
 import org.chromium.base.Log;
 import org.chromium.base.ThreadUtils;
-import org.jni_zero.CalledByNative;
-import org.chromium.chrome.browser.profiles.Profile;
-import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
-import org.jni_zero.NativeMethods;
+import org.chromium.base.shared_preferences.SharedPreferencesManager;
+import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 import org.chromium.base.Callback;
 import org.chromium.chrome.browser.mises.HttpUtil;
 
 
+@JNINamespace("base::android")
 public class MisesController {
     private static final String TAG = "MisesController";
     public static final int MISES_BONUS_CACHE_EXPIRE_TIME = 60;
@@ -64,7 +67,8 @@ public class MisesController {
         return sInstance;
     }
     public void load() {
-        String jsonStr = SharedPreferencesManager.getInstance().getMisesUserInfo();
+        SharedPreferencesManager sharedPreferencesManager = ChromeSharedPreferences.getInstance();
+        String jsonStr = sharedPreferencesManager.getMisesUserInfo();
         if (jsonStr == null || jsonStr.isEmpty()) {
             mMisesId = "";
             mMisesToken = "";
@@ -135,7 +139,8 @@ public class MisesController {
     }
     public void handleUserInfoUpdate() {
         String jsonStr = buildInfoJson();
-        SharedPreferencesManager.getInstance().setMisesUserInfo(jsonStr);
+        SharedPreferencesManager sharedPreferencesManager = ChromeSharedPreferences.getInstance();
+        sharedPreferencesManager.setMisesUserInfo(jsonStr);
         mInfoCache = jsonStr;
         for (MisesControllerObserver observer : observers_) {
             observer.OnMisesUserInfoChanged();

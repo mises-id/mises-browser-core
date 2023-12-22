@@ -3,6 +3,7 @@
 #include "base/features.h"
 #if BUILDFLAG(IS_ANDROID)
 #include "base/no_destructor.h"
+#include "components/permissions/constants.h"  
 #include "components/permissions/permission_hats_trigger_helper.h"
 #include "chrome/browser/ui/hats/trust_safety_sentiment_service_factory.h"
 namespace permissions {

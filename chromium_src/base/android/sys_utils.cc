@@ -5,7 +5,7 @@
 
 #include "base/no_destructor.h"
 
-#include "mises/build/android/jni_headers/MisesSysUtils_jni.h"
+#include "mises/android/features/mises/jni_headers/MisesSysUtils_jni.h"
 
 namespace base {
 

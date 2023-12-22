@@ -9,7 +9,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import org.chromium.chrome.browser.flags.CachedFeatureFlags;
-import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
+import org.chromium.base.shared_preferences.SharedPreferencesManager;
+import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 
 public class MisesTabUiFeatureUtilities {
     private static final String TAB_GROUP_AUTO_CREATION_PREFERENCE =
@@ -20,7 +21,8 @@ public class MisesTabUiFeatureUtilities {
         if (TabUiFeatureUtilities.isTabGroupsAndroidEnabled(context)) {
             // Override it to make "Open in new tab" menu option in the context menu available if
             // applicable.
-            SharedPreferencesManager.getInstance().writeBoolean(
+            SharedPreferencesManager sharedPreferencesManager = ChromeSharedPreferences.getInstance();
+            sharedPreferencesManager.writeBoolean(
                     TAB_GROUP_AUTO_CREATION_PREFERENCE, true);
             CachedFeatureFlags.resetFlagsForTesting();
         }

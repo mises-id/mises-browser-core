@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
-index ea4afd0e46918faa4e41e529ebbccd4fdd9ba26a..a24cce274fa31eee6412bd9bdcfcb05c98ec9a47 100644
+index ea4afd0e46918faa4e41e529ebbccd4fdd9ba26a..181d8be9483a32cc0784dfb4a3d01addc0555a65 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 @@ -779,9 +779,9 @@ public class TabModelImpl extends TabModelJniBridge {
@@ -24,7 +24,7 @@ index ea4afd0e46918faa4e41e529ebbccd4fdd9ba26a..a24cce274fa31eee6412bd9bdcfcb05c
 +        Tab currentTab = getTabAt(mIndex);
 +        // We get the adjacent tab in case we are currently on a chrome-extension page
 +        if (currentTab != null && currentTab.getUrl() != null && (currentTab.getUrl().getSpec().contains("chrome-extension://"))) {
-+          Tab parentTab = findTabInAllTabModels(CriticalPersistedTabData.from(currentTab).getParentId());
++          Tab parentTab = findTabInAllTabModels(currentTab.getParentId());
 +            if (parentTab != null) {
 +                result =  indexOf(parentTab);
 +            } else {

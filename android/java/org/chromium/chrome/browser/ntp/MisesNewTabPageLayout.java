@@ -69,6 +69,7 @@ import org.chromium.chrome.browser.settings.SettingsLauncherImpl;
 import org.chromium.chrome.browser.suggestions.tile.MostVisitedTilesCoordinator;
 import org.chromium.chrome.browser.suggestions.tile.MostVisitedTilesGridLayout;
 import org.chromium.chrome.browser.suggestions.tile.TileGroup;
+import org.chromium.chrome.browser.suggestions.tile.TileGroup.Delegate;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.chrome.browser.tab.TabAttributes;
 import org.chromium.chrome.browser.tab.TabImpl;
@@ -380,16 +381,41 @@ public class MisesNewTabPageLayout
 
 
     @Override
-    public void initialize(NewTabPageManager manager, Activity activity,
-            TileGroup.Delegate tileGroupDelegate, boolean searchProviderHasLogo,
-            boolean searchProviderIsGoogle, FeedSurfaceScrollDelegate scrollDelegate,
-            TouchEnabledDelegate touchEnabledDelegate, UiConfig uiConfig,
-            ActivityLifecycleDispatcher lifecycleDispatcher, NewTabPageUma uma, boolean isIncognito,
-            WindowAndroid windowAndroid) {
+    public void initialize(
+            NewTabPageManager manager,
+            Activity activity,
+            Delegate tileGroupDelegate,
+            boolean searchProviderHasLogo,
+            boolean searchProviderIsGoogle,
+            FeedSurfaceScrollDelegate scrollDelegate,
+            TouchEnabledDelegate touchEnabledDelegate,
+            UiConfig uiConfig,
+            ActivityLifecycleDispatcher lifecycleDispatcher,
+            NewTabPageUma uma,
+            boolean isIncognito,
+            WindowAndroid windowAndroid,
+            boolean isNtpAsHomeSurfaceEnabled,
+            boolean isSurfacePolishEnabled,
+            boolean isSurfacePolishOmniboxColorEnabled,
+            boolean isTablet) {
+        super.initialize(
+                manager,
+                activity,
+                tileGroupDelegate,
+                searchProviderHasLogo,
+                searchProviderIsGoogle,
+                scrollDelegate,
+                touchEnabledDelegate,
+                uiConfig,
+                lifecycleDispatcher,
+                uma,
+                isIncognito,
+                windowAndroid,
+                isNtpAsHomeSurfaceEnabled,
+                isSurfacePolishEnabled,
+                isSurfacePolishOmniboxColorEnabled,
+                isTablet);
         mTileGroupDelegateWrapper  = new TileGroupDelegateWrapper(tileGroupDelegate);
-        super.initialize(manager, activity, mTileGroupDelegateWrapper, searchProviderHasLogo,
-                searchProviderIsGoogle, scrollDelegate, touchEnabledDelegate, uiConfig,
-                lifecycleDispatcher, uma, isIncognito, windowAndroid);
 
         Log.d(TAG, "initialize " + searchProviderHasLogo);
         mActivity = activity;

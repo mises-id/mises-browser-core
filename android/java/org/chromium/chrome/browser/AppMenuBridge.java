@@ -5,7 +5,7 @@ import org.jni_zero.NativeMethods;
 import org.chromium.content_public.browser.WebContents;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.base.ThreadUtils;
-import org.chromium.chrome.browser.mises.MisesController;
+import org.chromium.base.MisesController;
 
 public class AppMenuBridge {
     private long mNativeAppMenuBridge;

@@ -72,6 +72,7 @@ import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import org.chromium.base.MisesController;
 
 
 public class MisesWeb3SafeAlert extends DialogFragment {

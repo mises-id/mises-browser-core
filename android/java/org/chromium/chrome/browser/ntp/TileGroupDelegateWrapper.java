@@ -10,7 +10,8 @@ import java.util.HashMap;
 
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.mises.HttpUtil;
-import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
+import org.chromium.base.shared_preferences.SharedPreferencesManager;
+import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 
 import org.chromium.chrome.browser.suggestions.SiteSuggestion;
 import org.chromium.chrome.browser.suggestions.MisesSiteSuggestion;
@@ -263,7 +264,8 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
             @Override
             public final void onResult(HttpUtil.HttpResp result) {
                 if (result.resp != null && loadWeb3SitesJson(result.resp)) {
-                    SharedPreferencesManager.getInstance().writeStringUnchecked(
+                    SharedPreferencesManager sharedPreferencesManager = ChromeSharedPreferences.getInstance();
+                    sharedPreferencesManager.writeStringUnchecked(
                         PREF_WEB3_SITES_CACHE_JSON, result.resp.toString());
                     sWeb3SitesCacheTimestapm = nowInSeconds;
 

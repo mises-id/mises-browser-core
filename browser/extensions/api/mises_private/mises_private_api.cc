@@ -73,7 +73,7 @@ ExtensionFunction::ResponseAction MisesPrivateSetMisesIdFunction::Run() {
   EXTENSION_FUNCTION_VALIDATE(params);
   LOG(INFO) << "MisesPrivate set mises id :" << params->id;
 #if BUILDFLAG(IS_ANDROID)
-  android::MisesController::GetInstance()->setMisesUserInfo(params->id);
+  chrome::android::MisesController::GetInstance()->setMisesUserInfo(params->id);
 #endif
   Profile* profile = Profile::FromBrowserContext(browser_context());
   PrefService* prefs = profile->GetPrefs();
@@ -132,7 +132,7 @@ ExtensionFunction::ResponseAction MisesPrivateNotifyPhishingDetectedFunction::Ru
       api::mises_private::NotifyPhishingDetected::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params);
   LOG(INFO) << "MisesPrivate notify phishing address :" << params->address;
-  android::MisesController::GetInstance()->notifyPhishingDetected(
+  chrome::android::MisesController::GetInstance()->notifyPhishingDetected(
     params->address, base::BindOnce(
       &MisesPrivateNotifyPhishingDetectedFunction::OnNotificationHandled, base::RetainedRef(this)
     )
@@ -159,7 +159,7 @@ ExtensionFunction::ResponseAction MisesPrivateRecordEventFunction::Run() {
       api::mises_private::RecordEvent::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params);
   LOG(INFO) << "MisesPrivate set log event params :" << params->data;
-  android::MisesController::GetInstance()->recordEvent(
+  chrome::android::MisesController::GetInstance()->recordEvent(
     params->data
   );
 

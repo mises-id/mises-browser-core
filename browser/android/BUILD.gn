@@ -13,6 +13,7 @@ source_set("android_browser_process") {
     "//base",
     "//mises/browser/android/preferences",
     "//mises/build/android:jni_headers",
+    "//mises/android/features/mises:jni_headers",
     "//mises/components/l10n/common",
     "//chrome/android:jni_headers",
     "//chrome/common",

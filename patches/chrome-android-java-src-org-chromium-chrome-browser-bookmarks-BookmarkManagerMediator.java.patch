@@ -1,0 +1,51 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerMediator.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerMediator.java
+index e0cc3fa5d338f24dcbbe1bd7e07c0e143ab4c2aa..80cada913c5d43f9893af930832f38c996b0f456 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerMediator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerMediator.java
+@@ -73,6 +73,11 @@ import java.util.Stack;
+ import java.util.function.Consumer;
+ import java.util.function.Predicate;
+ 
++import android.app.Activity;
++import org.chromium.ui.base.WindowAndroid;
++import org.chromium.ui.base.ActivityWindowAndroid;
++import org.chromium.ui.base.IntentRequestTracker;
++
+ /** Responsible for BookmarkManager business logic. */
+ // TODO(crbug.com/1416611): Remove BookmarkDelegate if possible.
+ class BookmarkManagerMediator
+@@ -82,6 +87,9 @@ class BookmarkManagerMediator
+ 
+     private static boolean sPreventLoadingForTesting;
+ 
++    private ActivityWindowAndroid mWindowAndroid;
++    private IntentRequestTracker mIntentTracker;
++
+     /** Keeps track of whether drag is enabled / active for bookmark lists. */
+     private class BookmarkDragStateDelegate implements DragStateDelegate {
+         private BookmarkDelegate mBookmarkDelegate;
+@@ -496,8 +504,24 @@ class BookmarkManagerMediator
+         if (!sPreventLoadingForTesting) {
+             finishLoadingBookmarkModel();
+         }
++        mIntentTracker = IntentRequestTracker.createFromActivity((Activity)context);
++        mWindowAndroid = new ActivityWindowAndroid(context, true, mIntentTracker);
+     }
+ 
++    public IntentRequestTracker intentTracker() {
++        return mIntentTracker;
++    }
++
++    @Override
++    public void importBookmarks() {
++        mBookmarkModel.startImportBookmarks(mWindowAndroid);
++    }
++
++    @Override
++    public void exportBookmarks() {
++        mBookmarkModel.startExportBookmarks(mWindowAndroid);
++     }
++
+     void onBookmarkModelLoaded() {
+         mDragStateDelegate.onBookmarkDelegateInitialized(this);
+ 

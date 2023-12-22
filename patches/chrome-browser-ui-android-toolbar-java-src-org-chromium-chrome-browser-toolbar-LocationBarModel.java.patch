@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
-index f4670792368dcc9280a780a0602172609c5f3d2a..7247dba1d4f2f618c670ec2339121eac4b1b4d47 100644
+index f4670792368dcc9280a780a0602172609c5f3d2a..e709a877ab74815d5dc3acdc8fffb29767a3895d 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
 @@ -386,6 +386,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
@@ -7,7 +7,7 @@ index f4670792368dcc9280a780a0602172609c5f3d2a..7247dba1d4f2f618c670ec2339121eac
              }
  
 +            if (url.startsWith("devtools://")) {
-+                return buildUrlBarData(url, false, mTab.getTitle(), "");
++                return buildUrlBarData(gurl, false, mTab.getTitle(), "");
 +            }
 +
              if (isOfflinePage) {

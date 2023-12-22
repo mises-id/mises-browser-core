@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/res/layout/new_tab_page_layout.xml b/chrome/android/java/res/layout/new_tab_page_layout.xml
-index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..54a730f8f15e02f90760cc43d87e3d6d5805b1dd 100644
+index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..5cc6561d38e60e731951fc4f10b9ba009a77149e 100644
 --- a/chrome/android/java/res/layout/new_tab_page_layout.xml
 +++ b/chrome/android/java/res/layout/new_tab_page_layout.xml
 @@ -1,23 +1,27 @@
@@ -38,7 +38,7 @@ index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..54a730f8f15e02f90760cc43d87e3d6d
      <FrameLayout
          android:id="@+id/logo_holder"
          android:layout_width="match_parent"
-@@ -30,58 +34,78 @@ found in the LICENSE file.
+@@ -30,58 +34,94 @@ found in the LICENSE file.
              android:layout_height="@dimen/cryptid_height_in_logo_wrapper"
              android:layout_gravity="bottom|start" />
  
@@ -128,21 +128,37 @@ index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..54a730f8f15e02f90760cc43d87e3d6d
 +                android:layout_marginTop="16dp"
 +                android:visibility="gone"/>
 +
++            <!-- Middle spacer -->
++            <View
++                android:id="@+id/ntp_middle_spacer"
++                android:layout_width="0dp"
++                android:layout_height="0dp"
++                android:layout_weight="0"
++                android:visibility="invisible" />
++
++            <!-- Insertion point of the SiteSectionView, see NewTabPageLayout#insertSiteSection() -->
++
++            <!-- Site suggestion tile grid placeholder -->
++            <ViewStub
++                android:id="@+id/tile_grid_placeholder_stub"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_weight="1"
++                android:inflatedId="@+id/tile_grid_placeholder"
++                android:layout="@layout/new_tab_page_tile_grid_placeholder" />
++
++            <!-- Single tab card -->
++            <ViewStub
++                android:id="@+id/tab_switcher_module_container_stub"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:layout="@layout/tab_switcher_module_container" />
 +            <ViewStub
 +                android:id="@+id/search_resumption_module_container_stub"
 +                android:layout_width="match_parent"
 +                android:layout_height="wrap_content"
 +                android:layout_marginTop="@dimen/search_resumption_module_margin_top"
 +                android:layout="@layout/search_resumption_module_layout" />
-+
-+            <!-- Video tutorial IPH card -->
-+            <ViewStub
-+                android:id="@+id/video_iph_stub"
-+                android:layout_width="match_parent"
-+                android:layout_height="wrap_content"
-+                android:layout_marginTop="12dp"
-+                android:layout="@layout/video_tutorial_iph_card"
-+                android:inflatedId="@+id/video_iph_card"/>
 +
 +            <!-- Middle spacer -->
 +            <View

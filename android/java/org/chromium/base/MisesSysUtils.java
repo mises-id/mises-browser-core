@@ -6,15 +6,13 @@ import android.content.Context;
 import org.jni_zero.CalledByNative;
 import org.jni_zero.JNINamespace;
 import org.jni_zero.NativeMethods;
-import org.chromium.build.annotations.MainDex;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import org.chromium.chrome.browser.mises.MisesController;
+import org.chromium.base.MisesController;
 
 @JNINamespace("base::android")
-@MainDex
 public class MisesSysUtils {
 
     private static Activity activityContext;
