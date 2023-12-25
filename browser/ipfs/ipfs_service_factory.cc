@@ -32,17 +32,17 @@
 #endif
 
 namespace {
-#if BUILDFLAG(ENABLE_EXTENSIONS)
-// IPFS companion installed?
-// i) No, ii) Yes
-void RecordIPFSCompanionInstalled(extensions::ExtensionRegistry* registry) {
-  const char ipfs_companion_extension_id[] = "nibjojkomfdiaoajekhjakgkdhaomnch";
-  DCHECK(registry);
-  bool installed =
-      registry->enabled_extensions().Contains(ipfs_companion_extension_id);
-  UMA_HISTOGRAM_BOOLEAN("Brave.IPFS.IPFSCompanionInstalled", installed);
-}
-#endif
+// #if BUILDFLAG(ENABLE_EXTENSIONS)
+// // IPFS companion installed?
+// // i) No, ii) Yes
+// void RecordIPFSCompanionInstalled(extensions::ExtensionRegistry* registry) {
+//   const char ipfs_companion_extension_id[] = "nibjojkomfdiaoajekhjakgkdhaomnch";
+//   DCHECK(registry);
+//   bool installed =
+//       registry->enabled_extensions().Contains(ipfs_companion_extension_id);
+//   UMA_HISTOGRAM_BOOLEAN("Brave.IPFS.IPFSCompanionInstalled", installed);
+// }
+// #endif
 }  // namespace
 
 namespace ipfs {
@@ -66,11 +66,11 @@ IpfsServiceFactory::IpfsServiceFactory()
     : BrowserContextKeyedServiceFactory(
           "IpfsService",
           BrowserContextDependencyManager::GetInstance()) {
-#if BUILDFLAG(ENABLE_EXTENSIONS)
-  DependsOn(extensions::ExtensionRegistryFactory::GetInstance());
-  DependsOn(
-      extensions::ExtensionsBrowserClient::Get()->GetExtensionSystemFactory());
-#endif
+// #if BUILDFLAG(ENABLE_EXTENSIONS)
+//   DependsOn(extensions::ExtensionRegistryFactory::GetInstance());
+//   DependsOn(
+//       extensions::ExtensionsBrowserClient::Get()->GetExtensionSystemFactory());
+// #endif
 }
 
 IpfsServiceFactory::~IpfsServiceFactory() = default;
@@ -85,9 +85,9 @@ KeyedService* IpfsServiceFactory::BuildServiceInstanceFor(
   auto* ipfs_updater = g_mises_browser_process
                            ? g_mises_browser_process->ipfs_client_updater()
                            : nullptr;
-#if BUILDFLAG(ENABLE_EXTENSIONS)
-  RecordIPFSCompanionInstalled(extensions::ExtensionRegistry::Get(context));
-#endif
+// #if BUILDFLAG(ENABLE_EXTENSIONS)
+//   RecordIPFSCompanionInstalled(extensions::ExtensionRegistry::Get(context));
+// #endif
   return new IpfsService(user_prefs::UserPrefs::Get(context),
                          std::move(url_loader), std::move(context_getter),
                          ipfs_updater, user_data_dir, chrome::GetChannel(),

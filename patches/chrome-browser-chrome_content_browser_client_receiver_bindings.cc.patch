@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/chrome_content_browser_client_receiver_bindings.cc b/chrome/browser/chrome_content_browser_client_receiver_bindings.cc
+index 3fa70202d62fdfc6da239ffc2f4d585028d0e7a0..1451425fef8cecdac476cb1caae645a142ca979a 100644
+--- a/chrome/browser/chrome_content_browser_client_receiver_bindings.cc
++++ b/chrome/browser/chrome_content_browser_client_receiver_bindings.cc
+@@ -191,7 +191,7 @@ void MaybeCreateSafeBrowsingForRenderer(
+   }
+ }
+ 
+-#if BUILDFLAG(ENABLE_EXTENSIONS)
++#if BUILDFLAG(ENABLE_EXTENSIONS) && BUILDFLAG(FULL_SAFE_BROWSING)
+ void MaybeCreateExtensionWebRequestReporterForRenderer(
+     int process_id,
+     mojo::PendingReceiver<safe_browsing::mojom::ExtensionWebRequestReporter>
+@@ -339,7 +339,7 @@ void ChromeContentBrowserClient::ExposeInterfacesToRenderer(
+                 &ChromeContentBrowserClient::GetSafeBrowsingUrlCheckerDelegate,
+                 base::Unretained(this))),
+         ui_task_runner);
+-#if BUILDFLAG(ENABLE_EXTENSIONS)
++#if BUILDFLAG(ENABLE_EXTENSIONS) && BUILDFLAG(FULL_SAFE_BROWSING)
+     registry->AddInterface<safe_browsing::mojom::ExtensionWebRequestReporter>(
+         base::BindRepeating(&MaybeCreateExtensionWebRequestReporterForRenderer,
+                             render_process_host->GetID()),

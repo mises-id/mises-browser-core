@@ -4,27 +4,27 @@
 {
   "SRCDIR": "../..",
   "mises/common/extensions/api/mises_api_resources.grd": {
-    "includes": [50050],
+    "includes": [53050],
   },
   "mises/components/resources/mises_components_resources.grd": {
-    "includes": [50100],
+    "includes": [53100],
   },
   # This file is generated during the build.
   "<(SHARED_INTERMEDIATE_DIR)/mises/browser/resources/settings/mises_settings_resources.grd": {
     "META": {"sizes": {"includes": [400]}},
-    "includes": [50800],
+    "includes": [53800],
   },
 
 
   "mises/app/mises_generated_resources.grd": {
-    "includes": [51200],
-    "messages": [51700],
+    "includes": [54200],
+    "messages": [54700],
   },
   "mises/app/theme/mises_theme_resources.grd": {
-    "structures": [52200],
+    "structures": [55200],
   },
   "mises/app/theme/mises_unscaled_resources.grd": {
-    "includes": [52700],
+    "includes": [55700],
   },
   "mises/components/resources/mises_components_strings.grd": {
     "messages": [55900]

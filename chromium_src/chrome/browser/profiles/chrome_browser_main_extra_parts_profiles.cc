@@ -34,17 +34,16 @@ void ChromeBrowserMainExtraPartsProfiles::
   AccountInvestigatorFactory::GetInstance();
   AccountReconcilorFactory::GetInstance();
   AdaptiveQuietNotificationPermissionUiEnabler::Factory::GetInstance();
-
-  autofill::PersonalDataManagerFactory::GetInstance();
-  autofill::AutofillOfferManagerFactory::GetInstance();
-  autofill::MerchantPromoCodeManagerFactory::GetInstance();
+  // autofill::PersonalDataManagerFactory::GetInstance();
+  // autofill::AutofillOfferManagerFactory::GetInstance();
+  // autofill::MerchantPromoCodeManagerFactory::GetInstance();
 
   BookmarkModelFactory::GetInstance();
   BookmarkUndoServiceFactory::GetInstance();
   if (breadcrumbs::IsEnabled())
     BreadcrumbManagerKeyedServiceFactory::GetInstance();
   browser_sync::UserEventServiceFactory::GetInstance();
-  BrowsingDataHistoryObserverService::Factory::GetInstance();
+  // BrowsingDataHistoryObserverService::Factory::GetInstance();
   browsing_topics::BrowsingTopicsServiceFactory::GetInstance();
 
 #if BUILDFLAG(ENABLE_CAPTIVE_PORTAL_DETECTION)
@@ -180,7 +179,7 @@ void ChromeBrowserMainExtraPartsProfiles::
   SessionDataServiceFactory::GetInstance();
 #endif
 
-  commerce::ShoppingServiceFactory::GetInstance();
+  //commerce::ShoppingServiceFactory::GetInstance();
   ShortcutsBackendFactory::GetInstance();
   SigninProfileAttributesUpdaterFactory::GetInstance();
 #if BUILDFLAG(ENABLE_DICE_SUPPORT) || BUILDFLAG(IS_CHROMEOS_LACROS)
@@ -192,7 +191,7 @@ void ChromeBrowserMainExtraPartsProfiles::
 
 
   TabRestoreServiceFactory::GetInstance();
-  safe_browsing::TailoredSecurityServiceFactory::GetInstance();
+  //safe_browsing::TailoredSecurityServiceFactory::GetInstance();
   TemplateURLFetcherFactory::GetInstance();
   TemplateURLServiceFactory::GetInstance();
 
@@ -212,11 +211,9 @@ void ChromeBrowserMainExtraPartsProfiles::
 }
 
 void ChromeBrowserMainExtraPartsProfiles::PreProfileInit() {
+  LOG(INFO) << "ChromeBrowserMainExtraPartsProfiles::PreProfileInit";
  #if BUILDFLAG(IS_ANDROID)
   EnsureBrowserContextKeyedServiceFactoriesBuilt();
-  InstantServiceFactory::GetInstance();
-  PinnedTabServiceFactory::GetInstance();
-  ThemeServiceFactory::GetInstance();
 #else
   PreProfileInit_Chromium();
 #endif

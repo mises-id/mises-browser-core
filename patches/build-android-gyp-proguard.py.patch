@@ -1,5 +1,5 @@
 diff --git a/build/android/gyp/proguard.py b/build/android/gyp/proguard.py
-index f89f7c5fb97bf2bb9e5a141a8d4a88ac1c7014f0..bc4a6930e6589c41ec3d3978371eee15883cd06a 100755
+index f89f7c5fb97bf2bb9e5a141a8d4a88ac1c7014f0..21408e89ff69c82c1f1c1568a4f59dcdeea66434 100755
 --- a/build/android/gyp/proguard.py
 +++ b/build/android/gyp/proguard.py
 @@ -331,6 +331,7 @@ def _OptimizeWithR8(options, config_paths, libraries, dynamic_config_data):
@@ -24,7 +24,7 @@ index f89f7c5fb97bf2bb9e5a141a8d4a88ac1c7014f0..bc4a6930e6589c41ec3d3978371eee15
    build_utils.InitLogging('PROGUARD_DEBUG')
    options = _ParseOptions()
 -
-+  options.warnings_as_errors = False
++  #options.warnings_as_errors = False
    if options.dump_inputs:
      # Dumping inputs causes output to be emitted, avoid failing due to stdout.
      options.warnings_as_errors = False

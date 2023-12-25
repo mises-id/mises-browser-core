@@ -135,7 +135,6 @@ if (is_android) {
     "upgrade_detector/installed_version_monitor_fuchsia.cc",
     "media/webrtc/window_icon_util_fuchsia.cc",
     "policy/policy_path_parser_linux.cc",
-    "safe_browsing/extension_telemetry/extension_telemetry_service_factory.cc",
     "safe_browsing/extension_telemetry/tabs_execute_script_signal.cc",
     "safe_browsing/extension_telemetry/remote_host_contacted_signal.cc",
     "user_education/user_education_service.cc",

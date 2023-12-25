@@ -34,6 +34,7 @@
 #include "components/ntp_tiles/custom_links_manager_impl.h"
 #include "chrome/browser/sessions/session_service_log.h"
 #include "chrome/browser/user_education/browser_feature_promo_storage_service.h"
+#include "chrome/browser/sessions/session_data_service.h"
 #endif  // BUILDFLAG(IS_ANDROID)
 
 
@@ -93,6 +94,7 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   RegisterReadAnythingProfilePrefs(registry);
   //settings::SettingsUI::RegisterProfilePrefs(registry);
   send_tab_to_self::RegisterProfilePrefs(registry);
+  SessionDataService::RegisterProfilePrefs(registry);
   signin::RegisterProfilePrefs(registry);
   //StartupBrowserCreator::RegisterProfilePrefs(registry);
   tab_search_prefs::RegisterProfilePrefs(registry);

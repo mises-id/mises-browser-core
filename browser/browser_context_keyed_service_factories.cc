@@ -11,7 +11,20 @@
 #include "mises/browser/permissions/permission_lifetime_manager_factory.h"
 
 
+
 #include "chrome/browser/profiles/chrome_browser_main_extra_parts_profiles.h"
+
+#if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/android/app_menu_bridge.h"
+
+#include "chrome/browser/apps/app_service/app_service_proxy_factory.h"
+#include "chrome/browser/search/instant_service_factory.h"
+#include "chrome/browser/ui/tabs/pinned_tab_service_factory.h"
+#include "chrome/browser/themes/theme_service_factory.h"
+#include "chrome/browser/user_education/user_education_service_factory.h"
+#include "chrome/browser/sessions/session_service_factory.h"
+#include "chrome/browser/sessions/exit_type_service_factory.h"
+#endif
 
 #if BUILDFLAG(ENABLE_IPFS)
 #include "mises/browser/ipfs/ipfs_service_factory.h"
@@ -33,22 +46,33 @@ void EnsureMisesBrowserContextKeyedServiceFactoriesBuilt() {
 
   PermissionLifetimeManagerFactory::GetInstance();
 
+#if BUILDFLAG(IS_ANDROID)
+  AppMenuBridge::Factory::GetInstance();
+#endif
+
 }
 void EnsureBrowserContextKeyedServiceFactoriesBuiltExtra() {
+#if BUILDFLAG(IS_ANDROID)
+  EnsureBrowserContextKeyedServiceFactoriesBuilt();
+  InstantServiceFactory::GetInstance();
+  PinnedTabServiceFactory::GetInstance();
+  ThemeServiceFactory::GetInstance();
+  apps::AppServiceProxyFactory::GetInstance();
+  UserEducationServiceFactory::GetInstance();
+  SessionServiceFactory::GetInstance();
+  ExitTypeServiceFactory::GetInstance();
+#endif
   EnsureMisesBrowserContextKeyedServiceFactoriesBuilt();
 }
 
 void EnsureBrowserContextKeyedServiceFactoriesBuilt() {
 #if !BUILDFLAG(IS_ANDROID)
-  ChromeBrowserMainExtraPartsProfiles::
-    EnsureBrowserContextKeyedServiceFactoriesBuilt();
+  ChromeBrowserMainExtraPartsProfiles::EnsureBrowserContextKeyedServiceFactoriesBuilt();
   EnsureMisesBrowserContextKeyedServiceFactoriesBuilt();
 
 #else
-  ChromeBrowserMainExtraPartsProfiles::
-    EnsureBrowserContextKeyedServiceFactoriesBuiltAndroid();
+  ChromeBrowserMainExtraPartsProfiles::EnsureBrowserContextKeyedServiceFactoriesBuiltAndroid();
   PermissionLifetimeManagerFactory::GetInstance();
-
 #endif
 }
 
