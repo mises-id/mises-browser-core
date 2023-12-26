@@ -92,8 +92,8 @@
     *** initTabHelpers(...);
 }
 
--keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
--keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
+# -keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+# -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 
 
 -keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
@@ -108,4 +108,6 @@
 # SDK API
 -keep class com.openmediation.sdk.**{*;}
 -keep class com.crosspromotion.sdk.**{*;}
+
+-keepattributes Signature,InnerClasses,SourceFile,LineNumberTable,EnclosingMethod
 

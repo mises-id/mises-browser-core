@@ -34,6 +34,8 @@
 #include "mises/browser/ipfs/ipfs_service_factory.h"
 #endif
 
+#include "mises/browser/profiles/mises_renderer_updater_factory.h"
+
 
 namespace mises {
 
@@ -51,6 +53,8 @@ void EnsureMisesBrowserContextKeyedServiceFactoriesBuilt() {
   brave_wallet::BraveWalletServiceFactory::GetInstance();
 
   PermissionLifetimeManagerFactory::GetInstance();
+
+  MisesRendererUpdaterFactory::GetInstance();
 
 #if BUILDFLAG(IS_ANDROID)
   AppMenuBridge::Factory::GetInstance();

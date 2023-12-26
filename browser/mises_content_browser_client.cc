@@ -94,6 +94,9 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 #include "mises/components/ipfs/ipfs_navigation_throttle.h"
 #endif
 
+#include "mises/browser/profiles/mises_renderer_updater.h"
+#include "mises/browser/profiles/mises_renderer_updater_factory.h"
+
 
 #include "mises/components/brave_wallet/browser/brave_wallet_p3a_private.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_service.h"
@@ -250,6 +253,14 @@ void MisesContentBrowserClient::BrowserURLHandlerCreated(
   ChromeContentBrowserClient::BrowserURLHandlerCreated(handler);
 }
 
+
+void MisesContentBrowserClient::RenderProcessWillLaunch(
+    content::RenderProcessHost* host) {
+  Profile* profile = Profile::FromBrowserContext(host->GetBrowserContext());
+  MisesRendererUpdaterFactory::GetForProfile(profile)->InitializeRenderer(host);
+
+  ChromeContentBrowserClient::RenderProcessWillLaunch(host);
+}
 
 
 void MisesContentBrowserClient::RegisterBrowserInterfaceBindersForFrame(

@@ -1,0 +1,21 @@
+diff --git a/chrome/browser/resources/extensions/manager.html b/chrome/browser/resources/extensions/manager.html
+index 89c0e1c16a0255b00451929df7fe46ad68aa4b8a..336260d47fd46f6e44173c0f2fa1af7ea769c405 100644
+--- a/chrome/browser/resources/extensions/manager.html
++++ b/chrome/browser/resources/extensions/manager.html
+@@ -87,6 +87,11 @@
+     </div>
+   </cr-drawer>
+ </template>
++<mises-default-extension-setting 
++  extensions="[[extensions_]]" 
++  defaultEVMWallet="[[defaultEVMWallet]]"
++  delegate="[[delegate]]"
++></mises-default-extension-setting>
+ <div id="container">
+   <div id="left" hidden$="[[narrow_]]">
+     <extensions-sidebar on-close-drawer="onCloseDrawer_"
+@@ -174,3 +179,4 @@
+   </extensions-install-warnings-dialog>
+ </template>
+ <cr-toast-manager></cr-toast-manager>
++<mises-open-web-store-footer />

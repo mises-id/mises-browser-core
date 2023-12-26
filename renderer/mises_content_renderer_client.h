@@ -29,6 +29,7 @@ class MisesContentRendererClient : public ChromeContentRendererClient {
   void RenderThreadStarted() override;
   void SetRuntimeFeaturesDefaultsBeforeBlinkInitialization() override;
   void RenderFrameCreated(content::RenderFrame* render_frame) override;
+  void GetSupportedKeySystems(media::GetSupportedKeySystemsCB cb) override;
   void RunScriptsAtDocumentStart(content::RenderFrame* render_frame) override;
   void WillEvaluateServiceWorkerOnWorkerThread(
       blink::WebServiceWorkerContextProxy* context_proxy,
@@ -41,6 +42,9 @@ class MisesContentRendererClient : public ChromeContentRendererClient {
       int64_t service_worker_version_id,
       const GURL& service_worker_scope,
       const GURL& script_url) override;
+
+ private:
+  std::unique_ptr<MisesRenderThreadObserver> mises_render_thread_observer_;
 };
 
 #endif  // BRAVE_RENDERER_BRAVE_CONTENT_RENDERER_CLIENT_H_

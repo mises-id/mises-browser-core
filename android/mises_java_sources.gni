@@ -55,6 +55,7 @@ mises_java_sources += [
   "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
   "//mises/android/java/org/chromium/chrome/browser/AppMenuBridge.java",
   "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/BraveWalletProviderDelegateImplHelper.java",
+  "//mises/android/java/org/chromium/chrome/browser/searchwidget/SearchWidgetProviderActivity.java",
 
 ]
 

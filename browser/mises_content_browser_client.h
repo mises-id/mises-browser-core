@@ -45,6 +45,7 @@ class MisesContentBrowserClient : public ChromeContentBrowserClient {
   std::unique_ptr<content::BrowserMainParts> CreateBrowserMainParts(
       bool is_integration_test) override;
   void BrowserURLHandlerCreated(content::BrowserURLHandler* handler) override;
+  void RenderProcessWillLaunch(content::RenderProcessHost* host) override;
   std::vector<std::unique_ptr<content::NavigationThrottle>>
   CreateThrottlesForNavigation(content::NavigationHandle* handle) override;
 

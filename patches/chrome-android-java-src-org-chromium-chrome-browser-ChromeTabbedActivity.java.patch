@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index a9fff1726ba833b66537bb0988c51debee4a44d8..2ae94135fe1161de8a3187dd177157a8fb264680 100644
+index a9fff1726ba833b66537bb0988c51debee4a44d8..ce5e0bbe6df37104205ad35c07cc57bbd1cf0b8a 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 @@ -242,6 +242,22 @@ import java.util.Locale;
@@ -43,15 +43,6 @@ index a9fff1726ba833b66537bb0988c51debee4a44d8..2ae94135fe1161de8a3187dd177157a8
      private final IncognitoTabHost mIncognitoTabHost = new IncognitoTabHost() {
          @Override
          public boolean hasIncognitoTabs() {
-@@ -827,7 +845,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-                         (getLayoutManager().getActiveLayoutType() == LayoutType.TAB_SWITCHER)
-                         ? TabLaunchType.FROM_TAB_SWITCHER_UI
-                         : TabLaunchType.FROM_CHROME_UI;
--                getCurrentTabCreator().launchNTP(tabLaunchType);
-+                launchNTP();
-                 mLocaleManager.showSearchEnginePromoIfNeeded(ChromeTabbedActivity.this, null);
-                 if (getTabModelSelector().isIncognitoSelected()) {
-                     RecordUserAction.record("MobileToolbarStackViewNewIncognitoTab");
 @@ -894,6 +912,12 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
                          this, mLayoutManager, mTabModelSelector, getLifecycleDispatcher());
              }
@@ -148,15 +139,6 @@ index a9fff1726ba833b66537bb0988c51debee4a44d8..2ae94135fe1161de8a3187dd177157a8
          } else if (id == R.id.quick_delete_menu_id
                  && QuickDeleteController.isQuickDeleteEnabled()) {
              assert !mTabModelSelector.getCurrentModel().isIncognito()
-@@ -2789,7 +2845,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
-             // See crbug.com/1473947.
-             if (mStartSurfaceSupplier.get() == null) {
-                 if (getTabModelSelector().getCurrentModel().getCount() == 0) {
--                    getCurrentTabCreator().launchNTP();
-+                    launchNTP();
-                 } else {
-                     mLayoutManager.showLayout(LayoutType.BROWSING, true);
-                 }
 @@ -3137,6 +3193,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
      public void onActivityResult(int requestCode, int resultCode, Intent data) {
          try (TraceEvent e = TraceEvent.scoped("ChromeTabbedActivity.onActivityResult")) {
@@ -165,18 +147,11 @@ index a9fff1726ba833b66537bb0988c51debee4a44d8..2ae94135fe1161de8a3187dd177157a8
          }
      }
  
-@@ -3294,4 +3351,55 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+@@ -3294,4 +3351,48 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
      private boolean skipSavingNonActiveNtps() {
          return StartSurfaceConfiguration.isNtpAsHomeSurfaceEnabled(isTablet());
      }
 +
-+    private void launchNTP() {
-+        if (getTabModelSelector().isIncognitoSelected()) {
-+            getCurrentTabCreator().launchIncognitoNTP();
-+        } else {
-+            getCurrentTabCreator().launchNTP(TabLaunchType.FROM_CHROME_UI);
-+        }
-+    }
 +    private void handleForward(final Tab currentTab) {
 +        String SCRIPT = "if(window.misesModule && window.misesModule.getWindowInformation){window.misesModule.getWindowInformation()} else {console.log('window.misesModule or window.misesModule.getWindowInformation is null')}";
 +        final Context context = ChromeTabbedActivity.this;

@@ -18,6 +18,30 @@
 #include "third_party/blink/public/web/web_script_controller.h"
 #include "url/gurl.h"
 
+#include "mises/renderer/mises_render_thread_observer.h"
+
+#include "third_party/widevine/cdm/buildflags.h"
+
+
+namespace {
+void MaybeRemoveWidevineSupport(media::GetSupportedKeySystemsCB cb,
+                                media::KeySystemInfos key_systems) {
+#if BUILDFLAG(ENABLE_WIDEVINE)
+  auto dynamic_params = MisesRenderThreadObserver::GetDynamicParams();
+  if (!dynamic_params.widevine_enabled) {
+    key_systems.erase(
+        base::ranges::remove(
+            key_systems, kWidevineKeySystem,
+            [](const std::unique_ptr<media::KeySystemInfo>& key_system) {
+              return key_system->GetBaseKeySystemName();
+            }),
+        key_systems.cend());
+  }
+#endif
+  cb.Run(std::move(key_systems));
+}
+
+}  // namespace
 
 MisesContentRendererClient::MisesContentRendererClient() = default;
 
@@ -46,6 +70,8 @@ MisesContentRendererClient::~MisesContentRendererClient() = default;
 
 void MisesContentRendererClient::RenderThreadStarted() {
   ChromeContentRendererClient::RenderThreadStarted();
+  mises_render_thread_observer_ = std::make_unique<MisesRenderThreadObserver>();
+  content::RenderThread::Get()->AddObserver(mises_render_thread_observer_.get());
   blink::WebScriptController::RegisterExtension(
     mises::SafeBuiltins::CreateV8Extension());
 }
@@ -58,10 +84,18 @@ void MisesContentRendererClient::RenderFrameCreated(
   if (base::FeatureList::IsEnabled(
           brave_wallet::features::kNativeBraveWalletFeature)) {
     new brave_wallet::BraveWalletRenderFrameObserver(
-        render_frame);
+        render_frame,
+        base::BindRepeating(&MisesRenderThreadObserver::GetDynamicParams));
   }
 
 }
+
+void MisesContentRendererClient::GetSupportedKeySystems(
+    media::GetSupportedKeySystemsCB cb) {
+  ChromeContentRendererClient::GetSupportedKeySystems(
+      base::BindRepeating(&MaybeRemoveWidevineSupport, cb));
+}
+
 
 void MisesContentRendererClient::RunScriptsAtDocumentStart(
     content::RenderFrame* render_frame) {

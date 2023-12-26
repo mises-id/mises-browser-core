@@ -7,6 +7,8 @@
 mises_chrome_renderer_sources = [
   "//mises/renderer/mises_content_renderer_client.cc",
   "//mises/renderer/mises_content_renderer_client.h",
+  "//mises/renderer/mises_render_thread_observer.cc",
+  "//mises/renderer/mises_render_thread_observer.h",
 ]
 
 mises_chrome_renderer_deps = [
