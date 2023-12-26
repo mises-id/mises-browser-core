@@ -20,6 +20,8 @@ import org.chromium.base.task.PostTask;
 import org.chromium.base.task.TaskTraits;
 import org.chromium.base.Callback;
 import org.chromium.base.Log;
+import org.chromium.base.task.PostTask;
+import org.chromium.base.task.TaskTraits;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.feature_engagement.TrackerFactory;
 import org.chromium.chrome.browser.flags.ChromeFeatureList;
@@ -87,7 +89,10 @@ public class MisesTileRenderer extends TileRenderer {
                     tile.setIconType(IconType.TOUCH_ICON);
                     setTileIconFromBitmap(tile, icon);
                 }
-               if (mLoadCompleteCallback != null) mLoadCompleteCallback.run();;
+                PostTask.postTask(TaskTraits.UI_DEFAULT, () -> {
+                    if (mLoadCompleteCallback != null) mLoadCompleteCallback.run();
+                });
+               
             }
 
             mTile.clear();
@@ -100,7 +105,7 @@ public class MisesTileRenderer extends TileRenderer {
             final MisesSiteSuggestion suggestion = (MisesSiteSuggestion)tile.getData();
             mImageFetcher.fetchImage(
                     ImageFetcher.Params.create(suggestion.iconUrl.getSpec(),
-                            ImageFetcher.FEED_UMA_CLIENT_NAME, mDesiredIconSize, mDesiredIconSize),
+                            ImageFetcher.QUERY_TILE_UMA_CLIENT_NAME, mDesiredIconSize, mDesiredIconSize),
                     new UrlIconCallbackImpl(tile, setupDelegate.createIconLoadCallback(tile)));
             return;
         }

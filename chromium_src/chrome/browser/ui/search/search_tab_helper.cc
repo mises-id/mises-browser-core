@@ -16,8 +16,8 @@ void SearchTabHelper::NavigationEntryCommitted(
   LOG(INFO) << "[Mises] SearchTabHelper::NavigationEntryCommitted";
   SearchTabHelper::NavigationEntryCommitted_Chromium(load_details);
 
-  if (search::IsInstantNTP(web_contents()) && instant_service_) {
-      instant_service_->OnNewTabPageOpened();
-  }
+  // if (search::IsInstantNTP(web_contents()) && instant_service_) {
+  //     instant_service_->OnNewTabPageOpened();
+  // }
 }
 

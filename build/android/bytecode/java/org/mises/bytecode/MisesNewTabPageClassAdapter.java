@@ -34,6 +34,9 @@ public class MisesNewTabPageClassAdapter extends MisesClassVisitor {
         deleteField(sMisesNewTabPageClassName, "mBottomSheetController");
         makeProtectedField(sNewTabPageClassName, "mBottomSheetController");
 
+        deleteField(sMisesNewTabPageClassName, "mJankTracker");
+        makeProtectedField(sNewTabPageClassName, "mJankTracker");
+
         makePublicMethod(sNewTabPageClassName, "updateSearchProviderHasLogo");
         addMethodAnnotation(
                 sMisesNewTabPageClassName, "updateSearchProviderHasLogo", "Ljava/lang/Override;");

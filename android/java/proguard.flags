@@ -8,6 +8,7 @@
 
 -keep class org.chromium.chrome.browser.ntp.NewTabPage {
     public <init>(...);
+    *** mJankTracker;
     *** mBrowserControlsStateProvider;
     *** mNewTabPageLayout;
     *** mFeedSurfaceProvider;

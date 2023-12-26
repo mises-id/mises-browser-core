@@ -398,10 +398,14 @@ public class MisesNewTabPageLayout
             boolean isSurfacePolishEnabled,
             boolean isSurfacePolishOmniboxColorEnabled,
             boolean isTablet) {
+        
+        // must init before super initialize
+        mTileGroupDelegateWrapper  = new TileGroupDelegateWrapper(tileGroupDelegate);
+
         super.initialize(
                 manager,
                 activity,
-                tileGroupDelegate,
+                mTileGroupDelegateWrapper,
                 searchProviderHasLogo,
                 searchProviderIsGoogle,
                 scrollDelegate,
@@ -415,7 +419,6 @@ public class MisesNewTabPageLayout
                 isSurfacePolishEnabled,
                 isSurfacePolishOmniboxColorEnabled,
                 isTablet);
-        mTileGroupDelegateWrapper  = new TileGroupDelegateWrapper(tileGroupDelegate);
 
         Log.d(TAG, "initialize " + searchProviderHasLogo);
         mActivity = activity;
@@ -434,7 +437,6 @@ public class MisesNewTabPageLayout
                         .setMaxRows(1);
             }
         }
-
         
         initializeMisesServiceTilesCoordinator(lifecycleDispatcher, mTileGroupDelegateWrapper,
                 touchEnabledDelegate, windowAndroid, manager);

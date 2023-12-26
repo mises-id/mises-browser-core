@@ -47,11 +47,12 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
     public TileGroupDelegateWrapper(TileGroup.Delegate wrapped) {
         Log.d(TAG, "New");
         mWrapped = wrapped;
+
         mWrapped.setMostVisitedSitesObserver(this, 12);
         loadWeb3SitesCache();
         updateWeb3SitesCache(false);
     }
-    public void setReady() {
+    public void setReady() {    
         mReady = true;
         handleCacheUpdate();
     }

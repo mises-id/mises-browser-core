@@ -95,7 +95,6 @@ public class MisesNewTabPage extends NewTabPage {
                 homeSurfaceTracker,
                 tabContentManagerSupplier);
 
-        mJankTracker = jankTracker;
         
         assert mNewTabPageLayout instanceof MisesNewTabPageLayout;
         if (mNewTabPageLayout instanceof MisesNewTabPageLayout) {
@@ -114,7 +113,6 @@ public class MisesNewTabPage extends NewTabPage {
 
         LayoutInflater inflater = LayoutInflater.from(activity);
         mNewTabPageLayout = (NewTabPageLayout) inflater.inflate(R.layout.new_tab_page_layout, null);
-
 
         assert !FeedFeatures.isFeedEnabled();
         FeedSurfaceCoordinator feedSurfaceCoordinator = new FeedSurfaceCoordinator(
