@@ -552,11 +552,11 @@ Config.prototype.buildArgs = function () {
     // https://github.com/mises/mises-browser/issues/10334
     args.dcheck_always_on = this.isComponentBuild()
 
-    args.ios_enable_content_widget_extension = false
-    args.ios_enable_search_widget_extension = false
-    args.ios_enable_share_extension = false
-    args.ios_enable_credential_provider_extension = false
-    args.ios_enable_widget_kit_extension = false
+    args.ios_enable_content_widget_extension = true
+    args.ios_enable_search_widget_extension = true
+    args.ios_enable_share_extension = true
+    args.ios_enable_credential_provider_extension = true
+    args.ios_enable_widget_kit_extension = true
 
     args.ios_partition_alloc_enabled = false
     
