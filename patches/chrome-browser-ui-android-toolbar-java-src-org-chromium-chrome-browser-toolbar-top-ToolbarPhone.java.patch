@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 404ff70b970ed28221ace433cd36c62c5eb9fa10..86019c2a441f916769b193463cbb5ae5b2d6e9a9 100644
+index 404ff70b970ed28221ace433cd36c62c5eb9fa10..99ff9933abb8a33ef426ca111dc79594aa9cfd2a 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -101,13 +101,53 @@ import java.util.ArrayList;
@@ -244,7 +244,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..86019c2a441f916769b193463cbb5ae5
              return getReadinessStateWithSuppression();
          } else {
              return CaptureReadinessResult.unknown(!(urlHasFocus() || mUrlFocusChangeInProgress));
-@@ -1858,13 +1958,21 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1858,13 +1958,18 @@ public class ToolbarPhone extends ToolbarLayout
  
      @Override
      public void updateButtonVisibility() {
@@ -261,13 +261,10 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..86019c2a441f916769b193463cbb5ae5
 +           if (mises_enforce || !ContextUtils.getAppSharedPreferences().getBoolean("enable_overscroll_button", true))
 +           mHandButton.setVisibility(GONE);
 +        }
-+        if (mises_enforce) {
-+            hideOptionalButton();
-+        }
      }
  
      @Override
-@@ -1886,6 +1994,15 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1886,6 +1991,15 @@ public class ToolbarPhone extends ToolbarLayout
          if (mLocationBar != null) mLocationBar.updateVisualsForState();
  
          if (mLayoutUpdater != null) mLayoutUpdater.run();
@@ -283,7 +280,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..86019c2a441f916769b193463cbb5ae5
      }
  
      @Override
-@@ -2031,6 +2148,11 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2031,6 +2145,11 @@ public class ToolbarPhone extends ToolbarLayout
                  ((RippleDrawable) drawable).jumpToCurrentState();
              }
          }
@@ -295,7 +292,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..86019c2a441f916769b193463cbb5ae5
      }
  
      @Override
-@@ -2350,7 +2472,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2350,7 +2469,8 @@ public class ToolbarPhone extends ToolbarLayout
  
      @Override
      public void onTabCountChanged(int numberOfTabs, boolean isIncognito) {
@@ -305,7 +302,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..86019c2a441f916769b193463cbb5ae5
          if (mToggleTabStackButton == null) return;
  
          @BrandedColorScheme
-@@ -2522,7 +2645,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2522,7 +2642,8 @@ public class ToolbarPhone extends ToolbarLayout
       * Update the visibility of the toolbar shadow.
       */
      private void updateShadowVisibility() {
@@ -315,7 +312,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..86019c2a441f916769b193463cbb5ae5
          int shadowVisibility = shouldDrawShadow ? View.VISIBLE : View.INVISIBLE;
  
          if (mToolbarShadow != null && mToolbarShadow.getVisibility() != shadowVisibility) {
-@@ -3110,4 +3234,254 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -3110,4 +3231,254 @@ public class ToolbarPhone extends ToolbarLayout
      void setNtpSearchBoxScrollFractionForTesting(float ntpSearchBoxScrollFraction) {
          mNtpSearchBoxScrollFraction = ntpSearchBoxScrollFraction;
      }

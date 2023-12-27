@@ -76,6 +76,7 @@ mises_java_base_module_deps = [
   "//mises/third_party/android_deps:com_wireguard_android_java",
   "//mises/third_party/open_mediation:open_mediation_sdk_java",
   "//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
+  "//mises/third_party/open_mediation:open_mediation_mintegral_adaptor_java",
   "//mises/third_party/open_mediation:open_mediation_cardslider_java",
   "//third_party/android_deps:playcore_java",
   "//third_party/androidx:androidx_core_core_java",

@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/OptionalBrowsingModeButtonController.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/OptionalBrowsingModeButtonController.java
+index d8e82b2d55e71afbbf088d7fbd212f67534c3523..0cf1adb73e33b7bac56ead192c6e2a266f980a1c 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/OptionalBrowsingModeButtonController.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/OptionalBrowsingModeButtonController.java
+@@ -136,6 +136,7 @@ public class OptionalBrowsingModeButtonController {
+             mUserEducationHelper.requestShowIPH(
+                     buttonData.getButtonSpec().getIPHCommandBuilder().build());
+         }
++        hideCurrentOptionalButton();
+     }
+ 
+     private void hideCurrentOptionalButton() {

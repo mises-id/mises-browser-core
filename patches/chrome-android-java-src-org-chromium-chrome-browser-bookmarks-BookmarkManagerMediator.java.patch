@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerMediator.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerMediator.java
-index e0cc3fa5d338f24dcbbe1bd7e07c0e143ab4c2aa..80cada913c5d43f9893af930832f38c996b0f456 100644
+index e0cc3fa5d338f24dcbbe1bd7e07c0e143ab4c2aa..6b13e4b3287cea1589a878d6dc2d50a2df58676e 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerMediator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerMediator.java
 @@ -73,6 +73,11 @@ import java.util.Stack;
@@ -49,3 +49,11 @@ index e0cc3fa5d338f24dcbbe1bd7e07c0e143ab4c2aa..80cada913c5d43f9893af930832f38c9
      void onBookmarkModelLoaded() {
          mDragStateDelegate.onBookmarkDelegateInitialized(this);
  
+@@ -517,6 +541,7 @@ class BookmarkManagerMediator
+ 
+     void onDestroy() {
+         mIsDestroyed = true;
++        mWindowAndroid.destroy();
+         mBookmarkModel.removeObserver(mBookmarkModelObserver);
+ 
+         mBookmarkImageFetcher.destroy();

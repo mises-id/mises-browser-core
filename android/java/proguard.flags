@@ -108,6 +108,7 @@
 # SDK API
 -keep class com.openmediation.sdk.**{*;}
 -keep class com.crosspromotion.sdk.**{*;}
+-keep class com.mbridge.msdk.**{*;}
 
 -keepattributes Signature,InnerClasses,SourceFile,LineNumberTable,EnclosingMethod
 

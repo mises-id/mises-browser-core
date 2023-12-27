@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2015 The Chromium Authors. All rights reserved.
-     Use of this source code is governed by a BSD-style license that can be
-     found in the LICENSE file. -->
+<!--
+Copyright 2015 The Chromium Authors
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
 
 <!-- TODO(crbug.com/1119550): explore replacing with a programmatically created
      menu.  -->
@@ -35,24 +37,18 @@
                 android:icon="@drawable/btn_reload_stop"/>
             </menu>
         </item>
-        <item android:id="@+id/mises_forward_menu_id"
-            android:title="@string/menu_mises_forward"
-            android:icon="@drawable/ic_menu_mises_forward" />
         <item android:id="@+id/update_menu_id"
             android:title="@string/menu_update"
             android:icon="@drawable/menu_update" />
         <item android:id="@+id/new_tab_menu_id"
             android:title="@string/menu_new_tab"
-            android:icon="@drawable/ic_new_tab" />
-        <item android:id="@+id/new_home_tab_menu_id"
-            android:title="@string/menu_new_home_tab"
-            android:icon="@drawable/btn_toolbar_home" />
+            android:icon="@drawable/ic_add_box_rounded_corner" />
         <item android:id="@+id/new_incognito_tab_menu_id"
             android:title="@string/menu_new_incognito_tab"
-            android:icon="@drawable/ic_incognito" />
+            android:icon="@drawable/incognito_simple" />
         <item android:id="@+id/new_window_menu_id"
             android:title="@string/menu_new_window"
-            android:icon="@drawable/ic_new_tab" />
+            android:icon="@drawable/ic_new_window" />
         <item android:id="@+id/move_to_other_window_menu_id"
             android:title="@string/menu_move_to_other_window"
             android:icon="@drawable/ic_open_in_browser" />
@@ -63,25 +59,21 @@
             android:title="@null" />
         <item android:id="@+id/open_history_menu_id"
             android:title="@string/menu_history"
-            android:icon="@drawable/ic_history_googblue_24dp" />        
+            android:icon="@drawable/ic_history_googblue_24dp" />
         <item android:id="@+id/quick_delete_menu_id"
             android:title="@string/menu_quick_delete"
             android:icon="@drawable/quick_delete_trash_bin_icon_24dp"/>
+        <item android:id="@+id/quick_delete_divider_line_id"
+            android:title="@null" />
         <item android:id="@+id/downloads_menu_id"
             android:title="@string/menu_downloads"
-            android:icon="@drawable/ic_downloads" />
+            android:icon="@drawable/infobar_download_complete" />
         <item android:id="@+id/all_bookmarks_menu_id"
             android:title="@string/menu_bookmarks"
-            android:icon="@drawable/ic_bookmarks" />
+            android:icon="@drawable/btn_star_filled" />
         <item android:id="@+id/recent_tabs_menu_id"
             android:title="@string/menu_recent_tabs"
-            android:icon="@drawable/ic_recent_tabs" />
-        <item android:id="@+id/extensions_id"
-            android:title="@string/main_menu_extensions"
-            android:icon="@drawable/ic_extensions" />
-        <item android:id="@+id/mises_wallet_id"
-            android:title="@string/main_menu_mises_wallet"
-            android:icon="@drawable/ic_mises_wallet" />
+            android:icon="@drawable/devices_black_24dp" />
         <item android:id="@id/divider_line_id"
             android:title="@null" />
         <item android:id="@+id/page_zoom_id"
@@ -92,7 +84,7 @@
           <menu>
               <item android:id="@+id/share_menu_id"
                 android:title="@string/menu_share_page"
-                android:icon="@drawable/ic_share" />
+                android:icon="@drawable/ic_share_white_24dp" />
               <item android:id="@+id/direct_share_menu_id"
                 android:title="@null" />
           </menu>
@@ -111,13 +103,13 @@
             android:icon="@drawable/price_tracking_enabled_filled" />
         <item android:id="@+id/find_in_page_id"
             android:title="@string/menu_find_in_page"
-            android:icon="@drawable/ic_find_in_page_r" />
-        <item android:id="@+id/readaloud_menu_id"
-            android:title="@string/menu_listen_to_this_page"
-             android:icon="@drawable/ic_play_circle" />
+            android:icon="@drawable/ic_find_in_page" />
         <item android:id="@+id/translate_id"
             android:title="@string/menu_translate"
-            android:icon="@drawable/ic_translate_r" />
+            android:icon="@drawable/ic_translate" />
+        <item android:id="@+id/readaloud_menu_id"
+            android:title="@string/menu_listen_to_this_page"
+            android:icon="@drawable/ic_play_circle" />
         <item android:id="@+id/add_to_homescreen_id"
             android:title="@string/menu_add_to_homescreen"
             android:icon="@drawable/ic_add_to_home_screen" />
@@ -132,38 +124,12 @@
           <menu>
               <item android:id="@+id/request_desktop_site_id"
                 android:title="@string/menu_request_desktop_site"
-                android:icon="@drawable/ic_desktop_mode" />
+                android:icon="@drawable/ic_desktop_windows" />
               <item android:id="@+id/request_desktop_site_check_id"
                 android:title="@null"
                 android:checkable="true" />
           </menu>
         </item>
-        <item android:id="@+id/adblock_row_menu_id"
-            android:title="@null">
-          <menu>
-              <item android:id="@+id/adblock_id"
-                android:title="@string/main_menu_adblock" />
-              <item android:id="@+id/adblock_check_id"
-                android:title="@null"
-                android:checkable="true" />
-          </menu>
-        </item>
-        <item android:id="@+id/page_zoom_id"
-            android:title="@string/page_zoom_title"
-            android:icon="@drawable/ic_zoom" />
-        <item android:id="@+id/paint_preview_show_id"
-            android:title="@string/menu_paint_preview_show"
-            android:icon="@drawable/ic_photo_camera" />
-        <item android:id="@+id/get_image_descriptions_id"
-            android:title="@string/menu_get_image_descriptions"
-            android:icon="@drawable/ic_image_descriptions"/>
-        <item android:id="@id/divider_line_id"
-            android:title="@null" />
-        <item android:id="@+id/reader_mode_prefs_id"
-            android:title="@string/menu_reader_mode_prefs"
-            android:icon="@drawable/reader_mode_prefs_icon" />
-        <item android:id="@+id/night_mode_switcher_id"
-            android:title="@string/main_menu_turn_on_night_mode" />
         <item android:id="@+id/auto_dark_web_contents_row_menu_id"
             android:title="@null">
           <menu>
@@ -175,12 +141,17 @@
                 android:checkable="true" />
           </menu>
         </item>
-        <item android:id="@+id/developer_tools_id"
-            android:title="@string/main_menu_developer_tools"
-		android:icon="@drawable/ic_devtools" />
-        <item android:id="@+id/disable_proxy_id"
-		            android:title="Disable Proxy"
-		            android:icon="@drawable/ic_devtools" />
+        <item android:id="@+id/paint_preview_show_id"
+            android:title="@string/menu_paint_preview_show"
+            android:icon="@drawable/ic_photo_camera" />
+        <item android:id="@+id/get_image_descriptions_id"
+            android:title="@string/menu_get_image_descriptions"
+            android:icon="@drawable/ic_image_descriptions"/>
+        <item android:id="@id/divider_line_id"
+            android:title="@null" />
+        <item android:id="@+id/reader_mode_prefs_id"
+            android:title="@string/menu_reader_mode_prefs"
+            android:icon="@drawable/reader_mode_prefs_icon" />
         <item android:id="@+id/preferences_id"
             android:title="@string/menu_settings"
             android:icon="@drawable/settings_cog" />
@@ -191,11 +162,7 @@
             android:title="@null" />
         <item android:id="@+id/managed_by_menu_id"
             android:title="@string/managed_browser"
-		android:icon="@drawable/ic_business" />
-       <item android:id="@+id/clear_data_menu_id"
-            android:title="@string/main_menu_clear_data" />
-        <item android:id="@+id/exit_id"
-            android:title="@string/main_menu_exit" />	
+            android:icon="@drawable/ic_business" />
     </group>
 
     <!-- Items shown only in the tab switcher -->
@@ -203,27 +170,22 @@
         android:visible="false">
         <item android:id="@id/new_tab_menu_id"
             android:title="@string/menu_new_tab"
-            android:icon="@drawable/ic_new_tab" />
+            android:icon="@drawable/ic_add_box_rounded_corner" />
         <item android:id="@id/new_incognito_tab_menu_id"
             android:title="@string/menu_new_incognito_tab"
-            android:icon="@drawable/ic_incognito" />
+            android:icon="@drawable/incognito_simple" />
         <item android:id="@+id/close_all_tabs_menu_id"
             android:title="@string/menu_close_all_tabs"
             android:icon="@drawable/btn_close_white" />
         <item android:id="@+id/close_all_incognito_tabs_menu_id"
             android:title="@string/menu_close_all_incognito_tabs"
             android:icon="@drawable/btn_close_white" />
-        <item android:id="@id/quick_delete_menu_id"
-            android:title="@string/menu_quick_delete"
-            android:icon="@drawable/quick_delete_trash_bin_icon_24dp"/>
-        <item android:id="@+id/quick_delete_divider_line_id"
-            android:title="@null" />
-        <item android:id="@+id/menu_group_tabs"
-            android:title="@string/menu_group_tabs"
-            android:icon="@drawable/ic_widgets" />
         <item android:id="@+id/menu_select_tabs"
             android:title="@string/menu_select_tabs"
             android:icon="@drawable/ic_select_tabs" />
+        <item android:id="@id/quick_delete_menu_id"
+            android:title="@string/menu_quick_delete"
+            android:icon="@drawable/quick_delete_trash_bin_icon_24dp"/>
         <item android:id="@id/preferences_id"
             android:title="@string/menu_settings"
             android:icon="@drawable/settings_cog" />
@@ -234,10 +196,10 @@
         android:visible="false">
         <item android:id="@id/new_tab_menu_id"
             android:title="@string/menu_new_tab"
-            android:icon="@drawable/ic_new_tab" />
+            android:icon="@drawable/ic_add_box_rounded_corner" />
         <item android:id="@id/new_incognito_tab_menu_id"
             android:title="@string/menu_new_incognito_tab"
-            android:icon="@drawable/ic_incognito" />
+            android:icon="@drawable/incognito_simple" />
         <item android:id="@id/preferences_id"
             android:title="@string/menu_settings"
             android:icon="@drawable/settings_cog" />

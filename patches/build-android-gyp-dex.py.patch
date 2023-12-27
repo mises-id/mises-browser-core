@@ -1,0 +1,12 @@
+diff --git a/build/android/gyp/dex.py b/build/android/gyp/dex.py
+index ae87291066f3f9782ab087993ab130d70105ffa2..75809e64a430b4d5ebf6a3b6fbb8d3f570a77c54 100755
+--- a/build/android/gyp/dex.py
++++ b/build/android/gyp/dex.py
+@@ -404,6 +404,7 @@ def MergeDexForIncrementalInstall(r8_jar_path, src_paths, dest_dex_jar,
+ def main(args):
+   build_utils.InitLogging('DEX_DEBUG')
+   options = _ParseArgs(args)
++  options.warnings_as_errors = False
+ 
+   options.class_inputs += options.class_inputs_filearg
+   options.dex_inputs += options.dex_inputs_filearg

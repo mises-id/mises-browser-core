@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
-index 10becbd14aa99ec5f67e97e07cb591d5eb823cb1..1378ca97517b909746a8ac27f17f107ca07d4afe 100644
+index 10becbd14aa99ec5f67e97e07cb591d5eb823cb1..f27966840a37df38a6bf4310eccd233f12317a21 100644
 --- a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
 +++ b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml
 @@ -26,6 +26,16 @@ found in the LICENSE file.
@@ -19,7 +19,7 @@ index 10becbd14aa99ec5f67e97e07cb591d5eb823cb1..1378ca97517b909746a8ac27f17f107c
      <org.chromium.chrome.browser.omnibox.LocationBarPhone
          android:id="@+id/location_bar"
          android:layout_width="match_parent"
-@@ -50,11 +60,26 @@ found in the LICENSE file.
+@@ -50,11 +60,27 @@ found in the LICENSE file.
              android:layout_width="52dp"
              style="@style/ToolbarHoverableButton" />
  
@@ -30,8 +30,8 @@ index 10becbd14aa99ec5f67e97e07cb591d5eb823cb1..1378ca97517b909746a8ac27f17f107c
 +
 +        <org.chromium.ui.widget.ChromeImageButton
 +            android:id="@+id/mises_extension_button"
-+	    style="@style/ToolbarButton"
-+	    android:paddingStart="8dp"
++	        style="@style/ToolbarButton"
++	        android:paddingStart="8dp"
 +            android:layout_gravity="top"
 +            android:src="@drawable/btn_extension"
 +            app:tint="@color/default_icon_color_tint_list"
@@ -44,6 +44,7 @@ index 10becbd14aa99ec5f67e97e07cb591d5eb823cb1..1378ca97517b909746a8ac27f17f107c
              android:background="@drawable/toolbar_tab_switcher_button_ripple"
 -            android:paddingStart="@dimen/toolbar_tab_switcher_button_padding"
 +            android:paddingStart="0dp"
++            android:paddingEnd="0dp"
              android:layout_gravity="top"
              android:contentDescription="@string/accessibility_toolbar_btn_tabswitcher_toggle_default"
              app:menuMaxWidth="@dimen/tab_switcher_menu_width"
