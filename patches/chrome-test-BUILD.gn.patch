@@ -1,5 +1,5 @@
 diff --git a/chrome/test/BUILD.gn b/chrome/test/BUILD.gn
-index d1fc184a7d8cffec6b247cab7933d54d38ac59dc..51902bd7648c5caee979a1eb345fd9abb2e33c02 100644
+index 513f89056096f8567ef68e90934f8a4f1f9081e2..1f2a54dc7672ebf214eede33803f518458cca856 100644
 --- a/chrome/test/BUILD.gn
 +++ b/chrome/test/BUILD.gn
 @@ -478,6 +478,7 @@ static_library("test_support") {
@@ -10,7 +10,7 @@ index d1fc184a7d8cffec6b247cab7933d54d38ac59dc..51902bd7648c5caee979a1eb345fd9ab
    data_deps = []
  
    if (enable_pdf) {
-@@ -9065,6 +9066,10 @@ test("unit_tests") {
+@@ -9067,6 +9068,10 @@ test("unit_tests") {
        "//tools/json_schema_compiler/test:unit_tests",
      ]
  

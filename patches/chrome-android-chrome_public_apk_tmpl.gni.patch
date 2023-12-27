@@ -1,8 +1,8 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index 13ab7ec536d429e3444ab640c790b51af183be33..fd83752f6b884e72591a0b5d21912d890737412f 100644
+index 43a9301530e6ee92c79ea5b375f2fcecfadcb34b..05c2dbffeac5b34b4a4261f91eba950a3abef95c 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
-@@ -333,6 +333,7 @@ template("chrome_common_apk_or_module_tmpl") {
+@@ -337,6 +337,7 @@ template("chrome_common_apk_or_module_tmpl") {
  
        proguard_enabled = true
        proguard_configs = [ "//chrome/android/proguard/main.flags" ]
@@ -10,7 +10,7 @@ index 13ab7ec536d429e3444ab640c790b51af183be33..fd83752f6b884e72591a0b5d21912d89
        if (_is_monochrome) {
          proguard_configs +=
              [ "//android_webview/nonembedded/java/proguard.flags" ]
-@@ -744,6 +745,7 @@ template("chrome_common_apk_or_module_tmpl") {
+@@ -748,6 +749,7 @@ template("chrome_common_apk_or_module_tmpl") {
                                   "version_code",
                                   "version_name",
                                 ])
@@ -18,7 +18,7 @@ index 13ab7ec536d429e3444ab640c790b51af183be33..fd83752f6b884e72591a0b5d21912d89
    }
  }
  
-@@ -772,6 +774,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
+@@ -776,6 +778,7 @@ template("monochrome_public_common_apk_or_module_tmpl") {
      if (!defined(is_monochrome)) {
        is_trichrome = true
      }

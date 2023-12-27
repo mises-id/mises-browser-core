@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
-index 4468f903aba749822db38d38e6c2d7778736072a..231fa84051416dd38c342b8fd93b839474b10e4c 100644
+index 728151300ef075cf94f20f210c928671275349e1..8c9586b7b134820c209b767c2b8754f38a35e912 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
-@@ -564,8 +564,8 @@ public class StatusMediator
+@@ -565,8 +565,8 @@ public class StatusMediator
              return true;
          }
  
