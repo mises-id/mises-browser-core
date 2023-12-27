@@ -147,7 +147,6 @@ source_set("ui") {
   if (!is_android) {
     deps += [
       "//mises/browser/resources/settings:resources",
-      "//chrome/app:chromium_strings",
       "//components/sync_device_info",
       "//mojo/public/cpp/bindings",
       "//third_party/blink/public/common",
