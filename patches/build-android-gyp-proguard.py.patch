@@ -1,8 +1,16 @@
 diff --git a/build/android/gyp/proguard.py b/build/android/gyp/proguard.py
-index f89f7c5fb97bf2bb9e5a141a8d4a88ac1c7014f0..bc4a6930e6589c41ec3d3978371eee15883cd06a 100755
+index f89f7c5fb97bf2bb9e5a141a8d4a88ac1c7014f0..948ffee68614f034c61d68d68d38d003f4a8e136 100755
 --- a/build/android/gyp/proguard.py
 +++ b/build/android/gyp/proguard.py
-@@ -331,6 +331,7 @@ def _OptimizeWithR8(options, config_paths, libraries, dynamic_config_data):
+@@ -60,6 +60,7 @@ _IGNORE_WARNINGS = (
+     # We are following up in b/290389974
+     r'AppSearchDocumentClassMap\.class:.*Could not inline ServiceLoader\.load',
+ )
++_IGNORE_WARNINGS += ( r'InnerClasses attribute has entries missing a corresponding EnclosingMethod attribute. Such InnerClasses attribute entries are ignored.', r'google_play_services_ads_java', r'google_play_services_measurement_java')
+ 
+ _BLOCKLISTED_EXPECTATION_PATHS = [
+     # A separate expectation file is created for these files.
+@@ -331,6 +332,7 @@ def _OptimizeWithR8(options, config_paths, libraries, dynamic_config_data):
          '--pg-map-output',
          tmp_mapping_path,
      ]
@@ -10,7 +18,7 @@ index f89f7c5fb97bf2bb9e5a141a8d4a88ac1c7014f0..bc4a6930e6589c41ec3d3978371eee15
  
      if options.disable_checks:
        cmd += ['--map-diagnostics:CheckDiscardDiagnostic', 'error', 'none']
-@@ -467,6 +468,8 @@ def _CheckForMissingSymbols(r8_path, dex_files, classpath, warnings_as_errors,
+@@ -467,6 +469,8 @@ def _CheckForMissingSymbols(r8_path, dex_files, classpath, warnings_as_errors,
  
          # Found in: com/facebook/fbui/textlayoutbuilder/StaticLayoutHelper
          'android.text.StaticLayout.<init>',
@@ -19,12 +27,11 @@ index f89f7c5fb97bf2bb9e5a141a8d4a88ac1c7014f0..bc4a6930e6589c41ec3d3978371eee15
          # TODO(crbug/1426964): Remove once chrome builds with Android U SDK.
          ' android.',
  
-@@ -719,7 +722,7 @@ def _Run(options):
+@@ -719,7 +723,6 @@ def _Run(options):
  def main():
    build_utils.InitLogging('PROGUARD_DEBUG')
    options = _ParseOptions()
 -
-+  options.warnings_as_errors = False
    if options.dump_inputs:
      # Dumping inputs causes output to be emitted, avoid failing due to stdout.
      options.warnings_as_errors = False

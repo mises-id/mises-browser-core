@@ -3,7 +3,7 @@ import("//build/config/android/rules.gni")
 
 
 android_aar_prebuilt("mintegral_same_java") {
-  aar_path = "same-16.3.61.aar"
+  aar_path = "same-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_same.info"
@@ -14,7 +14,7 @@ android_aar_prebuilt("mintegral_same_java") {
 
 
 android_aar_prebuilt("mintegral_dycreator_java") {
-  aar_path = "dycreator-16.3.61.aar"
+  aar_path = "dycreator-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_dycreator.info"
@@ -25,7 +25,7 @@ android_aar_prebuilt("mintegral_dycreator_java") {
 }
 
 android_aar_prebuilt("mintegral_mbjscommon_java") {
-  aar_path = "mbjscommon-16.3.61.aar"
+  aar_path = "mbjscommon-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_mbjscommon.info"
@@ -36,7 +36,7 @@ android_aar_prebuilt("mintegral_mbjscommon_java") {
 }
 
 android_aar_prebuilt("mintegral_videocommon_java") {
-  aar_path = "videocommon-16.3.61.aar"
+  aar_path = "videocommon-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_videocommon.info"
@@ -48,7 +48,7 @@ android_aar_prebuilt("mintegral_videocommon_java") {
 
 
 android_aar_prebuilt("mintegral_nativeex_java") {
-  aar_path = "nativeex-16.3.61.aar"
+  aar_path = "nativeex-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_nativeex.info"
@@ -59,7 +59,7 @@ android_aar_prebuilt("mintegral_nativeex_java") {
 }
 
 android_aar_prebuilt("mintegral_videojs_java") {
-  aar_path = "videojs-16.3.61.aar"
+  aar_path = "videojs-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_videojs.info"
@@ -71,7 +71,7 @@ android_aar_prebuilt("mintegral_videojs_java") {
 
 
 android_aar_prebuilt("mintegral_playercommon_java") {
-  aar_path = "playercommon-16.3.61.aar"
+  aar_path = "playercommon-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_playercommon.info"
@@ -82,7 +82,7 @@ android_aar_prebuilt("mintegral_playercommon_java") {
 }
 
 android_aar_prebuilt("mintegral_mbbid_java") {
-  aar_path = "mbbid-16.3.61.aar"
+  aar_path = "mbbid-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_mbbid.info"
@@ -94,7 +94,7 @@ android_aar_prebuilt("mintegral_mbbid_java") {
 
 
 android_aar_prebuilt("mintegral_mbbanner_java") {
-  aar_path = "mbbanner-16.3.61.aar"
+  aar_path = "mbbanner-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_mbbanner.info"
@@ -109,7 +109,7 @@ android_aar_prebuilt("mintegral_mbbanner_java") {
 
 
 android_aar_prebuilt("mintegral_reward_java") {
-  aar_path = "reward-16.3.61.aar"
+  aar_path = "reward-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_reward.info"
@@ -127,7 +127,7 @@ android_aar_prebuilt("mintegral_reward_java") {
 
 
 android_aar_prebuilt("mintegral_mbnative_java") {
-  aar_path = "mbnative-16.3.61.aar"
+  aar_path = "mbnative-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_mbnative.info"
@@ -146,7 +146,7 @@ android_aar_prebuilt("mintegral_mbnative_java") {
 
 
 android_aar_prebuilt("mintegral_mbsplash_java") {
-  aar_path = "mbsplash-16.3.61.aar"
+  aar_path = "mbsplash-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_mbsplash.info"
@@ -164,7 +164,7 @@ android_aar_prebuilt("mintegral_mbsplash_java") {
 
 
 android_aar_prebuilt("mintegral_interstitialvideo_java") {
-  aar_path = "interstitialvideo-16.3.61.aar"
+  aar_path = "interstitialvideo-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_interstitialvideo.info"
@@ -180,7 +180,7 @@ android_aar_prebuilt("mintegral_interstitialvideo_java") {
 }
 
 android_aar_prebuilt("mintegral_newinterstitial_java") {
-  aar_path = "newinterstitial-16.3.61.aar"
+  aar_path = "newinterstitial-16.4.11.aar"
   extract_native_libraries = true
   ignore_manifest = false
   info_path = "mintegral_newinterstitial.info"
