@@ -22,6 +22,13 @@ android_aar_prebuilt("mintegral_dycreator_java") {
     ":mintegral_same_java",
   ]
   enable_bytecode_checks = false
+  resource_exclusion_globs = [
+    "res/drawable/mbridge_shape_splash_corners_14.xml",
+    "res/drawable/mbridge_splash_button_bg_gray.xml",
+    "res/drawable/mbridge_splash_button_bg_green.xml",
+    "res/drawable/mbridge_splash_close_bg.xml",
+    "res/drawable-hdpi-v4/mbridge_splash_notice.png",
+  ]
 }
 
 android_aar_prebuilt("mintegral_mbjscommon_java") {
@@ -196,3 +203,40 @@ android_aar_prebuilt("mintegral_newinterstitial_java") {
   enable_bytecode_checks = false
 }
 
+
+android_aar_prebuilt("mintegral_interstitial_java") {
+  aar_path = "interstitial-16.4.11.aar"
+  extract_native_libraries = true
+  ignore_manifest = false
+  info_path = "mintegral_interstitial.info"
+  deps = [
+    ":mintegral_same_java",
+    ":mintegral_mbjscommon_java",
+  ]
+  enable_bytecode_checks = false
+}
+
+
+android_aar_prebuilt("mintegral_mbnativeadvanced_java") {
+  aar_path = "mbnativeadvanced-16.4.11.aar"
+  extract_native_libraries = true
+  ignore_manifest = false
+  info_path = "mintegral_mbnativeadvanced.info"
+  deps = [
+    ":mintegral_same_java",
+    ":mintegral_mbjscommon_java",
+    ":mintegral_videocommon_java",
+  ]
+  enable_bytecode_checks = false
+}
+
+
+android_aar_prebuilt("mintegral_conscrypt_java") {
+  aar_path = "conscrypt-android-2.5.2.aar"
+  extract_native_libraries = true
+  ignore_manifest = false
+  info_path = "mintegral_conscrypt.info"
+  deps = [
+  ]
+  enable_bytecode_checks = false
+}
