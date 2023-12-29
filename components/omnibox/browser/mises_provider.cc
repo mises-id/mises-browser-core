@@ -28,7 +28,7 @@
 // Search Secondary Provider (suggestion)                              |  100++
 const int MisesProvider::kRelevance = 10000;
 const int MisesProvider::kBaseRelevance = 1299;
-
+#define kScheme  u"https://"
 
 MisesProvider::MisesProvider(AutocompleteProviderClient* client, AutocompleteProviderListener* listener)
          : AutocompleteProvider(AutocompleteProvider::TYPE_SEARCH), client_(client){
@@ -60,7 +60,6 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
   // LOG(INFO) << "Cg MisesProvider::Start find input_text="
   //     << input_text;
   ACMatches mises_matches;
-   static const std::u16string kScheme(u"https://");
   for (auto& mises_match : mises_matches_ ) {
     std::u16string domain_name = mises_match.fill_into_edit;
     const std::string domain_name_text = base::UTF16ToUTF8(domain_name);
@@ -279,7 +278,6 @@ void MisesProvider::AddMatch(const std::u16string& match_string,
                              const size_t &foundPos,
                              const int relevance
                              ) {
-  static const std::u16string kScheme(u"https://");
   AutocompleteMatch match(this, kRelevance, false,
                           AutocompleteMatchType::NAVSUGGEST);
   match.fill_into_edit = match_string;
