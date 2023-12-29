@@ -9,6 +9,7 @@
 #include <string>
 
 #include "base/functional/callback_forward.h"
+#include "base/memory/raw_ptr.h"
 #include "chrome/browser/notifications/notification_handler.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
 
@@ -38,7 +39,7 @@ class AdsNotificationHandler : public NotificationHandler {
   void OpenSettings(Profile* profile, const GURL& origin) override;
 
  private:
-  Profile* profile_ = nullptr;  // NOT OWNED
+  raw_ptr<Profile> profile_ = nullptr;  // NOT OWNED
 
   AdsNotificationHandler(const AdsNotificationHandler&) = delete;
   AdsNotificationHandler& operator=(const AdsNotificationHandler&) = delete;

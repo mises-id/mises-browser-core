@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/values-xlarge/dimens.xml b/chrome/android/java/res/values-xlarge/dimens.xml
 old mode 100644
 new mode 100755
-index 8a7b3770455f2a539660a3309846e6ceaec0db3f..2903e479b7f552954014fbe76e24f1cae4c0fdda
+index 33c203fe88183b85577a6e991d46dcd1a5801656..2903e479b7f552954014fbe76e24f1cae4c0fdda
 --- a/chrome/android/java/res/values-xlarge/dimens.xml
 +++ b/chrome/android/java/res/values-xlarge/dimens.xml
 @@ -1,9 +1,7 @@
@@ -17,3 +17,12 @@ index 8a7b3770455f2a539660a3309846e6ceaec0db3f..2903e479b7f552954014fbe76e24f1ca
  
  <resources>
      <!-- Copy of corresponding abc_* values from AppCompat. Used by
+@@ -12,8 +10,4 @@ found in the LICENSE file.
+     <item type="dimen" name="dialog_fixed_width_minor">70%</item>
+     <item type="dimen" name="dialog_fixed_height_major">60%</item>
+     <item type="dimen" name="dialog_fixed_height_minor">90%</item>
+-    <item type="dimen" name="dialog_fixed_width_major_automotive">50%</item>
+-    <item type="dimen" name="dialog_fixed_width_minor_automotive">70%</item>
+-    <item type="dimen" name="dialog_fixed_height_major_automotive">70%</item>
+-    <item type="dimen" name="dialog_fixed_height_minor_automotive">90%</item>
+ </resources>

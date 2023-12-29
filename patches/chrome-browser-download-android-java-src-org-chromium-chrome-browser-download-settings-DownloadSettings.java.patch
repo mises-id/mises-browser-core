@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
-index 4bf774882c24d183bf9fe7f92f06b6c9e9fa6158..503ea3732dc70c7c9c015d7f73d9af438940439e 100644
+index fd4f1977f0257124275599398013e7e7c298e147..4c5973f20118d706c1e864afb6835153a05b1e8d 100644
 --- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
 +++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
-@@ -22,6 +22,29 @@ import org.chromium.components.browser_ui.settings.SettingsUtils;
- import org.chromium.components.prefs.PrefService;
- import org.chromium.components.user_prefs.UserPrefs;
+@@ -18,6 +18,29 @@ import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
+ import org.chromium.components.browser_ui.settings.ManagedPreferenceDelegate;
+ import org.chromium.components.browser_ui.settings.SettingsUtils;
  
 +import android.content.ComponentName;
 +import android.app.Activity;
@@ -32,7 +32,7 @@ index 4bf774882c24d183bf9fe7f92f06b6c9e9fa6158..503ea3732dc70c7c9c015d7f73d9af43
  /**
   * Fragment containing Download settings.
   */
-@@ -35,6 +58,8 @@ public class DownloadSettings
+@@ -30,6 +53,8 @@ public class DownloadSettings
      private ChromeSwitchPreference mLocationPromptEnabledPref;
      private ManagedPreferenceDelegate mLocationPromptEnabledPrefDelegate;
  
@@ -41,7 +41,7 @@ index 4bf774882c24d183bf9fe7f92f06b6c9e9fa6158..503ea3732dc70c7c9c015d7f73d9af43
      @Override
      public void onCreatePreferences(@Nullable Bundle savedInstanceState, String s) {
          getActivity().setTitle(R.string.menu_downloads);
-@@ -54,6 +79,8 @@ public class DownloadSettings
+@@ -46,6 +71,8 @@ public class DownloadSettings
          };
          mLocationPromptEnabledPref.setManagedPreferenceDelegate(mLocationPromptEnabledPrefDelegate);
          mLocationChangePref = (DownloadLocationPreference) findPreference(PREF_LOCATION_CHANGE);
@@ -50,7 +50,7 @@ index 4bf774882c24d183bf9fe7f92f06b6c9e9fa6158..503ea3732dc70c7c9c015d7f73d9af43
      }
  
      @Override
-@@ -89,6 +116,31 @@ public class DownloadSettings
+@@ -81,6 +108,31 @@ public class DownloadSettings
              mLocationPromptEnabledPref.setChecked(isLocationPromptEnabled);
              mLocationPromptEnabledPref.setEnabled(true);
          }
@@ -82,7 +82,7 @@ index 4bf774882c24d183bf9fe7f92f06b6c9e9fa6158..503ea3732dc70c7c9c015d7f73d9af43
      }
  
      // Preference.OnPreferenceChangeListener implementation.
-@@ -106,6 +158,36 @@ public class DownloadSettings
+@@ -98,6 +150,36 @@ public class DownloadSettings
                  DownloadDialogBridge.setPromptForDownloadAndroid(DownloadPromptStatus.DONT_SHOW);
              }
          }

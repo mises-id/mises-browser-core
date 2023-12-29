@@ -1,8 +1,8 @@
 diff --git a/components/policy/resources/templates/policy_definitions/Miscellaneous/DeveloperToolsAvailability.yaml b/components/policy/resources/templates/policy_definitions/Miscellaneous/DeveloperToolsAvailability.yaml
-index 62f0664e60177270c008e78bfc6345364b38d77c..2f74f086aae206c7e42f785d91f44281335d7b1e 100644
+index eafc642f0b73d2a3c67fd478aa1510bd93073170..a5fa27c3d57e6099432c9897ca7bb194f19ec493 100644
 --- a/components/policy/resources/templates/policy_definitions/Miscellaneous/DeveloperToolsAvailability.yaml
 +++ b/components/policy/resources/templates/policy_definitions/Miscellaneous/DeveloperToolsAvailability.yaml
-@@ -39,5 +39,6 @@ schema:
+@@ -43,5 +43,6 @@ schema:
  supported_on:
  - chrome.*:68-
  - chrome_os:68-

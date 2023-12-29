@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/profiles/profiles_state.cc b/chrome/browser/profiles/profiles_state.cc
-index 77ce3cfa3f4dd00a7fb6af413414b607c5677e76..40f3a02cebee8acd295c5b06426484a1ff8e47c8 100644
+index 0125f6c344f42b991a4c414cf47a66dc5072f010..c06f43b863509ec84d9bd8c0c4a37a8793ba485c 100644
 --- a/chrome/browser/profiles/profiles_state.cc
 +++ b/chrome/browser/profiles/profiles_state.cc
 @@ -33,7 +33,7 @@
@@ -11,7 +11,7 @@ index 77ce3cfa3f4dd00a7fb6af413414b607c5677e76..40f3a02cebee8acd295c5b06426484a1
  #include "chrome/browser/ui/browser.h"
  #endif
  
-@@ -105,7 +105,7 @@ void SetLastUsedProfile(const base::FilePath& profile_dir) {
+@@ -106,7 +106,7 @@ void SetLastUsedProfile(const base::FilePath& profile_dir) {
    local_state->SetFilePath(prefs::kProfileLastUsed, profile_dir);
  }
  

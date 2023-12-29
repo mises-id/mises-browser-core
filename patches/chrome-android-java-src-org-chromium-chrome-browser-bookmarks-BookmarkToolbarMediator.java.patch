@@ -1,0 +1,19 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkToolbarMediator.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkToolbarMediator.java
+index 49006cbcd8a63d50885c1dc2244b40677c690d3f..8d011f662e63af605854518e546d0a34b602f05b 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkToolbarMediator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkToolbarMediator.java
+@@ -189,7 +189,13 @@ class BookmarkToolbarMediator
+         } else if (id == R.id.close_menu_id) {
+             BookmarkUtils.finishActivityOnPhone(mContext);
+             return true;
+-        } else if (id == R.id.search_menu_id) {
++        } else if (id == R.id.import_bookmarks) {
++            mBookmarkDelegate.importBookmarks();
++            return true;
++        } else if (id == R.id.export_bookmarks) {
++            mBookmarkDelegate.exportBookmarks();
++            return true;
++        }  else if (id == R.id.search_menu_id) {
+             assert mBookmarkDelegate != null;
+             mBookmarkDelegate.openSearchUi();
+             mModel.set(BookmarkToolbarProperties.NAVIGATION_BUTTON_STATE, NavigationButton.BACK);

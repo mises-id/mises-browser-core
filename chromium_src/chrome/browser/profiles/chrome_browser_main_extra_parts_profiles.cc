@@ -12,7 +12,6 @@
 #include "chrome/browser/storage/storage_notification_service_factory.h"
 #include "chrome/browser/ui/global_error/global_error_service_factory.h"
 #include "chrome/browser/ui/media_router/media_router_ui_service_factory.h"
-#include "chrome/browser/ui/user_education/user_education_service_factory.h"
 #include "chrome/browser/usb/usb_chooser_context_factory.h"
 #include "components/commerce/core/proto/cart_db_content.pb.h"
 #include "components/commerce/core/proto/coupon_db_content.pb.h"
@@ -35,17 +34,16 @@ void ChromeBrowserMainExtraPartsProfiles::
   AccountInvestigatorFactory::GetInstance();
   AccountReconcilorFactory::GetInstance();
   AdaptiveQuietNotificationPermissionUiEnabler::Factory::GetInstance();
-
-  autofill::PersonalDataManagerFactory::GetInstance();
-  autofill::AutofillOfferManagerFactory::GetInstance();
-  autofill::MerchantPromoCodeManagerFactory::GetInstance();
+  // autofill::PersonalDataManagerFactory::GetInstance();
+  // autofill::AutofillOfferManagerFactory::GetInstance();
+  // autofill::MerchantPromoCodeManagerFactory::GetInstance();
 
   BookmarkModelFactory::GetInstance();
   BookmarkUndoServiceFactory::GetInstance();
   if (breadcrumbs::IsEnabled())
     BreadcrumbManagerKeyedServiceFactory::GetInstance();
   browser_sync::UserEventServiceFactory::GetInstance();
-  BrowsingDataHistoryObserverService::Factory::GetInstance();
+  // BrowsingDataHistoryObserverService::Factory::GetInstance();
   browsing_topics::BrowsingTopicsServiceFactory::GetInstance();
 
 #if BUILDFLAG(ENABLE_CAPTIVE_PORTAL_DETECTION)
@@ -74,7 +72,7 @@ void ChromeBrowserMainExtraPartsProfiles::
   ExitTypeServiceFactory::GetInstance();
 #endif
 #if BUILDFLAG(IS_ANDROID)
-  explore_sites::ExploreSitesServiceFactory::GetInstance();
+  FastCheckoutCapabilitiesFetcherFactory::GetInstance();
 #endif
   FaviconServiceFactory::GetInstance();
   feature_engagement::TrackerFactory::GetInstance();
@@ -84,7 +82,6 @@ void ChromeBrowserMainExtraPartsProfiles::
   GAIAInfoUpdateServiceFactory::GetInstance();
 #endif
 
-  GoogleSearchDomainMixingMetricsEmitterFactory::GetInstance();
   HistoryServiceFactory::GetInstance();
 
   HostContentSettingsMapFactory::GetInstance();
@@ -93,10 +90,6 @@ void ChromeBrowserMainExtraPartsProfiles::
   InMemoryURLIndexFactory::GetInstance();
 
   LanguageModelManagerFactory::GetInstance();
-  if (base::FeatureList::IsEnabled(
-          permissions::features::kOneTimeGeolocationPermission)) {
-    LastTabStandingTrackerFactory::GetInstance();
-  }
   login_detection::LoginDetectionKeyedServiceFactory::GetInstance();
 
 #if BUILDFLAG(IS_ANDROID)
@@ -119,7 +112,7 @@ void ChromeBrowserMainExtraPartsProfiles::
   if (optimization_guide::switches::ShouldValidateModel())
     optimization_guide::ModelValidatorKeyedServiceFactory::GetInstance();
   page_load_metrics::PageLoadMetricsMemoryTrackerFactory::GetInstance();
-  PasswordStoreFactory::GetInstance();
+  ProfilePasswordStoreFactory::GetInstance();
   PermissionAuditingServiceFactory::GetInstance();
   SessionProtoDBFactory<
       persisted_state_db::PersistedStateContentProto>::GetInstance();
@@ -166,10 +159,6 @@ void ChromeBrowserMainExtraPartsProfiles::
 
   ReadingListModelFactory::GetInstance();
 
-#if BUILDFLAG(IS_ANDROID)
-  ReadingListManagerFactory::GetInstance();
-  ReadingListNotificationServiceFactory::GetInstance();
-#endif
 
   RendererUpdaterFactory::GetInstance();
 
@@ -190,7 +179,7 @@ void ChromeBrowserMainExtraPartsProfiles::
   SessionDataServiceFactory::GetInstance();
 #endif
 
-  commerce::ShoppingServiceFactory::GetInstance();
+  //commerce::ShoppingServiceFactory::GetInstance();
   ShortcutsBackendFactory::GetInstance();
   SigninProfileAttributesUpdaterFactory::GetInstance();
 #if BUILDFLAG(ENABLE_DICE_SUPPORT) || BUILDFLAG(IS_CHROMEOS_LACROS)
@@ -202,7 +191,7 @@ void ChromeBrowserMainExtraPartsProfiles::
 
 
   TabRestoreServiceFactory::GetInstance();
-  safe_browsing::TailoredSecurityServiceFactory::GetInstance();
+  //safe_browsing::TailoredSecurityServiceFactory::GetInstance();
   TemplateURLFetcherFactory::GetInstance();
   TemplateURLServiceFactory::GetInstance();
 
@@ -222,11 +211,9 @@ void ChromeBrowserMainExtraPartsProfiles::
 }
 
 void ChromeBrowserMainExtraPartsProfiles::PreProfileInit() {
+  LOG(INFO) << "ChromeBrowserMainExtraPartsProfiles::PreProfileInit";
  #if BUILDFLAG(IS_ANDROID)
   EnsureBrowserContextKeyedServiceFactoriesBuilt();
-  InstantServiceFactory::GetInstance();
-  PinnedTabServiceFactory::GetInstance();
-  ThemeServiceFactory::GetInstance();
 #else
   PreProfileInit_Chromium();
 #endif

@@ -9,39 +9,62 @@
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_uploader.h"
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_config_manager.h"
 #include "chrome/browser/safe_browsing/extension_telemetry/extension_telemetry_file_processor.h"
+#include "chrome/browser/safe_browsing/download_protection/download_protection_service.h"
 #include "components/safe_browsing/core/common/features.h"
 namespace safe_browsing {
 
-ExtensionTelemetryFileProcessor::~ExtensionTelemetryFileProcessor() = default;
+void DownloadProtectionService::UploadForConsumerDeepScanning(
+    download::DownloadItem* item,
+    base::optional_ref<const std::string> password) {}
 
-ExtensionTelemetryFileProcessor::ExtensionTelemetryFileProcessor()
-    : max_files_to_process_(kExtensionTelemetryFileDataMaxFilesToProcess.Get()),
-      max_file_size_(kExtensionTelemetryFileDataMaxFileSizeBytes.Get()),
-      max_files_to_read_(1000) {}
+ClientDownloadResponse::TailoredVerdict
+DownloadProtectionService::GetDownloadProtectionTailoredVerdict(
+    const download::DownloadItem* item) {
+    return ClientDownloadResponse::TailoredVerdict();
+}
 
-ExtensionTelemetryService::~ExtensionTelemetryService() = default;
+//  base::TimeDelta kUploadIntervalSeconds = base::Seconds(3600);
+//  constexpr int kNumChecksPerUploadInterval = 1;
+//  base::TimeDelta kOffstoreFileDataCollectionDurationLimitSeconds =
+//      base::Seconds(60);
 
-ExtensionTelemetryService::ExtensionTelemetryService(
-    Profile* profile,
-    scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
-    extensions::ExtensionRegistry* extension_registry,
-    extensions::ExtensionPrefs* extension_prefs)
-    : profile_(profile),
-      url_loader_factory_(url_loader_factory),
-      extension_registry_(extension_registry),
-      extension_prefs_(extension_prefs),
-      enabled_(false),
-      current_reporting_interval_(
-          base::Seconds(kExtensionTelemetryUploadIntervalSeconds.Get())) {
-  // Register for SB preference change notifications.
+// ExtensionTelemetryFileProcessor::~ExtensionTelemetryFileProcessor() = default;
+
+// ExtensionTelemetryFileProcessor::ExtensionTelemetryFileProcessor()
+//     : max_files_to_process_(kExtensionTelemetryFileDataMaxFilesToProcess.Get()),
+//       max_file_size_(kExtensionTelemetryFileDataMaxFileSizeBytes.Get()),
+//       max_files_to_read_(1000) {}
+
+//  ExtensionTelemetryService::~ExtensionTelemetryService() = default;
+
+// // // static
+// ExtensionTelemetryService* ExtensionTelemetryService::Get(Profile* profile) {
+//   return ExtensionTelemetryServiceFactory::GetInstance()->GetForProfile(
+//       profile);
+// }
+
+
+// ExtensionTelemetryService::ExtensionTelemetryService(
+//     Profile* profile,
+//     scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory)
+//     : profile_(profile),
+//       url_loader_factory_(url_loader_factory),
+//       extension_registry_(extensions::ExtensionRegistry::Get(profile)),
+//       extension_prefs_(extensions::ExtensionPrefs::Get(profile)),
+//       enabled_(false),
+//       current_reporting_interval_(kUploadIntervalSeconds),
+//       num_checks_per_upload_interval_(kNumChecksPerUploadInterval),
+//       offstore_file_data_collection_duration_limit_(
+//           kOffstoreFileDataCollectionDurationLimitSeconds) {
+//   // Register for SB preference change notifications.
   
-}
+// }
 
-void ExtensionTelemetryService::AddSignal(
-    std::unique_ptr<ExtensionSignal> signal) {
-}
-void ExtensionTelemetryService::Shutdown() {
-}
+// void ExtensionTelemetryService::AddSignal(
+//     std::unique_ptr<ExtensionSignal> signal) {
+// }
+// void ExtensionTelemetryService::Shutdown() {
+// }
 
 }
 #endif

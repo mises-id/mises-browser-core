@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/side_panel/customize_chrome/BUILD.gn b/chrome/browser/resources/side_panel/customize_chrome/BUILD.gn
-index ef31537ff85cd94febd4916d7acd63a5623a74f4..0bb05a1f4b6cea9c89e3f5a19723b94cde79c5a6 100644
+index 2406f0d4cd2525ec65dcd80245368eb7ab2af6cc..69eddf287fece34df851c64ba741617216d816f0 100644
 --- a/chrome/browser/resources/side_panel/customize_chrome/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/customize_chrome/BUILD.gn
 @@ -4,7 +4,7 @@

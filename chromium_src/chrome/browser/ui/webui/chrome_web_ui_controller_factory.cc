@@ -12,7 +12,7 @@
   return MisesWebUIControllerFactory::GetInstance();
 
 #if BUILDFLAG(IS_ANDROID)
-#include "chrome/browser/ui/webui/devtools_ui.h"
+#include "chrome/browser/ui/webui/devtools/devtools_ui.h"
 
   #define MISES_BROWSER_UI_WEBUI_CHROME_WEB_UI_CONTROLLER_FACTORY \
      if (url.host_piece() == chrome::kChromeUIExtensionsHost) \

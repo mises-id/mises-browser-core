@@ -8,6 +8,7 @@
 #include "content/public/browser/web_contents.h"
 #include "chrome/browser/android/tab_android.h"
 #endif
+#include "components/safe_browsing/buildflags.h"
 namespace extensions {
   bool HighlightTabAndroid(const api::tabs::Highlight::Params::HighlightInfo &highlight_info);
   content::WebContents* GetActiveWebContentsAndroid();

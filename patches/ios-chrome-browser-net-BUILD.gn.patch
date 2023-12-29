@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/net/BUILD.gn b/ios/chrome/browser/net/BUILD.gn
-index 3ea46f6bb7459496100c39a0a4e0635520ffff85..cbe102ea5bd606f9baf82f8a849ae49c245236b3 100644
+index 4db4990ab1b8e0ead7e61ccd38c8bc445b74b4a8..6dea432f135728dbd4c8c6f615b4f33945f4bbe7 100644
 --- a/ios/chrome/browser/net/BUILD.gn
 +++ b/ios/chrome/browser/net/BUILD.gn
-@@ -42,6 +42,7 @@ source_set("net") {
+@@ -41,6 +41,7 @@ source_set("net") {
      ":crurl",
      ":net_types",
    ]

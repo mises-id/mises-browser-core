@@ -1,17 +1,8 @@
 diff --git a/components/components_strings.grd b/components/components_strings.grd
-index 2751b112ece3d9ad60519c642af05b6db40d17a2..b57bcdc4d217411a18ef4362f202cd17348962ea 100644
+index 0ccb816cbff91738bf36bd355e8e47aad50fc13a..32d6efd8c50e4c4034e5963921da24d91ae229c0 100644
 --- a/components/components_strings.grd
 +++ b/components/components_strings.grd
-@@ -338,7 +338,7 @@
-       <part file="version_ui_strings.grdp" />
-       <part file="webapps_strings.grdp" />
- 
--      <if expr="not is_ios">
-+      <if expr="not is_ios or is_android">
-         <part file="history_clusters_strings.grdp" />
-       </if>
-       <if expr="is_android">
-@@ -434,7 +434,7 @@
+@@ -435,7 +435,7 @@
        <message name="IDS_PLUGIN_NOT_SUPPORTED" desc="The placeholder text for an unsupported plugin.">
          This plugin is not supported
        </message>

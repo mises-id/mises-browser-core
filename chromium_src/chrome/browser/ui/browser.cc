@@ -24,4 +24,8 @@ SigninViewController::SigninViewController(Browser* browser)
 
 SigninViewController::~SigninViewController() {
 }
+bool SigninViewController::ShowsModalDialog() {
+  return false;
+}
+
 #endif

@@ -8,6 +8,7 @@ namespace chrome {
 
 #if BUILDFLAG(IS_ANDROID)
 extern const char kChromeUIAppServiceInternalsHost[];
+extern const char kChromeUIAppServiceInternalsURL[];
 extern const char kChromeUINearbyInternalsHost[];
 extern const char kChromeUINearbyInternalsURL[];
 extern const char kChromeUIBookmarksSidePanelHost[];
@@ -16,17 +17,19 @@ extern const char kChromeUICustomizeChromeSidePanelHost[];
 extern const char kChromeUICustomizeChromeSidePanelURL[];
 extern const char kChromeUIHistoryClustersSidePanelHost[];
 extern const char kChromeUIHistoryClustersSidePanelURL[];
-extern const char kChromeUIReadAnythingSidePanelHost[];
-extern const char kChromeUIReadAnythingSidePanelURL[];
 extern const char kChromeUIReadLaterHost[];
 extern const char kChromeUIReadLaterURL[];
-extern const char kChromeUISearchCompanionSidePanelHost[];
-extern const char kChromeUISearchCompanionSidePanelURL[];
+extern const char kChromeUIUntrustedCompanionSidePanelHost[];
+extern const char kChromeUIUntrustedCompanionSidePanelURL[];
 extern const char kChromeUIUntrustedFeedURL[];
+extern const char kChromeUIUntrustedReadAnythingSidePanelHost[];
+extern const char kChromeUIUntrustedReadAnythingSidePanelURL[];
 extern const char kChromeUIUserNotesSidePanelHost[];
 extern const char kChromeUIUserNotesSidePanelURL[];
 extern const char kChromeUIWebAppInternalsHost[];
+extern const char kChromeUIWebAppInternalsURL[];
 extern const char kChromeUIWebUITestHost[];
+extern const char kChromeUIUntrustedWebUITestURL[];
 #endif  // BUILDFLAG(IS_ANDROID)
 
 
@@ -63,6 +66,16 @@ extern const char kChromeUITabSearchHost[];
 extern const char kChromeUITabSearchURL[];
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
+extern const char kChromeUIOnDeviceInternalsHost[];
+extern const char kChromeUISearchEngineChoiceURL[];
+extern const char kChromeUISearchEngineChoiceHost[];
+#endif
+
+#if BUILDFLAG(IS_ANDROID)
+extern const char kChromeUIUntrustedHatsHost[];
+extern const char kChromeUIUntrustedHatsURL[];
+#endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace chrome
 

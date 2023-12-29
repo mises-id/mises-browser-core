@@ -6,7 +6,22 @@
 namespace features {
 
 #if defined(ANDROID)
-extern const base::Feature kAccessCodeCastUI;
+BASE_DECLARE_FEATURE(kAccessCodeCastUI);
+#endif
+
+
+#if defined(ANDROID)
+BASE_DECLARE_FEATURE(kSidePanelCompanionDefaultPinned);
+
+BASE_DECLARE_FEATURE(kSidePanelPinning);
+
+BASE_DECLARE_FEATURE(kSidePanelMinimumWidth);
+extern const base::FeatureParam<int> kSidePanelMinimumWidthParameter;
+int GetSidePanelMinimumWidth();
+#endif
+
+#if BUILDFLAG(IS_ANDROID)
+BASE_DECLARE_FEATURE(kHaTSWebUI);
 #endif
 
 

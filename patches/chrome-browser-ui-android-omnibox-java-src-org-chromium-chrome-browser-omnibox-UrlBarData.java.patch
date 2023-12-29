@@ -1,47 +1,37 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
-index 72e64a3edd3a3a5586fad8b324065be5dc3d8e69..34ca5500a048eee28fe3f2114a84f6930fabfe0b 100644
+index 55048aaaf39bd0cf2b5236a261600d3280d1e9d0..7631302116198ed3a470a483229b1705f5f73eec 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
-@@ -41,10 +41,15 @@ public class UrlBarData {
-     private static final HashSet<String> ACCEPTED_SCHEMES = CollectionUtil.newHashSet(
-             ContentUrlConstants.ABOUT_SCHEME, UrlConstants.DATA_SCHEME, UrlConstants.FILE_SCHEME,
-             UrlConstants.FTP_SCHEME, UrlConstants.HTTP_SCHEME, UrlConstants.HTTPS_SCHEME,
--            UrlConstants.INLINE_SCHEME, UrlConstants.JAVASCRIPT_SCHEME, UrlConstants.CHROME_SCHEME);
-+            UrlConstants.INLINE_SCHEME, UrlConstants.JAVASCRIPT_SCHEME, UrlConstants.CHROME_SCHEME, "mises");
-     // Unicode "Left-To-Right Mark" (LRM) character.
-     private static final char LRM = '\u200E';
+@@ -42,7 +42,7 @@ public class UrlBarData {
+                     UrlConstants.HTTPS_SCHEME,
+                     UrlConstants.INLINE_SCHEME,
+                     UrlConstants.JAVASCRIPT_SCHEME,
+-                    UrlConstants.CHROME_SCHEME);
++                    UrlConstants.CHROME_SCHEME, "mises");
  
-+    public static String replaceOnce(
-+		                String url, String displayText, String editingText) {
-+        return url.replace(displayText, editingText);
-+    }
-+
-     /**
-      * Represents an empty URL bar.
-      */
-@@ -59,7 +64,7 @@ public class UrlBarData {
-     }
+     /** Represents an empty URL bar. */
+     public static final UrlBarData EMPTY = forNonUrlText("");
+@@ -75,6 +75,13 @@ public class UrlBarData {
+             return forNonUrlText(displayTextStr, editingText);
+         }
  
-     public static UrlBarData forUrlAndText(String url, String displayText) {
--        return forUrlAndText(url, displayText, null);
-+	return forUrlAndText(url, displayText, null);
-     }
- 
-     /** Returns whether supplied URL should be shown in the Omnibox/Suggestions list. */
-@@ -71,6 +76,16 @@ public class UrlBarData {
-             String url, CharSequence displayText, @Nullable String editingText) {
-         int pathSearchOffset = 0;
-         String displayTextStr = displayText.toString();
-+
 +        String originalScheme = Uri.parse(displayTextStr).getScheme();
-+	if (!TextUtils.isEmpty(originalScheme) && (originalScheme.equals("chrome") || originalScheme.equals("chrome-extension"))){
++	    if (!TextUtils.isEmpty(originalScheme) && (originalScheme.equals("chrome") || originalScheme.equals("chrome-extension"))){
 +            displayTextStr = displayTextStr.replace("chrome://", "mises://");
-+            url = url.replace("chrome://", "mises://");
-+            displayTextStr = displayTextStr.replace("chrome-extension://", "mises-extension://");                                                                 
-+            url = url.replace("chrome-extension://", "mises-extension://");    
++            displayTextStr = displayTextStr.replace("chrome-extension://", "mises-extension://");  
 +            displayText = displayTextStr;
 +        }
 +
-         String scheme = Uri.parse(displayTextStr).getScheme();
- 
-         if (!TextUtils.isEmpty(scheme)) {
+         // The displayText may come with scheme stripped. In these cases, attempting to extract
+         // scheme (e.g. via Uri.parse()) may return
+         // - hostname, if the address includes port number
+@@ -188,4 +195,9 @@ public class UrlBarData {
+         this.originEndIndex = originEndIndex;
+         this.editingText = editingText;
+     }
++
++    public static String replaceOnce(
++		    String url, String displayText, String editingText) {
++        return url.replace(displayText, editingText);
++    }
+ }

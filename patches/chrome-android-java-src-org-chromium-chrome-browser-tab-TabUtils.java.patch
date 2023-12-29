@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
-index a7b1589755c726bd59d24343c15da6d79a9f9f17..9aae3418500e6e982b507f3205cc0f9d77d955e6 100644
+index 69eb70178573349ec8d9b6d5be4852aa5b0ce651..2f30918559ae57d50e1230346398c4d5983a0836 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
-@@ -36,6 +36,8 @@ import org.chromium.url.GURL;
+@@ -44,6 +44,8 @@ import org.chromium.url.GURL;
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
  
@@ -11,16 +11,16 @@ index a7b1589755c726bd59d24343c15da6d79a9f9f17..9aae3418500e6e982b507f3205cc0f9d
  /**
   * Collection of utility methods that operates on Tab.
   */
-@@ -178,6 +180,8 @@ public class TabUtils {
+@@ -203,6 +205,8 @@ public class TabUtils {
                  tabUserAgent = TabUserAgent.DESKTOP;
              } else {
                  tabUserAgent = TabUserAgent.DEFAULT;
 +                if (ContextUtils.getAppSharedPreferences().getBoolean("desktop_mode", false))
 +                     tabUserAgent = TabUserAgent.DESKTOP;
              }
-             CriticalPersistedTabData.from(tab).setUserAgent(tabUserAgent);
+             tab.setUserAgent(tabUserAgent);
          }
-@@ -207,6 +211,8 @@ public class TabUtils {
+@@ -243,6 +247,8 @@ public class TabUtils {
       * @return Whether the desktop site should be requested.
       */
      public static boolean isDesktopSiteGlobalEnabled(Profile profile) {

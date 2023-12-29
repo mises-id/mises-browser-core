@@ -18,8 +18,7 @@
 void MisesBrowserMainParts::PostBrowserStart() {
   ChromeBrowserMainParts::PostBrowserStart();
 #if BUILDFLAG(IS_ANDROID)
-  ChromeBrowserMainExtraPartsProfiles::
-      EnsureBrowserContextKeyedServiceFactoriesBuilt();
+  ChromeBrowserMainExtraPartsProfiles::EnsureBrowserContextKeyedServiceFactoriesBuilt();
 #endif
 
 }

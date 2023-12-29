@@ -1,6 +1,7 @@
 import("//mises/android/mises_xml_preprocessor.gni")
 import("//mises/build/config.gni")
 import("//build/config/android/rules.gni")
+import("//third_party/jni_zero/jni_zero.gni")
 import("//tools/grit/grit_rule.gni")
 
 action("sign_app") {
@@ -112,10 +113,10 @@ generate_jni("jni_headers") {
      "//mises/android/java/org/chromium/chrome/browser/MisesRelaunchUtils.java",
      "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
      "//mises/android/java/org/chromium/chrome/browser/AppMenuBridge.java",
-     "//mises/android/java/org/chromium/base/MisesSysUtils.java",
      "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/BraveWalletProviderDelegateImplHelper.java",
   ]
 
   deps = [ 
   ]
+  public_deps = ["//mises/android/features/mises:jni_headers" ]
 }

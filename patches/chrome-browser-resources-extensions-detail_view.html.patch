@@ -1,12 +1,31 @@
 diff --git a/chrome/browser/resources/extensions/detail_view.html b/chrome/browser/resources/extensions/detail_view.html
-index 4410e67cdf63007f361f3011c08b0de6c46cb8d8..39b9ce219db506f7976415f7f3338011edd20682 100644
+index 99f8e5b16aea4e43b7660d8200d079f5017f8e7c..d08b7d0540b721d8591bfc835ee946f2e8dd44e7 100644
 --- a/chrome/browser/resources/extensions/detail_view.html
 +++ b/chrome/browser/resources/extensions/detail_view.html
-@@ -412,13 +412,14 @@
+@@ -178,6 +178,9 @@
+     height: var(--cr-icon-size);
+     width: var(--cr-icon-size);
+   }
++  .page-content {
++    max-width: 100vw;
++  }
+ </style>
+ <div class="page-container" id="container">
+   <div class="page-content">
+@@ -246,7 +249,7 @@
+         </cr-toggle>
+         <paper-tooltip id="enable-toggle-tooltip" for="enableToggle"
+             position="left" aria-hidden="true" animation-delay="0"
+-            fit-to-visible-bounds>
++            fit-to-visible-bounds hidden>
+           [[getEnableToggleTooltipText_(data.*)]]
+         </paper-tooltip>
+       </div>
+@@ -479,13 +482,14 @@
          <template is="dom-if"
            if="[[shouldShowIncognitoOption_(
                data.incognitoAccess.isEnabled, incognitoAvailable)]]">
-+<div id="enable_incognito"></a>
++          <div id="enable_incognito"></div>
            <extensions-toggle-row id="allow-incognito"
                checked="[[data.incognitoAccess.isActive]]"
                class="hr"

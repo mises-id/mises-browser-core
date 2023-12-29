@@ -1,7 +1,22 @@
 #include "chrome/browser/ui/startup/startup_browser_creator.h"
 #include "chrome/browser/profiles/profile.h"
-
+#include "chrome/browser/ui/startup/launch_mode_recorder.h"
 #if BUILDFLAG(IS_ANDROID)
+
+StartupBrowserCreator::StartupBrowserCreator() = default;
+
+StartupBrowserCreator::~StartupBrowserCreator() {
+
+}
+void StartupBrowserCreator::LaunchBrowser(
+    const base::CommandLine& command_line,
+    Profile* profile,
+    const base::FilePath& cur_dir,
+    chrome::startup::IsProcessStartup process_startup,
+    chrome::startup::IsFirstRun is_first_run,
+    std::unique_ptr<OldLaunchModeRecorder> launch_mode_recorder) {
+}
+
 
 // static
 bool StartupBrowserCreator::WasRestarted() {

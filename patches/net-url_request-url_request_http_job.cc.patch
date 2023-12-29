@@ -1,14 +1,14 @@
 diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
-index 48d7ae0d56f206e3dcf4ddd13ae45d8c3297388c..5d39827456ac355004f2c4d39bb410304074e24e 100644
+index fcb821c562aa1ff431565705b22791076fd9429b..96783a1a37809c53bb48fa00bed25d0895089931 100644
 --- a/net/url_request/url_request_http_job.cc
 +++ b/net/url_request/url_request_http_job.cc
-@@ -615,6 +615,10 @@ void URLRequestHttpJob::AddExtraHeaders() {
-   request_info_.extra_headers.SetAcceptEncodingIfMissing(
+@@ -689,6 +689,10 @@ void URLRequestHttpJob::AddExtraHeaders() {
        request()->url(), request()->accepted_stream_types(),
-       request()->context()->enable_brotli());
+       request()->context()->enable_brotli(),
+       request()->context()->enable_zstd());
 +  
 +  if (request_info_.url.host().find("chrome.google.com") != std::string::npos || request_info_.url.host().find("chromewebstore.google.com") != std::string::npos) {
-+    request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36");
++    request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
 +  }
  
    if (http_user_agent_settings_) {

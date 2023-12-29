@@ -1,61 +1,54 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
-index f0d48297887596911da41d6bf1ea6c822cf4e4c9..c5f6b32ddff995ccaecd8386416666ec1d36d42e 100644
+index 12211b0b3d86e1eeac562c167cd8a14d61f3af05..96f99039acfba8dae604629089fbfc1b462b176c 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
-@@ -37,31 +37,31 @@
+@@ -38,31 +38,31 @@ const CGFloat kSearchFieldMinMargin = 8;
  const CGFloat kTopSpacingMaterial = 24;
  
  // Top margin for the doodle.
 -const CGFloat kDoodleTopMarginRegularXRegular = 162;
--const CGFloat kDoodleTopMarginOther = 48;
--const CGFloat kShrunkDoodleTopMarginOther = 65;
-+const CGFloat kDoodleTopMarginRegularXRegular = 0;//162;
-+const CGFloat kDoodleTopMarginOther = 0;//48;
-+const CGFloat kShrunkDoodleTopMarginOther = 0;//65;
+-const CGFloat kDoodleTopMarginOther = 65;
++const CGFloat kDoodleTopMarginRegularXRegular = 0;
++const CGFloat kDoodleTopMarginOther = 0;
  // Size of the doodle top margin which is multiplied by the scaled font factor,
  // and added to `kDoodleTopMarginOther` on non Regular x Regular form factors.
 -const CGFloat kDoodleScaledTopMarginOther = 10;
-+const CGFloat kDoodleScaledTopMarginOther = 0;//10;
+-const CGFloat kLargeFakeboxExtraDoodleTopMargin = 10;
++const CGFloat kDoodleScaledTopMarginOther = 0;
++const CGFloat kLargeFakeboxExtraDoodleTopMargin = 0;
  
  // Top margin for the search field
--const CGFloat kSearchFieldTopMargin = 32;
--const CGFloat kShrunkLogoSearchFieldTopMargin = 22;
-+const CGFloat kSearchFieldTopMargin = 0;//32;
-+const CGFloat kShrunkLogoSearchFieldTopMargin = 0;//22;
+-const CGFloat kSearchFieldTopMargin = 22;
+-const CGFloat kLargeFakeboxSearchFieldTopMargin = 40;
++const CGFloat kSearchFieldTopMargin = 0;
++const CGFloat kLargeFakeboxSearchFieldTopMargin = 0;
  
  // Bottom margin for the search field.
- const CGFloat kNTPSearchFieldBottomPadding = 18;
  const CGFloat kNTPShrunkLogoSearchFieldBottomPadding = 20;
  
  // Height for the logo and doodle frame.
 -const CGFloat kGoogleSearchDoodleHeight = 120;
-+const CGFloat kGoogleSearchDoodleHeight = 0;//120;
++const CGFloat kGoogleSearchDoodleHeight = 0;
  
  // Height for the shrunk doodle frame.
  // TODO(crbug.com/1170491): clean up post-launch.
 -const CGFloat kGoogleSearchDoodleShrunkHeight = 68;
-+const CGFloat kGoogleSearchDoodleShrunkHeight = 0;//68;
++const CGFloat kGoogleSearchDoodleShrunkHeight = 0;
  
  // Height for the shrunk logo frame.
  // TODO(crbug.com/1170491): clean up post-launch.
--const CGFloat kGoogleSearchLogoShrunkHeight = 36;
-+const CGFloat kGoogleSearchLogoShrunkHeight = 0;//36;
+-const CGFloat kGoogleSearchLogoHeight = 36;
+-const CGFloat kLargeFakeboxGoogleSearchLogoHeight = 50;
++const CGFloat kGoogleSearchLogoHeight = 0;
++const CGFloat kLargeFakeboxGoogleSearchLogoHeight = 0;
  
  // The size of the symbol image.
  const CGFloat kSymbolContentSuggestionsPointSize = 18;
-@@ -136,6 +136,7 @@ CGFloat HeightForLogoHeader(BOOL logo_is_showing,
-       ToolbarExpandedHeight(
-           [UIApplication sharedApplication].preferredContentSizeCategory) +
-       HeaderBottomPadding();
+@@ -201,6 +201,7 @@ CGFloat HeightForLogoHeader(BOOL logo_is_showing,
+       SearchFieldTopMargin() + FakeOmniboxHeight() +
+       ntp_header::kScrolledToTopOmniboxBottomMargin +
+       ceil(HeaderSeparatorHeight());
 +  header_height = 0;
    if (!IsRegularXRegularSizeClass(trait_collection)) {
      return header_height;
    }
-@@ -148,6 +149,7 @@ CGFloat HeightForLogoHeader(BOOL logo_is_showing,
- 
-   header_height += kTopSpacingMaterial;
- 
-+
-   return header_height;
- }
- 

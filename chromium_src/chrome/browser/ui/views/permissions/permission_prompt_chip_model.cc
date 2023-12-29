@@ -2,6 +2,13 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#include "build/build_config.h"
+
+#if !BUILDFLAG(IS_ANDROID)
+#include "src/chrome/browser/ui/views/permissions/permission_prompt_chip_model.cc"
+
+#else
+
 #include "chrome/browser/ui/views/permissions/permission_prompt_chip_model.h"
 #include "base/check.h"
 #include "base/strings/utf_string_conversions.h"
@@ -16,11 +23,12 @@
 
 
 PermissionPromptChipModel::PermissionPromptChipModel(
-    permissions::PermissionPrompt::Delegate* delegate)
+    base::WeakPtr<permissions::PermissionPrompt::Delegate> delegate)
     : delegate_(delegate),
       allowed_icon_(gfx::kNoneIcon),
       blocked_icon_(gfx::kNoneIcon) {
 }
+PermissionPromptChipModel::~PermissionPromptChipModel() = default;
 
 void PermissionPromptChipModel::UpdateAutoCollapsePromptChipState(
     bool is_collapsed) {
@@ -34,3 +42,5 @@ void PermissionPromptChipModel::UpdateWithUserDecision(
     permissions::PermissionAction user_decision) {
 
 }
+
+#endif

@@ -1,0 +1,21 @@
+diff --git a/chrome/android/java/res/menu/bookmark_toolbar_menu.xml b/chrome/android/java/res/menu/bookmark_toolbar_menu.xml
+index d57102c6877d10e61c5e6da8cc4d5cc0cc1b3425..06778c0640757b35a475a84add3b706d6a8e2d20 100644
+--- a/chrome/android/java/res/menu/bookmark_toolbar_menu.xml
++++ b/chrome/android/java/res/menu/bookmark_toolbar_menu.xml
+@@ -23,6 +23,16 @@ found in the LICENSE file.
+             android:visible="false"
+             app:showAsAction="ifRoom"
+             app:iconTint="@color/default_icon_color_secondary_tint_list" />
++        <item
++            android:id="@+id/import_bookmarks"
++            android:title="@string/menu_import_bookmarks"
++            android:contentDescription="@string/menu_import_bookmarks"
++            app:showAsAction="never"/>
++        <item
++            android:id="@+id/export_bookmarks"
++            android:title="@string/menu_export_bookmarks"
++            android:contentDescription="@string/menu_export_bookmarks"
++            app:showAsAction="never"/>
+         <item
+             android:id="@+id/close_menu_id"
+             android:icon="@drawable/btn_close"

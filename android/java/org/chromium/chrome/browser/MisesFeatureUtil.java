@@ -5,15 +5,13 @@
 
 package org.chromium.chrome.browser;
 
-import org.chromium.base.annotations.JNINamespace;
-import org.chromium.base.annotations.NativeMethods;
+import org.jni_zero.JNINamespace;
+import org.jni_zero.NativeMethods;
 import org.chromium.chrome.browser.flags.CachedFlag;
 import org.chromium.chrome.browser.flags.ChromeFeatureList;
 
 @JNINamespace("chrome::android")
 public abstract class MisesFeatureUtil {
-    public static final CachedFlag sTabSwitcherOnReturn =
-            new CachedFlag(ChromeFeatureList.TAB_SWITCHER_ON_RETURN, false);
 
     public static void enableFeature(
             String featureName, boolean enabled, boolean fallbackToDefault) {

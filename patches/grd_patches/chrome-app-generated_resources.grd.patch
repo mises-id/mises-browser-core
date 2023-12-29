@@ -1,5 +1,5 @@
 diff --git a/chrome/app/generated_resources.grd b/chrome/app/generated_resources.grd
-index 45bc795e9c51d..d4318b38c900a 100644
+index c880e097690f8f43f30384771a4c73b8829cbee9..b5aea2502dad81f23955fac2bca96366ce7e35f1 100644
 --- a/chrome/app/generated_resources.grd
 +++ b/chrome/app/generated_resources.grd
 @@ -306,7 +306,7 @@ are declared in tools/grit/grit_rule.gni.
@@ -11,7 +11,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <part file="settings_strings.grdp" />
          <part file="shared_settings_strings.grdp"/>
        </if>
-@@ -322,17 +322,17 @@ are declared in tools/grit/grit_rule.gni.
+@@ -327,17 +327,17 @@ are declared in tools/grit/grit_rule.gni.
        </if>
  
        <!-- Welcome strings -->
@@ -32,7 +32,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <part file="password_manager_ui_strings.grdp" />
        </if>
  
-@@ -385,7 +385,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -390,7 +390,7 @@ are declared in tools/grit/grit_rule.gni.
            Permission requested, press ⌘ + Option + Down arrow to respond
          </message>
        </if>
@@ -41,7 +41,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_PERMISSIONS_REQUESTED_SCREENREADER_ANNOUNCEMENT" desc="Announcement to screen readers on Windows, Linux or Fuchsia when permission is requested to inform users of how to focus the permission UI.">
            Permission requested, press F6 to respond
          </message>
-@@ -481,7 +481,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -486,7 +486,7 @@ are declared in tools/grit/grit_rule.gni.
          Disable
        </message>
        <!-- Search strings are only used in webui, so no mobile. -->
@@ -50,7 +50,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_SEARCH_CLEARED" desc="Message announced to screenreader users when search is cleared.">
            Search cleared
          </message>
-@@ -526,7 +526,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -531,7 +531,7 @@ are declared in tools/grit/grit_rule.gni.
        </if>
  
         <!-- content area context menus. Android does not use it -->
@@ -59,16 +59,16 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_CONTENT_CONTEXT_INSPECTELEMENT" desc="The name of the Inspect Element command in the content area context menu">
            I&amp;nspect
          </message>
-@@ -1127,7 +1127,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -1159,7 +1159,7 @@ are declared in tools/grit/grit_rule.gni.
        </if>
  
        <!-- Page menu. Android has separate strings for its menu -->
 -      <if expr="not is_android">
 +      <if expr="is_android or not is_android">
          <if expr="not use_titlecase">
-           <message name="IDS_NEW_TAB" desc="The text label of a menu item for opening a new tab">
-             New &amp;tab
-@@ -2325,7 +2325,7 @@ are declared in tools/grit/grit_rule.gni.
+           <message name="IDS_ADDRESSES_AND_MORE_SUBMENU_OPTION" desc="The text label of the addresses and more item for the passwords and autofill submenu">
+             &amp;Addresses and more
+@@ -2563,7 +2563,7 @@ are declared in tools/grit/grit_rule.gni.
        </message>
  
        <!-- Download Context Menu Items -->
@@ -77,7 +77,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <if expr="not use_titlecase">
            <if expr="is_macosx">
              <message name="IDS_DOWNLOAD_MENU_SHOW"
-@@ -2902,7 +2902,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -3330,7 +3330,7 @@ are declared in tools/grit/grit_rule.gni.
        </message>
  
        <!-- Desktop omnibox PWA install icon -->
@@ -86,7 +86,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_OMNIBOX_PWA_INSTALL_ICON_LABEL" desc="String for the omnibox icon label promoting an app installation">
            Install
          </message>
-@@ -3450,7 +3450,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -4019,7 +4019,7 @@ are declared in tools/grit/grit_rule.gni.
        </message>
  
        <!-- Win certificate selector dialog strings.  -->
@@ -95,7 +95,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_CERT_SELECTOR_SUBJECT_COLUMN" desc="The text of the header for the certificate subject column in the certificate selector dialog.">
            Subject
          </message>
-@@ -3482,7 +3482,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -4051,7 +4051,7 @@ are declared in tools/grit/grit_rule.gni.
        </message>
  
        <!-- WebUI Certificate viewer dialog strings. Android uses an OS-level certificate manager. -->
@@ -104,7 +104,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_CERT_INFO_DIALOG_TITLE" desc="Title of dialog displaying info about a certificate">
            Certificate Viewer: <ph name="CERTIFICATE_NAME">$1<ex>www.google.com</ex></ph>
          </message>
-@@ -4056,7 +4056,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -4634,7 +4634,7 @@ are declared in tools/grit/grit_rule.gni.
        </message>
  
        <!-- Task Manager Window -->
@@ -113,7 +113,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <if expr="not use_titlecase">
            <message name="IDS_TASK_MANAGER_KILL" desc="The caption of the Task Manager kill button">
              End process
-@@ -4363,7 +4363,7 @@ are declared in tools/grit/grit_rule.gni.
+@@ -4941,7 +4941,7 @@ are declared in tools/grit/grit_rule.gni.
        <message name="IDS_UTILITY_PROCESS_FILE_UTILITY_NAME" desc="The name of the utility process used for various Chrome specific file operations.">
            Chrome File Utilities
        </message>
@@ -122,7 +122,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_UTILITY_PROCESS_PROFILE_IMPORTER_NAME" desc="The name of the utility process used for importing profiles.">
            Profile Importer
          </message>
-@@ -5867,7 +5867,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
+@@ -6549,7 +6549,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
          </message>
        </if>
  
@@ -131,16 +131,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_WEB_APP_DETAILED_INSTALL_DIALOG_DESCRIPTION_TITLE" desc="Title above app description to explain the content below is from this app">
            From the app
          </message>
-@@ -6181,7 +6181,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
-         </message>
-       </if>
-       <if expr="is_android">
--        <message name="IDS_SETTINGS_PASSWORDS_ANDROID_APP" desc="Label for the app a password is for when displaying a credential and the real app display name could not be obtained.">
-+        <message name="IDS_SETTINGS_PASSWORDS_ANDROID_APP_MISES" desc="Label for the app a password is for when displaying a credential and the real app display name could not be obtained.">
-           App (<ph name="ANDROID_PACKAGE_NAME">$1<ex>com.netflix.mediaclient</ex></ph>)
-         </message>
-       </if>
-@@ -6354,7 +6354,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
+@@ -7154,7 +7154,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
        </message>
  
        <!-- about:system strings -->
@@ -149,7 +140,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_ABOUT_SYS_TITLE" desc="about:system page title">
            About System
          </message>
-@@ -6385,7 +6385,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
+@@ -7185,7 +7185,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
        </if>
  
        <!-- chrome://browser-switch strings -->
@@ -158,8 +149,8 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_ABOUT_BROWSER_SWITCH_TITLE" desc="about:browser-switch page title">
            Legacy Browser Support
          </message>
-@@ -7664,7 +7664,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
-       </message>
+@@ -8935,7 +8935,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
+       </if>
  
        <!-- Strings for intent picker -->
 -      <if expr="not is_android">
@@ -167,7 +158,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_TOOLTIP_INTENT_PICKER_ICON" desc="The tooltip for the intent picker bubble icon">
            To open this link, choose an app
          </message>
-@@ -8160,7 +8160,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
+@@ -9525,7 +9525,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
        <message name="IDS_PASSWORD_MANAGER_PASSWORD_LABEL" desc="Label for the password field in a prompt to store new credential" formatter_data="android_java">
          Password
        </message>
@@ -176,7 +167,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_PASSWORD_MANAGER_UPDATED_BUBBLE_TITLE" desc="Title of the bubble notifying the user that the password was updated.">
            Password updated
          </message>
-@@ -8340,7 +8340,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -9732,7 +9732,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
        </if>
  
        <!-- Android uses custom UI for Bookmark importing -->
@@ -185,7 +176,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <!-- Import Settings Dialog -->
          <if expr="is_win">
            <message name="IDS_IMPORT_FROM_IE" desc="browser combo box: Microsoft Internet Explorer">
-@@ -9302,7 +9302,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -10809,7 +10809,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
        <!-- Settings related strings not specific to chrome://settings.
             (Settings specific strings are in settings_strings.grdp).
             Android uses native UI for settings -->
@@ -194,7 +185,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_TOOLBAR_INFORM_SET_HOME_PAGE" desc="The confirmation message when dropping a link on the Home toolbar button">
             Your home page has been set.
          </message>
-@@ -9541,7 +9541,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -11054,7 +11054,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
            Create QR Code for this Link
          </message>
        </if>
@@ -203,7 +194,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_OMNIBOX_QRCODE_GENERATOR_ICON_LABEL" desc="String for the omnibox icon label for the QR Code Generator">
            QR Code
          </message>
-@@ -9611,7 +9611,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -11125,7 +11125,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
        </message>
  
        <!-- Desktop Screenshots feature within the share hub; desktop-only. -->
@@ -212,7 +203,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_BROWSER_SHARING_SCREENSHOT_POST_CAPTURE_TITLE"
              desc="Title for the dialog shown after a screenshot is captured.">
          Screenshot copied to clipboard
-@@ -9949,7 +9949,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -11474,7 +11474,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
        </message>
  
        <!-- Accessiblility strings for Infobars in Views -->
@@ -221,7 +212,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_ACCNAME_INFOBAR_CONTAINER" desc="The accessible name for the infobar container.">
            Infobar Container
          </message>
-@@ -10016,7 +10016,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -11541,7 +11541,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
        </message>
  
        <!-- Managed UI on pages like chrome://settings and chrome://downloads -->
@@ -230,7 +221,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <if expr="chromeos_ash">
            <message name="IDS_DEVICE_MANAGED_WITH_HYPERLINK" desc="Message to end users in Enterprise/EDU, with a link for more info (ChromeOS)">
              Your <ph name="BEGIN_LINK">&lt;a target="_blank" href="$1"&gt;</ph><ph name="DEVICE_TYPE">$2<ex>Chromebook</ex></ph> is managed<ph name="END_LINK">&lt;/a&gt;</ph> by your organization
-@@ -10131,7 +10131,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -11677,7 +11677,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
        </message>
  
        <!-- Strings used for non-Android builds -->
@@ -239,7 +230,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_APP_DEFAULT_PAGE_NAME"
                   desc="Default name for the first 'Apps' page on the New Tab Page.">
            Apps
-@@ -10559,7 +10559,7 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Google
+@@ -12119,7 +12119,7 @@ This can include information about installed software, files, your browser, and
          </message>
        </if>
  
@@ -248,7 +239,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_ENTERPRISE_PROFILE_NAME" desc="Default name for work profiles created after signin interception">
            Work
          </message>
-@@ -10902,7 +10902,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -12477,7 +12477,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
        </if>
  
        <!-- Android uses native UI to handle Sync settings -->
@@ -257,7 +248,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <!-- Sync options dialog strings -->
          <if expr="not chromeos_ash">
            <message name="IDS_SYNC_OVERVIEW" desc="The message that appears in the options dialog when sync has not been set up by the user.">
-@@ -10996,7 +10996,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -12570,7 +12570,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
        </if>
  
        <!-- Translate Bubble -->
@@ -266,7 +257,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <message name="IDS_PARTIAL_TRANSLATE_BUBBLE_WAITING_TITLE" desc="Title text for the partial translate bubble when waiting for translation to be completed.">
            Waiting for translation
          </message>
-@@ -12097,7 +12097,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -13679,7 +13679,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
        </if>
  
        <!-- Media Galleries. -->
@@ -275,7 +266,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_MEDIA_GALLERIES_DIALOG_HEADER" desc="Header for media gallery permissions dialog.">
            Media-File Permissions for "<ph name="EXTENSION">$1<ex>Photo Editor</ex></ph>"
          </message>
-@@ -12268,7 +12268,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -13875,7 +13875,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
        <message name="IDS_DESKTOP_MEDIA_PICKER_RESELECT_WINDOW" desc="Text for a button appearing on the window picker dialog which is displayed when there is a secondary, system-level picker in which the user must select the content to share. Clicking this button will re-open the picker to allow the user to choose a new window to share." >
          Choose a different window
        </message>
@@ -284,7 +275,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_DESKTOP_MEDIA_PICKER_SOURCE_TYPE_THIS_TAB" desc="Text for one of the dialog-tabs on the media picker dialog. This dialog-tab controls sharing the current tab.">
            This Tab
          </message>
-@@ -12395,7 +12395,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14016,7 +14016,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
            <ph name="WINDOW_TITLE">$1<ex>Google Search</ex></ph> - Permission requested, press ⌘ + Option + Up arrow to respond
          </message>
        </if>
@@ -293,43 +284,43 @@ index 45bc795e9c51d..d4318b38c900a 100644
          <message name="IDS_TAB_AX_LABEL_PERMISSION_REQUESTED_FORMAT" desc="Accessibility label text for Windows, Linux or Fuchsia, when a tab has a pending request. Example: 'Google Search - Permission requested, press F6 to respond'.">
            <ph name="WINDOW_TITLE">$1<ex>Google Search</ex></ph> - Permission requested, press F6 to respond
          </message>
-@@ -12595,7 +12595,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14253,7 +14253,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
        <ph name="USB_DEVICE_NAME">$1<ex>Nexus 5</ex></ph> detected
      </message>
  
 -    <if expr="not is_android">
 +    <if expr="is_android or not is_android">
-       <!-- WebHID Notification -->
-       <message name="IDS_WEBHID_DEVICE_CONNECTED_BY_EXTENSION_NOTIFICATION_TITLE" desc="Notification title shown to the user when a HID device is being accessed by an extension.">
-         An extension is using a HID device
-@@ -12649,7 +12649,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+       <!-- WebHID and WebUSBSystem Tray Icon -->
+       <message name="IDS_WEBHID_SYSTEM_TRAY_ICON_HID_SETTINGS" desc="Text for the WebHID system tray icon button that opens the HID settings page.">
+         HID settings
+@@ -14331,7 +14331,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
        </message>
      </if>
  
 -    <if expr="not is_android">
 +    <if expr="is_android or not is_android">
        <!-- Device Chooser Prompt -->
-       <message name="IDS_BLUETOOTH_DEVICE_CHOOSER_PROMPT_EXTENSION_NAME" desc="The label that is used to introduce Bluetooth chooser details to the user in a popup when it is from a Chrome extension.">
-         "<ph name="CHROME_EXTENSION_NAME">$1<ex>Chrome Extension Name</ex></ph>" wants to pair
-@@ -12715,7 +12715,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+       <message name="IDS_BLUETOOTH_DEVICE_CHOOSER_TURN_ADAPTER_OFF" desc="Text of a link the user can click to get help information when Bluetooth adapter is turned off.">
+         <ph name="TURN_ON_BLUETOOTH_LINK">$1<ex>Turn on Bluetooth</ex></ph> to allow pairing
+@@ -14391,7 +14391,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </message>
  
      <!-- Serial port chooser -->
 -    <if expr="not is_android">
 +    <if expr="is_android or not is_android">
-       <message name="IDS_SERIAL_PORT_CHOOSER_PROMPT_ORIGIN" desc="The label that is used to introduce serial port chooser details to the user in a popup when it is from a website.">
+       <message name="IDS_SERIAL_PORT_CHOOSER_PROMPT" desc="The label that is used to introduce serial port chooser details to the user in a popup.">
          <ph name="Origin">$1<ex>www.google.com</ex></ph> wants to connect to a serial port
        </message>
-@@ -12755,7 +12755,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14425,7 +14425,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </if>
  
      <!-- HID (Human Interface Device) chooser -->
 -    <if expr="not is_android">
 +    <if expr="is_android or not is_android">
-       <message name="IDS_HID_CHOOSER_PROMPT_ORIGIN" desc="The label that is used to introduce the Human Interface Device (HID) chooser details to the user in a popup when it is from a website.">
+       <message name="IDS_HID_CHOOSER_PROMPT" desc="The label that is used to introduce the Human Interface Device (HID) chooser details to the user in a popup.">
          <ph name="Origin">$1<ex>www.google.com</ex></ph> wants to connect to a HID device
        </message>
-@@ -12789,7 +12789,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14456,7 +14456,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </if>
  
      <!-- File Handling launch prompt -->
@@ -338,7 +329,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <message name="IDS_WEB_APP_FILE_HANDLING_LIST_SEPARATOR" desc="Text/punctuation that separates items in a lists. For example, this is used in a list of files, such as 'todo_list.txt, shopping_list.txt', and file types/extensions, such as '.txt, .csv.'" meaning="List separator for files.">
           , '''
        </message>
-@@ -12833,14 +12833,14 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14500,14 +14500,14 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </if>
  
      <!-- Protocol Handling launch prompt -->
@@ -355,7 +346,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <message name="IDS_FONT_ACCESS_CHOOSER_PROMPT_ORIGIN" desc="The label that is used to introduce Local Font Access chooser details to the user in a popup when it is from a website.">
          <ph name="Origin">$1<ex>www.google.com</ex></ph> wants to use local fonts
        </message>
-@@ -12981,7 +12981,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14614,7 +14614,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </if>
  
      <!-- Download open confirmation dialog -->
@@ -364,7 +355,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <message name="IDS_DOWNLOAD_OPEN_CONFIRMATION_DIALOG_TITLE" desc="Title of the dialog prompt shown to users when an extension is trying to open a downloaded file.">
          Open download
        </message>
-@@ -13165,7 +13165,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14806,7 +14806,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </message>
  
      <!-- Relaunch notification bubble and dialog. -->
@@ -373,7 +364,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <if expr="not chromeos_ash">
          <message name="IDS_RELAUNCH_ACCEPT_BUTTON" desc="The text in the accept button of a dialog that causes the browser to be relaunched immediately.">
            Relaunch now
-@@ -13182,7 +13182,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14823,7 +14823,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </if>
  
      <!-- Idle timeout dialog. -->
@@ -382,7 +373,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <message name="IDS_IDLE_TIMEOUT_INCOGNITO" desc="The text in the Idle Timeout dialog when there are Incognito windows open. This warns the user that Incognito windows will close automatically, and their content will be lost.">
          {COUNT, plural,
            =1 {Your Incognito window won't reopen.}
-@@ -13191,7 +13191,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -14844,7 +14844,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </if>
  
      <!-- Web-modal dialog shown during Web Authenticaton API requests. -->
@@ -391,7 +382,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <message name="IDS_WEBAUTHN_GENERIC_TITLE" desc="Title of most dialogs shown while the user is authenticating on a web site using a security key.">
          Use your security key with <ph name="APP_NAME">$1<ex>google.com</ex></ph>
        </message>
-@@ -13614,7 +13614,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -15351,7 +15351,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </message>
  
      <!-- User happiness tracking survey UI -->
@@ -400,7 +391,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <if expr="use_titlecase">
          <message name="IDS_HATS_BUBBLE_OK_LABEL" translateable="false" desc="Button label on Happiness Tracking Survey's invitation banner, clicking the button gives the user's consent on taking the survey.">
            Take Survey
-@@ -13871,7 +13871,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -15640,7 +15640,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </message>
  
      <!-- Extension request -->
@@ -409,7 +400,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <message name="IDS_ENTERPRISE_EXTENSION_REQUEST_APPROVED_TITLE" desc="The notification title when there are some extension requests approved.">
          {NUM_EXTENSIONS, plural,
            =1 {An extension has been approved}
-@@ -14245,7 +14245,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -16068,7 +16068,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
      </message>
  
      <!-- Battery Saver Toolbar strings  -->
@@ -418,7 +409,7 @@ index 45bc795e9c51d..d4318b38c900a 100644
        <message name="IDS_BATTERY_SAVER_BUTTON_TOOLTIP" desc="The tooltip for the battery saver toolbar button">
          Energy Saver is on
        </message>
-@@ -14277,7 +14277,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
+@@ -16100,7 +16100,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
        </if>
      </if>
      <!-- High Efficiency Chip strings -->

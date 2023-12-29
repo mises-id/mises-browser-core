@@ -8,6 +8,7 @@
 #if BUILDFLAG(IS_ANDROID)
 #include "base/android/sys_utils.h"
 #endif
+namespace chrome {
 namespace android {
 
 // static
@@ -22,12 +23,12 @@ MisesController::~MisesController() {}
 void MisesController::setMisesUserInfo(const std::string& info) {
   JNIEnv* env = base::android::AttachCurrentThread();
   base::android::ScopedJavaLocalRef<jstring> j_mises_json = base::android::ConvertUTF8ToJavaString(env, info);
-  Java_MisesController_setMisesUserInfo(env, j_mises_json);
+  base::android::Java_MisesController_setMisesUserInfo(env, j_mises_json);
 }
 
 std::string MisesController::getMisesUserInfo() {
   JNIEnv* env = base::android::AttachCurrentThread();
-  base::android::ScopedJavaLocalRef<jstring> j_mises_json = Java_MisesController_getMisesUserInfo(env);
+  base::android::ScopedJavaLocalRef<jstring> j_mises_json = base::android::Java_MisesController_getMisesUserInfo(env);
   return base::android::ConvertJavaStringToUTF8(env, j_mises_json);
 }
 
@@ -36,7 +37,7 @@ void MisesController::notifyPhishingDetected(const std::string& address, NotifyP
   NotifyPhishingDetectedCallbackVector& callbacks = callback_map_[address];
   callbacks.push_back(std::move(callback));
   base::android::ScopedJavaLocalRef<jstring> j_address = base::android::ConvertUTF8ToJavaString(env, address);
-  Java_MisesController_NotifyPhishingDetected(env, j_address);
+  base::android::Java_MisesController_NotifyPhishingDetected(env, j_address);
 
 }
 
@@ -69,25 +70,25 @@ void  MisesController::recordEvent(const std::string& json_string){
       return;
     }
     //event_type
-     const std::string* event_type = json_value->FindStringKey("event_type");
+     const std::string* event_type = json_value->GetDict().FindString("event_type");
      if (event_type == nullptr || (*event_type).empty()){
        LOG(WARNING) << "MisesController::recordEvent event_type is null.";
        return;
      }
      //event_params
-     auto* event_params = json_value->FindDictKey("params");
+     auto* event_params = json_value->GetDict().FindDict("params");
      if (event_params == nullptr) {
       LOG(WARNING) << "MisesController::recordEvent event_params is null.";
        return;
      }
-     const std::string* key1 = event_params->FindStringKey("key1");
-     const std::string* value1 = event_params->FindStringKey("value1");
+     const std::string* key1 = event_params->FindString("key1");
+     const std::string* value1 = event_params->FindString("value1");
      if (key1 == nullptr || (*key1).empty() || value1 == nullptr || (*value1).empty()) {
        LOG(WARNING) << "MisesController::recordEvent key1 or empty is empty.";
        return;
      }
-     /* const std::string* key2 = event_params->FindStringKey("key2");
-     const std::string* value2 = event_params->FindStringKey("value2"); */
+     /* const std::string* key2 = event_params->FindString("key2");
+     const std::string* value2 = event_params->FindString("value2"); */
       LOG(INFO) << "MisesController::recordEvent event_type=" << *event_type
       << " key1=" << *key1 << " value1=" << *value1
       ;
@@ -95,14 +96,27 @@ void  MisesController::recordEvent(const std::string& json_string){
 }
 
 
+
+
+
 } // namespace android
 
 
 
-void JNI_MisesController_CallbackPhishingDetected(JNIEnv* env,
+
+}
+
+namespace base {
+
+namespace android {
+
+  void JNI_MisesController_CallbackPhishingDetected(JNIEnv* env,
      const base::android::JavaParamRef<jstring>& address, jint action) {
 
-  android::MisesController::GetInstance()->callbackPhishingDetected(
+    chrome::android::MisesController::GetInstance()->callbackPhishingDetected(
       ConvertJavaStringToUTF8(env, address), action);
 
+}
+
+}
 }

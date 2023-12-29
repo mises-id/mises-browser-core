@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/xml/main_preferences.xml b/chrome/android/java/res/xml/main_preferences.xml
 old mode 100644
 new mode 100755
-index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823be041adc7
+index e287c3e6fb496b9e4c29b2eb199c5ec80726db23..cfa96c7f1a046a9ffc80edfb4a6c823be041adc7
 --- a/chrome/android/java/res/xml/main_preferences.xml
 +++ b/chrome/android/java/res/xml/main_preferences.xml
 @@ -1,9 +1,7 @@
@@ -42,7 +42,7 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823b
          android:fragment="org.chromium.chrome.browser.sync.settings.GoogleServicesSettings"/>
  
      <PreferenceCategory
-@@ -41,85 +35,143 @@ found in the LICENSE file.
+@@ -41,90 +35,143 @@ found in the LICENSE file.
          android:fragment="org.chromium.chrome.browser.search_engines.settings.SearchEngineSettings"
          android:key="search_engine"
          android:order="6"
@@ -75,7 +75,7 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823b
          android:fragment="org.chromium.chrome.browser.password_manager.settings.PasswordSettings"
          android:key="passwords"
 -        android:order="7"
--        android:title="@string/password_settings_title"/>
+-        android:title="@string/password_manager_settings_title"/>
 +        android:order="9"
 +        android:icon="@drawable/ics_passwords"
 +        android:title="@string/password_settings_title"
@@ -94,18 +94,23 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823b
          android:key="autofill_addresses"
          android:order="9"
 -        android:title="@string/autofill_addresses_settings_title"/>
+-    <org.chromium.components.browser_ui.settings.ChromeBasePreference
+-        android:fragment="org.chromium.chrome.browser.autofill.options.AutofillOptionsFragment"
+-        android:key="autofill_options"
+-        android:order="10"
+-        android:title="@string/autofill_options_title" />
 +        android:icon="@drawable/ics_addresses"
 +        android:title="@string/autofill_addresses_settings_title"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
      <Preference
          android:fragment="org.chromium.chrome.browser.privacy.settings.PrivacySettings"
          android:key="privacy"
--        android:order="10"
+-        android:order="11"
 -        android:title="@string/prefs_privacy_security"/>
 -    <Preference
 -        android:fragment="org.chromium.chrome.browser.safety_check.SafetyCheckSettingsFragment"
 -        android:key="safety_check"
--        android:order="11"
+-        android:order="12"
 -        android:title="@string/prefs_safety_check"/>
 +        android:icon="@drawable/ics_privacy_security"
 +        android:order="9"
@@ -113,12 +118,12 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823b
 +        app:iconTint="@color/default_icon_color_tint_list"/>
      <Preference
          android:key="notifications"
--        android:order="12"
+-        android:order="13"
 -        android:title="@string/prefs_notifications"/>
 -    <Preference
 -        android:fragment="org.chromium.chrome.browser.night_mode.settings.ThemeSettingsFragment"
 -        android:key="ui_theme"
--        android:order="13"
+-        android:order="14"
 -        android:title="@string/theme_settings" />
 +        android:order="9"
 +        android:icon="@drawable/ics_notifications"
@@ -128,12 +133,12 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823b
  
      <PreferenceCategory
 -        android:key="advanced_section"
--        android:order="14"
+-        android:order="15"
 -        android:title="@string/prefs_section_advanced"/>
 -    <Preference
 -        android:fragment="org.chromium.chrome.browser.homepage.settings.HomepageSettings"
 -        android:key="homepage"
--        android:order="15"
+-        android:order="16"
 -        android:title="@string/options_homepage_title"/>
 +        android:key="appearence_section"
 +        android:order="10"
@@ -167,15 +172,16 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823b
 +        android:title="@string/preferences_toolbar"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
      <Preference
-         android:fragment="org.chromium.chrome.browser.toolbar.adaptive.settings.AdaptiveToolbarPreferenceFragment"
+-        android:fragment="org.chromium.chrome.browser.toolbar.adaptive.settings.AdaptiveToolbarSettingsFragment"
++        android:fragment="org.chromium.chrome.browser.toolbar.adaptive.settings.AdaptiveToolbarPreferenceFragment"
          android:key="toolbar_shortcut"
--        android:order="16"
+-        android:order="17"
 +        android:order="11"
          android:title="@string/toolbar_shortcut"/>
      <Preference
          android:fragment="org.chromium.components.browser_ui.accessibility.AccessibilitySettings"
          android:key="accessibility"
--        android:order="17"
+-        android:order="18"
 -        android:title="@string/prefs_accessibility"/>
 -    <Preference
 +        android:order="11"
@@ -185,13 +191,11 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823b
 +    <org.chromium.components.browser_ui.settings.ChromeBasePreference
          android:fragment="org.chromium.components.browser_ui.site_settings.SiteSettings"
          android:key="content_settings"
--        android:order="18"
+-        android:order="19"
 -        android:title="@string/prefs_site_settings"/>
 -    <Preference
 -        android:fragment="org.chromium.chrome.browser.language.settings.LanguageSettings"
 -        android:key="languages"
--        android:order="19"
--        android:title="@string/language_settings"/>
 +        android:order="15"
 +        android:icon="@drawable/ics_website_settings"
 +        android:title="@string/prefs_site_settings"
@@ -199,7 +203,8 @@ index 231c5c00a8ce60f9e47fc032b413b7091343c45b..cfa96c7f1a046a9ffc80edfb4a6c823b
 +    <org.chromium.components.browser_ui.settings.ChromeBasePreference
 +        android:fragment="org.chromium.chrome.browser.translate.settings.TranslateSettings"
 +        android:key="translate"
-+        android:order="20"
+         android:order="20"
+-        android:title="@string/language_settings"/>
 +        android:icon="@drawable/ic_translate_r"
 +        android:title="@string/main_menu_translate"
 +        app:iconTint="@color/default_icon_color_tint_list"/>

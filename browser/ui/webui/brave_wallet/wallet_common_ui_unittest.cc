@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "brave/browser/ui/webui/brave_wallet/wallet_common_ui.h"
-#include "brave/components/constants/webui_url_constants.h"
+#include "mises/browser/ui/webui/brave_wallet/wallet_common_ui.h"
+#include "mises/components/constants/webui_url_constants.h"
 #include "testing/gtest/include/gtest/gtest.h"
 #include "url/gurl.h"
 #include "url/origin.h"

@@ -68,12 +68,12 @@ namespace extensions {
 namespace api {
 
 ExtensionFunction::ResponseAction MisesPrivateSetMisesIdFunction::Run() {
-  std::unique_ptr<api::mises_private::SetMisesId::Params> params(
+  std::optional<api::mises_private::SetMisesId::Params> params(
       api::mises_private::SetMisesId::Params::Create(args()));
-  EXTENSION_FUNCTION_VALIDATE(params.get());
+  EXTENSION_FUNCTION_VALIDATE(params);
   LOG(INFO) << "MisesPrivate set mises id :" << params->id;
 #if BUILDFLAG(IS_ANDROID)
-  android::MisesController::GetInstance()->setMisesUserInfo(params->id);
+  chrome::android::MisesController::GetInstance()->setMisesUserInfo(params->id);
 #endif
   Profile* profile = Profile::FromBrowserContext(browser_context());
   PrefService* prefs = profile->GetPrefs();
@@ -128,11 +128,11 @@ ExtensionFunction::ResponseAction MisesPrivateGetAppStateFunction::Run() {
 ExtensionFunction::ResponseAction MisesPrivateNotifyPhishingDetectedFunction::Run() {
 
 #if BUILDFLAG(IS_ANDROID)
-  std::unique_ptr<api::mises_private::NotifyPhishingDetected::Params> params(
+  std::optional<api::mises_private::NotifyPhishingDetected::Params> params(
       api::mises_private::NotifyPhishingDetected::Params::Create(args()));
-  EXTENSION_FUNCTION_VALIDATE(params.get());
+  EXTENSION_FUNCTION_VALIDATE(params);
   LOG(INFO) << "MisesPrivate notify phishing address :" << params->address;
-  android::MisesController::GetInstance()->notifyPhishingDetected(
+  chrome::android::MisesController::GetInstance()->notifyPhishingDetected(
     params->address, base::BindOnce(
       &MisesPrivateNotifyPhishingDetectedFunction::OnNotificationHandled, base::RetainedRef(this)
     )
@@ -155,11 +155,11 @@ void MisesPrivateNotifyPhishingDetectedFunction::OnNotificationHandled(int actio
 ExtensionFunction::ResponseAction MisesPrivateRecordEventFunction::Run() {
 
 #if BUILDFLAG(IS_ANDROID)
-  std::unique_ptr<api::mises_private::RecordEvent::Params> params(
+  std::optional<api::mises_private::RecordEvent::Params> params(
       api::mises_private::RecordEvent::Params::Create(args()));
-  EXTENSION_FUNCTION_VALIDATE(params.get());
+  EXTENSION_FUNCTION_VALIDATE(params);
   LOG(INFO) << "MisesPrivate set log event params :" << params->data;
-  android::MisesController::GetInstance()->recordEvent(
+  chrome::android::MisesController::GetInstance()->recordEvent(
     params->data
   );
 
@@ -192,9 +192,9 @@ void MisesPrivateFetchJsonFunction::OnFetchJson(api_request_helper::APIRequestRe
 
 
 ExtensionFunction::ResponseAction MisesPrivateFetchJsonFunction::Run() {
-    std::unique_ptr<api::mises_private::FetchJson::Params> params(
+    std::optional<api::mises_private::FetchJson::Params> params(
       api::mises_private::FetchJson::Params::Create(args()));
-  EXTENSION_FUNCTION_VALIDATE(params.get());
+  EXTENSION_FUNCTION_VALIDATE(params);
   const GURL& json_url = GURL(params->json_url);
   if (!json_url.is_valid() || json_url.is_empty()) {
     return RespondNow(Error("Invalid json url"));
@@ -222,9 +222,9 @@ ExtensionFunction::ResponseAction MisesPrivateFetchJsonFunction::Run() {
 //----------------------------------------------------------------
 //setDefaultEvmWallet
 ExtensionFunction::ResponseAction MisesPrivateSetDefaultEVMWalletFunction::Run() {
-  std::unique_ptr<api::mises_private::SetDefaultEVMWallet::Params> params(
+  std::optional<api::mises_private::SetDefaultEVMWallet::Params> params(
     api::mises_private::SetDefaultEVMWallet::Params::Create(args()));
-  EXTENSION_FUNCTION_VALIDATE(params.get());
+  EXTENSION_FUNCTION_VALIDATE(params);
 
   Profile* profile = Profile::FromBrowserContext(browser_context());
 

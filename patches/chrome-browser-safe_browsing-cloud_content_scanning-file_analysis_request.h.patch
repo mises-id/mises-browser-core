@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/safe_browsing/cloud_content_scanning/file_analysis_request.h b/chrome/browser/safe_browsing/cloud_content_scanning/file_analysis_request.h
-index 09ed45d3b59c7651da03fab0fe0807df9720d634..0a7c427b6e7cb89a1f47b29fc60cf760ff815b1d 100644
+index 669ade971bf0a02d1907ebe8b22e0757f219b93b..1616bf8c2d1220ff3df3898953f2c6e5bce82744 100644
 --- a/chrome/browser/safe_browsing/cloud_content_scanning/file_analysis_request.h
 +++ b/chrome/browser/safe_browsing/cloud_content_scanning/file_analysis_request.h
 @@ -11,8 +11,11 @@
@@ -11,10 +11,10 @@ index 09ed45d3b59c7651da03fab0fe0807df9720d634..0a7c427b6e7cb89a1f47b29fc60cf760
  #include "chrome/services/file_util/public/cpp/sandboxed_rar_analyzer.h"
  #include "chrome/services/file_util/public/cpp/sandboxed_zip_analyzer.h"
 +#endif
+ #include "components/file_access/scoped_file_access.h"
  
  namespace safe_browsing {
- 
-@@ -81,11 +84,13 @@ class FileAnalysisRequest : public BinaryUploadService::Request {
+@@ -84,11 +87,13 @@ class FileAnalysisRequest : public BinaryUploadService::Request {
    // GetRequestData call.
    bool delay_opening_file_;
  
@@ -26,5 +26,5 @@ index 09ed45d3b59c7651da03fab0fe0807df9720d634..0a7c427b6e7cb89a1f47b29fc60cf760
        rar_analyzer_{nullptr, base::OnTaskRunnerDeleter(nullptr)};
 +#endif
  
-   base::WeakPtrFactory<FileAnalysisRequest> weakptr_factory_{this};
- };
+   std::unique_ptr<file_access::ScopedFileAccess> scoped_file_access_;
+ 

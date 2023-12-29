@@ -1,10 +1,10 @@
 diff --git a/components/permissions/BUILD.gn b/components/permissions/BUILD.gn
-index 7876cd432cc42629024af481e15c2ed5cbb1697b..5809c195c76001d9a3da4b9b543adb84c1ea42f6 100644
+index b56fa81eace5702f1a1765b3f65cab9838d72a6b..e6e2fbb3fe64c52699a971ad18ff32c5a85d0712 100644
 --- a/components/permissions/BUILD.gn
 +++ b/components/permissions/BUILD.gn
-@@ -144,6 +144,7 @@ source_set("permissions") {
-       "contexts/geolocation_permission_context_mac.h",
-     ]
+@@ -142,6 +142,7 @@ source_set("permissions") {
+   if (!is_android && !is_ios) {
+     deps += [ "//components/guest_view/browser" ]
    }
 +  import("//mises/components/permissions/sources.gni") sources += mises_components_permissions_sources deps += mises_components_permissions_deps
    if (is_android) {

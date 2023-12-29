@@ -11,6 +11,7 @@ import static org.chromium.ui.base.ViewUtils.dpToPx;
 import android.text.TextUtils;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -48,15 +49,14 @@ import org.chromium.base.Callback;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.night_mode.GlobalNightModeStateProviderHolder;
 import org.chromium.chrome.browser.preferences.MisesPref;
-import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.components.user_prefs.UserPrefs;
-import org.chromium.content_public.browser.UiThreadTaskTraits;
 import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
 import org.chromium.chrome.browser.tabmodel.TabCreator;
 import org.chromium.chrome.browser.tab.TabLaunchType;
 
-
+import org.chromium.chrome.browser.preferences.PrefChangeRegistrar;
+import org.chromium.chrome.browser.preferences.PrefChangeRegistrar.PrefObserver;
 
 import com.openmediation.sdk.nativead.AdIconView;
 import com.openmediation.sdk.nativead.AdInfo;
@@ -71,6 +71,7 @@ import com.github.islamkhsh.CardSliderIndicator;
 
 import org.chromium.base.MisesAdsUtil;
 import org.chromium.base.MisesSysUtils;
+import org.chromium.components.user_prefs.UserPrefs;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -80,7 +81,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements PrefObserver{
     private Activity mActivity;
     private RequestManager mGlide;
     private View mMvTilesContainerLayout;
@@ -104,8 +105,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<CarouselAdapter.CarouselAdInfo> mData;
 
-    private SharedPreferencesManager.Observer mPreferenceObserver;
-
     private static int TYPE_MISES_SERVICE = 1;
     private static int TYPE_WEB3_SITE = 2;
     private static int TYPE_WEB3_EXTENSION = 3;
@@ -123,6 +122,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private List<String> mCarouselPlacmentIds;
     private Set<String> mLoadedPlacmentIds;
+
+    private SharedPreferences.OnSharedPreferenceChangeListener mPreferenceListener;
 
     public MisesNtpAdapter(Activity activity, OnMisesNtpListener onMisesNtpListener,
             RequestManager glide, 
@@ -362,6 +363,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         mHandler.removeCallbacksAndMessages(null);
         mData.clear();
+
+        // Removes preference listener.
+        ContextUtils.getAppSharedPreferences()
+                .unregisterOnSharedPreferenceChangeListener(mPreferenceListener);
+        mPreferenceListener = null;
         
     }
 
@@ -425,6 +431,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     public static boolean shouldDisplayMisesService() {
+
         return ContextUtils.getAppSharedPreferences().getBoolean(
                 PREF_SHOW_MISES_SERVICE, true);
     }
@@ -437,8 +444,15 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 PREF_SHOW_WEB3_EXTENSION, true);
     }
 
+    @Override
+    public void onPreferenceChange() {
+        setMisesServiceEnabled(shouldDisplayMisesService());
+        setWeb3SiteEnabled(shouldDisplayWeb3Site());
+        setWeb3ExtensionEnabled(shouldDisplayWeb3Extension());
+    }
+
     private void initPreferenceObserver() {
-        mPreferenceObserver = (key) -> {
+        mPreferenceListener = (prefs, key) -> {
             if (TextUtils.equals(key, PREF_SHOW_MISES_SERVICE)) {
                 setMisesServiceEnabled(shouldDisplayMisesService());
             }
@@ -450,8 +464,9 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 setWeb3ExtensionEnabled(shouldDisplayWeb3Extension());
             }
         };
-         if (mPreferenceObserver != null) {
-            SharedPreferencesManager.getInstance().addObserver(mPreferenceObserver);
+        if (mPreferenceListener != null) {
+            ContextUtils.getAppSharedPreferences()
+                    .registerOnSharedPreferenceChangeListener(mPreferenceListener);
         }
     }
 
@@ -519,6 +534,12 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    private static void writeBooleanUnchecked(final String prefKey, boolean value) {
+        SharedPreferences.Editor sharedPreferencesEditor =
+                ContextUtils.getAppSharedPreferences().edit();
+        sharedPreferencesEditor.putBoolean(prefKey, value);
+        sharedPreferencesEditor.apply();
+    }
     public static class MisesServiceViewHolder extends RecyclerView.ViewHolder {
         protected LinearLayout toggleLayout;
         protected LinearLayout moreLayout;
@@ -557,7 +578,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             moreLayout.setVisibility(View.GONE);
             toggleLayout.setOnClickListener(view -> {
-                SharedPreferencesManager.getInstance().writeBooleanUnchecked(
+                writeBooleanUnchecked(
                         PREF_SHOW_MISES_SERVICE, !enabled);
                 MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "service_off" : "service_on");
             }); 
@@ -565,6 +586,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             
         }
     }
+
 
     public static class Web3SiteViewHolder extends MisesServiceViewHolder {
         Web3SiteViewHolder(View itemView, Context ctx) {
@@ -591,7 +613,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 
             }); 
             toggleLayout.setOnClickListener(view -> {
-                SharedPreferencesManager.getInstance().writeBooleanUnchecked(
+                writeBooleanUnchecked(
                         PREF_SHOW_WEB3_SITE, !enabled);
                 MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "site_off" : "site_on");
             }); 
@@ -625,7 +647,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             }); 
             toggleLayout.setOnClickListener(view -> {
-                SharedPreferencesManager.getInstance().writeBooleanUnchecked(
+                writeBooleanUnchecked(
                         PREF_SHOW_WEB3_EXTENSION, !enabled);
                 MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "extension_off" : "extension_on");
             }); 

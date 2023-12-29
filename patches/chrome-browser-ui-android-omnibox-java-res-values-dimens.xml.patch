@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/android/omnibox/java/res/values/dimens.xml b/chrome/browser/ui/android/omnibox/java/res/values/dimens.xml
+index 06ac8031429a57ffcb8b7c2d9a17f07d004d94ab..f71bf8701085b89b6c6f54116753f3a866f86523 100644
+--- a/chrome/browser/ui/android/omnibox/java/res/values/dimens.xml
++++ b/chrome/browser/ui/android/omnibox/java/res/values/dimens.xml
+@@ -10,7 +10,7 @@ found in the LICENSE file.
+     <!-- Toolbar dimensions -->
+     <dimen name="toolbar_height_no_shadow">56dp</dimen>
+     <dimen name="toolbar_progress_bar_height">2dp</dimen>
+-    <dimen name="toolbar_button_width">48dp</dimen>
++    <dimen name="toolbar_button_width">42dp</dimen>
+     <dimen name="toolbar_identity_disc_size">24dp</dimen>
+     <dimen name="toolbar_url_focus_translation_x">10dp</dimen>
+     <dimen name="toolbar_url_focus_height_increase_active_color">8dp</dimen>

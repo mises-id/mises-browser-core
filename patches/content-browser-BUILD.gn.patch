@@ -1,8 +1,8 @@
 diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
-index 9961afba10bcbd5c81ca4363899f331b42d8abb1..636a58ce755d44713aac3d01f29ac5ba0cd3fd35 100644
+index 4c66836806fcda70c76aa026549cdc9aa4cb675f..0b37e10e0d29e680e0be5ee439d46ec180ebaa59 100644
 --- a/content/browser/BUILD.gn
 +++ b/content/browser/BUILD.gn
-@@ -3094,6 +3094,8 @@ source_set("browser") {
+@@ -3275,6 +3275,8 @@ source_set("browser") {
      }
      libs += [ "jnigraphics" ]
    } else {
@@ -11,14 +11,27 @@ index 9961afba10bcbd5c81ca4363899f331b42d8abb1..636a58ce755d44713aac3d01f29ac5ba
      # Not Android.
      sources += [
        # The WebAuthn devtools protocol API is not supported in Android yet.
-@@ -3166,6 +3168,10 @@ source_set("browser") {
+@@ -3357,6 +3359,14 @@ source_set("browser") {
        "picture_in_picture/document_picture_in_picture_window_controller_impl.h",
      ]
  
 +    if (is_android) {
-+      sources -= ["media/session/audio_focus_delegate_default.cc", "media/capture/crop_id_web_contents_helper.cc","network_sandbox.cc",]
++      sources -= [
++        "media/session/audio_focus_delegate_default.cc", 
++        "network_sandbox.cc",
++        "media/capture/sub_capture_target_id_web_contents_helper.cc",
++      ]
 +    }
 +
      deps += [
        "//components/speech:speech",
        "//components/vector_icons",
+@@ -3366,7 +3376,7 @@ source_set("browser") {
+   }
+ 
+   # Devtools frontend not included in Android and iOS
+-  if (!is_android && !is_ios) {
++  if (is_android || !is_android && !is_ios) {
+     sources += [
+       "devtools/devtools_frontend_host_impl.cc",
+       "devtools/devtools_frontend_host_impl.h",

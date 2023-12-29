@@ -62,6 +62,7 @@ import androidx.annotation.Nullable;
 import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import org.chromium.base.task.AsyncTask;
+import org.chromium.base.MisesController;
 
 public class MisesShareWin extends DialogFragment {
 

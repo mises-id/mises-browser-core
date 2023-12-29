@@ -59,12 +59,13 @@ class ResourceContextData : public base::SupportsUserData::Data {
   ResourceContextData& operator=(const ResourceContextData&) = delete;
   ~ResourceContextData() override;
 
-  static void StartProxying(
+static void StartProxying(
       content::BrowserContext* browser_context,
       int render_process_id,
       int frame_tree_node_id,
       mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver,
-      mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory);
+      mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory,
+      scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner);
 
   static MisesProxyingWebSocket* StartProxyingWebSocket(
       content::ContentBrowserClient::WebSocketFactory factory,

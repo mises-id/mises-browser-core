@@ -26,6 +26,7 @@
 #include "services/network/public/cpp/shared_url_loader_factory.h"
 #include "url/gurl.h"
 #include "extensions/browser/extensions_browser_client.h"
+#include "mises/browser/browser_context_keyed_service_factories.h"
 
 #if BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/flags/android/chrome_feature_list.h"
@@ -59,9 +60,8 @@ void MisesBrowserProcessImpl::Init() {
   BrowserProcessImpl::Init();
   DCHECK(extensions::ExtensionsBrowserClient::Get());
   #if BUILDFLAG(IS_ANDROID)
-  ChromeBrowserMainExtraPartsProfiles::
-      EnsureBrowserContextKeyedServiceFactoriesBuilt();
-
+    ChromeBrowserMainExtraPartsProfiles::EnsureBrowserContextKeyedServiceFactoriesBuilt();
+    mises::EnsureBrowserContextKeyedServiceFactoriesBuiltExtra();
     auto* startup_data = g_browser_process->startup_data();
     auto pref_registry = startup_data->TakePrefRegistrySyncable();
     BrowserContextDependencyManager::GetInstance()

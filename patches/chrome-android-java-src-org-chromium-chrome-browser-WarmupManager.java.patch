@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/WarmupManager.java b/chrome/android/java/src/org/chromium/chrome/browser/WarmupManager.java
-index e7ef7e66fe1b7a5ae1cc6594b74898322cbef3b5..2d3de3faf020f5050d7af1c973ef7645a0643c57 100644
+index da450948dad405d83b7bab1f94c6a594e1a77a3d..cb8fd75de1bd940aa752785eab4f7ec37fae58ab 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/WarmupManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/WarmupManager.java
-@@ -42,6 +42,10 @@ import java.util.HashSet;
+@@ -58,6 +58,10 @@ import java.util.HashSet;
  import java.util.Map;
  import java.util.Set;
  
@@ -13,7 +13,7 @@ index e7ef7e66fe1b7a5ae1cc6594b74898322cbef3b5..2d3de3faf020f5050d7af1c973ef7645
  /**
   * This class is a singleton that holds utilities for warming up Chrome and prerendering urls
   * without creating the Activity.
-@@ -128,6 +132,13 @@ public class WarmupManager {
+@@ -367,6 +371,13 @@ public class WarmupManager {
                      layoutInflater, R.layout.main, contentHolder);
              if (toolbarContainerId != ActivityUtils.NO_RESOURCE_ID) {
                  ViewStub stub = (ViewStub) mainView.findViewById(R.id.control_container_stub);

@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
-index d3006af4e3883b09c7e7980a07a1dc8c6dba1dfb..22a78518b026bf040660d23421e02ab1c6606425 100644
+index a23d64ec54297d6f8cc051baeaaa9cd18c812378..7ab31dbc982e8e1917936e166c632b6b7375df8b 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
-@@ -85,6 +85,7 @@ import org.chromium.ui.modelutil.ListObservable.ListObserver;
+@@ -83,6 +83,7 @@ import org.chromium.ui.modelutil.ListObservable.ListObserver;
  import org.chromium.ui.modelutil.PropertyModel;
  import org.chromium.ui.modelutil.SimpleRecyclerViewAdapter;
  import org.chromium.url.GURL;
@@ -10,13 +10,13 @@ index d3006af4e3883b09c7e7980a07a1dc8c6dba1dfb..22a78518b026bf040660d23421e02ab1
  
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
-@@ -1492,6 +1493,9 @@ class TabListMediator {
+@@ -1462,6 +1463,9 @@ class TabListMediator {
       * reasonable.
       */
-     private int getSpanCount(int orientation, int screenWidthDp) {
+     private int getSpanCount(int screenWidthDp) {
 +        if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic")) {
 +          return 1;
 +        }
-         if (DeviceFormFactor.isNonMultiDisplayContextOnTablet(mContext)
-                 && TabUiFeatureUtilities.isGridTabSwitcherEnabled(mContext)) {
+         if (DeviceFormFactor.isNonMultiDisplayContextOnTablet(mContext)) {
              return screenWidthDp < TabListCoordinator.MAX_SCREEN_WIDTH_COMPACT_DP
+                     ? TabListCoordinator.GRID_LAYOUT_SPAN_COUNT_COMPACT

@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
-index 65718075a3d3a40c62fe434c8c39835a1eee020a..e14495aa6dab1d70bc37baf43c40685dcf33c0b0 100644
+index 91509a3d6b6d59caab909af0628e9992ffca6929..340b42c350479766b4e585391e005138fef53499 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
-@@ -48,6 +48,8 @@ import org.chromium.url.GURL;
+@@ -47,6 +47,8 @@ import org.chromium.url.GURL;
  
  import java.util.List;
  
@@ -11,13 +11,13 @@ index 65718075a3d3a40c62fe434c8c39835a1eee020a..e14495aa6dab1d70bc37baf43c40685d
  /**
   * A mediator for the TabGroupUi. Responsible for managing the internal state of the component.
   */
-@@ -372,6 +374,9 @@ public class TabGroupUiMediator implements BackPressHandler {
-      *            not, associated tabs from #getTabsToShowForID will be showing in the tab strip.
-      */
+@@ -375,6 +377,9 @@ public class TabGroupUiMediator implements BackPressHandler {
      private void resetTabStripWithRelatedTabsForId(int id) {
+         // TODO(crbug/1449465): PseudoTab#getRelatedTabList() requires the tab state to be
+         // initialized. If this is called before tab state is initialized just skip.
 +        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false))
 +            id = Tab.INVALID_TAB_ID;
 +
+         if (!mTabModelSelector.isTabStateInitialized()) return;
+ 
          // TODO(crbug.com/1090655): We should be able to guard this call behind some checks so that
-         // we can assert here that 1) mIsShowingOverViewMode is false 2) mIsTabGroupUiVisible with
-         // valid id is false.

@@ -1,4 +1,4 @@
-#include "chrome/browser/ui/profile_picker.h"
+#include "chrome/browser/ui/profiles/profile_picker.h"
 
 #include <string>
 
@@ -61,10 +61,6 @@ bool ProfilePicker::Shown() {
   return false;
 }
 
-// static
-bool ProfilePicker::ShouldShowAtLaunch() {
-  return false;
-}
 
 void ProfilePicker::Show(Params&& params) {
 }

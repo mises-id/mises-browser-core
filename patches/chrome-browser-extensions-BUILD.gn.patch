@@ -1,29 +1,20 @@
 diff --git a/chrome/browser/extensions/BUILD.gn b/chrome/browser/extensions/BUILD.gn
-index c5b695f2699fd650ec2305be4f281ca72ca2b6fb..ac0073ea7a6d5c9ed6c9cc084ba759419a743004 100644
+index bb5ccf84803aa93da71a562230e13a9708c2f648..2f8cd9d9432b6dcf942c009b3c77e8b60ad24a47 100644
 --- a/chrome/browser/extensions/BUILD.gn
 +++ b/chrome/browser/extensions/BUILD.gn
-@@ -965,6 +965,7 @@ static_library("extensions") {
+@@ -991,6 +991,7 @@ static_library("extensions") {
      "//ui/strings",
      "//url",
    ]
 +  
  
-   if (is_linux || is_mac || is_win) {
-     sources += [
-@@ -1277,7 +1278,7 @@ static_library("extensions") {
-     ]
-   }
- 
--  if (is_linux) {
-+  if (is_linux || true) {
-     sources +=
-         [ "api/image_writer_private/removable_storage_provider_linux.cc" ]
-   }
-@@ -1385,6 +1386,7 @@ static_library("extensions") {
+   if (enable_supervised_users) {
+     deps += [ "//components/supervised_user/core/browser" ]
+@@ -1417,6 +1418,7 @@ static_library("extensions") {
    } else {
      sources += [ "api/braille_display_private/braille_controller_stub.cc" ]
    }
 +  import("//mises/browser/extensions/sources.gni") sources -= mises_extensions_exception_sources sources += mises_extensions_sources deps += mises_extensions_resources
  }
  
- static_library("test_support") {
+ proto_library("cws_item_service_proto") {

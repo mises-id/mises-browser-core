@@ -10,6 +10,7 @@
 #include <set>
 #include <string>
 
+#include "base/memory/raw_ptr.h"
 #include "net/base/network_anonymization_key.h"
 #include "net/base/network_isolation_key.h"
 #include "net/http/http_request_headers.h"
@@ -92,16 +93,16 @@ struct MisesRequestInfo {
   uint64_t request_identifier = 0;
   size_t next_url_request_index = 0;
 
-  content::BrowserContext* browser_context = nullptr;
-  net::HttpRequestHeaders* headers = nullptr;
+  raw_ptr<content::BrowserContext> browser_context = nullptr;
+  raw_ptr<net::HttpRequestHeaders> headers = nullptr;
   // The following two sets are populated by |OnBeforeStartTransactionCallback|.
   // |set_headers| contains headers which values were added or modified.
   std::set<std::string> set_headers;
   std::set<std::string> removed_headers;
-  const net::HttpResponseHeaders* original_response_headers = nullptr;
-  scoped_refptr<net::HttpResponseHeaders>* override_response_headers = nullptr;
+  raw_ptr<const net::HttpResponseHeaders> original_response_headers = nullptr;
+  raw_ptr<scoped_refptr<net::HttpResponseHeaders>> override_response_headers = nullptr;
 
-  GURL* allowed_unsafe_redirect_url = nullptr;
+  raw_ptr<GURL> allowed_unsafe_redirect_url = nullptr;
   MisesNetworkDelegateEventType event_type = kUnknownEventType;
   BlockedBy blocked_by = kNotBlocked;
   std::string mock_data_url;
@@ -140,7 +141,7 @@ struct MisesRequestInfo {
   // We should also remove the one below.
   friend class ::MisesRequestHandler;
 
-  GURL* new_url = nullptr;
+  raw_ptr<GURL> new_url = nullptr;
 };
 
 // ResponseListener
@@ -152,9 +153,9 @@ using OnBeforeStartTransactionCallback =
                                 const ResponseCallback& next_callback,
                                 std::shared_ptr<MisesRequestInfo> ctx)>;
 using OnHeadersReceivedCallback = base::RepeatingCallback<int(
-    const net::HttpResponseHeaders* original_response_headers,
-    scoped_refptr<net::HttpResponseHeaders>* override_response_headers,
-    GURL* allowed_unsafe_redirect_url,
+    raw_ptr<const net::HttpResponseHeaders> original_response_headers,
+    raw_ptr<scoped_refptr<net::HttpResponseHeaders>> override_response_headers,
+    raw_ptr<GURL> allowed_unsafe_redirect_url,
     const ResponseCallback& next_callback,
     std::shared_ptr<MisesRequestInfo> ctx)>;
 

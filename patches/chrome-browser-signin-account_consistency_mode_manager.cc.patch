@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/signin/account_consistency_mode_manager.cc b/chrome/browser/signin/account_consistency_mode_manager.cc
+index 222ba8a3084aa84deccb932267f7f55cf6f653dd..df66d5db86341c94012c484c9dcf43df34c1822b 100644
+--- a/chrome/browser/signin/account_consistency_mode_manager.cc
++++ b/chrome/browser/signin/account_consistency_mode_manager.cc
+@@ -189,6 +189,7 @@ AccountConsistencyModeManager::ComputeAccountConsistencyMethod(
+     Profile* profile) {
+   DCHECK(ShouldBuildServiceForProfile(profile));
+ 
++MISES_COMPUTE_ACCOUNT_CONSISTENCY_METHOD
+ #if BUILDFLAG(IS_CHROMEOS_ASH)
+   if (!ash::IsAccountManagerAvailable(profile))
+     return AccountConsistencyMethod::kDisabled;

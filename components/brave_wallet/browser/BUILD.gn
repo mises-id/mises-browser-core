@@ -196,9 +196,9 @@ static_library("browser") {
     "//mises/components/brave_wallet/common:solana_utils",
     "//mises/components/constants",
     "//mises/components/decentralized_dns/core",
-    "//mises/components/filecoin/rs:cxx",
+    "//mises/components/filecoin/rs:rust_lib",
     "//mises/components/ipfs/buildflags",
-    "//mises/components/json/rs:cxx",
+    "//mises/components/json/rs:rust_lib",
     "//mises/components/p3a_utils",
     "//mises/components/resources:strings_grit",
     "//components/component_updater",
@@ -279,7 +279,7 @@ source_set("utils") {
     "//mises/components/brave_wallet/common:buildflags",
     "//mises/components/brave_wallet/common:mojom",
     "//mises/components/version_info",
-    "//mises/components/libwally-core:bip39wally-core",
+    "//mises/third_party/libwally-core:bip39wally-core",
     "//components/content_settings/core/common",
     "//components/prefs",
     "//crypto",
@@ -314,11 +314,11 @@ source_set("hd_keyring") {
     "//mises/components/brave_wallet/common:common_constants",
     "//mises/components/brave_wallet/common:mojom",
     "//mises/components/brave_wallet/common:solana_utils",
-    "//mises/components/filecoin/rs:cxx",
+    "//mises/components/filecoin/rs:rust_lib",
     "//crypto",
   ]
 
-  public_deps = [ "//mises/components/brave_wallet/rust:cxx" ]
+  public_deps = [ "//mises/components/brave_wallet/rust:rust_lib" ]
 }
 
 source_set("transaction") {
@@ -341,8 +341,8 @@ source_set("transaction") {
     "//base",
     "//mises/components/brave_wallet/common",
     "//mises/components/brave_wallet/common:mojom",
-    "//mises/components/filecoin/rs:cxx",
-    "//mises/components/json/rs:cxx",
+    "//mises/components/filecoin/rs:rust_lib",
+    "//mises/components/json/rs:rust_lib",
   ]
 }
 

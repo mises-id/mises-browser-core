@@ -1,8 +1,8 @@
 diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
-index 9afb4425840b92a5c16e5ce5e11086a778cf8451..412e67112810d71e447d66424c3140c137752323 100644
+index 80bc79e5fb350f5cc7664f1b5be3dc61142f9e55..b5c3b380c011ffdd314042db4476ab61112495bd 100644
 --- a/build/config/compiler/BUILD.gn
 +++ b/build/config/compiler/BUILD.gn
-@@ -771,7 +771,7 @@ config("compiler") {
+@@ -860,7 +860,7 @@ config("compiler") {
    # Pass flag to LLD so Android builds can allow debuggerd to properly symbolize
    # stack crashes (http://crbug.com/919499).
    if (use_lld && is_android) {
@@ -11,18 +11,18 @@ index 9afb4425840b92a5c16e5ce5e11086a778cf8451..412e67112810d71e447d66424c3140c1
    }
  
    # TODO(crbug.com/1374347): Cleanup undefined symbol errors caught by
-@@ -986,8 +986,8 @@ config("compiler_cpu_abi") {
- 
-   # TODO(https://crbug.com/1383873): Remove this once figured out.
-   if (is_apple && current_cpu == "arm64") {
--    cflags += [ "-fno-global-isel" ]
--    ldflags += [ "-fno-global-isel" ]
+@@ -1142,6 +1142,10 @@ config("compiler_cpu_abi") {
+   if (is_chromeos) {
+     configs += [ "//build/config/chromeos:compiler_cpu_abi" ]
+   }
++  if (is_apple && current_cpu == "arm64") {
 +    cflags += [ "-fno-global-isel" , "-fobjc-legacy-dispatch", "-fobjc-abi-version=2"]
 +    ldflags += [ "-fno-global-isel", "-Wl,-ObjC", "-fobjc-legacy-dispatch", "-fobjc-abi-version=2"]
-   }
++  }
  
    if ((is_posix && !is_apple) || is_fuchsia) {
-@@ -2655,6 +2655,11 @@ if (is_apple) {
+     # CPU architecture. We may or may not be doing a cross compile now, so for
+@@ -2951,6 +2955,11 @@ if (is_apple) {
      cflags_objc = common_flags
      cflags_objcc = common_flags
    }
@@ -33,4 +33,4 @@ index 9afb4425840b92a5c16e5ce5e11086a778cf8451..412e67112810d71e447d66424c3140c1
 +  }
  }
  
- if (is_chromeos_ash && is_chromeos_device) {
+ if (is_android) {

@@ -8,25 +8,31 @@
 #include <vector>
 
 #include "base/memory/raw_ptr.h"
+#include "base/memory/raw_ptr_exclusion.h"
 #include "base/memory/ref_counted.h"
 #include "base/time/time.h"
 #include "build/build_config.h"
+#include "chrome/browser/ui/tabs/tab_enums.h"
+#include "content/public/browser/child_process_host.h"
 #include "content/public/browser/global_request_id.h"
 #include "content/public/browser/reload_type.h"
 #include "content/public/browser/render_frame_host.h"
 #include "content/public/browser/site_instance.h"
-#include "content/public/browser/child_process_host.h"
 #include "content/public/common/referrer.h"
 #include "services/network/public/cpp/resource_request_body.h"
 #include "services/network/public/cpp/shared_url_loader_factory.h"
 #include "third_party/abseil-cpp/absl/types/optional.h"
 #include "third_party/blink/public/common/navigation/impression.h"
 #include "third_party/blink/public/common/tokens/tokens.h"
+#include "third_party/blink/public/mojom/navigation/system_entropy.mojom.h"
 #include "third_party/blink/public/mojom/navigation/was_activated_option.mojom.h"
+#include "third_party/blink/public/mojom/window_features/window_features.mojom.h"
 #include "ui/base/page_transition_types.h"
 #include "ui/base/window_open_disposition.h"
 #include "ui/gfx/geometry/rect.h"
 #include "url/gurl.h"
+#include "chrome/browser/ui/tabs/tab_model.h"
+#include "chrome/browser/ui/tabs/tab_strip_model.h"
 
 #if BUILDFLAG(IS_ANDROID)
 

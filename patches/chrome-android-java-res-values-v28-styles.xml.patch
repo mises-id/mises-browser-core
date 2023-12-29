@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/values-v28/styles.xml b/chrome/android/java/res/values-v28/styles.xml
 old mode 100644
 new mode 100755
-index 64f1b9a82c953dc55ba2da94ac12967a3cf7e2da..d883fbe94fffc6ea7fce953cd4d6de1a762bc07c
+index b0280e3b73d4cd5467d960b58192bcd040ad62b1..d883fbe94fffc6ea7fce953cd4d6de1a762bc07c
 --- a/chrome/android/java/res/values-v28/styles.xml
 +++ b/chrome/android/java/res/values-v28/styles.xml
 @@ -1,9 +1,7 @@
@@ -17,3 +17,12 @@ index 64f1b9a82c953dc55ba2da94ac12967a3cf7e2da..d883fbe94fffc6ea7fce953cd4d6de1a
  
  <resources>
      <!-- The windowLightStatusBar attribute was added in API 23, but we avoid using it via XML prior
+@@ -12,8 +10,4 @@ found in the LICENSE file.
+         <item name="android:statusBarColor">@android:color/transparent</item>
+         <item name="android:windowLightStatusBar">@bool/window_light_status_bar</item>
+     </style>
+-    <style name="Theme.Chromium.Activity.Fullscreen" parent="Base.V27.Theme.Chromium.Activity.Fullscreen">
+-        <item name="android:statusBarColor">@android:color/transparent</item>
+-        <item name="android:windowLightStatusBar">@bool/window_light_status_bar</item>
+-    </style>
+ </resources>

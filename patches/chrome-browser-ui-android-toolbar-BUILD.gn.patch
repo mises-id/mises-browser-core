@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/ui/android/toolbar/BUILD.gn b/chrome/browser/ui/android/toolbar/BUILD.gn
-index 9a3ee5650101af465f6479c3cbb17830e5b3525c..01b81f75ed80ef513806436fb29fdb5bfe8a2c1d 100644
+index 1ec15d5b48774342f2d459765996b17d0c0d2e3c..8380e3d32b6745cc843820114b8ee2ea8206a186 100644
 --- a/chrome/browser/ui/android/toolbar/BUILD.gn
 +++ b/chrome/browser/ui/android/toolbar/BUILD.gn
-@@ -188,6 +188,15 @@ android_library("java") {
+@@ -197,6 +197,15 @@ android_library("java") {
+   ]
  
-   annotation_processor_deps = [ "//base/android/jni_generator:jni_processor" ]
    resources_package = "org.chromium.chrome.browser.toolbar"
 +  sources += [
 +      "//mises/android/java/org/chromium/chrome/browser/toolbar/top/HandButton.java",
@@ -18,7 +18,7 @@ index 9a3ee5650101af465f6479c3cbb17830e5b3525c..01b81f75ed80ef513806436fb29fdb5b
  }
  
  generate_jni("jni_headers") {
-@@ -283,7 +292,7 @@ android_resources("java_resources") {
+@@ -299,7 +308,7 @@ android_resources("java_resources") {
      "java/res/values/values.xml",
      "java/res/xml/adaptive_toolbar_preference.xml",
    ]

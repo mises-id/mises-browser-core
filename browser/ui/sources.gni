@@ -109,17 +109,10 @@ if (is_android) {
       "views/autofill/payments/save_card_manage_cards_bubble_views.h",
       "views/autofill/payments/save_card_offer_bubble_views.cc",
       "views/autofill/payments/save_card_offer_bubble_views.h",
-      "views/autofill/payments/save_upi_offer_bubble_views.cc",
-      "views/autofill/payments/save_upi_offer_bubble_views.h",
       "views/autofill/payments/save_iban_bubble_view.cc",
       "views/autofill/payments/virtual_card_enroll_bubble_views.cc",
       "views/autofill/payments/virtual_card_manual_fallback_bubble_views.cc",
 
-
-      "views/eye_dropper/eye_dropper_view.cc",
-      "views/eye_dropper/eye_dropper_view.h",
-      "views/eye_dropper/eye_dropper_view_mac.h",
-      "views/eye_dropper/eye_dropper_view_mac.mm",
 
       "views/media_router/cast_dialog_view.cc",
       "views/media_router/media_router_dialog_controller_views.cc",
@@ -185,10 +178,6 @@ if (is_android) {
       "autofill/payments/offer_notification_bubble_controller.h",
       "autofill/payments/save_card_bubble_controller.h",
       "autofill/payments/save_card_ui.h",
-      "autofill/payments/save_upi_bubble.h",
-      "autofill/payments/save_upi_bubble_controller.h",
-      "autofill/payments/save_upi_bubble_controller_impl.cc",
-      "autofill/payments/save_upi_bubble_controller_impl.h",
 
 
       "browser_otr_state.cc",
@@ -220,9 +209,11 @@ if (is_android) {
       "views/desktop_capture/desktop_media_source_view.h",
       "views/desktop_capture/desktop_media_tab_list.cc",
       "views/desktop_capture/desktop_media_tab_list.h",
+      "views/desktop_capture/share_this_tab_dialog_views.cc",
+      "views/desktop_capture/share_audio_view.cc",
+      "views/desktop_capture/share_this_tab_source_view.cc",
+      "views/desktop_capture/desktop_media_pane_view.cc",
 
-
-      "performance_controls/high_efficiency_iph_controller.cc",
       "performance_controls/performance_controls_hats_service.cc",
       "performance_controls/performance_controls_hats_service_factory.cc",
       "hats/trust_safety_sentiment_service.cc",
@@ -243,6 +234,13 @@ if (is_android) {
       "views/side_search/side_search_icon_view.cc",
       "views/policy/idle_dialog_view.cc",
       "views/autofill/payments/card_unmask_authentication_selection_dialog_view.cc",
+
+      "tabs/tab_model.cc",
+      "tabs/tab_model.h",
+
+      "views/frame/picture_in_picture_browser_frame_view.cc",
+      "plus_addresses/plus_address_creation_controller_desktop.cc",
+      "views/login_handler_views.cc",
 
   ]
   mises_browser_ui_deps += [

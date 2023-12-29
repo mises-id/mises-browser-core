@@ -28,7 +28,7 @@ class SafeBuiltins {
   ~SafeBuiltins();
 
   // We only need safe Object for scripts in
-  // //brave/components/brave_wallt/resources for now.
+  // //mises/components/brave_wallt/resources for now.
   // see //extensions/renderer/safe_builtins.h for reason of the naming.
   v8::Local<v8::Object> GetObjekt() const;
   v8::Local<v8::Object> GetFunction() const;

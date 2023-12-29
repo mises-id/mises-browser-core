@@ -13,7 +13,6 @@ source_set("infobars") {
     "//mises/app:mises_generated_resources_grit",
     "//mises/browser/ui",
     "//mises/common:common",
-    "//chrome/app:chromium_strings",
     "//chrome/browser/ui",
     "//components/infobars/content",
     "//components/infobars/core",

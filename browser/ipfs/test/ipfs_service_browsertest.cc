@@ -7,6 +7,7 @@
 #include <string>
 
 #include "base/base64.h"
+#include "base/hash/hash.h"
 #include "base/memory/raw_ptr.h"
 #include "base/path_service.h"
 #include "base/run_loop.h"
@@ -1482,7 +1483,7 @@ IN_PROC_BROWSER_TEST_F(IpfsServiceBrowserTest, ImportFileToIpfsSuccess) {
       base::BindRepeating(&IpfsServiceBrowserTest::HandleImportRequests,
                           base::Unretained(this), expected_response));
   auto file_to_upload = embedded_test_server()->GetFullPathFromSourceDirectory(
-      base::FilePath(FILE_PATH_LITERAL("brave/test/data/adbanner.js")));
+      base::FilePath(FILE_PATH_LITERAL("mises/test/data/adbanner.js")));
   ipfs_service()->ImportFileToIpfs(
       file_to_upload, std::string(),
       base::BindOnce(&IpfsServiceBrowserTest::OnImportCompletedSuccess,
@@ -1496,7 +1497,7 @@ IN_PROC_BROWSER_TEST_F(IpfsServiceBrowserTest, ImportDirectoryToIpfsSuccess) {
   ResetTestServer(
       base::BindRepeating(&IpfsServiceBrowserTest::HandleImportRequests,
                           base::Unretained(this), expected_response));
-  auto* folder = FILE_PATH_LITERAL("brave/test/data/autoplay-whitelist-data");
+  auto* folder = FILE_PATH_LITERAL("mises/test/data/autoplay-whitelist-data");
   auto test_path = embedded_test_server()->GetFullPathFromSourceDirectory(
       base::FilePath(folder));
   ipfs_service()->ImportDirectoryToIpfs(
@@ -1512,7 +1513,7 @@ IN_PROC_BROWSER_TEST_F(IpfsServiceBrowserTest, ImportAndPinDirectorySuccess) {
   ResetTestServer(
       base::BindRepeating(&IpfsServiceBrowserTest::HandleImportRequests,
                           base::Unretained(this), expected_response));
-  auto* folder = FILE_PATH_LITERAL("brave/test/data/autoplay-whitelist-data");
+  auto* folder = FILE_PATH_LITERAL("mises/test/data/autoplay-whitelist-data");
   auto test_path = embedded_test_server()->GetFullPathFromSourceDirectory(
       base::FilePath(folder));
   ipfs_service()->ImportDirectoryToIpfs(
@@ -1529,7 +1530,7 @@ IN_PROC_BROWSER_TEST_F(IpfsServiceBrowserTest, ImportFileAndPinToIpfsSuccess) {
       base::BindRepeating(&IpfsServiceBrowserTest::HandleImportRequests,
                           base::Unretained(this), expected_response));
   auto file_to_upload = embedded_test_server()->GetFullPathFromSourceDirectory(
-      base::FilePath(FILE_PATH_LITERAL("brave/test/data/adbanner.js")));
+      base::FilePath(FILE_PATH_LITERAL("mises/test/data/adbanner.js")));
   ipfs_service()->ImportFileToIpfs(
       file_to_upload, std::string("test_key"),
       base::BindOnce(&IpfsServiceBrowserTest::OnPublishCompletedSuccess,

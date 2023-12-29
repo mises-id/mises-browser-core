@@ -3,9 +3,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#define MISES_FORCED_REQUESTING_ORIGIN \
+#define MISES_GET_PERMISSION_RESULT_FOR_CURRENT_DOCUMENT \
   !forced_requesting_origin_.is_empty() ? forced_requesting_origin_:
+
+#define MISES_REQUEST_PERMISSION_FROM_CURRENT_DOCUMENT                 \
+  if (!forced_requesting_origin_.is_empty()) {                         \
+    auto desc = std::move(request_description);                        \
+    desc.requesting_origin = forced_requesting_origin_;                \
+    RequestPermissionsInternal(render_frame_host, desc,                \
+                               std::move(permission_status_callback)); \
+    return;                                                            \
+  }
 
 #include "src/components/permissions/permission_manager.cc"
 
-#undef MISES_FORCED_REQUESTING_ORIGIN
+#undef MISES_GET_PERMISSION_RESULT_FOR_CURRENT_DOCUMENT
+#undef MISES_REQUEST_PERMISSION_FROM_CURRENT_DOCUMENT

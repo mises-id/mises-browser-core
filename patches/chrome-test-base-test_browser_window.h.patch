@@ -1,5 +1,5 @@
 diff --git a/chrome/test/base/test_browser_window.h b/chrome/test/base/test_browser_window.h
-index 2870b5021bd8da7be1c9f2d3aa55cea8c92de85c..6df77c57358d0d0b0a245a42fcabbc40e6217fa9 100644
+index f90aae2975bf267da5b70bbbc1d1a72d00ae02b0..bd016452b774b8898396722fb3c88ee406c3a825 100644
 --- a/chrome/test/base/test_browser_window.h
 +++ b/chrome/test/base/test_browser_window.h
 @@ -20,6 +20,7 @@
@@ -8,5 +8,5 @@ index 2870b5021bd8da7be1c9f2d3aa55cea8c92de85c..6df77c57358d0d0b0a245a42fcabbc40
  #include "chrome/browser/ui/translate/partial_translate_bubble_model.h"
 +#include "chrome/browser/ui/browser_list_observer.h"
  #include "chrome/common/buildflags.h"
+ #include "components/user_education/common/feature_promo_controller.h"
  #include "ui/base/interaction/element_identifier.h"
- 

@@ -84,8 +84,8 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelected(
     if (new_path.MatchesExtension(FILE_PATH_LITERAL(".zip"))) {
       ZipFileInstaller::Create(
           GetExtensionFileTaskRunner(),
-	  MakeRegisterInExtensionServiceCallback(service))
-          ->LoadFromZipFile(new_path);
+	        MakeRegisterInExtensionServiceCallback(service)
+      )->InstallZipFileToTempDir(new_path);
     } else {
       scoped_refptr<CrxInstaller> crx_installer =
           CrxInstaller::CreateSilent(service);

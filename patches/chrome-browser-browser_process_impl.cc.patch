@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/browser_process_impl.cc b/chrome/browser/browser_process_impl.cc
-index c559c9dee4da0c1106d2117bb1fdb984670d4486..2c01394997e3f667f14989c65d014ae2a8e891e7 100644
+index 228c377a1bec52b037d703cb81b266a8bf338474..b58fc4571030c318af53ee2cb9fac7a1ff2757e8 100644
 --- a/chrome/browser/browser_process_impl.cc
 +++ b/chrome/browser/browser_process_impl.cc
-@@ -165,7 +165,8 @@
+@@ -162,7 +162,8 @@
  #include "chrome/browser/ssl/chrome_security_state_client.h"
  #include "chrome/browser/webauthn/android/chrome_webauthn_client_android.h"
  #include "components/webauthn/android/webauthn_client_android.h"
@@ -11,8 +11,8 @@ index c559c9dee4da0c1106d2117bb1fdb984670d4486..2c01394997e3f667f14989c65d014ae2
 +#if (true)
  #include "chrome/browser/devtools/devtools_auto_opener.h"
  #include "chrome/browser/gcm/gcm_product_util.h"
- #include "chrome/browser/hid/hid_policy_allowed_devices.h"
-@@ -884,7 +885,7 @@ printing::BackgroundPrintingManager*
+ #include "chrome/browser/hid/hid_system_tray_icon.h"
+@@ -913,7 +914,7 @@ printing::BackgroundPrintingManager*
  #endif
  }
  
@@ -21,7 +21,7 @@ index c559c9dee4da0c1106d2117bb1fdb984670d4486..2c01394997e3f667f14989c65d014ae2
  IntranetRedirectDetector* BrowserProcessImpl::intranet_redirect_detector() {
    DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
    if (!intranet_redirect_detector_)
-@@ -938,7 +939,7 @@ network_time::NetworkTimeTracker* BrowserProcessImpl::network_time_tracker() {
+@@ -967,7 +968,7 @@ network_time::NetworkTimeTracker* BrowserProcessImpl::network_time_tracker() {
    return network_time_tracker_.get();
  }
  
@@ -30,7 +30,7 @@ index c559c9dee4da0c1106d2117bb1fdb984670d4486..2c01394997e3f667f14989c65d014ae2
  gcm::GCMDriver* BrowserProcessImpl::gcm_driver() {
    DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
    if (!gcm_driver_)
-@@ -962,7 +963,7 @@ BrowserProcessImpl::resource_coordinator_parts() {
+@@ -991,7 +992,7 @@ BrowserProcessImpl::resource_coordinator_parts() {
    return resource_coordinator_parts_.get();
  }
  
@@ -39,7 +39,7 @@ index c559c9dee4da0c1106d2117bb1fdb984670d4486..2c01394997e3f667f14989c65d014ae2
  SerialPolicyAllowedPorts* BrowserProcessImpl::serial_policy_allowed_ports() {
    DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
    if (!serial_policy_allowed_ports_) {
-@@ -1025,7 +1026,7 @@ void BrowserProcessImpl::RegisterPrefs(PrefRegistrySimple* registry) {
+@@ -1047,7 +1048,7 @@ void BrowserProcessImpl::RegisterPrefs(PrefRegistrySimple* registry) {
  #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
  
    registry->RegisterBooleanPref(metrics::prefs::kMetricsReportingEnabled,
@@ -48,7 +48,7 @@ index c559c9dee4da0c1106d2117bb1fdb984670d4486..2c01394997e3f667f14989c65d014ae2
    registry->RegisterBooleanPref(prefs::kDevToolsRemoteDebuggingAllowed, true);
  }
  
-@@ -1135,7 +1136,7 @@ void BrowserProcessImpl::CreateProfileManager() {
+@@ -1157,7 +1158,7 @@ void BrowserProcessImpl::CreateProfileManager() {
  
    base::FilePath user_data_dir;
    base::PathService::Get(chrome::DIR_USER_DATA, &user_data_dir);
@@ -57,7 +57,7 @@ index c559c9dee4da0c1106d2117bb1fdb984670d4486..2c01394997e3f667f14989c65d014ae2
  }
  
  void BrowserProcessImpl::PreCreateThreads() {
-@@ -1199,7 +1200,7 @@ void BrowserProcessImpl::PreMainMessageLoopRun() {
+@@ -1221,7 +1222,7 @@ void BrowserProcessImpl::PreMainMessageLoopRun() {
        ChromePluginServiceFilter::GetInstance());
  #endif  // BUILDFLAG(ENABLE_PLUGINS)
  

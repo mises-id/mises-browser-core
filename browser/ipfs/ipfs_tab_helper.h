@@ -11,6 +11,8 @@
 #include <utility>
 #include <vector>
 
+#include "base/memory/raw_ptr.h"
+
 #include "mises/browser/ipfs/import/ipfs_import_controller.h"
 #include "mises/browser/ipfs/ipfs_host_resolver.h"
 #include "components/prefs/pref_change_registrar.h"
@@ -127,7 +129,7 @@ class IPFSTabHelper : public content::WebContentsObserver,
 
   void LoadUrl(const GURL& gurl);
 
-  PrefService* pref_service_ = nullptr;
+  raw_ptr<PrefService> pref_service_ = nullptr;
   PrefChangeRegistrar pref_change_registrar_;
   GURL ipfs_resolved_url_;
   GURL current_page_url_for_testing_;

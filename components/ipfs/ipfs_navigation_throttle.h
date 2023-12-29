@@ -12,6 +12,7 @@
 
 #include "base/gtest_prod_util.h"
 #include "base/memory/weak_ptr.h"
+#include "base/memory/raw_ptr.h"
 #include "mises/components/ipfs/ipfs_service_observer.h"
 #include "content/public/browser/navigation_throttle.h"
 
@@ -68,8 +69,8 @@ class IpfsNavigationThrottle : public content::NavigationThrottle {
   bool ShouldAsk();
 
   bool resume_pending_ = false;
-  IpfsService* ipfs_service_ = nullptr;
-  PrefService* pref_service_ = nullptr;
+  raw_ptr<IpfsService> ipfs_service_ = nullptr;
+  raw_ptr<PrefService> pref_service_ = nullptr;
   std::string locale_;
   base::WeakPtrFactory<IpfsNavigationThrottle> weak_ptr_factory_{this};
 };

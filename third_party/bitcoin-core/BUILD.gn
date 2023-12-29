@@ -81,7 +81,7 @@ static_library("secp256k1") {
 
   visibility = [ 
     "//mises/components/brave_wallet/browser/internal:hd_key",
-    "//mises/components/libwally-core:bip39wally-core"
+    "//mises/third_party/libwally-core:bip39wally-core"
   ]
 
   # Do NOT add any files here without security review

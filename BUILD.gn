@@ -1,4 +1,3 @@
-import("//mises/build/cargo.gni")
 import("//mises/build/config.gni")
 import("//build/config/locales.gni")
 import("//build/config/zip.gni")
@@ -496,6 +495,37 @@ if (is_mac) {
   }
 }
 
+cargo_audit_target_dir = "$root_build_dir/cargo_audit"
+cargo_audit_exe = "$cargo_audit_target_dir/release/cargo-audit"
+cargo_audit_src = "//mises/tools/crates/cargo_audit/v0_18/crate"
+if (host_os == "win") {
+  cargo_audit_exe += ".exe"
+}
+
+action("build_cargo_audit") {
+  script = "//build/gn_run_binary.py"
+
+  cargo_exe = "//third_party/rust-toolchain/bin/cargo"
+  if (host_os == "win") {
+    cargo_exe += ".exe"
+  }
+
+  inputs = [
+    cargo_exe,
+    "$cargo_audit_src/Cargo.lock",
+  ]
+  outputs = [ cargo_audit_exe ]
+  args = [
+    rebase_path(cargo_exe),
+    "build",
+    "--release",
+    "--manifest-path",
+    rebase_path("$cargo_audit_src/Cargo.toml"),
+    "--target-dir",
+    rebase_path(cargo_audit_target_dir),
+  ]
+}
+
 action("audit_deps") {
   script = "//mises/script/audit_deps.py"
 
@@ -503,16 +533,13 @@ action("audit_deps") {
 
   args = [
     "--source_root=" + rebase_path("//mises"),
-    "--rustup_home=" + rebase_path(rustup_home),
-    "--cargo_home=" + rebase_path(rustup_home),
+    "--cargo_audit_exe=" + rebase_path(cargo_audit_exe),
   ]
 
-  if (defined(rustc_toolchain)) {
-    args += [ "--toolchain=$rustc_toolchain" ]
-  }
   if (audit_dev_deps) {
     args += [ "--audit_dev_deps" ]
   }
+  deps = [ ":build_cargo_audit" ]
 }
 
 group("tools") {

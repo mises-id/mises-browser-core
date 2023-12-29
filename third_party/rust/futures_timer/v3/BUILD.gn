@@ -1,0 +1,43 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "futures_timer"
+  epoch = "3"
+  crate_type = "rlib"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/futures_timer/v3/crate/src/lib.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/native.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/native/arc_list.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/native/atomic_waker.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/native/delay.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/native/global.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/native/heap.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/native/heap_timer.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/native/timer.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/src/wasm.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/tests/smoke.rs",
+    "//mises/third_party/rust/futures_timer/v3/crate/tests/timeout.rs",
+  ]
+  inputs = [ "//mises/third_party/rust/futures_timer/v3/crate/README.md" ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "3.0.2"
+  cargo_pkg_authors = "Alex Crichton <alex@alexcrichton.com>"
+  cargo_pkg_name = "futures-timer"
+  cargo_pkg_description = "Timeouts for futures."
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+}

@@ -26,6 +26,25 @@ android_aar_prebuilt("open_mediation_admob_adaptor_java") {
   ]
 }
 
+android_aar_prebuilt("open_mediation_mintegral_adaptor_java") {
+  aar_path = "mintegral.aar"
+  extract_native_libraries = true
+  ignore_manifest = false
+  info_path = "open_mediation_mintegral_adaptor.info"
+  deps = [
+    "//mises/third_party/open_mediation:open_mediation_sdk_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_reward_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_interstitial_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_newinterstitial_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_mbbanner_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_mbsplash_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_mbnative_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_mbnativeadvanced_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_mbbid_java",
+    "//mises/third_party/open_mediation/mintegral:mintegral_conscrypt_java"
+  ]
+}
+
 
 android_aar_prebuilt("open_mediation_cardslider_java") {
   aar_path = "cardslider.aar"

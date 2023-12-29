@@ -85,12 +85,15 @@ const base::FilePath::CharType kStatusTrayWindowClass[] =
     FPL("Chrome_StatusTrayWindow");
 #endif  // BUILDFLAG(IS_WIN)
 
+
 const char kInitialProfile[] = "Default";
 const char kMultiProfileDirPrefix[] = "Profile ";
 const base::FilePath::CharType kGuestProfileDir[] = FPL("Guest Profile");
 const base::FilePath::CharType kSystemProfileDir[] = FPL("System Profile");
 
 // filenames
+const base::FilePath::CharType kAccountPreferencesFilename[] =
+    FPL("AccountPreferences");
 const base::FilePath::CharType kCacheDirname[] = FPL("Cache");
 const base::FilePath::CharType kCookieFilename[] = FPL("Cookies");
 const base::FilePath::CharType kCRLSetFilename[] =

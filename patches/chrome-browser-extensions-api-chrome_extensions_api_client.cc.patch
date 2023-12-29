@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/extensions/api/chrome_extensions_api_client.cc b/chrome/browser/extensions/api/chrome_extensions_api_client.cc
+index 2897ebd032da86b128e8e4b592715d762e19cf6c..8f0ff8b4ac9071878e06e48f3d437f34a8cd1b70 100644
+--- a/chrome/browser/extensions/api/chrome_extensions_api_client.cc
++++ b/chrome/browser/extensions/api/chrome_extensions_api_client.cc
+@@ -510,7 +510,9 @@ std::vector<KeyedServiceBaseFactory*>
+ ChromeExtensionsAPIClient::GetFactoryDependencies() {
+   // clang-format off
+   return {
++#if !BUILDFLAG(IS_ANDROID)
+       InstantServiceFactory::GetInstance(),
++#endif
+ #if BUILDFLAG(ENABLE_SUPERVISED_USERS)
+       SupervisedUserServiceFactory::GetInstance(),
+ #endif

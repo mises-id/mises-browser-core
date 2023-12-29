@@ -79,21 +79,10 @@ void PageActionIconController::OnDefaultZoomLevelChanged() {
 
 void PageActionIconController::OnPageActionIconViewShown(
     PageActionIconView* view) {
-  if (!view->should_record_metrics_if_shown()) {
-    return;
-  }
 }
 
 
 void PageActionIconController::PrimaryPageChanged(content::Page& page) {
-  // When the primary page has changed, log metrics for individual page actions
-  // as well as overall metrics.
-  for (auto icon_item : page_action_icon_views_) {
-    if (!icon_item.second->ephemeral() || !icon_item.second->GetVisible() ||
-        !icon_item.second->should_record_metrics_if_shown()) {
-      continue;
-    }
-  }
 }
 
 void PageActionIconController::OnPageActionIconViewClicked(
@@ -107,14 +96,6 @@ void PageActionIconController::ReadyToCommitNavigation(
     content::NavigationHandle* navigation_handle) {
   if (!navigation_handle->IsInPrimaryMainFrame()) {
     return;
-  }
-  for (auto icon_item : page_action_icon_views_) {
-    if (!icon_item.second->ephemeral()) {
-      continue;
-    }
-    // Reset metrics logging, so that all page actions will log metrics the
-    // first time they are displayed on the new page.
-    icon_item.second->set_should_record_metrics_if_shown(true);
   }
   max_actions_recorded_on_current_page_ = 0;
 }

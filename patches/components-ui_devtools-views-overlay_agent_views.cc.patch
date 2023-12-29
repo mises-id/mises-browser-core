@@ -1,8 +1,8 @@
 diff --git a/components/ui_devtools/views/overlay_agent_views.cc b/components/ui_devtools/views/overlay_agent_views.cc
-index 7768cd64f8a401856f2f80bd31577084a3004fd8..a1fa18e2e31099c0788e9bd954e9004d682ad361 100644
+index 213852ef61e8077ed24006cfffd2934336df514b..f5a14b7d3be70404faeadea392159c6287987d7b 100644
 --- a/components/ui_devtools/views/overlay_agent_views.cc
 +++ b/components/ui_devtools/views/overlay_agent_views.cc
-@@ -720,7 +720,7 @@ bool OverlayAgentViews::UpdateHighlight(
+@@ -725,7 +725,7 @@ bool OverlayAgentViews::UpdateHighlight(
    root_layer = widget->GetLayer();
    layer_for_highlighting_screen_offset_ =
        widget->GetContentsView()->GetBoundsInScreen().OffsetFromOrigin();

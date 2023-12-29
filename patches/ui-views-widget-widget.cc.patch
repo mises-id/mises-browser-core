@@ -1,8 +1,8 @@
 diff --git a/ui/views/widget/widget.cc b/ui/views/widget/widget.cc
-index 1e80a2a1d3271806e0f4e301263846bc2b6fc4c2..53554076dac7fb6dfb2509f0061680dcf2269995 100644
+index 968eebaf6719c1da9a796588f487a6ebf0aab876..a12cda2b2b3a319e232f44ffcc30e433b5ec801c 100644
 --- a/ui/views/widget/widget.cc
 +++ b/ui/views/widget/widget.cc
-@@ -432,12 +432,15 @@ void Widget::Init(InitParams params) {
+@@ -438,11 +438,13 @@ void Widget::Init(InitParams params) {
    root_view_.reset(CreateRootView());
  
    // Copy the elements of params that will be used after it is moved.
@@ -10,15 +10,22 @@ index 1e80a2a1d3271806e0f4e301263846bc2b6fc4c2..53554076dac7fb6dfb2509f0061680dc
    const InitParams::Type type = params.type;
    const gfx::Rect bounds = params.bounds;
    const ui::WindowShowState show_state = params.show_state;
+-  WidgetDelegate* delegate = params.delegate;
+   bool should_set_initial_bounds = true;
 +#endif
-   WidgetDelegate* delegate = params.delegate;
++  WidgetDelegate* delegate = params.delegate;
+ #if BUILDFLAG(IS_CHROMEOS)
+   // If the target display is specified on ChromeOS, the initial bounds will be
+   // set based on the display.
+@@ -450,6 +452,7 @@ void Widget::Init(InitParams params) {
+ #endif
  
    native_widget_->InitNativeWidget(std::move(params));
 +#if !BUILDFLAG(IS_ANDROID)
    if (type == InitParams::TYPE_MENU)
      is_mouse_button_pressed_ = native_widget_->IsMouseButtonDown();
    if (RequiresNonClientView(type)) {
-@@ -481,6 +484,7 @@ void Widget::Init(InitParams params) {
+@@ -497,6 +500,7 @@ void Widget::Init(InitParams params) {
    }
  
    native_theme_observation_.Observe(GetNativeTheme());
@@ -26,7 +33,7 @@ index 1e80a2a1d3271806e0f4e301263846bc2b6fc4c2..53554076dac7fb6dfb2509f0061680dc
    native_widget_initialized_ = true;
    native_widget_->OnWidgetInitDone();
  
-@@ -1983,12 +1987,13 @@ void Widget::OnDragWillStart() {}
+@@ -2062,11 +2066,13 @@ void Widget::OnDragWillStart() {}
  void Widget::OnDragComplete() {}
  
  const ui::NativeTheme* Widget::GetNativeTheme() const {
@@ -36,8 +43,7 @@ index 1e80a2a1d3271806e0f4e301263846bc2b6fc4c2..53554076dac7fb6dfb2509f0061680dc
  
    if (parent_)
      return parent_->GetNativeTheme();
--
 +#endif
+ 
  #if BUILDFLAG(IS_LINUX)
    if (auto* linux_ui_theme = ui::LinuxUiTheme::GetForWindow(GetNativeWindow()))
-     return linux_ui_theme->GetNativeTheme();

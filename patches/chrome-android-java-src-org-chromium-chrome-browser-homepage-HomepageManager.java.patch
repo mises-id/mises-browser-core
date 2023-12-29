@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-index 47e346168cf3eb3be2adf9aacef86a63ed83930e..7a4e6c20a195385cb0fe2edc197b23eb88e5caca 100644
+index 7cd3d2bb13dc7e5db18a2039b4975cbb095ec116..1cf492f056bd3c3c1149ab82fa84d585e46262b6 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-@@ -25,6 +25,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
+@@ -31,6 +31,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
  import org.chromium.components.embedder_support.util.UrlUtilities;
  import org.chromium.url.GURL;
  
@@ -11,34 +11,34 @@ index 47e346168cf3eb3be2adf9aacef86a63ed83930e..7a4e6c20a195385cb0fe2edc197b23eb
  /**
   * Provides information regarding homepage enabled states and URI.
   *
-@@ -118,8 +120,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -124,8 +126,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
       * @return Whether to close the app when the user has zero tabs.
       */
      public static boolean shouldCloseAppWithZeroTabs() {
 -        return HomepageManager.isHomepageEnabled()
--                && !UrlUtilities.isNTPUrl(HomepageManager.getHomepageUri());
+-                && !UrlUtilities.isNTPUrl(HomepageManager.getHomepageGurl());
 +        return ContextUtils.getAppSharedPreferences().getBoolean("close_browser_after_last_tab", false);
      }
  
      /**
-@@ -200,7 +201,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -220,7 +221,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
       * Get homepage URI without checking if the homepage is enabled.
-      * @return Homepage URI based on policy and shared preference settings.
+      * @return Homepage GURL based on policy and shared preference settings.
       */
--    private @NonNull String getHomepageUriIgnoringEnabledState() {
-+    public @NonNull String getHomepageUriIgnoringEnabledStateChromium() {
+-    private @NonNull GURL getHomepageGurlIgnoringEnabledState() {
++    public @NonNull GURL getHomepageGurlIgnoringEnabledStateChromium() {
          if (HomepagePolicyManager.isHomepageManagedByPolicy()) {
-             return HomepagePolicyManager.getHomepageUrl().getSpec();
+             return HomepagePolicyManager.getHomepageUrl();
          }
-@@ -212,6 +213,12 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -232,6 +233,12 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
          }
-         return getPrefHomepageCustomUri();
+         return getPrefHomepageCustomGurl();
      }
 +    public boolean usingCustomHomepageUri() {
-+        return getHomepageUriIgnoringEnabledStateChromium().equals(getPrefHomepageCustomUri());
++        return getHomepageGurlIgnoringEnabledStateChromium().equals(getPrefHomepageCustomGurl());
 +    }
-+    public @NonNull String getHomepageUriIgnoringEnabledState() {
-+        return ContextUtils.getAppSharedPreferences().getString("active_homepage", UrlConstants.NTP_NON_NATIVE_URL);
++    public @NonNull GURL getHomepageGurlIgnoringEnabledState() {
++        return new GURL(ContextUtils.getAppSharedPreferences().getString("active_homepage", UrlConstants.NTP_NON_NATIVE_URL));
 +    }
  
      /**

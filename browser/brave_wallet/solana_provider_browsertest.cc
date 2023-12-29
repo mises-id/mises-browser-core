@@ -673,7 +673,7 @@ IN_PROC_BROWSER_TEST_F(SolanaProviderTest, ConnectedStatusAndPermission) {
 
   // Removing solana permission doesn't affect connected status.
   host_content_settings_map()->ClearSettingsForOneType(
-      ContentSettingsType::BRAVE_SOLANA);
+      ContentSettingsType::MISES_SOLANA);
   EXPECT_TRUE(IsSolanaConnected(web_contents()));
 
   // Doing connect again and reject it doesn't affect connected status either.

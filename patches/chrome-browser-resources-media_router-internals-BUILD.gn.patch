@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/media_router/internals/BUILD.gn b/chrome/browser/resources/media_router/internals/BUILD.gn
-index 4315ed31a40b7e8d7efe164ebd4a6aea095422f4..b0c46b6ba586f2647262441dcda4bd880e850746 100644
+index 80bdb1b139c352eb556dab0f2a2dfbc44fbad4bc..da3fe6d236274d33b04daf70dc750d15737386c2 100644
 --- a/chrome/browser/resources/media_router/internals/BUILD.gn
 +++ b/chrome/browser/resources/media_router/internals/BUILD.gn
 @@ -4,7 +4,7 @@
  
- import("//tools/typescript/ts_library.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android)
 +# assert(!is_android)
  
- ts_library("build_ts") {
-   root_dir = "."
+ build_webui("build") {
+   grd_prefix = "media_router_internals"

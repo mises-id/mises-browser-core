@@ -10,16 +10,16 @@
 
 bool ChromeRuntimeAPIDelegate::GetPlatformInfo(PlatformInfo* info) {
 #if BUILDFLAG(IS_ANDROID)
-  info->os = extensions::api::runtime::PLATFORM_OS_ANDROID;
+  info->os = extensions::api::runtime::PlatformOs::kAndroid;;
   const char* arch = update_client::UpdateQueryParams::GetArch();
   if (strcmp(arch, "arm") == 0) {
-    info->arch = extensions::api::runtime::PLATFORM_ARCH_ARM;
+    info->arch = extensions::api::runtime::PlatformArch::kArm;
   } else if (strcmp(arch, "arm64") == 0) {
-    info->arch = extensions::api::runtime::PLATFORM_ARCH_ARM64;
+    info->arch = extensions::api::runtime::PlatformArch::kArm64;
   } else {
-    info->arch = extensions::api::runtime::PLATFORM_ARCH_ARM;
+    info->arch = extensions::api::runtime::PlatformArch::kArm;
   }
-  info->nacl_arch = extensions::api::runtime::PLATFORM_NACL_ARCH_ARM;
+  info->nacl_arch = extensions::api::runtime::PlatformNaclArch::kArm;
   return true;
 #else 
   return GetPlatformInfo_Chromium(info);

@@ -1,27 +1,27 @@
 diff --git a/ios/chrome/app/BUILD.gn b/ios/chrome/app/BUILD.gn
-index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..f8b921dfea7a5f3756c0d7b2f4b5702255d0b8cf 100644
+index 8be315047a4850fa7ab2d7f8944d603729971728..909142fac5ead1e54ecc70e588497540237595a6 100644
 --- a/ios/chrome/app/BUILD.gn
 +++ b/ios/chrome/app/BUILD.gn
-@@ -147,6 +147,7 @@ if (!is_fat_secondary_toolchain) {
-     info_plists = [
-       "resources/Info.plist",
-       "resources/ChromeAddition+Info.plist",
-+      "//mises/ios/app/resources/Mises+Info.plist",
-     ]
-     if (ios_enable_background_mode) {
-       info_plists += [ "resources/Background+Info.plist" ]
-@@ -171,6 +172,10 @@ if (!is_fat_secondary_toolchain) {
-     args = [
-       "--branding=$chromium_short_name",
-       "--add-gtm-metadata=1",
-+      "--version-overrides=MAJOR=1",
-+      "--version-overrides=MINOR=2",
-+      "--version-overrides=BUILD=4",
-+      "--version-overrides=PATCH=3",
-     ]
-   }
+@@ -160,6 +160,7 @@ tweak_info_plist("info_plist") {
+   info_plists = [
+     "resources/Info.plist",
+     "resources/ChromeAddition+Info.plist",
++    "//mises/ios/app/resources/Mises+Info.plist",
+   ]
+   if (ios_enable_background_mode) {
+     info_plists += [ "resources/Background+Info.plist" ]
+@@ -184,6 +185,10 @@ tweak_info_plist("info_plist") {
+   args = [
+     "--branding=$chromium_short_name",
+     "--add-gtm-metadata=1",
++    "--version-overrides=MAJOR=1",
++    "--version-overrides=MINOR=2",
++    "--version-overrides=BUILD=4",
++    "--version-overrides=PATCH=3",
+   ]
+ }
  
-@@ -686,7 +691,8 @@ ios_app_bundle("chrome") {
+@@ -681,7 +686,8 @@ chrome_app("chrome") {
  
    deps = [
      ":main",
@@ -31,7 +31,7 @@ index 52fe2a5587fd536c0a250ffc00ca0d21ebada838..f8b921dfea7a5f3756c0d7b2f4b57022
      # Use the provider API controlled by args.gn.
      ios_provider_target,
    ]
-@@ -754,8 +760,7 @@ ios_app_bundle("chrome") {
+@@ -752,8 +758,7 @@ chrome_app("chrome") {
    # (see https://crbug.com/1394553 for details of the build failure). This
    # is a stop-gap solution.
    if (target_environment == "catalyst" ||

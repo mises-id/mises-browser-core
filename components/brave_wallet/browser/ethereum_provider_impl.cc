@@ -143,7 +143,7 @@ void EthereumProviderImpl::AddEthereumChain(const std::string& json_payload,
   auto json_value = base::JSONReader::Read(
       json_payload,
       base::JSON_PARSE_CHROMIUM_EXTENSIONS | base::JSON_ALLOW_TRAILING_COMMAS);
-  if (!json_value) {
+  if (!json_value || !json_value->is_dict()) {
     base::Value formed_response = GetProviderErrorDictionary(
         mojom::ProviderError::kInvalidParams,
         l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
@@ -153,8 +153,10 @@ void EthereumProviderImpl::AddEthereumChain(const std::string& json_payload,
     return;
   }
 
-  const base::Value* params = json_value->FindListPath(brave_wallet::kParams);
-  if (!params || !params->is_list()) {
+  const auto& root = json_value->GetDict();
+
+  const auto* params = root.FindList(brave_wallet::kParams);
+  if (!params || params->empty()) {
     base::Value formed_response = GetProviderErrorDictionary(
         mojom::ProviderError::kInvalidParams,
         l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
@@ -163,17 +165,7 @@ void EthereumProviderImpl::AddEthereumChain(const std::string& json_payload,
                             "", true);
     return;
   }
-  const auto& list = params->GetList();
-  if (list.empty()) {
-    base::Value formed_response = GetProviderErrorDictionary(
-        mojom::ProviderError::kInvalidParams,
-        l10n_util::GetStringUTF8(IDS_WALLET_EXPECTED_SINGLE_PARAMETER));
-    reject = true;
-    std::move(callback).Run(std::move(id), std::move(formed_response), reject,
-                            "", true);
-    return;
-  }
-  auto chain = ParseEip3085Payload(*list.begin());
+  auto chain = ParseEip3085Payload(params->front());
   if (!chain) {
     base::Value formed_response = GetProviderErrorDictionary(
         mojom::ProviderError::kInvalidParams,
@@ -691,13 +683,13 @@ void EthereumProviderImpl::ContinueDecryptWithSanitizedJson(
     const std::string& address,
     const url::Origin& origin,
     data_decoder::JsonSanitizer::Result result) {
-  if (result.error || !result.value.has_value()) {
+  if (!result.has_value()) {
     SendErrorOnRequest(mojom::ProviderError::kInvalidParams,
                        l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS),
                        std::move(callback), std::move(id));
     return;
   }
-  std::string validated_encrypted_data_json = result.value.value();
+  std::string validated_encrypted_data_json = result.value();
   std::string version;
   std::vector<uint8_t> nonce;
   std::vector<uint8_t> ephemeral_public_key;

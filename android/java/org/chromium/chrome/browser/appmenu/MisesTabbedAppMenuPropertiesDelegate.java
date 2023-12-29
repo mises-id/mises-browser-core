@@ -18,6 +18,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import org.chromium.base.supplier.ObservableSupplier;
 import org.chromium.base.supplier.OneshotSupplier;
+import org.chromium.base.supplier.Supplier;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.ActivityTabProvider;
 import org.chromium.chrome.browser.app.appmenu.AppMenuIconRowFooter;
@@ -37,6 +38,7 @@ import org.chromium.chrome.browser.ui.appmenu.AppMenuHandler;
 import org.chromium.chrome.browser.ui.messages.snackbar.SnackbarManager;
 import org.chromium.chrome.features.start_surface.StartSurface;
 import org.chromium.ui.modaldialog.ModalDialogManager;
+import org.chromium.chrome.browser.readaloud.ReadAloudController;
 
 public class MisesTabbedAppMenuPropertiesDelegate extends TabbedAppMenuPropertiesDelegate {
     private Menu mMenu;
@@ -50,18 +52,20 @@ public class MisesTabbedAppMenuPropertiesDelegate extends TabbedAppMenuPropertie
             AppMenuDelegate appMenuDelegate,
             OneshotSupplier<LayoutStateProvider> layoutStateProvider,
             OneshotSupplier<StartSurface> startSurfaceSupplier,
-            ObservableSupplier<BookmarkModel> bookmarkBridgeSupplier,
+            ObservableSupplier<BookmarkModel> bookmarkModelSupplier,
             WebFeedSnackbarController.FeedLauncher feedLauncher,
             ModalDialogManager modalDialogManager, SnackbarManager snackbarManager,
             @NonNull OneshotSupplier<IncognitoReauthController>
-                    incognitoReauthControllerOneshotSupplier) {
+                    incognitoReauthControllerOneshotSupplier,
+            Supplier<ReadAloudController> readAloudControllerSupplier) {
         super(context, activityTabProvider, multiWindowModeStateDispatcher, tabModelSelector,
                 toolbarManager, decorView, appMenuDelegate, layoutStateProvider,
-                startSurfaceSupplier, bookmarkBridgeSupplier, feedLauncher, modalDialogManager,
-                snackbarManager, incognitoReauthControllerOneshotSupplier);
+                startSurfaceSupplier, bookmarkModelSupplier, feedLauncher, modalDialogManager,
+                snackbarManager, incognitoReauthControllerOneshotSupplier,
+                readAloudControllerSupplier);
 
         mAppMenuDelegate = appMenuDelegate;
-        mBookmarkModelSupplier = bookmarkBridgeSupplier;
+        mBookmarkModelSupplier = bookmarkModelSupplier;
     }
 
     @Override

@@ -1,11 +1,11 @@
 package org.chromium.chrome.browser;
 
-import org.chromium.base.annotations.CalledByNative;
-import org.chromium.base.annotations.NativeMethods;
+import org.jni_zero.CalledByNative;
+import org.jni_zero.NativeMethods;
 import org.chromium.content_public.browser.WebContents;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.base.ThreadUtils;
-import org.chromium.chrome.browser.mises.MisesController;
+import org.chromium.base.MisesController;
 
 public class AppMenuBridge {
     private long mNativeAppMenuBridge;

@@ -26,20 +26,20 @@ void SearchIPCRouter::OnMisesInfoChanged() {
   if (!embedded_search_client())
     return;
 #if BUILDFLAG(IS_ANDROID)
-  std::string info = android::MisesController::GetInstance()->getMisesUserInfo();
+  std::string info = chrome::android::MisesController::GetInstance()->getMisesUserInfo();
   std::u16string result =  base::UTF8ToUTF16(info.c_str());
   embedded_search_client()->MisesInfoChanged(result);
 #endif
 }
 
 void SearchIPCRouter::OpenExtension( const GURL& url) {
-  delegate_->OnOpenExtension(url);
+
 }
 
 void SearchIPCRouter::ShowRewardAd() {
 }
 
 void SearchIPCRouter::LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) {
-  delegate_->OnLogEvent( event_type, key, value);
+
 }
 

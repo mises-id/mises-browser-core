@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
-index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..b468a90954f8e6e6e84039c8d320eb3d5ee54dde 100644
+index d27e463b70baa2bcdc7b9bd114cca46d3eb538df..bab27ff9ec0cbd47175519539e55e300d2232196 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
 @@ -36,6 +36,8 @@ import java.util.HashMap;
@@ -28,7 +28,7 @@ index c0b404e2829e7dc7bced9a419dd9ddd53834b4c7..b468a90954f8e6e6e84039c8d320eb3d
  
          ContextThemeWrapper wrapper =
                  new ContextThemeWrapper(mContext, R.style.OverflowMenuThemeOverlay);
-@@ -294,7 +299,24 @@ class AppMenuHandlerImpl
+@@ -295,7 +300,24 @@ class AppMenuHandlerImpl
              mTestOptionsItemSelectedListener.onResult(itemId);
              return;
          }

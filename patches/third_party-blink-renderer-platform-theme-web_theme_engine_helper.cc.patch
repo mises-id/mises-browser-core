@@ -1,9 +1,9 @@
 diff --git a/third_party/blink/renderer/platform/theme/web_theme_engine_helper.cc b/third_party/blink/renderer/platform/theme/web_theme_engine_helper.cc
-index ee409f98c3f66018bb39cfc3a31dc0b92053ff15..04ddeae250cf892346d9fbb001871748f3cd9967 100644
+index 43fb9329f95dfafb494cb3210c12cd46fa45bc9b..b5bc0bd96c1153aa5f9e1ef133658f1f0353e923 100644
 --- a/third_party/blink/renderer/platform/theme/web_theme_engine_helper.cc
 +++ b/third_party/blink/renderer/platform/theme/web_theme_engine_helper.cc
-@@ -59,4 +59,12 @@ void WebThemeEngineHelper::DidUpdateRendererPreferences(
- #endif
+@@ -68,4 +68,12 @@ WebThemeEngineHelper::AndroidScrollbarStyle() {
+   return style;
  }
  
 +bool global_force_dark_mode_enabled = false;

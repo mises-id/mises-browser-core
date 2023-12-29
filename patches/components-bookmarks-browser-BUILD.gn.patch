@@ -1,5 +1,5 @@
 diff --git a/components/bookmarks/browser/BUILD.gn b/components/bookmarks/browser/BUILD.gn
-index fa0a550e020745e01bf824fe57bf06d3b8acc57d..80db16942c12edf1db36408db733013bbf5317c6 100644
+index 95a01fe95dc7e6af3804deb9df46dc495aa6594c..344decdeceb6a34a5007766d68d1cb8fb04f5eaa 100644
 --- a/components/bookmarks/browser/BUILD.gn
 +++ b/components/bookmarks/browser/BUILD.gn
 @@ -79,7 +79,7 @@ static_library("browser") {

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/side_panel/performance_controls/BUILD.gn b/chrome/browser/resources/side_panel/performance_controls/BUILD.gn
+index af3df64c66f60179279a0a46d4e81f53e79fb85b..fd30160b155d08b7bdceee779134e0f3a2054d02 100644
+--- a/chrome/browser/resources/side_panel/performance_controls/BUILD.gn
++++ b/chrome/browser/resources/side_panel/performance_controls/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "side_panel_performance"

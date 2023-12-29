@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/RadioButtonGroupThemePreference.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/RadioButtonGroupThemePreference.java
-index c3e8efde46a2080eb3d8f3cd790f694e9ca8c663..0821749ea60142a5a9ec72b2869cb2a3bf4d913d 100644
+index a1aec0c2a7f3b856e8d8ecee68129b513f991760..b170e5e49eaf41d55424b74e2aeb41701266b2ff 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/RadioButtonGroupThemePreference.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/RadioButtonGroupThemePreference.java
 @@ -98,6 +98,7 @@ public class RadioButtonGroupThemePreference

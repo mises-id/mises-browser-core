@@ -1,8 +1,8 @@
 diff --git a/third_party/blink/common/web_preferences/web_preferences_mojom_traits.cc b/third_party/blink/common/web_preferences/web_preferences_mojom_traits.cc
-index 22220de13b6d7b88cfe0b02367836f7bd5e139b5..9a3448030a3b09f02f5c50f4c0e15ec374ec6472 100644
+index bd5d2f9ba30d847a44e70c1173eb49a5d3f4b6bb..0fe8cc50adbf18ac30bce1e79be54ab4e6c7e0f3 100644
 --- a/third_party/blink/common/web_preferences/web_preferences_mojom_traits.cc
 +++ b/third_party/blink/common/web_preferences/web_preferences_mojom_traits.cc
-@@ -201,6 +201,7 @@ bool StructTraits<blink::mojom::WebPreferencesDataView,
+@@ -203,6 +203,7 @@ bool StructTraits<blink::mojom::WebPreferencesDataView,
  #endif  // BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
  
    out->force_dark_mode_enabled = data.force_dark_mode_enabled();

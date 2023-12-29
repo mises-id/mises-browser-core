@@ -34,7 +34,7 @@
 #include "mises/components/brave_wallet/common/hex_utils.h"
 #include "mises/components/brave_wallet/common/value_conversion_utils.h"
 #include "mises/components/version_info/version_info.h"
-#include "mises/components/libwally-core/include/wally_bip39.h"
+#include "mises/third_party/libwally-core/include/wally_bip39.h"
 #include "components/prefs/pref_service.h"
 #include "components/prefs/scoped_user_pref_update.h"
 #include "crypto/random.h"

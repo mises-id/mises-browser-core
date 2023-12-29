@@ -1,28 +1,28 @@
 diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_coordinator.mm b/ios/chrome/browser/ui/toolbar/primary_toolbar_coordinator.mm
-index 08d8ebf568a75642f431e8bc839c62747697c989..ddb7ae0ae6758ac1d9d981d0b6c3c0b635032108 100644
+index 3ba8dc900fa968c3f83e13c88c21b70321c3a197..923b1fb5392a73ed113a873a22a6b199c97c6e1d 100644
 --- a/ios/chrome/browser/ui/toolbar/primary_toolbar_coordinator.mm
 +++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_coordinator.mm
-@@ -38,6 +38,8 @@
- #import "ios/components/webui/web_ui_url_constants.h"
- #import "ios/web/public/navigation/referrer.h"
+@@ -24,6 +24,8 @@
+ #import "ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator+subclassing.h"
+ #import "ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.h"
  
 +#import "mises/ios/browser/ui/toolbar/mises_toolbar_coordinator.h"
 +
- #if !defined(__has_feature) || !__has_feature(objc_arc)
- #error "This file requires ARC support."
- #endif
-@@ -64,6 +66,8 @@ @interface PrimaryToolbarCoordinator () <PrimaryToolbarMediatorDelegate,
- // Whether the omnibox is currently focused.
- @property(nonatomic, assign) BOOL locationBarFocused;
+ @interface PrimaryToolbarCoordinator ()
+ 
+ // Whether the coordinator is started.
+@@ -31,6 +33,8 @@
+ // Redefined as PrimaryToolbarViewController.
+ @property(nonatomic, strong) PrimaryToolbarViewController* viewController;
  
 +@property(nonatomic, strong) MisesToolbarCoordinator* misesToolbarCoordinator;
 +
  @end
  
  @implementation PrimaryToolbarCoordinator
-@@ -124,6 +128,11 @@ - (void)start {
-   _prerenderService = PrerenderServiceFactory::GetForBrowserState(
-       self.browser->GetBrowserState());
+@@ -61,6 +65,11 @@
+   self.viewController.buttonFactory =
+       [self buttonFactoryWithType:ToolbarType::kPrimary];
  
 +    
 +      self.misesToolbarCoordinator = [[MisesToolbarCoordinator alloc] initWithBrowser:self.browser];
@@ -32,8 +32,8 @@ index 08d8ebf568a75642f431e8bc839c62747697c989..ddb7ae0ae6758ac1d9d981d0b6c3c0b6
    [super start];
    self.started = YES;
  }
-@@ -331,4 +340,10 @@ - (void)setUpLocationBar {
-   [self.locationBarCoordinator start];
+@@ -90,4 +99,10 @@
+   [self.viewController triggerToolbarSlideInAnimationFromBelow:NO];
  }
  
 +- (void) activate {

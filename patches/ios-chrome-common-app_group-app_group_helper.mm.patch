@@ -1,9 +1,9 @@
 diff --git a/ios/chrome/common/app_group/app_group_helper.mm b/ios/chrome/common/app_group/app_group_helper.mm
-index 4c29c030b858fb772b16e787bb65d39248c86138..b2418418e48fa2bdd201b11675b54518cc7c8a76 100644
+index 04bb2f01054f73977063d6990dfe26b4c06614d5..d6df9c77a3691b3428b5a038b5165b2f911d0f72 100644
 --- a/ios/chrome/common/app_group/app_group_helper.mm
 +++ b/ios/chrome/common/app_group/app_group_helper.mm
-@@ -16,7 +16,7 @@ + (NSString*)applicationGroup {
-   NSBundle* bundle = [NSBundle mainBundle];
+@@ -14,7 +14,7 @@
+   NSBundle* bundle = base::apple::FrameworkBundle();
    NSString* group = [bundle objectForInfoDictionaryKey:@"KSApplicationGroup"];
    if (![group length]) {
 -    return [NSString stringWithFormat:@"group.%s.chrome",

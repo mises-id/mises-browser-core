@@ -1,15 +1,15 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
-index 79b36bef9089e04dfa1099462c87afb7367cb4a7..566d317ff5e6d50a807d0b997b19c7ff148e8aec 100644
+index 728151300ef075cf94f20f210c928671275349e1..8c9586b7b134820c209b767c2b8754f38a35e912 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
-@@ -540,8 +540,8 @@ public class StatusMediator implements PermissionDialogController.Observer,
-         if (mUrlHasFocus && mShowStatusIconWhenUrlFocused) {
+@@ -565,8 +565,8 @@ public class StatusMediator
              return true;
          }
--
--        return (mUrlHasFocus || mUrlFocusPercent > 0) && isNTPOrStartSurfaceVisible()
+ 
+-        return (mUrlHasFocus || mUrlFocusPercent > 0)
+-                && isNTPOrStartSurfaceVisible()
 +        boolean mises_enforced = false;
 +        return mises_enforced && (mUrlHasFocus || mUrlFocusPercent > 0) && isNTPOrStartSurfaceVisible()
-                 && mProfileSupplier.get() != null;
+                 && mProfileSupplier.hasValue();
      }
  

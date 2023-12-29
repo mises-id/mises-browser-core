@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/global_error/global_error.cc b/chrome/browser/ui/global_error/global_error.cc
-index a0ab5faa162236c869904a858afc0c2edda81cee..eb587b3d95b457e5593ee1993a2fa39f03f755ad 100644
+index b6a21a379e37917ec22aefac5c905e4410c0ac22..d781f06292da7fdbfc9fbcf27259e61c6be02efc 100644
 --- a/chrome/browser/ui/global_error/global_error.cc
 +++ b/chrome/browser/ui/global_error/global_error.cc
-@@ -49,9 +49,11 @@ bool GlobalErrorWithStandardBubble::HasShownBubbleView() {
+@@ -33,9 +33,11 @@ bool GlobalErrorWithStandardBubble::HasShownBubbleView() {
  }
  
  void GlobalErrorWithStandardBubble::ShowBubbleView(Browser* browser) {

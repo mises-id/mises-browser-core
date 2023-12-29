@@ -15,6 +15,7 @@
 #include "base/containers/flat_map.h"
 #include "base/functional/callback.h"
 #include "base/memory/weak_ptr.h"
+#include "base/memory/raw_ptr.h"
 #include "base/observer_list_threadsafe.h"
 #include "mises/components/api_request_helper/api_request_helper.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_constants.h"
@@ -675,8 +676,8 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
   SnsResolverTaskContainer<SnsResolveHostCallback> sns_resolve_host_tasks_;
 
   mojo::ReceiverSet<mojom::JsonRpcService> receivers_;
-  PrefService* prefs_ = nullptr;
-  PrefService* local_state_prefs_ = nullptr;
+  raw_ptr<PrefService> prefs_ = nullptr;
+  raw_ptr<PrefService> local_state_prefs_ = nullptr;
   std::unique_ptr<NftMetadataFetcher> nft_metadata_fetcher_;
   base::WeakPtrFactory<JsonRpcService> weak_ptr_factory_;
 };

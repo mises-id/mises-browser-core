@@ -1,8 +1,8 @@
 diff --git a/extensions/browser/extension_function_histogram_value_unittest.cc b/extensions/browser/extension_function_histogram_value_unittest.cc
-index c1dcceb84577d31f395baf0ca71bb3ce87b16496..5fbfc2d95b674ccd871db841ea3ddcfe02493fc4 100644
+index 6c287466eda9dfb1f77b16670443c64c5a5aecf9..16455f7e868c79a43dd3e064bbee8f457a3874fc 100644
 --- a/extensions/browser/extension_function_histogram_value_unittest.cc
 +++ b/extensions/browser/extension_function_histogram_value_unittest.cc
-@@ -23,7 +23,9 @@ TEST(ExtensionFunctionHistogramValueTest, CheckEnums) {
+@@ -24,7 +24,9 @@ TEST(ExtensionFunctionHistogramValueTest, CheckEnums) {
    ASSERT_TRUE(enums);
    // The number of enums in the histogram entry should be equal to the number of
    // enums in the C++ file.
@@ -11,4 +11,4 @@ index c1dcceb84577d31f395baf0ca71bb3ce87b16496..5fbfc2d95b674ccd871db841ea3ddcfe
 +#endif
  
    base::FilePath src_root;
-   ASSERT_TRUE(base::PathService::Get(base::DIR_SOURCE_ROOT, &src_root));
+   ASSERT_TRUE(base::PathService::Get(base::DIR_SRC_TEST_DATA_ROOT, &src_root));

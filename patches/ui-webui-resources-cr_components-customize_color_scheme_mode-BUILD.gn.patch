@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/customize_color_scheme_mode/BUILD.gn b/ui/webui/resources/cr_components/customize_color_scheme_mode/BUILD.gn
+index 6232fd056a0e746673a3be8b0ab835ecf7464e55..1a7bd0f3c6e2c4c6ba09c072a32b41b2837df282 100644
+--- a/ui/webui/resources/cr_components/customize_color_scheme_mode/BUILD.gn
++++ b/ui/webui/resources/cr_components/customize_color_scheme_mode/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android && !is_ios)
++#assert(!is_android && !is_ios)
+ 
+ mojom("mojom") {
+   sources = [ "customize_color_scheme_mode.mojom" ]

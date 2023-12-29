@@ -1,8 +1,8 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
-index 5d4fe9044981485a195a5a544bff0bbeec075df5..684258cc1ff1e8130a59eb3808d50dbfb86e1012 100644
+index acf05ff8fcdb9bc47e5de922e223b1faaa0c3f09..3d4604f5ae645cc9efc9c9361f0cde37744433d3 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
-@@ -55,7 +55,7 @@ public class UrlUtilities {
+@@ -53,7 +53,7 @@ public class UrlUtilities {
       */
      private static final HashSet<String> INTERNAL_SCHEMES =
              CollectionUtil.newHashSet(UrlConstants.CHROME_SCHEME, UrlConstants.CHROME_NATIVE_SCHEME,
@@ -11,7 +11,7 @@ index 5d4fe9044981485a195a5a544bff0bbeec075df5..684258cc1ff1e8130a59eb3808d50dbf
  
      private static final String TEL_SCHEME = "tel";
  
-@@ -106,6 +106,12 @@ public class UrlUtilities {
+@@ -104,6 +104,12 @@ public class UrlUtilities {
       * @return Whether the URL's scheme is for a internal chrome page.
       */
      public static boolean isInternalScheme(@NonNull GURL gurl) {
@@ -24,7 +24,7 @@ index 5d4fe9044981485a195a5a544bff0bbeec075df5..684258cc1ff1e8130a59eb3808d50dbf
          return INTERNAL_SCHEMES.contains(gurl.getScheme());
      }
  
-@@ -266,6 +272,12 @@ public class UrlUtilities {
+@@ -264,6 +270,12 @@ public class UrlUtilities {
       */
      public static boolean isNTPUrl(GURL gurl) {
          if (!gurl.isValid() || !isInternalScheme(gurl)) return false;
@@ -37,7 +37,7 @@ index 5d4fe9044981485a195a5a544bff0bbeec075df5..684258cc1ff1e8130a59eb3808d50dbf
          return UrlConstants.NTP_HOST.equals(gurl.getHost());
      }
  
-@@ -304,7 +316,13 @@ public class UrlUtilities {
+@@ -302,7 +314,13 @@ public class UrlUtilities {
          if (LibraryLoader.getInstance().isInitialized()) return isNTPUrl(url);
          return TextUtils.equals(url, UrlConstants.NTP_URL)
                  || TextUtils.equals(url, UrlConstants.NTP_NON_NATIVE_URL)
@@ -51,4 +51,4 @@ index 5d4fe9044981485a195a5a544bff0bbeec075df5..684258cc1ff1e8130a59eb3808d50dbf
 +                || TextUtils.equals(url, "mises-search://local-ntp/new-ntp.html");
      }
  
-     public static String extractPublisherFromPublisherUrl(String publisherUrl) {
+     public static String extractPublisherFromPublisherUrl(GURL publisherUrl) {

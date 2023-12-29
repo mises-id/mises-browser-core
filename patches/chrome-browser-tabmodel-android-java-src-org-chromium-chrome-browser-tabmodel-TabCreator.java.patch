@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
-index d66ed8aebc7313f5a3ebe5845d217cdf77290454..9b883d8c59cf981c6138b1fe7844480ffbeb4596 100644
+index 4097f37b531b393132100d4721f7f0c54fded3e8..5049e7eebfa2bbc0ad337b536c74ddfe2825f0a5 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
-@@ -17,6 +17,9 @@ import org.chromium.content_public.browser.LoadUrlParams;
+@@ -16,6 +16,9 @@ import org.chromium.content_public.browser.LoadUrlParams;
  import org.chromium.content_public.browser.WebContents;
  import org.chromium.url.GURL;
  
@@ -12,7 +12,7 @@ index d66ed8aebc7313f5a3ebe5845d217cdf77290454..9b883d8c59cf981c6138b1fe7844480f
  /**
   * Creates Tabs.  If the TabCreator creates Tabs asynchronously, null pointers will be returned
   * everywhere instead of a Tab.
-@@ -113,9 +116,26 @@ public abstract class TabCreator {
+@@ -111,9 +114,17 @@ public abstract class TabCreator {
      public final void launchNTP(@TabLaunchType int type) {
          try {
              TraceEvent.begin("TabCreator.launchNTP");
@@ -29,14 +29,5 @@ index d66ed8aebc7313f5a3ebe5845d217cdf77290454..9b883d8c59cf981c6138b1fe7844480f
 +        } finally {
 +            TraceEvent.end("TabCreator.openSinglePage");
 +        }
-+    }
-+
-+    public final void launchIncognitoNTP() {
-+        try {
-+            TraceEvent.begin("TabCreator.launchIncognitoNTP");
-+            launchUrl("chrome-search://local-ntp/incognito-ntp.html", TabLaunchType.FROM_CHROME_UI);
-+         } finally {
-+             TraceEvent.end("TabCreator.launchIncognitoNTP");
-+         }
 +    }
  }

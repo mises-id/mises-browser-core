@@ -1,8 +1,8 @@
 diff --git a/third_party/android_deps/build.gradle b/third_party/android_deps/build.gradle
-index 2e5770f3e927f360530f5c57e243edfcecd57261..e6f6ce6dd393461b0cb776f6edd1f120c7ac6a77 100644
+index 0bdea39e155f0f98b2d3b45ad6f9c54e1bc684d6..b6304ebc690fe05c714d722a84dd4cc824c9e9c3 100644
 --- a/third_party/android_deps/build.gradle
 +++ b/third_party/android_deps/build.gradle
-@@ -205,5 +205,5 @@ task setUpRepository(type: BuildConfigGenerator) {
+@@ -197,5 +197,5 @@ task setUpRepository(type: BuildConfigGenerator) {
      repositoryPath 'third_party/android_deps'
      chromiumSourceRoot '../..'
      cipdBucket 'chromium'

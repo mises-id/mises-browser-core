@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/web/chrome_main_parts.mm b/ios/chrome/browser/web/chrome_main_parts.mm
-index c6bc2e9f773d3262343288706689f7eaf8bbf3ca..7b8d8dc44b1d27c615fdb12be5f7a13c1686c404 100644
+index e9b717a8ebf6fcff01eb2b8dc2b6ff656a278c89..5c4da493801f1a22bc5041df2c5f211d1b171e2f 100644
 --- a/ios/chrome/browser/web/chrome_main_parts.mm
 +++ b/ios/chrome/browser/web/chrome_main_parts.mm
-@@ -161,6 +161,11 @@ bool ShouldInstallAllocatorShim() {
+@@ -143,6 +143,11 @@ void IOSChromeMainParts::PreCreateMainMessageLoop() {
    base::PathService::Get(ios::FILE_RESOURCES_PACK, &resources_pack_path);
    ui::ResourceBundle::GetSharedInstance().AddDataPackFromPath(
        resources_pack_path, ui::k100Percent);
@@ -14,7 +14,7 @@ index c6bc2e9f773d3262343288706689f7eaf8bbf3ca..7b8d8dc44b1d27c615fdb12be5f7a13c
  }
  
  void IOSChromeMainParts::PreCreateThreads() {
-@@ -384,6 +389,7 @@ bool ShouldInstallAllocatorShim() {
+@@ -373,6 +378,7 @@ void IOSChromeMainParts::PreMainMessageLoopRun() {
    safe_browsing::SafeBrowsingMetricsCollector* safe_browsing_metrics_collector =
        SafeBrowsingMetricsCollectorFactory::GetForBrowserState(
            last_used_browser_state);

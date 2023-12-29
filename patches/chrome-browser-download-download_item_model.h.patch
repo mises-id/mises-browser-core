@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/download/download_item_model.h b/chrome/browser/download/download_item_model.h
+index bc19c70b7810912d6238ef27d904ebaf77bfc6dc..63bbf8715fda87a984dbe6b7cdf87d0d94599ce9 100644
+--- a/chrome/browser/download/download_item_model.h
++++ b/chrome/browser/download/download_item_model.h
+@@ -27,7 +27,7 @@ class WebContents;
+ class DownloadItemModel : public DownloadUIModel,
+                           public download::DownloadItem::Observer {
+  public:
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   // How long an ephemeral warning is displayed on the download bubble.
+   static constexpr base::TimeDelta kEphemeralWarningLifetimeOnBubble =
+       base::Minutes(5);

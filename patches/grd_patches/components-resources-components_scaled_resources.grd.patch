@@ -1,13 +1,13 @@
 diff --git a/components/resources/components_scaled_resources.grd b/components/resources/components_scaled_resources.grd
-index ae09c2dddd092cc1958249a6256c2237ee7afa7b..9cd1fb913c8d1c1ffeb1bad87a419c23c1fa4015 100644
+index ca8c6df41fc3963a4aadd4896659fb725a352cf8..c65a746edff9f35c9cc13203e913ff762e861cb4 100644
 --- a/components/resources/components_scaled_resources.grd
 +++ b/components/resources/components_scaled_resources.grd
-@@ -20,7 +20,7 @@
-       <part file="version_ui_scaled_resources.grdp" />
+@@ -23,7 +23,7 @@
+       </if>
  
        <!-- Generic resources -->
 -      <if expr="not is_android">
 +      <if expr="is_android or not is_android">
          <structure type="chrome_scaled_image" name="IDR_HISTORY_FAVICON" file="favicon_history.png" />
-         <structure type="chrome_scaled_image" name="IDR_PASSWORD_MANAGER_FAVICON" file="favicon_password_manager.png" />
        </if>
+       <structure type="chrome_scaled_image" name="IDR_SAD_WEBVIEW" file="webview-crash.png" />

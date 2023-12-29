@@ -1,8 +1,8 @@
 diff --git a/chrome/renderer/BUILD.gn b/chrome/renderer/BUILD.gn
-index 53733390bf73dee58d08a58d049c21ac5af0448e..3b3aba2cfcbd6ed258b49b755b3b7ca5a0bbff23 100644
+index 18b342e66f11a3c40a2243f424cc2ff7e825aad3..fbf8cae2d9d1c3df3dfd429d6553fca781aee89f 100644
 --- a/chrome/renderer/BUILD.gn
 +++ b/chrome/renderer/BUILD.gn
-@@ -216,6 +216,7 @@ static_library("renderer") {
+@@ -234,6 +234,7 @@ static_library("renderer") {
      "//v8",
    ]
  
@@ -10,7 +10,7 @@ index 53733390bf73dee58d08a58d049c21ac5af0448e..3b3aba2cfcbd6ed258b49b755b3b7ca5
    data_deps = [ "//tools/v8_context_snapshot" ]
  
    configs += [ "//build/config/compiler:wexit_time_destructors" ]
-@@ -396,7 +397,7 @@ static_library("renderer") {
+@@ -414,7 +415,7 @@ static_library("renderer") {
      ]
    }
  
@@ -19,7 +19,7 @@ index 53733390bf73dee58d08a58d049c21ac5af0448e..3b3aba2cfcbd6ed258b49b755b3b7ca5
      sources += [
        "accessibility/ax_tree_distiller.cc",
        "accessibility/ax_tree_distiller.h",
-@@ -411,6 +412,12 @@ static_library("renderer") {
+@@ -429,6 +430,12 @@ static_library("renderer") {
        "searchbox/searchbox_extension.cc",
        "searchbox/searchbox_extension.h",
      ]

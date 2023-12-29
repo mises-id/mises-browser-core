@@ -6,6 +6,10 @@ namespace chrome {
                           const std::string& app_id,
                           web_app::AppSettingsPageEntryPoint entry_point) {
   }
+  void ShowWebAppSettings(Profile* profile,
+                          const std::string& app_id,
+                          web_app::AppSettingsPageEntryPoint entry_point) {
+  }
 }
 #endif
 

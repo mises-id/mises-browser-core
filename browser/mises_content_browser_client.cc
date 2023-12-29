@@ -40,7 +40,7 @@
 #include "chrome/browser/profiles/profile_io_data.h"
 #include "chrome/browser/search_engines/template_url_service_factory.h"
 #include "chrome/common/url_constants.h"
-#include "chrome/grit/chromium_strings.h"
+#include "chrome/grit/branded_strings.h"
 #include "components/content_settings/browser/page_specific_content_settings.h"
 #include "components/content_settings/core/browser/host_content_settings_map.h"
 #include "components/prefs/pref_service.h"
@@ -93,6 +93,9 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 #include "mises/components/ipfs/ipfs_constants.h"
 #include "mises/components/ipfs/ipfs_navigation_throttle.h"
 #endif
+
+#include "mises/browser/profiles/mises_renderer_updater.h"
+#include "mises/browser/profiles/mises_renderer_updater_factory.h"
 
 
 #include "mises/components/brave_wallet/browser/brave_wallet_p3a_private.h"
@@ -251,6 +254,14 @@ void MisesContentBrowserClient::BrowserURLHandlerCreated(
 }
 
 
+void MisesContentBrowserClient::RenderProcessWillLaunch(
+    content::RenderProcessHost* host) {
+  Profile* profile = Profile::FromBrowserContext(host->GetBrowserContext());
+  MisesRendererUpdaterFactory::GetForProfile(profile)->InitializeRenderer(host);
+
+  ChromeContentBrowserClient::RenderProcessWillLaunch(host);
+}
+
 
 void MisesContentBrowserClient::RegisterBrowserInterfaceBindersForFrame(
     content::RenderFrameHost* render_frame_host,
@@ -341,25 +352,27 @@ bool MisesContentBrowserClient::WillCreateURLLoaderFactory(
     int render_process_id,
     URLLoaderFactoryType type,
     const url::Origin& request_initiator,
-    absl::optional<int64_t> navigation_id,
+    std::optional<int64_t> navigation_id,
     ukm::SourceIdObj ukm_source_id,
     mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
     mojo::PendingRemote<network::mojom::TrustedURLLoaderHeaderClient>*
         header_client,
     bool* bypass_redirect_checks,
     bool* disable_secure_dns,
-    network::mojom::URLLoaderFactoryOverridePtr* factory_override) {
+    network::mojom::URLLoaderFactoryOverridePtr* factory_override,
+    scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner) {
   bool use_proxy = false;
   // TODO(iefremov): Skip proxying for certain requests?
   use_proxy = MisesProxyingURLLoaderFactory::MaybeProxyRequest(
       browser_context, frame,
       type == URLLoaderFactoryType::kNavigation ? -1 : render_process_id,
-      factory_receiver);
+      factory_receiver, navigation_response_task_runner);
 
   use_proxy |= ChromeContentBrowserClient::WillCreateURLLoaderFactory(
       browser_context, frame, render_process_id, type, request_initiator,
       std::move(navigation_id), ukm_source_id, factory_receiver, header_client,
-      bypass_redirect_checks, disable_secure_dns, factory_override);
+      bypass_redirect_checks, disable_secure_dns, factory_override,
+      navigation_response_task_runner);
 
   return use_proxy;
 }

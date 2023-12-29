@@ -1,5 +1,5 @@
 diff --git a/mojo/public/js/mojo_bindings_resources.grd b/mojo/public/js/mojo_bindings_resources.grd
-index 09b2b6767cf1f7a0a2994a2d79f7075b88d70690..8d9c9d3f8f6b69e90984d55733db2a400d682141 100644
+index 190bd818b7dfa508447568756c3d5a07081e3b4f..641bf3f899cbff15511024fdc66a7c735de54dcc 100644
 --- a/mojo/public/js/mojo_bindings_resources.grd
 +++ b/mojo/public/js/mojo_bindings_resources.grd
 @@ -14,7 +14,7 @@

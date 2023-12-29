@@ -12,11 +12,12 @@ class Applier():
     def __init__(self):
         self.files = []
         self.dryrun = True
+        self.dryrun_counter = 0
 
     def start(self, dryrun):
         self.dryrun = dryrun
-        res = glob.glob("patches/err/*.patch", recursive=True)
-        res += glob.glob("patches/err/grd_patches/*.patch", recursive=True)
+        #res = glob.glob("patches/err/*.patch", recursive=True)
+        res = glob.glob("patches/err/grd_patches/*.patch", recursive=True)
 
         for path in res:
             self.files.append(path)
@@ -44,18 +45,20 @@ class Applier():
                 exit()
 
     def dry_run(self, patch):
-        print('dry_run:', patch)
+        self.dryrun_counter += 1
+        print('dry_run: #', self.dryrun_counter,  patch)
         file = self.get_target_path(patch)
         if os.path.exists(file):
             print(file, "trying")
-            stdoutput, stderroutput = self.cmd_run(['/opt/homebrew/bin/patch', '--dry-run', '--reject-file=/dev/stdout',file, patch], '.')
+            stdoutput, stderroutput = self.cmd_run(['patch', '--dry-run', '--reject-file=/dev/stdout',file, patch], '.')
             output = stdoutput.decode('utf-8')
             erroutput = stderroutput.decode('utf-8')
             print(output)
             print(erroutput)
             if self.has_error(output + erroutput):
-                with open(patch, 'r') as f:
-                    print(f.read())
+                # with open(patch, 'r') as f:
+                #     print(f.read())
+                print(patch, "has_error")
                 exit()
         else:
             print(patch, "not-appliable")
@@ -68,7 +71,7 @@ class Applier():
         file = self.get_target_path(patch)
         if os.path.exists(file):
             print(file, "trying")
-            stdoutput, stderroutput = self.cmd_run(['/opt/homebrew/bin/patch', '--reject-file=/dev/stdout',file, patch], '.')
+            stdoutput, stderroutput = self.cmd_run(['patch', '--reject-file=/dev/stdout',file, patch], '.')
             output = stdoutput.decode('utf-8')
             erroutput = stderroutput.decode('utf-8')
             print(output)

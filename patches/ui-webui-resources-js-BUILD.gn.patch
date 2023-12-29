@@ -1,13 +1,13 @@
 diff --git a/ui/webui/resources/js/BUILD.gn b/ui/webui/resources/js/BUILD.gn
-index c3c2bfce9de1aa91d6fa7f2d209f7699837808d5..15c6650ef17e42a9cfcaf9c716b7052c8619a288 100644
+index 281185858cdf1f81596053784e960b912c6c90ac..2371f08050b27c3e8c5b5e6bd04317d01689116c 100644
 --- a/ui/webui/resources/js/BUILD.gn
 +++ b/ui/webui/resources/js/BUILD.gn
 @@ -5,7 +5,7 @@
  import("//build/config/chromeos/ui_mode.gni")
- import("../tools/build_cr_component.gni")
+ import("../tools/build_webui.gni")
  
 -include_polymer = !is_android && !is_ios
 +include_polymer = is_android || !is_android && !is_ios
  
- build_cr_component("build") {
+ build_webui("build") {
    grd_prefix = "webui_js"

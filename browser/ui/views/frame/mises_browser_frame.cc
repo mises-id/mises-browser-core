@@ -13,6 +13,7 @@
 #include "chrome/browser/themes/theme_service_factory.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/views/frame/browser_view.h"
+#include "ui/color/color_provider_manager.h"
 
 BraveBrowserFrame::BraveBrowserFrame(BrowserView* browser_view)
     : BrowserFrame(browser_view), view_(browser_view) {

@@ -1,8 +1,8 @@
 diff --git a/chrome/renderer/searchbox/searchbox.cc b/chrome/renderer/searchbox/searchbox.cc
-index 5dca4e943535142fbff2034fb5d1b5772ef1138f..76c24be9d005c45d250c7c0d7263d93033a6a5c4 100644
+index eb914dbc0179925ebaec99373e59cb90c03d6010..fec6b99ea690ba7d38a3700d528235701addbbdc 100644
 --- a/chrome/renderer/searchbox/searchbox.cc
 +++ b/chrome/renderer/searchbox/searchbox.cc
-@@ -33,7 +33,7 @@
+@@ -34,7 +34,7 @@
  namespace {
  
  // The size of the InstantMostVisitedItem cache.

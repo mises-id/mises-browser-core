@@ -20,6 +20,8 @@ import org.chromium.chrome.browser.omnibox.R;
 import org.chromium.chrome.browser.omnibox.UrlBarEditingTextStateProvider;
 import org.chromium.chrome.browser.omnibox.suggestions.basic.BasicSuggestionProcessor.BookmarkState;
 import org.chromium.chrome.browser.omnibox.suggestions.ads.MisesAdsBannerProcessor;
+import org.chromium.chrome.browser.omnibox.suggestions.history_clusters.HistoryClustersProcessor;
+import org.chromium.chrome.browser.omnibox.suggestions.history_clusters.HistoryClustersProcessor.OpenHistoryClustersDelegate;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.components.omnibox.AutocompleteMatch;
@@ -39,27 +41,33 @@ class MisesDropdownItemViewInfoListBuilder extends DropdownItemViewInfoListBuild
     private static final int DEFAULT_SIZE_OF_VISIBLE_GROUP = 5;
     private Context mContext;
 
+    private AutocompleteDelegate mAutocompleteDelegate;
+
     MisesDropdownItemViewInfoListBuilder(@NonNull Supplier<Tab> tabSupplier,
-            BookmarkState bookmarkState, @NonNull OmniboxPedalDelegate omniboxPedalDelegate) {
-        super(tabSupplier, bookmarkState, omniboxPedalDelegate);
+            BookmarkState bookmarkState, OpenHistoryClustersDelegate openHistoryClustersDelegate) {
+        super(tabSupplier, bookmarkState, openHistoryClustersDelegate);
 
         mActivityTabSupplier = tabSupplier;
     }
 
-    @Override
-    void initDefaultProcessors(Context context, SuggestionHost host, AutocompleteDelegate delegate,
-            UrlBarEditingTextStateProvider textProvider) {
-        mContext = context;
-        mUrlBarEditingTextProvider = textProvider;
-        super.initDefaultProcessors(context, host, delegate, textProvider);
-        mMisesAdsBannerProcessor = new MisesAdsBannerProcessor(
-                context, host, textProvider, delegate);
+    public void setAutocompleteDelegate(AutocompleteDelegate autocompleteDelegate) {
+        mAutocompleteDelegate = autocompleteDelegate;
     }
 
     @Override
-    void onUrlFocusChange(boolean hasFocus) {
-        super.onUrlFocusChange(hasFocus);
-        mMisesAdsBannerProcessor.onUrlFocusChange(hasFocus);
+    void initDefaultProcessors(
+            Context context, SuggestionHost host, UrlBarEditingTextStateProvider textProvider) {
+        mContext = context;
+        mUrlBarEditingTextProvider = textProvider;
+        super.initDefaultProcessors(context, host, textProvider);
+        mMisesAdsBannerProcessor = new MisesAdsBannerProcessor(
+                context, host, textProvider, mAutocompleteDelegate);
+    }
+
+    @Override
+    void onOmniboxSessionStateChange(boolean activated) {
+        super.onOmniboxSessionStateChange(activated);
+        mMisesAdsBannerProcessor.onOmniboxSessionStateChange(activated);
     }
 
     @Override

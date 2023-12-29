@@ -402,6 +402,7 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/layout/native_ad_layout.xml",
     "java/res/layout/carousel_ad_view.xml",
     "java/res/layout/mises_suggestions_tile_view.xml",
+    "java/res/layout/widevine_permission_request_custom_view.xml",
 
 
     "java/res/drawable-hdpi/ic_menu_mises_forward.png",

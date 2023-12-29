@@ -519,7 +519,7 @@ class EthereumProviderImplUnitTest : public testing::Test {
   void ResetEthereumPermission(const url::Origin& origin,
                                size_t from_index = 0) {
     permissions::BraveWalletPermissionContext::ResetPermission(
-        blink::PermissionType::BRAVE_ETHEREUM, browser_context(), origin,
+        blink::PermissionType::MISES_ETHEREUM, browser_context(), origin,
         from(from_index));
   }
 
@@ -1581,7 +1581,7 @@ TEST_F(EthereumProviderImplUnitTest, RequestEthereumPermissionsWithAccounts) {
 
   // CONTENT_SETTING_BLOCK will rule out previous granted permission.
   host_content_settings_map()->SetContentSettingDefaultScope(
-      url, url, ContentSettingsType::BRAVE_ETHEREUM, CONTENT_SETTING_BLOCK);
+      url, url, ContentSettingsType::MISES_ETHEREUM, CONTENT_SETTING_BLOCK);
   base::RunLoop run_loop;
   provider()->RequestEthereumPermissions(
       base::BindLambdaForTesting([&](base::Value id,
@@ -1602,7 +1602,7 @@ TEST_F(EthereumProviderImplUnitTest, RequestEthereumPermissionsWithAccounts) {
   // When CONTENT_SETTING_BLOCK is removed, previously granted permission works
   // again.
   host_content_settings_map()->SetContentSettingDefaultScope(
-      url, url, ContentSettingsType::BRAVE_ETHEREUM, CONTENT_SETTING_DEFAULT);
+      url, url, ContentSettingsType::MISES_ETHEREUM, CONTENT_SETTING_DEFAULT);
   EXPECT_EQ(RequestEthereumPermissions(),
             (std::vector<std::string>{from_lower(0), from_lower(1)}));
 }

@@ -7,7 +7,7 @@
 
 #include <utility>
 
-#include "base/guid.h"
+#include "base/uuid.h"
 #include "base/json/json_reader.h"
 #include "base/logging.h"
 #include "base/notreached.h"
@@ -71,18 +71,18 @@ Logo GetLogoFromValue(const base::FilePath& installed_dir,
   DCHECK(value && value->is_dict());
   Logo logo;
 
-  if (auto* url = value->FindStringKey(kImageURLKey)) {
+  if (auto* url = value->FindString(kImageURLKey)) {
     logo.image_file = installed_dir.AppendASCII(*url);
     logo.image_url = url_prefix + *url;
   }
 
-  if (auto* alt_text = value->FindStringKey(kAltKey))
+  if (auto* alt_text = value->FindString(kAltKey))
     logo.alt_text = *alt_text;
 
-  if (auto* name = value->FindStringKey(kCompanyNameKey))
+  if (auto* name = value->FindString(kCompanyNameKey))
     logo.company_name = *name;
 
-  if (auto* url = value->FindStringKey(kDestinationURLKey))
+  if (auto* url = value->FindString(kDestinationURLKey))
     logo.destination_url = *url;
 
   return logo;
@@ -145,7 +145,7 @@ NTPSponsoredImagesData::NTPSponsoredImagesData(
   }
 
   absl::optional<int> incomingSchemaVersion =
-      json_value->FindIntKey(kSchemaVersionKey);
+      json_value->FindInt(kSchemaVersionKey);
   const bool schemaVersionIsValid =
       incomingSchemaVersion && *incomingSchemaVersion == kExpectedSchemaVersion;
   if (!schemaVersionIsValid) {
@@ -159,7 +159,7 @@ NTPSponsoredImagesData::NTPSponsoredImagesData(
 
   url_prefix = base::StringPrintf("%s://%s/", content::kChromeUIScheme,
                                   kBrandedWallpaperHost);
-  if (auto* name = json_value->FindStringKey(kThemeNameKey)) {
+  if (auto* name = json_value->FindString(kThemeNameKey)) {
     theme_name = *name;
     url_prefix += kSuperReferralPath;
   } else {
@@ -205,12 +205,12 @@ Campaign NTPSponsoredImagesData::GetCampaignFromValue(
 
   Campaign campaign;
 
-  if (const std::string* campaign_id = value.FindStringKey(kCampaignIdKey)) {
+  if (const std::string* campaign_id = value.FindString(kCampaignIdKey)) {
     campaign.campaign_id = *campaign_id;
   }
 
   Logo default_logo;
-  if (auto* logo = value.FindDictKey(kLogoKey)) {
+  if (auto* logo = value.FindDict(kLogoKey)) {
     default_logo = GetLogoFromValue(installed_dir, url_prefix, logo);
   }
 
@@ -220,27 +220,27 @@ Campaign NTPSponsoredImagesData::GetCampaignFromValue(
       const auto& wallpaper = wallpapers->GetList()[i];
       SponsoredBackground background;
       background.image_file =
-          installed_dir.AppendASCII(*wallpaper.FindStringKey(kImageURLKey));
+          installed_dir.AppendASCII(*wallpaper.FindString(kImageURLKey));
 
-      if (auto* focal_point = wallpaper.FindDictKey(kWallpaperFocalPointKey)) {
-        background.focal_point = {focal_point->FindIntKey(kXKey).value_or(0),
-                                  focal_point->FindIntKey(kYKey).value_or(0)};
+      if (auto* focal_point = wallpaper.FindDict(kWallpaperFocalPointKey)) {
+        background.focal_point = {focal_point->FindInt(kXKey).value_or(0),
+                                  focal_point->FindInt(kYKey).value_or(0)};
       }
 
-      if (auto* viewbox = wallpaper.FindDictKey(kViewboxKey)) {
-        gfx::Rect rect(viewbox->FindIntKey(kXKey).value_or(0),
-                       viewbox->FindIntKey(kYKey).value_or(0),
-                       viewbox->FindIntKey(kWidthKey).value_or(0),
-                       viewbox->FindIntKey(kHeightKey).value_or(0));
+      if (auto* viewbox = wallpaper.FindDict(kViewboxKey)) {
+        gfx::Rect rect(viewbox->FindInt(kXKey).value_or(0),
+                       viewbox->FindInt(kYKey).value_or(0),
+                       viewbox->FindInt(kWidthKey).value_or(0),
+                       viewbox->FindInt(kHeightKey).value_or(0));
         background.viewbox.emplace(rect);
       }
-      if (auto* background_color = wallpaper.FindStringKey(kBackgroundColorKey))
+      if (auto* background_color = wallpaper.FindString(kBackgroundColorKey))
         background.background_color = *background_color;
       if (auto* creative_instance_id =
-              wallpaper.FindStringKey(kCreativeInstanceIDKey)) {
+              wallpaper.FindString(kCreativeInstanceIDKey)) {
         background.creative_instance_id = *creative_instance_id;
       }
-      if (auto* wallpaper_logo = wallpaper.FindDictKey(kLogoKey)) {
+      if (auto* wallpaper_logo = wallpaper.FindDict(kLogoKey)) {
         background.logo =
             GetLogoFromValue(installed_dir, url_prefix, wallpaper_logo);
       } else {
@@ -266,16 +266,16 @@ void NTPSponsoredImagesData::ParseSRProperties(
   if (auto* sites = value.FindListKey(kTopSitesKey)) {
     for (const auto& top_site_value : sites->GetList()) {
       TopSite site;
-      if (auto* name = top_site_value.FindStringKey(kTopSiteNameKey))
+      if (auto* name = top_site_value.FindString(kTopSiteNameKey))
         site.name = *name;
 
-      if (auto* url = top_site_value.FindStringKey(kDestinationURLKey))
+      if (auto* url = top_site_value.FindString(kDestinationURLKey))
         site.destination_url = *url;
 
-      if (auto* color = top_site_value.FindStringKey(kBackgroundColorKey))
+      if (auto* color = top_site_value.FindString(kBackgroundColorKey))
         site.background_color = *color;
 
-      if (auto* url = top_site_value.FindStringKey(kTopSiteIconURLKey)) {
+      if (auto* url = top_site_value.FindString(kTopSiteIconURLKey)) {
         site.image_path = url_prefix + *url;
         site.image_file = installed_dir.AppendASCII(*url);
       }
@@ -309,7 +309,7 @@ absl::optional<base::Value::Dict> NTPSponsoredImagesData::GetBackgroundAt(
   data.Set(kThemeNameKey, theme_name);
   data.Set(kIsSponsoredKey, !IsSuperReferral());
   data.Set(kIsBackgroundKey, false);
-  data.Set(kWallpaperIDKey, base::GenerateGUID());
+  data.Set(kWallpaperIDKey, base::Uuid::GenerateRandomV4().AsLowercaseString());
 
   const auto background_file_path =
       campaign.backgrounds[background_index].image_file;

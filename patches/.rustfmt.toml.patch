@@ -1,0 +1,10 @@
+diff --git a/.rustfmt.toml b/.rustfmt.toml
+index 0c2edf5faf0597654b5a806b4d6cf7e8efb8639e..0c0987ac2b18317206e8a6e7bf2f9563f1638c65 100644
+--- a/.rustfmt.toml
++++ b/.rustfmt.toml
+@@ -22,4 +22,5 @@ use_small_heuristics = "Max"
+ # Third party code is formatted upstream.
+ ignore = [
+   "third_party/rust/**/crate",
++  "mises/third_party/rust/**/crate",
+ ]

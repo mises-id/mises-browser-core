@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..e82bde763a37513352cb6f66a9f45a8472a67f51 100644
+index 401ef0c1099a566af71816fbbcd80c84c6cc9420..7fd355ab5a653cbd0c7c7c2259df8fb91b502747 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-@@ -22,6 +22,7 @@ import org.chromium.content_public.common.ResourceRequestBody;
+@@ -23,6 +23,7 @@ import org.chromium.content_public.common.ResourceRequestBody;
  import org.chromium.ui.base.WindowAndroid;
  import org.chromium.url.GURL;
  import org.chromium.url.Origin;
@@ -10,7 +10,7 @@ index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..e82bde763a37513352cb6f66a9f45a84
  
  /**
   * Bridges between the C++ and Java {@link TabModel} interfaces.
-@@ -133,7 +134,7 @@ public abstract class TabModelJniBridge implements TabModel {
+@@ -132,7 +133,7 @@ public abstract class TabModelJniBridge implements TabModel {
       */
      @CalledByNative
      protected abstract boolean createTabWithWebContents(
@@ -19,7 +19,7 @@ index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..e82bde763a37513352cb6f66a9f45a84
  
      @CalledByNative
      protected abstract void openNewTab(Tab parent, GURL url, @Nullable Origin initiatorOrigin,
-@@ -147,7 +148,14 @@ public abstract class TabModelJniBridge implements TabModel {
+@@ -146,7 +147,14 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      protected Tab createNewTabForDevTools(GURL url) {
          return getTabCreator(/*incognito=*/false)
@@ -35,7 +35,7 @@ index aa403bd3743ad45b8e1783f14e955f9e4bc76fc6..e82bde763a37513352cb6f66a9f45a84
      }
  
      /** Returns whether supplied Tab instance has been grouped together with other Tabs. */
-@@ -181,6 +189,10 @@ public abstract class TabModelJniBridge implements TabModel {
+@@ -182,6 +190,10 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      public abstract int index();
  

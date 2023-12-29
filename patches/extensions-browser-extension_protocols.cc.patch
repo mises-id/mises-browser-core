@@ -1,5 +1,5 @@
 diff --git a/extensions/browser/extension_protocols.cc b/extensions/browser/extension_protocols.cc
-index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..418039e982d7d8f9d134bd79a9c6261782cc869b 100644
+index 8c5f54fc67dd188ac1fcf2feac6bd35490b482da..3b6b458e9b3510a4478629288510310d037d76b9 100644
 --- a/extensions/browser/extension_protocols.cc
 +++ b/extensions/browser/extension_protocols.cc
 @@ -226,6 +226,7 @@ std::pair<base::FilePath, base::Time> ReadResourceFilePathAndLastModifiedTime(
@@ -18,10 +18,10 @@ index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..418039e982d7d8f9d134bd79a9c62617
  
  // Returns true if the given URL references an icon in the given extension.
  bool URLIsForExtensionIcon(const GURL& url, const Extension* extension) {
-@@ -607,10 +609,12 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+@@ -605,10 +607,12 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
      ExtensionRegistry* registry = ExtensionRegistry::Get(browser_context_);
      scoped_refptr<const Extension> extension =
-         registry->GenerateInstalledExtensionsSet()->GetByIDorGUID(extension_id);
+         registry->GenerateInstalledExtensionsSet().GetByIDorGUID(extension_id);
 +#if !BUILDFLAG(IS_ANDROID)
      const ExtensionSet& enabled_extensions = registry->enabled_extensions();
      const ProcessMap* process_map = ProcessMap::Get(browser_context_);
@@ -31,7 +31,7 @@ index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..418039e982d7d8f9d134bd79a9c62617
  
      // Redirect guid to id.
      if (base::FeatureList::IsEnabled(
-@@ -630,6 +634,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+@@ -628,6 +632,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
        return;
      }
  
@@ -39,7 +39,7 @@ index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..418039e982d7d8f9d134bd79a9c62617
      if (!AllowExtensionResourceLoad(
              request_, request_.destination,
              static_cast<ui::PageTransition>(request_.transition_type),
-@@ -639,6 +644,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+@@ -637,6 +642,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
        CompleteRequestAndDeleteThis(net::ERR_BLOCKED_BY_CLIENT);
        return;
      }
@@ -47,7 +47,7 @@ index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..418039e982d7d8f9d134bd79a9c62617
  
      base::FilePath directory_path;
      if (!GetDirectoryForExtensionURL(
-@@ -808,7 +814,11 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+@@ -805,7 +811,11 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
      const base::FilePath bundle_resource_path =
          ExtensionsBrowserClient::Get()->GetBundleResourcePath(
              request_, directory_path, &resource_id);
@@ -60,12 +60,21 @@ index 3128c43b810f5f5344c2bd203729a0ec7b15ec9d..418039e982d7d8f9d134bd79a9c62617
        ExtensionsBrowserClient::Get()->LoadResourceFromResourceBundle(
            request_, loader_.Unbind(), bundle_resource_path, resource_id,
            std::move(headers), client_.Unbind());
-@@ -880,7 +890,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+@@ -881,7 +891,7 @@ class ExtensionURLLoader : public network::mojom::URLLoader {
+   // We store the ID and get RenderProcessHost each time it's needed. This is to
+   // avoid holding on to stale pointers if we get requests past the lifetime of
+   // the objects.
+-  const int render_process_id_;
++  [[maybe_unused]] const int render_process_id_;
+ 
+   // Tracker for favicon callback.
+   std::unique_ptr<base::CancelableTaskTracker> tracker_;
+@@ -1020,7 +1030,7 @@ class ExtensionURLLoaderFactory : public network::SelfDeletingURLLoaderFactory {
    // We store the ID and get RenderProcessHost each time it's needed. This is to
    // avoid holding on to stale pointers if we get requests past the lifetime of
    // the objects.
 -  const int render_process_id_;
 +  public: const int render_process_id_; private:
-   const scoped_refptr<extensions::InfoMap> extension_info_map_;
  
-   // Tracker for favicon callback.
+   base::CallbackListSubscription browser_context_shutdown_subscription_;
+ };

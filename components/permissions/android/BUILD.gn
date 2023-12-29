@@ -1,4 +1,5 @@
 import("//build/config/android/rules.gni")
+import("//third_party/jni_zero/jni_zero.gni")
 
 generate_jni("jni_headers") {
   sources = [ "java/src/org/chromium/components/permissions/MisesPermissionDialogDelegate.java" ]

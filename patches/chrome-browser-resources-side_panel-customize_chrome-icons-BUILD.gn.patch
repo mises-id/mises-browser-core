@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/side_panel/customize_chrome/icons/BUILD.gn b/chrome/browser/resources/side_panel/customize_chrome/icons/BUILD.gn
-index 392d0fee946f0b735cc3ef0050b7fd2015ad36b5..5dbb0631df4282a2558d383a986524da1a5cd82f 100644
+index 2166b5c0f4300f4549df7baef4e577e50e0f1a8f..bea3f657eaeb164063c824f806515c04ed1d4efa 100644
 --- a/chrome/browser/resources/side_panel/customize_chrome/icons/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/customize_chrome/icons/BUILD.gn
 @@ -4,7 +4,7 @@

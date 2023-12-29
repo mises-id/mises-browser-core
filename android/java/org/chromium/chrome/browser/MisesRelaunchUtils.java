@@ -9,8 +9,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import org.chromium.base.annotations.JNINamespace;
-import org.chromium.base.annotations.NativeMethods;
+import org.jni_zero.JNINamespace;
+import org.jni_zero.NativeMethods;
 import org.chromium.chrome.R;
 
 @JNINamespace("chrome::android")
@@ -39,14 +39,14 @@ public class MisesRelaunchUtils {
 
     public static void askForRelaunchCustom(Context context) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-        alertDialogBuilder.setTitle(R.string.reset_brave_rewards_error_title)
-                .setMessage(R.string.reset_brave_rewards_error_description)
+        alertDialogBuilder.setTitle(R.string.reset_needed_error_title)
+                .setMessage(R.string.reset_needed_error_description)
                 .setCancelable(true)
                 .setPositiveButton(R.string.settings_require_relaunch_now,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                BraveRelaunchUtilsJni.get().restart();
+                                MisesRelaunchUtilsJni.get().restart();
                                 dialog.cancel();
                             }
                         })

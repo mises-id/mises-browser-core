@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/identity_internals/BUILD.gn b/chrome/browser/resources/identity_internals/BUILD.gn
-index 219b930405c3d1d8481547f1b9cef38685bec24a..812ece4fe2cf3d4642d02bbf4fd8b2d84880f343 100644
+index 729d461a5867398169680ba70a187fdaca6c274e..090d3fe97b4297b578f53779d10296da3d4db862 100644
 --- a/chrome/browser/resources/identity_internals/BUILD.gn
 +++ b/chrome/browser/resources/identity_internals/BUILD.gn
 @@ -4,7 +4,7 @@

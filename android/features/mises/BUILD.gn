@@ -8,6 +8,7 @@ import("//build/config/locales.gni")
 import("//chrome/browser/buildflags.gni")
 import("//chrome/common/features.gni")
 import("//components/feed/features.gni")
+import("//third_party/jni_zero/jni_zero.gni")
 
 
 android_resources("java_resources") {
@@ -23,16 +24,21 @@ android_resources("java_resources") {
 }
 
 android_library("public_java") {
+  srcjar_deps = [ ":jni_headers" ]
   sources = [
-    "java/org/chromium/chrome/browser/mises/MisesController.java",
-    "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
-    "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
     "java/org/chromium/chrome/browser/mises/MisesLCDServiceImpl.java",
     "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
-    "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
     "java/org/chromium/chrome/browser/mises/UIUtil.java",
     "java/org/chromium/chrome/browser/mises/HttpUtil.java",
     "java/org/chromium/chrome/browser/mises/MyFirebaseMessagingService.java",
+
+    "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
+    "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
+    "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
+
+    "//mises/android/java/org/chromium/base/MisesSysUtils.java",
+    "//mises/android/java/org/chromium/base/MisesController.java",
+
     "java/org/chromium/chrome/browser/logcat/FileLogDumper.java",
     "java/org/chromium/chrome/browser/logcat/RemoteLogDumper.java",
     "java/org/chromium/chrome/browser/logcat/ILogDumper.java",
@@ -57,7 +63,7 @@ android_library("public_java") {
     "//chrome/browser/preferences:java",
     "//chrome/browser/profiles/android:java",
     "//chrome/browser/share:java",
-    "//chrome/browser/tab:java",
+    #"//chrome/browser/tab:java",
     "//chrome/browser/tabmodel:java",
     "//chrome/browser/ui/android/layouts:java",
     "//chrome/browser/ui/android/omnibox:java",
@@ -84,13 +90,20 @@ android_library("public_java") {
     "//chrome/android:base_module_java",
     "//components/version_info/android:version_constants_java",
   ]
-  annotation_processor_deps = [ "//base/android/jni_generator:jni_processor" ]
+  annotation_processor_deps = [ "//components/module_installer/android:module_interface_processor" ]
   resources_package = "org.chromium.chrome.mises"
 
 }
 
+
+
+
 generate_jni("jni_headers") {
-  sources = [ "java/org/chromium/chrome/browser/mises/MisesController.java" ]
+  sources = [
+     "//mises/android/java/org/chromium/base/MisesSysUtils.java",
+     "//mises/android/java/org/chromium/base/MisesController.java",
+  ]
+
+  deps = [ 
+  ]
 }
-
-

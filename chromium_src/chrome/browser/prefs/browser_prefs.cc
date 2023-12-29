@@ -33,11 +33,12 @@
 #include "chrome/browser/upgrade_detector/upgrade_detector.h"
 #include "components/ntp_tiles/custom_links_manager_impl.h"
 #include "chrome/browser/sessions/session_service_log.h"
+#include "chrome/browser/user_education/browser_feature_promo_storage_service.h"
+#include "chrome/browser/sessions/session_data_service.h"
 #endif  // BUILDFLAG(IS_ANDROID)
 
 
 #include "chrome/browser/web_applications/daily_metrics_helper.h"
-#include "chrome/browser/web_applications/externally_installed_web_app_prefs.h"
 #include "chrome/browser/web_applications/install_bounce_metric.h"
 #include "chrome/browser/web_applications/policy/web_app_policy_manager.h"
 #include "chrome/browser/web_applications/preinstalled_web_app_manager.h"
@@ -69,7 +70,7 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 #if BUILDFLAG(IS_ANDROID) 
   //ApcClient::RegisterPrefs(registry);
   //AppShortcutManager::RegisterProfilePrefs(registry);
-  BrowserFeaturePromoSnoozeService::RegisterProfilePrefs(registry);
+  BrowserFeaturePromoStorageService::RegisterProfilePrefs(registry);
   DeviceServiceImpl::RegisterProfilePrefs(registry);
   DevToolsWindow::RegisterProfilePrefs(registry);
   DriveService::RegisterProfilePrefs(registry);
@@ -93,6 +94,7 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   RegisterReadAnythingProfilePrefs(registry);
   //settings::SettingsUI::RegisterProfilePrefs(registry);
   send_tab_to_self::RegisterProfilePrefs(registry);
+  SessionDataService::RegisterProfilePrefs(registry);
   signin::RegisterProfilePrefs(registry);
   //StartupBrowserCreator::RegisterProfilePrefs(registry);
   tab_search_prefs::RegisterProfilePrefs(registry);
@@ -131,7 +133,6 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 
 #if BUILDFLAG(IS_ANDROID)
   web_app::UserUninstalledPreinstalledWebAppPrefs::RegisterProfilePrefs(registry);
-  web_app::ExternallyInstalledWebAppPrefs::RegisterProfilePrefs(registry);
   web_app::PreinstalledWebAppManager::RegisterProfilePrefs(registry);
   web_app::WebAppPolicyManager::RegisterProfilePrefs(registry);
   web_app::WebAppPrefsUtilsRegisterProfilePrefs(registry);

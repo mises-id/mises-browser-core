@@ -1,8 +1,8 @@
 diff --git a/chrome/common/BUILD.gn b/chrome/common/BUILD.gn
-index f21f98e89fb254dc9d7865365ece3f50da5ef585..3b9e84c0f19dbb5527dd2c0170d8f880d3e8e738 100644
+index 88cc94941696df3895d5eebdb2a43b9930b5a0d3..22785b20967e8a7f629a879d6b285f42381acc3c 100644
 --- a/chrome/common/BUILD.gn
 +++ b/chrome/common/BUILD.gn
-@@ -89,6 +89,7 @@ source_set("channel_info") {
+@@ -98,6 +98,7 @@ source_set("channel_info") {
    } else if (is_fuchsia) {
      sources += [ "channel_info_fuchsia.cc" ]
    }
@@ -10,7 +10,7 @@ index f21f98e89fb254dc9d7865365ece3f50da5ef585..3b9e84c0f19dbb5527dd2c0170d8f880
  }
  
  source_set("ini_parser") {
-@@ -404,7 +405,8 @@ static_library("common_lib") {
+@@ -405,7 +406,8 @@ static_library("common_lib") {
        "media/chrome_media_drm_bridge_client.cc",
        "media/chrome_media_drm_bridge_client.h",
      ]
@@ -19,12 +19,12 @@ index f21f98e89fb254dc9d7865365ece3f50da5ef585..3b9e84c0f19dbb5527dd2c0170d8f880
 +  if (true) {
      # Non-Android.
      public_deps += [ "//chrome/common/importer" ]
-     sources += [ "accessibility/read_anything_constants.h" ]
-@@ -537,6 +539,7 @@ static_library("non_code_constants") {
-     "//printing/buildflags",
-     "//ui/base:buildflags",
+     sources += [
+@@ -605,6 +607,7 @@ static_library("url_constants") {
+     "//components/safe_browsing/core/common",
+     "//device/vr/buildflags",
    ]
 +  configs += [ "//mises/common:constants_configs" ]
  }
  
- component("chrome_features") {
+ static_library("constants") {

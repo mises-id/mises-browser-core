@@ -1,0 +1,64 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "hashbrown"
+  epoch = "0.12"
+  crate_type = "rlib"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/hashbrown/v0_12/crate/benches/bench.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/benches/insert_unique_unchecked.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/external_trait_impls/mod.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/external_trait_impls/rayon/helpers.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/external_trait_impls/rayon/map.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/external_trait_impls/rayon/mod.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/external_trait_impls/rayon/raw.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/external_trait_impls/rayon/set.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/external_trait_impls/serde.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/lib.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/macros.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/map.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/raw/alloc.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/raw/bitmask.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/raw/generic.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/raw/mod.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/raw/sse2.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/rustc_entry.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/scopeguard.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/src/set.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/tests/hasher.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/tests/rayon.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/tests/serde.rs",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/tests/set.rs",
+  ]
+  inputs = [
+    "//mises/third_party/rust/hashbrown/v0_12/crate/CHANGELOG.md",
+    "//mises/third_party/rust/hashbrown/v0_12/crate/README.md",
+  ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2021"
+  cargo_pkg_version = "0.12.3"
+  cargo_pkg_authors = "Amanieu d'Antras <amanieu@gmail.com>"
+  cargo_pkg_name = "hashbrown"
+  cargo_pkg_description = "A Rust port of Google's SwissTable hash map"
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [ "//mises/third_party/rust/ahash/v0_7:lib" ]
+  features = [
+    "ahash",
+    "inline-more",
+    "raw",
+  ]
+}

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
-index 915d32496fa249cee678e685f4e66712e2f9c2aa..d0235beb9bd53969f5a7faacd6c5bb2f60bd3e47 100644
+index c8b6447965bb9a94dd7f885eda3ded77b52865ff..b71199d53ad7b9759cd827f71f962fc49f39deb9 100644
 --- a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
 +++ b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
 @@ -75,6 +75,15 @@ found in the LICENSE file.
@@ -17,4 +17,4 @@ index 915d32496fa249cee678e685f4e66712e2f9c2aa..d0235beb9bd53969f5a7faacd6c5bb2f
 +
          <org.chromium.chrome.browser.toolbar.top.ToggleTabStackButton
              android:id="@+id/tab_switcher_button"
-             style="@style/ToolbarButton"
+             style="@style/ToolbarHoverableButton"

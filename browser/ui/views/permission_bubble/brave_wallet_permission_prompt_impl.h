@@ -34,7 +34,7 @@ class BraveWalletPermissionPromptImpl : public permissions::PermissionPrompt {
   void ShowBubble();
 
   raw_ptr<content::WebContents> web_contents_ = nullptr;
-  permissions::PermissionPrompt::Delegate* const delegate_;
+  const raw_ptr<permissions::PermissionPrompt::Delegate>  delegate_;
   base::TimeTicks permission_requested_time_;
 };
 

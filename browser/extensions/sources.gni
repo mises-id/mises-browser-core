@@ -19,6 +19,7 @@ if (is_android) {
     "api/messaging/native_message_built_in_host.cc",
     "api/messaging/native_message_built_in_host.h",
     "//mises/chromium_src/chrome/browser/extensions/api/messaging/native_message_host_android.cc",
+    "//mises/chromium_src/chrome/browser/extensions/api/image_writer_private/removable_storage_provider_android.cc",
   ]
   mises_extensions_exception_sources += [
       "api/messaging/native_message_process_host.cc",

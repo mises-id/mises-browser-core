@@ -1,8 +1,8 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
-index fcb24d2ecd26cdd2f097f5272607f4722c03b8df..81a2c3c785b2eb06103c8b15c8f438f81a2d53ab 100644
+index 0b5a4df40f78c29f7f5a43712d8f0c58f2a43762..ade897dc258e98ec6fa581dd2e9d6c48e7e41d80 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlConstants.java
-@@ -47,7 +47,7 @@ public class UrlConstants {
+@@ -50,7 +50,7 @@ public class UrlConstants {
  
      public static final String NTP_HOST = "newtab";
      public static final String NTP_URL = "chrome-native://newtab/";

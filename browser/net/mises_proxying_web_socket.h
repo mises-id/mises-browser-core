@@ -11,6 +11,8 @@
 #include <vector>
 
 #include "base/functional/callback.h"
+#include "base/memory/raw_ptr.h"
+#include "base/memory/raw_ref.h"
 #include "base/memory/ref_counted.h"
 #include "base/memory/weak_ptr.h"
 #include "mises/browser/net/resource_context_data.h"
@@ -53,7 +55,7 @@ class MisesProxyingWebSocket
       int frame_tree_node_id,
       content::BrowserContext* browser_context,
       scoped_refptr<RequestIDGenerator> request_id_generator,
-      MisesRequestHandler* handler,
+      MisesRequestHandler& handler,
       DisconnectCallback on_disconnect);
   MisesProxyingWebSocket(const MisesProxyingWebSocket&) = delete;
   MisesProxyingWebSocket& operator=(const MisesProxyingWebSocket&) = delete;
@@ -130,7 +132,7 @@ class MisesProxyingWebSocket
   void OnMojoConnectionError(uint32_t custom_reason,
                              const std::string& description);
 
-  MisesRequestHandler* const request_handler_;
+  const raw_ref<MisesRequestHandler> request_handler_;
   // TODO(iefremov): Get rid of shared_ptr, we should clearly own the pointer.
   // TODO(iefremov): Init this only once.
   std::shared_ptr<mises::MisesRequestInfo> ctx_;
@@ -138,7 +140,7 @@ class MisesProxyingWebSocket
   const int process_id_;
   const int frame_tree_node_id_;
   content::ContentBrowserClient::WebSocketFactory factory_;
-  content::BrowserContext* const browser_context_;
+  const raw_ptr<content::BrowserContext>  browser_context_;
   scoped_refptr<RequestIDGenerator> request_id_generator_;
   mojo::Remote<network::mojom::WebSocketHandshakeClient>
       forwarding_handshake_client_;

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/webui_gallery/BUILD.gn b/chrome/browser/resources/webui_gallery/BUILD.gn
-index fdb7cf6da64a6a00a86bb0d09a51e977354d3d12..1c520123bdda8a004c7b2a1ebecd6669f848c1eb 100644
+index 7d7e5c51e06b0a47d73b9ee10c9d19a3c9ed000e..f0de35fa924eaf5910a7ad3eda68b067668c1866 100644
 --- a/chrome/browser/resources/webui_gallery/BUILD.gn
 +++ b/chrome/browser/resources/webui_gallery/BUILD.gn
 @@ -4,7 +4,7 @@

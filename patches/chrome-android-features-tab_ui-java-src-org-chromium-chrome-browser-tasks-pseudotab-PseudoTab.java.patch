@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/pseudotab/PseudoTab.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/pseudotab/PseudoTab.java
-index 14e7ab63ffed7c1ab9847de48a394c611388f761..523542d91a9ddf92e3e5d8af41beec7607d6111a 100644
+index 5f626d67d37880782c9f75fe0c12e04a720ca3ae..f367be9d357904c97c070d9b3a94052cc5bb746a 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/pseudotab/PseudoTab.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/pseudotab/PseudoTab.java
-@@ -92,7 +92,7 @@ public class PseudoTab {
+@@ -89,7 +89,7 @@ public class PseudoTab {
                  if (cached.getTab() == tab) {
                      return cached;
                  } else {

@@ -1,10 +1,10 @@
 diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view.h b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view.h
-index ff2cf5b72c887e9d1cee8efc7fa8e86f50b8c1e5..5865b90fa40451febd7b84ac660feddb7c73acaa 100644
+index 9c9b38d6fdbde99ac815ac42ff040245dd3f7040..1b8aad89dd4dd964b8689536d4c65092da0f0b53 100644
 --- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view.h
 +++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view.h
-@@ -40,6 +40,9 @@
- // Separator between the toolbar and the content.
- @property(nonatomic, strong, readonly) UIView* separator;
+@@ -51,6 +51,9 @@
+ // Sets the location bar view containing the omnibox.
+ - (void)setLocationBarView:(UIView*)locationBarView;
  
 +@property(nonatomic, strong, readonly) ToolbarButton* misesButton;
 +@property(nonatomic, strong, readonly) ToolbarButton* walletButton;

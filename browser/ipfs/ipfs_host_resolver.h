@@ -10,6 +10,7 @@
 #include <utility>
 #include <vector>
 
+#include "base/memory/raw_ptr.h"
 #include "base/functional/callback_forward.h"
 #include "mojo/public/cpp/bindings/receiver.h"
 #include "net/base/host_port_pair.h"
@@ -56,7 +57,7 @@ class IPFSHostResolver : public network::ResolveHostClientBase {
   std::string prefix_;
   absl::optional<std::string> dnslink_;
 
-  network::mojom::NetworkContext* network_context_ = nullptr;
+  raw_ptr<network::mojom::NetworkContext> network_context_ = nullptr;
   HostTextResultsCallback resolved_callback_;
 
   mojo::Receiver<network::mojom::ResolveHostClient> receiver_{this};

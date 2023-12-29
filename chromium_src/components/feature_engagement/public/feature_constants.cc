@@ -8,6 +8,15 @@ namespace feature_engagement {
 BASE_FEATURE(kIPHBatterySaverModeFeature,
              "IPH_BatterySaverMode",
              base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHCompanionSidePanelFeature,
+             "IPH_CompanionSidePanel",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHCompanionSidePanelRegionSearchFeature,
+             "IPH_CompanionSidePanelRegionSearch",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHComposeNewBadgeFeature,
+             "IPH_ComposeNewBadgeFeature",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHDesktopSharedHighlightingFeature,
              "IPH_DesktopSharedHighlighting",
              base::FEATURE_DISABLED_BY_DEFAULT);
@@ -16,6 +25,12 @@ BASE_FEATURE(kIPHDesktopTabGroupsNewGroupFeature,
              base::FEATURE_DISABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHDesktopCustomizeChromeFeature,
              "IPH_DesktopCustomizeChrome",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHDesktopCustomizeChromeRefreshFeature,
+             "IPH_DesktopCustomizeChromeRefresh",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHDesktopNewTabPageModulesCustomizeFeature,
+             "IPH_DesktopNewTabPageModulesCustomize",
              base::FEATURE_DISABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHDownloadToolbarButtonFeature,
              "IPH_DownloadToolbarButton",
@@ -23,18 +38,21 @@ BASE_FEATURE(kIPHDownloadToolbarButtonFeature,
 BASE_FEATURE(kIPHExtensionsMenuFeature,
              "IPH_ExtensionsMenu",
              base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHExtensionsRequestAccessButtonFeature,
+             "IPH_ExtensionsRequestAccessButton",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHFocusHelpBubbleScreenReaderPromoFeature,
              "IPH_FocusHelpBubbleScreenReaderPromo",
              base::FEATURE_ENABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHGMCCastStartStopFeature,
              "IPH_GMCCastStartStop",
              base::FEATURE_ENABLED_BY_DEFAULT);
-BASE_FEATURE(kIPHHighEfficiencyInfoModeFeature,
-             "IPH_HighEfficiencyInfoMode",
+BASE_FEATURE(kIPHGMCLocalMediaCastingFeature,
+             "IPH_GMCLocalMediaCasting",
              base::FEATURE_ENABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHHighEfficiencyModeFeature,
              "IPH_HighEfficiencyMode",
-             base::FEATURE_DISABLED_BY_DEFAULT);
+             base::FEATURE_ENABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHLiveCaptionFeature,
              "IPH_LiveCaption",
              base::FEATURE_ENABLED_BY_DEFAULT);
@@ -53,12 +71,24 @@ BASE_FEATURE(kIPHPasswordsManagementBubbleDuringSigninFeature,
 BASE_FEATURE(kIPHPasswordsWebAppProfileSwitchFeature,
              "IPH_PasswordsWebAppProfileSwitch",
              base::FEATURE_ENABLED_BY_DEFAULT);
-BASE_FEATURE(kIPHPerformanceNewBadgeFeature,
-             "IPH_PerformanceNewBadge",
-             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPasswordManagerShortcutFeature,
+             "IPH_PasswordManagerShortcut",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPasswordSharingFeature,
+             "IPH_PasswordSharingFeature",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHPowerBookmarksSidePanelFeature,
              "IPH_PowerBookmarksSidePanel",
              base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPriceInsightsPageActionIconLabelFeature,
+             "IPH_PriceInsightsPageActionIconLabelFeature",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPriceTrackingChipFeature,
+             "IPH_PriceTrackingChipFeature",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHPriceTrackingEmailConsentFeature,
+             "IPH_PriceTrackingEmailConsentFeature",
+             base::FEATURE_ENABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHPriceTrackingPageActionIconLabelFeature,
              "IPH_PriceTrackingPageActionIconLabelFeature",
              base::FEATURE_ENABLED_BY_DEFAULT);
@@ -71,9 +101,12 @@ BASE_FEATURE(kIPHReadingListEntryPointFeature,
 BASE_FEATURE(kIPHReadingListInSidePanelFeature,
              "IPH_ReadingListInSidePanel",
              base::FEATURE_DISABLED_BY_DEFAULT);
-BASE_FEATURE(kIPHReopenTabFeature,
-             "IPH_ReopenTab",
+BASE_FEATURE(kIPHReadingModeSidePanelFeature,
+             "IPH_ReadingModeSidePanel",
              base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHShoppingCollectionFeature,
+             "IPH_ShoppingCollectionFeature",
+             base::FEATURE_ENABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHSideSearchAutoTriggeringFeature,
              "IPH_SideSearchAutoTriggering",
              base::FEATURE_DISABLED_BY_DEFAULT);
@@ -86,6 +119,12 @@ BASE_FEATURE(kIPHSideSearchPageActionLabelFeature,
 BASE_FEATURE(kIPHTabSearchFeature,
              "IPH_TabSearch",
              base::FEATURE_DISABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHTrackingProtectionOffboardingFeature,
+             "IPH_TrackingProtectionOffboarding",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHTrackingProtectionOnboardingFeature,
+             "IPH_TrackingProtectionOnboarding",
+             base::FEATURE_ENABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHWebUITabStripFeature,
              "IPH_WebUITabStrip",
              base::FEATURE_DISABLED_BY_DEFAULT);
@@ -98,15 +137,15 @@ BASE_FEATURE(kIPHDesktopPwaInstallFeature,
 BASE_FEATURE(kIPHProfileSwitchFeature,
              "IPH_ProfileSwitch",
              base::FEATURE_ENABLED_BY_DEFAULT);
-BASE_FEATURE(kIPHIntentChipFeature,
-             "IPH_IntentChip",
-             base::FEATURE_DISABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHWebUiHelpBubbleTestFeature,
              "IPH_WebUiHelpBubbleTest",
              base::FEATURE_DISABLED_BY_DEFAULT);
 BASE_FEATURE(kIPHPriceTrackingInSidePanelFeature,
              "IPH_PriceTrackingInSidePanel",
              base::FEATURE_ENABLED_BY_DEFAULT);
+BASE_FEATURE(kIPHBackNavigationMenuFeature,
+             "IPH_BackNavigationMenu",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 #endif  
 
 

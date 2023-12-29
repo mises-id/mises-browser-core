@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
-index 7b9120a5717c307c7f0fc08529b83842b4460027..ac63ac9d632d6736ea9a23087796cc102feff956 100644
+index 831c3db429bd5d9e9092c43b6d8aa58e0edb220a..18cac96a61a22a62113d20bb4201e67543cfd104 100644
 --- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 +++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
-@@ -26,6 +26,28 @@ import org.chromium.ui.base.WindowAndroid;
+@@ -27,6 +27,28 @@ import org.chromium.ui.base.WindowAndroid;
  import org.chromium.ui.modaldialog.ModalDialogManager;
  import org.chromium.ui.modaldialog.ModalDialogManagerHolder;
  

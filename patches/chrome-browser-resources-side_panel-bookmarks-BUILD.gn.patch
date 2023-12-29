@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/side_panel/bookmarks/BUILD.gn b/chrome/browser/resources/side_panel/bookmarks/BUILD.gn
-index f1731abdbf04dcbacf19988f4c56c9960d7d48c0..09c5a06198f3b4992c4526243f204d201f700547 100644
+index 3de29e5e0223a1a48651b716540393eb63ca81fc..569ff2a323ddb5272e51e77c847d6f51bedd5075 100644
 --- a/chrome/browser/resources/side_panel/bookmarks/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/bookmarks/BUILD.gn
 @@ -4,7 +4,7 @@

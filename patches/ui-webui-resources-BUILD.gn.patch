@@ -1,36 +1,36 @@
 diff --git a/ui/webui/resources/BUILD.gn b/ui/webui/resources/BUILD.gn
-index b9bac52390e72642c485fc9e82d82a02b5b97894..ac678edcc00d9cf74a3453d8aaffe5d8a40b994a 100644
+index 6af21f9088680adb0a4a07d9ae856c316aced19f..46ad1d497aed2a09f05090394774760ddcc352da 100644
 --- a/ui/webui/resources/BUILD.gn
 +++ b/ui/webui/resources/BUILD.gn
 @@ -14,7 +14,7 @@ generate_grd("build_grd") {
    input_files = [ "test_loader.html" ]
    input_files_base_dir = rebase_path(".", "//")
  
--  if (!is_chromeos_ash && !is_android) {
-+  if (!is_chromeos_ash) {
-     # Roboto Font. Roboto-Regular and Roboto-Light is already available on
-     # Android, and Roboto-Medium is not used on Android. All 6 weights of
-     # Roboto are available on Chrome OS.
-@@ -40,7 +40,7 @@ generate_grd("build_grd") {
-     "$target_gen_dir/js/resources.grdp",
+-  if (is_linux) {
++  if (is_linux || is_android) {
+     # Only need to include on Linux.
+     #  - Android: Roboto-Regular and Roboto-Light is already available on
+     #             Android, and Roboto-Medium is not used on Android.
+@@ -44,7 +44,7 @@ generate_grd("build_grd") {
+     "$target_gen_dir/mojo/resources.grdp",
    ]
  
 -  if (include_polymer) {
 +  if (include_polymer || is_android) {
      public_deps += [
        "cr_components/app_management:build_grdp",
-       "cr_components/customize_themes:build_grdp",
-@@ -109,7 +109,7 @@ generate_grd("build_grd") {
-     ]
+       "cr_components/customize_color_scheme_mode:build_grdp",
+@@ -108,7 +108,7 @@ generate_grd("build_grd") {
+     grdp_files += [ "$target_gen_dir/cros_styles_resources.grdp" ]
    }
  
 -  if (!is_android && !is_ios) {
 +  if (!is_android && !is_ios || is_android) {
      public_deps += [
        "cr_components/color_change_listener:build_grdp",
-       "cr_components/image_service:build_grdp",
-@@ -121,6 +121,7 @@ generate_grd("build_grd") {
-       "$root_gen_dir/ui/webui/resources/cr_components/image_service/resources.grdp",
+       "cr_components/page_image_service:build_grdp",
+@@ -120,6 +120,7 @@ generate_grd("build_grd") {
+       "$root_gen_dir/ui/webui/resources/cr_components/page_image_service/resources.grdp",
      ]
    }
 +  import("//mises/ui/webui/resources/sources.gni") grdp_files += mises_resources_extra_grdps public_deps += mises_resources_extra_grdps_deps

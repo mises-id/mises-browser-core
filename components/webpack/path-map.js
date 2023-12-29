@@ -30,8 +30,8 @@ module.exports = {
                           __dirname, '../../node_modules/styled-components'),
   // More helpful path for local web-components
   '$web-components' : path.resolve(__dirname, '../web-components'),
-  // TODO(petemill): Rename 'brave/components/common' dir to
-  // 'brave/components/web-common'
+  // TODO(petemill): Rename 'mises/components/common' dir to
+  // 'mises/components/web-common'
   '$web-common' : path.resolve(__dirname, '../common'),
   '@ledgerhq/devices/hid-framing': path.resolve(__dirname, '../../node_modules/@ledgerhq/devices/lib/hid-framing'),
   'react-native': path.resolve(

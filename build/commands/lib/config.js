@@ -331,9 +331,9 @@ Config.prototype.buildArgs = function () {
     ...this.extraGnArgs,
   }
 
-  if (!this.isOfficialBuild()) {
-    args.branding_path_product += "-development"
-  }
+  // if (!this.isOfficialBuild()) {
+  //   args.branding_path_product += "-development"
+  // }
 
   if (!this.isMisesReleaseBuild()) {
     args.chrome_pgo_phase = 0
@@ -558,6 +558,8 @@ Config.prototype.buildArgs = function () {
     args.ios_enable_credential_provider_extension = true
     args.ios_enable_widget_kit_extension = true
 
+    args.ios_partition_alloc_enabled = false
+    
     args.ios_provider_target = "//mises/ios/browser/providers:mises_providers"
     args.ios_application_icons_target = "//mises/ios/app/resources:mises_icons"
     args.ios_launchscreen_assets_target = "//mises//ios/app/resources:launchscreen_assets"
@@ -999,16 +1001,22 @@ Object.defineProperty(Config.prototype, 'defaultOptions', {
     let env = Object.assign({}, process.env)
     env = this.addPathToEnv(env, path.join(this.depotToolsDir, 'python-bin'), true)
     env = this.addPathToEnv(env, path.join(this.depotToolsDir, 'python2-bin'), true)
+    env = this.addPathToEnv(env, path.join(this.srcDir, 'third_party',
+    'rust-toolchain', 'bin'), true)
     env = this.addPathToEnv(env, this.depotToolsDir, true)
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'chromium_src', 'python_modules'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'script'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'tools', 'grit', 'grit', 'extern'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'requests'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'lxml', 'src'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'mises', 'vendor', 'transifex'))
-    
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'build'))
-    env = this.addPythonPathToEnv(env, path.join(this.srcDir, 'third_party', 'depot_tools'))
+    const pythonPaths = [
+      ['mises', 'chromium_src', 'python_modules'],
+      ['mises', 'script'],
+      ['tools', 'grit', 'grit', 'extern'],
+      ['mises', 'vendor', 'requests'],
+      ['mises', 'third_party', 'cryptography'],
+      ['mises', 'third_party', 'macholib'],
+      ['build'],
+      ['third_party', 'depot_tools'],
+    ]
+    pythonPaths.forEach(p => {
+      env = this.addPythonPathToEnv(env, path.join(this.srcDir, ...p))
+    })
     env.DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
     env.PYTHONUNBUFFERED = '1'
     env.TARGET_ARCH = this.gypTargetArch // for mises scripts
@@ -1016,6 +1024,7 @@ Object.defineProperty(Config.prototype, 'defaultOptions', {
     if (this.channel != "") {
       env.MISES_CHANNEL = this.channel
     }
+    env.RUSTUP_HOME = path.join(this.srcDir, 'third_party', 'rust-toolchain')
 
     if (this.getCachePath()) {
       console.log("using git cache path " + this.getCachePath())

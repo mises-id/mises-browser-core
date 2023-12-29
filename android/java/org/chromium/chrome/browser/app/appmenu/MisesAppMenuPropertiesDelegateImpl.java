@@ -15,6 +15,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import org.chromium.base.supplier.ObservableSupplier;
 import org.chromium.base.supplier.OneshotSupplier;
+import org.chromium.base.supplier.Supplier;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.ActivityTabProvider;
 import org.chromium.chrome.browser.bookmarks.BookmarkModel;
@@ -31,6 +32,7 @@ import org.chromium.chrome.features.start_surface.StartSurface;
 import org.chromium.ui.modaldialog.ModalDialogManager;
 import org.chromium.ui.modelutil.MVCListAdapter;
 import org.chromium.ui.modelutil.MVCListAdapter.ModelList;
+import org.chromium.chrome.browser.readaloud.ReadAloudController;
 
 public class MisesAppMenuPropertiesDelegateImpl extends AppMenuPropertiesDelegateImpl {
     public MisesAppMenuPropertiesDelegateImpl(Context context,
@@ -39,12 +41,14 @@ public class MisesAppMenuPropertiesDelegateImpl extends AppMenuPropertiesDelegat
             TabModelSelector tabModelSelector, ToolbarManager toolbarManager, View decorView,
             @Nullable OneshotSupplier<LayoutStateProvider> layoutStateProvidersSupplier,
             @Nullable OneshotSupplier<StartSurface> startSurfaceSupplier,
-            ObservableSupplier<BookmarkModel> bookmarkBridgeSupplier,
+            ObservableSupplier<BookmarkModel> bookmarkModelSupplier,
             @Nullable OneshotSupplier<IncognitoReauthController>
-                    incognitoReauthControllerOneshotSupplier) {
+                    incognitoReauthControllerOneshotSupplier,
+            @Nullable Supplier<ReadAloudController> readAloudControllerSupplier) {
         super(context, activityTabProvider, multiWindowModeStateDispatcher, tabModelSelector,
                 toolbarManager, decorView, layoutStateProvidersSupplier, startSurfaceSupplier,
-                bookmarkBridgeSupplier, incognitoReauthControllerOneshotSupplier);
+                bookmarkModelSupplier, incognitoReauthControllerOneshotSupplier,
+                readAloudControllerSupplier);
     }
 
     @Override

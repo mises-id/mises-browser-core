@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/background/background_contents_service.cc b/chrome/browser/background/background_contents_service.cc
-index dd1fd0a2aca66c7f126c86cc3d7538664192fd49..48f500efa6d4227c2a71861ea487be3bbd2f7062 100644
+index a7df191ad3ef001af5decfeb1f8f6891957d014c..e6c680b93ddb750863bd05e6517bad3255406eaa 100644
 --- a/chrome/browser/background/background_contents_service.cc
 +++ b/chrome/browser/background/background_contents_service.cc
-@@ -787,9 +787,13 @@ void BackgroundContentsService::HandleExtensionCrashed(
+@@ -729,9 +729,13 @@ void BackgroundContentsService::HandleExtensionCrashed(
    if (!extension)
      return;
  
@@ -14,5 +14,5 @@ index dd1fd0a2aca66c7f126c86cc3d7538664192fd49..48f500efa6d4227c2a71861ea487be3b
        extensions::Manifest::IsPolicyLocation(extension->location());
 +#endif
    if (!force_installed) {
-     ShowBalloon(extension, profile_);
+     ShowBalloon(extension);
    } else {

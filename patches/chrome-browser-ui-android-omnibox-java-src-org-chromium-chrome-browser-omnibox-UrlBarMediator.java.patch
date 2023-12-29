@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
-index 22916061069c2ac199af2064911c3951cf9be32f..e8fa7592dea7d888644c7f37704eb0e0315cfd14 100644
+index 2b794f1590f6626289ac0060a1eacaec49e9c4aa..abea919ca8a69cbde115617ddfec3083538c43b7 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
-@@ -102,12 +102,12 @@ class UrlBarMediator
+@@ -93,12 +93,12 @@ class UrlBarMediator implements UrlBar.UrlBarTextContextMenuDelegate, UrlBar.Url
       */
      public boolean setUrlBarData(
              UrlBarData data, @ScrollType int scrollType, @SelectionState int selectionState) {
@@ -12,12 +12,12 @@ index 22916061069c2ac199af2064911c3951cf9be32f..e8fa7592dea7d888644c7f37704eb0e0
          }
  
          // Do not scroll to the end of the host for URLs such as data:, javascript:, etc...
--        if (data.url != null && data.originEndIndex == data.displayText.length()) {
-+        if (data != null && data.url != null && data.originEndIndex == data.displayText.length()) {
-             Uri uri = Uri.parse(data.url);
-             String scheme = uri.getScheme();
-             if (!TextUtils.isEmpty(scheme)
-@@ -133,6 +133,8 @@ class UrlBarMediator
+-        if (data.url != null
++        if (data != null && data.url != null
+                 && data.displayText != null
+                 && data.originEndIndex == data.displayText.length()) {
+             String scheme = data.url.getScheme();
+@@ -125,6 +125,8 @@ class UrlBarMediator implements UrlBar.UrlBarTextContextMenuDelegate, UrlBar.Url
      }
  
      private void pushTextToModel() {

@@ -1,8 +1,8 @@
 diff --git a/components/media_router/browser/BUILD.gn b/components/media_router/browser/BUILD.gn
-index 4db9ab0b6e5470430eadfdc7cfea73b755bfb01a..41ec76aa604bf84da5a73f43081e0e3786705f6c 100644
+index c7cbbc8d6e95d28e9e3ffd62e9d109b24c2741ee..7cb0d891232adeb8457854fc15de3bafd1a48f04 100644
 --- a/components/media_router/browser/BUILD.gn
 +++ b/components/media_router/browser/BUILD.gn
-@@ -76,7 +76,9 @@ source_set("browser") {
+@@ -80,7 +80,9 @@ source_set("browser") {
        "android/media_router_dialog_controller_android.h",
      ]
      deps += [ "android:jni_headers" ]

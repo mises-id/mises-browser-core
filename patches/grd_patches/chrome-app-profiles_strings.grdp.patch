@@ -1,8 +1,8 @@
 diff --git a/chrome/app/profiles_strings.grdp b/chrome/app/profiles_strings.grdp
-index 0ec975b2c294987b124b57126dbaac45be80b405..add922a3ad926e62d992ad2c80a8da741ab140c6 100644
+index f5f5f702bfa83ba0193df1233a46cf4ccb216846..559f8fd5eb776c897e08fe998b8e868bfb78a6d8 100644
 --- a/chrome/app/profiles_strings.grdp
 +++ b/chrome/app/profiles_strings.grdp
-@@ -443,6 +443,9 @@
+@@ -431,6 +431,9 @@
      <message name="IDS_SYNC_USER_NAME_IN_USE_ERROR" desc="Mobile: An error message shown when a user tries to sign in to sync using a user name that's already in use by another profile.">
        This account is already being used on this device.
      </message>
@@ -12,7 +12,7 @@ index 0ec975b2c294987b124b57126dbaac45be80b405..add922a3ad926e62d992ad2c80a8da74
    </if>
    <if expr="not is_android">
      <message name="IDS_SYNC_USER_NAME_IN_USE_ERROR" desc="An error message shown when a user tries to sign in to sync using a user name that's already in use by another profile.">
-@@ -454,7 +457,7 @@
+@@ -442,7 +445,7 @@
    </if>
  
    <!-- Android does not support multiple profiles and supervised users -->

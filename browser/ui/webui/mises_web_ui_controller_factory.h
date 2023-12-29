@@ -11,6 +11,11 @@
 #include "chrome/browser/ui/webui/chrome_web_ui_controller_factory.h"
 
 namespace base {
+template <typename T>
+struct DefaultSingletonTraits;
+}  // namespace base
+
+namespace base {
 class RefCountedMemory;
 }
 

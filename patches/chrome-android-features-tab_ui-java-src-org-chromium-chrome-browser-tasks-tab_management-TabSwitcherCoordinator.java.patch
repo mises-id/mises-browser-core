@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
-index d2c78ecfe19e91b6923d8e48c6ae8e4f2068ca14..9c89b8eaf4d77177f4e7d9239fb2890c4ba610de 100644
+index 155b68a6d518e11265cfe87f947ce53305af412b..7f332c63dadd1cd0a7bbb8913dc203e3f20a9548 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherCoordinator.java
-@@ -72,6 +72,8 @@ import org.chromium.ui.resources.dynamics.DynamicResourceLoader;
+@@ -76,6 +76,8 @@ import org.chromium.ui.resources.dynamics.DynamicResourceLoader;
  import java.util.ArrayList;
  import java.util.List;
  
@@ -11,8 +11,8 @@ index d2c78ecfe19e91b6923d8e48c6ae8e4f2068ca14..9c89b8eaf4d77177f4e7d9239fb2890c
  /**
   * Parent coordinator that is responsible for showing a grid or carousel of tabs for the main
   * TabSwitcher UI.
-@@ -181,6 +183,11 @@ public class TabSwitcherCoordinator
-             @Nullable BackPressManager backPressManager) {
+@@ -169,6 +171,11 @@ public class TabSwitcherCoordinator
+             @Nullable OneshotSupplier<LayoutStateProvider> layoutStateProviderSupplier) {
          try (TraceEvent e = TraceEvent.scoped("TabSwitcherCoordinator.constructor")) {
              mActivity = activity;
 +	    final String active_tabswitcher = ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default");
@@ -21,5 +21,5 @@ index d2c78ecfe19e91b6923d8e48c6ae8e4f2068ca14..9c89b8eaf4d77177f4e7d9239fb2890c
 +            if (active_tabswitcher.equals("default") || active_tabswitcher.equals("grid"))
 +              mode = TabListCoordinator.TabListMode.GRID;
              mMode = mode;
+             mBrowserControlsStateProvider = browserControls;
              mTabModelSelector = tabModelSelector;
-             mContainer = container;

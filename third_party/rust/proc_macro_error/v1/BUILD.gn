@@ -1,0 +1,73 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "proc_macro_error"
+  epoch = "1"
+  crate_type = "rlib"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/proc_macro_error/v1/crate/build.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/src/diagnostic.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/src/dummy.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/src/imp/delegate.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/src/imp/fallback.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/src/lib.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/src/macros.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/src/sealed.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/macro-errors.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ok.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/runtime-errors.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/abort.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/append_dummy.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/children_messages.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/dummy.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/emit.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/explicit_span_range.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/misuse.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/multiple_tokens.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/not_proc_macro.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/option_ext.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/proc_macro_hack.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/result_ext.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/to_tokens_span.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/unknown_setting.rs",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/tests/ui/unrelated_panic.rs",
+  ]
+  inputs = [
+    "//mises/third_party/rust/proc_macro_error/v1/crate/CHANGELOG.md",
+    "//mises/third_party/rust/proc_macro_error/v1/crate/README.md",
+  ]
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "1.0.4"
+  cargo_pkg_authors = "CreepySkeleton <creepy-skeleton@yandex.ru>"
+  cargo_pkg_name = "proc-macro-error"
+  cargo_pkg_description = "Almost drop-in replacement to panics in proc-macros"
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [
+    "//mises/third_party/rust/proc_macro_error_attr/v1:lib",
+    "//third_party/rust/proc_macro2/v1:lib",
+    "//third_party/rust/quote/v1:lib",
+    "//third_party/rust/syn/v1:lib",
+  ]
+  build_deps = [ "//mises/third_party/rust/version_check/v0_9:buildrs_support" ]
+  features = [
+    "syn",
+    "syn-error",
+  ]
+  build_root = "crate/build.rs"
+  build_sources = [ "crate/build.rs" ]
+}

@@ -1,9 +1,9 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/public/cells/popup_menu_item.h b/ios/chrome/browser/ui/popup_menu/public/cells/popup_menu_item.h
-index 55372f94dd3485d28cfb1eba12e34e50c7ef66f5..7bfd1bf64970f47575d982cd5d8c941435b064a4 100644
+index f6688a814fed7ba7aaffa47fca94377178689af0..6514671f2a3f038c9ebe3720ef4e60ac3cdb5bb8 100644
 --- a/ios/chrome/browser/ui/popup_menu/public/cells/popup_menu_item.h
 +++ b/ios/chrome/browser/ui/popup_menu/public/cells/popup_menu_item.h
-@@ -62,6 +62,18 @@ typedef NS_ENUM(NSInteger, PopupMenuAction) {
-   PopupMenuActionShowPermissionsOptions,
+@@ -37,6 +37,18 @@ typedef NS_ENUM(NSInteger, PopupMenuAction) {
+   PopupMenuActionSettings,
    // Textual popup menu
    PopupMenuActionEnterpriseInfoMessage,
 +  PopupMenuActionMises,

@@ -12,6 +12,7 @@ template <typename T>
 struct DefaultSingletonTraits;
 }
 
+namespace chrome {
 namespace android {
 
 class MisesController {
@@ -40,5 +41,5 @@ class MisesController {
 };
 
 }  // namespace android
-
+}
 #endif

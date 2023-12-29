@@ -6,6 +6,8 @@
 #ifndef BRAVE_BROWSER_UI_WEBUI_BRAVE_WALLET_ANDROID_SWAP_PAGE_HANDLER_H_
 #define BRAVE_BROWSER_UI_WEBUI_BRAVE_WALLET_ANDROID_SWAP_PAGE_HANDLER_H_
 
+#include "base/memory/raw_ptr.h"
+
 #include "mises/browser/ui/webui/brave_wallet/page_handler/wallet_page_handler.h"
 
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
@@ -25,7 +27,7 @@ class SwapPageHandler : WalletPageHandler {
   void ShowApprovePanelUI() override;
 
  private:
-  ui::MojoWebUIController* const webui_controller_;
+  raw_ptr<ui::MojoWebUIController> const webui_controller_;
 };
 
 #endif  // BRAVE_BROWSER_UI_WEBUI_BRAVE_WALLET_ANDROID_SWAP_PAGE_HANDLER_H_

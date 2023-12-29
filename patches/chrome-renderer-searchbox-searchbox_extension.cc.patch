@@ -1,5 +1,5 @@
 diff --git a/chrome/renderer/searchbox/searchbox_extension.cc b/chrome/renderer/searchbox/searchbox_extension.cc
-index 42322bbe46d65e7b427c9564ed2e663cabd535b5..6babdbed93df5eeb45dbb8f7b2a6221b90fcd1a6 100644
+index 1826ec44fa9fc893c04d9afdc1ad31d141acde78..5c626783b003bd9c1c329d5e9de00c3e57c70a86 100644
 --- a/chrome/renderer/searchbox/searchbox_extension.cc
 +++ b/chrome/renderer/searchbox/searchbox_extension.cc
 @@ -139,7 +139,7 @@ v8::Local<v8::Object> GenerateMostVisitedItemData(

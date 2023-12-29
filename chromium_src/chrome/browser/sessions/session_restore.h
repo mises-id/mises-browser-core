@@ -8,7 +8,7 @@
   static content::WebContents* RestoreForeignSessionTab_chromium(\
       content::WebContents* source_web_contents,\
       const sessions::SessionTab& tab,\
-      WindowOpenDisposition disposition);\
+      WindowOpenDisposition disposition, bool skip_renderer_creation = false);\
 static void OpenStartupPagesAfterCrash
 
 #include "src/chrome/browser/sessions/session_restore.h"

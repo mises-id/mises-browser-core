@@ -1,8 +1,8 @@
 diff --git a/third_party/blink/renderer/core/exported/web_view_impl.cc b/third_party/blink/renderer/core/exported/web_view_impl.cc
-index 823d6d2ab3772c29b75e60794862a4e02fc62495..aff369a6c545b8d93b0c79ae4f7bc2cb54bf41d5 100644
+index c8b7feaa65bfb47daa63565b193ff33806f53f88..eae2019b13ff0e87217f4886603d522600c1d074 100644
 --- a/third_party/blink/renderer/core/exported/web_view_impl.cc
 +++ b/third_party/blink/renderer/core/exported/web_view_impl.cc
-@@ -1707,6 +1707,10 @@ void WebView::ApplyWebPreferences(const web_pref::WebPreferences& prefs,
+@@ -1741,6 +1741,10 @@ void WebView::ApplyWebPreferences(const web_pref::WebPreferences& prefs,
  #endif  // BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
  
    settings->SetForceDarkModeEnabled(prefs.force_dark_mode_enabled);

@@ -1,10 +1,10 @@
 diff --git a/ui/webui/resources/cr_components/app_management/BUILD.gn b/ui/webui/resources/cr_components/app_management/BUILD.gn
-index 63afa629aee9994b8b2ed54baad428c0c4d4d0a1..a6e354153a86b1183de0b74bf05c21263bec1d74 100644
+index 96e256ae6902d27b69a00a64b2d782e4b7d1f8fa..2a1ebf13d45ce8208fa7bbe0f17b84446c97c474 100644
 --- a/ui/webui/resources/cr_components/app_management/BUILD.gn
 +++ b/ui/webui/resources/cr_components/app_management/BUILD.gn
-@@ -6,7 +6,7 @@ import("//mojo/public/tools/bindings/mojom.gni")
- import("//ui/webui/webui_features.gni")
- import("../../tools/build_cr_component.gni")
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(!is_android && !is_ios)
 +# assert(!is_android && !is_ios)

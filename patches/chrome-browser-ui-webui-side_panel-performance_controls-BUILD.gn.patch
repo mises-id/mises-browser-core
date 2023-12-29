@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/side_panel/performance_controls/BUILD.gn b/chrome/browser/ui/webui/side_panel/performance_controls/BUILD.gn
+index d45d9602759914b23e38e82a70c94c5f5fd15c6c..da5c3b59409d8563b0a84fb6c79c5275e1158b95 100644
+--- a/chrome/browser/ui/webui/side_panel/performance_controls/BUILD.gn
++++ b/chrome/browser/ui/webui/side_panel/performance_controls/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "performance.mojom" ]

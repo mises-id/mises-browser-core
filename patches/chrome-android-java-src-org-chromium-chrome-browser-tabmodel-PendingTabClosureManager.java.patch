@@ -1,16 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/PendingTabClosureManager.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/PendingTabClosureManager.java
-index cc2f03a1deb01be726e9a8faa15c7fccd054b8f7..919a831eeec3b25bf3a81ccf73fd9ac3f36f8710 100644
+index a041eee6574b4fcef93cb96d8338afaeb3658d67..3039f1adf3cd8af03f5aea3b41c3f4bf377c3d57 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/PendingTabClosureManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/PendingTabClosureManager.java
-@@ -7,6 +7,7 @@ package org.chromium.chrome.browser.tabmodel;
- import androidx.annotation.NonNull;
- 
- import org.chromium.chrome.browser.tab.Tab;
-+import org.chromium.chrome.browser.tab.state.CriticalPersistedTabData;
- 
- import java.util.ArrayList;
- import java.util.HashSet;
-@@ -154,6 +155,25 @@ public class PendingTabClosureManager {
+@@ -155,6 +155,25 @@ public class PendingTabClosureManager {
              return mRewoundTabs.indexOf(tab);
          }
  
@@ -23,7 +15,7 @@ index cc2f03a1deb01be726e9a8faa15c7fccd054b8f7..919a831eeec3b25bf3a81ccf73fd9ac3
 +	    @Override
 +    	public int getLastNonExtensionActiveIndex() {
 +            if (mTabList.getLastNonExtensionActiveIndex() != INVALID_TAB_INDEX) {
-+                Tab parentTab = findTabInAllTabModels(CriticalPersistedTabData.from(TabModelUtils.getCurrentTab(this)).getParentId());
++                Tab parentTab = findTabInAllTabModels(TabModelUtils.getCurrentTab(this).getParentId());
 +                if (parentTab != null) {
 +                   return mRewoundTabs.indexOf(parentTab);
 +                }

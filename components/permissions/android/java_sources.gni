@@ -2,3 +2,8 @@ mises_components_permissions_java_sources = [
   "//mises/components/permissions/android/java/src/org/chromium/components/permissions/MisesPermissionDialogDelegate.java",
   "//mises/components/permissions/android/java/src/org/chromium/components/permissions/MisesPermissionDialogModel.java",
 ]
+
+mises_components_permissions_java_deps = [
+  "//chrome/android:chrome_app_java_resources",
+  "//third_party/androidx:androidx_browser_browser_java",
+]

@@ -1,8 +1,8 @@
 diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
-index 75019fbc224e56b2caf0711b222d57e031dd357c..3ebb10d5bb873f07ef80465524ec63593071de95 100644
+index e61d70856282ffbef8abc4398c8c98cab4122688..7cc120d77fe60206b60fa521281a2e7f3a17b89c 100644
 --- a/chrome/android/BUILD.gn
 +++ b/chrome/android/BUILD.gn
-@@ -108,6 +108,7 @@ if (current_toolchain == default_toolchain) {
+@@ -170,6 +170,7 @@ if (current_toolchain == default_toolchain) {
        "java/res_chromium_base/mipmap-xxxhdpi/layered_app_icon_background.png",
        "java/res_chromium_base/values/channel_constants.xml",
      ]
@@ -10,15 +10,15 @@ index 75019fbc224e56b2caf0711b222d57e031dd357c..3ebb10d5bb873f07ef80465524ec6359
    }
  
    android_resources("chrome_app_java_resources") {
-@@ -185,6 +186,7 @@ if (current_toolchain == default_toolchain) {
+@@ -237,6 +238,7 @@ if (current_toolchain == default_toolchain) {
        "//third_party/androidx:androidx_gridlayout_gridlayout_java",
        "//third_party/androidx:androidx_preference_preference_java",
      ]
 +    deps += mises_chrome_app_java_resources_deps sources += mises_java_resources resource_overlay = true
    }
  
-   if (enable_vr) {
-@@ -584,6 +586,7 @@ if (current_toolchain == default_toolchain) {
+   android_library("app_hooks_java") {
+@@ -665,6 +667,7 @@ if (current_toolchain == default_toolchain) {
      ]
  
      deps += feed_deps
@@ -26,23 +26,23 @@ index 75019fbc224e56b2caf0711b222d57e031dd357c..3ebb10d5bb873f07ef80465524ec6359
  
      srcjar_deps = [
        ":chrome_android_java_enums_srcjar",
-@@ -607,6 +610,7 @@ if (current_toolchain == default_toolchain) {
-       "//components/offline_pages/core:offline_page_model_enums_java",
+@@ -683,6 +686,7 @@ if (current_toolchain == default_toolchain) {
+       "//components/supervised_user/core/browser:supervised_user_url_filter_enum_javagen",
        "//net:effective_connection_type_java",
      ]
 +    srcjar_deps += mises_chrome_java_srcjar_deps
  
      # From java_sources.gni.
      sources = chrome_java_sources + [ app_hooks_impl ]
-@@ -752,6 +756,7 @@ if (current_toolchain == default_toolchain) {
-         "//chrome/android/features/tab_ui:module_desc_java",
-       ]
-     }
+@@ -824,6 +828,7 @@ if (current_toolchain == default_toolchain) {
+       "//components/messages/android/internal:java",
+       "//components/segmentation_platform/internal:internal_java",
+     ]
 +    deps += mises_chrome_all_java_deps
    }
  
    action_with_pydeps("chrome_android_java_google_api_keys_srcjar") {
-@@ -1978,6 +1983,7 @@ if (current_toolchain == default_toolchain) {
+@@ -2171,6 +2176,7 @@ if (current_toolchain == default_toolchain) {
        "java/res_chromium_base/mipmap-xxxhdpi/layered_app_icon_background.png",
        "java/res_chromium_base/values/channel_constants.xml",
      ]
@@ -50,32 +50,24 @@ index 75019fbc224e56b2caf0711b222d57e031dd357c..3ebb10d5bb873f07ef80465524ec6359
  
      # Dep needed to ensure override works properly.
      deps = [ ":chrome_base_module_resources" ]
-@@ -2196,7 +2202,7 @@ if (current_toolchain == default_toolchain) {
-         }
-       }
+@@ -2341,7 +2347,7 @@ if (current_toolchain == default_toolchain) {
+ 
+       additional_extra_paks = []
        if (!dfmify_dev_ui || !_is_bundle_module) {
 -        additional_extra_paks += [ "$root_gen_dir/chrome/dev_ui_resources.pak" ]
-+        #additional_extra_paks += [ "$root_gen_dir/chrome/dev_ui_resources.pak" ]
++        # additional_extra_paks += [ "$root_gen_dir/chrome/dev_ui_resources.pak" ]
          deps += [ "//chrome/browser/resources:dev_ui_paks" ]
        }
  
-@@ -2238,6 +2244,7 @@ if (current_toolchain == default_toolchain) {
+@@ -2383,6 +2389,7 @@ if (current_toolchain == default_toolchain) {
          ":${_variant}_locale_pak_assets",
          ":${_variant}_paks",
        ]
 +      deps += [ "//mises:mises_pak_assets" ]
        if (_is_monochrome) {
          deps += [ "//android_webview:locale_pak_assets" ]
-         if (webview_includes_weblayer && !_is_bundle_module) {
-@@ -2430,6 +2437,7 @@ if (current_toolchain == default_toolchain) {
-       shared_libraries = [ ":libchrome" ]
- 
-       version_name = chrome_version_name
-+      deps += mises_public_apk_or_module_tmpl_deps loadable_modules = mises_public_apk_or_module_tmpl_loadable_modules
-     }
-   }
- 
-@@ -2565,6 +2573,7 @@ if (current_toolchain == default_toolchain) {
+       }
+@@ -2647,6 +2654,7 @@ if (current_toolchain == default_toolchain) {
        "//components/payments/content/android:service_java",
        "//third_party/androidx:androidx_browser_browser_java",
      ]
@@ -83,11 +75,12 @@ index 75019fbc224e56b2caf0711b222d57e031dd357c..3ebb10d5bb873f07ef80465524ec6359
  
      # More deps for DFMs.
      if (dfmify_dev_ui) {
-@@ -2659,6 +2668,7 @@ if (current_toolchain == default_toolchain) {
-           deps += [ "//weblayer/browser/java:upstream_java" ]
-         }
-       }
-+      deps += mises_monochrome_public_apk_or_module_tmpl_deps loadable_modules = mises_monochrome_public_apk_or_module_tmpl_loadable_modules secondary_abi_loadable_modules = mises_monochrome_public_apk_or_module_tmpl_secondary_abi_loadable_modules
-     }
-   }
+@@ -3684,6 +3692,8 @@ generate_jni("chrome_jni_headers") {
+     "java/src/org/chromium/chrome/browser/webapps/WebappRegistry.java",
+   ]
  
++  sources += mises_jni_headers_sources
++
+   if (enable_vr) {
+     sources += [ "features/vr/java/src/org/chromium/chrome/browser/vr/VrModuleProvider.java" ]
+   }

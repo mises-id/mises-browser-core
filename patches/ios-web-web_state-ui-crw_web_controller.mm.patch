@@ -1,8 +1,8 @@
 diff --git a/ios/web/web_state/ui/crw_web_controller.mm b/ios/web/web_state/ui/crw_web_controller.mm
-index 09d35b85c67f4cf268d9f78fc65bfc434d767978..b00c39b13be73e3192442c990accbcc2e45d3b18 100644
+index b0ce65cd4e763d17061dc159d7a9b051aac006c6..f3bf8ac709adf4a2774111c987c6a80876eaaf0c 100644
 --- a/ios/web/web_state/ui/crw_web_controller.mm
 +++ b/ios/web/web_state/ui/crw_web_controller.mm
-@@ -2265,4 +2265,7 @@ - (void)resetInjectedWebViewContentView {
+@@ -1955,4 +1955,7 @@ CrFullscreenState CrFullscreenStateFromWKFullscreenState(
    return self.navigationHandler.navigationState;
  }
  

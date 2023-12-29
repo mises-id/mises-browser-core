@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/companion/visual_search/BUILD.gn b/chrome/browser/companion/visual_search/BUILD.gn
+index 825237c696ec9646ba17f7d07658b7a20df9a114..25205f77ca8aaa518d348880f5ba8ff1a3b694ab 100644
+--- a/chrome/browser/companion/visual_search/BUILD.gn
++++ b/chrome/browser/companion/visual_search/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(!is_android, "Visual Search is for desktop platforms only")
++#assert(!is_android, "Visual Search is for desktop platforms only")
+ 
+ source_set("visual_search") {
+   sources = [

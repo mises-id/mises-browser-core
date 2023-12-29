@@ -5,11 +5,13 @@
 
 #include "base/containers/adapters.h"
 
-#define MISES_LAYOUT_TRAILING_DECORATIONS                                 \
-  auto right_most = GetTrailingViews();                                   \
-  for (auto* item : base::Reversed(right_most)) {                         \
-    if (item->GetVisible())                                               \
-      trailing_decorations.AddDecoration(0, height(), false, 0, 0, item); \
+#define MISES_LAYOUT_TRAILING_DECORATIONS                                    \
+  auto right_most = GetTrailingViews();                                      \
+  for (auto* item : base::Reversed(right_most)) {                            \
+    if (item->GetVisible())                                                  \
+      trailing_decorations.AddDecoration(vertical_padding, location_height,  \
+                                         false, 0, /*intra_item_padding=*/0, \
+                                         0, item);                           \
   }
 
 #include "src/chrome/browser/ui/views/location_bar/location_bar_view.cc"

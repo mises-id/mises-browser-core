@@ -4,6 +4,7 @@
 #include <string>
 
 #include "base/memory/weak_ptr.h"
+#include "base/memory/raw_ptr.h"
 #include "build/build_config.h"
 #include "ui/base/cursor/cursor.h"
 #include "ui/events/event_constants.h"
@@ -110,7 +111,7 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
   void SetCanAppearInExistingFullscreenSpaces(
       bool can_appear_in_existing_fullscreen_spaces) override;
   void SetOpacity(float opacity) override;
-  void SetAspectRatio(const gfx::SizeF& aspect_ratio) override;
+  void SetAspectRatio(const gfx::SizeF& aspect_ratio, const gfx::Size& excluded_margin) override;
   void FlashFrame(bool flash_frame) override;
   void RunShellDrag(View* view,
                     std::unique_ptr<ui::OSExchangeData> data,
@@ -153,7 +154,7 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
  private:
   void SetInitialFocus(ui::WindowShowState show_state);
 
-  internal::NativeWidgetDelegate* delegate_;
+  raw_ptr<internal::NativeWidgetDelegate> delegate_;
 
   // WARNING: set to NULL when destroyed. As the Widget is not necessarily
   // destroyed along with |window_| all usage of |window_| should first verify

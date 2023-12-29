@@ -1,5 +1,5 @@
 diff --git a/chrome/renderer/chrome_content_renderer_client.cc b/chrome/renderer/chrome_content_renderer_client.cc
-index a91227b208c16cfc1d67107752727d9889301878..6abe9c457a774532ce5c801a77475da82a561804 100644
+index db900e7459540e63f73ee32f55e23e5d68e5ace5..f8ae023ee89338c375e89b48806e87be92653d90 100644
 --- a/chrome/renderer/chrome_content_renderer_client.cc
 +++ b/chrome/renderer/chrome_content_renderer_client.cc
 @@ -169,7 +169,8 @@
@@ -12,8 +12,8 @@ index a91227b208c16cfc1d67107752727d9889301878..6abe9c457a774532ce5c801a77475da8
  #include "chrome/renderer/searchbox/searchbox.h"
  #include "chrome/renderer/searchbox/searchbox_extension.h"
  #include "components/search/ntp_features.h"  // nogncheck
-@@ -723,7 +724,7 @@ void ChromeContentRendererClient::RenderFrameCreated(
-         render_frame, ISOLATED_WORLD_ID_TRANSLATE, associated_interfaces);
+@@ -718,7 +719,7 @@ void ChromeContentRendererClient::RenderFrameCreated(
+     subresource_filter_agent->Initialize();
    }
  
 -#if !BUILDFLAG(IS_ANDROID)
@@ -21,7 +21,7 @@ index a91227b208c16cfc1d67107752727d9889301878..6abe9c457a774532ce5c801a77475da8
    base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
    if (command_line->HasSwitch(switches::kInstantProcess) &&
        render_frame->IsMainFrame()) {
-@@ -1427,7 +1428,7 @@ void ChromeContentRendererClient::WillSendRequest(
+@@ -1448,7 +1449,7 @@ void ChromeContentRendererClient::WillSendRequest(
    if (!url.ProtocolIs(chrome::kChromeSearchScheme))
      return;
  

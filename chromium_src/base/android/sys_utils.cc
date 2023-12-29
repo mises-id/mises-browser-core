@@ -5,7 +5,7 @@
 
 #include "base/no_destructor.h"
 
-#include "mises/build/android/jni_headers/MisesSysUtils_jni.h"
+#include "mises/android/features/mises/jni_headers/MisesSysUtils_jni.h"
 
 namespace base {
 
@@ -57,7 +57,7 @@ void MisesSysUtils::LogEventFromJni(const std::string& name, const std::string& 
   base::android::ScopedJavaLocalRef<jstring> j_name = base::android::ConvertUTF8ToJavaString(env, name);
   base::android::ScopedJavaLocalRef<jstring> j_key = base::android::ConvertUTF8ToJavaString(env, key);
   base::android::ScopedJavaLocalRef<jstring> j_value = base::android::ConvertUTF8ToJavaString(env, value);
-  Java_MisesSysUtils_logEventV_JLS_JLS_JLS(env, j_name, j_key, j_value);
+  Java_MisesSysUtils_logEvent(env, j_name, j_key, j_value);
 }
 
 void MisesSysUtils::LogEventFromJni(const std::string& name, const std::string& key, const std::string& value, const std::string& key1, const std::string& value1) {
@@ -67,7 +67,7 @@ void MisesSysUtils::LogEventFromJni(const std::string& name, const std::string& 
   base::android::ScopedJavaLocalRef<jstring> j_value = base::android::ConvertUTF8ToJavaString(env, value);
   base::android::ScopedJavaLocalRef<jstring> j_key1 = base::android::ConvertUTF8ToJavaString(env, key1);
   base::android::ScopedJavaLocalRef<jstring> j_value1 = base::android::ConvertUTF8ToJavaString(env, value1);
-  Java_MisesSysUtils_logEventV_JLS_JLS_JLS_JLS_JLS(env, j_name, j_key, j_value, j_key1, j_value1);
+  Java_MisesSysUtils_logEvent(env, j_name, j_key, j_value, j_key1, j_value1);
 }
 
 

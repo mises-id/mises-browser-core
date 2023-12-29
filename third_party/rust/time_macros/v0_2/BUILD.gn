@@ -1,0 +1,55 @@
+# Copyright 2023 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "time_macros"
+  epoch = "0.2"
+  crate_type = "proc-macro"
+
+  # Only for usage from third-party crates. Add the crate to
+  # third_party.toml to use it from first-party code.
+  visibility = [ "//mises/third_party/rust/*" ]
+  crate_root = "crate/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/date.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/datetime.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/error.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/ast.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/format_item.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/lexer.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/mod.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/public/component.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/public/mod.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/public/modifier.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/helpers/mod.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/helpers/string.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/lib.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/offset.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/quote.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/serde_format_description.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/shim.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/time.rs",
+    "//mises/third_party/rust/time_macros/v0_2/crate/src/to_tokens.rs",
+  ]
+  inputs = []
+
+  # Unit tests skipped. Generate with --with-tests to include them.
+  build_native_rust_unit_tests = false
+  edition = "2021"
+  cargo_pkg_version = "0.2.8"
+  cargo_pkg_authors = "Jacob Pratt <open-source@jhpratt.dev>, Time contributors"
+  cargo_pkg_name = "time-macros"
+  cargo_pkg_description = "    Procedural macros for the time crate.     This crate is an implementation detail and should not be relied upon directly."
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [ "//mises/third_party/rust/time_core/v0_1:lib" ]
+  features = [
+    "formatting",
+    "parsing",
+  ]
+}

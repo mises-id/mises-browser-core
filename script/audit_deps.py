@@ -133,20 +133,8 @@ def npm_audit_deps(path, args):
 
 def cargo_audit_deps(path, args):
     """Run `cargo audit' in the specified path."""
-    env = os.environ.copy()
-
-    rustup_home = args.rustup_home
-    env['RUSTUP_HOME'] = rustup_home
-
-    cargo_home = args.cargo_home
-    env['CARGO_HOME'] = cargo_home
-
-    rustup_bin = os.path.abspath(os.path.join(rustup_home, 'bin'))
-    rustup_bin_exe = os.path.join(rustup_bin, 'cargo.exe')
-    env['PATH'] = rustup_bin + os.pathsep + env['PATH']
-
     cargo_args = []
-    cargo_args.append("cargo" if sys.platform != "win32" else rustup_bin_exe)
+    cargo_args.append(args.cargo_audit_exe)
     cargo_args.append("audit")
     cargo_args.append("--file")
     cargo_args.append(os.path.join(path, "Cargo.lock"))
@@ -154,7 +142,7 @@ def cargo_audit_deps(path, args):
         cargo_args.append("--ignore")
         cargo_args.append(advisory)
 
-    return subprocess.call(cargo_args, env=env)
+    return subprocess.call(cargo_args)
 
 
 def extract_resolutions(result):
@@ -191,8 +179,7 @@ def parse_args():
     parser.add_argument('input_dir', nargs='?', help='Directory to check')
     parser.add_argument('--source_root', required=True,
                         help='Full path of the src/mises directory')
-    parser.add_argument('--rustup_home', required=True)
-    parser.add_argument('--cargo_home', required=True)
+    parser.add_argument('--cargo_audit_exe', required=True)
     parser.add_argument('--audit_dev_deps',
                         action='store_true',
                         help='Audit dev dependencies')

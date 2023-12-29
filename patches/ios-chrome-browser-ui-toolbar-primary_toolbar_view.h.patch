@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.h b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.h
-index 3e1decb0af2151f7a363ec079e849cacb28b4261..8654785ebd84518aa5ffbd3ae5f578d925e91b6b 100644
+index 4a9f9da0efc28a966ee446f40fbd8e80490ca333..3bcca95a8d6915d13607cfecfbae4ef8e182237b 100644
 --- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.h
 +++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.h
-@@ -82,6 +82,8 @@
+@@ -73,6 +73,8 @@
  // Removes `fakeOmniboxTarget` from the view hierarchy.
  - (void)removeFakeOmniboxTarget;
  

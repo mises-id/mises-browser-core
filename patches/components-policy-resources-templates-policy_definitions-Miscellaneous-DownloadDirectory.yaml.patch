@@ -1,8 +1,8 @@
 diff --git a/components/policy/resources/templates/policy_definitions/Miscellaneous/DownloadDirectory.yaml b/components/policy/resources/templates/policy_definitions/Miscellaneous/DownloadDirectory.yaml
-index fe671392f44dc46d85d2f35550792289f0d93168..7c274d4630a53e1c57e2d4e3572fb07ab0497aa2 100644
+index 7bd51dd71eabb1cd68df751bb52e114a24e5dc91..ddea550b8e89653f7e4678152875ff5719c38b9f 100644
 --- a/components/policy/resources/templates/policy_definitions/Miscellaneous/DownloadDirectory.yaml
 +++ b/components/policy/resources/templates/policy_definitions/Miscellaneous/DownloadDirectory.yaml
-@@ -26,6 +26,7 @@ schema:
+@@ -28,6 +28,7 @@ schema:
  supported_on:
  - chrome.*:11-
  - chrome_os:35-

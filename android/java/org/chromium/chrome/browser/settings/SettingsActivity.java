@@ -336,8 +336,9 @@ public class SettingsActivity extends ChromeBaseAppCompatActivity
             finish();
             return true;
         } else if (item.getItemId() == R.id.menu_id_general_help) {
-            HelpAndFeedbackLauncherImpl.getInstance().show(this,
-                    getString(R.string.help_context_settings), Profile.getLastUsedRegularProfile(),
+            Profile profile = Profile.getLastUsedRegularProfile();
+            HelpAndFeedbackLauncherImpl.getForProfile(profile).show(this,
+                    getString(R.string.help_context_settings), profile,
                     null);
             return true;
         }
@@ -353,6 +354,7 @@ public class SettingsActivity extends ChromeBaseAppCompatActivity
 
     @Override
     public void onAttachFragment(Fragment fragment) {
+        Profile profile = Profile.getLastUsedRegularProfile();
         if (fragment instanceof MainSettings) {
             ((MainSettings) fragment)
                     .setModalDialogManagerSupplier(getModalDialogManagerSupplier());
@@ -370,7 +372,7 @@ public class SettingsActivity extends ChromeBaseAppCompatActivity
             FragmentHelpAndFeedbackLauncher fragmentHelpAndFeedbackLauncher =
                     (FragmentHelpAndFeedbackLauncher) fragment;
             fragmentHelpAndFeedbackLauncher.setHelpAndFeedbackLauncher(
-                    HelpAndFeedbackLauncherImpl.getInstance());
+                    HelpAndFeedbackLauncherImpl.getForProfile(profile));
         }
         if (fragment instanceof SafetyCheckSettingsFragment) {
             SafetyCheckCoordinator.create((SafetyCheckSettingsFragment) fragment,
@@ -379,13 +381,13 @@ public class SettingsActivity extends ChromeBaseAppCompatActivity
         }
         if (fragment instanceof PasswordCheckFragmentView) {
             PasswordCheckComponentUiFactory.create((PasswordCheckFragmentView) fragment,
-                    HelpAndFeedbackLauncherImpl.getInstance(), mSettingsLauncher,
+                    HelpAndFeedbackLauncherImpl.getForProfile(profile), mSettingsLauncher,
                     LaunchIntentDispatcher::createCustomTabActivityIntent,
                     IntentUtils::addTrustedIntentExtras);
         }
         if (fragment instanceof CredentialEntryFragmentViewBase) {
             CredentialEditUiFactory.create((CredentialEntryFragmentViewBase) fragment,
-                    HelpAndFeedbackLauncherImpl.getInstance());
+                    HelpAndFeedbackLauncherImpl.getForProfile(profile));
         }
         if (fragment instanceof SearchEngineSettings) {
             SearchEngineSettings settings = (SearchEngineSettings) fragment;

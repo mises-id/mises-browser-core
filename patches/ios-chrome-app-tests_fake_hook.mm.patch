@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/app/tests_fake_hook.mm b/ios/chrome/app/tests_fake_hook.mm
-index 8c19562177b997e57446c2d847d7b23abe4ccef7..1fcb18644340f180b16543c7832390fb8451eaed 100644
+index d21c74884934ecfccafaa66a4d6b3a2dac2a2ab3..5794bba239e1600380ba5af70c6294be8b2aad03 100644
 --- a/ios/chrome/app/tests_fake_hook.mm
 +++ b/ios/chrome/app/tests_fake_hook.mm
-@@ -23,7 +23,7 @@ bool DisableDiscoverFeed() {
+@@ -21,7 +21,7 @@ bool DisableDiscoverFeed() {
    return false;
  }
  bool DisableFirstRun() {

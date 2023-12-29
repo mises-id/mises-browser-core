@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/views/side_panel/read_anything/read_anything_coordinator.cc b/chrome/browser/ui/views/side_panel/read_anything/read_anything_coordinator.cc
+index 2d5547316a387fc13a44024478cd758330f3cee4..393ec6296418c3534a4076fd32596bd734197147 100644
+--- a/chrome/browser/ui/views/side_panel/read_anything/read_anything_coordinator.cc
++++ b/chrome/browser/ui/views/side_panel/read_anything/read_anything_coordinator.cc
+@@ -85,7 +85,7 @@ void ReadAnythingCoordinator::InitModelWithUserPrefs() {
+   language::LanguageModel* language_model =
+       LanguageModelManagerFactory::GetForBrowserContext(browser->profile())
+           ->GetPrimaryModel();
+-  std::string prefs_lang = language_model->GetLanguages().front().lang_code;
++  std::string prefs_lang = language_model && language_model->GetLanguages().size() > 0 ? language_model->GetLanguages().front().lang_code : "en";
+   prefs_lang = language::ExtractBaseLanguage(prefs_lang);
+ 
+   std::string prefs_font_name;

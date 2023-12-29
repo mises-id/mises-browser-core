@@ -7,6 +7,7 @@
 
 #include <list>
 #include <memory>
+#include <optional>
 #include <utility>
 
 #include "base/json/values_util.h"
@@ -16,7 +17,6 @@
 #include "base/values.h"
 #include "components/prefs/pref_service.h"
 #include "components/prefs/scoped_user_pref_update.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
 
 namespace {
 static constexpr size_t kDaysInWeek = 7;
@@ -32,8 +32,7 @@ WeeklyEventStorage::WeeklyEventStorage(PrefService* prefs,
 WeeklyEventStorage::WeeklyEventStorage(PrefService* prefs,
                                        const char* pref_name,
                                        std::unique_ptr<base::Clock> clock)
-    : prefs_(prefs), pref_name_(pref_name), clock_(std::move(clock)) {
-  DCHECK(prefs);
+    : prefs_(*prefs), pref_name_(pref_name), clock_(std::move(clock)) {
   DCHECK(pref_name);
   DCHECK(clock_);
   Load();
@@ -49,8 +48,8 @@ void WeeklyEventStorage::Add(int value) {
   Save();
 }
 
-absl::optional<int> WeeklyEventStorage::GetLatest() {
-  auto result = absl::optional<int>();
+std::optional<int> WeeklyEventStorage::GetLatest() {
+  auto result = std::optional<int>();
   if (HasEvent()) {
     // Assume the front is the most recent event.
     result = events_.front().value;

@@ -1,8 +1,8 @@
 diff --git a/content/public/browser/authenticator_request_client_delegate.h b/content/public/browser/authenticator_request_client_delegate.h
-index c6127662caf1c611a061cb406494dff4581877d4..e6692a958daed59e1b1e632727b3c29e9e6ffab4 100644
+index d0280f8ddc69bafed850a83f6cb7a5dc0d4a7444..d83981f9e667ead0b19d5ba205928a8d2e9f689b 100644
 --- a/content/public/browser/authenticator_request_client_delegate.h
 +++ b/content/public/browser/authenticator_request_client_delegate.h
-@@ -84,7 +84,7 @@ class CONTENT_EXPORT WebAuthenticationDelegate {
+@@ -86,7 +86,7 @@ class CONTENT_EXPORT WebAuthenticationDelegate {
        content::RenderFrameHost* rfh,
        const url::Origin& caller_origin);
  

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/about_sys/BUILD.gn b/chrome/browser/resources/about_sys/BUILD.gn
+index 423bf1362f234423e39e4b33b3968d00e38dfca7..42a7f71db4acbed12df4aba6b968974e5f1c0ca5 100644
+--- a/chrome/browser/resources/about_sys/BUILD.gn
++++ b/chrome/browser/resources/about_sys/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "about_sys"

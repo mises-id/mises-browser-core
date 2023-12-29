@@ -7,6 +7,8 @@
 
 #include <algorithm>
 #include <memory>
+#include <optional>
+#include <string_view>
 #include <utility>
 
 #include "base/stl_util.h"
@@ -27,9 +29,14 @@ namespace permissions {
 namespace {
 
 // Pref data keys.
-constexpr base::StringPiece kRequestingOriginKey = "ro";
-constexpr base::StringPiece kEmbeddingOriginKey = "eo";
-constexpr base::StringPiece kContentSettingKey = "cs";
+constexpr std::string_view kRequestingOriginKey = "ro";
+constexpr std::string_view kEmbeddingOriginKey = "eo";
+constexpr std::string_view kContentSettingKey = "cs";
+
+template <typename Container, typename ConstIterator>
+typename Container::iterator ConstCastIterator(Container& c, ConstIterator it) {
+  return c.erase(it, it);
+}
 
 }  // namespace
 
@@ -163,9 +170,9 @@ PermissionExpirations::RemoveExpiredPermissionsImpl(
     std::vector<PermissionExpirationKey> expiration_keys_to_clear_prefs;
     auto iterator_pair = predicate.Run(key_expirations_map);
     auto key_expirations_begin_it =
-        base::ConstCastIterator(key_expirations_map, iterator_pair.first);
+        ConstCastIterator(key_expirations_map, iterator_pair.first);
     auto key_expirations_end_it =
-        base::ConstCastIterator(key_expirations_map, iterator_pair.second);
+        ConstCastIterator(key_expirations_map, iterator_pair.second);
     for (auto key_expirations_it = key_expirations_begin_it;
          key_expirations_it != key_expirations_end_it; ++key_expirations_it) {
       const auto& expiration_key = key_expirations_it->first;
@@ -251,7 +258,7 @@ void PermissionExpirations::ReadExpirationsFromPrefs() {
       continue;
     }
     KeyExpirationsMap key_expirations_map;
-    for (const auto key_expirations_val : key_expirations_map_val.DictItems()) {
+    for (const auto key_expirations_val : key_expirations_map_val.GetDict()) {
       const std::string& key_str = key_expirations_val.first;
       const base::Value& expiring_permissions_val = key_expirations_val.second;
       ExpiringPermissions expiring_permissions =
@@ -286,18 +293,18 @@ PermissionExpirations::ParseExpiringPermissions(
   }
 
   expiring_permissions.reserve(expiring_permissions_val.GetList().size());
-  for (const auto& item : expiring_permissions_val.GetList()) {
-    if (!item.is_dict()) {
+  for (const auto& entry : expiring_permissions_val.GetList()) {
+    const auto* item = entry.GetIfDict();
+    if (!item) {
       continue;
     }
     const std::string* requesting_origin =
-        item.FindStringKey(kRequestingOriginKey);
-    const std::string* embedding_origin =
-        item.FindStringKey(kEmbeddingOriginKey);
+        item->FindString(kRequestingOriginKey);
+    const std::string* embedding_origin = item->FindString(kEmbeddingOriginKey);
     if (!requesting_origin) {
       continue;
     }
-    absl::optional<int> content_setting = item.FindIntKey(kContentSettingKey);
+    std::optional<int> content_setting = item->FindInt(kContentSettingKey);
     expiring_permissions.push_back(PermissionOrigins(
         requesting_origin, embedding_origin,
         content_setting.value_or(ContentSetting::CONTENT_SETTING_ALLOW)));

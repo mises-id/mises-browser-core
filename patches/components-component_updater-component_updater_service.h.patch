@@ -1,16 +1,16 @@
 diff --git a/components/component_updater/component_updater_service.h b/components/component_updater/component_updater_service.h
-index 36215051767a1b1ff4d924e977b438047ccc1527..a3a3417ffdb49e37fff1e9005eb2d643062b3aa2 100644
+index 1b718ecf09f706f5d56f912c0b4aa34555b6a3ac..902e459c92bfa8b91ac45d36785a0f61e54d746a 100644
 --- a/components/component_updater/component_updater_service.h
 +++ b/components/component_updater/component_updater_service.h
-@@ -186,6 +186,7 @@ class ComponentUpdateService {
- 
+@@ -191,6 +191,7 @@ class ComponentUpdateService {
+   friend class screen_ai::ScreenAIDownloaderNonChromeOS;
    friend class speech::SodaInstallerImpl;
    friend class ::ComponentsHandler;
 +  MISES_COMPONENT_UPDATER_SERVICE_H_
    FRIEND_TEST_ALL_PREFIXES(ComponentInstallerTest, RegisterComponent);
  };
  
-@@ -199,7 +200,6 @@ class OnDemandUpdater {
+@@ -204,7 +205,6 @@ class OnDemandUpdater {
    enum class Priority { BACKGROUND = 0, FOREGROUND = 1 };
  
    virtual ~OnDemandUpdater() = default;
@@ -18,7 +18,7 @@ index 36215051767a1b1ff4d924e977b438047ccc1527..a3a3417ffdb49e37fff1e9005eb2d643
   private:
    friend class OnDemandTester;
    friend class policy::ComponentUpdaterPolicyTest;
-@@ -212,7 +212,7 @@ class OnDemandUpdater {
+@@ -217,7 +217,7 @@ class OnDemandUpdater {
  #if BUILDFLAG(IS_CHROMEOS_ASH)
    friend class CrOSComponentInstaller;
  #endif  // BUILDFLAG(IS_CHROMEOS_ASH)

@@ -1,30 +1,20 @@
 diff --git a/chrome/browser/resources/extensions/manager.html b/chrome/browser/resources/extensions/manager.html
-index 8945c4ae90a6c84ab1edbd01cb5db43e81f4e479..0cbc87cb444402385b80a0a2fa135473ce84f728 100644
+index 89c0e1c16a0255b00451929df7fe46ad68aa4b8a..336260d47fd46f6e44173c0f2fa1af7ea769c405 100644
 --- a/chrome/browser/resources/extensions/manager.html
 +++ b/chrome/browser/resources/extensions/manager.html
-@@ -4,7 +4,6 @@
-     display: flex;
-     flex-direction: column;
-     height: 100%;
--    --cr-toolbar-field-width: 680px;
-   }
- 
-   extensions-sidebar {
-@@ -46,6 +45,13 @@
+@@ -87,6 +87,11 @@
      </div>
    </cr-drawer>
  </template>
-+
 +<mises-default-extension-setting 
 +  extensions="[[extensions_]]" 
 +  defaultEVMWallet="[[defaultEVMWallet]]"
 +  delegate="[[delegate]]"
 +></mises-default-extension-setting>
-+
- <cr-view-manager id="viewManager" role="main">
-   <extensions-item-list id="items-list" delegate="[[delegate]]"
-       in-dev-mode="[[inDevMode]]" filter="[[filter]]"
-@@ -125,3 +131,4 @@
+ <div id="container">
+   <div id="left" hidden$="[[narrow_]]">
+     <extensions-sidebar on-close-drawer="onCloseDrawer_"
+@@ -174,3 +179,4 @@
    </extensions-install-warnings-dialog>
  </template>
  <cr-toast-manager></cr-toast-manager>

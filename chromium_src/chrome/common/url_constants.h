@@ -8,10 +8,9 @@
 #if BUILDFLAG(IS_ANDROID)
 namespace chrome {
 // The URL for the trusted vault sync passphrase opt in.
-extern const char kSyncTrustedVaultOptInURL[];
-extern const char kChromeAppsDeprecationLearnMoreURL[];\
-
-// Please do not append entries here. See the comments at the top of the file.
+inline constexpr char kSyncTrustedVaultOptInURL[] =
+    "https://passwords.google.com/encryption/enroll?"
+    "utm_source=chrome&utm_medium=desktop&utm_campaign=encryption_enroll";
 
 }  // namespace chrome
 

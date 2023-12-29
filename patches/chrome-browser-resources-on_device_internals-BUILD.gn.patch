@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/on_device_internals/BUILD.gn b/chrome/browser/resources/on_device_internals/BUILD.gn
+index 316b1600605793c32bb789a44fb147f7d2e38360..9341bffb4fdddb50ee19b4c7f40db4bd8e19bf07 100644
+--- a/chrome/browser/resources/on_device_internals/BUILD.gn
++++ b/chrome/browser/resources/on_device_internals/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "on_device_internals"

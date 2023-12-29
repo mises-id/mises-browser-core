@@ -121,7 +121,7 @@
     Mobile networks
   </message>
   <message name="IDS_OS_SETTINGS_TAG_INSTANT_MOBILE_NETWORKS_ALT1" desc="Text for search result item which, when clicked, navigates the user to Instant Tethering settings (allows Chromebook to use mobile connection from phone). Alternate phrase for: 'Mobile networks'">
-    Hotspot
+    Instant hotspot
   </message>
   <message name="IDS_OS_SETTINGS_TAG_INSTANT_TETHERING_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to Instant Tethering settings (allows Chromebook to use mobile connection from phone), with a toggle to turn off the feature. Alternate phrase for: 'Disable Instant Tethering'">
     Turn off Instant Tethering
@@ -144,21 +144,26 @@
   <message name="IDS_OS_SETTINGS_TAG_VPN" desc="Text for search result item which, when clicked, navigates the user to VPN settings.">
     VPN
   </message>
-  <!-- TODO(b/260277007): Remove translateble false and upload snapshots when strings finalized. -->
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS" desc="Text for search result item which, when clicked, navigates the user to Audio settings.">
+  <message name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS" desc="Text for search result item which, when clicked, navigates the user to Audio settings.">
     Audio
   </message>
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT1" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+  <message name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT1" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
     Volume
   </message>
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT2" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+  <message name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT2" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
     Sound
   </message>
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT3" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+  <message name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT3" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
     Speakers
   </message>
-  <message translateable="false" name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT4" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
+  <message name="IDS_OS_SETTINGS_TAG_AUDIO_SETTINGS_ALT4" desc="Text for search result item which, when clicked, navigates the user to Audio settings. Alternative phrase for: 'Audio'.">
     Microphone
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_CHARGING_SOUNDS" desc="Text for search result item which, when clicked, navigates the user to settings to toggle whether the device plays charging sounds.">
+    Charging sounds
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_LOW_BATTERY_SOUND" desc="Text for search result item which, when clicked, navigates the user to settings to toggle whether the device plays the low battery warning sound.">
+    Low battery sound
   </message>
   <message name="IDS_OS_SETTINGS_TAG_AUTO_CONNECT_NETWORK" desc="Text for search result item which, when clicked, navigates the user to settings to toggle whether the device auto-connects to a network. Alternate phrase for: 'Auto connect to network'">
     Automatically connect to network
@@ -278,12 +283,6 @@
   <message name="IDS_OS_SETTINGS_TAG_MULTIDEVICE_SMART_LOCK" desc="Text for search result item which, when clicked, navigates the user to Smart Lock settings (unlock Chromebook with Android phone).">
     Smart Lock
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_MULTIDEVICE_MESSAGES" desc="Text for search result item which, when clicked, navigates the user to Messages settings (sync SMS between Chromebook and Android phone). Alternate phrase for: 'Android messages'">
-    Messages
-  </message>
-  <message name="IDS_OS_SETTINGS_TAG_MULTIDEVICE_MESSAGES_ALT1" desc="Text for search result item which, when clicked, navigates the user to Messages settings (sync SMS between Chromebook and Android phone). Alternate phrase for: 'Messages'">
-    Android messages
-  </message>
   <message name="IDS_OS_SETTINGS_TAG_MULTIDEVICE_SMART_LOCK_OPTIONS" desc="Text for search result item which, when clicked, navigates the user to Smart Lock screen lock settings (for signing into Chromebook with Android phone).">
     Smart Lock screen lock options
   </message>
@@ -302,29 +301,56 @@
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_ON" desc="Text for search result item which, when clicked, navigates the user to Nearby Share settings. Alternate phrase for: 'Enable Nearby Share'">
     Turn on Nearby Share
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_ON_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to sharing settings. Alternate phrase for: 'Enable sharing'">
+    Turn on <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph>
+  </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_ON_ALT1" desc="Text for search result item which, when clicked, navigates the user to Nearby Share settings. Alternate phrase for: 'Turn on Nearby Share'">
     Enable Nearby Share
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_ON_ALT1_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to sharing settings. Alternate phrase for: 'Turn on sharing'">
+    Enable <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph>
   </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_OFF" desc="Text for search result item which, when clicked, navigates the user to Nearby Share settings. Alternate phrase for: 'Disable Nearby Share'">
     Turn off Nearby Share
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_OFF_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to sharing settings. Alternate phrase for: 'Disable sharing'">
+    Turn off <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph>
+  </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_OFF_ALT1" desc="Text for search result item which, when clicked, navigates the user to Nearby Share settings. Alternate phrase for: 'Turn off Nearby Share'">
     Disable Nearby Share
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_TURN_OFF_ALT1_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to sharing settings. Alternate phrase for: 'Turn off sharing'">
+    Disable <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph>
   </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DEVICE_NAME" desc="Text for search result item which, when clicked, navigates the user to Nearby Share change device name setting.">
     Nearby Share device name
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DEVICE_NAME_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to sharing change device name setting.">
+    <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph> device name
+  </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DEVICE_VISIBILITY" desc="Text for search result item which, when clicked, navigates the user to Nearby Share change device visibility button in settings. Alternate phrase for: 'Nearby Share discoverability'">
     Nearby Share visibility
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DEVICE_VISIBILITY_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to the change device visibility button in sharing settings. Alternate phrase for: 'sharing discoverability'">
+    <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph> visibility
   </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DEVICE_VISIBILITY_ALT1" desc="Text for search result item which, when clicked, navigates the user to Nearby Share change device visibility button in settings. Alternate phrase for: 'Nearby Share visibility'">
     Nearby Share discoverability
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DEVICE_VISIBILITY_ALT1_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to the change device visibility button in sharing settings. Alternate phrase for: 'sharing visibility'">
+    <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph> discoverability
+  </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_CONTACTS" desc="Text for search result item which, when clicked, navigates the user to Nearby Share manage contacts row in settings that opens Mises Contacts.">
     Nearby Share contacts
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_CONTACTS_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to the manage contacts row in sharing settings that opens Mises Contacts.">
+    <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph> contacts
+  </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DATA_USAGE" desc="Text for search result item which, when clicked, navigates the user to Nearby Share edit data usage button in settings.">
     Nearby Share data usage
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DATA_USAGE_PH" desc="Feature name placeholder: Text for search result item which, when clicked, navigates the user to the edit data usage button in settings.">
+    <ph name="FEATURE_NAME">$1<ex>Nearby Share</ex></ph> data usage
   </message>
   <message name="IDS_OS_SETTINGS_TAG_NEARBY_SHARE_DEVICES_NEARBY_SHARING_NOTIFICATION_OFF" desc="Text for search result item which, when clicked, navigates the user to Nearby Device is trying to share notification toggle.">
     Turn on notification when devices are nearby
@@ -467,6 +493,9 @@
   <message name="IDS_OS_SETTINGS_TAG_GOOGLE_DRIVE_SEARCH_SUGGESTIONS" desc="Text for search result item which, when clicked, navigates the user to Mises services settings, with a toggle to enable/disable a feature which provides suggestions to visit Google Drive items when the user types in the address bar.">
     Show Google Drive suggestions
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_LOCAL_DATA_RECOVERY" desc="Text for search result item which, when clicked, navigates the user to Local Data Recovry toggle.">
+    Local Data Recovery
+  </message>
 
   <!-- Kerberos section. -->
   <message name="IDS_OS_SETTINGS_TAG_KERBEROS_SECTION" desc="Text for search result item which, when clicked, navigates the user to Kerberos (authentication mechanism) settings section.">
@@ -494,6 +523,24 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_KEYBOARD_FUNCTION_KEYS" desc="Text for search result item which, when clicked, navigates the user to keyboard settings, with a toggle to enable/disable treating the top row as function keys.">
     Keyboard function keys
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_KEYBOARD_BLOCK_META_FKEY_COMBO_REWRITES" translateable="false" desc="Text for search result item which, when clicked, navigates the user to keyboard settings, with a toggle to enable/disable system/launcher keys to switch the top row between function keys and chromeos actions.">
+    Block meta F-key combo rewrites
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_KEYBOARD_REMAP_KEYS" translateable="false" desc="Text for search result item which, when clicked, navigates the user to keyboard settings, with a button leading the user to remap keyboard keys page.">
+    Remap keyboard keys
+    </message>
+  <message name="IDS_OS_SETTINGS_TAG_KEYBOARD_DIACRITIC" desc="Text for search result item which, when clicked, navigates the user to keyboard settings, with a toggle to enable/disable a method of inserting accented characters via long pressing a key.">
+    Diacritics
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_KEYBOARD_DIACRITIC1" desc="Text for search result item which, when clicked, navigates the user to keyboard settings, with a toggle to enable/disable a method of inserting accented characters via long pressing a key.">
+    Accent marks
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_KEYBOARD_DIACRITIC2" desc="Text for search result item which, when clicked, navigates the user to keyboard settings, with a toggle to enable/disable a method of inserting accented characters via long pressing a key.">
+    Special characters
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_KEYBOARD_DIACRITIC3" desc="Text for search result item which, when clicked, navigates the user to keyboard settings, with a toggle to enable/disable a method of inserting accented characters via long pressing a key.">
+    Tones
   </message>
   <message name="IDS_OS_SETTINGS_TAG_KEYBOARD_AUTO_REPEAT" desc="Text for search result item which, when clicked, navigates the user to keyboard settings, with toggles/sliders to set the auto-repeat state. Alternate phrase for: 'Keyboard repeat latency'">
     Keyboard auto-repeat
@@ -723,6 +770,9 @@
   <message name="IDS_OS_SETTINGS_TAG_DISPLAY_OVERSCAN" desc="Text for search result item which, when clicked, navigates the user to display settings, with an option to adjust monitor overscan.">
     Overscan
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_POWER_BATTERY_SAVER" desc="Text for search result item which, when clicked, navigates the user to power settings, with an option to enable battery saver.">
+    Battery Saver
+  </message>
 
   <!-- Personalization section. -->
   <message name="IDS_OS_SETTINGS_TAG_CHANGE_DEVICE_ACCOUNT_IMAGE" desc="Text for search result item which, when clicked, navigates the user to the settings page page where they can change their device account image (visible on log-in screen). Alternate phrase for: 'Sign-in image', 'Login image', 'Profile picture', 'Profile image'">
@@ -818,6 +868,9 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_APP_NOTIFICATIONS" desc="Text for search result item which, when clicked, navigates the user to app notification settings.">
     Notifications
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_APP_NOTIFICATIONS_MANAGER" desc="Text for search result item which, when clicked, navigates the user to app notification manager settings.">
+    Manage app notifications
   </message>
   <message name="IDS_OS_SETTINGS_TAG_DO_NOT_DISTURB_TURN_ON" desc="Text for search result item which, when clicked, navigates the user to app notification settings, with toggle to silence notifications. Alternate phrase for: 'Mute Notificatons'">
     Turn on Do Not Disturb
@@ -1043,6 +1096,7 @@
   <message name="IDS_OS_SETTINGS_TAG_LANGUAGES_CHANGE_DEVICE_LANGUAGE" desc="Text for search result item which, when clicked, navigates the user to languages and input settings, with allows users to change device language.">
     Change device language
   </message>
+
   <message name="IDS_OS_SETTINGS_TAG_LANGUAGES_OFFER_TRANSLATION" desc="Text for search result item which, when clicked, navigates the user to languages and input settings, with a toggle to enable/disable translation prompts.">
     Translation suggestion
   </message>
@@ -1073,6 +1127,9 @@
   <message name="IDS_OS_SETTINGS_TAG_LANGUAGES_EMOJI_SUGGESTIONS" desc="Text for search result item which, when clicked, navigates the user to suggestions settings, with a section having a toggle to enable/disable showing emoji suggestions after an user types a word.">
     Emoji suggestions
   </message>
+  <message name="IDS_OS_SETTINGS_TAG_LANGUAGES_AUTO_CORRECTION" desc="Text for search result item which, when clicked, navigates the user to the settings page for the current input method, with a section having a toggle to enable/disable performing auto-corrections after an user types a word.">
+    Auto-correction
+  </message>
   <message name="IDS_OS_SETTINGS_TAG_LANGUAGES_PREDICTIVE_WRITING" desc="Text for search result item which, when clicked, navigates the user to suggestions settings, with a section having a toggle to enable/disable showing predictive writing suggestions after a user types a word.">
     Predictive writing
   </message>
@@ -1087,8 +1144,11 @@
   <message name="IDS_OS_SETTINGS_TAG_FILES" desc="Text for search result item which, when clicked, navigates the user to files settings.">
     Files
   </message>
-  <message name="IDS_OS_SETTINGS_TAG_FILES_DISCONNECT_GOOGLE_DRIVE" desc="Text for search result item which, when clicked, navigates the user to files settings, with a toggle to enable/disable connecting the user's Google Drive account.">
+  <message name="IDS_OS_SETTINGS_TAG_FILES_DISCONNECT_GOOGLE_DRIVE" desc="Text for search result item that, when clicked, navigates the user to Settings: Google Drive settings, with a toggle to enable/disable connecting the user's Google Drive account.">
     Disconnect Google Drive account
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_FILES_REMOVE_GOOGLE_DRIVE_ACCESS" desc="Text for search result item that, when clicked, navigates the user to Settings: Google Drive settings, with a toggle to remove the user's Google Drive access from the device.">
+    Remove Google Drive access
   </message>
   <message name="IDS_OS_SETTINGS_TAG_FILES_NETWORK_FILE_SHARES" desc="Text for search result item which, when clicked, navigates the user to network file share (a.k.a. SMB share) settings. Alternate phrase for: 'SMB share'">
     Network file shares
@@ -1098,6 +1158,15 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_FILES_OFFICE" translateable="false" desc="Text for search result item which, when clicked, navigates the user to the Office file handler settings.">
     Office file settings
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_FILES_GOOGLE_DRIVE" translateable="false" desc="Text for search result item which, when clicked, navigates the user to the Google Drive settings.">
+    Google Drive settings
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_FILES_GOOGLE_DRIVE_FILE_SYNC" desc="Text for search result item which, when clicked, navigates the user to the Files sync feature in Google Drive settings.">
+    File sync
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_FILES_GOOGLE_DRIVE_FILE_SYNC_ALT1" desc="Text for search result item which, when clicked, navigates the user to the Files sync feature in Google Drive settings.">
+    Offline
   </message>
 
   <!-- Printing section. -->
@@ -1165,6 +1234,9 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_A11Y_TEXT_TO_SPEECH_PAGE_ALT4" desc="Text for search result item which, when clicked, navigates the user to text-to-speech accessibility settings. Alternate phrase for: 'Text-to-speech'">
     Speech synthesis
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_TEXT_TO_SPEECH_PAGE_ALT5" desc="Text for search result item which, when clicked, navigates the user to text-to-speech accessibility settings. Alternate phrase for: 'Text-to-speech'">
+    TTS
   </message>
   <message name="IDS_OS_SETTINGS_TAG_A11y_CHROMEVOX" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable ChromeVox (spoken feedback).">
     ChromeVox (spoken feedback)
@@ -1382,6 +1454,24 @@
   </message>
   <message name="IDS_OS_SETTINGS_TAG_A11Y_LABELS_FROM_GOOGLE" desc="Text for search result item which, when clicked, navigates the user to accessibility settings, with a toggle to enable/disable getting image descriptions from Mises.">
     Get image descriptions from Mises
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_COLOR_CORRECTION" desc="Text for search result item which, when clicked, navigates the user to the accessibility settings, with a toggle to enable/disable color correction.">
+    Color correction
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_COLOR_CORRECTION_ALT1" desc="Text for search result item which, when clicked, navigates the user to the accessibility settings, with a toggle to enable/disable color correction.">
+    Color filters
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_COLOR_CORRECTION_ALT2" desc="Text for search result item which, when clicked, navigates the user to the accessibility settings, with a toggle to enable/disable color correction.">
+    Color blindness
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_COLOR_CORRECTION_ALT3" desc="Text for search result item which, when clicked, navigates the user to the accessibility settings, with a toggle to enable/disable color correction. One common type of color vision deficiency that can be helped by color correction is protanopia, and color correction filters include a protanopia filter.">
+    Protanomaly
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_COLOR_CORRECTION_ALT4" desc="Text for search result item which, when clicked, navigates the user to the accessibility settings, with a toggle to enable/disable color correction. One common type of color vision deficiency that can be helped by color correction is deuteranopia, and color correction filters include a deuteranopia filter.">
+    Deuteranomaly
+  </message>
+  <message name="IDS_OS_SETTINGS_TAG_A11Y_COLOR_CORRECTION_ALT5" desc="Text for search result item which, when clicked, navigates the user to the accessibility settings, with a toggle to enable/disable color correction. One common type of color vision deficiency that can be helped by color correction is tritanopia, and color correction filters include a tritanopia filter.">
+    Tritanomaly
   </message>
 
   <!-- Reset section. -->

@@ -8,6 +8,7 @@
 
 #include <memory>
 
+#include "mises/common/mises_renderer_configuration.mojom.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/renderer/js_ethereum_provider.h"
 #include "mises/components/brave_wallet/renderer/js_solana_provider.h"
@@ -22,9 +23,12 @@ namespace brave_wallet {
 
 class BraveWalletRenderFrameObserver : public content::RenderFrameObserver {
  public:
+  using GetDynamicParamsCallback =
+      base::RepeatingCallback<const mises::mojom::DynamicParams&()>;
 
   explicit BraveWalletRenderFrameObserver(
-      content::RenderFrame* render_frame);
+      content::RenderFrame* render_frame,
+      GetDynamicParamsCallback get_dynamic_params_callback);
   ~BraveWalletRenderFrameObserver() override;
 
   // RenderFrameObserver implementation.
@@ -44,6 +48,8 @@ class BraveWalletRenderFrameObserver : public content::RenderFrameObserver {
 
   GURL url_;
 
+
+  GetDynamicParamsCallback get_dynamic_params_callback_;
   BraveWalletRenderFrameObserverP3AUtil p3a_util_;
 };
 

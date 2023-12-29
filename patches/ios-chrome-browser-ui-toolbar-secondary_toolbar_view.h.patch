@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.h b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.h
-index 88ebcfbe5970494070d9973faaf3db2e08cd748c..b3412f8002f59c3b5d63fb33d3c3cba99839a4b3 100644
+index c2a444d597b2c415d2e48c38fd5b0ac7a55f512d..a2dbd7c9c3fa171fb306f63e25edd329aefaa287 100644
 --- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.h
 +++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.h
-@@ -23,6 +23,8 @@
+@@ -34,6 +34,8 @@
  - (instancetype)initWithCoder:(NSCoder*)aDecoder NS_UNAVAILABLE;
  - (instancetype)init NS_UNAVAILABLE;
  

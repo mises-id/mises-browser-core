@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/windows_event_router.h b/chrome/browser/extensions/api/tabs/windows_event_router.h
-index 9db3a0d58c45e66bad50490cba198ddde76d6aa5..2b0d5fa43394cc7d9cffea09ecc927c59c021b63 100644
+index f5cadaf2e34556770818a8b4a3cb941fed8bdcca..40315b046773d2b0b370b5d26cf33fd9cd0d53b6 100644
 --- a/chrome/browser/extensions/api/tabs/windows_event_router.h
 +++ b/chrome/browser/extensions/api/tabs/windows_event_router.h
 @@ -42,6 +42,10 @@ class WindowsEventRouter : public AppWindowRegistry::Observer,

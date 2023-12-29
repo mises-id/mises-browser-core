@@ -429,7 +429,7 @@ class EthereumProviderImpl final
   EthBlockTracker eth_block_tracker_;
   EthLogsTracker eth_logs_tracker_;
   bool first_known_accounts_check_ = true;
-  PrefService* prefs_ = nullptr;
+  raw_ptr<PrefService> prefs_ = nullptr;
   bool wallet_onboarding_shown_ = false;
   base::WeakPtrFactory<EthereumProviderImpl> weak_factory_{this};
 };

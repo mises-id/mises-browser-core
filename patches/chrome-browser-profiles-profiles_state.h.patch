@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/profiles/profiles_state.h b/chrome/browser/profiles/profiles_state.h
-index 164b858b5559655721587b1eeed5f50712edec3c..9f714bfd4a5dbe217ce67c1a33ba3085911560af 100644
+index 4240d27bca80041fdb95d0c29d7b8fca7250696e..e5b2ce203cbf55ab305d6e3453f64c2a3931346a 100644
 --- a/chrome/browser/profiles/profiles_state.h
 +++ b/chrome/browser/profiles/profiles_state.h
 @@ -48,7 +48,7 @@ void RegisterPrefs(PrefRegistrySimple* registry);

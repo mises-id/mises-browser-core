@@ -46,10 +46,10 @@ public class MisesAdsBannerProcessor implements DropdownItemProcessor {
         model.set(MisesAdsBannerProperties.DELEGATE, new MisesAdsBannerProperties.Delegate() {
             @Override
             public void onPositiveClicked() {
-                mUrlBarDelegate.loadUrl("https://search.brave.com/search?q="
+                mUrlBarDelegate.loadUrl("https://search.mises.site/search?q="
                                 + mUrlBarEditingTextProvider.getTextWithoutAutocomplete()
                                 + "&action=makeDefault",
-                        PageTransition.LINK, System.currentTimeMillis());
+                        PageTransition.LINK, System.currentTimeMillis(), /*openInNewTab=*/false);
             }
 
             @Override
@@ -75,7 +75,7 @@ public class MisesAdsBannerProcessor implements DropdownItemProcessor {
     }
 
     @Override
-    public void onUrlFocusChange(boolean hasFocus) {}
+    public void onOmniboxSessionStateChange(boolean activated) {}
 
     @Override
     public void onNativeInitialized() {}

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
-index efd990aa6e6fa57314dac96da872215ca48419bd..6d59517a4fa36065224a064730462c141ca938ba 100644
+index e3b357fbd68e86f8a17a3f533878a242df514aa0..3f7f6ee210784f537fc7c958e1025f1fefadcefd 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
-@@ -87,8 +87,8 @@ public class TopToolbarCoordinator implements Toolbar {
+@@ -86,8 +86,8 @@ public class TopToolbarCoordinator implements Toolbar {
          void onToolbarAlphaInOverviewChanged(float fraction);
      }
  
@@ -13,7 +13,7 @@ index efd990aa6e6fa57314dac96da872215ca48419bd..6d59517a4fa36065224a064730462c14
  
      private final ToolbarLayout mToolbarLayout;
  
-@@ -284,7 +284,7 @@ public class TopToolbarCoordinator implements Toolbar {
+@@ -285,7 +285,7 @@ public class TopToolbarCoordinator implements Toolbar {
              mStartSurfaceToolbarCoordinator.setTabSwitcherListener(tabSwitcherClickHandler);
              mStartSurfaceToolbarCoordinator.setOnTabSwitcherLongClickHandler(
                      StartSurfaceTabSwitcherActionMenuCoordinator.createOnLongClickListener(
@@ -22,7 +22,7 @@ index efd990aa6e6fa57314dac96da872215ca48419bd..6d59517a4fa36065224a064730462c14
              mStartSurfaceToolbarCoordinator.initLogoWithNative();
          }
  
-@@ -293,7 +293,7 @@ public class TopToolbarCoordinator implements Toolbar {
+@@ -294,7 +294,7 @@ public class TopToolbarCoordinator implements Toolbar {
          mToolbarLayout.setOnTabSwitcherClickHandler(tabSwitcherClickHandler);
          mToolbarLayout.setOnTabSwitcherLongClickHandler(
                  TabSwitcherActionMenuCoordinator.createOnLongClickListener(
@@ -31,7 +31,7 @@ index efd990aa6e6fa57314dac96da872215ca48419bd..6d59517a4fa36065224a064730462c14
          mToolbarLayout.setBookmarkClickHandler(bookmarkClickHandler);
          mToolbarLayout.setCustomTabCloseClickHandler(customTabsBackClickHandler);
          mToolbarLayout.setLayoutUpdater(layoutUpdater);
-@@ -306,7 +306,7 @@ public class TopToolbarCoordinator implements Toolbar {
+@@ -307,7 +307,7 @@ public class TopToolbarCoordinator implements Toolbar {
              mOverlayCoordinator = new TopToolbarOverlayCoordinator(mToolbarLayout.getContext(),
                      layoutManager, mControlContainer::getProgressBarDrawingInfo, tabSupplier,
                      browserControlsStateProvider, mResourceManagerSupplier, topUiThemeColorProvider,
@@ -40,7 +40,7 @@ index efd990aa6e6fa57314dac96da872215ca48419bd..6d59517a4fa36065224a064730462c14
                      false);
              layoutManager.addSceneOverlay(mOverlayCoordinator);
              mToolbarLayout.setOverlayCoordinator(mOverlayCoordinator);
-@@ -462,7 +462,12 @@ public class TopToolbarCoordinator implements Toolbar {
+@@ -470,7 +470,12 @@ public class TopToolbarCoordinator implements Toolbar {
          mToolbarLayout.updateForwardButtonVisibility(canGoForward);
      }
  

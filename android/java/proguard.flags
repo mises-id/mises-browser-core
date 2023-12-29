@@ -8,6 +8,7 @@
 
 -keep class org.chromium.chrome.browser.ntp.NewTabPage {
     public <init>(...);
+    *** mJankTracker;
     *** mBrowserControlsStateProvider;
     *** mNewTabPageLayout;
     *** mFeedSurfaceProvider;
@@ -91,8 +92,8 @@
     *** initTabHelpers(...);
 }
 
--keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
--keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
+# -keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+# -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 
 
 -keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
@@ -107,4 +108,10 @@
 # SDK API
 -keep class com.openmediation.sdk.**{*;}
 -keep class com.crosspromotion.sdk.**{*;}
+-keep class com.mbridge.**{*;}
+-keep interface com.mbridge.** {*; }
+-dontwarn com.mbridge.**   
+-keep class **.R$* { public static final int mbridge*; }
+
+-keepattributes Signature,InnerClasses,SourceFile,LineNumberTable,EnclosingMethod
 

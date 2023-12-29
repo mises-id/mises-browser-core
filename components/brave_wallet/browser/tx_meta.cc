@@ -5,7 +5,7 @@
 
 #include "mises/components/brave_wallet/browser/tx_meta.h"
 
-#include "base/guid.h"
+#include "base/uuid.h"
 #include "base/json/values_util.h"
 #include "base/values.h"
 
@@ -45,7 +45,7 @@ base::Value::Dict TxMeta::ToValue() const {
 
 // static
 std::string TxMeta::GenerateMetaID() {
-  return base::GenerateGUID();
+  return base::Uuid::GenerateRandomV4().AsLowercaseString();
 }
 
 }  // namespace brave_wallet
