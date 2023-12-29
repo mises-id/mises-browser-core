@@ -1,12 +1,12 @@
 diff --git a/chrome/browser/resources/extensions/detail_view.html b/chrome/browser/resources/extensions/detail_view.html
-index 99f8e5b16aea4e43b7660d8200d079f5017f8e7c..2397970c303da375fae2c9e991e32acd1fd95f53 100644
+index 99f8e5b16aea4e43b7660d8200d079f5017f8e7c..07ddbacc8563fa648ebc2d3450510a2c672198ff 100644
 --- a/chrome/browser/resources/extensions/detail_view.html
 +++ b/chrome/browser/resources/extensions/detail_view.html
 @@ -479,13 +479,14 @@
          <template is="dom-if"
            if="[[shouldShowIncognitoOption_(
                data.incognitoAccess.isEnabled, incognitoAvailable)]]">
-+<div id="enable_incognito"></a>
++          <div id="enable_incognito"></div>
            <extensions-toggle-row id="allow-incognito"
                checked="[[data.incognitoAccess.isActive]]"
                class="hr"
