@@ -108,8 +108,10 @@
 # SDK API
 -keep class com.openmediation.sdk.**{*;}
 -keep class com.crosspromotion.sdk.**{*;}
--keep class com.mbridge.**{*;}
--keep interface com.mbridge.** {*; }
+
+-keepattributes *Annotation*   
+-keep class com.mbridge.** {*; }  
+-keep interface com.mbridge.** {*; }  
 -dontwarn com.mbridge.**   
 -keep class **.R$* { public static final int mbridge*; }
 
