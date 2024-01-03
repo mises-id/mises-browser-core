@@ -26,6 +26,15 @@ base::WeakPtr<content::NavigationHandle> Navigate(NavigateParams* params) {
       return nullptr;
     TabModel* tab_model = TabModelList::models()[0];
     content::WebContents* new_web_contents = NULL;
+    if (params->switch_to_singleton_tab) {
+      for (int i = 0; i < tab_model->GetTabCount(); ++i) {
+          content::WebContents* contents = tab_model->GetWebContentsAt(i);
+          if (contents == params->switch_to_singleton_tab) {
+            tab_model->SetActiveIndex(i);
+            return nullptr;
+          }
+      }
+    }
     if (params->url.is_valid() && !(params->url.is_empty())) {
       GURL url = params->url;
       new_web_contents = tab_model->CreateNewTabForDevTools(url.is_empty() ? GURL(chrome::kChromeUINewTabURL) : url);

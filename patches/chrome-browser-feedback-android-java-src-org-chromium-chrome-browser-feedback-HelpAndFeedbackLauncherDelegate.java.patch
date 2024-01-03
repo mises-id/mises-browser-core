@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/feedback/android/java/src/org/chromium/chrome/browser/feedback/HelpAndFeedbackLauncherDelegate.java b/chrome/browser/feedback/android/java/src/org/chromium/chrome/browser/feedback/HelpAndFeedbackLauncherDelegate.java
+index 663e657e8ba941c5013bddec90ee1aac0652b522..8122239a1455f64820029b20902172971a9b3af1 100644
+--- a/chrome/browser/feedback/android/java/src/org/chromium/chrome/browser/feedback/HelpAndFeedbackLauncherDelegate.java
++++ b/chrome/browser/feedback/android/java/src/org/chromium/chrome/browser/feedback/HelpAndFeedbackLauncherDelegate.java
+@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
+  * Delegate that handles the display of the HelpAndFeedback flows.
+  */
+ public interface HelpAndFeedbackLauncherDelegate {
+-    static final String FALLBACK_SUPPORT_URL = "https://support.google.com/chrome/topic/6069782";
++    static final String FALLBACK_SUPPORT_URL = "https://www.mises.site/guide";
+ 
+     /**
+      * Starts an activity showing a help page for the specified context ID.

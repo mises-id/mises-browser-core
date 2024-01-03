@@ -1,0 +1,16 @@
+diff --git a/chrome/browser/extensions/api/permissions/permissions_api.cc b/chrome/browser/extensions/api/permissions/permissions_api.cc
+index 86deb10d5b0168ffa56aedebc710d2e093a093ee..88b2c9bd119546115fd4601ab3899b2fcf9e5a32 100644
+--- a/chrome/browser/extensions/api/permissions/permissions_api.cc
++++ b/chrome/browser/extensions/api/permissions/permissions_api.cc
+@@ -215,9 +215,11 @@ ExtensionFunction::ResponseAction PermissionsRequestFunction::Run() {
+ 
+   gfx::NativeWindow native_window =
+       ChromeExtensionFunctionDetails(this).GetNativeWindowForUI();
++#if !BUILDFLAG(IS_ANDROID)
+   if (!native_window && g_dialog_action == DialogAction::kDefault) {
+     return RespondNow(Error("Could not find an active window."));
+   }
++#endif
+ 
+   absl::optional<api::permissions::Request::Params> params =
+       api::permissions::Request::Params::Create(args());

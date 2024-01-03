@@ -69,27 +69,6 @@ content::WebContents* GetWebContentsFromTabId(Browser** browser,
   return nullptr;
 }
 
-#if BUILDFLAG(IS_ANDROID)
-content::WebContents* GetActiveWebContentsAndroid() {
-  content::WebContents* contents = NULL;
-  TabModel *tab_strip = nullptr;
-  if (!TabModelList::models().empty())
-    tab_strip = *(TabModelList::models().begin());
-  if (tab_strip) {
-    for (int i = 0; i < tab_strip->GetTabCount(); ++i) {
-        int openingTab = (tab_strip->GetLastNonExtensionActiveIndex());
-        if (openingTab == -1)
-          openingTab = 0;
-
-        if (i != openingTab)
-          continue;
-
-        contents = tab_strip->GetWebContentsAt(i);
-    }
-  }
-  return contents;
-}
-#endif
 
 content::WebContents* GetActiveWebContents() {
 #if !BUILDFLAG(IS_ANDROID)

@@ -14,4 +14,10 @@
 
 #undef SetDevToolsAgentHost
 
+
+int GetActiveTabIndexAndroid();
+int GetTabsCountAndroid();
+content::WebContents* GetActiveWebContentsAndroid();
+content::WebContents* GetWebContentsAtAndroid(int tab_idx);
+
 #endif
