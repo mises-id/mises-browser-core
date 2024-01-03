@@ -9211,10 +9211,10 @@ function injectKeplrToWindow(keplr) {
             return { url, icon, title };
         },
     });
-    defineUnwritablePropertyIfPossible(window, "getOfflineSigner", keplr.getOfflineSigner);
-    defineUnwritablePropertyIfPossible(window, "getOfflineSignerOnlyAmino", keplr.getOfflineSignerOnlyAmino);
-    defineUnwritablePropertyIfPossible(window, "getOfflineSignerAuto", keplr.getOfflineSignerAuto);
-    defineUnwritablePropertyIfPossible(window, "getEnigmaUtils", keplr.getEnigmaUtils);
+    // defineUnwritablePropertyIfPossible(window, "getOfflineSigner", keplr.getOfflineSigner);
+    // defineUnwritablePropertyIfPossible(window, "getOfflineSignerOnlyAmino", keplr.getOfflineSignerOnlyAmino);
+    // defineUnwritablePropertyIfPossible(window, "getOfflineSignerAuto", keplr.getOfflineSignerAuto);
+    // defineUnwritablePropertyIfPossible(window, "getEnigmaUtils", keplr.getEnigmaUtils);
     defineUnwritablePropertyIfPossible(window, "MisesWeb3Client", keplr.misesWeb3Client);
 }
 exports.injectKeplrToWindow = injectKeplrToWindow;

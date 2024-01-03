@@ -9883,9 +9883,9 @@ exports.Message = Message;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WEBPAGE_PORT = exports.APP_PORT = exports.BACKGROUND_PORT = void 0;
-exports.BACKGROUND_PORT = "background";
-exports.APP_PORT = "popup";
-exports.WEBPAGE_PORT = "webpage";
+exports.BACKGROUND_PORT = "mises_background";
+exports.APP_PORT = "mises_popup";
+exports.WEBPAGE_PORT = "mises_webpage";
 //# sourceMappingURL=constant.js.map
 
 /***/ }),

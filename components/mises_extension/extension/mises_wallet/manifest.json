@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Mises(Deprecated)",
   "description": "Mises is a browser extension wallet",
-  "version": "0.3.3",
+  "version": "0.3.5",
   "icons": {
     "16": "assets/icon-16.png",
     "48": "assets/icon-48.png",
@@ -34,7 +34,10 @@
   "content_scripts": [
     {
       "matches": ["file://*/*", "http://*/*", "https://*/*"],
-      "js": ["browser-polyfill.js", "contentScripts.bundle.js"],
+      "js": [
+        "browser-polyfill.js", 
+        "contentScripts.bundle.js"
+      ],
       "run_at": "document_start",
       "all_frames": true
     },
