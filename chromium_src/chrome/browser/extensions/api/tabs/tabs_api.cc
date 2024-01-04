@@ -11,7 +11,6 @@
 #include "components/safe_browsing/buildflags.h"
 namespace extensions {
   bool HighlightTabAndroid(const api::tabs::Highlight::Params::HighlightInfo &highlight_info);
-  content::WebContents* GetActiveWebContentsAndroid();
   void GetTabListValueAndroid(base::Value::List& result, const Extension* extension, Feature::Context context);
   int GetSelectedTabIndexAndroid(content::WebContents** contents);
   int GetSelectedTabIdAndroid();
@@ -51,25 +50,7 @@ bool HighlightTabAndroid(const tabs::Highlight::Params::HighlightInfo &highlight
   }
   return true;
 }
-WebContents* GetActiveWebContentsAndroid() {
-  WebContents* contents = NULL;
-  TabModel *tab_strip = nullptr;
-  if (!TabModelList::models().empty())
-    tab_strip = *(TabModelList::models().begin());
-  if (tab_strip) {
-    for (int i = 0; i < tab_strip->GetTabCount(); ++i) {
-        int openingTab = (tab_strip->GetLastNonExtensionActiveIndex());
-        if (openingTab == -1)
-          openingTab = 0;
 
-        if (i != openingTab)
-          continue;
-
-        contents = tab_strip->GetWebContentsAt(i);
-    }
-  }
-  return contents;
-}
 void GetTabListValueAndroid(base::Value::List& result, const Extension* extension, Feature::Context context) {
   TabModel *tab_strip = nullptr;
   if (!TabModelList::models().empty())

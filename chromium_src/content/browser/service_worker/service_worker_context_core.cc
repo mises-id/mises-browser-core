@@ -10,6 +10,17 @@ ServiceWorkerContextCore::hid_delegate_observer() {
   }
   return hid_delegate_observer_.get();
 }
+
+ServiceWorkerUsbDelegateObserver*
+ServiceWorkerContextCore::usb_delegate_observer() {
+  if (!usb_delegate_observer_) {
+    usb_delegate_observer_ =
+        std::make_unique<ServiceWorkerUsbDelegateObserver>(this);
+  }
+  return usb_delegate_observer_.get();
+}
+
+
 #endif
 
 }

@@ -1,0 +1,28 @@
+diff --git a/chrome/browser/extensions/api/tabs/windows_util.cc b/chrome/browser/extensions/api/tabs/windows_util.cc
+index b0b6608777386ae4c0b40d8e9c35aba500bfc154..772755ab11a3b606ef0ad7bb4704232616e69889 100644
+--- a/chrome/browser/extensions/api/tabs/windows_util.cc
++++ b/chrome/browser/extensions/api/tabs/windows_util.cc
+@@ -24,6 +24,8 @@
+ #include "extensions/common/extension.h"
+ #include "url/gurl.h"
+ 
++#include "chrome/browser/extensions/extension_tab_util.h"
++
+ namespace windows_util {
+ 
+ bool GetBrowserFromWindowID(ExtensionFunction* function,
+@@ -60,6 +62,14 @@ bool GetBrowserFromWindowID(ExtensionFunction* function,
+     if (window_controller)
+       *browser = window_controller->GetBrowser();
+ 
++
++#if BUILDFLAG(IS_ANDROID)
++  if (!(*browser)) {
++    Profile* profile = Profile::FromBrowserContext(function->browser_context());
++    *browser = extensions::FindBrowserForWindowAndroid(profile, window_id);
++  }
++#endif
++
+     if (!(*browser)) {
+       *error = extensions::ErrorUtils::FormatErrorMessage(
+           extensions::tabs_constants::kWindowNotFoundError,

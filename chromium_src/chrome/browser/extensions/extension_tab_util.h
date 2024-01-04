@@ -11,7 +11,7 @@ void CreateTabObjectAndroid(
     content::WebContents* contents,
     const Extension* extension,
     int tab_index);
-	void CreateTabListAndroid(
+void CreateTabListAndroid(
     const Browser* browser,
     const Extension* extension,
     Feature::Context context,
@@ -19,6 +19,7 @@ void CreateTabObjectAndroid(
 bool GetTabByIdAndroid(int tab_id, content::WebContents** contents, int* tab_index);
 base::Value::Dict CreateDummyWindowValueForExtension(
 		  ExtensionTabUtil::PopulateTabBehavior populate_tab_behavior);
+Browser* FindBrowserForWindowAndroid(Profile* profile, int window_id);
 #endif
 
 }  // namespace extensions
