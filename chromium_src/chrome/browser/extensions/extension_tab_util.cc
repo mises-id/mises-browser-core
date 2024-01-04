@@ -114,5 +114,18 @@ base::Value::Dict CreateDummyWindowValueForExtension(
   }
   return dict;
 }
+
+Browser* FindBrowserForWindowAndroid(Profile* profile, int window_id) {
+  for (const TabModel* tab_model : TabModelList::models()) {
+    if (tab_model->GetProfile() != profile)
+      continue;
+    if (tab_model->GetSessionId().id() == window_id) {
+      return chrome::FindBrowserWithProfile(profile);
+    }
+    
+  }
+
+  return nullptr;
+}
 #endif
 }  // namespace extensions
