@@ -10,6 +10,7 @@
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
 #include "mises/components/brave_wallet/browser/brave_wallet_prefs.h"
+#include "mises/components/search_engines/mises_prepopulated_engines.h"
 
 #include "build/build_config.h"
 #include "chrome/browser/prefetch/pref_names.h"
@@ -72,6 +73,11 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   registry->RegisterStringPref(
       prefs::kExtensionsUIDefaultEVMWalletKeyProperty, std::string());
     
+    // Default search engine version
+  registry->RegisterIntegerPref(
+      prefs::kMisesDefaultSearchVersion,
+      TemplateURLPrepopulateData::kMisesCurrentDataVersion);
+
   RegisterProfilePrefsForMigration(registry);
 
 }

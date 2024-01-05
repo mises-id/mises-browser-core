@@ -1,0 +1,15 @@
+group("search_engines") {
+  deps = [ "//components/search_engines" ]
+}
+
+source_set("unit_tests") {
+  testonly = true
+
+  sources = [ "mises_prepopulated_engines_unittest.cc" ]
+
+  deps = [
+    "//mises/components/search_engines",
+    "//components/search_engines",
+    "//testing/gtest",
+  ]
+}
