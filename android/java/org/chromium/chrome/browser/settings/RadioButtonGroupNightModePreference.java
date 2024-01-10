@@ -30,6 +30,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import org.chromium.chrome.browser.night_mode.WebContentsDarkModeController;
+import org.chromium.chrome.browser.MisesRelaunchUtils;
 
 /**
  * A radio button group Preference used for NightMode Preference. It contains 2 options:
@@ -110,7 +111,7 @@ public final class RadioButtonGroupNightModePreference
         sharedPreferencesEditor.putString("active_nightmode", checkedNightMode);
         sharedPreferencesEditor.apply();
         WebContentsDarkModeController.updateDarkModeStringSettings();
-        ToolbarSettings.AskForRelaunch(mActivity);
+        MisesRelaunchUtils.askForRelaunch(mActivity);
     }
 
     public void setActivity(Activity activity) {

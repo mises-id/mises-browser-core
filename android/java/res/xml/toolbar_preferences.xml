@@ -3,9 +3,16 @@
      Use of this source code is governed by a BSD-style license that can be
      found in the LICENSE file. -->
 
-<PreferenceToolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orderingFromXml="true">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-</PreferenceToolbar>
+    
+   <org.chromium.components.browser_ui.settings.ChromeSwitchPreference
+        android:key="enable_bottom_toolbar"
+        android:summary="@string/accessibility_preferences_enable_bottom_toolbar_summary"
+        android:title="@string/accessibility_preferences_enable_bottom_toolbar_title" />
+
+
+</PreferenceScreen>

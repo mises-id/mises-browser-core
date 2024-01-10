@@ -16,6 +16,7 @@ import org.chromium.chrome.R;
 @JNINamespace("chrome::android")
 public class MisesRelaunchUtils {
     static public void askForRelaunch(Context context) {
+        if (context == null) return;
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder
             .setMessage(R.string.settings_require_relaunch_notice)
