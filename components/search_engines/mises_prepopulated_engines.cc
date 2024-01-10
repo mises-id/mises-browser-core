@@ -187,7 +187,7 @@ const PrepopulatedEngine mises_search = MakeMisesPrepopulatedEngine(
     L"Google(Mises Optimized)",
     L":m",
     google.favicon_url,
-    "https://portal.gosrch.co/search/?search_term={searchTerms}&brand=B2"
+    "https://search.mises.site/?q={searchTerms}"
 #if BUILDFLAG(IS_ANDROID)
     "android",
 #else
