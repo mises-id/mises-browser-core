@@ -12,6 +12,7 @@
 
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
+#include "mises/browser/profiles/profile_util.h"
 
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/profiles/profile_attributes_entry.h"
@@ -72,6 +73,8 @@ void MisesProfileManager::InitProfileUserPrefs(Profile* profile) {
 #endif
 
   ProfileManager::InitProfileUserPrefs(profile);
+
+  mises::SetDefaultSearchVersion(profile, profile->IsNewProfile());
 }
 
 void MisesProfileManager::DoFinalInitForServices(Profile* profile,

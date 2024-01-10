@@ -85,7 +85,7 @@ android_aar_prebuilt("com_github_bumptech_disklrucache_java") {
 }
 
 android_aar_prebuilt("google_firebase_firebase_analytics_java") {
-  aar_path = "libs/com_google_firebase_firebase_analytics/firebase-analytics-17.6.0.aar"
+  aar_path = "libs/com_google_firebase_firebase_analytics/firebase-analytics-21.4.0.aar"
   info_path = "libs/com_google_firebase_firebase_analytics/com_google_firebase_firebase_analytics.info"
   deps = [
     ":google_play_services_measurement_api_java",
@@ -95,6 +95,53 @@ android_aar_prebuilt("google_firebase_firebase_analytics_java") {
 
   enable_bytecode_checks = false
 }
+
+
+android_aar_prebuilt("google_android_datatransport_transport_runtime_java") {
+  aar_path = "libs/com_google_android_datatransport_transport_runtime/transport-runtime-2.2.6.aar"
+  info_path = "libs/com_google_android_datatransport_transport_runtime/com_google_android_datatransport_transport_runtime.info"
+  deps = [
+    "//third_party/android_deps:google_android_datatransport_transport_api_java",
+  ]
+
+  enable_bytecode_checks = false
+}
+
+
+android_aar_prebuilt("google_android_datatransport_transport_backend_cct_java") {
+  aar_path = "libs/com_google_android_datatransport_transport_backend_cct/transport-backend-cct-2.3.3.aar"
+  info_path = "libs/com_google_android_datatransport_transport_backend_cct/com_google_android_datatransport_transport_backend_cct.info"
+  deps = [
+    "//third_party/android_deps:google_android_datatransport_transport_api_java",
+    ":google_android_datatransport_transport_runtime_java",
+    "$google_play_services_package:google_firebase_firebase_encoders_java",
+    "$google_play_services_package:google_firebase_firebase_encoders_json_java",
+  ]
+
+  enable_bytecode_checks = false
+}
+
+
+
+android_aar_prebuilt("google_firebase_firebase_crashlytics_java") {
+  aar_path = "libs/com_google_firebase_firebase_crashlytics/firebase-crashlytics-17.4.1.aar"
+  info_path = "libs/com_google_firebase_firebase_crashlytics/com_google_firebase_firebase_crashlytics.info"
+  enable_bytecode_checks = false
+  deps = [
+    "//third_party/android_deps:google_android_datatransport_transport_api_java",
+    ":google_android_datatransport_transport_runtime_java",
+    ":google_android_datatransport_transport_backend_cct_java",
+    "$google_play_services_package:google_firebase_firebase_common_java",
+    "$google_play_services_package:google_firebase_firebase_components_java",
+    "$google_play_services_package:google_firebase_firebase_encoders_java",
+    "$google_play_services_package:google_firebase_firebase_encoders_json_java",
+    "$google_play_services_package:google_firebase_firebase_installations_interop_java",
+    "$google_play_services_package:google_firebase_firebase_installations_java",
+    "$google_play_services_package:google_firebase_firebase_measurement_connector_java",
+    "$google_play_services_package:google_play_services_tasks_java",
+  ]
+}
+
 
 android_aar_prebuilt("google_play_services_ads_identifier_java") {
   aar_path = "libs/com_google_android_gms_play_services_ads_identifier/play-services-ads-identifier-18.0.0.aar"
@@ -332,3 +379,5 @@ android_library("com_kirich1409_svgimageloaderplugins_java") {
     "//third_party/androidx:androidx_fragment_fragment_java",
   ]
 }
+
+

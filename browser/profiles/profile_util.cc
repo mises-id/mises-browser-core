@@ -13,6 +13,7 @@
 #include "base/metrics/histogram_macros.h"
 #include "mises/components/constants/mises_constants.h"
 #include "mises/components/constants/pref_names.h"
+#include "mises/components/search_engines/mises_prepopulated_engines.h"
 #include "chrome/browser/content_settings/host_content_settings_map_factory.h"
 #include "chrome/browser/profiles/profile.h"
 #include "components/content_settings/core/browser/cookie_settings.h"
@@ -73,15 +74,15 @@ void RecordInitialP3AValues(Profile* profile) {
 }
 
 void SetDefaultSearchVersion(Profile* profile, bool is_new_profile) {
-  // const PrefService::Preference* pref_default_search_version =
-  //     profile->GetPrefs()->FindPreference(prefs::kBraveDefaultSearchVersion);
-  // if (!pref_default_search_version->HasUserSetting()) {
-  //   profile->GetPrefs()->SetInteger(
-  //       prefs::kBraveDefaultSearchVersion,
-  //       is_new_profile
-  //           ? TemplateURLPrepopulateData::kBraveCurrentDataVersion
-  //           : TemplateURLPrepopulateData::kBraveFirstTrackedDataVersion);
-  // }
+  const PrefService::Preference* pref_default_search_version =
+      profile->GetPrefs()->FindPreference(prefs::kMisesDefaultSearchVersion);
+  if (!pref_default_search_version->HasUserSetting()) {
+    profile->GetPrefs()->SetInteger(
+        prefs::kMisesDefaultSearchVersion,
+        is_new_profile
+            ? TemplateURLPrepopulateData::kMisesCurrentDataVersion
+            : TemplateURLPrepopulateData::kMisesFirstTrackedDataVersion);
+  }
 }
 
 void SetDefaultThirdPartyCookieBlockValue(Profile* profile) {

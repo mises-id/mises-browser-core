@@ -1,0 +1,17 @@
+diff --git a/components/browser_ui/widget/android/java/src/org/chromium/components/browser_ui/widget/TintedDrawable.java b/components/browser_ui/widget/android/java/src/org/chromium/components/browser_ui/widget/TintedDrawable.java
+index 575d5155b1f954cad2291e49cd69063f909f912d..f816bc2b2dafd10268116fc9e9f948eaa2bc83f9 100644
+--- a/components/browser_ui/widget/android/java/src/org/chromium/components/browser_ui/widget/TintedDrawable.java
++++ b/components/browser_ui/widget/android/java/src/org/chromium/components/browser_ui/widget/TintedDrawable.java
+@@ -58,7 +58,11 @@ public class TintedDrawable extends BitmapDrawable {
+         if (bitmap != null && bitmap.isRecycled()) {
+             Log.e(TAG, "Trying to draw with recycled BitmapDrawable.");
+         }
+-        super.draw(canvas);
++        try {
++            super.draw(canvas);
++        } catch (RuntimeException ex) {
++
++        }
+     }
+ 
+     /**
