@@ -77,6 +77,19 @@ class MisesDropdownItemViewInfoListBuilder extends DropdownItemViewInfoListBuild
     }
 
     @Override
+    void performPartialGroupingBySearchVsUrl(AutocompleteResult autocompleteResult) {
+        if (autocompleteResult.getSuggestionsList().size() > 2) {
+            final int firstSuggestionWithHeader =
+                    getIndexOfFirstSuggestionWithHeader(autocompleteResult);
+            final int numVisibleSuggestions = getVisibleSuggestionsCount(autocompleteResult);
+            if (numVisibleSuggestions == 0 && firstSuggestionWithHeader > 1) {
+                return;
+            }
+        }
+        super.performPartialGroupingBySearchVsUrl(autocompleteResult);
+    }
+
+    @Override
     @NonNull
     List<DropdownItemViewInfo> buildDropdownViewInfoList(AutocompleteResult autocompleteResult) {
         mMisesAdsBannerProcessor.onSuggestionsReceived();

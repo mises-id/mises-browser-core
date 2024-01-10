@@ -3,9 +3,9 @@ import android.os.Bundle;
 import androidx.preference.PreferenceFragmentCompat;
 public class NightModeSettings extends PreferenceFragmentCompat {
 	public NightModeSettings() {
-	        setHasOptionsMenu(true);
-			    }
+		setHasOptionsMenu(true);
+	}
 	@Override
-	                    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-				                        }
+	public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+	}
 }

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-index d336415b3ec62ec50dfe454ec962c8ca1e949c1a..977d61662a7e45784efcee72e7ff5d9a07e01d4f 100644
+index d336415b3ec62ec50dfe454ec962c8ca1e949c1a..fe391d0ab0de0b1ae81fc899448e2360758b3b08 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
 @@ -200,6 +200,12 @@ public class MainSettings extends ChromeBaseSettingsFragment
@@ -9,8 +9,8 @@ index d336415b3ec62ec50dfe454ec962c8ca1e949c1a..977d61662a7e45784efcee72e7ff5d9a
 +        Preference safetyCheck = findPreference(PREF_SAFETY_CHECK);
 +        if (safetyCheck != null)
 +            getPreferenceScreen().removePreference(safetyCheck);
-+	     removePreferenceIfPresent("toolbar_options");
-+	     removePreferenceIfPresent("nightmode");
++	    //removePreferenceIfPresent("toolbar_options");
++	    removePreferenceIfPresent("nightmode");
 +
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
              // If we are on Android O+ the Notifications preference should lead to the Android

@@ -4,6 +4,9 @@
 
 package org.chromium.chrome.browser.settings;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import android.app.Activity;
 
 import android.content.Context;
@@ -25,9 +28,7 @@ import org.chromium.components.browser_ui.widget.RadioButtonWithDescription;
 import org.chromium.components.browser_ui.widget.RadioButtonWithDescriptionLayout;
 
 import org.chromium.chrome.browser.settings.ToolbarSettings;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import org.chromium.chrome.browser.MisesRelaunchUtils;
 
 /**
  * A radio button group Preference used for TabSwitcher Preference. It contains 2 options:
@@ -108,7 +109,7 @@ public final class RadioButtonGroupTabSwitcherPreference
         sharedPreferencesEditor.putString("active_tabswitcher", checkedTabSwitcher);
         sharedPreferencesEditor.apply();
         ContextUtils.getAppSharedPreferences().edit().putBoolean("accessibility_tab_switcher", false).apply();
-        ToolbarSettings.AskForRelaunch(mActivity);
+        MisesRelaunchUtils.askForRelaunch(mActivity);
     }
 
     public void setActivity(Activity activity) {
