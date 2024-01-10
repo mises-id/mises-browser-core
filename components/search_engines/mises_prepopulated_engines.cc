@@ -94,7 +94,7 @@ const PrepopulatedEngine mises_duckduckgo = MakeMisesPrepopulatedEngine(
     L"DuckDuckGo",
     L":d",
     "https://duckduckgo.com/favicon.ico",
-    "https://duckduckgo.com/?q={searchTerms}&t=brave",
+    "https://duckduckgo.com/?q={searchTerms}&t=mises",
     "UTF-8",
     "https://ac.duckduckgo.com/ac/?q={searchTerms}&type=list",
     SEARCH_ENGINE_DUCKDUCKGO,
@@ -104,7 +104,7 @@ const PrepopulatedEngine duckduckgo_de =
     ModifyEngineParams(duckduckgo,
                        nullptr,
                        nullptr,
-                       "https://duckduckgo.com/?q={searchTerms}&t=bravened",
+                       "https://duckduckgo.com/?q={searchTerms}&t=misesned",
                        nullptr,
                        nullptr,
                        PREPOPULATED_ENGINE_ID_DUCKDUCKGO_DE);
@@ -113,7 +113,7 @@ const PrepopulatedEngine duckduckgo_au_nz_ie =
     ModifyEngineParams(duckduckgo,
                        nullptr,
                        nullptr,
-                       "https://duckduckgo.com/?q={searchTerms}&t=braveed",
+                       "https://duckduckgo.com/?q={searchTerms}&t=misesed",
                        nullptr,
                        nullptr,
                        PREPOPULATED_ENGINE_ID_DUCKDUCKGO_AU_NZ_IE);
@@ -123,7 +123,7 @@ const PrepopulatedEngine duckduckgo_lite = MakeMisesPrepopulatedEngine(
     L"DuckDuckGo Lite",
     L":dl",
     "https://duckduckgo.com/favicon.ico",
-    "https://duckduckgo.com/lite/?q={searchTerms}&t=brave",
+    "https://duckduckgo.com/lite/?q={searchTerms}&t=mises",
     "UTF-8",
     "https://ac.duckduckgo.com/ac/?q={searchTerms}&type=list",
     SEARCH_ENGINE_DUCKDUCKGO,
@@ -136,11 +136,11 @@ const PrepopulatedEngine mises_ecosia =
                        L":e",
                        "https://www.ecosia.org/search?tt="
 #if BUILDFLAG(IS_ANDROID)
-                       "42b8ae98"
+                       "00000000"
 #else
-                       "e8eb07a6"
+                       "00000000"
 #endif
-                       "&q={searchTerms}&addon=brave",
+                       "&q={searchTerms}&addon=mises",
                        "https://ac.ecosia.org/?q={searchTerms}",
                        nullptr,
                        PREPOPULATED_ENGINE_ID_ECOSIA);
@@ -149,7 +149,7 @@ const PrepopulatedEngine mises_qwant = MakeMisesPrepopulatedEngine(
     L"Qwant",
     L":q",
     "https://www.qwant.com/favicon.ico",
-    "https://www.qwant.com/?q={searchTerms}&client=brz-brave",
+    "https://www.qwant.com/?q={searchTerms}&client=brz-mises",
     "UTF-8",
     "https://api.qwant.com/api/suggest/?q={searchTerms}&client=opensearch",
     SEARCH_ENGINE_QWANT,
@@ -160,7 +160,7 @@ const PrepopulatedEngine startpage = MakeMisesPrepopulatedEngine(
     L":sp",
     "https://www.startpage.com/favicon.ico",
     "https://www.startpage.com/do/"
-    "search?q={searchTerms}&segment=startpage.brave",
+    "search?q={searchTerms}&segment=startpage.mises",
     "UTF-8",
     "https://www.startpage.com/cgi-bin/"
     "csuggest?query={searchTerms}&limit=10&format=json",
@@ -173,9 +173,9 @@ const PrepopulatedEngine mises_yandex =
                        nullptr,
                        "https://yandex.ru/search/?clid="
 #if BUILDFLAG(IS_ANDROID)
-                       "2423859"
+                       "0000000"
 #else
-                       "2353835"
+                       "0000000"
 #endif
                        "&text={searchTerms}",
                        "https://suggest.yandex.ru/suggest-ff.cgi?"
@@ -185,7 +185,7 @@ const PrepopulatedEngine mises_yandex =
 
 const PrepopulatedEngine mises_search = MakeMisesPrepopulatedEngine(
     L"Google(Mises Optimized)",
-    L":br",
+    L":m",
     google.favicon_url,
     "https://portal.gosrch.co/search/?search_term={searchTerms}&brand=B2"
 #if BUILDFLAG(IS_ANDROID)

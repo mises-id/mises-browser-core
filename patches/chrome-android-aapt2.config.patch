@@ -1,8 +1,8 @@
 diff --git a/chrome/android/aapt2.config b/chrome/android/aapt2.config
-index ea85a3ea1cb22dfb559197fc9094eb041875e4bc..41af58f9cdd54831fa3b0d708d02c48a08f4ea70 100644
+index ea85a3ea1cb22dfb559197fc9094eb041875e4bc..fbc6dbcdabcdd2426ecd90ec55a461aad73256b3 100644
 --- a/chrome/android/aapt2.config
 +++ b/chrome/android/aapt2.config
-@@ -1,3 +1,958 @@
+@@ -1,3 +1,960 @@
  drawable/ic_launcher#no_collapse
  drawable/ic_launcher_round#no_collapse
  drawable/shortcut_incognito#no_collapse
@@ -14,6 +14,7 @@ index ea85a3ea1cb22dfb559197fc9094eb041875e4bc..41af58f9cdd54831fa3b0d708d02c48a
 +string/google_crash_reporting_api_key#no_collapse
 +string/google_storage_bucket#no_collapse
 +string/project_id#no_collapse
++string/com.crashlytics.android.build_id#no_collapse
 +
 +string/google_app_id#no_obfuscate
 +string/default_web_client_id#no_obfuscate
@@ -22,6 +23,7 @@ index ea85a3ea1cb22dfb559197fc9094eb041875e4bc..41af58f9cdd54831fa3b0d708d02c48a
 +string/google_crash_reporting_api_key#no_obfuscate
 +string/google_storage_bucket#no_obfuscate
 +string/project_id#no_obfuscate
++string/com.crashlytics.android.build_id#no_obfuscate
 +
 +
 +anim/mbridge_reward_activity_open#no_obfuscate

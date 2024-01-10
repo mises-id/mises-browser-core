@@ -385,10 +385,10 @@ public class MisesShareWin extends DialogFragment {
         WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         getDialog().getWindow().setAttributes((WindowManager.LayoutParams) params);
-	
-	Bundle bundleParams = new Bundle();
-	bundleParams.putString("step", "begin");
-	FirebaseAnalytics.getInstance(getContext()).logEvent("mises_share", bundleParams);
-        super.onStart();
+        
+        Bundle bundleParams = new Bundle();
+        bundleParams.putString("step", "begin");
+        FirebaseAnalytics.getInstance(getContext()).logEvent("mises_share", bundleParams);
+            super.onStart();
     }
 }

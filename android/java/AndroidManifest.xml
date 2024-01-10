@@ -30,12 +30,12 @@
     android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
 <meta-data
-        android:name="com.google.android.play.billingclient.version"
-        android:value="5.2.1" />
+    android:name="com.google.android.play.billingclient.version"
+    android:value="5.2.1" />
 
 
 <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
+    android:name="com.google.firebase.messaging.default_notification_channel_id"
     android:value="@string/default_fcm_channel_id" />
 <!--add this to keep R.string.project_id from being removed in release build
 otherwise it will be marked as remove in chrome_modern_public_base_bundle_module_unused_resources.config 
@@ -45,7 +45,9 @@ firebase initialization
 <meta-data
     android:name="com.google.firebase.messaging.project_id"
     android:value="@string/project_id" />
-
+<meta-data
+    android:name="firebase_crashlytics_collection_enabled"
+    android:value="true" />
 
 <meta-data 
     android:name="com.google.android.gms.ads.APPLICATION_ID"

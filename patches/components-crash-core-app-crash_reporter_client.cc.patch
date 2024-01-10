@@ -1,0 +1,12 @@
+diff --git a/components/crash/core/app/crash_reporter_client.cc b/components/crash/core/app/crash_reporter_client.cc
+index 3f3ed53d48fc4b19642cae847e69982782790e31..c6b6a12a1e0c750b1f2daf9e6073d65d6d0fd7c2 100644
+--- a/components/crash/core/app/crash_reporter_client.cc
++++ b/components/crash/core/app/crash_reporter_client.cc
+@@ -190,6 +190,7 @@ void CrashReporterClient::GetSanitizationInformation(
+ #endif
+ 
+ std::string CrashReporterClient::GetUploadUrl() {
++  MISES_CRASH_REPORTER_CLIENT_GET_UPLOAD_URL
+   return kDefaultUploadUrl;
+ }
+ 

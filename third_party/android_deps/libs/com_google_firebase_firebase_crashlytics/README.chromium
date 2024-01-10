@@ -1,0 +1,15 @@
+Name: firebase-crashlytics
+Short Name: firebase-crashlytics
+URL: https://firebase.google.com
+Version: 17.4.1
+License: Apache Version 2.0
+License File: LICENSE
+CPEPrefix: unknown
+Security Critical: yes
+Shipped: yes
+
+Description:
+
+
+Local Modifications:
+No modifications.
