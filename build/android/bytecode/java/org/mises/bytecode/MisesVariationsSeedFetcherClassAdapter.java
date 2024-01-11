@@ -16,7 +16,14 @@ public class MisesVariationsSeedFetcherClassAdapter extends MisesClassVisitor {
     public MisesVariationsSeedFetcherClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // changeMethodOwner(
-        //         sVariationsSeedFetcherClassName, "get", sMisesVariationsSeedFetcherClassName);
+        changeMethodOwner(
+                sVariationsSeedFetcherClassName, "get", sMisesVariationsSeedFetcherClassName);
+
+        deleteField(sMisesVariationsSeedFetcherClassName, "sLock");
+        makeProtectedField(sVariationsSeedFetcherClassName, "sLock");
+        deleteField(sMisesVariationsSeedFetcherClassName, "DEFAULT_VARIATIONS_SERVER_URL");
+        makeProtectedField(sVariationsSeedFetcherClassName, "DEFAULT_VARIATIONS_SERVER_URL");
+        deleteField(sMisesVariationsSeedFetcherClassName, "DEFAULT_FAST_VARIATIONS_SERVER_URL");
+        makeProtectedField(sVariationsSeedFetcherClassName, "DEFAULT_FAST_VARIATIONS_SERVER_URL");
     }
 }
