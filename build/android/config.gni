@@ -22,7 +22,7 @@ mises_chrome_java_deps = [
   "//mises/browser/ui/android/omnibox:java",
   #"//mises/browser/ui/android/theme:java",
   #"//mises/components/browser_ui/site_settings/android:java",
-  #"//mises/components/variations/android:java",
+  "//mises/components/variations/android:java",
   "//mises/third_party/android_deps:com_airbnb_android_java",
   "//mises/third_party/android_deps:com_android_billingclient_java",
   "//mises/third_party/android_deps:com_android_installreferrer_java",
