@@ -23,6 +23,8 @@ public class ToolbarSettings extends PreferenceFragmentCompat implements Prefere
     private static final String PREF_ENABLE_BOTTOM_TOOLBAR = "enable_bottom_toolbar";
     public static final String PREF_BACKGROUND_VIDEO_PLAYBACK = "background_video_playback";
     
+       public static final String MISES_BACKGROUND_VIDEO_PLAYBACK =
+	               "MisesBackgroundVideoPlayback";    
     public static final String MISES_BACKGROUND_VIDEO_PLAYBACK_INTERNAL =
             "mises-background-video-playback";
 
@@ -47,7 +49,7 @@ public class ToolbarSettings extends PreferenceFragmentCompat implements Prefere
         } 
         else if (PREF_BACKGROUND_VIDEO_PLAYBACK.equals(key)) {
             MisesFeatureUtil.enableFeature(
-                    MISES_BACKGROUND_VIDEO_PLAYBACK_INTERNAL, (boolean) newValue,
+                    MISES_BACKGROUND_VIDEO_PLAYBACK, (boolean) newValue,
                     false);
             shouldRelaunch = true;
         } 
