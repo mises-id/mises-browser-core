@@ -45,6 +45,20 @@ Profile* GetOriginalProfile() {
 namespace chrome {
 namespace android {
 
+
+void JNI_MisesPrefServiceBridge_SetBackgroundVideoPlaybackEnabled(
+    JNIEnv* env,
+    jboolean enabled) {
+  return GetOriginalProfile()->GetPrefs()->SetBoolean(
+      kBackgroundVideoPlaybackEnabled, enabled);
+}
+
+jboolean JNI_MisesPrefServiceBridge_GetBackgroundVideoPlaybackEnabled(
+    JNIEnv* env) {
+  return GetOriginalProfile()->GetPrefs()->GetBoolean(
+      kBackgroundVideoPlaybackEnabled);
+}
+
 void JNI_MisesPrefServiceBridge_SetIpfsGatewayEnabled(JNIEnv* env,
                                                       jboolean enabled) {
 #if BUILDFLAG(ENABLE_IPFS)
