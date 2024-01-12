@@ -4,7 +4,19 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "base/feature_override.h"
+#include "mises/browser/android/preferences/features.h"
+#include "mises/components/search_engines/features.h"
+#include "net/base/features.h"
+#include "third_party/blink/public/common/features.h"
+
+#define kForceWebContentsDarkMode kForceWebContentsDarkMode,            \
+    &preferences::features::kMisesBackgroundVideoPlayback,              \
+    &search_engines::features::kMisesSearch,                               \
+    &net::features::kMisesHttpsByDefault                           
+
 #include "src/chrome/browser/flags/android/chrome_feature_list.cc"
+
+#undef kForceWebContentsDarkMode
 
 namespace chrome {
 namespace android {

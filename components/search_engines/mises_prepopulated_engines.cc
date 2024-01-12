@@ -3,9 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/components/search_engines/mises_prepopulated_engines.h"
 
-#include "build/build_config.h"
+#include "mises/components/search_engines/mises_prepopulated_engines.h"
 #include "components/search_engines/prepopulated_engines.h"
 #include "components/search_engines/search_engine_type.h"
 
@@ -187,12 +186,12 @@ const PrepopulatedEngine mises_search = MakeMisesPrepopulatedEngine(
     L"Google(Mises Optimized)",
     L":m",
     google.favicon_url,
-    "https://search.mises.site/?q={searchTerms}"
-#if BUILDFLAG(IS_ANDROID)
-    "android",
-#else
-    "desktop",
-#endif
+    "https://search.mises.site/?q={searchTerms}&source="
+    #if BUILDFLAG(IS_ANDROID)
+        "android",
+    #else
+        "desktop",
+    #endif
     "UTF-8",
     google.suggest_url,
     SEARCH_ENGINE_OTHER,

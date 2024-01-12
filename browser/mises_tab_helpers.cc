@@ -12,6 +12,10 @@
 #include "mises/components/ipfs/buildflags/buildflags.h"
 #include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
 
+#if BUILDFLAG(IS_ANDROID)
+#include "mises/browser/android/preferences/background_video_playback_tab_helper.h"
+#endif
+
 #if BUILDFLAG(ENABLE_IPFS)
 #include "mises/browser/ipfs/ipfs_service_factory.h"
 #include "mises/browser/ipfs/ipfs_tab_helper.h"
@@ -21,6 +25,10 @@
 
 namespace mises {
   void AttachTabHelpers(content::WebContents* web_contents) {
+
+  #if BUILDFLAG(IS_ANDROID)
+    BackgroundVideoPlaybackTabHelper::CreateForWebContents(web_contents);
+  #endif
 
   #if BUILDFLAG(ENABLE_IPFS)
     ipfs::IPFSTabHelper::MaybeCreateForWebContents(web_contents);

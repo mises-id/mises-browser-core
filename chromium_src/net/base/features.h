@@ -9,7 +9,7 @@ namespace net {
 namespace features {
 
 NET_EXPORT BASE_DECLARE_FEATURE(kMisesEphemeralStorage);
-
+NET_EXPORT BASE_DECLARE_FEATURE(kMisesHttpsByDefault);
 }  // namespace features
 }  // namespace net
 

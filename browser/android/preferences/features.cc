@@ -5,17 +5,15 @@
 
 #include "mises/browser/android/preferences/features.h"
 
-#include "base/feature_list.h"
 #include "build/build_config.h"
+#include "base/feature_list.h"
+
 
 namespace preferences {
 namespace features {
-
-#define BASE_FEATURE(feature, name, default_state) \
-  CONSTINIT const base::Feature feature(name, default_state)
   
-BASE_FEATURE(kBraveBackgroundVideoPlayback,
-             "BraveBackgroundVideoPlayback",
+BASE_FEATURE(kMisesBackgroundVideoPlayback,
+             "MisesBackgroundVideoPlayback",
              base::FEATURE_DISABLED_BY_DEFAULT);
 
 }  // namespace features
