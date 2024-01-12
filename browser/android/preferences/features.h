@@ -3,15 +3,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_BROWSER_ANDROID_PREFERENCES_FEATURES_H_
-#define BRAVE_BROWSER_ANDROID_PREFERENCES_FEATURES_H_
+#ifndef MISES_BROWSER_ANDROID_PREFERENCES_FEATURES_H_
+#define MISES_BROWSER_ANDROID_PREFERENCES_FEATURES_H_
 
 #include "base/feature_list.h"
 
 namespace preferences {
 namespace features {
   
-BASE_DECLARE_FEATURE(kBraveBackgroundVideoPlayback);
+BASE_DECLARE_FEATURE(kMisesBackgroundVideoPlayback);
 
 }  // namespace features
 }  // namespace preferences

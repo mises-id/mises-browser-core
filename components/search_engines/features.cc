@@ -3,22 +3,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "mises/components/ipfs/features.h"
+#include "mises/components/search_engines/features.h"
 
 #include "base/feature_list.h"
-#include "mises/components/ipfs/buildflags/buildflags.h"
 
-namespace ipfs {
+namespace search_engines {
 namespace features {
 
 
-BASE_FEATURE(kIpfsFeature,
-             "Ipfs",
-#if BUILDFLAG(ENABLE_IPFS)
-             base::FEATURE_ENABLED_BY_DEFAULT
-#else
+BASE_FEATURE(kMisesSearch,
+             "MisesSearch",
              base::FEATURE_DISABLED_BY_DEFAULT
-#endif
 );
 
 }  // namespace features

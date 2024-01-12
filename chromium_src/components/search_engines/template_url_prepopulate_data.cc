@@ -14,9 +14,11 @@
 #include "base/stl_util.h"
 #include "base/strings/utf_string_conversions.h"
 #include "mises/components/search_engines/mises_prepopulated_engines.h"
+#include "mises/components/search_engines/features.h"
 #include "build/build_config.h"
 #include "components/country_codes/country_codes.h"
 #include "components/search_engines/search_engines_pref_names.h"
+
 
 namespace TemplateURLPrepopulateData {
 
@@ -509,6 +511,12 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
   }
 }
 
+
+bool isMisesSearchEnabled() {
+  bool enabled =  base::FeatureList::IsEnabled(search_engines::features::kMisesSearch);
+  return enabled;
+}
+
 // Builds a vector of PrepulatedEngine objects from the given array of
 // |engine_ids|. Fills in the default engine index for the given |country_id|,
 // if asked.
@@ -520,6 +528,11 @@ std::vector<const PrepopulatedEngine*> GetEnginesFromEngineIDs(
   std::vector<const PrepopulatedEngine*> engines;
   const auto& mises_engines_map =
       TemplateURLPrepopulateData::GetMisesEnginesMap();
+  if (!isMisesSearchEnabled()) {
+    if (default_engine_id == PREPOPULATED_ENGINE_ID_MISES) {
+      default_engine_id = PREPOPULATED_ENGINE_ID_GOOGLE;
+    }
+  }
   for (size_t i = 0; i < engine_ids.size(); ++i) {
     const PrepopulatedEngine* engine = mises_engines_map.at(engine_ids[i]);
     DCHECK(engine);

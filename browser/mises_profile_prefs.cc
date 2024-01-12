@@ -60,6 +60,11 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 #if BUILDFLAG(ENABLE_IPFS)
   ipfs::IpfsService::RegisterProfilePrefs(registry);
 #endif
+
+#if BUILDFLAG(IS_ANDROID)
+  registry->RegisterBooleanPref(kBackgroundVideoPlaybackEnabled, false);
+#endif
+
   // Brave Wallet
   brave_wallet::RegisterProfilePrefs(registry);
 
