@@ -29,6 +29,14 @@ public class MisesPrefServiceBridge {
     }
 
 
+    public void setBackgroundVideoPlaybackEnabled(boolean enabled) {
+        MisesPrefServiceBridgeJni.get().setBackgroundVideoPlaybackEnabled(enabled);
+    }
+
+    public boolean getBackgroundVideoPlaybackEnabled() {
+        return MisesPrefServiceBridgeJni.get().getBackgroundVideoPlaybackEnabled();
+    }
+
     /**
      * @param whether the IPFS gateway should be enabled.
      */
@@ -85,6 +93,9 @@ public class MisesPrefServiceBridge {
 
     @NativeMethods
     interface Natives {
+        void setBackgroundVideoPlaybackEnabled(boolean enabled);
+        boolean getBackgroundVideoPlaybackEnabled();
+
         void setIpfsGatewayEnabled(boolean enabled);
         void setIpfsGateway(String gatewayUrl);
 

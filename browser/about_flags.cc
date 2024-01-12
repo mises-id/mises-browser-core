@@ -2,7 +2,6 @@
 
 #include "base/strings/string_util.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
-#include "mises/components/search_engines/features.h"
 #include "build/build_config.h"
 #include "chrome/browser/ui/ui_features.h"
 #include "components/content_settings/core/common/features.h"
@@ -14,7 +13,16 @@
 #include "net/base/features.h"
 #include "third_party/blink/public/common/features.h"
 
+#if BUILDFLAG(ENABLE_IPFS)
+#include "mises/components/ipfs/features.h"
+#endif
 
+#if BUILDFLAG(IS_ANDROID)
+#include "mises/browser/android/preferences/features.h"
+#include "mises/components/search_engines/features.h"
+#endif
+
+#define EXPAND_FEATURE_ENTRIES(...) __VA_ARGS__,
 
 #if BUILDFLAG(IS_ANDROID)
 #define MISES_SEARCH                                                           \
@@ -39,29 +47,19 @@
           preferences::features::kMisesBackgroundVideoPlayback),               \
   })
 
-#define MISES_SAFE_BROWSING_ANDROID                                           \
-  EXPAND_FEATURE_ENTRIES({                                                    \
-      "mises-safe-browsing",                                                  \
-      "Safe Browsing",                                                        \
-      "Enables Google Safe Browsing for determining whether a URL has been "  \
-      "marked as a known threat.",                                            \
-      kOsAndroid,                                                             \
-      FEATURE_VALUE_TYPE(safe_browsing::features::kMisesAndroidSafeBrowsing), \
-  })
 #else
 #define MISES_BACKGROUND_VIDEO_PLAYBACK_ANDROID
-#define MISES_SAFE_BROWSING_ANDROID
+
 #endif  // BUILDFLAG(IS_ANDROID)
 
 #define MISES_IPFS_FEATURE_ENTRIES                                   \
-  IF_BUILDFLAG(ENABLE_IPFS,                                          \
                EXPAND_FEATURE_ENTRIES({                              \
                    "mises-ipfs",                                     \
                    "Enable IPFS",                                    \
                    "Enable native support of IPFS.",                 \
                    kOsDesktop | kOsAndroid,                          \
                    FEATURE_VALUE_TYPE(ipfs::features::kIpfsFeature), \
-               }))
+               })
 
 
 // Keep the last item empty.
@@ -79,7 +77,6 @@
       })                                                                       \
   MISES_IPFS_FEATURE_ENTRIES                                                   \
   MISES_BACKGROUND_VIDEO_PLAYBACK_ANDROID                                      \
-  MISES_SAFE_BROWSING_ANDROID                                                  \
   MISES_SEARCH                                                                 \
   LAST_MISES_FEATURE_ENTRIES_ITEM  // Keep it as the last item.
 
@@ -94,7 +91,7 @@ namespace {
   constexpr int kOsDesktop = 0;
 
   static_assert(
-      std::initializer_list<FeatureEntry>{BRAVE_ABOUT_FLAGS_FEATURE_ENTRIES}
+      std::initializer_list<FeatureEntry>{MISES_ABOUT_FLAGS_FEATURE_ENTRIES}
           .size());
 }
 
