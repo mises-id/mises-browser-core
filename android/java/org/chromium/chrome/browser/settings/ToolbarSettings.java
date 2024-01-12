@@ -49,7 +49,7 @@ public class ToolbarSettings extends PreferenceFragmentCompat implements Prefere
         } 
         else if (PREF_BACKGROUND_VIDEO_PLAYBACK.equals(key)) {
             MisesFeatureUtil.enableFeature(
-                    MISES_BACKGROUND_VIDEO_PLAYBACK, (boolean) newValue,
+                    MISES_BACKGROUND_VIDEO_PLAYBACK_INTERNAL, (boolean) newValue,
                     false);
             shouldRelaunch = true;
         } 
@@ -78,7 +78,7 @@ public class ToolbarSettings extends PreferenceFragmentCompat implements Prefere
         if (backgroundVideoPlaybackPref != null) {
             backgroundVideoPlaybackPref.setOnPreferenceChangeListener(this);
             boolean enabled =
-                    ChromeFeatureList.isEnabled(MISES_BACKGROUND_VIDEO_PLAYBACK_INTERNAL)
+                    ChromeFeatureList.isEnabled(MISES_BACKGROUND_VIDEO_PLAYBACK)
                     || MisesPrefServiceBridge.getInstance().getBackgroundVideoPlaybackEnabled();
             backgroundVideoPlaybackPref.setChecked(enabled);
         }
