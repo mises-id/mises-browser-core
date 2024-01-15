@@ -1,6 +1,20 @@
 #include "build/build_config.h"
-#include "src/content/browser/renderer_host/render_frame_host_impl.cc"
 #if BUILDFLAG(IS_ANDROID)
+#include "content/browser/hid/hid_service.h"
+#endif
+
+#include "src/content/browser/renderer_host/render_frame_host_impl.cc"
+
+#if BUILDFLAG(IS_ANDROID)
+
+namespace content {
+    
+    void RenderFrameHostImpl::GetHidService(
+        mojo::PendingReceiver<blink::mojom::HidService> receiver) {
+    HidService::Create(this, std::move(receiver));
+    }
+}
+
 class MisesAllowInjectingJavascript {
 public:
     MisesAllowInjectingJavascript() {
