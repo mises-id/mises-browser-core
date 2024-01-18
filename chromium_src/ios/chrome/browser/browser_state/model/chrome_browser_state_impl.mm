@@ -11,23 +11,23 @@
 #include "ios/chrome/browser/policy/browser_state_policy_connector_factory.h"
 #include "ios/chrome/browser/shared/model/application_context/application_context.h"
 
-#define BrowserPolicyConnectorIOS \
-  if (false) {                    \
-  BrowserPolicyConnectorIOS
+// #define BrowserPolicyConnectorIOS \
+//   if (false) {                    \
+//   BrowserPolicyConnectorIOS
 
-#undef BuildBrowserStatePolicyConnector
-#define BuildBrowserStatePolicyConnector(ARG1, ARG2, ARG3) \
-  nullptr;                                                 \
-  }
+// #undef BuildBrowserStatePolicyConnector
+// #define BuildBrowserStatePolicyConnector(ARG1, ARG2, ARG3) \
+//   nullptr;                                                 \
+//   }
 
-#define GetPolicyConnector GetPolicyConnector_ChromiumImpl
+// #define GetPolicyConnector GetPolicyConnector_ChromiumImpl
 
 #include "src/ios/chrome/browser/browser_state/model/chrome_browser_state_impl.mm"
 
-#undef GetPolicyConnector
-#undef BuildBrowserStatePolicyConnector
-#undef BrowserPolicyConnectorIOS
+// #undef GetPolicyConnector
+// #undef BuildBrowserStatePolicyConnector
+// #undef BrowserPolicyConnectorIOS
 
-BrowserStatePolicyConnector* ChromeBrowserStateImpl::GetPolicyConnector() {
-  return nullptr;
-}
+// BrowserStatePolicyConnector* ChromeBrowserStateImpl::GetPolicyConnector() {
+//   return nullptr;
+// }
