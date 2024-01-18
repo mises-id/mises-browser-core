@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm b/ios/chr
 index 089a1af531426821d5c4652bcfbff981dec074da..4473838a3a7120b7a32cbf26eb3d72cf6129f434 100644
 --- a/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm
 +++ b/ios/chrome/browser/ui/toolbar/public/toolbar_constants.mm
-@@ -13,7 +13,7 @@ const CGFloat kNTPBackgroundColorBrightnessIncognito = 34.0 / 255.0;
+@@ -13,7 +13,7 @@
  const CGFloat kTopButtonsBottomMargin = 3.0f;
  const CGFloat kBottomButtonsTopMargin = 0.0f;
  const CGFloat kAdaptiveToolbarMargin = 10.0f;

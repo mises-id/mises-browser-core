@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm b
 index b9ae37cfd99ff54ed632d79b6a73d02606c6b9d0..74a30b8280c78675ae94b43656f362128a66faa4 100644
 --- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
 +++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_view_controller.mm
-@@ -155,7 +155,9 @@ const CGFloat kFullscreenProgressFullyExpanded = 1.0;
+@@ -155,7 +155,9 @@ - (void)viewDidLoad {
    self.view.forwardButton.guideName = kForwardButtonGuide;
    self.view.backButton.guideName = kBackButtonGuide;
    self.view.shareButton.guideName = kShareButtonGuide;
@@ -13,7 +13,7 @@ index b9ae37cfd99ff54ed632d79b6a73d02606c6b9d0..74a30b8280c78675ae94b43656f36212
    [self addLayoutGuideCenterToButtons];
  
    // Add navigation popup menu triggers.
-@@ -459,6 +461,8 @@ const CGFloat kFullscreenProgressFullyExpanded = 1.0;
+@@ -459,6 +461,8 @@ - (void)updateUIForIPHDismissed {
    self.view.openNewTabButton.iphHighlighted = NO;
    self.view.tabGridButton.iphHighlighted = NO;
    self.view.toolsMenuButton.iphHighlighted = NO;
@@ -22,7 +22,7 @@ index b9ae37cfd99ff54ed632d79b6a73d02606c6b9d0..74a30b8280c78675ae94b43656f36212
  }
  
  #pragma mark - Private
-@@ -550,6 +554,10 @@ const CGFloat kFullscreenProgressFullyExpanded = 1.0;
+@@ -550,6 +554,10 @@ - (IBAction)recordUserMetrics:(id)sender {
    } else if (sender == self.view.openNewTabButton) {
      base::RecordAction(base::UserMetricsAction("MobileToolbarNewTabShortcut"));
      base::RecordAction(base::UserMetricsAction("MobileTabNewTab"));
@@ -33,7 +33,7 @@ index b9ae37cfd99ff54ed632d79b6a73d02606c6b9d0..74a30b8280c78675ae94b43656f36212
    } else {
      NOTREACHED();
    }
-@@ -590,6 +598,8 @@ const CGFloat kFullscreenProgressFullyExpanded = 1.0;
+@@ -590,6 +598,8 @@ - (void)addLayoutGuideCenterToButtons {
    self.view.forwardButton.layoutGuideCenter = self.layoutGuideCenter;
    self.view.backButton.layoutGuideCenter = self.layoutGuideCenter;
    self.view.shareButton.layoutGuideCenter = self.layoutGuideCenter;

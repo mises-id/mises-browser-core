@@ -4,10 +4,9 @@
 
 #import "mises/ios/browser/ui/toolbar/mises_toolbar_coordinator.h"
 
-#import "ios/chrome/browser/main/browser.h"
-#import "ios/chrome/browser/ui/commands/application_commands.h"
-#import "ios/chrome/browser/ui/commands/browser_commands.h"
-#import "ios/chrome/browser/ui/commands/command_dispatcher.h"
+#import "ios/chrome/browser/shared/model/browser/browser.h"
+#import "ios/chrome/browser/shared/public/commands/application_commands.h"
+#import "ios/chrome/browser/shared/public/commands/command_dispatcher.h"
 #import "ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator+subclassing.h"
 #import "ios/chrome/browser/ui/toolbar/secondary_toolbar_view_controller.h"
 
@@ -22,7 +21,7 @@
 #include "components/image_fetcher/core/cache/image_data_store_disk.h"
 
 #include "components/image_fetcher/ios/ios_image_decoder_impl.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
 #include "base/time/default_clock.h"
 
 #include "services/network/public/cpp/shared_url_loader_factory.h"

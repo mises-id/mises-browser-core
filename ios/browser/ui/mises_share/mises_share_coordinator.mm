@@ -9,17 +9,17 @@
 #import <LinkPresentation/LinkPresentation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#import "base/mac/foundation_util.h"
+#import "base/apple/foundation_util.h"
 #include "base/metrics/user_metrics.h"
 #include "base/metrics/user_metrics_action.h"
 #include "base/strings/sys_string_conversions.h"
-#include "ios/chrome/browser/main/browser.h"
+#include "ios/chrome/browser/shared/model/browser/browser.h"
 #import "ios/chrome/browser/ui/activity_services/activity_params.h"
 #import "ios/chrome/browser/ui/activity_services/activity_scenario.h"
 #import "ios/chrome/browser/ui/activity_services/activity_service_coordinator.h"
 #import "ios/chrome/browser/ui/activity_services/requirements/activity_service_positioner.h"
 #import "ios/chrome/browser/ui/activity_services/requirements/activity_service_presentation.h"
-#import "ios/chrome/browser/ui/commands/command_dispatcher.h"
+#import "ios/chrome/browser/shared/public/commands/command_dispatcher.h"
 #import "ios/chrome/browser/ui/commands/mises_share_commands.h"
 #import "ios/chrome/common/ui/confirmation_alert/confirmation_alert_action_handler.h"
 #import "ios/chrome/common/ui/elements/popover_label_view_controller.h"
@@ -27,8 +27,8 @@
 
 #import "ios/web/public/web_state.h"
 #include "ios/chrome/browser/ui/activity_services/data/chrome_activity_item_thumbnail_generator.h"
-#import "ios/chrome/browser/web_state_list/web_state_list.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
+#import "ios/chrome/browser/shared/model/web_state_list/web_state_list.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
 
 #include "ios/chrome/grit/ios_strings.h"
 #import "ui/strings/grit/ui_strings.h"

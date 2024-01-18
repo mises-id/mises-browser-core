@@ -1,20 +1,12 @@
 #import "ios/chrome/browser/ui/popup_menu/popup_menu_coordinator.h"
-#import "ios/chrome/browser/ui/commands/popup_menu_commands.h"
-#import "ios/chrome/browser/ui/popup_menu/popup_menu_metrics_handler.h"
-//#define PopupMenuCoordinator PopupMenuCoordinatorChromium
+#import "ios/chrome/browser/shared/public/commands/popup_menu_commands.h"
 
-#define PopupMenuCommandTypeDefault \
-  (type == PopupMenuTypeMisesMenu || type == PopupMenuTypeWalletMenu) ? PopupMenuCommandTypeToolsMenu:PopupMenuCommandTypeDefault
 
-#define popupMenuTookAction showMisesMenuPopup{\
-  [self presentPopupOfType:PopupMenuTypeMisesMenu\
-      fromLayoutGuideNamed:kMisesButtonGuide];\
+#define showToolsMenuPopup showMisesMenuPopup{\
   } \
   - (void)showWalletMenuPopup {\
-    [self presentPopupOfType:PopupMenuTypeWalletMenu\
-      fromLayoutGuideNamed:kWalletButtonGuide];\
   }\
-  - (void)popupMenuTookAction
+  - (void)showToolsMenuPopup
 
 #include "src/ios/chrome/browser/ui/popup_menu/popup_menu_coordinator.mm"
 

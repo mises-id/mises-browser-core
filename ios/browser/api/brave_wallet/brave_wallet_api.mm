@@ -18,9 +18,9 @@
 #include "mises/ios/browser/brave_wallet/keyring_service_factory.h"
 #include "mises/ios/browser/brave_wallet/tx_service_factory.h"
 #include "components/grit/mises_components_resources.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state_manager.h"
-#include "ios/chrome/browser/content_settings/host_content_settings_map_factory.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state_manager.h"
+#include "ios/chrome/browser/content_settings/model/host_content_settings_map_factory.h"
 #include "ui/base/resource/resource_bundle.h"
 
 BraveWalletProviderScriptKey const BraveWalletProviderScriptKeyEthereum =

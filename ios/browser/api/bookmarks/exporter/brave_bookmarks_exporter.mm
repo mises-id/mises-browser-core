@@ -9,26 +9,27 @@
 #include <functional>
 #include <vector>
 
+#include "base/apple/foundation_util.h"
 #include "base/base_paths.h"
 #include "base/compiler_specific.h"
 #include "base/files/file_path.h"
 #include "base/functional/bind.h"
 #include "base/functional/callback_helpers.h"
-#include "base/uuid.h"
-#include "base/mac/foundation_util.h"
 #include "base/path_service.h"
 #include "base/strings/sys_string_conversions.h"
 #include "base/task/sequenced_task_runner.h"
 #include "base/task/thread_pool.h"
+#include "base/uuid.h"
 #include "base/values.h"
 #include "mises/components/l10n/common/localization_util.h"
 #include "mises/ios/browser/api/bookmarks/exporter/bookmark_html_writer.h"
 #include "mises/ios/browser/api/bookmarks/exporter/bookmarks_encoder.h"
 #include "components/bookmarks/browser/bookmark_node.h"
+#include "components/bookmarks/browser/bookmark_uuids.h"
 #include "components/strings/grit/components_strings.h"
-#include "ios/chrome/browser/application_context/application_context.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state_manager.h"
+#include "ios/chrome/browser/shared/model/application_context/application_context.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state_manager.h"
 #include "ios/web/public/thread/web_task_traits.h"
 #include "ios/web/public/thread/web_thread.h"
 #import "net/base/mac/url_conversions.h"
@@ -102,7 +103,7 @@ void BraveBookmarksExportObserver::OnExportFinished(Result result) {
         DCHECK(GetApplicationContext());
 
         base::FilePath destination_file_path =
-            base::mac::NSStringToFilePath(filePath);
+            base::apple::NSStringToFilePath(filePath);
 
         listener(BraveBookmarksExporterStateStarted);
 
@@ -147,7 +148,7 @@ void BraveBookmarksExportObserver::OnExportFinished(Result result) {
 
         listener(BraveBookmarksExporterStateStarted);
         base::FilePath destination_file_path =
-            base::mac::NSStringToFilePath(filePath);
+            base::apple::NSStringToFilePath(filePath);
 
         // Create artificial nodes
         auto bookmark_bar_node = [exporter getBookmarksBarNode];
@@ -178,15 +179,12 @@ void BraveBookmarksExportObserver::OnExportFinished(Result result) {
 
 - (std::unique_ptr<bookmarks::BookmarkNode>)getRootNode {
   return std::make_unique<bookmarks::BookmarkNode>(
-      /*id=*/0,
-      base::GUID::ParseLowercase(bookmarks::BookmarkNode::kRootNodeGuid),
-      GURL());
+      /*id=*/0, base::Uuid::ParseLowercase(bookmarks::kRootNodeUuid), GURL());
 }
 
 - (std::unique_ptr<bookmarks::BookmarkNode>)getBookmarksBarNode {
   auto node = std::make_unique<bookmarks::BookmarkNode>(
-      /*id=*/1,
-      base::GUID::ParseLowercase(bookmarks::BookmarkNode::kBookmarkBarNodeGuid),
+      /*id=*/1, base::Uuid::ParseLowercase(bookmarks::kBookmarkBarNodeUuid),
       GURL());
   node->SetTitle(brave_l10n::GetLocalizedResourceUTF16String(
       IDS_BOOKMARK_BAR_FOLDER_NAME));
@@ -195,9 +193,7 @@ void BraveBookmarksExportObserver::OnExportFinished(Result result) {
 
 - (std::unique_ptr<bookmarks::BookmarkNode>)getOtherBookmarksNode {
   auto node = std::make_unique<bookmarks::BookmarkNode>(
-      /*id=*/2,
-      base::GUID::ParseLowercase(
-          bookmarks::BookmarkNode::kOtherBookmarksNodeGuid),
+      /*id=*/2, base::Uuid::ParseLowercase(bookmarks::kOtherBookmarksNodeUuid),
       GURL());
   node->SetTitle(brave_l10n::GetLocalizedResourceUTF16String(
       IDS_BOOKMARK_BAR_OTHER_FOLDER_NAME));
@@ -206,9 +202,7 @@ void BraveBookmarksExportObserver::OnExportFinished(Result result) {
 
 - (std::unique_ptr<bookmarks::BookmarkNode>)getMobileBookmarksNode {
   auto node = std::make_unique<bookmarks::BookmarkNode>(
-      /*id=*/3,
-      base::GUID::ParseLowercase(
-          bookmarks::BookmarkNode::kMobileBookmarksNodeGuid),
+      /*id=*/3, base::Uuid::ParseLowercase(bookmarks::kMobileBookmarksNodeUuid),
       GURL());
   node->SetTitle(brave_l10n::GetLocalizedResourceUTF16String(
       IDS_BOOKMARK_BAR_MOBILE_FOLDER_NAME));

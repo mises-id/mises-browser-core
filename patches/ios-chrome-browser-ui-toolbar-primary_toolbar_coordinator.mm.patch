@@ -11,7 +11,7 @@ index 3ba8dc900fa968c3f83e13c88c21b70321c3a197..923b1fb5392a73ed113a873a22a6b199
  @interface PrimaryToolbarCoordinator ()
  
  // Whether the coordinator is started.
-@@ -31,6 +33,8 @@
+@@ -31,6 +33,8 @@ @interface PrimaryToolbarCoordinator ()
  // Redefined as PrimaryToolbarViewController.
  @property(nonatomic, strong) PrimaryToolbarViewController* viewController;
  
@@ -20,7 +20,7 @@ index 3ba8dc900fa968c3f83e13c88c21b70321c3a197..923b1fb5392a73ed113a873a22a6b199
  @end
  
  @implementation PrimaryToolbarCoordinator
-@@ -61,6 +65,11 @@
+@@ -61,6 +65,11 @@ - (void)start {
    self.viewController.buttonFactory =
        [self buttonFactoryWithType:ToolbarType::kPrimary];
  
@@ -32,7 +32,7 @@ index 3ba8dc900fa968c3f83e13c88c21b70321c3a197..923b1fb5392a73ed113a873a22a6b199
    [super start];
    self.started = YES;
  }
-@@ -90,4 +99,10 @@
+@@ -90,4 +99,10 @@ - (void)triggerToolbarSlideInAnimation {
    [self.viewController triggerToolbarSlideInAnimationFromBelow:NO];
  }
  

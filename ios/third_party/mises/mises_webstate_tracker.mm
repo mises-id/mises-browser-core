@@ -7,14 +7,14 @@
 
 #include "base/functional/bind.h"
 #include "base/memory/ptr_util.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
 #include "ios/web/navigation/navigation_manager_impl.h"
 #include "ios/web/public/browser_state.h"
 #include "ios/web/public/navigation/navigation_item.h"
 #include "ios/web/public/thread/web_thread.h"
 #import "ios/web/web_state/web_state_impl.h"
 #include "ios/web/web_state/ui/crw_web_controller.h"
-#include "ios/chrome/browser/url/chrome_url_constants.h"
+#include "ios/chrome/browser/shared/model/url/chrome_url_constants.h"
 
 #include "mises/ios/buildflags.h"
 #if !BUILDFLAG(MISES_CORE_FRAMEWORK)

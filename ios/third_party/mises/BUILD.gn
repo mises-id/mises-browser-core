@@ -41,7 +41,6 @@ swift_source_set("mises_swift") {
     public_configs = [
       ":config",
       ":mises_config",
-      "//build/config/compiler:enable_arc",
       "//build/config/compiler:enable_legacy_dispatch",
     ]
     configs += [ ":mises_swift_config" ]
@@ -78,8 +77,6 @@ source_set("mises") {
   public_configs = [
     ":config",
     ":mises_config",
-      
-   "//build/config/compiler:enable_arc",
    "//build/config/compiler:enable_legacy_dispatch",
   ]
    
@@ -103,7 +100,6 @@ source_set("mises") {
     "//ios/web/public",
     "//ios/web/js_messaging",
     "//ios/web/public/js_messaging",
-    "//ios/chrome/browser/ui/commands",
     "//base/third_party/double_conversion",
   ]
 }

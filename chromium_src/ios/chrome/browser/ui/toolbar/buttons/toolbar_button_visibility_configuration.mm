@@ -10,18 +10,18 @@
 
  - (ToolbarComponentVisibility)tabGridButtonVisibility {
    switch (self.type) {
-     case PRIMARY:
+     case ToolbarType::kPrimary:
       return ToolbarComponentVisibilityAlways;
-     case SECONDARY:
+     case ToolbarType::kSecondary:
       return ToolbarComponentVisibilityNone;
    }
  }
  
  - (ToolbarComponentVisibility)toolsMenuButtonVisibility {
    switch (self.type) {
-     case PRIMARY:
+     case ToolbarType::kPrimary:
       return ToolbarComponentVisibilityAlways;
-     case SECONDARY:
+     case ToolbarType::kSecondary:
       return ToolbarComponentVisibilityNone;
    }
  }
@@ -29,18 +29,18 @@
 
 - (ToolbarComponentVisibility)misesButtonVisibility {
   switch (self.type) {
-    case PRIMARY:
+    case ToolbarType::kPrimary:
       return ToolbarComponentVisibilityAlways;
-    case SECONDARY:
+    case ToolbarType::kSecondary:
       return ToolbarComponentVisibilityNone;
   }
 }
 
 - (ToolbarComponentVisibility)walletButtonVisibility {
   switch (self.type) {
-    case PRIMARY:
+    case ToolbarType::kPrimary:
       return ToolbarComponentVisibilityAlways;
-    case SECONDARY:
+    case ToolbarType::kSecondary:
       return ToolbarComponentVisibilityNone;
   }
 }

@@ -4,8 +4,10 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "mises/ios/browser/api/certificate/utils/brave_certificate_x509_utils.h"
+
+#include <string_view>
+
 #include "base/memory/ref_counted.h"
-#include "base/strings/string_piece.h"
 #include "base/time/time.h"
 #include "net/base/net_export.h"
 #include "net/cert/ct_objects_extractor.h"
@@ -14,7 +16,7 @@
 #include "net/cert/pki/parse_certificate.h"
 #include "net/cert/pki/signature_algorithm.h"
 #include "net/cert/signed_certificate_timestamp.h"
-#include "net/der/encode_values.h"
+#include "net/cert/time_conversions.h"
 #include "net/der/input.h"
 #include "net/der/parse_values.h"
 #include "net/der/parser.h"
@@ -57,7 +59,7 @@ bool ExtractEmbeddedSCT(
     return false;
   }
 
-  std::vector<base::StringPiece> parsed_scts;
+  std::vector<std::string_view> parsed_scts;
   if (!net::ct::DecodeSCTList(sct_list, &parsed_scts)) {
     return false;
   }
@@ -323,7 +325,7 @@ std::string SignatureAlgorithmIdToName(
 base::Time GeneralizedTimeToTime(
     const net::der::GeneralizedTime& generalized_time) {
   base::Time time;
-  net::der::GeneralizedTimeToTime(generalized_time, &time);
+  net::GeneralizedTimeToTime(generalized_time, &time);
   return time;
 }
 }  // namespace x509_utils

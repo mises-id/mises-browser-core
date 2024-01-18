@@ -42,7 +42,7 @@ MisesWebClient::~MisesWebClient() {
 
 NSString* MisesWebClient::GetDocumentStartScriptForAllFrames(
     BrowserState* browser_state) const {
-  NSString* parent = ChromeWebClient::GetDocumentStartScriptForAllFrames(browser_state);
+  NSString* parent = @"";
   NSMutableArray* scripts = [NSMutableArray array];
   [scripts addObject:parent];
 
@@ -68,7 +68,7 @@ NSString* GenMessageHandlerScript(NSString* handlerName) {
 
 NSString* MisesWebClient::GetDocumentStartScriptForMainFrame(
     BrowserState* browser_state) const {
-  NSString* parent = ChromeWebClient::GetDocumentStartScriptForMainFrame(browser_state);
+  NSString* parent = @"";
   NSMutableArray* scripts = [NSMutableArray array];
   [scripts addObject:parent];
 

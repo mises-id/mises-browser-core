@@ -3,7 +3,7 @@
 #define ReactAppDelegate_h
 
 #import <React/RCTBridgeDelegate.h>
-#import "ios/chrome/browser/ui/commands/browser_commands.h"
+#import "ios/chrome/browser/shared/public/commands/browser_commands.h"
 
 #define WALLET_METAMASK  @"metamask"
 #define WALLET_MISES  @"mises-wallet"
@@ -48,7 +48,7 @@ enum MisesUIViewPendingStatus {
 
 @property (nonatomic, strong) NSPointerArray *webViewArray;
 
-@property(nonatomic, weak) id<BrowserCommands> browserHandler;
+@property(nonatomic, weak) UIViewController* browserHandler;
 
 @property (atomic) MisesUIViewPendingStatus pendingStatus;
 @property (atomic) MisesUIViewWalletType walletType;

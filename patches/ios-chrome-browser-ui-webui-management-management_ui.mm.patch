@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/webui/management/management_ui.mm b/ios/chrom
 index 1262c5e9450aa10050a370a1095985f0cefebfa8..cff639ab10e1f9912c87e1d1793c6b08df2e0715 100644
 --- a/ios/chrome/browser/ui/webui/management/management_ui.mm
 +++ b/ios/chrome/browser/ui/webui/management/management_ui.mm
-@@ -42,6 +42,8 @@ namespace {
+@@ -42,6 +42,8 @@
  // if the domain cannot be retrieved (eg. because there are no machine level
  // policies).
  absl::optional<std::string> GetMachineLevelPolicyDomain() {

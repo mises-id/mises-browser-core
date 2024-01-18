@@ -10,7 +10,7 @@ index 3cfab9037943f2ab6cedb3bc8e5c2baa5e84d6e8..871b3be202586efcb444c7a38b8463c9
  
  namespace {
  
-@@ -97,6 +98,7 @@ signin::Tribool IsFirstSessionAfterDeviceRestore() {
+@@ -97,6 +98,7 @@ CGSize GetSizeForIdentityAvatarSize(IdentityAvatarSize avatar_size) {
        signin::Tribool::kUnknown;
    static dispatch_once_t once;
    dispatch_once(&once, ^{

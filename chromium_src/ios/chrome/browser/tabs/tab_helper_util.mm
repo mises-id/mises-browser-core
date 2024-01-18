@@ -10,7 +10,6 @@
 
 #import "base/feature_list.h"
 #import "components/autofill/ios/form_util/unique_id_data_tab_helper.h"
-#import "components/breadcrumbs/core/features.h"
 #import "components/commerce/ios/browser/commerce_tab_helper.h"
 #import "components/favicon/core/favicon_service.h"
 #import "components/favicon/ios/web_favicon_driver.h"
@@ -26,12 +25,12 @@
 #import "ios/chrome/browser/app_launcher/app_launcher_tab_helper.h"
 #import "ios/chrome/browser/autofill/autofill_tab_helper.h"
 #import "ios/chrome/browser/autofill/form_suggestion_tab_helper.h"
-#import "ios/chrome/browser/browser_state/chrome_browser_state.h"
-#import "ios/chrome/browser/commerce/price_alert_util.h"
-#import "ios/chrome/browser/commerce/price_notifications/price_notifications_tab_helper.h"
-#import "ios/chrome/browser/commerce/push_notification/push_notification_feature.h"
-#import "ios/chrome/browser/commerce/shopping_persisted_data_tab_helper.h"
-#import "ios/chrome/browser/commerce/shopping_service_factory.h"
+#import "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
+#import "ios/chrome/browser/commerce/modelprice_alert_util.h"
+#import "ios/chrome/browser/commerce/modelprice_notifications/price_notifications_tab_helper.h"
+#import "ios/chrome/browser/commerce/modelpush_notification/push_notification_feature.h"
+#import "ios/chrome/browser/commerce/modelshopping_persisted_data_tab_helper.h"
+#import "ios/chrome/browser/commerce/model/shopping_service_factory.h"
 #import "ios/chrome/browser/complex_tasks/ios_task_tab_helper.h"
 #import "ios/chrome/browser/crash_report/breadcrumbs/breadcrumb_manager_tab_helper.h"
 #import "ios/chrome/browser/download/ar_quick_look_tab_helper.h"
@@ -79,9 +78,8 @@
 #import "ios/chrome/browser/sessions/ios_chrome_session_tab_helper.h"
 #import "ios/chrome/browser/snapshots/snapshot_tab_helper.h"
 #import "ios/chrome/browser/ssl/captive_portal_tab_helper.h"
-#import "ios/chrome/browser/sync/ios_chrome_synced_tab_delegate.h"
+#import "ios/chrome/browser/sync/model/ios_chrome_synced_tab_delegate.h"
 #import "ios/chrome/browser/translate/chrome_ios_translate_client.h"
-#import "ios/chrome/browser/ui/ui_feature_flags.h"
 #import "ios/chrome/browser/voice/voice_search_navigations_tab_helper.h"
 #import "ios/chrome/browser/web/annotations/annotations_tab_helper.h"
 #import "ios/chrome/browser/web/blocked_popup_tab_helper.h"
@@ -160,7 +158,7 @@ void AttachTabHelpers(web::WebState* web_state, bool for_prerender) {
     FontSizeTabHelper::CreateForWebState(web_state);
   }
 
-  if (base::FeatureList::IsEnabled(breadcrumbs::kLogBreadcrumbs)) {
+  if (breadcrumbs::IsEnabled()) {
     BreadcrumbManagerTabHelper::CreateForWebState(web_state);
   }
 

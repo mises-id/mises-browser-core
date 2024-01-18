@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee0e58c82e 100644
+index b4d94d4e97946088ad8de727af8acac6024ca454..7223155ad7c609a35a9bc33513c64587e1ea3515 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -121,6 +121,9 @@
@@ -12,7 +12,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
  namespace {
  
  using credential_provider_promo::IOSCredentialProviderPromoAction;
-@@ -132,7 +135,9 @@ constexpr base::TimeDelta kSafetyCheckRunThreshold = base::Hours(24);
+@@ -132,7 +135,9 @@
  
  // Maximum number of most visited tiles fetched.
  const NSInteger kMaxNumMostVisitedTiles = 4;
@@ -23,7 +23,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
  // Checks the last action the user took on the Credential Provider Promo to
  // determine if it was dismissed.
  bool CredentialProviderPromoDismissed(PrefService* local_state) {
-@@ -160,6 +165,9 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -160,6 +165,9 @@ @interface ContentSuggestionsMediator () <AppStateObserver,
    std::unique_ptr<ReadingListModelBridge> _readingListModelBridge;
    std::unique_ptr<synced_sessions::SyncedSessionsObserverBridge>
        _syncedSessionsObserver;
@@ -33,7 +33,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
  }
  
  // Whether the contents section should be hidden completely.
-@@ -223,6 +231,16 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -223,6 +231,16 @@ @interface ContentSuggestionsMediator () <AppStateObserver,
  // For testing-only
  @property(nonatomic, assign) BOOL hasReceivedMagicStackResponse;
  
@@ -50,7 +50,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
  @end
  
  @implementation ContentSuggestionsMediator {
-@@ -293,6 +311,7 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -293,6 +311,7 @@ @implementation ContentSuggestionsMediator {
      _faviconMediator = [[ContentSuggestionsFaviconMediator alloc]
          initWithLargeIconService:largeIconService
                    largeIconCache:largeIconCache];
@@ -58,7 +58,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
  
      _logoSectionInfo = LogoSectionInformation();
      _mostVisitedSectionInfo = MostVisitedSectionInformation();
-@@ -400,6 +419,14 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -400,6 +419,14 @@ @implementation ContentSuggestionsMediator {
          safetyCheckManager->StartSafetyCheck();
        }
      }
@@ -73,7 +73,20 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
    }
  
    return self;
-@@ -1017,9 +1044,10 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -868,6 +895,12 @@ - (void)onIconMadeAvailable:(const GURL&)siteURL {
+       return;
+     }
+   }
++  for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
++    if (item.URL == siteURL) {
++      [self.faviconMediator fetchFaviconForMostVisited:item];
++      return;
++    }
++  }
+ }
+ 
+ #pragma mark - SceneStateObserver
+@@ -1017,9 +1050,10 @@ - (void)configureConsumer {
      [self.consumer
          showReturnToRecentTabTileWithConfig:self.returnToRecentTabItem];
    }
@@ -86,7 +99,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
    if ([self shouldShowSetUpList]) {
      self.setUpList.delegate = self;
      NSArray<SetUpListItemViewData*>* items = [self setUpListItems];
-@@ -1100,7 +1128,8 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -1100,7 +1134,8 @@ - (void)useFreshMostVisited {
    }
  
    self.mostVisitedItems = self.freshMostVisitedItems;
@@ -96,20 +109,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
    [self.delegate contentSuggestionsWasUpdated];
  }
  
-@@ -1409,6 +1438,12 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
-       }
-     }
-   }
-+  for (ContentSuggestionsMostVisitedItem* item in self.misesWeb3siteItems) {
-+    if (item.URL == siteURL) {
-+      [self.faviconMediator fetchFaviconForMostVisited:item];
-+      return;
-+    }
-+  }
- }
- 
- // Adds the Safety Check module to `order` based on the current Safety Check
-@@ -1726,6 +1761,9 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -1726,6 +1761,9 @@ - (void)setCommandHandler:
    for (ContentSuggestionsMostVisitedItem* item in self.freshMostVisitedItems) {
      item.commandHandler = commandHandler;
    }
@@ -119,7 +119,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
  }
  
  - (void)setContentSuggestionsMetricsRecorder:
-@@ -1881,4 +1919,143 @@ bool CredentialProviderPromoDismissed(PrefService* local_state) {
+@@ -1881,4 +1919,144 @@ - (void)onServiceStatusChanged {
    }
  }
  
@@ -135,7 +135,6 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
 +        dispatch_async(dispatch_get_main_queue(), ^{
 +            [mediator handleWeb3SitesResponse:gWeb3SitesCache];
 +            [mediator reloadAllData];
-+            //[self.feedDelegate contentSuggestionsWasUpdated];
 +        });
 +        return;
 +    }
@@ -152,7 +151,6 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
 +        dispatch_async(dispatch_get_main_queue(), ^{
 +            [mediator handleWeb3SitesResponse:stringData];
 +            [mediator reloadAllData];
-+            //[self.feedDelegate contentSuggestionsWasUpdated];
 +        });
 +
 +    }];
@@ -246,6 +244,9 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..57dc4be4443c2771f2c5711b446b70ee
 +    _misesFeatureVisible = !_misesFeatureVisible;
 +    [[NSUserDefaults standardUserDefaults] setBool:!_misesFeatureVisible forKey:kHideMisesService];
 +    [self reloadAllData];
++
++}
++- (void)reloadAllData {
 +
 +}
 +

@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/browser_view/browser_coordinator.mm b/ios/chr
 index d7fb4f0d11b477f82b4595ddbf8bd5504be32e33..1a825cf876251291d27f909d8ab193e67a2e1ef3 100644
 --- a/ios/chrome/browser/ui/browser_view/browser_coordinator.mm
 +++ b/ios/chrome/browser/ui/browser_view/browser_coordinator.mm
-@@ -457,7 +457,7 @@ enum class ToolbarKind {
+@@ -457,7 +457,7 @@ @interface BrowserCoordinator () <
      SafariDownloadCoordinator* SafariDownloadCoordinator;
  
  // Coordinator for Safe Browsing.
@@ -11,7 +11,7 @@ index d7fb4f0d11b477f82b4595ddbf8bd5504be32e33..1a825cf876251291d27f909d8ab193e6
  
  // Coordinator for sharing scenarios.
  @property(nonatomic, strong) SharingCoordinator* sharingCoordinator;
-@@ -1209,10 +1209,10 @@ enum class ToolbarKind {
+@@ -1209,10 +1209,10 @@ - (void)startChildCoordinators {
  
    /* SharingCoordinator is created and started by an ActivityServiceCommand */
  
@@ -26,7 +26,7 @@ index d7fb4f0d11b477f82b4595ddbf8bd5504be32e33..1a825cf876251291d27f909d8ab193e6
  
    self.textFragmentsCoordinator = [[TextFragmentsCoordinator alloc]
        initWithBaseViewController:self.viewController
-@@ -1337,8 +1337,8 @@ enum class ToolbarKind {
+@@ -1337,8 +1337,8 @@ - (void)stopChildCoordinators {
    [self.sadTabCoordinator disconnect];
    self.sadTabCoordinator = nil;
  

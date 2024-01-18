@@ -9,12 +9,14 @@
 #include <memory>
 #include <vector>
 
+#import "base/apple/foundation_util.h"
 #include "base/base64.h"
 #include "base/containers/span.h"
 #include "base/functional/bind.h"
 #include "base/logging.h"
 #include "base/memory/ref_counted.h"
 #include "base/memory/scoped_refptr.h"
+#import "base/notreached.h"
 #include "base/strings/sys_string_conversions.h"
 
 #include "net/base/host_port_pair.h"
@@ -65,16 +67,17 @@ namespace {
 }
 
 + (NSString*)pemEncodeCertificate:(SecCertificateRef)certificate {
-  base::ScopedCFTypeRef<CFDataRef> cert_data =
-      base::ScopedCFTypeRef<CFDataRef>(SecCertificateCopyData(certificate));
+  base::apple::ScopedCFTypeRef<CFDataRef> cert_data =
+      base::apple::ScopedCFTypeRef<CFDataRef>(
+          SecCertificateCopyData(certificate));
   if (!cert_data) {
     return nil;
   }
 
   bssl::UniquePtr<CRYPTO_BUFFER> cert_buffer(
-      net::X509Certificate::CreateCertBufferFromBytes(base::make_span(
-          CFDataGetBytePtr(cert_data),
-          base::checked_cast<size_t>(CFDataGetLength(cert_data)))));
+      net::x509_util::CreateCryptoBuffer(base::make_span(
+          CFDataGetBytePtr(cert_data.get()),
+          base::checked_cast<size_t>(CFDataGetLength(cert_data.get())))));
 
   if (!cert_buffer) {
     return nil;
@@ -90,16 +93,17 @@ namespace {
 }
 
 + (NSData*)hashCertificateSPKI:(SecCertificateRef)certificate {
-  base::ScopedCFTypeRef<CFDataRef> cert_data =
-      base::ScopedCFTypeRef<CFDataRef>(SecCertificateCopyData(certificate));
+  base::apple::ScopedCFTypeRef<CFDataRef> cert_data =
+      base::apple::ScopedCFTypeRef<CFDataRef>(
+          SecCertificateCopyData(certificate));
   if (!cert_data) {
     return nil;
   }
 
   bssl::UniquePtr<CRYPTO_BUFFER> cert_buffer(
-      net::X509Certificate::CreateCertBufferFromBytes(base::make_span(
-          CFDataGetBytePtr(cert_data),
-          base::checked_cast<size_t>(CFDataGetLength(cert_data)))));
+      net::x509_util::CreateCryptoBuffer(base::make_span(
+          CFDataGetBytePtr(cert_data.get()),
+          base::checked_cast<size_t>(CFDataGetLength(cert_data.get())))));
 
   if (!cert_buffer) {
     return nil;
@@ -141,16 +145,22 @@ namespace {
       return nullptr;
     }
 
-    std::vector<base::ScopedCFTypeRef<SecCertificateRef>> intermediates;
-    for (CFIndex i = 1; i < cert_count; ++i) {
-      intermediates.emplace_back(SecTrustGetCertificateAtIndex(trust, i),
-                                 base::scoped_policy::RETAIN);
-    }
+    std::vector<base::apple::ScopedCFTypeRef<SecCertificateRef>> intermediates;
 
+    base::apple::ScopedCFTypeRef<CFArrayRef> certificateChain(
+        SecTrustCopyCertificateChain(trust));
+    for (CFIndex i = 1; i < cert_count; i++) {
+      SecCertificateRef secCertificate =
+          base::apple::CFCastStrict<SecCertificateRef>(
+              CFArrayGetValueAtIndex(certificateChain.get(), i));
+      intermediates.emplace_back(secCertificate, base::scoped_policy::RETAIN);
+    }
+    SecCertificateRef secCertificate =
+        base::apple::CFCastStrict<SecCertificateRef>(
+            CFArrayGetValueAtIndex(certificateChain.get(), 0));
     return net::x509_util::CreateX509CertificateFromSecCertificate(
-        /*root_cert=*/base::ScopedCFTypeRef<SecCertificateRef>(
-            SecTrustGetCertificateAtIndex(trust, 0),
-            base::scoped_policy::RETAIN),
+        base::apple::ScopedCFTypeRef<SecCertificateRef>(
+            secCertificate, base::scoped_policy::RETAIN),
         intermediates);
   };
 
@@ -161,14 +171,13 @@ namespace {
 
   // Validate the chain of Trust
   net::CertVerifyResult verify_result;
-  scoped_refptr<net::CRLSet> crl_set = net::CRLSet::BuiltinCRLSet();
   scoped_refptr<net::CertVerifyProc> verifier =
-      base::MakeRefCounted<net::CertVerifyProcIOS>();
+      base::MakeRefCounted<net::CertVerifyProcIOS>(
+          net::CRLSet::BuiltinCRLSet());
   verifier->Verify(cert.get(), base::SysNSStringToUTF8(host),
                    /*ocsp_response=*/std::string(),
                    /*sct_list=*/std::string(),
                    /*flags=*/0,
-                   /*crl_set=*/crl_set.get(),
                    /*additional_trust_anchors=*/net::CertificateList(),
                    &verify_result, net::NetLogWithSource());
 

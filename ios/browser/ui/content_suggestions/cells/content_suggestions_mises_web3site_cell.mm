@@ -23,7 +23,7 @@
 
 @end
 
-@implementation ContentSuggestionsMisesWeb3siteCell : MDCCollectionViewCell
+@implementation ContentSuggestionsMisesWeb3siteCell : UIView
 
 #pragma mark - Public
 

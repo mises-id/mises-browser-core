@@ -20,12 +20,12 @@
 #include "components/variations/variations_ids_provider.h"
 #include "components/variations/variations_switches.h"
 #import "components/variations/variations_crash_keys.h"
-#include "ios/chrome/browser/application_context/application_context_impl.h"
-#include "ios/chrome/browser/browser_state/browser_state_keyed_service_factories.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state_manager.h"
+#include "ios/chrome/browser/application_context/model/application_context_impl.h"
+#include "ios/chrome/browser/browser_state/model/browser_state_keyed_service_factories.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state_manager.h"
 #include "ios/chrome/browser/flags/about_flags.h"
-#include "ios/chrome/browser/paths/paths.h"
+#include "ios/chrome/browser/shared/model/paths/paths.h"
 #include "ios/web/public/thread/web_task_traits.h"
 #include "ios/web/public/thread/web_thread.h"
 #include "ui/base/l10n/l10n_util_mac.h"
@@ -55,7 +55,7 @@ void BraveWebMainParts::PreCreateMainMessageLoop() {
       resources_pack_path, ui::k100Percent);
 
   base::FilePath brave_pack_path;
-  base::PathService::Get(base::DIR_MODULE, &brave_pack_path);
+  base::PathService::Get(base::DIR_ASSETS, &brave_pack_path);
   brave_pack_path = brave_pack_path.AppendASCII("mises_resources.pak");
   ui::ResourceBundle::GetSharedInstance().AddDataPackFromPath(
       brave_pack_path, ui::kScaleFactorNone);
@@ -95,16 +95,6 @@ void BraveWebMainParts::PreCreateThreads() {
   //                              ::kNumExpiredHistograms);
 
   application_context_->PreCreateThreads();
-}
-
-void BraveWebMainParts::SetupMetrics() {
-  metrics::MetricsService* metrics = application_context_->GetMetricsService();
-  metrics->GetSyntheticTrialRegistry()->AddSyntheticTrialObserver(
-      variations::VariationsIdsProvider::GetInstance());
-  metrics->GetSyntheticTrialRegistry()->AddSyntheticTrialObserver(
-      variations::SyntheticTrialsActiveGroupIdProvider::GetInstance());
-  // Now that field trials have been created, initializes metrics recording.
-  metrics->InitializeMetricsRecordingState();
 }
 
 void BraveWebMainParts::SetupFieldTrials() {
@@ -154,11 +144,6 @@ void BraveWebMainParts::PreMainMessageLoopRun() {
   [[maybe_unused]] ChromeBrowserState* last_used_browser_state =
       browser_state_manager->GetLastUsedBrowserState();
 
-  // This must occur at PreMainMessageLoopRun because `SetupMetrics()` uses the
-  // blocking pool, which is disabled until the CreateThreads phase of startup.
-  // TODO(crbug.com/786494): Investigate whether metrics recording can be
-  // initialized consistently across iOS and non-iOS platforms
-  SetupMetrics();
 }
 
 void BraveWebMainParts::PostMainMessageLoopRun() {

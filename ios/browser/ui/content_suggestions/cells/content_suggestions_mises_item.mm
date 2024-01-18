@@ -5,9 +5,10 @@
 #import "mises/ios/browser/ui/content_suggestions/cells/content_suggestions_mises_item.h"
 
 //#import <MaterialComponents/MaterialTypography.h>
+#import <MaterialComponents/M3CButton.h>
 
 #include "base/check_op.h"
-#import "ios/chrome/browser/ui/util/uikit_ui_util.h"
+#import "ios/chrome/browser/shared/ui/util/uikit_ui_util.h"
 #include "ios/chrome/common/string_util.h"
 #import "ios/chrome/common/ui/colors/semantic_color_names.h"
 #import "ios/chrome/common/ui/util/constraints_ui_util.h"

@@ -1,5 +1,5 @@
 diff --git a/ios/web/web_state/ui/wk_web_view_configuration_provider.mm b/ios/web/web_state/ui/wk_web_view_configuration_provider.mm
-index dcc2fe89d4e0b272b226424f3fc48f7f58976e3c..ea36475a849d9f46c279b159a1752027419fa654 100644
+index dcc2fe89d4e0b272b226424f3fc48f7f58976e3c..b924cb43b9b73946f8a6e1064df36488603b3412 100644
 --- a/ios/web/web_state/ui/wk_web_view_configuration_provider.mm
 +++ b/ios/web/web_state/ui/wk_web_view_configuration_provider.mm
 @@ -24,6 +24,7 @@
@@ -10,12 +10,12 @@ index dcc2fe89d4e0b272b226424f3fc48f7f58976e3c..ea36475a849d9f46c279b159a1752027
  
  namespace web {
  
-@@ -188,6 +189,8 @@ void WKWebViewConfigurationProvider::UpdateScripts() {
+@@ -188,6 +189,8 @@
    }
    SessionRestoreJavaScriptFeature::FromBrowserState(browser_state_)
        ->ConfigureHandlers(user_content_controller);
 +  MisesJavaScriptFeature::FromBrowserState(browser_state_)
-+      ->ConfigureHandlers(userContentController);
++      ->ConfigureHandlers(user_content_controller);
  }
  
  void WKWebViewConfigurationProvider::Purge() {

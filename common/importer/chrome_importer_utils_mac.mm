@@ -8,7 +8,7 @@
 #include "mises/common/importer/chrome_importer_utils.h"
 
 #include "base/files/file_util.h"
-#include "base/mac/foundation_util.h"
+#include "base/apple/foundation_util.h"
 
 base::FilePath GetChromeUserDataFolder() {
   base::FilePath result = base::mac::GetUserLibraryPath();

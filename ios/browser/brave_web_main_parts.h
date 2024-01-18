@@ -26,7 +26,6 @@ class BraveWebMainParts : public web::WebMainParts {
   ~BraveWebMainParts() override;
 
  private:
-  void SetupMetrics();
   // web::WebMainParts implementation.
   void PreCreateMainMessageLoop() override;
   void PreCreateThreads() override;

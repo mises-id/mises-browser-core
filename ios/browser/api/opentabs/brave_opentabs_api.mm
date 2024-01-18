@@ -9,11 +9,11 @@
 
 #include "base/strings/sys_string_conversions.h"
 #include "base/strings/utf_string_conversions.h"
-#include "components/sync/driver/sync_service.h"
+#include "components/sync/service/sync_service.h"
 #include "components/sync_device_info/device_info.h"
 #include "components/sync_sessions/open_tabs_ui_delegate.h"
 #include "components/sync_sessions/session_sync_service.h"
-#include "ios/chrome/browser/ui/recent_tabs/synced_sessions.h"
+#include "ios/chrome/browser/synced_sessions/model/synced_sessions.h"
 #include "net/base/mac/url_conversions.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
