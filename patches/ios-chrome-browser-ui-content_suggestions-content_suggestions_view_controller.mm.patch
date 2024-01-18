@@ -1,0 +1,70 @@
+diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
+index 9535511516910d2cd289ff085045b8d0b92ec0ac..302bab7173be06320a9eb107baea74a3b546e14a 100644
+--- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
++++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_view_controller.mm
+@@ -163,6 +163,8 @@ @interface ContentSuggestionsViewController () <
+ @property(nonatomic, strong)
+     MagicStackModuleContainer* safetyCheckModuleContainer;
+ 
++MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_PROP
++
+ @end
+ 
+ @implementation ContentSuggestionsViewController {
+@@ -193,6 +195,7 @@ - (instancetype)init {
+ 
+ - (void)viewDidLoad {
+   [super viewDidLoad];
++  MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_INIT
+ 
+   self.dragDropHandler = [[URLDragDropHandler alloc] init];
+   self.dragDropHandler.dropDelegate = self;
+@@ -390,6 +393,7 @@ - (void)setMostVisitedTilesWithConfigs:
+   } else {
+     self.mostVisitedViews = [NSMutableArray array];
+   }
++  MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_CONFIG
+ 
+   if ([configs count] == 0) {
+     // No Most Visited Tiles to show. Remove module.
+@@ -785,8 +789,7 @@ - (CGFloat)contentSuggestionsHeight {
+   CGFloat height = 0;
+   if ([self.mostVisitedViews count] > 0 &&
+       !ShouldPutMostVisitedSitesInMagicStack()) {
+-    height += MostVisitedCellSize(
+-                  UIApplication.sharedApplication.preferredContentSizeCategory)
++    height += MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_SIZE
+                   .height +
+               kMostVisitedBottomMargin;
+   }
+@@ -1091,8 +1094,8 @@ - (void)createAndInsertMostVisitedModule {
+   CGFloat horizontalSpacing =
+       ContentSuggestionsTilesHorizontalSpacing(self.traitCollection);
+   self.mostVisitedStackView = [[UIStackView alloc] init];
+-  self.mostVisitedStackView.axis = UILayoutConstraintAxisHorizontal;
+-  self.mostVisitedStackView.distribution = UIStackViewDistributionFillEqually;
++  self.mostVisitedStackView.axis = UILayoutConstraintAxisVertical;
++  //self.mostVisitedStackView.distribution = UIStackViewDistributionFillEqually;
+   self.mostVisitedStackView.spacing = horizontalSpacing;
+   self.mostVisitedStackView.alignment = UIStackViewAlignmentTop;
+ 
+@@ -1127,7 +1130,7 @@ - (void)createAndInsertMostVisitedModule {
+     CGFloat width =
+         MostVisitedTilesContentHorizontalSpace(self.traitCollection);
+     CGSize size =
+-        MostVisitedCellSize(self.traitCollection.preferredContentSizeCategory);
++      MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_SIZE;
+     [NSLayoutConstraint activateConstraints:@[
+       [self.mostVisitedStackView.widthAnchor constraintEqualToConstant:width],
+       [self.mostVisitedStackView.heightAnchor
+@@ -1171,8 +1174,9 @@ - (void)populateMostVisitedModule {
+     [view addGestureRecognizer:tapRecognizer];
+     tapRecognizer.enabled = YES;
+     [self.mostVisitedTapRecognizers addObject:tapRecognizer];
+-    [self.mostVisitedStackView addArrangedSubview:view];
++    //[self.mostVisitedStackView addArrangedSubview:view];
+   }
++  MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_BUILD
+ }
+ 
+ - (UIStackView*)createShortcutsStackView {

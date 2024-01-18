@@ -1,12 +1,13 @@
 diff --git a/mojo/public/tools/mojom/mojom_parser.py b/mojo/public/tools/mojom/mojom_parser.py
-index 9693090e44ea4bff0c8d0259a4bdf7c1b0ba0b77..d81f3810e1b866682b0905bcf7540948bd89869e 100755
+index 9693090e44ea4bff0c8d0259a4bdf7c1b0ba0b77..2a23f3cc79d8cc1c937409dd26325b6418243b34 100755
 --- a/mojo/public/tools/mojom/mojom_parser.py
 +++ b/mojo/public/tools/mojom/mojom_parser.py
-@@ -182,6 +182,7 @@ def _ParseAstHelper(mojom_abspath, enabled_features):
-   with codecs.open(mojom_abspath, encoding='utf-8') as f:
-     ast = parser.Parse(f.read(), mojom_abspath)
-     conditional_features.RemoveDisabledDefinitions(ast, enabled_features)
-+    from mojo.public.tools.mojom.mojom.parse import mises_ast_patcher; mises_ast_patcher.PatchMojomAst(mojom_abspath, ast, enabled_features)
-     return mojom_abspath, ast
+@@ -491,7 +491,7 @@ already present in the provided output root.""")
+                args.enabled_features, module_metadata, allowed_imports)
+   logging.info('Finished')
  
- 
+-
++from import_inline import inline_file_from_src; inline_file_from_src("mises/chromium_src/mojo/public/tools/mojom/mojom_parser.py", globals(), locals())
+ if __name__ == '__main__':
+   Run(sys.argv[1:])
+   # Exit without running GC, which can save multiple seconds due to the large
