@@ -8,7 +8,7 @@
 
 #import "ios/chrome/browser/ui/content_suggestions/cells/suggested_content.h"
 
-@class M3CButton;
+@class UIButton;
 
 // // Item to display what is new in the ContentSuggestions.
 // @interface ContentSuggestionsMisesItem : CollectionViewItem<SuggestedContent>
@@ -22,8 +22,8 @@
 // Associated cell, displaying what is new.
 @interface ContentSuggestionsMisesToggleCell : UIView
 
-@property(nonatomic, strong, nonnull) M3CButton* toggleButton;
-@property(nonatomic, strong, nonnull) M3CButton* enterButton;
+@property(nonatomic, strong, nonnull) UIButton* toggleButton;
+@property(nonatomic, strong, nonnull) UIButton* enterButton;
 
 - (void) configureWith:(nonnull NSString*)title enter:(nonnull NSString*)enter;
 - (void) toggle:(BOOL)on;

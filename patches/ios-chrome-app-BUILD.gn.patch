@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/app/BUILD.gn b/ios/chrome/app/BUILD.gn
-index 8be315047a4850fa7ab2d7f8944d603729971728..909142fac5ead1e54ecc70e588497540237595a6 100644
+index 8be315047a4850fa7ab2d7f8944d603729971728..7e5c0d9729fd111434994963e5c755bb3b27017d 100644
 --- a/ios/chrome/app/BUILD.gn
 +++ b/ios/chrome/app/BUILD.gn
 @@ -160,6 +160,7 @@ tweak_info_plist("info_plist") {
@@ -41,3 +41,12 @@ index 8be315047a4850fa7ab2d7f8944d603729971728..909142fac5ead1e54ecc70e588497540
      assert_no_deps += [
        "//ios/third_party/lottie:lottie+bundle",
        "//ios/third_party/lottie:lottie+link",
+@@ -761,7 +766,7 @@ chrome_app("chrome") {
+   }
+ }
+ 
+-if (current_toolchain == default_toolchain) {
++if (current_toolchain == default_toolchain && is_official_build) {
+   _extension_toolchain = "${current_toolchain}_app_ext"
+   if (ios_enable_search_widget_extension) {
+     extension_bundle_data("search_widget_extension_bundle") {

@@ -13,6 +13,7 @@
 #include "base/apple/bundle_locations.h"
 #include "base/path_service.h"
 #include "mises/components/mises_component_updater/browser/mises_component.h"
+#include "mises/components/variations/buildflags.h"
 // #include "mises/components/mises_component_updater/browser/features.h"
 // #include "mises/components/mises_component_updater/browser/switches.h"
 #include "mises/components/update_client/buildflags.h"
@@ -20,6 +21,7 @@
 #include "components/component_updater/component_updater_switches.h"
 #include "components/sync/base/command_line_switches.h"
 #include "components/sync/base/model_type.h"
+#include "components/variations/variations_switches.h"
 #include "ios/chrome/browser/flags/chrome_switches.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
