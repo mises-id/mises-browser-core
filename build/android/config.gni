@@ -22,7 +22,7 @@ mises_chrome_java_deps = [
   "//mises/browser/ui/android/omnibox:java",
   #"//mises/browser/ui/android/theme:java",
   #"//mises/components/browser_ui/site_settings/android:java",
-  #"//mises/components/variations/android:java",
+  "//mises/components/variations/android:java",
   "//mises/third_party/android_deps:com_airbnb_android_java",
   "//mises/third_party/android_deps:com_android_billingclient_java",
   "//mises/third_party/android_deps:com_android_installreferrer_java",
@@ -51,8 +51,9 @@ mises_chrome_java_deps = [
   
   "//mises/third_party/android_deps:com_kirich1409_svgimageloaderplugins_java",
   "//third_party/android_deps:google_firebase_firebase_messaging_java",
-  "//mises/third_party/android_deps:google_firebase_firebase_analytics_java",
+  "//mises/third_party/android_deps:google_firebase_firebase_analytics_java", 
   "//mises/third_party/android_deps:google_play_services_measurement_api_java",
+  "//mises/third_party/android_deps:google_firebase_firebase_crashlytics_java",
 ]
 
 mises_chrome_all_java_deps = [

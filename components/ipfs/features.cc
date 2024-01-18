@@ -10,9 +10,7 @@
 
 namespace ipfs {
 namespace features {
-  
-#define BASE_FEATURE(feature, name, default_state) \
-  CONSTINIT const base::Feature feature(name, default_state)
+
 
 BASE_FEATURE(kIpfsFeature,
              "Ipfs",

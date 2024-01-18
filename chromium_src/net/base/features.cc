@@ -27,5 +27,10 @@ BASE_FEATURE(kMisesEphemeralStorage,
              base::FEATURE_DISABLED_BY_DEFAULT);
 
 
+// Enabled HTTPS by Default.
+BASE_FEATURE(kMisesHttpsByDefault,
+             "HttpsByDefault",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+
 }  // namespace features
 }  // namespace net

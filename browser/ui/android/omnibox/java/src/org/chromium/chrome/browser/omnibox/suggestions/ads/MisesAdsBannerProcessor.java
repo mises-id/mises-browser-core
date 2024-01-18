@@ -46,7 +46,7 @@ public class MisesAdsBannerProcessor implements DropdownItemProcessor {
         model.set(MisesAdsBannerProperties.DELEGATE, new MisesAdsBannerProperties.Delegate() {
             @Override
             public void onPositiveClicked() {
-                mUrlBarDelegate.loadUrl("https://search.mises.site/search?q="
+                mUrlBarDelegate.loadUrl("https://search.mises.site/?q="
                                 + mUrlBarEditingTextProvider.getTextWithoutAutocomplete()
                                 + "&action=makeDefault",
                         PageTransition.LINK, System.currentTimeMillis(), /*openInNewTab=*/false);

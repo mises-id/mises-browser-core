@@ -27,6 +27,7 @@ source_set("app") {
     "//mises/components/brave_wallet/browser",
     "//mises/components/constants",
     "//mises/components/update_client:buildflags",
+    "//mises/components/variations:constants",
     "//mises/ios/app/resources",
     "//mises/ios/browser",
     "//mises/ios/browser/api/bookmarks",

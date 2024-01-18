@@ -11,8 +11,6 @@
 
 namespace ntp_background_images {
 namespace features {
-#define BASE_FEATURE(feature, name, default_state) \
-  CONSTINIT const base::Feature feature(name, default_state)
   
 BASE_FEATURE(kBraveNTPBrandedWallpaperDemo,
              "BraveNTPBrandedWallpaperDemoName",

@@ -4,4 +4,9 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
 mises_components_search_engines_sources = [
+  "//mises/components/search_engines/mises_prepopulated_engines.cc",
+  "//mises/components/search_engines/mises_prepopulated_engines.h"
+]
+mises_components_search_engines_deps = [
+  "//mises/components/search_engines:features",
 ]

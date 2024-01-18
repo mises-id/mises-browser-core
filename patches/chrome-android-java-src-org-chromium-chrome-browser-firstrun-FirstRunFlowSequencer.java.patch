@@ -1,14 +1,14 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java b/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
-index 7c5e4e417483d71a18c76408047b5b2dfbb9499a..b119532c1ce5dac16693d4e13808b31031554ca4 100644
+index 7c5e4e417483d71a18c76408047b5b2dfbb9499a..0bd3f14629513869fcb69a3509a078cd6a341dce 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/firstrun/FirstRunFlowSequencer.java
-@@ -231,7 +231,8 @@ public abstract class FirstRunFlowSequencer  {
+@@ -265,7 +265,8 @@ public abstract class FirstRunFlowSequencer  {
       */
-     public static boolean checkIfFirstRunIsNecessary(boolean preferLightweightFre, boolean isCct) {
-         // If FRE is disabled (e.g. in tests), proceed directly to the intent handling.
--        if (CommandLine.getInstance().hasSwitch(ChromeSwitches.DISABLE_FIRST_RUN_EXPERIENCE)
+     public static boolean launch(Context caller, Intent fromIntent, boolean preferLightweightFre) {
+         // Check if the user needs to go through First Run at all.
+-        if (!checkIfFirstRunIsNecessary(preferLightweightFre, fromIntent)) return false;
 +        boolean mises_enforce = true;
-+	if (mises_enforce || CommandLine.getInstance().hasSwitch(ChromeSwitches.DISABLE_FIRST_RUN_EXPERIENCE)
-                 || ApiCompatibilityUtils.isDemoUser()
-                 || ApiCompatibilityUtils.isRunningInUserTestHarness()) {
-             return false;
++        if (mises_enforce || !checkIfFirstRunIsNecessary(preferLightweightFre, fromIntent)) return false;
+ 
+         // Kickoff partner customization, since it's required for the first tab to load.
+         PartnerBrowserCustomizations.getInstance().initializeAsync(caller.getApplicationContext());

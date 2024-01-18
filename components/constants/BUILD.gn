@@ -30,7 +30,6 @@ source_set("constants") {
     "mises_constants.h",
     "mises_paths.cc",
     "mises_paths.h",
-    "mises_switches.cc",
     "mises_switches.h",
     "network_constants.cc",
     "network_constants.h",

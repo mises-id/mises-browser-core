@@ -1,0 +1,33 @@
+group("search_engines") {
+  deps = [ "//components/search_engines", ":features" ]
+}
+
+
+static_library("features") {
+  sources = [
+    "features.cc",
+    "features.h",
+  ]
+
+  deps = [
+    "//base",
+    "//net",
+    "//services/network/public/cpp",
+    "//third_party/re2",
+    "//ui/base",
+    "//url",
+  ]
+}
+
+
+source_set("unit_tests") {
+  testonly = true
+
+  sources = [ "mises_prepopulated_engines_unittest.cc" ]
+
+  deps = [
+    "//mises/components/search_engines",
+    "//components/search_engines",
+    "//testing/gtest",
+  ]
+}

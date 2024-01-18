@@ -70,6 +70,20 @@ void BraveMainDelegate::BasicStartupComplete() {
   //                                   BUILDFLAG(BRAVE_SYNC_ENDPOINT));
   // }
 
+    // Mises variations
+  if (!command_line->HasSwitch(variations::switches::kVariationsServerURL)) {
+    command_line->AppendSwitchASCII(variations::switches::kVariationsServerURL,
+                                    BUILDFLAG(MISES_VARIATIONS_SERVER_URL));
+
+    // Insecure fall-back for variations is set to the same (secure) URL. This
+    // is done so that if VariationsService tries to fall back to insecure url
+    // the check for kHttpScheme in VariationsService::MaybeRetryOverHTTP would
+    // prevent it from doing so as we don't want to use an insecure fall-back.
+    command_line->AppendSwitchASCII(
+        variations::switches::kVariationsInsecureServerURL,
+        BUILDFLAG(MISES_VARIATIONS_SERVER_URL));
+  }
+
   if (!command_line->HasSwitch(switches::kVModule)) {
     command_line->AppendSwitchASCII(switches::kVModule, "*/brave/*=0");
   }

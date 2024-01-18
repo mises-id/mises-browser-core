@@ -16,6 +16,7 @@
 #include "mises/browser/mises_content_browser_client.h"
 #include "mises/common/resource_bundle_helper.h"
 #include "mises/renderer/mises_content_renderer_client.h"
+#include "mises/components/constants/mises_switches.h"
 #include "build/build_config.h"
 #include "chrome/common/chrome_features.h"
 #include "chrome/common/chrome_paths.h"
@@ -32,7 +33,7 @@
 
 namespace {
 
-
+const char kDummyUrl[] = "https://no-thanks.invalid";
 
 }  // namespace
 

@@ -8,4 +8,5 @@
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC19DVr2hLAScdnxcGzyZhXvsfX6VOE5Pk</string>
     <string name="google_storage_bucket"          translatable="false">mises-browser.appspot.com</string>
     <string name="project_id"                     translatable="false">mises-browser</string>
+    <string name="com.crashlytics.android.build_id" translatable="false">undefined</string>
 </resources>

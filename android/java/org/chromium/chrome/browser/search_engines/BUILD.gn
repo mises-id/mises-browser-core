@@ -1,0 +1,43 @@
+# Copyright (c) 2021 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//build/config/android/rules.gni")
+import("//third_party/jni_zero/jni_zero.gni")
+
+android_library("java") {
+  srcjar_deps = [ ":jni_headers" ]
+  sources = [
+    "settings/MisesBaseSearchEngineAdapter.java",
+    "settings/MisesPrivateSearchEnginePreference.java",
+    "settings/MisesSearchEngineAdapter.java",
+    "settings/MisesSearchEnginePrefHelper.java",
+    "settings/MisesSearchEnginePreference.java",
+    "settings/MisesStandardSearchEnginePreference.java",
+  ]
+  deps = [
+    ":java_resources",
+    "//base:base_java",
+    "//base:jni_java",
+    "//build/android:build_java",
+    "//chrome/browser/profiles/android:java",
+    "//chrome/browser/search_engines/android:java",
+    "//components/search_engines/android:java",
+    "//third_party/androidx:androidx_annotation_annotation_java",
+    "//third_party/androidx:androidx_fragment_fragment_java",
+  ]
+
+  resources_package = "org.chromium.chrome.browser.search_engines"
+}
+
+generate_jni("jni_headers") {
+  sources = [ "settings/MisesSearchEnginePrefHelper.java" ]
+}
+
+android_resources("java_resources") {
+  deps = [
+    "//mises/build/android:android_mises_strings_grd",
+    "//chrome/browser/search_engines/android:java_resources",
+  ]
+}
