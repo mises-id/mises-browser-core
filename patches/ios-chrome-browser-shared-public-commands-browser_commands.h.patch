@@ -1,0 +1,13 @@
+diff --git a/ios/chrome/browser/shared/public/commands/browser_commands.h b/ios/chrome/browser/shared/public/commands/browser_commands.h
+index b54953e0169eae425e1d54d830f1e2b79a1d0f8b..f687d534ce9a0cdc320f414e857f5f6935131adf 100644
+--- a/ios/chrome/browser/shared/public/commands/browser_commands.h
++++ b/ios/chrome/browser/shared/public/commands/browser_commands.h
+@@ -11,6 +11,8 @@
+ // which in practice is the BrowserViewController instance displaying the tab.
+ @protocol BrowserCommands <NSObject>
+ 
++- (void)openSinglePage:(NSString*)url;
++
+ // Dismisses the soft keyboard (if open).
+ - (void)dismissSoftKeyboard;
+ 

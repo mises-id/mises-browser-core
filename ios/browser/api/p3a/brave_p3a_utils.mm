@@ -10,7 +10,7 @@
 #include "base/strings/sys_string_conversions.h"
 #include "base/time/time.h"
 #include "components/prefs/pref_service.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."

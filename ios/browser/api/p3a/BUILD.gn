@@ -4,7 +4,7 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
 source_set("p3a") {
-  configs += [ "//build/config/compiler:enable_arc" ]
+  
   sources = [
     "brave_histograms_controller+private.h",
     "brave_histograms_controller.h",
@@ -16,8 +16,8 @@ source_set("p3a") {
   deps = [
     "//base",
     "//components/prefs",
-    "//ios/chrome/browser/browser_state",
-    "//ios/chrome/browser/url:constants",
+    "//ios/chrome/browser/shared/model/browser_state",
+    "//ios/chrome/browser/shared/model/url:constants",
     "//ios/components/webui:url_constants",
     "//ios/web/public",
     "//ios/web/public/webui",

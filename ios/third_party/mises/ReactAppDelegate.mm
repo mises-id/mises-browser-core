@@ -107,7 +107,7 @@
   self.pendingStatus = PENDING_NONE;
   if ([basevc
         respondsToSelector:NSSelectorFromString(@"openSinglePage:")]) {
-      self.browserHandler = static_cast<UIViewController<BrowserCommands>*>(basevc);
+      self.browserHandler = basevc;
   }
   [basevc presentViewController:self.rootViewController  animated:YES completion:^{
     

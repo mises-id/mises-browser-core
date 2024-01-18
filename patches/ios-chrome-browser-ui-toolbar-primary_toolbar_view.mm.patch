@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm b/ios/chrome/
 index 104f17725edc5842819fc7b897173bdde761306b..805feec6e8776f930591e4786a42a88269c0ec7c 100644
 --- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
 +++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view.mm
-@@ -87,6 +87,9 @@
+@@ -87,6 +87,9 @@ @interface PrimaryToolbarView ()
  @property(nonatomic, strong, readwrite)
      NSMutableArray<NSLayoutConstraint*>* contractedNoMarginConstraints;
  
@@ -12,7 +12,7 @@ index 104f17725edc5842819fc7b897173bdde761306b..805feec6e8776f930591e4786a42a882
  @end
  
  @implementation PrimaryToolbarView
-@@ -116,6 +119,9 @@
+@@ -116,6 +119,9 @@ @implementation PrimaryToolbarView
  @synthesize contractedNoMarginConstraints = _contractedNoMarginConstraints;
  @synthesize contentView = _contentView;
  
@@ -22,7 +22,7 @@ index 104f17725edc5842819fc7b897173bdde761306b..805feec6e8776f930591e4786a42a882
  #pragma mark - Public
  
  - (instancetype)initWithButtonFactory:(ToolbarButtonFactory*)factory {
-@@ -218,6 +224,7 @@
+@@ -218,6 +224,7 @@ - (void)setUpLocationBar {
  
  // Sets the leading stack view.
  - (void)setUpLeadingStackView {
@@ -30,7 +30,7 @@ index 104f17725edc5842819fc7b897173bdde761306b..805feec6e8776f930591e4786a42a882
    self.backButton = [self.buttonFactory backButton];
    self.forwardButton = [self.buttonFactory forwardButton];
    self.stopButton = [self.buttonFactory stopButton];
-@@ -225,7 +232,7 @@
+@@ -225,7 +232,7 @@ - (void)setUpLeadingStackView {
    self.reloadButton = [self.buttonFactory reloadButton];
  
    self.leadingStackViewButtons = @[
@@ -39,7 +39,7 @@ index 104f17725edc5842819fc7b897173bdde761306b..805feec6e8776f930591e4786a42a882
    ];
    self.leadingStackView = [[UIStackView alloc]
        initWithArrangedSubviews:self.leadingStackViewButtons];
-@@ -241,11 +248,12 @@
+@@ -241,11 +248,12 @@ - (void)setUpLeadingStackView {
  // Sets the trailing stack view.
  - (void)setUpTrailingStackView {
    self.shareButton = [self.buttonFactory shareButton];
@@ -53,7 +53,7 @@ index 104f17725edc5842819fc7b897173bdde761306b..805feec6e8776f930591e4786a42a882
  
    self.trailingStackView = [[UIStackView alloc]
        initWithArrangedSubviews:self.trailingStackViewButtons];
-@@ -431,4 +439,23 @@
+@@ -431,4 +439,23 @@ - (ToolbarButton*)openNewTabButton {
    return nil;
  }
  

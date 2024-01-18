@@ -12,8 +12,8 @@
 #include "base/files/file_path.h"
 #include "base/i18n/icu_util.h"
 #include "base/logging.h"
-#include "base/mac/bundle_locations.h"
-#include "base/mac/foundation_util.h"
+#include "base/apple/bundle_locations.h"
+#include "base/apple/foundation_util.h"
 #include "base/memory/ref_counted.h"
 #include "base/memory/scoped_refptr.h"
 #include "base/path_service.h"
@@ -41,25 +41,24 @@
 #include "components/prefs/pref_service.h"
 #include "components/send_tab_to_self/send_tab_to_self_sync_service.h"
 #include "ios/chrome/app/startup/provider_registration.h"
-#include "ios/chrome/browser/application_context/application_context.h"
-#include "ios/chrome/browser/bookmarks/bookmark_model_factory.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state_manager.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state_removal_controller.h"
+#include "ios/chrome/browser/bookmarks/model/bookmark_undo_service_factory.h"
+#include "ios/chrome/browser/bookmarks/model/local_or_syncable_bookmark_model_factory.h"
 #include "ios/chrome/browser/history/history_service_factory.h"
 #include "ios/chrome/browser/history/web_history_service_factory.h"
-#include "ios/chrome/browser/main/browser.h"
-#include "ios/chrome/browser/main/browser_list.h"
-#include "ios/chrome/browser/main/browser_list_factory.h"
-#include "ios/chrome/browser/passwords/ios_chrome_password_store_factory.h"
-#include "ios/chrome/browser/paths/paths.h"
-#include "ios/chrome/browser/sync/send_tab_to_self_sync_service_factory.h"
-#include "ios/chrome/browser/sync/session_sync_service_factory.h"
-#include "ios/chrome/browser/sync/sync_service_factory.h"
-#include "ios/chrome/browser/ui/commands/command_dispatcher.h"
+#include "ios/chrome/browser/passwords/model/ios_chrome_profile_password_store_factory.h"
+#include "ios/chrome/browser/shared/model/application_context/application_context.h"
+#include "ios/chrome/browser/shared/model/browser/browser.h"
+#include "ios/chrome/browser/shared/model/browser/browser_list.h"
+#include "ios/chrome/browser/shared/model/browser/browser_list_factory.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state_manager.h"
+#include "ios/chrome/browser/shared/model/paths/paths.h"
+#include "ios/chrome/browser/shared/model/web_state_list/web_state_list.h"
+#include "ios/chrome/browser/shared/public/commands/command_dispatcher.h"
+#include "ios/chrome/browser/sync/model/send_tab_to_self_sync_service_factory.h"
+#include "ios/chrome/browser/sync/model/session_sync_service_factory.h"
+#include "ios/chrome/browser/sync/model/sync_service_factory.h"
 #include "ios/chrome/browser/ui/webui/chrome_web_ui_ios_controller_factory.h"
-#include "ios/chrome/browser/undo/bookmark_undo_service_factory.h"
-#include "ios/chrome/browser/web_state_list/web_state_list.h"
 #include "ios/public/provider/chrome/browser/overrides/overrides_api.h"
 #include "ios/public/provider/chrome/browser/ui_utils/ui_utils_api.h"
 #include "ios/web/public/init/web_main.h"
@@ -148,8 +147,8 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
       //     ios::DIR_USER_DATA, ios::DIR_USER_DATA, ios::DIR_USER_DATA);
     }
 
-    NSBundle* baseBundle = base::mac::OuterBundle();
-    base::mac::SetBaseBundleID(
+    NSBundle* baseBundle = base::apple::OuterBundle();
+    base::apple::SetBaseBundleID(
         base::SysNSStringToUTF8([baseBundle bundleIdentifier]).c_str());
 
     // Register all providers before calling any Chromium code.
@@ -197,9 +196,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
     // Setup WebMain
     _webMain = std::make_unique<web::WebMain>(std::move(params));
   #endif
-    // Remove the extra browser states as Chrome iOS is single profile in M48+.
-    ChromeBrowserStateRemovalController::GetInstance()
-        ->RemoveBrowserStatesIfNecessary();
+
 
     // Initialize and set the main browser state.
     ios::ChromeBrowserStateManager* browserStateManager =
@@ -355,7 +352,7 @@ static bool CustomLogHandler(int severity,
 - (BraveBookmarksAPI*)bookmarksAPI {
   if (!_bookmarksAPI) {
     bookmarks::BookmarkModel* bookmark_model_ =
-        ios::BookmarkModelFactory::GetForBrowserState(_mainBrowserState);
+        ios::LocalOrSyncableBookmarkModelFactory::GetForBrowserState(_mainBrowserState);
     BookmarkUndoService* bookmark_undo_service_ =
         ios::BookmarkUndoServiceFactory::GetForBrowserState(_mainBrowserState);
 
@@ -399,7 +396,7 @@ static bool CustomLogHandler(int severity,
 - (BravePasswordAPI*)passwordAPI {
   if (!_passwordAPI) {
     scoped_refptr<password_manager::PasswordStoreInterface> password_store_ =
-        IOSChromePasswordStoreFactory::GetForBrowserState(
+        IOSChromeProfilePasswordStoreFactory::GetForBrowserState(
             _mainBrowserState, ServiceAccessType::EXPLICIT_ACCESS)
             .get();
 
@@ -518,10 +515,9 @@ static bool CustomLogHandler(int severity,
 // }
 
 + (bool)initializeICUForTesting {
-  base::FilePath path;
-  base::PathService::Get(base::DIR_MODULE, &path);
-  base::mac::SetOverrideFrameworkBundlePath(path);
-  base::mac::SetOverrideOuterBundlePath(path);
+  NSBundle* bundle = [NSBundle bundleForClass:self];
+  base::apple::SetOverrideOuterBundle(bundle);
+  base::apple::SetOverrideFrameworkBundle(bundle);
   return base::i18n::InitializeICU();
 }
 

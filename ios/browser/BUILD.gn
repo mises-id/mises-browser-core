@@ -7,7 +7,7 @@ import("//build/config/ios/rules.gni")
 import("//ios/build/config.gni")
 
 source_set("browser") {
-  configs += [ "//build/config/compiler:enable_arc" ]
+  
 
   sources = [
     "brave_web_client.h",
@@ -61,13 +61,14 @@ source_set("browser") {
     "//components/metrics_services_manager",
     "//components/variations",
     "//components/variations/service",
-    "//ios/chrome/browser/application_context:application_context_impl",
-    "//ios/chrome/browser/browser_state",
-    "//ios/chrome/browser/browser_state:browser_state_impl",
+    "//ios/chrome/browser/application_context/model",
+    "//ios/chrome/browser/browser_state/model",
     "//ios/chrome/browser/flags",
     "//ios/chrome/browser/flags:client_side",
-    "//ios/chrome/browser/paths",
-    "//ios/chrome/browser/url:constants",
+    "//ios/chrome/browser/shared/model/browser_state",
+    "//ios/chrome/browser/shared/model/paths",
+    "//ios/chrome/browser/shared/model/url:constants",
+    "//ios/chrome/browser/web:web_internal",
     "//ios/components/webui:url_constants",
     "//ios/web/public",
     "//ios/web/public/init",

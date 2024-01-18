@@ -32,7 +32,7 @@ index a21dd22a2fc8adf5b0d443c30cca7208d9a2a50a..d16418dff3e15cc2d3f644f4f812b674
  PopupMenuToolsItem* CreateTableViewItem(int titleID,
                                          PopupMenuAction action,
                                          NSString* imageName,
-@@ -1171,4 +1190,82 @@ PopupMenuTextItem* CreateEnterpriseInfoItem(NSString* imageName,
+@@ -1171,4 +1190,82 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
    }
  }
  

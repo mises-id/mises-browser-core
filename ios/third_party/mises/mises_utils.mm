@@ -10,14 +10,14 @@
 #import "ios/web/web_state/web_state_impl.h"
 #include "ios/web/web_state/ui/crw_web_controller.h"
 
-#include "ios/chrome/browser/browser_state/chrome_browser_state.h"
-#include "ios/chrome/browser/browser_state/chrome_browser_state_manager.h"
-#include "ios/chrome/browser/application_context/application_context.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state_manager.h"
+#include "ios/chrome/browser/shared/model/application_context/application_context.h"
 
-#include "ios/chrome/browser/main/browser.h"
-#include "ios/chrome/browser/main/browser_list.h"
-#include "ios/chrome/browser/main/browser_list_factory.h"
-#import "ios/chrome/browser/web_state_list/web_state_list.h"
+#include "ios/chrome/browser/shared/model/browser/browser.h"
+#include "ios/chrome/browser/shared/model/browser/browser_list.h"
+#include "ios/chrome/browser/shared/model/browser/browser_list_factory.h"
+#import "ios/chrome/browser/shared/model/web_state_list/web_state_list.h"
 #include "mises/ios/browser/brave_wallet/keyring_service_factory.h"
 #include "mises/components/brave_wallet/browser/keyring_service.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
@@ -26,7 +26,7 @@
 #import <WebKit/WKWebView.h>
 #import <Mixpanel/Mixpanel.h>
 #import <CoreFoundation/CoreFoundation.h>
-#import "base/mac/foundation_util.h"
+#import "base/apple/foundation_util.h"
 //#error "test"
 
 
@@ -166,7 +166,7 @@ std::unique_ptr<base::Value> ValueResultFromDic(id wk_result,
     } else if (result_type == CFDictionaryGetTypeID()) {
         base::Value::Dict dictionary;
         for (id key in wk_result) {
-            NSString* obj_c_string = base::mac::ObjCCast<NSString>(key);
+            NSString* obj_c_string = base::apple::ObjCCast<NSString>(key);
             const std::string path = base::SysNSStringToUTF8(obj_c_string);
             std::unique_ptr<base::Value> value =
             ValueResultFromDic(wk_result[obj_c_string], max_depth - 1);

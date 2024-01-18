@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm b/
 index 95abf5b7f6e7b85c49fede3438b162eef9b325a1..b611e9078228c23b56a7928b6e203648ec6f6efa 100644
 --- a/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm
 +++ b/ios/chrome/browser/ui/toolbar/primary_toolbar_view_controller.mm
-@@ -328,4 +328,14 @@
+@@ -328,4 +328,14 @@ - (void)setLocationBarContainerHeight:(CGFloat)height {
    view.locationBarContainerHeight.constant = height;
    view.locationBarContainer.layer.cornerRadius = height / 2;
  }

@@ -5,24 +5,42 @@
 
 #include "mises/ios/browser/api/history/brave_history_api.h"
 
+#include <optional>
+
 #include "base/functional/bind.h"
 #include "base/strings/sys_string_conversions.h"
+#include "mises/ios/browser/api/history/brave_history_observer.h"
+#include "mises/ios/browser/api/history/history_driver_ios.h"
+#include "mises/ios/browser/api/history/history_service_listener_ios.h"
+#include "components/history/core/browser/browsing_history_service.h"
 #include "components/history/core/browser/history_service.h"
 #include "components/history/core/browser/history_types.h"
+#include "components/keyed_service/core/service_access_type.h"
 #include "ios/chrome/browser/history/history_service_factory.h"
 #include "ios/chrome/browser/history/web_history_service_factory.h"
+#include "ios/chrome/browser/shared/model/browser_state/chrome_browser_state.h"
+#include "ios/chrome/browser/sync/model/sync_service_factory.h"
 #include "ios/web/public/thread/web_task_traits.h"
 #include "ios/web/public/thread/web_thread.h"
 #include "net/base/mac/url_conversions.h"
 #include "ui/base/page_transition_types.h"
 #include "url/gurl.h"
 
-#include "mises/ios/browser/api/history/brave_history_observer.h"
-#include "mises/ios/browser/api/history/history_service_listener_ios.h"
-
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
 #endif
+
+namespace {
+
+history::WebHistoryService* WebHistoryServiceGetter(
+    base::WeakPtr<ChromeBrowserState> weak_browser_state) {
+  DCHECK(weak_browser_state.get())
+      << "Getter should not be called after ChromeBrowserState destruction.";
+  return ios::WebHistoryServiceFactory::GetForBrowserState(
+      weak_browser_state.get());
+}
+
+}  // anonymous namespace
 
 DomainMetricTypeIOS const DomainMetricTypeIOSNoMetric =
     static_cast<history::DomainMetricType>(
@@ -100,20 +118,39 @@ DomainMetricTypeIOS const DomainMetricTypeIOSLast28DayMetric =
   history::WebHistoryService* web_history_service_;
   // Tracker for history requests.
   base::CancelableTaskTracker tracker_;
+
+  // Provides dependencies and funnels callbacks from BrowsingHistoryService.
+  std::unique_ptr<HistoryDriverIOS> _browsingHistoryDriver;
+  // Abstraction to communicate with HistoryService and WebHistoryService.
+  std::unique_ptr<history::BrowsingHistoryService> _browsingHistoryService;
 }
 @property(nonatomic, strong) void (^query_completion)(NSArray<IOSHistoryNode*>*)
     ;
 @end
 
-@implementation BraveHistoryAPI
+@implementation BraveHistoryAPI {
+  ChromeBrowserState* _mainBrowserState;  // NOT OWNED
+}
 
-- (instancetype)initWithHistoryService:(history::HistoryService*)historyService
-                     webHistoryService:
-                         (history::WebHistoryService*)webHistoryService {
+- (instancetype)initWithBrowserState:(ChromeBrowserState*)mainBrowserState {
   if ((self = [super init])) {
     DCHECK_CURRENTLY_ON(web::WebThread::UI);
-    history_service_ = historyService;
-    web_history_service_ = webHistoryService;
+    _mainBrowserState = mainBrowserState;
+
+    history_service_ = ios::HistoryServiceFactory::GetForBrowserState(
+        _mainBrowserState, ServiceAccessType::EXPLICIT_ACCESS);
+    web_history_service_ =
+        ios::WebHistoryServiceFactory::GetForBrowserState(_mainBrowserState);
+
+    _browsingHistoryDriver =
+        std::make_unique<HistoryDriverIOS>(base::BindRepeating(
+            &WebHistoryServiceGetter, _mainBrowserState->AsWeakPtr()));
+
+    _browsingHistoryService = std::make_unique<history::BrowsingHistoryService>(
+        _browsingHistoryDriver.get(),
+        ios::HistoryServiceFactory::GetForBrowserState(
+            _mainBrowserState, ServiceAccessType::EXPLICIT_ACCESS),
+        SyncServiceFactory::GetForBrowserState(_mainBrowserState));
   }
   return self;
 }
@@ -138,35 +175,40 @@ DomainMetricTypeIOS const DomainMetricTypeIOSLast28DayMetric =
   return history_service_->BackendLoaded();
 }
 
-- (void)addHistory:(IOSHistoryNode*)history isURLTyped:(BOOL)isURLTyped {
+- (void)addHistory:(IOSHistoryNode*)history {
   DCHECK_CURRENTLY_ON(web::WebThread::UI);
-  DCHECK(history_service_->backend_loaded());
 
   // Important! Only Typed URL is being synced in core side
   history::HistoryAddPageArgs args = history::HistoryAddPageArgs(
       /*url*/ net::GURLWithNSURL(history.url),
       /*time*/ base::Time::FromNSDate(history.dateAdded),
       /*context_id=*/0,
-      /*nav_entry_id=*/0, /*referrer=*/GURL(),
+      /*nav_entry_id=*/0, /*local_navigation_id=*/std::nullopt,
+      /*referrer=*/GURL(),
       /*redirect_list*/ history::RedirectList(),
-      /*transition*/
-      isURLTyped ? ui::PAGE_TRANSITION_TYPED : ui::PAGE_TRANSITION_LINK,
+      /*transition*/ ui::PAGE_TRANSITION_TYPED,
       /*hidden=*/false, /*visit_source*/ history::VisitSource::SOURCE_BROWSED,
       /*did_replace_entry=*/false, /*consider_for_ntp_most_visited=*/true,
       /*title*/ base::SysNSStringToUTF16(history.title),
-      /*opener*/ absl::nullopt,
-      /*bookmark_id*/ absl::nullopt);
+      /*opener*/ std::nullopt,
+      /*bookmark_id*/ std::nullopt);
 
   history_service_->AddPage(args);
 }
 
 - (void)removeHistory:(IOSHistoryNode*)history {
   DCHECK_CURRENTLY_ON(web::WebThread::UI);
-  DCHECK(history_service_->backend_loaded());
 
-  // Deletes a specific URL using history service and web history service
-  history_service_->DeleteLocalAndRemoteUrl(web_history_service_,
-                                            net::GURLWithNSURL(history.url));
+  // Delete items from Browser History and from synced devices
+  std::vector<history::BrowsingHistoryService::HistoryEntry> entries;
+  history::BrowsingHistoryService::HistoryEntry entry;
+  entry.url = net::GURLWithNSURL(history.url);
+  entry.all_timestamps.insert(base::Time::FromNSDate(history.dateAdded)
+                                  .ToDeltaSinceWindowsEpoch()
+                                  .InMicroseconds());
+  entries.push_back(entry);
+
+  _browsingHistoryService->RemoveVisits(entries);
 }
 
 - (void)removeAllWithCompletion:(void (^)())completion {
@@ -180,7 +222,6 @@ DomainMetricTypeIOS const DomainMetricTypeIOSLast28DayMetric =
     }
 
     DCHECK_CURRENTLY_ON(web::WebThread::UI);
-    DCHECK(historyAPI->history_service_->backend_loaded());
 
     historyAPI->history_service_->DeleteLocalAndRemoteHistoryBetween(
         historyAPI->web_history_service_, base::Time::Min(), base::Time::Max(),
@@ -205,7 +246,6 @@ DomainMetricTypeIOS const DomainMetricTypeIOSLast28DayMetric =
     }
 
     DCHECK_CURRENTLY_ON(web::WebThread::UI);
-    DCHECK(historyAPI->history_service_->backend_loaded());
 
     // Check Query is empty for Fetching all history
     // The entered query can be nil or empty String
@@ -260,34 +300,36 @@ DomainMetricTypeIOS const DomainMetricTypeIOSLast28DayMetric =
         historyAPI->history_service_->GetDomainDiversity(
             base::Time::Now(), /*number_of_days_to_report*/ 1,
             static_cast<history::DomainMetricType>(type),
-            base::BindOnce(^(std::vector<history::DomainMetricSet> metricsSet) {
-              if (!metricsSet.size()) {
-                callback(0);
-                return;
-              }
-              auto metric = metricsSet.front();
-              NSInteger value = 0;
-              switch (metricType) {
-                case DomainMetricTypeIOSNoMetric:
-                  break;
-                case DomainMetricTypeIOSLast1DayMetric:
-                  if (metric.one_day_metric) {
-                    value = metric.one_day_metric.value().count;
+            base::BindOnce(
+                ^(std::pair<history::DomainDiversityResults,
+                            history::DomainDiversityResults> metrics) {
+                  if (!metrics.first.empty()) {
+                    callback(0);
+                    return;
                   }
-                  break;
-                case DomainMetricTypeIOSLast7DayMetric:
-                  if (metric.seven_day_metric) {
-                    value = metric.seven_day_metric.value().count;
+                  auto& metric = metrics.first.front();
+                  NSInteger value = 0;
+                  switch (metricType) {
+                    case DomainMetricTypeIOSNoMetric:
+                      break;
+                    case DomainMetricTypeIOSLast1DayMetric:
+                      if (metric.one_day_metric) {
+                        value = metric.one_day_metric.value().count;
+                      }
+                      break;
+                    case DomainMetricTypeIOSLast7DayMetric:
+                      if (metric.seven_day_metric) {
+                        value = metric.seven_day_metric.value().count;
+                      }
+                      break;
+                    case DomainMetricTypeIOSLast28DayMetric:
+                      if (metric.twenty_eight_day_metric) {
+                        value = metric.twenty_eight_day_metric.value().count;
+                      }
+                      break;
                   }
-                  break;
-                case DomainMetricTypeIOSLast28DayMetric:
-                  if (metric.twenty_eight_day_metric) {
-                    value = metric.twenty_eight_day_metric.value().count;
-                  }
-                  break;
-              }
-              callback(value);
-            }),
+                  callback(value);
+                }),
             &historyAPI->tracker_);
       };
   web::GetUIThreadTaskRunner({})->PostTask(

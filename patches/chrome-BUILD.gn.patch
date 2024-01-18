@@ -1,5 +1,5 @@
 diff --git a/chrome/BUILD.gn b/chrome/BUILD.gn
-index 6ccd58b51df777e63bba4ee79f873e3cb25f9a0e..2d38ca1abce2b9d728fefba8f6531254af6c43e7 100644
+index 6ccd58b51df777e63bba4ee79f873e3cb25f9a0e..f5f72ce8b3b8629f8a681d43a6e760bc810b0cb9 100644
 --- a/chrome/BUILD.gn
 +++ b/chrome/BUILD.gn
 @@ -199,6 +199,7 @@ if (!is_android && !is_mac) {
@@ -77,15 +77,16 @@ index 6ccd58b51df777e63bba4ee79f873e3cb25f9a0e..2d38ca1abce2b9d728fefba8f6531254
  
          public_deps += [
            "//chrome/updater/mac:browser_install_script",
-@@ -1248,6 +1256,7 @@ if (is_win) {
-       "CHROMIUM_BUNDLE_ID=$chrome_mac_bundle_id",
-       "CHROMIUM_SHORT_NAME=$chrome_product_short_name",
+@@ -1282,6 +1290,8 @@ if (is_win) {
+       "-current_version",
+       chrome_dylib_version,
      ]
 +    import("//mises/browser/sources.gni") public_deps += mises_chrome_framework_public_deps bundle_deps += mises_chrome_framework_bundle_deps framework_contents += mises_chrome_framework_contents configs += mises_chrome_framework_configs
++
  
-     public_deps = [ ":chrome_dll" ]
- 
-@@ -1462,6 +1471,7 @@ if (is_win) {
+     if (!is_component_build) {
+       # Specify a sensible install_name for static builds. The library is
+@@ -1462,6 +1472,7 @@ if (is_win) {
  
  group("dependencies") {
    public_deps = [
@@ -93,7 +94,7 @@ index 6ccd58b51df777e63bba4ee79f873e3cb25f9a0e..2d38ca1abce2b9d728fefba8f6531254
      "//build:branding_buildflags",
      "//build:chromeos_buildflags",
      "//chrome/browser",
-@@ -1528,7 +1538,7 @@ group("dependencies") {
+@@ -1528,7 +1539,7 @@ group("dependencies") {
  
  if (is_win) {
    process_version_rc_template("chrome_exe_version") {
@@ -102,7 +103,7 @@ index 6ccd58b51df777e63bba4ee79f873e3cb25f9a0e..2d38ca1abce2b9d728fefba8f6531254
      output = "$target_gen_dir/chrome_exe_version.rc"
    }
  
-@@ -1577,6 +1587,7 @@ group("resources") {
+@@ -1577,6 +1588,7 @@ group("resources") {
      "//chrome/browser:resources",
      "//chrome/common:resources",
      "//chrome/renderer:resources",

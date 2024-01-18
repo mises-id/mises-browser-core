@@ -6,7 +6,6 @@
 #include "mises/ios/browser/api/certificate/brave_certificate.h"
 #include "base/logging.h"
 #include "base/strings/string_number_conversions.h"
-#include "base/strings/string_piece.h"
 #include "base/strings/sys_string_conversions.h"
 #include "base/time/time.h"
 #include "mises/ios/browser/api/certificate/models/brave_certificate_enums.h"
@@ -35,28 +34,28 @@
 // MARK: - Implementation
 
 @interface BraveCertificateModel () {
-  base::ScopedCFTypeRef<CFDataRef> cert_data_;
+  base::apple::ScopedCFTypeRef<CFDataRef> cert_data_;
   std::shared_ptr<const net::ParsedCertificate> extended_cert_;
-  base::ScopedCFTypeRef<SecKeyRef> public_key_;
+  base::apple::ScopedCFTypeRef<SecKeyRef> public_key_;
 }
 @end
 
 @implementation BraveCertificateModel
 - (nullable instancetype)initWithCertificate:(SecCertificateRef)certificate {
   if ((self = [super init])) {
-    cert_data_ =
-        base::ScopedCFTypeRef<CFDataRef>(SecCertificateCopyData(certificate));
+    cert_data_ = base::apple::ScopedCFTypeRef<CFDataRef>(
+        SecCertificateCopyData(certificate));
     if (!cert_data_) {
       return nullptr;
     }
 
-    public_key_ =
-        base::ScopedCFTypeRef<SecKeyRef>(SecCertificateCopyKey(certificate));
+    public_key_ = base::apple::ScopedCFTypeRef<SecKeyRef>(
+        SecCertificateCopyKey(certificate));
 
     bssl::UniquePtr<CRYPTO_BUFFER> cert_buffer(
-        net::X509Certificate::CreateCertBufferFromBytes(base::make_span(
-            CFDataGetBytePtr(cert_data_),
-            base::checked_cast<size_t>(CFDataGetLength(cert_data_)))));
+        net::x509_util::CreateCryptoBuffer(base::make_span(
+            CFDataGetBytePtr(cert_data_.get()),
+            base::checked_cast<size_t>(CFDataGetLength(cert_data_.get())))));
 
     if (!cert_buffer) {
       return nullptr;

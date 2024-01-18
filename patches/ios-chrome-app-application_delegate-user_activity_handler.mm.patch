@@ -10,7 +10,7 @@ index 3ab6f5750412d42c04ed32e341d3738008098f7e..8d348c0a30cb0c7db3e33f90d3f8376c
  
  using base::UserMetricsAction;
  
-@@ -840,6 +841,9 @@ NSArray* CompatibleModeForActivityType(NSString* activityType) {
+@@ -840,6 +841,9 @@ + (BOOL)continueUserActivityURL:(NSURL*)webpageURL
      startupParams.openExistingTab = openExistingTab;
      [connectionInformation setStartupParameters:startupParams];
    }

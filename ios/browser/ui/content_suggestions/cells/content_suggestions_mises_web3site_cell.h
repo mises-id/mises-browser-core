@@ -5,13 +5,13 @@
 #ifndef IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CELLS_CONTENT_SUGGESTIONS_MISES_WEB3SITE_CELL_H_
 #define IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CELLS_CONTENT_SUGGESTIONS_MISES_WEB3SITE_CELL_H_
 
-#import <MaterialComponents/MDCCollectionViewCell.h>
+#import <UIKit/UIKit.h>
 
 @class FaviconView;
 
 // Associated cell to display a Most Visited tile based on the suggestion.
 // It displays the favicon for this Most Visited suggestion and its title.
-@interface ContentSuggestionsMisesWeb3siteCell : MDCCollectionViewCell
+@interface ContentSuggestionsMisesWeb3siteCell : UIView
 
 // FaviconView displaying the favicon.
 @property(nonatomic, strong, readonly, nonnull) FaviconView* faviconView;

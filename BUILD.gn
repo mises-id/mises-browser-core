@@ -104,9 +104,6 @@ group("mises") {
       "//mises/third_party/freename:tld_cleanup"
     ]
   }
-  if (is_apple) { 
-    deps += [ "//mises/components/challenge_bypass_ristretto" ]
-  }
 }
 
 group("resources") {

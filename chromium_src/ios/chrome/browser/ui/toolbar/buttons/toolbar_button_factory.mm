@@ -7,8 +7,8 @@
 @implementation ToolbarButtonFactory
 
 - (ToolbarButton*)misesButton {
-  ToolbarButton* misesButton = [ToolbarButton
-      toolbarButtonWithImage:[[UIImage imageNamed:@"mises_user_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+  ToolbarButton* misesButton = [[ToolbarButton
+      alloc] initWithImage:[[UIImage imageNamed:@"mises_user_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
   [self configureButton:misesButton width:kAdaptiveToolbarButtonWidth];
   [misesButton addTarget:self.actionHandler
                  action:@selector(misesMenuAction)
@@ -25,8 +25,8 @@
 
 
 - (ToolbarButton*)walletButton {
-  ToolbarButton* walletButton = [ToolbarButton
-      toolbarButtonWithImage:[[UIImage imageNamed:@"popup_menu_mises_wallet"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+  ToolbarButton* walletButton = [[ToolbarButton
+      alloc] initWithImage:[[UIImage imageNamed:@"popup_menu_mises_wallet"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
   [self configureButton:walletButton width:kAdaptiveToolbarButtonWidth];
   [walletButton addTarget:self.actionHandler
                  action:@selector(walletMenuAction)

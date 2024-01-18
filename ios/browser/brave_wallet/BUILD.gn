@@ -4,7 +4,7 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
 source_set("brave_wallet") {
-  configs += [ "//build/config/compiler:enable_arc" ]
+  
   sources = [
     "asset_ratio_service_factory.cc",
     "asset_ratio_service_factory.h",
@@ -32,8 +32,8 @@ source_set("brave_wallet") {
     "//mises/ios/browser/keyed_service",
     "//components/keyed_service/core",
     "//components/keyed_service/ios:ios",
-    "//ios/chrome/browser/application_context",
-    "//ios/chrome/browser/browser_state",
+    "//ios/chrome/browser/shared/model/application_context",
+    "//ios/chrome/browser/browser_state/model",
     "//mojo/public/cpp/bindings",
     "//services/network/public/cpp",
   ]

@@ -5,7 +5,7 @@
 
 #include "mises/browser/mises_shell_integration_mac.h"
 
-#include "base/mac/bundle_locations.h"
+#include "base/apple/bundle_locations.h"
 #include "chrome/browser/mac/dock.h"
 
 namespace shell_integration::mac {

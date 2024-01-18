@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.mm b/ios
 index 07f7ee7af7f93a6b5d5e09f00d47b59d742be271..929b25903ebcac7959a484befc10cf2042e7479b 100644
 --- a/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.mm
 +++ b/ios/chrome/browser/ui/toolbar/adaptive_toolbar_coordinator.mm
-@@ -209,4 +209,9 @@
+@@ -209,4 +209,9 @@ - (ToolbarButtonFactory*)buttonFactoryWithType:(ToolbarType)type {
    return buttonFactory;
  }
  

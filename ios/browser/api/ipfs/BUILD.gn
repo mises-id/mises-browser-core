@@ -4,7 +4,7 @@
 # You can obtain one at https://mozilla.org/MPL/2.0/.
 
 source_set("ipfs") {
-  configs += [ "//build/config/compiler:enable_arc" ]
+  
   sources = [
     "ipfs_api+private.h",
     "ipfs_api.h",
@@ -15,7 +15,7 @@ source_set("ipfs") {
     "//mises/base/mac",
     "//mises/components/ipfs",
     "//components/user_prefs",
-    "//ios/chrome/browser/browser_state",
+    "//ios/chrome/browser/shared/model/browser_state",
     "//net",
     "//url",
   ]

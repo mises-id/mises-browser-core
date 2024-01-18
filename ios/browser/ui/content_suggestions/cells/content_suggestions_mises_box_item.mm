@@ -7,7 +7,7 @@
 #import <MaterialComponents/MaterialTypography.h>
 
 #include "base/check_op.h"
-#import "ios/chrome/browser/ui/util/uikit_ui_util.h"
+#import "ios/chrome/browser/shared/ui/util/uikit_ui_util.h"
 #include "ios/chrome/common/string_util.h"
 #import "ios/chrome/common/ui/colors/semantic_color_names.h"
 #import "ios/chrome/common/ui/util/constraints_ui_util.h"
@@ -87,8 +87,6 @@ namespace {
 
 #pragma mark UIView
 
-// Implements -layoutSubviews as per instructions in documentation for
-// +[MDCCollectionViewCell cr_preferredHeightForWidth:forItem:].
 - (void)layoutSubviews {
   [super layoutSubviews];
 }

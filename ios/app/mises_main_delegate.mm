@@ -5,11 +5,12 @@
 
 #include "mises/ios/app/mises_main_delegate.h"
 
+#include "base/apple/bundle_locations.h"
 #include "base/base_paths.h"
 #include "base/base_switches.h"
 #include "base/command_line.h"
 #include "base/files/file_path.h"
-#include "base/mac/bundle_locations.h"
+#include "base/apple/bundle_locations.h"
 #include "base/path_service.h"
 #include "mises/components/mises_component_updater/browser/mises_component.h"
 // #include "mises/components/mises_component_updater/browser/features.h"
@@ -24,6 +25,13 @@
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
 #endif
+
+// Dummy class used to locate the containing NSBundle
+@interface BundleLookupClass : NSObject
+@end
+
+@implementation BundleLookupClass
+@end
 
 namespace {
 
@@ -41,10 +49,9 @@ std::string GetUpdateURLHost() {
 }  // namespace
 
 BraveMainDelegate::BraveMainDelegate() {
-  base::FilePath path;
-  base::PathService::Get(base::DIR_MODULE, &path);
-  base::mac::SetOverrideFrameworkBundlePath(path);
-  base::mac::SetOverrideOuterBundlePath(path);
+  NSBundle* bundle = [NSBundle bundleForClass:[BundleLookupClass class]];
+  base::apple::SetOverrideOuterBundle(bundle);
+  base::apple::SetOverrideFrameworkBundle(bundle);
 }
 
 BraveMainDelegate::~BraveMainDelegate() {}

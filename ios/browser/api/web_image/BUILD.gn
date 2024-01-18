@@ -4,7 +4,7 @@
 # You can obtain one at https://mozilla.org/MPL/2.0/.
 
 source_set("web_image") {
-  configs += [ "//build/config/compiler:enable_arc" ]
+  
 
   sources = [
     "image_downloader.h",
@@ -18,8 +18,8 @@ source_set("web_image") {
     "//base",
     "//mises/ios/browser/svg",
     "//components/image_fetcher/ios",
-    "//ios/chrome/browser/browser_state",
-    "//ios/chrome/browser/ui/util",
+    "//ios/chrome/browser/shared/model/browser_state",
+    "//ios/chrome/browser/shared/ui/util",
     "//net",
   ]
 }

@@ -8,7 +8,7 @@ import("//ios/build/config.gni")
 import("//net/features.gni")
 
 source_set("net") {
-  configs += [ "//build/config/compiler:enable_arc" ]
+  
 
   sources = [
     "certificate_utility.h",

@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/overflow_menu/overflow_menu_mediator.mm b/ios/chrome/browser/ui/popup_menu/overflow_menu/overflow_menu_mediator.mm
-index 11a2a1fc95c707180965bfc4adeb9ae845426fd7..6012bf2fef233eb320783ab6625b26cc1cef08ac 100644
+index 11a2a1fc95c707180965bfc4adeb9ae845426fd7..1b1caeade6f397489d60119e2b7bb09ef1df77b4 100644
 --- a/ios/chrome/browser/ui/popup_menu/overflow_menu/overflow_menu_mediator.mm
 +++ b/ios/chrome/browser/ui/popup_menu/overflow_menu/overflow_menu_mediator.mm
 @@ -96,6 +96,9 @@
@@ -12,13 +12,12 @@ index 11a2a1fc95c707180965bfc4adeb9ae845426fd7..6012bf2fef233eb320783ab6625b26cc
  using base::RecordAction;
  using base::UmaHistogramEnumeration;
  using base::UserMetricsAction;
-@@ -2225,4 +2228,10 @@ OverflowMenuFooter* CreateOverflowMenuManagedFooter(
+@@ -2225,4 +2228,9 @@ - (void)onShownToggledForDestination:(OverflowMenuDestination*)destination {
                                       actionSubtitle:subtitle];
  }
  
 +- (void)openMises {
 +  RecordAction(UserMetricsAction("MobileMenuOpenMises"));
-+  [self.popupMenuCommandsHandler dismissPopupMenuAnimated:YES];
 +  [Mises popupMisesWallet];
 +}
 +

@@ -216,10 +216,10 @@
         }();
         break;
       case base::Value::Type::DICT:
-        self.dictionaryValue = mises::NSDictionaryFromBaseValue(value.Clone());
+        self.dictionaryValue = brave::NSDictionaryFromBaseValue(value.Clone());
         break;
       case base::Value::Type::LIST:
-        self.listValue = mises::NSArrayFromBaseValue(value.Clone());
+        self.listValue = brave::NSArrayFromBaseValue(value.Clone());
         break;
       case base::Value::Type::NONE:
       default:
@@ -253,10 +253,10 @@
       return base::Value(blob);
     }
     case MojoBaseValueTagDictionaryValue: {
-      return mises::BaseValueFromNSDictionary(self.dictionaryValue);
+      return brave::BaseValueFromNSDictionary(self.dictionaryValue);
     }
     case MojoBaseValueTagListValue: {
-      return mises::BaseValueFromNSArray(self.listValue);
+      return brave::BaseValueFromNSArray(self.listValue);
     }
     case MojoBaseValueTagNull:
     default:
@@ -306,7 +306,7 @@
 
 @end
 
-namespace mises {
+namespace brave {
 
 NSArray<MojoBaseValue*>* NSArrayFromBaseValue(base::Value value) {
   auto result = [[NSMutableArray alloc] init];

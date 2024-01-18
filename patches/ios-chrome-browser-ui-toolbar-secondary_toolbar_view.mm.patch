@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm b/ios/chrom
 index 6fbb2621b96a7a4943c662501a1120e28704bf93..3a47789752575a57f95ee16d34ca7894ce20aaaa 100644
 --- a/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
 +++ b/ios/chrome/browser/ui/toolbar/secondary_toolbar_view.mm
-@@ -85,6 +85,9 @@ UIView* SecondaryToolbarLocationBarContainerView(
+@@ -85,6 +85,9 @@ @interface SecondaryToolbarView ()
  // redefined as readwrite.
  @property(nonatomic, strong, readwrite) UIButton* collapsedToolbarButton;
  
@@ -12,7 +12,7 @@ index 6fbb2621b96a7a4943c662501a1120e28704bf93..3a47789752575a57f95ee16d34ca7894
  @end
  
  @implementation SecondaryToolbarView {
-@@ -110,6 +113,9 @@ UIView* SecondaryToolbarLocationBarContainerView(
+@@ -110,6 +113,9 @@ @implementation SecondaryToolbarView {
  @synthesize toolsMenuButton = _toolsMenuButton;
  @synthesize tabGridButton = _tabGridButton;
  
@@ -22,7 +22,7 @@ index 6fbb2621b96a7a4943c662501a1120e28704bf93..3a47789752575a57f95ee16d34ca7894
  #pragma mark - Public
  
  - (instancetype)initWithButtonFactory:(ToolbarButtonFactory*)factory {
-@@ -166,6 +172,9 @@ UIView* SecondaryToolbarLocationBarContainerView(
+@@ -166,6 +172,9 @@ - (void)setUp {
    self.openNewTabButton = [self.buttonFactory openNewTabButton];
    self.tabGridButton = [self.buttonFactory tabGridButton];
    self.toolsMenuButton = [self.buttonFactory toolsMenuButton];
@@ -32,7 +32,7 @@ index 6fbb2621b96a7a4943c662501a1120e28704bf93..3a47789752575a57f95ee16d34ca7894
  
    // Move the tools menu button such as it looks visually balanced with the
    // button on the other side of the toolbar.
-@@ -174,8 +183,8 @@ UIView* SecondaryToolbarLocationBarContainerView(
+@@ -174,8 +183,8 @@ - (void)setUp {
        CGAffineTransformMakeTranslation(textDirection * kToolsMenuOffset, 0);
  
    self.allButtons = @[
@@ -43,7 +43,7 @@ index 6fbb2621b96a7a4943c662501a1120e28704bf93..3a47789752575a57f95ee16d34ca7894
    ];
  
    // Separator.
-@@ -348,4 +357,22 @@ UIView* SecondaryToolbarLocationBarContainerView(
+@@ -348,4 +357,22 @@ - (void)updateButtonStackViewConstraint {
    }
  }
  

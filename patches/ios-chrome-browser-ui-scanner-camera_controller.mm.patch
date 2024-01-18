@@ -2,7 +2,7 @@ diff --git a/ios/chrome/browser/ui/scanner/camera_controller.mm b/ios/chrome/bro
 index 8404b37a763dae71367bd3d634054c002ab4e1cb..d790a5177503e126fa679d3d8d745f726c6516dc 100644
 --- a/ios/chrome/browser/ui/scanner/camera_controller.mm
 +++ b/ios/chrome/browser/ui/scanner/camera_controller.mm
-@@ -61,7 +61,7 @@
+@@ -61,7 +61,7 @@ - (instancetype)initWithDelegate:(id<CameraControllerDelegate>)delegate {
      _cameraState = scanner::CAMERA_NOT_LOADED;
      _delegate = delegate;
      std::string queueName =

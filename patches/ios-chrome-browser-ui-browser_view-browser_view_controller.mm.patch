@@ -1,0 +1,17 @@
+diff --git a/ios/chrome/browser/ui/browser_view/browser_view_controller.mm b/ios/chrome/browser/ui/browser_view/browser_view_controller.mm
+index 2bf75945073341d1368b6f118b38844407170190..84e3fde7520cc694106bd2339c616a442a063065 100644
+--- a/ios/chrome/browser/ui/browser_view/browser_view_controller.mm
++++ b/ios/chrome/browser/ui/browser_view/browser_view_controller.mm
+@@ -2114,6 +2114,12 @@ - (void)dismissSoftKeyboard {
+   DCHECK(self.visible || self.dismissingModal);
+   [self.viewForCurrentWebState endEditing:NO];
+ }
++- (void)openSinglePage:(NSString*)url {
++  GURL pageUrl  =  net::GURLWithNSURL([NSURL URLWithString:url]);
++  UrlLoadParams params = UrlLoadParams::SwitchToTab(web::NavigationManager::WebLoadParams(pageUrl));
++  params.user_initiated = NO;
++  _urlLoadingBrowserAgent->Load(params);
++}
+ 
+ #pragma mark - TabConsumer (Public)
+ 

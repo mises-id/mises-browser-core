@@ -18,11 +18,10 @@ class MisesWebClient : public ChromeWebClient {
 
   ~MisesWebClient() override;
 
-  // WebClient implementation.
   NSString* GetDocumentStartScriptForAllFrames(
-    BrowserState* browser_state) const override;
+    BrowserState* browser_state) const;
   NSString* GetDocumentStartScriptForMainFrame(
-      BrowserState* browser_state) const override;
+      BrowserState* browser_state) const;
 
  private:
   NSArray* inpageScripts;

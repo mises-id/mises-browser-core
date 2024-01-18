@@ -5,12 +5,10 @@
 #ifndef IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CELLS_CONTENT_SUGGESTIONS_MISES_ITEM_H_
 #define IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CELLS_CONTENT_SUGGESTIONS_MISES_ITEM_H_
 
-//#import <MaterialComponents/MDCCollectionViewCell.h>
 
-#import "ios/chrome/browser/ui/collection_view/cells/collection_view_item.h"
 #import "ios/chrome/browser/ui/content_suggestions/cells/suggested_content.h"
 
-#import <MaterialComponents/M3CButton.h>
+@class M3CButton;
 
 // // Item to display what is new in the ContentSuggestions.
 // @interface ContentSuggestionsMisesItem : CollectionViewItem<SuggestedContent>
