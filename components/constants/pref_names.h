@@ -99,4 +99,10 @@ extern const char kEnableMediaRouterOnRestart[];
 extern const char kPreinstallMetamaskEnabled[];
 extern const char kMisesWalletDidMigrated[];
 extern const char kMisesWalletAuthCache[];
+
+
+
+inline constexpr char kWidevineEnabled[] = "mises.widevine_opted_in";
+inline constexpr char kAskEnableWidvine[] = "mises.ask_widevine_install";
+
 #endif  // BRAVE_COMPONENTS_CONSTANTS_PREF_NAMES_H_

@@ -1,0 +1,13 @@
+diff --git a/third_party/blink/renderer/modules/encryptedmedia/navigator_request_media_key_system_access.cc b/third_party/blink/renderer/modules/encryptedmedia/navigator_request_media_key_system_access.cc
+index 45903eeab344f7b3c934af43ec5ccb37d3addfb1..c08721bd091be74e5b5bc35e604a6c299f0eaf82 100644
+--- a/third_party/blink/renderer/modules/encryptedmedia/navigator_request_media_key_system_access.cc
++++ b/third_party/blink/renderer/modules/encryptedmedia/navigator_request_media_key_system_access.cc
+@@ -194,7 +194,7 @@ ScriptPromise NavigatorRequestMediaKeySystemAccess::requestMediaKeySystemAccess(
+       EncryptedMediaUtils::GetEncryptedMediaClientFromLocalDOMWindow(window);
+   media_client->RequestMediaKeySystemAccess(
+       WebEncryptedMediaRequest(initializer));
+-
++  MISES_NAVIGATOR_REQUEST_MEDIA_KEY_SYSTEM_ACCESS
+   // 7. Return promise.
+   return promise;
+ }

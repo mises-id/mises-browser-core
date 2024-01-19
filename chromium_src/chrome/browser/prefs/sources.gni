@@ -1,0 +1,20 @@
+# Copyright (c) 2021 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import("//components/gcm_driver/config.gni")
+import("//third_party/widevine/cdm/widevine.gni")
+
+mises_chromium_src_chrome_browser_prefs_deps = [
+  "//mises/components/brave_wallet/browser",
+  "//mises/components/constants",
+  "//chrome/browser/profiles:profile",
+  "//chrome/common:constants",
+  "//components/gcm_driver:gcm_buildflags",
+  "//third_party/widevine/cdm:buildflags",
+]
+
+if (enable_widevine) {
+  mises_chromium_src_chrome_browser_prefs_deps += [ "//mises/browser/widevine" ]
+}

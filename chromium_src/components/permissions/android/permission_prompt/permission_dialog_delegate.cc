@@ -15,6 +15,7 @@
 #include "mises/components/l10n/common/localization_util.h"
 #include "mises/components/permissions/android/jni_headers/MisesPermissionDialogDelegate_jni.h"
 #include "mises/components/permissions/permission_lifetime_utils.h"
+#include "mises/components/permissions/permission_widevine_utils.h"
 #include "components/grit/mises_components_strings.h"
 #include "components/permissions/android/jni_headers/PermissionDialogController_jni.h"
 #include "components/permissions/android/permission_prompt/permission_prompt_android.h"

@@ -1,3 +1,6 @@
+import("//third_party/widevine/cdm/widevine.gni")
+
+
 mises_components_permissions_sources = [
   "//mises/components/permissions/mises_permission_manager.cc",
   "//mises/components/permissions/mises_permission_manager.h",
@@ -22,6 +25,13 @@ mises_components_permissions_sources = [
   "//mises/components/permissions/permission_origins.cc",
   "//mises/components/permissions/permission_origins.h",
 ]
+
+if (enable_widevine) {
+  mises_components_permissions_sources += [
+    "//mises/components/permissions/permission_widevine_utils.cc",
+    "//mises/components/permissions/permission_widevine_utils.h",
+  ]
+}
 
 mises_components_permissions_deps = [
   "//base",

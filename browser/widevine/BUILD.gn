@@ -1,0 +1,155 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/.
+
+import("//third_party/widevine/cdm/widevine.gni")
+
+if (is_win) {
+  import("//mises/build/win/sign.gni")
+}
+
+assert(enable_widevine)
+
+source_set("widevine") {
+  # Remove when https://github.com/brave/brave-browser/issues/10644 is resolved
+  check_includes = false
+  deps = [
+    "//base",
+    "//mises/app:mises_generated_resources_grit",
+    "//mises/components/constants",
+    "//mises/components/widevine:constants",
+    "//chrome/common",
+    "//components/component_updater/",
+    "//components/content_settings/core/common",
+    "//components/permissions",
+    "//components/pref_registry",
+    "//components/prefs",
+    "//components/subresource_filter/content/browser",
+    "//components/vector_icons",
+    "//content/public/browser",
+    "//content/public/common",
+    "//third_party/widevine/cdm:buildflags",
+    "//third_party/widevine/cdm:headers",
+    "//ui/base",
+    "//url",
+  ]
+
+  sources = [
+    "widevine_permission_request.cc",
+    "widevine_permission_request.h",
+    "widevine_utils.cc",
+    "widevine_utils.h",
+  ]
+}
+
+source_set("widevine_cdm_component_installer_unittest") {
+  testonly = true
+
+  sources = [ "widevine_cdm_component_installer_unittest.cc" ]
+  deps = [
+    "//base",
+    "//mises/common",
+    "//chrome/browser/profiles:profile",
+    "//chrome/common",
+    "//components/permissions",
+    "//components/pref_registry",
+    "//components/prefs",
+    "//content/public/browser",
+    "//testing/gmock",
+    "//testing/gtest",
+    "//third_party/widevine/cdm:buildflags",
+  ]
+}
+
+source_set("widevine_permission_android_unittest") {
+  testonly = true
+
+  sources = [ "widevine_permission_android_unittest.cc" ]
+  deps = [
+    ":widevine",
+    "//base",
+    "//mises/common",
+    "//chrome/browser:browser",
+    "//chrome/browser/profiles:profile",
+    "//chrome/test:test_support",
+    "//components/permissions",
+    "//components/pref_registry",
+    "//components/prefs",
+    "//content/public/browser",
+    "//content/test:test_support",
+    "//testing/gmock",
+    "//testing/gtest",
+    "//third_party/widevine/cdm:buildflags",
+  ]
+}
+
+source_set("unittests") {
+  testonly = true
+
+  sources = []
+  deps = []
+  if (enable_widevine_cdm_component) {
+    deps += [ ":widevine_cdm_component_installer_unittest" ]
+  }
+
+  if (is_android) {
+    deps += [ ":widevine_permission_android_unittest" ]
+  }
+}
+
+source_set("browser_tests") {
+  testonly = true
+  defines = [ "HAS_OUT_OF_PROC_TEST_RUNNER" ]
+
+  sources = []
+  deps = []
+
+  if (!is_android) {
+    sources += [ "widevine_prefs_migration_browsertest.cc" ]
+    deps += [
+      ":widevine",
+      "//base",
+      "//mises/browser",
+      "//mises/common",
+      "//mises/components/constants",
+      "//mises/components/widevine:constants",
+      "//chrome/browser",
+      "//chrome/browser:browser_process",
+      "//chrome/browser/profiles:profile",
+      "//chrome/common",
+      "//chrome/test:test_support",
+      "//components/prefs",
+      "//content/public/browser",
+      "//content/test:test_support",
+      "//testing/gtest",
+      "//third_party/widevine/cdm:buildflags",
+    ]
+  }
+
+  if (toolkit_views) {
+    sources += [ "widevine_permission_request_browsertest.cc" ]
+    deps += [
+      "//chrome/browser/ui",
+      "//chrome/test:test_support_ui",
+      "//components/permissions",
+      "//ui/views",
+      "//url",
+    ]
+  }
+}
+
+if (is_win && !skip_signing) {
+  widevine_sign_file("mises_exe_sig") {
+    file = "$root_out_dir/presigned_binaries/mises.exe"
+    signature_file = "$root_out_dir/mises.exe.sig"
+    flags = "1"
+    deps = [ "//mises:signed_mises_exe" ]
+  }
+  widevine_sign_file("chrome_dll_sig") {
+    file = "$root_out_dir/presigned_binaries/chrome.dll"
+    signature_file = "$root_out_dir/chrome.dll.sig"
+    flags = "0"
+    deps = [ "//mises:signed_chrome_dll" ]
+  }
+}

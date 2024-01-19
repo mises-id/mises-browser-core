@@ -11,6 +11,7 @@
 #include "third_party/widevine/cdm/buildflags.h"
 #include "mises/components/ipfs/buildflags/buildflags.h"
 #include "mises/browser/brave_wallet/brave_wallet_tab_helper.h"
+#include "third_party/widevine/cdm/buildflags.h"
 
 #if BUILDFLAG(IS_ANDROID)
 #include "mises/browser/android/preferences/background_video_playback_tab_helper.h"
@@ -21,6 +22,10 @@
 #include "mises/browser/ipfs/ipfs_tab_helper.h"
 #endif
 #include "components/zoom/zoom_controller.h"
+
+#if BUILDFLAG(ENABLE_WIDEVINE)
+#include "mises/browser/mises_drm_tab_helper.h"
+#endif
 
 
 namespace mises {
@@ -35,6 +40,10 @@ namespace mises {
   #endif
   #if BUILDFLAG(IS_ANDROID)
     zoom::ZoomController::CreateForWebContents(web_contents);
+  #endif
+
+  #if BUILDFLAG(ENABLE_WIDEVINE)
+    MisesDrmTabHelper::CreateForWebContents(web_contents);
   #endif
 
     brave_wallet::BraveWalletTabHelper::CreateForWebContents(web_contents);

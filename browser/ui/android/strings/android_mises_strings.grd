@@ -110,11 +110,26 @@ This file contains all "about" strings.  It is set to NOT be translated, in tran
       </message>
 
 
+      <message name="IDS_PREFS_SECTION_GENERAL" desc="Title for the general section in settings.">
+        General
+      </message>
+
+      <message name="IDS_PREFS_SECTION_MEDIA" desc="Title for the general section in settings.">
+        Media
+      </message>
+
       <message name="IDS_PREFS_BACKGROUND_VIDEO_PLAYBACK" desc="Title for background video playback preference in controls section">
         Background video play
       </message>
       <message name="IDS_PREFS_BACKGROUND_VIDEO_PLAYBACK_ON" desc="Text for background video playback is on">
         Allows video to play when you switch to another tab in Mises or another app or your device screen is off.
+      </message>
+
+      <message name="IDS_PREFS_ENABLE_WIDEVINE_TITLE" desc="Title for widevine preference in controls section">
+        Widevine DRM
+      </message>
+      <message name="IDS_PREFS_ENABLE_WIDEVINE_SUMMARY" desc="Summary for preference that enables widevine drm.">
+        Use Widevine digital rights management (DRM) to view protected media content in the browser.
       </message>
 
   </messages>

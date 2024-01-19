@@ -28,6 +28,8 @@ source_set("preferences") {
 
 java_cpp_strings("java_pref_names_srcjar") {
   sources = [
+    "//mises/components/ipfs/pref_names.h",
+    "//mises/components/constants/pref_names.h",
     "//mises/components/constants/pref_names.cc",
     "//mises/components/ntp_background_images/common/pref_names.cc",
     "//components/translate/core/browser/translate_pref_names.cc",

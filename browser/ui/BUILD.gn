@@ -54,9 +54,10 @@ source_set("ui") {
 
   }  # !is_android
 
-  if (toolkit_views) {
+  if (toolkit_views || is_android) {
     sources += [
-     
+      "views/dialog_footnote_utils.cc",
+      "views/dialog_footnote_utils.h",
     ]
 
     if (use_aura) {

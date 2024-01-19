@@ -15,10 +15,16 @@
 #include "components/prefs/pref_registry_simple.h"
 #include "third_party/widevine/cdm/buildflags.h"
 
+#if BUILDFLAG(ENABLE_WIDEVINE)
+#include "mises/browser/widevine/widevine_utils.h"
+#endif
 
 namespace mises {
 
 void RegisterLocalStatePrefsForMigration(PrefRegistrySimple* registry) {
+#if BUILDFLAG(ENABLE_WIDEVINE)
+  RegisterWidevineLocalstatePrefsForMigration(registry);
+#endif
    brave_wallet::RegisterLocalStatePrefsForMigration(registry);
 }
 void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
@@ -29,6 +35,10 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   RegisterLocalStatePrefsForMigration(registry);
   
   brave_wallet::RegisterLocalStatePrefs(registry);
+
+#if BUILDFLAG(ENABLE_WIDEVINE)
+  RegisterWidevineLocalstatePrefs(registry);
+#endif
 
 }
 

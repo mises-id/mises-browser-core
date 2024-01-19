@@ -22,6 +22,11 @@
 
 #include "third_party/widevine/cdm/buildflags.h"
 
+#if BUILDFLAG(ENABLE_WIDEVINE)
+#include "media/base/key_system_info.h"
+#include "third_party/widevine/cdm/widevine_cdm_common.h"
+#endif
+
 
 namespace {
 void MaybeRemoveWidevineSupport(media::GetSupportedKeySystemsCB cb,

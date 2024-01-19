@@ -111,6 +111,7 @@ generate_jni("jni_headers") {
      "//mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
      "//mises/android/java/org/chromium/chrome/browser/MisesFeatureUtil.java",
      "//mises/android/java/org/chromium/chrome/browser/MisesRelaunchUtils.java",
+     "//mises/android/java/org/chromium/chrome/browser/MisesLocalState.java",
      "//mises/android/java/org/chromium/chrome/browser/preferences/MisesPrefServiceBridge.java",
      "//mises/android/java/org/chromium/chrome/browser/AppMenuBridge.java",
      "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/BraveWalletProviderDelegateImplHelper.java",
