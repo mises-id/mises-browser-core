@@ -45,12 +45,11 @@ namespace {
   [self.misesWeb3Item buildHorizontalMostVisitedStackViews];
 
 
-#define MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_CONFIG \
-  if ([self.mostVisitedViews count]) { \
-    [self.misesWeb3Item removeAllViews]; \
-  } else { \
-    [self.misesWeb3Item reset]; \
-  }
+#define MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_REMOVE \
+    [self.misesWeb3Item removeAllViews]; 
+
+#define MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_RESET \
+    [self.misesWeb3Item reset]; 
 
 #define MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_SIZE \
   [self.misesWeb3Item preferedSize]
@@ -104,12 +103,20 @@ namespace {
 - (void)toggleFeatureTapped {
   [_controller.suggestionCommandHandler toogleMisesFeature];
   [_controller.audience returnToRecentTabWasAdded];
+  if (_controller.viewLoaded) {
+      [_controller.view setNeedsLayout];
+      [_controller.view layoutIfNeeded];
+  }
   
 }
 
 - (void)toggleWeb3Tapped {
   [_controller.suggestionCommandHandler toogleWeb3Site];
   [_controller.audience returnToRecentTabWasAdded];
+  if (_controller.viewLoaded) {
+      [_controller.view setNeedsLayout];
+      [_controller.view layoutIfNeeded];
+  }
 }
 
 - (void)enterWeb3Tapped {
@@ -237,7 +244,7 @@ namespace {
 
 -(CGSize) preferedSize {
   CGSize size = MostVisitedCellSize(UIApplication.sharedApplication.preferredContentSizeCategory);
-  size.height = size.height*4;
+  size.height = size.height*6;
   return size;
 }
 @end
