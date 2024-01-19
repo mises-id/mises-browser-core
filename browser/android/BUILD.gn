@@ -7,6 +7,7 @@ source_set("android_browser_process") {
   sources = [
     "mises_feature_util.cc",
     "mises_relaunch_utils.cc",
+    "mises_local_state_android.cc",
   ]
 
   deps = [

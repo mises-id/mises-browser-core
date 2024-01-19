@@ -267,6 +267,8 @@ Config.prototype.buildArgs = function () {
     branding_path_product: "mises",
     enable_nacl: false,
     enable_widevine: true,
+    // Our copy of signature_generator.py doesn't support --ignore_missing_cert:
+    ignore_missing_widevine_signing_cert: false,
     target_cpu: this.targetArch,
     is_official_build: this.isOfficialBuild() && !this.isAsan(),
     is_debug: this.isDebug(),
@@ -489,7 +491,6 @@ Config.prototype.buildArgs = function () {
     }
     args.mises_android_developer_options_code = this.misesAndroidDeveloperOptionsCode
     args.mises_safetynet_api_key = this.misesSafetyNetApiKey
-    args.enable_widevine = false
     args.safe_browsing_mode = 2
 
     // Feed is not used in Mises

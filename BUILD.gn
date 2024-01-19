@@ -8,6 +8,8 @@ import("//third_party/icu/config.gni")
 import("//tools/grit/repack.gni")
 import("//tools/v8_context_snapshot/v8_context_snapshot.gni")
 import("//ui/base/ui_features.gni")
+import("//third_party/widevine/cdm/widevine.gni")
+
 
 if (enable_library_cdms) {
   import("//media/cdm/library_cdm/cdm_paths.gni")

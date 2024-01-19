@@ -3,6 +3,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import("//third_party/widevine/cdm/widevine.gni")
 
 mises_chrome_renderer_sources = [
   "//mises/renderer/mises_content_renderer_client.cc",
@@ -20,6 +21,8 @@ mises_chrome_renderer_deps = [
   "//mises/components/safe_builtins/renderer",
   "//mises/renderer/brave_wallet",
 ]
+
+mises_chrome_renderer_deps += [ "//third_party/widevine/cdm:headers" ]
 
 mises_chrome_renderer_public_deps = []
 

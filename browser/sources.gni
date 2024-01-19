@@ -8,6 +8,7 @@ import("//mises/browser/ipfs/sources.gni")
 import("//mises/browser/web3sites_safe/sources.gni")
 import("//mises/browser/brave_wallet/android/sources.gni")
 import("//extensions/buildflags/buildflags.gni")
+import("//mises/chromium_src/chrome/browser/prefs/sources.gni")
 import("//mises/chromium_src/chrome/browser/sources.gni")
 import("//mises/browser/brave_wallet/notifications/sources.gni")
 import("//mises/browser/permissions/sources.gni")
@@ -64,6 +65,7 @@ mises_chrome_browser_deps = [
   "//mises/components/brave_wallet/common:mojom",
   "//mises/components/version_info",
   "//mises/browser/ui",
+  "//mises/third_party/blink/renderer",
   "//chrome/browser:browser_process",
   "//chrome/browser/profiles:profile",
   "//chrome/browser/ui",
@@ -176,6 +178,19 @@ if (enable_extensions) {
     "//extensions/common:common_constants",
   ]
 
+}
+
+
+if (enable_widevine) {
+  mises_chrome_browser_sources += [
+    "//mises/browser/mises_drm_tab_helper.cc",
+    "//mises/browser/mises_drm_tab_helper.h",
+  ]
+  mises_chrome_browser_deps += [
+    "//mises/browser/widevine",
+    "//mises/components/mises_drm",
+    "//mises/components/widevine:constants",
+  ]
 }
 
 if (is_win) {
@@ -314,3 +329,4 @@ mises_chrome_browser_deps += mises_browser_brave_wallet_deps
 mises_chrome_browser_sources += mises_browser_permissions_sources
 mises_chrome_browser_deps += mises_browser_permissions_deps
 
+mises_chrome_browser_deps += mises_chromium_src_chrome_browser_prefs_deps

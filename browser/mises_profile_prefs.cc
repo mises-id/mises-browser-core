@@ -45,6 +45,10 @@
 using extensions::FeatureSwitch;
 #endif
 
+#if BUILDFLAG(ENABLE_WIDEVINE)
+#include "mises/browser/widevine/widevine_utils.h"
+#endif
+
 namespace mises {
 
 
@@ -52,6 +56,10 @@ void RegisterProfilePrefsForMigration(
     user_prefs::PrefRegistrySyncable* registry) {
       
   brave_wallet::RegisterProfilePrefsForMigration(registry);
+
+#if BUILDFLAG(ENABLE_WIDEVINE)
+  RegisterWidevineProfilePrefsForMigration(registry);
+#endif
     
 }
 void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
@@ -82,6 +90,15 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   registry->RegisterIntegerPref(
       prefs::kMisesDefaultSearchVersion,
       TemplateURLPrepopulateData::kMisesCurrentDataVersion);
+
+
+
+  // TODO(shong): Migrate this to local state also and guard in ENABLE_WIDEVINE.
+  // We don't need to display "don't ask widevine prompt option" in settings
+  // if widevine is disabled.
+  // F/u issue: https://github.com/brave/brave-browser/issues/7000
+  registry->RegisterBooleanPref(kAskEnableWidvine, true);
+
 
   RegisterProfilePrefsForMigration(registry);
 

@@ -94,6 +94,11 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 #include "mises/components/ipfs/ipfs_navigation_throttle.h"
 #endif
 
+#if BUILDFLAG(ENABLE_WIDEVINE)
+#include "mises/browser/mises_drm_tab_helper.h"
+#endif
+
+
 #include "mises/browser/profiles/mises_renderer_updater.h"
 #include "mises/browser/profiles/mises_renderer_updater_factory.h"
 
@@ -260,6 +265,26 @@ void MisesContentBrowserClient::RenderProcessWillLaunch(
   MisesRendererUpdaterFactory::GetForProfile(profile)->InitializeRenderer(host);
 
   ChromeContentBrowserClient::RenderProcessWillLaunch(host);
+}
+
+
+void MisesContentBrowserClient::
+    RegisterAssociatedInterfaceBindersForRenderFrameHost(
+        content::RenderFrameHost& render_frame_host,                // NOLINT
+        blink::AssociatedInterfaceRegistry& associated_registry) {  // NOLINT
+#if BUILDFLAG(ENABLE_WIDEVINE)
+  associated_registry.AddInterface<
+      mises_drm::mojom::MisesDRM>(base::BindRepeating(
+      [](content::RenderFrameHost* render_frame_host,
+         mojo::PendingAssociatedReceiver<mises_drm::mojom::MisesDRM> receiver) {
+        MisesDrmTabHelper::BindMisesDRM(std::move(receiver), render_frame_host);
+      },
+      &render_frame_host));
+#endif  // BUILDFLAG(ENABLE_WIDEVINE)
+
+  ChromeContentBrowserClient::
+      RegisterAssociatedInterfaceBindersForRenderFrameHost(render_frame_host,
+                                                           associated_registry);
 }
 
 

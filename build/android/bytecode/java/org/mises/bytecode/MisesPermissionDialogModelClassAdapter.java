@@ -9,7 +9,7 @@ import org.objectweb.asm.ClassVisitor;
 
 public class MisesPermissionDialogModelClassAdapter extends MisesClassVisitor {
     static String sPermissionDialogModelClassName =
-            "org/chromium/components/permissions/PermissionDialogModel";
+            "org/chromium/components/permissions/PermissionDialogModelFactory";
 
     static String sMisesPermissionDialogModelClassName =
             "org/chromium/components/permissions/MisesPermissionDialogModel";
