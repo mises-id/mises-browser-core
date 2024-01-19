@@ -29,7 +29,6 @@ import androidx.browser.customtabs.CustomTabsIntent;
 
 import org.chromium.base.ApiCompatibilityUtils;
 import org.chromium.base.IntentUtils;
-import org.chromium.base.Log;
 import org.chromium.ui.LayoutInflaterUtils;
 import org.chromium.ui.UiUtils;
 import org.chromium.ui.base.ViewUtils;
@@ -53,7 +52,6 @@ class MisesPermissionDialogModel {
         MisesPermissionDialogDelegate misesDelegate =
                 (MisesPermissionDialogDelegate) (Object) delegate;
         PropertyModel model = null;
-        Log.v("MisesPermissionDialogModel", "getModel" + misesDelegate.getIsWidevinePermissionRequest());
         if (misesDelegate.getIsWidevinePermissionRequest()) {
             model = createModelForWidevineRequest(controller, delegate, touchFilteredCallback);
         } else {
