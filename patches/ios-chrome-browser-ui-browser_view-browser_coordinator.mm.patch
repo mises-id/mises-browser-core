@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/browser_view/browser_coordinator.mm b/ios/chrome/browser/ui/browser_view/browser_coordinator.mm
-index d7fb4f0d11b477f82b4595ddbf8bd5504be32e33..1a825cf876251291d27f909d8ab193e67a2e1ef3 100644
+index d7fb4f0d11b477f82b4595ddbf8bd5504be32e33..275db3bc10822aee6aa73fb2604d055df8f0c3ed 100644
 --- a/ios/chrome/browser/ui/browser_view/browser_coordinator.mm
 +++ b/ios/chrome/browser/ui/browser_view/browser_coordinator.mm
 @@ -457,7 +457,7 @@ @interface BrowserCoordinator () <
@@ -37,3 +37,13 @@ index d7fb4f0d11b477f82b4595ddbf8bd5504be32e33..1a825cf876251291d27f909d8ab193e6
  
    [self.sharingCoordinator stop];
    self.sharingCoordinator = nil;
+@@ -3076,7 +3076,8 @@ - (CGFloat)headerInsetForOverscrollActionsController:
+   OverscrollActionsTabHelper* activeTabHelper =
+       OverscrollActionsTabHelper::FromWebState(activeWebState);
+   if (controller == activeTabHelper->GetOverscrollActionsController()) {
+-    return self.viewController.headerHeight;
++   // return self.viewController.headerHeight;
++    return 0.0;
+   } else {
+     return 0.0;
+   }

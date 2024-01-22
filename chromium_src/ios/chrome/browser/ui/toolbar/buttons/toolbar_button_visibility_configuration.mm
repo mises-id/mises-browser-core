@@ -8,24 +8,6 @@
 @implementation ToolbarButtonVisibilityConfiguration
 
 
- - (ToolbarComponentVisibility)tabGridButtonVisibility {
-   switch (self.type) {
-     case ToolbarType::kPrimary:
-      return ToolbarComponentVisibilityAlways;
-     case ToolbarType::kSecondary:
-      return ToolbarComponentVisibilityNone;
-   }
- }
- 
- - (ToolbarComponentVisibility)toolsMenuButtonVisibility {
-   switch (self.type) {
-     case ToolbarType::kPrimary:
-      return ToolbarComponentVisibilityAlways;
-     case ToolbarType::kSecondary:
-      return ToolbarComponentVisibilityNone;
-   }
- }
-
 
 - (ToolbarComponentVisibility)misesButtonVisibility {
   switch (self.type) {
