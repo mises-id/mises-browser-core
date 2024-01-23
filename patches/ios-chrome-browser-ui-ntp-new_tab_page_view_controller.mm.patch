@@ -1,0 +1,14 @@
+diff --git a/ios/chrome/browser/ui/ntp/new_tab_page_view_controller.mm b/ios/chrome/browser/ui/ntp/new_tab_page_view_controller.mm
+index 63de08b89fbd0b73a8a18b6ee5bbad33af0da344..6b54897f7c522bf32bdc881ca3aa0533d92faa23 100644
+--- a/ios/chrome/browser/ui/ntp/new_tab_page_view_controller.mm
++++ b/ios/chrome/browser/ui/ntp/new_tab_page_view_controller.mm
+@@ -1772,6 +1772,9 @@ - (void)setContentOffset:(CGFloat)offset {
+   CGFloat maxOffset = collectionView.contentSize.height +
+                       collectionView.contentInset.bottom -
+                       collectionView.bounds.size.height;
++    if (maxOffset < -collectionView.contentInset.top) {
++        maxOffset = -collectionView.contentInset.top;
++    }
+   offset = MIN(maxOffset, offset);
+   collectionView.contentOffset = CGPointMake(0, offset);
+   self.scrolledIntoFeed = offset > [self offsetWhenScrolledIntoFeed];

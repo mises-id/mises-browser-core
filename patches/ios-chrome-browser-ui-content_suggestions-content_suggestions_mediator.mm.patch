@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
-index b4d94d4e97946088ad8de727af8acac6024ca454..7223155ad7c609a35a9bc33513c64587e1ea3515 100644
+index b4d94d4e97946088ad8de727af8acac6024ca454..55177e6013f79f4c8ebae7ee1b5b5368e16312ac 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_mediator.mm
 @@ -121,6 +121,9 @@
@@ -119,7 +119,7 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..7223155ad7c609a35a9bc33513c64587
  }
  
  - (void)setContentSuggestionsMetricsRecorder:
-@@ -1881,4 +1919,144 @@ - (void)onServiceStatusChanged {
+@@ -1881,4 +1919,148 @@ - (void)onServiceStatusChanged {
    }
  }
  
@@ -238,16 +238,20 @@ index b4d94d4e97946088ad8de727af8acac6024ca454..7223155ad7c609a35a9bc33513c64587
 +- (void)toogleWeb3Site {
 +    _misesWeb3Visible = !_misesWeb3Visible;
 +    [[NSUserDefaults standardUserDefaults] setBool:!_misesWeb3Visible forKey:kHideWeb3Site];
-+    [self reloadAllData];
 +}
 +- (void)toogleMisesFeature {
 +    _misesFeatureVisible = !_misesFeatureVisible;
 +    [[NSUserDefaults standardUserDefaults] setBool:!_misesFeatureVisible forKey:kHideMisesService];
-+    [self reloadAllData];
++}
 +
++- (BOOL)isWeb3SiteVisible {
++    return _misesWeb3Visible;
++}
++- (BOOL)isMisesFeatureVisible{
++    return _misesFeatureVisible;
 +}
 +- (void)reloadAllData {
-+
++    [self useFreshMostVisited];
 +}
 +
 +- (void) setTiles {

@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
-index a21dd22a2fc8adf5b0d443c30cca7208d9a2a50a..d16418dff3e15cc2d3f644f4f812b674104c4923 100644
+index a21dd22a2fc8adf5b0d443c30cca7208d9a2a50a..ff32958b051c95fbd160ad177dce28bcc4e2ae15 100644
 --- a/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 +++ b/ios/chrome/browser/ui/popup_menu/popup_menu_mediator.mm
 @@ -87,10 +87,29 @@
@@ -32,7 +32,23 @@ index a21dd22a2fc8adf5b0d443c30cca7208d9a2a50a..d16418dff3e15cc2d3f644f4f812b674
  PopupMenuToolsItem* CreateTableViewItem(int titleID,
                                          PopupMenuAction action,
                                          NSString* imageName,
-@@ -1171,4 +1190,82 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
+@@ -520,7 +539,14 @@ - (void)setBookmarkModel:(bookmarks::BookmarkModel*)bookmarkModel {
+ 
+ - (NSArray<NSArray<TableViewItem<PopupMenuItem>*>*>*)items {
+   if (!_items) {
+-    [self createToolsMenuItems];
++      if (_popupMenu.menuType == POPUP_MENU_TYPE_TOOLS) {
++          [self createToolsMenuItems];
++      }else if (_popupMenu.menuType == POPUP_MENU_TYPE_MISES) {
++          [self createMisesMenuItems];
++      }else if (_popupMenu.menuType == POPUP_MENU_TYPE_WALLET) {
++          [self createWalletMenuItems];
++      }
++    
+     if (self.webState && self.followItem) {
+       FollowTabHelper* followTabHelper =
+           FollowTabHelper::FromWebState(self.webState);
+@@ -1171,4 +1197,82 @@ - (void)searchCopiedImage:(absl::optional<gfx::Image>)optionalImage
    }
  }
  

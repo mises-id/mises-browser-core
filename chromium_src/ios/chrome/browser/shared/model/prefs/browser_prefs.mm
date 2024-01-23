@@ -13,12 +13,15 @@
 //#include "mises/ios/browser/brave_stats/brave_stats_prefs.h"
 #include "components/pref_registry/pref_registry_syncable.h"
 
+#import "components/image_fetcher/core/cache/image_cache.h"
+
 #if BUILDFLAG(ENABLE_IPFS)
 #include "mises/components/ipfs/ipfs_service.h"
 #endif
 
 void MisesRegisterBrowserStatePrefs(
     user_prefs::PrefRegistrySyncable* registry) {
+  image_fetcher::ImageCache::RegisterProfilePrefs(registry);
  // brave_sync::Prefs::RegisterProfilePrefs(registry);
   brave_wallet::RegisterProfilePrefs(registry);
   brave_wallet::RegisterProfilePrefsForMigration(registry);
@@ -46,4 +49,4 @@ void MisesMigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
 #define MISES_REGISTER_LOCAL_STATE_PREFS MisesRegisterLocalStatePrefs(registry);
 #define MISES_MIGRATE_OBSOLETE_BROWSER_STATE_PREFS \
   MisesMigrateObsoleteBrowserStatePrefs(prefs);
-#include "src/ios/chrome/browser/prefs/browser_prefs.mm"
+#include "src/ios/chrome/browser/shared/model/prefs/browser_prefs.mm"

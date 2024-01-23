@@ -27,6 +27,8 @@ namespace {
     ContentSuggestionsMisesToggleCell* misesFeatureToggleCell;
 @property(nonatomic, strong)
     ContentSuggestionsMisesEmptyCell* misesEmptyCell;
+@property(nonatomic, strong) 
+    NSLayoutConstraint* contentSuggestionHeightAnchor;
 
 - (instancetype)init:(ContentSuggestionsViewController *)controller;
 - (void) reset;
@@ -36,7 +38,7 @@ namespace {
 @end
 
 #define MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_PROP \
-  @property(nonatomic, strong) MisesWeb3Item* misesWeb3Item;
+  @property(nonatomic, strong) MisesWeb3Item* misesWeb3Item; 
 
 #define MISES_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_VIEW_CONTROLLER_INIT \
   self.misesWeb3Item = [[MisesWeb3Item alloc] init:self];
@@ -102,20 +104,29 @@ namespace {
 
 - (void)toggleFeatureTapped {
   [_controller.suggestionCommandHandler toogleMisesFeature];
+  [self updateContentSuggestionHeight];
+  
   [_controller.audience returnToRecentTabWasAdded];
-  if (_controller.viewLoaded) {
-      [_controller.view setNeedsLayout];
-      [_controller.view layoutIfNeeded];
-  }
+  
+  [_controller.suggestionCommandHandler reloadAllData];
+
   
 }
 
 - (void)toggleWeb3Tapped {
   [_controller.suggestionCommandHandler toogleWeb3Site];
+  [self updateContentSuggestionHeight];
+
   [_controller.audience returnToRecentTabWasAdded];
-  if (_controller.viewLoaded) {
-      [_controller.view setNeedsLayout];
-      [_controller.view layoutIfNeeded];
+  
+  [_controller.suggestionCommandHandler reloadAllData];
+
+  
+}
+- (void)updateContentSuggestionHeight {
+  CGSize size = [self preferedSize];
+  if (self.contentSuggestionHeightAnchor) {
+    self.contentSuggestionHeightAnchor.constant = size.height;
   }
 }
 
@@ -243,8 +254,18 @@ namespace {
 }
 
 -(CGSize) preferedSize {
+  CGFloat width = MostVisitedTilesContentHorizontalSpace(_controller.traitCollection);
   CGSize size = MostVisitedCellSize(UIApplication.sharedApplication.preferredContentSizeCategory);
-  size.height = size.height*6;
+  int count = 1; //mv cells
+  if ([_controller.suggestionCommandHandler isMisesFeatureVisible]) {
+    count += 1;
+  }
+  if ([_controller.suggestionCommandHandler isWeb3SiteVisible]) {
+    count += 2;
+  }
+  size.height = size.height * count;
+  size.height += [ContentSuggestionsMisesToggleCell heightForWidth:width] * 2;
+  size.height += [ContentSuggestionsMisesEmptyCell heightForWidth:width] * 2;
   return size;
 }
 @end

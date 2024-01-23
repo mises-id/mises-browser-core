@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
-index 12211b0b3d86e1eeac562c167cd8a14d61f3af05..96f99039acfba8dae604629089fbfc1b462b176c 100644
+index 12211b0b3d86e1eeac562c167cd8a14d61f3af05..623cdaac659835403ace4ff063bc7db0a1319543 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_collection_utils.mm
 @@ -38,31 +38,31 @@
@@ -44,11 +44,53 @@ index 12211b0b3d86e1eeac562c167cd8a14d61f3af05..96f99039acfba8dae604629089fbfc1b
  
  // The size of the symbol image.
  const CGFloat kSymbolContentSuggestionsPointSize = 18;
-@@ -201,6 +201,7 @@ CGFloat HeightForLogoHeader(BOOL logo_is_showing,
+@@ -163,14 +163,17 @@ CGFloat SearchFieldWidth(CGFloat width, UITraitCollection* trait_collection) {
+ }
+ 
+ CGFloat FakeOmniboxHeight() {
++    float height = 0;
+   if (IsIOSLargeFakeboxEnabled()) {
+     CGFloat multiplier = ui_util::SystemSuggestedFontSizeMultiplier();
+-    return AlignValueToPixel((kFakeboxHeight - kFakeboxHeightNonDynamic) *
++      height =  AlignValueToPixel((kFakeboxHeight - kFakeboxHeightNonDynamic) *
+                                  multiplier +
+                              kFakeboxHeightNonDynamic);
++  } else {
++      height = ToolbarExpandedHeight(
++        [UIApplication sharedApplication].preferredContentSizeCategory);
+   }
+-  return ToolbarExpandedHeight(
+-      [UIApplication sharedApplication].preferredContentSizeCategory);
++    return height-height;
+ }
+ 
+ CGFloat PinnedFakeOmniboxHeight() {
+@@ -185,11 +188,14 @@ CGFloat PinnedFakeOmniboxHeight() {
+ }
+ 
+ CGFloat FakeToolbarHeight() {
++  float height = 0;
+   if (IsIOSLargeFakeboxEnabled()) {
+-    return PinnedFakeOmniboxHeight() + FakeToolbarVerticalMargin();
++      height = PinnedFakeOmniboxHeight() + FakeToolbarVerticalMargin();
++  } else {
++      height = ToolbarExpandedHeight(
++                                     [UIApplication sharedApplication].preferredContentSizeCategory);
+   }
+-  return ToolbarExpandedHeight(
+-      [UIApplication sharedApplication].preferredContentSizeCategory);
++    return height-height;
+ }
+ 
+ CGFloat HeightForLogoHeader(BOOL logo_is_showing,
+@@ -201,6 +207,10 @@ CGFloat HeightForLogoHeader(BOOL logo_is_showing,
        SearchFieldTopMargin() + FakeOmniboxHeight() +
        ntp_header::kScrolledToTopOmniboxBottomMargin +
        ceil(HeaderSeparatorHeight());
-+  header_height = 0;
++  bool mises_enforced = true;
++    if (mises_enforced) {
++        return 40;
++    }
    if (!IsRegularXRegularSizeClass(trait_collection)) {
      return header_height;
    }

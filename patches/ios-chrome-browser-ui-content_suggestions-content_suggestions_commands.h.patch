@@ -1,15 +1,17 @@
 diff --git a/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h b/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
-index f2dfc2a5b51a92c0e9598fd8550724f935a46234..27deb574dab82a74a1f52cc85f4c9635a02cccab 100644
+index f2dfc2a5b51a92c0e9598fd8550724f935a46234..26e7b215f8772336669f56e97e30b094187d9003 100644
 --- a/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
 +++ b/ios/chrome/browser/ui/content_suggestions/content_suggestions_commands.h
-@@ -26,6 +26,10 @@ class GURL;
+@@ -26,6 +26,12 @@ class GURL;
  // Handles a user tap load the `parcelTrackingURL`.
  - (void)loadParcelTrackingPage:(GURL)parcelTrackingURL;
  
 +- (void)openMisesWeb3Home;
 +- (void)toogleWeb3Site;
 +- (void)toogleMisesFeature;
-+
++- (BOOL)isWeb3SiteVisible;
++- (BOOL)isMisesFeatureVisible;
++- (void)reloadAllData;
  @end
  
  #endif  // IOS_CHROME_BROWSER_UI_CONTENT_SUGGESTIONS_CONTENT_SUGGESTIONS_COMMANDS_H_
