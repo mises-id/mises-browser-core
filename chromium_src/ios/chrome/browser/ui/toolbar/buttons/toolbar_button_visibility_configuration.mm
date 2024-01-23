@@ -12,18 +12,20 @@
 - (ToolbarComponentVisibility)misesButtonVisibility {
   switch (self.type) {
     case ToolbarType::kPrimary:
-      return ToolbarComponentVisibilityAlways;
+      return ToolbarComponentVisibilityAlways &
+             ~ToolbarComponentVisibilitySplit;
     case ToolbarType::kSecondary:
-      return ToolbarComponentVisibilityNone;
+      return ToolbarComponentVisibilitySplit;
   }
 }
 
 - (ToolbarComponentVisibility)walletButtonVisibility {
   switch (self.type) {
     case ToolbarType::kPrimary:
-      return ToolbarComponentVisibilityAlways;
+      return ToolbarComponentVisibilityAlways &
+             ~ToolbarComponentVisibilitySplit;
     case ToolbarType::kSecondary:
-      return ToolbarComponentVisibilityNone;
+      return ToolbarComponentVisibilitySplit;
   }
 }
 
