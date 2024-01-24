@@ -5,6 +5,6 @@ namespace syncer {
 BASE_FEATURE(kSyncWebauthnCredentials,
              "SyncWebauthnCredentials",
              base::FEATURE_DISABLED_BY_DEFAULT);
-#endif  // !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
+#endif  // !BUILDFLAG(IS_ANDROID)
 
 }

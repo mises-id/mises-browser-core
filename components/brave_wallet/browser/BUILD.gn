@@ -224,7 +224,7 @@ static_library("browser") {
   configs += [ ":sardine_config" ]
 }
 
-if (!is_ios) {
+if (true || !is_ios) {
   static_library("permission_utils") {
     sources = [
       "permission_utils.cc",

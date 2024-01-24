@@ -1,0 +1,20 @@
+diff --git a/services/proxy_resolver/proxy_host_resolver_cache.cc b/services/proxy_resolver/proxy_host_resolver_cache.cc
+index 4d1ba989975f69c3066a74761a0352f2b4729479..9ede76e344b75beca2950865ce725ca8fed4e29f 100644
+--- a/services/proxy_resolver/proxy_host_resolver_cache.cc
++++ b/services/proxy_resolver/proxy_host_resolver_cache.cc
+@@ -15,12 +15,13 @@
+ #include "net/base/ip_address.h"
+ #include "net/base/net_errors.h"
+ #include "net/base/network_anonymization_key.h"
+-
++#include "build/build_config.h"
+ namespace proxy_resolver {
+ 
+ // static
++#if !BUILDFLAG(IS_IOS)
+ constexpr base::TimeDelta ProxyHostResolverCache::kTtl;
+-
++#endif
+ ProxyHostResolverCache::ProxyHostResolverCache(size_t max_entries)
+     : max_entries_(max_entries) {
+   DCHECK_GT(max_entries_, 0u);

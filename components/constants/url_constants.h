@@ -24,9 +24,9 @@ extern const char kWebDiscoveryLearnMoreUrl[];
 extern const char kMisesSearchUrl[];
 extern const char kWidevineLearnMoreUrl[];
 
-extern const char kMisesHost[];
+inline constexpr char kMisesHost[] = ".mises.site";
 
-extern const char kMisesSwapHost[];
+inline constexpr char kMisesSwapHost[] = "swap.mises.site";
 
 // This is introduced to replace |kDownloadChromeUrl| in
 // outdated_upgrade_bubble_view.cc"
