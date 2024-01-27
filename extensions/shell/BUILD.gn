@@ -1,0 +1,41 @@
+import("//build/config/ios/bundle_data_from_filelist.gni")
+source_set("shell") {
+  testonly = true
+  sources = [
+    "mises_java_script_feature.mm",
+    "app/shell_main.cc",
+    "app/shell_application_ios.mm",
+    "browser/shell_app_window_client_ios.mm",
+    "browser/shell_native_app_window_ios.mm",
+    "browser/shell_desktop_controller_ios.mm",
+    "//extensions/browser/api/system_cpu/cpu_info_provider_fuchsia.cc",
+  ]
+
+  deps = [
+    "//base",
+    "//content/public/app",
+    "//content/shell:content_shell_app",
+    "//content/shell:content_shell_lib",
+    "//extensions/shell:app_shell_lib",
+    "//extensions:shell_and_test_pak",
+    ":test_support_bundle_data",
+  ]
+  public_deps = [
+  ]
+
+}
+
+bundle_data_from_filelist("test_support_bundle_data") {
+  visibility = [ ":shell" ]
+  testonly = true
+  filelist_name = "data/test_support_bundle_data.filelist"
+}
+
+bundle_data("extensions_shell_framework_resources") {
+    testonly = true
+    sources = [ "$root_out_dir/extensions_shell_and_test.pak" ]
+
+    public_deps = [ "//extensions:shell_and_test_pak" ]
+
+    outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
+  }

@@ -1,5 +1,5 @@
 diff --git a/content/browser/devtools/BUILD.gn b/content/browser/devtools/BUILD.gn
-index d9812e6c609dfaca1de7e7569c6d7f4635ca5df9..cd8c7bdb6e146ea240cc160987c8a27a7115e71d 100644
+index d9812e6c609dfaca1de7e7569c6d7f4635ca5df9..0c0f5ac5774a5e702a968ce3b27860ae85a2c80e 100644
 --- a/content/browser/devtools/BUILD.gn
 +++ b/content/browser/devtools/BUILD.gn
 @@ -10,7 +10,7 @@ import("//third_party/protobuf/proto_library.gni")
@@ -7,7 +7,7 @@ index d9812e6c609dfaca1de7e7569c6d7f4635ca5df9..cd8c7bdb6e146ea240cc160987c8a27a
  
  # Android and iOS don't support DevTools front-end.
 -if (!is_android && !is_ios) {
-+if (!is_ios) {
++if (use_blink) {
    source_set("devtools_resources_extern") {
      sources = [ "devtools_resources.cc" ]
  

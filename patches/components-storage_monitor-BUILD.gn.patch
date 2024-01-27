@@ -1,5 +1,5 @@
 diff --git a/components/storage_monitor/BUILD.gn b/components/storage_monitor/BUILD.gn
-index 4f1e72155a947bf5cf7fc8829d2434d511da756b..46ca2d9aa2679a1999e0b70d7aee51db4acdd0b2 100644
+index 4f1e72155a947bf5cf7fc8829d2434d511da756b..48986fc7e06596826870c577b59443f2699c3401 100644
 --- a/components/storage_monitor/BUILD.gn
 +++ b/components/storage_monitor/BUILD.gn
 @@ -76,7 +76,7 @@ static_library("storage_monitor") {
@@ -7,7 +7,7 @@ index 4f1e72155a947bf5cf7fc8829d2434d511da756b..46ca2d9aa2679a1999e0b70d7aee51db
        deps += [ "//services/device/public/mojom" ]
      }
 -  } else if (is_linux || is_chromeos_lacros) {
-+  } else if (is_android || is_linux || is_chromeos_lacros) {
++  } else if (is_ios || is_android || is_linux || is_chromeos_lacros) {
      if (use_udev) {
        sources += [
          "mtab_watcher_linux.cc",

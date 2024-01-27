@@ -1,0 +1,13 @@
+diff --git a/chrome/app/resources/BUILD.gn b/chrome/app/resources/BUILD.gn
+index a23342f7b6a1edee86eeeff92b0369b5087f4cb3..c7a7c9e33d18d6e9813fa6ec7639734f0f689801 100644
+--- a/chrome/app/resources/BUILD.gn
++++ b/chrome/app/resources/BUILD.gn
+@@ -8,7 +8,7 @@ import("//build/config/locales.gni")
+ import("//chrome/common/features.gni")
+ import("//tools/grit/grit_rule.gni")
+ 
+-assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
++assert(use_blink, "Chromium/iOS shouldn't use anything in //chrome")
+ 
+ grit("locale_settings") {
+   source = "locale_settings.grd"

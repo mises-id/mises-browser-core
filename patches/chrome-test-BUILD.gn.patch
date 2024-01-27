@@ -1,7 +1,16 @@
 diff --git a/chrome/test/BUILD.gn b/chrome/test/BUILD.gn
-index 513f89056096f8567ef68e90934f8a4f1f9081e2..1f2a54dc7672ebf214eede33803f518458cca856 100644
+index 513f89056096f8567ef68e90934f8a4f1f9081e2..55eed5b6b16743b9d31095240ca4d956c26fc445 100644
 --- a/chrome/test/BUILD.gn
 +++ b/chrome/test/BUILD.gn
+@@ -56,7 +56,7 @@ import("//ui/views/features.gni")
+ import("//ui/webui/webui_features.gni")
+ import("//v8/gni/v8.gni")
+ 
+-assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
++assert(use_blink, "Chromium/iOS shouldn't use anything in //chrome")
+ 
+ if (is_android) {
+   import("//build/config/android/rules.gni")
 @@ -478,6 +478,7 @@ static_library("test_support") {
    ]
  

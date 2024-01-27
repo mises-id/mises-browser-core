@@ -1,0 +1,14 @@
+diff --git a/components/sessions/BUILD.gn b/components/sessions/BUILD.gn
+index 39c07c9cf833ef4be8184f66a61bd2895edcb16a..1f527bb7334763bd37e1d7a589395b60d4753fa6 100644
+--- a/components/sessions/BUILD.gn
++++ b/components/sessions/BUILD.gn
+@@ -10,7 +10,8 @@ config("implementation") {
+   defines = [ "SESSIONS_IMPLEMENTATION" ]
+ }
+ 
+-if (!is_ios) {
++import("//build/config/features.gni")
++if (!is_ios || use_blink) {
+   component("sessions") {
+     sources = [
+       "content/content_live_tab.cc",

@@ -4,6 +4,7 @@
 # You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import("//ui/webui/resources/include_polymer.gni")
+import("//build/config/features.gni")
 
 # Extra GRDPs to give //ui/webui/resources:build_grd
 # (which generates //ui/webui/resources/webui_generated_resources.grd)
@@ -15,7 +16,7 @@ mises_resources_extra_grdps = []
 mises_resources_extra_grdps_deps = []
 
 # ios does not need any static resources
-if (!is_ios) {
+if (use_blink) {
   mises_resources_extra_grdps += [
     "$mises_resources_extra_grdps_path/mises_fonts_resources.grdp",
     "$mises_resources_extra_grdps_path/mises_static_resources.grdp",

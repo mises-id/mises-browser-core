@@ -1,0 +1,55 @@
+import("//build/config/features.gni")
+import("//build/config/ui.gni")
+import("//build/config/ios/rules.gni")
+import("//build/config/ios/config.gni")
+import("//build/config/ios/ios_sdk.gni")
+
+import("//tools/grit/grit_rule.gni")
+import("//tools/grit/repack.gni")
+import("//tools/v8_context_snapshot/v8_context_snapshot.gni")
+
+declare_args() {
+  # The bundle identifier. Overriding this will affect the provisioning profile
+  # used, and hence will affect the app's capabilities.
+  ios_app_shell_bundle_identifier = shared_bundle_id_for_test_apps
+
+  # Path to an entitlements file used in ios_content_shell. Can be overridden
+  # to provide an alternative.
+  ios_app_shell_entitlements_path =
+      "//build/config/ios/entitlements.plist"
+}
+
+
+template("ios_app_shell") {
+  _target_name = target_name
+  ios_app_bundle(_target_name) {
+    forward_variables_from(invoker, "*", TESTONLY_AND_VISIBILITY)
+    forward_variables_from(invoker, TESTONLY_AND_VISIBILITY)
+    info_plist = "//mises/extensions/shell/app/ios-Info.plist"
+    testonly = true
+    
+    sources = [ 
+
+    ]
+    
+    deps = [
+      "//base",
+      "//content/public/app",
+      "//content/shell:content_shell_app",
+      "//content/shell:content_shell_lib",
+
+      "//mises/extensions/shell:shell",
+    ]
+    bundle_deps = [
+      "//content/shell:content_shell_framework_resources",
+      "//mises/extensions/shell:extensions_shell_framework_resources",
+      "//content/shell/app/ios/resources",
+    ]
+    entitlements_path = ios_app_shell_entitlements_path
+    bundle_identifier = ios_app_shell_bundle_identifier
+  }
+}
+
+set_defaults("ios_app_shell") {
+  configs = default_executable_configs
+}

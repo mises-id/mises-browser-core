@@ -534,7 +534,7 @@ Config.prototype.buildArgs = function () {
     if (this.targetEnvironment) {
       args.target_environment = this.targetEnvironment
     }
-    args.enable_extensions = false
+    //args.enable_extensions = false
     args.enable_pdf = false
     args.enable_plugins = false
     args.enable_remoting = false

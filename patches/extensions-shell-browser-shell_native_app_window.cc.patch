@@ -1,0 +1,19 @@
+diff --git a/extensions/shell/browser/shell_native_app_window.cc b/extensions/shell/browser/shell_native_app_window.cc
+index 174d1641211fe0fad009ea6b1a4efac9cfc2ee4d..1246c35726354ceebd98c218d4090fd1474869c9 100644
+--- a/extensions/shell/browser/shell_native_app_window.cc
++++ b/extensions/shell/browser/shell_native_app_window.cc
+@@ -79,10 +79,13 @@ ui::ZOrderLevel ShellNativeAppWindow::GetZOrderLevel() const {
+ void ShellNativeAppWindow::SetZOrderLevel(ui::ZOrderLevel level) {
+   NOTIMPLEMENTED();
+ }
+-
+ gfx::NativeView ShellNativeAppWindow::GetHostView() const {
+   NOTIMPLEMENTED();
++#if !BUILDFLAG(IS_IOS)
+   return nullptr;
++#else
++  return gfx::NativeView();
++#endif
+ }
+ 
+ gfx::Point ShellNativeAppWindow::GetDialogPosition(const gfx::Size& size) {

@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/BUILD.gn b/ui/webui/resources/BUILD.gn
-index 6af21f9088680adb0a4a07d9ae856c316aced19f..46ad1d497aed2a09f05090394774760ddcc352da 100644
+index 6af21f9088680adb0a4a07d9ae856c316aced19f..fec8910030b24ec379e71ef8128d7190db0dbab4 100644
 --- a/ui/webui/resources/BUILD.gn
 +++ b/ui/webui/resources/BUILD.gn
 @@ -14,7 +14,7 @@ generate_grd("build_grd") {
@@ -16,7 +16,7 @@ index 6af21f9088680adb0a4a07d9ae856c316aced19f..46ad1d497aed2a09f05090394774760d
    ]
  
 -  if (include_polymer) {
-+  if (include_polymer || is_android) {
++  if (include_polymer || true) {
      public_deps += [
        "cr_components/app_management:build_grdp",
        "cr_components/customize_color_scheme_mode:build_grdp",

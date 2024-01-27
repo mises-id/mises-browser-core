@@ -1,0 +1,24 @@
+diff --git a/extensions/shell/browser/default_shell_browser_main_delegate.cc b/extensions/shell/browser/default_shell_browser_main_delegate.cc
+index d8761412bb302f0932fd01695e8dd6429297eaae..446bbcdbb7f03515a3aafa791bcc5bd06bd375c8 100644
+--- a/extensions/shell/browser/default_shell_browser_main_delegate.cc
++++ b/extensions/shell/browser/default_shell_browser_main_delegate.cc
+@@ -22,6 +22,10 @@
+ #include "extensions/shell/browser/shell_desktop_controller_mac.h"
+ #endif
+ 
++#if BUILDFLAG(IS_IOS)
++#include "mises/extensions/shell/browser/shell_desktop_controller_ios.h"
++#endif
++
+ namespace extensions {
+ 
+ namespace {
+@@ -107,6 +111,8 @@ DesktopController* DefaultShellBrowserMainDelegate::CreateDesktopController(
+   return new ShellDesktopControllerAura(context);
+ #elif BUILDFLAG(IS_MAC)
+   return new ShellDesktopControllerMac();
++#elif BUILDFLAG(IS_IOS)
++  return new ShellDesktopControllerIOS();
+ #else
+   return NULL;
+ #endif

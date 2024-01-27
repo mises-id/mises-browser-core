@@ -1,8 +1,14 @@
 diff --git a/chrome/browser/resources/BUILD.gn b/chrome/browser/resources/BUILD.gn
-index 93a738e26e5ed5cd3699f0a3531948589a632997..cf02fe99bf5db8d5513147a9e52d04bcf42e75bc 100644
+index 93a738e26e5ed5cd3699f0a3531948589a632997..ee3ed66331733d0e20560e96683666273d1d929f 100644
 --- a/chrome/browser/resources/BUILD.gn
 +++ b/chrome/browser/resources/BUILD.gn
-@@ -19,7 +19,7 @@ assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
+@@ -14,12 +14,12 @@ import("//third_party/closure_compiler/compile_js.gni")
+ import("//tools/grit/grit_rule.gni")
+ import("//tools/grit/repack.gni")
+ 
+-assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
++assert(use_blink, "Chromium/iOS shouldn't use anything in //chrome")
+ 
  group("resources") {
    public_deps = [ "segmentation_internals:resources" ]
  

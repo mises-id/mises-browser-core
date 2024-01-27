@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/include_polymer.gni b/ui/webui/resources/include_polymer.gni
-index 52daa91cc2319a470692a1d5f24b904842123dcb..56af146a03c7163e4717151fa3fae6965826e6bd 100644
+index 52daa91cc2319a470692a1d5f24b904842123dcb..b6580b79be9bb72d430c7778399f92bd852325f1 100644
 --- a/ui/webui/resources/include_polymer.gni
 +++ b/ui/webui/resources/include_polymer.gni
 @@ -2,4 +2,4 @@
@@ -7,4 +7,4 @@ index 52daa91cc2319a470692a1d5f24b904842123dcb..56af146a03c7163e4717151fa3fae696
  # found in the LICENSE file.
  
 -include_polymer = !is_android && !is_ios
-+include_polymer = is_android || !is_android && !is_ios
++include_polymer = true || !is_android && !is_ios

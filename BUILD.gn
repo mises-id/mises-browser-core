@@ -1,6 +1,7 @@
 import("//mises/build/config.gni")
 import("//build/config/locales.gni")
 import("//build/config/zip.gni")
+import("//build/config/features.gni")
 import("//build/util/process_version.gni")
 import("//extensions/buildflags/buildflags.gni")
 import("//media/media_options.gni")
@@ -32,7 +33,7 @@ declare_args() {
   audit_dev_deps = true
 }
 
-if (!is_ios) {
+if (use_blink) {
   group("child_dependencies") {
     deps = [
       "common",

@@ -1,0 +1,13 @@
+diff --git a/components/feed/core/v2/BUILD.gn b/components/feed/core/v2/BUILD.gn
+index da50649b3d8559e0c77598a5aabdbe3e05a5cb5b..3022ab5962ce373aaed0bbf873b7f1e4d7fba1ec 100644
+--- a/components/feed/core/v2/BUILD.gn
++++ b/components/feed/core/v2/BUILD.gn
+@@ -9,7 +9,7 @@ if (is_android) {
+   import("//build/config/android/rules.gni")
+ }
+ 
+-if (!is_ios) {
++if (use_blink) {
+   source_set("feed_core_v2") {
+     public = [
+       "public/feed_api.h",

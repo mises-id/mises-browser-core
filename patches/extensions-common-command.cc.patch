@@ -1,0 +1,13 @@
+diff --git a/extensions/common/command.cc b/extensions/common/command.cc
+index 978259e830555747aa350ae6ff45aeb34f43c47c..17deb77958752bb1158c9f4c7cbbc2986f4bcfc1 100644
+--- a/extensions/common/command.cc
++++ b/extensions/common/command.cc
+@@ -288,6 +288,8 @@ std::string Command::CommandPlatform() {
+   // TODO(crbug.com/1312215): Change this once we decide what string should be
+   // used for Fuchsia.
+   return values::kKeybindingPlatformLinux;
++#elif BUILDFLAG(IS_IOS)
++  return values::kKeybindingPlatformMac;
+ #else
+ #error Unsupported platform
+ #endif

@@ -1,7 +1,16 @@
 diff --git a/chrome/chrome_repack_locales.gni b/chrome/chrome_repack_locales.gni
-index fdb87c7e75342b891adb6a17f16f26875342cc0f..1d53aa22a70e169ab9cf2dc00a4d9a1ee166d01d 100644
+index fdb87c7e75342b891adb6a17f16f26875342cc0f..f4408bab771a3c04574dee392608ed6db83f6be2 100644
 --- a/chrome/chrome_repack_locales.gni
 +++ b/chrome/chrome_repack_locales.gni
+@@ -9,7 +9,7 @@ import("//build/config/ui.gni")
+ import("//extensions/buildflags/buildflags.gni")
+ import("//tools/grit/repack.gni")
+ 
+-assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
++assert(use_blink, "Chromium/iOS shouldn't use anything in //chrome")
+ 
+ # Wraps repack_locales(), setting the source_patterns and deps required for
+ # Chrome.
 @@ -40,6 +40,7 @@ template("chrome_repack_locales") {
        "${root_gen_dir}/ui/strings/ax_strings_",
        "${root_gen_dir}/ui/strings/ui_strings_",

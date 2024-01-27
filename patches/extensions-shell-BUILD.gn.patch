@@ -1,0 +1,24 @@
+diff --git a/extensions/shell/BUILD.gn b/extensions/shell/BUILD.gn
+index d3ab8fb590843e46821901ce5c0950ad28919bc6..0f7e21520a8876ae1b73cfb6e636dbacd64d6837 100644
+--- a/extensions/shell/BUILD.gn
++++ b/extensions/shell/BUILD.gn
+@@ -273,6 +273,11 @@ source_set("app_shell_lib") {
+   }
+ }
+ 
++if (is_ios) {
++  import("//mises/extensions/shell/sources.gni")
++  ios_app_shell("app_shell"){
++  }
++} else {
+ executable("app_shell") {
+   # testonly because :app_shell_lib is testonly. See :app_shell_lib comment.
+   testonly = true
+@@ -291,6 +296,7 @@ executable("app_shell") {
+     deps += [ "//sandbox/win:sandbox" ]
+   }
+ }
++}
+ 
+ test("app_shell_unittests") {
+   use_xvfb = use_xvfb_in_this_config

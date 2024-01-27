@@ -1,0 +1,22 @@
+diff --git a/ui/webui/resources/js/parse_html_subset.ts b/ui/webui/resources/js/parse_html_subset.ts
+index 678643c9407536b6bef4e5645b37db5a4dc5487b..07ec60231f1810f4e14488d1d0456453d8f4580b 100644
+--- a/ui/webui/resources/js/parse_html_subset.ts
++++ b/ui/webui/resources/js/parse_html_subset.ts
+@@ -24,7 +24,7 @@ function sanitizeInnerHtmlInternal(
+   return html.innerHTML;
+ }
+ 
+-// <if expr="not is_ios">
++// <if expr="is_ios or not is_ios">
+ let sanitizedPolicy: TrustedTypePolicy|null = null;
+ 
+ /**
+@@ -51,7 +51,7 @@ export function sanitizeInnerHtml(
+  * Delegates to sanitizeInnerHtmlInternal() since on iOS there is no
+  * window.trustedTypes support yet.
+  */
+-export function sanitizeInnerHtml(
++export function sanitizeInnerHtmlIos(
+     rawString: string, opts?: SanitizeInnerHtmlOpts): string {
+   assert(!window.trustedTypes);
+   return sanitizeInnerHtmlInternal(rawString, opts);
