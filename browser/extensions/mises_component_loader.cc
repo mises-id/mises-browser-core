@@ -591,10 +591,10 @@ void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
             weak_ptr_factory_.GetWeakPtr()),
         base::Seconds(1));
 
-        base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
-        metamask_extension_path =
-            metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
-        Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
+        // base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
+        // metamask_extension_path =
+        //     metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
+        // Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
 
        
       }
