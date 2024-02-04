@@ -89,6 +89,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View mWeb3SiteTilesContainerLayout;
     private View mWeb3ExtensionTilesContainerLayout;
     private View mCarouselAdContainerLayout;
+    private View mMisesSearchContainerLayout;
 
     private OnMisesNtpListener mOnMisesNtpListener;
     private boolean mIsTopSitesEnabled;
@@ -110,6 +111,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static int TYPE_WEB3_EXTENSION = 3;
     private static int TYPE_TOP_SITES = 4;
     private static int TYPE_CAROUSEL_AD = 5;
+    private static int TYPE_MISES_SEARCH = 6;
 
     private static final int ONE_ITEM_SPACE = 1;
     private static final int TWO_ITEMS_SPACE = 2;
@@ -132,6 +134,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View web3SiteTilesContainerLayout,
             View web3ExtensionTilesContainerLayout,
             View carouselAdContainerLayout,
+            View misesSearchContainerLayout,
             int recyclerViewHeight, boolean isTopSitesEnabled) {
         
         Log.d(TAG, "MisesNtpAdapter()");
@@ -143,6 +146,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mWeb3SiteTilesContainerLayout = web3SiteTilesContainerLayout;
         mWeb3ExtensionTilesContainerLayout = web3ExtensionTilesContainerLayout;
         mCarouselAdContainerLayout = carouselAdContainerLayout;
+        mMisesSearchContainerLayout = misesSearchContainerLayout;
         mRecyclerViewHeight = recyclerViewHeight;
         mIsTopSitesEnabled = isTopSitesEnabled;
         mIsMisesServiceEnabled = shouldDisplayMisesService();
@@ -285,6 +289,17 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             carouselAdViewHolder.update(mData.size());
 
 
+        } else if (holder instanceof MisesSearchViewHolder) {
+            Log.v(TAG, "updating MisesSearchViewHolder");
+            MisesSearchViewHolder misesSearchViewHolder = (MisesSearchViewHolder) holder;
+            mMisesSearchContainerLayout.setLayoutParams(layoutParams);
+
+            misesSearchViewHolder.searchView.setOnClickListener(view -> {
+                mOnMisesNtpListener.focusSearchBox();
+                MisesSysUtils.logEvent("ntp_box_search", "step", "click");
+            }); 
+
+
         }
 
         
@@ -313,7 +328,9 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         else if (viewType == TYPE_CAROUSEL_AD) {
             return new CarouselAdViewHolder(mCarouselAdContainerLayout, mData, mHandler);
-
+        }
+        else if (viewType == TYPE_MISES_SEARCH) {
+            return new MisesSearchViewHolder(mMisesSearchContainerLayout, mActivity);
         }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
     }
@@ -390,7 +407,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return mIsTopSitesEnabled ? 4 : 0;
     }
     public void notifySiteChanged() {
-        notifyItemRangeChanged(1, getTopSitesCount() + 1);
+        notifyItemRangeChanged(ONE_ITEM_SPACE, getTopSitesCount() + ONE_ITEM_SPACE);
     }
 
     public void setTopSitesEnabled(boolean isTopSitesEnabled) {
@@ -531,6 +548,19 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             mAdapter.notifyDataSetChanged();
             
+        }
+    }
+
+
+    public static class MisesSearchViewHolder extends RecyclerView.ViewHolder {
+        private Context mContext;
+
+        public View searchView;
+        public MisesSearchViewHolder(View itemView, Context ctx) {
+            super(itemView);
+            mContext = itemView.getContext();
+
+            searchView = itemView.findViewById(R.id.mises_search_box_text);
         }
     }
 

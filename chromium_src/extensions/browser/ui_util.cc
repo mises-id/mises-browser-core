@@ -15,8 +15,6 @@ bool ShouldDisplayInExtensionSettings(Manifest::Type type,
 }
 
 bool ShouldDisplayInExtensionSettings(const Extension& extension) {
-  if (extension.id() == metamask_extension_id) return true;
-  if (extension.id() == mises_extension_id) return true;
   return ShouldDisplayInExtensionSettings_Chromium(extension.GetType(),
                                           extension.location());
 }

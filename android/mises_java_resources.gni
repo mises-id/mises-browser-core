@@ -399,6 +399,7 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/layout/mises_admob_banner.xml",
     "java/res/layout/mises_native_ad_container.xml",
     "java/res/layout/mises_carousel_container.xml",
+    "java/res/layout/mises_search_box_layout.xml",
     "java/res/layout/native_ad_layout.xml",
     "java/res/layout/carousel_ad_view.xml",
     "java/res/layout/mises_suggestions_tile_view.xml",

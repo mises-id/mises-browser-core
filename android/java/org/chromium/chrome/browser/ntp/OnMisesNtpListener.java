@@ -12,4 +12,5 @@ public interface OnMisesNtpListener {
     public void getFeed(boolean isNewContent);
     public void loadNewContent();
     public void checkForBraveStats();
+    public void focusSearchBox();
 }

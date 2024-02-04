@@ -1,0 +1,12 @@
+diff --git a/components/page_info/page_info.cc b/components/page_info/page_info.cc
+index 8b228b1c338ba528080fa8a58499e74202846244..9b88b3bda56085c9558006788dc45a00e9e7ab57 100644
+--- a/components/page_info/page_info.cc
++++ b/components/page_info/page_info.cc
+@@ -914,6 +914,7 @@ void PageInfo::ComputeUIInputs(const GURL& url) {
+   bool is_chrome_ui_native_scheme = false;
+ #if BUILDFLAG(IS_ANDROID)
+   is_chrome_ui_native_scheme = url.SchemeIs(browser_ui::kChromeUINativeScheme);
++  MISES_COMPONENTS_PAGE_INFO_PAGE_INFO_INSERT
+ #endif
+ 
+   if (url.SchemeIs(url::kAboutScheme)) {
