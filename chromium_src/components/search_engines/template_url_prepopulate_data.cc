@@ -178,7 +178,7 @@ constexpr auto kDefaultEnginesByCountryIdMap =
 
 // A versioned map tracking the singular default search engine per-country.
 MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
-  const MisesPrepopulatedEngineID default_v6 = PREPOPULATED_ENGINE_ID_GOOGLE;
+  const MisesPrepopulatedEngineID default_v6 = PREPOPULATED_ENGINE_ID_MISES;
   static constexpr auto kContentV6 =
       base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'U'),

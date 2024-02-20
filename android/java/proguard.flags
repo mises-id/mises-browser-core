@@ -16,6 +16,7 @@
     *** mTabModelSelector;
     *** mBottomSheetController;
     *** updateSearchProviderHasLogo(...);
+    *** getSearchBoxBounds(...);
 }
 
 -keep class org.chromium.chrome.browser.ntp.MisesNewTabPage {

@@ -7,7 +7,8 @@ package org.chromium.chrome.browser.ntp;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
-
+import android.graphics.Point;
+import android.graphics.Rect;
 import androidx.annotation.Nullable;
 
 
@@ -151,4 +152,9 @@ public class MisesNewTabPage extends NewTabPage {
         mSearchProviderHasLogo = false;
         Log.d(TAG, "updateSearchProviderHasLogo");
     }
+    
+    // @Override
+    // public void getSearchBoxBounds(Rect bounds, Point translation) {
+    //     super.getSearchBoxBounds(bounds, translation);
+    // }
 }

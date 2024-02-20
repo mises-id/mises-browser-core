@@ -141,8 +141,10 @@ public class MisesNewTabPageLayout
     private MostVisitedTilesCoordinator mWeb3ExtensionTilesCoordinator;
 
     private ViewGroup mNativeAdLayout;
+    private ViewGroup mMisesSearchLayout;
 
     private TileGroupDelegateWrapper mTileGroupDelegateWrapper;
+    private NewTabPageManager mManager;
 
 
     private static final int SHOW_BRAVE_RATE_ENTRY_AT = 10; // 10th row
@@ -170,6 +172,13 @@ public class MisesNewTabPageLayout
     @Override
     public void checkForBraveStats() {
 
+    }
+    @Override
+    public void focusSearchBox() {
+        if (mManager != null) {
+            Log.v(TAG, "focusSearchBox");
+            mManager.focusSearchBox(false, null);
+        }
     }
 
     protected void insertSiteSectionView() {
@@ -220,6 +229,10 @@ public class MisesNewTabPageLayout
         mNativeAdLayout.setVisibility(View.VISIBLE);
 
         
+        mMisesSearchLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.mises_search_box_layout, mMainLayout, false);
+        mMisesSearchLayout.setVisibility(View.VISIBLE);
+
 
         // The page contents are initially hidden; otherwise they'll be drawn centered on the
         // page before the tiles are available and then jump upwards to make space once the
@@ -301,7 +314,7 @@ public class MisesNewTabPageLayout
                     mActivity, this, Glide.with(mActivity),
                     mMvTilesContainerLayout, mMisesServiceTilesContainerLayout, 
                     mWeb3SiteTilesContainerLayout, mWeb3ExtensionTilesContainerLayout,
-                    mNativeAdLayout,
+                    mNativeAdLayout, mMisesSearchLayout,
                     mRecyclerView.getHeight(), mIsTopSitesEnabled
                 );
 
@@ -422,6 +435,7 @@ public class MisesNewTabPageLayout
 
         Log.d(TAG, "initialize " + searchProviderHasLogo);
         mActivity = activity;
+        mManager = manager;
 
         assert mMvTilesContainerLayout != null : "Something has changed in the upstream!";
 
