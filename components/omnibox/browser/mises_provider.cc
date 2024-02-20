@@ -234,7 +234,7 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
         match.type = AutocompleteMatchType::SEARCH_SUGGEST_ENTITY;
         match.relevance = *search_score;
         match.destination_url = GURL(*url);
-        match.contents = base::ASCIIToUTF16(*content);
+        match.contents = base::UTF8ToUTF16(*content);
         match.fill_into_edit = base::ASCIIToUTF16(*domain_name);
         //match.description = base::ASCIIToUTF16(*desc);
         match.image_url = GURL(*logo);
