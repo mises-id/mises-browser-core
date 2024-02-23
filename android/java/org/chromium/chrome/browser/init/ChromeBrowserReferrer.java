@@ -136,19 +136,19 @@ public class ChromeBrowserReferrer extends BroadcastReceiver {
                   String referrer = response.getInstallReferrer();
                   if (referrer == null || referrer.length() == 0 || referrer.equals("")) {
                     Log.i(TAG, "Received : []");
-                    break;
-                  }
-                  Log.i(TAG, "Received : [" + referrer + "]");
+                  } else {
+                    Log.i(TAG, "Received : [" + referrer + "]");
 
-                  SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
-                  sharedPreferencesEditor.putString("install_referrer", (String)referrer);
-                  sharedPreferencesEditor.apply();
-                  referrerClient.endConnection();
+                    SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
+                    sharedPreferencesEditor.putString("install_referrer", (String)referrer);
+                    sharedPreferencesEditor.apply();
+                  }
                 } catch (RemoteException e) {
-                  Log.e(TAG, "Could not get: " + e.getMessage());
+                  Log.e(TAG, "Could not getInstallReferrer: " + e.getMessage());
                 } catch (Exception e) {
                   Log.e(TAG, e.toString());
                 }
+                referrerClient.endConnection();
                 break;
               case InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
                 // API not available on the current Play Store app.
