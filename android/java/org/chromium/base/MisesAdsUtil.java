@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.util.SparseArray;
 import android.content.res.Resources;
 import android.content.res.AssetManager;
+import android.content.pm.PackageInfo;
 import android.os.Handler;
 import java.lang.reflect.Method;
 
@@ -156,6 +157,7 @@ public class MisesAdsUtil {
     public void initAds(final Activity act) {
         setStatus(AdsStatus.NOT_INITIALIZED);
         retryCounter = 0;
+
         initSDK(act);
     }
 
@@ -191,7 +193,10 @@ public class MisesAdsUtil {
             throw new RuntimeException("com.google.android.webview not exists!");
         }
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P)  {
-            throw new RuntimeException("not support android 7-9");
+            PackageInfo webViewPackageInfo = WebView.getCurrentWebViewPackage();
+            if (webViewPackageInfo == null || webViewPackageInfo.packageName.equals("com.android.chrome")) {
+                throw new RuntimeException("not support com.android.chrome as webview in android 7-9");
+            }
         };
         final WebView dummyWebView = new WebView(ctx);
         dummyWebView.destroy();
