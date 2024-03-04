@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..79cd9ef9cec9ee36268c037b31457d3b751158c2 100644
+index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..f8432eae55c97827bee2218d64f0a9a2ac08cac7 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -35,6 +35,7 @@ import androidx.annotation.Nullable;
@@ -241,12 +241,12 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..79cd9ef9cec9ee36268c037b31457d3b
              if (handler.handleMenuOrKeyboardAction(id, fromMenu)) return true;
          }
 -
-+	if (mMenuTitleCondensed != null) {
-+	  Log.d("Mises", "onMenuOrKeyboardAction:" + mMenuTitleCondensed);
-+	}
-+	else {
-+	  Log.d("Mises", "onMenuOrKeyboardAction");
-+	}
++        if (mMenuTitleCondensed != null) {
++        Log.d("Mises", "onMenuOrKeyboardAction:" + mMenuTitleCondensed);
++        }
++        else {
++        Log.d("Mises", "onMenuOrKeyboardAction");
++        }
          @BrowserProfileType
          int type = Profile.getBrowserProfileTypeFromProfile(getCurrentTabModel().getProfile());
  
@@ -262,9 +262,9 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..79cd9ef9cec9ee36268c037b31457d3b
 +            bundleParams.putString("from", "menu");
 +            FirebaseAnalytics.getInstance(this).logEvent("open_extension", bundleParams);
 +            Tab tab = getActivityTab();
-+            if (tab != null) {
++            if (tab != null && tab.getWebContents() != null) {
 +                WebContents webContents = tab.getWebContents();
-+		Profile profile = Profile.fromWebContents(webContents).getOriginalProfile();
++		        Profile profile = Profile.fromWebContents(webContents).getOriginalProfile();
 +                LaunchMetrics.commitLaunchMetrics(webContents);
 +                AppMenuBridge.getForProfile(profile).grantExtensionActiveTab(webContents, extensionId);
 +                AppMenuBridge.getForProfile(profile).callExtension(webContents, extensionId);
@@ -390,7 +390,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..79cd9ef9cec9ee36268c037b31457d3b
              return true;
          }
  
-@@ -2557,6 +2823,37 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2557,6 +2823,43 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -414,21 +414,27 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..79cd9ef9cec9ee36268c037b31457d3b
 +        }
 +
 +        if (id == R.id.developer_tools_id) {
-+            Profile profile = Profile.fromWebContents(currentTab.getWebContents()).getOriginalProfile();
-+            AppMenuBridge.getForProfile(profile).openDevTools(currentTab.getWebContents());
-+	    return true;
++            WebContents webContents = currentTab.getWebContents();
++            if (webContents != null) {
++                Profile profile = Profile.fromWebContents(webContents).getOriginalProfile();
++                AppMenuBridge.getForProfile(profile).openDevTools(webContents);
++            }
++	        return true;
 +        }
 +
 +        if (id == R.id.disable_proxy_id) {
-+	    Profile profile = Profile.fromWebContents(currentTab.getWebContents()).getOriginalProfile();
-+            AppMenuBridge.getForProfile(profile).disableProxy();
-+	    return true;
++            WebContents webContents = currentTab.getWebContents();
++            if (webContents != null) {
++                Profile profile = Profile.fromWebContents(webContents).getOriginalProfile();
++                AppMenuBridge.getForProfile(profile).disableProxy();
++            }
++	        return true;
 +        }
 +
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2591,6 +2888,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2591,6 +2894,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
