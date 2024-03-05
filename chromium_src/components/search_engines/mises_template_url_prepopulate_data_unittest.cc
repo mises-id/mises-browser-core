@@ -13,7 +13,7 @@
 #include "base/files/scoped_temp_dir.h"
 #include "base/stl_util.h"
 #include "base/values.h"
-#include "brave/components/search_engines/brave_prepopulated_engines.h"
+#include "mises/components/search_engines/brave_prepopulated_engines.h"
 #include "components/google/core/common/google_switches.h"
 #include "components/search_engines/search_engines_pref_names.h"
 #include "components/search_engines/search_terms_data.h"
