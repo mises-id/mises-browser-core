@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
-index 8de071f8a47673e5857fdc9c9d6197c99917171e..f801849d0193ad74de9897a6bcb51a8b78f2974a 100644
+index 8de071f8a47673e5857fdc9c9d6197c99917171e..f5e29648235fad26a523f214255e92d2eea3a30f 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
 @@ -131,6 +131,8 @@ import org.chromium.ui.modaldialog.ModalDialogManager;
@@ -11,7 +11,31 @@ index 8de071f8a47673e5857fdc9c9d6197c99917171e..f801849d0193ad74de9897a6bcb51a8b
  /**
   * A {@link RootUiCoordinator} variant that controls tabbed-mode specific UI.
   */
-@@ -844,6 +846,8 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
+@@ -604,6 +606,9 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
+ 
+         initStatusIndicatorCoordinator(layoutManager);
+         mLayoutManager = layoutManager;
++        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) ) {
++            updateTopControlsHeight(false);
++        }
+     }
+ 
+     @Override
+@@ -823,9 +828,11 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
+     private void updateTopControlsHeight(boolean animate) {
+         final BrowserControlsSizer browserControlsSizer = mBrowserControlsManager;
+         final int resourceId = mControlContainerHeightResource;
+-        final int topControlsNewHeight =
++        int topControlsNewHeight =
+                 mActivity.getResources().getDimensionPixelSize(resourceId) + mStatusIndicatorHeight;
+-
++        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) ) {
++            topControlsNewHeight = mStatusIndicatorHeight;
++        }
+         browserControlsSizer.setAnimateBrowserControlsHeightChanges(animate);
+         browserControlsSizer.setTopControlsHeight(topControlsNewHeight, mStatusIndicatorHeight);
+         if (animate) browserControlsSizer.setAnimateBrowserControlsHeightChanges(false);
+@@ -844,6 +851,8 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
      }
  
      private void initStatusIndicatorCoordinator(LayoutManagerImpl layoutManager) {

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-index 7cd3d2bb13dc7e5db18a2039b4975cbb095ec116..1cf492f056bd3c3c1149ab82fa84d585e46262b6 100644
+index 7cd3d2bb13dc7e5db18a2039b4975cbb095ec116..cc38158b167dd94476535d70f9167051df362868 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 @@ -31,6 +31,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
@@ -26,19 +26,16 @@ index 7cd3d2bb13dc7e5db18a2039b4975cbb095ec116..1cf492f056bd3c3c1149ab82fa84d585
       * @return Homepage GURL based on policy and shared preference settings.
       */
 -    private @NonNull GURL getHomepageGurlIgnoringEnabledState() {
-+    public @NonNull GURL getHomepageGurlIgnoringEnabledStateChromium() {
++    public @NonNull GURL getHomepageGurlIgnoringEnabledState() {
          if (HomepagePolicyManager.isHomepageManagedByPolicy()) {
              return HomepagePolicyManager.getHomepageUrl();
          }
-@@ -232,6 +233,12 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -232,6 +233,9 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
          }
          return getPrefHomepageCustomGurl();
      }
 +    public boolean usingCustomHomepageUri() {
-+        return getHomepageGurlIgnoringEnabledStateChromium().equals(getPrefHomepageCustomGurl());
-+    }
-+    public @NonNull GURL getHomepageGurlIgnoringEnabledState() {
-+        return new GURL(ContextUtils.getAppSharedPreferences().getString("active_homepage", UrlConstants.NTP_NON_NATIVE_URL));
++        return getHomepageGurlIgnoringEnabledState().equals(getPrefHomepageCustomGurl());
 +    }
  
      /**

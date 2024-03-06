@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 404ff70b970ed28221ace433cd36c62c5eb9fa10..99ff9933abb8a33ef426ca111dc79594aa9cfd2a 100644
+index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d07e2b6cf 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -101,13 +101,53 @@ import java.util.ArrayList;
@@ -312,7 +312,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..99ff9933abb8a33ef426ca111dc79594
          int shadowVisibility = shouldDrawShadow ? View.VISIBLE : View.INVISIBLE;
  
          if (mToolbarShadow != null && mToolbarShadow.getVisibility() != shadowVisibility) {
-@@ -3110,4 +3231,254 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -3110,4 +3231,262 @@ public class ToolbarPhone extends ToolbarLayout
      void setNtpSearchBoxScrollFractionForTesting(float ntpSearchBoxScrollFraction) {
          mNtpSearchBoxScrollFraction = ntpSearchBoxScrollFraction;
      }
@@ -482,7 +482,17 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..99ff9933abb8a33ef426ca111dc79594
 +        mMisesExtensionButton =  (ChromeImageButton) findViewById(R.id.mises_extension_button);
 +    }
 +    private void setupMisesButtonClickListener() {
-+        if (mMisesMainButton != null) mMisesMainButton.setOnClickListener(this);
++        if (mMisesMainButton != null)  {
++            mMisesMainButton.setOnClickListener(this);
++            mMisesMainButton.setOnLongClickListener(new View.OnLongClickListener() {
++                @Override
++                public boolean onLongClick(View view) {
++                    openHomepage();
++                    return true;
++                }
++            });
++        }
++        
 +	    if (mMisesExtensionButton != null) mMisesExtensionButton.setOnClickListener(this);
 +    }
 +
@@ -528,9 +538,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..99ff9933abb8a33ef426ca111dc79594
 +                            tabCreator.openSinglePage(MisesController.MISES_WALLET_BASE_URL);
 +                        }
 +                    } else if (v.getId() == R.id.tv_portal) {
-+                        if (tabCreator != null) {
-+                            tabCreator.openSinglePage("https://portal.mises.site");
-+                        }
++                        openHomepage();
 +                    } else if (v.getId() == R.id.tv_nft) {
 +                        if (tabCreator != null) {
 +                            tabCreator.openSinglePage(MisesController.MISES_HOME_BASE_URL + "/nft");
