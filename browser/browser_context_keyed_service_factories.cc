@@ -35,6 +35,7 @@
 #endif
 
 #include "mises/browser/profiles/mises_renderer_updater_factory.h"
+#include "mises/browser/ephemeral_storage/ephemeral_storage_service_factory.h"
 
 
 namespace mises {
@@ -52,6 +53,7 @@ void EnsureMisesBrowserContextKeyedServiceFactoriesBuilt() {
   brave_wallet::TxServiceFactory::GetInstance();
   brave_wallet::BraveWalletServiceFactory::GetInstance();
 
+  EphemeralStorageServiceFactory::GetInstance();  
   PermissionLifetimeManagerFactory::GetInstance();
 
   MisesRendererUpdaterFactory::GetInstance();

@@ -352,6 +352,7 @@ MisesContentBrowserClient::CreateThrottlesForNavigation(
   if (decentralized_dns_navigation_throttle)
     throttles.push_back(std::move(decentralized_dns_navigation_throttle));
 
+
   //Web3sitesSafeNavigationThrottle
  /*  std::unique_ptr<content::NavigationThrottle> web3sites_safe_navigation_throttle =
       Web3sitesSafeNavigationThrottle::MaybeCreateNavigationThrottle(handle);

@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <utility>
-
+#include "mises/browser/ephemeral_storage/ephemeral_storage_service_factory.h"
 #include "mises/components/permissions/permission_lifetime_manager.h"
 #include "mises/components/permissions/permission_origin_lifetime_monitor_impl.h"
 #include "chrome/browser/content_settings/host_content_settings_map_factory.h"
@@ -34,7 +34,9 @@ PermissionLifetimeManagerFactory::GetInstance() {
 PermissionLifetimeManagerFactory::PermissionLifetimeManagerFactory()
     : BrowserContextKeyedServiceFactory(
           "PermissionLifetimeManagerFactory",
-          BrowserContextDependencyManager::GetInstance()) {}
+          BrowserContextDependencyManager::GetInstance()) {
+  DependsOn(EphemeralStorageServiceFactory::GetInstance());
+}
 
 PermissionLifetimeManagerFactory::~PermissionLifetimeManagerFactory() = default;
 
