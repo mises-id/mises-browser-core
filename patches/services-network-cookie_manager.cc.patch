@@ -1,0 +1,12 @@
+diff --git a/services/network/cookie_manager.cc b/services/network/cookie_manager.cc
+index bd5a6ed1377dadf5d0989239f1faf276ab0e8f1c..790f6f538877cab3a528b400d97aeefb310f9cfc 100644
+--- a/services/network/cookie_manager.cc
++++ b/services/network/cookie_manager.cc
+@@ -382,6 +382,7 @@ CookieDeletionInfo DeletionFilterToInfo(mojom::CookieDeletionFilterPtr filter) {
+   delete_info.name = std::move(filter->cookie_name);
+   delete_info.url = std::move(filter->url);
+   delete_info.host = std::move(filter->host_name);
++  MISES_DELETIONFILTERTOINFO
+ 
+   switch (filter->session_control) {
+     case mojom::CookieDeletionSessionControl::IGNORE_CONTROL:

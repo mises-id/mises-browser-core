@@ -12,7 +12,8 @@
 #define kForceWebContentsDarkMode kForceWebContentsDarkMode,            \
     &preferences::features::kMisesBackgroundVideoPlayback,              \
     &search_engines::features::kMisesSearch,                               \
-    &net::features::kMisesHttpsByDefault                           
+    &net::features::kMisesHttpsByDefault,        \
+    &net::features::kMisesForgetFirstPartyStorage                                      
 
 #include "src/chrome/browser/flags/android/chrome_feature_list.cc"
 

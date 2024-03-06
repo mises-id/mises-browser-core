@@ -68,6 +68,37 @@
 #define MISES_ABOUT_FLAGS_FEATURE_ENTRIES                                      \
   EXPAND_FEATURE_ENTRIES(                                                      \
       {                                                                        \
+          "mises-ephemeral-storage",                                           \
+          "Enable Ephemeral Storage",                                          \
+          "Use ephemeral storage for third-party frames",                      \
+          kOsAll,                                                              \
+          FEATURE_VALUE_TYPE(net::features::kMisesEphemeralStorage),           \
+      },                                                                       \
+      {                                                                        \
+          "mises-ephemeral-storage-keep-alive",                                \
+          "Ephemeral Storage Keep Alive",                                      \
+          "Keep ephemeral storage partitions alive for a specified time "      \
+          "after all tabs for that origin are closed",                         \
+          kOsAll,                                                              \
+          FEATURE_VALUE_TYPE(net::features::kMisesEphemeralStorageKeepAlive),  \
+      },                                                                       \
+      {                                                                        \
+          "mises-first-party-ephemeral-storage",                               \
+          "Enable First Party Ephemeral Storage",                              \
+          "Enable support for First Party Ephemeral Storage using "            \
+          "SESSION_ONLY cookie setting",                                       \
+          kOsAll,                                                              \
+          FEATURE_VALUE_TYPE(net::features::kMisesFirstPartyEphemeralStorage), \
+      },                                                                       \
+      {                                                                        \
+          "mises-forget-first-party-storage",                                  \
+          "Enable First Party Storage Cleanup support",                        \
+          "Add cookie blocking mode which allows Brave to cleanup first "      \
+          "party storage (Cookies, DOM Storage) on website close",             \
+          kOsAll,                                                              \
+          FEATURE_VALUE_TYPE(net::features::kMisesForgetFirstPartyStorage),    \
+      },                                                                       \
+      {                                                                        \
           "https-by-default",                                                  \
           "Use HTTPS by Default",                                              \
           "Attempt to connect to all websites using HTTPS before falling "     \

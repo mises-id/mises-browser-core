@@ -4,11 +4,11 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 #include "base/memory/raw_ptr.h"
-#include "brave/browser/brave_drm_tab_helper.h"
-#include "brave/browser/widevine/widevine_permission_request.h"
-#include "brave/browser/widevine/widevine_utils.h"
-#include "brave/components/constants/pref_names.h"
-#include "brave/components/permissions/permission_widevine_utils.h"
+#include "mises/browser/brave_drm_tab_helper.h"
+#include "mises/browser/widevine/widevine_permission_request.h"
+#include "mises/browser/widevine/widevine_utils.h"
+#include "mises/components/constants/pref_names.h"
+#include "mises/components/permissions/permission_widevine_utils.h"
 #include "chrome/browser/download/download_permission_request.h"
 #include "chrome/test/base/chrome_render_view_host_test_harness.h"
 #include "chrome/test/base/scoped_testing_local_state.h"

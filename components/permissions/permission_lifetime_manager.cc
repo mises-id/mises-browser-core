@@ -105,8 +105,7 @@ void PermissionLifetimeManager::PermissionDecided(
 
   if (*lifetime == base::TimeDelta()) {
     DCHECK(permission_origin_lifetime_monitor_);
-    std::string key =
-        permission_origin_lifetime_monitor_
+    std::string key = permission_origin_lifetime_monitor_
             ->SubscribeToPermissionOriginDestruction(requesting_origin);
     if (key.empty()) {
       // There is no any active origin with this key, so reset the permission
