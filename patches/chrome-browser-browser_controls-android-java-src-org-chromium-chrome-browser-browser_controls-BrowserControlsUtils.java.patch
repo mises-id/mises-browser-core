@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/browser_controls/android/java/src/org/chromium/chrome/browser/browser_controls/BrowserControlsUtils.java b/chrome/browser/browser_controls/android/java/src/org/chromium/chrome/browser/browser_controls/BrowserControlsUtils.java
+index fbdaab5ff6d28bcc10c8ebfb01950e272065876a..71ab188a41170a836e2127ce69852a8dd17c425f 100644
+--- a/chrome/browser/browser_controls/android/java/src/org/chromium/chrome/browser/browser_controls/BrowserControlsUtils.java
++++ b/chrome/browser/browser_controls/android/java/src/org/chromium/chrome/browser/browser_controls/BrowserControlsUtils.java
+@@ -3,6 +3,7 @@
+ // found in the LICENSE file.
+ 
+ package org.chromium.chrome.browser.browser_controls;
++import org.chromium.base.ContextUtils;
+ 
+ /**
+  * Static utilities related to browser controls interfaces.
+@@ -27,6 +28,9 @@ public class BrowserControlsUtils {
+      * @return Whether the browser controls should be drawn as a texture.
+      */
+     public static boolean drawControlsAsTexture(BrowserControlsStateProvider stateProvider) {
++        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) ) {
++            return false;
++        }
+         return stateProvider.getBrowserControlHiddenRatio() > 0;
+     }
+ 

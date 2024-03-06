@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index a9fff1726ba833b66537bb0988c51debee4a44d8..ce5e0bbe6df37104205ad35c07cc57bbd1cf0b8a 100644
+index a9fff1726ba833b66537bb0988c51debee4a44d8..6518997f5e46ea9cb49335960756e98f15685a44 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 @@ -242,6 +242,22 @@ import java.util.Locale;
@@ -133,7 +133,7 @@ index a9fff1726ba833b66537bb0988c51debee4a44d8..ce5e0bbe6df37104205ad35c07cc57bb
 +            reportNewTabShortcutUsed(false);
 +            if (fromMenu) RecordUserAction.record("MobileMenuNewHomeTab.AppMenu");
 +
-+            getTabCreator(false).launchUrl(HomepageManager.getInstance().getHomepageGurlIgnoringEnabledStateChromium().getSpec(), TabLaunchType.FROM_CHROME_UI);
++            getTabCreator(false).launchUrl(HomepageManager.getInstance().getHomepageGurlIgnoringEnabledState().getSpec(), TabLaunchType.FROM_CHROME_UI);
 +
 +            mLocaleManager.showSearchEnginePromoIfNeeded(this, null);
          } else if (id == R.id.quick_delete_menu_id
