@@ -33,6 +33,34 @@ PrepopulatedEngine MakeMisesPrepopulatedEngine(const wchar_t* const name,
           type,    nullptr, nullptr,     id};
 }
 
+PrepopulatedEngine MakeGogglePrepopulatedEngine(const wchar_t* const name,
+                                               const wchar_t* const keyword,
+                                               const char* const favicon_url,
+                                               const char* const search_url,
+                                               const char* const encoding,
+                                               const char* const suggest_url,
+                                               SearchEngineType type,
+                                               const int id) {
+  return {name,    keyword, favicon_url, search_url, encoding, suggest_url,
+          google.image_url, 
+          google.image_translate_url, 
+          google.new_tab_url,
+          google.contextual_search_url,
+          google.logo_url,
+          google.doodle_url,
+          google.search_url_post_params, 
+          google.suggest_url_post_params, 
+          google.image_url_post_params,     
+          google.side_search_param,    
+          google.side_image_search_param,  
+          google.image_translate_source_language_param_key,
+          google.image_translate_target_language_param_key,
+          google.image_search_branding_label, 
+          google.search_intent_params,     google.search_intent_params_size,          
+          nullptr,  0,
+          type,    nullptr, nullptr,     id};
+}
+
 // Maps MisesPrepopulatedEngineID to Chromium's PrepopulatedEngine.
 const std::map<MisesPrepopulatedEngineID, const PrepopulatedEngine*>
     mises_engines_map = {
@@ -182,7 +210,7 @@ const PrepopulatedEngine mises_yandex =
                        nullptr,
                        PREPOPULATED_ENGINE_ID_YANDEX);
 
-const PrepopulatedEngine mises_search = MakeMisesPrepopulatedEngine(
+const PrepopulatedEngine mises_search = MakeGogglePrepopulatedEngine(
     L"Google(Mises Optimized)",
     L":m",
     google.favicon_url,
@@ -194,7 +222,7 @@ const PrepopulatedEngine mises_search = MakeMisesPrepopulatedEngine(
     #endif
     "UTF-8",
     google.suggest_url,
-    SEARCH_ENGINE_OTHER,
+    SEARCH_ENGINE_GOOGLE,
     PREPOPULATED_ENGINE_ID_MISES);
 
 // const PrepopulatedEngine brave_search_tor = ModifyEngineParams(
