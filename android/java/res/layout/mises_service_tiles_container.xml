@@ -25,21 +25,22 @@ found in the LICENSE file.
         android:orientation="vertical">
 
 
-      <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
             android:orientation="horizontal">
 
-           <LinearLayout
-              android:id="@+id/ll_toggle"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="start"
-              android:paddingTop="6dp"
-              android:paddingBottom="6dp"
-              android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/ll_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/iv_title"
                     android:src="@drawable/ntp_down"
@@ -47,6 +48,7 @@ found in the LICENSE file.
                     android:layout_height="10sp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"/>
+
                 <TextView
                     android:id="@+id/tv_title"
                     android:text=""
@@ -56,21 +58,22 @@ found in the LICENSE file.
                     android:textStyle="bold"
                     android:layout_marginLeft="5dp"
                     android:textSize="13sp" />
-          </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-           <LinearLayout
-              android:id="@+id/ll_more"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="end"
-              android:paddingTop="6dp"
-              android:paddingBottom="6dp"
-              android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/ll_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tv_more"
                     android:layout_width="wrap_content"
@@ -87,8 +90,7 @@ found in the LICENSE file.
                     android:layout_height="6sp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="5dp"/>
-          </LinearLayout>
-
+            </LinearLayout>
 
       </LinearLayout>
 

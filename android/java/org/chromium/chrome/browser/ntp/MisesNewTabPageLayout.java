@@ -33,6 +33,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -48,6 +49,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.chromium.base.Callback;
 import org.chromium.base.Log;
 import org.chromium.base.ContextUtils;
 import org.chromium.base.ThreadUtils;
@@ -82,7 +84,8 @@ import org.chromium.mojo.bindings.ConnectionErrorHandler;
 import org.chromium.mojo.system.MojoException;
 import org.chromium.ui.base.DeviceFormFactor;
 import org.chromium.ui.base.WindowAndroid;
-
+import org.chromium.chrome.browser.ntp.NewsFlowListAdapter;
+import org.chromium.chrome.browser.ntp.NewsFlowListAdapter.FetchNewsResp;
 import org.chromium.chrome.browser.feed.FeedSurfaceScrollDelegate;
 
 
@@ -94,6 +97,7 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 
 public class MisesNewTabPageLayout
         extends NewTabPageLayout implements ConnectionErrorHandler, OnMisesNtpListener {
@@ -140,12 +144,16 @@ public class MisesNewTabPageLayout
     private ViewGroup mWeb3ExtensionTilesContainerLayout;
     private MostVisitedTilesCoordinator mWeb3ExtensionTilesCoordinator;
 
+    private ViewGroup mNewsFlowContainerLayout;
+
     private ViewGroup mNativeAdLayout;
     private ViewGroup mMisesSearchLayout;
 
     private TileGroupDelegateWrapper mTileGroupDelegateWrapper;
     private NewTabPageManager mManager;
 
+    private RecyclerView mRecyclerViewNewsFlowList;
+    private NewsFlowListAdapter mAdapterNewsFlowList;
 
     private static final int SHOW_BRAVE_RATE_ENTRY_AT = 10; // 10th row
 
@@ -224,6 +232,11 @@ public class MisesNewTabPageLayout
         mWeb3ExtensionTilesContainerLayout.setVisibility(View.VISIBLE);
         mWeb3ExtensionTilesContainerLayout.post(runable);
 
+        mNewsFlowContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.mises_news_flow_list_container, mMainLayout, false);
+        mNewsFlowContainerLayout.setVisibility(View.VISIBLE);
+        mNewsFlowContainerLayout.post(runable);
+
         mNativeAdLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_carousel_container, mMainLayout, false);
         mNativeAdLayout.setVisibility(View.VISIBLE);
@@ -251,6 +264,7 @@ public class MisesNewTabPageLayout
             mNtpAdapter.onAttached();
         }
        
+        setupNewsFlow();
     }
 
 
@@ -300,6 +314,47 @@ public class MisesNewTabPageLayout
         });
     }
 
+    private void setupNewsFlow() {
+        mRecyclerViewNewsFlowList = mNewsFlowContainerLayout.findViewById(R.id.news_flow_list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
+        mRecyclerViewNewsFlowList.setLayoutManager(layoutManager);
+        mRecyclerViewNewsFlowList.post(new Runnable() {
+            @Override
+            public void run() {
+                setupNewsFlowAdapter();
+            }
+        });
+
+        Button btnMore = (Button)mNewsFlowContainerLayout.findViewById(R.id.btn_more);
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                mAdapterNewsFlowList.fetchMoreAsync(new Callback<NewsFlowListAdapter.FetchNewsResp>() {
+                    @Override
+                    public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
+                        if (result.nextPageIndex < 0) {
+                            btnMore.setText("no more");
+                            btnMore.setEnabled(false);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void setupNewsFlowAdapter() {
+        if (mAdapterNewsFlowList != null) {
+            return;
+        }
+
+        if (mActivity == null || mActivity.isDestroyed() || mActivity.isFinishing()) {
+            return;
+        }
+
+        mAdapterNewsFlowList = new NewsFlowListAdapter(mActivity);
+        mRecyclerViewNewsFlowList.setAdapter(mAdapterNewsFlowList);
+
+        mAdapterNewsFlowList.startFetchAsync();
+    }
 
     private boolean shouldDisplayTopSites() {
         return true;
@@ -314,6 +369,7 @@ public class MisesNewTabPageLayout
                     mActivity, this, Glide.with(mActivity),
                     mMvTilesContainerLayout, mMisesServiceTilesContainerLayout, 
                     mWeb3SiteTilesContainerLayout, mWeb3ExtensionTilesContainerLayout,
+                    mNewsFlowContainerLayout,
                     mNativeAdLayout, mMisesSearchLayout,
                     mRecyclerView.getHeight(), mIsTopSitesEnabled
                 );

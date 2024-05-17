@@ -33,6 +33,8 @@ mises_java_sources = kiwi_java_sources + [
   "//mises/android/java/org/chromium/chrome/browser/ntp/MisesNewTabPage.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/MisesNewTabPageLayout.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/MisesNtpAdapter.java",
+  "//mises/android/java/org/chromium/chrome/browser/ntp/NewsFlowListAdapter.java",
+  "//mises/android/java/org/chromium/chrome/browser/ntp/News.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/CarouselAdapter.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/TileGroupDelegateWrapper.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/OnMisesNtpListener.java",

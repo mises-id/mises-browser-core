@@ -88,6 +88,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View mMisesServiceTilesContainerLayout;
     private View mWeb3SiteTilesContainerLayout;
     private View mWeb3ExtensionTilesContainerLayout;
+    private View mNewsFlowContainerLayout;
     private View mCarouselAdContainerLayout;
     private View mMisesSearchContainerLayout;
 
@@ -112,6 +113,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static int TYPE_TOP_SITES = 4;
     private static int TYPE_CAROUSEL_AD = 5;
     private static int TYPE_MISES_SEARCH = 6;
+    private static int TYPE_NEWS_FLOW_LIST = 7;
 
     private static final int ONE_ITEM_SPACE = 1;
     private static final int TWO_ITEMS_SPACE = 2;
@@ -133,6 +135,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View misesServiceTilesContainerLayout,
             View web3SiteTilesContainerLayout,
             View web3ExtensionTilesContainerLayout,
+            View newsFlowContainerLayout,
             View carouselAdContainerLayout,
             View misesSearchContainerLayout,
             int recyclerViewHeight, boolean isTopSitesEnabled) {
@@ -145,6 +148,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mMisesServiceTilesContainerLayout = misesServiceTilesContainerLayout;
         mWeb3SiteTilesContainerLayout = web3SiteTilesContainerLayout;
         mWeb3ExtensionTilesContainerLayout = web3ExtensionTilesContainerLayout;
+        mNewsFlowContainerLayout = newsFlowContainerLayout;
         mCarouselAdContainerLayout = carouselAdContainerLayout;
         mMisesSearchContainerLayout = misesSearchContainerLayout;
         mRecyclerViewHeight = recyclerViewHeight;
@@ -314,22 +318,17 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        if (viewType == TYPE_MISES_SERVICE) {
-            return new MisesServiceViewHolder(mMisesServiceTilesContainerLayout, mActivity);
-
-        }
-        else if (viewType == TYPE_WEB3_SITE) {
-            return new Web3SiteViewHolder(mWeb3SiteTilesContainerLayout, mActivity);
-
-        }
-        else if (viewType == TYPE_WEB3_EXTENSION) {
-            return new Web3ExtensionViewHolder(mWeb3ExtensionTilesContainerLayout, mActivity);
-
-        }
-        else if (viewType == TYPE_CAROUSEL_AD) {
+        if (viewType == TYPE_CAROUSEL_AD) {
             return new CarouselAdViewHolder(mCarouselAdContainerLayout, mData, mHandler);
-        }
-        else if (viewType == TYPE_MISES_SEARCH) {
+        } else if (viewType == TYPE_MISES_SERVICE) {
+            return new MisesServiceViewHolder(mMisesServiceTilesContainerLayout, mActivity);
+        } else if (viewType == TYPE_WEB3_SITE) {
+            return new Web3SiteViewHolder(mWeb3SiteTilesContainerLayout, mActivity);
+        } else if (viewType == TYPE_WEB3_EXTENSION) {
+            return new Web3ExtensionViewHolder(mWeb3ExtensionTilesContainerLayout, mActivity);
+        } else if (viewType == TYPE_NEWS_FLOW_LIST) {
+            return new NewsFlowViewHolder(mNewsFlowContainerLayout, mActivity);
+        } else if (viewType == TYPE_MISES_SEARCH) {
             return new MisesSearchViewHolder(mMisesSearchContainerLayout, mActivity);
         }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
@@ -390,7 +389,9 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 1) {
+        if (position == 0) {
+            return TYPE_CAROUSEL_AD;
+        } else if (position == 1) {
             return TYPE_MISES_SERVICE;
         } else if (position == 2) {
             return TYPE_WEB3_SITE;
@@ -398,13 +399,13 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return TYPE_WEB3_EXTENSION;
         } else if (position == 4) {
             return TYPE_TOP_SITES;
+        } else {
+            return TYPE_NEWS_FLOW_LIST;
         }
-
-        return TYPE_CAROUSEL_AD;
     }
 
     public int getTopSitesCount() {
-        return mIsTopSitesEnabled ? 4 : 0;
+        return mIsTopSitesEnabled ? 5 : 0;
     }
     public void notifySiteChanged() {
         notifyItemRangeChanged(ONE_ITEM_SPACE, getTopSitesCount() + ONE_ITEM_SPACE);
@@ -681,6 +682,17 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         PREF_SHOW_WEB3_EXTENSION, !enabled);
                 MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "extension_off" : "extension_on");
             }); 
+        }
+    }
+
+    public static class NewsFlowViewHolder extends RecyclerView.ViewHolder {
+        protected TabCreator mTabCreator;
+        NewsFlowViewHolder(View itemView, Context ctx) {
+            super(itemView);
+            if (ctx instanceof TabCreatorManager) {
+                TabCreatorManager tabCreatorManager = (TabCreatorManager)ctx;
+                mTabCreator = tabCreatorManager.getTabCreator(false);;
+            }
         }
     }
 

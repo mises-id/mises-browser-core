@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="horizontal"
+    android:gravity="top"
+    android:background="@drawable/border_line" >
+
+    <!-- title                | image -->
+    <!-- -                    |       -->
+    <!-- source | publishedAt |       -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="18dp"
+            android:textStyle="bold" >
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <TextView
+                android:id="@+id/tv_source"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginRight="8dp" >
+            </TextView>
+            <TextView
+                android:id="@+id/tv_published_at"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="12dp" >
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitStart"
+        android:visibility="gone" >
+        <!-- android:adjustViewBounds="true" -->
+    </ImageView>
+</LinearLayout>
