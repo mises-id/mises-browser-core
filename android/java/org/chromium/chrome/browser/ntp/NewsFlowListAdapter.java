@@ -91,11 +91,11 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
     private void fetchNewsInPageAsync(Callback<FetchNewsResp> callback) {
         int pageIndex = mNextPageIndex;
         Uri.Builder builder = new Uri.Builder()
-            .scheme("http")
-            .encodedAuthority("192.168.124.2:8080")
+            // .scheme("http")
+            // .encodedAuthority("192.168.124.2:8080")
             // .encodedAuthority("172.20.10.2:8080")
-            // .scheme("https")
-            // .encodedAuthority("api.test.mises.site")
+            .scheme("https")
+            .encodedAuthority("api.test.mises.site")
             .appendPath("api")
             .appendPath("v1")
             .appendPath("newslist")
