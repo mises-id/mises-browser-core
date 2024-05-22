@@ -131,3 +131,4 @@
 -keep interface okhttp3.** { *; }
 -keep class okio.** { *; }
 -keep interface okio.** { *; }
+-keep class libv2ray.** { *;}
