@@ -73,7 +73,7 @@ import com.android.installreferrer.api.ReferrerDetails;
 import org.chromium.net.ChromiumNetworkAdapter;
 import org.chromium.net.NetworkTrafficAnnotationTag;
 import org.chromium.base.Callback;
-import org.chromium.chrome.browser.mises.HttpUtil;
+import org.chromium.chrome.browser.base.HttpUtil;
 
 /**
  * Application level delegate that handles start up tasks.

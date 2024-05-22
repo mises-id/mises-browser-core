@@ -1039,6 +1039,18 @@ void EthereumProviderImpl::CancelAds() {
   
 }
 
+void EthereumProviderImpl::OpenVpn() {
+  // mises wallet secure inject
+  if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
+    return;
+  }
+#if BUILDFLAG(IS_ANDROID)
+    base::android::MisesSysUtils::OpenVpnFromJni();
+#else
+#endif
+  
+}
+
 void EthereumProviderImpl::ShowAds(ShowAdsCallback callback) {
 #if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::ShowRewardAdFromJni(
@@ -1064,10 +1076,10 @@ void EthereumProviderImpl::OnShowAdsResult(ShowAdsCallback callback, int code, c
 
  void EthereumProviderImpl::GetCachedAuth(GetCachedAuthCallback callback) {
   // mises wallet secure inject
-  // if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
-  //   std::move(callback).Run(base::Value(), base::Value(), true, "", true);
-  //   return;
-  // }
+  if (!delegate_->GetOrigin().GetURL().host().ends_with(kMisesHost)) {
+    std::move(callback).Run(base::Value(), base::Value(), true, "", true);
+    return;
+  }
   std::string auth_cache;
   if (prefs_->FindPreference(kMisesWalletAuthCache)) {
     auth_cache = prefs_->GetString(kMisesWalletAuthCache);

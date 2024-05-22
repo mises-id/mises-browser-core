@@ -9,6 +9,9 @@ import org.jni_zero.NativeMethods;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.google.firebase.analytics.FirebaseAnalytics;
 import org.chromium.base.MisesController;
 
@@ -20,6 +23,7 @@ public class MisesSysUtils {
     public static void init(final Activity act) {
         activityContext = act;
         MisesAdsUtil.getInstance().initAds(act);
+        
     }
 
     public static Activity getActivityContext() {
@@ -71,6 +75,14 @@ public class MisesSysUtils {
     @CalledByNative
     public static void cancelRewardAd() {
         MisesAdsUtil.getInstance().cancelShowAds();
+    }
+
+    @CalledByNative
+    public static void openVpn() {
+        Context context = getActivityContext();
+        if (context == null)
+            return;
+        MisesVpnUtils.openVpn(context);
     }
 
     @CalledByNative

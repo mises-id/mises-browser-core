@@ -52,7 +52,8 @@ bool BraveWalletRenderFrameObserver::CanCreateProvider() {
     return false;
   }
 
-  if (chrome::GetChannel() == version_info::Channel::DEV) {
+  if (chrome::GetChannel() == version_info::Channel::DEV || 
+      chrome::GetChannel() == version_info::Channel::DEFAULT ) {
     return true;
   }
 

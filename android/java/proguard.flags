@@ -118,3 +118,9 @@
 
 -keepattributes Signature,InnerClasses,SourceFile,LineNumberTable,EnclosingMethod
 
+
+# vpn
+-keep class com.vpn.lib.**{*;}
+-keep class rx.**{*;}
+-keep class me.drakeet.support.**{*;}
+-keep class com.google.gson.**{*;}

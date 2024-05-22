@@ -46,7 +46,7 @@ constexpr char kEthereumProxyHandlerScript[] = R"((function() {
           (property === 'request' || property === 'isConnected' ||
            property === 'enable' || property === 'sendAsync' ||
            property === 'send' || property === 'showAds'|| property === 'cancelAds'|| 
-           property === 'getCachedAuth' ||
+           property === 'getCachedAuth' ||  property === 'openVpn'||
            property === 'signMessageForAuth')) {
         return new Proxy(value, {
           apply: (targetFunc, thisArg, args) => {
@@ -291,6 +291,11 @@ void JSEthereumProvider::CancelAds(v8::Isolate* isolate) {
   return;
 }
 
+void JSEthereumProvider::OpenVpn(v8::Isolate* isolate) {
+  ethereum_provider_->OpenVpn();
+  return;
+}
+
 v8::Local<v8::Promise> JSEthereumProvider::GetCachedAuth(v8::Isolate* isolate) {
 
   if (!EnsureConnected()) {
@@ -396,6 +401,7 @@ gin::ObjectTemplateBuilder JSEthereumProvider::GetObjectTemplateBuilder(
       .SetMethod("send", &JSEthereumProvider::SendMethod)
       .SetMethod("showAds", &JSEthereumProvider::ShowAds)
       .SetMethod("cancelAds", &JSEthereumProvider::CancelAds)
+      .SetMethod("openVpn", &JSEthereumProvider::OpenVpn)
       .SetMethod("getCachedAuth", &JSEthereumProvider::GetCachedAuth)
       .SetMethod("signMessageForAuth", &JSEthereumProvider::SignMessageForAuth);
 }

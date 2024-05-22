@@ -2,6 +2,8 @@ import("//build/config/android/abi.gni")
 
 _mises_public_apk_or_module_tmpl_deps = [ 
     "//mises/third_party/android_deps:com_wireguard_android_J__unpack_aar",
+    "//mises/third_party/android_deps:com_tencent_mmkv_static_J__unpack_aar",
+    "//mises/third_party/mises:mises_vpn_J__unpack_aar",
     "//chrome/browser:browser",
 ]
 
@@ -9,16 +11,29 @@ mises_public_apk_or_module_tmpl_deps = _mises_public_apk_or_module_tmpl_deps
 mises_monochrome_public_apk_or_module_tmpl_deps =
     _mises_public_apk_or_module_tmpl_deps
 
-_lib_dir = get_label_info(
+_lib_wg_dir = get_label_info(
                "//mises/third_party/android_deps:com_wireguard_android($default_toolchain)",
                "target_out_dir") + "/com_wireguard_android_java/jni"
 
+_lib_mmkv_dir = get_label_info(
+               "//mises/third_party/android_deps:com_tencent_mmkv_static($default_toolchain)",
+               "target_out_dir") + "/com_tencent_mmkv_static_java/jni"
+_lib_vpn_dir = get_label_info(
+               "//mises/third_party/mises:mises_vpn($default_toolchain)",
+               "target_out_dir") + "/mises_vpn_java/jni"
+
 mises_public_apk_or_module_tmpl_loadable_modules = [ 
-    "$_lib_dir/$android_app_abi/libwg-go.so",
+    "$_lib_wg_dir/$android_app_abi/libwg-go.so",
+    "$_lib_mmkv_dir/$android_app_abi/libmmkv.so",
+    "$_lib_vpn_dir/$android_app_abi/libgojni.so",
+    "$_lib_vpn_dir/$android_app_abi/libtun2socks.so",
 ]
 
 mises_monochrome_public_apk_or_module_tmpl_loadable_modules = [ 
-    "$_lib_dir/$android_app_abi/libwg-go.so",
+    "$_lib_wg_dir/$android_app_abi/libwg-go.so",
+    "$_lib_mmkv_dir/$android_app_abi/libmmkv.so",
+    "$_lib_vpn_dir/$android_app_abi/libgojni.so",
+    "$_lib_vpn_dir/$android_app_abi/libtun2socks.so",
 ]
 mises_monochrome_public_apk_or_module_tmpl_secondary_abi_loadable_modules = []
 

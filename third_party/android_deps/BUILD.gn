@@ -381,3 +381,47 @@ android_library("com_kirich1409_svgimageloaderplugins_java") {
 }
 
 
+
+
+android_aar_prebuilt("com_tencent_mmkv_static_java") {
+  ignore_aidl = true
+  extract_native_libraries = true 
+  aar_path = "libs/com_tencent_mmkv_static/mmkv-static-1.2.15.aar"
+  info_path = "libs/com_tencent_mmkv_static/com_tencent_mmkv_static_java.info"
+  deps = [
+  ]
+}
+
+
+android_aar_prebuilt("androidx_databinding_java") {
+  aar_path = "libs/androidx_databinding/viewbinding-8.1.2.aar"
+  info_path = "libs/androidx_databinding/androidx_databinding_java.info"
+  deps = [
+  ]
+}
+
+
+android_aar_prebuilt("me_drakeet_support_toast_java") {
+  aar_path = "libs/me_drakeet_support_toast/toastcompat-1.1.0.aar"
+  info_path = "libs/me_drakeet_support_toast/me_drakeet_support_toast_java.info"
+  deps = [
+  ]
+}
+
+
+
+java_prebuilt("io_reactivex_rxjava_java") {
+  jar_path = "libs/io_reactivex/rxjava-1.3.8.jar"
+  supports_android = true
+}
+
+
+
+android_aar_prebuilt("io_reactivex_rxandroid_java") {
+  aar_path = "libs/io_reactivex/rxandroid-1.2.1.aar"
+  info_path = "libs/io_reactivex/io_reactivex_rxandroid_java.info"
+  deps = [
+    ":io_reactivex_rxjava_java"
+  ]
+}
+

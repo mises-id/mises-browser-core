@@ -1,0 +1,13 @@
+diff --git a/components/browser_ui/styles/android/BUILD.gn b/components/browser_ui/styles/android/BUILD.gn
+index 986d99ca89811ba623f596b13e6c1558a52d66fb..fbb7adc116f0f69af3a02dcd0cb9b839b92b2abf 100644
+--- a/components/browser_ui/styles/android/BUILD.gn
++++ b/components/browser_ui/styles/android/BUILD.gn
+@@ -233,7 +233,7 @@ android_resources("java_resources") {
+     "java/res/drawable/ic_visibility_off_black.xml",
+     "java/res/drawable/ic_volume_off_white_24dp.xml",
+     "java/res/drawable/ic_volume_on_white_24dp.xml",
+-    "java/res/drawable/ic_vpn_key_24.xml",
++    "java/res/drawable/ic_vpn_key_white_24.xml",
+     "java/res/drawable/ic_vpn_key_grey.xml",
+     "java/res/drawable/ic_warning_red_16dp.xml",
+     "java/res/drawable/ic_warning_red_24dp.xml",

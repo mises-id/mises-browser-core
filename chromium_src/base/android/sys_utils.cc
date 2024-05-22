@@ -52,6 +52,11 @@ void MisesSysUtils::CancelRewardAdFromJni() {
   Java_MisesSysUtils_cancelRewardAd(env);
 }
 
+void MisesSysUtils::OpenVpnFromJni() {
+  JNIEnv* env = AttachCurrentThread();
+  Java_MisesSysUtils_openVpn(env);
+}
+
 void MisesSysUtils::LogEventFromJni(const std::string& name, const std::string& key, const std::string& value) {
   JNIEnv* env = AttachCurrentThread();
   base::android::ScopedJavaLocalRef<jstring> j_name = base::android::ConvertUTF8ToJavaString(env, name);
