@@ -124,3 +124,10 @@
 -keep class rx.**{*;}
 -keep class me.drakeet.support.**{*;}
 -keep class com.google.gson.**{*;}
+-keep class com.github.shadowsocks.System { *; }
+-keep class tun2socks.** { *;}
+-keep class go.** { *;}
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-keep class okio.** { *; }
+-keep interface okio.** { *; }
