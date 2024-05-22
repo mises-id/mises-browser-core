@@ -30,7 +30,6 @@ resources = [
   "res/drawable/ic_rounded_corner_grey.xml",
   "res/drawable/ic_rounded_corner_theme.xml",
   "res/drawable/ic_shortcut_background.xml",
-  "res/drawable/ic_vpn_key_24.xml",
   "res/drawable/ic_vpn_key_off_24.xml",
   "res/drawable/select_server_bg.xml",
   "res/layout/activity_servers.xml",

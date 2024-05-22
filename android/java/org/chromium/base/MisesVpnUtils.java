@@ -9,6 +9,10 @@ import org.chromium.chrome.browser.base.HttpUtil;
 import com.vpn.lib.VPNInit;
 import com.tencent.mmkv.MMKV;
 
+import org.chromium.components.version_info.Channel;
+import org.chromium.components.version_info.VersionConstants;
+import org.chromium.components.version_info.VersionInfo;
+
 public class MisesVpnUtils {
     private static final String TAG = "MisesVpnUtils";
 
@@ -44,13 +48,21 @@ public class MisesVpnUtils {
 
     }
 
-
+    private static String getVpnApiHost() {
+        if (VersionConstants.CHANNEL == Channel.DEV || VersionConstants.CHANNEL == Channel.DEFAULT)  {
+            return "https://api1.test.mises.site";
+        } else {
+            return "https://api.alb.mises.site";
+        }
+    }
 
     private static void initVpn(final Context applicationContext) {
         Log.i(TAG, "initVpn!");
+        
         VPNInit.INSTANCE.init(applicationContext, new VPNInit.ISdk() {
             @Override
             public String getConfig(String ip) {
+                Log.i(TAG, "getConfig: ip" + ip);
                 JSONObject root = new JSONObject();
                 try {
                     root.put("server", ip);
@@ -58,7 +70,7 @@ public class MisesVpnUtils {
                     return "{ \"code\": -1, \"msg\": \"Unable to write to a JSONObject\" }";
                 }
 
-                HttpUtil.HttpResp result = HttpUtil.JsonPostSync( "https://api1.test.mises.site/api/v1/vpn/server_link", root, sToken, "");
+                HttpUtil.HttpResp result = HttpUtil.JsonPostSync( getVpnApiHost() + "/api/v1/vpn/server_link", root, sToken, "");
                 if (result.resp != null) {
                     Log.i(TAG, "getConfig:" + result.resp.toString());
                     return result.resp.toString();
@@ -70,7 +82,7 @@ public class MisesVpnUtils {
             @Override
             public String getServer() {
                 
-                HttpUtil.HttpResp result = HttpUtil.JsonGetSync( "https://api1.test.mises.site/api/v1/vpn/server_list", sToken, "");
+                HttpUtil.HttpResp result = HttpUtil.JsonGetSync( getVpnApiHost() + "/api/v1/vpn/server_list", sToken, "");
                 if (result.resp != null) {
                     Log.i(TAG, "getServer:" + result.resp.toString());
                     return result.resp.toString();
