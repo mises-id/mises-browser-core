@@ -405,6 +405,7 @@ android_aar_prebuilt("me_drakeet_support_toast_java") {
   aar_path = "libs/me_drakeet_support_toast/toastcompat-1.1.0.aar"
   info_path = "libs/me_drakeet_support_toast/me_drakeet_support_toast_java.info"
   deps = [
+    "//third_party/android_deps:com_android_support_support_compat_java"
   ]
 }
 
