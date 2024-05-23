@@ -19,14 +19,22 @@ public class MisesVpnUtils {
     private static final String TOKEN_KEY = "MisesVpnToken";
 
     private static String sToken = "";
-    public static void initApplication(final Context applicationContext) {
-        
-        MMKV.initialize(applicationContext);
-        sToken = loadToken();
-        initVpn(applicationContext);
 
+    public static boolean isVpnRelatedProcess() {
+        boolean isBrowser =  !ContextUtils.getProcessName().contains(":");
+        boolean isVpn = ContextUtils.getProcessName().contains("VPNDaemon");
+        return isBrowser || isVpn;
+    }
+
+    public static void initApplication(final Context applicationContext) {
+        if (isVpnRelatedProcess()) {
+            MMKV.initialize(applicationContext);
+            sToken = loadToken();
+            initVpn(applicationContext);
+        }
 
     }
+
     private static String loadToken() {
         MMKV kv = MMKV.defaultMMKV();
         return kv.decodeString(TOKEN_KEY);
@@ -94,6 +102,7 @@ public class MisesVpnUtils {
     }
     
     public static void openVpn(final Context context) {
+        sToken = loadToken();
         VPNInit.INSTANCE.startVpn(context);
     }
 

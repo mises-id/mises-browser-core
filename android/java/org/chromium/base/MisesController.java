@@ -28,6 +28,7 @@ public class MisesController {
     public static final String MISES_API_BASE_URL = "https://api.alb.mises.site";
     public static final String MISES_WALLET_BASE_URL = "chrome://wallet";
     public static final String EXTENSIONS_BASE_URL = "chrome://extensions";
+    public static final String MISES_VPN_BASE_URL = "https://vpn.test.mises.site";
     
     private String mMisesId = "";
     private String mMisesAuth = "";
