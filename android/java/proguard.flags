@@ -3,6 +3,7 @@
     *** mMvTilesContainerLayout;
     *** mLogoCoordinator;
     *** insertSiteSectionView(...);
+    *** updateSearchBoxOnScroll(...);
     *** isScrollableMvtEnabled(...);
 }
 

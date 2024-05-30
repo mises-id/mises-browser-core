@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d07e2b6cf 100644
+index 404ff70b970ed28221ace433cd36c62c5eb9fa10..ab5cf76252e6b3d7170aac9a46fc59b66c5b3e64 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-@@ -101,13 +101,53 @@ import java.util.ArrayList;
+@@ -101,13 +101,54 @@ import java.util.ArrayList;
  import java.util.List;
  import java.util.function.BooleanSupplier;
  
@@ -54,11 +54,12 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
 +        implements OnClickListener, TabCountObserver, OmniboxSuggestionsDropdownScrollListener, MisesController.MisesControllerObserver {
      /** The amount of time transitioning from one theme color to another should take in ms. */
 -    public static final long THEME_COLOR_TRANSITION_DURATION = 250;
++    private static final String TAG = "ToolbarPhone";
 +    public static final long THEME_COLOR_TRANSITION_DURATION = 50;
  
      public static final int URL_FOCUS_CHANGE_ANIMATION_DURATION_MS = 225;
      private static final int URL_FOCUS_TOOLBAR_BUTTONS_DURATION_MS = 100;
-@@ -141,6 +181,10 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -141,6 +182,10 @@ public class ToolbarPhone extends ToolbarLayout
      protected @Nullable ToggleTabStackButton mToggleTabStackButton;
      // Non-null after inflation occurs.
      protected @NonNull ImageView mHomeButton;
@@ -69,7 +70,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
      private TextView mUrlBar;
      protected View mUrlActionContainer;
      protected ImageView mToolbarShadow;
-@@ -346,6 +390,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -346,6 +391,7 @@ public class ToolbarPhone extends ToolbarLayout
  
              mToolbarButtonsContainer = (ViewGroup) findViewById(R.id.toolbar_buttons);
              mHomeButton = findViewById(R.id.home_button);
@@ -77,7 +78,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
              mUrlBar = (TextView) findViewById(R.id.url_bar);
              mUrlActionContainer = findViewById(R.id.url_action_container);
              mToolbarBackground =
-@@ -362,6 +407,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -362,6 +408,7 @@ public class ToolbarPhone extends ToolbarLayout
              setWillNotDraw(false);
              mUrlFocusTranslationX =
                      getResources().getDimensionPixelSize(R.dimen.toolbar_url_focus_translation_x);
@@ -85,7 +86,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
  
              // Set hover tooltip texts for toolbar buttons shared between phones and tablets.
              super.setTooltipTextForToolbarButtons();
-@@ -383,6 +429,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -383,6 +430,7 @@ public class ToolbarPhone extends ToolbarLayout
  
      @Override
      public void destroy() {
@@ -93,7 +94,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
          cancelAnimations();
          Handler handler = getHandler();
          if (handler != null) {
-@@ -522,6 +569,12 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -522,6 +570,12 @@ public class ToolbarPhone extends ToolbarLayout
          enableTabSwitchingResources();
          mHomeButton.setOnClickListener(this);
  
@@ -106,7 +107,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
          getMenuButtonCoordinator().setOnKeyListener(new KeyboardNavigationListener() {
              @Override
              public View getNextFocusForward() {
-@@ -596,6 +649,11 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -596,6 +650,11 @@ public class ToolbarPhone extends ToolbarLayout
                          EventConstants.PARTNER_HOME_PAGE_BUTTON_PRESSED);
              }
          }
@@ -118,7 +119,29 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
      }
  
      @Override
-@@ -775,6 +833,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -687,9 +746,9 @@ public class ToolbarPhone extends ToolbarLayout
+         // Always update the unfocused layout params regardless of whether we are using
+         // those in this current layout pass as they are needed for animations.
+         boolean changed = updateUnfocusedLocationBarLayoutParams();
+-
++        boolean mises_enforced = false;
+         if (mLayoutLocationBarInFocusedMode
+-                || (mVisualState == VisualState.NEW_TAB_NORMAL
++                || (mises_enforced && mVisualState == VisualState.NEW_TAB_NORMAL
+                         && mTabSwitcherState == STATIC_TAB)) {
+             int priorVisibleWidth =
+                     mLocationBar.getPhoneCoordinator().getOffsetOfFirstVisibleFocusedView();
+@@ -761,7 +820,8 @@ public class ToolbarPhone extends ToolbarLayout
+     private int getViewBoundsLeftOfLocationBar(@VisualState int visualState) {
+         // Uses getMeasuredWidth()s instead of getLeft() because this is called in onMeasure
+         // and the layout values have not yet been set.
+-        if (visualState == VisualState.NEW_TAB_NORMAL && mTabSwitcherState == STATIC_TAB) {
++        boolean mises_enforced = false;
++        if ((mises_enforced && visualState == VisualState.NEW_TAB_NORMAL) && mTabSwitcherState == STATIC_TAB) {
+             return mToolbarSidePaddingForRealOmnibox;
+         } else if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
+             return getBoundsAfterAccountingForRightButtons();
+@@ -775,6 +835,7 @@ public class ToolbarPhone extends ToolbarLayout
       */
      private int getBoundsAfterAccountingForLeftButton() {
          int padding = mToolbarSidePaddingForRealOmnibox;
@@ -126,7 +149,17 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
  
          // If home button is visible, or it's now in overview and toolbar is not shown (url bar
          // shouldn't be focused), mHomeButton.getMeasuredWidth() should be returned as the left
-@@ -890,6 +949,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -793,7 +854,8 @@ public class ToolbarPhone extends ToolbarLayout
+     private int getViewBoundsRightOfLocationBar(@VisualState int visualState) {
+         // Uses getMeasuredWidth()s instead of getRight() because this is called in onMeasure
+         // and the layout values have not yet been set.
+-        if (visualState == VisualState.NEW_TAB_NORMAL && mTabSwitcherState == STATIC_TAB) {
++        boolean mises_enforced = false;
++        if ((mises_enforced && visualState == VisualState.NEW_TAB_NORMAL) && mTabSwitcherState == STATIC_TAB) {
+             return getMeasuredWidth() - mToolbarSidePaddingForRealOmnibox;
+         } else if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
+             return getMeasuredWidth() - getBoundsAfterAccountingForLeftButton();
+@@ -890,6 +952,7 @@ public class ToolbarPhone extends ToolbarLayout
  
      @Override
      protected void dispatchDraw(Canvas canvas) {
@@ -134,7 +167,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
          if (!mTextureCaptureMode && mToolbarBackground.getColor() != Color.TRANSPARENT) {
              // Update to compensate for orientation changes.
              mToolbarBackground.setBounds(0, 0, getWidth(), getHeight());
-@@ -907,6 +967,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -907,6 +970,7 @@ public class ToolbarPhone extends ToolbarLayout
          } else {
              super.dispatchDraw(canvas);
          }
@@ -142,7 +175,15 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
      }
  
      @Override
-@@ -1059,6 +1120,10 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -915,6 +979,7 @@ public class ToolbarPhone extends ToolbarLayout
+     }
+ 
+     private void onNtpScrollChanged(float scrollFraction) {
++        Log.e(TAG,"onNtpScrollChanged:" + scrollFraction);
+         mNtpSearchBoxScrollFraction = scrollFraction;
+         if (mIsSurfacePolishEnabled && mNtpSearchBoxScrollFraction > 0) {
+             updateLocationBarForSurfacePolish(mVisualState, mHasFocus);
+@@ -1059,6 +1124,10 @@ public class ToolbarPhone extends ToolbarLayout
          if (mHomeButton.getVisibility() != GONE) {
              mHomeButton.setVisibility(toolbarButtonVisibility);
          }
@@ -153,7 +194,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
  
          updateLocationBarLayoutForExpansionAnimation();
      }
-@@ -1313,7 +1378,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1313,7 +1382,8 @@ public class ToolbarPhone extends ToolbarLayout
          mLocationBar.getPhoneCoordinator().setTranslationX(0);
          if (!mUrlFocusChangeInProgress) {
              mToolbarButtonsContainer.setTranslationY(0);
@@ -163,9 +204,20 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
          }
  
          if (!mUrlFocusChangeInProgress && mToolbarShadow != null) {
-@@ -1446,7 +1512,8 @@ public class ToolbarPhone extends ToolbarLayout
-         int transY = mTabSwitcherState == STATIC_TAB ? Math.min(mNtpSearchBoxTranslation.y, 0) : 0;
+@@ -1428,7 +1498,7 @@ public class ToolbarPhone extends ToolbarLayout
+         mLocationBar.getPhoneCoordinator().setAlpha(relativeAlpha);
  
+         // The search box on the NTP is visible if our omnibox is invisible, and vice-versa.
+-        ntpDelegate.setSearchBoxAlpha(1f - relativeAlpha);
++        ntpDelegate.setSearchBoxAlpha(1f - mNtpSearchBoxScrollFraction);
+         if (!mForceDrawLocationBarBackground) {
+             if (mActiveLocationBarBackground instanceof NtpSearchBoxDrawable) {
+                 ((NtpSearchBoxDrawable) mActiveLocationBarBackground).resetBoundsToLastNonToolbar();
+@@ -1444,9 +1514,9 @@ public class ToolbarPhone extends ToolbarLayout
+      */
+     private void updateButtonsTranslationY() {
+         int transY = mTabSwitcherState == STATIC_TAB ? Math.min(mNtpSearchBoxTranslation.y, 0) : 0;
+-
          mToolbarButtonsContainer.setTranslationY(transY);
 -        mHomeButton.setTranslationY(transY);
 +        if (mHomeButton != null) mHomeButton.setTranslationY(transY);
@@ -173,7 +225,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
      }
  
      private void setAncestorsShouldClipChildren(boolean clip) {
-@@ -1473,8 +1540,12 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1473,8 +1543,12 @@ public class ToolbarPhone extends ToolbarLayout
              mHomeButton.setAlpha(previousAlpha * floatAlpha);
              drawChild(canvas, mHomeButton, SystemClock.uptimeMillis());
              mHomeButton.setAlpha(previousAlpha);
@@ -186,7 +238,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
          // Draw the location/URL bar.
          previousAlpha = mLocationBar.getPhoneCoordinator().getAlpha();
          mLocationBar.getPhoneCoordinator().setAlpha(previousAlpha * floatAlpha);
-@@ -1501,6 +1572,33 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1501,6 +1575,33 @@ public class ToolbarPhone extends ToolbarLayout
              canvas.restore();
          }
  
@@ -220,7 +272,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
          // Draw the tab stack button and associated text if necessary.
          if (mTabSwitcherAnimationTabStackDrawable != null && mToggleTabStackButton != null
                  && mUrlExpansionFraction != 1f) {
-@@ -1586,7 +1684,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1586,7 +1687,8 @@ public class ToolbarPhone extends ToolbarLayout
      }
  
      private boolean isChildLeft(View child) {
@@ -230,7 +282,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
      }
  
      /**
-@@ -1735,11 +1834,12 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1735,11 +1837,12 @@ public class ToolbarPhone extends ToolbarLayout
  
      @Override
      public CaptureReadinessResult isReadyForTextureCapture() {
@@ -244,7 +296,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
              return getReadinessStateWithSuppression();
          } else {
              return CaptureReadinessResult.unknown(!(urlHasFocus() || mUrlFocusChangeInProgress));
-@@ -1858,13 +1958,18 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1858,13 +1961,18 @@ public class ToolbarPhone extends ToolbarLayout
  
      @Override
      public void updateButtonVisibility() {
@@ -264,7 +316,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
      }
  
      @Override
-@@ -1886,6 +1991,15 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1886,6 +1994,15 @@ public class ToolbarPhone extends ToolbarLayout
          if (mLocationBar != null) mLocationBar.updateVisualsForState();
  
          if (mLayoutUpdater != null) mLayoutUpdater.run();
@@ -280,7 +332,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
      }
  
      @Override
-@@ -2031,6 +2145,11 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2031,6 +2148,11 @@ public class ToolbarPhone extends ToolbarLayout
                  ((RippleDrawable) drawable).jumpToCurrentState();
              }
          }
@@ -292,7 +344,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
      }
  
      @Override
-@@ -2350,7 +2469,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2350,7 +2472,8 @@ public class ToolbarPhone extends ToolbarLayout
  
      @Override
      public void onTabCountChanged(int numberOfTabs, boolean isIncognito) {
@@ -302,7 +354,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
          if (mToggleTabStackButton == null) return;
  
          @BrandedColorScheme
-@@ -2522,7 +2642,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2522,7 +2645,8 @@ public class ToolbarPhone extends ToolbarLayout
       * Update the visibility of the toolbar shadow.
       */
      private void updateShadowVisibility() {
@@ -312,7 +364,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
          int shadowVisibility = shouldDrawShadow ? View.VISIBLE : View.INVISIBLE;
  
          if (mToolbarShadow != null && mToolbarShadow.getVisibility() != shadowVisibility) {
-@@ -3110,4 +3231,262 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -3110,4 +3234,262 @@ public class ToolbarPhone extends ToolbarLayout
      void setNtpSearchBoxScrollFractionForTesting(float ntpSearchBoxScrollFraction) {
          mNtpSearchBoxScrollFraction = ntpSearchBoxScrollFraction;
      }
@@ -423,7 +475,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..60c67e794042b65c4d136468fe57880d
 +
 +    private float drawMisesExtensionButton(Canvas canvas,float previousAlpha, int rgbAlpha) {
 +        if (mMisesExtensionButton != null && mMisesExtensionButton.getVisibility() != View.GONE) {
-+            Log.e("Mises","drawMisesExtensionButton");
++            Log.e(TAG,"drawMisesExtensionButton");
 +	    canvas.save();
 +	    ChromeImageButton imageButton = mMisesExtensionButton;
 +	    Drawable buttonDrawable = mMisesExtensionButton.getDrawable();

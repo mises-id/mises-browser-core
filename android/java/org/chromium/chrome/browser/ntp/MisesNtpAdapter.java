@@ -390,7 +390,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemViewType(int position) {
         if (position == 0) {
-            return TYPE_CAROUSEL_AD;
+            return TYPE_MISES_SEARCH;
         } else if (position == 1) {
             return TYPE_MISES_SERVICE;
         } else if (position == 2) {
@@ -399,13 +399,16 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return TYPE_WEB3_EXTENSION;
         } else if (position == 4) {
             return TYPE_TOP_SITES;
+        } else if (position == 5) {
+            return TYPE_CAROUSEL_AD;
         } else {
             return TYPE_NEWS_FLOW_LIST;
         }
+        
     }
 
     public int getTopSitesCount() {
-        return mIsTopSitesEnabled ? 5 : 0;
+        return mIsTopSitesEnabled ? 6 : 0;
     }
     public void notifySiteChanged() {
         notifyItemRangeChanged(ONE_ITEM_SPACE, getTopSitesCount() + ONE_ITEM_SPACE);

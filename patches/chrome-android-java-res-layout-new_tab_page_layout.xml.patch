@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/res/layout/new_tab_page_layout.xml b/chrome/android/java/res/layout/new_tab_page_layout.xml
-index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..5cc6561d38e60e731951fc4f10b9ba009a77149e 100644
+index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..e395fca022eb8c196c500de5e296de1227a881a4 100644
 --- a/chrome/android/java/res/layout/new_tab_page_layout.xml
 +++ b/chrome/android/java/res/layout/new_tab_page_layout.xml
-@@ -1,23 +1,27 @@
+@@ -1,27 +1,32 @@
  <?xml version="1.0" encoding="utf-8"?>
 -<!--
 -Copyright 2016 The Chromium Authors
@@ -38,12 +38,17 @@ index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..5cc6561d38e60e731951fc4f10b9ba00
      <FrameLayout
          android:id="@+id/logo_holder"
          android:layout_width="match_parent"
-@@ -30,58 +34,94 @@ found in the LICENSE file.
+-        android:layout_height="wrap_content">
++        android:layout_height="wrap_content"
++        android:visibility="gone">
+ 
+         <ViewStub
+             android:id="@+id/cryptid_holder"
+@@ -30,58 +35,101 @@ found in the LICENSE file.
              android:layout_height="@dimen/cryptid_height_in_logo_wrapper"
              android:layout_gravity="bottom|start" />
  
 -        <include layout="@layout/logo_view_layout"/>
--    </FrameLayout>
 +        <org.chromium.chrome.browser.logo.LogoView
 +            android:id="@+id/search_provider_logo"
 +            android:layout_width="wrap_content"
@@ -53,10 +58,16 @@ index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..5cc6561d38e60e731951fc4f10b9ba00
 +            android:layout_marginEnd="16dp"
 +            android:layout_marginTop="@dimen/ntp_logo_margin_top"
 +            android:layout_marginBottom="23dp" />
++
+     </FrameLayout>
  
 -    <!-- Search box -->
 -    <include layout="@layout/fake_search_box_layout"/>
-+    </FrameLayout>
++<!-- <androidx.core.widget.NestedScrollView
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    android:id="@+id/nestedScrollView"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"> -->
  
 -    <!-- Query tiles -->
 -    <FrameLayout
@@ -79,21 +90,28 @@ index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..5cc6561d38e60e731951fc4f10b9ba00
 -    <!-- Site suggestion tile grid placeholder -->
 -    <ViewStub
 -        android:id="@+id/tile_grid_placeholder_stub"
--        android:layout_width="match_parent"
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerview"
+         android:layout_width="match_parent"
 -        android:layout_height="wrap_content"
 -        android:layout_weight="1"
 -        android:inflatedId="@+id/tile_grid_placeholder"
 -        android:layout="@layout/new_tab_page_tile_grid_placeholder" />
--
++        android:layout_height="match_parent"
++        android:overScrollMode="never" />
++<!-- </androidx.core.widget.NestedScrollView> -->
+ 
 -    <!-- Single tab card -->
 -    <ViewStub
 -        android:id="@+id/tab_switcher_module_container_stub"
-+    <androidx.recyclerview.widget.RecyclerView
-+        android:id="@+id/recyclerview"
++    <LinearLayout
++        android:id="@+id/ntp_main_layout"
          android:layout_width="match_parent"
          android:layout_height="match_parent"
 -        android:layout="@layout/tab_switcher_module_container" />
-+        android:overScrollMode="never" />
++        android:layout_gravity="center_horizontal"
++        android:orientation="vertical"
++        android:visibility="gone">
  
 -    <ViewStub
 -        android:id="@+id/search_resumption_module_container_stub"
@@ -105,18 +123,11 @@ index 2165ff4087d104f35eb8eac9971afd03f9c10f9f..5cc6561d38e60e731951fc4f10b9ba00
 -    <!-- Spacer for when there is no search provider logo. -->
 -    <View
 -        android:id="@+id/no_search_logo_spacer"
-+    <LinearLayout
-+        android:id="@+id/ntp_main_layout"
-         android:layout_width="match_parent"
+-        android:layout_width="match_parent"
 -        android:layout_height="0dp"
 -        android:layout_weight="1"
 -        android:visibility="gone" />
 -</org.chromium.chrome.browser.ntp.NewTabPageLayout>
-+        android:layout_height="match_parent"
-+        android:layout_gravity="center_horizontal"
-+        android:orientation="vertical"
-+        android:visibility="gone">
-+
 +            <!-- Search box -->
 +            <include layout="@layout/fake_search_box_layout"/>
 +
