@@ -17,12 +17,16 @@ public class MisesVpnUtils {
     private static final String TAG = "MisesVpnUtils";
 
     private static final String TOKEN_KEY = "MisesVpnToken";
+    private static final String SERVER_CACHE_KEY = "MisesVpnServerCache";
+    private static final String SERVER_CACHE_TIMESTAMP_KEY = "MisesVpnServerCacheTimeStamp";
+
+    private static final long CACHE_EXPIRE_TIME = 3600;
 
     private static String sToken = "";
 
     public static boolean isVpnRelatedProcess() {
         boolean isBrowser =  !ContextUtils.getProcessName().contains(":");
-        boolean isVpn = ContextUtils.getProcessName().contains("VPNDaemon");
+        boolean isVpn = ContextUtils.getProcessName().contains("vpnLibDaemon");
         return isBrowser || isVpn;
     }
 
@@ -41,6 +45,40 @@ public class MisesVpnUtils {
 
     }
 
+    private static boolean isValidServerList(final String json) {
+        try {
+            JSONObject jsonMessage = new JSONObject(json);
+            if (jsonMessage.has("code") && jsonMessage.getInt("code") == 0) {
+                return true;
+            }
+
+
+        } catch (JSONException e) {
+            Log.e(TAG, "ServerList %s error", json);
+        }
+        return false;
+    }
+    private static void saveServerCache(final String json) {
+        if (isValidServerList(json)) {
+            MMKV kv = MMKV.defaultMMKV();
+            long nowInSeconds = System.currentTimeMillis() / 1000;
+            kv.encode(SERVER_CACHE_TIMESTAMP_KEY, nowInSeconds);
+            kv.encode(SERVER_CACHE_KEY, json);
+        }
+    }
+    private static String loadServerCache() {
+        MMKV kv = MMKV.defaultMMKV();
+        if (!kv.containsKey(SERVER_CACHE_TIMESTAMP_KEY) || !kv.containsKey(SERVER_CACHE_KEY)) {
+            return "";
+        }
+        long nowInSeconds = System.currentTimeMillis() / 1000;
+        long timeStamp = kv.decodeLong(SERVER_CACHE_TIMESTAMP_KEY);
+        if (nowInSeconds - timeStamp > CACHE_EXPIRE_TIME) {
+            //expired
+            return "";
+        }
+        return kv.decodeString(SERVER_CACHE_KEY);
+    }
 
     public static void updateToken(final String token) {
         if (token != null && !token.isEmpty()) {
@@ -89,11 +127,19 @@ public class MisesVpnUtils {
             }
             @Override
             public String getServer() {
+                final String cached = loadServerCache();
+                if (isValidServerList(cached)) {
+                    Log.i(TAG, "getServer(cached):" + cached);
+                    return cached;
+                }
+
                 
                 HttpUtil.HttpResp result = HttpUtil.JsonGetSync( getVpnApiHost() + "/api/v1/vpn/server_list", sToken, "");
                 if (result.resp != null) {
-                    Log.i(TAG, "getServer:" + result.resp.toString());
-                    return result.resp.toString();
+                    final String jsonString = result.resp.toString();
+                    Log.i(TAG, "getServer:" + jsonString);
+                    saveServerCache(jsonString);
+                    return jsonString;
                 }
                 Log.i(TAG, "getServer: fail" );
                 return "{ \"code\": -1, \"msg\": \"service error\" }";

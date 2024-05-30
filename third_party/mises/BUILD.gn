@@ -5,18 +5,13 @@
 import("//build/config/android/rules.gni")
 
 
-android_aar_prebuilt("mises_light_node_java") {
-  aar_path = "light.aar"
-  extract_native_libraries = true
-  ignore_manifest = true
-}
 
 
 android_aar_prebuilt("mises_vpn_java") {
-  aar_path = "vpnlibrary-release.aar"
+  aar_path = "vpnlibrary-release_1.3.aar"
   extract_native_libraries = true
   ignore_manifest = false
-  resource_exclusion_globs = ["res/drawable/ic_vpn_key_24.xml"]
+  resource_exclusion_globs = []
   deps = [
     "//mises/third_party/android_deps:com_tencent_mmkv_static_java",
   ]
