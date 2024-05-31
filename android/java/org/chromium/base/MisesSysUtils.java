@@ -91,34 +91,23 @@ public class MisesSysUtils {
         final Context context = getActivityContext();
         if (context == null)
             return;
-        MisesVpnUtils.openVpn(context, new Callback<Integer>() {
-            @Override
-            public final void onResult(Integer code) {
-                if (code == 403) {
-                    // auth expired
-                    UIUtil.showAlertDialog(context, context.getString(R.string.lbl_auth_tip), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            TabCreator tabCreator = null;
-                            if (context instanceof TabCreatorManager) {
-                                TabCreatorManager chromeTabbedActivity = (TabCreatorManager) context;
-                                tabCreator = chromeTabbedActivity.getTabCreator(false);
-                            }
-                            if (tabCreator != null) {
-                                tabCreator.openSinglePage(MisesController.MISES_WALLET_BASE_URL);
-                            }
-                        }
-                    });
-                } else if (code != 200) {
-                    UIUtil.showAlertDialog(context, String.format(context.getString(R.string.lbl_mises_vpn_error_format), code), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            
-                        }
-                    });
+        boolean success = MisesVpnUtils.openVpn(context);
+        if (!success) {
+            // auth expired
+            UIUtil.showAlertDialog(context, context.getString(R.string.lbl_auth_tip), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TabCreator tabCreator = null;
+                    if (context instanceof TabCreatorManager) {
+                        TabCreatorManager chromeTabbedActivity = (TabCreatorManager) context;
+                        tabCreator = chromeTabbedActivity.getTabCreator(false);
+                    }
+                    if (tabCreator != null) {
+                        tabCreator.openSinglePage(MisesController.MISES_WALLET_BASE_URL);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     @CalledByNative

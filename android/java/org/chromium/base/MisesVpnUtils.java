@@ -34,16 +34,51 @@ public class MisesVpnUtils {
     public static void initApplication(final Context applicationContext) {
         if (isVpnRelatedProcess()) {
             MMKV.initialize(applicationContext);
-            sToken = loadToken();
             initVpn(applicationContext);
         }
 
     }
 
+    private static MMKV vpnMMKV() {
+        return MMKV.mmkvWithID(TAG, MMKV.MULTI_PROCESS_MODE);
+    }
     private static String loadToken() {
-        MMKV kv = MMKV.defaultMMKV();
+        MMKV kv = vpnMMKV();
         return kv.decodeString(TOKEN_KEY);
+    }
+    
+    private static boolean hasToken() {
+        MMKV kv = vpnMMKV();
+        return kv.containsKey(TOKEN_KEY);
+    }
 
+    private static String currentToken() {
+        if (sToken.isEmpty()) {
+            sToken = loadToken();
+        }
+        return sToken;
+    }
+
+    public static void updateToken(final String token) {
+        Log.i(TAG, "updateToken");
+        if (token != null && !token.isEmpty()) {
+            VPNInit.INSTANCE.setVip(true);
+            sToken = token;
+
+        } else {
+            VPNInit.INSTANCE.setVip(false);
+            sToken = "";
+        }
+        MMKV kv = vpnMMKV();
+        kv.encode(TOKEN_KEY, sToken);
+
+    }
+
+    private static void clearToken() {
+        sToken = "";
+        MMKV kv = vpnMMKV();
+        kv.removeValueForKey(TOKEN_KEY);
+        
     }
 
     private static boolean isValidServerList(final String json) {
@@ -61,14 +96,14 @@ public class MisesVpnUtils {
     }
     private static void saveServerCache(final String json) {
         if (isValidServerList(json)) {
-            MMKV kv = MMKV.defaultMMKV();
+            MMKV kv = vpnMMKV();
             long nowInSeconds = System.currentTimeMillis() / 1000;
             kv.encode(SERVER_CACHE_TIMESTAMP_KEY, nowInSeconds);
             kv.encode(SERVER_CACHE_KEY, json);
         }
     }
     private static String loadServerCache() {
-        MMKV kv = MMKV.defaultMMKV();
+        MMKV kv = vpnMMKV();
         if (!kv.containsKey(SERVER_CACHE_TIMESTAMP_KEY) || !kv.containsKey(SERVER_CACHE_KEY)) {
             return "";
         }
@@ -81,20 +116,6 @@ public class MisesVpnUtils {
         return kv.decodeString(SERVER_CACHE_KEY);
     }
 
-    public static void updateToken(final String token) {
-        Log.i(TAG, "updateToken");
-        if (token != null && !token.isEmpty()) {
-            VPNInit.INSTANCE.setVip(true);
-            sToken = token;
-
-        } else {
-            VPNInit.INSTANCE.setVip(false);
-            sToken = "";
-        }
-        MMKV kv = MMKV.defaultMMKV();
-        kv.encode(TOKEN_KEY, sToken);
-
-    }
 
     private static String getVpnApiHost() {
         if (VersionConstants.CHANNEL == Channel.DEV || VersionConstants.CHANNEL == Channel.DEFAULT)  {
@@ -104,10 +125,25 @@ public class MisesVpnUtils {
         }
     }
 
+
     private static void initVpn(final Context applicationContext) {
         Log.i(TAG, "initVpn!");
         
         VPNInit.INSTANCE.init(applicationContext, new VPNInit.ISdk() {
+            private String genErrorResp(HttpUtil.HttpResp result) {
+                JSONObject error = new JSONObject();
+                try {
+                    error.put("code", result.code);
+                    if (result.code == 403) {
+                        error.put("msg", "auth fail, please unlock your mises wallet to continue");
+                    } else {
+                        error.put("msg", "server error,  code:" + result.code);
+                    }
+                } catch (JSONException e) {
+                    return "{ \"code\": -1, \"msg\": \"Unable to write to a JSONObject\" }";
+                }
+                return error.toString();
+            }
             @Override
             public String getConfig(String ip) {
                 Log.i(TAG, "getConfig: ip" + ip);
@@ -118,13 +154,16 @@ public class MisesVpnUtils {
                     return "{ \"code\": -1, \"msg\": \"Unable to write to a JSONObject\" }";
                 }
 
-                HttpUtil.HttpResp result = HttpUtil.JsonPostSync( getVpnApiHost() + "/api/v1/vpn/server_link", root, sToken, "");
+                HttpUtil.HttpResp result = HttpUtil.JsonPostSync( getVpnApiHost() + "/api/v1/vpn/server_link", root, currentToken(), "");
                 if (result.resp != null) {
                     Log.i(TAG, "getConfig:" + result.resp.toString());
                     return result.resp.toString();
                 }
+                if (result.code == 403) {
+                    clearToken();
+                }
                 Log.i(TAG, "getConfig: fail" );
-                return "{ \"code\": -1, \"msg\": \"service error\" }";
+                return genErrorResp(result);
                 
             }
             @Override
@@ -135,40 +174,28 @@ public class MisesVpnUtils {
                     return cached;
                 }
 
-                
-                HttpUtil.HttpResp result = HttpUtil.JsonGetSync( getVpnApiHost() + "/api/v1/vpn/server_list", sToken, "");
+                HttpUtil.HttpResp result = HttpUtil.JsonGetSync( getVpnApiHost() + "/api/v1/vpn/server_list", currentToken(), "");
                 if (result.resp != null) {
                     final String jsonString = result.resp.toString();
                     Log.i(TAG, "getServer:" + jsonString);
                     saveServerCache(jsonString);
                     return jsonString;
                 }
+                if (result.code == 403) {
+                    clearToken();
+                }
                 Log.i(TAG, "getServer: fail" );
-                return "{ \"code\": -1, \"msg\": \"service error\" }";
+                return genErrorResp(result);
             }
         });
     }
     
-    public static void openVpn(final Context context, Callback<Integer> callback) {
-        sToken = loadToken();
-        HttpUtil.JsonGetAsync(getVpnApiHost() + "/api/v1/vpn/server_list", sToken, "", new Callback<HttpUtil.HttpResp>() {
-            @Override
-            public final void onResult(HttpUtil.HttpResp result) {
-                if (result.resp != null) {
-                    final String jsonString = result.resp.toString();
-                    if (isValidServerList(jsonString)) {
-                        Log.i(TAG, "getServer:" + jsonString);
-                        saveServerCache(jsonString);
-                    }
-                    
-                    VPNInit.INSTANCE.startVpn(context);
-                }
-
-                callback.onResult(result.code);
-            }
-        });
-
-        
-    }
+    public static boolean openVpn(final Context context) {
+        if (!hasToken()) {
+            return false;
+        }
+        VPNInit.INSTANCE.startVpn(context);
+        return true;
+    }   
 
 }
