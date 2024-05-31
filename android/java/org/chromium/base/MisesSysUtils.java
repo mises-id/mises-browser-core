@@ -12,8 +12,17 @@ import android.os.Bundle;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.google.firebase.analytics.FirebaseAnalytics;
 import org.chromium.base.MisesController;
+import org.chromium.base.Callback;
+import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
+import org.chromium.chrome.browser.tabmodel.TabModel;
+import org.chromium.chrome.browser.tabmodel.TabCreator;
+import org.chromium.chrome.browser.mises.UIUtil;
+import org.chromium.chrome.mises.R;
 
 @JNINamespace("base::android")
 public class MisesSysUtils {
@@ -79,10 +88,37 @@ public class MisesSysUtils {
 
     @CalledByNative
     public static void openVpn() {
-        Context context = getActivityContext();
+        final Context context = getActivityContext();
         if (context == null)
             return;
-        MisesVpnUtils.openVpn(context);
+        MisesVpnUtils.openVpn(context, new Callback<Integer>() {
+            @Override
+            public final void onResult(Integer code) {
+                if (code == 403) {
+                    // auth expired
+                    UIUtil.showAlertDialog(context, context.getString(R.string.lbl_auth_tip), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            TabCreator tabCreator = null;
+                            if (context instanceof TabCreatorManager) {
+                                TabCreatorManager chromeTabbedActivity = (TabCreatorManager) context;
+                                tabCreator = chromeTabbedActivity.getTabCreator(false);
+                            }
+                            if (tabCreator != null) {
+                                tabCreator.openSinglePage(MisesController.MISES_WALLET_BASE_URL);
+                            }
+                        }
+                    });
+                } else if (code != 200) {
+                    UIUtil.showAlertDialog(context, String.format(context.getString(R.string.lbl_mises_vpn_error_format), code), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @CalledByNative

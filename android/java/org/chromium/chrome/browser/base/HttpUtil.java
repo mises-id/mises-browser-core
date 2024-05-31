@@ -191,7 +191,7 @@ public class HttpUtil {
 
             OutputStream outputStream = urlConnection.getOutputStream();
             String param = body.toString();
-            Log.e("JsonPostSync", "body: " + param);
+            Log.d("JsonPostSync", "body: " + param);
             outputStream.write(param.getBytes("UTF-8"));
 
             Log.d(TAG, "JsonPostSync " + urlStr + ", getResponseCode");

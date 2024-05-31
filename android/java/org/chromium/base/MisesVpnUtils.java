@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.chromium.chrome.browser.base.HttpUtil;
+import org.chromium.base.Callback;
 import com.vpn.lib.VPNInit;
 import com.tencent.mmkv.MMKV;
 
@@ -81,6 +82,7 @@ public class MisesVpnUtils {
     }
 
     public static void updateToken(final String token) {
+        Log.i(TAG, "updateToken");
         if (token != null && !token.isEmpty()) {
             VPNInit.INSTANCE.setVip(true);
             sToken = token;
@@ -147,9 +149,26 @@ public class MisesVpnUtils {
         });
     }
     
-    public static void openVpn(final Context context) {
+    public static void openVpn(final Context context, Callback<Integer> callback) {
         sToken = loadToken();
-        VPNInit.INSTANCE.startVpn(context);
+        HttpUtil.JsonGetAsync(getVpnApiHost() + "/api/v1/vpn/server_list", sToken, "", new Callback<HttpUtil.HttpResp>() {
+            @Override
+            public final void onResult(HttpUtil.HttpResp result) {
+                if (result.resp != null) {
+                    final String jsonString = result.resp.toString();
+                    if (isValidServerList(jsonString)) {
+                        Log.i(TAG, "getServer:" + jsonString);
+                        saveServerCache(jsonString);
+                    }
+                    
+                    VPNInit.INSTANCE.startVpn(context);
+                }
+
+                callback.onResult(result.code);
+            }
+        });
+
+        
     }
 
 }
