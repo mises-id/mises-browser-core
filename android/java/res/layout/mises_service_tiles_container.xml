@@ -30,7 +30,8 @@ found in the LICENSE file.
             android:layout_height="wrap_content"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone" >
 
             <LinearLayout
                 android:id="@+id/ll_toggle"
@@ -97,8 +98,8 @@ found in the LICENSE file.
       <FrameLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="6dp"
-            android:id="@+id/fl_tiles"
-            android:background="@drawable/border_line">
+            android:id="@+id/fl_tiles" >
+            <!-- android:background="@drawable/border_line" -->
 
             <ViewStub
                 android:id="@+id/mv_tiles_carousel_stub"

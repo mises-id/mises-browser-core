@@ -88,6 +88,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private View mMisesServiceTilesContainerLayout;
     private View mWeb3SiteTilesContainerLayout;
     private View mWeb3ExtensionTilesContainerLayout;
+    private View mShortcutTilesContainerLayout;
     private View mNewsFlowContainerLayout;
     private View mCarouselAdContainerLayout;
     private View mMisesSearchContainerLayout;
@@ -97,6 +98,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private boolean mIsMisesServiceEnabled;
     private boolean mIsWeb3SiteEnabled;
     private boolean mIsWeb3ExtensionEnabled;
+    private boolean mIsShortcutEnabled;
     private int mRecyclerViewHeight;
     private int mStatsHeight;
     private int mTopSitesHeight;
@@ -114,6 +116,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static int TYPE_CAROUSEL_AD = 5;
     private static int TYPE_MISES_SEARCH = 6;
     private static int TYPE_NEWS_FLOW_LIST = 7;
+    private static int TYPE_SHORTCUT = 8;
 
     private static final int ONE_ITEM_SPACE = 1;
     private static final int TWO_ITEMS_SPACE = 2;
@@ -122,6 +125,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final String PREF_SHOW_MISES_SERVICE = "show_mises_service";
     public static final String PREF_SHOW_WEB3_SITE = "show_web3_site";
     public static final String PREF_SHOW_WEB3_EXTENSION = "show_web3_extension";
+    public static final String PREF_SHOW_SHORTCUT = "show_shortcut";
 
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private List<String> mCarouselPlacmentIds;
@@ -135,6 +139,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View misesServiceTilesContainerLayout,
             View web3SiteTilesContainerLayout,
             View web3ExtensionTilesContainerLayout,
+            View shortcutTilesContainerLayout,
             View newsFlowContainerLayout,
             View carouselAdContainerLayout,
             View misesSearchContainerLayout,
@@ -148,6 +153,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mMisesServiceTilesContainerLayout = misesServiceTilesContainerLayout;
         mWeb3SiteTilesContainerLayout = web3SiteTilesContainerLayout;
         mWeb3ExtensionTilesContainerLayout = web3ExtensionTilesContainerLayout;
+        mShortcutTilesContainerLayout = shortcutTilesContainerLayout;
         mNewsFlowContainerLayout = newsFlowContainerLayout;
         mCarouselAdContainerLayout = carouselAdContainerLayout;
         mMisesSearchContainerLayout = misesSearchContainerLayout;
@@ -156,6 +162,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mIsMisesServiceEnabled = shouldDisplayMisesService();
         mIsWeb3SiteEnabled = shouldDisplayWeb3Site();
         mIsWeb3ExtensionEnabled = shouldDisplayWeb3Extension();
+        mIsShortcutEnabled = shouldDisplayShortcut();
 
         initPreferenceObserver();
 
@@ -163,11 +170,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mCarouselPlacmentIds = new ArrayList<>();
         mLoadedPlacmentIds = new HashSet<>();
         maybeInitCarouselAd();
-
-        
-        
-       
     }
+
     private void maybeInitCarouselAd() {
         if (MisesAdsUtil.getInstance().isInitSucess()) {
             mCarouselPlacmentIds = NativeAd.getCachedPlacementIds("carousel");
@@ -177,9 +181,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 maybeInitCarouselAd();
             }, 200);
         }
-
     }
-
 
     private final NativeAdListener mNativeAdListener = new NativeAdListener() {
         @Override
@@ -207,7 +209,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     };
 
-
     private void loadSuccess(CarouselAdapter.CarouselAdInfo info) {
         Log.d(TAG, "loadSuccess");
         if (info != null) {
@@ -232,7 +233,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
             notifyItemChanged(0);
         }
-        
     }
 
     public static int getViewHeight(View view) {
@@ -264,7 +264,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.getView().setLayoutParams(layoutParams);
             misesServiceHolder.getView().setBackgroundResource(background);
 
-
         } else if (holder instanceof Web3ExtensionViewHolder) {
 
             Web3ExtensionViewHolder misesServiceHolder = (Web3ExtensionViewHolder) holder;
@@ -272,7 +271,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             misesServiceHolder.getView().setLayoutParams(layoutParams);
             misesServiceHolder.getView().setBackgroundResource(background);
-
 
         } else if (holder instanceof MisesServiceViewHolder) {
 
@@ -282,8 +280,14 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.getView().setLayoutParams(layoutParams);
             misesServiceHolder.getView().setBackgroundResource(background);
 
+        } else if (holder instanceof ShortcutViewHolder) {
+            // Shortcut View Holder
+            ShortcutViewHolder shortcutHolder = (ShortcutViewHolder) holder;
+            shortcutHolder.getView().setLayoutParams(layoutParams);
+            shortcutHolder.getView().setBackgroundResource(background);
 
         } else if (holder instanceof CarouselAdViewHolder) {
+
             Log.v(TAG, "updating CarouselAdViewHolder");
             LinearLayout.LayoutParams adsLayoutParams = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -292,8 +296,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mCarouselAdContainerLayout.setBackgroundResource(background);
             carouselAdViewHolder.update(mData.size());
 
-
         } else if (holder instanceof MisesSearchViewHolder) {
+
             Log.v(TAG, "updating MisesSearchViewHolder");
             MisesSearchViewHolder misesSearchViewHolder = (MisesSearchViewHolder) holder;
             mMisesSearchContainerLayout.setLayoutParams(layoutParams);
@@ -302,16 +306,13 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 mOnMisesNtpListener.focusSearchBox();
                 MisesSysUtils.logEvent("ntp_box_search", "step", "click");
             }); 
-
-
         }
-
-        
     }
 
     @Override
     public int getItemCount() {
-        return getTopSitesCount() + ONE_ITEM_SPACE;
+        // return getTopSitesCount() + ONE_ITEM_SPACE;
+        return 3;
     }
 
     @NonNull
@@ -326,10 +327,12 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new Web3SiteViewHolder(mWeb3SiteTilesContainerLayout, mActivity);
         } else if (viewType == TYPE_WEB3_EXTENSION) {
             return new Web3ExtensionViewHolder(mWeb3ExtensionTilesContainerLayout, mActivity);
+        } else if (viewType == TYPE_SHORTCUT) {
+            return new ShortcutViewHolder(mShortcutTilesContainerLayout, mActivity);
         } else if (viewType == TYPE_NEWS_FLOW_LIST) {
             return new NewsFlowViewHolder(mNewsFlowContainerLayout, mActivity);
-        } else if (viewType == TYPE_MISES_SEARCH) {
-            return new MisesSearchViewHolder(mMisesSearchContainerLayout, mActivity);
+        // } else if (viewType == TYPE_MISES_SEARCH) {
+        //     return new MisesSearchViewHolder(mMisesSearchContainerLayout, mActivity);
         }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
     }
@@ -389,7 +392,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
+        /*if (position == 0) {
             return TYPE_CAROUSEL_AD;
         } else if (position == 1) {
             return TYPE_MISES_SERVICE;
@@ -401,12 +404,31 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return TYPE_TOP_SITES;
         } else {
             return TYPE_NEWS_FLOW_LIST;
+        }*/
+
+        /*if (position == 0) {
+            return TYPE_WEB3_SITE;
+        } else if (position == 1) {
+            return TYPE_SHORTCUT;
+        } else if (position == 2) {
+            return TYPE_CAROUSEL_AD;
+        } else {
+            return TYPE_NEWS_FLOW_LIST;
+        }*/
+
+        if (position == 0) {
+            return TYPE_SHORTCUT;
+        } else if (position == 1) {
+            return TYPE_CAROUSEL_AD;
+        } else {
+            return TYPE_NEWS_FLOW_LIST;
         }
     }
 
     public int getTopSitesCount() {
         return mIsTopSitesEnabled ? 5 : 0;
     }
+
     public void notifySiteChanged() {
         notifyItemRangeChanged(ONE_ITEM_SPACE, getTopSitesCount() + ONE_ITEM_SPACE);
     }
@@ -440,7 +462,13 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-
+    public void setShortcutEnabled(boolean enabled) {
+        Log.v(TAG, "setShortcutEnabled " + enabled);
+        if (mIsShortcutEnabled != enabled) {
+            mIsShortcutEnabled = enabled;
+            notifySiteChanged();
+        }
+    }
 
     public void setRecyclerViewHeight(int recyclerViewHeight) {
         mRecyclerViewHeight = recyclerViewHeight;
@@ -449,7 +477,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     public static boolean shouldDisplayMisesService() {
-
         return ContextUtils.getAppSharedPreferences().getBoolean(
                 PREF_SHOW_MISES_SERVICE, true);
     }
@@ -461,12 +488,17 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return ContextUtils.getAppSharedPreferences().getBoolean(
                 PREF_SHOW_WEB3_EXTENSION, true);
     }
+    public static boolean shouldDisplayShortcut() {
+        return ContextUtils.getAppSharedPreferences().getBoolean(
+                PREF_SHOW_SHORTCUT, true);
+    }
 
     @Override
     public void onPreferenceChange() {
         setMisesServiceEnabled(shouldDisplayMisesService());
         setWeb3SiteEnabled(shouldDisplayWeb3Site());
         setWeb3ExtensionEnabled(shouldDisplayWeb3Extension());
+        setShortcutEnabled(shouldDisplayShortcut());
     }
 
     private void initPreferenceObserver() {
@@ -477,9 +509,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if (TextUtils.equals(key, PREF_SHOW_WEB3_SITE)) {
                 setWeb3SiteEnabled(shouldDisplayWeb3Site());
             }
-
             if (TextUtils.equals(key, PREF_SHOW_WEB3_EXTENSION)) {
                 setWeb3ExtensionEnabled(shouldDisplayWeb3Extension());
+            }
+            if (TextUtils.equals(key, PREF_SHOW_SHORTCUT)) {
+                setWeb3SiteEnabled(shouldDisplayShortcut());
             }
         };
         if (mPreferenceListener != null) {
@@ -682,6 +716,12 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         PREF_SHOW_WEB3_EXTENSION, !enabled);
                 MisesSysUtils.logEvent("ntp_box_expand", "step", !enabled ? "extension_off" : "extension_on");
             }); 
+        }
+    }
+
+    public static class ShortcutViewHolder extends MisesServiceViewHolder {
+        ShortcutViewHolder(View itemView, Context ctx) {
+            super(itemView, ctx);
         }
     }
 

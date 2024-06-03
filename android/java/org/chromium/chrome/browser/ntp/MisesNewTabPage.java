@@ -98,10 +98,10 @@ public class MisesNewTabPage extends NewTabPage {
 
         
         assert mNewTabPageLayout instanceof MisesNewTabPageLayout;
-        if (mNewTabPageLayout instanceof MisesNewTabPageLayout) {
+        /*if (mNewTabPageLayout instanceof MisesNewTabPageLayout) {
             ((MisesNewTabPageLayout) mNewTabPageLayout).setTab(tab);
             ((MisesNewTabPageLayout) mNewTabPageLayout).setTabProvider(activityTabProvider);
-        }
+        }*/
         MisesSysUtils.logEvent("ntp_open", "step", "open_native");
     }
 
