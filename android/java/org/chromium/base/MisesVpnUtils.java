@@ -23,8 +23,6 @@ public class MisesVpnUtils {
 
     private static final long CACHE_EXPIRE_TIME = 3600;
 
-    private static String sToken = "";
-
     public static boolean isVpnRelatedProcess() {
         boolean isBrowser =  !ContextUtils.getProcessName().contains(":");
         boolean isVpn = ContextUtils.getProcessName().contains("vpnLibDaemon");
@@ -53,29 +51,31 @@ public class MisesVpnUtils {
     }
 
     private static String currentToken() {
-        if (sToken.isEmpty()) {
-            sToken = loadToken();
+        if (!hasToken()) {
+            return "";
         }
-        return sToken;
+        return loadToken();
     }
 
     public static void updateToken(final String token) {
         Log.i(TAG, "updateToken");
         if (token != null && !token.isEmpty()) {
             VPNInit.INSTANCE.setVip(true);
-            sToken = token;
 
         } else {
             VPNInit.INSTANCE.setVip(false);
-            sToken = "";
         }
         MMKV kv = vpnMMKV();
-        kv.encode(TOKEN_KEY, sToken);
+        if (token == null) {
+            kv.encode(TOKEN_KEY, "");
+        } else {
+            kv.encode(TOKEN_KEY, token);
+        }
+        
 
     }
 
     private static void clearToken() {
-        sToken = "";
         MMKV kv = vpnMMKV();
         kv.removeValueForKey(TOKEN_KEY);
         
