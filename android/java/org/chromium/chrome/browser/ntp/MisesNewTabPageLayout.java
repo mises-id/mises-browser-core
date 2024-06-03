@@ -51,6 +51,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.chromium.base.Callback;
 import org.chromium.base.Log;
+import org.chromium.base.MathUtils;
 import org.chromium.base.ContextUtils;
 import org.chromium.base.ThreadUtils;
 import org.chromium.base.supplier.Supplier;
@@ -97,6 +98,7 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import androidx.core.widget.NestedScrollView;
 
 
 public class MisesNewTabPageLayout
@@ -125,6 +127,7 @@ public class MisesNewTabPageLayout
 
     private MisesNtpAdapter mNtpAdapter;
 
+    private NestedScrollView mNestedScrollView;
     private RecyclerView mRecyclerView;
 
     private String mCreativeInstanceId;
@@ -159,6 +162,7 @@ public class MisesNewTabPageLayout
     private NewsFlowListAdapter mAdapterNewsFlowList;
 
     private static final int SHOW_BRAVE_RATE_ENTRY_AT = 10; // 10th row
+    private int scrollOffset;
 
     public MisesNewTabPageLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -179,7 +183,34 @@ public class MisesNewTabPageLayout
         // This function is kept empty to avoid placeholder implementation
     }
 
+    @Override
+    protected void updateSearchBoxOnScroll() {
+        Log.v(TAG, "updateSearchBoxOnScroll");
+        super.updateSearchBoxOnScroll();
 
+    }
+    @Override
+    float getToolbarTransitionPercentage() {
+        Log.v(TAG, "getToolbarTransitionPercentage");
+        return MathUtils.clamp(
+                ((float)scrollOffset / 168),
+                0f,
+                1f);
+    }
+
+    @Override
+    void getSearchBoxBounds(Rect bounds, Point translation, View parentView) {
+        super.getSearchBoxBounds(bounds, translation, parentView);
+        // enforce  translation to zero, this fix tool button not showing in ntp
+        translation.x = 0;
+        translation.y = 0;
+    }
+
+    @Override
+    public void setSearchBoxAlpha(float alpha) {
+        Log.v(TAG, "setSearchBoxAlpha:" + alpha);
+        mMisesSearchLayout.setAlpha(alpha);
+    }
     @Override
     public void checkForBraveStats() {
 
@@ -193,7 +224,10 @@ public class MisesNewTabPageLayout
     }
 
     protected void insertSiteSectionView() {
+
+
         mMainLayout = findViewById(R.id.ntp_content);
+
 
         mMvTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                           .inflate(R.layout.mv_tiles_container, mMainLayout, false);
@@ -205,6 +239,7 @@ public class MisesNewTabPageLayout
                 mMvTilesContainerLayout.addOnLayoutChangeListener(
                         (View view, int left, int top, int right, int bottom, int oldLeft,
                                 int oldTop, int oldRight, int oldBottom) -> {
+                            Log.v(TAG, "mMvTilesContainerLayout OnLayoutChange");
                             int oldHeight = oldBottom - oldTop;
                             int newHeight = bottom - top;
 
@@ -223,12 +258,10 @@ public class MisesNewTabPageLayout
         mMisesServiceTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
         mMisesServiceTilesContainerLayout.setVisibility(View.VISIBLE);
-        mMisesServiceTilesContainerLayout.post(runable);
 
         mWeb3SiteTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
-        mWeb3SiteTilesContainerLayout.setVisibility(View.VISIBLE);
-        mWeb3SiteTilesContainerLayout.post(runable);        
+        mWeb3SiteTilesContainerLayout.setVisibility(View.VISIBLE);     
         
         mWeb3ExtensionTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
@@ -243,7 +276,6 @@ public class MisesNewTabPageLayout
         mNewsFlowContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_news_flow_list_container, mMainLayout, false);
         mNewsFlowContainerLayout.setVisibility(View.VISIBLE);
-        mNewsFlowContainerLayout.post(runable);
 
         mNativeAdLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_carousel_container, mMainLayout, false);
@@ -266,6 +298,25 @@ public class MisesNewTabPageLayout
         super.onAttachedToWindow();
         if (mRecyclerView == null) {
             setNtpViews();
+        }
+        if (mRecyclerView != null) {
+            Log.d(TAG, "mRecyclerView.addOnScrollListener" );
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    Log.v(TAG, "mRecyclerView onScrolled" );
+                    
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    Log.v(TAG, "mRecyclerView onScrolled" );
+                    scrollOffset += dy;
+                    updateSearchBoxOnScroll();
+                }
+            });
         }
         
         if (mNtpAdapter != null) {
@@ -311,6 +362,7 @@ public class MisesNewTabPageLayout
     private void setNtpViews() {
 
         mRecyclerView = findViewById(R.id.recyclerview);
+       // mNestedScrollView = findViewById(R.id.nestedScrollView);
         LinearLayoutManagerWrapper linearLayoutManager =
                 new LinearLayoutManagerWrapper(mActivity, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -330,6 +382,21 @@ public class MisesNewTabPageLayout
             @Override
             public void run() {
                 setupNewsFlowAdapter();
+            }
+        });
+
+        mRecyclerViewNewsFlowList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.v(TAG, "mRecyclerViewNewsFlowList onScrolled" );
+                
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+               Log.v(TAG, "mRecyclerViewNewsFlowList onScrolled" );
             }
         });
 
@@ -402,6 +469,8 @@ public class MisesNewTabPageLayout
 
         keepPosition();
         
+
+        
     }
 
     private void keepPosition() {
@@ -433,7 +502,7 @@ public class MisesNewTabPageLayout
                 mImageDrawable.getBitmap().recycle();
             }
         }
-
+        Log.d(TAG, "mRecyclerView.clearOnScrollListeners" );
         mRecyclerView.clearOnScrollListeners();
 
         if (mNtpAdapter != null) {

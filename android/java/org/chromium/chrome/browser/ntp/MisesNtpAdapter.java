@@ -312,7 +312,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemCount() {
         // return getTopSitesCount() + ONE_ITEM_SPACE;
-        return 3;
+        return 4;
     }
 
     @NonNull
@@ -331,8 +331,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new ShortcutViewHolder(mShortcutTilesContainerLayout, mActivity);
         } else if (viewType == TYPE_NEWS_FLOW_LIST) {
             return new NewsFlowViewHolder(mNewsFlowContainerLayout, mActivity);
-        // } else if (viewType == TYPE_MISES_SEARCH) {
-        //     return new MisesSearchViewHolder(mMisesSearchContainerLayout, mActivity);
+        } else if (viewType == TYPE_MISES_SEARCH) {
+            return new MisesSearchViewHolder(mMisesSearchContainerLayout, mActivity);
         }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
     }
@@ -402,6 +402,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return TYPE_WEB3_EXTENSION;
         } else if (position == 4) {
             return TYPE_TOP_SITES;
+        } else if (position == 5) {
+            return TYPE_CAROUSEL_AD;
         } else {
             return TYPE_NEWS_FLOW_LIST;
         }*/
@@ -417,16 +419,19 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }*/
 
         if (position == 0) {
-            return TYPE_SHORTCUT;
+            return TYPE_MISES_SEARCH;
         } else if (position == 1) {
+            return TYPE_SHORTCUT;
+        } else if (position == 2) {
             return TYPE_CAROUSEL_AD;
         } else {
             return TYPE_NEWS_FLOW_LIST;
         }
+        
     }
 
     public int getTopSitesCount() {
-        return mIsTopSitesEnabled ? 5 : 0;
+        return mIsTopSitesEnabled ? 6 : 0;
     }
 
     public void notifySiteChanged() {

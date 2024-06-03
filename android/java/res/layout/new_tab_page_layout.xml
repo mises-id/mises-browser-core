@@ -25,7 +25,8 @@
     <FrameLayout
         android:id="@+id/logo_holder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <ViewStub
             android:id="@+id/cryptid_holder"
@@ -50,8 +51,9 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:overScrollMode="never" />
-
 
     <LinearLayout
         android:id="@+id/ntp_main_layout"
@@ -60,6 +62,7 @@
         android:layout_gravity="center_horizontal"
         android:orientation="vertical"
         android:visibility="gone">
+
 
             <!-- Search box -->
             <include layout="@layout/fake_search_box_layout"/>

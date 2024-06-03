@@ -22,6 +22,9 @@ public class MisesLogoMediatorClassAdapter extends MisesClassVisitor {
         deleteField(sMisesLogoMediator, "mShouldShowLogo");
         makeProtectedField(sLogoMediator, "mShouldShowLogo");
 
+        deleteField(sMisesLogoMediator, "mVisibilityObserver");
+        makeProtectedField(sLogoMediator, "mVisibilityObserver");
+
         makePublicMethod(sLogoMediator, "updateVisibility");
         addMethodAnnotation(sMisesLogoMediator, "updateVisibility", "Ljava/lang/Override;");
     }

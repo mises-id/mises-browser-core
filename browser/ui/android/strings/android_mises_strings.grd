@@ -11,6 +11,9 @@ This file contains all "about" strings.  It is set to NOT be translated, in tran
   </translations>
   <release seq="1" allow_pseudo="false">
     <messages fallback_to_english="true">
+      <message name="IDS_ACCESSIBILITY_NEW_TAB_PAGE" desc="Accessibility text to read aloud when the user focuses the new tab view.">
+      New tab
+     </message>
       <message name="IDS_MENU_BRAVE_WALLET" desc="Mises Wallet menu item text">
       Wallet
     </message>

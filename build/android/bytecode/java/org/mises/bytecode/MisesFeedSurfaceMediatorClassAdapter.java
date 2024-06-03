@@ -16,15 +16,15 @@ public class MisesFeedSurfaceMediatorClassAdapter extends MisesClassVisitor {
     public MisesFeedSurfaceMediatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(sFeedSurfaceMediatorClassName, sMisesFeedSurfaceMediatorClassName);
+        redirectConstructor(sFeedSurfaceMediatorClassName, sMisesFeedSurfaceMediatorClassName);
 
         // deleteMethod(sMisesFeedSurfaceMediatorClassName, "destroyPropertiesForStream");
         // makePublicMethod(sFeedSurfaceMediatorClassName, "destroyPropertiesForStream");
 
-        // deleteField(sMisesFeedSurfaceMediatorClassName, "mCoordinator");
-        // makeProtectedField(sFeedSurfaceMediatorClassName, "mCoordinator");
+        deleteField(sMisesFeedSurfaceMediatorClassName, "mCoordinator");
+        makeProtectedField(sFeedSurfaceMediatorClassName, "mCoordinator");
 
-        // deleteField(sMisesFeedSurfaceMediatorClassName, "mSnapScrollHelper");
-        // makeProtectedField(sFeedSurfaceMediatorClassName, "mSnapScrollHelper");
+        deleteField(sMisesFeedSurfaceMediatorClassName, "mSnapScrollHelper");
+        makeProtectedField(sFeedSurfaceMediatorClassName, "mSnapScrollHelper");
     }
 }
