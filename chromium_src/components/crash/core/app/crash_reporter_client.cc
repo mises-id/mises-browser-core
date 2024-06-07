@@ -5,10 +5,10 @@
 
 #if defined(OFFICIAL_BUILD)
 #define MISES_CRASH_REPORTER_CLIENT_GET_UPLOAD_URL \
-  return "https://cr.mises.site";
+  return "https://cr.mises.site/report";
 #else
 #define MISES_CRASH_REPORTER_CLIENT_GET_UPLOAD_URL \
-  return "https://cr.mises.site";
+  return "https://cr.mises.site/report";
 #endif
 
 #include "src/components/crash/core/app/crash_reporter_client.cc"

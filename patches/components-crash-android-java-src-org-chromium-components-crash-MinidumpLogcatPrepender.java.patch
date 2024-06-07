@@ -1,0 +1,13 @@
+diff --git a/components/crash/android/java/src/org/chromium/components/crash/MinidumpLogcatPrepender.java b/components/crash/android/java/src/org/chromium/components/crash/MinidumpLogcatPrepender.java
+index 0d35cd25814c677f79e127d32c92ec34a8f360d6..5048e0efc33d5d01ee432ebf7fa2a14b55f5983d 100644
+--- a/components/crash/android/java/src/org/chromium/components/crash/MinidumpLogcatPrepender.java
++++ b/components/crash/android/java/src/org/chromium/components/crash/MinidumpLogcatPrepender.java
+@@ -76,7 +76,7 @@ public class MinidumpLogcatPrepender {
+         try {
+             writer = new BufferedWriter(new FileWriter(targetFile, false));
+             writer.write(boundary);
+-            writer.newLine();
++            writer.write("\r\n");
+             // Next we write the logcat data in a MIME block.
+             writer.write(LOGCAT_CONTENT_DISPOSITION);
+             writer.newLine();
