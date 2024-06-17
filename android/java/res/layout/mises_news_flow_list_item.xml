@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textSize="18dp"
-            android:textStyle="bold" >
+            android:textColor="#111111"
+            android:textSize="15sp" >
         </TextView>
 
         <LinearLayout
@@ -37,15 +37,23 @@
                 android:id="@+id/tv_source"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="12dp"
-                android:layout_marginRight="8dp" >
-            </TextView>
+                android:textColor="#777777"
+                android:textSize="12sp" />
+                <!-- android:layout_marginRight="8dp" -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#777777"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:text="·" />
             <TextView
                 android:id="@+id/tv_published_at"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="12dp" >
-            </TextView>
+                android:textColor="#777777"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
     <ImageView
@@ -54,7 +62,5 @@
         android:layout_height="100dp"
         android:layout_marginLeft="8dp"
         android:scaleType="fitStart"
-        android:visibility="gone" >
-        <!-- android:adjustViewBounds="true" -->
-    </ImageView>
+        android:visibility="gone" />
 </LinearLayout>

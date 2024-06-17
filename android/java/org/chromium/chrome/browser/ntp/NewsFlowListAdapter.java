@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -71,25 +72,56 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
     }
 
     public void startFetchAsync() {
-        fetchNewsInPageAsync(null);
+        fetchNewsInPageAsync(
+            0,
+            new Callback<FetchNewsResp>() {
+                @Override
+                public final void onResult(FetchNewsResp resp) {
+                    appendNewsArray(resp.newsArray);
+                }
+            }
+        );
     }
 
-    public void fetchMoreAsync(Callback<FetchNewsResp> callback) {
+    public void fetchMoreAsync(Callback<FetchNewsResp> completionHandler) {
         Log.d(TAG, "fetchMore: pageIndex=%d", mNextPageIndex);
-        fetchNewsInPageAsync(callback);
+        fetchNewsInPageAsync(
+            mNextPageIndex,
+            new Callback<FetchNewsResp>() {
+                @Override
+                public final void onResult(FetchNewsResp resp) {
+                    appendNewsArray(resp.newsArray);
+                    completionHandler.onResult(resp);
+                }
+            }
+        );
+    }
+
+    public void refreshAsync(Callback<FetchNewsResp> completionHandler) {
+        fetchNewsInPageAsync(
+            0,
+            new Callback<FetchNewsResp>() {
+                @Override
+                public final void onResult(FetchNewsResp resp) {
+                    refreshNewsArray(resp.newsArray);
+                    completionHandler.onResult(resp);
+                }
+            }
+        );
     }
 
     public class FetchNewsResp {
+        JSONArray newsArray;
         int nextPageIndex;
 
-        public FetchNewsResp(int nextPageIndex) {
+        public FetchNewsResp(JSONArray newsArray, int nextPageIndex) {
+            this.newsArray = newsArray;
             this.nextPageIndex = nextPageIndex;
         }
     }
 
-    // static private String fetchNewsURL = "http://192.168.124.2:8080/api/v1/user/newslist";
-    private void fetchNewsInPageAsync(Callback<FetchNewsResp> callback) {
-        int pageIndex = mNextPageIndex;
+    private void fetchNewsInPageAsync(int pageIndex, Callback<FetchNewsResp> completionHandler) {
+        // int pageIndex = mNextPageIndex;
         Uri.Builder builder = new Uri.Builder()
             // .scheme("http")
             // .encodedAuthority("192.168.124.2:8080")
@@ -112,13 +144,13 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
                     if (result.resp != null) {
                         try {
                             final JSONObject data = result.resp.getJSONObject("data");
-                            final JSONArray newsArray = data.getJSONArray("news_array");
+                            final JSONArray newsJSONArray = data.getJSONArray("news_array");
                             final int nextPageIndex = data.getInt("next_page_index");
                             mNextPageIndex = nextPageIndex;
-                            if (callback != null) {
-                                callback.onResult(new FetchNewsResp(nextPageIndex));
+                            if (completionHandler != null) {
+                                completionHandler.onResult(new FetchNewsResp(newsJSONArray, nextPageIndex));
                             }
-                            appendNewsArray(newsArray);
+                            // appendNewsArray(newsArray);
                         } catch (JSONException e) {
                             Log.e(TAG, "load news array from json error");
                         }
@@ -127,17 +159,13 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
             });
     }
 
-    private void appendNewsArray(final JSONArray newsArray) {
-        final int changeedRangeStart = mNewsArray.size();
-        final int length = newsArray.length();
+    static private List<News> convertJSONNewsArray(final JSONArray newsJSONArray) {
+        final int length = newsJSONArray.length();
+        List<News> newsArray = new ArrayList<>();
         for (int i = 0; i < length; i ++) {
             try {
-                final JSONObject newsObj = newsArray.getJSONObject(i);
+                final JSONObject newsObj = newsJSONArray.getJSONObject(i);
                 final String id = newsObj.getString("id");
-                if (mNewsIds.contains(id)) {
-                    continue;
-                }
-
                 final String title = newsObj.getString("title");
                 final String url = newsObj.getString("url");
                 final String imageURL = newsObj.getString("image_url");
@@ -145,7 +173,7 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
                 final String publishedAtStr = newsObj.getString("published_at");
                 final Date publishedAt = dateFormat.parse(publishedAtStr);
                 News news = new News(id, title, url, imageURL, source, publishedAt);
-                mNewsArray.add(news);
+                newsArray.add(news);
                 Log.d(TAG, String.format("fetch new news: id=%s title=%s", id, title));
             } catch (JSONException e) {
                 Log.e(TAG, "load news from json error");
@@ -153,8 +181,32 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
                 Log.e(TAG, "parse date error");
             }
         }
+        return newsArray;
+    }
+
+    private void appendNewsArray(final JSONArray newsJSONArray) {
+        final int changeedRangeStart = mNewsArray.size();
+        List<News> newsArray = convertJSONNewsArray(newsJSONArray);
+        for (News news : newsArray) {
+            if (mNewsIds.contains(news.id)) {
+                continue;
+            }
+            mNewsIds.add(news.id);
+            mNewsArray.add(news);
+        }
         Log.d(TAG, String.format("notifyItemRangeChanged: start=%d size=%d", changeedRangeStart, mNewsArray.size()- changeedRangeStart));
         notifyItemRangeChanged(changeedRangeStart, mNewsArray.size() - changeedRangeStart);
+    }
+
+    private void refreshNewsArray(final JSONArray newsJSONArray) {
+        mNewsIds.clear();
+        mNewsArray.clear();
+        List<News> newsArray = convertJSONNewsArray(newsJSONArray);
+        for (News news : newsArray) {
+            mNewsIds.add(news.id);
+            mNewsArray.add(news);
+        }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -235,6 +287,7 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
             mtvSource.setText(news.source);
             mtvPublishedAt.setText(
                 String.format("%s", dateOffsetNowDesc(news.publishedAt)));
+            mivImage.setVisibility(View.GONE);
             Log.d(TAG, String.format("setNews: imageURL=%s", news.imageURL));
             RequestOptions options = new RequestOptions().transform(new RoundedCorners(dpToPx(mActivity, 10)));
             Glide.with(itemView.getContext())
@@ -257,6 +310,13 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
                         Target<Drawable> target,
                         DataSource dataSource,
                         boolean isFirstResource) {
+                            // 根据图片宽高比调整ImageView高度
+                            // adjustViewBounds="true"无效
+                            int realWidth = resource.getIntrinsicWidth();
+                            int realHeight = resource.getIntrinsicHeight();
+                            LayoutParams lp = mivImage.getLayoutParams();
+                            lp.height = realHeight * lp.width / realWidth;
+                            mivImage.setLayoutParams(lp);
                             mivImage.setVisibility(View.VISIBLE);
                             return false;
                         }

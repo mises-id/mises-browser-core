@@ -212,6 +212,13 @@ kiwi_java_resources = [
     "java/res/drawable-xhdpi/ic_mises_wallet.png",
     "java/res/drawable-xxhdpi/ic_mises_wallet.png",
     "java/res/drawable-xxxhdpi/ic_mises_wallet.png",
+
+    "java/res/drawable-hdpi/refresh.png",
+    "java/res/drawable-mdpi/refresh.png",
+    "java/res/drawable-xhdpi/refresh.png",
+    "java/res/drawable-xxhdpi/refresh.png",
+    "java/res/drawable-xxxhdpi/refresh.png",
+
     "java/res/values-bn/strings.xml",
     "java/res/values-sk/strings.xml",
     "java/res/values-kmr/strings.xml",
@@ -349,6 +356,7 @@ mises_extra_java_resources = [
   "java/res/drawable/mises_share_cancel_bg.xml",
   "java/res/drawable/mises_share_confirm_bg.xml",
   "java/res/drawable/mises_share_bg.xml",
+  "java/res/drawable/mises_selector_bg.xml",
   "java/res/drawable/mises_share_title_bg.xml",
   "java/res/drawable/mises_share_content_bg.xml",
   "java/res/drawable/mises_web3_safe_confirm_bg.xml",

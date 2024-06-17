@@ -377,6 +377,7 @@ public class MisesNewTabPageLayout
     private void setupNewsFlow() {
         mRecyclerViewNewsFlowList = mNewsFlowContainerLayout.findViewById(R.id.news_flow_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
+        // mRecyclerViewNewsFlowList.setBackgroundColor(Color.parseColor("#00FF00"));
         mRecyclerViewNewsFlowList.setLayoutManager(layoutManager);
         mRecyclerViewNewsFlowList.post(new Runnable() {
             @Override
@@ -407,8 +408,26 @@ public class MisesNewTabPageLayout
                     @Override
                     public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
                         if (result.nextPageIndex < 0) {
-                            btnMore.setText("no more");
                             btnMore.setEnabled(false);
+                            btnMore.setText("no more");
+                        }
+                    }
+                });
+            }
+        });
+
+        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowContainerLayout.findViewById(R.id.btn_refresh);
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                mAdapterNewsFlowList.refreshAsync(new Callback<NewsFlowListAdapter.FetchNewsResp>() {
+                    @Override
+                    public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
+                        if (result.nextPageIndex >= 0) {
+                            btnMore.setEnabled(true);
+                            btnMore.setText("more");
+                        } else {
+                            btnMore.setEnabled(false);
+                            btnMore.setText("no more");
                         }
                     }
                 });
@@ -760,7 +779,7 @@ public class MisesNewTabPageLayout
             mShortcutTilesContainerLayout,
             windowAndroid,
             false,
-            false,
+            true,
             maxRows,
             () -> {},
             () -> {});
