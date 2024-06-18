@@ -2,6 +2,7 @@ import("//build/config/android/rules.gni")
 
 declare_args() {
   mises_android_developer_options_code = ""
+  mises_android_force_crash_report = false
 }
 
 java_cpp_enum("mises_android_java_enums_srcjar") {
@@ -15,6 +16,7 @@ java_cpp_template("mises_config_java") {
   sources = [ "//mises/build/android/java/templates/MisesConfig.template" ]
   defines = [
     "MISES_ANDROID_DEVELOPER_OPTIONS_CODE=\"$mises_android_developer_options_code\"",
+    "MISES_ANDROID_FORCE_CRASH_REPORT=$mises_android_force_crash_report",
   ]
 }
 

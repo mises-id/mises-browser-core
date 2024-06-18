@@ -15,6 +15,12 @@ public class MisesConfig {
   public static final String DEVELOPER_OPTIONS_CODE = "";
 #endif
 
+#if defined(MISES_ANDROID_FORCE_CRASH_REPORT)
+  public static final boolean FORCE_CRASH_REPORT = MISES_ANDROID_FORCE_CRASH_REPORT;
+#else
+  public static final boolean FORCE_CRASH_REPORT = false;
+#endif
+
 #if defined(MISES_ANDROID_P3A_ENABLED)
 public static final boolean P3A_ENABLED = MISES_ANDROID_P3A_ENABLED;
 #else
