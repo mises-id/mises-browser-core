@@ -1,14 +1,41 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/crash/ChromeMinidumpUploaderDelegate.java b/chrome/android/java/src/org/chromium/chrome/browser/crash/ChromeMinidumpUploaderDelegate.java
-index 4ca95c0b53d796811b3c19f6eb55e4cd4620d4df..2b116903e07b80eb2d4dad48f54b5d31b64a35f4 100644
+index 4ca95c0b53d796811b3c19f6eb55e4cd4620d4df..db13a72c76e5b376f1f0b8bdc4f30746b5be0837 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/crash/ChromeMinidumpUploaderDelegate.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/crash/ChromeMinidumpUploaderDelegate.java
-@@ -60,7 +60,8 @@ public class ChromeMinidumpUploaderDelegate implements MinidumpUploaderDelegate
+@@ -12,6 +12,8 @@ import org.chromium.components.minidump_uploader.MinidumpUploaderDelegate;
+ import org.chromium.components.minidump_uploader.util.CrashReportingPermissionManager;
+ import org.chromium.components.minidump_uploader.util.NetworkPermissionUtil;
+ 
++import org.chromium.chrome.browser.MisesConfig;
++
+ import java.io.File;
+ 
+ /**
+@@ -60,7 +62,8 @@ public class ChromeMinidumpUploaderDelegate implements MinidumpUploaderDelegate
          return new CrashReportingPermissionManager() {
              @Override
              public boolean isClientInMetricsSample() {
 -                return mPermissions.getBoolean(IS_CLIENT_IN_METRICS_SAMPLE, true);
-+                boolean mises_enforced = true;
++                boolean mises_enforced = MisesConfig.FORCE_CRASH_REPORT;
 +                return mises_enforced || mPermissions.getBoolean(IS_CLIENT_IN_METRICS_SAMPLE, true);
              }
  
              @Override
+@@ -70,13 +73,15 @@ public class ChromeMinidumpUploaderDelegate implements MinidumpUploaderDelegate
+ 
+             @Override
+             public boolean isUsageAndCrashReportingPermittedByPolicy() {
+-                return PrivacyPreferencesManagerImpl.getInstance()
++                boolean mises_enforced = MisesConfig.FORCE_CRASH_REPORT;
++                return mises_enforced || PrivacyPreferencesManagerImpl.getInstance()
+                         .isUsageAndCrashReportingPermittedByPolicy();
+             }
+ 
+             @Override
+             public boolean isUsageAndCrashReportingPermittedByUser() {
+-                return PrivacyPreferencesManagerImpl.getInstance()
++                boolean mises_enforced = MisesConfig.FORCE_CRASH_REPORT;
++                return mises_enforced || PrivacyPreferencesManagerImpl.getInstance()
+                         .isUsageAndCrashReportingPermittedByUser();
+             }
+ 
