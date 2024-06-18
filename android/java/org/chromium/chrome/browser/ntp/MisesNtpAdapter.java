@@ -421,9 +421,9 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (position == 0) {
             return TYPE_MISES_SEARCH;
         } else if (position == 1) {
-            return TYPE_TOP_SITES;
-        } else if (position == 2) {
             return TYPE_SHORTCUT;
+        } else if (position == 2) {
+            return TYPE_TOP_SITES;
         } else if (position == 3) {
             return TYPE_CAROUSEL_AD;
         } else {
