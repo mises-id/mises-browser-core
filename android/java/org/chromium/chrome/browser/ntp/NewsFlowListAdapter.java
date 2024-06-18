@@ -124,7 +124,7 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
         // int pageIndex = mNextPageIndex;
         Uri.Builder builder = new Uri.Builder()
             // .scheme("http")
-            // .encodedAuthority("192.168.124.2:8080")
+            // .encodedAuthority("192.168.124.5:8080")
             // .encodedAuthority("172.20.10.2:8080")
             .scheme("https")
             .encodedAuthority("api.test.mises.site")
@@ -167,12 +167,12 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
                 final JSONObject newsObj = newsJSONArray.getJSONObject(i);
                 final String id = newsObj.getString("id");
                 final String title = newsObj.getString("title");
-                final String url = newsObj.getString("url");
-                final String imageURL = newsObj.getString("image_url");
+                final String link = newsObj.getString("link");
+                final String thumbnail = newsObj.getString("thumbnail");
                 final String source = newsObj.getJSONObject("source").getString("title");
                 final String publishedAtStr = newsObj.getString("published_at");
                 final Date publishedAt = dateFormat.parse(publishedAtStr);
-                News news = new News(id, title, url, imageURL, source, publishedAt);
+                News news = new News(id, title, link, thumbnail, source, publishedAt);
                 newsArray.add(news);
                 Log.d(TAG, String.format("fetch new news: id=%s title=%s", id, title));
             } catch (JSONException e) {
@@ -215,9 +215,9 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
         News news = mNewsArray.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Log.d(TAG, String.format("click news: url=%s", news.url));
+                Log.d(TAG, String.format("click news: link=%s", news.link));
                 if (mTabCreator != null) {
-                    mTabCreator.launchUrl(news.url, TabLaunchType.FROM_LINK);
+                    mTabCreator.launchUrl(news.link, TabLaunchType.FROM_LINK);
                 }
             }
         });
@@ -288,10 +288,10 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
             mtvPublishedAt.setText(
                 String.format("%s", dateOffsetNowDesc(news.publishedAt)));
             mivImage.setVisibility(View.GONE);
-            Log.d(TAG, String.format("setNews: imageURL=%s", news.imageURL));
+            Log.d(TAG, String.format("setNews: thumbnail=%s", news.thumbnail));
             RequestOptions options = new RequestOptions().transform(new RoundedCorners(dpToPx(mActivity, 10)));
             Glide.with(itemView.getContext())
-                .load(news.imageURL)
+                .load(news.thumbnail)
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(
@@ -299,7 +299,7 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
                         Object model,
                         Target<Drawable> target,
                         boolean isFirstResource) {
-                            Log.e(TAG, "fetch image in news failed: id=%s url=`%s` err=%s", news.id, news.imageURL, e.toString());
+                            Log.e(TAG, "fetch image in news failed: id=%s url=`%s` err=%s", news.id, news.thumbnail, e.toString());
                             return false;
                         }
                     
