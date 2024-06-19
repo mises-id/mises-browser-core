@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBar.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBar.java
+index 09b8f051d6a156172d7ae8226664d28d076a7ac8..5dc4802671a077c6fa2b7255cfd59a6190e62b15 100644
+--- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBar.java
++++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBar.java
+@@ -935,6 +935,7 @@ public abstract class UrlBar extends AutocompleteEditText {
+                     break;
+                 }
+             }
++            if (rtlStartIndexForEndingRun < 0) { rtlStartIndexForEndingRun = 0; };
+             float width =
+                     textLayout
+                             .getPaint()

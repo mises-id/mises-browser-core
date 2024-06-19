@@ -68,6 +68,7 @@ WebUIController* NewWebUI(WebUI* web_ui, const GURL& url) {
              // We don't want to check for supported profile type here because
              // we want private windows to redirect to the regular profile.
              // Guest session will just show an error page.
+             brave_wallet::IsAllowedForContext(profile) &&
              brave_wallet::IsAllowed(profile->GetPrefs())) {
     if (brave_wallet::IsNativeWalletEnabled()) {
       // auto default_wallet =
