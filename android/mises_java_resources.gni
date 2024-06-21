@@ -362,6 +362,7 @@ mises_extra_java_resources = [
   "java/res/drawable/mises_web3_safe_confirm_bg.xml",
   "java/res/anim/left_enter.xml",
   "java/res/anim/left_exit.xml",
+  "java/res/anim/rotate_anim.xml",
   "java/res/mipmap-hdpi/ic_menu_mises_forward.png",
   "java/res/mipmap-mdpi/ic_menu_mises_forward.png",
   "java/res/mipmap-xhdpi/ic_menu_mises_forward.png",

@@ -33,6 +33,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -164,11 +165,14 @@ public class MisesNewTabPageLayout
     private static final int SHOW_BRAVE_RATE_ENTRY_AT = 10; // 10th row
     private int scrollOffset;
 
+    private boolean mIsRefreshingNewsFlow;
+
     public MisesNewTabPageLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mContext = context;
         mProfile = Profile.getLastUsedRegularProfile();
+        mIsRefreshingNewsFlow = false;
     }
 
     @Override
@@ -404,13 +408,11 @@ public class MisesNewTabPageLayout
         Button btnMore = (Button)mNewsFlowContainerLayout.findViewById(R.id.btn_more);
         btnMore.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                startRefreshAnimation();
                 mAdapterNewsFlowList.fetchMoreAsync(new Callback<NewsFlowListAdapter.FetchNewsResp>() {
                     @Override
                     public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
-                        if (result.nextPageIndex < 0) {
-                            btnMore.setEnabled(false);
-                            btnMore.setText("no more");
-                        }
+                        onNewsRequestFinished(result);
                     }
                 });
             }
@@ -419,20 +421,34 @@ public class MisesNewTabPageLayout
         androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowContainerLayout.findViewById(R.id.btn_refresh);
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                mAdapterNewsFlowList.refreshAsync(new Callback<NewsFlowListAdapter.FetchNewsResp>() {
-                    @Override
-                    public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
-                        if (result.nextPageIndex >= 0) {
-                            btnMore.setEnabled(true);
-                            btnMore.setText("more");
-                        } else {
-                            btnMore.setEnabled(false);
-                            btnMore.setText("no more");
+                // 没有在刷新，才可以触发刷新操作
+                if (!mIsRefreshingNewsFlow) {
+                    startRefreshAnimation();
+                    mAdapterNewsFlowList.refreshAsync(new Callback<NewsFlowListAdapter.FetchNewsResp>() {
+                        @Override
+                        public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
+                            onNewsRequestFinished(result);
                         }
-                    }
-                });
+                    });
+                }
             }
         });
+    }
+
+    private void startRefreshAnimation() {
+        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowContainerLayout.findViewById(R.id.btn_refresh);
+        Log.d(TAG, "start refresh animation");
+        btnRefresh.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.rotate_anim));
+        mIsRefreshingNewsFlow = true;
+        btnRefresh.setEnabled(false);
+    }
+
+    private void stopRefreshAnimation() {
+        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowContainerLayout.findViewById(R.id.btn_refresh);
+        Log.d(TAG, "stop refresh animation");
+        btnRefresh.clearAnimation();
+        mIsRefreshingNewsFlow = false;
+        btnRefresh.setEnabled(true);
     }
 
     private void setupNewsFlowAdapter() {
@@ -447,7 +463,29 @@ public class MisesNewTabPageLayout
         mAdapterNewsFlowList = new NewsFlowListAdapter(mActivity);
         mRecyclerViewNewsFlowList.setAdapter(mAdapterNewsFlowList);
 
-        mAdapterNewsFlowList.startFetchAsync();
+        startRefreshAnimation();
+        mAdapterNewsFlowList.startFetchAsync(
+            new Callback<NewsFlowListAdapter.FetchNewsResp>() {
+                @Override
+                public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
+                    onNewsRequestFinished(result);
+                }
+            });
+    }
+
+    private void onNewsRequestFinished(NewsFlowListAdapter.FetchNewsResp result) {
+        stopRefreshAnimation();
+        if (!result.ok) {
+            return;
+        }
+        Button btnMore = (Button)mNewsFlowContainerLayout.findViewById(R.id.btn_more);
+        if (result.nextPageIndex >= 0) {
+            btnMore.setEnabled(true);
+            btnMore.setText("more");
+        } else {
+            btnMore.setEnabled(false);
+            btnMore.setText("no more");
+        }
     }
 
     private boolean shouldDisplayTopSites() {

@@ -71,13 +71,16 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
         }
     }
 
-    public void startFetchAsync() {
+    public void startFetchAsync(Callback<FetchNewsResp> completionHandler) {
         fetchNewsInPageAsync(
             0,
             new Callback<FetchNewsResp>() {
                 @Override
                 public final void onResult(FetchNewsResp resp) {
-                    appendNewsArray(resp.newsArray);
+                    if (resp.ok) {
+                        appendNewsArray(resp.newsArray);
+                    }
+                    completionHandler.onResult(resp);
                 }
             }
         );
@@ -90,7 +93,9 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
             new Callback<FetchNewsResp>() {
                 @Override
                 public final void onResult(FetchNewsResp resp) {
-                    appendNewsArray(resp.newsArray);
+                    if (resp.ok) {
+                        appendNewsArray(resp.newsArray);
+                    }
                     completionHandler.onResult(resp);
                 }
             }
@@ -103,7 +108,9 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
             new Callback<FetchNewsResp>() {
                 @Override
                 public final void onResult(FetchNewsResp resp) {
-                    refreshNewsArray(resp.newsArray);
+                    if (resp.ok) {
+                        refreshNewsArray(resp.newsArray);
+                    }
                     completionHandler.onResult(resp);
                 }
             }
@@ -111,12 +118,20 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
     }
 
     public class FetchNewsResp {
+        boolean ok;
         JSONArray newsArray;
         int nextPageIndex;
 
         public FetchNewsResp(JSONArray newsArray, int nextPageIndex) {
+            this.ok = true;
             this.newsArray = newsArray;
             this.nextPageIndex = nextPageIndex;
+        }
+
+        public FetchNewsResp() {
+            this.ok = false;
+            this.newsArray = null;
+            this.nextPageIndex = -1;
         }
     }
 
@@ -150,9 +165,15 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
                             if (completionHandler != null) {
                                 completionHandler.onResult(new FetchNewsResp(newsJSONArray, nextPageIndex));
                             }
-                            // appendNewsArray(newsArray);
                         } catch (JSONException e) {
                             Log.e(TAG, "load news array from json error");
+                            if (completionHandler != null) {
+                                completionHandler.onResult(new FetchNewsResp());
+                            }
+                        }
+                    } else {
+                        if (completionHandler != null) {
+                            completionHandler.onResult(new FetchNewsResp());
                         }
                     }
                 }
@@ -199,14 +220,27 @@ public class NewsFlowListAdapter extends RecyclerView.Adapter<NewsFlowListAdapte
     }
 
     private void refreshNewsArray(final JSONArray newsJSONArray) {
-        mNewsIds.clear();
-        mNewsArray.clear();
+        // 在头部添加
+        // mNewsIds.clear();
+        // mNewsArray.clear();
         List<News> newsArray = convertJSONNewsArray(newsJSONArray);
+        List<News> newNewsArray = new ArrayList<>();
         for (News news : newsArray) {
+            // mNewsIds.add(news.id);
+            // mNewsArray.add(news);
+            if (mNewsIds.contains(news.id)) {
+                break;
+            }
             mNewsIds.add(news.id);
-            mNewsArray.add(news);
+            newNewsArray.add(news);
         }
-        notifyDataSetChanged();
+        if (!newNewsArray.isEmpty()) {
+            int oldSize = mNewsArray.size();
+            mNewsArray.addAll(0, newNewsArray);
+            notifyItemRangeInserted(0, newNewsArray.size());
+            // notifyDataSetChanged();
+            notifyItemRangeChanged(newNewsArray.size(), oldSize);
+        }
     }
 
     @Override
