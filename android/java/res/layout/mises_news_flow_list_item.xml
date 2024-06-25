@@ -59,8 +59,8 @@
     <ImageView
         android:id="@+id/iv_image"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_marginLeft="8dp"
-        android:scaleType="fitStart"
+        android:scaleType="centerCrop"
         android:visibility="gone" />
 </LinearLayout>

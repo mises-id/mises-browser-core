@@ -7,23 +7,25 @@ package org.chromium.chrome.browser.ntp;
 
 import static org.chromium.ui.base.ViewUtils.dpToPx;
 
-
 import android.text.TextUtils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.Pair;
+import android.view.animation.AnimationUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,9 +35,8 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 
-
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,6 +49,7 @@ import org.chromium.base.task.PostTask;
 import org.chromium.base.Callback;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.night_mode.GlobalNightModeStateProviderHolder;
+import org.chromium.chrome.browser.ntp.NewsFlowService;
 import org.chromium.chrome.browser.preferences.MisesPref;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.components.user_prefs.UserPrefs;
@@ -66,6 +68,14 @@ import com.openmediation.sdk.nativead.NativeAdListener;
 import com.openmediation.sdk.nativead.NativeAdView;
 import com.openmediation.sdk.utils.error.Error;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+
 import com.github.islamkhsh.CardSliderViewPager;
 import com.github.islamkhsh.CardSliderIndicator;
 
@@ -73,6 +83,7 @@ import org.chromium.base.MisesAdsUtil;
 import org.chromium.base.MisesSysUtils;
 import org.chromium.components.user_prefs.UserPrefs;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
@@ -81,15 +92,20 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+// import javax.sql.DataSource;
+
 public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements PrefObserver{
+
     private Activity mActivity;
+    private TabCreator mTabCreator;
     private RequestManager mGlide;
     private View mMvTilesContainerLayout;
     private View mMisesServiceTilesContainerLayout;
     private View mWeb3SiteTilesContainerLayout;
     private View mWeb3ExtensionTilesContainerLayout;
     private View mShortcutTilesContainerLayout;
-    private View mNewsFlowContainerLayout;
+    private View mNewsFlowListControlPanelLayout;
+    private View mLoadMoreLayout;
     private View mCarouselAdContainerLayout;
     private View mMisesSearchContainerLayout;
 
@@ -115,8 +131,12 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static int TYPE_TOP_SITES = 4;
     private static int TYPE_CAROUSEL_AD = 5;
     private static int TYPE_MISES_SEARCH = 6;
-    private static int TYPE_NEWS_FLOW_LIST = 7;
-    private static int TYPE_SHORTCUT = 8;
+    private static int TYPE_NEWS_FLOW_LIST_CONTROL_PANEL = 7;
+    private static int TYPE_NEWS_FLOW_LIST_ITEM = 8;
+    private static int TYPE_SHORTCUT = 9;
+    private static int TYPE_LOADMORE = 10;
+
+    private List<Integer> mTopItemViewTypes;
 
     private static final int ONE_ITEM_SPACE = 1;
     private static final int TWO_ITEMS_SPACE = 2;
@@ -133,6 +153,10 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private SharedPreferences.OnSharedPreferenceChangeListener mPreferenceListener;
 
+    private NewsFlowService mNewsFlowService;
+    private boolean mIsRefreshingNewsFlow;
+    private boolean mHaveMore;
+
     public MisesNtpAdapter(Activity activity, OnMisesNtpListener onMisesNtpListener,
             RequestManager glide, 
             View mvTilesContainerLayout, 
@@ -140,7 +164,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View web3SiteTilesContainerLayout,
             View web3ExtensionTilesContainerLayout,
             View shortcutTilesContainerLayout,
-            View newsFlowContainerLayout,
+            View newsFlowListControlPanelLayout,
+            View loadMoreLayout,
             View carouselAdContainerLayout,
             View misesSearchContainerLayout,
             int recyclerViewHeight, boolean isTopSitesEnabled) {
@@ -149,12 +174,21 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mActivity = activity;
         mOnMisesNtpListener = onMisesNtpListener;
         mGlide = glide;
+
+        mTopItemViewTypes = new ArrayList<>();
+        mTopItemViewTypes.add(TYPE_MISES_SEARCH);
+        mTopItemViewTypes.add(TYPE_SHORTCUT);
+        mTopItemViewTypes.add(TYPE_TOP_SITES);
+        mTopItemViewTypes.add(TYPE_CAROUSEL_AD);
+        mTopItemViewTypes.add(TYPE_NEWS_FLOW_LIST_CONTROL_PANEL);
+
         mMvTilesContainerLayout = mvTilesContainerLayout;
         mMisesServiceTilesContainerLayout = misesServiceTilesContainerLayout;
         mWeb3SiteTilesContainerLayout = web3SiteTilesContainerLayout;
         mWeb3ExtensionTilesContainerLayout = web3ExtensionTilesContainerLayout;
         mShortcutTilesContainerLayout = shortcutTilesContainerLayout;
-        mNewsFlowContainerLayout = newsFlowContainerLayout;
+        mNewsFlowListControlPanelLayout = newsFlowListControlPanelLayout;
+        mLoadMoreLayout = loadMoreLayout;
         mCarouselAdContainerLayout = carouselAdContainerLayout;
         mMisesSearchContainerLayout = misesSearchContainerLayout;
         mRecyclerViewHeight = recyclerViewHeight;
@@ -164,12 +198,52 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mIsWeb3ExtensionEnabled = shouldDisplayWeb3Extension();
         mIsShortcutEnabled = shouldDisplayShortcut();
 
+        mNewsFlowService = new NewsFlowService();
+        mIsRefreshingNewsFlow = false;
+        mHaveMore = true;
+
+        if (mActivity instanceof TabCreatorManager) {
+            TabCreatorManager tabCreatorManager = (TabCreatorManager)mActivity;
+            mTabCreator = tabCreatorManager.getTabCreator(false);;
+        }
+
         initPreferenceObserver();
 
         mData = new ArrayList<>();
         mCarouselPlacmentIds = new ArrayList<>();
         mLoadedPlacmentIds = new HashSet<>();
         maybeInitCarouselAd();
+
+        initNewsFlowListControlPanel();
+    }
+
+    private void initNewsFlowListControlPanel() {
+        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowListControlPanelLayout.findViewById(R.id.btn_refresh);
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                // 没有在刷新，才可以触发刷新操作
+                if (!mIsRefreshingNewsFlow) {
+                    startRefreshAnimation();
+                    mNewsFlowService.refreshAsync(
+                        new Callback<NewsFlowService.UpdateAction>() {
+                            @Override
+                            public final void onResult(NewsFlowService.UpdateAction action) {
+                                stopRefreshAnimation();
+                                handleNewsUpdate(action);
+                            }
+                        }
+                    );
+                }
+            }
+        });
+
+        Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
+        btnLoadMore.setOnClickListener(new View.OnClickListener() {
+
+            @Override public void onClick(View v) {
+                loadMoreNews();
+            }
+        });
     }
 
     private void maybeInitCarouselAd() {
@@ -306,13 +380,37 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 mOnMisesNtpListener.focusSearchBox();
                 MisesSysUtils.logEvent("ntp_box_search", "step", "click");
             }); 
+
+        } else if (holder instanceof NewsFlowControlPanelViewHolder) {
+            Log.v(TAG, "updating NewsFlowControlPanelViewHolder");
+            NewsFlowControlPanelViewHolder vh = (NewsFlowControlPanelViewHolder) holder;
+            mNewsFlowListControlPanelLayout.setLayoutParams(layoutParams);
+
+        } else if (holder instanceof NewsFlowItemViewHolder) {
+            Log.v(TAG, "updating NewsFlowItemViewHolder");
+            NewsFlowItemViewHolder vh = (NewsFlowItemViewHolder) holder;
+
+            News news = mNewsFlowService.newsAtIndex(position - mTopItemViewTypes.size());
+            vh.setNews(news);
+            vh.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    Log.d(TAG, String.format("click news: link=%s", news.link));
+                    if (mTabCreator != null) {
+                        mTabCreator.launchUrl(news.link, TabLaunchType.FROM_LINK);
+                    }
+                }
+            });
+
+        } else if (holder instanceof LoadMoreViewHolder) {
+            Log.v(TAG, "updating LoadMoreViewHolder");
         }
     }
 
     @Override
     public int getItemCount() {
         // return getTopSitesCount() + ONE_ITEM_SPACE;
-        return 5;
+        // return 6;
+        return mTopItemViewTypes.size() + mNewsFlowService.numOfNews() + 1;
     }
 
     @NonNull
@@ -329,10 +427,16 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new Web3ExtensionViewHolder(mWeb3ExtensionTilesContainerLayout, mActivity);
         } else if (viewType == TYPE_SHORTCUT) {
             return new ShortcutViewHolder(mShortcutTilesContainerLayout, mActivity);
-        } else if (viewType == TYPE_NEWS_FLOW_LIST) {
-            return new NewsFlowViewHolder(mNewsFlowContainerLayout, mActivity);
+        } else if (viewType == TYPE_NEWS_FLOW_LIST_CONTROL_PANEL) {
+            return new NewsFlowControlPanelViewHolder(mNewsFlowListControlPanelLayout, mActivity);
+        } else if (viewType == TYPE_NEWS_FLOW_LIST_ITEM) {
+            View itemView = (ViewGroup) LayoutInflater.from(mActivity)
+            .inflate(R.layout.mises_news_flow_list_item, parent, false);
+            return new NewsFlowItemViewHolder(itemView, mActivity);
         } else if (viewType == TYPE_MISES_SEARCH) {
             return new MisesSearchViewHolder(mMisesSearchContainerLayout, mActivity);
+        } else if (viewType == TYPE_LOADMORE) {
+            return new LoadMoreViewHolder(mLoadMoreLayout, mActivity);
         }
         return new TopSitesViewHolder(mMvTilesContainerLayout);
     }
@@ -365,11 +469,34 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onAttached() {
         Log.d(TAG, "onAttached");
         loadNativeAd();
+
+        // 获取新闻
+        /*startRefreshAnimation();
+        mNewsFlowService.fetchMoreAsync(new Callback<NewsFlowService.UpdateAction>() {
+            @Override
+            public final void onResult(NewsFlowService.UpdateAction action) {
+                handleNewsUpdate(action);
+            }
+        });*/
     }
+
+    private void handleNewsUpdate(NewsFlowService.UpdateAction action) {
+        if (action.ok && action.range.size > 0) {
+            int start = mTopItemViewTypes.size() + action.range.start;
+            notifyItemRangeInserted(start, action.range.size);
+            // 如果新增的news后面还有news，需要更新
+            int numOfNewsBehind = mNewsFlowService.numOfNews() - action.range.end();
+            if (numOfNewsBehind > 0) {
+                notifyItemRangeChanged(start + action.range.size, numOfNewsBehind);
+            }
+        }
+    }
+
     public void onDetached() {
         Log.d(TAG, "onDetached");
         removeNativeAdListener();
     }
+
     public void onDestroy() {
         Log.d(TAG, "onDestroy");
         removeNativeAdListener();
@@ -418,7 +545,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return TYPE_NEWS_FLOW_LIST;
         }*/
 
-        if (position == 0) {
+        /*if (position == 0) {
             return TYPE_MISES_SEARCH;
         } else if (position == 1) {
             return TYPE_SHORTCUT;
@@ -426,10 +553,30 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return TYPE_TOP_SITES;
         } else if (position == 3) {
             return TYPE_CAROUSEL_AD;
-        } else {
+        } else if (position == 4) {
             return TYPE_NEWS_FLOW_LIST;
+        } else {
+            return TYPE_LOADMORE;
+        }*/
+        if (position < mTopItemViewTypes.size()) {
+            return mTopItemViewTypes.get(position);
         }
-        
+        if (position == mTopItemViewTypes.size() + mNewsFlowService.numOfNews()) {
+            return TYPE_LOADMORE;
+        }
+        return TYPE_NEWS_FLOW_LIST_ITEM;
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        Log.v(TAG, "onViewDetachedFromWindow: " + holder);
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+        super.onViewRecycled(holder);
+        Log.v(TAG, "onViewRecycled: " + holder);
     }
 
     public int getTopSitesCount() {
@@ -732,15 +879,211 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public static class NewsFlowViewHolder extends RecyclerView.ViewHolder {
-        protected TabCreator mTabCreator;
-        NewsFlowViewHolder(View itemView, Context ctx) {
+    public static class NewsFlowControlPanelViewHolder extends RecyclerView.ViewHolder {
+        // protected TabCreator mTabCreator;
+        NewsFlowControlPanelViewHolder(View itemView, Context ctx) {
             super(itemView);
-            if (ctx instanceof TabCreatorManager) {
+            /*if (ctx instanceof TabCreatorManager) {
                 TabCreatorManager tabCreatorManager = (TabCreatorManager)ctx;
                 mTabCreator = tabCreatorManager.getTabCreator(false);;
-            }
+            }*/
         }
     }
 
+    public static class NewsFlowItemViewHolder extends RecyclerView.ViewHolder {
+
+        Context mContext;
+        TextView mtvTitle;
+        ImageView mivImage;
+        TextView mtvSource;
+        TextView mtvPublishedAt;
+
+        public NewsFlowItemViewHolder(View itemView, Context ctx) {
+            super(itemView);
+
+            mContext = ctx;
+            mtvTitle = (TextView) itemView.findViewById(R.id.tv_title);
+            mivImage = (ImageView) itemView.findViewById(R.id.iv_image);
+            mtvSource = (TextView) itemView.findViewById(R.id.tv_source);
+            mtvPublishedAt = (TextView) itemView.findViewById(R.id.tv_published_at);
+        }
+
+        private String dateOffsetNowDesc(Date date) {
+            long offset = (new Date().getTime() - date.getTime()) / 1000;
+            if (offset == 0) {
+                return "now";
+            }
+
+            final String suffix = offset > 0 ? "ago" : "later";
+            if (offset < 60) {
+                return String.format("%d seconds %s", offset, suffix);
+            }
+
+            offset /= 60;
+            if (offset < 60) {
+                return String.format("%d minutes %s", offset, suffix);
+            }
+
+            offset /= 60;
+            if (offset < 60) {
+                return String.format("%d hours %s", offset, suffix);
+            }
+
+            offset /= 24;
+            return String.format("%d days %s", offset, suffix);
+        }
+
+        public void setNews(News news) {
+            mtvTitle.setText(news.title);
+            mtvSource.setText(news.source);
+            mtvPublishedAt.setText(
+                String.format("%s", dateOffsetNowDesc(news.publishedAt)));
+            mivImage.setVisibility(View.GONE);
+            Log.d(TAG, String.format("setNews: thumbnail=%s", news.thumbnail));
+            RequestOptions options = new RequestOptions().transform(new RoundedCorners(dpToPx(mContext, 10)));
+            Glide.with(itemView.getContext())
+                .load(news.thumbnail)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(
+                        @Nullable GlideException e,
+                        Object model,
+                        Target<Drawable> target,
+                        boolean isFirstResource) {
+                            Log.e(TAG, "fetch image in news failed: id=%s url=`%s` err=%s", news.id, news.thumbnail, e.toString());
+                            return false;
+                        }
+                    
+                    @Override
+                    public boolean onResourceReady(
+                        Drawable resource,
+                        Object model,
+                        Target<Drawable> target,
+                        DataSource dataSource,
+                        boolean isFirstResource) {
+                            // 根据图片宽高比调整ImageView高度
+                            // adjustViewBounds="true"无效
+                            /*int realWidth = resource.getIntrinsicWidth();
+                            int realHeight = resource.getIntrinsicHeight();
+                            LayoutParams lp = mivImage.getLayoutParams();
+                            lp.height = realHeight * lp.width / realWidth;
+                            mivImage.setLayoutParams(lp);*/
+                            mivImage.setVisibility(View.VISIBLE);
+                            return false;
+                        }
+                })
+                .apply(options)
+                .into(mivImage);
+        }
+    }
+
+    public static class LoadMoreViewHolder extends RecyclerView.ViewHolder {
+        private ImageView ivLoading;
+        private Button btnLoadMore;
+        LoadMoreViewHolder(View itemView, Context ctx) {
+            super(itemView);
+            ivLoading = (ImageView)itemView.findViewById(R.id.iv_loading);
+            ivLoading.setVisibility(View.VISIBLE);
+            btnLoadMore = (Button)itemView.findViewById(R.id.btn_load_more);
+            btnLoadMore.setVisibility(View.GONE);
+
+            ivLoading.startAnimation(
+                AnimationUtils.loadAnimation(ctx, R.anim.rotate_anim));
+        }
+    }
+
+    private void startRefreshAnimation() {
+        Log.d(TAG, "start refresh animation");
+        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowListControlPanelLayout.findViewById(R.id.btn_refresh);
+        btnRefresh.startAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.rotate_anim));
+        mIsRefreshingNewsFlow = true;
+        btnRefresh.setEnabled(false);
+    }
+
+    private void stopRefreshAnimation() {
+        Log.d(TAG, "stop refresh animation");
+        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowListControlPanelLayout.findViewById(R.id.btn_refresh);
+        btnRefresh.clearAnimation();
+        mIsRefreshingNewsFlow = false;
+        btnRefresh.setEnabled(true);
+    }
+
+    private void startLoadMoreAnimation() {
+        if (!mHaveMore) {
+            return;
+        }
+        Log.d(TAG, "start load more animation");
+        ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
+        ivLoading.setVisibility(View.VISIBLE);
+        ivLoading.startAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.rotate_anim));
+        Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
+        btnLoadMore.setVisibility(View.GONE);
+        TextView tvNoMore = mLoadMoreLayout.findViewById(R.id.tv_no_more);
+        tvNoMore.setVisibility(View.GONE);
+    }
+
+    private void stopLoadMoreAnimation() {
+        if (!mHaveMore) {
+            return;
+        }
+        Log.d(TAG, "stop load more animation");
+        ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
+        ivLoading.clearAnimation();
+    }
+
+    private void markNoMore() {
+        Log.d(TAG, "mark no more");
+        mHaveMore = false;
+        ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
+        ivLoading.setVisibility(View.GONE);
+        Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
+        btnLoadMore.setVisibility(View.GONE);
+        TextView tvNoMore = mLoadMoreLayout.findViewById(R.id.tv_no_more);
+        tvNoMore.setVisibility(View.VISIBLE);
+    }
+
+    private void markLoadMoreFailed() {
+        Log.d(TAG, "mark load more failed");
+        ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
+        ivLoading.setVisibility(View.GONE);
+        Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
+        btnLoadMore.setVisibility(View.VISIBLE);
+        TextView tvNoMore = mLoadMoreLayout.findViewById(R.id.tv_no_more);
+        tvNoMore.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+
+        if (holder instanceof LoadMoreViewHolder) {
+            Log.v(TAG, "LoadMoreViewHolder attached to window");
+            loadMoreNews();
+        }
+    }
+
+    private void loadMoreNews() {
+        if (!mHaveMore) {
+            return;
+        }
+        Log.v(TAG, "start load more news");
+        startLoadMoreAnimation();
+        mNewsFlowService.fetchMoreAsync(
+            new Callback<NewsFlowService.UpdateAction>() {
+                @Override
+                public final void onResult(NewsFlowService.UpdateAction action) {
+                    Log.v(TAG, "onResult load more news");
+                    stopLoadMoreAnimation();
+                    if (!action.ok) {
+                        markLoadMoreFailed();
+                        return;
+                    }
+                    if (!action.haveMore) {
+                        markNoMore();
+                    }
+                    handleNewsUpdate(action);
+                }
+            }
+        );
+    }
 }

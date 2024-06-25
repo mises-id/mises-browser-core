@@ -33,7 +33,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -86,8 +85,6 @@ import org.chromium.mojo.bindings.ConnectionErrorHandler;
 import org.chromium.mojo.system.MojoException;
 import org.chromium.ui.base.DeviceFormFactor;
 import org.chromium.ui.base.WindowAndroid;
-import org.chromium.chrome.browser.ntp.NewsFlowListAdapter;
-import org.chromium.chrome.browser.ntp.NewsFlowListAdapter.FetchNewsResp;
 import org.chromium.chrome.browser.feed.FeedSurfaceScrollDelegate;
 
 
@@ -151,16 +148,15 @@ public class MisesNewTabPageLayout
     private ViewGroup mShortcutTilesContainerLayout;
     private MostVisitedTilesCoordinator mShortcutTilesCoordinator;
 
-    private ViewGroup mNewsFlowContainerLayout;
+    private ViewGroup mNewsFlowListControlPanelLayout;
+
+    private ViewGroup mLoadMoreLayout;
 
     private ViewGroup mNativeAdLayout;
     private ViewGroup mMisesSearchLayout;
 
     private TileGroupDelegateWrapper mTileGroupDelegateWrapper;
     private NewTabPageManager mManager;
-
-    private RecyclerView mRecyclerViewNewsFlowList;
-    private NewsFlowListAdapter mAdapterNewsFlowList;
 
     private static final int SHOW_BRAVE_RATE_ENTRY_AT = 10; // 10th row
     private int scrollOffset;
@@ -258,7 +254,6 @@ public class MisesNewTabPageLayout
         };
         mMvTilesContainerLayout.post(runable);
 
-
         mMisesServiceTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
         mMisesServiceTilesContainerLayout.setVisibility(View.VISIBLE);
@@ -277,15 +272,18 @@ public class MisesNewTabPageLayout
         mShortcutTilesContainerLayout.setVisibility(View.VISIBLE);
         mShortcutTilesContainerLayout.post(runable);
 
-        mNewsFlowContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
-                                        .inflate(R.layout.mises_news_flow_list_container, mMainLayout, false);
-        mNewsFlowContainerLayout.setVisibility(View.VISIBLE);
+        mNewsFlowListControlPanelLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+            .inflate(R.layout.mises_news_flow_list_control_panel, mMainLayout, false);
+        mNewsFlowListControlPanelLayout.setVisibility(View.VISIBLE);
+
+        mLoadMoreLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.new_tab_page_load_more, mMainLayout, false);
+        mLoadMoreLayout.setVisibility(View.VISIBLE);
 
         mNativeAdLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_carousel_container, mMainLayout, false);
         mNativeAdLayout.setVisibility(View.VISIBLE);
 
-        
         mMisesSearchLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_search_box_layout, mMainLayout, false);
         mMisesSearchLayout.setVisibility(View.VISIBLE);
@@ -309,14 +307,14 @@ public class MisesNewTabPageLayout
                 @Override
                 public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
-                    Log.v(TAG, "mRecyclerView onScrolled" );
+                    Log.v(TAG, "mRecyclerView onScrollStateChanged: newState=" + newState);
                     
                 }
 
                 @Override
                 public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
-                    Log.v(TAG, "mRecyclerView onScrolled" );
+                    Log.v(TAG, "mRecyclerView onScrolled: dy="+ dy);
                     scrollOffset += dy;
                     updateSearchBoxOnScroll();
                 }
@@ -326,10 +324,7 @@ public class MisesNewTabPageLayout
         if (mNtpAdapter != null) {
             mNtpAdapter.onAttached();
         }
-       
-        setupNewsFlow();
     }
-
 
     public class LinearLayoutManagerWrapper extends LinearLayoutManager {
         private static final String TAG = "LLManagerWrapper";
@@ -361,7 +356,6 @@ public class MisesNewTabPageLayout
         }
     }
 
-
     @SuppressLint("ClickableViewAccessibility")
     private void setNtpViews() {
 
@@ -378,116 +372,6 @@ public class MisesNewTabPageLayout
         });
     }
 
-    private void setupNewsFlow() {
-        mRecyclerViewNewsFlowList = mNewsFlowContainerLayout.findViewById(R.id.news_flow_list);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
-        // mRecyclerViewNewsFlowList.setBackgroundColor(Color.parseColor("#00FF00"));
-        mRecyclerViewNewsFlowList.setLayoutManager(layoutManager);
-        mRecyclerViewNewsFlowList.post(new Runnable() {
-            @Override
-            public void run() {
-                setupNewsFlowAdapter();
-            }
-        });
-
-        mRecyclerViewNewsFlowList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                Log.v(TAG, "mRecyclerViewNewsFlowList onScrolled" );
-                
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-               Log.v(TAG, "mRecyclerViewNewsFlowList onScrolled" );
-            }
-        });
-
-        Button btnMore = (Button)mNewsFlowContainerLayout.findViewById(R.id.btn_more);
-        btnMore.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                startRefreshAnimation();
-                mAdapterNewsFlowList.fetchMoreAsync(new Callback<NewsFlowListAdapter.FetchNewsResp>() {
-                    @Override
-                    public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
-                        onNewsRequestFinished(result);
-                    }
-                });
-            }
-        });
-
-        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowContainerLayout.findViewById(R.id.btn_refresh);
-        btnRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                // 没有在刷新，才可以触发刷新操作
-                if (!mIsRefreshingNewsFlow) {
-                    startRefreshAnimation();
-                    mAdapterNewsFlowList.refreshAsync(new Callback<NewsFlowListAdapter.FetchNewsResp>() {
-                        @Override
-                        public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
-                            onNewsRequestFinished(result);
-                        }
-                    });
-                }
-            }
-        });
-    }
-
-    private void startRefreshAnimation() {
-        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowContainerLayout.findViewById(R.id.btn_refresh);
-        Log.d(TAG, "start refresh animation");
-        btnRefresh.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.rotate_anim));
-        mIsRefreshingNewsFlow = true;
-        btnRefresh.setEnabled(false);
-    }
-
-    private void stopRefreshAnimation() {
-        androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowContainerLayout.findViewById(R.id.btn_refresh);
-        Log.d(TAG, "stop refresh animation");
-        btnRefresh.clearAnimation();
-        mIsRefreshingNewsFlow = false;
-        btnRefresh.setEnabled(true);
-    }
-
-    private void setupNewsFlowAdapter() {
-        if (mAdapterNewsFlowList != null) {
-            return;
-        }
-
-        if (mActivity == null || mActivity.isDestroyed() || mActivity.isFinishing()) {
-            return;
-        }
-
-        mAdapterNewsFlowList = new NewsFlowListAdapter(mActivity);
-        mRecyclerViewNewsFlowList.setAdapter(mAdapterNewsFlowList);
-
-        startRefreshAnimation();
-        mAdapterNewsFlowList.startFetchAsync(
-            new Callback<NewsFlowListAdapter.FetchNewsResp>() {
-                @Override
-                public final void onResult(NewsFlowListAdapter.FetchNewsResp result) {
-                    onNewsRequestFinished(result);
-                }
-            });
-    }
-
-    private void onNewsRequestFinished(NewsFlowListAdapter.FetchNewsResp result) {
-        stopRefreshAnimation();
-        if (!result.ok) {
-            return;
-        }
-        Button btnMore = (Button)mNewsFlowContainerLayout.findViewById(R.id.btn_more);
-        if (result.nextPageIndex >= 0) {
-            btnMore.setEnabled(true);
-            btnMore.setText("more");
-        } else {
-            btnMore.setEnabled(false);
-            btnMore.setText("no more");
-        }
-    }
-
     private boolean shouldDisplayTopSites() {
         return true;
     }
@@ -502,7 +386,8 @@ public class MisesNewTabPageLayout
                     mMvTilesContainerLayout, mMisesServiceTilesContainerLayout, 
                     mWeb3SiteTilesContainerLayout, mWeb3ExtensionTilesContainerLayout,
                     mShortcutTilesContainerLayout,
-                    mNewsFlowContainerLayout,
+                    mNewsFlowListControlPanelLayout,
+                    mLoadMoreLayout,
                     mNativeAdLayout, mMisesSearchLayout,
                     mRecyclerView.getHeight(), mIsTopSitesEnabled
                 );
@@ -525,9 +410,6 @@ public class MisesNewTabPageLayout
         if (mNtpAdapter == null) return;
 
         keepPosition();
-        
-
-        
     }
 
     private void keepPosition() {

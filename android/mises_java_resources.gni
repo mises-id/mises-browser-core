@@ -416,6 +416,8 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/layout/mises_search_box_layout.xml",
     "java/res/layout/mises_news_flow_list_item.xml",
     "java/res/layout/mises_news_flow_list_container.xml",
+    "java/res/layout/mises_news_flow_list_control_panel.xml",
+    "java/res/layout/new_tab_page_load_more.xml",
     "java/res/layout/native_ad_layout.xml",
     "java/res/layout/carousel_ad_view.xml",
     "java/res/layout/mises_suggestions_tile_view.xml",
