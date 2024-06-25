@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 404ff70b970ed28221ace433cd36c62c5eb9fa10..ab5cf76252e6b3d7170aac9a46fc59b66c5b3e64 100644
+index 404ff70b970ed28221ace433cd36c62c5eb9fa10..d227e7f8fa6d171fb636a072b907c3afc62edddd 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -101,13 +101,54 @@ import java.util.ArrayList;
@@ -136,7 +136,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..ab5cf76252e6b3d7170aac9a46fc59b6
          // Uses getMeasuredWidth()s instead of getLeft() because this is called in onMeasure
          // and the layout values have not yet been set.
 -        if (visualState == VisualState.NEW_TAB_NORMAL && mTabSwitcherState == STATIC_TAB) {
-+        boolean mises_enforced = false;
++        boolean mises_enforced = mNtpSearchBoxScrollFraction >= 1.f;
 +        if ((mises_enforced && visualState == VisualState.NEW_TAB_NORMAL) && mTabSwitcherState == STATIC_TAB) {
              return mToolbarSidePaddingForRealOmnibox;
          } else if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
@@ -154,7 +154,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..ab5cf76252e6b3d7170aac9a46fc59b6
          // Uses getMeasuredWidth()s instead of getRight() because this is called in onMeasure
          // and the layout values have not yet been set.
 -        if (visualState == VisualState.NEW_TAB_NORMAL && mTabSwitcherState == STATIC_TAB) {
-+        boolean mises_enforced = false;
++        boolean mises_enforced = mNtpSearchBoxScrollFraction >= 1.f;
 +        if ((mises_enforced && visualState == VisualState.NEW_TAB_NORMAL) && mTabSwitcherState == STATIC_TAB) {
              return getMeasuredWidth() - mToolbarSidePaddingForRealOmnibox;
          } else if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
