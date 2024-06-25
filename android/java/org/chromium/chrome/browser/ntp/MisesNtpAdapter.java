@@ -75,6 +75,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 
 import com.github.islamkhsh.CardSliderViewPager;
 import com.github.islamkhsh.CardSliderIndicator;
@@ -940,7 +941,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 String.format("%s", dateOffsetNowDesc(news.publishedAt)));
             mivImage.setVisibility(View.GONE);
             Log.d(TAG, String.format("setNews: thumbnail=%s", news.thumbnail));
-            RequestOptions options = new RequestOptions().transform(new RoundedCorners(dpToPx(mContext, 10)));
+            RequestOptions options = new RequestOptions().transform(new CenterCrop(), new RoundedCorners(dpToPx(mContext, 10)));
             Glide.with(itemView.getContext())
                 .load(news.thumbnail)
                 .listener(new RequestListener<Drawable>() {
