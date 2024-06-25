@@ -326,7 +326,10 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             R.drawable.rounded_dark_bg_alpha : R.drawable.rounded_light_bg_alpha;
         if (holder instanceof TopSitesViewHolder) {
 
-            mMvTilesContainerLayout.setLayoutParams(layoutParams);
+            LinearLayout.LayoutParams topSitesLayoutParams = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            mMvTilesContainerLayout.setLayoutParams(topSitesLayoutParams);
+            // mMvTilesContainerLayout.setLayoutParams(layoutParams);
             mMvTilesContainerLayout.setBackgroundResource(background);
 
             mTopSitesHeight = getViewHeight(holder.itemView) + margin;
@@ -358,7 +361,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (holder instanceof ShortcutViewHolder) {
             // Shortcut View Holder
             ShortcutViewHolder shortcutHolder = (ShortcutViewHolder) holder;
-            shortcutHolder.getView().setLayoutParams(layoutParams);
+            // shortcutHolder.getView().setLayoutParams(layoutParams);
             shortcutHolder.getView().setBackgroundResource(background);
 
         } else if (holder instanceof CarouselAdViewHolder) {
@@ -366,6 +369,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.v(TAG, "updating CarouselAdViewHolder");
             LinearLayout.LayoutParams adsLayoutParams = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            adsLayoutParams.setMargins(0, margin, 0, 0);
             CarouselAdViewHolder carouselAdViewHolder = (CarouselAdViewHolder) holder;
             mCarouselAdContainerLayout.setLayoutParams(adsLayoutParams);
             mCarouselAdContainerLayout.setBackgroundResource(background);
@@ -384,8 +388,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         } else if (holder instanceof NewsFlowControlPanelViewHolder) {
             Log.v(TAG, "updating NewsFlowControlPanelViewHolder");
-            NewsFlowControlPanelViewHolder vh = (NewsFlowControlPanelViewHolder) holder;
-            mNewsFlowListControlPanelLayout.setLayoutParams(layoutParams);
+            // NewsFlowControlPanelViewHolder vh = (NewsFlowControlPanelViewHolder) holder;
+            // mNewsFlowListControlPanelLayout.setLayoutParams(layoutParams);
 
         } else if (holder instanceof NewsFlowItemViewHolder) {
             Log.v(TAG, "updating NewsFlowItemViewHolder");
