@@ -193,7 +193,7 @@ public class MisesNewTabPageLayout
     float getToolbarTransitionPercentage() {
         Log.v(TAG, "getToolbarTransitionPercentage");
         return MathUtils.clamp(
-                ((float)scrollOffset / 168),
+                ((float)(scrollOffset - 168) / 100),
                 0f,
                 1f);
     }
@@ -209,7 +209,7 @@ public class MisesNewTabPageLayout
     @Override
     public void setSearchBoxAlpha(float alpha) {
         Log.v(TAG, "setSearchBoxAlpha:" + alpha);
-        mMisesSearchLayout.setAlpha(alpha);
+        //mMisesSearchLayout.setAlpha(alpha);
     }
     @Override
     public void checkForBraveStats() {
@@ -314,8 +314,8 @@ public class MisesNewTabPageLayout
                 @Override
                 public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
-                    Log.v(TAG, "mRecyclerView onScrolled: dy="+ dy);
-                    scrollOffset += dy;
+                    scrollOffset = recyclerView.computeVerticalScrollOffset();
+                    Log.v(TAG, "mRecyclerView onScrolled: scrollOffset=" + scrollOffset + ",dy="+ dy);
                     updateSearchBoxOnScroll();
                 }
             });
