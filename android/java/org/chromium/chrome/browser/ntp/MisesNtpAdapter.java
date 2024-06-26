@@ -306,7 +306,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     return Integer.compare(strToInt(o1.mPlacementId) , strToInt(o2.mPlacementId));
                 }
             });
-            notifyItemChanged(0);
+            notifyItemChanged(3);
         }
     }
 
@@ -379,7 +379,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             Log.v(TAG, "updating MisesSearchViewHolder");
             MisesSearchViewHolder misesSearchViewHolder = (MisesSearchViewHolder) holder;
-            mMisesSearchContainerLayout.setLayoutParams(layoutParams);
+            // mMisesSearchContainerLayout.setLayoutParams(layoutParams);
 
             misesSearchViewHolder.searchView.setOnClickListener(view -> {
                 mOnMisesNtpListener.focusSearchBox();
