@@ -234,6 +234,7 @@ public class MisesAdsUtil {
                 .logEnable(true)
                 .initHost(initHost)
                 .preloadAdTypes(OmAds.AD_TYPE.NONE)
+                .useCacheAdTypes(OmAds.CACHE_TYPE.NATIVE)
                 .build();
         OmAds.init(act, configuration, new InitCallback() {
             @Override
