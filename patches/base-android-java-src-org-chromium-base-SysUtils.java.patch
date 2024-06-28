@@ -1,0 +1,13 @@
+diff --git a/base/android/java/src/org/chromium/base/SysUtils.java b/base/android/java/src/org/chromium/base/SysUtils.java
+index 47686b5e8be4f81e534a4f20aab1d1e3fe32c2f5..853fe30e0e1df86e78ac99e5ce264f33d6eb610f 100644
+--- a/base/android/java/src/org/chromium/base/SysUtils.java
++++ b/base/android/java/src/org/chromium/base/SysUtils.java
+@@ -142,7 +142,7 @@ public class SysUtils {
+         try {
+             am.getMemoryInfo(info);
+             return info.lowMemory;
+-        } catch (SecurityException e) {
++        } catch (Exception e) {
+             // Occurs on Redmi devices when called from isolated processes.
+             // https://crbug.com/1480655
+             return false;
