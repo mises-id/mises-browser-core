@@ -730,8 +730,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 CardSliderViewPager viewPager = (CardSliderViewPager) adView.findViewById(R.id.viewPager);
                 viewPager.setAutoSlideTime(6);
-                viewPager.setSliderPageMargin(6);
-                viewPager.setOtherPagesWidth(12);
+                viewPager.setSliderPageMargin(3);
+                viewPager.setOtherPagesWidth(0);
                 viewPager.setSmallScaleFactor(0.9f);
                 viewPager.setSmallAlphaFactor(0.5f);
                 viewPager.setAdapter(mAdapter);

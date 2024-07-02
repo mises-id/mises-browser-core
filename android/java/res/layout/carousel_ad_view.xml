@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         app:auto_slide_time="6"
         app:cardSlider_indicator="@id/indicator"
-        app:cardSlider_otherPagesWidth="6dp"
-        app:cardSlider_pageMargin="3dp"
+        app:cardSlider_otherPagesWidth="1dp"
+        app:cardSlider_pageMargin="0dp"
         app:cardSlider_smallAlphaFactor="0.5"
         app:cardSlider_smallScaleFactor="0.9" />
 
