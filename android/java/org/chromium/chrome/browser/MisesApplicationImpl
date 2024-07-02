@@ -1,0 +1,10 @@
+package org.chromium.chrome.browser;
+
+public class MisesApplicationImpl extends SplitCompatApplication.Impl {
+    public MisesApplicationImpl() {}
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+}

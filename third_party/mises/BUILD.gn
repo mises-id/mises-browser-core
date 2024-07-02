@@ -4,12 +4,15 @@
 
 import("//build/config/android/rules.gni")
 
-# android_java_prebuilt("light_node_java") {
-#   jar_path = "haha-2.0.2.jar"
-# }
 
-android_aar_prebuilt("mises_light_node_java") {
-  aar_path = "light.aar"
+
+
+android_aar_prebuilt("mises_vpn_java") {
+  aar_path = "vpnlibrary-release_1.3.aar"
   extract_native_libraries = true
-  ignore_manifest = true
+  ignore_manifest = false
+  resource_exclusion_globs = []
+  deps = [
+    "//mises/third_party/android_deps:com_tencent_mmkv_static_java",
+  ]
 }

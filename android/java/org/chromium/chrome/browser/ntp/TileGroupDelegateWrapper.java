@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import org.chromium.chrome.browser.profiles.Profile;
-import org.chromium.chrome.browser.mises.HttpUtil;
+import org.chromium.chrome.browser.base.HttpUtil;
 import org.chromium.base.shared_preferences.SharedPreferencesManager;
 import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 
@@ -30,6 +30,9 @@ import org.chromium.base.Log;
 import org.chromium.base.ContextUtils;
 import org.chromium.base.Callback;
 import org.chromium.base.MisesSysUtils;
+import org.chromium.components.version_info.Channel;
+import org.chromium.components.version_info.VersionConstants;
+import org.chromium.components.version_info.VersionInfo;
 
 
 public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisitedSites.Observer {
@@ -260,8 +263,11 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
                 return;
             }
         }
-        // "https://web3.test.mises.site/website/test_config.json"
-        HttpUtil.JsonGetAsync("https://web3.mises.site/website/config.json", "", ContentUtils.getBrowserUserAgent(), new Callback<HttpUtil.HttpResp>() {
+        String configUrl = "https://web3.mises.site/website/config.json";
+        if (VersionConstants.CHANNEL == Channel.DEV || VersionConstants.CHANNEL == Channel.DEFAULT) {
+            configUrl = "https://web3.mises.site/website/test_config.json";
+        };
+        HttpUtil.JsonGetAsync(configUrl, "", ContentUtils.getBrowserUserAgent(), new Callback<HttpUtil.HttpResp>() {
             @Override
             public final void onResult(HttpUtil.HttpResp result) {
                 if (result.resp != null && loadWeb3SitesJson(result.resp)) {

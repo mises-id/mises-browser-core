@@ -9,8 +9,20 @@ import org.jni_zero.NativeMethods;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.google.firebase.analytics.FirebaseAnalytics;
 import org.chromium.base.MisesController;
+import org.chromium.base.Callback;
+import org.chromium.chrome.browser.tabmodel.TabCreatorManager;
+import org.chromium.chrome.browser.tabmodel.TabModel;
+import org.chromium.chrome.browser.tabmodel.TabCreator;
+import org.chromium.chrome.browser.mises.UIUtil;
+import org.chromium.chrome.mises.R;
 
 @JNINamespace("base::android")
 public class MisesSysUtils {
@@ -20,6 +32,7 @@ public class MisesSysUtils {
     public static void init(final Activity act) {
         activityContext = act;
         MisesAdsUtil.getInstance().initAds(act);
+        
     }
 
     public static Activity getActivityContext() {
@@ -71,6 +84,30 @@ public class MisesSysUtils {
     @CalledByNative
     public static void cancelRewardAd() {
         MisesAdsUtil.getInstance().cancelShowAds();
+    }
+
+    @CalledByNative
+    public static void openVpn() {
+        final Context context = getActivityContext();
+        if (context == null)
+            return;
+        boolean success = MisesVpnUtils.openVpn(context);
+        if (!success) {
+            // auth expired
+            UIUtil.showAlertDialog(context, context.getString(R.string.lbl_auth_tip), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TabCreator tabCreator = null;
+                    if (context instanceof TabCreatorManager) {
+                        TabCreatorManager chromeTabbedActivity = (TabCreatorManager) context;
+                        tabCreator = chromeTabbedActivity.getTabCreator(false);
+                    }
+                    if (tabCreator != null) {
+                        tabCreator.openSinglePage(MisesController.MISES_WALLET_BASE_URL);
+                    }
+                }
+            });
+        }
     }
 
     @CalledByNative

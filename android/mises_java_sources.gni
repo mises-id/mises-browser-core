@@ -67,9 +67,13 @@ mises_browser_ui_android_toolbar_sources = [
 mises_java_base_sources = [
   "//mises/android/java/org/chromium/base/MisesReflectionUtil.java",
 ]
+mises_java_base_deps = [
+]
 mises_java_base_module_sources = [
   "//mises/android/features/mises/java/org/chromium/chrome/browser/mises/MisesLCDService.java",
   "//mises/android/java/org/chromium/base/MisesAdsUtil.java",
+  "//mises/android/java/org/chromium/base/MisesVpnUtils.java",
+  "//mises/android/java/org/chromium/chrome/browser/base/HttpUtil.java",
   
 ]
 
@@ -87,4 +91,16 @@ mises_java_base_module_deps = [
   "//mises/third_party/android_deps:google_firebase_firebase_crashlytics_java",
   "//mises/third_party/android_deps:google_firebase_firebase_analytics_java", 
   "//mises/third_party/android_deps:google_play_services_measurement_api_java",
+  "//mises/third_party/mises:mises_vpn_java",
+  "//mises/third_party/android_deps:com_tencent_mmkv_static_java",
+  "//mises/third_party/android_deps:androidx_databinding_java",
+  "//third_party/androidx:androidx_cardview_cardview_java",
+  "//third_party/androidx:androidx_constraintlayout_constraintlayout_java",
+  
+  "//third_party/androidx:androidx_multidex_multidex_java",
+  "//third_party/android_deps:com_google_code_gson_gson_java",
+  "//mises/third_party/android_deps:me_drakeet_support_toast_java",
+  "//mises/third_party/android_deps:io_reactivex_rxandroid_java",
+  "//net/android:net_java",
+  
 ]

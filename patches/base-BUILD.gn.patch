@@ -1,5 +1,5 @@
 diff --git a/base/BUILD.gn b/base/BUILD.gn
-index 24f2397278ccb400a47e065a676be5ae783fa2e6..2bf31394bafdb7592325ca37b9514169e1873d4c 100644
+index 24f2397278ccb400a47e065a676be5ae783fa2e6..1269f7bd5afa23394730d918a47d6e7a3e36e763 100644
 --- a/base/BUILD.gn
 +++ b/base/BUILD.gn
 @@ -4480,7 +4480,7 @@ if (is_android) {
@@ -7,7 +7,7 @@ index 24f2397278ccb400a47e065a676be5ae783fa2e6..2bf31394bafdb7592325ca37b9514169
        "android/java/src/org/chromium/base/task/UiThreadTaskExecutor.java",
      ]
 -
-+    sources += mises_java_base_sources
++    sources += mises_java_base_sources deps += mises_java_base_deps
      if (use_clang_profiling) {
        sources += [
          "test/android/javatests/src/org/chromium/base/test/ClangProfiler.java",
