@@ -247,11 +247,11 @@ public class NewsFlowService {
 
     private void fetchNewsInPageAsync(String newsIdBefore, Callback<FetchNewsResp> completionHandler) {
         Uri.Builder builder = new Uri.Builder()
-            .scheme("http")
-            .encodedAuthority("192.168.124.5:8080")
+            // .scheme("http")
+            // .encodedAuthority("192.168.124.5:8080")
             // .encodedAuthority("172.20.10.2:8080")
-            // .scheme("https")
-            // .encodedAuthority("api.test.mises.site")
+            .scheme("https")
+            .encodedAuthority("api.test.mises.site")
             .appendPath("api")
             .appendPath("v1")
             .appendPath("newslist2");

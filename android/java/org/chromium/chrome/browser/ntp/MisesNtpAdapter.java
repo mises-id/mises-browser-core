@@ -926,21 +926,21 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             final String suffix = offset > 0 ? "ago" : "later";
             if (offset < 60) {
-                return String.format("%d seconds %s", offset, suffix);
+                return String.format("%d second%s %s", offset, offset == 1 ? "" : "s", suffix);
             }
 
             offset /= 60;
             if (offset < 60) {
-                return String.format("%d minutes %s", offset, suffix);
+                return String.format("%d minute%s %s", offset, offset == 1 ? "" : "s", suffix);
             }
 
             offset /= 60;
             if (offset < 60) {
-                return String.format("%d hours %s", offset, suffix);
+                return String.format("%d hour%s %s", offset, offset == 1 ? "" : "s", suffix);
             }
 
             offset /= 24;
-            return String.format("%d days %s", offset, suffix);
+            return String.format("%d day%s %s", offset, offset == 1 ? "" : "s", suffix);
         }
 
         public void setNews(News news) {
