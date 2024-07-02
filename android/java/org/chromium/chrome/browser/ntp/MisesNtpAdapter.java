@@ -84,6 +84,7 @@ import org.chromium.base.MisesAdsUtil;
 import org.chromium.base.MisesSysUtils;
 import org.chromium.components.user_prefs.UserPrefs;
 
+import java.lang.Math;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -156,7 +157,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private NewsFlowService mNewsFlowService;
     private boolean mIsRefreshingNewsFlow;
-    private boolean mHaveMore;
+    private MoreStatus mMoreStatus;
 
     public MisesNtpAdapter(Activity activity, OnMisesNtpListener onMisesNtpListener,
             RequestManager glide, 
@@ -201,7 +202,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         mNewsFlowService = new NewsFlowService();
         mIsRefreshingNewsFlow = false;
-        mHaveMore = true;
+        mMoreStatus = MoreStatus.HaveMore;
 
         if (mActivity instanceof TabCreatorManager) {
             TabCreatorManager tabCreatorManager = (TabCreatorManager)mActivity;
@@ -226,11 +227,18 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 if (!mIsRefreshingNewsFlow) {
                     startRefreshAnimation();
                     mNewsFlowService.refreshAsync(
-                        new Callback<NewsFlowService.UpdateAction>() {
+                        new Callback<NewsFlowService.RefreshResponse>() {
                             @Override
-                            public final void onResult(NewsFlowService.UpdateAction action) {
+                            public final void onResult(NewsFlowService.RefreshResponse resp) {
                                 stopRefreshAnimation();
-                                handleNewsUpdate(action);
+                                if (!resp.ok) {
+                                    markMoreStatus(MoreStatus.LoadFailed);
+                                    return;
+                                }
+                                if (!resp.haveMore) {
+                                    markMoreStatus(MoreStatus.HaveNoMore);
+                                }
+                                handleNewsUpdate(resp.actions);
                             }
                         }
                     );
@@ -329,7 +337,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             LinearLayout.LayoutParams topSitesLayoutParams = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             mMvTilesContainerLayout.setLayoutParams(topSitesLayoutParams);
-            // mMvTilesContainerLayout.setLayoutParams(layoutParams);
             mMvTilesContainerLayout.setBackgroundResource(background);
 
             mTopSitesHeight = getViewHeight(holder.itemView) + margin;
@@ -350,18 +357,12 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             misesServiceHolder.getView().setLayoutParams(layoutParams);
             misesServiceHolder.getView().setBackgroundResource(background);
 
-        } else if (holder instanceof MisesServiceViewHolder) {
-
-            MisesServiceViewHolder misesServiceHolder = (MisesServiceViewHolder) holder;
-            misesServiceHolder.update(mIsMisesServiceEnabled);
-
-            misesServiceHolder.getView().setLayoutParams(layoutParams);
-            misesServiceHolder.getView().setBackgroundResource(background);
-
         } else if (holder instanceof ShortcutViewHolder) {
             // Shortcut View Holder
+            LinearLayout.LayoutParams shortcutLayoutParams = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             ShortcutViewHolder shortcutHolder = (ShortcutViewHolder) holder;
-            // shortcutHolder.getView().setLayoutParams(layoutParams);
+            shortcutHolder.getView().setLayoutParams(shortcutLayoutParams);
             shortcutHolder.getView().setBackgroundResource(background);
 
         } else if (holder instanceof CarouselAdViewHolder) {
@@ -407,7 +408,17 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
 
         } else if (holder instanceof LoadMoreViewHolder) {
+
             Log.v(TAG, "updating LoadMoreViewHolder");
+
+        } else if (holder instanceof MisesServiceViewHolder) {
+
+            MisesServiceViewHolder misesServiceHolder = (MisesServiceViewHolder) holder;
+            misesServiceHolder.update(mIsMisesServiceEnabled);
+
+            misesServiceHolder.getView().setLayoutParams(layoutParams);
+            misesServiceHolder.getView().setBackgroundResource(background);
+
         }
     }
 
@@ -485,15 +496,53 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         });*/
     }
 
-    private void handleNewsUpdate(NewsFlowService.UpdateAction action) {
-        if (action.ok && action.range.size > 0) {
-            int start = mTopItemViewTypes.size() + action.range.start;
-            notifyItemRangeInserted(start, action.range.size);
-            // 如果新增的news后面还有news，需要更新
-            int numOfNewsBehind = mNewsFlowService.numOfNews() - action.range.end();
-            if (numOfNewsBehind > 0) {
-                notifyItemRangeChanged(start + action.range.size, numOfNewsBehind);
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        Log.v(TAG, "onAttachedToRecyclerView");
+
+        markMoreStatus(MoreStatus.HaveMore);
+        mNewsFlowService.initialize(new Callback<NewsFlowService.RefreshResponse>() {
+            @Override
+            public final void onResult(NewsFlowService.RefreshResponse resp) {
+                handleNewsUpdate(resp.actions);
             }
+        });
+    }
+
+    private void handleNewsUpdate(List<NewsFlowService.UpdateAction> actions) {
+        int startOfBehindNews = -1;
+        int start;
+        for (NewsFlowService.UpdateAction action : actions) {
+            switch (action.mode) {
+                case INSERTED:
+                    start = mTopItemViewTypes.size() + action.range.start;
+                    notifyItemRangeInserted(start, action.range.size);
+                    if (startOfBehindNews == -1) {
+                        startOfBehindNews = start + action.range.size;
+                    } else {
+                        startOfBehindNews = Math.min(startOfBehindNews, start + action.range.size);
+                    }
+                    break;
+                case REMOVED:
+                    start = mTopItemViewTypes.size() + action.range.start;
+                    notifyItemRangeRemoved(start, action.range.size);
+                    if (startOfBehindNews == -1) {
+                        startOfBehindNews = start;
+                    } else {
+                        startOfBehindNews = Math.min(startOfBehindNews, start);
+                    }
+                    break;
+                case CHANGED:
+                    start = mTopItemViewTypes.size() + action.range.start;
+                    notifyItemRangeChanged(start, action.range.size);
+                    break;
+                default:
+                    notifyDataSetChanged();
+                    return;
+            }
+        }
+        if (startOfBehindNews >= 0) {
+            notifyItemRangeChanged(startOfBehindNews, mNewsFlowService.numOfNews() - startOfBehindNews);
         }
     }
 
@@ -524,45 +573,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        /*if (position == 0) {
-            return TYPE_CAROUSEL_AD;
-        } else if (position == 1) {
-            return TYPE_MISES_SERVICE;
-        } else if (position == 2) {
-            return TYPE_WEB3_SITE;
-        } else if (position == 3) {
-            return TYPE_WEB3_EXTENSION;
-        } else if (position == 4) {
-            return TYPE_TOP_SITES;
-        } else if (position == 5) {
-            return TYPE_CAROUSEL_AD;
-        } else {
-            return TYPE_NEWS_FLOW_LIST;
-        }*/
-
-        /*if (position == 0) {
-            return TYPE_WEB3_SITE;
-        } else if (position == 1) {
-            return TYPE_SHORTCUT;
-        } else if (position == 2) {
-            return TYPE_CAROUSEL_AD;
-        } else {
-            return TYPE_NEWS_FLOW_LIST;
-        }*/
-
-        /*if (position == 0) {
-            return TYPE_MISES_SEARCH;
-        } else if (position == 1) {
-            return TYPE_SHORTCUT;
-        } else if (position == 2) {
-            return TYPE_TOP_SITES;
-        } else if (position == 3) {
-            return TYPE_CAROUSEL_AD;
-        } else if (position == 4) {
-            return TYPE_NEWS_FLOW_LIST;
-        } else {
-            return TYPE_LOADMORE;
-        }*/
         if (position < mTopItemViewTypes.size()) {
             return mTopItemViewTypes.get(position);
         }
@@ -885,13 +895,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class NewsFlowControlPanelViewHolder extends RecyclerView.ViewHolder {
-        // protected TabCreator mTabCreator;
         NewsFlowControlPanelViewHolder(View itemView, Context ctx) {
             super(itemView);
-            /*if (ctx instanceof TabCreatorManager) {
-                TabCreatorManager tabCreatorManager = (TabCreatorManager)ctx;
-                mTabCreator = tabCreatorManager.getTabCreator(false);;
-            }*/
         }
     }
 
@@ -1014,47 +1019,35 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void startLoadMoreAnimation() {
-        if (!mHaveMore) {
-            return;
-        }
         Log.d(TAG, "start load more animation");
         ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
-        ivLoading.setVisibility(View.VISIBLE);
         ivLoading.startAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.rotate_anim));
-        Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
-        btnLoadMore.setVisibility(View.GONE);
-        TextView tvNoMore = mLoadMoreLayout.findViewById(R.id.tv_no_more);
-        tvNoMore.setVisibility(View.GONE);
     }
 
     private void stopLoadMoreAnimation() {
-        if (!mHaveMore) {
-            return;
-        }
         Log.d(TAG, "stop load more animation");
         ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
         ivLoading.clearAnimation();
     }
 
-    private void markNoMore() {
-        Log.d(TAG, "mark no more");
-        mHaveMore = false;
-        ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
-        ivLoading.setVisibility(View.GONE);
-        Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
-        btnLoadMore.setVisibility(View.GONE);
-        TextView tvNoMore = mLoadMoreLayout.findViewById(R.id.tv_no_more);
-        tvNoMore.setVisibility(View.VISIBLE);
+    enum MoreStatus {
+        HaveMore,
+        HaveNoMore,
+        LoadFailed,
     }
 
-    private void markLoadMoreFailed() {
-        Log.d(TAG, "mark load more failed");
+    private void markMoreStatus(MoreStatus moreStatus) {
+        Log.d(TAG, "markMoreStatus="+moreStatus);
+        mMoreStatus = moreStatus;
+
         ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
-        ivLoading.setVisibility(View.GONE);
-        Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
-        btnLoadMore.setVisibility(View.VISIBLE);
+        ivLoading.setVisibility(mMoreStatus == MoreStatus.HaveMore ? View.VISIBLE : View.GONE);
+
         TextView tvNoMore = mLoadMoreLayout.findViewById(R.id.tv_no_more);
-        tvNoMore.setVisibility(View.GONE);
+        tvNoMore.setVisibility(mMoreStatus == MoreStatus.HaveNoMore ? View.VISIBLE : View.GONE);
+
+        Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
+        btnLoadMore.setVisibility(mMoreStatus == MoreStatus.LoadFailed ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -1068,25 +1061,31 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void loadMoreNews() {
-        if (!mHaveMore) {
+        Log.v(TAG, "loadMoreNews: MoreStatus="+mMoreStatus);
+        if (mMoreStatus == MoreStatus.HaveNoMore) {
             return;
         }
         Log.v(TAG, "start load more news");
         startLoadMoreAnimation();
         mNewsFlowService.fetchMoreAsync(
-            new Callback<NewsFlowService.UpdateAction>() {
+            new Callback<NewsFlowService.RefreshResponse>() {
                 @Override
-                public final void onResult(NewsFlowService.UpdateAction action) {
+                public final void onResult(NewsFlowService.RefreshResponse resp) {
                     Log.v(TAG, "onResult load more news");
                     stopLoadMoreAnimation();
-                    if (!action.ok) {
-                        markLoadMoreFailed();
+                    if (!resp.ok) {
+                        Log.v(TAG, "fetchMoreAsync return failed");
+                        markMoreStatus(MoreStatus.LoadFailed);
                         return;
                     }
-                    if (!action.haveMore) {
-                        markNoMore();
+                    if (!resp.haveMore) {
+                        Log.v(TAG, "fetchMoreAsync return have no more");
+                        markMoreStatus(MoreStatus.HaveNoMore);
+                    } else {
+                        Log.v(TAG, "fetchMoreAsync return have more");
+                        markMoreStatus(MoreStatus.HaveMore);
                     }
-                    handleNewsUpdate(action);
+                    handleNewsUpdate(resp.actions);
                 }
             }
         );

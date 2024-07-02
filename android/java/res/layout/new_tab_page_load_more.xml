@@ -27,7 +27,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         style="?android:attr/borderlessButtonStyle"
-        android:text="重新加载"
+        android:text="reload"
         android:textColor="#2172c3"
         android:visibility="gone" />
 

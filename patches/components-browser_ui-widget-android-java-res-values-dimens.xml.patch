@@ -1,5 +1,5 @@
 diff --git a/components/browser_ui/widget/android/java/res/values/dimens.xml b/components/browser_ui/widget/android/java/res/values/dimens.xml
-index 89ab1d3c2ae38b070244018145e663d51880b4fd..b37753eb4347bcac7b82e703dc9fda812d0d27e1 100644
+index 89ab1d3c2ae38b070244018145e663d51880b4fd..fad7020d60ba346a997b4b6c04ca10148b9a8fd0 100644
 --- a/components/browser_ui/widget/android/java/res/values/dimens.xml
 +++ b/components/browser_ui/widget/android/java/res/values/dimens.xml
 @@ -125,7 +125,7 @@ found in the LICENSE file.
@@ -11,3 +11,12 @@ index 89ab1d3c2ae38b070244018145e663d51880b4fd..b37753eb4347bcac7b82e703dc9fda81
      <dimen name="tile_view_min_height">86dp</dimen>
      <dimen name="tile_view_icon_size">48dp</dimen>
      <dimen name="tile_view_icon_size_modern">24dp</dimen>
+@@ -148,7 +148,7 @@ found in the LICENSE file.
+     <dimen name="tile_view_padding">4dp</dimen>
+     <dimen name="tile_view_padding_edge_portrait">12dp</dimen>
+     <dimen name="tile_view_padding_landscape">16dp</dimen>
+-    <dimen name="tile_view_title_margin_top_modern">61dp</dimen>
++    <dimen name="tile_view_title_margin_top_modern">54dp</dimen>
+     <dimen name="tile_view_padding_edge_tablet_polish">20dp</dimen>
+     <dimen name="tile_view_padding_interval_tablet_polish">16dp</dimen>
+ 
