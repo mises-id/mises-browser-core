@@ -422,6 +422,10 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    private void updateAllPublishedAtInVisibleNewsFlowItem() {
+        // RecyclerView.LayoutManager layoutManager = 
+    }
+
     @Override
     public int getItemCount() {
         // return getTopSitesCount() + ONE_ITEM_SPACE;
@@ -541,9 +545,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     return;
             }
         }
-        if (startOfBehindNews >= 0) {
+        /*if (startOfBehindNews >= 0) {
             notifyItemRangeChanged(startOfBehindNews, mNewsFlowService.numOfNews() - startOfBehindNews);
-        }
+        }*/
+        // 需要更新所有信息的更新时间
+        notifyDataSetChanged();
     }
 
     public void onDetached() {
@@ -1035,6 +1041,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         HaveNoMore,
         LoadFailed,
     }
+    // Loading
+    // 
 
     private void markMoreStatus(MoreStatus moreStatus) {
         Log.d(TAG, "markMoreStatus="+moreStatus);
@@ -1066,6 +1074,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return;
         }
         Log.v(TAG, "start load more news");
+        markMoreStatus(MoreStatus.HaveMore);
         startLoadMoreAnimation();
         mNewsFlowService.fetchMoreAsync(
             new Callback<NewsFlowService.RefreshResponse>() {
