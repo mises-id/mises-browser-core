@@ -428,9 +428,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private void refreshAllPublishedAtInVisibleNewsFlowItem() {
-        // RecyclerView.LayoutManager layoutManager = 
-        if (mLayoutManager == null) {
+    private void refreshAllPublishedAtInVisibleNewsFlowItems() {
+        if (mLayoutManager == null || mRecyclerView == null) {
             return;
         }
 
@@ -574,7 +573,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             notifyItemRangeChanged(startOfBehindNews, mNewsFlowService.numOfNews() - startOfBehindNews);
         }*/
         // 更新所有新闻Item的发布时间
-        refreshAllPublishedAtInVisibleNewsFlowItem();
+        refreshAllPublishedAtInVisibleNewsFlowItems();
     }
 
     public void onDetached() {

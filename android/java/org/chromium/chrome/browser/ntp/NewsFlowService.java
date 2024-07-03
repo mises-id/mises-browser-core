@@ -249,15 +249,13 @@ public class NewsFlowService {
         Uri.Builder builder = new Uri.Builder()
             // .scheme("http")
             // .encodedAuthority("192.168.124.5:8080")
-            // .encodedAuthority("172.20.10.2:8080")
             .scheme("https")
-            .encodedAuthority("api.test.mises.site")
+            .encodedAuthority("api.mises.site")
             .appendPath("api")
             .appendPath("v1")
-            .appendPath("newslist2");
-            //.appendQueryParameter("page_index", String.valueOf(pageIndex));
+            .appendPath("news");
         if (newsIdBefore != null) {
-            builder.appendQueryParameter("news_id", newsIdBefore);
+            builder.appendQueryParameter("before_news_id", newsIdBefore);
         }
         Log.d(TAG, String.format("fetchNewsInPageAsync: url=%s", builder.toString()));
         HttpUtil.JsonGetAsync(
